@@ -24,7 +24,7 @@ export interface EventMeta {
 }
 
 export interface SessionMeta {
-  readonly mode: "lesson" | "review" | "mistakes" | "placement";
+  readonly mode: "lesson" | "review" | "mistakes" | "placement" | "story";
   readonly node?: string | undefined;
   readonly seed: number;
   readonly planner: string;

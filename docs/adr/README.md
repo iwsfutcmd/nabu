@@ -37,5 +37,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0040](0040-audio-pipeline.md) | Audio: pinned-reading synthesis (eSpeak NG, Piper), committed clips, forced alignment, round-trip QA gating, human recordings | Proposed |
 | [0041](0041-listening-in-the-app.md) | Listening templates, karaoke, "Can't listen now" | Proposed |
 | [0042](0042-hosted-tts-providers.md) | Hosted TTS (ElevenLabs, Cartesia): keys from the environment, IPA for unsettled readings, punctuated input | Proposed |
+| [0043](0043-stories.md) | Stories: source and lints, one runtime glossary matcher (exact and folded passes), the reader, vertical reading | Proposed |
 
 Template: [0000-template.md](0000-template.md).

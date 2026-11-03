@@ -34,7 +34,7 @@ const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
     const token = firstToken(ex.blank);
     return token === undefined ? undefined : kcsOfToken(token);
   }
-  if (ex.template === "gap-fill") {
+  if (ex.template === "gap-fill" || ex.template === "story-complete") {
     const token = firstToken(ex.options[ex.answer]);
     return token === undefined ? undefined : kcsOfToken(token);
   }

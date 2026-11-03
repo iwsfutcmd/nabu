@@ -46,6 +46,10 @@ export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
   "minimal-pair": -0.2,
   "listen-tap": 0.3,
   "listen-type": 1.2,
+  // Stories: questions in context, about lines just read.
+  "story-choose": -1.0,
+  "story-complete": -0.6,
+  "story-arrange": -0.2,
 };
 
 export const initialPerformance = (): Performance => ({ theta: 1.5, facet: {}, template: {}, kc: {}, item: {}, w: 2 });

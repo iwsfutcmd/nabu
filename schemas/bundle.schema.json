@@ -52,7 +52,71 @@
         "title": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
         "kcs": { "type": "array", "items": { "$ref": "#/$defs/BundleKc" } },
         "nodes": { "type": "array", "items": { "$ref": "#/$defs/BundleNode" } },
-        "sentences": { "type": "array", "items": { "$ref": "#/$defs/BundleSentence" } }
+        "sentences": { "type": "array", "items": { "$ref": "#/$defs/BundleSentence" } },
+        "stories": { "type": "array", "items": { "$ref": "#/$defs/BundleStory" } }
+      }
+    },
+    "BundleStory": {
+      "title": "BundleStory",
+      "description": "A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.",
+      "type": "object",
+      "required": ["id", "node", "title", "characters", "steps", "kcs", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "node": { "type": "string" },
+        "title": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "characters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "name"],
+            "additionalProperties": false,
+            "properties": {
+              "id": { "type": "string" },
+              "name": { "description": "Per orthography.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } }
+            }
+          }
+        },
+        "steps": { "type": "array", "items": { "$ref": "#/$defs/BundleStoryStep" } },
+        "kcs": { "description": "Every KC its lines use.", "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+        "license": { "type": "string" }
+      }
+    },
+    "BundleStoryStep": {
+      "title": "BundleStoryStep",
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "line": { "$ref": "#/$defs/BundleStoryLine" },
+        "choose": {
+          "type": "object",
+          "required": ["prompt", "options", "answer"],
+          "additionalProperties": false,
+          "properties": {
+            "prompt": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+            "options": { "type": "array", "items": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } } },
+            "answer": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "BundleStoryLine": {
+      "title": "BundleStoryLine",
+      "type": "object",
+      "required": ["forms", "translations", "kcs"],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": { "type": "string" },
+        "forms": { "description": "Per orthography.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "translations": { "description": "Per support language.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "ask": { "type": "string", "enum": ["complete", "arrange"] },
+        "gap": { "$ref": "common.schema.json#/$defs/KcId" },
+        "distractors": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } }
       }
     },
     "BundleKc": {

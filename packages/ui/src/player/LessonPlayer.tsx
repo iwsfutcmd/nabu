@@ -9,7 +9,6 @@
  * script's direction, never the UI's.
  */
 import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type PlayerState } from "@nabu/core/lesson";
-import type { MessageId } from "@nabu/i18n";
 import type { OrthographyProfile } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -17,74 +16,9 @@ import { NabuUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, rubySchemeOf, typingInField, type Shortcuts, type ViewProps, type WritingMode } from "./shared.ts";
+import { digitIndex, effectiveWritingMode, hasMarksLayer, rubySchemeOf, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
 import { usePlayer } from "./usePlayer.ts";
-import {
-  CharReadView,
-  ChooseTranslationView,
-  CompleteTranslationView,
-  GapFillView,
-  ListenChoiceView,
-  ListenTapView,
-  ListenTypeView,
-  MatchPairsView,
-  SelectImageView,
-  SpeakView,
-  TilesView,
-  TranslateTypeView,
-  type ViewExtras,
-} from "./Views.tsx";
-
-const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
-  "select-image": "player.instruction.select-image",
-  "match-pairs": "player.instruction.match-pairs",
-  "choose-translation": "player.instruction.choose-translation",
-  "translate-tap.l2-l1": "player.instruction.translate-into-support",
-  "translate-tap.l1-l2": "exercise.instruction.write-in",
-  "translate-type.l1-l2": "exercise.instruction.write-in",
-  "complete-translation": "player.instruction.complete-translation",
-  "gap-fill": "player.instruction.gap-fill",
-  "char-read": "player.instruction.char-read",
-  "reading-disambiguation": "player.instruction.reading-disambiguation",
-  "speak.tier-0": "player.instruction.speak",
-  "listen-tap": "player.instruction.listen-tap",
-  "listen-type": "player.instruction.listen-type",
-  "listen-select": "player.instruction.listen-select",
-  "minimal-pair": "player.instruction.minimal-pair",
-};
-
-const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
-  const { ex } = props;
-  switch (ex.template) {
-    case "select-image":
-      return <SelectImageView {...props} ex={ex} />;
-    case "match-pairs":
-      return <MatchPairsView {...props} ex={ex} />;
-    case "choose-translation":
-      return <ChooseTranslationView {...props} ex={ex} />;
-    case "translate-tap.l2-l1":
-    case "translate-tap.l1-l2":
-      return <TilesView {...props} ex={ex} />;
-    case "translate-type.l1-l2":
-      return <TranslateTypeView {...props} ex={ex} />;
-    case "complete-translation":
-      return <CompleteTranslationView {...props} ex={ex} />;
-    case "gap-fill":
-      return <GapFillView {...props} ex={ex} />;
-    case "char-read":
-    case "reading-disambiguation":
-      return <CharReadView {...props} ex={ex} />;
-    case "speak.tier-0":
-      return <SpeakView {...props} ex={ex} />;
-    case "listen-tap":
-      return <ListenTapView {...props} ex={ex} />;
-    case "listen-type":
-      return <ListenTypeView {...props} ex={ex} />;
-    case "listen-select":
-    case "minimal-pair":
-      return <ListenChoiceView {...props} ex={ex} />;
-  }
-};
+import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
 
 export interface LessonPlayerProps {
   readonly course: CourseView;

@@ -130,6 +130,10 @@
       "message": "Start",
       "description": "Status of the next lesson to do."
     },
+    "app.path.story": {
+      "message": "Story",
+      "description": "Label on a story node of the learning path; the story's title follows it."
+    },
     "app.practice.back": {
       "message": "Back to the course",
       "description": "Link from an empty practice session back to the course path."
@@ -506,6 +510,18 @@
       "message": "Read this aloud",
       "description": "Instruction for a speaking exercise (record yourself, then rate how it went)."
     },
+    "player.instruction.story-arrange": {
+      "message": "Tap the words to make what they say",
+      "description": "Instruction above a story line's translation and its words as tiles: build the line."
+    },
+    "player.instruction.story-choose": {
+      "message": "Answer the question",
+      "description": "Instruction above a comprehension question in a story."
+    },
+    "player.instruction.story-complete": {
+      "message": "Choose the missing word",
+      "description": "Instruction above the next line of a story, shown with a word missing."
+    },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
@@ -617,6 +633,50 @@
     "player.wordbank.answer-label": {
       "message": "Your answer",
       "description": "Accessible label of the row where the chosen tiles go."
+    },
+    "story.finished.stopped": {
+      "message": "Story stopped",
+      "description": "Heading when the learner leaves a story before its end."
+    },
+    "story.finished.title": {
+      "message": "Story complete!",
+      "description": "Heading when the learner reaches the end of a story."
+    },
+    "story.gloss.hint": {
+      "message": "Tap a word to see what it means.",
+      "description": "Shown in the word-meaning panel before any word is tapped."
+    },
+    "story.gloss.label": {
+      "message": "Word meanings",
+      "description": "Accessible name of the panel that explains a tapped word."
+    },
+    "story.gloss.none": {
+      "message": "This word has no meaning listed yet.",
+      "description": "Shown in the word-meaning panel when a tapped word has no glossary entry."
+    },
+    "story.gloss.part": {
+      "message": "part of the word",
+      "description": "Note next to a meaning that covers only part of the tapped word (e.g. one character of 我哋)."
+    },
+    "story.gloss.phrase": {
+      "message": "phrase",
+      "description": "Note next to a meaning that covers the tapped word together with its neighbours."
+    },
+    "story.narration": {
+      "message": "Narration",
+      "description": "Accessible label of a story line no character speaks."
+    },
+    "story.transcript.label": {
+      "message": "The story so far",
+      "description": "Accessible name of the region that holds the story's lines as they appear."
+    },
+    "story.translation.hide": {
+      "message": "Hide translation",
+      "description": "Button under a story line that hides its translation again."
+    },
+    "story.translation.show": {
+      "message": "Show translation",
+      "description": "Button under a story line that shows what it means in the learner's language."
     }
   }
 }

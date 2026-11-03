@@ -85,6 +85,14 @@ export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
 /**
+ * The path node (kind story) the story is read at.
+ */
+export type Slug1 = string;
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ */
+export type KcId2 = string & { readonly __brand: "KcId" };
+/**
  * An SPDX license expression.
  */
 export type Spdx2 = string;
@@ -211,7 +219,7 @@ export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcRefLocal".
  */
-export type KcId2 = string & { readonly __brand: "KcId" };
+export type KcId3 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -225,6 +233,9 @@ export interface NabuSchemaIndex {
   readonly BundleManifest: BundleManifest;
   readonly BundleFile: BundleFile;
   readonly BundleUnit: BundleUnit;
+  readonly BundleStory: BundleStory;
+  readonly BundleStoryStep: BundleStoryStep;
+  readonly BundleStoryLine: BundleStoryLine;
   readonly BundleKc: BundleKc;
   readonly BundleNode: BundleNode;
   readonly BundleSentence: BundleSentence;
@@ -253,6 +264,11 @@ export interface NabuSchemaIndex {
   readonly ImageAsset: ImageAsset;
   readonly CourseAudio: CourseAudio;
   readonly AudioVoice: AudioVoice;
+  readonly StorySource: StorySource;
+  readonly StoryCharacter: StoryCharacter;
+  readonly StoryStep: StoryStep;
+  readonly StoryLineSource: StoryLineSource;
+  readonly StoryChoiceSource: StoryChoiceSource;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LearnerEvent: LearnerEvent;
@@ -476,6 +492,7 @@ export interface BundleUnit {
   readonly kcs: readonly BundleKc[];
   readonly nodes: readonly BundleNode[];
   readonly sentences: readonly BundleSentence[];
+  readonly stories?: readonly BundleStory[];
 }
 /**
  * A run of language data (gameplan §6.1). `tokens` concatenate, in logical order, to the NFC surface text. Language data is never a bare string and never addressed by character offsets.
@@ -598,6 +615,74 @@ export interface BundleSentence {
   readonly license: string;
 }
 /**
+ * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleStory".
+ */
+export interface BundleStory {
+  readonly id: string;
+  readonly node: string;
+  readonly title: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly characters: readonly {
+    readonly id: string;
+    /**
+     * Per orthography.
+     */
+    readonly name: {
+      readonly [k: string]: TaggedText;
+    };
+  }[];
+  readonly steps: readonly BundleStoryStep[];
+  /**
+   * Every KC its lines use.
+   */
+  readonly kcs: readonly KcId[];
+  readonly provenance?: Provenance;
+  readonly license: string;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleStoryStep".
+ */
+export interface BundleStoryStep {
+  readonly line?: BundleStoryLine;
+  readonly choose?: {
+    readonly prompt: {
+      readonly [k: string]: TaggedText;
+    };
+    readonly options: readonly {
+      readonly [k: string]: TaggedText;
+    }[];
+    readonly answer: number;
+  };
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleStoryLine".
+ */
+export interface BundleStoryLine {
+  readonly speaker?: string;
+  /**
+   * Per orthography.
+   */
+  readonly forms: {
+    readonly [k: string]: TaggedText;
+  };
+  /**
+   * Per support language.
+   */
+  readonly translations: {
+    readonly [k: string]: TaggedText;
+  };
+  readonly kcs: readonly KcId[];
+  readonly ask?: "complete" | "arrange";
+  readonly gap?: KcId;
+  readonly distractors?: readonly KcId[];
+}
+/**
  * audio.json (role audio-index): playable clips by item (sentence or KC id).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -693,6 +778,10 @@ export interface UnitSource {
    */
   readonly nodes: readonly PathNodeSource[];
   readonly sentences: readonly SentenceSource[];
+  /**
+   * Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story.
+   */
+  readonly stories?: readonly StorySource[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -824,6 +913,111 @@ export interface SourceToken {
    * Tile group. Default: each word token is its own tile.
    */
   readonly tile?: number;
+}
+/**
+ * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StorySource".
+ */
+export interface StorySource {
+  readonly id: string;
+  readonly node: Slug1;
+  /**
+   * The title per support language (key: e.g. en).
+   */
+  readonly title: {
+    readonly [k: string]: string;
+  };
+  readonly characters?: readonly StoryCharacter[];
+  /**
+   * @minItems 2
+   */
+  readonly steps: readonly StoryStep[];
+  readonly provenance?: Provenance;
+  readonly license?: Spdx;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StoryCharacter".
+ */
+export interface StoryCharacter {
+  readonly id: string;
+  /**
+   * The name as written in each orthography of the course (keys: orthography ids).
+   */
+  readonly name: {
+    readonly [k: string]: string;
+  };
+}
+/**
+ * One step of a story: a line, or a comprehension question.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StoryStep".
+ */
+export interface StoryStep {
+  readonly line?: StoryLineSource;
+  readonly choose?: StoryChoiceSource;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StoryLineSource".
+ */
+export interface StoryLineSource {
+  /**
+   * A character id; none for narration.
+   */
+  readonly speaker?: string;
+  /**
+   * The line in every orthography of the course, tokenized like a sentence's forms.
+   */
+  readonly forms: {
+    readonly [k: string]: SentenceForm;
+  };
+  /**
+   * The line's meaning per support language: shown on request, never graded.
+   */
+  readonly translations: {
+    readonly [k: string]: string;
+  };
+  /**
+   * Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.
+   */
+  readonly ask?: "complete" | "arrange";
+  readonly gap?: KcId2;
+  /**
+   * complete: other KCs offered, shown by their first form in the learner's orthography.
+   *
+   * @minItems 1
+   */
+  readonly distractors?: readonly KcId[];
+}
+/**
+ * A comprehension question in the support language, about what has been read.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "StoryChoiceSource".
+ */
+export interface StoryChoiceSource {
+  /**
+   * The question per support language.
+   */
+  readonly prompt: {
+    readonly [k: string]: string;
+  };
+  /**
+   * @minItems 2
+   *
+   * Items: An option per support language.
+   */
+  readonly options: readonly {
+    readonly [k: string]: string;
+  }[];
+  /**
+   * Index of the right option.
+   */
+  readonly answer: number;
 }
 /**
  * A generated drill family (§7.6). numbers: cardinals spelled out with CLDR RBNF.
@@ -1002,7 +1196,7 @@ export interface SessionStarted {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly mode: "lesson" | "review" | "mistakes" | "placement";
+  readonly mode: "lesson" | "review" | "mistakes" | "placement" | "story";
   readonly node?: string;
   readonly seed: number;
   readonly exercises: number;
@@ -1078,7 +1272,10 @@ export interface ExerciseRef {
     | "listen-tap"
     | "listen-type"
     | "listen-select"
-    | "minimal-pair";
+    | "minimal-pair"
+    | "story-choose"
+    | "story-complete"
+    | "story-arrange";
   /**
    * The sentence or KC the exercise was built from.
    */
@@ -1266,7 +1463,7 @@ export interface SessionCompleted {
    * IANA time zone of the device.
    */
   readonly tz: string;
-  readonly mode: "lesson" | "review" | "mistakes" | "placement";
+  readonly mode: "lesson" | "review" | "mistakes" | "placement" | "story";
   readonly node?: string;
   readonly summary: SessionSummaryData;
   /**

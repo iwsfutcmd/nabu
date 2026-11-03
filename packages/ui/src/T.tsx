@@ -32,6 +32,12 @@ export interface TProps {
   readonly focus?: { readonly token: number; readonly segment: number };
   readonly className?: string;
   readonly id?: string;
+  /**
+   * Tap-for-gloss (Phase 6): word tokens become buttons that report their index. The token
+   * stays whole (§6.8); `pressed` marks the one whose gloss is open.
+   */
+  readonly onTokenPress?: (index: number) => void;
+  readonly pressed?: number | undefined;
 }
 
 const escape = (c: string): string => c.replace(/[\\\]^-]/gu, "\\$&");
@@ -53,36 +59,56 @@ interface TokenViewProps {
   readonly strip: RegExp | undefined;
   readonly highlighted: boolean;
   readonly focus: number | undefined;
+  readonly onPress: ((index: number) => void) | undefined;
+  readonly pressed: boolean;
 }
 
-const TokenView = ({ token, index, ruby, strip, highlighted, focus }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, strip, highlighted, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
   const bases = segments ?? (focus === undefined ? undefined : Object.values(token.ruby ?? {})[0]);
   const tcy = token.kind === "number" && graphemeCount(token.surface) <= TATE_CHU_YOKO_MAX;
   const base = (text: string, i: number): JSX.Element | string => (i === focus ? <mark className={styles.focus}>{text}</mark> : text);
+  const content =
+    bases === undefined ? (
+      show(token.surface)
+    ) : segments === undefined ? (
+      bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
+    ) : (
+      <ruby className={styles.ruby}>
+        {segments.map((segment, i) => (
+          <Fragment key={i}>
+            {base(segment.base, i)}
+            <rt>{segment.text}</rt>
+          </Fragment>
+        ))}
+      </ruby>
+    );
+  if (onPress !== undefined && (token.kind === "word" || token.kind === "number")) {
+    return (
+      <button
+        type="button"
+        className={`${styles.token} ${styles.pressable}`}
+        data-kind={token.kind}
+        data-index={index}
+        data-tcy={tcy || undefined}
+        data-highlight={highlighted || undefined}
+        aria-pressed={pressed}
+        onClick={() => onPress(index)}
+      >
+        {content}
+      </button>
+    );
+  }
   return (
     <span className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined} data-highlight={highlighted || undefined}>
-      {bases === undefined ? (
-        show(token.surface)
-      ) : segments === undefined ? (
-        bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
-      ) : (
-        <ruby className={styles.ruby}>
-          {segments.map((segment, i) => (
-            <Fragment key={i}>
-              {base(segment.base, i)}
-              <rt>{segment.text}</rt>
-            </Fragment>
-          ))}
-        </ruby>
-      )}
+      {content}
     </span>
   );
 };
 
-export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, focus, className, id }: TProps): JSX.Element => {
+export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
   const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
@@ -111,6 +137,8 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           strip={strip}
           highlighted={highlight?.includes(index) ?? false}
           focus={focus?.token === index ? focus.segment : undefined}
+          onPress={onTokenPress}
+          pressed={pressed === index}
         />
       ))}
     </Tag>

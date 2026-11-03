@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, glossUnits, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledProfile } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
@@ -39,6 +39,20 @@ const acceptSet = (args: Args): CompiledAcceptSet => {
   return set;
 };
 
+const glossaryCache = new Map<string, CompiledGlossary>();
+const glossary = (args: Args): CompiledGlossary => {
+  const p = profile(args);
+  const entries = args["entries"];
+  if (!Array.isArray(entries)) throw new Error('"entries" must be an array of {kc, text}');
+  const key = `${p.id}\u0000${JSON.stringify(entries)}`;
+  let compiled = glossaryCache.get(key);
+  if (compiled === undefined) {
+    compiled = compileGlossary(p, entries as GlossEntry[]);
+    glossaryCache.set(key, compiled);
+  }
+  return compiled;
+};
+
 const text = (args: Args, key = "text"): string => {
   const value = args[key];
   if (typeof value !== "string") throw new Error(`"${key}" must be a string`);
@@ -57,6 +71,15 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   /** Runtime units, case-folded, ignorable marks stripped: what tap-to-gloss and hint lookup match on. */
   "fold-units": (a) => glossUnits(profile(a), text(a)),
   "case-fold": (a) => caseFold(text(a), text(a, "locale")),
+  /**
+   * Tap-for-gloss segmentation: longest match against `entries`, exact and folded passes side
+   * by side. Over `tokens` (a compiled sentence or story line) when given, else over `text`.
+   */
+  gloss: (a) => {
+    const g = glossary(a);
+    const p = profile(a);
+    return Array.isArray(a["tokens"]) ? glossTokens(g, p, a["tokens"] as Parameters<typeof glossTokens>[2]) : glossText(g, p, text(a));
+  },
   letters: (a) => {
     const p = profile(a);
     return p.letters(p.fold(p.normalize(text(a))));

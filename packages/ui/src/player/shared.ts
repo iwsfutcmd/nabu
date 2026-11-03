@@ -43,7 +43,7 @@ export const hasMarksLayer = (profile: OrthographyProfile | undefined): boolean 
  * The writing mode a target region actually uses: vertical only where the
  * profile allows it for that scope (§11.4), always for always-vertical scripts.
  */
-export const effectiveWritingMode = (profile: OrthographyProfile | undefined, requested: WritingMode, scope: "prompt" | "wordbank"): WritingMode => {
+export const effectiveWritingMode = (profile: OrthographyProfile | undefined, requested: WritingMode, scope: "prompt" | "wordbank" | "reading"): WritingMode => {
   const layout = profile?.layout;
   if (layout === undefined || layout.vertical === "none") return "horizontal-tb";
   if (layout.verticalPolicy === "always") return layout.vertical;

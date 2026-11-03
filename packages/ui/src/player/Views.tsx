@@ -20,6 +20,9 @@ import type {
   SelectImage,
   SelfRating,
   Speak,
+  StoryArrange,
+  StoryChoose,
+  StoryComplete,
   TranslateTap,
   TranslateType,
 } from "@nabu/core/lesson";
@@ -252,7 +255,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
  * run in the answer language's direction, and become columns in vertical text.
  */
 /** The answer row and the bank of tiles (translate-tap and listen-tap). */
-const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap>; ex: TranslateTap | ListenTap }): JSX.Element => {
+const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | StoryArrange>; ex: TranslateTap | ListenTap | StoryArrange }): JSX.Element => {
   const { locked, dispatch } = props;
   const t = useTranslator();
   const order = props.draft.tag === "tiles" ? props.draft.order : [];
@@ -622,3 +625,66 @@ export const ListenChoiceView = (props: Props<ListenSelect | MinimalPair>): JSX.
   );
 };
 
+
+// ------------------------------------------------------------------------------------ stories (Phase 6)
+
+/** A support-language prompt (a question, or a line's translation). */
+const SupportPrompt = ({ text }: { text: TaggedText }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
+      <T as="p" text={text} />
+    </div>
+  );
+};
+
+/** A comprehension question about the story, in the support language. */
+export const StoryChooseView = (props: Props<StoryChoose>): JSX.Element => {
+  const { ex } = props;
+  useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  return (
+    <div className={styles.body}>
+      <SupportPrompt text={ex.prompt} />
+      <Options
+        options={ex.options.map((o, i) => <T key={i} text={o} />)}
+        selected={selectedOf(props)}
+        answer={ex.answer}
+        outcome={props.outcome}
+        locked={props.locked}
+        onSelect={(i) => choose(props, i)}
+      />
+    </div>
+  );
+};
+
+/** The story's next line with a word missing: choose it. */
+export const StoryCompleteView = (props: Props<StoryComplete>): JSX.Element => {
+  const { ex } = props;
+  const selected = selectedOf(props);
+  useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  return (
+    <div className={styles.body}>
+      <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />
+      <Options
+        grid
+        options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
+        selected={selected}
+        answer={ex.answer}
+        outcome={props.outcome}
+        locked={props.locked}
+        onSelect={(i) => choose(props, i)}
+      />
+    </div>
+  );
+};
+
+/** The story's next line, given its translation: build it from its words. */
+export const StoryArrangeView = (props: Props<StoryArrange>): JSX.Element => {
+  const { ex } = props;
+  return (
+    <div className={styles.body}>
+      <SupportPrompt text={ex.prompt} />
+      <WordBank props={props} ex={ex} />
+    </div>
+  );
+};

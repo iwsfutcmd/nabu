@@ -36,6 +36,7 @@ nodes:
 - {id: fa.book, kind: lesson, introduces: ['sense:ketab', 'construction:ezafe', 'sense:esm', 'sense:chist', 'sense:khub', 'sense:kheyli']}
 - {id: fa.polite, kind: lesson, introduces: ['form:2pl-id', 'sense:shoma', 'form:3pl-and']}
 - {id: fa.plural, kind: lesson, introduces: ['form:plural-ha', 'grapheme:zwnj']}
+- {id: fa.story, kind: story}
 sentences:
 - id: s.1
   node: fa.greetings
@@ -314,3 +315,80 @@ sentences:
       reverse: "کتاب\u200cهای من خیلی خوب هستند"
   translations:
     en: My books are very good.
+stories:
+- id: fa.story.books
+  node: fa.story
+  title: {en: "Maryam's books"}
+  provenance: {author: 'llm:claude@b5fb0698d0ba', status: draft}
+  characters:
+  - {id: maryam, name: {fa-Arab/standard: مریم}}
+  - {id: ali, name: {fa-Arab/standard: علی}}
+  steps:
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: سلام!
+          tokens: [{surface: سلام, sense: salam}]
+      translations: {en: "Hello!"}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: سلام! تو علی هستی؟
+          tokens: [{surface: سلام, sense: salam}, {surface: تو, sense: to}, {surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: "Hello! Are you Ali?"}
+  - line:
+      speaker: ali
+      ask: complete
+      gap: 'sense:man'
+      distractors: ['sense:to', 'sense:in']
+      forms:
+        fa-Arab/standard:
+          text: بله، من علی هستم.
+          tokens: [{surface: بله, sense: bale}, {surface: من, sense: man}, {surface: علی, sense: ali}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: "Yes, I'm Ali."}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: من مریم هستم.
+          tokens: [{surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: "I'm Maryam."}
+  - choose:
+      prompt: {en: "Who is Maryam talking to?"}
+      options: [{en: "Ali"}, {en: "a teacher"}, {en: "nobody"}]
+      answer: 0
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: این کتابِ تو است؟
+          tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab}, {surface: تو, sense: to}, {surface: است, sense: budan}]
+      translations: {en: "Is this your book?"}
+  - line:
+      speaker: maryam
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: "بله. کتاب\u200cهای من خیلی خوب هستند."
+          tokens: [{surface: بله, sense: bale}, {surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      translations: {en: "Yes. My books are very good."}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: ممنون، مریم! خداحافظ!
+          tokens: [{surface: ممنون, sense: mamnun}, {surface: مریم, sense: maryam}, {surface: خداحافظ, sense: khodahafez}]
+      translations: {en: "Thanks, Maryam! Goodbye!"}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: خداحافظ!
+          tokens: [{surface: خداحافظ, sense: khodahafez}]
+      translations: {en: "Goodbye!"}
+  - choose:
+      prompt: {en: "What does Maryam say about her books?"}
+      options: [{en: "They are very good."}, {en: "They are not good."}, {en: "She has no books."}]
+      answer: 0

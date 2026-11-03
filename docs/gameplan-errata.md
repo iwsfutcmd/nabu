@@ -143,3 +143,12 @@ ADR is linked. The gameplan text itself is left as written.
     therefore checks agreement within a relative 1e-9 and reports the first value outside it. The
     server is authoritative ([ADR 0038](adr/0038-server-sync-and-accounts.md)).
 
+## Phase 6
+
+40. **§8.2 "`story` … comprehension":** §9.1 has no comprehension facet. Story questions credit the
+    `recognize` facet of their line's KCs ([ADR 0043](adr/0043-stories.md)). A comprehension
+    question with no KCs of its own (`story-choose`) updates the performance model only.
+41. **§7.5 stage 7 "validate glossaries with the runtime matcher":** until Phase 6 the compiler ran
+    its own longest match in Python over core-cli's folded units. That covered the folded pass
+    only, and the app had no glossary matcher at all. Both now run `@nabu/core`'s `glossTokens`,
+    with exact and folded passes ([ADR 0043](adr/0043-stories.md)).

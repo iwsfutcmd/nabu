@@ -59,12 +59,15 @@ const rightAnswer = (ex: Exercise): Response => {
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       return { tag: "choice", index: ex.answer };
     case "match-pairs":
       return { tag: "pairs", mistakes: 0 };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
+    case "story-arrange":
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -85,10 +88,13 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
+    case "story-arrange":
       return { tag: "tiles", order: [...ex.solution].reverse().length > 1 ? [...ex.solution].reverse() : ex.tiles.map((_, i) => i).filter((i) => !ex.solution.includes(i)) };
     case "translate-type.l1-l2":
     case "complete-translation":
@@ -149,8 +155,9 @@ describe("template coverage", () => {
       const course = loadCourse(id, orthography);
       for (const { node } of lessonNodes(course)) for (const ex of buildLesson(course, node.id, { seed: 7 })) seen.add(ex.template);
     }
-    // Listening templates need audio and come from the planner (test/listening.test.ts).
-    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t)).sort());
+    // Listening templates need audio and come from the planner (test/listening.test.ts); story
+    // questions come from stories (test/story.test.ts).
+    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-")).sort());
   });
 
   it("can leave speaking out", () => {

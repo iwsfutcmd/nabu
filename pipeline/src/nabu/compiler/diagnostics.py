@@ -148,6 +148,35 @@ _LINTS = [
         6,
         "A production sentence has no reverse accept set in some orthography.",
     ),
+    # stories (Phase 6)
+    Lint(
+        "story.node",
+        "error",
+        5,
+        "A story's node is missing or not of kind story, a story node has no story, or two "
+        "stories share a node.",
+    ),
+    Lint(
+        "story.missing-form",
+        "error",
+        1,
+        "A story line, name, title or question lacks an orthography or support language.",
+    ),
+    Lint("story.speaker", "error", 1, "A line's speaker is not one of the story's characters."),
+    Lint(
+        "story.ahead",
+        "warning",
+        5,
+        "A story uses a KC that a later node introduces (it is glossed, but not yet taught).",
+    ),
+    Lint(
+        "story.question",
+        "error",
+        6,
+        "A question cannot be answered as written: an answer out of range, options that read "
+        "the same, a gap that is not exactly one word, a distractor without a form or that "
+        "reads like the answer, or a line with one tile to arrange.",
+    ),
     # 7 · glossary and segmentation simulation
     Lint(
         "glossary.dead-entry",

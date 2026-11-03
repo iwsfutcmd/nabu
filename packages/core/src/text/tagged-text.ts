@@ -75,3 +75,7 @@ export const textOfSurface = (base: Pick<TaggedText, "lang" | "orthography">, su
   orthography: base.orthography,
   tokens: [{ surface, kind: /[\p{L}\p{M}\p{N}]/u.test(surface) ? "word" : "punct" }],
 });
+
+/** Indexes of the word and number tokens, in order: what tap-for-gloss and shortcuts address. */
+export const wordIndexes = (text: TaggedText): readonly number[] =>
+  text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));

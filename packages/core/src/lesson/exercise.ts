@@ -21,7 +21,10 @@ export type TemplateId =
   | "listen-tap"
   | "listen-type"
   | "listen-select"
-  | "minimal-pair";
+  | "minimal-pair"
+  | "story-choose"
+  | "story-complete"
+  | "story-arrange";
 
 /** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
@@ -178,6 +181,34 @@ export interface MinimalPair extends Common {
   readonly answer: number;
 }
 
+/** A comprehension question about a story, in the support language (Phase 6). */
+export interface StoryChoose extends Common {
+  readonly template: "story-choose";
+  readonly prompt: TaggedText;
+  readonly options: readonly TaggedText[];
+  readonly answer: number;
+}
+
+/** The next line of a story with one word missing: choose the word. */
+export interface StoryComplete extends Common {
+  readonly template: "story-complete";
+  readonly before: TaggedText;
+  readonly after: TaggedText;
+  readonly options: readonly TaggedText[];
+  readonly answer: number;
+}
+
+/** The next line of a story, given its translation: build it from its tiles. */
+export interface StoryArrange extends Common {
+  readonly template: "story-arrange";
+  readonly prompt: TaggedText;
+  readonly tiles: readonly TaggedText[];
+  /** Tile indexes in the line's order; tiles that read the same are interchangeable. */
+  readonly solution: readonly number[];
+  readonly joiner: string;
+  readonly canonical: TaggedText;
+}
+
 export type Exercise =
   | SelectImage
   | MatchPairs
@@ -192,7 +223,10 @@ export type Exercise =
   | ListenTap
   | ListenType
   | ListenSelect
-  | MinimalPair;
+  | MinimalPair
+  | StoryChoose
+  | StoryComplete
+  | StoryArrange;
 
 export type SelfRating = "good" | "hard" | "again";
 

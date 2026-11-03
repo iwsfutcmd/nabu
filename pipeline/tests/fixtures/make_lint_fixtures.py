@@ -205,6 +205,90 @@ def _no_provenance(c: Course) -> None:
     del c["provenance"]
 
 
+# ---- stories: a clean story on a story node, then one mutation per lint
+
+STORY: dict[str, Any] = {
+    "id": "basics.story",
+    "node": "basics.story",
+    "title": {"en": "Hello"},
+    "characters": [{"id": "aziz", "name": {"uz-Latn/standard": "Aziz"}}],
+    "steps": [
+        {
+            "line": {
+                "speaker": "aziz",
+                "forms": {
+                    "uz-Latn/standard": {
+                        "text": "Salom!",
+                        "tokens": [{"surface": "Salom", "sense": "salom"}],
+                    }
+                },
+                "translations": {"en": "Hello!"},
+            }
+        },
+        {
+            "line": {
+                "speaker": "aziz",
+                "ask": "complete",
+                "gap": "sense:talaba",
+                "distractors": ["sense:salom"],
+                "forms": {
+                    "uz-Latn/standard": {
+                        "text": "Men talabaman.",
+                        "tokens": [
+                            {"surface": "Men", "sense": "men"},
+                            {"surface": "talabaman", "sense": "talaba"},
+                        ],
+                    }
+                },
+                "translations": {"en": "I'm a student."},
+            }
+        },
+        {
+            "choose": {
+                "prompt": {"en": "Who is Aziz?"},
+                "options": [{"en": "a student"}, {"en": "a teacher"}],
+                "answer": 0,
+            }
+        },
+    ],
+}
+
+
+def with_story(c: Course) -> None:
+    unit(c)["nodes"].append({"id": "basics.story", "kind": "story"})
+    unit(c)["stories"] = [copy.deepcopy(STORY)]
+
+
+def story(c: Course) -> dict[str, Any]:
+    return unit(c)["stories"][0]
+
+
+def _story_on_lesson(c: Course) -> None:
+    with_story(c)
+    story(c)["node"] = "basics.1"
+
+
+def _story_untranslated(c: Course) -> None:
+    with_story(c)
+    story(c)["steps"][0]["line"]["translations"] = {"fr": "Bonjour !"}
+
+
+def _story_stranger(c: Course) -> None:
+    with_story(c)
+    story(c)["steps"][0]["line"]["speaker"] = "maryam"
+
+
+def _story_ahead(c: Course) -> None:
+    with_story(c)
+    unit(c)["nodes"][0]["introduces"].remove("sense:talaba")
+    unit(c)["nodes"].append({"id": "basics.2", "kind": "lesson", "introduces": ["sense:talaba"]})
+
+
+def _story_bad_answer(c: Course) -> None:
+    with_story(c)
+    story(c)["steps"][2]["choose"]["answer"] = 5
+
+
 FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "parse.schema": (
         "A sentence has a field the schema does not know.",
@@ -419,6 +503,11 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     ),
     "package.license": ("No license on the course or the sentence.", m(_no_license)),
     "package.provenance": ("No provenance on the course or the sentence.", m(_no_provenance)),
+    "story.node": ("The story is placed on a lesson node.", m(_story_on_lesson)),
+    "story.missing-form": ("A story line has no English translation.", m(_story_untranslated)),
+    "story.speaker": ("A line spoken by a character the story does not have.", m(_story_stranger)),
+    "story.ahead": ("The story uses talaba, which a later node introduces.", m(_story_ahead)),
+    "story.question": ("A question whose answer is option 5 of 2.", m(_story_bad_answer)),
     "package.unreviewed-published": (
         "Published without a reviewer.",
         m(

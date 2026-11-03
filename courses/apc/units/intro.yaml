@@ -33,6 +33,7 @@ nodes:
 - {id: apc.how-are-you, kind: lesson, introduces: ['sense:kifak', 'sense:mni7', 'sense:el7amdella', 'sense:ana', 'sense:enta', 'sense:w']}
 - {id: apc.names, kind: lesson, introduces: ['sense:sami', 'sense:shu', 'sense:esmak', 'sense:esmi']}
 - {id: apc.cafe, kind: lesson, introduces: ['sense:ahwe', 'sense:shay', 'sense:baddi', 'sense:baddak', 'sense:la2', 'sense:eh']}
+- {id: apc.story, kind: story}
 - {id: apc.arabizi, kind: script, introduces: ['grapheme:7', 'grapheme:3', 'grapheme:2'], convert: {from: apc-Arab/standard, to: apc-Latn/arabizi, sentences: [s.1, s.4, s.7, s.8, s.21]}}
 sentences:
 - id: s.1
@@ -397,3 +398,86 @@ sentences:
     en: |-
       I want (tea|some tea), (thanks|thank you).
       I'd like (tea|some tea), (thanks|thank you).
+stories:
+# Vocalized throughout (harakat on the Arabic-script lines); the glossary keys are unvocalized, so
+# tap-for-gloss finds them through the folded pass (Phase 6 acceptance).
+- id: apc.story.cafe
+  node: apc.story
+  title: {en: "Coffee or tea?"}
+  provenance: {author: 'llm:claude@ec206a97f12b', status: draft}
+  characters:
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا!
+          tokens: [{surface: مَرْحَبا, sense: marhaba}]
+        apc-Latn/arabizi:
+          text: mar7aba!
+          tokens: [{surface: mar7aba, sense: marhaba}]
+      translations: {en: "Hi!"}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا سامي! كِيفَك؟
+          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: سامي, sense: sami}, {surface: كِيفَك, sense: kifak}]
+        apc-Latn/arabizi:
+          text: mar7aba Sami! kifak?
+          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Sami, sense: sami}, {surface: kifak, sense: kifak}]
+      translations: {en: "Hi Sami! How are you?"}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: 'sense:mni7'
+      distractors: ['sense:shay']
+      forms:
+        apc-Arab/standard:
+          text: مْنيح، الحَمْدِلله!
+          tokens: [{surface: مْنيح, sense: mni7}, {surface: الحَمْدِلله, sense: el7amdella}]
+        apc-Latn/arabizi:
+          text: mni7, el7amdella!
+          tokens: [{surface: mni7, sense: mni7}, {surface: el7amdella, sense: el7amdella}]
+      translations: {en: "Fine, thank God!"}
+  - choose:
+      prompt: {en: "How is Sami?"}
+      options: [{en: "He's fine."}, {en: "He's sad."}, {en: "He's in a hurry."}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: شو بَدَّك؟ قَهْوِة؟
+          tokens: [{surface: شو, sense: shu}, {surface: بَدَّك, sense: baddak}, {surface: قَهْوِة, sense: ahwe}]
+        apc-Latn/arabizi:
+          text: shu baddak? ahwe?
+          tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ahwe, sense: ahwe}]
+      translations: {en: "What do you want? Coffee?"}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: لأ، بَدّي شاي.
+          tokens: [{surface: لأ, sense: la2}, {surface: بَدّي, sense: baddi}, {surface: شاي, sense: shay}]
+        apc-Latn/arabizi:
+          text: la2, baddi shay.
+          tokens: [{surface: la2, sense: la2}, {surface: baddi, sense: baddi}, {surface: shay, sense: shay}]
+      translations: {en: "No, I want tea."}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا!
+          tokens: [{surface: يَلّا, sense: yalla}]
+        apc-Latn/arabizi:
+          text: yalla!
+          tokens: [{surface: yalla, sense: yalla}]
+      translations: {en: "OK then!"}
+  - choose:
+      prompt: {en: "What does Sami want?"}
+      options: [{en: "tea"}, {en: "coffee"}, {en: "nothing"}]
+      answer: 0

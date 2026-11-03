@@ -35,6 +35,7 @@ nodes:
 - {id: uz.this, kind: lesson, introduces: ['sense:aziz', 'sense:bu', 'sense:kitob', 'sense:nima', 'sense:mana', 'sense:qani', 'sense:yaxshi', 'sense:juda']}
 - {id: uz.i-am, kind: lesson, introduces: ['form:cop-1sg-man', 'sense:men', 'sense:talaba', 'form:cop-2-siz', 'sense:siz', 'sense:oqituvchi']}
 - {id: uz.my, kind: lesson, introduces: ['form:poss-1sg-im', 'form:gen-ning', 'sense:ism', 'form:poss-2-ingiz']}
+- {id: uz.story, kind: story}
 - {id: uz.cyrillic, kind: script, introduces: ['grapheme:ҳ', 'grapheme:ў', 'grapheme:қ'], convert: {from: uz-Latn/standard, to: uz-Cyrl/standard, sentences: [s.2, s.4, s.5, s.11, s.20, s.21]}}
 sentences:
 - id: s.1
@@ -387,3 +388,94 @@ sentences:
       reverse: Исмингиз нима
   translations:
     en: What('s| is) your name?
+stories:
+- id: uz.story.book
+  node: uz.story
+  title: {en: "Aziz's book"}
+  provenance: {author: 'llm:claude@5779af056796', status: draft}
+  characters:
+  - {id: aziz, name: {uz-Latn/standard: Aziz, uz-Cyrl/standard: Азиз}}
+  - {id: oqituvchi, name: {uz-Latn/standard: Oʻqituvchi, uz-Cyrl/standard: Ўқитувчи}}
+  steps:
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Salom!
+          tokens: [{surface: Salom, sense: salom}]
+        uz-Cyrl/standard:
+          text: Салом!
+          tokens: [{surface: Салом, sense: salom}]
+      translations: {en: "Hello!"}
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Salom, Aziz!
+          tokens: [{surface: Salom, sense: salom}, {surface: Aziz, sense: aziz}]
+        uz-Cyrl/standard:
+          text: Салом, Азиз!
+          tokens: [{surface: Салом, sense: salom}, {surface: Азиз, sense: aziz}]
+      translations: {en: "Hello, Aziz!"}
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Siz talabasiz?
+          tokens: [{surface: Siz, sense: siz}, {surface: talabasiz, sense: talaba, morphs: [{surface: talaba, kc: 'sense:talaba'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+        uz-Cyrl/standard:
+          text: Сиз талабасиз?
+          tokens: [{surface: Сиз, sense: siz}, {surface: талабасиз, sense: talaba, morphs: [{surface: талаба, kc: 'sense:talaba'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      translations: {en: "Are you a student?"}
+  - line:
+      speaker: aziz
+      ask: complete
+      gap: 'sense:talaba'
+      distractors: ['sense:kitob']
+      forms:
+        uz-Latn/standard:
+          text: Ha, men talabaman.
+          tokens: [{surface: Ha, sense: ha}, {surface: men, sense: men}, {surface: talabaman, sense: talaba, morphs: [{surface: talaba, kc: 'sense:talaba'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Ҳа, мен талабаман.
+          tokens: [{surface: Ҳа, sense: ha}, {surface: мен, sense: men}, {surface: талабаман, sense: talaba, morphs: [{surface: талаба, kc: 'sense:talaba'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: "Yes, I'm a student."}
+  - choose:
+      prompt: {en: "Is Aziz a student?"}
+      options: [{en: 'Yes'}, {en: 'No'}, {en: "We don't know."}]
+      answer: 0
+  - line:
+      speaker: aziz
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Bu mening kitobim.
+          tokens: [{surface: Bu, sense: bu}, {surface: mening, sense: men, morphs: [{surface: men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: kitobim, sense: kitob, morphs: [{surface: kitob, kc: 'sense:kitob'}, {surface: im, kc: 'form:poss-1sg-im'}]}]
+        uz-Cyrl/standard:
+          text: Бу менинг китобим.
+          tokens: [{surface: Бу, sense: bu}, {surface: менинг, sense: men, morphs: [{surface: мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: китобим, sense: kitob, morphs: [{surface: китоб, kc: 'sense:kitob'}, {surface: им, kc: 'form:poss-1sg-im'}]}]
+      translations: {en: "This is my book."}
+  - line:
+      speaker: oqituvchi
+      forms:
+        uz-Latn/standard:
+          text: Juda yaxshi!
+          tokens: [{surface: Juda, sense: juda}, {surface: yaxshi, sense: yaxshi}]
+        uz-Cyrl/standard:
+          text: Жуда яхши!
+          tokens: [{surface: Жуда, sense: juda}, {surface: яхши, sense: yaxshi}]
+      translations: {en: "Very good!"}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Rahmat! Xayr!
+          tokens: [{surface: Rahmat, sense: rahmat}, {surface: Xayr, sense: xayr}]
+        uz-Cyrl/standard:
+          text: Раҳмат! Хайр!
+          tokens: [{surface: Раҳмат, sense: rahmat}, {surface: Хайр, sense: xayr}]
+      translations: {en: "Thank you! Goodbye!"}
+  - choose:
+      prompt: {en: "What does Aziz show the teacher?"}
+      options: [{en: "his book"}, {en: "his name"}, {en: "a student"}]
+      answer: 0

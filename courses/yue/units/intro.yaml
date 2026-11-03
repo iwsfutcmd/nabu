@@ -32,6 +32,7 @@ nodes:
 - {id: yue.copula, kind: lesson, introduces: ['sense:係', 'sense:唔', 'sense:我', 'sense:你', 'sense:學生', 'sense:老師']}
 - {id: yue.who, kind: lesson, introduces: ['construction:a-not-a', 'sense:佢', 'form:plural-dei']}
 - {id: yue.yum-cha, kind: lesson, introduces: ['sense:去', 'sense:飲茶', 'sense:啦', 'sense:嗎', 'sense:好', 'sense:邊個', 'sense:嘅']}
+- {id: yue.story, kind: story}
 sentences:
 - id: s.1
   node: yue.greetings
@@ -313,3 +314,66 @@ sentences:
     en: |-
       (She|He)('s| is) my teacher.
       They('re| are) my teacher.
+stories:
+- id: yue.story.yum-cha
+  node: yue.story
+  title: {en: "Good morning, teacher"}
+  provenance: {author: 'llm:claude@ccf1a169057c', status: draft}
+  characters:
+  - {id: hok-saang, name: {yue-Hant-HK/standard: 學生}}
+  - {id: lou-si, name: {yue-Hant-HK/standard: 老師}}
+  steps:
+  - line:
+      speaker: hok-saang
+      forms:
+        yue-Hant-HK/standard:
+          text: 早晨呀！
+          tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: "Good morning!"}
+  - line:
+      speaker: lou-si
+      forms:
+        yue-Hant-HK/standard:
+          text: 早晨！
+          tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}]
+      translations: {en: "Good morning!"}
+  - line:
+      speaker: lou-si
+      ask: complete
+      gap: 'sense:學生'
+      distractors: ['sense:老師']
+      forms:
+        yue-Hant-HK/standard:
+          text: 你係學生嗎？
+          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}, {surface: 嗎, sense: 嗎, readings: {jyutping: maa3}}]
+      translations: {en: "Are you a student?"}
+  - line:
+      speaker: hok-saang
+      forms:
+        yue-Hant-HK/standard:
+          text: 係，我係學生。
+          tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}]
+      translations: {en: "Yes, I'm a student."}
+  - choose:
+      prompt: {en: "Who is the teacher talking to?"}
+      options: [{en: "a student"}, {en: "another teacher"}, {en: "a waiter"}]
+      answer: 0
+  - line:
+      speaker: lou-si
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 我哋去飲茶啦！
+          tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 飲茶, sense: 飲茶, readings: {jyutping: jam2 caa4}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      translations: {en: "Let's go for dim sum!"}
+  - line:
+      speaker: hok-saang
+      forms:
+        yue-Hant-HK/standard:
+          text: 好呀！唔該晒！
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 晒, sense: 晒, readings: {jyutping: saai3}}]
+      translations: {en: "Great! Thanks so much!"}
+  - choose:
+      prompt: {en: "What are they going to do?"}
+      options: [{en: "have dim sum"}, {en: "go to school"}, {en: "say goodbye"}]
+      answer: 0

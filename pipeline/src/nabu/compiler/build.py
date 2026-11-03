@@ -22,10 +22,17 @@ from nabu.compiler import text as tx
 from nabu.compiler.audio import check_audio
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.source import Doc, load_doc
+from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import CourseSource, OrthographyProfile, SentenceSource, UnitSource
+from nabu.schema.models import (
+    CourseSource,
+    OrthographyProfile,
+    SentenceForm,
+    SentenceSource,
+    UnitSource,
+)
 
 I_PLUS_ONE_KINDS = ("sense", "form", "construction")
 CORRECT = ("CORRECT", "CORRECT_ALT")
@@ -250,10 +257,21 @@ def _hygiene(
 
 
 def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dict[str, Any] | None:
-    sentence = unit.source.sentences[si]
-    form = sentence.forms[orth]
+    form = unit.source.sentences[si].forms[orth]
+    return compile_form(ctx, course, unit.doc, ("sentences", si, "forms", orth), form, orth)
+
+
+def compile_form(
+    ctx: Ctx,
+    course: CourseSource,
+    doc: Doc,
+    at: tuple[str | int, ...],
+    form: SentenceForm,
+    orth: str,
+) -> dict[str, Any] | None:
+    """A sentence or story line form (text, tokens) → TaggedText, with stages 2-3 checks."""
     profile = ctx.profiles[orth]
-    loc = unit.doc.loc("sentences", si, "forms", orth)
+    loc = doc.loc(*at)
     text = form.text
     diags = ctx.diags
 
@@ -279,11 +297,7 @@ def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dic
             authored.append(d)
         toks, error = tx.align(text, authored)
         if error is not None:
-            diags.report(
-                "parse.token-mismatch",
-                error,
-                unit.doc.loc("sentences", si, "forms", orth, "tokens"),
-            )
+            diags.report("parse.token-mismatch", error, doc.loc(*at, "tokens"))
             return None
     else:
         segment = (
@@ -331,7 +345,7 @@ def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dic
             else:
                 t["ruby"] = {scheme: segments}
 
-    _hygiene(ctx, profile, text, toks, unit.doc.loc("sentences", si, "forms", orth, "text"))
+    _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
     tagged = {"lang": _lang_for(profile, course.target), "orthography": orth, "tokens": toks}
     public = {
         **tagged,
@@ -351,7 +365,7 @@ def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dic
     return tagged
 
 
-def _support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
+def support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
     profile = ctx.profiles[orth]
     toks = tx.auto_tokens(text)
     for i, t in enumerate(x for x in toks if x["kind"] in ("word", "number")):
@@ -444,10 +458,11 @@ def compile_course(
 
     # ---- stage 5: curriculum
     sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
+    stories = compile_stories(ctx, course, units)
     # ---- stage 6: grading
     _grading(ctx, course, units)
     # ---- stage 7: glossary, tiles, script tracks
-    _glossary(ctx, course, units, compiled_forms)
+    _glossary(ctx, course, units, compiled_forms, stories.lines)
     # ---- stage 9: packaging lints
     compiled = Compiled(
         course=course, orthographies=list(course.orthographies), support=list(course.support)
@@ -458,6 +473,7 @@ def compile_course(
         return diags, None
     compiled.units = [
         _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
+        | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
         for ui, unit in enumerate(units)
     ]
     check_audio(ctx, course, course_file, display, compiled)
@@ -519,6 +535,8 @@ def _duplicates(ctx: Ctx, units: list[Unit]) -> None:
             check("node", node.id, unit.doc.loc("nodes", i))
         for i, s in enumerate(unit.source.sentences):
             check("sentence", s.id, unit.doc.loc("sentences", i))
+        for i, story in enumerate(unit.source.stories or []):
+            check("story", story.id, unit.doc.loc("stories", i))
 
 
 def _strings(
@@ -782,7 +800,7 @@ def _curriculum(
 # ------------------------------------------------------------ stage 6: grading
 
 
-def _support_key(ctx: Ctx, orth: str) -> str:
+def support_key(ctx: Ctx, orth: str) -> str:
     return ctx.profiles[orth].lang.split("-")[0]
 
 
@@ -830,7 +848,7 @@ def _grading(ctx: Ctx, course: CourseSource, units: list[Unit]) -> None:
                         rloc,
                     )
             for support in course.support:
-                key = _support_key(ctx, support)
+                key = support_key(ctx, support)
                 if key not in s.translations:
                     ctx.diags.report(
                         "parse.schema",
@@ -854,7 +872,10 @@ def _glossary(
     course: CourseSource,
     units: list[Unit],
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
+    story_lines: list[LineForm],
 ) -> None:
+    """Simulate tap-for-gloss with the runtime matcher (core-cli `gloss`: longest match, exact
+    and folded passes side by side) over every sentence and story line."""
     diags = ctx.diags
     cli = ctx.cli
     for orth in course.orthographies:
@@ -870,76 +891,76 @@ def _glossary(
                             unit.doc.loc("kcs", ki, "forms", orth, fi),
                         )
                     )
+        if not entries:
+            continue
+        glossary = [{"kc": kc, "text": surface} for kc, surface, _u, _l in entries]
         hits = [0] * len(entries)
         shadowed: set[str] = set()
+        texts: list[tuple[str, list[dict[str, Any]], Loc]] = []
         for ui, unit in enumerate(units):
             for si, s in enumerate(unit.source.sentences):
                 form = forms.get((ui, si), {}).get(orth)
-                if form is None:
-                    continue
-                units_ = cast(
-                    list[str], cli.result("fold-units", profile=orth, text=s.forms[orth].text)
-                )
-                # runtime longest-match segmentation over the units
-                chosen: list[tuple[int, int, int]] = []
-                i = 0
-                while i < len(units_):
-                    best = -1
-                    for ei, (_kc, _surface, eu, _loc) in enumerate(entries):
-                        if (
-                            eu
-                            and units_[i : i + len(eu)] == eu
-                            and (best < 0 or len(eu) > len(entries[best][2]))
-                        ):
-                            best = ei
-                    if best >= 0:
-                        hits[best] += 1
-                        chosen.append((i, i + len(entries[best][2]), best))
-                        i += len(entries[best][2])
-                    else:
-                        i += 1
-                # a word whose own entry matches here but loses to a longer entry is shadowed
-                for t in form["tokens"]:
-                    if "sense" not in t:
-                        continue
-                    sense = f"sense:{t['sense']}"
-                    own = [ei for ei, e in enumerate(entries) if e[0] == sense]
-                    tu = cast(list[str], cli.result("fold-units", profile=orth, text=t["surface"]))
-                    for start in range(len(units_) - len(tu) + 1):
-                        if not tu or units_[start : start + len(tu)] != tu:
-                            continue
-                        exact = any(c[0] == start and c[2] in own for c in chosen)
-                        covered = [c for c in chosen if c[0] <= start < c[1] and c[2] not in own]
-                        if own and not exact and covered and sense not in shadowed:
-                            shadowed.add(sense)
-                            other = entries[covered[0][2]]
-                            diags.report(
-                                "glossary.shadowed",
-                                f"{sense} ({t['surface']!r}) loses to {other[0]} ({other[1]!r})",
-                                entries[own[0]][3],
-                            )
-                # tiles must consist of whole runtime units
-                tiles: dict[int, str] = {}
-                for t in form["tokens"]:
-                    if "tileGroup" in t:
-                        tiles[t["tileGroup"]] = tiles.get(t["tileGroup"], "") + t["surface"]
-                tile_units = [
-                    u
-                    for g in tiles
-                    for u in cast(list[str], cli.result("fold-units", profile=orth, text=tiles[g]))
-                ]
-                if tile_units != units_:
-                    diags.report(
-                        "glossary.tile-split",
-                        f"{s.id}: tiles {list(tiles.values())} do not line up with "
-                        f"runtime units {units_}",
-                        unit.doc.loc("sentences", si, "forms", orth),
+                if form is not None:
+                    texts.append(
+                        (s.id, form["tokens"], unit.doc.loc("sentences", si, "forms", orth))
                     )
+        texts += [
+            ("a story line", line.tokens, line.doc.loc(*line.at))
+            for line in story_lines
+            if line.orthography == orth
+        ]
+        for name, tokens, loc in texts:
+            public = [{"surface": t["surface"], "kind": t.get("kind", "word")} for t in tokens]
+            matches = cast(
+                list[dict[str, Any]],
+                cli.result("gloss", profile=orth, entries=glossary, tokens=public),
+            )
+            for m in matches:
+                hits[m["entry"]] += 1
+            # a word whose own entry would gloss it alone, but a longer entry wins here
+            for ti, t in enumerate(tokens):
+                if "sense" not in t:
+                    continue
+                sense = f"sense:{t['sense']}"
+                own = [ei for ei, e in enumerate(entries) if e[0] == sense]
+                tu = cast(list[str], cli.result("fold-units", profile=orth, text=t["surface"]))
+                if not own or not tu or not any(entries[ei][2] == tu for ei in own):
+                    continue
+                covering = [m for m in matches if m["tokenStart"] <= ti < m["tokenEnd"]]
+                won = any(m["entry"] in own for m in covering)
+                if covering and not won and sense not in shadowed:
+                    shadowed.add(sense)
+                    winner: int = covering[0]["entry"]
+                    other_kc, other_surface = entries[winner][0], entries[winner][1]
+                    diags.report(
+                        "glossary.shadowed",
+                        f"{sense} ({t['surface']!r}) loses to {other_kc} ({other_surface!r})",
+                        entries[own[0]][3],
+                    )
+            # tiles must consist of whole runtime units
+            tiles: dict[int, str] = {}
+            for t in tokens:
+                if "tileGroup" in t:
+                    tiles[t["tileGroup"]] = tiles.get(t["tileGroup"], "") + t["surface"]
+            tile_units = [
+                u
+                for g in tiles
+                for u in cast(list[str], cli.result("fold-units", profile=orth, text=tiles[g]))
+            ]
+            text = "".join(t["surface"] for t in tokens)
+            units_ = cast(list[str], cli.result("fold-units", profile=orth, text=text))
+            if tile_units != units_:
+                diags.report(
+                    "glossary.tile-split",
+                    f"{name}: tiles {list(tiles.values())} do not line up with "
+                    f"runtime units {units_}",
+                    loc,
+                )
         for ei, (kc, surface, _u, loc) in enumerate(entries):
             if hits[ei] == 0:
                 diags.report(
                     "glossary.dead-entry",
-                    f"{kc} form {surface!r} is never reached in any {orth} sentence",
+                    f"{kc} form {surface!r} is never reached in any {orth} sentence or story",
                     loc,
                 )
 
@@ -1012,10 +1033,10 @@ def _bundle_unit(
 ) -> dict[str, Any]:
     src = unit.source
     target = course.target
-    support_by_key = {_support_key(ctx, o): o for o in course.support}
+    support_by_key = {support_key(ctx, o): o for o in course.support}
 
     def support_tt(key: str, text: str) -> dict[str, Any]:
-        return _support_text(ctx, support_by_key.get(key, course.support[0]), text, target)
+        return support_text(ctx, support_by_key.get(key, course.support[0]), text, target)
 
     sentences: list[dict[str, Any]] = []
     for si, s in enumerate(src.sentences):
@@ -1085,7 +1106,7 @@ def _bundle_unit(
             k["gloss"] = {lang: support_tt(lang, g) for lang, g in kc.gloss.items()}
         if kc.forms:
             k["forms"] = {
-                orth: [_support_text(ctx, orth, f, target) for f in fs]
+                orth: [support_text(ctx, orth, f, target) for f in fs]
                 for orth, fs in kc.forms.items()
             }
         if kc.id in images:

@@ -1,0 +1,386 @@
+{
+  "$comment": "Tap-for-gloss segmentation (§7.5 stage 7, Phase 6): longest match over runtime units, an exact pass (normalized) and a folded pass (case-folded, ignorable marks stripped) side by side; the longer match wins, the exact one on a tie. With `tokens`, matches carry token spans and whether they cover only part of a token.",
+  "vectors": [
+    {
+      "id": "gloss/apc/vocalized-text-unvocalized-key",
+      "op": "gloss",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:kifak",
+            "text": "كيفك"
+          }
+        ],
+        "text": "كِيفَك؟"
+      },
+      "expected": [
+        {
+          "kc": "sense:kifak",
+          "start": 0,
+          "end": 1,
+          "pass": "folded"
+        }
+      ],
+      "note": "Harakat are ignorable marks in apc-Arab: the folded pass matches."
+    },
+    {
+      "id": "gloss/apc/vocalized-key-exact",
+      "op": "gloss",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:baddi",
+            "text": "بدّي"
+          }
+        ],
+        "text": "بدّي قهوة"
+      },
+      "expected": [
+        {
+          "kc": "sense:baddi",
+          "start": 0,
+          "end": 1,
+          "pass": "exact"
+        }
+      ],
+      "note": "Same length in both passes: the exact match wins."
+    },
+    {
+      "id": "gloss/apc/longer-folded-beats-shorter-exact",
+      "op": "gloss",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:ma3",
+            "text": "مع"
+          },
+          {
+            "kc": "sense:ma3-essalame",
+            "text": "مع السلامة"
+          }
+        ],
+        "text": "مع السَّلامة!"
+      },
+      "expected": [
+        {
+          "kc": "sense:ma3-essalame",
+          "start": 0,
+          "end": 2,
+          "pass": "folded"
+        }
+      ],
+      "note": "Exact finds مع (1 unit), folded finds مع السلامة (2): the longer span wins."
+    },
+    {
+      "id": "gloss/apc/hamza-seat-folds",
+      "op": "gloss",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:enta",
+            "text": "إنت"
+          }
+        ],
+        "text": "وإنت؟ إنت؟"
+      },
+      "expected": [
+        {
+          "kc": "sense:enta",
+          "start": 1,
+          "end": 2,
+          "pass": "exact"
+        }
+      ],
+      "note": "وإنت is one unit and no entry: skipped."
+    },
+    {
+      "id": "gloss/apc/unmatched-units-skipped",
+      "op": "gloss",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:shay",
+            "text": "شاي"
+          }
+        ],
+        "text": "بدّي شاي"
+      },
+      "expected": [
+        {
+          "kc": "sense:shay",
+          "start": 1,
+          "end": 2,
+          "pass": "exact"
+        }
+      ]
+    },
+    {
+      "id": "gloss/yue/longest-match",
+      "op": "gloss",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "entries": [
+          {
+            "kc": "sense:學",
+            "text": "學"
+          },
+          {
+            "kc": "sense:學生",
+            "text": "學生"
+          }
+        ],
+        "text": "我係學生。"
+      },
+      "expected": [
+        {
+          "kc": "sense:學生",
+          "start": 2,
+          "end": 4,
+          "pass": "exact"
+        }
+      ]
+    },
+    {
+      "id": "gloss/yue/tokens-partial",
+      "op": "gloss",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "entries": [
+          {
+            "kc": "sense:我",
+            "text": "我"
+          },
+          {
+            "kc": "form:plural-dei",
+            "text": "哋"
+          },
+          {
+            "kc": "sense:學生",
+            "text": "學生"
+          }
+        ],
+        "tokens": [
+          {
+            "surface": "我哋",
+            "kind": "word"
+          },
+          {
+            "surface": "係",
+            "kind": "word"
+          },
+          {
+            "surface": "學生",
+            "kind": "word"
+          },
+          {
+            "surface": "。",
+            "kind": "punct"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "kc": "sense:我",
+          "tokenStart": 0,
+          "tokenEnd": 1,
+          "partial": true
+        },
+        {
+          "kc": "form:plural-dei",
+          "tokenStart": 0,
+          "tokenEnd": 1,
+          "partial": true
+        },
+        {
+          "kc": "sense:學生",
+          "start": 3,
+          "end": 5,
+          "tokenStart": 2,
+          "tokenEnd": 3,
+          "partial": false
+        }
+      ],
+      "note": "我哋 is one token and two entries: both gloss it, partially."
+    },
+    {
+      "id": "gloss/yue/multi-token-span",
+      "op": "gloss",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "entries": [
+          {
+            "kc": "sense:唔該",
+            "text": "唔該"
+          },
+          {
+            "kc": "sense:唔",
+            "text": "唔"
+          }
+        ],
+        "tokens": [
+          {
+            "surface": "唔",
+            "kind": "word"
+          },
+          {
+            "surface": "該",
+            "kind": "word"
+          },
+          {
+            "surface": "！",
+            "kind": "punct"
+          }
+        ]
+      },
+      "expected": [
+        {
+          "kc": "sense:唔該",
+          "tokenStart": 0,
+          "tokenEnd": 2,
+          "partial": false
+        }
+      ],
+      "note": "An entry can span tokens."
+    },
+    {
+      "id": "gloss/fa/zwnj-word",
+      "op": "gloss",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:ketab",
+            "text": "کتاب"
+          },
+          {
+            "kc": "form:ketab-ha",
+            "text": "کتاب\u200cها"
+          }
+        ],
+        "text": "کتاب\u200cهای من"
+      },
+      "expected": [],
+      "note": "کتاب\u200cهای is one unit; neither entry is that unit."
+    },
+    {
+      "id": "gloss/fa/two-word-entry",
+      "op": "gloss",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:khoda-hafez",
+            "text": "خدا حافظ"
+          },
+          {
+            "kc": "sense:khoda",
+            "text": "خدا"
+          }
+        ],
+        "text": "خدا حافظ، مریم!"
+      },
+      "expected": [
+        {
+          "kc": "sense:khoda-hafez",
+          "start": 0,
+          "end": 2,
+          "pass": "exact"
+        }
+      ]
+    },
+    {
+      "id": "gloss/fa/arabic-yeh-folds",
+      "op": "gloss",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "entries": [
+          {
+            "kc": "sense:ketab",
+            "text": "کتاب"
+          }
+        ],
+        "text": "كتاب"
+      },
+      "expected": [
+        {
+          "kc": "sense:ketab",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "note": "Arabic kaf in typed or pasted text still finds the Persian entry."
+    },
+    {
+      "id": "gloss/uz/case-folds",
+      "op": "gloss",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "entries": [
+          {
+            "kc": "sense:salom",
+            "text": "salom"
+          }
+        ],
+        "text": "Salom, doʻstim!"
+      },
+      "expected": [
+        {
+          "kc": "sense:salom",
+          "start": 0,
+          "end": 1,
+          "pass": "folded"
+        }
+      ]
+    },
+    {
+      "id": "gloss/uz/okina-variants",
+      "op": "gloss",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "entries": [
+          {
+            "kc": "sense:dost",
+            "text": "doʻst"
+          }
+        ],
+        "text": "Do'st!"
+      },
+      "expected": [
+        {
+          "kc": "sense:dost",
+          "start": 0,
+          "end": 1
+        }
+      ],
+      "note": "Learners type oʻ with an apostrophe; content and entries use U+02BB."
+    },
+    {
+      "id": "gloss/tr/dotted-capital-i",
+      "op": "gloss",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "entries": [
+          {
+            "kc": "sense:istanbul",
+            "text": "istanbul"
+          }
+        ],
+        "text": "İstanbul"
+      },
+      "expected": [
+        {
+          "kc": "sense:istanbul",
+          "start": 0,
+          "end": 1,
+          "pass": "folded"
+        }
+      ],
+      "note": "Turkish İ folds to i, not to i + U+0307."
+    }
+  ]
+}

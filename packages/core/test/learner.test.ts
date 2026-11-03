@@ -74,6 +74,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
+    case "story-arrange":
       return { tag: "tiles", order: bad ? [...ex.solution].reverse() : ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -91,6 +92,8 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
   }
 };
@@ -270,7 +273,10 @@ describe("placement v0 (§9.5)", () => {
     const done = { ...events.completed("lesson", undefined, { exercises: 12, correctFirstTry: 10, retries: 0 }), mode: "placement" as const, placed: nodes.slice(0, 2) };
     const state = replay([events.started("lesson", undefined, 12), done]);
     expect(state.completedNodes).toEqual(nodes.slice(0, 2));
-    expect(pathOf(fa, state).map((n) => n.status)).toEqual(["done", "done", "available", ...nodes.slice(3).map(() => "locked")]);
+    // The lessons, then the unit's story: locked until the lessons before it are done.
+    const path = pathOf(fa, state);
+    expect(path.filter((n) => n.kind === "lesson").map((n) => n.status)).toEqual(["done", "done", "available", ...nodes.slice(3).map(() => "locked")]);
+    expect(path.filter((n) => n.kind === "story").map((n) => n.status)).toEqual(["locked"]);
   });
 });
 

@@ -99,10 +99,19 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
   (ELEVENLABS_API_KEY, CARTESIA_API_KEY): never in course files, commits or chat. `pronounce: jyutping` sends IPA for
   tokens whose characters do not settle the pinned reading. `--voice <id>` picks a cast voice. Live tests: NABU_HOSTED=1.
 
+## Phase 6 notes (see docs/adr/0043)
+- Stories: `stories:` in a unit (schemas/course-source), each on a node of kind story. Lines compile like sentence
+  forms and need every course orthography; questions are `choose` steps or lines with `ask: complete|arrange`.
+- One glossary matcher: @nabu/core `glossTokens` (exact and folded passes, longer wins). The app's tap-for-gloss and
+  stage 7's lints both use it (core-cli `gloss`); never re-implement matching in Python.
+- The story reader nests the lesson player per question (@nabu/core/story); story sessions are mode "story".
+- `pathNodes` (lessons and stories) drives the path; placement and the planner use lessons only.
+- Tappable words: `<T onTokenPress>`; never wrap tokens by hand.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0042 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0043 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

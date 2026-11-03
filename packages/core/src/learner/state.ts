@@ -47,6 +47,7 @@ export interface LearnerState {
 export const DESIRED_RETENTION = 0.9;
 export const XP = { answer: 1, session: 10, perfect: 5 } as const;
 const LATENCY_WINDOW = 25;
+const STORY_TEMPLATES: ReadonlySet<TemplateId> = new Set(["story-choose", "story-complete", "story-arrange"]);
 const MISTAKES_KEPT = 50;
 
 export const emptyLearnerState = (): LearnerState => ({
@@ -172,7 +173,8 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   }
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
-  if (template !== "speak.tier-0" && template !== "match-pairs" && (!correct || e.attempt === 1)) noteMistake(d, item, template, e.clientTime, !correct);
+  // Story questions are not mistakes to practice: they only make sense inside their story.
+  if (template !== "speak.tier-0" && template !== "match-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1)) noteMistake(d, item, template, e.clientTime, !correct);
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
@@ -185,7 +187,7 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
 const completed = (d: Draft, e: SessionCompleted): void => {
   if (!e.summary.completed) return;
   addXp(d, e.localDate, XP.session + (e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises ? XP.perfect : 0));
-  if (e.mode === "lesson" && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
+  if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
   // A placement test marks the nodes the learner placed out of as done (§9.5).
   if (e.mode === "placement") for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
 };

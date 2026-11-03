@@ -9,7 +9,7 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
-import { plan, replay, type SessionRequest } from "@nabu/core/learner";
+import { pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
 import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
@@ -61,13 +61,16 @@ export const planned = (course: CourseView, log: readonly LearnerEvent[], reques
  * `now`, answering everything right: the events their device would hold.
  */
 export const historyBefore = (course: CourseView, node: string, now: Date): LearnerEvent[] => {
-  const nodes = lessonNodes(course).map((n) => n.node.id);
+  // Every lesson before `node` on the path (stories included in the order, lessons played).
+  const lessons = new Set(lessonNodes(course).map((n) => n.node.id));
+  const path = pathNodes(course).map((n) => n.node.id);
+  const nodes = path.slice(0, Math.max(0, path.indexOf(node))).filter((id) => lessons.has(id));
   const events: LearnerEvent[] = [];
   const bundle = manifestOf(course.id).id;
   let n = 0;
   let clock = now.getTime() - 2 * DAY;
   const uuid = (): string => `00000000-0000-7000-8000-${(++n).toString(16).padStart(12, "0")}`;
-  for (const id of nodes.slice(0, Math.max(0, nodes.indexOf(node)))) {
+  for (const id of nodes) {
     const exercises = planned(course, events, { mode: "lesson", node: id }, new Date(clock), 1);
     const session = uuid();
     const base = () => {
@@ -151,11 +154,14 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
-    case "listen-tap": {
+    case "listen-tap":
+    case "story-arrange": {
       const placed: number[] = [];
       for (const tile of ex.solution) {
         const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.includes(i));
@@ -222,8 +228,8 @@ const next = async (page: Page, mode: Mode): Promise<void> => {
   else await page.locator("[data-action=continue]").tap();
 };
 
-export const seriousAxeViolations = async (page: Page): Promise<string[]> => {
-  const result = await new AxeBuilder({ page }).include("[data-lesson-player]").analyze();
+export const seriousAxeViolations = async (page: Page, scope = "[data-lesson-player]"): Promise<string[]> => {
+  const result = await new AxeBuilder({ page }).include(scope).analyze();
   return result.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help} (${v.nodes.map((n) => n.target.join(" ")).join(", ")})`);
 };
 

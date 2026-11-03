@@ -36,3 +36,31 @@
   background-color: var(--nabu-color-focus-bg);
   border-block-end: 3px solid var(--nabu-color-text);
 }
+
+/* Tap-for-gloss: a word is a button, but still reads as text in its line. */
+.pressable {
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  line-height: inherit;
+  color: inherit;
+  text-align: inherit;
+  background: none;
+  border: none;
+  border-radius: 0.2em;
+  text-decoration: underline dotted;
+  text-decoration-color: var(--nabu-color-muted);
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+}
+
+.pressable:focus-visible {
+  outline: 2px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.pressable[aria-pressed="true"] {
+  background-color: var(--nabu-color-focus-bg);
+  text-decoration-style: solid;
+  text-decoration-color: var(--nabu-color-text);
+}

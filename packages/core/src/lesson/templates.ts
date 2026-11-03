@@ -58,6 +58,10 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" } },
   "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
   "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
+  // Stories (Phase 6): reading comprehension exercises recognition of the line's words.
+  "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
+  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
+  "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -586,7 +590,15 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
+    case "story-arrange": {
+      if (response.tag !== "tiles") return mismatch(ex, response);
+      // The line's own words in its order; tiles that read the same are interchangeable.
+      const read = (order: readonly number[]): string => JSON.stringify(order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)));
+      return { verdict: read(response.order) === read(ex.solution) ? "CORRECT" : "WRONG", notes: [], solution: ex.canonical };
+    }
     case "match-pairs":
       return response.tag === "pairs" ? { verdict: "CORRECT", notes: response.mistakes > 0 ? ["pairs-mistakes"] : [] } : mismatch(ex, response);
     case "translate-tap.l2-l1":
@@ -618,7 +630,11 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "reading-disambiguation":
     case "listen-select":
     case "minimal-pair":
+    case "story-choose":
+    case "story-complete":
       return ex.options[ex.answer];
+    case "story-arrange":
+      return ex.canonical;
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "translate-type.l1-l2":

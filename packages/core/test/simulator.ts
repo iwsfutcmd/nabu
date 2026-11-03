@@ -38,6 +38,9 @@ const TRUE_TEMPLATE: Readonly<Record<TemplateId, number>> = {
   "minimal-pair": 0.1,
   "listen-tap": 0.6,
   "listen-type": 1.6,
+  "story-choose": -0.6,
+  "story-complete": -0.2,
+  "story-arrange": 0.2,
 };
 
 const gauss = (rng: Rng): number => Math.sqrt(-2 * Math.log(1 - rng.next())) * Math.cos(2 * Math.PI * rng.next());

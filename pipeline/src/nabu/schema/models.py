@@ -380,6 +380,47 @@ class AudioVoice(BaseModel):
     ]
 
 
+type NameAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class StoryCharacter(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    name: Annotated[
+        dict[OrthographyId, NameAdditionalProperty],
+        Field(
+            description="The name as written in each orthography of the course (keys: orthography ids).",
+            min_length=1,
+        ),
+    ]
+
+
+type PromptAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type OptionsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class StoryChoiceSource(BaseModel):
+    """
+    A comprehension question in the support language, about what has been read.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    prompt: Annotated[
+        dict[str, PromptAdditionalProperty],
+        Field(description="The question per support language.", min_length=1),
+    ]
+    options: Annotated[list[dict[str, OptionsAdditionalProperty]], Field(min_length=2)]
+    answer: Annotated[int, Field(description="Index of the right option.", ge=0)]
+
+
 type GroupItem = Annotated[str, Field(min_length=1)]
 
 
@@ -562,7 +603,7 @@ class SessionStarted(BaseModel):
         ),
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
-    mode: Literal["lesson", "review", "mistakes", "placement"]
+    mode: Literal["lesson", "review", "mistakes", "placement", "story"]
     node: Annotated[str | None, Field(min_length=1)] = None
     seed: Annotated[int, Field(ge=0)]
     exercises: Annotated[int, Field(ge=0)]
@@ -662,7 +703,7 @@ class SessionCompleted(BaseModel):
         ),
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
-    mode: Literal["lesson", "review", "mistakes", "placement"]
+    mode: Literal["lesson", "review", "mistakes", "placement", "story"]
     node: Annotated[str | None, Field(min_length=1)] = None
     summary: SessionSummaryData
     placed: Annotated[
@@ -1186,6 +1227,9 @@ class ExerciseRef(BaseModel):
         "listen-type",
         "listen-select",
         "minimal-pair",
+        "story-choose",
+        "story-complete",
+        "story-arrange",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -1588,6 +1632,50 @@ class SentenceForm(BaseModel):
     ] = None
 
 
+class StoryLineSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    speaker: Annotated[
+        str | None,
+        Field(description="A character id; none for narration.", pattern="^[a-z][a-z0-9-]*$"),
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, SentenceForm],
+        Field(
+            description="The line in every orthography of the course, tokenized like a sentence's forms.",
+            min_length=1,
+        ),
+    ]
+    translations: Annotated[
+        dict[str, TranslationsAdditionalProperty],
+        Field(
+            description="The line's meaning per support language: shown on request, never graded.",
+            min_length=1,
+        ),
+    ]
+    ask: Annotated[
+        Literal["complete", "arrange"] | None,
+        Field(
+            description="Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation."
+        ),
+    ] = None
+    gap: Annotated[
+        KcId | None,
+        Field(
+            description="complete: the KC of the missing word (exactly one word token of the line has it)."
+        ),
+    ] = None
+    distractors: Annotated[
+        list[KcId] | None,
+        Field(
+            description="complete: other KCs offered, shown by their first form in the learner's orthography.",
+            min_length=1,
+        ),
+    ] = None
+
+
 type LearnerEvent = Annotated[
     SessionStarted | ExercisePresented | AnswerSubmitted | ExerciseSkipped | SessionCompleted,
     Field(
@@ -1622,6 +1710,39 @@ class TaggedText(BaseModel):
     lang: ScriptedLangTag
     orthography: OrthographyId
     tokens: Annotated[list[Token], Field(min_length=1)]
+
+
+class Character(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    name: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
+
+
+class Choose(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    prompt: dict[str, TaggedText]
+    options: list[dict[str, TaggedText]]
+    answer: Annotated[int, Field(ge=0)]
+
+
+class BundleStoryLine(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    speaker: str | None = None
+    forms: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
+    translations: Annotated[dict[str, TaggedText], Field(description="Per support language.")]
+    kcs: list[KcId]
+    ask: Literal["complete", "arrange"] | None = None
+    gap: KcId | None = None
+    distractors: list[KcId] | None = None
 
 
 class BundleKc(BaseModel):
@@ -1706,6 +1827,19 @@ class SentenceSource(BaseModel):
     license: Spdx | None = None
 
 
+class StoryStep(BaseModel):
+    """
+    One step of a story: a line, or a comprehension question.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    line: StoryLineSource | None = None
+    choose: StoryChoiceSource | None = None
+
+
 class OrthographyProfile(BaseModel):
     """
     Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.
@@ -1755,17 +1889,53 @@ class OrthographyProfile(BaseModel):
     transliterate: Transliteration | None = None
 
 
-class BundleUnit(BaseModel):
+class BundleStoryStep(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    line: BundleStoryLine | None = None
+    choose: Choose | None = None
+
+
+class StorySource(BaseModel):
+    """
+    A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    node: Annotated[Slug, Field(description="The path node (kind story) the story is read at.")]
+    title: Annotated[
+        dict[str, TitleAdditionalProperty],
+        Field(description="The title per support language (key: e.g. en).", min_length=1),
+    ]
+    characters: list[StoryCharacter] | None = None
+    steps: Annotated[list[StoryStep], Field(min_length=2)]
+    provenance: Provenance | None = None
+    license: Spdx | None = None
+
+
+class BundleStory(BaseModel):
+    """
+    A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
+    """
+
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
     id: str
-    cefr: str | None = None
-    title: dict[str, TaggedText] | None = None
-    kcs: list[BundleKc]
-    nodes: list[BundleNode]
-    sentences: list[BundleSentence]
+    node: str
+    title: dict[str, TaggedText]
+    characters: list[Character]
+    steps: list[BundleStoryStep]
+    kcs: Annotated[list[KcId], Field(description="Every KC its lines use.")]
+    provenance: Provenance | None = None
+    license: str
 
 
 class UnitSource(BaseModel):
@@ -1784,6 +1954,26 @@ class UnitSource(BaseModel):
     kcs: list[KnowledgeComponentSource]
     nodes: Annotated[list[PathNodeSource], Field(min_length=1)]
     sentences: list[SentenceSource]
+    stories: Annotated[
+        list[StorySource] | None,
+        Field(
+            description="Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story."
+        ),
+    ] = None
+
+
+class BundleUnit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    cefr: str | None = None
+    title: dict[str, TaggedText] | None = None
+    kcs: list[BundleKc]
+    nodes: list[BundleNode]
+    sentences: list[BundleSentence]
+    stories: list[BundleStory] | None = None
 
 
 class CourseSource(BaseModel):

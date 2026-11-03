@@ -18,6 +18,7 @@ it.
 | `accept.json` | Accept-set notation, expansion and errors |
 | `grade.json` | Grading verdicts, notes and alignments across all nine profiles |
 | `tagged-text.json` | TaggedText invariants |
+| `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 
 Harnesses:
 - TypeScript: `packages/core-cli/test/conformance.test.ts` (in-process)

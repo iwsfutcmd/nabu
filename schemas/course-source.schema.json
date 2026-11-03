@@ -163,6 +163,13 @@
           "items": {
             "$ref": "#/$defs/SentenceSource"
           }
+        },
+        "stories": {
+          "description": "Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StorySource"
+          }
         }
       }
     },
@@ -581,6 +588,196 @@
         "license": {
           "description": "License of the audio this voice produces: it follows the voice's own terms.",
           "$ref": "#/$defs/Spdx"
+        }
+      }
+    },
+    "StorySource": {
+      "title": "StorySource",
+      "description": "A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).",
+      "type": "object",
+      "required": [
+        "id",
+        "node",
+        "title",
+        "steps"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "node": {
+          "description": "The path node (kind story) the story is read at.",
+          "$ref": "#/$defs/Slug"
+        },
+        "title": {
+          "description": "The title per support language (key: e.g. en).",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "characters": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StoryCharacter"
+          }
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "$ref": "#/$defs/StoryStep"
+          }
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "license": {
+          "$ref": "#/$defs/Spdx"
+        }
+      }
+    },
+    "StoryCharacter": {
+      "title": "StoryCharacter",
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "name": {
+          "description": "The name as written in each orthography of the course (keys: orthography ids).",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/OrthographyId"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "StoryStep": {
+      "title": "StoryStep",
+      "description": "One step of a story: a line, or a comprehension question.",
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "line": {
+          "$ref": "#/$defs/StoryLineSource"
+        },
+        "choose": {
+          "$ref": "#/$defs/StoryChoiceSource"
+        }
+      }
+    },
+    "StoryLineSource": {
+      "title": "StoryLineSource",
+      "type": "object",
+      "required": [
+        "forms",
+        "translations"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "speaker": {
+          "description": "A character id; none for narration.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "forms": {
+          "description": "The line in every orthography of the course, tokenized like a sentence's forms.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/OrthographyId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/SentenceForm"
+          }
+        },
+        "translations": {
+          "description": "The line's meaning per support language: shown on request, never graded.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ask": {
+          "description": "Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.",
+          "type": "string",
+          "enum": [
+            "complete",
+            "arrange"
+          ]
+        },
+        "gap": {
+          "description": "complete: the KC of the missing word (exactly one word token of the line has it).",
+          "$ref": "common.schema.json#/$defs/KcId"
+        },
+        "distractors": {
+          "description": "complete: other KCs offered, shown by their first form in the learner's orthography.",
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        }
+      }
+    },
+    "StoryChoiceSource": {
+      "title": "StoryChoiceSource",
+      "description": "A comprehension question in the support language, about what has been read.",
+      "type": "object",
+      "required": [
+        "prompt",
+        "options",
+        "answer"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "prompt": {
+          "description": "The question per support language.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "description": "An option per support language.",
+            "type": "object",
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "answer": {
+          "description": "Index of the right option.",
+          "type": "integer",
+          "minimum": 0
         }
       }
     }
