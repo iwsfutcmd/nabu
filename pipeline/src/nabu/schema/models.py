@@ -85,6 +85,75 @@ type ScriptCode = Annotated[
 ]
 
 
+type GroupItem = Annotated[str, Field(min_length=1)]
+
+
+type Group = Annotated[list[GroupItem], Field(min_length=2)]
+
+
+type ReadingsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+
+
+type ReadingsAdditionalProperty = Annotated[
+    list[ReadingsAdditionalPropertyItem], Field(min_length=1)
+]
+
+
+class DataTable(BaseModel):
+    """
+    A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+(-[a-z0-9]+)*$")]
+    kind: Literal["variants", "readings", "charset"]
+    source: Annotated[
+        str, Field(description="Where the data came from, with version or commit.", min_length=1)
+    ]
+    license: Annotated[str, Field(description="SPDX identifier of the source data.", min_length=1)]
+    groups: Annotated[
+        list[Group] | None,
+        Field(description="variants: each group is a set of mutually acceptable forms."),
+    ] = None
+    readings: Annotated[
+        dict[str, ReadingsAdditionalProperty] | None,
+        Field(description="readings: character → readings in the profile's scheme."),
+    ] = None
+    chars: Annotated[str | None, Field(description="charset: the characters, concatenated.")] = None
+
+
+type Key = Annotated[str, Field(min_length=1)]
+
+
+class Row(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    offset: float = 0
+    keys: Annotated[list[Key], Field(min_length=1)]
+
+
+class KeyboardLayout(BaseModel):
+    """
+    Key geometry for the keyboard typo model (gameplan §8.4): which keys are physically adjacent. Rows are listed top to bottom, keys left to right in the base layer; row offsets give the stagger in key widths.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+(-[a-z0-9]+)*$")]
+    source: Annotated[
+        str, Field(description="Standard or reference the layout follows.", min_length=1)
+    ]
+    reviewed: bool = False
+    rows: Annotated[list[Row], Field(min_length=1)]
+
+
 type MessageKey = Annotated[
     str,
     Field(
@@ -240,56 +309,12 @@ class WhitespaceStep(BaseModel):
     whitespace: Literal["collapse", "remove", "keep"]
 
 
-class Marks(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    set: UnicodeSetPattern
-    policy: Policy
-
-
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
     locale: LangTag
-
-
-class Variants(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    table: Annotated[str, Field(pattern="^[a-z0-9]+(-[a-z0-9]+)*$")]
-    policy: Policy
-
-
-class ScriptMismatch(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    detect: ScriptCode
-    policy: Policy
-
-
-class Homophones(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    model: Annotated[str, Field(pattern="^[a-z0-9]+(-[a-z0-9]+)*$")]
-    policy: Policy
-
-
-class Apostrophe(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    policy: Policy
 
 
 type NoteId = Annotated[
@@ -404,12 +429,39 @@ class Transliteration(BaseModel):
     via: Annotated[str, Field(pattern="^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$")]
 
 
+class Equivalence(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    map: Annotated[
+        dict[str, str],
+        Field(
+            description="Literal replacements, longest key first, applied to both sides.",
+            min_length=1,
+        ),
+    ]
+    policy: Policy
+    note: NoteId | None = None
+
+
+type TableRef = Annotated[
+    str,
+    Field(
+        description="Id of a data table in profiles/tables/<id>.json (schemas/data-table.schema.json).",
+        pattern="^[a-z0-9]+(-[a-z0-9]+)*$",
+        title="TableRef",
+    ),
+]
+
+
 type TokenKind = Annotated[
     Literal["word", "punct", "space", "number", "symbol"], Field(title="TokenKind")
 ]
 
 
-type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty1 = Annotated[str, Field(min_length=1)]
 
 
 type Variant = Annotated[str, Field(min_length=1)]
@@ -469,6 +521,16 @@ class FoldWidthStep(BaseModel):
     fold_width: Annotated[FoldWidth, Field(alias="fold-width")]
 
 
+class Marks(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    set: UnicodeSetPattern
+    policy: Policy
+    note: NoteId | None = None
+
+
 class Zwnj(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -488,6 +550,53 @@ class Typo(BaseModel):
     layout: KeyboardRef | None = None
     unit: Literal["graphemes", "letters"] | None = None
     maxRatio: Annotated[float | None, Field(gt=0.0, le=1.0)] = None
+    minLength: Annotated[
+        int | None,
+        Field(
+            description="Tokens shorter than this many units get no typo tolerance (default 3).",
+            ge=1,
+        ),
+    ] = None
+
+
+class Variants(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    table: TableRef
+    policy: Policy
+    note: NoteId | None = None
+
+
+class ScriptMismatch(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    detect: ScriptCode
+    policy: Policy
+    table: TableRef
+    note: NoteId | None = None
+
+
+class Homophones(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Annotated[str, Field(pattern="^[a-z0-9]+(-[a-z0-9]+)*$")]
+    policy: Policy
+    table: TableRef
+
+
+class Apostrophe(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    policy: Policy
+    note: NoteId | None = None
 
 
 class MatchPolicy(BaseModel):
@@ -503,6 +612,12 @@ class MatchPolicy(BaseModel):
     scriptMismatch: ScriptMismatch | None = None
     homophones: Homophones | None = None
     apostrophe: Apostrophe | None = None
+    equivalences: Annotated[
+        list[Equivalence] | None,
+        Field(
+            description="Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently."
+        ),
+    ] = None
 
 
 type RubyAdditionalProperty = Annotated[list[RubySegment], Field(min_length=1)]
@@ -521,7 +636,7 @@ class Token(BaseModel):
         SenseId | None, Field(description="Link to the lexicon (a knowledge component).")
     ] = None
     readings: Annotated[
-        dict[SchemeId, ReadingsAdditionalProperty] | None,
+        dict[SchemeId, ReadingsAdditionalProperty1] | None,
         Field(
             description='Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.'
         ),
@@ -625,7 +740,7 @@ class OrthographyProfile(BaseModel):
 
 
 type NabuSchemaBundle = Annotated[
-    MessageCatalog | OrthographyProfile | TaggedText,
+    DataTable | KeyboardLayout | MessageCatalog | OrthographyProfile | TaggedText,
     Field(
         description="Every Nabu document type. Generated from /schemas; do not edit.",
         title="NabuSchemaBundle",

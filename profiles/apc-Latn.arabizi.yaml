@@ -1,0 +1,21 @@
+# Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+# Lebanese Arabic in Arabizi (gameplan §6.3): digit letters (2 ʔ, 3 ʕ, 7 ḥ, 5 x…) are letters, not numbers.
+# Variation the profile folds silently: an apostrophe for the hamza, ch/sh, doubled vowels. Everything else
+# (e/i, h/7…) is a real distinction or a spelling choice and belongs in the accept sets. Content: apc-Latn-LB.
+id: apc-Latn/arabizi
+lang: apc-Latn
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "'": "2", "\u2019": "2", "\u2018": "2" }   # REVIEW: an apostrophe written for the hamza
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: apc }
+  equivalences:
+    - { id: ch-sh, map: { ch: sh }, policy: accept }
+    - { id: french-ou, map: { ou: u }, policy: accept }      # REVIEW: "chou", "kifak/kifik" spellings after French
+    - { id: long-vowels, map: { aa: a, ee: e, ii: i, oo: o, uu: u }, policy: accept }   # REVIEW
+  typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+layout: { vertical: none }
+transliterate: { to: apc-Arab/standard, via: hand-pinned }

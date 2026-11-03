@@ -1,6 +1,5 @@
 # profiles/uz-Latn.standard.yaml
-# v0: copied from gameplan §6.3 with two fixes (see docs/adr/0016). Phase 1 owns the
-# normalization engine and finishes this profile; nothing executes these steps yet.
+# From gameplan §6.3 with two fixes (docs/adr/0016).
 #  - The apostrophe map also covers capital O and G. In §6.3 only lowercase o/g were listed,
 #    so "O'zbekiston" fell through to the second map and became O + U+02BC (tutuq belgisi).
 #  - letters includes U+02BC (tutuq belgisi), which the 1995 alphabet lists as a sign.
@@ -18,10 +17,11 @@ normalize:
         "G\u2018": "G\u02BB", "G'": "G\u02BB", "G`": "G\u02BB", "G\u2019": "G\u02BB" }
   - map: { "\u2019": "\u02BC", "'": "\u02BC" }              # remaining apostrophes → tutuq belgisi
   - punctuation: strip                 # never strips U+02BB/U+02BC: they are letters (gc=Lm), not punctuation
+  - whitespace: collapse               # Phase 1: missing in §6.3 (docs/gameplan-errata.md)
 match:
   case: { locale: uz }
-  apostrophe: { policy: accept-with-note }   # typed ASCII ' is fine, but tell them
-  typo: { model: keyboard, unit: letters, layout: cldr-kbd:uz }   # distance over profile letters, not graphemes
+  apostrophe: { policy: accept-with-note, note: apostrophe }   # typed ASCII ' is fine, but tell them
+  typo: { model: keyboard, unit: letters, layout: cldr-kbd:uz, maxRatio: 0.2 }   # distance over profile letters, not graphemes
 input:
   extraKeys: ["\u02BB", "\u02BC"]
 transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises

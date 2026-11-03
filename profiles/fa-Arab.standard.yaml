@@ -1,6 +1,5 @@
 # profiles/fa-Arab.standard.yaml
-# v0: copied verbatim from gameplan §6.3. Phase 1 owns the normalization engine and finishes
-# this profile; nothing executes these steps yet. The visual matrix reads `layout` and `fonts`.
+# From gameplan §6.3. Phase 1: typo minimum length set; otherwise as written.
 id: fa-Arab/standard
 lang: fa-Arab
 exemplars: cldr:fa                     # main/auxiliary/punctuation/numbers exemplars drive lints (§7.5)
@@ -17,7 +16,7 @@ match:
   marks: { set: "[\u064B-\u0652\u0670]", policy: ignore }   # harakat optional in answers
   zwnj:  { equivalents: ["\u200C", " ", ""], policy: accept-with-note, note: spacing }
   case:  none
-  typo:  { model: keyboard, layout: cldr-kbd:fa, maxRatio: 0.15 }
+  typo:  { model: keyboard, layout: cldr-kbd:fa, maxRatio: 0.15, minLength: 3 }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
 input:

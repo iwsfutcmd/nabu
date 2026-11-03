@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/data-table.schema.json",
+  "title": "DataTable",
+  "description": "A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.",
+  "type": "object",
+  "required": ["id", "kind", "source", "license"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+    "kind": { "type": "string", "enum": ["variants", "readings", "charset"] },
+    "source": { "description": "Where the data came from, with version or commit.", "type": "string", "minLength": 1 },
+    "license": { "description": "SPDX identifier of the source data.", "type": "string", "minLength": 1 },
+    "groups": {
+      "description": "variants: each group is a set of mutually acceptable forms.",
+      "type": "array",
+      "items": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } }
+    },
+    "readings": {
+      "description": "readings: character → readings in the profile's scheme.",
+      "type": "object",
+      "additionalProperties": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+    },
+    "chars": { "description": "charset: the characters, concatenated.", "type": "string" }
+  }
+}

@@ -1,6 +1,5 @@
 # profiles/yue-Hant-HK.standard.yaml
-# v0: copied verbatim from gameplan §6.3. Phase 1 owns the normalization engine and finishes
-# this profile; nothing executes these steps yet. The visual matrix reads `layout` and `fonts`.
+# From gameplan §6.3. Phase 1: tables named explicitly (profiles/tables/), feedback notes named.
 id: yue-Hant-HK/standard
 lang: yue-Hant-HK
 exemplars: cldr:yue_Hant
@@ -11,9 +10,9 @@ normalize:
   - whitespace: remove                 # spaces carry no meaning
   - punctuation: strip
 match:
-  variants:       { table: hk-tw-variants, policy: accept-with-note }   # per-course policy
-  scriptMismatch: { detect: Hans, policy: reject-with-note }            # "use Traditional characters"
-  homophones:     { model: jyutping-ime, policy: partial-credit }       # IME slip, see §8.4
+  variants:       { table: hk-tw-variants, policy: accept-with-note, note: hk-tw-variant }   # per-course policy
+  scriptMismatch: { detect: Hans, table: hans-only, policy: reject-with-note, note: use-traditional }
+  homophones:     { model: jyutping-ime, table: jyutping-ime, policy: partial-credit }   # IME slip, §8.4
   typo:           { model: ime-homophone }
 annotations:
   - { id: jyutping, kind: reading, scheme: jyutping, toggle: true, render: ruby, fade: by-facet }

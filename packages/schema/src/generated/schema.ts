@@ -119,6 +119,13 @@ export type NoteId = string;
  */
 export type KeyboardRef = string;
 /**
+ * Id of a data table in profiles/tables/<id>.json (schemas/data-table.schema.json).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "TableRef".
+ */
+export type TableRef = string;
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "StrokeOrderStandard".
  */
@@ -144,6 +151,8 @@ export interface NabuSchemaIndex {
   readonly SenseId: SenseId;
   readonly KcId: KcId;
   readonly ScriptCode: ScriptCode;
+  readonly DataTable: DataTable;
+  readonly KeyboardLayout: KeyboardLayout;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -172,11 +181,72 @@ export interface NabuSchemaIndex {
   readonly StrokeOrder: StrokeOrder;
   readonly Fonts: Fonts;
   readonly Transliteration: Transliteration;
+  readonly Equivalence: Equivalence;
+  readonly TableRef: TableRef;
   readonly TaggedText: TaggedText;
   readonly TokenKind: TokenKind;
   readonly Token: Token;
   readonly RubySegment: RubySegment;
   readonly Morph: Morph;
+}
+/**
+ * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "DataTable".
+ */
+export interface DataTable {
+  readonly id: string;
+  readonly kind: "variants" | "readings" | "charset";
+  /**
+   * Where the data came from, with version or commit.
+   */
+  readonly source: string;
+  /**
+   * SPDX identifier of the source data.
+   */
+  readonly license: string;
+  /**
+   * variants: each group is a set of mutually acceptable forms.
+   */
+  readonly groups?: readonly string[][];
+  /**
+   * readings: character → readings in the profile's scheme.
+   */
+  readonly readings?: {
+    /**
+     * @minItems 1
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * charset: the characters, concatenated.
+   */
+  readonly chars?: string;
+}
+/**
+ * Key geometry for the keyboard typo model (gameplan §8.4): which keys are physically adjacent. Rows are listed top to bottom, keys left to right in the base layer; row offsets give the stagger in key widths.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "KeyboardLayout".
+ */
+export interface KeyboardLayout {
+  readonly id: string;
+  /**
+   * Standard or reference the layout follows.
+   */
+  readonly source: string;
+  readonly reviewed?: boolean;
+  /**
+   * @minItems 1
+   */
+  readonly rows: readonly {
+    readonly offset?: number;
+    /**
+     * @minItems 1
+     */
+    readonly keys: readonly string[];
+  }[];
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.
@@ -329,6 +399,7 @@ export interface MatchPolicy {
   readonly marks?: {
     readonly set: UnicodeSetPattern;
     readonly policy: Policy;
+    readonly note?: NoteId;
   };
   readonly zwnj?: {
     /**
@@ -348,22 +419,50 @@ export interface MatchPolicy {
     readonly layout?: KeyboardRef;
     readonly unit?: "graphemes" | "letters";
     readonly maxRatio?: number;
+    /**
+     * Tokens shorter than this many units get no typo tolerance (default 3).
+     */
+    readonly minLength?: number;
   };
   readonly variants?: {
-    readonly table: string;
+    readonly table: TableRef;
     readonly policy: Policy;
+    readonly note?: NoteId;
   };
   readonly scriptMismatch?: {
     readonly detect: ScriptCode;
     readonly policy: Policy;
+    readonly table: TableRef;
+    readonly note?: NoteId;
   };
   readonly homophones?: {
     readonly model: string;
     readonly policy: Policy;
+    readonly table: TableRef;
   };
   readonly apostrophe?: {
     readonly policy: Policy;
+    readonly note?: NoteId;
   };
+  /**
+   * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
+   */
+  readonly equivalences?: readonly Equivalence[];
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Equivalence".
+ */
+export interface Equivalence {
+  readonly id: string;
+  /**
+   * Literal replacements, longest key first, applied to both sides.
+   */
+  readonly map: {
+    readonly [k: string]: string;
+  };
+  readonly policy: Policy;
+  readonly note?: NoteId;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

@@ -1,0 +1,19 @@
+# Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+id: tg-Cyrl/standard
+lang: tg-Cyrl
+exemplars: cldr:tg
+letters: [а, б, в, г, ғ, д, е, ё, ж, з, и, ӣ, й, к, қ, л, м, н, о, п, р, с, т, у, ӯ, ф, х, ҳ, ч, ҷ, ш, ъ, э, ю, я]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: tg }
+  equivalences:
+    # REVIEW: Russian-keyboard stand-ins for Tajik letters are wrong, but say why.
+    - { id: tajik-letters, map: { "\u0493": "\u0433", "\u04E3": "\u0438", "\u049B": "\u043A", "\u04EF": "\u0443", "\u04B3": "\u0445", "\u04B7": "\u0447" }, policy: reject-with-note, note: tajik-letters }
+  typo: { model: keyboard, layout: cldr-kbd:tg, maxRatio: 0.2 }
+input:
+  extraKeys: ["\u0493", "\u04E3", "\u049B", "\u04EF", "\u04B3", "\u04B7"]
+layout: { vertical: none }

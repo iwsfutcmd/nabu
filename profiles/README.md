@@ -3,7 +3,14 @@
 Orthography profiles (gameplan §6.3), one YAML file per orthography, validated against
 `schemas/orthography-profile.schema.json` by both the TypeScript and Python test suites.
 
-Phase 0 status: `fa-Arab`, `yue-Hant-HK` and `uz-Latn` are the §6.3 examples; `apc-Arab` is a
-layout-and-fonts-only draft. Only `layout` and `fonts` are read by anything yet (the `<T>`
-component and the visual matrix). The normalization engine that executes `normalize` and
-`match` arrives in Phase 1.
+Phase 1: nine profiles, all executed by the engine in `@nabu/core` and pinned by
+`conformance/`.
+- `fa-Arab`, `yue-Hant-HK` and `uz-Latn` follow §6.3.
+- The others (`uz-Cyrl`, `ar-Arab`, `apc-Arab`, `apc-Latn` Arabizi, `tg-Cyrl`, `tr-Latn`) are new.
+- Policies marked **REVIEW** are proposals awaiting linguistic sign-off.
+
+Also here:
+- `tables/`: generated data tables (`pnpm tables`).
+- `keyboards/`: interim layouts for the keyboard typo model (ADR 0025).
+
+A profile with id `<lang>/<slug>` lives in `<lang>.<slug>.yaml`.

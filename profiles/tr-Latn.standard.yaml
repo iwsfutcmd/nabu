@@ -1,0 +1,17 @@
+# Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+# The casing torture test (gameplan §16): İ/i and I/ı are different letters, folded only with locale "tr".
+id: tr-Latn/standard
+lang: tr-Latn
+exemplars: cldr:tr
+letters: [a, b, c, "\u00E7", d, e, f, g, "\u011F", h, "\u0131", i, j, k, l, m, n, o, "\u00F6", p, r, s, "\u015F", t, u, "\u00FC", v, y, z]
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - punctuation: strip       # also the apostrophe before suffixes on proper nouns (İstanbul'da)
+  - whitespace: collapse
+match:
+  case: { locale: tr }
+  equivalences:
+    - { id: circumflex, map: { "\u00E2": a, "\u00EE": i, "\u00FB": u }, policy: accept }   # REVIEW: optional in modern spelling
+  typo: { model: keyboard, layout: cldr-kbd:tr, maxRatio: 0.2 }
+layout: { vertical: none }

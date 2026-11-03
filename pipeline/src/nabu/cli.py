@@ -59,6 +59,17 @@ def validate(
 
 
 @app.command()
+def tables(
+    out: Annotated[Path, typer.Option(help="Output directory.")] = Path("../profiles/tables"),
+) -> None:
+    """Regenerate profile data tables from pinned Unihan and OpenCC sources."""
+    from nabu.tables import generate
+
+    for path in generate(out):
+        typer.echo(f"wrote {path}")
+
+
+@app.command()
 def version() -> None:
     """Print the pipeline version."""
     typer.echo(__version__)

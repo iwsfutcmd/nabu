@@ -1,0 +1,26 @@
+# Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+# Modern Standard Arabic (gameplan §6.3: folds hamza seats, alef maqsura/yeh and ta marbuta/ha, each with a note).
+id: ar-Arab/standard
+lang: ar-Arab
+exemplars: cldr:ar
+segmentation: { content: camel-tools, runtime: grapheme }
+normalize:
+  - nfc
+  - fold-compat: arabic-presentation-forms
+  - remove: ["\u0640"]                 # tatweel
+  - digits: { canonical: latn, accept: [arab, arabext, latn] }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: none
+  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore }   # harakat optional in answers
+  equivalences:
+    - { id: persian-keyboard, map: { "\u06A9": "\u0643", "\u06CC": "\u064A" }, policy: accept }          # keheh/Farsi yeh typed on a Persian keyboard
+    - { id: hamza-seat, map: { "\u0623": "\u0627", "\u0625": "\u0627", "\u0622": "\u0627", "\u0671": "\u0627" }, policy: accept-with-note, note: hamza }
+    - { id: alef-maqsura, map: { "\u0649": "\u064A" }, policy: accept-with-note, note: alef-maqsura }
+    - { id: ta-marbuta, map: { "\u0629": "\u0647" }, policy: accept-with-note, note: ta-marbuta }
+  typo: { model: keyboard, layout: cldr-kbd:ar, maxRatio: 0.2 }
+annotations:
+  - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
+layout: { vertical: none }
+fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }

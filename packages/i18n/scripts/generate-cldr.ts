@@ -11,7 +11,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, join, resolve } from "node:path";
-import { parseExemplarSet } from "../src/unicode-set.ts";
+import { parseExemplarSet } from "@nabu/core/text";
 
 const require = createRequire(import.meta.url);
 const PKG = resolve(import.meta.dirname, "..");
@@ -97,6 +97,18 @@ const parentLocales = {
   nonlikelyScriptParent: parents._localeRules?.parentLocale?.nonlikelyScript ?? null,
 };
 
+// --- numbering systems (numeric only: id → its ten digits, 0–9) -------------------
+const rawNumbering = readCldr<{ supplemental: { numberingSystems: Record<string, { _type: string; _digits?: string }> } }>(
+  "cldr-core",
+  "supplemental/numberingSystems.json",
+).supplemental.numberingSystems;
+const numberingSystems = Object.fromEntries(
+  Object.entries(rawNumbering)
+    .filter(([, n]) => n._type === "numeric" && n._digits !== undefined)
+    .sort(([a], [b]) => (a < b ? -1 : 1))
+    .map(([id, n]) => [id, n._digits as string]),
+);
+
 // --- exemplars ----------------------------------------------------------------
 const exemplars = Object.fromEntries(
   config.exemplarLocales.map((locale) => {
@@ -134,6 +146,7 @@ const files: Record<string, unknown> = {
   "likely-subtags.json": likelySubtags,
   "parent-locales.json": parentLocales,
   "exemplars.json": exemplars,
+  "numbering-systems.json": numberingSystems,
 };
 
 /** One entry per line for the big tables, so CLDR bumps produce reviewable diffs. */

@@ -7,7 +7,8 @@
   "type": "module",
   "exports": {
     ".": "./src/index.ts",
-    "./messages/*": "./messages/*"
+    "./messages/*": "./messages/*",
+    "./generated/*": "./src/generated/*"
   },
   "scripts": {
     "generate:cldr": "node scripts/generate-cldr.ts",
@@ -16,6 +17,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@nabu/core": "workspace:*",
     "@nabu/schema": "workspace:*",
     "messageformat": "^4.1.0"
   },
