@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { app } from "../src/app.ts";
+import { publicRoutes as app } from "../src/app.ts";
 
 describe("api", () => {
   it("is healthy", async () => {

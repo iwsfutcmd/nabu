@@ -2,7 +2,7 @@
   "name": "@nabu/api",
   "version": "0.0.0",
   "private": true,
-  "description": "Nabu API server (Hono on Node). Phase 0: health check and UI-locale negotiation.",
+  "description": "Nabu API server (Hono on Node): accounts, the learner event log and sync, over Postgres or PGlite.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "scripts": {
@@ -13,12 +13,19 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@electric-sql/pglite": "0.5.14",
     "@hono/node-server": "^2.1.6",
+    "@nabu/core": "workspace:*",
     "@nabu/i18n": "workspace:*",
-    "hono": "^4.13.16"
+    "@nabu/schema": "workspace:*",
+    "ajv": "^8.20.0",
+    "drizzle-orm": "0.45.4",
+    "hono": "^4.13.16",
+    "pg": "8.23.1"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",
+    "@types/pg": "^8.23.1",
     "typescript": "~6.0.3",
     "vitest": "^5.1.0"
   }
