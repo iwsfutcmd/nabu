@@ -89,7 +89,7 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 
 ## Phase 5 notes (see docs/adr/0040–0041)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
-  ../courses/<id> [--check]` writes it (needs espeak-ng; --check needs `uv sync --group speech`). The compiler only
+  ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
 - Synthesize from pinned readings (Jyutping), never raw characters. apc is human-required: `nabu audio ingest`.
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
@@ -103,7 +103,7 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
-  - `sudo apt-get install -y espeak-ng` (audio)
+  - `sudo apt-get install -y espeak-ng ffmpeg` (audio)
   - `cd pipeline && uv sync --all-groups` (the speech group pulls CPU PyTorch; add `--no-group speech` to skip it)
 - For `pnpm test:visual:docker` in a container, start the Docker daemon first:
   `(dockerd > /tmp/dockerd.log 2>&1 &)`

@@ -45,7 +45,8 @@ YUE_VOICE = AudioVoice(
 )
 
 needs_espeak = pytest.mark.skipif(
-    not espeak.available() and not REQUIRE_TOOLS, reason="needs espeak-ng (apt install espeak-ng)"
+    not (espeak.available() and shutil.which("ffmpeg") is not None) and not REQUIRE_TOOLS,
+    reason="needs espeak-ng and ffmpeg (apt install espeak-ng ffmpeg)",
 )
 needs_speech = pytest.mark.skipif(
     not SPEECH, reason="needs the speech models (uv sync --group speech; NABU_SPEECH=1)"

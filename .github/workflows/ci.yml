@@ -33,8 +33,8 @@ jobs:
         run: corepack enable && pnpm --version
       - name: uv
         run: pipx install uv==0.11.32 && uv --version
-      - name: ICU headers for PyICU (CLDR RBNF drills and transforms; Ubuntu 24.04 ships ICU 74), eSpeak NG (audio tests)
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libicu-dev pkg-config espeak-ng
+      - name: ICU headers for PyICU (CLDR RBNF drills and transforms; Ubuntu 24.04 ships ICU 74), eSpeak NG and ffmpeg (audio tests)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libicu-dev pkg-config espeak-ng ffmpeg
       - run: pnpm install --frozen-lockfile
       - name: uv sync (all groups but speech; committed audio needs no speech model)
         run: uv sync --frozen --all-groups --no-group speech
