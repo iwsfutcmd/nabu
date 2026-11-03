@@ -76,9 +76,15 @@ def check_audio(
     sentences, kcs = _items(compiled.units)
     human_required = course.audio is not None and course.audio.humanRequired is True
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
-    planned = (
-        {item.item: item.input for item in plan(compiled.units, voices[0])[0]} if voices else {}
-    )
+    # What each voice of the cast would read now, by (provider, voice).
+    planned: dict[tuple[str, str], dict[str, str]] = {}
+    for voice in voices:
+        try:
+            reads = plan(compiled.units, voice)[0]
+        except ValueError as error:
+            ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
+            continue
+        planned[(voice.provider, voice.voice)] = {r.item: r.input for r in reads}
     # The round trip checks the normal-speed clip; when it fails, the whole item (slow too) waits.
     failed = {
         c.item
@@ -116,17 +122,25 @@ def check_audio(
                 "audio.unknown-item", f"{clip.item}: no such sentence or KC in the course", loc
             )
             continue
-        if (
-            clip.synthesis is not None
-            and planned.get(clip.item, clip.synthesis.input) != clip.synthesis.input
-        ):
-            ctx.diags.report(
-                "audio.stale",
-                f"{clip.item}: synthesized from {clip.synthesis.input!r}, but the voice now reads "
-                f"{planned[clip.item]!r}; run `nabu audio generate`",
-                loc,
-            )
-            continue
+        if clip.synthesis is not None and voices:
+            reads = planned.get((clip.synthesis.provider, clip.synthesis.voice))
+            if reads is None:
+                ctx.diags.report(
+                    "audio.stale",
+                    f"{clip.item}: synthesized by {clip.synthesis.provider} "
+                    f"({clip.synthesis.voice}), which is no longer in the course's cast; "
+                    "run `nabu audio generate`",
+                    loc,
+                )
+                continue
+            if reads.get(clip.item, clip.synthesis.input) != clip.synthesis.input:
+                ctx.diags.report(
+                    "audio.stale",
+                    f"{clip.item}: synthesized from {clip.synthesis.input!r}, but the voice now "
+                    f"reads {reads[clip.item]!r}; run `nabu audio generate`",
+                    loc,
+                )
+                continue
         # Sentence clips time the sentence's tokens; a word KC's clip times its own form.
         if clip.timings is not None and clip.item in sentences:
             forms = sentences[clip.item]

@@ -11,18 +11,38 @@ only what changed. Two local providers:
   phonemes in `[[ ]]`. Its voices carry their own licenses, which the course must declare
   (`AudioVoice.license`): several Piper voices derive from datasets with restrictive terms.
 
-Hosted providers plug in the same way: implement `synthesize`.
+Two hosted providers, for languages the local voices serve badly (ADR 0042):
+
+- **elevenlabs** (Eleven v4): reads inline IPA between slashes, so pinned readings the
+  spelling does not settle (Cantonese polyphones) are passed as IPA; reports per-character
+  timestamps. Speed 0.7-1.2.
+- **cartesia** (Sonic): word timestamps over server-sent events; speed 0.6-1.5; no seed.
+
+Hosted providers read their key from the environment (ELEVENLABS_API_KEY, CARTESIA_API_KEY),
+never from course files, and only when synthesizing. Their audio is not reproducible
+bit-for-bit (the provider's model may change under the same id); clips are committed, so
+builds stay deterministic, and the round-trip check reviews each new clip.
 """
 
 from __future__ import annotations
 
+import base64
+import hashlib
+import json
+import os
+import time
+import urllib.error
+import urllib.request
+from collections.abc import Callable
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
-from typing import Any, Protocol
+from typing import Any, ClassVar, Protocol
+from urllib.parse import quote
 
 from nabu.audio import espeak
 from nabu.audio.phones import optional
+from nabu.schema.models import AudioVoice
 
 
 @dataclass(frozen=True)
@@ -37,7 +57,8 @@ class Request:
 class Clip:
     pcm: bytes  # s16le mono
     sample_rate: int
-    #: Word onsets the synthesizer reports: (character offset in the input, ms); None if unknown.
+    #: Onsets the synthesizer reports, of words or characters: (code point offset in the input,
+    #: ms); None if unknown.
     words: tuple[tuple[int, int], ...] | None
     #: What the synthesizer says it spoke (phonemes), for QA.
     trace: str | None
@@ -48,6 +69,14 @@ class Provider(Protocol):
 
     def version(self) -> str: ...
 
+    def settings(self) -> dict[str, Any]:
+        """What shapes the audio besides voice, input and rate: part of each clip's identity."""
+        ...
+
+    def speed(self, rate: float) -> float:
+        """The rate the provider will actually use for a requested one."""
+        ...
+
     def synthesize(self, requests: list[Request]) -> list[Clip]: ...
 
 
@@ -56,6 +85,12 @@ class EspeakProvider:
 
     def version(self) -> str:
         return espeak.version()
+
+    def settings(self) -> dict[str, Any]:
+        return {}
+
+    def speed(self, rate: float) -> float:
+        return rate
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         jobs = [espeak.Job(r.input, r.voice, round(espeak.RATE_NORMAL * r.rate)) for r in requests]
@@ -79,6 +114,12 @@ class PiperProvider:
         from importlib.metadata import version
 
         return version("piper-tts")
+
+    def settings(self) -> dict[str, Any]:
+        return {}
+
+    def speed(self, rate: float) -> float:
+        return rate
 
     @staticmethod
     @cache
@@ -104,13 +145,259 @@ class PiperProvider:
         return out
 
 
-PROVIDERS: dict[str, type[EspeakProvider] | type[PiperProvider]] = {
-    "espeak-ng": EspeakProvider,
-    "piper": PiperProvider,
+class MissingKey(RuntimeError):
+    """A hosted provider's API key is not in the environment."""
+
+    def __init__(self, provider: str, variable: str) -> None:
+        super().__init__(
+            f"{provider} needs an API key in ${variable} (in a cloud session: the environment's "
+            "settings, never a course file or the chat)"
+        )
+        self.variable = variable
+
+
+class ProviderError(RuntimeError):
+    """A hosted provider refused a request or could not be reached."""
+
+
+#: POST (url, headers, body) → response body. Injected in tests; the default retries.
+Transport = Callable[[str, dict[str, str], bytes], bytes]
+RETRY_STATUS = {408, 429, 500, 502, 503, 504}
+SAMPLE_RATE = 22050
+
+
+def http_post(url: str, headers: dict[str, str], body: bytes) -> bytes:
+    """POST with up to four retries (2, 4, 8, 16 s) on rate limits, server errors and network
+    failures. Errors carry the URL and the server's message, never the request headers."""
+    for attempt in range(5):
+        request = urllib.request.Request(url, data=body, headers=headers, method="POST")
+        try:
+            with urllib.request.urlopen(request, timeout=180) as response:
+                data: bytes = response.read()
+                return data
+        except urllib.error.HTTPError as error:
+            detail = error.read()[:600].decode("utf-8", "replace")
+            if error.code in RETRY_STATUS and attempt < 4:
+                time.sleep(2 ** (attempt + 1))
+                continue
+            raise ProviderError(f"{url}: HTTP {error.code}: {detail}") from None
+        except (urllib.error.URLError, TimeoutError) as error:
+            if attempt < 4:
+                time.sleep(2 ** (attempt + 1))
+                continue
+            raise ProviderError(f"{url}: {error}") from None
+    raise AssertionError("unreachable")
+
+
+def _key(provider: str, variable: str) -> str:
+    key = os.environ.get(variable, "").strip()
+    if not key:
+        raise MissingKey(provider, variable)
+    return key
+
+
+def _required(voice: AudioVoice, field: str) -> str:
+    value: str | None = getattr(voice, field)
+    if not value:
+        raise ValueError(f"voice {voice.id}: provider {voice.provider} needs `{field}`")
+    return value
+
+
+def _pcm(data: bytes) -> bytes:
+    return data[: len(data) - len(data) % 2]
+
+
+def onsets_of(text: str, pieces: list[str], starts: list[float]) -> tuple[tuple[int, int], ...]:
+    """Map timed pieces (characters or words, in order) to code point offsets in `text`.
+
+    Each piece is looked up from where the previous one ended; a piece the provider normalized
+    (a digit spelled out, say) is not found and has no onset. Whitespace has none either.
+    """
+    out: list[tuple[int, int]] = []
+    cursor = 0
+    for piece, start in zip(pieces, starts, strict=True):
+        if not piece.strip():
+            continue
+        at = text.find(piece, cursor)
+        if at < 0:
+            continue
+        out.append((at, round(start * 1000)))
+        cursor = at + len(piece)
+    return tuple(out)
+
+
+class ElevenLabsProvider:
+    """Eleven v4 by voice_id, through the with-timestamps endpoint (PCM 22.05 kHz)."""
+
+    name = "elevenlabs"
+    API = "https://api.elevenlabs.io"
+    KEY = "ELEVENLABS_API_KEY"
+    MIN_SPEED, MAX_SPEED = 0.7, 1.2
+    #: The documented defaults, pinned so a change of defaults cannot change new clips silently.
+    VOICE_SETTINGS: ClassVar[dict[str, Any]] = {
+        "stability": 0.5,
+        "similarity_boost": 0.75,
+        "style": 0.0,
+        "use_speaker_boost": True,
+    }
+
+    def __init__(self, voice: AudioVoice, transport: Transport = http_post) -> None:
+        self.model = _required(voice, "model")
+        self.language = _required(voice, "language")
+        self.transport = transport
+
+    def version(self) -> str:
+        return self.model
+
+    def settings(self) -> dict[str, Any]:
+        return {"language": self.language, "voiceSettings": self.VOICE_SETTINGS}
+
+    def speed(self, rate: float) -> float:
+        return min(max(rate, self.MIN_SPEED), self.MAX_SPEED)
+
+    @staticmethod
+    def seed(request: Request) -> int:
+        """Best-effort determinism: the same input and rate ask for the same seed."""
+        key = json.dumps([request.voice, request.input, request.rate], ensure_ascii=False)
+        return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
+
+    def body(self, request: Request) -> dict[str, Any]:
+        return {
+            "text": request.input,
+            "model_id": self.model,
+            "language_code": self.language,
+            "voice_settings": {**self.VOICE_SETTINGS, "speed": self.speed(request.rate)},
+            "seed": self.seed(request),
+        }
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        key = _key(self.name, self.KEY)
+        out: list[Clip] = []
+        for r in requests:
+            url = (
+                f"{self.API}/v1/text-to-speech/{quote(r.voice, safe='')}/with-timestamps"
+                f"?output_format=pcm_{SAMPLE_RATE}"
+            )
+            headers = {
+                "xi-api-key": key,
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            }
+            payload = json.dumps(self.body(r), ensure_ascii=False).encode("utf-8")
+            response = json.loads(self.transport(url, headers, payload))
+            pcm = _pcm(base64.b64decode(response["audio_base64"]))
+            alignment = response.get("alignment")
+            words = (
+                onsets_of(
+                    r.input,
+                    list(alignment["characters"]),
+                    list(alignment["character_start_times_seconds"]),
+                )
+                if alignment
+                else None
+            )
+            out.append(Clip(pcm, SAMPLE_RATE, words or None, None))
+        return out
+
+
+class CartesiaProvider:
+    """Sonic by voice id, through the server-sent-events endpoint with word timestamps."""
+
+    name = "cartesia"
+    API = "https://api.cartesia.ai"
+    KEY = "CARTESIA_API_KEY"
+    API_VERSION = "2026-08-14"
+    MIN_SPEED, MAX_SPEED = 0.6, 1.5
+
+    def __init__(self, voice: AudioVoice, transport: Transport = http_post) -> None:
+        self.model = _required(voice, "model")
+        self.language = _required(voice, "language")
+        self.transport = transport
+
+    def version(self) -> str:
+        return self.model
+
+    def settings(self) -> dict[str, Any]:
+        return {"language": self.language}
+
+    def speed(self, rate: float) -> float:
+        return min(max(rate, self.MIN_SPEED), self.MAX_SPEED)
+
+    def body(self, request: Request) -> dict[str, Any]:
+        return {
+            "model_id": self.model,
+            "transcript": request.input,
+            "voice": {"id": request.voice},
+            "output_format": {
+                "container": "raw",
+                "encoding": "pcm_s16le",
+                "sample_rate": SAMPLE_RATE,
+            },
+            "language": self.language,
+            "add_timestamps": True,
+            "generation_config": {"speed": self.speed(request.rate)},
+        }
+
+    @staticmethod
+    def events(stream: bytes) -> list[dict[str, Any]]:
+        """The JSON events of a text/event-stream body (`data:` lines; blank lines end one)."""
+        out: list[dict[str, Any]] = []
+        data: list[str] = []
+        for line in [*stream.decode("utf-8").splitlines(), ""]:
+            if line.startswith("data:"):
+                data.append(line[5:].removeprefix(" "))
+            elif not line and data:
+                out.append(json.loads("\n".join(data)))
+                data = []
+        return out
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        key = _key(self.name, self.KEY)
+        out: list[Clip] = []
+        for r in requests:
+            headers = {
+                "Authorization": f"Bearer {key}",
+                "Cartesia-Version": self.API_VERSION,
+                "Content-Type": "application/json",
+                "Accept": "text/event-stream",
+            }
+            payload = json.dumps(self.body(r), ensure_ascii=False).encode("utf-8")
+            chunks: list[bytes] = []
+            words: list[str] = []
+            starts: list[float] = []
+            for event in self.events(self.transport(f"{self.API}/tts/sse", headers, payload)):
+                kind = event.get("type")
+                if kind == "error":
+                    raise ProviderError(
+                        f"cartesia: {event.get('title', '')}: {event.get('message', '')} "
+                        f"(request {event.get('request_id', '?')})"
+                    )
+                if kind == "chunk" and event.get("data"):
+                    chunks.append(base64.b64decode(event["data"]))
+                elif kind == "timestamps" and event.get("word_timestamps"):
+                    stamps = event["word_timestamps"]
+                    words += stamps["words"]
+                    starts += stamps["start"]
+                elif kind == "done":
+                    break
+            pcm = _pcm(b"".join(chunks))
+            if not pcm:
+                raise ProviderError(f"cartesia: no audio for {r.input!r}")
+            onsets = onsets_of(r.input, words, starts)
+            out.append(Clip(pcm, SAMPLE_RATE, onsets or None, None))
+        return out
+
+
+PROVIDERS: dict[str, Callable[[AudioVoice], Provider]] = {
+    "espeak-ng": lambda _voice: EspeakProvider(),
+    "piper": lambda _voice: PiperProvider(),
+    "elevenlabs": ElevenLabsProvider,
+    "cartesia": CartesiaProvider,
 }
 
 
-def provider(name: str) -> Provider:
-    if name not in PROVIDERS:
-        raise ValueError(f"unknown TTS provider {name!r}")
-    return PROVIDERS[name]()
+def provider(voice: AudioVoice) -> Provider:
+    """The provider of a course voice, configured from it (model, language)."""
+    if voice.provider not in PROVIDERS:
+        raise ValueError(f"unknown TTS provider {voice.provider!r}")
+    return PROVIDERS[voice.provider](voice)

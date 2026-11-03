@@ -373,7 +373,11 @@ export interface SynthesisRecord {
   readonly input: string;
   readonly rate: number;
   /**
-   * sha256 of provider, version, voice, input and rate: the clip's identity.
+   * Provider settings that shape the audio besides the voice and rate (a hosted provider's language and voice settings); part of the identity when present.
+   */
+  readonly settings?: {};
+  /**
+   * sha256 of provider, version, voice, input, rate and settings: the clip's identity.
    */
   readonly inputHash: string;
 }
@@ -862,11 +866,23 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia";
   /**
-   * The provider's voice: an eSpeak NG voice name, or a Piper voice id.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id or a Cartesia voice id.
    */
   readonly voice: string;
+  /**
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). It is the clips' recorded version.
+   */
+  readonly model?: string;
+  /**
+   * Hosted providers: the language code the provider takes for this course (ElevenLabs language_code, Cartesia language), e.g. "fa", "uz", "yue", "ar".
+   */
+  readonly language?: string;
+  /**
+   * With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).
+   */
+  readonly pronounce?: string;
   readonly orthography: OrthographyId;
   /**
    * What the voice reads: "text" (the orthography's form) or a reading scheme pinned on tokens ("jyutping").

@@ -545,11 +545,28 @@
           "type": "string",
           "enum": [
             "espeak-ng",
-            "piper"
+            "piper",
+            "elevenlabs",
+            "cartesia"
           ]
         },
         "voice": {
-          "description": "The provider's voice: an eSpeak NG voice name, or a Piper voice id.",
+          "description": "The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id or a Cartesia voice id.",
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "description": "Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia \"sonic-3.6-2026-08-27\"; ElevenLabs \"eleven_v4\"). It is the clips' recorded version.",
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "description": "Hosted providers: the language code the provider takes for this course (ElevenLabs language_code, Cartesia language), e.g. \"fa\", \"uz\", \"yue\", \"ar\".",
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$"
+        },
+        "pronounce": {
+          "description": "With reading \"text\": a reading scheme pinned on tokens (\"jyutping\"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).",
           "type": "string",
           "minLength": 1
         },

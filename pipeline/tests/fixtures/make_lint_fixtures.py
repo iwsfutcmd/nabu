@@ -467,7 +467,7 @@ def clip(item: str, data: bytes, **extra: Any) -> tuple[bytes, dict[str, Any]]:
             "provider": "espeak-ng",
             "version": "1.51",
             "voice": "uz",
-            "input": "Salom",
+            "input": "Salom!",
             "rate": 1.0,
             "inputHash": "0" * 64,
         },
@@ -507,9 +507,9 @@ AUDIO: dict[str, tuple[str, Callable[[Course], None], list[tuple[bytes, dict[str
         [clip("s.99", b"unknown item")],
     ),
     "audio.stale": (
-        "The voice now reads 'Salom', the clip read 'Salam'.",
+        "The voice now reads 'Salom!', the clip read 'Salam!'.",
         _with_voice,
-        [clip("s.1", b"stale", synthesis=_read("Salam"))],
+        [clip("s.1", b"stale", synthesis=_read("Salam!"))],
     ),
     "audio.timings": (
         "Timings that point past the sentence's tokens.",

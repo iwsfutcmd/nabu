@@ -131,8 +131,12 @@
           "type": "number",
           "exclusiveMinimum": 0
         },
+        "settings": {
+          "description": "Provider settings that shape the audio besides the voice and rate (a hosted provider's language and voice settings); part of the identity when present.",
+          "type": "object"
+        },
         "inputHash": {
-          "description": "sha256 of provider, version, voice, input and rate: the clip's identity.",
+          "description": "sha256 of provider, version, voice, input, rate and settings: the clip's identity.",
           "type": "string",
           "pattern": "^[0-9a-f]{64}$"
         }

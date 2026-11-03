@@ -40,9 +40,17 @@ def generate(
     check: Annotated[
         bool, typer.Option(help="Round-trip each clip through Whisper (speech group).")
     ] = False,
+    voice_id: Annotated[
+        str | None,
+        typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
+    ] = None,
 ) -> None:
-    """Synthesize the course's clips from pinned readings; unchanged inputs are kept."""
+    """Synthesize the course's clips from pinned readings; unchanged inputs are kept.
+
+    Hosted voices (elevenlabs, cartesia) read their API key from the environment.
+    """
     from nabu.audio.course import synthesize_course
+    from nabu.audio.providers import MissingKey, ProviderError
 
     course_dir, source, units = _compiled(course)
     audio = source.audio
@@ -54,7 +62,10 @@ def generate(
     if audio is None or not audio.voices:
         typer.echo(f"✗ {source.id}: no audio voices in course.yaml", err=True)
         raise typer.Exit(code=1)
-    voice = audio.voices[0]
+    voice = next((v for v in audio.voices if voice_id in (None, v.id)), None)
+    if voice is None:
+        typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
+        raise typer.Exit(code=1)
     checker: Callable[[Item, Clip], dict[str, Any]] | None = None
     if check:
         from nabu.audio.qa import round_trip
@@ -65,7 +76,11 @@ def generate(
             return round_trip(clip, item.expected, language)
 
         checker = round_trip_check
-    report = synthesize_course(course_dir, units, voice, checker)
+    try:
+        report = synthesize_course(course_dir, units, voice, checker)
+    except (MissingKey, ProviderError, ValueError) as error:
+        typer.echo(f"✗ {source.id}: {error}", err=True)
+        raise typer.Exit(code=1) from None
     typer.echo(
         f"✓ {source.id}: {report.synthesized} synthesized, {report.kept} kept, "
         f"{report.removed} removed; {len(report.skipped)} without a pinned reading"

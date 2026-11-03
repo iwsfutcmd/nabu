@@ -153,6 +153,28 @@ def test_a_changed_reading_makes_clips_stale(core_cli: CoreCli, yue_copy: Path) 
 
 
 @needs_espeak
+def test_clips_of_a_voice_that_left_the_cast_are_stale(core_cli: CoreCli, yue_copy: Path) -> None:
+    """Switching a course to another voice (a hosted one, say) drops the old clips."""
+    _, compiled = _compiled(core_cli, yue_copy)
+    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    course = yue_copy / "course.yaml"
+    course.write_text(
+        course.read_text(encoding="utf-8").replace(
+            "{id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, "
+            "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}",
+            "{id: narrator, provider: elevenlabs, voice: VoiceId, model: eleven_v4, language: yue, "
+            "orthography: yue-Hant-HK/standard, reading: text, pronounce: jyutping, "
+            "license: CC0-1.0}",
+        ),
+        encoding="utf-8",
+    )
+    diags, recompiled = _compiled(core_cli, yue_copy)
+    stale = [d for d in diags.items if d.lint == "audio.stale"]
+    assert stale and all("no longer in the course's cast" in d.message for d in stale)
+    assert recompiled.audio_items == {}
+
+
+@needs_espeak
 def test_human_recordings_keep_their_license(
     tmp_path: Path, core_cli: CoreCli, yue_copy: Path
 ) -> None:

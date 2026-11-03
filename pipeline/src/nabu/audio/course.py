@@ -3,7 +3,10 @@
 `nabu audio <course>` compiles the course, then for each sentence (and each word KC) reads
 the course voice's orthography:
 - the voice reads the **pinned reading** when it has one (Jyutping for Cantonese), never raw
-  characters, so polyphones are said as the content says; otherwise the form's text;
+  characters, so polyphones are said as the content says; otherwise the form's text,
+  punctuation included (it carries the intonation of questions and exclamations). A voice that
+  reads text but takes inline IPA (`pronounce`) gets IPA for every token whose spelling does
+  not settle its pinned reading, and the plain spelling for the rest;
 - each clip comes at normal and slow speed;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
   token indices the app highlights (karaoke) and taps;
@@ -28,13 +31,18 @@ from typing import Any
 import yaml
 
 from nabu import yamlio
-from nabu.audio.providers import Clip, Request, provider
+from nabu.audio import jyutping
+from nabu.audio.providers import Clip, Provider, Request, provider
 from nabu.schema.models import AudioIndex, AudioVoice
 
 INDEX = "index.yaml"
 SLOW = 0.67
 #: Bitrate of the MP3s: speech, mono.
 BITRATE = "48k"
+#: Clips synthesized between saves of the index.
+BATCH = 16
+#: Reading schemes `pronounce` can turn into IPA.
+IPA_SCHEMES = {"jyutping"}
 WORD_KINDS = {"word", "number"}
 
 
@@ -85,23 +93,54 @@ def write_index(adir: Path, index: AudioIndex) -> None:
     (adir / INDEX).write_text(header + yamlio.dump(data), encoding="utf-8")
 
 
-def _input_of(tokens: list[dict[str, Any]], reading: str) -> tuple[str, tuple[Span, ...]] | None:
-    """The string the voice reads, and where each token sits in it."""
+def pronounced(surface: str, reading: str, scheme: str) -> str:
+    """A token as a `pronounce` voice reads it: its spelling where that settles the pinned
+    reading, else the reading in IPA between slashes."""
+    if scheme not in IPA_SCHEMES:
+        raise ValueError(f"no IPA conversion for the reading scheme {scheme!r}")
+    return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
+
+
+def _scheme(voice: AudioVoice) -> str | None:
+    """The pinned reading scheme the voice depends on, if any."""
+    return voice.reading if voice.reading != "text" else voice.pronounce
+
+
+def _input_of(
+    tokens: list[dict[str, Any]], voice: AudioVoice
+) -> tuple[str, tuple[Span, ...]] | None:
+    """The string the voice reads, and where each word token sits in it (None: a word token
+    lacks the pinned reading the voice needs)."""
     parts: list[str] = []
     spans: list[Span] = []
     offset = 0
+    if voice.reading != "text":
+        # Pinned readings of the words, space-separated (punctuation has no reading).
+        for i, token in enumerate(tokens):
+            if token.get("kind") not in WORD_KINDS:
+                continue
+            piece = token.get("readings", {}).get(voice.reading)
+            if piece is None:
+                return None
+            if parts:
+                offset += 1
+            spans.append(Span(i, offset, offset + len(piece)))
+            parts.append(piece)
+            offset += len(piece)
+        return (" ".join(parts), tuple(spans)) if parts else None
+    # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
-        if token.get("kind") not in WORD_KINDS:
-            continue
-        piece = token["surface"] if reading == "text" else token.get("readings", {}).get(reading)
-        if piece is None:
-            return None
-        if parts:
-            offset += 1
-        spans.append(Span(i, offset, offset + len(piece)))
+        piece = str(token["surface"])
+        if token.get("kind") in WORD_KINDS:
+            if voice.pronounce is not None:
+                reading = token.get("readings", {}).get(voice.pronounce)
+                if reading is None:
+                    return None
+                piece = pronounced(piece, reading, voice.pronounce)
+            spans.append(Span(i, offset, offset + len(piece)))
         parts.append(piece)
         offset += len(piece)
-    return (" ".join(parts), tuple(spans)) if parts else None
+    return ("".join(parts), tuple(spans)) if spans else None
 
 
 def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], list[str]]:
@@ -109,6 +148,9 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
     orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
+    if voice.pronounce is not None and voice.pronounce not in IPA_SCHEMES:
+        raise ValueError(f"no IPA conversion for the reading scheme {voice.pronounce!r}")
+    scheme = _scheme(voice)
     readings: dict[str, str] = {}  # surface → pinned reading, learned from sentence tokens
     for unit in units:
         for s in unit["sentences"]:
@@ -117,9 +159,9 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
                 continue
             tokens = form["text"]["tokens"]
             for t in tokens:
-                if voice.reading != "text" and voice.reading in t.get("readings", {}):
-                    readings.setdefault(t["surface"], t["readings"][voice.reading])
-            planned = _input_of(tokens, voice.reading)
+                if scheme is not None and scheme in t.get("readings", {}):
+                    readings.setdefault(t["surface"], t["readings"][scheme])
+            planned = _input_of(tokens, voice)
             if planned is None:
                 skipped.append(s["id"])
                 continue
@@ -132,16 +174,35 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
                 continue
             word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
             surface = "".join(t["surface"] for t in word) if word else str(forms[0])
-            piece = surface if voice.reading == "text" else readings.get(surface)
-            if piece is None:
+            reading = readings.get(surface)
+            if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue
+            if voice.reading != "text":
+                piece = reading
+            elif voice.pronounce is not None and reading is not None:
+                piece = pronounced(surface, reading, voice.pronounce)
+            else:
+                piece = surface
+            assert piece is not None
             items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface))
     return items, skipped
 
 
-def identity(provider_name: str, version: str, voice: str, input_: str, rate: float) -> str:
-    key = json.dumps([provider_name, version, voice, input_, rate], ensure_ascii=False)
+def identity(
+    provider_name: str,
+    version: str,
+    voice: str,
+    input_: str,
+    rate: float,
+    settings: dict[str, Any] | None = None,
+) -> str:
+    """A clip's identity. Settings join it only when a provider has any, so the local
+    providers' clips keep the identities they had before settings existed."""
+    fields: list[Any] = [provider_name, version, voice, input_, rate]
+    if settings:
+        fields.append(settings)
+    key = json.dumps(fields, ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(key.encode("utf-8")).hexdigest()
 
 
@@ -178,6 +239,58 @@ def timings(item: Item, clip: Clip, duration_ms: int) -> list[dict[str, int]] | 
     ]
 
 
+def _entry(
+    item: Item,
+    speed: str,
+    rate: float,
+    ident: str,
+    clip: Clip,
+    tts: Provider,
+    voice: AudioVoice,
+    author: str,
+    adir: Path,
+    check: Callable[[Item, Clip], dict[str, Any]] | None,
+) -> dict[str, Any]:
+    """Encode and write one clip; its index entry."""
+    version = tts.version()
+    settings = tts.settings()
+    data = encode_mp3(
+        clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
+    )
+    rel = f"clips/{ident[:16]}.mp3"
+    (adir / rel).write_bytes(data)
+    duration = len(clip.pcm) // 2 * 1000 // clip.sample_rate
+    entry: dict[str, Any] = {
+        "item": item.item,
+        "speed": speed,
+        "file": rel,
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "durationMs": duration,
+        "license": voice.license,
+        "provenance": {"author": author, "status": "draft"},
+        "synthetic": True,
+        "synthesis": {
+            "provider": tts.name,
+            "version": version,
+            "voice": voice.voice,
+            "input": item.input,
+            "rate": rate,
+            **({"settings": settings} if settings else {}),
+            "inputHash": ident,
+        },
+    }
+    token_timings = timings(item, clip, duration)
+    if token_timings is not None:
+        entry["timings"] = token_timings
+        entry["timingSource"] = "synthesis"
+    qa: dict[str, Any] = {} if clip.trace is None else {"trace": clip.trace}
+    if check is not None and speed == "normal":
+        qa |= check(item, clip)
+    if qa:
+        entry["qa"] = qa
+    return entry
+
+
 def synthesize_course(
     course_dir: Path,
     units: list[dict[str, Any]],
@@ -185,8 +298,9 @@ def synthesize_course(
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
 ) -> Report:
     """(Re)synthesizes the course's clips; unchanged inputs keep their files."""
-    tts = provider(voice.provider)
+    tts = provider(voice)
     version = tts.version()
+    settings = tts.settings()
     items, skipped = plan(units, voice)
     adir = audio_dir(course_dir)
     index = read_index(adir)
@@ -198,8 +312,9 @@ def synthesize_course(
     wanted: list[tuple[Item, str, float, str]] = []
     kept: list[Any] = []
     for item in items:
-        for speed, rate in (("normal", 1.0), ("slow", SLOW)):
-            ident = identity(tts.name, version, voice.voice, item.input, rate)
+        for speed, requested in (("normal", 1.0), ("slow", SLOW)):
+            rate = tts.speed(requested)
+            ident = identity(tts.name, version, voice.voice, item.input, rate, settings)
             old = previous.get((item.item, speed))
             if (
                 old is not None
@@ -210,44 +325,30 @@ def synthesize_course(
                 kept.append(old)
                 continue
             wanted.append((item, speed, rate, ident))
-    clips = tts.synthesize([Request(item.input, voice.voice, rate) for item, _, rate, _ in wanted])
     author = f"generated:{tts.name}@{version}"
     fresh: list[dict[str, Any]] = []
-    for (item, speed, rate, ident), clip in zip(wanted, clips, strict=True):
-        data = encode_mp3(
-            clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
+
+    def dump(clips: list[Any]) -> list[dict[str, Any]]:
+        return [c.model_dump(mode="json", by_alias=True, exclude_none=True) for c in clips]
+
+    def save(done: int) -> None:
+        # Clips not regenerated yet keep their old entries (and files) until they are.
+        waiting = [
+            previous[(i.item, sp)] for i, sp, _, _ in wanted[done:] if (i.item, sp) in previous
+        ]
+        clips = [*dump([*human, *kept, *waiting]), *fresh]
+        write_index(adir, AudioIndex.model_validate({"version": 1, "clips": clips}))
+
+    # In batches, saving the index after each: a provider failing midway (a rate limit, an
+    # outage) keeps every clip already made, and the next run picks up from there.
+    for start in range(0, len(wanted), BATCH):
+        batch = wanted[start : start + BATCH]
+        clips = tts.synthesize(
+            [Request(item.input, voice.voice, rate) for item, _, rate, _ in batch]
         )
-        rel = f"clips/{ident[:16]}.mp3"
-        (adir / rel).write_bytes(data)
-        duration = len(clip.pcm) // 2 * 1000 // clip.sample_rate
-        entry: dict[str, Any] = {
-            "item": item.item,
-            "speed": speed,
-            "file": rel,
-            "sha256": hashlib.sha256(data).hexdigest(),
-            "durationMs": duration,
-            "license": voice.license,
-            "provenance": {"author": author, "status": "draft"},
-            "synthetic": True,
-            "synthesis": {
-                "provider": tts.name,
-                "version": version,
-                "voice": voice.voice,
-                "input": item.input,
-                "rate": rate,
-                "inputHash": ident,
-            },
-        }
-        token_timings = timings(item, clip, duration)
-        if token_timings is not None:
-            entry["timings"] = token_timings
-            entry["timingSource"] = "synthesis"
-        qa: dict[str, Any] = {} if clip.trace is None else {"trace": clip.trace}
-        if check is not None and speed == "normal":
-            qa |= check(item, clip)
-        if qa:
-            entry["qa"] = qa
-        fresh.append(entry)
+        for (item, speed, rate, ident), clip in zip(batch, clips, strict=True):
+            fresh.append(_entry(item, speed, rate, ident, clip, tts, voice, author, adir, check))
+        save(start + len(batch))
     report.synthesized = len(fresh)
     report.kept = len(kept)
     live = {c.file for c in kept} | {e["file"] for e in fresh} | {c.file for c in human}
@@ -255,19 +356,5 @@ def synthesize_course(
         if f"clips/{path.name}" not in live:
             path.unlink()
             report.removed += 1
-    write_index(
-        adir,
-        AudioIndex.model_validate(
-            {
-                "version": 1,
-                "clips": [
-                    *(
-                        c.model_dump(mode="json", by_alias=True, exclude_none=True)
-                        for c in [*human, *kept]
-                    ),
-                    *fresh,
-                ],
-            }
-        ),
-    )
+    save(len(wanted))
     return report

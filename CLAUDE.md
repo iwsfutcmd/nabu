@@ -87,7 +87,7 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 
-## Phase 5 notes (see docs/adr/0040–0041)
+## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
@@ -95,11 +95,14 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+- Hosted voices (ADR 0042): provider elevenlabs/cartesia with `model` and `language`. Keys only from the environment
+  (ELEVENLABS_API_KEY, CARTESIA_API_KEY): never in course files, commits or chat. `pronounce: jyutping` sends IPA for
+  tokens whose characters do not settle the pinned reading. `--voice <id>` picks a cast voice. Live tests: NABU_HOSTED=1.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0041 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0042 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

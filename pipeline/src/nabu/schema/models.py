@@ -3,7 +3,7 @@
 
 from __future__ import annotations
 
-from typing import Annotated, Literal
+from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -20,10 +20,16 @@ class SynthesisRecord(BaseModel):
         str, Field(description="The exact string the provider read (a pinned reading, or text).")
     ]
     rate: Annotated[float, Field(gt=0.0)]
+    settings: Annotated[
+        dict[str, Any] | None,
+        Field(
+            description="Provider settings that shape the audio besides the voice and rate (a hosted provider's language and voice settings); part of the identity when present."
+        ),
+    ] = None
     inputHash: Annotated[
         str,
         Field(
-            description="sha256 of provider, version, voice, input and rate: the clip's identity.",
+            description="sha256 of provider, version, voice, input, rate and settings: the clip's identity.",
             pattern="^[0-9a-f]{64}$",
         ),
     ]
@@ -327,15 +333,37 @@ class AudioVoice(BaseModel):
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
     provider: Annotated[
-        Literal["espeak-ng", "piper"], Field(description="A provider of nabu.audio.providers.")
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia"],
+        Field(description="A provider of nabu.audio.providers."),
     ]
     voice: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, or a Piper voice id.",
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id or a Cartesia voice id.",
             min_length=1,
         ),
     ]
+    model: Annotated[
+        str | None,
+        Field(
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). It is the clips\' recorded version.',
+            min_length=1,
+        ),
+    ] = None
+    language: Annotated[
+        str | None,
+        Field(
+            description='Hosted providers: the language code the provider takes for this course (ElevenLabs language_code, Cartesia language), e.g. "fa", "uz", "yue", "ar".',
+            pattern="^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+        ),
+    ] = None
+    pronounce: Annotated[
+        str | None,
+        Field(
+            description='With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).',
+            min_length=1,
+        ),
+    ] = None
     orthography: OrthographyId
     reading: Annotated[
         str,
