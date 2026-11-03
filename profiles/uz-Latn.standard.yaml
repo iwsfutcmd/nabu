@@ -1,0 +1,27 @@
+# profiles/uz-Latn.standard.yaml
+# v0: copied from gameplan §6.3 with two fixes (see docs/adr/0016). Phase 1 owns the
+# normalization engine and finishes this profile; nothing executes these steps yet.
+#  - The apostrophe map also covers capital O and G. In §6.3 only lowercase o/g were listed,
+#    so "O'zbekiston" fell through to the second map and became O + U+02BC (tutuq belgisi).
+#  - letters includes U+02BC (tutuq belgisi), which the 1995 alphabet lists as a sign.
+id: uz-Latn/standard
+lang: uz-Latn
+exemplars: cldr:uz                     # check how CLDR spells oʻ/gʻ in the exemplars and follow it
+letters: [a, b, d, e, f, g, "g\u02BB", h, i, j, k, l, m, n, ng, o, "o\u02BB", p, q, r, s, sh, t, u, v, x, y, z, ch, "\u02BC"]
+segmentation: { content: hand-pinned, runtime: grapheme }   # morphology pinned in source, see below
+normalize:
+  - nfc
+  - map:                               # every apostrophe learners actually type → the canonical letters
+      { "o\u2018": "o\u02BB", "o'": "o\u02BB", "o`": "o\u02BB", "o\u2019": "o\u02BB",
+        "g\u2018": "g\u02BB", "g'": "g\u02BB", "g`": "g\u02BB", "g\u2019": "g\u02BB",
+        "O\u2018": "O\u02BB", "O'": "O\u02BB", "O`": "O\u02BB", "O\u2019": "O\u02BB",
+        "G\u2018": "G\u02BB", "G'": "G\u02BB", "G`": "G\u02BB", "G\u2019": "G\u02BB" }
+  - map: { "\u2019": "\u02BC", "'": "\u02BC" }              # remaining apostrophes → tutuq belgisi
+  - punctuation: strip                 # never strips U+02BB/U+02BC: they are letters (gc=Lm), not punctuation
+match:
+  case: { locale: uz }
+  apostrophe: { policy: accept-with-note }   # typed ASCII ' is fine, but tell them
+  typo: { model: keyboard, unit: letters, layout: cldr-kbd:uz }   # distance over profile letters, not graphemes
+input:
+  extraKeys: ["\u02BB", "\u02BC"]
+transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises

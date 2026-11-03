@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/message-catalog.schema.json",
+  "title": "MessageCatalog",
+  "description": "UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.",
+  "$comment": "v0 (Phase 0). Pseudo-locales (en-XA, ar-XB) have no catalog file: they are derived from en at load time.",
+  "type": "object",
+  "required": ["locale", "messages"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "locale": { "$ref": "common.schema.json#/$defs/LangTag" },
+    "messages": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/MessageKey" },
+      "additionalProperties": { "$ref": "#/$defs/CatalogMessage" }
+    }
+  },
+  "$defs": {
+    "MessageKey": {
+      "title": "MessageKey",
+      "description": "Dotted lowercase key, e.g. exercise.action.check.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(-[a-z0-9]+)*(\\.[a-z0-9]+(-[a-z0-9]+)*)+$"
+    },
+    "CatalogMessage": {
+      "title": "CatalogMessage",
+      "type": "object",
+      "required": ["message"],
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "description": "MessageFormat 2 source text.",
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "description": "Context for translators: where the message appears and what each variable holds. Required in the source (en) catalog by test.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

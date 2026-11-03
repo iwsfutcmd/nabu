@@ -1,0 +1,78 @@
+{
+  "$schema": "../../../message-catalog.schema.json",
+  "locale": "en",
+  "messages": {
+    "app.name": {
+      "message": "Nabu",
+      "description": "Product name. Usually left untranslated."
+    },
+    "course.name.fa": {
+      "message": "Persian",
+      "description": "Name of the Persian (fa) course, used inside other messages as $language."
+    },
+    "course.name.yue": {
+      "message": "Cantonese",
+      "description": "Name of the Cantonese (yue) course, used inside other messages as $language."
+    },
+    "course.name.uz": {
+      "message": "Uzbek",
+      "description": "Name of the Uzbek (uz) course, used inside other messages as $language."
+    },
+    "course.name.apc": {
+      "message": "Lebanese Arabic",
+      "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{Exercise {$current} of {$total}}}",
+      "description": "Accessible value of the lesson progress bar. $current and $total are counts."
+    },
+    "exercise.action.quit": {
+      "message": "Quit lesson",
+      "description": "Accessible label of the close (×) button in the lesson header."
+    },
+    "exercise.instruction.write-in": {
+      "message": "Write this in {$language}",
+      "description": "Instruction for a translate-into-the-target-language exercise. $language is a course name (course.name.*)."
+    },
+    "exercise.prompt.label": {
+      "message": "Sentence to translate",
+      "description": "Accessible label of the sentence the learner translates."
+    },
+    "exercise.action.play-audio": {
+      "message": "Play audio",
+      "description": "Accessible label of the speaker button."
+    },
+    "exercise.answer.label": {
+      "message": "Your answer",
+      "description": "Accessible label of the row where chosen word tiles appear."
+    },
+    "exercise.answer.input-label": {
+      "message": "Type your answer in {$language}",
+      "description": "Label of the free-text answer field. $language is a course name (course.name.*)."
+    },
+    "exercise.wordbank.label": {
+      "message": "Word bank",
+      "description": "Accessible label of the group of word tiles to choose from."
+    },
+    "exercise.wordbank.remaining": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n*   {{{$count} tiles left}}",
+      "description": "How many tiles are still in the word bank. $count is a number."
+    },
+    "exercise.readings.toggle": {
+      "message": "Show readings",
+      "description": "Switch that shows or hides pronunciation guides (Jyutping, vowel marks) above the text."
+    },
+    "exercise.action.skip": {
+      "message": "Skip",
+      "description": "Button that skips the current exercise."
+    },
+    "exercise.action.check": {
+      "message": "Check",
+      "description": "Button that submits the answer for grading."
+    },
+    "feedback.note.spacing": {
+      "message": "Watch the half-space (ZWNJ) inside this word.",
+      "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
+    }
+  }
+}

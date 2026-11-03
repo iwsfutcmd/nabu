@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/tagged-text.schema.json",
+  "title": "TaggedText",
+  "description": "A run of language data (gameplan §6.1). `tokens` concatenate, in logical order, to the NFC surface text. Language data is never a bare string and never addressed by character offsets.",
+  "$comment": "v0 (Phase 0). Invariants a JSON Schema cannot express, checked by @nabu/core and the compiler: every string is NFC; token surfaces never split a grapheme cluster; ruby bases concatenate to their token's surface; morph surfaces concatenate to their token's surface; `lang` falls within the orthography's language.",
+  "type": "object",
+  "required": ["lang", "orthography", "tokens"],
+  "additionalProperties": false,
+  "properties": {
+    "lang": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
+    "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+    "tokens": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/Token" }
+    }
+  },
+  "$defs": {
+    "TokenKind": {
+      "title": "TokenKind",
+      "type": "string",
+      "enum": ["word", "punct", "space", "number", "symbol"]
+    },
+    "Token": {
+      "title": "Token",
+      "type": "object",
+      "required": ["surface", "kind"],
+      "additionalProperties": false,
+      "properties": {
+        "surface": {
+          "description": "NFC. Never splits a grapheme cluster.",
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": { "$ref": "#/$defs/TokenKind" },
+        "sense": {
+          "description": "Link to the lexicon (a knowledge component).",
+          "$ref": "common.schema.json#/$defs/SenseId"
+        },
+        "readings": {
+          "description": "Readings per scheme, e.g. {\"jyutping\": \"hong4\"}. Pinned in content, never guessed at runtime.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": { "type": "string", "minLength": 1 },
+          "tsType": "Readonly<Record<SchemeId, string>>"
+        },
+        "ruby": {
+          "description": "Per-base annotation for each scheme. The bases of each array concatenate to `surface`.",
+          "type": "object",
+          "propertyNames": { "$ref": "common.schema.json#/$defs/SchemeId" },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "$ref": "#/$defs/RubySegment" }
+          },
+          "tsType": "Readonly<Record<SchemeId, readonly RubySegment[]>>"
+        },
+        "ipa": {
+          "description": "SURFACE pronunciation, after sandhi and changed tones (§10.4).",
+          "type": "string",
+          "minLength": 1
+        },
+        "tileGroup": {
+          "description": "Tokens with the same group form one word-bank tile.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "variants": {
+          "description": "Accepted orthographic variants, e.g. HK and TW character forms.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "morphs": {
+          "description": "Agglutinative breakdown. Morph surfaces concatenate to `surface`.",
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/Morph" }
+        }
+      }
+    },
+    "RubySegment": {
+      "title": "RubySegment",
+      "description": "One ruby base and its annotation. Sub-token annotation always uses segments, never integer offsets.",
+      "type": "object",
+      "required": ["base", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "base": { "type": "string", "minLength": 1 },
+        "text": { "type": "string", "minLength": 1 }
+      }
+    },
+    "Morph": {
+      "title": "Morph",
+      "type": "object",
+      "required": ["surface", "kc"],
+      "additionalProperties": false,
+      "properties": {
+        "surface": { "type": "string", "minLength": 1 },
+        "kc": { "$ref": "common.schema.json#/$defs/KcId" }
+      }
+    }
+  }
+}

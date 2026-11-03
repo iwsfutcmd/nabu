@@ -1,0 +1,402 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/orthography-profile.schema.json",
+  "title": "OrthographyProfile",
+  "description": "Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.",
+  "$comment": "v0 (Phase 0). Shapes follow the three examples in gameplan §6.3. Step and policy vocabularies are closed enums on purpose: a new value needs an engine implementation (Phase 1) and conformance vectors before a profile may use it.",
+  "type": "object",
+  "required": ["id", "lang", "segmentation", "normalize"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+    "lang": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
+    "exemplars": {
+      "description": "CLDR locale whose main/auxiliary/punctuation/numbers exemplars drive the script audit (§7.5). Both CLDR (yue_Hant) and BCP 47 (yue-Hant) separators are accepted in v0.",
+      "type": "string",
+      "pattern": "^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$"
+    },
+    "letters": {
+      "description": "The alphabet as the orthography defines it, including multigraph letters (sh, ch, ng, oʻ). Typo distance and letter-level exercises use it, longest match first.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "segmentation": { "$ref": "#/$defs/Segmentation" },
+    "normalize": {
+      "description": "Applied identically to learner answers and accept sets, in order.",
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/NormalizeStep" }
+    },
+    "match": { "$ref": "#/$defs/MatchPolicy" },
+    "annotations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/AnnotationLayer" }
+    },
+    "input": { "$ref": "#/$defs/InputAids" },
+    "layout": { "$ref": "#/$defs/Layout" },
+    "strokeOrder": { "$ref": "#/$defs/StrokeOrder" },
+    "fonts": { "$ref": "#/$defs/Fonts" },
+    "transliterate": { "$ref": "#/$defs/Transliteration" }
+  },
+  "$defs": {
+    "Policy": {
+      "title": "Policy",
+      "description": "What the grader does when an answer differs from the accept set only in this respect.",
+      "type": "string",
+      "enum": ["ignore", "accept", "accept-with-note", "partial-credit", "reject-with-note", "reject"]
+    },
+    "UnicodeSetPattern": {
+      "title": "UnicodeSetPattern",
+      "description": "A UnicodeSet in UTS #35 syntax, e.g. [\\u064B-\\u0652\\u0670].",
+      "type": "string",
+      "pattern": "^\\[.*\\]$"
+    },
+    "Segmentation": {
+      "title": "Segmentation",
+      "type": "object",
+      "required": ["content", "runtime"],
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "description": "Compile-time analyzer that segments content (§7.5), or hand-pinned.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$",
+          "examples": ["hazm", "pycantonese", "hand-pinned", "whitespace"]
+        },
+        "runtime": {
+          "description": "Runtime comparison unit. Never word segmentation (§6.5).",
+          "type": "string",
+          "enum": ["grapheme"]
+        }
+      }
+    },
+    "NormalizeStep": {
+      "title": "NormalizeStep",
+      "oneOf": [
+        { "$ref": "#/$defs/NfcStep" },
+        { "$ref": "#/$defs/FoldCompatStep" },
+        { "$ref": "#/$defs/FoldWidthStep" },
+        { "$ref": "#/$defs/MapStep" },
+        { "$ref": "#/$defs/RemoveStep" },
+        { "$ref": "#/$defs/DigitsStep" },
+        { "$ref": "#/$defs/PunctuationStep" },
+        { "$ref": "#/$defs/WhitespaceStep" }
+      ]
+    },
+    "NfcStep": {
+      "title": "NfcStep",
+      "description": "Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).",
+      "type": "string",
+      "const": "nfc"
+    },
+    "FoldCompatStep": {
+      "title": "FoldCompatStep",
+      "type": "object",
+      "required": ["fold-compat"],
+      "additionalProperties": false,
+      "properties": {
+        "fold-compat": {
+          "type": "string",
+          "enum": ["arabic-presentation-forms"]
+        }
+      }
+    },
+    "FoldWidthStep": {
+      "title": "FoldWidthStep",
+      "type": "object",
+      "required": ["fold-width"],
+      "additionalProperties": false,
+      "properties": {
+        "fold-width": {
+          "type": "object",
+          "additionalProperties": false,
+          "minProperties": 1,
+          "properties": {
+            "ascii": { "$ref": "#/$defs/Width" },
+            "punctuation": { "$ref": "#/$defs/Width" },
+            "katakana": { "$ref": "#/$defs/Width" }
+          }
+        }
+      }
+    },
+    "Width": { "title": "Width", "type": "string", "enum": ["half", "full"] },
+    "MapStep": {
+      "title": "MapStep",
+      "description": "Literal string replacements, longest key first.",
+      "type": "object",
+      "required": ["map"],
+      "additionalProperties": false,
+      "properties": {
+        "map": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "RemoveStep": {
+      "title": "RemoveStep",
+      "type": "object",
+      "required": ["remove"],
+      "additionalProperties": false,
+      "properties": {
+        "remove": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "NumberingSystem": {
+      "title": "NumberingSystem",
+      "description": "A CLDR numbering-system id (latn, arab, arabext, hanidec…).",
+      "type": "string",
+      "pattern": "^[a-z]{3,8}$"
+    },
+    "DigitsStep": {
+      "title": "DigitsStep",
+      "type": "object",
+      "required": ["digits"],
+      "additionalProperties": false,
+      "properties": {
+        "digits": {
+          "type": "object",
+          "required": ["canonical", "accept"],
+          "additionalProperties": false,
+          "properties": {
+            "canonical": { "$ref": "#/$defs/NumberingSystem" },
+            "accept": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "$ref": "#/$defs/NumberingSystem" }
+            }
+          }
+        }
+      }
+    },
+    "PunctuationStep": {
+      "title": "PunctuationStep",
+      "description": "strip removes General_Category P* only. Modifier letters such as U+02BB and U+02BC (gc=Lm) are letters and are never stripped.",
+      "type": "object",
+      "required": ["punctuation"],
+      "additionalProperties": false,
+      "properties": {
+        "punctuation": { "type": "string", "enum": ["strip", "keep"] }
+      }
+    },
+    "WhitespaceStep": {
+      "title": "WhitespaceStep",
+      "type": "object",
+      "required": ["whitespace"],
+      "additionalProperties": false,
+      "properties": {
+        "whitespace": { "type": "string", "enum": ["collapse", "remove", "keep"] }
+      }
+    },
+    "MatchPolicy": {
+      "title": "MatchPolicy",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "marks": {
+          "type": "object",
+          "required": ["set", "policy"],
+          "additionalProperties": false,
+          "properties": {
+            "set": { "$ref": "#/$defs/UnicodeSetPattern" },
+            "policy": { "$ref": "#/$defs/Policy" }
+          }
+        },
+        "zwnj": {
+          "type": "object",
+          "required": ["equivalents", "policy"],
+          "additionalProperties": false,
+          "properties": {
+            "equivalents": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string" }
+            },
+            "policy": { "$ref": "#/$defs/Policy" },
+            "note": { "$ref": "#/$defs/NoteId" }
+          }
+        },
+        "case": {
+          "oneOf": [
+            { "type": "string", "const": "none" },
+            {
+              "type": "object",
+              "required": ["locale"],
+              "additionalProperties": false,
+              "properties": {
+                "locale": { "$ref": "common.schema.json#/$defs/LangTag" }
+              }
+            }
+          ]
+        },
+        "typo": {
+          "type": "object",
+          "required": ["model"],
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string", "enum": ["keyboard", "marks", "ime-homophone"] },
+            "layout": { "$ref": "#/$defs/KeyboardRef" },
+            "unit": { "type": "string", "enum": ["graphemes", "letters"] },
+            "maxRatio": { "type": "number", "exclusiveMinimum": 0, "maximum": 1 }
+          }
+        },
+        "variants": {
+          "type": "object",
+          "required": ["table", "policy"],
+          "additionalProperties": false,
+          "properties": {
+            "table": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+            "policy": { "$ref": "#/$defs/Policy" }
+          }
+        },
+        "scriptMismatch": {
+          "type": "object",
+          "required": ["detect", "policy"],
+          "additionalProperties": false,
+          "properties": {
+            "detect": { "$ref": "common.schema.json#/$defs/ScriptCode" },
+            "policy": { "$ref": "#/$defs/Policy" }
+          }
+        },
+        "homophones": {
+          "type": "object",
+          "required": ["model", "policy"],
+          "additionalProperties": false,
+          "properties": {
+            "model": { "type": "string", "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$" },
+            "policy": { "$ref": "#/$defs/Policy" }
+          }
+        },
+        "apostrophe": {
+          "type": "object",
+          "required": ["policy"],
+          "additionalProperties": false,
+          "properties": {
+            "policy": { "$ref": "#/$defs/Policy" }
+          }
+        }
+      }
+    },
+    "NoteId": {
+      "title": "NoteId",
+      "description": "Key of a feedback note in the MF2 catalogs (feedback.note.<id>).",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "KeyboardRef": {
+      "title": "KeyboardRef",
+      "description": "A CLDR Keyboard 3.0 layout (UTS #35 Part 7).",
+      "type": "string",
+      "pattern": "^cldr-kbd:[A-Za-z0-9_-]+$"
+    },
+    "AnnotationLayer": {
+      "title": "AnnotationLayer",
+      "type": "object",
+      "required": ["id", "kind", "toggle"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "kind": { "type": "string", "enum": ["reading", "vocalization", "gloss"] },
+        "toggle": { "type": "boolean" },
+        "default": { "type": "string", "enum": ["on", "off", "on-for-new-words"] },
+        "scheme": { "$ref": "common.schema.json#/$defs/SchemeId" },
+        "render": { "type": "string", "enum": ["ruby", "inline", "interlinear"] },
+        "fade": { "type": "string", "enum": ["none", "by-facet"] }
+      }
+    },
+    "InputAids": {
+      "title": "InputAids",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "keyboard": { "$ref": "#/$defs/KeyboardRef" },
+        "extraKeys": {
+          "description": "Characters for the special-character bar, in addition to the auxiliary exemplars (§6.7).",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "ime": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[a-z0-9-]+(:[a-z0-9-]+)?$" }
+        }
+      }
+    },
+    "Layout": {
+      "title": "Layout",
+      "type": "object",
+      "required": ["vertical"],
+      "additionalProperties": false,
+      "properties": {
+        "vertical": {
+          "description": "Which vertical writing mode the orthography supports, if any (§11.4).",
+          "type": "string",
+          "enum": ["none", "vertical-rl", "vertical-lr"]
+        },
+        "verticalPolicy": {
+          "description": "toggle: vertical is a user option (CJK). always: the orthography is only ever set vertically (traditional Mongolian). Defaults to toggle.",
+          "type": "string",
+          "enum": ["toggle", "always"],
+          "default": "toggle"
+        },
+        "verticalScope": {
+          "description": "Surfaces that may switch to vertical. App chrome never does.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "enum": ["prompt", "reading", "wordbank"] }
+        }
+      }
+    },
+    "StrokeOrderStandard": {
+      "title": "StrokeOrderStandard",
+      "type": "string",
+      "enum": ["prc", "tw", "hk", "ja"]
+    },
+    "StrokeOrder": {
+      "title": "StrokeOrder",
+      "type": "object",
+      "required": ["target", "label"],
+      "additionalProperties": false,
+      "properties": {
+        "target": { "$ref": "#/$defs/StrokeOrderStandard" },
+        "interim": { "$ref": "#/$defs/StrokeOrderStandard" },
+        "label": { "type": "boolean" }
+      }
+    },
+    "Fonts": {
+      "title": "Fonts",
+      "type": "object",
+      "required": ["stack"],
+      "additionalProperties": false,
+      "properties": {
+        "stack": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "lineHeight": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "Transliteration": {
+      "title": "Transliteration",
+      "type": "object",
+      "required": ["to", "via"],
+      "additionalProperties": false,
+      "properties": {
+        "to": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "via": { "type": "string", "pattern": "^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$" }
+      }
+    }
+  }
+}

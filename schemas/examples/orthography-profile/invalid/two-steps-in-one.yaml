@@ -1,0 +1,6 @@
+# Each normalization step is a single-key mapping, so order is explicit.
+id: fa-Arab/standard
+lang: fa-Arab
+segmentation: { content: hazm, runtime: grapheme }
+normalize:
+  - { remove: ["ـ"], punctuation: strip }

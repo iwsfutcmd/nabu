@@ -1,0 +1,11 @@
+# profiles/apc-Arab.standard.yaml
+# DRAFT, Phase 0 only. The visual matrix needs layout and fonts for apc-Arab; gameplan §6.3 has no
+# example. Normalization and matching are deliberately left at NFC: Phase 1 decides them, and
+# Ben signs off on the linguistic choices. No CLDR locale exists for apc, so there is no `exemplars`.
+id: apc-Arab/standard
+lang: apc-Arab
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+layout: { vertical: none }
+fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }
