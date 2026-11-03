@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
@@ -27,7 +27,7 @@ const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSync(join(
 export const loadCourse = (id: string, orthography: string): CourseView => {
   const manifest = manifestOf(id);
   const files = new Map<string, unknown>(
-    manifest.files.filter((f) => f.role !== "image").map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
+    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
   );
   const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));
@@ -149,10 +149,13 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
-    case "translate-tap.l1-l2": {
+    case "translate-tap.l1-l2":
+    case "listen-tap": {
       const placed: number[] = [];
       for (const tile of ex.solution) {
         const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.includes(i));
@@ -165,7 +168,8 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       return;
     }
     case "translate-type.l1-l2":
-    case "complete-translation": {
+    case "complete-translation":
+    case "listen-type": {
       const text = surfaceOf(ex.template === "complete-translation" ? ex.blank : ex.canonical);
       if (mode === "keyboard") {
         await page.keyboard.type(text);
@@ -192,7 +196,13 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
 
 /** Can the solver get this exercise wrong on purpose? (Choices only: pick another option.) */
 export const canMiss = (ex: Exercise): boolean =>
-  ex.template === "choose-translation" || ex.template === "select-image" || ex.template === "gap-fill" || ex.template === "char-read" || ex.template === "reading-disambiguation";
+  ex.template === "choose-translation" ||
+  ex.template === "select-image" ||
+  ex.template === "gap-fill" ||
+  ex.template === "char-read" ||
+  ex.template === "reading-disambiguation" ||
+  ex.template === "listen-select" ||
+  ex.template === "minimal-pair";
 
 const miss = async (page: Page, ex: Exercise, mode: Mode): Promise<void> => {
   if (!canMiss(ex) || !("answer" in ex) || !("options" in ex)) throw new Error(`cannot miss ${ex.template}`);

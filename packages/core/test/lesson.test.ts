@@ -9,6 +9,8 @@ import {
   gradeExercise,
   isCorrect,
   lessonNodes,
+  LISTENING,
+  MEDIA_ROLES,
   responseOf,
   seededRng,
   start,
@@ -31,7 +33,7 @@ const numberingSystems = JSON.parse(readFileSync(join(ROOT, "packages/i18n/src/g
 const loadCourse = (id: string, orthography?: string): CourseView => {
   const manifest = JSON.parse(readFileSync(join(BUNDLES, id, "manifest.json"), "utf8")) as BundleManifest;
   const files = new Map<string, unknown>(
-    manifest.files.filter((f) => f.role !== "image").map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
+    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
   );
   const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));
@@ -55,13 +57,17 @@ const rightAnswer = (ex: Exercise): Response => {
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       return { tag: "choice", index: ex.answer };
     case "match-pairs":
       return { tag: "pairs", mistakes: 0 };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
+    case "listen-tap":
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
+    case "listen-type":
       return { tag: "text", text: surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };
@@ -77,12 +83,16 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
+    case "listen-tap":
       return { tag: "tiles", order: [...ex.solution].reverse().length > 1 ? [...ex.solution].reverse() : ex.tiles.map((_, i) => i).filter((i) => !ex.solution.includes(i)) };
     case "translate-type.l1-l2":
     case "complete-translation":
+    case "listen-type":
       return { tag: "text", text: "qqqq zzzz" };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "again" };
@@ -139,7 +149,8 @@ describe("template coverage", () => {
       const course = loadCourse(id, orthography);
       for (const { node } of lessonNodes(course)) for (const ex of buildLesson(course, node.id, { seed: 7 })) seen.add(ex.template);
     }
-    expect([...seen].sort()).toEqual(Object.keys(TEMPLATES).sort());
+    // Listening templates need audio and come from the planner (test/listening.test.ts).
+    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t)).sort());
   });
 
   it("can leave speaking out", () => {

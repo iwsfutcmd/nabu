@@ -20,6 +20,8 @@ export default defineConfig({
     locale: "en-US",
     timezoneId: "UTC",
     reducedMotion: "reduce",
+    // Listening exercises play their clip when they open, as after a tap on a phone.
+    launchOptions: { args: ["--autoplay-policy=no-user-gesture-required"] },
   },
   projects: [
     { name: "keyboard", use: { viewport: { width: 1280, height: 900 } } },

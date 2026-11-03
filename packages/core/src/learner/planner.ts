@@ -17,7 +17,7 @@ import { lessonNodes, sentencesOf } from "../lesson/build.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
-import { makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { placementTest } from "./placement.ts";
@@ -63,7 +63,15 @@ const CALIBRATION_WEIGHT = 14;
 
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
-const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = { "speak.tier-0": 2, "match-pairs": 1, "select-image": 2 };
+const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
+  "speak.tier-0": 2,
+  "match-pairs": 1,
+  "select-image": 2,
+  "listen-tap": 2,
+  "listen-type": 2,
+  "listen-select": 2,
+  "minimal-pair": 1,
+};
 
 const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2"]);
 
@@ -96,6 +104,7 @@ const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], k
     if (ex !== undefined && !exclude.has(ex.template) && !out.some((e) => e.id === ex.id)) out.push(ex);
   };
   if (!exclude.has("select-image")) for (const kc of kcs) add(makeSelectImage(ctx, kc));
+  for (const kc of kcs) for (const make of KC_LISTENING) add(make(ctx, kc));
   if (!exclude.has("match-pairs") && kcs.length >= 3) add(makeMatchPairs(ctx, kcs));
   for (const s of sentences) {
     for (const [template, make] of Object.entries(SENTENCE_TEMPLATES)) {
@@ -149,10 +158,12 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   } else {
     const ctx: MakeContext = { course, rng, introduced: [] };
     const byId = new Map(allSentences(course).map((s) => [s.id, s]));
+    const kcById = new Map(allKcs(course).map((k) => [k.id as string, k]));
     for (const m of [...state.mistakes].reverse()) {
       if (exclude.has(m.template)) continue;
       const s = byId.get(m.item);
-      const ex = s === undefined ? undefined : SENTENCE_TEMPLATES[m.template]?.(ctx, s);
+      const kc = kcById.get(m.item);
+      const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(ctx, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(ctx, kc) : undefined;
       if (ex !== undefined && !pool.some((e) => e.id === ex.id)) pool.push(ex);
     }
     size = Math.min(options.size ?? 10, pool.length);

@@ -16,7 +16,11 @@ import type {
   Facet,
   FacetRef,
   GapFill,
+  ListenSelect,
+  ListenTap,
+  ListenType,
   MatchPairs,
+  MinimalPair,
   Outcome,
   ReadingDisambiguation,
   Response,
@@ -50,7 +54,16 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
+  "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" } },
+  "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" } },
+  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
+  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
 };
+
+/** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
+export const LISTENING: ReadonlySet<TemplateId> = new Set(
+  (Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].modality.audioOut),
+);
 
 /** Which (KC, facet) pairs an instance exercises (§8.5 credit assignment). */
 export const facets = (ex: Exercise): readonly FacetRef[] => ex.kcs.map((kc) => ({ kc, facet: TEMPLATES[ex.template].facet }));
@@ -414,6 +427,123 @@ export const makeSpeak = (ctx: MakeContext, s: BundleSentence): Speak | undefine
   };
 };
 
+// ------------------------------------------------------------------------------------ listening templates
+
+const audioOf = (ctx: MakeContext, item: string) => ctx.course.audio[item];
+
+export const makeListenTap = (ctx: MakeContext, s: BundleSentence): ListenTap | undefined => {
+  const audio = audioOf(ctx, s.id);
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  const tap = makeTap(
+    ctx,
+    s,
+    "translate-tap.l1-l2",
+    translation.text,
+    form.text,
+    form.reverse,
+    otherSentences(ctx, s).flatMap((o) => formOf(ctx.course, o)?.text ?? []),
+  );
+  if (tap === undefined) return undefined;
+  const { prompt: _prompt, template: _template, id: _id, ...rest } = tap;
+  return { ...rest, template: "listen-tap", id: id("listen-tap", s.id), audio, translation: translation.text };
+};
+
+export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType | undefined => {
+  const audio = audioOf(ctx, s.id);
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  return {
+    template: "listen-type",
+    id: id("listen-type", s.id),
+    item: s.id,
+    kcs: s.kcs,
+    orthography: ctx.course.orthography,
+    audio,
+    accept: form.reverse,
+    canonical: form.text,
+    translation: translation.text,
+  };
+};
+
+const writtenForm = (ctx: MakeContext, kc: BundleKc): TaggedText | undefined => kc.forms?.[ctx.course.orthography]?.[0];
+
+export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect | undefined => {
+  const audio = audioOf(ctx, kc.id);
+  const word = writtenForm(ctx, kc);
+  if (audio === undefined || word === undefined) return undefined;
+  const pool = allKcs(ctx.course).flatMap((k) => (k.id === kc.id ? [] : (writtenForm(ctx, k) ?? [])));
+  const others = pickDistinct(ctx, pool, [word], 2);
+  if (others.length < 2) return undefined;
+  const { options, answer } = withAnswer(ctx, word, others);
+  return { template: "listen-select", id: id("listen-select", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer };
+};
+
+const distance = <T>(a: readonly T[], b: readonly T[]): number => {
+  let row = b.map((_, j) => j + 1);
+  for (const [i, x] of a.entries()) {
+    const next = [i + 1];
+    for (const [j, y] of b.entries()) next.push(Math.min((row[j] ?? 0) + 1, (next[j] ?? 0) + 1, (j === 0 ? i : (row[j - 1] ?? 0)) + (x === y ? 0 : 1)));
+    row = next.slice(1);
+  }
+  return row[b.length - 1] ?? a.length;
+};
+
+/** The pinned reading of a written word, from any sentence token that spells it. */
+const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string | undefined => {
+  for (const s of allSentences(ctx.course)) {
+    for (const t of formOf(ctx.course, s)?.text.tokens ?? []) if (t.surface === surface && t.readings?.[scheme] !== undefined) return t.readings[scheme];
+  }
+  return undefined;
+};
+
+/**
+ * Two words a learner must hear apart: with pinned readings (Jyutping), the same number of
+ * syllables and one syllable one sound or tone off (maa1 / maa5); otherwise one letter apart
+ * in writing (the profile's letters: Uzbek oʻ is one).
+ */
+const minimallyApart = (ctx: MakeContext, a: TaggedText, b: TaggedText): boolean => {
+  const scheme = rubySchemeOf(ctx);
+  if (scheme !== undefined) {
+    const ra = readingOf(ctx, scheme, surfaceOf(a))?.split(" ");
+    const rb = readingOf(ctx, scheme, surfaceOf(b))?.split(" ");
+    if (ra === undefined || rb === undefined || ra.length !== rb.length) return false;
+    const differing = ra.flatMap((syllable, i) => (syllable === rb[i] ? [] : [[[...syllable], [...(rb[i] ?? "")]] as const]));
+    const [only] = differing;
+    return differing.length === 1 && only !== undefined && distance(only[0], only[1]) === 1;
+  }
+  const profile = profileOf(ctx.course, ctx.course.orthography);
+  const la = profile.letters(surfaceOf(a));
+  const lb = profile.letters(surfaceOf(b));
+  return la.length >= 2 && lb.length >= 2 && distance(la, lb) === 1;
+};
+
+export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | undefined => {
+  const audio = audioOf(ctx, kc.id);
+  const word = writtenForm(ctx, kc);
+  if (audio === undefined || word === undefined) return undefined;
+  const rivals = allKcs(ctx.course).flatMap((k) => {
+    const other = k.id === kc.id ? undefined : writtenForm(ctx, k);
+    return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
+  });
+  const rival = ctx.rng.shuffle(rivals)[0];
+  if (rival === undefined) return undefined;
+  const { options, answer } = withAnswer(ctx, word, [rival]);
+  return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer };
+};
+
+/** KC templates that need a clip of the word. */
+export const KC_LISTENING: readonly ((ctx: MakeContext, kc: BundleKc) => Exercise | undefined)[] = [makeListenSelect, makeMinimalPair];
+
+/** Templates built from one KC, by id: mistakes mode rebuilds a missed one. */
+export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, kc: BundleKc) => Exercise | undefined>>> = {
+  "select-image": makeSelectImage,
+  "listen-select": makeListenSelect,
+  "minimal-pair": makeMinimalPair,
+};
+
 export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
   "choose-translation": makeChooseTranslation,
   "translate-tap.l2-l1": makeTapL2L1,
@@ -424,6 +554,8 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "char-read": makeCharRead,
   "reading-disambiguation": makeReadingDisambiguation,
   "speak.tier-0": makeSpeak,
+  "listen-tap": makeListenTap,
+  "listen-type": makeListenType,
 };
 
 // ------------------------------------------------------------------------------------ grading
@@ -452,14 +584,18 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
     case "match-pairs":
       return response.tag === "pairs" ? { verdict: "CORRECT", notes: response.mistakes > 0 ? ["pairs-mistakes"] : [] } : mismatch(ex, response);
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
+    case "listen-tap":
       if (response.tag !== "tiles") return mismatch(ex, response);
       return graded(grader, ex, response.order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)).join(ex.joiner), ex.canonical);
     case "translate-type.l1-l2":
+    case "listen-type":
       return response.tag === "text" ? graded(grader, ex, response.text, ex.canonical) : mismatch(ex, response);
     case "complete-translation":
       return response.tag === "text"
@@ -480,11 +616,15 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       return ex.options[ex.answer];
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "translate-type.l1-l2":
     case "complete-translation":
+    case "listen-tap":
+    case "listen-type":
       return ex.canonical;
     case "speak.tier-0":
       return ex.prompt;

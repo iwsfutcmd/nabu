@@ -1,30 +1,6 @@
 {
   "cards": {
-    "sense:na|recognize": {
-      "due": "2026-03-01T08:10:45.000Z",
-      "stability": 2.3065,
-      "difficulty": 2.11810397,
-      "elapsed_days": 0,
-      "scheduled_days": 0,
-      "learning_steps": 1,
-      "reps": 1,
-      "lapses": 0,
-      "state": 1,
-      "last_review": "2026-03-01T08:00:45.000Z"
-    },
     "sense:salam|recognize": {
-      "due": "2026-03-01T08:10:45.000Z",
-      "stability": 2.3065,
-      "difficulty": 2.11810397,
-      "elapsed_days": 0,
-      "scheduled_days": 0,
-      "learning_steps": 1,
-      "reps": 1,
-      "lapses": 0,
-      "state": 1,
-      "last_review": "2026-03-01T08:00:45.000Z"
-    },
-    "sense:khodahafez|recognize": {
       "due": "2026-03-01T08:10:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -48,7 +24,31 @@
       "state": 1,
       "last_review": "2026-03-01T08:00:45.000Z"
     },
+    "sense:na|recognize": {
+      "due": "2026-03-01T08:10:45.000Z",
+      "stability": 2.3065,
+      "difficulty": 2.11810397,
+      "elapsed_days": 0,
+      "scheduled_days": 0,
+      "learning_steps": 1,
+      "reps": 1,
+      "lapses": 0,
+      "state": 1,
+      "last_review": "2026-03-01T08:00:45.000Z"
+    },
     "sense:mamnun|recognize": {
+      "due": "2026-03-01T08:10:45.000Z",
+      "stability": 2.3065,
+      "difficulty": 2.11810397,
+      "elapsed_days": 0,
+      "scheduled_days": 0,
+      "learning_steps": 1,
+      "reps": 1,
+      "lapses": 0,
+      "state": 1,
+      "last_review": "2026-03-01T08:00:45.000Z"
+    },
+    "sense:khodahafez|recognize": {
       "due": "2026-03-01T08:10:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -72,20 +72,8 @@
       "state": 1,
       "last_review": "2026-03-01T08:01:15.000Z"
     },
-    "sense:khodahafez|speak": {
-      "due": "2026-03-01T08:11:45.000Z",
-      "stability": 2.3065,
-      "difficulty": 2.11810397,
-      "elapsed_days": 0,
-      "scheduled_days": 0,
-      "learning_steps": 1,
-      "reps": 1,
-      "lapses": 0,
-      "state": 1,
-      "last_review": "2026-03-01T08:01:45.000Z"
-    },
-    "sense:na|produce": {
-      "due": "2026-03-01T08:03:15.000Z",
+    "sense:khodahafez|listen": {
+      "due": "2026-03-01T08:02:45.000Z",
       "stability": 0.212,
       "difficulty": 6.4133,
       "elapsed_days": 0,
@@ -94,41 +82,78 @@
       "reps": 1,
       "lapses": 0,
       "state": 1,
+      "last_review": "2026-03-01T08:01:45.000Z"
+    },
+    "sense:khodahafez|speak": {
+      "due": "2026-03-01T08:12:15.000Z",
+      "stability": 2.3065,
+      "difficulty": 2.11810397,
+      "elapsed_days": 0,
+      "scheduled_days": 0,
+      "learning_steps": 1,
+      "reps": 1,
+      "lapses": 0,
+      "state": 1,
       "last_review": "2026-03-01T08:02:15.000Z"
+    },
+    "sense:na|produce": {
+      "due": "2026-03-01T08:13:15.000Z",
+      "stability": 2.3065,
+      "difficulty": 2.11810397,
+      "elapsed_days": 0,
+      "scheduled_days": 0,
+      "learning_steps": 1,
+      "reps": 1,
+      "lapses": 0,
+      "state": 1,
+      "last_review": "2026-03-01T08:03:15.000Z"
+    },
+    "sense:salam|listen": {
+      "due": "2026-03-01T08:14:15.000Z",
+      "stability": 2.3065,
+      "difficulty": 2.11810397,
+      "elapsed_days": 0,
+      "scheduled_days": 0,
+      "learning_steps": 1,
+      "reps": 1,
+      "lapses": 0,
+      "state": 1,
+      "last_review": "2026-03-01T08:04:15.000Z"
     }
   },
   "performance": {
-    "theta": 1.4818161923925448,
+    "theta": 1.4259154762375457,
     "facet": {
-      "recognize": 0.050071107165597754,
-      "speak": 0.033998326488340745,
-      "produce": -0.10255434928077914
+      "recognize": -0.10233072479649666,
+      "speak": 0.03817398348022523,
+      "listen": -0.06762357379610112,
+      "produce": 0.05834135205265697
     },
     "template": {
       "match-pairs": -0.01951627115444968,
-      "speak.tier-0": -0.033998326488340745,
-      "gap-fill": 0.10255434928077914,
-      "select-image": -0.002435449835214026,
-      "choose-translation": -0.013018867253657949,
-      "translate-tap.l2-l1": -0.015343720731107909
+      "speak.tier-0": -0.03817398348022523,
+      "listen-select": 0.06762357379610112,
+      "choose-translation": 0.13253205460788686,
+      "gap-fill": -0.05834135205265697,
+      "translate-tap.l2-l1": -0.010610318121327544
     },
     "kc": {
-      "sense:na": 0.04737977529084597,
-      "sense:salam": -0.027721562973250815,
-      "sense:khodahafez": -0.027944173532680826,
-      "sense:bale": -0.008263550111829249,
-      "sense:mamnun": 0.03472588478391148
+      "sense:salam": -0.07313333387844258,
+      "sense:bale": -0.010666798872362791,
+      "sense:na": -0.033068075375872086,
+      "sense:mamnun": 0.11224192800390047,
+      "sense:khodahafez": 0.0783620988328248
     },
     "item": {
-      "sense:na": -0.01951627115444968,
-      "s.1": -0.02143017046798424,
-      "s.2": -0.024052620282161537,
-      "s.5": 0.10255434928077914,
-      "sense:salam": -0.002435449835214026,
-      "s.3": -0.01251185778555635,
-      "s.4": -0.004366150762285648
+      "sense:salam": -0.0656216518585236,
+      "s.1": -0.023208284905497832,
+      "sense:khodahafez": 0.11392912259079291,
+      "s.2": -0.031339776810078046,
+      "s.3": 0.1455224409421615,
+      "s.5": -0.05834135205265697,
+      "s.4": -0.006769399522819191
     },
-    "w": 2.0397336581313286
+    "w": 1.9151917955172744
   },
   "xp": {
     "total": 20,
@@ -141,9 +166,14 @@
   ],
   "mistakes": [
     {
-      "item": "s.5",
-      "template": "gap-fill",
-      "at": "2026-03-01T08:02:15.000Z"
+      "item": "sense:khodahafez",
+      "template": "listen-select",
+      "at": "2026-03-01T08:01:45.000Z"
+    },
+    {
+      "item": "s.3",
+      "template": "choose-translation",
+      "at": "2026-03-01T08:02:45.000Z"
     }
   ],
   "latencies": {
@@ -154,34 +184,37 @@
       4000,
       4000
     ],
-    "gap-fill": [
+    "listen-select": [
       4000,
-      4000
-    ],
-    "select-image": [
+      4000,
       4000
     ],
     "choose-translation": [
       4000,
       4000,
+      4000,
+      4000
+    ],
+    "gap-fill": [
       4000
     ],
     "translate-tap.l2-l1": [
-      4000,
       4000
     ]
   },
   "rated": {
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "keys": [
-      "sense:na|recognize",
       "sense:salam|recognize",
-      "sense:khodahafez|recognize",
       "sense:bale|recognize",
+      "sense:na|recognize",
       "sense:mamnun|recognize",
+      "sense:khodahafez|recognize",
       "sense:salam|speak",
+      "sense:khodahafez|listen",
       "sense:khodahafez|speak",
-      "sense:na|produce"
+      "sense:na|produce",
+      "sense:salam|listen"
     ]
   }
 }

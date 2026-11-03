@@ -71,7 +71,7 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
     const set = new Set(asked);
     return unique([...asked, ...ex.kcs]).map((kc) => ({ kc, status: set.has(kc) ? (right ? "right" : "wrong") : "given" }));
   }
-  if (!right && ex.template === "translate-type.l1-l2" && outcome.alignment !== undefined) {
+  if (!right && (ex.template === "translate-type.l1-l2" || ex.template === "listen-type") && outcome.alignment !== undefined) {
     const profile = profiles.get(ex.orthography);
     if (profile !== undefined) {
       const words = wordCredit(ex.canonical, outcome.alignment, profile);

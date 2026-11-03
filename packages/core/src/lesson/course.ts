@@ -3,7 +3,7 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile } from "@nabu/schema";
 import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
@@ -18,11 +18,16 @@ export interface CourseView {
   readonly support: string;
   readonly supportKey: string;
   readonly profiles: ReadonlyMap<string, CompiledProfile>;
+  /** Playable clips by sentence or KC id (gameplan §10); empty for a course without audio. */
+  readonly audio: Readonly<Record<string, BundleAudioItem>>;
 }
+
+/** Bundle files that stay URLs (pictures, audio); every other file is JSON the course needs. */
+export const MEDIA_ROLES: ReadonlySet<string> = new Set(["image", "audio"]);
 
 export interface CourseFiles {
   readonly manifest: BundleManifest;
-  /** Parsed JSON of every file the manifest lists, by bundle path (images excluded). */
+  /** Parsed JSON of every file the manifest lists, by bundle path (media excluded: MEDIA_ROLES). */
   readonly files: ReadonlyMap<string, unknown>;
   /** CLDR numbering systems (packages/i18n generated). */
   readonly numberingSystems: Readonly<Record<string, string>>;
@@ -42,7 +47,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
   if (!(manifest.orthographies as readonly string[]).includes(chosen)) return err({ code: "unknown-orthography", orthography: chosen });
   const read = (role: string): unknown[] => manifest.files.filter((f) => f.role === role).map((f) => files.get(f.path));
   for (const f of manifest.files) {
-    if (f.role !== "image" && !files.has(f.path)) return err({ code: "missing-file", path: f.path });
+    if (!MEDIA_ROLES.has(f.role) && !files.has(f.path)) return err({ code: "missing-file", path: f.path });
   }
   const tables = Object.fromEntries((read("table") as DataTable[]).map((t) => [t.id, t]));
   const keyboards = Object.fromEntries((read("keyboard") as KeyboardLayout[]).map((k) => [k.id, k]));
@@ -54,6 +59,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
   }
   const support = manifest.support[0] as string;
   const units = manifest.units.map((u) => files.get(u.file) as BundleUnit);
+  const audio = (read("audio-index")[0] as BundleAudio | undefined)?.items ?? {};
   return ok({
     id: manifest.course,
     units,
@@ -61,6 +67,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     support,
     supportKey: supportKeyOf(support),
     profiles,
+    audio,
   });
 };
 

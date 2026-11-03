@@ -41,6 +41,11 @@ export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
   "complete-translation": 0.6,
   "translate-type.l1-l2": 1.0,
   "speak.tier-0": -1.5,
+  // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
+  "listen-select": -0.6,
+  "minimal-pair": -0.2,
+  "listen-tap": 0.3,
+  "listen-type": 1.2,
 };
 
 export const initialPerformance = (): Performance => ({ theta: 1.5, facet: {}, template: {}, kc: {}, item: {}, w: 2 });

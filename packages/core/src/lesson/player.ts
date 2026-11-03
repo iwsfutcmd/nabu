@@ -220,10 +220,12 @@ const skip = (state: Extract<Active, { tag: "presenting" | "answering" }>, reaso
   const { ex } = state;
   const session = record(state.session, ex, "SKIPPED");
   const emit: Effect = { tag: "emit", event: { type: "exercise_skipped", exercise: ref(ex), reason, ex } };
-  if (reason === "cant-speak") {
-    // "Can't speak now": no speaking for the rest of the lesson.
-    const rest = session.queue.slice(session.position + 1).filter((e) => e.template !== "speak.tier-0");
-    const next: Session = { ...session, queue: [...session.queue.slice(0, session.position + 1), ...rest], excluded: [...session.excluded, "speak.tier-0"] };
+  if (reason === "cant-speak" || reason === "cant-listen") {
+    // "Can't speak now" / "Can't listen now": no speaking, or no listening, for the rest of the lesson.
+    const dropped = (t: TemplateId): boolean => (reason === "cant-speak" ? t === "speak.tier-0" : TEMPLATES[t].modality.audioOut);
+    const rest = session.queue.slice(session.position + 1).filter((e) => !dropped(e.template));
+    const gone = [...new Set(session.queue.map((e) => e.template).filter(dropped))];
+    const next: Session = { ...session, queue: [...session.queue.slice(0, session.position + 1), ...rest], excluded: [...session.excluded, ...gone] };
     const [s, effects] = present({ ...next, position: next.position + 1 });
     return [s, [emit, ...effects]];
   }

@@ -73,8 +73,10 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
   switch (ex.template) {
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
+    case "listen-tap":
       return { tag: "tiles", order: bad ? [...ex.solution].reverse() : ex.solution };
     case "translate-type.l1-l2":
+    case "listen-type":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
@@ -87,12 +89,17 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "gap-fill":
     case "char-read":
     case "reading-disambiguation":
+    case "listen-select":
+    case "minimal-pair":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
   }
 };
 
-/** Plays one planned lesson through the real player, answering right except where told. */
-const playLesson = (state: LearnerState, node: string, now: string, wrong: ReadonlySet<number>): readonly LearnerEvent[] => {
+/** Self-rated and pair-matching exercises cannot be got wrong by this learner. */
+const missable = (ex: Exercise): boolean => ex.template !== "speak.tier-0" && ex.template !== "match-pairs";
+
+/** Plays one planned lesson through the real player, missing the first `misses` exercises it can miss. */
+const playLesson = (state: LearnerState, node: string, now: string, misses: number): readonly LearnerEvent[] => {
   const grader = createGrader(fa);
   const planned = plan(fa, state, { mode: "lesson", node }, { now, seed: 11 });
   const out: LearnerEvent[] = [];
@@ -119,12 +126,13 @@ const playLesson = (state: LearnerState, node: string, now: string, wrong: Reado
     }
   };
   emit(fx);
-  let index = 0;
+  let missed = 0;
   while (s.tag !== "finished") {
     if (s.tag === "presenting") [s, fx] = step(s, { tag: "ready" });
     else if (s.tag === "answering") {
       const ex = s.ex;
-      const bad = wrong.has(index++) && !ex.id.includes("#");
+      const bad = missable(ex) && !ex.id.includes("#") && missed < misses;
+      if (bad) missed++;
       const draft = draftFor(ex, bad);
       [s, fx] = step(s, { tag: "input", draft });
       emit(fx);
@@ -145,7 +153,7 @@ const golden = <T>(name: string, value: T): void => {
 
 describe("projection", () => {
   const node = lessonNodes(fa)[0]?.node.id as string;
-  const events = playLesson(emptyLearnerState(), node, "2026-03-01T08:00:00.000Z", new Set([1, 3]));
+  const events = playLesson(emptyLearnerState(), node, "2026-03-01T08:00:00.000Z", 2);
 
   it("records a lesson: cards per (KC, facet), XP, path progress, open mistakes", () => {
     const state = replay(events);

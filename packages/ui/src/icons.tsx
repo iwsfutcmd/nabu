@@ -63,3 +63,11 @@ export const LockIcon = ({ size = 20 }: IconProps): JSX.Element => (
     <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" strokeWidth="2.2" />
   </svg>
 );
+
+/** Play slowly (a tortoise). Media control: never mirrors. */
+export const SlowIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="slow">
+    <path d="M4 15.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5z" fill="currentColor" />
+    <path d="M17 13.5h1.6a2 2 0 0 0 0-4h-.4M6 15.5v2.2M14.5 15.5v2.2" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);

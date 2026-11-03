@@ -10,6 +10,7 @@ declare const styles: {
   readonly form: string;
   readonly formIntro: string;
   readonly heading: string;
+  readonly inlineButton: string;
   readonly input: string;
   readonly label: string;
   readonly lesson: string;

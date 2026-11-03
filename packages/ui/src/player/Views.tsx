@@ -5,11 +5,16 @@
  * direction; everything a learner taps is language data rendered through <T>.
  */
 import type {
+  AudioRef,
   ChooseTranslation,
   CharRead,
   CompleteTranslation,
   GapFill,
+  ListenSelect,
+  ListenTap,
+  ListenType,
   MatchPairs,
+  MinimalPair,
   Outcome,
   ReadingDisambiguation,
   SelectImage,
@@ -26,6 +31,7 @@ import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
+import { AudioButtons, useClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
 import { effectiveWritingMode, type ViewProps } from "./shared.ts";
 
@@ -134,14 +140,24 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   );
 };
 
-/** A target sentence in its own direction (and vertical where allowed). */
+/** A target sentence in its own direction (and vertical where allowed); with its clip, a play button and karaoke. */
 const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: ViewProps; focus?: ReadingDisambiguation["focus"]; ruby?: false }): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
   const mode = effectiveWritingMode(profile, props.writingMode, "prompt");
+  const audio = props.course.audio[props.ex.item];
+  const player = useClipPlayer(audio, props.imageUrl);
   return (
     <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-writing-mode={mode} data-ink-container="prompt">
-      <T as="p" text={text} ruby={ruby ?? props.ruby} marks={props.marks} {...(focus === undefined ? {} : { focus })} />
+      {audio !== undefined && <AudioButtons player={player} audio={audio} />}
+      <T
+        as="p"
+        text={text}
+        ruby={ruby ?? props.ruby}
+        marks={props.marks}
+        {...(focus === undefined ? {} : { focus })}
+        {...(player.token === undefined ? {} : { highlight: [player.token] })}
+      />
     </div>
   );
 };
@@ -235,13 +251,15 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
  * back; tiles can also be dragged into the answer row. The answer row and bank
  * run in the answer language's direction, and become columns in vertical text.
  */
-export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
-  const { ex, locked, dispatch } = props;
+/** The answer row and the bank of tiles (translate-tap and listen-tap). */
+const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap>; ex: TranslateTap | ListenTap }): JSX.Element => {
+  const { locked, dispatch } = props;
   const t = useTranslator();
   const order = props.draft.tag === "tiles" ? props.draft.order : [];
   const placed = new Set(order);
   const answerProfile = useOrthography(ex.canonical.orthography);
-  const mode = ex.template === "translate-tap.l1-l2" ? effectiveWritingMode(answerProfile, props.writingMode, "wordbank") : "horizontal-tb";
+  const intoTarget = ex.template !== "translate-tap.l2-l1";
+  const mode = intoTarget ? effectiveWritingMode(answerProfile, props.writingMode, "wordbank") : "horizontal-tb";
   const set = (next: readonly number[]): void => {
     if (!locked) dispatch({ tag: "input", draft: { tag: "tiles", order: next } });
   };
@@ -257,69 +275,76 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
     },
     () => set(order.slice(0, -1)),
   );
-  const tileRuby = ex.template === "translate-tap.l1-l2" ? props.ruby : false;
-  const promptIsTarget = ex.template === "translate-tap.l2-l1";
+  const tileRuby = intoTarget ? props.ruby : false;
+  return (
+    <div className={styles.target} dir={directionOf(ex.canonical.lang)} data-target-region="" data-writing-mode={mode}>
+      <div
+        className={styles.answerRow}
+        role="group"
+        aria-label={t.format("player.wordbank.answer-label")}
+        data-answer-row=""
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => {
+          e.preventDefault();
+          const i = Number(e.dataTransfer.getData("text/plain"));
+          if (Number.isInteger(i)) add(i);
+        }}
+      >
+        {order.map((tileIndex, position) => (
+          <button
+            key={`${tileIndex}`}
+            type="button"
+            className={styles.tile}
+            disabled={locked}
+            data-ink-container="tile"
+            data-placed-tile={tileIndex}
+            onClick={() => set(order.filter((_, p) => p !== position))}
+          >
+            <T text={ex.tiles[tileIndex] as TaggedText} ruby={tileRuby} marks={props.marks} />
+          </button>
+        ))}
+      </div>
+      <div className={styles.bank} role="group" aria-label={t.format("exercise.wordbank.label")} data-word-bank="">
+        {ex.tiles.map((tile, i) =>
+          placed.has(i) ? (
+            <span key={i} className={`${styles.tile} ${styles.tileSlot}`} aria-hidden="true">
+              <T text={tile} ruby={tileRuby} marks={props.marks} />
+            </span>
+          ) : (
+            <button
+              key={i}
+              type="button"
+              className={styles.tile}
+              disabled={locked}
+              draggable={!locked}
+              autoFocus={i === remaining[0] && order.length === 0}
+              data-ink-container="tile"
+              data-tile={i}
+              onDragStart={(e) => e.dataTransfer.setData("text/plain", String(i))}
+              onClick={() => add(i)}
+            >
+              <T text={tile} ruby={tileRuby} marks={props.marks} />
+            </button>
+          ),
+        )}
+      </div>
+    </div>
+  );
+};
+
+export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
   return (
     <div className={styles.body}>
-      {promptIsTarget ? (
+      {ex.template === "translate-tap.l2-l1" ? (
         <TargetPrompt text={ex.prompt} props={props} />
       ) : (
         <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
           <T as="p" text={ex.prompt} />
         </div>
       )}
-      <div className={styles.target} dir={directionOf(ex.canonical.lang)} data-target-region="" data-writing-mode={mode}>
-        <div
-          className={styles.answerRow}
-          role="group"
-          aria-label={t.format("player.wordbank.answer-label")}
-          data-answer-row=""
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={(e) => {
-            e.preventDefault();
-            const i = Number(e.dataTransfer.getData("text/plain"));
-            if (Number.isInteger(i)) add(i);
-          }}
-        >
-          {order.map((tileIndex, position) => (
-            <button
-              key={`${tileIndex}`}
-              type="button"
-              className={styles.tile}
-              disabled={locked}
-              data-ink-container="tile"
-              data-placed-tile={tileIndex}
-              onClick={() => set(order.filter((_, p) => p !== position))}
-            >
-              <T text={ex.tiles[tileIndex] as TaggedText} ruby={tileRuby} marks={props.marks} />
-            </button>
-          ))}
-        </div>
-        <div className={styles.bank} role="group" aria-label={t.format("exercise.wordbank.label")} data-word-bank="">
-          {ex.tiles.map((tile, i) =>
-            placed.has(i) ? (
-              <span key={i} className={`${styles.tile} ${styles.tileSlot}`} aria-hidden="true">
-                <T text={tile} ruby={tileRuby} marks={props.marks} />
-              </span>
-            ) : (
-              <button
-                key={i}
-                type="button"
-                className={styles.tile}
-                disabled={locked}
-                draggable={!locked}
-                autoFocus={i === remaining[0] && order.length === 0}
-                data-ink-container="tile"
-                data-tile={i}
-                onDragStart={(e) => e.dataTransfer.setData("text/plain", String(i))}
-                onClick={() => add(i)}
-              >
-                <T text={tile} ruby={tileRuby} marks={props.marks} />
-              </button>
-            ),
-          )}
-        </div>
-      </div>
+      <WordBank props={props} ex={ex} />
     </div>
   );
 };
@@ -528,3 +553,72 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
     </div>
   );
 };
+
+// ------------------------------------------------------------------------------------ listening
+
+/**
+ * The clip of a listening exercise: plays once when the exercise opens, again on request (normal
+ * or slow). After the answer, the transcript appears and follows the clip as it replays.
+ */
+const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText; translation?: TaggedText }): JSX.Element => {
+  const t = useTranslator();
+  const player = useClipPlayer(audio, props.imageUrl);
+  const { play } = player;
+  const answered = props.outcome !== undefined;
+  useEffect(() => {
+    play("normal");
+  }, [play]);
+  return (
+    <div className={styles.listen} role="group" aria-label={t.format("player.audio.label")} data-listen-prompt="">
+      <AudioButtons player={player} audio={audio} size="large" />
+      {answered && transcript !== undefined && (
+        <div className={styles.transcript} dir={directionOf(transcript.lang)} data-transcript="">
+          <T as="p" text={transcript} ruby={props.ruby} marks={props.marks} {...(player.token === undefined ? {} : { highlight: [player.token] })} />
+          {translation !== undefined && <T as="p" text={translation} className={styles.translation} />}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Hear a sentence, build it from tiles: the word bank of TilesView under a clip instead of a prompt. */
+export const ListenTapView = (props: Props<ListenTap>): JSX.Element => {
+  const { ex } = props;
+  return (
+    <div className={styles.body}>
+      <ListenPrompt audio={ex.audio} props={props} transcript={ex.canonical} translation={ex.translation} />
+      <WordBank props={props} ex={ex} />
+    </div>
+  );
+};
+
+export const ListenTypeView = (props: Props<ListenType>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  return (
+    <div className={styles.body}>
+      <ListenPrompt audio={ex.audio} props={props} transcript={ex.canonical} translation={ex.translation} />
+      <TypedAnswer props={props} label={t.format("player.listen.type-label", { language: props.language })} answer={ex.canonical} />
+    </div>
+  );
+};
+
+/** Hear a word, choose how it is written (listen-select), or which of two near-homophones it is (minimal-pair). */
+export const ListenChoiceView = (props: Props<ListenSelect | MinimalPair>): JSX.Element => {
+  const { ex } = props;
+  useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
+  return (
+    <div className={styles.body}>
+      <ListenPrompt audio={ex.audio} props={props} />
+      <Options
+        options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
+        selected={selectedOf(props)}
+        answer={ex.answer}
+        outcome={props.outcome}
+        locked={props.locked}
+        onSelect={(i) => choose(props, i)}
+      />
+    </div>
+  );
+};
+

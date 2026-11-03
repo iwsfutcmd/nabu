@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { KcId, TaggedText } from "@nabu/schema";
+import type { BundleAudioItem, KcId, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 
 export type TemplateId =
@@ -17,7 +17,11 @@ export type TemplateId =
   | "gap-fill"
   | "char-read"
   | "reading-disambiguation"
-  | "speak.tier-0";
+  | "speak.tier-0"
+  | "listen-tap"
+  | "listen-type"
+  | "listen-select"
+  | "minimal-pair";
 
 /** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
@@ -132,6 +136,48 @@ export interface Speak extends Common {
   readonly translation: TaggedText;
 }
 
+/** A clip to play: normal and slow speed, token timings for karaoke (bundle paths; the shell maps them to URLs). */
+export type AudioRef = BundleAudioItem;
+
+/** Hear a target sentence; build what you heard from tiles (§8.1 listen-tap). */
+export interface ListenTap extends Common {
+  readonly template: "listen-tap";
+  readonly audio: AudioRef;
+  readonly tiles: readonly TaggedText[];
+  readonly solution: readonly number[];
+  readonly joiner: string;
+  readonly accept: string;
+  /** What was said: shown with the feedback, highlighted as the clip plays. */
+  readonly canonical: TaggedText;
+  /** The sentence's support-language translation, shown with the feedback. */
+  readonly translation: TaggedText;
+}
+
+/** Hear a target sentence; type what you heard (§8.1 listen-type). */
+export interface ListenType extends Common {
+  readonly template: "listen-type";
+  readonly audio: AudioRef;
+  readonly accept: string;
+  readonly canonical: TaggedText;
+  readonly translation: TaggedText;
+}
+
+/** Hear a word; choose how it is written (§8.1 listen-select). */
+export interface ListenSelect extends Common {
+  readonly template: "listen-select";
+  readonly audio: AudioRef;
+  readonly options: readonly TaggedText[];
+  readonly answer: number;
+}
+
+/** Hear one of two words that differ in a single sound or tone; choose which (§8.1 minimal-pair). */
+export interface MinimalPair extends Common {
+  readonly template: "minimal-pair";
+  readonly audio: AudioRef;
+  readonly options: readonly TaggedText[];
+  readonly answer: number;
+}
+
 export type Exercise =
   | SelectImage
   | MatchPairs
@@ -142,7 +188,11 @@ export type Exercise =
   | GapFill
   | CharRead
   | ReadingDisambiguation
-  | Speak;
+  | Speak
+  | ListenTap
+  | ListenType
+  | ListenSelect
+  | MinimalPair;
 
 export type SelfRating = "good" | "hard" | "again";
 

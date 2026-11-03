@@ -9,7 +9,7 @@
  * An account is optional; with one, the log syncs to the server.
  */
 import { applyEvents, dueFacets, pathOf, plan, replay, type LearnerState, type NodeStatus, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, lessonNodes } from "@nabu/core/lesson";
+import { createGrader, lessonNodes, LISTENING } from "@nabu/core/lesson";
 import { directionOf } from "@nabu/i18n";
 import type { LearnerEvent } from "@nabu/schema";
 import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
@@ -116,6 +116,7 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
 /** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
 const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean }): JSX.Element => {
   const t = useTranslator();
+  const [quiet, setQuiet] = useState(listeningOff);
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
@@ -150,6 +151,22 @@ const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state
       {!persistent && (
         <p className={styles.notice} role="note" data-not-saved="">
           {t.format("app.store.memory")}
+        </p>
+      )}
+      {quiet && (
+        <p className={styles.notice} role="note" data-listening-off="">
+          {t.format("app.listening.off")}{" "}
+          <button
+            type="button"
+            className={styles.inlineButton}
+            onClick={() => {
+              setListeningOffUntil(0);
+              setQuiet(false);
+            }}
+            data-action="listening-on"
+          >
+            {t.format("app.listening.on")}
+          </button>
         </p>
       )}
 
@@ -235,6 +252,34 @@ const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state
   );
 };
 
+/**
+ * "Can't listen now" (§10): listening exercises stay out of new sessions for an hour. A
+ * per-device convenience, so it lives in localStorage; without storage it lasts the page.
+ */
+const LISTENING_OFF = "nabu.listening-off-until";
+const LISTENING_BREAK_MS = 3_600_000;
+let listeningOffFallback = 0;
+
+const listeningOffUntil = (): number => {
+  try {
+    return Number(localStorage.getItem(LISTENING_OFF) ?? 0);
+  } catch {
+    return listeningOffFallback;
+  }
+};
+
+const setListeningOffUntil = (until: number): void => {
+  listeningOffFallback = until;
+  try {
+    if (until === 0) localStorage.removeItem(LISTENING_OFF);
+    else localStorage.setItem(LISTENING_OFF, String(until));
+  } catch {
+    // Storage unavailable: the in-memory value above still holds for this page.
+  }
+};
+
+const listeningOff = (): boolean => listeningOffUntil() > Date.now();
+
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
   const param = new URLSearchParams(window.location.search).get("seed");
@@ -256,7 +301,7 @@ const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.
   const { course, manifest, imageUrl } = loaded;
   const [setup] = useState(() => {
     const seed = seedFor();
-    const planned = plan(course, state, request, { now: new Date().toISOString(), seed });
+    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, ...(listeningOff() ? { exclude: LISTENING } : {}) });
     return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
@@ -286,6 +331,7 @@ const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.
         onEvent={setup.onEvent}
         sound={sound}
         retries={request.mode !== "placement"}
+        onCantListen={() => setListeningOffUntil(Date.now() + LISTENING_BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
       />

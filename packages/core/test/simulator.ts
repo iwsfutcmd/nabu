@@ -34,6 +34,10 @@ const TRUE_TEMPLATE: Readonly<Record<TemplateId, number>> = {
   "complete-translation": 1.0,
   "translate-type.l1-l2": 1.4,
   "speak.tier-0": -1.0,
+  "listen-select": -0.4,
+  "minimal-pair": 0.1,
+  "listen-tap": 0.6,
+  "listen-type": 1.6,
 };
 
 const gauss = (rng: Rng): number => Math.sqrt(-2 * Math.log(1 - rng.next())) * Math.cos(2 * Math.PI * rng.next());

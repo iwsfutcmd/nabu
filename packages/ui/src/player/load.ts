@@ -3,7 +3,7 @@
  * manifest, then every unit, profile, table and keyboard it lists, and hands
  * them to core's pure assembleCourse(). Images stay URLs.
  */
-import { assembleCourse, type CourseView } from "@nabu/core/lesson";
+import { assembleCourse, MEDIA_ROLES, type CourseView } from "@nabu/core/lesson";
 import numberingSystems from "@nabu/i18n/generated/numbering-systems.json" with { type: "json" };
 import type { BundleManifest } from "@nabu/schema";
 
@@ -35,7 +35,7 @@ export const fetchCourseIndex = async (base: string): Promise<readonly CourseInd
 export const fetchCourse = async (base: string, id: string, orthography?: string): Promise<LoadedCourse> => {
   const root = `${base}${id}/`;
   const manifest = await json<BundleManifest>(`${root}manifest.json`);
-  const listed = manifest.files.filter((f) => f.role !== "image");
+  const listed = manifest.files.filter((f) => !MEDIA_ROLES.has(f.role));
   const files = new Map(await Promise.all(listed.map(async (f) => [f.path, await json<unknown>(`${root}${f.path}`)] as const)));
   const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
   if (!course.ok) throw new Error(`${id}: ${JSON.stringify(course.error)}`);

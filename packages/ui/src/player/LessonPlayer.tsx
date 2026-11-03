@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type PlayerState } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type PlayerState } from "@nabu/core/lesson";
 import type { MessageId } from "@nabu/i18n";
 import type { OrthographyProfile } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from "react";
@@ -24,6 +24,9 @@ import {
   ChooseTranslationView,
   CompleteTranslationView,
   GapFillView,
+  ListenChoiceView,
+  ListenTapView,
+  ListenTypeView,
   MatchPairsView,
   SelectImageView,
   SpeakView,
@@ -44,6 +47,10 @@ const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "char-read": "player.instruction.char-read",
   "reading-disambiguation": "player.instruction.reading-disambiguation",
   "speak.tier-0": "player.instruction.speak",
+  "listen-tap": "player.instruction.listen-tap",
+  "listen-type": "player.instruction.listen-type",
+  "listen-select": "player.instruction.listen-select",
+  "minimal-pair": "player.instruction.minimal-pair",
 };
 
 const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
@@ -69,6 +76,13 @@ const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
       return <CharReadView {...props} ex={ex} />;
     case "speak.tier-0":
       return <SpeakView {...props} ex={ex} />;
+    case "listen-tap":
+      return <ListenTapView {...props} ex={ex} />;
+    case "listen-type":
+      return <ListenTypeView {...props} ex={ex} />;
+    case "listen-select":
+    case "minimal-pair":
+      return <ListenChoiceView {...props} ex={ex} />;
   }
 };
 
@@ -92,6 +106,8 @@ export interface LessonPlayerProps {
   readonly xpEarned?: number | undefined;
   /** Missed exercises come back at the end (default); off for a placement test. */
   readonly retries?: boolean | undefined;
+  /** The learner pressed "Can't listen now": the app leaves listening out of the next sessions. */
+  readonly onCantListen?: (() => void) | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -104,7 +120,7 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, onCantListen } = props;
   const t = useTranslator();
   const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries });
   const [override, setOverride] = useState(props.initialState);
@@ -171,6 +187,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });
   const speaking = ex.template === "speak.tier-0";
+  const listening = LISTENING.has(ex.template);
   const pairs = ex.template === "match-pairs";
 
   keys.current = (e) => {
@@ -269,6 +286,18 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
             {speaking ? (
               <Button className={styles.secondary} onPress={() => dispatch({ tag: "skip", reason: "cant-speak" })} isDisabled={locked} data-action="cant-speak">
                 {t.format("player.action.cant-speak")}
+              </Button>
+            ) : listening ? (
+              <Button
+                className={styles.secondary}
+                onPress={() => {
+                  onCantListen?.();
+                  dispatch({ tag: "skip", reason: "cant-listen" });
+                }}
+                isDisabled={locked}
+                data-action="cant-listen"
+              >
+                {t.format("player.action.cant-listen")}
               </Button>
             ) : (
               <Button className={styles.secondary} onPress={() => dispatch({ tag: "skip", reason: "skip" })} isDisabled={locked} data-action="skip">

@@ -2,7 +2,7 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
-import { assembleCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
+import { assembleCourse, MEDIA_ROLES, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -13,7 +13,7 @@ export const manifestOf = (id: string): BundleManifest => JSON.parse(readFileSyn
 export const loadCourse = (id: string, orthography?: string): CourseView => {
   const manifest = manifestOf(id);
   const files = new Map<string, unknown>(
-    manifest.files.filter((f) => f.role !== "image").map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
+    manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(BUNDLES, id, f.path), "utf8")) as unknown]),
   );
   const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
   if (!course.ok) throw new Error(JSON.stringify(course.error));

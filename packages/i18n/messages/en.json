@@ -106,6 +106,14 @@
       "message": "Lessons",
       "description": "Heading of a course's lesson list."
     },
+    "app.listening.off": {
+      "message": "Listening exercises are off for now. They come back in an hour.",
+      "description": "Notice on the course path after the learner chose 'Can't listen now'."
+    },
+    "app.listening.on": {
+      "message": "Turn listening back on",
+      "description": "Button that brings listening exercises back right away."
+    },
     "app.name": {
       "message": "Nabu",
       "description": "Product name. Usually left untranslated."
@@ -386,6 +394,10 @@
       "message": "Traditional characters",
       "description": "Name of the Hong Kong Cantonese orthography."
     },
+    "player.action.cant-listen": {
+      "message": "Can't listen now",
+      "description": "Skips listening exercises for now (no sound available). They come back in an hour."
+    },
     "player.action.cant-speak": {
       "message": "Can't speak now",
       "description": "Button that skips speaking exercises for the rest of the lesson."
@@ -393,6 +405,22 @@
     "player.action.continue": {
       "message": "Continue",
       "description": "Button that moves on after feedback."
+    },
+    "player.audio.label": {
+      "message": "Audio",
+      "description": "Accessible label of the area with the play buttons of a listening exercise."
+    },
+    "player.audio.play": {
+      "message": "Play",
+      "description": "Accessible label of the button that plays the audio."
+    },
+    "player.audio.slow": {
+      "message": "Play slowly",
+      "description": "Accessible label of the button that plays the audio at a slower speed."
+    },
+    "player.audio.synthetic": {
+      "message": "Synthetic voice",
+      "description": "Small label next to the play button when the audio is synthesized speech, not a recording of a person."
     },
     "player.blank.label": {
       "message": "Missing word",
@@ -446,9 +474,25 @@
       "message": "Fill in the blank",
       "description": "Instruction: choose the word that completes the sentence."
     },
+    "player.instruction.listen-select": {
+      "message": "Which word do you hear?",
+      "description": "Instruction: hear a word and choose how it is written."
+    },
+    "player.instruction.listen-tap": {
+      "message": "Tap what you hear",
+      "description": "Instruction: hear a sentence and build it from word tiles."
+    },
+    "player.instruction.listen-type": {
+      "message": "Type what you hear",
+      "description": "Instruction: hear a sentence and type it."
+    },
     "player.instruction.match-pairs": {
       "message": "Tap the matching pairs",
       "description": "Instruction: match each word with its meaning."
+    },
+    "player.instruction.minimal-pair": {
+      "message": "Listen closely: which word is it?",
+      "description": "Instruction: hear one of two words that sound almost the same and choose which one."
     },
     "player.instruction.reading-disambiguation": {
       "message": "How is the highlighted character read here?",
@@ -481,6 +525,10 @@
     "player.key.zwnj.short": {
       "message": "ZWNJ",
       "description": "Short visible label of the ZWNJ key (the character itself is invisible)."
+    },
+    "player.listen.type-label": {
+      "message": "Type what you hear in {$language}",
+      "description": "Accessible label of the text field of a listening exercise. $language is a course name (course.name.*)."
     },
     "player.loading": {
       "message": "Loading…",
