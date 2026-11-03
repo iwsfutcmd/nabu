@@ -6,6 +6,9 @@
 import { describe, expect, it } from "vitest";
 import { simulate } from "./simulator.ts";
 
+/** A month of sessions takes a few seconds; more on a busy CI runner. */
+const SIMULATION_TIMEOUT_MS = 60_000;
+
 /**
  * Learners from weak (θ* = 1.0) to strong (θ* = 2.0), on every course and
  * orthography. One unit of content is small, so after the lessons most of the
@@ -34,6 +37,6 @@ describe("planner: 30 simulated days", () => {
       );
       expect(r.firstTries).toBeGreaterThan(150);
       expect(Math.abs(rate - 0.85)).toBeLessThanOrEqual(0.05);
-    });
+    }, SIMULATION_TIMEOUT_MS);
   }
 });
