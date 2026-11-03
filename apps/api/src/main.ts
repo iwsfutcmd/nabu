@@ -21,6 +21,9 @@
  *
  * Speech (gameplan §10.4; tier 3, tone, runs on the device):
  *   NABU_SPEECH_URL             the speech service (`nabu speech serve`): tiers 1–2 (unset: off)
+ *   NABU_FCM_SERVICE_ACCOUNT    reminders to the Android app: a Firebase service-account JSON (needs NABU_PUSH=1)
+ *   NABU_APNS_KEY, NABU_APNS_KEY_ID, NABU_APNS_TEAM_ID, NABU_APNS_TOPIC (NABU_APNS_SANDBOX=1)
+ *                               reminders to the iOS app: an APNs auth key (.p8) and its ids (needs NABU_PUSH=1)
  *   NABU_GAME                   the game rules: the game.json the web app is deployed with (default: the defaults)
  */
 import { serve } from "@hono/node-server";
@@ -35,6 +38,7 @@ import { providerFromEnv } from "./ai/providers.ts";
 import { createApp } from "./app.ts";
 import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
+import { nativeSendersFromEnv } from "./nativepush.ts";
 import { sendReminders } from "./reminders.ts";
 import { sendPush, vapidKeys, type Vapid } from "./webpush.ts";
 
@@ -69,6 +73,8 @@ const courses = createCourses(dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES));
 console.info(provider === undefined ? "ai: no model configured; AI features are off" : `ai: ${provider.name} ${provider.model}; judge gates open: ${gates.filter((g) => g.enabled).length}`);
 
 const speechUrl = env["NABU_SPEECH_URL"] === "" ? undefined : env["NABU_SPEECH_URL"];
+// Native reminders need NABU_PUSH=1 (reminders on) and a platform's credentials.
+const native = on("NABU_PUSH") ? nativeSendersFromEnv(env) : {};
 const game = env["NABU_GAME"] === undefined || env["NABU_GAME"] === "" ? DEFAULT_GAME : gameConfig(JSON.parse(readFileSync(env["NABU_GAME"], "utf8")) as Parameters<typeof gameConfig>[0]);
 const app = createApp({
   db,
@@ -79,15 +85,16 @@ const app = createApp({
   adminToken: env["NABU_ADMIN_TOKEN"],
   speech: { url: speechUrl, transport: (url, init) => fetch(url, init) },
   game,
+  native,
 });
 
 /** The periodic jobs: league rollover and reminders. */
 const runJobs = async (now: number): Promise<{ rolled: readonly string[]; sent: number }> => {
   const rolled = leagues === undefined ? [] : await rollover(db, now, leagues);
   let sent = 0;
-  if (keys !== undefined) {
-    const v = await keys();
-    sent = (await sendReminders(db, now, (sub, payload) => sendPush(sub, payload, v, now, (url, init) => fetch(url, init)))).sent;
+  if (keys !== undefined || Object.keys(native).length > 0) {
+    const v = keys === undefined ? undefined : await keys();
+    sent = (await sendReminders(db, now, v === undefined ? undefined : (sub, payload) => sendPush(sub, payload, v, now, (url, init) => fetch(url, init)), native)).sent;
   }
   return { rolled, sent };
 };

@@ -28,6 +28,7 @@ import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
+import { startNative } from "./native.ts";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, storyRecorder } from "./session.ts";
@@ -568,6 +569,8 @@ export const App = (): JSX.Element => {
     void gameRules.then(setGameConfig);
     void ready.then(setDevice);
     if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
+    // The native app: sync when it comes back to the foreground; reminders open where they point.
+    void ready.then(({ sync: s }) => startNative(() => void s.syncNow()));
   }, []);
   useEffect(() => {
     if (pulled > 0) setLog(null);

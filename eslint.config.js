@@ -23,6 +23,9 @@ export default defineConfig(
       "**/*.module.d.css.ts",
       "**/.venv/**",
       "pipeline/**",
+      // The native projects (Capacitor) hold a copy of the web build.
+      "apps/mobile/android/**",
+      "apps/mobile/ios/**",
       ...LINT_FIXTURES,
       "packages/lint/fixtures/**",
     ],

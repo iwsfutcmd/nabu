@@ -116,6 +116,16 @@ export const pushSubscriptions = pgTable("push_subscriptions", {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+/** Device tokens of the Android and iOS apps (FCM or APNs), for practice reminders. */
+export const nativePushTokens = pgTable("native_push_tokens", {
+  token: text("token").primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  platform: text("platform").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 /** Reminders sent, at most one per user and local date. */
 export const pushLog = pgTable(
   "push_log",

@@ -1,0 +1,30 @@
+{
+  "name": "@nabu/mobile",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Nabu for Android and iOS: the web build in a Capacitor shell, every course inside the app, native practice reminders.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm --filter @nabu/web build && cap sync",
+    "sync": "cap sync",
+    "android": "cap open android",
+    "ios": "cap open ios",
+    "typecheck": "tsc -p tsconfig.json",
+    "icons": "node scripts/icons.ts",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@capacitor/android": "8.5.3",
+    "@capacitor/app": "8.1.2",
+    "@capacitor/core": "8.5.3",
+    "@capacitor/ios": "8.5.3",
+    "@capacitor/push-notifications": "8.1.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.5.3",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.20.5",
+    "typescript": "~6.0.3"
+  }
+}

@@ -145,4 +145,17 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       )`,
     ],
   ],
+  [
+    "0004_native_push",
+    [
+      // Practice reminders to the Android and iOS apps (Phase 10): one row per device token.
+      `create table native_push_tokens (
+        token text primary key,
+        user_id uuid not null references users(id) on delete cascade,
+        platform text not null check (platform in ('android', 'ios')),
+        created_at timestamptz not null default now()
+      )`,
+      `create index native_push_tokens_user on native_push_tokens (user_id)`,
+    ],
+  ],
 ];

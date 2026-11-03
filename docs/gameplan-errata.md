@@ -231,3 +231,10 @@ ADR is linked. The gameplan text itself is left as written.
     now carry receipt times, and the device replays with them.
 59. **Background Sync is Chromium-only** (and absent from its headless shell): elsewhere the app
     syncs on reconnecting, on being shown again and every minute while events are pending.
+60. **§16 Phase 10 "a Capacitor wrapper":** the native apps ship every course inside rather
+    than downloading them, which the committed catalog's size allows; native per-unit downloads
+    would need a filesystem-backed loader, since iOS web views run no service worker for
+    app-bundled pages ([ADR 0048](adr/0048-native-apps.md)).
+61. **§12.6 "Capacitor later":** reminders on the phone are sent by the API through FCM (HTTP v1)
+    and APNs (token authentication over HTTP/2) with credentials from the environment; the
+    decision of whether and what to send is the Web Push one, unchanged.

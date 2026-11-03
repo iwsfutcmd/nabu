@@ -9,6 +9,7 @@ import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type FormEvent, type JSX } from "react";
 import { Button, Form, Input, Label, Switch, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
+import { nativePlatform, registerDevice, savedToken, unregisterDevice, type NativePlatform } from "./native.ts";
 import { isHttpError, request, type Account } from "./sync.ts";
 
 interface Profile {
@@ -160,8 +161,54 @@ const bytes = (base64url: string): Uint8Array<ArrayBuffer> => {
 
 const SW = `${import.meta.env.BASE_URL}sw.js`;
 
-/** Practice reminders (§12.6): a switch that subscribes this browser through a service worker. */
+/** Practice reminders (§12.6): Web Push in a browser, the platform's push service in the native app. */
 export const Reminders = ({ account }: { account: Account }): JSX.Element | null => {
+  const platform = nativePlatform();
+  return platform === undefined ? <WebReminders account={account} /> : <NativeReminders account={account} platform={platform} />;
+};
+
+/** In the Android or iOS app: register the device token with the server (FCM or APNs, ADR 0048). */
+const NativeReminders = ({ account, platform }: { account: Account; platform: NativePlatform }): JSX.Element | null => {
+  const t = useTranslator();
+  const [available, setAvailable] = useState<boolean | null>(null);
+  const [on, setOn] = useState(savedToken() !== undefined);
+  const [problem, setProblem] = useState<"denied" | "failed" | null>(null);
+  useEffect(() => {
+    void request<{ platforms: string[] }>(account.server, "/v1/push/native", { token: account.token }).then(
+      (r) => setAvailable(r.platforms.includes(platform)),
+      () => setAvailable(false),
+    );
+  }, [account, platform]);
+  if (available !== true) return null; // this server sends no reminders to this platform
+  const toggle = async (next: boolean): Promise<void> => {
+    if (!next) {
+      const token = savedToken();
+      if (token !== undefined) await request(account.server, "/v1/push/native/unregister", { token: account.token, body: { token } }).catch(() => undefined);
+      await unregisterDevice();
+      setOn(false);
+      return;
+    }
+    const registered = await registerDevice();
+    if ("error" in registered) {
+      setProblem(registered.error);
+      return;
+    }
+    await request(account.server, "/v1/push/native/register", { token: account.token, body: { platform, token: registered.token } });
+    setProblem(null);
+    setOn(true);
+  };
+  return (
+    <div className={styles.field} data-reminders={on ? "on" : "off"} data-reminders-platform={platform}>
+      <Switch isSelected={on} onChange={(v) => void toggle(v)} data-action="reminders">
+        {t.format("app.reminders.label")}
+      </Switch>
+      <p className={styles.muted}>{t.format(problem === "denied" ? "app.reminders.denied" : problem === "failed" ? "app.reminders.failed" : "app.reminders.hint")}</p>
+    </div>
+  );
+};
+
+/** In a browser: a switch that subscribes through the service worker (Web Push). */
+const WebReminders = ({ account }: { account: Account }): JSX.Element | null => {
   const t = useTranslator();
   const supported = typeof window !== "undefined" && "serviceWorker" in navigator && "PushManager" in window && "Notification" in window;
   const [key, setKey] = useState<string | null>(null);

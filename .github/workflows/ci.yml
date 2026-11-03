@@ -90,3 +90,26 @@ jobs:
             apps/web/playwright-report
             apps/web/test-results
           retention-days: 14
+
+  android:
+    name: Android app builds (Capacitor shell, Phase 10)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: pnpm (version from package.json#packageManager)
+        run: corepack enable && pnpm --version
+      # Capacitor 8 builds with JDK 21; the runner image provides the Android SDK.
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+      - run: pnpm install --frozen-lockfile
+      - name: The web build, with every course inside, copied into the Android project
+        run: pnpm --filter @nabu/web build && pnpm --filter @nabu/mobile exec cap sync android
+      - name: Debug APK (no signing, no Firebase config)
+        run: ./gradlew assembleDebug --no-daemon --stacktrace
+        working-directory: apps/mobile/android

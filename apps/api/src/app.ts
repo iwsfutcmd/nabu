@@ -41,7 +41,8 @@ import { aiRoutes } from "./ai/routes.ts";
 import type { Transport } from "./ai/providers.ts";
 import { speechRoutes } from "./speech.ts";
 import type { Db } from "./db/index.ts";
-import { pushSubscriptions } from "./db/schema.ts";
+import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
+import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
 import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
 import { getProfile, setProfile } from "./profiles.ts";
@@ -61,6 +62,8 @@ export interface AppDeps {
   readonly ai?: { readonly gateway: Gateway; readonly courses: Courses; readonly gates: readonly EvalGate[] } | undefined;
   /** The reviewers' bearer token for /admin/v1 (unset: no review endpoints). */
   readonly adminToken?: string | undefined;
+  /** Reminders to the Android and iOS apps (Phase 10): the platforms this instance has credentials for. */
+  readonly native?: NativeSenders | undefined;
   /** The game rules (§12): the deployment's game.json, as the web app gets it (default DEFAULT_GAME). */
   readonly game?: GameConfig | undefined;
   /** The speech service (Phase 9): its URL and how to reach it. Needs `ai` for courses and hashing. */
@@ -120,7 +123,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {} }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
   app.route("/", publicRoutes);
@@ -268,6 +271,29 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const endpoint = b?.["endpoint"];
     if (typeof endpoint !== "string") return c.json({ error: "invalid-request" }, 400);
     await db.delete(pushSubscriptions).where(and(eq(pushSubscriptions.endpoint, endpoint), eq(pushSubscriptions.userId, c.get("user").id)));
+    return c.body(null, 204);
+  });
+
+  // Native reminders (Phase 10): which platforms this instance can reach, and device tokens.
+  const nativePlatforms = PLATFORMS.filter((p) => native[p] !== undefined);
+  app.get("/v1/push/native", (c) => c.json({ platforms: nativePlatforms }));
+
+  app.post("/v1/push/native/register", async (c) => {
+    const b = await body(c);
+    const platform = b?.["platform"];
+    const token = b?.["token"];
+    if (typeof platform !== "string" || !(PLATFORMS as readonly string[]).includes(platform) || typeof token !== "string" || !validToken(platform as Platform, token)) return c.json({ error: "invalid-token" }, 400);
+    if (!(nativePlatforms as readonly string[]).includes(platform)) return c.json({ error: "push-disabled" }, 404);
+    const user = c.get("user").id;
+    await db.insert(nativePushTokens).values({ token, userId: user, platform }).onConflictDoUpdate({ target: nativePushTokens.token, set: { userId: user, platform } });
+    return c.body(null, 201);
+  });
+
+  app.post("/v1/push/native/unregister", async (c) => {
+    const b = await body(c);
+    const token = b?.["token"];
+    if (typeof token !== "string") return c.json({ error: "invalid-request" }, 400);
+    await db.delete(nativePushTokens).where(and(eq(nativePushTokens.token, token), eq(nativePushTokens.userId, c.get("user").id)));
     return c.body(null, 204);
   });
 
