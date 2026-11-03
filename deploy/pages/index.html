@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Nabu: Phase 0</title>
+    <style>
+      body { margin: 0; padding-block: 2rem; padding-inline: 1rem; font-family: system-ui, sans-serif; background: #f6f5f1; color: #1d1d1b; }
+      main { max-inline-size: 44rem; margin-inline: auto; }
+      table { border-collapse: collapse; }
+      td, th { padding-block: 0.25rem; padding-inline: 0.5rem; text-align: start; }
+      a { color: #1f6b4f; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Nabu: Phase 0</h1>
+      <p><a href="storybook/">Storybook</a>: use the toolbar for UI locale, pseudo-locale, target, dir and writing mode.</p>
+      <h2>Demo exercise card</h2>
+      <table>
+        <thead><tr><th>Target</th><th>en</th><th>en-XA</th><th>ar-XB</th></tr></thead>
+        <tbody id="cells"></tbody>
+      </table>
+    </main>
+    <script>
+      const targets = [["fa", "horizontal-tb"], ["yue-Hant-HK", "horizontal-tb"], ["yue-Hant-HK", "vertical-rl"], ["uz-Latn", "horizontal-tb"], ["apc-Arab", "horizontal-tb"]];
+      const body = document.getElementById("cells");
+      for (const [target, mode] of targets) {
+        const row = body.insertRow();
+        row.insertCell().textContent = mode === "horizontal-tb" ? target : `${target} (${mode})`;
+        for (const ui of ["en", "en-XA", "ar-XB"]) {
+          const a = document.createElement("a");
+          a.href = `demo/?ui=${ui}&target=${target}&mode=${mode}`;
+          a.textContent = "open";
+          row.insertCell().append(a);
+        }
+      }
+    </script>
+  </body>
+</html>

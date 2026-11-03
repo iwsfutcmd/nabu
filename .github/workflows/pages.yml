@@ -1,0 +1,54 @@
+name: Pages
+
+# Publishes Storybook and the demo app to GitHub Pages on every push to main.
+# One-time setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  STORYBOOK_DISABLE_TELEMETRY: "1"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+      - run: corepack enable && pnpm --version
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @nabu/ui build-storybook
+      - run: pnpm --filter @nabu/web exec vite build --base=./
+      - name: Assemble site
+        run: |
+          mkdir -p site
+          cp deploy/pages/index.html site/
+          cp -r packages/ui/storybook-static site/storybook
+          cp -r apps/web/dist site/demo
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
