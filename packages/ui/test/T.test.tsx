@@ -30,8 +30,8 @@ describe("<T>", () => {
 
   it("wraps whole tokens, never single letters of a cursive word", () => {
     const html = render(<T text={demoExercise("fa").answer} />);
-    // ک‌تاب‌ها is one span whose only content is the whole word, ZWNJ included.
-    expect(html).toContain('data-kind="word" data-index="0">کتاب‌ها</span>');
+    // ک\u200Cتاب\u200Cها is one span whose only content is the whole word, ZWNJ included.
+    expect(html).toContain('data-kind="word" data-index="0">کتاب\u200Cها</span>');
     expect(html.match(/data-kind="word"/g)).toHaveLength(4);
   });
 

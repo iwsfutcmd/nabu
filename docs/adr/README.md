@@ -17,5 +17,9 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0020](0020-visual-testing.md) | Storybook + Playwright in a pinned container; structural checks | Proposed |
 | [0021](0021-lint-tooling.md) | `packages/lint`: rule semantics and strict logical CSS | Proposed |
 | [0022](0022-typed-css-modules.md) | Generated CSS module declarations | Proposed |
+| [0023](0023-grading-engine.md) | The deterministic grading engine | Proposed |
+| [0024](0024-profile-data.md) | Profile data: equivalences, tables, numbering systems | Proposed |
+| [0025](0025-interim-keyboards.md) | Interim, hand-encoded keyboard layouts | Proposed |
+| [0026](0026-conformance-and-performance.md) | Conformance harnesses and the performance budget | Proposed |
 
 Template: [0000-template.md](0000-template.md).

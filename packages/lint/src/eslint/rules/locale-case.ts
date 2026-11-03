@@ -3,7 +3,7 @@
  * Turkish and Azerbaijani dotted/dotless i, Lithuanian dot-above and Greek
  * final sigma all depend on it. toLowerCase() takes no locale at all, so it is
  * always flagged; toLocale*Case() must be given one. For ASCII identifiers
- * (BCP 47 subtags) use asciiLowercase() from @nabu/i18n.
+ * (BCP 47 subtags) use asciiLowercase() from @nabu/core/text.
  *
  * With type information, only string receivers are checked.
  */
@@ -26,7 +26,7 @@ export default createRule<[], "noLocale" | "missingLocale">({
     schema: [],
     messages: {
       noLocale:
-        "`{{method}}()` ignores the language (Turkish İ/ı, Lithuanian, Greek σ/ς). Use `{{replacement}}(locale)` or the orthography profile's case folding; for ASCII identifiers use asciiLowercase() from @nabu/i18n.",
+        "`{{method}}()` ignores the language (Turkish İ/ı, Lithuanian, Greek σ/ς). Use `{{replacement}}(locale)` or the orthography profile's case folding; for ASCII identifiers use asciiLowercase() from @nabu/core/text.",
       missingLocale: "`{{method}}()` without a locale uses the host's locale. Pass the text's language tag.",
     },
   },

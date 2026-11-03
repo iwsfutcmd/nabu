@@ -32,10 +32,12 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - pnpm storybook                   # toolbar: UI locale, pseudo-locale, target, dir, writing mode
 - pnpm codegen                     # schemas/ → packages/schema (TS) + pipeline (Pydantic); CSS module types
 - pnpm cldr                        # regenerate packages/i18n/src/generated from the pinned CLDR packages
-- pnpm conformance                 # (Phase 1) TS + Python harnesses over conformance/
+- pnpm conformance                 # TS + Python harnesses over conformance/ (≥300 vectors)
+- pnpm test:perf                   # grading p95 < 5 ms, 4× CPU throttling, cold caches (Chromium)
+- pnpm tables                      # regenerate profiles/tables from pinned Unihan/OpenCC
 - uv run nabu build courses/<id>   # (Phase 2) compile a course bundle
 
-## Phase 0 notes (see docs/adr/0013–0022)
+## Phase 0–1 notes (see docs/adr/0013–0026)
 - TypeScript is pinned to 6.0.x: typescript-eslint's type-aware rules need the JS compiler API, which TS 7 lacks.
 - Workspace packages ship TS source; relative imports carry `.ts` extensions; Node ≥ 22.18 runs scripts directly.
 - Generated, never hand-edited: packages/schema/src/generated, pipeline/src/nabu/schema/models.py,
@@ -43,3 +45,6 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Visual baselines are only valid from the pinned container; never update them from a bare host run.
 - Lint rules and their fixtures live in packages/lint. A new rule needs a fixture that proves it fires.
 - Write invisible characters (ZWNJ, bidi controls) as \u escapes in source, never literally.
+- Grading lives in @nabu/core (accept/, match/, normalize/, profile/); profiles get their data passed in.
+- A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
+- Profile policies marked REVIEW await Ben's linguistic sign-off.

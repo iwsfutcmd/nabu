@@ -32,3 +32,18 @@ ADR is linked. The gameplan text itself is left as written.
 10. **§5.1 has no home for lint tooling.** Added `packages/lint` ([ADR 0021](adr/0021-lint-tooling.md)).
 11. **§5.2 / tooling:** the current TypeScript (7.0) cannot run the type-aware rules §11.9 requires, so
     TS is pinned to 6.0 ([ADR 0013](adr/0013-typescript-6.md)).
+
+## Phase 1
+
+12. **§6.3 uz-Latn has no `whitespace: collapse` step** (fa-Arab does). Added; without it, a dropped
+    optional word leaves double spaces in normalized accept-set text.
+13. **§6.3 profiles name tables implicitly** (`variants: { table: hk-tw-variants }`,
+    `homophones: { model: jyutping-ime }`, `scriptMismatch: { detect: Hans }`). Homophones and script
+    detection now name their data tables too ([ADR 0024](adr/0024-profile-data.md)).
+14. **§6.3 "Courses for Arabic itself … give a note for each" fold** cannot be written with
+    normalization steps, which fold silently. Profiles gained `match.equivalences` with per-fold
+    policies ([ADR 0024](adr/0024-profile-data.md)).
+15. **§6.7 "touch keyboards are compiled from CLDR Keyboard 3.0"**: not done yet. The typo model runs
+    on interim hand-encoded layouts ([ADR 0025](adr/0025-interim-keyboards.md)).
+16. **Unihan `kCantonese` is not a full Cantonese reading list** (行 is only hang4). The IME-homophone
+    model also uses kSMSZD2003Readings, and still lacks colloquial readings ([ADR 0024](adr/0024-profile-data.md)).

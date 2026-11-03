@@ -81,7 +81,7 @@ describe("exercise card markup", () => {
   });
   it("formats chrome through MF2, including plurals and isolated placeholders", () => {
     const html = render(<DemoExerciseCard target="yue-Hant-HK" />);
-    expect(html).toContain("Write this in ⁨Cantonese⁩");
+    expect(html).toContain("Write this in \u2068Cantonese\u2069");
     expect(html).toContain("5 tiles left"); // 3 remaining + 2 distractors
   });
 });
