@@ -61,4 +61,5 @@ Schema: [`schemas/bundle.schema.json`](../../schemas/bundle.schema.json) (`Bundl
   every course in `courses/`.
 - The manifest id changes when an analyzer or ICU version changes. That is intended: they shape
   readings and drills.
-- `unicode.python` (15.1 on Python 3.12/3.13) lags CLDR 49's Unicode 16.0 (errata 21).
+- `unicode.python` lags CLDR 49's Unicode 16.0 and differs by Python version (15.0 on 3.12, 15.1 on
+  3.13), so the pipeline pins Python 3.13 (`pipeline/.python-version`) (errata 21).

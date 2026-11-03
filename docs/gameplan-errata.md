@@ -64,9 +64,10 @@ ADR is linked. The gameplan text itself is left as written.
 20. **Phase 1's `hans-only` table (OpenCC STCharacters)** treated OpenCC's orthodox Traditional as the
     only Traditional, flagging HK standard characters (群 床 峰, and 晒 saai3) as Simplified. It now
     subtracts HK/TW variants and CLDR `yue_Hant` exemplars ([ADR 0032](adr/0032-exemplar-gaps.md)).
-21. **§7.5 "record the Unicode version":** there are two. CLDR 49 is Unicode 16.0, but Python 3.12's
-    `unicodedata` (used for NFC checks in the compiler) is 15.1. The manifest records both
-    ([ADR 0029](adr/0029-bundle-format.md)).
+21. **§7.5 "record the Unicode version":** there are two. CLDR 49 is Unicode 16.0, but Python's
+    `unicodedata` (used for NFC checks in the compiler) is 15.0 on Python 3.12 and 15.1 on 3.13. The
+    manifest records both, so the pipeline pins Python 3.13 (`pipeline/.python-version`) to keep
+    bundles reproducible across machines ([ADR 0029](adr/0029-bundle-format.md)).
 22. **§7.5 "readings pinned in the source always win; the compiler warns":** PyCantonese reads the
     sentence-final particles 呀 and 嗎 as aa4 and maa5. The yue fixture pins aa3 and maa3 and carries
     six expected warnings; there is no way yet to mark a disagreement as reviewed.
