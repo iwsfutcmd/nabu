@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
+          # v5 auto-caches for package.json#packageManager, but pnpm only exists after corepack enable.
+          package-manager-cache: false
       - name: pnpm (version from package.json#packageManager)
         run: corepack enable && pnpm --version
       - name: uv

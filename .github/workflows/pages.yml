@@ -28,6 +28,8 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version-file: .node-version
+          # v5 auto-caches for package.json#packageManager, but pnpm only exists after corepack enable.
+          package-manager-cache: false
       - run: corepack enable && pnpm --version
       - run: pnpm install --frozen-lockfile
       - run: pnpm --filter @nabu/ui build-storybook
