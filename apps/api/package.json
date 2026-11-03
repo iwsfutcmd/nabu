@@ -1,0 +1,25 @@
+{
+  "name": "@nabu/api",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Nabu API server (Hono on Node). Phase 0: health check and UI-locale negotiation.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/main.ts",
+    "start": "node src/main.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.6",
+    "@nabu/i18n": "workspace:*",
+    "hono": "^4.13.16"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

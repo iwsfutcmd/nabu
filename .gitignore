@@ -1,0 +1,22 @@
+node_modules/
+dist/
+storybook-static/
+.turbo/
+coverage/
+*.tsbuildinfo
+.DS_Store
+
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# CLDR download cache (the generated JSON is checked in, the inputs are not)
+.cache/

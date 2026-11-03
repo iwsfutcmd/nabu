@@ -1,0 +1,77 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "stream",
+  "globalDependencies": [
+    "tsconfig.base.json",
+    "eslint.config.js",
+    "stylelint.config.js"
+  ],
+  "tasks": {
+    "codegen": {
+      "inputs": [
+        "$TURBO_ROOT$/schemas/**",
+        "scripts/**",
+        "src/**/*.module.css",
+        "package.json",
+        "pyproject.toml"
+      ],
+      "outputs": [
+        "src/generated/**",
+        "src/nabu/schema/**",
+        "src/**/*.module.d.css.ts"
+      ]
+    },
+    "typecheck": {},
+    "lint": {},
+    "lint:css": {},
+    "test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/schemas/**",
+        "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/conformance/**",
+        "$TURBO_ROOT$/eslint.config.js",
+        "$TURBO_ROOT$/stylelint.config.js"
+      ]
+    },
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
+    },
+    "build-storybook": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/profiles/**"
+      ],
+      "outputs": [
+        "storybook-static/**"
+      ],
+      "passThroughEnv": [
+        "STORYBOOK_DISABLE_TELEMETRY"
+      ]
+    },
+    "test:visual": {
+      "dependsOn": [
+        "build-storybook"
+      ],
+      "cache": false,
+      "passThroughEnv": [
+        "NABU_VISUAL_ENV",
+        "CI",
+        "PLAYWRIGHT_BROWSERS_PATH"
+      ]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "storybook": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

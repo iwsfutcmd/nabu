@@ -1,0 +1,24 @@
+{
+  "name": "@nabu/core-cli",
+  "version": "0.0.0",
+  "private": true,
+  "description": "JSON-lines CLI that exposes @nabu/core to the Python pipeline (gameplan §5.1). Phase 0: ping and graphemes only.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "bin": {
+    "nabu-core": "./src/main.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@nabu/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  }
+}
