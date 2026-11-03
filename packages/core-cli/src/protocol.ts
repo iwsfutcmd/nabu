@@ -54,6 +54,11 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     return p.units(p.normalize(text(a)));
   },
   fold: (a) => profile(a).fold(text(a)),
+  /** Runtime units, case-folded: what tap-to-gloss and hint lookup match on. */
+  "fold-units": (a) => {
+    const p = profile(a);
+    return p.units(p.normalize(text(a))).map((u) => p.fold(u));
+  },
   "case-fold": (a) => caseFold(text(a), text(a, "locale")),
   letters: (a) => {
     const p = profile(a);
@@ -65,6 +70,8 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
       paths: set.paths,
       alternatives: set.lattice.alternatives.filter((x) => x.flags.length === 0).map((x) => x.normalized),
       canonical: set.lattice.alternatives.find((x) => x.canonical)?.normalized,
+      /** The canonical answer as written (unnormalized): what a translation displays. */
+      canonicalSource: set.lattice.alternatives.find((x) => x.canonical)?.source,
       warnings: set.warnings.map((w) => w.code),
     };
   },

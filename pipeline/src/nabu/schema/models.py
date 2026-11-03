@@ -7,6 +7,37 @@ from typing import Annotated, Literal
 
 from pydantic import BaseModel, ConfigDict, Field
 
+
+class Unit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    file: str
+
+
+class BundleFile(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    path: str
+    role: Literal["unit", "profile", "table", "keyboard"]
+    sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    license: str
+    source: str | None = None
+
+
+class Convert(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[str, Field(alias="from")]
+    to: str
+
+
 type LangTag = Annotated[
     str,
     Field(
@@ -85,17 +116,141 @@ type ScriptCode = Annotated[
 ]
 
 
+type Slug = Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$", title="Slug")]
+
+
+type Spdx = Annotated[
+    str,
+    Field(
+        description="An SPDX license expression.",
+        pattern="^(LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+)( (AND|OR|WITH) (LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+))*$",
+        title="Spdx",
+    ),
+]
+
+
+class Provenance(BaseModel):
+    """
+    Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    author: Annotated[str, Field(pattern="^(human:[^\\s@]+|(llm|generated):[^\\s@]+@[^\\s@]+)$")]
+    status: Literal["draft", "reviewed", "published"]
+    reviewedBy: Annotated[str | None, Field(min_length=1)] = None
+    reviewedAt: Annotated[str | None, Field(pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$")] = None
+
+
+type TitleAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type Cefr = Annotated[Literal["A1", "A2", "B1", "B2", "C1", "C2"], Field(title="Cefr")]
+
+
+type GlossAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+
+
+type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
+
+
+type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class KnowledgeComponentSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: KcId
+    prerequisites: list[KcId] | None = None
+    cefr: Cefr | None = None
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(description="Short meaning per support language."),
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, FormsAdditionalProperty] | None,
+        Field(
+            description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
+        ),
+    ] = None
+    notes: dict[str, NotesAdditionalProperty] | None = None
+
+
+class Convert1(BaseModel):
+    """
+    script nodes: convert sentences between two orthographies (script-convert, §6.3).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    from_: Annotated[OrthographyId, Field(alias="from")]
+    to: OrthographyId
+    sentences: Annotated[list[str], Field(min_length=1)]
+
+
+class PathNodeSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    kind: Literal["lesson", "practice", "story", "review", "challenge", "script"]
+    introduces: list[KcId] | None = None
+    reinforces: list[KcId] | None = None
+    convert: Annotated[
+        Convert1 | None,
+        Field(
+            description="script nodes: convert sentences between two orthographies (script-convert, §6.3)."
+        ),
+    ] = None
+
+
+type TranslationsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type Variant = Annotated[str, Field(min_length=1)]
+
+
+type Value = Annotated[int, Field(ge=0)]
+
+
+class DrillSpec(BaseModel):
+    """
+    A generated drill family (§7.6). numbers: cardinals spelled out with CLDR RBNF.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal["numbers"]
+    orthography: OrthographyId
+    values: Annotated[list[Value], Field(min_length=1)]
+
+
 type GroupItem = Annotated[str, Field(min_length=1)]
 
 
 type Group = Annotated[list[GroupItem], Field(min_length=2)]
 
 
-type ReadingsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
 
 
-type ReadingsAdditionalProperty = Annotated[
-    list[ReadingsAdditionalPropertyItem], Field(min_length=1)
+type ReadingsAdditionalProperty1 = Annotated[
+    list[ReadingsAdditionalProperty1Item], Field(min_length=1)
 ]
 
 
@@ -119,7 +274,7 @@ class DataTable(BaseModel):
         Field(description="variants: each group is a set of mutually acceptable forms."),
     ] = None
     readings: Annotated[
-        dict[str, ReadingsAdditionalProperty] | None,
+        dict[str, ReadingsAdditionalProperty1] | None,
         Field(description="readings: character → readings in the profile's scheme."),
     ] = None
     chars: Annotated[str | None, Field(description="charset: the characters, concatenated.")] = None
@@ -176,6 +331,9 @@ class CatalogMessage(BaseModel):
             description="Context for translators: where the message appears and what each variable holds. Required in the source (en) catalog by test."
         ),
     ] = None
+
+
+type ExemplarsExtraItem = Annotated[str, Field(min_length=1)]
 
 
 type Letter = Annotated[str, Field(min_length=1)]
@@ -461,10 +619,7 @@ type TokenKind = Annotated[
 ]
 
 
-type ReadingsAdditionalProperty1 = Annotated[str, Field(min_length=1)]
-
-
-type Variant = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty2 = Annotated[str, Field(min_length=1)]
 
 
 class RubySegment(BaseModel):
@@ -487,6 +642,73 @@ class Morph(BaseModel):
     )
     surface: Annotated[str, Field(min_length=1)]
     kc: KcId
+
+
+class BundleManifest(BaseModel):
+    """
+    A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    formatVersion: Literal[0]
+    id: Annotated[
+        str,
+        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
+    ]
+    course: str
+    target: ScriptedLangTag
+    orthographies: list[OrthographyId]
+    support: list[OrthographyId]
+    versions: Annotated[
+        dict[str, str],
+        Field(
+            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
+        ),
+    ]
+    files: Annotated[
+        list[BundleFile],
+        Field(description="Every file in the bundle by role, with its SPDX license."),
+    ]
+    units: list[Unit]
+    licenses: Annotated[
+        dict[str, int], Field(description="SPDX expression → number of content items.")
+    ]
+    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+
+
+class BundleNode(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    kind: str
+    introduces: list[KcId]
+    reinforces: list[KcId]
+    sentences: list[str]
+    convert: Convert | None = None
+
+
+class SourceToken(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    surface: Annotated[str, Field(min_length=1)]
+    kind: TokenKind | None = None
+    sense: SenseId | None = None
+    form: Annotated[
+        KcId | None, Field(description="A form KC (form:<id>) for an inflected word.")
+    ] = None
+    readings: dict[SchemeId, ReadingsAdditionalProperty] | None = None
+    morphs: Annotated[list[Morph] | None, Field(min_length=1)] = None
+    variants: list[Variant] | None = None
+    tile: Annotated[
+        int | None, Field(description="Tile group. Default: each word token is its own tile.", ge=0)
+    ] = None
 
 
 class MessageCatalog(BaseModel):
@@ -636,7 +858,7 @@ class Token(BaseModel):
         SenseId | None, Field(description="Link to the lexicon (a knowledge component).")
     ] = None
     readings: Annotated[
-        dict[SchemeId, ReadingsAdditionalProperty1] | None,
+        dict[SchemeId, ReadingsAdditionalProperty2] | None,
         Field(
             description='Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.'
         ),
@@ -670,6 +892,23 @@ class Token(BaseModel):
     ] = None
 
 
+class SentenceForm(BaseModel):
+    """
+    The exact surface text, plus tokens that annotate its words in order. Gaps between tokens become space and punctuation tokens.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[str, Field(min_length=1)]
+    tokens: list[SourceToken] | None = None
+    reverse: Annotated[
+        str | None,
+        Field(description="Target-language accept set (§7.4) for L1→L2 production.", min_length=1),
+    ] = None
+
+
 type NormalizeStep = Annotated[
     NfcStep
     | FoldCompatStep
@@ -697,6 +936,85 @@ class TaggedText(BaseModel):
     tokens: Annotated[list[Token], Field(min_length=1)]
 
 
+class BundleKc(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: KcId
+    kind: Literal["sense", "form", "construction", "grapheme", "reading", "phone", "tone"]
+    prerequisites: list[KcId]
+    cefr: str | None = None
+    gloss: dict[str, TaggedText] | None = None
+    forms: dict[str, list[TaggedText]] | None = None
+
+
+class Forms(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: TaggedText
+    reverse: str | None = None
+
+
+class Translations(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: TaggedText
+    accept: str
+
+
+class BundleSentence(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    node: str
+    forms: dict[str, Forms]
+    translations: dict[str, Translations]
+    kcs: list[KcId]
+    production: bool
+    register_: Annotated[str | None, Field(alias="register")] = None
+    provenance: Provenance
+    license: str
+
+
+class SentenceSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    node: Slug
+    forms: Annotated[
+        dict[OrthographyId, SentenceForm],
+        Field(description="The sentence in each orthography of the course.", min_length=1),
+    ]
+    constructions: list[KcId] | None = None
+    translations: Annotated[
+        dict[str, TranslationsAdditionalProperty],
+        Field(
+            description="Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.",
+            min_length=1,
+        ),
+    ]
+    production: Annotated[
+        bool | None,
+        Field(
+            description="Used for L1→L2 production (needs `reverse` in every form). Default true."
+        ),
+    ] = None
+    register_: Annotated[
+        Literal["formal", "neutral", "colloquial"] | None, Field(alias="register")
+    ] = None
+    provenance: Provenance | None = None
+    license: Spdx | None = None
+
+
 class OrthographyProfile(BaseModel):
     """
     Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.
@@ -713,6 +1031,13 @@ class OrthographyProfile(BaseModel):
         Field(
             description="CLDR locale whose main/auxiliary/punctuation/numbers exemplars drive the script audit (§7.5). Both CLDR (yue_Hant) and BCP 47 (yue-Hant) separators are accepted in v0.",
             pattern="^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$",
+        ),
+    ] = None
+    exemplarsExtra: Annotated[
+        list[ExemplarsExtraItem] | None,
+        Field(
+            description="Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
+            min_length=1,
         ),
     ] = None
     letters: Annotated[
@@ -739,8 +1064,86 @@ class OrthographyProfile(BaseModel):
     transliterate: Transliteration | None = None
 
 
+class BundleUnit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    cefr: str | None = None
+    title: dict[str, TaggedText] | None = None
+    kcs: list[BundleKc]
+    nodes: list[BundleNode]
+    sentences: list[BundleSentence]
+
+
+class UnitSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    title: Annotated[
+        dict[str, TitleAdditionalProperty] | None,
+        Field(
+            description="Per support language (the key is a support orthography's language, e.g. en)."
+        ),
+    ] = None
+    cefr: Cefr | None = None
+    kcs: list[KnowledgeComponentSource]
+    nodes: Annotated[list[PathNodeSource], Field(min_length=1)]
+    sentences: list[SentenceSource]
+
+
+class CourseSource(BaseModel):
+    """
+    A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Slug
+    target: ScriptedLangTag
+    orthographies: Annotated[
+        list[OrthographyId],
+        Field(
+            description="Orthographies the course teaches; the first is the default. Learners may switch (§6.3, apc).",
+            min_length=1,
+        ),
+    ]
+    support: Annotated[
+        list[OrthographyId],
+        Field(
+            description="Support-language layers, as orthography ids (en-Latn/standard).",
+            min_length=1,
+        ),
+    ]
+    license: Annotated[
+        Spdx | None,
+        Field(description="Default SPDX license for every content item that gives none."),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(description="Default provenance for every content item that gives none."),
+    ] = None
+    iPlusOne: Annotated[
+        int | None,
+        Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),
+    ] = None
+    units: Annotated[list[str | UnitSource], Field(min_length=1)]
+    drills: list[DrillSpec] | None = None
+
+
 type NabuSchemaBundle = Annotated[
-    DataTable | KeyboardLayout | MessageCatalog | OrthographyProfile | TaggedText,
+    BundleManifest
+    | CourseSource
+    | DataTable
+    | KeyboardLayout
+    | MessageCatalog
+    | OrthographyProfile
+    | TaggedText,
     Field(
         description="Every Nabu document type. Generated from /schemas; do not edit.",
         title="NabuSchemaBundle",

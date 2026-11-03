@@ -1,47 +1,30 @@
-import json
-import subprocess
+import os
 from collections.abc import Iterator
 from pathlib import Path
-from typing import Any
 
 import pytest
+
+from nabu.corecli import CoreCli
 
 ROOT = Path(__file__).resolve().parents[2]
 SCHEMAS = ROOT / "schemas"
 PROFILES = ROOT / "profiles"
 EXAMPLES = SCHEMAS / "examples"
 CORE_CLI = ROOT / "packages" / "core-cli" / "src" / "main.ts"
+FIXTURES = Path(__file__).parent / "fixtures"
+# CI sets this so missing analyzers or ICU fail instead of skipping.
+REQUIRE_TOOLS = os.environ.get("NABU_REQUIRE_TOOLS") == "1"
 
-
-class CoreCli:
-    """A core-cli subprocess speaking JSON lines (one request, one response, in order)."""
-
-    def __init__(self) -> None:
-        self.proc = subprocess.Popen(
-            ["node", str(CORE_CLI)],
-            stdin=subprocess.PIPE,
-            stdout=subprocess.PIPE,
-            text=True,
-            encoding="utf-8",
-        )
-        self.next_id = 0
-
-    def call(self, request: dict[str, Any]) -> dict[str, Any]:
-        assert self.proc.stdin is not None and self.proc.stdout is not None
-        self.proc.stdin.write(json.dumps(request, ensure_ascii=False) + "\n")
-        self.proc.stdin.flush()
-        return json.loads(self.proc.stdout.readline())
-
-    def result(self, op: str, **args: Any) -> Any:
-        self.next_id += 1
-        response = self.call({"id": self.next_id, "op": op, **args})
-        assert response["ok"], response
-        return response["result"]
-
-    def close(self) -> None:
-        assert self.proc.stdin is not None
-        self.proc.stdin.close()
-        self.proc.wait(timeout=10)
+__all__ = [
+    "CORE_CLI",
+    "EXAMPLES",
+    "FIXTURES",
+    "PROFILES",
+    "REQUIRE_TOOLS",
+    "ROOT",
+    "SCHEMAS",
+    "CoreCli",
+]
 
 
 @pytest.fixture(scope="session")

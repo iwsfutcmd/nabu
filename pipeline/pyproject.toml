@@ -8,6 +8,7 @@ requires-python = ">=3.12"
 dependencies = [
   "pydantic>=2.14,<3",
   "pyyaml>=6.0.3",
+  "regex>=2026.9.29",
   "typer>=0.27",
 ]
 
@@ -15,6 +16,15 @@ dependencies = [
 nabu = "nabu.cli:app"
 
 [dependency-groups]
+# Language analyzers for compiler stage 3 (§7.5). Installed by default; the yue course needs PyCantonese.
+analyzers = [
+  "hazm>=0.12.1",
+  "pycantonese>=5.0",
+]
+# CLDR RBNF drills and transforms (§7.6). Needs ICU headers: apt install libicu-dev pkg-config.
+icu = [
+  "pyicu>=2.17",
+]
 dev = [
   "datamodel-code-generator>=0.88",
   "hypothesis>=6.170",
@@ -42,6 +52,12 @@ extend-exclude = ["src/nabu/schema/models.py"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
+# "Ambiguous" characters (Cyrillic а, Arabic ه, Uzbek ʻ, Turkish ı) are this project's data. Confusables are
+# checked where they matter, in content: the compiler's text.mixed-script audit (§7.5).
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.uv]
+default-groups = ["dev", "analyzers"]
 
 [tool.pyright]
 include = ["src", "tests"]

@@ -1,0 +1,472 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/course-source.schema.json",
+  "title": "CourseSource",
+  "description": "A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).",
+  "$comment": "v0 (Phase 2). The compiler (pipeline/src/nabu/compiler) turns this into a content-addressed bundle (bundle.schema.json).",
+  "type": "object",
+  "required": [
+    "id",
+    "target",
+    "orthographies",
+    "support",
+    "units"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "$ref": "#/$defs/Slug"
+    },
+    "target": {
+      "$ref": "common.schema.json#/$defs/ScriptedLangTag"
+    },
+    "orthographies": {
+      "description": "Orthographies the course teaches; the first is the default. Learners may switch (§6.3, apc).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/OrthographyId"
+      }
+    },
+    "support": {
+      "description": "Support-language layers, as orthography ids (en-Latn/standard).",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/OrthographyId"
+      }
+    },
+    "license": {
+      "$ref": "#/$defs/Spdx",
+      "description": "Default SPDX license for every content item that gives none."
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance",
+      "description": "Default provenance for every content item that gives none."
+    },
+    "iPlusOne": {
+      "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
+      "type": "integer",
+      "minimum": 1
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "description": "Path to a unit file, relative to course.yaml."
+          },
+          {
+            "$ref": "#/$defs/UnitSource"
+          }
+        ]
+      }
+    },
+    "drills": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/DrillSpec"
+      }
+    }
+  },
+  "$defs": {
+    "Slug": {
+      "title": "Slug",
+      "type": "string",
+      "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+    },
+    "Spdx": {
+      "title": "Spdx",
+      "description": "An SPDX license expression.",
+      "type": "string",
+      "pattern": "^(LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+)( (AND|OR|WITH) (LicenseRef-[A-Za-z0-9.-]+|[A-Za-z0-9.+-]+))*$"
+    },
+    "Provenance": {
+      "title": "Provenance",
+      "description": "Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.",
+      "type": "object",
+      "required": [
+        "author",
+        "status"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "author": {
+          "type": "string",
+          "pattern": "^(human:[^\\s@]+|(llm|generated):[^\\s@]+@[^\\s@]+)$"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "reviewed",
+            "published"
+          ]
+        },
+        "reviewedBy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reviewedAt": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        }
+      }
+    },
+    "UnitSource": {
+      "title": "UnitSource",
+      "type": "object",
+      "required": [
+        "id",
+        "kcs",
+        "nodes",
+        "sentences"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Slug"
+        },
+        "title": {
+          "description": "Per support language (the key is a support orthography's language, e.g. en).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "cefr": {
+          "$ref": "#/$defs/Cefr"
+        },
+        "kcs": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/KnowledgeComponentSource"
+          }
+        },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/PathNodeSource"
+          }
+        },
+        "sentences": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SentenceSource"
+          }
+        }
+      }
+    },
+    "Cefr": {
+      "title": "Cefr",
+      "type": "string",
+      "enum": [
+        "A1",
+        "A2",
+        "B1",
+        "B2",
+        "C1",
+        "C2"
+      ]
+    },
+    "KnowledgeComponentSource": {
+      "title": "KnowledgeComponentSource",
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "common.schema.json#/$defs/KcId"
+        },
+        "prerequisites": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        },
+        "cefr": {
+          "$ref": "#/$defs/Cefr"
+        },
+        "gloss": {
+          "description": "Short meaning per support language.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forms": {
+          "description": "Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7).",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/OrthographyId"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "notes": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "PathNodeSource": {
+      "title": "PathNodeSource",
+      "type": "object",
+      "required": [
+        "id",
+        "kind"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/Slug"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "lesson",
+            "practice",
+            "story",
+            "review",
+            "challenge",
+            "script"
+          ]
+        },
+        "introduces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        },
+        "reinforces": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        },
+        "convert": {
+          "description": "script nodes: convert sentences between two orthographies (script-convert, §6.3).",
+          "type": "object",
+          "required": [
+            "from",
+            "to",
+            "sentences"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "from": {
+              "$ref": "common.schema.json#/$defs/OrthographyId"
+            },
+            "to": {
+              "$ref": "common.schema.json#/$defs/OrthographyId"
+            },
+            "sentences": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "SentenceSource": {
+      "title": "SentenceSource",
+      "type": "object",
+      "required": [
+        "id",
+        "node",
+        "forms",
+        "translations"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "node": {
+          "$ref": "#/$defs/Slug"
+        },
+        "forms": {
+          "description": "The sentence in each orthography of the course.",
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/OrthographyId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/SentenceForm"
+          }
+        },
+        "constructions": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        },
+        "translations": {
+          "description": "Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.",
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "production": {
+          "description": "Used for L1→L2 production (needs `reverse` in every form). Default true.",
+          "type": "boolean"
+        },
+        "register": {
+          "type": "string",
+          "enum": [
+            "formal",
+            "neutral",
+            "colloquial"
+          ]
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "license": {
+          "$ref": "#/$defs/Spdx"
+        }
+      }
+    },
+    "SentenceForm": {
+      "title": "SentenceForm",
+      "description": "The exact surface text, plus tokens that annotate its words in order. Gaps between tokens become space and punctuation tokens.",
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tokens": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/SourceToken"
+          }
+        },
+        "reverse": {
+          "description": "Target-language accept set (§7.4) for L1→L2 production.",
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "SourceToken": {
+      "title": "SourceToken",
+      "type": "object",
+      "required": [
+        "surface"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "surface": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "$ref": "tagged-text.schema.json#/$defs/TokenKind"
+        },
+        "sense": {
+          "$ref": "common.schema.json#/$defs/SenseId"
+        },
+        "form": {
+          "description": "A form KC (form:<id>) for an inflected word.",
+          "$ref": "common.schema.json#/$defs/KcId"
+        },
+        "readings": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/SchemeId"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "morphs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "tagged-text.schema.json#/$defs/Morph"
+          }
+        },
+        "variants": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "tile": {
+          "description": "Tile group. Default: each word token is its own tile.",
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "DrillSpec": {
+      "title": "DrillSpec",
+      "description": "A generated drill family (§7.6). numbers: cardinals spelled out with CLDR RBNF.",
+      "type": "object",
+      "required": [
+        "kind",
+        "orthography",
+        "values"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "numbers"
+          ]
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    }
+  }
+}

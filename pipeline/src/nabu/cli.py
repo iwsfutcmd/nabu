@@ -58,6 +58,89 @@ def validate(
     raise typer.Exit(code=1 if failed else 0)
 
 
+def _course_paths(paths: list[Path]) -> list[Path]:
+    """Each path is a course (directory or YAML file) or a directory of course directories."""
+    out: list[Path] = []
+    for path in paths:
+        if path.is_dir() and not (path / "course.yaml").is_file():
+            out += sorted(p.parent for p in path.glob("*/course.yaml"))
+        else:
+            out.append(path)
+    return out
+
+
+@app.command()
+def build(
+    courses: Annotated[
+        list[Path],
+        typer.Argument(
+            exists=True,
+            help="Course directories or course YAML files, or a directory of courses (courses/).",
+        ),
+    ],
+    out: Annotated[
+        Path, typer.Option(help="Output root; each bundle goes to <out>/<course-id>.")
+    ] = Path("dist"),
+    strict: Annotated[bool, typer.Option(help="Fail on warnings too.")] = False,
+    check: Annotated[bool, typer.Option(help="Lint only; write nothing.")] = False,
+) -> None:
+    """Compile courses into content-addressed bundles (gameplan §7.5)."""
+    from nabu.analyzers import analyzers_by_tool
+    from nabu.compiler import compile_course, load_profiles, write_bundle
+    from nabu.corecli import CoreCli
+
+    profiles = load_profiles()
+    analyzers = analyzers_by_tool()
+    paths = _course_paths(courses)
+    if not paths:
+        typer.echo("✗ no courses found", err=True)
+        raise typer.Exit(code=1)
+    failed = False
+    with CoreCli() as cli:
+        for course in paths:
+            diags, compiled = compile_course(course, cli, profiles, analyzers)
+            for d in diags.sorted():
+                typer.echo(d.format(), err=True)
+            errors = len(diags.errors)
+            warnings = sum(1 for d in diags.items if d.severity == "warning")
+            summary = f"{errors} errors, {warnings} warnings"
+            if compiled is None or errors or (strict and warnings):
+                typer.echo(f"✗ {course} ({summary})", err=True)
+                failed = True
+            elif check:
+                typer.echo(f"✓ {compiled.course.id} ({summary})")
+            else:
+                manifest = write_bundle(compiled, profiles, analyzers, out / compiled.course.id)
+                typer.echo(f"✓ {compiled.course.id} → {manifest['id']} ({summary})")
+    raise typer.Exit(code=1 if failed else 0)
+
+
+@app.command()
+def lints() -> None:
+    """List every compiler lint: id, severity, stage and what it catches (gameplan §7.5)."""
+    from nabu.compiler import LINTS
+
+    for lint in LINTS.values():
+        typer.echo(f"{lint.id:34} {lint.severity:8} stage {lint.stage}  {lint.description}")
+
+
+@app.command("import-librelingo")
+def import_librelingo(
+    source: Annotated[
+        Path, typer.Argument(exists=True, file_okay=False, help="LibreLingo course directory.")
+    ],
+    out: Annotated[Path, typer.Option(help="Output course directory.")],
+    course_id: Annotated[str, typer.Option(help="Nabu course id.")],
+    orthography: Annotated[str, typer.Option(help="Target orthography id, e.g. es-Latn/standard.")],
+) -> None:
+    """Import a LibreLingo YAML course as Nabu draft sources (best effort, §7.7)."""
+    from nabu.importers.librelingo import import_course, write
+
+    imported = import_course(source, course_id, orthography)
+    write(imported, out)
+    typer.echo(f"wrote {out} ({len(imported.units)} units)")
+
+
 @app.command()
 def tables(
     out: Annotated[Path, typer.Option(help="Output directory.")] = Path("../profiles/tables"),

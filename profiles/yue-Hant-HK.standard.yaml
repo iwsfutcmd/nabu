@@ -3,6 +3,9 @@
 id: yue-Hant-HK/standard
 lang: yue-Hant-HK
 exemplars: cldr:yue_Hant
+# REVIEW: CLDR 49 yue_Hant main exemplars are the zh_Hant set and lack everyday Cantonese
+# characters. These are gaps to report upstream (docs/gameplan-errata.md), not a wider audit.
+exemplarsExtra: [佢, 哋, 嘅, 咗, 嘢, 冇, 咩, 啲, 嚟, 喺, 噉, 乜, 嗰, 啱, 搵, 睇, 攰, 冧, 嘥, 喎, 嘞, 嗮, 咁, 揸, 瞓, 嬲, 靚, 餸, 嘈, 𨋢]
 segmentation: { content: pycantonese, runtime: grapheme }
 normalize:
   - nfc

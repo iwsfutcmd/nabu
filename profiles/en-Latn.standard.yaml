@@ -1,0 +1,15 @@
+# Support-language profile: normalizes English translation accept sets and answers (L2→L1).
+# Phase 2. Not a target course.
+id: en-Latn/standard
+lang: en-Latn
+exemplars: cldr:en
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "’": "'", "‘": "'" }     # curly apostrophes in contractions
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: en }
+  typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+layout: { vertical: none }

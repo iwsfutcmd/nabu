@@ -24,6 +24,16 @@
       "type": "string",
       "pattern": "^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$"
     },
+    "exemplarsExtra": {
+      "description": "Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
     "letters": {
       "description": "The alphabet as the orthography defines it, including multigraph letters (sh, ch, ng, oʻ). Typo distance and letter-level exercises use it, longest match first.",
       "type": "array",

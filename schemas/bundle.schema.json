@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/bundle.schema.json",
+  "title": "BundleManifest",
+  "description": "A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.",
+  "type": "object",
+  "required": ["formatVersion", "id", "course", "target", "orthographies", "support", "versions", "files", "units", "licenses", "provenance"],
+  "additionalProperties": false,
+  "properties": {
+    "formatVersion": { "const": 0 },
+    "id": { "description": "sha256 of the manifest without this field.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "course": { "type": "string" },
+    "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
+    "orthographies": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/OrthographyId" } },
+    "support": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/OrthographyId" } },
+    "versions": {
+      "description": "Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.",
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    },
+    "files": {
+      "description": "Every file in the bundle by role, with its SPDX license.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/BundleFile" }
+    },
+    "units": { "type": "array", "items": { "type": "object", "required": ["id", "file"], "additionalProperties": false, "properties": { "id": { "type": "string" }, "file": { "type": "string" } } } },
+    "licenses": { "description": "SPDX expression → number of content items.", "type": "object", "additionalProperties": { "type": "integer" } },
+    "provenance": { "description": "Counts by status and author kind.", "type": "object", "additionalProperties": { "type": "integer" } }
+  },
+  "$defs": {
+    "BundleFile": {
+      "title": "BundleFile",
+      "type": "object",
+      "required": ["path", "role", "sha256", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string" },
+        "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard"] },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "license": { "type": "string" },
+        "source": { "type": "string" }
+      }
+    },
+    "BundleUnit": {
+      "title": "BundleUnit",
+      "type": "object",
+      "required": ["id", "kcs", "nodes", "sentences"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "cefr": { "type": "string" },
+        "title": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "kcs": { "type": "array", "items": { "$ref": "#/$defs/BundleKc" } },
+        "nodes": { "type": "array", "items": { "$ref": "#/$defs/BundleNode" } },
+        "sentences": { "type": "array", "items": { "$ref": "#/$defs/BundleSentence" } }
+      }
+    },
+    "BundleKc": {
+      "title": "BundleKc",
+      "type": "object",
+      "required": ["id", "kind", "prerequisites"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "common.schema.json#/$defs/KcId" },
+        "kind": { "type": "string", "enum": ["sense", "form", "construction", "grapheme", "reading", "phone", "tone"] },
+        "prerequisites": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "cefr": { "type": "string" },
+        "gloss": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "forms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "tagged-text.schema.json" } } }
+      }
+    },
+    "BundleNode": {
+      "title": "BundleNode",
+      "type": "object",
+      "required": ["id", "kind", "introduces", "reinforces", "sentences"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "kind": { "type": "string" },
+        "introduces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "reinforces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "sentences": { "type": "array", "items": { "type": "string" } },
+        "convert": {
+          "type": "object",
+          "required": ["from", "to"],
+          "additionalProperties": false,
+          "properties": { "from": { "type": "string" }, "to": { "type": "string" } }
+        }
+      }
+    },
+    "BundleSentence": {
+      "title": "BundleSentence",
+      "type": "object",
+      "required": ["id", "node", "forms", "translations", "kcs", "production", "provenance", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "node": { "type": "string" },
+        "forms": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["text"],
+            "additionalProperties": false,
+            "properties": { "text": { "$ref": "tagged-text.schema.json" }, "reverse": { "type": "string" } }
+          }
+        },
+        "translations": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["text", "accept"],
+            "additionalProperties": false,
+            "properties": { "text": { "$ref": "tagged-text.schema.json" }, "accept": { "type": "string" } }
+          }
+        },
+        "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
+        "production": { "type": "boolean" },
+        "register": { "type": "string" },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+        "license": { "type": "string" }
+      }
+    }
+  }
+}
