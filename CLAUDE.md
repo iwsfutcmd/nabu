@@ -60,3 +60,16 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Analyzers (PyCantonese, hazm) are a default uv group; PyICU is the `icu` group (apt install libicu-dev pkg-config,
   then uv sync --all-groups). NABU_REQUIRE_TOOLS=1 turns tool-dependent skips into failures (CI sets it).
 - CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
+
+## Working in this repo
+- Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
+- GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
+- ADRs 0013–0033 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- Fresh cloud container setup:
+  - `pnpm i`
+  - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
+  - `cd pipeline && uv sync --all-groups`
+- For `pnpm test:visual:docker` in a container, start the Docker daemon first:
+  `(dockerd > /tmp/dockerd.log 2>&1 &)`
+- Agents: shell heredocs can turn a typed `\uXXXX` into the literal character. Build escapes in code (chr(92)),
+  then grep for literal invisibles before committing.
