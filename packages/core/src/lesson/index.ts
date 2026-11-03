@@ -1,7 +1,9 @@
-export { buildLesson, lessonNodes, type LessonNode, type LessonOptions } from "./build.ts";
-export { allKcs, allSentences, assembleCourse, createGrader, keyboardFor, profileOf, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
+export { buildLesson, lessonNodes, sampleExercise, type LessonNode, type LessonOptions } from "./build.ts";
+export { allKcs, allSentences, assembleCourse, createGrader, profileOf, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
+export { answerDiff, type AnswerDiff } from "./diff.ts";
 export * from "./exercise.ts";
 export {
+  draftOf,
   emptyDraft,
   progressOf,
   responseOf,

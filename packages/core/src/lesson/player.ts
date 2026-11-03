@@ -105,6 +105,36 @@ export const emptyDraft = (ex: Exercise): Draft => {
   }
 };
 
+/** The draft a submitted response came from: what the views show while checking and in feedback. */
+export const draftOf = (state: PlayerState): Draft | undefined => {
+  const active = state.tag === "interrupted" ? state.resume : state;
+  switch (active.tag) {
+    case "finished":
+      return undefined;
+    case "presenting":
+      return emptyDraft(active.ex);
+    case "answering":
+      return active.draft;
+    case "checking":
+    case "feedback": {
+      const response = active.tag === "checking" ? active.response : active.response;
+      if (response === null) return emptyDraft(active.ex);
+      switch (response.tag) {
+        case "choice":
+          return { tag: "choice", index: response.index };
+        case "tiles":
+          return { tag: "tiles", order: response.order };
+        case "text":
+          return { tag: "text", text: response.text };
+        case "pairs":
+          return { tag: "pairs", matched: active.ex.template === "match-pairs" ? active.ex.left.map((_, i) => i) : [], mistakes: response.mistakes };
+        case "self-rating":
+          return { tag: "self-rating", rating: response.rating };
+      }
+    }
+  }
+};
+
 /** The response a draft submits, or undefined while it is incomplete. */
 export const responseOf = (ex: Exercise, draft: Draft): Response | undefined => {
   switch (draft.tag) {

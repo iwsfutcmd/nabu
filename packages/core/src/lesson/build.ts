@@ -97,3 +97,23 @@ export const buildLesson = (course: CourseView, nodeId: string, options: LessonO
 
   return out.slice(0, options.maxExercises ?? 14);
 };
+
+/**
+ * The first exercise of `template` that the course's lessons produce (seeded),
+ * for stories, tests and previews. Undefined when no lesson can make one.
+ */
+export const sampleExercise = (course: CourseView, template: TemplateId, seed = 1): Exercise | undefined => {
+  for (const { node } of lessonNodes(course)) {
+    const found = buildLesson(course, node.id, { seed }).find((e) => e.template === template);
+    if (found !== undefined) return found;
+  }
+  const rng = seededRng(seed);
+  for (const { unit, node } of lessonNodes(course)) {
+    const ctx: MakeContext = { course, rng, introduced: node.introduces };
+    for (const s of sentencesOf(course, unit, node)) {
+      const ex = SENTENCE_TEMPLATES[template]?.(ctx, s);
+      if (ex !== undefined) return ex;
+    }
+  }
+  return undefined;
+};

@@ -65,3 +65,13 @@ export const checkTaggedText = (text: TaggedText): readonly TextIssue[] => {
   });
   return issues;
 };
+
+/**
+ * A one-token TaggedText for a short surface such as a keyboard key or a
+ * special character: `word` for letters and marks, `punct` otherwise.
+ */
+export const textOfSurface = (base: Pick<TaggedText, "lang" | "orthography">, surface: string): TaggedText => ({
+  lang: base.lang,
+  orthography: base.orthography,
+  tokens: [{ surface, kind: /[\p{L}\p{M}\p{N}]/u.test(surface) ? "word" : "punct" }],
+});

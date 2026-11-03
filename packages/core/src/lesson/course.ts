@@ -7,7 +7,6 @@ import type { BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, K
 import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
-import { asciiLowercase } from "../text/ascii.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 
 export interface CourseView {
@@ -19,7 +18,6 @@ export interface CourseView {
   readonly support: string;
   readonly supportKey: string;
   readonly profiles: ReadonlyMap<string, CompiledProfile>;
-  readonly keyboards: ReadonlyMap<string, KeyboardLayout>;
 }
 
 export interface CourseFiles {
@@ -47,8 +45,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     if (f.role !== "image" && !files.has(f.path)) return err({ code: "missing-file", path: f.path });
   }
   const tables = Object.fromEntries((read("table") as DataTable[]).map((t) => [t.id, t]));
-  const keyboardList = read("keyboard") as KeyboardLayout[];
-  const keyboards = Object.fromEntries(keyboardList.map((k) => [k.id, k]));
+  const keyboards = Object.fromEntries((read("keyboard") as KeyboardLayout[]).map((k) => [k.id, k]));
   const profiles = new Map<string, CompiledProfile>();
   for (const raw of read("profile") as OrthographyProfile[]) {
     const compiled = compileProfile(raw, { numberingSystems: bundle.numberingSystems, tables, keyboards });
@@ -64,7 +61,6 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     support,
     supportKey: supportKeyOf(support),
     profiles,
-    keyboards: new Map(keyboardList.map((k) => [k.id, k])),
   });
 };
 
@@ -76,14 +72,6 @@ export const profileOf = (course: CourseView, orthography: string): CompiledProf
 
 export const allSentences = (course: CourseView): readonly BundleSentence[] => course.units.flatMap((u) => u.sentences);
 export const allKcs = (course: CourseView): readonly BundleKc[] => course.units.flatMap((u) => u.kcs);
-
-/** The keyboard layout a profile's input (else typo model) names, for the touch keyboard. */
-export const keyboardFor = (course: CourseView, orthography: string): KeyboardLayout | undefined => {
-  const source = profileOf(course, orthography).source;
-  const ref = source.input?.keyboard ?? (source.match?.typo as { layout?: string } | undefined)?.layout;
-  if (ref === undefined) return undefined;
-  return course.keyboards.get(asciiLowercase(ref.replace(/^cldr-kbd:/u, "")));
-};
 
 /** Grades answers against accept sets with the course's compiled profiles (§8.3). */
 export interface Grader {

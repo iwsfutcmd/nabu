@@ -466,7 +466,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
         : mismatch(ex, response);
     case "speak.tier-0":
       if (response.tag !== "self-rating") return mismatch(ex, response);
-      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [`self-rated-${response.rating}`] };
+      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [] };
   }
 };
 
