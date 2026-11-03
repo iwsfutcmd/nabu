@@ -116,3 +116,30 @@ ADR is linked. The gameplan text itself is left as written.
     calibrated items yet. Placement v0 probes every lesson node once and places through the longest
     run answered right ([ADR 0039](adr/0039-placement-and-calibration.md)).
 
+## Phase 5
+
+35. **§10.1 "Local options include Piper, Kokoro and MMS-TTS":** for the fixture languages these are
+    not free to ship. MMS-TTS is CC BY-NC 4.0. All four Persian Piper voices descend from the
+    English "lessac" voice, whose Blizzard license restricts use. Kokoro has no fa, yue, uz or apc.
+    The license-clean local engine is eSpeak NG. Its audio is robotic, and the round-trip check
+    holds most of its clips back ([ADR 0040](adr/0040-audio-pipeline.md)).
+36. **§16 Phase 5 "the polyphone fixture is synthesized correctly and passes round-trip
+    verification":** 銀行 and 行路 are synthesized from their pinned readings, and eSpeak's own
+    phoneme trace confirms hong4 and haang4. Whisper cannot recognize eSpeak's Cantonese at all, so
+    the round trip fails, and the gate rightly keeps those clips out. Meeting this criterion needs a
+    better Cantonese voice. Qwen3-TTS with a CC0-trained Hong Kong LoRA (Apache-2.0) is the
+    candidate, awaiting a decision ([ADR 0040](adr/0040-audio-pipeline.md)).
+37. **§10.3 "an MMS-based aligner that takes romanized input, or the Montreal Forced Aligner":**
+    alignment uses one phoneme CTC model (wav2vec2-xlsr-53-espeak-cv-ft). Its outputs are eSpeak
+    IPA, which needs no romanizer. Word starts are refined from the audio's energy, because CTC
+    fires late.
+38. **§10.2 Lingua Libre, Tatoeba and Common Voice ingestion:** the ingestion path exists
+    (`nabu audio ingest`, with licenses and provenance). No recordings are committed yet: the
+    Commons API rate-limited this environment, so recordings are pulled by hand for now.
+39. **§16 Phase 4 "server projections identical to the local ones":** they are byte-identical when
+    the same JavaScript engine computes them (Node on the server, and Node in the tests).
+    `Math.exp` and `Math.pow` are not specified to be correctly rounded, so a browser's replay can
+    differ from the server's in the last bit. The listening priors first exposed this. The device
+    therefore checks agreement within a relative 1e-9 and reports the first value outside it. The
+    server is authoritative ([ADR 0038](adr/0038-server-sync-and-accounts.md)).
+

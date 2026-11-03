@@ -87,14 +87,24 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 
+## Phase 5 notes (see docs/adr/0040–0041)
+- Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
+  ../courses/<id> [--check]` writes it (needs espeak-ng; --check needs `uv sync --group speech`). The compiler only
+  reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
+- Synthesize from pinned readings (Jyutping), never raw characters. apc is human-required: `nabu audio ingest`.
+- Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
+- Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
+- Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0039 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0041 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
-  - `cd pipeline && uv sync --all-groups`
+  - `sudo apt-get install -y espeak-ng` (audio)
+  - `cd pipeline && uv sync --all-groups` (the speech group pulls CPU PyTorch; add `--no-group speech` to skip it)
 - For `pnpm test:visual:docker` in a container, start the Docker daemon first:
   `(dockerd > /tmp/dockerd.log 2>&1 &)`
 - Agents: shell heredocs can turn a typed `\uXXXX` into the literal character. Build escapes in code (chr(92)),
