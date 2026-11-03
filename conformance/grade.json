@@ -129,6 +129,34 @@
       "note": "a Simplified-only form is a script mismatch, not an IME slip"
     },
     {
+      "id": "grade/yue/hk-cantonese-saai3",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "唔該晒",
+        "answer": "唔該晒"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "晒 (saai3, 'all') is how HK writes Cantonese; OpenCC's orthodox table alone calls it Simplified (errata 20)"
+    },
+    {
+      "id": "grade/yue/hk-standard-form",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "一群學生",
+        "answer": "一群學生"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "群 is the HK/TW standard form of orthodox 羣, not a Simplified character"
+    },
+    {
       "id": "grade/yue/fullwidth-digit",
       "op": "grade",
       "args": {

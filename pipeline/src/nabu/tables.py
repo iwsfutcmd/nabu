@@ -14,6 +14,8 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from nabu.paths import I18N_GENERATED
+
 UNICODE_VERSION = "16.0.0"  # matches CLDR 49 (packages/i18n/src/generated/cldr-meta.json)
 UNIHAN_URL = f"https://www.unicode.org/Public/{UNICODE_VERSION}/ucd/Unihan.zip"
 OPENCC_TAG = "ver.1.1.9"
@@ -69,15 +71,33 @@ def hk_tw_variants() -> dict[str, Any]:
     }
 
 
+def hant_exemplars() -> set[str]:
+    """CLDR's yue_Hant main and auxiliary exemplars (packages/i18n/src/generated/exemplars.json)."""
+    data = json.loads((I18N_GENERATED / "exemplars.json").read_text(encoding="utf-8"))["yue"]
+    return {c for kind in ("main", "auxiliary") for item in data.get(kind, []) for c in item}
+
+
 def hans_only() -> dict[str, Any]:
-    """Characters that occur only in Simplified writing: S→T keys never used as a T form."""
+    """Characters that occur only in Simplified writing: S→T keys never used as a Traditional form.
+
+    OpenCC's Traditional is the orthodox (Kangxi) standard, so HK and TW standard forms (群 床 峰)
+    and characters HK Cantonese writes as they are (晒 saai3) look Simplified to it. Anything in
+    HKVariants or TWVariants, or in CLDR's yue_Hant exemplars, is therefore not Simplified-only.
+    """
     pairs = opencc_pairs("STCharacters.txt")
     traditional = {t for _, ts in pairs for t in ts}
+    traditional |= {
+        c
+        for key, values in opencc_pairs("HKVariants.txt") + opencc_pairs("TWVariants.txt")
+        for c in (key, *values)
+    }
+    traditional |= hant_exemplars()
     chars = sorted(s for s, ts in pairs if s not in traditional and s not in ts)
     return {
         "id": "hans-only",
         "kind": "charset",
-        "source": f"OpenCC {OPENCC_TAG} STCharacters.txt (keys never used as a Traditional form)",
+        "source": f"OpenCC {OPENCC_TAG} STCharacters.txt (keys never used as a Traditional form), "
+        "less HKVariants/TWVariants forms and CLDR yue_Hant exemplars",
         "license": "Apache-2.0",
         "chars": "".join(chars),
     }
