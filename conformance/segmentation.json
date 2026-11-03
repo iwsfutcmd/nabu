@@ -1,0 +1,248 @@
+{
+  "$comment": "Runtime units (§6.5): tokens split at spaces where spaces survive normalization, grapheme clusters otherwise; and the orthography's letters, longest match first, after case folding (§6.3).",
+  "vectors": [
+    {
+      "id": "units/fa/tokens",
+      "op": "units",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کتاب\u200Cها روی میز"
+      },
+      "expected": [
+        "کتاب\u200Cها",
+        "روی",
+        "میز"
+      ]
+    },
+    {
+      "id": "units/yue/graphemes",
+      "op": "units",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "我哋 去！"
+      },
+      "expected": [
+        "我",
+        "哋",
+        "去"
+      ]
+    },
+    {
+      "id": "units/uz/tokens",
+      "op": "units",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Men o'zbek"
+      },
+      "expected": [
+        "Men",
+        "oʻzbek"
+      ]
+    },
+    {
+      "id": "units/tr/tokens",
+      "op": "units",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "İstanbul'da yaşıyorum"
+      },
+      "expected": [
+        "İstanbulda",
+        "yaşıyorum"
+      ]
+    },
+    {
+      "id": "units/empty",
+      "op": "units",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": ""
+      },
+      "expected": []
+    },
+    {
+      "id": "units/punct-only",
+      "op": "units",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "؟!"
+      },
+      "expected": []
+    },
+    {
+      "id": "units/apc-latn/tokens",
+      "op": "units",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "shu  baddak?"
+      },
+      "expected": [
+        "shu",
+        "baddak"
+      ]
+    },
+    {
+      "id": "letters/uz/okina",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "oʻzbek"
+      },
+      "expected": [
+        "oʻ",
+        "z",
+        "b",
+        "e",
+        "k"
+      ]
+    },
+    {
+      "id": "letters/uz/sh",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Shahar"
+      },
+      "expected": [
+        "sh",
+        "a",
+        "h",
+        "a",
+        "r"
+      ]
+    },
+    {
+      "id": "letters/uz/g-okina",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "g'alaba"
+      },
+      "expected": [
+        "gʻ",
+        "a",
+        "l",
+        "a",
+        "b",
+        "a"
+      ]
+    },
+    {
+      "id": "letters/uz/ng",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "tong"
+      },
+      "expected": [
+        "t",
+        "o",
+        "ng"
+      ]
+    },
+    {
+      "id": "letters/uz/ch-okina",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Cho'l"
+      },
+      "expected": [
+        "ch",
+        "oʻ",
+        "l"
+      ]
+    },
+    {
+      "id": "letters/uz/upper-ascii",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "O'ZBEK"
+      },
+      "expected": [
+        "oʻ",
+        "z",
+        "b",
+        "e",
+        "k"
+      ]
+    },
+    {
+      "id": "letters/uz/tutuq-blocks-sh",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Is'hoq"
+      },
+      "expected": [
+        "i",
+        "s",
+        "ʼ",
+        "h",
+        "o",
+        "q"
+      ],
+      "note": "the tutuq belgisi is what keeps s and h apart"
+    },
+    {
+      "id": "letters/uz/tutuq",
+      "op": "letters",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "ma'no"
+      },
+      "expected": [
+        "m",
+        "a",
+        "ʼ",
+        "n",
+        "o"
+      ]
+    },
+    {
+      "id": "letters/tr/dotless",
+      "op": "letters",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "IĞDIR"
+      },
+      "expected": [
+        "ı",
+        "ğ",
+        "d",
+        "ı",
+        "r"
+      ]
+    },
+    {
+      "id": "letters/tg/letters",
+      "op": "letters",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "text": "ҶАҲОН"
+      },
+      "expected": [
+        "ҷ",
+        "а",
+        "ҳ",
+        "о",
+        "н"
+      ]
+    },
+    {
+      "id": "letters/fa/graphemes-fallback",
+      "op": "letters",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کتاب"
+      },
+      "expected": [
+        "ک",
+        "ت",
+        "ا",
+        "ب"
+      ]
+    }
+  ]
+}

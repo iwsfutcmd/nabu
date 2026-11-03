@@ -3,11 +3,17 @@
   "compilerOptions": {
     "types": [
       "node"
+    ],
+    "lib": [
+      "esnext",
+      "DOM"
     ]
   },
   "include": [
     "src",
     "test",
-    "vitest.config.ts"
+    "perf",
+    "vitest.config.ts",
+    "playwright.config.ts"
   ]
 }

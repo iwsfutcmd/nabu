@@ -1,0 +1,671 @@
+{
+  "$comment": "Normalization pipelines from the orthography profiles (gameplan §6.3–6.4), identical for accept sets and answers. Always: NFC, bidi controls removed.",
+  "vectors": [
+    {
+      "id": "normalize/fa/arabic-kaf",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "كتاب"
+      },
+      "expected": "کتاب"
+    },
+    {
+      "id": "normalize/fa/arabic-yeh",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "روي"
+      },
+      "expected": "روی"
+    },
+    {
+      "id": "normalize/fa/alef-maqsura",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "موسى"
+      },
+      "expected": "موسی"
+    },
+    {
+      "id": "normalize/fa/tatweel",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کـــتاب"
+      },
+      "expected": "کتاب"
+    },
+    {
+      "id": "normalize/fa/presentation-keheh",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "ﮎ"
+      },
+      "expected": "ک"
+    },
+    {
+      "id": "normalize/fa/presentation-kaf-then-map",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "ﻙ"
+      },
+      "expected": "ک",
+      "note": "fold-compat runs before the kaf → keheh map"
+    },
+    {
+      "id": "normalize/fa/presentation-lam-alef",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "ﻻ"
+      },
+      "expected": "لا"
+    },
+    {
+      "id": "normalize/fa/presentation-alef-final",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "ﺎ"
+      },
+      "expected": "ا"
+    },
+    {
+      "id": "normalize/fa/digits-arabext",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "۰۱۲۳۴۵۶۷۸۹"
+      },
+      "expected": "0123456789"
+    },
+    {
+      "id": "normalize/fa/digits-arab",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "٠١٢٣٤٥٦٧٨٩"
+      },
+      "expected": "0123456789"
+    },
+    {
+      "id": "normalize/fa/digits-latn",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "47"
+      },
+      "expected": "47"
+    },
+    {
+      "id": "normalize/fa/question-mark",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "سلام؟"
+      },
+      "expected": "سلام"
+    },
+    {
+      "id": "normalize/fa/guillemets",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "«سلام»"
+      },
+      "expected": "سلام"
+    },
+    {
+      "id": "normalize/fa/arabic-comma",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "سلام، دنیا"
+      },
+      "expected": "سلام دنیا"
+    },
+    {
+      "id": "normalize/fa/whitespace",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "  سلام   دنیا  "
+      },
+      "expected": "سلام دنیا"
+    },
+    {
+      "id": "normalize/fa/nbsp",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "سلام\u00A0دنیا"
+      },
+      "expected": "سلام دنیا"
+    },
+    {
+      "id": "normalize/fa/zwnj-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کتاب\u200Cها"
+      },
+      "expected": "کتاب\u200Cها"
+    },
+    {
+      "id": "normalize/fa/harakat-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کِتاب"
+      },
+      "expected": "کِتاب",
+      "note": "marks are a matching policy, not a normalization step"
+    },
+    {
+      "id": "normalize/fa/bom",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "\uFEFFسلام"
+      },
+      "expected": "سلام"
+    },
+    {
+      "id": "normalize/fa/bidi-controls",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "\u200Fسلام\u202C\u200E"
+      },
+      "expected": "سلام"
+    },
+    {
+      "id": "normalize/fa/isolates",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "\u2067سلام\u2069"
+      },
+      "expected": "سلام"
+    },
+    {
+      "id": "normalize/fa/alm",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "\u061C۴۷"
+      },
+      "expected": "47"
+    },
+    {
+      "id": "normalize/fa/zwj-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "ه\u200D"
+      },
+      "expected": "ه\u200D"
+    },
+    {
+      "id": "normalize/fa/empty",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": ""
+      },
+      "expected": ""
+    },
+    {
+      "id": "normalize/ar/tatweel",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "أكـــلت"
+      },
+      "expected": "أكلت"
+    },
+    {
+      "id": "normalize/ar/digits",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "٤٧"
+      },
+      "expected": "47"
+    },
+    {
+      "id": "normalize/ar/kaf-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "كتاب"
+      },
+      "expected": "كتاب",
+      "note": "no keheh map for Arabic"
+    },
+    {
+      "id": "normalize/ar/presentation-lam-alef",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "ﻻ"
+      },
+      "expected": "لا"
+    },
+    {
+      "id": "normalize/ar/ligature-allah",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "ﷲ"
+      },
+      "expected": "الله"
+    },
+    {
+      "id": "normalize/ar/semicolon",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "نعم؛ لا"
+      },
+      "expected": "نعم لا"
+    },
+    {
+      "id": "normalize/ar/harakat-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "كِتَابٌ"
+      },
+      "expected": "كِتَابٌ"
+    },
+    {
+      "id": "normalize/ar/hamza-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "text": "أكلت"
+      },
+      "expected": "أكلت",
+      "note": "hamza seats are a match equivalence, not a normalization"
+    },
+    {
+      "id": "normalize/apc-arab/question",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "text": "شو بدّك؟"
+      },
+      "expected": "شو بدّك"
+    },
+    {
+      "id": "normalize/apc-arab/digits",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "text": "٣"
+      },
+      "expected": "3"
+    },
+    {
+      "id": "normalize/apc-arab/tatweel",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "text": "شـو"
+      },
+      "expected": "شو"
+    },
+    {
+      "id": "normalize/yue/spaces-removed",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "我哋 去 飲茶"
+      },
+      "expected": "我哋去飲茶"
+    },
+    {
+      "id": "normalize/yue/fullwidth-punct",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "我哋去飲茶啦！"
+      },
+      "expected": "我哋去飲茶啦"
+    },
+    {
+      "id": "normalize/yue/cjk-punct",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "「早晨」，你好。"
+      },
+      "expected": "早晨你好"
+    },
+    {
+      "id": "normalize/yue/fullwidth-digits",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "３點"
+      },
+      "expected": "3點"
+    },
+    {
+      "id": "normalize/yue/fullwidth-latin",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "ＯＫ啦"
+      },
+      "expected": "OK啦"
+    },
+    {
+      "id": "normalize/yue/ideographic-space",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "早晨\u3000呀"
+      },
+      "expected": "早晨呀"
+    },
+    {
+      "id": "normalize/yue/compat-ideograph",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "豈"
+      },
+      "expected": "豈",
+      "note": "NFC maps CJK compatibility ideographs to unified ones (gameplan §6.4)"
+    },
+    {
+      "id": "normalize/yue/ivs-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "葛\uDB40\uDD01"
+      },
+      "expected": "葛\uDB40\uDD01"
+    },
+    {
+      "id": "normalize/yue/halfwidth-ideographic-stop",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "好｡"
+      },
+      "expected": "好"
+    },
+    {
+      "id": "normalize/yue/ascii-punct",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "好!"
+      },
+      "expected": "好"
+    },
+    {
+      "id": "normalize/yue/case-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "Ok啦"
+      },
+      "expected": "Ok啦"
+    },
+    {
+      "id": "normalize/uz/ascii-o",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "o'zbek"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "normalize/uz/ascii-O",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "O'zbekiston"
+      },
+      "expected": "Oʻzbekiston",
+      "note": "capital O: fixed in ADR 0016"
+    },
+    {
+      "id": "normalize/uz/left-quote-o",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "o‘zbek"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "normalize/uz/right-quote-o",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "o’zbek"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "normalize/uz/backtick-o",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "o`zbek"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "normalize/uz/ascii-g",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "g'alaba"
+      },
+      "expected": "gʻalaba"
+    },
+    {
+      "id": "normalize/uz/ascii-G",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "G'ALABA"
+      },
+      "expected": "GʻALABA"
+    },
+    {
+      "id": "normalize/uz/tutuq-ascii",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "ma'no"
+      },
+      "expected": "maʼno"
+    },
+    {
+      "id": "normalize/uz/tutuq-right-quote",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "ma’no"
+      },
+      "expected": "maʼno"
+    },
+    {
+      "id": "normalize/uz/both",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "o'g'il"
+      },
+      "expected": "oʻgʻil"
+    },
+    {
+      "id": "normalize/uz/canonical-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "oʻzbek"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "normalize/uz/tutuq-before-h",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Is'hoq"
+      },
+      "expected": "Isʼhoq"
+    },
+    {
+      "id": "normalize/uz/punct",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Salom, dunyo!"
+      },
+      "expected": "Salom dunyo"
+    },
+    {
+      "id": "normalize/uz/letters-not-stripped",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "oʻgʻil, maʼno."
+      },
+      "expected": "oʻgʻil maʼno",
+      "note": "U+02BB/U+02BC are gc=Lm, never punctuation"
+    },
+    {
+      "id": "normalize/uz-cyrl/punct",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "text": "Салом, дунё!"
+      },
+      "expected": "Салом дунё"
+    },
+    {
+      "id": "normalize/uz-cyrl/spaces",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "text": " Мен  ўзбек "
+      },
+      "expected": "Мен ўзбек"
+    },
+    {
+      "id": "normalize/tg/punct",
+      "op": "normalize",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "text": "Салом, ҷаҳон!"
+      },
+      "expected": "Салом ҷаҳон"
+    },
+    {
+      "id": "normalize/tg/guillemets",
+      "op": "normalize",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "text": "«Ҳа»"
+      },
+      "expected": "Ҳа"
+    },
+    {
+      "id": "normalize/tr/apostrophe-suffix",
+      "op": "normalize",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "İstanbul'da"
+      },
+      "expected": "İstanbulda"
+    },
+    {
+      "id": "normalize/tr/curly-apostrophe",
+      "op": "normalize",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "Ankara’ya"
+      },
+      "expected": "Ankaraya"
+    },
+    {
+      "id": "normalize/tr/case-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "İSTANBUL"
+      },
+      "expected": "İSTANBUL",
+      "note": "case is folded at match time, not normalized"
+    },
+    {
+      "id": "normalize/tr/circumflex-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "text": "kâğıt"
+      },
+      "expected": "kâğıt"
+    },
+    {
+      "id": "normalize/apc-latn/apostrophe-hamza",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "ma'a"
+      },
+      "expected": "ma2a"
+    },
+    {
+      "id": "normalize/apc-latn/curly-hamza",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "ma’a"
+      },
+      "expected": "ma2a"
+    },
+    {
+      "id": "normalize/apc-latn/digit-letters",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "3am b2ul 7abibi"
+      },
+      "expected": "3am b2ul 7abibi",
+      "note": "digit letters are letters"
+    },
+    {
+      "id": "normalize/apc-latn/question",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "kifak?"
+      },
+      "expected": "kifak"
+    },
+    {
+      "id": "normalize/apc-latn/hyphen",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "l-yom"
+      },
+      "expected": "lyom"
+    }
+  ]
+}

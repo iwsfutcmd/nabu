@@ -46,7 +46,7 @@ jobs:
         run: pnpm test
 
   visual:
-    name: Visual matrix (Playwright)
+    name: Visual matrix and grading performance (Playwright)
     runs-on: ubuntu-24.04
     # Baselines are generated in this exact image (pnpm test:visual:update), so
     # screenshots compare pixel for pixel. Keep the tag in sync with @playwright/test.
@@ -61,6 +61,8 @@ jobs:
         run: corepack enable && pnpm --version
       - run: pnpm install --frozen-lockfile
       - run: pnpm test:visual
+      - name: Grading p95 under 5 ms with 4x CPU throttling (Phase 1 acceptance)
+        run: pnpm test:perf
       - name: Upload report on failure
         if: failure()
         uses: actions/upload-artifact@v5
@@ -69,4 +71,5 @@ jobs:
           path: |
             packages/ui/playwright-report
             packages/ui/test-results
+            packages/core-cli/test-results
           retention-days: 14

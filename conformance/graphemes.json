@@ -1,0 +1,273 @@
+{
+  "$comment": "Extended grapheme clusters (UAX #29, engine Unicode version) for the torture strings of gameplan §15. Runtime comparison of unspaced scripts is grapheme by grapheme (§6.5).",
+  "vectors": [
+    {
+      "id": "graphemes/e-combining-acute",
+      "op": "graphemes",
+      "args": {
+        "text": "é"
+      },
+      "expected": [
+        "é"
+      ]
+    },
+    {
+      "id": "graphemes/e-precomposed",
+      "op": "graphemes",
+      "args": {
+        "text": "é"
+      },
+      "expected": [
+        "é"
+      ]
+    },
+    {
+      "id": "graphemes/hangul-jamo-lvt",
+      "op": "graphemes",
+      "args": {
+        "text": "각"
+      },
+      "expected": [
+        "각"
+      ]
+    },
+    {
+      "id": "graphemes/hangul-precomposed-pair",
+      "op": "graphemes",
+      "args": {
+        "text": "각가"
+      },
+      "expected": [
+        "각",
+        "가"
+      ]
+    },
+    {
+      "id": "graphemes/zwj-family",
+      "op": "graphemes",
+      "args": {
+        "text": "👨\u200D👩\u200D👧"
+      },
+      "expected": [
+        "👨\u200D👩\u200D👧"
+      ]
+    },
+    {
+      "id": "graphemes/zwj-technologist",
+      "op": "graphemes",
+      "args": {
+        "text": "👩\u200D💻"
+      },
+      "expected": [
+        "👩\u200D💻"
+      ]
+    },
+    {
+      "id": "graphemes/flags-two",
+      "op": "graphemes",
+      "args": {
+        "text": "🇮🇷🇭🇰"
+      },
+      "expected": [
+        "🇮🇷",
+        "🇭🇰"
+      ]
+    },
+    {
+      "id": "graphemes/flags-odd-ri",
+      "op": "graphemes",
+      "args": {
+        "text": "🇮🇷🇭"
+      },
+      "expected": [
+        "🇮🇷",
+        "🇭"
+      ]
+    },
+    {
+      "id": "graphemes/persian-zwnj-extends",
+      "op": "graphemes",
+      "args": {
+        "text": "کتاب\u200Cها"
+      },
+      "expected": [
+        "ک",
+        "ت",
+        "ا",
+        "ب\u200C",
+        "ه",
+        "ا"
+      ],
+      "note": "ZWNJ is Grapheme_Cluster_Break=Extend: it belongs to the preceding letter"
+    },
+    {
+      "id": "graphemes/devanagari-conjunct",
+      "op": "graphemes",
+      "args": {
+        "text": "क्षि"
+      },
+      "expected": [
+        "क्षि"
+      ],
+      "note": "Unicode 15.1 GB9c: a virama-linked conjunct is one cluster"
+    },
+    {
+      "id": "graphemes/devanagari-ni",
+      "op": "graphemes",
+      "args": {
+        "text": "नि"
+      },
+      "expected": [
+        "नि"
+      ]
+    },
+    {
+      "id": "graphemes/devanagari-nukta-composition-exclusion",
+      "op": "graphemes",
+      "args": {
+        "text": "क़"
+      },
+      "expected": [
+        "क़"
+      ]
+    },
+    {
+      "id": "graphemes/thai-sara-am",
+      "op": "graphemes",
+      "args": {
+        "text": "กำ"
+      },
+      "expected": [
+        "กำ"
+      ],
+      "note": "SARA AM is a SpacingMark"
+    },
+    {
+      "id": "graphemes/thai-nikhahit-sara-aa",
+      "op": "graphemes",
+      "args": {
+        "text": "กํา"
+      },
+      "expected": [
+        "กํ",
+        "า"
+      ]
+    },
+    {
+      "id": "graphemes/arabic-harakat",
+      "op": "graphemes",
+      "args": {
+        "text": "كِتَابٌ"
+      },
+      "expected": [
+        "كِ",
+        "تَ",
+        "ا",
+        "بٌ"
+      ]
+    },
+    {
+      "id": "graphemes/arabic-lam-alef",
+      "op": "graphemes",
+      "args": {
+        "text": "لا"
+      },
+      "expected": [
+        "ل",
+        "ا"
+      ],
+      "note": "lam-alef is a ligature in rendering, two clusters in text"
+    },
+    {
+      "id": "graphemes/uzbek-okina-is-two",
+      "op": "graphemes",
+      "args": {
+        "text": "oʻ"
+      },
+      "expected": [
+        "o",
+        "ʻ"
+      ],
+      "note": "U+02BB is a letter (Lm), not a mark: oʻ is two clusters, one letter (profile letters)"
+    },
+    {
+      "id": "graphemes/crlf",
+      "op": "graphemes",
+      "args": {
+        "text": "\r\n"
+      },
+      "expected": [
+        "\r\n"
+      ]
+    },
+    {
+      "id": "graphemes/myanmar-medial-ra",
+      "op": "graphemes",
+      "args": {
+        "text": "ကြ"
+      },
+      "expected": [
+        "ကြ"
+      ]
+    },
+    {
+      "id": "graphemes/ivs",
+      "op": "graphemes",
+      "args": {
+        "text": "葛\uDB40\uDD01"
+      },
+      "expected": [
+        "葛\uDB40\uDD01"
+      ]
+    },
+    {
+      "id": "graphemes/keycap",
+      "op": "graphemes",
+      "args": {
+        "text": "1\uFE0F⃣"
+      },
+      "expected": [
+        "1\uFE0F⃣"
+      ]
+    },
+    {
+      "id": "graphemes/skin-tone",
+      "op": "graphemes",
+      "args": {
+        "text": "👋🏽"
+      },
+      "expected": [
+        "👋🏽"
+      ]
+    },
+    {
+      "id": "graphemes/halfwidth-katakana-voiced",
+      "op": "graphemes",
+      "args": {
+        "text": "ｶﾞ"
+      },
+      "expected": [
+        "ｶﾞ"
+      ],
+      "note": "U+FF9E is Other_Grapheme_Extend"
+    },
+    {
+      "id": "graphemes/tibetan-stack",
+      "op": "graphemes",
+      "args": {
+        "text": "སྐྱ"
+      },
+      "expected": [
+        "སྐྱ"
+      ]
+    },
+    {
+      "id": "graphemes/empty",
+      "op": "graphemes",
+      "args": {
+        "text": ""
+      },
+      "expected": []
+    }
+  ]
+}

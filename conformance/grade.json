@@ -1,0 +1,1199 @@
+{
+  "$comment": "The deterministic grading cascade (gameplan §8.3) with §8.6 verdicts and feedback note ids (feedback.note.<id>).",
+  "vectors": [
+    {
+      "id": "grade/yue/exact",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去飲茶啦"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/yue/spaces-punct",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋 去 飲茶啦！"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/yue/missing-particle",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去飲茶"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/yue/optional-particle",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶[啦]",
+        "answer": "我哋去飲茶"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT",
+        "canonical": false
+      }
+    },
+    {
+      "id": "grade/yue/ime-homophone",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我係學生",
+        "answer": "我系學生"
+      },
+      "expected": {
+        "verdict": "PARTIAL",
+        "notes": [
+          "ime-homophone"
+        ]
+      },
+      "note": "係/系 both read hai6: an IME slip (§8.4)"
+    },
+    {
+      "id": "grade/yue/variant-li",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我住喺裏面",
+        "answer": "我住喺裡面"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "hk-tw-variant"
+        ]
+      }
+    },
+    {
+      "id": "grade/yue/variant-zhe",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "佢睇着我",
+        "answer": "佢睇著我"
+      },
+      "expected": {
+        "verdict": "CORRECT_VARIANT",
+        "notes": [
+          "hk-tw-variant"
+        ]
+      }
+    },
+    {
+      "id": "grade/yue/simplified",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我们去饮茶啦"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "use-traditional"
+        ]
+      }
+    },
+    {
+      "id": "grade/yue/one-simplified-char",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去饮茶啦"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "use-traditional"
+        ]
+      },
+      "note": "a Simplified-only form is a script mismatch, not an IME slip"
+    },
+    {
+      "id": "grade/yue/fullwidth-digit",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "3點",
+        "answer": "３點"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/yue/wrong-char",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去食茶啦"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/yue/extra-char",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": "我哋去飲茶啦啦"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/yue/compat-ideograph",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "豈",
+        "answer": "豈"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/yue/empty",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我哋去飲茶啦",
+        "answer": ""
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/yue/weighted-alt",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "早晨\n早晨呀 @0.5",
+        "answer": "早晨呀"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT",
+        "matched": "早晨呀"
+      }
+    },
+    {
+      "id": "grade/yue/alignment",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "我係學生",
+        "answer": "我系學生"
+      },
+      "expected": {
+        "alignment": [
+          {
+            "op": "match",
+            "kind": "exact"
+          },
+          {
+            "op": "match",
+            "expected": "係",
+            "actual": "系",
+            "kind": "homophone"
+          },
+          {
+            "op": "match"
+          },
+          {
+            "op": "match"
+          }
+        ]
+      }
+    },
+    {
+      "id": "grade/yue/alignment-delete",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "早晨呀",
+        "answer": "早晨"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "match"
+          },
+          {
+            "op": "delete",
+            "expected": "呀"
+          }
+        ]
+      }
+    },
+    {
+      "id": "grade/yue/alignment-insert",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "早晨",
+        "answer": "早晨呀"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "match"
+          },
+          {
+            "op": "insert",
+            "actual": "呀"
+          }
+        ]
+      }
+    },
+    {
+      "id": "grade/fa/exact",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب\u200Cها روی میز هستند"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/fa/zwnj-as-space",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب ها روی میز هستند"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "spacing"
+        ],
+        "matched": "کتاب\u200Cها روی میز هستند"
+      }
+    },
+    {
+      "id": "grade/fa/zwnj-dropped",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتابها روی میز هستند"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "spacing"
+        ]
+      }
+    },
+    {
+      "id": "grade/fa/arabic-keyboard",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "كتاب\u200Cها روي ميز هستند"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/fa/harakat",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کِتاب\u200Cها روی میز هستند"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "harakat optional: marks policy ignore"
+    },
+    {
+      "id": "grade/fa/digits",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "۴۷ کتاب",
+        "answer": "47 کتاب"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/fa/full-stop",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب\u200Cها روی میز هستند."
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/fa/adjacent-key-typo",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب\u200Cها روی میز هستمد"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "ن and م are neighbours on ISIRI 9147; 5 letters × 0.15 = 0.75 ≥ 0.5"
+    },
+    {
+      "id": "grade/fa/short-word-no-typo",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب\u200Cها رای میز هستند"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "3 letters × 0.15 = 0.45 < 0.5: no tolerance"
+    },
+    {
+      "id": "grade/fa/missing-word",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "کتاب\u200Cها میز هستند"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "alignment": [
+          {
+            "op": "match"
+          },
+          {
+            "op": "delete",
+            "expected": "روی"
+          },
+          {
+            "op": "match"
+          },
+          {
+            "op": "match"
+          }
+        ]
+      }
+    },
+    {
+      "id": "grade/fa/word-order",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "روی میز کتاب\u200Cها هستند"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/fa/bidi-controls",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها روی میز هستند",
+        "answer": "\u200Fکتاب\u200Cها روی میز هستند\u202C"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/fa/presentation-forms",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "لا",
+        "answer": "ﻻ"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/uz/exact",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men oʻzbek tilini oʻrganyapman"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/uz/ascii-apostrophe",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o'zbek tilini o'rganyapman"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "apostrophe"
+        ]
+      }
+    },
+    {
+      "id": "grade/uz/backtick",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o`zbek tilini o`rganyapman"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "apostrophe"
+        ]
+      }
+    },
+    {
+      "id": "grade/uz/right-quote",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o’zbek tilini o’rganyapman"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "apostrophe"
+        ]
+      }
+    },
+    {
+      "id": "grade/uz/lowercase",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "men oʻzbek tilini oʻrganyapman"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/uz/uppercase",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "MEN OʻZBEK TILINI OʻRGANYAPMAN"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/uz/uppercase-ascii",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Oʻzbekiston",
+        "answer": "O'ZBEKISTON"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "apostrophe"
+        ]
+      },
+      "note": "needs the capital-O map (ADR 0016)"
+    },
+    {
+      "id": "grade/uz/adjacent-typo",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o'zbek tilini o'rganyapmab"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      }
+    },
+    {
+      "id": "grade/uz/two-typos",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o'zbek tiluni o'rganyapmab"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      }
+    },
+    {
+      "id": "grade/uz/missing-okina",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "oʻzbek",
+        "answer": "ozbek"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "o for oʻ is one letter substitution: 5 letters × 0.2 = 1"
+    },
+    {
+      "id": "grade/uz/wrong-suffix",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men o'zbek tili o'rganyapman"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "dropping -ni costs 2 > 6 × 0.2"
+    },
+    {
+      "id": "grade/uz/extra-word",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men o'zbek tilini o'rganyapman",
+        "answer": "Men ham o'zbek tilini o'rganyapman"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/uz/tutuq",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "maʼno",
+        "answer": "ma'no"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "apostrophe"
+        ]
+      }
+    },
+    {
+      "id": "grade/uz/punctuation",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom, dunyo!",
+        "answer": "salom dunyo"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/uz/optional",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "[Men] kitob oldim",
+        "answer": "kitob oldim"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT"
+      }
+    },
+    {
+      "id": "grade/uz/alternation",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "(Salom|Assalomu alaykum)",
+        "answer": "Assalomu alaykum"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT"
+      }
+    },
+    {
+      "id": "grade/uz/weights-canonical",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom\nSalom dunyo @0.1",
+        "answer": "Salom"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "canonical": true
+      }
+    },
+    {
+      "id": "grade/uz/wrong-word",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men kitob oldim",
+        "answer": "Men kitib oldim",
+        "lexicon": [
+          "kitib"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "o→i is an adjacent-key typo, but kitib is in the lexicon"
+    },
+    {
+      "id": "grade/uz/typo-not-in-lexicon",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men kitob oldim",
+        "answer": "Men kitib oldim",
+        "lexicon": [
+          "daftar"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      }
+    },
+    {
+      "id": "grade/uz-cyrl/exact",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "Мен ўзбек тилини ўрганяпман",
+        "answer": "Мен ўзбек тилини ўрганяпман"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/uz-cyrl/russian-letters",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "Мен ўзбек тилини ўрганяпман",
+        "answer": "Мен узбек тилини урганяпман"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "uzbek-letters"
+        ]
+      }
+    },
+    {
+      "id": "grade/uz-cyrl/lowercase",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "Мен ўзбек тилини ўрганяпман",
+        "answer": "мен ўзбек тилини ўрганяпман"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tg/exact",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "Ман ҳар рӯз кор мекунам",
+        "answer": "Ман ҳар рӯз кор мекунам"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tg/russian-letters",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "Ман ҳар рӯз кор мекунам",
+        "answer": "Ман хар руз кор мекунам"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "tajik-letters"
+        ]
+      }
+    },
+    {
+      "id": "grade/tg/case-punct",
+      "op": "grade",
+      "args": {
+        "profile": "tg-Cyrl/standard",
+        "accept": "Ман ҳар рӯз кор мекунам",
+        "answer": "ман ҳар рӯз кор мекунам."
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/ar/exact",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "أكلت التفاحة"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/ar/no-hamza",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "اكلت التفاحة"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "hamza"
+        ]
+      }
+    },
+    {
+      "id": "grade/ar/ta-marbuta",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "أكلت التفاحه"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "ta-marbuta"
+        ]
+      }
+    },
+    {
+      "id": "grade/ar/both-in-one-word",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أسرة",
+        "answer": "اسره"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "hamza",
+          "ta-marbuta"
+        ]
+      },
+      "note": "every fold that changed something keeps its note"
+    },
+    {
+      "id": "grade/ar/harakat",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "أَكَلْتُ التُّفَّاحَةَ"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/ar/alef-maqsura",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "على الطاولة",
+        "answer": "علي الطاولة"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [
+          "alef-maqsura"
+        ]
+      }
+    },
+    {
+      "id": "grade/ar/persian-keyboard",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "كتاب",
+        "answer": "کتاب"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/ar/tatweel",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "أكـــلت التفاحة"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/ar/digits",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "47 كتابا",
+        "answer": "٤٧ كتابا"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/ar/wrong-word",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "أكلت التفاحة",
+        "answer": "شربت التفاحة"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/ar/lam-alef-presentation",
+      "op": "grade",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "accept": "لا",
+        "answer": "ﻻ"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-arab/exact",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "شو بدّك تاكل اليوم",
+        "answer": "شو بدّك تاكل اليوم"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-arab/no-shadda",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "شو بدّك تاكل اليوم",
+        "answer": "شو بدك تاكل اليوم"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/apc-arab/hamza-silent",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "أكلت",
+        "answer": "اكلت"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "no standard spelling: folds are silent"
+    },
+    {
+      "id": "grade/apc-arab/question-mark",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "شو بدّك تاكل اليوم",
+        "answer": "شو بدك تاكل اليوم؟"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-arab/loan-letter",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "ڤيلا",
+        "answer": "فيلا"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-latn/exact",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu baddak tekol el yom",
+        "answer": "shu baddak tekol el yom"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-latn/chou",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu baddak tekol el yom",
+        "answer": "chou baddak tekol el yom"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/apc-latn/long-vowels",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu baddak tekol el yom",
+        "answer": "shu baddak tekool el yoom"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-latn/apostrophe-hamza",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ma2a",
+        "answer": "ma'a"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-latn/uppercase",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu baddak",
+        "answer": "SHU BADDAK"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/apc-latn/h-for-7",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "7abibi",
+        "answer": "habibi"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "within typo tolerance only; list the h spelling in the accept set if it is fully correct"
+    },
+    {
+      "id": "grade/apc-latn/different-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "shu baddak",
+        "answer": "shu baddik ya"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/tr/exact",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "İstanbul'da yaşıyorum"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tr/lowercase",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "istanbul'da yaşıyorum"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/tr/no-apostrophe",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "İstanbulda yaşıyorum"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tr/dotted-capitals",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "İSTANBUL'DA YAŞIYORUM"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tr/dotless-capital-I",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "ISTANBUL'DA YAŞIYORUM"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "in Turkish, I is the capital of ı: ıstanbulda is one letter off"
+    },
+    {
+      "id": "grade/tr/ascii-only",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "İstanbul'da yaşıyorum",
+        "answer": "Istanbul'da yasiyorum"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "ş→s and ı→i are not neighbours on Turkish Q: 2 > 9 × 0.2"
+    },
+    {
+      "id": "grade/tr/circumflex",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "kâğıt",
+        "answer": "kağıt"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      }
+    },
+    {
+      "id": "grade/tr/i-vs-dotless",
+      "op": "grade",
+      "args": {
+        "profile": "tr-Latn/standard",
+        "accept": "ılık",
+        "answer": "ilik"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "ı and i are different letters; 4 letters × 0.2 < 2"
+    }
+  ]
+}

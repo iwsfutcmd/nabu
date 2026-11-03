@@ -1,0 +1,270 @@
+{
+  "$comment": "Accept-set notation → lattice (gameplan §7.4): (a|b) alternation, [x] optional, @w weights, # comments, \\ escapes; normalized with the profile; canonical first.",
+  "vectors": [
+    {
+      "id": "accept/optional-word",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "[Men] o'zbek tilini o'rganyapman"
+      },
+      "expected": {
+        "paths": 2,
+        "alternatives": [
+          "Men oʻzbek tilini oʻrganyapman",
+          "oʻzbek tilini oʻrganyapman"
+        ],
+        "canonical": "Men oʻzbek tilini oʻrganyapman"
+      }
+    },
+    {
+      "id": "accept/alternation",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "(Salom|Assalomu alaykum), dunyo!"
+      },
+      "expected": {
+        "paths": 2,
+        "alternatives": [
+          "Salom dunyo",
+          "Assalomu alaykum dunyo"
+        ]
+      }
+    },
+    {
+      "id": "accept/nested",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men (kitob|daftar [va ruchka]) oldim"
+      },
+      "expected": {
+        "paths": 3,
+        "alternatives": [
+          "Men kitob oldim",
+          "Men daftar va ruchka oldim",
+          "Men daftar oldim"
+        ]
+      }
+    },
+    {
+      "id": "accept/weights",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom\nAssalomu alaykum @0.2"
+      },
+      "expected": {
+        "paths": 2,
+        "alternatives": [
+          "Salom",
+          "Assalomu alaykum"
+        ],
+        "canonical": "Salom"
+      }
+    },
+    {
+      "id": "accept/comment",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "# greeting\nSalom"
+      },
+      "expected": {
+        "paths": 1,
+        "alternatives": [
+          "Salom"
+        ]
+      }
+    },
+    {
+      "id": "accept/blank-lines",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "\n\nSalom\n\n"
+      },
+      "expected": {
+        "alternatives": [
+          "Salom"
+        ]
+      }
+    },
+    {
+      "id": "accept/escape",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom\\|dunyo"
+      },
+      "expected": {
+        "alternatives": [
+          "Salom|dunyo"
+        ]
+      },
+      "note": "an escaped | is a literal; it is a symbol (Sm), so punctuation stripping keeps it"
+    },
+    {
+      "id": "accept/duplicate-after-normalization",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom!\nSalom"
+      },
+      "expected": {
+        "alternatives": [
+          "Salom"
+        ],
+        "warnings": [
+          "duplicate-after-normalization"
+        ]
+      }
+    },
+    {
+      "id": "accept/yue-optional",
+      "op": "accept",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "早晨[呀]"
+      },
+      "expected": {
+        "paths": 2,
+        "alternatives": [
+          "早晨呀",
+          "早晨"
+        ],
+        "canonical": "早晨呀"
+      }
+    },
+    {
+      "id": "accept/yue-alternation-first-canonical",
+      "op": "accept",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "(早晨|早晨呀)"
+      },
+      "expected": {
+        "alternatives": [
+          "早晨",
+          "早晨呀"
+        ],
+        "canonical": "早晨"
+      }
+    },
+    {
+      "id": "accept/yue-two-lines",
+      "op": "accept",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "accept": "早晨[呀]\n(早|早晨)啊 @0.5"
+      },
+      "expected": {
+        "paths": 4,
+        "alternatives": [
+          "早晨呀",
+          "早晨",
+          "早啊",
+          "早晨啊"
+        ]
+      }
+    },
+    {
+      "id": "accept/fa-zwnj-one-alternative",
+      "op": "accept",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتاب\u200Cها"
+      },
+      "expected": {
+        "paths": 1,
+        "alternatives": [
+          "کتاب\u200Cها"
+        ]
+      },
+      "note": "ZWNJ equivalents become lattice paths, not listed alternatives"
+    },
+    {
+      "id": "accept/normalized-alternatives",
+      "op": "accept",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "كتاب\nکتاب\u200Cها"
+      },
+      "expected": {
+        "alternatives": [
+          "کتاب",
+          "کتاب\u200Cها"
+        ]
+      }
+    },
+    {
+      "id": "accept/many-paths-warning",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom [a] [b] [c] [d] [e] [f] [g] [h] [i] [j] [k]"
+      },
+      "expected": {
+        "paths": 2048,
+        "warnings": [
+          "many-paths"
+        ]
+      }
+    },
+    {
+      "id": "accept/too-many-paths",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "[a] [b] [c] [d] [e] [f] [g] [h] [i] [j] [k] [l] [m] [n]"
+      },
+      "error": "too-many-paths"
+    },
+    {
+      "id": "accept/unbalanced-paren",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom (dunyo"
+      },
+      "error": "missing"
+    },
+    {
+      "id": "accept/unexpected-bracket",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom ]"
+      },
+      "error": "unexpected"
+    },
+    {
+      "id": "accept/empty-source",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": ""
+      },
+      "error": "no alternatives"
+    },
+    {
+      "id": "accept/optional-only",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "[Salom]"
+      },
+      "error": "empty"
+    },
+    {
+      "id": "accept/dangling-backslash",
+      "op": "accept",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Salom\\"
+      },
+      "error": "dangling"
+    }
+  ]
+}

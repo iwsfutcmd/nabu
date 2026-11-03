@@ -107,10 +107,31 @@ importers:
       '@nabu/core':
         specifier: workspace:*
         version: link:../core
+      '@nabu/i18n':
+        specifier: workspace:*
+        version: link:../i18n
+      '@nabu/schema':
+        specifier: workspace:*
+        version: link:../schema
+      ajv:
+        specifier: ^8.20.0
+        version: 8.20.0
+      yaml:
+        specifier: ^2.9.1
+        version: 2.9.1
     devDependencies:
+      '@playwright/test':
+        specifier: 1.63.0
+        version: 1.63.0
       '@types/node':
         specifier: ^22.20.5
         version: 22.20.5
+      esbuild:
+        specifier: ^0.28.2
+        version: 0.28.2
+      fast-check:
+        specifier: ^4.10.2
+        version: 4.10.2
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
@@ -120,6 +141,9 @@ importers:
 
   packages/i18n:
     dependencies:
+      '@nabu/core':
+        specifier: workspace:*
+        version: link:../core
       '@nabu/schema':
         specifier: workspace:*
         version: link:../schema

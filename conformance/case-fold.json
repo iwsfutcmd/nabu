@@ -1,0 +1,154 @@
+{
+  "$comment": "Locale-aware case folding (gameplan §6.4): toLocaleLowerCase plus explicit folds for ς→σ and ẞ→ß, NFC.",
+  "vectors": [
+    {
+      "id": "case-fold/tr-dotted-capital",
+      "op": "case-fold",
+      "args": {
+        "text": "İSTANBUL",
+        "locale": "tr"
+      },
+      "expected": "istanbul"
+    },
+    {
+      "id": "case-fold/tr-dotless-capital",
+      "op": "case-fold",
+      "args": {
+        "text": "ISTANBUL",
+        "locale": "tr"
+      },
+      "expected": "ıstanbul",
+      "note": "Turkish I lowercases to dotless ı"
+    },
+    {
+      "id": "case-fold/tr-both",
+      "op": "case-fold",
+      "args": {
+        "text": "Iİ",
+        "locale": "tr"
+      },
+      "expected": "ıi"
+    },
+    {
+      "id": "case-fold/az-dotless",
+      "op": "case-fold",
+      "args": {
+        "text": "IĞDIR",
+        "locale": "az"
+      },
+      "expected": "ığdır"
+    },
+    {
+      "id": "case-fold/en-dotless-capital",
+      "op": "case-fold",
+      "args": {
+        "text": "ISTANBUL",
+        "locale": "en"
+      },
+      "expected": "istanbul"
+    },
+    {
+      "id": "case-fold/en-dotted-capital",
+      "op": "case-fold",
+      "args": {
+        "text": "İ",
+        "locale": "en"
+      },
+      "expected": "i̇",
+      "note": "outside tr/az, İ lowercases to i + combining dot above"
+    },
+    {
+      "id": "case-fold/el-final-sigma",
+      "op": "case-fold",
+      "args": {
+        "text": "ΟΔΟΣ",
+        "locale": "el"
+      },
+      "expected": "οδοσ",
+      "note": "final ς folds to σ so word-final and medial forms compare equal"
+    },
+    {
+      "id": "case-fold/el-medial-sigma",
+      "op": "case-fold",
+      "args": {
+        "text": "ΟΔΟΣ ΟΔΟΙ",
+        "locale": "el"
+      },
+      "expected": "οδοσ οδοι"
+    },
+    {
+      "id": "case-fold/de-capital-sharp-s",
+      "op": "case-fold",
+      "args": {
+        "text": "ẞ",
+        "locale": "de"
+      },
+      "expected": "ß"
+    },
+    {
+      "id": "case-fold/de-strasse",
+      "op": "case-fold",
+      "args": {
+        "text": "STRASSE",
+        "locale": "de"
+      },
+      "expected": "strasse"
+    },
+    {
+      "id": "case-fold/de-no-ss-fold",
+      "op": "case-fold",
+      "args": {
+        "text": "Straße",
+        "locale": "de"
+      },
+      "expected": "straße",
+      "note": "ß is not folded to ss"
+    },
+    {
+      "id": "case-fold/lt-grave-i",
+      "op": "case-fold",
+      "args": {
+        "text": "Ì",
+        "locale": "lt"
+      },
+      "expected": "i̇̀",
+      "note": "Lithuanian keeps the dot when an accent is added"
+    },
+    {
+      "id": "case-fold/uz-okina-untouched",
+      "op": "case-fold",
+      "args": {
+        "text": "OʻZBEK",
+        "locale": "uz"
+      },
+      "expected": "oʻzbek"
+    },
+    {
+      "id": "case-fold/uz-cyrl",
+      "op": "case-fold",
+      "args": {
+        "text": "ЎЗБЕК",
+        "locale": "uz"
+      },
+      "expected": "ўзбек"
+    },
+    {
+      "id": "case-fold/tg-cyrl",
+      "op": "case-fold",
+      "args": {
+        "text": "ҲАЁТ",
+        "locale": "tg"
+      },
+      "expected": "ҳаёт"
+    },
+    {
+      "id": "case-fold/nfc-after-fold",
+      "op": "case-fold",
+      "args": {
+        "text": "É",
+        "locale": "en"
+      },
+      "expected": "é"
+    }
+  ]
+}

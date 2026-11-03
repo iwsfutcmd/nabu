@@ -1,0 +1,135 @@
+{
+  "$comment": "CLDR exemplar UnicodeSet syntax (UTS #35): literals, ranges, {strings}, escapes. Unsupported syntax fails loudly.",
+  "vectors": [
+    {
+      "id": "unicode-set/literals",
+      "op": "unicode-set",
+      "args": {
+        "set": "[a b c]"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "id": "unicode-set/range",
+      "op": "unicode-set",
+      "args": {
+        "set": "[a-e]"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e"
+      ]
+    },
+    {
+      "id": "unicode-set/strings",
+      "op": "unicode-set",
+      "args": {
+        "set": "[{oʻ} {gʻ} sh]"
+      },
+      "expected": [
+        "oʻ",
+        "gʻ",
+        "s",
+        "h"
+      ]
+    },
+    {
+      "id": "unicode-set/escaped-range",
+      "op": "unicode-set",
+      "args": {
+        "set": "[\\u064B-\\u064D]"
+      },
+      "expected": [
+        "ً",
+        "ٌ",
+        "ٍ"
+      ]
+    },
+    {
+      "id": "unicode-set/escaped-specials",
+      "op": "unicode-set",
+      "args": {
+        "set": "[\\- \\[ \\] \\&]"
+      },
+      "expected": [
+        "-",
+        "[",
+        "]",
+        "&"
+      ]
+    },
+    {
+      "id": "unicode-set/astral-escape",
+      "op": "unicode-set",
+      "args": {
+        "set": "[\\u{1F600}]"
+      },
+      "expected": [
+        "😀"
+      ]
+    },
+    {
+      "id": "unicode-set/string-nfc",
+      "op": "unicode-set",
+      "args": {
+        "set": "[{e\\u0301}]"
+      },
+      "expected": [
+        "é"
+      ]
+    },
+    {
+      "id": "unicode-set/dedupe",
+      "op": "unicode-set",
+      "args": {
+        "set": "[a-c a]"
+      },
+      "expected": [
+        "a",
+        "b",
+        "c"
+      ]
+    },
+    {
+      "id": "unicode-set/empty",
+      "op": "unicode-set",
+      "args": {
+        "set": "[]"
+      },
+      "expected": []
+    },
+    {
+      "id": "unicode-set/zwnj-escape",
+      "op": "unicode-set",
+      "args": {
+        "set": "[\\u200C]"
+      },
+      "expected": [
+        "\u200C"
+      ]
+    },
+    {
+      "id": "unicode-set/property-rejected",
+      "op": "unicode-set",
+      "args": {
+        "set": "[[:L:]]"
+      },
+      "error": "Unsupported"
+    },
+    {
+      "id": "unicode-set/not-a-set",
+      "op": "unicode-set",
+      "args": {
+        "set": "abc"
+      },
+      "error": "Not a UnicodeSet"
+    }
+  ]
+}

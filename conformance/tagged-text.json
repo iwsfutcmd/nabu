@@ -1,0 +1,285 @@
+{
+  "$comment": "TaggedText invariants a schema cannot express (schemas/tagged-text.schema.json $comment).",
+  "vectors": [
+    {
+      "id": "tagged-text/valid",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "yue-Hant-HK",
+          "orthography": "yue-Hant-HK/standard",
+          "tokens": [
+            {
+              "surface": "早晨",
+              "kind": "word",
+              "ruby": {
+                "jyutping": [
+                  {
+                    "base": "早",
+                    "text": "zou2"
+                  },
+                  {
+                    "base": "晨",
+                    "text": "san4"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": []
+    },
+    {
+      "id": "tagged-text/not-nfc",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "es-Latn",
+          "orthography": "es-Latn/standard",
+          "tokens": [
+            {
+              "surface": "é",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": [
+        "not-nfc"
+      ]
+    },
+    {
+      "id": "tagged-text/ruby-mismatch",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "yue-Hant-HK",
+          "orthography": "yue-Hant-HK/standard",
+          "tokens": [
+            {
+              "surface": "早晨",
+              "kind": "word",
+              "ruby": {
+                "jyutping": [
+                  {
+                    "base": "早",
+                    "text": "zou2"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      },
+      "expected": [
+        "ruby-mismatch"
+      ]
+    },
+    {
+      "id": "tagged-text/morphs-mismatch",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "tilini",
+              "kind": "word",
+              "morphs": [
+                {
+                  "surface": "til",
+                  "kc": "sense:til"
+                },
+                {
+                  "surface": "ni",
+                  "kc": "form:acc"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected": [
+        "morphs-mismatch"
+      ]
+    },
+    {
+      "id": "tagged-text/morphs-ok",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "tilini",
+              "kind": "word",
+              "morphs": [
+                {
+                  "surface": "til",
+                  "kc": "sense:til"
+                },
+                {
+                  "surface": "i",
+                  "kc": "form:poss-3"
+                },
+                {
+                  "surface": "ni",
+                  "kc": "form:acc"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "expected": []
+    },
+    {
+      "id": "tagged-text/splits-combining-mark",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "es-Latn",
+          "orthography": "es-Latn/standard",
+          "tokens": [
+            {
+              "surface": "e",
+              "kind": "word"
+            },
+            {
+              "surface": "́",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": [
+        "splits-grapheme"
+      ]
+    },
+    {
+      "id": "tagged-text/splits-zwnj",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "fa-Arab",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "کتاب",
+              "kind": "word"
+            },
+            {
+              "surface": "\u200Cها",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": [
+        "splits-grapheme"
+      ],
+      "note": "ZWNJ extends the preceding cluster"
+    },
+    {
+      "id": "tagged-text/zwnj-inside-token",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "fa-Arab",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "کتاب\u200Cها",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": []
+    },
+    {
+      "id": "tagged-text/splits-flag",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "und-Zsye",
+          "orthography": "und-Zsye/emoji",
+          "tokens": [
+            {
+              "surface": "🇮",
+              "kind": "word"
+            },
+            {
+              "surface": "🇷",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": [
+        "splits-grapheme"
+      ]
+    },
+    {
+      "id": "tagged-text/lang-within-orthography",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "fa-Arab-AF",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "کتاب",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": []
+    },
+    {
+      "id": "tagged-text/lang-outside-orthography",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "uz-Cyrl",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "китоб",
+              "kind": "word"
+            }
+          ]
+        }
+      },
+      "expected": [
+        "lang-outside-orthography"
+      ]
+    },
+    {
+      "id": "tagged-text/variant-not-nfc",
+      "op": "check-tagged-text",
+      "args": {
+        "text": {
+          "lang": "yue-Hant-HK",
+          "orthography": "yue-Hant-HK/standard",
+          "tokens": [
+            {
+              "surface": "裏",
+              "kind": "word",
+              "variants": [
+                "é"
+              ]
+            }
+          ]
+        }
+      },
+      "expected": [
+        "variant-not-nfc"
+      ]
+    }
+  ]
+}

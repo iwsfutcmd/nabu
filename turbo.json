@@ -72,6 +72,35 @@
     "storybook": {
       "cache": false,
       "persistent": true
+    },
+    "test:perf": {
+      "cache": false,
+      "passThroughEnv": [
+        "CI",
+        "PLAYWRIGHT_BROWSERS_PATH"
+      ]
+    },
+    "@nabu/pipeline#test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/schemas/**",
+        "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/conformance/**",
+        "$TURBO_ROOT$/packages/core/src/**",
+        "$TURBO_ROOT$/packages/core-cli/src/**",
+        "$TURBO_ROOT$/packages/i18n/src/**"
+      ]
+    },
+    "@nabu/core-cli#test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/schemas/**",
+        "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/conformance/**",
+        "$TURBO_ROOT$/packages/core/src/**",
+        "$TURBO_ROOT$/packages/i18n/src/**",
+        "$TURBO_ROOT$/packages/i18n/messages/**"
+      ]
     }
   }
 }

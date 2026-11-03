@@ -20,7 +20,10 @@
     "test:visual:docker": "pnpm --filter @nabu/ui test:visual:docker",
     "test:visual:update": "pnpm --filter @nabu/ui test:visual:update",
     "storybook": "pnpm --filter @nabu/ui storybook",
-    "cldr": "pnpm --filter @nabu/i18n generate:cldr"
+    "cldr": "pnpm --filter @nabu/i18n generate:cldr",
+    "test:perf": "turbo run test:perf",
+    "conformance": "pnpm --filter @nabu/core-cli exec vitest run test/conformance.test.ts && cd pipeline && uv run --frozen pytest -q tests/test_conformance.py",
+    "tables": "cd pipeline && uv run --frozen nabu tables"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

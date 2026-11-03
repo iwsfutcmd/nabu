@@ -1,39 +1,621 @@
 {
-  "$comment": "Text direction from a language tag (gameplan §6.2, §15). Direction comes from the (explicit or likely) script, never from the language name. Run by packages/i18n/test/conformance.test.ts; the Python harness joins in Phase 1 via core-cli.",
+  "$comment": "Text direction from a language tag (gameplan §6.2, §15). Direction comes from the (explicit or likely) script, never from the language name. Run by both conformance harnesses (see README).",
   "vectors": [
-    { "tag": "fa", "script": "Arab", "dir": "rtl" },
-    { "tag": "fa-Arab-IR", "script": "Arab", "dir": "rtl" },
-    { "tag": "yue-Hant-HK", "script": "Hant", "dir": "ltr" },
-    { "tag": "yue", "script": "Hant", "dir": "ltr" },
-    { "tag": "uz", "script": "Latn", "dir": "ltr" },
-    { "tag": "uz-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "uz-Cyrl", "script": "Cyrl", "dir": "ltr" },
-    { "tag": "uz-Arab", "script": "Arab", "dir": "rtl" },
-    { "tag": "apc", "script": "Arab", "dir": "rtl" },
-    { "tag": "apc-Arab-LB", "script": "Arab", "dir": "rtl" },
-    { "tag": "apc-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "az-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "az-IR", "script": "Arab", "dir": "rtl" },
-    { "tag": "az-Arab", "script": "Arab", "dir": "rtl" },
-    { "tag": "pa-Guru", "script": "Guru", "dir": "ltr" },
-    { "tag": "pa-PK", "script": "Arab", "dir": "rtl" },
-    { "tag": "ckb", "script": "Arab", "dir": "rtl" },
-    { "tag": "kmr-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "tg", "script": "Cyrl", "dir": "ltr" },
-    { "tag": "he", "script": "Hebr", "dir": "rtl" },
-    { "tag": "dv", "script": "Thaa", "dir": "rtl" },
-    { "tag": "ff-Adlm", "script": "Adlm", "dir": "rtl" },
-    { "tag": "syr", "script": "Syrc", "dir": "rtl" },
-    { "tag": "mn", "script": "Cyrl", "dir": "ltr" },
-    { "tag": "mn-Mong", "script": "Mong", "dir": "ltr" },
-    { "tag": "ja", "script": "Jpan", "dir": "ltr" },
-    { "tag": "zh-TW", "script": "Hant", "dir": "ltr" },
-    { "tag": "en-XA", "script": "Latn", "dir": "ltr" },
-    { "tag": "ar-XB", "script": "Arab", "dir": "rtl" },
-    { "tag": "und-Arab", "script": "Arab", "dir": "rtl" },
-    { "tag": "und-IR", "script": "Arab", "dir": "rtl" },
-    { "tag": "fa-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "ar-Latn", "script": "Latn", "dir": "ltr" },
-    { "tag": "fa-u-nu-latn", "script": "Arab", "dir": "rtl" }
+    {
+      "id": "direction/fa",
+      "op": "direction",
+      "args": {
+        "tag": "fa"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/fa-Arab-IR",
+      "op": "direction",
+      "args": {
+        "tag": "fa-Arab-IR"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/yue-Hant-HK",
+      "op": "direction",
+      "args": {
+        "tag": "yue-Hant-HK"
+      },
+      "expected": {
+        "script": "Hant",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/yue",
+      "op": "direction",
+      "args": {
+        "tag": "yue"
+      },
+      "expected": {
+        "script": "Hant",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/uz",
+      "op": "direction",
+      "args": {
+        "tag": "uz"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/uz-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "uz-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/uz-Cyrl",
+      "op": "direction",
+      "args": {
+        "tag": "uz-Cyrl"
+      },
+      "expected": {
+        "script": "Cyrl",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/uz-Arab",
+      "op": "direction",
+      "args": {
+        "tag": "uz-Arab"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/apc",
+      "op": "direction",
+      "args": {
+        "tag": "apc"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/apc-Arab-LB",
+      "op": "direction",
+      "args": {
+        "tag": "apc-Arab-LB"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/apc-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "apc-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/az-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "az-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/az-IR",
+      "op": "direction",
+      "args": {
+        "tag": "az-IR"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/az-Arab",
+      "op": "direction",
+      "args": {
+        "tag": "az-Arab"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/pa-Guru",
+      "op": "direction",
+      "args": {
+        "tag": "pa-Guru"
+      },
+      "expected": {
+        "script": "Guru",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/pa-PK",
+      "op": "direction",
+      "args": {
+        "tag": "pa-PK"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/ckb",
+      "op": "direction",
+      "args": {
+        "tag": "ckb"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/kmr-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "kmr-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/tg",
+      "op": "direction",
+      "args": {
+        "tag": "tg"
+      },
+      "expected": {
+        "script": "Cyrl",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/he",
+      "op": "direction",
+      "args": {
+        "tag": "he"
+      },
+      "expected": {
+        "script": "Hebr",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/dv",
+      "op": "direction",
+      "args": {
+        "tag": "dv"
+      },
+      "expected": {
+        "script": "Thaa",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/ff-Adlm",
+      "op": "direction",
+      "args": {
+        "tag": "ff-Adlm"
+      },
+      "expected": {
+        "script": "Adlm",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/syr",
+      "op": "direction",
+      "args": {
+        "tag": "syr"
+      },
+      "expected": {
+        "script": "Syrc",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/mn",
+      "op": "direction",
+      "args": {
+        "tag": "mn"
+      },
+      "expected": {
+        "script": "Cyrl",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/mn-Mong",
+      "op": "direction",
+      "args": {
+        "tag": "mn-Mong"
+      },
+      "expected": {
+        "script": "Mong",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ja",
+      "op": "direction",
+      "args": {
+        "tag": "ja"
+      },
+      "expected": {
+        "script": "Jpan",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/zh-TW",
+      "op": "direction",
+      "args": {
+        "tag": "zh-TW"
+      },
+      "expected": {
+        "script": "Hant",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/en-XA",
+      "op": "direction",
+      "args": {
+        "tag": "en-XA"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ar-XB",
+      "op": "direction",
+      "args": {
+        "tag": "ar-XB"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/und-Arab",
+      "op": "direction",
+      "args": {
+        "tag": "und-Arab"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/und-IR",
+      "op": "direction",
+      "args": {
+        "tag": "und-IR"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/fa-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "fa-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ar-Latn",
+      "op": "direction",
+      "args": {
+        "tag": "ar-Latn"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/fa-u-nu-latn",
+      "op": "direction",
+      "args": {
+        "tag": "fa-u-nu-latn"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/ur",
+      "op": "direction",
+      "args": {
+        "tag": "ur"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/ps",
+      "op": "direction",
+      "args": {
+        "tag": "ps"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/ug",
+      "op": "direction",
+      "args": {
+        "tag": "ug"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/yi",
+      "op": "direction",
+      "args": {
+        "tag": "yi"
+      },
+      "expected": {
+        "script": "Hebr",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/sd",
+      "op": "direction",
+      "args": {
+        "tag": "sd"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/nqo",
+      "op": "direction",
+      "args": {
+        "tag": "nqo"
+      },
+      "expected": {
+        "script": "Nkoo",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/rhg",
+      "op": "direction",
+      "args": {
+        "tag": "rhg"
+      },
+      "expected": {
+        "script": "Rohg",
+        "dir": "rtl"
+      }
+    },
+    {
+      "id": "direction/hy",
+      "op": "direction",
+      "args": {
+        "tag": "hy"
+      },
+      "expected": {
+        "script": "Armn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ka",
+      "op": "direction",
+      "args": {
+        "tag": "ka"
+      },
+      "expected": {
+        "script": "Geor",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/am",
+      "op": "direction",
+      "args": {
+        "tag": "am"
+      },
+      "expected": {
+        "script": "Ethi",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/th",
+      "op": "direction",
+      "args": {
+        "tag": "th"
+      },
+      "expected": {
+        "script": "Thai",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/km",
+      "op": "direction",
+      "args": {
+        "tag": "km"
+      },
+      "expected": {
+        "script": "Khmr",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/my",
+      "op": "direction",
+      "args": {
+        "tag": "my"
+      },
+      "expected": {
+        "script": "Mymr",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/bo",
+      "op": "direction",
+      "args": {
+        "tag": "bo"
+      },
+      "expected": {
+        "script": "Tibt",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/chr",
+      "op": "direction",
+      "args": {
+        "tag": "chr"
+      },
+      "expected": {
+        "script": "Cher",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/iu",
+      "op": "direction",
+      "args": {
+        "tag": "iu"
+      },
+      "expected": {
+        "script": "Cans",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/sat",
+      "op": "direction",
+      "args": {
+        "tag": "sat"
+      },
+      "expected": {
+        "script": "Olck",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ko",
+      "op": "direction",
+      "args": {
+        "tag": "ko"
+      },
+      "expected": {
+        "script": "Kore",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/el",
+      "op": "direction",
+      "args": {
+        "tag": "el"
+      },
+      "expected": {
+        "script": "Grek",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/zh-SG",
+      "op": "direction",
+      "args": {
+        "tag": "zh-SG"
+      },
+      "expected": {
+        "script": "Hans",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/mn-Mong-CN",
+      "op": "direction",
+      "args": {
+        "tag": "mn-Mong-CN"
+      },
+      "expected": {
+        "script": "Mong",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/ms-Arab",
+      "op": "direction",
+      "args": {
+        "tag": "ms-Arab"
+      },
+      "expected": {
+        "script": "Arab",
+        "dir": "rtl"
+      }
+    }
   ]
 }

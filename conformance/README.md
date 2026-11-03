@@ -3,9 +3,24 @@
 Shared JSON test vectors (gameplan §15). The same files run in the TypeScript (Vitest) and Python
 (pytest via `core-cli`) harnesses, so the two halves cannot drift.
 
-| File | What | TS harness | Python harness |
-|---|---|---|---|
-| `direction.json` | Script and direction from a language tag | `packages/i18n/test/conformance.test.ts` | Phase 1 (`core-cli`) |
+Format: `{ "vectors": [{ "id", "op", "args", "expected" | "error", "note"? }] }`. `op` is a
+core-cli operation. `expected` pins only the keys it lists, and `error` expects a failure containing
+it.
 
-Phase 1 adds normalization, matching, typo-model, grapheme and lattice vectors plus the torture
-strings listed in §15.
+| File | What |
+|---|---|
+| `graphemes.json` | Extended grapheme clusters for the §15 torture strings |
+| `unicode-set.json` | CLDR exemplar UnicodeSet syntax |
+| `direction.json` | Script and direction from a language tag (also cross-checked against the engine's Intl) |
+| `case-fold.json` | Locale-aware case folding: Turkish/Azerbaijani i, Greek final sigma, ẞ, Lithuanian |
+| `normalize.json` | Every profile's normalization pipeline |
+| `segmentation.json` | Runtime units and orthographic letters |
+| `accept.json` | Accept-set notation, expansion and errors |
+| `grade.json` | Grading verdicts, notes and alignments across all nine profiles |
+| `tagged-text.json` | TaggedText invariants |
+
+Harnesses:
+- TypeScript: `packages/core-cli/test/conformance.test.ts` (in-process)
+- Python: `pipeline/tests/test_conformance.py` (through the core-cli subprocess)
+
+`pnpm conformance` runs both.
