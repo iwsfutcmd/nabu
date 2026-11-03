@@ -11,6 +11,7 @@
  */
 import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng } from "@nabu/core/lesson";
+import type { GameConfig, GameState } from "@nabu/core/game";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
 import type { LearnerEvent } from "@nabu/schema";
@@ -20,7 +21,9 @@ import { StoryReader } from "@nabu/ui/story";
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
+import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
+import { LeaguePanel } from "./social.tsx";
 import { recorder, storyRecorder } from "./session.ts";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Sync } from "./sync.ts";
@@ -82,11 +85,19 @@ const orthographyName = (t: Translator, id: string): string => {
   return t.has(key) ? t.format(key) : id;
 };
 
-const Home = ({ courses, store, sync }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync }): JSX.Element => {
+interface GameProps {
+  readonly game: GameState | null;
+  readonly gameConfig: GameConfig | null;
+}
+
+const Home = ({ courses, store, sync, game, gameConfig, version }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string } & GameProps): JSX.Element => {
   const t = useTranslator();
+  const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
+      {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
+      {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
         {courses.map((c) => (
           <li key={c.id} className={styles.course} data-course={c.id}>
@@ -311,7 +322,31 @@ const seedFor = (): number => {
   return crypto.getRandomValues(new Uint32Array(1))[0] ?? 1;
 };
 
-interface SessionProps {
+/** The session gate is empty (§12.3, only where an instance turns it on): practice stays open. */
+const GateEmpty = ({ course }: { course: LoadedCourse["course"] }): JSX.Element => {
+  const t = useTranslator();
+  const to = (mode: "review" | "mistakes"): string => href({ tag: "session", course: course.id, orthography: course.orthography, request: { mode } });
+  return (
+    <main className={styles.page}>
+      <p className={styles.notice} role="note" data-gate-empty="">
+        {t.format("game.gate.empty")}
+      </p>
+      <div className={styles.links}>
+        <a className={styles.link} href={to("review")} data-practice-mode="review">
+          {t.format("app.practice.review")}
+        </a>
+        <a className={styles.link} href={to("mistakes")} data-practice-mode="mistakes">
+          {t.format("app.practice.mistakes")}
+        </a>
+        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+          {t.format("app.practice.back")}
+        </a>
+      </div>
+    </main>
+  );
+};
+
+interface SessionProps extends GameProps {
   readonly loaded: LoadedCourse;
   readonly request: SessionRequest;
   readonly state: LearnerState;
@@ -320,7 +355,14 @@ interface SessionProps {
 }
 
 /** Plans one session from the learner's state when it opens (§9.4), then plays it. */
-const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.Element => {
+const Session = (props: SessionProps): JSX.Element => {
+  const { loaded, request, game, gameConfig } = props;
+  // Decided once, when the session opens: answering inside it never closes the gate on it.
+  const [allowed] = useState(() => sessionAllowed(game, request.mode, gameConfig));
+  return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
+};
+
+const SessionBody = ({ loaded, request, state, device, record }: SessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
   const [setup] = useState(() => {
@@ -363,7 +405,7 @@ const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.
   );
 };
 
-interface StorySessionProps {
+interface StorySessionProps extends GameProps {
   readonly loaded: LoadedCourse;
   readonly node: string;
   readonly state: LearnerState;
@@ -372,7 +414,12 @@ interface StorySessionProps {
 }
 
 /** Reads one story (Phase 6): a session of mode story at its node. */
-const StorySession = ({ loaded, node, state, device, record }: StorySessionProps): JSX.Element => {
+const StorySession = (props: StorySessionProps): JSX.Element => {
+  const [allowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
+  return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
+};
+
+const StoryBody = ({ loaded, node, state, device, record }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
   const [setup] = useState(() => {
@@ -449,12 +496,17 @@ export const App = (): JSX.Element => {
   // Events pulled from another device: replay the open course.
   const pulled = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().pulled ?? 0);
   const [log, setLog] = useState<Log | null>(null);
+  const [gameConfig, setGameConfig] = useState<GameConfig | null>(null);
+  const [recorded, setRecorded] = useState(0);
+  const version = `${recorded}:${pulled}:${href(route)}`;
+  const game = useGame(store, gameConfig, version);
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
   const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
   const courseId = route.tag === "home" ? null : route.course;
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
+    void loadGameConfig(import.meta.env.BASE_URL).then(setGameConfig);
     void ready.then(setDevice);
   }, []);
   useEffect(() => {
@@ -476,19 +528,23 @@ export const App = (): JSX.Element => {
   const record = useCallback(
     (event: LearnerEvent): void => {
       setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
-      void store?.append([event]).then(() => sync?.schedule());
+      void store?.append([event]).then(() => {
+        sync?.schedule();
+        setRecorded((n) => n + 1);
+      });
     },
     [store, sync],
   );
 
   if (route.tag === "home") {
-    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} />;
+    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} />;
   }
   if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
     return <p className={styles.page}>{t.format("player.loading")}</p>;
   }
   if ("error" in loaded) return <p className={styles.page} role="alert">{t.format("app.error.load")}</p>;
   if (route.tag === "course") return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} />;
-  if (route.tag === "story") return <StorySession key={href(route)} loaded={loaded.value} node={route.node} state={log.state} device={store.device} record={record} />;
-  return <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} />;
+  if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
+  if (route.tag === "story") return <StorySession key={href(route)} loaded={loaded.value} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
+  return <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
 };

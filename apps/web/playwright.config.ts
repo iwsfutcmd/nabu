@@ -36,7 +36,8 @@ export default defineConfig({
     },
     {
       command: "node ../api/src/main.ts",
-      env: { PORT: String(API_PORT), NABU_PGLITE: "memory" },
+      // Leagues and reminders on, with the test hooks (a push sink and a job runner) for Phase 7.
+      env: { PORT: String(API_PORT), NABU_PGLITE: "memory", NABU_LEAGUES: "1", NABU_PUSH: "1", NABU_TEST_HOOKS: "1" },
       url: `http://127.0.0.1:${API_PORT}/healthz`,
       reuseExistingServer: !process.env["CI"],
       timeout: 60_000,

@@ -13,6 +13,7 @@ import { useTranslator } from "@nabu/ui";
 import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
+import { ProfileForm, Reminders } from "./social.tsx";
 import type { EventStore } from "./store.ts";
 import type { Sync, SyncError, SyncState } from "./sync.ts";
 
@@ -139,6 +140,8 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
               {t.format("app.account.signed-in", { email: ltr(state.account.user.email) })}
             </p>
             <Status state={state} />
+            <ProfileForm account={state.account} uiLocale={t.locale} />
+            <Reminders account={state.account} />
             <Button className={styles.textButton} onPress={() => void sync.signOut()} data-action="sign-out">
               {t.format("app.account.sign-out")}
             </Button>

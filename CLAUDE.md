@@ -108,10 +108,20 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - `pathNodes` (lessons and stories) drives the path; placement and the planner use lessons only.
 - Tappable words: `<T onTokenPress>`; never wrap tokens by hand.
 
+## Phase 7 notes (see docs/adr/0044)
+- Game state is a projection: @nabu/core/game `replayGame(events, config, clock)`. Never store it; change the rules.
+  Deployments configure it in `game.json` beside the app; the gate (hearts/energy) is off unless set there.
+- Streak tests are properties (date line, DST, 48 h offline): keep them generating physically possible timelines.
+- Usernames go through `checkUsername` with the UTS #39 data in packages/i18n/src/generated (regenerate with
+  `pnpm --filter @nabu/i18n generate:security`; pinned sha256). Render every user-chosen name inside <bdi>.
+- API options: NABU_LEAGUES=1, NABU_PUSH=1 (VAPID key kept in the database unless NABU_VAPID_PRIVATE_JWK),
+  NABU_TEST_HOOKS=1 only in tests (push sink, job runner). Reminder copy lives in packages/i18n (push.reminder.*).
+- Web Push is our own RFC 8291/8292 code (apps/api/src/webpush.ts); its test pins the RFC's example bytes.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0043 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0044 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

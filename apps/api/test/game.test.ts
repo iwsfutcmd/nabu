@@ -252,9 +252,9 @@ describe("reminders", () => {
 
     const vapid = await vapidKeys(database.db, "mailto:test@example.org", "");
     const delivered: { url: string; headers: Record<string, string>; payload: Notification }[] = [];
-    const fakeFetch = async (url: string, init: { headers: Record<string, string>; body: Uint8Array }) => {
+    const fakeFetch = (url: string, init: { headers: Record<string, string>; body: Uint8Array }) => {
       delivered.push({ url, headers: init.headers, payload: JSON.parse(decrypt(Buffer.from(init.body), ua.getPrivateKey(), secret).toString()) as Notification });
-      return { status: 201 };
+      return Promise.resolve({ status: 201 });
     };
     const send = (s: Subscription, p: Notification) => sendPush(s, p, vapid, clock, fakeFetch);
     const evening = at("2026-07-01T19:30:00Z");
@@ -269,7 +269,7 @@ describe("reminders", () => {
     expect(delivered.filter((d) => d.url === sub.endpoint)).toHaveLength(1);
     expect(await database.db.select().from(pushLog)).not.toHaveLength(0);
     // A subscription the push service says is gone is dropped.
-    const gone = async () => ({ status: 410 });
+    const gone = () => Promise.resolve({ status: 410 });
     await sendReminders(database.db, at("2026-07-02T19:30:00Z"), (s, p) => sendPush(s, p, vapid, clock, gone));
     expect((await app.request("/v1/push/unsubscribe", request("POST", { endpoint: sub.endpoint }, token))).status).toBe(204);
   });

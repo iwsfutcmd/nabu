@@ -152,3 +152,21 @@ ADR is linked. The gameplan text itself is left as written.
     its own longest match in Python over core-cli's folded units. That covered the folded pass
     only, and the app had no glossary matcher at all. Both now run `@nabu/core`'s `glossTokens`,
     with exact and folded passes ([ADR 0043](adr/0043-stories.md)).
+
+## Phase 7
+
+42. **§12.2 "Tests cover crossing the date line":** the gameplan does not say what crossing it
+    should do to a streak. Flying west from UTC−11 to UTC+14 skips a whole local date, so a
+    learner who practises every day they live through would still break their streak. Dates
+    skipped that way now bridge the streak ([ADR 0044](adr/0044-gamification-and-notifications.md)).
+43. **§12.7 "uniqueness is decided on NFKC_Casefold":** that key alone lets сору (Cyrillic) and
+    copy (Latin) coexist. Usernames are unique on the UTS #39 skeleton as well. Input is NFKC'd
+    before the Identifier_Status check, so fullwidth input from an IME is accepted as the plain
+    letters ([ADR 0044](adr/0044-gamification-and-notifications.md)).
+44. **§12.4 plausibility checks:** minimum response times alone would still credit a session's
+    completion XP when every answer in it was implausible. A session earns league XP only if at
+    least one of its answers was plausible ([ADR 0044](adr/0044-gamification-and-notifications.md)).
+45. **§12.6 Web Push:** the usual Node library is MPL-2.0. RFC 8291 and RFC 8292 are implemented
+    on `node:crypto` instead, and tested against the RFC's own example
+    ([ADR 0044](adr/0044-gamification-and-notifications.md)).
+
