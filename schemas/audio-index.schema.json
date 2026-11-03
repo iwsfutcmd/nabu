@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/audio-index.schema.json",
+  "title": "AudioIndex",
+  "description": "A course's audio clips (courses/<id>/audio/index.yaml), written by `nabu audio` and checked in. Every clip carries its SPDX license and provenance; synthesized clips record their exact input so a changed reading re-synthesizes only the clips it affects (§10.1).",
+  "type": "object",
+  "required": [
+    "version",
+    "clips"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "clips": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AudioClip"
+      }
+    }
+  },
+  "$defs": {
+    "AudioClip": {
+      "title": "AudioClip",
+      "type": "object",
+      "required": [
+        "item",
+        "speed",
+        "file",
+        "sha256",
+        "durationMs",
+        "license",
+        "provenance",
+        "synthetic"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "description": "Sentence id, or KC id for a word.",
+          "type": "string",
+          "minLength": 1
+        },
+        "speed": {
+          "type": "string",
+          "enum": [
+            "normal",
+            "slow"
+          ]
+        },
+        "file": {
+          "description": "Relative to the audio directory.",
+          "type": "string",
+          "pattern": "^clips/[0-9a-f]{16}\\.mp3$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "license": {
+          "$ref": "course-source.schema.json#/$defs/Spdx"
+        },
+        "provenance": {
+          "$ref": "course-source.schema.json#/$defs/Provenance"
+        },
+        "source": {
+          "description": "Where a recording came from (URL or description), for attribution.",
+          "type": "string",
+          "minLength": 1
+        },
+        "synthetic": {
+          "description": "Synthesized speech: labelled as such to learners.",
+          "type": "boolean"
+        },
+        "synthesis": {
+          "$ref": "#/$defs/SynthesisRecord"
+        },
+        "timings": {
+          "description": "Start and end of each token of the sentence, for karaoke and tap-a-word (§10.3).",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TokenTiming"
+          }
+        },
+        "timingSource": {
+          "type": "string",
+          "enum": [
+            "synthesis",
+            "alignment"
+          ]
+        },
+        "qa": {
+          "$ref": "#/$defs/AudioQa"
+        }
+      }
+    },
+    "SynthesisRecord": {
+      "title": "SynthesisRecord",
+      "type": "object",
+      "required": [
+        "provider",
+        "version",
+        "voice",
+        "input",
+        "rate",
+        "inputHash"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "voice": {
+          "type": "string",
+          "minLength": 1
+        },
+        "input": {
+          "description": "The exact string the provider read (a pinned reading, or text).",
+          "type": "string"
+        },
+        "rate": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "inputHash": {
+          "description": "sha256 of provider, version, voice, input and rate: the clip's identity.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "TokenTiming": {
+      "title": "TokenTiming",
+      "type": "object",
+      "required": [
+        "token",
+        "startMs",
+        "endMs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "startMs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "endMs": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "AudioQa": {
+      "title": "AudioQa",
+      "description": "Automatic checks (§10.1): what the synthesizer reports it said, and what a recognizer hears.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "trace": {
+          "description": "The phonemes the synthesizer reports for the pinned reading.",
+          "type": "string"
+        },
+        "asrModel": {
+          "type": "string"
+        },
+        "asrText": {
+          "type": "string"
+        },
+        "cer": {
+          "description": "Character error rate of the recognized text against the expected text.",
+          "type": "number",
+          "minimum": 0
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "review",
+            "fail"
+          ]
+        }
+      }
+    }
+  }
+}

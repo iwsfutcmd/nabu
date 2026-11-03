@@ -17,6 +17,15 @@ from nabu.schema import OrthographyProfile, TaggedText
 app = typer.Typer(no_args_is_help=True, add_completion=False)
 
 
+def _register_audio() -> None:
+    from nabu.audio.cli import app as audio_app
+
+    app.add_typer(audio_app, name="audio")
+
+
+_register_audio()
+
+
 class Kind(StrEnum):
     auto = "auto"
     profile = "profile"

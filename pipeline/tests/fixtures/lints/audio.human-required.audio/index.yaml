@@ -1,0 +1,20 @@
+# Audio for the audio.human-required fixture: A synthesized clip in a course whose audio must be recorded.
+version: 1
+clips:
+- item: s.1
+  speed: normal
+  file: clips/1bf1f4d5fd045d6e.mp3
+  sha256: 1bf1f4d5fd045d6e620fafd26cdd30ef626c3c53b5a3c5079d43289c7c15775f
+  durationMs: 900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: uz
+    input: Salom
+    rate: 1.0
+    inputHash: '0000000000000000000000000000000000000000000000000000000000000000'

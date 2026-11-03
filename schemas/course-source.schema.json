@@ -71,6 +71,9 @@
       "items": {
         "$ref": "#/$defs/DrillSpec"
       }
+    },
+    "audio": {
+      "$ref": "#/$defs/CourseAudio"
     }
   },
   "$defs": {
@@ -497,6 +500,70 @@
           "description": "Where it came from (URL or description), for attribution.",
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "CourseAudio": {
+      "title": "CourseAudio",
+      "description": "How the course gets audio (gameplan §10): synthesized from pinned readings by the listed voices, or recorded by people only. Audio belongs to the language, not an orthography: each voice reads one orthography's forms.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "humanRequired": {
+          "description": "Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1).",
+          "type": "boolean"
+        },
+        "voices": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/AudioVoice"
+          }
+        }
+      }
+    },
+    "AudioVoice": {
+      "title": "AudioVoice",
+      "description": "A synthetic voice of the course's cast.",
+      "type": "object",
+      "required": [
+        "id",
+        "provider",
+        "voice",
+        "orthography",
+        "reading",
+        "license"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "provider": {
+          "description": "A provider of nabu.audio.providers.",
+          "type": "string",
+          "enum": [
+            "espeak-ng",
+            "piper"
+          ]
+        },
+        "voice": {
+          "description": "The provider's voice: an eSpeak NG voice name, or a Piper voice id.",
+          "type": "string",
+          "minLength": 1
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "reading": {
+          "description": "What the voice reads: \"text\" (the orthography's form) or a reading scheme pinned on tokens (\"jyutping\").",
+          "type": "string",
+          "minLength": 1
+        },
+        "license": {
+          "description": "License of the audio this voice produces: it follows the voice's own terms.",
+          "$ref": "#/$defs/Spdx"
         }
       }
     }

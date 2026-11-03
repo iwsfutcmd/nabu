@@ -33,11 +33,11 @@ jobs:
         run: corepack enable && pnpm --version
       - name: uv
         run: pipx install uv==0.11.32 && uv --version
-      - name: ICU headers for PyICU (CLDR RBNF drills and transforms; Ubuntu 24.04 ships ICU 74)
-        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libicu-dev pkg-config
+      - name: ICU headers for PyICU (CLDR RBNF drills and transforms; Ubuntu 24.04 ships ICU 74), eSpeak NG (audio tests)
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libicu-dev pkg-config espeak-ng
       - run: pnpm install --frozen-lockfile
-      - name: uv sync (all groups, incl. analyzers and PyICU)
-        run: uv sync --frozen --all-groups
+      - name: uv sync (all groups but speech; committed audio needs no speech model)
+        run: uv sync --frozen --all-groups --no-group speech
         working-directory: pipeline
       - name: Generated code is up to date (schemas → TS + Pydantic, CSS module types)
         run: pnpm codegen:check

@@ -1,0 +1,20 @@
+# Audio for the audio.missing-file fixture: A clip whose file is not there.
+version: 1
+clips:
+- item: s.1
+  speed: normal
+  file: clips/0000000000000000.mp3
+  sha256: fc229599cde8d4a71ca65d925b598ed192e34dadb644b4d701e8f0b2bab9664e
+  durationMs: 900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: uz
+    input: Salom
+    rate: 1.0
+    inputHash: '0000000000000000000000000000000000000000000000000000000000000000'

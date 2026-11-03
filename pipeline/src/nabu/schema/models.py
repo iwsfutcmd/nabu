@@ -8,6 +8,62 @@ from typing import Annotated, Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class SynthesisRecord(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    provider: Annotated[str, Field(min_length=1)]
+    version: Annotated[str, Field(min_length=1)]
+    voice: Annotated[str, Field(min_length=1)]
+    input: Annotated[
+        str, Field(description="The exact string the provider read (a pinned reading, or text).")
+    ]
+    rate: Annotated[float, Field(gt=0.0)]
+    inputHash: Annotated[
+        str,
+        Field(
+            description="sha256 of provider, version, voice, input and rate: the clip's identity.",
+            pattern="^[0-9a-f]{64}$",
+        ),
+    ]
+
+
+class TokenTiming(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    token: Annotated[int, Field(ge=0)]
+    startMs: Annotated[int, Field(ge=0)]
+    endMs: Annotated[int, Field(ge=0)]
+
+
+class AudioQa(BaseModel):
+    """
+    Automatic checks (§10.1): what the synthesizer reports it said, and what a recognizer hears.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    trace: Annotated[
+        str | None,
+        Field(description="The phonemes the synthesizer reports for the pinned reading."),
+    ] = None
+    asrModel: str | None = None
+    asrText: str | None = None
+    cer: Annotated[
+        float | None,
+        Field(
+            description="Character error rate of the recognized text against the expected text.",
+            ge=0.0,
+        ),
+    ] = None
+    status: Literal["pass", "review", "fail"] | None = None
+
+
 class Unit(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -23,7 +79,7 @@ class BundleFile(BaseModel):
         frozen=True,
     )
     path: str
-    role: Literal["unit", "profile", "table", "keyboard", "image"]
+    role: Literal["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"]
     sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
     license: str
     source: str | None = None
@@ -36,6 +92,21 @@ class Convert(BaseModel):
     )
     from_: Annotated[str, Field(alias="from")]
     to: str
+
+
+class BundleClip(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    path: str
+    durationMs: Annotated[int, Field(ge=1)]
+    synthetic: bool
+    license: str
+    credit: Annotated[
+        str | None, Field(description="Attribution: the speaker, or the synthetic voice.")
+    ] = None
+    timings: list[TokenTiming] | None = None
 
 
 type LangTag = Annotated[
@@ -243,6 +314,42 @@ class ImageAsset(BaseModel):
             description="Where it came from (URL or description), for attribution.", min_length=1
         ),
     ] = None
+
+
+class AudioVoice(BaseModel):
+    """
+    A synthetic voice of the course's cast.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    provider: Annotated[
+        Literal["espeak-ng", "piper"], Field(description="A provider of nabu.audio.providers.")
+    ]
+    voice: Annotated[
+        str,
+        Field(
+            description="The provider's voice: an eSpeak NG voice name, or a Piper voice id.",
+            min_length=1,
+        ),
+    ]
+    orthography: OrthographyId
+    reading: Annotated[
+        str,
+        Field(
+            description='What the voice reads: "text" (the orthography\'s form) or a reading scheme pinned on tokens ("jyutping").',
+            min_length=1,
+        ),
+    ]
+    license: Annotated[
+        Spdx,
+        Field(
+            description="License of the audio this voice produces: it follows the voice's own terms."
+        ),
+    ]
 
 
 type GroupItem = Annotated[str, Field(min_length=1)]
@@ -873,6 +980,42 @@ class Morph(BaseModel):
     kc: KcId
 
 
+class AudioClip(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    item: Annotated[str, Field(description="Sentence id, or KC id for a word.", min_length=1)]
+    speed: Literal["normal", "slow"]
+    file: Annotated[
+        str,
+        Field(description="Relative to the audio directory.", pattern="^clips/[0-9a-f]{16}\\.mp3$"),
+    ]
+    sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    durationMs: Annotated[int, Field(ge=1)]
+    license: Spdx
+    provenance: Provenance
+    source: Annotated[
+        str | None,
+        Field(
+            description="Where a recording came from (URL or description), for attribution.",
+            min_length=1,
+        ),
+    ] = None
+    synthetic: Annotated[
+        bool, Field(description="Synthesized speech: labelled as such to learners.")
+    ]
+    synthesis: SynthesisRecord | None = None
+    timings: Annotated[
+        list[TokenTiming] | None,
+        Field(
+            description="Start and end of each token of the sentence, for karaoke and tap-a-word (§10.3)."
+        ),
+    ] = None
+    timingSource: Literal["synthesis", "alignment"] | None = None
+    qa: AudioQa | None = None
+
+
 class BundleManifest(BaseModel):
     """
     A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
@@ -921,6 +1064,15 @@ class BundleNode(BaseModel):
     convert: Convert | None = None
 
 
+class BundleAudioItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    normal: BundleClip
+    slow: BundleClip | None = None
+
+
 class KnowledgeComponentSource(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -962,6 +1114,24 @@ class SourceToken(BaseModel):
     ] = None
 
 
+class CourseAudio(BaseModel):
+    """
+    How the course gets audio (gameplan §10): synthesized from pinned readings by the listed voices, or recorded by people only. Audio belongs to the language, not an orthography: each voice reads one orthography's forms.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    humanRequired: Annotated[
+        bool | None,
+        Field(
+            description="Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1)."
+        ),
+    ] = None
+    voices: Annotated[list[AudioVoice] | None, Field(min_length=1)] = None
+
+
 class ExerciseRef(BaseModel):
     """
     What was presented: enough to recompute credit without the bundle.
@@ -984,6 +1154,10 @@ class ExerciseRef(BaseModel):
         "char-read",
         "reading-disambiguation",
         "speak.tier-0",
+        "listen-tap",
+        "listen-type",
+        "listen-select",
+        "minimal-pair",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -1344,6 +1518,31 @@ class Token(BaseModel):
     ] = None
 
 
+class AudioIndex(BaseModel):
+    """
+    A course's audio clips (courses/<id>/audio/index.yaml), written by `nabu audio` and checked in. Every clip carries its SPDX license and provenance; synthesized clips record their exact input so a changed reading re-synthesizes only the clips it affects (§10.1).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    version: Literal[1]
+    clips: list[AudioClip]
+
+
+class BundleAudio(BaseModel):
+    """
+    audio.json (role audio-index): playable clips by item (sentence or KC id).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    items: dict[str, BundleAudioItem]
+
+
 class SentenceForm(BaseModel):
     """
     The exact surface text, plus tokens that annotate its words in order. Gaps between tokens become space and punctuation tokens.
@@ -1598,10 +1797,12 @@ class CourseSource(BaseModel):
     ] = None
     units: Annotated[list[str | UnitSource], Field(min_length=1)]
     drills: list[DrillSpec] | None = None
+    audio: CourseAudio | None = None
 
 
 type NabuSchemaBundle = Annotated[
-    BundleManifest
+    AudioIndex
+    | BundleManifest
     | CourseSource
     | DataTable
     | KeyboardLayout

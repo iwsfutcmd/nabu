@@ -52,9 +52,9 @@ def test_lint_fires_with_file_and_line(core_cli: CoreCli, lint: str) -> None:
     diags, compiled = compile_fixture(core_cli, path)
     hits = [d for d in diags.items if d.lint == lint]
     assert hits, [d.format() for d in diags.items]
-    assert all(d.loc.file == f"lints/{lint}.yaml" and d.loc.line > 1 for d in hits), [
-        d.format() for d in hits
-    ]
+    # Audio lints point into the course's audio index; everything else into the course.
+    where = f"lints/{lint}.audio/index.yaml" if lint.startswith("audio.") else f"lints/{lint}.yaml"
+    assert all(d.loc.file == where and d.loc.line > 1 for d in hits), [d.format() for d in hits]
     if LINTS[lint].severity == "error":
         assert compiled is None, "errors must stop the build"
 

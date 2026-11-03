@@ -1,0 +1,24 @@
+# Audio for the audio.held-back fixture: A clip the round-trip check failed, not yet reviewed.
+version: 1
+clips:
+- item: s.1
+  speed: normal
+  file: clips/99b0d2e31b43e742.mp3
+  sha256: 99b0d2e31b43e74294d3ca48e5658472d1edf683207f8dc53ff6fc9f879051d1
+  durationMs: 900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: uz
+    input: Salom
+    rate: 1.0
+    inputHash: '0000000000000000000000000000000000000000000000000000000000000000'
+  qa:
+    asrText: Salam
+    cer: 0.8
+    status: fail

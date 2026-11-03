@@ -19,6 +19,7 @@ from pydantic import BaseModel, ValidationError
 
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
+from nabu.compiler.audio import check_audio
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.source import Doc, load_doc
 from nabu.corecli import CoreCli
@@ -62,6 +63,9 @@ class Compiled:
     provenance: dict[str, int] = field(default_factory=lambda: {})
     # bundle path → (bytes, SPDX license, attribution source)
     images: dict[str, tuple[bytes, str, str | None]] = field(default_factory=lambda: {})
+    # audio: bundle path → (bytes, SPDX license, credit); item → {normal, slow} clips (audio.json)
+    audio_files: dict[str, tuple[bytes, str, str]] = field(default_factory=lambda: {})
+    audio_items: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
 
 
 @dataclass
@@ -456,6 +460,9 @@ def compile_course(
         _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
         for ui, unit in enumerate(units)
     ]
+    check_audio(ctx, course, course_file, display, compiled)
+    if diags.errors:
+        return diags, None
     return diags, compiled
 
 

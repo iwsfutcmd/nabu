@@ -22,7 +22,7 @@ from nabu.analyzers import Analyzer, versions
 from nabu.compiler.build import Compiled
 from nabu.drills.rbnf import icu_version
 from nabu.paths import I18N_GENERATED, PROFILES
-from nabu.schema.models import BundleManifest, BundleUnit, OrthographyProfile
+from nabu.schema.models import BundleAudio, BundleManifest, BundleUnit, OrthographyProfile
 
 FORMAT_VERSION = 0
 
@@ -152,6 +152,29 @@ def write_bundle(
         if image_source is not None:
             entry["source"] = image_source
         files.append(entry)
+
+    for rel, (blob, clip_license, credit) in sorted(compiled.audio_files.items()):
+        (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
+        (out_dir / rel).write_bytes(blob)
+        files.append(
+            {
+                "path": rel,
+                "role": "audio",
+                "sha256": sha256(blob),
+                "license": clip_license,
+                "source": credit,
+            }
+        )
+    if compiled.audio_items:
+        index = {"items": compiled.audio_items}
+        BundleAudio.model_validate(index)
+        index_blob = canonical(index)
+        rel = f"audio/index.{sha256(index_blob)[:16]}.json"
+        (out_dir / rel).write_bytes(index_blob)
+        license_ = course.license or "NOASSERTION"
+        files.append(
+            {"path": rel, "role": "audio-index", "sha256": sha256(index_blob), "license": license_}
+        )
 
     manifest: dict[str, Any] = {
         "formatVersion": FORMAT_VERSION,

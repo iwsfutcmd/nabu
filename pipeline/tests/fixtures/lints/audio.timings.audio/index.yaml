@@ -1,0 +1,24 @@
+# Audio for the audio.timings fixture: Timings that point past the sentence's tokens.
+version: 1
+clips:
+- item: s.1
+  speed: normal
+  file: clips/66bd9848d31e5b79.mp3
+  sha256: 66bd9848d31e5b7971dc8f87f2096f42d7687a64ee30b0875ad5eb08321deaf7
+  durationMs: 900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: uz
+    input: Salom
+    rate: 1.0
+    inputHash: '0000000000000000000000000000000000000000000000000000000000000000'
+  timings:
+  - token: 9
+    startMs: 0
+    endMs: 400

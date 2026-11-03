@@ -35,7 +35,7 @@
       "additionalProperties": false,
       "properties": {
         "path": { "type": "string" },
-        "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard", "image"] },
+        "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"] },
         "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
         "license": { "type": "string" },
         "source": { "type": "string" }
@@ -120,6 +120,40 @@
         "register": { "type": "string" },
         "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
         "license": { "type": "string" }
+      }
+    },
+    "BundleAudio": {
+      "title": "BundleAudio",
+      "description": "audio.json (role audio-index): playable clips by item (sentence or KC id).",
+      "type": "object",
+      "required": ["items"],
+      "additionalProperties": false,
+      "properties": {
+        "items": { "type": "object", "additionalProperties": { "$ref": "#/$defs/BundleAudioItem" } }
+      }
+    },
+    "BundleAudioItem": {
+      "title": "BundleAudioItem",
+      "type": "object",
+      "required": ["normal"],
+      "additionalProperties": false,
+      "properties": {
+        "normal": { "$ref": "#/$defs/BundleClip" },
+        "slow": { "$ref": "#/$defs/BundleClip" }
+      }
+    },
+    "BundleClip": {
+      "title": "BundleClip",
+      "type": "object",
+      "required": ["path", "durationMs", "synthetic", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "path": { "type": "string" },
+        "durationMs": { "type": "integer", "minimum": 1 },
+        "synthetic": { "type": "boolean" },
+        "license": { "type": "string" },
+        "credit": { "description": "Attribution: the speaker, or the synthetic voice.", "type": "string" },
+        "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } }
       }
     }
   }

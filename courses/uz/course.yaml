@@ -7,3 +7,7 @@ support: [en-Latn/standard]
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@887599f213ef', status: draft}
 units: [units/intro.yaml]
+# Audio (§10.1): one recording per sentence, read from the Latin forms; the Cyrillic orthography shares it.
+audio:
+  voices:
+  - {id: narrator, provider: espeak-ng, voice: uz, orthography: uz-Latn/standard, reading: text, license: CC0-1.0}

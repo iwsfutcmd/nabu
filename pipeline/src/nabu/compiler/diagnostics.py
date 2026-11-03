@@ -178,6 +178,31 @@ _LINTS = [
         "A content item has no SPDX license (and the course gives none).",
     ),
     Lint("package.provenance", "error", 9, "A content item has no provenance."),
+    # 9 · audio (committed clips, audio/index.yaml)
+    Lint("audio.schema", "error", 9, "audio/index.yaml does not match schemas/audio-index."),
+    Lint(
+        "audio.missing-file", "error", 9, "A clip's file is missing or does not match its sha256."
+    ),
+    Lint(
+        "audio.human-required",
+        "error",
+        9,
+        "Synthesized audio in a course whose audio must be recorded by people.",
+    ),
+    Lint("audio.unknown-item", "warning", 9, "A clip for a sentence or KC the course lacks."),
+    Lint(
+        "audio.stale",
+        "warning",
+        9,
+        "A synthesized clip read something other than the voice reads now (a changed reading).",
+    ),
+    Lint("audio.timings", "error", 9, "Clip timings that do not fit the sentence's word tokens."),
+    Lint(
+        "audio.held-back",
+        "info",
+        9,
+        "Clips that failed the round-trip check stay out of the bundle until reviewed.",
+    ),
     Lint(
         "package.unreviewed-published",
         "error",

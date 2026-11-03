@@ -1,0 +1,20 @@
+# Audio for the audio.stale fixture: The voice now reads 'Salom', the clip read 'Salam'.
+version: 1
+clips:
+- item: s.1
+  speed: normal
+  file: clips/a03f2386ae06b211.mp3
+  sha256: a03f2386ae06b21109577020844df367857b72c2fcce384c1896fed98a89c82b
+  durationMs: 900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: uz
+    input: Salam
+    rate: 1.0
+    inputHash: '0000000000000000000000000000000000000000000000000000000000000000'
