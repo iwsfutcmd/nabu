@@ -8,9 +8,10 @@ interface Vector {
   readonly script: string;
   readonly dir: "ltr" | "rtl";
 }
-const { vectors } = JSON.parse(
-  readFileSync(resolve(import.meta.dirname, "../../../conformance/direction.json"), "utf8"),
-) as { vectors: Vector[] };
+const file = JSON.parse(readFileSync(resolve(import.meta.dirname, "../../../conformance/direction.json"), "utf8")) as {
+  vectors: { args: { tag: string }; expected: { script: string; dir: "ltr" | "rtl" } }[];
+};
+const vectors: Vector[] = file.vectors.map((v) => ({ tag: v.args.tag, ...v.expected }));
 
 describe("conformance/direction.json", () => {
   it.each(vectors)("$tag → $script, $dir", ({ tag, script, dir }) => {

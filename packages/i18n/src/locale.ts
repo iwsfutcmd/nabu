@@ -8,7 +8,7 @@
  */
 import likelySubtags from "./generated/likely-subtags.json" with { type: "json" };
 import parentLocales from "./generated/parent-locales.json" with { type: "json" };
-import { asciiLowercase, asciiTitlecase, asciiUppercase } from "./ascii.ts";
+import { asciiLowercase, asciiTitlecase, asciiUppercase } from "@nabu/core/text";
 
 export interface ParsedTag {
   readonly language: string;

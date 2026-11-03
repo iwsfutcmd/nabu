@@ -6,49 +6,61 @@
       "message": "Nabu",
       "description": "Product name. Usually left untranslated."
     },
+    "course.name.apc": {
+      "message": "Lebanese Arabic",
+      "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
+    },
     "course.name.fa": {
       "message": "Persian",
       "description": "Name of the Persian (fa) course, used inside other messages as $language."
-    },
-    "course.name.yue": {
-      "message": "Cantonese",
-      "description": "Name of the Cantonese (yue) course, used inside other messages as $language."
     },
     "course.name.uz": {
       "message": "Uzbek",
       "description": "Name of the Uzbek (uz) course, used inside other messages as $language."
     },
-    "course.name.apc": {
-      "message": "Lebanese Arabic",
-      "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
+    "course.name.yue": {
+      "message": "Cantonese",
+      "description": "Name of the Cantonese (yue) course, used inside other messages as $language."
     },
-    "exercise.progress": {
-      "message": ".input {$current :number}\n.input {$total :number}\n{{Exercise {$current} of {$total}}}",
-      "description": "Accessible value of the lesson progress bar. $current and $total are counts."
-    },
-    "exercise.action.quit": {
-      "message": "Quit lesson",
-      "description": "Accessible label of the close (×) button in the lesson header."
-    },
-    "exercise.instruction.write-in": {
-      "message": "Write this in {$language}",
-      "description": "Instruction for a translate-into-the-target-language exercise. $language is a course name (course.name.*)."
-    },
-    "exercise.prompt.label": {
-      "message": "Sentence to translate",
-      "description": "Accessible label of the sentence the learner translates."
+    "exercise.action.check": {
+      "message": "Check",
+      "description": "Button that submits the answer for grading."
     },
     "exercise.action.play-audio": {
       "message": "Play audio",
       "description": "Accessible label of the speaker button."
     },
-    "exercise.answer.label": {
-      "message": "Your answer",
-      "description": "Accessible label of the row where chosen word tiles appear."
+    "exercise.action.quit": {
+      "message": "Quit lesson",
+      "description": "Accessible label of the close (×) button in the lesson header."
+    },
+    "exercise.action.skip": {
+      "message": "Skip",
+      "description": "Button that skips the current exercise."
     },
     "exercise.answer.input-label": {
       "message": "Type your answer in {$language}",
       "description": "Label of the free-text answer field. $language is a course name (course.name.*)."
+    },
+    "exercise.answer.label": {
+      "message": "Your answer",
+      "description": "Accessible label of the row where chosen word tiles appear."
+    },
+    "exercise.instruction.write-in": {
+      "message": "Write this in {$language}",
+      "description": "Instruction for a translate-into-the-target-language exercise. $language is a course name (course.name.*)."
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{Exercise {$current} of {$total}}}",
+      "description": "Accessible value of the lesson progress bar. $current and $total are counts."
+    },
+    "exercise.prompt.label": {
+      "message": "Sentence to translate",
+      "description": "Accessible label of the sentence the learner translates."
+    },
+    "exercise.readings.toggle": {
+      "message": "Show readings",
+      "description": "Switch that shows or hides pronunciation guides (Jyutping, vowel marks) above the text."
     },
     "exercise.wordbank.label": {
       "message": "Word bank",
@@ -58,21 +70,101 @@
       "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n*   {{{$count} tiles left}}",
       "description": "How many tiles are still in the word bank. $count is a number."
     },
-    "exercise.readings.toggle": {
-      "message": "Show readings",
-      "description": "Switch that shows or hides pronunciation guides (Jyutping, vowel marks) above the text."
+    "feedback.note.alef-maqsura": {
+      "message": "Watch the alif maqsura (ى) at the end of the word.",
+      "description": "Feedback note for Arabic: alif maqsura and ya were confused."
     },
-    "exercise.action.skip": {
-      "message": "Skip",
-      "description": "Button that skips the current exercise."
+    "feedback.note.apostrophe": {
+      "message": "In Uzbek, oʻ and gʻ take a turned comma (ʻ) and the separator sign is ʼ. A plain ' is fine to type, though.",
+      "description": "Feedback note for Uzbek: the learner typed a plain apostrophe."
     },
-    "exercise.action.check": {
-      "message": "Check",
-      "description": "Button that submits the answer for grading."
+    "feedback.note.hamza": {
+      "message": "Watch the hamza (أ, إ, آ).",
+      "description": "Feedback note for Arabic: a hamza seat was written as a plain alif."
+    },
+    "feedback.note.hk-tw-variant": {
+      "message": "This is the Taiwan form of the character; Hong Kong usually writes it differently.",
+      "description": "Feedback note for Cantonese: a Taiwan character form was used where Hong Kong uses another."
+    },
+    "feedback.note.ime-homophone": {
+      "message": "One character has the right sound but is the wrong character: check what your keyboard suggested.",
+      "description": "Feedback note for an IME slip (a homophone picked from the input method)."
+    },
+    "feedback.note.marks": {
+      "message": "Check the accents and vowel marks.",
+      "description": "Feedback note: the answer differs from the expected one only in marks."
+    },
+    "feedback.note.script-mismatch": {
+      "message": "Check that you're writing in the right script.",
+      "description": "Generic feedback note: the answer is written in a different script from the course."
     },
     "feedback.note.spacing": {
       "message": "Watch the half-space (ZWNJ) inside this word.",
       "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
+    },
+    "feedback.note.ta-marbuta": {
+      "message": "Watch the ta marbuta (ة) at the end of the word.",
+      "description": "Feedback note for Arabic: ta marbuta was written as ha."
+    },
+    "feedback.note.tajik-letters": {
+      "message": "Use the Tajik letters ғ, ӣ, қ, ӯ, ҳ and ҷ.",
+      "description": "Feedback note for Tajik: Russian-keyboard letters were typed instead of Tajik ones."
+    },
+    "feedback.note.use-traditional": {
+      "message": "Use Traditional characters.",
+      "description": "Feedback note for Cantonese: the answer contains Simplified characters."
+    },
+    "feedback.note.uzbek-letters": {
+      "message": "Use the Uzbek letters ў, қ, ғ and ҳ, not у, к, г and х.",
+      "description": "Feedback note for Uzbek in Cyrillic: Russian-keyboard letters were typed instead of Uzbek ones."
+    },
+    "feedback.note.variant": {
+      "message": "Another spelling of this character is more usual here.",
+      "description": "Feedback note: an accepted variant form was used."
+    },
+    "feedback.note.zwnj": {
+      "message": "Watch the half-space (ZWNJ) inside this word.",
+      "description": "Generic feedback note when a zero-width non-joiner was typed as a space or left out."
+    },
+    "feedback.verdict.correct": {
+      "message": "Correct!",
+      "description": "Feedback headline: the answer matched the expected one."
+    },
+    "feedback.verdict.correct-alt": {
+      "message": "Correct! Another correct solution:",
+      "description": "Feedback headline when the learner gave a correct answer other than the main one, which is shown after it."
+    },
+    "feedback.verdict.correct-marks": {
+      "message": "Correct, but pay attention to the accents and marks.",
+      "description": "Feedback headline: right apart from diacritics or vowel marks."
+    },
+    "feedback.verdict.correct-provisional": {
+      "message": "Looks right! We'll double-check this one.",
+      "description": "Feedback headline: accepted provisionally by the AI judge; a human will review it."
+    },
+    "feedback.verdict.correct-variant": {
+      "message": "Correct, but this form is spelled differently here.",
+      "description": "Feedback headline: right, written with an accepted variant form (e.g. a Taiwan character form in a Hong Kong course)."
+    },
+    "feedback.verdict.correct-with-typo": {
+      "message": "Correct, but watch the typo.",
+      "description": "Feedback headline: right apart from a small typing mistake."
+    },
+    "feedback.verdict.partial": {
+      "message": "Almost: a character sounds right but is the wrong one.",
+      "description": "Feedback headline for an IME slip: a homophone was picked from the input method."
+    },
+    "feedback.verdict.skipped": {
+      "message": "Skipped",
+      "description": "Feedback headline when the learner skipped the exercise."
+    },
+    "feedback.verdict.wrong": {
+      "message": "Not quite.",
+      "description": "Feedback headline: the answer is wrong. The correct answer is shown below it."
+    },
+    "feedback.verdict.wrong-word": {
+      "message": "That's a different word.",
+      "description": "Feedback headline: one letter off, but the result is another real word."
     }
   }
 }

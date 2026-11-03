@@ -1,4 +1,4 @@
-export { asciiLowercase, asciiTitlecase, asciiUppercase } from "./ascii.ts";
+export { asciiLowercase, asciiTitlecase, asciiUppercase } from "@nabu/core/text";
 export {
   createTranslator,
   DEFAULT_UI_LOCALE,
@@ -17,6 +17,6 @@ export { cldrLocaleId, formatTag, maximize, parentChain, parentOf, parseTag, sam
 export { negotiateLocale, parseAcceptLanguage, type Negotiated, type NegotiationInput } from "./negotiate.ts";
 export { pseudoLocalizeMessage, type PseudoLocale } from "./pseudo.ts";
 export { directionOf, engineDirectionOf, scriptInfo, type Direction, type ScriptInfo, type VerticalMode } from "./script.ts";
-export { parseExemplarSet } from "./unicode-set.ts";
+export { parseExemplarSet } from "@nabu/core/text";
 export { default as exemplars } from "./generated/exemplars.json" with { type: "json" };
 export { default as cldrMeta } from "./generated/cldr-meta.json" with { type: "json" };

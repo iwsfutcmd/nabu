@@ -7,10 +7,10 @@ describe("graphemes", () => {
   it.each([
     ["é", ["é"]],
     ["각", ["각"]], // Hangul jamo L V T
-    ["\u{1F469}‍\u{1F4BB}", ["\u{1F469}‍\u{1F4BB}"]], // ZWJ sequence
+    ["\u{1F469}\u200D\u{1F4BB}", ["\u{1F469}\u200D\u{1F4BB}"]], // ZWJ sequence
     ["\u{1F1EE}\u{1F1F7}", ["\u{1F1EE}\u{1F1F7}"]], // regional-indicator flag
     ["oʻzbek", ["o", "ʻ", "z", "b", "e", "k"]], // Uzbek oʻ is two graphemes: letters need the profile (Phase 1)
-    ["کتاب‌ها", ["ک", "ت", "ا", "ب‌", "ه", "ا"]], // ZWNJ extends
+    ["کتاب\u200Cها", ["ک", "ت", "ا", "ب\u200C", "ه", "ا"]], // ZWNJ extends
   ])("%s", (text, expected) => {
     expect(graphemes(text)).toEqual(expected);
     expect(graphemeCount(text)).toBe(expected.length);
