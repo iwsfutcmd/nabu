@@ -1,0 +1,30 @@
+{
+  "name": "@nabu/i18n",
+  "version": "0.0.0",
+  "private": true,
+  "description": "MF2 catalogs, locale negotiation, generated CLDR script metadata, font stacks",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./messages/*": "./messages/*"
+  },
+  "scripts": {
+    "generate:cldr": "node scripts/generate-cldr.ts",
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@nabu/schema": "workspace:*",
+    "messageformat": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "cldr-core": "49.0.0",
+    "cldr-misc-full": "49.0.0",
+    "fast-check": "^4.10.2",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$comment": "Default font stacks per script (gameplan §6.8), used when an orthography profile has no `fonts`. Every family here is self-hosted from @fontsource (OFL-1.1) so rendering never depends on system fonts: see docs/adr. lineHeight is the per-script token for tall marks (vocalized Arabic needs more room than Latin).",
+  "generic": "sans-serif",
+  "scripts": {
+    "Latn": { "stack": ["Noto Sans"], "lineHeight": 1.5 },
+    "Cyrl": { "stack": ["Noto Sans"], "lineHeight": 1.5 },
+    "Grek": { "stack": ["Noto Sans"], "lineHeight": 1.5 },
+    "Arab": { "stack": ["Noto Naskh Arabic", "Noto Sans Arabic"], "lineHeight": 1.9 },
+    "Hant": { "stack": ["Noto Sans HK"], "lineHeight": 1.6 },
+    "Hani": { "stack": ["Noto Sans HK"], "lineHeight": 1.6 }
+  },
+  "ui": {
+    "default": { "stack": ["Noto Sans", "Noto Sans Arabic"], "lineHeight": 1.4 },
+    "Arab": { "stack": ["Noto Sans Arabic", "Noto Sans"], "lineHeight": 1.6 }
+  }
+}
