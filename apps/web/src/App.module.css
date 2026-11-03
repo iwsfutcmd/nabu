@@ -1,0 +1,101 @@
+/* App screens around the player. Logical properties only. */
+
+.page {
+  box-sizing: border-box;
+  max-inline-size: 40rem;
+  margin-inline: auto;
+  padding-block: var(--nabu-space-5);
+  padding-inline: var(--nabu-space-4);
+}
+
+.player {
+  box-sizing: border-box;
+  padding-block: var(--nabu-space-4);
+  padding-inline: var(--nabu-space-3);
+}
+
+.heading {
+  margin-block: 0 var(--nabu-space-4);
+  font-size: 1.75rem;
+}
+
+.subheading {
+  margin-block: var(--nabu-space-4) var(--nabu-space-2);
+  font-size: 1.25rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.course {
+  padding: var(--nabu-space-4);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-card);
+}
+
+.courseName {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.muted {
+  margin-block: var(--nabu-space-1) 0;
+  color: var(--nabu-color-muted);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  margin-block-start: var(--nabu-space-3);
+}
+
+.link,
+.lesson {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-3);
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-4);
+  color: var(--nabu-color-text);
+  text-decoration: none;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.lesson {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.lessonName {
+  font-weight: 700;
+}
+
+.preview {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  font-size: 1.125rem;
+}
+
+.back {
+  color: var(--nabu-color-accent);
+}
+
+.link:focus-visible,
+.lesson:focus-visible,
+.back:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}

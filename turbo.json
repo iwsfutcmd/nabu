@@ -46,7 +46,8 @@
     "build-storybook": {
       "inputs": [
         "$TURBO_DEFAULT$",
-        "$TURBO_ROOT$/profiles/**"
+        "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/apps/web/public/bundles/**"
       ],
       "outputs": [
         "storybook-static/**"

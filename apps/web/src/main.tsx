@@ -1,12 +1,14 @@
 /**
- * Phase 0 shell: negotiate the UI locale (setting → navigator.languages →
- * default), load its catalog, and render the demo exercise card. The real app
- * (router, player, store) arrives in Phases 3–4.
+ * Web client entry: negotiate the UI locale (setting → navigator.languages →
+ * default), load its catalog, and render the app (course list, lessons, lesson
+ * player). The store and learner model arrive in Phase 4.
  *
  * Query parameters stand in for settings until there is a settings screen:
  *   ?ui=ar-XB            UI locale or pseudo-locale
- *   ?target=yue-Hant-HK  demo target (fa, yue-Hant-HK, uz-Latn, apc-Arab)
- *   ?mode=vertical-rl    requested writing mode
+ *   ?seed=7              lesson seed (reproducible lessons for tests)
+ *   ?sound=off           no feedback sounds
+ *   ?target=yue-Hant-HK  the Phase 0 demo exercise card instead (fa, yue-Hant-HK, uz-Latn, apc-Arab)
+ *   ?mode=vertical-rl    the demo card's requested writing mode
  */
 import { DEFAULT_UI_LOCALE, loadTranslator, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import { NabuUiProvider, UiRoot } from "@nabu/ui";
@@ -15,6 +17,7 @@ import "@nabu/ui/fonts.css";
 import "@nabu/ui/tokens.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
+import { App } from "./App.tsx";
 
 const params = new URLSearchParams(window.location.search);
 const negotiated = negotiateLocale({
@@ -31,15 +34,13 @@ document.documentElement.dir = translator.dir;
 document.title = translator.format("app.name");
 
 const requested = params.get("target");
-const target: DemoTarget = requested !== null && requested in DEMO_TARGETS ? (requested as DemoTarget) : "fa";
+const target: DemoTarget | undefined = requested !== null && requested in DEMO_TARGETS ? (requested as DemoTarget) : undefined;
 const mode = (params.get("mode") ?? "horizontal-tb") as WritingMode;
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <NabuUiProvider translator={translator} orthographies={DEMO_ORTHOGRAPHIES}>
-      <UiRoot>
-        <DemoExerciseCard target={target} writingMode={mode} />
-      </UiRoot>
+      <UiRoot>{target === undefined ? <App /> : <DemoExerciseCard target={target} writingMode={mode} />}</UiRoot>
     </NabuUiProvider>
   </StrictMode>,
 );

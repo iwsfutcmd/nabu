@@ -22,6 +22,7 @@
     "storybook": "pnpm --filter @nabu/ui storybook",
     "cldr": "pnpm --filter @nabu/i18n generate:cldr",
     "test:perf": "turbo run test:perf",
+    "test:e2e": "pnpm --filter @nabu/web test:e2e",
     "conformance": "pnpm --filter @nabu/core-cli exec vitest run test/conformance.test.ts && cd pipeline && uv run --frozen pytest -q tests/test_conformance.py",
     "tables": "cd pipeline && uv run --frozen nabu tables",
     "courses": "cd pipeline && uv run --frozen nabu build ../courses --check",

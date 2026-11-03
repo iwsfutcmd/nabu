@@ -52,9 +52,14 @@ jobs:
           NABU_REQUIRE_TOOLS: "1"
       - name: Fixture courses compile (Phase 2; diagnostics as file:line)
         run: pnpm courses
+      - name: Web bundles are up to date (pnpm bundles → apps/web/public/bundles)
+        run: |
+          pnpm bundles
+          git diff --exit-code -- apps/web/public/bundles
+          test -z "$(git status --porcelain -- apps/web/public/bundles)"
 
   visual:
-    name: Visual matrix and grading performance (Playwright)
+    name: Visual matrix, lesson e2e and grading performance (Playwright)
     runs-on: ubuntu-24.04
     # Baselines are generated in this exact image (pnpm test:visual:update), so
     # screenshots compare pixel for pixel. Keep the tag in sync with @playwright/test.
@@ -71,6 +76,8 @@ jobs:
       - run: pnpm test:visual
       - name: Grading p95 under 5 ms with 4x CPU throttling (Phase 1 acceptance)
         run: pnpm test:perf
+      - name: One lesson per fixture course by keyboard and by touch, IME composition, axe (Phase 3 acceptance)
+        run: pnpm test:e2e
       - name: Upload report on failure
         if: failure()
         uses: actions/upload-artifact@v5
@@ -80,4 +87,6 @@ jobs:
             packages/ui/playwright-report
             packages/ui/test-results
             packages/core-cli/test-results
+            apps/web/playwright-report
+            apps/web/test-results
           retention-days: 14

@@ -2,23 +2,31 @@
   "name": "@nabu/web",
   "version": "0.0.0",
   "private": true,
-  "description": "Nabu web client (React + Vite PWA). Phase 0: renders the demo exercise card with negotiated UI locale.",
+  "description": "Nabu web client (React + Vite). Phase 3: course list, lessons and the lesson player over compiled bundles.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "typecheck": "tsc -p tsconfig.json",
-    "lint": "eslint ."
+    "codegen": "node ../../packages/ui/scripts/css-module-types.ts --root src",
+    "typecheck": "node ../../packages/ui/scripts/css-module-types.ts --root src --check && tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "lint:css": "stylelint \"src/**/*.css\"",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@nabu/core": "workspace:*",
     "@nabu/i18n": "workspace:*",
+    "@nabu/schema": "workspace:*",
     "@nabu/ui": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^22.20.5",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.2.1",
