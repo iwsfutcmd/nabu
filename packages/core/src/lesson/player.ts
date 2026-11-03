@@ -7,6 +7,7 @@
  * draft is stored exactly as typed. Only `compositionend` settles text.
  */
 import type { Verdict } from "../match/grade.ts";
+import type { SpeechResult } from "../speech/score.ts";
 import { isCorrect, type Exercise, type Outcome, type Response, type SelfRating, type SkipReason, type TemplateId } from "./exercise.ts";
 import { solutionOf, TEMPLATES } from "./templates.ts";
 
@@ -15,7 +16,9 @@ export type Draft =
   | { readonly tag: "tiles"; readonly order: readonly number[] }
   | { readonly tag: "text"; readonly text: string }
   | { readonly tag: "pairs"; readonly matched: readonly number[]; readonly mistakes: number }
-  | { readonly tag: "self-rating"; readonly rating: SelfRating | null };
+  | { readonly tag: "self-rating"; readonly rating: SelfRating | null }
+  /** Scored speaking: what was heard, once the recording is scored. */
+  | { readonly tag: "speech"; readonly result: SpeechResult | null };
 
 export interface SessionResult {
   readonly exercise: string;
@@ -115,7 +118,7 @@ export const emptyDraft = (ex: Exercise): Draft => {
     case "pairs":
       return { tag: "pairs", matched: [], mistakes: 0 };
     case "voice":
-      return { tag: "self-rating", rating: null };
+      return ex.template === "speak.tier-0" ? { tag: "self-rating", rating: null } : { tag: "speech", result: null };
   }
 };
 
@@ -144,6 +147,8 @@ export const draftOf = (state: PlayerState): Draft | undefined => {
           return { tag: "pairs", matched: active.ex.template === "match-pairs" ? active.ex.left.map((_, i) => i) : [], mistakes: response.mistakes };
         case "self-rating":
           return { tag: "self-rating", rating: response.rating };
+        case "speech":
+          return { tag: "speech", result: response.result };
       }
     }
   }
@@ -162,6 +167,8 @@ export const responseOf = (ex: Exercise, draft: Draft): Response | undefined => 
       return ex.template === "match-pairs" && draft.matched.length === ex.left.length ? { tag: "pairs", mistakes: draft.mistakes } : undefined;
     case "self-rating":
       return draft.rating === null ? undefined : { tag: "self-rating", rating: draft.rating };
+    case "speech":
+      return draft.result === null ? undefined : { tag: "speech", result: draft.result };
   }
 };
 
@@ -193,7 +200,8 @@ export const start = (lesson: string, exercises: readonly Exercise[], options: S
 };
 
 /** Exercises that come back after a mistake: not speaking (self-rated) and not pairs (always completed). */
-const retryable = (ex: Exercise): boolean => ex.template !== "speak.tier-0" && ex.template !== "match-pairs";
+/** Speaking is not brought back (a recording is feedback, not a test), nor are pairs. */
+const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mic && ex.template !== "match-pairs";
 
 const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerState, readonly Effect[]] => {
   const { session, ex, outcome } = state;
@@ -222,7 +230,7 @@ const skip = (state: Extract<Active, { tag: "presenting" | "answering" }>, reaso
   const emit: Effect = { tag: "emit", event: { type: "exercise_skipped", exercise: ref(ex), reason, ex } };
   if (reason === "cant-speak" || reason === "cant-listen") {
     // "Can't speak now" / "Can't listen now": no speaking, or no listening, for the rest of the lesson.
-    const dropped = (t: TemplateId): boolean => (reason === "cant-speak" ? t === "speak.tier-0" : TEMPLATES[t].modality.audioOut);
+    const dropped = (t: TemplateId): boolean => (reason === "cant-speak" ? TEMPLATES[t].modality.mic : TEMPLATES[t].modality.audioOut);
     const rest = session.queue.slice(session.position + 1).filter((e) => !dropped(e.template));
     const gone = [...new Set(session.queue.map((e) => e.template).filter(dropped))];
     const next: Session = { ...session, queue: [...session.queue.slice(0, session.position + 1), ...rest], excluded: [...session.excluded, ...gone] };

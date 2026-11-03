@@ -3,7 +3,7 @@
   "$id": "https://nabu.invalid/schemas/v0/learner-event.schema.json",
   "title": "LearnerEvent",
   "description": "The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
-  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported.",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify.",
   "oneOf": [
     {
       "$ref": "#/$defs/SessionStarted"
@@ -63,6 +63,9 @@
             "char-read",
             "reading-disambiguation",
             "speak.tier-0",
+            "speak",
+            "listen-speak",
+            "tone-identify",
             "listen-tap",
             "listen-type",
             "listen-select",

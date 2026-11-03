@@ -4,6 +4,7 @@ declare const styles: {
   readonly achievements: string;
   readonly back: string;
   readonly button: string;
+  readonly check: string;
   readonly count: string;
   readonly course: string;
   readonly courseName: string;
@@ -48,5 +49,6 @@ declare const styles: {
   readonly track: string;
   readonly unit: string;
   readonly unitTitle: string;
+  readonly voice: string;
 };
 export default styles;

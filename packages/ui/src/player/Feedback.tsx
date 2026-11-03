@@ -50,7 +50,7 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
     <div className={styles.feedback} data-feedback="" data-verdict={outcome.verdict} data-right={right || undefined}>
       <p className={styles.feedbackHeadline}>
         <span className={right ? styles.correctIcon : styles.wrongIcon}>{right ? <CorrectIcon /> : <WrongIcon />}</span>
-        {t.format(HEADLINES[outcome.verdict])}
+        {t.format(outcome.verdict === "PARTIAL" && (ex.template === "speak" || ex.template === "listen-speak") ? "feedback.verdict.speech-close" : HEADLINES[outcome.verdict])}
       </p>
       {notes.length > 0 && (
         <ul className={styles.notes}>

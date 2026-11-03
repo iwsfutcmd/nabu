@@ -18,6 +18,9 @@
  *   NABU_GATES                  judge gates file (default evals/gates.json)
  *   NABU_BUNDLES                compiled course bundles (default the web app's)
  *   NABU_ADMIN_TOKEN            bearer token for the review queue (/admin/v1)
+ *
+ * Speech (gameplan §10.4; tier 3, tone, runs on the device):
+ *   NABU_SPEECH_URL             the speech service (`nabu speech serve`): tiers 1–2 (unset: off)
  */
 import { serve } from "@hono/node-server";
 import { DEFAULT_LEAGUE } from "@nabu/core/game";
@@ -64,7 +67,16 @@ const gates = (JSON.parse(readFileSync(gatesFile, "utf8")) as unknown[]).filter(
 const courses = createCourses(dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES));
 console.info(provider === undefined ? "ai: no model configured; AI features are off" : `ai: ${provider.name} ${provider.model}; judge gates open: ${gates.filter((g) => g.enabled).length}`);
 
-const app = createApp({ db, accounts: createAccounts(db), leagues, vapid: keys, ai: { gateway, courses, gates }, adminToken: env["NABU_ADMIN_TOKEN"] });
+const speechUrl = env["NABU_SPEECH_URL"] === "" ? undefined : env["NABU_SPEECH_URL"];
+const app = createApp({
+  db,
+  accounts: createAccounts(db),
+  leagues,
+  vapid: keys,
+  ai: { gateway, courses, gates },
+  adminToken: env["NABU_ADMIN_TOKEN"],
+  speech: { url: speechUrl, transport: (url, init) => fetch(url, init) },
+});
 
 /** The periodic jobs: league rollover and reminders. */
 const runJobs = async (now: number): Promise<{ rolled: readonly string[]; sent: number }> => {

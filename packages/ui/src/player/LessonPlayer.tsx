@@ -17,6 +17,7 @@ import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 import { digitIndex, effectiveWritingMode, hasMarksLayer, rubySchemeOf, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
+import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
 
@@ -47,6 +48,8 @@ export interface LessonPlayerProps {
    * The app supplies it; the player only places it, outside the live region.
    */
   readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome) => ReactNode) | undefined;
+  /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
+  readonly speech?: SpeechServices | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -280,7 +283,9 @@ export const LessonPlayer = (props: LessonPlayerProps): JSX.Element => {
   const orthographies = useMemo(() => new Map([...props.course.profiles].map(([id, p]) => [id, p.source])), [props.course]);
   return (
     <NabuUiProvider translator={translator} orthographies={orthographies}>
-      <PlayerBody {...props} profile={orthographies.get(props.course.orthography)} />
+      <SpeechProvider value={props.speech}>
+        <PlayerBody {...props} profile={orthographies.get(props.course.orthography)} />
+      </SpeechProvider>
     </NabuUiProvider>
   );
 };

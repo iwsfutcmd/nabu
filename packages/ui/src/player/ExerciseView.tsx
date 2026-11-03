@@ -14,10 +14,12 @@ import {
   MatchPairsView,
   SelectImageView,
   SpeakView,
+  SpeechView,
   StoryArrangeView,
   StoryChooseView,
   StoryCompleteView,
   TilesView,
+  ToneIdentifyView,
   TranslateTypeView,
   type ViewExtras,
 } from "./Views.tsx";
@@ -34,6 +36,9 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "char-read": "player.instruction.char-read",
   "reading-disambiguation": "player.instruction.reading-disambiguation",
   "speak.tier-0": "player.instruction.speak",
+  speak: "player.instruction.speak-scored",
+  "listen-speak": "player.instruction.listen-speak",
+  "tone-identify": "player.instruction.tone-identify",
   "listen-tap": "player.instruction.listen-tap",
   "listen-type": "player.instruction.listen-type",
   "listen-select": "player.instruction.listen-select",
@@ -66,6 +71,11 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
       return <CharReadView {...props} ex={ex} />;
     case "speak.tier-0":
       return <SpeakView {...props} ex={ex} />;
+    case "speak":
+    case "listen-speak":
+      return <SpeechView {...props} ex={ex} />;
+    case "tone-identify":
+      return <ToneIdentifyView {...props} ex={ex} />;
     case "listen-tap":
       return <ListenTapView {...props} ex={ex} />;
     case "listen-type":

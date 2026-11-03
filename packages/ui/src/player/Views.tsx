@@ -11,6 +11,7 @@ import type {
   CompleteTranslation,
   GapFill,
   ListenSelect,
+  ListenSpeak,
   ListenTap,
   ListenType,
   MatchPairs,
@@ -20,12 +21,15 @@ import type {
   SelectImage,
   SelfRating,
   Speak,
+  SpeakScored,
   StoryArrange,
   StoryChoose,
   StoryComplete,
+  ToneIdentify,
   TranslateTap,
   TranslateType,
 } from "@nabu/core/lesson";
+import { calibrate, CANTONESE, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
@@ -36,6 +40,7 @@ import { T } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
 import { AudioButtons, useClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
+import { toPcm16k, useRecorder, useSpeech, type Decoded } from "./speech.tsx";
 import { effectiveWritingMode, type ViewProps } from "./shared.ts";
 
 export interface ViewExtras {
@@ -553,6 +558,149 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
           </button>
         ))}
       </div>
+    </div>
+  );
+};
+
+// ------------------------------------------------------------------------------------ scored speaking (Phase 9)
+
+type Scoring = "idle" | "scoring" | "silent";
+
+/** One syllable's feedback: the syllable (its reading) and what was heard. */
+const SyllableNote = ({ syllable, score, ex }: { syllable: ToneScore["syllables"][number]; score: ToneScore; ex: SpeakScored | ListenSpeak }): JSX.Element => {
+  const t = useTranslator();
+  const reading: TaggedText = { lang: "yue-Latn-HK-jyutping" as TaggedText["lang"], orthography: ex.orthography as TaggedText["orthography"], tokens: [{ surface: syllable.syllable, kind: "word" }] };
+  const expected = CANTONESE.tones[syllable.tone]?.shape ?? "level";
+  return (
+    <li data-syllable={syllable.syllable} data-heard={syllable.heard?.tone ?? syllable.heard?.shape ?? "-"}>
+      <T text={reading} />{" "}
+      {score.calibrated && syllable.heard?.tone !== undefined
+        ? t.format("player.speech.tone-off", { heard: Number(syllable.heard.tone), expected: Number(syllable.tone) })
+        : t.format("player.speech.contour-off", { expected: t.format(`player.speech.contour.${expected}`) })}
+    </li>
+  );
+};
+
+/**
+ * Speak, scored (§10.4): record, and the device scores tones where the course has them while the
+ * server (if the app has one) scores words and phones; the recording is dropped after. Without a
+ * microphone, the learner rates themselves as at tier 0.
+ */
+export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element => {
+  const { ex, dispatch, locked, outcome } = props;
+  const t = useTranslator();
+  const services = useSpeech();
+  const [scoring, setScoring] = useState<Scoring>("idle");
+  const system = toneSystemOf(ex.prompt);
+  const recorder = useRecorder((audio: Decoded) => {
+    setScoring("scoring");
+    void (async () => {
+      const track = pitchTrack(audio.samples, audio.sampleRate);
+      const voiced = track.f0.filter((f) => f !== undefined).length;
+      const tone = system === undefined ? undefined : scoreTones(track, ex.prompt, system, services.calibration);
+      if (voiced < 10 || tone?.silent === true) {
+        setScoring("silent");
+        return;
+      }
+      const server = services.score === undefined ? undefined : await toPcm16k(audio).then((pcm) => services.score?.(ex, pcm)).catch(() => undefined);
+      services.onCalibration?.(calibrate([track], services.calibration));
+      const result: SpeechResult = { silent: false, tone, words: server?.words, phones: server?.phones };
+      setScoring("idle");
+      dispatch({ tag: "input", draft: { tag: "speech", result } });
+      dispatch({ tag: "submit" });
+    })();
+  });
+  const result = props.draft.tag === "speech" ? props.draft.result : null;
+  const off = result?.tone?.syllables.filter((s) => !s.ok) ?? [];
+  const heard = (result?.words as { heard?: TaggedText } | undefined)?.heard;
+  const rate = (rating: SelfRating): void => {
+    if (locked) return;
+    dispatch({ tag: "input", draft: { tag: "self-rating", rating } });
+    dispatch({ tag: "submit" });
+  };
+  return (
+    <div className={styles.body}>
+      {ex.template === "listen-speak" ? <ListenPrompt audio={ex.audio} props={props} transcript={ex.prompt} translation={ex.translation} /> : <TargetPrompt text={ex.prompt} props={props} />}
+      {ex.template === "speak" && (
+        <div className={styles.hint}>
+          <T as="p" text={ex.translation} />
+        </div>
+      )}
+      {outcome === undefined && (
+        <div className={styles.recorder} data-recorder={recorder.state} data-scoring={scoring}>
+          {recorder.state === "unavailable" ? (
+            <div className={styles.ratings} role="group" aria-label={t.format("player.speech.rate-instead")}>
+              <p className={styles.label}>{t.format("player.speech.rate-instead")}</p>
+              {(["good", "hard", "again"] as const).map((rating) => (
+                <button key={rating} type="button" className={styles.secondary} disabled={locked} data-rating={rating} onClick={() => rate(rating)}>
+                  {t.format(`player.speak.rate.${rating}`)}
+                </button>
+              ))}
+            </div>
+          ) : recorder.state === "recording" ? (
+            <>
+              <span role="status">{t.format("player.speak.recording")}</span>
+              <button type="button" className={styles.secondary} onClick={recorder.stop} data-action="stop">
+                {t.format("player.speak.stop")}
+              </button>
+            </>
+          ) : (
+            <button type="button" className={styles.secondary} disabled={locked || scoring === "scoring"} onClick={() => void recorder.start()} data-action="record">
+              {t.format("player.speak.record")}
+            </button>
+          )}
+          <p className={styles.muted} role="status" data-speech-status={scoring}>
+            {scoring === "scoring" ? t.format("player.speech.checking") : scoring === "silent" ? t.format("player.speech.silent") : ""}
+          </p>
+        </div>
+      )}
+      {outcome !== undefined && result !== null && (
+        <div className={styles.solution} data-speech-result="" data-ink-container="speech">
+          {heard !== undefined && (
+            <>
+              <span className={styles.label}>{t.format("player.speech.heard")}</span>
+              <T as="p" text={heard} />
+            </>
+          )}
+          {result.tone !== undefined && !result.tone.calibrated && <p className={styles.muted}>{t.format("player.speech.calibrating")}</p>}
+          {result.tone !== undefined && off.length > 0 && (
+            <ul className={styles.notes} data-tone-feedback="">
+              {off.map((s, i) => (
+                <SyllableNote key={i} syllable={s} score={result.tone as ToneScore} ex={ex} />
+              ))}
+            </ul>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+/** Which tone? Hear one syllable, pick its tone; the syllable and its reading show after. */
+export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  useShortcuts(props, (i) => chooseByKey(props, i, ex.tones.length));
+  const label = (tone: string): string => {
+    const id = `player.tone.${ex.system}.${tone}`;
+    return t.has(id) ? t.format(id) : tone;
+  };
+  return (
+    <div className={styles.body}>
+      <ListenPrompt audio={ex.audio} props={props} transcript={ex.syllable} />
+      <Options
+        options={ex.tones.map((tone) => (
+          <span key={tone} data-tone={tone}>
+            {label(tone)}
+          </span>
+        ))}
+        selected={selectedOf(props)}
+        answer={ex.answer}
+        outcome={props.outcome}
+        locked={props.locked}
+        grid
+        onSelect={(i) => choose(props, i)}
+      />
     </div>
   );
 };

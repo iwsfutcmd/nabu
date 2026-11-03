@@ -85,6 +85,11 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
       return { tag: "pairs", matched: ex.left.map((_, i) => i), mistakes: 0 };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "good" };
+    case "speak":
+    case "listen-speak":
+      return { tag: "speech", result: bad ? { silent: true } : { silent: false } };
+    case "tone-identify":
+      return { tag: "choice", index: bad ? (ex.answer + 1) % ex.tones.length : ex.answer };
     case "select-image":
     case "choose-translation":
     case "gap-fill":

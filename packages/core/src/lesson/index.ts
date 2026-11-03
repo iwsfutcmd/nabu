@@ -1,4 +1,4 @@
-export { buildLesson, lessonNodes, sampleExercise, type LessonNode, type LessonOptions } from "./build.ts";
+export { buildLesson, lessonNodes, sampleExercise, speechExclusions, speechSupportOf, type LessonNode, type LessonOptions, type SpeechSupport } from "./build.ts";
 export { allKcs, allSentences, assembleCourse, createGrader, MEDIA_ROLES, profileOf, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
 export { answerDiff, type AnswerDiff } from "./diff.ts";
 export * from "./exercise.ts";
@@ -23,4 +23,4 @@ export {
   type StartOptions,
 } from "./player.ts";
 export { seededRng, type Rng } from "./rng.ts";
-export { facets, gradeExercise, KC_LISTENING, LISTENING, rubySchemeOf, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
+export { facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, rubySchemeOf, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";

@@ -192,3 +192,25 @@ ADR is linked. The gameplan text itself is left as written.
     before sign-up ([ADR 0045](adr/0045-ai-services.md)).
 50. **§13.4 "Learner turns are graded gently":** not in Phase 8. Model turns are checked; learner
     turns are not graded yet.
+
+## Phase 9
+
+51. **§10.4 tier 3 "F0 extracted with pYIN, Parselmouth or CREPE … speaker-normalized from a
+    short calibration":** pitch is tracked with YIN in TypeScript on the device, so tone feedback
+    needs no server and no upload. The calibration is the learner's own recordings, a running
+    mean and spread kept as three numbers on the device, not a separate step a beginner could not
+    yet say right. Until enough has been heard, only a contour's shape is judged
+    ([ADR 0046](adr/0046-speech.md)).
+52. **§10.4 tier 2 "wav2vec2-lv-60-espeak-cv-ft … goodness-of-pronunciation confidence":** the
+    service uses the XLSR-53 eSpeak model Phase 5 already ships, and reports a phone error rate
+    and the words with wrong phones; a GOP-style confidence is not computed yet.
+53. **§16 Phase 9 acceptance "a recorded fixture set of native and deliberately wrong tones":** no
+    recordings exist. The harness and its report are done, and run on a synthetic eSpeak NG set
+    marked as such; the acceptance waits for native speakers (`evals/tones/README.md`).
+54. **§8.1 `tone-identify` for yue:** it needs one-syllable clips, and every committed yue clip
+    but one is held back by Phase 5's round-trip check (Whisper does not understand eSpeak's
+    Cantonese). The exercise appears once clips are reviewed or recorded.
+55. **§10.4 tier 1 everywhere:** Whisper writes Uzbek in Latin and Lebanese in Arabic script, so
+    `uz-Cyrl` and `apc-Latn` get no tier 1, and `apc` no tier 2 (no trustworthy expected
+    phones from unvocalized text). Their speaking is self-rated unless tones apply
+    ([ADR 0046](adr/0046-speech.md)).

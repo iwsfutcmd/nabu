@@ -6,38 +6,101 @@
  * drills where the orthography has a ruby layer. Same course, node and seed,
  * same lesson.
  */
-import type { BundleKc, BundleNode, BundleSentence, BundleUnit } from "@nabu/schema";
+import type {
+  BundleKc,
+  BundleNode,
+  BundleSentence,
+  BundleUnit,
+} from "@nabu/schema";
 import { allKcs, type CourseView } from "./course.ts";
 import type { Exercise, TemplateId } from "./exercise.ts";
+import { toneSystemOf } from "../speech/score.ts";
 import { seededRng } from "./rng.ts";
 import {
   makeCharRead,
   makeMatchPairs,
   makeReadingDisambiguation,
   makeSelectImage,
+  makeSpeakScored,
+  makeToneIdentify,
   SENTENCE_TEMPLATES,
   type MakeContext,
 } from "./templates.ts";
+
+/**
+ * What the app can do with speech (§10.4): score it (tones on the device for tonal courses, words
+ * and phones on a speech server), and offer tone listening. Without it, speaking is tier 0.
+ */
+export interface SpeechSupport {
+  /** Speaking is scored: `speak` and `listen-speak` replace self-rated `speak.tier-0`. */
+  readonly scored: boolean;
+  /** Tone exercises (tone-identify) for courses whose readings carry tones. */
+  readonly tones: boolean;
+}
+
+/**
+ * What the app can do with speech for a course: score it when the course's readings carry tones
+ * (tier 3 on the device) or the server scores the orthography (tiers 1–2); tone exercises always.
+ */
+export const speechSupportOf = (
+  course: CourseView,
+  serverTiers: number,
+): SpeechSupport => ({
+  scored:
+    serverTiers > 0 ||
+    course.units.some((u) =>
+      u.sentences.some((s) => {
+        const text = s.forms[course.orthography]?.text;
+        return text !== undefined && toneSystemOf(text) !== undefined;
+      }),
+    ),
+  tones: true,
+});
+
+/** The templates a speech support rules out. */
+export const speechExclusions = (
+  speech: SpeechSupport | undefined,
+): ReadonlySet<TemplateId> =>
+  new Set<TemplateId>([
+    ...(speech?.scored === true
+      ? (["speak.tier-0"] as const)
+      : (["speak", "listen-speak"] as const)),
+    ...(speech?.tones === true ? [] : (["tone-identify"] as const)),
+  ]);
 
 export interface LessonNode {
   readonly unit: BundleUnit;
   readonly node: BundleNode;
 }
 
-export const sentencesOf = (course: CourseView, unit: BundleUnit, node: BundleNode): readonly BundleSentence[] =>
-  node.sentences.flatMap((id) => unit.sentences.find((s) => s.id === id) ?? []).filter((s) => s.forms[course.orthography] !== undefined);
+export const sentencesOf = (
+  course: CourseView,
+  unit: BundleUnit,
+  node: BundleNode,
+): readonly BundleSentence[] =>
+  node.sentences
+    .flatMap((id) => unit.sentences.find((s) => s.id === id) ?? [])
+    .filter((s) => s.forms[course.orthography] !== undefined);
 
 /** Nodes a lesson can be built from, in path order (script-convert and other node kinds come later). */
 export const lessonNodes = (course: CourseView): readonly LessonNode[] =>
   course.units.flatMap((unit) =>
-    unit.nodes.filter((node) => (node.kind === "lesson" || node.kind === "practice") && sentencesOf(course, unit, node).length > 0).map((node) => ({ unit, node })),
+    unit.nodes
+      .filter(
+        (node) =>
+          (node.kind === "lesson" || node.kind === "practice") &&
+          sentencesOf(course, unit, node).length > 0,
+      )
+      .map((node) => ({ unit, node })),
   );
 
 export interface LessonOptions {
   readonly seed: number;
-  /** Templates the learner cannot do right now ("can't speak now" removes speak.tier-0). */
+  /** Templates the learner cannot do right now ("can't speak now" removes speaking). */
   readonly exclude?: ReadonlySet<TemplateId>;
   readonly maxExercises?: number;
+  /** What the app can do with speech; without it, speaking is self-rated (tier 0). */
+  readonly speech?: SpeechSupport | undefined;
 }
 
 /** Sentence templates in rotation order: recognition before production. */
@@ -51,27 +114,48 @@ const ROTATION: readonly TemplateId[] = [
   "speak.tier-0",
 ];
 
-export const buildLesson = (course: CourseView, nodeId: string, options: LessonOptions): readonly Exercise[] => {
+export const buildLesson = (
+  course: CourseView,
+  nodeId: string,
+  options: LessonOptions,
+): readonly Exercise[] => {
   const found = lessonNodes(course).find((n) => n.node.id === nodeId);
-  if (found === undefined) throw new Error(`no lesson node ${nodeId} in ${course.id}`);
+  if (found === undefined)
+    throw new Error(`no lesson node ${nodeId} in ${course.id}`);
   const { unit, node } = found;
   const rng = seededRng(options.seed);
   const ctx: MakeContext = { course, rng, introduced: node.introduces };
-  const allowed = (t: TemplateId): boolean => !(options.exclude?.has(t) ?? false);
+  const excluded = new Set([
+    ...(options.exclude ?? []),
+    ...speechExclusions(options.speech),
+  ]);
+  const allowed = (t: TemplateId): boolean => !excluded.has(t);
   const out: Exercise[] = [];
   const used = new Set<TemplateId>();
   const push = (ex: Exercise | undefined): void => {
-    if (ex !== undefined && allowed(ex.template) && !out.some((e) => e.id === ex.id)) {
+    if (
+      ex !== undefined &&
+      allowed(ex.template) &&
+      !out.some((e) => e.id === ex.id)
+    ) {
       out.push(ex);
       used.add(ex.template);
     }
   };
 
   // New words: a picture, then pairs.
-  const fresh = node.introduces.flatMap<BundleKc>((id) => allKcs(course).find((k) => k.id === id) ?? []);
-  if (allowed("select-image")) push(fresh.map((kc) => makeSelectImage(ctx, kc)).find((e) => e !== undefined));
+  const fresh = node.introduces.flatMap<BundleKc>(
+    (id) => allKcs(course).find((k) => k.id === id) ?? [],
+  );
+  if (allowed("select-image"))
+    push(
+      fresh.map((kc) => makeSelectImage(ctx, kc)).find((e) => e !== undefined),
+    );
   if (allowed("match-pairs")) {
-    const pool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k))];
+    const pool =
+      fresh.length >= 3
+        ? fresh
+        : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k))];
     push(makeMatchPairs(ctx, pool));
   }
 
@@ -79,21 +163,50 @@ export const buildLesson = (course: CourseView, nodeId: string, options: LessonO
   const sentences = sentencesOf(course, unit, node);
   const offset = rng.int(ROTATION.length);
   for (const [i, sentence] of sentences.entries()) {
-    const rotated = ROTATION.map((_, k) => ROTATION[(offset + i + k) % ROTATION.length] as TemplateId);
-    const ordered = [...rotated.filter((t) => !used.has(t)), ...rotated.filter((t) => used.has(t))];
-    for (const template of ordered) {
+    const rotated = ROTATION.map(
+      (_, k) => ROTATION[(offset + i + k) % ROTATION.length] as TemplateId,
+    );
+    const ordered = [
+      ...rotated.filter((t) => !used.has(t)),
+      ...rotated.filter((t) => used.has(t)),
+    ];
+    for (const slot of ordered) {
+      // The rotation keeps its length (it seeds the order); scored speaking takes tier 0's slot.
+      const template: TemplateId =
+        slot === "speak.tier-0" && options.speech?.scored === true
+          ? "speak"
+          : slot;
       if (!allowed(template)) continue;
-      const ex = SENTENCE_TEMPLATES[template]?.(ctx, sentence);
+      const ex =
+        template === "speak"
+          ? makeSpeakScored(ctx, sentence)
+          : SENTENCE_TEMPLATES[template]?.(ctx, sentence);
       if (ex !== undefined && !out.some((e) => e.id === ex.id)) {
         push(ex);
+        used.add(slot); // the rotation slot, so a substituted template counts as its slot
         break;
       }
     }
   }
 
   // Reading drills where the orthography has a ruby layer (yue: Jyutping).
-  if (allowed("char-read")) push(sentences.map((s) => makeCharRead(ctx, s)).find((e) => e !== undefined));
-  if (allowed("reading-disambiguation")) push(sentences.map((s) => makeReadingDisambiguation(ctx, s)).find((e) => e !== undefined));
+  if (allowed("char-read"))
+    push(
+      sentences.map((s) => makeCharRead(ctx, s)).find((e) => e !== undefined),
+    );
+  if (allowed("reading-disambiguation"))
+    push(
+      sentences
+        .map((s) => makeReadingDisambiguation(ctx, s))
+        .find((e) => e !== undefined),
+    );
+  // Hearing tones, where the course's readings carry them and a one-syllable clip exists.
+  if (allowed("tone-identify"))
+    push(
+      sentences
+        .map((s) => makeToneIdentify(ctx, s))
+        .find((e) => e !== undefined),
+    );
 
   return out.slice(0, options.maxExercises ?? 14);
 };
@@ -102,9 +215,15 @@ export const buildLesson = (course: CourseView, nodeId: string, options: LessonO
  * The first exercise of `template` that the course's lessons produce (seeded),
  * for stories, tests and previews. Undefined when no lesson can make one.
  */
-export const sampleExercise = (course: CourseView, template: TemplateId, seed = 1): Exercise | undefined => {
+export const sampleExercise = (
+  course: CourseView,
+  template: TemplateId,
+  seed = 1,
+): Exercise | undefined => {
   for (const { node } of lessonNodes(course)) {
-    const found = buildLesson(course, node.id, { seed }).find((e) => e.template === template);
+    const found = buildLesson(course, node.id, { seed }).find(
+      (e) => e.template === template,
+    );
     if (found !== undefined) return found;
   }
   const rng = seededRng(seed);

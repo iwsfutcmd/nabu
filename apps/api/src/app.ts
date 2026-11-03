@@ -17,6 +17,7 @@
  *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
  *   POST /v1/push/unsubscribe          {endpoint}
  *   /v1/ai/*                           the AI features (ai/routes.ts), when the instance has a model
+ *   /v1/speech/*                       speech scoring, tiers 1–2 (speech.ts), with a speech service
  *
  * Review (NABU_ADMIN_TOKEN as the bearer token):
  *   GET  /admin/v1/reports?status=&course=       the review queue
@@ -37,6 +38,8 @@ import type { Account, Accounts } from "./accounts.ts";
 import type { Courses } from "./ai/courses.ts";
 import type { Gateway } from "./ai/gateway.ts";
 import { aiRoutes } from "./ai/routes.ts";
+import type { Transport } from "./ai/providers.ts";
+import { speechRoutes } from "./speech.ts";
 import type { Db } from "./db/index.ts";
 import { pushSubscriptions } from "./db/schema.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
@@ -58,6 +61,8 @@ export interface AppDeps {
   readonly ai?: { readonly gateway: Gateway; readonly courses: Courses; readonly gates: readonly EvalGate[] } | undefined;
   /** The reviewers' bearer token for /admin/v1 (unset: no review endpoints). */
   readonly adminToken?: string | undefined;
+  /** The speech service (Phase 9): its URL and how to reach it. Needs `ai` for courses and hashing. */
+  readonly speech?: { readonly url: string | undefined; readonly transport: Transport; readonly budget?: number } | undefined;
 }
 
 export type Env = { Variables: { user: Account; token: string } };
@@ -113,7 +118,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
   app.route("/", publicRoutes);
@@ -256,6 +261,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
   });
 
   if (ai !== undefined) aiRoutes(app, { db, ...ai, now });
+  if (ai !== undefined && speech !== undefined) speechRoutes(app, { db, courses: ai.courses, gateway: ai.gateway, now, ...speech });
 
   return app;
 };

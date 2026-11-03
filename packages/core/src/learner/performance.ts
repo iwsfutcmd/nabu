@@ -41,6 +41,11 @@ export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
   "complete-translation": 0.6,
   "translate-type.l1-l2": 1.0,
   "speak.tier-0": -1.5,
+  // Scored speaking (Phase 9): saying it well is harder than rating yourself; repeating a clip is a
+  // little harder again (no text). Naming one of six tones is hard for beginners.
+  speak: 0.2,
+  "listen-speak": 0.4,
+  "tone-identify": 0.6,
   // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
   "listen-select": -0.6,
   "minimal-pair": -0.2,

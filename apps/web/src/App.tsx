@@ -10,7 +10,7 @@
  * An account is optional; with one, the log syncs to the server.
  */
 import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, LISTENING, seededRng } from "@nabu/core/lesson";
+import { createGrader, LISTENING, seededRng, speechSupportOf } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
@@ -20,6 +20,7 @@ import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, typ
 import { StoryReader } from "@nabu/ui/story";
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
 import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
+import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
@@ -361,6 +362,8 @@ interface SessionProps extends GameProps {
   readonly store: EventStore;
   readonly account: Account | undefined;
   readonly ai: AiStatus;
+  /** What the server's speech service can score here (Phase 9); empty without one. */
+  readonly speechTiers: readonly number[];
 }
 
 /** Plans one session from the learner's state when it opens (§9.4), then plays it. */
@@ -371,14 +374,16 @@ const Session = (props: SessionProps): JSX.Element => {
   return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai }: SessionProps): JSX.Element => {
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers }: SessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [setup] = useState(() => {
     const seed = seedFor();
-    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, ...(listeningOff() ? { exclude: LISTENING } : {}) });
+    // Speaking is scored where tones can be judged here or the server scores it (§10.4).
+    const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
+    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, speech, ...(listeningOff() ? { exclude: LISTENING } : {}) });
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
@@ -386,6 +391,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
+  const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
   const exit = (): void => {
     window.location.hash = href({ tag: "course", course: course.id, orthography: course.orthography });
@@ -415,6 +421,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onCantListen={() => setListeningOffUntil(Date.now() + LISTENING_BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
+        speech={speech}
         feedbackExtra={(ex) => {
           const answer = answers.get(ex.id);
           return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} status={ai} account={account} store={store} record={record} />;
@@ -526,6 +533,7 @@ export const App = (): JSX.Element => {
   const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
   const courseId = route.tag === "home" ? null : route.course;
   const ai = useAiStatus(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
+  const speechTiers = useSpeechTiers(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
@@ -589,6 +597,19 @@ export const App = (): JSX.Element => {
   if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
   if (route.tag === "story") return <StorySession key={href(route)} loaded={loaded.value} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
   return (
-    <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} store={store} account={account} ai={ai} game={game} gameConfig={gameConfig} />
+    <Session
+      key={href(route)}
+      loaded={loaded.value}
+      request={route.request}
+      state={log.state}
+      device={store.device}
+      record={record}
+      store={store}
+      account={account}
+      ai={ai}
+      speechTiers={speechTiers}
+      game={game}
+      gameConfig={gameConfig}
+    />
   );
 };

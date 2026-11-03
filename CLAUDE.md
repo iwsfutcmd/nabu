@@ -130,10 +130,21 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Explanations: segments render through <T>; the paragraph takes the support language's direction, never the UI's.
 - Tests use a scripted provider for plumbing only; never present stand-in output as a model's result.
 
+## Phase 9 notes (see docs/adr/0046)
+- Tones are scored on the device: @nabu/core/speech (pitchTrack, scoreTones, gradeSpeech). Expected tones come from
+  pinned surface readings. Never tune templates to synthetic speech; tune on native recordings (evals/tones).
+- Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
+  sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
+- Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.
+- `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
+  clip. Lessons keep their rotation length (golden files): substitute slots, never add rotation entries.
+- `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
+- Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0045 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0046 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

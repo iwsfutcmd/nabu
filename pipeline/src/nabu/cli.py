@@ -33,7 +33,14 @@ def _register_ai() -> None:
     app.add_typer(author_app, name="author")
 
 
+def _register_speech() -> None:
+    from nabu.speech.cli import app as speech_app
+
+    app.add_typer(speech_app, name="speech")
+
+
 _register_ai()
+_register_speech()
 
 
 class Kind(StrEnum):

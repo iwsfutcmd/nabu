@@ -414,6 +414,26 @@
       "message": "Saving…",
       "description": "Sync status while uploading."
     },
+    "app.voice.forget": {
+      "message": "Forget my voice range",
+      "description": "Button: delete the pitch range this device learned (used to judge tones)."
+    },
+    "app.voice.forgotten": {
+      "message": "Forgotten.",
+      "description": "Confirmation after the voice range is deleted."
+    },
+    "app.voice.note": {
+      "message": "Recordings are scored, then dropped. They are never kept, on this device or on a server.",
+      "description": "Privacy statement for speaking exercises."
+    },
+    "app.voice.server": {
+      "message": "Check words and sounds on the server",
+      "description": "Switch: send recordings to the server's speech service (scored in memory, never kept)."
+    },
+    "app.voice.title": {
+      "message": "Your voice",
+      "description": "Settings heading: speaking exercises and privacy."
+    },
     "app.xp.today": {
       "message": ".input {$xp :number}\n{{Today: {$xp} XP}}",
       "description": "Experience points earned today (the learner's local date). XP: experience points, often left as XP."
@@ -526,6 +546,26 @@
       "message": "Watch the half-space (ZWNJ) inside this word.",
       "description": "Feedback note referenced by orthography profiles (match.zwnj.note = spacing) when the learner typed a space or nothing instead of a zero-width non-joiner."
     },
+    "feedback.note.speech-phones": {
+      "message": "Some sounds were off. It's feedback, not a mark: accents differ.",
+      "description": "Feedback note: the phone recognizer heard some sounds differently."
+    },
+    "feedback.note.speech-silent": {
+      "message": "Nothing was heard.",
+      "description": "Feedback note: the recording had no speech."
+    },
+    "feedback.note.speech-tone-shapes": {
+      "message": "Some tones went the wrong way: up, down or level.",
+      "description": "Feedback note (before calibration): pitch movement differed."
+    },
+    "feedback.note.speech-tones": {
+      "message": "Some tones were off.",
+      "description": "Feedback note: some syllables were said with another tone."
+    },
+    "feedback.note.speech-words": {
+      "message": "The words didn't come through: compare with the sentence.",
+      "description": "Feedback note: speech recognition heard different words."
+    },
     "feedback.note.ta-marbuta": {
       "message": "Watch the ta marbuta (ة) at the end of the word.",
       "description": "Feedback note for Arabic: ta marbuta was written as ha."
@@ -581,6 +621,10 @@
     "feedback.verdict.skipped": {
       "message": "Skipped",
       "description": "Feedback headline when the learner skipped the exercise."
+    },
+    "feedback.verdict.speech-close": {
+      "message": "Close! Listen again and compare.",
+      "description": "Feedback headline after speaking that was nearly right (some tones or sounds off): feedback, not a mark."
     },
     "feedback.verdict.wrong": {
       "message": "Not quite.",
@@ -790,6 +834,10 @@
       "message": "Which word do you hear?",
       "description": "Instruction: hear a word and choose how it is written."
     },
+    "player.instruction.listen-speak": {
+      "message": "Listen, then say what you heard",
+      "description": "Instruction: hear a sentence and repeat it aloud."
+    },
     "player.instruction.listen-tap": {
       "message": "Tap what you hear",
       "description": "Instruction: hear a sentence and build it from word tiles."
@@ -818,6 +866,10 @@
       "message": "Read this aloud",
       "description": "Instruction for a speaking exercise (record yourself, then rate how it went)."
     },
+    "player.instruction.speak-scored": {
+      "message": "Say this sentence",
+      "description": "Instruction: speak the sentence shown; the app listens and gives feedback."
+    },
     "player.instruction.story-arrange": {
       "message": "Tap the words to make what they say",
       "description": "Instruction above a story line's translation and its words as tiles: build the line."
@@ -829,6 +881,10 @@
     "player.instruction.story-complete": {
       "message": "Choose the missing word",
       "description": "Instruction above the next line of a story, shown with a word missing."
+    },
+    "player.instruction.tone-identify": {
+      "message": "Which tone do you hear?",
+      "description": "Instruction: hear one syllable and pick its tone."
     },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
@@ -930,6 +986,46 @@
       "message": "Recording isn't available here. You can still say it aloud and rate yourself.",
       "description": "Shown when the browser cannot record audio."
     },
+    "player.speech.calibrating": {
+      "message": "Your tones will be judged fully once the app has heard a little more of your voice.",
+      "description": "Before a calibration: only the direction of each tone (rising, falling, level) is judged."
+    },
+    "player.speech.checking": {
+      "message": "Listening to your recording…",
+      "description": "Status while the recording is scored (on the device, and on the server when it has a speech service)."
+    },
+    "player.speech.contour-off": {
+      "message": "expected {$expected}",
+      "description": "After a syllable: the pitch movement it should have; $expected is one of player.speech.contour.*."
+    },
+    "player.speech.contour.falling": {
+      "message": "a falling pitch",
+      "description": "Pitch movement of a syllable: goes down."
+    },
+    "player.speech.contour.level": {
+      "message": "a level pitch",
+      "description": "Pitch movement of a syllable: stays level."
+    },
+    "player.speech.contour.rising": {
+      "message": "a rising pitch",
+      "description": "Pitch movement of a syllable: goes up."
+    },
+    "player.speech.heard": {
+      "message": "We heard:",
+      "description": "Label before what speech recognition heard."
+    },
+    "player.speech.rate-instead": {
+      "message": "No microphone: rate yourself instead",
+      "description": "Heading of the self-rating fallback when recording is not possible."
+    },
+    "player.speech.silent": {
+      "message": "We didn't hear anything. Check your microphone and try again.",
+      "description": "No speech was found in the recording; nothing was graded."
+    },
+    "player.speech.tone-off": {
+      "message": ".input {$heard :number}\n.input {$expected :number}\n{{tone {$heard}, expected {$expected}}}",
+      "description": "After a syllable (shown before it): the tone heard and the tone expected, as tone numbers."
+    },
     "player.toggle.marks": {
       "message": "Show vowel marks",
       "description": "Switch that shows or hides harakat (Arabic-script vowel marks and shadda)."
@@ -937,6 +1033,30 @@
     "player.toggle.vertical": {
       "message": "Vertical text",
       "description": "Switch that sets the sentence and word tiles top to bottom (CJK)."
+    },
+    "player.tone.yue-jyutping.1": {
+      "message": "1 · high level",
+      "description": "Cantonese tone 1 (Jyutping), with its pitch shape."
+    },
+    "player.tone.yue-jyutping.2": {
+      "message": "2 · high rising",
+      "description": "Cantonese tone 2 (Jyutping), with its pitch shape."
+    },
+    "player.tone.yue-jyutping.3": {
+      "message": "3 · mid level",
+      "description": "Cantonese tone 3 (Jyutping), with its pitch shape."
+    },
+    "player.tone.yue-jyutping.4": {
+      "message": "4 · low falling",
+      "description": "Cantonese tone 4 (Jyutping), with its pitch shape."
+    },
+    "player.tone.yue-jyutping.5": {
+      "message": "5 · low rising",
+      "description": "Cantonese tone 5 (Jyutping), with its pitch shape."
+    },
+    "player.tone.yue-jyutping.6": {
+      "message": "6 · low level",
+      "description": "Cantonese tone 6 (Jyutping), with its pitch shape."
     },
     "player.wordbank.answer-label": {
       "message": "Your answer",

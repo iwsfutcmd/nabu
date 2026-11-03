@@ -10,7 +10,7 @@ import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
 import { pathNodes, plan, replay, type SessionRequest } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView, type Exercise } from "@nabu/core/lesson";
+import { assembleCourse, lessonNodes, MEDIA_ROLES, speechSupportOf, type CourseView, type Exercise } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { BundleManifest, LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, type Page } from "@playwright/test";
@@ -52,9 +52,9 @@ export const activate = async (page: Page, mode: Mode, selector: string): Promis
   }
 };
 
-/** The session the app plans for this log, clock and seed. */
+/** The session the app plans for this log, clock and seed (no speech server: tones scored on the device). */
 export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number): readonly Exercise[] =>
-  plan(course, replay(log), request, { now: now.toISOString(), seed }).exercises;
+  plan(course, replay(log), request, { now: now.toISOString(), seed, speech: speechSupportOf(course, 0) }).exercises;
 
 /**
  * A learner who already finished every lesson before `node`, two days before
@@ -156,6 +156,7 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "tone-identify":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
@@ -195,6 +196,12 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       }
       return;
     case "speak.tier-0":
+      await press(page, mode, "[data-rating=good]");
+      return;
+    case "speak":
+    case "listen-speak":
+      // The test browser has no microphone: recording fails over to rating yourself.
+      await press(page, mode, "[data-action=record]");
       await press(page, mode, "[data-rating=good]");
       return;
   }

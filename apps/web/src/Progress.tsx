@@ -14,6 +14,7 @@ import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react"
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
 import { ProfileForm, Reminders } from "./social.tsx";
+import { forgetCalibration, loadCalibration, serverAllowed, setServerAllowed } from "./voice.ts";
 import type { EventStore } from "./store.ts";
 import type { Sync, SyncError, SyncState } from "./sync.ts";
 
@@ -152,6 +153,49 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
           {t.format("app.progress.export")}
         </Button>
       </div>
+      <Voice signedIn={state.account !== undefined} />
     </section>
+  );
+};
+
+/**
+ * Your voice (§10.4): recordings are scored and dropped, never kept. With an account the learner
+ * chooses whether the server's speech service may hear them; the pitch range learned on this
+ * device (three numbers) can be forgotten.
+ */
+const Voice = ({ signedIn }: { signedIn: boolean }): JSX.Element => {
+  const t = useTranslator();
+  const [server, setServer] = useState(serverAllowed);
+  const [range, setRange] = useState(() => loadCalibration() !== undefined);
+  return (
+    <div className={styles.voice} data-voice="">
+      <h3 className={styles.subheading}>{t.format("app.voice.title")}</h3>
+      <p className={styles.muted}>{t.format("app.voice.note")}</p>
+      {signedIn && (
+        <label className={styles.check}>
+          <input
+            type="checkbox"
+            checked={server}
+            onChange={(e) => {
+              setServerAllowed(e.currentTarget.checked);
+              setServer(e.currentTarget.checked);
+            }}
+            data-action="voice-server"
+          />
+          {t.format("app.voice.server")}
+        </label>
+      )}
+      <Button
+        className={styles.textButton}
+        onPress={() => {
+          forgetCalibration();
+          setRange(false);
+        }}
+        isDisabled={!range}
+        data-action="voice-forget"
+      >
+        {range ? t.format("app.voice.forget") : t.format("app.voice.forgotten")}
+      </Button>
+    </div>
   );
 };

@@ -78,6 +78,13 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
       return ex.kcs.map((kc) => ({ kc, status: words.get(kc) ?? "wrong" }));
     }
   }
+  // Speech (Phase 9): the words said wrong are debited, the words said well credited, even when the
+  // whole was only close. KCs not tied to a word follow the verdict.
+  if ((ex.template === "speak" || ex.template === "listen-speak") && outcome.offTokens !== undefined && outcome.verdict !== "WRONG") {
+    const off = new Set(outcome.offTokens.flatMap((i) => (ex.prompt.tokens[i] === undefined ? [] : kcsOfToken(ex.prompt.tokens[i]))));
+    const said = new Set(ex.prompt.tokens.flatMap((t) => kcsOfToken(t)));
+    return ex.kcs.map((kc) => ({ kc, status: off.has(kc) ? "wrong" : said.has(kc) ? "right" : right ? "right" : "wrong" }));
+  }
   return ex.kcs.map((kc) => ({ kc, status: right ? "right" : "wrong" }));
 };
 

@@ -61,6 +61,7 @@ const rightAnswer = (ex: Exercise): Response => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "tone-identify":
       return { tag: "choice", index: ex.answer };
     case "match-pairs":
       return { tag: "pairs", mistakes: 0 };
@@ -76,6 +77,9 @@ const rightAnswer = (ex: Exercise): Response => {
       return { tag: "text", text: surfaceOf(ex.blank) };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "good" };
+    case "speak":
+    case "listen-speak":
+      return { tag: "speech", result: { silent: false } };
   }
 };
 
@@ -91,6 +95,11 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "story-choose":
     case "story-complete":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
+    case "tone-identify":
+      return { tag: "choice", index: (ex.answer + 1) % ex.tones.length };
+    case "speak":
+    case "listen-speak":
+      return { tag: "speech", result: { silent: true } };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
@@ -156,8 +165,31 @@ describe("template coverage", () => {
       for (const { node } of lessonNodes(course)) for (const ex of buildLesson(course, node.id, { seed: 7 })) seen.add(ex.template);
     }
     // Listening templates need audio and come from the planner (test/listening.test.ts); story
-    // questions come from stories (test/story.test.ts).
-    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-")).sort());
+    // questions come from stories (test/story.test.ts); scored speaking and tones are opt-in (below).
+    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify"]);
+    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
+  });
+
+  it("scored speaking takes tier 0's slot, and tonal courses get tone exercises, only when the app can do them", () => {
+    const speech = { scored: true, tones: true };
+    // The committed yue clips are held back by the round-trip check (eSpeak Cantonese), so this view
+    // gives the one-syllable sentence 係！ a clip, as a reviewed recording would.
+    const bundled = loadCourse("yue");
+    const yue: CourseView = { ...bundled, audio: { ...bundled.audio, "s.8": { normal: { path: "audio/clips/s8.mp3", durationMs: 420, synthetic: false, license: "CC0-1.0" } } } };
+    const fa = loadCourse("fa");
+    const templates = (course: typeof yue, options: Parameters<typeof buildLesson>[2]) => lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, options).map((e) => e.template));
+    const scored = templates(yue, { seed: 7, speech });
+    expect(scored).toContain("speak");
+    expect(scored).toContain("tone-identify");
+    expect(scored).not.toContain("speak.tier-0");
+    expect(templates(fa, { seed: 7, speech })).not.toContain("tone-identify"); // Persian readings carry no tones
+    // The same lessons otherwise: only the speaking slot changed.
+    const plain = templates(yue, { seed: 7 });
+    expect(scored.filter((t) => t !== "tone-identify").map((t) => (t === "speak" ? "speak.tier-0" : t))).toEqual(plain);
+    const tone = lessonNodes(yue).flatMap(({ node }) => buildLesson(yue, node.id, { seed: 7, speech })).find((e) => e.template === "tone-identify");
+    if (tone?.template !== "tone-identify") throw new Error("no tone exercise");
+    expect(tone.tones).toEqual(["1", "2", "3", "4", "5", "6"]);
+    expect(gradeExercise(tone, { tag: "choice", index: tone.answer }, createGrader(yue)).verdict).toBe("CORRECT");
   });
 
   it("can leave speaking out", () => {
@@ -214,6 +246,8 @@ const answer = (ex: Exercise, response: Response): PlayerEvent[] => {
       ];
     case "self-rating":
       return [{ tag: "ready" }, { tag: "input", draft: { tag: "self-rating", rating: response.rating } }, { tag: "submit" }];
+    case "speech":
+      return [{ tag: "ready" }, { tag: "input", draft: { tag: "speech", result: response.result } }, { tag: "submit" }];
   }
 };
 

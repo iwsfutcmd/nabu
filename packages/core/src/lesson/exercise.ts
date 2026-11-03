@@ -5,6 +5,7 @@
  */
 import type { BundleAudioItem, KcId, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
+import type { SpeechResult } from "../speech/score.ts";
 
 export type TemplateId =
   | "select-image"
@@ -18,6 +19,9 @@ export type TemplateId =
   | "char-read"
   | "reading-disambiguation"
   | "speak.tier-0"
+  | "speak"
+  | "listen-speak"
+  | "tone-identify"
   | "listen-tap"
   | "listen-type"
   | "listen-select"
@@ -139,6 +143,38 @@ export interface Speak extends Common {
   readonly translation: TaggedText;
 }
 
+/**
+ * Speak, scored (§10.4 tiers 1–3): say the sentence; the device judges tones where the course
+ * has them, and the speech service (when there is one) the words and phones. Feedback, not verdicts.
+ */
+export interface SpeakScored extends Common {
+  readonly template: "speak";
+  readonly prompt: TaggedText;
+  readonly translation: TaggedText;
+  /** The sentence's clip, to compare with after answering. */
+  readonly audio?: AudioRef | undefined;
+}
+
+/** Listen, then say it (§8.1 listen-speak): the transcript appears after the answer. */
+export interface ListenSpeak extends Common {
+  readonly template: "listen-speak";
+  readonly audio: AudioRef;
+  readonly prompt: TaggedText;
+  readonly translation: TaggedText;
+}
+
+/** Which tone is it? (§16 Phase 9, tonal courses): hear one syllable, choose its tone. */
+export interface ToneIdentify extends Common {
+  readonly template: "tone-identify";
+  readonly audio: AudioRef;
+  /** The syllable heard, revealed after the answer. */
+  readonly syllable: TaggedText;
+  /** The tone system's id (yue-jyutping) and its tones, in order. */
+  readonly system: string;
+  readonly tones: readonly string[];
+  readonly answer: number;
+}
+
 /** A clip to play: normal and slow speed, token timings for karaoke (bundle paths; the shell maps them to URLs). */
 export type AudioRef = BundleAudioItem;
 
@@ -220,6 +256,9 @@ export type Exercise =
   | CharRead
   | ReadingDisambiguation
   | Speak
+  | SpeakScored
+  | ListenSpeak
+  | ToneIdentify
   | ListenTap
   | ListenType
   | ListenSelect
@@ -236,7 +275,9 @@ export type Response =
   | { readonly tag: "tiles"; readonly order: readonly number[] }
   | { readonly tag: "text"; readonly text: string }
   | { readonly tag: "pairs"; readonly mistakes: number }
-  | { readonly tag: "self-rating"; readonly rating: SelfRating };
+  | { readonly tag: "self-rating"; readonly rating: SelfRating }
+  /** What the device and the speech service heard; never the audio. */
+  | { readonly tag: "speech"; readonly result: SpeechResult };
 
 export type SkipReason = "skip" | "cant-listen" | "cant-speak";
 
@@ -249,6 +290,8 @@ export interface Outcome {
   /** For typed and tiled answers: how the answer lines up with the closest accepted one (§11.6). */
   readonly alignment?: readonly AlignOp[] | undefined;
   readonly skipped?: SkipReason | undefined;
+  /** Speech: tokens of the prompt said wrong (their KCs are debited, the others credited). */
+  readonly offTokens?: readonly number[] | undefined;
 }
 
 /** Correct verdicts move on; the rest bring the exercise back later in the lesson. */

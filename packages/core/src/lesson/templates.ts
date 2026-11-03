@@ -17,6 +17,7 @@ import type {
   FacetRef,
   GapFill,
   ListenSelect,
+  ListenSpeak,
   ListenTap,
   ListenType,
   MatchPairs,
@@ -26,11 +27,15 @@ import type {
   Response,
   SelectImage,
   Speak,
+  SpeakScored,
   TemplateId,
+  ToneIdentify,
   TranslateTap,
   TranslateType,
 } from "./exercise.ts";
 import type { Rng } from "./rng.ts";
+import { gradeSpeech, toneSystemOf } from "../speech/score.ts";
+import { expectedSyllables } from "../speech/tone.ts";
 
 export interface TemplateInfo {
   readonly facet: Facet;
@@ -54,6 +59,10 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
+  // Phase 9: scored speaking (tiers 1–3) and hearing tones.
+  speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
+  "listen-speak": { facet: "speak", modality: { audioOut: true, mic: true, input: "voice" } },
+  "tone-identify": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
   "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" } },
   "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" } },
   "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" } },
@@ -435,6 +444,49 @@ export const makeSpeak = (ctx: MakeContext, s: BundleSentence): Speak | undefine
 
 const audioOf = (ctx: MakeContext, item: string) => ctx.course.audio[item];
 
+/** Speak, scored (§10.4 tiers 1–3): any sentence; its clip, when there is one, to compare with. */
+export const makeSpeakScored = (ctx: MakeContext, s: BundleSentence): SpeakScored | undefined => {
+  const tier0 = makeSpeak(ctx, s);
+  if (tier0 === undefined) return undefined;
+  const audio = audioOf(ctx, s.id);
+  return { ...tier0, template: "speak", id: id("speak", s.id), ...(audio === undefined ? {} : { audio }) };
+};
+
+/** Listen, then say it: needs the sentence's clip. */
+export const makeListenSpeak = (ctx: MakeContext, s: BundleSentence): ListenSpeak | undefined => {
+  const audio = audioOf(ctx, s.id);
+  const tier0 = makeSpeak(ctx, s);
+  if (audio === undefined || tier0 === undefined) return undefined;
+  return { ...tier0, template: "listen-speak", id: id("listen-speak", s.id), audio };
+};
+
+/** Which tone? A sentence of one syllable in a tonal reading scheme, with a clip (number drills, one-word answers). */
+export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdentify | undefined => {
+  const audio = audioOf(ctx, s.id);
+  const form = formOf(ctx.course, s);
+  if (audio === undefined || form === undefined) return undefined;
+  const system = toneSystemOf(form.text);
+  if (system === undefined) return undefined;
+  const syllables = expectedSyllables(form.text, system);
+  const only = syllables[0];
+  if (syllables.length !== 1 || only === undefined) return undefined;
+  const tones = Object.keys(system.tones);
+  const answer = tones.indexOf(only.tone);
+  if (answer < 0) return undefined;
+  return {
+    template: "tone-identify",
+    id: id("tone-identify", s.id),
+    item: s.id,
+    kcs: s.kcs,
+    orthography: ctx.course.orthography,
+    audio,
+    syllable: form.text,
+    system: system.id,
+    tones,
+    answer,
+  };
+};
+
 export const makeListenTap = (ctx: MakeContext, s: BundleSentence): ListenTap | undefined => {
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
@@ -558,6 +610,9 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "char-read": makeCharRead,
   "reading-disambiguation": makeReadingDisambiguation,
   "speak.tier-0": makeSpeak,
+  speak: makeSpeakScored,
+  "listen-speak": makeListenSpeak,
+  "tone-identify": makeToneIdentify,
   "listen-tap": makeListenTap,
   "listen-type": makeListenType,
 };
@@ -593,6 +648,16 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "story-choose":
     case "story-complete":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
+    case "tone-identify":
+      return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
+    case "speak":
+    case "listen-speak": {
+      // Without a microphone the learner rates themselves, as at tier 0.
+      if (response.tag === "self-rating") return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], solution: ex.prompt };
+      if (response.tag !== "speech") return mismatch(ex, response);
+      const { verdict, notes, offTokens } = gradeSpeech(response.result);
+      return { verdict, notes, solution: ex.prompt, offTokens };
+    }
     case "story-arrange": {
       if (response.tag !== "tiles") return mismatch(ex, response);
       // The line's own words in its order; tiles that read the same are interchangeable.
@@ -643,7 +708,11 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "listen-type":
       return ex.canonical;
     case "speak.tier-0":
+    case "speak":
+    case "listen-speak":
       return ex.prompt;
+    case "tone-identify":
+      return ex.syllable;
     case "match-pairs":
       return undefined;
   }
