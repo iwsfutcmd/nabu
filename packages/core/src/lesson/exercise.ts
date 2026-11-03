@@ -19,7 +19,8 @@ export type TemplateId =
   | "reading-disambiguation"
   | "speak.tier-0";
 
-export type Facet = "recognize" | "produce" | "read" | "speak";
+/** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
+export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
 
 export interface FacetRef {
   readonly kc: KcId;

@@ -42,12 +42,13 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" } },
   "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
-  "translate-tap.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "tiles" } },
+  // The tiles are handed to the learner, so no production credit (§8.5).
+  "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
   "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
   "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
   "gap-fill": { facet: "produce", modality: { audioOut: false, mic: false, input: "choice" } },
-  "char-read": { facet: "read", modality: { audioOut: false, mic: false, input: "choice" } },
-  "reading-disambiguation": { facet: "read", modality: { audioOut: false, mic: false, input: "choice" } },
+  "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
 };
 

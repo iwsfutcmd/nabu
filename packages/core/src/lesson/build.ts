@@ -24,7 +24,7 @@ export interface LessonNode {
   readonly node: BundleNode;
 }
 
-const sentencesOf = (course: CourseView, unit: BundleUnit, node: BundleNode): readonly BundleSentence[] =>
+export const sentencesOf = (course: CourseView, unit: BundleUnit, node: BundleNode): readonly BundleSentence[] =>
   node.sentences.flatMap((id) => unit.sentences.find((s) => s.id === id) ?? []).filter((s) => s.forms[course.orthography] !== undefined);
 
 /** Nodes a lesson can be built from, in path order (script-convert and other node kinds come later). */

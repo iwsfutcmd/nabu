@@ -85,6 +85,43 @@ export type Spdx1 = string;
  */
 export type KcId1 = string & { readonly __brand: "KcId" };
 /**
+ * The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LearnerEvent".
+ */
+export type LearnerEvent =
+  SessionStarted | ExercisePresented | AnswerSubmitted | ExerciseSkipped | SessionCompleted;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid = string;
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Uuid".
+ */
+export type Uuid1 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid2 = string;
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ */
+export type KcRefLocal = string & { readonly __brand: "KcId" };
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid3 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid4 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid5 = string;
+/**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -164,6 +201,13 @@ export type TableRef = string;
  * via the `definition` "StrokeOrderStandard".
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "KcRefLocal".
+ */
+export type KcId2 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -197,6 +241,18 @@ export interface NabuSchemaIndex {
   readonly ImageAsset: ImageAsset;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
+  readonly LearnerEvent: LearnerEvent;
+  readonly Uuid: Uuid1;
+  readonly ExerciseRef: ExerciseRef;
+  readonly KcRefLocal: KcRefLocal;
+  readonly Prediction: Prediction;
+  readonly KcCredit: KcCredit;
+  readonly SessionSummaryData: SessionSummaryData;
+  readonly SessionStarted: SessionStarted;
+  readonly ExercisePresented: ExercisePresented;
+  readonly AnswerSubmitted: AnswerSubmitted;
+  readonly ExerciseSkipped: ExerciseSkipped;
+  readonly SessionCompleted: SessionCompleted;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -710,6 +766,322 @@ export interface KeyboardLayout {
      */
     readonly keys: readonly string[];
   }[];
+}
+/**
+ * A session began: a lesson (one path node), review, mistakes or placement.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SessionStarted".
+ */
+export interface SessionStarted {
+  readonly type: "session_started";
+  readonly id: Uuid;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid1;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  readonly mode: "lesson" | "review" | "mistakes" | "placement";
+  readonly node?: string;
+  readonly seed: number;
+  readonly exercises: number;
+  /**
+   * Planner and model versions that built the session.
+   */
+  readonly planner: string;
+}
+/**
+ * An exercise was shown.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ExercisePresented".
+ */
+export interface ExercisePresented {
+  readonly type: "exercise_presented";
+  readonly id: Uuid2;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid1;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  readonly exercise: ExerciseRef;
+  readonly prediction?: Prediction;
+}
+/**
+ * What was presented: enough to recompute credit without the bundle.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ExerciseRef".
+ */
+export interface ExerciseRef {
+  readonly id: string;
+  readonly template:
+    | "select-image"
+    | "match-pairs"
+    | "choose-translation"
+    | "translate-tap.l2-l1"
+    | "translate-tap.l1-l2"
+    | "translate-type.l1-l2"
+    | "complete-translation"
+    | "gap-fill"
+    | "char-read"
+    | "reading-disambiguation"
+    | "speak.tier-0";
+  /**
+   * The sentence or KC the exercise was built from.
+   */
+  readonly item: string;
+  readonly kcs: readonly KcRefLocal[];
+}
+/**
+ * Shadow-mode log of the performance model (§9.3): the predicted chance of a right answer.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Prediction".
+ */
+export interface Prediction {
+  readonly p: number;
+  readonly model: string;
+}
+/**
+ * One graded answer (§9.6). Raw answers are personal data (§14.4).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AnswerSubmitted".
+ */
+export interface AnswerSubmitted {
+  readonly type: "answer_submitted";
+  readonly id: Uuid3;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid1;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  readonly exercise: ExerciseRef;
+  /**
+   * 1 for the first try in this session, 2+ for an exercise brought back after a mistake.
+   */
+  readonly attempt: number;
+  readonly input: {
+    readonly method: "choice" | "tiles" | "text" | "pairs" | "voice";
+    /**
+     * What the learner typed or chose, as settled text. Personal data.
+     */
+    readonly raw?: string;
+    readonly latencyMs: number;
+    /**
+     * Speak tier 0 only: the learner's own rating.
+     */
+    readonly selfRating?: "good" | "hard" | "again";
+  };
+  readonly outcome: {
+    readonly kind:
+      | "CORRECT"
+      | "CORRECT_ALT"
+      | "CORRECT_MARKS"
+      | "CORRECT_VARIANT"
+      | "CORRECT_WITH_TYPO"
+      | "CORRECT_PROVISIONAL"
+      | "PARTIAL"
+      | "WRONG_WORD"
+      | "WRONG"
+      | "SKIPPED";
+    readonly notes: readonly string[];
+    readonly kcs: readonly KcCredit[];
+  };
+  readonly prediction?: Prediction;
+}
+/**
+ * Per-KC outcome (§8.5): right, wrong, or given (the learner did not have to produce it).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "KcCredit".
+ */
+export interface KcCredit {
+  readonly kc: KcRefLocal;
+  readonly status: "right" | "wrong" | "given";
+}
+/**
+ * The learner skipped (the answer is revealed) or could not listen or speak.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ExerciseSkipped".
+ */
+export interface ExerciseSkipped {
+  readonly type: "exercise_skipped";
+  readonly id: Uuid4;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid1;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  readonly exercise: ExerciseRef;
+  readonly attempt: number;
+  readonly reason: "skip" | "cant-listen" | "cant-speak";
+}
+/**
+ * A session ended, finished or quit.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SessionCompleted".
+ */
+export interface SessionCompleted {
+  readonly type: "session_completed";
+  readonly id: Uuid5;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid1;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  readonly mode: "lesson" | "review" | "mistakes" | "placement";
+  readonly node?: string;
+  readonly summary: SessionSummaryData;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SessionSummaryData".
+ */
+export interface SessionSummaryData {
+  readonly completed: boolean;
+  readonly exercises: number;
+  readonly correctFirstTry: number;
+  readonly retries: number;
+  readonly skipped: number;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.

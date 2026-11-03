@@ -1,0 +1,213 @@
+/**
+ * The session planner (gameplan §9.4). Pure and seeded: the same request,
+ * state, bundle and seed give the same plan.
+ *
+ * 1. Targets: the node's new KCs, plus due facets (R below desired retention).
+ * 2. Candidates: every (template, item) the templates can make, where every
+ *    KC that is not a target has been seen before (the i+1 rule at runtime).
+ * 3. Score: expected memory gain, plus closeness of the session's mean p̂ to
+ *    the target success rate, minus repetition of the same template or item.
+ * 4. Greedy selection with hard constraints: excluded templates, at most three
+ *    of a template (two speaking turns), and a new KC is recognized before it
+ *    is produced or read.
+ * 5. Order: selection order (new words first), ending on a likely success.
+ */
+import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
+import { lessonNodes, sentencesOf } from "../lesson/build.ts";
+import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
+import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
+import { seededRng } from "../lesson/rng.ts";
+import { makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
+import { facetOf } from "./credit.ts";
+import { PERFORMANCE_MODEL, predict } from "./performance.ts";
+import { cardKey, DESIRED_RETENTION, meanRetrievability, retrievability, type LearnerState } from "./state.ts";
+
+export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
+
+export type SessionRequest =
+  | { readonly mode: "lesson"; readonly node: string }
+  | { readonly mode: "review" }
+  | { readonly mode: "mistakes" };
+
+export interface PlanOptions {
+  /** The device clock, ISO 8601: retrievability is computed at this time. */
+  readonly now: string;
+  readonly seed: number;
+  /** Target success rate (§9.4): 0.85 by default, a tunable heuristic. */
+  readonly targetSuccess?: number;
+  readonly size?: number;
+  readonly exclude?: ReadonlySet<TemplateId>;
+  readonly desiredRetention?: number;
+}
+
+export interface SessionPlan {
+  readonly request: SessionRequest;
+  readonly exercises: readonly Exercise[];
+  /** p̂ for each exercise, logged in shadow mode (§9.3). */
+  readonly predictions: readonly number[];
+  readonly planner: string;
+}
+
+interface Candidate {
+  readonly ex: Exercise;
+  readonly p: number;
+  readonly order: number;
+}
+
+/** How strongly the session's mean p̂ is pulled toward the target (tuned on test/simulation.test.ts). */
+const CALIBRATION_WEIGHT = 14;
+
+/** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
+const MAX_PER_TEMPLATE_DEFAULT = 3;
+const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = { "speak.tier-0": 2, "match-pairs": 1, "select-image": 2 };
+
+const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2"]);
+
+/** p̂ for an exercise in this state at `now`. */
+export const predictExercise = (state: LearnerState, ex: Exercise, now: string): number => {
+  const facet = facetOf(ex.template);
+  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, ex.kcs, facet, now) });
+};
+
+/** A KC is seen once any of its facets has a card. */
+const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => k.slice(0, k.lastIndexOf("|"))));
+
+/** Due facets (R < desired retention) of seen KCs, most forgotten first. */
+export const dueFacets = (state: LearnerState, now: string, desired = DESIRED_RETENTION): readonly { readonly key: string; readonly r: number }[] =>
+  Object.keys(state.cards)
+    .map((key) => {
+      const at = key.lastIndexOf("|");
+      return { key, r: retrievability(state, key.slice(0, at), key.slice(at + 1) as Facet, now) };
+    })
+    .filter((f) => f.r < desired)
+    .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
+
+const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], kcs: readonly BundleKc[], exclude: ReadonlySet<TemplateId>): Exercise[] => {
+  const out: Exercise[] = [];
+  const add = (ex: Exercise | undefined): void => {
+    if (ex !== undefined && !exclude.has(ex.template) && !out.some((e) => e.id === ex.id)) out.push(ex);
+  };
+  if (!exclude.has("select-image")) for (const kc of kcs) add(makeSelectImage(ctx, kc));
+  if (!exclude.has("match-pairs") && kcs.length >= 3) add(makeMatchPairs(ctx, kcs));
+  for (const s of sentences) {
+    for (const [template, make] of Object.entries(SENTENCE_TEMPLATES)) {
+      if (!exclude.has(template as TemplateId)) add(make(ctx, s));
+    }
+  }
+  return out;
+};
+
+export const plan = (course: CourseView, state: LearnerState, request: SessionRequest, options: PlanOptions): SessionPlan => {
+  const rng = seededRng(options.seed);
+  const target = options.targetSuccess ?? 0.85;
+  const desired = options.desiredRetention ?? DESIRED_RETENTION;
+  const exclude = options.exclude ?? new Set<TemplateId>();
+  const { now } = options;
+  const seen = seenKcs(state);
+  const due = new Map(dueFacets(state, now, desired).map((f) => [f.key, f.r]));
+
+  // ---- 1–2. targets and candidates
+  let introduced: readonly KcId[] = [];
+  let pool: Exercise[] = [];
+  let size: number;
+  if (request.mode === "lesson") {
+    const found = lessonNodes(course).find((n) => n.node.id === request.node);
+    if (found === undefined) throw new Error(`no lesson node ${request.node} in ${course.id}`);
+    const { unit, node } = found;
+    introduced = node.introduces;
+    const ctx: MakeContext = { course, rng, introduced };
+    const fresh = node.introduces.flatMap<BundleKc>((id) => allKcs(course).find((k) => k.id === id) ?? []);
+    const pairsPool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k) && seen.has(k.id))];
+    const own = sentencesOf(course, unit, node);
+    // Interleave: earlier sentences whose facets are due.
+    const earlier = allSentences(course).filter((s) => !own.includes(s) && s.forms[course.orthography] !== undefined && s.kcs.some((kc) => due.has(cardKey(kc, "recognize")) || due.has(cardKey(kc, "produce"))));
+    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier.slice(0, 6), [], exclude)];
+    size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
+  } else if (request.mode === "review") {
+    const ctx: MakeContext = { course, rng, introduced: [] };
+    const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
+    const all = candidatesFor(ctx, studied, allKcs(course).filter((k) => seen.has(k.id)), exclude);
+    // Review exercises due facets first (their gain is high); the rest stay as fillers the
+    // calibration term can pick to keep the session near the target success rate.
+    pool = all;
+    // As long as there is something due to review, up to 10.
+    size = options.size ?? Math.max(5, Math.min(10, due.size));
+  } else {
+    const ctx: MakeContext = { course, rng, introduced: [] };
+    const byId = new Map(allSentences(course).map((s) => [s.id, s]));
+    for (const m of [...state.mistakes].reverse()) {
+      if (exclude.has(m.template)) continue;
+      const s = byId.get(m.item);
+      const ex = s === undefined ? undefined : SENTENCE_TEMPLATES[m.template]?.(ctx, s);
+      if (ex !== undefined && !pool.some((e) => e.id === ex.id)) pool.push(ex);
+    }
+    size = Math.min(options.size ?? 10, pool.length);
+  }
+
+  // i+1 at runtime: every KC that is not new in this lesson has been seen.
+  const targets = new Set(introduced);
+  const admissible = pool.filter((ex) => ex.kcs.every((kc) => targets.has(kc) || seen.has(kc)));
+  const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, now), order }));
+
+  // ---- 3–4. greedy selection
+  const chosen: Candidate[] = [];
+  const covered = new Set<string>(); // (KC, facet) exercised so far in this plan
+  const recognized = new Set<string>(); // new KCs recognized so far in this plan
+  const gain = (c: Candidate): number => {
+    const facet = facetOf(c.ex.template);
+    const parts = c.ex.kcs.map((kc) => {
+      const key = cardKey(kc, facet);
+      const base = state.cards[key] === undefined ? (targets.has(kc) ? 1 : 0.5) : due.has(key) ? 0.6 + (desired - (due.get(key) ?? 0)) : 0.15;
+      return covered.has(key) ? base * 0.3 : base;
+    });
+    return parts.length === 0 ? 0 : parts.reduce((a, b) => a + b, 0) / parts.length;
+  };
+  const allowed = (c: Candidate): boolean => {
+    const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
+    if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
+    if (RECOGNITION.has(c.ex.template)) return true;
+    // A new KC is recognized before it is produced or read.
+    return c.ex.kcs.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[cardKey(kc, "recognize")] !== undefined);
+  };
+  // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
+  const score = (c: Candidate): number => {
+    const sumP = chosen.reduce((a, x) => a + x.p, 0);
+    const meanP = (sumP + c.p) / (chosen.length + 1);
+    const calibration = -CALIBRATION_WEIGHT * Math.abs(meanP - target) - 2 * Math.abs(c.p - target);
+    const sameTemplate = chosen.filter((x) => x.ex.template === c.ex.template).length;
+    const sameItem = chosen.filter((x) => x.ex.item === c.ex.item).length;
+    const newCoverage = c.ex.kcs.some((kc) => targets.has(kc) && !recognized.has(kc)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;
+    return gain(c) + newCoverage + calibration - 0.15 * sameTemplate - 0.5 * sameItem;
+  };
+  const remaining = [...candidates];
+  while (chosen.length < size && remaining.length > 0) {
+    let best = -1;
+    let bestScore = Number.NEGATIVE_INFINITY;
+    for (const [i, c] of remaining.entries()) {
+      if (!allowed(c)) continue;
+      const s = score(c);
+      if (s > bestScore + 1e-12) {
+        best = i;
+        bestScore = s;
+      }
+    }
+    if (best < 0) break;
+    const [pick] = remaining.splice(best, 1);
+    if (pick === undefined) break;
+    chosen.push(pick);
+    const facet = facetOf(pick.ex.template);
+    for (const kc of pick.ex.kcs) {
+      covered.add(cardKey(kc, facet));
+      if (RECOGNITION.has(pick.ex.template) && targets.has(kc)) recognized.add(kc);
+    }
+  }
+
+  // ---- 5. end on a likely success
+  if (chosen.length > 2) {
+    const tail = chosen.slice(-3);
+    const easiest = tail.reduce((a, b) => (b.p > a.p ? b : a));
+    chosen.splice(chosen.indexOf(easiest), 1);
+    chosen.push(easiest);
+  }
+  return { request, exercises: chosen.map((c) => c.ex), predictions: chosen.map((c) => c.p), planner: PLANNER };
+};

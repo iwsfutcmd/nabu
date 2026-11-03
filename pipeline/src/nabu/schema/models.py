@@ -330,6 +330,205 @@ class KeyboardLayout(BaseModel):
     ] = None
 
 
+type Uuid = Annotated[
+    str,
+    Field(pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$", title="Uuid"),
+]
+
+
+type KcRefLocal = Annotated[KcId, Field(title="KcRefLocal")]
+
+
+class Prediction(BaseModel):
+    """
+    Shadow-mode log of the performance model (§9.3): the predicted chance of a right answer.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    p: Annotated[float, Field(ge=0.0, le=1.0)]
+    model: Annotated[str, Field(min_length=1)]
+
+
+class KcCredit(BaseModel):
+    """
+    Per-KC outcome (§8.5): right, wrong, or given (the learner did not have to produce it).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kc: KcRefLocal
+    status: Literal["right", "wrong", "given"]
+
+
+class SessionSummaryData(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    completed: bool
+    exercises: Annotated[int, Field(ge=0)]
+    correctFirstTry: Annotated[int, Field(ge=0)]
+    retries: Annotated[int, Field(ge=0)]
+    skipped: Annotated[int, Field(ge=0)]
+
+
+class SessionStarted(BaseModel):
+    """
+    A session began: a lesson (one path node), review, mistakes or placement.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["session_started"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    mode: Literal["lesson", "review", "mistakes", "placement"]
+    node: Annotated[str | None, Field(min_length=1)] = None
+    seed: Annotated[int, Field(ge=0)]
+    exercises: Annotated[int, Field(ge=0)]
+    planner: Annotated[
+        str, Field(description="Planner and model versions that built the session.", min_length=1)
+    ]
+
+
+class Input(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    method: Literal["choice", "tiles", "text", "pairs", "voice"]
+    raw: Annotated[
+        str | None,
+        Field(description="What the learner typed or chose, as settled text. Personal data."),
+    ] = None
+    latencyMs: Annotated[int, Field(ge=0)]
+    selfRating: Annotated[
+        Literal["good", "hard", "again"] | None,
+        Field(description="Speak tier 0 only: the learner's own rating."),
+    ] = None
+
+
+class Outcome(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal[
+        "CORRECT",
+        "CORRECT_ALT",
+        "CORRECT_MARKS",
+        "CORRECT_VARIANT",
+        "CORRECT_WITH_TYPO",
+        "CORRECT_PROVISIONAL",
+        "PARTIAL",
+        "WRONG_WORD",
+        "WRONG",
+        "SKIPPED",
+    ]
+    notes: list[str]
+    kcs: list[KcCredit]
+
+
+class SessionCompleted(BaseModel):
+    """
+    A session ended, finished or quit.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["session_completed"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    mode: Literal["lesson", "review", "mistakes", "placement"]
+    node: Annotated[str | None, Field(min_length=1)] = None
+    summary: SessionSummaryData
+
+
 type MessageKey = Annotated[
     str,
     Field(
@@ -754,6 +953,207 @@ class SourceToken(BaseModel):
     ] = None
 
 
+class ExerciseRef(BaseModel):
+    """
+    What was presented: enough to recompute credit without the bundle.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(min_length=1)]
+    template: Literal[
+        "select-image",
+        "match-pairs",
+        "choose-translation",
+        "translate-tap.l2-l1",
+        "translate-tap.l1-l2",
+        "translate-type.l1-l2",
+        "complete-translation",
+        "gap-fill",
+        "char-read",
+        "reading-disambiguation",
+        "speak.tier-0",
+    ]
+    item: Annotated[
+        str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
+    ]
+    kcs: list[KcRefLocal]
+
+
+class ExercisePresented(BaseModel):
+    """
+    An exercise was shown.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["exercise_presented"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: ExerciseRef
+    prediction: Prediction | None = None
+
+
+class AnswerSubmitted(BaseModel):
+    """
+    One graded answer (§9.6). Raw answers are personal data (§14.4).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["answer_submitted"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: ExerciseRef
+    attempt: Annotated[
+        int,
+        Field(
+            description="1 for the first try in this session, 2+ for an exercise brought back after a mistake.",
+            ge=1,
+        ),
+    ]
+    input: Input
+    outcome: Outcome
+    prediction: Prediction | None = None
+
+
+class ExerciseSkipped(BaseModel):
+    """
+    The learner skipped (the answer is revealed) or could not listen or speak.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["exercise_skipped"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    exercise: ExerciseRef
+    attempt: Annotated[int, Field(ge=1)]
+    reason: Literal["skip", "cant-listen", "cant-speak"]
+
+
 class MessageCatalog(BaseModel):
     """
     UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.
@@ -950,6 +1350,15 @@ class SentenceForm(BaseModel):
         str | None,
         Field(description="Target-language accept set (§7.4) for L1→L2 production.", min_length=1),
     ] = None
+
+
+type LearnerEvent = Annotated[
+    SessionStarted | ExercisePresented | AnswerSubmitted | ExerciseSkipped | SessionCompleted,
+    Field(
+        description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
+        title="LearnerEvent",
+    ),
+]
 
 
 type NormalizeStep = Annotated[
@@ -1187,6 +1596,7 @@ type NabuSchemaBundle = Annotated[
     | CourseSource
     | DataTable
     | KeyboardLayout
+    | LearnerEvent
     | MessageCatalog
     | OrthographyProfile
     | TaggedText,

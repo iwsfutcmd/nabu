@@ -72,9 +72,17 @@ export type PlayerEvent =
 /** Learner events (§9.6), without the ids, clocks and device fields the shell adds. */
 export type LessonEvent =
   | { readonly type: "session_started"; readonly lesson: string; readonly exercises: number }
-  | { readonly type: "exercise_presented"; readonly exercise: ExerciseRef }
-  | { readonly type: "answer_submitted"; readonly exercise: ExerciseRef; readonly response: Response; readonly outcome: { readonly kind: Verdict; readonly notes: readonly string[] } }
-  | { readonly type: "exercise_skipped"; readonly exercise: ExerciseRef; readonly reason: SkipReason }
+  | { readonly type: "exercise_presented"; readonly exercise: ExerciseRef; readonly ex: Exercise }
+  | {
+      readonly type: "answer_submitted";
+      readonly exercise: ExerciseRef;
+      readonly response: Response;
+      readonly outcome: { readonly kind: Verdict; readonly notes: readonly string[] };
+      /** The exercise and the full outcome (alignment included), for credit assignment. */
+      readonly ex: Exercise;
+      readonly graded: Outcome;
+    }
+  | { readonly type: "exercise_skipped"; readonly exercise: ExerciseRef; readonly reason: SkipReason; readonly ex: Exercise }
   | { readonly type: "session_completed"; readonly lesson: string; readonly summary: SessionSummary };
 
 export interface ExerciseRef {
@@ -157,7 +165,7 @@ const present = (session: Session): readonly [PlayerState, readonly Effect[]] =>
     const summary = summarize(session, true);
     return [{ tag: "finished", session, summary }, [{ tag: "emit", event: { type: "session_completed", lesson: session.lesson, summary } }]];
   }
-  return [{ tag: "presenting", session, ex }, [{ tag: "emit", event: { type: "exercise_presented", exercise: ref(ex) } }]];
+  return [{ tag: "presenting", session, ex }, [{ tag: "emit", event: { type: "exercise_presented", exercise: ref(ex), ex } }]];
 };
 
 export const summarize = (session: Session, completed: boolean): SessionSummary => {
@@ -205,7 +213,7 @@ const answering = (state: Extract<Active, { tag: "presenting" }>): Extract<Activ
 const skip = (state: Extract<Active, { tag: "presenting" | "answering" }>, reason: SkipReason): readonly [PlayerState, readonly Effect[]] => {
   const { ex } = state;
   const session = record(state.session, ex, "SKIPPED");
-  const emit: Effect = { tag: "emit", event: { type: "exercise_skipped", exercise: ref(ex), reason } };
+  const emit: Effect = { tag: "emit", event: { type: "exercise_skipped", exercise: ref(ex), reason, ex } };
   if (reason === "cant-speak") {
     // "Can't speak now": no speaking for the rest of the lesson.
     const rest = session.queue.slice(session.position + 1).filter((e) => e.template !== "speak.tier-0");
@@ -262,7 +270,17 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
       return [
         { tag: "feedback", session: record(state.session, state.ex, event.outcome.verdict), ex: state.ex, response: state.response, outcome: event.outcome },
         [
-          { tag: "emit", event: { type: "answer_submitted", exercise: ref(state.ex), response: state.response, outcome: { kind: event.outcome.verdict, notes: event.outcome.notes } } },
+          {
+            tag: "emit",
+            event: {
+              type: "answer_submitted",
+              exercise: ref(state.ex),
+              response: state.response,
+              outcome: { kind: event.outcome.verdict, notes: event.outcome.notes },
+              ex: state.ex,
+              graded: event.outcome,
+            },
+          },
           { tag: "sound", sound: isCorrect(event.outcome.verdict) ? "correct" : "wrong" },
         ],
       ];
