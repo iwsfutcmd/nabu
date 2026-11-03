@@ -106,6 +106,13 @@
         "$TURBO_ROOT$/packages/i18n/src/**",
         "$TURBO_ROOT$/packages/i18n/messages/**"
       ]
+    },
+    "@nabu/core#test": {
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        "$TURBO_ROOT$/apps/web/public/bundles/**",
+        "$TURBO_ROOT$/packages/i18n/src/generated/**"
+      ]
     }
   }
 }

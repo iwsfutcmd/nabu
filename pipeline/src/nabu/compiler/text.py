@@ -9,7 +9,8 @@ from typing import Any
 import regex
 
 GRAPHEME = regex.compile(r"\X")
-WORD = regex.compile(r"[\p{L}\p{M}\p{N}\u200c\u200d]+")
+# A word may hold an apostrophe between letters: English I'm and name's are one word, one tile.
+WORD = regex.compile(r"[\p{L}\p{M}\p{N}\u200c\u200d]+(?:['\u2019][\p{L}\p{M}\p{N}]+)*")
 WORDCHAR = regex.compile(r"[\p{L}\p{M}\p{N}]")
 HAN = regex.compile(r"\p{Han}")
 SYLLABLE = regex.compile(r"[a-z]+[1-6]")

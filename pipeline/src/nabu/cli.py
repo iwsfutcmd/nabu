@@ -126,8 +126,8 @@ def build(
                 )
     if index and not failed and len(paths) > 1:
         # The courses a client can offer, for a directory of bundles (apps/web/public/bundles).
-        courses = sorted(index, key=lambda c: c["id"])
-        (out / "index.json").write_bytes(canonical({"courses": courses}))
+        entries = sorted(index, key=lambda c: c["id"])
+        (out / "index.json").write_bytes(canonical({"courses": entries}))
     raise typer.Exit(code=1 if failed else 0)
 
 

@@ -1,0 +1,130 @@
+/**
+ * A course as the player sees it: the bundle's units plus compiled profiles,
+ * for one taught orthography and one support language. Assembling it is pure;
+ * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
+ */
+import type { BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile } from "@nabu/schema";
+import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
+import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
+import { err, ok, type Result } from "../result.ts";
+import { asciiLowercase } from "../text/ascii.ts";
+import { surfaceOf } from "../text/tagged-text.ts";
+
+export interface CourseView {
+  readonly id: string;
+  readonly units: readonly BundleUnit[];
+  /** The orthography the learner chose (one of the course's). */
+  readonly orthography: string;
+  /** The support orthography (en-Latn/standard) and its translation key (en). */
+  readonly support: string;
+  readonly supportKey: string;
+  readonly profiles: ReadonlyMap<string, CompiledProfile>;
+  readonly keyboards: ReadonlyMap<string, KeyboardLayout>;
+}
+
+export interface CourseFiles {
+  readonly manifest: BundleManifest;
+  /** Parsed JSON of every file the manifest lists, by bundle path (images excluded). */
+  readonly files: ReadonlyMap<string, unknown>;
+  /** CLDR numbering systems (packages/i18n generated). */
+  readonly numberingSystems: Readonly<Record<string, string>>;
+}
+
+export type CourseError =
+  | { readonly code: "missing-file"; readonly path: string }
+  | { readonly code: "unknown-orthography"; readonly orthography: string }
+  | { readonly code: "profile"; readonly orthography: string; readonly detail: string };
+
+/** The orthography id a support language key resolves to ("en" → "en-Latn/standard"). */
+const supportKeyOf = (orthography: string): string => orthography.split("-")[0] as string;
+
+export const assembleCourse = (bundle: CourseFiles, orthography?: string): Result<CourseView, CourseError> => {
+  const { manifest, files } = bundle;
+  const chosen: string = orthography ?? manifest.orthographies[0] ?? "";
+  if (!(manifest.orthographies as readonly string[]).includes(chosen)) return err({ code: "unknown-orthography", orthography: chosen });
+  const read = (role: string): unknown[] => manifest.files.filter((f) => f.role === role).map((f) => files.get(f.path));
+  for (const f of manifest.files) {
+    if (f.role !== "image" && !files.has(f.path)) return err({ code: "missing-file", path: f.path });
+  }
+  const tables = Object.fromEntries((read("table") as DataTable[]).map((t) => [t.id, t]));
+  const keyboardList = read("keyboard") as KeyboardLayout[];
+  const keyboards = Object.fromEntries(keyboardList.map((k) => [k.id, k]));
+  const profiles = new Map<string, CompiledProfile>();
+  for (const raw of read("profile") as OrthographyProfile[]) {
+    const compiled = compileProfile(raw, { numberingSystems: bundle.numberingSystems, tables, keyboards });
+    if (!compiled.ok) return err({ code: "profile", orthography: raw.id, detail: JSON.stringify(compiled.error) });
+    profiles.set(raw.id, compiled.value);
+  }
+  const support = manifest.support[0] as string;
+  const units = manifest.units.map((u) => files.get(u.file) as BundleUnit);
+  return ok({
+    id: manifest.course,
+    units,
+    orthography: chosen,
+    support,
+    supportKey: supportKeyOf(support),
+    profiles,
+    keyboards: new Map(keyboardList.map((k) => [k.id, k])),
+  });
+};
+
+export const profileOf = (course: CourseView, orthography: string): CompiledProfile => {
+  const profile = course.profiles.get(orthography);
+  if (profile === undefined) throw new Error(`no profile ${orthography} in course ${course.id}`);
+  return profile;
+};
+
+export const allSentences = (course: CourseView): readonly BundleSentence[] => course.units.flatMap((u) => u.sentences);
+export const allKcs = (course: CourseView): readonly BundleKc[] => course.units.flatMap((u) => u.kcs);
+
+/** The keyboard layout a profile's input (else typo model) names, for the touch keyboard. */
+export const keyboardFor = (course: CourseView, orthography: string): KeyboardLayout | undefined => {
+  const source = profileOf(course, orthography).source;
+  const ref = source.input?.keyboard ?? (source.match?.typo as { layout?: string } | undefined)?.layout;
+  if (ref === undefined) return undefined;
+  return course.keyboards.get(asciiLowercase(ref.replace(/^cldr-kbd:/u, "")));
+};
+
+/** Grades answers against accept sets with the course's compiled profiles (§8.3). */
+export interface Grader {
+  readonly grade: (orthography: string, accept: string, answer: string) => Grade;
+}
+
+/**
+ * A grader with a per-orthography lexicon (every glossary form, normalized and
+ * case-folded as grade() compares units) so that a typo landing on a real word
+ * is WRONG_WORD. Compiled accept sets are
+ * memoized; grading itself stays pure.
+ */
+export const createGrader = (course: CourseView): Grader => {
+  const sets = new Map<string, CompiledAcceptSet>();
+  const lexicons = new Map<string, ReadonlySet<string>>();
+  const lexicon = (orthography: string): ReadonlySet<string> => {
+    let words = lexicons.get(orthography);
+    if (words === undefined) {
+      const profile = profileOf(course, orthography);
+      const found = new Set<string>();
+      for (const kc of allKcs(course)) {
+        for (const form of kc.forms?.[orthography] ?? []) {
+          for (const unit of profile.units(profile.normalize(surfaceOf(form)))) found.add(profile.fold(unit));
+        }
+      }
+      words = found;
+      lexicons.set(orthography, words);
+    }
+    return words;
+  };
+  return {
+    grade: (orthography, accept, answer) => {
+      const key = `${orthography}\u0000${accept}`;
+      let set = sets.get(key);
+      if (set === undefined) {
+        const compiled = compileAcceptSet(accept, profileOf(course, orthography));
+        if (!compiled.ok) throw new Error(`accept set does not parse: ${JSON.stringify(compiled.error)}`);
+        set = compiled.value;
+        sets.set(key, set);
+      }
+      return grade(set, answer, { lexicon: lexicon(orthography) });
+    },
+  };
+};
