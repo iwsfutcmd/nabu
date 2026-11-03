@@ -38,4 +38,60 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       `create index events_user_course_seq on events (user_id, course, seq)`,
     ],
   ],
+  [
+    "0002_profiles_leagues_push",
+    [
+      `create table profiles (
+        user_id uuid primary key references users(id) on delete cascade,
+        username text not null,
+        username_key text not null unique,
+        username_skeleton text not null unique,
+        display_name text,
+        ui_locale text not null default 'en',
+        updated_at timestamptz not null default now()
+      )`,
+      `create table league_members (
+        week date not null,
+        user_id uuid not null references users(id) on delete cascade,
+        tier smallint not null,
+        cohort integer not null,
+        joined_at timestamptz not null default now(),
+        primary key (week, user_id)
+      )`,
+      `create index league_members_cohort on league_members (week, tier, cohort)`,
+      `create table league_results (
+        week date not null,
+        user_id uuid not null references users(id) on delete cascade,
+        tier smallint not null,
+        cohort integer not null,
+        xp integer not null,
+        rank integer not null,
+        outcome text not null,
+        next_tier smallint not null,
+        primary key (week, user_id)
+      )`,
+      `create table league_weeks (
+        week date primary key,
+        rolled_at timestamptz not null default now()
+      )`,
+      `create table push_subscriptions (
+        endpoint text primary key,
+        user_id uuid not null references users(id) on delete cascade,
+        p256dh text not null,
+        auth text not null,
+        created_at timestamptz not null default now()
+      )`,
+      `create table push_log (
+        user_id uuid not null references users(id) on delete cascade,
+        local_date date not null,
+        template text not null,
+        sent_at timestamptz not null default now(),
+        primary key (user_id, local_date)
+      )`,
+      `create table server_keys (
+        name text primary key,
+        value text not null
+      )`,
+    ],
+  ],
 ];

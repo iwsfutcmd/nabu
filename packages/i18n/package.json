@@ -12,6 +12,7 @@
   },
   "scripts": {
     "generate:cldr": "node scripts/generate-cldr.ts",
+    "generate:security": "node scripts/generate-security.ts",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "test": "vitest run"

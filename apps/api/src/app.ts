@@ -11,6 +11,11 @@
  *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor}
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
+ *   GET  /v1/profile                   → {profile}            PUT {username, displayName?, uiLocale?}
+ *   GET  /v1/league                    → this week's cohort, or {enabled: false} (leagues are opt-in)
+ *   GET  /v1/push/key                  → {publicKey}: the VAPID key for pushManager.subscribe
+ *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
+ *   POST /v1/push/unsubscribe          {endpoint}
  *
  * Authenticated routes take `Authorization: Bearer <token>`. No cookies, so
  * any origin may call it (CORS *) without exposing a session to CSRF.
@@ -18,13 +23,25 @@
 import { DEFAULT_UI_LOCALE, directionOf, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
+import type { LeagueConfig } from "@nabu/core/game";
+import { and, eq } from "drizzle-orm";
 import type { Account, Accounts } from "./accounts.ts";
 import type { Db } from "./db/index.ts";
+import { pushSubscriptions } from "./db/schema.ts";
+import { joinIfActive, leagueView } from "./leagues.ts";
 import { append, checkBatch, MAX_BATCH, since, stateOf } from "./log.ts";
+import { getProfile, setProfile } from "./profiles.ts";
+import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
 export interface AppDeps {
   readonly db: Db;
   readonly accounts: Accounts;
+  /** Leagues, when this instance opts in (§12.4). */
+  readonly leagues?: LeagueConfig | undefined;
+  /** VAPID keys, when this instance sends reminders (§12.6). */
+  readonly vapid?: (() => Promise<Vapid>) | undefined;
+  /** The clock (tests fix it). */
+  readonly now?: (() => number) | undefined;
 }
 
 type Env = { Variables: { user: Account; token: string } };
@@ -55,9 +72,28 @@ export const publicRoutes = new Hono()
     return c.json({ ...negotiated, dir: directionOf(negotiated.locale) });
   });
 
-export const createApp = ({ db, accounts }: AppDeps) => {
+const body = async (c: Context): Promise<Record<string, unknown> | undefined> => {
+  const value: unknown = await c.req.json().catch(() => undefined);
+  return typeof value === "object" && value !== null && !Array.isArray(value) ? (value as Record<string, unknown>) : undefined;
+};
+
+/** A push subscription's keys must be a P-256 point and a 16-byte secret, both base64url. */
+const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256dh: string; auth: string } | undefined => {
+  const { endpoint, keys } = b as { endpoint?: unknown; keys?: { p256dh?: unknown; auth?: unknown } };
+  if (typeof endpoint !== "string" || typeof keys?.p256dh !== "string" || typeof keys.auth !== "string") return undefined;
+  try {
+    const url = new URL(endpoint);
+    if (url.protocol !== "https:" && !(url.protocol === "http:" && (url.hostname === "127.0.0.1" || url.hostname === "localhost"))) return undefined;
+  } catch {
+    return undefined;
+  }
+  if (fromBase64url(keys.p256dh).length !== 65 || fromBase64url(keys.auth).length !== 16) return undefined;
+  return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
+};
+
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now }: AppDeps) => {
   const app = new Hono<Env>();
-  app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST"], maxAge: 600 }));
+  app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
   app.route("/", publicRoutes);
 
   app.post("/v1/auth/sign-up", async (c) => {
@@ -96,7 +132,9 @@ export const createApp = ({ db, accounts }: AppDeps) => {
     const user = c.get("user").id;
     const checked = checkBatch(await c.req.json().catch(() => undefined), user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
-    return c.json(await append(db, user, checked.events));
+    const result = await append(db, user, checked.events, new Date(now()));
+    if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
+    return c.json(result);
   });
 
   app.get("/v1/events", async (c) => {
@@ -111,6 +149,46 @@ export const createApp = ({ db, accounts }: AppDeps) => {
     const course = c.req.query("course");
     if (course === undefined || course === "") return c.json({ error: "missing-course" }, 400);
     return c.json({ course, ...(await stateOf(db, c.get("user").id, course)) });
+  });
+
+  app.get("/v1/profile", async (c) => c.json({ profile: await getProfile(db, c.get("user").id) }));
+
+  app.put("/v1/profile", async (c) => {
+    const b = await body(c);
+    if (b === undefined || typeof b["username"] !== "string") return c.json({ error: { code: "invalid-request" } }, 400);
+    const result = await setProfile(db, c.get("user").id, {
+      username: b["username"],
+      displayName: typeof b["displayName"] === "string" ? b["displayName"] : null,
+      ...(typeof b["uiLocale"] === "string" ? { uiLocale: b["uiLocale"] } : {}),
+    });
+    if (result.ok) return c.json({ profile: result.profile });
+    const taken = result.error.code === "username-taken" || result.error.code === "username-confusable";
+    return c.json({ error: result.error }, taken ? 409 : 400);
+  });
+
+  app.get("/v1/league", async (c) => c.json(leagues === undefined ? { enabled: false } : await leagueView(db, c.get("user").id, now(), leagues)));
+
+  app.get("/v1/push/key", async (c) => (vapid === undefined ? c.json({ error: "push-disabled" }, 404) : c.json({ publicKey: base64url((await vapid()).publicKey) })));
+
+  app.post("/v1/push/subscribe", async (c) => {
+    if (vapid === undefined) return c.json({ error: "push-disabled" }, 404);
+    const b = await body(c);
+    const sub = b === undefined ? undefined : validSubscription(b);
+    if (sub === undefined) return c.json({ error: "invalid-subscription" }, 400);
+    const user = c.get("user").id;
+    await db
+      .insert(pushSubscriptions)
+      .values({ ...sub, userId: user })
+      .onConflictDoUpdate({ target: pushSubscriptions.endpoint, set: { userId: user, p256dh: sub.p256dh, auth: sub.auth } });
+    return c.body(null, 201);
+  });
+
+  app.post("/v1/push/unsubscribe", async (c) => {
+    const b = await body(c);
+    const endpoint = b?.["endpoint"];
+    if (typeof endpoint !== "string") return c.json({ error: "invalid-request" }, 400);
+    await db.delete(pushSubscriptions).where(and(eq(pushSubscriptions.endpoint, endpoint), eq(pushSubscriptions.userId, c.get("user").id)));
+    return c.body(null, 204);
   });
 
   return app;

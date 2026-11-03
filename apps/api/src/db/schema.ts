@@ -4,7 +4,7 @@
  * the server's receipt order, used as the sync cursor. Projections are not
  * stored: the server replays the log with the same @nabu/core as the device.
  */
-import { bigserial, date, index, jsonb, pgTable, smallint, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { bigserial, date, index, integer, jsonb, pgTable, primaryKey, smallint, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 /** Applied migrations (migrations.ts), by name. */
 export const schemaMigrations = pgTable("schema_migrations", {
@@ -51,3 +51,87 @@ export const events = pgTable(
   },
   (t) => [index("events_user_seq").on(t.userId, t.seq), index("events_user_course_seq").on(t.userId, t.course, t.seq)],
 );
+
+/** A user's public face (gameplan §12.7): a UTS #39 username, a free-form display name, a UI locale for notifications. */
+export const profiles = pgTable("profiles", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  username: text("username").notNull(),
+  /** NFKC_Casefold: one name in many guises. */
+  usernameKey: text("username_key").notNull().unique(),
+  /** UTS #39 skeleton: names that look alike collide. */
+  usernameSkeleton: text("username_skeleton").notNull().unique(),
+  displayName: text("display_name"),
+  uiLocale: text("ui_locale").notNull().default("en"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** Who is in which cohort in a league week (week = its first date, UTC). */
+export const leagueMembers = pgTable(
+  "league_members",
+  {
+    week: date("week").notNull(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    tier: smallint("tier").notNull(),
+    cohort: integer("cohort").notNull(),
+    joinedAt: timestamp("joined_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.week, t.userId] }), index("league_members_cohort").on(t.week, t.tier, t.cohort)],
+);
+
+/** A rolled-over week's final standings: written once per (week, user). */
+export const leagueResults = pgTable(
+  "league_results",
+  {
+    week: date("week").notNull(),
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    tier: smallint("tier").notNull(),
+    cohort: integer("cohort").notNull(),
+    xp: integer("xp").notNull(),
+    rank: integer("rank").notNull(),
+    outcome: text("outcome").notNull(),
+    nextTier: smallint("next_tier").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.week, t.userId] })],
+);
+
+/** Weeks already rolled over: the rollover's idempotency key. */
+export const leagueWeeks = pgTable("league_weeks", {
+  week: date("week").primaryKey(),
+  rolledAt: timestamp("rolled_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export const pushSubscriptions = pgTable("push_subscriptions", {
+  endpoint: text("endpoint").primaryKey(),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => users.id, { onDelete: "cascade" }),
+  p256dh: text("p256dh").notNull(),
+  auth: text("auth").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** Reminders sent, at most one per user and local date. */
+export const pushLog = pgTable(
+  "push_log",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    localDate: date("local_date").notNull(),
+    template: text("template").notNull(),
+    sentAt: timestamp("sent_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.localDate] })],
+);
+
+/** Server-held secrets that must survive restarts (the VAPID key pair). */
+export const serverKeys = pgTable("server_keys", {
+  name: text("name").primaryKey(),
+  value: text("value").notNull(),
+});

@@ -2,6 +2,22 @@
   "$schema": "../../../schemas/message-catalog.schema.json",
   "locale": "en",
   "messages": {
+    "achievement.right": {
+      "message": ".input {$target :number}\n.match $target\none {{{$target} right answer}}\n* {{{$target} right answers}}",
+      "description": "Achievement: right answers in all."
+    },
+    "achievement.sessions": {
+      "message": ".input {$target :number}\n.match $target\none {{{$target} session finished}}\n* {{{$target} sessions finished}}",
+      "description": "Achievement: sessions completed in all."
+    },
+    "achievement.stories": {
+      "message": ".input {$target :number}\n.match $target\none {{{$target} story read}}\n* {{{$target} stories read}}",
+      "description": "Achievement: stories read in all."
+    },
+    "achievement.streak": {
+      "message": ".input {$days :number}\n{{A {$days}-day streak}}",
+      "description": "Achievement: a streak of this many days."
+    },
     "app.account.create": {
       "message": "Create account",
       "description": "Button that creates an account and uploads the progress on this device."
@@ -81,6 +97,34 @@
     "app.error.load": {
       "message": "This course could not be loaded.",
       "description": "Shown when a course bundle fails to load."
+    },
+    "app.error.profile.characters": {
+      "message": "Usernames can only use letters, digits and _ - . between them.",
+      "description": "Username has characters that are not allowed."
+    },
+    "app.error.profile.display-name": {
+      "message": "That display name can't be used.",
+      "description": "Display name is empty, too long, or has control characters."
+    },
+    "app.error.profile.length": {
+      "message": "That username is too short or too long.",
+      "description": "Username has fewer than 3 or more than 30 characters."
+    },
+    "app.error.profile.mixed-script": {
+      "message": "That username mixes writing systems in a way that could mislead. Try one script.",
+      "description": "Username mixes scripts beyond what UTS #39 Moderately Restrictive allows."
+    },
+    "app.error.profile.separators": {
+      "message": "Put _ - or . only between letters or digits, one at a time.",
+      "description": "Username starts or ends with a separator, or has two in a row."
+    },
+    "app.error.profile.username-confusable": {
+      "message": "That username looks too much like one that's taken.",
+      "description": "The username's confusable skeleton matches a taken one."
+    },
+    "app.error.profile.username-taken": {
+      "message": "That username is taken.",
+      "description": "Another learner has this username."
     },
     "app.home.title": {
       "message": "Choose a course",
@@ -166,6 +210,30 @@
       "message": ".input {$count :number}\n{{{$count} to fix}}",
       "description": "How many recent mistakes are waiting in the mistakes session. $count is a number."
     },
+    "app.profile.display-name": {
+      "message": "Display name (optional)",
+      "description": "Label of the display name field."
+    },
+    "app.profile.save": {
+      "message": "Save profile",
+      "description": "Button that saves the profile."
+    },
+    "app.profile.saved": {
+      "message": "Saved.",
+      "description": "Shown after the profile is saved."
+    },
+    "app.profile.title": {
+      "message": "Profile",
+      "description": "Heading of the profile form."
+    },
+    "app.profile.username": {
+      "message": "Username",
+      "description": "Label of the username field."
+    },
+    "app.profile.username-hint": {
+      "message": "3 to 30 letters or digits, with _ - or . between them.",
+      "description": "Hint under the username field."
+    },
     "app.progress.device": {
       "message": "Your progress is saved on this device.",
       "description": "Where progress is kept when there is no account."
@@ -177,6 +245,22 @@
     "app.progress.title": {
       "message": "Your progress",
       "description": "Heading of the progress and account section on the home screen."
+    },
+    "app.reminders.denied": {
+      "message": "Notifications are blocked for this site in your browser settings.",
+      "description": "Shown when the browser denied notification permission."
+    },
+    "app.reminders.hint": {
+      "message": "At most one a day, around the time you usually practise, and only if you haven't yet.",
+      "description": "Explains when reminders come."
+    },
+    "app.reminders.label": {
+      "message": "Daily practice reminder",
+      "description": "Switch that turns practice reminders (push notifications) on or off."
+    },
+    "app.reminders.unsupported": {
+      "message": "This browser can't show reminders.",
+      "description": "Shown when the browser has no push support."
     },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
@@ -373,6 +457,98 @@
     "feedback.verdict.wrong-word": {
       "message": "That's a different word.",
       "description": "Feedback headline: one letter off, but the result is another real word."
+    },
+    "game.achievements.none": {
+      "message": "None yet. They come with practice.",
+      "description": "Shown when no achievement is unlocked."
+    },
+    "game.achievements.title": {
+      "message": "Achievements",
+      "description": "Heading of the unlocked achievements."
+    },
+    "game.freezes": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} streak freeze}}\n* {{{$count} streak freezes}}",
+      "description": "Streak freezes held: each covers one missed day automatically."
+    },
+    "game.gate.empty": {
+      "message": "You're out for now. Practise reviews or mistakes to refill, or come back a little later.",
+      "description": "Shown instead of a lesson when the gate is empty; practice always stays open."
+    },
+    "game.gate.energy": {
+      "message": ".input {$count :number}\n{{{$count} energy}}",
+      "description": "Energy left (only on instances that turn the energy gate on)."
+    },
+    "game.gate.hearts": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} heart}}\n* {{{$count} hearts}}",
+      "description": "Hearts left (only on instances that turn the hearts gate on)."
+    },
+    "game.quests.done": {
+      "message": "Done",
+      "description": "A quest completed today."
+    },
+    "game.quests.progress": {
+      "message": ".input {$progress :number}\n.input {$target :number}\n{{{$progress} of {$target}}}",
+      "description": "A quest's progress, e.g. 3 of 5."
+    },
+    "game.quests.title": {
+      "message": "Today's quests",
+      "description": "Heading of the day's quests."
+    },
+    "game.streak": {
+      "message": ".input {$days :number}\n.match $days\none {{{$days}-day streak}}\n* {{{$days}-day streak}}",
+      "description": "The learner's current streak: days in a row with practice."
+    },
+    "game.streak.longest": {
+      "message": ".input {$days :number}\n{{Longest: {$days}}}",
+      "description": "The learner's longest streak ever, in days."
+    },
+    "game.streak.today-done": {
+      "message": "You practised today.",
+      "description": "Shown when today already counts for the streak."
+    },
+    "game.streak.today-pending": {
+      "message": "Practise today to keep it going.",
+      "description": "Shown when today does not count yet; kind, never guilt-tripping."
+    },
+    "game.title": {
+      "message": "Your streak",
+      "description": "Heading of the panel with the streak, freezes, quests and achievements."
+    },
+    "league.anonymous": {
+      "message": "A learner",
+      "description": "Shown for a league member who has not chosen a username."
+    },
+    "league.days-left": {
+      "message": ".input {$days :number}\n.match $days\none {{{$days} day left}}\n* {{{$days} days left}}",
+      "description": "Time left in the league week."
+    },
+    "league.join": {
+      "message": "Earn XP this week to join a league.",
+      "description": "Shown to a signed-in learner who has not earned league XP this week."
+    },
+    "league.tier": {
+      "message": ".input {$tier :number}\n{{Tier {$tier}}}",
+      "description": "The learner's league tier this week (1 is the first)."
+    },
+    "league.title": {
+      "message": "League",
+      "description": "Heading of the weekly league."
+    },
+    "league.xp": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "description": "A member's league XP this week."
+    },
+    "league.you": {
+      "message": "You",
+      "description": "Marks the learner's own row in the league table."
+    },
+    "league.zone.demote": {
+      "message": "Demotion zone",
+      "description": "Accessible label of the rows that move down a tier at the end of the week."
+    },
+    "league.zone.promote": {
+      "message": "Promotion zone",
+      "description": "Accessible label of the rows that move up a tier at the end of the week."
     },
     "orthography.apc-Arab.standard": {
       "message": "Arabic script",
@@ -633,6 +809,62 @@
     "player.wordbank.answer-label": {
       "message": "Your answer",
       "description": "Accessible label of the row where the chosen tiles go."
+    },
+    "push.reminder.gentle.body": {
+      "message": "Your next lesson is there whenever you are.",
+      "description": "Push notification body for the gentle reminder."
+    },
+    "push.reminder.gentle.title": {
+      "message": "Ready for a little practice?",
+      "description": "Push notification title: a gentle reminder."
+    },
+    "push.reminder.quest.body": {
+      "message": "Finish them for bonus XP.",
+      "description": "Push notification body for the quest reminder."
+    },
+    "push.reminder.quest.title": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} quest left today}}\n* {{{$count} quests left today}}",
+      "description": "Push notification title: today's quests are not finished."
+    },
+    "push.reminder.streak.body": {
+      "message": "A few minutes today keeps it going.",
+      "description": "Push notification body for the streak reminder."
+    },
+    "push.reminder.streak.title": {
+      "message": ".input {$days :number}\n.match $days\none {{Your {$days}-day streak is waiting}}\n* {{Your {$days}-day streak is waiting}}",
+      "description": "Push notification title: the learner has a streak and has not practised today."
+    },
+    "quest.listen-5": {
+      "message": ".input {$target :number}\n.match $target\none {{Get {$target} listening exercise right}}\n* {{Get {$target} listening exercises right}}",
+      "description": "Daily quest: right answers in listening exercises."
+    },
+    "quest.perfect-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Finish a session with no mistakes}}\n* {{Finish {$target} sessions with no mistakes}}",
+      "description": "Daily quest: a session where every first try was right."
+    },
+    "quest.produce-5": {
+      "message": ".input {$target :number}\n.match $target\none {{Write {$target} answer right in the language you're learning}}\n* {{Write {$target} answers right in the language you're learning}}",
+      "description": "Daily quest: right answers typed or built in the target language."
+    },
+    "quest.review-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Do a review or fix your mistakes}}\n* {{Do {$target} reviews or mistake sessions}}",
+      "description": "Daily quest: practice sessions."
+    },
+    "quest.right-20": {
+      "message": ".input {$target :number}\n.match $target\none {{Get {$target} answer right}}\n* {{Get {$target} answers right}}",
+      "description": "Daily quest: right answers."
+    },
+    "quest.sessions-2": {
+      "message": ".input {$target :number}\n.match $target\none {{Finish {$target} session}}\n* {{Finish {$target} sessions}}",
+      "description": "Daily quest: complete sessions."
+    },
+    "quest.story-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Read a story}}\n* {{Read {$target} stories}}",
+      "description": "Daily quest: read stories to the end."
+    },
+    "quest.xp-30": {
+      "message": ".input {$target :number}\n{{Earn {$target} XP}}",
+      "description": "Daily quest: earn XP."
     },
     "story.finished.stopped": {
       "message": "Story stopped",

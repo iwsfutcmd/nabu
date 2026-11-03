@@ -55,9 +55,10 @@ export const checkBatch = (body: unknown, user: string): { ok: true; events: rea
   return { ok: true, events: batch as LearnerEvent[] };
 };
 
-/** Appends events; an id already in the log is a duplicate and changes nothing. */
-export const append = async (db: Db, user: string, batch: readonly LearnerEvent[]): Promise<UploadResult> => {
+/** Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing. */
+export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date()): Promise<UploadResult> => {
   const rows = batch.map((e) => ({
+    serverTime: receivedAt,
     id: e.id,
     userId: user,
     deviceId: e.device,
