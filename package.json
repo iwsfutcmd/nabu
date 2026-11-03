@@ -23,7 +23,8 @@
     "cldr": "pnpm --filter @nabu/i18n generate:cldr",
     "test:perf": "turbo run test:perf",
     "conformance": "pnpm --filter @nabu/core-cli exec vitest run test/conformance.test.ts && cd pipeline && uv run --frozen pytest -q tests/test_conformance.py",
-    "tables": "cd pipeline && uv run --frozen nabu tables"
+    "tables": "cd pipeline && uv run --frozen nabu tables",
+    "courses": "cd pipeline && uv run --frozen nabu build ../courses --check"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

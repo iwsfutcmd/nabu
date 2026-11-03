@@ -1,0 +1,315 @@
+# Fixture course (yue): Cantonese (Hong Kong), Traditional characters with pinned Jyutping. Particles, A-not-A questions, -哋 plurals; an RBNF numbers drill.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: intro
+title: {en: Good morning! Going for dim sum}
+cefr: A1
+kcs:
+- {id: 'sense:早晨', gloss: {en: good morning}, forms: {yue-Hant-HK/standard: [早晨]}}
+- {id: 'sense:你好', gloss: {en: hello}, forms: {yue-Hant-HK/standard: [你好]}}
+- {id: 'sense:唔該', gloss: {en: thank you (for a service); please; excuse me}, forms: {yue-Hant-HK/standard: [唔該]}}
+- {id: 'sense:多謝', gloss: {en: thank you (for a gift or a compliment)}, forms: {yue-Hant-HK/standard: [多謝]}}
+- {id: 'sense:拜拜', gloss: {en: bye-bye}, forms: {yue-Hant-HK/standard: [拜拜]}}
+- {id: 'sense:呀', gloss: {en: 'sentence-final particle: softens a statement, marks a question'}, forms: {yue-Hant-HK/standard: [呀]}}
+- {id: 'sense:係', gloss: {en: 'to be; yes, that''s right'}, forms: {yue-Hant-HK/standard: [係]}}
+- {id: 'sense:唔', gloss: {en: not}, forms: {yue-Hant-HK/standard: [唔]}}
+- {id: 'sense:我', gloss: {en: I; me}, forms: {yue-Hant-HK/standard: [我, 我哋]}}
+- {id: 'sense:你', gloss: {en: you}, forms: {yue-Hant-HK/standard: [你, 你哋]}}
+- {id: 'sense:學生', gloss: {en: student}, forms: {yue-Hant-HK/standard: [學生]}}
+- {id: 'sense:老師', gloss: {en: teacher}, forms: {yue-Hant-HK/standard: [老師]}}
+- {id: 'construction:a-not-a', gloss: {en: 'X唔X: a yes-or-no question (係唔係, ''is it or not'')'}}
+- {id: 'sense:佢', gloss: {en: he; she; they (one person); it}, forms: {yue-Hant-HK/standard: [佢, 佢哋]}}
+- {id: 'form:plural-dei', gloss: {en: '-哋 (dei6): plural of a pronoun'}, notes: {en: '我哋 we, 你哋 you (plural), 佢哋 they. Often typed 地 informally.'}}
+- {id: 'sense:去', gloss: {en: to go}, forms: {yue-Hant-HK/standard: [去]}}
+- {id: 'sense:飲茶', gloss: {en: to go for dim sum (yum cha)}, forms: {yue-Hant-HK/standard: [飲茶]}}
+- {id: 'sense:啦', gloss: {en: 'sentence-final particle: suggestion, ''let''s'''}, forms: {yue-Hant-HK/standard: [啦]}}
+- {id: 'sense:嗎', gloss: {en: 'sentence-final particle: yes-or-no question'}, forms: {yue-Hant-HK/standard: [嗎]}}
+- {id: 'sense:好', gloss: {en: good; very}, forms: {yue-Hant-HK/standard: [好]}}
+- {id: 'sense:邊個', gloss: {en: who}, forms: {yue-Hant-HK/standard: [邊個]}}
+- {id: 'sense:嘅', gloss: {en: 'possessive particle (''s, of)'}, forms: {yue-Hant-HK/standard: [嘅]}}
+- {id: 'sense:晒', gloss: {en: all; completely (after a verb)}, forms: {yue-Hant-HK/standard: [晒]}}
+nodes:
+- {id: yue.greetings, kind: lesson, introduces: ['sense:早晨', 'sense:你好', 'sense:唔該', 'sense:多謝', 'sense:拜拜', 'sense:呀', 'sense:晒']}
+- {id: yue.copula, kind: lesson, introduces: ['sense:係', 'sense:唔', 'sense:我', 'sense:你', 'sense:學生', 'sense:老師']}
+- {id: yue.who, kind: lesson, introduces: ['construction:a-not-a', 'sense:佢', 'form:plural-dei']}
+- {id: yue.yum-cha, kind: lesson, introduces: ['sense:去', 'sense:飲茶', 'sense:啦', 'sense:嗎', 'sense:好', 'sense:邊個', 'sense:嘅']}
+sentences:
+- id: s.1
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 早晨！
+      tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}]
+      reverse: |-
+        早晨
+        早晨呀
+  translations:
+    en: Good morning!
+- id: s.2
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 你好！
+      tokens: [{surface: 你好, sense: 你好, readings: {jyutping: nei5 hou2}}]
+      reverse: 你好
+  translations:
+    en: |-
+      Hello!
+      Hi!
+- id: s.3
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔該！
+      tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}]
+      reverse: 唔該
+  translations:
+    en: |-
+      Thanks!
+      Thank you!
+- id: s.4
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 多謝！
+      tokens: [{surface: 多謝, sense: 多謝, readings: {jyutping: do1 ze6}}]
+      reverse: 多謝
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.5
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 拜拜！
+      tokens: [{surface: 拜拜, sense: 拜拜, readings: {jyutping: baai1 baai3}}]
+      reverse: 拜拜
+  translations:
+    en: |-
+      Bye-bye!
+      Bye!
+      Goodbye!
+- id: s.6
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 早晨呀！
+      tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 早晨[呀]
+  translations:
+    en: Good morning!
+- id: s.7
+  node: yue.greetings
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔該晒！
+      tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 晒, sense: 晒, readings: {jyutping: saai3}}]
+      reverse: 唔該晒
+  translations:
+    en: |-
+      Thanks a lot!
+      Thank you very much!
+      Thanks so much!
+- id: s.8
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 係！
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}]
+      reverse: 係
+  translations:
+    en: |-
+      Yes!
+      That's right!
+      Right!
+- id: s.9
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔係。
+      tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}]
+      reverse: 唔係
+  translations:
+    en: |-
+      No.
+      That's not right.
+      It isn't.
+- id: s.10
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 係我。
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}]
+      reverse: 係我
+  translations:
+    en: |-
+      It's me.
+      It is me.
+- id: s.11
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 係你呀？
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 係你[呀]
+  translations:
+    en: |-
+      Is it you?
+      It's you?
+- id: s.12
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 我係學生。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}]
+      reverse: 我係學生
+  translations:
+    en: I('m| am) a student.
+- id: s.13
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 我唔係學生。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}]
+      reverse: 我唔係學生
+  translations:
+    en: I('m| am) not a student.
+- id: s.14
+  node: yue.copula
+  forms:
+    yue-Hant-HK/standard:
+      text: 我係老師。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}]
+      reverse: 我係老師
+  translations:
+    en: I('m| am) a teacher.
+- id: s.15
+  node: yue.who
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你係唔係學生呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你係唔係學生[呀]
+  translations:
+    en: Are you a student?
+- id: s.16
+  node: yue.who
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係老師。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}]
+      reverse: 佢係老師
+  translations:
+    en: |-
+      (She|He)('s| is) a teacher.
+      They('re| are) a teacher.
+- id: s.17
+  node: yue.who
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋係學生。
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}]
+      reverse: 我(哋|地)係學生
+  translations:
+    en: We('re| are) students.
+- id: s.18
+  node: yue.who
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢哋係老師。
+      tokens: [{surface: 佢哋, sense: 佢, morphs: [{surface: 佢, kc: 'sense:佢'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: keoi5 dei6}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}]
+      reverse: 佢(哋|地)係老師
+  translations:
+    en: They('re| are) teachers.
+- id: s.19
+  node: yue.who
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋係唔係老師呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你(哋|地)係唔係老師[呀]
+  translations:
+    en: |-
+      Are you teachers?
+      Are you all teachers?
+- id: s.20
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 我去。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
+      reverse: 我去
+  translations:
+    en: |-
+      I('m| am) going.
+      I('ll| will) go.
+      I go.
+- id: s.21
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋去飲茶。
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 飲茶, sense: 飲茶, readings: {jyutping: jam2 caa4}}]
+      reverse: 我(哋|地)去飲茶
+  translations:
+    en: We('re| are) going (for dim sum|for yum cha|to yum cha).
+- id: s.22
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋去飲茶啦！
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 飲茶, sense: 飲茶, readings: {jyutping: jam2 caa4}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 我(哋|地)去飲茶啦
+  translations:
+    en: Let's go (for dim sum|for yum cha|to yum cha)!
+- id: s.23
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋去啦！
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 我(哋|地)去啦
+  translations:
+    en: Let's go!
+- id: s.24
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 你好嗎？
+      tokens: [{surface: 你好, sense: 你好, readings: {jyutping: nei5 hou2}}, {surface: 嗎, sense: 嗎, readings: {jyutping: maa3}}]
+      reverse: 你好嗎
+  translations:
+    en: How are you?
+- id: s.25
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 我好好。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}]
+      reverse: 我好好
+  translations:
+    en: I('m| am) (very well|very good|fine).
+- id: s.26
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係邊個呀？
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 邊個, sense: 邊個, readings: {jyutping: bin1 go3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 佢係邊個[呀]
+  translations:
+    en: |-
+      Who is (she|he)?
+      Who('s| is) that?
+- id: s.27
+  node: yue.yum-cha
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係我嘅老師。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}]
+      reverse: 佢係我(嘅|)老師
+  translations:
+    en: |-
+      (She|He)('s| is) my teacher.
+      They('re| are) my teacher.

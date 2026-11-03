@@ -1,0 +1,389 @@
+# Fixture course (uz): Uzbek, Latin script first with every sentence also pinned in Cyrillic, and a Latin→Cyrillic script-convert node.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: intro
+title: {en: 'Hello, I''m Aziz'}
+cefr: A1
+kcs:
+- {id: 'sense:salom', gloss: {en: hello}, forms: {uz-Latn/standard: [salom], uz-Cyrl/standard: [салом]}}
+- {id: 'sense:rahmat', gloss: {en: thank you; thanks}, forms: {uz-Latn/standard: [rahmat], uz-Cyrl/standard: [раҳмат]}}
+- {id: 'sense:xayr', gloss: {en: goodbye}, forms: {uz-Latn/standard: [xayr], uz-Cyrl/standard: [хайр]}}
+- {id: 'sense:ha', gloss: {en: 'yes'}, forms: {uz-Latn/standard: [ha], uz-Cyrl/standard: [ҳа]}}
+- {id: 'sense:yoq', gloss: {en: 'no'}, forms: {uz-Latn/standard: [yoʻq], uz-Cyrl/standard: [йўқ]}}
+- {id: 'sense:aziz', gloss: {en: Aziz (a name)}, forms: {uz-Latn/standard: [Aziz, Azizman], uz-Cyrl/standard: [Азиз, Азизман]}}
+- {id: 'sense:bu', gloss: {en: this}, forms: {uz-Latn/standard: [bu], uz-Cyrl/standard: [бу]}}
+- {id: 'sense:kitob', gloss: {en: book}, forms: {uz-Latn/standard: [kitob, kitobim], uz-Cyrl/standard: [китоб, китобим]}}
+- {id: 'sense:nima', gloss: {en: what}, forms: {uz-Latn/standard: [nima], uz-Cyrl/standard: [нима]}}
+- {id: 'sense:mana', gloss: {en: here is}, forms: {uz-Latn/standard: [mana], uz-Cyrl/standard: [мана]}}
+- {id: 'sense:qani', gloss: {en: where is}, forms: {uz-Latn/standard: [qani], uz-Cyrl/standard: [қани]}}
+- {id: 'sense:yaxshi', gloss: {en: good}, forms: {uz-Latn/standard: [yaxshi], uz-Cyrl/standard: [яхши]}}
+- {id: 'sense:juda', gloss: {en: very}, forms: {uz-Latn/standard: [juda], uz-Cyrl/standard: [жуда]}}
+- {id: 'form:cop-1sg-man', gloss: {en: '-man: I am (suffix on the predicate)'}}
+- {id: 'sense:men', gloss: {en: I}, forms: {uz-Latn/standard: [men, mening], uz-Cyrl/standard: [мен, менинг]}}
+- {id: 'sense:talaba', gloss: {en: student}, forms: {uz-Latn/standard: [talabaman, talabasiz], uz-Cyrl/standard: [талабаман, талабасиз]}}
+- {id: 'form:cop-2-siz', gloss: {en: '-siz: you are (polite; suffix on the predicate)'}}
+- {id: 'sense:siz', gloss: {en: you (polite)}, forms: {uz-Latn/standard: [siz], uz-Cyrl/standard: [сиз]}}
+- {id: 'sense:oqituvchi', gloss: {en: teacher}, forms: {uz-Latn/standard: [oʻqituvchiman], uz-Cyrl/standard: [ўқитувчиман]}}
+- {id: 'form:poss-1sg-im', gloss: {en: '-(i)m: my'}}
+- {id: 'form:gen-ning', gloss: {en: '-(n)ing: of, ''s'}, notes: {en: men + -ning is written mening.}}
+- {id: 'sense:ism', gloss: {en: name}, forms: {uz-Latn/standard: [ismim, ismingiz], uz-Cyrl/standard: [исмим, исмингиз]}}
+- {id: 'form:poss-2-ingiz', gloss: {en: '-(i)ngiz: your (polite)'}}
+- {id: 'grapheme:ҳ', gloss: {en: 'Cyrillic ҳ, Latin h'}, notes: {en: 'Раҳмат, Ҳа: Latin h is ҳ; Latin x is х.'}}
+- {id: 'grapheme:ў', gloss: {en: 'Cyrillic ў, Latin oʻ'}}
+- {id: 'grapheme:қ', gloss: {en: 'Cyrillic қ, Latin q'}}
+nodes:
+- {id: uz.greetings, kind: lesson, introduces: ['sense:salom', 'sense:rahmat', 'sense:xayr', 'sense:ha', 'sense:yoq']}
+- {id: uz.this, kind: lesson, introduces: ['sense:aziz', 'sense:bu', 'sense:kitob', 'sense:nima', 'sense:mana', 'sense:qani', 'sense:yaxshi', 'sense:juda']}
+- {id: uz.i-am, kind: lesson, introduces: ['form:cop-1sg-man', 'sense:men', 'sense:talaba', 'form:cop-2-siz', 'sense:siz', 'sense:oqituvchi']}
+- {id: uz.my, kind: lesson, introduces: ['form:poss-1sg-im', 'form:gen-ning', 'sense:ism', 'form:poss-2-ingiz']}
+- {id: uz.cyrillic, kind: script, introduces: ['grapheme:ҳ', 'grapheme:ў', 'grapheme:қ'], convert: {from: uz-Latn/standard, to: uz-Cyrl/standard, sentences: [s.2, s.4, s.5, s.11, s.20, s.21]}}
+sentences:
+- id: s.1
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Salom!
+      tokens: [{surface: Salom, sense: salom}]
+      reverse: Salom
+    uz-Cyrl/standard:
+      text: Салом!
+      tokens: [{surface: Салом, sense: salom}]
+      reverse: Салом
+  translations:
+    en: |-
+      Hello!
+      Hi!
+- id: s.2
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Rahmat!
+      tokens: [{surface: Rahmat, sense: rahmat}]
+      reverse: Rahmat
+    uz-Cyrl/standard:
+      text: Раҳмат!
+      tokens: [{surface: Раҳмат, sense: rahmat}]
+      reverse: Раҳмат
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.3
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Xayr!
+      tokens: [{surface: Xayr, sense: xayr}]
+      reverse: Xayr
+    uz-Cyrl/standard:
+      text: Хайр!
+      tokens: [{surface: Хайр, sense: xayr}]
+      reverse: Хайр
+  translations:
+    en: |-
+      Goodbye!
+      Bye!
+- id: s.4
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Ha.
+      tokens: [{surface: Ha, sense: ha}]
+      reverse: Ha
+    uz-Cyrl/standard:
+      text: Ҳа.
+      tokens: [{surface: Ҳа, sense: ha}]
+      reverse: Ҳа
+  translations:
+    en: Yes.
+- id: s.5
+  node: uz.greetings
+  forms:
+    uz-Latn/standard:
+      text: Yoʻq, rahmat.
+      tokens: [&id001 {surface: Yoʻq, sense: yoq}, {surface: rahmat, sense: rahmat}]
+      reverse: Yoʻq rahmat
+    uz-Cyrl/standard:
+      text: Йўқ, раҳмат.
+      tokens: [&id002 {surface: Йўқ, sense: yoq}, {surface: раҳмат, sense: rahmat}]
+      reverse: Йўқ раҳмат
+  translations:
+    en: |-
+      No, thank you.
+      No, thanks.
+- id: s.6
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Salom, Aziz!
+      tokens: [{surface: Salom, sense: salom}, {surface: Aziz, sense: aziz}]
+      reverse: Salom Aziz
+    uz-Cyrl/standard:
+      text: Салом, Азиз!
+      tokens: [{surface: Салом, sense: salom}, {surface: Азиз, sense: aziz}]
+      reverse: Салом Азиз
+  translations:
+    en: (Hello|Hi), Aziz!
+- id: s.7
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu Aziz.
+      tokens: [{surface: Bu, sense: bu}, {surface: Aziz, sense: aziz}]
+      reverse: Bu Aziz
+    uz-Cyrl/standard:
+      text: Бу Азиз.
+      tokens: [{surface: Бу, sense: bu}, {surface: Азиз, sense: aziz}]
+      reverse: Бу Азиз
+  translations:
+    en: This is Aziz.
+- id: s.8
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu kitob.
+      tokens: [{surface: Bu, sense: bu}, {surface: kitob, sense: kitob}]
+      reverse: Bu kitob
+    uz-Cyrl/standard:
+      text: Бу китоб.
+      tokens: [{surface: Бу, sense: bu}, {surface: китоб, sense: kitob}]
+      reverse: Бу китоб
+  translations:
+    en: |-
+      This is a book.
+      It's a book.
+- id: s.9
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu nima?
+      tokens: [{surface: Bu, sense: bu}, {surface: nima, sense: nima}]
+      reverse: Bu nima
+    uz-Cyrl/standard:
+      text: Бу нима?
+      tokens: [{surface: Бу, sense: bu}, {surface: нима, sense: nima}]
+      reverse: Бу нима
+  translations:
+    en: What('s| is) this?
+- id: s.10
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Mana kitob.
+      tokens: [{surface: Mana, sense: mana}, {surface: kitob, sense: kitob}]
+      reverse: Mana kitob
+    uz-Cyrl/standard:
+      text: Мана китоб.
+      tokens: [{surface: Мана, sense: mana}, {surface: китоб, sense: kitob}]
+      reverse: Мана китоб
+  translations:
+    en: |-
+      Here('s| is) the book.
+      Here('s| is) a book.
+- id: s.11
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Kitob qani?
+      tokens: [{surface: Kitob, sense: kitob}, {surface: qani, sense: qani}]
+      reverse: Kitob qani
+    uz-Cyrl/standard:
+      text: Китоб қани?
+      tokens: [{surface: Китоб, sense: kitob}, {surface: қани, sense: qani}]
+      reverse: Китоб қани
+  translations:
+    en: Where('s| is) the book?
+- id: s.12
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Kitob yaxshi.
+      tokens: [{surface: Kitob, sense: kitob}, {surface: yaxshi, sense: yaxshi}]
+      reverse: Kitob yaxshi
+    uz-Cyrl/standard:
+      text: Китоб яхши.
+      tokens: [{surface: Китоб, sense: kitob}, {surface: яхши, sense: yaxshi}]
+      reverse: Китоб яхши
+  translations:
+    en: The book is good.
+- id: s.13
+  node: uz.this
+  forms:
+    uz-Latn/standard:
+      text: Bu kitob juda yaxshi.
+      tokens: [{surface: Bu, sense: bu}, {surface: kitob, sense: kitob}, {surface: juda, sense: juda}, {surface: yaxshi, sense: yaxshi}]
+      reverse: Bu kitob juda yaxshi
+    uz-Cyrl/standard:
+      text: Бу китоб жуда яхши.
+      tokens: [{surface: Бу, sense: bu}, {surface: китоб, sense: kitob}, {surface: жуда, sense: juda}, {surface: яхши, sense: yaxshi}]
+      reverse: Бу китоб жуда яхши
+  translations:
+    en: This book is very good.
+- id: s.14
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Azizman.
+      tokens: [{surface: Azizman, sense: aziz, morphs: [{surface: Aziz, kc: 'sense:aziz'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] Azizman'
+    uz-Cyrl/standard:
+      text: Азизман.
+      tokens: [{surface: Азизман, sense: aziz, morphs: [{surface: Азиз, kc: 'sense:aziz'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] Азизман'
+  translations:
+    en: I('m| am) Aziz.
+- id: s.15
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Men Azizman.
+      tokens: [{surface: Men, sense: men}, {surface: Azizman, sense: aziz, morphs: [{surface: Aziz, kc: 'sense:aziz'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] Azizman'
+    uz-Cyrl/standard:
+      text: Мен Азизман.
+      tokens: [{surface: Мен, sense: men}, {surface: Азизман, sense: aziz, morphs: [{surface: Азиз, kc: 'sense:aziz'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] Азизман'
+  translations:
+    en: I('m| am) Aziz.
+- id: s.16
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Talabaman.
+      tokens: [{surface: Talabaman, sense: talaba, morphs: [{surface: Talaba, kc: 'sense:talaba'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] talabaman'
+    uz-Cyrl/standard:
+      text: Талабаман.
+      tokens: [{surface: Талабаман, sense: talaba, morphs: [{surface: Талаба, kc: 'sense:talaba'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] талабаман'
+  translations:
+    en: I('m| am) a student.
+- id: s.17
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Talabasiz.
+      tokens: [{surface: Talabasiz, sense: talaba, morphs: [{surface: Talaba, kc: 'sense:talaba'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Siz] talabasiz'
+    uz-Cyrl/standard:
+      text: Талабасиз.
+      tokens: [{surface: Талабасиз, sense: talaba, morphs: [{surface: Талаба, kc: 'sense:talaba'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Сиз] талабасиз'
+  translations:
+    en: You('re| are) a student.
+- id: s.18
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Siz talabasiz.
+      tokens: [{surface: Siz, sense: siz}, {surface: talabasiz, sense: talaba, morphs: [{surface: talaba, kc: 'sense:talaba'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Siz] talabasiz'
+    uz-Cyrl/standard:
+      text: Сиз талабасиз.
+      tokens: [{surface: Сиз, sense: siz}, {surface: талабасиз, sense: talaba, morphs: [{surface: талаба, kc: 'sense:talaba'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Сиз] талабасиз'
+  translations:
+    en: You('re| are) a student.
+- id: s.19
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Ha, men talabaman.
+      tokens: [{surface: Ha, sense: ha}, {surface: men, sense: men}, {surface: talabaman, sense: talaba, morphs: [{surface: talaba, kc: 'sense:talaba'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: Ha [men] talabaman
+    uz-Cyrl/standard:
+      text: Ҳа, мен талабаман.
+      tokens: [{surface: Ҳа, sense: ha}, {surface: мен, sense: men}, {surface: талабаман, sense: talaba, morphs: [{surface: талаба, kc: 'sense:talaba'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: Ҳа [мен] талабаман
+  translations:
+    en: Yes, I('m| am) a student.
+- id: s.20
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Men oʻqituvchiman.
+      tokens: [{surface: Men, sense: men}, {surface: oʻqituvchiman, sense: oqituvchi, morphs: [{surface: oʻqituvchi, kc: 'sense:oqituvchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] oʻqituvchiman'
+    uz-Cyrl/standard:
+      text: Мен ўқитувчиман.
+      tokens: [{surface: Мен, sense: men}, {surface: ўқитувчиман, sense: oqituvchi, morphs: [{surface: ўқитувчи, kc: 'sense:oqituvchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] ўқитувчиман'
+  translations:
+    en: I('m| am) a teacher.
+- id: s.21
+  node: uz.i-am
+  forms:
+    uz-Latn/standard:
+      text: Yoʻq, men oʻqituvchiman.
+      tokens: [*id001, {surface: men, sense: men}, {surface: oʻqituvchiman, sense: oqituvchi, morphs: [{surface: oʻqituvchi, kc: 'sense:oqituvchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: Yoʻq [men] oʻqituvchiman
+    uz-Cyrl/standard:
+      text: Йўқ, мен ўқитувчиман.
+      tokens: [*id002, {surface: мен, sense: men}, {surface: ўқитувчиман, sense: oqituvchi, morphs: [{surface: ўқитувчи, kc: 'sense:oqituvchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: Йўқ [мен] ўқитувчиман
+  translations:
+    en: No, I('m| am) a teacher.
+- id: s.22
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Bu kitobim.
+      tokens: [{surface: Bu, sense: bu}, {surface: kitobim, sense: kitob, morphs: [{surface: kitob, kc: 'sense:kitob'}, {surface: im, kc: 'form:poss-1sg-im'}]}]
+      reverse: Bu [mening] kitobim
+    uz-Cyrl/standard:
+      text: Бу китобим.
+      tokens: [{surface: Бу, sense: bu}, {surface: китобим, sense: kitob, morphs: [{surface: китоб, kc: 'sense:kitob'}, {surface: им, kc: 'form:poss-1sg-im'}]}]
+      reverse: Бу [менинг] китобим
+  translations:
+    en: This is my book.
+- id: s.23
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Bu mening kitobim.
+      tokens: [{surface: Bu, sense: bu}, {surface: mening, sense: men, morphs: [{surface: men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: kitobim, sense: kitob, morphs: [{surface: kitob, kc: 'sense:kitob'}, {surface: im, kc: 'form:poss-1sg-im'}]}]
+      reverse: Bu [mening] kitobim
+    uz-Cyrl/standard:
+      text: Бу менинг китобим.
+      tokens: [{surface: Бу, sense: bu}, {surface: менинг, sense: men, morphs: [{surface: мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: китобим, sense: kitob, morphs: [{surface: китоб, kc: 'sense:kitob'}, {surface: им, kc: 'form:poss-1sg-im'}]}]
+      reverse: Бу [менинг] китобим
+  translations:
+    en: This is my book.
+- id: s.24
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Ismim Aziz.
+      tokens: [{surface: Ismim, sense: ism, morphs: [{surface: Ism, kc: 'sense:ism'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: Aziz, sense: aziz}]
+      reverse: '[Mening] ismim Aziz'
+    uz-Cyrl/standard:
+      text: Исмим Азиз.
+      tokens: [{surface: Исмим, sense: ism, morphs: [{surface: Исм, kc: 'sense:ism'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: Азиз, sense: aziz}]
+      reverse: '[Менинг] исмим Азиз'
+  translations:
+    en: My name('s| is) Aziz.
+- id: s.25
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Mening ismim Aziz.
+      tokens: [{surface: Mening, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: ismim, sense: ism, morphs: [{surface: ism, kc: 'sense:ism'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: Aziz, sense: aziz}]
+      reverse: '[Mening] ismim Aziz'
+    uz-Cyrl/standard:
+      text: Менинг исмим Азиз.
+      tokens: [{surface: Менинг, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: исмим, sense: ism, morphs: [{surface: исм, kc: 'sense:ism'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: Азиз, sense: aziz}]
+      reverse: '[Менинг] исмим Азиз'
+  translations:
+    en: My name('s| is) Aziz.
+- id: s.26
+  node: uz.my
+  forms:
+    uz-Latn/standard:
+      text: Ismingiz nima?
+      tokens: [{surface: Ismingiz, sense: ism, morphs: [{surface: Ism, kc: 'sense:ism'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: nima, sense: nima}]
+      reverse: Ismingiz nima
+    uz-Cyrl/standard:
+      text: Исмингиз нима?
+      tokens: [{surface: Исмингиз, sense: ism, morphs: [{surface: Исм, kc: 'sense:ism'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: нима, sense: nima}]
+      reverse: Исмингиз нима
+  translations:
+    en: What('s| is) your name?

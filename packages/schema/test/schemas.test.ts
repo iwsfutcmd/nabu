@@ -9,6 +9,7 @@ import { makeReadonly } from "../scripts/readonly.ts";
 const ROOT = resolve(import.meta.dirname, "../../..");
 const PROFILES_DIR = join(ROOT, "profiles");
 const EXAMPLES_DIR = join(SCHEMAS_DIR, "examples");
+const COURSES_DIR = join(ROOT, "courses");
 
 const makeAjv = (): Ajv2020 => {
   const ajv = new Ajv2020({ strict: true, allErrors: true });
@@ -59,6 +60,29 @@ describe("orthography profiles in /profiles", () => {
       expect(validate.errors ?? []).toEqual([]);
       expect(ok).toBe(true);
     });
+  }
+});
+
+describe("fixture courses in /courses", () => {
+  const ajv = makeAjv();
+  const course = ajv.getSchema(ID("course-source.schema.json"))!;
+  const unit = ajv.getSchema(`${ID("course-source.schema.json")}#/$defs/UnitSource`)!;
+  const courses = readdirSync(COURSES_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name).sort();
+  it("exist", () => expect(courses).toEqual(expect.arrayContaining(["apc", "fa", "uz", "yue"])));
+  for (const name of courses) {
+    const dir = join(COURSES_DIR, name);
+    it(`${name}/course.yaml is a valid CourseSource`, () => {
+      const ok = course(load(join(dir, "course.yaml")));
+      expect(course.errors ?? []).toEqual([]);
+      expect(ok).toBe(true);
+    });
+    for (const path of filesIn(join(dir, "units"))) {
+      it(`${name}/units/${path.split("/").at(-1)} is a valid UnitSource`, () => {
+        const ok = unit(load(path));
+        expect(unit.errors ?? []).toEqual([]);
+        expect(ok).toBe(true);
+      });
+    }
   }
 });
 

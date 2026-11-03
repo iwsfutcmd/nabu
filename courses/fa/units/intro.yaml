@@ -1,0 +1,316 @@
+# Fixture course (fa): Persian (Iran), Arabic script. Ezafe, the copula, and the plural -hā with a ZWNJ; an RBNF numbers drill.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: intro
+title: {en: 'Hello, I''m Maryam'}
+cefr: A1
+kcs:
+- {id: 'sense:salam', gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}}
+- {id: 'sense:khodahafez', gloss: {en: goodbye}, forms: {fa-Arab/standard: [خداحافظ]}}
+- {id: 'sense:mamnun', gloss: {en: thank you; thanks}, forms: {fa-Arab/standard: [ممنون]}}
+- {id: 'sense:bale', gloss: {en: 'yes'}, forms: {fa-Arab/standard: [بله]}}
+- {id: 'sense:na', gloss: {en: 'no'}, forms: {fa-Arab/standard: [نه]}}
+- {id: 'sense:maryam', gloss: {en: Maryam (a name)}, forms: {fa-Arab/standard: [مریم]}}
+- {id: 'sense:ali', gloss: {en: Ali (a name)}, forms: {fa-Arab/standard: [علی]}}
+- {id: 'sense:va', gloss: {en: and}, forms: {fa-Arab/standard: [و]}}
+- {id: 'sense:budan', gloss: {en: 'to be: is, am, are'}, forms: {fa-Arab/standard: [است, هستم, هستی, هستید, هستند]}, notes: {en: است is the usual 'is'; the other persons add an ending to هست-.}}
+- {id: 'sense:in', gloss: {en: this}, forms: {fa-Arab/standard: [این]}}
+- {id: 'form:1sg-am', gloss: {en: '-am: I (verb ending)'}}
+- {id: 'sense:man', gloss: {en: I; me; my (after a noun)}, forms: {fa-Arab/standard: [من]}}
+- {id: 'form:2sg-i', gloss: {en: '-i: you, one person (verb ending)'}}
+- {id: 'sense:to', gloss: {en: 'you (one person, familiar)'}, forms: {fa-Arab/standard: [تو]}}
+- {id: 'sense:ketab', gloss: {en: book}, forms: {fa-Arab/standard: [کتاب, "کتاب\u200cها", "کتاب\u200cهای"]}}
+- {id: 'construction:ezafe', gloss: {en: 'ezafe: the -e that links a noun to what describes or owns it'}, notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}}
+- {id: 'sense:esm', gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}}
+- {id: 'sense:chist', gloss: {en: 'what is …?'}, forms: {fa-Arab/standard: [چیست]}}
+- {id: 'sense:khub', gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}}
+- {id: 'sense:kheyli', gloss: {en: very}, forms: {fa-Arab/standard: [خیلی]}}
+- {id: 'form:2pl-id', gloss: {en: '-id: you, polite or more than one (verb ending)'}}
+- {id: 'sense:shoma', gloss: {en: 'you (polite, or more than one)'}, forms: {fa-Arab/standard: [شما]}}
+- {id: 'form:3pl-and', gloss: {en: '-and: they (verb ending)'}}
+- {id: 'form:plural-ha', gloss: {en: '-hā: plural'}, notes: {en: "Joined to the noun with a zero-width non-joiner: کتاب\u200cها, not کتابها or کتاب ها."}}
+- {id: 'grapheme:zwnj', gloss: {en: the zero-width non-joiner (nim-fāsele) that keeps -hā visually apart}}
+nodes:
+- {id: fa.greetings, kind: lesson, introduces: ['sense:salam', 'sense:khodahafez', 'sense:mamnun', 'sense:bale', 'sense:na']}
+- {id: fa.names, kind: lesson, introduces: ['sense:maryam', 'sense:ali', 'sense:va', 'sense:budan', 'sense:in']}
+- {id: fa.i-am, kind: lesson, introduces: ['form:1sg-am', 'sense:man', 'form:2sg-i', 'sense:to']}
+- {id: fa.book, kind: lesson, introduces: ['sense:ketab', 'construction:ezafe', 'sense:esm', 'sense:chist', 'sense:khub', 'sense:kheyli']}
+- {id: fa.polite, kind: lesson, introduces: ['form:2pl-id', 'sense:shoma', 'form:3pl-and']}
+- {id: fa.plural, kind: lesson, introduces: ['form:plural-ha', 'grapheme:zwnj']}
+sentences:
+- id: s.1
+  node: fa.greetings
+  forms:
+    fa-Arab/standard:
+      text: سلام!
+      tokens: [{surface: سلام, sense: salam}]
+      reverse: سلام
+  translations:
+    en: |-
+      Hello!
+      Hi!
+- id: s.2
+  node: fa.greetings
+  forms:
+    fa-Arab/standard:
+      text: خداحافظ!
+      tokens: [{surface: خداحافظ, sense: khodahafez}]
+      reverse: (خداحافظ|خدا حافظ)
+  translations:
+    en: |-
+      Goodbye!
+      Bye!
+- id: s.3
+  node: fa.greetings
+  forms:
+    fa-Arab/standard:
+      text: ممنون!
+      tokens: [{surface: ممنون, sense: mamnun}]
+      reverse: (ممنون|مرسی)
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+- id: s.4
+  node: fa.greetings
+  forms:
+    fa-Arab/standard:
+      text: بله.
+      tokens: [{surface: بله, sense: bale}]
+      reverse: بله
+  translations:
+    en: Yes.
+- id: s.5
+  node: fa.greetings
+  forms:
+    fa-Arab/standard:
+      text: نه، ممنون.
+      tokens: [{surface: نه, sense: na}, {surface: ممنون, sense: mamnun}]
+      reverse: نه (ممنون|مرسی)
+  translations:
+    en: |-
+      No, thank you.
+      No, thanks.
+- id: s.6
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: سلام مریم!
+      tokens: [{surface: سلام, sense: salam}, {surface: مریم, sense: maryam}]
+      reverse: سلام مریم
+  translations:
+    en: (Hello|Hi), Maryam!
+- id: s.7
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: سلام علی!
+      tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}]
+      reverse: سلام علی
+  translations:
+    en: (Hello|Hi), Ali!
+- id: s.8
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: سلام مریم و علی!
+      tokens: [{surface: سلام, sense: salam}, {surface: مریم, sense: maryam}, {surface: و, sense: va}, {surface: علی, sense: ali}]
+      reverse: سلام مریم و علی
+  translations:
+    en: (Hello|Hi), Maryam and Ali!
+- id: s.9
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: مریم است.
+      tokens: [{surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      reverse: مریم است
+  translations:
+    en: It('s| is) Maryam.
+- id: s.10
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: این مریم است.
+      tokens: [{surface: این, sense: in}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      reverse: این مریم است
+  translations:
+    en: This is Maryam.
+- id: s.11
+  node: fa.names
+  forms:
+    fa-Arab/standard:
+      text: این علی است.
+      tokens: [{surface: این, sense: in}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
+      reverse: این علی است
+  translations:
+    en: This is Ali.
+- id: s.12
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: مریم هستم.
+      tokens: [{surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] مریم هستم'
+  translations:
+    en: I('m| am) Maryam.
+- id: s.13
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: من مریم هستم.
+      tokens: [{surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] مریم هستم'
+  translations:
+    en: I('m| am) Maryam.
+- id: s.14
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: علی هستی؟
+      tokens: [{surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] علی هستی'
+  translations:
+    en: Are you Ali?
+- id: s.15
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: تو علی هستی؟
+      tokens: [{surface: تو, sense: to}, {surface: علی, sense: ali}, {surface: هستی, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] علی هستی'
+  translations:
+    en: Are you Ali?
+- id: s.16
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: بله، من علی هستم.
+      tokens: [{surface: بله, sense: bale}, {surface: من, sense: man}, {surface: علی, sense: ali}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: بله [من] علی هستم
+  translations:
+    en: Yes, I('m| am) Ali.
+- id: s.17
+  node: fa.i-am
+  forms:
+    fa-Arab/standard:
+      text: نه، من مریم هستم.
+      tokens: [{surface: نه, sense: na}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: نه [من] مریم هستم
+  translations:
+    en: No, I('m| am) Maryam.
+- id: s.18
+  node: fa.book
+  forms:
+    fa-Arab/standard:
+      text: این کتاب است.
+      tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: است, sense: budan}]
+      reverse: این [یک] کتاب است
+  translations:
+    en: This is a book.
+- id: s.19
+  node: fa.book
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: این کتاب من است.
+      tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      reverse: این کتاب من است
+  translations:
+    en: This is my book.
+- id: s.20
+  node: fa.book
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: اسم من مریم است.
+      tokens: [{surface: اسم, sense: esm}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      reverse: اسم من مریم است
+  translations:
+    en: My name('s| is) Maryam.
+- id: s.21
+  node: fa.book
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: اسم تو چیست؟
+      tokens: [{surface: اسم, sense: esm}, {surface: تو, sense: to}, {surface: چیست, sense: chist}]
+      reverse: اسم تو (چیست|چیه)
+  translations:
+    en: What('s| is) your name?
+- id: s.22
+  node: fa.book
+  forms:
+    fa-Arab/standard:
+      text: کتاب خوب است.
+      tokens: [{surface: کتاب, sense: ketab}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: کتاب خوب است
+  translations:
+    en: The book is good.
+- id: s.23
+  node: fa.book
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: کتاب من خیلی خوب است.
+      tokens: [{surface: کتاب, sense: ketab}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: کتاب من خیلی خوب است
+  translations:
+    en: My book is very good.
+- id: s.24
+  node: fa.polite
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: خوب هستید؟
+      tokens: [{surface: خوب, sense: khub}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] خوب هستید'
+  translations:
+    en: Are you (well|OK)?
+- id: s.25
+  node: fa.polite
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: شما خوب هستید؟
+      tokens: [{surface: شما, sense: shoma}, {surface: خوب, sense: khub}, {surface: هستید, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] خوب هستید'
+  translations:
+    en: Are you (well|OK)?
+- id: s.26
+  node: fa.polite
+  forms:
+    fa-Arab/standard:
+      text: ممنون، خوب هستم.
+      tokens: [{surface: ممنون, sense: mamnun}, {surface: خوب, sense: khub}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: (ممنون|مرسی) [من] خوب هستم
+  translations:
+    en: |-
+      (Thanks|Thank you), I('m| am) (well|fine).
+      I('m| am) (well|fine), (thanks|thank you).
+- id: s.27
+  node: fa.polite
+  forms:
+    fa-Arab/standard:
+      text: مریم و علی خوب هستند.
+      tokens: [{surface: مریم, sense: maryam}, {surface: و, sense: va}, {surface: علی, sense: ali}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: مریم و علی خوب هستند
+  translations:
+    en: Maryam and Ali are (well|fine).
+- id: s.28
+  node: fa.plural
+  forms:
+    fa-Arab/standard:
+      text: "کتاب\u200cها خوب هستند."
+      tokens: [{surface: "کتاب\u200cها", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: "کتاب\u200cها خوب هستند"
+  translations:
+    en: The books are good.
+- id: s.29
+  node: fa.plural
+  forms:
+    fa-Arab/standard:
+      text: "کتاب\u200cهای من خیلی خوب هستند."
+      tokens: [{surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: "کتاب\u200cهای من خیلی خوب هستند"
+  translations:
+    en: My books are very good.

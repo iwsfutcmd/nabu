@@ -29,6 +29,7 @@
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/schemas/**",
         "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/courses/**",
         "$TURBO_ROOT$/conformance/**",
         "$TURBO_ROOT$/eslint.config.js",
         "$TURBO_ROOT$/stylelint.config.js"
@@ -85,10 +86,14 @@
         "$TURBO_DEFAULT$",
         "$TURBO_ROOT$/schemas/**",
         "$TURBO_ROOT$/profiles/**",
+        "$TURBO_ROOT$/courses/**",
         "$TURBO_ROOT$/conformance/**",
         "$TURBO_ROOT$/packages/core/src/**",
         "$TURBO_ROOT$/packages/core-cli/src/**",
         "$TURBO_ROOT$/packages/i18n/src/**"
+      ],
+      "env": [
+        "NABU_REQUIRE_TOOLS"
       ]
     },
     "@nabu/core-cli#test": {
