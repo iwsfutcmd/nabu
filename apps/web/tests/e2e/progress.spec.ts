@@ -9,6 +9,7 @@
  * Each session is planned by the test from the log the page holds, at the
  * page's (fixed) clock, and must match what the app shows exercise by exercise.
  */
+import { emptyLearnerState, plan } from "@nabu/core/learner";
 import { lessonNodes } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
 import { activate, canMiss, loadCourse, logOf, pathUrl, planned, playSession, type Mode } from "./solver.ts";
@@ -89,3 +90,32 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
   await expect(page.locator("[data-xp-today]")).toHaveAttribute("data-xp-today", String(total - before));
   expect(errors).toEqual([]);
 });
+
+test("placement: a learner who knows the first lessons starts after them", async ({ page }, info) => {
+  const mode = info.project.name as Mode;
+  const course = loadCourse("uz", "uz-Latn/standard");
+  const nodes = lessonNodes(course).map((n) => n.node.id);
+  const now = new Date("2026-03-12T07:45:00Z");
+  await page.clock.setFixedTime(now);
+  await page.goto(pathUrl(course, SEED));
+
+  // The test probes every lesson; this learner misses one probe of the third lesson.
+  const test = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED });
+  const probes = test.probes ?? [];
+  const k = test.exercises.findIndex((e, i) => canMiss(e) && nodes.indexOf(probes[i] ?? "") >= 2);
+  const missed = test.exercises[k];
+  const stop = nodes.indexOf(probes[k] ?? "");
+  if (missed === undefined || stop < 2) throw new Error("no missable probe from the third lesson on");
+
+  await activate(page, mode, '[data-practice-mode="placement"]');
+  const played = await playSession(page, test.exercises, mode, { miss: new Set([missed.id]) });
+  expect(played.seen).toEqual(test.exercises.map((e) => e.id)); // asked once each: no retries
+  await activate(page, mode, "[data-action=exit]");
+
+  for (const node of nodes.slice(0, stop)) await expect(statusOf(page, node)).toHaveAttribute("data-status", "done");
+  await expect(statusOf(page, nodes[stop] ?? "")).toHaveAttribute("data-status", "available");
+  await expect(page.locator('[data-practice-mode="placement"]')).toHaveCount(0);
+  await page.reload();
+  await expect(statusOf(page, nodes[stop] ?? "")).toHaveAttribute("data-status", "available");
+});
+

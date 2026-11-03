@@ -16,6 +16,7 @@ import {
   learnerEventOf,
   plan,
   pathOf,
+  placementOf,
   ratingOf,
   replay,
   retrievability,
@@ -229,3 +230,39 @@ describe("planner constraints", () => {
     expect(e.type).toBe("answer_submitted");
   });
 });
+
+describe("placement v0 (§9.5)", () => {
+  const now = "2026-03-01T08:00:00.000Z";
+  const test = plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 });
+  const nodes = lessonNodes(fa).map((n) => n.node.id);
+
+  it("probes every lesson node in path order, recognition then production, without speaking", () => {
+    expect(test.probes).toBeDefined();
+    const probes = test.probes ?? [];
+    expect([...new Set(probes)]).toEqual(nodes);
+    expect(probes.length).toBeLessThanOrEqual(2 * nodes.length);
+    expect(test.exercises.some((e) => e.template === "speak.tier-0" || e.template === "match-pairs")).toBe(false);
+    expect(plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 })).toEqual(test);
+  });
+
+  it("places through the longest run of nodes answered right the first time", () => {
+    const probes = test.probes ?? [];
+    const right = new Map(test.exercises.map((e) => [e.id, true]));
+    expect(placementOf({ exercises: test.exercises, probes }, right)).toEqual(nodes);
+    const firstOfThird = test.exercises.find((_, i) => probes[i] === nodes[2]);
+    const missed = new Map([...right, [firstOfThird?.id ?? "", false]]);
+    expect(placementOf({ exercises: test.exercises, probes }, missed)).toEqual(nodes.slice(0, 2));
+    expect(placementOf({ exercises: test.exercises, probes }, new Map())).toEqual([]);
+  });
+
+  it("marks placed nodes done in the projection, so the path opens after them", () => {
+    const events = eventFactory(fa, faBundle);
+    events.at(now);
+    events.session();
+    const done = { ...events.completed("lesson", undefined, { exercises: 12, correctFirstTry: 10, retries: 0 }), mode: "placement" as const, placed: nodes.slice(0, 2) };
+    const state = replay([events.started("lesson", undefined, 12), done]);
+    expect(state.completedNodes).toEqual(nodes.slice(0, 2));
+    expect(pathOf(fa, state).map((n) => n.status)).toEqual(["done", "done", "available", ...nodes.slice(3).map(() => "locked")]);
+  });
+});
+

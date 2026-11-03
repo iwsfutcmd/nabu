@@ -186,6 +186,8 @@ const completed = (d: Draft, e: SessionCompleted): void => {
   if (!e.summary.completed) return;
   addXp(d, e.localDate, XP.session + (e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises ? XP.perfect : 0));
   if (e.mode === "lesson" && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
+  // A placement test marks the nodes the learner placed out of as done (§9.5).
+  if (e.mode === "placement") for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {

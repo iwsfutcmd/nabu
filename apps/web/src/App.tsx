@@ -2,7 +2,7 @@
  * The web client (gameplan §11.1): the course list, a course's path, and
  * sessions (a lesson, review or mistakes). Routes live in the URL hash so the
  * static build works anywhere (GitHub Pages):
- *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes>
+ *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
@@ -33,9 +33,9 @@ type Route =
 const slug = (orthography: string): string => orthography.replace("/", ".");
 const unslug = (s: string): string => s.replace(".", "/");
 
-/** Node ids are course-prefixed ("fa.book"), so they never collide with "review" or "mistakes". */
+/** Node ids are course-prefixed ("fa.book"), so they never collide with "review", "mistakes" or "placement". */
 const requestOf = (segment: string): SessionRequest =>
-  segment === "review" ? { mode: "review" } : segment === "mistakes" ? { mode: "mistakes" } : { mode: "lesson", node: segment };
+  segment === "review" || segment === "mistakes" || segment === "placement" ? { mode: segment } : { mode: "lesson", node: segment };
 
 const parse = (hash: string): Route => {
   const [course, orthography, session] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
@@ -150,6 +150,14 @@ const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state
       {!persistent && (
         <p className={styles.notice} role="note" data-not-saved="">
           {t.format("app.store.memory")}
+        </p>
+      )}
+
+      {state.completedNodes.length === 0 && (
+        <p>
+          <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement">
+            {t.format("app.practice.placement", { language: courseName(t, course.id) })}
+          </a>
         </p>
       )}
 
@@ -277,6 +285,7 @@ const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.
         language={courseName(t, course.id)}
         onEvent={setup.onEvent}
         sound={sound}
+        retries={request.mode !== "placement"}
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
       />

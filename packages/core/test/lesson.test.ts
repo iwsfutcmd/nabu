@@ -233,6 +233,14 @@ describe("player", () => {
     expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 1, skipped: 0 });
   });
 
+  it("asks each question once when retries are off (placement)", () => {
+    const first = lesson.find((e) => e.template !== "speak.tier-0" && e.template !== "match-pairs" && wrongAnswer(e)?.tag === "choice") as Exercise;
+    const [s0] = start(node, [first], { retries: false });
+    const shell = run(course, s0, [...answer(first, wrongAnswer(first) as Response), { tag: "continue" }]);
+    const end = shell.get();
+    expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 0, skipped: 0 });
+  });
+
   it("never submits during IME composition, and grades the settled text", () => {
     const typed = lesson.find((e) => e.template === "translate-type.l1-l2") ?? buildLesson(course, node, { seed: 3 }).find((e) => TEMPLATES[e.template].modality.input === "text");
     expect(typed).toBeDefined();

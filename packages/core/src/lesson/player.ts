@@ -33,6 +33,12 @@ export interface Session {
   readonly planned: number;
   readonly results: readonly SessionResult[];
   readonly excluded: readonly TemplateId[];
+  /** Missed exercises come back at the end (default). A placement test asks each question once. */
+  readonly retries?: boolean;
+}
+
+export interface StartOptions {
+  readonly retries?: boolean;
 }
 
 export interface SessionSummary {
@@ -180,8 +186,8 @@ export const summarize = (session: Session, completed: boolean): SessionSummary 
 };
 
 /** Starts a lesson. Mistakes come back at the end of the lesson until answered. */
-export const start = (lesson: string, exercises: readonly Exercise[]): readonly [PlayerState, readonly Effect[]] => {
-  const session: Session = { lesson, queue: exercises, position: 0, planned: exercises.length, results: [], excluded: [] };
+export const start = (lesson: string, exercises: readonly Exercise[], options: StartOptions = {}): readonly [PlayerState, readonly Effect[]] => {
+  const session: Session = { lesson, queue: exercises, position: 0, planned: exercises.length, results: [], excluded: [], ...(options.retries === false ? { retries: false } : {}) };
   const [state, effects] = present(session);
   return [state, [{ tag: "emit", event: { type: "session_started", lesson, exercises: exercises.length } }, ...effects]];
 };
@@ -191,7 +197,7 @@ const retryable = (ex: Exercise): boolean => ex.template !== "speak.tier-0" && e
 
 const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerState, readonly Effect[]] => {
   const { session, ex, outcome } = state;
-  const again = !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
+  const again = session.retries !== false && !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
   const attempt = session.queue.filter((e) => e.item === ex.item && e.template === ex.template).length + 1;
   const queue = again ? [...session.queue, { ...ex, id: `${ex.id.split("#")[0] as string}#${attempt}` }] : session.queue;
   return present({ ...session, queue, position: session.position + 1 });

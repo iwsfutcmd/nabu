@@ -13,10 +13,12 @@ export interface PlayerOptions {
   readonly grader: Grader;
   readonly onEvent?: ((event: LessonEvent) => void) | undefined;
   readonly sound?: boolean | undefined;
+  /** Missed exercises come back at the end (default); off for a placement test. */
+  readonly retries?: boolean | undefined;
 }
 
-export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true }: PlayerOptions) => {
-  const [initial] = useState(() => start(lesson, exercises));
+export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, retries = true }: PlayerOptions) => {
+  const [initial] = useState(() => start(lesson, exercises, { retries }));
   const [state, setState] = useState<PlayerState>(initial[0]);
   const current = useRef<PlayerState>(initial[0]);
   const listener = useRef(onEvent);

@@ -42,15 +42,15 @@ const refOf = (ex: Exercise) => ({ id: ex.id, template: ex.template, item: ex.it
 
 /**
  * The learner event for a player event, or undefined for none. `latencyMs` and
- * `prediction` belong to answers; `session` describes the session for its
- * start and end events.
+ * `prediction` belong to answers, `placed` to a finished placement test;
+ * `session` describes the session for its start and end events.
  */
 export const learnerEventOf = (
   e: LessonEvent,
   course: CourseView,
   meta: EventMeta,
   session: SessionMeta,
-  extra: { readonly latencyMs?: number; readonly prediction?: Prediction } = {},
+  extra: { readonly latencyMs?: number; readonly prediction?: Prediction; readonly placed?: readonly string[] } = {},
 ): LearnerEvent | undefined => {
   const base = {
     id: meta.id,
@@ -92,6 +92,6 @@ export const learnerEventOf = (
     case "exercise_skipped":
       return { ...base, type: "exercise_skipped", exercise: refOf(e.ex), attempt: attemptOf(e.ex.id), reason: e.reason };
     case "session_completed":
-      return { ...base, type: "session_completed", mode: session.mode, ...node, summary: { ...e.summary } };
+      return { ...base, type: "session_completed", mode: session.mode, ...node, summary: { ...e.summary }, ...(extra.placed === undefined ? {} : { placed: [...extra.placed] }) };
   }
 };

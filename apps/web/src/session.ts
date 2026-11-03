@@ -2,10 +2,12 @@
  * Turns the player's events into learner events (gameplan §9.6): the shell
  * stamps ids, the clock, the time zone and the device; it measures latency
  * from presentation to answer; and it logs the planner's p̂ for first tries in
- * shadow mode (§9.3). Core builds the event and assigns credit.
+ * shadow mode (§9.3). Core builds the event and assigns credit. For a
+ * placement test it also notes each first try, and reports where the learner
+ * placed when the test ends (§9.5).
  */
-import { learnerEventOf, PERFORMANCE_MODEL, type SessionPlan } from "@nabu/core/learner";
-import type { CourseView, LessonEvent } from "@nabu/core/lesson";
+import { learnerEventOf, PERFORMANCE_MODEL, placementOf, type SessionPlan } from "@nabu/core/learner";
+import { isCorrect, type CourseView, type LessonEvent } from "@nabu/core/lesson";
 import type { LearnerEvent, Prediction } from "@nabu/schema";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
 
@@ -26,9 +28,14 @@ export const recorder = ({ course, bundle, device, plan, seed, record }: Recorde
   // Retries ("…#2") were not planned: they carry no prediction.
   const predictions = new Map(plan.exercises.map((ex, i) => [ex.id, plan.predictions[i]]));
   let presentedAt = performance.now();
+  const firstTry = new Map<string, boolean>();
   return (e) => {
     const now = new Date();
     if (e.type === "exercise_presented") presentedAt = performance.now();
+    if (e.type === "answer_submitted" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, isCorrect(e.graded.verdict));
+    if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
+    const placed =
+      e.type === "session_completed" && request.mode === "placement" && e.summary.completed ? placementOf({ exercises: plan.exercises, probes: plan.probes ?? [] }, firstTry) : undefined;
     const p = e.type === "exercise_presented" || e.type === "answer_submitted" ? predictions.get(e.ex.id) : undefined;
     const prediction: Prediction | undefined = p === undefined ? undefined : { p, model: PERFORMANCE_MODEL };
     const event = learnerEventOf(
@@ -39,6 +46,7 @@ export const recorder = ({ course, bundle, device, plan, seed, record }: Recorde
       {
         ...(e.type === "answer_submitted" ? { latencyMs: performance.now() - presentedAt } : {}),
         ...(prediction === undefined ? {} : { prediction }),
+        ...(placed === undefined ? {} : { placed }),
       },
     );
     if (event !== undefined) record(event);

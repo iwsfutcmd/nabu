@@ -20,6 +20,7 @@ import { seededRng } from "../lesson/rng.ts";
 import { makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
+import { placementTest } from "./placement.ts";
 import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
@@ -27,7 +28,8 @@ export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
 export type SessionRequest =
   | { readonly mode: "lesson"; readonly node: string }
   | { readonly mode: "review" }
-  | { readonly mode: "mistakes" };
+  | { readonly mode: "mistakes" }
+  | { readonly mode: "placement" };
 
 export interface PlanOptions {
   /** The device clock, ISO 8601: retrievability is computed at this time. */
@@ -46,6 +48,8 @@ export interface SessionPlan {
   /** p̂ for each exercise, logged in shadow mode (§9.3). */
   readonly predictions: readonly number[];
   readonly planner: string;
+  /** Placement only: the lesson node each exercise probes (placement.ts). */
+  readonly probes?: readonly string[];
 }
 
 interface Candidate {
@@ -108,6 +112,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const exclude = options.exclude ?? new Set<TemplateId>();
   const { now } = options;
   const orthography = course.orthography;
+  if (request.mode === "placement") {
+    const test = placementTest(course, options.seed, exclude);
+    return { request, exercises: test.exercises, predictions: test.exercises.map((ex) => predictExercise(state, ex, orthography, now)), planner: PLANNER, probes: test.probes };
+  }
   const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
   const seen = seenKcs(state);
   const due = new Map(dueFacets(state, orthography, now, desired).map((f) => [f.key, f.r]));

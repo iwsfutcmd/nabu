@@ -474,6 +474,9 @@ class Outcome(BaseModel):
     kcs: list[KcCredit]
 
 
+type PlacedItem = Annotated[str, Field(min_length=1)]
+
+
 class SessionCompleted(BaseModel):
     """
     A session ended, finished or quit.
@@ -527,6 +530,12 @@ class SessionCompleted(BaseModel):
     mode: Literal["lesson", "review", "mistakes", "placement"]
     node: Annotated[str | None, Field(min_length=1)] = None
     summary: SessionSummaryData
+    placed: Annotated[
+        list[PlacedItem] | None,
+        Field(
+            description="Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done."
+        ),
+    ] = None
 
 
 type MessageKey = Annotated[

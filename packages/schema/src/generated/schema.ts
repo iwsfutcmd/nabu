@@ -1071,6 +1071,10 @@ export interface SessionCompleted {
   readonly mode: "lesson" | "review" | "mistakes" | "placement";
   readonly node?: string;
   readonly summary: SessionSummaryData;
+  /**
+   * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done.
+   */
+  readonly placed?: readonly string[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

@@ -90,6 +90,8 @@ export interface LessonPlayerProps {
   readonly initialState?: PlayerState;
   /** XP this session earned so far, shown when it ends (the app computes it from the event log). */
   readonly xpEarned?: number | undefined;
+  /** Missed exercises come back at the end (default); off for a placement test. */
+  readonly retries?: boolean | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -102,9 +104,9 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries } = props;
   const t = useTranslator();
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound });
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {

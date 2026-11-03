@@ -20,6 +20,7 @@ export {
   type Session,
   type SessionResult,
   type SessionSummary,
+  type StartOptions,
 } from "./player.ts";
 export { seededRng, type Rng } from "./rng.ts";
 export { facets, gradeExercise, rubySchemeOf, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
