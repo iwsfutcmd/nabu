@@ -89,3 +89,18 @@ ADR is linked. The gameplan text itself is left as written.
     toggle strips whatever marks the content has, for display only.
 27. **§8.2 `select-image` "images need licenses"** also needs a place in the course format:
     `kcs[].image` with file, SPDX licence and provenance ([ADR 0035](adr/0035-bundles-in-the-client.md)).
+
+## Phase 4
+
+28. **§9.3 "the planner only starts using predictions after a calibration curve looks sane":** with
+    no learners yet there is no curve. The planner uses p̂ from the start, and a 30-day simulation
+    with a hidden truth stands in as the sanity check. Predictions are still logged in shadow mode
+    for the Phase 4b notebook ([ADR 0036](adr/0036-learner-model-and-planner.md)).
+29. **§9.3 "item and component difficulties are global, server-authoritative":** they need a
+    server. Until Phase 4b, each learner's projection learns its own difficulties from per-template
+    priors ([ADR 0036](adr/0036-learner-model-and-planner.md)).
+30. **§9.4 i+1 at runtime, "every non-target KC is known (R ≥ 0.8)":** with one unit of content,
+    most review sentences would have some KC below 0.8 and reviews would starve. The planner
+    requires non-target KCs to have been *seen*, and lets the score pull toward due facets.
+31. **§9.2 ts-fsrs:** ts-fsrs 6 requires Node 24. The repo is on Node 22, so core pins ts-fsrs 5.4,
+    which already implements FSRS-6 (21 parameters).

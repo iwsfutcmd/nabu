@@ -88,6 +88,8 @@ export interface LessonPlayerProps {
   readonly writingMode?: WritingMode;
   /** For stories and tests: start from this state instead of the lesson's first exercise. */
   readonly initialState?: PlayerState;
+  /** XP this session earned so far, shown when it ends (the app computes it from the event log). */
+  readonly xpEarned?: number | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -100,7 +102,7 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned } = props;
   const t = useTranslator();
   const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound });
   const [override, setOverride] = useState(props.initialState);
@@ -142,6 +144,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       <section className={styles.card} data-lesson-player="" data-state="finished">
         <h2 className={styles.instruction}>{t.format(state.summary.completed ? "player.finished.title" : "player.finished.stopped")}</h2>
         <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>
+        {xpEarned !== undefined && xpEarned > 0 && (
+          <p className={styles.xp} data-xp-earned={xpEarned}>
+            {t.format("player.finished.xp", { xp: xpEarned })}
+          </p>
+        )}
         {onExit !== undefined && (
           <Button className={styles.primary} onPress={onExit} autoFocus data-action="exit">
             {t.format("player.action.continue")}

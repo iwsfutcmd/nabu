@@ -1,11 +1,11 @@
 /**
  * Web client entry: negotiate the UI locale (setting → navigator.languages →
- * default), load its catalog, and render the app (course list, lessons, lesson
- * player). The store and learner model arrive in Phase 4.
+ * default), load its catalog, and render the app (course list, the course
+ * path, and lesson, review and mistakes sessions over the on-device event log).
  *
  * Query parameters stand in for settings until there is a settings screen:
  *   ?ui=ar-XB            UI locale or pseudo-locale
- *   ?seed=7              lesson seed (reproducible lessons for tests)
+ *   ?seed=7              session seed (with a fixed clock and log, reproducible sessions for tests)
  *   ?sound=off           no feedback sounds
  *   ?target=yue-Hant-HK  the Phase 0 demo exercise card instead (fa, yue-Hant-HK, uz-Latn, apc-Arab)
  *   ?mode=vertical-rl    the demo card's requested writing mode

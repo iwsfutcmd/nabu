@@ -1,13 +1,19 @@
 /**
- * Phase 3 acceptance: Playwright completes one lesson per fixture course, by
- * keyboard (number keys, Enter, Backspace) and by touch (taps; text from the
- * device keyboard), with axe finding no serious violations on any screen.
- * Between them the two passes cover all six orthographies and every template.
+ * Phase 3 acceptance, on the Phase 4 app: Playwright completes one lesson per
+ * fixture course, by keyboard (number keys, Enter, Backspace) and by touch
+ * (taps; text from the device keyboard), with axe finding no serious
+ * violations on any screen. Between them the two passes cover all six
+ * orthographies.
+ *
+ * Lessons are planned from the learner's history, so each test fixes the
+ * page's clock, writes the history of a learner who finished the earlier
+ * lessons into the device's log, and plans the same session the app plans.
  */
 import { expect, test } from "@playwright/test";
-import { answer, expectRightAndContinue, lesson, lessonUrl, loadCourse, seriousAxeViolations, waitFor, type Mode } from "./solver.ts";
+import { historyBefore, loadCourse, logOf, planned, playSession, seedLog, sessionUrl, type Mode } from "./solver.ts";
 
 const SEED = 7;
+const NOW = new Date("2026-03-10T09:00:00Z");
 
 /** [course, orthography, lesson node] per input mode. */
 const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]>> = {
@@ -34,30 +40,25 @@ for (const mode of ["keyboard", "touch"] as const) {
       page.on("console", (m) => {
         if (m.type() === "error") errors.push(m.text());
       });
+      await page.clock.setFixedTime(NOW);
 
       const course = loadCourse(id, orthography);
-      const exercises = lesson(course, node, SEED);
+      const history = historyBefore(course, node, NOW);
+      if (history.length > 0) await seedLog(page, history);
+      const request = { mode: "lesson", node } as const;
+      const exercises = planned(course, history, request, NOW, SEED);
       expect(exercises.length).toBeGreaterThan(3);
-      await page.goto(lessonUrl(id, orthography, node, SEED));
+      await page.goto(sessionUrl(course, request, SEED));
 
-      const violations: string[] = [];
-      for (const ex of exercises) {
-        await waitFor(page, ex);
-        if (mode === "keyboard") violations.push(...(await seriousAxeViolations(page)).map((v) => `${ex.id}: ${v}`));
-        await answer(page, ex, mode);
-        await expect(page.locator("[data-feedback]")).toBeVisible();
-        if (mode === "keyboard") violations.push(...(await seriousAxeViolations(page)).map((v) => `${ex.id} feedback: ${v}`));
-        await expectRightAndContinue(page, mode, ex);
-      }
-
+      const { seen, violations } = await playSession(page, exercises, mode, { axe: mode === "keyboard" });
+      expect(seen).toEqual(exercises.map((e) => e.id));
       await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "finished");
-      const summary = await page.evaluate(() => window.nabuEvents?.at(-1));
-      expect(summary).toEqual({
-        type: "session_completed",
-        lesson: node,
-        summary: { completed: true, exercises: exercises.length, correctFirstTry: exercises.length, retries: 0, skipped: 0 },
-      });
-      if (mode === "keyboard") violations.push(...(await seriousAxeViolations(page)).map((v) => `summary: ${v}`));
+      await expect(page.locator("[data-xp-earned]")).toBeVisible();
+
+      // The device's log holds the session, credited and summarized.
+      await expect
+        .poll(async () => (await logOf(page, id)).find((e) => e.type === "session_completed" && e.node === node))
+        .toMatchObject({ mode: "lesson", orthography, summary: { completed: true, exercises: exercises.length, correctFirstTry: exercises.length, retries: 0, skipped: 0 } });
       expect(violations).toEqual([]);
       expect(errors).toEqual([]);
     });

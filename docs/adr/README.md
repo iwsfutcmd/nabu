@@ -30,5 +30,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0033](0033-fixture-courses.md) | Fixture courses: scope and modelling conventions | Proposed |
 | [0034](0034-lesson-player.md) | The lesson player: pure core, templates, IME-safe shell; on-screen keyboards deferred | Proposed |
 | [0035](0035-bundles-in-the-client.md) | Course bundles in the client (committed, CI-checked), pictures, vocalization | Proposed |
+| [0036](0036-learner-model-and-planner.md) | Learner events, projections (FSRS-6 facets, Elo, XP, mistakes) and the session planner | Proposed |
+| [0037](0037-local-first-app.md) | The local-first app: IndexedDB event log, path, review and mistakes | Proposed |
 
 Template: [0000-template.md](0000-template.md).

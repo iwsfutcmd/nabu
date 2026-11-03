@@ -71,10 +71,19 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
 - Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
 
+## Phase 4 notes (see docs/adr/0036–0037)
+- Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
+- The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
+  test/simulation.test.ts (every course within ±5pp of 85%); golden files: UPDATE_GOLDEN=1 after a deliberate change.
+- Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
+- The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
+- e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
+  window.nabu, and plan with the solver's `planned()`.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0035 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0037 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

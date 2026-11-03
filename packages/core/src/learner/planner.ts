@@ -20,7 +20,7 @@ import { seededRng } from "../lesson/rng.ts";
 import { makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
-import { cardKey, DESIRED_RETENTION, meanRetrievability, retrievability, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
 
@@ -63,21 +63,25 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = { "speak
 
 const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2"]);
 
-/** p̂ for an exercise in this state at `now`. */
-export const predictExercise = (state: LearnerState, ex: Exercise, now: string): number => {
+/** p̂ for an exercise in this state, in the course's orthography, at `now`. */
+export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
   const facet = facetOf(ex.template);
-  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, ex.kcs, facet, now) });
+  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, ex.kcs, facet, orthography, now) });
 };
 
 /** A KC is seen once any of its facets has a card. */
-const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => k.slice(0, k.lastIndexOf("|"))));
+const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.keys(state.cards).map((k) => parseCardKey(k).kc));
 
-/** Due facets (R < desired retention) of seen KCs, most forgotten first. */
-export const dueFacets = (state: LearnerState, now: string, desired = DESIRED_RETENTION): readonly { readonly key: string; readonly r: number }[] =>
+/**
+ * Due facets (R < desired retention) of seen KCs, most forgotten first. Script
+ * facets count only in the orthography being learned.
+ */
+export const dueFacets = (state: LearnerState, orthography: string, now: string, desired = DESIRED_RETENTION): readonly { readonly key: string; readonly r: number }[] =>
   Object.keys(state.cards)
-    .map((key) => {
-      const at = key.lastIndexOf("|");
-      return { key, r: retrievability(state, key.slice(0, at), key.slice(at + 1) as Facet, now) };
+    .flatMap((key) => {
+      const ref = parseCardKey(key);
+      if (ref.orthography !== undefined && ref.orthography !== orthography) return [];
+      return [{ key, r: retrievability(state, ref.kc, ref.facet, orthography, now) }];
     })
     .filter((f) => f.r < desired)
     .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
@@ -103,8 +107,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const desired = options.desiredRetention ?? DESIRED_RETENTION;
   const exclude = options.exclude ?? new Set<TemplateId>();
   const { now } = options;
+  const orthography = course.orthography;
+  const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
   const seen = seenKcs(state);
-  const due = new Map(dueFacets(state, now, desired).map((f) => [f.key, f.r]));
+  const due = new Map(dueFacets(state, orthography, now, desired).map((f) => [f.key, f.r]));
 
   // ---- 1–2. targets and candidates
   let introduced: readonly KcId[] = [];
@@ -120,7 +126,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const pairsPool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k) && seen.has(k.id))];
     const own = sentencesOf(course, unit, node);
     // Interleave: earlier sentences whose facets are due.
-    const earlier = allSentences(course).filter((s) => !own.includes(s) && s.forms[course.orthography] !== undefined && s.kcs.some((kc) => due.has(cardKey(kc, "recognize")) || due.has(cardKey(kc, "produce"))));
+    const earlier = allSentences(course).filter((s) => !own.includes(s) && s.forms[course.orthography] !== undefined && s.kcs.some((kc) => due.has(key(kc, "recognize")) || due.has(key(kc, "produce"))));
     pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier.slice(0, 6), [], exclude)];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
@@ -147,7 +153,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   // i+1 at runtime: every KC that is not new in this lesson has been seen.
   const targets = new Set(introduced);
   const admissible = pool.filter((ex) => ex.kcs.every((kc) => targets.has(kc) || seen.has(kc)));
-  const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, now), order }));
+  const candidates: Candidate[] = admissible.map((ex, order) => ({ ex, p: predictExercise(state, ex, orthography, now), order }));
 
   // ---- 3–4. greedy selection
   const chosen: Candidate[] = [];
@@ -156,9 +162,9 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const gain = (c: Candidate): number => {
     const facet = facetOf(c.ex.template);
     const parts = c.ex.kcs.map((kc) => {
-      const key = cardKey(kc, facet);
-      const base = state.cards[key] === undefined ? (targets.has(kc) ? 1 : 0.5) : due.has(key) ? 0.6 + (desired - (due.get(key) ?? 0)) : 0.15;
-      return covered.has(key) ? base * 0.3 : base;
+      const k = key(kc, facet);
+      const base = state.cards[k] === undefined ? (targets.has(kc) ? 1 : 0.5) : due.has(k) ? 0.6 + (desired - (due.get(k) ?? 0)) : 0.15;
+      return covered.has(k) ? base * 0.3 : base;
     });
     return parts.length === 0 ? 0 : parts.reduce((a, b) => a + b, 0) / parts.length;
   };
@@ -167,7 +173,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read.
-    return c.ex.kcs.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[cardKey(kc, "recognize")] !== undefined);
+    return c.ex.kcs.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
   const score = (c: Candidate): number => {
@@ -197,7 +203,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     chosen.push(pick);
     const facet = facetOf(pick.ex.template);
     for (const kc of pick.ex.kcs) {
-      covered.add(cardKey(kc, facet));
+      covered.add(key(kc, facet));
       if (RECOGNITION.has(pick.ex.template) && targets.has(kc)) recognized.add(kc);
     }
   }

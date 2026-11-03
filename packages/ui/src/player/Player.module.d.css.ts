@@ -53,5 +53,6 @@ declare const styles: {
   readonly toggles: string;
   readonly track: string;
   readonly wrongIcon: string;
+  readonly xp: string;
 };
 export default styles;

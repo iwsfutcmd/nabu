@@ -9,15 +9,21 @@
  */
 import { surfaceOf } from "@nabu/core/text";
 import { expect, test } from "@playwright/test";
-import { answer, expectRightAndContinue, lesson, lessonUrl, loadCourse, waitFor } from "./solver.ts";
+import { answer, expectRightAndContinue, historyBefore, loadCourse, logOf, planned, seedLog, sessionUrl, waitFor } from "./solver.ts";
+
+const NOW = new Date("2026-03-10T09:00:00Z");
 
 test("IME composition never submits, never rewrites, and grades the settled text", async ({ page }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
   const course = loadCourse("yue", "yue-Hant-HK/standard");
-  const exercises = lesson(course, "yue.who", 7);
+  const request = { mode: "lesson", node: "yue.who" } as const;
+  const history = historyBefore(course, request.node, NOW);
+  if (history.length > 0) await seedLog(page, history);
+  const exercises = planned(course, history, request, NOW, 7);
   const at = exercises.findIndex((e) => e.template === "translate-type.l1-l2");
   expect(at).toBeGreaterThanOrEqual(0);
-  await page.goto(lessonUrl("yue", "yue-Hant-HK/standard", "yue.who", 7));
+  await page.goto(sessionUrl(course, request, 7));
   for (const ex of exercises.slice(0, at)) {
     await waitFor(page, ex);
     await answer(page, ex, "keyboard");
@@ -57,6 +63,7 @@ test("IME composition never submits, never rewrites, and grades the settled text
   const feedback = page.locator("[data-feedback]");
   await expect(feedback).toBeVisible();
   expect(await feedback.getAttribute("data-verdict")).toBe("CORRECT");
-  const submitted = await page.evaluate(() => window.nabuEvents?.filter((e) => e.type === "answer_submitted").at(-1));
-  expect(submitted).toMatchObject({ exercise: { id: ex.id }, response: { tag: "text", text: settled }, outcome: { kind: "CORRECT" } });
+  await expect
+    .poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_submitted" && e.exercise.id === ex.id))
+    .toMatchObject({ input: { method: "text", raw: settled }, outcome: { kind: "CORRECT" } });
 });

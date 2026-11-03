@@ -55,3 +55,11 @@ export const WrongIcon = ({ size = 28 }: IconProps): JSX.Element => (
     <path d="m8 8 8 8M16 8l-8 8" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" />
   </svg>
 );
+
+/** A locked lesson. Symmetric: never mirrors. */
+export const LockIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="lock">
+    <rect x="5" y="10.5" width="14" height="10" rx="2" fill="currentColor" />
+    <path d="M8 10.5V8a4 4 0 0 1 8 0v2.5" fill="none" stroke="currentColor" strokeWidth="2.2" />
+  </svg>
+);

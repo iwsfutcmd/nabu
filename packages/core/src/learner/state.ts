@@ -60,7 +60,26 @@ export const emptyLearnerState = (): LearnerState => ({
   rated: { session: "", keys: [] },
 });
 
-export const cardKey = (kc: string, facet: Facet): string => `${kc}|${facet}`;
+/**
+ * Facets keyed to the language are shared by every orthography of a course;
+ * read-script and write-script are tracked per orthography (§6.3), so switching
+ * scripts keeps what was learned about the language.
+ */
+export const SCRIPT_FACETS: ReadonlySet<Facet> = new Set<Facet>(["read-script", "write-script"]);
+
+/** The card of a (KC, facet): "kc|facet", or "kc|facet|orthography" for a script facet. */
+export const cardKey = (kc: string, facet: Facet, orthography: string): string => (SCRIPT_FACETS.has(facet) ? `${kc}|${facet}|${orthography}` : `${kc}|${facet}`);
+
+export interface CardRef {
+  readonly kc: string;
+  readonly facet: Facet;
+  readonly orthography?: string | undefined;
+}
+
+export const parseCardKey = (key: string): CardRef => {
+  const [kc = "", facet = "", orthography] = key.split("|");
+  return { kc, facet: facet as Facet, orthography };
+};
 
 const scheduler: FSRS = fsrs(generatorParameters({ request_retention: DESIRED_RETENTION, enable_fuzz: false }));
 
@@ -82,14 +101,14 @@ const fromCard = (c: Card): StoredCard => ({
   last_review: c.last_review?.toISOString(),
 });
 
-/** FSRS retrievability of a (KC, facet) at `now`: 0 when never practised. */
-export const retrievability = (state: LearnerState, kc: string, facet: Facet, now: string): number => {
-  const card = state.cards[cardKey(kc, facet)];
+/** FSRS retrievability of a (KC, facet) in an orthography at `now`: 0 when never practised. */
+export const retrievability = (state: LearnerState, kc: string, facet: Facet, orthography: string, now: string): number => {
+  const card = state.cards[cardKey(kc, facet, orthography)];
   return card === undefined ? 0 : scheduler.get_retrievability(toCard(card), new Date(now), false);
 };
 
-export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, now: string): number =>
-  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, now), 0) / kcs.length;
+export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
+  kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
 
 const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good };
 
@@ -118,9 +137,10 @@ const addXp = (d: Draft, date: string, amount: number): void => {
   d.xp.byDate[date] = (d.xp.byDate[date] ?? 0) + amount;
 };
 
-const rate = (d: Draft, session: string, kc: string, facet: Facet, rating: Rating, at: string): void => {
+const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Rating): void => {
+  const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
-  const key = cardKey(kc, facet);
+  const key = cardKey(kc, facet, e.orthography);
   if (d.rated.keys.includes(key)) return; // within-session repetitions are learning steps
   d.rated.keys.push(key);
   const now = new Date(at);
@@ -139,7 +159,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const correct = e.outcome.kind.startsWith("CORRECT");
   // The performance model learns from first tries only; retries are biased.
   if (e.attempt === 1) {
-    const r = meanRetrievability(d, kcs, facet, e.clientTime);
+    const r = meanRetrievability(d, kcs, facet, e.orthography, e.clientTime);
     d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
   }
   const recent = d.latencies[template] ?? [];
@@ -148,7 +168,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   d.latencies[template] = [...recent, e.input.latencyMs].slice(-LATENCY_WINDOW);
   for (const credit of e.outcome.kcs) {
     const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, slow, e.input.selfRating);
-    if (rating !== undefined) rate(d, e.session, credit.kc, facet, rating, e.clientTime);
+    if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
   }
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
@@ -158,7 +178,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return; // can't listen / can't speak: no update
   const facet = facetOf(e.exercise.template);
-  for (const kc of e.exercise.kcs) rate(d, e.session, kc, facet, "again", e.clientTime); // the answer was revealed
+  for (const kc of e.exercise.kcs) rate(d, e, kc, facet, "again"); // the answer was revealed
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true);
 };
 

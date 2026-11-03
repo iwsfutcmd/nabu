@@ -100,7 +100,7 @@ const simulate = (courseId: string, orthography: string | undefined, seed: numbe
       const iso = (): string => new Date(clock).toISOString();
       // A learner who follows the app: the next lesson, else a review when something is due, else a day off.
       const next = nodes.find((n) => !state.completedNodes.includes(n));
-      if (next === undefined && dueFacets(state, iso()).length < 3) continue;
+      if (next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
       const request = next !== undefined ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
       const p = plan(course, state, request, { now: iso(), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1) });
       if (p.exercises.length === 0) continue;

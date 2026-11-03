@@ -1,40 +1,54 @@
 /**
- * The Phase 3 web client: a course list, a course's lessons, and the lesson
- * player. Routes live in the URL hash so the static build works anywhere
- * (GitHub Pages): #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node>.
- * The learner model, store and real path arrive in Phase 4.
+ * The web client (gameplan §11.1): the course list, a course's path, and
+ * sessions (a lesson, review or mistakes). Routes live in the URL hash so the
+ * static build works anywhere (GitHub Pages):
+ *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes>
+ *
+ * Local-first (§12.4): every learner event goes to the on-device log, and the
+ * path, XP and the next session are projections of it, computed by @nabu/core.
  */
-import { buildLesson, createGrader, lessonNodes, type CourseView, type LessonEvent } from "@nabu/core/lesson";
+import { applyEvents, dueFacets, pathOf, plan, replay, type LearnerState, type NodeStatus, type SessionRequest } from "@nabu/core/learner";
+import { createGrader, lessonNodes } from "@nabu/core/lesson";
 import { directionOf } from "@nabu/i18n";
-import { T, useTranslator } from "@nabu/ui";
+import type { LearnerEvent } from "@nabu/schema";
+import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
-import { useEffect, useMemo, useState, type JSX } from "react";
+import { useCallback, useEffect, useMemo, useState, type JSX } from "react";
 import styles from "./App.module.css";
+import { localDate } from "./clock.ts";
+import { recorder } from "./session.ts";
+import { openStore, type EventStore } from "./store.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
 
 type Route =
   | { readonly tag: "home" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
-  | { readonly tag: "lesson"; readonly course: string; readonly orthography: string; readonly node: string };
+  | { readonly tag: "session"; readonly course: string; readonly orthography: string; readonly request: SessionRequest };
 
 /** Orthography ids carry a "/" (fa-Arab/standard): "." in the URL. */
 const slug = (orthography: string): string => orthography.replace("/", ".");
 const unslug = (s: string): string => s.replace(".", "/");
 
+/** Node ids are course-prefixed ("fa.book"), so they never collide with "review" or "mistakes". */
+const requestOf = (segment: string): SessionRequest =>
+  segment === "review" ? { mode: "review" } : segment === "mistakes" ? { mode: "mistakes" } : { mode: "lesson", node: segment };
+
 const parse = (hash: string): Route => {
-  const [course, orthography, node] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
+  const [course, orthography, session] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
   if (course === undefined || orthography === undefined) return { tag: "home" };
-  if (node === undefined) return { tag: "course", course, orthography: unslug(orthography) };
-  return { tag: "lesson", course, orthography: unslug(orthography), node };
+  if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
+  return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
 };
+
+const segmentOf = (request: SessionRequest): string => (request.mode === "lesson" ? encodeURIComponent(request.node) : request.mode);
 
 export const href = (route: Route): string =>
   route.tag === "home"
     ? "#/"
     : route.tag === "course"
       ? `#/${route.course}/${slug(route.orthography)}`
-      : `#/${route.course}/${slug(route.orthography)}/${encodeURIComponent(route.node)}`;
+      : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
 const useRoute = (): Route => {
   const [route, setRoute] = useState(() => parse(window.location.hash));
@@ -46,12 +60,14 @@ const useRoute = (): Route => {
   return route;
 };
 
-const courseName = (t: ReturnType<typeof useTranslator>, id: string): string => {
+type Translator = ReturnType<typeof useTranslator>;
+
+const courseName = (t: Translator, id: string): string => {
   const key = `course.name.${id}`;
   return t.has(key) ? t.format(key) : id;
 };
 
-const orthographyName = (t: ReturnType<typeof useTranslator>, id: string): string => {
+const orthographyName = (t: Translator, id: string): string => {
   const key = `orthography.${slug(id)}`;
   return t.has(key) ? t.format(key) : id;
 };
@@ -80,12 +96,41 @@ const Home = ({ courses }: { courses: readonly CourseIndexEntry[] }): JSX.Elemen
   );
 };
 
-const Lessons = ({ loaded, orthography }: { loaded: LoadedCourse; orthography: string }): JSX.Element => {
+const STATUS_LABEL = { done: "app.path.done", available: "app.path.start", locked: "app.path.locked" } as const;
+
+const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <span className={styles.status} data-status-label="">
+      {status === "done" && <CorrectIcon size={20} />}
+      {status === "locked" && <LockIcon size={18} />}
+      {t.format(STATUS_LABEL[status])}
+    </span>
+  );
+};
+
+/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
+const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean }): JSX.Element => {
   const t = useTranslator();
   const { course } = loaded;
-  const nodes = lessonNodes(course);
+  const orthography = course.orthography;
+  const now = new Date();
+  const status = new Map(pathOf(course, state).map((n) => [n.node, n.status]));
+  const due = dueFacets(state, orthography, now.toISOString()).length;
+  const studied = Object.keys(state.cards).length > 0;
+  const mistakes = state.mistakes.length;
+  const today = state.xp.byDate[localDate(now)] ?? 0;
+  const units = lessonNodes(course).reduce<{ unit: LoadedCourse["course"]["units"][number]; nodes: ReturnType<typeof lessonNodes>[number]["node"][] }[]>((acc, { unit, node }) => {
+    const last = acc.at(-1);
+    if (last?.unit === unit) last.nodes.push(node);
+    else acc.push({ unit, nodes: [node] });
+    return acc;
+  }, []);
+  let number = 0;
+  const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
+
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-course-path={course.id}>
       <p>
         <a className={styles.back} href={href({ tag: "home" })}>
           {t.format("app.lessons.back")}
@@ -94,80 +139,177 @@ const Lessons = ({ loaded, orthography }: { loaded: LoadedCourse; orthography: s
       <h1 className={styles.heading}>
         {courseName(t, course.id)} · {orthographyName(t, orthography)}
       </h1>
+      <p className={styles.stats} data-xp={state.xp.total} data-xp-today={today}>
+        <span className={styles.stat}>{t.format("app.xp.total", { xp: state.xp.total })}</span>
+        <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
+      </p>
+      {!persistent && (
+        <p className={styles.notice} role="note" data-not-saved="">
+          {t.format("app.store.memory")}
+        </p>
+      )}
+
+      <h2 className={styles.subheading}>{t.format("app.practice.title")}</h2>
+      <div className={styles.links} data-practice="">
+        {studied ? (
+          <a className={styles.link} href={to({ mode: "review" })} data-practice-mode="review" data-count={due}>
+            {t.format("app.practice.review")}
+            <span className={styles.count}>{t.format("app.practice.due", { count: due })}</span>
+          </a>
+        ) : (
+          <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="review" data-count={0}>
+            {t.format("app.practice.review")}
+          </span>
+        )}
+        {mistakes > 0 ? (
+          <a className={styles.link} href={to({ mode: "mistakes" })} data-practice-mode="mistakes" data-count={mistakes}>
+            {t.format("app.practice.mistakes")}
+            <span className={styles.count}>{t.format("app.practice.to-fix", { count: mistakes })}</span>
+          </a>
+        ) : (
+          <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="mistakes" data-count={0}>
+            {t.format("app.practice.mistakes")}
+          </span>
+        )}
+      </div>
+
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
-      <ol className={styles.list} data-lesson-list="">
-        {nodes.map(({ node, unit }, i) => {
-          const words = node.introduces.flatMap((id) => unit.kcs.find((k) => k.id === id)?.forms?.[orthography]?.[0] ?? []);
-          return (
-            <li key={node.id}>
-              <a className={styles.lesson} href={href({ tag: "lesson", course: course.id, orthography, node: node.id })} data-lesson={node.id}>
-                <span className={styles.lessonName}>{t.format("app.lessons.lesson", { number: i + 1 })}</span>
-                <span className={styles.preview} role="group" aria-label={t.format("app.lessons.new-words")} dir={words[0] === undefined ? undefined : directionOf(words[0].lang)}>
-                  {words.map((w, k) => (
-                    <T key={k} text={w} />
-                  ))}
-                </span>
-              </a>
-            </li>
-          );
-        })}
-      </ol>
+      {units.map(({ unit, nodes }) => {
+        const title = unit.title?.[course.supportKey];
+        return (
+          <section key={unit.id} className={styles.unit}>
+            {title !== undefined && units.length > 1 && (
+              <h3 className={styles.unitTitle}>
+                <T text={title} />
+              </h3>
+            )}
+            <ol className={styles.list} data-lesson-list="">
+              {nodes.map((node) => {
+                number++;
+                const s = status.get(node.id) ?? "locked";
+                const words = node.introduces.flatMap((id) => unit.kcs.find((k) => k.id === id)?.forms?.[orthography]?.[0] ?? []);
+                const body = (
+                  <>
+                    <span className={styles.lessonHead}>
+                      <span className={styles.lessonName}>{t.format("app.lessons.lesson", { number })}</span>
+                      <Status status={s} />
+                    </span>
+                    <span className={styles.preview} role="group" aria-label={t.format("app.lessons.new-words")} dir={words[0] === undefined ? undefined : directionOf(words[0].lang)}>
+                      {words.map((w, k) => (
+                        <T key={k} text={w} />
+                      ))}
+                    </span>
+                  </>
+                );
+                return (
+                  <li key={node.id}>
+                    {s === "locked" ? (
+                      <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" data-lesson={node.id} data-status={s}>
+                        {body}
+                      </div>
+                    ) : (
+                      <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={to({ mode: "lesson", node: node.id })} data-lesson={node.id} data-status={s}>
+                        {body}
+                      </a>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        );
+      })}
     </main>
   );
 };
 
-/** The lesson seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
+/** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
   const param = new URLSearchParams(window.location.search).get("seed");
   if (param !== null && /^\d+$/u.test(param)) return Number(param);
   return crypto.getRandomValues(new Uint32Array(1))[0] ?? 1;
 };
 
-const Play = ({ loaded, node, orthography, onEvent }: { loaded: LoadedCourse; node: string; orthography: string; onEvent: (e: LessonEvent) => void }): JSX.Element => {
+interface SessionProps {
+  readonly loaded: LoadedCourse;
+  readonly request: SessionRequest;
+  readonly state: LearnerState;
+  readonly device: string;
+  readonly record: (event: LearnerEvent) => void;
+}
+
+/** Plans one session from the learner's state when it opens (§9.4), then plays it. */
+const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.Element => {
   const t = useTranslator();
-  const { course, imageUrl } = loaded;
-  const [seed] = useState(seedFor);
-  const exercises = useMemo(() => buildLesson(course, node, { seed }), [course, node, seed]);
+  const { course, manifest, imageUrl } = loaded;
+  const [setup] = useState(() => {
+    const seed = seedFor();
+    const planned = plan(course, state, request, { now: new Date().toISOString(), seed });
+    return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record }) };
+  });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
+  const exit = (): void => {
+    window.location.hash = href({ tag: "course", course: course.id, orthography: course.orthography });
+  };
+  if (setup.planned.exercises.length === 0) {
+    return (
+      <main className={styles.page}>
+        <p data-empty-session="">{t.format("app.practice.empty")}</p>
+        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+          {t.format("app.practice.back")}
+        </a>
+      </main>
+    );
+  }
   return (
     <main className={styles.player}>
       <LessonPlayer
-        key={`${node}:${seed}`}
         course={course}
-        lessonId={node}
-        exercises={exercises}
+        lessonId={request.mode === "lesson" ? request.node : request.mode}
+        exercises={setup.planned.exercises}
         grader={grader}
         imageUrl={imageUrl}
         language={courseName(t, course.id)}
-        onEvent={onEvent}
+        onEvent={setup.onEvent}
         sound={sound}
-        onExit={() => {
-          window.location.hash = href({ tag: "course", course: course.id, orthography });
-        }}
+        xpEarned={state.xp.total - setup.xpBefore}
+        onExit={exit}
       />
     </main>
   );
 };
 
-/** Learner events (§9.6) of this page session; Phase 4 stores them. Exposed for tests and debugging. */
-const events: LessonEvent[] = [];
+/** The open store, for tests and debugging (import history, read the log). */
 declare global {
   interface Window {
-    nabuEvents?: readonly LessonEvent[];
+    nabu?: EventStore;
   }
 }
-window.nabuEvents = events;
+const storeReady = openStore().then((store) => {
+  window.nabu = store;
+  return store;
+});
+
+/** One course's event log and the state it projects to. */
+interface Log {
+  readonly course: string;
+  readonly state: LearnerState;
+}
 
 export const App = (): JSX.Element => {
   const t = useTranslator();
   const route = useRoute();
   const [index, setIndex] = useState<readonly CourseIndexEntry[] | null>(null);
+  const [store, setStore] = useState<EventStore | null>(null);
+  const [log, setLog] = useState<Log | null>(null);
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
   const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
+  const courseId = route.tag === "home" ? null : route.course;
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
+    void storeReady.then(setStore);
   }, []);
   useEffect(() => {
     if (route.tag === "home" || courseKey === null || loaded?.key === courseKey) return;
@@ -176,13 +318,27 @@ export const App = (): JSX.Element => {
       (e: unknown) => setLoaded({ key: courseKey, error: String(e) }),
     );
   }, [route, courseKey, loaded]);
+  useEffect(() => {
+    if (store === null || courseId === null || log?.course === courseId) return;
+    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
+  }, [store, courseId, log]);
+
+  // Live events are the newest in the log, so folding them onto the state equals a replay.
+  const record = useCallback(
+    (event: LearnerEvent): void => {
+      setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
+      void store?.append([event]);
+    },
+    [store],
+  );
 
   if (route.tag === "home") {
     return index === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} />;
   }
-  if (loaded === null || loaded.key !== courseKey) return <p className={styles.page}>{t.format("player.loading")}</p>;
+  if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
+    return <p className={styles.page}>{t.format("player.loading")}</p>;
+  }
   if ("error" in loaded) return <p className={styles.page} role="alert">{t.format("app.error.load")}</p>;
-  const course: CourseView = loaded.value.course;
-  if (route.tag === "course") return <Lessons loaded={loaded.value} orthography={route.orthography} />;
-  return <Play loaded={loaded.value} node={route.node} orthography={course.orthography} onEvent={(e) => events.push(e)} />;
+  if (route.tag === "course") return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} />;
+  return <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} />;
 };

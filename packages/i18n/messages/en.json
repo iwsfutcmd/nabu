@@ -34,6 +34,58 @@
       "message": "Nabu",
       "description": "Product name. Usually left untranslated."
     },
+    "app.path.done": {
+      "message": "Done",
+      "description": "Status of a lesson the learner has completed. They can still open it to practise."
+    },
+    "app.path.locked": {
+      "message": "Locked",
+      "description": "Status of a lesson that opens once the lesson before it is done."
+    },
+    "app.path.start": {
+      "message": "Start",
+      "description": "Status of the next lesson to do."
+    },
+    "app.practice.back": {
+      "message": "Back to the course",
+      "description": "Link from an empty practice session back to the course path."
+    },
+    "app.practice.due": {
+      "message": ".input {$count :number}\n{{{$count} due}}",
+      "description": "How many word facets are due for review. $count is a number."
+    },
+    "app.practice.empty": {
+      "message": "Nothing to practise right now.",
+      "description": "Shown when a review or mistakes session has no exercises."
+    },
+    "app.practice.mistakes": {
+      "message": "Mistakes",
+      "description": "Button that starts a session of the learner's recent mistakes."
+    },
+    "app.practice.review": {
+      "message": "Review",
+      "description": "Button that starts a review session of words that are due."
+    },
+    "app.practice.title": {
+      "message": "Practice",
+      "description": "Heading above the review and mistakes buttons."
+    },
+    "app.practice.to-fix": {
+      "message": ".input {$count :number}\n{{{$count} to fix}}",
+      "description": "How many recent mistakes are waiting in the mistakes session. $count is a number."
+    },
+    "app.store.memory": {
+      "message": "This browser window can't save your progress. It will be lost when you close it.",
+      "description": "Shown when on-device storage is unavailable (for example in some private windows)."
+    },
+    "app.xp.today": {
+      "message": ".input {$xp :number}\n{{Today: {$xp} XP}}",
+      "description": "Experience points earned today (the learner's local date). XP: experience points, often left as XP."
+    },
+    "app.xp.total": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "description": "Total experience points in this course. XP: experience points, often left as XP."
+    },
     "course.name.apc": {
       "message": "Lebanese Arabic",
       "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
@@ -261,6 +313,10 @@
     "player.finished.title": {
       "message": "Lesson complete!",
       "description": "Heading when the lesson is finished."
+    },
+    "player.finished.xp": {
+      "message": ".input {$xp :number}\n{{+{$xp} XP}}",
+      "description": "Experience points the session just earned, on the summary screen."
     },
     "player.instruction.char-read": {
       "message": "How is this read?",

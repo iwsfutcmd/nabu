@@ -15,6 +15,7 @@ import {
   emptyLearnerState,
   learnerEventOf,
   plan,
+  pathOf,
   ratingOf,
   replay,
   retrievability,
@@ -151,7 +152,7 @@ describe("projection", () => {
     expect(Object.keys(state.cards).length).toBeGreaterThan(3);
     expect(state.xp.total).toBeGreaterThan(XP.session);
     expect(state.xp.byDate["2026-03-01"]).toBe(state.xp.total);
-    expect(retrievability(state, Object.keys(state.cards)[0]!.split("|")[0]!, "recognize", "2026-03-01T09:00:00.000Z")).toBeGreaterThan(0.5);
+    expect(retrievability(state, Object.keys(state.cards)[0]!.split("|")[0]!, "recognize", fa.orthography, "2026-03-01T09:00:00.000Z")).toBeGreaterThan(0.5);
   });
 
   it("is order-independent and idempotent", () => {
@@ -181,6 +182,16 @@ describe("projection", () => {
     const a = plan(fa, state, request, options);
     expect(plan(fa, state, request, options)).toEqual(a);
     golden("fa-review-day-3.plan.json", { planner: a.planner, exercises: a.exercises.map((e) => e.id), predictions: a.predictions.map((p) => Math.round(p * 1e6) / 1e6) });
+  });
+
+  it("opens the path one lesson at a time", () => {
+    const before = pathOf(fa, emptyLearnerState()).map((n) => n.status);
+    expect(before[0]).toBe("available");
+    expect(before.slice(1).every((s) => s === "locked")).toBe(true);
+    const after = pathOf(fa, replay(events));
+    expect(after[0]?.status).toBe("done");
+    expect(after[1]?.status).toBe("available");
+    expect(after.slice(2).every((n) => n.status === "locked")).toBe(true);
   });
 
   it("mistakes come back in mistakes mode, and leave once answered right", () => {
