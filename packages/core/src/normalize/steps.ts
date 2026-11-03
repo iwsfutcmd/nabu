@@ -102,8 +102,25 @@ export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Reco
 const BIDI_CONTROLS = /[\u061C\u200E\u200F\u202A-\u202E\u2066-\u2069]/gu;
 export const stripBidiControls: StepFn = (text) => text.replace(BIDI_CONTROLS, "");
 
-/** The whole pipeline: NFC and bidi-control removal first, the profile's steps, NFC last ("NFC at every boundary"). */
+const MAX_PASSES = 4;
+
+/**
+ * The whole pipeline: NFC and bidi-control removal first, the profile's steps,
+ * NFC last ("NFC at every boundary"), repeated until the text stops changing.
+ * Step order can create new matches: in uz-Latn, stripping "。" from "G。`"
+ * leaves "G`", which the apostrophe map (already run) would turn into "Gʻ".
+ * Running to a fixpoint makes normalization idempotent for every profile.
+ */
 export const compileNormalizer = (steps: readonly NormalizeStep[], numberingSystems: Readonly<Record<string, string>>): StepFn => {
   const fns = steps.map((s) => compileStep(s, numberingSystems));
-  return (text) => fns.reduce((t, f) => f(t), stripBidiControls(text.normalize("NFC"))).normalize("NFC");
+  const pass: StepFn = (text) => fns.reduce((t, f) => f(t), stripBidiControls(text.normalize("NFC"))).normalize("NFC");
+  return (text) => {
+    let current = pass(text);
+    for (let i = 1; i < MAX_PASSES; i++) {
+      const next = pass(current);
+      if (next === current) return current;
+      current = next;
+    }
+    return current;
+  };
 };

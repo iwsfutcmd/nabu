@@ -539,6 +539,16 @@
       "expected": "Salom dunyo"
     },
     {
+      "id": "normalize/uz/fixpoint",
+      "op": "normalize",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "G。`"
+      },
+      "expected": "Gʻ",
+      "note": "stripping 。 brings G and ` together; normalization runs to a fixpoint (found by fast-check)"
+    },
+    {
       "id": "normalize/uz/letters-not-stripped",
       "op": "normalize",
       "args": {

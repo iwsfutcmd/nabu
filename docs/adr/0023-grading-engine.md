@@ -47,6 +47,8 @@ how lenient comparisons combine, and which verdict wins when several apply.
   supplies it from the course.
 - **Normalization always** applies NFC and strips bidi controls (ALM, LRM/RLM, embeddings,
   overrides, isolates) before the profile's steps, and NFC after. ZWNJ/ZWJ are left to the profile.
+  The pipeline repeats until the text stops changing (at most 4 passes). Step order can create
+  new matches: in uz-Latn, stripping 。 from "G。`" exposes "G`". fast-check found that one.
 - **Caches** (unit comparisons per accept set; folds, letters and variant keys per profile) are
   pure and bounded. Cold, uncached grading is what the benchmark measures (ADR 0026).
 
