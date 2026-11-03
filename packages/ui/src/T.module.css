@@ -1,0 +1,21 @@
+.text {
+  font-family: var(--nabu-text-font);
+  line-height: var(--nabu-text-line-height);
+}
+
+/* tate-chū-yoko: has no effect in horizontal text, so it can always be set */
+.token[data-tcy] {
+  text-combine-upright: all;
+}
+
+/* `over` is above in horizontal text and to the right in vertical-rl */
+.ruby {
+  ruby-position: over;
+}
+
+.ruby rt {
+  /* keeps adjacent romanized syllables (ngo5 dei6) from running together */
+  padding-inline: 0.15em;
+  font-size: 0.55em;
+  line-height: 1;
+}

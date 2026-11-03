@@ -1,0 +1,13 @@
+.frame {
+  font-size: 1.5rem;
+}
+
+.frame[data-writing-mode="vertical-rl"] {
+  writing-mode: vertical-rl;
+  inline-size: 12em;
+}
+
+.frame[data-writing-mode="vertical-lr"] {
+  writing-mode: vertical-lr;
+  inline-size: 12em;
+}

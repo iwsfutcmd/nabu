@@ -1,0 +1,30 @@
+/* Design tokens. Colours meet WCAG 2.2 AA contrast on their intended backgrounds. */
+:root {
+  --nabu-color-page: #f6f5f1;
+  --nabu-color-surface: #fff;
+  --nabu-color-text: #1d1d1b;
+  --nabu-color-muted: #55534e;
+  --nabu-color-border: #d8d5cc;
+  --nabu-color-line: #b9b5aa;
+  --nabu-color-tile: #fff;
+  --nabu-color-tile-border: #cfcbbf;
+  --nabu-color-accent: #1f6b4f;
+  --nabu-color-accent-text: #fff;
+  --nabu-color-track: #e7e4dc;
+  --nabu-radius-card: 1rem;
+  --nabu-radius-tile: 0.75rem;
+  --nabu-space-1: 0.25rem;
+  --nabu-space-2: 0.5rem;
+  --nabu-space-3: 0.75rem;
+  --nabu-space-4: 1rem;
+  --nabu-space-5: 1.5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+  }
+}

@@ -1,0 +1,13 @@
+/*
+ * Self-hosted webfonts (OFL-1.1, via @fontsource). Each family is split into
+ * unicode-range subsets, so the browser downloads only the scripts on screen
+ * (gameplan §6.8). Language data never falls back to a system font, which keeps
+ * rendering identical across machines and lets the visual tests assert it.
+ */
+@import "@fontsource/noto-sans/400.css";
+@import "@fontsource/noto-sans/700.css";
+@import "@fontsource/noto-sans-arabic/400.css";
+@import "@fontsource/noto-sans-arabic/700.css";
+@import "@fontsource/noto-naskh-arabic/400.css";
+@import "@fontsource/vazirmatn/400.css";
+@import "@fontsource/noto-sans-hk/400.css";

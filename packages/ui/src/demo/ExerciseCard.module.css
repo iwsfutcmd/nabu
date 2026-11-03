@@ -1,0 +1,229 @@
+/* Logical properties only: the same rules lay out LTR, RTL and vertical text. */
+
+.card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-4);
+  max-inline-size: 36rem;
+  margin-inline: auto;
+  padding-block: var(--nabu-space-5);
+  padding-inline: var(--nabu-space-5);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-card);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--nabu-space-3);
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
+  padding: 0;
+  color: var(--nabu-color-muted);
+  background: none;
+  border: 2px solid var(--nabu-color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.progress {
+  flex: 1;
+}
+
+.track {
+  block-size: 0.75rem;
+  background-color: var(--nabu-color-track);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+/* Fills along the inline axis: right to left in RTL chrome (§11.3). */
+.fill {
+  inline-size: var(--nabu-progress);
+  block-size: 100%;
+  background-color: var(--nabu-color-accent);
+  border-radius: inherit;
+}
+
+.instruction {
+  margin: 0;
+  font-size: 1.375rem;
+  font-weight: 700;
+}
+
+.promptRow {
+  display: flex;
+  align-items: center;
+  gap: var(--nabu-space-3);
+}
+
+.prompt {
+  font-size: 1.125rem;
+}
+
+.prompt > p {
+  margin: 0;
+}
+
+/* The target region follows the target script's direction, and turns into
+   columns when the orthography allows vertical text. App chrome never does. */
+.target {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-4);
+  font-size: 1.25rem;
+}
+
+.target[data-writing-mode="vertical-rl"] {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  inline-size: 18rem;
+  align-self: center;
+}
+
+.target[data-writing-mode="vertical-lr"] {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  inline-size: 18rem;
+  align-self: center;
+}
+
+.answerRow,
+.bank {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.answerRow {
+  min-block-size: 3.5rem;
+  padding-block: var(--nabu-space-2);
+  border-block-end: 2px solid var(--nabu-color-line);
+}
+
+.tile {
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: inherit;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
+}
+
+.remaining {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  cursor: pointer;
+}
+
+.switchTrack {
+  display: inline-flex;
+  box-sizing: border-box;
+  inline-size: 2.5rem;
+  block-size: 1.5rem;
+  padding: 0.125rem;
+  background-color: var(--nabu-color-line);
+  border-radius: 999px;
+}
+
+.switchThumb {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background-color: var(--nabu-color-surface);
+  border-radius: 999px;
+}
+
+.switch[data-selected] .switchTrack {
+  background-color: var(--nabu-color-accent);
+}
+
+.switch[data-selected] .switchThumb {
+  margin-inline-start: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.label {
+  color: var(--nabu-color-muted);
+}
+
+.input {
+  box-sizing: border-box;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  font-size: 1.125rem;
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-5);
+  font: inherit;
+  font-weight: 700;
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.primary {
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  border: 2px solid var(--nabu-color-accent);
+}
+
+.secondary {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+}
+
+.iconButton[data-focus-visible],
+.tile[data-focus-visible],
+.primary[data-focus-visible],
+.secondary[data-focus-visible],
+.input[data-focused] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}

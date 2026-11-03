@@ -1,0 +1,23 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+  background-color: var(--nabu-color-surface);
+}
+
+/* Broken on purpose: marks above and below spill out of a 0.6-line-high box. */
+.cramped {
+  font-size: 3rem;
+  line-height: 0.6;
+}
+
+.cramped > [data-nabu-text] {
+  line-height: 0.6;
+}
+
+.roomy {
+  padding-block: 0.5rem;
+  font-size: 3rem;
+}

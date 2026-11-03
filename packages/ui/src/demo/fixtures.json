@@ -1,0 +1,593 @@
+{
+  "$comment": "Demo data for the Phase 0 exercise card. Not course content and not linguistically reviewed: Ben signs off before any of it reaches a fixture course. Validated against schemas/tagged-text.schema.json by test/demo-fixtures.test.ts.",
+  "targets": {
+    "fa-Arab-IR": {
+      "course": "fa",
+      "prompt": {
+        "lang": "en-Latn",
+        "orthography": "en-Latn/standard",
+        "tokens": [
+          {
+            "surface": "The",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "books",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "are",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "on",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "the",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "table",
+            "kind": "word"
+          },
+          {
+            "surface": ".",
+            "kind": "punct"
+          }
+        ]
+      },
+      "answer": {
+        "lang": "fa-Arab-IR",
+        "orthography": "fa-Arab/standard",
+        "tokens": [
+          {
+            "surface": "کتاب‌ها",
+            "kind": "word",
+            "tileGroup": 0,
+            "sense": "کتاب"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "روی",
+            "kind": "word",
+            "tileGroup": 1
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "میز",
+            "kind": "word",
+            "tileGroup": 2
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "هستند",
+            "kind": "word",
+            "tileGroup": 3
+          },
+          {
+            "surface": ".",
+            "kind": "punct"
+          }
+        ]
+      },
+      "distractors": [
+        {
+          "lang": "fa-Arab-IR",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "کتاب",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        },
+        {
+          "lang": "fa-Arab-IR",
+          "orthography": "fa-Arab/standard",
+          "tokens": [
+            {
+              "surface": "است",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        }
+      ]
+    },
+    "yue-Hant-HK": {
+      "course": "yue",
+      "prompt": {
+        "lang": "en-Latn",
+        "orthography": "en-Latn/standard",
+        "tokens": [
+          {
+            "surface": "Let’s",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "go",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "for",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "yum",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "cha",
+            "kind": "word"
+          },
+          {
+            "surface": "!",
+            "kind": "punct"
+          }
+        ]
+      },
+      "answer": {
+        "lang": "yue-Hant-HK",
+        "orthography": "yue-Hant-HK/standard",
+        "tokens": [
+          {
+            "surface": "我哋",
+            "kind": "word",
+            "tileGroup": 0,
+            "readings": {
+              "jyutping": "ngo5 dei6"
+            },
+            "ruby": {
+              "jyutping": [
+                {
+                  "base": "我",
+                  "text": "ngo5"
+                },
+                {
+                  "base": "哋",
+                  "text": "dei6"
+                }
+              ]
+            }
+          },
+          {
+            "surface": "去",
+            "kind": "word",
+            "tileGroup": 1,
+            "readings": {
+              "jyutping": "heoi3"
+            },
+            "ruby": {
+              "jyutping": [
+                {
+                  "base": "去",
+                  "text": "heoi3"
+                }
+              ]
+            }
+          },
+          {
+            "surface": "飲茶",
+            "kind": "word",
+            "tileGroup": 2,
+            "readings": {
+              "jyutping": "jam2 caa4"
+            },
+            "ruby": {
+              "jyutping": [
+                {
+                  "base": "飲",
+                  "text": "jam2"
+                },
+                {
+                  "base": "茶",
+                  "text": "caa4"
+                }
+              ]
+            }
+          },
+          {
+            "surface": "啦",
+            "kind": "word",
+            "tileGroup": 3,
+            "readings": {
+              "jyutping": "laa1"
+            },
+            "ruby": {
+              "jyutping": [
+                {
+                  "base": "啦",
+                  "text": "laa1"
+                }
+              ]
+            }
+          },
+          {
+            "surface": "！",
+            "kind": "punct"
+          }
+        ]
+      },
+      "distractors": [
+        {
+          "lang": "yue-Hant-HK",
+          "orthography": "yue-Hant-HK/standard",
+          "tokens": [
+            {
+              "surface": "佢哋",
+              "kind": "word",
+              "tileGroup": 0,
+              "readings": {
+                "jyutping": "keoi5 dei6"
+              },
+              "ruby": {
+                "jyutping": [
+                  {
+                    "base": "佢",
+                    "text": "keoi5"
+                  },
+                  {
+                    "base": "哋",
+                    "text": "dei6"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "lang": "yue-Hant-HK",
+          "orthography": "yue-Hant-HK/standard",
+          "tokens": [
+            {
+              "surface": "食",
+              "kind": "word",
+              "tileGroup": 0,
+              "readings": {
+                "jyutping": "sik6"
+              },
+              "ruby": {
+                "jyutping": [
+                  {
+                    "base": "食",
+                    "text": "sik6"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "uz-Latn": {
+      "course": "uz",
+      "prompt": {
+        "lang": "en-Latn",
+        "orthography": "en-Latn/standard",
+        "tokens": [
+          {
+            "surface": "I",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "am",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "learning",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "the",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "Uzbek",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "language",
+            "kind": "word"
+          },
+          {
+            "surface": ".",
+            "kind": "punct"
+          }
+        ]
+      },
+      "answer": {
+        "lang": "uz-Latn",
+        "orthography": "uz-Latn/standard",
+        "tokens": [
+          {
+            "surface": "Men",
+            "kind": "word",
+            "tileGroup": 0
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "oʻzbek",
+            "kind": "word",
+            "tileGroup": 1
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "tilini",
+            "kind": "word",
+            "tileGroup": 2,
+            "sense": "til",
+            "morphs": [
+              {
+                "surface": "til",
+                "kc": "sense:til"
+              },
+              {
+                "surface": "i",
+                "kc": "form:poss-3"
+              },
+              {
+                "surface": "ni",
+                "kc": "form:acc"
+              }
+            ]
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "oʻrganyapman",
+            "kind": "word",
+            "tileGroup": 3,
+            "morphs": [
+              {
+                "surface": "oʻrgan",
+                "kc": "sense:oʻrganmoq"
+              },
+              {
+                "surface": "yap",
+                "kc": "form:prog"
+              },
+              {
+                "surface": "man",
+                "kc": "form:1sg"
+              }
+            ]
+          },
+          {
+            "surface": ".",
+            "kind": "punct"
+          }
+        ]
+      },
+      "distractors": [
+        {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "tili",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        },
+        {
+          "lang": "uz-Latn",
+          "orthography": "uz-Latn/standard",
+          "tokens": [
+            {
+              "surface": "oʻqiyman",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        }
+      ]
+    },
+    "apc-Arab-LB": {
+      "course": "apc",
+      "prompt": {
+        "lang": "en-Latn",
+        "orthography": "en-Latn/standard",
+        "tokens": [
+          {
+            "surface": "What",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "do",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "you",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "want",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "to",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "eat",
+            "kind": "word"
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "today",
+            "kind": "word"
+          },
+          {
+            "surface": "?",
+            "kind": "punct"
+          }
+        ]
+      },
+      "answer": {
+        "lang": "apc-Arab-LB",
+        "orthography": "apc-Arab/standard",
+        "tokens": [
+          {
+            "surface": "شو",
+            "kind": "word",
+            "tileGroup": 0
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "بدّك",
+            "kind": "word",
+            "tileGroup": 1
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "تاكل",
+            "kind": "word",
+            "tileGroup": 2
+          },
+          {
+            "surface": " ",
+            "kind": "space"
+          },
+          {
+            "surface": "اليوم",
+            "kind": "word",
+            "tileGroup": 3
+          },
+          {
+            "surface": "؟",
+            "kind": "punct"
+          }
+        ]
+      },
+      "distractors": [
+        {
+          "lang": "apc-Arab-LB",
+          "orthography": "apc-Arab/standard",
+          "tokens": [
+            {
+              "surface": "بدّي",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        },
+        {
+          "lang": "apc-Arab-LB",
+          "orthography": "apc-Arab/standard",
+          "tokens": [
+            {
+              "surface": "منيح",
+              "kind": "word",
+              "tileGroup": 0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

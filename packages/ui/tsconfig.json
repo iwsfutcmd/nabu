@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": [
+      "esnext",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    "jsx": "react-jsx",
+    "types": [
+      "node"
+    ],
+    "allowArbitraryExtensions": true
+  },
+  "include": [
+    "src",
+    "test",
+    "tests",
+    "scripts",
+    ".storybook/*.ts",
+    ".storybook/*.tsx",
+    "playwright.config.ts",
+    "vitest.config.ts"
+  ]
+}
