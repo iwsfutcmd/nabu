@@ -12,6 +12,7 @@
 import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, speechSupportOf } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
+import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
@@ -25,12 +26,21 @@ import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
+import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
+import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
+import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, storyRecorder } from "./session.ts";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
+
+/**
+ * Courses offline in the browser (Phase 10): production builds with a service worker. The dev
+ * server serves modules the worker cannot keep, and native builds ship every course inside.
+ */
+const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 
 type Route =
   | { readonly tag: "home" }
@@ -96,12 +106,13 @@ interface GameProps {
   readonly gameConfig: GameConfig | null;
 }
 
-const Home = ({ courses, store, sync, game, gameConfig, version }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string } & GameProps): JSX.Element => {
+const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
+      {!online && <OfflineNotice />}
       {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
@@ -138,7 +149,15 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
 };
 
 /** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
-const CoursePath = ({ loaded, state, persistent, ai }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus }): JSX.Element => {
+/** The course's offline state, where this build keeps courses offline. */
+interface OfflineProps {
+  readonly online: boolean;
+  readonly root: string;
+  readonly stored: ReadonlySet<string> | undefined;
+  readonly onChange: () => void;
+}
+
+const CoursePath = ({ loaded, state, persistent, ai, offline }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus; offline: OfflineProps }): JSX.Element => {
   const t = useTranslator();
   const [quiet, setQuiet] = useState(listeningOff);
   const { course } = loaded;
@@ -172,6 +191,7 @@ const CoursePath = ({ loaded, state, persistent, ai }: { loaded: LoadedCourse; s
         <span className={styles.stat}>{t.format("app.xp.total", { xp: state.xp.total })}</span>
         <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
       </p>
+      {!offline.online && <OfflineNotice />}
       {!persistent && (
         <p className={styles.notice} role="note" data-not-saved="">
           {t.format("app.store.memory")}
@@ -290,6 +310,7 @@ const CoursePath = ({ loaded, state, persistent, ai }: { loaded: LoadedCourse; s
         );
       })}
       <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
+      {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
     </main>
   );
 };
@@ -499,8 +520,10 @@ declare global {
     nabuSync?: Sync;
   }
 }
+/** The deployment's game rules, loaded once. */
+const gameRules = loadGameConfig(import.meta.env.BASE_URL);
 const ready = openStore().then(async (store) => {
-  const sync = await createSync(store, apiBase());
+  const sync = await createSync(store, apiBase(), { gameConfig: () => gameRules });
   window.nabu = store;
   window.nabuSync = sync;
   return { store, sync };
@@ -534,11 +557,17 @@ export const App = (): JSX.Element => {
   const courseId = route.tag === "home" ? null : route.course;
   const ai = useAiStatus(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
   const speechTiers = useSpeechTiers(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
+  const online = useOnline();
+  const [downloads, setDownloads] = useState(0);
+  const root = courseId === null ? undefined : `${BUNDLES}${courseId}/`;
+  // Re-read after a course loads (the worker keeps what the app fetched) and after a download.
+  const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
-    void loadGameConfig(import.meta.env.BASE_URL).then(setGameConfig);
+    void gameRules.then(setGameConfig);
     void ready.then(setDevice);
+    if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
   }, []);
   useEffect(() => {
     if (pulled > 0) setLog(null);
@@ -583,23 +612,28 @@ export const App = (): JSX.Element => {
   );
 
   if (route.tag === "home") {
-    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} />;
+    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
   }
   if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
     return <p className={styles.page}>{t.format("player.loading")}</p>;
   }
-  if ("error" in loaded) return <p className={styles.page} role="alert">{t.format("app.error.load")}</p>;
-  if (route.tag === "course") return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} ai={ai} />;
+  if ("error" in loaded) return <p className={styles.page} role="alert" data-load-error="">{t.format(online ? "app.error.load" : "app.offline.unavailable")}</p>;
+  if (route.tag === "course") {
+    const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
+    return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} />;
+  }
+  // Offline, a session uses only the media on this device: no listening without the clip.
+  const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };
   if (route.tag === "roleplay") {
     const back = href({ tag: "course", course: route.course, orthography: route.orthography });
     return <RoleplayPage key={href(route)} course={loaded.value.course} scenario={route.scenario} account={account} status={ai} back={back} />;
   }
   if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
-  if (route.tag === "story") return <StorySession key={href(route)} loaded={loaded.value} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
+  if (route.tag === "story") return <StorySession key={href(route)} loaded={playable} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
   return (
     <Session
       key={href(route)}
-      loaded={loaded.value}
+      loaded={playable}
       request={route.request}
       state={log.state}
       device={store.device}

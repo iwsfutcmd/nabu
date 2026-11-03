@@ -31,7 +31,7 @@ import { DEFAULT_UI_LOCALE, directionOf, negotiateLocale, PSEUDO_LOCALES, UI_LOC
 import { timingSafeEqual } from "node:crypto";
 import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
-import type { LeagueConfig } from "@nabu/core/game";
+import { DEFAULT_GAME, type GameConfig, type LeagueConfig } from "@nabu/core/game";
 import type { EvalGate, ReportStatus } from "@nabu/schema";
 import { and, eq } from "drizzle-orm";
 import type { Account, Accounts } from "./accounts.ts";
@@ -43,7 +43,7 @@ import { speechRoutes } from "./speech.ts";
 import type { Db } from "./db/index.ts";
 import { pushSubscriptions } from "./db/schema.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
-import { append, checkBatch, existing, MAX_BATCH, since, stateOf } from "./log.ts";
+import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
 import { getProfile, setProfile } from "./profiles.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
@@ -61,6 +61,8 @@ export interface AppDeps {
   readonly ai?: { readonly gateway: Gateway; readonly courses: Courses; readonly gates: readonly EvalGate[] } | undefined;
   /** The reviewers' bearer token for /admin/v1 (unset: no review endpoints). */
   readonly adminToken?: string | undefined;
+  /** The game rules (§12): the deployment's game.json, as the web app gets it (default DEFAULT_GAME). */
+  readonly game?: GameConfig | undefined;
   /** The speech service (Phase 9): its URL and how to reach it. Needs `ai` for courses and hashing. */
   readonly speech?: { readonly url: string | undefined; readonly transport: Transport; readonly budget?: number } | undefined;
 }
@@ -118,7 +120,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
   app.route("/", publicRoutes);
@@ -218,6 +220,15 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const course = c.req.query("course");
     if (course === undefined || course === "") return c.json({ error: "missing-course" }, 400);
     return c.json({ course, ...(await stateOf(db, c.get("user").id, course)) });
+  });
+
+  // The game state of the whole log (Phase 10: devices check it matches theirs). A device passes
+  // its own clock, as the projection depends on the date; the server's otherwise.
+  app.get("/v1/game", async (c) => {
+    const at = c.req.query("now") ?? new Date(now()).toISOString();
+    const today = c.req.query("today");
+    if (Number.isNaN(Date.parse(at)) || (today !== undefined && !/^\d{4}-\d{2}-\d{2}$/u.test(today))) return c.json({ error: "invalid-clock" }, 400);
+    return c.json({ game: await gameStateOf(db, c.get("user").id, game, { now: new Date(at).toISOString(), today }) });
   });
 
   app.get("/v1/profile", async (c) => c.json({ profile: await getProfile(db, c.get("user").id) }));

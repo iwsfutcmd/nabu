@@ -126,12 +126,15 @@ describe("event log", () => {
     const token = await signUp("idempotent@example.com");
     const log = threeSessions();
     const half = Math.floor(log.length / 2);
-    const first = (await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()) as { accepted: number; cursor: number };
+    const first = (await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()) as { accepted: number; cursor: number; received: Record<string, string> };
     expect(first.accepted).toBe(half);
+    expect(Object.keys(first.received).sort()).toEqual(log.slice(0, half).map((e) => e.id).sort());
     const before = await (await app.request("/v1/state?course=fa", auth(token))).json();
 
-    // The device retries after a timeout: the same batch, then an overlapping one.
-    expect(await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()).toEqual({ accepted: 0, duplicates: half, refused: 0, cursor: first.cursor });
+    // The device retries after a timeout: the same batch, then an overlapping one. A duplicate
+    // keeps the time the server first received it (the streak's grace window counts from there).
+    await new Promise((resolve) => setTimeout(resolve, 5));
+    expect(await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()).toMatchObject({ accepted: 0, duplicates: half, refused: 0, cursor: first.cursor, received: first.received });
     expect(await (await app.request("/v1/state?course=fa", auth(token))).json()).toEqual(before);
     const rest = (await (await app.request("/v1/events", json({ events: log.slice(10) }, token))).json()) as { accepted: number; duplicates: number };
     expect(rest).toMatchObject({ accepted: log.length - half, duplicates: half - 10 });
@@ -170,7 +173,7 @@ describe("event log", () => {
     expect(pulled.map((e) => e.id)).toEqual(log.map((e) => e.id));
     expect(pulled).toEqual(log);
 
-    expect(await (await app.request("/v1/events?since=0", auth(b))).json()).toEqual({ events: [], cursor: 0, more: false });
+    expect(await (await app.request("/v1/events?since=0", auth(b))).json()).toEqual({ events: [], cursor: 0, more: false, received: {} });
     const bState = (await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number };
     expect(bState.events).toBe(0);
     // An event stamped with another user is refused.

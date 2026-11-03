@@ -274,6 +274,74 @@
       "message": "Nabu",
       "description": "Product name. Usually left untranslated."
     },
+    "app.offline.core-missing": {
+      "message": "Download this course to use it with no connection.",
+      "description": "Nothing of the course is stored on the device yet."
+    },
+    "app.offline.core-ready": {
+      "message": "This course's lessons work on this device with no connection. Download audio and pictures to have them offline too.",
+      "description": "The course's text is stored on the device; media are downloaded per unit."
+    },
+    "app.offline.download": {
+      "message": "Download ({$size})",
+      "description": "Button: download one unit's audio and pictures. $size is already formatted (e.g. 612 kB)."
+    },
+    "app.offline.download-all": {
+      "message": "Download everything ({$size})",
+      "description": "Button: download the whole course for offline use. $size is already formatted."
+    },
+    "app.offline.downloading": {
+      "message": "Downloading",
+      "description": "Label of the download progress bar."
+    },
+    "app.offline.error.integrity": {
+      "message": "A file did not arrive intact, so it was not kept. Try again.",
+      "description": "A downloaded file did not match the course's checksum."
+    },
+    "app.offline.error.network": {
+      "message": "The download stopped because the connection was lost. Try again when you are online.",
+      "description": "A download failed: no network."
+    },
+    "app.offline.error.quota": {
+      "message": "There is not enough storage on this device for this download.",
+      "description": "The browser refused to store more."
+    },
+    "app.offline.notice": {
+      "message": "You are offline. Lessons on this device still work, and your progress is saved here and syncs when you are back online.",
+      "description": "Shown while the device has no network."
+    },
+    "app.offline.progress": {
+      "message": "{$done} of {$total}",
+      "description": "Download progress; both values are already formatted sizes."
+    },
+    "app.offline.remove": {
+      "message": "Remove download ({$size})",
+      "description": "Button: delete a unit's audio and pictures from the device. $size is already formatted."
+    },
+    "app.offline.state.missing": {
+      "message": "Not downloaded",
+      "description": "A unit with none of its audio and pictures on the device."
+    },
+    "app.offline.state.partial": {
+      "message": "Partly downloaded",
+      "description": "A unit with some of its audio and pictures on the device."
+    },
+    "app.offline.state.ready": {
+      "message": "Available offline",
+      "description": "A unit whose audio and pictures are all on the device."
+    },
+    "app.offline.title": {
+      "message": "Offline",
+      "description": "Heading of the course's offline section (Phase 10)."
+    },
+    "app.offline.unavailable": {
+      "message": "This course is not on this device yet. Open it once while you are online to use it offline.",
+      "description": "Opening a course that is not stored, with no network."
+    },
+    "app.offline.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number}}}",
+      "description": "Name of a unit without a title, by its position in the course."
+    },
     "app.path.done": {
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."

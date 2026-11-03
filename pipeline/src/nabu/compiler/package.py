@@ -14,7 +14,7 @@ import shutil
 import unicodedata
 from importlib import metadata
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import yaml
 
@@ -90,6 +90,33 @@ def _used_tools(
     return {p.segmentation.content for p in taught}, transforms or bool(compiled.course.drills)
 
 
+def _strings(data: object) -> set[str]:
+    """Every string anywhere in parsed JSON."""
+    if isinstance(data, str):
+        return {data}
+    values: list[object] = []
+    if isinstance(data, dict):
+        values = list(cast(dict[str, object], data).values())
+    elif isinstance(data, list):
+        values = list(cast(list[object], data))
+    return {s for v in values for s in _strings(v)}
+
+
+def unit_assets(unit: dict[str, Any], compiled: Compiled) -> list[str]:
+    """The media a unit's items use (Phase 10 per-unit downloads): the images it names, and the
+    bundled clips of every item id it names (its sentences, drills and story lines). An item
+    another unit owns but this one uses is included, so a downloaded unit never misses a clip."""
+    named = _strings(unit)
+    images = {p for p in named if p in compiled.images}
+    clips = {
+        clip["path"]
+        for item in sorted(named & compiled.audio_items.keys())
+        for clip in compiled.audio_items[item].values()
+        if clip.get("path") in compiled.audio_files
+    }
+    return sorted(images | clips)
+
+
 def write_bundle(
     compiled: Compiled,
     profiles: dict[str, OrthographyProfile],
@@ -108,17 +135,23 @@ def write_bundle(
         rel = f"{role}s/{name}.{digest[:16]}.json"
         (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
         (out_dir / rel).write_bytes(data)
-        entry: dict[str, Any] = {"path": rel, "role": role, "sha256": digest, "license": license_}
+        entry: dict[str, Any] = {
+            "path": rel,
+            "role": role,
+            "sha256": digest,
+            "license": license_,
+            "bytes": len(data),
+        }
         if source is not None:
             entry["source"] = source
         files.append(entry)
         return rel
 
-    units: list[dict[str, str]] = []
+    units: list[dict[str, Any]] = []
     for unit in compiled.units:
         BundleUnit.model_validate(unit)
         rel = put("unit", unit["id"], canonical(unit), course.license or "NOASSERTION")
-        units.append({"id": unit["id"], "file": rel})
+        units.append({"id": unit["id"], "file": rel, "assets": unit_assets(unit, compiled)})
 
     seen: set[str] = set()
     for orth in [*compiled.orthographies, *compiled.support]:
@@ -148,6 +181,7 @@ def write_bundle(
             "role": "image",
             "sha256": sha256(blob),
             "license": image_license,
+            "bytes": len(blob),
         }
         if image_source is not None:
             entry["source"] = image_source
@@ -163,6 +197,7 @@ def write_bundle(
                 "sha256": sha256(blob),
                 "license": clip_license,
                 "source": credit,
+                "bytes": len(blob),
             }
         )
     if compiled.audio_items:
@@ -173,7 +208,13 @@ def write_bundle(
         (out_dir / rel).write_bytes(index_blob)
         license_ = course.license or "NOASSERTION"
         files.append(
-            {"path": rel, "role": "audio-index", "sha256": sha256(index_blob), "license": license_}
+            {
+                "path": rel,
+                "role": "audio-index",
+                "sha256": sha256(index_blob),
+                "license": license_,
+                "bytes": len(index_blob),
+            }
         )
 
     manifest: dict[str, Any] = {

@@ -393,3 +393,36 @@
   gap: var(--nabu-space-2);
   min-block-size: 2.75rem;
 }
+
+/* The course's offline section (Phase 10). */
+.offline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  margin-block-start: var(--nabu-space-5);
+}
+
+.offlineUnits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.offlineUnit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.offlineName {
+  flex: 1 1 12rem;
+  font-weight: 700;
+}

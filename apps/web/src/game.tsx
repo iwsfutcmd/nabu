@@ -23,13 +23,18 @@ export const loadGameConfig = async (base: string): Promise<GameConfig> => {
   }
 };
 
-/** The game state of the whole device log (all courses) as of now. */
-export const gameOf = async (store: EventStore, config: GameConfig, now = new Date()): Promise<GameState> =>
-  replayGame(
-    (await store.allEvents()).map((event) => ({ event })),
+/**
+ * The game state of the whole device log (all courses) as of now. Synced events carry when the
+ * server received them, so a late sync counts as the server counts it (§12.2) and the two agree.
+ */
+export const gameOf = async (store: EventStore, config: GameConfig, now = new Date()): Promise<GameState> => {
+  const received = await store.receivedTimes();
+  return replayGame(
+    (await store.allEvents()).map((event) => ({ event, receivedAt: received.get(event.id) })),
     config,
     { today: localDate(now), now: now.toISOString() },
   );
+};
 
 /** Recomputes the game state whenever `version` changes (an event was recorded or pulled). */
 export const useGame = (store: EventStore | null, config: GameConfig | null, version: unknown): GameState | null => {

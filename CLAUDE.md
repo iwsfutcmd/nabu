@@ -141,10 +141,21 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
 - Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
 
+## Phase 10 notes (see docs/adr/0047)
+- Offline: @nabu/core/offline (coreFiles, downloadPlan, restrictMedia). The manifest's units list their `assets`;
+  never make a template depend on media without the builder checking course.audio or kc.image (restrictMedia drops them).
+- The service worker is apps/web/sw/sw.ts (built by vite-sw.ts, its own tsconfig with the WebWorker lib). Code it
+  shares with the app (idb.ts, outbox.ts, http.ts, caches.ts) must not touch window or import React.
+- Course files are cached by URL in "nabu-bundles"; downloads check sha256 and store the manifest last.
+- Game state on the server: GET /v1/game; devices replay with the server's receipt times (store.receivedTimes).
+  Instances set NABU_GAME to the game.json the web app is deployed with.
+- e2e that needs Background Sync uses `channel: "chromium"` (the headless shell has none); the CI image has it.
+- Tests import projection helpers from src/compare.ts (src/sync.ts pulls in React and CSS).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0046 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0047 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -57,3 +57,23 @@ def test_bundle_is_content_addressed_and_valid(core_cli: CoreCli, tmp_path: Path
         assert f.sha256[:16] in f.path
     unit = json.loads((tmp_path / manifest["units"][0]["file"]).read_text(encoding="utf-8"))  # type: ignore[index]
     BundleUnit.model_validate(unit)
+    for f in BundleManifest.model_validate(manifest).files:
+        assert f.bytes == (tmp_path / f.path).stat().st_size
+
+
+@pytest.mark.parametrize("course", COURSES, ids=lambda p: p.name)
+def test_every_medium_downloads_with_a_unit(
+    core_cli: CoreCli, course: Path, tmp_path: Path
+) -> None:
+    """Phase 10: a unit's download carries the media its items use, and every medium in the
+    bundle belongs to some unit, so downloading every unit makes the whole course offline."""
+    manifest = BundleManifest.model_validate(build(core_cli, course, tmp_path))
+    roles = {f.path: f.role for f in manifest.files}
+    media = {p for p, role in roles.items() if role in ("audio", "image")}
+    listed = {p for u in manifest.units for p in u.assets}
+    assert listed == media
+    for u in manifest.units:
+        assert u.assets == sorted(u.assets)
+        unit = json.loads((tmp_path / u.file).read_text(encoding="utf-8"))
+        images = {p for p in u.assets if roles[p] == "image"}
+        assert images <= {kc["image"] for kc in unit["kcs"] if "image" in kc}

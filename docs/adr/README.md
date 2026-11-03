@@ -41,5 +41,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0044](0044-gamification-and-notifications.md) | Game state as projections (streaks across the date line, freezes, quests, gate), UTS #39 usernames, leagues with an idempotent rollover, Web Push reminders | Proposed |
 | [0045](0045-ai-services.md) | The LLM gateway (local first, schema-validated, provenance, cache, budgets, kill switch), the judge behind per-language gates with retroactive revisions, golden sets and the evaluation harness, reports to accept-set pull requests, Explain My Answer, roleplay, drafting | Proposed |
 | [0046](0046-speech.md) | Tier 3 tones on the device (YIN, contours, self-calibration), tiers 1–2 on a speech service (unprompted Whisper graded by the course grader; phones against surface readings), feedback not verdicts, per-word credit, recordings never kept, the tone evaluation | Proposed |
+| [0047](0047-offline.md) | Per-unit media downloads in the Cache API (sha256-checked, manifest last), the course text always kept, `restrictMedia` so offline lessons skip missing clips, a TypeScript service worker (shell, course files, ranges, push), Background Sync of the outbox, receipt times so device and server game states match | Proposed |
 
 Template: [0000-template.md](0000-template.md).

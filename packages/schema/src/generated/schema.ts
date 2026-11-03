@@ -283,6 +283,7 @@ export interface NabuSchemaIndex {
   readonly AudioQa: AudioQa;
   readonly BundleManifest: BundleManifest;
   readonly BundleFile: BundleFile;
+  readonly BundleManifestUnit: BundleManifestUnit;
   readonly BundleUnit: BundleUnit;
   readonly BundleScenario: BundleScenario;
   readonly BundleStory: BundleStory;
@@ -843,10 +844,10 @@ export interface BundleManifest {
    * Every file in the bundle by role, with its SPDX license.
    */
   readonly files: readonly BundleFile[];
-  readonly units: readonly {
-    readonly id: string;
-    readonly file: string;
-  }[];
+  /**
+   * The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.
+   */
+  readonly units: readonly BundleManifestUnit[];
   /**
    * SPDX expression → number of content items.
    */
@@ -870,6 +871,22 @@ export interface BundleFile {
   readonly sha256: string;
   readonly license: string;
   readonly source?: string;
+  /**
+   * Size in bytes, to say what a download costs before it starts.
+   */
+  readonly bytes: number;
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "BundleManifestUnit".
+ */
+export interface BundleManifestUnit {
+  readonly id: string;
+  readonly file: string;
+  /**
+   * Paths of the media files (roles audio and image) the unit's items use, sorted. A file shared by units is listed in each.
+   */
+  readonly assets: readonly string[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

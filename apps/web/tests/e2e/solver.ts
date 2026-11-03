@@ -6,6 +6,7 @@
  * number keys and Enter, or taps on options and tiles, with typed text coming
  * from the device's keyboard or IME.
  */
+import { restrictMedia } from "@nabu/core/offline";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import AxeBuilder from "@axe-core/playwright";
@@ -50,6 +51,23 @@ export const activate = async (page: Page, mode: Mode, selector: string): Promis
     await target.focus();
     await page.keyboard.press("Enter");
   }
+};
+
+/**
+ * The course as the app teaches it right now (Phase 10): online, all of it; offline, only the media
+ * this device has stored (what the service worker keeps in "nabu-bundles").
+ */
+export const teachable = async (page: Page, course: CourseView): Promise<CourseView> => {
+  const offline = await page.evaluate(() => !navigator.onLine);
+  if (!offline) return course;
+  const stored = new Set(
+    await page.evaluate(async (id) => {
+      const prefix = new URL(`bundles/${id}/`, window.location.href).href;
+      const keys = await (await caches.open("nabu-bundles")).keys();
+      return keys.map((r) => r.url).filter((u) => u.startsWith(prefix)).map((u) => u.slice(prefix.length));
+    }, course.id),
+  );
+  return restrictMedia(course, (path) => stored.has(path));
 };
 
 /** The session the app plans for this log, clock and seed (no speech server: tones scored on the device). */

@@ -4,7 +4,7 @@
  * against the RFC's own example; notifications localized for every UI locale).
  */
 import { createDecipheriv, createECDH, createHmac, createPublicKey, verify } from "node:crypto";
-import { DEFAULT_LEAGUE, leagueWeek, type LeagueConfig } from "@nabu/core/game";
+import { DEFAULT_LEAGUE, leagueWeek, localDateOf, type GameState, type LeagueConfig } from "@nabu/core/game";
 import { directionOf, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { eq } from "drizzle-orm";
@@ -272,5 +272,42 @@ describe("reminders", () => {
     const gone = () => Promise.resolve({ status: 410 });
     await sendReminders(database.db, at("2026-07-02T19:30:00Z"), (s, p) => sendPush(s, p, vapid, clock, gone));
     expect((await app.request("/v1/push/unsubscribe", request("POST", { endpoint: sub.endpoint }, token))).status).toBe(204);
+  });
+});
+
+// ------------------------------------------------------------------------- The game on the server
+
+describe("the game state on the server (Phase 10)", () => {
+  /** A session in a time zone, with the local date the device would stamp. */
+  const zoned = (at: string, tz: string): LearnerEvent[] => session(Date.parse(at), 2, 3000, tz).map((e) => ({ ...e, localDate: localDateOf(e.clientTime, tz) ?? "" }));
+  const gameOf = async (token: string, query: string): Promise<GameState> => ((await (await app.request(`/v1/game?${query}`, request("GET", undefined, token))).json()) as { game: GameState }).game;
+
+  it("counts each session on its own local date, and a late sync for XP but not the streak", async () => {
+    const token = await signUp();
+    const tz = "Asia/Kathmandu"; // UTC+05:45: local and UTC dates part around midnight
+    const offline = [
+      ...zoned("2026-06-01T21:00:00Z", tz), // 02:45 on 2 June there (1 June in UTC)
+      ...zoned("2026-06-02T17:30:00Z", tz), // 23:15 on 2 June
+      ...zoned("2026-06-02T18:20:00Z", tz), // 00:05 on 3 June (still 2 June in UTC)
+    ];
+    const saved = clock;
+    clock = Date.parse("2026-06-03T10:00:00Z"); // synced the next day, inside the 72-hour grace
+    try {
+      await upload(token, offline);
+      const game = await gameOf(token, "today=2026-06-03&now=2026-06-03T10:00:00.000Z");
+      expect(game.days).toEqual(["2026-06-02", "2026-06-03"]);
+      expect(game.streak.current).toBe(2);
+      expect(Object.keys(game.xp.byDate).sort()).toEqual(["2026-06-02", "2026-06-03"]);
+      // Without a clock, the server's own, and the date where the learner last was.
+      expect((await gameOf(token, "")).streak.current).toBe(2);
+      // A session from five days earlier, synced only now: XP, but no streak day.
+      await upload(token, zoned("2026-05-29T06:00:00Z", tz));
+      const late = await gameOf(token, "today=2026-06-03&now=2026-06-03T10:00:00.000Z");
+      expect(late.days).toEqual(["2026-06-02", "2026-06-03"]);
+      expect(late.xp.byDate["2026-05-29"]).toBeGreaterThan(0);
+      expect((await app.request("/v1/game?today=3.6.2026", request("GET", undefined, token))).status).toBe(400);
+    } finally {
+      clock = saved;
+    }
   });
 });

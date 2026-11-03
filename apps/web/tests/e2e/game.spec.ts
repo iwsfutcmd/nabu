@@ -81,18 +81,24 @@ test.describe("game", () => {
     expect(moved.some((p) => p > 0)).toBe(true);
   });
 
-  test("a deployment can turn on hearts; practice stays open", async ({ page }) => {
-    await page.route("**/game.json", (route) => route.fulfill({ json: { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } } }));
-    const now = Date.parse("2026-05-21T10:00:00Z");
-    await page.clock.setFixedTime(new Date(now));
-    await seedLog(page, practice(now - 3_600_000, 2, 5)); // five mistakes an hour ago: no hearts left
-    await page.reload();
-    await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "0");
-    await page.goto("/?sound=off#/fa/fa-Arab.standard/fa.names");
-    await expect(page.locator("[data-gate-empty]")).toBeVisible();
-    await activate(page, "keyboard", '[data-gate-empty] ~ div [data-practice-mode="review"]');
-    await expect(page.locator("[data-lesson-player], [data-empty-session]").first()).toBeVisible();
-    await expect(page.locator("[data-gate-empty]")).toHaveCount(0);
+  test.describe("deployment rules", () => {
+    // The deployment's game.json is stubbed with page.route, which does not see requests the
+    // service worker makes: these tests run without it.
+    test.use({ serviceWorkers: "block" });
+
+    test("a deployment can turn on hearts; practice stays open", async ({ page }) => {
+      await page.route("**/game.json", (route) => route.fulfill({ json: { gate: { policy: "hearts", max: 5, regenMinutes: 300, refillByPractice: true } } }));
+      const now = Date.parse("2026-05-21T10:00:00Z");
+      await page.clock.setFixedTime(new Date(now));
+      await seedLog(page, practice(now - 3_600_000, 2, 5)); // five mistakes an hour ago: no hearts left
+      await page.reload();
+      await expect(page.locator("[data-gate]")).toHaveAttribute("data-gate-value", "0");
+      await page.goto("/?sound=off#/fa/fa-Arab.standard/fa.names");
+      await expect(page.locator("[data-gate-empty]")).toBeVisible();
+      await activate(page, "keyboard", '[data-gate-empty] ~ div [data-practice-mode="review"]');
+      await expect(page.locator("[data-lesson-player], [data-empty-session]").first()).toBeVisible();
+      await expect(page.locator("[data-gate-empty]")).toHaveCount(0);
+    });
   });
 });
 

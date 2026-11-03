@@ -23,7 +23,11 @@
       "type": "array",
       "items": { "$ref": "#/$defs/BundleFile" }
     },
-    "units": { "type": "array", "items": { "type": "object", "required": ["id", "file"], "additionalProperties": false, "properties": { "id": { "type": "string" }, "file": { "type": "string" } } } },
+    "units": {
+      "description": "The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/BundleManifestUnit" }
+    },
     "licenses": { "description": "SPDX expression → number of content items.", "type": "object", "additionalProperties": { "type": "integer" } },
     "provenance": { "description": "Counts by status and author kind.", "type": "object", "additionalProperties": { "type": "integer" } }
   },
@@ -31,14 +35,26 @@
     "BundleFile": {
       "title": "BundleFile",
       "type": "object",
-      "required": ["path", "role", "sha256", "license"],
+      "required": ["path", "role", "sha256", "license", "bytes"],
       "additionalProperties": false,
       "properties": {
         "path": { "type": "string" },
         "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"] },
         "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
         "license": { "type": "string" },
-        "source": { "type": "string" }
+        "source": { "type": "string" },
+        "bytes": { "description": "Size in bytes, to say what a download costs before it starts.", "type": "integer", "minimum": 0 }
+      }
+    },
+    "BundleManifestUnit": {
+      "title": "BundleManifestUnit",
+      "type": "object",
+      "required": ["id", "file", "assets"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "file": { "type": "string" },
+        "assets": { "description": "Paths of the media files (roles audio and image) the unit's items use, sorted. A file shared by units is listed in each.", "type": "array", "items": { "type": "string" } }
       }
     },
     "BundleUnit": {

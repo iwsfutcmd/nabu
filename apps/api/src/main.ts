@@ -21,9 +21,10 @@
  *
  * Speech (gameplan §10.4; tier 3, tone, runs on the device):
  *   NABU_SPEECH_URL             the speech service (`nabu speech serve`): tiers 1–2 (unset: off)
+ *   NABU_GAME                   the game rules: the game.json the web app is deployed with (default: the defaults)
  */
 import { serve } from "@hono/node-server";
-import { DEFAULT_LEAGUE } from "@nabu/core/game";
+import { DEFAULT_GAME, DEFAULT_LEAGUE, gameConfig } from "@nabu/core/game";
 import { createAccounts } from "./accounts.ts";
 import { readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
@@ -68,6 +69,7 @@ const courses = createCourses(dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES));
 console.info(provider === undefined ? "ai: no model configured; AI features are off" : `ai: ${provider.name} ${provider.model}; judge gates open: ${gates.filter((g) => g.enabled).length}`);
 
 const speechUrl = env["NABU_SPEECH_URL"] === "" ? undefined : env["NABU_SPEECH_URL"];
+const game = env["NABU_GAME"] === undefined || env["NABU_GAME"] === "" ? DEFAULT_GAME : gameConfig(JSON.parse(readFileSync(env["NABU_GAME"], "utf8")) as Parameters<typeof gameConfig>[0]);
 const app = createApp({
   db,
   accounts: createAccounts(db),
@@ -76,6 +78,7 @@ const app = createApp({
   ai: { gateway, courses, gates },
   adminToken: env["NABU_ADMIN_TOKEN"],
   speech: { url: speechUrl, transport: (url, init) => fetch(url, init) },
+  game,
 });
 
 /** The periodic jobs: league rollover and reminders. */

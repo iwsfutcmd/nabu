@@ -29,6 +29,10 @@ declare const styles: {
   readonly muted: string;
   readonly next: string;
   readonly notice: string;
+  readonly offline: string;
+  readonly offlineName: string;
+  readonly offlineUnit: string;
+  readonly offlineUnits: string;
   readonly page: string;
   readonly player: string;
   readonly preview: string;

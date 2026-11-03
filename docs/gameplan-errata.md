@@ -214,3 +214,20 @@ ADR is linked. The gameplan text itself is left as written.
     `uz-Cyrl` and `apc-Latn` get no tier 1, and `apc` no tier 2 (no trustworthy expected
     phones from unvocalized text). Their speaking is self-rated unless tones apply
     ([ADR 0046](adr/0046-speech.md)).
+
+## Phase 10
+
+56. **§16 Phase 10 "per-unit bundle downloads (OPFS or IndexedDB)":** course files live in the
+    Cache API under their own URLs, so the service worker answers the app's ordinary fetches and
+    the loader, audio and pictures need no change. A unit's download is its media; the course's
+    text (every non-media file) is stored for any course the device has opened
+    ([ADR 0047](adr/0047-offline.md)).
+57. **§2 table "vite-plugin-pwa":** the service worker is our own TypeScript, built by a small
+    Vite plugin, because it shares the outbox upload with the app and needs range requests and
+    content-addressed caching that Workbox would have to be configured into.
+58. **§12.2 grace window on the device:** the gameplan has the server apply the 72-hour grace
+    window. A device that did not know when the server received its events counted late
+    sessions the server did not, so their game states differed. The upload and pull responses
+    now carry receipt times, and the device replays with them.
+59. **Background Sync is Chromium-only** (and absent from its headless shell): elsewhere the app
+    syncs on reconnecting, on being shown again and every minute while events are pending.

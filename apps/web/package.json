@@ -10,7 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "codegen": "node ../../packages/ui/scripts/css-module-types.ts --root src",
-    "typecheck": "node ../../packages/ui/scripts/css-module-types.ts --root src --check && tsc -p tsconfig.json",
+    "typecheck": "node ../../packages/ui/scripts/css-module-types.ts --root src --check && tsc -p tsconfig.json && tsc -p sw/tsconfig.json",
     "lint": "eslint .",
     "lint:css": "stylelint \"src/**/*.css\"",
     "test:e2e": "playwright test"

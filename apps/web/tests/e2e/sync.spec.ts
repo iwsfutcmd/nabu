@@ -10,8 +10,8 @@ import { lessonNodes } from "@nabu/core/lesson";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
-import { canonical } from "../../src/sync.ts";
-import { activate, loadCourse, logOf, planned, playSession } from "./solver.ts";
+import { canonical } from "../../src/compare.ts";
+import { activate, loadCourse, logOf, planned, playSession, teachable } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const SEED = 5;
@@ -30,7 +30,7 @@ const coursePath = async (page: Page): Promise<void> => {
 
 /** Plays one planned session from the course path, at the page's fixed clock `now`. */
 const session = async (page: Page, request: Parameters<typeof planned>[2], now: Date, selector: string): Promise<void> => {
-  const exercises = planned(course, await logOf(page, "fa"), request, now, SEED);
+  const exercises = planned(await teachable(page, course), await logOf(page, "fa"), request, now, SEED);
   await activate(page, "keyboard", selector);
   await playSession(page, exercises, "keyboard");
   await activate(page, "keyboard", "[data-action=exit]");
@@ -104,6 +104,7 @@ test.describe("sync", () => {
     const now = new Date("2026-04-05T18:30:00Z");
     await page.clock.setFixedTime(now);
     await page.goto(app("#/"));
+    await expect(page.locator("[data-progress]")).toBeVisible();
     const axe = async (): Promise<string[]> =>
       (await new AxeBuilder({ page }).include("[data-progress]").analyze()).violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`);
     expect(await axe()).toEqual([]);

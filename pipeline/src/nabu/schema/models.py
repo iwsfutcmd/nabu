@@ -249,15 +249,6 @@ class AudioQa(BaseModel):
     status: Literal["pass", "review", "fail"] | None = None
 
 
-class Unit(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: str
-    file: str
-
-
 class BundleFile(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -268,6 +259,25 @@ class BundleFile(BaseModel):
     sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
     license: str
     source: str | None = None
+    bytes: Annotated[
+        int,
+        Field(description="Size in bytes, to say what a download costs before it starts.", ge=0),
+    ]
+
+
+class BundleManifestUnit(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    file: str
+    assets: Annotated[
+        list[str],
+        Field(
+            description="Paths of the media files (roles audio and image) the unit's items use, sorted. A file shared by units is listed in each."
+        ),
+    ]
 
 
 class Convert(BaseModel):
@@ -1516,7 +1526,12 @@ class BundleManifest(BaseModel):
         list[BundleFile],
         Field(description="Every file in the bundle by role, with its SPDX license."),
     ]
-    units: list[Unit]
+    units: Annotated[
+        list[BundleManifestUnit],
+        Field(
+            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
+        ),
+    ]
     licenses: Annotated[
         dict[str, int], Field(description="SPDX expression → number of content items.")
     ]
