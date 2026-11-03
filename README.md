@@ -6,16 +6,16 @@ modifier-letter apostrophes, unstandardized spelling) shape the architecture bef
 shortcut can.
 
 - Architecture and roadmap: [docs/gameplan.md](docs/gameplan.md)
-- Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phase 0)
+- Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–2)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)
 
-## Status: Phase 1 (text core) on top of Phase 0 (skeleton and i18n harness)
+## Status: Phase 2 (content compiler and fixture courses) on top of Phases 0–1
 
 | Path | What |
 |---|---|
-| `schemas/` | JSON Schema 2020-12: TaggedText, Token, RubySegment, OrthographyProfile, MessageCatalog |
+| `schemas/` | JSON Schema 2020-12: TaggedText, Token, RubySegment, OrthographyProfile, MessageCatalog, CourseSource, BundleManifest |
 | `packages/schema` | TS types generated from `schemas/` (branded, deeply readonly) |
-| `pipeline/` | uv project: Pydantic v2 models generated from `schemas/`, `nabu validate` |
+| `pipeline/` | uv project: Pydantic v2 models generated from `schemas/`; the course compiler (`nabu build`, 36 lints with fixtures, deterministic content-addressed bundles), analyzer adapters (PyCantonese, hazm), CLDR RBNF number drills (PyICU), a LibreLingo importer |
 | `packages/i18n` | Generated CLDR 49 tables (script metadata, likely subtags, parent locales, exemplars), locale negotiation, MF2 catalogs (`en`) and pseudo-locales (`en-XA`, `ar-XB`), font stacks |
 | `packages/ui` | `<T>` (the only way language data reaches the DOM), demo exercise card, Storybook, visual matrix |
 | `packages/lint` | Custom ESLint rules (§11.9) and strict logical-properties stylelint config, with fixtures |
@@ -23,7 +23,8 @@ shortcut can.
 | `packages/core-cli` | JSON-lines CLI over core (the Python pipeline's only way in), profile loader, conformance and property tests, throttled grading benchmark |
 | `apps/web`, `apps/api` | Vite + React shell; Hono server (health, UI-locale negotiation) |
 | `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
-| `conformance/` | 319 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText), run in TS and Python |
+| `courses/` | Fixture courses, one unit each: `fa` (ZWNJ plurals, ezafe), `yue` (Jyutping ruby, particles), `uz` (Latin + Cyrillic, script-convert node), `apc` (Arabic script or Arabizi, script-convert node). LLM-drafted, awaiting review |
+| `conformance/` | 322 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText), run in TS and Python |
 
 ## Getting started
 
@@ -33,8 +34,9 @@ pixel half of the visual tests.
 ```sh
 corepack enable
 pnpm install
-(cd pipeline && uv sync)
+(cd pipeline && uv sync)        # add --all-groups for PyICU (needs libicu-dev, pkg-config)
 pnpm lint && pnpm typecheck && pnpm test
+pnpm courses                   # compile the fixture courses
 pnpm storybook                 # http://localhost:6006
 pnpm test:visual:docker        # the visual matrix, in the same container CI uses
 ```

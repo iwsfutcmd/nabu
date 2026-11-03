@@ -21,5 +21,12 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0024](0024-profile-data.md) | Profile data: equivalences, tables, numbering systems | Proposed |
 | [0025](0025-interim-keyboards.md) | Interim, hand-encoded keyboard layouts | Proposed |
 | [0026](0026-conformance-and-performance.md) | Conformance harnesses and the performance budget | Proposed |
+| [0027](0027-course-source-format.md) | Course source format: forms per orthography, aligned tokens, KC links | Proposed |
+| [0028](0028-compiler-lints.md) | Compiler lints and file:line diagnostics | Proposed |
+| [0029](0029-bundle-format.md) | Bundle format and byte-for-byte determinism | Proposed |
+| [0030](0030-analyzers-and-icu.md) | Analyzers, ICU and tool availability | Proposed |
+| [0031](0031-librelingo-importer.md) | LibreLingo importer (own parser; AGPL loader avoided) | Proposed |
+| [0032](0032-exemplar-gaps.md) | `exemplarsExtra` and the corrected Simplified-only table | Proposed |
+| [0033](0033-fixture-courses.md) | Fixture courses: scope and modelling conventions | Proposed |
 
 Template: [0000-template.md](0000-template.md).

@@ -25,7 +25,8 @@ ADR is linked. The gameplan text itself is left as written.
    `:dir()` selectors ([ADR 0021](adr/0021-lint-tooling.md)).
 8. **§7.3: a token's `sense: sfp-aa3` refers to a construction KC** (`construction:sfp-aa3` in
    `introduces`), but `Token.sense` is a `SenseId`. Either tokens get a general KC link, or the sense id
-   space includes constructions. Undecided; Phase 2.
+   space includes constructions. *Phase 2:* source tokens link any KC through `form` or `morphs[].kc`;
+   `sense` stays a lexeme, and particles are lexemes (`sense:呀`) ([ADR 0027](adr/0027-course-source-format.md)).
 9. **`apc` in CLDR 49:** there is no locale data, so `cldr:apc` exemplars don't exist for the §7.5
    script audit, and likely subtags give `apc → apc-Arab-SY`. Lebanese content should be tagged
    `apc-Arab-LB` / `apc-Latn-LB` ([ADR 0016](adr/0016-orthography-profile-v0.md)).
@@ -47,3 +48,28 @@ ADR is linked. The gameplan text itself is left as written.
     on interim hand-encoded layouts ([ADR 0025](adr/0025-interim-keyboards.md)).
 16. **Unihan `kCantonese` is not a full Cantonese reading list** (行 is only hang4). The IME-homophone
     model also uses kSMSZD2003Readings, and still lacks colloquial readings ([ADR 0024](adr/0024-profile-data.md)).
+
+## Phase 2
+
+17. **§7.5 script audit vs CLDR 49 `yue_Hant`:** the exemplars are essentially `zh_Hant` and lack
+    everyday Cantonese characters (佢 哋 嘅 咗 嘢 冇 咩 啲 嚟 喺 …), so the audit as written rejects
+    colloquial Cantonese. Profiles gained `exemplarsExtra` ([ADR 0032](adr/0032-exemplar-gaps.md)).
+18. **§7.6 RBNF drills for `uz` and `tg`:** ICU 74 has no spellout rules for either and silently falls
+    back to English (`uz`) or digits (`uz-Cyrl`). The compiler detects the fallback and reports
+    `drills.rbnf-unavailable` ([ADR 0030](adr/0030-analyzers-and-icu.md)).
+19. **§6.3 uz-Latn `transliterate: … via: cldr-transform` "powers script-convert exercises":** ICU's
+    `uz_Latn-uz_Cyrl` writes *Men* as Мэн (not Мен) and *Yoʻq* as Ёʻқ (not Йўқ). It can check pinned
+    Cyrillic (`enrich.transliteration-mismatch`, info) but cannot generate it; every Cyrillic form is
+    pinned ([ADR 0027](adr/0027-course-source-format.md)).
+20. **Phase 1's `hans-only` table (OpenCC STCharacters)** treated OpenCC's orthodox Traditional as the
+    only Traditional, flagging HK standard characters (群 床 峰, and 晒 saai3) as Simplified. It now
+    subtracts HK/TW variants and CLDR `yue_Hant` exemplars ([ADR 0032](adr/0032-exemplar-gaps.md)).
+21. **§7.5 "record the Unicode version":** there are two. CLDR 49 is Unicode 16.0, but Python 3.12's
+    `unicodedata` (used for NFC checks in the compiler) is 15.1. The manifest records both
+    ([ADR 0029](adr/0029-bundle-format.md)).
+22. **§7.5 "readings pinned in the source always win; the compiler warns":** PyCantonese reads the
+    sentence-final particles 呀 and 嗎 as aa4 and maa5. The yue fixture pins aa3 and maa3 and carries
+    six expected warnings; there is no way yet to mark a disagreement as reviewed.
+23. **§16 Phase 2 "about 20 sentences and 30 knowledge components" vs i+1 with *k* = 1:** if every
+    KC counted, 30 KCs would need at least 30 sentences. Only sense, form and construction KCs count;
+    grapheme KCs are taught by script nodes ([ADR 0033](adr/0033-fixture-courses.md)).

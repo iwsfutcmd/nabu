@@ -35,7 +35,8 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - pnpm conformance                 # TS + Python harnesses over conformance/ (≥300 vectors)
 - pnpm test:perf                   # grading p95 < 5 ms, 4× CPU throttling, cold caches (Chromium)
 - pnpm tables                      # regenerate profiles/tables from pinned Unihan/OpenCC
-- uv run nabu build courses/<id>   # (Phase 2) compile a course bundle
+- pnpm courses                     # compile every course in courses/ (lint only; diagnostics as file:line)
+- cd pipeline && uv run nabu build ../courses/<id>   # write the bundle to dist/<id>; `uv run nabu lints` lists lints
 
 ## Phase 0–1 notes (see docs/adr/0013–0026)
 - TypeScript is pinned to 6.0.x: typescript-eslint's type-aware rules need the JS compiler API, which TS 7 lacks.
@@ -48,3 +49,14 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Grading lives in @nabu/core (accept/, match/, normalize/, profile/); profiles get their data passed in.
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
+
+## Phase 2 notes (see docs/adr/0027–0033)
+- Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.schema.json). Every orthography's
+  form is pinned; tokens are aligned to `text`; translations and `reverse` are accept sets.
+- Fixture courses fa, yue, uz, apc are LLM-drafted (`llm:` provenance, status draft) and await native review.
+- A new lint needs a registry entry (pipeline/src/nabu/compiler/diagnostics.py) and a fixture: add a mutation to
+  pipeline/tests/fixtures/make_lint_fixtures.py and run it. clean.yaml must stay diagnostic-free.
+- Write course YAML with nabu.yamlio.dump (keeps invisibles as \u escapes), never yaml.safe_dump.
+- Analyzers (PyCantonese, hazm) are a default uv group; PyICU is the `icu` group (apt install libicu-dev pkg-config,
+  then uv sync --all-groups). NABU_REQUIRE_TOOLS=1 turns tool-dependent skips into failures (CI sets it).
+- CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
