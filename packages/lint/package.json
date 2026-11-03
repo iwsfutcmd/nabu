@@ -1,0 +1,37 @@
+{
+  "name": "@nabu/lint",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Nabu's ESLint plugin (gameplan \u00a711.9) and strict logical-properties stylelint config",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "exports": {
+    "./eslint": "./src/eslint/index.ts",
+    "./stylelint": "./src/stylelint/config.js"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@typescript-eslint/utils": "^8.72.1",
+    "stylelint-use-logical": "^2.1.3"
+  },
+  "devDependencies": {
+    "@nabu/schema": "workspace:*",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@typescript-eslint/parser": "^8.72.1",
+    "@typescript-eslint/rule-tester": "^8.72.1",
+    "eslint": "^10.14.0",
+    "stylelint": "^17.16.0",
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  },
+  "peerDependencies": {
+    "eslint": "^10.0.0",
+    "stylelint": "^17.0.0",
+    "typescript": "~6.0.3"
+  }
+}

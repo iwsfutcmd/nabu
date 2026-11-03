@@ -1,0 +1,17 @@
+/* The logical equivalents: none of these may be rejected. */
+.a { margin-inline-start: 1rem; }
+.b { padding-inline-end: 1rem; }
+.c { inset-inline-start: 0; }
+.d { inline-size: 10rem; }
+.e { block-size: 2rem; }
+.f { text-align: start; }
+.g { float: inline-end; }
+.h { border-inline-start: 1px solid; }
+.i { overflow-inline: auto; }
+.j { margin-block: 0; margin-inline: 1rem 2rem; }
+.k { writing-mode: vertical-rl; }
+.l { background-position: center; }
+.m { border-start-start-radius: 4px; }
+.n { scroll-padding-inline-start: 1rem; }
+.o:dir(rtl) { transform: scaleX(-1); }
+.p { padding: 0.5rem 1rem; margin: 0; }
