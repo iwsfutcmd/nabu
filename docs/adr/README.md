@@ -28,5 +28,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0031](0031-librelingo-importer.md) | LibreLingo importer (own parser; AGPL loader avoided) | Proposed |
 | [0032](0032-exemplar-gaps.md) | `exemplarsExtra` and the corrected Simplified-only table | Proposed |
 | [0033](0033-fixture-courses.md) | Fixture courses: scope and modelling conventions | Proposed |
+| [0034](0034-lesson-player.md) | The lesson player: pure core, templates, IME-safe shell; on-screen keyboards deferred | Proposed |
+| [0035](0035-bundles-in-the-client.md) | Course bundles in the client (committed, CI-checked), pictures, vocalization | Proposed |
 
 Template: [0000-template.md](0000-template.md).

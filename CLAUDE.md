@@ -37,6 +37,8 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - pnpm tables                      # regenerate profiles/tables from pinned Unihan/OpenCC
 - pnpm courses                     # compile every course in courses/ (lint only; diagnostics as file:line)
 - cd pipeline && uv run nabu build ../courses/<id>   # write the bundle to dist/<id>; `uv run nabu lints` lists lints
+- pnpm bundles                     # rebuild apps/web/public/bundles (committed; CI fails if stale)
+- pnpm test:e2e                    # lesson per course by keyboard and touch, IME composition, axe
 
 ## Phase 0–1 notes (see docs/adr/0013–0026)
 - TypeScript is pinned to 6.0.x: typescript-eslint's type-aware rules need the JS compiler API, which TS 7 lacks.
@@ -61,10 +63,18 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
   then uv sync --all-groups). NABU_REQUIRE_TOOLS=1 turns tool-dependent skips into failures (CI sets it).
 - CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
 
+## Phase 3 notes (see docs/adr/0034–0035)
+- Lessons: pure @nabu/core/lesson (templates, buildLesson, step). The player shell and views are @nabu/ui/player;
+  views render state and dispatch PlayerEvents, never grade or advance themselves.
+- After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
+- Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+- Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
+- Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0033 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0035 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

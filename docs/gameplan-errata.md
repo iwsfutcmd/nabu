@@ -73,3 +73,18 @@ ADR is linked. The gameplan text itself is left as written.
 23. **§16 Phase 2 "about 20 sentences and 30 knowledge components" vs i+1 with *k* = 1:** if every
     KC counted, 30 KCs would need at least 30 sentences. Only sense, form and construction KCs count;
     grapheme KCs are taught by script nodes ([ADR 0033](adr/0033-fixture-courses.md)).
+
+## Phase 3
+
+24. **§16 Phase 3 "CLDR touch keyboards for fa, uz-Latn, uz-Cyrl and apc-Arab":** CLDR's Keyboard 3.0
+    set (release 48) has layouts such as Maltese and Bengali but none for fa, ar or uz, so there is
+    nothing to compile. Phones' own keyboards and IMEs cover these scripts well; on-screen keyboards
+    are deferred and the player leaves typing to the device ([ADR 0034](adr/0034-lesson-player.md)).
+25. **§11.5 `PlayerState` holds only the current exercise.** A lesson also needs a session (the
+    queue with retries, the results for the summary); every state carries one
+    ([ADR 0034](adr/0034-lesson-player.md)).
+26. **§6.6 "store fully vocalized text":** the fixture courses are not fully vocalized. fa writes the
+    ezafe kasra and apc the shadda; full vocalization is a content decision for review. The harakat
+    toggle strips whatever marks the content has, for display only.
+27. **§8.2 `select-image` "images need licenses"** also needs a place in the course format:
+    `kcs[].image` with file, SPDX licence and provenance ([ADR 0035](adr/0035-bundles-in-the-client.md)).

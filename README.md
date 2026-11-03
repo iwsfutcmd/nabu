@@ -6,10 +6,10 @@ modifier-letter apostrophes, unstandardized spelling) shape the architecture bef
 shortcut can.
 
 - Architecture and roadmap: [docs/gameplan.md](docs/gameplan.md)
-- Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–2)
+- Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–3)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)
 
-## Status: Phase 2 (content compiler and fixture courses) on top of Phases 0–1
+## Status: Phase 3 (lesson player) on top of Phases 0–2
 
 | Path | What |
 |---|---|
@@ -17,14 +17,15 @@ shortcut can.
 | `packages/schema` | TS types generated from `schemas/` (branded, deeply readonly) |
 | `pipeline/` | uv project: Pydantic v2 models generated from `schemas/`; the course compiler (`nabu build`, 36 lints with fixtures, deterministic content-addressed bundles), analyzer adapters (PyCantonese, hazm), CLDR RBNF number drills (PyICU), a LibreLingo importer |
 | `packages/i18n` | Generated CLDR 49 tables (script metadata, likely subtags, parent locales, exemplars), locale negotiation, MF2 catalogs (`en`) and pseudo-locales (`en-XA`, `ar-XB`), font stacks |
-| `packages/ui` | `<T>` (the only way language data reaches the DOM), demo exercise card, Storybook, visual matrix |
+| `packages/ui` | `<T>` (the only way language data reaches the DOM), the lesson player (templates, word bank, IME-safe input, feedback, ruby and harakat toggles), Storybook, visual matrix |
 | `packages/lint` | Custom ESLint rules (§11.9) and strict logical-properties stylelint config, with fixtures |
-| `packages/core` | Pure core: TaggedText checks, letters and case folding, the normalization engine, profile compiler, accept-set notation → lattice, closest-path matcher, typo models, grading |
+| `packages/core` | Pure core: TaggedText checks, letters and case folding, the normalization engine, profile compiler, accept-set notation → lattice, closest-path matcher, typo models, grading; lessons (templates, seeded lesson builder, player state machine) |
 | `packages/core-cli` | JSON-lines CLI over core (the Python pipeline's only way in), profile loader, conformance and property tests, throttled grading benchmark |
-| `apps/web`, `apps/api` | Vite + React shell; Hono server (health, UI-locale negotiation) |
+| `apps/web` | Vite + React client: course list, lessons, the lesson player over the committed bundles (`public/bundles`); Playwright e2e |
+| `apps/api` | Hono server (health, UI-locale negotiation) |
 | `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
 | `courses/` | Fixture courses, one unit each: `fa` (ZWNJ plurals, ezafe), `yue` (Jyutping ruby, particles), `uz` (Latin + Cyrillic, script-convert node), `apc` (Arabic script or Arabizi, script-convert node). LLM-drafted, awaiting review |
-| `conformance/` | 322 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText), run in TS and Python |
+| `conformance/` | 328 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText), run in TS and Python |
 
 ## Getting started
 
@@ -37,6 +38,8 @@ pnpm install
 (cd pipeline && uv sync)        # add --all-groups for PyICU (needs libicu-dev, pkg-config)
 pnpm lint && pnpm typecheck && pnpm test
 pnpm courses                   # compile the fixture courses
+pnpm dev                       # the web app: course list and lesson player
+pnpm test:e2e                  # a lesson per course by keyboard and by touch, IME, axe
 pnpm storybook                 # http://localhost:6006
 pnpm test:visual:docker        # the visual matrix, in the same container CI uses
 ```
