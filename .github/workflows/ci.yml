@@ -76,7 +76,7 @@ jobs:
       - run: pnpm test:visual
       - name: Grading p95 under 5 ms with 4x CPU throttling (Phase 1 acceptance)
         run: pnpm test:perf
-      - name: One lesson per fixture course by keyboard and by touch, IME composition, axe (Phase 3 acceptance)
+      - name: Lessons by keyboard and touch, IME composition, axe; local-first progress and sync against the API (Phase 3-4 acceptance)
         run: pnpm test:e2e
       - name: Upload report on failure
         if: failure()

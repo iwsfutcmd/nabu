@@ -2,6 +2,82 @@
   "$schema": "../../../schemas/message-catalog.schema.json",
   "locale": "en",
   "messages": {
+    "app.account.create": {
+      "message": "Create account",
+      "description": "Button that creates an account and uploads the progress on this device."
+    },
+    "app.account.email": {
+      "message": "Email",
+      "description": "Label of the email address field."
+    },
+    "app.account.have-account": {
+      "message": "I already have an account",
+      "description": "Switches the account form to signing in."
+    },
+    "app.account.new-account": {
+      "message": "I need a new account",
+      "description": "Switches the account form to creating an account."
+    },
+    "app.account.password": {
+      "message": "Password",
+      "description": "Label of the password field."
+    },
+    "app.account.password-hint": {
+      "message": ".input {$min :number}\n{{At least {$min} characters}}",
+      "description": "Hint under the new-password field. $min is the minimum number of characters."
+    },
+    "app.account.pitch": {
+      "message": "Create an account to keep your progress safe and use it on your other devices. Everything you've done so far comes with you.",
+      "description": "Introduces the optional account. Accounts are never required."
+    },
+    "app.account.sign-in": {
+      "message": "Sign in",
+      "description": "Button that signs in to an existing account."
+    },
+    "app.account.sign-out": {
+      "message": "Sign out",
+      "description": "Button that signs out. Progress stays on this device."
+    },
+    "app.account.signed-in": {
+      "message": "Signed in as {$email}",
+      "description": "Who is signed in. $email is the account's email address."
+    },
+    "app.account.welcome-back": {
+      "message": "Sign in to bring your progress from your other devices.",
+      "description": "Introduces the sign-in form."
+    },
+    "app.error.account.email-taken": {
+      "message": "There's already an account with this email. Sign in instead.",
+      "description": "Shown when creating an account with an email that has one."
+    },
+    "app.error.account.invalid-email": {
+      "message": "Enter a valid email address.",
+      "description": "Shown when the email address is not valid."
+    },
+    "app.error.account.rejected": {
+      "message": "The server didn't accept some of your progress.",
+      "description": "Shown when the server rejects uploaded events."
+    },
+    "app.error.account.signed-out": {
+      "message": "You've been signed out. Sign in again to keep syncing.",
+      "description": "Shown when the server no longer accepts the saved sign-in."
+    },
+    "app.error.account.unknown": {
+      "message": "Something went wrong. Try again.",
+      "description": "Shown for unexpected account or sync errors."
+    },
+    "app.error.account.unreachable": {
+      "message": "Can't reach the server. Check your connection and try again.",
+      "description": "Shown when the sync server cannot be reached."
+    },
+    "app.error.account.weak-password": {
+      "message": ".input {$min :number}\n{{Use at least {$min} characters.}}",
+      "description": "Shown when a new password is too short. $min is the minimum number of characters."
+    },
+    "app.error.account.wrong-credentials": {
+      "message": "That email and password don't match.",
+      "description": "Shown when signing in fails."
+    },
     "app.error.load": {
       "message": "This course could not be loaded.",
       "description": "Shown when a course bundle fails to load."
@@ -74,9 +150,41 @@
       "message": ".input {$count :number}\n{{{$count} to fix}}",
       "description": "How many recent mistakes are waiting in the mistakes session. $count is a number."
     },
+    "app.progress.device": {
+      "message": "Your progress is saved on this device.",
+      "description": "Where progress is kept when there is no account."
+    },
+    "app.progress.export": {
+      "message": "Download my learning data",
+      "description": "Button that downloads every learning event recorded on this device."
+    },
+    "app.progress.title": {
+      "message": "Your progress",
+      "description": "Heading of the progress and account section on the home screen."
+    },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
       "description": "Shown when on-device storage is unavailable (for example in some private windows)."
+    },
+    "app.sync.mismatch": {
+      "message": "The server's copy of your progress doesn't match this device's.",
+      "description": "Shown when the server's projection of the log differs from the device's own."
+    },
+    "app.sync.offline": {
+      "message": ".input {$count :number}\n.match $count\none {{Offline. {$count} update will upload when you're back online.}}\n* {{Offline. {$count} updates will upload when you're back online.}}",
+      "description": "Sync status while the server cannot be reached. $count is how many events wait to upload."
+    },
+    "app.sync.pending": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} update waiting to upload}}\n* {{{$count} updates waiting to upload}}",
+      "description": "Sync status with events not yet uploaded. $count is a number."
+    },
+    "app.sync.saved": {
+      "message": "All progress saved to your account",
+      "description": "Sync status when everything is uploaded."
+    },
+    "app.sync.syncing": {
+      "message": "Saving…",
+      "description": "Sync status while uploading."
     },
     "app.xp.today": {
       "message": ".input {$xp :number}\n{{Today: {$xp} XP}}",

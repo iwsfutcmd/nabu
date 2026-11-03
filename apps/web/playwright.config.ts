@@ -1,11 +1,11 @@
 /**
- * Phase 3 acceptance (gameplan §16): one lesson per fixture course, by keyboard
- * and by touch; the IME composition test; axe on every screen. Runs against the
- * production build served by `vite preview`.
+ * Phase 3 and 4 acceptance (gameplan §16): one lesson per fixture course, by
+ * keyboard and by touch; the IME composition test; axe on every screen; the
+ * local-first loop and sync. Runs against the production build served by
+ * `vite preview`, and the API on PGlite in memory.
  */
 import { defineConfig } from "@playwright/test";
-
-const PORT = 4174;
+import { API_PORT, WEB_PORT as PORT } from "./tests/e2e/ports.ts";
 
 export default defineConfig({
   testDir: "tests/e2e",
@@ -25,10 +25,19 @@ export default defineConfig({
     { name: "keyboard", use: { viewport: { width: 1280, height: 900 } } },
     { name: "touch", use: { viewport: { width: 390, height: 844 }, hasTouch: true, isMobile: true } },
   ],
-  webServer: {
-    command: `pnpm build && pnpm exec vite preview --port ${PORT} --strictPort --host 127.0.0.1`,
-    url: `http://127.0.0.1:${PORT}/bundles/index.json`,
-    reuseExistingServer: !process.env["CI"],
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: `pnpm build && pnpm exec vite preview --port ${PORT} --strictPort --host 127.0.0.1`,
+      url: `http://127.0.0.1:${PORT}/bundles/index.json`,
+      reuseExistingServer: !process.env["CI"],
+      timeout: 120_000,
+    },
+    {
+      command: "node ../api/src/main.ts",
+      env: { PORT: String(API_PORT), NABU_PGLITE: "memory" },
+      url: `http://127.0.0.1:${API_PORT}/healthz`,
+      reuseExistingServer: !process.env["CI"],
+      timeout: 60_000,
+    },
+  ],
 });

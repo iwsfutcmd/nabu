@@ -4,8 +4,9 @@
  * static build works anywhere (GitHub Pages):
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes>
  *
- * Local-first (§12.4): every learner event goes to the on-device log, and the
+ * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
+ * An account is optional; with one, the log syncs to the server.
  */
 import { applyEvents, dueFacets, pathOf, plan, replay, type LearnerState, type NodeStatus, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, lessonNodes } from "@nabu/core/lesson";
@@ -13,11 +14,13 @@ import { directionOf } from "@nabu/i18n";
 import type { LearnerEvent } from "@nabu/schema";
 import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
-import { useCallback, useEffect, useMemo, useState, type JSX } from "react";
+import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
+import { Progress } from "./Progress.tsx";
 import { recorder } from "./session.ts";
 import { openStore, type EventStore } from "./store.ts";
+import { createSync, type Sync } from "./sync.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
 
@@ -72,7 +75,7 @@ const orthographyName = (t: Translator, id: string): string => {
   return t.has(key) ? t.format(key) : id;
 };
 
-const Home = ({ courses }: { courses: readonly CourseIndexEntry[] }): JSX.Element => {
+const Home = ({ courses, store, sync }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync }): JSX.Element => {
   const t = useTranslator();
   return (
     <main className={styles.page}>
@@ -92,6 +95,7 @@ const Home = ({ courses }: { courses: readonly CourseIndexEntry[] }): JSX.Elemen
           </li>
         ))}
       </ul>
+      <Progress store={store} sync={sync} />
     </main>
   );
 };
@@ -280,16 +284,27 @@ const Session = ({ loaded, request, state, device, record }: SessionProps): JSX.
   );
 };
 
-/** The open store, for tests and debugging (import history, read the log). */
+/** The sync server: ?api= (tests, trying a server), else the build's VITE_NABU_API, else none (local-only). */
+const apiBase = (): string | undefined => {
+  const value = new URLSearchParams(window.location.search).get("api") ?? import.meta.env.VITE_NABU_API;
+  return value === undefined || value === "" ? undefined : value.replace(/\/+$/u, "");
+};
+
+/** The open store and sync, for tests and debugging (import history, read the log). */
 declare global {
   interface Window {
     nabu?: EventStore;
+    nabuSync?: Sync;
   }
 }
-const storeReady = openStore().then((store) => {
+const ready = openStore().then(async (store) => {
+  const sync = await createSync(store, apiBase());
   window.nabu = store;
-  return store;
+  window.nabuSync = sync;
+  return { store, sync };
 });
+
+const noSync = { subscribe: () => () => undefined, get: () => undefined };
 
 /** One course's event log and the state it projects to. */
 interface Log {
@@ -301,7 +316,9 @@ export const App = (): JSX.Element => {
   const t = useTranslator();
   const route = useRoute();
   const [index, setIndex] = useState<readonly CourseIndexEntry[] | null>(null);
-  const [store, setStore] = useState<EventStore | null>(null);
+  const [{ store, sync }, setDevice] = useState<{ store: EventStore | null; sync: Sync | null }>({ store: null, sync: null });
+  // Events pulled from another device: replay the open course.
+  const pulled = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().pulled ?? 0);
   const [log, setLog] = useState<Log | null>(null);
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
   const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
@@ -309,8 +326,11 @@ export const App = (): JSX.Element => {
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
-    void storeReady.then(setStore);
+    void ready.then(setDevice);
   }, []);
+  useEffect(() => {
+    if (pulled > 0) setLog(null);
+  }, [pulled]);
   useEffect(() => {
     if (route.tag === "home" || courseKey === null || loaded?.key === courseKey) return;
     fetchCourse(BUNDLES, route.course, route.orthography).then(
@@ -327,13 +347,13 @@ export const App = (): JSX.Element => {
   const record = useCallback(
     (event: LearnerEvent): void => {
       setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
-      void store?.append([event]);
+      void store?.append([event]).then(() => sync?.schedule());
     },
-    [store],
+    [store, sync],
   );
 
   if (route.tag === "home") {
-    return index === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} />;
+    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} />;
   }
   if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
     return <p className={styles.page}>{t.format("player.loading")}</p>;
