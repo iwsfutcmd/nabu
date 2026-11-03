@@ -148,7 +148,8 @@ describe("local dates", () => {
 
 const ZONES = ["Pacific/Kiritimati", "Pacific/Pago_Pago", "Pacific/Auckland", "Pacific/Honolulu", "Asia/Tehran", "America/New_York", "UTC"] as const;
 
-describe("streak properties", () => {
+// Property tests generate whole timelines: give them time on slow CI runners.
+describe("streak properties", { timeout: 120_000 }, () => {
   it("daily practice is one streak, whichever side of the date line each day is spent on", () => {
     fc.assert(
       fc.property(
