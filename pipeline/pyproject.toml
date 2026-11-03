@@ -33,6 +33,10 @@ dev = [
   "pytest>=9.2",
   "ruff>=0.17",
 ]
+# Learner-event analytics (§9.3 shadow mode, §14.4): DuckDB over exported JSONL logs.
+analytics = [
+  "duckdb>=1.4",
+]
 
 [build-system]
 requires = ["hatchling>=1.33"]
@@ -57,10 +61,10 @@ select = ["E", "F", "W", "I", "UP", "B", "SIM", "RUF"]
 ignore = ["RUF001", "RUF002", "RUF003"]
 
 [tool.uv]
-default-groups = ["dev", "analyzers"]
+default-groups = ["dev", "analyzers", "analytics"]
 
 [tool.pyright]
-include = ["src", "tests"]
+include = ["src", "tests", "notebooks"]
 typeCheckingMode = "strict"
 pythonVersion = "3.12"
 venvPath = "."

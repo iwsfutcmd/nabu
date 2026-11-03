@@ -104,3 +104,15 @@ ADR is linked. The gameplan text itself is left as written.
     requires non-target KCs to have been *seen*, and lets the score pull toward due facets.
 31. **§9.2 ts-fsrs:** ts-fsrs 6 requires Node 24. The repo is on Node 22, so core pins ts-fsrs 5.4,
     which already implements FSRS-6 (21 parameters).
+32. **§4 / §14.1 "Better Auth, behind our own adapter":** v0 ships only the adapter's own
+    implementation: email and password, scrypt, opaque bearer tokens. The `Accounts` interface is
+    where Better Auth plugs in once OAuth, verification or passkeys are needed
+    ([ADR 0038](adr/0038-server-sync-and-accounts.md)).
+33. **§14.3 projection tables** (`facet_state`, `user_ability`, …) are not created yet: the server
+    replays a user's log on request with the same core as the device. §14.1's `GET /v1/state`
+    returns that projection whole, not as deltas since a cursor
+    ([ADR 0038](adr/0038-server-sync-and-accounts.md)).
+34. **§9.5 placement "computerized adaptive testing over calibrated items":** there are no
+    calibrated items yet. Placement v0 probes every lesson node once and places through the longest
+    run answered right ([ADR 0039](adr/0039-placement-and-calibration.md)).
+

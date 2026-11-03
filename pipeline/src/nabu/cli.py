@@ -140,6 +140,24 @@ def lints() -> None:
         typer.echo(f"{lint.id:34} {lint.severity:8} stage {lint.stage}  {lint.description}")
 
 
+@app.command("calibration")
+def calibration_command(
+    events: Annotated[
+        list[Path], typer.Argument(help="JSONL learner-event logs.", exists=True, dir_okay=False)
+    ],
+    bins: Annotated[int, typer.Option(min=2, help="Number of equal-width probability bins.")] = 10,
+    by: Annotated[str, typer.Option(help="Also split by: none, template or course.")] = "none",
+) -> None:
+    """Shadow-mode calibration of the performance model (§9.3): predicted vs observed."""
+    from nabu.analytics.calibration import GroupBy, calibration, format_report
+
+    reports = calibration(events, bins=bins, group_by=GroupBy(by))
+    if not reports:
+        typer.echo("no first tries with a logged prediction")
+        raise typer.Exit(1)
+    typer.echo("\n\n".join(format_report(r) for r in reports))
+
+
 @app.command("import-librelingo")
 def import_librelingo(
     source: Annotated[

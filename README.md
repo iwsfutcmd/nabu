@@ -9,20 +9,20 @@ shortcut can.
 - Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–3)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)
 
-## Status: Phase 4a (local-first learning loop) on top of Phases 0–3
+## Status: Phase 4 (learner model, local-first app, sync, placement) on top of Phases 0–3
 
 | Path | What |
 |---|---|
 | `schemas/` | JSON Schema 2020-12: TaggedText, Token, RubySegment, OrthographyProfile, MessageCatalog, CourseSource, BundleManifest, LearnerEvent |
 | `packages/schema` | TS types generated from `schemas/` (branded, deeply readonly) |
-| `pipeline/` | uv project: Pydantic v2 models generated from `schemas/`; the course compiler (`nabu build`, 36 lints with fixtures, deterministic content-addressed bundles), analyzer adapters (PyCantonese, hazm), CLDR RBNF number drills (PyICU), a LibreLingo importer |
+| `pipeline/` | uv project: Pydantic v2 models generated from `schemas/`; the course compiler (`nabu build`, 36 lints with fixtures, deterministic content-addressed bundles), analyzer adapters (PyCantonese, hazm), CLDR RBNF number drills (PyICU), a LibreLingo importer; DuckDB calibration of the performance model (`nabu calibration`, `notebooks/calibration.py`) |
 | `packages/i18n` | Generated CLDR 49 tables (script metadata, likely subtags, parent locales, exemplars), locale negotiation, MF2 catalogs (`en`) and pseudo-locales (`en-XA`, `ar-XB`), font stacks |
 | `packages/ui` | `<T>` (the only way language data reaches the DOM), the lesson player (templates, word bank, IME-safe input, feedback, ruby and harakat toggles), Storybook, visual matrix |
 | `packages/lint` | Custom ESLint rules (§11.9) and strict logical-properties stylelint config, with fixtures |
 | `packages/core` | Pure core: TaggedText checks, letters and case folding, the normalization engine, profile compiler, accept-set notation → lattice, closest-path matcher, typo models, grading; lessons (templates, seeded lesson builder, player state machine); the learner model (event projection: FSRS-6 facets, Elo performance model, XP, mistakes, path) and the seeded session planner |
 | `packages/core-cli` | JSON-lines CLI over core (the Python pipeline's only way in), profile loader, conformance and property tests, throttled grading benchmark |
-| `apps/web` | Vite + React client: course list, the course path (lessons unlock in order), review and mistakes sessions, XP; every learner event kept in an on-device IndexedDB log; reads the committed bundles (`public/bundles`); Playwright e2e |
-| `apps/api` | Hono server (health, UI-locale negotiation) |
+| `apps/web` | Vite + React client: course list, the course path (lessons unlock in order), placement, review and mistakes sessions, XP; every learner event kept in an on-device IndexedDB log, with optional account sync; reads the committed bundles (`public/bundles`); Playwright e2e |
+| `apps/api` | Hono server: optional accounts, the learner event log (Postgres via Drizzle, or PGlite with no setup), idempotent uploads, sync by cursor, server projections by the same core replay |
 | `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
 | `courses/` | Fixture courses, one unit each: `fa` (ZWNJ plurals, ezafe), `yue` (Jyutping ruby, particles), `uz` (Latin + Cyrillic, script-convert node), `apc` (Arabic script or Arabizi, script-convert node). LLM-drafted, awaiting review |
 | `conformance/` | 328 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText), run in TS and Python |
@@ -38,8 +38,9 @@ pnpm install
 (cd pipeline && uv sync)        # add --all-groups for PyICU (needs libicu-dev, pkg-config)
 pnpm lint && pnpm typecheck && pnpm test
 pnpm courses                   # compile the fixture courses
-pnpm dev                       # the web app: course list and lesson player
-pnpm test:e2e                  # a lesson per course by keyboard and by touch, IME, axe
+pnpm dev                       # the web app and the API (PGlite: no database server needed)
+pnpm test:e2e                  # lessons by keyboard and by touch, IME, axe, progress, placement, sync
+pnpm --filter @nabu/core simulate --out /tmp/sim.jsonl && (cd pipeline && uv run nabu calibration /tmp/sim.jsonl)
 pnpm storybook                 # http://localhost:6006
 pnpm test:visual:docker        # the visual matrix, in the same container CI uses
 ```

@@ -1,7 +1,7 @@
 /** Shared helpers for learner tests: courses from the committed bundles, and event builders. */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { BundleManifest, KcCredit, LearnerEvent } from "@nabu/schema";
+import type { BundleManifest, KcCredit, LearnerEvent, Prediction } from "@nabu/schema";
 import { assembleCourse, type CourseView, type Exercise } from "../src/lesson/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -34,7 +34,7 @@ export interface EventFactory {
   readonly at: (iso: string) => void;
   readonly session: () => string;
   readonly started: (mode: "lesson" | "review" | "mistakes", node: string | undefined, exercises: number) => LearnerEvent;
-  readonly answer: (ex: Exercise, correct: boolean, attempt: number, latencyMs?: number) => LearnerEvent;
+  readonly answer: (ex: Exercise, correct: boolean, attempt: number, latencyMs?: number, prediction?: Prediction) => LearnerEvent;
   readonly completed: (mode: "lesson" | "review" | "mistakes", node: string | undefined, summary: { exercises: number; correctFirstTry: number; retries: number }) => LearnerEvent;
 }
 
@@ -65,13 +65,14 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
       return session;
     },
     started: (mode, node, exercises) => ({ ...base(), type: "session_started", mode, ...(node === undefined ? {} : { node }), seed: 1, exercises, planner: "test" }),
-    answer: (ex, correct, attempt, latencyMs = 4000) => ({
+    answer: (ex, correct, attempt, latencyMs = 4000, prediction) => ({
       ...base(),
       type: "answer_submitted",
       exercise: { id: ex.id, template: ex.template, item: ex.item, kcs: [...ex.kcs] },
       attempt,
       input: { method: "choice", latencyMs },
       outcome: { kind: correct ? "CORRECT" : "WRONG", notes: [], kcs: ex.kcs.map((kc): KcCredit => ({ kc, status: correct ? "right" : "wrong" })) },
+      ...(prediction === undefined ? {} : { prediction }),
     }),
     completed: (mode, node, summary) => ({
       ...base(),

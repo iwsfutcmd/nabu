@@ -25,7 +25,7 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Conventional commits. Small PRs, one roadmap deliverable each.
 
 ## Commands
-- pnpm i && pnpm dev               # web + api
+- pnpm i && pnpm dev               # web + api (API on PGlite in apps/api/.data; no database server needed)
 - pnpm lint · pnpm typecheck · pnpm test   # all packages incl. the Python pipeline (via turbo)
 - pnpm test:visual:docker          # visual matrix in the pinned Playwright image (needs Docker)
 - pnpm test:visual:update          # same, rewriting baselines: review every changed PNG
@@ -71,7 +71,7 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
 - Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
 
-## Phase 4 notes (see docs/adr/0036–0037)
+## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
   test/simulation.test.ts (every course within ±5pp of 85%); golden files: UPDATE_GOLDEN=1 after a deliberate change.
@@ -79,11 +79,18 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
   window.nabu, and plan with the solver's `planned()`.
+- The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
+  (append, never edit). Events are validated against schemas/learner-event.schema.json with Ajv.
+- Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
+  Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
+  differently from core's replay.
+- Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
+  or `uv run python notebooks/calibration.py f.jsonl`.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0037 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0039 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

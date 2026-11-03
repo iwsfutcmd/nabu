@@ -14,7 +14,8 @@
   "scripts": {
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "simulate": "node scripts/simulate.ts"
   },
   "dependencies": {
     "@nabu/schema": "workspace:*",
