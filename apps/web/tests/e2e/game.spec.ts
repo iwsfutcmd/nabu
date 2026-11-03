@@ -178,9 +178,11 @@ test("with an account: a username, the league, and a reminder by Web Push", asyn
   await page.locator("[data-action=reminders]").click();
   await expect(page.locator("[data-reminders]")).toHaveAttribute("data-reminders", "on");
 
-  // Tomorrow evening, with no practice yet, the job sends one reminder.
+  // Tomorrow, with no practice yet, the job sends one reminder once the habitual time has come.
+  // The sessions above ran on the real clock, so the habitual minute is today's: the last minute of
+  // tomorrow is past it whatever time of day the test runs (at 22:00 it failed after 22:00 UTC).
   const evening = new Date(now + DAY);
-  evening.setUTCHours(22, 0, 0, 0);
+  evening.setUTCHours(23, 59, 0, 0);
   const jobs = await (await page.request.post(`${API}/test/jobs?now=${evening.getTime()}`)).json() as { sent: number };
   expect(jobs.sent).toBeGreaterThanOrEqual(1);
   const { messages } = await (await page.request.get(`${API}/test/push/e2e-${now}`)).json() as { messages: string[] };
