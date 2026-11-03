@@ -123,10 +123,31 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     if (state.tag === "reading" || active?.tag === "feedback") continueButton.current?.focus({ preventScroll: true });
   });
 
-  // The newest line scrolls into view along the transcript's block axis (leftward in vertical-rl).
+  // The newest line is the last one: the transcript scrolls to its block end (the bottom; the left
+  // in vertical-rl), and again whenever the layout settles under it, since web fonts change line
+  // heights after the first layout and a question opening below resizes the transcript. Scrolling
+  // to the end, not "nearest", gives the same position whatever the scroll was before.
   const shownCount = state.shown.length;
   useEffect(() => {
-    transcript.current?.querySelector("[data-latest]")?.scrollIntoView({ block: "nearest", inline: "nearest" });
+    const box = transcript.current;
+    const reveal = (): void => {
+      if (box === null) return;
+      const mode = getComputedStyle(box).writingMode;
+      if (mode === "vertical-rl") box.scrollLeft = -box.scrollWidth;
+      else if (mode === "vertical-lr") box.scrollLeft = box.scrollWidth;
+      else box.scrollTop = box.scrollHeight;
+    };
+    reveal();
+    let live = true;
+    void document.fonts.ready.then(() => {
+      if (live) reveal();
+    });
+    const resized = typeof ResizeObserver === "undefined" || box === null ? undefined : new ResizeObserver(reveal);
+    if (box !== null) resized?.observe(box);
+    return () => {
+      live = false;
+      resized?.disconnect();
+    };
   }, [shownCount]);
 
   useEffect(() => {

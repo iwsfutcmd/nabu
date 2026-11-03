@@ -86,7 +86,7 @@ const EXPLAINED: Readonly<Record<Target, { readonly answer: string; readonly out
   },
 };
 
-export const fixtureExplanation = (target: Target, base: Base): Explanation => {
+const fixtureExplanation = (target: Target, base: Base): Explanation => {
   const { answer, output } = EXPLAINED[target];
   const made = explanationOf(output, { support: EN, target: base, answer, answerIn: base }, FIXTURE);
   if (!made.ok) throw new Error(made.error);
