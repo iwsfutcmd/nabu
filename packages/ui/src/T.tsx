@@ -9,11 +9,13 @@
  * - Fonts and line height come from the orthography profile, else the script.
  * - Tokens are wrapped whole (§6.8): a cursive or conjunct-forming run is never
  *   split into per-letter elements. Ruby splits only at RubySegment bases.
+ * - Vocalization (§6.6): text is stored vocalized; `marks="hide"` strips the
+ *   profile's mark set for display only, never in the data.
  */
-import { graphemeCount } from "@nabu/core/text";
+import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
-import { Fragment, type CSSProperties, type JSX } from "react";
+import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
 import { useOrthography } from "./context.tsx";
 import styles from "./T.module.css";
 
@@ -22,25 +24,55 @@ export interface TProps {
   readonly as?: "span" | "div" | "p";
   /** Which ruby layer to show, by scheme (e.g. "jyutping"). Off by default. */
   readonly ruby?: SchemeId | false;
+  /** Show or hide the profile's vowel marks (harakat). Shown by default. */
+  readonly marks?: "show" | "hide";
+  /** Token indexes to mark (the parts of an answer that differ, §11.6). */
+  readonly highlight?: readonly number[];
+  /** A ruby segment (one Han character) to emphasize: reading-disambiguation. */
+  readonly focus?: { readonly token: number; readonly segment: number };
   readonly className?: string;
   readonly id?: string;
 }
 
+const escape = (c: string): string => c.replace(/[\\\]^-]/gu, "\\$&");
+
+/** A regex over the profile's mark set, for hiding vowel marks in display. */
+const markStripper = (set: string | undefined): RegExp | undefined => {
+  if (set === undefined) return undefined;
+  const chars = parseExemplarSet(set);
+  return chars.length === 0 ? undefined : new RegExp(`[${chars.map(escape).join("")}]`, "gu");
+};
+
 /** Numbers up to this many graphemes are set horizontally in vertical text (tate-chū-yoko). */
 const TATE_CHU_YOKO_MAX = 2;
 
-const TokenView = ({ token, index, ruby }: { token: Token; index: number; ruby: SchemeId | false }): JSX.Element => {
+interface TokenViewProps {
+  readonly token: Token;
+  readonly index: number;
+  readonly ruby: SchemeId | false;
+  readonly strip: RegExp | undefined;
+  readonly highlighted: boolean;
+  readonly focus: number | undefined;
+}
+
+const TokenView = ({ token, index, ruby, strip, highlighted, focus }: TokenViewProps): JSX.Element => {
+  const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
+  // A focused character needs the segment bases even when no reading layer is shown.
+  const bases = segments ?? (focus === undefined ? undefined : Object.values(token.ruby ?? {})[0]);
   const tcy = token.kind === "number" && graphemeCount(token.surface) <= TATE_CHU_YOKO_MAX;
+  const base = (text: string, i: number): JSX.Element | string => (i === focus ? <mark className={styles.focus}>{text}</mark> : text);
   return (
-    <span className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined}>
-      {segments === undefined ? (
-        token.surface
+    <span className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined} data-highlight={highlighted || undefined}>
+      {bases === undefined ? (
+        show(token.surface)
+      ) : segments === undefined ? (
+        bases.map((segment, i) => <Fragment key={i}>{base(segment.base, i)}</Fragment>)
       ) : (
         <ruby className={styles.ruby}>
           {segments.map((segment, i) => (
             <Fragment key={i}>
-              {segment.base}
+              {base(segment.base, i)}
               <rt>{segment.text}</rt>
             </Fragment>
           ))}
@@ -50,8 +82,10 @@ const TokenView = ({ token, index, ruby }: { token: Token; index: number; ruby: 
   );
 };
 
-export const T = ({ text, as: Tag = "span", ruby = false, className, id }: TProps): JSX.Element => {
+export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, focus, className, id }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
+  const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
+  const strip = useMemo(() => markStripper(markSet), [markSet]);
   const font = fontStackFor(text.lang, profile?.fonts);
   const style = {
     "--nabu-text-font": font.family,
@@ -69,7 +103,15 @@ export const T = ({ text, as: Tag = "span", ruby = false, className, id }: TProp
       style={style}
     >
       {text.tokens.map((token, index) => (
-        <TokenView key={index} token={token} index={index} ruby={ruby} />
+        <TokenView
+          key={index}
+          token={token}
+          index={index}
+          ruby={ruby}
+          strip={strip}
+          highlighted={highlight?.includes(index) ?? false}
+          focus={focus?.token === index ? focus.segment : undefined}
+        />
       ))}
     </Tag>
   );

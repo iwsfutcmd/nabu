@@ -6,11 +6,13 @@
  *
  *   node scripts/css-module-types.ts           # write
  *   node scripts/css-module-types.ts --check   # exit 1 if any declaration is stale
+ *   node scripts/css-module-types.ts --root ../../apps/web/src   # another package's sources
  */
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
-const ROOT = resolve(import.meta.dirname, "../src");
+const rootArg = process.argv.indexOf("--root");
+const ROOT = rootArg >= 0 ? resolve(process.cwd(), process.argv[rootArg + 1] as string) : resolve(import.meta.dirname, "../src");
 const check = process.argv.includes("--check");
 
 const walk = (dir: string): string[] =>

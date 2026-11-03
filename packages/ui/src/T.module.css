@@ -19,3 +19,20 @@
   font-size: 0.55em;
   line-height: 1;
 }
+
+/* Parts of an answer that differ: underlined and boxed, never colour alone (§11.7). */
+.token[data-highlight] {
+  text-decoration: underline wavy;
+  text-decoration-color: var(--nabu-color-wrong);
+  text-underline-offset: 0.25em;
+  outline: 2px dashed var(--nabu-color-wrong);
+  outline-offset: 1px;
+  border-radius: 0.2em;
+}
+
+/* The character a reading-disambiguation exercise asks about. */
+.focus {
+  color: inherit;
+  background-color: var(--nabu-color-focus-bg);
+  border-block-end: 3px solid var(--nabu-color-text);
+}

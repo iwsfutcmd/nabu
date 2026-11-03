@@ -2,6 +2,34 @@
   "$schema": "../../../schemas/message-catalog.schema.json",
   "locale": "en",
   "messages": {
+    "app.error.load": {
+      "message": "This course could not be loaded.",
+      "description": "Shown when a course bundle fails to load."
+    },
+    "app.home.title": {
+      "message": "Choose a course",
+      "description": "Heading of the course list."
+    },
+    "app.home.writing": {
+      "message": "Writing system",
+      "description": "Label of the choice between a course's orthographies (e.g. Latin or Cyrillic for Uzbek)."
+    },
+    "app.lessons.back": {
+      "message": "All courses",
+      "description": "Link back to the course list."
+    },
+    "app.lessons.lesson": {
+      "message": ".input {$number :number}\n{{Lesson {$number}}}",
+      "description": "Name of a lesson in the list. $number is its position."
+    },
+    "app.lessons.new-words": {
+      "message": "New words",
+      "description": "Accessible label of the preview of words a lesson introduces."
+    },
+    "app.lessons.title": {
+      "message": "Lessons",
+      "description": "Heading of a course's lesson list."
+    },
     "app.name": {
       "message": "Nabu",
       "description": "Product name. Usually left untranslated."
@@ -94,6 +122,10 @@
       "message": "Check the accents and vowel marks.",
       "description": "Feedback note: the answer differs from the expected one only in marks."
     },
+    "feedback.note.pairs-mistakes": {
+      "message": "Some pairs took more than one try.",
+      "description": "Feedback note after match-pairs when some pairs were mismatched first."
+    },
     "feedback.note.script-mismatch": {
       "message": "Check that you're writing in the right script.",
       "description": "Generic feedback note: the answer is written in a different script from the course."
@@ -165,6 +197,210 @@
     "feedback.verdict.wrong-word": {
       "message": "That's a different word.",
       "description": "Feedback headline: one letter off, but the result is another real word."
+    },
+    "orthography.apc-Arab.standard": {
+      "message": "Arabic script",
+      "description": "Name of the Lebanese Arabic orthography in Arabic script."
+    },
+    "orthography.apc-Latn.arabizi": {
+      "message": "Arabizi (Latin letters and numbers)",
+      "description": "Name of Arabizi, Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع, 2 for ء)."
+    },
+    "orthography.fa-Arab.standard": {
+      "message": "Persian script",
+      "description": "Name of the Persian orthography (Arabic script as used for Persian)."
+    },
+    "orthography.uz-Cyrl.standard": {
+      "message": "Cyrillic",
+      "description": "Name of the Uzbek Cyrillic orthography."
+    },
+    "orthography.uz-Latn.standard": {
+      "message": "Latin",
+      "description": "Name of the Uzbek Latin orthography."
+    },
+    "orthography.yue-Hant-HK.standard": {
+      "message": "Traditional characters",
+      "description": "Name of the Hong Kong Cantonese orthography."
+    },
+    "player.action.cant-speak": {
+      "message": "Can't speak now",
+      "description": "Button that skips speaking exercises for the rest of the lesson."
+    },
+    "player.action.continue": {
+      "message": "Continue",
+      "description": "Button that moves on after feedback."
+    },
+    "player.blank.label": {
+      "message": "Missing word",
+      "description": "Accessible label of the gap in a sentence."
+    },
+    "player.chars.label": {
+      "message": "Special characters",
+      "description": "Accessible label of the bar of extra characters (ZWNJ, ʻ, ў…)."
+    },
+    "player.feedback.marked": {
+      "message": "(marked parts differ)",
+      "description": "Short explanation after the learner's marked answer: marked words or characters are the ones that differ. Not shown by colour alone."
+    },
+    "player.feedback.solution": {
+      "message": "Correct answer:",
+      "description": "Label before the correct answer in feedback."
+    },
+    "player.feedback.your-answer": {
+      "message": "Your answer:",
+      "description": "Label before the learner's own answer, with the wrong parts marked."
+    },
+    "player.finished.score": {
+      "message": ".input {$correct :number}\n.input {$total :number}\n{{{$correct} of {$total} right the first time}}",
+      "description": "Lesson summary. $correct and $total are numbers."
+    },
+    "player.finished.stopped": {
+      "message": "Lesson stopped",
+      "description": "Heading when the learner quit the lesson."
+    },
+    "player.finished.title": {
+      "message": "Lesson complete!",
+      "description": "Heading when the lesson is finished."
+    },
+    "player.instruction.char-read": {
+      "message": "How is this read?",
+      "description": "Instruction: choose the reading (e.g. Jyutping) of the word shown."
+    },
+    "player.instruction.choose-translation": {
+      "message": "What does this mean?",
+      "description": "Instruction: choose the translation of the sentence shown."
+    },
+    "player.instruction.complete-translation": {
+      "message": "Complete the translation",
+      "description": "Instruction: type the missing word of the translation."
+    },
+    "player.instruction.gap-fill": {
+      "message": "Fill in the blank",
+      "description": "Instruction: choose the word that completes the sentence."
+    },
+    "player.instruction.match-pairs": {
+      "message": "Tap the matching pairs",
+      "description": "Instruction: match each word with its meaning."
+    },
+    "player.instruction.reading-disambiguation": {
+      "message": "How is the highlighted character read here?",
+      "description": "Instruction: choose the reading a character with several readings has in this word."
+    },
+    "player.instruction.select-image": {
+      "message": "Select the right picture",
+      "description": "Instruction: pick the picture (and word) that matches the meaning shown."
+    },
+    "player.instruction.speak": {
+      "message": "Read this aloud",
+      "description": "Instruction for a speaking exercise (record yourself, then rate how it went)."
+    },
+    "player.instruction.translate-into-support": {
+      "message": "Translate this sentence",
+      "description": "Instruction: build the translation of a target-language sentence from word tiles."
+    },
+    "player.key.zwj": {
+      "message": "{$short}: zero-width joiner",
+      "description": "Accessible name of the ZWJ key. $short is the key's visible label (player.key.zwj.short) and must stay part of the name (WCAG 2.5.3)."
+    },
+    "player.key.zwj.short": {
+      "message": "ZWJ",
+      "description": "Short visible label of the ZWJ key (the character itself is invisible)."
+    },
+    "player.key.zwnj": {
+      "message": "{$short}: half-space (zero-width non-joiner)",
+      "description": "Accessible name of the ZWNJ key, which keeps two Persian letters from joining. $short is the key's visible label (player.key.zwnj.short) and must stay part of the name (WCAG 2.5.3)."
+    },
+    "player.key.zwnj.short": {
+      "message": "ZWNJ",
+      "description": "Short visible label of the ZWNJ key (the character itself is invisible)."
+    },
+    "player.loading": {
+      "message": "Loading…",
+      "description": "Shown while course data loads."
+    },
+    "player.options.label": {
+      "message": "Answer choices",
+      "description": "Accessible label of the group of answer options."
+    },
+    "player.pairs.meanings": {
+      "message": "Meanings",
+      "description": "Accessible label of the column of meanings in match-pairs."
+    },
+    "player.pairs.words": {
+      "message": "{$language} words",
+      "description": "Accessible label of the column of target-language words in match-pairs. $language is the course name."
+    },
+    "player.prompt.hint": {
+      "message": "Translation",
+      "description": "Accessible label of the support-language translation shown as a hint."
+    },
+    "player.prompt.meaning": {
+      "message": "Meaning",
+      "description": "Accessible label of the meaning (gloss) the learner matches a picture to."
+    },
+    "player.quit.body": {
+      "message": "You'll lose your progress in this lesson.",
+      "description": "Body of the quit dialog."
+    },
+    "player.quit.cancel": {
+      "message": "Keep learning",
+      "description": "Button that closes the quit dialog and goes back to the lesson."
+    },
+    "player.quit.confirm": {
+      "message": "Quit",
+      "description": "Button that quits the lesson."
+    },
+    "player.quit.title": {
+      "message": "Quit this lesson?",
+      "description": "Title of the dialog shown when the learner closes a lesson."
+    },
+    "player.speak.play": {
+      "message": "Play my recording",
+      "description": "Button that plays back what the learner recorded."
+    },
+    "player.speak.rate": {
+      "message": "How did it go?",
+      "description": "Heading above the self-rating buttons (speak tier 0)."
+    },
+    "player.speak.rate.again": {
+      "message": "Couldn't say it",
+      "description": "Self-rating: the learner could not say it."
+    },
+    "player.speak.rate.good": {
+      "message": "Sounded right",
+      "description": "Self-rating: the learner thinks they said it well."
+    },
+    "player.speak.rate.hard": {
+      "message": "Not sure",
+      "description": "Self-rating: the learner is unsure."
+    },
+    "player.speak.record": {
+      "message": "Record",
+      "description": "Button that starts recording the learner's voice."
+    },
+    "player.speak.recording": {
+      "message": "Recording…",
+      "description": "Status while the microphone is recording."
+    },
+    "player.speak.stop": {
+      "message": "Stop",
+      "description": "Button that stops recording."
+    },
+    "player.speak.unavailable": {
+      "message": "Recording isn't available here. You can still say it aloud and rate yourself.",
+      "description": "Shown when the browser cannot record audio."
+    },
+    "player.toggle.marks": {
+      "message": "Show vowel marks",
+      "description": "Switch that shows or hides harakat (Arabic-script vowel marks and shadda)."
+    },
+    "player.toggle.vertical": {
+      "message": "Vertical text",
+      "description": "Switch that sets the sentence and word tiles top to bottom (CJK)."
+    },
+    "player.wordbank.answer-label": {
+      "message": "Your answer",
+      "description": "Accessible label of the row where the chosen tiles go."
     }
   }
 }
