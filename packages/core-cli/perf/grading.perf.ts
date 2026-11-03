@@ -12,14 +12,14 @@ import type { BenchCase, BenchResult } from "./bench.entry.ts";
 
 const THROTTLE = 4;
 const BUDGET_MS = 5;
-const ZWNJ = "‌";
+const ZWNJ = "\u200c";
 
 const CASES: readonly BenchCase[] = [
   {
     name: "fa: 4-word sentence, 3 alternatives, ZWNJ paths",
     profile: "fa-Arab/standard",
     accept: `کتاب${ZWNJ}ها روی میز هستند\nکتاب${ZWNJ}ها روی میز است\n[این] کتاب${ZWNJ}ها روی میز هستند @0.5`,
-    answers: ["کتاب ها روی میز هستند", "كتابها روي ميز هستمد", "روی میز کتاب‌ها هستند", "کتاب‌ها میز"],
+    answers: ["کتاب ها روی میز هستند", "كتابها روي ميز هستمد", "روی میز کتاب\u200cها هستند", "کتاب\u200cها میز"],
   },
   {
     name: "yue: 6 characters, optional particle, variants and homophones",
