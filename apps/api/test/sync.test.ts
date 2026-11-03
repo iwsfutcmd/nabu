@@ -131,7 +131,7 @@ describe("event log", () => {
     const before = await (await app.request("/v1/state?course=fa", auth(token))).json();
 
     // The device retries after a timeout: the same batch, then an overlapping one.
-    expect(await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()).toEqual({ accepted: 0, duplicates: half, cursor: first.cursor });
+    expect(await (await app.request("/v1/events", json({ events: log.slice(0, half) }, token))).json()).toEqual({ accepted: 0, duplicates: half, refused: 0, cursor: first.cursor });
     expect(await (await app.request("/v1/state?course=fa", auth(token))).json()).toEqual(before);
     const rest = (await (await app.request("/v1/events", json({ events: log.slice(10) }, token))).json()) as { accepted: number; duplicates: number };
     expect(rest).toMatchObject({ accepted: log.length - half, duplicates: half - 10 });

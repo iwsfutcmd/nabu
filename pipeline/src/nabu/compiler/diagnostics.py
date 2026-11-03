@@ -177,6 +177,19 @@ _LINTS = [
         "the same, a gap that is not exactly one word, a distractor without a form or that "
         "reads like the answer, or a line with one tile to arrange.",
     ),
+    # roleplay scenario cards (Phase 8)
+    Lint(
+        "scenario.node",
+        "error",
+        5,
+        "A roleplay scenario opens after a node that does not exist or is not a lesson or story.",
+    ),
+    Lint(
+        "scenario.missing-text",
+        "error",
+        1,
+        "A scenario's title, setting, character or goal lacks a support language.",
+    ),
     # 7 · glossary and segmentation simulation
     Lint(
         "glossary.dead-entry",

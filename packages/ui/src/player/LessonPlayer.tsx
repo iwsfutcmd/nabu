@@ -8,9 +8,9 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type PlayerState } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState } from "@nabu/core/lesson";
 import type { OrthographyProfile } from "@nabu/schema";
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { NabuUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
@@ -42,6 +42,11 @@ export interface LessonPlayerProps {
   readonly retries?: boolean | undefined;
   /** The learner pressed "Can't listen now": the app leaves listening out of the next sessions. */
   readonly onCantListen?: (() => void) | undefined;
+  /**
+   * More under the feedback for an answer (Phase 8: report it, a second check, an explanation).
+   * The app supplies it; the player only places it, outside the live region.
+   */
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome) => ReactNode) | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -208,6 +213,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={marks} />}
       </div>
+      {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome)}
 
       <footer className={styles.footer}>
         {active.tag === "feedback" ? (

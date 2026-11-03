@@ -4,8 +4,187 @@
 from __future__ import annotations
 
 from typing import Annotated, Any, Literal
+from uuid import UUID
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+
+
+class AiOutputs(BaseModel):
+    """
+    What the AI services produce (gameplan §13): every output is structured, validated against this schema, and carries provenance. Models fill the *Output shapes; the server adds provenance and turns text into TaggedText.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+
+class AiProvenance(BaseModel):
+    """
+    Which model and which prompt template (by hash) produced an output, and when.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    provider: Annotated[
+        Literal["ollama", "openai", "anthropic", "fixture"],
+        Field(description="fixture: hand-written data for tests and Storybook, never served."),
+    ]
+    model: Annotated[str, Field(min_length=1)]
+    prompt: Annotated[
+        str, Field(description="Template id (prompts/<id>.md).", pattern="^[a-z][a-z0-9-]*$")
+    ]
+    promptHash: Annotated[
+        str,
+        Field(
+            description="First 12 hex digits of the template file's SHA-256.",
+            pattern="^[0-9a-f]{12}$",
+        ),
+    ]
+    createdAt: AwareDatetime
+
+
+type JudgeCategory = Annotated[
+    Literal["paraphrase", "register", "meaning-change", "grammar", "spelling"],
+    Field(title="JudgeCategory"),
+]
+
+
+class JudgeOutput(BaseModel):
+    """
+    The judge's answer (§13.2), as the model must return it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    verdict: Literal["accept", "reject"]
+    confidence: Annotated[float, Field(ge=0.0, le=1.0)]
+    category: JudgeCategory
+
+
+class JudgeVerdict(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    verdict: Literal["accept", "reject"]
+    confidence: Annotated[float, Field(ge=0.0, le=1.0)]
+    category: JudgeCategory
+    provenance: AiProvenance
+
+
+type AnswerToken = Annotated[int, Field(ge=0)]
+
+
+class Segment(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal["support", "target", "ref"]
+    text: Annotated[str | None, Field(max_length=400, min_length=1)] = None
+    answerTokens: Annotated[list[AnswerToken] | None, Field(max_length=12)] = None
+
+
+class ExplanationOutput(BaseModel):
+    """
+    Explain My Answer (§13.3) as the model returns it: support-language prose, quoted target-language material, and references to the learner's answer by unit index. Never free markdown.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    segments: Annotated[list[Segment], Field(max_length=24, min_length=1)]
+
+
+class RoleplayOutput(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    reply: Annotated[
+        str,
+        Field(
+            description="The character's next line, in the target orthography.",
+            max_length=300,
+            min_length=1,
+        ),
+    ]
+    translation: Annotated[
+        str | None, Field(description="Its meaning in the support language.", max_length=300)
+    ] = None
+
+
+class Checks(BaseModel):
+    """
+    What the course analyzer found in the turn before it was shown (§13.4).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    unknown: Annotated[list[str], Field(description="Words not in the learner's known vocabulary.")]
+    outOfScript: Annotated[
+        list[str], Field(description="Characters outside the orthography's exemplars.")
+    ]
+    words: Annotated[int, Field(ge=0)]
+
+
+class Token(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    surface: Annotated[str, Field(min_length=1)]
+    kc: Annotated[str, Field(min_length=1)]
+
+
+class Forms(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[str, Field(max_length=200, min_length=1)]
+    tokens: Annotated[list[Token], Field(min_length=1)]
+
+
+type Translation = Annotated[str, Field(max_length=200, min_length=1)]
+
+
+class Sentence(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    forms: Annotated[dict[str, Forms], Field(description="By orthography id.", min_length=1)]
+    translations: Annotated[list[Translation], Field(max_length=6, min_length=1)]
+
+
+class AuthorOutput(BaseModel):
+    """
+    Drafted practice sentences (§13.5) as the model returns them: each in every orthography of the course, tokens aligned to the text, with support-language translations. Drafts are lint-checked and stay status draft until a human reviews them.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    sentences: Annotated[list[Sentence], Field(max_length=20, min_length=1)]
+
+
+type ReportStatus = Annotated[
+    Literal["pending", "approved", "rejected", "promoted"], Field(title="ReportStatus")
+]
+
+
+type Note = Annotated[str, Field(max_length=500)]
 
 
 class SynthesisRecord(BaseModel):
@@ -421,6 +600,51 @@ class StoryChoiceSource(BaseModel):
     answer: Annotated[int, Field(description="Index of the right option.", ge=0)]
 
 
+type SettingAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type CharacterAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type GoalAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class ScenarioSource(BaseModel):
+    """
+    A roleplay scenario card (gameplan §13.4): who the model plays and what the learner tries to do. The model writes every line at run time, inside the learner's known vocabulary; the card holds no target-language text.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    after: Annotated[
+        Slug, Field(description="The path node a learner completes before the scenario opens.")
+    ]
+    title: Annotated[
+        dict[str, TitleAdditionalProperty],
+        Field(description="Per support language (key: e.g. en).", min_length=1),
+    ]
+    setting: Annotated[
+        dict[str, SettingAdditionalProperty],
+        Field(
+            description="Where the conversation happens, per support language. Shown to the learner and sent to the model.",
+            min_length=1,
+        ),
+    ]
+    character: Annotated[
+        dict[str, CharacterAdditionalProperty],
+        Field(description="Who the model plays, per support language.", min_length=1),
+    ]
+    goal: Annotated[
+        dict[str, GoalAdditionalProperty],
+        Field(description="What the learner tries to do, per support language.", min_length=1),
+    ]
+    provenance: Provenance | None = None
+    license: Spdx | None = None
+
+
 type GroupItem = Annotated[str, Field(min_length=1)]
 
 
@@ -711,6 +935,84 @@ class SessionCompleted(BaseModel):
         Field(
             description="Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done."
         ),
+    ] = None
+
+
+class Judge(BaseModel):
+    """
+    The judge call behind a judge revision (§13.1 provenance).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    model: Annotated[str, Field(min_length=1)]
+    promptHash: Annotated[str, Field(pattern="^[0-9a-f]{12}$")]
+    confidence: Annotated[float, Field(ge=0.0, le=1.0)]
+
+
+class OutcomeRevised(BaseModel):
+    """
+    A later verdict on an earlier answer (§8.3): the LLM judge accepted it, or a reviewer did. Replay applies the revised outcome in place of the original, retroactively. Only the server issues these; uploads of ones it did not issue are refused.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["outcome_revised"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    answer: Annotated[Uuid, Field(description="The id of the answer_submitted event this revises.")]
+    outcome: Outcome
+    by: Annotated[
+        Literal["judge", "review"],
+        Field(
+            description="Who revised it: the judge (the outcome is CORRECT_PROVISIONAL) or a human reviewer."
+        ),
+    ]
+    judge: Annotated[
+        Judge | None,
+        Field(description="The judge call behind a judge revision (§13.1 provenance)."),
     ] = None
 
 
@@ -1047,6 +1349,107 @@ class Morph(BaseModel):
     )
     surface: Annotated[str, Field(min_length=1)]
     kc: KcId
+
+
+class AnswerReport(BaseModel):
+    """
+    A learner's "my answer should be accepted" (§13.2 fallback), queued for review; approved reports are promoted into accept sets by `nabu reports promote`.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: UUID
+    course: Annotated[str, Field(min_length=1)]
+    orthography: OrthographyId
+    template: Annotated[str, Field(min_length=1)]
+    item: Annotated[str, Field(min_length=1)]
+    answer: Annotated[
+        str, Field(description="NFC, as typed or built.", max_length=500, min_length=1)
+    ]
+    notes: Annotated[
+        list[Note],
+        Field(description="What reporters wrote, if anything (the latest few).", max_length=20),
+    ]
+    judge: Annotated[
+        JudgeVerdict | None, Field(description="What the judge said, if it ran and accepted.")
+    ] = None
+    status: ReportStatus
+    reports: Annotated[
+        int,
+        Field(
+            description="How many learners reported this answer or had it accepted by the judge.",
+            ge=0,
+        ),
+    ]
+    createdAt: AwareDatetime
+
+
+class EvalItem(BaseModel):
+    """
+    One judge evaluation item (evals/judge/<course>.jsonl, §13.6): an answer the accept set rejects, and whether a good judge should accept it (a paraphrase) or not (an adversarial near miss).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    course: str
+    orthography: OrthographyId
+    item: Annotated[str, Field(description="The sentence id.")]
+    direction: Annotated[
+        Literal["l2-l1", "l1-l2"],
+        Field(
+            description="l2-l1: the answer is a translation into the support language; l1-l2: into the target."
+        ),
+    ]
+    answer: Annotated[str, Field(min_length=1)]
+    expect: Literal["accept", "reject"]
+    category: Literal[
+        "paraphrase",
+        "negation",
+        "person",
+        "tense",
+        "number",
+        "particle",
+        "classifier",
+        "case",
+        "word-choice",
+        "register",
+        "omission",
+        "injection",
+    ]
+    note: str | None = None
+    status: Annotated[
+        Literal["draft", "reviewed"],
+        Field(description="draft until a speaker of the language has checked the item."),
+    ]
+    author: Annotated[
+        str, Field(description="Who wrote the item: human:<name> or llm:<model>@<prompt-hash>.")
+    ]
+
+
+class EvalGate(BaseModel):
+    """
+    The judge's gate for one course orthography (evals/gates.json): on only when its false-accept rate on the adversarial set is at most 2%, for this model and this prompt hash.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: str
+    orthography: OrthographyId
+    provider: Literal["ollama", "openai", "anthropic"]
+    model: str
+    promptHash: Annotated[str, Field(pattern="^[0-9a-f]{12}$")]
+    falseAccept: Annotated[float, Field(ge=0.0, le=1.0)]
+    falseReject: Annotated[float, Field(ge=0.0, le=1.0)]
+    n: Annotated[int, Field(description="Items evaluated (adversarial and paraphrase).", ge=0)]
+    enabled: bool
+    evaluatedAt: AwareDatetime
 
 
 class AudioClip(BaseModel):
@@ -1409,6 +1812,71 @@ class ExerciseSkipped(BaseModel):
     reason: Literal["skip", "cant-listen", "cant-speak"]
 
 
+class AnswerReported(BaseModel):
+    """
+    "My answer should be accepted" (§13.2): a learner report on an answer graded wrong. Reports feed the review queue and the judge evaluations; they change no learner state.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["answer_reported"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Uuid
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    answer: Annotated[Uuid, Field(description="The id of the answer_submitted event reported.")]
+    exercise: ExerciseRef
+    text: Annotated[
+        str,
+        Field(
+            description="The answer as the learner settled it. Personal data.",
+            max_length=1000,
+            min_length=1,
+        ),
+    ]
+    note: Annotated[
+        str | None, Field(description="Optional words from the learner.", max_length=500)
+    ] = None
+
+
 class MessageCatalog(BaseModel):
     """
     UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.
@@ -1543,7 +2011,7 @@ class MatchPolicy(BaseModel):
 type RubyAdditionalProperty = Annotated[list[RubySegment], Field(min_length=1)]
 
 
-class Token(BaseModel):
+class TokenModel(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
@@ -1677,7 +2145,13 @@ class StoryLineSource(BaseModel):
 
 
 type LearnerEvent = Annotated[
-    SessionStarted | ExercisePresented | AnswerSubmitted | ExerciseSkipped | SessionCompleted,
+    SessionStarted
+    | ExercisePresented
+    | AnswerSubmitted
+    | ExerciseSkipped
+    | SessionCompleted
+    | OutcomeRevised
+    | AnswerReported,
     Field(
         description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
         title="LearnerEvent",
@@ -1709,7 +2183,70 @@ class TaggedText(BaseModel):
     )
     lang: ScriptedLangTag
     orthography: OrthographyId
-    tokens: Annotated[list[Token], Field(min_length=1)]
+    tokens: Annotated[list[TokenModel], Field(min_length=1)]
+
+
+class ExplanationSegment(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kind: Literal["support", "target", "ref"]
+    text: TaggedText | None = None
+    answerTokens: list[AnswerToken] | None = None
+
+
+class Explanation(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    segments: list[ExplanationSegment]
+    answer: Annotated[
+        TaggedText,
+        Field(
+            description="The learner's answer as TaggedText, unit by unit: what `ref` segments point into."
+        ),
+    ]
+    provenance: AiProvenance
+
+
+class RoleplayTurn(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: TaggedText
+    translation: TaggedText | None = None
+    checks: Annotated[
+        Checks,
+        Field(
+            description="What the course analyzer found in the turn before it was shown (§13.4)."
+        ),
+    ]
+    attempts: Annotated[
+        int, Field(description="How many generations it took to stay within budget.", ge=1)
+    ]
+    provenance: AiProvenance
+
+
+class BundleScenario(BaseModel):
+    """
+    A roleplay scenario card (Phase 8, §13.4); its texts per support language.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    after: Annotated[str, Field(description="The path node completed before the scenario opens.")]
+    title: dict[str, TaggedText]
+    setting: dict[str, TaggedText]
+    character: dict[str, TaggedText]
+    goal: dict[str, TaggedText]
+    provenance: Provenance | None = None
+    license: str
 
 
 class Character(BaseModel):
@@ -1761,7 +2298,7 @@ class BundleKc(BaseModel):
     ] = None
 
 
-class Forms(BaseModel):
+class Forms1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
@@ -1786,7 +2323,7 @@ class BundleSentence(BaseModel):
     )
     id: str
     node: str
-    forms: dict[str, Forms]
+    forms: dict[str, Forms1]
     translations: dict[str, Translations]
     kcs: list[KcId]
     production: bool
@@ -1960,6 +2497,10 @@ class UnitSource(BaseModel):
             description="Stories (gameplan §8.2 `story`, Phase 6): dialogue to read, each on a path node of kind story."
         ),
     ] = None
+    scenarios: Annotated[
+        list[ScenarioSource] | None,
+        Field(description="Roleplay scenario cards (gameplan §13.4, Phase 8)."),
+    ] = None
 
 
 class BundleUnit(BaseModel):
@@ -1974,6 +2515,7 @@ class BundleUnit(BaseModel):
     nodes: list[BundleNode]
     sentences: list[BundleSentence]
     stories: list[BundleStory] | None = None
+    scenarios: list[BundleScenario] | None = None
 
 
 class CourseSource(BaseModel):
@@ -2019,7 +2561,8 @@ class CourseSource(BaseModel):
 
 
 type NabuSchemaBundle = Annotated[
-    AudioIndex
+    AiOutputs
+    | AudioIndex
     | BundleManifest
     | CourseSource
     | DataTable

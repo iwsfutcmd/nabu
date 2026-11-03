@@ -2,7 +2,7 @@
   "name": "@nabu/api",
   "version": "0.0.0",
   "private": true,
-  "description": "Nabu API server (Hono on Node): accounts, the learner event log and sync, over Postgres or PGlite.",
+  "description": "Nabu API server (Hono on Node): accounts, the learner event log and sync, game and AI services, over Postgres or PGlite.",
   "license": "MIT OR Apache-2.0",
   "type": "module",
   "scripts": {
@@ -10,7 +10,8 @@
     "start": "node src/main.ts",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "evals": "node scripts/evals.ts"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.5.14",

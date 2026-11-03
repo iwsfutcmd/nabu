@@ -1,0 +1,199 @@
+/* AI surfaces: Explain My Answer, answer help, roleplay. Logical properties only, so the same
+   rules lay out LTR and RTL chrome (gameplan §11.4); language data inside is isolated by <T>. */
+
+.explanation,
+.help {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.label {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+/* Padded so the marked words' outline stays inside (§11.7). */
+.answer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  padding: var(--nabu-space-2);
+}
+
+.answer > p,
+.prose {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.prose {
+  padding: var(--nabu-space-1);
+}
+
+.ref {
+  padding-inline: var(--nabu-space-1);
+  background-color: var(--nabu-color-focus-bg);
+  border-radius: var(--nabu-space-1);
+}
+
+.target {
+  font-weight: 700;
+}
+
+.provenance {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--nabu-color-muted);
+}
+
+.rating,
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
+.rateButton,
+.action,
+.send,
+.inline {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.rateButton[aria-pressed="true"] {
+  border-color: var(--nabu-color-accent);
+}
+
+.action:disabled,
+.send:disabled {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.inline {
+  align-self: flex-start;
+  min-block-size: auto;
+  padding-block: 0;
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.875rem;
+}
+
+.status {
+  min-block-size: 1.25rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+/* Roleplay */
+
+.roleplay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  max-inline-size: 40rem;
+}
+
+.card {
+  padding: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border-radius: var(--nabu-radius-card);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  margin: 0;
+  margin-block-start: var(--nabu-space-2);
+}
+
+.facts dt {
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}
+
+.facts dd,
+.facts dd > p {
+  margin: 0;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.theirs,
+.mine {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  max-inline-size: 85%;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.theirs {
+  align-self: flex-start;
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+}
+
+.mine {
+  align-self: flex-end;
+  background-color: var(--nabu-color-correct-bg);
+}
+
+.theirs > p,
+.mine > p {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.speaker {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}
+
+.translation {
+  color: var(--nabu-color-muted);
+}
+
+.compose {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.send {
+  align-self: flex-end;
+  font-weight: 700;
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  border-color: var(--nabu-color-accent);
+}

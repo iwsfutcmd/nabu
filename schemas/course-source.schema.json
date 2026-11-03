@@ -170,6 +170,13 @@
           "items": {
             "$ref": "#/$defs/StorySource"
           }
+        },
+        "scenarios": {
+          "description": "Roleplay scenario cards (gameplan §13.4, Phase 8).",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ScenarioSource"
+          }
         }
       }
     },
@@ -778,6 +785,72 @@
           "description": "Index of the right option.",
           "type": "integer",
           "minimum": 0
+        }
+      }
+    },
+    "ScenarioSource": {
+      "title": "ScenarioSource",
+      "description": "A roleplay scenario card (gameplan §13.4): who the model plays and what the learner tries to do. The model writes every line at run time, inside the learner's known vocabulary; the card holds no target-language text.",
+      "type": "object",
+      "required": [
+        "id",
+        "after",
+        "title",
+        "setting",
+        "character",
+        "goal"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "after": {
+          "description": "The path node a learner completes before the scenario opens.",
+          "$ref": "#/$defs/Slug"
+        },
+        "title": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Per support language (key: e.g. en)."
+        },
+        "setting": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Where the conversation happens, per support language. Shown to the learner and sent to the model."
+        },
+        "character": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "Who the model plays, per support language."
+        },
+        "goal": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          },
+          "description": "What the learner tries to do, per support language."
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "license": {
+          "$ref": "#/$defs/Spdx"
         }
       }
     }

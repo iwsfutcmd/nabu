@@ -9,10 +9,25 @@
  *   NABU_VAPID_SUBJECT          mailto: or https: contact for push services
  *   NABU_VAPID_PRIVATE_JWK      VAPID key (else generated once and kept in the database)
  *   NABU_TEST_HOOKS=1           test-only routes: a push sink and a job runner (never in production)
+ *
+ * AI (gameplan §13; ai/providers.ts lists the model settings):
+ *   NABU_LLM, NABU_LLM_MODEL, NABU_LLM_URL, NABU_LLM_KEY   the model (unset: every AI feature off)
+ *   NABU_AI_KILL                switch features off: judge,explain:yue,roleplay:uz/uz-Cyrl
+ *   NABU_AI_BUDGET_USER         model calls per learner per day and feature (default 100)
+ *   NABU_AI_BUDGET_INSTANCE     model calls per day in all (default 5000)
+ *   NABU_GATES                  judge gates file (default evals/gates.json)
+ *   NABU_BUNDLES                compiled course bundles (default the web app's)
+ *   NABU_ADMIN_TOKEN            bearer token for the review queue (/admin/v1)
  */
 import { serve } from "@hono/node-server";
 import { DEFAULT_LEAGUE } from "@nabu/core/game";
 import { createAccounts } from "./accounts.ts";
+import { readFileSync } from "node:fs";
+import { pathToFileURL } from "node:url";
+import type { EvalGate } from "@nabu/schema";
+import { createCourses, DEFAULT_BUNDLES } from "./ai/courses.ts";
+import { createGateway, DEFAULT_BUDGETS, validAi } from "./ai/gateway.ts";
+import { providerFromEnv } from "./ai/providers.ts";
 import { createApp } from "./app.ts";
 import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
@@ -27,7 +42,29 @@ const leagues = on("NABU_LEAGUES") ? DEFAULT_LEAGUE : undefined;
 let vapid: Promise<Vapid> | undefined;
 const keys = on("NABU_PUSH") ? () => (vapid ??= vapidKeys(db, process.env["NABU_VAPID_SUBJECT"] ?? "mailto:nabu@localhost")) : undefined;
 
-const app = createApp({ db, accounts: createAccounts(db), leagues, vapid: keys });
+const env = process.env;
+const count = (name: string, fallback: number): number => {
+  const n = Number(env[name] ?? fallback);
+  return Number.isSafeInteger(n) && n >= 0 ? n : fallback;
+};
+const dir = (value: string | undefined, fallback: URL): URL => (value === undefined || value === "" ? fallback : pathToFileURL(value.endsWith("/") ? value : `${value}/`));
+const provider = providerFromEnv(env, (url, init) => fetch(url, init));
+const gateway = createGateway({
+  db,
+  provider,
+  kill: env["NABU_AI_KILL"],
+  budgets: { perUser: count("NABU_AI_BUDGET_USER", DEFAULT_BUDGETS.perUser), perInstance: count("NABU_AI_BUDGET_INSTANCE", DEFAULT_BUDGETS.perInstance) },
+});
+const gatesFile = env["NABU_GATES"] === undefined ? new URL("../../../evals/gates.json", import.meta.url) : pathToFileURL(env["NABU_GATES"]);
+const gates = (JSON.parse(readFileSync(gatesFile, "utf8")) as unknown[]).filter((g): g is EvalGate => {
+  if (validAi("EvalGate", g)) return true;
+  console.warn("ignoring an invalid judge gate in", gatesFile.pathname);
+  return false;
+});
+const courses = createCourses(dir(env["NABU_BUNDLES"], DEFAULT_BUNDLES));
+console.info(provider === undefined ? "ai: no model configured; AI features are off" : `ai: ${provider.name} ${provider.model}; judge gates open: ${gates.filter((g) => g.enabled).length}`);
+
+const app = createApp({ db, accounts: createAccounts(db), leagues, vapid: keys, ai: { gateway, courses, gates }, adminToken: env["NABU_ADMIN_TOKEN"] });
 
 /** The periodic jobs: league rollover and reminders. */
 const runJobs = async (now: number): Promise<{ rolled: readonly string[]; sent: number }> => {

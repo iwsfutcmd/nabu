@@ -481,3 +481,11 @@ stories:
       prompt: {en: "What does Sami want?"}
       options: [{en: "tea"}, {en: "coffee"}, {en: "nothing"}]
       answer: 0
+scenarios:
+- id: apc.cafe-waiter
+  after: apc.cafe
+  title: {en: 'At the café'}
+  setting: {en: 'A small café in Beirut in the afternoon.'}
+  character: {en: 'The waiter, chatty and warm, who knows every regular.'}
+  goal: {en: 'Greet the waiter, say how you are, and order something to drink.'}
+  provenance: {author: 'llm:claude@9def68a7ecb2', status: draft}

@@ -170,3 +170,25 @@ ADR is linked. The gameplan text itself is left as written.
     on `node:crypto` instead, and tested against the RFC's own example
     ([ADR 0044](adr/0044-gamification-and-notifications.md)).
 
+
+## Phase 8
+
+46. **§8.3 the cascade before the judge:** the typo model accepts some meaning changes as typos,
+    so they never reach the judge or a reviewer. Examples are the person and possessive suffixes
+    one letter apart in Uzbek (*talabasan* for *talabaman*, *kitobing* for *kitobim*), Сен for
+    Мен (adjacent keys on the Cyrillic layout), and ⁨وأنا⁩ for ⁨وإنت⁩ in Lebanese. The judge's
+    harness found them (`evals/README.md`). The typo model needs to know about inflectional
+    suffixes: open, for review.
+47. **§8.3 "online, the judge gets up to about 2 seconds while a checking state shows":** the
+    player grades at once and moves on. A second check runs in the background, and its accept
+    revises the answer retroactively. It is the same mechanism as offline, without holding the
+    learner. The lesson's own retry of that exercise still happens
+    ([ADR 0045](adr/0045-ai-services.md)).
+48. **§13.2 judge input "its alignment diff":** the prompt carries the accept set's canonical answer
+    and heaviest alternatives, and the answer. The diff adds nothing a model can use that the two
+    texts do not show ([ADR 0045](adr/0045-ai-services.md)).
+49. **§14.1 `POST /v1/judge`, `POST /v1/reports`:** these are `/v1/ai/judge` and the
+    `answer_reported` event, which syncs like every other event, so reporting works offline and
+    before sign-up ([ADR 0045](adr/0045-ai-services.md)).
+50. **§13.4 "Learner turns are graded gently":** not in Phase 8. Model turns are checked; learner
+    turns are not graded yet.

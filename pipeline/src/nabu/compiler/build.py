@@ -21,6 +21,7 @@ from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
 from nabu.compiler.audio import check_audio
 from nabu.compiler.diagnostics import Diagnostics, Loc
+from nabu.compiler.scenarios import compile_scenarios
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
@@ -459,6 +460,7 @@ def compile_course(
     # ---- stage 5: curriculum
     sentence_kcs = _curriculum(ctx, course, units, compiled_forms)
     stories = compile_stories(ctx, course, units)
+    scenarios = compile_scenarios(ctx, course, units)
     # ---- stage 6: grading
     _grading(ctx, course, units)
     # ---- stage 7: glossary, tiles, script tracks
@@ -474,6 +476,7 @@ def compile_course(
     compiled.units = [
         _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
         | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
+        | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         for ui, unit in enumerate(units)
     ]
     check_audio(ctx, course, course_file, display, compiled)
@@ -537,6 +540,8 @@ def _duplicates(ctx: Ctx, units: list[Unit]) -> None:
             check("sentence", s.id, unit.doc.loc("sentences", i))
         for i, story in enumerate(unit.source.stories or []):
             check("story", story.id, unit.doc.loc("stories", i))
+        for i, card in enumerate(unit.source.scenarios or []):
+            check("scenario", card.id, unit.doc.loc("scenarios", i))
 
 
 def _strings(

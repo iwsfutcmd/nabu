@@ -15,6 +15,7 @@
  */
 import type { AnswerSubmitted, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { facetOf } from "../learner/credit.ts";
+import { revised, revisionsOf } from "../learner/revisions.ts";
 import { seededRng } from "../lesson/rng.ts";
 import type { AchievementTemplate, GameConfig, GatePolicy, Predicate, QuestTemplate } from "./config.ts";
 import { addDays, daysBetween, localDateOf, startOfDay } from "./dates.ts";
@@ -114,7 +115,13 @@ const WEEK = 7 * 24 * HOUR;
 
 const sortInputs = (inputs: readonly GameInput[]): readonly GameInput[] => {
   const byId = new Map<string, GameInput>();
-  for (const input of inputs) if (!byId.has(input.event.id)) byId.set(input.event.id, input);
+  // Revised answers count as revised (§8.3); the revisions themselves are not practice.
+  const revisions = revisionsOf(inputs.map((i) => i.event));
+  for (const input of inputs) {
+    const e = input.event;
+    if (e.type === "outcome_revised" || byId.has(e.id)) continue;
+    byId.set(e.id, e.type === "answer_submitted" ? { ...input, event: revised(e, revisions) } : input);
+  }
   return [...byId.values()].sort((a, b) => {
     const t = Date.parse(a.event.clientTime) - Date.parse(b.event.clientTime);
     return t !== 0 ? t : a.event.id < b.event.id ? -1 : a.event.id > b.event.id ? 1 : 0;

@@ -94,4 +94,55 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       )`,
     ],
   ],
+  [
+    "0003_ai",
+    [
+      // Model outputs by request key (§13.1): the same exercise and normalized answer never costs twice.
+      `create table llm_cache (
+        key text primary key,
+        feature text not null,
+        output jsonb not null,
+        created_at timestamptz not null default now()
+      )`,
+      // Calls per subject (a salted hash of the user id, or "instance") per day and feature.
+      `create table llm_usage (
+        subject text not null,
+        day date not null,
+        feature text not null,
+        calls integer not null default 0,
+        primary key (subject, day, feature)
+      )`,
+      `create table explanation_ratings (
+        key text not null,
+        subject text not null,
+        rating smallint not null,
+        rated_at timestamptz not null default now(),
+        primary key (key, subject)
+      )`,
+      // The review queue (§13.2): one row per distinct normalized answer to an item.
+      `create table answer_reports (
+        id uuid primary key,
+        course text not null,
+        orthography text not null,
+        template text not null,
+        item text not null,
+        answer text not null,
+        normalized text not null,
+        status text not null default 'pending',
+        notes jsonb not null default '[]',
+        judge jsonb,
+        created_at timestamptz not null default now(),
+        updated_at timestamptz not null default now(),
+        unique (course, orthography, template, item, normalized)
+      )`,
+      `create index answer_reports_status on answer_reports (status, course)`,
+      // Who stands behind a report (salted hashes, never user ids): the count of independent agreements.
+      `create table report_votes (
+        report_id uuid not null references answer_reports(id) on delete cascade,
+        subject text not null,
+        source text not null,
+        primary key (report_id, subject)
+      )`,
+    ],
+  ],
 ];

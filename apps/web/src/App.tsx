@@ -3,7 +3,7 @@
  * sessions (a lesson, review or mistakes). Routes live in the URL hash so the
  * static build works anywhere (GitHub Pages):
  *   #/ · #/<course>/<orthography> · #/<course>/<orthography>/<node | review | mistakes | placement>
- *   · #/<course>/<orthography>/story/<node>
+ *   · #/<course>/<orthography>/story/<node> · #/<course>/<orthography>/roleplay/<scenario>
  *
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
@@ -14,11 +14,12 @@ import { createGrader, LISTENING, seededRng } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
-import type { LearnerEvent } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
 import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
+import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
@@ -26,7 +27,7 @@ import { Progress } from "./Progress.tsx";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, storyRecorder } from "./session.ts";
 import { openStore, type EventStore } from "./store.ts";
-import { createSync, type Sync } from "./sync.ts";
+import { createSync, type Account, type Sync } from "./sync.ts";
 
 const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
 
@@ -34,7 +35,8 @@ type Route =
   | { readonly tag: "home" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
   | { readonly tag: "session"; readonly course: string; readonly orthography: string; readonly request: SessionRequest }
-  | { readonly tag: "story"; readonly course: string; readonly orthography: string; readonly node: string };
+  | { readonly tag: "story"; readonly course: string; readonly orthography: string; readonly node: string }
+  | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string };
 
 /** Orthography ids carry a "/" (fa-Arab/standard): "." in the URL. */
 const slug = (orthography: string): string => orthography.replace("/", ".");
@@ -49,6 +51,7 @@ const parse = (hash: string): Route => {
   if (course === undefined || orthography === undefined) return { tag: "home" };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
+  if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
 };
 
@@ -61,7 +64,9 @@ export const href = (route: Route): string =>
       ? `#/${route.course}/${slug(route.orthography)}`
       : route.tag === "story"
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
-        : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
+        : route.tag === "roleplay"
+          ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
+          : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
 const useRoute = (): Route => {
   const [route, setRoute] = useState(() => parse(window.location.hash));
@@ -132,7 +137,7 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
 };
 
 /** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
-const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean }): JSX.Element => {
+const CoursePath = ({ loaded, state, persistent, ai }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus }): JSX.Element => {
   const t = useTranslator();
   const [quiet, setQuiet] = useState(listeningOff);
   const { course } = loaded;
@@ -283,6 +288,7 @@ const CoursePath = ({ loaded, state, persistent }: { loaded: LoadedCourse; state
           </section>
         );
       })}
+      <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
     </main>
   );
 };
@@ -352,6 +358,9 @@ interface SessionProps extends GameProps {
   readonly state: LearnerState;
   readonly device: string;
   readonly record: (event: LearnerEvent) => void;
+  readonly store: EventStore;
+  readonly account: Account | undefined;
+  readonly ai: AiStatus;
 }
 
 /** Plans one session from the learner's state when it opens (§9.4), then plays it. */
@@ -362,13 +371,19 @@ const Session = (props: SessionProps): JSX.Element => {
   return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
 };
 
-const SessionBody = ({ loaded, request, state, device, record }: SessionProps): JSX.Element => {
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai }: SessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
+  const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [setup] = useState(() => {
     const seed = seedFor();
     const planned = plan(course, state, request, { now: new Date().toISOString(), seed, ...(listeningOff() ? { exclude: LISTENING } : {}) });
-    return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record }) };
+    const keep = (event: LearnerEvent): void => {
+      if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
+      record(event);
+    };
+    return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
@@ -400,6 +415,10 @@ const SessionBody = ({ loaded, request, state, device, record }: SessionProps): 
         onCantListen={() => setListeningOffUntil(Date.now() + LISTENING_BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
+        feedbackExtra={(ex) => {
+          const answer = answers.get(ex.id);
+          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} status={ai} account={account} store={store} record={record} />;
+        }}
       />
     </main>
   );
@@ -495,6 +514,9 @@ export const App = (): JSX.Element => {
   const [{ store, sync }, setDevice] = useState<{ store: EventStore | null; sync: Sync | null }>({ store: null, sync: null });
   // Events pulled from another device: replay the open course.
   const pulled = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().pulled ?? 0);
+  // A second check revised an answer: replay in place (an open session stays open).
+  const revised = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().revised ?? 0);
+  const account = useAccount(sync);
   const [log, setLog] = useState<Log | null>(null);
   const [gameConfig, setGameConfig] = useState<GameConfig | null>(null);
   const [recorded, setRecorded] = useState(0);
@@ -503,6 +525,7 @@ export const App = (): JSX.Element => {
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
   const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
   const courseId = route.tag === "home" ? null : route.course;
+  const ai = useAiStatus(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
@@ -512,6 +535,10 @@ export const App = (): JSX.Element => {
   useEffect(() => {
     if (pulled > 0) setLog(null);
   }, [pulled]);
+  useEffect(() => {
+    if (revised === 0 || store === null || courseId === null) return;
+    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
+  }, [revised, store, courseId]);
   useEffect(() => {
     if (route.tag === "home" || courseKey === null || loaded?.key === courseKey) return;
     fetchCourse(BUNDLES, route.course, route.orthography).then(
@@ -524,9 +551,20 @@ export const App = (): JSX.Element => {
     void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
   }, [store, courseId, log]);
 
-  // Live events are the newest in the log, so folding them onto the state equals a replay.
+  // Live events are the newest in the log, so folding them onto the state equals a replay. A
+  // revision rewrites an earlier answer (§8.3): the server issued it, and the log is replayed.
   const record = useCallback(
     (event: LearnerEvent): void => {
+      if (event.type === "outcome_revised") {
+        void store
+          ?.append([event], { synced: true })
+          .then(() => store.eventsOf(event.course))
+          .then((events) => {
+            setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: replay(events) }));
+            setRecorded((n) => n + 1);
+          });
+        return;
+      }
       setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
       void store?.append([event]).then(() => {
         sync?.schedule();
@@ -543,8 +581,14 @@ export const App = (): JSX.Element => {
     return <p className={styles.page}>{t.format("player.loading")}</p>;
   }
   if ("error" in loaded) return <p className={styles.page} role="alert">{t.format("app.error.load")}</p>;
-  if (route.tag === "course") return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} />;
+  if (route.tag === "course") return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} ai={ai} />;
+  if (route.tag === "roleplay") {
+    const back = href({ tag: "course", course: route.course, orthography: route.orthography });
+    return <RoleplayPage key={href(route)} course={loaded.value.course} scenario={route.scenario} account={account} status={ai} back={back} />;
+  }
   if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
   if (route.tag === "story") return <StorySession key={href(route)} loaded={loaded.value} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
-  return <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
+  return (
+    <Session key={href(route)} loaded={loaded.value} request={route.request} state={log.state} device={store.device} record={record} store={store} account={account} ai={ai} game={game} gameConfig={gameConfig} />
+  );
 };

@@ -8,7 +8,7 @@
  * Signing up uploads the existing local history: it is already in the outbox.
  */
 import { replay } from "@nabu/core/learner";
-import type { LearnerEvent } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
 import type { EventStore } from "./store.ts";
 
 const BATCH = 200;
@@ -36,6 +36,8 @@ export interface SyncState {
   readonly verified: boolean | undefined;
   /** Bumped when events from another device arrive, so open views can replay. */
   readonly pulled: number;
+  /** Bumped when a queued second check (the judge) revised an answer: open views replay in place. */
+  readonly revised: number;
 }
 
 export interface Sync {
@@ -126,6 +128,39 @@ const errorOf = (e: unknown): SyncError => {
   return e instanceof TypeError ? "unreachable" : "unknown";
 };
 
+const JUDGE_QUEUE = "judge-queue";
+
+/** Queues an answer for the judge while offline; the next sync asks for it (§8.3). */
+export const queueJudge = async (store: EventStore, answer: AnswerSubmitted): Promise<void> => {
+  const queued = ((await store.getMeta(JUDGE_QUEUE)) ?? []) as AnswerSubmitted[];
+  if (!queued.some((a) => a.id === answer.id)) await store.setMeta(JUDGE_QUEUE, [...queued, answer]);
+};
+
+/**
+ * Asks the judge about every queued answer. A revision joins the log (the server issued it, so
+ * it is already synced). Answers stay queued only while the server is unreachable; any answer
+ * the server refuses or the judge declines leaves the queue. Returns the courses revised.
+ */
+const flushJudgeQueue = async (store: EventStore, base: string, token: string): Promise<string[]> => {
+  const queued = ((await store.getMeta(JUDGE_QUEUE)) ?? []) as AnswerSubmitted[];
+  if (queued.length === 0) return [];
+  const left: AnswerSubmitted[] = [];
+  const revised: string[] = [];
+  for (const answer of queued) {
+    try {
+      const res = await request<{ revision?: LearnerEvent }>(base, "/v1/ai/judge", { token, body: { answer } });
+      if (res.revision !== undefined) {
+        await store.append([res.revision], { synced: true });
+        revised.push(answer.course);
+      }
+    } catch (e) {
+      if (!isHttpError(e) || e.status === 503) left.push(answer);
+    }
+  }
+  await store.setMeta(JUDGE_QUEUE, left);
+  return revised;
+};
+
 export const createSync = async (store: EventStore, server: string | undefined): Promise<Sync> => {
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
   let state: SyncState = {
@@ -136,6 +171,7 @@ export const createSync = async (store: EventStore, server: string | undefined):
     pending: await store.pendingCount(),
     verified: undefined,
     pulled: 0,
+    revised: 0,
   };
   const listeners = new Set<() => void>();
   const set = (patch: Partial<SyncState>): void => {
@@ -170,6 +206,10 @@ export const createSync = async (store: EventStore, server: string | undefined):
       await store.setMeta(CURSOR, cursor);
       if (!page.more) break;
     }
+    // Second checks queued while offline (§8.3): the judge may revise answers retroactively.
+    const revisedCourses = await flushJudgeQueue(store, base, token);
+    for (const c of revisedCourses) touched.add(c);
+    if (revisedCourses.length > 0) set({ revised: state.revised + 1 });
     // The server is authoritative; the device checks that it agrees (§14.2).
     let verified = true;
     for (const course of touched) {

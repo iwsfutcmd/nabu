@@ -289,6 +289,31 @@ def _story_bad_answer(c: Course) -> None:
     story(c)["steps"][2]["choose"]["answer"] = 5
 
 
+# ---- roleplay scenario cards: a clean card after the first lesson, then one mutation per lint
+SCENARIO: dict[str, Any] = {
+    "id": "basics.cafe",
+    "after": "basics.1",
+    "title": {"en": "At the café"},
+    "setting": {"en": "A small café in Tashkent, in the morning."},
+    "character": {"en": "The waiter, friendly and patient."},
+    "goal": {"en": "Greet the waiter and say who you are."},
+}
+
+
+def with_scenario(c: Course) -> dict[str, Any]:
+    card = copy.deepcopy(SCENARIO)
+    unit(c).setdefault("scenarios", []).append(card)
+    return card
+
+
+def _scenario_nowhere(c: Course) -> None:
+    with_scenario(c)["after"] = "basics.99"
+
+
+def _scenario_untranslated(c: Course) -> None:
+    with_scenario(c)["goal"] = {"fr": "Saluer le serveur."}
+
+
 FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "parse.schema": (
         "A sentence has a field the schema does not know.",
@@ -508,6 +533,8 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "story.speaker": ("A line spoken by a character the story does not have.", m(_story_stranger)),
     "story.ahead": ("The story uses talaba, which a later node introduces.", m(_story_ahead)),
     "story.question": ("A question whose answer is option 5 of 2.", m(_story_bad_answer)),
+    "scenario.node": ("A scenario opens after a node that does not exist.", m(_scenario_nowhere)),
+    "scenario.missing-text": ("A scenario's goal has no English text.", m(_scenario_untranslated)),
     "package.unreviewed-published": (
         "Published without a reviewer.",
         m(

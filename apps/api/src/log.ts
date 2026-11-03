@@ -9,7 +9,7 @@ import { readFileSync } from "node:fs";
 import { replay, type LearnerState } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { Ajv2020, type ErrorObject } from "ajv/dist/2020.js";
-import { and, asc, eq, gt, max } from "drizzle-orm";
+import { and, asc, eq, gt, inArray, max } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import { events } from "./db/schema.ts";
 
@@ -24,6 +24,9 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
 const validate = ajv.compile<LearnerEvent>(schema("learner-event.schema.json"));
+
+/** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
+export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
 
 export type UploadError =
   | { readonly code: "invalid-batch" }
@@ -93,9 +96,19 @@ export const since = async (db: Db, user: string, after: number, limit = MAX_BAT
   return { events: page.map((r) => r.payload as LearnerEvent), cursor: page.at(-1)?.seq ?? after, more: rows.length > limit };
 };
 
+/** A user's events for one course, in no particular order. */
+export const eventsOf = async (db: Db, user: string, course: string): Promise<LearnerEvent[]> =>
+  (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.course, course)))).map((r) => r.payload as LearnerEvent);
+
 /** The state a user's log for one course projects to: core's replay, as on the device. */
 export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: Omit<LearnerState, "seen"> }> => {
-  const rows = await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.course, course)));
-  const { seen: _seen, ...state } = replay(rows.map((r) => r.payload as LearnerEvent));
-  return { events: rows.length, state };
+  const log = await eventsOf(db, user, course);
+  const { seen: _seen, ...state } = replay(log);
+  return { events: log.length, state };
 };
+
+/** Which of these event ids the user's log already holds. */
+export const existing = async (db: Db, user: string, ids: readonly string[]): Promise<ReadonlySet<string>> =>
+  ids.length === 0
+    ? new Set()
+    : new Set((await db.select({ id: events.id }).from(events).where(and(eq(events.userId, user), inArray(events.id, [...ids])))).map((r) => r.id));

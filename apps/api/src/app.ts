@@ -16,21 +16,33 @@
  *   GET  /v1/push/key                  → {publicKey}: the VAPID key for pushManager.subscribe
  *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
  *   POST /v1/push/unsubscribe          {endpoint}
+ *   /v1/ai/*                           the AI features (ai/routes.ts), when the instance has a model
+ *
+ * Review (NABU_ADMIN_TOKEN as the bearer token):
+ *   GET  /admin/v1/reports?status=&course=       the review queue
+ *   GET  /admin/v1/reports.jsonl?status=approved  what `nabu reports promote` reads
+ *   POST /admin/v1/reports/:id                    {status: approved | rejected | promoted}
  *
  * Authenticated routes take `Authorization: Bearer <token>`. No cookies, so
  * any origin may call it (CORS *) without exposing a session to CSRF.
  */
 import { DEFAULT_UI_LOCALE, directionOf, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
+import { timingSafeEqual } from "node:crypto";
 import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
 import type { LeagueConfig } from "@nabu/core/game";
+import type { EvalGate, ReportStatus } from "@nabu/schema";
 import { and, eq } from "drizzle-orm";
 import type { Account, Accounts } from "./accounts.ts";
+import type { Courses } from "./ai/courses.ts";
+import type { Gateway } from "./ai/gateway.ts";
+import { aiRoutes } from "./ai/routes.ts";
 import type { Db } from "./db/index.ts";
 import { pushSubscriptions } from "./db/schema.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
-import { append, checkBatch, MAX_BATCH, since, stateOf } from "./log.ts";
+import { append, checkBatch, existing, MAX_BATCH, since, stateOf } from "./log.ts";
 import { getProfile, setProfile } from "./profiles.ts";
+import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
 export interface AppDeps {
@@ -42,9 +54,19 @@ export interface AppDeps {
   readonly vapid?: (() => Promise<Vapid>) | undefined;
   /** The clock (tests fix it). */
   readonly now?: (() => number) | undefined;
+  /** The LLM gateway, courses and judge gates (Phase 8). Reports need them too, with or without a model. */
+  readonly ai?: { readonly gateway: Gateway; readonly courses: Courses; readonly gates: readonly EvalGate[] } | undefined;
+  /** The reviewers' bearer token for /admin/v1 (unset: no review endpoints). */
+  readonly adminToken?: string | undefined;
 }
 
-type Env = { Variables: { user: Account; token: string } };
+export type Env = { Variables: { user: Account; token: string } };
+
+const sameSecret = (a: string, b: string): boolean => {
+  const x = Buffer.from(a);
+  const y = Buffer.from(b);
+  return x.length === y.length && timingSafeEqual(x, y);
+};
 
 const credentials = async (c: Context): Promise<{ email: string; password: string } | undefined> => {
   const body: unknown = await c.req.json().catch(() => undefined);
@@ -91,10 +113,40 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
   app.route("/", publicRoutes);
+
+  // The review queue, for reviewers only. No CORS: reviewers use tools, not the learner app.
+  if (adminToken !== undefined && adminToken !== "") {
+    app.use("/admin/v1/*", async (c, next) => {
+      const token = bearer(c.req.header("authorization"));
+      return token !== undefined && sameSecret(token, adminToken) ? next() : c.json({ error: "unauthorized" }, 401);
+    });
+    const filter = (c: Context): { status?: ReportStatus; course?: string } | undefined => {
+      const status = c.req.query("status");
+      const course = c.req.query("course");
+      if (status !== undefined && !STATUSES.includes(status as ReportStatus)) return undefined;
+      return { ...(status === undefined ? {} : { status: status as ReportStatus }), ...(course === undefined ? {} : { course }) };
+    };
+    app.get("/admin/v1/reports", async (c) => {
+      const f = filter(c);
+      return f === undefined ? c.json({ error: "invalid-status" }, 400) : c.json({ reports: await listReports(db, f) });
+    });
+    app.get("/admin/v1/reports.jsonl", async (c) => {
+      const f = filter(c);
+      if (f === undefined) return c.json({ error: "invalid-status" }, 400);
+      c.header("Content-Type", "application/x-ndjson; charset=utf-8");
+      return c.body((await listReports(db, f)).map((r) => `${JSON.stringify(r)}\n`).join(""));
+    });
+    app.post("/admin/v1/reports/:id", async (c) => {
+      const b = await body(c);
+      const status = b?.["status"];
+      if (typeof status !== "string" || !STATUSES.includes(status as ReportStatus) || status === "pending") return c.json({ error: "invalid-status" }, 400);
+      return (await setStatus(db, c.req.param("id"), status as ReportStatus, now())) ? c.body(null, 204) : c.json({ error: "not-found" }, 404);
+    });
+  }
 
   app.post("/v1/auth/sign-up", async (c) => {
     const body = await credentials(c);
@@ -132,9 +184,21 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now }: AppD
     const user = c.get("user").id;
     const checked = checkBatch(await c.req.json().catch(() => undefined), user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
-    const result = await append(db, user, checked.events, new Date(now()));
+    // Only the server issues revisions (§8.3): a device may hand back one it was given, never a new one.
+    const revisions = checked.events.filter((e) => e.type === "outcome_revised").map((e) => e.id);
+    const issued = await existing(db, user, revisions);
+    const batch = checked.events.filter((e) => e.type !== "outcome_revised" || issued.has(e.id));
+    const result = await append(db, user, batch, new Date(now()));
     if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
-    return c.json(result);
+    if (ai !== undefined) {
+      // Reports join the review queue; filing one twice changes nothing (one vote per learner).
+      const subject = await ai.gateway.subjectOf(user);
+      for (const e of batch) {
+        if (e.type !== "answer_reported") continue;
+        await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report" }, now());
+      }
+    }
+    return c.json({ ...result, refused: checked.events.length - batch.length });
   });
 
   app.get("/v1/events", async (c) => {
@@ -190,6 +254,8 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now }: AppD
     await db.delete(pushSubscriptions).where(and(eq(pushSubscriptions.endpoint, endpoint), eq(pushSubscriptions.userId, c.get("user").id)));
     return c.body(null, 204);
   });
+
+  if (ai !== undefined) aiRoutes(app, { db, ...ai, now });
 
   return app;
 };

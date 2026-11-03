@@ -39,5 +39,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0042](0042-hosted-tts-providers.md) | Hosted TTS (ElevenLabs, Cartesia): keys from the environment, IPA for unsettled readings, punctuated input | Proposed |
 | [0043](0043-stories.md) | Stories: source and lints, one runtime glossary matcher (exact and folded passes), the reader, vertical reading | Proposed |
 | [0044](0044-gamification-and-notifications.md) | Game state as projections (streaks across the date line, freezes, quests, gate), UTS #39 usernames, leagues with an idempotent rollover, Web Push reminders | Proposed |
+| [0045](0045-ai-services.md) | The LLM gateway (local first, schema-validated, provenance, cache, budgets, kill switch), the judge behind per-language gates with retroactive revisions, golden sets and the evaluation harness, reports to accept-set pull requests, Explain My Answer, roleplay, drafting | Proposed |
 
 Template: [0000-template.md](0000-template.md).

@@ -392,3 +392,11 @@ stories:
       prompt: {en: "What does Maryam say about her books?"}
       options: [{en: "They are very good."}, {en: "They are not good."}, {en: "She has no books."}]
       answer: 0
+scenarios:
+- id: fa.classmate
+  after: fa.plural
+  title: {en: 'Meeting a classmate'}
+  setting: {en: 'The first day of a Persian class in Tehran. Two students meet in the corridor before the lesson.'}
+  character: {en: 'Maryam, a friendly student who likes books.'}
+  goal: {en: 'Greet Maryam, say your name and that you are a student, and ask about her books.'}
+  provenance: {author: 'llm:claude@349eb068f4ca', status: draft}

@@ -1,0 +1,244 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/ai.schema.json",
+  "title": "AiOutputs",
+  "description": "What the AI services produce (gameplan §13): every output is structured, validated against this schema, and carries provenance. Models fill the *Output shapes; the server adds provenance and turns text into TaggedText.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "AiProvenance": {
+      "title": "AiProvenance",
+      "description": "Which model and which prompt template (by hash) produced an output, and when.",
+      "type": "object",
+      "required": ["provider", "model", "prompt", "promptHash", "createdAt"],
+      "additionalProperties": false,
+      "properties": {
+        "provider": { "description": "fixture: hand-written data for tests and Storybook, never served.", "type": "string", "enum": ["ollama", "openai", "anthropic", "fixture"] },
+        "model": { "type": "string", "minLength": 1 },
+        "prompt": { "description": "Template id (prompts/<id>.md).", "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "promptHash": { "description": "First 12 hex digits of the template file's SHA-256.", "type": "string", "pattern": "^[0-9a-f]{12}$" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "JudgeCategory": {
+      "title": "JudgeCategory",
+      "type": "string",
+      "enum": ["paraphrase", "register", "meaning-change", "grammar", "spelling"]
+    },
+    "JudgeOutput": {
+      "title": "JudgeOutput",
+      "description": "The judge's answer (§13.2), as the model must return it.",
+      "type": "object",
+      "required": ["verdict", "confidence", "category"],
+      "additionalProperties": false,
+      "properties": {
+        "verdict": { "type": "string", "enum": ["accept", "reject"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "category": { "$ref": "#/$defs/JudgeCategory" }
+      }
+    },
+    "JudgeVerdict": {
+      "title": "JudgeVerdict",
+      "type": "object",
+      "required": ["verdict", "confidence", "category", "provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "verdict": { "type": "string", "enum": ["accept", "reject"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "category": { "$ref": "#/$defs/JudgeCategory" },
+        "provenance": { "$ref": "#/$defs/AiProvenance" }
+      }
+    },
+    "ExplanationOutput": {
+      "title": "ExplanationOutput",
+      "description": "Explain My Answer (§13.3) as the model returns it: support-language prose, quoted target-language material, and references to the learner's answer by unit index. Never free markdown.",
+      "type": "object",
+      "required": ["segments"],
+      "additionalProperties": false,
+      "properties": {
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 24,
+          "items": {
+            "type": "object",
+            "required": ["kind"],
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "enum": ["support", "target", "ref"] },
+              "text": { "type": "string", "minLength": 1, "maxLength": 400 },
+              "answerTokens": { "type": "array", "items": { "type": "integer", "minimum": 0 }, "maxItems": 12 }
+            }
+          }
+        }
+      }
+    },
+    "ExplanationSegment": {
+      "title": "ExplanationSegment",
+      "type": "object",
+      "required": ["kind"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["support", "target", "ref"] },
+        "text": { "$ref": "tagged-text.schema.json" },
+        "answerTokens": { "type": "array", "items": { "type": "integer", "minimum": 0 } }
+      }
+    },
+    "Explanation": {
+      "title": "Explanation",
+      "type": "object",
+      "required": ["segments", "answer", "provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "segments": { "type": "array", "items": { "$ref": "#/$defs/ExplanationSegment" } },
+        "answer": { "description": "The learner's answer as TaggedText, unit by unit: what `ref` segments point into.", "$ref": "tagged-text.schema.json" },
+        "provenance": { "$ref": "#/$defs/AiProvenance" }
+      }
+    },
+    "RoleplayOutput": {
+      "title": "RoleplayOutput",
+      "type": "object",
+      "required": ["reply"],
+      "additionalProperties": false,
+      "properties": {
+        "reply": { "description": "The character's next line, in the target orthography.", "type": "string", "minLength": 1, "maxLength": 300 },
+        "translation": { "description": "Its meaning in the support language.", "type": "string", "maxLength": 300 }
+      }
+    },
+    "RoleplayTurn": {
+      "title": "RoleplayTurn",
+      "type": "object",
+      "required": ["text", "checks", "attempts", "provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "text": { "$ref": "tagged-text.schema.json" },
+        "translation": { "$ref": "tagged-text.schema.json" },
+        "checks": {
+          "description": "What the course analyzer found in the turn before it was shown (§13.4).",
+          "type": "object",
+          "required": ["unknown", "outOfScript", "words"],
+          "additionalProperties": false,
+          "properties": {
+            "unknown": { "description": "Words not in the learner's known vocabulary.", "type": "array", "items": { "type": "string" } },
+            "outOfScript": { "description": "Characters outside the orthography's exemplars.", "type": "array", "items": { "type": "string" } },
+            "words": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "attempts": { "description": "How many generations it took to stay within budget.", "type": "integer", "minimum": 1 },
+        "provenance": { "$ref": "#/$defs/AiProvenance" }
+      }
+    },
+    "AuthorOutput": {
+      "title": "AuthorOutput",
+      "description": "Drafted practice sentences (§13.5) as the model returns them: each in every orthography of the course, tokens aligned to the text, with support-language translations. Drafts are lint-checked and stay status draft until a human reviews them.",
+      "type": "object",
+      "required": ["sentences"],
+      "additionalProperties": false,
+      "properties": {
+        "sentences": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "required": ["forms", "translations"],
+            "additionalProperties": false,
+            "properties": {
+              "forms": {
+                "description": "By orthography id.",
+                "type": "object",
+                "minProperties": 1,
+                "additionalProperties": {
+                  "type": "object",
+                  "required": ["text", "tokens"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": { "type": "string", "minLength": 1, "maxLength": 200 },
+                    "tokens": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "type": "object",
+                        "required": ["surface", "kc"],
+                        "additionalProperties": false,
+                        "properties": { "surface": { "type": "string", "minLength": 1 }, "kc": { "type": "string", "minLength": 1 } }
+                      }
+                    }
+                  }
+                }
+              },
+              "translations": { "type": "array", "minItems": 1, "maxItems": 6, "items": { "type": "string", "minLength": 1, "maxLength": 200 } }
+            }
+          }
+        }
+      }
+    },
+    "ReportStatus": {
+      "title": "ReportStatus",
+      "type": "string",
+      "enum": ["pending", "approved", "rejected", "promoted"]
+    },
+    "AnswerReport": {
+      "title": "AnswerReport",
+      "description": "A learner's \"my answer should be accepted\" (§13.2 fallback), queued for review; approved reports are promoted into accept sets by `nabu reports promote`.",
+      "type": "object",
+      "required": ["id", "course", "orthography", "template", "item", "answer", "status", "reports", "notes", "createdAt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "format": "uuid" },
+        "course": { "type": "string", "minLength": 1 },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "template": { "type": "string", "minLength": 1 },
+        "item": { "type": "string", "minLength": 1 },
+        "answer": { "description": "NFC, as typed or built.", "type": "string", "minLength": 1, "maxLength": 500 },
+        "notes": { "description": "What reporters wrote, if anything (the latest few).", "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 500 } },
+        "judge": { "description": "What the judge said, if it ran and accepted.", "$ref": "#/$defs/JudgeVerdict" },
+        "status": { "$ref": "#/$defs/ReportStatus" },
+        "reports": { "description": "How many learners reported this answer or had it accepted by the judge.", "type": "integer", "minimum": 0 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "EvalItem": {
+      "title": "EvalItem",
+      "description": "One judge evaluation item (evals/judge/<course>.jsonl, §13.6): an answer the accept set rejects, and whether a good judge should accept it (a paraphrase) or not (an adversarial near miss).",
+      "type": "object",
+      "required": ["id", "course", "orthography", "item", "direction", "answer", "expect", "category", "status", "author"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$" },
+        "course": { "type": "string" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "item": { "description": "The sentence id.", "type": "string" },
+        "direction": { "description": "l2-l1: the answer is a translation into the support language; l1-l2: into the target.", "type": "string", "enum": ["l2-l1", "l1-l2"] },
+        "answer": { "type": "string", "minLength": 1 },
+        "expect": { "type": "string", "enum": ["accept", "reject"] },
+        "category": {
+          "type": "string",
+          "enum": ["paraphrase", "negation", "person", "tense", "number", "particle", "classifier", "case", "word-choice", "register", "omission", "injection"]
+        },
+        "note": { "type": "string" },
+        "status": { "description": "draft until a speaker of the language has checked the item.", "type": "string", "enum": ["draft", "reviewed"] },
+        "author": { "description": "Who wrote the item: human:<name> or llm:<model>@<prompt-hash>.", "type": "string" }
+      }
+    },
+    "EvalGate": {
+      "title": "EvalGate",
+      "description": "The judge's gate for one course orthography (evals/gates.json): on only when its false-accept rate on the adversarial set is at most 2%, for this model and this prompt hash.",
+      "type": "object",
+      "required": ["course", "orthography", "provider", "model", "promptHash", "falseAccept", "falseReject", "n", "enabled", "evaluatedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "course": { "type": "string" },
+        "orthography": { "$ref": "common.schema.json#/$defs/OrthographyId" },
+        "provider": { "type": "string", "enum": ["ollama", "openai", "anthropic"] },
+        "model": { "type": "string" },
+        "promptHash": { "type": "string", "pattern": "^[0-9a-f]{12}$" },
+        "falseAccept": { "type": "number", "minimum": 0, "maximum": 1 },
+        "falseReject": { "type": "number", "minimum": 0, "maximum": 1 },
+        "n": { "description": "Items evaluated (adversarial and paraphrase).", "type": "integer", "minimum": 0 },
+        "enabled": { "type": "boolean" },
+        "evaluatedAt": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@
  * the server's receipt order, used as the sync cursor. Projections are not
  * stored: the server replays the log with the same @nabu/core as the device.
  */
-import { bigserial, date, index, integer, jsonb, pgTable, primaryKey, smallint, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { bigserial, date, index, integer, jsonb, pgTable, primaryKey, smallint, text, timestamp, unique, uuid } from "drizzle-orm/pg-core";
 
 /** Applied migrations (migrations.ts), by name. */
 export const schemaMigrations = pgTable("schema_migrations", {
@@ -135,3 +135,67 @@ export const serverKeys = pgTable("server_keys", {
   name: text("name").primaryKey(),
   value: text("value").notNull(),
 });
+
+/** Model outputs by request key (§13.1). */
+export const llmCache = pgTable("llm_cache", {
+  key: text("key").primaryKey(),
+  feature: text("feature").notNull(),
+  output: jsonb("output").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** Model calls per subject (salted user hash, or "instance"), day and feature: the budgets. */
+export const llmUsage = pgTable(
+  "llm_usage",
+  {
+    subject: text("subject").notNull(),
+    day: date("day").notNull(),
+    feature: text("feature").notNull(),
+    calls: integer("calls").notNull().default(0),
+  },
+  (t) => [primaryKey({ columns: [t.subject, t.day, t.feature] })],
+);
+
+export const explanationRatings = pgTable(
+  "explanation_ratings",
+  {
+    key: text("key").notNull(),
+    subject: text("subject").notNull(),
+    rating: smallint("rating").notNull(),
+    ratedAt: timestamp("rated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [primaryKey({ columns: [t.key, t.subject] })],
+);
+
+/** The review queue (§13.2): one row per distinct normalized answer to an item. */
+export const answerReports = pgTable(
+  "answer_reports",
+  {
+    id: uuid("id").primaryKey(),
+    course: text("course").notNull(),
+    orthography: text("orthography").notNull(),
+    template: text("template").notNull(),
+    item: text("item").notNull(),
+    answer: text("answer").notNull(),
+    normalized: text("normalized").notNull(),
+    status: text("status").notNull().default("pending"),
+    notes: jsonb("notes").notNull().default([]),
+    judge: jsonb("judge"),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [unique().on(t.course, t.orthography, t.template, t.item, t.normalized), index("answer_reports_status").on(t.status, t.course)],
+);
+
+/** Who stands behind a report: salted hashes, never user ids. */
+export const reportVotes = pgTable(
+  "report_votes",
+  {
+    reportId: uuid("report_id")
+      .notNull()
+      .references(() => answerReports.id, { onDelete: "cascade" }),
+    subject: text("subject").notNull(),
+    source: text("source").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.reportId, t.subject] })],
+);

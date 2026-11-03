@@ -377,3 +377,11 @@ stories:
       prompt: {en: "What are they going to do?"}
       options: [{en: "have dim sum"}, {en: "go to school"}, {en: "say goodbye"}]
       answer: 0
+scenarios:
+- id: yue.yum-cha-friend
+  after: yue.yum-cha
+  title: {en: 'Yum cha with a friend'}
+  setting: {en: 'A busy dim sum restaurant in Hong Kong on a Sunday morning.'}
+  character: {en: 'Your friend, a student who loves yum cha and teases you a little.'}
+  goal: {en: 'Say good morning, suggest going for yum cha, and thank your friend.'}
+  provenance: {author: 'llm:claude@c0b213407a82', status: draft}

@@ -479,3 +479,11 @@ stories:
       prompt: {en: "What does Aziz show the teacher?"}
       options: [{en: "his book"}, {en: "his name"}, {en: "a student"}]
       answer: 0
+scenarios:
+- id: uz.new-teacher
+  after: uz.my
+  title: {en: 'A new teacher'}
+  setting: {en: 'A school in Samarkand on the first day of term.'}
+  character: {en: 'The new teacher, kind and a little formal.'}
+  goal: {en: 'Greet the teacher, say who you are, and talk about your book.'}
+  provenance: {author: 'llm:claude@4449b7699ce8', status: draft}

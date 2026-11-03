@@ -3,6 +3,7 @@
  * final standings of a cohort. Leagues are opt-in per instance; the server stores memberships
  * and results, and runs the weekly rollover.
  */
+import { revised, revisionsOf } from "../learner/revisions.ts";
 import type { LearnerEvent } from "@nabu/schema";
 import type { GameConfig } from "./config.ts";
 import { xpRule, type GameInput } from "./game.ts";
@@ -55,11 +56,15 @@ export const weekById = (id: string, config: LeagueConfig): { readonly id: strin
  * a session without a single plausible answer, and a cap per hour.
  */
 export const leagueXp = (inputs: readonly GameInput[], start: number, end: number, game: GameConfig, league: LeagueConfig): number => {
+  const inTime = ({ receivedAt }: GameInput): boolean => receivedAt === undefined || Date.parse(receivedAt) <= end + league.graceHours * HOUR;
+  // A judge's revision counts if it, too, reached the server in time.
+  const revisions = revisionsOf(inputs.filter(inTime).map((i) => i.event));
   const inWeek = inputs
-    .filter(({ event: e, receivedAt }) => {
-      const at = Date.parse(e.clientTime);
-      return at >= start && at < end && (receivedAt === undefined || Date.parse(receivedAt) <= end + league.graceHours * HOUR);
+    .filter((input) => {
+      const at = Date.parse(input.event.clientTime);
+      return input.event.type !== "outcome_revised" && at >= start && at < end && inTime(input);
     })
+    .map((input) => (input.event.type === "answer_submitted" ? { ...input, event: revised(input.event, revisions) } : input))
     .sort((a, b) => Date.parse(a.event.clientTime) - Date.parse(b.event.clientTime) || (a.event.id < b.event.id ? -1 : 1));
   const seen = new Set<string>();
   // A session earns its XP only if some answer in it was plausible.

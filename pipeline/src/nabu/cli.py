@@ -26,6 +26,16 @@ def _register_audio() -> None:
 _register_audio()
 
 
+def _register_ai() -> None:
+    from nabu.ai.cli import author_app, reports_app
+
+    app.add_typer(reports_app, name="reports")
+    app.add_typer(author_app, name="author")
+
+
+_register_ai()
+
+
 class Kind(StrEnum):
     auto = "auto"
     profile = "profile"

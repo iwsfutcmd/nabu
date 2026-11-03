@@ -118,10 +118,22 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
   NABU_TEST_HOOKS=1 only in tests (push sink, job runner). Reminder copy lives in packages/i18n (push.reminder.*).
 - Web Push is our own RFC 8291/8292 code (apps/api/src/webpush.ts); its test pins the RFC's example bytes.
 
+## Phase 8 notes (see docs/adr/0045)
+- AI goes through the gateway (apps/api/src/ai): providers from the environment only (NABU_LLM, NABU_LLM_MODEL,
+  NABU_LLM_URL, a key), outputs validated against schemas/ai.schema.json, provenance on every output. No model: AI off.
+- Prompts live in prompts/*.md, referenced by hash. Learner text goes in as data (asData). Changing judge.md closes
+  every judge gate until `pnpm --filter @nabu/api evals -- --run` with a model writes new ones.
+- evals/gates.json: never hand-write a gate or a result. Golden items must stay real judge cases (check mode, in CI).
+- A judge accept is an outcome_revised event the server issues; projections fold logs through withRevisions.
+- Reports are answer_reported events. Review: /admin/v1 (NABU_ADMIN_TOKEN); `nabu reports promote` edits accept sets.
+- Roleplay scenarios are course content (`scenarios:`, no target text); model turns are checked before shown.
+- Explanations: segments render through <T>; the paragraph takes the support language's direction, never the UI's.
+- Tests use a scripted provider for plumbing only; never present stand-in output as a model's result.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0044 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0045 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

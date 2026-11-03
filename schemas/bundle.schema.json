@@ -53,7 +53,25 @@
         "kcs": { "type": "array", "items": { "$ref": "#/$defs/BundleKc" } },
         "nodes": { "type": "array", "items": { "$ref": "#/$defs/BundleNode" } },
         "sentences": { "type": "array", "items": { "$ref": "#/$defs/BundleSentence" } },
-        "stories": { "type": "array", "items": { "$ref": "#/$defs/BundleStory" } }
+        "stories": { "type": "array", "items": { "$ref": "#/$defs/BundleStory" } },
+        "scenarios": { "type": "array", "items": { "$ref": "#/$defs/BundleScenario" } }
+      }
+    },
+    "BundleScenario": {
+      "title": "BundleScenario",
+      "description": "A roleplay scenario card (Phase 8, §13.4); its texts per support language.",
+      "type": "object",
+      "required": ["id", "after", "title", "setting", "character", "goal", "license"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "after": { "description": "The path node completed before the scenario opens.", "type": "string" },
+        "title": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "setting": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "character": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "goal": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
+        "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
+        "license": { "type": "string" }
       }
     },
     "BundleStory": {

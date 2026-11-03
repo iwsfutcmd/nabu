@@ -9,6 +9,7 @@ import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type 
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { facetOf, ratingOf, type Rating } from "./credit.ts";
 import { initialPerformance, update, type Performance } from "./performance.ts";
+import { withRevisions } from "./revisions.ts";
 
 /** An FSRS card as plain JSON: dates as ISO strings. */
 export interface StoredCard {
@@ -205,8 +206,11 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "session_completed":
       completed(d, e);
       return;
+    // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold.
     case "session_started":
     case "exercise_presented":
+    case "answer_reported":
+    case "outcome_revised":
       return;
   }
 };
@@ -217,7 +221,7 @@ export const compareEvents = (a: LearnerEvent, b: LearnerEvent): number => {
   return t !== 0 ? t : a.id < b.id ? -1 : a.id > b.id ? 1 : 0;
 };
 
-/** Applies events in order to a state. For a log that may contain late arrivals, use replay. */
+/** Applies events in order to a state. For a log that may contain late arrivals or revisions, use replay. */
 export const applyEvents = (state: LearnerState, events: readonly LearnerEvent[]): LearnerState => {
   const d = draftOf(state);
   for (const e of events) applyOne(d, e);
@@ -225,4 +229,4 @@ export const applyEvents = (state: LearnerState, events: readonly LearnerEvent[]
 };
 
 /** The state a whole event log projects to: order-independent and idempotent. */
-export const replay = (events: readonly LearnerEvent[]): LearnerState => applyEvents(emptyLearnerState(), [...events].sort(compareEvents));
+export const replay = (events: readonly LearnerEvent[]): LearnerState => applyEvents(emptyLearnerState(), withRevisions(events).sort(compareEvents));

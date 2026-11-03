@@ -18,6 +18,118 @@
       "message": ".input {$days :number}\n{{A {$days}-day streak}}",
       "description": "Achievement: a streak of this many days."
     },
+    "ai.budget": {
+      "message": "You've used today's AI help. It comes back tomorrow.",
+      "description": "The learner's daily allowance of AI calls is spent."
+    },
+    "ai.explain.button": {
+      "message": "Explain my answer",
+      "description": "Button after a wrong answer: ask a language model why the answer was wrong."
+    },
+    "ai.explain.by": {
+      "message": "Written by a language model ({$model}). It can be wrong.",
+      "description": "Under every AI explanation: which model wrote it. $model is a technical model name, left as is."
+    },
+    "ai.explain.failed": {
+      "message": "No explanation this time. Try again later.",
+      "description": "When the model gave no usable explanation."
+    },
+    "ai.explain.helpful": {
+      "message": "Helpful",
+      "description": "Rating button: the explanation helped."
+    },
+    "ai.explain.loading": {
+      "message": "Writing an explanation…",
+      "description": "Status while the explanation is being written."
+    },
+    "ai.explain.rate": {
+      "message": "Was this explanation helpful?",
+      "description": "Label of the rating buttons under an explanation."
+    },
+    "ai.explain.title": {
+      "message": "Explanation",
+      "description": "Heading of an explanation of the learner's mistake, written by a language model."
+    },
+    "ai.explain.unhelpful": {
+      "message": "Not helpful",
+      "description": "Rating button: the explanation did not help."
+    },
+    "ai.judge.accepted": {
+      "message": "On second look, your answer is accepted. It counts as right.",
+      "description": "The language model accepted an answer graded wrong; the learner's progress is updated."
+    },
+    "ai.judge.checking": {
+      "message": "Checking your answer again…",
+      "description": "Status while a language model checks an answer the accepted answers did not list."
+    },
+    "ai.judge.queued": {
+      "message": "Your answer will be checked again when you're back online.",
+      "description": "Offline: the second check waits for a connection."
+    },
+    "ai.report.button": {
+      "message": "My answer should be accepted",
+      "description": "Button after a wrong typed answer: report that the answer is correct."
+    },
+    "ai.report.done": {
+      "message": "Thanks! A reviewer will look at your answer.",
+      "description": "Confirmation after reporting an answer."
+    },
+    "ai.roleplay.character": {
+      "message": "Who",
+      "description": "Label: the character the language model plays."
+    },
+    "ai.roleplay.goal": {
+      "message": "Your goal",
+      "description": "Label: what the learner tries to do in the conversation."
+    },
+    "ai.roleplay.hide-translation": {
+      "message": "Hide translation",
+      "description": "Button: hide the translation again."
+    },
+    "ai.roleplay.log": {
+      "message": "Conversation",
+      "description": "Accessible name of the list of conversation turns."
+    },
+    "ai.roleplay.no-turn": {
+      "message": "No reply came back in words you know. Try saying it another way.",
+      "description": "Every generated turn failed the vocabulary check; nothing unchecked is shown."
+    },
+    "ai.roleplay.send": {
+      "message": "Send",
+      "description": "Button: send the learner's turn."
+    },
+    "ai.roleplay.setting": {
+      "message": "Where",
+      "description": "Label: where the roleplay conversation takes place."
+    },
+    "ai.roleplay.show-translation": {
+      "message": "Show translation",
+      "description": "Button: show the translation of the character's line."
+    },
+    "ai.roleplay.start": {
+      "message": "Start the conversation",
+      "description": "Button: ask the character to speak first."
+    },
+    "ai.roleplay.them": {
+      "message": "Character",
+      "description": "Speaker label on the character's turns (played by a language model)."
+    },
+    "ai.roleplay.thinking": {
+      "message": "The character is answering…",
+      "description": "Status while the model writes the next turn."
+    },
+    "ai.roleplay.you": {
+      "message": "You",
+      "description": "Speaker label on the learner's own turns."
+    },
+    "ai.roleplay.your-turn": {
+      "message": "Your reply",
+      "description": "Label of the field where the learner writes their turn."
+    },
+    "ai.unavailable": {
+      "message": "The language model can't be reached right now.",
+      "description": "AI help failed because the model service is unreachable."
+    },
     "app.account.create": {
       "message": "Create account",
       "description": "Button that creates an account and uploads the progress on this device."
@@ -262,6 +374,22 @@
       "message": "This browser can't show reminders.",
       "description": "Shown when the browser has no push support."
     },
+    "app.roleplay.back": {
+      "message": "Back to the course",
+      "description": "Link from a conversation back to the course path."
+    },
+    "app.roleplay.note": {
+      "message": "A language model plays the other person, using only words you know. It can make mistakes.",
+      "description": "Explains roleplay before the list of scenarios."
+    },
+    "app.roleplay.title": {
+      "message": "Conversations",
+      "description": "Course page heading: roleplay scenarios with a character played by a language model."
+    },
+    "app.roleplay.unavailable": {
+      "message": "Conversations need an account and a server with a language model.",
+      "description": "Shown on a conversation page when roleplay is not available."
+    },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
       "description": "Shown when on-device storage is unavailable (for example in some private windows)."
@@ -377,6 +505,10 @@
     "feedback.note.ime-homophone": {
       "message": "One character has the right sound but is the wrong character: check what your keyboard suggested.",
       "description": "Feedback note for an IME slip (a homophone picked from the input method)."
+    },
+    "feedback.note.judge": {
+      "message": "Accepted after a second check by a language model.",
+      "description": "Note on an answer the judge accepted (provisionally right)."
     },
     "feedback.note.marks": {
       "message": "Check the accents and vowel marks.",
