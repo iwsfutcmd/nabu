@@ -22,5 +22,9 @@ match:
     - { id: ta-marbuta, map: { "\u0629": "\u0647" }, policy: accept }
     - { id: loan-letters, map: { "\u06A4": "\u0641", "\u067E": "\u0628" }, policy: accept }   # REVIEW: ڤ/ف (v), پ/ب (p)
   typo: { model: keyboard, layout: cldr-kbd:ar, maxRatio: 0.2 }
+annotations:
+  - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
+input:
+  keyboard: cldr-kbd:ar
 layout: { vertical: none }
 fonts: { stack: [Noto Naskh Arabic], lineHeight: 1.9 }

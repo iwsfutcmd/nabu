@@ -221,6 +221,19 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
             )
         ),
     ),
+    "parse.missing-asset": (
+        "A KC image whose file does not exist.",
+        m(
+            set_(
+                ["units", 0, "kcs", 0, "image"],
+                {
+                    "file": "images/no-such-picture.svg",
+                    "license": "CC0-1.0",
+                    "provenance": {"author": "human:fixture", "status": "draft"},
+                },
+            )
+        ),
+    ),
     "parse.token-mismatch": (
         "A token that is not in the text.",
         m(

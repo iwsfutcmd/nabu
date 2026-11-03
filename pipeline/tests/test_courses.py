@@ -140,3 +140,13 @@ def test_course_dirs_are_all_tested() -> None:
     assert sorted(p.name for p in COURSES.iterdir() if (p / "course.yaml").is_file()) == sorted(
         TOOLS
     )
+
+
+@pytest.mark.parametrize("course", sorted(TOOLS))
+def test_select_image_has_licensed_pictures(core_cli: CoreCli, course: str) -> None:
+    """At least three pictured senses per course, so select-image has distractors."""
+    _, compiled = build(core_cli, course)
+    pictured = [k for u in compiled.units for k in u["kcs"] if "image" in k]
+    assert len(pictured) >= 3, [k["id"] for k in pictured]
+    assert all(k["image"] in compiled.images for k in pictured)
+    assert all(license_ == "CC0-1.0" for _, license_, _ in compiled.images.values())

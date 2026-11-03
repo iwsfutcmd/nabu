@@ -67,7 +67,10 @@ describe("fixture courses in /courses", () => {
   const ajv = makeAjv();
   const course = ajv.getSchema(ID("course-source.schema.json"))!;
   const unit = ajv.getSchema(`${ID("course-source.schema.json")}#/$defs/UnitSource`)!;
-  const courses = readdirSync(COURSES_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name).sort();
+  const courses = readdirSync(COURSES_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && readdirSync(join(COURSES_DIR, d.name)).includes("course.yaml"))
+    .map((d) => d.name)
+    .sort();
   it("exist", () => expect(courses).toEqual(expect.arrayContaining(["apc", "fa", "uz", "yue"])));
   for (const name of courses) {
     const dir = join(COURSES_DIR, name);

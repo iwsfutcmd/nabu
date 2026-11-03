@@ -87,6 +87,7 @@ def build(
     """Compile courses into content-addressed bundles (gameplan §7.5)."""
     from nabu.analyzers import analyzers_by_tool
     from nabu.compiler import compile_course, load_profiles, write_bundle
+    from nabu.compiler.package import canonical
     from nabu.corecli import CoreCli
 
     profiles = load_profiles()
@@ -96,6 +97,7 @@ def build(
         typer.echo("✗ no courses found", err=True)
         raise typer.Exit(code=1)
     failed = False
+    index: list[dict[str, Any]] = []
     with CoreCli() as cli:
         for course in paths:
             diags, compiled = compile_course(course, cli, profiles, analyzers)
@@ -112,6 +114,20 @@ def build(
             else:
                 manifest = write_bundle(compiled, profiles, analyzers, out / compiled.course.id)
                 typer.echo(f"✓ {compiled.course.id} → {manifest['id']} ({summary})")
+                index.append(
+                    {
+                        "id": compiled.course.id,
+                        "target": manifest["target"],
+                        "orthographies": manifest["orthographies"],
+                        "support": manifest["support"],
+                        "manifest": f"{compiled.course.id}/manifest.json",
+                        "bundle": manifest["id"],
+                    }
+                )
+    if index and not failed and len(paths) > 1:
+        # The courses a client can offer, for a directory of bundles (apps/web/public/bundles).
+        courses = sorted(index, key=lambda c: c["id"])
+        (out / "index.json").write_bytes(canonical({"courses": courses}))
     raise typer.Exit(code=1 if failed else 0)
 
 

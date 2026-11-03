@@ -23,6 +23,20 @@
           "keys": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
         }
       }
+    },
+    "shift": {
+      "description": "Shift layer for touch keyboards (gameplan §6.7), row for row and key for key with `rows`. The typo model uses only the base layer.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["keys"],
+        "additionalProperties": false,
+        "properties": {
+          "offset": { "type": "number", "default": 0 },
+          "keys": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+        }
+      }
     }
   }
 }

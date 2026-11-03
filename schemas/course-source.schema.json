@@ -219,6 +219,9 @@
             }
           }
         },
+        "image": {
+          "$ref": "#/$defs/ImageAsset"
+        },
         "notes": {
           "type": "object",
           "additionalProperties": {
@@ -465,6 +468,35 @@
             "type": "integer",
             "minimum": 0
           }
+        }
+      }
+    },
+    "ImageAsset": {
+      "title": "ImageAsset",
+      "description": "A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.",
+      "type": "object",
+      "required": [
+        "file",
+        "license",
+        "provenance"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "description": "SVG, PNG or WebP, relative to course.yaml.",
+          "type": "string",
+          "pattern": "^[^/][^\\\\]*\\.(svg|png|webp)$"
+        },
+        "license": {
+          "$ref": "#/$defs/Spdx"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "source": {
+          "description": "Where it came from (URL or description), for attribution.",
+          "type": "string",
+          "minLength": 1
         }
       }
     }

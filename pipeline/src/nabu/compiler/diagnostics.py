@@ -38,6 +38,9 @@ _LINTS = [
         1,
         "Tokens do not spell out the form's text in order, or a word is left untokenized.",
     ),
+    Lint(
+        "parse.missing-asset", "error", 1, "An asset (a KC image) names a file that does not exist."
+    ),
     # 2 · text hygiene
     Lint("text.not-nfc", "error", 2, "A string is not in NFC."),
     Lint(

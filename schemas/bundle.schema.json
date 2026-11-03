@@ -35,7 +35,7 @@
       "additionalProperties": false,
       "properties": {
         "path": { "type": "string" },
-        "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard"] },
+        "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard", "image"] },
         "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
         "license": { "type": "string" },
         "source": { "type": "string" }
@@ -66,7 +66,8 @@
         "prerequisites": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "cefr": { "type": "string" },
         "gloss": { "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } },
-        "forms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "tagged-text.schema.json" } } }
+        "forms": { "type": "object", "additionalProperties": { "type": "array", "items": { "$ref": "tagged-text.schema.json" } } },
+        "image": { "description": "Bundle path of the KC's picture (a file with role image).", "type": "string" }
       }
     },
     "BundleNode": {

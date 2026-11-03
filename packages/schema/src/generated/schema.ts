@@ -74,16 +74,16 @@ export type Spdx = string;
  */
 export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 /**
- * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
- */
-export type KcId1 = string & { readonly __brand: "KcId" };
-/**
  * An SPDX license expression.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Spdx".
  */
 export type Spdx1 = string;
+/**
+ * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
+ */
+export type KcId1 = string & { readonly __brand: "KcId" };
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -194,6 +194,7 @@ export interface NabuSchemaIndex {
   readonly SentenceForm: SentenceForm;
   readonly SourceToken: SourceToken;
   readonly DrillSpec: DrillSpec;
+  readonly ImageAsset: ImageAsset;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly MessageCatalog: MessageCatalog;
@@ -281,7 +282,7 @@ export interface BundleManifest {
  */
 export interface BundleFile {
   readonly path: string;
-  readonly role: "unit" | "profile" | "table" | "keyboard";
+  readonly role: "unit" | "profile" | "table" | "keyboard" | "image";
   readonly sha256: string;
   readonly license: string;
   readonly source?: string;
@@ -375,6 +376,10 @@ export interface BundleKc {
   readonly forms?: {
     readonly [k: string]: readonly TaggedText[];
   };
+  /**
+   * Bundle path of the KC's picture (a file with role image).
+   */
+  readonly image?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -513,9 +518,28 @@ export interface KnowledgeComponentSource {
      */
     readonly [k: string]: readonly string[];
   };
+  readonly image?: ImageAsset;
   readonly notes?: {
     readonly [k: string]: string;
   };
+}
+/**
+ * A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ImageAsset".
+ */
+export interface ImageAsset {
+  /**
+   * SVG, PNG or WebP, relative to course.yaml.
+   */
+  readonly file: string;
+  readonly license: Spdx1;
+  readonly provenance: Provenance;
+  /**
+   * Where it came from (URL or description), for attribution.
+   */
+  readonly source?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -668,6 +692,18 @@ export interface KeyboardLayout {
    * @minItems 1
    */
   readonly rows: readonly {
+    readonly offset?: number;
+    /**
+     * @minItems 1
+     */
+    readonly keys: readonly string[];
+  }[];
+  /**
+   * Shift layer for touch keyboards (gameplan §6.7), row for row and key for key with `rows`. The typo model uses only the base layer.
+   *
+   * @minItems 1
+   */
+  readonly shift?: readonly {
     readonly offset?: number;
     /**
      * @minItems 1

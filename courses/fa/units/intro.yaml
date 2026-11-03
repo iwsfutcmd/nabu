@@ -4,7 +4,7 @@ id: intro
 title: {en: 'Hello, I''m Maryam'}
 cefr: A1
 kcs:
-- {id: 'sense:salam', gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}}
+- {id: 'sense:salam', gloss: {en: hello}, forms: {fa-Arab/standard: [سلام]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:khodahafez', gloss: {en: goodbye}, forms: {fa-Arab/standard: [خداحافظ]}}
 - {id: 'sense:mamnun', gloss: {en: thank you; thanks}, forms: {fa-Arab/standard: [ممنون]}}
 - {id: 'sense:bale', gloss: {en: 'yes'}, forms: {fa-Arab/standard: [بله]}}
@@ -18,11 +18,11 @@ kcs:
 - {id: 'sense:man', gloss: {en: I; me; my (after a noun)}, forms: {fa-Arab/standard: [من]}}
 - {id: 'form:2sg-i', gloss: {en: '-i: you, one person (verb ending)'}}
 - {id: 'sense:to', gloss: {en: 'you (one person, familiar)'}, forms: {fa-Arab/standard: [تو]}}
-- {id: 'sense:ketab', gloss: {en: book}, forms: {fa-Arab/standard: [کتاب, "کتاب\u200cها", "کتاب\u200cهای"]}}
+- {id: 'sense:ketab', gloss: {en: book}, forms: {fa-Arab/standard: [کتاب, "کتاب\u200cها", "کتاب\u200cهای"]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'construction:ezafe', gloss: {en: 'ezafe: the -e that links a noun to what describes or owns it'}, notes: {en: "Usually unwritten after a consonant (کتاب من, ketāb-e man); written ی after -hā (کتاب\u200cهای من)."}}
-- {id: 'sense:esm', gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}}
+- {id: 'sense:esm', gloss: {en: name}, forms: {fa-Arab/standard: [اسم]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:chist', gloss: {en: 'what is …?'}, forms: {fa-Arab/standard: [چیست]}}
-- {id: 'sense:khub', gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}}
+- {id: 'sense:khub', gloss: {en: good; well}, forms: {fa-Arab/standard: [خوب]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:kheyli', gloss: {en: very}, forms: {fa-Arab/standard: [خیلی]}}
 - {id: 'form:2pl-id', gloss: {en: '-id: you, polite or more than one (verb ending)'}}
 - {id: 'sense:shoma', gloss: {en: 'you (polite, or more than one)'}, forms: {fa-Arab/standard: [شما]}}
@@ -212,8 +212,8 @@ sentences:
   constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
-      text: این کتاب من است.
-      tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      text: این کتابِ من است.
+      tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab}, {surface: من, sense: man}, {surface: است, sense: budan}]
       reverse: این کتاب من است
   translations:
     en: This is my book.
@@ -222,8 +222,8 @@ sentences:
   constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
-      text: اسم من مریم است.
-      tokens: [{surface: اسم, sense: esm}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
+      text: اسمِ من مریم است.
+      tokens: [{surface: اسمِ, sense: esm}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
       reverse: اسم من مریم است
   translations:
     en: My name('s| is) Maryam.
@@ -232,8 +232,8 @@ sentences:
   constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
-      text: اسم تو چیست؟
-      tokens: [{surface: اسم, sense: esm}, {surface: تو, sense: to}, {surface: چیست, sense: chist}]
+      text: اسمِ تو چیست؟
+      tokens: [{surface: اسمِ, sense: esm}, {surface: تو, sense: to}, {surface: چیست, sense: chist}]
       reverse: اسم تو (چیست|چیه)
   translations:
     en: What('s| is) your name?
@@ -251,8 +251,8 @@ sentences:
   constructions: ['construction:ezafe']
   forms:
     fa-Arab/standard:
-      text: کتاب من خیلی خوب است.
-      tokens: [{surface: کتاب, sense: ketab}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      text: کتابِ من خیلی خوب است.
+      tokens: [{surface: کتابِ, sense: ketab}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
       reverse: کتاب من خیلی خوب است
   translations:
     en: My book is very good.

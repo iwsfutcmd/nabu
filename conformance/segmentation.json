@@ -1,5 +1,5 @@
 {
-  "$comment": "Runtime units (§6.5): tokens split at spaces where spaces survive normalization, grapheme clusters otherwise; and the orthography's letters, longest match first, after case folding (§6.3).",
+  "$comment": "Runtime units (§6.5): tokens split at spaces where spaces survive normalization, grapheme clusters otherwise; and the orthography's letters, longest match first, after case folding (§6.3). fold-units: the units tap-to-gloss matches on (case-folded, ignorable marks stripped).",
   "vectors": [
     {
       "id": "units/fa/tokens",
@@ -242,6 +242,59 @@
         "ت",
         "ا",
         "ب"
+      ]
+    },
+    {
+      "id": "fold-units/fa/marks-ignored",
+      "op": "fold-units",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "کتابِ من"
+      },
+      "expected": [
+        "کتاب",
+        "من"
+      ],
+      "note": "glossary lookup strips the harakat the profile ignores, so کتابِ (with ezafe kasra) finds کتاب"
+    },
+    {
+      "id": "fold-units/apc/shadda",
+      "op": "fold-units",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "text": "بدّي قهوة"
+      },
+      "expected": [
+        "بدي",
+        "قهوة"
+      ]
+    },
+    {
+      "id": "fold-units/uz/case",
+      "op": "fold-units",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "text": "Salom, Aziz!"
+      },
+      "expected": [
+        "salom",
+        "aziz"
+      ],
+      "note": "case-folded with the uz locale; punctuation stripped by normalization"
+    },
+    {
+      "id": "fold-units/yue/graphemes",
+      "op": "fold-units",
+      "args": {
+        "profile": "yue-Hant-HK/standard",
+        "text": "我哋去飲茶！"
+      },
+      "expected": [
+        "我",
+        "哋",
+        "去",
+        "飲",
+        "茶"
       ]
     }
   ]

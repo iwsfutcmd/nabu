@@ -7,6 +7,7 @@ file:line.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import unicodedata
 from dataclasses import dataclass, field
@@ -59,6 +60,8 @@ class Compiled:
     support: list[str] = field(default_factory=lambda: [])
     licenses: dict[str, int] = field(default_factory=lambda: {})
     provenance: dict[str, int] = field(default_factory=lambda: {})
+    # bundle path → (bytes, SPDX license, attribution source)
+    images: dict[str, tuple[bytes, str, str | None]] = field(default_factory=lambda: {})
 
 
 @dataclass
@@ -446,13 +449,42 @@ def compile_course(
         course=course, orthographies=list(course.orthographies), support=list(course.support)
     )
     _packaging(ctx, course, units, compiled)
+    image_paths = _images(ctx, course_file.parent, units, compiled)
     if diags.errors:
         return diags, None
     compiled.units = [
-        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs)
+        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
         for ui, unit in enumerate(units)
     ]
     return diags, compiled
+
+
+def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
+    """KC images → content-addressed bundle paths; licenses and provenance join the summary."""
+    out: dict[str, str] = {}
+    for unit in units:
+        for ki, kc in enumerate(unit.source.kcs):
+            image = kc.image
+            if image is None:
+                continue
+            path = course_dir / image.file
+            if not path.is_file():
+                ctx.diags.report(
+                    "parse.missing-asset",
+                    f"{kc.id}: no image file {image.file}",
+                    unit.doc.loc("kcs", ki, "image", "file"),
+                )
+                continue
+            data = path.read_bytes()
+            digest = hashlib.sha256(data).hexdigest()
+            rel = f"images/{path.stem}.{digest[:16]}{path.suffix}"
+            compiled.images[rel] = (data, image.license, image.source)
+            out[kc.id] = rel
+            compiled.licenses[image.license] = compiled.licenses.get(image.license, 0) + 1
+            kind = image.provenance.author.split(":", 1)[0]
+            for key in (f"status.{image.provenance.status}", f"author.{kind}"):
+                compiled.provenance[key] = compiled.provenance.get(key, 0) + 1
+    return out
 
 
 # ------------------------------------------------------------ stage 1 extras
@@ -969,6 +1001,7 @@ def _bundle_unit(
     unit: Unit,
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
     kcs: dict[tuple[int, int], list[str]],
+    images: dict[str, str],
 ) -> dict[str, Any]:
     src = unit.source
     target = course.target
@@ -1048,6 +1081,8 @@ def _bundle_unit(
                 orth: [_support_text(ctx, orth, f, target) for f in fs]
                 for orth, fs in kc.forms.items()
             }
+        if kc.id in images:
+            k["image"] = images[kc.id]
         kc_out.append(k)
 
     out: dict[str, Any] = {"id": src.id, "kcs": kc_out, "nodes": nodes, "sentences": sentences}

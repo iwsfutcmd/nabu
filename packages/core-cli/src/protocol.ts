@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledProfile } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, glossUnits, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledProfile } from "@nabu/core";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
@@ -54,11 +54,8 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     return p.units(p.normalize(text(a)));
   },
   fold: (a) => profile(a).fold(text(a)),
-  /** Runtime units, case-folded: what tap-to-gloss and hint lookup match on. */
-  "fold-units": (a) => {
-    const p = profile(a);
-    return p.units(p.normalize(text(a))).map((u) => p.fold(u));
-  },
+  /** Runtime units, case-folded, ignorable marks stripped: what tap-to-gloss and hint lookup match on. */
+  "fold-units": (a) => glossUnits(profile(a), text(a)),
   "case-fold": (a) => caseFold(text(a), text(a, "locale")),
   letters: (a) => {
     const p = profile(a);

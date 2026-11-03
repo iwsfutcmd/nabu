@@ -53,6 +53,11 @@ def _profile_files(profile: OrthographyProfile) -> list[tuple[str, str, str]]:
         if layout is not None:
             kid = layout.removeprefix("cldr-kbd:").lower()
             out.append(("keyboard", kid, str(PROFILES / "keyboards" / f"{kid}.yaml")))
+    keyboard = getattr(profile.input, "keyboard", None)
+    if keyboard is not None:
+        kid = str(getattr(keyboard, "root", keyboard)).removeprefix("cldr-kbd:").lower()
+        if not any(role == "keyboard" and ident == kid for role, ident, _ in out):
+            out.append(("keyboard", kid, str(PROFILES / "keyboards" / f"{kid}.yaml")))
     return out
 
 
@@ -134,6 +139,19 @@ def write_bundle(
             )
             license_ = str(data.get("license", "MIT OR Apache-2.0"))
             put(role, ident, canonical(data), license_, str(data.get("source", "")) or None)
+
+    for rel, (blob, image_license, image_source) in sorted(compiled.images.items()):
+        (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
+        (out_dir / rel).write_bytes(blob)
+        entry: dict[str, Any] = {
+            "path": rel,
+            "role": "image",
+            "sha256": sha256(blob),
+            "license": image_license,
+        }
+        if image_source is not None:
+            entry["source"] = image_source
+        files.append(entry)
 
     manifest: dict[str, Any] = {
         "formatVersion": FORMAT_VERSION,

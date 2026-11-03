@@ -23,7 +23,7 @@ class BundleFile(BaseModel):
         frozen=True,
     )
     path: str
-    role: Literal["unit", "profile", "table", "keyboard"]
+    role: Literal["unit", "profile", "table", "keyboard", "image"]
     sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
     license: str
     source: str | None = None
@@ -162,27 +162,6 @@ type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Fiel
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
-class KnowledgeComponentSource(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: KcId
-    prerequisites: list[KcId] | None = None
-    cefr: Cefr | None = None
-    gloss: Annotated[
-        dict[str, GlossAdditionalProperty] | None,
-        Field(description="Short meaning per support language."),
-    ] = None
-    forms: Annotated[
-        dict[OrthographyId, FormsAdditionalProperty] | None,
-        Field(
-            description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
-        ),
-    ] = None
-    notes: dict[str, NotesAdditionalProperty] | None = None
-
-
 class Convert1(BaseModel):
     """
     script nodes: convert sentences between two orthographies (script-convert, §6.3).
@@ -240,6 +219,32 @@ class DrillSpec(BaseModel):
     values: Annotated[list[Value], Field(min_length=1)]
 
 
+class ImageAsset(BaseModel):
+    """
+    A picture of a sense KC for select-image (gameplan §8.2). No text inside the image; licensed and attributed like any other asset.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    file: Annotated[
+        str,
+        Field(
+            description="SVG, PNG or WebP, relative to course.yaml.",
+            pattern="^[^/][^\\\\]*\\.(svg|png|webp)$",
+        ),
+    ]
+    license: Spdx
+    provenance: Provenance
+    source: Annotated[
+        str | None,
+        Field(
+            description="Where it came from (URL or description), for attribution.", min_length=1
+        ),
+    ] = None
+
+
 type GroupItem = Annotated[str, Field(min_length=1)]
 
 
@@ -292,6 +297,15 @@ class Row(BaseModel):
     keys: Annotated[list[Key], Field(min_length=1)]
 
 
+class ShiftItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    offset: float = 0
+    keys: Annotated[list[Key], Field(min_length=1)]
+
+
 class KeyboardLayout(BaseModel):
     """
     Key geometry for the keyboard typo model (gameplan §8.4): which keys are physically adjacent. Rows are listed top to bottom, keys left to right in the base layer; row offsets give the stagger in key widths.
@@ -307,6 +321,13 @@ class KeyboardLayout(BaseModel):
     ]
     reviewed: bool = False
     rows: Annotated[list[Row], Field(min_length=1)]
+    shift: Annotated[
+        list[ShiftItem] | None,
+        Field(
+            description="Shift layer for touch keyboards (gameplan §6.7), row for row and key for key with `rows`. The typo model uses only the base layer.",
+            min_length=1,
+        ),
+    ] = None
 
 
 type MessageKey = Annotated[
@@ -692,6 +713,28 @@ class BundleNode(BaseModel):
     convert: Convert | None = None
 
 
+class KnowledgeComponentSource(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: KcId
+    prerequisites: list[KcId] | None = None
+    cefr: Cefr | None = None
+    gloss: Annotated[
+        dict[str, GlossAdditionalProperty] | None,
+        Field(description="Short meaning per support language."),
+    ] = None
+    forms: Annotated[
+        dict[OrthographyId, FormsAdditionalProperty] | None,
+        Field(
+            description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
+        ),
+    ] = None
+    image: ImageAsset | None = None
+    notes: dict[str, NotesAdditionalProperty] | None = None
+
+
 class SourceToken(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -947,6 +990,9 @@ class BundleKc(BaseModel):
     cefr: str | None = None
     gloss: dict[str, TaggedText] | None = None
     forms: dict[str, list[TaggedText]] | None = None
+    image: Annotated[
+        str | None, Field(description="Bundle path of the KC's picture (a file with role image).")
+    ] = None
 
 
 class Forms(BaseModel):
