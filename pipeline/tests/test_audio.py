@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import os
+import re
 import shutil
 import wave
 from pathlib import Path
@@ -103,8 +104,14 @@ def test_timings_map_word_onsets_to_tokens() -> None:
 
 @pytest.fixture
 def yue_copy(tmp_path: Path) -> Path:
+    """The yue course's first unit, without audio: enough to synthesize, round-trip and
+    recompile in seconds (the whole course is ten units)."""
     course = tmp_path / "yue"
     shutil.copytree(ROOT / "courses" / "yue", course, ignore=shutil.ignore_patterns("audio"))
+    path = course / "course.yaml"  # edited as text: other tests rewrite its lines verbatim
+    text, n = re.subn(r"(?m)^units: \[.*\]$", "units: [units/intro.yaml]", path.read_text("utf-8"))
+    assert n == 1
+    path.write_text(text, encoding="utf-8")
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")
     return course
 
@@ -138,6 +145,34 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     assert len(recompiled.audio_items) == len(items)
     sentence = recompiled.audio_items["s.1"]["normal"]
     assert sentence["synthetic"] and sentence["timings"][0]["startMs"] == 0
+
+
+def test_a_word_met_only_inside_longer_words_reads_its_share_of_them() -> None:
+    """禮拜 (week) appears only in 禮拜一 (Monday): its clip reads lai5 baai3, the first two of
+    禮拜一's pinned syllables. A word whose characters do not each take a syllable is not split."""
+    orth = "yue-Hant-HK/standard"
+    token = {
+        "surface": "禮拜一",
+        "kind": "word",
+        "readings": {"jyutping": "lai5 baai3 jat1"},
+        "morphs": [{"surface": "禮拜"}, {"surface": "一"}],
+    }
+    loan = {
+        "surface": "OK",
+        "kind": "word",
+        "readings": {"jyutping": "ou1 kei1"},
+        "morphs": [{"surface": "O"}, {"surface": "K"}],
+    }
+    unit = {
+        "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token, loan]}}}}],
+        "kcs": [
+            {"id": "sense:禮拜", "forms": {orth: ["禮拜"]}},
+            {"id": "sense:O", "forms": {orth: ["O"]}},
+        ],
+    }
+    items, skipped = plan([unit], YUE_VOICE)
+    assert {i.item: i.input for i in items}["sense:禮拜"] == "lai5 baai3"
+    assert skipped == ["sense:O"]
 
 
 @needs_espeak

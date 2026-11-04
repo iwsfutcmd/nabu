@@ -28,6 +28,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+import regex
 import yaml
 
 from nabu import yamlio
@@ -143,6 +144,27 @@ def _input_of(
     return ("".join(parts), tuple(spans)) if spans else None
 
 
+def _morph_readings(token: dict[str, Any], reading: str) -> list[tuple[str, str]]:
+    """Each morph's share of its word's pinned reading, where the word is Han characters read one
+    syllable each (as the compiler's ruby alignment pairs them): 禮拜一 lai5 baai3 jat1 gives
+    禮拜 lai5 baai3. A word KC that only appears inside longer words (禮拜 in 禮拜一, 百 in 一百)
+    then still has a reading to be read from."""
+    raw: list[Any] = list(token.get("morphs") or [])
+    morphs: list[list[str]] = [regex.findall(r"\X", str(m["surface"])) for m in raw]
+    syllables = reading.split()
+    surface: list[str] = regex.findall(r"\X", str(token["surface"]))
+    if not morphs or [g for m in morphs for g in m] != surface or len(syllables) != len(surface):
+        return []
+    if not all(regex.match(r"\p{Script=Han}", g) for g in surface):
+        return []
+    out: list[tuple[str, str]] = []
+    at = 0
+    for m in morphs:
+        out.append(("".join(m), " ".join(syllables[at : at + len(m)])))
+        at += len(m)
+    return out
+
+
 def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], list[str]]:
     """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading)."""
     orth = voice.orthography
@@ -152,6 +174,7 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
         raise ValueError(f"no IPA conversion for the reading scheme {voice.pronounce!r}")
     scheme = _scheme(voice)
     readings: dict[str, str] = {}  # surface → pinned reading, learned from sentence tokens
+    in_words: dict[str, str] = {}  # the same for morphs, from the syllables of their word
     for unit in units:
         for s in unit["sentences"]:
             form = s["forms"].get(orth)
@@ -161,6 +184,8 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
             for t in tokens:
                 if scheme is not None and scheme in t.get("readings", {}):
                     readings.setdefault(t["surface"], t["readings"][scheme])
+                    for surface, reading in _morph_readings(t, t["readings"][scheme]):
+                        in_words.setdefault(surface, reading)
             planned = _input_of(tokens, voice)
             if planned is None:
                 skipped.append(s["id"])
@@ -174,7 +199,7 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
                 continue
             word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
             surface = "".join(t["surface"] for t in word) if word else str(forms[0])
-            reading = readings.get(surface)
+            reading = readings.get(surface, in_words.get(surface))
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue
