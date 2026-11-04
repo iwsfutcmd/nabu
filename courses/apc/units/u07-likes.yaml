@@ -1,0 +1,626 @@
+# Fixture course (apc), unit 7: likes and wants. b7ebb (I like), ma b7ebb, aktar, abadan; the verb after
+# baddi / b7ebb / 3am drops its b- (the subjunctive: baddi ekol, baddak tishrab, baddna nru7);
+# badd- takes the possessive endings (baddo, badda, baddna); 3am + verb: right now.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u07-likes
+title: {en: 'What do you like?'}
+cefr: A2
+kcs:
+- {id: 'sense:7abb', gloss: {en: like; love}, forms: {apc-Arab/standard: [بحبّ, بتحبّ, منحبّ], apc-Latn/arabizi: [b7ebb, bt7ebb, mn7ebb]}}
+- {id: 'sense:ba7r', gloss: {en: sea; the beach}, forms: {apc-Arab/standard: [البحر], apc-Latn/arabizi: [ba7r]}}
+- {id: 'sense:jabal', gloss: {en: mountain; the mountains}, forms: {apc-Arab/standard: [الجبل], apc-Latn/arabizi: [jabal]}}
+- {id: 'sense:aw', gloss: {en: or}, forms: {apc-Arab/standard: [أو], apc-Latn/arabizi: [aw]}}
+- {id: 'sense:aktar', gloss: {en: more; most; better}, forms: {apc-Arab/standard: [أكتر], apc-Latn/arabizi: [aktar]}}
+- {id: 'sense:abadan', gloss: {en: (not) at all; never}, forms: {apc-Arab/standard: [أبدا], apc-Latn/arabizi: [abadan]}}
+- {id: 'sense:musi2a', gloss: {en: music}, forms: {apc-Arab/standard: [موسيقى], apc-Latn/arabizi: [musi2a]}}
+- {id: 'sense:sama3', gloss: {en: listen; hear}, forms: {apc-Arab/standard: [بسمع, اسمع], apc-Latn/arabizi: [besma3, esma3]}}
+- {id: 'form:subj-1sg', gloss: {en: 'e- / no b-: I (after baddi, b7ebb, 3am…)'}, notes: {en: 'baddi ekol: I want to eat; b7ebb esma3: I like to listen. The b- of the present drops.'}}
+- {id: 'sense:ktab', gloss: {en: book}, forms: {apc-Arab/standard: [كتاب], apc-Latn/arabizi: [ktab]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:shi', gloss: {en: something; anything}, forms: {apc-Arab/standard: [شي], apc-Latn/arabizi: [shi]}}
+- {id: 'form:subj-2ms', gloss: {en: 't-: you (after baddak, 3am…; to a man)'}, notes: {en: 'baddak tishrab? Do you want to drink? 3am ta3mel: you are doing.'}}
+- {id: 'sense:badd', gloss: {en: 'want (with an ending: baddo, badda, baddna)'}, forms: {apc-Arab/standard: [بدّو], apc-Latn/arabizi: [baddo]}, notes: {en: 'badd + the possessive ending says who wants:
+      baddo (he), badda (she), baddna (we). Compare baddi, baddak.'}}
+- {id: 'form:subj-1pl', gloss: {en: 'n-: we (after baddna, ta…)'}, notes: {en: 'baddna nru7: we want to go.'}}
+- {id: 'sense:film', gloss: {en: film; movie}, forms: {apc-Arab/standard: [فيلم], apc-Latn/arabizi: [film]}}
+- {id: 'sense:shef', gloss: {en: see; watch}, forms: {apc-Arab/standard: [شوف, منشوف], apc-Latn/arabizi: [shuf, mnshuf]}}
+- {id: 'sense:football', gloss: {en: football; soccer}, forms: {apc-Arab/standard: [فوتبول], apc-Latn/arabizi: [football]}}
+- {id: 'sense:le3eb', gloss: {en: play}, forms: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btel3ab]}}
+- {id: 'sense:3am', gloss: {en: '-ing: right now (before a verb without b-)'}, forms: {apc-Arab/standard: [عم], apc-Latn/arabizi: [3am]}, notes: {en: '3am ta3mel: you''re doing (right now). The verb after
+      3am has no b-.'}}
+- {id: 'sense:ghanne', gloss: {en: sing}, forms: {apc-Arab/standard: [غنّي], apc-Latn/arabizi: [ghanne]}}
+- {id: 'sense:ra2as', gloss: {en: dance}, forms: {apc-Arab/standard: [ارقص], apc-Latn/arabizi: [or2os]}}
+- {id: 'sense:a7la', gloss: {en: nicer; prettier; better}, forms: {apc-Arab/standard: [أحلى], apc-Latn/arabizi: [a7la]}, notes: {en: 7elo → a7la.}}
+nodes:
+- {id: apc.like.like, kind: lesson, introduces: ['sense:7abb', 'sense:ba7r', 'sense:jabal', 'sense:aw', 'sense:aktar', 'sense:abadan']}
+- {id: apc.like.hobbies, kind: lesson, introduces: ['sense:musi2a', 'sense:sama3', 'form:subj-1sg', 'sense:ktab']}
+- {id: apc.like.want-to, kind: lesson, introduces: ['sense:shi', 'form:subj-2ms', 'sense:badd', 'form:subj-1pl']}
+- {id: apc.like.watch-play, kind: lesson, introduces: ['sense:film', 'sense:shef', 'sense:football', 'sense:le3eb']}
+- {id: apc.like.right-now, kind: lesson, introduces: ['sense:3am', 'sense:ghanne', 'sense:ra2as', 'sense:a7la']}
+- {id: apc.like.story, kind: story}
+sentences:
+- id: s.like.1
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ القهوة.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: القهوة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
+      reverse: بحبّ القهوة
+    apc-Latn/arabizi:
+      text: b7ebb el ahwe.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ahwe|2ahwe)
+  translations:
+    en: I (like|love) coffee.
+- id: s.like.2
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتحبّ الشاي؟
+      tokens: [{surface: بتحبّ, sense: 7abb, form: 'form:impf-2ms'}, {surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}]
+      reverse: بتحبّ الشاي
+    apc-Latn/arabizi:
+      text: bt7ebb el shay?
+      tokens: [{surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
+      reverse: (bt7ebb|bt7eb|bthebb) (el|l|il) shay
+  translations:
+    en: Do you (like|love) tea?
+- id: s.like.3
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما بحبّ الشاي.
+      tokens: [{surface: ما, sense: ma}, {surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}]
+      reverse: ما بحبّ الشاي
+    apc-Latn/arabizi:
+      text: ma b7ebb el shay.
+      tokens: [{surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
+      reverse: ma (b7ebb|b7eb|bhebb|b7ib) (el|l|il) shay
+  translations:
+    en: I (don't|do not) like tea.
+- id: s.like.4
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ البحر.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: بحبّ البحر
+    apc-Latn/arabizi:
+      text: b7ebb el ba7r.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ba7r|ba7er|bahr)
+  translations:
+    en: I (love|like) the (sea|beach).
+- id: s.like.5
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ الجبل.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: بحبّ الجبل
+    apc-Latn/arabizi:
+      text: b7ebb el jabal.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (jabal|jabel|jbal)
+  translations:
+    en: I (love|like) the (mountains|mountain).
+- id: s.like.6
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البحر أو الجبل؟
+      tokens: [{surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {surface: أو, sense: aw}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'},
+            {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: البحر أو الجبل
+    apc-Latn/arabizi:
+      text: el ba7r aw el jabal?
+      tokens: [{surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: aw, sense: aw}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
+      reverse: (el|l|il) (ba7r|ba7er|bahr) (aw|ow) (el|l|il) (jabal|jabel|jbal)
+  translations:
+    en: |-
+      The (sea|beach) or the (mountains|mountain)?
+      (Sea|Beach) or (mountains|mountain)?
+- id: s.like.7
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ الجبل أكتر.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}, {surface: أكتر, sense: aktar}]
+      reverse: بحبّ الجبل (أكتر|أكثر)
+    apc-Latn/arabizi:
+      text: b7ebb el jabal aktar.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}, {surface: aktar, sense: aktar}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (jabal|jabel|jbal) (aktar|akter|aktr)
+  translations:
+    en: |-
+      I like the (mountains|mountain) (more|better).
+      I prefer the (mountains|mountain).
+- id: s.like.8
+  node: apc.like.like
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما بحبّ البحر أبدا.
+      tokens: [{surface: ما, sense: ma}, {surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {
+          surface: أبدا, sense: abadan}]
+      reverse: ما بحبّ البحر (أبدا|أبداً)
+    apc-Latn/arabizi:
+      text: ma b7ebb el ba7r abadan.
+      tokens: [{surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: abadan, sense: abadan}]
+      reverse: ma (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ba7r|ba7er|bahr) (abadan|abdan)
+  translations:
+    en: I (don't|do not) like the (sea|beach) at all.
+- id: s.like.9
+  node: apc.like.hobbies
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ الموسيقى.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}]
+      reverse: بحبّ (الموسيقى|الموسيقا)
+    apc-Latn/arabizi:
+      text: b7ebb el musi2a.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (musi2a|musika|mousika)
+  translations:
+    en: I (love|like) music.
+- id: s.like.10
+  node: apc.like.hobbies
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بسمع موسيقى كل يوم.
+      tokens: [{surface: بسمع, sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كل, sense: kell}, {surface: يوم, sense: yom}]
+      reverse: بسمع (موسيقى|موسيقا) كل يوم
+    apc-Latn/arabizi:
+      text: besma3 musi2a kell yom.
+      tokens: [{surface: besma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      reverse: (besma3|bisma3|bsma3) (musi2a|musika|mousika) (kell|kil|kel|kull) (yom|yawm|youm)
+  translations:
+    en: |-
+      I listen to music every day.
+      Every day I listen to music.
+- id: s.like.11
+  node: apc.like.hobbies
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ اسمع موسيقى.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
+      reverse: بحبّ اسمع (موسيقى|موسيقا)
+    apc-Latn/arabizi:
+      text: b7ebb esma3 musi2a.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (esma3|isma3|sma3) (musi2a|musika|mousika)
+  translations:
+    en: I (like|love) (listening|to listen) to music.
+- id: s.like.12
+  node: apc.like.hobbies
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي اقرا كتاب.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: اقرا, sense: 2ara, form: 'form:subj-1sg'}, {surface: كتاب, sense: ktab}]
+      reverse: بدّي اقرا كتاب
+    apc-Latn/arabizi:
+      text: baddi e2ra ktab.
+      tokens: [{surface: baddi, sense: baddi}, {surface: e2ra, sense: 2ara, form: 'form:subj-1sg'}, {surface: ktab, sense: ktab}]
+      reverse: (baddi|badde|badi) (e2ra|i2ra|2ra) (ktab|kteb|kitab)
+  translations:
+    en: |-
+      I want to read a book.
+      I('d| would) like to read a book.
+- id: s.like.13
+  node: apc.like.hobbies
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي آكل.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: آكل, sense: akal, form: 'form:subj-1sg'}]
+      reverse: بدّي آكل
+    apc-Latn/arabizi:
+      text: baddi ekol.
+      tokens: [{surface: baddi, sense: baddi}, {surface: ekol, sense: akal, form: 'form:subj-1sg'}]
+      reverse: (baddi|badde|badi) (ekol|akol|2akol)
+  translations:
+    en: |-
+      I want to eat.
+      I('d| would) like to eat.
+- id: s.like.14
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك شي؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: شي, sense: shi}]
+      reverse: بدّك شي
+    apc-Latn/arabizi:
+      text: baddak shi?
+      tokens: [{surface: baddak, sense: baddak}, {surface: shi, sense: shi}]
+      reverse: (baddak|badak) (shi|she)
+  translations:
+    en: |-
+      Do you want anything?
+      Do you need anything?
+      Would you like something?
+      Do you want something?
+- id: s.like.15
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك تشرب شي؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: شي, sense: shi}]
+      reverse: بدّك تشرب شي
+    apc-Latn/arabizi:
+      text: baddak tishrab shi?
+      tokens: [{surface: baddak, sense: baddak}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: shi, sense: shi}]
+      reverse: (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
+  translations:
+    en: |-
+      Do you want something to drink?
+      Do you want anything to drink?
+      Would you like something to drink?
+- id: s.like.16
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي بدّو قهوة.
+      tokens: [{surface: سامي, sense: sami}, {surface: بدّو, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
+      reverse: سامي (بدّو|بدّه) قهوة
+    apc-Latn/arabizi:
+      text: Sami baddo ahwe.
+      tokens: [{surface: Sami, sense: sami}, {surface: baddo, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: ahwe, sense: ahwe}]
+      reverse: Sami (baddo|baddu|bado|badu) (ahwe|2ahwe)
+  translations:
+    en: |-
+      Sami wants (coffee|a coffee|some coffee).
+      Sami would like (coffee|a coffee|some coffee).
+- id: s.like.17
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا بدّا شاي.
+      tokens: [{surface: مايا, sense: maya}, {surface: بدّا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
+      reverse: مايا (بدّا|بدّها) شاي
+    apc-Latn/arabizi:
+      text: Maya badda shay.
+      tokens: [{surface: Maya, sense: maya}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
+      reverse: Maya (badda|bada) shay
+  translations:
+    en: |-
+      Maya wants (tea|a tea|some tea).
+      Maya would like (tea|a tea|some tea).
+- id: s.like.18
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّنا نروح عالبحر.
+      tokens: [{surface: بدّنا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالبحر, sense: ba7r,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: بدّنا نروح (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: baddna nru7 3al ba7r.
+      tokens: [{surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a,
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      reverse: (baddna|badna) (nru7|nrou7|nro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: We want to go to the (beach|sea).
+- id: s.like.19
+  node: apc.like.want-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو بدّك تعمل اليوم؟
+      tokens: [{surface: شو, sense: shu}, {surface: بدّك, sense: baddak}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم,
+              kc: 'sense:yom'}]}]
+      reverse: شو بدّك تعمل اليوم
+    apc-Latn/arabizi:
+      text: shu baddak ta3mel el yom?
+      tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: (shu|sho) (baddak|badak) (ta3mel|te3mel) (el|l|il) (yom|yawm|youm)
+  translations:
+    en: What do you want to do today?
+- id: s.like.20
+  node: apc.like.watch-play
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: فيلم حلو!
+      tokens: [{surface: فيلم, sense: film}, {surface: حلو, sense: 7elo}]
+      reverse: (فيلم|فلم) حلو
+    apc-Latn/arabizi:
+      text: film 7elo!
+      tokens: [{surface: film, sense: film}, {surface: 7elo, sense: 7elo}]
+      reverse: (film|filem) (7elo|7ilo|helo|7elu)
+  translations:
+    en: (A|What a) (good|nice|great) (film|movie)!
+- id: s.like.21
+  node: apc.like.watch-play
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي شوف فيلم.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: شوف, sense: shef, form: 'form:subj-1sg'}, {surface: فيلم, sense: film}]
+      reverse: بدّي شوف (فيلم|فلم)
+    apc-Latn/arabizi:
+      text: baddi shuf film.
+      tokens: [{surface: baddi, sense: baddi}, {surface: shuf, sense: shef, form: 'form:subj-1sg'}, {surface: film, sense: film}]
+      reverse: (baddi|badde|badi) (shuf|shouf) (film|filem)
+  translations:
+    en: I want to (watch|see) a (film|movie).
+- id: s.like.22
+  node: apc.like.watch-play
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: منشوف فيلم المسا؟
+      tokens: [{surface: منشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلم, sense: film}, {surface: المسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مسا, kc: 'sense:masa'}]}]
+      reverse: منشوف (فيلم|فلم) المسا
+    apc-Latn/arabizi:
+      text: mnshuf film el masa?
+      tokens: [{surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}, {surface: el, sense: el}, {surface: masa, sense: masa}]
+      reverse: (mnshuf|mnshouf) (film|filem) (el|l|il) (masa|masa2)
+  translations:
+    en: |-
+      Shall we (watch|see) a (film|movie) (this|in the) evening?
+      Should we (watch|see) a (film|movie) (this|in the) evening?
+- id: s.like.23
+  node: apc.like.watch-play
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ الفوتبول.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الفوتبول, sense: football, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فوتبول, kc: 'sense:football'}]}]
+      reverse: بحبّ الفوتبول
+    apc-Latn/arabizi:
+      text: b7ebb el football.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: football, sense: football}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (football|futbol|foot)
+  translations:
+    en: I (love|like) (football|soccer).
+- id: s.like.24
+  node: apc.like.watch-play
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتلعب فوتبول؟
+      tokens: [{surface: بتلعب, sense: le3eb, form: 'form:impf-2ms'}, {surface: فوتبول, sense: football}]
+      reverse: بتلعب فوتبول
+    apc-Latn/arabizi:
+      text: btel3ab football?
+      tokens: [{surface: btel3ab, sense: le3eb, form: 'form:impf-2ms'}, {surface: football, sense: football}]
+      reverse: (btel3ab|btil3ab) (football|futbol|foot)
+  translations:
+    en: Do you play (football|soccer)?
+- id: s.like.25
+  node: apc.like.right-now
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو عم تعمل؟
+      tokens: [{surface: شو, sense: shu}, {surface: عم, sense: 3am}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}]
+      reverse: شو عم تعمل
+    apc-Latn/arabizi:
+      text: shu 3am ta3mel?
+      tokens: [{surface: shu, sense: shu}, {surface: 3am, sense: 3am}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}]
+      reverse: (shu|sho) (3am|3m) (ta3mel|te3mel)
+  translations:
+    en: |-
+      What are you doing?
+      What are you up to?
+- id: s.like.26
+  node: apc.like.right-now
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عم اسمع موسيقى.
+      tokens: [{surface: عم, sense: 3am}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
+      reverse: عم اسمع (موسيقى|موسيقا)
+    apc-Latn/arabizi:
+      text: 3am esma3 musi2a.
+      tokens: [{surface: 3am, sense: 3am}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
+      reverse: (3am|3m) (esma3|isma3|sma3) (musi2a|musika|mousika)
+  translations:
+    en: I('m| am) listening to music.
+- id: s.like.27
+  node: apc.like.right-now
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ غنّي.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: غنّي, sense: ghanne, form: 'form:subj-1sg'}]
+      reverse: بحبّ غنّي
+    apc-Latn/arabizi:
+      text: b7ebb ghanne.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: ghanne, sense: ghanne, form: 'form:subj-1sg'}]
+      reverse: (b7ebb|b7eb|bhebb|b7ib) (ghanne|ghanni|8anne)
+  translations:
+    en: I (love|like) (singing|to sing).
+- id: s.like.28
+  node: apc.like.right-now
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وبحبّ ارقص كمان!
+      tokens: [{surface: وبحبّ, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: و, kc: 'sense:w'}, {surface: بحبّ, kc: 'sense:7abb'}]}, {surface: ارقص, sense: ra2as, form: 'form:subj-1sg'}, {surface: كمان,
+          sense: kamen}]
+      reverse: (وبحبّ|و بحبّ) ارقص كمان
+    apc-Latn/arabizi:
+      text: w b7ebb or2os kamen!
+      tokens: [{surface: w, sense: w}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: or2os, sense: ra2as, form: 'form:subj-1sg'}, {surface: kamen, sense: kamen}]
+      reverse: (w|wa) (b7ebb|b7eb|bhebb|b7ib) (or2os|ur2us|er2os) (kamen|kaman)
+  translations:
+    en: |-
+      And I (love|like) (dancing|to dance) too!
+      And I also (love|like) (dancing|to dance)!
+- id: s.like.29
+  node: apc.like.right-now
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البحر أحلى!
+      tokens: [{surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {surface: أحلى, sense: a7la}]
+      reverse: البحر أحلى
+    apc-Latn/arabizi:
+      text: el ba7r a7la!
+      tokens: [{surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: a7la, sense: a7la}]
+      reverse: (el|l|il) (ba7r|ba7er|bahr) (a7la|ahla|a7le)
+  translations:
+    en: |-
+      The (sea|beach) is (nicer|better|more beautiful)!
+      The (sea|beach)'s (nicer|better|more beautiful)!
+stories:
+- id: apc.story.sea-or-mountain
+  node: apc.like.story
+  title: {en: 'Sea or mountains?'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: سامي، بْتْحِبّ البَحِر؟
+          tokens: [{surface: سامي, sense: sami}, {surface: بْتْحِبّ, sense: 7abb, form: 'form:impf-2ms'}, {surface: البَحِر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}]
+        apc-Latn/arabizi:
+          text: Sami, bt7ebb el ba7r?
+          tokens: [{surface: Sami, sense: sami}, {surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      translations: {en: 'Sami, do you like the sea?'}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:abadan
+      distractors: ['sense:ktab', 'sense:film']
+      forms:
+        apc-Arab/standard:
+          text: لأ، ما بْحِبّ البَحِر أَبَداً. بْحِبّ الجَبَل.
+          tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البَحِر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بَحِر,
+                  kc: 'sense:ba7r'}]}, {surface: أَبَداً, sense: abadan}, {surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الجَبَل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'},
+                {surface: جَبَل, kc: 'sense:jabal'}]}]
+        apc-Latn/arabizi:
+          text: la2, ma b7ebb el ba7r abadan. b7ebb el jabal.
+          tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: abadan, sense: abadan},
+            {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
+      translations: {en: 'No, I don''t like the sea at all. I like the mountains.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَنا بْحِبّ البَحِر أَكْتَر!
+          tokens: [{surface: أَنا, sense: ana}, {surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البَحِر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]},
+            {surface: أَكْتَر, sense: aktar}]
+        apc-Latn/arabizi:
+          text: ana b7ebb el ba7r aktar!
+          tokens: [{surface: ana, sense: ana}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: aktar, sense: aktar}]
+      translations: {en: I like the sea more!}
+  - choose:
+      prompt:
+        en: What does Sami like?
+      options: [{en: The mountains}, {en: The sea}, {en: Football}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وشو بْتْحِبّي كَمان؟
+          tokens: [{surface: وشو, sense: shu, morphs: [{surface: و, kc: 'sense:w'}, {surface: شو, kc: 'sense:shu'}]}, {surface: بْتْحِبّي, sense: 7abb, form: 'form:impf-2fs'}, {surface: كَمان, sense: kamen}]
+        apc-Latn/arabizi:
+          text: w shu bt7ebbi kamen?
+          tokens: [{surface: w, sense: w}, {surface: shu, sense: shu}, {surface: bt7ebbi, sense: 7abb, form: 'form:impf-2fs'}, {surface: kamen, sense: kamen}]
+      translations: {en: 'And what else do you like?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بْحِبّ الموسيقى. بِسْمَع موسيقى كِلّ يوم.
+          tokens: [{surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}, {surface: بِسْمَع,
+              sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
+        apc-Latn/arabizi:
+          text: b7ebb el musi2a. besma3 musi2a kell yom.
+          tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}, {surface: besma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a,
+              sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      translations: {en: I love music. I listen to music every day.}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وبْتْغَنّي؟
+          tokens: [{surface: وبْتْغَنّي, sense: ghanne, form: 'form:impf-2fs', morphs: [{surface: و, kc: 'sense:w'}, {surface: بْتْغَنّي, kc: 'sense:ghanne'}]}]
+        apc-Latn/arabizi:
+          text: w btghanne?
+          tokens: [{surface: w, sense: w}, {surface: btghanne, sense: ghanne, form: 'form:impf-2fs'}]
+      translations: {en: 'And do you sing?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: إيه، وبْحِبّ اُرْقُص كَمان!
+          tokens: [{surface: إيه, sense: eh}, {surface: وبْحِبّ, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: و, kc: 'sense:w'}, {surface: بْحِبّ, kc: 'sense:7abb'}]}, {surface: اُرْقُص, sense: ra2as,
+              form: 'form:subj-1sg'}, {surface: كَمان, sense: kamen}]
+        apc-Latn/arabizi:
+          text: eh, w b7ebb or2os kamen!
+          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: or2os, sense: ra2as, form: 'form:subj-1sg'}, {surface: kamen, sense: kamen}]
+      translations: {en: 'Yes, and I love to dance too!'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَنا ما بْغَنّي، بَسّ بْحِبّ اِسْمَع.
+          tokens: [{surface: أَنا, sense: ana}, {surface: ما, sense: ma}, {surface: بْغَنّي, sense: ghanne, form: 'form:impf-1sg'}, {surface: بَسّ, sense: bas}, {surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'},
+            {surface: اِسْمَع, sense: sama3, form: 'form:subj-1sg'}]
+        apc-Latn/arabizi:
+          text: ana ma bghanne, bas b7ebb esma3.
+          tokens: [{surface: ana, sense: ana}, {surface: ma, sense: ma}, {surface: bghanne, sense: ghanne, form: 'form:impf-1sg'}, {surface: bas, sense: bas}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'},
+            {surface: esma3, sense: sama3, form: 'form:subj-1sg'}]
+      translations: {en: 'I don''t sing, but I like to listen.'}
+  - choose:
+      prompt:
+        en: What does Maya do every day?
+      options: [{en: She listens to music}, {en: She plays football}, {en: She reads a book}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، بَدّنا نْروح عَالبَحِر ونِسْمَع موسيقى!
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: بَدّنا, sense: badd, morphs: [{surface: بَدّ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نْروح, sense: ra7, form: 'form:subj-1pl'},
+            {surface: عَالبَحِر, sense: ba7r, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}, {surface: ونِسْمَع, sense: sama3, form: 'form:subj-1pl',
+              morphs: [{surface: و, kc: 'sense:w'}, {surface: نِسْمَع, kc: 'sense:sama3'}]}, {surface: موسيقى, sense: musi2a}]
+        apc-Latn/arabizi:
+          text: yalla, baddna nru7 3al ba7r w nesma3 musi2a!
+          tokens: [{surface: yalla, sense: yalla}, {surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'},
+            {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}, {surface: w, sense: w}, {surface: nesma3, sense: sama3, form: 'form:subj-1pl'},
+            {surface: musi2a, sense: musi2a}]
+      translations: {en: 'Come on, let''s go to the beach and listen to music!'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: الجَبَل أَحْلى!
+          tokens: [{surface: الجَبَل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جَبَل, kc: 'sense:jabal'}]}, {surface: أَحْلى, sense: a7la}]
+        apc-Latn/arabizi:
+          text: el jabal a7la!
+          tokens: [{surface: el, sense: el}, {surface: jabal, sense: jabal}, {surface: a7la, sense: a7la}]
+      translations: {en: The mountains are nicer!}
+scenarios:
+- id: apc.new-friend
+  after: apc.like.story
+  title: {en: Getting to know someone}
+  setting: {en: 'A friend''s birthday get-together at a café in Mar Mikhael, Beirut. You are sitting next to someone you have just met.'}
+  character: {en: 'Nour, a friendly guest who loves music, the sea and football, and is curious about you.'}
+  goal: {en: 'Ask Nour what she likes and doesn''t like, say what you like (food, music, the sea or the mountains, films, football), and suggest something to do together.'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}

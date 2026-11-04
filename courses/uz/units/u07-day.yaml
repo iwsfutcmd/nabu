@@ -1,0 +1,695 @@
+# Unit 7 (uz): daily routine and time; the present-future tense on more verbs (turaman, ishlayman, oʻqiyman),
+# soat necha?, -dan ... -gacha, the days of the week, and -yap for what is happening right now.
+# Drafted by an LLM (provenance llm:..., status draft): every sentence awaits review by a native speaker.
+id: day
+title: {en: My day and my week}
+cefr: A1
+kcs:
+- {id: 'sense:ertalab', gloss: {en: in the morning}, forms: {uz-Latn/standard: [ertalab], uz-Cyrl/standard: [эрталаб]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:turmoq', gloss: {en: to get up; to stand}, forms: {uz-Latn/standard: [turaman, turasiz, turdim], uz-Cyrl/standard: [тураман, турасиз, турдим]}}
+- {id: 'sense:soat', gloss: {en: 'hour; o''clock; clock, watch'}, forms: {uz-Latn/standard: [soat], uz-Cyrl/standard: [соат]}, notes: {en: 'Soat necha? What time is it? Soat yettida: at seven o''clock.'}}
+- {id: 'sense:qilmoq', gloss: {en: 'to do, to make'}, forms: {uz-Latn/standard: [qilasiz, qilaman, qilamiz, qilyapsiz, qiling, qildingiz, qildim, qilmoqchiman], uz-Cyrl/standard: [қиласиз, қиламан, қиламиз, қиляпсиз, қилинг, қилдингиз, қилдим, қилмоқчиман]}, notes: {en: 'Many verbs are a noun + qilmoq: nonushta qilmoq, telefon qilmoq.'}}
+- {id: 'sense:nonushta', gloss: {en: breakfast}, forms: {uz-Latn/standard: [nonushta], uz-Cyrl/standard: [нонушта]}, notes: {en: 'Nonushta qilmoq: to have breakfast.'}}
+- {id: 'sense:ishlamoq', gloss: {en: to work}, forms: {uz-Latn/standard: [ishlayman, ishlaysiz, ishlaysizmi, ishlamadim], uz-Cyrl/standard: [ишлайман, ишлайсиз, ишлайсизми, ишламадим]}}
+- {id: 'form:term-gacha', gloss: {en: '-gacha: until, up to, as far as'}, notes: {en: 'Toʻqqizdan beshgacha: from nine to five.'}}
+- {id: 'sense:tushlik', gloss: {en: lunch}, forms: {uz-Latn/standard: [tushlik], uz-Cyrl/standard: [тушлик]}, notes: {en: 'Tushlik qilmoq: to have lunch.'}}
+- {id: 'sense:kechqurun', gloss: {en: in the evening}, forms: {uz-Latn/standard: [kechqurun], uz-Cyrl/standard: [кечқурун]}}
+- {id: 'sense:oqimoq', gloss: {en: to read; to study}, forms: {uz-Latn/standard: [oʻqiyman, oʻqiyapman, oʻqidim], uz-Cyrl/standard: [ўқийман, ўқияпман, ўқидим]}}
+- {id: 'sense:uxlamoq', gloss: {en: to sleep}, forms: {uz-Latn/standard: [uxlayman, uxlayapti, uxlaysiz, uxladim], uz-Cyrl/standard: [ухлайман, ухлаяпти, ухлайсиз, ухладим]}}
+- {id: 'sense:bugun', gloss: {en: today}, forms: {uz-Latn/standard: [bugun], uz-Cyrl/standard: [бугун]}}
+- {id: 'sense:kun', gloss: {en: day}, forms: {uz-Latn/standard: [kun, kuni], uz-Cyrl/standard: [кун, куни]}}
+- {id: 'sense:har', gloss: {en: 'every, each'}, forms: {uz-Latn/standard: [har], uz-Cyrl/standard: [ҳар]}, notes: {en: 'Har kuni: every day.'}}
+- {id: 'sense:dushanba', gloss: {en: Monday}, forms: {uz-Latn/standard: [dushanba], uz-Cyrl/standard: [душанба]}}
+- {id: 'sense:ertaga', gloss: {en: tomorrow}, forms: {uz-Latn/standard: [ertaga], uz-Cyrl/standard: [эртага]}}
+- {id: 'sense:seshanba', gloss: {en: Tuesday}, forms: {uz-Latn/standard: [seshanba], uz-Cyrl/standard: [сешанба]}}
+- {id: 'sense:chorshanba', gloss: {en: Wednesday}, forms: {uz-Latn/standard: [chorshanba], uz-Cyrl/standard: [чоршанба]}, notes: {en: 'Chorshanba kuni: on Wednesday.'}}
+- {id: 'sense:payshanba', gloss: {en: Thursday}, forms: {uz-Latn/standard: [payshanba], uz-Cyrl/standard: [пайшанба]}}
+- {id: 'sense:juma', gloss: {en: Friday}, forms: {uz-Latn/standard: [juma], uz-Cyrl/standard: [жума]}}
+- {id: 'sense:dam', gloss: {en: rest}, forms: {uz-Latn/standard: [dam], uz-Cyrl/standard: [дам]}, notes: {en: 'Dam olmoq: to rest, to have time off.'}}
+- {id: 'sense:shanba', gloss: {en: Saturday}, forms: {uz-Latn/standard: [shanba], uz-Cyrl/standard: [шанба]}}
+- {id: 'sense:yakshanba', gloss: {en: Sunday}, forms: {uz-Latn/standard: [yakshanba], uz-Cyrl/standard: [якшанба]}}
+- {id: 'sense:hafta', gloss: {en: week}, forms: {uz-Latn/standard: [hafta, haftada], uz-Cyrl/standard: [ҳафта, ҳафтада]}}
+- {id: 'sense:hozir', gloss: {en: now}, forms: {uz-Latn/standard: [hozir], uz-Cyrl/standard: [ҳозир]}}
+- {id: 'form:prog-yap', gloss: {en: '-yap: right now (present continuous)'}, notes: {en: 'Nima qilyapsiz? What are you doing? Kitob oʻqiyapman: I am reading. He/she: -yapti.'}}
+nodes:
+- {id: uz.day.morning, kind: lesson, introduces: ['sense:ertalab', 'sense:turmoq', 'sense:soat', 'sense:qilmoq', 'sense:nonushta']}
+- {id: uz.day.work, kind: lesson, introduces: ['sense:ishlamoq', 'form:term-gacha', 'sense:tushlik']}
+- {id: uz.day.evening, kind: lesson, introduces: ['sense:kechqurun', 'sense:oqimoq', 'sense:uxlamoq', 'sense:bugun', 'sense:kun', 'sense:har']}
+- {id: uz.day.week, kind: lesson, introduces: ['sense:dushanba', 'sense:ertaga', 'sense:seshanba', 'sense:chorshanba', 'sense:payshanba', 'sense:juma']}
+- {id: uz.day.weekend, kind: lesson, introduces: ['sense:dam', 'sense:shanba', 'sense:yakshanba', 'sense:hafta']}
+- {id: uz.day.now, kind: lesson, introduces: ['sense:hozir', 'form:prog-yap']}
+- {id: uz.day.story, kind: story}
+sentences:
+- id: s.day.1
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Ertalab choy ichaman.
+      tokens: [{surface: Ertalab, sense: ertalab}, {surface: choy, sense: choy}, {surface: ichaman, sense: ichmoq, morphs: [{surface: ich, kc: 'sense:ichmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Men] ertalab choy ichaman
+        Ertalab [men] choy ichaman
+    uz-Cyrl/standard:
+      text: Эрталаб чой ичаман.
+      tokens: [{surface: Эрталаб, sense: ertalab}, {surface: чой, sense: choy}, {surface: ичаман, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Мен] эрталаб чой ичаман
+        Эрталаб [мен] чой ичаман
+  translations:
+    en: |-
+      I drink tea in the morning.
+      In the morning I drink tea.
+- id: s.day.2
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Ertalab turaman.
+      tokens: [{surface: Ertalab, sense: ertalab}, {surface: turaman, sense: turmoq, morphs: [{surface: tur, kc: 'sense:turmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Men] ertalab turaman
+        Ertalab [men] turaman
+    uz-Cyrl/standard:
+      text: Эрталаб тураман.
+      tokens: [{surface: Эрталаб, sense: ertalab}, {surface: тураман, sense: turmoq, morphs: [{surface: тур, kc: 'sense:turmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Мен] эрталаб тураман
+        Эрталаб [мен] тураман
+  translations:
+    en: |-
+      I get up in the morning.
+      I('ll| will) get up in the morning.
+- id: s.day.3
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Men soat yettida turaman.
+      tokens: [{surface: Men, sense: men}, {surface: soat, sense: soat}, {surface: yettida, sense: yetti, morphs: [{surface: yetti, kc: 'sense:yetti'}, {surface: da, kc: 'form:loc-da'}]}, {surface: turaman, sense: turmoq, morphs: [{surface: tur, kc: 'sense:turmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] soat yettida turaman'
+    uz-Cyrl/standard:
+      text: Мен соат еттида тураман.
+      tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: еттида, sense: yetti, morphs: [{surface: етти, kc: 'sense:yetti'}, {surface: да, kc: 'form:loc-da'}]}, {surface: тураман, sense: turmoq, morphs: [{surface: тур, kc: 'sense:turmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] соат еттида тураман'
+  translations:
+    en: I get up at (seven|7) [o'clock].
+- id: s.day.4
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Soat necha?
+      tokens: [{surface: Soat, sense: soat}, {surface: necha, sense: necha}]
+      reverse: Soat necha
+    uz-Cyrl/standard:
+      text: Соат неча?
+      tokens: [{surface: Соат, sense: soat}, {surface: неча, sense: necha}]
+      reverse: Соат неча
+  translations:
+    en: What time is it?
+- id: s.day.5
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Soat sakkiz.
+      tokens: [{surface: Soat, sense: soat}, {surface: sakkiz, sense: sakkiz}]
+      reverse: Soat sakkiz
+    uz-Cyrl/standard:
+      text: Соат саккиз.
+      tokens: [{surface: Соат, sense: soat}, {surface: саккиз, sense: sakkiz}]
+      reverse: Соат саккиз
+  translations:
+    en: It('s| is) (eight|8) [o'clock].
+- id: s.day.6
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Ertalab nima qilasiz?
+      tokens: [{surface: Ertalab, sense: ertalab}, {surface: nima, sense: nima}, {surface: qilasiz, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: |-
+        [Siz] ertalab nima qilasiz
+        Ertalab [siz] nima qilasiz
+    uz-Cyrl/standard:
+      text: Эрталаб нима қиласиз?
+      tokens: [{surface: Эрталаб, sense: ertalab}, {surface: нима, sense: nima}, {surface: қиласиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: |-
+        [Сиз] эрталаб нима қиласиз
+        Эрталаб [сиз] нима қиласиз
+  translations:
+    en: What do you do in the morning?
+- id: s.day.7
+  node: uz.day.morning
+  forms:
+    uz-Latn/standard:
+      text: Men nonushta qilaman.
+      tokens: [{surface: Men, sense: men}, {surface: nonushta, sense: nonushta}, {surface: qilaman, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] nonushta qilaman'
+    uz-Cyrl/standard:
+      text: Мен нонушта қиламан.
+      tokens: [{surface: Мен, sense: men}, {surface: нонушта, sense: nonushta}, {surface: қиламан, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] нонушта қиламан'
+  translations:
+    en: |-
+      I (have|eat) breakfast.
+      I('ll| will) (have|eat) breakfast.
+- id: s.day.8
+  node: uz.day.work
+  forms:
+    uz-Latn/standard:
+      text: Men ishlayman.
+      tokens: [{surface: Men, sense: men}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] ishlayman'
+    uz-Cyrl/standard:
+      text: Мен ишлайман.
+      tokens: [{surface: Мен, sense: men}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] ишлайман'
+  translations:
+    en: |-
+      I work.
+      I('ll| will) work.
+- id: s.day.9
+  node: uz.day.work
+  forms:
+    uz-Latn/standard:
+      text: Siz qayerda ishlaysiz?
+      tokens: [{surface: Siz, sense: siz}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ishlaysiz, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Siz] qayerda ishlaysiz'
+    uz-Cyrl/standard:
+      text: Сиз қаерда ишлайсиз?
+      tokens: [{surface: Сиз, sense: siz}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ишлайсиз, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Сиз] қаерда ишлайсиз'
+  translations:
+    en: Where do you work?
+- id: s.day.10
+  node: uz.day.work
+  forms:
+    uz-Latn/standard:
+      text: Men maktabda ishlayman.
+      tokens: [{surface: Men, sense: men}, {surface: maktabda, sense: maktab, morphs: [{surface: maktab, kc: 'sense:maktab'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] maktabda ishlayman'
+    uz-Cyrl/standard:
+      text: Мен мактабда ишлайман.
+      tokens: [{surface: Мен, sense: men}, {surface: мактабда, sense: maktab, morphs: [{surface: мактаб, kc: 'sense:maktab'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] мактабда ишлайман'
+  translations:
+    en: I work (at|in) (a|the) school.
+- id: s.day.11
+  node: uz.day.work
+  forms:
+    uz-Latn/standard:
+      text: Men soat toʻqqizdan beshgacha ishlayman.
+      tokens: [{surface: Men, sense: men}, {surface: soat, sense: soat}, {surface: toʻqqizdan, sense: toqqiz, morphs: [{surface: toʻqqiz, kc: 'sense:toqqiz'}, {surface: dan, kc: 'form:abl-dan'}]}, {surface: beshgacha, sense: besh, morphs: [{surface: besh, kc: 'sense:besh'}, {surface: gacha, kc: 'form:term-gacha'}]}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] soat toʻqqizdan beshgacha ishlayman'
+    uz-Cyrl/standard:
+      text: Мен соат тўққиздан бешгача ишлайман.
+      tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: тўққиздан, sense: toqqiz, morphs: [{surface: тўққиз, kc: 'sense:toqqiz'}, {surface: дан, kc: 'form:abl-dan'}]}, {surface: бешгача, sense: besh, morphs: [{surface: беш, kc: 'sense:besh'}, {surface: гача, kc: 'form:term-gacha'}]}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] соат тўққиздан бешгача ишлайман'
+  translations:
+    en: |-
+      I work from (nine|9) (to|till|until) (five|5).
+      I work (nine|9) to (five|5).
+- id: s.day.12
+  node: uz.day.work
+  forms:
+    uz-Latn/standard:
+      text: Soat birda tushlik qilamiz.
+      tokens: [{surface: Soat, sense: soat}, {surface: birda, sense: bir, morphs: [{surface: bir, kc: 'sense:bir'}, {surface: da, kc: 'form:loc-da'}]}, {surface: tushlik, sense: tushlik}, {surface: qilamiz, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Soat birda [biz] tushlik qilamiz
+        [Biz] soat birda tushlik qilamiz
+    uz-Cyrl/standard:
+      text: Соат бирда тушлик қиламиз.
+      tokens: [{surface: Соат, sense: soat}, {surface: бирда, sense: bir, morphs: [{surface: бир, kc: 'sense:bir'}, {surface: да, kc: 'form:loc-da'}]}, {surface: тушлик, sense: tushlik}, {surface: қиламиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Соат бирда [биз] тушлик қиламиз
+        [Биз] соат бирда тушлик қиламиз
+  translations:
+    en: We (have|eat) lunch at (one|1) [o'clock].
+- id: s.day.13
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Kechqurun uyga kelaman.
+      tokens: [{surface: Kechqurun, sense: kechqurun}, {surface: uyga, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: kelaman, sense: kelmoq, morphs: [{surface: kel, kc: 'sense:kelmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Men] kechqurun uyga kelaman
+        Kechqurun [men] uyga kelaman
+    uz-Cyrl/standard:
+      text: Кечқурун уйга келаман.
+      tokens: [{surface: Кечқурун, sense: kechqurun}, {surface: уйга, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: келаман, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Мен] кечқурун уйга келаман
+        Кечқурун [мен] уйга келаман
+  translations:
+    en: |-
+      I come home in the evening.
+      In the evening I come home.
+      I('ll| will) come home in the evening.
+- id: s.day.14
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Kechqurun kitob oʻqiyman.
+      tokens: [{surface: Kechqurun, sense: kechqurun}, {surface: kitob, sense: kitob}, {surface: oʻqiyman, sense: oqimoq, morphs: [{surface: oʻqi, kc: 'sense:oqimoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Men] kechqurun kitob oʻqiyman
+        Kechqurun [men] kitob oʻqiyman
+    uz-Cyrl/standard:
+      text: Кечқурун китоб ўқийман.
+      tokens: [{surface: Кечқурун, sense: kechqurun}, {surface: китоб, sense: kitob}, {surface: ўқийман, sense: oqimoq, morphs: [{surface: ўқи, kc: 'sense:oqimoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Мен] кечқурун китоб ўқийман
+        Кечқурун [мен] китоб ўқийман
+  translations:
+    en: |-
+      I read [a book|books] in the evening.
+      In the evening I read [a book|books].
+- id: s.day.15
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Men soat oʻn birda uxlayman.
+      tokens: [{surface: Men, sense: men}, {surface: soat, sense: soat}, {surface: oʻn, sense: 'on'}, {surface: birda, sense: bir, morphs: [{surface: bir, kc: 'sense:bir'}, {surface: da, kc: 'form:loc-da'}]}, {surface: uxlayman, sense: uxlamoq, morphs: [{surface: uxla, kc: 'sense:uxlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] soat oʻn birda uxlayman'
+    uz-Cyrl/standard:
+      text: Мен соат ўн бирда ухлайман.
+      tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: ўн, sense: 'on'}, {surface: бирда, sense: bir, morphs: [{surface: бир, kc: 'sense:bir'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ухлайман, sense: uxlamoq, morphs: [{surface: ухла, kc: 'sense:uxlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] соат ўн бирда ухлайман'
+  translations:
+    en: I (go to bed|go to sleep|sleep) at (eleven|11) [o'clock].
+- id: s.day.16
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Bugun uydaman.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: uydaman, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: da, kc: 'form:loc-da'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Bugun [men] uydaman
+        [Men] bugun uydaman
+    uz-Cyrl/standard:
+      text: Бугун уйдаман.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: уйдаман, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: да, kc: 'form:loc-da'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Бугун [мен] уйдаман
+        [Мен] бугун уйдаман
+  translations:
+    en: |-
+      I('m| am) (at home|home) today.
+      Today I('m| am) (at home|home).
+- id: s.day.17
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Bugun yaxshi kun.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: yaxshi, sense: yaxshi}, {surface: kun, sense: kun}]
+      reverse: Bugun yaxshi kun
+    uz-Cyrl/standard:
+      text: Бугун яхши кун.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: яхши, sense: yaxshi}, {surface: кун, sense: kun}]
+      reverse: Бугун яхши кун
+  translations:
+    en: Today is a (good|nice) day.
+- id: s.day.18
+  node: uz.day.evening
+  forms:
+    uz-Latn/standard:
+      text: Har kuni ishga boraman.
+      tokens: [{surface: Har, sense: har}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: ishga, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Har kuni [men] ishga boraman
+        [Men] har kuni ishga boraman
+    uz-Cyrl/standard:
+      text: Ҳар куни ишга бораман.
+      tokens: [{surface: Ҳар, sense: har}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ишга, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Ҳар куни [мен] ишга бораман
+        [Мен] ҳар куни ишга бораман
+  translations:
+    en: |-
+      I go to work every day.
+      Every day I go to work.
+- id: s.day.19
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Bugun dushanba.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: dushanba, sense: dushanba}]
+      reverse: Bugun dushanba
+    uz-Cyrl/standard:
+      text: Бугун душанба.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: душанба, sense: dushanba}]
+      reverse: Бугун душанба
+  translations:
+    en: |-
+      Today is Monday.
+      It('s| is) Monday today.
+- id: s.day.20
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Ertaga bozorga boraman.
+      tokens: [{surface: Ertaga, sense: ertaga}, {surface: bozorga, sense: bozor, morphs: [{surface: bozor, kc: 'sense:bozor'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Ertaga [men] bozorga boraman
+        [Men] ertaga bozorga boraman
+    uz-Cyrl/standard:
+      text: Эртага бозорга бораман.
+      tokens: [{surface: Эртага, sense: ertaga}, {surface: бозорга, sense: bozor, morphs: [{surface: бозор, kc: 'sense:bozor'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Эртага [мен] бозорга бораман
+        [Мен] эртага бозорга бораман
+  translations:
+    en: |-
+      I('ll| will| am going to) go to the (bazaar|market) tomorrow.
+      Tomorrow I('ll| will| am going to) go to the (bazaar|market).
+      I('m| am) going to the (bazaar|market) tomorrow.
+- id: s.day.21
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Ertaga seshanba.
+      tokens: [{surface: Ertaga, sense: ertaga}, {surface: seshanba, sense: seshanba}]
+      reverse: Ertaga seshanba
+    uz-Cyrl/standard:
+      text: Эртага сешанба.
+      tokens: [{surface: Эртага, sense: ertaga}, {surface: сешанба, sense: seshanba}]
+      reverse: Эртага сешанба
+  translations:
+    en: |-
+      Tomorrow is Tuesday.
+      It('s| is) Tuesday tomorrow.
+- id: s.day.22
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Chorshanba kuni maktabga boraman.
+      tokens: [{surface: Chorshanba, sense: chorshanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: maktabga, sense: maktab, morphs: [{surface: maktab, kc: 'sense:maktab'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Chorshanba kuni [men] maktabga boraman
+        [Men] chorshanba kuni maktabga boraman
+    uz-Cyrl/standard:
+      text: Чоршанба куни мактабга бораман.
+      tokens: [{surface: Чоршанба, sense: chorshanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: мактабга, sense: maktab, morphs: [{surface: мактаб, kc: 'sense:maktab'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Чоршанба куни [мен] мактабга бораман
+        [Мен] чоршанба куни мактабга бораман
+  translations:
+    en: |-
+      I go to school on (Wednesday|Wednesdays).
+      On (Wednesday|Wednesdays) I go to school.
+- id: s.day.23
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Payshanba kuni osh pishiramiz.
+      tokens: [{surface: Payshanba, sense: payshanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: osh, sense: osh}, {surface: pishiramiz, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Payshanba kuni [biz] osh pishiramiz
+        [Biz] payshanba kuni osh pishiramiz
+    uz-Cyrl/standard:
+      text: Пайшанба куни ош пиширамиз.
+      tokens: [{surface: Пайшанба, sense: payshanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ош, sense: osh}, {surface: пиширамиз, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Пайшанба куни [биз] ош пиширамиз
+        [Биз] пайшанба куни ош пиширамиз
+  translations:
+    en: |-
+      We (cook|make) (plov|pilaf|palov) on (Thursday|Thursdays).
+      On (Thursday|Thursdays) we (cook|make) (plov|pilaf|palov).
+- id: s.day.24
+  node: uz.day.week
+  forms:
+    uz-Latn/standard:
+      text: Juma kuni ham ishlayman.
+      tokens: [{surface: Juma, sense: juma}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: ham, sense: ham}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Juma kuni ham [men] ishlayman
+        [Men] juma kuni ham ishlayman
+    uz-Cyrl/standard:
+      text: Жума куни ҳам ишлайман.
+      tokens: [{surface: Жума, sense: juma}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ҳам, sense: ham}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Жума куни ҳам [мен] ишлайман
+        [Мен] жума куни ҳам ишлайман
+  translations:
+    en: |-
+      I work on (Friday|Fridays) (too|as well).
+      I also work on (Friday|Fridays).
+- id: s.day.25
+  node: uz.day.weekend
+  forms:
+    uz-Latn/standard:
+      text: Men dam olaman.
+      tokens: [{surface: Men, sense: men}, {surface: dam, sense: dam}, {surface: olaman, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] dam olaman'
+    uz-Cyrl/standard:
+      text: Мен дам оламан.
+      tokens: [{surface: Мен, sense: men}, {surface: дам, sense: dam}, {surface: оламан, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] дам оламан'
+  translations:
+    en: |-
+      I (rest|relax).
+      I('ll| will) (rest|relax).
+      I('m| am) going to (rest|relax).
+- id: s.day.26
+  node: uz.day.weekend
+  forms:
+    uz-Latn/standard:
+      text: Shanba kuni dam olaman.
+      tokens: [{surface: Shanba, sense: shanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: dam, sense: dam}, {surface: olaman, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Shanba kuni [men] dam olaman
+        [Men] shanba kuni dam olaman
+    uz-Cyrl/standard:
+      text: Шанба куни дам оламан.
+      tokens: [{surface: Шанба, sense: shanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: дам, sense: dam}, {surface: оламан, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Шанба куни [мен] дам оламан
+        [Мен] шанба куни дам оламан
+  translations:
+    en: |-
+      I (rest|relax) on (Saturday|Saturdays).
+      On (Saturday|Saturdays) I (rest|relax).
+- id: s.day.27
+  node: uz.day.weekend
+  forms:
+    uz-Latn/standard:
+      text: Yakshanba kuni ham dam olamiz.
+      tokens: [{surface: Yakshanba, sense: yakshanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: ham, sense: ham}, {surface: dam, sense: dam}, {surface: olamiz, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Yakshanba kuni ham [biz] dam olamiz
+        [Biz] yakshanba kuni ham dam olamiz
+    uz-Cyrl/standard:
+      text: Якшанба куни ҳам дам оламиз.
+      tokens: [{surface: Якшанба, sense: yakshanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ҳам, sense: ham}, {surface: дам, sense: dam}, {surface: оламиз, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Якшанба куни ҳам [биз] дам оламиз
+        [Биз] якшанба куни ҳам дам оламиз
+  translations:
+    en: |-
+      We (rest|relax) on (Sunday|Sundays) (too|as well).
+      We also (rest|relax) on (Sunday|Sundays).
+- id: s.day.28
+  node: uz.day.weekend
+  forms:
+    uz-Latn/standard:
+      text: Bir haftada yetti kun bor.
+      tokens: [{surface: Bir, sense: bir}, {surface: haftada, sense: hafta, morphs: [{surface: hafta, kc: 'sense:hafta'}, {surface: da, kc: 'form:loc-da'}]}, {surface: yetti, sense: yetti}, {surface: kun, sense: kun}, {surface: bor, sense: bor}]
+      reverse: Bir haftada yetti(ta|) kun bor
+    uz-Cyrl/standard:
+      text: Бир ҳафтада етти кун бор.
+      tokens: [{surface: Бир, sense: bir}, {surface: ҳафтада, sense: hafta, morphs: [{surface: ҳафта, kc: 'sense:hafta'}, {surface: да, kc: 'form:loc-da'}]}, {surface: етти, sense: yetti}, {surface: кун, sense: kun}, {surface: бор, sense: bor}]
+      reverse: Бир ҳафтада етти(та|) кун бор
+  translations:
+    en: |-
+      There are seven days in a week.
+      A week has seven days.
+- id: s.day.29
+  node: uz.day.now
+  forms:
+    uz-Latn/standard:
+      text: Men hozir uydaman.
+      tokens: [{surface: Men, sense: men}, {surface: hozir, sense: hozir}, {surface: uydaman, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: da, kc: 'form:loc-da'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Men] hozir uydaman
+        Hozir [men] uydaman
+    uz-Cyrl/standard:
+      text: Мен ҳозир уйдаман.
+      tokens: [{surface: Мен, sense: men}, {surface: ҳозир, sense: hozir}, {surface: уйдаман, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: да, kc: 'form:loc-da'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        [Мен] ҳозир уйдаман
+        Ҳозир [мен] уйдаман
+  translations:
+    en: |-
+      I('m| am) (at home|home) [right] now.
+      [Right] now I('m| am) (at home|home).
+- id: s.day.30
+  node: uz.day.now
+  forms:
+    uz-Latn/standard:
+      text: Nima qilyapsiz?
+      tokens: [{surface: Nima, sense: nima}, {surface: qilyapsiz, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Siz] nima qilyapsiz'
+    uz-Cyrl/standard:
+      text: Нима қиляпсиз?
+      tokens: [{surface: Нима, sense: nima}, {surface: қиляпсиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Сиз] нима қиляпсиз'
+  translations:
+    en: What are you doing?
+- id: s.day.31
+  node: uz.day.now
+  forms:
+    uz-Latn/standard:
+      text: Kitob oʻqiyapman.
+      tokens: [{surface: Kitob, sense: kitob}, {surface: oʻqiyapman, sense: oqimoq, morphs: [{surface: oʻqi, kc: 'sense:oqimoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] kitob oʻqiyapman'
+    uz-Cyrl/standard:
+      text: Китоб ўқияпман.
+      tokens: [{surface: Китоб, sense: kitob}, {surface: ўқияпман, sense: oqimoq, morphs: [{surface: ўқи, kc: 'sense:oqimoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] китоб ўқияпман'
+  translations:
+    en: I('m| am) reading [a book].
+- id: s.day.32
+  node: uz.day.now
+  forms:
+    uz-Latn/standard:
+      text: Onam osh pishiryapti.
+      tokens: [{surface: Onam, sense: ona, morphs: [{surface: Ona, kc: 'sense:ona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: osh, sense: osh}, {surface: pishiryapti, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
+      reverse: '[Mening] onam osh pishiryapti'
+    uz-Cyrl/standard:
+      text: Онам ош пиширяпти.
+      tokens: [{surface: Онам, sense: ona, morphs: [{surface: Она, kc: 'sense:ona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ош, sense: osh}, {surface: пиширяпти, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
+      reverse: '[Менинг] онам ош пиширяпти'
+  translations:
+    en: My (mother|mom|mum) is (cooking|making) (plov|pilaf|palov).
+- id: s.day.33
+  node: uz.day.now
+  forms:
+    uz-Latn/standard:
+      text: Ukam uxlayapti.
+      tokens: [{surface: Ukam, sense: uka, morphs: [{surface: Uka, kc: 'sense:uka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: uxlayapti, sense: uxlamoq, morphs: [{surface: uxla, kc: 'sense:uxlamoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
+      reverse: '[Mening] ukam uxlayapti'
+    uz-Cyrl/standard:
+      text: Укам ухлаяпти.
+      tokens: [{surface: Укам, sense: uka, morphs: [{surface: Ука, kc: 'sense:uka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ухлаяпти, sense: uxlamoq, morphs: [{surface: ухла, kc: 'sense:uxlamoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
+      reverse: '[Менинг] укам ухлаяпти'
+  translations:
+    en: My (younger|little) brother is (sleeping|asleep).
+stories:
+- id: uz.story.day
+  node: uz.day.story
+  title: {en: Bobur's week}
+  provenance: {author: 'llm:claude@887599f213ef', status: draft}
+  characters:
+  - {id: malika, name: {uz-Latn/standard: Malika, uz-Cyrl/standard: Малика}}
+  - {id: bobur, name: {uz-Latn/standard: Bobur, uz-Cyrl/standard: Бобур}}
+  steps:
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Aka, hozir nima qilyapsiz?
+          tokens: [{surface: Aka, sense: aka}, {surface: hozir, sense: hozir}, {surface: nima, sense: nima}, {surface: qilyapsiz, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+        uz-Cyrl/standard:
+          text: Ака, ҳозир нима қиляпсиз?
+          tokens: [{surface: Ака, sense: aka}, {surface: ҳозир, sense: hozir}, {surface: нима, sense: nima}, {surface: қиляпсиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      translations: {en: 'Brother, what are you doing now?'}
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Kitob oʻqiyapman.
+          tokens: [{surface: Kitob, sense: kitob}, {surface: oʻqiyapman, sense: oqimoq, morphs: [{surface: oʻqi, kc: 'sense:oqimoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Китоб ўқияпман.
+          tokens: [{surface: Китоб, sense: kitob}, {surface: ўқияпман, sense: oqimoq, morphs: [{surface: ўқи, kc: 'sense:oqimoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: I'm reading a book.}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Ertaga ishga borasizmi?
+          tokens: [{surface: Ertaga, sense: ertaga}, {surface: ishga, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: borasizmi, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {surface: mi, kc: 'form:q-mi'}]}]
+        uz-Cyrl/standard:
+          text: Эртага ишга борасизми?
+          tokens: [{surface: Эртага, sense: ertaga}, {surface: ишга, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: борасизми, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: ми, kc: 'form:q-mi'}]}]
+      translations: {en: 'Are you going to work tomorrow?'}
+  - line:
+      speaker: bobur
+      ask: complete
+      gap: sense:har
+      distractors: ['sense:ertaga', 'sense:hozir']
+      forms:
+        uz-Latn/standard:
+          text: Ha. Men har kuni ishlayman.
+          tokens: [{surface: Ha, sense: ha}, {surface: Men, sense: men}, {surface: har, sense: har}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Ҳа. Мен ҳар куни ишлайман.
+          tokens: [{surface: Ҳа, sense: ha}, {surface: Мен, sense: men}, {surface: ҳар, sense: har}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: Yes. I work every day.}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Shanba kuni ham ishlaysizmi?
+          tokens: [{surface: Shanba, sense: shanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: ham, sense: ham}, {surface: ishlaysizmi, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {surface: mi, kc: 'form:q-mi'}]}]
+        uz-Cyrl/standard:
+          text: Шанба куни ҳам ишлайсизми?
+          tokens: [{surface: Шанба, sense: shanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ҳам, sense: ham}, {surface: ишлайсизми, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: ми, kc: 'form:q-mi'}]}]
+      translations: {en: 'Do you work on Saturday too?'}
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Yoʻq, shanba va yakshanba kuni dam olaman.
+          tokens: [{surface: Yoʻq, sense: yoq}, {surface: shanba, sense: shanba}, {surface: va, sense: va}, {surface: yakshanba, sense: yakshanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: dam, sense: dam}, {surface: olaman, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Йўқ, шанба ва якшанба куни дам оламан.
+          tokens: [{surface: Йўқ, sense: yoq}, {surface: шанба, sense: shanba}, {surface: ва, sense: va}, {surface: якшанба, sense: yakshanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: дам, sense: dam}, {surface: оламан, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: 'No, on Saturday and Sunday I rest.'}
+  - choose:
+      prompt: {en: 'When does Bobur rest?'}
+      options: [{en: on Saturday and Sunday}, {en: every day}, {en: on Monday}]
+      answer: 0
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Soat nechada turasiz?
+          tokens: [{surface: Soat, sense: soat}, {surface: nechada, sense: necha, morphs: [{surface: necha, kc: 'sense:necha'}, {surface: da, kc: 'form:loc-da'}]}, {surface: turasiz, sense: turmoq, morphs: [{surface: tur, kc: 'sense:turmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+        uz-Cyrl/standard:
+          text: Соат нечада турасиз?
+          tokens: [{surface: Соат, sense: soat}, {surface: нечада, sense: necha, morphs: [{surface: неча, kc: 'sense:necha'}, {surface: да, kc: 'form:loc-da'}]}, {surface: турасиз, sense: turmoq, morphs: [{surface: тур, kc: 'sense:turmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      translations: {en: 'What time do you get up?'}
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Soat yettida. Keyin nonushta qilaman.
+          tokens: [{surface: Soat, sense: soat}, {surface: yettida, sense: yetti, morphs: [{surface: yetti, kc: 'sense:yetti'}, {surface: da, kc: 'form:loc-da'}]}, {surface: Keyin, sense: keyin}, {surface: nonushta, sense: nonushta}, {surface: qilaman, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Соат еттида. Кейин нонушта қиламан.
+          tokens: [{surface: Соат, sense: soat}, {surface: еттида, sense: yetti, morphs: [{surface: етти, kc: 'sense:yetti'}, {surface: да, kc: 'form:loc-da'}]}, {surface: Кейин, sense: keyin}, {surface: нонушта, sense: nonushta}, {surface: қиламан, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: At seven. Then I have breakfast.}
+  - line:
+      speaker: malika
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Men soat sakkizda turaman!
+          tokens: [{surface: Men, sense: men}, {surface: soat, sense: soat}, {surface: sakkizda, sense: sakkiz, morphs: [{surface: sakkiz, kc: 'sense:sakkiz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: turaman, sense: turmoq, morphs: [{surface: tur, kc: 'sense:turmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Мен соат саккизда тураман!
+          tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: саккизда, sense: sakkiz, morphs: [{surface: саккиз, kc: 'sense:sakkiz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: тураман, sense: turmoq, morphs: [{surface: тур, kc: 'sense:turmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: I get up at eight!}
+  - line:
+      speaker: bobur
+      forms:
+        uz-Latn/standard:
+          text: Siz juda koʻp uxlaysiz!
+          tokens: [{surface: Siz, sense: siz}, {surface: juda, sense: juda}, {surface: koʻp, sense: kop}, {surface: uxlaysiz, sense: uxlamoq, morphs: [{surface: uxla, kc: 'sense:uxlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+        uz-Cyrl/standard:
+          text: Сиз жуда кўп ухлайсиз!
+          tokens: [{surface: Сиз, sense: siz}, {surface: жуда, sense: juda}, {surface: кўп, sense: kop}, {surface: ухлайсиз, sense: uxlamoq, morphs: [{surface: ухла, kc: 'sense:uxlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      translations: {en: You sleep a lot!}
+  - choose:
+      prompt: {en: 'Who gets up later?'}
+      options: [{en: Malika}, {en: Bobur}, {en: They get up at the same time.}]
+      answer: 0

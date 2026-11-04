@@ -1,0 +1,501 @@
+# Cantonese (Hong Kong) unit u03-numbers: numbers, 兩 vs 二, classifiers 個 隻 本, 呢/嗰 + classifier, 幾/幾多, prices in 蚊, ages in 歲.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u03-numbers
+title: {en: 'Numbers, classifiers and money'}
+cefr: A1
+kcs:
+- {id: 'sense:一', gloss: {en: one}, forms: {yue-Hant-HK/standard: [一]}}
+- {id: 'sense:兩', gloss: {en: 'two (before a classifier: 兩個 two of them)'}, forms: {yue-Hant-HK/standard: [兩]}, notes: {en: 'Before a classifier say 兩: 兩個, 兩本. Counting and in longer numbers say 二: 十二, 二十.'}}
+- {id: 'sense:仔', gloss: {en: son}, forms: {yue-Hant-HK/standard: [仔]}}
+- {id: 'sense:三', gloss: {en: three}, forms: {yue-Hant-HK/standard: [三]}}
+- {id: 'sense:女兒', gloss: {en: daughter}, forms: {yue-Hant-HK/standard: [女兒]}, notes: {en: 'Colloquially also 女 neoi2: 我個女 ''my daughter''.'}}
+- {id: 'sense:幾', gloss: {en: how many (a small number); a few}, forms: {yue-Hant-HK/standard: [幾]}}
+- {id: 'sense:貓', gloss: {en: cat}, forms: {yue-Hant-HK/standard: [貓]}}
+- {id: 'sense:隻', gloss: {en: classifier for animals (and one of a pair)}, forms: {yue-Hant-HK/standard: [隻]}}
+- {id: 'sense:狗', gloss: {en: dog}, forms: {yue-Hant-HK/standard: [狗]}, notes: {en: Same sound as 九 nine.}}
+- {id: 'sense:四', gloss: {en: four}, forms: {yue-Hant-HK/standard: [四]}}
+- {id: 'sense:書', gloss: {en: book}, forms: {yue-Hant-HK/standard: [書]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:本', gloss: {en: classifier for books}, forms: {yue-Hant-HK/standard: [本]}}
+- {id: 'sense:五', gloss: {en: five}, forms: {yue-Hant-HK/standard: [五]}}
+- {id: 'sense:嗰', gloss: {en: 'that (before a classifier: 嗰本 that one)'}, forms: {yue-Hant-HK/standard: [嗰隻, 嗰本, 嗰件, 嗰對]}}
+- {id: 'construction:cl-possessive', gloss: {en: 'pronoun + classifier + noun: possessive (我本書 my book, 你個仔 your son)'}, notes: {en: 'Instead of 嘅, Cantonese often puts the classifier between owner and thing: 我隻貓 ''my cat''.'}}
+- {id: 'sense:幾多', gloss: {en: how many; how much}, forms: {yue-Hant-HK/standard: [幾多]}}
+- {id: 'sense:錢', gloss: {en: money}, forms: {yue-Hant-HK/standard: [錢]}, notes: {en: Read cin2 in 幾多錢 'how much (money)'.}}
+- {id: 'sense:蚊', gloss: {en: 'dollar (Hong Kong dollars, colloquial)'}, forms: {yue-Hant-HK/standard: [蚊]}, notes: {en: 三十蚊 'thirty dollars'. Written $30 on price tags.}}
+- {id: 'sense:六', gloss: {en: six}, forms: {yue-Hant-HK/standard: [六]}}
+- {id: 'sense:七', gloss: {en: seven}, forms: {yue-Hant-HK/standard: [七]}}
+- {id: 'sense:八', gloss: {en: eight}, forms: {yue-Hant-HK/standard: [八]}}
+- {id: 'sense:九', gloss: {en: nine}, forms: {yue-Hant-HK/standard: [九]}}
+- {id: 'sense:十', gloss: {en: ten}, forms: {yue-Hant-HK/standard: [十]}, notes: {en: '十八 eighteen, 四十 forty, 四十八 forty-eight.'}}
+- {id: 'sense:買', gloss: {en: to buy}, forms: {yue-Hant-HK/standard: [買]}}
+- {id: 'sense:歲', gloss: {en: years old}, forms: {yue-Hant-HK/standard: [歲]}}
+- {id: 'sense:二', gloss: {en: 'two (in counting and longer numbers: 十二, 二十)'}, forms: {yue-Hant-HK/standard: [二]}}
+- {id: 'sense:百', gloss: {en: hundred}, forms: {yue-Hant-HK/standard: [百]}}
+nodes:
+- {id: yue.how-many, kind: lesson, introduces: ['sense:一', 'sense:兩', 'sense:仔', 'sense:三', 'sense:女兒', 'sense:幾']}
+- {id: yue.pets-books, kind: lesson, introduces: ['sense:貓', 'sense:隻', 'sense:狗', 'sense:四', 'sense:書', 'sense:本', 'sense:五']}
+- {id: yue.this-that, kind: lesson, introduces: ['sense:嗰', 'construction:cl-possessive']}
+- {id: yue.money, kind: lesson, introduces: ['sense:幾多', 'sense:錢', 'sense:蚊', 'sense:六']}
+- {id: yue.prices, kind: lesson, introduces: ['sense:七', 'sense:八', 'sense:九', 'sense:十', 'sense:買']}
+- {id: yue.ages, kind: lesson, introduces: ['sense:歲', 'sense:二', 'sense:百']}
+- {id: yue.numbers-story, kind: story}
+sentences:
+- id: s.u03.1
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有一個哥哥。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}]
+      reverse: 我有一個哥哥
+  translations:
+    en: |-
+      I have (one|an) older brother.
+      I have (one|a) big brother.
+- id: s.u03.2
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有兩個家姐。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 家姐, sense: 家姐, readings: {jyutping: gaa1 ze1}}]
+      reverse: 我有兩個家姐
+  translations:
+    en: I have two (older|big) sisters.
+- id: s.u03.3
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢有個仔。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}]
+      reverse: 佢有(個|一個)仔
+  translations:
+    en: |-
+      (She|He) has a son.
+      They have a son.
+- id: s.u03.4
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢有三個仔。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}]
+      reverse: 佢有三個仔
+  translations:
+    en: |-
+      (She|He) has three sons.
+      They have three sons.
+- id: s.u03.5
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有一個女兒。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 女兒, sense: 女兒, readings: {jyutping: neoi5 ji4}}]
+      reverse: 我有(一個|個)女兒
+  translations:
+    en: I have (a|one) daughter.
+- id: s.u03.6
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 你有幾個仔呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾, sense: 幾, readings: {jyutping: gei2}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你有幾個仔[呀]
+  translations:
+    en: How many sons do you have?
+- id: s.u03.7
+  node: yue.how-many
+  forms:
+    yue-Hant-HK/standard:
+      text: 你有幾個細妹呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾, sense: 幾, readings: {jyutping: gei2}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你有幾個細妹[呀]
+  translations:
+    en: How many (younger|little) sisters do you have?
+- id: s.u03.8
+  node: yue.pets-books
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你有冇貓呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你有冇貓[呀]
+  translations:
+    en: Do you have (a cat|cats|any cats)?
+- id: s.u03.9
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有一隻貓。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}]
+      reverse: 我有(一隻|隻)貓
+  translations:
+    en: I have (a|one) cat.
+- id: s.u03.10
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢有兩隻狗。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 狗, sense: 狗, readings: {jyutping: gau2}}]
+      reverse: 佢有兩隻狗
+  translations:
+    en: |-
+      (She|He) has two dogs.
+      They have two dogs.
+- id: s.u03.11
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有四隻貓。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 四, sense: 四, readings: {jyutping: sei3}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}]
+      reverse: 我有四隻貓
+  translations:
+    en: I have four cats.
+- id: s.u03.12
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 我嘅書呢？
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      reverse: 我(嘅|)書呢
+  translations:
+    en: |-
+      Where('s| is) my book?
+      What about my book?
+- id: s.u03.13
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有一本書。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}]
+      reverse: 我有(一本|本)書
+  translations:
+    en: I have (a|one) book.
+- id: s.u03.14
+  node: yue.pets-books
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢有五本書。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 五, sense: 五, readings: {jyutping: ng5}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}]
+      reverse: 佢有五本書
+  translations:
+    en: |-
+      (She|He) has five books.
+      They have five books.
+- id: s.u03.15
+  node: yue.pets-books
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢本書係唔係你嘅呀？
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢本書係唔係你嘅[呀]
+  translations:
+    en: |-
+      Is this book yours?
+      Is this your book?
+- id: s.u03.16
+  node: yue.this-that
+  forms:
+    yue-Hant-HK/standard:
+      text: 嗰隻貓好靚。
+      tokens: [{surface: 嗰隻, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 隻, kc: 'sense:隻'}], readings: {jyutping: go2 zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
+      reverse: 嗰隻貓好靚
+  translations:
+    en: That cat is (very|really|so) (pretty|cute|beautiful).
+- id: s.u03.17
+  node: yue.this-that
+  forms:
+    yue-Hant-HK/standard:
+      text: 嗰本書係我嘅。
+      tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
+      reverse: 嗰本書係我嘅
+  translations:
+    en: That book is mine.
+- id: s.u03.18
+  node: yue.this-that
+  constructions: ['construction:cl-possessive']
+  forms:
+    yue-Hant-HK/standard:
+      text: 我本書呢？
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      reverse: 我(本|嘅)書呢
+  translations:
+    en: Where('s| is) my book?
+- id: s.u03.19
+  node: yue.this-that
+  constructions: ['construction:cl-possessive']
+  forms:
+    yue-Hant-HK/standard:
+      text: 我隻貓好靚。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
+      reverse: 我隻貓好靚
+  translations:
+    en: My cat is (very|really|so) (pretty|cute|beautiful).
+- id: s.u03.20
+  node: yue.this-that
+  constructions: ['construction:cl-possessive']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你個仔好高。
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
+      reverse: 你個仔好高
+  translations:
+    en: Your son is (very|really|so) tall.
+- id: s.u03.21
+  node: yue.this-that
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢隻狗係唔係你嘅呀？
+      tokens: [{surface: 呢隻, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 隻, kc: 'sense:隻'}], readings: {jyutping: ne1 zek3}}, {surface: 狗, sense: 狗, readings: {jyutping: gau2}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢隻狗係唔係你嘅[呀]
+  translations:
+    en: |-
+      Is this dog yours?
+      Is this your dog?
+- id: s.u03.22
+  node: yue.money
+  forms:
+    yue-Hant-HK/standard:
+      text: 你有幾多本書呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你有幾多本書[呀]
+  translations:
+    en: How many books do you have?
+- id: s.u03.23
+  node: yue.money
+  forms:
+    yue-Hant-HK/standard:
+      text: 幾多錢呀？
+      tokens: [{surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 幾多錢[呀]
+  translations:
+    en: |-
+      How much (is it|is this|does it cost)?
+      How much?
+- id: s.u03.24
+  node: yue.money
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢本書幾多錢呀？
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢本書幾多錢[呀]
+  translations:
+    en: |-
+      How much is this book?
+      How much does this book cost?
+- id: s.u03.25
+  node: yue.money
+  forms:
+    yue-Hant-HK/standard:
+      text: 兩蚊。
+      tokens: [{surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 兩蚊
+  translations:
+    en: (Two|2) dollars.
+- id: s.u03.26
+  node: yue.money
+  forms:
+    yue-Hant-HK/standard:
+      text: 六蚊。
+      tokens: [{surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 六蚊
+  translations:
+    en: (Six|6) dollars.
+- id: s.u03.27
+  node: yue.prices
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢本書七蚊。
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 呢本書七蚊
+  translations:
+    en: |-
+      This book is (seven|7) dollars.
+      This book costs (seven|7) dollars.
+- id: s.u03.28
+  node: yue.prices
+  forms:
+    yue-Hant-HK/standard:
+      text: 嗰本書八蚊。
+      tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 八, sense: 八, readings: {jyutping: baat3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 嗰本書八蚊
+  translations:
+    en: |-
+      That book is (eight|8) dollars.
+      That book costs (eight|8) dollars.
+- id: s.u03.29
+  node: yue.prices
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有九本書。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 九, sense: 九, readings: {jyutping: gau2}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}]
+      reverse: 我有九本書
+  translations:
+    en: I have (nine|9) books.
+- id: s.u03.30
+  node: yue.prices
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢本書十蚊。
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 呢本書十蚊
+  translations:
+    en: |-
+      This book is (ten|10) dollars.
+      This book costs (ten|10) dollars.
+- id: s.u03.31
+  node: yue.prices
+  forms:
+    yue-Hant-HK/standard:
+      text: 我買呢本書。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}]
+      reverse: 我買呢本書
+  translations:
+    en: |-
+      I('ll| will) (buy|take) this book.
+      I('m| am) buying this book.
+- id: s.u03.32
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 你幾多歲呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 歲, sense: 歲, readings: {jyutping: seoi3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你幾多歲[呀]
+  translations:
+    en: How old are you?
+- id: s.u03.33
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 我十八歲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 十八, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 八, kc: 'sense:八'}], readings: {jyutping: sap6 baat3}}, {surface: 歲, sense: 歲, readings: {jyutping: seoi3}}]
+      reverse: 我十八歲
+  translations:
+    en: I('m| am) (eighteen|18)[ years old].
+- id: s.u03.34
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 我二十歲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 二十, morphs: [{surface: 二, kc: 'sense:二'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: ji6 sap6}}, {surface: 歲, sense: 歲, readings: {jyutping: seoi3}}]
+      reverse: 我二十歲
+  translations:
+    en: I('m| am) (twenty|20)[ years old].
+- id: s.u03.35
+  node: yue.ages
+  constructions: ['construction:cl-possessive']
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢個仔六歲。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 歲, sense: 歲, readings: {jyutping: seoi3}}]
+      reverse: 佢個仔六歲
+  translations:
+    en: (Her|His|Their) son is (six|6)[ years old].
+- id: s.u03.36
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢本書一百蚊。
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 一百, morphs: [{surface: 一, kc: 'sense:一'}, {surface: 百, kc: 'sense:百'}], readings: {jyutping: jat1 baak3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 呢本書一百蚊
+  translations:
+    en: |-
+      This book is (a hundred|one hundred|100) dollars.
+      This book costs (a hundred|one hundred|100) dollars.
+- id: s.u03.37
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 嗰本書四十蚊。
+      tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 四十, morphs: [{surface: 四, kc: 'sense:四'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: sei3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      reverse: 嗰本書四十蚊
+  translations:
+    en: |-
+      That book is (forty|40) dollars.
+      That book costs (forty|40) dollars.
+- id: s.u03.38
+  node: yue.ages
+  forms:
+    yue-Hant-HK/standard:
+      text: 我細妹十二歲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}, {surface: 十二, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 二, kc: 'sense:二'}], readings: {jyutping: sap6 ji6}}, {surface: 歲, sense: 歲, readings: {jyutping: seoi3}}]
+      reverse: 我細妹十二歲
+  translations:
+    en: My (younger|little) sister is (twelve|12)[ years old].
+stories:
+- id: yue.story.book-stall
+  node: yue.numbers-story
+  title:
+    en: At the book stall
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  - {id: si-tau, name: {yue-Hant-HK/standard: 檔主}}
+  steps:
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 你好！呢本書幾多錢呀？
+          tokens: [{surface: 你好, sense: 你好, readings: {jyutping: nei5 hou2}}, {surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Hello! How much is this book?'}
+  - line:
+      speaker: si-tau
+      forms:
+        yue-Hant-HK/standard:
+          text: 呢本八十蚊。
+          tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ne1 bun2}}, {surface: 八十, morphs: [{surface: 八, kc: 'sense:八'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: baat3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      translations: {en: This one is eighty dollars.}
+  - line:
+      speaker: mei-ling
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 嗰本呢？
+          tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      translations: {en: 'And that one?'}
+  - line:
+      speaker: si-tau
+      forms:
+        yue-Hant-HK/standard:
+          text: 嗰本二十蚊。
+          tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 二十, morphs: [{surface: 二, kc: 'sense:二'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: ji6 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      translations: {en: That one is twenty dollars.}
+  - choose:
+      prompt: {en: 'How much is the first book?'}
+      options: [{en: 80 dollars}, {en: 20 dollars}, {en: 8 dollars}]
+      answer: 0
+  - line:
+      speaker: mei-ling
+      ask: complete
+      gap: sense:本
+      distractors: ['sense:隻', 'sense:個']
+      forms:
+        yue-Hant-HK/standard:
+          text: 我買兩本。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}]
+      translations: {en: I'll take two.}
+  - line:
+      speaker: si-tau
+      forms:
+        yue-Hant-HK/standard:
+          text: 兩本四十蚊。
+          tokens: [{surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 四十, morphs: [{surface: 四, kc: 'sense:四'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: sei3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+      translations: {en: Two is forty dollars.}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 好，唔該晒！
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 晒, sense: 晒, readings: {jyutping: saai3}}]
+      translations: {en: 'OK, thanks so much!'}
+  - line:
+      speaker: si-tau
+      forms:
+        yue-Hant-HK/standard:
+          text: 唔該！拜拜！
+          tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 拜拜, sense: 拜拜, readings: {jyutping: baai1 baai3}}]
+      translations: {en: Thank you! Bye-bye!}
+  - choose:
+      prompt: {en: 'How many books does Mei-ling buy?'}
+      options: [{en: two}, {en: one}, {en: four}]
+      answer: 0

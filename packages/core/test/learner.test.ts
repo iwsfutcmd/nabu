@@ -316,10 +316,12 @@ describe("placement v0 (§9.5)", () => {
     const done = { ...events.completed("lesson", undefined, { exercises: 12, correctFirstTry: 10, retries: 0 }), mode: "placement" as const, placed: nodes.slice(0, 2) };
     const state = replay([events.started("lesson", undefined, 12), done]);
     expect(state.completedNodes).toEqual(nodes.slice(0, 2));
-    // The lessons, then the unit's story: locked until the lessons before it are done.
+    // The lessons, then each unit's story: locked until the lessons before it are done.
     const path = pathOf(fa, state);
     expect(path.filter((n) => n.kind === "lesson").map((n) => n.status)).toEqual(["done", "done", "available", ...nodes.slice(3).map(() => "locked")]);
-    expect(path.filter((n) => n.kind === "story").map((n) => n.status)).toEqual(["locked"]);
+    const stories = path.filter((n) => n.kind === "story");
+    expect(stories.length).toBeGreaterThan(0);
+    expect(stories.every((n) => n.status === "locked")).toBe(true);
   });
 });
 

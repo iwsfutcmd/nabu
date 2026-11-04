@@ -1,0 +1,487 @@
+# Cantonese (Hong Kong) unit u10-plans: ongoing actions with 緊, the weather (落雨, 出太陽, 打風), the Observatory says (話), inviting with 不如, accepting and declining.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u10-plans
+title: {en: Weather and weekend plans}
+cefr: A2
+kcs:
+- {id: 'sense:緊', gloss: {en: 'after a verb: in progress (-ing)'}, forms: {yue-Hant-HK/standard: [緊]}, notes: {en: 我食緊飯 'I'm eating'.}}
+- {id: 'sense:電視', gloss: {en: 'television, TV'}, forms: {yue-Hant-HK/standard: [電視]}}
+- {id: 'sense:嘢', gloss: {en: 'thing(s), stuff'}, forms: {yue-Hant-HK/standard: [嘢]}, notes: {en: '做嘢 work, 食嘢 eat something, 買嘢 do some shopping.'}}
+- {id: 'sense:電話', gloss: {en: telephone; phone call}, forms: {yue-Hant-HK/standard: [電話]}}
+- {id: 'sense:天氣', gloss: {en: weather}, forms: {yue-Hant-HK/standard: [天氣]}}
+- {id: 'sense:好天', gloss: {en: 'fine weather, sunny'}, forms: {yue-Hant-HK/standard: [好天]}}
+- {id: 'sense:雨', gloss: {en: rain}, forms: {yue-Hant-HK/standard: [雨]}}
+- {id: 'sense:落', gloss: {en: to fall (of rain); to go down}, forms: {yue-Hant-HK/standard: [落]}, notes: {en: '落雨 ''to rain'', 落緊雨 ''it is raining''.'}}
+- {id: 'sense:出太陽', gloss: {en: to be sunny (literally 'the sun comes out')}, forms: {yue-Hant-HK/standard: [出太陽]}}
+- {id: 'sense:打風', gloss: {en: a typhoon hits; there is a typhoon}, forms: {yue-Hant-HK/standard: [打風]}}
+- {id: 'sense:話', gloss: {en: to say}, forms: {yue-Hant-HK/standard: [話]}}
+- {id: 'sense:天文台', gloss: {en: the Hong Kong Observatory (the weather service)}, forms: {yue-Hant-HK/standard: [天文台]}}
+- {id: 'sense:遮', gloss: {en: umbrella}, forms: {yue-Hant-HK/standard: [遮]}}
+- {id: 'sense:帶', gloss: {en: 'to bring, to take along'}, forms: {yue-Hant-HK/standard: [帶]}}
+- {id: 'sense:不如', gloss: {en: 'how about …, why don''t we …'}, forms: {yue-Hant-HK/standard: [不如]}, notes: {en: '不如去飲茶啦！ ''Why don''t we go for dim sum?'''}}
+- {id: 'sense:約', gloss: {en: 'to arrange to meet, make plans with'}, forms: {yue-Hant-HK/standard: [約]}}
+- {id: 'sense:搵', gloss: {en: to look for; to want to see or speak to}, forms: {yue-Hant-HK/standard: [搵]}, notes: {en: 'On the phone: 你搵邊個呀？ ''who would you like to speak to?'''}}
+- {id: 'sense:可能', gloss: {en: 'maybe, perhaps; possibly'}, forms: {yue-Hant-HK/standard: [可能]}}
+- {id: 'sense:冇問題', gloss: {en: no problem}, forms: {yue-Hant-HK/standard: [冇問題]}}
+- {id: 'sense:唔好意思', gloss: {en: sorry; excuse me}, forms: {yue-Hant-HK/standard: [唔好意思]}, notes: {en: A light apology or 'excuse me'. 對唔住 is a stronger 'sorry'.}}
+- {id: 'sense:下次', gloss: {en: next time}, forms: {yue-Hant-HK/standard: [下次]}}
+- {id: 'sense:一定', gloss: {en: 'definitely, for sure'}, forms: {yue-Hant-HK/standard: [一定]}}
+- {id: 'sense:游水', gloss: {en: 'to swim, go swimming'}, forms: {yue-Hant-HK/standard: [游水]}}
+- {id: 'sense:海灘', gloss: {en: beach}, forms: {yue-Hant-HK/standard: [海灘]}}
+nodes:
+- {id: yue.doing, kind: lesson, introduces: ['sense:緊', 'sense:電視', 'sense:嘢', 'sense:電話']}
+- {id: yue.weather, kind: lesson, introduces: ['sense:天氣', 'sense:好天', 'sense:雨', 'sense:落', 'sense:出太陽', 'sense:打風']}
+- {id: yue.forecast, kind: lesson, introduces: ['sense:話', 'sense:天文台', 'sense:遮', 'sense:帶']}
+- {id: yue.invite, kind: lesson, introduces: ['sense:不如', 'sense:約', 'sense:搵']}
+- {id: yue.answers, kind: lesson, introduces: ['sense:可能', 'sense:冇問題', 'sense:唔好意思', 'sense:下次', 'sense:一定']}
+- {id: yue.summer, kind: lesson, introduces: ['sense:游水', 'sense:海灘']}
+- {id: yue.plans-story, kind: story}
+sentences:
+- id: s.u10.1
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 你做緊咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你做緊(咩|乜嘢)[呀]
+  translations:
+    en: What are you doing?
+- id: s.u10.2
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 我食緊飯。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}]
+      reverse: 我食緊飯
+  translations:
+    en: I('m| am) (eating|having a meal|having dinner|having lunch).
+- id: s.u10.3
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 我等緊你。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: 我等緊你
+  translations:
+    en: I('m| am) waiting for you.
+- id: s.u10.4
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢睇緊電視。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 睇, sense: 睇, readings: {jyutping: tai2}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 電視, sense: 電視, readings: {jyutping: din6 si6}}]
+      reverse: 佢睇緊電視
+  translations:
+    en: |-
+      (She|He)('s| is) watching (TV|television).
+      They('re| are) watching (TV|television).
+- id: s.u10.5
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 我做緊嘢。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 嘢, sense: 嘢, readings: {jyutping: je5}}]
+      reverse: 我做緊嘢
+  translations:
+    en: |-
+      I('m| am) working.
+      I('m| am) busy working.
+- id: s.u10.6
+  node: yue.doing
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢講緊電話。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 電話, sense: 電話, readings: {jyutping: din6 waa2}}]
+      reverse: 佢講緊電話
+  translations:
+    en: |-
+      (She|He)('s| is) on the phone.
+      (She|He)('s| is) talking on the phone.
+      They('re| are) on the phone.
+- id: s.u10.7
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日天氣好好。
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 天氣, sense: 天氣, readings: {jyutping: tin1 hei3}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}]
+      reverse: 今日天氣好好
+  translations:
+    en: |-
+      The weather is (very|really) (good|nice) today.
+      It's a (nice|lovely) day today.
+- id: s.u10.8
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日好天。
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 好天, sense: 好天, readings: {jyutping: hou2 tin1}}]
+      reverse: 今日好天
+  translations:
+    en: |-
+      It's (sunny|fine|a nice day) today.
+      The weather's (fine|nice) today.
+- id: s.u10.9
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 好大雨呀！
+      tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}, {surface: 雨, sense: 雨, readings: {jyutping: jyu5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 好大雨[呀]
+  translations:
+    en: |-
+      It's raining (really|so) hard!
+      What heavy rain!
+- id: s.u10.10
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家落緊雨。
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 落, sense: 落, readings: {jyutping: lok6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 雨, sense: 雨, readings: {jyutping: jyu5}}]
+      reverse: 而家落緊雨
+  translations:
+    en: It('s| is) raining (now|right now|).
+- id: s.u10.11
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日出太陽。
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 出太陽, sense: 出太陽, readings: {jyutping: ceot1 taai3 joeng4}}]
+      reverse: 今日出太陽
+  translations:
+    en: |-
+      It's sunny today.
+      The sun is out today.
+- id: s.u10.12
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 聽日打風。
+      tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 打風, sense: 打風, readings: {jyutping: daa2 fung1}}]
+      reverse: 聽日打風
+  translations:
+    en: |-
+      There('ll| will) be a typhoon tomorrow.
+      A typhoon is coming tomorrow.
+- id: s.u10.13
+  node: yue.weather
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日好凍呀！
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 凍, sense: 凍, readings: {jyutping: dung3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 今日好凍[呀]
+  translations:
+    en: It's (so|really|very) cold today!
+- id: s.u10.14
+  node: yue.forecast
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢話聽日落雨。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 話, sense: 話, readings: {jyutping: waa6}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 落, sense: 落, readings: {jyutping: lok6}}, {surface: 雨, sense: 雨, readings: {jyutping: jyu5}}]
+      reverse: 佢話聽日落雨
+  translations:
+    en: |-
+      (She|He) says it('ll| will) rain tomorrow.
+      They say it('ll| will) rain tomorrow.
+- id: s.u10.15
+  node: yue.forecast
+  forms:
+    yue-Hant-HK/standard:
+      text: 天文台話聽日好凍。
+      tokens: [{surface: 天文台, sense: 天文台, readings: {jyutping: tin1 man4 toi4}}, {surface: 話, sense: 話, readings: {jyutping: waa6}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 凍, sense: 凍, readings: {jyutping: dung3}}]
+      reverse: 天文台話聽日好凍
+  translations:
+    en: The Observatory says it('ll| will) be (very|really) cold tomorrow.
+- id: s.u10.16
+  node: yue.forecast
+  forms:
+    yue-Hant-HK/standard:
+      text: 我冇遮。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}]
+      reverse: 我冇遮
+  translations:
+    en: |-
+      I (don't|do not) have an umbrella.
+      I have no umbrella.
+- id: s.u10.17
+  node: yue.forecast
+  forms:
+    yue-Hant-HK/standard:
+      text: 你帶咗遮未呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 帶, sense: 帶, readings: {jyutping: daai3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你帶(咗|左)遮未[呀]
+  translations:
+    en: |-
+      Have you (brought|got|taken) (an|your) umbrella?
+      Did you bring (an|your) umbrella?
+- id: s.u10.18
+  node: yue.forecast
+  forms:
+    yue-Hant-HK/standard:
+      text: 帶遮啦！
+      tokens: [{surface: 帶, sense: 帶, readings: {jyutping: daai3}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 帶遮啦
+  translations:
+    en: (Take|Bring) an umbrella!
+- id: s.u10.19
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 不如去飲茶啦。
+      tokens: [{surface: 不如, sense: 不如, readings: {jyutping: bat1 jyu4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 飲茶, sense: 飲茶, readings: {jyutping: jam2 caa4}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 不如去飲茶啦
+  translations:
+    en: |-
+      (How about|Why don't we) (go|going) for dim sum?
+      Let's go for dim sum.
+- id: s.u10.20
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 不如一齊去睇戲啦！
+      tokens: [{surface: 不如, sense: 不如, readings: {jyutping: bat1 jyu4}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 睇戲, sense: 睇戲, readings: {jyutping: tai2 hei3}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 不如一齊去睇戲啦
+  translations:
+    en: |-
+      (How about|Why don't we) (go|going) to (see|watch) a (movie|film) together?
+      Let's go (see|watch) a (movie|film) together!
+- id: s.u10.21
+  node: yue.invite
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你想唔想去行山呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 行山, sense: 行山, readings: {jyutping: haang4 saan1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你想唔想去行山[呀]
+  translations:
+    en: |-
+      Do you want to go hiking?
+      Would you like to go hiking?
+- id: s.u10.22
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 我唔想去。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
+      reverse: 我唔想去
+  translations:
+    en: I (don't|do not) want to go.
+- id: s.u10.23
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 我約咗朋友。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 約, sense: 約, readings: {jyutping: joek3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 朋友, sense: 朋友, readings: {jyutping: pang4 jau5}}]
+      reverse: 我約(咗|左)朋友
+  translations:
+    en: I('ve| have) (made plans|arranged to meet) with (a friend|friends|my friends).
+- id: s.u10.24
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 你搵邊個呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 搵, sense: 搵, readings: {jyutping: wan2}}, {surface: 邊個, sense: 邊個, readings: {jyutping: bin1 go3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你搵邊個[呀]
+  translations:
+    en: |-
+      Who are you looking for?
+      Who do you want to (speak to|see)?
+- id: s.u10.25
+  node: yue.invite
+  forms:
+    yue-Hant-HK/standard:
+      text: 我搵美玲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 搵, sense: 搵, readings: {jyutping: wan2}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
+      reverse: 我搵美玲
+  translations:
+    en: |-
+      I('m| am) looking for (Mei-ling|Mei Ling).
+      I('d like to|want to) speak to (Mei-ling|Mei Ling).
+- id: s.u10.26
+  node: yue.answers
+  forms:
+    yue-Hant-HK/standard:
+      text: 我可能唔得閒。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 可能, sense: 可能, readings: {jyutping: ho2 nang4}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
+      reverse: 我可能唔得閒
+  translations:
+    en: |-
+      I (might|may) not be free.
+      Maybe I('m| am) not free.
+- id: s.u10.27
+  node: yue.answers
+  forms:
+    yue-Hant-HK/standard:
+      text: 冇問題！
+      tokens: [{surface: 冇問題, sense: 冇問題, readings: {jyutping: mou5 man6 tai4}}]
+      reverse: 冇問題
+  translations:
+    en: No problem!
+- id: s.u10.28
+  node: yue.answers
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔好意思，我唔得閒。
+      tokens: [{surface: 唔好意思, sense: 唔好意思, readings: {jyutping: m4 hou2 ji3 si1}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
+      reverse: 唔好意思我唔得閒
+  translations:
+    en: (Sorry|Excuse me), I('m| am) not free.
+- id: s.u10.29
+  node: yue.answers
+  forms:
+    yue-Hant-HK/standard:
+      text: 下次啦。
+      tokens: [{surface: 下次, sense: 下次, readings: {jyutping: haa6 ci3}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 下次啦
+  translations:
+    en: |-
+      Next time, then.
+      (Maybe |)next time.
+- id: s.u10.30
+  node: yue.answers
+  forms:
+    yue-Hant-HK/standard:
+      text: 我一定去！
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 一定, sense: 一定, readings: {jyutping: jat1 ding6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
+      reverse: 我一定去
+  translations:
+    en: |-
+      I('ll| will) definitely (go|be there)!
+      I('m| am) definitely going!
+- id: s.u10.31
+  node: yue.summer
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你想唔想去游水呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 游水, sense: 游水, readings: {jyutping: jau4 seoi2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你想唔想去游水[呀]
+  translations:
+    en: |-
+      Do you want to go swimming?
+      Would you like to go swimming?
+- id: s.u10.32
+  node: yue.summer
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋去海灘啦！
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 海灘, sense: 海灘, readings: {jyutping: hoi2 taan1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 我(哋|地)去海灘啦
+  translations:
+    en: Let's go to the beach!
+- id: s.u10.33
+  node: yue.summer
+  forms:
+    yue-Hant-HK/standard:
+      text: 你週末想做咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你週末想做(咩|乜嘢)[呀]
+  translations:
+    en: What do you want to do (on the|at the|over the|this) weekend?
+- id: s.u10.34
+  node: yue.summer
+  forms:
+    yue-Hant-HK/standard:
+      text: 七點喺地鐵站等啦。
+      tokens: [{surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 地鐵, sense: 地鐵, readings: {jyutping: dei6 tit3}}, {surface: 站, sense: 站, readings: {jyutping: zaam6}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 七點喺地鐵站等啦
+  translations:
+    en: |-
+      Let's meet at the (MTR|metro|subway) station at (seven|7)[ o'clock].
+      Let's meet at (seven|7)[ o'clock] at the (MTR|metro|subway) station.
+stories:
+- id: yue.story.rainy-saturday
+  node: yue.plans-story
+  title:
+    en: A rainy Saturday
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  - {id: gaa-ming, name: {yue-Hant-HK/standard: 家明}}
+  steps:
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 家明，你做緊咩呀？
+          tokens: [{surface: 家明, readings: {jyutping: gaa1 ming4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Ka-ming, what are you doing?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 我睇緊電視。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 睇, sense: 睇, readings: {jyutping: tai2}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 電視, sense: 電視, readings: {jyutping: din6 si6}}]
+      translations: {en: I'm watching TV.}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 不如一齊去行山啦！
+          tokens: [{surface: 不如, sense: 不如, readings: {jyutping: bat1 jyu4}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 行山, sense: 行山, readings: {jyutping: haang4 saan1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      translations: {en: 'Why don''t we go hiking together?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 落緊雨呀！
+          tokens: [{surface: 落, sense: 落, readings: {jyutping: lok6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 雨, sense: 雨, readings: {jyutping: jyu5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: It's raining!}
+  - choose:
+      prompt: {en: 'Why doesn''t Ka-ming want to go hiking at first?'}
+      options: [{en: It's raining.}, {en: He's at work.}, {en: He's tired.}]
+      answer: 0
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 天文台話一陣出太陽。
+          tokens: [{surface: 天文台, sense: 天文台, readings: {jyutping: tin1 man4 toi4}}, {surface: 話, sense: 話, readings: {jyutping: waa6}}, {surface: 一陣, sense: 一陣, readings: {jyutping: jat1 zan6}}, {surface: 出太陽, sense: 出太陽, readings: {jyutping: ceot1 taai3 joeng4}}]
+      translations: {en: The Observatory says it'll be sunny soon.}
+  - line:
+      speaker: gaa-ming
+      ask: complete
+      gap: sense:遮
+      distractors: ['sense:電話', 'sense:電視']
+      forms:
+        yue-Hant-HK/standard:
+          text: 好啦，我帶遮。
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 帶, sense: 帶, readings: {jyutping: daai3}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}]
+      translations: {en: 'All right, I''ll bring an umbrella.'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 好呀！我哋幾點等呀？
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Great! What time shall we meet?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 兩點，喺地鐵站等啦。
+          tokens: [{surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 地鐵, sense: 地鐵, readings: {jyutping: dei6 tit3}}, {surface: 站, sense: 站, readings: {jyutping: zaam6}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      translations: {en: 'Two o''clock, at the MTR station.'}
+  - line:
+      speaker: mei-ling
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 一陣見！
+          tokens: [{surface: 一陣, sense: 一陣, readings: {jyutping: jat1 zan6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      translations: {en: See you soon!}
+  - choose:
+      prompt: {en: 'Where will they meet?'}
+      options: [{en: at the MTR station}, {en: at Ka-ming's home}, {en: at the beach}]
+      answer: 0
+scenarios:
+- id: yue.invite-friend
+  after: yue.summer
+  title:
+    en: Inviting a friend out
+  setting:
+    en: A phone call on a Friday evening; the weekend forecast is mixed.
+  character:
+    en: A friend who is busy on Saturday, free on Sunday, and worried about the rain.
+  goal:
+    en: Suggest something to do with 不如, agree on a day, a time and a place to meet, and talk about the weather.
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}

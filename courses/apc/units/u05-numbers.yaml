@@ -1,0 +1,666 @@
+# Fixture course (apc), unit 5: numbers and money. 1-10 spelled out (Arabizi digits are letters, so
+# numbers are words here), twenty, fifty, a hundred, a thousand; lira and dollar, 2addesh?, age.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u05-numbers
+title: {en: 'How much?'}
+cefr: A1
+kcs:
+- {id: 'sense:wa7ad', gloss: {en: one}, forms: {apc-Arab/standard: [واحد], apc-Latn/arabizi: [wa7ad]}}
+- {id: 'sense:tnen', gloss: {en: two}, forms: {apc-Arab/standard: [تنين], apc-Latn/arabizi: [tnen]}}
+- {id: 'sense:tlete', gloss: {en: three}, forms: {apc-Arab/standard: [تلاتة], apc-Latn/arabizi: [tlete]}}
+- {id: 'sense:arb3a', gloss: {en: four}, forms: {apc-Arab/standard: [أربعة], apc-Latn/arabizi: [arb3a]}}
+- {id: 'sense:khamse', gloss: {en: five}, forms: {apc-Arab/standard: [خمسة], apc-Latn/arabizi: [khamse]}}
+- {id: 'sense:sette', gloss: {en: six}, forms: {apc-Arab/standard: [ستة], apc-Latn/arabizi: [sette]}}
+- {id: 'sense:sab3a', gloss: {en: seven}, forms: {apc-Arab/standard: [سبعة], apc-Latn/arabizi: [sab3a]}}
+- {id: 'sense:tmene', gloss: {en: eight}, forms: {apc-Arab/standard: [تمانة], apc-Latn/arabizi: [tmene]}}
+- {id: 'sense:tes3a', gloss: {en: nine}, forms: {apc-Arab/standard: [تسعة], apc-Latn/arabizi: [tes3a]}}
+- {id: 'sense:3ashra', gloss: {en: ten}, forms: {apc-Arab/standard: [عشرة], apc-Latn/arabizi: [3ashra]}}
+- {id: 'sense:dollar', gloss: {en: dollar}, forms: {apc-Arab/standard: [دولار], apc-Latn/arabizi: [dollar]}}
+- {id: 'sense:lira', gloss: {en: lira (Lebanese pound)}, forms: {apc-Arab/standard: [ليرة], apc-Latn/arabizi: [lira]}}
+- {id: 'sense:2addesh', gloss: {en: how much; how many}, forms: {apc-Arab/standard: [قدّيش], apc-Latn/arabizi: [2addesh]}}
+- {id: 'sense:masari', gloss: {en: money}, forms: {apc-Arab/standard: [مصاري], apc-Latn/arabizi: [masari]}}
+- {id: 'sense:3eshrin', gloss: {en: twenty}, forms: {apc-Arab/standard: [عشرين], apc-Latn/arabizi: [3eshrin]}}
+- {id: 'sense:miyye', gloss: {en: a hundred}, forms: {apc-Arab/standard: [مية], apc-Latn/arabizi: [miyye]}}
+- {id: 'sense:alf', gloss: {en: a thousand}, forms: {apc-Arab/standard: [ألف], apc-Latn/arabizi: [alf]}}
+- {id: 'sense:khamsin', gloss: {en: fifty}, forms: {apc-Arab/standard: [خمسين], apc-Latn/arabizi: [khamsin]}}
+- {id: 'sense:ghali', gloss: {en: expensive}, forms: {apc-Arab/standard: [غالي], apc-Latn/arabizi: [ghali]}}
+- {id: 'sense:rkhis', gloss: {en: cheap}, forms: {apc-Arab/standard: [رخيص, رخيصة], apc-Latn/arabizi: [rkhis, rkhise]}}
+- {id: 'sense:3mol-ma3rouf', gloss: {en: please (to a man)}, forms: {apc-Arab/standard: [عمول معروف], apc-Latn/arabizi: [3mol ma3rouf]}, notes: {en: 'Literally ''do a favour''. To a woman: عملي معروف, 3emli
+      ma3rouf.'}}
+- {id: 'sense:7sab', gloss: {en: bill; check}, forms: {apc-Arab/standard: [الحساب], apc-Latn/arabizi: [7sab]}}
+- {id: 'sense:law-sama7t', gloss: {en: excuse me; please (to a man)}, forms: {apc-Arab/standard: [لو سمحت], apc-Latn/arabizi: [law sama7t]}, notes: {en: 'To a woman: لو سمحتي, law sama7te.'}}
+- {id: 'sense:3omr', gloss: {en: age (literally 'life')}, forms: {apc-Arab/standard: [عمرك], apc-Latn/arabizi: [3omrak]}, notes: {en: '2addesh 3omrak? How old are you?'}}
+- {id: 'sense:sene', gloss: {en: year}, forms: {apc-Arab/standard: [سنة], apc-Latn/arabizi: [sene]}}
+- {id: 'sense:ra2m', gloss: {en: number (phone number)}, forms: {apc-Arab/standard: [رقمك], apc-Latn/arabizi: [ra2mak]}}
+nodes:
+- {id: apc.num.one-five, kind: lesson, introduces: ['sense:wa7ad', 'sense:tnen', 'sense:tlete', 'sense:arb3a', 'sense:khamse']}
+- {id: apc.num.six-ten, kind: lesson, introduces: ['sense:sette', 'sense:sab3a', 'sense:tmene', 'sense:tes3a', 'sense:3ashra']}
+- {id: apc.num.money, kind: lesson, introduces: ['sense:dollar', 'sense:lira', 'sense:2addesh', 'sense:masari']}
+- {id: apc.num.big, kind: lesson, introduces: ['sense:3eshrin', 'sense:miyye', 'sense:alf', 'sense:khamsin']}
+- {id: apc.num.prices, kind: lesson, introduces: ['sense:ghali', 'sense:rkhis', 'sense:3mol-ma3rouf', 'sense:7sab', 'sense:law-sama7t']}
+- {id: apc.num.age, kind: lesson, introduces: ['sense:3omr', 'sense:sene', 'sense:ra2m']}
+- {id: apc.num.story, kind: story}
+sentences:
+- id: s.num.1
+  node: apc.num.one-five
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: واحد شاي.
+      tokens: [{surface: واحد, sense: wa7ad}, {surface: شاي, sense: shay}]
+      reverse: واحد شاي
+    apc-Latn/arabizi:
+      text: wa7ad shay.
+      tokens: [{surface: wa7ad, sense: wa7ad}, {surface: shay, sense: shay}]
+      reverse: (wa7ad|wa7ed|wahad|wa7id) shay
+  translations:
+    en: |-
+      One tea.
+      A tea.
+- id: s.num.2
+  node: apc.num.one-five
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تنين قهوة.
+      tokens: [{surface: تنين, sense: tnen}, {surface: قهوة, sense: ahwe}]
+      reverse: تنين قهوة
+    apc-Latn/arabizi:
+      text: tnen ahwe.
+      tokens: [{surface: tnen, sense: tnen}, {surface: ahwe, sense: ahwe}]
+      reverse: (tnen|tnein|tnayn|itnen) (ahwe|2ahwe)
+  translations:
+    en: Two coffees.
+- id: s.num.3
+  node: apc.num.one-five
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: واحد، تنين، تلاتة!
+      tokens: [{surface: واحد, sense: wa7ad}, {surface: تنين, sense: tnen}, {surface: تلاتة, sense: tlete}]
+      reverse: واحد تنين تلاتة
+    apc-Latn/arabizi:
+      text: wa7ad, tnen, tlete!
+      tokens: [{surface: wa7ad, sense: wa7ad}, {surface: tnen, sense: tnen}, {surface: tlete, sense: tlete}]
+      reverse: (wa7ad|wa7ed|wahad|wa7id) (tnen|tnein|tnayn|itnen) (tlete|tleti|tlate|tlata)
+  translations:
+    en: One, two, three!
+- id: s.num.4
+  node: apc.num.one-five
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أربعة؟ لأ، تلاتة.
+      tokens: [{surface: أربعة, sense: arb3a}, {surface: لأ, sense: la2}, {surface: تلاتة, sense: tlete}]
+      reverse: أربعة (لأ|لا) تلاتة
+    apc-Latn/arabizi:
+      text: arb3a? la2, tlete.
+      tokens: [{surface: arb3a, sense: arb3a}, {surface: la2, sense: la2}, {surface: tlete, sense: tlete}]
+      reverse: (arb3a|arba3a|arb3e|arba3) (la2|la) (tlete|tleti|tlate|tlata)
+  translations:
+    en: Four? No, three.
+- id: s.num.5
+  node: apc.num.one-five
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تنين وتلاتة خمسة.
+      tokens: [{surface: تنين, sense: tnen}, {surface: وتلاتة, sense: tlete, morphs: [{surface: و, kc: 'sense:w'}, {surface: تلاتة, kc: 'sense:tlete'}]}, {surface: خمسة, sense: khamse}]
+      reverse: تنين (وتلاتة|و تلاتة) خمسة
+    apc-Latn/arabizi:
+      text: tnen w tlete khamse.
+      tokens: [{surface: tnen, sense: tnen}, {surface: w, sense: w}, {surface: tlete, sense: tlete}, {surface: khamse, sense: khamse}]
+      reverse: (tnen|tnein|tnayn|itnen) (w|wa) (tlete|tleti|tlate|tlata) (khamse|khamsi|5amse|khamsa)
+  translations:
+    en: |-
+      Two and three is five.
+      Two plus three is five.
+      Two and three (make|are) five.
+      Two plus three (equals|makes) five.
+- id: s.num.6
+  node: apc.num.six-ten
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خمسة وواحد ستة.
+      tokens: [{surface: خمسة, sense: khamse}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: ستة, sense: sette}]
+      reverse: خمسة (وواحد|و واحد) (ستة|ستّة)
+    apc-Latn/arabizi:
+      text: khamse w wa7ad sette.
+      tokens: [{surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: wa7ad, sense: wa7ad}, {surface: sette, sense: sette}]
+      reverse: (khamse|khamsi|5amse|khamsa) (w|wa) (wa7ad|wa7ed|wahad|wa7id) (sette|sitte|setti|sitta)
+  translations:
+    en: |-
+      Five and one is six.
+      Five plus one is six.
+      Five and one (make|are) six.
+      Five plus one (equals|makes) six.
+- id: s.num.7
+  node: apc.num.six-ten
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ستة وواحد سبعة.
+      tokens: [{surface: ستة, sense: sette}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: سبعة, sense: sab3a}]
+      reverse: (ستة|ستّة) (وواحد|و واحد) سبعة
+    apc-Latn/arabizi:
+      text: sette w wa7ad sab3a.
+      tokens: [{surface: sette, sense: sette}, {surface: w, sense: w}, {surface: wa7ad, sense: wa7ad}, {surface: sab3a, sense: sab3a}]
+      reverse: (sette|sitte|setti|sitta) (w|wa) (wa7ad|wa7ed|wahad|wa7id) (sab3a|saba3a|sab3e)
+  translations:
+    en: |-
+      Six and one is seven.
+      Six plus one is seven.
+      Six and one (make|are) seven.
+      Six plus one (equals|makes) seven.
+- id: s.num.8
+  node: apc.num.six-ten
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أربعة وأربعة تمانة.
+      tokens: [{surface: أربعة, sense: arb3a}, {surface: وأربعة, sense: arb3a, morphs: [{surface: و, kc: 'sense:w'}, {surface: أربعة, kc: 'sense:arb3a'}]}, {surface: تمانة, sense: tmene}]
+      reverse: أربعة (وأربعة|و أربعة) (تمانة|تمانية|تمنة)
+    apc-Latn/arabizi:
+      text: arb3a w arb3a tmene.
+      tokens: [{surface: arb3a, sense: arb3a}, {surface: w, sense: w}, {surface: arb3a, sense: arb3a}, {surface: tmene, sense: tmene}]
+      reverse: (arb3a|arba3a|arb3e|arba3) (w|wa) (arb3a|arba3a|arb3e|arba3) (tmene|tmeni|tmane|tmanye)
+  translations:
+    en: |-
+      Four and four is eight.
+      Four plus four is eight.
+      Four and four (make|are) eight.
+      Four plus four (equals|makes) eight.
+- id: s.num.9
+  node: apc.num.six-ten
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تسعة؟ لأ، تمانة.
+      tokens: [{surface: تسعة, sense: tes3a}, {surface: لأ, sense: la2}, {surface: تمانة, sense: tmene}]
+      reverse: تسعة (لأ|لا) (تمانة|تمانية|تمنة)
+    apc-Latn/arabizi:
+      text: tes3a? la2, tmene.
+      tokens: [{surface: tes3a, sense: tes3a}, {surface: la2, sense: la2}, {surface: tmene, sense: tmene}]
+      reverse: (tes3a|tis3a|tes3e) (la2|la) (tmene|tmeni|tmane|tmanye)
+  translations:
+    en: Nine? No, eight.
+- id: s.num.10
+  node: apc.num.six-ten
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خمسة وخمسة عشرة.
+      tokens: [{surface: خمسة, sense: khamse}, {surface: وخمسة, sense: khamse, morphs: [{surface: و, kc: 'sense:w'}, {surface: خمسة, kc: 'sense:khamse'}]}, {surface: عشرة, sense: 3ashra}]
+      reverse: خمسة (وخمسة|و خمسة) عشرة
+    apc-Latn/arabizi:
+      text: khamse w khamse 3ashra.
+      tokens: [{surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: khamse, sense: khamse}, {surface: 3ashra, sense: 3ashra}]
+      reverse: (khamse|khamsi|5amse|khamsa) (w|wa) (khamse|khamsi|5amse|khamsa) (3ashra|3ashara|3ashera|3ashre)
+  translations:
+    en: |-
+      Five and five is ten.
+      Five plus five is ten.
+      Five and five (make|are) ten.
+      Five plus five (equals|makes) ten.
+- id: s.num.11
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بالدولار؟
+      tokens: [{surface: بالدولار, sense: dollar, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: دولار, kc: 'sense:dollar'}]}]
+      reverse: بالدولار
+    apc-Latn/arabizi:
+      text: bel dollar?
+      tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: dollar, sense: dollar}]
+      reverse: (bel|bil|b el) (dollar|dolar|dular)
+  translations:
+    en: |-
+      In dollars?
+      In US dollars?
+- id: s.num.12
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، بالليرة.
+      tokens: [{surface: لأ, sense: la2}, {surface: بالليرة, sense: lira, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليرة, kc: 'sense:lira'}]}]
+      reverse: (لأ|لا) بالليرة
+    apc-Latn/arabizi:
+      text: la2, bel lira.
+      tokens: [{surface: la2, sense: la2}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lira, sense: lira}]
+      reverse: (la2|la) (bel|bil|b el) (lira|lire|leira)
+  translations:
+    en: No, in (lira|lire|pounds|Lebanese pounds).
+- id: s.num.13
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قدّيش؟
+      tokens: [{surface: قدّيش, sense: 2addesh}]
+      reverse: (قدّيش|أدّيش)
+    apc-Latn/arabizi:
+      text: 2addesh?
+      tokens: [{surface: 2addesh, sense: 2addesh}]
+      reverse: (2addesh|addesh|2adesh|2addeish)
+  translations:
+    en: |-
+      How much?
+      How much is it?
+- id: s.num.14
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قدّيش القهوة؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: القهوة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
+      reverse: (قدّيش|أدّيش) القهوة
+    apc-Latn/arabizi:
+      text: 2addesh el ahwe?
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+      reverse: (2addesh|addesh|2adesh|2addeish) (el|l|il) (ahwe|2ahwe)
+  translations:
+    en: |-
+      How much is the coffee?
+      How much does the coffee cost?
+- id: s.num.15
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: معك مصاري؟
+      tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: مصاري, sense: masari}]
+      reverse: معك مصاري
+    apc-Latn/arabizi:
+      text: ma3ak masari?
+      tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: masari, sense: masari}]
+      reverse: (ma3ak|ma3aak) (masari|masare|msari)
+  translations:
+    en: |-
+      Do you have [any] money [on you]?
+      Have you got [any] money [on you]?
+- id: s.num.16
+  node: apc.num.money
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما معي مصاري.
+      tokens: [{surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: مصاري, sense: masari}]
+      reverse: ما معي مصاري
+    apc-Latn/arabizi:
+      text: ma ma3i masari.
+      tokens: [{surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: masari, sense: masari}]
+      reverse: ma (ma3i|ma3e|ma3ai|ma3ae) (masari|masare|msari)
+  translations:
+    en: |-
+      I (don't|do not) have [any] money [on me].
+      I (haven't|have not) got [any] money [on me].
+- id: s.num.17
+  node: apc.num.big
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عشرين دولار.
+      tokens: [{surface: عشرين, sense: 3eshrin}, {surface: دولار, sense: dollar}]
+      reverse: عشرين دولار
+    apc-Latn/arabizi:
+      text: 3eshrin dollar.
+      tokens: [{surface: 3eshrin, sense: 3eshrin}, {surface: dollar, sense: dollar}]
+      reverse: (3eshrin|3ishrin|3eshreen) (dollar|dolar|dular)
+  translations:
+    en: |-
+      Twenty dollars.
+      20 dollars.
+- id: s.num.18
+  node: apc.num.big
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مية دولار؟!
+      tokens: [{surface: مية, sense: miyye}, {surface: دولار, sense: dollar}]
+      reverse: (مية|مئة) دولار
+    apc-Latn/arabizi:
+      text: miyye dollar?!
+      tokens: [{surface: miyye, sense: miyye}, {surface: dollar, sense: dollar}]
+      reverse: (miyye|mie|miye|meyye) (dollar|dolar|dular)
+  translations:
+    en: |-
+      A hundred dollars?!
+      One hundred dollars?!
+      100 dollars?!
+- id: s.num.19
+  node: apc.num.big
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ألف ليرة.
+      tokens: [{surface: ألف, sense: alf}, {surface: ليرة, sense: lira}]
+      reverse: ألف ليرة
+    apc-Latn/arabizi:
+      text: alf lira.
+      tokens: [{surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      reverse: (alf|elf) (lira|lire|leira)
+  translations:
+    en: |-
+      A thousand (lira|lire|pounds).
+      One thousand (lira|lire|pounds).
+      1000 (lira|lire|pounds).
+- id: s.num.20
+  node: apc.num.big
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خمسين ألف ليرة.
+      tokens: [{surface: خمسين, sense: khamsin}, {surface: ألف, sense: alf}, {surface: ليرة, sense: lira}]
+      reverse: خمسين ألف ليرة
+    apc-Latn/arabizi:
+      text: khamsin alf lira.
+      tokens: [{surface: khamsin, sense: khamsin}, {surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      reverse: (khamsin|5amsin|khamseen) (alf|elf) (lira|lire|leira)
+  translations:
+    en: |-
+      Fifty thousand (lira|lire|pounds).
+      50000 (lira|lire|pounds).
+- id: s.num.21
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: غالي!
+      tokens: [{surface: غالي, sense: ghali}]
+      reverse: غالي
+    apc-Latn/arabizi:
+      text: ghali!
+      tokens: [{surface: ghali, sense: ghali}]
+      reverse: (ghali|8ali|ghale)
+  translations:
+    en: |-
+      (That's|It's) expensive!
+      Expensive!
+- id: s.num.22
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، مش غالي، رخيص.
+      tokens: [{surface: لأ, sense: la2}, {surface: مش, sense: mish}, {surface: غالي, sense: ghali}, {surface: رخيص, sense: rkhis}]
+      reverse: (لأ|لا) مش غالي رخيص
+    apc-Latn/arabizi:
+      text: la2, mish ghali, rkhis.
+      tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: rkhis, sense: rkhis}]
+      reverse: (la2|la) (mish|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
+  translations:
+    en: |-
+      No, (it's|it is) not expensive, (it's|it is) cheap.
+      No, it isn't expensive, (it's|it is) cheap.
+- id: s.num.23
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المنقوشة رخيصة.
+      tokens: [{surface: المنقوشة, sense: man2oushe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: رخيصة, sense: rkhis, form: 'form:fem'}]
+      reverse: المنقوشة رخيصة
+    apc-Latn/arabizi:
+      text: el man2oushe rkhise.
+      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe}, {surface: rkhise, sense: rkhis, form: 'form:fem'}]
+      reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (rkhise|r5ise|rkheese|rakhise)
+  translations:
+    en: |-
+      The (man'oushe|manakish) is cheap.
+      The (man'oushe|manakish)'s cheap.
+- id: s.num.24
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قهوة، عمول معروف.
+      tokens: [{surface: قهوة, sense: ahwe}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
+      reverse: قهوة (عمول|اعمول|عمل) معروف
+    apc-Latn/arabizi:
+      text: ahwe, 3mol ma3rouf.
+      tokens: [{surface: ahwe, sense: ahwe}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      reverse: (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+  translations:
+    en: (A coffee|Coffee), please.
+- id: s.num.25
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الحساب، عمول معروف.
+      tokens: [{surface: الحساب, sense: 7sab, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حساب, kc: 'sense:7sab'}]}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
+      reverse: الحساب (عمول|اعمول|عمل) معروف
+    apc-Latn/arabizi:
+      text: el 7sab, 3mol ma3rouf.
+      tokens: [{surface: el, sense: el}, {surface: 7sab, sense: 7sab}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      reverse: (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+  translations:
+    en: The (bill|check), please.
+- id: s.num.26
+  node: apc.num.prices
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لو سمحت، قدّيش هيدا؟
+      tokens: [{surface: لو, sense: law-sama7t}, {surface: سمحت, sense: law-sama7t}, {surface: قدّيش, sense: 2addesh}, {surface: هيدا, sense: hayda}]
+      reverse: لو سمحت (قدّيش|أدّيش) هيدا
+    apc-Latn/arabizi:
+      text: law sama7t, 2addesh hayda?
+      tokens: [{surface: law, sense: law-sama7t}, {surface: sama7t, sense: law-sama7t}, {surface: 2addesh, sense: 2addesh}, {surface: hayda, sense: hayda}]
+      reverse: (law|lau|low) (sama7t|samaht|sma7t) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda)
+  translations:
+    en: |-
+      Excuse me, how much is this?
+      Excuse me, how much does this cost?
+- id: s.num.27
+  node: apc.num.age
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قدّيش عمرك؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: (قدّيش|أدّيش) عمرك
+    apc-Latn/arabizi:
+      text: 2addesh 3omrak?
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 3omrak, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak)
+  translations:
+    en: How old are you?
+- id: s.num.28
+  node: apc.num.age
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عمري عشرين سنة.
+      tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عشرين, sense: 3eshrin}, {surface: سنة, sense: sene}]
+      reverse: عمري عشرين سنة
+    apc-Latn/arabizi:
+      text: 3omri 3eshrin sene.
+      tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3eshrin, sense: 3eshrin}, {surface: sene, sense: sene}]
+      reverse: (3omri|3omre|3umri|3umre|3omori|3omore) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
+  translations:
+    en: |-
+      I('m| am) twenty [years old].
+      I('m| am) 20 [years old].
+- id: s.num.29
+  node: apc.num.age
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا عمرا مية سنة!
+      tokens: [{surface: تيتا, sense: teta}, {surface: عمرا, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye}, {surface: سنة, sense: sene}]
+      reverse: تيتا (عمرا|عمرها) (مية|مئة) سنة
+    apc-Latn/arabizi:
+      text: teta 3omra miyye sene!
+      tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: miyye, sense: miyye}, {surface: sene,
+          sense: sene}]
+      reverse: (teta|tayta) (3omra|3umra|3omora) (miyye|mie|miye|meyye) (sene|seni|sana)
+  translations:
+    en: |-
+      (Grandma|Granny) is (a hundred|one hundred|100) [years old]!
+      (Grandma|Granny)'s (a hundred|one hundred|100) [years old]!
+- id: s.num.30
+  node: apc.num.age
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو رقمك؟
+      tokens: [{surface: شو, sense: shu}, {surface: رقمك, sense: ra2m, morphs: [{surface: رقم, kc: 'sense:ra2m'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: شو رقمك
+    apc-Latn/arabizi:
+      text: shu ra2mak?
+      tokens: [{surface: shu, sense: shu}, {surface: ra2mak, sense: ra2m, morphs: [{surface: ra2m, kc: 'sense:ra2m'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (shu|sho) (ra2mak|ra2emak|rakamak)
+  translations:
+    en: What('s| is) your (number|phone number)?
+stories:
+- id: apc.story.dekkene
+  node: apc.num.story
+  title: {en: At the corner shop}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: abu-ali, name: {apc-Arab/standard: أبو علي, apc-Latn/arabizi: Abu Ali}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا! في خِبِز؟
+          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: في, sense: fi}, {surface: خِبِز, sense: khebz}]
+        apc-Latn/arabizi:
+          text: mar7aba! fi khebz?
+          tokens: [{surface: mar7aba, sense: marhaba}, {surface: fi, sense: fi}, {surface: khebz, sense: khebz}]
+      translations: {en: 'Hello! Is there any bread?'}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: إيه، تْفَضَّل.
+          tokens: [{surface: إيه, sense: eh}, {surface: تْفَضَّل, sense: tfaddal}]
+        apc-Latn/arabizi:
+          text: eh, tfaddal.
+          tokens: [{surface: eh, sense: eh}, {surface: tfaddal, sense: tfaddal}]
+      translations: {en: 'Yes, here you go.'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: وبَدّي جِبْنِة ولَبَن.
+          tokens: [{surface: وبَدّي, sense: baddi, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَدّي, kc: 'sense:baddi'}]}, {surface: جِبْنِة, sense: jebne}, {surface: ولَبَن, sense: laban, morphs: [
+                {surface: و, kc: 'sense:w'}, {surface: لَبَن, kc: 'sense:laban'}]}]
+        apc-Latn/arabizi:
+          text: w baddi jebne w laban.
+          tokens: [{surface: w, sense: w}, {surface: baddi, sense: baddi}, {surface: jebne, sense: jebne}, {surface: w, sense: w}, {surface: laban, sense: laban}]
+      translations: {en: And I want cheese and yogurt.}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: بَدَّك كَمان؟
+          tokens: [{surface: بَدَّك, sense: baddak}, {surface: كَمان, sense: kamen}]
+        apc-Latn/arabizi:
+          text: baddak kamen?
+          tokens: [{surface: baddak, sense: baddak}, {surface: kamen, sense: kamen}]
+      translations: {en: 'Do you want anything else?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: لأ، شُكْرا. قَدّيش؟
+          tokens: [{surface: لأ, sense: la2}, {surface: شُكْرا, sense: shukran}, {surface: قَدّيش, sense: 2addesh}]
+        apc-Latn/arabizi:
+          text: la2, shukran. 2addesh?
+          tokens: [{surface: la2, sense: la2}, {surface: shukran, sense: shukran}, {surface: 2addesh, sense: 2addesh}]
+      translations: {en: 'No, thanks. How much?'}
+  - line:
+      speaker: abu-ali
+      ask: complete
+      gap: sense:khamsin
+      distractors: ['sense:3eshrin', 'sense:miyye']
+      forms:
+        apc-Arab/standard:
+          text: خَمْسين أَلْف ليرَة.
+          tokens: [{surface: خَمْسين, sense: khamsin}, {surface: أَلْف, sense: alf}, {surface: ليرَة, sense: lira}]
+        apc-Latn/arabizi:
+          text: khamsin alf lira.
+          tokens: [{surface: khamsin, sense: khamsin}, {surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      translations: {en: Fifty thousand lira.}
+  - choose:
+      prompt:
+        en: What price does Abu Ali ask for?
+      options: [{en: Fifty thousand lira}, {en: Twenty dollars}, {en: A hundred thousand lira}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: غالي كْتير!
+          tokens: [{surface: غالي, sense: ghali}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: ghali ktir!
+          tokens: [{surface: ghali, sense: ghali}, {surface: ktir, sense: ktir}]
+      translations: {en: That's very expensive!}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: لأ، مِش غالي! الجِبْنِة طَيّْبِة كْتير.
+          tokens: [{surface: لأ, sense: la2}, {surface: مِش, sense: mish}, {surface: غالي, sense: ghali}, {surface: الجِبْنِة, sense: jebne, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]},
+            {surface: طَيّْبِة, sense: tayyeb, form: 'form:fem'}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: la2, mish ghali! el jebne tayybe ktir.
+          tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: el, sense: el}, {surface: jebne, sense: jebne}, {surface: tayybe, sense: tayyeb, form: 'form:fem'},
+            {surface: ktir, sense: ktir}]
+      translations: {en: 'No, it''s not expensive! The cheese is very good.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَعي بَسّ عِشْرين أَلْف.
+          tokens: [{surface: مَعي, sense: ma3, morphs: [{surface: مَع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بَسّ, sense: bas}, {surface: عِشْرين, sense: 3eshrin}, {surface: أَلْف,
+              sense: alf}]
+        apc-Latn/arabizi:
+          text: ma3i bas 3eshrin alf.
+          tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bas, sense: bas}, {surface: 3eshrin, sense: 3eshrin}, {surface: alf,
+              sense: alf}]
+      translations: {en: I only have twenty thousand on me.}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، عِشْرين أَلْف، بَسّ الخِبِز والجِبْنِة.
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: عِشْرين, sense: 3eshrin}, {surface: أَلْف, sense: alf}, {surface: بَسّ, sense: bas}, {surface: الخِبِز, sense: khebz, morphs: [{surface: ال,
+                  kc: 'sense:el'}, {surface: خِبِز, kc: 'sense:khebz'}]}, {surface: والجِبْنِة, sense: jebne, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]}]
+        apc-Latn/arabizi:
+          text: yalla, 3eshrin alf, bas el khebz w el jebne.
+          tokens: [{surface: yalla, sense: yalla}, {surface: 3eshrin, sense: 3eshrin}, {surface: alf, sense: alf}, {surface: bas, sense: bas}, {surface: el, sense: el}, {surface: khebz, sense: khebz}, {
+              surface: w, sense: w}, {surface: el, sense: el}, {surface: jebne, sense: jebne}]
+      translations: {en: 'OK, twenty thousand, but just the bread and the cheese.'}
+  - choose:
+      prompt:
+        en: What does Sami buy in the end?
+      options: [{en: Bread and cheese}, {en: 'Bread, cheese and yogurt'}, {en: Only yogurt}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: ميرسي! مَع السَّلامِة!
+          tokens: [{surface: ميرسي, sense: merci}, {surface: مَع, sense: ma3-essalame}, {surface: السَّلامِة, sense: ma3-essalame}]
+        apc-Latn/arabizi:
+          text: merci! ma3 essalame!
+          tokens: [{surface: merci, sense: merci}, {surface: ma3, sense: ma3-essalame}, {surface: essalame, sense: ma3-essalame}]
+      translations: {en: Thanks! Bye!}
+scenarios:
+- id: apc.dekkene
+  after: apc.num.story
+  title: {en: At the corner shop}
+  setting: {en: 'A small dekkene (corner shop) in a Beirut neighbourhood in the morning. Prices are in lira, sometimes in dollars.'}
+  character: {en: 'Abu Ali, the shopkeeper: friendly, chatty, and happy to haggle a little.'}
+  goal: {en: 'Ask whether there is bread, cheese or water, say what you want and how many, ask how much it costs, and pay in lira or dollars.'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}

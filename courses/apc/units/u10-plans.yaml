@@ -1,0 +1,623 @@
+# Fixture course (apc), unit 10: plans, weather and everyday expressions. raye7 / ray7a (going), ta + verb
+# (let's; so that), going out tonight, the weather, and the words that hold Lebanese conversation together:
+# inshalla, ya3ni, khalas, ma3lesh, walla, akid, ya reit, mazbout, ahla w sahla.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u10-plans
+title: {en: Plans for tonight}
+cefr: A2
+kcs:
+- {id: 'sense:raye7', gloss: {en: going (a man going somewhere)}, forms: {apc-Arab/standard: [رايح, رايحة], apc-Latn/arabizi: [raye7, ray7a]}, notes: {en: 'wen raye7? Where are you going? To a woman: wen
+      ray7a?'}}
+- {id: 'sense:ta', gloss: {en: let's; so that (before a verb without b-)}, forms: {apc-Arab/standard: [تا], apc-Latn/arabizi: [ta]}, notes: {en: 'yalla ta nru7: come on, let''s go.'}}
+- {id: 'sense:lele', gloss: {en: night; tonight (el lele)}, forms: {apc-Arab/standard: [الليلة], apc-Latn/arabizi: [lele]}, notes: {en: 'el lele: tonight.'}}
+- {id: 'sense:tele3', gloss: {en: go out; go up}, forms: {apc-Arab/standard: [تطلع], apc-Latn/arabizi: [tetla3]}}
+- {id: 'sense:ta2s', gloss: {en: weather}, forms: {apc-Arab/standard: [الطقس], apc-Latn/arabizi: [ta2s]}}
+- {id: 'sense:shob', gloss: {en: hot (weather); heat}, forms: {apc-Arab/standard: [شوب], apc-Latn/arabizi: [shob]}}
+- {id: 'sense:bard', gloss: {en: cold (weather); the cold}, forms: {apc-Arab/standard: [برد], apc-Latn/arabizi: [bard]}}
+- {id: 'sense:shams', gloss: {en: sun}, forms: {apc-Arab/standard: [شمس], apc-Latn/arabizi: [shams]}}
+- {id: 'sense:matar', gloss: {en: rain}, forms: {apc-Arab/standard: [مطر], apc-Latn/arabizi: [matar]}}
+- {id: 'sense:talj', gloss: {en: snow}, forms: {apc-Arab/standard: [تلج], apc-Latn/arabizi: [talj]}}
+- {id: 'sense:nehna', gloss: {en: we}, forms: {apc-Arab/standard: [نحنا], apc-Latn/arabizi: [ne7na]}}
+- {id: 'sense:shabeb', gloss: {en: guys; young people; friends}, forms: {apc-Arab/standard: [شباب], apc-Latn/arabizi: [shabeb]}}
+- {id: 'sense:sahra', gloss: {en: evening out; party; get-together}, forms: {apc-Arab/standard: [سهرة], apc-Latn/arabizi: [sahra]}}
+- {id: 'sense:7abibi', gloss: {en: my dear; buddy (to a man)}, forms: {apc-Arab/standard: [حبيبي], apc-Latn/arabizi: [7abibi]}, notes: {en: 'To a woman: حبيبتي, 7abibti.'}}
+- {id: 'sense:inshalla', gloss: {en: God willing; hopefully}, forms: {apc-Arab/standard: [إن شاء الله], apc-Latn/arabizi: [inshalla]}}
+- {id: 'sense:mumken', gloss: {en: maybe; possible}, forms: {apc-Arab/standard: [ممكن], apc-Latn/arabizi: [mumken]}}
+- {id: 'sense:3eref', gloss: {en: know}, forms: {apc-Arab/standard: [بعرف], apc-Latn/arabizi: [ba3ref]}}
+- {id: 'sense:akid', gloss: {en: sure; of course}, forms: {apc-Arab/standard: [أكيد], apc-Latn/arabizi: [akid]}}
+- {id: 'sense:ya3ni', gloss: {en: I mean; well; so-so}, forms: {apc-Arab/standard: [يعني], apc-Latn/arabizi: [ya3ni]}}
+- {id: 'sense:khalas', gloss: {en: OK then; enough; that's it}, forms: {apc-Arab/standard: [خلص], apc-Latn/arabizi: [khalas]}}
+- {id: 'sense:ma3lesh', gloss: {en: never mind; it's OK; sorry}, forms: {apc-Arab/standard: [معليش], apc-Latn/arabizi: [ma3lesh]}}
+- {id: 'sense:walla', gloss: {en: really; I swear}, forms: {apc-Arab/standard: [والله], apc-Latn/arabizi: [walla]}}
+- {id: 'sense:ya-reit', gloss: {en: I wish; if only}, forms: {apc-Arab/standard: [يا ريت], apc-Latn/arabizi: [ya reit]}}
+- {id: 'sense:mazbout', gloss: {en: exactly; right; correct}, forms: {apc-Arab/standard: [مزبوط], apc-Latn/arabizi: [mazbout]}}
+- {id: 'sense:ahla-w-sahla', gloss: {en: welcome}, forms: {apc-Arab/standard: [أهلا وسهلا], apc-Latn/arabizi: [ahla w sahla]}, notes: {en: 'The answer: أهلا فيك, ahla fik.'}}
+nodes:
+- {id: apc.plans.going, kind: lesson, introduces: ['sense:raye7', 'sense:ta', 'sense:lele', 'sense:tele3']}
+- {id: apc.plans.weather, kind: lesson, introduces: ['sense:ta2s', 'sense:shob', 'sense:bard', 'sense:shams', 'sense:matar', 'sense:talj']}
+- {id: apc.plans.friends, kind: lesson, introduces: ['sense:nehna', 'sense:shabeb', 'sense:sahra', 'sense:7abibi']}
+- {id: apc.plans.maybe, kind: lesson, introduces: ['sense:inshalla', 'sense:mumken', 'sense:3eref', 'sense:akid']}
+- {id: apc.plans.expressions, kind: lesson, introduces: ['sense:ya3ni', 'sense:khalas', 'sense:ma3lesh', 'sense:walla', 'sense:ya-reit', 'sense:mazbout', 'sense:ahla-w-sahla']}
+- {id: apc.plans.story, kind: story}
+sentences:
+- id: s.plans.1
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين رايح؟
+      tokens: [{surface: وين, sense: wen}, {surface: رايح, sense: raye7}]
+      reverse: وين رايح
+    apc-Latn/arabizi:
+      text: wen raye7?
+      tokens: [{surface: wen, sense: wen}, {surface: raye7, sense: raye7}]
+      reverse: (wen|wein|wayn) (raye7|rayi7|rayeh)
+  translations:
+    en: |-
+      Where are you going?
+      Where are you off to?
+- id: s.plans.2
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: رايح عالبحر.
+      tokens: [{surface: رايح, sense: raye7}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: رايح (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: raye7 3al ba7r.
+      tokens: [{surface: raye7, sense: raye7}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      reverse: (raye7|rayi7|rayeh) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: I('m| am) going to the (beach|sea).
+- id: s.plans.3
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين رايحة، مايا؟
+      tokens: [{surface: وين, sense: wen}, {surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: مايا, sense: maya}]
+      reverse: وين رايحة مايا
+    apc-Latn/arabizi:
+      text: wen ray7a, Maya?
+      tokens: [{surface: wen, sense: wen}, {surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: Maya, sense: maya}]
+      reverse: (wen|wein|wayn) (ray7a|rayha|raye7a) Maya
+  translations:
+    en: |-
+      Where are you going, Maya?
+      Where are you off to, Maya?
+- id: s.plans.4
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: يلا تا نروح!
+      tokens: [{surface: يلا, sense: yalla}, {surface: تا, sense: ta}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}]
+      reverse: (يلا|يلّا) (تا|تَ) نروح
+    apc-Latn/arabizi:
+      text: yalla ta nru7!
+      tokens: [{surface: yalla, sense: yalla}, {surface: ta, sense: ta}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}]
+      reverse: (yalla|yala) (ta|tta) (nru7|nrou7|nro7)
+  translations:
+    en: |-
+      Come on, let's go!
+      Let's go!
+- id: s.plans.5
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الليلة أنا فاضي.
+      tokens: [{surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}, {surface: أنا, sense: ana}, {surface: فاضي, sense: fadi}]
+      reverse: الليلة [أنا] فاضي
+    apc-Latn/arabizi:
+      text: el lele ana fadi.
+      tokens: [{surface: el, sense: el}, {surface: lele, sense: lele}, {surface: ana, sense: ana}, {surface: fadi, sense: fadi}]
+      reverse: (el|l|il) (lele|leile|layle|leyle) [ana] (fadi|fade)
+  translations:
+    en: |-
+      Tonight I('m| am) free.
+      I('m| am) free tonight.
+- id: s.plans.6
+  node: apc.plans.going
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك تطلع الليلة؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: تطلع, sense: tele3, form: 'form:subj-2ms'}, {surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
+      reverse: بدّك تطلع الليلة
+    apc-Latn/arabizi:
+      text: baddak tetla3 el lele?
+      tokens: [{surface: baddak, sense: baddak}, {surface: tetla3, sense: tele3, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
+      reverse: (baddak|badak) (tetla3|titla3) (el|l|il) (lele|leile|layle|leyle)
+  translations:
+    en: Do you want to go out tonight?
+- id: s.plans.7
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كيف الطقس؟
+      tokens: [{surface: كيف, sense: kif}, {surface: الطقس, sense: ta2s, morphs: [{surface: ال, kc: 'sense:el'}, {surface: طقس, kc: 'sense:ta2s'}]}]
+      reverse: كيف الطقس
+    apc-Latn/arabizi:
+      text: kif el ta2s?
+      tokens: [{surface: kif, sense: kif}, {surface: el, sense: el}, {surface: ta2s, sense: ta2s}]
+      reverse: (kif|keef) (el|l|il) (ta2s|ta2es|tas)
+  translations:
+    en: |-
+      How is the weather?
+      How's the weather?
+      What's the weather like?
+- id: s.plans.8
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شوب كتير!
+      tokens: [{surface: شوب, sense: shob}, {surface: كتير, sense: ktir}]
+      reverse: شوب كتير
+    apc-Latn/arabizi:
+      text: shob ktir!
+      tokens: [{surface: shob, sense: shob}, {surface: ktir, sense: ktir}]
+      reverse: (shob|shoob) (ktir|kteer|kter|ktiir)
+  translations:
+    en: (It's|It is) (very|really|so) hot!
+- id: s.plans.9
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: اليوم برد.
+      tokens: [{surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}, {surface: برد, sense: bard}]
+      reverse: اليوم برد
+    apc-Latn/arabizi:
+      text: el yom bard.
+      tokens: [{surface: el, sense: el}, {surface: yom, sense: yom}, {surface: bard, sense: bard}]
+      reverse: (el|l|il) (yom|yawm|youm) (bard|berd)
+  translations:
+    en: |-
+      (It's|It is) cold today.
+      Today it's cold.
+- id: s.plans.10
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في شمس اليوم.
+      tokens: [{surface: في, sense: fi}, {surface: شمس, sense: shams}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: في شمس اليوم
+    apc-Latn/arabizi:
+      text: fi shams el yom.
+      tokens: [{surface: fi, sense: fi}, {surface: shams, sense: shams}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: (fi|fe) (shams|shames) (el|l|il) (yom|yawm|youm)
+  translations:
+    en: |-
+      (It's|It is) sunny today.
+      There's sun today.
+- id: s.plans.11
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في مطر بكرا؟
+      tokens: [{surface: في, sense: fi}, {surface: مطر, sense: matar}, {surface: بكرا, sense: bukra}]
+      reverse: في مطر (بكرا|بكرة)
+    apc-Latn/arabizi:
+      text: fi matar bukra?
+      tokens: [{surface: fi, sense: fi}, {surface: matar, sense: matar}, {surface: bukra, sense: bukra}]
+      reverse: (fi|fe) (matar|mater) (bukra|bokra|bukrah)
+  translations:
+    en: |-
+      Is it going to rain tomorrow?
+      Will it rain tomorrow?
+      Is there rain tomorrow?
+- id: s.plans.12
+  node: apc.plans.weather
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في تلج عالجبل!
+      tokens: [{surface: في, sense: fi}, {surface: تلج, sense: talj}, {surface: عالجبل, sense: jabal, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+    apc-Latn/arabizi:
+      text: fi talj 3al jabal!
+      tokens: [{surface: fi, sense: fi}, {surface: talj, sense: talj}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
+      reverse: (fi|fe) (talj|telj|talej) (3al|3a l|3a el) (jabal|jabel|jbal)
+  translations:
+    en: |-
+      There's snow (on|in) the mountains!
+      There is snow (on|in) the mountains!
+- id: s.plans.13
+  node: apc.plans.friends
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: نحنا منحبّ البحر.
+      tokens: [{surface: نحنا, sense: nehna}, {surface: منحبّ, sense: 7abb, form: 'form:impf-1pl'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: '[(نحنا|نحن)] منحبّ البحر'
+    apc-Latn/arabizi:
+      text: ne7na mn7ebb el ba7r.
+      tokens: [{surface: ne7na, sense: nehna}, {surface: mn7ebb, sense: 7abb, form: 'form:impf-1pl'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: '[(ne7na|na7na|nehna)] (mn7ebb|mn7eb) (el|l|il) (ba7r|ba7er|bahr)'
+  translations:
+    en: We (love|like) the (sea|beach).
+- id: s.plans.14
+  node: apc.plans.friends
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شباب، يلا!
+      tokens: [{surface: شباب, sense: shabeb}, {surface: يلا, sense: yalla}]
+      reverse: شباب (يلا|يلّا)
+    apc-Latn/arabizi:
+      text: shabeb, yalla!
+      tokens: [{surface: shabeb, sense: shabeb}, {surface: yalla, sense: yalla}]
+      reverse: (shabeb|shabab) (yalla|yala)
+  translations:
+    en: |-
+      Guys, come on!
+      Come on, guys!
+      Guys, let's go!
+- id: s.plans.15
+  node: apc.plans.friends
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: منعمل سهرة بالبيت؟
+      tokens: [{surface: منعمل, sense: 3emel, form: 'form:impf-1pl'}, {surface: سهرة, sense: sahra}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
+              surface: بيت, kc: 'sense:bet'}]}]
+      reverse: منعمل سهرة بالبيت
+    apc-Latn/arabizi:
+      text: mna3mel sahra bel bet?
+      tokens: [{surface: mna3mel, sense: 3emel, form: 'form:impf-1pl'}, {surface: sahra, sense: sahra}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {
+          surface: bet, sense: bet}]
+      reverse: (mna3mel|mn3mel) (sahra|sahre|sahrah) (bel|bil|b el) (bet|beit|bayt)
+  translations:
+    en: |-
+      Shall we have a (party|get-together) at home?
+      Should we have a (party|get-together) at home?
+- id: s.plans.16
+  node: apc.plans.friends
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مرحبا حبيبي!
+      tokens: [{surface: مرحبا, sense: marhaba}, {surface: حبيبي, sense: 7abibi}]
+      reverse: مرحبا حبيبي
+    apc-Latn/arabizi:
+      text: mar7aba 7abibi!
+      tokens: [{surface: mar7aba, sense: marhaba}, {surface: 7abibi, sense: 7abibi}]
+      reverse: (mar7aba|marhaba) (7abibi|habibi|7abibe|7bibi)
+  translations:
+    en: (Hi|Hello), (my dear|dear|buddy|mate|habibi)!
+- id: s.plans.17
+  node: apc.plans.friends
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: السهرة كانت حلوة كتير.
+      tokens: [{surface: السهرة, sense: sahra, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سهرة, kc: 'sense:sahra'}]}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: حلوة, sense: 7elo,
+          form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      reverse: السهرة كانت حلوة كتير
+    apc-Latn/arabizi:
+      text: el sahra kenet 7elwe ktir.
+      tokens: [{surface: el, sense: el}, {surface: sahra, sense: sahra}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      reverse: (el|l|il) (sahra|sahre|sahrah) (kenet|kanet|kenit) (7elwe|7ilwe|helwe|7elwi) (ktir|kteer|kter|ktiir)
+  translations:
+    en: The (party|evening) was (really|very) (nice|good|fun).
+- id: s.plans.18
+  node: apc.plans.maybe
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بكرا منروح، إن شاء الله.
+      tokens: [{surface: بكرا, sense: bukra}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: إن, sense: inshalla}, {surface: شاء, sense: inshalla}, {surface: الله, sense: inshalla}]
+      reverse: |-
+        (بكرا|بكرة) منروح (إن|ان) شاء الله
+        (بكرا|بكرة) منروح (إنشالله|انشالله|نشالله)
+    apc-Latn/arabizi:
+      text: bukra mnru7, inshalla.
+      tokens: [{surface: bukra, sense: bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: inshalla, sense: inshalla}]
+      reverse: (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (inshalla|inshallah|nshalla)
+  translations:
+    en: |-
+      Tomorrow we('ll| will) go, (God willing|hopefully).
+      (Hopefully|God willing) we('ll| will) go tomorrow.
+- id: s.plans.19
+  node: apc.plans.maybe
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ممكن بكرا.
+      tokens: [{surface: ممكن, sense: mumken}, {surface: بكرا, sense: bukra}]
+      reverse: ممكن (بكرا|بكرة)
+    apc-Latn/arabizi:
+      text: mumken bukra.
+      tokens: [{surface: mumken, sense: mumken}, {surface: bukra, sense: bukra}]
+      reverse: (mumken|mumkin|momken) (bukra|bokra|bukrah)
+  translations:
+    en: |-
+      Maybe tomorrow.
+      Perhaps tomorrow.
+- id: s.plans.20
+  node: apc.plans.maybe
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما بعرف.
+      tokens: [{surface: ما, sense: ma}, {surface: بعرف, sense: 3eref, form: 'form:impf-1sg'}]
+      reverse: ما بعرف
+    apc-Latn/arabizi:
+      text: ma ba3ref.
+      tokens: [{surface: ma, sense: ma}, {surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}]
+      reverse: ma (ba3ref|ba3rif|b3ref)
+  translations:
+    en: I (don't|do not) know.
+- id: s.plans.21
+  node: apc.plans.maybe
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أكيد، منروح سوا.
+      tokens: [{surface: أكيد, sense: akid}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: سوا, sense: sawa}]
+      reverse: أكيد منروح سوا
+    apc-Latn/arabizi:
+      text: akid, mnru7 sawa.
+      tokens: [{surface: akid, sense: akid}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}]
+      reverse: (akid|akeed|2akid) (mnru7|mnrou7|mnro7) (sawa|sawe)
+  translations:
+    en: |-
+      (Sure|Of course), we('ll| will) go together.
+      (Sure|Of course), let's go together.
+- id: s.plans.22
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: يعني، مش كتير.
+      tokens: [{surface: يعني, sense: ya3ni}, {surface: مش, sense: mish}, {surface: كتير, sense: ktir}]
+      reverse: يعني مش كتير
+    apc-Latn/arabizi:
+      text: ya3ni, mish ktir.
+      tokens: [{surface: ya3ni, sense: ya3ni}, {surface: mish, sense: mish}, {surface: ktir, sense: ktir}]
+      reverse: (ya3ni|ya3ne|ya3neh) (mish|mesh|mush) (ktir|kteer|kter|ktiir)
+  translations:
+    en: (Well|So-so), not (much|really|that much).
+- id: s.plans.23
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خلص، منروح بكرا.
+      tokens: [{surface: خلص, sense: khalas}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: بكرا, sense: bukra}]
+      reverse: خلص منروح (بكرا|بكرة)
+    apc-Latn/arabizi:
+      text: khalas, mnru7 bukra.
+      tokens: [{surface: khalas, sense: khalas}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: bukra, sense: bukra}]
+      reverse: (khalas|5alas|khalass) (mnru7|mnrou7|mnro7) (bukra|bokra|bukrah)
+  translations:
+    en: |-
+      (OK|Fine|Right) then, we('ll| will) go tomorrow.
+      (OK|Fine|Right), we('ll| will) go tomorrow.
+- id: s.plans.24
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: معليش، بكرا.
+      tokens: [{surface: معليش, sense: ma3lesh}, {surface: بكرا, sense: bukra}]
+      reverse: (معليش|معلش) (بكرا|بكرة)
+    apc-Latn/arabizi:
+      text: ma3lesh, bukra.
+      tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: bukra, sense: bukra}]
+      reverse: (ma3lesh|ma3leish|ma3lish) (bukra|bokra|bukrah)
+  translations:
+    en: |-
+      Never mind, tomorrow then.
+      Never mind, tomorrow.
+      It's OK, tomorrow [then].
+- id: s.plans.25
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: والله؟
+      tokens: [{surface: والله, sense: walla}]
+      reverse: والله
+    apc-Latn/arabizi:
+      text: walla?
+      tokens: [{surface: walla, sense: walla}]
+      reverse: (walla|wallah|wala)
+  translations:
+    en: |-
+      Really?
+      Seriously?
+- id: s.plans.26
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: يا ريت!
+      tokens: [{surface: يا, sense: ya-reit}, {surface: ريت, sense: ya-reit}]
+      reverse: يا ريت
+    apc-Latn/arabizi:
+      text: ya reit!
+      tokens: [{surface: ya, sense: ya-reit}, {surface: reit, sense: ya-reit}]
+      reverse: ya (reit|rayt|ret)
+  translations:
+    en: |-
+      I wish!
+      If only!
+- id: s.plans.27
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مزبوط.
+      tokens: [{surface: مزبوط, sense: mazbout}]
+      reverse: (مزبوط|مظبوط)
+    apc-Latn/arabizi:
+      text: mazbout.
+      tokens: [{surface: mazbout, sense: mazbout}]
+      reverse: (mazbout|mazbut|mazboot)
+  translations:
+    en: |-
+      Exactly.
+      That's right.
+      Right.
+- id: s.plans.28
+  node: apc.plans.expressions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أهلا وسهلا!
+      tokens: [{surface: أهلا, sense: ahla-w-sahla}, {surface: وسهلا, sense: ahla-w-sahla}]
+      reverse: أهلا وسهلا
+    apc-Latn/arabizi:
+      text: ahla w sahla!
+      tokens: [{surface: ahla, sense: ahla-w-sahla}, {surface: w, sense: ahla-w-sahla}, {surface: sahla, sense: ahla-w-sahla}]
+      reverse: ahla (w|wa) sahla
+  translations:
+    en: |-
+      Welcome!
+      Hello and welcome!
+stories:
+- id: apc.story.saturday-night
+  node: apc.plans.story
+  title: {en: Saturday night}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، شو بْتَعْمْلي اللَّيْلِة؟
+          tokens: [{surface: مايا, sense: maya}, {surface: شو, sense: shu}, {surface: بْتَعْمْلي, sense: 3emel, form: 'form:impf-2fs'}, {surface: اللَّيْلِة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'},
+                {surface: لَّيْلِة, kc: 'sense:lele'}]}]
+        apc-Latn/arabizi:
+          text: Maya, shu bta3mli el lele?
+          tokens: [{surface: Maya, sense: maya}, {surface: shu, sense: shu}, {surface: bta3mli, sense: 3emel, form: 'form:impf-2fs'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
+      translations: {en: 'Maya, what are you doing tonight?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: ما بَعْرِف، يَعْني… فاضْيِة.
+          tokens: [{surface: ما, sense: ma}, {surface: بَعْرِف, sense: 3eref, form: 'form:impf-1sg'}, {surface: يَعْني, sense: ya3ni}, {surface: فاضْيِة, sense: fadi, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: ma ba3ref, ya3ni... fadye.
+          tokens: [{surface: ma, sense: ma}, {surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}, {surface: ya3ni, sense: ya3ni}, {surface: fadye, sense: fadi, form: 'form:fem'}]
+      translations: {en: 'I don''t know, well… I''m free.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: في سَهْرَة عِنْد خَيّي. يَلّا تا نْروح!
+          tokens: [{surface: في, sense: fi}, {surface: سَهْرَة, sense: sahra}, {surface: عِنْد, sense: 3end}, {surface: خَيّي, sense: khayy, morphs: [{surface: خَيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]},
+            {surface: يَلّا, sense: yalla}, {surface: تا, sense: ta}, {surface: نْروح, sense: ra7, form: 'form:subj-1pl'}]
+        apc-Latn/arabizi:
+          text: fi sahra 3end khayyi. yalla ta nru7!
+          tokens: [{surface: fi, sense: fi}, {surface: sahra, sense: sahra}, {surface: 3end, sense: 3end}, {surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]},
+            {surface: yalla, sense: yalla}, {surface: ta, sense: ta}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}]
+      translations: {en: 'There''s a party at my brother''s. Come on, let''s go!'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: والله؟ إِمْتى؟
+          tokens: [{surface: والله, sense: walla}, {surface: إِمْتى, sense: emta}]
+        apc-Latn/arabizi:
+          text: walla? emta?
+          tokens: [{surface: walla, sense: walla}, {surface: emta, sense: emta}]
+      translations: {en: 'Really? When?'}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:tmene
+      distractors: ['sense:bard', 'sense:shams']
+      forms:
+        apc-Arab/standard:
+          text: السّاعَة تْمانِة.
+          tokens: [{surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة, kc: 'sense:sa3a'}]}, {surface: تْمانِة, sense: tmene}]
+        apc-Latn/arabizi:
+          text: el sa3a tmene.
+          tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tmene, sense: tmene}]
+      translations: {en: At eight o'clock.}
+  - choose:
+      prompt:
+        en: Where is the party?
+      options: [{en: At Sami's brother's}, {en: At Maya's house}, {en: At the beach}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بَسّ في مَطَر وبَرْد كْتير!
+          tokens: [{surface: بَسّ, sense: bas}, {surface: في, sense: fi}, {surface: مَطَر, sense: matar}, {surface: وبَرْد, sense: bard, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَرْد, kc: 'sense:bard'}]},
+            {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: bas fi matar w bard ktir!
+          tokens: [{surface: bas, sense: bas}, {surface: fi, sense: fi}, {surface: matar, sense: matar}, {surface: w, sense: w}, {surface: bard, sense: bard}, {surface: ktir, sense: ktir}]
+      translations: {en: But it's raining and it's very cold!}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش! البيت قَريب.
+          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: البيت, sense: bet, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}, {surface: قَريب, sense: 2arib}]
+        apc-Latn/arabizi:
+          text: ma3lesh! el bet 2arib.
+          tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 2arib, sense: 2arib}]
+      translations: {en: Never mind! The house is close.}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: خَلَص، رايْحَة! بَسّ ما بْحِبّ اُرْقُص.
+          tokens: [{surface: خَلَص, sense: khalas}, {surface: رايْحَة, sense: raye7, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: ما, sense: ma}, {surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'},
+            {surface: اُرْقُص, sense: ra2as, form: 'form:subj-1sg'}]
+        apc-Latn/arabizi:
+          text: khalas, ray7a! bas ma b7ebb or2os.
+          tokens: [{surface: khalas, sense: khalas}, {surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'},
+            {surface: or2os, sense: ra2as, form: 'form:subj-1sg'}]
+      translations: {en: 'OK, I''m coming! But I don''t like to dance.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مْنيح! مْنِسْمَع موسيقى ومْناكُل.
+          tokens: [{surface: مْنيح, sense: mni7}, {surface: مْنِسْمَع, sense: sama3, form: 'form:impf-1pl'}, {surface: موسيقى, sense: musi2a}, {surface: ومْناكُل, sense: akal, form: 'form:impf-1pl', morphs: [
+                {surface: و, kc: 'sense:w'}, {surface: مْناكُل, kc: 'sense:akal'}]}]
+        apc-Latn/arabizi:
+          text: mni7! mnesma3 musi2a w mnekol.
+          tokens: [{surface: mni7, sense: mni7}, {surface: mnesma3, sense: sama3, form: 'form:impf-1pl'}, {surface: musi2a, sense: musi2a}, {surface: w, sense: w}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}]
+      translations: {en: Fine! We'll listen to music and eat.}
+  - choose:
+      prompt:
+        en: Why doesn't Maya want to go at first?
+      options: [{en: It's raining and cold}, {en: She is busy}, {en: She is tired}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، إِن شاء الله سَهْرَة حِلْوِة!
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: إِن, sense: inshalla}, {surface: شاء, sense: inshalla}, {surface: الله, sense: inshalla}, {surface: سَهْرَة, sense: sahra}, {surface: حِلْوِة,
+              sense: 7elo, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: yalla, inshalla sahra 7elwe!
+          tokens: [{surface: yalla, sense: yalla}, {surface: inshalla, sense: inshalla}, {surface: sahra, sense: sahra}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      translations: {en: 'OK, here''s to a nice evening!'}
+scenarios:
+- id: apc.weekend-plans
+  after: apc.plans.story
+  title: {en: Plans for the weekend}
+  setting: {en: Friday afternoon. You and a friend are planning the weekend in Beirut; the weather keeps changing.}
+  character: {en: 'Maya, a fun-loving friend who always has an idea for going out.'}
+  goal: {en: 'Make plans together: say when you are free or busy, react to the weather, suggest where to go (the sea, the mountains, a film, a night out at home) and agree on a day and a time.'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}

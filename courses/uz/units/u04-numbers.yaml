@@ -1,0 +1,651 @@
+# Unit 4 (uz): numbers to a thousand, nechta and the counter -ta, age (necha yoshdasiz?), money in soʻm,
+# children. Nouns stay singular after numbers (ikki kitob).
+# Drafted by an LLM (provenance llm:..., status draft): every sentence awaits review by a native speaker.
+id: numbers
+title: {en: 'Numbers, age and money'}
+cefr: A1
+kcs:
+- {id: 'sense:bir', gloss: {en: 'one; a, an'}, forms: {uz-Latn/standard: [bir, birda], uz-Cyrl/standard: [бир, бирда]}, notes: {en: Bir + -ta is written bitta.}}
+- {id: 'sense:ikki', gloss: {en: two}, forms: {uz-Latn/standard: [ikki, ikkita], uz-Cyrl/standard: [икки, иккита]}}
+- {id: 'sense:uch', gloss: {en: three}, forms: {uz-Latn/standard: [uch], uz-Cyrl/standard: [уч]}}
+- {id: 'sense:kishi', gloss: {en: person; people (after numbers)}, forms: {uz-Latn/standard: [kishi], uz-Cyrl/standard: [киши]}}
+- {id: 'sense:tort', gloss: {en: four}, forms: {uz-Latn/standard: [toʻrt], uz-Cyrl/standard: [тўрт]}}
+- {id: 'sense:besh', gloss: {en: five}, forms: {uz-Latn/standard: [besh, beshgacha], uz-Cyrl/standard: [беш, бешгача]}}
+- {id: 'form:count-ta', gloss: {en: '-ta: counting suffix'}, notes: {en: 'Ikkita kitob: two books. Nechta? How many? Numbers work with or without it.'}}
+- {id: 'sense:necha', gloss: {en: how many; what number}, forms: {uz-Latn/standard: [necha, nechta, nechada], uz-Cyrl/standard: [неча, нечта, нечада]}, notes: {en: 'Necha + -ta = nechta: how many (things).'}}
+- {id: 'sense:olti', gloss: {en: six}, forms: {uz-Latn/standard: [olti], uz-Cyrl/standard: [олти]}}
+- {id: 'sense:yetti', gloss: {en: seven}, forms: {uz-Latn/standard: [yetti, yettida], uz-Cyrl/standard: [етти, еттида]}}
+- {id: 'sense:yosh', gloss: {en: young; age}, forms: {uz-Latn/standard: [yosh, yoshda, yoshdasiz, yoshdaman], uz-Cyrl/standard: [ёш, ёшда, ёшдасиз, ёшдаман]}, notes: {en: 'Necha yoshdasiz? How old are you? Yigirma yoshdaman: I am twenty.'}}
+- {id: 'sense:sakkiz', gloss: {en: eight}, forms: {uz-Latn/standard: [sakkiz, sakkizda], uz-Cyrl/standard: [саккиз, саккизда]}}
+- {id: 'sense:yigirma', gloss: {en: twenty}, forms: {uz-Latn/standard: [yigirma], uz-Cyrl/standard: [йигирма]}}
+- {id: 'sense:on', gloss: {en: ten}, forms: {uz-Latn/standard: [oʻn], uz-Cyrl/standard: [ўн]}}
+- {id: 'sense:toqqiz', gloss: {en: nine}, forms: {uz-Latn/standard: [toʻqqiz, toʻqqizdan], uz-Cyrl/standard: [тўққиз, тўққиздан]}}
+- {id: 'sense:ellik', gloss: {en: fifty}, forms: {uz-Latn/standard: [ellik], uz-Cyrl/standard: [эллик]}}
+- {id: 'sense:qirq', gloss: {en: forty}, forms: {uz-Latn/standard: [qirq], uz-Cyrl/standard: [қирқ]}}
+- {id: 'sense:ottiz', gloss: {en: thirty}, forms: {uz-Latn/standard: [oʻttiz], uz-Cyrl/standard: [ўттиз]}}
+- {id: 'sense:buvi', gloss: {en: grandmother}, forms: {uz-Latn/standard: [buvi, buvim], uz-Cyrl/standard: [буви, бувим]}}
+- {id: 'sense:yetmish', gloss: {en: seventy}, forms: {uz-Latn/standard: [yetmish], uz-Cyrl/standard: [етмиш]}}
+- {id: 'sense:pul', gloss: {en: money}, forms: {uz-Latn/standard: [pul, pulim], uz-Cyrl/standard: [пул, пулим]}}
+- {id: 'sense:ming', gloss: {en: thousand}, forms: {uz-Latn/standard: [ming], uz-Cyrl/standard: [минг]}}
+- {id: 'sense:som', gloss: {en: soʻm (the Uzbek currency)}, forms: {uz-Latn/standard: [soʻm], uz-Cyrl/standard: [сўм]}}
+- {id: 'sense:yuz', gloss: {en: hundred}, forms: {uz-Latn/standard: [yuzta], uz-Cyrl/standard: [юзта]}}
+- {id: 'sense:qiz', gloss: {en: daughter; girl}, forms: {uz-Latn/standard: [qizi], uz-Cyrl/standard: [қизи]}}
+- {id: 'sense:ogil', gloss: {en: son}, forms: {uz-Latn/standard: [oʻgʻli], uz-Cyrl/standard: [ўғли]}, notes: {en: 'The second i drops before a vowel: oʻgʻil + -i = oʻgʻli.'}}
+- {id: 'sense:farzand', gloss: {en: child (son or daughter)}, forms: {uz-Latn/standard: [farzandingiz, farzandim], uz-Cyrl/standard: [фарзандингиз, фарзандим]}}
+nodes:
+- {id: uz.numbers.one-to-five, kind: lesson, introduces: ['sense:bir', 'sense:ikki', 'sense:uch', 'sense:kishi', 'sense:tort', 'sense:besh']}
+- {id: uz.numbers.how-many, kind: lesson, introduces: ['form:count-ta', 'sense:necha', 'sense:olti', 'sense:yetti']}
+- {id: uz.numbers.age, kind: lesson, introduces: ['sense:yosh', 'sense:sakkiz', 'sense:yigirma', 'sense:on', 'sense:toqqiz']}
+- {id: uz.numbers.tens, kind: lesson, introduces: ['sense:ellik', 'sense:qirq', 'sense:ottiz', 'sense:buvi', 'sense:yetmish']}
+- {id: uz.numbers.money, kind: lesson, introduces: ['sense:pul', 'sense:ming', 'sense:som', 'sense:yuz']}
+- {id: uz.numbers.children, kind: lesson, introduces: ['sense:qiz', 'sense:ogil', 'sense:farzand']}
+- {id: uz.numbers.story, kind: story}
+sentences:
+- id: s.numbers.1
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: Mening bir akam bor.
+      tokens: [{surface: Mening, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: bir, sense: bir}, {surface: akam, sense: aka, morphs: [{surface: aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bor, sense: bor}]
+      reverse: |-
+        [Mening] bir akam bor
+        [Mening] bitta akam bor
+    uz-Cyrl/standard:
+      text: Менинг бир акам бор.
+      tokens: [{surface: Менинг, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: бир, sense: bir}, {surface: акам, sense: aka, morphs: [{surface: ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: бор, sense: bor}]
+      reverse: |-
+        [Менинг] бир акам бор
+        [Менинг] битта акам бор
+  translations:
+    en: |-
+      I have (one|an) (older|big) brother.
+      I('ve| have) got (one|an) (older|big) brother.
+- id: s.numbers.2
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: Ikki ukam bor.
+      tokens: [{surface: Ikki, sense: ikki}, {surface: ukam, sense: uka, morphs: [{surface: uka, kc: 'sense:uka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bor, sense: bor}]
+      reverse: '[Mening] ikki(ta|) ukam bor'
+    uz-Cyrl/standard:
+      text: Икки укам бор.
+      tokens: [{surface: Икки, sense: ikki}, {surface: укам, sense: uka, morphs: [{surface: ука, kc: 'sense:uka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: бор, sense: bor}]
+      reverse: '[Менинг] икки(та|) укам бор'
+  translations:
+    en: |-
+      I have two (younger|little) brothers.
+      I('ve| have) got two (younger|little) brothers.
+- id: s.numbers.3
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: Uch opam bor.
+      tokens: [{surface: Uch, sense: uch}, {surface: opam, sense: opa, morphs: [{surface: opa, kc: 'sense:opa'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bor, sense: bor}]
+      reverse: '[Mening] uch(ta|) opam bor'
+    uz-Cyrl/standard:
+      text: Уч опам бор.
+      tokens: [{surface: Уч, sense: uch}, {surface: опам, sense: opa, morphs: [{surface: опа, kc: 'sense:opa'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: бор, sense: bor}]
+      reverse: '[Менинг] уч(та|) опам бор'
+  translations:
+    en: |-
+      I have three (older|big) sisters.
+      I('ve| have) got three (older|big) sisters.
+- id: s.numbers.4
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: U yaxshi kishi.
+      tokens: [{surface: U, sense: u}, {surface: yaxshi, sense: yaxshi}, {surface: kishi, sense: kishi}]
+      reverse: U yaxshi kishi
+    uz-Cyrl/standard:
+      text: У яхши киши.
+      tokens: [{surface: У, sense: u}, {surface: яхши, sense: yaxshi}, {surface: киши, sense: kishi}]
+      reverse: У яхши киши
+  translations:
+    en: (He|She)('s| is) a (good|nice) person.
+- id: s.numbers.5
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: Oilamizda toʻrt kishi bor.
+      tokens: [{surface: Oilamizda, sense: oila, morphs: [{surface: Oila, kc: 'sense:oila'}, {surface: miz, kc: 'form:poss-1pl-imiz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: toʻrt, sense: tort}, {surface: kishi, sense: kishi}, {surface: bor, sense: bor}]
+      reverse: '[Bizning] oilamizda toʻrt(ta|) kishi bor'
+    uz-Cyrl/standard:
+      text: Оиламизда тўрт киши бор.
+      tokens: [{surface: Оиламизда, sense: oila, morphs: [{surface: Оила, kc: 'sense:oila'}, {surface: миз, kc: 'form:poss-1pl-imiz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: тўрт, sense: tort}, {surface: киши, sense: kishi}, {surface: бор, sense: bor}]
+      reverse: '[Бизнинг] оиламизда тўрт(та|) киши бор'
+  translations:
+    en: |-
+      There are four (people|of us) in our family.
+      Our family has four (people|members).
+- id: s.numbers.6
+  node: uz.numbers.one-to-five
+  forms:
+    uz-Latn/standard:
+      text: Stol ustida besh kitob bor.
+      tokens: [{surface: Stol, sense: stol}, {surface: ustida, sense: ust, morphs: [{surface: ust, kc: 'sense:ust'}, {surface: i, kc: 'form:poss-3-si'}, {surface: da, kc: 'form:loc-da'}]}, {surface: besh, sense: besh}, {surface: kitob, sense: kitob}, {surface: bor, sense: bor}]
+      reverse: Stol ustida besh(ta|) kitob bor
+    uz-Cyrl/standard:
+      text: Стол устида беш китоб бор.
+      tokens: [{surface: Стол, sense: stol}, {surface: устида, sense: ust, morphs: [{surface: уст, kc: 'sense:ust'}, {surface: и, kc: 'form:poss-3-si'}, {surface: да, kc: 'form:loc-da'}]}, {surface: беш, sense: besh}, {surface: китоб, sense: kitob}, {surface: бор, sense: bor}]
+      reverse: Стол устида беш(та|) китоб бор
+  translations:
+    en: There are five books on the table.
+- id: s.numbers.7
+  node: uz.numbers.how-many
+  forms:
+    uz-Latn/standard:
+      text: Menda ikkita kitob bor.
+      tokens: [{surface: Menda, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ikkita, sense: ikki, morphs: [{surface: ikki, kc: 'sense:ikki'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: kitob, sense: kitob}, {surface: bor, sense: bor}]
+      reverse: |-
+        Menda ikki(ta|) kitob bor
+        [Mening] ikki(ta|) kitobim bor
+    uz-Cyrl/standard:
+      text: Менда иккита китоб бор.
+      tokens: [{surface: Менда, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: да, kc: 'form:loc-da'}]}, {surface: иккита, sense: ikki, morphs: [{surface: икки, kc: 'sense:ikki'}, {surface: та, kc: 'form:count-ta'}]}, {surface: китоб, sense: kitob}, {surface: бор, sense: bor}]
+      reverse: |-
+        Менда икки(та|) китоб бор
+        [Менинг] икки(та|) китобим бор
+  translations:
+    en: |-
+      I have two books.
+      I('ve| have) got two books.
+- id: s.numbers.8
+  node: uz.numbers.how-many
+  forms:
+    uz-Latn/standard:
+      text: Sizda nechta kitob bor?
+      tokens: [{surface: Sizda, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: nechta, sense: necha, morphs: [{surface: nech, kc: 'sense:necha'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: kitob, sense: kitob}, {surface: bor, sense: bor}]
+      reverse: |-
+        Sizda nechta kitob bor
+        [Sizning] nechta kitobingiz bor
+    uz-Cyrl/standard:
+      text: Сизда нечта китоб бор?
+      tokens: [{surface: Сизда, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: нечта, sense: necha, morphs: [{surface: неч, kc: 'sense:necha'}, {surface: та, kc: 'form:count-ta'}]}, {surface: китоб, sense: kitob}, {surface: бор, sense: bor}]
+      reverse: |-
+        Сизда нечта китоб бор
+        [Сизнинг] нечта китобингиз бор
+  translations:
+    en: |-
+      How many books do you have?
+      How many books have you got?
+- id: s.numbers.9
+  node: uz.numbers.how-many
+  forms:
+    uz-Latn/standard:
+      text: Nechta akangiz bor?
+      tokens: [{surface: Nechta, sense: necha, morphs: [{surface: Nech, kc: 'sense:necha'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: akangiz, sense: aka, morphs: [{surface: aka, kc: 'sense:aka'}, {surface: ngiz, kc: 'form:poss-2-ingiz'}]}, {surface: bor, sense: bor}]
+      reverse: '[Sizning] nechta akangiz bor'
+    uz-Cyrl/standard:
+      text: Нечта акангиз бор?
+      tokens: [{surface: Нечта, sense: necha, morphs: [{surface: Неч, kc: 'sense:necha'}, {surface: та, kc: 'form:count-ta'}]}, {surface: акангиз, sense: aka, morphs: [{surface: ака, kc: 'sense:aka'}, {surface: нгиз, kc: 'form:poss-2-ingiz'}]}, {surface: бор, sense: bor}]
+      reverse: '[Сизнинг] нечта акангиз бор'
+  translations:
+    en: |-
+      How many (older|big) brothers do you have?
+      How many (older|big) brothers have you got?
+- id: s.numbers.10
+  node: uz.numbers.how-many
+  forms:
+    uz-Latn/standard:
+      text: Uyimizda olti xona bor.
+      tokens: [{surface: Uyimizda, sense: uy, morphs: [{surface: Uy, kc: 'sense:uy'}, {surface: imiz, kc: 'form:poss-1pl-imiz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: olti, sense: olti}, {surface: xona, sense: xona}, {surface: bor, sense: bor}]
+      reverse: '[Bizning] uyimizda olti(ta|) xona bor'
+    uz-Cyrl/standard:
+      text: Уйимизда олти хона бор.
+      tokens: [{surface: Уйимизда, sense: uy, morphs: [{surface: Уй, kc: 'sense:uy'}, {surface: имиз, kc: 'form:poss-1pl-imiz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: олти, sense: olti}, {surface: хона, sense: xona}, {surface: бор, sense: bor}]
+      reverse: '[Бизнинг] уйимизда олти(та|) хона бор'
+  translations:
+    en: |-
+      There are six rooms in our (house|home).
+      Our (house|home) has six rooms.
+- id: s.numbers.11
+  node: uz.numbers.how-many
+  forms:
+    uz-Latn/standard:
+      text: Akamning yetti kitobi bor.
+      tokens: [{surface: Akamning, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: yetti, sense: yetti}, {surface: kitobi, sense: kitob, morphs: [{surface: kitob, kc: 'sense:kitob'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: bor, sense: bor}]
+      reverse: '[Mening] akamning yetti(ta|) kitobi bor'
+    uz-Cyrl/standard:
+      text: Акамнинг етти китоби бор.
+      tokens: [{surface: Акамнинг, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: етти, sense: yetti}, {surface: китоби, sense: kitob, morphs: [{surface: китоб, kc: 'sense:kitob'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: бор, sense: bor}]
+      reverse: '[Менинг] акамнинг етти(та|) китоби бор'
+  translations:
+    en: |-
+      My (older|big) brother has seven books.
+      My (older|big) brother('s| has) got seven books.
+- id: s.numbers.12
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: U juda yosh.
+      tokens: [{surface: U, sense: u}, {surface: juda, sense: juda}, {surface: yosh, sense: yosh}]
+      reverse: U juda yosh
+    uz-Cyrl/standard:
+      text: У жуда ёш.
+      tokens: [{surface: У, sense: u}, {surface: жуда, sense: juda}, {surface: ёш, sense: yosh}]
+      reverse: У жуда ёш
+  translations:
+    en: (He|She)('s| is) very young.
+- id: s.numbers.13
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: Ukam sakkiz yoshda.
+      tokens: [{surface: Ukam, sense: uka, morphs: [{surface: Uka, kc: 'sense:uka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: sakkiz, sense: sakkiz}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] ukam sakkiz yoshda'
+    uz-Cyrl/standard:
+      text: Укам саккиз ёшда.
+      tokens: [{surface: Укам, sense: uka, morphs: [{surface: Ука, kc: 'sense:uka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: саккиз, sense: sakkiz}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] укам саккиз ёшда'
+  translations:
+    en: My (younger|little) brother is (eight|8) [years old].
+- id: s.numbers.14
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: Siz necha yoshdasiz?
+      tokens: [{surface: Siz, sense: siz}, {surface: necha, sense: necha}, {surface: yoshdasiz, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Siz] necha yoshdasiz'
+    uz-Cyrl/standard:
+      text: Сиз неча ёшдасиз?
+      tokens: [{surface: Сиз, sense: siz}, {surface: неча, sense: necha}, {surface: ёшдасиз, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      reverse: '[Сиз] неча ёшдасиз'
+  translations:
+    en: How old are you?
+- id: s.numbers.15
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: Men yigirma yoshdaman.
+      tokens: [{surface: Men, sense: men}, {surface: yigirma, sense: yigirma}, {surface: yoshdaman, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] yigirma yoshdaman'
+    uz-Cyrl/standard:
+      text: Мен йигирма ёшдаман.
+      tokens: [{surface: Мен, sense: men}, {surface: йигирма, sense: yigirma}, {surface: ёшдаман, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] йигирма ёшдаман'
+  translations:
+    en: I('m| am) (twenty|20) [years old].
+- id: s.numbers.16
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: Singlim oʻn yoshda.
+      tokens: [{surface: Singlim, sense: singil, morphs: [{surface: Singl, kc: 'sense:singil'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: oʻn, sense: 'on'}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] singlim oʻn yoshda'
+    uz-Cyrl/standard:
+      text: Синглим ўн ёшда.
+      tokens: [{surface: Синглим, sense: singil, morphs: [{surface: Сингл, kc: 'sense:singil'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: ўн, sense: 'on'}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] синглим ўн ёшда'
+  translations:
+    en: My (younger|little) sister is (ten|10) [years old].
+- id: s.numbers.17
+  node: uz.numbers.age
+  forms:
+    uz-Latn/standard:
+      text: Opam oʻn toʻqqiz yoshda.
+      tokens: [{surface: Opam, sense: opa, morphs: [{surface: Opa, kc: 'sense:opa'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: oʻn, sense: 'on'}, {surface: toʻqqiz, sense: toqqiz}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] opam oʻn toʻqqiz yoshda'
+    uz-Cyrl/standard:
+      text: Опам ўн тўққиз ёшда.
+      tokens: [{surface: Опам, sense: opa, morphs: [{surface: Опа, kc: 'sense:opa'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ўн, sense: 'on'}, {surface: тўққиз, sense: toqqiz}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] опам ўн тўққиз ёшда'
+  translations:
+    en: My (older|big) sister is (nineteen|19) [years old].
+- id: s.numbers.18
+  node: uz.numbers.tens
+  forms:
+    uz-Latn/standard:
+      text: Otam ellik yoshda.
+      tokens: [{surface: Otam, sense: ota, morphs: [{surface: Ota, kc: 'sense:ota'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ellik, sense: ellik}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] otam ellik yoshda'
+    uz-Cyrl/standard:
+      text: Отам эллик ёшда.
+      tokens: [{surface: Отам, sense: ota, morphs: [{surface: Ота, kc: 'sense:ota'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: эллик, sense: ellik}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] отам эллик ёшда'
+  translations:
+    en: My (father|dad) is (fifty|50) [years old].
+- id: s.numbers.19
+  node: uz.numbers.tens
+  forms:
+    uz-Latn/standard:
+      text: Onam qirq besh yoshda.
+      tokens: [{surface: Onam, sense: ona, morphs: [{surface: Ona, kc: 'sense:ona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: qirq, sense: qirq}, {surface: besh, sense: besh}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] onam qirq besh yoshda'
+    uz-Cyrl/standard:
+      text: Онам қирқ беш ёшда.
+      tokens: [{surface: Онам, sense: ona, morphs: [{surface: Она, kc: 'sense:ona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: қирқ, sense: qirq}, {surface: беш, sense: besh}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] онам қирқ беш ёшда'
+  translations:
+    en: My (mother|mom|mum) is (forty-five|forty five|45) [years old].
+- id: s.numbers.20
+  node: uz.numbers.tens
+  forms:
+    uz-Latn/standard:
+      text: Oʻqituvchim oʻttiz yoshda.
+      tokens: [{surface: Oʻqituvchim, sense: oqituvchi, morphs: [{surface: Oʻqituvchi, kc: 'sense:oqituvchi'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: oʻttiz, sense: ottiz}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] oʻqituvchim oʻttiz yoshda'
+    uz-Cyrl/standard:
+      text: Ўқитувчим ўттиз ёшда.
+      tokens: [{surface: Ўқитувчим, sense: oqituvchi, morphs: [{surface: Ўқитувчи, kc: 'sense:oqituvchi'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ўттиз, sense: ottiz}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] ўқитувчим ўттиз ёшда'
+  translations:
+    en: My teacher is (thirty|30) [years old].
+- id: s.numbers.21
+  node: uz.numbers.tens
+  forms:
+    uz-Latn/standard:
+      text: Bu mening buvim.
+      tokens: [{surface: Bu, sense: bu}, {surface: mening, sense: men, morphs: [{surface: men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: buvim, sense: buvi, morphs: [{surface: buvi, kc: 'sense:buvi'}, {surface: m, kc: 'form:poss-1sg-im'}]}]
+      reverse: Bu [mening] buvim
+    uz-Cyrl/standard:
+      text: Бу менинг бувим.
+      tokens: [{surface: Бу, sense: bu}, {surface: менинг, sense: men, morphs: [{surface: мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: бувим, sense: buvi, morphs: [{surface: буви, kc: 'sense:buvi'}, {surface: м, kc: 'form:poss-1sg-im'}]}]
+      reverse: Бу [менинг] бувим
+  translations:
+    en: This is my (grandmother|grandma|granny).
+- id: s.numbers.22
+  node: uz.numbers.tens
+  forms:
+    uz-Latn/standard:
+      text: Buvim yetmish yoshda.
+      tokens: [{surface: Buvim, sense: buvi, morphs: [{surface: Buvi, kc: 'sense:buvi'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: yetmish, sense: yetmish}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Mening] buvim yetmish yoshda'
+    uz-Cyrl/standard:
+      text: Бувим етмиш ёшда.
+      tokens: [{surface: Бувим, sense: buvi, morphs: [{surface: Буви, kc: 'sense:buvi'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: етмиш, sense: yetmish}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Менинг] бувим етмиш ёшда'
+  translations:
+    en: My (grandmother|grandma|granny) is (seventy|70) [years old].
+- id: s.numbers.23
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Pulim yoʻq.
+      tokens: [{surface: Pulim, sense: pul, morphs: [{surface: Pul, kc: 'sense:pul'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: yoʻq, sense: yoq}]
+      reverse: '[Mening] pulim yoʻq'
+    uz-Cyrl/standard:
+      text: Пулим йўқ.
+      tokens: [{surface: Пулим, sense: pul, morphs: [{surface: Пул, kc: 'sense:pul'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: йўқ, sense: yoq}]
+      reverse: '[Менинг] пулим йўқ'
+  translations:
+    en: |-
+      I (don't|do not) have [any] money.
+      I have no money.
+- id: s.numbers.24
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Bu yerda ming kitob bor.
+      tokens: [{surface: Bu, sense: bu}, {surface: yerda, sense: yer, morphs: [{surface: yer, kc: 'sense:yer'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ming, sense: ming}, {surface: kitob, sense: kitob}, {surface: bor, sense: bor}]
+      reverse: |-
+        Bu yerda ming(ta|) kitob bor
+        Shu yerda ming(ta|) kitob bor
+    uz-Cyrl/standard:
+      text: Бу ерда минг китоб бор.
+      tokens: [{surface: Бу, sense: bu}, {surface: ерда, sense: yer, morphs: [{surface: ер, kc: 'sense:yer'}, {surface: да, kc: 'form:loc-da'}]}, {surface: минг, sense: ming}, {surface: китоб, sense: kitob}, {surface: бор, sense: bor}]
+      reverse: |-
+        Бу ерда минг(та|) китоб бор
+        Шу ерда минг(та|) китоб бор
+  translations:
+    en: There are (a|one) thousand books here.
+- id: s.numbers.25
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Mana besh ming soʻm.
+      tokens: [{surface: Mana, sense: mana}, {surface: besh, sense: besh}, {surface: ming, sense: ming}, {surface: soʻm, sense: som}]
+      reverse: Mana besh ming soʻm
+    uz-Cyrl/standard:
+      text: Мана беш минг сўм.
+      tokens: [{surface: Мана, sense: mana}, {surface: беш, sense: besh}, {surface: минг, sense: ming}, {surface: сўм, sense: som}]
+      reverse: Мана беш минг сўм
+  translations:
+    en: Here('s| is| are) (five thousand|5,000) (som|soum|sum).
+- id: s.numbers.26
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Kitob yigirma ming soʻm.
+      tokens: [{surface: Kitob, sense: kitob}, {surface: yigirma, sense: yigirma}, {surface: ming, sense: ming}, {surface: soʻm, sense: som}]
+      reverse: Kitob yigirma ming soʻm
+    uz-Cyrl/standard:
+      text: Китоб йигирма минг сўм.
+      tokens: [{surface: Китоб, sense: kitob}, {surface: йигирма, sense: yigirma}, {surface: минг, sense: ming}, {surface: сўм, sense: som}]
+      reverse: Китоб йигирма минг сўм
+  translations:
+    en: The book (is|costs) (twenty thousand|20,000) (som|soum|sum).
+- id: s.numbers.27
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Uyimizda yuzta kitob bor.
+      tokens: [{surface: Uyimizda, sense: uy, morphs: [{surface: Uy, kc: 'sense:uy'}, {surface: imiz, kc: 'form:poss-1pl-imiz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: yuzta, sense: yuz, morphs: [{surface: yuz, kc: 'sense:yuz'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: kitob, sense: kitob}, {surface: bor, sense: bor}]
+      reverse: '[Bizning] uyimizda yuz(ta|) kitob bor'
+    uz-Cyrl/standard:
+      text: Уйимизда юзта китоб бор.
+      tokens: [{surface: Уйимизда, sense: uy, morphs: [{surface: Уй, kc: 'sense:uy'}, {surface: имиз, kc: 'form:poss-1pl-imiz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: юзта, sense: yuz, morphs: [{surface: юз, kc: 'sense:yuz'}, {surface: та, kc: 'form:count-ta'}]}, {surface: китоб, sense: kitob}, {surface: бор, sense: bor}]
+      reverse: '[Бизнинг] уйимизда юз(та|) китоб бор'
+  translations:
+    en: |-
+      There are (a|one) hundred books in our (house|home).
+      We have (a|one) hundred books at home.
+- id: s.numbers.28
+  node: uz.numbers.money
+  forms:
+    uz-Latn/standard:
+      text: Menda oʻn ming soʻm bor.
+      tokens: [{surface: Menda, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: da, kc: 'form:loc-da'}]}, {surface: oʻn, sense: 'on'}, {surface: ming, sense: ming}, {surface: soʻm, sense: som}, {surface: bor, sense: bor}]
+      reverse: |-
+        Menda oʻn ming soʻm bor
+        [Mening] oʻn ming soʻmim bor
+    uz-Cyrl/standard:
+      text: Менда ўн минг сўм бор.
+      tokens: [{surface: Менда, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ўн, sense: 'on'}, {surface: минг, sense: ming}, {surface: сўм, sense: som}, {surface: бор, sense: bor}]
+      reverse: |-
+        Менда ўн минг сўм бор
+        [Менинг] ўн минг сўмим бор
+  translations:
+    en: |-
+      I have (ten thousand|10,000) (som|soum|sum).
+      I('ve| have) got (ten thousand|10,000) (som|soum|sum).
+- id: s.numbers.29
+  node: uz.numbers.children
+  forms:
+    uz-Latn/standard:
+      text: Akamning ikki qizi bor.
+      tokens: [{surface: Akamning, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: ikki, sense: ikki}, {surface: qizi, sense: qiz, morphs: [{surface: qiz, kc: 'sense:qiz'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: bor, sense: bor}]
+      reverse: '[Mening] akamning ikki(ta|) qizi bor'
+    uz-Cyrl/standard:
+      text: Акамнинг икки қизи бор.
+      tokens: [{surface: Акамнинг, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: икки, sense: ikki}, {surface: қизи, sense: qiz, morphs: [{surface: қиз, kc: 'sense:qiz'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: бор, sense: bor}]
+      reverse: '[Менинг] акамнинг икки(та|) қизи бор'
+  translations:
+    en: |-
+      My (older|big) brother has two daughters.
+      My (older|big) brother('s| has) got two daughters.
+- id: s.numbers.30
+  node: uz.numbers.children
+  forms:
+    uz-Latn/standard:
+      text: Opamning bir oʻgʻli bor.
+      tokens: [{surface: Opamning, sense: opa, morphs: [{surface: Opa, kc: 'sense:opa'}, {surface: m, kc: 'form:poss-1sg-im'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: bir, sense: bir}, {surface: oʻgʻli, sense: ogil, morphs: [{surface: oʻgʻl, kc: 'sense:ogil'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: bor, sense: bor}]
+      reverse: |-
+        [Mening] opamning bir oʻgʻli bor
+        [Mening] opamning bitta oʻgʻli bor
+    uz-Cyrl/standard:
+      text: Опамнинг бир ўғли бор.
+      tokens: [{surface: Опамнинг, sense: opa, morphs: [{surface: Опа, kc: 'sense:opa'}, {surface: м, kc: 'form:poss-1sg-im'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: бир, sense: bir}, {surface: ўғли, sense: ogil, morphs: [{surface: ўғл, kc: 'sense:ogil'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: бор, sense: bor}]
+      reverse: |-
+        [Менинг] опамнинг бир ўғли бор
+        [Менинг] опамнинг битта ўғли бор
+  translations:
+    en: |-
+      My (older|big) sister has (a|one) son.
+      My (older|big) sister('s| has) got (a|one) son.
+- id: s.numbers.31
+  node: uz.numbers.children
+  forms:
+    uz-Latn/standard:
+      text: Qizi besh yoshda.
+      tokens: [{surface: Qizi, sense: qiz, morphs: [{surface: Qiz, kc: 'sense:qiz'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: besh, sense: besh}, {surface: yoshda, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: '[Uning] qizi besh yoshda'
+    uz-Cyrl/standard:
+      text: Қизи беш ёшда.
+      tokens: [{surface: Қизи, sense: qiz, morphs: [{surface: Қиз, kc: 'sense:qiz'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: беш, sense: besh}, {surface: ёшда, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: '[Унинг] қизи беш ёшда'
+  translations:
+    en: (Her|His) daughter is (five|5) [years old].
+- id: s.numbers.32
+  node: uz.numbers.children
+  forms:
+    uz-Latn/standard:
+      text: Nechta farzandingiz bor?
+      tokens: [{surface: Nechta, sense: necha, morphs: [{surface: Nech, kc: 'sense:necha'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: farzandingiz, sense: farzand, morphs: [{surface: farzand, kc: 'sense:farzand'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: bor, sense: bor}]
+      reverse: '[Sizning] nechta farzandingiz bor'
+    uz-Cyrl/standard:
+      text: Нечта фарзандингиз бор?
+      tokens: [{surface: Нечта, sense: necha, morphs: [{surface: Неч, kc: 'sense:necha'}, {surface: та, kc: 'form:count-ta'}]}, {surface: фарзандингиз, sense: farzand, morphs: [{surface: фарзанд, kc: 'sense:farzand'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: бор, sense: bor}]
+      reverse: '[Сизнинг] нечта фарзандингиз бор'
+  translations:
+    en: |-
+      How many children do you have?
+      How many children have you got?
+      How many kids do you have?
+- id: s.numbers.33
+  node: uz.numbers.children
+  forms:
+    uz-Latn/standard:
+      text: Uch farzandim bor.
+      tokens: [{surface: Uch, sense: uch}, {surface: farzandim, sense: farzand, morphs: [{surface: farzand, kc: 'sense:farzand'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: bor, sense: bor}]
+      reverse: '[Mening] uch(ta|) farzandim bor'
+    uz-Cyrl/standard:
+      text: Уч фарзандим бор.
+      tokens: [{surface: Уч, sense: uch}, {surface: фарзандим, sense: farzand, morphs: [{surface: фарзанд, kc: 'sense:farzand'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: бор, sense: bor}]
+      reverse: '[Менинг] уч(та|) фарзандим бор'
+  translations:
+    en: |-
+      I have three (children|kids).
+      I('ve| have) got three (children|kids).
+stories:
+- id: uz.story.numbers
+  node: uz.numbers.story
+  title: {en: Grandmother's questions}
+  provenance: {author: 'llm:claude@887599f213ef', status: draft}
+  characters:
+  - {id: buvi, name: {uz-Latn/standard: Buvi, uz-Cyrl/standard: Буви}}
+  - {id: aziz, name: {uz-Latn/standard: Aziz, uz-Cyrl/standard: Азиз}}
+  - {id: malika, name: {uz-Latn/standard: Malika, uz-Cyrl/standard: Малика}}
+  steps:
+  - line:
+      speaker: buvi
+      forms:
+        uz-Latn/standard:
+          text: Salom, bolam! Ismingiz nima?
+          tokens: [{surface: Salom, sense: salom}, {surface: bolam, sense: bola, morphs: [{surface: bola, kc: 'sense:bola'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: Ismingiz, sense: ism, morphs: [{surface: Ism, kc: 'sense:ism'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: nima, sense: nima}]
+        uz-Cyrl/standard:
+          text: Салом, болам! Исмингиз нима?
+          tokens: [{surface: Салом, sense: salom}, {surface: болам, sense: bola, morphs: [{surface: бола, kc: 'sense:bola'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: Исмингиз, sense: ism, morphs: [{surface: Исм, kc: 'sense:ism'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: нима, sense: nima}]
+      translations: {en: 'Hello, my child! What is your name?'}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Ismim Aziz.
+          tokens: [{surface: Ismim, sense: ism, morphs: [{surface: Ism, kc: 'sense:ism'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: Aziz, sense: aziz}]
+        uz-Cyrl/standard:
+          text: Исмим Азиз.
+          tokens: [{surface: Исмим, sense: ism, morphs: [{surface: Исм, kc: 'sense:ism'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: Азиз, sense: aziz}]
+      translations: {en: My name is Aziz.}
+  - line:
+      speaker: buvi
+      ask: complete
+      gap: sense:necha
+      distractors: ['sense:kim', 'sense:nima']
+      forms:
+        uz-Latn/standard:
+          text: Necha yoshdasiz?
+          tokens: [{surface: Necha, sense: necha}, {surface: yoshdasiz, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
+        uz-Cyrl/standard:
+          text: Неча ёшдасиз?
+          tokens: [{surface: Неча, sense: necha}, {surface: ёшдасиз, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
+      translations: {en: 'How old are you?'}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Yigirma yoshdaman. Sizchi?
+          tokens: [{surface: Yigirma, sense: yigirma}, {surface: yoshdaman, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}, {surface: man, kc: 'form:cop-1sg-man'}]}, {surface: Sizchi, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: chi, kc: 'form:part-chi'}]}]
+        uz-Cyrl/standard:
+          text: Йигирма ёшдаман. Сизчи?
+          tokens: [{surface: Йигирма, sense: yigirma}, {surface: ёшдаман, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: ман, kc: 'form:cop-1sg-man'}]}, {surface: Сизчи, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: чи, kc: 'form:part-chi'}]}]
+      translations: {en: 'I''m twenty. And you?'}
+  - line:
+      speaker: buvi
+      forms:
+        uz-Latn/standard:
+          text: Men yetmish yoshdaman!
+          tokens: [{surface: Men, sense: men}, {surface: yetmish, sense: yetmish}, {surface: yoshdaman, sense: yosh, morphs: [{surface: yosh, kc: 'sense:yosh'}, {surface: da, kc: 'form:loc-da'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Мен етмиш ёшдаман!
+          tokens: [{surface: Мен, sense: men}, {surface: етмиш, sense: yetmish}, {surface: ёшдаман, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: I'm seventy!}
+  - choose:
+      prompt: {en: 'How old is Aziz?'}
+      options: [{en: twenty}, {en: seventy}, {en: ten}]
+      answer: 0
+  - line:
+      speaker: buvi
+      forms:
+        uz-Latn/standard:
+          text: Nechta akangiz bor?
+          tokens: [{surface: Nechta, sense: necha, morphs: [{surface: Nech, kc: 'sense:necha'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: akangiz, sense: aka, morphs: [{surface: aka, kc: 'sense:aka'}, {surface: ngiz, kc: 'form:poss-2-ingiz'}]}, {surface: bor, sense: bor}]
+        uz-Cyrl/standard:
+          text: Нечта акангиз бор?
+          tokens: [{surface: Нечта, sense: necha, morphs: [{surface: Неч, kc: 'sense:necha'}, {surface: та, kc: 'form:count-ta'}]}, {surface: акангиз, sense: aka, morphs: [{surface: ака, kc: 'sense:aka'}, {surface: нгиз, kc: 'form:poss-2-ingiz'}]}, {surface: бор, sense: bor}]
+      translations: {en: 'How many older brothers do you have?'}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Mening ikki akam bor. Ukam yoʻq.
+          tokens: [{surface: Mening, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: ikki, sense: ikki}, {surface: akam, sense: aka, morphs: [{surface: aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bor, sense: bor}, {surface: Ukam, sense: uka, morphs: [{surface: Uka, kc: 'sense:uka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: yoʻq, sense: yoq}]
+        uz-Cyrl/standard:
+          text: Менинг икки акам бор. Укам йўқ.
+          tokens: [{surface: Менинг, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: икки, sense: ikki}, {surface: акам, sense: aka, morphs: [{surface: ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: бор, sense: bor}, {surface: Укам, sense: uka, morphs: [{surface: Ука, kc: 'sense:uka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: йўқ, sense: yoq}]
+      translations: {en: I have two older brothers. I don't have a younger brother.}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Buvi, Azizning oilasi katta!
+          tokens: [{surface: Buvi, sense: buvi}, {surface: Azizning, sense: aziz, morphs: [{surface: Aziz, kc: 'sense:aziz'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: oilasi, sense: oila, morphs: [{surface: oila, kc: 'sense:oila'}, {surface: si, kc: 'form:poss-3-si'}]}, {surface: katta, sense: katta}]
+        uz-Cyrl/standard:
+          text: Буви, Азизнинг оиласи катта!
+          tokens: [{surface: Буви, sense: buvi}, {surface: Азизнинг, sense: aziz, morphs: [{surface: Азиз, kc: 'sense:aziz'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: оиласи, sense: oila, morphs: [{surface: оила, kc: 'sense:oila'}, {surface: си, kc: 'form:poss-3-si'}]}, {surface: катта, sense: katta}]
+      translations: {en: 'Grandma, Aziz''s family is big!'}
+  - line:
+      speaker: buvi
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Bizning oilamiz ham katta.
+          tokens: [{surface: Bizning, sense: biz, morphs: [{surface: Biz, kc: 'sense:biz'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: oilamiz, sense: oila, morphs: [{surface: oila, kc: 'sense:oila'}, {surface: miz, kc: 'form:poss-1pl-imiz'}]}, {surface: ham, sense: ham}, {surface: katta, sense: katta}]
+        uz-Cyrl/standard:
+          text: Бизнинг оиламиз ҳам катта.
+          tokens: [{surface: Бизнинг, sense: biz, morphs: [{surface: Биз, kc: 'sense:biz'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: оиламиз, sense: oila, morphs: [{surface: оила, kc: 'sense:oila'}, {surface: миз, kc: 'form:poss-1pl-imiz'}]}, {surface: ҳам, sense: ham}, {surface: катта, sense: katta}]
+      translations: {en: Our family is big too.}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Ha, uyimizda oʻn kishi bor!
+          tokens: [{surface: Ha, sense: ha}, {surface: uyimizda, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: imiz, kc: 'form:poss-1pl-imiz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: oʻn, sense: 'on'}, {surface: kishi, sense: kishi}, {surface: bor, sense: bor}]
+        uz-Cyrl/standard:
+          text: Ҳа, уйимизда ўн киши бор!
+          tokens: [{surface: Ҳа, sense: ha}, {surface: уйимизда, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: имиз, kc: 'form:poss-1pl-imiz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ўн, sense: 'on'}, {surface: киши, sense: kishi}, {surface: бор, sense: bor}]
+      translations: {en: 'Yes, there are ten people in our house!'}
+  - choose:
+      prompt: {en: 'How many people live in Malika''s house?'}
+      options: [{en: ten}, {en: two}, {en: seventy}]
+      answer: 0

@@ -6,13 +6,13 @@ No text inside any image: the word under the picture is language data and comes 
 
 | File | Shows | Used for |
 |---|---|---|
-| book.svg | A closed book | fa کتاب, uz kitob |
-| coffee.svg | A cup of coffee | apc قهوة |
-| tea.svg | A glass of tea | apc شاي |
+| book.svg | A closed book | fa کتاب, yue 書, uz kitob, apc كتاب |
+| coffee.svg | A cup of coffee | fa قهوه, yue 咖啡, uz qahva, apc قهوة |
+| tea.svg | A glass of tea | fa چای, yue 茶, uz choy, apc شاي |
 | teapot.svg | A teapot and cup | yue 飲茶 |
-| student.svg | A mortarboard | yue 學生, uz talaba |
-| teacher.svg | A person at a board | yue 老師, uz oʻqituvchi |
+| student.svg | A mortarboard | fa دانشجو, yue 學生, uz talaba |
+| teacher.svg | A person at a board | fa معلم, yue 老師, uz oʻqituvchi |
 | wave.svg | A waving hand | fa سلام, yue 你好, uz salom, apc مرحبا |
-| sunrise.svg | The sun rising | yue 早晨 |
-| smile.svg | A smiling face | fa خوب, uz yaxshi, apc منيح |
-| name-tag.svg | A name badge | fa اسم |
+| sunrise.svg | The sun rising | fa صبح, yue 早晨, uz ertalab, apc الصبح |
+| smile.svg | A smiling face | fa خوب, yue 開心, uz yaxshi, apc منيح |
+| name-tag.svg | A name badge | fa اسم, yue 名, apc اسم |

@@ -11,8 +11,11 @@ follows two things the gameplan already says:
 
 ## Where things stand
 
-- **Courses.** There are four fixture courses (fa, yue, uz, apc). Each has one unit of 24–39
-  sentences and 6–8 lessons. Every item is an LLM draft that no native speaker has reviewed.
+- **Courses.** There are four fixture courses (fa, yue, uz, apc). Each has ten units (A1 to early
+  A2): 293–348 sentences, 55–60 lessons, 10 stories and 6 roleplay scenarios
+  ([ADR 0050](adr/0050-ten-unit-courses.md)). Every item is an LLM draft that no native speaker has
+  reviewed; `courses/REVIEW.md` lists what to check first. Synthesized audio covers only the
+  first unit of fa, uz and yue, and apc waits for human recordings.
 - **Interface.** The interface is in English only, plus the en-XA and ar-XB pseudo-locales.
   Course content handles RTL, vertical text and mixed scripts. The chrome around it has never
   been translated.
@@ -32,7 +35,7 @@ These cannot be done in code. Each one gates something below.
 
 | What | Why | Unblocks |
 |---|---|---|
-| Native review of the four fixture courses | All content is an LLM draft (`status: draft`) | Phase 13; any public release |
+| Native review of the four fixture courses (start with `courses/REVIEW.md`) | All content is an LLM draft (`status: draft`) | Phase 13; any public release |
 | Sign-off on the 10 REVIEW markers: 8 in orthography profiles, the speech tiers per orthography, the Cantonese tone templates | Linguistic policy is yours to set (CLAUDE.md) | Grading and speech defaults |
 | Recordings of native Cantonese speakers saying each tone, right and deliberately wrong (`evals/tones/README.md`) | The Phase 9 acceptance; tone templates are tuned only on native speech | Tone scoring you can trust |
 | Human audio for apc (`nabu audio ingest`) | Lebanese is marked human-required for audio | Listening in apc |

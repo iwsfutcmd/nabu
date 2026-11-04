@@ -57,6 +57,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Course sources: courses/<id>/course.yaml + units/*.yaml (schemas/course-source.schema.json). Every orthography's
   form is pinned; tokens are aligned to `text`; translations and `reverse` are accept sets.
 - Fixture courses fa, yue, uz, apc are LLM-drafted (`llm:` provenance, status draft) and await native review.
+  Ten units each (ADR 0050); courses/REVIEW.md lists what a reviewer should check first. Tests pin intro.yaml's
+  sentences, readings and glossary forms: change them with care.
 - A new lint needs a registry entry (pipeline/src/nabu/compiler/diagnostics.py) and a fixture: add a mutation to
   pipeline/tests/fixtures/make_lint_fixtures.py and run it. clean.yaml must stay diagnostic-free.
 - Write course YAML with nabu.yamlio.dump (keeps invisibles as \u escapes), never yaml.safe_dump.
@@ -65,7 +67,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - CLDR exemplar gaps go in a profile's `exemplarsExtra` (marked REVIEW), never by loosening the script audit.
 
 ## Phase 3 notes (see docs/adr/0034–0035)
-- Lessons: pure @nabu/core/lesson (templates, buildLesson, step). The player shell and views are @nabu/ui/player;
+- Lessons: pure @nabu/core/lesson (templates, buildLesson, step). Distractors come from the item's own unit or an
+  earlier one (ADR 0050), so adding a unit never changes earlier lessons. The player shell and views are @nabu/ui/player;
   views render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
@@ -76,7 +79,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
   Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
-  test/simulation.test.ts (every course within ±5pp of 85%); golden files: UPDATE_GOLDEN=1 after a deliberate change.
+  test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new KC); golden files:
+  UPDATE_GOLDEN=1 after a deliberate change. Every new KC of a lesson is presented in it (a hard constraint, ADR 0050).
 - Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
@@ -162,7 +166,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0049 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0050 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

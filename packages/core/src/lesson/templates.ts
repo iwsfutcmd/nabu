@@ -136,8 +136,41 @@ const withAnswer = <T>(ctx: MakeContext, answer: T, others: readonly T[]): { rea
   return { options: [...others.slice(0, at), answer, ...others.slice(at)], answer: at };
 };
 
-const otherSentences = (ctx: MakeContext, s: BundleSentence): readonly BundleSentence[] =>
-  allSentences(ctx.course).filter((o) => o.id !== s.id && !o.id.startsWith("drill.") && formOf(ctx.course, o) !== undefined);
+/** Each sentence's and KC's unit, by position in the course (built once per course). */
+const unitIndex = new WeakMap<CourseView, ReadonlyMap<string, number>>();
+
+const unitOf = (course: CourseView, id: string): number => {
+  let index = unitIndex.get(course);
+  if (index === undefined) {
+    const built = new Map<string, number>();
+    for (const [i, u] of course.units.entries()) {
+      for (const s of u.sentences) if (!built.has(s.id)) built.set(s.id, i);
+      for (const k of u.kcs) if (!built.has(k.id)) built.set(k.id, i);
+    }
+    index = built;
+    unitIndex.set(course, index);
+  }
+  return index.get(id) ?? course.units.length;
+};
+
+/**
+ * Distractors come from the item's own unit or an earlier one, so a word bank in the first lesson
+ * never offers a word from the tenth unit (until the confusion log of §8.1 can choose them).
+ */
+const known = (course: CourseView, item: string): ((other: string) => boolean) => {
+  const at = unitOf(course, item);
+  return (other) => unitOf(course, other) <= at;
+};
+
+const otherSentences = (ctx: MakeContext, s: BundleSentence): readonly BundleSentence[] => {
+  const before = known(ctx.course, s.id);
+  return allSentences(ctx.course).filter((o) => o.id !== s.id && !o.id.startsWith("drill.") && before(o.id) && formOf(ctx.course, o) !== undefined);
+};
+
+const otherKcs = (ctx: MakeContext, kc: BundleKc): readonly BundleKc[] => {
+  const before = known(ctx.course, kc.id);
+  return allKcs(ctx.course).filter((k) => k.id !== kc.id && before(k.id));
+};
 
 // ------------------------------------------------------------------------------------ KC templates
 
@@ -148,7 +181,7 @@ export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | u
   if (!pictured(ctx, kc)) return undefined;
   const { orthography, supportKey } = ctx.course;
   const option = (k: BundleKc) => ({ text: k.forms?.[orthography]?.[0] as TaggedText, image: k.image as string });
-  const pool = allKcs(ctx.course).filter((k) => k.id !== kc.id && pictured(ctx, k) && k.image !== kc.image);
+  const pool = otherKcs(ctx, kc).filter((k) => pictured(ctx, k) && k.image !== kc.image);
   const others = pickDistinct(ctx, pool.map((k) => option(k).text), [option(kc).text], 2);
   if (others.length < 2) return undefined;
   const otherOptions = others.map((t) => option(pool.find((k) => k.forms?.[orthography]?.[0] === t) as BundleKc));
@@ -530,7 +563,7 @@ export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect |
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
-  const pool = allKcs(ctx.course).flatMap((k) => (k.id === kc.id ? [] : (writtenForm(ctx, k) ?? [])));
+  const pool = otherKcs(ctx, kc).flatMap((k) => writtenForm(ctx, k) ?? []);
   const others = pickDistinct(ctx, pool, [word], 2);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, word, others);
@@ -547,12 +580,33 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
   return row[b.length - 1] ?? a.length;
 };
 
+/**
+ * Pinned readings by surface, per course view and scheme: the first sentence token (in course
+ * order) that spells the word gives its reading. Indexed once, as a course has hundreds of
+ * sentences and minimal pairs compare every word with every other.
+ */
+const readingIndex = new WeakMap<CourseView, Map<SchemeId, ReadonlyMap<string, string>>>();
+
 /** The pinned reading of a written word, from any sentence token that spells it. */
 const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string | undefined => {
-  for (const s of allSentences(ctx.course)) {
-    for (const t of formOf(ctx.course, s)?.text.tokens ?? []) if (t.surface === surface && t.readings?.[scheme] !== undefined) return t.readings[scheme];
+  let byScheme = readingIndex.get(ctx.course);
+  if (byScheme === undefined) {
+    byScheme = new Map();
+    readingIndex.set(ctx.course, byScheme);
   }
-  return undefined;
+  let index = byScheme.get(scheme);
+  if (index === undefined) {
+    const built = new Map<string, string>();
+    for (const s of allSentences(ctx.course)) {
+      for (const t of formOf(ctx.course, s)?.text.tokens ?? []) {
+        const reading = t.readings?.[scheme];
+        if (reading !== undefined && !built.has(t.surface)) built.set(t.surface, reading);
+      }
+    }
+    index = built;
+    byScheme.set(scheme, index);
+  }
+  return index.get(surface);
 };
 
 /**
@@ -580,8 +634,8 @@ export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | u
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
   if (audio === undefined || word === undefined) return undefined;
-  const rivals = allKcs(ctx.course).flatMap((k) => {
-    const other = k.id === kc.id ? undefined : writtenForm(ctx, k);
+  const rivals = otherKcs(ctx, kc).flatMap((k) => {
+    const other = writtenForm(ctx, k);
     return other !== undefined && keyOf(ctx.course, other) !== keyOf(ctx.course, word) && minimallyApart(ctx, word, other) ? [other] : [];
   });
   const rival = ctx.rng.shuffle(rivals)[0];

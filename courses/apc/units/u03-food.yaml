@@ -1,0 +1,692 @@
+# Fixture course (apc), unit 3: food and the table. Hospitality (tfaddal, sa77tein / 3a albak, kol!),
+# the article el- (joined in Arabic script, a word of its own in Arabizi), breakfast and mezze.
+# The first verbs come as imperatives (kol, eshrab): the bare stem, before the b- present of unit 6.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u03-food
+title: {en: At the table}
+cefr: A1
+kcs:
+- {id: 'sense:tfaddal', gloss: {en: 'here you are; please, go ahead; come in'}, forms: {apc-Arab/standard: [تفضّل, تفضّلي], apc-Latn/arabizi: [tfaddal, tfaddali]}, notes: {en: 'Offering something or inviting
+      someone in. To a woman: تفضّلي, tfaddali.'}}
+- {id: 'sense:akal', gloss: {en: eat}, forms: {apc-Arab/standard: [كول, باكل, آكل, مناكل, أكلت, أكل, أكلنا], apc-Latn/arabizi: [kol, bekol, ekol, mnekol, akalt, akal, akalna]}, notes: {en: 'kol! eat! (to
+      a man); kili! (to a woman). I eat: bekol (unit 6).'}}
+- {id: 'sense:shereb', gloss: {en: drink}, forms: {apc-Arab/standard: [اشرب, بشرب, منشرب, بتشربي, تشرب, شربت], apc-Latn/arabizi: [eshrab, bishrab, mnishrab, btishrabi, tishrab, shrebt]}, notes: {en: eshrab!
+      drink! (to a man); eshrabi! (to a woman).}}
+- {id: 'sense:sa77tein', gloss: {en: enjoy your meal; to your health}, forms: {apc-Arab/standard: [صحتين], apc-Latn/arabizi: [sa77tein]}, notes: {en: 'Said to someone eating or drinking. The answer: على
+      قلبك, 3a albak.'}}
+- {id: 'sense:3a-albak', gloss: {en: and to you (the answer to sa77tein)}, forms: {apc-Arab/standard: [على قلبك], apc-Latn/arabizi: [3a albak]}, notes: {en: 'Literally ''on your heart''. To a woman: 3a
+      albik.'}}
+- {id: 'form:imp-2fs', gloss: {en: '-i: telling a woman to do something'}, notes: {en: 'tfaddal → tfaddali, eshrab → eshrabi, kol → kili.'}}
+- {id: 'sense:khebz', gloss: {en: bread}, forms: {apc-Arab/standard: [خبز], apc-Latn/arabizi: [khebz]}}
+- {id: 'sense:may', gloss: {en: water}, forms: {apc-Arab/standard: [مي], apc-Latn/arabizi: [may]}}
+- {id: 'sense:sukkar', gloss: {en: sugar}, forms: {apc-Arab/standard: [سكّر], apc-Latn/arabizi: [sukkar]}}
+- {id: 'sense:ma3', gloss: {en: with}, forms: {apc-Arab/standard: [مع], apc-Latn/arabizi: [ma3]}, notes: {en: 'With an ending: ma3i (with me; on me), ma3ak (with you).'}}
+- {id: 'sense:el', gloss: {en: the}, forms: {apc-Latn/arabizi: [el]}, notes: {en: 'Written joined to its noun in Arabic script: الشاي. Before t, d, s, sh, z, n, r… it sounds like the noun''s first letter:
+      esh-shay.'}}
+- {id: 'sense:akl', gloss: {en: food}, forms: {apc-Arab/standard: [الأكل], apc-Latn/arabizi: [akl]}}
+- {id: 'sense:man2oushe', gloss: {en: man'oushe (flatbread with za'atar or cheese)}, forms: {apc-Arab/standard: [منقوشة], apc-Latn/arabizi: [man2oushe]}}
+- {id: 'sense:za3tar', gloss: {en: za'atar (thyme and sesame mix)}, forms: {apc-Arab/standard: [زعتر], apc-Latn/arabizi: [za3tar]}}
+- {id: 'sense:jebne', gloss: {en: cheese}, forms: {apc-Arab/standard: [جبنة], apc-Latn/arabizi: [jebne]}}
+- {id: 'sense:laban', gloss: {en: yogurt}, forms: {apc-Arab/standard: [لبن], apc-Latn/arabizi: [laban]}}
+- {id: 'sense:bala', gloss: {en: without}, forms: {apc-Arab/standard: [بلا], apc-Latn/arabizi: [bala]}}
+- {id: 'sense:tayyeb', gloss: {en: tasty; delicious}, forms: {apc-Arab/standard: [طيّب, طيّبة], apc-Latn/arabizi: [tayyeb, tayybe]}}
+- {id: 'sense:ktir', gloss: {en: very; a lot; too}, forms: {apc-Arab/standard: [كتير], apc-Latn/arabizi: [ktir]}}
+- {id: 'sense:shway', gloss: {en: a little; a bit}, forms: {apc-Arab/standard: [شوي], apc-Latn/arabizi: [shway]}}
+- {id: 'sense:bas', gloss: {en: only; just; but}, forms: {apc-Arab/standard: [بس], apc-Latn/arabizi: [bas]}}
+- {id: 'sense:jou3an', gloss: {en: hungry}, forms: {apc-Arab/standard: [جوعان, جوعانة], apc-Latn/arabizi: [jou3an, jou3ane]}}
+- {id: 'sense:3atshan', gloss: {en: thirsty}, forms: {apc-Arab/standard: [عطشان], apc-Latn/arabizi: [3atshan]}}
+- {id: 'sense:kamen', gloss: {en: more; another; also}, forms: {apc-Arab/standard: [كمان], apc-Latn/arabizi: [kamen]}}
+- {id: 'sense:fenjen', gloss: {en: cup (for coffee)}, forms: {apc-Arab/standard: [فنجان], apc-Latn/arabizi: [fenjen]}}
+- {id: 'sense:7ummus', gloss: {en: hummus}, forms: {apc-Arab/standard: [حمّص], apc-Latn/arabizi: [7ummus]}}
+- {id: 'sense:tabbouleh', gloss: {en: tabbouleh (parsley salad)}, forms: {apc-Arab/standard: [التبّولة], apc-Latn/arabizi: [tabbouleh]}}
+- {id: 'sense:sa7n', gloss: {en: plate; dish}, forms: {apc-Arab/standard: [صحن], apc-Latn/arabizi: [sa7n]}}
+nodes:
+- {id: apc.food.welcome, kind: lesson, introduces: ['sense:tfaddal', 'sense:akal', 'sense:shereb', 'sense:sa77tein', 'sense:3a-albak', 'form:imp-2fs']}
+- {id: apc.food.basics, kind: lesson, introduces: ['sense:khebz', 'sense:may', 'sense:sukkar', 'sense:ma3', 'sense:el', 'sense:akl']}
+- {id: apc.food.breakfast, kind: lesson, introduces: ['sense:man2oushe', 'sense:za3tar', 'sense:jebne', 'sense:laban', 'sense:bala']}
+- {id: apc.food.taste, kind: lesson, introduces: ['sense:tayyeb', 'sense:ktir', 'sense:shway', 'sense:bas']}
+- {id: apc.food.hungry, kind: lesson, introduces: ['sense:jou3an', 'sense:3atshan', 'sense:kamen', 'sense:fenjen']}
+- {id: apc.food.mezze, kind: lesson, introduces: ['sense:7ummus', 'sense:tabbouleh', 'sense:sa7n']}
+- {id: apc.food.story, kind: story}
+sentences:
+- id: s.food.1
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تفضّل!
+      tokens: [{surface: تفضّل, sense: tfaddal}]
+      reverse: تفضّل
+    apc-Latn/arabizi:
+      text: tfaddal!
+      tokens: [{surface: tfaddal, sense: tfaddal}]
+      reverse: (tfaddal|tfadal|tfaddel)
+  translations:
+    en: |-
+      Here you go!
+      Here you are!
+      Help yourself!
+      Go ahead!
+      Please!
+      Come in!
+- id: s.food.2
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كول!
+      tokens: [{surface: كول, sense: akal}]
+      reverse: (كول|كل)
+    apc-Latn/arabizi:
+      text: kol!
+      tokens: [{surface: kol, sense: akal}]
+      reverse: (kol|kul)
+  translations:
+    en: |-
+      Eat!
+      Eat up!
+      Go on, eat!
+- id: s.food.3
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: اشرب شاي!
+      tokens: [{surface: اشرب, sense: shereb}, {surface: شاي, sense: shay}]
+      reverse: اشرب شاي
+    apc-Latn/arabizi:
+      text: eshrab shay!
+      tokens: [{surface: eshrab, sense: shereb}, {surface: shay, sense: shay}]
+      reverse: (eshrab|ishrab|shrab) shay
+  translations:
+    en: |-
+      Drink (some tea|tea)!
+      Have (some tea|a tea|a cup of tea)!
+- id: s.food.4
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: صحتين!
+      tokens: [{surface: صحتين, sense: sa77tein}]
+      reverse: (صحتين|صحّتين)
+    apc-Latn/arabizi:
+      text: sa77tein!
+      tokens: [{surface: sa77tein, sense: sa77tein}]
+      reverse: (sa77tein|sa7tein|sahtein|sa77ten|sa7ten)
+  translations:
+    en: |-
+      Enjoy your meal!
+      Enjoy!
+      Bon (appétit|appetit)!
+      To your health!
+- id: s.food.5
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: على قلبك!
+      tokens: [{surface: على, sense: 3a-albak}, {surface: قلبك, sense: 3a-albak}]
+      reverse: (على|ع) قلبك
+    apc-Latn/arabizi:
+      text: 3a albak!
+      tokens: [{surface: 3a, sense: 3a-albak}, {surface: albak, sense: 3a-albak}]
+      reverse: (3a|3ala) (albak|2albak)
+  translations:
+    en: |-
+      And to you!
+      Same to you!
+      You too!
+      Thanks, you too!
+- id: s.food.6
+  node: apc.food.welcome
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تفضّلي، مايا!
+      tokens: [{surface: تفضّلي, sense: tfaddal, form: 'form:imp-2fs'}, {surface: مايا, sense: maya}]
+      reverse: تفضّلي مايا
+    apc-Latn/arabizi:
+      text: tfaddali, Maya!
+      tokens: [{surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}, {surface: Maya, sense: maya}]
+      reverse: (tfaddali|tfadali|tfaddale) Maya
+  translations:
+    en: |-
+      Here you go, Maya!
+      Here you are, Maya!
+      Help yourself, Maya!
+      Go ahead, Maya!
+- id: s.food.7
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي خبز.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: خبز, sense: khebz}]
+      reverse: بدّي خبز
+    apc-Latn/arabizi:
+      text: baddi khebz.
+      tokens: [{surface: baddi, sense: baddi}, {surface: khebz, sense: khebz}]
+      reverse: (baddi|badde|badi) (khebz|5ebz|khibz|khebez)
+  translations:
+    en: |-
+      I want (bread|some bread).
+      I('d| would) like (bread|some bread).
+- id: s.food.8
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك مي؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: مي, sense: may}]
+      reverse: بدّك (مي|ميّ|مية)
+    apc-Latn/arabizi:
+      text: baddak may?
+      tokens: [{surface: baddak, sense: baddak}, {surface: may, sense: may}]
+      reverse: (baddak|badak) (may|mayy|mai|mayye)
+  translations:
+    en: |-
+      Do you want (water|some water)?
+      Would you like (water|some water)?
+- id: s.food.9
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك سكّر؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: سكّر, sense: sukkar}]
+      reverse: بدّك سكّر
+    apc-Latn/arabizi:
+      text: baddak sukkar?
+      tokens: [{surface: baddak, sense: baddak}, {surface: sukkar, sense: sukkar}]
+      reverse: (baddak|badak) (sukkar|sekkar|sokkar|sukar)
+  translations:
+    en: |-
+      Do you want sugar?
+      Would you like sugar?
+      Do you take sugar?
+- id: s.food.10
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قهوة مع سكّر؟
+      tokens: [{surface: قهوة, sense: ahwe}, {surface: مع, sense: ma3}, {surface: سكّر, sense: sukkar}]
+      reverse: قهوة مع سكّر
+    apc-Latn/arabizi:
+      text: ahwe ma3 sukkar?
+      tokens: [{surface: ahwe, sense: ahwe}, {surface: ma3, sense: ma3}, {surface: sukkar, sense: sukkar}]
+      reverse: (ahwe|2ahwe) (ma3|ma3a) (sukkar|sekkar|sokkar|sukar)
+  translations:
+    en: |-
+      Coffee with sugar?
+      A coffee with sugar?
+- id: s.food.11
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الشاي منيح.
+      tokens: [{surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}, {surface: منيح, sense: mni7}]
+      reverse: الشاي منيح
+    apc-Latn/arabizi:
+      text: el shay mni7.
+      tokens: [{surface: el, sense: el}, {surface: shay, sense: shay}, {surface: mni7, sense: mni7}]
+      reverse: (el|l|il) shay (mni7|mnih)
+  translations:
+    en: |-
+      The tea is good.
+      The tea's good.
+- id: s.food.12
+  node: apc.food.basics
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الأكل منيح.
+      tokens: [{surface: الأكل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أكل, kc: 'sense:akl'}]}, {surface: منيح, sense: mni7}]
+      reverse: الأكل منيح
+    apc-Latn/arabizi:
+      text: el akl mni7.
+      tokens: [{surface: el, sense: el}, {surface: akl, sense: akl}, {surface: mni7, sense: mni7}]
+      reverse: (el|l|il) (akl|akel|2akl|akil) (mni7|mnih)
+  translations:
+    en: |-
+      The food is good.
+      The food's good.
+- id: s.food.13
+  node: apc.food.breakfast
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي منقوشة.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: منقوشة, sense: man2oushe}]
+      reverse: بدّي منقوشة
+    apc-Latn/arabizi:
+      text: baddi man2oushe.
+      tokens: [{surface: baddi, sense: baddi}, {surface: man2oushe, sense: man2oushe}]
+      reverse: (baddi|badde|badi) (man2oushe|manoushe|man2ushi|mankoushe)
+  translations:
+    en: |-
+      I want a (man'oushe|manakish).
+      I('d| would) like a (man'oushe|manakish).
+- id: s.food.14
+  node: apc.food.breakfast
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: منقوشة زعتر؟
+      tokens: [{surface: منقوشة, sense: man2oushe}, {surface: زعتر, sense: za3tar}]
+      reverse: منقوشة زعتر
+    apc-Latn/arabizi:
+      text: man2oushe za3tar?
+      tokens: [{surface: man2oushe, sense: man2oushe}, {surface: za3tar, sense: za3tar}]
+      reverse: (man2oushe|manoushe|man2ushi|mankoushe) (za3tar|zaatar|za3ter)
+  translations:
+    en: |-
+      A (za'atar|zatar|thyme) (man'oushe|manakish)?
+      A (man'oushe|manakish) with (za'atar|zatar|thyme)?
+- id: s.food.15
+  node: apc.food.breakfast
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، منقوشة جبنة.
+      tokens: [{surface: لأ, sense: la2}, {surface: منقوشة, sense: man2oushe}, {surface: جبنة, sense: jebne}]
+      reverse: (لأ|لا) منقوشة جبنة
+    apc-Latn/arabizi:
+      text: la2, man2oushe jebne.
+      tokens: [{surface: la2, sense: la2}, {surface: man2oushe, sense: man2oushe}, {surface: jebne, sense: jebne}]
+      reverse: (la2|la) (man2oushe|manoushe|man2ushi|mankoushe) (jebne|jibne|jebni)
+  translations:
+    en: |-
+      No, a cheese (man'oushe|manakish).
+      No, a (man'oushe|manakish) with cheese.
+- id: s.food.16
+  node: apc.food.breakfast
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك لبن مع الخبز؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: لبن, sense: laban}, {surface: مع, sense: ma3}, {surface: الخبز, sense: khebz, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خبز, kc: 'sense:khebz'}]}]
+      reverse: بدّك لبن مع الخبز
+    apc-Latn/arabizi:
+      text: baddak laban ma3 el khebz?
+      tokens: [{surface: baddak, sense: baddak}, {surface: laban, sense: laban}, {surface: ma3, sense: ma3}, {surface: el, sense: el}, {surface: khebz, sense: khebz}]
+      reverse: (baddak|badak) (laban|leban) (ma3|ma3a) (el|l|il) (khebz|5ebz|khibz|khebez)
+  translations:
+    en: |-
+      Do you want (yogurt|yoghurt) with the bread?
+      Would you like (yogurt|yoghurt|some yogurt|some yoghurt) with the bread?
+- id: s.food.17
+  node: apc.food.breakfast
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قهوة بلا سكّر.
+      tokens: [{surface: قهوة, sense: ahwe}, {surface: بلا, sense: bala}, {surface: سكّر, sense: sukkar}]
+      reverse: قهوة بلا سكّر
+    apc-Latn/arabizi:
+      text: ahwe bala sukkar.
+      tokens: [{surface: ahwe, sense: ahwe}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
+      reverse: (ahwe|2ahwe) (bala|bela) (sukkar|sekkar|sokkar|sukar)
+  translations:
+    en: |-
+      Coffee without sugar.
+      (A coffee|Coffee), no sugar.
+      (A coffee|Coffee) with no sugar.
+- id: s.food.18
+  node: apc.food.taste
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الأكل طيّب!
+      tokens: [{surface: الأكل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أكل, kc: 'sense:akl'}]}, {surface: طيّب, sense: tayyeb}]
+      reverse: الأكل طيّب
+    apc-Latn/arabizi:
+      text: el akl tayyeb!
+      tokens: [{surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}]
+      reverse: (el|l|il) (akl|akel|2akl|akil) (tayyeb|tayeb|tayyib|tayib)
+  translations:
+    en: |-
+      The food is (delicious|tasty|good)!
+      The food's (delicious|tasty|good)!
+- id: s.food.19
+  node: apc.food.taste
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المنقوشة طيّبة.
+      tokens: [{surface: المنقوشة, sense: man2oushe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: منقوشة, kc: 'sense:man2oushe'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}]
+      reverse: المنقوشة طيّبة
+    apc-Latn/arabizi:
+      text: el man2oushe tayybe.
+      tokens: [{surface: el, sense: el}, {surface: man2oushe, sense: man2oushe}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}]
+      reverse: (el|l|il) (man2oushe|manoushe|man2ushi|mankoushe) (tayybe|tayebe|taybe|tayyibe)
+  translations:
+    en: |-
+      The (man'oushe|manakish) is (delicious|tasty|good).
+      The (man'oushe|manakish)'s (delicious|tasty|good).
+- id: s.food.20
+  node: apc.food.taste
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: طيّب كتير!
+      tokens: [{surface: طيّب, sense: tayyeb}, {surface: كتير, sense: ktir}]
+      reverse: طيّب كتير
+    apc-Latn/arabizi:
+      text: tayyeb ktir!
+      tokens: [{surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
+      reverse: (tayyeb|tayeb|tayyib|tayib) (ktir|kteer|kter|ktiir)
+  translations:
+    en: |-
+      (Very|Really|So) (tasty|delicious|good)!
+      It's (very|really|so) (tasty|delicious|good)!
+- id: s.food.21
+  node: apc.food.taste
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي شوي سكّر.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: شوي, sense: shway}, {surface: سكّر, sense: sukkar}]
+      reverse: بدّي (شوي|شوية) سكّر
+    apc-Latn/arabizi:
+      text: baddi shway sukkar.
+      tokens: [{surface: baddi, sense: baddi}, {surface: shway, sense: shway}, {surface: sukkar, sense: sukkar}]
+      reverse: (baddi|badde|badi) (shway|shwayy|shwei|shwai) (sukkar|sekkar|sokkar|sukar)
+  translations:
+    en: |-
+      I want a (little|bit of) sugar.
+      I('d| would) like a (little|bit of) sugar.
+- id: s.food.22
+  node: apc.food.taste
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بس شوي!
+      tokens: [{surface: بس, sense: bas}, {surface: شوي, sense: shway}]
+      reverse: بس (شوي|شوية)
+    apc-Latn/arabizi:
+      text: bas shway!
+      tokens: [{surface: bas, sense: bas}, {surface: shway, sense: shway}]
+      reverse: (bas|bass) (shway|shwayy|shwei|shwai)
+  translations:
+    en: |-
+      Just a (little|bit)!
+      Only a (little|bit)!
+- id: s.food.23
+  node: apc.food.hungry
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا جوعان.
+      tokens: [{surface: أنا, sense: ana}, {surface: جوعان, sense: jou3an}]
+      reverse: '[أنا] جوعان'
+    apc-Latn/arabizi:
+      text: ana jou3an.
+      tokens: [{surface: ana, sense: ana}, {surface: jou3an, sense: jou3an}]
+      reverse: '[ana] (jou3an|jo3an|jou3en|ju3an)'
+  translations:
+    en: I('m| am) hungry.
+- id: s.food.24
+  node: apc.food.hungry
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إنت عطشان؟
+      tokens: [{surface: إنت, sense: enta}, {surface: عطشان, sense: 3atshan}]
+      reverse: '[إنت] عطشان'
+    apc-Latn/arabizi:
+      text: enta 3atshan?
+      tokens: [{surface: enta, sense: enta}, {surface: 3atshan, sense: 3atshan}]
+      reverse: '[(enta|inta)] (3atshan|3atchan|3atshen|3tshan)'
+  translations:
+    en: Are you thirsty?
+- id: s.food.25
+  node: apc.food.hungry
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا جوعانة.
+      tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      reverse: مايا جوعانة
+    apc-Latn/arabizi:
+      text: Maya jou3ane.
+      tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      reverse: Maya (jou3ane|jo3ane|jou3ani|ju3ane)
+  translations:
+    en: |-
+      Maya is hungry.
+      Maya's hungry.
+- id: s.food.26
+  node: apc.food.hungry
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّك كمان؟
+      tokens: [{surface: بدّك, sense: baddak}, {surface: كمان, sense: kamen}]
+      reverse: بدّك كمان
+    apc-Latn/arabizi:
+      text: baddak kamen?
+      tokens: [{surface: baddak, sense: baddak}, {surface: kamen, sense: kamen}]
+      reverse: (baddak|badak) (kamen|kaman)
+  translations:
+    en: |-
+      Do you want (more|some more)?
+      Would you like (more|some more)?
+- id: s.food.27
+  node: apc.food.hungry
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كمان فنجان قهوة؟
+      tokens: [{surface: كمان, sense: kamen}, {surface: فنجان, sense: fenjen}, {surface: قهوة, sense: ahwe}]
+      reverse: كمان فنجان قهوة
+    apc-Latn/arabizi:
+      text: kamen fenjen ahwe?
+      tokens: [{surface: kamen, sense: kamen}, {surface: fenjen, sense: fenjen}, {surface: ahwe, sense: ahwe}]
+      reverse: (kamen|kaman) (fenjen|finjen|fenjan|finjan) (ahwe|2ahwe)
+  translations:
+    en: |-
+      Another cup of coffee?
+      One more cup of coffee?
+      (Another|One more) coffee?
+- id: s.food.28
+  node: apc.food.mezze
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي حمّص.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: حمّص, sense: 7ummus}]
+      reverse: بدّي حمّص
+    apc-Latn/arabizi:
+      text: baddi 7ummus.
+      tokens: [{surface: baddi, sense: baddi}, {surface: 7ummus, sense: 7ummus}]
+      reverse: (baddi|badde|badi) (7ummus|7ommos|hummus|7ommus|7ummos)
+  translations:
+    en: |-
+      I want (hummus|some hummus).
+      I('d| would) like (hummus|some hummus).
+- id: s.food.29
+  node: apc.food.mezze
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: التبّولة طيّبة كتير!
+      tokens: [{surface: التبّولة, sense: tabbouleh, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تبّولة, kc: 'sense:tabbouleh'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}, {surface: كتير,
+          sense: ktir}]
+      reverse: التبّولة طيّبة كتير
+    apc-Latn/arabizi:
+      text: el tabbouleh tayybe ktir!
+      tokens: [{surface: el, sense: el}, {surface: tabbouleh, sense: tabbouleh}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      reverse: (el|l|il) (tabbouleh|tabbouli|tabboule|tabouleh) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
+  translations:
+    en: |-
+      The tabbouleh is (very|really|so) (tasty|delicious|good)!
+      The tabbouleh's (very|really|so) (tasty|delicious|good)!
+- id: s.food.30
+  node: apc.food.mezze
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: صحن حمّص، تفضّل.
+      tokens: [{surface: صحن, sense: sa7n}, {surface: حمّص, sense: 7ummus}, {surface: تفضّل, sense: tfaddal}]
+      reverse: صحن حمّص تفضّل
+    apc-Latn/arabizi:
+      text: sa7n 7ummus, tfaddal.
+      tokens: [{surface: sa7n, sense: sa7n}, {surface: 7ummus, sense: 7ummus}, {surface: tfaddal, sense: tfaddal}]
+      reverse: (sa7n|sa7en|sahn|sa7in) (7ummus|7ommos|hummus|7ommus|7ummos) (tfaddal|tfadal|tfaddel)
+  translations:
+    en: |-
+      A plate of hummus, here you go.
+      A plate of hummus, here you are.
+      Here's a plate of hummus.
+- id: s.food.31
+  node: apc.food.mezze
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كول كمان!
+      tokens: [{surface: كول, sense: akal}, {surface: كمان, sense: kamen}]
+      reverse: (كول|كل) كمان
+    apc-Latn/arabizi:
+      text: kol kamen!
+      tokens: [{surface: kol, sense: akal}, {surface: kamen, sense: kamen}]
+      reverse: (kol|kul) (kamen|kaman)
+  translations:
+    en: |-
+      Eat (more|some more)!
+      Have (more|some more)!
+stories:
+- id: apc.story.teta-lunch
+  node: apc.food.story
+  title: {en: Lunch at Teta's}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: teta, name: {apc-Arab/standard: تيتا, apc-Latn/arabizi: Teta}}
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: سامي، تْفَضَّل! كول!
+          tokens: [{surface: سامي, sense: sami}, {surface: تْفَضَّل, sense: tfaddal}, {surface: كول, sense: akal}]
+        apc-Latn/arabizi:
+          text: Sami, tfaddal! kol!
+          tokens: [{surface: Sami, sense: sami}, {surface: tfaddal, sense: tfaddal}, {surface: kol, sense: akal}]
+      translations: {en: 'Sami, help yourself! Eat!'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: شُكْرا تيتا. الأَكِل طَيِّب كْتير!
+          tokens: [{surface: شُكْرا, sense: shukran}, {surface: تيتا, sense: teta}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب,
+              sense: tayyeb}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: shukran teta. el akl tayyeb ktir!
+          tokens: [{surface: shukran, sense: shukran}, {surface: teta, sense: teta}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
+      translations: {en: 'Thanks, grandma. The food is really tasty!'}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: صَحْتين!
+          tokens: [{surface: صَحْتين, sense: sa77tein}]
+        apc-Latn/arabizi:
+          text: sa77tein!
+          tokens: [{surface: sa77tein, sense: sa77tein}]
+      translations: {en: Enjoy!}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: على قَلْبِك!
+          tokens: [{surface: على, sense: 3a-albak}, {surface: قَلْبِك, sense: 3a-albak, form: 'form:poss-2fs'}]
+        apc-Latn/arabizi:
+          text: 3a albik!
+          tokens: [{surface: 3a, sense: 3a-albak}, {surface: albik, sense: 3a-albak, form: 'form:poss-2fs'}]
+      translations: {en: And to you!}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: مايا، جوعانة؟ كِلي!
+          tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}, {surface: كِلي, sense: akal, form: 'form:imp-2fs'}]
+        apc-Latn/arabizi:
+          text: Maya, jou3ane? kili!
+          tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}, {surface: kili, sense: akal, form: 'form:imp-2fs'}]
+      translations: {en: 'Maya, are you hungry? Eat!'}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:shway
+      distractors: ['sense:ktir', 'sense:kamen']
+      forms:
+        apc-Arab/standard:
+          text: لأ تيتا، بَسّ شْوَي.
+          tokens: [{surface: لأ, sense: la2}, {surface: تيتا, sense: teta}, {surface: بَسّ, sense: bas}, {surface: شْوَي, sense: shway}]
+        apc-Latn/arabizi:
+          text: la2 teta, bas shway.
+          tokens: [{surface: la2, sense: la2}, {surface: teta, sense: teta}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
+      translations: {en: 'No, grandma, just a little.'}
+  - choose:
+      prompt:
+        en: How much does Maya want to eat?
+      options: [{en: Just a little}, {en: A lot}, {en: Nothing at all}]
+      answer: 0
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: بَدِّك مَي؟
+          tokens: [{surface: بَدِّك, sense: baddak, form: 'form:poss-2fs'}, {surface: مَي, sense: may}]
+        apc-Latn/arabizi:
+          text: baddik may?
+          tokens: [{surface: baddik, sense: baddak, form: 'form:poss-2fs'}, {surface: may, sense: may}]
+      translations: {en: 'Do you want water?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: إيه، وشاي بَلا سُكَّر.
+          tokens: [{surface: إيه, sense: eh}, {surface: وشاي, sense: shay, morphs: [{surface: و, kc: 'sense:w'}, {surface: شاي, kc: 'sense:shay'}]}, {surface: بَلا, sense: bala}, {surface: سُكَّر, sense: sukkar}]
+        apc-Latn/arabizi:
+          text: eh, w shay bala sukkar.
+          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: shay, sense: shay}, {surface: bala, sense: bala}, {surface: sukkar, sense: sukkar}]
+      translations: {en: 'Yes, and tea without sugar.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: تيتا، بَدّي كَمان مَنْقوشة!
+          tokens: [{surface: تيتا, sense: teta}, {surface: بَدّي, sense: baddi}, {surface: كَمان, sense: kamen}, {surface: مَنْقوشة, sense: man2oushe}]
+        apc-Latn/arabizi:
+          text: teta, baddi kamen man2oushe!
+          tokens: [{surface: teta, sense: teta}, {surface: baddi, sense: baddi}, {surface: kamen, sense: kamen}, {surface: man2oushe, sense: man2oushe}]
+      translations: {en: 'Grandma, I want another man''oushe!'}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، تْفَضَّل!
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: تْفَضَّل, sense: tfaddal}]
+        apc-Latn/arabizi:
+          text: yalla, tfaddal!
+          tokens: [{surface: yalla, sense: yalla}, {surface: tfaddal, sense: tfaddal}]
+      translations: {en: 'Sure, here you go!'}
+  - choose:
+      prompt:
+        en: What does Sami ask for?
+      options: [{en: Another man'oushe}, {en: Tea without sugar}, {en: Some water}]
+      answer: 0
+scenarios:
+- id: apc.teta-lunch
+  after: apc.food.story
+  title: {en: Lunch at Teta's}
+  setting: {en: 'Sunday lunch at grandma''s flat in Beirut. The table is covered in mezze: hummus, tabbouleh, man''oushe and bread.'}
+  character: {en: 'Teta, a loving grandmother who keeps offering more food and is hard to say no to.'}
+  goal: {en: 'Answer Teta''s offers: say whether you are hungry or thirsty, accept a little or politely say no, ask for tea or coffee without sugar, and praise the food.'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}

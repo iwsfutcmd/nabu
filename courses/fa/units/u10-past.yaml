@@ -1,0 +1,521 @@
+# Fixture course (fa), unit 10: the simple past (past stem + ending, no ending for he/she), بود 'was',
+# weather and seasons, and talking about a trip (خوش گذشت؟).
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: past
+title: {en: Last weekend}
+cefr: A2
+kcs:
+- {id: 'sense:bud', gloss: {en: 'was, were (past of ''to be'', stem بود-)'}, forms: {fa-Arab/standard: [بود, بودم, بودی, بودیم]}, notes: {en: 'بودم, بودی, بود, بودیم, بودید, بودند.'}}
+- {id: 'sense:dirooz', gloss: {en: yesterday}, forms: {fa-Arab/standard: [دیروز]}}
+- {id: 'construction:past', gloss: {en: 'the simple past: past stem + ending (رفتم, I went)'}, notes: {en: 'Each verb has a past stem: رفت- (go), آمد- (come), خورد- (eat), کرد- (do), خرید- (buy), دید- (see). He/she has no ending: رفت, he went. The negative adds na-: نرفتم.'}}
+- {id: 'sense:film', gloss: {en: film; movie}, forms: {fa-Arab/standard: [فیلم]}}
+- {id: 'sense:dishab', gloss: {en: last night}, forms: {fa-Arab/standard: [دیشب]}}
+- {id: 'sense:gozashte', gloss: {en: 'last; past (هفتهٔ گذشته: last week)'}, forms: {fa-Arab/standard: [گذشته]}}
+- {id: 'sense:hava', gloss: {en: weather; air}, forms: {fa-Arab/standard: [هوا]}, notes: {en: 'هوا چطور است؟ What''s the weather like?'}}
+- {id: 'sense:garm', gloss: {en: warm; hot}, forms: {fa-Arab/standard: [گرم]}}
+- {id: 'sense:aftabi', gloss: {en: sunny}, forms: {fa-Arab/standard: [آفتابی]}, notes: {en: 'From آفتاب, sunshine.'}}
+- {id: 'sense:baran', gloss: {en: rain}, forms: {fa-Arab/standard: [باران]}, notes: {en: "باران می\u200cآید: it's raining (literally 'rain comes')."}}
+- {id: 'sense:barf', gloss: {en: snow}, forms: {fa-Arab/standard: [برف]}, notes: {en: "برف می\u200cآید: it's snowing."}}
+- {id: 'sense:abri', gloss: {en: cloudy}, forms: {fa-Arab/standard: [ابری]}, notes: {en: 'From ابر, cloud.'}}
+- {id: 'sense:bahar', gloss: {en: spring}, forms: {fa-Arab/standard: [بهار]}}
+- {id: 'sense:fasl', gloss: {en: season}, forms: {fa-Arab/standard: [فصل]}}
+- {id: 'sense:tabestan', gloss: {en: summer}, forms: {fa-Arab/standard: [تابستان]}}
+- {id: 'sense:zemestan', gloss: {en: winter}, forms: {fa-Arab/standard: [زمستان]}}
+- {id: 'sense:paeez', gloss: {en: autumn; fall}, forms: {fa-Arab/standard: [پاییز]}, notes: {en: Also spelled پائیز.}}
+- {id: 'sense:nowruz', gloss: {en: 'Nowruz, the Persian New Year'}, forms: {fa-Arab/standard: [نوروز]}, notes: {en: 'Celebrated at the spring equinox, around 21 March.'}}
+- {id: 'sense:shomal', gloss: {en: north}, forms: {fa-Arab/standard: [شمال]}, notes: {en: In Iran 'the north' usually means the green Caspian coast.}}
+- {id: 'sense:darya', gloss: {en: sea}, forms: {fa-Arab/standard: [دریا, دریاست]}}
+- {id: 'sense:aks', gloss: {en: photo; picture}, forms: {fa-Arab/standard: [عکس]}}
+- {id: 'sense:gereftan', gloss: {en: to take; to get (present stem گیر-)}, forms: {fa-Arab/standard: [گرفتیم, گرفتی]}, notes: {en: 'عکس گرفتن: to take a photo.'}}
+- {id: 'sense:safar', gloss: {en: trip; journey; travel}, forms: {fa-Arab/standard: [سفر]}}
+- {id: 'sense:khosh', gloss: {en: 'pleasant; good (خوش آمدید: welcome)'}, forms: {fa-Arab/standard: [خوش]}}
+- {id: 'sense:gozashtan', gloss: {en: to pass (of time) (past stem گذشت-)}, forms: {fa-Arab/standard: [گذشت]}, notes: {en: 'به شما خوش گذشت؟ Did you have a good time? Literally ''did it pass pleasantly for you?'''}}
+nodes:
+- {id: fa.past.was, kind: lesson, introduces: ['sense:bud', 'sense:dirooz', 'construction:past']}
+- {id: fa.past.did, kind: lesson, introduces: ['sense:film', 'sense:dishab', 'sense:gozashte']}
+- {id: fa.past.weather, kind: lesson, introduces: ['sense:hava', 'sense:garm', 'sense:aftabi', 'sense:baran', 'sense:barf', 'sense:abri']}
+- {id: fa.past.seasons, kind: lesson, introduces: ['sense:bahar', 'sense:fasl', 'sense:tabestan', 'sense:zemestan', 'sense:paeez', 'sense:nowruz']}
+- {id: fa.past.trip, kind: lesson, introduces: ['sense:shomal', 'sense:darya', 'sense:aks', 'sense:gereftan']}
+- {id: fa.past.fun, kind: lesson, introduces: ['sense:safar', 'sense:khosh', 'sense:gozashtan']}
+- {id: fa.past.story, kind: story}
+sentences:
+- id: s.past.1
+  node: fa.past.was
+  forms:
+    fa-Arab/standard:
+      text: من در خانه بودم.
+      tokens: [{surface: من, sense: man}, {surface: در, sense: dar}, {surface: خانه, sense: khane}, {surface: بودم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] (در|توی) خانه بودم'
+  translations:
+    en: I was at home.
+- id: s.past.2
+  node: fa.past.was
+  forms:
+    fa-Arab/standard:
+      text: دیروز در خانه بودم.
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: در, sense: dar}, {surface: خانه, sense: khane}, {surface: بودم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: |-
+        [من] دیروز (در|توی) خانه بودم
+        دیروز من (در|توی) خانه بودم
+  translations:
+    en: |-
+      I was at home yesterday.
+      Yesterday I was at home.
+- id: s.past.3
+  node: fa.past.was
+  forms:
+    fa-Arab/standard:
+      text: دیروز کجا بودی؟
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: کجا, sense: koja}, {surface: بودی, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: |-
+        دیروز کجا بودی
+        تو دیروز کجا بودی
+  translations:
+    en: Where were you yesterday?
+- id: s.past.4
+  node: fa.past.was
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: دیروز به دانشگاه رفتم.
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: رفتم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: |-
+        [من] دیروز به دانشگاه رفتم
+        دیروز من به دانشگاه رفتم
+  translations:
+    en: |-
+      I went to [the] university yesterday.
+      Yesterday I went to [the] university.
+- id: s.past.5
+  node: fa.past.was
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: علی دیروز آمد.
+      tokens: [{surface: علی, sense: ali}, {surface: دیروز, sense: dirooz}, {surface: آمد, sense: amadan}]
+      reverse: علی دیروز آمد
+  translations:
+    en: |-
+      Ali came yesterday.
+      Yesterday Ali came.
+- id: s.past.6
+  node: fa.past.was
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: ما دیروز کباب خوردیم.
+      tokens: [{surface: ما, sense: ma}, {surface: دیروز, sense: dirooz}, {surface: کباب, sense: kabab}, {surface: خوردیم, sense: khordan, morphs: [{surface: خورد, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] دیروز کباب خوردیم'
+  translations:
+    en: |-
+      We (ate|had) (kebab|kebabs) yesterday.
+      Yesterday we (ate|had) (kebab|kebabs).
+- id: s.past.7
+  node: fa.past.did
+  forms:
+    fa-Arab/standard:
+      text: این فیلم خیلی خوب است.
+      tokens: [{surface: این, sense: in}, {surface: فیلم, sense: film}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: این فیلم خیلی خوب است
+  translations:
+    en: This (film|movie) is very good.
+- id: s.past.8
+  node: fa.past.did
+  constructions: ['construction:ezafe', 'construction:past']
+  forms:
+    fa-Arab/standard:
+      text: دیشب یک فیلمِ ایرانی دیدم.
+      tokens: [{surface: دیشب, sense: dishab}, {surface: یک, sense: yek}, {surface: فیلمِ, sense: film}, {surface: ایرانی, sense: irani}, {surface: دیدم, sense: didan, morphs: [{surface: دید, kc: 'sense:didan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] دیشب یک فیلم ایرانی دیدم'
+  translations:
+    en: |-
+      I (watched|saw) an Iranian (film|movie) last night.
+      Last night I (watched|saw) an Iranian (film|movie).
+- id: s.past.9
+  node: fa.past.did
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: دیروز کار نکردم.
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: کار, sense: kar}, {surface: نکردم, sense: kardan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: کرد, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] دیروز کار نکردم'
+  translations:
+    en: |-
+      I (didn't|did not) work yesterday.
+      Yesterday I (didn't|did not) work.
+- id: s.past.10
+  node: fa.past.did
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: چه خریدی؟
+      tokens: [{surface: چه, sense: che}, {surface: خریدی, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] (چه|چی) خریدی'
+  translations:
+    en: What did you buy?
+- id: s.past.11
+  node: fa.past.did
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: یک کتاب خریدم.
+      tokens: [{surface: یک, sense: yek}, {surface: کتاب, sense: ketab}, {surface: خریدم, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] یک کتاب خریدم'
+  translations:
+    en: I bought a book.
+- id: s.past.12
+  node: fa.past.did
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: دیشب زود خوابیدم.
+      tokens: [{surface: دیشب, sense: dishab}, {surface: زود, sense: zud}, {surface: خوابیدم, sense: khabidan, morphs: [{surface: خوابید, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] دیشب زود خوابیدم'
+  translations:
+    en: |-
+      I went to bed early last night.
+      Last night I went to bed early.
+      I slept early last night.
+- id: s.past.13
+  node: fa.past.did
+  constructions: ['construction:ezafe', 'construction:past']
+  forms:
+    fa-Arab/standard:
+      text: هفتهٔ گذشته به اصفهان رفتیم.
+      tokens: [{surface: هفتهٔ, sense: hafte}, {surface: گذشته, sense: gozashte}, {surface: به, sense: be}, {surface: اصفهان, sense: esfahan}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] هفته(ٔ|\u200cی|) گذشته به اصفهان رفتیم"
+  translations:
+    en: |-
+      Last week we went to (Isfahan|Esfahan).
+      We went to (Isfahan|Esfahan) last week.
+- id: s.past.14
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: امروز هوا خوب است.
+      tokens: [{surface: امروز, sense: emruz}, {surface: هوا, sense: hava}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: امروز هوا خوب است
+  translations:
+    en: |-
+      The weather is (nice|good) today.
+      Today the weather is (nice|good).
+- id: s.past.15
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: هوا گرم است.
+      tokens: [{surface: هوا, sense: hava}, {surface: گرم, sense: garm}, {surface: است, sense: budan}]
+      reverse: هوا گرم است
+  translations:
+    en: |-
+      It('s| is) (warm|hot).
+      The weather is (warm|hot).
+- id: s.past.16
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: دیروز هوا سرد بود.
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: هوا, sense: hava}, {surface: سرد, sense: sard}, {surface: بود, sense: bud}]
+      reverse: دیروز هوا سرد بود
+  translations:
+    en: |-
+      It was cold yesterday.
+      Yesterday (it|the weather) was cold.
+      The weather was cold yesterday.
+- id: s.past.17
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: امروز هوا آفتابی است.
+      tokens: [{surface: امروز, sense: emruz}, {surface: هوا, sense: hava}, {surface: آفتابی, sense: aftabi}, {surface: است, sense: budan}]
+      reverse: امروز هوا آفتابی است
+  translations:
+    en: |-
+      It('s| is) sunny today.
+      Today (it|the weather) is sunny.
+      The weather is sunny today.
+- id: s.past.18
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: "باران می\u200cآید."
+      tokens: [{surface: باران, sense: baran}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "باران می\u200cآید"
+  translations:
+    en: It('s| is) raining.
+- id: s.past.19
+  node: fa.past.weather
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: دیروز برف آمد.
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: برف, sense: barf}, {surface: آمد, sense: amadan}]
+      reverse: دیروز برف آمد
+  translations:
+    en: |-
+      It snowed yesterday.
+      Yesterday it snowed.
+- id: s.past.20
+  node: fa.past.weather
+  forms:
+    fa-Arab/standard:
+      text: هوا ابری است.
+      tokens: [{surface: هوا, sense: hava}, {surface: ابری, sense: abri}, {surface: است, sense: budan}]
+      reverse: هوا ابری است
+  translations:
+    en: |-
+      It('s| is) cloudy.
+      The weather is cloudy.
+- id: s.past.21
+  node: fa.past.seasons
+  forms:
+    fa-Arab/standard:
+      text: بهار خیلی قشنگ است.
+      tokens: [{surface: بهار, sense: bahar}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      reverse: بهار خیلی قشنگ است
+  translations:
+    en: Spring is very (beautiful|pretty|lovely).
+- id: s.past.22
+  node: fa.past.seasons
+  constructions: ['construction:doost-dashtan']
+  forms:
+    fa-Arab/standard:
+      text: من این فصل را دوست دارم.
+      tokens: [{surface: من, sense: man}, {surface: این, sense: in}, {surface: فصل, sense: fasl}, {surface: را, sense: ra}, {surface: دوست, sense: doost}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] این فصل را دوست دارم'
+  translations:
+    en: I (like|love) this season.
+- id: s.past.23
+  node: fa.past.seasons
+  forms:
+    fa-Arab/standard:
+      text: تابستان هوا خیلی گرم است.
+      tokens: [{surface: تابستان, sense: tabestan}, {surface: هوا, sense: hava}, {surface: خیلی, sense: kheyli}, {surface: گرم, sense: garm}, {surface: است, sense: budan}]
+      reverse: '[در] تابستان هوا خیلی گرم است'
+  translations:
+    en: |-
+      In [the] summer (it|the weather) is very hot.
+      (It|The weather) is very hot in [the] summer.
+- id: s.past.24
+  node: fa.past.seasons
+  forms:
+    fa-Arab/standard:
+      text: "در زمستان برف می\u200cآید."
+      tokens: [{surface: در, sense: dar}, {surface: زمستان, sense: zemestan}, {surface: برف, sense: barf}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "[در] زمستان برف می\u200cآید"
+  translations:
+    en: |-
+      It snows in [the] winter.
+      In [the] winter it snows.
+- id: s.past.25
+  node: fa.past.seasons
+  forms:
+    fa-Arab/standard:
+      text: پاییز در تهران خیلی قشنگ است.
+      tokens: [{surface: پاییز, sense: paeez}, {surface: در, sense: dar}, {surface: تهران, sense: tehran}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      reverse: (پاییز|پائیز) (در|توی) تهران خیلی قشنگ است
+  translations:
+    en: (Autumn|Fall) in Tehran is very (beautiful|pretty|lovely).
+- id: s.past.26
+  node: fa.past.seasons
+  forms:
+    fa-Arab/standard:
+      text: نوروز در بهار است.
+      tokens: [{surface: نوروز, sense: nowruz}, {surface: در, sense: dar}, {surface: بهار, sense: bahar}, {surface: است, sense: budan}]
+      reverse: نوروز در بهار است
+  translations:
+    en: |-
+      (Nowruz|Norouz|Norooz|Nowrooz) is in [the] spring.
+      The Persian New Year is in [the] spring.
+- id: s.past.27
+  node: fa.past.trip
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: ما به شمال رفتیم.
+      tokens: [{surface: ما, sense: ma}, {surface: به, sense: be}, {surface: شمال, sense: shomal}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] به شمال رفتیم'
+  translations:
+    en: We went (to the north|north).
+- id: s.past.28
+  node: fa.past.trip
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: کنارِ دریا بودیم.
+      tokens: [{surface: کنارِ, sense: kenar}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] کنار دریا بودیم'
+  translations:
+    en: We were (by|at) the (sea|seaside).
+- id: s.past.29
+  node: fa.past.trip
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: این عکسِ خانوادهٔ من است.
+      tokens: [{surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: خانوادهٔ, sense: khanevade}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      reverse: "این عکس خانواده(ٔ|\u200cی|) من است"
+  translations:
+    en: |-
+      This is a (photo|picture) of my family.
+      This is my family (photo|picture).
+- id: s.past.30
+  node: fa.past.trip
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: آنجا خیلی عکس گرفتیم.
+      tokens: [{surface: آنجا, sense: anja}, {surface: خیلی, sense: kheyli}, {surface: عکس, sense: aks}, {surface: گرفتیم, sense: gereftan, morphs: [{surface: گرفت, kc: 'sense:gereftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] آنجا خیلی عکس گرفتیم'
+  translations:
+    en: |-
+      We took (a lot of|lots of|many) (photos|pictures) there.
+      There we took (a lot of|lots of|many) (photos|pictures).
+- id: s.past.31
+  node: fa.past.fun
+  forms:
+    fa-Arab/standard:
+      text: سفر خوب بود؟
+      tokens: [{surface: سفر, sense: safar}, {surface: خوب, sense: khub}, {surface: بود, sense: bud}]
+      reverse: (سفر|سفرت|سفرتان) خوب بود
+  translations:
+    en: |-
+      Was the trip good?
+      How was the trip?
+      Did you have a good trip?
+- id: s.past.32
+  node: fa.past.fun
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: خوش آمدید!
+      tokens: [{surface: خوش, sense: khosh}, {surface: آمدید, sense: amadan, morphs: [{surface: آمد, kc: 'sense:amadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: |-
+        خوش آمدید
+        خوش آمدی
+  translations:
+    en: Welcome!
+- id: s.past.33
+  node: fa.past.fun
+  register: formal
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: به شما خوش گذشت؟
+      tokens: [{surface: به, sense: be}, {surface: شما, sense: shoma}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}]
+      reverse: '[به (شما|تو)] خوش گذشت'
+  translations:
+    en: |-
+      Did you have a (good|nice|great) time?
+      Did you enjoy (it|yourself|yourselves)?
+- id: s.past.34
+  node: fa.past.fun
+  constructions: ['construction:past']
+  forms:
+    fa-Arab/standard:
+      text: بله، خیلی خوش گذشت!
+      tokens: [{surface: بله, sense: bale}, {surface: خیلی, sense: kheyli}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}]
+      reverse: بله [به ما] خیلی خوش گذشت
+  translations:
+    en: |-
+      Yes, (we|I) had a (great|very good|wonderful|lovely) time!
+      Yes, it was (great|a lot of fun|very nice)!
+stories:
+- id: fa.story.weekend
+  node: fa.past.story
+  title: {en: A weekend by the sea}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+  characters:
+  - {id: maryam, name: {fa-Arab/standard: مریم}}
+  - {id: ali, name: {fa-Arab/standard: علی}}
+  steps:
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: سلام علی! آخرِ هفته کجا بودی؟
+          tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}, {surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: بودی, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Hi Ali! Where were you at the weekend?'}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: سلام! با خانواده به شمال رفتیم.
+          tokens: [{surface: سلام, sense: salam}, {surface: با, sense: ba}, {surface: خانواده, sense: khanevade}, {surface: به, sense: be}, {surface: شمال, sense: shomal}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      translations: {en: Hi! We went to the north with the family.}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: خوش گذشت؟
+          tokens: [{surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}]
+      translations: {en: 'Did you have a good time?'}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: بله، خیلی خوش گذشت! کنارِ دریا بودیم.
+          tokens: [{surface: بله, sense: bale}, {surface: خیلی, sense: kheyli}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}, {surface: کنارِ, sense: kenar}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      translations: {en: 'Yes, we had a great time! We were by the sea.'}
+  - choose:
+      prompt: {en: 'Where was Ali at the weekend?'}
+      options: [{en: 'by the sea, in the north'}, {en: in Isfahan}, {en: at home}]
+      answer: 0
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: هوا چطور بود؟
+          tokens: [{surface: هوا, sense: hava}, {surface: چطور, sense: chetor}, {surface: بود, sense: bud}]
+      translations: {en: 'What was the weather like?'}
+  - line:
+      speaker: ali
+      ask: complete
+      gap: sense:aftabi
+      distractors: ['sense:darya', 'sense:shomal']
+      forms:
+        fa-Arab/standard:
+          text: هوا گرم و آفتابی بود.
+          tokens: [{surface: هوا, sense: hava}, {surface: گرم, sense: garm}, {surface: و, sense: va}, {surface: آفتابی, sense: aftabi}, {surface: بود, sense: bud}]
+      translations: {en: It was warm and sunny.}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: خیلی عکس گرفتی؟
+          tokens: [{surface: خیلی, sense: kheyli}, {surface: عکس, sense: aks}, {surface: گرفتی, sense: gereftan, morphs: [{surface: گرفت, kc: 'sense:gereftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Did you take a lot of photos?'}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: بله. این عکسِ دریاست. ببین!
+          tokens: [{surface: بله, sense: bale}, {surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: دریاست, sense: darya, morphs: [{surface: دریا, kc: 'sense:darya'}, {surface: ست, kc: 'sense:budan'}]}, {surface: ببین, sense: didan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: بین, kc: 'sense:didan'}]}]
+      translations: {en: Yes. This is a photo of the sea. Look!}
+  - line:
+      speaker: maryam
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: دریا خیلی قشنگ است!
+          tokens: [{surface: دریا, sense: darya}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+      translations: {en: The sea is very beautiful!}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: "تابستان هم به شمال می\u200cرویم."
+          tokens: [{surface: تابستان, sense: tabestan}, {surface: هم, sense: ham}, {surface: به, sense: be}, {surface: شمال, sense: shomal}, {surface: "می\u200cرویم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      translations: {en: We're going to the north in the summer too.}
+  - choose:
+      prompt: {en: 'What was the weather like?'}
+      options: [{en: warm and sunny}, {en: cold and rainy}, {en: snowy}]
+      answer: 0
+scenarios:
+- id: fa.weekend
+  after: fa.past.story
+  title: {en: 'How was your weekend?'}
+  setting: {en: Saturday morning in the university cafeteria in Tehran. Your friend has just come back from a trip.}
+  character: {en: 'Ali, a cheerful classmate who loves to talk about travel and the weather.'}
+  goal: {en: 'Tell Ali where you went or what you did at the weekend and what the weather was like, then ask about his trip and whether he had a good time.'}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}

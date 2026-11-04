@@ -1,0 +1,446 @@
+# Fixture course (fa), unit 7: telling the time, parts of the day and the Iranian week (Saturday to Friday).
+# Clock times take the ezafe (ساعتِ هشت); از … تا …; the present used for plans.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: time
+title: {en: Time and the week}
+cefr: A1
+kcs:
+- {id: 'sense:saat', gloss: {en: 'hour; o''clock; clock, watch'}, forms: {fa-Arab/standard: [ساعت]}, notes: {en: 'ساعت چند است؟ What time is it? With a number it takes the ezafe: ساعتِ هشت, eight o''clock.'}}
+- {id: 'sense:nim', gloss: {en: half}, forms: {fa-Arab/standard: [نیم]}, notes: {en: 'ده و نیم: half past ten.'}}
+- {id: 'sense:alan', gloss: {en: now}, forms: {fa-Arab/standard: [الان]}}
+- {id: 'sense:kelas', gloss: {en: class}, forms: {fa-Arab/standard: [کلاس]}}
+- {id: 'sense:daghighe', gloss: {en: minute}, forms: {fa-Arab/standard: [دقیقه]}}
+- {id: 'sense:emruz', gloss: {en: today}, forms: {fa-Arab/standard: [امروز]}}
+- {id: 'sense:farda', gloss: {en: tomorrow}, forms: {fa-Arab/standard: [فردا]}}
+- {id: 'sense:vaght', gloss: {en: time (to do something)}, forms: {fa-Arab/standard: [وقت]}, notes: {en: 'وقت دارید؟ Do you have time? Clock time is ساعت.'}}
+- {id: 'sense:zohr', gloss: {en: noon; midday}, forms: {fa-Arab/standard: [ظهر]}}
+- {id: 'sense:asr', gloss: {en: late afternoon; early evening}, forms: {fa-Arab/standard: [عصر]}}
+- {id: 'sense:hafte', gloss: {en: week}, forms: {fa-Arab/standard: [هفته, هفتهٔ]}}
+- {id: 'sense:shanbe', gloss: {en: Saturday}, forms: {fa-Arab/standard: [شنبه]}, notes: {en: The Iranian week starts on Saturday; Friday is the weekly day off.}}
+- {id: 'sense:chandshanbe', gloss: {en: 'which day of the week?'}, forms: {fa-Arab/standard: [چندشنبه]}, notes: {en: 'Literally ''how-many-shanbe'': the weekdays count up from شنبه.'}}
+- {id: 'sense:yekshanbe', gloss: {en: Sunday}, forms: {fa-Arab/standard: [یکشنبه]}}
+- {id: 'sense:doshanbe', gloss: {en: Monday}, forms: {fa-Arab/standard: [دوشنبه]}}
+- {id: 'sense:seshanbe', gloss: {en: Tuesday}, forms: {fa-Arab/standard: ["سه\u200cشنبه"]}}
+- {id: 'sense:chaharshanbe', gloss: {en: Wednesday}, forms: {fa-Arab/standard: [چهارشنبه]}}
+- {id: 'sense:panjshanbe', gloss: {en: Thursday}, forms: {fa-Arab/standard: [پنجشنبه]}, notes: {en: "Also written پنج\u200cشنبه."}}
+- {id: 'sense:jome', gloss: {en: Friday}, forms: {fa-Arab/standard: [جمعه]}}
+- {id: 'sense:tatil', gloss: {en: closed; off (a holiday)}, forms: {fa-Arab/standard: [تعطیل]}}
+- {id: 'sense:az', gloss: {en: from; than}, forms: {fa-Arab/standard: [از]}}
+- {id: 'sense:ta', gloss: {en: until; to (a time or place)}, forms: {fa-Arab/standard: [تا]}, notes: {en: تا فردا! See you tomorrow!}}
+- {id: 'sense:akhar', gloss: {en: end; last}, forms: {fa-Arab/standard: [آخر]}, notes: {en: 'آخرِ هفته: the weekend.'}}
+- {id: 'sense:tavallod', gloss: {en: birth; birthday}, forms: {fa-Arab/standard: [تولد, تولدت]}}
+- {id: 'sense:mobarak', gloss: {en: blessed; congratulations}, forms: {fa-Arab/standard: [مبارک]}, notes: {en: تولدت مبارک! Happy birthday! عید مبارک! Happy holiday!}}
+nodes:
+- {id: fa.time.clock, kind: lesson, introduces: ['sense:saat', 'sense:nim', 'sense:alan', 'sense:kelas', 'sense:daghighe']}
+- {id: fa.time.today, kind: lesson, introduces: ['sense:emruz', 'sense:farda', 'sense:vaght']}
+- {id: fa.time.parts, kind: lesson, introduces: ['sense:zohr', 'sense:asr', 'sense:hafte', 'sense:shanbe', 'sense:chandshanbe']}
+- {id: fa.time.week, kind: lesson, introduces: ['sense:yekshanbe', 'sense:doshanbe', 'sense:seshanbe', 'sense:chaharshanbe', 'sense:panjshanbe']}
+- {id: fa.time.weekend, kind: lesson, introduces: ['sense:jome', 'sense:tatil', 'sense:az', 'sense:ta', 'sense:akhar']}
+- {id: fa.time.plans, kind: lesson, introduces: ['sense:tavallod', 'sense:mobarak']}
+- {id: fa.time.story, kind: story}
+sentences:
+- id: s.time.1
+  node: fa.time.clock
+  forms:
+    fa-Arab/standard:
+      text: ساعت چند است؟
+      tokens: [{surface: ساعت, sense: saat}, {surface: چند, sense: chand}, {surface: است, sense: budan}]
+      reverse: ساعت (چند است|چنده)
+  translations:
+    en: |-
+      What time is it?
+      What('s| is) the time?
+- id: s.time.2
+  node: fa.time.clock
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: ساعتِ هشت است.
+      tokens: [{surface: ساعتِ, sense: saat}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
+      reverse: ساعت هشت است
+  translations:
+    en: It('s| is) (eight|8) [o'clock].
+- id: s.time.3
+  node: fa.time.clock
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: ساعتِ ده و نیم است.
+      tokens: [{surface: ساعتِ, sense: saat}, {surface: ده, sense: dah}, {surface: و, sense: va}, {surface: نیم, sense: nim}, {surface: است, sense: budan}]
+      reverse: ساعت ده و نیم است
+  translations:
+    en: |-
+      It('s| is) half past (ten|10).
+      It('s| is) (ten|10) thirty.
+      It('s| is) 10:30.
+- id: s.time.4
+  node: fa.time.clock
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: الان ساعتِ سه است.
+      tokens: [{surface: الان, sense: alan}, {surface: ساعتِ, sense: saat}, {surface: سه, sense: se}, {surface: است, sense: budan}]
+      reverse: الان ساعت سه است
+  translations:
+    en: |-
+      It('s| is) (three|3) [o'clock] now.
+      Now it('s| is) (three|3) [o'clock].
+- id: s.time.5
+  node: fa.time.clock
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: کلاس ساعتِ هشت است.
+      tokens: [{surface: کلاس, sense: kelas}, {surface: ساعتِ, sense: saat}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
+      reverse: کلاس ساعت هشت است
+  translations:
+    en: (The|Our) class is at (eight|8) [o'clock].
+- id: s.time.6
+  node: fa.time.clock
+  forms:
+    fa-Arab/standard:
+      text: کلاس پنجاه دقیقه است.
+      tokens: [{surface: کلاس, sense: kelas}, {surface: پنجاه, sense: panjah}, {surface: دقیقه, sense: daghighe}, {surface: است, sense: budan}]
+      reverse: کلاس پنجاه دقیقه است
+  translations:
+    en: (The|Our) class is (fifty|50) minutes [long].
+- id: s.time.7
+  node: fa.time.today
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: "ساعتِ چند می\u200cآیی؟"
+      tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیی", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: "[تو] ساعت چند می\u200cآیی"
+  translations:
+    en: |-
+      (What time|When) are you coming?
+      (What time|When) will you come?
+- id: s.time.8
+  node: fa.time.today
+  forms:
+    fa-Arab/standard:
+      text: امروز کار دارم.
+      tokens: [{surface: امروز, sense: emruz}, {surface: کار, sense: kar}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] امروز کار دارم'
+  translations:
+    en: |-
+      I('m| am) busy today.
+      Today I('m| am) busy.
+      I have (work|things to do) today.
+- id: s.time.9
+  node: fa.time.today
+  forms:
+    fa-Arab/standard:
+      text: "فردا می\u200cآیم."
+      tokens: [{surface: فردا, sense: farda}, {surface: "می\u200cآیم", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] فردا می\u200cآیم"
+  translations:
+    en: |-
+      I('ll| will) come tomorrow.
+      I('m| am) coming tomorrow.
+- id: s.time.10
+  node: fa.time.today
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: امروز وقت دارید؟
+      tokens: [{surface: امروز, sense: emruz}, {surface: وقت, sense: vaght}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] امروز وقت دارید'
+  translations:
+    en: |-
+      Do you have time today?
+      Are you free today?
+- id: s.time.11
+  node: fa.time.today
+  forms:
+    fa-Arab/standard:
+      text: نه، امروز وقت ندارم، اما فردا وقت دارم.
+      tokens: [{surface: نه, sense: na}, {surface: امروز, sense: emruz}, {surface: وقت, sense: vaght}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اما, sense: amma}, {surface: فردا, sense: farda}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: نه [من] امروز وقت ندارم (اما|ولی) فردا وقت دارم
+  translations:
+    en: |-
+      No, I (don't|do not) have time today, but I (do|have time) tomorrow.
+      No, I('m| am) not free today, but I('m| am) free tomorrow.
+- id: s.time.12
+  node: fa.time.parts
+  forms:
+    fa-Arab/standard:
+      text: "ظهر ناهار می\u200cخوریم."
+      tokens: [{surface: ظهر, sense: zohr}, {surface: ناهار, sense: nahar}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] ظهر ناهار می\u200cخوریم"
+  translations:
+    en: We (have|eat) lunch at noon.
+- id: s.time.13
+  node: fa.time.parts
+  forms:
+    fa-Arab/standard:
+      text: "عصر چای می\u200cخوریم."
+      tokens: [{surface: عصر, sense: asr}, {surface: چای, sense: chay}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] عصر چای می\u200cخوریم"
+  translations:
+    en: We (drink|have) tea in the [late] afternoon.
+- id: s.time.14
+  node: fa.time.parts
+  forms:
+    fa-Arab/standard:
+      text: یک هفته هفت روز دارد.
+      tokens: [{surface: یک, sense: yek}, {surface: هفته, sense: hafte}, {surface: هفت, sense: haft}, {surface: روز, sense: ruz}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: '[یک] هفته هفت روز دارد'
+  translations:
+    en: A week has (seven|7) days.
+- id: s.time.15
+  node: fa.time.parts
+  forms:
+    fa-Arab/standard:
+      text: امروز شنبه است.
+      tokens: [{surface: امروز, sense: emruz}, {surface: شنبه, sense: shanbe}, {surface: است, sense: budan}]
+      reverse: امروز شنبه است
+  translations:
+    en: |-
+      Today is Saturday.
+      It('s| is) Saturday today.
+- id: s.time.16
+  node: fa.time.parts
+  forms:
+    fa-Arab/standard:
+      text: امروز چندشنبه است؟
+      tokens: [{surface: امروز, sense: emruz}, {surface: چندشنبه, sense: chandshanbe}, {surface: است, sense: budan}]
+      reverse: امروز (چندشنبه است|چه روزی است)
+  translations:
+    en: |-
+      What day is (it today|today)?
+      What day of the week is (it|it today|today)?
+- id: s.time.17
+  node: fa.time.week
+  forms:
+    fa-Arab/standard:
+      text: فردا یکشنبه است.
+      tokens: [{surface: فردا, sense: farda}, {surface: یکشنبه, sense: yekshanbe}, {surface: است, sense: budan}]
+      reverse: فردا یکشنبه است
+  translations:
+    en: |-
+      Tomorrow is Sunday.
+      It('s| is) Sunday tomorrow.
+- id: s.time.18
+  node: fa.time.week
+  forms:
+    fa-Arab/standard:
+      text: دوشنبه کلاس داریم.
+      tokens: [{surface: دوشنبه, sense: doshanbe}, {surface: کلاس, sense: kelas}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] دوشنبه کلاس داریم'
+  translations:
+    en: |-
+      We have (a class|class|classes) on Monday.
+      On Monday we have (a class|class|classes).
+- id: s.time.19
+  node: fa.time.week
+  forms:
+    fa-Arab/standard:
+      text: "سه\u200cشنبه به دانشگاه می\u200cروم."
+      tokens: [{surface: "سه\u200cشنبه", sense: seshanbe}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] سه\u200cشنبه به دانشگاه می\u200cروم"
+  translations:
+    en: |-
+      (On Tuesday|Tuesday) I('m going| am going| go) to [the] university.
+      I('m going| am going| go) to [the] university on Tuesday.
+- id: s.time.20
+  node: fa.time.week
+  forms:
+    fa-Arab/standard:
+      text: چهارشنبه وقت دارم.
+      tokens: [{surface: چهارشنبه, sense: chaharshanbe}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] چهارشنبه وقت دارم'
+  translations:
+    en: |-
+      I have time on Wednesday.
+      I('m| am) free on Wednesday.
+      On Wednesday I (have time|am free).
+- id: s.time.21
+  node: fa.time.week
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: "پنجشنبه به خانهٔ مادرم می\u200cروم."
+      tokens: [{surface: پنجشنبه, sense: panjshanbe}, {surface: به, sense: be}, {surface: خانهٔ, sense: khane}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] پنجشنبه به خانه(ٔ|\u200cی|) (مادرم|مادر من) می\u200cروم"
+  translations:
+    en: |-
+      On Thursday I('m going| am going| go) to my (mother's|mom's|mum's) [house].
+      I('m going| am going| go) to my (mother's|mom's|mum's) [house] on Thursday.
+- id: s.time.22
+  node: fa.time.weekend
+  forms:
+    fa-Arab/standard:
+      text: "جمعه کار نمی\u200cکنم."
+      tokens: [{surface: جمعه, sense: jome}, {surface: کار, sense: kar}, {surface: "نمی\u200cکنم", sense: kardan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] (جمعه|جمعه\u200cها) کار نمی\u200cکنم"
+  translations:
+    en: |-
+      I (don't|do not) work on Friday[s].
+      On Friday[s] I (don't|do not) work.
+- id: s.time.23
+  node: fa.time.weekend
+  forms:
+    fa-Arab/standard:
+      text: جمعه تعطیل است.
+      tokens: [{surface: جمعه, sense: jome}, {surface: تعطیل, sense: tatil}, {surface: است, sense: budan}]
+      reverse: جمعه تعطیل است
+  translations:
+    en: |-
+      Friday is a (holiday|day off).
+      Friday is the weekend.
+- id: s.time.24
+  node: fa.time.weekend
+  forms:
+    fa-Arab/standard:
+      text: "علی از دانشگاه می\u200cآید."
+      tokens: [{surface: علی, sense: ali}, {surface: از, sense: az}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "علی از دانشگاه می\u200cآید"
+  translations:
+    en: Ali('s coming| is coming| comes) from [the] university.
+- id: s.time.25
+  node: fa.time.weekend
+  forms:
+    fa-Arab/standard:
+      text: "از شنبه تا چهارشنبه کار می\u200cکنم."
+      tokens: [{surface: از, sense: az}, {surface: شنبه, sense: shanbe}, {surface: تا, sense: ta}, {surface: چهارشنبه, sense: chaharshanbe}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] از شنبه تا چهارشنبه کار می\u200cکنم"
+  translations:
+    en: I work from Saturday (to|until|till|through) Wednesday.
+- id: s.time.26
+  node: fa.time.weekend
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: "آخرِ هفته کجا می\u200cروی؟"
+      tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: "[تو] آخر هفته کجا می\u200cروی"
+  translations:
+    en: |-
+      Where are you going (at the|on the|this) weekend?
+      Where do you go (at|on) the weekend?
+- id: s.time.27
+  node: fa.time.plans
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: تولدِ من جمعه است.
+      tokens: [{surface: تولدِ, sense: tavallod}, {surface: من, sense: man}, {surface: جمعه, sense: jome}, {surface: است, sense: budan}]
+      reverse: (تولد من|تولدم) جمعه است
+  translations:
+    en: My birthday is (on|this) Friday.
+- id: s.time.28
+  node: fa.time.plans
+  forms:
+    fa-Arab/standard:
+      text: تولدت مبارک!
+      tokens: [{surface: تولدت, sense: tavallod, morphs: [{surface: تولد, kc: 'sense:tavallod'}, {surface: ت, kc: 'form:poss-2sg'}]}, {surface: مبارک, sense: mobarak}]
+      reverse: (تولدت|تولد تو|تولدتان|تولد شما) مبارک
+  translations:
+    en: Happy birthday!
+- id: s.time.29
+  node: fa.time.plans
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: ساعتِ چهار خوب است؟
+      tokens: [{surface: ساعتِ, sense: saat}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: ساعت چهار خوب است
+  translations:
+    en: |-
+      Is (four|4) [o'clock] (OK|okay|good|fine)?
+      Does (four|4) [o'clock] (work|suit you)?
+- id: s.time.30
+  node: fa.time.plans
+  forms:
+    fa-Arab/standard:
+      text: بله، خوب است. تا فردا!
+      tokens: [{surface: بله, sense: bale}, {surface: خوب, sense: khub}, {surface: است, sense: budan}, {surface: تا, sense: ta}, {surface: فردا, sense: farda}]
+      reverse: بله (خوب است|خوبه) تا فردا
+  translations:
+    en: Yes, (that's|that is|it's|it is) (fine|good|OK|okay). See you tomorrow!
+stories:
+- id: fa.story.tomorrow
+  node: fa.time.story
+  title: {en: See you tomorrow}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+  characters:
+  - {id: ali, name: {fa-Arab/standard: علی}}
+  - {id: sara, name: {fa-Arab/standard: سارا}}
+  steps:
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: سلام سارا! فردا وقت داری؟
+          tokens: [{surface: سلام, sense: salam}, {surface: سارا, sense: sara}, {surface: فردا, sense: farda}, {surface: وقت, sense: vaght}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Hi Sara! Do you have time tomorrow?'}
+  - line:
+      speaker: sara
+      forms:
+        fa-Arab/standard:
+          text: فردا چندشنبه است؟
+          tokens: [{surface: فردا, sense: farda}, {surface: چندشنبه, sense: chandshanbe}, {surface: است, sense: budan}]
+      translations: {en: 'What day is it tomorrow?'}
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: فردا پنجشنبه است. تولدِ من است!
+          tokens: [{surface: فردا, sense: farda}, {surface: پنجشنبه, sense: panjshanbe}, {surface: است, sense: budan}, {surface: تولدِ, sense: tavallod}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      translations: {en: Tomorrow is Thursday. It's my birthday!}
+  - line:
+      speaker: sara
+      forms:
+        fa-Arab/standard:
+          text: تولدت مبارک، علی!
+          tokens: [{surface: تولدت, sense: tavallod, morphs: [{surface: تولد, kc: 'sense:tavallod'}, {surface: ت, kc: 'form:poss-2sg'}]}, {surface: مبارک, sense: mobarak}, {surface: علی, sense: ali}]
+      translations: {en: 'Happy birthday, Ali!'}
+  - line:
+      speaker: sara
+      forms:
+        fa-Arab/standard:
+          text: پنجشنبه صبح کلاس دارم، اما عصر وقت دارم.
+          tokens: [{surface: پنجشنبه, sense: panjshanbe}, {surface: صبح, sense: sobh}, {surface: کلاس, sense: kelas}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اما, sense: amma}, {surface: عصر, sense: asr}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: 'On Thursday morning I have class, but I''m free in the afternoon.'}
+  - choose:
+      prompt: {en: 'When is Sara free on Thursday?'}
+      options: [{en: in the late afternoon}, {en: in the morning}, {en: at noon}]
+      answer: 0
+  - line:
+      speaker: ali
+      forms:
+        fa-Arab/standard:
+          text: ساعتِ چهار خوب است؟
+          tokens: [{surface: ساعتِ, sense: saat}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      translations: {en: 'Is four o''clock OK?'}
+  - line:
+      speaker: sara
+      ask: complete
+      gap: sense:saat
+      distractors: ['sense:hafte', 'sense:sal']
+      forms:
+        fa-Arab/standard:
+          text: نه، ساعتِ پنج خوب است.
+          tokens: [{surface: نه, sense: na}, {surface: ساعتِ, sense: saat}, {surface: پنج, sense: panj}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      translations: {en: 'No, five o''clock is good.'}
+  - line:
+      speaker: ali
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: خوب است. تا فردا!
+          tokens: [{surface: خوب, sense: khub}, {surface: است, sense: budan}, {surface: تا, sense: ta}, {surface: فردا, sense: farda}]
+      translations: {en: Fine. See you tomorrow!}
+  - line:
+      speaker: sara
+      forms:
+        fa-Arab/standard:
+          text: تا فردا، خداحافظ!
+          tokens: [{surface: تا, sense: ta}, {surface: فردا, sense: farda}, {surface: خداحافظ, sense: khodahafez}]
+      translations: {en: 'See you tomorrow, bye!'}
+  - choose:
+      prompt: {en: 'What time will they meet?'}
+      options: [{en: at five}, {en: at four}, {en: at eight}]
+      answer: 0

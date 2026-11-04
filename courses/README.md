@@ -1,15 +1,20 @@
 # Fixture courses
 
-One unit each, built by `pnpm courses` and kept green by CI (CLAUDE.md). The format is in
-[ADR 0027](../docs/adr/0027-course-source-format.md); the choices behind these four are in
-[ADR 0033](../docs/adr/0033-fixture-courses.md). Real courses can live in separate repositories.
+Ten units each, from A1 to early A2, built by `pnpm courses` and kept green by CI (CLAUDE.md).
+- **The format** is in [ADR 0027](../docs/adr/0027-course-source-format.md).
+- **The choices behind these four** are in [ADR 0033](../docs/adr/0033-fixture-courses.md) and
+  [ADR 0050](../docs/adr/0050-ten-unit-courses.md).
 
-| Course | Orthographies | What it exercises |
-|---|---|---|
-| [`fa`](fa/) | fa-Arab | RTL; the plural -hā joined with a ZWNJ (written `‌` in YAML); ezafe; copula endings as morphs; an RBNF numbers drill |
-| [`yue`](yue/) | yue-Hant-HK | Pinned Jyutping shown as ruby; sentence-final particles; A-not-A questions; colloquial characters missing from CLDR (`exemplarsExtra`); an RBNF numbers drill |
-| [`uz`](uz/) | uz-Latn, uz-Cyrl | Every sentence pinned in both scripts; ʻ (U+02BB) in oʻ; predicate and possessive suffixes as morphs; a Latin→Cyrillic script-convert node |
-| [`apc`](apc/) | apc-Arab, apc-Latn (Arabizi) | Learner-selectable script; Arabizi spelling variants in accept sets; an Arabic→Arabizi script-convert node teaching 7, 3 and 2 |
+Real courses can live in separate repositories.
+
+| Course | Orthographies | Size | What it exercises |
+|---|---|---|---|
+| [`fa`](fa/) | fa-Arab | 318 sentences, 259 KCs, 60 lessons | RTL; the plural -hā joined with a ZWNJ (written `\u200c` in YAML); ezafe, with the small hamza after a silent -e; copula endings as morphs; the می‌ present, imperative, subjunctive and simple past; an RBNF numbers drill |
+| [`yue`](yue/) | yue-Hant-HK | 348 sentences, 263 KCs, 58 lessons | Pinned Jyutping shown as ruby; sentence-final particles; A-not-A questions; classifiers; 咗 未 過 and 緊; colloquial characters missing from CLDR (`exemplarsExtra`); an RBNF numbers drill |
+| [`uz`](uz/) | uz-Latn, uz-Cyrl | 318 sentences, 244 KCs, 58 lessons | Every sentence pinned in both scripts; ʻ (U+02BB) in oʻ; person, possessive, case and tense suffixes as morphs; a Latin→Cyrillic script-convert node |
+| [`apc`](apc/) | apc-Arab, apc-Latn (Arabizi) | 293 sentences, 252 KCs, 55 lessons | Learner-selectable script; Arabizi spelling variants in accept sets; possessive endings and verb persons as morphs; the b- present, subjunctive and past; vocalized stories; an Arabic→Arabizi script-convert node teaching 7, 3 and 2 |
+
+Every unit ends in a story, and each course has six roleplay scenarios.
 
 ## Review status
 
@@ -17,7 +22,8 @@ Every taught sentence was drafted by an LLM. Its provenance is `llm:claude@<prom
 `status: draft`, and it is licensed CC-BY-SA-4.0. Generated drill sentences are
 `generated:cldr-rbnf@icu<version>` (Unicode-3.0).
 
-Before any of this is published, a native speaker should check:
+Before any of this is published, a native speaker should check the following. The points the
+drafts were least sure of are listed course by course in [REVIEW.md](REVIEW.md).
 
 - the sentences;
 - the translations and accept sets;
@@ -37,6 +43,7 @@ cd pipeline && uv run nabu build ../courses/fa      # one course → dist/fa/
 Expected diagnostics:
 
 - yue warns that PyCantonese reads the particles 呀 and 嗎 as aa4 and maa5. The pinned aa3 and maa3
-  win.
+  win. It also warns about three colloquial readings that PyCantonese lacks: 名 meng2, 弟弟 dai4
+  dai2 and 平 peng4 "cheap".
 - uz gets info notes where ICU's Latin→Cyrillic transform disagrees with the pinned Cyrillic
   (Мэн vs Мен).

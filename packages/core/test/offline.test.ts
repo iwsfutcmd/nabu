@@ -35,7 +35,9 @@ describe("offline status and downloads", () => {
     const withFirst = new Set([...core, ...first.assets]);
     const status = offlineStatus(fa, withFirst);
     expect(status.units.find((u) => u.id === first.id)?.state).toBe("ready");
-    expect(status.units.find((u) => u.id === second.id)?.state).toBe(second.assets.every((p) => withFirst.has(p)) ? "ready" : "missing");
+    // A later unit may share a picture or clip with the first: partial, until all of its own arrive.
+    const shared = second.assets.filter((p) => withFirst.has(p)).length;
+    expect(status.units.find((u) => u.id === second.id)?.state).toBe(shared === second.assets.length ? "ready" : shared > 0 ? "partial" : "missing");
 
     const all = downloadPlan(fa, new Set());
     expect(all.files.slice(0, core.size).every((f) => core.has(f.path))).toBe(true); // the core comes first

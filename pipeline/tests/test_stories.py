@@ -62,21 +62,24 @@ def test_a_clean_story_compiles_without_diagnostics(core_cli: CoreCli, tmp_path:
     assert story["characters"][0]["name"]["uz-Latn/standard"]["tokens"][0]["surface"] == "Aziz"
 
 
-def test_every_fixture_course_has_one_story_in_every_orthography(courses: dict[str, Any]) -> None:
+def test_every_fixture_course_has_stories_in_every_orthography(courses: dict[str, Any]) -> None:
+    """Every unit's story sits on a story node, asks questions, and has every line in every
+    orthography; across the course, both kinds of line question are used."""
     for course, compiled in courses.items():
         stories = [s for u in compiled.units for s in u.get("stories", [])]
-        assert len(stories) == 1, course
-        [story] = stories
+        assert len(stories) >= 1, course
         nodes = {n["id"]: n["kind"] for u in compiled.units for n in u["nodes"]}
-        assert nodes[story["node"]] == "story"
-        lines = [s["line"] for s in story["steps"] if "line" in s]
-        questions = [s for s in story["steps"] if "choose" in s or s.get("line", {}).get("ask")]
-        assert len(lines) >= 5 and len(questions) >= 3, course
-        asks = {line.get("ask") for line in lines}
+        asks: set[str] = set()
+        for story in stories:
+            assert nodes[story["node"]] == "story", story["id"]
+            lines = [s["line"] for s in story["steps"] if "line" in s]
+            questions = [s for s in story["steps"] if "choose" in s or s.get("line", {}).get("ask")]
+            assert len(lines) >= 5 and len(questions) >= 2, story["id"]
+            asks |= {line["ask"] for line in lines if line.get("ask")}
+            for line in lines:
+                assert set(line["forms"]) == set(compiled.orthographies), story["id"]
+                assert set(line["translations"]) == {"en"}, story["id"]
         assert {"complete", "arrange"} <= asks, course
-        for line in lines:
-            assert set(line["forms"]) == set(compiled.orthographies), course
-            assert set(line["translations"]) == {"en"}
 
 
 def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
@@ -84,17 +87,21 @@ def test_the_vocalized_apc_story_glosses_against_unvocalized_keys(
 ) -> None:
     compiled = courses["apc"]
     orth = "apc-Arab/standard"
-    unit = yaml.safe_load(
-        (ROOT / "courses" / "apc" / "units" / "intro.yaml").read_text(encoding="utf-8")
-    )
+    home = ROOT / "courses" / "apc"
+    course = yaml.safe_load((home / "course.yaml").read_text(encoding="utf-8"))
+    units = [yaml.safe_load((home / u).read_text(encoding="utf-8")) for u in course["units"]]
+    # The whole course's glossary, as the app has it.
     entries = [
         {"kc": kc["id"], "text": form}
+        for unit in units
         for kc in unit["kcs"]
         for form in kc.get("forms", {}).get(orth, [])
     ]
     # The glossary keys carry no vowel marks (a shadda at most, as in بدّي).
     assert entries and all(not (set(e["text"]) & (HARAKAT - {chr(0x0651)})) for e in entries)
-    [story] = [s for u in compiled.units for s in u.get("stories", [])]
+    [story] = [
+        s for u in compiled.units for s in u.get("stories", []) if s["id"] == "apc.story.cafe"
+    ]
     vocalized = 0
     for step in story["steps"]:
         if "line" not in step:

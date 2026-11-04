@@ -1,0 +1,685 @@
+# Fixture course (apc), unit 4: home and places. wen / hon / honik, fi (there is) and ma fi, the clitic
+# prepositions b- (in, at) and 3a (to, on), rooms, near and far, left and right; the ending -na (our).
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u04-home
+title: {en: 'Where''s the house?'}
+cefr: A1
+kcs:
+- {id: 'sense:wen', gloss: {en: where}, forms: {apc-Arab/standard: [وين], apc-Latn/arabizi: [wen]}}
+- {id: 'sense:bet', gloss: {en: house; home}, forms: {apc-Arab/standard: [البيت], apc-Latn/arabizi: [bet]}}
+- {id: 'sense:hon', gloss: {en: here}, forms: {apc-Arab/standard: [هون], apc-Latn/arabizi: [hon]}}
+- {id: 'sense:honik', gloss: {en: there; over there}, forms: {apc-Arab/standard: [هونيك], apc-Latn/arabizi: [honik]}}
+- {id: 'sense:beirut', gloss: {en: Beirut}, forms: {apc-Arab/standard: [بيروت], apc-Latn/arabizi: [Beirut]}}
+- {id: 'sense:b', gloss: {en: in; at}, forms: {apc-Latn/arabizi: [b]}, notes: {en: 'Written joined in Arabic script: ببيروت, بالبيت (b + el). In Arabizi often bel: bel bet.'}}
+- {id: 'sense:lebnen', gloss: {en: Lebanon}, forms: {apc-Arab/standard: [لبنان], apc-Latn/arabizi: [Lebnen]}}
+- {id: 'sense:men', gloss: {en: from; of}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}}
+- {id: 'sense:fi', gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
+- {id: 'sense:ghorfe', gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
+- {id: 'sense:matbakh', gloss: {en: kitchen}, forms: {apc-Arab/standard: [المطبخ], apc-Latn/arabizi: [matbakh]}}
+- {id: 'sense:salon', gloss: {en: living room}, forms: {apc-Arab/standard: [بالصالون], apc-Latn/arabizi: [salon]}}
+- {id: 'sense:7ammem', gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [الحمّام], apc-Latn/arabizi: [7ammem]}}
+- {id: 'sense:shoghl', gloss: {en: work; job}, forms: {apc-Arab/standard: [الشغل], apc-Latn/arabizi: [shoghl]}}
+- {id: 'sense:madrase', gloss: {en: school}, forms: {apc-Arab/standard: [المدرسة], apc-Latn/arabizi: [madrase]}}
+- {id: 'sense:dekkene', gloss: {en: corner shop; small grocery}, forms: {apc-Arab/standard: [دكّانة], apc-Latn/arabizi: [dekkene]}}
+- {id: 'sense:shere3', gloss: {en: street}, forms: {apc-Arab/standard: [الشارع], apc-Latn/arabizi: [shere3]}}
+- {id: 'sense:2arib', gloss: {en: near; close}, forms: {apc-Arab/standard: [قريب], apc-Latn/arabizi: [2arib]}}
+- {id: 'sense:b3id', gloss: {en: far}, forms: {apc-Arab/standard: [بعيد, بعيدة], apc-Latn/arabizi: [b3id, b3ide]}}
+- {id: 'sense:mish', gloss: {en: not (before a word that is not a verb)}, forms: {apc-Arab/standard: [مش], apc-Latn/arabizi: [mish]}, notes: {en: 'mish b3id: not far. Before verbs: ma.'}}
+- {id: 'form:poss-1pl', gloss: {en: '-na: our'}, notes: {en: 'betna: our house. Arabic script: نا joined to the noun (بيتنا).'}}
+- {id: 'sense:fo2', gloss: {en: upstairs; up; above}, forms: {apc-Arab/standard: [فوق], apc-Latn/arabizi: [fo2]}}
+- {id: 'sense:ta7t', gloss: {en: downstairs; down; under}, forms: {apc-Arab/standard: [تحت], apc-Latn/arabizi: [ta7t]}}
+- {id: 'sense:7add', gloss: {en: next to}, forms: {apc-Arab/standard: [حدّ], apc-Latn/arabizi: [7add]}}
+- {id: 'sense:3a', gloss: {en: to; on}, forms: {apc-Arab/standard: [ع], apc-Latn/arabizi: [3a]}, notes: {en: 'Before el it is written 3al in Arabizi and عال in Arabic script: 3al bet, عالبيت (home, homeward).'}}
+- {id: 'sense:yamin', gloss: {en: right (side)}, forms: {apc-Arab/standard: [يمينك], apc-Latn/arabizi: [yamin]}}
+- {id: 'sense:shmel', gloss: {en: left (side)}, forms: {apc-Arab/standard: [شمالك], apc-Latn/arabizi: [shmelak]}}
+- {id: 'sense:dighri', gloss: {en: straight ahead}, forms: {apc-Arab/standard: [دغري], apc-Latn/arabizi: [dighri]}}
+nodes:
+- {id: apc.home.where, kind: lesson, introduces: ['sense:wen', 'sense:bet', 'sense:hon', 'sense:honik']}
+- {id: apc.home.city, kind: lesson, introduces: ['sense:beirut', 'sense:b', 'sense:lebnen', 'sense:men']}
+- {id: apc.home.rooms, kind: lesson, introduces: ['sense:fi', 'sense:ghorfe', 'sense:matbakh', 'sense:salon', 'sense:7ammem']}
+- {id: apc.home.places, kind: lesson, introduces: ['sense:shoghl', 'sense:madrase', 'sense:dekkene', 'sense:shere3']}
+- {id: apc.home.near-far, kind: lesson, introduces: ['sense:2arib', 'sense:b3id', 'sense:mish', 'form:poss-1pl', 'sense:fo2', 'sense:ta7t', 'sense:7add']}
+- {id: apc.home.directions, kind: lesson, introduces: ['sense:3a', 'sense:yamin', 'sense:shmel', 'sense:dighri']}
+- {id: apc.home.story, kind: story}
+sentences:
+- id: s.home.1
+  node: apc.home.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين سامي؟
+      tokens: [{surface: وين, sense: wen}, {surface: سامي, sense: sami}]
+      reverse: وين سامي
+    apc-Latn/arabizi:
+      text: wen Sami?
+      tokens: [{surface: wen, sense: wen}, {surface: Sami, sense: sami}]
+      reverse: (wen|wein|wayn) Sami
+  translations:
+    en: |-
+      Where is Sami?
+      Where's Sami?
+- id: s.home.2
+  node: apc.home.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين البيت؟
+      tokens: [{surface: وين, sense: wen}, {surface: البيت, sense: bet, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: وين البيت
+    apc-Latn/arabizi:
+      text: wen el bet?
+      tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: bet, sense: bet}]
+      reverse: (wen|wein|wayn) (el|l|il) (bet|beit|bayt)
+  translations:
+    en: |-
+      Where is the house?
+      Where's the house?
+- id: s.home.3
+  node: apc.home.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي هون.
+      tokens: [{surface: سامي, sense: sami}, {surface: هون, sense: hon}]
+      reverse: سامي هون
+    apc-Latn/arabizi:
+      text: Sami hon.
+      tokens: [{surface: Sami, sense: sami}, {surface: hon, sense: hon}]
+      reverse: Sami (hon|houn|hone)
+  translations:
+    en: |-
+      Sami is here.
+      Sami's here.
+- id: s.home.4
+  node: apc.home.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا هونيك.
+      tokens: [{surface: مايا, sense: maya}, {surface: هونيك, sense: honik}]
+      reverse: مايا هونيك
+    apc-Latn/arabizi:
+      text: Maya honik.
+      tokens: [{surface: Maya, sense: maya}, {surface: honik, sense: honik}]
+      reverse: Maya (honik|hounik|honek)
+  translations:
+    en: |-
+      Maya is (there|over there).
+      Maya's (there|over there).
+- id: s.home.5
+  node: apc.home.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين بيتك؟
+      tokens: [{surface: وين, sense: wen}, {surface: بيتك, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: وين بيتك
+    apc-Latn/arabizi:
+      text: wen betak?
+      tokens: [{surface: wen, sense: wen}, {surface: betak, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (wen|wein|wayn) (betak|beitak|baytak)
+  translations:
+    en: |-
+      Where is your (house|home)?
+      Where's your (house|home)?
+      Where do you live?
+- id: s.home.6
+  node: apc.home.city
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيروت حلوة.
+      tokens: [{surface: بيروت, sense: beirut}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
+      reverse: بيروت حلوة
+    apc-Latn/arabizi:
+      text: Beirut 7elwe.
+      tokens: [{surface: Beirut, sense: beirut}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      reverse: (Beirut|Bayrut|Beyrouth) (7elwe|7ilwe|helwe|7elwi)
+  translations:
+    en: |-
+      Beirut is (beautiful|lovely|pretty|nice).
+      Beirut's (beautiful|lovely|pretty|nice).
+- id: s.home.7
+  node: apc.home.city
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا ببيروت.
+      tokens: [{surface: أنا, sense: ana}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      reverse: '[أنا] ببيروت'
+    apc-Latn/arabizi:
+      text: ana b Beirut.
+      tokens: [{surface: ana, sense: ana}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      reverse: '[ana] (b|bi) (Beirut|Bayrut|Beyrouth)'
+  translations:
+    en: I('m| am) in Beirut.
+- id: s.home.8
+  node: apc.home.city
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لبنان حلو.
+      tokens: [{surface: لبنان, sense: lebnen}, {surface: حلو, sense: 7elo}]
+      reverse: لبنان حلو
+    apc-Latn/arabizi:
+      text: Lebnen 7elo.
+      tokens: [{surface: Lebnen, sense: lebnen}, {surface: 7elo, sense: 7elo}]
+      reverse: (Lebnen|Lebnan|Libnan) (7elo|7ilo|helo|7elu)
+  translations:
+    en: |-
+      Lebanon is (beautiful|lovely|nice).
+      Lebanon's (beautiful|lovely|nice).
+- id: s.home.9
+  node: apc.home.city
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا من لبنان.
+      tokens: [{surface: أنا, sense: ana}, {surface: من, sense: men}, {surface: لبنان, sense: lebnen}]
+      reverse: '[أنا] من لبنان'
+    apc-Latn/arabizi:
+      text: ana men Lebnen.
+      tokens: [{surface: ana, sense: ana}, {surface: men, sense: men}, {surface: Lebnen, sense: lebnen}]
+      reverse: '[ana] (men|min|mn) (Lebnen|Lebnan|Libnan)'
+  translations:
+    en: I('m| am) from Lebanon.
+- id: s.home.10
+  node: apc.home.city
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إنت من وين؟
+      tokens: [{surface: إنت, sense: enta}, {surface: من, sense: men}, {surface: وين, sense: wen}]
+      reverse: '[إنت] من وين'
+    apc-Latn/arabizi:
+      text: enta men wen?
+      tokens: [{surface: enta, sense: enta}, {surface: men, sense: men}, {surface: wen, sense: wen}]
+      reverse: '[(enta|inta)] (men|min|mn) (wen|wein|wayn)'
+  translations:
+    en: Where are you from?
+- id: s.home.11
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في قهوة؟
+      tokens: [{surface: في, sense: fi}, {surface: قهوة, sense: ahwe}]
+      reverse: في قهوة
+    apc-Latn/arabizi:
+      text: fi ahwe?
+      tokens: [{surface: fi, sense: fi}, {surface: ahwe, sense: ahwe}]
+      reverse: (fi|fe) (ahwe|2ahwe)
+  translations:
+    en: |-
+      Is there (any|some) coffee?
+      Is there coffee?
+- id: s.home.12
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين غرفتي؟
+      tokens: [{surface: وين, sense: wen}, {surface: غرفتي, sense: ghorfe, morphs: [{surface: غرفت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: وين غرفتي
+    apc-Latn/arabizi:
+      text: wen ghorfti?
+      tokens: [{surface: wen, sense: wen}, {surface: ghorfti, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (wen|wein|wayn) (ghorfti|ghorfte|ghorfeti|ghorfete|8orfti|8orfte)
+  translations:
+    en: |-
+      Where is my room?
+      Where's my room?
+- id: s.home.13
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي بالمطبخ.
+      tokens: [{surface: سامي, sense: sami}, {surface: بالمطبخ, sense: matbakh, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مطبخ, kc: 'sense:matbakh'}]}]
+      reverse: سامي بالمطبخ
+    apc-Latn/arabizi:
+      text: Sami bel matbakh.
+      tokens: [{surface: Sami, sense: sami}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: matbakh, sense: matbakh}]
+      reverse: Sami (bel|bil|b el) (matbakh|matba5)
+  translations:
+    en: |-
+      Sami is in the kitchen.
+      Sami's in the kitchen.
+- id: s.home.14
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا بالصالون.
+      tokens: [{surface: تيتا, sense: teta}, {surface: بالصالون, sense: salon, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صالون, kc: 'sense:salon'}]}]
+      reverse: تيتا بالصالون
+    apc-Latn/arabizi:
+      text: teta bel salon.
+      tokens: [{surface: teta, sense: teta}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: salon, sense: salon}]
+      reverse: (teta|tayta) (bel|bil|b el) (salon|salone)
+  translations:
+    en: |-
+      (Grandma|Granny) is in the (living room|lounge|sitting room).
+      (Grandma|Granny)'s in the (living room|lounge|sitting room).
+- id: s.home.15
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين الحمّام؟
+      tokens: [{surface: وين, sense: wen}, {surface: الحمّام, sense: 7ammem, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حمّام, kc: 'sense:7ammem'}]}]
+      reverse: وين الحمّام
+    apc-Latn/arabizi:
+      text: wen el 7ammem?
+      tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: 7ammem, sense: 7ammem}]
+      reverse: (wen|wein|wayn) (el|l|il) (7ammem|7ammam|hammam|7amam)
+  translations:
+    en: |-
+      Where is the (bathroom|toilet|restroom)?
+      Where's the (bathroom|toilet|restroom)?
+- id: s.home.16
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما في خبز.
+      tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: خبز, sense: khebz}]
+      reverse: ما في خبز
+    apc-Latn/arabizi:
+      text: ma fi khebz.
+      tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: khebz, sense: khebz}]
+      reverse: ma (fi|fe) (khebz|5ebz|khibz|khebez)
+  translations:
+    en: |-
+      There's no bread.
+      There is no bread.
+      There isn't any bread.
+      We (don't|do not) have [any] bread.
+- id: s.home.17
+  node: apc.home.places
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيّي بالشغل.
+      tokens: [{surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بالشغل, sense: shoghl, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+              kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: بيّي بالشغل
+    apc-Latn/arabizi:
+      text: bayyi bel shoghl.
+      tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
+              kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (bayyi|bayye|bayi|baye|beyyi|beyye) (bel|bil|b el) (shoghl|shoghol|sho8l|shughl)
+  translations:
+    en: |-
+      My (dad|father) is at work.
+      My (dad|father)'s at work.
+- id: s.home.18
+  node: apc.home.places
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إختي بالمدرسة.
+      tokens: [{surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بالمدرسة, sense: madrase, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+              kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
+      reverse: إختي بالمدرسة
+    apc-Latn/arabizi:
+      text: ekhti bel madrase.
+      tokens: [{surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
+              kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+      reverse: (ekhti|ekhte|ikhti|ikhte|e5ti|e5te) (bel|bil|b el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      My sister is at school.
+      My sister's at school.
+- id: s.home.19
+  node: apc.home.places
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في دكّانة هون؟
+      tokens: [{surface: في, sense: fi}, {surface: دكّانة, sense: dekkene}, {surface: هون, sense: hon}]
+      reverse: في دكّانة هون
+    apc-Latn/arabizi:
+      text: fi dekkene hon?
+      tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene}, {surface: hon, sense: hon}]
+      reverse: (fi|fe) (dekkene|dekkane|dikkene|dekene) (hon|houn|hone)
+  translations:
+    en: Is there a (shop|corner shop|grocery store|store) (here|around here)?
+- id: s.home.20
+  node: apc.home.places
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الدكّانة بهيدا الشارع.
+      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: بهيدا, sense: hayda, morphs: [{surface: ب, kc: 'sense:b'},
+            {surface: هيدا, kc: 'sense:hayda'}]}, {surface: الشارع, sense: shere3, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شارع, kc: 'sense:shere3'}]}]
+      reverse: الدكّانة بهيدا الشارع
+    apc-Latn/arabizi:
+      text: el dekkene b hayda el shere3.
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: b, sense: b}, {surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: shere3, sense: shere3}]
+      reverse: (el|l|il) (dekkene|dekkane|dikkene) (b|bi) (hayda|haida|hyda) (el|l|il) (shere3|sheri3|share3)
+  translations:
+    en: |-
+      The (shop|corner shop|store) is (on|in) this street.
+      The (shop|corner shop|store)'s (on|in) this street.
+- id: s.home.21
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البيت قريب.
+      tokens: [{surface: البيت, sense: bet, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}, {surface: قريب, sense: 2arib}]
+      reverse: البيت قريب
+    apc-Latn/arabizi:
+      text: el bet 2arib.
+      tokens: [{surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 2arib, sense: 2arib}]
+      reverse: (el|l|il) (bet|beit|bayt) (2arib|arib|2rib)
+  translations:
+    en: The house is (close|near|nearby|close by).
+- id: s.home.22
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المدرسة بعيدة؟
+      tokens: [{surface: المدرسة, sense: madrase, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
+      reverse: المدرسة بعيدة
+    apc-Latn/arabizi:
+      text: el madrase b3ide?
+      tokens: [{surface: el, sense: el}, {surface: madrase, sense: madrase}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
+      reverse: (el|l|il) (madrase|madrasi|madrasse) (b3ide|ba3ide|b3eede)
+  translations:
+    en: |-
+      Is the school far?
+      Is the school far away?
+      Is it far to the school?
+- id: s.home.23
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، مش بعيدة.
+      tokens: [{surface: لأ, sense: la2}, {surface: مش, sense: mish}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
+      reverse: (لأ|لا) مش بعيدة
+    apc-Latn/arabizi:
+      text: la2, mish b3ide.
+      tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
+      reverse: (la2|la) (mish|mesh|mush) (b3ide|ba3ide|b3eede)
+  translations:
+    en: |-
+      No, it('s| is) not far.
+      No, it isn't far.
+- id: s.home.24
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيتنا قريب.
+      tokens: [{surface: بيتنا, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: قريب, sense: 2arib}]
+      reverse: بيتنا قريب
+    apc-Latn/arabizi:
+      text: betna 2arib.
+      tokens: [{surface: betna, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: 2arib, sense: 2arib}]
+      reverse: (betna|beitna|baytna) (2arib|arib|2rib)
+  translations:
+    en: Our (house|home) is (close|near|nearby|close by).
+- id: s.home.25
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في غرفة فوق؟
+      tokens: [{surface: في, sense: fi}, {surface: غرفة, sense: ghorfe}, {surface: فوق, sense: fo2}]
+      reverse: في غرفة فوق
+    apc-Latn/arabizi:
+      text: fi ghorfe fo2?
+      tokens: [{surface: fi, sense: fi}, {surface: ghorfe, sense: ghorfe}, {surface: fo2, sense: fo2}]
+      reverse: (fi|fe) (ghorfe|ghorfi|8orfe|ghurfe) (fo2|fou2)
+  translations:
+    en: Is there a room upstairs?
+- id: s.home.26
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المطبخ تحت.
+      tokens: [{surface: المطبخ, sense: matbakh, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مطبخ, kc: 'sense:matbakh'}]}, {surface: تحت, sense: ta7t}]
+      reverse: المطبخ تحت
+    apc-Latn/arabizi:
+      text: el matbakh ta7t.
+      tokens: [{surface: el, sense: el}, {surface: matbakh, sense: matbakh}, {surface: ta7t, sense: ta7t}]
+      reverse: (el|l|il) (matbakh|matba5) (ta7t|taht)
+  translations:
+    en: |-
+      The kitchen is downstairs.
+      The kitchen's downstairs.
+- id: s.home.27
+  node: apc.home.near-far
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الدكّانة حدّ البيت.
+      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: حدّ, sense: 7add}, {surface: البيت, sense: bet, morphs: [{
+              surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: الدكّانة حدّ البيت
+    apc-Latn/arabizi:
+      text: el dekkene 7add el bet.
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: bet, sense: bet}]
+      reverse: (el|l|il) (dekkene|dekkane|dikkene|dekene) (7add|7ad|hadd) (el|l|il) (bet|beit|bayt)
+  translations:
+    en: |-
+      The (shop|corner shop|store) is next to the house.
+      The (shop|corner shop|store)'s next to the house.
+- id: s.home.28
+  node: apc.home.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: يلا، عالبيت!
+      tokens: [{surface: يلا, sense: yalla}, {surface: عالبيت, sense: bet, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: (يلا|يلّا) (عالبيت|ع البيت|على البيت)
+    apc-Latn/arabizi:
+      text: yalla, 3al bet!
+      tokens: [{surface: yalla, sense: yalla}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (yalla|yala) (3al|3a l|3a el) (bet|beit|bayt)
+  translations:
+    en: |-
+      Come on, [let's go] home!
+      OK, [let's go] home!
+      Right, home!
+- id: s.home.29
+  node: apc.home.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الدكّانة عاليمين.
+      tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: عاليمين, sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'},
+            {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
+      reverse: الدكّانة (عاليمين|ع اليمين|على اليمين)
+    apc-Latn/arabizi:
+      text: el dekkene 3al yamin.
+      tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
+      reverse: (el|l|il) (dekkene|dekkane|dikkene|dekene) (3al|3a l|3a el) (yamin|ymin|yamine)
+  translations:
+    en: |-
+      The (shop|corner shop|store) is on the right.
+      The (shop|corner shop|store)'s on the right.
+- id: s.home.30
+  node: apc.home.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الحمّام ع شمالك.
+      tokens: [{surface: الحمّام, sense: 7ammem, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حمّام, kc: 'sense:7ammem'}]}, {surface: ع, sense: 3a}, {surface: شمالك, sense: shmel, morphs: [{surface: شمال,
+              kc: 'sense:shmel'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: الحمّام (ع|على) شمالك
+    apc-Latn/arabizi:
+      text: el 7ammem 3a shmelak.
+      tokens: [{surface: el, sense: el}, {surface: 7ammem, sense: 7ammem}, {surface: 3a, sense: 3a}, {surface: shmelak, sense: shmel, morphs: [{surface: shmel, kc: 'sense:shmel'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (el|l|il) (7ammem|7ammam|hammam|7amam) (3a|3ala) (shmelak|shmalak)
+  translations:
+    en: |-
+      The (bathroom|toilet) is on your left.
+      The (bathroom|toilet)'s on your left.
+- id: s.home.31
+  node: apc.home.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: دغري؟
+      tokens: [{surface: دغري, sense: dighri}]
+      reverse: دغري
+    apc-Latn/arabizi:
+      text: dighri?
+      tokens: [{surface: dighri, sense: dighri}]
+      reverse: (dighri|deghri|doghri|dughri)
+  translations:
+    en: Straight (ahead|on)?
+- id: s.home.32
+  node: apc.home.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إيه، دغري، والبيت ع يمينك.
+      tokens: [{surface: إيه, sense: eh}, {surface: دغري, sense: dighri}, {surface: والبيت, sense: bet, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]},
+        {surface: ع, sense: 3a}, {surface: يمينك, sense: yamin, morphs: [{surface: يمين, kc: 'sense:yamin'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: إيه دغري (والبيت|و البيت) (ع|على) يمينك
+    apc-Latn/arabizi:
+      text: eh, dighri, w el bet 3a yaminak.
+      tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 3a, sense: 3a}, {surface: yaminak, sense: yamin,
+          morphs: [{surface: yamin, kc: 'sense:yamin'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (eh|ee) (dighri|deghri) (w|wa) (el|l|il) (bet|beit|bayt) (3a|3ala) (yaminak|yminak|yamineak)
+  translations:
+    en: |-
+      Yes, straight (ahead|on), and the house is on your right.
+      Yes, straight (ahead|on), and the house's on your right.
+stories:
+- id: apc.story.new-house
+  node: apc.home.story
+  title: {en: Maya's house}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، وين بيتِك؟
+          tokens: [{surface: مايا, sense: maya}, {surface: وين, sense: wen}, {surface: بيتِك, sense: bet, morphs: [{surface: بيتِ, kc: 'sense:bet'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: Maya, wen betik?
+          tokens: [{surface: Maya, sense: maya}, {surface: wen, sense: wen}, {surface: betik, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'Maya, where''s your house?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بيتي بْبيروت، حَدّ المَدْرَسِة.
+          tokens: [{surface: بيتي, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بْبيروت, sense: beirut, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت,
+                  kc: 'sense:beirut'}]}, {surface: حَدّ, sense: 7add}, {surface: المَدْرَسِة, sense: madrase, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}]
+        apc-Latn/arabizi:
+          text: beti b Beirut, 7add el madrase.
+          tokens: [{surface: beti, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}, {surface: 7add, sense: 7add},
+            {surface: el, sense: el}, {surface: madrase, sense: madrase}]
+      translations: {en: 'My house is in Beirut, next to the school.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: قَريب مِن الشُّغُل؟
+          tokens: [{surface: قَريب, sense: 2arib}, {surface: مِن, sense: men}, {surface: الشُّغُل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شُّغُل, kc: 'sense:shoghl'}]}]
+        apc-Latn/arabizi:
+          text: 2arib men el shoghl?
+          tokens: [{surface: 2arib, sense: 2arib}, {surface: men, sense: men}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}]
+      translations: {en: 'Is it close to work?'}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:b3id
+      distractors: ['sense:2arib', 'sense:fo2']
+      forms:
+        apc-Arab/standard:
+          text: إيه، مِش بْعيد.
+          tokens: [{surface: إيه, sense: eh}, {surface: مِش, sense: mish}, {surface: بْعيد, sense: b3id}]
+        apc-Latn/arabizi:
+          text: eh, mish b3id.
+          tokens: [{surface: eh, sense: eh}, {surface: mish, sense: mish}, {surface: b3id, sense: b3id}]
+      translations: {en: 'Yes, it''s not far.'}
+  - choose:
+      prompt:
+        en: Where is Maya's house?
+      options: [{en: 'In Beirut, next to the school'}, {en: Next to the sea}, {en: Far from work}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: في دِكّانِة هون؟
+          tokens: [{surface: في, sense: fi}, {surface: دِكّانِة, sense: dekkene}, {surface: هون, sense: hon}]
+        apc-Latn/arabizi:
+          text: fi dekkene hon?
+          tokens: [{surface: fi, sense: fi}, {surface: dekkene, sense: dekkene}, {surface: hon, sense: hon}]
+      translations: {en: 'Is there a shop here?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: إيه، دْغْري، والدِّكّانِة عَ يَمينَك.
+          tokens: [{surface: إيه, sense: eh}, {surface: دْغْري, sense: dighri}, {surface: والدِّكّانِة, sense: dekkene, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: دِّكّانِة,
+                  kc: 'sense:dekkene'}]}, {surface: عَ, sense: 3a}, {surface: يَمينَك, sense: yamin, morphs: [{surface: يَمينَ, kc: 'sense:yamin'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+        apc-Latn/arabizi:
+          text: eh, dighri, w el dekkene 3a yaminak.
+          tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 3a, sense: 3a}, {surface: yaminak,
+              sense: yamin, morphs: [{surface: yamin, kc: 'sense:yamin'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      translations: {en: 'Yes, straight ahead, and the shop is on your right.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: ووين غُرْفْتِك؟
+          tokens: [{surface: ووين, sense: wen, morphs: [{surface: و, kc: 'sense:w'}, {surface: وين, kc: 'sense:wen'}]}, {surface: غُرْفْتِك, sense: ghorfe, morphs: [{surface: غُرْفْتِ, kc: 'sense:ghorfe'},
+                {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: w wen ghorftik?
+          tokens: [{surface: w, sense: w}, {surface: wen, sense: wen}, {surface: ghorftik, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'And where''s your room?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: غُرْفْتي فوق، والمَطْبَخ تَحْت.
+          tokens: [{surface: غُرْفْتي, sense: ghorfe, morphs: [{surface: غُرْفْت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: فوق, sense: fo2}, {surface: والمَطْبَخ, sense: matbakh,
+              morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: مَطْبَخ, kc: 'sense:matbakh'}]}, {surface: تَحْت, sense: ta7t}]
+        apc-Latn/arabizi:
+          text: ghorfti fo2, w el matbakh ta7t.
+          tokens: [{surface: ghorfti, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: fo2, sense: fo2}, {surface: w, sense: w}, {surface: el,
+              sense: el}, {surface: matbakh, sense: matbakh}, {surface: ta7t, sense: ta7t}]
+      translations: {en: 'My room is upstairs, and the kitchen is downstairs.'}
+  - choose:
+      prompt:
+        en: Where is the kitchen?
+      options: [{en: Downstairs}, {en: Upstairs}, {en: Next to the shop}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وين الحَمّام؟
+          tokens: [{surface: وين, sense: wen}, {surface: الحَمّام, sense: 7ammem, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حَمّام, kc: 'sense:7ammem'}]}]
+        apc-Latn/arabizi:
+          text: wen el 7ammem?
+          tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: 7ammem, sense: 7ammem}]
+      translations: {en: 'Where''s the bathroom?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: عَ شْمالَك!
+          tokens: [{surface: عَ, sense: 3a}, {surface: شْمالَك, sense: shmel, morphs: [{surface: شْمالَ, kc: 'sense:shmel'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+        apc-Latn/arabizi:
+          text: 3a shmelak!
+          tokens: [{surface: 3a, sense: 3a}, {surface: shmelak, sense: shmel, morphs: [{surface: shmel, kc: 'sense:shmel'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      translations: {en: On your left!}

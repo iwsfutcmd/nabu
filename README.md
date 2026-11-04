@@ -11,8 +11,9 @@ shortcut can.
 
 ## Status: Phase 10 (offline and mobile) on top of Phases 0–9
 
-The gameplan's ten phases are built. What comes next, and what needs people rather than code, is in
-[docs/next-steps.md](docs/next-steps.md).
+The gameplan's ten phases are built, and the four fixture courses have grown to ten units each
+(about 300 sentences, 55–60 lessons and 10 stories per course; [ADR 0050](docs/adr/0050-ten-unit-courses.md)).
+What comes next, and what needs people rather than code, is in [docs/next-steps.md](docs/next-steps.md).
 
 | Path | What |
 |---|---|
@@ -28,7 +29,7 @@ The gameplan's ten phases are built. What comes next, and what needs people rath
 | `apps/mobile` | Capacitor 8 shell for Android and iOS around the web build, every course inside; native practice reminders; CI builds the Android debug APK (`apps/mobile/README.md`) |
 | `apps/api` | Hono server: optional accounts, the learner event log (Postgres via Drizzle, or PGlite with no setup), idempotent uploads, sync by cursor, server projections by the same core replay; profiles (UTS #39 usernames), opt-in leagues with an idempotent weekly rollover, opt-in Web Push reminders (RFC 8291/8292 on node:crypto); the LLM gateway (Ollama, OpenAI-compatible or Anthropic, from the environment; schema-validated, cached, budgeted, with provenance), the judge behind per-language gates, Explain My Answer, roleplay, the review queue; speech scoring through the speech service; the game state projected from the log with each event's receipt time (`/v1/game`), which devices check against their own; reminders to the Android and iOS apps through FCM and APNs |
 | `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
-| `courses/` | Fixture courses, one unit each, with their audio (`audio/`, clips and index): `fa` (ZWNJ plurals, ezafe), `yue` (Jyutping ruby, particles), `uz` (Latin + Cyrillic, script-convert node), `apc` (Arabic script or Arabizi, script-convert node); one story each (the apc one vocalized). LLM-drafted, awaiting review |
+| `courses/` | Fixture courses, ten units each (A1 to early A2), with their audio (`audio/`, clips and index): `fa` (ZWNJ plurals, ezafe, می‌ present, subjunctive, past), `yue` (Jyutping ruby, particles, classifiers, aspect), `uz` (Latin + Cyrillic, script-convert node, suffix morphology), `apc` (Arabic script or Arabizi, script-convert node, the b- present); a story per unit (the apc ones vocalized) and six roleplay scenarios each. LLM-drafted, awaiting review (`courses/REVIEW.md`) |
 | `prompts/`, `evals/` | Prompt templates (referenced by hash); the judge's golden sets (193 items: adversarial near misses and paraphrases per orthography) and gates (`pnpm --filter @nabu/api evals`); tone sets (`pnpm --filter @nabu/core tone-eval`; the committed one is synthetic) |
 | `conformance/` | 340 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText, glossing), run in TS and Python |
 

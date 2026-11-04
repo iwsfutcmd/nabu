@@ -1,0 +1,693 @@
+# Unit 10 (uz): the weather and the seasons (havo qanday?, yomgʻir yogʻyapti, yozda), and travel plans: trains and
+# tickets, a hotel, -moqchi for plans, and talking about a trip afterwards (qanday oʻtdi?).
+# Drafted by an LLM (provenance llm:..., status draft): every sentence awaits review by a native speaker.
+id: travel
+title: {en: Weather and travel}
+cefr: A2
+kcs:
+- {id: 'sense:havo', gloss: {en: weather; air}, forms: {uz-Latn/standard: [havo], uz-Cyrl/standard: [ҳаво]}}
+- {id: 'sense:qanday', gloss: {en: how; what kind of}, forms: {uz-Latn/standard: [qanday], uz-Cyrl/standard: [қандай]}, notes: {en: 'Havo qanday? What is the weather like?'}}
+- {id: 'sense:yomgir', gloss: {en: rain}, forms: {uz-Latn/standard: [yomgʻir], uz-Cyrl/standard: [ёмғир]}}
+- {id: 'sense:yogmoq', gloss: {en: to fall (of rain or snow)}, forms: {uz-Latn/standard: [yogʻyapti, yogʻadi], uz-Cyrl/standard: [ёғяпти, ёғади]}, notes: {en: 'Yomgʻir yogʻyapti: it is raining.'}}
+- {id: 'sense:qor', gloss: {en: snow}, forms: {uz-Latn/standard: [qor], uz-Cyrl/standard: [қор]}}
+- {id: 'sense:yoz', gloss: {en: summer}, forms: {uz-Latn/standard: [yoz, yozda], uz-Cyrl/standard: [ёз, ёзда]}, notes: {en: 'Yozda: in summer.'}}
+- {id: 'sense:qish', gloss: {en: winter}, forms: {uz-Latn/standard: [qishda], uz-Cyrl/standard: [қишда]}}
+- {id: 'sense:bahor', gloss: {en: spring}, forms: {uz-Latn/standard: [bahor, bahorda], uz-Cyrl/standard: [баҳор, баҳорда]}}
+- {id: 'sense:kuz', gloss: {en: 'autumn, fall'}, forms: {uz-Latn/standard: [kuzda], uz-Cyrl/standard: [кузда]}}
+- {id: 'sense:fasl', gloss: {en: season}, forms: {uz-Latn/standard: [fasl], uz-Cyrl/standard: [фасл]}}
+- {id: 'sense:qaysi', gloss: {en: which}, forms: {uz-Latn/standard: [qaysi], uz-Cyrl/standard: [қайси]}}
+- {id: 'sense:sayohat', gloss: {en: 'journey, trip; travel'}, forms: {uz-Latn/standard: [sayohat], uz-Cyrl/standard: [саёҳат]}, notes: {en: 'Sayohat qilmoq: to travel.'}}
+- {id: 'sense:buxoro', gloss: {en: Bukhara}, forms: {uz-Latn/standard: [Buxoroga, Buxoroda], uz-Cyrl/standard: [Бухорога, Бухорода]}}
+- {id: 'sense:kelasi', gloss: {en: next}, forms: {uz-Latn/standard: [kelasi], uz-Cyrl/standard: [келаси]}, notes: {en: 'Kelasi hafta: next week.'}}
+- {id: 'sense:xiva', gloss: {en: Khiva}, forms: {uz-Latn/standard: [Xivaga], uz-Cyrl/standard: [Хивага]}}
+- {id: 'sense:poyezd', gloss: {en: train}, forms: {uz-Latn/standard: [poyezd, poyezdda, poyezddami], uz-Cyrl/standard: [поезд, поездда, поезддами]}}
+- {id: 'sense:bilet', gloss: {en: ticket}, forms: {uz-Latn/standard: [bilet, biletingiz], uz-Cyrl/standard: [билет, билетингиз]}}
+- {id: 'sense:samolyot', gloss: {en: 'plane, aeroplane'}, forms: {uz-Latn/standard: [samolyotda], uz-Cyrl/standard: [самолётда]}}
+- {id: 'sense:mehmonxona', gloss: {en: hotel}, forms: {uz-Latn/standard: [mehmonxona], uz-Cyrl/standard: [меҳмонхона]}}
+- {id: 'sense:otmoq', gloss: {en: 'to pass, to go (of time or a trip)'}, forms: {uz-Latn/standard: [oʻtdi], uz-Cyrl/standard: [ўтди]}, notes: {en: 'Sayohat qanday oʻtdi? How did the trip go?'}}
+- {id: 'sense:rasm', gloss: {en: 'picture, photo'}, forms: {uz-Latn/standard: [rasm], uz-Cyrl/standard: [расм]}, notes: {en: 'Rasm olmoq: to take a photo.'}}
+- {id: 'sense:yol', gloss: {en: 'road, way'}, forms: {uz-Latn/standard: [yoʻl], uz-Cyrl/standard: [йўл]}}
+- {id: 'sense:oq', gloss: {en: white}, forms: {uz-Latn/standard: [oq], uz-Cyrl/standard: [оқ]}, notes: {en: Oq yoʻl! Have a good trip! (lit. a white road)}}
+nodes:
+- {id: uz.weather.today, kind: lesson, introduces: ['sense:havo', 'sense:qanday', 'sense:yomgir', 'sense:yogmoq', 'sense:qor']}
+- {id: uz.weather.seasons, kind: lesson, introduces: ['sense:yoz', 'sense:qish', 'sense:bahor', 'sense:kuz', 'sense:fasl', 'sense:qaysi']}
+- {id: uz.travel.plans, kind: lesson, introduces: ['sense:sayohat', 'sense:buxoro', 'sense:kelasi', 'sense:xiva']}
+- {id: uz.travel.tickets, kind: lesson, introduces: ['sense:poyezd', 'sense:bilet', 'sense:samolyot']}
+- {id: uz.travel.hotel, kind: lesson, introduces: ['sense:mehmonxona']}
+- {id: uz.travel.back, kind: lesson, introduces: ['sense:otmoq', 'sense:rasm', 'sense:yol', 'sense:oq']}
+- {id: uz.travel.story, kind: story}
+sentences:
+- id: s.travel.1
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Bugun havo issiq.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: havo, sense: havo}, {surface: issiq, sense: issiq}]
+      reverse: |-
+        Bugun havo issiq
+        Havo bugun issiq
+    uz-Cyrl/standard:
+      text: Бугун ҳаво иссиқ.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: ҳаво, sense: havo}, {surface: иссиқ, sense: issiq}]
+      reverse: |-
+        Бугун ҳаво иссиқ
+        Ҳаво бугун иссиқ
+  translations:
+    en: |-
+      It('s| is) hot today.
+      The weather is hot today.
+      Today it('s| is) hot.
+- id: s.travel.2
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Bugun havo qanday?
+      tokens: [{surface: Bugun, sense: bugun}, {surface: havo, sense: havo}, {surface: qanday, sense: qanday}]
+      reverse: |-
+        Bugun havo qanday
+        Havo bugun qanday
+    uz-Cyrl/standard:
+      text: Бугун ҳаво қандай?
+      tokens: [{surface: Бугун, sense: bugun}, {surface: ҳаво, sense: havo}, {surface: қандай, sense: qanday}]
+      reverse: |-
+        Бугун ҳаво қандай
+        Ҳаво бугун қандай
+  translations:
+    en: |-
+      What('s| is) the weather like today?
+      How('s| is) the weather today?
+- id: s.travel.3
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Bugun havo sovuq.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: havo, sense: havo}, {surface: sovuq, sense: sovuq}]
+      reverse: |-
+        Bugun havo sovuq
+        Havo bugun sovuq
+    uz-Cyrl/standard:
+      text: Бугун ҳаво совуқ.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: ҳаво, sense: havo}, {surface: совуқ, sense: sovuq}]
+      reverse: |-
+        Бугун ҳаво совуқ
+        Ҳаво бугун совуқ
+  translations:
+    en: |-
+      It('s| is) cold today.
+      The weather is cold today.
+      Today it('s| is) cold.
+- id: s.travel.4
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Bugun yomgʻir yoʻq.
+      tokens: [{surface: Bugun, sense: bugun}, {surface: yomgʻir, sense: yomgir}, {surface: yoʻq, sense: yoq}]
+      reverse: Bugun yomgʻir yoʻq
+    uz-Cyrl/standard:
+      text: Бугун ёмғир йўқ.
+      tokens: [{surface: Бугун, sense: bugun}, {surface: ёмғир, sense: yomgir}, {surface: йўқ, sense: yoq}]
+      reverse: Бугун ёмғир йўқ
+  translations:
+    en: |-
+      There('s| is) no rain today.
+      It('s not| isn't| is not) raining today.
+- id: s.travel.5
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Yomgʻir yogʻyapti.
+      tokens: [{surface: Yomgʻir, sense: yomgir}, {surface: yogʻyapti, sense: yogmoq, morphs: [{surface: yogʻ, kc: 'sense:yogmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
+      reverse: Yomgʻir yogʻyapti
+    uz-Cyrl/standard:
+      text: Ёмғир ёғяпти.
+      tokens: [{surface: Ёмғир, sense: yomgir}, {surface: ёғяпти, sense: yogmoq, morphs: [{surface: ёғ, kc: 'sense:yogmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
+      reverse: Ёмғир ёғяпти
+  translations:
+    en: It('s| is) raining.
+- id: s.travel.6
+  node: uz.weather.today
+  forms:
+    uz-Latn/standard:
+      text: Qor yogʻyapti.
+      tokens: [{surface: Qor, sense: qor}, {surface: yogʻyapti, sense: yogmoq, morphs: [{surface: yogʻ, kc: 'sense:yogmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
+      reverse: Qor yogʻyapti
+    uz-Cyrl/standard:
+      text: Қор ёғяпти.
+      tokens: [{surface: Қор, sense: qor}, {surface: ёғяпти, sense: yogmoq, morphs: [{surface: ёғ, kc: 'sense:yogmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
+      reverse: Қор ёғяпти
+  translations:
+    en: It('s| is) snowing.
+- id: s.travel.7
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Yozda havo juda issiq.
+      tokens: [{surface: Yozda, sense: yoz, morphs: [{surface: Yoz, kc: 'sense:yoz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: juda, sense: juda}, {surface: issiq, sense: issiq}]
+      reverse: Yozda havo juda issiq
+    uz-Cyrl/standard:
+      text: Ёзда ҳаво жуда иссиқ.
+      tokens: [{surface: Ёзда, sense: yoz, morphs: [{surface: Ёз, kc: 'sense:yoz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: жуда, sense: juda}, {surface: иссиқ, sense: issiq}]
+      reverse: Ёзда ҳаво жуда иссиқ
+  translations:
+    en: |-
+      It('s| is) very hot in (summer|the summer).
+      In (summer|the summer) it('s| is) very hot.
+      The weather is very hot in (summer|the summer).
+- id: s.travel.8
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Qishda qor yogʻadi.
+      tokens: [{surface: Qishda, sense: qish, morphs: [{surface: Qish, kc: 'sense:qish'}, {surface: da, kc: 'form:loc-da'}]}, {surface: qor, sense: qor}, {surface: yogʻadi, sense: yogmoq, morphs: [{surface: yogʻ, kc: 'sense:yogmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      reverse: Qishda qor yogʻadi
+    uz-Cyrl/standard:
+      text: Қишда қор ёғади.
+      tokens: [{surface: Қишда, sense: qish, morphs: [{surface: Қиш, kc: 'sense:qish'}, {surface: да, kc: 'form:loc-da'}]}, {surface: қор, sense: qor}, {surface: ёғади, sense: yogmoq, morphs: [{surface: ёғ, kc: 'sense:yogmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      reverse: Қишда қор ёғади
+  translations:
+    en: |-
+      It snows in (winter|the winter).
+      In (winter|the winter) it snows.
+- id: s.travel.9
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Bahorda havo yaxshi.
+      tokens: [{surface: Bahorda, sense: bahor, morphs: [{surface: Bahor, kc: 'sense:bahor'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: yaxshi, sense: yaxshi}]
+      reverse: Bahorda havo yaxshi
+    uz-Cyrl/standard:
+      text: Баҳорда ҳаво яхши.
+      tokens: [{surface: Баҳорда, sense: bahor, morphs: [{surface: Баҳор, kc: 'sense:bahor'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: яхши, sense: yaxshi}]
+      reverse: Баҳорда ҳаво яхши
+  translations:
+    en: |-
+      The weather is (good|nice) in (spring|the spring).
+      In (spring|the spring) the weather is (good|nice).
+- id: s.travel.10
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Kuzda uzum koʻp.
+      tokens: [{surface: Kuzda, sense: kuz, morphs: [{surface: Kuz, kc: 'sense:kuz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: uzum, sense: uzum}, {surface: koʻp, sense: kop}]
+      reverse: Kuzda uzum koʻp
+    uz-Cyrl/standard:
+      text: Кузда узум кўп.
+      tokens: [{surface: Кузда, sense: kuz, morphs: [{surface: Куз, kc: 'sense:kuz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: узум, sense: uzum}, {surface: кўп, sense: kop}]
+      reverse: Кузда узум кўп
+  translations:
+    en: There are (a lot of|lots of|plenty of) grapes in (autumn|the autumn|fall|the fall).
+- id: s.travel.11
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Bahor chiroyli fasl.
+      tokens: [{surface: Bahor, sense: bahor}, {surface: chiroyli, sense: chiroyli}, {surface: fasl, sense: fasl}]
+      reverse: Bahor chiroyli fasl
+    uz-Cyrl/standard:
+      text: Баҳор чиройли фасл.
+      tokens: [{surface: Баҳор, sense: bahor}, {surface: чиройли, sense: chiroyli}, {surface: фасл, sense: fasl}]
+      reverse: Баҳор чиройли фасл
+  translations:
+    en: Spring is a (beautiful|lovely|nice) season.
+- id: s.travel.12
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Sizga qaysi fasl yoqadi?
+      tokens: [{surface: Sizga, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: qaysi, sense: qaysi}, {surface: fasl, sense: fasl}, {surface: yoqadi, sense: yoqmoq, morphs: [{surface: yoq, kc: 'sense:yoqmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      reverse: Sizga qaysi fasl yoqadi
+    uz-Cyrl/standard:
+      text: Сизга қайси фасл ёқади?
+      tokens: [{surface: Сизга, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: қайси, sense: qaysi}, {surface: фасл, sense: fasl}, {surface: ёқади, sense: yoqmoq, morphs: [{surface: ёқ, kc: 'sense:yoqmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      reverse: Сизга қайси фасл ёқади
+  translations:
+    en: (Which|What) season do you like?
+- id: s.travel.13
+  node: uz.weather.seasons
+  forms:
+    uz-Latn/standard:
+      text: Menga yoz yoqadi.
+      tokens: [{surface: Menga, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: yoz, sense: yoz}, {surface: yoqadi, sense: yoqmoq, morphs: [{surface: yoq, kc: 'sense:yoqmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      reverse: Menga yoz yoqadi
+    uz-Cyrl/standard:
+      text: Менга ёз ёқади.
+      tokens: [{surface: Менга, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: ёз, sense: yoz}, {surface: ёқади, sense: yoqmoq, morphs: [{surface: ёқ, kc: 'sense:yoqmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      reverse: Менга ёз ёқади
+  translations:
+    en: I like summer.
+- id: s.travel.14
+  node: uz.travel.plans
+  forms:
+    uz-Latn/standard:
+      text: Men sayohat qilmoqchiman.
+      tokens: [{surface: Men, sense: men}, {surface: sayohat, sense: sayohat}, {surface: qilmoqchiman, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] sayohat qilmoqchiman'
+    uz-Cyrl/standard:
+      text: Мен саёҳат қилмоқчиман.
+      tokens: [{surface: Мен, sense: men}, {surface: саёҳат, sense: sayohat}, {surface: қилмоқчиман, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] саёҳат қилмоқчиман'
+  translations:
+    en: |-
+      I want to travel.
+      I('d| would) like to travel.
+      I('m| am) going to travel.
+- id: s.travel.15
+  node: uz.travel.plans
+  forms:
+    uz-Latn/standard:
+      text: Yozda Buxoroga bormoqchimiz.
+      tokens: [{surface: Yozda, sense: yoz, morphs: [{surface: Yoz, kc: 'sense:yoz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: Buxoroga, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: bormoqchimiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Yozda [biz] Buxoroga bormoqchimiz
+        [Biz] yozda Buxoroga bormoqchimiz
+    uz-Cyrl/standard:
+      text: Ёзда Бухорога бормоқчимиз.
+      tokens: [{surface: Ёзда, sense: yoz, morphs: [{surface: Ёз, kc: 'sense:yoz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: Бухорога, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бормоқчимиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      reverse: |-
+        Ёзда [биз] Бухорога бормоқчимиз
+        [Биз] ёзда Бухорога бормоқчимиз
+  translations:
+    en: |-
+      (We want|We('d| would) like|We('re| are) going) to go to Bukhara in (summer|the summer).
+      In (summer|the summer) (we want|we('d| would) like|we('re| are) going) to go to Bukhara.
+- id: s.travel.16
+  node: uz.travel.plans
+  forms:
+    uz-Latn/standard:
+      text: Kelasi hafta Samarqandga boraman.
+      tokens: [{surface: Kelasi, sense: kelasi}, {surface: hafta, sense: hafta}, {surface: Samarqandga, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Kelasi hafta [men] Samarqandga boraman
+        [Men] kelasi hafta Samarqandga boraman
+    uz-Cyrl/standard:
+      text: Келаси ҳафта Самарқандга бораман.
+      tokens: [{surface: Келаси, sense: kelasi}, {surface: ҳафта, sense: hafta}, {surface: Самарқандга, sense: samarqand, morphs: [{surface: Самарқанд, kc: 'sense:samarqand'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: |-
+        Келаси ҳафта [мен] Самарқандга бораман
+        [Мен] келаси ҳафта Самарқандга бораман
+  translations:
+    en: |-
+      I('ll| will| am going to) go to Samarkand next week.
+      Next week I('ll| will| am going to) go to Samarkand.
+      I('m| am) going to Samarkand next week.
+- id: s.travel.17
+  node: uz.travel.plans
+  forms:
+    uz-Latn/standard:
+      text: Xivaga ham bormoqchiman.
+      tokens: [{surface: Xivaga, sense: xiva, morphs: [{surface: Xiva, kc: 'sense:xiva'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: ham, sense: ham}, {surface: bormoqchiman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] Xivaga ham bormoqchiman'
+    uz-Cyrl/standard:
+      text: Хивага ҳам бормоқчиман.
+      tokens: [{surface: Хивага, sense: xiva, morphs: [{surface: Хива, kc: 'sense:xiva'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: ҳам, sense: ham}, {surface: бормоқчиман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] Хивага ҳам бормоқчиман'
+  translations:
+    en: |-
+      I want to go to Khiva (too|as well).
+      I also want to go to Khiva.
+      I('d| would) like to go to Khiva (too|as well).
+- id: s.travel.18
+  node: uz.travel.plans
+  forms:
+    uz-Latn/standard:
+      text: Oilam bilan boraman.
+      tokens: [{surface: Oilam, sense: oila, morphs: [{surface: Oila, kc: 'sense:oila'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: bilan, sense: bilan}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] oilam bilan boraman'
+    uz-Cyrl/standard:
+      text: Оилам билан бораман.
+      tokens: [{surface: Оилам, sense: oila, morphs: [{surface: Оила, kc: 'sense:oila'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: билан, sense: bilan}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] оилам билан бораман'
+  translations:
+    en: |-
+      I('ll| will| am going to) go with my family.
+      I('m| am) going with my family.
+- id: s.travel.19
+  node: uz.travel.tickets
+  forms:
+    uz-Latn/standard:
+      text: Poyezdda boramiz.
+      tokens: [{surface: Poyezdda, sense: poyezd, morphs: [{surface: Poyezd, kc: 'sense:poyezd'}, {surface: da, kc: 'form:loc-da'}]}, {surface: boramiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+      reverse: '[Biz] poyezdda boramiz'
+    uz-Cyrl/standard:
+      text: Поездда борамиз.
+      tokens: [{surface: Поездда, sense: poyezd, morphs: [{surface: Поезд, kc: 'sense:poyezd'}, {surface: да, kc: 'form:loc-da'}]}, {surface: борамиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      reverse: '[Биз] поездда борамиз'
+  translations:
+    en: |-
+      We('ll| will| are going to) go by train.
+      We('re| are) going by train.
+      We go by train.
+      We('ll| will) take the train.
+- id: s.travel.20
+  node: uz.travel.tickets
+  forms:
+    uz-Latn/standard:
+      text: Biletingiz bormi?
+      tokens: [{surface: Biletingiz, sense: bilet, morphs: [{surface: Bilet, kc: 'sense:bilet'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: bormi, sense: bor, morphs: [{surface: bor, kc: 'sense:bor'}, {surface: mi, kc: 'form:q-mi'}]}]
+      reverse: '[Sizning] biletingiz bormi'
+    uz-Cyrl/standard:
+      text: Билетингиз борми?
+      tokens: [{surface: Билетингиз, sense: bilet, morphs: [{surface: Билет, kc: 'sense:bilet'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
+      reverse: '[Сизнинг] билетингиз борми'
+  translations:
+    en: |-
+      Do you have a ticket?
+      Have you got a ticket?
+      Do you have your ticket?
+- id: s.travel.21
+  node: uz.travel.tickets
+  forms:
+    uz-Latn/standard:
+      text: Ikkita bilet bering.
+      tokens: [{surface: Ikkita, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: bilet, sense: bilet}, {surface: bering, sense: bermoq, morphs: [{surface: ber, kc: 'sense:bermoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
+      reverse: '[Menga] ikki(ta|) bilet bering'
+    uz-Cyrl/standard:
+      text: Иккита билет беринг.
+      tokens: [{surface: Иккита, sense: ikki, morphs: [{surface: Икки, kc: 'sense:ikki'}, {surface: та, kc: 'form:count-ta'}]}, {surface: билет, sense: bilet}, {surface: беринг, sense: bermoq, morphs: [{surface: бер, kc: 'sense:bermoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
+      reverse: '[Менга] икки(та|) билет беринг'
+  translations:
+    en: |-
+      [Please] give me two tickets.
+      Two tickets, please.
+- id: s.travel.22
+  node: uz.travel.tickets
+  forms:
+    uz-Latn/standard:
+      text: Poyezd soat nechada ketadi?
+      tokens: [{surface: Poyezd, sense: poyezd}, {surface: soat, sense: soat}, {surface: nechada, sense: necha, morphs: [{surface: necha, kc: 'sense:necha'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ketadi, sense: ketmoq, morphs: [{surface: ket, kc: 'sense:ketmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
+      reverse: Poyezd soat nechada ketadi
+    uz-Cyrl/standard:
+      text: Поезд соат нечада кетади?
+      tokens: [{surface: Поезд, sense: poyezd}, {surface: соат, sense: soat}, {surface: нечада, sense: necha, morphs: [{surface: неча, kc: 'sense:necha'}, {surface: да, kc: 'form:loc-da'}]}, {surface: кетади, sense: ketmoq, morphs: [{surface: кет, kc: 'sense:ketmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
+      reverse: Поезд соат нечада кетади
+  translations:
+    en: |-
+      What time does the train leave?
+      When does the train leave?
+- id: s.travel.23
+  node: uz.travel.tickets
+  forms:
+    uz-Latn/standard:
+      text: Samolyotda bormoqchiman.
+      tokens: [{surface: Samolyotda, sense: samolyot, morphs: [{surface: Samolyot, kc: 'sense:samolyot'}, {surface: da, kc: 'form:loc-da'}]}, {surface: bormoqchiman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Men] samolyotda bormoqchiman'
+    uz-Cyrl/standard:
+      text: Самолётда бормоқчиман.
+      tokens: [{surface: Самолётда, sense: samolyot, morphs: [{surface: Самолёт, kc: 'sense:samolyot'}, {surface: да, kc: 'form:loc-da'}]}, {surface: бормоқчиман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      reverse: '[Мен] самолётда бормоқчиман'
+  translations:
+    en: |-
+      I want to (go by plane|fly).
+      I('d| would) like to (go by plane|fly).
+- id: s.travel.24
+  node: uz.travel.hotel
+  forms:
+    uz-Latn/standard:
+      text: Mehmonxona qayerda?
+      tokens: [{surface: Mehmonxona, sense: mehmonxona}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}]
+      reverse: Mehmonxona qayerda
+    uz-Cyrl/standard:
+      text: Меҳмонхона қаерда?
+      tokens: [{surface: Меҳмонхона, sense: mehmonxona}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}]
+      reverse: Меҳмонхона қаерда
+  translations:
+    en: Where('s| is) the hotel?
+- id: s.travel.25
+  node: uz.travel.hotel
+  forms:
+    uz-Latn/standard:
+      text: Mehmonxona qimmat emas.
+      tokens: [{surface: Mehmonxona, sense: mehmonxona}, {surface: qimmat, sense: qimmat}, {surface: emas, sense: emas}]
+      reverse: Mehmonxona qimmat emas
+    uz-Cyrl/standard:
+      text: Меҳмонхона қиммат эмас.
+      tokens: [{surface: Меҳмонхона, sense: mehmonxona}, {surface: қиммат, sense: qimmat}, {surface: эмас, sense: emas}]
+      reverse: Меҳмонхона қиммат эмас
+  translations:
+    en: The hotel (isn't|is not) expensive.
+- id: s.travel.26
+  node: uz.travel.hotel
+  forms:
+    uz-Latn/standard:
+      text: Xona bormi?
+      tokens: [{surface: Xona, sense: xona}, {surface: bormi, sense: bor, morphs: [{surface: bor, kc: 'sense:bor'}, {surface: mi, kc: 'form:q-mi'}]}]
+      reverse: Xona bormi
+    uz-Cyrl/standard:
+      text: Хона борми?
+      tokens: [{surface: Хона, sense: xona}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
+      reverse: Хона борми
+  translations:
+    en: |-
+      Do you have a room?
+      Are there [any] rooms?
+      Is there a room?
+      Have you got a room?
+- id: s.travel.27
+  node: uz.travel.hotel
+  forms:
+    uz-Latn/standard:
+      text: Xona necha pul?
+      tokens: [{surface: Xona, sense: xona}, {surface: necha, sense: necha}, {surface: pul, sense: pul}]
+      reverse: |-
+        Xona necha pul
+        Xona qancha
+    uz-Cyrl/standard:
+      text: Хона неча пул?
+      tokens: [{surface: Хона, sense: xona}, {surface: неча, sense: necha}, {surface: пул, sense: pul}]
+      reverse: |-
+        Хона неча пул
+        Хона қанча
+  translations:
+    en: |-
+      How much is the room?
+      How much is a room?
+      How much does the room cost?
+- id: s.travel.28
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Buxoroda havo qanday edi?
+      tokens: [{surface: Buxoroda, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: qanday, sense: qanday}, {surface: edi, sense: edi, morphs: [{surface: e, kc: 'sense:edi'}, {surface: di, kc: 'form:past-di'}]}]
+      reverse: Buxoroda havo qanday edi
+    uz-Cyrl/standard:
+      text: Бухорода ҳаво қандай эди?
+      tokens: [{surface: Бухорода, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: қандай, sense: qanday}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
+      reverse: Бухорода ҳаво қандай эди
+  translations:
+    en: |-
+      What was the weather like in Bukhara?
+      How was the weather in Bukhara?
+- id: s.travel.29
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Juda issiq edi.
+      tokens: [{surface: Juda, sense: juda}, {surface: issiq, sense: issiq}, {surface: edi, sense: edi, morphs: [{surface: e, kc: 'sense:edi'}, {surface: di, kc: 'form:past-di'}]}]
+      reverse: Juda issiq edi
+    uz-Cyrl/standard:
+      text: Жуда иссиқ эди.
+      tokens: [{surface: Жуда, sense: juda}, {surface: иссиқ, sense: issiq}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
+      reverse: Жуда иссиқ эди
+  translations:
+    en: It was very hot.
+- id: s.travel.30
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Sayohat qanday oʻtdi?
+      tokens: [{surface: Sayohat, sense: sayohat}, {surface: qanday, sense: qanday}, {surface: oʻtdi, sense: otmoq, morphs: [{surface: oʻt, kc: 'sense:otmoq'}, {surface: di, kc: 'form:past-di'}]}]
+      reverse: Sayohat qanday oʻtdi
+    uz-Cyrl/standard:
+      text: Саёҳат қандай ўтди?
+      tokens: [{surface: Саёҳат, sense: sayohat}, {surface: қандай, sense: qanday}, {surface: ўтди, sense: otmoq, morphs: [{surface: ўт, kc: 'sense:otmoq'}, {surface: ди, kc: 'form:past-di'}]}]
+      reverse: Саёҳат қандай ўтди
+  translations:
+    en: |-
+      How was the trip?
+      How did the trip go?
+- id: s.travel.31
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Sayohat juda yaxshi oʻtdi.
+      tokens: [{surface: Sayohat, sense: sayohat}, {surface: juda, sense: juda}, {surface: yaxshi, sense: yaxshi}, {surface: oʻtdi, sense: otmoq, morphs: [{surface: oʻt, kc: 'sense:otmoq'}, {surface: di, kc: 'form:past-di'}]}]
+      reverse: Sayohat juda yaxshi oʻtdi
+    uz-Cyrl/standard:
+      text: Саёҳат жуда яхши ўтди.
+      tokens: [{surface: Саёҳат, sense: sayohat}, {surface: жуда, sense: juda}, {surface: яхши, sense: yaxshi}, {surface: ўтди, sense: otmoq, morphs: [{surface: ўт, kc: 'sense:otmoq'}, {surface: ди, kc: 'form:past-di'}]}]
+      reverse: Саёҳат жуда яхши ўтди
+  translations:
+    en: |-
+      The trip went very well.
+      The trip was very good.
+- id: s.travel.32
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Koʻp rasm oldim.
+      tokens: [{surface: Koʻp, sense: kop}, {surface: rasm, sense: rasm}, {surface: oldim, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
+      reverse: '[Men] koʻp rasm oldim'
+    uz-Cyrl/standard:
+      text: Кўп расм олдим.
+      tokens: [{surface: Кўп, sense: kop}, {surface: расм, sense: rasm}, {surface: олдим, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
+      reverse: '[Мен] кўп расм олдим'
+  translations:
+    en: I took (a lot of|lots of|many) (photos|pictures).
+- id: s.travel.33
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Yoʻl uzoq.
+      tokens: [{surface: Yoʻl, sense: yol}, {surface: uzoq, sense: uzoq}]
+      reverse: Yoʻl uzoq
+    uz-Cyrl/standard:
+      text: Йўл узоқ.
+      tokens: [{surface: Йўл, sense: yol}, {surface: узоқ, sense: uzoq}]
+      reverse: Йўл узоқ
+  translations:
+    en: |-
+      It('s| is) a long way.
+      The (road|way|journey) is long.
+- id: s.travel.34
+  node: uz.travel.back
+  forms:
+    uz-Latn/standard:
+      text: Oq yoʻl!
+      tokens: [{surface: Oq, sense: oq}, {surface: yoʻl, sense: yol}]
+      reverse: Oq yoʻl
+    uz-Cyrl/standard:
+      text: Оқ йўл!
+      tokens: [{surface: Оқ, sense: oq}, {surface: йўл, sense: yol}]
+      reverse: Оқ йўл
+  translations:
+    en: (Have a good trip|Have a nice trip|Bon voyage|Safe travels|Have a safe trip)!
+stories:
+- id: uz.story.travel
+  node: uz.travel.story
+  title: {en: A trip to Bukhara}
+  provenance: {author: 'llm:claude@887599f213ef', status: draft}
+  characters:
+  - {id: malika, name: {uz-Latn/standard: Malika, uz-Cyrl/standard: Малика}}
+  - {id: aziz, name: {uz-Latn/standard: Aziz, uz-Cyrl/standard: Азиз}}
+  - {id: buvi, name: {uz-Latn/standard: Buvi, uz-Cyrl/standard: Буви}}
+  steps:
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Aziz, kelasi hafta Buxoroga bormoqchiman.
+          tokens: [{surface: Aziz, sense: aziz}, {surface: kelasi, sense: kelasi}, {surface: hafta, sense: hafta}, {surface: Buxoroga, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: bormoqchiman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Азиз, келаси ҳафта Бухорога бормоқчиман.
+          tokens: [{surface: Азиз, sense: aziz}, {surface: келаси, sense: kelasi}, {surface: ҳафта, sense: hafta}, {surface: Бухорога, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бормоқчиман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: 'Aziz, I want to go to Bukhara next week.'}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Juda yaxshi! Poyezddami?
+          tokens: [{surface: Juda, sense: juda}, {surface: yaxshi, sense: yaxshi}, {surface: Poyezddami, sense: poyezd, morphs: [{surface: Poyezd, kc: 'sense:poyezd'}, {surface: da, kc: 'form:loc-da'}, {surface: mi, kc: 'form:q-mi'}]}]
+        uz-Cyrl/standard:
+          text: Жуда яхши! Поезддами?
+          tokens: [{surface: Жуда, sense: juda}, {surface: яхши, sense: yaxshi}, {surface: Поезддами, sense: poyezd, morphs: [{surface: Поезд, kc: 'sense:poyezd'}, {surface: да, kc: 'form:loc-da'}, {surface: ми, kc: 'form:q-mi'}]}]
+      translations: {en: 'Great! By train?'}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Ha, poyezdda. Bilet arzon.
+          tokens: [{surface: Ha, sense: ha}, {surface: poyezdda, sense: poyezd, morphs: [{surface: poyezd, kc: 'sense:poyezd'}, {surface: da, kc: 'form:loc-da'}]}, {surface: Bilet, sense: bilet}, {surface: arzon, sense: arzon}]
+        uz-Cyrl/standard:
+          text: Ҳа, поездда. Билет арзон.
+          tokens: [{surface: Ҳа, sense: ha}, {surface: поездда, sense: poyezd, morphs: [{surface: поезд, kc: 'sense:poyezd'}, {surface: да, kc: 'form:loc-da'}]}, {surface: Билет, sense: bilet}, {surface: арзон, sense: arzon}]
+      translations: {en: 'Yes, by train. The ticket is cheap.'}
+  - line:
+      speaker: aziz
+      ask: complete
+      gap: sense:qanday
+      distractors: ['sense:kim', 'sense:necha']
+      forms:
+        uz-Latn/standard:
+          text: Buxoroda havo qanday?
+          tokens: [{surface: Buxoroda, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: qanday, sense: qanday}]
+        uz-Cyrl/standard:
+          text: Бухорода ҳаво қандай?
+          tokens: [{surface: Бухорода, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: қандай, sense: qanday}]
+      translations: {en: 'What is the weather like in Bukhara?'}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Hozir juda issiq. Yozda Buxoroda havo issiq.
+          tokens: [{surface: Hozir, sense: hozir}, {surface: juda, sense: juda}, {surface: issiq, sense: issiq}, {surface: Yozda, sense: yoz, morphs: [{surface: Yoz, kc: 'sense:yoz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: Buxoroda, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: issiq, sense: issiq}]
+        uz-Cyrl/standard:
+          text: Ҳозир жуда иссиқ. Ёзда Бухорода ҳаво иссиқ.
+          tokens: [{surface: Ҳозир, sense: hozir}, {surface: жуда, sense: juda}, {surface: иссиқ, sense: issiq}, {surface: Ёзда, sense: yoz, morphs: [{surface: Ёз, kc: 'sense:yoz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: Бухорода, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: иссиқ, sense: issiq}]
+      translations: {en: It's very hot now. In summer it is hot in Bukhara.}
+  - choose:
+      prompt: {en: 'How will Malika travel to Bukhara?'}
+      options: [{en: by train}, {en: by plane}, {en: by car}]
+      answer: 0
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Men ham bormoqchiman!
+          tokens: [{surface: Men, sense: men}, {surface: ham, sense: ham}, {surface: bormoqchiman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
+        uz-Cyrl/standard:
+          text: Мен ҳам бормоқчиман!
+          tokens: [{surface: Мен, sense: men}, {surface: ҳам, sense: ham}, {surface: бормоқчиман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
+      translations: {en: I want to go too!}
+  - line:
+      speaker: malika
+      ask: arrange
+      forms:
+        uz-Latn/standard:
+          text: Yaxshi! Biz Xivaga ham boramiz.
+          tokens: [{surface: Yaxshi, sense: yaxshi}, {surface: Biz, sense: biz}, {surface: Xivaga, sense: xiva, morphs: [{surface: Xiva, kc: 'sense:xiva'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: ham, sense: ham}, {surface: boramiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+        uz-Cyrl/standard:
+          text: Яхши! Биз Хивага ҳам борамиз.
+          tokens: [{surface: Яхши, sense: yaxshi}, {surface: Биз, sense: biz}, {surface: Хивага, sense: xiva, morphs: [{surface: Хива, kc: 'sense:xiva'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: ҳам, sense: ham}, {surface: борамиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      translations: {en: Good! We'll go to Khiva too.}
+  - line:
+      speaker: aziz
+      forms:
+        uz-Latn/standard:
+          text: Mehmonxona qimmatmi?
+          tokens: [{surface: Mehmonxona, sense: mehmonxona}, {surface: qimmatmi, sense: qimmat, morphs: [{surface: qimmat, kc: 'sense:qimmat'}, {surface: mi, kc: 'form:q-mi'}]}]
+        uz-Cyrl/standard:
+          text: Меҳмонхона қимматми?
+          tokens: [{surface: Меҳмонхона, sense: mehmonxona}, {surface: қимматми, sense: qimmat, morphs: [{surface: қиммат, kc: 'sense:qimmat'}, {surface: ми, kc: 'form:q-mi'}]}]
+      translations: {en: 'Is the hotel expensive?'}
+  - line:
+      speaker: malika
+      forms:
+        uz-Latn/standard:
+          text: Yoʻq, qimmat emas. Koʻp rasm olamiz!
+          tokens: [{surface: Yoʻq, sense: yoq}, {surface: qimmat, sense: qimmat}, {surface: emas, sense: emas}, {surface: Koʻp, sense: kop}, {surface: rasm, sense: rasm}, {surface: olamiz, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
+        uz-Cyrl/standard:
+          text: Йўқ, қиммат эмас. Кўп расм оламиз!
+          tokens: [{surface: Йўқ, sense: yoq}, {surface: қиммат, sense: qimmat}, {surface: эмас, sense: emas}, {surface: Кўп, sense: kop}, {surface: расм, sense: rasm}, {surface: оламиз, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
+      translations: {en: 'No, it''s not expensive. We''ll take lots of photos!'}
+  - line:
+      speaker: buvi
+      forms:
+        uz-Latn/standard:
+          text: Oq yoʻl, bolalarim!
+          tokens: [{surface: Oq, sense: oq}, {surface: yoʻl, sense: yol}, {surface: bolalarim, sense: bola, morphs: [{surface: bola, kc: 'sense:bola'}, {surface: lar, kc: 'form:plural-lar'}, {surface: im, kc: 'form:poss-1sg-im'}]}]
+        uz-Cyrl/standard:
+          text: Оқ йўл, болаларим!
+          tokens: [{surface: Оқ, sense: oq}, {surface: йўл, sense: yol}, {surface: болаларим, sense: bola, morphs: [{surface: бола, kc: 'sense:bola'}, {surface: лар, kc: 'form:plural-lar'}, {surface: им, kc: 'form:poss-1sg-im'}]}]
+      translations: {en: 'Have a good trip, my children!'}
+  - choose:
+      prompt: {en: 'Where else will they go?'}
+      options: [{en: to Khiva}, {en: to Samarkand}, {en: to Tashkent}]
+      answer: 0
+scenarios:
+- id: uz.trip-plans
+  after: uz.travel.back
+  title: {en: Planning a trip}
+  setting: {en: 'The ticket office at Tashkent railway station, a week before the summer holidays.'}
+  character: {en: A patient ticket clerk who likes to recommend places to visit and talks about the weather there.}
+  goal: {en: 'Say where and when you want to travel, ask what the weather is like there, and buy two train tickets.'}
+  provenance: {author: 'llm:claude@887599f213ef', status: draft}

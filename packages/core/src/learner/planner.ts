@@ -8,8 +8,8 @@
  * 3. Score: expected memory gain, plus closeness of the session's mean p̂ to
  *    the target success rate, minus repetition of the same template or item.
  * 4. Greedy selection with hard constraints: excluded templates, at most three
- *    of a template (two speaking turns), and a new KC is recognized before it
- *    is produced or read.
+ *    of a template (two speaking turns), a new KC is recognized before it is
+ *    produced or read, and every new KC of a lesson is presented in it.
  * 5. Order: selection order (new words first), ending on a likely success.
  */
 import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
@@ -60,8 +60,13 @@ interface Candidate {
   readonly order: number;
 }
 
-/** How strongly the session's mean p̂ is pulled toward the target (tuned on test/simulation.test.ts). */
-const CALIBRATION_WEIGHT = 14;
+/**
+ * How strongly the session's mean p̂ is pulled toward the target (tuned on test/simulation.test.ts).
+ * 34 since the courses grew to ten units (a month is then mostly new lessons): with every new KC
+ * presented first, it keeps each simulated learner within ±5pp of 85% without dropping a new word.
+ * The weakest uz-Latn learner sets it (80% at 24, 81% from 34 on; the content limits it).
+ */
+const CALIBRATION_WEIGHT = 34;
 
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
@@ -208,12 +213,20 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const newCoverage = c.ex.kcs.some((kc) => targets.has(kc) && !recognized.has(kc)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;
     return gain(c) + newCoverage + calibration - 0.15 * sameTemplate - 0.5 * sameItem;
   };
+  // Every new KC is presented in its lesson (a hard constraint): while a new KC an allowed exercise
+  // can present is not yet in the plan, only such exercises qualify (new words first, as ordered
+  // below); the scores choose among them, and then fill the session.
+  const presentable = new Set(candidates.flatMap((c) => c.ex.kcs.filter((kc) => targets.has(kc))));
+  const presented = new Set<string>();
   const remaining = [...candidates];
   while (chosen.length < size && remaining.length > 0) {
+    const missing = [...presentable].filter((kc) => !presented.has(kc));
+    const mustPresent = missing.length > 0 && remaining.some((c) => allowed(c) && c.ex.kcs.some((kc) => missing.includes(kc)));
     let best = -1;
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [i, c] of remaining.entries()) {
       if (!allowed(c)) continue;
+      if (mustPresent && !c.ex.kcs.some((kc) => missing.includes(kc))) continue;
       const s = score(c);
       if (s > bestScore + 1e-12) {
         best = i;
@@ -226,6 +239,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     chosen.push(pick);
     const facet = facetOf(pick.ex.template);
     for (const kc of pick.ex.kcs) {
+      presented.add(kc);
       covered.add(key(kc, facet));
       if (RECOGNITION.has(pick.ex.template) && targets.has(kc)) recognized.add(kc);
     }
