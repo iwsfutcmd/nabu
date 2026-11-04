@@ -22,7 +22,17 @@ ZWNJ = "‌"
 # Warnings a course is known to raise, by (lint, surface). Anything else is a regression.
 # PyCantonese reads the sentence-final particles 呀 and 嗎 as aa4 and maa5;
 # the pinned aa3 and maa3 win.
-EXPECTED_WARNINGS = {"yue": {("enrich.reading-mismatch", "呀"), ("enrich.reading-mismatch", "嗎")}}
+# Pinned readings PyCantonese disagrees with, where the pinned one is the colloquial reading taught:
+# the particles 呀/嗎, 名 meng2 (你叫咩名呀), 弟弟 dai4 dai2, 平 peng4 ("cheap").
+EXPECTED_WARNINGS = {
+    "yue": {
+        ("enrich.reading-mismatch", "呀"),
+        ("enrich.reading-mismatch", "嗎"),
+        ("enrich.reading-mismatch", "名"),
+        ("enrich.reading-mismatch", "弟弟"),
+        ("enrich.reading-mismatch", "平"),
+    }
+}
 TOOLS = {"fa": ["hazm", "icu"], "yue": ["pycantonese", "icu"], "uz": ["icu"], "apc": []}
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}

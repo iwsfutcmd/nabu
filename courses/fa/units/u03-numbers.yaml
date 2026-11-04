@@ -1,0 +1,513 @@
+# Fixture course (fa), unit 3: numbers, age and prices. داشتن 'to have' (no mi- in the present), the -ad ending,
+# the negative prefix na-, a singular noun after a number, and tomans.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: numbers
+title: {en: 'Numbers, age and money'}
+cefr: A1
+kcs:
+- {id: 'sense:yek', gloss: {en: 'one; a, an'}, forms: {fa-Arab/standard: [یک]}}
+- {id: 'sense:dashtan', gloss: {en: to have (present stem دار-)}, forms: {fa-Arab/standard: [دارم, دارد, داری, داریم, دارند, ندارم, ندارد, دارید]}, notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age is 'had': بیست سال دارم, I am twenty."}}
+- {id: 'form:3sg-ad', gloss: {en: '-ad: he, she, it (verb ending)'}, notes: {en: 'دارد (dārad): has. In speech it is -e: داره (dāre).'}}
+- {id: 'sense:do', gloss: {en: two}, forms: {fa-Arab/standard: [دو]}, notes: {en: 'After a number the noun stays singular: دو کتاب, two books.'}}
+- {id: 'sense:se', gloss: {en: three}, forms: {fa-Arab/standard: [سه]}}
+- {id: 'sense:chahar', gloss: {en: four}, forms: {fa-Arab/standard: [چهار]}}
+- {id: 'sense:panj', gloss: {en: five}, forms: {fa-Arab/standard: [پنج]}}
+- {id: 'sense:shesh', gloss: {en: six}, forms: {fa-Arab/standard: [شش]}}
+- {id: 'sense:haft', gloss: {en: seven}, forms: {fa-Arab/standard: [هفت]}}
+- {id: 'sense:daftar', gloss: {en: notebook}, forms: {fa-Arab/standard: [دفتر]}}
+- {id: 'sense:hasht', gloss: {en: eight}, forms: {fa-Arab/standard: [هشت]}}
+- {id: 'sense:dah', gloss: {en: ten}, forms: {fa-Arab/standard: [ده]}}
+- {id: 'form:neg-na', gloss: {en: 'na-, ne-: not (verb prefix)'}, notes: {en: "ندارم: I don't have. Before می\u200c it is ne-: نمی\u200cخورم, I don't eat."}}
+- {id: 'sense:khodkar', gloss: {en: (ballpoint) pen}, forms: {fa-Arab/standard: [خودکار]}}
+- {id: 'sense:bist', gloss: {en: twenty}, forms: {fa-Arab/standard: [بیست]}, notes: {en: 'Tens and units are joined with و: بیست و پنج, twenty-five.'}}
+- {id: 'sense:sal', gloss: {en: year; years (of age)}, forms: {fa-Arab/standard: [سال]}}
+- {id: 'sense:chand', gloss: {en: how many; how much (price)}, forms: {fa-Arab/standard: [چند]}, notes: {en: 'Spoken: چند تا (chand tā), how many.'}}
+- {id: 'sense:si', gloss: {en: thirty}, forms: {fa-Arab/standard: [سی]}}
+- {id: 'sense:panjah', gloss: {en: fifty}, forms: {fa-Arab/standard: [پنجاه]}}
+- {id: 'sense:sad', gloss: {en: hundred}, forms: {fa-Arab/standard: [صد]}}
+- {id: 'sense:hezar', gloss: {en: thousand}, forms: {fa-Arab/standard: [هزار]}}
+- {id: 'sense:pool', gloss: {en: money}, forms: {fa-Arab/standard: [پول]}}
+- {id: 'sense:gheymat', gloss: {en: price}, forms: {fa-Arab/standard: [قیمت]}}
+- {id: 'sense:toman', gloss: {en: toman}, forms: {fa-Arab/standard: [تومان]}, notes: {en: 'Prices are said in tomans; one toman is ten rials, the official unit on banknotes.'}}
+- {id: 'sense:cheghadr', gloss: {en: how much}, forms: {fa-Arab/standard: [چقدر]}, notes: {en: 'Spoken: چقدره؟ (cheqadre?) How much is it?'}}
+- {id: 'sense:geran', gloss: {en: expensive}, forms: {fa-Arab/standard: [گران, "گران\u200cتر"]}}
+- {id: 'sense:arzan', gloss: {en: cheap; inexpensive}, forms: {fa-Arab/standard: [ارزان, "ارزان\u200cتر"]}}
+nodes:
+- {id: fa.numbers.have, kind: lesson, introduces: ['sense:yek', 'sense:dashtan', 'form:3sg-ad', 'sense:do']}
+- {id: fa.numbers.count, kind: lesson, introduces: ['sense:se', 'sense:chahar', 'sense:panj', 'sense:shesh', 'sense:haft', 'sense:daftar']}
+- {id: fa.numbers.none, kind: lesson, introduces: ['sense:hasht', 'sense:dah', 'form:neg-na', 'sense:khodkar']}
+- {id: fa.numbers.age, kind: lesson, introduces: ['sense:bist', 'sense:sal', 'sense:chand', 'sense:si', 'sense:panjah']}
+- {id: fa.numbers.money, kind: lesson, introduces: ['sense:sad', 'sense:hezar', 'sense:pool', 'sense:gheymat', 'sense:toman']}
+- {id: fa.numbers.prices, kind: lesson, introduces: ['sense:cheghadr', 'sense:geran', 'sense:arzan']}
+- {id: fa.numbers.story, kind: story}
+sentences:
+- id: s.numbers.1
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: این یک کتاب است.
+      tokens: [{surface: این, sense: in}, {surface: یک, sense: yek}, {surface: کتاب, sense: ketab}, {surface: است, sense: budan}]
+      reverse: این [یک] کتاب است
+  translations:
+    en: This is (a|one) book.
+- id: s.numbers.2
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: من یک کتاب دارم.
+      tokens: [{surface: من, sense: man}, {surface: یک, sense: yek}, {surface: کتاب, sense: ketab}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] [یک] کتاب دارم'
+  translations:
+    en: |-
+      I have (a|one) book.
+      I've got (a|one) book.
+- id: s.numbers.3
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: من یک برادر و یک خواهر دارم.
+      tokens: [{surface: من, sense: man}, {surface: یک, sense: yek}, {surface: برادر, sense: baradar}, {surface: و, sense: va}, {surface: یک, sense: yek}, {surface: خواهر, sense: khahar}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] یک برادر و یک خواهر دارم'
+  translations:
+    en: |-
+      I have (a|one) brother and (a|one) sister.
+      I've got (a|one) brother and (a|one) sister.
+- id: s.numbers.4
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: رضا یک خواهر دارد.
+      tokens: [{surface: رضا, sense: reza}, {surface: یک, sense: yek}, {surface: خواهر, sense: khahar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: رضا یک خواهر دارد
+  translations:
+    en: |-
+      Reza has (a|one) sister.
+      Reza's got (a|one) sister.
+- id: s.numbers.5
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: تو کتاب داری؟
+      tokens: [{surface: تو, sense: to}, {surface: کتاب, sense: ketab}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] [یک] کتاب داری'
+  translations:
+    en: |-
+      Do you have a book?
+      Have you got a book?
+- id: s.numbers.6
+  node: fa.numbers.have
+  forms:
+    fa-Arab/standard:
+      text: من دو برادر دارم.
+      tokens: [{surface: من, sense: man}, {surface: دو, sense: do}, {surface: برادر, sense: baradar}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] دو برادر دارم'
+  translations:
+    en: |-
+      I have (two|2) brothers.
+      I've got (two|2) brothers.
+- id: s.numbers.7
+  node: fa.numbers.count
+  forms:
+    fa-Arab/standard:
+      text: سارا سه خواهر دارد.
+      tokens: [{surface: سارا, sense: sara}, {surface: سه, sense: se}, {surface: خواهر, sense: khahar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: سارا سه خواهر دارد
+  translations:
+    en: |-
+      Sara has (three|3) sisters.
+      Sara's got (three|3) sisters.
+- id: s.numbers.8
+  node: fa.numbers.count
+  forms:
+    fa-Arab/standard:
+      text: ما چهار کتاب داریم.
+      tokens: [{surface: ما, sense: ma}, {surface: چهار, sense: chahar}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] چهار کتاب داریم'
+  translations:
+    en: |-
+      We have (four|4) books.
+      We've got (four|4) books.
+- id: s.numbers.9
+  node: fa.numbers.count
+  forms:
+    fa-Arab/standard:
+      text: علی پنج دوست دارد.
+      tokens: [{surface: علی, sense: ali}, {surface: پنج, sense: panj}, {surface: دوست, sense: doost}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: علی پنج دوست دارد
+  translations:
+    en: |-
+      Ali has (five|5) friends.
+      Ali's got (five|5) friends.
+- id: s.numbers.10
+  node: fa.numbers.count
+  forms:
+    fa-Arab/standard:
+      text: "آن\u200cها شش بچه دارند."
+      tokens: [{surface: "آن\u200cها", sense: an, morphs: [{surface: "آن\u200c", kc: 'sense:an'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: شش, sense: shesh}, {surface: بچه, sense: bachche}, {surface: دارند, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: "[آن\u200cها] شش بچه دارند"
+  translations:
+    en: |-
+      They have (six|6) (children|kids).
+      They've got (six|6) (children|kids).
+- id: s.numbers.11
+  node: fa.numbers.count
+  forms:
+    fa-Arab/standard:
+      text: مادرم هفت خواهر دارد.
+      tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: هفت, sense: haft}, {surface: خواهر, sense: khahar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: (مادرم|مادر من) هفت خواهر دارد
+  translations:
+    en: My (mother|mom|mum) has (seven|7) sisters.
+- id: s.numbers.12
+  node: fa.numbers.count
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: این دفترِ من است.
+      tokens: [{surface: این, sense: in}, {surface: دفترِ, sense: daftar}, {surface: من, sense: man}, {surface: است, sense: budan}]
+      reverse: |-
+        این دفتر من است
+        این دفترم است
+  translations:
+    en: This is my notebook.
+- id: s.numbers.13
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: مریم هشت دفتر دارد.
+      tokens: [{surface: مریم, sense: maryam}, {surface: هشت, sense: hasht}, {surface: دفتر, sense: daftar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: مریم هشت دفتر دارد
+  translations:
+    en: |-
+      Maryam has (eight|8) notebooks.
+      Maryam's got (eight|8) notebooks.
+- id: s.numbers.14
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: ما ده دفتر داریم.
+      tokens: [{surface: ما, sense: ma}, {surface: ده, sense: dah}, {surface: دفتر, sense: daftar}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] ده دفتر داریم'
+  translations:
+    en: |-
+      We have (ten|10) notebooks.
+      We've got (ten|10) notebooks.
+- id: s.numbers.15
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: من برادر ندارم.
+      tokens: [{surface: من, sense: man}, {surface: برادر, sense: baradar}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] برادر ندارم'
+  translations:
+    en: |-
+      I (don't|do not) have (a brother|any brothers).
+      I have no (brother|brothers).
+      I haven't got (a brother|any brothers).
+- id: s.numbers.16
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: او خواهر ندارد.
+      tokens: [{surface: او, sense: u}, {surface: خواهر, sense: khahar}, {surface: ندارد, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: '[او] خواهر ندارد'
+  translations:
+    en: |-
+      (She|He) (doesn't|does not) have (a sister|any sisters).
+      (She|He) has no (sister|sisters).
+- id: s.numbers.17
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: تو خودکار داری؟
+      tokens: [{surface: تو, sense: to}, {surface: خودکار, sense: khodkar}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] [یک] خودکار داری'
+  translations:
+    en: |-
+      Do you have a pen?
+      Have you got a pen?
+- id: s.numbers.18
+  node: fa.numbers.none
+  forms:
+    fa-Arab/standard:
+      text: نه، خودکار ندارم.
+      tokens: [{surface: نه, sense: na}, {surface: خودکار, sense: khodkar}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: نه [من] خودکار ندارم
+  translations:
+    en: |-
+      No, I (don't|do not) have a pen.
+      No, I haven't got a pen.
+- id: s.numbers.19
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: ما بیست کتاب داریم.
+      tokens: [{surface: ما, sense: ma}, {surface: بیست, sense: bist}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] بیست کتاب داریم'
+  translations:
+    en: |-
+      We have (twenty|20) books.
+      We've got (twenty|20) books.
+- id: s.numbers.20
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: من بیست سال دارم.
+      tokens: [{surface: من, sense: man}, {surface: بیست, sense: bist}, {surface: سال, sense: sal}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] بیست سال دارم\n[من] بیست ساله (هستم|\u200cام)"
+  translations:
+    en: I('m| am) (twenty|20) [years old].
+- id: s.numbers.21
+  node: fa.numbers.age
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: شما چند سال دارید؟
+      tokens: [{surface: شما, sense: shoma}, {surface: چند, sense: chand}, {surface: سال, sense: sal}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: |-
+        [شما] چند سال دارید
+        چند سالتان است
+  translations:
+    en: How old are you?
+- id: s.numbers.22
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: برادرم سی سال دارد.
+      tokens: [{surface: برادرم, sense: baradar, morphs: [{surface: برادر, kc: 'sense:baradar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: سی, sense: si}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: (برادرم|برادر من) سی سال دارد
+  translations:
+    en: My brother is (thirty|30) [years old].
+- id: s.numbers.23
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: سارا بیست و پنج سال دارد.
+      tokens: [{surface: سارا, sense: sara}, {surface: بیست, sense: bist}, {surface: و, sense: va}, {surface: پنج, sense: panj}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: سارا بیست و پنج سال دارد
+  translations:
+    en: Sara is (twenty five|twentyfive|25) [years old].
+- id: s.numbers.24
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: مادرم پنجاه سال دارد.
+      tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: پنجاه, sense: panjah}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: (مادرم|مادر من) پنجاه سال دارد
+  translations:
+    en: My (mother|mom|mum) is (fifty|50) [years old].
+- id: s.numbers.25
+  node: fa.numbers.age
+  forms:
+    fa-Arab/standard:
+      text: تو چند خواهر داری؟
+      tokens: [{surface: تو, sense: to}, {surface: چند, sense: chand}, {surface: خواهر, sense: khahar}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: '[تو] چند [تا] خواهر داری'
+  translations:
+    en: |-
+      How many sisters do you have?
+      How many sisters have you got?
+- id: s.numbers.26
+  node: fa.numbers.money
+  forms:
+    fa-Arab/standard:
+      text: علی صد کتاب دارد.
+      tokens: [{surface: علی, sense: ali}, {surface: صد, sense: sad}, {surface: کتاب, sense: ketab}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: علی صد کتاب دارد
+  translations:
+    en: |-
+      Ali has (a|one) hundred books.
+      Ali has 100 books.
+- id: s.numbers.27
+  node: fa.numbers.money
+  forms:
+    fa-Arab/standard:
+      text: ما هزار کتاب داریم!
+      tokens: [{surface: ما, sense: ma}, {surface: هزار, sense: hezar}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: '[ما] هزار کتاب داریم'
+  translations:
+    en: |-
+      We have (a|one) thousand books!
+      We have 1000 books!
+- id: s.numbers.28
+  node: fa.numbers.money
+  forms:
+    fa-Arab/standard:
+      text: من پول ندارم.
+      tokens: [{surface: من, sense: man}, {surface: پول, sense: pool}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] پول ندارم'
+  translations:
+    en: |-
+      I (don't|do not) have [any] money.
+      I have no money.
+      I haven't got [any] money.
+- id: s.numbers.29
+  node: fa.numbers.money
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: قیمتِ این دفتر چند است؟
+      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: چند, sense: chand}, {surface: است, sense: budan}]
+      reverse: |-
+        قیمت این دفتر (چند است|چنده|چقدر است)
+        این دفتر (چند است|چنده)
+  translations:
+    en: |-
+      How much is this notebook?
+      What('s| is) the price of this notebook?
+- id: s.numbers.30
+  node: fa.numbers.money
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: قیمتِ این کتاب صد هزار تومان است.
+      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: صد, sense: sad}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+      reverse: |-
+        قیمت این کتاب صد هزار تومان است
+        این کتاب صد هزار تومان است
+  translations:
+    en: |-
+      (This book costs|This book is|The price of this book is) (a|one) hundred thousand (tomans|toman).
+      (This book costs|This book is|The price of this book is) 100000 (tomans|toman).
+- id: s.numbers.31
+  node: fa.numbers.prices
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: قیمتِ آن کتاب چقدر است؟
+      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: کتاب, sense: ketab}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
+      reverse: قیمت آن کتاب (چقدر است|چقدره|چند است)
+  translations:
+    en: |-
+      How much is that book?
+      What('s| is) the price of that book?
+- id: s.numbers.32
+  node: fa.numbers.prices
+  forms:
+    fa-Arab/standard:
+      text: این کتاب خیلی گران است!
+      tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: خیلی, sense: kheyli}, {surface: گران, sense: geran}, {surface: است, sense: budan}]
+      reverse: این کتاب خیلی گران است
+  translations:
+    en: This book is (very|really|too) expensive!
+- id: s.numbers.33
+  node: fa.numbers.prices
+  forms:
+    fa-Arab/standard:
+      text: آن دفتر ارزان است.
+      tokens: [{surface: آن, sense: an}, {surface: دفتر, sense: daftar}, {surface: ارزان, sense: arzan}, {surface: است, sense: budan}]
+      reverse: آن دفتر ارزان است
+  translations:
+    en: That notebook is (cheap|inexpensive).
+- id: s.numbers.34
+  node: fa.numbers.prices
+  constructions: ['construction:ezafe']
+  forms:
+    fa-Arab/standard:
+      text: قیمتِ این خودکار بیست هزار تومان است.
+      tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: بیست, sense: bist}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+      reverse: |-
+        قیمت این خودکار بیست هزار تومان است
+        این خودکار بیست هزار تومان است
+  translations:
+    en: |-
+      (This pen costs|This pen is|The price of this pen is) (twenty|20) thousand (tomans|toman).
+      (This pen costs|This pen is|The price of this pen is) 20000 (tomans|toman).
+stories:
+- id: fa.story.notebook
+  node: fa.numbers.story
+  title: {en: A new notebook}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+  characters:
+  - {id: maryam, name: {fa-Arab/standard: مریم}}
+  - {id: seller, name: {fa-Arab/standard: فروشنده}}
+  steps:
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: سلام آقا!
+          tokens: [{surface: سلام, sense: salam}, {surface: آقا, sense: agha}]
+      translations: {en: 'Hello, sir!'}
+  - line:
+      speaker: seller
+      forms:
+        fa-Arab/standard:
+          text: سلام خانم! حالِ شما چطور است؟
+          tokens: [{surface: سلام, sense: salam}, {surface: خانم, sense: khanom}, {surface: حالِ, sense: hal}, {surface: شما, sense: shoma}, {surface: چطور, sense: chetor}, {surface: است, sense: budan}]
+      translations: {en: 'Hello, madam! How are you?'}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: ممنون، خوب هستم. شما دفتر دارید؟
+          tokens: [{surface: ممنون, sense: mamnun}, {surface: خوب, sense: khub}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: شما, sense: shoma}, {surface: دفتر, sense: daftar}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      translations: {en: 'Fine, thank you. Do you have notebooks?'}
+  - line:
+      speaker: seller
+      forms:
+        fa-Arab/standard:
+          text: بله، این دفتر خیلی خوب است.
+          tokens: [{surface: بله, sense: bale}, {surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      translations: {en: 'Yes, this notebook is very good.'}
+  - line:
+      speaker: maryam
+      ask: complete
+      gap: sense:cheghadr
+      distractors: ['sense:kist', 'sense:khodkar']
+      forms:
+        fa-Arab/standard:
+          text: قیمتِ آن چقدر است؟
+          tokens: [{surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
+      translations: {en: 'How much is it?'}
+  - line:
+      speaker: seller
+      forms:
+        fa-Arab/standard:
+          text: پنجاه هزار تومان.
+          tokens: [{surface: پنجاه, sense: panjah}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}]
+      translations: {en: Fifty thousand tomans.}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: خیلی گران است!
+          tokens: [{surface: خیلی, sense: kheyli}, {surface: گران, sense: geran}, {surface: است, sense: budan}]
+      translations: {en: That's very expensive!}
+  - line:
+      speaker: seller
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: این دفتر ارزان است. بیست هزار تومان.
+          tokens: [{surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: ارزان, sense: arzan}, {surface: است, sense: budan}, {surface: بیست, sense: bist}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}]
+      translations: {en: This notebook is cheap. Twenty thousand tomans.}
+  - choose:
+      prompt: {en: 'How much is the cheaper notebook?'}
+      options: [{en: '20,000 tomans'}, {en: '50,000 tomans'}, {en: '100,000 tomans'}]
+      answer: 0
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: خوب است. خودکار هم دارید؟
+          tokens: [{surface: خوب, sense: khub}, {surface: است, sense: budan}, {surface: خودکار, sense: khodkar}, {surface: هم, sense: ham}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      translations: {en: 'Good. Do you have pens too?'}
+  - line:
+      speaker: seller
+      forms:
+        fa-Arab/standard:
+          text: بله. قیمتِ این خودکار ده هزار تومان است.
+          tokens: [{surface: بله, sense: bale}, {surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: خودکار, sense: khodkar}, {surface: ده, sense: dah}, {surface: هزار, sense: hezar}, {surface: تومان, sense: toman}, {surface: است, sense: budan}]
+      translations: {en: Yes. This pen is ten thousand tomans.}
+  - choose:
+      prompt: {en: 'Why doesn''t Maryam take the first notebook?'}
+      options: [{en: It's too expensive.}, {en: It's too small.}, {en: It isn't pretty.}]
+      answer: 0
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: ممنون، آقا. خداحافظ!
+          tokens: [{surface: ممنون, sense: mamnun}, {surface: آقا, sense: agha}, {surface: خداحافظ, sense: khodahafez}]
+      translations: {en: 'Thank you, sir. Goodbye!'}

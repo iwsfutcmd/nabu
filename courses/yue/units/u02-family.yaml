@@ -1,0 +1,530 @@
+# Cantonese (Hong Kong) unit u02-family: names (叫, 姓), the general classifier 個, 呢個, family words, 有/冇, 都, the particle 呢.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u02-family
+title: {en: 'Names, family and friends'}
+cefr: A1
+kcs:
+- {id: 'sense:叫', gloss: {en: to be called; to call}, forms: {yue-Hant-HK/standard: [叫]}}
+- {id: 'sense:咩', gloss: {en: what (short for 乜嘢)}, forms: {yue-Hant-HK/standard: [咩]}}
+- {id: 'sense:名', gloss: {en: name}, forms: {yue-Hant-HK/standard: [名]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'In 叫咩名 ''what is (your) name'' it is read meng2, the colloquial reading; ming4 in compounds such as 名字.'}}
+- {id: 'sense:姓', gloss: {en: to be surnamed; surname}, forms: {yue-Hant-HK/standard: [姓]}}
+- {id: 'sense:乜嘢', gloss: {en: what}, forms: {yue-Hant-HK/standard: [乜嘢]}, notes: {en: The full form of 咩. Often typed 乜野.}}
+- {id: 'sense:先生', gloss: {en: Mr; sir; husband}, forms: {yue-Hant-HK/standard: [先生]}, notes: {en: 'After a surname: 陳先生 Mr Chan (casually 陳生).'}}
+- {id: 'sense:小姐', gloss: {en: Miss; Ms}, forms: {yue-Hant-HK/standard: [小姐]}, notes: {en: 'After a surname: 李小姐 Miss Lee.'}}
+- {id: 'sense:呢-sfp', gloss: {en: 'sentence-final particle: and …? what about …? where is …?'}, forms: {yue-Hant-HK/standard: [呢]}, notes: {en: '你呢？ ''and you?''; 我本書呢？ ''where is my book?''. The same character before a classifier means ''this'' (呢個).'}}
+- {id: 'sense:爸爸', gloss: {en: dad; father}, forms: {yue-Hant-HK/standard: [爸爸]}}
+- {id: 'sense:媽媽', gloss: {en: mum; mother}, forms: {yue-Hant-HK/standard: [媽媽]}}
+- {id: 'sense:個', gloss: {en: 'the general classifier (for people and many things); before a noun alone: the'}, forms: {yue-Hant-HK/standard: [個]}, notes: {en: 'Cantonese counts and points with a classifier: 一個人 one person, 呢個 this one. 個老師 on its own means ''the teacher''.'}}
+- {id: 'sense:呢', gloss: {en: 'this (before a classifier: 呢個 this one)'}, forms: {yue-Hant-HK/standard: [呢個, 呢本, 呢隻, 呢碗, 呢杯, 呢張, 呢件, 呢對, 呢條]}, notes: {en: Pronounced ne1 here; many speakers say ni1. The same character at the end of a question is a particle (你呢？).}}
+- {id: 'sense:屋企人', gloss: {en: family; family members}, forms: {yue-Hant-HK/standard: [屋企人]}}
+- {id: 'sense:哥哥', gloss: {en: older brother}, forms: {yue-Hant-HK/standard: [哥哥]}}
+- {id: 'sense:家姐', gloss: {en: older sister}, forms: {yue-Hant-HK/standard: [家姐]}}
+- {id: 'sense:有', gloss: {en: 'to have; there is, there are'}, forms: {yue-Hant-HK/standard: [有]}}
+- {id: 'sense:冇', gloss: {en: not to have; there isn't; (before a verb) didn't}, forms: {yue-Hant-HK/standard: [冇]}, notes: {en: 'The negative of 有: 有冇? ''is there…? do you have…?''. Often typed 無.'}}
+- {id: 'sense:弟弟', gloss: {en: younger brother}, forms: {yue-Hant-HK/standard: [弟弟]}, notes: {en: Read dai4 dai2 in everyday speech. Hong Kong people also say 細佬 sai3 lou2.}}
+- {id: 'sense:細妹', gloss: {en: younger sister}, forms: {yue-Hant-HK/standard: [細妹]}}
+- {id: 'sense:朋友', gloss: {en: friend}, forms: {yue-Hant-HK/standard: [朋友]}}
+- {id: 'sense:都', gloss: {en: 'also, too; both, all'}, forms: {yue-Hant-HK/standard: [都]}, notes: {en: 'Comes before the verb: 我都係學生 ''I''m a student too''.'}}
+- {id: 'sense:同事', gloss: {en: colleague}, forms: {yue-Hant-HK/standard: [同事]}}
+- {id: 'sense:醫生', gloss: {en: doctor}, forms: {yue-Hant-HK/standard: [醫生]}}
+- {id: 'sense:人', gloss: {en: person; people}, forms: {yue-Hant-HK/standard: [人]}}
+- {id: 'sense:高', gloss: {en: tall; high}, forms: {yue-Hant-HK/standard: [高]}}
+- {id: 'sense:靚', gloss: {en: pretty; good-looking; nice}, forms: {yue-Hant-HK/standard: [靚]}}
+- {id: 'sense:開心', gloss: {en: happy}, forms: {yue-Hant-HK/standard: [開心]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:攰', gloss: {en: tired}, forms: {yue-Hant-HK/standard: [攰]}}
+nodes:
+- {id: yue.names, kind: lesson, introduces: ['sense:叫', 'sense:咩', 'sense:名', 'sense:姓', 'sense:乜嘢']}
+- {id: yue.titles, kind: lesson, introduces: ['sense:先生', 'sense:小姐', 'sense:呢-sfp']}
+- {id: yue.family, kind: lesson, introduces: ['sense:爸爸', 'sense:媽媽', 'sense:個', 'sense:呢', 'sense:屋企人']}
+- {id: yue.siblings, kind: lesson, introduces: ['sense:哥哥', 'sense:家姐', 'sense:有', 'sense:冇', 'sense:弟弟', 'sense:細妹']}
+- {id: yue.people, kind: lesson, introduces: ['sense:朋友', 'sense:都', 'sense:同事', 'sense:醫生', 'sense:人']}
+- {id: yue.describe, kind: lesson, introduces: ['sense:高', 'sense:靚', 'sense:開心', 'sense:攰']}
+- {id: yue.family-story, kind: story}
+sentences:
+- id: s.u02.1
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 我叫家明。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 家明, readings: {jyutping: gaa1 ming4}}]
+      reverse: 我叫家明
+  translations:
+    en: |-
+      My name is (Ka-ming|Ka Ming).
+      I('m| am) (Ka-ming|Ka Ming).
+      I('m| am) called (Ka-ming|Ka Ming).
+- id: s.u02.2
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢叫美玲。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
+      reverse: 佢叫美玲
+  translations:
+    en: |-
+      Her name is (Mei-ling|Mei Ling).
+      (His|Their) name is (Mei-ling|Mei Ling).
+      (She|He)('s| is) called (Mei-ling|Mei Ling).
+      They('re| are) called (Mei-ling|Mei Ling).
+- id: s.u02.3
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 咩呀？
+      tokens: [{surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        咩[呀]
+        乜嘢[呀]
+  translations:
+    en: |-
+      What?
+      What is it?
+      What's up?
+- id: s.u02.4
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 你叫咩名呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 名, sense: 名, readings: {jyutping: meng2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你叫(咩|乜嘢)名[呀]
+  translations:
+    en: |-
+      What's your name?
+      What is your name?
+- id: s.u02.5
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢叫咩名呀？
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 名, sense: 名, readings: {jyutping: meng2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 佢叫(咩|乜嘢)名[呀]
+  translations:
+    en: |-
+      What's (her|his|their) name?
+      What is (her|his|their) name?
+- id: s.u02.6
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 我姓陳。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 姓, sense: 姓, readings: {jyutping: sing3}}, {surface: 陳, readings: {jyutping: can4}}]
+      reverse: 我姓陳
+  translations:
+    en: |-
+      My (surname|family name|last name) is Chan.
+      I('m| am) surnamed Chan.
+- id: s.u02.7
+  node: yue.names
+  forms:
+    yue-Hant-HK/standard:
+      text: 你姓乜嘢呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 姓, sense: 姓, readings: {jyutping: sing3}}, {surface: 乜嘢, sense: 乜嘢, readings: {jyutping: mat1 je5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你姓(乜嘢|咩)[呀]
+  translations:
+    en: |-
+      What's your (surname|family name|last name)?
+      What is your (surname|family name|last name)?
+- id: s.u02.8
+  node: yue.titles
+  forms:
+    yue-Hant-HK/standard:
+      text: 陳先生，早晨！
+      tokens: [{surface: 陳, readings: {jyutping: can4}}, {surface: 先生, sense: 先生, readings: {jyutping: sin1 saang1}}, {surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}]
+      reverse: |-
+        陳(先生|生)早晨
+        早晨[呀]陳(先生|生)
+  translations:
+    en: (Good morning|Morning), Mr Chan!
+- id: s.u02.9
+  node: yue.titles
+  forms:
+    yue-Hant-HK/standard:
+      text: 李小姐，你好！
+      tokens: [{surface: 李, readings: {jyutping: lei5}}, {surface: 小姐, sense: 小姐, readings: {jyutping: siu2 ze2}}, {surface: 你好, sense: 你好, readings: {jyutping: nei5 hou2}}]
+      reverse: |-
+        李小姐你好
+        你好[呀]李小姐
+  translations:
+    en: (Hello|Hi), (Miss|Ms) Lee!
+- id: s.u02.10
+  node: yue.titles
+  forms:
+    yue-Hant-HK/standard:
+      text: 我係學生，你呢？
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      reverse: 我係學生你呢
+  translations:
+    en: I('m| am) a student, (and you|what about you|how about you)?
+- id: s.u02.11
+  node: yue.titles
+  forms:
+    yue-Hant-HK/standard:
+      text: 我叫美玲，你呢？
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      reverse: 我叫美玲你呢
+  translations:
+    en: |-
+      My name is (Mei-ling|Mei Ling), (and you|what about you|how about you|and yours|what's yours)?
+      I('m| am) (Mei-ling|Mei Ling), (and you|what about you|how about you)?
+- id: s.u02.12
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係我爸爸。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 爸爸, sense: 爸爸, readings: {jyutping: baa4 baa1}}]
+      reverse: 佢係我爸爸
+  translations:
+    en: |-
+      (He|She)('s| is) my (dad|father).
+      They('re| are) my (dad|father).
+- id: s.u02.13
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係我媽媽。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}]
+      reverse: 佢係我媽媽
+  translations:
+    en: |-
+      (She|He)('s| is) my (mum|mom|mother).
+      They('re| are) my (mum|mom|mother).
+- id: s.u02.14
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 個老師好好。
+      tokens: [{surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}]
+      reverse: 個老師好好
+  translations:
+    en: The teacher is (very|really|so) (nice|good).
+- id: s.u02.15
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢個係我爸爸。
+      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 爸爸, sense: 爸爸, readings: {jyutping: baa4 baa1}}]
+      reverse: 呢個係我爸爸
+  translations:
+    en: This is my (dad|father).
+- id: s.u02.16
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢個係我媽媽。
+      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}]
+      reverse: 呢個係我媽媽
+  translations:
+    en: This is my (mum|mom|mother).
+- id: s.u02.17
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 我爸爸係老師。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 爸爸, sense: 爸爸, readings: {jyutping: baa4 baa1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}]
+      reverse: 我爸爸係老師
+  translations:
+    en: My (dad|father) is a teacher.
+- id: s.u02.18
+  node: yue.family
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢哋係我屋企人。
+      tokens: [{surface: 佢哋, sense: 佢, morphs: [{surface: 佢, kc: 'sense:佢'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: keoi5 dei6}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 屋企人, sense: 屋企人, readings: {jyutping: uk1 kei2 jan4}}]
+      reverse: 佢(哋|地)係我(嘅|)屋企人
+  translations:
+    en: They('re| are) my family.
+- id: s.u02.19
+  node: yue.family
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你媽媽係唔係老師呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你媽媽係唔係老師[呀]
+  translations:
+    en: Is your (mum|mom|mother) a teacher?
+- id: s.u02.20
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢個係我哥哥。
+      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}]
+      reverse: 呢個係我哥哥
+  translations:
+    en: This is my (older|big) brother.
+- id: s.u02.21
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係我家姐。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 家姐, sense: 家姐, readings: {jyutping: gaa1 ze1}}]
+      reverse: 佢係我家姐
+  translations:
+    en: |-
+      (She|He)('s| is) my (older|big) sister.
+      They('re| are) my (older|big) sister.
+- id: s.u02.22
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有個哥哥。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}]
+      reverse: 我有(個|一個)哥哥
+  translations:
+    en: |-
+      I have an older brother.
+      I have a big brother.
+- id: s.u02.23
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 我冇家姐。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 家姐, sense: 家姐, readings: {jyutping: gaa1 ze1}}]
+      reverse: 我冇家姐
+  translations:
+    en: |-
+      I (don't|do not) have (an older sister|a big sister|older sisters).
+      I have no (older|big) sister(s|).
+- id: s.u02.24
+  node: yue.siblings
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你有冇哥哥呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你有冇哥哥[呀]
+  translations:
+    en: Do you have (an older brother|a big brother|older brothers)?
+- id: s.u02.25
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢有個弟弟。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 弟弟, sense: 弟弟, readings: {jyutping: dai4 dai2}}]
+      reverse: 佢有(個|一個)弟弟
+  translations:
+    en: |-
+      (She|He) has a (younger|little) brother.
+      They have a (younger|little) brother.
+- id: s.u02.26
+  node: yue.siblings
+  forms:
+    yue-Hant-HK/standard:
+      text: 我有個細妹。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}]
+      reverse: 我有(個|一個)細妹
+  translations:
+    en: I have a (younger|little) sister.
+- id: s.u02.27
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係我朋友。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 朋友, sense: 朋友, readings: {jyutping: pang4 jau5}}]
+      reverse: 佢係我朋友
+  translations:
+    en: |-
+      (She|He)('s| is) my friend.
+      They('re| are) my friend.
+- id: s.u02.28
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢哋都係我朋友。
+      tokens: [{surface: 佢哋, sense: 佢, morphs: [{surface: 佢, kc: 'sense:佢'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: keoi5 dei6}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 朋友, sense: 朋友, readings: {jyutping: pang4 jau5}}]
+      reverse: 佢(哋|地)都係我朋友
+  translations:
+    en: |-
+      They('re| are) (all|both) my friends.
+      They('re| are) my friends too.
+- id: s.u02.29
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢個係我同事。
+      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 同事, sense: 同事, readings: {jyutping: tung4 si6}}]
+      reverse: 呢個係我同事
+  translations:
+    en: This is my (colleague|coworker).
+- id: s.u02.30
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 我同事係醫生。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 同事, sense: 同事, readings: {jyutping: tung4 si6}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 醫生, sense: 醫生, readings: {jyutping: ji1 sang1}}]
+      reverse: 我同事係醫生
+  translations:
+    en: My (colleague|coworker) is a doctor.
+- id: s.u02.31
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 我都係醫生。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 醫生, sense: 醫生, readings: {jyutping: ji1 sang1}}]
+      reverse: 我都係醫生
+  translations:
+    en: |-
+      I('m| am) a doctor too.
+      I('m| am) also a doctor.
+- id: s.u02.32
+  node: yue.people
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢係好人。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 人, sense: 人, readings: {jyutping: jan4}}]
+      reverse: 佢係好人
+  translations:
+    en: |-
+      (She|He)('s| is) a (good|nice) person.
+      They('re| are) a (good|nice) person.
+- id: s.u02.33
+  node: yue.describe
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢好高。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
+      reverse: 佢好高
+  translations:
+    en: |-
+      (She|He)('s| is) (very|really|so) tall.
+      They('re| are) (very|really|so) tall.
+- id: s.u02.34
+  node: yue.describe
+  forms:
+    yue-Hant-HK/standard:
+      text: 你媽媽好靚。
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
+      reverse: 你媽媽好靚
+  translations:
+    en: Your (mum|mom|mother) is (very|really|so) (pretty|beautiful).
+- id: s.u02.35
+  node: yue.describe
+  forms:
+    yue-Hant-HK/standard:
+      text: 我好開心。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 開心, sense: 開心, readings: {jyutping: hoi1 sam1}}]
+      reverse: 我好開心
+  translations:
+    en: I('m| am) (very|really|so) happy.
+- id: s.u02.36
+  node: yue.describe
+  forms:
+    yue-Hant-HK/standard:
+      text: 我好攰呀。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 我好攰[呀]
+  translations:
+    en: I('m| am) (so|really|very) tired.
+- id: s.u02.37
+  node: yue.describe
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你攰唔攰呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你攰唔攰[呀]
+  translations:
+    en: Are you tired?
+- id: s.u02.38
+  node: yue.describe
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哥哥都好高。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
+      reverse: 我哥哥都好高
+  translations:
+    en: |-
+      My (older|big) brother is (very|really|so) tall too.
+      My (older|big) brother is also (very|really|so) tall.
+stories:
+- id: yue.story.family-photo
+  node: yue.family-story
+  title:
+    en: Ka-ming's family photo
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  - {id: gaa-ming, name: {yue-Hant-HK/standard: 家明}}
+  steps:
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 家明，呢個係邊個呀？
+          tokens: [{surface: 家明, readings: {jyutping: gaa1 ming4}}, {surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 邊個, sense: 邊個, readings: {jyutping: bin1 go3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Ka-ming, who''s this?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 佢係我哥哥。
+          tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}]
+      translations: {en: He's my older brother.}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 佢好高呀！
+          tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: He's so tall!}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 係呀。佢係醫生。
+          tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 醫生, sense: 醫生, readings: {jyutping: ji1 sang1}}]
+      translations: {en: Yes. He's a doctor.}
+  - choose:
+      prompt: {en: 'What does Ka-ming''s brother do?'}
+      options: [{en: He's a doctor.}, {en: He's a teacher.}, {en: He's a student.}]
+      answer: 0
+  - line:
+      speaker: mei-ling
+      ask: complete
+      gap: sense:家姐
+      distractors: ['sense:哥哥', 'sense:細妹']
+      forms:
+        yue-Hant-HK/standard:
+          text: 呢個係唔係你家姐呀？
+          tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 家姐, sense: 家姐, readings: {jyutping: gaa1 ze1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Is this your older sister?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 唔係，佢係我媽媽！
+          tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}]
+      translations: {en: 'No, she''s my mum!'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 你媽媽好靚呀！
+          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: Your mum is so pretty!}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 多謝！你有冇哥哥呀？
+          tokens: [{surface: 多謝, sense: 多謝, readings: {jyutping: do1 ze6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Thanks! Do you have an older brother?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 冇呀。我有個細妹。
+          tokens: [{surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}]
+      translations: {en: No. I have a younger sister.}
+  - line:
+      speaker: mei-ling
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 我細妹都好高。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
+      translations: {en: My younger sister is tall too.}
+  - choose:
+      prompt: {en: 'Who is the woman in the photo?'}
+      options: [{en: Ka-ming's mum}, {en: Ka-ming's older sister}, {en: Mei-ling's younger sister}]
+      answer: 0

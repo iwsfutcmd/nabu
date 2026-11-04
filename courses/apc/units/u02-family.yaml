@@ -1,0 +1,713 @@
+# Fixture course (apc), unit 2: family. This (hayda/hayde), who (meen), and the possessive
+# suffixes -i, -ak, -ik, -o, -a as morphs; adjectives take the feminine -e (form:fem) as a token form.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u02-family
+title: {en: My family}
+cefr: A1
+kcs:
+- {id: 'sense:hayda', gloss: {en: this (masculine)}, forms: {apc-Arab/standard: [هيدا], apc-Latn/arabizi: [hayda]}, notes: {en: 'Feminine: هيدي, hayde.'}}
+- {id: 'sense:meen', gloss: {en: who}, forms: {apc-Arab/standard: [مين], apc-Latn/arabizi: [meen]}}
+- {id: 'sense:maya', gloss: {en: Maya (a name)}, forms: {apc-Arab/standard: [مايا], apc-Latn/arabizi: [Maya]}}
+- {id: 'sense:hayde', gloss: {en: this (feminine)}, forms: {apc-Arab/standard: [هيدي], apc-Latn/arabizi: [hayde]}}
+- {id: 'sense:bayy', gloss: {en: father; dad}, forms: {apc-Arab/standard: [بيّ], apc-Latn/arabizi: [bayy]}, notes: {en: 'Usually with an ending (bayyi, my dad) or before a name (bayy Sami, Sami''s dad).'}}
+- {id: 'form:poss-1sg', gloss: {en: '-i: my (ending on a noun)'}, notes: {en: 'Arabic script ـي. Often heard and typed -e: bayye, emme.'}}
+- {id: 'sense:emm', gloss: {en: mother; mom}, forms: {apc-Arab/standard: [إمّ], apc-Latn/arabizi: [emm]}}
+- {id: 'form:poss-2ms', gloss: {en: '-ak: your (to a man)'}, notes: {en: 'Arabic script ـك. To a woman: -ik (also ـك in Arabic script).'}}
+- {id: 'sense:khayy', gloss: {en: brother}, forms: {apc-Arab/standard: [خيّ], apc-Latn/arabizi: [khayy]}}
+- {id: 'sense:ekht', gloss: {en: sister}, forms: {apc-Arab/standard: [إخت], apc-Latn/arabizi: [ekht]}}
+- {id: 'sense:3end', gloss: {en: 'at; have (with an ending: 3endi, I have)'}, forms: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}, notes: {en: '3endi: I have; 3endak: you have. Not a verb: the ending
+      says who has.'}}
+- {id: 'sense:ma', gloss: {en: not (before a verb or 3endi)}, forms: {apc-Arab/standard: [ما], apc-Latn/arabizi: [ma]}}
+- {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script ـو, also written ـه.'}}
+- {id: 'sense:esm', gloss: {en: name}, forms: {apc-Arab/standard: [اسمو], apc-Latn/arabizi: [esmo]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931',
+      status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'esmo: his name; esma: her name. Compare اسمي (esmi) and اسمك (esmak).'}}
+- {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script ـا, also written ـها.'}}
+- {id: 'sense:kif', gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman).'}}
+- {id: 'form:poss-2fs', gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script ـك, the same letter as -ak: كيفك reads kifak to a man, kifik to a woman.'}}
+- {id: 'sense:teta', gloss: {en: grandma}, forms: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}}
+- {id: 'sense:jeddo', gloss: {en: grandpa}, forms: {apc-Arab/standard: [جدّو], apc-Latn/arabizi: [jeddo]}}
+- {id: 'sense:3ayle', gloss: {en: family}, forms: {apc-Arab/standard: [عيلتي], apc-Latn/arabizi: [3ayelti]}}
+- {id: 'sense:kbir', gloss: {en: big; old (of people); older}, forms: {apc-Arab/standard: [كبير, كبيرة], apc-Latn/arabizi: [kbir, kbire]}}
+- {id: 'sense:zghir', gloss: {en: small; little; young}, forms: {apc-Arab/standard: [زغير, زغيرة], apc-Latn/arabizi: [zghir, zghire]}}
+- {id: 'form:fem', gloss: {en: '-e / -a: feminine ending on an adjective'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script ـة.'}}
+- {id: 'sense:ebn', gloss: {en: son}, forms: {apc-Arab/standard: [إبن], apc-Latn/arabizi: [ebn]}}
+- {id: 'sense:bent', gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنتي], apc-Latn/arabizi: [bent]}}
+- {id: 'sense:7elo', gloss: {en: nice; pretty; sweet}, forms: {apc-Arab/standard: [حلو, حلوة], apc-Latn/arabizi: [7elo, 7elwe]}}
+- {id: 'sense:wlad', gloss: {en: children; kids}, forms: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}}
+nodes:
+- {id: apc.fam.this, kind: lesson, introduces: ['sense:hayda', 'sense:meen', 'sense:maya', 'sense:hayde']}
+- {id: apc.fam.parents, kind: lesson, introduces: ['sense:bayy', 'form:poss-1sg', 'sense:emm', 'form:poss-2ms']}
+- {id: apc.fam.siblings, kind: lesson, introduces: ['sense:khayy', 'sense:ekht', 'sense:3end', 'sense:ma']}
+- {id: apc.fam.his-her, kind: lesson, introduces: ['form:poss-3ms', 'sense:esm', 'form:poss-3fs', 'sense:kif', 'form:poss-2fs']}
+- {id: apc.fam.grandparents, kind: lesson, introduces: ['sense:teta', 'sense:jeddo', 'sense:3ayle', 'sense:kbir', 'sense:zghir', 'form:fem']}
+- {id: apc.fam.children, kind: lesson, introduces: ['sense:ebn', 'sense:bent', 'sense:7elo', 'sense:wlad']}
+- {id: apc.fam.story, kind: story}
+sentences:
+- id: s.fam.1
+  node: apc.fam.this
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا سامي.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: سامي, sense: sami}]
+      reverse: هيدا سامي
+    apc-Latn/arabizi:
+      text: hayda Sami.
+      tokens: [{surface: hayda, sense: hayda}, {surface: Sami, sense: sami}]
+      reverse: (hayda|haida|hyda) Sami
+  translations:
+    en: |-
+      (This|That|He) is Sami.
+      (That|He)'s Sami.
+- id: s.fam.2
+  node: apc.fam.this
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مين هيدا؟
+      tokens: [{surface: مين, sense: meen}, {surface: هيدا, sense: hayda}]
+      reverse: مين هيدا
+    apc-Latn/arabizi:
+      text: meen hayda?
+      tokens: [{surface: meen, sense: meen}, {surface: hayda, sense: hayda}]
+      reverse: (meen|min|mien) (hayda|haida|hyda)
+  translations:
+    en: |-
+      Who is (this|that|he)?
+      Who's (this|that|he)?
+- id: s.fam.3
+  node: apc.fam.this
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مرحبا مايا!
+      tokens: [{surface: مرحبا, sense: marhaba}, {surface: مايا, sense: maya}]
+      reverse: مرحبا مايا
+    apc-Latn/arabizi:
+      text: mar7aba Maya!
+      tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya}]
+      reverse: (mar7aba|marhaba) Maya
+  translations:
+    en: (Hello|Hi), Maya!
+- id: s.fam.4
+  node: apc.fam.this
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي مايا.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: مايا, sense: maya}]
+      reverse: هيدي مايا
+    apc-Latn/arabizi:
+      text: hayde Maya.
+      tokens: [{surface: hayde, sense: hayde}, {surface: Maya, sense: maya}]
+      reverse: (hayde|haide|haydi) Maya
+  translations:
+    en: |-
+      (This|That|She) is Maya.
+      (That|She)'s Maya.
+- id: s.fam.5
+  node: apc.fam.parents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّ سامي.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّ, sense: bayy}, {surface: سامي, sense: sami}]
+      reverse: هيدا بيّ سامي
+    apc-Latn/arabizi:
+      text: hayda bayy Sami.
+      tokens: [{surface: hayda, sense: hayda}, {surface: bayy, sense: bayy}, {surface: Sami, sense: sami}]
+      reverse: (hayda|haida|hyda) (bayy|bay|beyy) Sami
+  translations:
+    en: |-
+      (This|That|He) is Sami's (father|dad).
+      (That|He)'s Sami's (father|dad).
+- id: s.fam.6
+  node: apc.fam.parents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّي.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدا بيّي
+    apc-Latn/arabizi:
+      text: hayda bayyi.
+      tokens: [{surface: hayda, sense: hayda}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayda|haida|hyda) (bayyi|bayye|bayi|baye|beyyi|beyye)
+  translations:
+    en: |-
+      (This|That|He) is my (father|dad).
+      (That|He)'s my (father|dad).
+- id: s.fam.7
+  node: apc.fam.parents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي إمّ سامي.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: إمّ, sense: emm}, {surface: سامي, sense: sami}]
+      reverse: هيدي إمّ سامي
+    apc-Latn/arabizi:
+      text: hayde emm Sami.
+      tokens: [{surface: hayde, sense: hayde}, {surface: emm, sense: emm}, {surface: Sami, sense: sami}]
+      reverse: (hayde|haide|haydi) (emm|em|imm) Sami
+  translations:
+    en: |-
+      (This|That|She) is Sami's (mother|mom|mum).
+      (That|She)'s Sami's (mother|mom|mum).
+- id: s.fam.8
+  node: apc.fam.parents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي إمّي.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: إمّي, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدي إمّي
+    apc-Latn/arabizi:
+      text: hayde emmi.
+      tokens: [{surface: hayde, sense: hayde}, {surface: emmi, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayde|haide|haydi) (emmi|emme|emi|eme|immi|imme)
+  translations:
+    en: |-
+      (This|That|She) is my (mother|mom|mum).
+      (That|She)'s my (mother|mom|mum).
+- id: s.fam.9
+  node: apc.fam.parents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مين هيدا؟ بيّك؟
+      tokens: [{surface: مين, sense: meen}, {surface: هيدا, sense: hayda}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: مين هيدا بيّك
+    apc-Latn/arabizi:
+      text: meen hayda? bayyak?
+      tokens: [{surface: meen, sense: meen}, {surface: hayda, sense: hayda}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak)
+  translations:
+    en: |-
+      Who is (this|that)? Your (father|dad)?
+      Who's (this|that)? Your (father|dad)?
+      Who is (this|that)? Is (that|this|he) your (father|dad)?
+- id: s.fam.10
+  node: apc.fam.siblings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا خيّي.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: خيّي, sense: khayy, morphs: [{surface: خيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدا خيّي
+    apc-Latn/arabizi:
+      text: hayda khayyi.
+      tokens: [{surface: hayda, sense: hayda}, {surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayda|haida|hyda) (khayyi|khayye|khayi|khaye|5ayyi|5ayye)
+  translations:
+    en: |-
+      (This|That|He) is my brother.
+      (That|He)'s my brother.
+- id: s.fam.11
+  node: apc.fam.siblings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي إختي.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدي إختي
+    apc-Latn/arabizi:
+      text: hayde ekhti.
+      tokens: [{surface: hayde, sense: hayde}, {surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayde|haide|haydi) (ekhti|ekhte|ikhti|ikhte|e5ti|e5te)
+  translations:
+    en: |-
+      (This|That|She) is my sister.
+      (That|She)'s my sister.
+- id: s.fam.12
+  node: apc.fam.siblings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عندي خيّ وإخت.
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: خيّ, sense: khayy}, {surface: وإخت, sense: ekht, morphs: [{surface: و,
+              kc: 'sense:w'}, {surface: إخت, kc: 'sense:ekht'}]}]
+      reverse: عندي خيّ (وإخت|و إخت)
+    apc-Latn/arabizi:
+      text: 3endi khayy w ekht.
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: khayy, sense: khayy}, {surface: w, sense: w}, {surface: ekht, sense: ekht}]
+      reverse: (3endi|3ende|3andi|3ande|3indi|3inde) (khayy|khay|5ayy) (w|wa) (ekht|ikht|e5t)
+  translations:
+    en: |-
+      I have a brother and a sister.
+      I('ve| have) got a brother and a sister.
+- id: s.fam.13
+  node: apc.fam.siblings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عندك إخت؟
+      tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: إخت, sense: ekht}]
+      reverse: عندك إخت
+    apc-Latn/arabizi:
+      text: 3endak ekht?
+      tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: ekht, sense: ekht}]
+      reverse: (3endak|3andak|3indak) (ekht|ikht|e5t)
+  translations:
+    en: |-
+      Do you have a sister?
+      Have you got a sister?
+- id: s.fam.14
+  node: apc.fam.siblings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، ما عندي إخت.
+      tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: إخت, sense: ekht}]
+      reverse: (لأ|لا) ما عندي إخت
+    apc-Latn/arabizi:
+      text: la2, ma 3endi ekht.
+      tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ekht, sense: ekht}]
+      reverse: (la2|la) ma (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
+  translations:
+    en: |-
+      No, I (don't|do not) have a sister.
+      No, I (haven't|have not) got a sister.
+- id: s.fam.15
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا بيّو.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّو, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: و, kc: 'form:poss-3ms'}]}]
+      reverse: هيدا (بيّو|بيّه)
+    apc-Latn/arabizi:
+      text: hayda bayyo.
+      tokens: [{surface: hayda, sense: hayda}, {surface: bayyo, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: o, kc: 'form:poss-3ms'}]}]
+      reverse: (hayda|haida|hyda) (bayyo|bayyu|bayo|bayu|beyyo|beyyu)
+  translations:
+    en: |-
+      (This|That|He) is his (father|dad).
+      (That|He)'s his (father|dad).
+- id: s.fam.16
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو اسمو؟
+      tokens: [{surface: شو, sense: shu}, {surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}]
+      reverse: شو (اسمو|اسمه)
+    apc-Latn/arabizi:
+      text: shu esmo?
+      tokens: [{surface: shu, sense: shu}, {surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}]
+      reverse: (shu|sho) (esmo|esmu|ismo|ismu)
+  translations:
+    en: |-
+      What is his name?
+      What's his name?
+- id: s.fam.17
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: اسمو سامي.
+      tokens: [{surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: سامي, sense: sami}]
+      reverse: (اسمو|اسمه) سامي
+    apc-Latn/arabizi:
+      text: esmo Sami.
+      tokens: [{surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: Sami, sense: sami}]
+      reverse: (esmo|esmu|ismo|ismu) Sami
+  translations:
+    en: |-
+      His name is Sami.
+      His name's Sami.
+      He's called Sami.
+- id: s.fam.18
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وهيدي إمّا.
+      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: إمّا, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ا,
+              kc: 'form:poss-3fs'}]}]
+      reverse: (وهيدي|و هيدي) (إمّا|إمّها)
+    apc-Latn/arabizi:
+      text: w hayde emma.
+      tokens: [{surface: w, sense: w}, {surface: hayde, sense: hayde}, {surface: emma, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
+      reverse: (w|wa) (hayde|haide|haydi) (emma|ema|imma)
+  translations:
+    en: |-
+      And (this|that|she) is her (mother|mom|mum).
+      And (that|she)'s her (mother|mom|mum).
+- id: s.fam.19
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كيفو بيّك؟
+      tokens: [{surface: كيفو, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
+              kc: 'form:poss-2ms'}]}]
+      reverse: (كيفو|كيفه) بيّك
+    apc-Latn/arabizi:
+      text: kifo bayyak?
+      tokens: [{surface: kifo, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak,
+              kc: 'form:poss-2ms'}]}]
+      reverse: (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak)
+  translations:
+    en: |-
+      How is your (father|dad)?
+      How's your (father|dad)?
+      How is your (father|dad) doing?
+- id: s.fam.20
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كيفا إمّك؟
+      tokens: [{surface: كيفا, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: إمّك, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ك,
+              kc: 'form:poss-2ms'}]}]
+      reverse: (كيفا|كيفها) إمّك
+    apc-Latn/arabizi:
+      text: kifa emmak?
+      tokens: [{surface: kifa, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: emmak, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: ak,
+              kc: 'form:poss-2ms'}]}]
+      reverse: (kifa|keefa) (emmak|emak|immak)
+  translations:
+    en: |-
+      How is your (mother|mom|mum)?
+      How's your (mother|mom|mum)?
+      How is your (mother|mom|mum) doing?
+- id: s.fam.21
+  node: apc.fam.his-her
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كيفك مايا؟
+      tokens: [{surface: كيفك, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: مايا, sense: maya}]
+      reverse: كيفك مايا
+    apc-Latn/arabizi:
+      text: kifik Maya?
+      tokens: [{surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: Maya, sense: maya}]
+      reverse: (kifik|kifek|keefik|keefek) Maya
+  translations:
+    en: |-
+      How are you, Maya?
+      How are you doing, Maya?
+- id: s.fam.22
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي تيتا.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: تيتا, sense: teta}]
+      reverse: هيدي تيتا
+    apc-Latn/arabizi:
+      text: hayde teta.
+      tokens: [{surface: hayde, sense: hayde}, {surface: teta, sense: teta}]
+      reverse: (hayde|haide|haydi) (teta|tayta)
+  translations:
+    en: |-
+      (This|That|She) is (grandma|my grandma|granny|my grandmother).
+      (That|She)'s (grandma|my grandma|granny|my grandmother).
+- id: s.fam.23
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وهيدا جدّو.
+      tokens: [{surface: وهيدا, sense: hayda, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدا, kc: 'sense:hayda'}]}, {surface: جدّو, sense: jeddo}]
+      reverse: (وهيدا|و هيدا) جدّو
+    apc-Latn/arabizi:
+      text: w hayda jeddo.
+      tokens: [{surface: w, sense: w}, {surface: hayda, sense: hayda}, {surface: jeddo, sense: jeddo}]
+      reverse: (w|wa) (hayda|haida|hyda) (jeddo|jiddo|jeddu)
+  translations:
+    en: |-
+      And (this|that|he) is (grandpa|my grandpa|grandad|my grandfather).
+      And (that|he)'s (grandpa|my grandpa|grandad|my grandfather).
+- id: s.fam.24
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي عيلتي.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: عيلتي, sense: 3ayle, morphs: [{surface: عيلت, kc: 'sense:3ayle'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدي عيلتي
+    apc-Latn/arabizi:
+      text: hayde 3ayelti.
+      tokens: [{surface: hayde, sense: hayde}, {surface: 3ayelti, sense: 3ayle, morphs: [{surface: 3ayelt, kc: 'sense:3ayle'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayde|haide|haydi) (3ayelti|3ayelte|3ayleti|3aylete|3aylti|3aylte)
+  translations:
+    en: |-
+      (This|That) is my family.
+      That's my family.
+- id: s.fam.25
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: جدّو كبير.
+      tokens: [{surface: جدّو, sense: jeddo}, {surface: كبير, sense: kbir}]
+      reverse: جدّو كبير
+    apc-Latn/arabizi:
+      text: jeddo kbir.
+      tokens: [{surface: jeddo, sense: jeddo}, {surface: kbir, sense: kbir}]
+      reverse: (jeddo|jiddo|jeddu) (kbir|kbeer|kebir)
+  translations:
+    en: |-
+      (Grandpa|Grandad|My grandpa|My grandfather) is old.
+      (Grandpa|Grandad|My grandpa|My grandfather)'s old.
+- id: s.fam.26
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خيّي زغير.
+      tokens: [{surface: خيّي, sense: khayy, morphs: [{surface: خيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: زغير, sense: zghir}]
+      reverse: خيّي (زغير|صغير)
+    apc-Latn/arabizi:
+      text: khayyi zghir.
+      tokens: [{surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: zghir, sense: zghir}]
+      reverse: (khayyi|khayye|khayi|khaye|5ayyi|5ayye) (zghir|zgheer|z8ir)
+  translations:
+    en: |-
+      My brother is (little|young|small).
+      My brother's (little|young|small).
+- id: s.fam.27
+  node: apc.fam.grandparents
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إختي زغيرة.
+      tokens: [{surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
+      reverse: إختي (زغيرة|صغيرة)
+    apc-Latn/arabizi:
+      text: ekhti zghire.
+      tokens: [{surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: zghire, sense: zghir, form: 'form:fem'}]
+      reverse: (ekhti|ekhte|ikhti|ikhte|e5ti|e5te) (zghire|zghiri|z8ire)
+  translations:
+    en: |-
+      My sister is (little|young|small).
+      My sister's (little|young|small).
+- id: s.fam.28
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا إبني.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: إبني, sense: ebn, morphs: [{surface: إبن, kc: 'sense:ebn'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدا إبني
+    apc-Latn/arabizi:
+      text: hayda ebni.
+      tokens: [{surface: hayda, sense: hayda}, {surface: ebni, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayda|haida|hyda) (ebni|ebne|ibni|ibne)
+  translations:
+    en: |-
+      (This|That|He) is my son.
+      (That|He)'s my son.
+- id: s.fam.29
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وهيدي بنتي.
+      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: بنتي, sense: bent, morphs: [{surface: بنت, kc: 'sense:bent'}, {surface: ي,
+              kc: 'form:poss-1sg'}]}]
+      reverse: (وهيدي|و هيدي) بنتي
+    apc-Latn/arabizi:
+      text: w hayde benti.
+      tokens: [{surface: w, sense: w}, {surface: hayde, sense: hayde}, {surface: benti, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (w|wa) (hayde|haide|haydi) (benti|bente|binti|binte)
+  translations:
+    en: |-
+      And (this|that|she) is my daughter.
+      And (that|she)'s my daughter.
+- id: s.fam.30
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بنتك حلوة!
+      tokens: [{surface: بنتك, sense: bent, morphs: [{surface: بنت, kc: 'sense:bent'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
+      reverse: بنتك حلوة
+    apc-Latn/arabizi:
+      text: bentak 7elwe!
+      tokens: [{surface: bentak, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      reverse: (bentak|bintak) (7elwe|7ilwe|helwe|7elwi)
+  translations:
+    en: |-
+      Your daughter is (lovely|pretty|cute|sweet)!
+      Your daughter's (lovely|pretty|cute|sweet)!
+- id: s.fam.31
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عندك ولاد؟
+      tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: ولاد, sense: wlad}]
+      reverse: عندك ولاد
+    apc-Latn/arabizi:
+      text: 3endak wlad?
+      tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: wlad, sense: wlad}]
+      reverse: (3endak|3andak|3indak) (wlad|wled)
+  translations:
+    en: |-
+      Do you have (kids|children)?
+      Have you got (kids|children)?
+- id: s.fam.32
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إيه، عندي إبن وبنت.
+      tokens: [{surface: إيه, sense: eh}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: إبن, sense: ebn}, {surface: وبنت, sense: bent,
+          morphs: [{surface: و, kc: 'sense:w'}, {surface: بنت, kc: 'sense:bent'}]}]
+      reverse: إيه عندي إبن (وبنت|و بنت)
+    apc-Latn/arabizi:
+      text: eh, 3endi ebn w bent.
+      tokens: [{surface: eh, sense: eh}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ebn, sense: ebn}, {surface: w, sense: w},
+        {surface: bent, sense: bent}]
+      reverse: (eh|ee|e) (3endi|3ende|3andi|3ande|3indi|3inde) (ebn|ibn) (w|wa) (bent|bint)
+  translations:
+    en: |-
+      Yes, I have a son and a daughter.
+      Yes, I('ve| have) got a son and a daughter.
+- id: s.fam.33
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عيلتك كبيرة؟
+      tokens: [{surface: عيلتك, sense: 3ayle, morphs: [{surface: عيلت, kc: 'sense:3ayle'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: كبيرة, sense: kbir, form: 'form:fem'}]
+      reverse: عيلتك كبيرة
+    apc-Latn/arabizi:
+      text: 3ayeltak kbire?
+      tokens: [{surface: 3ayeltak, sense: 3ayle, morphs: [{surface: 3ayelt, kc: 'sense:3ayle'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: kbire, sense: kbir, form: 'form:fem'}]
+      reverse: (3ayeltak|3ayletak|3ayltak) (kbire|kbiri|kbeere)
+  translations:
+    en: |-
+      Is your family big?
+      Do you have a big family?
+      Have you got a big family?
+stories:
+- id: apc.story.family
+  node: apc.fam.story
+  title: {en: 'Who''s this?'}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، مين هَيدا؟
+          tokens: [{surface: مايا, sense: maya}, {surface: مين, sense: meen}, {surface: هَيدا, sense: hayda}]
+        apc-Latn/arabizi:
+          text: Maya, meen hayda?
+          tokens: [{surface: Maya, sense: maya}, {surface: meen, sense: meen}, {surface: hayda, sense: hayda}]
+      translations: {en: 'Maya, who''s this?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: هَيدا بَيّي، وهَيدي إِمّي.
+          tokens: [{surface: هَيدا, sense: hayda}, {surface: بَيّي, sense: bayy, morphs: [{surface: بَيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وهَيدي, sense: hayde, morphs: [
+                {surface: و, kc: 'sense:w'}, {surface: هَيدي, kc: 'sense:hayde'}]}, {surface: إِمّي, sense: emm, morphs: [{surface: إِمّ, kc: 'sense:emm'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+        apc-Latn/arabizi:
+          text: hayda bayyi, w hayde emmi.
+          tokens: [{surface: hayda, sense: hayda}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: w, sense: w}, {surface: hayde,
+              sense: hayde}, {surface: emmi, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      translations: {en: 'This is my dad, and this is my mom.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وهَيدا مين؟ خَيِّك؟
+          tokens: [{surface: وهَيدا, sense: hayda, morphs: [{surface: و, kc: 'sense:w'}, {surface: هَيدا, kc: 'sense:hayda'}]}, {surface: مين, sense: meen}, {surface: خَيِّك, sense: khayy, morphs: [{surface: خَيِّ,
+                  kc: 'sense:khayy'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: w hayda meen? khayyik?
+          tokens: [{surface: w, sense: w}, {surface: hayda, sense: hayda}, {surface: meen, sense: meen}, {surface: khayyik, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'And who''s this? Your brother?'}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:ekht
+      distractors: ['sense:bent', 'sense:teta']
+      forms:
+        apc-Arab/standard:
+          text: إيه، خَيّي. عِنْدي خَيّ وإِخْت.
+          tokens: [{surface: إيه, sense: eh}, {surface: خَيّي, sense: khayy, morphs: [{surface: خَيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عِنْدي, sense: 3end, morphs: [{surface: عِنْد,
+                  kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: خَيّ, sense: khayy}, {surface: وإِخْت, sense: ekht, morphs: [{surface: و, kc: 'sense:w'}, {surface: إِخْت, kc: 'sense:ekht'}]}]
+        apc-Latn/arabizi:
+          text: eh, khayyi. 3endi khayy w ekht.
+          tokens: [{surface: eh, sense: eh}, {surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end,
+                  kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: khayy, sense: khayy}, {surface: w, sense: w}, {surface: ekht, sense: ekht}]
+      translations: {en: 'Yes, my brother. I have a brother and a sister.'}
+  - choose:
+      prompt:
+        en: How many brothers and sisters does Maya have?
+      options: [{en: A brother and a sister}, {en: Two brothers}, {en: None}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وهَيدي مين؟
+          tokens: [{surface: وهَيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هَيدي, kc: 'sense:hayde'}]}, {surface: مين, sense: meen}]
+        apc-Latn/arabizi:
+          text: w hayde meen?
+          tokens: [{surface: w, sense: w}, {surface: hayde, sense: hayde}, {surface: meen, sense: meen}]
+      translations: {en: 'And who''s this?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: هَيدي تيتا، إِمّ بَيّي.
+          tokens: [{surface: هَيدي, sense: hayde}, {surface: تيتا, sense: teta}, {surface: إِمّ, sense: emm}, {surface: بَيّي, sense: bayy, morphs: [{surface: بَيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+        apc-Latn/arabizi:
+          text: hayde teta, emm bayyi.
+          tokens: [{surface: hayde, sense: hayde}, {surface: teta, sense: teta}, {surface: emm, sense: emm}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      translations: {en: 'This is grandma, my dad''s mother.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وجِدّو؟
+          tokens: [{surface: وجِدّو, sense: jeddo, morphs: [{surface: و, kc: 'sense:w'}, {surface: جِدّو, kc: 'sense:jeddo'}]}]
+        apc-Latn/arabizi:
+          text: w jeddo?
+          tokens: [{surface: w, sense: w}, {surface: jeddo, sense: jeddo}]
+      translations: {en: 'And grandpa?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: هَيدا جِدّو، بَيّ إِمّي.
+          tokens: [{surface: هَيدا, sense: hayda}, {surface: جِدّو, sense: jeddo}, {surface: بَيّ, sense: bayy}, {surface: إِمّي, sense: emm, morphs: [{surface: إِمّ, kc: 'sense:emm'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+        apc-Latn/arabizi:
+          text: hayda jeddo, bayy emmi.
+          tokens: [{surface: hayda, sense: hayda}, {surface: jeddo, sense: jeddo}, {surface: bayy, sense: bayy}, {surface: emmi, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      translations: {en: 'This is grandpa, my mom''s father.'}
+  - choose:
+      prompt:
+        en: Whose mother is Teta?
+      options: [{en: Maya's dad's}, {en: Maya's mom's}, {en: Sami's}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: عيلْتِك كْبيرة!
+          tokens: [{surface: عيلْتِك, sense: 3ayle, morphs: [{surface: عيلْتِ, kc: 'sense:3ayle'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: كْبيرة, sense: kbir, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: 3ayeltik kbire!
+          tokens: [{surface: 3ayeltik, sense: 3ayle, morphs: [{surface: 3ayelt, kc: 'sense:3ayle'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: kbire, sense: kbir, form: 'form:fem'}]
+      translations: {en: Your family is big!}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: إيه، الحَمْدِلله!
+          tokens: [{surface: إيه, sense: eh}, {surface: الحَمْدِلله, sense: el7amdella}]
+        apc-Latn/arabizi:
+          text: eh, el7amdella!
+          tokens: [{surface: eh, sense: eh}, {surface: el7amdella, sense: el7amdella}]
+      translations: {en: 'Yes, thank God!'}

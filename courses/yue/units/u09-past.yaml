@@ -1,0 +1,481 @@
+# Cantonese (Hong Kong) unit u09-past: completed actions with 咗, 未 'not yet', 已經, experience with 過, 冇 + verb 'didn't', 啱啱 'just', languages and 識.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u09-past
+title: {en: 'What did you do?'}
+cefr: A2
+kcs:
+- {id: 'sense:咗', gloss: {en: 'after a verb: completed action (did, have done)'}, forms: {yue-Hant-HK/standard: [咗]}, notes: {en: 我食咗飯 'I have eaten'. Often typed 左.}}
+- {id: 'sense:未', gloss: {en: 'not yet; at the end of a question: … yet?'}, forms: {yue-Hant-HK/standard: [未]}, notes: {en: '你食咗飯未呀？ ''have you eaten yet?'' is also an everyday greeting. Answer 食咗喇 or 未呀.'}}
+- {id: 'sense:已經', gloss: {en: already}, forms: {yue-Hant-HK/standard: [已經]}}
+- {id: 'sense:做', gloss: {en: to do; to make}, forms: {yue-Hant-HK/standard: [做]}}
+- {id: 'sense:週末', gloss: {en: weekend}, forms: {yue-Hant-HK/standard: [週末]}}
+- {id: 'sense:睇戲', gloss: {en: 'to see a film, go to the cinema'}, forms: {yue-Hant-HK/standard: [睇戲]}}
+- {id: 'sense:行街', gloss: {en: 'to go shopping, go out for a stroll'}, forms: {yue-Hant-HK/standard: [行街]}}
+- {id: 'sense:行山', gloss: {en: to go hiking}, forms: {yue-Hant-HK/standard: [行山]}}
+- {id: 'sense:玩', gloss: {en: to play; to have fun; to go out}, forms: {yue-Hant-HK/standard: [玩]}}
+- {id: 'sense:過', gloss: {en: 'after a verb: have ever done (experience)'}, forms: {yue-Hant-HK/standard: [過]}, notes: {en: '我去過日本 ''I have been to Japan''. 未…過 ''never (yet)'': 我未去過.'}}
+- {id: 'sense:日本', gloss: {en: Japan}, forms: {yue-Hant-HK/standard: [日本]}}
+- {id: 'sense:英國', gloss: {en: 'the UK, Britain'}, forms: {yue-Hant-HK/standard: [英國]}}
+- {id: 'sense:台灣', gloss: {en: Taiwan}, forms: {yue-Hant-HK/standard: [台灣]}}
+- {id: 'sense:次', gloss: {en: 'time, occurrence (三次 three times)'}, forms: {yue-Hant-HK/standard: [次]}}
+- {id: 'sense:啱啱', gloss: {en: just (a moment ago)}, forms: {yue-Hant-HK/standard: [啱啱]}}
+- {id: 'sense:返嚟', gloss: {en: 'to come back, return (here)'}, forms: {yue-Hant-HK/standard: [返嚟]}}
+- {id: 'sense:打電話', gloss: {en: 'to phone, make a call'}, forms: {yue-Hant-HK/standard: [打電話]}, notes: {en: 打電話俾你 'phone you'.}}
+- {id: 'sense:晚飯', gloss: {en: dinner}, forms: {yue-Hant-HK/standard: [晚飯]}}
+- {id: 'sense:講', gloss: {en: 'to speak; to say, to tell'}, forms: {yue-Hant-HK/standard: [講]}}
+- {id: 'sense:廣東話', gloss: {en: Cantonese (the language)}, forms: {yue-Hant-HK/standard: [廣東話]}}
+- {id: 'sense:識', gloss: {en: 'to know how to, can (a skill); to know (a person)'}, forms: {yue-Hant-HK/standard: [識]}}
+- {id: 'sense:英文', gloss: {en: English (the language)}, forms: {yue-Hant-HK/standard: [英文]}}
+- {id: 'sense:學', gloss: {en: 'to learn, to study'}, forms: {yue-Hant-HK/standard: [學]}}
+- {id: 'sense:少少', gloss: {en: a little}, forms: {yue-Hant-HK/standard: [少少]}}
+- {id: 'sense:中文', gloss: {en: 'Chinese (the language, especially written)'}, forms: {yue-Hant-HK/standard: [中文]}}
+nodes:
+- {id: yue.done, kind: lesson, introduces: ['sense:咗', 'sense:未', 'sense:已經']}
+- {id: yue.weekend, kind: lesson, introduces: ['sense:做', 'sense:週末', 'sense:睇戲', 'sense:行街', 'sense:行山', 'sense:玩']}
+- {id: yue.been-there, kind: lesson, introduces: ['sense:過', 'sense:日本', 'sense:英國', 'sense:台灣', 'sense:次']}
+- {id: yue.just-now, kind: lesson, introduces: ['sense:啱啱', 'sense:返嚟', 'sense:打電話', 'sense:晚飯']}
+- {id: yue.languages, kind: lesson, introduces: ['sense:講', 'sense:廣東話', 'sense:識', 'sense:英文']}
+- {id: yue.study, kind: lesson, introduces: ['sense:學', 'sense:少少', 'sense:中文']}
+- {id: yue.past-story, kind: story}
+sentences:
+- id: s.u09.1
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 我食咗飯喇。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
+      reverse: 我食(咗|左)飯[喇]
+  translations:
+    en: |-
+      I('ve| have) (eaten|had my meal).
+      I ate.
+- id: s.u09.2
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 你食咗飯未呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你食(咗|左)飯未[呀]
+  translations:
+    en: Have you eaten (yet|)?
+- id: s.u09.3
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 未呀。
+      tokens: [{surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 未[呀]
+  translations:
+    en: Not yet.
+- id: s.u09.4
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 我已經食咗喇。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 已經, sense: 已經, readings: {jyutping: ji5 ging1}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
+      reverse: 我已經食(咗|左)[喇]
+  translations:
+    en: |-
+      I('ve| have) already eaten.
+      I already ate.
+- id: s.u09.5
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢去咗公司。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 公司, sense: 公司, readings: {jyutping: gung1 si1}}]
+      reverse: 佢去(咗|左)公司
+  translations:
+    en: |-
+      (She|He)('s| has) gone to the office.
+      (She|He) went to the office.
+      They('ve| have) gone to the office.
+      They went to the office.
+- id: s.u09.6
+  node: yue.done
+  forms:
+    yue-Hant-HK/standard:
+      text: 你買咗咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你買(咗|左)(咩|乜嘢)[呀]
+  translations:
+    en: |-
+      What did you buy?
+      What have you bought?
+- id: s.u09.7
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 你做咗咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你做(咗|左)(咩|乜嘢)[呀]
+  translations:
+    en: |-
+      What did you do?
+      What have you done?
+- id: s.u09.8
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 你週末做咗咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你週末做(咗|左)(咩|乜嘢)[呀]
+  translations:
+    en: What did you do (on the|at the|over the|this) weekend?
+- id: s.u09.9
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 我去咗睇戲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 睇戲, sense: 睇戲, readings: {jyutping: tai2 hei3}}]
+      reverse: 我去(咗|左)睇戲
+  translations:
+    en: |-
+      I went to (see|watch) a (movie|film).
+      I went to the (movies|cinema).
+- id: s.u09.10
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋去咗行街。
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 行街, sense: 行街, readings: {jyutping: haang4 gaai1}}]
+      reverse: 我(哋|地)去(咗|左)行街
+  translations:
+    en: |-
+      We went shopping.
+      We went (out|window shopping).
+- id: s.u09.11
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢哋去咗行山。
+      tokens: [{surface: 佢哋, sense: 佢, morphs: [{surface: 佢, kc: 'sense:佢'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: keoi5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 行山, sense: 行山, readings: {jyutping: haang4 saan1}}]
+      reverse: 佢(哋|地)去(咗|左)行山
+  translations:
+    en: They went hiking.
+- id: s.u09.12
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 你去咗邊度玩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 玩, sense: 玩, readings: {jyutping: waan2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你去(咗|左)邊度玩[呀]
+  translations:
+    en: |-
+      Where did you go (for fun|to have fun)?
+      Where did you go?
+- id: s.u09.13
+  node: yue.weekend
+  forms:
+    yue-Hant-HK/standard:
+      text: 好開心呀！
+      tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 開心, sense: 開心, readings: {jyutping: hoi1 sam1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 好開心[呀]
+  translations:
+    en: |-
+      (I was|We were|It was) (so|really) (happy|fun)!
+      (So|Really) fun!
+- id: s.u09.14
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 我食過蝦餃。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 蝦餃, sense: 蝦餃, readings: {jyutping: haa1 gaau2}}]
+      reverse: 我食過蝦餃
+  translations:
+    en: I('ve| have) (had|eaten|tried) (har gow|shrimp dumplings|prawn dumplings)( before|).
+- id: s.u09.15
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 你去過日本未呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 日本, sense: 日本, readings: {jyutping: jat6 bun2}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你去過日本未[呀]
+  translations:
+    en: Have you (ever |)been to Japan( yet|)?
+- id: s.u09.16
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 我未去過日本。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 日本, sense: 日本, readings: {jyutping: jat6 bun2}}]
+      reverse: 我未去過日本
+  translations:
+    en: |-
+      I('ve| have) never been to Japan.
+      I haven't been to Japan( yet|).
+- id: s.u09.17
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 我去過英國。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 英國, sense: 英國, readings: {jyutping: jing1 gwok3}}]
+      reverse: 我去過英國
+  translations:
+    en: I('ve| have) been to (the UK|Britain|England).
+- id: s.u09.18
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢去過台灣。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 台灣, sense: 台灣, readings: {jyutping: toi4 waan1}}]
+      reverse: 佢去過台灣
+  translations:
+    en: |-
+      (She|He)('s| has) been to Taiwan.
+      They('ve| have) been to Taiwan.
+- id: s.u09.19
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 我去過三次。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 次, sense: 次, readings: {jyutping: ci3}}]
+      reverse: 我去過三次
+  translations:
+    en: I('ve| have) been (there |)three times.
+- id: s.u09.20
+  node: yue.been-there
+  forms:
+    yue-Hant-HK/standard:
+      text: 你試過未呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 試, sense: 試, readings: {jyutping: si3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你試過未[呀]
+  translations:
+    en: Have you tried (it|it yet|it before)?
+- id: s.u09.21
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 我啱啱食咗飯。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 啱啱, sense: 啱啱, readings: {jyutping: ngaam1 ngaam1}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}]
+      reverse: 我啱啱食(咗|左)飯
+  translations:
+    en: |-
+      I('ve| have) just eaten.
+      I just (ate|had a meal).
+- id: s.u09.22
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢啱啱返嚟。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 啱啱, sense: 啱啱, readings: {jyutping: ngaam1 ngaam1}}, {surface: 返嚟, sense: 返嚟, readings: {jyutping: faan1 lai4}}]
+      reverse: 佢啱啱返嚟
+  translations:
+    en: |-
+      (She|He)('s| has) just come back.
+      (She|He) just came back.
+      They('ve| have) just come back.
+      They just came back.
+- id: s.u09.23
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 我聽日打電話俾你。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 打電話, sense: 打電話, readings: {jyutping: daa2 din6 waa2}}, {surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: 我聽日打電話(俾|畀)你
+  translations:
+    en: I('ll| will) (call|phone|ring) you tomorrow.
+- id: s.u09.24
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 我尋日見咗美玲。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 尋日, sense: 尋日, readings: {jyutping: cam4 jat6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
+      reverse: 我(尋|琴)日見(咗|左)美玲
+  translations:
+    en: |-
+      I (saw|met) (Mei-ling|Mei Ling) yesterday.
+      Yesterday I (saw|met) (Mei-ling|Mei Ling).
+- id: s.u09.25
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 我冇去。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
+      reverse: 我冇去
+  translations:
+    en: |-
+      I didn't go.
+      I did not go.
+- id: s.u09.26
+  node: yue.just-now
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢冇食晚飯。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 晚飯, sense: 晚飯, readings: {jyutping: maan5 faan6}}]
+      reverse: 佢冇食晚飯
+  translations:
+    en: |-
+      (She|He) didn't (eat|have) dinner.
+      They didn't (eat|have) dinner.
+- id: s.u09.27
+  node: yue.languages
+  forms:
+    yue-Hant-HK/standard:
+      text: 你講咩呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你講(咩|乜嘢)[呀]
+  translations:
+    en: |-
+      What are you saying?
+      What did you say?
+- id: s.u09.28
+  node: yue.languages
+  forms:
+    yue-Hant-HK/standard:
+      text: 我講廣東話。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 廣東話, sense: 廣東話, readings: {jyutping: gwong2 dung1 waa2}}]
+      reverse: 我講廣東話
+  translations:
+    en: |-
+      I speak Cantonese.
+      I('m| am) speaking Cantonese.
+- id: s.u09.29
+  node: yue.languages
+  forms:
+    yue-Hant-HK/standard:
+      text: 我識講廣東話。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 廣東話, sense: 廣東話, readings: {jyutping: gwong2 dung1 waa2}}]
+      reverse: 我識講廣東話
+  translations:
+    en: I (can|know how to) speak Cantonese.
+- id: s.u09.30
+  node: yue.languages
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢唔識講英文。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 英文, sense: 英文, readings: {jyutping: jing1 man4}}]
+      reverse: 佢唔識講英文
+  translations:
+    en: |-
+      (She|He) (can't|cannot|doesn't|does not) speak English.
+      They (can't|cannot|don't|do not) speak English.
+- id: s.u09.31
+  node: yue.study
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺學校學廣東話。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}, {surface: 學, sense: 學, readings: {jyutping: hok6}}, {surface: 廣東話, sense: 廣東話, readings: {jyutping: gwong2 dung1 waa2}}]
+      reverse: 我喺學校學廣東話
+  translations:
+    en: I (learn|study) Cantonese at school.
+- id: s.u09.32
+  node: yue.study
+  forms:
+    yue-Hant-HK/standard:
+      text: 我識講少少廣東話。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 少少, sense: 少少, readings: {jyutping: siu2 siu2}}, {surface: 廣東話, sense: 廣東話, readings: {jyutping: gwong2 dung1 waa2}}]
+      reverse: 我識講少少廣東話
+  translations:
+    en: |-
+      I (can|know how to) speak a little Cantonese.
+      I speak a little Cantonese.
+- id: s.u09.33
+  node: yue.study
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你識唔識講中文呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 中文, sense: 中文, readings: {jyutping: zung1 man4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你識唔識講中文[呀]
+  translations:
+    en: |-
+      Can you speak Chinese?
+      Do you speak Chinese?
+stories:
+- id: yue.story.monday
+  node: yue.past-story
+  title:
+    en: Monday morning
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  - {id: gaa-ming, name: {yue-Hant-HK/standard: 家明}}
+  steps:
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 早晨！你食咗早餐未呀？
+          tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 早餐, sense: 早餐, readings: {jyutping: zou2 caan1}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Morning! Have you had breakfast yet?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 食咗喇。你呢？
+          tokens: [{surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      translations: {en: 'Yes, I have. And you?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 未呀。你週末做咗咩呀？
+          tokens: [{surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Not yet. What did you do at the weekend?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 我去咗行山。好開心呀！
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 行山, sense: 行山, readings: {jyutping: haang4 saan1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 開心, sense: 開心, readings: {jyutping: hoi1 sam1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: I went hiking. It was great fun!}
+  - choose:
+      prompt: {en: 'What did Ka-ming do at the weekend?'}
+      options: [{en: He went hiking.}, {en: He went to the cinema.}, {en: He stayed at home.}]
+      answer: 0
+  - line:
+      speaker: mei-ling
+      ask: complete
+      gap: sense:睇戲
+      distractors: ['sense:行街', 'sense:行山']
+      forms:
+        yue-Hant-HK/standard:
+          text: 我去咗睇戲。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 睇戲, sense: 睇戲, readings: {jyutping: tai2 hei3}}]
+      translations: {en: I went to see a film.}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 你去咗邊度睇戲呀？
+          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 睇戲, sense: 睇戲, readings: {jyutping: tai2 hei3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Where did you see it?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 中環。你去過嗰度未呀？
+          tokens: [{surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}, {surface: 嗰度, sense: 嗰度, readings: {jyutping: go2 dou6}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'In Central. Have you been there?'}
+  - line:
+      speaker: gaa-ming
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 我未去過。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 過, sense: 過, readings: {jyutping: gwo3}}]
+      translations: {en: I haven't been yet.}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 我哋一齊去啦！
+          tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      translations: {en: Let's go together!}
+  - choose:
+      prompt: {en: 'Has Mei-ling had breakfast?'}
+      options: [{en: Not yet.}, {en: 'Yes, at home.'}, {en: 'Yes, with Ka-ming.'}]
+      answer: 0
+scenarios:
+- id: yue.weekend-chat
+  after: yue.study
+  title:
+    en: Catching up after the weekend
+  setting:
+    en: The office pantry on a Monday morning.
+  character:
+    en: A friendly colleague who asks whether you have eaten and what you did at the weekend, and talks about their own.
+  goal:
+    en: Say what you did at the weekend with 咗, ask your colleague the same, and say whether you have ever been somewhere with 過.
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}

@@ -1,0 +1,463 @@
+# Cantonese (Hong Kong) unit u05-places: 喺 'be at' and 'at', 邊度/呢度/嗰度, places in town, 前面/後面/對面/樓上/樓下, 住喺, 嚟 and 返工.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u05-places
+title: {en: 'Where is it?'}
+cefr: A1
+kcs:
+- {id: 'sense:邊度', gloss: {en: where}, forms: {yue-Hant-HK/standard: [邊度]}}
+- {id: 'sense:喺', gloss: {en: 'to be at, to be in; at, in'}, forms: {yue-Hant-HK/standard: [喺]}, notes: {en: 喺 hai2 (be at) is a different word from 係 hai6 (be). 我喺屋企 'I'm at home'; 我喺公司做嘢 'I work at an office'.}}
+- {id: 'sense:屋企', gloss: {en: home}, forms: {yue-Hant-HK/standard: [屋企]}}
+- {id: 'sense:呢度', gloss: {en: here}, forms: {yue-Hant-HK/standard: [呢度]}, notes: {en: Many speakers say ni1 dou6.}}
+- {id: 'sense:嗰度', gloss: {en: there}, forms: {yue-Hant-HK/standard: [嗰度]}}
+- {id: 'sense:嚟', gloss: {en: to come}, forms: {yue-Hant-HK/standard: [嚟]}}
+- {id: 'sense:返工', gloss: {en: to go to work}, forms: {yue-Hant-HK/standard: [返工]}}
+- {id: 'sense:公司', gloss: {en: company; office}, forms: {yue-Hant-HK/standard: [公司]}}
+- {id: 'sense:學校', gloss: {en: school}, forms: {yue-Hant-HK/standard: [學校]}}
+- {id: 'sense:返學', gloss: {en: to go to school}, forms: {yue-Hant-HK/standard: [返學]}}
+- {id: 'sense:做嘢', gloss: {en: to work}, forms: {yue-Hant-HK/standard: [做嘢]}, notes: {en: Literally 'do things'.}}
+- {id: 'sense:醫院', gloss: {en: hospital}, forms: {yue-Hant-HK/standard: [醫院]}}
+- {id: 'sense:洗手間', gloss: {en: toilet; bathroom}, forms: {yue-Hant-HK/standard: [洗手間]}}
+- {id: 'sense:銀行', gloss: {en: bank}, forms: {yue-Hant-HK/standard: [銀行]}}
+- {id: 'sense:超市', gloss: {en: supermarket}, forms: {yue-Hant-HK/standard: [超市]}}
+- {id: 'sense:餐廳', gloss: {en: restaurant}, forms: {yue-Hant-HK/standard: [餐廳]}}
+- {id: 'sense:附近', gloss: {en: nearby; near}, forms: {yue-Hant-HK/standard: [附近]}, notes: {en: 學校附近 'near the school'.}}
+- {id: 'sense:對面', gloss: {en: 'opposite, across from'}, forms: {yue-Hant-HK/standard: [對面]}, notes: {en: 'Comes after the place: 銀行對面 ''opposite the bank''.'}}
+- {id: 'sense:後面', gloss: {en: behind; at the back}, forms: {yue-Hant-HK/standard: [後面]}}
+- {id: 'sense:前面', gloss: {en: in front (of); ahead}, forms: {yue-Hant-HK/standard: [前面]}}
+- {id: 'sense:樓上', gloss: {en: upstairs}, forms: {yue-Hant-HK/standard: [樓上]}}
+- {id: 'sense:樓下', gloss: {en: downstairs}, forms: {yue-Hant-HK/standard: [樓下]}}
+- {id: 'sense:入面', gloss: {en: inside}, forms: {yue-Hant-HK/standard: [入面]}}
+- {id: 'sense:住', gloss: {en: to live (somewhere)}, forms: {yue-Hant-HK/standard: [住]}, notes: {en: '住喺 ''to live in'': 我住喺香港.'}}
+- {id: 'sense:香港', gloss: {en: Hong Kong}, forms: {yue-Hant-HK/standard: [香港]}}
+- {id: 'sense:中環', gloss: {en: Central (a district of Hong Kong)}, forms: {yue-Hant-HK/standard: [中環]}}
+- {id: 'sense:遠', gloss: {en: far}, forms: {yue-Hant-HK/standard: [遠]}}
+nodes:
+- {id: yue.where, kind: lesson, introduces: ['sense:邊度', 'sense:喺', 'sense:屋企', 'sense:呢度', 'sense:嗰度']}
+- {id: yue.come-go, kind: lesson, introduces: ['sense:嚟', 'sense:返工', 'sense:公司', 'sense:學校', 'sense:返學', 'sense:做嘢']}
+- {id: yue.town, kind: lesson, introduces: ['sense:醫院', 'sense:洗手間', 'sense:銀行', 'sense:超市', 'sense:餐廳']}
+- {id: yue.position, kind: lesson, introduces: ['sense:附近', 'sense:對面', 'sense:後面', 'sense:前面']}
+- {id: yue.inside, kind: lesson, introduces: ['sense:樓上', 'sense:樓下', 'sense:入面']}
+- {id: yue.live, kind: lesson, introduces: ['sense:住', 'sense:香港', 'sense:中環', 'sense:遠']}
+- {id: yue.places-story, kind: story}
+sentences:
+- id: s.u05.1
+  node: yue.where
+  forms:
+    yue-Hant-HK/standard:
+      text: 你去邊度呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你去邊度[呀]
+  translations:
+    en: Where are you going?
+- id: s.u05.2
+  node: yue.where
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢喺邊度呀？
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 佢喺邊度[呀]
+  translations:
+    en: |-
+      Where is (she|he)?
+      Where are they?
+- id: s.u05.3
+  node: yue.where
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺屋企。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 屋企, sense: 屋企, readings: {jyutping: uk1 kei2}}]
+      reverse: 我喺屋企
+  translations:
+    en: I('m| am) at home.
+- id: s.u05.4
+  node: yue.where
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺呢度！
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 呢度, sense: 呢度, readings: {jyutping: ne1 dou6}}]
+      reverse: 我喺呢度
+  translations:
+    en: I('m| am) (here|over here)!
+- id: s.u05.5
+  node: yue.where
+  forms:
+    yue-Hant-HK/standard:
+      text: 我媽媽喺嗰度。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 嗰度, sense: 嗰度, readings: {jyutping: go2 dou6}}]
+      reverse: 我媽媽喺嗰度
+  translations:
+    en: My (mum|mom|mother) is (there|over there).
+- id: s.u05.6
+  node: yue.where
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你喺唔喺屋企呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 屋企, sense: 屋企, readings: {jyutping: uk1 kei2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你喺唔喺屋企[呀]
+  translations:
+    en: Are you at home?
+- id: s.u05.7
+  node: yue.where
+  constructions: ['construction:cl-possessive']
+  forms:
+    yue-Hant-HK/standard:
+      text: 我本書喺邊度呀？
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 我(本|嘅)書喺邊度[呀]
+  translations:
+    en: Where('s| is) my book?
+- id: s.u05.8
+  node: yue.come-go
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你嚟唔嚟呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嚟, sense: 嚟, readings: {jyutping: lai4}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 嚟, sense: 嚟, readings: {jyutping: lai4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你嚟唔嚟[呀]
+  translations:
+    en: Are you coming?
+- id: s.u05.9
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 我嚟喇！
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 嚟, sense: 嚟, readings: {jyutping: lai4}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
+      reverse: 我嚟[喇]
+  translations:
+    en: |-
+      (I'm|I am) coming!
+      Coming!
+- id: s.u05.10
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 我返工喇。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 返工, sense: 返工, readings: {jyutping: faan1 gung1}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
+      reverse: 我返工[喇]
+  translations:
+    en: I('m| am) (off|going) to work (now|).
+- id: s.u05.11
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢喺公司。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 公司, sense: 公司, readings: {jyutping: gung1 si1}}]
+      reverse: 佢喺公司
+  translations:
+    en: |-
+      (She|He)('s| is) at (the|her|his) (office|company).
+      They('re| are) at (the|their) (office|company).
+- id: s.u05.12
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 我細妹喺學校。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}]
+      reverse: 我細妹喺學校
+  translations:
+    en: My (younger|little) sister is at school.
+- id: s.u05.13
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 我哋返學喇！
+      tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 返學, sense: 返學, readings: {jyutping: faan1 hok6}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
+      reverse: 我(哋|地)返學[喇]
+  translations:
+    en: We('re| are) (off|going) to school (now|)!
+- id: s.u05.14
+  node: yue.come-go
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺公司做嘢。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 公司, sense: 公司, readings: {jyutping: gung1 si1}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}]
+      reverse: 我喺公司做嘢
+  translations:
+    en: |-
+      I work (at a company|in an office|at an office).
+      I('m| am) working at the office.
+- id: s.u05.15
+  node: yue.town
+  forms:
+    yue-Hant-HK/standard:
+      text: 我爸爸喺醫院做嘢。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 爸爸, sense: 爸爸, readings: {jyutping: baa4 baa1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 醫院, sense: 醫院, readings: {jyutping: ji1 jyun2}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}]
+      reverse: 我爸爸喺醫院做嘢
+  translations:
+    en: My (dad|father) works (at|in) a hospital.
+- id: s.u05.16
+  node: yue.town
+  forms:
+    yue-Hant-HK/standard:
+      text: 洗手間喺邊度呀？
+      tokens: [{surface: 洗手間, sense: 洗手間, readings: {jyutping: sai2 sau2 gaan1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 洗手間喺邊度[呀]
+  translations:
+    en: Where('s| is) the (toilet|bathroom|restroom|washroom)?
+- id: s.u05.17
+  node: yue.town
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔該，洗手間喺邊度呀？
+      tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 洗手間, sense: 洗手間, readings: {jyutping: sai2 sau2 gaan1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 唔該洗手間喺邊度[呀]
+  translations:
+    en: Excuse me, where('s| is) the (toilet|bathroom|restroom|washroom)?
+- id: s.u05.18
+  node: yue.town
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢喺銀行做嘢。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}]
+      reverse: 佢喺銀行做嘢
+  translations:
+    en: |-
+      (She|He) works (at|in) a bank.
+      They work (at|in) a bank.
+- id: s.u05.19
+  node: yue.town
+  forms:
+    yue-Hant-HK/standard:
+      text: 超市喺嗰度。
+      tokens: [{surface: 超市, sense: 超市, readings: {jyutping: ciu1 si5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 嗰度, sense: 嗰度, readings: {jyutping: go2 dou6}}]
+      reverse: 超市喺嗰度
+  translations:
+    en: The (supermarket|grocery store) is (over |)there.
+- id: s.u05.20
+  node: yue.town
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 呢度有冇餐廳呀？
+      tokens: [{surface: 呢度, sense: 呢度, readings: {jyutping: ne1 dou6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 餐廳, sense: 餐廳, readings: {jyutping: caan1 teng1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢度有冇餐廳[呀]
+  translations:
+    en: |-
+      Are there (any |)restaurants (here|around here)?
+      Is there a restaurant (here|around here)?
+- id: s.u05.21
+  node: yue.position
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 附近有冇銀行呀？
+      tokens: [{surface: 附近, sense: 附近, readings: {jyutping: fu6 gan6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 附近有冇銀行[呀]
+  translations:
+    en: Is there a bank (nearby|near here|around here)?
+- id: s.u05.22
+  node: yue.position
+  forms:
+    yue-Hant-HK/standard:
+      text: 銀行喺超市對面。
+      tokens: [{surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 超市, sense: 超市, readings: {jyutping: ciu1 si5}}, {surface: 對面, sense: 對面, readings: {jyutping: deoi3 min6}}]
+      reverse: 銀行喺超市對面
+  translations:
+    en: The bank is (opposite|across from) the (supermarket|grocery store).
+- id: s.u05.23
+  node: yue.position
+  forms:
+    yue-Hant-HK/standard:
+      text: 學校喺醫院後面。
+      tokens: [{surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 醫院, sense: 醫院, readings: {jyutping: ji1 jyun2}}, {surface: 後面, sense: 後面, readings: {jyutping: hau6 min6}}]
+      reverse: 學校喺醫院後面
+  translations:
+    en: The school is behind the hospital.
+- id: s.u05.24
+  node: yue.position
+  forms:
+    yue-Hant-HK/standard:
+      text: 餐廳喺銀行前面。
+      tokens: [{surface: 餐廳, sense: 餐廳, readings: {jyutping: caan1 teng1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 前面, sense: 前面, readings: {jyutping: cin4 min6}}]
+      reverse: 餐廳喺銀行前面
+  translations:
+    en: The restaurant is in front of the bank.
+- id: s.u05.25
+  node: yue.inside
+  forms:
+    yue-Hant-HK/standard:
+      text: 洗手間喺樓上。
+      tokens: [{surface: 洗手間, sense: 洗手間, readings: {jyutping: sai2 sau2 gaan1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 樓上, sense: 樓上, readings: {jyutping: lau4 soeng6}}]
+      reverse: 洗手間喺樓上
+  translations:
+    en: The (toilet|bathroom|restroom|washroom) is upstairs.
+- id: s.u05.26
+  node: yue.inside
+  forms:
+    yue-Hant-HK/standard:
+      text: 超市喺樓下。
+      tokens: [{surface: 超市, sense: 超市, readings: {jyutping: ciu1 si5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 樓下, sense: 樓下, readings: {jyutping: lau4 haa6}}]
+      reverse: 超市喺樓下
+  translations:
+    en: The (supermarket|grocery store) is downstairs.
+- id: s.u05.27
+  node: yue.inside
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢喺入面。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 入面, sense: 入面, readings: {jyutping: jap6 min6}}]
+      reverse: 佢喺入面
+  translations:
+    en: |-
+      (She|He)('s| is) inside.
+      They('re| are) inside.
+- id: s.u05.28
+  node: yue.live
+  forms:
+    yue-Hant-HK/standard:
+      text: 你住喺邊度呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你住喺邊度[呀]
+  translations:
+    en: Where do you live?
+- id: s.u05.29
+  node: yue.live
+  forms:
+    yue-Hant-HK/standard:
+      text: 我住喺香港。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 香港, sense: 香港, readings: {jyutping: hoeng1 gong2}}]
+      reverse: 我住喺香港
+  translations:
+    en: I live in Hong Kong.
+- id: s.u05.30
+  node: yue.live
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你係唔係香港人呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 香港, sense: 香港, readings: {jyutping: hoeng1 gong2}}, {surface: 人, sense: 人, readings: {jyutping: jan4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你係唔係香港人[呀]
+  translations:
+    en: Are you (from Hong Kong|a Hongkonger|a Hong Konger)?
+- id: s.u05.31
+  node: yue.live
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺中環做嘢。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}]
+      reverse: 我喺中環做嘢
+  translations:
+    en: I work in Central.
+- id: s.u05.32
+  node: yue.live
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你屋企遠唔遠呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 屋企, sense: 屋企, readings: {jyutping: uk1 kei2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你屋企遠唔遠[呀]
+  translations:
+    en: Is your (home|place|house) far (away|)?
+- id: s.u05.33
+  node: yue.live
+  forms:
+    yue-Hant-HK/standard:
+      text: 唔係好遠。
+      tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}]
+      reverse: 唔係好遠
+  translations:
+    en: |-
+      (It's|It is) not (very|that|too) far.
+      Not (very|that|too) far.
+- id: s.u05.34
+  node: yue.live
+  forms:
+    yue-Hant-HK/standard:
+      text: 我住喺學校附近。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}, {surface: 附近, sense: 附近, readings: {jyutping: fu6 gan6}}]
+      reverse: 我住喺學校附近
+  translations:
+    en: I live near the school.
+stories:
+- id: yue.story.neighbours
+  node: yue.places-story
+  title:
+    en: New neighbours
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  - {id: gaa-ming, name: {yue-Hant-HK/standard: 家明}}
+  steps:
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 早晨！你住喺呢度嗎？
+          tokens: [{surface: 早晨, sense: 早晨, readings: {jyutping: zou2 san4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 呢度, sense: 呢度, readings: {jyutping: ne1 dou6}}, {surface: 嗎, sense: 嗎, readings: {jyutping: maa3}}]
+      translations: {en: 'Morning! Do you live here?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 係呀，我住喺樓上。
+          tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 樓上, sense: 樓上, readings: {jyutping: lau4 soeng6}}]
+      translations: {en: 'Yes, I live upstairs.'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 我住喺樓下！
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 樓下, sense: 樓下, readings: {jyutping: lau4 haa6}}]
+      translations: {en: I live downstairs!}
+  - choose:
+      prompt: {en: 'Where does Ka-ming live?'}
+      options: [{en: upstairs}, {en: downstairs}, {en: in Central}]
+      answer: 0
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 你去邊度呀？
+          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Where are you going?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 我返工。我喺中環做嘢。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 返工, sense: 返工, readings: {jyutping: faan1 gung1}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}]
+      translations: {en: I'm going to work. I work in Central.}
+  - line:
+      speaker: gaa-ming
+      ask: complete
+      gap: sense:醫院
+      distractors: ['sense:銀行', 'sense:學校']
+      forms:
+        yue-Hant-HK/standard:
+          text: 我喺醫院做嘢，我係醫生。
+          tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 醫院, sense: 醫院, readings: {jyutping: ji1 jyun2}}, {surface: 做嘢, sense: 做嘢, readings: {jyutping: zou6 je5}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 醫生, sense: 醫生, readings: {jyutping: ji1 sang1}}]
+      translations: {en: I work at a hospital. I'm a doctor.}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 醫院遠唔遠呀？
+          tokens: [{surface: 醫院, sense: 醫院, readings: {jyutping: ji1 jyun2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Is the hospital far?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 唔係好遠。
+          tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}]
+      translations: {en: Not very far.}
+  - line:
+      speaker: mei-ling
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 附近有冇超市呀？
+          tokens: [{surface: 附近, sense: 附近, readings: {jyutping: fu6 gan6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 超市, sense: 超市, readings: {jyutping: ciu1 si5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Is there a supermarket nearby?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 有，喺銀行對面。
+          tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 對面, sense: 對面, readings: {jyutping: deoi3 min6}}]
+      translations: {en: 'Yes, opposite the bank.'}
+  - choose:
+      prompt: {en: 'Where is the supermarket?'}
+      options: [{en: opposite the bank}, {en: behind the hospital}, {en: upstairs}]
+      answer: 0

@@ -1,0 +1,667 @@
+# Fixture course (apc), unit 6: my day. The b- present: each person is a form KC on the verb token
+# (b- I, bt- you, bi- he, bt- she, mn- we, bt-…-i you to a woman); the verb's sense is the lexeme.
+# Arabic-script bt- forms are ambiguous (you / she): the token says which. Morning, evening, every day.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u06-day
+title: {en: My day}
+cefr: A1
+kcs:
+- {id: 'form:impf-1sg', gloss: {en: 'b-: I (present)'}, notes: {en: 'bekol: I eat; bishrab: I drink. Present, habit, or what I''m about to do.'}}
+- {id: 'sense:sob7', gloss: {en: morning}, forms: {apc-Arab/standard: [الصبح], apc-Latn/arabizi: [sob7]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29',
+      status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'el sob7: in the morning.'}}
+- {id: 'sense:fi2', gloss: {en: wake up}, forms: {apc-Arab/standard: [بفيق], apc-Latn/arabizi: [bfi2]}}
+- {id: 'sense:bakkir', gloss: {en: early}, forms: {apc-Arab/standard: [بكّير], apc-Latn/arabizi: [bakkir]}}
+- {id: 'sense:ra7', gloss: {en: go}, forms: {apc-Arab/standard: [بروح, منروح, بتروحي, نروح, بتروح, رحت, راح, راحت, رحنا, رحتي], apc-Latn/arabizi: [bru7, mnru7, btru7i, nru7, btru7, ru7t, ra7, ra7et, ru7na,
+      ru7ti]}}
+- {id: 'sense:3emel', gloss: {en: do; make}, forms: {apc-Arab/standard: [بعمل, بتعمل, بتعملي, تعمل, عملت, منعمل], apc-Latn/arabizi: [ba3mel, bta3mel, bta3mli, ta3mel, 3melt, mna3mel]}}
+- {id: 'form:impf-2ms', gloss: {en: 'bt-: you (present, to a man)'}, notes: {en: 'btishrab: you drink. The same form means ''she'': bt- is both.'}}
+- {id: 'sense:eshteghel', gloss: {en: work}, forms: {apc-Arab/standard: [بشتغل, بتشتغل, بيشتغل], apc-Latn/arabizi: [bishteghel, btishteghel, byishteghel]}}
+- {id: 'sense:2ara', gloss: {en: read}, forms: {apc-Arab/standard: [بقرا, بتقرا, بيقرا, اقرا], apc-Latn/arabizi: [b2ra, bti2ra, byi2ra, e2ra]}}
+- {id: 'form:impf-3ms', gloss: {en: 'bi-: he (present)'}, notes: {en: 'byishteghel: he works. Arabic script بيـ.'}}
+- {id: 'form:impf-3fs', gloss: {en: 'bt-: she (present)'}, notes: {en: 'btishteghel: she works; the same form as ''you'' to a man.'}}
+- {id: 'sense:nem', gloss: {en: sleep; go to bed}, forms: {apc-Arab/standard: [بنام, بتنام], apc-Latn/arabizi: [bnem, btnem]}}
+- {id: 'sense:masa', gloss: {en: evening}, forms: {apc-Arab/standard: [المسا], apc-Latn/arabizi: [masa]}, notes: {en: 'el masa: in the evening.'}}
+- {id: 'form:impf-1pl', gloss: {en: 'mn-: we (present)'}, notes: {en: 'mnru7: we go; mnishrab: we drink. Arabic script منـ.'}}
+- {id: 'sense:yom', gloss: {en: day}, forms: {apc-Arab/standard: [يوم], apc-Latn/arabizi: [yom]}, notes: {en: 'el yom: today.'}}
+- {id: 'sense:kell', gloss: {en: every; all}, forms: {apc-Arab/standard: [كل], apc-Latn/arabizi: [kell]}, notes: {en: 'kell yom: every day.'}}
+- {id: 'sense:dayman', gloss: {en: always}, forms: {apc-Arab/standard: [دايما], apc-Latn/arabizi: [dayman]}}
+- {id: 'sense:ba3dein', gloss: {en: then; later; afterwards}, forms: {apc-Arab/standard: [بعدين], apc-Latn/arabizi: [ba3dein]}}
+- {id: 'sense:hala2', gloss: {en: now}, forms: {apc-Arab/standard: [هلّق], apc-Latn/arabizi: [hala2]}}
+- {id: 'sense:7aka', gloss: {en: speak; talk}, forms: {apc-Arab/standard: [بحكي, بتحكي], apc-Latn/arabizi: [b7ki, bt7ki]}}
+- {id: 'sense:3arabe', gloss: {en: Arabic}, forms: {apc-Arab/standard: [عربي], apc-Latn/arabizi: [3arabe]}}
+- {id: 'sense:englize', gloss: {en: English}, forms: {apc-Arab/standard: [إنكليزي], apc-Latn/arabizi: [englize]}}
+- {id: 'form:impf-2fs', gloss: {en: 'bt-…-i: you (present, to a woman)'}, notes: {en: 'btishrabi: you drink; bta3mli: you do. Arabic script بتـ…ـي.'}}
+- {id: 'sense:enti', gloss: {en: you (to a woman)}, forms: {apc-Arab/standard: [إنتي], apc-Latn/arabizi: [enti]}}
+- {id: 'sense:m2akhkhar', gloss: {en: late}, forms: {apc-Arab/standard: [مأخّر, مأخّرة], apc-Latn/arabizi: [m2akhkhar, m2akhkhra]}}
+nodes:
+- {id: apc.day.morning, kind: lesson, introduces: ['form:impf-1sg', 'sense:sob7', 'sense:fi2', 'sense:bakkir', 'sense:ra7']}
+- {id: apc.day.you, kind: lesson, introduces: ['sense:3emel', 'form:impf-2ms', 'sense:eshteghel', 'sense:2ara']}
+- {id: apc.day.he-she, kind: lesson, introduces: ['form:impf-3ms', 'form:impf-3fs', 'sense:nem', 'sense:masa']}
+- {id: apc.day.we, kind: lesson, introduces: ['form:impf-1pl', 'sense:yom', 'sense:kell', 'sense:dayman', 'sense:ba3dein']}
+- {id: apc.day.talk, kind: lesson, introduces: ['sense:hala2', 'sense:7aka', 'sense:3arabe', 'sense:englize']}
+- {id: apc.day.you-f, kind: lesson, introduces: ['form:impf-2fs', 'sense:enti', 'sense:m2akhkhar']}
+- {id: apc.day.story, kind: story}
+sentences:
+- id: s.day.1
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: باكل منقوشة.
+      tokens: [{surface: باكل, sense: akal, form: 'form:impf-1sg'}, {surface: منقوشة, sense: man2oushe}]
+      reverse: باكل منقوشة
+    apc-Latn/arabizi:
+      text: bekol man2oushe.
+      tokens: [{surface: bekol, sense: akal, form: 'form:impf-1sg'}, {surface: man2oushe, sense: man2oushe}]
+      reverse: (bekol|bakol|b2akol) (man2oushe|manoushe|man2ushi|mankoushe)
+  translations:
+    en: |-
+      I eat a (man'oushe|manakish).
+      I('m| am) eating a (man'oushe|manakish).
+      I('ll| will) (eat|have) a (man'oushe|manakish).
+- id: s.day.2
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بشرب قهوة.
+      tokens: [{surface: بشرب, sense: shereb, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe}]
+      reverse: بشرب قهوة
+    apc-Latn/arabizi:
+      text: bishrab ahwe.
+      tokens: [{surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
+      reverse: (bishrab|beshrab|bshrab) (ahwe|2ahwe)
+  translations:
+    en: |-
+      I drink coffee.
+      I('m| am) drinking coffee.
+      I('ll| will) (drink|have) (a coffee|some coffee|coffee).
+- id: s.day.3
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الصبح بشرب قهوة.
+      tokens: [{surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صبح, kc: 'sense:sob7'}]}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe}]
+      reverse: الصبح بشرب قهوة
+    apc-Latn/arabizi:
+      text: el sob7 bishrab ahwe.
+      tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
+      reverse: (el|l|il) (sob7|sobe7|sub7) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
+  translations:
+    en: |-
+      In the morning I drink coffee.
+      I drink coffee in the morning.
+- id: s.day.4
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بفيق الصبح.
+      tokens: [{surface: بفيق, sense: fi2, form: 'form:impf-1sg'}, {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صبح, kc: 'sense:sob7'}]}]
+      reverse: بفيق الصبح
+    apc-Latn/arabizi:
+      text: bfi2 el sob7.
+      tokens: [{surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
+      reverse: (bfi2|bfe2) (el|l|il) (sob7|sobe7|sub7)
+  translations:
+    en: |-
+      I wake up in the morning.
+      I get up in the morning.
+- id: s.day.5
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بفيق بكّير.
+      tokens: [{surface: بفيق, sense: fi2, form: 'form:impf-1sg'}, {surface: بكّير, sense: bakkir}]
+      reverse: بفيق بكّير
+    apc-Latn/arabizi:
+      text: bfi2 bakkir.
+      tokens: [{surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: bakkir, sense: bakkir}]
+      reverse: (bfi2|bfe2) (bakkir|bakir|bakkeer)
+  translations:
+    en: |-
+      I wake up early.
+      I get up early.
+- id: s.day.6
+  node: apc.day.morning
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بروح عالشغل.
+      tokens: [{surface: بروح, sense: ra7, form: 'form:impf-1sg'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: بروح (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: bru7 3al shoghl.
+      tokens: [{surface: bru7, sense: ra7, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (bru7|brou7|bro7|bruh) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+  translations:
+    en: |-
+      I go to work.
+      I('m| am) going to work.
+- id: s.day.7
+  node: apc.day.you
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بعمل قهوة.
+      tokens: [{surface: بعمل, sense: 3emel, form: 'form:impf-1sg'}, {surface: قهوة, sense: ahwe}]
+      reverse: بعمل قهوة
+    apc-Latn/arabizi:
+      text: ba3mel ahwe.
+      tokens: [{surface: ba3mel, sense: 3emel, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
+      reverse: (ba3mel|ba3mil|b3mel) (ahwe|2ahwe)
+  translations:
+    en: |-
+      I make coffee.
+      I('m| am) making coffee.
+      I('ll| will) make (coffee|some coffee).
+- id: s.day.8
+  node: apc.day.you
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}]
+      reverse: شو بتعمل
+    apc-Latn/arabizi:
+      text: shu bta3mel?
+      tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}]
+      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil)
+  translations:
+    en: |-
+      What do you do?
+      What are you doing?
+      What are you up to?
+- id: s.day.9
+  node: apc.day.you
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بشتغل ببيروت.
+      tokens: [{surface: بشتغل, sense: eshteghel, form: 'form:impf-1sg'}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      reverse: بشتغل ببيروت
+    apc-Latn/arabizi:
+      text: bishteghel b Beirut.
+      tokens: [{surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      reverse: (bishteghel|beshteghel|bishtighil) (b|bi) (Beirut|Bayrut|Beyrouth)
+  translations:
+    en: I work in Beirut.
+- id: s.day.10
+  node: apc.day.you
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين بتشتغل؟
+      tokens: [{surface: وين, sense: wen}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-2ms'}]
+      reverse: وين بتشتغل
+    apc-Latn/arabizi:
+      text: wen btishteghel?
+      tokens: [{surface: wen, sense: wen}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-2ms'}]
+      reverse: (wen|wein|wayn) (btishteghel|bteshteghel)
+  translations:
+    en: Where do you work?
+- id: s.day.11
+  node: apc.day.you
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو بتقرا؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتقرا, sense: 2ara, form: 'form:impf-2ms'}]
+      reverse: شو بتقرا
+    apc-Latn/arabizi:
+      text: shu bti2ra?
+      tokens: [{surface: shu, sense: shu}, {surface: bti2ra, sense: 2ara, form: 'form:impf-2ms'}]
+      reverse: (shu|sho) (bti2ra|bte2ra|bt2ra)
+  translations:
+    en: |-
+      What are you reading?
+      What do you read?
+- id: s.day.12
+  node: apc.day.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي بيشتغل كتير.
+      tokens: [{surface: سامي, sense: sami}, {surface: بيشتغل, sense: eshteghel, form: 'form:impf-3ms'}, {surface: كتير, sense: ktir}]
+      reverse: سامي بيشتغل كتير
+    apc-Latn/arabizi:
+      text: Sami byishteghel ktir.
+      tokens: [{surface: Sami, sense: sami}, {surface: byishteghel, sense: eshteghel, form: 'form:impf-3ms'}, {surface: ktir, sense: ktir}]
+      reverse: Sami (byishteghel|byeshteghel) (ktir|kteer|kter|ktiir)
+  translations:
+    en: |-
+      Sami works a lot.
+      Sami works hard.
+- id: s.day.13
+  node: apc.day.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا بتشتغل بالمدرسة.
+      tokens: [{surface: مايا, sense: maya}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-3fs'}, {surface: بالمدرسة, sense: madrase, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
+            {surface: مدرسة, kc: 'sense:madrase'}]}]
+      reverse: مايا بتشتغل بالمدرسة
+    apc-Latn/arabizi:
+      text: Maya btishteghel bel madrase.
+      tokens: [{surface: Maya, sense: maya}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-3fs'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]},
+        {surface: madrase, sense: madrase}]
+      reverse: Maya (btishteghel|bteshteghel) (bel|bil|b el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      Maya works at the school.
+      Maya works at a school.
+- id: s.day.14
+  node: apc.day.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا بتنام بكّير.
+      tokens: [{surface: تيتا, sense: teta}, {surface: بتنام, sense: nem, form: 'form:impf-3fs'}, {surface: بكّير, sense: bakkir}]
+      reverse: تيتا بتنام بكّير
+    apc-Latn/arabizi:
+      text: teta btnem bakkir.
+      tokens: [{surface: teta, sense: teta}, {surface: btnem, sense: nem, form: 'form:impf-3fs'}, {surface: bakkir, sense: bakkir}]
+      reverse: (teta|tayta) (btnem|btnam) (bakkir|bakir|bakkeer)
+  translations:
+    en: (Grandma|Granny) (goes to bed|goes to sleep|sleeps) early.
+- id: s.day.15
+  node: apc.day.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المسا بقرا.
+      tokens: [{surface: المسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مسا, kc: 'sense:masa'}]}, {surface: بقرا, sense: 2ara, form: 'form:impf-1sg'}]
+      reverse: المسا بقرا
+    apc-Latn/arabizi:
+      text: el masa b2ra.
+      tokens: [{surface: el, sense: el}, {surface: masa, sense: masa}, {surface: b2ra, sense: 2ara, form: 'form:impf-1sg'}]
+      reverse: (el|l|il) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)
+  translations:
+    en: |-
+      In the evening I read.
+      I read in the evening.
+- id: s.day.16
+  node: apc.day.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: جدّو بيقرا كتير.
+      tokens: [{surface: جدّو, sense: jeddo}, {surface: بيقرا, sense: 2ara, form: 'form:impf-3ms'}, {surface: كتير, sense: ktir}]
+      reverse: جدّو بيقرا كتير
+    apc-Latn/arabizi:
+      text: jeddo byi2ra ktir.
+      tokens: [{surface: jeddo, sense: jeddo}, {surface: byi2ra, sense: 2ara, form: 'form:impf-3ms'}, {surface: ktir, sense: ktir}]
+      reverse: (jeddo|jiddo|jeddu) (byi2ra|bye2ra) (ktir|kteer|kter|ktiir)
+  translations:
+    en: (Grandpa|Grandad) reads a lot.
+- id: s.day.17
+  node: apc.day.we
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: منروح عالبيت.
+      tokens: [{surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالبيت, sense: bet, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: منروح (عالبيت|ع البيت|على البيت)
+    apc-Latn/arabizi:
+      text: mnru7 3al bet.
+      tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (bet|beit|bayt)
+  translations:
+    en: |-
+      We('re| are) going home.
+      We go home.
+      Let's go home.
+- id: s.day.18
+  node: apc.day.we
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل اليوم؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: شو بتعمل اليوم
+    apc-Latn/arabizi:
+      text: shu bta3mel el yom?
+      tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil) (el|l|il) (yom|yawm|youm)
+  translations:
+    en: |-
+      What are you doing today?
+      What are you up to today?
+- id: s.day.19
+  node: apc.day.we
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كل يوم بفيق بكّير.
+      tokens: [{surface: كل, sense: kell}, {surface: يوم, sense: yom}, {surface: بفيق, sense: fi2, form: 'form:impf-1sg'}, {surface: بكّير, sense: bakkir}]
+      reverse: كل يوم بفيق بكّير
+    apc-Latn/arabizi:
+      text: kell yom bfi2 bakkir.
+      tokens: [{surface: kell, sense: kell}, {surface: yom, sense: yom}, {surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: bakkir, sense: bakkir}]
+      reverse: (kell|kil|kel|kull) (yom|yawm|youm) (bfi2|bfe2) (bakkir|bakir|bakkeer)
+  translations:
+    en: |-
+      Every day I (wake|get) up early.
+      I (wake|get) up early every day.
+- id: s.day.20
+  node: apc.day.we
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: دايما منشرب قهوة الصبح.
+      tokens: [{surface: دايما, sense: dayman}, {surface: منشرب, sense: shereb, form: 'form:impf-1pl'}, {surface: قهوة, sense: ahwe}, {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'},
+            {surface: صبح, kc: 'sense:sob7'}]}]
+      reverse: (دايما|دايماً|دائماً) منشرب قهوة الصبح
+    apc-Latn/arabizi:
+      text: dayman mnishrab ahwe el sob7.
+      tokens: [{surface: dayman, sense: dayman}, {surface: mnishrab, sense: shereb, form: 'form:impf-1pl'}, {surface: ahwe, sense: ahwe}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
+      reverse: (dayman|daymen|daiman) (mnishrab|mneshrab|mnshrab) (ahwe|2ahwe) (el|l|il) (sob7|sobe7|sub7)
+  translations:
+    en: |-
+      We always drink coffee in the morning.
+      In the morning we always drink coffee.
+- id: s.day.21
+  node: apc.day.we
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بعدين منروح عالشغل.
+      tokens: [{surface: بعدين, sense: ba3dein}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+            {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: بعدين منروح (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: ba3dein mnru7 3al shoghl.
+      tokens: [{surface: ba3dein, sense: ba3dein}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},
+        {surface: shoghl, sense: shoghl}]
+      reverse: (ba3dein|ba3den|ba3dain) (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+  translations:
+    en: |-
+      Then we go to work.
+      After that we go to work.
+      Later we('ll| will) go to work.
+- id: s.day.22
+  node: apc.day.talk
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو بتعمل هلّق؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: هلّق, sense: hala2}]
+      reverse: شو بتعمل (هلّق|هلق|هلأ)
+    apc-Latn/arabizi:
+      text: shu bta3mel hala2?
+      tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: hala2, sense: hala2}]
+      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil) (hala2|halla2|hal2|hala)
+  translations:
+    en: |-
+      What are you doing now?
+      What are you going to do now?
+- id: s.day.23
+  node: apc.day.talk
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحكي مع تيتا.
+      tokens: [{surface: بحكي, sense: 7aka, form: 'form:impf-1sg'}, {surface: مع, sense: ma3}, {surface: تيتا, sense: teta}]
+      reverse: بحكي مع تيتا
+    apc-Latn/arabizi:
+      text: b7ki ma3 teta.
+      tokens: [{surface: b7ki, sense: 7aka, form: 'form:impf-1sg'}, {surface: ma3, sense: ma3}, {surface: teta, sense: teta}]
+      reverse: (b7ki|be7ke|b7ke|bhki) (ma3|ma3a) (teta|tayta)
+  translations:
+    en: |-
+      I('m| am) talking (to|with) (grandma|granny).
+      I talk (to|with) (grandma|granny).
+- id: s.day.24
+  node: apc.day.talk
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتحكي عربي؟
+      tokens: [{surface: بتحكي, sense: 7aka, form: 'form:impf-2ms'}, {surface: عربي, sense: 3arabe}]
+      reverse: بتحكي عربي
+    apc-Latn/arabizi:
+      text: bt7ki 3arabe?
+      tokens: [{surface: bt7ki, sense: 7aka, form: 'form:impf-2ms'}, {surface: 3arabe, sense: 3arabe}]
+      reverse: (bt7ki|bte7ke|bt7ke) (3arabe|3arabi|arabi)
+  translations:
+    en: Do you speak Arabic?
+- id: s.day.25
+  node: apc.day.talk
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إيه، بس شوي.
+      tokens: [{surface: إيه, sense: eh}, {surface: بس, sense: bas}, {surface: شوي, sense: shway}]
+      reverse: إيه بس (شوي|شوية)
+    apc-Latn/arabizi:
+      text: eh, bas shway.
+      tokens: [{surface: eh, sense: eh}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
+      reverse: (eh|ee|e) (bas|bass) (shway|shwayy|shwei|shwai)
+  translations:
+    en: |-
+      Yes, but (only|just) a (little|bit).
+      Yes, (only|just) a (little|bit).
+- id: s.day.26
+  node: apc.day.talk
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحكي إنكليزي.
+      tokens: [{surface: بحكي, sense: 7aka, form: 'form:impf-1sg'}, {surface: إنكليزي, sense: englize}]
+      reverse: بحكي (إنكليزي|انجليزي)
+    apc-Latn/arabizi:
+      text: b7ki englize.
+      tokens: [{surface: b7ki, sense: 7aka, form: 'form:impf-1sg'}, {surface: englize, sense: englize}]
+      reverse: (b7ki|be7ke|b7ke|bhki) (englize|inglizi|englizi)
+  translations:
+    en: I speak English.
+- id: s.day.27
+  node: apc.day.you-f
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا، شو بتعملي؟
+      tokens: [{surface: مايا, sense: maya}, {surface: شو, sense: shu}, {surface: بتعملي, sense: 3emel, form: 'form:impf-2fs'}]
+      reverse: مايا شو بتعملي
+    apc-Latn/arabizi:
+      text: Maya, shu bta3mli?
+      tokens: [{surface: Maya, sense: maya}, {surface: shu, sense: shu}, {surface: bta3mli, sense: 3emel, form: 'form:impf-2fs'}]
+      reverse: Maya (shu|sho) (bta3mli|bte3mle|bta3mile)
+  translations:
+    en: |-
+      Maya, what are you doing?
+      Maya, what do you do?
+      Maya, what are you up to?
+- id: s.day.28
+  node: apc.day.you-f
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إنتي بتشربي قهوة؟
+      tokens: [{surface: إنتي, sense: enti}, {surface: بتشربي, sense: shereb, form: 'form:impf-2fs'}, {surface: قهوة, sense: ahwe}]
+      reverse: '[(إنتي|إنتِ)] بتشربي قهوة'
+    apc-Latn/arabizi:
+      text: enti btishrabi ahwe?
+      tokens: [{surface: enti, sense: enti}, {surface: btishrabi, sense: shereb, form: 'form:impf-2fs'}, {surface: ahwe, sense: ahwe}]
+      reverse: '[(enti|inti|ente)] (btishrabi|bteshrabi|btshrabi) (ahwe|2ahwe)'
+  translations:
+    en: |-
+      Do you drink coffee?
+      Would you like (a coffee|some coffee|coffee)?
+- id: s.day.29
+  node: apc.day.you-f
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا مأخّر!
+      tokens: [{surface: أنا, sense: ana}, {surface: مأخّر, sense: m2akhkhar}]
+      reverse: '[أنا] (مأخّر|متأخّر)'
+    apc-Latn/arabizi:
+      text: ana m2akhkhar!
+      tokens: [{surface: ana, sense: ana}, {surface: m2akhkhar, sense: m2akhkhar}]
+      reverse: '[ana] (m2akhkhar|m2akhar|m2a5ar|met2akhkher)'
+  translations:
+    en: I('m| am) late!
+- id: s.day.30
+  node: apc.day.you-f
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا مأخّرة كل يوم!
+      tokens: [{surface: مايا, sense: maya}, {surface: مأخّرة, sense: m2akhkhar, form: 'form:fem'}, {surface: كل, sense: kell}, {surface: يوم, sense: yom}]
+      reverse: مايا (مأخّرة|متأخّرة) كل يوم
+    apc-Latn/arabizi:
+      text: Maya m2akhkhra kell yom!
+      tokens: [{surface: Maya, sense: maya}, {surface: m2akhkhra, sense: m2akhkhar, form: 'form:fem'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      reverse: Maya (m2akhkhra|m2akhra|m2a5ra|met2akhkhra) (kell|kil|kel|kull) (yom|yawm|youm)
+  translations:
+    en: |-
+      Maya is late every day!
+      Maya's late every day!
+- id: s.day.31
+  node: apc.day.you-f
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتروحي عالمدرسة؟
+      tokens: [{surface: بتروحي, sense: ra7, form: 'form:impf-2fs'}, {surface: عالمدرسة, sense: madrase, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
+      reverse: بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
+    apc-Latn/arabizi:
+      text: btru7i 3al madrase?
+      tokens: [{surface: btru7i, sense: ra7, form: 'form:impf-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+      reverse: (btru7i|btrou7e|btro7i) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      Do you go to school?
+      Are you going to school?
+stories:
+- id: apc.story.my-day
+  node: apc.day.story
+  title: {en: Every day}
+  provenance: {author: 'llm:claude@6914f241714e', status: draft}
+  characters:
+  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: سامي، شو بْتَعْمِل كِلّ يوم؟
+          tokens: [{surface: سامي, sense: sami}, {surface: شو, sense: shu}, {surface: بْتَعْمِل, sense: 3emel, form: 'form:impf-2ms'}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
+        apc-Latn/arabizi:
+          text: Sami, shu bta3mel kell yom?
+          tokens: [{surface: Sami, sense: sami}, {surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      translations: {en: 'Sami, what do you do every day?'}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:bakkir
+      distractors: ['sense:ghali', 'sense:jou3an']
+      forms:
+        apc-Arab/standard:
+          text: بْفيق بَكّير وبِشْرَب قَهْوِة.
+          tokens: [{surface: بْفيق, sense: fi2, form: 'form:impf-1sg'}, {surface: بَكّير, sense: bakkir}, {surface: وبِشْرَب, sense: shereb, form: 'form:impf-1sg', morphs: [{surface: و, kc: 'sense:w'},
+                {surface: بِشْرَب, kc: 'sense:shereb'}]}, {surface: قَهْوِة, sense: ahwe}]
+        apc-Latn/arabizi:
+          text: bfi2 bakkir w bishrab ahwe.
+          tokens: [{surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: bakkir, sense: bakkir}, {surface: w, sense: w}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe,
+              sense: ahwe}]
+      translations: {en: I wake up early and drink coffee.}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: وبْتاكُل؟
+          tokens: [{surface: وبْتاكُل, sense: akal, form: 'form:impf-2ms', morphs: [{surface: و, kc: 'sense:w'}, {surface: بْتاكُل, kc: 'sense:akal'}]}]
+        apc-Latn/arabizi:
+          text: w btekol?
+          tokens: [{surface: w, sense: w}, {surface: btekol, sense: akal, form: 'form:impf-2ms'}]
+      translations: {en: 'And do you eat?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه، باكُل مَنْقوشِة زَعْتَر.
+          tokens: [{surface: إيه, sense: eh}, {surface: باكُل, sense: akal, form: 'form:impf-1sg'}, {surface: مَنْقوشِة, sense: man2oushe}, {surface: زَعْتَر, sense: za3tar}]
+        apc-Latn/arabizi:
+          text: eh, bekol man2oushe za3tar.
+          tokens: [{surface: eh, sense: eh}, {surface: bekol, sense: akal, form: 'form:impf-1sg'}, {surface: man2oushe, sense: man2oushe}, {surface: za3tar, sense: za3tar}]
+      translations: {en: 'Yes, I eat a za''atar man''oushe.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: وبَعْدين؟
+          tokens: [{surface: وبَعْدين, sense: ba3dein, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَعْدين, kc: 'sense:ba3dein'}]}]
+        apc-Latn/arabizi:
+          text: w ba3dein?
+          tokens: [{surface: w, sense: w}, {surface: ba3dein, sense: ba3dein}]
+      translations: {en: 'And then?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: بَعْدين بْروح عَالشُغُل. بِشْتِغِل كْتير!
+          tokens: [{surface: بَعْدين, sense: ba3dein}, {surface: بْروح, sense: ra7, form: 'form:impf-1sg'}, {surface: عَالشُغُل, sense: shoghl, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+                {surface: شُغُل, kc: 'sense:shoghl'}]}, {surface: بِشْتِغِل, sense: eshteghel, form: 'form:impf-1sg'}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: ba3dein bru7 3al shoghl. bishteghel ktir!
+          tokens: [{surface: ba3dein, sense: ba3dein}, {surface: bru7, sense: ra7, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},
+            {surface: shoghl, sense: shoghl}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}, {surface: ktir, sense: ktir}]
+      translations: {en: Then I go to work. I work a lot!}
+  - choose:
+      prompt:
+        en: What does Sami do after breakfast?
+      options: [{en: He goes to work}, {en: He goes back to sleep}, {en: He goes to school}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: والمَسا؟
+          tokens: [{surface: والمَسا, sense: masa, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: مَسا, kc: 'sense:masa'}]}]
+        apc-Latn/arabizi:
+          text: w el masa?
+          tokens: [{surface: w, sense: w}, {surface: el, sense: el}, {surface: masa, sense: masa}]
+      translations: {en: 'And in the evening?'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: المَسا بِقْرا، وبْنام بَكّير.
+          tokens: [{surface: المَسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مَسا, kc: 'sense:masa'}]}, {surface: بِقْرا, sense: 2ara, form: 'form:impf-1sg'}, {surface: وبْنام, sense: nem,
+              form: 'form:impf-1sg', morphs: [{surface: و, kc: 'sense:w'}, {surface: بْنام, kc: 'sense:nem'}]}, {surface: بَكّير, sense: bakkir}]
+        apc-Latn/arabizi:
+          text: el masa b2ra, w bnem bakkir.
+          tokens: [{surface: el, sense: el}, {surface: masa, sense: masa}, {surface: b2ra, sense: 2ara, form: 'form:impf-1sg'}, {surface: w, sense: w}, {surface: bnem, sense: nem, form: 'form:impf-1sg'},
+            {surface: bakkir, sense: bakkir}]
+      translations: {en: 'In the evening I read, and I go to bed early.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَنا دايْماً مْأَخّْرَة!
+          tokens: [{surface: أَنا, sense: ana}, {surface: دايْماً, sense: dayman}, {surface: مْأَخّْرَة, sense: m2akhkhar, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: ana dayman m2akhkhra!
+          tokens: [{surface: ana, sense: ana}, {surface: dayman, sense: dayman}, {surface: m2akhkhra, sense: m2akhkhar, form: 'form:fem'}]
+      translations: {en: I'm always late!}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إيه، كِلّ يوم!
+          tokens: [{surface: إيه, sense: eh}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
+        apc-Latn/arabizi:
+          text: eh, kell yom!
+          tokens: [{surface: eh, sense: eh}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      translations: {en: 'Yes, every day!'}
+  - choose:
+      prompt:
+        en: Who is always late?
+      options: [{en: Maya}, {en: Sami}, {en: Grandma}]
+      answer: 0

@@ -1,0 +1,464 @@
+# Cantonese (Hong Kong) unit u06-time: telling the time (點, 半, 個字), days and the week (禮拜一 … 禮拜日), daily routine, 得閒/忙, meeting up.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: u06-time
+title: {en: Time and the week}
+cefr: A1
+kcs:
+- {id: 'sense:幾點', gloss: {en: what time}, forms: {yue-Hant-HK/standard: [幾點]}}
+- {id: 'sense:而家', gloss: {en: now}, forms: {yue-Hant-HK/standard: [而家]}}
+- {id: 'sense:點', gloss: {en: o'clock}, forms: {yue-Hant-HK/standard: [點]}, notes: {en: '三點 three o''clock, 三點半 half past three.'}}
+- {id: 'sense:半', gloss: {en: half; half past (the hour)}, forms: {yue-Hant-HK/standard: [半]}}
+- {id: 'sense:字', gloss: {en: five minutes (on the clock)}, forms: {yue-Hant-HK/standard: [字]}, notes: {en: 'The minute hand points at a numeral: 一個字 five past, 兩個字 ten past, 三個字 quarter past.'}}
+- {id: 'sense:今日', gloss: {en: today}, forms: {yue-Hant-HK/standard: [今日]}}
+- {id: 'sense:禮拜', gloss: {en: 'week; with a number, a day of the week'}, forms: {yue-Hant-HK/standard: [禮拜]}, notes: {en: '禮拜一 Monday … 禮拜六 Saturday, 禮拜日 Sunday, 禮拜幾 which day? Also 星期一 … 星期日.'}}
+- {id: 'sense:聽日', gloss: {en: tomorrow}, forms: {yue-Hant-HK/standard: [聽日]}}
+- {id: 'sense:尋日', gloss: {en: yesterday}, forms: {yue-Hant-HK/standard: [尋日]}, notes: {en: Also typed 琴日 kam4 jat6.}}
+- {id: 'sense:日', gloss: {en: day (禮拜日 Sunday)}, forms: {yue-Hant-HK/standard: [日]}}
+- {id: 'sense:幾時', gloss: {en: when}, forms: {yue-Hant-HK/standard: [幾時]}}
+- {id: 'sense:朝早', gloss: {en: (in the) morning}, forms: {yue-Hant-HK/standard: [朝早]}}
+- {id: 'sense:起身', gloss: {en: to get up}, forms: {yue-Hant-HK/standard: [起身]}}
+- {id: 'sense:每日', gloss: {en: every day}, forms: {yue-Hant-HK/standard: [每日]}}
+- {id: 'sense:早餐', gloss: {en: breakfast}, forms: {yue-Hant-HK/standard: [早餐]}}
+- {id: 'sense:瞓覺', gloss: {en: to sleep; to go to bed}, forms: {yue-Hant-HK/standard: [瞓覺]}}
+- {id: 'sense:夜晚', gloss: {en: (in the) evening; at night}, forms: {yue-Hant-HK/standard: [夜晚]}}
+- {id: 'sense:早', gloss: {en: early}, forms: {yue-Hant-HK/standard: [早]}}
+- {id: 'sense:放工', gloss: {en: to finish work}, forms: {yue-Hant-HK/standard: [放工]}}
+- {id: 'sense:得閒', gloss: {en: free (not busy)}, forms: {yue-Hant-HK/standard: [得閒]}, notes: {en: '得唔得閒？ ''are you free?'''}}
+- {id: 'sense:忙', gloss: {en: busy}, forms: {yue-Hant-HK/standard: [忙]}}
+- {id: 'sense:對唔住', gloss: {en: sorry}, forms: {yue-Hant-HK/standard: [對唔住]}, notes: {en: 'For a real apology. 唔好意思 is a lighter ''excuse me, sorry''.'}}
+- {id: 'sense:等', gloss: {en: to wait (for); to meet up}, forms: {yue-Hant-HK/standard: [等]}}
+- {id: 'sense:見', gloss: {en: to see; to meet}, forms: {yue-Hant-HK/standard: [見]}, notes: {en: 聽日見 'see you tomorrow'.}}
+- {id: 'sense:一陣', gloss: {en: a moment; in a moment}, forms: {yue-Hant-HK/standard: [一陣]}, notes: {en: 一陣見 'see you in a bit'.}}
+nodes:
+- {id: yue.clock, kind: lesson, introduces: ['sense:幾點', 'sense:而家', 'sense:點', 'sense:半', 'sense:字']}
+- {id: yue.days, kind: lesson, introduces: ['sense:今日', 'sense:禮拜', 'sense:聽日', 'sense:尋日', 'sense:日', 'sense:幾時']}
+- {id: yue.daily, kind: lesson, introduces: ['sense:朝早', 'sense:起身', 'sense:每日', 'sense:早餐']}
+- {id: yue.night, kind: lesson, introduces: ['sense:瞓覺', 'sense:夜晚', 'sense:早']}
+- {id: yue.work-day, kind: lesson, introduces: ['sense:放工', 'sense:得閒', 'sense:忙', 'sense:對唔住']}
+- {id: yue.meet, kind: lesson, introduces: ['sense:等', 'sense:見', 'sense:一陣']}
+- {id: yue.time-story, kind: story}
+sentences:
+- id: s.u06.1
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 幾點呀？
+      tokens: [{surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 幾點[呀]
+  translations:
+    en: What time is it?
+- id: s.u06.2
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家幾點呀？
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 而家幾點[呀]
+  translations:
+    en: What time is it (now|)?
+- id: s.u06.3
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家三點。
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}]
+      reverse: 而家三點
+  translations:
+    en: It's (three|3)[ o'clock][ now].
+- id: s.u06.4
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家三點半。
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
+      reverse: 而家三點半
+  translations:
+    en: |-
+      It's half past (three|3)[ now].
+      It's (three thirty|3:30)[ now].
+- id: s.u06.5
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家十點兩個字。
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 字, sense: 字, readings: {jyutping: zi6}}]
+      reverse: 而家十點兩個字
+  translations:
+    en: |-
+      It's ten past (ten|10)[ now].
+      It's (ten ten|10:10)[ now].
+- id: s.u06.6
+  node: yue.clock
+  forms:
+    yue-Hant-HK/standard:
+      text: 而家十二點半。
+      tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十二, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 二, kc: 'sense:二'}], readings: {jyutping: sap6 ji6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
+      reverse: 而家十二點半
+  translations:
+    en: |-
+      It's half past (twelve|12)[ now].
+      It's (twelve thirty|12:30)[ now].
+- id: s.u06.7
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日好熱。
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 熱, sense: 熱, readings: {jyutping: jit6}}]
+      reverse: 今日好熱
+  translations:
+    en: |-
+      It's (very|really|so) hot today.
+      Today is (very|really|so) hot.
+- id: s.u06.8
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日禮拜幾呀？
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 禮拜幾, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 幾, kc: 'sense:幾'}], readings: {jyutping: lai5 baai3 gei2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 今日(禮拜|星期)幾[呀]
+  translations:
+    en: |-
+      What day is (it |)today?
+      What day of the week is it (today|)?
+- id: s.u06.9
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 今日禮拜一。
+      tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 禮拜一, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 一, kc: 'sense:一'}], readings: {jyutping: lai5 baai3 jat1}}]
+      reverse: 今日(禮拜|星期)一
+  translations:
+    en: |-
+      (Today is|It's) Monday.
+      It's Monday today.
+- id: s.u06.10
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 聽日禮拜六。
+      tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 禮拜六, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 六, kc: 'sense:六'}], readings: {jyutping: lai5 baai3 luk6}}]
+      reverse: 聽日(禮拜|星期)六
+  translations:
+    en: |-
+      Tomorrow is Saturday.
+      It's Saturday tomorrow.
+- id: s.u06.11
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 尋日禮拜五。
+      tokens: [{surface: 尋日, sense: 尋日, readings: {jyutping: cam4 jat6}}, {surface: 禮拜五, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 五, kc: 'sense:五'}], readings: {jyutping: lai5 baai3 ng5}}]
+      reverse: (尋|琴)日(禮拜|星期)五
+  translations:
+    en: |-
+      Yesterday was Friday.
+      It was Friday yesterday.
+- id: s.u06.12
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 聽日禮拜日。
+      tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 禮拜日, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 日, kc: 'sense:日'}], readings: {jyutping: lai5 baai3 jat6}}]
+      reverse: 聽日(禮拜|星期)日
+  translations:
+    en: |-
+      Tomorrow is Sunday.
+      It's Sunday tomorrow.
+- id: s.u06.13
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 你幾時去呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾時, sense: 幾時, readings: {jyutping: gei2 si4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你幾時去[呀]
+  translations:
+    en: |-
+      When are you going?
+      When will you go?
+- id: s.u06.14
+  node: yue.days
+  forms:
+    yue-Hant-HK/standard:
+      text: 我禮拜三去。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 禮拜三, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 三, kc: 'sense:三'}], readings: {jyutping: lai5 baai3 saam1}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
+      reverse: 我(禮拜|星期)三去
+  translations:
+    en: |-
+      I('m| am) going on Wednesday.
+      I('ll| will) go on Wednesday.
+- id: s.u06.15
+  node: yue.daily
+  forms:
+    yue-Hant-HK/standard:
+      text: 我朝早飲咖啡。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 朝早, sense: 朝早, readings: {jyutping: ziu1 zou2}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
+      reverse: 我朝早飲咖啡
+  translations:
+    en: I (drink|have) coffee in the morning.
+- id: s.u06.16
+  node: yue.daily
+  forms:
+    yue-Hant-HK/standard:
+      text: 我七點起身。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
+      reverse: 我七點起身
+  translations:
+    en: I (get|wake) up at (seven|7)[ o'clock].
+- id: s.u06.17
+  node: yue.daily
+  forms:
+    yue-Hant-HK/standard:
+      text: 我每日七點起身。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
+      reverse: 我每日七點起身
+  translations:
+    en: |-
+      I (get|wake) up at (seven|7)[ o'clock] every day.
+      Every day I (get|wake) up at (seven|7)[ o'clock].
+- id: s.u06.18
+  node: yue.daily
+  forms:
+    yue-Hant-HK/standard:
+      text: 我每日食早餐。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 早餐, sense: 早餐, readings: {jyutping: zou2 caan1}}]
+      reverse: 我每日食早餐
+  translations:
+    en: I (eat|have) breakfast every day.
+- id: s.u06.19
+  node: yue.night
+  forms:
+    yue-Hant-HK/standard:
+      text: 我十一點瞓覺。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 十一, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 一, kc: 'sense:一'}], readings: {jyutping: sap6 jat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}]
+      reverse: 我十一點瞓覺
+  translations:
+    en: I (go to bed|go to sleep) at (eleven|11)[ o'clock].
+- id: s.u06.20
+  node: yue.night
+  forms:
+    yue-Hant-HK/standard:
+      text: 夜晚我唔飲咖啡。
+      tokens: [{surface: 夜晚, sense: 夜晚, readings: {jyutping: je6 maan5}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
+      reverse: 夜晚我唔飲咖啡
+  translations:
+    en: I (don't|do not) drink coffee (at night|in the evening).
+- id: s.u06.21
+  node: yue.night
+  forms:
+    yue-Hant-HK/standard:
+      text: 佢好早起身。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 早, sense: 早, readings: {jyutping: zou2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
+      reverse: 佢好早起身
+  translations:
+    en: |-
+      (She|He) gets up (very|really) early.
+      They get up (very|really) early.
+- id: s.u06.22
+  node: yue.night
+  forms:
+    yue-Hant-HK/standard:
+      text: 你幾點瞓覺呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你幾點瞓覺[呀]
+  translations:
+    en: What time do you go to (bed|sleep)?
+- id: s.u06.23
+  node: yue.work-day
+  forms:
+    yue-Hant-HK/standard:
+      text: 你幾點返工呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 返工, sense: 返工, readings: {jyutping: faan1 gung1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你幾點返工[呀]
+  translations:
+    en: What time do you (go to|start) work?
+- id: s.u06.24
+  node: yue.work-day
+  forms:
+    yue-Hant-HK/standard:
+      text: 我六點放工。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 放工, sense: 放工, readings: {jyutping: fong3 gung1}}]
+      reverse: 我六點放工
+  translations:
+    en: I (finish|get off) work at (six|6)[ o'clock].
+- id: s.u06.25
+  node: yue.work-day
+  forms:
+    yue-Hant-HK/standard:
+      text: 我今日唔得閒。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
+      reverse: 我今日唔得閒
+  translations:
+    en: |-
+      I('m| am) not free today.
+      I('m| am) busy today.
+- id: s.u06.26
+  node: yue.work-day
+  constructions: ['construction:a-not-a']
+  forms:
+    yue-Hant-HK/standard:
+      text: 你聽日得唔得閒呀？
+      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 得唔得閒, sense: 得閒, morphs: [{surface: 得, kc: 'sense:得閒'}, {surface: 唔, kc: 'sense:唔'}, {surface: 得閒, kc: 'sense:得閒'}], readings: {jyutping: dak1 m4 dak1 haan4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你聽日得唔得閒[呀]
+  translations:
+    en: Are you free tomorrow?
+- id: s.u06.27
+  node: yue.work-day
+  forms:
+    yue-Hant-HK/standard:
+      text: 我好忙。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
+      reverse: 我好忙
+  translations:
+    en: I('m| am) (very|really|so) busy.
+- id: s.u06.28
+  node: yue.work-day
+  forms:
+    yue-Hant-HK/standard:
+      text: 對唔住，我好忙。
+      tokens: [{surface: 對唔住, sense: 對唔住, readings: {jyutping: deoi3 m4 zyu6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
+      reverse: 對唔住我好忙
+  translations:
+    en: (Sorry|I'm sorry), I('m| am) (very|really|so) busy.
+- id: s.u06.29
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 我等你。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: 我等你
+  translations:
+    en: |-
+      I('ll| will) wait for you.
+      I('m| am) waiting for you.
+- id: s.u06.30
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 我喺公司等你。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 公司, sense: 公司, readings: {jyutping: gung1 si1}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: 我喺公司等你
+  translations:
+    en: I('ll| will) wait for you at the (office|company).
+- id: s.u06.31
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 聽日見！
+      tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      reverse: 聽日見
+  translations:
+    en: See you tomorrow!
+- id: s.u06.32
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 一陣見！
+      tokens: [{surface: 一陣, sense: 一陣, readings: {jyutping: jat1 zan6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      reverse: 一陣見
+  translations:
+    en: See you (later|soon|in a bit)!
+- id: s.u06.33
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 禮拜六見！
+      tokens: [{surface: 禮拜六, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 六, kc: 'sense:六'}], readings: {jyutping: lai5 baai3 luk6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      reverse: (禮拜|星期)六見
+  translations:
+    en: See you (on |)Saturday!
+- id: s.u06.34
+  node: yue.meet
+  forms:
+    yue-Hant-HK/standard:
+      text: 七點喺中環等啦。
+      tokens: [{surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      reverse: 七點喺中環等啦
+  translations:
+    en: |-
+      Let's meet in Central at (seven|7)[ o'clock].
+      Let's meet at (seven|7)[ o'clock] in Central.
+stories:
+- id: yue.story.free-tomorrow
+  node: yue.time-story
+  title:
+    en: Are you free tomorrow?
+  provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
+  characters:
+  - {id: gaa-ming, name: {yue-Hant-HK/standard: 家明}}
+  - {id: mei-ling, name: {yue-Hant-HK/standard: 美玲}}
+  steps:
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 美玲，你今日得唔得閒呀？
+          tokens: [{surface: 美玲, readings: {jyutping: mei5 ling4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 得唔得閒, sense: 得閒, morphs: [{surface: 得, kc: 'sense:得閒'}, {surface: 唔, kc: 'sense:唔'}, {surface: 得閒, kc: 'sense:得閒'}], readings: {jyutping: dak1 m4 dak1 haan4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Mei-ling, are you free today?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 對唔住，我今日好忙。
+          tokens: [{surface: 對唔住, sense: 對唔住, readings: {jyutping: deoi3 m4 zyu6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
+      translations: {en: 'Sorry, I''m really busy today.'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 聽日呢？
+          tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
+      translations: {en: 'What about tomorrow?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 聽日禮拜六，我得閒！
+          tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 禮拜六, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 六, kc: 'sense:六'}], readings: {jyutping: lai5 baai3 luk6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
+      translations: {en: Tomorrow's Saturday. I'm free!}
+  - choose:
+      prompt: {en: 'When is Mei-ling free?'}
+      options: [{en: 'tomorrow, Saturday'}, {en: today}, {en: on Sunday}]
+      answer: 0
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 我哋一齊去飲茶啦！
+          tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 飲茶, sense: 飲茶, readings: {jyutping: jam2 caa4}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
+      translations: {en: Let's go for dim sum together!}
+  - line:
+      speaker: mei-ling
+      ask: complete
+      gap: sense:幾點
+      distractors: ['sense:幾時', 'sense:幾多']
+      forms:
+        yue-Hant-HK/standard:
+          text: 好呀！幾點呀？
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Great! What time?'}
+  - line:
+      speaker: gaa-ming
+      forms:
+        yue-Hant-HK/standard:
+          text: 朝早十點，好唔好呀？
+          tokens: [{surface: 朝早, sense: 朝早, readings: {jyutping: ziu1 zou2}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      translations: {en: 'Ten in the morning, OK?'}
+  - line:
+      speaker: mei-ling
+      forms:
+        yue-Hant-HK/standard:
+          text: 好！十點見！
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      translations: {en: OK! See you at ten!}
+  - line:
+      speaker: gaa-ming
+      ask: arrange
+      forms:
+        yue-Hant-HK/standard:
+          text: 聽日見！
+          tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
+      translations: {en: See you tomorrow!}
+  - choose:
+      prompt: {en: 'What time will they meet?'}
+      options: [{en: ten in the morning}, {en: ten at night}, {en: half past three}]
+      answer: 0

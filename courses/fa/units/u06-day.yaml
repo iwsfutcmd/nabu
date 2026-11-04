@@ -1,0 +1,471 @@
+# Fixture course (fa), unit 6: the present tense and a daily routine. The prefix mi- (joined with a ZWNJ),
+# present stems, the endings -ad and -im, compound verbs with کردن, and the object marker را.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: day
+title: {en: My day}
+cefr: A1
+kcs:
+- {id: 'sense:kar', gloss: {en: work; job}, forms: {fa-Arab/standard: [کار]}, notes: {en: 'کار دارم: I''m busy (literally ''I have work'').'}}
+- {id: 'sense:kardan', gloss: {en: to do; to make (present stem کن-)}, forms: {fa-Arab/standard: [کردن, "می\u200cکنم", "می\u200cکند", "می\u200cکنید", "نمی\u200cکنم", نکردم]}, notes: {en: 'With a noun it forms many verbs: کار کردن (to work), صحبت کردن (to talk), زندگی کردن (to live).'}}
+- {id: 'form:mi-present', gloss: {en: 'mi-: present tense (verb prefix)'}, notes: {en: "Joined with a ZWNJ: می\u200cکنم. The present also means 'I am doing' and often 'I will do'."}}
+- {id: 'sense:daneshgah', gloss: {en: university}, forms: {fa-Arab/standard: [دانشگاه]}}
+- {id: 'sense:sherkat', gloss: {en: company; firm}, forms: {fa-Arab/standard: [شرکت]}}
+- {id: 'sense:raftan', gloss: {en: to go (present stem رو-)}, forms: {fa-Arab/standard: ["می\u200cروم", "می\u200cروی", "می\u200cروند", "می\u200cرویم", بروید, بروم, رفتم, رفتیم]}, notes: {en: "Spoken Tehrani: می\u200cرم (miram), می\u200cره (mire)."}}
+- {id: 'sense:be', gloss: {en: to}, forms: {fa-Arab/standard: [به]}}
+- {id: 'sense:amadan', gloss: {en: 'to come (present stem آ-, آی-)'}, forms: {fa-Arab/standard: ["می\u200cآید", "می\u200cآیید", "می\u200cآیی", "می\u200cآیم", آمد, آمدید]}, notes: {en: 'Spoken Tehrani: میام (miyām), میاد (miyād).'}}
+- {id: 'sense:madrese', gloss: {en: school}, forms: {fa-Arab/standard: [مدرسه]}}
+- {id: 'sense:khordan', gloss: {en: to eat; to drink (present stem خور-)}, forms: {fa-Arab/standard: ["می\u200cخورم", "می\u200cخوریم", "می\u200cخوری", "نمی\u200cخورم", خوردیم]}, notes: {en: "Everyday Persian 'eats' tea and water too: چای می\u200cخورم. نوشیدن (to drink) is more formal."}}
+- {id: 'sense:nahar', gloss: {en: lunch}, forms: {fa-Arab/standard: [ناهار]}}
+- {id: 'sense:sham', gloss: {en: dinner; supper}, forms: {fa-Arab/standard: [شام]}}
+- {id: 'sense:sobh', gloss: {en: morning}, forms: {fa-Arab/standard: [صبح]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'صبح بخیر: good morning.'}}
+- {id: 'sense:khandan', gloss: {en: to read; to study (present stem خوان-)}, forms: {fa-Arab/standard: ["می\u200cخوانم", "می\u200cخوانیم", "می\u200cخوانی"]}, notes: {en: 'درس خواندن: to study.'}}
+- {id: 'sense:shab', gloss: {en: night; evening}, forms: {fa-Arab/standard: [شب]}, notes: {en: 'شب بخیر: good night.'}}
+- {id: 'sense:khabidan', gloss: {en: to sleep; to go to bed (present stem خواب-)}, forms: {fa-Arab/standard: ["می\u200cخوابند", "می\u200cخوابم", خوابیدم]}}
+- {id: 'sense:zud', gloss: {en: early; soon}, forms: {fa-Arab/standard: [زود]}}
+- {id: 'sense:dir', gloss: {en: late}, forms: {fa-Arab/standard: [دیر]}}
+- {id: 'sense:ruz', gloss: {en: day}, forms: {fa-Arab/standard: [روز]}}
+- {id: 'sense:har', gloss: {en: every; each}, forms: {fa-Arab/standard: [هر]}}
+- {id: 'sense:hamishe', gloss: {en: always}, forms: {fa-Arab/standard: [همیشه]}}
+- {id: 'sense:mamulan', gloss: {en: usually}, forms: {fa-Arab/standard: [معمولاً]}, notes: {en: Written with ـاً like لطفاً.}}
+- {id: 'sense:ra', gloss: {en: 'را: marks a definite object'}, forms: {fa-Arab/standard: [را]}, notes: {en: "It follows the object: این کتاب را می\u200cخوانم. Spoken: رو (ro), or -o after a consonant."}}
+- {id: 'sense:dars', gloss: {en: lesson; studies}, forms: {fa-Arab/standard: [درس]}}
+- {id: 'sense:farsi', gloss: {en: Persian (the language)}, forms: {fa-Arab/standard: [فارسی]}}
+- {id: 'sense:sohbat', gloss: {en: 'talk; conversation (صحبت کردن: to speak)'}, forms: {fa-Arab/standard: [صحبت]}, notes: {en: 'Spoken: حرف زدن (harf zadan), to talk.'}}
+- {id: 'sense:kami', gloss: {en: a little; a bit}, forms: {fa-Arab/standard: [کمی]}}
+nodes:
+- {id: fa.day.work, kind: lesson, introduces: ['sense:kar', 'sense:kardan', 'form:mi-present', 'sense:daneshgah', 'sense:sherkat']}
+- {id: fa.day.go, kind: lesson, introduces: ['sense:raftan', 'sense:be', 'sense:amadan', 'sense:madrese']}
+- {id: fa.day.meals, kind: lesson, introduces: ['sense:khordan', 'sense:nahar', 'sense:sham', 'sense:sobh']}
+- {id: fa.day.night, kind: lesson, introduces: ['sense:khandan', 'sense:shab', 'sense:khabidan', 'sense:zud', 'sense:dir']}
+- {id: fa.day.every, kind: lesson, introduces: ['sense:ruz', 'sense:har', 'sense:hamishe', 'sense:mamulan']}
+- {id: fa.day.study, kind: lesson, introduces: ['sense:ra', 'sense:dars', 'sense:farsi', 'sense:sohbat', 'sense:kami']}
+- {id: fa.day.story, kind: story}
+sentences:
+- id: s.day.1
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: من کار دارم.
+      tokens: [{surface: من, sense: man}, {surface: کار, sense: kar}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: '[من] کار دارم'
+  translations:
+    en: |-
+      I('m| am) busy.
+      I have (work|things to do).
+- id: s.day.2
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: کار کردن خوب است.
+      tokens: [{surface: کار, sense: kar}, {surface: کردن, sense: kardan}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+      reverse: کار کردن خوب است
+  translations:
+    en: |-
+      Working is good.
+      It('s| is) good to work.
+      Work is good.
+- id: s.day.3
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "من کار می\u200cکنم."
+      tokens: [{surface: من, sense: man}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] کار می\u200cکنم"
+  translations:
+    en: |-
+      I work.
+      I('m| am) working.
+- id: s.day.4
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "پدرم هم کار می\u200cکند."
+      tokens: [{surface: پدرم, sense: pedar, morphs: [{surface: پدر, kc: 'sense:pedar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: هم, sense: ham}, {surface: کار, sense: kar}, {surface: "می\u200cکند", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "(پدرم|پدر من) هم کار می\u200cکند"
+  translations:
+    en: |-
+      My (father|dad) (works|is working) too.
+      My (father|dad) also works.
+- id: s.day.5
+  node: fa.day.work
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: "شما کجا کار می\u200cکنید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: کجا, sense: koja}, {surface: کار, sense: kar}, {surface: "می\u200cکنید", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: "[شما] کجا کار می\u200cکنید"
+  translations:
+    en: Where do you work?
+- id: s.day.6
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "من در دانشگاه کار می\u200cکنم."
+      tokens: [{surface: من, sense: man}, {surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] (در|توی) دانشگاه کار می\u200cکنم"
+  translations:
+    en: I work (at|in) (the|a) university.
+- id: s.day.7
+  node: fa.day.work
+  forms:
+    fa-Arab/standard:
+      text: "مادرم در یک شرکت کار می\u200cکند."
+      tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: در, sense: dar}, {surface: یک, sense: yek}, {surface: شرکت, sense: sherkat}, {surface: کار, sense: kar}, {surface: "می\u200cکند", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "(مادرم|مادر من) (در|توی) یک شرکت کار می\u200cکند"
+  translations:
+    en: My (mother|mom|mum) works (at|in|for) a company.
+- id: s.day.8
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "من می\u200cروم. خداحافظ!"
+      tokens: [{surface: من, sense: man}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: خداحافظ, sense: khodahafez}]
+      reverse: "[من] می\u200cروم (خداحافظ|خدا حافظ)"
+  translations:
+    en: I('m| am) (going|leaving). (Goodbye|Bye)!
+- id: s.day.9
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "من به دانشگاه می\u200cروم."
+      tokens: [{surface: من, sense: man}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] به دانشگاه می\u200cروم"
+  translations:
+    en: I('m going| am going| go) to [the] university.
+- id: s.day.10
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "تو کجا می\u200cروی؟"
+      tokens: [{surface: تو, sense: to}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: "[تو] کجا می\u200cروی"
+  translations:
+    en: |-
+      Where are you going?
+      Where do you go?
+- id: s.day.11
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "علی به خانه می\u200cآید."
+      tokens: [{surface: علی, sense: ali}, {surface: به, sense: be}, {surface: خانه, sense: khane}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "علی به خانه می\u200cآید"
+  translations:
+    en: Ali('s coming| is coming| comes) home.
+- id: s.day.12
+  node: fa.day.go
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: "شما هم می\u200cآیید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: هم, sense: ham}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: "[شما] هم می\u200cآیید"
+  translations:
+    en: |-
+      Are you coming too?
+      Are you also coming?
+- id: s.day.13
+  node: fa.day.go
+  forms:
+    fa-Arab/standard:
+      text: "بچه\u200cها به مدرسه می\u200cروند."
+      tokens: [{surface: "بچه\u200cها", sense: bachche, morphs: [{surface: "بچه\u200c", kc: 'sense:bachche'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: به, sense: be}, {surface: مدرسه, sense: madrese}, {surface: "می\u200cروند", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: "بچه\u200cها به مدرسه می\u200cروند"
+  translations:
+    en: The (children|kids) (go|are going) to school.
+- id: s.day.14
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من صبحانه می\u200cخورم."
+      tokens: [{surface: من, sense: man}, {surface: صبحانه, sense: sobhane}, {surface: "می\u200cخورم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] صبحانه می\u200cخورم"
+  translations:
+    en: |-
+      I (eat|have) breakfast.
+      I('m| am) (eating|having) breakfast.
+- id: s.day.15
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "ما در دانشگاه ناهار می\u200cخوریم."
+      tokens: [{surface: ما, sense: ma}, {surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: ناهار, sense: nahar}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] (در|توی) دانشگاه ناهار می\u200cخوریم"
+  translations:
+    en: We (have|eat) lunch (at|in) [the] university.
+- id: s.day.16
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "ما با خانواده شام می\u200cخوریم."
+      tokens: [{surface: ما, sense: ma}, {surface: با, sense: ba}, {surface: خانواده, sense: khanevade}, {surface: شام, sense: sham}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] با خانواده شام می\u200cخوریم"
+  translations:
+    en: We (have|eat) dinner with [the|our] family.
+- id: s.day.17
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "تو چای می\u200cخوری؟"
+      tokens: [{surface: تو, sense: to}, {surface: چای, sense: chay}, {surface: "می\u200cخوری", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      reverse: "[تو] چای می\u200cخوری"
+  translations:
+    en: (Do you drink|Will you have|Would you like) [some] tea?
+- id: s.day.18
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من قهوه نمی\u200cخورم."
+      tokens: [{surface: من, sense: man}, {surface: قهوه, sense: ghahve}, {surface: "نمی\u200cخورم", sense: khordan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] قهوه نمی\u200cخورم"
+  translations:
+    en: I (don't|do not) drink coffee.
+- id: s.day.19
+  node: fa.day.meals
+  forms:
+    fa-Arab/standard:
+      text: "من صبح چای می\u200cخورم."
+      tokens: [{surface: من, sense: man}, {surface: صبح, sense: sobh}, {surface: چای, sense: chay}, {surface: "می\u200cخورم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] (صبح|صبح\u200cها) چای می\u200cخورم"
+  translations:
+    en: |-
+      I (drink|have) tea in the morning.
+      In the morning I (drink|have) tea.
+- id: s.day.20
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من کتاب می\u200cخوانم."
+      tokens: [{surface: من, sense: man}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] کتاب می\u200cخوانم"
+  translations:
+    en: |-
+      I('m| am) reading a book.
+      I read (books|a book).
+- id: s.day.21
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من شب کتاب می\u200cخوانم."
+      tokens: [{surface: من, sense: man}, {surface: شب, sense: shab}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] (شب|شب\u200cها) کتاب می\u200cخوانم"
+  translations:
+    en: |-
+      I read [books] (at night|in the evening).
+      (At night|In the evening) I read [books].
+- id: s.day.22
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "بچه\u200cها می\u200cخوابند."
+      tokens: [{surface: "بچه\u200cها", sense: bachche, morphs: [{surface: "بچه\u200c", kc: 'sense:bachche'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: "می\u200cخوابند", sense: khabidan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواب, kc: 'sense:khabidan'}, {surface: ند, kc: 'form:3pl-and'}]}]
+      reverse: "بچه\u200cها می\u200cخوابند"
+  translations:
+    en: |-
+      The (children|kids) are (sleeping|asleep).
+      The (children|kids) sleep.
+- id: s.day.23
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "من زود می\u200cخوابم."
+      tokens: [{surface: من, sense: man}, {surface: زود, sense: zud}, {surface: "می\u200cخوابم", sense: khabidan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواب, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] زود می\u200cخوابم"
+  translations:
+    en: I (go to bed|sleep) early.
+- id: s.day.24
+  node: fa.day.night
+  forms:
+    fa-Arab/standard:
+      text: "علی دیر می\u200cآید."
+      tokens: [{surface: علی, sense: ali}, {surface: دیر, sense: dir}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "علی دیر می\u200cآید"
+  translations:
+    en: Ali('s coming| is coming| comes| will come) late.
+- id: s.day.25
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "من پنج روز کار می\u200cکنم."
+      tokens: [{surface: من, sense: man}, {surface: پنج, sense: panj}, {surface: روز, sense: ruz}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] پنج روز کار می\u200cکنم"
+  translations:
+    en: I work (five|5) days [a week].
+- id: s.day.26
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "من هر روز کار می\u200cکنم."
+      tokens: [{surface: من, sense: man}, {surface: هر, sense: har}, {surface: روز, sense: ruz}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] هر روز کار می\u200cکنم"
+  translations:
+    en: I work every day.
+- id: s.day.27
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "او همیشه دیر می\u200cآید!"
+      tokens: [{surface: او, sense: u}, {surface: همیشه, sense: hamishe}, {surface: دیر, sense: dir}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
+      reverse: "[او] همیشه دیر می\u200cآید"
+  translations:
+    en: (He|She)('s always| is always| always comes) late!
+- id: s.day.28
+  node: fa.day.every
+  forms:
+    fa-Arab/standard:
+      text: "ما معمولاً در خانه شام می\u200cخوریم."
+      tokens: [{surface: ما, sense: ma}, {surface: معمولاً, sense: mamulan}, {surface: در, sense: dar}, {surface: خانه, sense: khane}, {surface: شام, sense: sham}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] معمولاً (در|توی) خانه شام می\u200cخوریم"
+  translations:
+    en: We usually (have|eat) dinner at home.
+- id: s.day.29
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "من این کتاب را می\u200cخوانم."
+      tokens: [{surface: من, sense: man}, {surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: را, sense: ra}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] این کتاب را می\u200cخوانم"
+  translations:
+    en: |-
+      I('m| am) reading this book.
+      I read this book.
+- id: s.day.30
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "ما درس می\u200cخوانیم."
+      tokens: [{surface: ما, sense: ma}, {surface: درس, sense: dars}, {surface: "می\u200cخوانیم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: یم, kc: 'form:1pl-im'}]}]
+      reverse: "[ما] درس می\u200cخوانیم"
+  translations:
+    en: |-
+      We('re| are) studying.
+      We study.
+- id: s.day.31
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "من فارسی می\u200cخوانم."
+      tokens: [{surface: من, sense: man}, {surface: فارسی, sense: farsi}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "[من] فارسی می\u200cخوانم"
+  translations:
+    en: |-
+      I('m| am) (studying|learning) (Persian|Farsi).
+      I (study|learn) (Persian|Farsi).
+- id: s.day.32
+  node: fa.day.study
+  register: formal
+  forms:
+    fa-Arab/standard:
+      text: "شما فارسی صحبت می\u200cکنید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: فارسی, sense: farsi}, {surface: صحبت, sense: sohbat}, {surface: "می\u200cکنید", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: "[شما] فارسی (صحبت می\u200cکنید|حرف می\u200cزنید)"
+  translations:
+    en: Do you speak (Persian|Farsi)?
+- id: s.day.33
+  node: fa.day.study
+  forms:
+    fa-Arab/standard:
+      text: "بله، کمی فارسی صحبت می\u200cکنم."
+      tokens: [{surface: بله, sense: bale}, {surface: کمی, sense: kami}, {surface: فارسی, sense: farsi}, {surface: صحبت, sense: sohbat}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      reverse: "بله [من] کمی فارسی (صحبت می\u200cکنم|حرف می\u200cزنم)"
+  translations:
+    en: Yes, I speak a little (Persian|Farsi).
+stories:
+- id: fa.story.reza-day
+  node: fa.day.story
+  title: {en: Reza's day}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
+  characters:
+  - {id: maryam, name: {fa-Arab/standard: مریم}}
+  - {id: reza, name: {fa-Arab/standard: رضا}}
+  steps:
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "سلام رضا! کجا می\u200cروی؟"
+          tokens: [{surface: سلام, sense: salam}, {surface: رضا, sense: reza}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Hi Reza! Where are you going?'}
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "سلام! به دانشگاه می\u200cروم."
+          tokens: [{surface: سلام, sense: salam}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: Hi! I'm going to the university.}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "تو هر روز به دانشگاه می\u200cروی؟"
+          tokens: [{surface: تو, sense: to}, {surface: هر, sense: har}, {surface: روز, sense: ruz}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Do you go to the university every day?'}
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "بله، من دانشجو هستم. در دانشگاه درس می\u200cخوانم."
+          tokens: [{surface: بله, sense: bale}, {surface: من, sense: man}, {surface: دانشجو, sense: daneshju}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: درس, sense: dars}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: 'Yes, I''m a student. I study at the university.'}
+  - choose:
+      prompt: {en: 'Why does Reza go to the university every day?'}
+      options: [{en: He's a student there.}, {en: He's a teacher there.}, {en: He works in a company there.}]
+      answer: 0
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "ناهار کجا می\u200cخوری؟"
+          tokens: [{surface: ناهار, sense: nahar}, {surface: کجا, sense: koja}, {surface: "می\u200cخوری", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Where do you have lunch?'}
+  - line:
+      speaker: reza
+      ask: complete
+      gap: sense:daneshgah
+      distractors: ['sense:hamishe', 'sense:zud']
+      forms:
+        fa-Arab/standard:
+          text: "در دانشگاه ناهار می\u200cخورم."
+          tokens: [{surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: ناهار, sense: nahar}, {surface: "می\u200cخورم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: I have lunch at the university.}
+  - line:
+      speaker: maryam
+      forms:
+        fa-Arab/standard:
+          text: "شب کتاب می\u200cخوانی؟"
+          tokens: [{surface: شب, sense: shab}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانی", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: ی, kc: 'form:2sg-i'}]}]
+      translations: {en: 'Do you read in the evening?'}
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: "بله، شب کتاب می\u200cخوانم و زود می\u200cخوابم."
+          tokens: [{surface: بله, sense: bale}, {surface: شب, sense: shab}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: و, sense: va}, {surface: زود, sense: zud}, {surface: "می\u200cخوابم", sense: khabidan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواب, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: 'Yes, I read in the evening and go to bed early.'}
+  - line:
+      speaker: maryam
+      ask: arrange
+      forms:
+        fa-Arab/standard:
+          text: "من همیشه دیر می\u200cخوابم!"
+          tokens: [{surface: من, sense: man}, {surface: همیشه, sense: hamishe}, {surface: دیر, sense: dir}, {surface: "می\u200cخوابم", sense: khabidan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواب, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      translations: {en: I always go to bed late!}
+  - line:
+      speaker: reza
+      forms:
+        fa-Arab/standard:
+          text: خداحافظ، مریم!
+          tokens: [{surface: خداحافظ, sense: khodahafez}, {surface: مریم, sense: maryam}]
+      translations: {en: 'Bye, Maryam!'}
+  - choose:
+      prompt: {en: 'What does Reza do in the evening?'}
+      options: [{en: He reads and goes to bed early.}, {en: He works late.}, {en: He has dinner at the university.}]
+      answer: 0
+scenarios:
+- id: fa.colleague
+  after: fa.day.story
+  title: {en: A new colleague}
+  setting: {en: Your first week at an office in Tehran. At lunchtime a colleague sits down next to you in the kitchen.}
+  character: {en: 'Sara, a friendly colleague who has worked there for years and likes to chat.'}
+  goal: {en: 'Say what you do and where you work, describe a normal day (breakfast, work, dinner, bedtime), and ask Sara about hers.'}
+  provenance: {author: 'llm:claude@83a16c835c32', status: draft}
