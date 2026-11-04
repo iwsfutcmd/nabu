@@ -67,21 +67,26 @@ is not yet in the plan, only exercises that present one qualify. The scores choo
 and once every new KC is in, they fill the session as before. The new words still come first,
 since the selection order already put them there.
 
-**The calibration weight is 34.** With the constraint in place it keeps every simulated learner
-within ±5pp of 85%:
+**The calibration weight is 70.** With the constraint in place, and with clips for every unit
+of fa and uz, it keeps every simulated learner within ±5pp of 85%:
 
 | Run | Accuracy |
 |---|---|
-| fa (θ* 1, 1.6, 2) | 85.1%, 86.1%, 86.4% |
-| yue (θ* 1.3, 2) | 85.8%, 85.8% |
-| uz-Latn (θ* 1) | 81.1% |
-| uz-Cyrl (θ* 1.6) | 85.7% |
-| apc-Arab (θ* 1.3) | 85.2% |
-| apc-Latn (θ* 1) | 84.0% |
+| fa (θ* 1, 1.6, 2) | 85.8%, 86.0%, 85.8% |
+| yue (θ* 1.3, 2) | 86.0%, 86.1% |
+| uz-Latn (θ* 1) | 82.7% |
+| uz-Cyrl (θ* 1.6) | 86.0% |
+| apc-Arab (θ* 1.3) | 85.8% |
+| apc-Latn (θ* 1) | 84.8% |
 
-The weakest uz-Latn learner sets the weight. That run reaches 80.2% at 24 and 81.1% at 34, and
-gains little beyond (81.5% at 40). With every new word presented, the content limits it, not the
-weight.
+The weakest uz-Latn learner sets the weight.
+- With clips for the first unit only, 34 held that learner at 81.1%.
+- Clips for every unit bring listening exercises, which the planner predicts at 61–63% for that
+  learner, and at 34 it fell to 78.6%.
+- It reaches 80.5% at 40–44, 81.7% at 50, 82.7% at 70 and 80.4% at 80. The curve is noisy, and
+  70 is its best point.
+
+With every new word presented, the content limits it, not the weight.
 
 The simulation now also fails if a lesson leaves out a new KC it carries.
 
@@ -114,10 +119,21 @@ It splits nothing else.
 - **Listening.** uz now has real minimal pairs (*bor*/*qor*, *yoʻl*/*yoʻq*). The listening test
   checks that each one differs by a single letter, instead of asserting there are none.
 - **Audio.**
-  - The new fa and uz sentences have no clips until `nabu audio generate --check` is run for
-    each course, which takes hours.
-  - yue clips mostly stay held back, because Whisper does not understand eSpeak's Cantonese
-    (errata 36 and 54).
+  - fa and uz have eSpeak clips for every unit, at both speeds, checked by Whisper
+    (`nabu audio generate --check`, a few hours per course). Failed clips stay out of the bundles
+    until a person reviews them (`nabu audio report`).
+
+    | Course | Items | Pass | Review | Fail (held back) |
+    |---|---|---|---|---|
+    | `fa` | 567 | 107 | 303 | 157 |
+    | `uz` | 531 | 1 | 103 | 427 |
+
+  - Whisper cannot make out most of eSpeak's Uzbek (*Bilmayman* comes back as "UMAIMEN"), so uz
+    listening covers only 104 items until a better voice exists.
+  - The clips add about 20 MB to `courses/` and 10 MB to the web bundles.
+  - yue keeps clips for its first unit only. Whisper does not understand eSpeak's Cantonese, so
+    all but one are held back (errata 36 and 54). Clips for the other nine units would add about
+    10 MB that no learner hears, so they wait for a better voice.
   - apc still needs human recordings.
   - Until then, listening exercises appear only where a clip exists.
 - **Script gaps.** The yue script audit allows only CLDR's yue_Hant exemplars plus the profile's

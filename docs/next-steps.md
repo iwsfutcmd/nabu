@@ -14,8 +14,9 @@ follows two things the gameplan already says:
 - **Courses.** There are four fixture courses (fa, yue, uz, apc). Each has ten units (A1 to early
   A2): 293–348 sentences, 55–60 lessons, 10 stories and 6 roleplay scenarios
   ([ADR 0050](adr/0050-ten-unit-courses.md)). Every item is an LLM draft that no native speaker has
-  reviewed; `courses/REVIEW.md` lists what to check first. Synthesized audio covers only the
-  first unit of fa, uz and yue, and apc waits for human recordings.
+  reviewed; `courses/REVIEW.md` lists what to check first. Synthesized audio covers every unit of
+  fa and uz, but the round-trip check holds back most uz clips. yue has clips for its first unit
+  only, nearly all held back, and apc waits for human recordings.
 - **Interface.** The interface is in English only, plus the en-XA and ar-XB pseudo-locales.
   Course content handles RTL, vertical text and mixed scripts. The chrome around it has never
   been translated.
