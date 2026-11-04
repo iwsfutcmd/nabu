@@ -19,6 +19,7 @@ it.
 | `grade.json` | Grading verdicts, notes and alignments across all nine profiles |
 | `tagged-text.json` | TaggedText invariants |
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
+| `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054) |
 
 Harnesses:
 - TypeScript: `packages/core-cli/test/conformance.test.ts` (in-process)

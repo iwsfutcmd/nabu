@@ -260,6 +260,10 @@ export type Policy =
  */
 export type NoteId = string;
 /**
+ * A UnicodeSet in UTS #35 syntax, e.g. [\u064B-\u0652\u0670].
+ */
+export type UnicodeSetPattern1 = string;
+/**
  * A CLDR Keyboard 3.0 layout (UTS #35 Part 7).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1859,6 +1863,8 @@ export interface ExerciseRef {
     | "gap-fill"
     | "char-read"
     | "reading-disambiguation"
+    | "vocalize"
+    | "transcribe"
     | "speak.tier-0"
     | "speak"
     | "listen-speak"
@@ -2482,6 +2488,7 @@ export interface MatchPolicy {
     readonly set: UnicodeSetPattern;
     readonly policy: Policy;
     readonly note?: NoteId;
+    readonly optional?: UnicodeSetPattern1;
   };
   readonly zwnj?: {
     /**

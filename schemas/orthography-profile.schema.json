@@ -345,6 +345,10 @@
             },
             "note": {
               "$ref": "#/$defs/NoteId"
+            },
+            "optional": {
+              "$ref": "#/$defs/UnicodeSetPattern",
+              "description": "Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
             }
           }
         },

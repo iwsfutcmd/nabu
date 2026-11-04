@@ -794,6 +794,18 @@
       "message": "Some pairs took more than one try.",
       "description": "Feedback note after match-pairs when some pairs were mismatched first."
     },
+    "feedback.note.reading-no-tones": {
+      "message": "Each syllable needs its tone number.",
+      "description": "Feedback note: a typed reading (Jyutping) has no tone numbers."
+    },
+    "feedback.note.reading-syllables": {
+      "message": "Check the sounds of each syllable.",
+      "description": "Feedback note: a typed reading has wrong syllables, or too many or too few."
+    },
+    "feedback.note.reading-tone": {
+      "message": "The sounds are right: check the tones.",
+      "description": "Feedback note: a typed reading has the right syllables with a wrong tone number."
+    },
     "feedback.note.script-mismatch": {
       "message": "Check that you're writing in the right script.",
       "description": "Generic feedback note: the answer is written in a different script from the course."
@@ -841,6 +853,14 @@
     "feedback.note.variant": {
       "message": "Another spelling of this character is more usual here.",
       "description": "Feedback note: an accepted variant form was used."
+    },
+    "feedback.note.vocalize-letters": {
+      "message": "Keep the letters as they are, and only add vowel marks.",
+      "description": "Feedback note: the learner changed the word's letters while adding vowel marks."
+    },
+    "feedback.note.vocalize-marks": {
+      "message": "Check the vowel marks on each letter.",
+      "description": "Feedback note: some letters have the wrong vowel marks, or none."
     },
     "feedback.note.zwnj": {
       "message": "Watch the half-space (ZWNJ) inside this word.",
@@ -1142,9 +1162,53 @@
       "message": "Which tone do you hear?",
       "description": "Instruction: hear one syllable and pick its tone."
     },
+    "player.instruction.transcribe": {
+      "message": "Write how this word is read",
+      "description": "Instruction: type the reading of a Chinese-character word in Latin letters (e.g. Jyutping)."
+    },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
+    },
+    "player.instruction.vocalize": {
+      "message": "Add the vowel marks",
+      "description": "Instruction: write the short-vowel marks (harakat) into an Arabic-script word."
+    },
+    "player.key.mark.064b": {
+      "message": "Fathatan",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+064B (fathatan) to the answer."
+    },
+    "player.key.mark.064c": {
+      "message": "Dammatan",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+064C (dammatan) to the answer."
+    },
+    "player.key.mark.064d": {
+      "message": "Kasratan",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+064D (kasratan) to the answer."
+    },
+    "player.key.mark.064e": {
+      "message": "Fatha",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+064E (fatha) to the answer."
+    },
+    "player.key.mark.064f": {
+      "message": "Damma",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+064F (damma) to the answer."
+    },
+    "player.key.mark.0650": {
+      "message": "Kasra",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+0650 (kasra) to the answer."
+    },
+    "player.key.mark.0651": {
+      "message": "Shadda",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+0651 (shadda) to the answer."
+    },
+    "player.key.mark.0652": {
+      "message": "Sukun",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+0652 (sukun) to the answer."
+    },
+    "player.key.mark.0670": {
+      "message": "Superscript alef",
+      "description": "Spoken name of the key that adds the Arabic-script mark U+0670 (superscript alef) to the answer."
     },
     "player.key.zwj": {
       "message": "{$short}: zero-width joiner",
@@ -1169,6 +1233,10 @@
     "player.loading": {
       "message": "Loading…",
       "description": "Shown while course data loads."
+    },
+    "player.meaning.label": {
+      "message": "Meaning",
+      "description": "Accessible label of a word's meaning, shown in the learner's language."
     },
     "player.options.label": {
       "message": "Answer choices",
@@ -1317,6 +1385,22 @@
     "player.tone.yue-jyutping.6": {
       "message": "6 · low level",
       "description": "Cantonese tone 6 (Jyutping), with its pitch shape."
+    },
+    "player.transcribe.label": {
+      "message": "Reading",
+      "description": "Label of the field where the learner types a word's reading in Latin letters."
+    },
+    "player.transcribe.label.jyutping": {
+      "message": "Reading in Jyutping",
+      "description": "Label of the field where the learner types a Cantonese word's reading in Jyutping."
+    },
+    "player.vocalize.label": {
+      "message": "The word with its vowel marks",
+      "description": "Label of the field holding a word's letters, where the learner adds vowel marks."
+    },
+    "player.word.label": {
+      "message": "Word",
+      "description": "Accessible label of the word an exercise asks about."
     },
     "player.wordbank.answer-label": {
       "message": "Your answer",

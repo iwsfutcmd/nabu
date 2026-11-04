@@ -1,0 +1,442 @@
+{
+  "$comment": "Pronunciation as the script leaves it out (ADR 0054). grade-vowels: an abjad word with the learner's vowel marks against its vocalized form; letters must not change, sukun is optional where the profile says so, marks compare per letter after NFC. grade-reading: a typed romanization (Jyutping) syllable by syllable, spaces, hyphens and case ignored, tones required.",
+  "vectors": [
+    {
+      "id": "vowels/fa/right",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "کِتاب"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "The marks as the vocalization has them."
+    },
+    {
+      "id": "vowels/fa/two-marks",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "پِدَر",
+        "answer": "پِدَر"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Two letters marked."
+    },
+    {
+      "id": "vowels/fa/wrong-vowel",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "کُتاب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "A damma where the kasra goes: the first letter is off."
+    },
+    {
+      "id": "vowels/fa/missing",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "پِدَر",
+        "answer": "پِدر"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          1
+        ]
+      },
+      "note": "The fatha on د left out."
+    },
+    {
+      "id": "vowels/fa/bare",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "کتاب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "No marks at all."
+    },
+    {
+      "id": "vowels/fa/extra",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "کِتَاب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          1
+        ]
+      },
+      "note": "A mark on a letter that takes none."
+    },
+    {
+      "id": "vowels/fa/letters-changed",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "کِتابی"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-letters"
+        ],
+        "off": []
+      },
+      "note": "A letter added: not the same word."
+    },
+    {
+      "id": "vowels/fa/stray-mark",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": "ِکتاب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-letters"
+        ]
+      },
+      "note": "A mark before the first letter belongs to no letter."
+    },
+    {
+      "id": "vowels/fa/sukun-optional",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "پِدَر",
+        "answer": "پِدَرْ"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "off": []
+      },
+      "note": "Sukun is optional (REVIEW): a learner may write it on the last letter."
+    },
+    {
+      "id": "vowels/fa/tanwin",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "لُطفاً",
+        "answer": "لُطفاً"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Fathatan counts like any mark."
+    },
+    {
+      "id": "vowels/fa/tanwin-missing",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "لُطفاً",
+        "answer": "لُطفا"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          3
+        ]
+      },
+      "note": "Fathatan left out of لطفاً."
+    },
+    {
+      "id": "vowels/fa/nfc",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "بَّ",
+        "answer": "بَّ"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Shadda and fatha in either order: compared after NFC."
+    },
+    {
+      "id": "vowels/fa/spaces",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "expected": "کِتاب",
+        "answer": " کِتاب "
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Spaces around the word are trimmed."
+    },
+    {
+      "id": "vowels/apc/sukun-left-out",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "بْحِبّ",
+        "answer": "بحِبّ"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "The apc draft writes sukun on every vowelless consonant; a learner need not."
+    },
+    {
+      "id": "vowels/apc/shadda-required",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "expected": "بْحِبّ",
+        "answer": "بحِب"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          2
+        ]
+      },
+      "note": "Shadda is not optional: بحب without it is off."
+    },
+    {
+      "id": "vowels/ar/right",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "expected": "كَتَبَ",
+        "answer": "كَتَبَ"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "كَتَبَ."
+    },
+    {
+      "id": "vowels/ar/other-word",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "ar-Arab/standard",
+        "expected": "كَتَبَ",
+        "answer": "كُتُبٌ"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0,
+          1,
+          2
+        ]
+      },
+      "note": "كُتُبٌ (books) for كَتَبَ (he wrote): three letters off."
+    },
+    {
+      "id": "vowels/uz/no-marks",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "expected": "kitob",
+        "answer": "kitob"
+      },
+      "error": "has no vowel marks",
+      "note": "An orthography without a mark set has nothing to vocalize."
+    },
+    {
+      "id": "reading/yue/right",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei5 hou2"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "The pinned reading."
+    },
+    {
+      "id": "reading/yue/no-spaces",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei5hou2"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Tone numbers end syllables: spaces are optional."
+    },
+    {
+      "id": "reading/yue/case",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "Nei5 Hou2"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Case is ignored."
+    },
+    {
+      "id": "reading/yue/hyphens",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei5-hou2"
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "Hyphens between syllables are ignored."
+    },
+    {
+      "id": "reading/yue/tone",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei5 hou3"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-tone"
+        ],
+        "off": [
+          1
+        ]
+      },
+      "note": "The right sounds with another tone."
+    },
+    {
+      "id": "reading/yue/no-tones",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei hou"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-no-tones"
+        ]
+      },
+      "note": "Jyutping needs its tone numbers."
+    },
+    {
+      "id": "reading/yue/syllable",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "lei5 hou2"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-syllables"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "lei5 for nei5: the n/l merger is not accepted (REVIEW)."
+    },
+    {
+      "id": "reading/yue/count",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "nei5 hou2",
+        "answer": "nei5"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-syllables"
+        ]
+      },
+      "note": "A syllable short."
+    },
+    {
+      "id": "reading/yue/fullwidth-digit",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "jyutping",
+        "expected": "ngo5",
+        "answer": "ngo５"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "reading-no-tones"
+        ]
+      },
+      "note": "A full-width ５ is not a tone number: NFC keeps it."
+    },
+    {
+      "id": "reading/yue/unknown-scheme",
+      "op": "grade-reading",
+      "args": {
+        "scheme": "yale",
+        "expected": "néih hóu",
+        "answer": "néih hóu"
+      },
+      "error": "no syllable shape",
+      "note": "Only Jyutping can be typed so far."
+    }
+  ]
+}

@@ -13,7 +13,8 @@ normalize:                             # applied identically to learner answers 
   - punctuation: strip
   - whitespace: collapse
 match:
-  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore }   # harakat optional in answers
+  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore, optional: "[\u0652]" }   # harakat optional in answers
+  # REVIEW: sukun is optional when a learner writes the vowel marks (ADR 0054); the drafts disagree on it.
   zwnj:  { equivalents: ["\u200C", " ", ""], policy: accept-with-note, note: spacing }
   case:  none
   typo:  { model: keyboard, layout: cldr-kbd:fa, maxRatio: 0.15, minLength: 3 }

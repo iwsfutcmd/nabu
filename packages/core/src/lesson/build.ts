@@ -210,6 +210,13 @@ export const buildLesson = (
         .find((e) => e !== undefined),
     );
 
+  // A new word's pronunciation as its script leaves it out (ADR 0054): its vowel marks (abjads)
+  // or its reading (Han).
+  for (const template of ["vocalize", "transcribe"] as const) {
+    const make = KC_TEMPLATES[template];
+    if (allowed(template) && make !== undefined) push(fresh.map((kc) => make(ctx, kc)).find((e) => e !== undefined));
+  }
+
   return out.slice(0, options.maxExercises ?? 14);
 };
 

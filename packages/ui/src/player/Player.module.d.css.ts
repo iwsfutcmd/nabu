@@ -48,6 +48,7 @@ declare const styles: {
   readonly recorder: string;
   readonly secondary: string;
   readonly solution: string;
+  readonly spokenName: string;
   readonly switch: string;
   readonly switchThumb: string;
   readonly switchTrack: string;

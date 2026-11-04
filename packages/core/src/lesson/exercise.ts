@@ -18,6 +18,8 @@ export type TemplateId =
   | "gap-fill"
   | "char-read"
   | "reading-disambiguation"
+  | "vocalize"
+  | "transcribe"
   | "speak.tier-0"
   | "speak"
   | "listen-speak"
@@ -134,6 +136,34 @@ export interface ReadingDisambiguation extends Common {
   readonly focus: { readonly token: number; readonly segment: number };
   readonly options: readonly TaggedText[];
   readonly answer: number;
+}
+
+/**
+ * An abjad word without its vowel marks, with its meaning; write the marks in (ADR 0054). The
+ * field starts from the letters. Grading compares the marks letter by letter (`gradeVowels`).
+ */
+export interface Vocalize extends Common {
+  readonly template: "vocalize";
+  /** The word's letters: what the learner starts from. */
+  readonly prompt: TaggedText;
+  readonly meaning: TaggedText;
+  /** The word with its vowel marks (the course's vocalization). */
+  readonly vocalized: TaggedText;
+  /** The orthography's vowel marks, one code point each (the profile's `match.marks`). */
+  readonly marks: readonly string[];
+  /** Marks that may be written or left out (sukun). */
+  readonly optional: readonly string[];
+}
+
+/** An ideographic word with its meaning; type its reading (Jyutping) (ADR 0054). */
+export interface Transcribe extends Common {
+  readonly template: "transcribe";
+  /** The word, without its ruby. */
+  readonly prompt: TaggedText;
+  readonly meaning: TaggedText;
+  readonly scheme: string;
+  /** The pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
+  readonly reading: TaggedText;
 }
 
 /** Speak tier 0 (§10.4): say it, record it, compare, rate yourself. */
@@ -255,6 +285,8 @@ export type Exercise =
   | GapFill
   | CharRead
   | ReadingDisambiguation
+  | Vocalize
+  | Transcribe
   | Speak
   | SpeakScored
   | ListenSpeak

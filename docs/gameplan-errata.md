@@ -239,3 +239,6 @@ ADR is linked. The gameplan text itself is left as written.
 61. **§12.6 "Capacitor later":** reminders on the phone are sent by the API through FCM (HTTP v1)
     and APNs (token authentication over HTTP/2) with credentials from the environment; the
     decision of whether and what to send is the Web Push one, unchanged.
+62. **§8.2 `vocalize` "form":** the card asks how the script reads a word, so it exercises the
+    `read-script` facet, like `char-read`. A Han counterpart, `transcribe` (type the word's
+    Jyutping), joins it ([ADR 0054](adr/0054-pronunciation-exercises.md)).

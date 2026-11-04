@@ -6,6 +6,7 @@
  */
 import type { BundleKc, BundleSentence, KcId, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
 import { glossUnits } from "../match/gloss.ts";
+import { gradeReading, gradeVowels, hasVowelMarks, transcribable, withoutMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
 import type {
@@ -24,6 +25,8 @@ import type {
   MinimalPair,
   Outcome,
   ReadingDisambiguation,
+  Transcribe,
+  Vocalize,
   Response,
   SelectImage,
   Speak,
@@ -58,6 +61,9 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "gap-fill": { facet: "produce", modality: { audioOut: false, mic: false, input: "choice" } },
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  // A word's pronunciation as its script leaves it out (ADR 0054): reading the script, typed.
+  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
+  transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
   // Phase 9: scored speaking (tiers 1–3) and hearing tones.
   speak: { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
@@ -647,6 +653,63 @@ export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | u
   return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer };
 };
 
+// ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
+
+/** A word KC with its meaning: its first form in the course's orthography and its gloss. */
+const wordWithMeaning = (ctx: MakeContext, kc: BundleKc): { readonly word: TaggedText; readonly meaning: TaggedText } | undefined => {
+  const word = writtenForm(ctx, kc);
+  const meaning = kc.gloss?.[ctx.course.supportKey];
+  return kc.kind === "sense" && word !== undefined && meaning !== undefined ? { word, meaning } : undefined;
+};
+
+/** An abjad word without its vowel marks: write them in. Only words the vocalization marks. */
+export const makeVocalize = (ctx: MakeContext, kc: BundleKc): Vocalize | undefined => {
+  const marks = profileOf(ctx.course, ctx.course.orthography).marks;
+  const found = wordWithMeaning(ctx, kc);
+  if (marks === undefined || found === undefined || !hasVowelMarks(marks, surfaceOf(found.word))) return undefined;
+  const bare = (t: Token): Token => {
+    const { ruby: _ruby, ...rest } = t;
+    return {
+      ...rest,
+      surface: withoutMarks(marks, t.surface),
+      ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
+    };
+  };
+  return {
+    template: "vocalize",
+    id: id("vocalize", kc.id),
+    item: kc.id,
+    kcs: [kc.id],
+    orthography: ctx.course.orthography,
+    prompt: { ...found.word, tokens: found.word.tokens.map(bare) },
+    meaning: found.meaning,
+    vocalized: found.word,
+    marks: [...marks.set],
+    optional: [...marks.optional],
+  };
+};
+
+/** An ideographic word: type its reading. Only where every word of it has a pinned reading. */
+export const makeTranscribe = (ctx: MakeContext, kc: BundleKc): Transcribe | undefined => {
+  const scheme = rubySchemeOf(ctx);
+  const found = wordWithMeaning(ctx, kc);
+  if (scheme === undefined || !transcribable(scheme) || found === undefined) return undefined;
+  const readings = found.word.tokens.filter((t) => t.kind === "word").map((t) => t.readings?.[scheme]);
+  if (readings.length === 0 || readings.some((r) => r === undefined)) return undefined;
+  const reading = readingText(scheme, readings.join(" "));
+  return {
+    template: "transcribe",
+    id: id("transcribe", kc.id),
+    item: kc.id,
+    kcs: [kc.id],
+    orthography: reading.orthography,
+    prompt: { ...found.word, tokens: found.word.tokens.map(stripRuby) },
+    meaning: found.meaning,
+    scheme,
+    reading,
+  };
+};
+
 /** KC templates that need a clip of the word. */
 export const KC_LISTENING: readonly ((ctx: MakeContext, kc: BundleKc) => Exercise | undefined)[] = [makeListenSelect, makeMinimalPair];
 
@@ -655,6 +718,8 @@ export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext
   "select-image": makeSelectImage,
   "listen-select": makeListenSelect,
   "minimal-pair": makeMinimalPair,
+  vocalize: makeVocalize,
+  transcribe: makeTranscribe,
 };
 
 export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
@@ -722,6 +787,16 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
     case "tone-identify":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
+    case "vocalize": {
+      if (response.tag !== "text") return mismatch(ex, response);
+      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
+      return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
+    }
+    case "transcribe": {
+      if (response.tag !== "text") return mismatch(ex, response);
+      const g = gradeReading(ex.scheme, surfaceOf(ex.reading), response.text);
+      return { verdict: g.verdict, notes: g.notes, solution: ex.reading };
+    }
     case "speak":
     case "listen-speak": {
       // Without a microphone the learner rates themselves, as at tier 0.
@@ -785,6 +860,10 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
       return ex.prompt;
     case "tone-identify":
       return ex.syllable;
+    case "vocalize":
+      return ex.vocalized;
+    case "transcribe":
+      return ex.reading;
     case "match-pairs":
       return undefined;
   }

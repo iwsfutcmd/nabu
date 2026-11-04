@@ -55,7 +55,9 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
       {notes.length > 0 && (
         <ul className={styles.notes}>
           {notes.map((id) => (
-            <li key={id}>{t.format(id)}</li>
+            <li key={id} data-note={id.slice("feedback.note.".length)}>
+              {t.format(id)}
+            </li>
           ))}
         </ul>
       )}

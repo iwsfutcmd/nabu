@@ -1959,6 +1959,8 @@ class ExerciseRef(BaseModel):
         "gap-fill",
         "char-read",
         "reading-disambiguation",
+        "vocalize",
+        "transcribe",
         "speak.tier-0",
         "speak",
         "listen-speak",
@@ -2260,6 +2262,12 @@ class Marks(BaseModel):
     set: UnicodeSetPattern
     policy: Policy
     note: NoteId | None = None
+    optional: Annotated[
+        UnicodeSetPattern | None,
+        Field(
+            description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
+        ),
+    ] = None
 
 
 class Zwnj(BaseModel):

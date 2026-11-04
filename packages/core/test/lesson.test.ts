@@ -76,6 +76,10 @@ const rightAnswer = (ex: Exercise): Response => {
       return { tag: "text", text: surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };
+    case "vocalize":
+      return { tag: "text", text: surfaceOf(ex.vocalized) };
+    case "transcribe":
+      return { tag: "text", text: surfaceOf(ex.reading) };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "good" };
     case "speak":
@@ -110,6 +114,10 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "complete-translation":
     case "listen-type":
       return { tag: "text", text: "qqqq zzzz" };
+    case "vocalize":
+      return { tag: "text", text: surfaceOf(ex.prompt) };
+    case "transcribe":
+      return { tag: "text", text: "qqqq1" };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "again" };
     case "match-pairs":
@@ -213,6 +221,53 @@ describe("the card gallery (debug mode)", () => {
       for (const t of ["match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "translate-type.l1-l2", "gap-fill", "speak.tier-0"]) expect(made.has(t as never), `${id} ${t}`).toBe(true);
       if (id === "yue") for (const t of ["char-read", "speak", "listen-speak"]) expect(made.has(t as never), `yue ${t}`).toBe(true);
     }
+  });
+});
+
+describe("writing in a word's pronunciation (ADR 0054)", () => {
+  const HARAKAT = /[\u064B-\u0652\u0670]/u;
+  const cardOf = (id: string, orthography: string | undefined, template: TemplateId): Exercise | undefined =>
+    cardGallery(loadCourse(id, orthography), 3).find((c) => c.template === template)?.exercise;
+
+  it("vowel marks: the letters to start from, the vocalized word to reach (fa, apc-Arab)", () => {
+    for (const [id, orthography] of [["fa", undefined], ["apc", "apc-Arab/standard"]] as const) {
+      const course = loadCourse(id, orthography);
+      const ex = cardOf(id, orthography, "vocalize");
+      if (ex?.template !== "vocalize") throw new Error(`${id}: no vocalize card`);
+      expect(HARAKAT.test(surfaceOf(ex.prompt))).toBe(false);
+      expect(HARAKAT.test(surfaceOf(ex.vocalized))).toBe(true);
+      expect(TEMPLATES.vocalize.facet).toBe("read-script");
+      const grader = createGrader(course);
+      expect(gradeExercise(ex, { tag: "text", text: surfaceOf(ex.vocalized) }, grader).verdict).toBe("CORRECT");
+      const bare = gradeExercise(ex, { tag: "text", text: surfaceOf(ex.prompt) }, grader);
+      expect([bare.verdict, bare.notes]).toEqual(["WRONG", ["vocalize-marks"]]);
+      expect(bare.solution).toBe(ex.vocalized);
+      // The player's field starts from the letters.
+      const [presenting] = start("lesson", [ex]);
+      const [answering] = step(presenting, { tag: "ready" });
+      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "text", text: surfaceOf(ex.prompt) });
+    }
+  });
+
+  it("a reading: the word without its ruby, its Jyutping to type (yue)", () => {
+    const course = loadCourse("yue");
+    const ex = cardOf("yue", undefined, "transcribe");
+    if (ex?.template !== "transcribe") throw new Error("yue: no transcribe card");
+    expect(ex.prompt.tokens.every((t) => t.ruby === undefined && t.readings === undefined)).toBe(true);
+    expect(ex.reading.lang).toBe("yue-Latn-HK-jyutping");
+    expect(ex.orthography).toBe("yue-Latn/jyutping");
+    const grader = createGrader(course);
+    const reading = surfaceOf(ex.reading);
+    expect(gradeExercise(ex, { tag: "text", text: reading.replace(/ /gu, "") }, grader).verdict).toBe("CORRECT");
+    const tone = gradeExercise(ex, { tag: "text", text: reading.replace(/([1-6])$/u, (d) => String((Number(d) % 6) + 1)) }, grader);
+    expect([tone.verdict, tone.notes]).toEqual(["WRONG", ["reading-tone"]]);
+  });
+
+  it("alphabets write their vowels: no such card for uz", () => {
+    expect(cardOf("uz", "uz-Latn/standard", "vocalize")).toBeUndefined();
+    expect(cardOf("uz", "uz-Latn/standard", "transcribe")).toBeUndefined();
+    expect(cardOf("fa", undefined, "transcribe")).toBeUndefined();
+    expect(cardOf("yue", undefined, "vocalize")).toBeUndefined();
   });
 });
 
