@@ -1291,6 +1291,48 @@
         "verdict": "WRONG"
       },
       "note": "Splitting the article never makes a different noun right."
+    },
+    {
+      "id": "grade/apc-latn/kh-5",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "baddi khebez",
+        "answer": "baddi 5ebez"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "5 for kh (REVIEW)."
+    },
+    {
+      "id": "grade/apc-latn/kh-5-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "baddi 5ebez",
+        "answer": "baddi khebez"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "And the other way round."
+    },
+    {
+      "id": "grade/apc-latn/attached-3al",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ru7t 3al ba7r",
+        "answer": "ru7t 3alba7r"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "3alba7r, as عالبحر is one word."
     }
 ]
 }

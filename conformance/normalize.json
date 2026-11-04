@@ -746,6 +746,56 @@
       },
       "expected": "ela",
       "note": "Fewer than two graphemes after the prefix: not split."
+    },
+    {
+      "id": "normalize/apc-latn/attached-3al",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "ru7t 3alba7r"
+      },
+      "expected": "ru7t 3al ba7r",
+      "note": "3a + the article on its noun, as عالبحر is one word (REVIEW)."
+    },
+    {
+      "id": "normalize/apc-latn/attached-bel",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "belbet"
+      },
+      "expected": "bel bet",
+      "note": "b- + the article: بالبيت."
+    },
+    {
+      "id": "normalize/apc-latn/attached-hal",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "halshere3"
+      },
+      "expected": "hal shere3",
+      "note": "ha- + the article: هالشارع."
+    },
+    {
+      "id": "normalize/apc-latn/attached-lel",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "lelwalad"
+      },
+      "expected": "lel walad",
+      "note": "la- + the article: للولد."
+    },
+    {
+      "id": "normalize/apc-latn/lele-not-split",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "el lele"
+      },
+      "expected": "el lele",
+      "note": "lele (night) has one grapheme after lel: left as written."
     }
 ]
 }
