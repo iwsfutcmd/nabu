@@ -9,7 +9,7 @@ from typing import Annotated, Any
 
 import typer
 
-from nabu.audio.course import Item
+from nabu.audio.course import Item, Written
 from nabu.audio.providers import Clip
 from nabu.schema.models import AudioVoice
 
@@ -19,7 +19,7 @@ app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's a
 ASR_LANGUAGE = {"fa": "fa", "yue": "yue", "uz": "uz", "apc": "ar"}
 
 
-def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]]]:
+def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
     from nabu.compiler import compile_course
     from nabu.corecli import CoreCli
 
@@ -31,7 +31,7 @@ def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]]]:
         typer.echo(f"✗ {course} does not compile", err=True)
         raise typer.Exit(code=1)
     course_dir = course if course.is_dir() else course.parent
-    return course_dir, compiled.course, compiled.units
+    return course_dir, compiled.course, compiled.units, compiled.written
 
 
 @app.command()
@@ -52,7 +52,7 @@ def generate(
     from nabu.audio.course import synthesize_course
     from nabu.audio.providers import MissingKey, ProviderError
 
-    course_dir, source, units = _compiled(course)
+    course_dir, source, units, written = _compiled(course)
     audio = source.audio
     if audio is not None and audio.humanRequired:
         typer.echo(
@@ -77,7 +77,7 @@ def generate(
 
         checker = round_trip_check
     try:
-        report = synthesize_course(course_dir, units, voice, checker)
+        report = synthesize_course(course_dir, units, voice, checker, written)
     except (MissingKey, ProviderError, ValueError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None
@@ -108,7 +108,7 @@ def ingest(
     from nabu.audio.ingest import Recording
     from nabu.audio.ingest import ingest as add
 
-    course_dir, src, units = _compiled(course)
+    course_dir, src, units, _ = _compiled(course)
     alignment = None
     if align:
         tokens = next(

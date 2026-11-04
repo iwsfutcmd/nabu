@@ -54,6 +54,23 @@ With an account on a server, corrections also reach the review queue at `/admin/
    خواهر with its silent و, and دوست glossed as "friend (also in دوست داشتن: to like)".
 10. **"Nine" is not taught.** نه "nine" is spelled like نه "no" and would collide with it in the
     glossary. The numbers drill still covers it.
+11. **Vowel marks** (`vocalization.yaml`, [ADR 0053](../docs/adr/0053-vocalization.md)). The
+    draft uses formal written forms and no sukun. First check its `uncertain` list:
+    - و as *va* (speech often has *o*);
+    - چطور as *chetor* (Tehran) rather than *chetowr*;
+    - تومان as *toman*;
+    - روی left bare (its ی is the ezafe glide);
+    - نوروز as نَوروز.
+
+    Then the conventions it chose:
+    - short *o* written with و takes a damma on the consonant before it (تُو, خُوردیم, مِترُو);
+    - initial آ/ا + long vowel stays bare (این, او);
+    - *iy* stays bare (خیابان);
+    - *ey* is kasra + ی (خِیلی), *ow* is fatha + و;
+    - the silent و of خوا stays bare;
+    - ezafe carriers (ی, ٔ) stay bare.
+
+    نه is pinned *na* on its 11 tokens; the drill's "nine" stays unmarked.
 
 ## yue (Cantonese)
 
@@ -127,7 +144,22 @@ With an account on a server, corrections also reach the review queue at `/admin/
    - nhar vs yom.
 8. **Phrasing.** "b hayda el shere3" (vs "bi hal shere3"), "jeddo kbir" for "grandpa is old",
    "shob" for hot weather, تا for "ta", and على قلبك vs ع قلبك.
-9. **Story vocalization.** Lebanese short vowels have no standard. بيت and بيروت are left
-   unvocalized rather than imply the mountain pronunciation *bayt*.
+9. **Vowel marks** (`vocalization.yaml` and the stories, [ADR 0053](../docs/adr/0053-vocalization.md)).
+   Lebanese short vowels have no standard; the draft follows the course's Arabizi, and every vowelless
+   consonant gets a sukun.
+   - **Left bare.** بيت and بيروت, rather than imply the mountain pronunciation *bayt*; also على,
+     الله and والله. The stories, though, mark هَيدا and اللَّيْلِة with the diphthong.
+   - **The `uncertain` list:**
+     - لأ;
+     - بحكي (*ba7ki* or *bi7ki*) and بتحكي;
+     - the bare alif of اسْتَنّى;
+     - inserted vowels: صحن, شهر, اسم, إبن, قبل, وربع;
+     - رخيصة *-e* after ص;
+     - أهلا وسهلا without tanwin;
+     - الجمعة (*jum3a* in the story, *jem3a* in the Arabizi);
+     - الليلة and دغري.
+   - **Pinned on their tokens.** كيفك, قلبك and بيتك are *-ak* in sentences and *-ik* in stories.
+   - **The feminine ending.** The vowel before ة is marked from the Arabizi (*-e* kasra, *-a*
+     fatha). Some stories leave it off.
 10. **Accept sets.** How generous should the Arabizi variants be (2 or no 2, e/i, kh/5, gh/8),
     and the English alternatives?

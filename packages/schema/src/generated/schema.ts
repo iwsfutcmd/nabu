@@ -358,6 +358,7 @@ export interface NabuSchemaIndex {
   readonly StoryLineSource: StoryLineSource;
   readonly StoryChoiceSource: StoryChoiceSource;
   readonly ScenarioSource: ScenarioSource;
+  readonly VocalizationSource: VocalizationSource;
   readonly DataTable: DataTable;
   readonly KeyboardLayout: KeyboardLayout;
   readonly LearnerEvent: LearnerEvent;
@@ -1261,6 +1262,10 @@ export interface CourseSource {
   readonly units: readonly (string | UnitSource)[];
   readonly drills?: readonly DrillSpec[];
   readonly audio?: CourseAudio;
+  /**
+   * Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.
+   */
+  readonly vocalization?: readonly (string | VocalizationSource)[];
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
@@ -1429,6 +1434,10 @@ export interface SourceToken {
    * Tile group. Default: each word token is its own tile.
    */
   readonly tile?: number;
+  /**
+   * This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.
+   */
+  readonly vocalized?: string;
 }
 /**
  * A short story: lines of dialogue or narration, read in the learner's orthography, with questions along the way. Its words are glossed on tap from the course's glossary (KC forms).
@@ -1635,6 +1644,36 @@ export interface AudioVoice {
    */
   readonly reading: string;
   readonly license: Spdx2;
+}
+/**
+ * A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "VocalizationSource".
+ */
+export interface VocalizationSource {
+  readonly orthography: OrthographyId;
+  readonly license: Spdx;
+  readonly provenance: Provenance;
+  /**
+   * Surface → vocalized form (its marks removed, it is the surface).
+   */
+  readonly words: {
+    readonly [k: string]: string;
+  };
+  /**
+   * Surfaces with more than one vocalization in the course: each token chooses.
+   */
+  readonly ambiguous?: {
+    /**
+     * @minItems 2
+     */
+    readonly [k: string]: readonly string[];
+  };
+  /**
+   * Surfaces the drafter was unsure of: a reviewer checks these first.
+   */
+  readonly uncertain?: readonly string[];
 }
 /**
  * A generated lookup table an orthography profile refers to by id (profiles/tables/<id>.json): orthographic variant groups, character readings for the IME-homophone typo model, or a character set for script-mismatch detection.

@@ -84,9 +84,10 @@ ADR is linked. The gameplan text itself is left as written.
 25. **§11.5 `PlayerState` holds only the current exercise.** A lesson also needs a session (the
     queue with retries, the results for the summary); every state carries one
     ([ADR 0034](adr/0034-lesson-player.md)).
-26. **§6.6 "store fully vocalized text":** the fixture courses are not fully vocalized. fa writes the
-    ezafe kasra and apc the shadda; full vocalization is a content decision for review. The harakat
-    toggle strips whatever marks the content has, for display only.
+26. **§6.6 "store fully vocalized text":** the fixture courses are not written fully vocalized. fa writes
+    the ezafe kasra and apc the shadda. The *bundle* is vocalized instead: a course's vocalization
+    files give each word its marks at compile time, and the source stays as written
+    ([ADR 0053](adr/0053-vocalization.md)). The harakat toggle strips the marks, for display only.
 27. **§8.2 `select-image` "images need licenses"** also needs a place in the course format:
     `kcs[].image` with file, SPDX licence and provenance ([ADR 0035](adr/0035-bundles-in-the-client.md)).
 

@@ -41,16 +41,21 @@ const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
   return undefined;
 };
 
-/** Per word of a typed answer: right when every unit of the word was matched in the alignment. */
+/**
+ * Per word of a typed answer: right when every unit of the word was matched in the alignment.
+ * Units are compared without vowel marks: the displayed words carry the marks a course's
+ * vocalization adds (ADR 0053), while the accept sets they are matched against may not.
+ */
 const wordCredit = (canonical: TaggedText, alignment: readonly AlignOp[], profile: CompiledProfile): ReadonlyMap<KcId, "right" | "wrong"> => {
+  const key = (unit: string): string => profile.marks?.strip(unit) ?? unit;
   const matched = new Map<string, number>();
   for (const op of alignment) {
-    if (op.op === "match" && op.kind !== "typo") matched.set(op.expected, (matched.get(op.expected) ?? 0) + 1);
+    if (op.op === "match" && op.kind !== "typo") matched.set(key(op.expected), (matched.get(key(op.expected)) ?? 0) + 1);
   }
   const out = new Map<KcId, "right" | "wrong">();
   for (const token of canonical.tokens) {
     if (token.kind !== "word" && token.kind !== "number") continue;
-    const units = profile.units(profile.normalize(token.surface));
+    const units = profile.units(profile.normalize(token.surface)).map(key);
     const right = units.length > 0 && units.every((u) => (matched.get(u) ?? 0) > 0);
     for (const kc of kcsOfToken(token)) {
       // A KC is wrong if any of its words was wrong.

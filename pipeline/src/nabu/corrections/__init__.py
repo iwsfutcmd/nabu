@@ -33,6 +33,7 @@ import yaml
 
 from nabu.ai.reports import escape_notation
 from nabu.schema.models import SentenceCorrection
+from nabu.vocalization import unmarker
 from nabu.yamlio import INVISIBLE, FlowList, dump
 
 WORDISH = regex.compile(r"[\p{L}\p{M}\p{N}]")
@@ -378,9 +379,16 @@ def _apply_one(
         before = (shown.forms or {}).get(orth)
         if form is None or before is None:
             raise Conflict(f"no {orth} form in the source")
+        # The app shows words with the vowel marks the course's vocalization adds (ADR 0053);
+        # the source has the letters, so text is compared without them.
+        unmark = unmarker(str(orth))
         text_node = _get(form, "text")
         current = _scalar(text_node)
-        if current is None or before.text is None or _nfc(current) != _nfc(before.text):
+        if (
+            current is None
+            or before.text is None
+            or unmark(_nfc(current)) != unmark(_nfc(before.text))
+        ):
             raise Conflict(f"the source changed since: {orth} now reads {current!r}")
         tokens = _items(_get(form, "tokens"))
         surfaces = [_scalar(_get(t, "surface")) or "" for t in tokens]
@@ -396,7 +404,11 @@ def _apply_one(
                 None,
             )
             reading_node = _get(_get(token, "readings"), str(r.scheme))
-            if token is None or surfaces[r.token] != r.surface or reading_node is None:
+            if (
+                token is None
+                or unmark(surfaces[r.token]) != unmark(r.surface)
+                or reading_node is None
+            ):
                 raise Conflict(
                     f"{orth}: no token {r.token} {r.surface!r} with a {r.scheme} reading"
                 )
@@ -408,11 +420,24 @@ def _apply_one(
             read_fixed.add(r.token)
             applied.changes.append(f"{orth} {r.surface}: {r.scheme} {was} → {r.reading}")
         if change.text is not None and text_node is not None:
-            moved = retokenize(current, change.text, surfaces)
+            new = change.text
+            if unmark(new) == unmark(current):
+                raise Conflict(
+                    f"{orth}: only vowel marks changed: correct them in the course's "
+                    "vocalization, or give the word's token its own `vocalized`"
+                )
+            if unmark(current) == current and unmark(new) != new:
+                # The source is unvocalized: the vocalization supplies the marks.
+                new = unmark(new)
+                applied.checks.append(
+                    f"{orth}: the correction's vowel marks were left to the vocalization: "
+                    f"are they right? The learner wrote {change.text!r}"
+                )
+            moved = retokenize(current, new, surfaces)
             if isinstance(moved, str):
                 raise Conflict(f"{orth}: {moved}")
-            edits.append(_replace(text_node, change.text, text, flow=_flow(form)))
-            applied.changes.append(f"{orth} text: {current} → {change.text}")
+            edits.append(_replace(text_node, new, text, flow=_flow(form)))
+            applied.changes.append(f"{orth} text: {current} → {new}")
             for k, surface in sorted(moved.items()):
                 token = tokens[k]
                 if _get(token, "morphs") is not None:

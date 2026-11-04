@@ -505,6 +505,9 @@ class SentenceCorrection(BaseModel):
     createdAt: AwareDatetime
 
 
+type Vocalization = Annotated[str, Field(pattern="^[A-Za-z0-9_./-]+\\.yaml$")]
+
+
 type Slug = Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$", title="Slug")]
 
 
@@ -776,6 +779,48 @@ class ScenarioSource(BaseModel):
     ]
     provenance: Provenance | None = None
     license: Spdx | None = None
+
+
+type WordsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type AmbiguousAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
+
+
+type AmbiguousAdditionalProperty = Annotated[
+    list[AmbiguousAdditionalPropertyItem], Field(min_length=2)
+]
+
+
+type UncertainItem = Annotated[str, Field(min_length=1)]
+
+
+class VocalizationSource(BaseModel):
+    """
+    A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: OrthographyId
+    license: Spdx
+    provenance: Provenance
+    words: Annotated[
+        dict[str, WordsAdditionalProperty],
+        Field(description="Surface → vocalized form (its marks removed, it is the surface)."),
+    ]
+    ambiguous: Annotated[
+        dict[str, AmbiguousAdditionalProperty] | None,
+        Field(
+            description="Surfaces with more than one vocalization in the course: each token chooses."
+        ),
+    ] = None
+    uncertain: Annotated[
+        list[UncertainItem] | None,
+        Field(description="Surfaces the drafter was unsure of: a reviewer checks these first."),
+    ] = None
 
 
 type GroupItem = Annotated[str, Field(min_length=1)]
@@ -1866,6 +1911,13 @@ class SourceToken(BaseModel):
     tile: Annotated[
         int | None, Field(description="Tile group. Default: each word token is its own tile.", ge=0)
     ] = None
+    vocalized: Annotated[
+        str | None,
+        Field(
+            description="This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
+            min_length=1,
+        ),
+    ] = None
 
 
 class CourseAudio(BaseModel):
@@ -2851,6 +2903,12 @@ class CourseSource(BaseModel):
     units: Annotated[list[str | UnitSource], Field(min_length=1)]
     drills: list[DrillSpec] | None = None
     audio: CourseAudio | None = None
+    vocalization: Annotated[
+        list[Vocalization | VocalizationSource] | None,
+        Field(
+            description="Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show."
+        ),
+    ] = None
 
 
 type NabuSchemaBundle = Annotated[

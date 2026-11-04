@@ -2,7 +2,7 @@
  * Phase 6: stories in the app. From the course path, a learner who finished a unit's lessons
  * reads its story to the end, by keyboard and by touch, across all six orthographies; the
  * story completes its node and earns XP. Tap-for-gloss explains words, and in the vocalized
- * apc-Arab story the vocalized words find their unvocalized glossary entries.
+ * apc-Arab story the vocalized words find their glossary entries, whatever marks either side has.
  */
 import { seededRng } from "@nabu/core/lesson";
 import { allStories, storyScript, type StoryScript } from "@nabu/core/story";
@@ -99,7 +99,7 @@ for (const mode of ["keyboard", "touch"] as const) {
   }
 }
 
-test("tap-for-gloss: vocalized apc-Arab words find their unvocalized entries", async ({ page }, info) => {
+test("tap-for-gloss: vocalized apc-Arab words find their entries, whatever their marks", async ({ page }, info) => {
   test.skip(info.project.name !== "touch", "one pass is enough");
   await page.clock.setFixedTime(NOW);
   const course = loadCourse("apc", "apc-Arab/standard");
@@ -115,7 +115,8 @@ test("tap-for-gloss: vocalized apc-Arab words find their unvocalized entries", a
   const panel = page.locator("[data-gloss-panel]");
   const entry = panel.locator('[data-gloss-kc="sense:kifak"]');
   await expect(entry).toBeVisible();
-  // The entry shown is the glossary's own unvocalized form, and the KC's meaning.
+  // The entry shown is the glossary's own form, and the KC's meaning. The course vocalizes كيفك
+  // two ways (kifak, kifik), so its form stays unmarked while the story's word is marked.
   await expect(entry.locator("dt")).toHaveText("كيفك");
   await expect(entry.locator("dd")).toContainText("how are you?");
   // Hiding the vowel marks changes the display only: the same word, the same gloss.

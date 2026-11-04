@@ -80,7 +80,7 @@ def check_audio(
     planned: dict[tuple[str, str], dict[str, str]] = {}
     for voice in voices:
         try:
-            reads = plan(compiled.units, voice)[0]
+            reads = plan(compiled.units, voice, compiled.written)[0]
         except ValueError as error:
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue

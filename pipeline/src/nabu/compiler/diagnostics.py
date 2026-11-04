@@ -190,6 +190,19 @@ _LINTS = [
         1,
         "A scenario's title, setting, character or goal lacks a support language.",
     ),
+    # 2 · vowel marks (the course's vocalization, ADR 0053)
+    Lint(
+        "vocalization.mismatch",
+        "error",
+        2,
+        "A vocalized form whose letters, without vowel marks, are not the word's.",
+    ),
+    Lint(
+        "vocalization.ambiguous",
+        "warning",
+        2,
+        "A word with several vocalizations and no `vocalized` of its own stays unmarked.",
+    ),
     # 7 · glossary and segmentation simulation
     Lint(
         "glossary.dead-entry",
