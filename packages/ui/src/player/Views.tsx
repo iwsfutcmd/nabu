@@ -487,9 +487,17 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
   const [recording, setRecording] = useState<Recording>({ tag: "idle" });
   const recorder = useRef<MediaRecorder | null>(null);
   const supported = typeof navigator !== "undefined" && navigator.mediaDevices !== undefined && typeof MediaRecorder !== "undefined";
+  // A recording still running stops when the card goes away, and only then: an effect on
+  // `recording` would stop each recording the moment it started.
   useEffect(
     () => () => {
-      recorder.current?.stop();
+      if (recorder.current?.state === "recording") recorder.current.stop();
+    },
+    [],
+  );
+  // A finished recording's URL is freed when another replaces it or the card goes away.
+  useEffect(
+    () => () => {
       if (recording.tag === "done") URL.revokeObjectURL(recording.url);
     },
     [recording],
@@ -533,17 +541,17 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
         ) : recording.tag === "recording" ? (
           <>
             <span role="status">{t.format("player.speak.recording")}</span>
-            <button type="button" className={styles.secondary} onClick={() => recorder.current?.stop()}>
+            <button type="button" className={styles.secondary} onClick={() => recorder.current?.stop()} data-action="stop">
               {t.format("player.speak.stop")}
             </button>
           </>
         ) : (
           <>
-            <button type="button" className={styles.secondary} disabled={locked} onClick={() => void startRecording()}>
+            <button type="button" className={styles.secondary} disabled={locked} onClick={() => void startRecording()} data-action="record">
               {t.format("player.speak.record")}
             </button>
             {recording.tag === "done" && (
-              <button type="button" className={styles.secondary} onClick={() => void new Audio(recording.url).play()}>
+              <button type="button" className={styles.secondary} onClick={() => void new Audio(recording.url).play()} data-action="play-recording">
                 {t.format("player.speak.play")}
               </button>
             )}
