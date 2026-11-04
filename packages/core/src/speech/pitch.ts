@@ -13,7 +13,7 @@ export interface PitchOptions {
   readonly maxHz?: number;
   /** YIN's absolute threshold on the cumulative mean normalized difference. */
   readonly threshold?: number;
-  /** Frames quieter than this RMS (relative to the loudest frame) are unvoiced. */
+  /** Frames quieter than this RMS (relative to the loudest pitched frame) are unvoiced. */
   readonly silence?: number;
 }
 
@@ -73,7 +73,10 @@ export const pitchTrack = (samples: Float32Array, sampleRate: number, options: P
     energy.push(Math.sqrt(sum / size));
     periods.push(yin(samples, start, size, minLag, maxLag, o.threshold));
   }
-  const loudest = energy.reduce((m, e) => Math.max(m, e), 0);
+  // Relative to the loudest frame with a pitch: a click (tapping Stop, the microphone switching
+  // on) has no period, and must not make the speech itself count as silence.
+  const pitched = energy.filter((_, i) => periods[i] !== undefined);
+  const loudest = (pitched.length > 0 ? pitched : energy).reduce((m, e) => Math.max(m, e), 0);
   const f0 = periods.map((p, i) => (p === undefined || (energy[i] ?? 0) < loudest * o.silence ? undefined : sampleRate / p));
   return { hopMs: o.hopMs, f0, energy };
 };

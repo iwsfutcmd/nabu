@@ -572,7 +572,8 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
 
 // ------------------------------------------------------------------------------------ scored speaking (Phase 9)
 
-type Scoring = "idle" | "scoring" | "silent";
+/** silent: no voice in the recording; partial: voice, but too little for every syllable. */
+type Scoring = "idle" | "scoring" | "silent" | "partial";
 
 /** One syllable's feedback: the syllable (its reading) and what was heard. */
 const SyllableNote = ({ syllable, score, ex }: { syllable: ToneScore["syllables"][number]; score: ToneScore; ex: SpeakScored | ListenSpeak }): JSX.Element => {
@@ -607,7 +608,7 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
       const voiced = track.f0.filter((f) => f !== undefined).length;
       const tone = system === undefined ? undefined : scoreTones(track, ex.prompt, system, services.calibration);
       if (voiced < 10 || tone?.silent === true) {
-        setScoring("silent");
+        setScoring(voiced < 10 ? "silent" : "partial");
         return;
       }
       const server = services.score === undefined ? undefined : await toPcm16k(audio).then((pcm) => services.score?.(ex, pcm)).catch(() => undefined);
@@ -653,12 +654,27 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
               </button>
             </>
           ) : (
-            <button type="button" className={styles.secondary} disabled={locked || scoring === "scoring"} onClick={() => void recorder.start()} data-action="record">
+            <button
+              type="button"
+              className={styles.secondary}
+              disabled={locked || scoring === "scoring"}
+              onClick={() => {
+                setScoring("idle");
+                void recorder.start();
+              }}
+              data-action="record"
+            >
               {t.format("player.speak.record")}
             </button>
           )}
           <p className={styles.muted} role="status" data-speech-status={scoring}>
-            {scoring === "scoring" ? t.format("player.speech.checking") : scoring === "silent" ? t.format("player.speech.silent") : ""}
+            {scoring === "scoring"
+              ? t.format("player.speech.checking")
+              : scoring === "silent"
+                ? t.format("player.speech.silent")
+                : scoring === "partial"
+                  ? t.format("player.speech.partial")
+                  : ""}
           </p>
         </div>
       )}

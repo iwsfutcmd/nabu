@@ -71,6 +71,24 @@ describe("syllables", () => {
     expect(syllableSpans(joined, 2)).toHaveLength(2);
     expect(syllableSpans(pitchTrack(pcm(silence(500)), RATE), 1)).toBeUndefined();
   });
+
+  it("shares speech out evenly when its runs are too short to split, and gives up only when there is too little", () => {
+    // Choppy voicing (a noisy phone): short runs, more syllables expected than splitting can reach.
+    const choppy = pitchTrack(pcm(...Array.from({ length: 6 }, () => [voiced(90, 150), silence(60)]).flat()), RATE);
+    const spans = syllableSpans(choppy, 9);
+    expect(spans).toHaveLength(9);
+    expect(spans?.every(([a, b]) => b > a)).toBe(true);
+    // One short word against a long sentence: not enough speech to score.
+    expect(syllableSpans(pitchTrack(pcm(voiced(120, 150)), RATE), 9)).toBeUndefined();
+  });
+
+  it("is not silenced by a click: loudness is measured on pitched frames", () => {
+    // Tapping Stop: a loud, unpitched burst far above the speech.
+    const click = Array.from({ length: Math.round(0.02 * RATE) }, (_, i) => (i % 2 === 0 ? 0.95 : -0.95));
+    const quiet = voiced(500, 150).map((x) => x * 0.03);
+    const track = pitchTrack(pcm(quiet, silence(100), click), RATE);
+    expect(track.f0.filter((f) => f !== undefined).length).toBeGreaterThan(30);
+  });
 });
 
 /** What a speaker's calibration looks like after saying all six tones. */

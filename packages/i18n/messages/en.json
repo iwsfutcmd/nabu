@@ -502,6 +502,14 @@
       "message": "Conversations need an account and a server with a language model.",
       "description": "Shown on a conversation page when roleplay is not available."
     },
+    "app.speaking.off": {
+      "message": "Speaking exercises are off for now. They come back in an hour.",
+      "description": "Notice on the course path after the learner chose 'Can't speak now'."
+    },
+    "app.speaking.on": {
+      "message": "Turn speaking back on",
+      "description": "Button that brings speaking exercises back right away."
+    },
     "app.store.memory": {
       "message": "This browser window can't save your progress. It will be lost when you close it.",
       "description": "Shown when on-device storage is unavailable (for example in some private windows)."
@@ -1221,6 +1229,10 @@
     "player.speech.heard": {
       "message": "We heard:",
       "description": "Label before what speech recognition heard."
+    },
+    "player.speech.partial": {
+      "message": "We heard only part of it. Try saying the whole sentence, a little slower.",
+      "description": "After a recording that had speech, but too little of it to find every syllable of the sentence (for example only its first word)."
     },
     "player.speech.rate-instead": {
       "message": "No microphone: rate yourself instead",

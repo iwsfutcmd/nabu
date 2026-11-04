@@ -78,6 +78,9 @@ export const LISTENING: ReadonlySet<TemplateId> = new Set(
   (Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].modality.audioOut),
 );
 
+/** Templates that need the microphone: "can't speak now" leaves them out. */
+export const SPEAKING: ReadonlySet<TemplateId> = new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => TEMPLATES[t].modality.mic));
+
 /** Which (KC, facet) pairs an instance exercises (§8.5 credit assignment). */
 export const facets = (ex: Exercise): readonly FacetRef[] => ex.kcs.map((kc) => ({ kc, facet: TEMPLATES[ex.template].facet }));
 
