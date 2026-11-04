@@ -44,7 +44,13 @@ export interface CompiledProfile {
   /** The orthography's letters (longest match), else grapheme clusters. */
   readonly letters: (text: string) => readonly string[];
   readonly equivalences: readonly CompiledEquivalence[];
-  readonly marks?: Policied & { readonly strip: StepFn };
+  readonly marks?: Policied & {
+    readonly strip: StepFn;
+    /** The marks, one code point each (NFD). */
+    readonly set: ReadonlySet<string>;
+    /** Marks a learner supplying the vowel marks may write or leave out (ADR 0054). */
+    readonly optional: ReadonlySet<string>;
+  };
   readonly zwnj?: Policied & { readonly equivalents: readonly string[] };
   readonly variants?: Policied & { readonly key: StepFn };
   readonly homophones?: Policied & { readonly readings: (cluster: string) => readonly string[] | undefined };
@@ -130,10 +136,13 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
   if (match.marks !== undefined) {
     try {
       const set = new Set(parseExemplarSet(match.marks.set));
+      const optional = new Set(match.marks.optional === undefined ? [] : parseExemplarSet(match.marks.optional));
       marks = {
         policy: match.marks.policy,
         note: match.marks.note,
         strip: (t) => Array.from(t.normalize("NFD")).filter((c) => !set.has(c)).join("").normalize("NFC"),
+        set,
+        optional,
       };
     } catch (e) {
       errors.push({ code: "bad-unicode-set", message: (e as Error).message });

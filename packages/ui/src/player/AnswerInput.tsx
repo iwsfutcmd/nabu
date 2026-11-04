@@ -32,10 +32,18 @@ interface KeyProps {
   readonly className: string;
 }
 
-/** One insertable key. Invisible characters get a visible name; marks sit on a carrier. */
+/** A combining mark's spoken name (player.key.mark.<code point>), where the catalog has one. */
+const markName = (value: string): string | undefined => {
+  const cp = value.codePointAt(0);
+  return MARK_ONLY.test(value) && cp !== undefined ? `player.key.mark.${cp.toString(16).padStart(4, "0")}` : undefined;
+};
+
+/** One insertable key. Invisible characters get a visible name; marks sit on a carrier and get a spoken one. */
 const InsertKey = ({ value, base, onInsert, disabled, className }: KeyProps): JSX.Element => {
   const t = useTranslator();
   const invisible = value === ZWNJ ? "zwnj" : value === ZWJ ? "zwj" : undefined;
+  const mark = markName(value);
+  const spoken = mark !== undefined && t.has(mark) ? t.format(mark) : undefined;
   const carrier = ARABIC.test(base.lang) || base.lang.includes("-Arab") ? TATWEEL : DOTTED_CIRCLE;
   const shown = MARK_ONLY.test(value) ? `${carrier}${value}` : value;
   return (
@@ -53,7 +61,15 @@ const InsertKey = ({ value, base, onInsert, disabled, className }: KeyProps): JS
       onPointerDown={(e) => e.preventDefault()}
       onClick={() => onInsert(value)}
     >
-      {invisible === undefined ? (
+      {invisible === undefined && spoken !== undefined ? (
+        // A mark on its carrier says little to a screen reader: its name is read instead.
+        <>
+          <span aria-hidden="true">
+            <T text={textOfSurface(base, shown)} />
+          </span>
+          <span className={styles.spokenName}>{spoken}</span>
+        </>
+      ) : invisible === undefined ? (
         <T text={textOfSurface(base, shown)} />
       ) : (
         <span aria-hidden="true" className={styles.keyName}>

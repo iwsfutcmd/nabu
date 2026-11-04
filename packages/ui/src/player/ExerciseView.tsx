@@ -20,7 +20,9 @@ import {
   StoryCompleteView,
   TilesView,
   ToneIdentifyView,
+  TranscribeView,
   TranslateTypeView,
+  VocalizeView,
   type ViewExtras,
 } from "./Views.tsx";
 
@@ -35,6 +37,8 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "gap-fill": "player.instruction.gap-fill",
   "char-read": "player.instruction.char-read",
   "reading-disambiguation": "player.instruction.reading-disambiguation",
+  vocalize: "player.instruction.vocalize",
+  transcribe: "player.instruction.transcribe",
   "speak.tier-0": "player.instruction.speak",
   speak: "player.instruction.speak-scored",
   "listen-speak": "player.instruction.listen-speak",
@@ -69,6 +73,10 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
     case "char-read":
     case "reading-disambiguation":
       return <CharReadView {...props} ex={ex} />;
+    case "vocalize":
+      return <VocalizeView {...props} ex={ex} />;
+    case "transcribe":
+      return <TranscribeView {...props} ex={ex} />;
     case "speak.tier-0":
       return <SpeakView {...props} ex={ex} />;
     case "speak":

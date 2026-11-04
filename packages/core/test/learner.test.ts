@@ -83,6 +83,10 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.canonical) };
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
+    case "vocalize":
+      return { tag: "text", text: bad ? surfaceOf(ex.prompt) : surfaceOf(ex.vocalized) };
+    case "transcribe":
+      return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":
       return { tag: "pairs", matched: ex.left.map((_, i) => i), mistakes: 0 };
     case "speak.tier-0":

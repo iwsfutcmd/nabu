@@ -8,6 +8,8 @@ import type {
   AudioRef,
   ChooseTranslation,
   CharRead,
+  Transcribe,
+  Vocalize,
   CompleteTranslation,
   GapFill,
   ListenSelect,
@@ -31,7 +33,7 @@ import type {
 } from "@nabu/core/lesson";
 import { calibrate, CANTONESE, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf } from "@nabu/i18n";
+import { directionOf, type MessageId } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
@@ -359,7 +361,7 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
 
 // ------------------------------------------------------------------------------------ typing
 
-const TypedAnswer = ({ props, label, answer }: { props: ViewProps & ViewExtras; label: string; answer: TaggedText }): JSX.Element => {
+const TypedAnswer = ({ props, label, answer, keys }: { props: ViewProps & ViewExtras; label: string; answer: TaggedText; keys?: readonly string[] }): JSX.Element => {
   const { course, dispatch, locked, ex } = props;
   const profile = course.profiles.get(ex.orthography)?.source;
   const text = props.draft.tag === "text" ? props.draft.text : "";
@@ -370,7 +372,7 @@ const TypedAnswer = ({ props, label, answer }: { props: ViewProps & ViewExtras; 
       dir={directionOf(answer.lang)}
       label={label}
       disabled={locked}
-      extraKeys={profile?.input?.extraKeys ?? []}
+      extraKeys={keys ?? profile?.input?.extraKeys ?? []}
       onInput={(value) => dispatch({ tag: "input", draft: { tag: "text", text: value } })}
       onCompositionStart={() => dispatch({ tag: "compositionstart" })}
       onCompositionEnd={(value) => dispatch({ tag: "compositionend", text: value })}
@@ -403,6 +405,49 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
       </div>
       <GapSentence before={ex.before} after={ex.after} fill={typed} props={props} />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />
+    </div>
+  );
+};
+
+// ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
+
+/** A word and its meaning, above the field where its pronunciation is written. */
+const WordWithMeaning = ({ word, meaning, ruby }: { word: TaggedText; meaning: TaggedText; ruby: false | undefined }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <>
+      <div className={styles.prompt} role="group" aria-label={t.format("player.word.label")} data-ink-container="prompt" data-pronounce-word="">
+        <T as="p" text={word} marks="show" {...(ruby === false ? { ruby: false } : {})} />
+      </div>
+      <div className={styles.hint} role="group" aria-label={t.format("player.meaning.label")} data-pronounce-meaning="">
+        <T as="p" text={meaning} />
+      </div>
+    </>
+  );
+};
+
+/** Vowel marks: the field starts from the word's letters; the keys under it add the marks. */
+export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  return (
+    <div className={styles.body}>
+      <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={undefined} />
+      <TypedAnswer props={props} label={t.format("player.vocalize.label")} answer={ex.vocalized} keys={ex.marks} />
+    </div>
+  );
+};
+
+/** A reading: the word without its ruby (the ruby is the answer), typed in the scheme's letters. */
+export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
+  const { ex } = props;
+  const t = useTranslator();
+  const scheme = `player.transcribe.label.${ex.scheme}`;
+  const label: MessageId = t.has(scheme) ? scheme : "player.transcribe.label";
+  return (
+    <div className={styles.body}>
+      <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={false} />
+      <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} />
     </div>
   );
 };

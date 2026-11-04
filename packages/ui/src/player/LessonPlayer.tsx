@@ -224,7 +224,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
-        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={marks} />}
+        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" ? "show" : marks} />}
       </div>
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 

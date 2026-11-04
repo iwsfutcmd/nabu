@@ -214,6 +214,17 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       }
       return;
     }
+    case "vocalize":
+    case "transcribe": {
+      // The vocalize field starts from the word's letters: the answer replaces them.
+      const text = surfaceOf(ex.template === "vocalize" ? ex.vocalized : ex.reading);
+      const field = page.locator("[data-answer-input]");
+      if (mode === "touch") await field.tap();
+      await field.selectText();
+      await page.keyboard.insertText(text);
+      await press(page, mode, "[data-action=check]");
+      return;
+    }
     case "match-pairs":
       for (const [left, right] of ex.pairs.entries()) {
         await press(page, mode, `[data-pair="left-${left}"]`);

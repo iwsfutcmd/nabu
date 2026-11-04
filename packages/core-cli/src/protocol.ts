@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
@@ -99,6 +99,10 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     const lexicon = Array.isArray(a["lexicon"]) ? new Set((a["lexicon"] as unknown[]).map(String)) : undefined;
     return grade(acceptSet(a), text(a, "answer"), lexicon === undefined ? {} : { lexicon });
   },
+  /** A word's vowel marks as the learner wrote them, against its vocalized form (ADR 0054). */
+  "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),
+  /** A word's romanized reading as typed, against the pinned one (ADR 0054). */
+  "grade-reading": (a) => gradeReading(text(a, "scheme"), text(a, "expected"), text(a, "answer")),
   direction: (a) => ({ script: scriptOf(text(a, "tag")), dir: directionOf(text(a, "tag")) }),
   "check-tagged-text": (a) => checkTaggedText(a["text"] as TaggedText).map((i) => i.code),
   "unicode-set": (a) => parseExemplarSet(text(a, "set")),

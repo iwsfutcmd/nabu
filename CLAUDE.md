@@ -179,11 +179,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   at compile time. A token pins its own with `vocalized` (needed for `ambiguous` words). New word: add an entry.
 - Compare letters, never marks: grading, credit, glossary, corrections apply. Voices read `Compiled.written`
   (the source's surfaces), so a vocalization never changes clips.
+- Pronunciation cards (ADR 0054): `vocalize` (abjads, needs vocalized KC forms) and `transcribe` (a ruby scheme
+  with a syllable shape in core match/pronounce.ts: only Jyutping). A new scheme needs a shape, a READING_TAGS
+  entry and conformance vectors (conformance/pronounce.json). Optional marks: the profile's `match.marks.optional`.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0053 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0054 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

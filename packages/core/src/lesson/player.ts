@@ -10,6 +10,7 @@ import type { Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 import { isCorrect, type Exercise, type Outcome, type Response, type SelfRating, type SkipReason, type TemplateId } from "./exercise.ts";
 import { solutionOf, TEMPLATES } from "./templates.ts";
+import { surfaceOf } from "../text/tagged-text.ts";
 
 export type Draft =
   | { readonly tag: "choice"; readonly index: number | null }
@@ -114,7 +115,8 @@ export const emptyDraft = (ex: Exercise): Draft => {
     case "tiles":
       return { tag: "tiles", order: [] };
     case "text":
-      return { tag: "text", text: "" };
+      // Vowel marks are written into the word's letters (ADR 0054).
+      return { tag: "text", text: ex.template === "vocalize" ? surfaceOf(ex.prompt) : "" };
     case "pairs":
       return { tag: "pairs", matched: [], mistakes: 0 };
     case "voice":

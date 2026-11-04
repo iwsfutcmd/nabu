@@ -48,5 +48,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0051](0051-corrections.md) | Any learner can mark a sentence or story line as wrong with a correction (a `sentence_reported` event; sentence list, lessons, stories); a review queue and `nabu corrections apply` write reviewed corrections into the source; story answers can be reported too | Proposed |
 | [0052](0052-learner-claims.md) | A learner's claim about their answer ("should have been accepted", "should have been wrong") is their own revision of it: it counts at once in every projection, and joins the review queue | Proposed |
 | [0053](0053-vocalization.md) | A course's vocalization (`vocalization:` files: words, ambiguous, uncertain) gives its words their vowel marks at compile time; tokens can pin `vocalized`; grading, credit, glossary, voices and corrections compare letters | Proposed |
+| [0054](0054-pronunciation-exercises.md) | Learners write in what the script leaves out: `vocalize` (an abjad word's vowel marks, from the vocalization) and `transcribe` (a Han word's Jyutping), on the read-script facet, graded all or nothing (`gradeVowels`, `gradeReading`); sukun optional per profile | Proposed |
 
 Template: [0000-template.md](0000-template.md).

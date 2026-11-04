@@ -38,6 +38,9 @@ export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
   "gap-fill": -0.2,
   "char-read": -0.4,
   "reading-disambiguation": 0.4,
+  // Writing a word's pronunciation in (ADR 0054): typed, all or nothing, every mark or tone counts.
+  vocalize: 0.8,
+  transcribe: 0.8,
   "complete-translation": 0.6,
   "translate-type.l1-l2": 1.0,
   "speak.tier-0": -1.5,
