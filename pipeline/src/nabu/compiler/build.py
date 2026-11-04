@@ -479,10 +479,98 @@ def compile_course(
         | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         for ui, unit in enumerate(units)
     ]
+    _kc_readings(ctx, course, compiled.units)
     check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
         return diags, None
     return diags, compiled
+
+
+Tally = dict[str, int]
+"""How often each reading was seen."""
+
+
+def _count(table: dict[Any, Tally], key: Any, reading: str) -> None:
+    seen = table.setdefault(key, {})
+    seen[reading] = seen.get(reading, 0) + 1
+
+
+def _tally_readings(
+    tokens: list[dict[str, Any]], scheme: str, by_kc: dict[Any, Tally], by_surface: dict[Any, Tally]
+) -> None:
+    """Each word token's pinned reading, by its sense and by its surface; and each morph's share of
+    it, from the token's ruby (one segment per character)."""
+    for t in tokens:
+        readings = cast(dict[str, str], t.get("readings") or {})
+        reading = readings.get(scheme)
+        if t.get("kind") != "word" or reading is None:
+            continue
+        surface = str(t["surface"])
+        _count(by_surface, surface, reading)
+        if t.get("sense"):
+            _count(by_kc, (f"sense:{t['sense']}", surface), reading)
+        ruby = cast(
+            list[dict[str, str]], cast(dict[str, Any], t.get("ruby") or {}).get(scheme) or []
+        )
+        morphs = cast(list[dict[str, str]], t.get("morphs") or [])
+        if not morphs or len(ruby) != len(tx.graphemes(surface)):
+            continue
+        at = 0
+        for m in morphs:
+            n = len(tx.graphemes(m["surface"]))
+            share = " ".join(seg["text"] for seg in ruby[at : at + n])
+            at += n
+            if share:
+                _count(by_kc, (m["kc"], m["surface"]), share)
+                _count(by_surface, m["surface"], share)
+
+
+def _pick_reading(
+    by_kc: dict[Any, Tally], by_surface: dict[Any, Tally], kc: str, surface: str
+) -> str | None:
+    own = by_kc.get((kc, surface))
+    if own:
+        return sorted(own.items(), key=lambda kv: (-kv[1], kv[0]))[0][0]
+    seen = by_surface.get(surface) or {}
+    return next(iter(seen)) if len(seen) == 1 else None
+
+
+def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) -> None:
+    """Readings and ruby for KC forms, so word exercises (pairs, pictures, listening options) show
+    them as sentences do. A KC's form takes the reading its sense has in the course's sentences
+    and story lines (the most common, if several); a word met only inside longer words takes its
+    characters' share of their reading (禮拜 in 禮拜一); a form no token names takes the reading
+    its surface always has, and none if that varies (a polyphone). Nothing is guessed."""
+    for orth in course.orthographies:
+        scheme = _ruby_scheme(ctx.profiles[orth])
+        if scheme is None:
+            continue
+        by_kc: dict[Any, Tally] = {}
+        by_surface: dict[Any, Tally] = {}
+        for u in units:
+            for sentence in cast(list[dict[str, Any]], u["sentences"]):
+                form = cast(dict[str, Any] | None, sentence["forms"].get(orth))
+                if form is not None:
+                    _tally_readings(form["text"]["tokens"], scheme, by_kc, by_surface)
+            for story in cast(list[dict[str, Any]], u.get("stories", [])):
+                for step in cast(list[dict[str, Any]], story["steps"]):
+                    line = cast(dict[str, Any], step.get("line") or {}).get("forms", {}).get(orth)
+                    if line is not None:
+                        _tally_readings(line["tokens"], scheme, by_kc, by_surface)
+        for u in units:
+            for kc in cast(list[dict[str, Any]], u["kcs"]):
+                forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
+                for form in forms.get(orth, []):
+                    for t in cast(list[dict[str, Any]], form["tokens"]):
+                        surface = str(t["surface"])
+                        if t["kind"] != "word" or not tx.HAN.search(surface):
+                            continue
+                        reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
+                        segments = None if reading is None else tx.ruby_segments(surface, reading)
+                        if reading is None or segments is None:
+                            continue
+                        t["readings"] = {scheme: reading}
+                        t["ruby"] = {scheme: segments}
 
 
 def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
