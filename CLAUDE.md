@@ -163,10 +163,20 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   imports). Native reminders: apps/api/src/nativepush.ts; credentials only as file paths in the environment
   (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the Android debug APK.
 
+## Corrections notes (see docs/adr/0051)
+- A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what
+  changed). Build drafts and events with @nabu/core/corrections; never hand-assemble them. Projections ignore it.
+- Words are addressed by their index among a form's words (not spaces or punctuation) plus their surface.
+- The UI (`@nabu/ui/corrections`) gives every field its own text's lang/dir/font; never normalize while composing.
+- Modal content renders outside UiRoot: wrap it with `useChrome()` (lang, dir, font) and `chromeClass`.
+- `nabu corrections apply <jsonl>` edits values in place and skips anything whose `shown` no longer matches the
+  source; changes that need new tokens or senses are listed with file:line, never guessed. Regenerate audio after.
+- "My answer should be accepted" also covers story questions (answerTextOf); promote skips them (no accept set).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0050 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0051 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -9,7 +9,7 @@
  * surrounding spaces (an Intl.Collator at base strength in the UI locale) and waits for any IME
  * composition to end, so learners typing with an input method are never cut short.
  */
-import { useTranslator } from "@nabu/ui";
+import { chromeClass, useChrome, useTranslator } from "@nabu/ui";
 import { useMemo, useState, type JSX } from "react";
 import { Button, Dialog, DialogTrigger, Heading, Input, Label, Modal, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
@@ -66,6 +66,7 @@ const Confirm = ({ language, onConfirm, close }: { language: string; onConfirm: 
 /** Shown while the course has progress to forget, and after a reset to say it happened. */
 export const StartOver = ({ language, hasProgress, onReset }: { language: string; hasProgress: boolean; onReset: () => void }): JSX.Element | null => {
   const t = useTranslator();
+  const chrome = useChrome();
   const [done, setDone] = useState(false);
   if (!hasProgress && !done) return null;
   return (
@@ -85,16 +86,18 @@ export const StartOver = ({ language, hasProgress, onReset }: { language: string
             {t.format("app.reset.open")}
           </Button>
           <Modal className={styles.modal} isDismissable>
-            <Dialog className={styles.dialog} role="alertdialog" data-start-over-dialog="">
+            <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} role="alertdialog" data-start-over-dialog="">
               {({ close }) => (
-                <Confirm
-                  language={language}
-                  close={close}
-                  onConfirm={() => {
-                    onReset();
-                    setDone(true);
-                  }}
-                />
+                <div lang={chrome.lang} dir={chrome.dir} className={styles.dialogBody}>
+                  <Confirm
+                    language={language}
+                    close={close}
+                    onConfirm={() => {
+                      onReset();
+                      setDone(true);
+                    }}
+                  />
+                </div>
               )}
             </Dialog>
           </Modal>

@@ -36,7 +36,7 @@ These cannot be done in code. Each one gates something below.
 
 | What | Why | Unblocks |
 |---|---|---|
-| Native review of the four fixture courses (start with `courses/REVIEW.md`) | All content is an LLM draft (`status: draft`) | Phase 13; any public release |
+| Native review of the four fixture courses (start with `courses/REVIEW.md`; mark mistakes in the app's sentence list, ADR 0051) | All content is an LLM draft (`status: draft`) | Phase 13; any public release |
 | Sign-off on the 10 REVIEW markers: 8 in orthography profiles, the speech tiers per orthography, the Cantonese tone templates | Linguistic policy is yours to set (CLAUDE.md) | Grading and speech defaults |
 | Recordings of native Cantonese speakers saying each tone, right and deliberately wrong (`evals/tones/README.md`) | The Phase 9 acceptance; tone templates are tuned only on native speech | Tone scoring you can trust |
 | Human audio for apc (`nabu audio ingest`) | Lebanese is marked human-required for audio | Listening in apc |

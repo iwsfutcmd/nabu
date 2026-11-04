@@ -9,7 +9,7 @@
  * - roleplay conversations, once the scenario's node is done.
  */
 import { JUDGED_TEMPLATES, judgeable } from "@nabu/core/ai";
-import type { CourseView, Exercise } from "@nabu/core/lesson";
+import { answerTextOf, type CourseView, type Exercise, type Response } from "@nabu/core/lesson";
 import type { LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
 import { directionOf } from "@nabu/i18n";
@@ -73,14 +73,23 @@ type Explain = { readonly tag: "idle" } | { readonly tag: "loading" } | { readon
 export interface AnswerHelpProps {
   readonly answer: AnswerSubmitted | undefined;
   readonly ex: Exercise;
+  /** The response graded: a story question's tile order or choice, which the answer event does not keep. */
+  readonly response?: Response | null | undefined;
   readonly status: AiStatus;
   readonly account: Account | undefined;
   readonly store: EventStore;
   readonly record: (event: LearnerEvent) => void;
 }
 
-/** "My answer should be accepted" for a wrong typed answer (§13.2): an event, synced like any other. */
-const reportOf = (answer: AnswerSubmitted): AnswerReported => {
+/**
+ * What a learner can report as "should be accepted": a typed translation, and a story's
+ * questions (a line built from tiles in another order, a word or answer chosen). Story reports
+ * reach the review queue; a story line has no accept set, so a reviewer changes the story.
+ */
+const REPORTED = new Set<string>([...JUDGED_TEMPLATES, "story-arrange", "story-complete", "story-choose"]);
+
+/** "My answer should be accepted" (§13.2): an event, synced like any other. */
+const reportOf = (answer: AnswerSubmitted, text: string): AnswerReported => {
   const now = new Date();
   return {
     id: uuidv7(now.getTime()),
@@ -98,7 +107,7 @@ const reportOf = (answer: AnswerSubmitted): AnswerReported => {
     tz: timeZone(),
     answer: answer.id,
     exercise: answer.exercise,
-    text: answer.input.raw ?? "",
+    text,
   };
 };
 
@@ -106,13 +115,14 @@ const failure = (e: unknown): "ai.explain.failed" | "ai.unavailable" | "ai.budge
   isHttpError(e) ? (e.status === 429 ? "ai.budget" : e.status === 503 ? "ai.unavailable" : "ai.explain.failed") : "ai.unavailable";
 
 /** Under the feedback for a wrong answer: report it, a second check by the judge, an explanation. */
-export const AnswerHelp = ({ answer, ex, status, account, store, record }: AnswerHelpProps): JSX.Element | null => {
+export const AnswerHelp = ({ answer, ex, response, status, account, store, record }: AnswerHelpProps): JSX.Element | null => {
   const t = useTranslator();
   const [reported, setReported] = useState(false);
   const [judge, setJudge] = useState<Judge>("idle");
   const [explain, setExplain] = useState<Explain>({ tag: "idle" });
-  const wrong = answer !== undefined && !answer.outcome.kind.startsWith("CORRECT") && (answer.input.raw ?? "").trim() !== "";
-  const reportable = wrong && JUDGED_TEMPLATES.has(ex.template);
+  const text = (answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
+  const wrong = answer !== undefined && !answer.outcome.kind.startsWith("CORRECT") && text !== "";
+  const reportable = wrong && REPORTED.has(ex.template);
   const explainable = wrong && status.explain && EXPLAINED.has(ex.template);
 
   useEffect(() => {
@@ -164,7 +174,7 @@ export const AnswerHelp = ({ answer, ex, status, account, store, record }: Answe
             disabled={reported}
             onClick={() => {
               if (answer === undefined) return;
-              record(reportOf(answer));
+              record(reportOf(answer, text));
               setReported(true);
             }}
             data-action="report"

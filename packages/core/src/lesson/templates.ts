@@ -378,7 +378,7 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 // ------------------------------------------------------------------------------------ reading templates
 
 /** How a reading scheme is tagged when its readings are shown as options (Jyutping: yue-Latn-HK-jyutping). */
-const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
+export const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
   jyutping: { lang: "yue-Latn-HK-jyutping", orthography: "yue-Latn/jyutping" },
 };
 
@@ -689,6 +689,21 @@ const mismatch = (ex: Exercise, response: Response): never => {
 };
 
 /** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
+/**
+ * What the learner answered, as text: typed, built from tiles, or the option chosen (in its
+ * sentence, where the exercise fills a gap). A report of a choice or a tile order needs it,
+ * since the answer event keeps typed text only.
+ */
+export const answerTextOf = (ex: Exercise, response: Response): string | undefined => {
+  if (response.tag === "text") return response.text;
+  if (response.tag === "tiles" && "tiles" in ex && "joiner" in ex) return response.order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)).join(ex.joiner);
+  if (response.tag !== "choice" || !("options" in ex)) return undefined;
+  const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
+  if (option === undefined) return undefined;
+  const chosen = surfaceOf("tokens" in option ? option : option.text);
+  return "before" in ex && "after" in ex ? `${surfaceOf(ex.before)}${chosen}${surfaceOf(ex.after)}` : chosen;
+};
+
 export const gradeExercise = (ex: Exercise, response: Response, grader: Grader): Outcome => {
   switch (ex.template) {
     case "select-image":

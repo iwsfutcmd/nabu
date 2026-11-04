@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/correction.schema.json",
+  "title": "Corrections",
+  "description": "Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "TokenReading": {
+      "title": "TokenReading",
+      "description": "One token's pinned reading in one scheme (Jyutping for yue). `token` counts the form's source tokens (its words, not spaces or punctuation), from 0; `surface` names it, so a reading never lands on another word.",
+      "type": "object",
+      "required": [
+        "token",
+        "surface",
+        "scheme",
+        "reading"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "surface": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scheme": {
+          "$ref": "common.schema.json#/$defs/SchemeId"
+        },
+        "reading": {
+          "description": "NFC.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        }
+      }
+    },
+    "CorrectedForm": {
+      "title": "CorrectedForm",
+      "description": "One orthography's form of the item: its text and its tokens' readings.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "description": "The whole sentence or line in this orthography, NFC.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "readings": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "$ref": "#/$defs/TokenReading"
+          }
+        }
+      }
+    },
+    "CorrectionFields": {
+      "title": "CorrectionFields",
+      "description": "Text, readings and translation of an item. In `shown`, everything the learner saw; in `correction`, only what they changed (a form's text, the readings they changed, the translation).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "forms": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/OrthographyId"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/CorrectedForm"
+          }
+        },
+        "translation": {
+          "description": "The translation in the support language, as displayed (a sentence's first accepted translation), NFC.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        }
+      }
+    },
+    "CorrectionStatus": {
+      "title": "CorrectionStatus",
+      "description": "pending: suggested by a learner; approved or rejected by a reviewer; applied: written into the course source by `nabu corrections apply`.",
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "applied"
+      ]
+    },
+    "SentenceCorrection": {
+      "title": "SentenceCorrection",
+      "description": "A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.",
+      "type": "object",
+      "required": [
+        "id",
+        "course",
+        "orthography",
+        "support",
+        "item",
+        "shown",
+        "correction",
+        "notes",
+        "status",
+        "reports",
+        "createdAt"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid"
+        },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "description": "The orthography the learner was using.",
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "support": {
+          "description": "Support-language key of `translation` (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id the learner saw (sha256), if known.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "item": {
+          "description": "A sentence id, or a story id with `step`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "step": {
+          "description": "For a story line: the step's index in the story (0-based, every step counted).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "shown": {
+          "$ref": "#/$defs/CorrectionFields"
+        },
+        "correction": {
+          "$ref": "#/$defs/CorrectionFields"
+        },
+        "notes": {
+          "description": "What reporters wrote, if anything (the latest few).",
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 1000
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/CorrectionStatus"
+        },
+        "reports": {
+          "description": "How many learners suggested this correction.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

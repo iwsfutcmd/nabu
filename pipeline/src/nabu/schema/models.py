@@ -382,6 +382,129 @@ type ScriptCode = Annotated[
 ]
 
 
+class Corrections(BaseModel):
+    """
+    Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+
+class TokenReading(BaseModel):
+    """
+    One token's pinned reading in one scheme (Jyutping for yue). `token` counts the form's source tokens (its words, not spaces or punctuation), from 0; `surface` names it, so a reading never lands on another word.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    token: Annotated[int, Field(ge=0)]
+    surface: Annotated[str, Field(min_length=1)]
+    scheme: SchemeId
+    reading: Annotated[str, Field(description="NFC.", max_length=200, min_length=1)]
+
+
+class CorrectedForm(BaseModel):
+    """
+    One orthography's form of the item: its text and its tokens' readings.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[
+        str | None,
+        Field(
+            description="The whole sentence or line in this orthography, NFC.",
+            max_length=2000,
+            min_length=1,
+        ),
+    ] = None
+    readings: Annotated[list[TokenReading] | None, Field(max_length=100)] = None
+
+
+class CorrectionFields(BaseModel):
+    """
+    Text, readings and translation of an item. In `shown`, everything the learner saw; in `correction`, only what they changed (a form's text, the readings they changed, the translation).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    forms: dict[OrthographyId, CorrectedForm] | None = None
+    translation: Annotated[
+        str | None,
+        Field(
+            description="The translation in the support language, as displayed (a sentence's first accepted translation), NFC.",
+            max_length=2000,
+            min_length=1,
+        ),
+    ] = None
+
+
+type CorrectionStatus = Annotated[
+    Literal["pending", "approved", "rejected", "applied"],
+    Field(
+        description="pending: suggested by a learner; approved or rejected by a reviewer; applied: written into the course source by `nabu corrections apply`.",
+        title="CorrectionStatus",
+    ),
+]
+
+
+type Note1 = Annotated[str, Field(max_length=1000)]
+
+
+class SentenceCorrection(BaseModel):
+    """
+    A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: UUID
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: Annotated[
+        OrthographyId, Field(description="The orthography the learner was using.")
+    ]
+    support: Annotated[
+        str, Field(description="Support-language key of `translation` (en).", min_length=1)
+    ]
+    bundle: Annotated[
+        str | None,
+        Field(
+            description="The bundle's manifest id the learner saw (sha256), if known.",
+            pattern="^[0-9a-f]{64}$",
+        ),
+    ] = None
+    item: Annotated[
+        str, Field(description="A sentence id, or a story id with `step`.", min_length=1)
+    ]
+    step: Annotated[
+        int | None,
+        Field(
+            description="For a story line: the step's index in the story (0-based, every step counted).",
+            ge=0,
+        ),
+    ] = None
+    shown: CorrectionFields
+    correction: CorrectionFields
+    notes: Annotated[
+        list[Note1],
+        Field(description="What reporters wrote, if anything (the latest few).", max_length=20),
+    ]
+    status: CorrectionStatus
+    reports: Annotated[int, Field(description="How many learners suggested this correction.", ge=0)]
+    createdAt: AwareDatetime
+
+
 type Slug = Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$", title="Slug")]
 
 
@@ -1081,6 +1204,87 @@ class ProgressReset(BaseModel):
         ),
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+
+
+class SentenceReported(BaseModel):
+    """
+    A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["sentence_reported"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Annotated[
+        Uuid,
+        Field(
+            description="The session the learner was in, or a session of this one event (the sentence list)."
+        ),
+    ]
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    item: Annotated[
+        str, Field(description="A sentence id, or a story id with `step`.", min_length=1)
+    ]
+    step: Annotated[
+        int | None,
+        Field(
+            description="For a story line: the step's index in the story (0-based, every step counted).",
+            ge=0,
+        ),
+    ] = None
+    shown: Annotated[
+        CorrectionFields,
+        Field(
+            description="Every orthography's text and readings, and the translation, as the device showed them: `nabu corrections apply` checks the course source still says this."
+        ),
+    ]
+    correction: Annotated[
+        CorrectionFields,
+        Field(description="Only what the learner changed. Empty when they only wrote a note."),
+    ]
+    note: Annotated[
+        str | None,
+        Field(description="Optional words from the learner. Personal data.", max_length=1000),
+    ] = None
 
 
 type MessageKey = Annotated[
@@ -2227,7 +2431,8 @@ type LearnerEvent = Annotated[
     | SessionCompleted
     | OutcomeRevised
     | AnswerReported
-    | ProgressReset,
+    | ProgressReset
+    | SentenceReported,
     Field(
         description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
         title="LearnerEvent",
@@ -2640,6 +2845,7 @@ type NabuSchemaBundle = Annotated[
     AiOutputs
     | AudioIndex
     | BundleManifest
+    | Corrections
     | CourseSource
     | DataTable
     | KeyboardLayout

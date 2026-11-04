@@ -77,6 +77,17 @@ export type SenseId1 = string & { readonly __brand: "SenseId" };
  */
 export type ScriptCode = string;
 /**
+ * pending: suggested by a learner; approved or rejected by a reviewer; applied: written into the course source by `nabu corrections apply`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CorrectionStatus".
+ */
+export type CorrectionStatus = "pending" | "approved" | "rejected" | "applied";
+/**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId1 = string & { readonly __brand: "OrthographyId" };
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Slug".
  */
@@ -124,7 +135,8 @@ export type LearnerEvent =
   | SessionCompleted
   | OutcomeRevised
   | AnswerReported
-  | ProgressReset;
+  | ProgressReset
+  | SentenceReported;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -178,6 +190,14 @@ export type Uuid10 = string;
  * Id of the reset itself (a session of one event), so every event names a session.
  */
 export type Uuid11 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid12 = string;
+/**
+ * The session the learner was in, or a session of this one event (the sentence list).
+ */
+export type Uuid13 = string;
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -311,6 +331,12 @@ export interface NabuSchemaIndex {
   readonly SenseId: SenseId1;
   readonly KcId: KcId;
   readonly ScriptCode: ScriptCode;
+  readonly Corrections: Corrections;
+  readonly TokenReading: TokenReading;
+  readonly CorrectedForm: CorrectedForm;
+  readonly CorrectionFields: CorrectionFields;
+  readonly CorrectionStatus: CorrectionStatus;
+  readonly SentenceCorrection: SentenceCorrection;
   readonly CourseSource: CourseSource;
   readonly Slug: Slug;
   readonly Spdx: Spdx;
@@ -349,6 +375,7 @@ export interface NabuSchemaIndex {
   readonly OutcomeRevised: OutcomeRevised;
   readonly AnswerReported: AnswerReported;
   readonly ProgressReset: ProgressReset;
+  readonly SentenceReported: SentenceReported;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -1102,6 +1129,100 @@ export interface BundleClip {
    */
   readonly credit?: string;
   readonly timings?: readonly TokenTiming[];
+}
+/**
+ * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Corrections".
+ */
+export interface Corrections {}
+/**
+ * One token's pinned reading in one scheme (Jyutping for yue). `token` counts the form's source tokens (its words, not spaces or punctuation), from 0; `surface` names it, so a reading never lands on another word.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "TokenReading".
+ */
+export interface TokenReading {
+  readonly token: number;
+  readonly surface: string;
+  readonly scheme: SchemeId;
+  /**
+   * NFC.
+   */
+  readonly reading: string;
+}
+/**
+ * One orthography's form of the item: its text and its tokens' readings.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CorrectedForm".
+ */
+export interface CorrectedForm {
+  /**
+   * The whole sentence or line in this orthography, NFC.
+   */
+  readonly text?: string;
+  /**
+   * @maxItems 100
+   */
+  readonly readings?: readonly TokenReading[];
+}
+/**
+ * Text, readings and translation of an item. In `shown`, everything the learner saw; in `correction`, only what they changed (a form's text, the readings they changed, the translation).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CorrectionFields".
+ */
+export interface CorrectionFields {
+  readonly forms?: {
+    readonly [k: string]: CorrectedForm;
+  };
+  /**
+   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   */
+  readonly translation?: string;
+}
+/**
+ * A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SentenceCorrection".
+ */
+export interface SentenceCorrection {
+  readonly id: string;
+  readonly course: string;
+  readonly orthography: OrthographyId1;
+  /**
+   * Support-language key of `translation` (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id the learner saw (sha256), if known.
+   */
+  readonly bundle?: string;
+  /**
+   * A sentence id, or a story id with `step`.
+   */
+  readonly item: string;
+  /**
+   * For a story line: the step's index in the story (0-based, every step counted).
+   */
+  readonly step?: number;
+  readonly shown: CorrectionFields;
+  readonly correction: CorrectionFields;
+  /**
+   * What reporters wrote, if anything (the latest few).
+   *
+   * @maxItems 20
+   */
+  readonly notes: readonly string[];
+  readonly status: CorrectionStatus;
+  /**
+   * How many learners suggested this correction.
+   */
+  readonly reports: number;
+  readonly createdAt: string;
 }
 /**
  * A course as authored: courses/<id>/course.yaml plus its units (gameplan §7.1–7.3). Content is keyed by target language; each support language is a layer (§7.2).
@@ -2075,6 +2196,86 @@ export interface ProgressReset {
    * IANA time zone of the device.
    */
   readonly tz: string;
+}
+/**
+ * A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SentenceReported".
+ */
+export interface SentenceReported {
+  readonly type: "sentence_reported";
+  readonly id: Uuid12;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid13;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  /**
+   * A sentence id, or a story id with `step`.
+   */
+  readonly item: string;
+  /**
+   * For a story line: the step's index in the story (0-based, every step counted).
+   */
+  readonly step?: number;
+  readonly shown: CorrectionFields1;
+  readonly correction: CorrectionFields2;
+  /**
+   * Optional words from the learner. Personal data.
+   */
+  readonly note?: string;
+}
+/**
+ * Text, readings and translation of an item. In `shown`, everything the learner saw; in `correction`, only what they changed (a form's text, the readings they changed, the translation).
+ */
+export interface CorrectionFields1 {
+  readonly forms?: {
+    readonly [k: string]: CorrectedForm;
+  };
+  /**
+   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   */
+  readonly translation?: string;
+}
+/**
+ * Text, readings and translation of an item. In `shown`, everything the learner saw; in `correction`, only what they changed (a form's text, the readings they changed, the translation).
+ */
+export interface CorrectionFields2 {
+  readonly forms?: {
+    readonly [k: string]: CorrectedForm;
+  };
+  /**
+   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   */
+  readonly translation?: string;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.

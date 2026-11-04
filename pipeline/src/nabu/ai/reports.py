@@ -129,6 +129,11 @@ def promote(reports: list[AnswerReport], courses: Path, cli: Any, weight: float 
         if r.status != "approved":
             out.skipped.append((r, f"status {r.status}"))
             continue
+        if r.template.startswith("story-"):
+            out.skipped.append(
+                (r, f"{r.template}: a story line has no accept set; change the story by hand")
+            )
+            continue
         if not r.template.endswith("l1-l2"):
             out.skipped.append(
                 (r, f"{r.template}: only answers in the target language are promoted")

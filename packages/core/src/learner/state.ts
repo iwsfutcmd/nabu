@@ -229,6 +229,7 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "session_started":
     case "exercise_presented":
     case "answer_reported":
+    case "sentence_reported":
     case "outcome_revised":
       return;
   }

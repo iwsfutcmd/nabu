@@ -11,10 +11,10 @@
  * - Vertical reading (§11.4): where the profile allows it, the transcript turns into columns
  *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
  */
-import { draftOf, emptyDraft, isCorrect, responseOf, type CourseView, type Grader, type LessonEvent } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { NabuUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
@@ -45,6 +45,10 @@ export interface StoryReaderProps {
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
   readonly initialState?: StoryState;
+  /** Something the app adds under each line, such as "This line is wrong" (ADR 0051). */
+  readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
+  /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -65,9 +69,10 @@ interface LineProps {
   readonly translated: boolean;
   readonly onTranslate: () => void;
   readonly latest: boolean;
+  readonly action?: ReactNode;
 }
 
-const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest }: LineProps): JSX.Element => {
+const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action }: LineProps): JSX.Element => {
   const t = useTranslator();
   const translationId = `story-line-${line.index}-translation`;
   return (
@@ -88,6 +93,7 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
           </div>
         </>
       )}
+      {action}
     </div>
   );
 };
@@ -274,6 +280,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             pressed={selected?.line === line.index ? selected.token : undefined}
             onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
             translated={translations.has(line.index)}
+            action={props.lineAction?.(line)}
             onTranslate={() => {
               const next = new Set(translations);
               if (!next.delete(line.index)) next.add(line.index);
@@ -326,6 +333,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
             {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks} />}
           </div>
+          {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response)}
         </div>
       )}
 

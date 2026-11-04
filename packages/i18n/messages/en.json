@@ -554,6 +554,102 @@
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
       "description": "Total experience points in this course. XP: experience points, often left as XP."
     },
+    "corrections.cancel": {
+      "message": "Cancel",
+      "description": "Button that closes the correction form without saving."
+    },
+    "corrections.edit": {
+      "message": "Change your correction",
+      "description": "Button in place of corrections.mark when the learner already suggested a correction for this sentence or line."
+    },
+    "corrections.error.empty": {
+      "message": "This can't be empty.",
+      "description": "Error under a field the learner emptied."
+    },
+    "corrections.error.too-long": {
+      "message": "This is too long.",
+      "description": "Error under a field that is longer than allowed."
+    },
+    "corrections.error.unchanged": {
+      "message": "Change something, or write a note for the reviewer.",
+      "description": "Error when the learner sends the form without changing anything."
+    },
+    "corrections.export": {
+      "message": ".input {$count :number}\n.match $count\none {{Download your correction ({$count})}}\n* {{Download your corrections ({$count})}}",
+      "description": "Button on the sentence list: save the corrections this device made to this course as a file a reviewer can apply. $count is how many."
+    },
+    "corrections.intro": {
+      "message": "Change whatever is wrong: the text, how a word is read, or the translation. A reviewer checks every correction before it reaches the course.",
+      "description": "Explanation at the top of the correction form."
+    },
+    "corrections.mark": {
+      "message": "This sentence is wrong",
+      "description": "Button under an exercise's feedback, in the sentence list, and on a story line: open the form to say what is wrong with the sentence or line."
+    },
+    "corrections.note": {
+      "message": "Note for the reviewer (optional)",
+      "description": "Label of a free-text field: anything the learner wants the reviewer to know."
+    },
+    "corrections.now": {
+      "message": "Now:",
+      "description": "Precedes the sentence as the course has it, under the field where the learner corrects it."
+    },
+    "corrections.page.back": {
+      "message": "Back to the course",
+      "description": "Link from the sentence list back to the course page."
+    },
+    "corrections.page.intro": {
+      "message": "Every sentence and story line in this course, unit by unit. If one is wrong, mark it and say what it should be.",
+      "description": "Explanation at the top of the sentence list."
+    },
+    "corrections.page.open": {
+      "message": "Check the sentences",
+      "description": "Link on the course page to the list of every sentence and story line, where learners can mark one as wrong."
+    },
+    "corrections.page.story": {
+      "message": "Story",
+      "description": "Label before a story's title in the sentence list, above its lines."
+    },
+    "corrections.page.title": {
+      "message": "Sentences",
+      "description": "Heading of the page listing every sentence and story line of a course."
+    },
+    "corrections.page.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number}}}",
+      "description": "Name of a unit that has no title. $number counts units from 1."
+    },
+    "corrections.page.units": {
+      "message": "Units",
+      "description": "Accessible name of the list of units to choose from on the sentence list."
+    },
+    "corrections.pending": {
+      "message": "You suggested a correction",
+      "description": "Badge on a sentence or story line the learner has already suggested a correction for."
+    },
+    "corrections.readings": {
+      "message": "How each word is read",
+      "description": "Heading over the fields holding each word's pinned reading (for Cantonese, Jyutping)."
+    },
+    "corrections.sent": {
+      "message": "Thanks! A reviewer will check your correction.",
+      "description": "Confirmation after a correction is recorded."
+    },
+    "corrections.submit": {
+      "message": "Send correction",
+      "description": "Button that records the correction."
+    },
+    "corrections.text": {
+      "message": "Sentence ({$orthography})",
+      "description": "Label of the field holding the sentence or line in one orthography. $orthography is that orthography's name (corrections can change every orthography a course is taught in)."
+    },
+    "corrections.title": {
+      "message": "What should this say?",
+      "description": "Heading of the correction form."
+    },
+    "corrections.translation": {
+      "message": "Translation",
+      "description": "Label of the field holding the sentence's translation into the learner's language."
+    },
     "course.name.apc": {
       "message": "Lebanese Arabic",
       "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."

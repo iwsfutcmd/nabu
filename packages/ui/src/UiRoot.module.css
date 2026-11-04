@@ -4,3 +4,10 @@
   color: var(--nabu-color-text);
   background-color: var(--nabu-color-page);
 }
+
+/* Chrome portalled out of the root (a modal dialog's content): its font, with useChrome's style. */
+.chrome {
+  font-family: var(--nabu-ui-font);
+  line-height: var(--nabu-ui-line-height);
+  color: var(--nabu-color-text);
+}

@@ -5,6 +5,26 @@ Every taught sentence, story and scenario in the fixture courses is an LLM draft
 of, course by course ([ADR 0050](../docs/adr/0050-ten-unit-courses.md)). After a review, mark the
 items `status: reviewed`, or `published` with `reviewedBy` and `reviewedAt`.
 
+## Marking what is wrong
+
+You can mark mistakes in the app ([ADR 0051](../docs/adr/0051-corrections.md)), with no setup.
+
+1. Open a course and choose **Check the sentences**. It lists every sentence and story line,
+   unit by unit, in every orthography the course is taught in, with the translation.
+2. On anything wrong, choose **This sentence is wrong**. You can change the text, how a word is
+   read (Jyutping), or the translation, and leave a note. The same button appears under each
+   exercise's feedback and on each story line.
+3. Choose **Download your corrections** to save them as a file.
+4. Apply the file, then check the diff and fix by hand what it lists as not applied:
+
+   ```sh
+   cd pipeline && uv run nabu corrections apply ~/Downloads/nabu-corrections-fa.jsonl --summary /tmp/summary.md
+   ```
+
+5. Regenerate audio for changed sentences (`nabu audio generate`), then run `pnpm bundles`.
+
+With an account on a server, corrections also reach the review queue at `/admin/v1/corrections`.
+
 ## fa (Persian)
 
 1. **Ezafe after a silent -e.** The display uses the Farhangestan small hamza (خانوادهٔ, خانهٔ,

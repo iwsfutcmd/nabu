@@ -15,7 +15,7 @@ import type { GameConfig, GameState } from "@nabu/core/game";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
-import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
@@ -24,6 +24,7 @@ import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type 
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
+import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
@@ -49,7 +50,8 @@ type Route =
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
   | { readonly tag: "session"; readonly course: string; readonly orthography: string; readonly request: SessionRequest }
   | { readonly tag: "story"; readonly course: string; readonly orthography: string; readonly node: string }
-  | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string };
+  | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string }
+  | { readonly tag: "sentences"; readonly course: string; readonly orthography: string };
 
 /** Orthography ids carry a "/" (fa-Arab/standard): "." in the URL. */
 const slug = (orthography: string): string => orthography.replace("/", ".");
@@ -63,6 +65,7 @@ const parse = (hash: string): Route => {
   const [course, orthography, session, node] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
   if (course === undefined || orthography === undefined) return { tag: "home" };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
+  if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -79,7 +82,9 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
+          : route.tag === "sentences"
+            ? `#/${route.course}/${slug(route.orthography)}/sentences`
+            : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
 const useRoute = (): Route => {
   const [route, setRoute] = useState(() => parse(window.location.hash));
@@ -312,6 +317,11 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
         );
       })}
       <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
+      <p>
+        <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
+          {t.format("corrections.page.open")}
+        </a>
+      </p>
       {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
       <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || mistakes > 0} onReset={onReset} />
     </main>
@@ -388,6 +398,8 @@ interface SessionProps extends GameProps {
   readonly ai: AiStatus;
   /** What the server's speech service can score here (Phase 9); empty without one. */
   readonly speechTiers: readonly number[];
+  /** This device's corrections in the course (ADR 0051). */
+  readonly corrections: ReadonlyMap<string, SentenceReported>;
 }
 
 /** Plans one session from the learner's state when it opens (§9.4), then plays it. */
@@ -398,7 +410,7 @@ const Session = (props: SessionProps): JSX.Element => {
   return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers }: SessionProps): JSX.Element => {
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections }: SessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
@@ -446,9 +458,14 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
         speech={speech}
-        feedbackExtra={(ex) => {
+        feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
-          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} status={ai} account={account} store={store} record={record} />;
+          return (
+            <>
+              <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />
+              <MarkIncorrect key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} item={ex.item} corrections={corrections} />
+            </>
+          );
         }}
       />
     </main>
@@ -461,6 +478,10 @@ interface StorySessionProps extends GameProps {
   readonly state: LearnerState;
   readonly device: string;
   readonly record: (event: LearnerEvent) => void;
+  readonly corrections: ReadonlyMap<string, SentenceReported>;
+  readonly store: EventStore;
+  readonly account: Account | undefined;
+  readonly ai: AiStatus;
 }
 
 /** Reads one story (Phase 6): a session of mode story at its node. */
@@ -469,14 +490,20 @@ const StorySession = (props: StorySessionProps): JSX.Element => {
   return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
 };
 
-const StoryBody = ({ loaded, node, state, device, record }: StorySessionProps): JSX.Element => {
+const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  // Each question's latest answer, for "My answer should be accepted" under its feedback.
+  const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [setup] = useState(() => {
     const story = storyAt(course, node);
     if (story === undefined) return undefined;
     const seed = seedFor();
-    return { script: storyScript(course, story, seededRng(seed)), xpBefore: state.xp.total, onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record }) };
+    const keep = (event: LearnerEvent): void => {
+      if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
+      record(event);
+    };
+    return { script: storyScript(course, story, seededRng(seed)), xpBefore: state.xp.total, onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
@@ -504,6 +531,11 @@ const StoryBody = ({ loaded, node, state, device, record }: StorySessionProps): 
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={() => {
           window.location.hash = back;
+        }}
+        lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
+        feedbackExtra={(ex, _outcome, response) => {
+          const answer = answers.get(ex.id);
+          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
         }}
       />
     </main>
@@ -565,6 +597,7 @@ export const App = (): JSX.Element => {
   const root = courseId === null ? undefined : `${BUNDLES}${courseId}/`;
   // Re-read after a course loads (the worker keeps what the app fetched) and after a download.
   const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
+  const corrections = useCorrections(store, courseId, version);
 
   useEffect(() => {
     void fetchCourseIndex(BUNDLES).then(setIndex);
@@ -629,6 +662,11 @@ export const App = (): JSX.Element => {
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
     return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} onReset={onReset} />;
   }
+  if (route.tag === "sentences") {
+    const { course, manifest } = loaded.value;
+    const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+    return <SentencesPage course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={back} />;
+  }
   // Offline, a session uses only the media on this device: no listening without the clip.
   const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };
   if (route.tag === "roleplay") {
@@ -636,7 +674,23 @@ export const App = (): JSX.Element => {
     return <RoleplayPage key={href(route)} course={loaded.value.course} scenario={route.scenario} account={account} status={ai} back={back} />;
   }
   if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
-  if (route.tag === "story") return <StorySession key={href(route)} loaded={playable} node={route.node} state={log.state} device={store.device} record={record} game={game} gameConfig={gameConfig} />;
+  if (route.tag === "story")
+    return (
+      <StorySession
+        key={href(route)}
+        loaded={playable}
+        node={route.node}
+        state={log.state}
+        device={store.device}
+        record={record}
+        game={game}
+        gameConfig={gameConfig}
+        corrections={corrections}
+        store={store}
+        account={account}
+        ai={ai}
+      />
+    );
   return (
     <Session
       key={href(route)}
@@ -651,6 +705,7 @@ export const App = (): JSX.Element => {
       speechTiers={speechTiers}
       game={game}
       gameConfig={gameConfig}
+      corrections={corrections}
     />
   );
 };

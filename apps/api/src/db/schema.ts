@@ -198,6 +198,38 @@ export const answerReports = pgTable(
 );
 
 /** Who stands behind a report: salted hashes, never user ids. */
+export const sentenceCorrections = pgTable(
+  "sentence_corrections",
+  {
+    id: uuid("id").primaryKey(),
+    course: text("course").notNull(),
+    orthography: text("orthography").notNull(),
+    support: text("support").notNull(),
+    bundle: text("bundle"),
+    item: text("item").notNull(),
+    step: integer("step").notNull().default(-1),
+    key: text("key").notNull(),
+    shown: jsonb("shown").notNull(),
+    correction: jsonb("correction").notNull(),
+    status: text("status").notNull().default("pending"),
+    notes: jsonb("notes").notNull().default([]),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => [unique().on(t.course, t.item, t.step, t.key), index("sentence_corrections_status").on(t.status, t.course)],
+);
+
+export const correctionVotes = pgTable(
+  "correction_votes",
+  {
+    correctionId: uuid("correction_id")
+      .notNull()
+      .references(() => sentenceCorrections.id, { onDelete: "cascade" }),
+    subject: text("subject").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.correctionId, t.subject] })],
+);
+
 export const reportVotes = pgTable(
   "report_votes",
   {

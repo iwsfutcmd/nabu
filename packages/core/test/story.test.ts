@@ -7,7 +7,7 @@ import { join, resolve } from "node:path";
 import type { BundleManifest, LearnerEvent, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { answerTextOf, assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
@@ -141,6 +141,23 @@ describe("story scripts", () => {
     expect(q.ex.options.map(surfaceOf).sort()).toEqual(["китоб", "талабаман"]);
     expect(surfaceOf(q.ex.options[q.ex.answer] as TaggedText)).toBe("талабаман");
     expect(surfaceOf(q.ex.before)).toBe("Ҳа, мен ");
+  });
+});
+
+describe("a story answer as text, for a report", () => {
+  it("is the line as the learner built it, or with the word they chose in its gap", () => {
+    const course = loadCourse("yue");
+    const questions = allStories(course).flatMap((st) => storyScript(course, st, seededRng(3)).steps.flatMap((s) => (s.tag === "question" ? [s.ex] : [])));
+    const arrange = questions.find((q) => q.template === "story-arrange");
+    const complete = questions.find((q) => q.template === "story-complete");
+    if (arrange?.template !== "story-arrange" || complete?.template !== "story-complete") throw new Error("yue asks both kinds");
+    const reversed = [...arrange.solution].reverse();
+    expect(answerTextOf(arrange, { tag: "tiles", order: reversed })).toBe(reversed.map((i) => surfaceOf(arrange.tiles[i] as TaggedText)).join(arrange.joiner));
+    const wrong = complete.answer === 0 ? 1 : 0;
+    const chosen = complete.options[wrong] as TaggedText;
+    expect(answerTextOf(complete, { tag: "choice", index: wrong })).toBe(`${surfaceOf(complete.before)}${surfaceOf(chosen)}${surfaceOf(complete.after)}`);
+    expect(answerTextOf(complete, { tag: "choice", index: 99 })).toBeUndefined();
+    expect(answerTextOf(complete, { tag: "text", text: "我" })).toBe("我");
   });
 });
 

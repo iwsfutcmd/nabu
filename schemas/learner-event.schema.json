@@ -3,7 +3,7 @@
   "$id": "https://nabu.invalid/schemas/v0/learner-event.schema.json",
   "title": "LearnerEvent",
   "description": "The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
-  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset.",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051).",
   "oneOf": [
     {
       "$ref": "#/$defs/SessionStarted"
@@ -28,6 +28,9 @@
     },
     {
       "$ref": "#/$defs/ProgressReset"
+    },
+    {
+      "$ref": "#/$defs/SentenceReported"
     }
   ],
   "$defs": {
@@ -1059,6 +1062,110 @@
           "description": "IANA time zone of the device.",
           "type": "string",
           "minLength": 1
+        }
+      }
+    },
+    "SentenceReported": {
+      "title": "SentenceReported",
+      "description": "A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz",
+        "item",
+        "shown",
+        "correction"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "sentence_reported"
+        },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "#/$defs/Uuid"
+        },
+        "schema": {
+          "const": 1
+        },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": {
+          "description": "The session the learner was in, or a session of this one event (the sentence list).",
+          "$ref": "#/$defs/Uuid"
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
+        },
+        "item": {
+          "description": "A sentence id, or a story id with `step`.",
+          "type": "string",
+          "minLength": 1
+        },
+        "step": {
+          "description": "For a story line: the step's index in the story (0-based, every step counted).",
+          "type": "integer",
+          "minimum": 0
+        },
+        "shown": {
+          "description": "Every orthography's text and readings, and the translation, as the device showed them: `nabu corrections apply` checks the course source still says this.",
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "correction": {
+          "description": "Only what the learner changed. Empty when they only wrote a note.",
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "note": {
+          "description": "Optional words from the learner. Personal data.",
+          "type": "string",
+          "maxLength": 1000
         }
       }
     }

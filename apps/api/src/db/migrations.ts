@@ -158,4 +158,35 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       `create index native_push_tokens_user on native_push_tokens (user_id)`,
     ],
   ],
+  [
+    "0005_sentence_corrections",
+    [
+      // Corrections to course content (ADR 0051): one row per distinct correction of an item.
+      // A sentence has step -1; a story line, its step in the story.
+      `create table sentence_corrections (
+        id uuid primary key,
+        course text not null,
+        orthography text not null,
+        support text not null,
+        bundle text,
+        item text not null,
+        step integer not null default -1,
+        key text not null,
+        shown jsonb not null,
+        correction jsonb not null,
+        status text not null default 'pending',
+        notes jsonb not null default '[]',
+        created_at timestamptz not null default now(),
+        updated_at timestamptz not null default now(),
+        unique (course, item, step, key)
+      )`,
+      `create index sentence_corrections_status on sentence_corrections (status, course)`,
+      // Who suggested it (salted hashes, never user ids); a learner's later suggestion replaces their earlier one.
+      `create table correction_votes (
+        correction_id uuid not null references sentence_corrections(id) on delete cascade,
+        subject text not null,
+        primary key (correction_id, subject)
+      )`,
+    ],
+  ],
 ];
