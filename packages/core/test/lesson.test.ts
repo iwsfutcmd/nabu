@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   assembleCourse,
   buildLesson,
+  cardGallery,
   createGrader,
   gradeExercise,
   isCorrect,
@@ -196,6 +197,21 @@ describe("template coverage", () => {
     const course = loadCourse("fa");
     for (const { node } of lessonNodes(course)) {
       expect(buildLesson(course, node.id, { seed: 1, exclude: new Set(["speak.tier-0"]) }).some((e) => e.template === "speak.tier-0")).toBe(false);
+    }
+  });
+});
+
+describe("the card gallery (debug mode)", () => {
+  it("has one card of every kind a course can make, story questions aside", () => {
+    for (const [id, orthography] of [["yue", undefined], ["fa", undefined], ["uz", "uz-Latn/standard"], ["apc", "apc-Arab/standard"]] as const) {
+      const course = loadCourse(id, orthography);
+      const gallery = cardGallery(course, 3);
+      expect(gallery.some((c) => c.template.startsWith("story-"))).toBe(false);
+      expect(new Set(gallery.map((c) => c.template)).size).toBe(gallery.length);
+      for (const card of gallery) if (card.exercise !== undefined) expect(card.exercise.template).toBe(card.template);
+      const made = new Set(gallery.flatMap((c) => (c.exercise === undefined ? [] : [c.template])));
+      for (const t of ["match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "translate-type.l1-l2", "gap-fill", "speak.tier-0"]) expect(made.has(t as never), `${id} ${t}`).toBe(true);
+      if (id === "yue") for (const t of ["char-read", "speak", "listen-speak"]) expect(made.has(t as never), `yue ${t}`).toBe(true);
     }
   });
 });

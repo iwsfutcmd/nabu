@@ -17,6 +17,7 @@ import type { Exercise, TemplateId } from "./exercise.ts";
 import { toneSystemOf } from "../speech/score.ts";
 import { seededRng } from "./rng.ts";
 import {
+  KC_TEMPLATES,
   makeCharRead,
   makeMatchPairs,
   makeReadingDisambiguation,
@@ -24,6 +25,7 @@ import {
   makeSpeakScored,
   makeToneIdentify,
   SENTENCE_TEMPLATES,
+  TEMPLATES,
   type MakeContext,
 } from "./templates.ts";
 
@@ -209,6 +211,48 @@ export const buildLesson = (
     );
 
   return out.slice(0, options.maxExercises ?? 14);
+};
+
+/** One card of a kind, or none where the course cannot make that kind. */
+export interface GalleryCard {
+  readonly template: TemplateId;
+  readonly exercise: Exercise | undefined;
+}
+
+/**
+ * One card of every kind the course can make, for debug mode: each template's first instance
+ * (what a lesson builds, else the first sentence or word that makes one). Story questions belong
+ * to stories and are left out; a kind the course has no material for comes back without a card.
+ */
+export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[] => {
+  const rng = seededRng(seed);
+  const nodes = lessonNodes(course);
+  const ctxOf = (node: string | undefined): MakeContext => ({ course, rng, introduced: nodes.find((n) => n.node.id === node)?.node.introduces ?? [] });
+  const sentences = nodes.flatMap(({ unit, node }) => sentencesOf(course, unit, node).map((s) => ({ s, node: node.id })));
+  const kcs = allKcs(course);
+  const introducedIn = (kc: BundleKc): string | undefined => nodes.find((n) => n.node.introduces.includes(kc.id))?.node.id;
+  const first = <T,>(items: readonly T[], make: (item: T) => Exercise | undefined): Exercise | undefined => {
+    for (const item of items) {
+      const ex = make(item);
+      if (ex !== undefined) return ex;
+    }
+    return undefined;
+  };
+  return (Object.keys(TEMPLATES) as TemplateId[])
+    .filter((t) => !t.startsWith("story-"))
+    .map((template): GalleryCard => {
+      const sentence = SENTENCE_TEMPLATES[template];
+      const word = KC_TEMPLATES[template];
+      const exercise =
+        template === "match-pairs"
+          ? makeMatchPairs(ctxOf(nodes[0]?.node.id), kcs.filter((k) => (k.forms?.[course.orthography]?.length ?? 0) > 0).slice(0, 5))
+          : sentence !== undefined
+            ? first(sentences, ({ s, node }) => sentence(ctxOf(node), s))
+            : word !== undefined
+              ? first(kcs, (k) => word(ctxOf(introducedIn(k)), k))
+              : undefined;
+      return { template, exercise };
+    });
 };
 
 /**

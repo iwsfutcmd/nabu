@@ -52,6 +52,8 @@ export interface LessonPlayerProps {
   readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
   /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
   readonly speech?: SpeechServices | undefined;
+  /** Debug mode: label each card with its kind (template id), to test every kind of card. */
+  readonly debug?: boolean | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -181,6 +183,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       </header>
 
       <h2 className={styles.instruction}>{instruction}</h2>
+      {props.debug === true && (
+        <p className={styles.muted} data-debug-template={ex.template}>
+          {t.format("debug.template", { template: ex.template })}
+        </p>
+      )}
 
       {(scheme !== undefined || hasMarksLayer(profile) || canVertical) && (
         <div className={styles.toggles}>
