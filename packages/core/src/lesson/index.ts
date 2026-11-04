@@ -1,4 +1,4 @@
-export { buildLesson, lessonNodes, sampleExercise, speechExclusions, speechSupportOf, type LessonNode, type LessonOptions, type SpeechSupport } from "./build.ts";
+export { buildLesson, cardGallery, lessonNodes, sampleExercise, type GalleryCard, speechExclusions, speechSupportOf, type LessonNode, type LessonOptions, type SpeechSupport } from "./build.ts";
 export { allKcs, allSentences, assembleCourse, createGrader, MEDIA_ROLES, profileOf, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
 export { answerDiff, type AnswerDiff } from "./diff.ts";
 export * from "./exercise.ts";

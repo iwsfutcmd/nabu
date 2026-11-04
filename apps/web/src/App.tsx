@@ -25,6 +25,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { CardsPage, debugOn } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
@@ -45,13 +46,17 @@ const BUNDLES = `${import.meta.env.BASE_URL}bundles/`;
  */
 const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 
+/** Debug mode (?debug=1, remembered on this device): every card says its kind; a gallery of every kind. */
+const DEBUG = debugOn();
+
 type Route =
   | { readonly tag: "home" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
   | { readonly tag: "session"; readonly course: string; readonly orthography: string; readonly request: SessionRequest }
   | { readonly tag: "story"; readonly course: string; readonly orthography: string; readonly node: string }
   | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string }
-  | { readonly tag: "sentences"; readonly course: string; readonly orthography: string };
+  | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "cards"; readonly course: string; readonly orthography: string };
 
 /** Orthography ids carry a "/" (fa-Arab/standard): "." in the URL. */
 const slug = (orthography: string): string => orthography.replace("/", ".");
@@ -66,6 +71,7 @@ const parse = (hash: string): Route => {
   if (course === undefined || orthography === undefined) return { tag: "home" };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
+  if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -82,8 +88,8 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences"
-            ? `#/${route.course}/${slug(route.orthography)}/sentences`
+          : route.tag === "sentences" || route.tag === "cards"
+            ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
 const useRoute = (): Route => {
@@ -338,6 +344,13 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
           {t.format("corrections.page.open")}
         </a>
       </p>
+      {DEBUG && (
+        <p>
+          <a className={styles.link} href={href({ tag: "cards", course: course.id, orthography })} data-cards-link="">
+            {t.format("debug.cards.open")}
+          </a>
+        </p>
+      )}
       {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
       <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || mistakes > 0} onReset={onReset} />
     </main>
@@ -475,6 +488,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onEvent={setup.onEvent}
         sound={sound}
         retries={request.mode !== "placement"}
+        debug={DEBUG}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
@@ -687,6 +701,10 @@ export const App = (): JSX.Element => {
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
     return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} onReset={onReset} />;
+  }
+  if (route.tag === "cards") {
+    const { course } = loaded.value;
+    return <CardsPage loaded={loaded.value} language={courseName(t, course.id)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />;
   }
   if (route.tag === "sentences") {
     const { course, manifest } = loaded.value;
