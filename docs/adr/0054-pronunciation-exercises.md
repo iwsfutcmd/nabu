@@ -6,7 +6,7 @@
 ## Context
 
 Some scripts leave a word's pronunciation partly unwritten:
-- **Abjads** (Persian, Arabic) usually omit the short vowels: ⁨کتاب⁩ is *ketāb* only to someone
+- **Abjads** (Persian, Arabic) usually omit the short vowels: کتاب is *ketāb* only to someone
   who knows the word.
 - **Han characters** say nothing reliable about sound: 我哋 is *ngo5 dei6*.
 
