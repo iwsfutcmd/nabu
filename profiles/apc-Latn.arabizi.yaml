@@ -1,8 +1,8 @@
 # Phase 1 profile. Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
 # Lebanese Arabic in Arabizi (gameplan §6.3): digit letters (2 ʔ, 3 ʕ, 7 ḥ, 5 x…) are letters, not numbers.
-# Variation the profile folds silently: an apostrophe for the hamza, the article written onto its noun
-# (elshay), ch/sh, doubled vowels. Everything else (e/i, h/7…) is a real distinction or a spelling
-# choice and belongs in the accept sets. Content: apc-Latn-LB.
+# Variation the profile folds silently: an apostrophe for the hamza, the article written onto its
+# noun (elshay, 3alba7r), ch/sh, 5/kh, doubled vowels. Everything else (e/i, h/7…) is a real
+# distinction or a spelling choice and belongs in the accept sets. Content: apc-Latn-LB.
 id: apc-Latn/arabizi
 lang: apc-Latn
 segmentation: { content: hand-pinned, runtime: grapheme }
@@ -10,7 +10,9 @@ normalize:
   - nfc
   - map: { "'": "2", "\u2019": "2", "\u2018": "2" }   # REVIEW: an apostrophe written for the hamza
   - punctuation: strip
-  - detach: { prefixes: [el, il] }   # REVIEW: the article written onto its noun: elshay = el shay (el-shay too)
+  # REVIEW: the article, alone or fused with a preposition or ha-, written onto its noun, as Arabic script
+  # writes it (الشاي، عالبحر، بالبيت، للولد، هالشارع): elshay = el shay, 3alba7r = 3al ba7r (el-shay too).
+  - detach: { prefixes: [el, il, 3al, bel, bil, lal, lel, wel, wil, hal] }
   - whitespace: collapse
 match:
   case: { locale: apc }
@@ -18,6 +20,7 @@ match:
     - { id: ch-sh, map: { ch: sh }, policy: accept }
     - { id: french-ou, map: { ou: u }, policy: accept }      # REVIEW: "chou", "kifak/kifik" spellings after French
     - { id: long-vowels, map: { aa: a, ee: e, ii: i, oo: o, uu: u }, policy: accept }   # REVIEW
+    - { id: kh-5, map: { "5": kh }, policy: accept }   # REVIEW: 5 for kh (5obz = khobz), as Lebanese Arabizi writes it
   typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }
