@@ -1026,6 +1026,63 @@ class OutcomeRevised(BaseModel):
     ] = None
 
 
+class ProgressReset(BaseModel):
+    """
+    The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["progress_reset"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(description="Support-language key (en).", min_length=1)]
+    bundle: Annotated[
+        str, Field(description="The bundle's manifest id (sha256).", pattern="^[0-9a-f]{64}$")
+    ]
+    session: Annotated[
+        Uuid,
+        Field(
+            description="Id of the reset itself (a session of one event), so every event names a session."
+        ),
+    ]
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+
+
 type MessageKey = Annotated[
     str,
     Field(
@@ -2169,7 +2226,8 @@ type LearnerEvent = Annotated[
     | ExerciseSkipped
     | SessionCompleted
     | OutcomeRevised
-    | AnswerReported,
+    | AnswerReported
+    | ProgressReset,
     Field(
         description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
         title="LearnerEvent",

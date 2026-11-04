@@ -74,12 +74,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
+  Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
   test/simulation.test.ts (every course within ±5pp of 85%); golden files: UPDATE_GOLDEN=1 after a deliberate change.
 - Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
 - e2e sessions depend on the log and clock: fix the clock (page.clock.setFixedTime), seed history through
-  window.nabu, and plan with the solver's `planned()`.
+  window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
   (append, never edit). Events are validated against schemas/learner-event.schema.json with Ajv.
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
@@ -161,7 +162,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0048 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0049 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

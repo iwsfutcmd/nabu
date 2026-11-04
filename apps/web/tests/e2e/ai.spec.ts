@@ -11,7 +11,7 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { AnswerSubmitted, Explanation, LearnerEvent } from "@nabu/schema";
 import { API_PORT } from "./ports.ts";
-import { answer, expectRightAndContinue, historyBefore, loadCourse, logOf, planned, seedLog, waitFor } from "./solver.ts";
+import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, waitFor } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const ADMIN = "e2e-review-token";
@@ -20,16 +20,11 @@ const SEED = 7;
 const course = loadCourse("yue", "yue-Hant-HK/standard");
 const request = { mode: "lesson", node: "yue.who" } as const;
 const url = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
-/** Unique per test run: emails and seeded event ids must not collide between tests on one server. */
-const run = (): string => `${Date.now().toString(16)}${Math.floor(Math.random() * 0xffff).toString(16)}`.slice(-12).padStart(12, "0");
-/** The seeded history with fresh ids: the server deduplicates event ids across all users. */
-const fresh = (events: readonly LearnerEvent[], tag: string): LearnerEvent[] =>
-  events.map((e, i) => ({ ...e, id: `${tag.slice(0, 8)}-${tag.slice(8, 12)}-7000-8000-${i.toString(16).padStart(12, "0")}` }));
 
 /** Plays up to the lesson's typing exercise and answers it wrong; returns the logged answer. */
 const answerWrong = async (page: Page): Promise<AnswerSubmitted> => {
   await page.clock.setFixedTime(NOW);
-  const history = fresh(historyBefore(course, request.node, NOW), run());
+  const history = freshIds(historyBefore(course, request.node, NOW));
   await page.goto(url("#/"));
   if (history.length > 0) await seedLog(page, history);
   const exercises = planned(course, history, request, NOW, SEED);

@@ -123,7 +123,8 @@ export type LearnerEvent =
   | ExerciseSkipped
   | SessionCompleted
   | OutcomeRevised
-  | AnswerReported;
+  | AnswerReported
+  | ProgressReset;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -169,6 +170,14 @@ export type Uuid8 = string;
  * The id of the answer_submitted event reported.
  */
 export type Uuid9 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid10 = string;
+/**
+ * Id of the reset itself (a session of one event), so every event names a session.
+ */
+export type Uuid11 = string;
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -339,6 +348,7 @@ export interface NabuSchemaIndex {
   readonly SessionCompleted: SessionCompleted;
   readonly OutcomeRevised: OutcomeRevised;
   readonly AnswerReported: AnswerReported;
+  readonly ProgressReset: ProgressReset;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -2023,6 +2033,48 @@ export interface AnswerReported {
    * Optional words from the learner.
    */
   readonly note?: string;
+}
+/**
+ * The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ProgressReset".
+ */
+export interface ProgressReset {
+  readonly type: "progress_reset";
+  readonly id: Uuid10;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  /**
+   * Support-language key (en).
+   */
+  readonly support: string;
+  /**
+   * The bundle's manifest id (sha256).
+   */
+  readonly bundle: string;
+  readonly session: Uuid11;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.

@@ -15,6 +15,7 @@ import {
   emptyLearnerState,
   learnerEventOf,
   plan,
+  progressResetOf,
   pathOf,
   placementOf,
   ratingOf,
@@ -23,6 +24,7 @@ import {
   XP,
   type LearnerState,
 } from "../src/learner/index.ts";
+import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
 import { buildLesson, createGrader, gradeExercise, lessonNodes, sampleExercise, seededRng, start, step, type Draft, type Exercise } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
@@ -217,6 +219,42 @@ describe("projection", () => {
     const m = plan(fa, state, { mode: "mistakes" }, { now: "2026-03-01T10:00:00.000Z", seed: 1 });
     expect(m.exercises.map((e) => e.item)).toEqual(expect.arrayContaining(state.mistakes.map((x) => x.item).filter((item) => m.exercises.some((e) => e.item === item))));
     expect(m.exercises.length).toBeGreaterThan(0);
+  });
+});
+
+describe("starting a course over (progress_reset)", () => {
+  const node = lessonNodes(fa)[0]?.node.id as string;
+  const lesson = playLesson(emptyLearnerState(), node, "2026-03-01T08:00:00.000Z", 2);
+  const resetAt = (iso: string, n: number) =>
+    progressResetOf(fa, { id: `00000000-0000-7000-9000-${n.toString(16).padStart(12, "0")}`, clientTime: iso, localDate: iso.slice(0, 10), tz: "UTC", device: "golden", session: `00000000-0000-7000-a000-${n.toString(16).padStart(12, "0")}`, bundle: faBundle });
+  const reset = resetAt("2026-03-02T08:00:00.000Z", 1);
+  const { seen: _a, ...before } = replay(lesson);
+  const { seen: _b, ...after } = replay([...lesson, reset]);
+  const { seen: _c, ...fresh } = emptyLearnerState();
+
+  it("forgets what was learned, the lessons done and the mistakes; keeps the XP earned", () => {
+    expect(before.completedNodes).toEqual([node]);
+    expect(after).toEqual({ ...fresh, xp: before.xp });
+    expect(pathOf(fa, replay([...lesson, reset]))[0]?.status).toBe("available");
+  });
+
+  it("counts what comes after it, in any arrival order, and incrementally as on the device", () => {
+    // The same lesson played again the next day (fresh ids: a new session).
+    const again = playLesson(replay([...lesson, reset]), node, "2026-03-03T08:00:00.000Z", 0).map((e) => ({ ...e, id: e.id.replace(/^00000000/u, "00000001") }));
+    const log = [...lesson, reset, ...again];
+    const state = replay(log);
+    expect(state.completedNodes).toEqual([node]);
+    expect(state.xp.total).toBe(before.xp.total + replay(again).xp.total);
+    expect(replay(seededRng(9).shuffle(log))).toEqual(state); // a reset synced late still lands in its place
+    expect(applyEvents(replay(lesson), [reset])).toEqual(replay([...lesson, reset]));
+  });
+
+  it("does nothing to what comes after an earlier reset, nor to the game state", () => {
+    const early = resetAt("2026-02-01T08:00:00.000Z", 2);
+    const { seen: _d, ...unchanged } = replay([early, ...lesson]);
+    expect(unchanged).toEqual(before);
+    const clock = { today: "2026-03-02", now: "2026-03-02T09:00:00.000Z" };
+    expect(replayGame([...lesson, reset].map((event) => ({ event })), DEFAULT_GAME, clock)).toEqual(replayGame(lesson.map((event) => ({ event })), DEFAULT_GAME, clock));
   });
 });
 

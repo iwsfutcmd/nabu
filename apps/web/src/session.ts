@@ -6,7 +6,7 @@
  * placement test it also notes each first try, and reports where the learner
  * placed when the test ends (§9.5).
  */
-import { learnerEventOf, PERFORMANCE_MODEL, placementOf, type SessionMeta, type SessionPlan } from "@nabu/core/learner";
+import { learnerEventOf, PERFORMANCE_MODEL, placementOf, progressResetOf, type SessionMeta, type SessionPlan } from "@nabu/core/learner";
 import { isCorrect, type CourseView, type LessonEvent } from "@nabu/core/lesson";
 import type { LearnerEvent, Prediction } from "@nabu/schema";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
@@ -84,4 +84,10 @@ const eventRecorder = ({
     );
     if (event !== undefined) record(event);
   };
+};
+
+/** "Start this course over" (progress_reset), stamped like any event this device records. */
+export const resetEvent = (course: CourseView, bundle: string, device: string): LearnerEvent => {
+  const now = new Date();
+  return progressResetOf(course, { id: uuidv7(now.getTime()), clientTime: localIso(now), localDate: localDate(now), tz: timeZone(), device, session: uuidv7(now.getTime()), bundle });
 };

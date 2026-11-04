@@ -4,7 +4,7 @@
  * the device, the measured latency. Credit is assigned here (§8.5), once, at
  * answer time; projections fold the result.
  */
-import type { AnswerSubmitted, LearnerEvent, OrthographyId, Prediction } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
 import type { CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";
@@ -29,6 +29,26 @@ export interface SessionMeta {
   readonly seed: number;
   readonly planner: string;
 }
+
+/**
+ * "Start this course over": a progress_reset event for the course, stamped by the shell like any
+ * other. Replay forgets what came before it in this course; XP and the game state stay.
+ */
+export const progressResetOf = (course: CourseView, meta: EventMeta): ProgressReset => ({
+  id: meta.id,
+  type: "progress_reset",
+  schema: 1,
+  device: meta.device,
+  ...(meta.user === undefined ? {} : { user: meta.user }),
+  course: course.id,
+  orthography: course.orthography as OrthographyId,
+  support: course.supportKey,
+  bundle: meta.bundle,
+  session: meta.session,
+  clientTime: meta.clientTime,
+  localDate: meta.localDate,
+  tz: meta.tz,
+});
 
 /** 1 for a first try, n for the n-th time an exercise comes back after a mistake. */
 export const attemptOf = (exerciseId: string): number => {

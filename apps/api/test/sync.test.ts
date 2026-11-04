@@ -3,7 +3,7 @@
  * idempotent, and the server's projection of an uploaded log is identical to
  * the device's. Runs against PGlite, the same SQL as Postgres.
  */
-import { emptyLearnerState, plan, replay, applyEvents, type LearnerState } from "@nabu/core/learner";
+import { emptyLearnerState, plan, progressResetOf, replay, applyEvents, type LearnerState } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eventFactory, loadCourse, manifestOf } from "../../../packages/core/test/learner-fixtures.ts";
@@ -151,6 +151,24 @@ describe("event log", () => {
     expect(server.events).toBe(log.length);
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     expect(local.completedNodes).toEqual(["fa.greetings", "fa.names"]);
+  });
+
+  it("starting a course over: the reset syncs like any event, and the server forgets the same things", async () => {
+    const token = await signUp("again@example.com");
+    const log = threeSessions();
+    await app.request("/v1/events", json({ events: log }, token));
+    const fa = loadCourse("fa");
+    const last = log.at(-1) as LearnerEvent;
+    const at = new Date(Date.parse(last.clientTime) + 60_000).toISOString();
+    const reset = progressResetOf(fa, { id: "0000ffff-0000-7000-9000-000000000001", clientTime: at, localDate: at.slice(0, 10), tz: "UTC", device: "phone", session: "0000ffff-0000-7000-a000-000000000001", bundle: manifestOf("fa").id });
+    expect((await app.request("/v1/events", json({ events: [reset] }, token))).status).toBe(200);
+    const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: { completedNodes: string[]; cards: object; xp: { total: number } } };
+    const { seen: _seen, ...local } = replay([...log, reset]);
+    expect(server.events).toBe(log.length + 1); // the log keeps everything
+    expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
+    expect(server.state.completedNodes).toEqual([]);
+    expect(server.state.cards).toEqual({});
+    expect(server.state.xp.total).toBe(replay(log).xp.total);
   });
 
   it("pages a user's events by cursor, and keeps users apart", async () => {

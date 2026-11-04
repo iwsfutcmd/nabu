@@ -426,3 +426,58 @@
   flex: 1 1 12rem;
   font-weight: 700;
 }
+
+/* "Start this course over" and its confirmation. */
+.startOver {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--nabu-space-2);
+  margin-block-start: var(--nabu-space-5);
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nabu-space-4);
+  background-color: rgb(0 0 0 / 40%);
+}
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  max-inline-size: 26rem;
+  padding: var(--nabu-space-5);
+  background-color: var(--nabu-color-surface);
+  border-radius: var(--nabu-radius-card);
+  outline: none;
+}
+
+.dialogActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--nabu-space-3);
+}
+
+.dangerButton {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-4);
+  font: inherit;
+  font-weight: 700;
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-wrong);
+  border: 0;
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.dangerButton[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-wrong);
+  outline-offset: 2px;
+}

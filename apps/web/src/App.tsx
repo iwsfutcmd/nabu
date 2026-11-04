@@ -31,7 +31,8 @@ import { offlineSupported, registerWorker, useOnline, useStored } from "./offlin
 import { startNative } from "./native.ts";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
-import { recorder, storyRecorder } from "./session.ts";
+import { recorder, resetEvent, storyRecorder } from "./session.ts";
+import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
 
@@ -158,7 +159,7 @@ interface OfflineProps {
   readonly onChange: () => void;
 }
 
-const CoursePath = ({ loaded, state, persistent, ai, offline }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus; offline: OfflineProps }): JSX.Element => {
+const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus; offline: OfflineProps; onReset: () => void }): JSX.Element => {
   const t = useTranslator();
   const [quiet, setQuiet] = useState(listeningOff);
   const { course } = loaded;
@@ -312,6 +313,7 @@ const CoursePath = ({ loaded, state, persistent, ai, offline }: { loaded: Loaded
       })}
       <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
       {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
+      <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || mistakes > 0} onReset={onReset} />
     </main>
   );
 };
@@ -623,7 +625,9 @@ export const App = (): JSX.Element => {
   if ("error" in loaded) return <p className={styles.page} role="alert" data-load-error="">{t.format(online ? "app.error.load" : "app.offline.unavailable")}</p>;
   if (route.tag === "course") {
     const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
-    return <CoursePath loaded={loaded.value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} />;
+    const value = loaded.value;
+    const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
+    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} onReset={onReset} />;
   }
   // Offline, a session uses only the media on this device: no listening without the clip.
   const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };

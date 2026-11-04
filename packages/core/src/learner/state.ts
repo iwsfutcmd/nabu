@@ -193,6 +193,22 @@ const completed = (d: Draft, e: SessionCompleted): void => {
   if (e.mode === "placement") for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
 };
 
+/**
+ * The learner started the course over (progress_reset): what they know, the lessons done,
+ * placement, mistakes and the performance model go back to the start. XP stays, as it records
+ * practice that happened (the game state's streak and achievements are untouched too). A state
+ * is one course's, so this forgets everything folded so far.
+ */
+const startOver = (d: Draft): void => {
+  const fresh = draftOf(emptyLearnerState());
+  d.cards = fresh.cards;
+  d.performance = fresh.performance;
+  d.completedNodes = fresh.completedNodes;
+  d.mistakes = fresh.mistakes;
+  d.latencies = fresh.latencies;
+  d.rated = fresh.rated;
+};
+
 const applyOne = (d: Draft, e: LearnerEvent): void => {
   if (d.seen[e.id] === true) return;
   d.seen[e.id] = true;
@@ -205,6 +221,9 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
       return;
     case "session_completed":
       completed(d, e);
+      return;
+    case "progress_reset":
+      startOver(d);
       return;
     // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold.
     case "session_started":

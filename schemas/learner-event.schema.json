@@ -3,7 +3,7 @@
   "$id": "https://nabu.invalid/schemas/v0/learner-event.schema.json",
   "title": "LearnerEvent",
   "description": "The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
-  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify.",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset.",
   "oneOf": [
     {
       "$ref": "#/$defs/SessionStarted"
@@ -25,6 +25,9 @@
     },
     {
       "$ref": "#/$defs/AnswerReported"
+    },
+    {
+      "$ref": "#/$defs/ProgressReset"
     }
   ],
   "$defs": {
@@ -978,6 +981,84 @@
           "description": "Optional words from the learner.",
           "type": "string",
           "maxLength": 500
+        }
+      }
+    },
+    "ProgressReset": {
+      "title": "ProgressReset",
+      "description": "The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.",
+      "type": "object",
+      "required": [
+        "id",
+        "type",
+        "schema",
+        "device",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "session",
+        "clientTime",
+        "localDate",
+        "tz"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "const": "progress_reset"
+        },
+        "id": {
+          "description": "UUIDv7, generated on the device. Uploads are idempotent on it.",
+          "$ref": "#/$defs/Uuid"
+        },
+        "schema": {
+          "const": 1
+        },
+        "device": {
+          "description": "Random id of the device (installation) that recorded the event.",
+          "type": "string",
+          "minLength": 1
+        },
+        "user": {
+          "description": "Account id, once the learner has one. Absent for events recorded without an account.",
+          "type": "string",
+          "minLength": 1
+        },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "support": {
+          "description": "Support-language key (en).",
+          "type": "string",
+          "minLength": 1
+        },
+        "bundle": {
+          "description": "The bundle's manifest id (sha256).",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "session": {
+          "description": "Id of the reset itself (a session of one event), so every event names a session.",
+          "$ref": "#/$defs/Uuid"
+        },
+        "clientTime": {
+          "description": "Device clock at the event, ISO 8601 with offset.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$"
+        },
+        "localDate": {
+          "description": "The learner's local date at the event (§12.2): streak and daily XP count it.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "tz": {
+          "description": "IANA time zone of the device.",
+          "type": "string",
+          "minLength": 1
         }
       }
     }

@@ -125,6 +125,13 @@ export const historyBefore = (course: CourseView, node: string, now: Date): Lear
   return events;
 };
 
+/** Unique per test run: emails and seeded event ids must not collide between tests on one server. */
+export const runTag = (): string => `${Date.now().toString(16)}${Math.floor(Math.random() * 0xffff).toString(16)}`.slice(-12).padStart(12, "0");
+
+/** Events with fresh ids: the server deduplicates event ids across all users, so seeded history uploaded twice would vanish. */
+export const freshIds = (events: readonly LearnerEvent[], tag: string = runTag()): LearnerEvent[] =>
+  events.map((e, i) => ({ ...e, id: `${tag.slice(0, 8)}-${tag.slice(8, 12)}-7000-8000-${i.toString(16).padStart(12, "0")}` }));
+
 /** Waits for the app's store, then writes events into it (as a device that already has this history). */
 export const seedLog = async (page: Page, events: readonly LearnerEvent[]): Promise<void> => {
   await page.goto("/?sound=off#/");

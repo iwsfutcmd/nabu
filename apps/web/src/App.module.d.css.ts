@@ -8,6 +8,9 @@ declare const styles: {
   readonly count: string;
   readonly course: string;
   readonly courseName: string;
+  readonly dangerButton: string;
+  readonly dialog: string;
+  readonly dialogActions: string;
   readonly disabled: string;
   readonly field: string;
   readonly fill: string;
@@ -26,6 +29,7 @@ declare const styles: {
   readonly links: string;
   readonly list: string;
   readonly locked: string;
+  readonly modal: string;
   readonly muted: string;
   readonly next: string;
   readonly notice: string;
@@ -43,6 +47,7 @@ declare const styles: {
   readonly quests: string;
   readonly standing: string;
   readonly standings: string;
+  readonly startOver: string;
   readonly stat: string;
   readonly stats: string;
   readonly status: string;
