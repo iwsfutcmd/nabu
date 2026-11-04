@@ -44,67 +44,85 @@ sentences:
     yue-Hant-HK/standard:
       text: 幾點呀？
       tokens: [{surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 幾點[呀]
+      reverse: (|而家|依家)幾點(|鐘)[呀]
   translations:
-    en: What time is it?
+    en: |-
+      What time is it?
+      What time?
+      What('s| is) the time?
 - id: s.u06.2
   node: yue.clock
   forms:
     yue-Hant-HK/standard:
       text: 而家幾點呀？
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 而家幾點[呀]
+      reverse: (而|依)家幾點(|鐘)[呀]
   translations:
-    en: What time is it (now|)?
+    en: |-
+      What time is it (now|)?
+      What('s| is) the time (now|)?
 - id: s.u06.3
   node: yue.clock
   forms:
     yue-Hant-HK/standard:
       text: 而家三點。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}]
-      reverse: 而家三點
+      reverse: |-
+        [(而|依)家]三點(|鐘)
   translations:
-    en: It's (three|3)[ o'clock][ now].
+    en: |-
+      It's (three|3)[ o'clock][ now].
+      It is (three|3)[ o'clock][ now].
+      It's now (three|3)[ o'clock].
 - id: s.u06.4
   node: yue.clock
   forms:
     yue-Hant-HK/standard:
       text: 而家三點半。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
-      reverse: 而家三點半
+      reverse: |-
+        [(而|依)家]三點半
   translations:
     en: |-
       It's half past (three|3)[ now].
       It's (three thirty|3:30)[ now].
+      It is half past (three|3)[ now].
+      It is (three thirty|3:30)[ now].
 - id: s.u06.5
   node: yue.clock
   forms:
     yue-Hant-HK/standard:
       text: 而家十點兩個字。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 字, sense: 字, readings: {jyutping: zi6}}]
-      reverse: 而家十點兩個字
+      reverse: |-
+        [(而|依)家]十點(兩個字|十分|二)
   translations:
     en: |-
       It's ten past (ten|10)[ now].
       It's (ten ten|10:10)[ now].
+      It is ten past (ten|10)[ now].
+      It is (ten ten|10:10)[ now].
 - id: s.u06.6
   node: yue.clock
   forms:
     yue-Hant-HK/standard:
       text: 而家十二點半。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十二, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 二, kc: 'sense:二'}], readings: {jyutping: sap6 ji6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
-      reverse: 而家十二點半
+      reverse: |-
+        [(而|依)家]十二點半
   translations:
     en: |-
       It's half past (twelve|12)[ now].
       It's (twelve thirty|12:30)[ now].
+      It is half past (twelve|12)[ now].
+      It is (twelve thirty|12:30)[ now].
 - id: s.u06.7
   node: yue.days
   forms:
     yue-Hant-HK/standard:
       text: 今日好熱。
       tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 熱, sense: 熱, readings: {jyutping: jit6}}]
-      reverse: 今日好熱
+      reverse: 今日(|天氣)好熱(|呀)
   translations:
     en: |-
       It's (very|really|so) hot today.
@@ -148,7 +166,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 尋日禮拜五。
       tokens: [{surface: 尋日, sense: 尋日, readings: {jyutping: cam4 jat6}}, {surface: 禮拜五, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 五, kc: 'sense:五'}], readings: {jyutping: lai5 baai3 ng5}}]
-      reverse: (尋|琴)日(禮拜|星期)五
+      reverse: (尋|琴|噚)日(禮拜|星期)五
   translations:
     en: |-
       Yesterday was Friday.
@@ -170,7 +188,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 你幾時去呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾時, sense: 幾時, readings: {jyutping: gei2 si4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你幾時去[呀]
+      reverse: 你幾時(|會)去[呀]
   translations:
     en: |-
       When are you going?
@@ -181,7 +199,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我禮拜三去。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 禮拜三, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 三, kc: 'sense:三'}], readings: {jyutping: lai5 baai3 saam1}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
-      reverse: 我(禮拜|星期)三去
+      reverse: (我(禮拜|星期)三|(禮拜|星期)三我)去
   translations:
     en: |-
       I('m| am) going on Wednesday.
@@ -192,16 +210,18 @@ sentences:
     yue-Hant-HK/standard:
       text: 我朝早飲咖啡。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 朝早, sense: 朝早, readings: {jyutping: ziu1 zou2}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
-      reverse: 我朝早飲咖啡
+      reverse: (我朝早|朝早我)飲咖啡
   translations:
-    en: I (drink|have) coffee in the morning.
+    en: |-
+      I (drink|have) coffee in the morning.
+      In the morning, I (drink|have) coffee.
 - id: s.u06.16
   node: yue.daily
   forms:
     yue-Hant-HK/standard:
       text: 我七點起身。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
-      reverse: 我七點起身
+      reverse: 我七點(|鐘)起身
   translations:
     en: I (get|wake) up at (seven|7)[ o'clock].
 - id: s.u06.17
@@ -210,7 +230,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我每日七點起身。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
-      reverse: 我每日七點起身
+      reverse: (我每日|每日我)七點(|鐘)起身
   translations:
     en: |-
       I (get|wake) up at (seven|7)[ o'clock] every day.
@@ -221,16 +241,18 @@ sentences:
     yue-Hant-HK/standard:
       text: 我每日食早餐。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 早餐, sense: 早餐, readings: {jyutping: zou2 caan1}}]
-      reverse: 我每日食早餐
+      reverse: (我每日|每日我)食早餐
   translations:
-    en: I (eat|have) breakfast every day.
+    en: |-
+      I (eat|have) breakfast every day.
+      Every day I (eat|have) breakfast.
 - id: s.u06.19
   node: yue.night
   forms:
     yue-Hant-HK/standard:
       text: 我十一點瞓覺。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 十一, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 一, kc: 'sense:一'}], readings: {jyutping: sap6 jat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}]
-      reverse: 我十一點瞓覺
+      reverse: 我十一點(|鐘)(瞓覺|訓覺)
   translations:
     en: I (go to bed|go to sleep) at (eleven|11)[ o'clock].
 - id: s.u06.20
@@ -239,16 +261,20 @@ sentences:
     yue-Hant-HK/standard:
       text: 夜晚我唔飲咖啡。
       tokens: [{surface: 夜晚, sense: 夜晚, readings: {jyutping: je6 maan5}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
-      reverse: 夜晚我唔飲咖啡
+      reverse: (夜晚我|我夜晚)唔飲咖啡
   translations:
-    en: I (don't|do not) drink coffee (at night|in the evening).
+    en: |-
+      I (don't|do not) drink coffee (at night|in the evening|in the evenings).
+      (At night|In the evening), I (don't|do not) drink coffee.
 - id: s.u06.21
   node: yue.night
   forms:
     yue-Hant-HK/standard:
       text: 佢好早起身。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 早, sense: 早, readings: {jyutping: zou2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
-      reverse: 佢好早起身
+      reverse: |-
+        佢好早起身
+        佢起身好早
   translations:
     en: |-
       (She|He) gets up (very|really) early.
@@ -259,7 +285,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 你幾點瞓覺呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你幾點瞓覺[呀]
+      reverse: 你幾點(|鐘)(瞓覺|訓覺)[呀]
   translations:
     en: What time do you go to (bed|sleep)?
 - id: s.u06.23
@@ -268,7 +294,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 你幾點返工呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 返工, sense: 返工, readings: {jyutping: faan1 gung1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你幾點返工[呀]
+      reverse: 你幾點(|鐘)返工[呀]
   translations:
     en: What time do you (go to|start) work?
 - id: s.u06.24
@@ -277,7 +303,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我六點放工。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 放工, sense: 放工, readings: {jyutping: fong3 gung1}}]
-      reverse: 我六點放工
+      reverse: 我六點(|鐘)放工
   translations:
     en: I (finish|get off) work at (six|6)[ o'clock].
 - id: s.u06.25
@@ -286,11 +312,12 @@ sentences:
     yue-Hant-HK/standard:
       text: 我今日唔得閒。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
-      reverse: 我今日唔得閒
+      reverse: (我今日|今日我)唔得閒
   translations:
     en: |-
       I('m| am) not free today.
       I('m| am) busy today.
+      Today I('m| am) (not free|busy).
 - id: s.u06.26
   node: yue.work-day
   constructions: ['construction:a-not-a']
@@ -298,7 +325,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你聽日得唔得閒呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 得唔得閒, sense: 得閒, morphs: [{surface: 得, kc: 'sense:得閒'}, {surface: 唔, kc: 'sense:唔'}, {surface: 得閒, kc: 'sense:得閒'}], readings: {jyutping: dak1 m4 dak1 haan4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你聽日得唔得閒[呀]
+      reverse: |-
+        (你聽日|聽日你)得唔得閒[呀]
+        你聽日得閒嗎
   translations:
     en: Are you free tomorrow?
 - id: s.u06.27
@@ -307,7 +336,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我好忙。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
-      reverse: 我好忙
+      reverse: 我好忙(|呀)
   translations:
     en: I('m| am) (very|really|so) busy.
 - id: s.u06.28
@@ -316,7 +345,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 對唔住，我好忙。
       tokens: [{surface: 對唔住, sense: 對唔住, readings: {jyutping: deoi3 m4 zyu6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
-      reverse: 對唔住我好忙
+      reverse: (對唔住|唔好意思)我好忙(|呀)
   translations:
     en: (Sorry|I'm sorry), I('m| am) (very|really|so) busy.
 - id: s.u06.29
@@ -325,7 +354,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我等你。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
-      reverse: 我等你
+      reverse: 我(|會)等你
   translations:
     en: |-
       I('ll| will) wait for you.
@@ -336,9 +365,11 @@ sentences:
     yue-Hant-HK/standard:
       text: 我喺公司等你。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 公司, sense: 公司, readings: {jyutping: gung1 si1}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
-      reverse: 我喺公司等你
+      reverse: 我(|會)喺公司等你
   translations:
-    en: I('ll| will) wait for you at the (office|company).
+    en: |-
+      I('ll| will) wait for you at the (office|company).
+      I('ll| will) wait for you at (my|our) (office|company).
 - id: s.u06.31
   node: yue.meet
   forms:
@@ -354,7 +385,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 一陣見！
       tokens: [{surface: 一陣, sense: 一陣, readings: {jyutping: jat1 zan6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
-      reverse: 一陣見
+      reverse: |-
+        一陣(|間)見
+        遲啲見
   translations:
     en: See you (later|soon|in a bit)!
 - id: s.u06.33
@@ -372,7 +405,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 七點喺中環等啦。
       tokens: [{surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
-      reverse: 七點喺中環等啦
+      reverse: |-
+        七點(|鐘)喺中環(等|見)啦
+        我(哋|地)七點(|鐘)喺中環(等|見)啦
   translations:
     en: |-
       Let's meet in Central at (seven|7)[ o'clock].

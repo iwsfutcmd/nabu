@@ -22,7 +22,7 @@ kcs:
 - {id: 'sense:mast', gloss: {en: yogurt}, forms: {fa-Arab/standard: [ماست]}}
 - {id: 'sense:ghaza', gloss: {en: food; meal}, forms: {fa-Arab/standard: [غذا, غذای]}, notes: {en: 'After a final ـا the ezafe is written ی: غذای ایرانی, Iranian food.'}}
 - {id: 'sense:khoshmaze', gloss: {en: delicious; tasty}, forms: {fa-Arab/standard: [خوشمزه]}}
-- {id: 'sense:berenj', gloss: {en: rice}, forms: {fa-Arab/standard: [برنج]}, notes: {en: Cooked rice is also called چلو (chelow) or پلو (polow).}}
+- {id: 'sense:berenj', gloss: {en: rice}, forms: {fa-Arab/standard: [برنج]}, notes: {en: 'Plain steamed rice is چلو (chelow); rice cooked with other ingredients is پلو (polow).'}}
 - {id: 'sense:kabab', gloss: {en: kebab}, forms: {fa-Arab/standard: [کباب]}}
 - {id: 'sense:morgh', gloss: {en: chicken}, forms: {fa-Arab/standard: [مرغ]}}
 - {id: 'sense:irani', gloss: {en: Iranian}, forms: {fa-Arab/standard: [ایرانی]}}
@@ -45,9 +45,9 @@ sentences:
     fa-Arab/standard:
       text: این چای خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: چای, sense: chay}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این چای خیلی خوب است
+      reverse: این چای خیلی (خوب است|خوبه)
   translations:
-    en: This tea is very (good|nice).
+    en: This tea is (very|really) (good|nice).
 - id: s.food.2
   node: fa.food.tea
   forms:
@@ -86,13 +86,13 @@ sentences:
       text: بفرمایید، چای!
       tokens: [{surface: بفرمایید, sense: befarmayid}, {surface: چای, sense: chay}]
       reverse: |-
-        بفرمایید چای
-        بفرمائید چای
+        (بفرمایید|بفرمائید) چای
+        چای (بفرمایید|بفرمائید)
   translations:
     en: |-
-      Here you are, [some] tea!
       Here('s| is) [some|your] tea!
-      Please have some tea!
+      Here you are, [some] tea!
+      [Please] have some tea!
 - id: s.food.6
   node: fa.food.tea
   register: formal
@@ -100,7 +100,9 @@ sentences:
     fa-Arab/standard:
       text: شما قهوه دارید؟
       tokens: [{surface: شما, sense: shoma}, {surface: قهوه, sense: ghahve}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] قهوه دارید'
+      reverse: |-
+        [شما] قهوه دارید
+        [تو] قهوه داری
   translations:
     en: |-
       Do you have [any] coffee?
@@ -133,9 +135,11 @@ sentences:
     fa-Arab/standard:
       text: تو قهوه دوست داری؟
       tokens: [{surface: تو, sense: to}, {surface: قهوه, sense: ghahve}, {surface: دوست, sense: doost}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: '[تو] قهوه [را] دوست داری'
+      reverse: |-
+        [تو] قهوه [را] دوست داری
+        [شما] قهوه [را] دوست دارید
   translations:
-    en: Do you like coffee?
+    en: Do you (like|love) coffee?
 - id: s.food.10
   node: fa.food.like
   constructions: ['construction:doost-dashtan']
@@ -155,7 +159,7 @@ sentences:
       tokens: [{surface: علی, sense: ali}, {surface: شیر, sense: shir}, {surface: دوست, sense: doost}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: علی شیر [را] دوست دارد
   translations:
-    en: Ali likes milk.
+    en: Ali (likes|loves) milk.
 - id: s.food.12
   node: fa.food.like
   register: formal
@@ -167,6 +171,8 @@ sentences:
       reverse: |-
         [شما] چای دوست دارید یا قهوه
         [شما] چای یا قهوه دوست دارید
+        [تو] چای دوست داری یا قهوه
+        [تو] چای یا قهوه دوست داری
   translations:
     en: |-
       Do you like tea or coffee?
@@ -201,9 +207,9 @@ sentences:
     fa-Arab/standard:
       text: این نان خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: نان, sense: nan}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این نان خیلی خوب است
+      reverse: این نان خیلی (خوب است|خوبه)
   translations:
-    en: This bread is very (good|nice).
+    en: This bread is (very|really) (good|nice).
 - id: s.food.16
   node: fa.food.breakfast
   forms:
@@ -222,7 +228,7 @@ sentences:
     fa-Arab/standard:
       text: صبحانهٔ ما نان و پنیر است.
       tokens: [{surface: صبحانهٔ, sense: sobhane}, {surface: ما, sense: ma}, {surface: نان, sense: nan}, {surface: و, sense: va}, {surface: پنیر, sense: panir}, {surface: است, sense: budan}]
-      reverse: "صبحانه(ٔ|\u200cی|) ما نان و پنیر است"
+      reverse: "صبحان(هٔ|ه\u200cی|ه) ما نان و پنیر است"
   translations:
     en: |-
       Our breakfast is bread and cheese.
@@ -234,7 +240,9 @@ sentences:
     fa-Arab/standard:
       text: شما ماست دارید؟
       tokens: [{surface: شما, sense: shoma}, {surface: ماست, sense: mast}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] ماست دارید'
+      reverse: |-
+        [شما] ماست دارید
+        [تو] ماست داری
   translations:
     en: |-
       Do you have (yogurt|yoghurt)?
@@ -245,9 +253,9 @@ sentences:
     fa-Arab/standard:
       text: این غذا خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: غذا, sense: ghaza}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این غذا خیلی خوب است
+      reverse: این غذا خیلی (خوب است|خوبه)
   translations:
-    en: This food is very (good|nice).
+    en: This (food|meal) is (very|really) (good|nice).
 - id: s.food.20
   node: fa.food.meal
   forms:
@@ -256,7 +264,7 @@ sentences:
       tokens: [{surface: این, sense: in}, {surface: غذا, sense: ghaza}, {surface: خیلی, sense: kheyli}, {surface: خوشمزه, sense: khoshmaze}, {surface: است, sense: budan}]
       reverse: این غذا خیلی خوشمزه است
   translations:
-    en: This food is (very tasty|delicious|really delicious|really tasty)!
+    en: This (food|meal) is (very tasty|delicious|really delicious|really tasty|very delicious)!
 - id: s.food.21
   node: fa.food.meal
   constructions: ['construction:doost-dashtan']
@@ -266,7 +274,7 @@ sentences:
       tokens: [{surface: من, sense: man}, {surface: برنج, sense: berenj}, {surface: دوست, sense: doost}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: '[من] برنج [را] دوست دارم'
   translations:
-    en: I like rice.
+    en: I (like|love) rice.
 - id: s.food.22
   node: fa.food.meal
   constructions: ['construction:doost-dashtan']
@@ -276,7 +284,7 @@ sentences:
       tokens: [{surface: علی, sense: ali}, {surface: کباب, sense: kabab}, {surface: دوست, sense: doost}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: علی کباب [را] دوست دارد
   translations:
-    en: Ali likes (kebab|kebabs|kabob|kabobs).
+    en: Ali (likes|loves) (kebab|kebabs|kabob|kabobs).
 - id: s.food.23
   node: fa.food.meal
   register: formal
@@ -284,7 +292,9 @@ sentences:
     fa-Arab/standard:
       text: شما مرغ دارید؟
       tokens: [{surface: شما, sense: shoma}, {surface: مرغ, sense: morgh}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] مرغ دارید'
+      reverse: |-
+        [شما] مرغ دارید
+        [تو] مرغ داری
   translations:
     en: |-
       Do you have chicken?
@@ -297,7 +307,7 @@ sentences:
       tokens: [{surface: غذای, sense: ghaza, morphs: [{surface: غذا, kc: 'sense:ghaza'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: ایرانی, sense: irani}, {surface: خیلی, sense: kheyli}, {surface: خوشمزه, sense: khoshmaze}, {surface: است, sense: budan}]
       reverse: غذای ایرانی خیلی خوشمزه است
   translations:
-    en: Iranian food is (very tasty|delicious|really delicious|really tasty).
+    en: Iranian food is (very tasty|delicious|really delicious|really tasty|very delicious).
 - id: s.food.25
   node: fa.food.iranian
   forms:
@@ -308,7 +318,9 @@ sentences:
         نوش جان
         نوش جون
   translations:
-    en: Enjoy [your meal|your food]!
+    en: |-
+      Enjoy [your meal|your food|it]!
+      Bon (appétit|appetit)!
 - id: s.food.26
   node: fa.food.iranian
   constructions: ['construction:doost-dashtan']
@@ -327,9 +339,11 @@ sentences:
     fa-Arab/standard:
       text: شما میوه دوست دارید؟
       tokens: [{surface: شما, sense: shoma}, {surface: میوه, sense: mive}, {surface: دوست, sense: doost}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] میوه [را] دوست دارید'
+      reverse: |-
+        [شما] میوه [را] دوست دارید
+        [تو] میوه [را] دوست داری
   translations:
-    en: Do you like fruit?
+    en: Do you (like|love) fruit?
 - id: s.food.28
   node: fa.food.fruit
   constructions: ['construction:doost-dashtan']
@@ -339,16 +353,16 @@ sentences:
       tokens: [{surface: من, sense: man}, {surface: سیب, sense: sib}, {surface: دوست, sense: doost}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: '[من] سیب [را] دوست دارم'
   translations:
-    en: I like apples.
+    en: I (like|love) apples.
 - id: s.food.29
   node: fa.food.fruit
   forms:
     fa-Arab/standard:
       text: "این سیب\u200cها خیلی خوب هستند."
       tokens: [{surface: این, sense: in}, {surface: "سیب\u200cها", sense: sib, morphs: [{surface: "سیب\u200c", kc: 'sense:sib'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "این سیب\u200cها خیلی خوب (هستند|است)"
+      reverse: "این سیب\u200cها خیلی (خوب هستند|خوبند|خوب است|خوبه)"
   translations:
-    en: These apples are very (good|nice).
+    en: These apples are (very|really) (good|nice).
 - id: s.food.30
   node: fa.food.fruit
   register: formal
@@ -356,7 +370,9 @@ sentences:
     fa-Arab/standard:
       text: پرتقال دارید؟
       tokens: [{surface: پرتقال, sense: porteghal}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] پرتقال دارید'
+      reverse: |-
+        [شما] پرتقال دارید
+        [تو] پرتقال داری
   translations:
     en: |-
       Do you have [any] oranges?
@@ -386,7 +402,7 @@ stories:
         fa-Arab/standard:
           text: سلام علی! بفرمایید، چای!
           tokens: [{surface: سلام, sense: salam}, {surface: علی, sense: ali}, {surface: بفرمایید, sense: befarmayid}, {surface: چای, sense: chay}]
-      translations: {en: 'Hello, Ali! Here you are, some tea!'}
+      translations: {en: 'Hello, Ali! Here''s some tea!'}
   - line:
       speaker: ali
       forms:
@@ -423,7 +439,7 @@ stories:
       speaker: ali
       ask: complete
       gap: sense:khoshmaze
-      distractors: ['sense:ya', 'sense:ba']
+      distractors: ['sense:sard', 'sense:geran']
       forms:
         fa-Arab/standard:
           text: این پنیر خیلی خوشمزه است!

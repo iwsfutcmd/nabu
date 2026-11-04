@@ -43,34 +43,38 @@ sentences:
     yue-Hant-HK/standard:
       text: 我想買衫。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}]
-      reverse: 我想買衫
+      reverse: 我(想|要)買衫
   translations:
-    en: I('d like| want| would like) to buy (some |)clothes.
+    en: |-
+      I('d like| want| would like) to buy (some |)clothes.
+      I('d like| want| would like) to buy (a shirt|a top).
 - id: s.u08.2
   node: yue.clothes
   forms:
     yue-Hant-HK/standard:
       text: 呢件衫幾多錢呀？
-      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ne1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢件衫幾多錢[呀]
+      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢件(衫|)幾(多|)錢[呀]
   translations:
-    en: How much is this (shirt|top)?
+    en: |-
+      How much is this (shirt|top)?
+      How much does this (shirt|top) cost?
 - id: s.u08.3
   node: yue.clothes
   forms:
     yue-Hant-HK/standard:
       text: 嗰件衫好靚。
       tokens: [{surface: 嗰件, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: go2 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
-      reverse: 嗰件衫好靚
+      reverse: 嗰件衫好靚(|呀)
   translations:
-    en: That (shirt|top) is (very|really|so) (nice|pretty).
+    en: That (shirt|top) is (very|really|so) (nice|pretty|beautiful).
 - id: s.u08.4
   node: yue.clothes
   forms:
     yue-Hant-HK/standard:
       text: 我想買鞋。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}]
-      reverse: 我想買鞋
+      reverse: 我(想|要)買(|對)鞋
   translations:
     en: I('d like| want| would like) to buy (some |)shoes.
 - id: s.u08.5
@@ -78,8 +82,8 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 呢對鞋幾多錢呀？
-      tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ne1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢對鞋幾多錢[呀]
+      tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ni1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢對(鞋|)幾(多|)錢[呀]
   translations:
     en: |-
       How much are these shoes?
@@ -90,16 +94,16 @@ sentences:
     yue-Hant-HK/standard:
       text: 我想睇嗰對鞋。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 睇, sense: 睇, readings: {jyutping: tai2}}, {surface: 嗰對, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: go2 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}]
-      reverse: 我想睇嗰對鞋
+      reverse: 我想睇(|吓)嗰對(鞋|)
   translations:
-    en: I('d like| want| would like) to (see|look at) (that pair of shoes|those shoes).
+    en: I('d like| want| would like) to (see|look at|have a look at) (that pair of shoes|those shoes|that pair).
 - id: s.u08.7
   node: yue.hats-trousers
   forms:
     yue-Hant-HK/standard:
       text: 我想買帽。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 帽, sense: 帽, readings: {jyutping: mou2}}]
-      reverse: 我想買帽
+      reverse: 我(想|要)買(|頂|個)帽
   translations:
     en: I('d like| want| would like) to buy a (hat|cap).
 - id: s.u08.8
@@ -107,8 +111,8 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 呢個帽好靚。
-      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ne1 go3}}, {surface: 帽, sense: 帽, readings: {jyutping: mou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
-      reverse: 呢個帽好靚
+      tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ni1 go3}}, {surface: 帽, sense: 帽, readings: {jyutping: mou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
+      reverse: 呢(個|頂)帽好靚(|呀)
   translations:
     en: This (hat|cap) is (very|really|so) (nice|pretty).
 - id: s.u08.9
@@ -117,7 +121,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我想買褲。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 褲, sense: 褲, readings: {jyutping: fu3}}]
-      reverse: 我想買褲
+      reverse: 我(想|要)買(|條)褲
   translations:
     en: I('d like| want| would like) to buy (some |a pair of |)(trousers|pants).
 - id: s.u08.10
@@ -125,10 +129,12 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 呢條褲幾多錢呀？
-      tokens: [{surface: 呢條, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 條, kc: 'sense:條'}], readings: {jyutping: ne1 tiu4}}, {surface: 褲, sense: 褲, readings: {jyutping: fu3}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢條褲幾多錢[呀]
+      tokens: [{surface: 呢條, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 條, kc: 'sense:條'}], readings: {jyutping: ni1 tiu4}}, {surface: 褲, sense: 褲, readings: {jyutping: fu3}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 呢條(褲|)幾(多|)錢[呀]
   translations:
-    en: How much are these (trousers|pants)?
+    en: |-
+      How much are these (trousers|pants)?
+      How much is this pair of (trousers|pants)?
 - id: s.u08.11
   node: yue.hats-trousers
   forms:
@@ -140,6 +146,8 @@ sentences:
     en: |-
       (She|He) (really |)(loves|likes) looking at clothes.
       They (really |)(love|like) looking at clothes.
+      (She|He) (really |)(loves|likes) (to look at clothes|clothes shopping).
+      They (really |)(love|like) (to look at clothes|clothes shopping).
 - id: s.u08.12
   node: yue.price
   forms:
@@ -156,8 +164,8 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 呢件衫好平。
-      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ne1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 平, sense: 平, readings: {jyutping: peng4}}]
-      reverse: 呢件衫好平
+      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 平, sense: 平, readings: {jyutping: peng4}}]
+      reverse: 呢件衫好平(|呀)
   translations:
     en: This (shirt|top) is (very|really|so) cheap.
 - id: s.u08.14
@@ -166,7 +174,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 太貴喇！
       tokens: [{surface: 太, sense: 太, readings: {jyutping: taai3}}, {surface: 貴, sense: 貴, readings: {jyutping: gwai3}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
-      reverse: 太貴[喇]
+      reverse: 太貴(喇|啦|)
   translations:
     en: |-
       (It's|That's) too expensive!
@@ -178,12 +186,16 @@ sentences:
     yue-Hant-HK/standard:
       text: 得唔得呀？
       tokens: [{surface: 得, sense: 得, readings: {jyutping: dak1}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得, sense: 得, readings: {jyutping: dak1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 得唔得[呀]
+      reverse: |-
+        得唔得[呀]
+        可唔可以[呀]
   translations:
     en: |-
-      Is that (OK|okay|all right)?
+      Is that (OK|okay|all right|alright)?
       Can I?
       Is it possible?
+      Is it (OK|okay|all right|alright)?
+      May I?
 - id: s.u08.16
   node: yue.price
   constructions: ['construction:a-not-a']
@@ -191,11 +203,16 @@ sentences:
     yue-Hant-HK/standard:
       text: 平啲得唔得呀？
       tokens: [{surface: 平, sense: 平, readings: {jyutping: peng4}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 得, sense: 得, readings: {jyutping: dak1}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得, sense: 得, readings: {jyutping: dak1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 平啲得唔得[呀]
+      reverse: |-
+        平啲得唔得[呀]
+        可唔可以平啲[呀]
+        可以平啲嗎
   translations:
     en: |-
-      Can you make it (a bit |)cheaper?
-      Could it be (a bit |)cheaper?
+      Can you make it (a bit |a little |)cheaper?
+      Could it be (a bit |a little |)cheaper?
+      Could you make it (a bit |a little |)cheaper?
+      (Can|Could) you (go|do it) (a bit |a little |)cheaper?
 - id: s.u08.17
   node: yue.price
   constructions: ['construction:a-not-a']
@@ -203,9 +220,14 @@ sentences:
     yue-Hant-HK/standard:
       text: 收唔收八達通呀？
       tokens: [{surface: 收, sense: 收, readings: {jyutping: sau1}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 收, sense: 收, readings: {jyutping: sau1}}, {surface: 八達通, sense: 八達通, readings: {jyutping: baat3 daat6 tung1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 收唔收八達通[呀]
+      reverse: |-
+        (|你(哋|地))收唔收八達通[呀]
+        (|你(哋|地))收八達通嗎
+        可唔可以用八達通[呀]
   translations:
-    en: Do you (take|accept) Octopus?
+    en: |-
+      Do you (take|accept) Octopus(| cards)?
+      (Can|May) I (use|pay with|pay by) Octopus?
 - id: s.u08.18
   node: yue.price
   forms:
@@ -214,36 +236,39 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 收, sense: 收, readings: {jyutping: sau1}}, {surface: 八達通, sense: 八達通, readings: {jyutping: baat3 daat6 tung1}}]
       reverse: 我(哋|地)唔收八達通
   translations:
-    en: We (don't|do not) (take|accept) Octopus.
+    en: We (don't|do not) (take|accept) Octopus(| cards).
 - id: s.u08.19
   node: yue.try-on
   forms:
     yue-Hant-HK/standard:
       text: 我想試。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 試, sense: 試, readings: {jyutping: si3}}]
-      reverse: 我想試
+      reverse: 我想試(|吓|身)
   translations:
-    en: I('d like| want| would like) to try (it|it on).
+    en: I('d like| want| would like) to try (it|it on|it out).
 - id: s.u08.20
   node: yue.try-on
+  constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
-      text: 可以試嗎？
-      tokens: [{surface: 可以, sense: 可以, readings: {jyutping: ho2 ji5}}, {surface: 試, sense: 試, readings: {jyutping: si3}}, {surface: 嗎, sense: 嗎, readings: {jyutping: maa3}}]
+      text: 可唔可以試呀？
+      tokens: [{surface: 可唔可以, sense: 可以, morphs: [{surface: 可, kc: 'sense:可以'}, {surface: 唔, kc: 'sense:唔'}, {surface: 可以, kc: 'sense:可以'}], readings: {jyutping: ho2 m4 ho2 ji5}}, {surface: 試, sense: 試, readings: {jyutping: si3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: |-
-        可以試嗎
-        可唔可以試[呀]
+        可唔可以試(|吓|身)[呀]
+        (|我)可以試(|吓|身)嗎
+        試唔試得[呀]
   translations:
     en: |-
       Can I try (it|it on)?
       May I try (it|it on)?
+      Could I try (it|it on)?
 - id: s.u08.21
   node: yue.try-on
   forms:
     yue-Hant-HK/standard:
       text: 呢件衫太大。
-      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ne1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 太, sense: 太, readings: {jyutping: taai3}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}]
-      reverse: 呢件衫太大
+      tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 太, sense: 太, readings: {jyutping: taai3}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}]
+      reverse: 呢件(衫|)太大(|喇|啦)
   translations:
     en: This (shirt|top) is too (big|large).
 - id: s.u08.22
@@ -253,7 +278,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇細啲呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 細, sense: 細, readings: {jyutping: sai3}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有冇細啲(嘅|)[呀]
+      reverse: 有(冇|無)細啲(|嘅|既)[呀]
   translations:
     en: |-
       Do you have (a |)smaller (one|size)?
@@ -265,7 +290,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇大啲嘅呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有冇大啲(嘅|)[呀]
+      reverse: 有(冇|無)大啲(嘅|既|)[呀]
   translations:
     en: |-
       Do you have a bigger (one|size)?
@@ -275,19 +300,26 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 呢度唔可以試。
-      tokens: [{surface: 呢度, sense: 呢度, readings: {jyutping: ne1 dou6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 可以, sense: 可以, readings: {jyutping: ho2 ji5}}, {surface: 試, sense: 試, readings: {jyutping: si3}}]
-      reverse: 呢度唔可以試
+      tokens: [{surface: 呢度, sense: 呢度, readings: {jyutping: ni1 dou6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 可以, sense: 可以, readings: {jyutping: ho2 ji5}}, {surface: 試, sense: 試, readings: {jyutping: si3}}]
+      reverse: |-
+        呢度唔可以試(|身)
+        唔可以喺呢度試(|身)
   translations:
-    en: You (can't|cannot) try (it|it on|things on) here.
+    en: |-
+      You (can't|cannot) try (it|it on|things on) here.
+      (No trying on|You can't try on clothes) here.
 - id: s.u08.25
   node: yue.colours
   forms:
     yue-Hant-HK/standard:
       text: 你鍾意咩顏色呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 鍾意, sense: 鍾意, readings: {jyutping: zung1 ji3}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 顏色, sense: 顏色, readings: {jyutping: ngaan4 sik1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你(鍾|中)意(咩|乜嘢)顏色[呀]
+      reverse: 你(鍾|中)意(咩|乜嘢|乜野|乜)(顏色|色)[呀]
   translations:
-    en: What colo(u|)r do you like?
+    en: |-
+      What colo(u|)r do you like?
+      Which colo(u|)r do you like?
+      What colo(u|)r would you like?
 - id: s.u08.26
   node: yue.colours
   forms:
@@ -304,29 +336,31 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇黑色呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 黑色, sense: 黑色, readings: {jyutping: hak1 sik1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有冇黑色(嘅|)[呀]
+      reverse: 有(冇|無)黑色(|嘅|既)[呀]
   translations:
     en: |-
       Do you have (it in |)black?
       Is there a black one?
+      Do you have a black one?
 - id: s.u08.28
   node: yue.colours
   forms:
     yue-Hant-HK/standard:
       text: 我要白色嘅。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 要, sense: 要, readings: {jyutping: jiu3}}, {surface: 白色, sense: 白色, readings: {jyutping: baak6 sik1}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
-      reverse: 我要白色嘅
+      reverse: 我要白色(嘅|既)
   translations:
     en: |-
       I('ll| will) (take|have) the white one.
       I want the white one.
+      I('d| would) like the white one.
 - id: s.u08.29
   node: yue.colours
   forms:
     yue-Hant-HK/standard:
       text: 呢對鞋好好睇。
-      tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ne1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好睇, sense: 好睇, readings: {jyutping: hou2 tai2}}]
-      reverse: 呢對鞋好好睇
+      tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ni1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好睇, sense: 好睇, readings: {jyutping: hou2 tai2}}]
+      reverse: 呢對鞋好(好睇|靚)(|呀)
   translations:
     en: These shoes are (very|really|so) (nice|good-looking|pretty).
 - id: s.u08.30
@@ -335,7 +369,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 藍色都好好睇。
       tokens: [{surface: 藍色, sense: 藍色, readings: {jyutping: laam4 sik1}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好睇, sense: 好睇, readings: {jyutping: hou2 tai2}}]
-      reverse: 藍色都好好睇
+      reverse: 藍色(|嘅|既)都好(好睇|靚)
   translations:
     en: |-
       Blue (looks|is) (nice|good) too.
@@ -346,7 +380,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你用現金定八達通呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 用, sense: 用, readings: {jyutping: jung6}}, {surface: 現金, sense: 現金, readings: {jyutping: jin6 gam1}}, {surface: 定, sense: 定, readings: {jyutping: ding6}}, {surface: 八達通, sense: 八達通, readings: {jyutping: baat3 daat6 tung1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你用現金(定|定係)八達通[呀]
+      reverse: |-
+        你用現金(定|定係)八達通[呀]
+        現金(定|定係)八達通[呀]
   translations:
     en: |-
       (Are you paying|Will you pay) (by|with|in) cash or (with |by |)Octopus?
@@ -357,11 +393,13 @@ sentences:
     yue-Hant-HK/standard:
       text: 我用現金。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 用, sense: 用, readings: {jyutping: jung6}}, {surface: 現金, sense: 現金, readings: {jyutping: jin6 gam1}}]
-      reverse: 我用現金
+      reverse: 我(用|俾|畀)現金
   translations:
     en: |-
       I('ll| will) pay (by|with|in) cash.
       I('ll| will) use cash.
+      I('m| am) paying (by|with|in) cash.
+      I pay (by|with|in) cash.
 - id: s.u08.33
   node: yue.pay
   forms:
@@ -373,22 +411,27 @@ sentences:
     en: |-
       I('ll| will) take two.
       I want two (of them|).
+      I('d| would) like two (of them|).
+      I('ll| will) take two of them.
 - id: s.u08.34
   node: yue.pay
   forms:
     yue-Hant-HK/standard:
       text: 我買兩對鞋。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 對, sense: 對, readings: {jyutping: deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}]
-      reverse: 我買兩對鞋
+      reverse: 我(買|要)兩對鞋
   translations:
-    en: I('ll| will) (buy|take) two pairs of shoes.
+    en: |-
+      I('ll| will) (buy|take) two pairs of shoes.
+      I('m| am) buying two pairs of shoes.
+      I buy two pairs of shoes.
 - id: s.u08.35
   node: yue.pay
   forms:
     yue-Hant-HK/standard:
       text: 佢想買一條褲。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 條, sense: 條, readings: {jyutping: tiu4}}, {surface: 褲, sense: 褲, readings: {jyutping: fu3}}]
-      reverse: 佢想買一條褲
+      reverse: 佢想買(一|)條褲
   translations:
     en: |-
       (She|He) (wants|would like) to buy (a pair of|some) (trousers|pants).
@@ -399,11 +442,14 @@ sentences:
     yue-Hant-HK/standard:
       text: 俾你一百蚊。
       tokens: [{surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 一百, morphs: [{surface: 一, kc: 'sense:一'}, {surface: 百, kc: 'sense:百'}], readings: {jyutping: jat1 baak3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: (俾|畀)你一百蚊
+      reverse: (|我)(俾|畀)你(一|)百(蚊|元)
   translations:
     en: |-
-      Here's a hundred dollars.
-      I('ll| will) give you a hundred dollars.
+      Here's (a|one) hundred dollars.
+      Here is (a|one) hundred dollars.
+      I('ll| will) give you (a|one) hundred dollars.
+      Here's 100 dollars.
+      I('ll| will) give you 100 dollars.
 stories:
 - id: yue.story.market
   node: yue.shopping-story
@@ -419,7 +465,7 @@ stories:
       forms:
         yue-Hant-HK/standard:
           text: 唔該，呢件衫幾多錢呀？
-          tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ne1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+          tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       translations: {en: 'Excuse me, how much is this top?'}
   - line:
       speaker: si-tau

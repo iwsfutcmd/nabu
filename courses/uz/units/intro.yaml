@@ -44,11 +44,15 @@ sentences:
     uz-Latn/standard:
       text: Salom!
       tokens: [{surface: Salom, sense: salom}]
-      reverse: Salom
+      reverse: |-
+        Salom
+        Assalomu alaykum
     uz-Cyrl/standard:
       text: Салом!
       tokens: [{surface: Салом, sense: salom}]
-      reverse: Салом
+      reverse: |-
+        Салом
+        Ассалому алайкум
   translations:
     en: |-
       Hello!
@@ -83,6 +87,9 @@ sentences:
     en: |-
       Goodbye!
       Bye!
+      Good bye!
+      Bye-bye!
+      Bye bye!
 - id: s.4
   node: uz.greetings
   forms:
@@ -95,7 +102,9 @@ sentences:
       tokens: [{surface: Ҳа, sense: ha}]
       reverse: Ҳа
   translations:
-    en: Yes.
+    en: |-
+      Yes.
+      Yeah.
 - id: s.5
   node: uz.greetings
   forms:
@@ -151,7 +160,8 @@ sentences:
   translations:
     en: |-
       This is a book.
-      It's a book.
+      This is the book.
+      It('s| is) a book.
 - id: s.9
   node: uz.this
   forms:
@@ -171,11 +181,15 @@ sentences:
     uz-Latn/standard:
       text: Mana kitob.
       tokens: [{surface: Mana, sense: mana}, {surface: kitob, sense: kitob}]
-      reverse: Mana kitob
+      reverse: |-
+        Mana kitob
+        Kitob mana
     uz-Cyrl/standard:
       text: Мана китоб.
       tokens: [{surface: Мана, sense: mana}, {surface: китоб, sense: kitob}]
-      reverse: Мана китоб
+      reverse: |-
+        Мана китоб
+        Китоб мана
   translations:
     en: |-
       Here('s| is) the book.
@@ -186,11 +200,15 @@ sentences:
     uz-Latn/standard:
       text: Kitob qani?
       tokens: [{surface: Kitob, sense: kitob}, {surface: qani, sense: qani}]
-      reverse: Kitob qani
+      reverse: |-
+        Kitob (qani|qayerda)
+        Qani kitob
     uz-Cyrl/standard:
       text: Китоб қани?
       tokens: [{surface: Китоб, sense: kitob}, {surface: қани, sense: qani}]
-      reverse: Китоб қани
+      reverse: |-
+        Китоб (қани|қаерда)
+        Қани китоб
   translations:
     en: Where('s| is) the book?
 - id: s.12
@@ -264,11 +282,15 @@ sentences:
     uz-Latn/standard:
       text: Talabasiz.
       tokens: [{surface: Talabasiz, sense: talaba, morphs: [{surface: Talaba, kc: 'sense:talaba'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] talabasiz'
+      reverse: |-
+        [Siz] talabasiz
+        [Sen] talabasan
     uz-Cyrl/standard:
       text: Талабасиз.
       tokens: [{surface: Талабасиз, sense: talaba, morphs: [{surface: Талаба, kc: 'sense:talaba'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] талабасиз'
+      reverse: |-
+        [Сиз] талабасиз
+        [Сен] талабасан
   translations:
     en: You('re| are) a student.
 - id: s.18
@@ -277,11 +299,15 @@ sentences:
     uz-Latn/standard:
       text: Siz talabasiz.
       tokens: [{surface: Siz, sense: siz}, {surface: talabasiz, sense: talaba, morphs: [{surface: talaba, kc: 'sense:talaba'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] talabasiz'
+      reverse: |-
+        [Siz] talabasiz
+        [Sen] talabasan
     uz-Cyrl/standard:
       text: Сиз талабасиз.
       tokens: [{surface: Сиз, sense: siz}, {surface: талабасиз, sense: talaba, morphs: [{surface: талаба, kc: 'sense:talaba'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] талабасиз'
+      reverse: |-
+        [Сиз] талабасиз
+        [Сен] талабасан
   translations:
     en: You('re| are) a student.
 - id: s.19
@@ -381,11 +407,17 @@ sentences:
     uz-Latn/standard:
       text: Ismingiz nima?
       tokens: [{surface: Ismingiz, sense: ism, morphs: [{surface: Ism, kc: 'sense:ism'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: nima, sense: nima}]
-      reverse: Ismingiz nima
+      reverse: |-
+        Ismingiz nima
+        Sizning ismingiz nima
+        [Sening] isming nima
     uz-Cyrl/standard:
       text: Исмингиз нима?
       tokens: [{surface: Исмингиз, sense: ism, morphs: [{surface: Исм, kc: 'sense:ism'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: нима, sense: nima}]
-      reverse: Исмингиз нима
+      reverse: |-
+        Исмингиз нима
+        Сизнинг исмингиз нима
+        [Сенинг] исминг нима
   translations:
     en: What('s| is) your name?
 stories:

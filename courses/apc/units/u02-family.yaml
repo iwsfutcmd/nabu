@@ -86,7 +86,7 @@ sentences:
     apc-Latn/arabizi:
       text: mar7aba Maya!
       tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya}]
-      reverse: (mar7aba|marhaba) Maya
+      reverse: (mar7aba|marhaba|mar7ba) Maya
   translations:
     en: (Hello|Hi), Maya!
 - id: s.fam.4
@@ -180,7 +180,7 @@ sentences:
     apc-Latn/arabizi:
       text: meen hayda? bayyak?
       tokens: [{surface: meen, sense: meen}, {surface: hayda, sense: hayda}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak)
+      reverse: (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak|bayyik)
   translations:
     en: |-
       Who is (this|that)? Your (father|dad)?
@@ -226,11 +226,11 @@ sentences:
       text: عندي خيّ وإخت.
       tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: خيّ, sense: khayy}, {surface: وإخت, sense: ekht, morphs: [{surface: و,
               kc: 'sense:w'}, {surface: إخت, kc: 'sense:ekht'}]}]
-      reverse: عندي خيّ (وإخت|و إخت)
+      reverse: (عندي|أنا عندي) خيّ (وإخت|و إخت)
     apc-Latn/arabizi:
       text: 3endi khayy w ekht.
       tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: khayy, sense: khayy}, {surface: w, sense: w}, {surface: ekht, sense: ekht}]
-      reverse: (3endi|3ende|3andi|3ande|3indi|3inde) (khayy|khay|5ayy) (w|wa) (ekht|ikht|e5t)
+      reverse: ((3endi|3ende|3andi|3ande|3indi|3inde)|ana (3endi|3ende|3andi|3ande|3indi|3inde)) (khayy|khay|5ayy) (w|wa) (ekht|ikht|e5t)
   translations:
     en: |-
       I have a brother and a sister.
@@ -242,11 +242,11 @@ sentences:
     apc-Arab/standard:
       text: عندك إخت؟
       tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: إخت, sense: ekht}]
-      reverse: عندك إخت
+      reverse: (عندك|إنت عندك|إنتي عندك) إخت
     apc-Latn/arabizi:
       text: 3endak ekht?
       tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: ekht, sense: ekht}]
-      reverse: (3endak|3andak|3indak) (ekht|ikht|e5t)
+      reverse: ((3endak|3andak|3indak|3endik|3andik)|(enta|inta) (3endak|3andak|3indak)|(enti|inti) (3endik|3andik)) (ekht|ikht|e5t)
   translations:
     en: |-
       Do you have a sister?
@@ -258,11 +258,11 @@ sentences:
     apc-Arab/standard:
       text: لأ، ما عندي إخت.
       tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: إخت, sense: ekht}]
-      reverse: (لأ|لا) ما عندي إخت
+      reverse: (لأ|لا) (ما عندي|أنا ما عندي|معندي) إخت
     apc-Latn/arabizi:
       text: la2, ma 3endi ekht.
       tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ekht, sense: ekht}]
-      reverse: (la2|la) ma (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
+      reverse: (la2|la) (ma|ana ma) (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
   translations:
     en: |-
       No, I (don't|do not) have a sister.
@@ -346,7 +346,7 @@ sentences:
       text: kifo bayyak?
       tokens: [{surface: kifo, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak,
               kc: 'form:poss-2ms'}]}]
-      reverse: (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak)
+      reverse: (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak|bayyik)
   translations:
     en: |-
       How is your (father|dad)?
@@ -423,15 +423,19 @@ sentences:
     apc-Arab/standard:
       text: جدّو كبير.
       tokens: [{surface: جدّو, sense: jeddo}, {surface: كبير, sense: kbir}]
-      reverse: جدّو كبير
+      reverse: |-
+        جدّو (كبير|ختيار)
+        جدّو كبير بالعمر
     apc-Latn/arabizi:
       text: jeddo kbir.
       tokens: [{surface: jeddo, sense: jeddo}, {surface: kbir, sense: kbir}]
-      reverse: (jeddo|jiddo|jeddu) (kbir|kbeer|kebir)
+      reverse: |-
+        (jeddo|jiddo|jeddu) (kbir|kbeer|kebir|khetyar|khityar)
+        (jeddo|jiddo|jeddu) (kbir|kbeer|kebir) (bel|bil) (3omr|3emr)
   translations:
     en: |-
-      (Grandpa|Grandad|My grandpa|My grandfather) is old.
-      (Grandpa|Grandad|My grandpa|My grandfather)'s old.
+      (Grandpa|Grandad|My grandpa|My grandfather) is (old|elderly).
+      (Grandpa|Grandad|My grandpa|My grandfather)'s (old|elderly).
 - id: s.fam.25
   node: apc.fam.grandparents
   register: colloquial
@@ -508,11 +512,11 @@ sentences:
     apc-Latn/arabizi:
       text: bentak 7elwe!
       tokens: [{surface: bentak, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
-      reverse: (bentak|bintak) (7elwe|7ilwe|helwe|7elwi)
+      reverse: (bentak|bintak|bentik|bintik) (7elwe|7ilwe|helwe|7elwi)
   translations:
     en: |-
-      Your daughter is (lovely|pretty|cute|sweet)!
-      Your daughter's (lovely|pretty|cute|sweet)!
+      Your daughter is (lovely|pretty|cute|sweet|beautiful)!
+      Your daughter's (lovely|pretty|cute|sweet|beautiful)!
 - id: s.fam.30
   node: apc.fam.children
   register: colloquial
@@ -520,11 +524,11 @@ sentences:
     apc-Arab/standard:
       text: عندك ولاد؟
       tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: ولاد, sense: wlad}]
-      reverse: عندك ولاد
+      reverse: (عندك|إنت عندك|إنتي عندك) ولاد
     apc-Latn/arabizi:
       text: 3endak wlad?
       tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: wlad, sense: wlad}]
-      reverse: (3endak|3andak|3indak) (wlad|wled)
+      reverse: ((3endak|3andak|3indak|3endik|3andik)|(enta|inta) (3endak|3andak|3indak)|(enti|inti) (3endik|3andik)) (wlad|wled)
   translations:
     en: |-
       Do you have (kids|children)?
@@ -537,12 +541,12 @@ sentences:
       text: إيه، عندي إبن وبنت.
       tokens: [{surface: إيه, sense: eh}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: إبن, sense: ebn}, {surface: وبنت, sense: bent,
           morphs: [{surface: و, kc: 'sense:w'}, {surface: بنت, kc: 'sense:bent'}]}]
-      reverse: إيه عندي إبن (وبنت|و بنت)
+      reverse: إيه (عندي|أنا عندي) (إبن|صبي) (وبنت|و بنت)
     apc-Latn/arabizi:
       text: eh, 3endi ebn w bent.
       tokens: [{surface: eh, sense: eh}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ebn, sense: ebn}, {surface: w, sense: w},
         {surface: bent, sense: bent}]
-      reverse: (eh|ee|e) (3endi|3ende|3andi|3ande|3indi|3inde) (ebn|ibn) (w|wa) (bent|bint)
+      reverse: (eh|ee|e) ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (ebn|ibn|sabi|sabe) (w|wa) (bent|bint)
   translations:
     en: |-
       Yes, I have a son and a daughter.
@@ -558,7 +562,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu esm bentak?
       tokens: [{surface: shu, sense: shu}, {surface: esm, sense: esm}, {surface: bentak, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (shu|sho) (esm|ism) (bentak|bintak)
+      reverse: (shu|sho) (esm|ism) (bentak|bintak|bentik|bintik)
   translations:
     en: |-
       What is your daughter's name?
@@ -571,11 +575,11 @@ sentences:
     apc-Arab/standard:
       text: عندك عيلة كبيرة؟
       tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: عيلة, sense: 3ayle}, {surface: كبيرة, sense: kbir, form: 'form:fem'}]
-      reverse: عندك عيلة كبيرة
+      reverse: (عندك|إنت عندك|إنتي عندك) عيلة كبيرة
     apc-Latn/arabizi:
       text: 3endak 3ayle kbire?
       tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: 3ayle, sense: 3ayle}, {surface: kbire, sense: kbir, form: 'form:fem'}]
-      reverse: (3endak|3andak|3indak) (3ayle|3ayli|3eyle) (kbire|kbiri|kbeere)
+      reverse: ((3endak|3andak|3indak|3endik|3andik)|(enta|inta) (3endak|3andak|3indak)|(enti|inti) (3endik|3andik)) (3ayle|3ayli|3eyle) (kbire|kbiri|kbeere)
   translations:
     en: |-
       Do you have a big family?
@@ -693,8 +697,8 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: عيلْتِك كْبيرة!
-          tokens: [{surface: عيلْتِك, sense: 3ayle, morphs: [{surface: عيلْتِ, kc: 'sense:3ayle'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: كْبيرة, sense: kbir, form: 'form:fem'}]
+          text: عَيِلْتِك كْبيرِة!
+          tokens: [{surface: عَيِلْتِك, sense: 3ayle, morphs: [{surface: عَيِلْتِ, kc: 'sense:3ayle'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: كْبيرِة, sense: kbir, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: 3ayeltik kbire!
           tokens: [{surface: 3ayeltik, sense: 3ayle, morphs: [{surface: 3ayelt, kc: 'sense:3ayle'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: kbire, sense: kbir, form: 'form:fem'}]

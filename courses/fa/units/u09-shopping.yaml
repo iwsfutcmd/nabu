@@ -9,7 +9,7 @@ kcs:
 - {id: 'sense:che', gloss: {en: what}, forms: {fa-Arab/standard: [چه]}, notes: {en: 'Spoken: چی (chi).'}}
 - {id: 'sense:pirahan', gloss: {en: shirt; dress}, forms: {fa-Arab/standard: [پیراهن]}}
 - {id: 'sense:kafsh', gloss: {en: shoe; shoes}, forms: {fa-Arab/standard: [کفش]}, notes: {en: A pair of shoes is usually just کفش.}}
-- {id: 'sense:lebas', gloss: {en: clothes; garment}, forms: {fa-Arab/standard: [لباس, "لباس\u200cهای"]}}
+- {id: 'sense:lebas', gloss: {en: 'clothes; garment; outfit, dress'}, forms: {fa-Arab/standard: [لباس, "لباس\u200cهای"]}}
 - {id: 'sense:kif', gloss: {en: bag; handbag}, forms: {fa-Arab/standard: [کیف]}}
 - {id: 'sense:bazar', gloss: {en: bazaar; market}, forms: {fa-Arab/standard: [بازار]}}
 - {id: 'sense:kharidan', gloss: {en: to buy (present stem خر-)}, forms: {fa-Arab/standard: ["می\u200cخریم", بخرم, بخری, "می\u200cخرم", خریدی, خریدم]}, notes: {en: 'خرید (kharid): shopping; also the past stem.'}}
@@ -56,7 +56,7 @@ sentences:
     fa-Arab/standard:
       text: "شما چه می\u200cخواهید؟"
       tokens: [{surface: شما, sense: shoma}, {surface: چه, sense: che}, {surface: "می\u200cخواهید", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] (چه|چی) می\u200cخواهید"
+      reverse: "[شما] (چه|چی) می\u200cخواهید\n[تو] (چه|چی) می\u200cخواهی"
   translations:
     en: |-
       What would you like?
@@ -81,7 +81,7 @@ sentences:
       reverse: "علی کفش می\u200cخواهد"
   translations:
     en: |-
-      Ali wants [some|new] shoes.
+      Ali wants [some] shoes.
       Ali wants a pair of shoes.
 - id: s.shopping.5
   node: fa.shop.want
@@ -89,9 +89,9 @@ sentences:
     fa-Arab/standard:
       text: این لباس خیلی قشنگ است.
       tokens: [{surface: این, sense: in}, {surface: لباس, sense: lebas}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: این لباس خیلی قشنگ است
+      reverse: این لباس خیلی (قشنگ است|قشنگه)
   translations:
-    en: This (dress|outfit) is very (pretty|nice|beautiful).
+    en: This (dress|outfit) is (very|really) (pretty|nice|beautiful).
 - id: s.shopping.6
   node: fa.shop.want
   forms:
@@ -128,7 +128,7 @@ sentences:
     fa-Arab/standard:
       text: "این مغازه لباس\u200cهای قشنگ دارد."
       tokens: [{surface: این, sense: in}, {surface: مغازه, sense: maghaze}, {surface: "لباس\u200cهای", sense: lebas, morphs: [{surface: "لباس\u200c", kc: 'sense:lebas'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: قشنگ, sense: ghashang}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "این مغازه لباس\u200cهای قشنگ دارد"
+      reverse: "این مغازه لباس\u200cهای (قشنگ|قشنگی) دارد"
   translations:
     en: This (shop|store) has (nice|pretty|beautiful) clothes.
 - id: s.shopping.10
@@ -150,7 +150,7 @@ sentences:
     fa-Arab/standard:
       text: "می\u200cخواهم به بازار بروم."
       tokens: [{surface: "می\u200cخواهم", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: به, sense: be}, {surface: بازار, sense: bazar}, {surface: بروم, sense: raftan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] می\u200cخواهم به بازار بروم"
+      reverse: "[من] می\u200cخواهم [به] بازار بروم"
   translations:
     en: |-
       I want to go to the (bazaar|market).
@@ -162,7 +162,7 @@ sentences:
     fa-Arab/standard:
       text: "تو چه می\u200cخواهی بخری؟"
       tokens: [{surface: تو, sense: to}, {surface: چه, sense: che}, {surface: "می\u200cخواهی", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: ی, kc: 'form:2sg-i'}]}, {surface: بخری, sense: kharidan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: خر, kc: 'sense:kharidan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: "[تو] (چه|چی) می\u200cخواهی بخری"
+      reverse: "[تو] (چه|چی) می\u200cخواهی بخری\n[شما] (چه|چی) می\u200cخواهید بخرید"
   translations:
     en: |-
       What do you want to buy?
@@ -174,7 +174,7 @@ sentences:
     fa-Arab/standard:
       text: رنگِ این پیراهن قشنگ است.
       tokens: [{surface: رنگِ, sense: rang}, {surface: این, sense: in}, {surface: پیراهن, sense: pirahan}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: رنگ این پیراهن قشنگ است
+      reverse: رنگ این پیراهن (قشنگ است|قشنگه)
   translations:
     en: |-
       The (colour|color) of this shirt is (nice|pretty|beautiful).
@@ -219,7 +219,9 @@ sentences:
     fa-Arab/standard:
       text: پیراهنِ سیاه دارید؟
       tokens: [{surface: پیراهنِ, sense: pirahan}, {surface: سیاه, sense: siyah}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] پیراهن سیاه دارید'
+      reverse: |-
+        [شما] پیراهن سیاه دارید
+        [تو] پیراهن سیاه داری
   translations:
     en: |-
       Do you have a black shirt?
@@ -255,7 +257,9 @@ sentences:
     fa-Arab/standard:
       text: چه رنگی دوست دارید؟
       tokens: [{surface: چه, sense: che}, {surface: رنگی, sense: rang, morphs: [{surface: رنگ, kc: 'sense:rang'}, {surface: ی, kc: 'form:indef-i'}]}, {surface: دوست, sense: doost}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] (چه|چی) رنگی دوست دارید'
+      reverse: |-
+        [شما] (چه|چی) رنگی دوست دارید
+        [تو] (چه|چی) رنگی دوست داری
   translations:
     en: |-
       What (colour|color) do you like?
@@ -269,7 +273,9 @@ sentences:
     fa-Arab/standard:
       text: رنگِ دیگری دارید؟
       tokens: [{surface: رنگِ, sense: rang}, {surface: دیگری, sense: digar, morphs: [{surface: دیگر, kc: 'sense:digar'}, {surface: ی, kc: 'form:indef-i'}]}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] رنگ دیگری دارید'
+      reverse: |-
+        [شما] رنگ دیگری دارید
+        [تو] رنگ دیگری داری
   translations:
     en: |-
       Do you have (another|a different) (colour|color)?
@@ -324,7 +330,7 @@ sentences:
     fa-Arab/standard:
       text: "ارزان\u200cتر دارید؟"
       tokens: [{surface: "ارزان\u200cتر", sense: arzan, morphs: [{surface: "ارزان\u200c", kc: 'sense:arzan'}, {surface: تر, kc: 'form:comparative-tar'}]}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] ارزان\u200cتر دارید"
+      reverse: "[شما] ارزان\u200cتر دارید\n[تو] ارزان\u200cتر داری"
   translations:
     en: |-
       Do you have (anything|something) cheaper?
@@ -335,7 +341,7 @@ sentences:
     fa-Arab/standard:
       text: "پول را به شما می\u200cدهم."
       tokens: [{surface: پول, sense: pool}, {surface: را, sense: ra}, {surface: به, sense: be}, {surface: شما, sense: shoma}, {surface: "می\u200cدهم", sense: dadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: ده, kc: 'sense:dadan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] پول را به شما می\u200cدهم"
+      reverse: "[من] پول را به (شما|تو) می\u200cدهم"
   translations:
     en: |-
       I('ll| will) give you the money.
@@ -347,7 +353,7 @@ sentences:
     fa-Arab/standard:
       text: "تخفیف می\u200cدهید؟"
       tokens: [{surface: تخفیف, sense: takhfif}, {surface: "می\u200cدهید", sense: dadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: ده, kc: 'sense:dadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] تخفیف می\u200cدهید"
+      reverse: "[شما] تخفیف می\u200cدهید\n[تو] تخفیف می\u200cدهی"
   translations:
     en: (Will|Can|Do|Would) you give [me] a discount?
 - id: s.shopping.29
@@ -356,7 +362,7 @@ sentences:
     fa-Arab/standard:
       text: "خیلی گران است! ارزان\u200cتر نمی\u200cدهید؟"
       tokens: [{surface: خیلی, sense: kheyli}, {surface: گران, sense: geran}, {surface: است, sense: budan}, {surface: "ارزان\u200cتر", sense: arzan, morphs: [{surface: "ارزان\u200c", kc: 'sense:arzan'}, {surface: تر, kc: 'form:comparative-tar'}]}, {surface: "نمی\u200cدهید", sense: dadan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: "می\u200c", kc: 'form:mi-present'}, {surface: ده, kc: 'sense:dadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "خیلی گران است ارزان\u200cتر نمی\u200cدهید"
+      reverse: "خیلی گران است ارزان\u200cتر نمی\u200cدهید\nخیلی گران است ارزان\u200cتر نمی\u200cدهی"
   translations:
     en: It('s| is) (very|too|really) expensive! (Won't|Can't) you (make it|sell it|give it to me) cheaper?
 - id: s.shopping.30

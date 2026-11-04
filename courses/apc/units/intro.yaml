@@ -8,12 +8,12 @@ kcs:
 - {id: 'sense:shukran', gloss: {en: thank you}, forms: {apc-Arab/standard: [شكرا], apc-Latn/arabizi: [shukran]}}
 - {id: 'sense:merci', gloss: {en: thanks (from French)}, forms: {apc-Arab/standard: [ميرسي], apc-Latn/arabizi: [merci]}}
 - {id: 'sense:ma3-essalame', gloss: {en: goodbye (literally 'with safety')}, forms: {apc-Arab/standard: [مع السلامة], apc-Latn/arabizi: [ma3 essalame]}}
-- {id: 'sense:yalla', gloss: {en: come on; OK then; let's go}, forms: {apc-Arab/standard: [يلا], apc-Latn/arabizi: [yalla]}}
+- {id: 'sense:yalla', gloss: {en: come on; OK then; let's go}, forms: {apc-Arab/standard: [يلّا], apc-Latn/arabizi: [yalla]}}
 - {id: 'sense:kifak', gloss: {en: 'how are you?'}, forms: {apc-Arab/standard: [كيفك], apc-Latn/arabizi: [kifak]}, notes: {en: 'Said to a man; to a woman: كيفك, kifik.'}}
 - {id: 'sense:mni7', gloss: {en: good; fine}, forms: {apc-Arab/standard: [منيح], apc-Latn/arabizi: [mni7]}, image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:el7amdella', gloss: {en: thank God}, forms: {apc-Arab/standard: [الحمدلله], apc-Latn/arabizi: [el7amdella]}}
 - {id: 'sense:ana', gloss: {en: I}, forms: {apc-Arab/standard: [أنا], apc-Latn/arabizi: [ana]}}
-- {id: 'sense:enta', gloss: {en: you}, forms: {apc-Arab/standard: [إنت, وإنت], apc-Latn/arabizi: [enta]}, notes: {en: 'Said to a man; to a woman: إنتِ, enti.'}}
+- {id: 'sense:enta', gloss: {en: you}, forms: {apc-Arab/standard: [إنت, وإنت], apc-Latn/arabizi: [enta]}, notes: {en: 'Said to a man; to a woman: إنتي, enti.'}}
 - {id: 'sense:w', gloss: {en: and}, forms: {apc-Latn/arabizi: [w]}, notes: {en: 'Written joined to the next word in Arabic script: وإنت.'}}
 - {id: 'sense:sami', gloss: {en: Sami (a name)}, forms: {apc-Arab/standard: [سامي], apc-Latn/arabizi: [Sami]}}
 - {id: 'sense:shu', gloss: {en: what}, forms: {apc-Arab/standard: [شو], apc-Latn/arabizi: [shu]}}
@@ -47,7 +47,7 @@ sentences:
     apc-Latn/arabizi:
       text: mar7aba!
       tokens: [{surface: mar7aba, sense: marhaba}]
-      reverse: (mar7aba|marhaba)
+      reverse: (mar7aba|marhaba|mar7ba)
   translations:
     en: |-
       Hello!
@@ -95,7 +95,7 @@ sentences:
     apc-Latn/arabizi:
       text: ma3 essalame!
       tokens: [&id003 {surface: ma3, sense: ma3-essalame}, &id004 {surface: essalame, sense: ma3-essalame}]
-      reverse: ma3 (essalame|el salame|salame)
+      reverse: (ma3|ma3a) (essalame|el salame|salame|essaleme|el saleme|saleme)
   translations:
     en: |-
       Goodbye!
@@ -105,17 +105,18 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: يلا، مع السلامة!
-      tokens: [{surface: يلا, sense: yalla}, *id001, *id002]
-      reverse: يلا مع السلامة
+      text: يلّا، مع السلامة!
+      tokens: [{surface: يلّا, sense: yalla}, *id001, *id002]
+      reverse: (يلّا|يلا) مع السلامة
     apc-Latn/arabizi:
       text: yalla, ma3 essalame!
       tokens: [{surface: yalla, sense: yalla}, *id003, *id004]
-      reverse: (yalla|yala) ma3 (essalame|el salame|salame)
+      reverse: (yalla|yala|yallah) (ma3|ma3a) (essalame|el salame|salame|essaleme|el saleme|saleme)
   translations:
     en: |-
       OK, (bye|goodbye)!
-      Right, (bye|goodbye)!
+      (Okay|Right|Alright|All right|Well), (bye|goodbye)!
+      (OK|Okay|Right|Well) then, (bye|goodbye)!
 - id: s.6
   node: apc.how-are-you
   register: colloquial
@@ -127,9 +128,12 @@ sentences:
     apc-Latn/arabizi:
       text: kifak?
       tokens: [{surface: kifak, sense: kifak}]
-      reverse: (kifak|keefak)
+      reverse: (kifak|keefak|kifik|keefik|kifek)
   translations:
-    en: How are you?
+    en: |-
+      How are you?
+      How are you doing?
+      How's it going?
 - id: s.7
   node: apc.how-are-you
   register: colloquial
@@ -141,12 +145,13 @@ sentences:
     apc-Latn/arabizi:
       text: mni7!
       tokens: [{surface: mni7, sense: mni7}]
-      reverse: (mni7|mnih)
+      reverse: (mni7|mnih|mnee7)
   translations:
     en: |-
       Fine!
       Good!
       Well!
+      I('m| am) (fine|good|well)!
 - id: s.8
   node: apc.how-are-you
   register: colloquial
@@ -158,9 +163,12 @@ sentences:
     apc-Latn/arabizi:
       text: mni7, el7amdella.
       tokens: [{surface: mni7, sense: mni7}, {surface: el7amdella, sense: el7amdella}]
-      reverse: (mni7|mnih) (el7amdella|l7amdella|el7amdulillah)
+      reverse: (mni7|mnih|mnee7) (el7amdella|l7amdella|el7amdellah|7amdella|el7amdulillah|al7amdulillah|alhamdulillah|elhamdella)
   translations:
-    en: (Fine|Good|Well), thank (God|goodness).
+    en: |-
+      (Fine|Good|Well), thank (God|goodness).
+      (Fine|Good|Well), praise (God|be to God).
+      I('m| am) (fine|good|well), thank (God|goodness).
 - id: s.9
   node: apc.how-are-you
   register: colloquial
@@ -172,9 +180,11 @@ sentences:
     apc-Latn/arabizi:
       text: ana mni7.
       tokens: [{surface: ana, sense: ana}, {surface: mni7, sense: mni7}]
-      reverse: '[ana] (mni7|mnih)'
+      reverse: '[ana] (mni7|mnih|mnee7)'
   translations:
-    en: I('m| am) (fine|good|well).
+    en: |-
+      I('m| am) (fine|good|well).
+      I('m| am) doing (fine|good|well).
 - id: s.10
   node: apc.how-are-you
   register: colloquial
@@ -182,13 +192,17 @@ sentences:
     apc-Arab/standard:
       text: إنت منيح؟
       tokens: [{surface: إنت, sense: enta}, {surface: منيح, sense: mni7}]
-      reverse: '[إنت] منيح'
+      reverse: |-
+        [إنت] منيح
+        [(إنتي|إنتِ)] منيحة
     apc-Latn/arabizi:
       text: enta mni7?
       tokens: [{surface: enta, sense: enta}, {surface: mni7, sense: mni7}]
-      reverse: '[(enta|inta)] (mni7|mnih)'
+      reverse: |-
+        [(enta|inta)] (mni7|mnih|mnee7)
+        [(enti|inti)] (mni7a|mnee7a)
   translations:
-    en: Are you (fine|good|well|OK)?
+    en: Are you (fine|good|well|OK|okay|all right|alright)?
 - id: s.11
   node: apc.how-are-you
   register: colloquial
@@ -196,16 +210,21 @@ sentences:
     apc-Arab/standard:
       text: وإنت؟
       tokens: [{surface: وإنت, morphs: [{surface: و, kc: 'sense:w'}, {surface: إنت, kc: 'sense:enta'}]}]
-      reverse: (وإنت|و إنت)
+      reverse: |-
+        (وإنت|و إنت)
+        (وإنتي|و إنتي)
     apc-Latn/arabizi:
       text: w enta?
       tokens: [{surface: w, sense: w}, {surface: enta, sense: enta}]
-      reverse: (w|wa) (enta|inta)
+      reverse: |-
+        (w|wa) (enta|inta|enti|inti)
+        (wenta|winta|wenti|winti)
   translations:
     en: |-
       And you?
       What about you?
       How about you?
+      And yourself?
 - id: s.12
   node: apc.names
   register: colloquial
@@ -259,9 +278,11 @@ sentences:
     apc-Latn/arabizi:
       text: esmi Sami.
       tokens: [{surface: esmi, sense: esmi}, {surface: Sami, sense: sami}]
-      reverse: (esmi|ismi) Sami
+      reverse: (esmi|ismi|esme|isme) Sami
   translations:
-    en: My name('s| is) Sami.
+    en: |-
+      My name('s| is) Sami.
+      I('m| am) called Sami.
 - id: s.16
   node: apc.names
   register: colloquial
@@ -273,7 +294,7 @@ sentences:
     apc-Latn/arabizi:
       text: mar7aba Sami!
       tokens: [{surface: mar7aba, sense: marhaba}, {surface: Sami, sense: sami}]
-      reverse: (mar7aba|marhaba) Sami
+      reverse: (mar7aba|marhaba|mar7ba) Sami
   translations:
     en: (Hello|Hi), Sami!
 - id: s.17
@@ -287,9 +308,11 @@ sentences:
     apc-Latn/arabizi:
       text: ahwe?
       tokens: [{surface: ahwe, sense: ahwe}]
-      reverse: (ahwe|2ahwe)
+      reverse: (ahwe|2ahwe|ahwi|2ahwi)
   translations:
-    en: Coffee?
+    en: |-
+      Coffee?
+      (A|Some) coffee?
 - id: s.18
   node: apc.cafe
   register: colloquial
@@ -301,9 +324,11 @@ sentences:
     apc-Latn/arabizi:
       text: shay?
       tokens: [{surface: shay, sense: shay}]
-      reverse: shay
+      reverse: (shay|shai)
   translations:
-    en: Tea?
+    en: |-
+      Tea?
+      (A|Some) tea?
 - id: s.19
   node: apc.cafe
   register: colloquial
@@ -311,15 +336,15 @@ sentences:
     apc-Arab/standard:
       text: بدّي قهوة.
       tokens: [{surface: بدّي, sense: baddi}, {surface: قهوة, sense: ahwe}]
-      reverse: بدّي قهوة
+      reverse: (بدّي|أنا بدّي) قهوة
     apc-Latn/arabizi:
       text: baddi ahwe.
       tokens: [{surface: baddi, sense: baddi}, {surface: ahwe, sense: ahwe}]
-      reverse: (baddi|badde) (ahwe|2ahwe)
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (ahwe|2ahwe|ahwi|2ahwi)
   translations:
     en: |-
-      I want (coffee|some coffee).
-      I'd like (coffee|some coffee).
+      I want (coffee|some coffee|a coffee).
+      I('d| would) like (coffee|some coffee|a coffee).
 - id: s.20
   node: apc.cafe
   register: colloquial
@@ -327,15 +352,16 @@ sentences:
     apc-Arab/standard:
       text: بدّك شاي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: شاي, sense: shay}]
-      reverse: بدّك شاي
+      reverse: (بدّك|إنت بدّك|إنتي بدّك) شاي
     apc-Latn/arabizi:
       text: baddak shay?
       tokens: [{surface: baddak, sense: baddak}, {surface: shay, sense: shay}]
-      reverse: (baddak|badak) shay
+      reverse: ((baddak|badak)|(enta|inta) (baddak|badak)|(enti|inti) baddik) (shay|shai)
   translations:
     en: |-
-      Do you want (tea|some tea)?
-      Would you like (tea|some tea)?
+      Do you want (tea|some tea|a tea)?
+      Would you like (tea|some tea|a tea)?
+      Want (tea|some tea|a tea)?
 - id: s.21
   node: apc.cafe
   register: colloquial
@@ -357,15 +383,15 @@ sentences:
     apc-Arab/standard:
       text: إيه، بدّي شاي.
       tokens: [{surface: إيه, sense: eh}, {surface: بدّي, sense: baddi}, {surface: شاي, sense: shay}]
-      reverse: إيه بدّي شاي
+      reverse: إيه (بدّي|أنا بدّي) شاي
     apc-Latn/arabizi:
       text: eh, baddi shay.
       tokens: [{surface: eh, sense: eh}, {surface: baddi, sense: baddi}, {surface: shay, sense: shay}]
-      reverse: (eh|ee) (baddi|badde) shay
+      reverse: (eh|ee|e) ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai)
   translations:
     en: |-
-      Yes, I want (tea|some tea).
-      Yes, I'd like (tea|some tea).
+      Yes, I want (tea|some tea|a tea).
+      Yes, I('d| would) like (tea|some tea|a tea).
 - id: s.23
   node: apc.cafe
   register: colloquial
@@ -373,15 +399,20 @@ sentences:
     apc-Arab/standard:
       text: شو بدّك؟
       tokens: [{surface: شو, sense: shu}, {surface: بدّك, sense: baddak}]
-      reverse: شو بدّك
+      reverse: |-
+        شو بدّك
+        (إنت|إنتي) شو بدّك
     apc-Latn/arabizi:
       text: shu baddak?
       tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}]
-      reverse: (shu|sho) (baddak|badak)
+      reverse: |-
+        (shu|sho) (baddak|badak|baddik)
+        (enta|inta|enti|inti) (shu|sho) (baddak|badak|baddik)
   translations:
     en: |-
       What do you want?
       What would you like?
+      What will you have?
 - id: s.24
   node: apc.cafe
   register: colloquial
@@ -389,15 +420,15 @@ sentences:
     apc-Arab/standard:
       text: بدّي شاي، شكرا.
       tokens: [{surface: بدّي, sense: baddi}, {surface: شاي, sense: shay}, {surface: شكرا, sense: shukran}]
-      reverse: بدّي شاي (شكرا|ميرسي)
+      reverse: (بدّي|أنا بدّي) شاي (شكرا|ميرسي)
     apc-Latn/arabizi:
       text: baddi shay, shukran.
       tokens: [{surface: baddi, sense: baddi}, {surface: shay, sense: shay}, {surface: shukran, sense: shukran}]
-      reverse: (baddi|badde) shay (shukran|merci)
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (shay|shai) (shukran|shokran|merci)
   translations:
     en: |-
-      I want (tea|some tea), (thanks|thank you).
-      I'd like (tea|some tea), (thanks|thank you).
+      I want (tea|some tea|a tea), (thanks|thank you).
+      I('d| would) like (tea|some tea|a tea), (thanks|thank you).
 stories:
 # Vocalized throughout (harakat on the Arabic-script lines); the glossary keys are unvocalized, so
 # tap-for-gloss finds them through the folded pass (Phase 6 acceptance).
@@ -433,7 +464,7 @@ stories:
       speaker: sami
       ask: complete
       gap: 'sense:mni7'
-      distractors: ['sense:shay']
+      distractors: ['sense:shukran']
       forms:
         apc-Arab/standard:
           text: مْنيح، الحَمْدِلله!
