@@ -338,7 +338,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، نزدیک است. ده دقیقه پیاده است.
-      tokens: [{surface: نه, sense: na}, {surface: نزدیک, sense: nazdik}, {surface: است, sense: budan}, {surface: ده, sense: dah}, {surface: دقیقه, sense: daghighe}, {surface: پیاده, sense: piyade}, {surface: است, sense: budan}]
+      tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: نزدیک, sense: nazdik}, {surface: است, sense: budan}, {surface: ده, sense: dah}, {surface: دقیقه, sense: daghighe}, {surface: پیاده, sense: piyade}, {surface: است, sense: budan}]
       reverse: نه نزدیک است (ده دقیقه پیاده است|پیاده ده دقیقه است)
   translations:
     en: |-
@@ -400,7 +400,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نه، ده دقیقه پیاده.
-          tokens: [{surface: نه, sense: na}, {surface: ده, sense: dah}, {surface: دقیقه, sense: daghighe}, {surface: پیاده, sense: piyade}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ده, sense: dah}, {surface: دقیقه, sense: daghighe}, {surface: پیاده, sense: piyade}]
       translations: {en: 'No, ten minutes on foot.'}
   - line:
       speaker: ali
@@ -414,7 +414,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نه، من اهلِ اصفهان هستم. اصفهان خیلی قشنگ است!
-          tokens: [{surface: نه, sense: na}, {surface: من, sense: man}, {surface: اهلِ, sense: ahl}, {surface: اصفهان, sense: esfahan}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اصفهان, sense: esfahan}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: من, sense: man}, {surface: اهلِ, sense: ahl}, {surface: اصفهان, sense: esfahan}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اصفهان, sense: esfahan}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
       translations: {en: 'No, I''m from Isfahan. Isfahan is very beautiful!'}
   - line:
       speaker: ali

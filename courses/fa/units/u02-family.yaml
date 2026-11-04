@@ -494,7 +494,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نه، او پزشک نیست. رضا دانشجو است.
-          tokens: [{surface: نه, sense: na}, {surface: او, sense: u}, {surface: پزشک, sense: pezeshk}, {surface: نیست, sense: nist}, {surface: رضا, sense: reza}, {surface: دانشجو, sense: daneshju}, {surface: است, sense: budan}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: او, sense: u}, {surface: پزشک, sense: pezeshk}, {surface: نیست, sense: nist}, {surface: رضا, sense: reza}, {surface: دانشجو, sense: daneshju}, {surface: است, sense: budan}]
       translations: {en: 'No, he isn''t a doctor. Reza is a student.'}
   - choose:
       prompt: {en: 'Who is Reza?'}

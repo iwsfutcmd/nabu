@@ -55,6 +55,47 @@ YUE: dict[str, Any] = {
     ],
 }
 
+FA_WORD = "\u06a9\u062a\u0627\u0628"  # کتاب
+FA_VOCALIZED = "\u06a9\u0650\u062a\u0627\u0628"  # کِتاب
+FA: dict[str, Any] = {
+    "id": "clean-fa",
+    "target": "fa-Arab-IR",
+    "orthographies": ["fa-Arab/standard"],
+    "support": ["en-Latn/standard"],
+    "license": "CC0-1.0",
+    "provenance": {"author": "human:fixture", "status": "draft"},
+    "vocalization": [
+        {
+            "orthography": "fa-Arab/standard",
+            "license": "CC0-1.0",
+            "provenance": {"author": "human:fixture", "status": "draft"},
+            "words": {FA_WORD: FA_VOCALIZED},
+        }
+    ],
+    "units": [
+        {
+            "id": "basics",
+            "kcs": [{"id": f"sense:{FA_WORD}", "gloss": {"en": "book"}}],
+            "nodes": [{"id": "basics.1", "kind": "lesson", "introduces": [f"sense:{FA_WORD}"]}],
+            "sentences": [
+                {
+                    "id": "s.1",
+                    "node": "basics.1",
+                    "forms": {
+                        "fa-Arab/standard": {
+                            "text": FA_WORD,
+                            "tokens": [{"surface": FA_WORD, "sense": FA_WORD}],
+                            "reverse": FA_WORD,
+                        }
+                    },
+                    "translations": {"en": "book"},
+                }
+            ],
+        }
+    ],
+}
+"""A Persian course whose one word takes its vowel marks from the course's vocalization."""
+
 Course = dict[str, Any]
 
 
@@ -455,6 +496,25 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "enrich.transliteration-mismatch": (
         "ICU's uz_Latn-uz_Cyrl gives Ўзбэк; the pinned form is Ўзбек.",
         m(_translit),
+    ),
+    "vocalization.mismatch": (
+        "The vocalization gives کِتابی (another word) for کتاب.",
+        m(
+            set_(
+                ["vocalization", 0, "words"],
+                {FA_WORD: FA_VOCALIZED + "\u06cc"},
+            ),
+            FA,
+        ),
+    ),
+    "vocalization.ambiguous": (
+        "کتاب has two vocalizations, and the token gives neither.",
+        m(
+            lambda c: c["vocalization"][0].update(
+                words={}, ambiguous={FA_WORD: [FA_VOCALIZED, "\u06a9\u064f\u062a\u0627\u0628"]}
+            ),
+            FA,
+        ),
     ),
     "drills.rbnf-unavailable": (
         "ICU has no Uzbek spellout.",

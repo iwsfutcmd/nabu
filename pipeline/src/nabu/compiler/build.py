@@ -10,10 +10,12 @@ from __future__ import annotations
 import hashlib
 import json
 import unicodedata
+from collections.abc import Callable
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, cast
 
+import regex
 import yaml
 from pydantic import BaseModel, ValidationError
 
@@ -33,6 +35,7 @@ from nabu.schema.models import (
     SentenceForm,
     SentenceSource,
     UnitSource,
+    VocalizationSource,
 )
 
 I_PLUS_ONE_KINDS = ("sense", "form", "construction")
@@ -74,6 +77,18 @@ class Compiled:
     # audio: bundle path → (bytes, SPDX license, credit); item → {normal, slow} clips (audio.json)
     audio_files: dict[str, tuple[bytes, str, str]] = field(default_factory=lambda: {})
     audio_items: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
+    # (item, orthography) → token surfaces as written, where vowel marks were added (ADR 0053)
+    written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
+
+
+@dataclass
+class Vocalized:
+    """One orthography's vowel marks (ADR 0053): each word's marked form; the ambiguous ones."""
+
+    words: dict[str, str]
+    ambiguous: set[str]
+    marks: regex.Pattern[str]
+    loc: Loc
 
 
 @dataclass
@@ -83,6 +98,8 @@ class Ctx:
     profiles: dict[str, OrthographyProfile]
     exemplars: dict[str, dict[str, list[str]]]
     analyzers: dict[str, Analyzer]
+    vocalization: dict[str, Vocalized] = field(default_factory=lambda: {})
+    written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
 
 
 # ------------------------------------------------------------ helpers
@@ -259,7 +276,9 @@ def _hygiene(
 
 def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dict[str, Any] | None:
     form = unit.source.sentences[si].forms[orth]
-    return compile_form(ctx, course, unit.doc, ("sentences", si, "forms", orth), form, orth)
+    generated = unit.source.id.startswith("drill-")
+    at = ("sentences", si, "forms", orth)
+    return compile_form(ctx, course, unit.doc, at, form, orth, warn=not generated)
 
 
 def compile_form(
@@ -269,8 +288,10 @@ def compile_form(
     at: tuple[str | int, ...],
     form: SentenceForm,
     orth: str,
+    warn: bool = True,
 ) -> dict[str, Any] | None:
-    """A sentence or story line form (text, tokens) → TaggedText, with stages 2-3 checks."""
+    """A sentence or story line form (text, tokens) → TaggedText, with stages 2-3 checks.
+    `warn`: false for generated sentences (drills), which have no tokens to vocalize by hand."""
     profile = ctx.profiles[orth]
     loc = doc.loc(*at)
     text = form.text
@@ -295,6 +316,8 @@ def compile_form(
                 d["tileGroup"] = t.tile
             if t.form is not None:
                 d["_form"] = t.form
+            if t.vocalized is not None:
+                d["_vocalized"] = t.vocalized
             authored.append(d)
         toks, error = tx.align(text, authored)
         if error is not None:
@@ -347,6 +370,7 @@ def compile_form(
                 t["ruby"] = {scheme: segments}
 
     _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
+    mark_vowels(ctx, orth, toks, loc, warn)
     tagged = {"lang": _lang_for(profile, course.target), "orthography": orth, "tokens": toks}
     public = {
         **tagged,
@@ -364,6 +388,165 @@ def compile_form(
             }.get(issue, "parse.token-mismatch")
             diags.report(lint, f"TaggedText invariant: {issue}", loc)
     return tagged
+
+
+def _load_vocalization(
+    ctx: Ctx, course: CourseSource, course_file: Path, display: Callable[[Path], str], doc: Doc
+) -> None:
+    """The course's vowel marks (ADR 0053), from files next to course.yaml or given inline."""
+    for i, item in enumerate(course.vocalization or []):
+        if isinstance(item, VocalizationSource):
+            source, vdoc = item, doc.sub("vocalization", i)
+        else:
+            path = course_file.parent / item
+            if not path.is_file():
+                ctx.diags.report(
+                    "parse.schema", f"no vocalization file {item}", doc.loc("vocalization", i)
+                )
+                continue
+            vdoc = load_doc(path, display(path))
+            loaded = _validate(VocalizationSource, vdoc, ctx.diags)
+            if loaded is None:
+                continue
+            source = loaded
+        orth = str(source.orthography)
+        profile = ctx.profiles.get(orth)
+        marks_set = (
+            profile.match.marks.set
+            if profile is not None and profile.match and profile.match.marks
+            else None
+        )
+        if marks_set is None:
+            ctx.diags.report(
+                "parse.schema", f"{orth} has no marks to vocalize with", vdoc.loc("orthography")
+            )
+            continue
+        marks = regex.compile(marks_set)
+        words: dict[str, str] = {}
+        for surface, marked in source.words.items():
+            key, value = unicodedata.normalize("NFC", surface), unicodedata.normalize("NFC", marked)
+            if marks.sub("", value) != marks.sub("", key):
+                ctx.diags.report(
+                    "vocalization.mismatch",
+                    f"{value!r} is not {key!r} with vowel marks",
+                    vdoc.loc("words", surface),
+                )
+                continue
+            words[key] = value
+        ambiguous = {unicodedata.normalize("NFC", a) for a in (source.ambiguous or {})}
+        ctx.vocalization[orth] = Vocalized(words, ambiguous, marks, vdoc.loc("ambiguous"))
+
+
+def _split_marked(marked: str, parts: list[str], marks: regex.Pattern[str]) -> list[str] | None:
+    """A marked word cut where its unmarked parts (morphs) are cut: each piece keeps its letters'
+    marks. None when the letters do not line up."""
+    clusters: list[str] = regex.findall(r"\X", marked)
+    out: list[str] = []
+    at = 0
+    for part in parts:
+        want = len(tx.graphemes(part))
+        piece = "".join(clusters[at : at + want])
+        if marks.sub("", piece) != part:
+            return None
+        out.append(piece)
+        at += want
+    return out if at == len(clusters) else None
+
+
+def _fill_marks(surface: str, base: str, marks: regex.Pattern[str]) -> str | None:
+    """A partly marked word with the marks it lacks, letter by letter: a letter whose marks the
+    vocalization's include (a shadda alone, say) takes the vocalization's; a letter marked
+    otherwise (an ezafe's kasra) keeps its own. None when the letters do not line up."""
+    have: list[str] = regex.findall(r"\X", surface)
+    add: list[str] = regex.findall(r"\X", base)
+    if len(have) != len(add):
+        return None
+    out: list[str] = []
+    for a, b in zip(have, add, strict=True):
+        if marks.sub("", a) != marks.sub("", b):
+            return None
+        own, given = marks.findall(a), marks.findall(b)
+        out.append(b if all(own.count(m) <= given.count(m) for m in own) else a)
+    return "".join(out)
+
+
+def mark_vowels(
+    ctx: Ctx, orth: str, toks: list[dict[str, Any]], loc: Loc, warn: bool = True
+) -> None:
+    """Gives each word its vowel marks (ADR 0053), from the token's own `vocalized`, else the
+    course's vocalization of its surface. A word written with some marks keeps them and takes
+    the rest from the vocalization of its letters. A word with several vocalizations and no
+    `vocalized` of its own stays as written, with a warning (`warn`). Morphs are marked to
+    match."""
+    lex = ctx.vocalization.get(orth)
+    profile = ctx.profiles.get(orth)
+    for t in toks:
+        own = t.pop("_vocalized", None)
+        if t.get("kind") != "word":
+            continue
+        surface = str(t["surface"])
+        if own is not None:
+            marks_set = (
+                profile.match.marks.set
+                if profile is not None and profile.match and profile.match.marks
+                else None
+            )
+            marked = unicodedata.normalize("NFC", own)
+            if marks_set is None or regex.sub(marks_set, "", marked) != regex.sub(
+                marks_set, "", surface
+            ):
+                ctx.diags.report(
+                    "vocalization.mismatch", f"{marked!r} is not {surface!r} with vowel marks", loc
+                )
+                continue
+            marks = regex.compile(marks_set)
+        elif lex is None:
+            continue
+        else:
+            marks = lex.marks
+            letters = marks.sub("", surface)
+            exact = lex.words.get(surface)
+            base = lex.words.get(letters)
+            if exact is not None:
+                marked = exact
+            elif base is not None:
+                filled = _fill_marks(surface, base, marks) if letters != surface else base
+                if filled is None:
+                    continue
+                marked = filled
+            else:
+                if warn and letters in lex.ambiguous and letters == surface:
+                    ctx.diags.report(
+                        "vocalization.ambiguous",
+                        f"{surface!r} has several vocalizations: give this token its own "
+                        "`vocalized`",
+                        loc,
+                    )
+                continue
+        if marked == surface:
+            continue
+        morphs = cast(list[dict[str, Any]], t.get("morphs") or [])
+        if morphs:
+            pieces = _split_marked(marked, [str(m["surface"]) for m in morphs], marks)
+            if pieces is None:
+                continue
+            for m, piece in zip(morphs, pieces, strict=True):
+                m["surface"] = piece
+        t["_written"] = surface
+        t["surface"] = marked
+
+
+def _marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[str, Any]:
+    """A word form (TaggedText) with its vowel marks. KC forms are strings with no token of
+    their own to choose between vocalizations, so an ambiguous one stays as written. The KC's
+    first form, which voices read, keeps its written surfaces in `ctx.written`."""
+    tokens: list[dict[str, Any]] = text["tokens"]
+    mark_vowels(ctx, orth, tokens, Loc("", 0), warn=False)
+    if kc is not None and any("_written" in t for t in tokens):
+        ctx.written[(kc, orth)] = [str(t.get("_written", t["surface"])) for t in tokens]
+    for t in tokens:
+        t.pop("_written", None)
+    return text
 
 
 def support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
@@ -430,6 +613,7 @@ def compile_course(
     if diags.errors:
         return diags, None
 
+    _load_vocalization(ctx, course, course_file, display, doc)
     _drills(ctx, course, doc, units)
     _duplicates(ctx, units)
     for unit in units:
@@ -479,6 +663,7 @@ def compile_course(
         | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         for ui, unit in enumerate(units)
     ]
+    compiled.written = ctx.written
     _kc_readings(ctx, course, compiled.units)
     check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
@@ -1135,6 +1320,10 @@ def _bundle_unit(
     for si, s in enumerate(src.sentences):
         out_forms: dict[str, Any] = {}
         for orth, tagged in forms[(ui, si)].items():
+            if any("_written" in t for t in tagged["tokens"]):
+                ctx.written[(s.id, orth)] = [
+                    str(t.get("_written", t["surface"])) for t in tagged["tokens"]
+                ]
             entry: dict[str, Any] = {
                 "text": {
                     **tagged,
@@ -1199,7 +1388,12 @@ def _bundle_unit(
             k["gloss"] = {lang: support_tt(lang, g) for lang, g in kc.gloss.items()}
         if kc.forms:
             k["forms"] = {
-                orth: [support_text(ctx, orth, f, target) for f in fs]
+                orth: [
+                    _marked(
+                        ctx, orth, support_text(ctx, orth, f, target), kc.id if i == 0 else None
+                    )
+                    for i, f in enumerate(fs)
+                ]
                 for orth, fs in kc.forms.items()
             }
         if kc.id in images:

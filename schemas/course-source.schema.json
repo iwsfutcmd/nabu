@@ -74,6 +74,21 @@
     },
     "audio": {
       "$ref": "#/$defs/CourseAudio"
+    },
+    "vocalization": {
+      "description": "Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.",
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+\\.yaml$"
+          },
+          {
+            "$ref": "#/$defs/VocalizationSource"
+          }
+        ]
+      }
     }
   },
   "$defs": {
@@ -454,6 +469,11 @@
           "description": "Tile group. Default: each word token is its own tile.",
           "type": "integer",
           "minimum": 0
+        },
+        "vocalized": {
+          "description": "This token's vowel-marked form (ADR 0053), where its surface is a homograph the course's vocalization file lists as ambiguous. Its marks removed, it must equal the surface.",
+          "type": "string",
+          "minLength": 1
         }
       }
     },
@@ -851,6 +871,57 @@
         },
         "license": {
           "$ref": "#/$defs/Spdx"
+        }
+      }
+    },
+    "VocalizationSource": {
+      "title": "VocalizationSource",
+      "description": "A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).",
+      "type": "object",
+      "required": [
+        "orthography",
+        "license",
+        "provenance",
+        "words"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "license": {
+          "$ref": "#/$defs/Spdx"
+        },
+        "provenance": {
+          "$ref": "#/$defs/Provenance"
+        },
+        "words": {
+          "description": "Surface → vocalized form (its marks removed, it is the surface).",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "ambiguous": {
+          "description": "Surfaces with more than one vocalization in the course: each token chooses.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "uncertain": {
+          "description": "Surfaces the drafter was unsure of: a reviewer checks these first.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         }
       }
     }

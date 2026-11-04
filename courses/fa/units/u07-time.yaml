@@ -156,7 +156,7 @@ sentences:
   forms:
     fa-Arab/standard:
       text: نه، امروز وقت ندارم، اما فردا وقت دارم.
-      tokens: [{surface: نه, sense: na}, {surface: امروز, sense: emruz}, {surface: وقت, sense: vaght}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اما, sense: amma}, {surface: فردا, sense: farda}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
+      tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: امروز, sense: emruz}, {surface: وقت, sense: vaght}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اما, sense: amma}, {surface: فردا, sense: farda}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: نه [من] امروز وقت ندارم (اما|ولی) فردا وقت دارم
   translations:
     en: |-
@@ -423,7 +423,7 @@ stories:
       forms:
         fa-Arab/standard:
           text: نه، ساعتِ پنج خوب است.
-          tokens: [{surface: نه, sense: na}, {surface: ساعتِ, sense: saat}, {surface: پنج, sense: panj}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
+          tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ساعتِ, sense: saat}, {surface: پنج, sense: panj}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
       translations: {en: 'No, five o''clock is good.'}
   - line:
       speaker: ali

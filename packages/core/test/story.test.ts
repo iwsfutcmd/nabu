@@ -34,6 +34,7 @@ const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["apc", "apc-Latn/arabizi"],
 ];
 
+const HARAKAT_ALL = /[\u064B-\u0652\u0670]/gu;
 const HARAKAT = /[ً-ْٰ]/u;
 
 const scriptOf = (course: CourseView, seed = 3): StoryScript => {
@@ -225,11 +226,12 @@ describe("the story player", () => {
 });
 
 describe("tap-for-gloss on story lines", () => {
-  it("a vocalized apc-Arab story glosses against unvocalized glossary keys (Phase 6 acceptance)", () => {
+  it("a vocalized apc-Arab story glosses its words whatever marks they and the glossary carry (Phase 6 acceptance)", () => {
     const course = loadCourse("apc", "apc-Arab/standard");
     const glossary = courseGlossary(course);
     const script = scriptOf(course);
     let vocalized = 0;
+    let folded = 0;
     for (const line of script.lines) {
       const glosses = glossLine(course, glossary, line.text);
       for (const [i, token] of line.text.tokens.entries()) {
@@ -239,15 +241,16 @@ describe("tap-for-gloss on story lines", () => {
         const [hit, ...more] = glossAt(course, glossary, glosses, line.text, i);
         expect(more).toEqual([]);
         expect(hit?.kc).toBe(`sense:${token.sense ?? ""}`);
-        // The entry it found is the glossary's own, unvocalized form; the meaning is the KC's.
         expect(hit?.form).toBeDefined();
-        expect(HARAKAT.test(surfaceOf(hit?.form as TaggedText).replace("ّ", ""))).toBe(false);
         expect(hit?.meaning).toBeDefined();
         const match = glosses.find((g) => g.tokenStart <= i && i < g.tokenEnd);
-        if (marked) expect(match?.pass).toBe("folded");
+        if (marked && match?.pass === "folded") folded += 1;
       }
     }
     expect(vocalized).toBeGreaterThanOrEqual(8);
+    // The glossary's forms carry the course vocalization's marks (ADR 0053); a word the story marks
+    // otherwise still finds its entry, by the folded pass.
+    expect(folded).toBeGreaterThan(0);
   });
 
   it("a token two entries share is glossed in parts (我哋)", () => {
@@ -263,9 +266,11 @@ describe("tap-for-gloss on story lines", () => {
   it("falls back to the token's own sense when no entry reaches it", () => {
     const course = loadCourse("fa");
     const glossary = courseGlossary(course);
-    const line = scriptOf(course).lines.find((l) => surfaceOf(l.text).includes("کتابِ"));
+    // kitab-e: ketab with the ezafe kasra the story writes, and the vocalization's marks.
+    const ezafe = (t: { readonly surface: string }): boolean => t.surface.replace(HARAKAT_ALL, "") === "\u06a9\u062a\u0627\u0628" && t.surface.endsWith("\u0650");
+    const line = scriptOf(course).lines.find((l) => l.text.tokens.some(ezafe));
     if (line === undefined) throw new Error("no ezafe line");
-    const at = line.text.tokens.findIndex((t) => t.surface === "کتابِ");
+    const at = line.text.tokens.findIndex(ezafe);
     const [hit] = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, at);
     expect(hit?.kc).toBe("sense:ketab");
   });

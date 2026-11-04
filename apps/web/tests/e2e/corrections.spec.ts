@@ -78,6 +78,9 @@ test.describe("my answer should be accepted, in a story", () => {
   });
 });
 
+/** s.6 as the app shows it: سلام مریم! with the vowel marks the course's vocalization adds (ADR 0053). */
+const SHOWN = "\u0633\u064e\u0644\u0627\u0645 \u0645\u064e\u0631\u06cc\u064e\u0645!";
+
 test.describe("corrections", () => {
   test.beforeEach(({ page: _ }, info) => {
     test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
@@ -102,7 +105,7 @@ test.describe("corrections", () => {
     await item.locator("[data-action=mark-incorrect]").click();
     await expect(dialog(page)).toBeVisible();
     const text = textField(page, "fa-Arab/standard");
-    await expect(text).toHaveValue("سلام مریم!");
+    await expect(text).toHaveValue(SHOWN);
     await expect(text).toHaveAttribute("lang", "fa-Arab-IR");
     await expect(text).toHaveAttribute("dir", "rtl");
     const translation = dialog(page).locator("[data-field=correction-translation]");
@@ -130,7 +133,7 @@ test.describe("corrections", () => {
     expect(event).toMatchObject({
       item: "s.6",
       orthography: "fa-Arab/standard",
-      shown: { forms: { "fa-Arab/standard": { text: "سلام مریم!" } }, translation: "Hello, Maryam!" },
+      shown: { forms: { "fa-Arab/standard": { text: SHOWN } }, translation: "Hello, Maryam!" },
       correction: { forms: { "fa-Arab/standard": { text: `سلام${ZWNJ}ها، مریم!` } }, translation: "Hello, Mariam!" },
       note: "Café style greeting",
     });

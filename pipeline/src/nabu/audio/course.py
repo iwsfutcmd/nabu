@@ -23,7 +23,7 @@ import hashlib
 import json
 import subprocess
 import tempfile
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -107,8 +107,13 @@ def _scheme(voice: AudioVoice) -> str | None:
     return voice.reading if voice.reading != "text" else voice.pronounce
 
 
+Written = Mapping[tuple[str, str], list[str]]
+"""(item, orthography) → each token's surface as the source wrote it, where the compiler gave
+words vowel marks (ADR 0053): voices read the text as written."""
+
+
 def _input_of(
-    tokens: list[dict[str, Any]], voice: AudioVoice
+    tokens: list[dict[str, Any]], voice: AudioVoice, written: list[str] | None = None
 ) -> tuple[str, tuple[Span, ...]] | None:
     """The string the voice reads, and where each word token sits in it (None: a word token
     lacks the pinned reading the voice needs)."""
@@ -131,7 +136,7 @@ def _input_of(
         return (" ".join(parts), tuple(spans)) if parts else None
     # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
-        piece = str(token["surface"])
+        piece = str(token["surface"]) if written is None else written[i]
         if token.get("kind") in WORD_KINDS:
             if voice.pronounce is not None:
                 reading = token.get("readings", {}).get(voice.pronounce)
@@ -165,8 +170,11 @@ def _morph_readings(token: dict[str, Any], reading: str) -> list[tuple[str, str]
     return out
 
 
-def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], list[str]]:
-    """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading)."""
+def plan(
+    units: list[dict[str, Any]], voice: AudioVoice, written: Written | None = None
+) -> tuple[list[Item], list[str]]:
+    """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
+    `written`: the source's own surfaces where the compiler added vowel marks."""
     orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
@@ -186,11 +194,15 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
                     readings.setdefault(t["surface"], t["readings"][scheme])
                     for surface, reading in _morph_readings(t, t["readings"][scheme]):
                         in_words.setdefault(surface, reading)
-            planned = _input_of(tokens, voice)
+            as_written = (written or {}).get((s["id"], orth))
+            planned = _input_of(tokens, voice, as_written)
             if planned is None:
                 skipped.append(s["id"])
                 continue
-            text = "".join(t["surface"] for t in tokens if t.get("kind") in WORD_KINDS)
+            surfaces = as_written or [str(t["surface"]) for t in tokens]
+            text = "".join(
+                w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
+            )
             items.append(Item(s["id"], planned[0], planned[1], text))
     for unit in units:
         for kc in unit.get("kcs", []):
@@ -198,7 +210,14 @@ def plan(units: list[dict[str, Any]], voice: AudioVoice) -> tuple[list[Item], li
             if not forms:
                 continue
             word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
-            surface = "".join(t["surface"] for t in word) if word else str(forms[0])
+            kc_written = (written or {}).get((kc["id"], orth))
+            surface = (
+                "".join(kc_written)
+                if kc_written is not None
+                else "".join(t["surface"] for t in word)
+                if word
+                else str(forms[0])
+            )
             reading = readings.get(surface, in_words.get(surface))
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
@@ -321,12 +340,13 @@ def synthesize_course(
     units: list[dict[str, Any]],
     voice: AudioVoice,
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
+    written: Written | None = None,
 ) -> Report:
     """(Re)synthesizes the course's clips; unchanged inputs keep their files."""
     tts = provider(voice)
     version = tts.version()
     settings = tts.settings()
-    items, skipped = plan(units, voice)
+    items, skipped = plan(units, voice, written)
     adir = audio_dir(course_dir)
     index = read_index(adir)
     clips_dir = adir / "clips"
