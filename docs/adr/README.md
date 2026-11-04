@@ -44,6 +44,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0047](0047-offline.md) | Per-unit media downloads in the Cache API (sha256-checked, manifest last), the course text always kept, `restrictMedia` so offline lessons skip missing clips, a TypeScript service worker (shell, course files, ranges, push), Background Sync of the outbox, receipt times so device and server game states match | Proposed |
 | [0048](0048-native-apps.md) | A Capacitor 8 shell around the web build with every course inside; reminders through FCM (HTTP v1, service account) and APNs (token auth, HTTP/2) from the API with credentials from the environment; resume sync; Android debug build in CI | Proposed |
 | [0049](0049-starting-over.md) | Starting a course over is a `progress_reset` event: the fold forgets the course's cards, lessons, placement and mistakes before it; XP and the game state stay; nothing is deleted | Proposed |
-| [0050](0050-ten-unit-courses.md) | Ten-unit fixture courses; the planner presents every new KC in its lesson (calibration weight 34); distractors come from the item's unit or earlier; a KC met only inside longer words reads its share of their reading | Proposed |
+| [0050](0050-ten-unit-courses.md) | Ten-unit fixture courses; the planner presents every new KC in its lesson (calibration weight 70); distractors come from the item's unit or earlier; a KC met only inside longer words reads its share of their reading | Proposed |
 
 Template: [0000-template.md](0000-template.md).

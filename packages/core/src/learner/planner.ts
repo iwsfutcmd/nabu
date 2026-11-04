@@ -62,11 +62,11 @@ interface Candidate {
 
 /**
  * How strongly the session's mean p̂ is pulled toward the target (tuned on test/simulation.test.ts).
- * 34 since the courses grew to ten units (a month is then mostly new lessons): with every new KC
- * presented first, it keeps each simulated learner within ±5pp of 85% without dropping a new word.
- * The weakest uz-Latn learner sets it (80% at 24, 81% from 34 on; the content limits it).
+ * 70 since every unit of fa and uz has clips (ADR 0050): listening exercises are hard for a weak
+ * learner, and with every new KC presented first the weakest uz-Latn learner sets the weight
+ * (78.6% at 34, 80.5% at 40–44, 81.7% at 50, 82.7% at 70, 80.4% at 80; the content limits it).
  */
-const CALIBRATION_WEIGHT = 34;
+const CALIBRATION_WEIGHT = 70;
 
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
