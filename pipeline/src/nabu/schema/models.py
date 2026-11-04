@@ -1490,6 +1490,30 @@ class WhitespaceStep(BaseModel):
     whitespace: Literal["collapse", "remove", "keep"]
 
 
+type Prefix = Annotated[str, Field(min_length=1)]
+
+
+class Detach(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    prefixes: Annotated[list[Prefix], Field(min_length=1)]
+    minRest: Annotated[int, Field(ge=1)] = 2
+
+
+class DetachStep(BaseModel):
+    """
+    Splits a prefix written onto the next word off from it, so the attached and the separate spellings compare alike (Arabizi elshay = el shay). A word that starts with one of the prefixes, ignoring case and by whole graphemes, and has at least minRest more graphemes, gets a space after the prefix.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    detach: Detach
+
+
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2520,7 +2544,8 @@ type NormalizeStep = Annotated[
     | RemoveStep
     | DigitsStep
     | PunctuationStep
-    | WhitespaceStep,
+    | WhitespaceStep
+    | DetachStep,
     Field(title="NormalizeStep"),
 ]
 

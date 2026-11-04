@@ -1250,6 +1250,47 @@
         "notes": []
       },
       "note": "And the other way round: an accept set written with U+06C0 takes ه + hamza above."
+    },
+    {
+      "id": "grade/apc-latn/attached-article",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bishrab el shay",
+        "answer": "bishrab elshay"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "elshay for el shay: the same answer."
+    },
+    {
+      "id": "grade/apc-latn/attached-article-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bishrab elshay",
+        "answer": "Bishrab El-shay"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Either way round, with a hyphen and capitals."
+    },
+    {
+      "id": "grade/apc-latn/attached-article-other-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "bishrab el shay",
+        "answer": "bishrab elma"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Splitting the article never makes a different noun right."
     }
 ]
 }

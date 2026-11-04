@@ -686,6 +686,66 @@
       },
       "expected": "خانه\u0654 من",
       "note": "\u06C0 (U+06C0), as many Persian keyboards type the ezafe after a silent -e, becomes ه + hamza above, as the course writes it."
+    },
+    {
+      "id": "normalize/apc-latn/attached-article",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "bishrab elshay"
+      },
+      "expected": "bishrab el shay",
+      "note": "The article written onto its noun is split off (REVIEW)."
+    },
+    {
+      "id": "normalize/apc-latn/attached-article-hyphen",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "el-shay"
+      },
+      "expected": "el shay",
+      "note": "A hyphen is punctuation; what it leaves is split like elshay."
+    },
+    {
+      "id": "normalize/apc-latn/attached-article-case",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "Elbet"
+      },
+      "expected": "El bet",
+      "note": "The prefix matches ignoring case; the letters keep theirs."
+    },
+    {
+      "id": "normalize/apc-latn/attached-article-il",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "ilshay"
+      },
+      "expected": "il shay",
+      "note": "il, the other spelling of the article."
+    },
+    {
+      "id": "normalize/apc-latn/article-alone",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "el shay"
+      },
+      "expected": "el shay",
+      "note": "Already separate: unchanged."
+    },
+    {
+      "id": "normalize/apc-latn/short-word",
+      "op": "normalize",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "text": "ela"
+      },
+      "expected": "ela",
+      "note": "Fewer than two graphemes after the prefix: not split."
     }
 ]
 }
