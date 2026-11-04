@@ -39,6 +39,8 @@ export interface ReportInput {
   readonly note?: string | undefined;
   readonly subject: string;
   readonly source: "report" | "judge";
+  /** accept (the default; the judge only ever accepts) or reject: "this should have been wrong" (ADR 0052). */
+  readonly claim?: "accept" | "reject" | undefined;
   readonly judge?: JudgeVerdict | undefined;
 }
 
@@ -58,13 +60,14 @@ export const fileReport = async (db: Db, courses: Courses, r: ReportInput, now: 
       item: r.item,
       answer: r.answer.normalize("NFC").trim(),
       normalized,
+      claim: r.claim ?? "accept",
       notes,
       judge: r.judge ?? null,
       createdAt: at,
       updatedAt: at,
     })
     .onConflictDoUpdate({
-      target: [answerReports.course, answerReports.orthography, answerReports.template, answerReports.item, answerReports.normalized],
+      target: [answerReports.course, answerReports.orthography, answerReports.template, answerReports.item, answerReports.normalized, answerReports.claim],
       set: {
         updatedAt: at,
         judge: sql`coalesce(excluded.judge, ${answerReports.judge})`,
@@ -97,6 +100,7 @@ export const listReports = async (db: Db, filter: { readonly status?: ReportStat
     template: r.template,
     item: r.item,
     answer: r.answer,
+    claim: r.claim as AnswerReport["claim"],
     notes: r.notes as string[],
     ...(r.judge === null ? {} : { judge: r.judge as JudgeVerdict }),
     status: r.status as ReportStatus,

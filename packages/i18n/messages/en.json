@@ -67,12 +67,20 @@
       "description": "Offline: the second check waits for a connection."
     },
     "ai.report.button": {
-      "message": "My answer should be accepted",
-      "description": "Button after a wrong typed answer: report that the answer is correct."
+      "message": "My answer should have been accepted",
+      "description": "Button after an answer graded wrong: the learner says it is right. It counts as right for them at once and goes to review."
     },
     "ai.report.done": {
-      "message": "Thanks! A reviewer will look at your answer.",
-      "description": "Confirmation after reporting an answer."
+      "message": "Counted as right. A reviewer will look at your answer too.",
+      "description": "Confirmation after the learner said their answer should have been accepted."
+    },
+    "ai.report.reject": {
+      "message": "This should have been wrong",
+      "description": "Button after an answer graded right: the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
+    },
+    "ai.report.rejected": {
+      "message": "Counted as wrong. A reviewer will look at it too.",
+      "description": "Confirmation after the learner said their answer should have been wrong."
     },
     "ai.roleplay.character": {
       "message": "Who",

@@ -1624,7 +1624,7 @@ class Morph(BaseModel):
 
 class AnswerReport(BaseModel):
     """
-    A learner's "my answer should be accepted" (§13.2 fallback), queued for review; approved reports are promoted into accept sets by `nabu reports promote`.
+    A learner's "my answer should have been accepted" (§13.2 fallback) or "this should have been wrong" (ADR 0052), queued for review; approved accepts are promoted into accept sets by `nabu reports promote`.
     """
 
     model_config = ConfigDict(
@@ -1638,6 +1638,12 @@ class AnswerReport(BaseModel):
     item: Annotated[str, Field(min_length=1)]
     answer: Annotated[
         str, Field(description="NFC, as typed or built.", max_length=500, min_length=1)
+    ]
+    claim: Annotated[
+        Literal["accept", "reject"],
+        Field(
+            description="accept: the answer should be accepted (learners' reports and the judge's accepts); reject: an accepted answer should not be (ADR 0052)."
+        ),
     ]
     notes: Annotated[
         list[Note],
@@ -2093,7 +2099,7 @@ class ExerciseSkipped(BaseModel):
 
 class AnswerReported(BaseModel):
     """
-    "My answer should be accepted" (§13.2): a learner report on an answer graded wrong. Reports feed the review queue and the judge evaluations; they change no learner state.
+    A learner's claim about how an answer was graded (§13.2, ADR 0052): "my answer should have been accepted" (claim accept, the default) or "this should have been wrong" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.
     """
 
     model_config = ConfigDict(
@@ -2153,6 +2159,12 @@ class AnswerReported(BaseModel):
     ]
     note: Annotated[
         str | None, Field(description="Optional words from the learner.", max_length=500)
+    ] = None
+    claim: Annotated[
+        Literal["accept", "reject"] | None,
+        Field(
+            description='What the learner says (ADR 0052): accept, "my answer should have been accepted" (the default), or reject, "this should have been wrong" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.'
+        ),
     ] = None
 
 

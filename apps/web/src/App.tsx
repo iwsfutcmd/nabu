@@ -652,12 +652,16 @@ export const App = (): JSX.Element => {
   // revision rewrites an earlier answer (§8.3): the server issued it, and the log is replayed.
   const record = useCallback(
     (event: LearnerEvent): void => {
-      if (event.type === "outcome_revised") {
+      // A revision (the judge's, or the learner's own claim, ADR 0052) rewrites an earlier answer: replay.
+      // The server issued a judge's revision, so it is already synced; a learner's report still uploads.
+      if (event.type === "outcome_revised" || event.type === "answer_reported") {
+        const fromServer = event.type === "outcome_revised";
         void store
-          ?.append([event], { synced: true })
+          ?.append([event], fromServer ? { synced: true } : undefined)
           .then(() => store.eventsOf(event.course))
           .then((events) => {
             setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: replay(events) }));
+            if (!fromServer) sync?.schedule();
             setRecorded((n) => n + 1);
           });
         return;

@@ -3,7 +3,7 @@
   "$id": "https://nabu.invalid/schemas/v0/learner-event.schema.json",
   "title": "LearnerEvent",
   "description": "The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
-  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051).",
+  "$comment": "v1 (Phase 4). Events are facts about what was presented and answered; ratings and parameters are derived by projections and can be recomputed. Phase 8 adds outcome_revised and answer_reported; Phase 9 the scored speaking templates and tone-identify; Phase 10 follow-up progress_reset; then sentence_reported (ADR 0051) and answer_reported's claim (ADR 0052).",
   "oneOf": [
     {
       "$ref": "#/$defs/SessionStarted"
@@ -891,7 +891,7 @@
     },
     "AnswerReported": {
       "title": "AnswerReported",
-      "description": "\"My answer should be accepted\" (§13.2): a learner report on an answer graded wrong. Reports feed the review queue and the judge evaluations; they change no learner state.",
+      "description": "A learner's claim about how an answer was graded (§13.2, ADR 0052): \"my answer should have been accepted\" (claim accept, the default) or \"this should have been wrong\" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.",
       "type": "object",
       "required": [
         "id",
@@ -984,6 +984,13 @@
           "description": "Optional words from the learner.",
           "type": "string",
           "maxLength": 500
+        },
+        "claim": {
+          "description": "What the learner says (ADR 0052): accept, \"my answer should have been accepted\" (the default), or reject, \"this should have been wrong\" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.",
+          "enum": [
+            "accept",
+            "reject"
+          ]
         }
       }
     },

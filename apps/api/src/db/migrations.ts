@@ -189,4 +189,14 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       )`,
     ],
   ],
+  [
+    "0006_report_claims",
+    [
+      // "This should have been wrong" (ADR 0052): a report claims accept (the default) or reject,
+      // and the same answer can be queued once for each.
+      `alter table answer_reports add column claim text not null default 'accept'`,
+      `alter table answer_reports drop constraint answer_reports_course_orthography_template_item_normalized_key`,
+      `alter table answer_reports add constraint answer_reports_claim_key unique (course, orthography, template, item, normalized, claim)`,
+    ],
+  ],
 ];

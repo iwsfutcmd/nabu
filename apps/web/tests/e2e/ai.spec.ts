@@ -9,6 +9,7 @@
  * the answer retroactively, and an explanation renders its segments in their own languages.
  */
 import { expect, test, type Page } from "@playwright/test";
+import { replay } from "@nabu/core/learner";
 import type { AnswerSubmitted, Explanation, LearnerEvent } from "@nabu/schema";
 import { API_PORT } from "./ports.ts";
 import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, waitFor } from "./solver.ts";
@@ -64,6 +65,9 @@ test.describe("AI features", () => {
     await expect(page.locator("[data-reported]")).toBeVisible();
     await expect(page.locator("[data-action=report]")).toBeDisabled();
     await expect.poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported")).toMatchObject({ answer: wrong.id, text: "拜拜", exercise: { template: "translate-type.l1-l2" } });
+    // It counts as right for the learner at once (ADR 0052): no mistake left for it.
+    await expect(page.locator("[data-reported]")).toHaveAttribute("data-reported", "accept");
+    expect(replay(await logOf(page, "yue")).mistakes.some((m) => m.item === wrong.exercise.item && m.template === wrong.exercise.template)).toBe(false);
 
     // Sign up: the log, report included, uploads; the server agrees with the device.
     await page.goto(url("#/"));
@@ -91,6 +95,32 @@ test.describe("AI features", () => {
     await expect(page.locator("[data-course-path]")).toBeVisible();
     await expect(page.locator("[data-conversations]")).toHaveCount(0);
     expect(errors).toEqual([]);
+  });
+
+  test("this should have been wrong: a right answer counts wrong at once, and is queued as a reject", async ({ page }) => {
+    await page.clock.setFixedTime(NOW);
+    const history = freshIds(historyBefore(course, request.node, NOW));
+    await page.goto(url("#/"));
+    if (history.length > 0) await seedLog(page, history);
+    const exercises = planned(course, history, request, NOW, SEED);
+    const at = exercises.findIndex((e) => e.template !== "match-pairs" && !e.template.startsWith("speak") && e.template !== "listen-speak");
+    expect(at).toBeGreaterThanOrEqual(0);
+    await page.goto(url(`#/yue/yue-Hant-HK.standard/${request.node}`));
+    for (const ex of exercises.slice(0, at)) {
+      await waitFor(page, ex);
+      await answer(page, ex, "keyboard");
+      await expectRightAndContinue(page, "keyboard", ex);
+    }
+    const ex = exercises[at];
+    if (ex === undefined) throw new Error("no exercise");
+    await waitFor(page, ex);
+    await answer(page, ex, "keyboard");
+    await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", /^CORRECT/u);
+    await page.locator("[data-action=report-wrong]").click();
+    await expect(page.locator("[data-reported]")).toHaveAttribute("data-reported", "reject");
+    const log = await logOf(page, "yue");
+    expect(log.find((e) => e.type === "answer_reported")).toMatchObject({ claim: "reject", exercise: { id: ex.id } });
+    expect(replay(log).mistakes.some((m) => m.item === ex.item)).toBe(true);
   });
 
   test("with stubbed AI responses: the judge's revision counts the answer right, and an explanation renders by language", async ({ page }) => {
