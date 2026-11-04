@@ -1,0 +1,243 @@
+/* Corrections (ADR 0051): the correction form and the sentence list. Logical
+   properties only: the same rules lay out LTR and RTL chrome, and each field
+   takes its text's own direction (gameplan §11.4, §11.9). */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-4);
+  inline-size: 100%;
+  max-inline-size: 36rem;
+}
+
+.heading {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.muted {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.label {
+  font-weight: 700;
+}
+
+.input {
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  font-family: var(--nabu-field-font, inherit);
+  font-size: 1.125rem;
+  line-height: var(--nabu-field-line-height, 1.5);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  resize: block;
+}
+
+.input[data-invalid] {
+  border-color: var(--nabu-color-wrong);
+}
+
+.input[data-focus-visible],
+.input:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.now {
+  padding: var(--nabu-space-1);
+  color: var(--nabu-color-muted);
+}
+
+.error {
+  color: var(--nabu-color-wrong);
+  font-weight: 700;
+}
+
+.readings {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--nabu-space-3);
+  margin: 0;
+  padding: var(--nabu-space-3);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.legend {
+  padding-inline: var(--nabu-space-1);
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--nabu-space-3);
+}
+
+.primary,
+.secondary,
+.small {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  font: inherit;
+  font-weight: 700;
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.primary,
+.secondary {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-5);
+}
+
+.primary {
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  border: 2px solid var(--nabu-color-accent);
+}
+
+.secondary,
+.small {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+}
+
+.small {
+  flex: none;
+  min-block-size: 2.25rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font-size: 0.875rem;
+}
+
+.primary[data-disabled],
+.secondary[data-disabled],
+.small[data-disabled] {
+  cursor: default;
+  opacity: 0.55;
+}
+
+.primary[data-focus-visible],
+.secondary[data-focus-visible],
+.small[data-focus-visible],
+.unit[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+/* The sentence list */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-4);
+}
+
+.units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.unit {
+  min-block-size: 2.5rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.unit[aria-current="true"] {
+  color: var(--nabu-color-accent-text);
+  background-color: var(--nabu-color-accent);
+  border-color: var(--nabu-color-accent);
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-3);
+  padding-block: var(--nabu-space-3);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.item[data-corrected] {
+  border-inline-start: 4px solid var(--nabu-color-accent);
+}
+
+/* Room for glyphs that overhang their advance (a J's tail, Arabic swashes, stacked marks). */
+.texts {
+  display: flex;
+  flex: 1 1 16rem;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  min-inline-size: 0;
+  padding: var(--nabu-space-1);
+}
+
+.target {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.other {
+  margin: 0;
+}
+
+.translation {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.badge {
+  margin: 0;
+  color: var(--nabu-color-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.storyHeading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  margin-block: var(--nabu-space-3) 0;
+  font-size: 1.125rem;
+}

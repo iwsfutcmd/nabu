@@ -153,6 +153,14 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "yue", "yue-Hant-HK/standard", "s.12", "I am a student", template="translate-tap.l2-l1"
         ),
         report("yue", "yue-Hant-HK/standard", "s.14", "我係一個老師", status="pending"),
+        # A story line has no accept set: the reviewer changes the story.
+        report(
+            "yue",
+            "yue-Hant-HK/standard",
+            "yue.story.dim-sum/4",
+            "我哋去飲茶啦",
+            template="story-arrange",
+        ),
     ]
     export = tmp_path / "approved.jsonl"
     export.write_text(
@@ -169,7 +177,9 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "already",
             "translate-tap.l2-l1:",
             "status",
+            "story-arrange:",
         ]
+        assert "no accept set" in outcome.skipped[-1][1]
         yue = (courses / "yue" / "units" / "intro.yaml").read_text(encoding="utf-8")
         assert "      reverse: |-\n        我係學生\n        我係一個學生 @0.5\n" in yue
         assert "        早晨呀\n        早晨啊 @0.5\n" in yue

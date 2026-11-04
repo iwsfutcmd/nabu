@@ -33,6 +33,15 @@ def _register_ai() -> None:
     app.add_typer(author_app, name="author")
 
 
+def _register_corrections() -> None:
+    from nabu.corrections.cli import app as corrections_app
+
+    app.add_typer(corrections_app, name="corrections")
+
+
+_register_corrections()
+
+
 def _register_speech() -> None:
     from nabu.speech.cli import app as speech_app
 

@@ -64,3 +64,21 @@ for (const mode of ["keyboard", "touch"] as const) {
     });
   }
 }
+
+test("Cantonese words show their Jyutping, as sentences do, and the toggle hides it", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  const request = { mode: "lesson", node: "yue.greetings" } as const;
+  const [first] = planned(course, [], request, NOW, SEED);
+  expect(first?.template).toBe("match-pairs");
+  await page.goto(sessionUrl(course, request, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  // Every word on the Cantonese side carries its reading.
+  const words = player.locator("[data-pair^=left]");
+  await expect(words).not.toHaveCount(0);
+  for (const word of await words.all()) await expect(word.locator("rt")).not.toHaveCount(0);
+  await page.locator("[data-toggle=readings]").click();
+  await expect(player.locator("rt")).toHaveCount(0);
+});

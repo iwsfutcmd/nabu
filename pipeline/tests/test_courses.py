@@ -135,6 +135,29 @@ def test_cantonese_readings_line_up_as_ruby(core_cli: CoreCli) -> None:
                 assert "".join(seg["base"] for seg in t["ruby"]["jyutping"]) == t["surface"]
 
 
+def test_cantonese_words_carry_the_readings_their_sentences_pin(core_cli: CoreCli) -> None:
+    """Word exercises (pairs, pictures, listening options) show Jyutping as sentences do: each
+    KC form takes its sense's pinned reading, and a word met only inside longer words its
+    characters' share (禮拜 in 禮拜一)."""
+    _, compiled = build(core_cli, "yue")
+    forms = {
+        (k["id"], t["surface"]): t
+        for u in compiled.units
+        for k in u["kcs"]
+        for f in k.get("forms", {}).get("yue-Hant-HK/standard", [])
+        for t in f["tokens"]
+        if t["kind"] == "word"
+    }
+    assert forms, "yue has word forms"
+    missing = [key for key, t in forms.items() if "jyutping" not in t.get("readings", {})]
+    assert missing == []
+    assert forms[("sense:唔該", "唔該")]["readings"] == {"jyutping": "m4 goi1"}
+    assert forms[("sense:我", "我哋")]["readings"] == {"jyutping": "ngo5 dei6"}
+    assert forms[("sense:禮拜", "禮拜")]["ruby"] == {
+        "jyutping": [{"base": "禮", "text": "lai5"}, {"base": "拜", "text": "baai3"}]
+    }
+
+
 def test_courses_are_drafts_until_reviewed(core_cli: CoreCli) -> None:
     for course in sorted(TOOLS):
         _, compiled = build(core_cli, course)

@@ -457,6 +457,20 @@
   outline: none;
 }
 
+/* The correction form (ADR 0051): wider, and scrolls inside the dialog on small screens. */
+.wideDialog {
+  max-inline-size: 40rem;
+  max-block-size: calc(100dvb - 2 * var(--nabu-space-4));
+  overflow: auto;
+}
+
+/* Keeps the dialog's own column layout inside the chrome wrapper. */
+.dialogBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+}
+
 .dialogActions {
   display: flex;
   flex-wrap: wrap;

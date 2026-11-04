@@ -23,4 +23,4 @@ export {
   type StartOptions,
 } from "./player.ts";
 export { seededRng, type Rng } from "./rng.ts";
-export { facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, rubySchemeOf, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
+export { answerTextOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, READING_TAGS, rubySchemeOf, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";

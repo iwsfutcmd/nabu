@@ -16,6 +16,8 @@ import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
 
 export interface StoryLine {
   readonly index: number;
+  /** The line's step in the story's source (every step counted): how a correction names it. */
+  readonly step: number;
   /** The speaker's id and name in the learner's orthography; none for narration. */
   readonly speaker?: { readonly id: string; readonly name: TaggedText | undefined } | undefined;
   readonly text: TaggedText;
@@ -108,6 +110,7 @@ export const storyScript = (course: CourseView, story: BundleStory, rng: Rng): S
       const index = lines.length;
       lines.push({
         index,
+        step: at,
         ...(step.line.speaker === undefined ? {} : { speaker: { id: step.line.speaker, name: names.get(step.line.speaker) } }),
         text,
         translation: step.line.translations[key],

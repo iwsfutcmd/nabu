@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -47,7 +47,7 @@ export interface LessonPlayerProps {
    * More under the feedback for an answer (Phase 8: report it, a second check, an explanation).
    * The app supplies it; the player only places it, outside the live region.
    */
-  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome) => ReactNode) | undefined;
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
   /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
   readonly speech?: SpeechServices | undefined;
 }
@@ -216,7 +216,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={marks} />}
       </div>
-      {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome)}
+      {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 
       <footer className={styles.footer}>
         {active.tag === "feedback" ? (

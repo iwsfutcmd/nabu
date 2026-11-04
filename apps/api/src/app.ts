@@ -23,6 +23,9 @@
  *   GET  /admin/v1/reports?status=&course=       the review queue
  *   GET  /admin/v1/reports.jsonl?status=approved  what `nabu reports promote` reads
  *   POST /admin/v1/reports/:id                    {status: approved | rejected | promoted}
+ *   GET  /admin/v1/corrections?status=&course=       corrections to sentences and story lines (ADR 0051)
+ *   GET  /admin/v1/corrections.jsonl?status=approved  what `nabu corrections apply` reads
+ *   POST /admin/v1/corrections/:id                    {status: approved | rejected | applied}
  *
  * Authenticated routes take `Authorization: Bearer <token>`. No cookies, so
  * any origin may call it (CORS *) without exposing a session to CSRF.
@@ -32,7 +35,7 @@ import { timingSafeEqual } from "node:crypto";
 import { Hono, type Context } from "hono";
 import { cors } from "hono/cors";
 import { DEFAULT_GAME, type GameConfig, type LeagueConfig } from "@nabu/core/game";
-import type { EvalGate, ReportStatus } from "@nabu/schema";
+import type { CorrectionStatus, EvalGate, ReportStatus } from "@nabu/schema";
 import { and, eq } from "drizzle-orm";
 import type { Account, Accounts } from "./accounts.ts";
 import type { Courses } from "./ai/courses.ts";
@@ -46,6 +49,7 @@ import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nati
 import { joinIfActive, leagueView } from "./leagues.ts";
 import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
 import { getProfile, setProfile } from "./profiles.ts";
+import { CORRECTION_STATUSES, fileCorrection, listCorrections, setCorrectionStatus } from "./corrections.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
@@ -156,6 +160,28 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
       if (typeof status !== "string" || !STATUSES.includes(status as ReportStatus) || status === "pending") return c.json({ error: "invalid-status" }, 400);
       return (await setStatus(db, c.req.param("id"), status as ReportStatus, now())) ? c.body(null, 204) : c.json({ error: "not-found" }, 404);
     });
+    const corrections = (c: Context): { status?: CorrectionStatus; course?: string } | undefined => {
+      const status = c.req.query("status");
+      const course = c.req.query("course");
+      if (status !== undefined && !CORRECTION_STATUSES.includes(status as CorrectionStatus)) return undefined;
+      return { ...(status === undefined ? {} : { status: status as CorrectionStatus }), ...(course === undefined ? {} : { course }) };
+    };
+    app.get("/admin/v1/corrections", async (c) => {
+      const f = corrections(c);
+      return f === undefined ? c.json({ error: "invalid-status" }, 400) : c.json({ corrections: await listCorrections(db, f) });
+    });
+    app.get("/admin/v1/corrections.jsonl", async (c) => {
+      const f = corrections(c);
+      if (f === undefined) return c.json({ error: "invalid-status" }, 400);
+      c.header("Content-Type", "application/x-ndjson; charset=utf-8");
+      return c.body((await listCorrections(db, f)).map((r) => `${JSON.stringify(r)}\n`).join(""));
+    });
+    app.post("/admin/v1/corrections/:id", async (c) => {
+      const b = await body(c);
+      const status = b?.["status"];
+      if (typeof status !== "string" || !CORRECTION_STATUSES.includes(status as CorrectionStatus) || status === "pending") return c.json({ error: "invalid-status" }, 400);
+      return (await setCorrectionStatus(db, c.req.param("id"), status as CorrectionStatus, now())) ? c.body(null, 204) : c.json({ error: "not-found" }, 404);
+    });
   }
 
   app.post("/v1/auth/sign-up", async (c) => {
@@ -198,12 +224,16 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const revisions = checked.events.filter((e) => e.type === "outcome_revised").map((e) => e.id);
     const issued = await existing(db, user, revisions);
     const batch = checked.events.filter((e) => e.type !== "outcome_revised" || issued.has(e.id));
+    // A retried upload must not file an old correction over a newer one: only new ones are filed.
+    const filed = await existing(db, user, batch.filter((e) => e.type === "sentence_reported").map((e) => e.id));
     const result = await append(db, user, batch, new Date(now()));
     if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
     if (ai !== undefined) {
       // Reports join the review queue; filing one twice changes nothing (one vote per learner).
       const subject = await ai.gateway.subjectOf(user);
       for (const e of batch) {
+        // Corrections join their own queue (ADR 0051); a learner's later one replaces their earlier one.
+        if (e.type === "sentence_reported" && !filed.has(e.id)) await fileCorrection(db, ai.courses, e, subject, now());
         if (e.type !== "answer_reported") continue;
         await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report" }, now());
       }

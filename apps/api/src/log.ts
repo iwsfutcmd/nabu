@@ -24,6 +24,7 @@ const ajv = new Ajv2020({ strict: true, allErrors: false });
 // Annotation read by json-schema-to-typescript; meaningless to validators.
 ajv.addKeyword({ keyword: "tsType", schemaType: "string" });
 ajv.addSchema(schema("common.schema.json"));
+ajv.addSchema(schema("correction.schema.json"));
 const validate = ajv.compile<LearnerEvent>(schema("learner-event.schema.json"));
 
 /** Whether a value is a valid learner event (schemas/learner-event.schema.json). */

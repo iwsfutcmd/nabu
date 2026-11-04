@@ -101,6 +101,18 @@ a word's pinned reading among its morphs when the word is Han characters read on
 which is the pairing the compiler's ruby uses. 禮拜一 *lai5 baai3 jat1* gives 禮拜 *lai5 baai3*.
 It splits nothing else.
 
+**Word forms carry readings too.** KC forms were compiled without readings, so "Show readings"
+did nothing in word exercises (pairs, pictures, listening options). The first exercise of the
+first yue lesson is a match-pairs. The compiler now gives each KC form the reading its sense has
+in the course's sentences and story lines:
+- the most common reading, if the sense has several;
+- for a word met only inside longer words, its characters' share of their ruby (the same rule
+  as above);
+- for a form no token names, the reading its surface always has, and none if that varies (a
+  polyphone).
+
+Nothing is guessed. All 274 yue word forms get Jyutping.
+
 ## Consequences
 
 - **Tests.**

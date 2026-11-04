@@ -7,6 +7,7 @@
  */
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
+import { lessonNodes } from "@nabu/core/lesson";
 import type { LearnerEvent } from "@nabu/schema";
 import { answer, expectRightAndContinue, historyBefore, loadCourse, logOf, planned, seedLog, sessionUrl, waitFor } from "./solver.ts";
 
@@ -58,4 +59,36 @@ test("a scored speaking exercise: record, scored on the device, logged without a
   // The pitch range stays on this device: three numbers, no audio.
   const range = await page.evaluate(() => localStorage.getItem("nabu.voice-calibration"));
   expect(Object.keys(JSON.parse(range ?? "{}") as object).sort()).toEqual(["frames", "mean", "sd"]);
+});
+
+test("rating yourself: a recording keeps going until it is stopped, then plays back", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  // Persian has no scoring on the device: its speaking exercises are rated by the learner (tier 0).
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const found = lessonNodes(course).flatMap(({ node }) => {
+    const history = historyBefore(course, node.id, NOW);
+    const exercises = planned(course, history, { mode: "lesson", node: node.id }, NOW, SEED);
+    const at = exercises.findIndex((e) => e.template === "speak.tier-0");
+    return at < 0 ? [] : [{ node: node.id, history, exercises, at }];
+  })[0];
+  if (found === undefined) throw new Error("no fa lesson plans a speaking exercise");
+  if (found.history.length > 0) await seedLog(page, found.history);
+  await page.goto(sessionUrl(course, { mode: "lesson", node: found.node }, SEED));
+  for (const ex of found.exercises.slice(0, found.at)) {
+    await waitFor(page, ex);
+    await answer(page, ex, "keyboard");
+    await expectRightAndContinue(page, "keyboard", ex);
+  }
+  const ex = found.exercises[found.at];
+  if (ex === undefined) throw new Error("no exercise");
+  await waitFor(page, ex);
+  const recorder = page.locator("[data-recorder]");
+  await page.locator("[data-recorder] [data-action=record]").click();
+  await expect(recorder).toHaveAttribute("data-recorder", "recording");
+  await page.waitForTimeout(1000);
+  await expect(recorder).toHaveAttribute("data-recorder", "recording");
+  await page.locator("[data-recorder] [data-action=stop]").click();
+  await expect(recorder).toHaveAttribute("data-recorder", "done");
+  await expect(page.locator("[data-action=play-recording]")).toBeVisible();
 });

@@ -11,6 +11,7 @@ declare const styles: {
   readonly dangerButton: string;
   readonly dialog: string;
   readonly dialogActions: string;
+  readonly dialogBody: string;
   readonly disabled: string;
   readonly field: string;
   readonly fill: string;
@@ -59,5 +60,6 @@ declare const styles: {
   readonly unit: string;
   readonly unitTitle: string;
   readonly voice: string;
+  readonly wideDialog: string;
 };
 export default styles;
