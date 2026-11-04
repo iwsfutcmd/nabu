@@ -11,6 +11,9 @@ shortcut can.
 
 ## Status: Phase 10 (offline and mobile) on top of Phases 0–9
 
+The gameplan's ten phases are built. What comes next, and what needs people rather than code, is in
+[docs/next-steps.md](docs/next-steps.md).
+
 | Path | What |
 |---|---|
 | `schemas/` | JSON Schema 2020-12: TaggedText, Token, RubySegment, OrthographyProfile, MessageCatalog, CourseSource, BundleManifest, LearnerEvent, AI outputs (judge, explanations, roleplay, reports, evaluations) |

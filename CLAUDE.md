@@ -1,7 +1,8 @@
 # CLAUDE.md: Nabu
 
 Open-source, script-first, Duolingo-style language-learning app.
-Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change to one needs an ADR in docs/adr/.
+Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: docs/next-steps.md.
+§1 lists the decisions; any change to one needs an ADR in docs/adr/.
 
 ## Non-negotiables
 - Language data is never a bare string. Use `TaggedText` (a BCP 47 tag with script, plus tokens) and render it only through `<T>`.
