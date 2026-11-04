@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/report.schema.json",
+  "title": "Reports",
+  "description": "What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.",
+  "type": "object",
+  "additionalProperties": false,
+  "$defs": {
+    "ReportSubmission": {
+      "title": "ReportSubmission",
+      "oneOf": [
+        {
+          "$ref": "#/$defs/CorrectionSubmission"
+        },
+        {
+          "$ref": "#/$defs/AnswerSubmission"
+        }
+      ]
+    },
+    "CorrectionSubmission": {
+      "title": "CorrectionSubmission",
+      "description": "A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).",
+      "type": "object",
+      "required": [
+        "v",
+        "kind",
+        "id",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "item",
+        "shown",
+        "correction",
+        "reportedOn"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "const": 1
+        },
+        "kind": {
+          "const": "correction"
+        },
+        "id": {
+          "description": "The event's id: a retried submission is the same document.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "support": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "bundle": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "item": {
+          "description": "The sentence id, or the story id for a story line.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "step": {
+          "description": "For a story line: its step in the story.",
+          "type": "integer",
+          "minimum": 0
+        },
+        "shown": {
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "correction": {
+          "$ref": "correction.schema.json#/$defs/CorrectionFields"
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "reportedOn": {
+          "description": "The learner's local date.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    },
+    "AnswerSubmission": {
+      "title": "AnswerSubmission",
+      "description": "An answer the learner says should have been accepted (kind accept) or should have been wrong (kind reject), ADR 0052.",
+      "type": "object",
+      "required": [
+        "v",
+        "kind",
+        "id",
+        "course",
+        "orthography",
+        "support",
+        "bundle",
+        "item",
+        "template",
+        "text",
+        "reportedOn"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "v": {
+          "const": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "accept",
+            "reject"
+          ]
+        },
+        "id": {
+          "description": "The event's id: a retried submission is the same document.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+        },
+        "course": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+([.-][a-z0-9]+)*$"
+        },
+        "orthography": {
+          "$ref": "common.schema.json#/$defs/OrthographyId"
+        },
+        "support": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "bundle": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "item": {
+          "description": "The sentence, story or KC the exercise was built from.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "template": {
+          "description": "The exercise's template id (learner-event.schema.json ExerciseRef).",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64
+        },
+        "text": {
+          "description": "The answer as the learner settled it.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "reportedOn": {
+          "description": "The learner's local date.",
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      }
+    }
+  }
+}

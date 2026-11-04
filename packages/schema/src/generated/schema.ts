@@ -284,6 +284,11 @@ export type TableRef = string;
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ReportSubmission".
+ */
+export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -413,6 +418,10 @@ export interface NabuSchemaIndex {
   readonly Transliteration: Transliteration;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
+  readonly Reports: Reports;
+  readonly ReportSubmission: ReportSubmission;
+  readonly CorrectionSubmission: CorrectionSubmission;
+  readonly AnswerSubmission: AnswerSubmission;
   readonly TaggedText: TaggedText;
   readonly TokenKind: TokenKind;
   readonly Token: Token;
@@ -2643,6 +2652,81 @@ export interface Fonts {
 export interface Transliteration {
   readonly to: OrthographyId;
   readonly via: string;
+}
+/**
+ * What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Reports".
+ */
+export interface Reports {}
+/**
+ * A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CorrectionSubmission".
+ */
+export interface CorrectionSubmission {
+  readonly v: 1;
+  readonly kind: "correction";
+  /**
+   * The event's id: a retried submission is the same document.
+   */
+  readonly id: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  readonly support: string;
+  readonly bundle: string;
+  /**
+   * The sentence id, or the story id for a story line.
+   */
+  readonly item: string;
+  /**
+   * For a story line: its step in the story.
+   */
+  readonly step?: number;
+  readonly shown: CorrectionFields;
+  readonly correction: CorrectionFields;
+  readonly note?: string;
+  /**
+   * The learner's local date.
+   */
+  readonly reportedOn: string;
+}
+/**
+ * An answer the learner says should have been accepted (kind accept) or should have been wrong (kind reject), ADR 0052.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AnswerSubmission".
+ */
+export interface AnswerSubmission {
+  readonly v: 1;
+  readonly kind: "accept" | "reject";
+  /**
+   * The event's id: a retried submission is the same document.
+   */
+  readonly id: string;
+  readonly course: string;
+  readonly orthography: OrthographyId;
+  readonly support: string;
+  readonly bundle: string;
+  /**
+   * The sentence, story or KC the exercise was built from.
+   */
+  readonly item: string;
+  /**
+   * The exercise's template id (learner-event.schema.json ExerciseRef).
+   */
+  readonly template: string;
+  /**
+   * The answer as the learner settled it.
+   */
+  readonly text: string;
+  readonly note?: string;
+  /**
+   * The learner's local date.
+   */
+  readonly reportedOn: string;
 }
 /**
  * One ruby base and its annotation. Sub-token annotation always uses segments, never integer offsets.

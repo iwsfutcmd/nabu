@@ -1,0 +1,29 @@
+// Nabu's report intake (ADR 0055, docs/reports.md).
+//
+// MERGE these two blocks into the Firebase project's existing Firestore rules, inside
+// `match /databases/{database}/documents { ... }`, next to the rules already there.
+// Do not deploy this file on its own: publishing rules replaces every rule in the project.
+
+    // Anyone may file a report: one new, well-formed document, named by the report's id.
+    match /nabu_reports/{report} {
+      allow create: if report.matches('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$')
+        && request.resource.data.keys().hasOnly(['v', 'status', 'kind', 'course', 'payload', 'createdAt'])
+        && request.resource.data.keys().hasAll(['v', 'status', 'kind', 'course', 'payload', 'createdAt'])
+        && request.resource.data.v == 1
+        && request.resource.data.status == 'new'
+        && request.resource.data.kind in ['correction', 'accept', 'reject']
+        && request.resource.data.course is string
+        && request.resource.data.course.size() <= 32
+        && request.resource.data.course.matches('^[a-z0-9]+([.-][a-z0-9]+)*$')
+        && request.resource.data.payload is string
+        && request.resource.data.payload.size() <= 20000
+        && request.resource.data.createdAt is timestamp;
+      // No one reads, changes or deletes reports from a browser. The filing job's service account
+      // does, and security rules do not apply to it.
+      allow read, update, delete: if false;
+    }
+
+    // Which issue each sentence's reports go to: the filing job's alone.
+    match /nabu_report_issues/{key} {
+      allow read, write: if false;
+    }

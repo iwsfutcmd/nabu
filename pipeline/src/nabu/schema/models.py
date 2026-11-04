@@ -1661,6 +1661,106 @@ type TableRef = Annotated[
 ]
 
 
+class Reports(BaseModel):
+    """
+    What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+
+
+class CorrectionSubmission(BaseModel):
+    """
+    A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    v: Literal[1]
+    kind: Literal["correction"]
+    id: Annotated[
+        str,
+        Field(
+            description="The event's id: a retried submission is the same document.",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        ),
+    ]
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(max_length=32, min_length=1)]
+    bundle: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    item: Annotated[
+        str,
+        Field(
+            description="The sentence id, or the story id for a story line.",
+            max_length=200,
+            min_length=1,
+        ),
+    ]
+    step: Annotated[
+        int | None, Field(description="For a story line: its step in the story.", ge=0)
+    ] = None
+    shown: CorrectionFields
+    correction: CorrectionFields
+    note: Annotated[str | None, Field(max_length=1000)] = None
+    reportedOn: Annotated[
+        str, Field(description="The learner's local date.", pattern="^\\d{4}-\\d{2}-\\d{2}$")
+    ]
+
+
+class AnswerSubmission(BaseModel):
+    """
+    An answer the learner says should have been accepted (kind accept) or should have been wrong (kind reject), ADR 0052.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    v: Literal[1]
+    kind: Literal["accept", "reject"]
+    id: Annotated[
+        str,
+        Field(
+            description="The event's id: a retried submission is the same document.",
+            pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+        ),
+    ]
+    course: Annotated[str, Field(pattern="^[a-z0-9]+([.-][a-z0-9]+)*$")]
+    orthography: OrthographyId
+    support: Annotated[str, Field(max_length=32, min_length=1)]
+    bundle: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    item: Annotated[
+        str,
+        Field(
+            description="The sentence, story or KC the exercise was built from.",
+            max_length=200,
+            min_length=1,
+        ),
+    ]
+    template: Annotated[
+        str,
+        Field(
+            description="The exercise's template id (learner-event.schema.json ExerciseRef).",
+            max_length=64,
+            min_length=1,
+        ),
+    ]
+    text: Annotated[
+        str,
+        Field(description="The answer as the learner settled it.", max_length=1000, min_length=1),
+    ]
+    note: Annotated[str | None, Field(max_length=500)] = None
+    reportedOn: Annotated[
+        str, Field(description="The learner's local date.", pattern="^\\d{4}-\\d{2}-\\d{2}$")
+    ]
+
+
 type TokenKind = Annotated[
     Literal["word", "punct", "space", "number", "symbol"], Field(title="TokenKind")
 ]
@@ -2383,6 +2483,11 @@ class MatchPolicy(BaseModel):
     ] = None
 
 
+type ReportSubmission = Annotated[
+    CorrectionSubmission | AnswerSubmission, Field(title="ReportSubmission")
+]
+
+
 type RubyAdditionalProperty = Annotated[list[RubySegment], Field(min_length=1)]
 
 
@@ -2955,6 +3060,7 @@ type NabuSchemaBundle = Annotated[
     | LearnerEvent
     | MessageCatalog
     | OrthographyProfile
+    | Reports
     | TaggedText,
     Field(
         description="Every Nabu document type. Generated from /schemas; do not edit.",

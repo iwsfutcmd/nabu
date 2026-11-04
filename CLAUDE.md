@@ -183,10 +183,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   with a syllable shape in core match/pronounce.ts: only Jyutping). A new scheme needs a shape, a READING_TAGS
   entry and conformance vectors (conformance/pronounce.json). Optional marks: the profile's `match.marks.optional`.
 
+## Report intake notes (see docs/adr/0055, docs/reports.md)
+- Reports (sentence_reported, answer_reported) also go to the deployment's Firestore intake (`reports.json` beside
+  the app; Pages writes it from repo variables). What leaves the device: @nabu/core/reports `submissionOf`, never
+  device/user/session ids. The Reports workflow files them as GitHub issues (apps/api/scripts/file-reports.ts).
+- Firebase keys and the service account live only in repo settings (variables/secrets): never in chat or commits.
+  The rules in deploy/firebase/ are merged into a shared project's rules, never deployed on their own.
+- Learner text in issues stays in code spans (no mentions, links, markup); keep it so when changing the rendering.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0054 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0055 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

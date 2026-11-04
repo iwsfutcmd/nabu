@@ -40,6 +40,13 @@ jobs:
           cp deploy/pages/index.html site/
           cp -r packages/ui/storybook-static site/storybook
           cp -r apps/web/dist site/demo
+      # The report intake (ADR 0055, docs/reports.md): only when the repository names one.
+      - name: Report intake
+        if: ${{ vars.NABU_FIREBASE_PROJECT != '' }}
+        env:
+          PROJECT: ${{ vars.NABU_FIREBASE_PROJECT }}
+          API_KEY: ${{ vars.NABU_FIREBASE_API_KEY }}
+        run: node -e 'process.stdout.write(JSON.stringify({ firestore: { project: process.env.PROJECT, apiKey: process.env.API_KEY } }))' > site/demo/reports.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
