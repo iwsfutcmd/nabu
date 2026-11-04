@@ -130,7 +130,11 @@ It splits nothing else.
 
   - Whisper cannot make out most of eSpeak's Uzbek (*Bilmayman* comes back as "UMAIMEN"), so uz
     listening covers only 104 items until a better voice exists.
-  - The clips add about 20 MB to `courses/` and 10 MB to the web bundles.
+  - The clips add about 20 MB to `courses/` and 10 MB to the web bundles. Downloading the whole
+    fa course for offline use is now about 10 MB in over a thousand files.
+  - Units share clips (the same word occurs in more than one unit). Removing a unit deletes only
+    what no other unit uses, so its remove button offers that size (`freeBytes`), and none when
+    every file is shared, as with the fa numbers drill and the numbers unit.
   - yue keeps clips for its first unit only. Whisper does not understand eSpeak's Cantonese, so
     all but one are held back (errata 36 and 54). Clips for the other nine units would add about
     10 MB that no learner hears, so they wait for a better voice.

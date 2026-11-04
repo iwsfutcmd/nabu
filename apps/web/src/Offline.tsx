@@ -74,9 +74,10 @@ export const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: Loade
                   {t.format("app.offline.download", { size: sizeOf(t, u.missingBytes) })}
                 </Button>
               ) : (
-                u.bytes > 0 && (
+                // Only what no other unit uses is deleted, so the button offers that (none: no button).
+                u.freeBytes > 0 && (
                   <Button className={styles.textButton} isDisabled={busy} onPress={() => remove([u.id])} data-action="remove-unit">
-                    {t.format("app.offline.remove", { size: sizeOf(t, u.bytes) })}
+                    {t.format("app.offline.remove", { size: sizeOf(t, u.freeBytes) })}
                   </Button>
                 )
               )}
