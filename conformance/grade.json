@@ -1222,6 +1222,34 @@
         "verdict": "WRONG"
       },
       "note": "ı and i are different letters; 4 letters × 0.2 < 2"
+    },
+    {
+      "id": "grade/fa/heh-with-yeh-above",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "خانه\u0654 ما بزرگ است",
+        "answer": "خان\u06C0 ما بزرگ است"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "The ezafe typed as U+06C0 matches the accept set's ه + hamza above."
+    },
+    {
+      "id": "grade/fa/heh-with-yeh-above-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "خان\u06C0 ما بزرگ است",
+        "answer": "خانه\u0654 ما بزرگ است"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "And the other way round: an accept set written with U+06C0 takes ه + hamza above."
     }
-  ]
+]
 }

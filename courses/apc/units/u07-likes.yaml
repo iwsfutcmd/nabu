@@ -13,7 +13,7 @@ kcs:
 - {id: 'sense:aktar', gloss: {en: more; most; better}, forms: {apc-Arab/standard: [أكتر], apc-Latn/arabizi: [aktar]}}
 - {id: 'sense:abadan', gloss: {en: (not) at all; never}, forms: {apc-Arab/standard: [أبدا], apc-Latn/arabizi: [abadan]}}
 - {id: 'sense:musi2a', gloss: {en: music}, forms: {apc-Arab/standard: [موسيقى], apc-Latn/arabizi: [musi2a]}}
-- {id: 'sense:sama3', gloss: {en: listen; hear}, forms: {apc-Arab/standard: [بسمع, اسمع], apc-Latn/arabizi: [besma3, esma3]}}
+- {id: 'sense:sama3', gloss: {en: listen; hear}, forms: {apc-Arab/standard: [بسمع, اسمع], apc-Latn/arabizi: [bisma3, esma3]}}
 - {id: 'form:subj-1sg', gloss: {en: 'e- / no b-: I (after baddi, b7ebb, 3am…)'}, notes: {en: 'baddi ekol: I want to eat; b7ebb esma3: I like to listen. The b- of the present drops.'}}
 - {id: 'sense:ktab', gloss: {en: book}, forms: {apc-Arab/standard: [كتاب], apc-Latn/arabizi: [ktab]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369',
       status: draft}, source: Drawn for Nabu (courses/images)}}
@@ -25,9 +25,9 @@ kcs:
 - {id: 'sense:film', gloss: {en: film; movie}, forms: {apc-Arab/standard: [فيلم], apc-Latn/arabizi: [film]}}
 - {id: 'sense:shef', gloss: {en: see; watch}, forms: {apc-Arab/standard: [شوف, منشوف], apc-Latn/arabizi: [shuf, mnshuf]}}
 - {id: 'sense:football', gloss: {en: football; soccer}, forms: {apc-Arab/standard: [فوتبول], apc-Latn/arabizi: [football]}}
-- {id: 'sense:le3eb', gloss: {en: play}, forms: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btel3ab]}}
-- {id: 'sense:3am', gloss: {en: '-ing: right now (before a verb without b-)'}, forms: {apc-Arab/standard: [عم], apc-Latn/arabizi: [3am]}, notes: {en: '3am ta3mel: you''re doing (right now). The verb after
-      3am has no b-.'}}
+- {id: 'sense:le3eb', gloss: {en: play}, forms: {apc-Arab/standard: [بتلعب], apc-Latn/arabizi: [btil3ab]}}
+- {id: 'sense:3am', gloss: {en: '-ing: right now (before a verb)'}, forms: {apc-Arab/standard: [عم], apc-Latn/arabizi: [3am]}, notes: {en: '3am ta3mel: you''re doing (right now). The verb after
+      3am usually drops its b-; 3am bta3mel is heard too.'}}
 - {id: 'sense:ghanne', gloss: {en: sing}, forms: {apc-Arab/standard: [غنّي], apc-Latn/arabizi: [ghanne]}}
 - {id: 'sense:ra2as', gloss: {en: dance}, forms: {apc-Arab/standard: [ارقص], apc-Latn/arabizi: [or2os]}}
 - {id: 'sense:a7la', gloss: {en: nicer; prettier; better}, forms: {apc-Arab/standard: [أحلى], apc-Latn/arabizi: [a7la]}, notes: {en: 7elo → a7la.}}
@@ -46,11 +46,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ القهوة.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: القهوة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قهوة, kc: 'sense:ahwe'}]}]
-      reverse: بحبّ القهوة
+      reverse: (بحبّ|أنا بحبّ) القهوة
     apc-Latn/arabizi:
       text: b7ebb el ahwe.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ahwe|2ahwe)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (ahwe|2ahwe)
   translations:
     en: I (like|love) coffee.
 - id: s.like.2
@@ -60,11 +60,11 @@ sentences:
     apc-Arab/standard:
       text: بتحبّ الشاي؟
       tokens: [{surface: بتحبّ, sense: 7abb, form: 'form:impf-2ms'}, {surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}]
-      reverse: بتحبّ الشاي
+      reverse: (بتحبّ|بتحبّي|إنت بتحبّ|إنتي بتحبّي) الشاي
     apc-Latn/arabizi:
       text: bt7ebb el shay?
       tokens: [{surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
-      reverse: (bt7ebb|bt7eb|bthebb) (el|l|il) shay
+      reverse: ((bt7ebb|bt7eb|bthebb|bt7ebbi|bt7ebi)|(enta|inta) (bt7ebb|bt7eb)|(enti|inti) (bt7ebbi|bt7ebi)) (el|l|il) (shay|shai)
   translations:
     en: Do you (like|love) tea?
 - id: s.like.3
@@ -74,11 +74,11 @@ sentences:
     apc-Arab/standard:
       text: ما بحبّ الشاي.
       tokens: [{surface: ما, sense: ma}, {surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}]
-      reverse: ما بحبّ الشاي
+      reverse: (ما بحبّ|أنا ما بحبّ) الشاي
     apc-Latn/arabizi:
       text: ma b7ebb el shay.
       tokens: [{surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
-      reverse: ma (b7ebb|b7eb|bhebb|b7ib) (el|l|il) shay
+      reverse: (ma|ana ma) (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (shay|shai)
   translations:
     en: I (don't|do not) like tea.
 - id: s.like.4
@@ -88,11 +88,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ البحر.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: بحبّ البحر
+      reverse: (بحبّ|أنا بحبّ) البحر
     apc-Latn/arabizi:
       text: b7ebb el ba7r.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ba7r|ba7er|bahr)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (ba7r|ba7er|bahr)
   translations:
     en: I (love|like) the (sea|beach).
 - id: s.like.5
@@ -102,11 +102,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ الجبل.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
-      reverse: بحبّ الجبل
+      reverse: (بحبّ|أنا بحبّ) الجبل
     apc-Latn/arabizi:
       text: b7ebb el jabal.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (jabal|jabel|jbal)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (jabal|jabel|jbal)
   translations:
     en: I (love|like) the (mountains|mountain).
 - id: s.like.6
@@ -117,11 +117,11 @@ sentences:
       text: البحر أو الجبل؟
       tokens: [{surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {surface: أو, sense: aw}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'},
             {surface: جبل, kc: 'sense:jabal'}]}]
-      reverse: البحر أو الجبل
+      reverse: البحر (أو|ولّا|ولا) الجبل
     apc-Latn/arabizi:
       text: el ba7r aw el jabal?
       tokens: [{surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: aw, sense: aw}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
-      reverse: (el|l|il) (ba7r|ba7er|bahr) (aw|ow) (el|l|il) (jabal|jabel|jbal)
+      reverse: (el|l|il) (ba7r|ba7er|bahr) (aw|ow|walla|wella|willa) (el|l|il) (jabal|jabel|jbal)
   translations:
     en: |-
       The (sea|beach) or the (mountains|mountain)?
@@ -133,11 +133,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ الجبل أكتر.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}, {surface: أكتر, sense: aktar}]
-      reverse: بحبّ الجبل (أكتر|أكثر)
+      reverse: (بحبّ|أنا بحبّ) الجبل (أكتر|أكثر)
     apc-Latn/arabizi:
       text: b7ebb el jabal aktar.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}, {surface: aktar, sense: aktar}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (jabal|jabel|jbal) (aktar|akter|aktr)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (jabal|jabel|jbal) (aktar|akter|aktr)
   translations:
     en: |-
       I like the (mountains|mountain) (more|better).
@@ -150,11 +150,11 @@ sentences:
       text: ما بحبّ البحر أبدا.
       tokens: [{surface: ما, sense: ma}, {surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {
           surface: أبدا, sense: abadan}]
-      reverse: ما بحبّ البحر (أبدا|أبداً)
+      reverse: (ما بحبّ|أنا ما بحبّ) البحر (أبدا|أبداً)
     apc-Latn/arabizi:
       text: ma b7ebb el ba7r abadan.
       tokens: [{surface: ma, sense: ma}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: abadan, sense: abadan}]
-      reverse: ma (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ba7r|ba7er|bahr) (abadan|abdan)
+      reverse: (ma|ana ma) (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (ba7r|ba7er|bahr) (abadan|abdan)
   translations:
     en: I (don't|do not) like the (sea|beach) at all.
 - id: s.like.9
@@ -164,11 +164,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ الموسيقى.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}]
-      reverse: بحبّ (الموسيقى|الموسيقا)
+      reverse: (بحبّ|أنا بحبّ) (الموسيقى|الموسيقا)
     apc-Latn/arabizi:
       text: b7ebb el musi2a.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (musi2a|musika|mousika)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (musi2a|musika|mousika)
   translations:
     en: I (love|like) music.
 - id: s.like.10
@@ -176,13 +176,17 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: بسمع موسيقى كل يوم.
-      tokens: [{surface: بسمع, sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كل, sense: kell}, {surface: يوم, sense: yom}]
-      reverse: بسمع (موسيقى|موسيقا) كل يوم
+      text: بسمع موسيقى كلّ يوم.
+      tokens: [{surface: بسمع, sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
+      reverse: |-
+        بسمع (موسيقى|موسيقا) كلّ يوم
+        كلّ يوم بسمع (موسيقى|موسيقا)
     apc-Latn/arabizi:
-      text: besma3 musi2a kell yom.
-      tokens: [{surface: besma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
-      reverse: (besma3|bisma3|bsma3) (musi2a|musika|mousika) (kell|kil|kel|kull) (yom|yawm|youm)
+      text: bisma3 musi2a kell yom.
+      tokens: [{surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      reverse: |-
+        (bisma3|besma3|bsma3) (musi2a|musika|mousika) (kell|kil|kel|kull) (yom|yawm|youm)
+        (kell|kil|kel|kull) (yom|yawm|youm) (bisma3|besma3|bsma3) (musi2a|musika|mousika)
   translations:
     en: |-
       I listen to music every day.
@@ -194,11 +198,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ اسمع موسيقى.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
-      reverse: بحبّ اسمع (موسيقى|موسيقا)
+      reverse: (بحبّ|أنا بحبّ) اسمع (موسيقى|موسيقا)
     apc-Latn/arabizi:
       text: b7ebb esma3 musi2a.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (esma3|isma3|sma3) (musi2a|musika|mousika)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (esma3|isma3|sma3) (musi2a|musika|mousika)
   translations:
     en: I (like|love) (listening|to listen) to music.
 - id: s.like.12
@@ -208,11 +212,11 @@ sentences:
     apc-Arab/standard:
       text: بدّي اقرا كتاب.
       tokens: [{surface: بدّي, sense: baddi}, {surface: اقرا, sense: 2ara, form: 'form:subj-1sg'}, {surface: كتاب, sense: ktab}]
-      reverse: بدّي اقرا كتاب
+      reverse: (بدّي|أنا بدّي) اقرا (كتاب|شي كتاب)
     apc-Latn/arabizi:
       text: baddi e2ra ktab.
       tokens: [{surface: baddi, sense: baddi}, {surface: e2ra, sense: 2ara, form: 'form:subj-1sg'}, {surface: ktab, sense: ktab}]
-      reverse: (baddi|badde|badi) (e2ra|i2ra|2ra) (ktab|kteb|kitab)
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (e2ra|i2ra|2ra) (ktab|kteb|kitab|shi ktab)
   translations:
     en: |-
       I want to read a book.
@@ -224,11 +228,11 @@ sentences:
     apc-Arab/standard:
       text: بدّي آكل.
       tokens: [{surface: بدّي, sense: baddi}, {surface: آكل, sense: akal, form: 'form:subj-1sg'}]
-      reverse: بدّي آكل
+      reverse: (بدّي|أنا بدّي) (آكل|اكل)
     apc-Latn/arabizi:
       text: baddi ekol.
       tokens: [{surface: baddi, sense: baddi}, {surface: ekol, sense: akal, form: 'form:subj-1sg'}]
-      reverse: (baddi|badde|badi) (ekol|akol|2akol)
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (ekol|akol|2akol)
   translations:
     en: |-
       I want to eat.
@@ -240,11 +244,11 @@ sentences:
     apc-Arab/standard:
       text: بدّك شي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: شي, sense: shi}]
-      reverse: بدّك شي
+      reverse: (بدّك|إنت بدّك|إنتي بدّك) شي
     apc-Latn/arabizi:
       text: baddak shi?
       tokens: [{surface: baddak, sense: baddak}, {surface: shi, sense: shi}]
-      reverse: (baddak|badak) (shi|she)
+      reverse: ((baddak|badak|baddik)|(enta|inta) (baddak|badak)|(enti|inti) baddik) (shi|she)
   translations:
     en: |-
       Do you want anything?
@@ -258,11 +262,15 @@ sentences:
     apc-Arab/standard:
       text: بدّك تشرب شي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: شي, sense: shi}]
-      reverse: بدّك تشرب شي
+      reverse: |-
+        بدّك تشرب شي
+        بدّك تشربي شي
     apc-Latn/arabizi:
       text: baddak tishrab shi?
       tokens: [{surface: baddak, sense: baddak}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: shi, sense: shi}]
-      reverse: (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
+      reverse: |-
+        (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
+        (baddik|badik) (tishrabi|teshrabi|tshrabi) (shi|she)
   translations:
     en: |-
       Do you want something to drink?
@@ -308,14 +316,16 @@ sentences:
       text: بدّنا نروح عالبحر.
       tokens: [{surface: بدّنا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالبحر, sense: ba7r,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: بدّنا نروح (عالبحر|ع البحر|على البحر)
+      reverse: (بدّنا|نحنا بدّنا) نروح (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
       text: baddna nru7 3al ba7r.
       tokens: [{surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a,
           morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: (baddna|badna) (nru7|nrou7|nro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: ((baddna|badna)|(ne7na|na7na) (baddna|badna)) (nru7|nrou7|nro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
-    en: We want to go to the (beach|sea).
+    en: |-
+      We want to go to the (beach|sea).
+      We('d| would) like to go to the (beach|sea).
 - id: s.like.19
   node: apc.like.want-to
   register: colloquial
@@ -324,13 +334,19 @@ sentences:
       text: شو بدّك تعمل اليوم؟
       tokens: [{surface: شو, sense: shu}, {surface: بدّك, sense: baddak}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم,
               kc: 'sense:yom'}]}]
-      reverse: شو بدّك تعمل اليوم
+      reverse: |-
+        شو بدّك (تعمل|تعملي) اليوم
+        اليوم شو بدّك (تعمل|تعملي)
     apc-Latn/arabizi:
       text: shu baddak ta3mel el yom?
       tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: (shu|sho) (baddak|badak) (ta3mel|te3mel) (el|l|il) (yom|yawm|youm)
+      reverse: |-
+        (shu|sho) (baddak|badak) (ta3mel|te3mel) (el|l|il) (yom|yawm|youm)
+        (shu|sho) (baddik|badik) (ta3mli|ta3mle) (el|l|il) (yom|yawm|youm)
   translations:
-    en: What do you want to do today?
+    en: |-
+      What do you want to do today?
+      What would you like to do today?
 - id: s.like.20
   node: apc.like.watch-play
   register: colloquial
@@ -352,13 +368,15 @@ sentences:
     apc-Arab/standard:
       text: بدّي شوف فيلم.
       tokens: [{surface: بدّي, sense: baddi}, {surface: شوف, sense: shef, form: 'form:subj-1sg'}, {surface: فيلم, sense: film}]
-      reverse: بدّي شوف (فيلم|فلم)
+      reverse: (بدّي|أنا بدّي) شوف (فيلم|فلم|شي فيلم)
     apc-Latn/arabizi:
       text: baddi shuf film.
       tokens: [{surface: baddi, sense: baddi}, {surface: shuf, sense: shef, form: 'form:subj-1sg'}, {surface: film, sense: film}]
-      reverse: (baddi|badde|badi) (shuf|shouf) (film|filem)
+      reverse: ((baddi|badde|badi)|ana (baddi|badde|badi)) (shuf|shouf) (film|filem|shi film)
   translations:
-    en: I want to (watch|see) a (film|movie).
+    en: |-
+      I want to (watch|see) a (film|movie).
+      I('d| would) like to (watch|see) a (film|movie).
 - id: s.like.22
   node: apc.like.watch-play
   register: colloquial
@@ -382,11 +400,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ الفوتبول.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الفوتبول, sense: football, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فوتبول, kc: 'sense:football'}]}]
-      reverse: بحبّ الفوتبول
+      reverse: (بحبّ|أنا بحبّ) (الفوتبول|الفوتبال)
     apc-Latn/arabizi:
       text: b7ebb el football.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: football, sense: football}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (el|l|il) (football|futbol|foot)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (football|futbol|foot)
   translations:
     en: I (love|like) (football|soccer).
 - id: s.like.24
@@ -396,11 +414,11 @@ sentences:
     apc-Arab/standard:
       text: بتلعب فوتبول؟
       tokens: [{surface: بتلعب, sense: le3eb, form: 'form:impf-2ms'}, {surface: فوتبول, sense: football}]
-      reverse: بتلعب فوتبول
+      reverse: (بتلعب|بتلعبي|إنت بتلعب|إنتي بتلعبي) (فوتبول|فوتبال)
     apc-Latn/arabizi:
-      text: btel3ab football?
-      tokens: [{surface: btel3ab, sense: le3eb, form: 'form:impf-2ms'}, {surface: football, sense: football}]
-      reverse: (btel3ab|btil3ab) (football|futbol|foot)
+      text: btil3ab football?
+      tokens: [{surface: btil3ab, sense: le3eb, form: 'form:impf-2ms'}, {surface: football, sense: football}]
+      reverse: ((btil3ab|btel3ab|btil3abi|btel3abi)|(enta|inta) (btil3ab|btel3ab)|(enti|inti) (btil3abi|btel3abi)) (football|futbol|foot)
   translations:
     en: Do you play (football|soccer)?
 - id: s.like.25
@@ -410,11 +428,11 @@ sentences:
     apc-Arab/standard:
       text: شو عم تعمل؟
       tokens: [{surface: شو, sense: shu}, {surface: عم, sense: 3am}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: شو عم تعمل
+      reverse: شو عم (تعمل|بتعمل|تعملي|بتعملي)
     apc-Latn/arabizi:
       text: shu 3am ta3mel?
       tokens: [{surface: shu, sense: shu}, {surface: 3am, sense: 3am}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: (shu|sho) (3am|3m) (ta3mel|te3mel)
+      reverse: (shu|sho) (3am|3m|3a) (ta3mel|te3mel|bta3mel|ta3mli|ta3mle|bta3mli)
   translations:
     en: |-
       What are you doing?
@@ -426,11 +444,11 @@ sentences:
     apc-Arab/standard:
       text: عم اسمع موسيقى.
       tokens: [{surface: عم, sense: 3am}, {surface: اسمع, sense: sama3, form: 'form:subj-1sg'}, {surface: موسيقى, sense: musi2a}]
-      reverse: عم اسمع (موسيقى|موسيقا)
+      reverse: (عم|أنا عم) (اسمع|بسمع) (موسيقى|موسيقا)
     apc-Latn/arabizi:
       text: 3am esma3 musi2a.
       tokens: [{surface: 3am, sense: 3am}, {surface: esma3, sense: sama3, form: 'form:subj-1sg'}, {surface: musi2a, sense: musi2a}]
-      reverse: (3am|3m) (esma3|isma3|sma3) (musi2a|musika|mousika)
+      reverse: ((3am|3m|3a)|ana (3am|3m|3a)) (esma3|isma3|sma3|bisma3|besma3) (musi2a|musika|mousika)
   translations:
     en: I('m| am) listening to music.
 - id: s.like.27
@@ -440,11 +458,11 @@ sentences:
     apc-Arab/standard:
       text: بحبّ غنّي.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: غنّي, sense: ghanne, form: 'form:subj-1sg'}]
-      reverse: بحبّ غنّي
+      reverse: (بحبّ|أنا بحبّ) غنّي
     apc-Latn/arabizi:
       text: b7ebb ghanne.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: ghanne, sense: ghanne, form: 'form:subj-1sg'}]
-      reverse: (b7ebb|b7eb|bhebb|b7ib) (ghanne|ghanni|8anne)
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (ghanne|ghanni|8anne)
   translations:
     en: I (love|like) (singing|to sing).
 - id: s.like.28
@@ -455,11 +473,16 @@ sentences:
       text: وبحبّ ارقص كمان!
       tokens: [{surface: وبحبّ, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: و, kc: 'sense:w'}, {surface: بحبّ, kc: 'sense:7abb'}]}, {surface: ارقص, sense: ra2as, form: 'form:subj-1sg'}, {surface: كمان,
           sense: kamen}]
-      reverse: (وبحبّ|و بحبّ) ارقص كمان
+      reverse: |-
+        (وبحبّ|و بحبّ) ارقص كمان
+        (وأنا|و أنا) بحبّ ارقص كمان
+        (وكمان|و كمان) بحبّ ارقص
     apc-Latn/arabizi:
       text: w b7ebb or2os kamen!
       tokens: [{surface: w, sense: w}, {surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: or2os, sense: ra2as, form: 'form:subj-1sg'}, {surface: kamen, sense: kamen}]
-      reverse: (w|wa) (b7ebb|b7eb|bhebb|b7ib) (or2os|ur2us|er2os) (kamen|kaman)
+      reverse: |-
+        (w|wa) ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (or2os|ur2us|er2os|o2ros) (kamen|kaman)
+        (w|wa) (kamen|kaman) (b7ebb|b7eb|bhebb|b7ib) (or2os|ur2us|er2os|o2ros)
   translations:
     en: |-
       And I (love|like) (dancing|to dance) too!
@@ -503,7 +526,7 @@ stories:
       speaker: sami
       ask: complete
       gap: sense:abadan
-      distractors: ['sense:ktab', 'sense:film']
+      distractors: ['sense:ktir', 'sense:kamen']
       forms:
         apc-Arab/standard:
           text: لأ، ما بْحِبّ البَحِر أَبَداً. بْحِبّ الجَبَل.
@@ -549,8 +572,8 @@ stories:
           tokens: [{surface: بْحِبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الموسيقى, sense: musi2a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: موسيقى, kc: 'sense:musi2a'}]}, {surface: بِسْمَع,
               sense: sama3, form: 'form:impf-1sg'}, {surface: موسيقى, sense: musi2a}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom}]
         apc-Latn/arabizi:
-          text: b7ebb el musi2a. besma3 musi2a kell yom.
-          tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}, {surface: besma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a,
+          text: b7ebb el musi2a. bisma3 musi2a kell yom.
+          tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: musi2a, sense: musi2a}, {surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a,
               sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       translations: {en: I love music. I listen to music every day.}
   - line:
@@ -601,9 +624,9 @@ stories:
             {surface: عَالبَحِر, sense: ba7r, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}, {surface: ونِسْمَع, sense: sama3, form: 'form:subj-1pl',
               morphs: [{surface: و, kc: 'sense:w'}, {surface: نِسْمَع, kc: 'sense:sama3'}]}, {surface: موسيقى, sense: musi2a}]
         apc-Latn/arabizi:
-          text: yalla, baddna nru7 3al ba7r w nesma3 musi2a!
+          text: yalla, baddna nru7 3al ba7r w nisma3 musi2a!
           tokens: [{surface: yalla, sense: yalla}, {surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'},
-            {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}, {surface: w, sense: w}, {surface: nesma3, sense: sama3, form: 'form:subj-1pl'},
+            {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}, {surface: w, sense: w}, {surface: nisma3, sense: sama3, form: 'form:subj-1pl'},
             {surface: musi2a, sense: musi2a}]
       translations: {en: 'Come on, let''s go to the beach and listen to music!'}
   - line:

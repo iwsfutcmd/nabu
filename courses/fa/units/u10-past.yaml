@@ -70,6 +70,9 @@ sentences:
       reverse: |-
         دیروز کجا بودی
         تو دیروز کجا بودی
+        دیروز تو کجا بودی
+        [شما] دیروز کجا بودید
+        دیروز شما کجا بودید
   translations:
     en: Where were you yesterday?
 - id: s.past.4
@@ -80,8 +83,8 @@ sentences:
       text: دیروز به دانشگاه رفتم.
       tokens: [{surface: دیروز, sense: dirooz}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: رفتم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: |-
-        [من] دیروز به دانشگاه رفتم
-        دیروز من به دانشگاه رفتم
+        [من] دیروز [به] دانشگاه رفتم
+        دیروز من [به] دانشگاه رفتم
   translations:
     en: |-
       I went to [the] university yesterday.
@@ -116,9 +119,9 @@ sentences:
     fa-Arab/standard:
       text: این فیلم خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: فیلم, sense: film}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این فیلم خیلی خوب است
+      reverse: این فیلم خیلی (خوب است|خوبه)
   translations:
-    en: This (film|movie) is very good.
+    en: This (film|movie) is (very|really) good.
 - id: s.past.8
   node: fa.past.did
   constructions: ['construction:ezafe', 'construction:past']
@@ -150,7 +153,9 @@ sentences:
     fa-Arab/standard:
       text: چه خریدی؟
       tokens: [{surface: چه, sense: che}, {surface: خریدی, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: '[تو] (چه|چی) خریدی'
+      reverse: |-
+        [تو] (چه|چی) خریدی
+        [شما] (چه|چی) خریدید
   translations:
     en: What did you buy?
 - id: s.past.11
@@ -183,7 +188,7 @@ sentences:
     fa-Arab/standard:
       text: هفتهٔ گذشته به اصفهان رفتیم.
       tokens: [{surface: هفتهٔ, sense: hafte}, {surface: گذشته, sense: gozashte}, {surface: به, sense: be}, {surface: اصفهان, sense: esfahan}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] هفته(ٔ|\u200cی|) گذشته به اصفهان رفتیم"
+      reverse: "[ما] هفت(هٔ|ه\u200cی|ه) گذشته به اصفهان رفتیم"
   translations:
     en: |-
       Last week we went to (Isfahan|Esfahan).
@@ -194,7 +199,9 @@ sentences:
     fa-Arab/standard:
       text: امروز هوا خوب است.
       tokens: [{surface: امروز, sense: emruz}, {surface: هوا, sense: hava}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: امروز هوا خوب است
+      reverse: |-
+        امروز هوا (خوب است|خوبه)
+        هوا امروز (خوب است|خوبه)
   translations:
     en: |-
       The weather is (nice|good) today.
@@ -205,7 +212,7 @@ sentences:
     fa-Arab/standard:
       text: هوا گرم است.
       tokens: [{surface: هوا, sense: hava}, {surface: گرم, sense: garm}, {surface: است, sense: budan}]
-      reverse: هوا گرم است
+      reverse: هوا (گرم است|گرمه)
   translations:
     en: |-
       It('s| is) (warm|hot).
@@ -216,7 +223,9 @@ sentences:
     fa-Arab/standard:
       text: دیروز هوا سرد بود.
       tokens: [{surface: دیروز, sense: dirooz}, {surface: هوا, sense: hava}, {surface: سرد, sense: sard}, {surface: بود, sense: bud}]
-      reverse: دیروز هوا سرد بود
+      reverse: |-
+        دیروز هوا سرد بود
+        هوا دیروز سرد بود
   translations:
     en: |-
       It was cold yesterday.
@@ -228,7 +237,9 @@ sentences:
     fa-Arab/standard:
       text: امروز هوا آفتابی است.
       tokens: [{surface: امروز, sense: emruz}, {surface: هوا, sense: hava}, {surface: آفتابی, sense: aftabi}, {surface: است, sense: budan}]
-      reverse: امروز هوا آفتابی است
+      reverse: |-
+        امروز هوا آفتابی است
+        هوا امروز آفتابی است
   translations:
     en: |-
       It('s| is) sunny today.
@@ -334,7 +345,7 @@ sentences:
     fa-Arab/standard:
       text: ما به شمال رفتیم.
       tokens: [{surface: ما, sense: ma}, {surface: به, sense: be}, {surface: شمال, sense: shomal}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] به شمال رفتیم'
+      reverse: '[ما] [به] شمال رفتیم'
   translations:
     en: We went (to the north|north).
 - id: s.past.28
@@ -354,7 +365,7 @@ sentences:
     fa-Arab/standard:
       text: این عکسِ خانوادهٔ من است.
       tokens: [{surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: خانوادهٔ, sense: khanevade}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: "این عکس خانواده(ٔ|\u200cی|) من است"
+      reverse: "این عکس خانواد(هٔ|ه\u200cی|ه) من است"
   translations:
     en: |-
       This is a (photo|picture) of my family.
@@ -381,7 +392,7 @@ sentences:
   translations:
     en: |-
       Was the trip good?
-      How was the trip?
+      Was it a good trip?
       Did you have a good trip?
 - id: s.past.32
   node: fa.past.fun
@@ -415,7 +426,7 @@ sentences:
     fa-Arab/standard:
       text: بله، خیلی خوش گذشت!
       tokens: [{surface: بله, sense: bale}, {surface: خیلی, sense: kheyli}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}]
-      reverse: بله [به ما] خیلی خوش گذشت
+      reverse: (بله|آره) [به ما] خیلی خوش گذشت
   translations:
     en: |-
       Yes, (we|I) had a (great|very good|wonderful|lovely) time!
@@ -472,7 +483,7 @@ stories:
       speaker: ali
       ask: complete
       gap: sense:aftabi
-      distractors: ['sense:darya', 'sense:shomal']
+      distractors: ['sense:sard', 'sense:barf']
       forms:
         fa-Arab/standard:
           text: هوا گرم و آفتابی بود.

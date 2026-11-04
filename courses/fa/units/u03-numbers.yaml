@@ -6,7 +6,7 @@ title: {en: 'Numbers, age and money'}
 cefr: A1
 kcs:
 - {id: 'sense:yek', gloss: {en: 'one; a, an'}, forms: {fa-Arab/standard: [یک]}}
-- {id: 'sense:dashtan', gloss: {en: to have (present stem دار-)}, forms: {fa-Arab/standard: [دارم, دارد, داری, داریم, دارند, ندارم, ندارد, دارید]}, notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age is 'had': بیست سال دارم, I am twenty."}}
+- {id: 'sense:dashtan', gloss: {en: to have (present stem دار-)}, forms: {fa-Arab/standard: [دارم, دارد, داری, داریم, دارند, ندارم, ندارد, دارید]}, notes: {en: "No می\u200c in the present: دارم, داری, دارد, داریم, دارید, دارند. Age also uses داشتن: بیست سال دارم, I am twenty (literally 'I have twenty years')."}}
 - {id: 'form:3sg-ad', gloss: {en: '-ad: he, she, it (verb ending)'}, notes: {en: 'دارد (dārad): has. In speech it is -e: داره (dāre).'}}
 - {id: 'sense:do', gloss: {en: two}, forms: {fa-Arab/standard: [دو]}, notes: {en: 'After a number the noun stays singular: دو کتاب, two books.'}}
 - {id: 'sense:se', gloss: {en: three}, forms: {fa-Arab/standard: [سه]}}
@@ -21,7 +21,7 @@ kcs:
 - {id: 'sense:khodkar', gloss: {en: (ballpoint) pen}, forms: {fa-Arab/standard: [خودکار]}}
 - {id: 'sense:bist', gloss: {en: twenty}, forms: {fa-Arab/standard: [بیست]}, notes: {en: 'Tens and units are joined with و: بیست و پنج, twenty-five.'}}
 - {id: 'sense:sal', gloss: {en: year; years (of age)}, forms: {fa-Arab/standard: [سال]}}
-- {id: 'sense:chand', gloss: {en: how many; how much (price)}, forms: {fa-Arab/standard: [چند]}, notes: {en: 'Spoken: چند تا (chand tā), how many.'}}
+- {id: 'sense:chand', gloss: {en: how many; how much (price); what (time)}, forms: {fa-Arab/standard: [چند]}, notes: {en: 'Spoken: چند تا (chand tā), how many. ساعت چند؟ what time?'}}
 - {id: 'sense:si', gloss: {en: thirty}, forms: {fa-Arab/standard: [سی]}}
 - {id: 'sense:panjah', gloss: {en: fifty}, forms: {fa-Arab/standard: [پنجاه]}}
 - {id: 'sense:sad', gloss: {en: hundred}, forms: {fa-Arab/standard: [صد]}}
@@ -47,7 +47,7 @@ sentences:
     fa-Arab/standard:
       text: این یک کتاب است.
       tokens: [{surface: این, sense: in}, {surface: یک, sense: yek}, {surface: کتاب, sense: ketab}, {surface: است, sense: budan}]
-      reverse: این [یک] کتاب است
+      reverse: این [یک] (کتاب است|کتابه)
   translations:
     en: This is (a|one) book.
 - id: s.numbers.2
@@ -89,11 +89,13 @@ sentences:
     fa-Arab/standard:
       text: تو کتاب داری؟
       tokens: [{surface: تو, sense: to}, {surface: کتاب, sense: ketab}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: '[تو] [یک] کتاب داری'
+      reverse: |-
+        [تو] [یک] کتاب داری
+        [شما] [یک] کتاب دارید
   translations:
     en: |-
-      Do you have a book?
-      Have you got a book?
+      Do you have (a book|books|any books)?
+      Have you got (a book|any books)?
 - id: s.numbers.6
   node: fa.numbers.have
   forms:
@@ -144,7 +146,7 @@ sentences:
     fa-Arab/standard:
       text: "آن\u200cها شش بچه دارند."
       tokens: [{surface: "آن\u200cها", sense: an, morphs: [{surface: "آن\u200c", kc: 'sense:an'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: شش, sense: shesh}, {surface: بچه, sense: bachche}, {surface: دارند, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "[آن\u200cها] شش بچه دارند"
+      reverse: "[آن\u200cها] شش (بچه|فرزند) دارند"
   translations:
     en: |-
       They have (six|6) (children|kids).
@@ -165,9 +167,7 @@ sentences:
     fa-Arab/standard:
       text: این دفترِ من است.
       tokens: [{surface: این, sense: in}, {surface: دفترِ, sense: daftar}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: |-
-        این دفتر من است
-        این دفترم است
+      reverse: این (دفتر من است|دفترم است|دفتر منه|دفترمه)
   translations:
     en: This is my notebook.
 - id: s.numbers.13
@@ -221,7 +221,9 @@ sentences:
     fa-Arab/standard:
       text: تو خودکار داری؟
       tokens: [{surface: تو, sense: to}, {surface: خودکار, sense: khodkar}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: '[تو] [یک] خودکار داری'
+      reverse: |-
+        [تو] [یک] خودکار داری
+        [شما] [یک] خودکار دارید
   translations:
     en: |-
       Do you have a pen?
@@ -266,7 +268,8 @@ sentences:
       tokens: [{surface: شما, sense: shoma}, {surface: چند, sense: chand}, {surface: سال, sense: sal}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: |-
         [شما] چند سال دارید
-        چند سالتان است
+        (چند سالتان است|چند سالت است|چند سالته)
+        [تو] چند سال داری
   translations:
     en: How old are you?
 - id: s.numbers.22
@@ -277,7 +280,7 @@ sentences:
       tokens: [{surface: برادرم, sense: baradar, morphs: [{surface: برادر, kc: 'sense:baradar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: سی, sense: si}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: (برادرم|برادر من) سی سال دارد
   translations:
-    en: My brother is (thirty|30) [years old].
+    en: My brother( is|'s) (thirty|30) [years old].
 - id: s.numbers.23
   node: fa.numbers.age
   forms:
@@ -286,7 +289,7 @@ sentences:
       tokens: [{surface: سارا, sense: sara}, {surface: بیست, sense: bist}, {surface: و, sense: va}, {surface: پنج, sense: panj}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: سارا بیست و پنج سال دارد
   translations:
-    en: Sara is (twenty five|twentyfive|25) [years old].
+    en: Sara( is|'s) (twenty five|twentyfive|25) [years old].
 - id: s.numbers.24
   node: fa.numbers.age
   forms:
@@ -302,7 +305,9 @@ sentences:
     fa-Arab/standard:
       text: تو چند خواهر داری؟
       tokens: [{surface: تو, sense: to}, {surface: چند, sense: chand}, {surface: خواهر, sense: khahar}, {surface: داری, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: '[تو] چند [تا] خواهر داری'
+      reverse: |-
+        [تو] چند [تا] خواهر داری
+        [شما] چند [تا] خواهر دارید
   translations:
     en: |-
       How many sisters do you have?
@@ -349,8 +354,8 @@ sentences:
       text: قیمتِ این دفتر چند است؟
       tokens: [{surface: قیمتِ, sense: gheymat}, {surface: این, sense: in}, {surface: دفتر, sense: daftar}, {surface: چند, sense: chand}, {surface: است, sense: budan}]
       reverse: |-
-        قیمت این دفتر (چند است|چنده|چقدر است)
-        این دفتر (چند است|چنده)
+        قیمت این دفتر (چند است|چنده|چقدر است|چقدره)
+        این دفتر (چند است|چنده|چقدر است|چقدره)
   translations:
     en: |-
       How much is this notebook?
@@ -376,7 +381,9 @@ sentences:
     fa-Arab/standard:
       text: قیمتِ آن کتاب چقدر است؟
       tokens: [{surface: قیمتِ, sense: gheymat}, {surface: آن, sense: an}, {surface: کتاب, sense: ketab}, {surface: چقدر, sense: cheghadr}, {surface: است, sense: budan}]
-      reverse: قیمت آن کتاب (چقدر است|چقدره|چند است)
+      reverse: |-
+        قیمت آن کتاب (چقدر است|چقدره|چند است|چنده)
+        آن کتاب (چقدر است|چقدره|چند است|چنده)
   translations:
     en: |-
       How much is that book?

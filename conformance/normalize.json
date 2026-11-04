@@ -676,6 +676,16 @@
         "text": "l-yom"
       },
       "expected": "lyom"
+    },
+    {
+      "id": "normalize/fa/heh-with-yeh-above",
+      "op": "normalize",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "text": "خان\u06C0 من"
+      },
+      "expected": "خانه\u0654 من",
+      "note": "\u06C0 (U+06C0), as many Persian keyboards type the ezafe after a silent -e, becomes ه + hamza above, as the course writes it."
     }
-  ]
+]
 }

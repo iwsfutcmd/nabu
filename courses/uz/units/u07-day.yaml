@@ -97,11 +97,15 @@ sentences:
     uz-Latn/standard:
       text: Soat necha?
       tokens: [{surface: Soat, sense: soat}, {surface: necha, sense: necha}]
-      reverse: Soat necha
+      reverse: |-
+        Soat necha
+        Hozir soat necha
     uz-Cyrl/standard:
       text: Соат неча?
       tokens: [{surface: Соат, sense: soat}, {surface: неча, sense: necha}]
-      reverse: Соат неча
+      reverse: |-
+        Соат неча
+        Ҳозир соат неча
   translations:
     en: What time is it?
 - id: s.day.5
@@ -110,11 +114,15 @@ sentences:
     uz-Latn/standard:
       text: Soat sakkiz.
       tokens: [{surface: Soat, sense: soat}, {surface: sakkiz, sense: sakkiz}]
-      reverse: Soat sakkiz
+      reverse: |-
+        Soat sakkiz
+        Hozir soat sakkiz
     uz-Cyrl/standard:
       text: Соат саккиз.
       tokens: [{surface: Соат, sense: soat}, {surface: саккиз, sense: sakkiz}]
-      reverse: Соат саккиз
+      reverse: |-
+        Соат саккиз
+        Ҳозир соат саккиз
   translations:
     en: It('s| is) (eight|8) [o'clock].
 - id: s.day.6
@@ -126,12 +134,16 @@ sentences:
       reverse: |-
         [Siz] ertalab nima qilasiz
         Ertalab [siz] nima qilasiz
+        [Sen] ertalab nima qilasan
+        Ertalab [sen] nima qilasan
     uz-Cyrl/standard:
       text: Эрталаб нима қиласиз?
       tokens: [{surface: Эрталаб, sense: ertalab}, {surface: нима, sense: nima}, {surface: қиласиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
       reverse: |-
         [Сиз] эрталаб нима қиласиз
         Эрталаб [сиз] нима қиласиз
+        [Сен] эрталаб нима қиласан
+        Эрталаб [сен] нима қиласан
   translations:
     en: What do you do in the morning?
 - id: s.day.7
@@ -170,11 +182,15 @@ sentences:
     uz-Latn/standard:
       text: Siz qayerda ishlaysiz?
       tokens: [{surface: Siz, sense: siz}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ishlaysiz, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] qayerda ishlaysiz'
+      reverse: |-
+        [Siz] qayerda ishlaysiz
+        [Sen] qayerda ishlaysan
     uz-Cyrl/standard:
       text: Сиз қаерда ишлайсиз?
       tokens: [{surface: Сиз, sense: siz}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ишлайсиз, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] қаерда ишлайсиз'
+      reverse: |-
+        [Сиз] қаерда ишлайсиз
+        [Сен] қаерда ишлайсан
   translations:
     en: Where do you work?
 - id: s.day.10
@@ -196,11 +212,11 @@ sentences:
     uz-Latn/standard:
       text: Men soat toʻqqizdan beshgacha ishlayman.
       tokens: [{surface: Men, sense: men}, {surface: soat, sense: soat}, {surface: toʻqqizdan, sense: toqqiz, morphs: [{surface: toʻqqiz, kc: 'sense:toqqiz'}, {surface: dan, kc: 'form:abl-dan'}]}, {surface: beshgacha, sense: besh, morphs: [{surface: besh, kc: 'sense:besh'}, {surface: gacha, kc: 'form:term-gacha'}]}, {surface: ishlayman, sense: ishlamoq, morphs: [{surface: ishla, kc: 'sense:ishlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] soat toʻqqizdan beshgacha ishlayman'
+      reverse: '[Men] [soat] toʻqqizdan beshgacha ishlayman'
     uz-Cyrl/standard:
       text: Мен соат тўққиздан бешгача ишлайман.
       tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: тўққиздан, sense: toqqiz, morphs: [{surface: тўққиз, kc: 'sense:toqqiz'}, {surface: дан, kc: 'form:abl-dan'}]}, {surface: бешгача, sense: besh, morphs: [{surface: беш, kc: 'sense:besh'}, {surface: гача, kc: 'form:term-gacha'}]}, {surface: ишлайман, sense: ishlamoq, morphs: [{surface: ишла, kc: 'sense:ishlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Мен] соат тўққиздан бешгача ишлайман'
+      reverse: '[Мен] [соат] тўққиздан бешгача ишлайман'
   translations:
     en: |-
       I work from (nine|9) (to|till|until) (five|5).
@@ -221,7 +237,9 @@ sentences:
         Соат бирда [биз] тушлик қиламиз
         [Биз] соат бирда тушлик қиламиз
   translations:
-    en: We (have|eat) lunch at (one|1) [o'clock].
+    en: |-
+      We (have|eat) lunch at (one|1) [o'clock].
+      At (one|1) [o'clock] we (have|eat) lunch.
 - id: s.day.13
   node: uz.day.evening
   forms:
@@ -273,7 +291,9 @@ sentences:
       tokens: [{surface: Мен, sense: men}, {surface: соат, sense: soat}, {surface: ўн, sense: 'on'}, {surface: бирда, sense: bir, morphs: [{surface: бир, kc: 'sense:bir'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ухлайман, sense: uxlamoq, morphs: [{surface: ухла, kc: 'sense:uxlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
       reverse: '[Мен] соат ўн бирда ухлайман'
   translations:
-    en: I (go to bed|go to sleep|sleep) at (eleven|11) [o'clock].
+    en: |-
+      I (go to bed|go to sleep|sleep) at (eleven|11) [o'clock].
+      At (eleven|11) [o'clock] I (go to bed|go to sleep|sleep).
 - id: s.day.16
   node: uz.day.evening
   forms:
@@ -305,7 +325,9 @@ sentences:
       tokens: [{surface: Бугун, sense: bugun}, {surface: яхши, sense: yaxshi}, {surface: кун, sense: kun}]
       reverse: Бугун яхши кун
   translations:
-    en: Today is a (good|nice) day.
+    en: |-
+      Today is a (good|nice) day.
+      It('s| is) a (good|nice) day today.
 - id: s.day.18
   node: uz.day.evening
   forms:
@@ -357,8 +379,8 @@ sentences:
         [Мен] эртага бозорга бораман
   translations:
     en: |-
-      I('ll| will| am going to) go to the (bazaar|market) tomorrow.
-      Tomorrow I('ll| will| am going to) go to the (bazaar|market).
+      I('ll| will|'m going to| am going to) go to the (bazaar|market) tomorrow.
+      Tomorrow I('ll| will|'m going to| am going to) go to the (bazaar|market).
       I('m| am) going to the (bazaar|market) tomorrow.
 - id: s.day.21
   node: uz.day.week
@@ -401,14 +423,14 @@ sentences:
       text: Payshanba kuni osh pishiramiz.
       tokens: [{surface: Payshanba, sense: payshanba}, {surface: kuni, sense: kun, morphs: [{surface: kun, kc: 'sense:kun'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: osh, sense: osh}, {surface: pishiramiz, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
       reverse: |-
-        Payshanba kuni [biz] osh pishiramiz
-        [Biz] payshanba kuni osh pishiramiz
+        Payshanba kuni [biz] osh (pishiramiz|damlaymiz|qilamiz)
+        [Biz] payshanba kuni osh (pishiramiz|damlaymiz|qilamiz)
     uz-Cyrl/standard:
       text: Пайшанба куни ош пиширамиз.
       tokens: [{surface: Пайшанба, sense: payshanba}, {surface: куни, sense: kun, morphs: [{surface: кун, kc: 'sense:kun'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: ош, sense: osh}, {surface: пиширамиз, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
       reverse: |-
-        Пайшанба куни [биз] ош пиширамиз
-        [Биз] пайшанба куни ош пиширамиз
+        Пайшанба куни [биз] ош (пиширамиз|дамлаймиз|қиламиз)
+        [Биз] пайшанба куни ош (пиширамиз|дамлаймиз|қиламиз)
   translations:
     en: |-
       We (cook|make) (plov|pilaf|palov) on (Thursday|Thursdays).
@@ -492,11 +514,11 @@ sentences:
     uz-Latn/standard:
       text: Bir haftada yetti kun bor.
       tokens: [{surface: Bir, sense: bir}, {surface: haftada, sense: hafta, morphs: [{surface: hafta, kc: 'sense:hafta'}, {surface: da, kc: 'form:loc-da'}]}, {surface: yetti, sense: yetti}, {surface: kun, sense: kun}, {surface: bor, sense: bor}]
-      reverse: Bir haftada yetti(ta|) kun bor
+      reverse: '[Bir] haftada yetti(ta|) kun bor'
     uz-Cyrl/standard:
       text: Бир ҳафтада етти кун бор.
       tokens: [{surface: Бир, sense: bir}, {surface: ҳафтада, sense: hafta, morphs: [{surface: ҳафта, kc: 'sense:hafta'}, {surface: да, kc: 'form:loc-da'}]}, {surface: етти, sense: yetti}, {surface: кун, sense: kun}, {surface: бор, sense: bor}]
-      reverse: Бир ҳафтада етти(та|) кун бор
+      reverse: '[Бир] ҳафтада етти(та|) кун бор'
   translations:
     en: |-
       There are seven days in a week.
@@ -526,11 +548,15 @@ sentences:
     uz-Latn/standard:
       text: Nima qilyapsiz?
       tokens: [{surface: Nima, sense: nima}, {surface: qilyapsiz, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] nima qilyapsiz'
+      reverse: |-
+        [Siz] nima (qilyapsiz|qilayapsiz)
+        [Sen] nima (qilyapsan|qilayapsan)
     uz-Cyrl/standard:
       text: Нима қиляпсиз?
       tokens: [{surface: Нима, sense: nima}, {surface: қиляпсиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] нима қиляпсиз'
+      reverse: |-
+        [Сиз] нима (қиляпсиз|қилаяпсиз)
+        [Сен] нима (қиляпсан|қилаяпсан)
   translations:
     en: What are you doing?
 - id: s.day.31
@@ -552,11 +578,11 @@ sentences:
     uz-Latn/standard:
       text: Onam osh pishiryapti.
       tokens: [{surface: Onam, sense: ona, morphs: [{surface: Ona, kc: 'sense:ona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: osh, sense: osh}, {surface: pishiryapti, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Mening] onam osh pishiryapti'
+      reverse: '[Mening] (onam|oyim) osh (pishiryapti|pishirayapti|damlayapti|qilyapti)(|lar)'
     uz-Cyrl/standard:
       text: Онам ош пиширяпти.
       tokens: [{surface: Онам, sense: ona, morphs: [{surface: Она, kc: 'sense:ona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ош, sense: osh}, {surface: пиширяпти, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Менинг] онам ош пиширяпти'
+      reverse: '[Менинг] (онам|ойим) ош (пиширяпти|пишираяпти|дамлаяпти|қиляпти)(|лар)'
   translations:
     en: My (mother|mom|mum) is (cooking|making) (plov|pilaf|palov).
 - id: s.day.33

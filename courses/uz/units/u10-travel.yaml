@@ -22,7 +22,7 @@ kcs:
 - {id: 'sense:xiva', gloss: {en: Khiva}, forms: {uz-Latn/standard: [Xivaga], uz-Cyrl/standard: [Хивага]}}
 - {id: 'sense:poyezd', gloss: {en: train}, forms: {uz-Latn/standard: [poyezd, poyezdda, poyezddami], uz-Cyrl/standard: [поезд, поездда, поезддами]}}
 - {id: 'sense:bilet', gloss: {en: ticket}, forms: {uz-Latn/standard: [bilet, biletingiz], uz-Cyrl/standard: [билет, билетингиз]}}
-- {id: 'sense:samolyot', gloss: {en: 'plane, aeroplane'}, forms: {uz-Latn/standard: [samolyotda], uz-Cyrl/standard: [самолётда]}}
+- {id: 'sense:samolyot', gloss: {en: 'plane, airplane, aeroplane'}, forms: {uz-Latn/standard: [samolyotda], uz-Cyrl/standard: [самолётда]}}
 - {id: 'sense:mehmonxona', gloss: {en: hotel}, forms: {uz-Latn/standard: [mehmonxona], uz-Cyrl/standard: [меҳмонхона]}}
 - {id: 'sense:otmoq', gloss: {en: 'to pass, to go (of time or a trip)'}, forms: {uz-Latn/standard: [oʻtdi], uz-Cyrl/standard: [ўтди]}, notes: {en: 'Sayohat qanday oʻtdi? How did the trip go?'}}
 - {id: 'sense:rasm', gloss: {en: 'picture, photo'}, forms: {uz-Latn/standard: [rasm], uz-Cyrl/standard: [расм]}, notes: {en: 'Rasm olmoq: to take a photo.'}}
@@ -44,13 +44,13 @@ sentences:
       text: Bugun havo issiq.
       tokens: [{surface: Bugun, sense: bugun}, {surface: havo, sense: havo}, {surface: issiq, sense: issiq}]
       reverse: |-
-        Bugun havo issiq
+        Bugun [havo] issiq
         Havo bugun issiq
     uz-Cyrl/standard:
       text: Бугун ҳаво иссиқ.
       tokens: [{surface: Бугун, sense: bugun}, {surface: ҳаво, sense: havo}, {surface: иссиқ, sense: issiq}]
       reverse: |-
-        Бугун ҳаво иссиқ
+        Бугун [ҳаво] иссиқ
         Ҳаво бугун иссиқ
   translations:
     en: |-
@@ -83,13 +83,13 @@ sentences:
       text: Bugun havo sovuq.
       tokens: [{surface: Bugun, sense: bugun}, {surface: havo, sense: havo}, {surface: sovuq, sense: sovuq}]
       reverse: |-
-        Bugun havo sovuq
+        Bugun [havo] sovuq
         Havo bugun sovuq
     uz-Cyrl/standard:
       text: Бугун ҳаво совуқ.
       tokens: [{surface: Бугун, sense: bugun}, {surface: ҳаво, sense: havo}, {surface: совуқ, sense: sovuq}]
       reverse: |-
-        Бугун ҳаво совуқ
+        Бугун [ҳаво] совуқ
         Ҳаво бугун совуқ
   translations:
     en: |-
@@ -102,11 +102,15 @@ sentences:
     uz-Latn/standard:
       text: Bugun yomgʻir yoʻq.
       tokens: [{surface: Bugun, sense: bugun}, {surface: yomgʻir, sense: yomgir}, {surface: yoʻq, sense: yoq}]
-      reverse: Bugun yomgʻir yoʻq
+      reverse: |-
+        Bugun yomgʻir yoʻq
+        Bugun yomgʻir yogʻmayapti
     uz-Cyrl/standard:
       text: Бугун ёмғир йўқ.
       tokens: [{surface: Бугун, sense: bugun}, {surface: ёмғир, sense: yomgir}, {surface: йўқ, sense: yoq}]
-      reverse: Бугун ёмғир йўқ
+      reverse: |-
+        Бугун ёмғир йўқ
+        Бугун ёмғир ёғмаяпти
   translations:
     en: |-
       There('s| is) no rain today.
@@ -117,11 +121,11 @@ sentences:
     uz-Latn/standard:
       text: Yomgʻir yogʻyapti.
       tokens: [{surface: Yomgʻir, sense: yomgir}, {surface: yogʻyapti, sense: yogmoq, morphs: [{surface: yogʻ, kc: 'sense:yogmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
-      reverse: Yomgʻir yogʻyapti
+      reverse: Yomgʻir (yogʻyapti|yogʻayapti)
     uz-Cyrl/standard:
       text: Ёмғир ёғяпти.
       tokens: [{surface: Ёмғир, sense: yomgir}, {surface: ёғяпти, sense: yogmoq, morphs: [{surface: ёғ, kc: 'sense:yogmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
-      reverse: Ёмғир ёғяпти
+      reverse: Ёмғир (ёғяпти|ёғаяпти)
   translations:
     en: It('s| is) raining.
 - id: s.travel.6
@@ -130,11 +134,11 @@ sentences:
     uz-Latn/standard:
       text: Qor yogʻyapti.
       tokens: [{surface: Qor, sense: qor}, {surface: yogʻyapti, sense: yogmoq, morphs: [{surface: yogʻ, kc: 'sense:yogmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: ti, kc: 'form:pres-3sg-di'}]}]
-      reverse: Qor yogʻyapti
+      reverse: Qor (yogʻyapti|yogʻayapti)
     uz-Cyrl/standard:
       text: Қор ёғяпти.
       tokens: [{surface: Қор, sense: qor}, {surface: ёғяпти, sense: yogmoq, morphs: [{surface: ёғ, kc: 'sense:yogmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: ти, kc: 'form:pres-3sg-di'}]}]
-      reverse: Қор ёғяпти
+      reverse: Қор (ёғяпти|ёғаяпти)
   translations:
     en: It('s| is) snowing.
 - id: s.travel.7
@@ -143,11 +147,15 @@ sentences:
     uz-Latn/standard:
       text: Yozda havo juda issiq.
       tokens: [{surface: Yozda, sense: yoz, morphs: [{surface: Yoz, kc: 'sense:yoz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: juda, sense: juda}, {surface: issiq, sense: issiq}]
-      reverse: Yozda havo juda issiq
+      reverse: |-
+        Yozda [havo] juda issiq
+        Yozda [havo] juda issiq boʻladi
     uz-Cyrl/standard:
       text: Ёзда ҳаво жуда иссиқ.
       tokens: [{surface: Ёзда, sense: yoz, morphs: [{surface: Ёз, kc: 'sense:yoz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: жуда, sense: juda}, {surface: иссиқ, sense: issiq}]
-      reverse: Ёзда ҳаво жуда иссиқ
+      reverse: |-
+        Ёзда [ҳаво] жуда иссиқ
+        Ёзда [ҳаво] жуда иссиқ бўлади
   translations:
     en: |-
       It('s| is) very hot in (summer|the summer).
@@ -174,11 +182,15 @@ sentences:
     uz-Latn/standard:
       text: Bahorda havo yaxshi.
       tokens: [{surface: Bahorda, sense: bahor, morphs: [{surface: Bahor, kc: 'sense:bahor'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: yaxshi, sense: yaxshi}]
-      reverse: Bahorda havo yaxshi
+      reverse: |-
+        Bahorda havo yaxshi
+        Bahorda havo yaxshi boʻladi
     uz-Cyrl/standard:
       text: Баҳорда ҳаво яхши.
       tokens: [{surface: Баҳорда, sense: bahor, morphs: [{surface: Баҳор, kc: 'sense:bahor'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: яхши, sense: yaxshi}]
-      reverse: Баҳорда ҳаво яхши
+      reverse: |-
+        Баҳорда ҳаво яхши
+        Баҳорда ҳаво яхши бўлади
   translations:
     en: |-
       The weather is (good|nice) in (spring|the spring).
@@ -189,11 +201,15 @@ sentences:
     uz-Latn/standard:
       text: Kuzda uzum koʻp.
       tokens: [{surface: Kuzda, sense: kuz, morphs: [{surface: Kuz, kc: 'sense:kuz'}, {surface: da, kc: 'form:loc-da'}]}, {surface: uzum, sense: uzum}, {surface: koʻp, sense: kop}]
-      reverse: Kuzda uzum koʻp
+      reverse: |-
+        Kuzda uzum koʻp
+        Kuzda uzum koʻp boʻladi
     uz-Cyrl/standard:
       text: Кузда узум кўп.
       tokens: [{surface: Кузда, sense: kuz, morphs: [{surface: Куз, kc: 'sense:kuz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: узум, sense: uzum}, {surface: кўп, sense: kop}]
-      reverse: Кузда узум кўп
+      reverse: |-
+        Кузда узум кўп
+        Кузда узум кўп бўлади
   translations:
     en: There are (a lot of|lots of|plenty of) grapes in (autumn|the autumn|fall|the fall).
 - id: s.travel.11
@@ -208,18 +224,22 @@ sentences:
       tokens: [{surface: Баҳор, sense: bahor}, {surface: чиройли, sense: chiroyli}, {surface: фасл, sense: fasl}]
       reverse: Баҳор чиройли фасл
   translations:
-    en: Spring is a (beautiful|lovely|nice) season.
+    en: Spring is a (beautiful|lovely|nice|pretty) season.
 - id: s.travel.12
   node: uz.weather.seasons
   forms:
     uz-Latn/standard:
       text: Sizga qaysi fasl yoqadi?
       tokens: [{surface: Sizga, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: qaysi, sense: qaysi}, {surface: fasl, sense: fasl}, {surface: yoqadi, sense: yoqmoq, morphs: [{surface: yoq, kc: 'sense:yoqmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
-      reverse: Sizga qaysi fasl yoqadi
+      reverse: |-
+        Sizga qaysi fasl yoqadi
+        Senga qaysi fasl yoqadi
     uz-Cyrl/standard:
       text: Сизга қайси фасл ёқади?
       tokens: [{surface: Сизга, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: қайси, sense: qaysi}, {surface: фасл, sense: fasl}, {surface: ёқади, sense: yoqmoq, morphs: [{surface: ёқ, kc: 'sense:yoqmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
-      reverse: Сизга қайси фасл ёқади
+      reverse: |-
+        Сизга қайси фасл ёқади
+        Сенга қайси фасл ёқади
   translations:
     en: (Which|What) season do you like?
 - id: s.travel.13
@@ -277,18 +297,18 @@ sentences:
       text: Kelasi hafta Samarqandga boraman.
       tokens: [{surface: Kelasi, sense: kelasi}, {surface: hafta, sense: hafta}, {surface: Samarqandga, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
       reverse: |-
-        Kelasi hafta [men] Samarqandga boraman
-        [Men] kelasi hafta Samarqandga boraman
+        (Kelasi|Keyingi) hafta [men] Samarqandga boraman
+        [Men] (kelasi|keyingi) hafta Samarqandga boraman
     uz-Cyrl/standard:
       text: Келаси ҳафта Самарқандга бораман.
       tokens: [{surface: Келаси, sense: kelasi}, {surface: ҳафта, sense: hafta}, {surface: Самарқандга, sense: samarqand, morphs: [{surface: Самарқанд, kc: 'sense:samarqand'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
       reverse: |-
-        Келаси ҳафта [мен] Самарқандга бораман
-        [Мен] келаси ҳафта Самарқандга бораман
+        (Келаси|Кейинги) ҳафта [мен] Самарқандга бораман
+        [Мен] (келаси|кейинги) ҳафта Самарқандга бораман
   translations:
     en: |-
-      I('ll| will| am going to) go to Samarkand next week.
-      Next week I('ll| will| am going to) go to Samarkand.
+      I('ll| will|'m going to| am going to) go to Samarkand next week.
+      Next week I('ll| will|'m going to| am going to) go to Samarkand.
       I('m| am) going to Samarkand next week.
 - id: s.travel.17
   node: uz.travel.plans
@@ -319,7 +339,7 @@ sentences:
       reverse: '[Мен] оилам билан бораман'
   translations:
     en: |-
-      I('ll| will| am going to) go with my family.
+      I('ll| will|'m going to| am going to) go with my family.
       I('m| am) going with my family.
 - id: s.travel.19
   node: uz.travel.tickets
@@ -327,14 +347,14 @@ sentences:
     uz-Latn/standard:
       text: Poyezdda boramiz.
       tokens: [{surface: Poyezdda, sense: poyezd, morphs: [{surface: Poyezd, kc: 'sense:poyezd'}, {surface: da, kc: 'form:loc-da'}]}, {surface: boramiz, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
-      reverse: '[Biz] poyezdda boramiz'
+      reverse: '[Biz] (poyezdda|poyezd bilan) boramiz'
     uz-Cyrl/standard:
       text: Поездда борамиз.
       tokens: [{surface: Поездда, sense: poyezd, morphs: [{surface: Поезд, kc: 'sense:poyezd'}, {surface: да, kc: 'form:loc-da'}]}, {surface: борамиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
-      reverse: '[Биз] поездда борамиз'
+      reverse: '[Биз] (поездда|поезд билан) борамиз'
   translations:
     en: |-
-      We('ll| will| are going to) go by train.
+      We('ll| will|'re going to| are going to) go by train.
       We('re| are) going by train.
       We go by train.
       We('ll| will) take the train.
@@ -344,11 +364,17 @@ sentences:
     uz-Latn/standard:
       text: Biletingiz bormi?
       tokens: [{surface: Biletingiz, sense: bilet, morphs: [{surface: Bilet, kc: 'sense:bilet'}, {surface: ingiz, kc: 'form:poss-2-ingiz'}]}, {surface: bormi, sense: bor, morphs: [{surface: bor, kc: 'sense:bor'}, {surface: mi, kc: 'form:q-mi'}]}]
-      reverse: '[Sizning] biletingiz bormi'
+      reverse: |-
+        [Sizning] biletingiz bormi
+        [Sening] bileting bormi
+        (Sizda|Senda) bilet bormi
     uz-Cyrl/standard:
       text: Билетингиз борми?
       tokens: [{surface: Билетингиз, sense: bilet, morphs: [{surface: Билет, kc: 'sense:bilet'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
-      reverse: '[Сизнинг] билетингиз борми'
+      reverse: |-
+        [Сизнинг] билетингиз борми
+        [Сенинг] билетинг борми
+        (Сизда|Сенда) билет борми
   translations:
     en: |-
       Do you have a ticket?
@@ -360,11 +386,11 @@ sentences:
     uz-Latn/standard:
       text: Ikkita bilet bering.
       tokens: [{surface: Ikkita, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: bilet, sense: bilet}, {surface: bering, sense: bermoq, morphs: [{surface: ber, kc: 'sense:bermoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
-      reverse: '[Menga] ikki(ta|) bilet bering'
+      reverse: '[Menga] ikki(ta|) bilet (bering|ber)'
     uz-Cyrl/standard:
       text: Иккита билет беринг.
       tokens: [{surface: Иккита, sense: ikki, morphs: [{surface: Икки, kc: 'sense:ikki'}, {surface: та, kc: 'form:count-ta'}]}, {surface: билет, sense: bilet}, {surface: беринг, sense: bermoq, morphs: [{surface: бер, kc: 'sense:bermoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      reverse: '[Менга] икки(та|) билет беринг'
+      reverse: '[Менга] икки(та|) билет (беринг|бер)'
   translations:
     en: |-
       [Please] give me two tickets.
@@ -390,11 +416,11 @@ sentences:
     uz-Latn/standard:
       text: Samolyotda bormoqchiman.
       tokens: [{surface: Samolyotda, sense: samolyot, morphs: [{surface: Samolyot, kc: 'sense:samolyot'}, {surface: da, kc: 'form:loc-da'}]}, {surface: bormoqchiman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] samolyotda bormoqchiman'
+      reverse: '[Men] (samolyotda|samolyot bilan) bormoqchiman'
     uz-Cyrl/standard:
       text: Самолётда бормоқчиман.
       tokens: [{surface: Самолётда, sense: samolyot, morphs: [{surface: Самолёт, kc: 'sense:samolyot'}, {surface: да, kc: 'form:loc-da'}]}, {surface: бормоқчиман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Мен] самолётда бормоқчиман'
+      reverse: '[Мен] (самолётда|самолёт билан) бормоқчиман'
   translations:
     en: |-
       I want to (go by plane|fly).
@@ -424,18 +450,24 @@ sentences:
       tokens: [{surface: Меҳмонхона, sense: mehmonxona}, {surface: қиммат, sense: qimmat}, {surface: эмас, sense: emas}]
       reverse: Меҳмонхона қиммат эмас
   translations:
-    en: The hotel (isn't|is not) expensive.
+    en: The hotel( isn't| is not|'s not) expensive.
 - id: s.travel.26
   node: uz.travel.hotel
   forms:
     uz-Latn/standard:
       text: Xona bormi?
       tokens: [{surface: Xona, sense: xona}, {surface: bormi, sense: bor, morphs: [{surface: bor, kc: 'sense:bor'}, {surface: mi, kc: 'form:q-mi'}]}]
-      reverse: Xona bormi
+      reverse: |-
+        Xona bormi
+        Boʻsh xona bormi
+        (Sizda|Sizlarda) [boʻsh] xona bormi
     uz-Cyrl/standard:
       text: Хона борми?
       tokens: [{surface: Хона, sense: xona}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
-      reverse: Хона борми
+      reverse: |-
+        Хона борми
+        Бўш хона борми
+        (Сизда|Сизларда) [бўш] хона борми
   translations:
     en: |-
       Do you have a room?
@@ -483,11 +515,15 @@ sentences:
     uz-Latn/standard:
       text: Juda issiq edi.
       tokens: [{surface: Juda, sense: juda}, {surface: issiq, sense: issiq}, {surface: edi, sense: edi, morphs: [{surface: e, kc: 'sense:edi'}, {surface: di, kc: 'form:past-di'}]}]
-      reverse: Juda issiq edi
+      reverse: |-
+        Juda issiq edi
+        Havo juda issiq edi
     uz-Cyrl/standard:
       text: Жуда иссиқ эди.
       tokens: [{surface: Жуда, sense: juda}, {surface: иссиқ, sense: issiq}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
-      reverse: Жуда иссиқ эди
+      reverse: |-
+        Жуда иссиқ эди
+        Ҳаво жуда иссиқ эди
   translations:
     en: It was very hot.
 - id: s.travel.30
@@ -496,15 +532,17 @@ sentences:
     uz-Latn/standard:
       text: Sayohat qanday oʻtdi?
       tokens: [{surface: Sayohat, sense: sayohat}, {surface: qanday, sense: qanday}, {surface: oʻtdi, sense: otmoq, morphs: [{surface: oʻt, kc: 'sense:otmoq'}, {surface: di, kc: 'form:past-di'}]}]
-      reverse: Sayohat qanday oʻtdi
+      reverse: Sayohat(|ingiz|ing) qanday oʻtdi
     uz-Cyrl/standard:
       text: Саёҳат қандай ўтди?
       tokens: [{surface: Саёҳат, sense: sayohat}, {surface: қандай, sense: qanday}, {surface: ўтди, sense: otmoq, morphs: [{surface: ўт, kc: 'sense:otmoq'}, {surface: ди, kc: 'form:past-di'}]}]
-      reverse: Саёҳат қандай ўтди
+      reverse: Саёҳат(|ингиз|инг) қандай ўтди
   translations:
     en: |-
-      How was the trip?
-      How did the trip go?
+      How was the (trip|journey)?
+      How did the (trip|journey) go?
+      How was your (trip|journey)?
+      How did your (trip|journey) go?
 - id: s.travel.31
   node: uz.travel.back
   forms:
@@ -518,19 +556,19 @@ sentences:
       reverse: Саёҳат жуда яхши ўтди
   translations:
     en: |-
-      The trip went very well.
-      The trip was very good.
+      The (trip|journey) went very well.
+      The (trip|journey) was very good.
 - id: s.travel.32
   node: uz.travel.back
   forms:
     uz-Latn/standard:
       text: Koʻp rasm oldim.
       tokens: [{surface: Koʻp, sense: kop}, {surface: rasm, sense: rasm}, {surface: oldim, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Men] koʻp rasm oldim'
+      reverse: '[Men] koʻp (rasm|surat) oldim'
     uz-Cyrl/standard:
       text: Кўп расм олдим.
       tokens: [{surface: Кўп, sense: kop}, {surface: расм, sense: rasm}, {surface: олдим, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Мен] кўп расм олдим'
+      reverse: '[Мен] кўп (расм|сурат) олдим'
   translations:
     en: I took (a lot of|lots of|many) (photos|pictures).
 - id: s.travel.33

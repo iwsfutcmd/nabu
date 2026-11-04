@@ -10,7 +10,7 @@ kcs:
 - {id: 'sense:tlete', gloss: {en: three}, forms: {apc-Arab/standard: [تلاتة], apc-Latn/arabizi: [tlete]}}
 - {id: 'sense:arb3a', gloss: {en: four}, forms: {apc-Arab/standard: [أربعة], apc-Latn/arabizi: [arb3a]}}
 - {id: 'sense:khamse', gloss: {en: five}, forms: {apc-Arab/standard: [خمسة], apc-Latn/arabizi: [khamse]}}
-- {id: 'sense:sette', gloss: {en: six}, forms: {apc-Arab/standard: [ستة], apc-Latn/arabizi: [sette]}}
+- {id: 'sense:sette', gloss: {en: six}, forms: {apc-Arab/standard: [ستّة], apc-Latn/arabizi: [sette]}}
 - {id: 'sense:sab3a', gloss: {en: seven}, forms: {apc-Arab/standard: [سبعة], apc-Latn/arabizi: [sab3a]}}
 - {id: 'sense:tmene', gloss: {en: eight}, forms: {apc-Arab/standard: [تمانة], apc-Latn/arabizi: [tmene]}}
 - {id: 'sense:tes3a', gloss: {en: nine}, forms: {apc-Arab/standard: [تسعة], apc-Latn/arabizi: [tes3a]}}
@@ -20,7 +20,7 @@ kcs:
 - {id: 'sense:2addesh', gloss: {en: how much; how many}, forms: {apc-Arab/standard: [قدّيش], apc-Latn/arabizi: [2addesh]}}
 - {id: 'sense:masari', gloss: {en: money}, forms: {apc-Arab/standard: [مصاري], apc-Latn/arabizi: [masari]}}
 - {id: 'sense:3eshrin', gloss: {en: twenty}, forms: {apc-Arab/standard: [عشرين], apc-Latn/arabizi: [3eshrin]}}
-- {id: 'sense:miyye', gloss: {en: a hundred}, forms: {apc-Arab/standard: [مية], apc-Latn/arabizi: [miyye]}}
+- {id: 'sense:miyye', gloss: {en: a hundred}, forms: {apc-Arab/standard: [مية], apc-Latn/arabizi: [mit]}, notes: {en: 'mit before a noun (mit dollar, mit sene); miyye on its own.'}}
 - {id: 'sense:alf', gloss: {en: a thousand}, forms: {apc-Arab/standard: [ألف], apc-Latn/arabizi: [alf]}}
 - {id: 'sense:khamsin', gloss: {en: fifty}, forms: {apc-Arab/standard: [خمسين], apc-Latn/arabizi: [khamsin]}}
 - {id: 'sense:ghali', gloss: {en: expensive}, forms: {apc-Arab/standard: [غالي], apc-Latn/arabizi: [ghali]}}
@@ -68,9 +68,11 @@ sentences:
     apc-Latn/arabizi:
       text: tnen ahwe.
       tokens: [{surface: tnen, sense: tnen}, {surface: ahwe, sense: ahwe}]
-      reverse: (tnen|tnein|tnayn|itnen) (ahwe|2ahwe)
+      reverse: (tnen|tnein|tnayn|itnen|tnin) (ahwe|2ahwe|ahwi|2ahwi)
   translations:
-    en: Two coffees.
+    en: |-
+      Two coffees.
+      Two cups of coffee.
 - id: s.num.3
   node: apc.num.one-five
   register: colloquial
@@ -122,9 +124,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: خمسة وواحد ستة.
-      tokens: [{surface: خمسة, sense: khamse}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: ستة, sense: sette}]
-      reverse: خمسة (وواحد|و واحد) (ستة|ستّة)
+      text: خمسة وواحد ستّة.
+      tokens: [{surface: خمسة, sense: khamse}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: ستّة, sense: sette}]
+      reverse: خمسة (وواحد|و واحد) ستّة
     apc-Latn/arabizi:
       text: khamse w wa7ad sette.
       tokens: [{surface: khamse, sense: khamse}, {surface: w, sense: w}, {surface: wa7ad, sense: wa7ad}, {surface: sette, sense: sette}]
@@ -140,9 +142,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: ستة وواحد سبعة.
-      tokens: [{surface: ستة, sense: sette}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: سبعة, sense: sab3a}]
-      reverse: (ستة|ستّة) (وواحد|و واحد) سبعة
+      text: ستّة وواحد سبعة.
+      tokens: [{surface: ستّة, sense: sette}, {surface: وواحد, sense: wa7ad, morphs: [{surface: و, kc: 'sense:w'}, {surface: واحد, kc: 'sense:wa7ad'}]}, {surface: سبعة, sense: sab3a}]
+      reverse: ستّة (وواحد|و واحد) سبعة
     apc-Latn/arabizi:
       text: sette w wa7ad sab3a.
       tokens: [{surface: sette, sense: sette}, {surface: w, sense: w}, {surface: wa7ad, sense: wa7ad}, {surface: sab3a, sense: sab3a}]
@@ -232,7 +234,7 @@ sentences:
       tokens: [{surface: la2, sense: la2}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lira, sense: lira}]
       reverse: (la2|la) (bel|bil|b el) (lira|lire|leira)
   translations:
-    en: No, in (lira|lire|pounds|Lebanese pounds).
+    en: No, in (lira|lire|pounds|Lebanese pounds|Lebanese lira).
 - id: s.num.13
   node: apc.num.money
   register: colloquial
@@ -249,6 +251,7 @@ sentences:
     en: |-
       How much?
       How much is it?
+      How much does it cost?
 - id: s.num.14
   node: apc.num.money
   register: colloquial
@@ -272,11 +275,11 @@ sentences:
     apc-Arab/standard:
       text: معك مصاري؟
       tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: مصاري, sense: masari}]
-      reverse: معك مصاري
+      reverse: (معك|إنت معك|إنتي معك) مصاري
     apc-Latn/arabizi:
       text: ma3ak masari?
       tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: masari, sense: masari}]
-      reverse: (ma3ak|ma3aak) (masari|masare|msari)
+      reverse: ((ma3ak|m3ak|ma3ik|m3ik)|(enta|inta) (ma3ak|m3ak)|(enti|inti) (ma3ik|m3ik)) (masari|masare|msari)
   translations:
     en: |-
       Do you have [any] money [on you]?
@@ -288,11 +291,11 @@ sentences:
     apc-Arab/standard:
       text: ما معي مصاري.
       tokens: [{surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: مصاري, sense: masari}]
-      reverse: ما معي مصاري
+      reverse: (ما معي|أنا ما معي) مصاري
     apc-Latn/arabizi:
       text: ma ma3i masari.
       tokens: [{surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: masari, sense: masari}]
-      reverse: ma (ma3i|ma3e|ma3ai|ma3ae) (masari|masare|msari)
+      reverse: (ma|ana ma) (ma3i|ma3e|m3i|m3e) (masari|masare|msari)
   translations:
     en: |-
       I (don't|do not) have [any] money [on me].
@@ -319,12 +322,12 @@ sentences:
   forms:
     apc-Arab/standard:
       text: مية دولار؟!
-      tokens: [{surface: مية, sense: miyye}, {surface: دولار, sense: dollar}]
-      reverse: (مية|مئة) دولار
+      tokens: [{surface: مية, sense: miyye, vocalized: مِية}, {surface: دولار, sense: dollar}]
+      reverse: (مية|مئة|ميت) دولار
     apc-Latn/arabizi:
-      text: miyye dollar?!
-      tokens: [{surface: miyye, sense: miyye}, {surface: dollar, sense: dollar}]
-      reverse: (miyye|mie|miye|meyye) (dollar|dolar|dular)
+      text: mit dollar?!
+      tokens: [{surface: mit, sense: miyye}, {surface: dollar, sense: dollar}]
+      reverse: (mit|miit|meet|miyyet|miyye|mie|miye) (dollar|dolar|dular)
   translations:
     en: |-
       A hundred dollars?!
@@ -418,11 +421,19 @@ sentences:
     apc-Arab/standard:
       text: قهوة، عمول معروف.
       tokens: [{surface: قهوة, sense: ahwe}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
-      reverse: قهوة (عمول|اعمول|عمل) معروف
+      reverse: |-
+        قهوة (عمول|اعمول|عمل) معروف
+        قهوة (عملي|اعملي) معروف
+        قهوة لو (سمحت|سمحتي)
+        قهوة (إذا|اذا) (بتريد|بتريدي)
     apc-Latn/arabizi:
       text: ahwe, 3mol ma3rouf.
       tokens: [{surface: ahwe, sense: ahwe}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
-      reverse: (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+      reverse: |-
+        (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+        (ahwe|2ahwe) (3mele|3emli|3mili|e3mli) (ma3rouf|ma3ruf|ma3roof)
+        (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti)
+        (ahwe|2ahwe) (iza|eza|eiza) (btrid|betrid|bitrid|btride|btridi)
   translations:
     en: (A coffee|Coffee), please.
 - id: s.num.25
@@ -432,11 +443,19 @@ sentences:
     apc-Arab/standard:
       text: الحساب، عمول معروف.
       tokens: [{surface: الحساب, sense: 7sab, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حساب, kc: 'sense:7sab'}]}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
-      reverse: الحساب (عمول|اعمول|عمل) معروف
+      reverse: |-
+        الحساب (عمول|اعمول|عمل) معروف
+        الحساب (عملي|اعملي) معروف
+        الحساب لو (سمحت|سمحتي)
+        الحساب (إذا|اذا) (بتريد|بتريدي)
     apc-Latn/arabizi:
       text: el 7sab, 3mol ma3rouf.
       tokens: [{surface: el, sense: el}, {surface: 7sab, sense: 7sab}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
-      reverse: (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+      reverse: |-
+        (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
+        (el|l|il) (7sab|hsab|7isab) (3mele|3emli|3mili|e3mli) (ma3rouf|ma3ruf|ma3roof)
+        (el|l|il) (7sab|hsab|7isab) (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti)
+        (el|l|il) (7sab|hsab|7isab) (iza|eza|eiza) (btrid|betrid|bitrid|btride|btridi)
   translations:
     en: The (bill|check), please.
 - id: s.num.26
@@ -446,11 +465,11 @@ sentences:
     apc-Arab/standard:
       text: لو سمحت، قدّيش هيدا؟
       tokens: [{surface: لو, sense: law-sama7t}, {surface: سمحت, sense: law-sama7t}, {surface: قدّيش, sense: 2addesh}, {surface: هيدا, sense: hayda}]
-      reverse: لو سمحت (قدّيش|أدّيش) هيدا
+      reverse: لو (سمحت|سمحتي) (قدّيش|أدّيش) (هيدا|هيدي)
     apc-Latn/arabizi:
       text: law sama7t, 2addesh hayda?
       tokens: [{surface: law, sense: law-sama7t}, {surface: sama7t, sense: law-sama7t}, {surface: 2addesh, sense: 2addesh}, {surface: hayda, sense: hayda}]
-      reverse: (law|lau|low) (sama7t|samaht|sma7t) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda)
+      reverse: (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda|hayde)
   translations:
     en: |-
       Excuse me, how much is this?
@@ -466,7 +485,7 @@ sentences:
     apc-Latn/arabizi:
       text: 2addesh 3omrak?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 3omrak, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak)
+      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak|3omrik|3umrik)
   translations:
     en: How old are you?
 - id: s.num.28
@@ -476,11 +495,11 @@ sentences:
     apc-Arab/standard:
       text: عمري عشرين سنة.
       tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عشرين, sense: 3eshrin}, {surface: سنة, sense: sene}]
-      reverse: عمري عشرين سنة
+      reverse: (عمري|أنا عمري) عشرين سنة
     apc-Latn/arabizi:
       text: 3omri 3eshrin sene.
       tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3eshrin, sense: 3eshrin}, {surface: sene, sense: sene}]
-      reverse: (3omri|3omre|3umri|3umre|3omori|3omore) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
+      reverse: ((3omri|3omre|3umri|3umre|3omori|3omore)|ana (3omri|3omre|3umri|3umre)) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
   translations:
     en: |-
       I('m| am) twenty [years old].
@@ -491,13 +510,14 @@ sentences:
   forms:
     apc-Arab/standard:
       text: تيتا عمرا مية سنة!
-      tokens: [{surface: تيتا, sense: teta}, {surface: عمرا, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye}, {surface: سنة, sense: sene}]
-      reverse: تيتا (عمرا|عمرها) (مية|مئة) سنة
-    apc-Latn/arabizi:
-      text: teta 3omra miyye sene!
-      tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: miyye, sense: miyye}, {surface: sene,
+      tokens: [{surface: تيتا, sense: teta}, {surface: عمرا, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
           sense: sene}]
-      reverse: (teta|tayta) (3omra|3umra|3omora) (miyye|mie|miye|meyye) (sene|seni|sana)
+      reverse: تيتا (عمرا|عمرها) (مية|مئة|ميت) سنة
+    apc-Latn/arabizi:
+      text: teta 3omra mit sene!
+      tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,
+          sense: sene}]
+      reverse: (teta|tayta) (3omra|3umra|3omora) (mit|miit|meet|miyyet|miyye|mie|miye) (sene|seni|sana)
   translations:
     en: |-
       (Grandma|Granny) is (a hundred|one hundred|100) [years old]!
@@ -513,7 +533,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu ra2mak?
       tokens: [{surface: shu, sense: shu}, {surface: ra2mak, sense: ra2m, morphs: [{surface: ra2m, kc: 'sense:ra2m'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (shu|sho) (ra2mak|ra2emak|rakamak)
+      reverse: (shu|sho) (ra2mak|ra2emak|rakamak|ra2mik|ra2emik)
   translations:
     en: What('s| is) your (number|phone number)?
 stories:
@@ -580,20 +600,20 @@ stories:
   - line:
       speaker: abu-ali
       ask: complete
-      gap: sense:khamsin
-      distractors: ['sense:3eshrin', 'sense:miyye']
+      gap: sense:3eshrin
+      distractors: ['sense:khamsin', 'sense:miyye']
       forms:
         apc-Arab/standard:
-          text: خَمْسين أَلْف ليرَة.
-          tokens: [{surface: خَمْسين, sense: khamsin}, {surface: أَلْف, sense: alf}, {surface: ليرَة, sense: lira}]
+          text: عِشْرين دولار.
+          tokens: [{surface: عِشْرين, sense: 3eshrin}, {surface: دولار, sense: dollar}]
         apc-Latn/arabizi:
-          text: khamsin alf lira.
-          tokens: [{surface: khamsin, sense: khamsin}, {surface: alf, sense: alf}, {surface: lira, sense: lira}]
-      translations: {en: Fifty thousand lira.}
+          text: 3eshrin dollar.
+          tokens: [{surface: 3eshrin, sense: 3eshrin}, {surface: dollar, sense: dollar}]
+      translations: {en: Twenty dollars.}
   - choose:
       prompt:
         en: What price does Abu Ali ask for?
-      options: [{en: Fifty thousand lira}, {en: Twenty dollars}, {en: A hundred thousand lira}]
+      options: [{en: Twenty dollars}, {en: Ten dollars}, {en: Fifty thousand lira}]
       answer: 0
   - line:
       speaker: sami
@@ -621,26 +641,26 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: مَعي بَسّ عِشْرين أَلْف.
-          tokens: [{surface: مَعي, sense: ma3, morphs: [{surface: مَع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بَسّ, sense: bas}, {surface: عِشْرين, sense: 3eshrin}, {surface: أَلْف,
-              sense: alf}]
+          text: مَعي بَسّ عَشْرَة دولار.
+          tokens: [{surface: مَعي, sense: ma3, morphs: [{surface: مَع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بَسّ, sense: bas}, {surface: عَشْرَة, sense: 3ashra}, {surface: دولار,
+              sense: dollar}]
         apc-Latn/arabizi:
-          text: ma3i bas 3eshrin alf.
-          tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bas, sense: bas}, {surface: 3eshrin, sense: 3eshrin}, {surface: alf,
-              sense: alf}]
-      translations: {en: I only have twenty thousand on me.}
+          text: ma3i bas 3ashra dollar.
+          tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bas, sense: bas}, {surface: 3ashra, sense: 3ashra}, {surface: dollar,
+              sense: dollar}]
+      translations: {en: I only have ten dollars on me.}
   - line:
       speaker: abu-ali
       forms:
         apc-Arab/standard:
-          text: يَلّا، عِشْرين أَلْف، بَسّ الخِبِز والجِبْنِة.
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: عِشْرين, sense: 3eshrin}, {surface: أَلْف, sense: alf}, {surface: بَسّ, sense: bas}, {surface: الخِبِز, sense: khebz, morphs: [{surface: ال,
+          text: يَلّا، عَشْرَة دولار، بَسّ الخِبِز والجِبْنِة.
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: عَشْرَة, sense: 3ashra}, {surface: دولار, sense: dollar}, {surface: بَسّ, sense: bas}, {surface: الخِبِز, sense: khebz, morphs: [{surface: ال,
                   kc: 'sense:el'}, {surface: خِبِز, kc: 'sense:khebz'}]}, {surface: والجِبْنِة, sense: jebne, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: جِبْنِة, kc: 'sense:jebne'}]}]
         apc-Latn/arabizi:
-          text: yalla, 3eshrin alf, bas el khebz w el jebne.
-          tokens: [{surface: yalla, sense: yalla}, {surface: 3eshrin, sense: 3eshrin}, {surface: alf, sense: alf}, {surface: bas, sense: bas}, {surface: el, sense: el}, {surface: khebz, sense: khebz}, {
+          text: yalla, 3ashra dollar, bas el khebz w el jebne.
+          tokens: [{surface: yalla, sense: yalla}, {surface: 3ashra, sense: 3ashra}, {surface: dollar, sense: dollar}, {surface: bas, sense: bas}, {surface: el, sense: el}, {surface: khebz, sense: khebz}, {
               surface: w, sense: w}, {surface: el, sense: el}, {surface: jebne, sense: jebne}]
-      translations: {en: 'OK, twenty thousand, but just the bread and the cheese.'}
+      translations: {en: 'OK, ten dollars, but just the bread and the cheese.'}
   - choose:
       prompt:
         en: What does Sami buy in the end?
@@ -660,7 +680,7 @@ scenarios:
 - id: apc.dekkene
   after: apc.num.story
   title: {en: At the corner shop}
-  setting: {en: 'A small dekkene (corner shop) in a Beirut neighbourhood in the morning. Prices are in lira, sometimes in dollars.'}
+  setting: {en: 'A small dekkene (corner shop) in a Beirut neighbourhood in the morning. Prices are in dollars, or in lira by the thousand.'}
   character: {en: 'Abu Ali, the shopkeeper: friendly, chatty, and happy to haggle a little.'}
   goal: {en: 'Ask whether there is bread, cheese or water, say what you want and how many, ask how much it costs, and pay in lira or dollars.'}
   provenance: {author: 'llm:claude@6914f241714e', status: draft}

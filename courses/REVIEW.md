@@ -5,6 +5,55 @@ Every taught sentence, story and scenario in the fixture courses is an LLM draft
 of, course by course ([ADR 0050](../docs/adr/0050-ten-unit-courses.md)). After a review, mark the
 items `status: reviewed`, or `published` with `reviewedBy` and `reviewedAt`.
 
+## A model's native-speaker pass (November 2026)
+
+Before any human review, each course had one more LLM pass, prompted in its own language to read
+everything as a native speaker would. It fixed what it found and widened the accept sets in both
+directions: the target language and English.
+
+- **Status.** Everything stays `status: draft`. A model reading as a native speaker is not one, so
+  the points below are still for a person to decide.
+- **What was found.** A few real errors per course:
+  - story lines that contradicted each other;
+  - nonsensical distractors;
+  - wrong readings;
+  - English accepted answers that were wrong (*She's my dad*, *I have an big brother*).
+- **What was added.** Several hundred to a few thousand accepted answers per course.
+- **Golden judge items.** Items the new accept sets now grade correct were replaced by new
+  answers, so each is still a real judge case (`evals/judge/*.jsonl`, author
+  `llm:claude@judge-refresh-v1`).
+
+Policies the pass adopted, to confirm or reverse:
+
+- **fa:**
+  - English "you" accepts both تو and شما, with their verbs.
+  - The short written copula (خوبم, خوبه) and common colloquial -ه forms are accepted.
+  - Vowel-shifted spellings (خونه, میام) are not.
+  - Vowel marks: bare و (it is read *-o* between words), and 2sg *-at* on اتاقت / تولدت.
+  - The two new food-story distractors (سرد, گران) are wrong only from context.
+  - Prices are low for 2026. Realistic ones need new number words (پانصد, میلیون).
+- **yue:**
+  - The demonstrative 呢 is ni1 throughout; the particle 呢 keeps ne1.
+  - Changed tones: 女兒 neoi5 ji2, 英文 / 中文 man2 (中文 man4 is also common).
+  - 唔該 and 多謝 are both accepted for *Thanks / Thank you*.
+  - Non-standard typings (既, 野, 黎, 岩岩, 訓覺, 哂) count as correct.
+  - 十點二 counts as 10:10.
+  - 海灘 vs 沙灘 (s.u10.32), and 地鐵 vs 地鐵站 (s.u07.1).
+- **uz:**
+  - *Sen* forms are accepted for "you", respectful *-lar* for elders, and *dadam / oyim* for father
+    and mother.
+  - *Choy ich* and *Choy iching* are interchangeable.
+  - The profile's typo tolerance accepts the agreement error *Siz yaxshimisan* as a typo. It is a
+    grading issue, not content: tighten `uz-Latn` typo rules, or list it as a near miss.
+- **apc:**
+  - The English progressive (*I'm eating*) is no longer accepted for b- verbs; عم carries it.
+  - Initial ق in Arabizi is inconsistent (*ahwe* but *2arib*). Both are accepted; pick one.
+  - Some KC forms are inflected (بنتي, البيت) to keep glossary entries alive, so word cards show
+    them inflected.
+  - Plural "you" (*baddkon*, إنتو) is not accepted.
+  - Still open in the vocalization: الضهر, هيدا, ترويقة.
+  - The judge's golden items keep ميرسي, تمام, باي and شكرا as rejects.
+
 ## Marking what is wrong
 
 You can mark mistakes in the app ([ADR 0051](../docs/adr/0051-corrections.md)), with no setup.
@@ -117,7 +166,7 @@ With an account on a server, corrections also reach the review queue at `/admin/
 8. **Short dialogue answers.** "Men keldim!" (I'm home!), "U yer uzoq emas." and "Xona bormi?" at
    a hotel.
 9. **The dative.** "parkka", and the note on -ka/-qa.
-10. **The Cyrillic.** The 114 info notes where ICU's transform differs are ICU errors (э after
+10. **The Cyrillic.** The 121 info notes where ICU's transform differs are ICU errors (э after
     consonants, ёʻ for йў). The pinned Cyrillic follows the standard spelling. Loanwords are
     pinned in their standard form (поезд, самолёт, Англия).
 

@@ -25,7 +25,7 @@ kcs:
 - {id: 'sense:sotuvchi', gloss: {en: 'seller, vendor'}, forms: {uz-Latn/standard: [sotuvchi], uz-Cyrl/standard: [сотувчи]}}
 - {id: 'sense:boshqa', gloss: {en: 'other, another; else'}, forms: {uz-Latn/standard: [boshqasi], uz-Cyrl/standard: [бошқаси]}, notes: {en: 'Boshqasi bormi? Is there another one?'}}
 - {id: 'sense:hamma', gloss: {en: all; everybody}, forms: {uz-Latn/standard: [hammasi], uz-Cyrl/standard: [ҳаммаси]}, notes: {en: 'Hammasi: all of it, everything.'}}
-- {id: 'sense:qancha', gloss: {en: how much}, forms: {uz-Latn/standard: [qancha], uz-Cyrl/standard: [қанча]}}
+- {id: 'sense:qancha', gloss: {en: 'how much, how many'}, forms: {uz-Latn/standard: [qancha], uz-Cyrl/standard: [қанча]}}
 - {id: 'sense:pomidor', gloss: {en: 'tomato, tomatoes'}, forms: {uz-Latn/standard: [pomidor], uz-Cyrl/standard: [помидор]}}
 nodes:
 - {id: uz.bazaar.price, kind: lesson, introduces: ['sense:kilo', 'sense:qimmat', 'sense:arzon', 'form:comp-roq']}
@@ -42,11 +42,11 @@ sentences:
     uz-Latn/standard:
       text: Bu necha pul?
       tokens: [{surface: Bu, sense: bu}, {surface: necha, sense: necha}, {surface: pul, sense: pul}]
-      reverse: Bu necha pul
+      reverse: Bu (necha pul|qancha)
     uz-Cyrl/standard:
       text: Бу неча пул?
       tokens: [{surface: Бу, sense: bu}, {surface: неча, sense: necha}, {surface: пул, sense: pul}]
-      reverse: Бу неча пул
+      reverse: Бу (неча пул|қанча)
   translations:
     en: |-
       How much is (this|it)?
@@ -57,15 +57,15 @@ sentences:
     uz-Latn/standard:
       text: Olma necha pul?
       tokens: [{surface: Olma, sense: olma}, {surface: necha, sense: necha}, {surface: pul, sense: pul}]
-      reverse: Olma necha pul
+      reverse: Olma(|lar) (necha pul|qancha)
     uz-Cyrl/standard:
       text: Олма неча пул?
       tokens: [{surface: Олма, sense: olma}, {surface: неча, sense: necha}, {surface: пул, sense: pul}]
-      reverse: Олма неча пул
+      reverse: Олма(|лар) (неча пул|қанча)
   translations:
     en: |-
-      How much are the apples?
-      How much do the apples cost?
+      How much are [the] apples?
+      How much do [the] apples cost?
 - id: s.bazaar.3
   node: uz.bazaar.price
   forms:
@@ -73,14 +73,14 @@ sentences:
       text: Olmaning kilosi necha pul?
       tokens: [{surface: Olmaning, sense: olma, morphs: [{surface: Olma, kc: 'sense:olma'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: kilosi, sense: kilo, morphs: [{surface: kilo, kc: 'sense:kilo'}, {surface: si, kc: 'form:poss-3-si'}]}, {surface: necha, sense: necha}, {surface: pul, sense: pul}]
       reverse: |-
-        Olmaning kilosi necha pul
-        Bir kilo olma necha pul
+        Olma(ning|) kilosi (necha pul|qancha)
+        Bir kilo olma (necha pul|qancha)
     uz-Cyrl/standard:
       text: Олманинг килоси неча пул?
       tokens: [{surface: Олманинг, sense: olma, morphs: [{surface: Олма, kc: 'sense:olma'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: килоси, sense: kilo, morphs: [{surface: кило, kc: 'sense:kilo'}, {surface: си, kc: 'form:poss-3-si'}]}, {surface: неча, sense: necha}, {surface: пул, sense: pul}]
       reverse: |-
-        Олманинг килоси неча пул
-        Бир кило олма неча пул
+        Олма(нинг|) килоси (неча пул|қанча)
+        Бир кило олма (неча пул|қанча)
   translations:
     en: |-
       How much (is|for) a kilo of apples?
@@ -98,7 +98,7 @@ sentences:
       tokens: [{surface: Ўн, sense: 'on'}, {surface: минг, sense: ming}, {surface: сўм, sense: som}]
       reverse: Ўн минг сўм
   translations:
-    en: (Ten thousand|10,000) (som|soum|sum).
+    en: (Ten thousand|10,000) (som|soum|sum|soums|sums).
 - id: s.bazaar.5
   node: uz.bazaar.price
   forms:
@@ -140,14 +140,14 @@ sentences:
       text: Arzonroq qiling!
       tokens: [{surface: Arzonroq, sense: arzon, morphs: [{surface: Arzon, kc: 'sense:arzon'}, {surface: roq, kc: 'form:comp-roq'}]}, {surface: qiling, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
       reverse: |-
-        Arzonroq qiling
-        Arzonroq bering
+        Arzonroq (qiling|bering|qil|ber)
+        Arzonroq qilib (bering|ber)
     uz-Cyrl/standard:
       text: Арзонроқ қилинг!
       tokens: [{surface: Арзонроқ, sense: arzon, morphs: [{surface: Арзон, kc: 'sense:arzon'}, {surface: роқ, kc: 'form:comp-roq'}]}, {surface: қилинг, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
       reverse: |-
-        Арзонроқ қилинг
-        Арзонроқ беринг
+        Арзонроқ (қилинг|беринг|қил|бер)
+        Арзонроқ қилиб (беринг|бер)
   translations:
     en: |-
       Make it cheaper[, please]!
@@ -201,11 +201,11 @@ sentences:
     uz-Latn/standard:
       text: Ikkita tarvuz bering.
       tokens: [{surface: Ikkita, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: tarvuz, sense: tarvuz}, {surface: bering, sense: bermoq, morphs: [{surface: ber, kc: 'sense:bermoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
-      reverse: '[Menga] ikki(ta|) tarvuz bering'
+      reverse: '[Menga] ikki(ta|) tarvuz (bering|ber)'
     uz-Cyrl/standard:
       text: Иккита тарвуз беринг.
       tokens: [{surface: Иккита, sense: ikki, morphs: [{surface: Икки, kc: 'sense:ikki'}, {surface: та, kc: 'form:count-ta'}]}, {surface: тарвуз, sense: tarvuz}, {surface: беринг, sense: bermoq, morphs: [{surface: бер, kc: 'sense:bermoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      reverse: '[Менга] икки(та|) тарвуз беринг'
+      reverse: '[Менга] икки(та|) тарвуз (беринг|бер)'
   translations:
     en: |-
       [Please] give me two watermelons.
@@ -244,11 +244,15 @@ sentences:
     uz-Latn/standard:
       text: Sizga nima kerak?
       tokens: [{surface: Sizga, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: nima, sense: nima}, {surface: kerak, sense: kerak}]
-      reverse: Sizga nima kerak
+      reverse: |-
+        Sizga nima kerak
+        Senga nima kerak
     uz-Cyrl/standard:
       text: Сизга нима керак?
       tokens: [{surface: Сизга, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: нима, sense: nima}, {surface: керак, sense: kerak}]
-      reverse: Сизга нима керак
+      reverse: |-
+        Сизга нима керак
+        Сенга нима керак
   translations:
     en: What do you need?
 - id: s.bazaar.15
@@ -293,7 +297,8 @@ sentences:
   translations:
     en: |-
       (You|We|I) need meat for (plov|pilaf|palov).
-      (plov|pilaf|palov) needs meat.
+      (Plov|Pilaf|Palov) needs meat.
+      (You|We|I) need meat for the (plov|pilaf|palov).
 - id: s.bazaar.18
   node: uz.bazaar.need
   forms:
@@ -326,11 +331,15 @@ sentences:
     uz-Latn/standard:
       text: Sizga qovun yoqadimi?
       tokens: [{surface: Sizga, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: qovun, sense: qovun}, {surface: yoqadimi, sense: yoqmoq, morphs: [{surface: yoq, kc: 'sense:yoqmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}, {surface: mi, kc: 'form:q-mi'}]}]
-      reverse: Sizga qovun yoqadimi
+      reverse: |-
+        Sizga qovun yoqadimi
+        Senga qovun yoqadimi
     uz-Cyrl/standard:
       text: Сизга қовун ёқадими?
       tokens: [{surface: Сизга, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: қовун, sense: qovun}, {surface: ёқадими, sense: yoqmoq, morphs: [{surface: ёқ, kc: 'sense:yoqmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}, {surface: ми, kc: 'form:q-mi'}]}]
-      reverse: Сизга қовун ёқадими
+      reverse: |-
+        Сизга қовун ёқадими
+        Сенга қовун ёқадими
   translations:
     en: Do you like (melon|melons)?
 - id: s.bazaar.21
@@ -352,11 +361,15 @@ sentences:
     uz-Latn/standard:
       text: Nima xohlaysiz?
       tokens: [{surface: Nima, sense: nima}, {surface: xohlaysiz, sense: xohlamoq, morphs: [{surface: xohla, kc: 'sense:xohlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] nima xohlaysiz'
+      reverse: |-
+        [Siz] nima xohlaysiz
+        [Sen] nima xohlaysan
     uz-Cyrl/standard:
       text: Нима хоҳлайсиз?
       tokens: [{surface: Нима, sense: nima}, {surface: хоҳлайсиз, sense: xohlamoq, morphs: [{surface: хоҳла, kc: 'sense:xohlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] нима хоҳлайсиз'
+      reverse: |-
+        [Сиз] нима хоҳлайсиз
+        [Сен] нима хоҳлайсан
   translations:
     en: |-
       What would you like?
@@ -367,11 +380,15 @@ sentences:
     uz-Latn/standard:
       text: Men uzum olmoqchiman.
       tokens: [{surface: Men, sense: men}, {surface: uzum, sense: uzum}, {surface: olmoqchiman, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] uzum olmoqchiman'
+      reverse: |-
+        [Men] uzum olmoqchiman
+        [Men] uzum sotib olmoqchiman
     uz-Cyrl/standard:
       text: Мен узум олмоқчиман.
       tokens: [{surface: Мен, sense: men}, {surface: узум, sense: uzum}, {surface: олмоқчиман, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Мен] узум олмоқчиман'
+      reverse: |-
+        [Мен] узум олмоқчиман
+        [Мен] узум сотиб олмоқчиман
   translations:
     en: |-
       I want to buy [some] grapes.
@@ -383,11 +400,17 @@ sentences:
     uz-Latn/standard:
       text: Siz nima olmoqchisiz?
       tokens: [{surface: Siz, sense: siz}, {surface: nima, sense: nima}, {surface: olmoqchisiz, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: moqchi, kc: 'form:want-moqchi'}, {surface: siz, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Siz] nima olmoqchisiz'
+      reverse: |-
+        [Siz] nima olmoqchisiz
+        [Siz] nima sotib olmoqchisiz
+        [Sen] nima [sotib] olmoqchisan
     uz-Cyrl/standard:
       text: Сиз нима олмоқчисиз?
       tokens: [{surface: Сиз, sense: siz}, {surface: нима, sense: nima}, {surface: олмоқчисиз, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: моқчи, kc: 'form:want-moqchi'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
-      reverse: '[Сиз] нима олмоқчисиз'
+      reverse: |-
+        [Сиз] нима олмоқчисиз
+        [Сиз] нима сотиб олмоқчисиз
+        [Сен] нима [сотиб] олмоқчисан
   translations:
     en: |-
       What do you want to buy?
@@ -431,11 +454,11 @@ sentences:
     uz-Latn/standard:
       text: Sotuvchi yaxshi kishi.
       tokens: [{surface: Sotuvchi, sense: sotuvchi}, {surface: yaxshi, sense: yaxshi}, {surface: kishi, sense: kishi}]
-      reverse: Sotuvchi yaxshi kishi
+      reverse: Sotuvchi yaxshi (kishi|odam)
     uz-Cyrl/standard:
       text: Сотувчи яхши киши.
       tokens: [{surface: Сотувчи, sense: sotuvchi}, {surface: яхши, sense: yaxshi}, {surface: киши, sense: kishi}]
-      reverse: Сотувчи яхши киши
+      reverse: Сотувчи яхши (киши|одам)
   translations:
     en: The (seller|vendor|stallholder) is a (good|nice) person.
 - id: s.bazaar.28
@@ -460,11 +483,15 @@ sentences:
     uz-Latn/standard:
       text: Hammasi necha pul?
       tokens: [{surface: Hammasi, sense: hamma, morphs: [{surface: Hamma, kc: 'sense:hamma'}, {surface: si, kc: 'form:poss-3-si'}]}, {surface: necha, sense: necha}, {surface: pul, sense: pul}]
-      reverse: Hammasi necha pul
+      reverse: |-
+        Hammasi (necha pul|qancha)
+        Hammasi (necha pul|qancha) boʻladi
     uz-Cyrl/standard:
       text: Ҳаммаси неча пул?
       tokens: [{surface: Ҳаммаси, sense: hamma, morphs: [{surface: Ҳамма, kc: 'sense:hamma'}, {surface: си, kc: 'form:poss-3-si'}]}, {surface: неча, sense: necha}, {surface: пул, sense: pul}]
-      reverse: Ҳаммаси неча пул
+      reverse: |-
+        Ҳаммаси (неча пул|қанча)
+        Ҳаммаси (неча пул|қанча) бўлади
   translations:
     en: |-
       How much is (everything|all of it|it all)?
@@ -486,8 +513,8 @@ sentences:
         Узум неча пул
   translations:
     en: |-
-      How much are the grapes?
-      How much do the grapes cost?
+      How much are [the] grapes?
+      How much do [the] grapes cost?
 - id: s.bazaar.31
   node: uz.bazaar.pay
   forms:
@@ -516,7 +543,7 @@ sentences:
       tokens: [{surface: Мана, sense: mana}, {surface: ўн, sense: 'on'}, {surface: минг, sense: ming}, {surface: сўм, sense: som}, {surface: Раҳмат, sense: rahmat}]
       reverse: Мана ўн минг сўм раҳмат
   translations:
-    en: Here('s| is| are) (ten thousand|10,000) (som|soum|sum). (Thank you|Thanks)!
+    en: Here('s| is| are) (ten thousand|10,000) (som|soum|sum|soums|sums). (Thank you|Thanks)!
 stories:
 - id: uz.story.bazaar
   node: uz.bazaar.story

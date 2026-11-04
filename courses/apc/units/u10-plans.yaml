@@ -10,7 +10,7 @@ kcs:
       ray7a?'}}
 - {id: 'sense:ta', gloss: {en: let's; so that (before a verb without b-)}, forms: {apc-Arab/standard: [تا], apc-Latn/arabizi: [ta]}, notes: {en: 'yalla ta nru7: come on, let''s go.'}}
 - {id: 'sense:lele', gloss: {en: night; tonight (el lele)}, forms: {apc-Arab/standard: [الليلة], apc-Latn/arabizi: [lele]}, notes: {en: 'el lele: tonight.'}}
-- {id: 'sense:tele3', gloss: {en: go out; go up}, forms: {apc-Arab/standard: [تطلع], apc-Latn/arabizi: [tetla3]}}
+- {id: 'sense:tele3', gloss: {en: go out; go up}, forms: {apc-Arab/standard: [تطلع], apc-Latn/arabizi: [titla3]}}
 - {id: 'sense:ta2s', gloss: {en: weather}, forms: {apc-Arab/standard: [الطقس], apc-Latn/arabizi: [ta2s]}}
 - {id: 'sense:shob', gloss: {en: hot (weather); heat}, forms: {apc-Arab/standard: [شوب], apc-Latn/arabizi: [shob]}}
 - {id: 'sense:bard', gloss: {en: cold (weather); the cold}, forms: {apc-Arab/standard: [برد], apc-Latn/arabizi: [bard]}}
@@ -47,11 +47,15 @@ sentences:
     apc-Arab/standard:
       text: وين رايح؟
       tokens: [{surface: وين, sense: wen}, {surface: رايح, sense: raye7}]
-      reverse: وين رايح
+      reverse: |-
+        وين (رايح|رايحة)
+        (إنت وين رايح|إنتي وين رايحة)
     apc-Latn/arabizi:
       text: wen raye7?
       tokens: [{surface: wen, sense: wen}, {surface: raye7, sense: raye7}]
-      reverse: (wen|wein|wayn) (raye7|rayi7|rayeh)
+      reverse: |-
+        (wen|wein|wayn) (raye7|rayi7|rayeh|ray7a|rayha)
+        ((enta|inta) (wen|wein|wayn) (raye7|rayi7|rayeh)|(enti|inti) (wen|wein|wayn) (ray7a|rayha))
   translations:
     en: |-
       Where are you going?
@@ -63,13 +67,15 @@ sentences:
     apc-Arab/standard:
       text: رايح عالبحر.
       tokens: [{surface: رايح, sense: raye7}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: رايح (عالبحر|ع البحر|على البحر)
+      reverse: (رايح|أنا رايح|رايحة|أنا رايحة) (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
       text: raye7 3al ba7r.
       tokens: [{surface: raye7, sense: raye7}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: (raye7|rayi7|rayeh) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: ((raye7|rayi7|rayeh|ray7a|rayha)|ana (raye7|rayi7|rayeh|ray7a|rayha)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
-    en: I('m| am) going to the (beach|sea).
+    en: |-
+      I('m| am) going to the (beach|sea).
+      (He's|He is) going to the (beach|sea).
 - id: s.plans.3
   node: apc.plans.going
   register: colloquial
@@ -91,13 +97,15 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: يلا تا نروح!
-      tokens: [{surface: يلا, sense: yalla}, {surface: تا, sense: ta}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}]
-      reverse: (يلا|يلّا) (تا|تَ) نروح
+      text: يلّا تا نروح!
+      tokens: [{surface: يلّا, sense: yalla}, {surface: تا, sense: ta}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}]
+      reverse: |-
+        (يلّا|يلا) [(تا|ت)] نروح
+        (يلّا|يلا) تنروح
     apc-Latn/arabizi:
       text: yalla ta nru7!
       tokens: [{surface: yalla, sense: yalla}, {surface: ta, sense: ta}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}]
-      reverse: (yalla|yala) (ta|tta) (nru7|nrou7|nro7)
+      reverse: (yalla|yala|yallah) [(ta|tta)] (nru7|nrou7|nro7)
   translations:
     en: |-
       Come on, let's go!
@@ -125,13 +133,19 @@ sentences:
     apc-Arab/standard:
       text: بدّك تطلع الليلة؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: تطلع, sense: tele3, form: 'form:subj-2ms'}, {surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
-      reverse: بدّك تطلع الليلة
+      reverse: |-
+        (بدّك|إنت بدّك|إنتي بدّك) (تطلع|تطلعي) الليلة
+        الليلة بدّك (تطلع|تطلعي)
     apc-Latn/arabizi:
-      text: baddak tetla3 el lele?
-      tokens: [{surface: baddak, sense: baddak}, {surface: tetla3, sense: tele3, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
-      reverse: (baddak|badak) (tetla3|titla3) (el|l|il) (lele|leile|layle|leyle)
+      text: baddak titla3 el lele?
+      tokens: [{surface: baddak, sense: baddak}, {surface: titla3, sense: tele3, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
+      reverse: |-
+        ((baddak|badak)|(enta|inta) (baddak|badak)) (titla3|tetla3) (el|l|il) (lele|leile|layle|leyle)
+        ((baddik|badik)|(enti|inti) (baddik|badik)) (titla3i|tetla3i|titla3e) (el|l|il) (lele|leile|layle|leyle)
   translations:
-    en: Do you want to go out tonight?
+    en: |-
+      Do you want to go out tonight?
+      Would you like to go out tonight?
 - id: s.plans.7
   node: apc.plans.weather
   register: colloquial
@@ -247,13 +261,17 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: شباب، يلا!
-      tokens: [{surface: شباب, sense: shabeb}, {surface: يلا, sense: yalla}]
-      reverse: شباب (يلا|يلّا)
+      text: شباب، يلّا!
+      tokens: [{surface: شباب, sense: shabeb}, {surface: يلّا, sense: yalla}]
+      reverse: |-
+        شباب (يلّا|يلا)
+        (يلّا|يلا) شباب
     apc-Latn/arabizi:
       text: shabeb, yalla!
       tokens: [{surface: shabeb, sense: shabeb}, {surface: yalla, sense: yalla}]
-      reverse: (shabeb|shabab) (yalla|yala)
+      reverse: |-
+        (shabeb|shabab) (yalla|yala|yallah)
+        (yalla|yala|yallah) (shabeb|shabab)
   translations:
     en: |-
       Guys, come on!
@@ -284,11 +302,11 @@ sentences:
     apc-Arab/standard:
       text: مرحبا حبيبي!
       tokens: [{surface: مرحبا, sense: marhaba}, {surface: حبيبي, sense: 7abibi}]
-      reverse: مرحبا حبيبي
+      reverse: مرحبا (حبيبي|حبيبتي)
     apc-Latn/arabizi:
       text: mar7aba 7abibi!
       tokens: [{surface: mar7aba, sense: marhaba}, {surface: 7abibi, sense: 7abibi}]
-      reverse: (mar7aba|marhaba) (7abibi|habibi|7abibe|7bibi)
+      reverse: (mar7aba|marhaba|mar7ba) (7abibi|habibi|7abibe|7bibi|7abibti|habibti|7abibte)
   translations:
     en: (Hi|Hello), (my dear|dear|buddy|mate|habibi)!
 - id: s.plans.17
@@ -347,11 +365,13 @@ sentences:
     apc-Arab/standard:
       text: ما بعرف.
       tokens: [{surface: ما, sense: ma}, {surface: بعرف, sense: 3eref, form: 'form:impf-1sg'}]
-      reverse: ما بعرف
+      reverse: (ما بعرف|أنا ما بعرف|مابعرف)
     apc-Latn/arabizi:
       text: ma ba3ref.
       tokens: [{surface: ma, sense: ma}, {surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}]
-      reverse: ma (ba3ref|ba3rif|b3ref)
+      reverse: |-
+        (ma|ana ma) (ba3ref|ba3rif|b3ref)
+        [ana] (mba3ref|mba3rif)
   translations:
     en: I (don't|do not) know.
 - id: s.plans.21
@@ -495,9 +515,9 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: مايا، شو بْتَعْمْلي اللَّيْلِة؟
-          tokens: [{surface: مايا, sense: maya}, {surface: شو, sense: shu}, {surface: بْتَعْمْلي, sense: 3emel, form: 'form:impf-2fs'}, {surface: اللَّيْلِة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'},
-                {surface: لَّيْلِة, kc: 'sense:lele'}]}]
+          text: مايا، شو بْتَعْمْلي اللّيلِة؟
+          tokens: [{surface: مايا, sense: maya}, {surface: شو, sense: shu}, {surface: بْتَعْمْلي, sense: 3emel, form: 'form:impf-2fs'}, {surface: اللّيلِة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'},
+                {surface: لّيلِة, kc: 'sense:lele'}]}]
         apc-Latn/arabizi:
           text: Maya, shu bta3mli el lele?
           tokens: [{surface: Maya, sense: maya}, {surface: shu, sense: shu}, {surface: bta3mli, sense: 3emel, form: 'form:impf-2fs'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
@@ -538,7 +558,7 @@ stories:
       speaker: sami
       ask: complete
       gap: sense:tmene
-      distractors: ['sense:bard', 'sense:shams']
+      distractors: ['sense:tes3a', 'sense:3ashra']
       forms:
         apc-Arab/standard:
           text: السّاعَة تْمانِة.
@@ -594,8 +614,8 @@ stories:
           tokens: [{surface: مْنيح, sense: mni7}, {surface: مْنِسْمَع, sense: sama3, form: 'form:impf-1pl'}, {surface: موسيقى, sense: musi2a}, {surface: ومْناكُل, sense: akal, form: 'form:impf-1pl', morphs: [
                 {surface: و, kc: 'sense:w'}, {surface: مْناكُل, kc: 'sense:akal'}]}]
         apc-Latn/arabizi:
-          text: mni7! mnesma3 musi2a w mnekol.
-          tokens: [{surface: mni7, sense: mni7}, {surface: mnesma3, sense: sama3, form: 'form:impf-1pl'}, {surface: musi2a, sense: musi2a}, {surface: w, sense: w}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}]
+          text: mni7! mnisma3 musi2a w mnekol.
+          tokens: [{surface: mni7, sense: mni7}, {surface: mnisma3, sense: sama3, form: 'form:impf-1pl'}, {surface: musi2a, sense: musi2a}, {surface: w, sense: w}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}]
       translations: {en: Fine! We'll listen to music and eat.}
   - choose:
       prompt:

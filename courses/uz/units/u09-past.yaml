@@ -48,7 +48,7 @@ sentences:
       tokens: [{surface: Акам, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: келди, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: ди, kc: 'form:past-di'}]}]
       reverse: '[Менинг] акам келди'
   translations:
-    en: My (older|big) brother (came|has come|is here|has arrived|arrived).
+    en: My (older|elder|big) brother (came|has come|is here|has arrived|arrived).
 - id: s.past.2
   node: uz.past.went
   forms:
@@ -113,12 +113,16 @@ sentences:
       reverse: |-
         [Siz] kecha qayerga bordingiz
         Kecha [siz] qayerga bordingiz
+        [Sen] kecha qayerga bording
+        Kecha [sen] qayerga bording
     uz-Cyrl/standard:
       text: Сиз кеча қаерга бордингиз?
       tokens: [{surface: Сиз, sense: siz}, {surface: кеча, sense: kecha}, {surface: қаерга, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бордингиз, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}]}]
       reverse: |-
         [Сиз] кеча қаерга бордингиз
         Кеча [сиз] қаерга бордингиз
+        [Сен] кеча қаерга бординг
+        Кеча [сен] қаерга бординг
   translations:
     en: Where did you go yesterday?
 - id: s.past.6
@@ -127,11 +131,11 @@ sentences:
     uz-Latn/standard:
       text: Biz uyga bordik.
       tokens: [{surface: Biz, sense: biz}, {surface: uyga, sense: uy, morphs: [{surface: uy, kc: 'sense:uy'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: bordik, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: di, kc: 'form:past-di'}, {surface: k, kc: 'form:past-1pl-k'}]}]
-      reverse: '[Biz] uyga bordik'
+      reverse: '[Biz] uyga (bordik|ketdik|qaytdik)'
     uz-Cyrl/standard:
       text: Биз уйга бордик.
       tokens: [{surface: Биз, sense: biz}, {surface: уйга, sense: uy, morphs: [{surface: уй, kc: 'sense:uy'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бордик, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: ди, kc: 'form:past-di'}, {surface: к, kc: 'form:past-1pl-k'}]}]
-      reverse: '[Биз] уйга бордик'
+      reverse: '[Биз] уйга (бордик|кетдик|қайтдик)'
   translations:
     en: We went home.
 - id: s.past.7
@@ -162,12 +166,16 @@ sentences:
       reverse: |-
         Kecha [siz] nima qildingiz
         [Siz] kecha nima qildingiz
+        Kecha [sen] nima qilding
+        [Sen] kecha nima qilding
     uz-Cyrl/standard:
       text: Кеча нима қилдингиз?
       tokens: [{surface: Кеча, sense: kecha}, {surface: нима, sense: nima}, {surface: қилдингиз, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}]}]
       reverse: |-
         Кеча [сиз] нима қилдингиз
         [Сиз] кеча нима қилдингиз
+        Кеча [сен] нима қилдинг
+        [Сен] кеча нима қилдинг
   translations:
     en: What did you do yesterday?
 - id: s.past.9
@@ -177,14 +185,14 @@ sentences:
       text: Kecha osh pishirdim.
       tokens: [{surface: Kecha, sense: kecha}, {surface: osh, sense: osh}, {surface: pishirdim, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
       reverse: |-
-        Kecha [men] osh pishirdim
-        [Men] kecha osh pishirdim
+        Kecha [men] osh (pishirdim|damladim|qildim)
+        [Men] kecha osh (pishirdim|damladim|qildim)
     uz-Cyrl/standard:
       text: Кеча ош пиширдим.
       tokens: [{surface: Кеча, sense: kecha}, {surface: ош, sense: osh}, {surface: пиширдим, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
       reverse: |-
-        Кеча [мен] ош пиширдим
-        [Мен] кеча ош пиширдим
+        Кеча [мен] ош (пиширдим|дамладим|қилдим)
+        [Мен] кеча ош (пиширдим|дамладим|қилдим)
   translations:
     en: |-
       I (cooked|made) (plov|pilaf|palov) yesterday.
@@ -195,11 +203,19 @@ sentences:
     uz-Latn/standard:
       text: Doʻstim bilan choy ichdik.
       tokens: [{surface: Doʻstim, sense: dost, morphs: [{surface: Doʻst, kc: 'sense:dost'}, {surface: im, kc: 'form:poss-1sg-im'}]}, {surface: bilan, sense: bilan}, {surface: choy, sense: choy}, {surface: ichdik, sense: ichmoq, morphs: [{surface: ich, kc: 'sense:ichmoq'}, {surface: di, kc: 'form:past-di'}, {surface: k, kc: 'form:past-1pl-k'}]}]
-      reverse: Doʻstim bilan choy ichdik
+      reverse: |-
+        Doʻstim bilan choy ichdik
+        Men doʻstim bilan choy (ichdim|ichdik)
+        Doʻstim bilan choy ichdim
+        (Men va doʻstim|Doʻstim va men|Doʻstim bilan men) choy ichdik
     uz-Cyrl/standard:
       text: Дўстим билан чой ичдик.
       tokens: [{surface: Дўстим, sense: dost, morphs: [{surface: Дўст, kc: 'sense:dost'}, {surface: им, kc: 'form:poss-1sg-im'}]}, {surface: билан, sense: bilan}, {surface: чой, sense: choy}, {surface: ичдик, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: к, kc: 'form:past-1pl-k'}]}]
-      reverse: Дўстим билан чой ичдик
+      reverse: |-
+        Дўстим билан чой ичдик
+        Мен дўстим билан чой (ичдим|ичдик)
+        Дўстим билан чой ичдим
+        (Мен ва дўстим|Дўстим ва мен|Дўстим билан мен) чой ичдик
   translations:
     en: |-
       My friend and I (had|drank) tea.
@@ -211,14 +227,14 @@ sentences:
       text: Kecha kino koʻrdim.
       tokens: [{surface: Kecha, sense: kecha}, {surface: kino, sense: kino}, {surface: koʻrdim, sense: kormoq, morphs: [{surface: koʻr, kc: 'sense:kormoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
       reverse: |-
-        Kecha [men] kino koʻrdim
-        [Men] kecha kino koʻrdim
+        Kecha [men] (kino|film) koʻrdim
+        [Men] kecha (kino|film) koʻrdim
     uz-Cyrl/standard:
       text: Кеча кино кўрдим.
       tokens: [{surface: Кеча, sense: kecha}, {surface: кино, sense: kino}, {surface: кўрдим, sense: kormoq, morphs: [{surface: кўр, kc: 'sense:kormoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
       reverse: |-
-        Кеча [мен] кино кўрдим
-        [Мен] кеча кино кўрдим
+        Кеча [мен] (кино|фильм) кўрдим
+        [Мен] кеча (кино|фильм) кўрдим
   translations:
     en: |-
       I (watched|saw) a (film|movie) yesterday.
@@ -242,24 +258,28 @@ sentences:
     uz-Latn/standard:
       text: Opamga telefon qildim.
       tokens: [{surface: Opamga, sense: opa, morphs: [{surface: Opa, kc: 'sense:opa'}, {surface: m, kc: 'form:poss-1sg-im'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: telefon, sense: telefon}, {surface: qildim, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Men] opamga telefon qildim'
+      reverse: '[Men] opamga (telefon|qoʻngʻiroq) qildim'
     uz-Cyrl/standard:
       text: Опамга телефон қилдим.
       tokens: [{surface: Опамга, sense: opa, morphs: [{surface: Опа, kc: 'sense:opa'}, {surface: м, kc: 'form:poss-1sg-im'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: телефон, sense: telefon}, {surface: қилдим, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Мен] опамга телефон қилдим'
+      reverse: '[Мен] опамга (телефон|қўнғироқ) қилдим'
   translations:
-    en: I (called|phoned|rang) my (older|big) sister.
+    en: I (called|phoned|rang) my (older|elder|big) sister.
 - id: s.past.14
   node: uz.past.understand
   forms:
     uz-Latn/standard:
       text: Tushundingizmi?
       tokens: [{surface: Tushundingizmi, sense: tushunmoq, morphs: [{surface: Tushun, kc: 'sense:tushunmoq'}, {surface: di, kc: 'form:past-di'}, {surface: ngiz, kc: 'form:past-2-ngiz'}, {surface: mi, kc: 'form:q-mi'}]}]
-      reverse: '[Siz] tushundingizmi'
+      reverse: |-
+        [Siz] tushundingizmi
+        [Sen] tushundingmi
     uz-Cyrl/standard:
       text: Тушундингизми?
       tokens: [{surface: Тушундингизми, sense: tushunmoq, morphs: [{surface: Тушун, kc: 'sense:tushunmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}, {surface: ми, kc: 'form:q-mi'}]}]
-      reverse: '[Сиз] тушундингизми'
+      reverse: |-
+        [Сиз] тушундингизми
+        [Сен] тушундингми
   translations:
     en: |-
       Did you understand?
@@ -283,13 +303,13 @@ sentences:
     uz-Latn/standard:
       text: Kechirasiz, tushunmadim.
       tokens: [{surface: Kechirasiz, sense: kechirmoq, morphs: [{surface: Kechir, kc: 'sense:kechirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}, {surface: tushunmadim, sense: tushunmoq, morphs: [{surface: tushun, kc: 'sense:tushunmoq'}, {surface: ma, kc: 'form:neg-ma'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
-      reverse: Kechirasiz [men] tushunmadim
+      reverse: (Kechirasiz|Uzr) [men] tushunmadim
     uz-Cyrl/standard:
       text: Кечирасиз, тушунмадим.
       tokens: [{surface: Кечирасиз, sense: kechirmoq, morphs: [{surface: Кечир, kc: 'sense:kechirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}, {surface: тушунмадим, sense: tushunmoq, morphs: [{surface: тушун, kc: 'sense:tushunmoq'}, {surface: ма, kc: 'form:neg-ma'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
-      reverse: Кечирасиз [мен] тушунмадим
+      reverse: (Кечирасиз|Узр) [мен] тушунмадим
   translations:
-    en: (Excuse me|Sorry|I'm sorry), I (didn't|did not|don't|do not) understand.
+    en: (Excuse me|Sorry|I('m| am) sorry), I (didn't|did not|don't|do not) understand.
 - id: s.past.17
   node: uz.past.understand
   forms:
@@ -328,11 +348,11 @@ sentences:
     uz-Latn/standard:
       text: Charchadim.
       tokens: [{surface: Charchadim, sense: charchamoq, morphs: [{surface: Charcha, kc: 'sense:charchamoq'}, {surface: di, kc: 'form:past-di'}, {surface: m, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Men] charchadim'
+      reverse: '[Men] (charchadim|charchaganman)'
     uz-Cyrl/standard:
       text: Чарчадим.
       tokens: [{surface: Чарчадим, sense: charchamoq, morphs: [{surface: Чарча, kc: 'sense:charchamoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
-      reverse: '[Мен] чарчадим'
+      reverse: '[Мен] (чарчадим|чарчаганман)'
   translations:
     en: |-
       I('m| am) tired.
@@ -412,11 +432,15 @@ sentences:
     uz-Latn/standard:
       text: Qachon keldingiz?
       tokens: [{surface: Qachon, sense: qachon}, {surface: keldingiz, sense: kelmoq, morphs: [{surface: kel, kc: 'sense:kelmoq'}, {surface: di, kc: 'form:past-di'}, {surface: ngiz, kc: 'form:past-2-ngiz'}]}]
-      reverse: '[Siz] qachon keldingiz'
+      reverse: |-
+        [Siz] qachon keldingiz
+        [Sen] qachon kelding
     uz-Cyrl/standard:
       text: Қачон келдингиз?
       tokens: [{surface: Қачон, sense: qachon}, {surface: келдингиз, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}]}]
-      reverse: '[Сиз] қачон келдингиз'
+      reverse: |-
+        [Сиз] қачон келдингиз
+        [Сен] қачон келдинг
   translations:
     en: When did you (come|arrive|get here)?
 - id: s.past.25
@@ -443,14 +467,14 @@ sentences:
       text: Oʻtgan yili Samarqandga bordik.
       tokens: [{surface: Oʻtgan, sense: otgan}, {surface: yili, sense: yil, morphs: [{surface: yil, kc: 'sense:yil'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: Samarqandga, sense: samarqand, morphs: [{surface: Samarqand, kc: 'sense:samarqand'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: bordik, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: di, kc: 'form:past-di'}, {surface: k, kc: 'form:past-1pl-k'}]}]
       reverse: |-
-        Oʻtgan yili [biz] Samarqandga bordik
-        [Biz] oʻtgan yili Samarqandga bordik
+        Oʻtgan (yili|yil) [biz] Samarqandga bordik
+        [Biz] oʻtgan (yili|yil) Samarqandga bordik
     uz-Cyrl/standard:
       text: Ўтган йили Самарқандга бордик.
       tokens: [{surface: Ўтган, sense: otgan}, {surface: йили, sense: yil, morphs: [{surface: йил, kc: 'sense:yil'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: Самарқандга, sense: samarqand, morphs: [{surface: Самарқанд, kc: 'sense:samarqand'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бордик, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: ди, kc: 'form:past-di'}, {surface: к, kc: 'form:past-1pl-k'}]}]
       reverse: |-
-        Ўтган йили [биз] Самарқандга бордик
-        [Биз] ўтган йили Самарқандга бордик
+        Ўтган (йили|йил) [биз] Самарқандга бордик
+        [Биз] ўтган (йили|йил) Самарқандга бордик
   translations:
     en: |-
       We went to Samarkand last year.
@@ -461,11 +485,15 @@ sentences:
     uz-Latn/standard:
       text: Qachon qaytdingiz?
       tokens: [{surface: Qachon, sense: qachon}, {surface: qaytdingiz, sense: qaytmoq, morphs: [{surface: qayt, kc: 'sense:qaytmoq'}, {surface: di, kc: 'form:past-di'}, {surface: ngiz, kc: 'form:past-2-ngiz'}]}]
-      reverse: '[Siz] qachon qaytdingiz'
+      reverse: |-
+        [Siz] qachon qaytdingiz
+        [Sen] qachon qaytding
     uz-Cyrl/standard:
       text: Қачон қайтдингиз?
       tokens: [{surface: Қачон, sense: qachon}, {surface: қайтдингиз, sense: qaytmoq, morphs: [{surface: қайт, kc: 'sense:qaytmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}]}]
-      reverse: '[Сиз] қачон қайтдингиз'
+      reverse: |-
+        [Сиз] қачон қайтдингиз
+        [Сен] қачон қайтдинг
   translations:
     en: When did you (come back|get back|return)?
 - id: s.past.28
@@ -496,12 +524,16 @@ sentences:
       reverse: |-
         Kecha [siz] qayerda edingiz
         [Siz] kecha qayerda edingiz
+        Kecha [sen] qayerda eding
+        [Sen] kecha qayerda eding
     uz-Cyrl/standard:
       text: Кеча қаерда эдингиз?
       tokens: [{surface: Кеча, sense: kecha}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}, {surface: эдингиз, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}]}]
       reverse: |-
         Кеча [сиз] қаерда эдингиз
         [Сиз] кеча қаерда эдингиз
+        Кеча [сен] қаерда эдинг
+        [Сен] кеча қаерда эдинг
   translations:
     en: |-
       Where were you yesterday?
@@ -537,7 +569,7 @@ sentences:
       tokens: [{surface: Ош, sense: osh}, {surface: жуда, sense: juda}, {surface: мазали, sense: mazali}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
       reverse: Ош жуда мазали эди
   translations:
-    en: The (plov|pilaf|palov|food) was (very tasty|delicious|very good).
+    en: The (plov|pilaf|palov|food) was (very tasty|delicious|very delicious|very good).
 stories:
 - id: uz.story.past
   node: uz.past.story

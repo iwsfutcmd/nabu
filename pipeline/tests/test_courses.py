@@ -31,6 +31,21 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "名"),
         ("enrich.reading-mismatch", "弟弟"),
         ("enrich.reading-mismatch", "平"),
+        # The native-speaker pass (2026-11): demonstrative 呢 is ni1 (PyCantonese: ne1), and the
+        # colloquial changed tones of 女兒 ji2, 英文 / 中文 man2.
+        ("enrich.reading-mismatch", "中文"),
+        ("enrich.reading-mismatch", "女兒"),
+        ("enrich.reading-mismatch", "英文"),
+        ("enrich.reading-mismatch", "呢件"),
+        ("enrich.reading-mismatch", "呢個"),
+        ("enrich.reading-mismatch", "呢對"),
+        ("enrich.reading-mismatch", "呢度"),
+        ("enrich.reading-mismatch", "呢張"),
+        ("enrich.reading-mismatch", "呢本"),
+        ("enrich.reading-mismatch", "呢杯"),
+        ("enrich.reading-mismatch", "呢條"),
+        ("enrich.reading-mismatch", "呢碗"),
+        ("enrich.reading-mismatch", "呢隻"),
     }
 }
 TOOLS = {"fa": ["hazm", "icu"], "yue": ["pycantonese", "icu"], "uz": ["icu"], "apc": []}
