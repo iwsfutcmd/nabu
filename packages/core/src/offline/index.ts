@@ -22,6 +22,8 @@ export interface UnitOffline {
   /** All of the unit's media, and what is still to download. */
   readonly bytes: number;
   readonly missingBytes: number;
+  /** What removing the unit would free: its stored media that no other unit uses (`removable`). */
+  readonly freeBytes: number;
 }
 
 export interface OfflineStatus {
@@ -59,7 +61,8 @@ export const offlineStatus = (manifest: BundleManifest, stored: ReadonlySet<stri
     const files = unitFiles(manifest, u.id);
     const missing = files.filter((f) => !stored.has(f.path));
     const state: UnitState = missing.length === 0 ? "ready" : missing.length === files.length ? "missing" : "partial";
-    return { id: u.id, state, bytes: sum(files), missingBytes: sum(missing) };
+    const free = removable(manifest, [u.id]).filter((f) => stored.has(f.path));
+    return { id: u.id, state, bytes: sum(files), missingBytes: sum(missing), freeBytes: sum(free) };
   });
   const coreReady = core.every((f) => stored.has(f.path));
   return {

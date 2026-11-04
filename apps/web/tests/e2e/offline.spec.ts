@@ -16,7 +16,7 @@ import { join } from "node:path";
 import { DEFAULT_GAME, localDateOf, replayGame } from "@nabu/core/game";
 import { replay } from "@nabu/core/learner";
 import { LISTENING, lessonNodes, type CourseView } from "@nabu/core/lesson";
-import { coreFiles, restrictMedia } from "@nabu/core/offline";
+import { coreFiles, removable, restrictMedia, unitFiles } from "@nabu/core/offline";
 import type { BundleManifest } from "@nabu/schema";
 import { expect, test, type BrowserContext, type Page } from "@playwright/test";
 import { canonical } from "../../src/compare.ts";
@@ -27,6 +27,8 @@ const API = `http://127.0.0.1:${API_PORT}`;
 const TZ = "Asia/Kathmandu";
 const SEED = 11;
 const HOUR = 3_600_000;
+/** The whole fa course is about 10 MB in over a thousand files (every unit has clips). */
+const DOWNLOAD_TIMEOUT_MS = 60_000;
 const course = loadCourse("fa", "fa-Arab/standard");
 const manifest = JSON.parse(readFileSync(join(import.meta.dirname, "../../public/bundles/fa/manifest.json"), "utf8")) as BundleManifest;
 const app = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
@@ -123,12 +125,25 @@ test.describe("offline", () => {
     await play(page, here, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
     await expect(page.locator(`[data-lesson="${first}"]`)).toHaveAttribute("data-status", "done");
 
-    // Back online, the rest of the course downloads, and a unit can be removed again.
+    // Back online, the rest of the course downloads, and a unit can be removed again. Removing
+    // frees only what no other unit uses: the numbers drill's clips all belong to the numbers
+    // unit too, so it offers nothing to remove; family's own files go and its shared ones stay.
     await context.setOffline(false);
     await page.locator("[data-action=download-course]").click();
-    await expect(panel).toHaveAttribute("data-offline-complete", "true");
-    await numbers.locator("[data-action=remove-unit]").click();
-    await expect(numbers).toHaveAttribute("data-state", "missing");
+    await expect(panel).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
+    expect(removable(manifest, ["drill-numbers"])).toEqual([]);
+    await expect(numbers.locator("[data-action=remove-unit]")).toHaveCount(0);
+    const family = panel.locator('[data-offline-unit="family"]');
+    const own = removable(manifest, ["family"]).map((f) => f.path);
+    const shared = unitFiles(manifest, "family").filter((f) => !own.includes(f.path)).map((f) => f.path);
+    expect(own.length).toBeGreaterThan(0);
+    expect(shared.length).toBeGreaterThan(0);
+    await family.locator("[data-action=remove-unit]").click();
+    await expect(family).toHaveAttribute("data-state", "partial");
+    const left = new Set(await storedOf(page, "fa"));
+    expect(own.filter((p) => left.has(p))).toEqual([]);
+    expect(shared.filter((p) => !left.has(p))).toEqual([]);
+    await expect(numbers).toHaveAttribute("data-state", "ready");
     await expect(intro).toHaveAttribute("data-state", "ready");
     expect(errors).toEqual([]);
   });
@@ -161,7 +176,7 @@ test.describe("offline", () => {
     await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
     await controlled(page);
     await page.locator("[data-action=download-course]").click();
-    await expect(page.locator("[data-offline=fa]")).toHaveAttribute("data-offline-complete", "true");
+    await expect(page.locator("[data-offline=fa]")).toHaveAttribute("data-offline-complete", "true", { timeout: DOWNLOAD_TIMEOUT_MS });
 
     // Airplane mode: three sessions, the app reloaded from the service worker before each.
     await context.setOffline(true);

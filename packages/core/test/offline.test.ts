@@ -58,6 +58,13 @@ describe("offline status and downloads", () => {
     };
     expect(removable(manifest, ["u1"]).map((f) => f.path)).toEqual(["audio/a.mp3"]);
     expect(removable(manifest, ["u1", "u2"]).map((f) => f.path)).toEqual(["audio/a.mp3", "audio/shared.mp3", "audio/b.mp3"]);
+    // A unit's remove button offers what removing it frees, which counts only what is stored.
+    const everything = offlineStatus(manifest, new Set(manifest.files.map((f) => f.path)));
+    expect(everything.units.map((u) => [u.id, u.bytes, u.freeBytes])).toEqual([
+      ["u1", 30, 10],
+      ["u2", 50, 30],
+    ]);
+    expect(offlineStatus(manifest, new Set(["audio/shared.mp3"])).units.map((u) => u.freeBytes)).toEqual([0, 0]);
     expect(unitFiles(manifest, "nope")).toEqual([]);
     expect(stalePaths(manifest, ["audio/old.mp3", "audio/a.mp3", "units/u0.json"])).toEqual(["audio/old.mp3", "units/u0.json"]);
   });
