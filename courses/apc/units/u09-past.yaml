@@ -15,7 +15,7 @@ kcs:
 - {id: 'sense:zar', gloss: {en: visit}, forms: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}}
 - {id: 'sense:sa7eb', gloss: {en: friend (a man)}, forms: {apc-Arab/standard: [صاحبي], apc-Latn/arabizi: [sa7bi]}, notes: {en: 'sa7bi: my friend. A woman friend: صاحبة, sa7be.'}}
 - {id: 'form:past-3ms', gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}}
-- {id: 'form:past-3fs', gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script ـت.'}}
+- {id: 'form:past-3fs', gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}}
 - {id: 'sense:rje3', gloss: {en: come back; go back}, forms: {apc-Arab/standard: [رجع], apc-Latn/arabizi: [rje3]}}
 - {id: 'sense:wesel', gloss: {en: arrive}, forms: {apc-Arab/standard: [وصلت], apc-Latn/arabizi: [weslet]}}
 - {id: 'form:past-1pl', gloss: {en: '-na: we (past)'}, notes: {en: 'ru7na: we went; akalna: we ate.'}}
@@ -572,9 +572,9 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: أَنا كِنْت بِالبَيْت. كِنْت تَعْبانِة.
-          tokens: [{surface: أَنا, sense: ana}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: بِالبَيْت, sense: bet, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
-                {surface: بَيْت, kc: 'sense:bet'}]}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: تَعْبانِة, sense: ta3ban, form: 'form:fem'}]
+          text: أَنا كِنْت بِالبيت. كِنْت تَعْبانِة.
+          tokens: [{surface: أَنا, sense: ana}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: بِالبيت, sense: bet, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
+                {surface: بيت, kc: 'sense:bet'}]}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: تَعْبانِة, sense: ta3ban, form: 'form:fem'}]
         apc-Latn/arabizi:
           text: ana kent bel bet. kent ta3bane.
           tokens: [{surface: ana, sense: ana}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet,

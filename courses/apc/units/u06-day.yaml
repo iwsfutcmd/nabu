@@ -17,11 +17,11 @@ kcs:
 - {id: 'form:impf-2ms', gloss: {en: 'bt-: you (present, to a man)'}, notes: {en: 'btishrab: you drink. The same form means ''she'': bt- is both.'}}
 - {id: 'sense:eshteghel', gloss: {en: work}, forms: {apc-Arab/standard: [بشتغل, بتشتغل, بيشتغل], apc-Latn/arabizi: [bishteghel, btishteghel, byishteghel]}}
 - {id: 'sense:2ara', gloss: {en: read}, forms: {apc-Arab/standard: [بقرا, بتقرا, بيقرا, اقرا], apc-Latn/arabizi: [b2ra, bti2ra, byi2ra, e2ra]}}
-- {id: 'form:impf-3ms', gloss: {en: 'bi-: he (present)'}, notes: {en: 'byishteghel: he works. Arabic script بيـ.'}}
+- {id: 'form:impf-3ms', gloss: {en: 'bi-: he (present)'}, notes: {en: 'byishteghel: he works. Arabic script: بي joined to the verb (بيشتغل).'}}
 - {id: 'form:impf-3fs', gloss: {en: 'bt-: she (present)'}, notes: {en: 'btishteghel: she works; the same form as ''you'' to a man.'}}
 - {id: 'sense:nem', gloss: {en: sleep; go to bed}, forms: {apc-Arab/standard: [بنام, بتنام], apc-Latn/arabizi: [bnem, btnem]}}
 - {id: 'sense:masa', gloss: {en: evening}, forms: {apc-Arab/standard: [المسا], apc-Latn/arabizi: [masa]}, notes: {en: 'el masa: in the evening.'}}
-- {id: 'form:impf-1pl', gloss: {en: 'mn-: we (present)'}, notes: {en: 'mnru7: we go; mnishrab: we drink. Arabic script منـ.'}}
+- {id: 'form:impf-1pl', gloss: {en: 'mn-: we (present)'}, notes: {en: 'mnru7: we go; mnishrab: we drink. Arabic script: من joined to the verb (منروح).'}}
 - {id: 'sense:yom', gloss: {en: day}, forms: {apc-Arab/standard: [يوم], apc-Latn/arabizi: [yom]}, notes: {en: 'el yom: today.'}}
 - {id: 'sense:kell', gloss: {en: every; all}, forms: {apc-Arab/standard: [كل], apc-Latn/arabizi: [kell]}, notes: {en: 'kell yom: every day.'}}
 - {id: 'sense:dayman', gloss: {en: always}, forms: {apc-Arab/standard: [دايما], apc-Latn/arabizi: [dayman]}}
@@ -30,7 +30,7 @@ kcs:
 - {id: 'sense:7aka', gloss: {en: speak; talk}, forms: {apc-Arab/standard: [بحكي, بتحكي], apc-Latn/arabizi: [b7ki, bt7ki]}}
 - {id: 'sense:3arabe', gloss: {en: Arabic}, forms: {apc-Arab/standard: [عربي], apc-Latn/arabizi: [3arabe]}}
 - {id: 'sense:englize', gloss: {en: English}, forms: {apc-Arab/standard: [إنكليزي], apc-Latn/arabizi: [englize]}}
-- {id: 'form:impf-2fs', gloss: {en: 'bt-…-i: you (present, to a woman)'}, notes: {en: 'btishrabi: you drink; bta3mli: you do. Arabic script بتـ…ـي.'}}
+- {id: 'form:impf-2fs', gloss: {en: 'bt-…-i: you (present, to a woman)'}, notes: {en: 'btishrabi: you drink; bta3mli: you do. Arabic script: بت before the verb and ي after it (بتشربي).'}}
 - {id: 'sense:enti', gloss: {en: you (to a woman)}, forms: {apc-Arab/standard: [إنتي], apc-Latn/arabizi: [enti]}}
 - {id: 'sense:m2akhkhar', gloss: {en: late}, forms: {apc-Arab/standard: [مأخّر, مأخّرة], apc-Latn/arabizi: [m2akhkhar, m2akhkhra]}}
 nodes:
@@ -604,9 +604,9 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: بَعْدين بْروح عَالشُغُل. بِشْتِغِل كْتير!
-          tokens: [{surface: بَعْدين, sense: ba3dein}, {surface: بْروح, sense: ra7, form: 'form:impf-1sg'}, {surface: عَالشُغُل, sense: shoghl, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
-                {surface: شُغُل, kc: 'sense:shoghl'}]}, {surface: بِشْتِغِل, sense: eshteghel, form: 'form:impf-1sg'}, {surface: كْتير, sense: ktir}]
+          text: بَعْدين بْروح عَالشُّغُل. بِشْتِغِل كْتير!
+          tokens: [{surface: بَعْدين, sense: ba3dein}, {surface: بْروح, sense: ra7, form: 'form:impf-1sg'}, {surface: عَالشُّغُل, sense: shoghl, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+                {surface: شُّغُل, kc: 'sense:shoghl'}]}, {surface: بِشْتِغِل, sense: eshteghel, form: 'form:impf-1sg'}, {surface: كْتير, sense: ktir}]
         apc-Latn/arabizi:
           text: ba3dein bru7 3al shoghl. bishteghel ktir!
           tokens: [{surface: ba3dein, sense: ba3dein}, {surface: bru7, sense: ra7, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},

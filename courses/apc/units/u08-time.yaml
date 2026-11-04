@@ -22,7 +22,7 @@ kcs:
 - {id: 'sense:da2i2a', gloss: {en: minute}, forms: {apc-Arab/standard: [دقيقة], apc-Latn/arabizi: [da2i2a]}}
 - {id: 'sense:stanna', gloss: {en: wait (to a man)}, forms: {apc-Arab/standard: [استنّى], apc-Latn/arabizi: [stanna]}, notes: {en: 'To a woman: استنّي, stanne.'}}
 - {id: 'sense:2abel', gloss: {en: before}, forms: {apc-Arab/standard: [قبل], apc-Latn/arabizi: [2abel]}}
-- {id: 'sense:dohr', gloss: {en: noon; midday}, forms: {apc-Arab/standard: [عالضهر], apc-Latn/arabizi: [dohr]}, notes: {en: '3al dohr: at noon; ba3d el dohr: in the afternoon.'}}
+- {id: 'sense:dohr', gloss: {en: noon; midday}, forms: {apc-Arab/standard: [الضهر], apc-Latn/arabizi: [dohr]}, notes: {en: '3al dohr: at noon; ba3d el dohr: in the afternoon.'}}
 - {id: 'sense:ba3d', gloss: {en: after}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}}
 - {id: 'sense:lel', gloss: {en: night}, forms: {apc-Arab/standard: [بالليل], apc-Latn/arabizi: [lel]}, notes: {en: 'bel lel: at night.'}}
 - {id: 'sense:3otle', gloss: {en: holiday; day off}, forms: {apc-Arab/standard: [عطلة], apc-Latn/arabizi: [3otle]}}
@@ -535,9 +535,9 @@ stories:
       distractors: ['sense:ghali', 'sense:jou3an']
       forms:
         apc-Arab/standard:
-          text: الصُّبْح، الساعَة تِسْعَة.
-          tokens: [{surface: الصُّبْح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صُّبْح, kc: 'sense:sob7'}]}, {surface: الساعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'},
-                {surface: ساعَة, kc: 'sense:sa3a'}]}, {surface: تِسْعَة, sense: tes3a}]
+          text: الصُّبْح، السّاعَة تِسْعَة.
+          tokens: [{surface: الصُّبْح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صُّبْح, kc: 'sense:sob7'}]}, {surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'},
+                {surface: سّاعَة, kc: 'sense:sa3a'}]}, {surface: تِسْعَة, sense: tes3a}]
         apc-Latn/arabizi:
           text: el sob7, el sa3a tes3a.
           tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tes3a, sense: tes3a}]
@@ -546,8 +546,8 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: تِسْعَة؟! بَكّير كْتير! الساعَة عَشْرَة ونُصّ.
-          tokens: [{surface: تِسْعَة, sense: tes3a}, {surface: بَكّير, sense: bakkir}, {surface: كْتير, sense: ktir}, {surface: الساعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعَة,
+          text: تِسْعَة؟! بَكّير كْتير! السّاعَة عَشْرَة ونُصّ.
+          tokens: [{surface: تِسْعَة, sense: tes3a}, {surface: بَكّير, sense: bakkir}, {surface: كْتير, sense: ktir}, {surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة,
                   kc: 'sense:sa3a'}]}, {surface: عَشْرَة, sense: 3ashra}, {surface: ونُصّ, sense: nos, morphs: [{surface: و, kc: 'sense:w'}, {surface: نُصّ, kc: 'sense:nos'}]}]
         apc-Latn/arabizi:
           text: tes3a?! bakkir ktir! el sa3a 3ashra w nos.

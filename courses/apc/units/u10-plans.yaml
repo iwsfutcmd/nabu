@@ -313,7 +313,9 @@ sentences:
     apc-Arab/standard:
       text: بكرا منروح، إن شاء الله.
       tokens: [{surface: بكرا, sense: bukra}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: إن, sense: inshalla}, {surface: شاء, sense: inshalla}, {surface: الله, sense: inshalla}]
-      reverse: (بكرا|بكرة) منروح (إن|ان) شاء الله
+      reverse: |-
+        (بكرا|بكرة) منروح (إن|ان) شاء الله
+        (بكرا|بكرة) منروح (إنشالله|انشالله|نشالله)
     apc-Latn/arabizi:
       text: bukra mnru7, inshalla.
       tokens: [{surface: bukra, sense: bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: inshalla, sense: inshalla}]
@@ -539,8 +541,8 @@ stories:
       distractors: ['sense:bard', 'sense:shams']
       forms:
         apc-Arab/standard:
-          text: الساعَة تْمانِة.
-          tokens: [{surface: الساعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعَة, kc: 'sense:sa3a'}]}, {surface: تْمانِة, sense: tmene}]
+          text: السّاعَة تْمانِة.
+          tokens: [{surface: السّاعَة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سّاعَة, kc: 'sense:sa3a'}]}, {surface: تْمانِة, sense: tmene}]
         apc-Latn/arabizi:
           text: el sa3a tmene.
           tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tmene, sense: tmene}]
@@ -566,8 +568,8 @@ stories:
       ask: arrange
       forms:
         apc-Arab/standard:
-          text: مَعْليش! البَيْت قَريب.
-          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: البَيْت, sense: bet, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بَيْت, kc: 'sense:bet'}]}, {surface: قَريب, sense: 2arib}]
+          text: مَعْليش! البيت قَريب.
+          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: البيت, sense: bet, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}, {surface: قَريب, sense: 2arib}]
         apc-Latn/arabizi:
           text: ma3lesh! el bet 2arib.
           tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 2arib, sense: 2arib}]
