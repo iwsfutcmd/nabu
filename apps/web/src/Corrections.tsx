@@ -14,6 +14,7 @@ import { useEffect, useState, type JSX } from "react";
 import { Button, Dialog, Modal } from "react-aria-components";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
+import { useReportsPublic } from "./reports.ts";
 import type { EventStore } from "./store.ts";
 
 type Made = { readonly correction: CorrectionFields; readonly note?: string };
@@ -57,6 +58,7 @@ interface DialogProps extends Recording {
 const CorrectionDialog = ({ course, bundle, device, record, target, previous, onClose }: DialogProps): JSX.Element => {
   const t = useTranslator();
   const chrome = useChrome();
+  const published = useReportsPublic();
   return (
     <Modal className={styles.modal} isOpen isDismissable onOpenChange={(open) => !open && onClose(false)}>
       <Dialog className={`${styles.dialog} ${styles.wideDialog} ${chromeClass}`} style={chrome.style} aria-label={t.format("corrections.title")} data-correction-dialog="">
@@ -71,6 +73,11 @@ const CorrectionDialog = ({ course, bundle, device, record, target, previous, on
               onClose(true);
             }}
           />
+          {published && (
+            <p className={styles.muted} data-reports-public="">
+              {t.format("reports.public")}
+            </p>
+          )}
         </div>
       </Dialog>
     </Modal>

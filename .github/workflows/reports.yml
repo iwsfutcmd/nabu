@@ -1,0 +1,39 @@
+name: Reports
+
+# Files learners' reports from the Firestore intake as GitHub issues (ADR 0055, docs/reports.md).
+# It runs every 30 minutes and on demand, and does nothing until the intake is configured: the
+# repository variable NABU_FIREBASE_PROJECT and the secret FIREBASE_SERVICE_ACCOUNT.
+
+on:
+  schedule:
+    - cron: "17,47 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: reports
+  cancel-in-progress: false
+
+jobs:
+  file:
+    if: ${{ vars.NABU_FIREBASE_PROJECT != '' }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - run: corepack enable && pnpm --version
+      - run: pnpm install --frozen-lockfile --filter @nabu/api...
+      - name: File new reports
+        run: node apps/api/scripts/file-reports.ts
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          NABU_FIREBASE_PROJECT: ${{ vars.NABU_FIREBASE_PROJECT }}
+          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}

@@ -25,6 +25,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { reportIntake } from "./reports.ts";
 import { CardsPage, debugOn } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
@@ -666,6 +667,8 @@ export const App = (): JSX.Element => {
   // revision rewrites an earlier answer (§8.3): the server issued it, and the log is replayed.
   const record = useCallback(
     (event: LearnerEvent): void => {
+      // Corrections and claims go to the deployment's report intake too (ADR 0055), if it has one.
+      if (event.type === "sentence_reported" || event.type === "answer_reported") void reportIntake().then((intake) => intake?.submit(event));
       // A revision (the judge's, or the learner's own claim, ADR 0052) rewrites an earlier answer: replay.
       // The server issued a judge's revision, so it is already synced; a learner's report still uploads.
       if (event.type === "outcome_revised" || event.type === "answer_reported") {

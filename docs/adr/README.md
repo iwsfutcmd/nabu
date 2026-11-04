@@ -49,5 +49,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0052](0052-learner-claims.md) | A learner's claim about their answer ("should have been accepted", "should have been wrong") is their own revision of it: it counts at once in every projection, and joins the review queue | Proposed |
 | [0053](0053-vocalization.md) | A course's vocalization (`vocalization:` files: words, ambiguous, uncertain) gives its words their vowel marks at compile time; tokens can pin `vocalized`; grading, credit, glossary, voices and corrections compare letters | Proposed |
 | [0054](0054-pronunciation-exercises.md) | Learners write in what the script leaves out: `vocalize` (an abjad word's vowel marks, from the vocalization) and `transcribe` (a Han word's Jyutping), on the read-script facet, graded all or nothing (`gradeVowels`, `gradeReading`); sukun optional per profile | Proposed |
+| [0055](0055-report-intake.md) | Reports (corrections and answer claims) go from the app to a Firestore intake named in `reports.json`, without account or device ids; a scheduled workflow files them as GitHub issues, one per sentence, quoting the bundle | Proposed |
 
 Template: [0000-template.md](0000-template.md).

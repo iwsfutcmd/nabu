@@ -19,6 +19,7 @@ import { aiStyles, ExplanationView, RoleplayChat, type ChatTurn, type Rating, ty
 import { useEffect, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
+import { useReportsPublic } from "./reports.ts";
 import type { EventStore } from "./store.ts";
 import { isHttpError, queueJudge, request, type Account, type Sync } from "./sync.ts";
 
@@ -122,6 +123,7 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
   const [reported, setReported] = useState<"accept" | "reject" | undefined>(undefined);
   const [judge, setJudge] = useState<Judge>("idle");
   const [explain, setExplain] = useState<Explain>({ tag: "idle" });
+  const published = useReportsPublic();
   const text = (answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
   const right = answer !== undefined && answer.outcome.kind.startsWith("CORRECT");
   const wrong = answer !== undefined && !right && text !== "";
@@ -195,6 +197,11 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
       {reported !== undefined && (
         <p className={aiStyles.status} role="status" data-reported={reported}>
           {t.format(reported === "accept" ? "ai.report.done" : "ai.report.rejected")}
+        </p>
+      )}
+      {claim !== undefined && judge !== "accepted" && published && (
+        <p className={aiStyles.status} data-reports-public="">
+          {t.format("reports.public")}
         </p>
       )}
       {explain.tag === "loading" && (
