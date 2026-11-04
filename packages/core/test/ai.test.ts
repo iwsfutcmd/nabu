@@ -1,7 +1,7 @@
 /** Phase 8, the pure parts: model text as TaggedText, explanations, and roleplay turn checks. */
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { AnswerSubmitted, BundleManifest, EvalGate, LearnerEvent, OutcomeRevised, TaggedText } from "@nabu/schema";
+import type { AnswerReported, AnswerSubmitted, BundleManifest, EvalGate, LearnerEvent, OutcomeRevised, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { acceptForJudge, accepts, autoTokens, checkTurn, excerpt, explanationOf, gateOf, gateOpen, judgeable, knownForms, provisionalOutcome } from "../src/ai/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
@@ -179,5 +179,36 @@ describe("the judge's rules", () => {
     expect(replayGame([{ event: answer }, { event: revision }], DEFAULT_GAME, clock).xp.total).toBe(replayGame([{ event: answer }], DEFAULT_GAME, clock).xp.total + DEFAULT_GAME.xp.answer);
     // A revision for another course is ignored.
     expect(replay([answer, { ...revision, course: "yue" }]).xp.total).toBe(0);
+  });
+
+  it("the learner's own claim counts at once: accepted counts right, rejected counts wrong, the latest wins", () => {
+    events.at("2026-01-01T09:00:00.000Z");
+    const wrong = typed(events.answer(exercise, false, 1));
+    const right = typed(events.answer({ ...exercise, id: `${exercise.id}#b` }, true, 1));
+    const { id: _id, type: _type, exercise: _exercise, attempt: _attempt, input: _input, outcome: _outcome, prediction: _prediction, ...common } = wrong;
+    const report = (answer: typeof wrong, n: number, at: string, claim?: "accept" | "reject"): AnswerReported => ({
+      ...common,
+      id: `00000000-0000-7000-8000-00000000000${String(n)}`,
+      type: "answer_reported",
+      clientTime: at,
+      localDate: at.slice(0, 10),
+      answer: answer.id,
+      exercise: answer.exercise,
+      text: "an answer",
+      ...(claim === undefined ? {} : { claim }),
+    });
+    const clock = { now: "2026-01-04T00:00:00.000Z", today: "2026-01-04" };
+    // "My answer should have been accepted": the wrong answer counts right (no claim means accept).
+    const accepted = replay([wrong, report(wrong, 1, "2026-01-01T09:01:00.000Z")]);
+    expect(replay([wrong]).mistakes).not.toEqual([]);
+    expect(accepted.mistakes).toEqual([]);
+    expect(accepted.xp.total).toBe(replay([right]).xp.total);
+    expect(replayGame([{ event: wrong }, { event: report(wrong, 1, "2026-01-01T09:01:00.000Z") }], DEFAULT_GAME, clock).xp.total).toBe(DEFAULT_GAME.xp.answer);
+    // "This should have been wrong": the right answer counts wrong.
+    const rejected = replay([right, report(right, 2, "2026-01-01T09:02:00.000Z", "reject")]);
+    expect(rejected.xp.total).toBe(0);
+    expect(rejected.mistakes.map((m) => m.item)).toEqual([right.exercise.item]);
+    // Changing one's mind: the latest claim wins.
+    expect(replay([right, report(right, 2, "2026-01-01T09:02:00.000Z", "reject"), report(right, 3, "2026-01-01T09:03:00.000Z", "accept")]).xp.total).toBe(replay([right]).xp.total);
   });
 });

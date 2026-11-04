@@ -129,6 +129,11 @@ def promote(reports: list[AnswerReport], courses: Path, cli: Any, weight: float 
         if r.status != "approved":
             out.skipped.append((r, f"status {r.status}"))
             continue
+        if r.claim == "reject":
+            out.skipped.append(
+                (r, "should have been wrong: remove it from the accept set by hand (ADR 0052)")
+            )
+            continue
         if r.template.startswith("story-"):
             out.skipped.append(
                 (r, f"{r.template}: a story line has no accept set; change the story by hand")

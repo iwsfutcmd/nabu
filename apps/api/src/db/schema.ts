@@ -188,13 +188,14 @@ export const answerReports = pgTable(
     item: text("item").notNull(),
     answer: text("answer").notNull(),
     normalized: text("normalized").notNull(),
+    claim: text("claim").notNull().default("accept"),
     status: text("status").notNull().default("pending"),
     notes: jsonb("notes").notNull().default([]),
     judge: jsonb("judge"),
     createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
   },
-  (t) => [unique().on(t.course, t.orthography, t.template, t.item, t.normalized), index("answer_reports_status").on(t.status, t.course)],
+  (t) => [unique("answer_reports_claim_key").on(t.course, t.orthography, t.template, t.item, t.normalized, t.claim), index("answer_reports_status").on(t.status, t.course)],
 );
 
 /** Who stands behind a report: salted hashes, never user ids. */

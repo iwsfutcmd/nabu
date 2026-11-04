@@ -647,7 +647,7 @@ export interface AuthorOutput {
   }[];
 }
 /**
- * A learner's "my answer should be accepted" (§13.2 fallback), queued for review; approved reports are promoted into accept sets by `nabu reports promote`.
+ * A learner's "my answer should have been accepted" (§13.2 fallback) or "this should have been wrong" (ADR 0052), queued for review; approved accepts are promoted into accept sets by `nabu reports promote`.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "AnswerReport".
@@ -662,6 +662,10 @@ export interface AnswerReport {
    * NFC, as typed or built.
    */
   readonly answer: string;
+  /**
+   * accept: the answer should be accepted (learners' reports and the judge's accepts); reject: an accepted answer should not be (ADR 0052).
+   */
+  readonly claim: "accept" | "reject";
   /**
    * What reporters wrote, if anything (the latest few).
    *
@@ -2104,7 +2108,7 @@ export interface OutcomeRevised {
   };
 }
 /**
- * "My answer should be accepted" (§13.2): a learner report on an answer graded wrong. Reports feed the review queue and the judge evaluations; they change no learner state.
+ * A learner's claim about how an answer was graded (§13.2, ADR 0052): "my answer should have been accepted" (claim accept, the default) or "this should have been wrong" (claim reject). It counts that way for the learner at once (projections apply it as a revision of the answer) and goes to the review queue for the course.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "AnswerReported".
@@ -2154,6 +2158,10 @@ export interface AnswerReported {
    * Optional words from the learner.
    */
   readonly note?: string;
+  /**
+   * What the learner says (ADR 0052): accept, "my answer should have been accepted" (the default), or reject, "this should have been wrong" (an answer graded right that should not be). Either way it counts that way for the learner at once, and goes to review for the course.
+   */
+  readonly claim?: "accept" | "reject";
 }
 /**
  * The learner started the course over: in its projection, everything before this event is forgotten (what they know, the lessons done, placement, mistakes). XP and the game state (streak, achievements) stay: they record practice that happened. The log keeps every earlier event.

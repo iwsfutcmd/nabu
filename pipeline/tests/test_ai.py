@@ -107,6 +107,7 @@ def report(
     answer: str,
     template: str = "translate-type.l1-l2",
     status: str = "approved",
+    claim: str = "accept",
 ) -> AnswerReport:
     return AnswerReport.model_validate(
         {
@@ -116,6 +117,7 @@ def report(
             "template": template,
             "item": item,
             "answer": answer,
+            "claim": claim,
             "status": status,
             "reports": 3,
             "notes": ["我覺得冇問題"],
@@ -161,6 +163,8 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "我哋去飲茶啦",
             template="story-arrange",
         ),
+        # "This should have been wrong": an alternative to take out, by hand.
+        report("yue", "yue-Hant-HK/standard", "s.13", "我唔係學生啊", claim="reject"),
     ]
     export = tmp_path / "approved.jsonl"
     export.write_text(
@@ -178,8 +182,10 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "translate-tap.l2-l1:",
             "status",
             "story-arrange:",
+            "should",
         ]
-        assert "no accept set" in outcome.skipped[-1][1]
+        assert "no accept set" in outcome.skipped[-2][1]
+        assert "by hand" in outcome.skipped[-1][1]
         yue = (courses / "yue" / "units" / "intro.yaml").read_text(encoding="utf-8")
         assert "      reverse: |-\n        我係學生\n        我係一個學生 @0.5\n" in yue
         assert "        早晨呀\n        早晨啊 @0.5\n" in yue

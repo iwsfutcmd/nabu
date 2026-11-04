@@ -46,5 +46,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0049](0049-starting-over.md) | Starting a course over is a `progress_reset` event: the fold forgets the course's cards, lessons, placement and mistakes before it; XP and the game state stay; nothing is deleted | Proposed |
 | [0050](0050-ten-unit-courses.md) | Ten-unit fixture courses; the planner presents every new KC in its lesson (calibration weight 70); distractors come from the item's unit or earlier; a KC met only inside longer words reads its share of their reading; word forms carry their senses' readings | Proposed |
 | [0051](0051-corrections.md) | Any learner can mark a sentence or story line as wrong with a correction (a `sentence_reported` event; sentence list, lessons, stories); a review queue and `nabu corrections apply` write reviewed corrections into the source; story answers can be reported too | Proposed |
+| [0052](0052-learner-claims.md) | A learner's claim about their answer ("should have been accepted", "should have been wrong") is their own revision of it: it counts at once in every projection, and joins the review queue | Proposed |
 
 Template: [0000-template.md](0000-template.md).

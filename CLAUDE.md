@@ -132,6 +132,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   every judge gate until `pnpm --filter @nabu/api evals -- --run` with a model writes new ones.
 - evals/gates.json: never hand-write a gate or a result. Golden items must stay real judge cases (check mode, in CI).
 - A judge accept is an outcome_revised event the server issues; projections fold logs through withRevisions.
+  A learner's answer_reported is their own revision (claim accept or reject, ADR 0052); it counts at once.
 - Reports are answer_reported events. Review: /admin/v1 (NABU_ADMIN_TOKEN); `nabu reports promote` edits accept sets.
 - Roleplay scenarios are course content (`scenarios:`, no target text); model turns are checked before shown.
 - Explanations: segments render through <T>; the paragraph takes the support language's direction, never the UI's.
@@ -176,7 +177,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0051 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0052 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-03
+- Updated by [ADR 0052](0052-learner-claims.md): a learner's report also revises their own answer.
 
 ## Context
 

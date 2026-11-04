@@ -235,7 +235,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
         // Corrections join their own queue (ADR 0051); a learner's later one replaces their earlier one.
         if (e.type === "sentence_reported" && !filed.has(e.id)) await fileCorrection(db, ai.courses, e, subject, now());
         if (e.type !== "answer_reported") continue;
-        await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report" }, now());
+        await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report", claim: e.claim }, now());
       }
     }
     return c.json({ ...result, refused: checked.events.length - batch.length });

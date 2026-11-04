@@ -8,8 +8,8 @@
  * - Explain My Answer, on request;
  * - roleplay conversations, once the scenario's node is done.
  */
-import { JUDGED_TEMPLATES, judgeable } from "@nabu/core/ai";
-import { answerTextOf, type CourseView, type Exercise, type Response } from "@nabu/core/lesson";
+import { judgeable } from "@nabu/core/ai";
+import { answerTextOf, SPEAKING, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
 import type { LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
 import { directionOf } from "@nabu/i18n";
@@ -82,14 +82,15 @@ export interface AnswerHelpProps {
 }
 
 /**
- * What a learner can report as "should be accepted": a typed translation, and a story's
- * questions (a line built from tiles in another order, a word or answer chosen). Story reports
- * reach the review queue; a story line has no accept set, so a reviewer changes the story.
+ * What a learner can report (ADR 0052): any answer with text (typed, built from tiles, an option
+ * chosen; story questions too). A wrong one "should have been accepted", a right one "should have
+ * been wrong"; either counts that way for the learner at once and joins the review queue.
+ * Speaking is graded by the voice, and pairs have no single answer: neither is reported.
  */
-const REPORTED = new Set<string>([...JUDGED_TEMPLATES, "story-arrange", "story-complete", "story-choose"]);
+const reportable = (template: string): boolean => !SPEAKING.has(template as TemplateId) && template !== "match-pairs";
 
-/** "My answer should be accepted" (§13.2): an event, synced like any other. */
-const reportOf = (answer: AnswerSubmitted, text: string): AnswerReported => {
+/** "My answer should have been accepted" or "this should have been wrong" (§13.2, ADR 0052). */
+const reportOf = (answer: AnswerSubmitted, text: string, claim: "accept" | "reject"): AnswerReported => {
   const now = new Date();
   return {
     id: uuidv7(now.getTime()),
@@ -108,6 +109,7 @@ const reportOf = (answer: AnswerSubmitted, text: string): AnswerReported => {
     answer: answer.id,
     exercise: answer.exercise,
     text,
+    ...(claim === "accept" ? {} : { claim }),
   };
 };
 
@@ -117,12 +119,14 @@ const failure = (e: unknown): "ai.explain.failed" | "ai.unavailable" | "ai.budge
 /** Under the feedback for a wrong answer: report it, a second check by the judge, an explanation. */
 export const AnswerHelp = ({ answer, ex, response, status, account, store, record }: AnswerHelpProps): JSX.Element | null => {
   const t = useTranslator();
-  const [reported, setReported] = useState(false);
+  const [reported, setReported] = useState<"accept" | "reject" | undefined>(undefined);
   const [judge, setJudge] = useState<Judge>("idle");
   const [explain, setExplain] = useState<Explain>({ tag: "idle" });
   const text = (answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
-  const wrong = answer !== undefined && !answer.outcome.kind.startsWith("CORRECT") && text !== "";
-  const reportable = wrong && REPORTED.has(ex.template);
+  const right = answer !== undefined && answer.outcome.kind.startsWith("CORRECT");
+  const wrong = answer !== undefined && !right && text !== "";
+  // A wrong answer can be claimed right, a right one wrong.
+  const claim = answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? "reject" : "accept";
   const explainable = wrong && status.explain && EXPLAINED.has(ex.template);
 
   useEffect(() => {
@@ -147,7 +151,7 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
     };
   }, [answer, account, status.judge, store, record]);
 
-  if (!reportable && !explainable && judge === "idle") return null;
+  if (claim === undefined && !explainable && judge === "idle") return null;
   const askExplanation = (): void => {
     if (answer === undefined || account === undefined) return;
     setExplain({ tag: "loading" });
@@ -167,19 +171,19 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
         {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted") : judge === "queued" ? t.format("ai.judge.queued") : ""}
       </p>
       <div className={aiStyles.actions}>
-        {reportable && judge !== "accepted" && (
+        {claim !== undefined && judge !== "accepted" && (
           <button
             type="button"
             className={aiStyles.action}
-            disabled={reported}
+            disabled={reported !== undefined}
             onClick={() => {
               if (answer === undefined) return;
-              record(reportOf(answer, text));
-              setReported(true);
+              record(reportOf(answer, text, claim));
+              setReported(claim);
             }}
-            data-action="report"
+            data-action={claim === "accept" ? "report" : "report-wrong"}
           >
-            {t.format("ai.report.button")}
+            {t.format(claim === "accept" ? "ai.report.button" : "ai.report.reject")}
           </button>
         )}
         {explainable && explain.tag === "idle" && (
@@ -188,9 +192,9 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
           </button>
         )}
       </div>
-      {reported && (
-        <p className={aiStyles.status} role="status" data-reported="">
-          {t.format("ai.report.done")}
+      {reported !== undefined && (
+        <p className={aiStyles.status} role="status" data-reported={reported}>
+          {t.format(reported === "accept" ? "ai.report.done" : "ai.report.rejected")}
         </p>
       )}
       {explain.tag === "loading" && (

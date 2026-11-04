@@ -337,6 +337,20 @@ describe("the review queue", () => {
     expect(lines.some((l) => (l as { answer: string }).answer === "我係一個學生")).toBe(true);
   });
 
+  it("queues 'this should have been wrong' apart from 'should have been accepted' for the same answer", async () => {
+    const { token } = await signUp();
+    const answer = typedAnswer("我係學生");
+    const base1 = { ...base(), type: "answer_reported", answer: answer.id, exercise: (answer as { exercise: unknown }).exercise, text: "我係學生" };
+    await upload(token, [answer, { ...base1, claim: "reject", note: "missing 一個?" }, { ...base(), type: "answer_reported", answer: answer.id, exercise: base1.exercise, text: "我係學生" }]);
+    const res = await app.request("/admin/v1/reports?status=pending&course=yue", request("GET", undefined, ADMIN));
+    const { reports } = (await res.json()) as { reports: { answer: string; item: string; claim: string; notes: string[] }[] };
+    const rows = reports.filter((r) => r.answer === "我係學生" && r.item === "s.12");
+    expect(rows.map((r) => r.claim).sort()).toEqual(["accept", "reject"]);
+    expect(rows.find((r) => r.claim === "reject")?.notes).toEqual(["missing 一個?"]);
+    const jsonl = await (await app.request("/admin/v1/reports.jsonl?status=pending", request("GET", undefined, ADMIN))).text();
+    expect(jsonl.trim().split("\n").every((l) => validAi("AnswerReport", JSON.parse(l)))).toBe(true);
+  });
+
   it("approves on its own once enough learners' answers were accepted by the judge", async () => {
     for (let i = 0; i < 3; i++) {
       const { token } = await signUp();

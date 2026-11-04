@@ -180,9 +180,9 @@
     },
     "AnswerReport": {
       "title": "AnswerReport",
-      "description": "A learner's \"my answer should be accepted\" (§13.2 fallback), queued for review; approved reports are promoted into accept sets by `nabu reports promote`.",
+      "description": "A learner's \"my answer should have been accepted\" (§13.2 fallback) or \"this should have been wrong\" (ADR 0052), queued for review; approved accepts are promoted into accept sets by `nabu reports promote`.",
       "type": "object",
-      "required": ["id", "course", "orthography", "template", "item", "answer", "status", "reports", "notes", "createdAt"],
+      "required": ["id", "course", "orthography", "template", "item", "answer", "claim", "status", "reports", "notes", "createdAt"],
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "format": "uuid" },
@@ -191,6 +191,7 @@
         "template": { "type": "string", "minLength": 1 },
         "item": { "type": "string", "minLength": 1 },
         "answer": { "description": "NFC, as typed or built.", "type": "string", "minLength": 1, "maxLength": 500 },
+        "claim": { "description": "accept: the answer should be accepted (learners' reports and the judge's accepts); reject: an accepted answer should not be (ADR 0052).", "enum": ["accept", "reject"] },
         "notes": { "description": "What reporters wrote, if anything (the latest few).", "type": "array", "maxItems": 20, "items": { "type": "string", "maxLength": 500 } },
         "judge": { "description": "What the judge said, if it ran and accepted.", "$ref": "#/$defs/JudgeVerdict" },
         "status": { "$ref": "#/$defs/ReportStatus" },
