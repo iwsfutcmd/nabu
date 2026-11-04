@@ -80,7 +80,7 @@ sentences:
     apc-Latn/arabizi:
       text: kol!
       tokens: [{surface: kol, sense: akal}]
-      reverse: (kol|kul|kili|kele|keli)
+      reverse: (kol|kul|kili|kele|keli|koli|kuli)
   translations:
     en: |-
       Eat!
@@ -137,6 +137,7 @@ sentences:
   translations:
     en: |-
       And to you!
+      And you!
       Same to you!
       You too!
       Thanks, you too!
@@ -407,11 +408,15 @@ sentences:
     apc-Arab/standard:
       text: بسّ شوي!
       tokens: [{surface: بسّ, sense: bas}, {surface: شوي, sense: shway}]
-      reverse: بسّ (شوي|شوية)
+      reverse: |-
+        بسّ (شوي|شوية)
+        (شوي|شوية) بسّ
     apc-Latn/arabizi:
       text: bas shway!
       tokens: [{surface: bas, sense: bas}, {surface: shway, sense: shway}]
-      reverse: (bas|bass) (shway|shwayy|shwei|shwai)
+      reverse: |-
+        (bas|bass) (shway|shwayy|shwei|shwai)
+        (shway|shwayy|shwei|shwai) (bas|bass)
   translations:
     en: |-
       Just a (little|bit)!
@@ -558,7 +563,7 @@ sentences:
     apc-Latn/arabizi:
       text: kol kamen!
       tokens: [{surface: kol, sense: akal}, {surface: kamen, sense: kamen}]
-      reverse: (kol|kul|kili|kele|keli) (kamen|kaman)
+      reverse: (kol|kul|kili|kele|keli|koli|kuli) (kamen|kaman)
   translations:
     en: |-
       Eat (more|some more)!
