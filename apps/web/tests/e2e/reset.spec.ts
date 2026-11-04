@@ -1,5 +1,6 @@
 /**
- * Starting a course over: a learner with progress confirms it, the path goes back to the first
+ * Starting a course over: a learner with progress confirms it by typing the course's name (case,
+ * accents and outer spaces aside; never mid-composition), the path goes back to the first
  * lesson (placement is offered again), XP stays, the reset survives a reload, and it syncs: the
  * server's projection forgets the same things and agrees with the device. The dialog works in
  * RTL chrome and passes axe.
@@ -53,9 +54,26 @@ test.describe("starting a course over", () => {
     await expect(dialog).toHaveCount(0);
     await expect(page.locator(`[data-lesson="${second}"]`)).toHaveAttribute("data-status", "done");
 
-    // Starting over.
+    // Starting over takes typing the course's name; the button waits for it.
     await page.locator("[data-action=start-over]").click();
-    await page.locator("[data-action=confirm-start-over]").click();
+    const confirm = page.locator("[data-action=confirm-start-over]");
+    const field = page.locator("[data-field=reset-name]");
+    await expect(confirm).toBeDisabled();
+    await field.fill("Persia");
+    await expect(confirm).toBeDisabled();
+    // Mid-composition (an IME still open), the name is not yet typed.
+    await field.fill("");
+    await field.focus();
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: "persian", selectionStart: 7, selectionEnd: 7 });
+    await expect(confirm).toBeDisabled();
+    await cdp.send("Input.insertText", { text: "persian" });
+    await expect(field).toHaveValue("persian");
+    await expect(confirm).toBeEnabled(); // case does not matter
+    await field.fill("  PERSIAN ");
+    await expect(confirm).toBeEnabled(); // nor do outer spaces
+    expect(await axe(page, "[data-start-over-dialog]")).toEqual([]);
+    await confirm.click();
     await expect(page.locator("[data-reset-done]")).toBeVisible();
     await expect(page.locator(`[data-lesson="${first}"]`)).toHaveAttribute("data-status", "available");
     await expect(page.locator(`[data-lesson="${second}"]`)).toHaveAttribute("data-status", "locked");

@@ -26,16 +26,21 @@ Deleting events would not work:
   happened. The course page keeps its XP, and `replayGame` ignores the event.
 - **The log keeps everything.** Nothing is deleted, so export still holds the whole history, and
   deleting an account (`docs/next-steps.md`, Phase 11) remains the way to remove data.
-- **The app.** The course page has a "Start over" section while the course has progress. A
-  confirmation dialog (`role="alertdialog"`, focus on "Keep my progress") says what changes on
-  every device and what stays.
+- **The app.** The course page has a "Start over" section while the course has progress.
+  - **Scope.** A reset covers one course, so one language and every script it is taught in.
+  - **The dialog** (`role="alertdialog"`, focus on "Keep my progress") says what changes on every
+    device, that it cannot be undone, and what stays.
+  - **Typing the name.** As GitHub does for destructive actions, the button works only once the
+    learner types the course's name as it reads in their UI language.
+  - **Matching the name.** It uses an `Intl.Collator` at base strength in the UI locale, so case,
+    accents and outer spaces do not matter. It never matches while an IME composition is open.
 
 ## Consequences
 
 - The device and the server forget the same things. The tests cover four things:
   - a synced reset in the API;
   - a late reset in core;
-  - the dialog with RTL chrome;
+  - the dialog with RTL chrome, and typing the name (including mid-composition);
   - the server's check after a reset (`apps/web/tests/e2e/reset.spec.ts`).
 - Undoing a reset would be one more event (`progress_reset_undone`, naming the reset). It is not
   built.

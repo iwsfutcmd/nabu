@@ -455,7 +455,7 @@
       "description": "Confirms starting the course over (destructive)."
     },
     "app.reset.confirm-body": {
-      "message": "Every lesson but the first will be locked again, and words come back as new. This applies on all your devices. Your streak, XP and achievements stay.",
+      "message": "Every lesson but the first will be locked again, and words come back as new. This applies on all your devices and cannot be undone. Your streak, XP and achievements stay.",
       "description": "Body of the confirmation dialog: what starting over does and does not change."
     },
     "app.reset.confirm-title": {
@@ -477,6 +477,14 @@
     "app.reset.title": {
       "message": "Start over",
       "description": "Heading of the course page's section for starting the course over."
+    },
+    "app.reset.type-hint": {
+      "message": "Capital letters and accents do not matter.",
+      "description": "Hint under the confirmation field."
+    },
+    "app.reset.type-label": {
+      "message": "To confirm, type {$language}",
+      "description": "Label of the field where the learner types the course's name to confirm starting over. $language is the course's name, already in the UI language."
     },
     "app.roleplay.back": {
       "message": "Back to the course",
