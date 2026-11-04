@@ -547,12 +547,33 @@ const distance = <T>(a: readonly T[], b: readonly T[]): number => {
   return row[b.length - 1] ?? a.length;
 };
 
+/**
+ * Pinned readings by surface, per course view and scheme: the first sentence token (in course
+ * order) that spells the word gives its reading. Indexed once, as a course has hundreds of
+ * sentences and minimal pairs compare every word with every other.
+ */
+const readingIndex = new WeakMap<CourseView, Map<SchemeId, ReadonlyMap<string, string>>>();
+
 /** The pinned reading of a written word, from any sentence token that spells it. */
 const readingOf = (ctx: MakeContext, scheme: SchemeId, surface: string): string | undefined => {
-  for (const s of allSentences(ctx.course)) {
-    for (const t of formOf(ctx.course, s)?.text.tokens ?? []) if (t.surface === surface && t.readings?.[scheme] !== undefined) return t.readings[scheme];
+  let byScheme = readingIndex.get(ctx.course);
+  if (byScheme === undefined) {
+    byScheme = new Map();
+    readingIndex.set(ctx.course, byScheme);
   }
-  return undefined;
+  let index = byScheme.get(scheme);
+  if (index === undefined) {
+    const built = new Map<string, string>();
+    for (const s of allSentences(ctx.course)) {
+      for (const t of formOf(ctx.course, s)?.text.tokens ?? []) {
+        const reading = t.readings?.[scheme];
+        if (reading !== undefined && !built.has(t.surface)) built.set(t.surface, reading);
+      }
+    }
+    index = built;
+    byScheme.set(scheme, index);
+  }
+  return index.get(surface);
 };
 
 /**

@@ -4,6 +4,8 @@
  * The simulated learners are in simulator.ts.
  */
 import { describe, expect, it } from "vitest";
+import { allKcs, allSentences, lessonNodes } from "../src/lesson/index.ts";
+import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
 /** A month of sessions takes a few seconds; more on a busy CI runner. */
@@ -11,9 +13,9 @@ const SIMULATION_TIMEOUT_MS = 60_000;
 
 /**
  * Learners from weak (θ* = 1.0) to strong (θ* = 2.0), on every course and
- * orthography. One unit of content is small, so after the lessons most of the
- * month is review: the planner keeps success near the target by reviewing due
- * facets with harder or easier templates, and by mixing in easier fillers.
+ * orthography. With ten units a month is mostly new lessons, two a day: the
+ * planner presents every new KC first, then keeps success near the target with
+ * easier or harder templates and review fillers (CALIBRATION_WEIGHT).
  */
 describe("planner: 30 simulated days", () => {
   const RUNS: readonly (readonly [string, string | undefined, number, number])[] = [
@@ -29,7 +31,17 @@ describe("planner: 30 simulated days", () => {
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {
-      const r = simulate(course, orthography, seed, ability);
+      // Which KCs each lesson session presented: every new KC an exercise can carry must appear.
+      const presented = new Map<string, Set<string>>();
+      let node = "";
+      const r = simulate(course, orthography, seed, ability, (e) => {
+        if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
+        if (e.type === "answer_submitted" && node !== "") for (const kc of e.exercise.kcs) (presented.get(node) ?? presented.set(node, new Set()).get(node))?.add(kc);
+      });
+      const view = loadCourse(course, orthography);
+      const carried = new Set([...allSentences(view).flatMap((s) => s.kcs), ...allKcs(view).filter((k) => (k.forms?.[view.orthography]?.length ?? 0) > 0).map((k) => k.id)]);
+      const skipped = lessonNodes(view).flatMap(({ node: n }) => (presented.has(n.id) ? n.introduces.filter((kc) => carried.has(kc) && !presented.get(n.id)?.has(kc)).map((kc) => `${n.id} ${kc}`) : []));
+      expect(skipped.filter((s) => !s.startsWith("drill."))).toEqual([]);
       const rate = r.correct / r.firstTries;
       console.log(
         `${course} ${orthography ?? ""} θ*=${ability}: ${r.sessions} sessions (${r.lessons} lessons), ${r.firstTries} first tries, success ${(rate * 100).toFixed(1)}%, predicted ${((r.predicted / r.firstTries) * 100).toFixed(1)}%`,

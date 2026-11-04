@@ -1,6 +1,6 @@
 {
   "cards": {
-    "sense:salam|recognize": {
+    "sense:mamnun|recognize": {
       "due": "2026-03-01T08:10:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -36,7 +36,7 @@
       "state": 1,
       "last_review": "2026-03-01T08:00:45.000Z"
     },
-    "sense:mamnun|recognize": {
+    "sense:khodahafez|recognize": {
       "due": "2026-03-01T08:10:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -48,7 +48,7 @@
       "state": 1,
       "last_review": "2026-03-01T08:00:45.000Z"
     },
-    "sense:khodahafez|recognize": {
+    "sense:salam|recognize": {
       "due": "2026-03-01T08:10:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -72,7 +72,7 @@
       "state": 1,
       "last_review": "2026-03-01T08:01:15.000Z"
     },
-    "sense:khodahafez|listen": {
+    "sense:salam|listen": {
       "due": "2026-03-01T08:02:45.000Z",
       "stability": 0.212,
       "difficulty": 6.4133,
@@ -96,20 +96,20 @@
       "state": 1,
       "last_review": "2026-03-01T08:02:15.000Z"
     },
-    "sense:na|produce": {
-      "due": "2026-03-01T08:13:15.000Z",
-      "stability": 2.3065,
-      "difficulty": 2.11810397,
+    "sense:khodahafez|listen": {
+      "due": "2026-03-01T08:03:45.000Z",
+      "stability": 0.212,
+      "difficulty": 6.4133,
       "elapsed_days": 0,
       "scheduled_days": 0,
-      "learning_steps": 1,
+      "learning_steps": 0,
       "reps": 1,
       "lapses": 0,
       "state": 1,
-      "last_review": "2026-03-01T08:03:15.000Z"
+      "last_review": "2026-03-01T08:02:45.000Z"
     },
-    "sense:salam|listen": {
-      "due": "2026-03-01T08:14:15.000Z",
+    "sense:na|produce": {
+      "due": "2026-03-01T08:13:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
       "elapsed_days": 0,
@@ -118,42 +118,43 @@
       "reps": 1,
       "lapses": 0,
       "state": 1,
-      "last_review": "2026-03-01T08:04:15.000Z"
+      "last_review": "2026-03-01T08:03:45.000Z"
     }
   },
   "performance": {
-    "theta": 1.4259154762375457,
+    "theta": 1.4109626139298188,
     "facet": {
-      "recognize": -0.10233072479649666,
-      "speak": 0.03817398348022523,
-      "listen": -0.06762357379610112,
-      "produce": 0.05834135205265697
+      "recognize": 0.036707868363494114,
+      "speak": 0.036228448195403475,
+      "listen": -0.21838814022807293,
+      "produce": 0.056400292098162504
     },
     "template": {
       "match-pairs": -0.01951627115444968,
-      "speak.tier-0": -0.03817398348022523,
-      "listen-select": 0.06762357379610112,
-      "choose-translation": 0.13253205460788686,
-      "gap-fill": -0.05834135205265697,
-      "translate-tap.l2-l1": -0.010610318121327544
+      "speak.tier-0": -0.036228448195403475,
+      "listen-select": 0.21838814022807293,
+      "choose-translation": -0.014262057191822948,
+      "gap-fill": -0.056400292098162504,
+      "select-image": -0.0030677675236461975
     },
     "kc": {
-      "sense:salam": -0.07313333387844258,
-      "sense:bale": -0.010666798872362791,
-      "sense:na": -0.033068075375872086,
-      "sense:mamnun": 0.11224192800390047,
-      "sense:khodahafez": 0.0783620988328248
+      "sense:mamnun": -0.03692268053377911,
+      "sense:bale": -0.008471886223335688,
+      "sense:na": -0.032097545398624854,
+      "sense:khodahafez": 0.08147676518230491,
+      "sense:salam": 0.08488940158723618
     },
     "item": {
-      "sense:salam": -0.0656216518585236,
-      "s.1": -0.023208284905497832,
-      "sense:khodahafez": 0.11392912259079291,
-      "s.2": -0.031339776810078046,
-      "s.3": 0.1455224409421615,
-      "s.5": -0.05834135205265697,
-      "s.4": -0.006769399522819191
+      "sense:mamnun": -0.01951627115444968,
+      "s.1": -0.022284081178106766,
+      "sense:salam": 0.11116521256474654,
+      "s.2": -0.018815064303310952,
+      "sense:khodahafez": 0.10415516013968018,
+      "s.3": -0.004838238592066673,
+      "s.5": -0.056400292098162504,
+      "s.4": -0.004574486873792088
     },
-    "w": 1.9151917955172744
+    "w": 2.0613036497929014
   },
   "xp": {
     "total": 20,
@@ -166,13 +167,13 @@
   ],
   "mistakes": [
     {
-      "item": "sense:khodahafez",
+      "item": "sense:salam",
       "template": "listen-select",
       "at": "2026-03-01T08:01:45.000Z"
     },
     {
-      "item": "s.3",
-      "template": "choose-translation",
+      "item": "sense:khodahafez",
+      "template": "listen-select",
       "at": "2026-03-01T08:02:45.000Z"
     }
   ],
@@ -187,10 +188,10 @@
     "listen-select": [
       4000,
       4000,
+      4000,
       4000
     ],
     "choose-translation": [
-      4000,
       4000,
       4000,
       4000
@@ -198,23 +199,23 @@
     "gap-fill": [
       4000
     ],
-    "translate-tap.l2-l1": [
+    "select-image": [
       4000
     ]
   },
   "rated": {
     "session": "00000000-0000-7000-8000-ffffffffffff",
     "keys": [
-      "sense:salam|recognize",
+      "sense:mamnun|recognize",
       "sense:bale|recognize",
       "sense:na|recognize",
-      "sense:mamnun|recognize",
       "sense:khodahafez|recognize",
+      "sense:salam|recognize",
       "sense:salam|speak",
-      "sense:khodahafez|listen",
+      "sense:salam|listen",
       "sense:khodahafez|speak",
-      "sense:na|produce",
-      "sense:salam|listen"
+      "sense:khodahafez|listen",
+      "sense:na|produce"
     ]
   }
 }

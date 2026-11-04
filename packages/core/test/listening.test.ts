@@ -14,6 +14,7 @@ import {
   gradeExercise,
   isCorrect,
   KC_LISTENING,
+  profileOf,
   LISTENING,
   lessonNodes,
   seededRng,
@@ -104,13 +105,35 @@ describe("listening templates", () => {
     ),
   ];
 
-  it("minimal pairs: one letter apart in writing (uz), one sound or tone apart in Jyutping (yue)", () => {
+  // Every word of three full courses over eight seeds: more than the default five seconds on CI.
+  it("minimal pairs: one letter apart in writing (uz), one sound or tone apart in Jyutping (yue)", { timeout: 60_000 }, () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
-    expect(pairsOf(withAudio(uz))).toEqual([]); // the fixture has no such pair
+    // The fixture's own pairs (yoʻl/yoʻq, bor/qor, uch/uy…) are each one letter apart, counted in the
+    // orthography's letters (ch, sh, ng, oʻ and gʻ are one letter each), as the template counts.
+    const own = pairsOf(withAudio(uz));
+    expect(own).toEqual(expect.arrayContaining(["yoʻl/yoʻq"]));
+    /** Edit distance in letters: one substitution, insertion or deletion apart is a pair. */
+    const distance = (a: readonly string[], b: readonly string[]): number => {
+      let row = b.map((_, j) => j + 1);
+      for (const [i, g] of a.entries()) {
+        const next = [i + 1];
+        for (const [j, h] of b.entries()) next.push(Math.min((row[j] ?? 0) + 1, (next[j] ?? 0) + 1, (j === 0 ? i : (row[j - 1] ?? 0)) + (g === h ? 0 : 1)));
+        row = next.slice(1);
+      }
+      return row.at(-1) ?? a.length;
+    };
+    for (const pair of own) {
+      const letters = profileOf(uz, uz.orthography);
+      const [a = [], b = []] = pair.split("/").map((w) => letters.units(letters.normalize(w)));
+      expect(distance(a, b), pair).toBe(1);
+    }
     expect(pairsOf(withWord(uz, "men", "sen"))).toContain("men/sen");
-    // The fixture's own: 呀 aa3 / 嗎 maa3 (an onset). Add 媽 maa1: 嗎/媽 differ in tone, 啦 laa1/媽 in
-    // the onset; 嗎 maa3 and 啦 laa1 differ in two places, so they are no pair.
-    expect(pairsOf(withAudio(loadCourse("yue")))).toEqual(["呀/嗎"]);
+    // The fixture's own: 呀 aa3 / 嗎 maa3 (an onset), 係 hai6 / 喺 hai2 (a tone), 五 ng5 / 我 ngo5 (a final);
+    // 嗎 maa3 and 啦 laa1 differ in two places, so they are no pair. Add 媽 maa1: 嗎/媽 differ in tone,
+    // 啦 laa1/媽 in the onset.
+    const yuePairs = pairsOf(withAudio(loadCourse("yue")));
+    expect(yuePairs).toEqual(expect.arrayContaining(["呀/嗎", "係/喺", "五/我"]));
+    expect(yuePairs).not.toContain("啦/嗎");
     const pairs = pairsOf(withWord(loadCourse("yue"), "嗎", "媽", "maa1"));
     expect(pairs).toEqual(expect.arrayContaining(["呀/嗎", "嗎/媽", "啦/媽"]));
     expect(pairs).not.toContain("啦/嗎");
