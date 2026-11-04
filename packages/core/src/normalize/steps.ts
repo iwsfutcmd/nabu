@@ -4,6 +4,7 @@
  * sets at compile time (through core-cli) and over learner answers at runtime.
  */
 import type { NormalizeStep } from "@nabu/schema";
+import { graphemes } from "../text/graphemes.ts";
 
 export type StepFn = (text: string) => string;
 
@@ -80,6 +81,23 @@ const digits = (canonical: string, accept: readonly string[], systems: Readonly<
 const PUNCTUATION = /\p{P}/gu;
 const WHITESPACE = /\s+/gu;
 
+/**
+ * A prefix written onto the next word is split off from it: Arabizi elshay → el shay. Prefixes
+ * match whole graphemes, ignoring case (Elshay → El shay); a word needs minRest more graphemes,
+ * so the prefix alone (el) or a short word (ela) is left as it is.
+ */
+const detach = (prefixes: readonly string[], minRest: number): StepFn => {
+  const same = new Intl.Collator("und", { sensitivity: "accent", usage: "search" });
+  const wanted = prefixes.map((p) => graphemes(p.normalize("NFC"))).sort((a, b) => b.length - a.length);
+  // Repeats on what is left (elelshay → el el shay), so one pass is already a fixpoint.
+  const split = (word: string): string => {
+    const gs = graphemes(word);
+    const prefix = wanted.find((p) => gs.length >= p.length + minRest && same.compare(gs.slice(0, p.length).join(""), p.join("")) === 0);
+    return prefix === undefined ? word : `${gs.slice(0, prefix.length).join("")} ${split(gs.slice(prefix.length).join(""))}`;
+  };
+  return (text) => text.replace(/[^\s]+/gu, split);
+};
+
 export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Record<string, string>>): StepFn => {
   if (step === "nfc") return (t) => t.normalize("NFC");
   if ("fold-compat" in step) return foldArabicPresentationForms;
@@ -88,6 +106,7 @@ export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Reco
   if ("remove" in step) return literalMap(Object.fromEntries(step.remove.map((r) => [r, ""])));
   if ("digits" in step) return digits(step.digits.canonical, step.digits.accept, numberingSystems);
   if ("punctuation" in step) return step.punctuation === "strip" ? (t) => t.replace(PUNCTUATION, "") : (t) => t;
+  if ("detach" in step) return detach(step.detach.prefixes, step.detach.minRest ?? 2);
   // whitespace
   if (step.whitespace === "collapse") return (t) => t.replace(WHITESPACE, " ").trim();
   if (step.whitespace === "remove") return (t) => t.replace(WHITESPACE, "");

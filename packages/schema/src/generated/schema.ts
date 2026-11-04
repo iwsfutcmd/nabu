@@ -217,7 +217,8 @@ export type NormalizeStep =
   | RemoveStep
   | DigitsStep
   | PunctuationStep
-  | WhitespaceStep;
+  | WhitespaceStep
+  | DetachStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -399,6 +400,7 @@ export interface NabuSchemaIndex {
   readonly DigitsStep: DigitsStep;
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
+  readonly DetachStep: DetachStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
   readonly KeyboardRef: KeyboardRef;
@@ -2478,6 +2480,21 @@ export interface PunctuationStep {
  */
 export interface WhitespaceStep {
   readonly whitespace: "collapse" | "remove" | "keep";
+}
+/**
+ * Splits a prefix written onto the next word off from it, so the attached and the separate spellings compare alike (Arabizi elshay = el shay). A word that starts with one of the prefixes, ignoring case and by whole graphemes, and has at least minRest more graphemes, gets a space after the prefix.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "DetachStep".
+ */
+export interface DetachStep {
+  readonly detach: {
+    /**
+     * @minItems 1
+     */
+    readonly prefixes: readonly string[];
+    readonly minRest?: number;
+  };
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
