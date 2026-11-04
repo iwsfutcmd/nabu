@@ -190,11 +190,15 @@ sentences:
     apc-Arab/standard:
       text: إنت من وين؟
       tokens: [{surface: إنت, sense: enta}, {surface: من, sense: men}, {surface: وين, sense: wen}]
-      reverse: '[(إنت|إنتي|إنتِ)] من وين'
+      reverse: |-
+        [(إنت|إنتي|إنتِ)] من وين
+        من وين (إنت|إنتي|إنتِ)
     apc-Latn/arabizi:
       text: enta men wen?
       tokens: [{surface: enta, sense: enta}, {surface: men, sense: men}, {surface: wen, sense: wen}]
-      reverse: '[(enta|inta|enti|inti)] (men|min|mn) (wen|wein|wayn)'
+      reverse: |-
+        [(enta|inta|enti|inti|ente|inte)] (men|min|mn) (wen|wein|wayn)
+        (men|min|mn) (wen|wein|wayn) (enta|inta|enti|inti|ente|inte)
   translations:
     en: Where are you from?
 - id: s.home.11
