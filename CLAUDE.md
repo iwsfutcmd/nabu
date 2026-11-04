@@ -111,7 +111,8 @@ Architecture and roadmap: docs/gameplan.md. §1 lists the decisions; any change 
 ## Phase 7 notes (see docs/adr/0044)
 - Game state is a projection: @nabu/core/game `replayGame(events, config, clock)`. Never store it; change the rules.
   Deployments configure it in `game.json` beside the app; the gate (hearts/energy) is off unless set there.
-- Streak tests are properties (date line, DST, 48 h offline): keep them generating physically possible timelines.
+- Streak tests are properties (date line, DST, 48 h offline): keep them generating physically possible timelines, and
+  within the anti-gaming caps (≤3 time-zone changes a week: `withinZoneCap`) unless the cap is what they test.
 - Usernames go through `checkUsername` with the UTS #39 data in packages/i18n/src/generated (regenerate with
   `pnpm --filter @nabu/i18n generate:security`; pinned sha256). Render every user-chosen name inside <bdi>.
 - API options: NABU_LEAGUES=1, NABU_PUSH=1 (VAPID key kept in the database unless NABU_VAPID_PRIVATE_JWK),

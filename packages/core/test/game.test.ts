@@ -148,6 +148,28 @@ describe("local dates", () => {
 
 const ZONES = ["Pacific/Kiritimati", "Pacific/Pago_Pago", "Pacific/Auckland", "Pacific/Honolulu", "Asia/Tehran", "America/New_York", "UTC"] as const;
 
+/**
+ * Whether a timeline keeps to the cap on time-zone changes (§12.2: at most
+ * `maxTzChangesPerWeek` in any seven days; past it, the new zone's days do not count, which
+ * "time-zone changes are bounded" tests). Practising just before and just after midnight, or
+ * crossing the date line westward, can squeeze three days' blocks into less than a week, so
+ * the date-line properties keep to travellers within the cap.
+ */
+const withinZoneCap = (events: readonly LearnerEvent[], max = NO_QUESTS.streak.maxTzChangesPerWeek): boolean => {
+  const week = 7 * 24 * 3_600_000;
+  const changes: number[] = [];
+  let tz: string | undefined;
+  for (const e of [...events].sort((a, b) => Date.parse(a.clientTime) - Date.parse(b.clientTime))) {
+    const at = Date.parse(e.clientTime);
+    if (tz !== undefined && e.tz !== tz) {
+      if (changes.filter((c) => at - c < week).length >= max) return false;
+      changes.push(at);
+    }
+    tz = e.tz;
+  }
+  return true;
+};
+
 // Property tests generate whole timelines: give them time on slow CI runners.
 describe("streak properties", { timeout: 120_000 }, () => {
   it("daily practice is one streak, whichever side of the date line each day is spent on", () => {
@@ -162,6 +184,7 @@ describe("streak properties", { timeout: 120_000 }, () => {
           // day after the last one in the zone they are now in, unless that day already ended there
           // (they crossed the date line and it never happened for them).
           const events = travel(addDays("2026-01-01", startOffset), n, (i) => zones[Math.floor(i / 3)] as string, (i) => minutes[i] as number);
+          fc.pre(withinZoneCap(events));
           const last = events.at(-1) as LearnerEvent;
           const state = replayGame(online(events), NO_QUESTS, clockAt(last.localDate, Date.parse(last.clientTime)));
           expect(state.streak.current).toBe(n);
@@ -184,6 +207,7 @@ describe("streak properties", { timeout: 120_000 }, () => {
           // Late evenings in Samoa: by then Kiritimati has already left the next date.
           const minute = (i: number): number => (zone(i) === "Pacific/Pago_Pago" ? 23 * 60 + ((minutes[i] as number) % 60) : (minutes[i] as number));
           const events = travel("2026-03-01", n, zone, minute);
+          fc.pre(withinZoneCap(events));
           const days = [...new Set(events.map((e) => e.localDate))].sort();
           // Flying west from Samoa to Kiritimati skips a date at least once.
           expect(daysBetween(days[0] as string, days.at(-1) as string) + 1).toBeGreaterThan(n);
