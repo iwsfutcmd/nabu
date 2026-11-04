@@ -110,12 +110,23 @@ export const syllableSpans = (track: PitchTrack, count: number): readonly (reado
       if (b - a > lb - la) longest = i;
     });
     const [a, b] = spans[longest] ?? [0, 0];
-    if (b - a < 10) return undefined; // too short to hold another syllable
+    if (b - a < 10) return evenSpans(spans, count); // runs too short to split: share the speech out evenly
     const mid = Math.round((a + b) / 2);
     spans.splice(longest, 1, [a, mid], [mid, b]);
   }
   return spans;
 };
+
+/** Every syllable an equal share of the speech, from its first voiced frame to its last; undefined when too short. */
+const evenSpans = (runs: readonly (readonly [number, number])[], count: number): readonly (readonly [number, number])[] | undefined => {
+  const first = runs[0]?.[0] ?? 0;
+  const last = runs.at(-1)?.[1] ?? 0;
+  if (last - first < count * MIN_SYLLABLE_FRAMES) return undefined;
+  return Array.from({ length: count }, (_, i) => [first + Math.round(((last - first) * i) / count), first + Math.round(((last - first) * (i + 1)) / count)] as const);
+};
+
+/** Shortest share of speech a syllable can be scored from (50 ms). */
+const MIN_SYLLABLE_FRAMES = 5;
 
 /** Start, middle and end pitch of a span in semitones (edges trimmed, medians over narrow windows). */
 export const contourOf = (track: PitchTrack, [start, end]: readonly [number, number]): readonly [number, number, number] | undefined => {

@@ -10,7 +10,7 @@
  * An account is optional; with one, the log syncs to the server.
  */
 import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, LISTENING, seededRng, speechSupportOf } from "@nabu/core/lesson";
+import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
@@ -166,7 +166,7 @@ interface OfflineProps {
 
 const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus; offline: OfflineProps; onReset: () => void }): JSX.Element => {
   const t = useTranslator();
-  const [quiet, setQuiet] = useState(listeningOff);
+  const [off, setOff] = useState(() => ({ listening: onBreak("listening"), speaking: onBreak("speaking") }));
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
@@ -204,19 +204,35 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
           {t.format("app.store.memory")}
         </p>
       )}
-      {quiet && (
+      {off.listening && (
         <p className={styles.notice} role="note" data-listening-off="">
           {t.format("app.listening.off")}{" "}
           <button
             type="button"
             className={styles.inlineButton}
             onClick={() => {
-              setListeningOffUntil(0);
-              setQuiet(false);
+              setBreakUntil("listening", 0);
+              setOff({ ...off, listening: false });
             }}
             data-action="listening-on"
           >
             {t.format("app.listening.on")}
+          </button>
+        </p>
+      )}
+      {off.speaking && (
+        <p className={styles.notice} role="note" data-speaking-off="">
+          {t.format("app.speaking.off")}{" "}
+          <button
+            type="button"
+            className={styles.inlineButton}
+            onClick={() => {
+              setBreakUntil("speaking", 0);
+              setOff({ ...off, speaking: false });
+            }}
+            data-action="speaking-on"
+          >
+            {t.format("app.speaking.on")}
           </button>
         </p>
       )}
@@ -329,32 +345,36 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
 };
 
 /**
- * "Can't listen now" (§10): listening exercises stay out of new sessions for an hour. A
- * per-device convenience, so it lives in localStorage; without storage it lasts the page.
+ * "Can't listen now" and "Can't speak now" (§10): those exercises stay out of new sessions for an
+ * hour. A per-device convenience, so it lives in localStorage; without storage it lasts the page.
  */
-const LISTENING_OFF = "nabu.listening-off-until";
-const LISTENING_BREAK_MS = 3_600_000;
-let listeningOffFallback = 0;
+type Break = "listening" | "speaking";
+const BREAK_KEYS: Readonly<Record<Break, string>> = { listening: "nabu.listening-off-until", speaking: "nabu.speaking-off-until" };
+const BREAK_MS = 3_600_000;
+const breakFallback: Record<Break, number> = { listening: 0, speaking: 0 };
 
-const listeningOffUntil = (): number => {
+const breakUntil = (b: Break): number => {
   try {
-    return Number(localStorage.getItem(LISTENING_OFF) ?? 0);
+    return Number(localStorage.getItem(BREAK_KEYS[b]) ?? 0);
   } catch {
-    return listeningOffFallback;
+    return breakFallback[b];
   }
 };
 
-const setListeningOffUntil = (until: number): void => {
-  listeningOffFallback = until;
+const setBreakUntil = (b: Break, until: number): void => {
+  breakFallback[b] = until;
   try {
-    if (until === 0) localStorage.removeItem(LISTENING_OFF);
-    else localStorage.setItem(LISTENING_OFF, String(until));
+    if (until === 0) localStorage.removeItem(BREAK_KEYS[b]);
+    else localStorage.setItem(BREAK_KEYS[b], String(until));
   } catch {
     // Storage unavailable: the in-memory value above still holds for this page.
   }
 };
 
-const listeningOff = (): boolean => listeningOffUntil() > Date.now();
+const onBreak = (b: Break): boolean => breakUntil(b) > Date.now();
+
+/** What new sessions leave out: listening and speaking while they are on a break. */
+const excluded = (): ReadonlySet<TemplateId> => new Set<TemplateId>([...(onBreak("listening") ? LISTENING : []), ...(onBreak("speaking") ? SPEAKING : [])]);
 
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
@@ -419,7 +439,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     const seed = seedFor();
     // Speaking is scored where tones can be judged here or the server scores it (§10.4).
     const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
-    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, speech, ...(listeningOff() ? { exclude: LISTENING } : {}) });
+    const exclude = excluded();
+    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, speech, ...(exclude.size > 0 ? { exclude } : {}) });
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
@@ -454,7 +475,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onEvent={setup.onEvent}
         sound={sound}
         retries={request.mode !== "placement"}
-        onCantListen={() => setListeningOffUntil(Date.now() + LISTENING_BREAK_MS)}
+        onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
+        onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
         onExit={exit}
         speech={speech}

@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -43,6 +43,8 @@ export interface LessonPlayerProps {
   readonly retries?: boolean | undefined;
   /** The learner pressed "Can't listen now": the app leaves listening out of the next sessions. */
   readonly onCantListen?: (() => void) | undefined;
+  /** The learner pressed "Can't speak now": the app leaves speaking out of the next sessions. */
+  readonly onCantSpeak?: (() => void) | undefined;
   /**
    * More under the feedback for an answer (Phase 8: report it, a second check, an explanation).
    * The app supplies it; the player only places it, outside the live region.
@@ -62,7 +64,7 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, onCantListen } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
   const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries });
   const [override, setOverride] = useState(props.initialState);
@@ -128,7 +130,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
   const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });
-  const speaking = ex.template === "speak.tier-0";
+  // Every speaking card can be put off, as every listening card can: rated or scored alike.
+  const speaking = SPEAKING.has(ex.template);
   const listening = LISTENING.has(ex.template);
   const pairs = ex.template === "match-pairs";
 
@@ -227,7 +230,15 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         ) : (
           <>
             {speaking ? (
-              <Button className={styles.secondary} onPress={() => dispatch({ tag: "skip", reason: "cant-speak" })} isDisabled={locked} data-action="cant-speak">
+              <Button
+                className={styles.secondary}
+                onPress={() => {
+                  onCantSpeak?.();
+                  dispatch({ tag: "skip", reason: "cant-speak" });
+                }}
+                isDisabled={locked}
+                data-action="cant-speak"
+              >
                 {t.format("player.action.cant-speak")}
               </Button>
             ) : listening ? (
