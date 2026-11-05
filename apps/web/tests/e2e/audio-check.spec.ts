@@ -99,6 +99,28 @@ test("a course still keeping an older voice opens on its own voice; the voice fi
   await expect(page.locator("[data-audio-item]")).toHaveCount(byItem.size);
 });
 
+test("slow plays the same clip, slowed with its pitch kept (ADR 0062)", async ({ page }) => {
+  type Play = { src: string; rate: number; pitch: boolean };
+  await page.addInitScript(() => {
+    const plays: Play[] = [];
+    (window as unknown as { plays: Play[] }).plays = plays;
+    const play = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, "play")?.value as (this: HTMLMediaElement) => Promise<void>;
+    HTMLMediaElement.prototype.play = function (this: HTMLMediaElement) {
+      plays.push({ src: this.src, rate: this.playbackRate, pitch: this.preservesPitch });
+      return play.call(this);
+    };
+  });
+  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  const row = page.locator("[data-audio-item]").first();
+  await row.locator("[data-action=play]").click();
+  await row.locator("[data-action=play-slow]").click();
+  const plays = await page.evaluate(() => (window as unknown as { plays: Play[] }).plays);
+  expect(plays).toHaveLength(2);
+  expect(plays[1]?.src).toBe(plays[0]?.src);
+  expect(plays[0]?.rate).toBe(1);
+  expect(plays[1]).toMatchObject({ rate: 0.75, pitch: true });
+});
+
 test("a clip plays from the audio check", async ({ page }) => {
   await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();

@@ -311,9 +311,9 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
 
     engine.calls.clear()
     report = synthesize_course(course, intro, v, None, apc.written)
-    assert report.synthesized == 2 and report.kept == len(first) - 2
+    assert report.synthesized == 1 and report.kept == len(first) - 1
     clips = {(c.item, c.speed): c for c in read_index(adir).clips}
-    for speed, rate in (("normal", 1.0), ("slow", 0.67)):
+    for speed, rate in (("normal", 1.0),):
         clip = clips[(target, speed)]
         assert clip.synthesis is not None and clip.synthesis.take == 1
         assert clip.rejected is None

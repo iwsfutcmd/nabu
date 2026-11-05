@@ -75,7 +75,7 @@ def test_right_releases_a_failed_clip_and_wrong_holds_a_passing_one_back(
     assert (result.right, result.wrong, result.skipped) == (1, 1, [])
 
     clips = {(c.item, c.speed): c for c in read_index(audio_dir(fa)).clips}
-    for speed in ("normal", "slow"):
+    for speed in sorted({s for i, s in clips if i == failed}):
         right, wrong = clips[(failed, speed)], clips[(passed, speed)]
         assert right.provenance.status == "reviewed"
         assert (right.provenance.reviewedBy, right.provenance.reviewedAt) == (

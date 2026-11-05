@@ -130,7 +130,7 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     by_id = {i.item: i for i in items}
     assert by_id["sense:早晨"].input == "zou2 san4"  # a word KC, read from its pinned reading
     report = synthesize_course(yue_copy, compiled.units, YUE_VOICE)
-    assert report.synthesized == 2 * len(items)
+    assert report.synthesized == len(items)  # one clip an item: the player slows it (ADR 0062)
     index = read_index(audio_dir(yue_copy))
     assert all(c.license == "CC0-1.0" and c.synthetic for c in index.clips)
     assert all(

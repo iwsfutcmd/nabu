@@ -9,7 +9,8 @@
   not settle its pinned reading, and the plain spelling for the rest;
 - a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
   gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
-- each clip comes at normal and slow speed;
+- each item gets one clip, at normal speed: the player slows it down itself (ADR 0062), so a
+  slow clip is never another take with its own mistakes;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
   token indices the app highlights (karaoke) and taps;
 - clips are MP3, content-addressed by their synthesis input, and listed with license,
@@ -57,7 +58,6 @@ from nabu.schema.models import (
 )
 
 INDEX = "index.yaml"
-SLOW = 0.67
 #: Bitrate of the MP3s: speech, mono.
 BITRATE = "48k"
 #: Clips synthesized between saves of the index.
@@ -411,7 +411,7 @@ def synthesize_course(
     wanted: list[tuple[Item, str, float, str, int]] = []
     kept: list[Any] = []
     for item in items:
-        for speed, requested in (("normal", 1.0), ("slow", SLOW)):
+        for speed, requested in (("normal", 1.0),):
             rate = tts.speed(requested)
             old = previous.get((item.item, speed))
             take = take_of(old, item, tts)
