@@ -17,14 +17,15 @@ test.beforeEach(({ page: _ }, info) => {
 });
 
 /** Records which clip each play() asks for, instead of playing it. */
-const recordPlays = (page: Page): Promise<void> =>
-  page.addInitScript(() => {
+const recordPlays = async (page: Page): Promise<void> => {
+  await page.addInitScript(() => {
     window.nabuPlayed = [];
     HTMLMediaElement.prototype.play = function (this: HTMLMediaElement) {
       window.nabuPlayed?.push(this.dataset["clip"] ?? this.src);
       return Promise.resolve();
     };
   });
+};
 
 const pairsCard = async (page: Page, query: string): Promise<void> => {
   await page.goto(`/?debug=1${query}#/fa/fa-Arab.standard/cards`);
