@@ -63,6 +63,7 @@ export interface SelectImage extends Common {
 /** Match each target word with its gloss (or a word with its reading). */
 export interface MatchPairs extends Common {
   readonly template: "match-pairs";
+  /** The words: left[i] is the form of kcs[i], so its clip is the course's audio of kcs[i]. */
   readonly left: readonly TaggedText[];
   readonly right: readonly TaggedText[];
   /** pairs[i] is the index in `right` that belongs with left[i]. */

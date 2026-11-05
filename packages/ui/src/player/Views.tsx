@@ -495,6 +495,19 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   const matched = props.draft.tag === "pairs" ? props.draft.matched : [];
   const mistakes = props.draft.tag === "pairs" ? props.draft.mistakes : 0;
   const matchedRight = new Set(matched.map((l) => ex.pairs[l]));
+  // A word says itself when tapped, if it has a clip and sound is on.
+  const voice = useRef<HTMLAudioElement | null>(null);
+  useEffect(() => () => voice.current?.pause(), []);
+  const clipOf = (i: number) => props.course.audio[ex.kcs[i] ?? ""]?.normal;
+  const say = (i: number): void => {
+    const clip = clipOf(i);
+    if (clip === undefined || props.sound === false) return;
+    voice.current?.pause();
+    const el = new Audio(props.imageUrl(clip.path));
+    el.dataset["clip"] = clip.path;
+    voice.current = el;
+    void el.play().catch(() => undefined);
+  };
 
   const attempt = (left: number, right: number): void => {
     setPicked(null);
@@ -509,6 +522,7 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   };
   const pick = (side: "left" | "right", index: number): void => {
     if (locked) return;
+    if (side === "left") say(index);
     setMiss(null);
     if (picked === null || picked.side === side) setPicked({ side, index });
     else attempt(side === "left" ? index : picked.index, side === "right" ? index : picked.index);
@@ -528,6 +542,7 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
             aria-pressed={isPicked}
             autoFocus={side === "left" && i === 0}
             data-pair={`${side}-${i}`}
+            data-clip={side === "left" ? clipOf(i)?.path : undefined}
             data-matched={done || undefined}
             data-miss={isMiss || undefined}
             data-ink-container="tile"

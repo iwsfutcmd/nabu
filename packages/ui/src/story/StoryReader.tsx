@@ -326,6 +326,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             marks={marks}
             writingMode="horizontal-tb"
             imageUrl={imageUrl}
+            sound={sound !== false}
             outcome={feedback?.outcome}
             language={language}
             shortcuts={shortcuts}
