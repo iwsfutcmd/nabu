@@ -143,33 +143,35 @@ sentences:
 - id: s.past.7
   node: apc.past.you-did
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو عملت مبارح؟
       tokens: [{surface: شو, sense: shu}, {surface: عملت, sense: 3emel, form: 'form:past-2ms'}, {surface: مبارح, sense: mbere7}]
       reverse: |-
-        شو (عملت|عملتي) (مبارح|مبارحة)
-        (مبارح|مبارحة) شو (عملت|عملتي)
+        شو عملت (مبارح|مبارحة)
+        (مبارح|مبارحة) شو عملت
     apc-Latn/arabizi:
       text: shu 3melt mbere7?
       tokens: [{surface: shu, sense: shu}, {surface: 3melt, sense: 3emel, form: 'form:past-2ms'}, {surface: mbere7, sense: mbere7}]
       reverse: |-
-        (shu|sho) (3melt|3malt|3amalt|3melti|3malti) (mbere7|mbare7|embere7|mberi7)
-        (mbere7|mbare7|embere7|mberi7) (shu|sho) (3melt|3malt|3amalt|3melti|3malti)
+        (shu|sho) (3melt|3malt|3amalt) (mbere7|mbare7|embere7|mberi7)
+        (mbere7|mbare7|embere7|mberi7) (shu|sho) (3melt|3malt|3amalt)
   translations:
     en: What did you do yesterday?
 - id: s.past.8
   node: apc.past.you-did
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو اشتريت؟
       tokens: [{surface: شو, sense: shu}, {surface: اشتريت, sense: eshtara, form: 'form:past-2ms'}]
-      reverse: شو (اشتريت|اشتريتي)
+      reverse: شو اشتريت
     apc-Latn/arabizi:
       text: shu eshtarit?
       tokens: [{surface: shu, sense: shu}, {surface: eshtarit, sense: eshtara, form: 'form:past-2ms'}]
-      reverse: (shu|sho) (eshtarit|shtarit|ishtarit|eshtariti|shtariti)
+      reverse: (shu|sho) (eshtarit|shtarit|ishtarit)
   translations:
     en: What did you buy?
 - id: s.past.9
@@ -189,15 +191,16 @@ sentences:
 - id: s.past.10
   node: apc.past.you-did
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: زرت تيتا؟
       tokens: [{surface: زرت, sense: zar, form: 'form:past-2ms'}, {surface: تيتا, sense: teta}]
-      reverse: (زرت|زرتي|إنت زرت|إنتي زرتي) تيتا
+      reverse: (زرت|إنت زرت) تيتا
     apc-Latn/arabizi:
       text: zert teta?
       tokens: [{surface: zert, sense: zar, form: 'form:past-2ms'}, {surface: teta, sense: teta}]
-      reverse: ((zert|zort|zirt|zerti|zirti)|(enta|inta) (zert|zirt)|(enti|inti) (zerti|zirti)) (teta|tayta)
+      reverse: ((zert|zort|zirt)|(enta|inta) (zert|zirt)) (teta|tayta)
   translations:
     en: |-
       Did you visit (grandma|granny)?
@@ -210,12 +213,12 @@ sentences:
       text: إيه، زرت تيتا مع صاحبي.
       tokens: [{surface: إيه, sense: eh}, {surface: زرت, sense: zar, form: 'form:past-1sg'}, {surface: تيتا, sense: teta}, {surface: مع, sense: ma3}, {surface: صاحبي, sense: sa7eb, morphs: [{surface: صاحب,
               kc: 'sense:sa7eb'}, {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: إيه (زرت|أنا زرت) تيتا مع (صاحبي|رفيقي)
+      reverse: إيه (زرت|أنا زرت) تيتا مع (صاحبي|رفيقي|صاحبتي|رفيقتي)
     apc-Latn/arabizi:
       text: eh, zert teta ma3 sa7bi.
       tokens: [{surface: eh, sense: eh}, {surface: zert, sense: zar, form: 'form:past-1sg'}, {surface: teta, sense: teta}, {surface: ma3, sense: ma3}, {surface: sa7bi, sense: sa7eb, morphs: [{surface: sa7b,
               kc: 'sense:sa7eb'}, {surface: i, kc: 'form:poss-1sg'}]}]
-      reverse: (eh|ee|e) ((zert|zort|zirt)|ana (zert|zirt)) (teta|tayta) (ma3|ma3a) (sa7bi|sa7be|sahbi|sahbe|rfi2i|rfi2e)
+      reverse: (eh|ee|e) ((zert|zort|zirt)|ana (zert|zirt)) (teta|tayta) (ma3|ma3a) (sa7bi|sa7be|sahbi|sahbe|rfi2i|rfi2e|sa7bti|sa7bte|sahbti|rfi2ti|rfi2te)
   translations:
     en: |-
       Yes, I visited (grandma|granny) with my friend.
@@ -427,34 +430,34 @@ sentences:
 - id: s.past.24
   node: apc.past.it-was
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: كنت تعبان كتير.
       tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: تعبان, sense: ta3ban}, {surface: كتير, sense: ktir}]
-      reverse: |-
-        (كنت|أنا كنت) تعبان كتير
-        (كنت|أنا كنت) تعبانة كتير
+      reverse: (كنت|أنا كنت) تعبان كتير
     apc-Latn/arabizi:
       text: kent ta3ban ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3ban, sense: ta3ban}, {surface: ktir, sense: ktir}]
-      reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3ban|ta3ben|t3ban|ta3bane|ta3bana) (ktir|kteer|kter|ktiir)
+      reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3ban|ta3ben|t3ban) (ktir|kteer|kter|ktiir)
   translations:
     en: I was (very|really) tired.
 - id: s.past.25
   node: apc.past.it-was
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: كنت مبسوط كتير.
       tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مبسوط, sense: mabsout}, {surface: كتير, sense: ktir}]
       reverse: |-
-        (كنت|أنا كنت) (مبسوط|مبسوطة) كتير
+        (كنت|أنا كنت) مبسوط كتير
         (انبسطت|أنا انبسطت) كتير
     apc-Latn/arabizi:
       text: kent mabsout ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mabsout, sense: mabsout}, {surface: ktir, sense: ktir}]
       reverse: |-
-        ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsout|mabsoot|mabsot|mabsouta|mabsota) (ktir|kteer|kter|ktiir)
+        ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsout|mabsoot|mabsot) (ktir|kteer|kter|ktiir)
         [ana] (enbasatt|enbasat|inbasatt|inbasat|nbasatt) (ktir|kteer|kter|ktiir)
   translations:
     en: |-
@@ -464,19 +467,20 @@ sentences:
 - id: s.past.26
   node: apc.past.it-was
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: مبارح كنت مشغول، صحّ؟
       tokens: [{surface: مبارح, sense: mbere7}, {surface: كنت, sense: kan, form: 'form:past-2ms'}, {surface: مشغول, sense: mashghoul}, {surface: صحّ, sense: sa77}]
       reverse: |-
-        (مبارح|مبارحة) (كنت مشغول|كنتي مشغولة) (صحّ|صح)
-        (كنت مشغول|كنتي مشغولة) (مبارح|مبارحة) (صحّ|صح)
+        (مبارح|مبارحة) كنت مشغول (صحّ|صح)
+        كنت مشغول (مبارح|مبارحة) (صحّ|صح)
     apc-Latn/arabizi:
       text: mbere7 kent mashghoul, sa77?
       tokens: [{surface: mbere7, sense: mbere7}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: mashghoul, sense: mashghoul}, {surface: sa77, sense: sa77}]
       reverse: |-
-        (mbere7|mbare7|embere7|mberi7) ((kent|kint|kunt) (mashghoul|mash8oul|mashghol)|(kenti|kinti) (mashghoule|mashghoula)) (sa77|sa7|sah)
-        ((kent|kint|kunt) (mashghoul|mash8oul|mashghol)|(kenti|kinti) (mashghoule|mashghoula)) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
+        (mbere7|mbare7|embere7|mberi7) (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (sa77|sa7|sah)
+        (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
   translations:
     en: |-
       Yesterday you were busy, right?
@@ -485,6 +489,7 @@ sentences:
 - id: s.past.27
   node: apc.past.you-f
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: مايا، وين رحتي مبارح؟
@@ -499,18 +504,19 @@ sentences:
 - id: s.past.28
   node: apc.past.you-f
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: كنتي مبسوطة؟
       tokens: [{surface: كنتي, sense: kan, form: 'form:past-2fs'}, {surface: مبسوطة, sense: mabsout, form: 'form:fem'}]
-      reverse: (كنتي مبسوطة|كنت مبسوط|إنتي كنتي مبسوطة|إنت كنت مبسوط|انبسطتي|انبسطت)
+      reverse: (كنتي مبسوطة|إنتي كنتي مبسوطة|انبسطتي)
     apc-Latn/arabizi:
       text: kenti mabsouta?
       tokens: [{surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: mabsouta, sense: mabsout, form: 'form:fem'}]
       reverse: |-
-        ((kenti|kinti|kente) (mabsouta|mabsoota|mabsota)|(kent|kint) (mabsout|mabsoot|mabsot))
+        (kenti|kinti|kente) (mabsouta|mabsoota|mabsota)
         (enti|inti) (kenti|kinti|kente) (mabsouta|mabsoota|mabsota)
-        (enbasatti|inbasatti|nbasatti|enbasatt|inbasatt)
+        (enbasatti|inbasatti|nbasatti)
   translations:
     en: |-
       Did you have (a good time|fun)?

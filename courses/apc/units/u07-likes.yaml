@@ -56,15 +56,16 @@ sentences:
 - id: s.like.2
   node: apc.like.like
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بتحبّ الشاي؟
       tokens: [{surface: بتحبّ, sense: 7abb, form: 'form:impf-2ms'}, {surface: الشاي, sense: shay, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شاي, kc: 'sense:shay'}]}]
-      reverse: (بتحبّ|بتحبّي|إنت بتحبّ|إنتي بتحبّي) الشاي
+      reverse: (بتحبّ|إنت بتحبّ) الشاي
     apc-Latn/arabizi:
       text: bt7ebb el shay?
       tokens: [{surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
-      reverse: ((bt7ebb|bt7eb|bthebb|bt7ebbi|bt7ebi)|(enta|inta) (bt7ebb|bt7eb)|(enti|inti) (bt7ebbi|bt7ebi)) (el|l|il) (shay|shai)
+      reverse: ((bt7ebb|bt7eb|bthebb)|(enta|inta) (bt7ebb|bt7eb)) (el|l|il) (shay|shai)
   translations:
     en: Do you (like|love) tea?
 - id: s.like.3
@@ -240,15 +241,16 @@ sentences:
 - id: s.like.14
   node: apc.like.want-to
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بدّك شي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: شي, sense: shi}]
-      reverse: (بدّك|إنت بدّك|إنتي بدّك) شي
+      reverse: (بدّك|إنت بدّك) شي
     apc-Latn/arabizi:
       text: baddak shi?
       tokens: [{surface: baddak, sense: baddak}, {surface: shi, sense: shi}]
-      reverse: ((baddak|badak|baddik)|(enta|inta) (baddak|badak)|(enti|inti) baddik) (shi|she)
+      reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (shi|she)
   translations:
     en: |-
       Do you want anything?
@@ -258,19 +260,16 @@ sentences:
 - id: s.like.15
   node: apc.like.want-to
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بدّك تشرب شي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: شي, sense: shi}]
-      reverse: |-
-        بدّك تشرب شي
-        بدّك تشربي شي
+      reverse: بدّك تشرب شي
     apc-Latn/arabizi:
       text: baddak tishrab shi?
       tokens: [{surface: baddak, sense: baddak}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: shi, sense: shi}]
-      reverse: |-
-        (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
-        (baddik|badik) (tishrabi|teshrabi|tshrabi) (shi|she)
+      reverse: (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
   translations:
     en: |-
       Do you want something to drink?
@@ -329,20 +328,21 @@ sentences:
 - id: s.like.19
   node: apc.like.want-to
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بدّك تعمل اليوم؟
       tokens: [{surface: شو, sense: shu}, {surface: بدّك, sense: baddak}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم,
               kc: 'sense:yom'}]}]
       reverse: |-
-        شو بدّك (تعمل|تعملي) اليوم
-        اليوم شو بدّك (تعمل|تعملي)
+        شو بدّك تعمل اليوم
+        اليوم شو بدّك تعمل
     apc-Latn/arabizi:
       text: shu baddak ta3mel el yom?
       tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
       reverse: |-
         (shu|sho) (baddak|badak) (ta3mel|te3mel) (el|l|il) (yom|yawm|youm)
-        (shu|sho) (baddik|badik) (ta3mli|ta3mle) (el|l|il) (yom|yawm|youm)
+        (el|l|il) (yom|yawm|youm) (shu|sho) (baddak|badak) (ta3mel|te3mel)
   translations:
     en: |-
       What do you want to do today?
@@ -410,29 +410,31 @@ sentences:
 - id: s.like.24
   node: apc.like.watch-play
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بتلعب فوتبول؟
       tokens: [{surface: بتلعب, sense: le3eb, form: 'form:impf-2ms'}, {surface: فوتبول, sense: football}]
-      reverse: (بتلعب|بتلعبي|إنت بتلعب|إنتي بتلعبي) (فوتبول|فوتبال)
+      reverse: (بتلعب|إنت بتلعب) (فوتبول|فوتبال)
     apc-Latn/arabizi:
       text: btil3ab football?
       tokens: [{surface: btil3ab, sense: le3eb, form: 'form:impf-2ms'}, {surface: football, sense: football}]
-      reverse: ((btil3ab|btel3ab|btil3abi|btel3abi)|(enta|inta) (btil3ab|btel3ab)|(enti|inti) (btil3abi|btel3abi)) (football|futbol|foot)
+      reverse: ((btil3ab|btel3ab)|(enta|inta) (btil3ab|btel3ab)) (football|futbol|foot)
   translations:
     en: Do you play (football|soccer)?
 - id: s.like.25
   node: apc.like.right-now
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو عم تعمل؟
       tokens: [{surface: شو, sense: shu}, {surface: عم, sense: 3am}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: شو عم (تعمل|بتعمل|تعملي|بتعملي)
+      reverse: شو عم (تعمل|بتعمل)
     apc-Latn/arabizi:
       text: shu 3am ta3mel?
       tokens: [{surface: shu, sense: shu}, {surface: 3am, sense: 3am}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: (shu|sho) (3am|3m|3a) (ta3mel|te3mel|bta3mel|ta3mli|ta3mle|bta3mli)
+      reverse: (shu|sho) (3am|3m|3a) (ta3mel|te3mel|bta3mel)
   translations:
     en: |-
       What are you doing?

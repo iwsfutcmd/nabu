@@ -120,6 +120,7 @@ sentences:
 - id: s.6
   node: apc.how-are-you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: كيفك؟
@@ -128,7 +129,7 @@ sentences:
     apc-Latn/arabizi:
       text: kifak?
       tokens: [{surface: kifak, sense: kifak}]
-      reverse: (kifak|keefak|kifik|keefik|kifek)
+      reverse: (kifak|keefak)
   translations:
     en: |-
       How are you?
@@ -141,11 +142,11 @@ sentences:
     apc-Arab/standard:
       text: منيح!
       tokens: [{surface: منيح, sense: mni7}]
-      reverse: منيح
+      reverse: (منيح|منيحة)
     apc-Latn/arabizi:
       text: mni7!
       tokens: [{surface: mni7, sense: mni7}]
-      reverse: (mni7|mnih|mnee7)
+      reverse: (mni7|mnih|mnee7|mni7a|mnee7a)
   translations:
     en: |-
       Fine!
@@ -155,6 +156,7 @@ sentences:
 - id: s.8
   node: apc.how-are-you
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: منيح، الحمدلله.
@@ -172,6 +174,7 @@ sentences:
 - id: s.9
   node: apc.how-are-you
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: أنا منيح.
@@ -188,37 +191,33 @@ sentences:
 - id: s.10
   node: apc.how-are-you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: إنت منيح؟
       tokens: [{surface: إنت, sense: enta}, {surface: منيح, sense: mni7}]
-      reverse: |-
-        [إنت] منيح
-        [(إنتي|إنتِ)] منيحة
+      reverse: '[إنت] منيح'
     apc-Latn/arabizi:
       text: enta mni7?
       tokens: [{surface: enta, sense: enta}, {surface: mni7, sense: mni7}]
-      reverse: |-
-        [(enta|inta)] (mni7|mnih|mnee7)
-        [(enti|inti)] (mni7a|mnee7a)
+      reverse: '[(enta|inta)] (mni7|mnih|mnee7)'
   translations:
     en: Are you (fine|good|well|OK|okay|all right|alright)?
 - id: s.11
   node: apc.how-are-you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: وإنت؟
       tokens: [{surface: وإنت, morphs: [{surface: و, kc: 'sense:w'}, {surface: إنت, kc: 'sense:enta'}]}]
-      reverse: |-
-        (وإنت|و إنت)
-        (وإنتي|و إنتي)
+      reverse: (وإنت|و إنت)
     apc-Latn/arabizi:
       text: w enta?
       tokens: [{surface: w, sense: w}, {surface: enta, sense: enta}]
       reverse: |-
-        (w|wa) (enta|inta|enti|inti)
-        (wenta|winta|wenti|winti)
+        (w|wa) (enta|inta)
+        (wenta|winta)
   translations:
     en: |-
       And you?
@@ -256,6 +255,7 @@ sentences:
 - id: s.14
   node: apc.names
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو اسمك؟
@@ -348,15 +348,16 @@ sentences:
 - id: s.20
   node: apc.cafe
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بدّك شاي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: شاي, sense: shay}]
-      reverse: (بدّك|إنت بدّك|إنتي بدّك) شاي
+      reverse: (بدّك|إنت بدّك) شاي
     apc-Latn/arabizi:
       text: baddak shay?
       tokens: [{surface: baddak, sense: baddak}, {surface: shay, sense: shay}]
-      reverse: ((baddak|badak)|(enta|inta) (baddak|badak)|(enti|inti) baddik) (shay|shai)
+      reverse: ((baddak|badak)|(enta|inta) (baddak|badak)) (shay|shai)
   translations:
     en: |-
       Do you want (tea|some tea|a tea)?
@@ -395,19 +396,20 @@ sentences:
 - id: s.23
   node: apc.cafe
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بدّك؟
       tokens: [{surface: شو, sense: shu}, {surface: بدّك, sense: baddak}]
       reverse: |-
         شو بدّك
-        (إنت|إنتي) شو بدّك
+        إنت شو بدّك
     apc-Latn/arabizi:
       text: shu baddak?
       tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}]
       reverse: |-
-        (shu|sho) (baddak|badak|baddik)
-        (enta|inta|enti|inti) (shu|sho) (baddak|badak|baddik)
+        (shu|sho) (baddak|badak)
+        (enta|inta) (shu|sho) (baddak|badak)
   translations:
     en: |-
       What do you want?

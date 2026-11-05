@@ -52,6 +52,16 @@ Policies the pass adopted, to confirm or reverse:
     them inflected.
   - Plural "you" (*baddkon*, إنتو) is not accepted.
   - Still open in the vocalization: الضهر, هيدا, ترويقة.
+  - **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md)). 75 sentences say who speaks or who is
+    spoken to: 56 to a man, 8 to a woman, 11 a man speaking. Their accept sets keep only the forms that fit.
+    To confirm:
+    - منيح (s.7) accepts both genders, untagged, as a reaction to news; s.8 and s.9 are tagged "a man speaking".
+    - Arabizi *ente*/*inte* are read as feminine: some people write *inte* for the masculine.
+    - حبيبي (s.plans.16) is tagged "to a man". In Beirut it is often said to women too.
+    - Reading Arabic into English, *ru7t*, *kent* and *zert* also mean "you (m)", and *bt-* forms also mean
+      "she". The English sets take only the course's reading (s.plans.2 now takes both).
+    - No sentence is tagged for plural "you", so *baddkon* and كيفكن are rejected wherever a sentence is
+      tagged "to a man".
   - The judge's golden items keep ميرسي, تمام, باي and شكرا as rejects.
 
 ## Marking what is wrong
