@@ -9014,260 +9014,200 @@ clips:
     inputHash: 3a4dc528edf4a2936df279eab8ec53e9d42800d1247d877a1ab25bd893d65677
 - item: s.food.1
   speed: normal
-  file: clips/9db16ce83e7e51a7.mp3
-  sha256: a290652131170128562b16eaa2501013b6e3500296768afdd49daef6a2e2c8e5
-  durationMs: 784
-  license: CC0-1.0
+  file: clips/4f863081cab9012d.mp3
+  sha256: 05973fac857fc522cf16e1930f9e4a5504bf9d3edf0c58788741cbbc1bc28f73
+  durationMs: 1080
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Mana choy.
     rate: 1.0
-    inputHash: 9db16ce83e7e51a7477409ee03177846780bd187a3850ecdb2996a5e59472932
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 336
-  - token: 2
-    startMs: 336
-    endMs: 784
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 4f863081cab9012d1c5fa40828e9f53a5abf48f236b341c1b672c7dabae11fa8
   qa:
-    trace: mænæ tSɑj
     asrModel: whisper-large-v3-turbo
-    asrText: MADACHOLY
-    cer: 1.0
-    status: fail
+    asrText: Mana Joy
+    cer: 0.25
+    status: review
 - item: s.food.1
   speed: slow
-  file: clips/936590ed55d0fe3c.mp3
-  sha256: c2a6e8df6f6d5e5feb5c7874e55ba9e8938e09707c3f33774ade59e459f164e1
-  durationMs: 1229
-  license: CC0-1.0
+  file: clips/66db426dca1fbcef.mp3
+  sha256: 56b4f1c8b6ea39dc151a6aa258f14b14e1372153d308ace49e2a7aa442de5ae9
+  durationMs: 1360
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Mana choy.
     rate: 0.67
-    inputHash: 936590ed55d0fe3c8c1a46e07acf1d46a41d2273c117a3dda756305b260529a5
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 567
-  - token: 2
-    startMs: 567
-    endMs: 1229
-  timingSource: synthesis
-  qa:
-    trace: mænæ tSɑj
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 66db426dca1fbcefa492998ebc4c8629ca4444f55759ed59fd4ff6718b2140d8
 - item: s.food.10
   speed: normal
-  file: clips/20373f25ce66797f.mp3
-  sha256: 0b50ef43ba6843cc56fc9ba1a1f460b56956736f55f9ceed747511c2ffe382a9
-  durationMs: 1830
-  license: CC0-1.0
+  file: clips/88aa68270ba69e55.mp3
+  sha256: d022c0791057f3ad12ccaff979bc00f8dbe6e5cbb5f517410d8932a5f7b59d01
+  durationMs: 1840
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Yoʻq, men choy ichaman.
     rate: 1.0
-    inputHash: 20373f25ce66797f6f649c28aff48149f235626f8f1c2f72941087c85a46dc37
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 579
-  - token: 3
-    startMs: 579
-    endMs: 823
-  - token: 5
-    startMs: 823
-    endMs: 1168
-  - token: 7
-    startMs: 1168
-    endMs: 1830
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 88aa68270ba69e55e6ed63cf59d19e3a80d3a27f54cc2c48342230bd22260d8e
   qa:
-    trace: joq men tSɑj ytSæmæn
     asrModel: whisper-large-v3-turbo
-    asrText: Yorg, Min Cha Yu Chairman.
-    cer: 0.611
-    status: fail
+    asrText: Yok, minče o iceman.
+    cer: 0.444
+    status: review
 - item: s.food.10
   speed: slow
-  file: clips/b6bf800c389ff1d5.mp3
-  sha256: 7c138834a105e83965366a3d3855156fb4d77eefe66ef587d32776282fe67213
-  durationMs: 2839
-  license: CC0-1.0
+  file: clips/785af77d32eedab9.mp3
+  sha256: 83f5ca196b0bf4e604601f94d3951d7b05a2257400db9d8f47ab801f2006637a
+  durationMs: 2860
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Yoʻq, men choy ichaman.
     rate: 0.67
-    inputHash: b6bf800c389ff1d51c78a90fa1ad046840b40c6d6c7661d33566bea5eda781b0
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 925
-  - token: 3
-    startMs: 925
-    endMs: 1306
-  - token: 5
-    startMs: 1306
-    endMs: 1831
-  - token: 7
-    startMs: 1831
-    endMs: 2839
-  timingSource: synthesis
-  qa:
-    trace: joq men tSɑj ytSæmæn
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 785af77d32eedab9e5f81f08c204aa45aedd5623432c679bd9cd897db79bf0d9
 - item: s.food.11
   speed: normal
-  file: clips/7beb8c46f8a3ec2d.mp3
-  sha256: 67153d6316df0391a66d1ff72bfb55928d84dee626ab7ba6666bcc474a295c30
-  durationMs: 1136
-  license: CC0-1.0
+  file: clips/68a4c3c4900dd34d.mp3
+  sha256: dbaba69b1c545bda0593a5ea2f2c7fa3b410db12af8de70837b1ab0678770217
+  durationMs: 1240
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men non yeyman.
     rate: 1.0
-    inputHash: 7beb8c46f8a3ec2d110b60570229831fb4ee435df30dd5b45d2adace71248677
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 238
-  - token: 2
-    startMs: 238
-    endMs: 545
-  - token: 4
-    startMs: 545
-    endMs: 1136
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 68a4c3c4900dd34deb77d48ec696b4a5266640b3afb83df9a8d71966479c5bf4
   qa:
-    trace: men nɑn jejmæn
     asrModel: whisper-large-v3-turbo
-    asrText: MIR NON YERY MEN
-    cer: 1.0
+    asrText: MEN NON YIMAN
+    cer: 0.917
     status: fail
 - item: s.food.11
   speed: slow
-  file: clips/98856b4e8cdc0a5c.mp3
-  sha256: cfc9d9fca57cd46851fcf69388a2aba0fc3f19ab27821eeb398dd1394c64aa93
-  durationMs: 1790
-  license: CC0-1.0
+  file: clips/2ea86f767d365980.mp3
+  sha256: 39884072657094bbc5931984b7033554e37a62a2d43c599f8039e163e6cb844d
+  durationMs: 1780
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men non yeyman.
     rate: 0.67
-    inputHash: 98856b4e8cdc0a5c455f19e107cf9f3bf4aca1714d6b98aabe6616c2ff70a78d
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 371
-  - token: 2
-    startMs: 371
-    endMs: 870
-  - token: 4
-    startMs: 870
-    endMs: 1790
-  timingSource: synthesis
-  qa:
-    trace: men nɑn jejmæn
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 2ea86f767d3659806d5547d84e2d51fc25aa3ef2490fce62ed6b50157d20f24a
 - item: s.food.12
   speed: normal
-  file: clips/b7b0bb4477dcc7f1.mp3
-  sha256: 059490bbd872d20235141e2d95c5def1132358783aa386f383fc2655ede35f27
-  durationMs: 1374
-  license: CC0-1.0
+  file: clips/a67df2d726be7af2.mp3
+  sha256: 4cd8d179be1a988695169664e3b000183b75408ea6390e8b5230e72d02a1276b
+  durationMs: 1360
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Otam choy ichadi.
     rate: 1.0
-    inputHash: b7b0bb4477dcc7f14fca5a27cbdeaf184355b1f94e294cb497a5e9b6e9f76ef9
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 409
-  - token: 2
-    startMs: 409
-    endMs: 754
-  - token: 4
-    startMs: 754
-    endMs: 1374
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: a67df2d726be7af20e6154d1a9d75951b18153d12135cd58a80838f9a82aefd1
   qa:
-    trace: ɑtæm tSɑj ytSædy
     asrModel: whisper-large-v3-turbo
-    asrText: ATEM KAYU KAYU
-    cer: 1.0
-    status: fail
+    asrText: Adam Choy ijada.
+    cer: 0.429
+    status: review
 - item: s.food.12
   speed: slow
-  file: clips/91a07fb5afc1512e.mp3
-  sha256: 92a77430ff520c0c9022973c3a930d3bd17b570e425576e3a3fddba76dee9898
-  durationMs: 2124
-  license: CC0-1.0
+  file: clips/87d83d42dd736dff.mp3
+  sha256: 8c6edf185157ba5fd5fcbfb8ed0c28ccf6808939835fbaad4f9c06dce3112fa7
+  durationMs: 2140
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Otam choy ichadi.
     rate: 0.67
-    inputHash: 91a07fb5afc1512effa27e58101bf145233a301b893820706a196b25436449c2
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 632
-  - token: 2
-    startMs: 632
-    endMs: 1158
-  - token: 4
-    startMs: 1158
-    endMs: 2124
-  timingSource: synthesis
-  qa:
-    trace: ɑtæm tSɑj ytSædy
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 87d83d42dd736dff0dfc7f3d339b11ec6ab323359eabccfa59cc02f395138800
 - item: s.food.13
   speed: normal
   file: clips/9cf51953391de7ed.mp3
@@ -9706,62 +9646,53 @@ clips:
     trace: tSɑjyŋyzny ytSyŋ
 - item: s.food.2
   speed: normal
-  file: clips/47b2f8603a54d5d9.mp3
-  sha256: 9c1a4f6c9a480a028424025823c6a603db06a6427bba555a8093a77697bf6ac0
-  durationMs: 898
-  license: CC0-1.0
+  file: clips/21f594ff2e517ff7.mp3
+  sha256: 9ea253471ad1cfe5e6e71b8ead71878ddd7ffbae90dcc92aa5807d2383a4e234
+  durationMs: 1080
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy issiq.
     rate: 1.0
-    inputHash: 47b2f8603a54d5d9f78e14545a546c18841bf45b0e3bf6953a637b964408b9fc
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 363
-  - token: 2
-    startMs: 363
-    endMs: 898
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 21f594ff2e517ff7457dca15b470593a1b46d4ce4b1f317defb9ada8bdf6bd4b
   qa:
-    trace: tSɑj yssyq
     asrModel: whisper-large-v3-turbo
-    asrText: Chau yu-suk
-    cer: 0.667
-    status: fail
+    asrText: Choy suck.
+    cer: 0.444
+    status: review
 - item: s.food.2
   speed: slow
-  file: clips/f60f5d59e06e914c.mp3
-  sha256: 44758c173c5a6bc457fcb29efdee96bb747bca946990bcce02a62275aabb4035
-  durationMs: 1337
-  license: CC0-1.0
+  file: clips/677aceb7c372f710.mp3
+  sha256: 8b5cfb50194410c546e7ef028557e3d38238b93faabf10094dc06998ee235b38
+  durationMs: 1480
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy issiq.
     rate: 0.67
-    inputHash: f60f5d59e06e914c3b437f0c7fbfffa7aabc1b9c4e7e9b629c7e88dec9f7c199
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 548
-  - token: 2
-    startMs: 548
-    endMs: 1337
-  timingSource: synthesis
-  qa:
-    trace: tSɑj yssyq
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 677aceb7c372f710e2d98fec37a46abe17039be16021747071da0e23f52da34a
 - item: s.food.20
   speed: normal
   file: clips/58fbedb280ba05d0.mp3
@@ -10380,62 +10311,53 @@ clips:
     trace: sʊʋ beɾyŋ
 - item: s.food.3
   speed: normal
-  file: clips/540ffeaf66c2ffd1.mp3
-  sha256: 0faf9342327ed41d06ee9b68f9778776add69d3030b0d75cc45da91d8c9ab5fa
-  durationMs: 725
-  license: CC0-1.0
+  file: clips/c59de60e8712a65e.mp3
+  sha256: 2125edbf1ac03f6e4db5018edbfed22f212d3c3bb5fc04228a040337d7ea31e6
+  durationMs: 1040
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy ich!
     rate: 1.0
-    inputHash: 540ffeaf66c2ffd19bab9acec3c1e8080a2ea618aca28a415fdc45d419e0d171
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 374
-  - token: 2
-    startMs: 374
-    endMs: 725
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: c59de60e8712a65eccca7ae47cfa1d3ecdd3151901f9a1fd0d75a11d9f306ed0
   qa:
-    trace: tSɑj ytS
     asrModel: whisper-large-v3-turbo
-    asrText: Chau yuch.
-    cer: 0.429
-    status: review
+    asrText: CHOY EACHE
+    cer: 1.143
+    status: fail
 - item: s.food.3
   speed: slow
-  file: clips/5807d4a240a533cd.mp3
-  sha256: 141b87ab536353ea9b781c8cc23ab89f476771bf51e5ae3cd13fcf4b66213e83
-  durationMs: 1073
-  license: CC0-1.0
+  file: clips/193b61b4a35a1971.mp3
+  sha256: a19802bd4141b65018b7a04e2696c75d06ff93ce883bf546a7e1dd1bbf78a165
+  durationMs: 1480
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy ich!
     rate: 0.67
-    inputHash: 5807d4a240a533cd4a39173388d6d34dbacfe0e7170319cfb74d8ea7c095d712
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 566
-  - token: 2
-    startMs: 566
-    endMs: 1073
-  timingSource: synthesis
-  qa:
-    trace: tSɑj ytS
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 193b61b4a35a1971ca1afa25d2c722f947a83308f4d9c01cd70809435601b60f
 - item: s.food.30
   speed: normal
   file: clips/f03be0aa44c473bf.mp3
@@ -10700,376 +10622,298 @@ clips:
     trace: ɾæhmæt tSɑj dʒʊdæ mæzæɫy
 - item: s.food.4
   speed: normal
-  file: clips/06c4b84051685043.mp3
-  sha256: b7925676c5af5a00d95152aba425e79abff4902c2d90ea766464704cf52bac4a
-  durationMs: 890
-  license: CC0-1.0
+  file: clips/85416525be57ad64.mp3
+  sha256: a90449867dba90ef55fe3288772362ad9bdf9c44deb4c5e61d84dcd9db11f1d3
+  durationMs: 1000
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy iching!
     rate: 1.0
-    inputHash: 06c4b840516850438c5a12f59c15df0a59584b23b0a7e5de3d70daf574ec7e6a
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 363
-  - token: 2
-    startMs: 363
-    endMs: 890
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 85416525be57ad64f54f91f7358a2354146f6c4b39e02437f213dcf66c70ca22
   qa:
-    trace: tSɑj ytSyŋ
     asrModel: whisper-large-v3-turbo
-    asrText: 超ユーチューン
+    asrText: チョイイチン
     cer: 1.0
     status: fail
 - item: s.food.4
   speed: slow
-  file: clips/b8279f35288d5826.mp3
-  sha256: 350c93fa30a5b1e120405933f3df99e870a283b2cdaee4855ec8c7a717101a74
-  durationMs: 1340
-  license: CC0-1.0
+  file: clips/6ff871cbce09fc05.mp3
+  sha256: 01a1706dcbac3b464039524f0390fc751f02134bcbcdde32ab62810ef64b1a6c
+  durationMs: 1240
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Choy iching!
     rate: 0.67
-    inputHash: b8279f35288d5826a2035456e4def3614ec08b55ba4aa83efe0bd4cbb9be1ee9
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 548
-  - token: 2
-    startMs: 548
-    endMs: 1340
-  timingSource: synthesis
-  qa:
-    trace: tSɑj ytSyŋ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 6ff871cbce09fc05d2d3417701932645b609cf3dd24d7becd50e2fdedf18c754
 - item: s.food.5
   speed: normal
-  file: clips/25b51fcbfa4ec3a6.mp3
-  sha256: dc47d69e2cf7ade297b71535ec8f29d9120e201041893682ba67caf892254abf
-  durationMs: 1863
-  license: CC0-1.0
+  file: clips/5da8ac0b34630c79.mp3
+  sha256: 9fe04833de5e1f51ad2df1663ef76a5d5dcf8f3c1f780ee4901e10dbb7b6adb1
+  durationMs: 1720
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Marhamat, choy iching.
     rate: 1.0
-    inputHash: 25b51fcbfa4ec3a6e992a62fb8077759847a13ce5521406b2232dda7148903a4
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 936
-  - token: 3
-    startMs: 936
-    endMs: 1299
-  - token: 5
-    startMs: 1299
-    endMs: 1863
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 5da8ac0b34630c79eb510a13031229802932d0b59212354ea5e91a8d324d17f7
   qa:
-    trace: mæɾhæmæt tSɑj ytSyŋ
     asrModel: whisper-large-v3-turbo
-    asrText: Mehamed. Chau yu chui.
-    cer: 0.611
-    status: fail
+    asrText: Marhamat Choychin.
+    cer: 0.167
+    status: review
 - item: s.food.5
   speed: slow
-  file: clips/e477532917010d60.mp3
-  sha256: 5d2772b31156bfe73f002d7bff0f4affbb43abd9779e9e20311770d69939a355
-  durationMs: 2895
-  license: CC0-1.0
+  file: clips/f233c5643af421a8.mp3
+  sha256: 048e6dee1bf3fc9de967579c1ca5f4308a9dbb43ffb07eb017ccb551522937e4
+  durationMs: 2620
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Marhamat, choy iching.
     rate: 0.67
-    inputHash: e477532917010d60f1176bf0e097fabef7fed5358d8b3adc45990ea81865220f
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 1481
-  - token: 3
-    startMs: 1481
-    endMs: 2029
-  - token: 5
-    startMs: 2029
-    endMs: 2895
-  timingSource: synthesis
-  qa:
-    trace: mæɾhæmæt tSɑj ytSyŋ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: f233c5643af421a806f78d34166d717edffbe5b15f3b0e9db45934ee26b4299b
 - item: s.food.6
   speed: normal
-  file: clips/7f09bf8615639778.mp3
-  sha256: 2f64ddb2e431abe6c9975433884b3dc8510cf3515ebf648a7b441cc904931770
-  durationMs: 804
-  license: CC0-1.0
+  file: clips/27d26e3d4abfd271.mp3
+  sha256: 7d0cb3f6ece790f92fbd337d911a88cfcf396aadb33889d8d993345520f80792
+  durationMs: 880
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Mana non.
     rate: 1.0
-    inputHash: 7f09bf8615639778b4dd39500f0be5452f0837226098aadd575afd5864d12ceb
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 355
-  - token: 2
-    startMs: 355
-    endMs: 804
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 27d26e3d4abfd271c8a4d569bced2c2e5abc3fccf288ce22afe8b31b2aabfb32
   qa:
-    trace: mænæ nɑn
     asrModel: whisper-large-v3-turbo
-    asrText: MENENYON
-    cer: 1.0
-    status: fail
+    asrText: Mananon.
+    cer: 0.0
+    status: pass
 - item: s.food.6
   speed: slow
-  file: clips/6a5f4f4990aa0efc.mp3
-  sha256: 2ef4bd7c60df4ca7cd028bf664b51ab1917fde4302d5632b726893c6c814c594
-  durationMs: 1300
-  license: CC0-1.0
+  file: clips/0051d1a1f734b34b.mp3
+  sha256: fec0c8094337e97077a8ce1d14558b6dc109b347427349ea671c13cff9b4e9ed
+  durationMs: 1540
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Mana non.
     rate: 0.67
-    inputHash: 6a5f4f4990aa0efc1dc76d8ef2e3371b997576ea347448232e63c8dc1f76f563
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 595
-  - token: 2
-    startMs: 595
-    endMs: 1300
-  timingSource: synthesis
-  qa:
-    trace: mænæ nɑn
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 0051d1a1f734b34b43369fc4dd6d841c5f77593b87ea01458cd79aa97322efd5
 - item: s.food.7
   speed: normal
-  file: clips/a4f7003fa746f8ba.mp3
-  sha256: 3a2e1fd9bd7823d9d3030bdb3d042e7b88b4b7252a8443cc7614249b5bfd4876
-  durationMs: 1762
-  license: CC0-1.0
+  file: clips/61620f922601210f.mp3
+  sha256: c2cf8e65799c4cd4001caf7c0ab22bd675c75d0adc5929a4abeee277baaefc50
+  durationMs: 1600
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Marhamat, non yeng.
     rate: 1.0
-    inputHash: a4f7003fa746f8ba6475877a0de8db1a13a34167e82fbc105a6547e429822360
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 936
-  - token: 3
-    startMs: 936
-    endMs: 1244
-  - token: 5
-    startMs: 1244
-    endMs: 1762
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 61620f922601210ff8c284f1db76d5fb528d8f0d4cb180355ebea2caadab70f1
   qa:
-    trace: mæɾhæmæt nɑn jeŋ
     asrModel: whisper-large-v3-turbo
-    asrText: Merhamet, non yeong.
-    cer: 0.2
+    asrText: Marhamad Nong Ying.
+    cer: 0.333
     status: review
 - item: s.food.7
   speed: slow
-  file: clips/7b2ad36722d85842.mp3
-  sha256: ae70b23bf55de3c5f3324dbbbac2f2d4d182ec0237b86afbb78a4d02ecf549f7
-  durationMs: 2795
-  license: CC0-1.0
+  file: clips/cec64b809d08ab4a.mp3
+  sha256: 5b70012f67349ed340b3ea271ac210333bf57d4b5493be39073e95875a19438e
+  durationMs: 2620
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Marhamat, non yeng.
     rate: 0.67
-    inputHash: 7b2ad36722d85842580022e8d13871f0bbe5d01c3e5e261218ea8554fe024658
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 1481
-  - token: 3
-    startMs: 1481
-    endMs: 1980
-  - token: 5
-    startMs: 1980
-    endMs: 2795
-  timingSource: synthesis
-  qa:
-    trace: mæɾhæmæt nɑn jeŋ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: cec64b809d08ab4a65d10842996a15a9d844d759a000e2584ee4309b95a9cd4b
 - item: s.food.8
   speed: normal
-  file: clips/83c8923099f80faa.mp3
-  sha256: e8b69b8104818164ffc50125af061a0d0dbda585fe6fe9576a376eb653b76274
-  durationMs: 1250
-  license: CC0-1.0
+  file: clips/a7ec48ef6015d72a.mp3
+  sha256: 2b3f860275b34753482cd099160fde468e8a357040b0bb6bf8ad9dc020164bc2
+  durationMs: 1080
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men choy ichaman.
     rate: 1.0
-    inputHash: 83c8923099f80faa6212fed4323c0c0f13e4104a881b8a4308764797cb3dbd09
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 243
-  - token: 2
-    startMs: 243
-    endMs: 588
-  - token: 4
-    startMs: 588
-    endMs: 1250
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: a7ec48ef6015d72a316549830289845247580ea12d4bfb0d480360ddfb2b8b0d
   qa:
-    trace: men tSɑj ytSæmæn
     asrModel: whisper-large-v3-turbo
-    asrText: MEN CHO YU CHA MEN.
-    cer: 0.929
-    status: fail
+    asrText: Mian Choy Ichemen.
+    cer: 0.429
+    status: review
 - item: s.food.8
   speed: slow
-  file: clips/38c71fcb91fdbe0b.mp3
-  sha256: 5a0101a008ca9767e2c30dae3fd806da9f25fae916a0924f2ccc0a969e5e69db
-  durationMs: 1913
-  license: CC0-1.0
+  file: clips/d3e9a1ab77219f65.mp3
+  sha256: 395ae9e44486bfe5c8d9309a7ade0f525df40b871629855eea0a119721887877
+  durationMs: 1600
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men choy ichaman.
     rate: 0.67
-    inputHash: 38c71fcb91fdbe0b8eece63951349e89e9d8d80cade065c6fd37ac3ee697204b
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 380
-  - token: 2
-    startMs: 380
-    endMs: 905
-  - token: 4
-    startMs: 905
-    endMs: 1913
-  timingSource: synthesis
-  qa:
-    trace: men tSɑj ytSæmæn
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: d3e9a1ab77219f65c7e6e96d34134a0dc40f2c9ed26896904f114980c954fb7a
 - item: s.food.9
   speed: normal
-  file: clips/113bfcbb679765c7.mp3
-  sha256: 19ab6c781d44f2c92aab94fbf8ff40b9a1e66cfb1300ded5549b86df4ff57da6
-  durationMs: 1717
-  license: CC0-1.0
+  file: clips/bdcd1f6a05441e7b.mp3
+  sha256: 69f3fcfd8ccb65bc02d7704b815b29d7581f282d32846c8c577c5d5aa7a9b1a4
+  durationMs: 1400
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Siz qahva ichasizmi?
     rate: 1.0
-    inputHash: 113bfcbb679765c7c6e37baba65750742dc8cab29b62ee38271150a10dbe37a2
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 343
-  - token: 2
-    startMs: 343
-    endMs: 826
-  - token: 4
-    startMs: 826
-    endMs: 1717
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: bdcd1f6a05441e7b73ef9d9df97b04d8eecdbc4c5f838100522a505bcef3d1d3
   qa:
-    trace: syz qæhʋæ ytSæsyzmy
     asrModel: whisper-large-v3-turbo
-    asrText: Sűz pehme uke sűzmű.
-    cer: 0.647
+    asrText: SISKAHWA IJASIZMAH
+    cer: 0.941
     status: fail
 - item: s.food.9
   speed: slow
-  file: clips/c3f141e7edca0ea2.mp3
-  sha256: fa9fd4d4ce0c84b69b4835e0d5dc0dc348884ec8e0afbf573dab3fced8664ab6
-  durationMs: 2607
-  license: CC0-1.0
+  file: clips/ad3869f906f293f3.mp3
+  sha256: 0bd83e641257e8442d3dd88123bb82c964ce4bfe26601e7dd01a2da908e90950
+  durationMs: 2200
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Siz qahva ichasizmi?
     rate: 0.67
-    inputHash: c3f141e7edca0ea2259abb02b3f20dc0d2abefda4fcc57330cbf1f847a90a78a
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 504
-  - token: 2
-    startMs: 504
-    endMs: 1246
-  - token: 4
-    startMs: 1246
-    endMs: 2607
-  timingSource: synthesis
-  qa:
-    trace: syz qæhʋæ ytSæsyzmy
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: ad3869f906f293f313d460979ae65890a60f33cfa3da102104dcee7676171b27
 - item: s.home.1
   speed: normal
   file: clips/28d086282020b8fc.mp3
@@ -12885,400 +12729,298 @@ clips:
     inputHash: 40e85200ff30d71ff9cb2ceab201d9af8f3d56185da56deab4e0ca6f3f4c71de
 - item: s.numbers.14
   speed: normal
-  file: clips/e26e253c184b3d02.mp3
-  sha256: dbebeecc3415a8385dc64d9b4eeace1bde2dfd48fb69f735be7e5e15c0e05e81
-  durationMs: 1584
-  license: CC0-1.0
+  file: clips/0ab259ec5ebf5177.mp3
+  sha256: ed1fef775d84156c65e8dc2ac0336945166040e32d67f5a9cec470560cd56d51
+  durationMs: 1600
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Siz necha yoshdasiz?
     rate: 1.0
-    inputHash: e26e253c184b3d02da851bf3cf9be5f99f38950b93c1088bd73b2ac72b816cf3
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 341
-  - token: 2
-    startMs: 341
-    endMs: 766
-  - token: 4
-    startMs: 766
-    endMs: 1584
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 0ab259ec5ebf5177bbd196e94887a17fbb22136cc9dee497419ae35ceece72f5
   qa:
-    trace: syz netSæ jɑʃdæsyz
     asrModel: whisper-large-v3-turbo
-    asrText: Szűz nélce, jasper szűz.
-    cer: 0.765
+    asrText: Sız niçiyoştesiz?
+    cer: 0.529
     status: fail
 - item: s.numbers.14
   speed: slow
-  file: clips/b562979c25be169b.mp3
-  sha256: b591f6c573ff624d99f5ef6d8ac237afbc847b15ed2de23d5144e1ae84bc41d0
-  durationMs: 2360
-  license: CC0-1.0
+  file: clips/f945e591eef895b2.mp3
+  sha256: 981fd9f8ee194d4e4051c6c00a45f7e12e4ca2c4263e30cfdc791f3d1bc4eb92
+  durationMs: 2200
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Siz necha yoshdasiz?
     rate: 0.67
-    inputHash: b562979c25be169b0dbae81b820e364008ecbacb95d785be8b04870140207a45
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 503
-  - token: 2
-    startMs: 503
-    endMs: 1146
-  - token: 4
-    startMs: 1146
-    endMs: 2360
-  timingSource: synthesis
-  qa:
-    trace: syz netSæ jɑʃdæsyz
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: f945e591eef895b2edbdb74c0ebdb3719826dcf08e4cf23ba0a67d7268b291bc
 - item: s.numbers.15
   speed: normal
-  file: clips/a6f897c3c9eaffce.mp3
-  sha256: 8f4c8a11e864ef14ddb2ba6b064838634b1c7f96d78d514ef5898ab783ee139c
-  durationMs: 1498
-  license: CC0-1.0
+  file: clips/9e43f80c6bd7b9b2.mp3
+  sha256: 734cadd4c1fb111f2706a01e1f520cebed1c3bcc17096ae16b532a988fb3f1b3
+  durationMs: 1840
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men yigirma yoshdaman.
     rate: 1.0
-    inputHash: a6f897c3c9eaffcef66e9db8d5d1f62bd863775c89a8aa7a5e748c492d2aabc4
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 238
-  - token: 2
-    startMs: 238
-    endMs: 755
-  - token: 4
-    startMs: 755
-    endMs: 1498
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 9e43f80c6bd7b9b27a684ec6544efb083fc910911460753756ac5a25c438d2bc
   qa:
-    trace: men jyɡyɾmæ jɑʃdæmæn
     asrModel: whisper-large-v3-turbo
-    asrText: MENYU GÜLME YOSHVEMEN
-    cer: 0.947
-    status: fail
+    asrText: Min yikrma yostaman.
+    cer: 0.263
+    status: review
 - item: s.numbers.15
   speed: slow
-  file: clips/fbc6b72bd2bcce46.mp3
-  sha256: d3f44bd1b5142ff65b13b247b500b2f8f9495a7c404722a57d566ec3a001d581
-  durationMs: 2328
-  license: CC0-1.0
+  file: clips/a696243c4013072f.mp3
+  sha256: 8a6c932e98c1febe74b3772baf55a2cd5bcf9ce3314aa1801e579333a6b89df9
+  durationMs: 2440
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Men yigirma yoshdaman.
     rate: 0.67
-    inputHash: fbc6b72bd2bcce463a63d08e3cd3bc352ddd0fb59598a579acc3d459f0053df8
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 371
-  - token: 2
-    startMs: 371
-    endMs: 1176
-  - token: 4
-    startMs: 1176
-    endMs: 2328
-  timingSource: synthesis
-  qa:
-    trace: men jyɡyɾmæ jɑʃdæmæn
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: a696243c4013072fb72b99983a1acde6ee0b5d4e4a035cde231922894533841f
 - item: s.numbers.16
   speed: normal
-  file: clips/9d0ce3b5097f67be.mp3
-  sha256: 4f5565e736f39fbaa25b79f71c3d9bbb298220b037f52c6a987dc64dc0aed9f6
-  durationMs: 1338
-  license: CC0-1.0
+  file: clips/89fe160a1155e44f.mp3
+  sha256: b7d1e5d4a90981f0d32f55f1eb89333d56d92366c9d3d70db3b51a8073f7f661
+  durationMs: 1320
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Singlim oʻn yoshda.
     rate: 1.0
-    inputHash: 9d0ce3b5097f67be5c957d8870a46499ea3b597c3240d8a35577e61e2782bb52
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 472
-  - token: 2
-    startMs: 472
-    endMs: 768
-  - token: 4
-    startMs: 768
-    endMs: 1338
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 89fe160a1155e44f42f13e1438ab0f70121a0f9dcb44220f50dd03e7ecadcfa5
   qa:
-    trace: syŋɫym on jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: Tsungrymon yashme.
-    cer: 0.562
-    status: fail
+    asrText: Sinlemoniošta.
+    cer: 0.438
+    status: review
 - item: s.numbers.16
   speed: slow
-  file: clips/b83e5a5914186c5e.mp3
-  sha256: defdd8d29ccf287771587c3375e5ad7c8e6ab35eee29b3b997640d898acc6609
-  durationMs: 2078
-  license: CC0-1.0
+  file: clips/a0f01b75839b2684.mp3
+  sha256: a7338e97907201111f5a8f97e758c4c7ee77a482dd954d7502403b7270538e52
+  durationMs: 2260
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Singlim oʻn yoshda.
     rate: 0.67
-    inputHash: b83e5a5914186c5e54a40230dc1a60aa01af0d531db40be830990a0b5efb15ca
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 726
-  - token: 2
-    startMs: 726
-    endMs: 1191
-  - token: 4
-    startMs: 1191
-    endMs: 2078
-  timingSource: synthesis
-  qa:
-    trace: syŋɫym on jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: a0f01b75839b2684625206eb2e7acbf33e996b35150fbe167f59a4d3c4cccd9f
 - item: s.numbers.17
   speed: normal
-  file: clips/4406bd15477d4d7c.mp3
-  sha256: 4f1712a93557f195d5a2de1888d59554e0a75350f1ef9cd72f4a749d9d337d83
-  durationMs: 1747
-  license: CC0-1.0
+  file: clips/b46fffb09230efe0.mp3
+  sha256: fd2a6ec22a80c6b380dae87b0a2e8c8d7669a7943453b797e740feb4497076dc
+  durationMs: 1520
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Opam oʻn toʻqqiz yoshda.
     rate: 1.0
-    inputHash: 4406bd15477d4d7ce35673802d845e23a019fb6370090a27df08d977c5fff587
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 329
-  - token: 2
-    startMs: 329
-    endMs: 635
-  - token: 4
-    startMs: 635
-    endMs: 1172
-  - token: 6
-    startMs: 1172
-    endMs: 1747
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: b46fffb09230efe08d833708f1d5f95cd52a1f58f4b362f6bb3afaa22031e6d6
   qa:
-    trace: ɑpæm on toqqyz jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: APMON TOK KÜZIASTE
-    cer: 1.0
-    status: fail
+    asrText: Opa, montou kuziošte.
+    cer: 0.5
+    status: review
 - item: s.numbers.17
   speed: slow
-  file: clips/08b91aa22f704d7a.mp3
-  sha256: 3ce203ccc39b55c546b10cec7b277254cf171a2e9cd53634466bbc4706ccb3e8
-  durationMs: 2654
-  license: CC0-1.0
+  file: clips/32f7160413bb16d8.mp3
+  sha256: 3cfaf1d4f332de93dfe1e65481a17bf749d3e730d52bf85698c06ea80eb038a3
+  durationMs: 2980
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Opam oʻn toʻqqiz yoshda.
     rate: 0.67
-    inputHash: 08b91aa22f704d7a848d11d1ebcc83a6d401675eab0265ffa1952bb1709e18b6
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 532
-  - token: 2
-    startMs: 532
-    endMs: 999
-  - token: 4
-    startMs: 999
-    endMs: 1774
-  - token: 6
-    startMs: 1774
-    endMs: 2654
-  timingSource: synthesis
-  qa:
-    trace: ɑpæm on toqqyz jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 32f7160413bb16d84ed00bb0d383f45cee36f2f1abef263f0214e870f37306e1
 - item: s.numbers.18
   speed: normal
-  file: clips/80ff9cdc405d8c71.mp3
-  sha256: 484379b00fb5c3d93a3f963656aa8f7287ff3efa141314156bdc7cb39159b947
-  durationMs: 1372
-  license: CC0-1.0
+  file: clips/f3b7d44ff1db9401.mp3
+  sha256: 93cb3210f09161090fb9741f458ce767921b6e9923afaaadf7e633f9f15aba49
+  durationMs: 1640
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Otam ellik yoshda.
     rate: 1.0
-    inputHash: 80ff9cdc405d8c718324b024992a29367cbca1acc51bbf3da1ee91ac47109530
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 318
-  - token: 2
-    startMs: 318
-    endMs: 805
-  - token: 4
-    startMs: 805
-    endMs: 1372
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: f3b7d44ff1db9401457af48bba617e2ac055a9dea2efdb2acd620d251d7f6adf
   qa:
-    trace: ɑtæm eɫɫyk jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: Ate mei lukiaspe.
-    cer: 0.6
-    status: fail
+    asrText: Atem illik joste.
+    cer: 0.467
+    status: review
 - item: s.numbers.18
   speed: slow
-  file: clips/3d9ba0df00277504.mp3
-  sha256: 06dfe6325d0a5d3e79f935703a86c90f213bae753af3ff837fb74b41d4effa64
-  durationMs: 2158
-  license: CC0-1.0
+  file: clips/2a1351ad3d0ea909.mp3
+  sha256: cfbec34754c07606de937bea8fef3a511a6cb5de15b582831ae710fcdf5738a4
+  durationMs: 2380
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Otam ellik yoshda.
     rate: 0.67
-    inputHash: 3d9ba0df00277504054187eb8a650a785a453bdfbcbefbf03a7f8b0fc8ea6ae0
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 519
-  - token: 2
-    startMs: 519
-    endMs: 1278
-  - token: 4
-    startMs: 1278
-    endMs: 2158
-  timingSource: synthesis
-  qa:
-    trace: ɑtæm eɫɫyk jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 2a1351ad3d0ea9099302ee51703bbd8d2193c06c0ca345e780eaa6c5c5621fb3
 - item: s.numbers.19
   speed: normal
-  file: clips/f597f4fb6f1d08e4.mp3
-  sha256: dadfac4b84dd01581d34792e5391127dab2eb0b532f3892e9bdaa404fa9eb3bc
-  durationMs: 1619
-  license: CC0-1.0
+  file: clips/3e802207ce92bce4.mp3
+  sha256: 2ae98fcd12b681c79df3f24350289472ff4f25554b368f06144ce569350009f5
+  durationMs: 1440
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Onam qirq besh yoshda.
     rate: 1.0
-    inputHash: f597f4fb6f1d08e4df3180751101177145da16e808bcaa03cf8d69fc38d119b6
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 375
-  - token: 2
-    startMs: 375
-    endMs: 730
-  - token: 4
-    startMs: 730
-    endMs: 1052
-  - token: 6
-    startMs: 1052
-    endMs: 1619
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 3e802207ce92bce4c0af8089da48d7199c6606e102e6cb5a086dd61d3ecbf725
   qa:
-    trace: ɑnæm qyɾq beʃ jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: Anem kürbiers jasne.
+    asrText: Onem kırkı bi işiyo işte.
     cer: 0.722
     status: fail
 - item: s.numbers.19
   speed: slow
-  file: clips/fc27916d19a8b24f.mp3
-  sha256: 5b9dec2afc6da864e82f9c52eb8b12f5e3ef931eaedb6ae86808b67ce14eefb0
-  durationMs: 2527
-  license: CC0-1.0
+  file: clips/e00f065ca2e8fa26.mp3
+  sha256: 3c127f9b73e0fe74757edf696591ed58ec8f671e0c1f607020c53347f08191b3
+  durationMs: 2320
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Onam qirq besh yoshda.
     rate: 0.67
-    inputHash: fc27916d19a8b24fbdb9fec05d0fb70aa0e643d92e36424ba61cefb712f61bc4
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 617
-  - token: 2
-    startMs: 617
-    endMs: 1142
-  - token: 4
-    startMs: 1142
-    endMs: 1647
-  - token: 6
-    startMs: 1647
-    endMs: 2527
-  timingSource: synthesis
-  qa:
-    trace: ɑnæm qyɾq beʃ jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: e00f065ca2e8fa26620d91a43924e6e44f20f2006136c7016f81afc06dfe5a7b
 - item: s.numbers.2
   speed: normal
   file: clips/90f8b20592a20a33.mp3
@@ -13330,686 +13072,494 @@ clips:
     inputHash: c8636103d5edbfb0839e83f5242f6584f45c378fe41b2920fe0ab725d1132935
 - item: s.numbers.20
   speed: normal
-  file: clips/c826d41da56e8324.mp3
-  sha256: dcf62d9709597d27e1ea092b47630e9f26dcb101831b0ddedefcbe6f44f3c6b9
-  durationMs: 1795
-  license: CC0-1.0
+  file: clips/d99e97e62ba9fbed.mp3
+  sha256: 56bb9c3a20add696558307c501ecd9ba37e9dd967d1f8c08e2289445c501d0f9
+  durationMs: 2040
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Oʻqituvchim oʻttiz yoshda.
     rate: 1.0
-    inputHash: c826d41da56e8324d17da57863b1efb187d1022c1483f1d6f18f55a2d170cd00
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 719
-  - token: 2
-    startMs: 719
-    endMs: 1221
-  - token: 4
-    startMs: 1221
-    endMs: 1795
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: d99e97e62ba9fbed76e2c78a9183f2aab27a0a4d73b53144035f9e377dce3dd6
   qa:
-    trace: oqytʊʋtSym ottyz jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: Oh gudon tiu mottu zi ashter
-    cer: 0.696
+    asrText: Oktuqyum ot të zjoçte.
+    cer: 0.609
     status: fail
 - item: s.numbers.20
   speed: slow
-  file: clips/62c48c227d021227.mp3
-  sha256: 9572e17ff4d55c8be99081cf1dec287bb59d456d6896dc056e0eef92c21a6c1a
-  durationMs: 2654
-  license: CC0-1.0
+  file: clips/7f530eb5a010aee6.mp3
+  sha256: 4bcfda5b9af1e90455030698e016124aab54378fff20970082d396c62f7bba69
+  durationMs: 2920
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Oʻqituvchim oʻttiz yoshda.
     rate: 0.67
-    inputHash: 62c48c227d021227e1ce09175f4f78622b49da7702e86acaa371925bed2403d9
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 1050
-  - token: 2
-    startMs: 1050
-    endMs: 1774
-  - token: 4
-    startMs: 1774
-    endMs: 2654
-  timingSource: synthesis
-  qa:
-    trace: oqytʊʋtSym ottyz jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 7f530eb5a010aee6eadf6183a1ba0877b23d370e6a4c73b74beb1c20a9df2d7c
 - item: s.numbers.21
   speed: normal
-  file: clips/5616a4f496e87f28.mp3
-  sha256: 77b7062ef26460bcd8d8247187f95ac9b8ed86a96fd9fda15962d2efd2f124ad
-  durationMs: 1037
-  license: CC0-1.0
+  file: clips/e7b23d11aa8f78ac.mp3
+  sha256: 22e95c9f6ec62d2978e9938c1f6ef58bc349faf95c9b4046402bbad827dab828
+  durationMs: 1320
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Bu mening buvim.
     rate: 1.0
-    inputHash: 5616a4f496e87f2839cf50e3a3645ccd02326b181a1e3dd4b0e9c190bb55ef08
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 131
-  - token: 2
-    startMs: 131
-    endMs: 543
-  - token: 4
-    startMs: 543
-    endMs: 1037
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: e7b23d11aa8f78ac0be7a310c07bc8951be153544114d9862c712125a08aad4e
   qa:
-    trace: bʊ menyŋ bʊʋym
     asrModel: whisper-large-v3-turbo
-    asrText: BOMERDUM BOMUM
-    cer: 0.923
-    status: fail
-- item: s.numbers.21
-  speed: slow
-  file: clips/189a957876e0bb1e.mp3
-  sha256: e76f92b7b7040f61af36553a2850c1659c657816b3b2dc899273aab9ad600fa3
-  durationMs: 1615
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Bu mening buvim.
-    rate: 0.67
-    inputHash: 189a957876e0bb1ee50851a544ec0226f2383b215f7812b4a2dd20386c2a3935
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 201
-  - token: 2
-    startMs: 201
-    endMs: 864
-  - token: 4
-    startMs: 864
-    endMs: 1615
-  timingSource: synthesis
-  qa:
-    trace: bʊ menyŋ bʊʋym
-- item: s.numbers.22
-  speed: normal
-  file: clips/dbc67ba23b393bdd.mp3
-  sha256: d931fd1f2ba60b41fc9a5e6a16cc45c8586078bcabaf53eab4fd2ce7a0b46316
-  durationMs: 1475
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Buvim yetmish yoshda.
-    rate: 1.0
-    inputHash: dbc67ba23b393bdd8e323060af14a0e269779b004f465b292699aedc286a23c8
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 388
-  - token: 2
-    startMs: 388
-    endMs: 908
-  - token: 4
-    startMs: 908
-    endMs: 1475
-  timingSource: synthesis
-  qa:
-    trace: bʊʋym jetmyʃ jɑʃdæ
-    asrModel: whisper-large-v3-turbo
-    asrText: BUMINIETMUSIASTE
-    cer: 0.944
-    status: fail
-- item: s.numbers.22
-  speed: slow
-  file: clips/64d6763e77935121.mp3
-  sha256: 82acd8ea727a870ff1c294cf97912c82e409289e52c3fd30da63ab106cf4ff4f
-  durationMs: 2246
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Buvim yetmish yoshda.
-    rate: 0.67
-    inputHash: 64d6763e77935121b43a2dfe19730eedd2da385750e60d5dae2e66a699e56a8d
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 588
-  - token: 2
-    startMs: 588
-    endMs: 1366
-  - token: 4
-    startMs: 1366
-    endMs: 2246
-  timingSource: synthesis
-  qa:
-    trace: bʊʋym jetmyʃ jɑʃdæ
-- item: s.numbers.23
-  speed: normal
-  file: clips/929614185dde8005.mp3
-  sha256: 97adb9d9c08826e1f111d3ddd545273e86556eee4a8379e5c62429264da7f500
-  durationMs: 764
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Pulim yoʻq.
-    rate: 1.0
-    inputHash: 929614185dde8005c57957fb75b2c172ca488ff109e303b96fa687191866b9ce
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 396
-  - token: 2
-    startMs: 396
-    endMs: 764
-  timingSource: synthesis
-  qa:
-    trace: pʊɫym joq
-    asrModel: whisper-large-v3-turbo
-    asrText: PALLUME YORK
-    cer: 1.111
-    status: fail
-- item: s.numbers.23
-  speed: slow
-  file: clips/fc995d1d80823673.mp3
-  sha256: fa89d93158be47ce2672a5637c041c0d1af9c7f288e676e1f6619ad2d486d660
-  durationMs: 1136
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Pulim yoʻq.
-    rate: 0.67
-    inputHash: fc995d1d8082367308f9c293237ad2de33e28e208cad32006d0e1bd27a368835
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 580
-  - token: 2
-    startMs: 580
-    endMs: 1136
-  timingSource: synthesis
-  qa:
-    trace: pʊɫym joq
-- item: s.numbers.24
-  speed: normal
-  file: clips/a82310595ffe1db0.mp3
-  sha256: a7d4e4e15770b5437829ce3d4230f36df9dfd904706f4d3e78b80d97bcf316fd
-  durationMs: 1751
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Bu yerda ming kitob bor.
-    rate: 1.0
-    inputHash: a82310595ffe1db05f4f68fba6654ca3baecf222eed754981a87e5e7d5bcfda0
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 129
-  - token: 2
-    startMs: 129
-    endMs: 557
-  - token: 4
-    startMs: 557
-    endMs: 865
-  - token: 6
-    startMs: 865
-    endMs: 1372
-  - token: 8
-    startMs: 1372
-    endMs: 1751
-  timingSource: synthesis
-  qa:
-    trace: bʊ jeɾdæ myŋ kytɑb bɑɾ
-    asrModel: whisper-large-v3-turbo
-    asrText: Bojerteműnkütabdaad.
-    cer: 0.632
-    status: fail
-- item: s.numbers.24
-  speed: slow
-  file: clips/249c4ec13517c7ea.mp3
-  sha256: 99184d6acba53889633d4f912b3d5116ad07e3c887e2fb71394d213156a1559a
-  durationMs: 2670
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Bu yerda ming kitob bor.
-    rate: 0.67
-    inputHash: 249c4ec13517c7eace3e8f8e4b8eccdcad5ea1945364185338ab8e7064fe27e1
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 208
-  - token: 2
-    startMs: 208
-    endMs: 877
-  - token: 4
-    startMs: 877
-    endMs: 1364
-  - token: 6
-    startMs: 1364
-    endMs: 2092
-  - token: 8
-    startMs: 2092
-    endMs: 2670
-  timingSource: synthesis
-  qa:
-    trace: bʊ jeɾdæ myŋ kytɑb bɑɾ
-- item: s.numbers.25
-  speed: normal
-  file: clips/a899c243526d2bd9.mp3
-  sha256: 0448c5f892480d2abe34829b98a307ca75beddc66c588860c2595ae94817480d
-  durationMs: 1462
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Mana besh ming soʻm.
-    rate: 1.0
-    inputHash: a899c243526d2bd9811e0acceefe1339d31a52d61d748b199e92c1afd7e6f858
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 357
-  - token: 2
-    startMs: 357
-    endMs: 690
-  - token: 4
-    startMs: 690
-    endMs: 987
-  - token: 6
-    startMs: 987
-    endMs: 1462
-  timingSource: synthesis
-  qa:
-    trace: mænæ beʃ myŋ som
-    asrModel: whisper-large-v3-turbo
-    asrText: Meneber schmühungsom.
-    cer: 0.5
+    asrText: Bu minin buvom.
+    cer: 0.231
     status: review
+- item: s.numbers.21
+  speed: slow
+  file: clips/8d97a7de0678d3e1.mp3
+  sha256: 766ca3947bc49de647cf14f767dc25f94adaffdbd03a1bd95a319db592eb8b2a
+  durationMs: 1660
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Bu mening buvim.
+    rate: 0.67
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 8d97a7de0678d3e1af558c7f3bafdec56d5135cdb334e9e9b0b402cb2355cf70
+- item: s.numbers.22
+  speed: normal
+  file: clips/7e473564eaee580b.mp3
+  sha256: 3189d735e42f3e3f09db30aa35566ce07c2b536453ffd81e300dc3b1a8ca794b
+  durationMs: 1920
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Buvim yetmish yoshda.
+    rate: 1.0
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 7e473564eaee580bfe171bff5e64c69a61fd624e784ef55acb06e22037720269
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Bovam yitmashyoshta.
+    cer: 0.278
+    status: review
+- item: s.numbers.22
+  speed: slow
+  file: clips/018c7fd517599294.mp3
+  sha256: f12feb7167b20eda17db5223bc11b4f93a31ddd5659339b48c7d6a867b0db5fa
+  durationMs: 2260
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Buvim yetmish yoshda.
+    rate: 0.67
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 018c7fd517599294b2f11f8811447e77b7a5b296f914e3ca5e2a5501af0e1243
+- item: s.numbers.23
+  speed: normal
+  file: clips/36681568aef5ea70.mp3
+  sha256: b0fdd465e55d0a91d6d8550b73b982247e77efc0f12e8549e230c5840a89ede2
+  durationMs: 880
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Pulim yoʻq.
+    rate: 1.0
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 36681568aef5ea703dcbf98b4868b64f5df18da6fc71c4d6dc2041f9a89c148e
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: PULUM YOK
+    cer: 0.889
+    status: fail
+- item: s.numbers.23
+  speed: slow
+  file: clips/a6cb9b5ac9ad489b.mp3
+  sha256: a1f633808747452ae00d97825e9a63ba518f309450f705f52b4d4f7bb1c7680f
+  durationMs: 1000
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Pulim yoʻq.
+    rate: 0.67
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: a6cb9b5ac9ad489bb39815d8a8278d7f5536c636e7b58eff14e4068904e75dff
+- item: s.numbers.24
+  speed: normal
+  file: clips/da29e1ed34765393.mp3
+  sha256: 459eb51837d7cc95e4d7c3262c7a74c28d2aa045d8a34127ceb3fe6c7b089c6d
+  durationMs: 1640
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Bu yerda ming kitob bor.
+    rate: 1.0
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: da29e1ed34765393d03306c901db17fbb642bd9c1f9fa28e4dd1e20b85516386
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Bu yer de min ki to bor.
+    cer: 0.158
+    status: review
+- item: s.numbers.24
+  speed: slow
+  file: clips/e50dedb73546aba6.mp3
+  sha256: 61804cf9606894e97b65d2f0b426965948b8c2c3709dbc025a4793c8542dee20
+  durationMs: 2980
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Bu yerda ming kitob bor.
+    rate: 0.67
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: e50dedb73546aba62af6378f32340e19b8a42780138596270dbd1746fd1597ea
+- item: s.numbers.25
+  speed: normal
+  file: clips/13f296554964e3ab.mp3
+  sha256: 57b7bb267fa5b109e09c573495a658b8e8d7a6ba1e7f0ec933e92aa22a9df9dc
+  durationMs: 1280
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Mana besh ming soʻm.
+    rate: 1.0
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 13f296554964e3ab7b0767a2c88ef8720fca48e47f204eaee3e88bd108814cd4
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: MANABIŞ MIN SOM
+    cer: 0.938
+    status: fail
 - item: s.numbers.25
   speed: slow
-  file: clips/677e18689914dfef.mp3
-  sha256: c9b096121d9ad3d04aad9554971a2fef448a5d1f9d4b2fac6e16e532b816b4a9
-  durationMs: 2317
-  license: CC0-1.0
+  file: clips/7e7a19ac0f2f6024.mp3
+  sha256: 495e393bba7a1a31a596ad3cba50bfb75375dfd880c63d24991bdb2f80b0fd30
+  durationMs: 2020
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Mana besh ming soʻm.
     rate: 0.67
-    inputHash: 677e18689914dfef1dfde3e75872111cc42eb0f39a16a6750de19253b838d35c
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 595
-  - token: 2
-    startMs: 595
-    endMs: 1118
-  - token: 4
-    startMs: 1118
-    endMs: 1583
-  - token: 6
-    startMs: 1583
-    endMs: 2317
-  timingSource: synthesis
-  qa:
-    trace: mænæ beʃ myŋ som
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 7e7a19ac0f2f6024f1919d222b15b58985cbe126d74b35a35e6bd17d0afec38c
 - item: s.numbers.26
   speed: normal
-  file: clips/75091932ebc07dbf.mp3
-  sha256: 10a6dfc239f3b7058aefa94891cf48bbd497ffa194af5f35177f79c440fd08b9
-  durationMs: 1809
-  license: CC0-1.0
+  file: clips/2f2ceb22bebb9a74.mp3
+  sha256: 1ee4a477766e0a6ea6fc83662b6bbe9daba821746d9a767c09a983c7dce7b461
+  durationMs: 1600
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Kitob yigirma ming soʻm.
     rate: 1.0
-    inputHash: 75091932ebc07dbff13231eb41462153177f721d8658ae6ebaeab641ee420481
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 499
-  - token: 2
-    startMs: 499
-    endMs: 1024
-  - token: 4
-    startMs: 1024
-    endMs: 1333
-  - token: 6
-    startMs: 1333
-    endMs: 1809
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 2f2ceb22bebb9a7476850137d430897ac77f95b16639d58088a1b2834e2ce7b4
   qa:
-    trace: kytɑb jyɡyɾmæ myŋ som
     asrModel: whisper-large-v3-turbo
-    asrText: Qtom yu gud me moonzom.
-    cer: 0.6
-    status: fail
+    asrText: Kito B-Gurma-Minsom
+    cer: 0.4
+    status: review
 - item: s.numbers.26
   speed: slow
-  file: clips/1c7ec9f22667312d.mp3
-  sha256: 2866db88a7717158d99621cdf40372d6ebdde734202b84b02e038c2914a111cd
-  durationMs: 2736
-  license: CC0-1.0
+  file: clips/94855c54b7cd7ca0.mp3
+  sha256: 68dd8d1b8dbdd99cccb4d547bc07e02857b77dfa8aebc280ba7c4effb130f721
+  durationMs: 2200
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Kitob yigirma ming soʻm.
     rate: 0.67
-    inputHash: 1c7ec9f22667312d5dfbafa2dbd183c4f04377b3a948d23141781c214a56ea74
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 715
-  - token: 2
-    startMs: 715
-    endMs: 1519
-  - token: 4
-    startMs: 1519
-    endMs: 2002
-  - token: 6
-    startMs: 2002
-    endMs: 2736
-  timingSource: synthesis
-  qa:
-    trace: kytɑb jyɡyɾmæ myŋ som
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 94855c54b7cd7ca0127d3d7711904a992bc3f13078a0a0d16c4e8757d6f16b93
 - item: s.numbers.27
   speed: normal
-  file: clips/eeb086275734fa9e.mp3
-  sha256: be10049da4b6ebe314ffffb61f0adc139f2fb295ce191ea37fede455bf258485
-  durationMs: 1922
-  license: CC0-1.0
+  file: clips/94e20750cab720bc.mp3
+  sha256: d04b58e46680347465bac3dd1f369bff01189df2dc4a80675e61722fb1de693f
+  durationMs: 2120
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Uyimizda yuzta kitob bor.
     rate: 1.0
-    inputHash: eeb086275734fa9e16e4d86e87a144c81d30d3ae29ddeb2b8ae9d51985ae58e6
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 625
-  - token: 2
-    startMs: 625
-    endMs: 1036
-  - token: 4
-    startMs: 1036
-    endMs: 1544
-  - token: 6
-    startMs: 1544
-    endMs: 1922
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 94e20750cab720bcb0d402583db665e37bda52c500d19e3e5933627f0324f97f
   qa:
-    trace: ʊjymyzdæ jʊztæ kytɑb bɑɾ
     asrModel: whisper-large-v3-turbo
-    asrText: YUMUZE YUMUZE YUMUZE KÜTAMKARF
-    cer: 1.238
-    status: fail
+    asrText: Ui mızda yusda kitabbar.
+    cer: 0.286
+    status: review
 - item: s.numbers.27
   speed: slow
-  file: clips/0a7d56cd9177b1e8.mp3
-  sha256: b57316bdedca6fb576d10d00e7111c192fefcf0e7a6e23ef185e45c47a39a7b0
+  file: clips/15d4143c26ed6eec.mp3
+  sha256: 2ec3061e9cc9133a6af196209857b47f45b78986f9a8c3d3f95db977c677d368
+  durationMs: 3220
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Uyimizda yuzta kitob bor.
+    rate: 0.67
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 15d4143c26ed6eec7f1ee7aa705a99a14776a7fff7a4eee636e6488222dc78ae
+- item: s.numbers.28
+  speed: normal
+  file: clips/aa420df579e157c2.mp3
+  sha256: 8f00a5d0dc280adfd3de34e4ba486073bc6a69a06a3dc0454942fc0c3586762d
+  durationMs: 1680
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
+    input: Menda oʻn ming soʻm bor.
+    rate: 1.0
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: aa420df579e157c2c80a03bbcebe0b36c64701fc1c5e1c4f156af10bb26c6c43
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Miende On Ming Sombor
+    cer: 0.368
+    status: review
+- item: s.numbers.28
+  speed: slow
+  file: clips/7aa31299589ad8f0.mp3
+  sha256: 1915c1dc8458f5b9b3e03ffffbb168863b164ece58652b715ba3163adaaf82f7
   durationMs: 2860
-  license: CC0-1.0
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Uyimizda yuzta kitob bor.
-    rate: 0.67
-    inputHash: 0a7d56cd9177b1e822ecafa46ffbbea2b0942b32b6549591196cdc07e1d35d02
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 971
-  - token: 2
-    startMs: 971
-    endMs: 1565
-  - token: 4
-    startMs: 1565
-    endMs: 2282
-  - token: 6
-    startMs: 2282
-    endMs: 2860
-  timingSource: synthesis
-  qa:
-    trace: ʊjymyzdæ jʊztæ kytɑb bɑɾ
-- item: s.numbers.28
-  speed: normal
-  file: clips/715c2cff66747a85.mp3
-  sha256: d901055aa265c24830283a3914a4b7126f8671a12d6e93dc7675c979978431fa
-  durationMs: 1738
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
-    input: Menda oʻn ming soʻm bor.
-    rate: 1.0
-    inputHash: 715c2cff66747a858ffba84f6b5c8916873a66353a2a4ba082643c87a1992213
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 417
-  - token: 2
-    startMs: 417
-    endMs: 667
-  - token: 4
-    startMs: 667
-    endMs: 965
-  - token: 6
-    startMs: 965
-    endMs: 1360
-  - token: 8
-    startMs: 1360
-    endMs: 1738
-  timingSource: synthesis
-  qa:
-    trace: mendæ on myŋ som bɑɾ
-    asrModel: whisper-large-v3-turbo
-    asrText: Mientum nun som dar.
-    cer: 0.579
-    status: fail
-- item: s.numbers.28
-  speed: slow
-  file: clips/592318ac733914aa.mp3
-  sha256: 579a538764c2d2ef6f34211463794b9604b8eef311c84852d0dc37dae2f8f13f
-  durationMs: 2731
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Menda oʻn ming soʻm bor.
     rate: 0.67
-    inputHash: 592318ac733914aac16732d617acba0d46995d4fb7622eac51a624f56fe927d8
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 674
-  - token: 2
-    startMs: 674
-    endMs: 1071
-  - token: 4
-    startMs: 1071
-    endMs: 1541
-  - token: 6
-    startMs: 1541
-    endMs: 2153
-  - token: 8
-    startMs: 2153
-    endMs: 2731
-  timingSource: synthesis
-  qa:
-    trace: mendæ on myŋ som bɑɾ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 7aa31299589ad8f051f7ee1852cd3503e7db32e3e014bd37eae85c5c9db6c2d5
 - item: s.numbers.29
   speed: normal
-  file: clips/f64f8361a89e30fc.mp3
-  sha256: 397ebb70333f6cc029ccffb1ba038d3714bbc4f750df22cbcbd095e7268fdc2b
-  durationMs: 1854
-  license: CC0-1.0
+  file: clips/8a3c20833ade8ae3.mp3
+  sha256: 70658c78b824cc3e9f1ecfaf047f0031ba112a8c58966b25fcf1d18c15e07d44
+  durationMs: 1360
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Akamning ikki qizi bor.
     rate: 1.0
-    inputHash: f64f8361a89e30fcd8a1ca400bd667015f42f7c2743994b33f46570087b600bf
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 567
-  - token: 2
-    startMs: 567
-    endMs: 1038
-  - token: 4
-    startMs: 1038
-    endMs: 1448
-  - token: 6
-    startMs: 1448
-    endMs: 1854
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 8a3c20833ade8ae3cab80640825edc74e58cb1278f619ab423812911ce870d28
   qa:
-    trace: ækæmnyŋ ykky qyzy bɑɾ
     asrModel: whisper-large-v3-turbo
-    asrText: A cam nu yuk qqzu dog.
-    cer: 0.579
-    status: fail
+    asrText: Akem nin iki kızı bor.
+    cer: 0.316
+    status: review
 - item: s.numbers.29
   speed: slow
-  file: clips/8c79771cca233d3d.mp3
-  sha256: 8f30f40b346d69c23194dfcf00385ee4e1e4b4232a4c76cea0192c635235d6fd
-  durationMs: 2805
-  license: CC0-1.0
+  file: clips/00897ce6486838b7.mp3
+  sha256: a80d4d2804f6f866ea4d5125ccd4a50655e419479d012e91fcada15b7b2f1f19
+  durationMs: 2680
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Akamning ikki qizi bor.
     rate: 0.67
-    inputHash: 8c79771cca233d3df5335215594bf99fce22ec004b9af3dd80e682af5892def7
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 887
-  - token: 2
-    startMs: 887
-    endMs: 1540
-  - token: 4
-    startMs: 1540
-    endMs: 2191
-  - token: 6
-    startMs: 2191
-    endMs: 2805
-  timingSource: synthesis
-  qa:
-    trace: ækæmnyŋ ykky qyzy bɑɾ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 00897ce6486838b78d48181ee942e7306d926c139b282d16b53f06b0928ac043
 - item: s.numbers.3
   speed: normal
   file: clips/76170ab2a19420fd.mp3
@@ -14061,266 +13611,200 @@ clips:
     inputHash: 37cf1d842c71c5b4fdd42f1456c88da5099f50579de029c0396df35ac878f05f
 - item: s.numbers.30
   speed: normal
-  file: clips/d96bebc51030ec63.mp3
-  sha256: 55c9aa16b3b4192b6c06c35d3fe181501a837aca75b2289a75d22304a3d12e02
-  durationMs: 1761
-  license: CC0-1.0
+  file: clips/ef87990a96e461a3.mp3
+  sha256: c656badf8762a2c8659ac6f7630fa20cd79eceb20e0fd944ce0b1d5d97895f22
+  durationMs: 1520
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Opamning bir oʻgʻli bor.
     rate: 1.0
-    inputHash: d96bebc51030ec631deb94f1b1a74240ca0231d8ccdee2636a742afccc0e857e
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 655
-  - token: 2
-    startMs: 655
-    endMs: 939
-  - token: 4
-    startMs: 939
-    endMs: 1351
-  - token: 6
-    startMs: 1351
-    endMs: 1761
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: ef87990a96e461a34ed563677369f45d44db6b624bc19a78080a5394785c3bb0
   qa:
-    trace: ɑpæmnyŋ byɾ oʁɫy bɑɾ
     asrModel: whisper-large-v3-turbo
-    asrText: Apending Boodle Blue Dog.
-    cer: 0.75
+    asrText: Apanning bara åhållubbar.
+    cer: 0.55
     status: fail
 - item: s.numbers.30
   speed: slow
-  file: clips/56cef94cc79f6980.mp3
-  sha256: a79b53bc464b7214983b743d4e835251bd05a7dc1c0c5874b6527aa8a5a4b9b9
-  durationMs: 2754
-  license: CC0-1.0
+  file: clips/9c2a628a314e1ce6.mp3
+  sha256: 2422c64e2cb40989fd846ac7a9533176d23da6b8a7147a19d319c27f0a63b7b9
+  durationMs: 2260
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Opamning bir oʻgʻli bor.
     rate: 0.67
-    inputHash: 56cef94cc79f69807fc240352f650a98f42711070c1b49c3c73f08c8b078eb02
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 1024
-  - token: 2
-    startMs: 1024
-    endMs: 1476
-  - token: 4
-    startMs: 1476
-    endMs: 2140
-  - token: 6
-    startMs: 2140
-    endMs: 2754
-  timingSource: synthesis
-  qa:
-    trace: ɑpæmnyŋ byɾ oʁɫy bɑɾ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 9c2a628a314e1ce682e67091368cb063e23fb2679aaa3935b37c087f61030b3a
 - item: s.numbers.31
   speed: normal
-  file: clips/b07c109438f4cef0.mp3
-  sha256: ccfbd2f034e4b15450ffdfc33a6d7ef61b5f06d9a8b6368f50f209c9fbe28460
-  durationMs: 1312
-  license: CC0-1.0
+  file: clips/e6a8374385a8fbde.mp3
+  sha256: 841167307eefc3b9c12e428cdb405b12270be3b12f23582a2057297ed63d78a5
+  durationMs: 1320
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Qizi besh yoshda.
     rate: 1.0
-    inputHash: b07c109438f4cef02c5a8549b7fecfe7b3b343a816d9927ea274517f285aacdd
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 410
-  - token: 2
-    startMs: 410
-    endMs: 745
-  - token: 4
-    startMs: 745
-    endMs: 1312
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: e6a8374385a8fbde9ba66be4e4c9c31dfa87e049e64a517441f0f64aa3a37db5
   qa:
-    trace: qyzy beʃ jɑʃdæ
     asrModel: whisper-large-v3-turbo
-    asrText: Küzübér siaspe.
-    cer: 0.786
+    asrText: Kazı bişyo işte.
+    cer: 0.714
     status: fail
 - item: s.numbers.31
   speed: slow
-  file: clips/12bf7282e68b98af.mp3
-  sha256: 847d144f3c002ede4052cc6b56ae81e0c7e55169517de148e03fa81bad6437fe
-  durationMs: 2055
-  license: CC0-1.0
+  file: clips/991de6b20d895fd4.mp3
+  sha256: f690f0b787b6cb2adf5b580fad358befddb713b60c3d4eae8220ac108971a438
+  durationMs: 2320
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Qizi besh yoshda.
     rate: 0.67
-    inputHash: 12bf7282e68b98af696ceb2fa325dc694e4cf40eb478d78c2b81e9d1976c0b18
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 650
-  - token: 2
-    startMs: 650
-    endMs: 1175
-  - token: 4
-    startMs: 1175
-    endMs: 2055
-  timingSource: synthesis
-  qa:
-    trace: qyzy beʃ jɑʃdæ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 991de6b20d895fd4319073e7dab1b49535025566aea359be5c55a88f6245a422
 - item: s.numbers.32
   speed: normal
-  file: clips/19b071bd284d89b8.mp3
-  sha256: 3308f760c7b73825ae8ef1a77dcd7fb594c4932d1d0e1e66b809bae97c4137da
-  durationMs: 1808
-  license: CC0-1.0
+  file: clips/68d3013ea8e78d58.mp3
+  sha256: eab3cd8de6eb22a100ed459f8a610d62777dd5cae5d64af56d18d2147ae7e0bc
+  durationMs: 1600
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Nechta farzandingiz bor?
     rate: 1.0
-    inputHash: 19b071bd284d89b82eb6f29f8abde41d6b669f53fd527ceefba644eac9bf482c
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 495
-  - token: 2
-    startMs: 495
-    endMs: 1428
-  - token: 4
-    startMs: 1428
-    endMs: 1808
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 68d3013ea8e78d58f6799ef46a302c3387e8c7fb269122057786e26913bd3e09
   qa:
-    trace: netStæ fæɾzændyŋyz bɑɾ
     asrModel: whisper-large-v3-turbo
-    asrText: NICFFZENVYUSDAR
-    cer: 0.952
-    status: fail
+    asrText: Neçte farzlandingiz boar.
+    cer: 0.238
+    status: review
 - item: s.numbers.32
   speed: slow
-  file: clips/eb3bb0e2ff73405d.mp3
-  sha256: e0601bdc2b172093942345755511bcd56c94f26181a94858d9a888bf663bd088
-  durationMs: 2689
-  license: CC0-1.0
+  file: clips/4c54c7c37e1c1464.mp3
+  sha256: bcdb5a2eebe8ae589e54fe479dbf44c59db160bfdb7e3bf8fcd5afa9167925cc
+  durationMs: 2620
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Nechta farzandingiz bor?
     rate: 0.67
-    inputHash: eb3bb0e2ff73405d37f9dbbb8cb387927fdda2e4bd296a07c9a623fd63777176
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 715
-  - token: 2
-    startMs: 715
-    endMs: 2109
-  - token: 4
-    startMs: 2109
-    endMs: 2689
-  timingSource: synthesis
-  qa:
-    trace: netStæ fæɾzændyŋyz bɑɾ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 4c54c7c37e1c146467fd7d717de6f51f6dcfcc8f6b65247c80d59d08ab799e6a
 - item: s.numbers.33
   speed: normal
-  file: clips/2b164ffbcb1f8ea8.mp3
-  sha256: 50b1c83dc8c6a5e689f8be6c53d668cb148c1ef7d7f519325fab4247f2fd1aec
-  durationMs: 1458
-  license: CC0-1.0
+  file: clips/147b6d97e0944b4e.mp3
+  sha256: 009c6e3e89b5c9d00ddce1902b8930ca08151867d72dd8a61e6a8c7e5417fad7
+  durationMs: 1240
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Uch farzandim bor.
     rate: 1.0
-    inputHash: 2b164ffbcb1f8ea8ac3efb1bfe504a86673ab533febd7274b6d4485784e84e62
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 212
-  - token: 2
-    startMs: 212
-    endMs: 1080
-  - token: 4
-    startMs: 1080
-    endMs: 1458
-  timingSource: synthesis
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: 147b6d97e0944b4e74dc9508575456053406b45b486bfbdc5b7b4b75768b3b05
   qa:
-    trace: ʊtS fæɾzændym bɑɾ
     asrModel: whisper-large-v3-turbo
-    asrText: UCHFERMEDUMDAH
-    cer: 0.933
-    status: fail
+    asrText: Ucvar Zandumbor
+    cer: 0.267
+    status: review
 - item: s.numbers.33
   speed: slow
-  file: clips/ccd6afa9781c4fb7.mp3
-  sha256: f9476bb4188377990f7b49b13b71984e1017b81e2787383e839059ff6c6f28f5
-  durationMs: 2184
-  license: CC0-1.0
+  file: clips/c7736643b0829bbb.mp3
+  sha256: 21b5f7a94d5c48d4479cd844377bd60c4a04214ddb8096d0d8738d51e591daa9
+  durationMs: 1780
+  license: Apache-2.0
   provenance:
-    author: generated:espeak-ng@1.51
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
     status: draft
   synthetic: true
   synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: uz
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    voice: toshkent-f
     input: Uch farzandim bor.
     rate: 0.67
-    inputHash: ccd6afa9781c4fb797ca063cf8249173c91322161a811c2abfd9b8a03f7d5081
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 289
-  - token: 2
-    startMs: 289
-    endMs: 1606
-  - token: 4
-    startMs: 1606
-    endMs: 2184
-  timingSource: synthesis
-  qa:
-    trace: ʊtS fæɾzændym bɑɾ
+    settings:
+      base: FunAudioLLM/CosyVoice2-0.5B#eec1ae6c79877dbd9379285cf8789c9e0879293d
+      style: calm
+      dtype: float32
+      reference: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+    inputHash: c7736643b0829bbb40bb81c0dba148d2c2d38298e05b7392d905128b824cb19b
 - item: s.numbers.4
   speed: normal
   file: clips/08ad1af5fca17718.mp3
