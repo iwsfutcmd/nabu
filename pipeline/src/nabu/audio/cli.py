@@ -90,6 +90,8 @@ def generate(
     )
     for item in report.skipped:
         typer.echo(f"  - {item}: no {voice.reading} reading", err=True)
+    for item in report.silent:
+        typer.echo(f"  - {item}: the voice said nothing; no clip", err=True)
 
 
 @app.command()

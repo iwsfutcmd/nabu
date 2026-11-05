@@ -557,11 +557,20 @@ class OmniVoiceProvider:
     def speed(self, rate: float) -> float:
         return rate
 
+    #: Tries per clip: the model can return (almost) nothing for a very short word, once its
+    #: silence is trimmed; the next seeds, in order, try again.
+    TRIES = 4
+
     def _speak(self, engine: OmniVoiceEngine, text: str, seed: int, **extra: Any) -> Clip:
-        samples = engine.speak(
-            text, self.language, seed, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
-        )
-        return Clip(to_pcm(samples), engine.sampling_rate, None, None)
+        clip = Clip(b"", engine.sampling_rate, None, None)
+        for attempt in range(self.TRIES):
+            samples = engine.speak(
+                text, self.language, seed + attempt, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
+            )
+            clip = Clip(to_pcm(samples), engine.sampling_rate, None, None)
+            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
+                break
+        return clip
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         engine = self.load(self.repo, self.revision)

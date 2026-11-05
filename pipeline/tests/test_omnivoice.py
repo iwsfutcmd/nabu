@@ -225,3 +225,53 @@ def test_story_lines_are_read_too(apc: Any) -> None:
     story, step = lines[0]
     line = items[f"{story}#{step}"]
     assert line.input and len(line.spans) >= 1
+
+
+class Hushed(FakeEngine):
+    """Says nothing for the first `silent` tries of every clip."""
+
+    def __init__(self, silent: int) -> None:
+        super().__init__()
+        self.silent = silent
+        self.tries: dict[str, int] = {}
+
+    def speak(
+        self,
+        text: str,
+        language: str,
+        seed: int,
+        num_step: int,
+        guidance_scale: float,
+        **extra: Any,
+    ) -> Any:
+        super().speak(text, language, seed, num_step, guidance_scale, **extra)
+        self.tries[text] = self.tries.get(text, 0) + 1
+        return [] if self.tries[text] <= self.silent else [0.0] * 2400
+
+
+def test_a_clip_the_model_says_nothing_for_is_tried_again_with_the_next_seeds() -> None:
+    engine = Hushed(silent=2)
+    request = Request("لَأ", "beirut-m", 1.0)
+    [clip] = fake(engine, voice(), REF).synthesize([request])
+    assert len(clip.pcm) == 4800
+    assert [c["seed"] for c in engine.calls] == [seed_of(request) + k for k in range(3)]
+    # Never anything: after its tries the clip is empty, and generation leaves it out.
+    [nothing] = fake(Hushed(silent=99), voice(), REF).synthesize([request])
+    assert nothing.pcm == b""
+
+
+@pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
+def test_an_item_the_voice_says_nothing_for_gets_no_clip(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Any
+) -> None:
+    course = tmp_path / "apc"
+    shutil.copytree(ROOT / "courses" / "apc", course, ignore=shutil.ignore_patterns("audio"))
+    engine = FakeEngine()
+    v = voice()
+    cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
+    hushed = Hushed(silent=99)
+    monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda vv, r: fake(hushed, vv, r))
+    intro: list[dict[str, Any]] = [{**u, "stories": []} for u in apc.units if u["id"] == "intro"]
+    report = synthesize_course(course, intro, v, None, apc.written)
+    assert report.synthesized == 0 and report.silent
+    assert read_index(audio_dir(course)).clips == []

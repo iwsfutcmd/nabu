@@ -73,6 +73,8 @@ class Report:
     kept: int = 0
     removed: int = 0
     skipped: list[str] = field(default_factory=lambda: [])
+    #: Items the voice said nothing for (left without a clip, so the index stays valid).
+    silent: list[str] = field(default_factory=lambda: [])
 
 
 def audio_dir(course: Path) -> Path:
@@ -419,6 +421,9 @@ def synthesize_course(
             [Request(item.input, voice.voice, rate) for item, _, rate, _ in batch]
         )
         for (item, speed, rate, ident), clip in zip(batch, clips, strict=True):
+            if len(clip.pcm) < 2:
+                report.silent.append(f"{item.item} ({speed})")
+                continue
             fresh.append(_entry(item, speed, rate, ident, clip, tts, voice, author, adir, check))
         save(start + len(batch))
     report.synthesized = len(fresh)
