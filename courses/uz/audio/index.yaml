@@ -37583,3 +37583,25 @@ clips:
   timingSource: synthesis
   qa:
     trace: joq qymmæt emæs kop ɾæsm ɑlæmyz
+references:
+- id: toshkent-f
+  file: voices/toshkent-f.wav
+  sha256: 6b5bf93365c846a50970c2c3eba150f5dcb046c879db73f07519a82287642ee6
+  text: Salom! Men oʻqituvchiman. Bu mening kitobim. Ismingiz nima?
+  durationMs: 4280
+  license: Apache-2.0
+  provenance:
+    author: generated:navoiy@aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    status: draft
+  synthetic: true
+  design:
+    provider: navoiy
+    version: aisha-org/navoiy-tts#9445f41ee5f38bd3a34eb16b0279dc05f9997fc2+cosyvoice-074ca6dc9e80
+    language: uz
+    instruct: Speak in a calm, steady, neutral voice with even pacing and relaxed intonation.
+    seed: 0
+    dtype: float32
+    prompt:
+      source: https://github.com/FunAudioLLM/CosyVoice/blob/074ca6dc9e80a2f424f1f74b48bdd7d3fea531cc/asset/zero_shot_prompt.wav
+      sha256: c7b31d6dbe7cc6a716dded00550db5b50940bf209e424e4ad207b12e657c8ff6
+      license: Apache-2.0
