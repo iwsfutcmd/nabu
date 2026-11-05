@@ -14,5 +14,3 @@ audio:
   voices:
   - {id: toshkent, provider: navoiy, voice: toshkent-f, model: 'aisha-org/navoiy-tts@9445f41ee5f38bd3a34eb16b0279dc05f9997fc2',
     language: uz, orthography: uz-Latn/standard, reading: text, license: Apache-2.0}
-  # Until every uz clip is Navoiy's: the eSpeak NG clips not yet made again (ADR 0059).
-  - {id: narrator, provider: espeak-ng, voice: uz, orthography: uz-Latn/standard, reading: text, license: CC0-1.0}

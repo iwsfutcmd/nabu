@@ -98,6 +98,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
 - Synthesize from pinned readings (Jyutping), never raw characters. Human recordings: `nabu audio ingest`.
+- One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
+  ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
@@ -217,7 +219,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0061 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0062 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

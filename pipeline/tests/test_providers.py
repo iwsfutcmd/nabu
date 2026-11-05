@@ -20,7 +20,6 @@ import pytest
 
 from nabu.audio import jyutping, providers
 from nabu.audio.course import (
-    SLOW,
     Item,
     audio_dir,
     identity,
@@ -41,6 +40,10 @@ from nabu.compiler import compile_course
 from nabu.schema.models import AudioVoice
 
 from .conftest import ROOT, CoreCli
+
+#: A slower rate: providers still take one (their own slow settings), though `generate` asks
+#: only for normal speed now (ADR 0062).
+SLOW = 0.67
 
 SILENCE = b"\0\0" * 2205  # 100 ms at 22.05 kHz
 
@@ -312,7 +315,7 @@ def test_a_provider_failing_midway_keeps_the_clips_already_made(
         providers.PROVIDERS, "elevenlabs", lambda v, _r: ElevenLabsProvider(v, transport=flaky)
     )
     pronouncing = voice("elevenlabs", pronounce="jyutping")
-    total = 2 * len(plan(yue_units, pronouncing)[0])
+    total = len(plan(yue_units, pronouncing)[0])
     with pytest.raises(ProviderError):
         synthesize_course(course, yue_units, pronouncing)
     saved = read_index(audio_dir(course)).clips

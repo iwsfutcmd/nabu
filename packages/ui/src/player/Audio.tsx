@@ -4,6 +4,9 @@
  * frame reads the audio element's own clock and looks the time up in the clip's token
  * timings, so the highlight is never more than a frame behind the sound.
  *
+ * Slow (ADR 0062): a clip's own slow recording when it has one; otherwise the same clip played
+ * at SLOW_RATE with its pitch kept. The element's clock is media time, so karaoke follows either.
+ *
  * Synthesized clips are labelled as synthetic (responsible-use marking of generated speech).
  */
 import type { AudioRef } from "@nabu/core/lesson";
@@ -15,6 +18,9 @@ import { PlayIcon, SlowIcon } from "../icons.tsx";
 import styles from "./Player.module.css";
 
 export type Speed = "normal" | "slow";
+
+/** How fast "slow" plays a clip with no slow recording of its own: time-stretched, pitch kept. */
+export const SLOW_RATE = 0.75;
 
 /** The token a clip is saying at `ms`, if any. */
 export const tokenAt = (clip: BundleClip, ms: number): number | undefined =>
@@ -46,10 +52,15 @@ export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) =
 
   const play = useCallback(
     (speed: Speed = "normal"): void => {
-      const clip = speed === "slow" ? (audio?.slow ?? audio?.normal) : audio?.normal;
+      const own = speed === "slow" ? audio?.slow : undefined;
+      const clip = own ?? audio?.normal;
       if (clip === undefined) return;
       stop();
       const el = new Audio(url(clip.path));
+      if (speed === "slow" && own === undefined) {
+        el.preservesPitch = true;
+        el.playbackRate = SLOW_RATE;
+      }
       element.current = el;
       el.dataset["clip"] = clip.path;
       const tick = (): void => {
@@ -96,11 +107,9 @@ export const AudioButtons = ({ player, audio, size = "small", label = true }: Au
       >
         <PlayIcon size={size === "large" ? 36 : 20} />
       </Button>
-      {audio.slow !== undefined && (
-        <Button className={styles.play} aria-label={t.format("player.audio.slow")} onPress={() => player.play("slow")} data-action="play-slow" data-playing={player.playing === "slow" || undefined}>
-          <SlowIcon size={20} />
-        </Button>
-      )}
+      <Button className={styles.play} aria-label={t.format("player.audio.slow")} onPress={() => player.play("slow")} data-action="play-slow" data-playing={player.playing === "slow" || undefined}>
+        <SlowIcon size={20} />
+      </Button>
       {label && audio.normal.synthetic && <span className={styles.synthetic}>{t.format("player.audio.synthetic")}</span>}
     </div>
   );

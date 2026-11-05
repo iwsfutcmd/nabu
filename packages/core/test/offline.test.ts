@@ -91,10 +91,11 @@ describe("a course restricted to the media a device has", () => {
   });
 
   it("keeps a clip's normal speed without its slow one", () => {
-    const [id, item] = Object.entries(course.audio).find(([, a]) => a.slow !== undefined) ?? [];
-    if (id === undefined || item?.slow === undefined) throw new Error("fa has a slow clip");
-    const slow = item.slow.path;
-    const kept = restrictMedia(course, (p) => p !== slow);
+    // Synthesized clips have no slow take (the player slows them, ADR 0062); a recorded one may.
+    const [id, item] = Object.entries(course.audio)[0] ?? [];
+    if (id === undefined || item === undefined) throw new Error("fa has a clip");
+    const slow = { ...item.normal, path: "audio/recorded-slow.mp3" };
+    const kept = restrictMedia({ ...course, audio: { ...course.audio, [id]: { ...item, slow } } }, (p) => p !== slow.path);
     expect(kept.audio[id]?.normal).toEqual(item.normal);
     expect(kept.audio[id]?.slow).toBeUndefined();
   });
