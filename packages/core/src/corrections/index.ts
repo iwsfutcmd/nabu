@@ -1,10 +1,12 @@
 /**
- * Corrections to course content (ADR 0051), pure: a learner marks a sentence or a story line as
- * incorrect and says what it should be.
+ * Corrections to course content (ADR 0051), pure: a learner marks a sentence, a story line or a
+ * word as incorrect and says what it should be.
  *
  * - **What can be corrected.** Every sentence and story line the course source holds, in every
  *   orthography it pins: the text, each word's pinned readings (Jyutping), and the translation
- *   as displayed. Generated sentences (the CLDR number drills) are not in the source.
+ *   as displayed. Generated sentences (the CLDR number drills) are not in the source. A word
+ *   (ADR 0057) is a KC with forms: its first form in each orthography (what word exercises
+ *   show), and its gloss as the translation. Match-pairs offers each of its pairs' words.
  * - **What a correction holds.** `shown` is everything the device displayed, so the reviewer's
  *   tool can check the source still says it; `correction` holds only what the learner changed,
  *   NFC and trimmed. A note alone is a report too.
@@ -14,20 +16,23 @@
  * Tokens are addressed by their place among the form's words (its source tokens: not spaces or
  * punctuation), with the word's surface, so a reading never lands on another word.
  */
-import type { BundleStory, BundleUnit, CorrectionFields, CorrectedForm, LearnerEvent, OrthographyId, SchemeId, SentenceCorrection, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
+import type { BundleKc, BundleStory, BundleUnit, CorrectionFields, CorrectedForm, LearnerEvent, OrthographyId, SchemeId, SentenceCorrection, SentenceReported, TaggedText, TokenReading } from "@nabu/schema";
 import type { EventMeta } from "../learner/events.ts";
 import type { CourseView } from "../lesson/course.ts";
+import type { Exercise } from "../lesson/exercise.ts";
 import { err, ok, type Result } from "../result.ts";
 import { graphemeCount } from "../text/graphemes.ts";
 import { surfaceOf, wordIndexes } from "../text/tagged-text.ts";
 
-/** A sentence or a story line, in every orthography the course pins. */
+/** A sentence, a story line or a word, in every orthography the course pins. */
 export interface Correctable {
+  readonly kind: "sentence" | "line" | "word";
+  /** A sentence id, a story id (with `step`), or a word's KC id. */
   readonly item: string;
   /** For a story line: its step in the story (every step counted). */
   readonly step?: number | undefined;
   readonly forms: Readonly<Record<string, TaggedText>>;
-  /** The translation in the support language, as displayed. */
+  /** The translation in the support language, as displayed; for a word, its gloss. */
   readonly translation: TaggedText | undefined;
 }
 
@@ -47,13 +52,20 @@ const sentencesOf = (course: CourseView, unit: BundleUnit): readonly Correctable
   unit.sentences
     .filter((s) => !generated(s.id))
     .map((s) => ({
+      kind: "sentence" as const,
       item: s.id,
       forms: Object.fromEntries(Object.entries(s.forms).map(([o, f]) => [o, f.text])),
       translation: s.translations[course.supportKey]?.text,
     }));
 
 const linesOf = (course: CourseView, story: BundleStory): readonly Correctable[] =>
-  story.steps.flatMap((s, step) => (s.line === undefined ? [] : [{ item: story.id, step, forms: s.line.forms, translation: s.line.translations[course.supportKey] }]));
+  story.steps.flatMap((s, step) => (s.line === undefined ? [] : [{ kind: "line" as const, item: story.id, step, forms: s.line.forms, translation: s.line.translations[course.supportKey] }]));
+
+/** A word: a KC's first form in each orthography (what word exercises show) and its gloss. */
+const wordOf = (course: CourseView, kc: BundleKc): Correctable | undefined => {
+  const forms = Object.fromEntries(Object.entries(kc.forms ?? {}).flatMap(([o, fs]) => (fs[0] === undefined ? [] : [[o, fs[0]]])));
+  return Object.keys(forms).length === 0 ? undefined : { kind: "word", item: kc.id, forms, translation: kc.gloss?.[course.supportKey] };
+};
 
 /** Everything a learner can correct, unit by unit: the sentences, then each story's lines. */
 export const correctablesByUnit = (course: CourseView): readonly UnitCorrectables[] =>
@@ -65,6 +77,8 @@ export const correctable = (course: CourseView, item: string, step?: number): Co
     if (step === undefined) {
       const found = sentencesOf(course, unit).find((c) => c.item === item);
       if (found !== undefined) return found;
+      const kc = unit.kcs.find((k) => k.id === item);
+      if (kc !== undefined) return wordOf(course, kc);
     } else {
       const story = unit.stories?.find((s) => s.id === item);
       if (story !== undefined) return linesOf(course, story).find((c) => c.step === step);
@@ -72,6 +86,13 @@ export const correctable = (course: CourseView, item: string, step?: number): Co
   }
   return undefined;
 };
+
+/**
+ * What a learner can correct from an exercise: the sentence or word it was built from; for
+ * match-pairs, every pair's word.
+ */
+export const correctablesOf = (course: CourseView, ex: Pick<Exercise, "template" | "item" | "kcs">): readonly Correctable[] =>
+  (ex.template === "match-pairs" ? ex.kcs : [ex.item]).flatMap((item) => correctable(course, item) ?? []);
 
 /** Each word's pinned readings, in the order the form's words come. */
 const readingsOf = (text: TaggedText): readonly TokenReading[] =>

@@ -19,7 +19,7 @@
     },
     "CorrectionSubmission": {
       "title": "CorrectionSubmission",
-      "description": "A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).",
+      "description": "A correction to a sentence, story line or word: what the device showed and what the learner changed (correction.schema.json).",
       "type": "object",
       "required": [
         "v",
@@ -64,7 +64,7 @@
           "pattern": "^[0-9a-f]{64}$"
         },
         "item": {
-          "description": "The sentence id, or the story id for a story line.",
+          "description": "The sentence id, the story id for a story line, or a word's KC id.",
           "type": "string",
           "minLength": 1,
           "maxLength": 200

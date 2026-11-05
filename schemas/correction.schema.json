@@ -44,7 +44,7 @@
       "additionalProperties": false,
       "properties": {
         "text": {
-          "description": "The whole sentence or line in this orthography, NFC.",
+          "description": "The whole sentence, line or word form in this orthography, NFC.",
           "type": "string",
           "minLength": 1,
           "maxLength": 2000
@@ -74,7 +74,7 @@
           }
         },
         "translation": {
-          "description": "The translation in the support language, as displayed (a sentence's first accepted translation), NFC.",
+          "description": "The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.",
           "type": "string",
           "minLength": 1,
           "maxLength": 2000
@@ -94,7 +94,7 @@
     },
     "SentenceCorrection": {
       "title": "SentenceCorrection",
-      "description": "A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.",
+      "description": "A correction to one sentence, story line or word, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.",
       "type": "object",
       "required": [
         "id",
@@ -134,7 +134,7 @@
           "pattern": "^[0-9a-f]{64}$"
         },
         "item": {
-          "description": "A sentence id, or a story id with `step`.",
+          "description": "A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
           "type": "string",
           "minLength": 1
         },

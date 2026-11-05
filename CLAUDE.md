@@ -173,6 +173,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - `nabu corrections apply <jsonl>` edits values in place and skips anything whose `shown` no longer matches the
   source; changes that need new tokens or senses are listed with file:line, never guessed. Regenerate audio after.
 - "My answer should be accepted" also covers story questions (answerTextOf); promote skips them (no accept set).
+- Words are correctable too (ADR 0057): `item` is the KC id; `correctablesOf(course, ex)` gives what an exercise
+  offers (each pair's word for match-pairs). apply edits the KC's first form and gloss; readings stay with sentences.
 
 ## Vowel marks notes (see docs/adr/0053)
 - Course sources stay as written; `vocalization:` files (courses/<id>/vocalization.yaml) give words their marks

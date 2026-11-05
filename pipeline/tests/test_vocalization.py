@@ -93,6 +93,35 @@ def test_morphs_are_cut_where_their_letters_are(core_cli: CoreCli, tmp_path: Pat
     assert "".join(m["surface"] for m in word["morphs"]) == word["surface"]
 
 
+def test_a_word_cut_into_morphs_keeps_marks_its_morphs_write(
+    core_cli: CoreCli, tmp_path: Path
+) -> None:
+    # الحمّام: the source writes the shadda, in the morph حمّام, and the vocalization gives the
+    # fatha. Morphs are compared by their letters, so the word is marked, and its morphs too.
+    course = copy.deepcopy(FA)
+    shadda = "ّ"
+    course["vocalization"][0]["words"][HASTAM] = HASTAM_MARKED
+    written = HASTAM[:3] + shadda + HASTAM[3:]
+    morphs = [
+        {"surface": written[:4], "kc": "sense:budan"},
+        {"surface": written[4:], "kc": "sense:budan"},
+    ]
+    _with_sentence(
+        course,
+        f"{FA_WORD} {written}",
+        [
+            {"surface": FA_WORD, "sense": FA_WORD},
+            {"surface": written, "sense": "budan", "morphs": morphs},
+        ],
+    )
+    diags, compiled = _compile(core_cli, tmp_path, course)
+    assert not diags.errors, [d.format() for d in diags.items]
+    word = _tokens(compiled, 1)[2]
+    # ه takes its fatha; ت keeps the shadda the source wrote (a fatha alone would not include it).
+    assert word["surface"] == f"ه{FATHA}ست{shadda}م"
+    assert "".join(m["surface"] for m in word["morphs"]) == word["surface"]
+
+
 def test_a_token_s_own_vocalization_wins(core_cli: CoreCli, tmp_path: Path) -> None:
     course = copy.deepcopy(FA)
     own = f"\u06a9{DAMMA}\u062a\u0627\u0628"

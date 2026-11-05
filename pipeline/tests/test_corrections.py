@@ -7,7 +7,7 @@ import json
 import re
 import shutil
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import pytest
 import yaml
@@ -82,6 +82,12 @@ def unit(courses: Path, course: str) -> str:
 def written(courses: Path, outcome: Outcome) -> None:
     for file, text in outcome.files.items():
         file.write_text(text, encoding="utf-8")
+
+
+def first_word(text: str, orth: str) -> dict[str, Any]:
+    """The unit's first KC with a form in `orth`."""
+    kcs = cast(list[dict[str, Any]], yaml.safe_load(text)["kcs"])
+    return next(k for k in kcs if cast(dict[str, Any], k.get("forms", {})).get(orth))
 
 
 def changed_lines(before: str, after: str) -> list[tuple[str, str]]:
@@ -318,6 +324,68 @@ def test_a_story_line_is_found_by_its_step(courses: Path, core_cli: CoreCli) -> 
     after = yaml.safe_load(unit(courses, "yue"))["stories"][0]["steps"][step]["line"]
     assert after["forms"][YUE]["text"] == fixed
     assert after["translations"]["en"] == "Morning!"
+
+
+def test_a_word_s_form_and_gloss_change_and_nothing_else(courses: Path, core_cli: CoreCli) -> None:
+    """A word (ADR 0057): the KC's first form and its gloss, edited in place."""
+    before = unit(courses, "fa")
+    kc = first_word(before, FA)
+    form, gloss = kc["forms"][FA][0], kc["gloss"]["en"]
+    plural = form + "ها"
+    outcome = apply(
+        [
+            row(
+                "fa",
+                kc["id"],
+                {"forms": {FA: {"text": form}}, "translation": gloss},
+                {"forms": {FA: {"text": plural}}, "translation": f"{gloss} (plural)"},
+            )
+        ],
+        courses,
+        core_cli,
+    )
+    assert len(outcome.applied) == 1, outcome.skipped
+    assert any("may need the same change" in c for c in outcome.applied[0].checks)
+    written(courses, outcome)
+    after = unit(courses, "fa")
+    word = next(
+        k for k in cast(list[dict[str, Any]], yaml.safe_load(after)["kcs"]) if k["id"] == kc["id"]
+    )
+    assert word["forms"][FA][0] == plural
+    assert word["gloss"]["en"] == f"{gloss} (plural)"
+    assert len(changed_lines(before, after)) == 1
+
+
+def test_a_word_s_reading_or_marks_alone_are_left_for_a_person(
+    courses: Path, core_cli: CoreCli
+) -> None:
+    kc = first_word(unit(courses, "yue"), YUE)
+    form = kc["forms"][YUE][0]
+    reading = {"token": 0, "surface": form, "scheme": "jyutping", "reading": "x1"}
+    fa_kc = first_word(unit(courses, "fa"), FA)
+    fa_form = fa_kc["forms"][FA][0]
+    outcome = apply(
+        [
+            row(
+                "yue",
+                kc["id"],
+                {"forms": {YUE: {"text": form, "readings": [{**reading, "reading": "y2"}]}}},
+                {"forms": {YUE: {"readings": [reading]}}},
+            ),
+            row(
+                "fa",
+                fa_kc["id"],
+                {"forms": {FA: {"text": fa_form}}},
+                {"forms": {FA: {"text": fa_form[0] + "َ" + fa_form[1:]}}},
+            ),
+        ],
+        courses,
+        core_cli,
+    )
+    assert outcome.applied == []
+    reasons = [s.reason for s in outcome.skipped]
+    assert "comes from the sentences that pin it" in reasons[0]
+    assert "only vowel marks changed" in reasons[1]
 
 
 def test_what_cannot_be_applied_is_listed_with_why_and_where(

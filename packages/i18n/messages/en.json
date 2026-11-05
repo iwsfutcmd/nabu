@@ -574,6 +574,10 @@
       "message": "Cancel",
       "description": "Button that closes the correction form without saving."
     },
+    "corrections.choose": {
+      "message": "Which one is wrong?",
+      "description": "Heading of the list of a match-the-pairs exercise's words, each with its meaning: the learner picks the one to correct."
+    },
     "corrections.edit": {
       "message": "Change your correction",
       "description": "Button in place of corrections.mark when the learner already suggested a correction for this sentence or line."
@@ -601,6 +605,14 @@
     "corrections.mark": {
       "message": "This sentence is wrong",
       "description": "Button under an exercise's feedback, in the sentence list, and on a story line: open the form to say what is wrong with the sentence or line."
+    },
+    "corrections.mark.pairs": {
+      "message": "One of these is wrong",
+      "description": "Button under the feedback of a match-the-pairs exercise: choose which word or meaning is wrong, then say what it should be."
+    },
+    "corrections.mark.word": {
+      "message": "This word is wrong",
+      "description": "Button under the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
     },
     "corrections.note": {
       "message": "Note for the reviewer (optional)",
@@ -665,6 +677,18 @@
     "corrections.translation": {
       "message": "Translation",
       "description": "Label of the field holding the sentence's translation into the learner's language."
+    },
+    "corrections.word.intro": {
+      "message": "Change whatever is wrong: the word, how it is read, or what it means. A reviewer checks every correction before it reaches the course.",
+      "description": "Explanation at the top of the correction form for a word."
+    },
+    "corrections.word.meaning": {
+      "message": "Meaning",
+      "description": "Label of the field holding what the word means in the learner's language (its gloss)."
+    },
+    "corrections.word.text": {
+      "message": "Word ({$orthography})",
+      "description": "Label of the field holding the word in one orthography. $orthography is that orthography's name (a course can be taught in several)."
     },
     "course.name.apc": {
       "message": "Lebanese Arabic",

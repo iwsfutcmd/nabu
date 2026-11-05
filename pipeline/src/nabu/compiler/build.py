@@ -438,15 +438,16 @@ def _load_vocalization(
 
 
 def _split_marked(marked: str, parts: list[str], marks: regex.Pattern[str]) -> list[str] | None:
-    """A marked word cut where its unmarked parts (morphs) are cut: each piece keeps its letters'
-    marks. None when the letters do not line up."""
+    """A marked word cut where its parts (morphs) are cut: each piece keeps its letters' marks.
+    The parts are compared by their letters, since a part can carry marks of its own (a shadda
+    written in the source). None when the letters do not line up."""
     clusters: list[str] = regex.findall(r"\X", marked)
     out: list[str] = []
     at = 0
     for part in parts:
         want = len(tx.graphemes(part))
         piece = "".join(clusters[at : at + want])
-        if marks.sub("", piece) != part:
+        if marks.sub("", piece) != marks.sub("", part):
             return None
         out.append(piece)
         at += want
@@ -536,7 +537,7 @@ def mark_vowels(
         t["surface"] = marked
 
 
-def _marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[str, Any]:
+def marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[str, Any]:
     """A word form (TaggedText) with its vowel marks. KC forms are strings with no token of
     their own to choose between vocalizations, so an ambiguous one stays as written. The KC's
     first form, which voices read, keeps its written surfaces in `ctx.written`."""
@@ -1391,9 +1392,7 @@ def _bundle_unit(
         if kc.forms:
             k["forms"] = {
                 orth: [
-                    _marked(
-                        ctx, orth, support_text(ctx, orth, f, target), kc.id if i == 0 else None
-                    )
+                    marked(ctx, orth, support_text(ctx, orth, f, target), kc.id if i == 0 else None)
                     for i, f in enumerate(fs)
                 ]
                 for orth, fs in kc.forms.items()

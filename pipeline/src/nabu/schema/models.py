@@ -439,7 +439,7 @@ class CorrectedForm(BaseModel):
     text: Annotated[
         str | None,
         Field(
-            description="The whole sentence or line in this orthography, NFC.",
+            description="The whole sentence, line or word form in this orthography, NFC.",
             max_length=2000,
             min_length=1,
         ),
@@ -460,7 +460,7 @@ class CorrectionFields(BaseModel):
     translation: Annotated[
         str | None,
         Field(
-            description="The translation in the support language, as displayed (a sentence's first accepted translation), NFC.",
+            description="The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.",
             max_length=2000,
             min_length=1,
         ),
@@ -481,7 +481,7 @@ type Note1 = Annotated[str, Field(max_length=1000)]
 
 class SentenceCorrection(BaseModel):
     """
-    A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
+    A correction to one sentence, story line or word, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
     """
 
     model_config = ConfigDict(
@@ -504,7 +504,11 @@ class SentenceCorrection(BaseModel):
         ),
     ] = None
     item: Annotated[
-        str, Field(description="A sentence id, or a story id with `step`.", min_length=1)
+        str,
+        Field(
+            description="A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
+            min_length=1,
+        ),
     ]
     step: Annotated[
         int | None,
@@ -1272,7 +1276,7 @@ class ProgressReset(BaseModel):
 
 class SentenceReported(BaseModel):
     """
-    A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
+    A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
     """
 
     model_config = ConfigDict(
@@ -1326,7 +1330,11 @@ class SentenceReported(BaseModel):
     ]
     tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
     item: Annotated[
-        str, Field(description="A sentence id, or a story id with `step`.", min_length=1)
+        str,
+        Field(
+            description="A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
+            min_length=1,
+        ),
     ]
     step: Annotated[
         int | None,
@@ -1693,7 +1701,7 @@ class Reports(BaseModel):
 
 class CorrectionSubmission(BaseModel):
     """
-    A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).
+    A correction to a sentence, story line or word: what the device showed and what the learner changed (correction.schema.json).
     """
 
     model_config = ConfigDict(
@@ -1716,7 +1724,7 @@ class CorrectionSubmission(BaseModel):
     item: Annotated[
         str,
         Field(
-            description="The sentence id, or the story id for a story line.",
+            description="The sentence id, the story id for a story line, or a word's KC id.",
             max_length=200,
             min_length=1,
         ),

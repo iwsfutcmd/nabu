@@ -24,7 +24,7 @@ kcs:
 - {id: 'sense:2abel', gloss: {en: before}, forms: {apc-Arab/standard: [قبل], apc-Latn/arabizi: [2abel]}}
 - {id: 'sense:dohr', gloss: {en: noon; midday}, forms: {apc-Arab/standard: [الضهر], apc-Latn/arabizi: [dohr]}, notes: {en: '3al dohr: at noon; ba3d el dohr: in the afternoon.'}}
 - {id: 'sense:ba3d', gloss: {en: after}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}}
-- {id: 'sense:lel', gloss: {en: night}, forms: {apc-Arab/standard: [بالليل], apc-Latn/arabizi: [lel]}, notes: {en: 'bel lel: at night.'}}
+- {id: 'sense:lel', gloss: {en: night}, forms: {apc-Arab/standard: [الليل, بالليل], apc-Latn/arabizi: [lel]}, notes: {en: 'bel lel: at night.'}}
 - {id: 'sense:3otle', gloss: {en: holiday; day off}, forms: {apc-Arab/standard: [عطلة], apc-Latn/arabizi: [3otle]}}
 - {id: 'sense:kam', gloss: {en: how many; a few}, forms: {apc-Arab/standard: [كم], apc-Latn/arabizi: [kam]}}
 - {id: 'sense:shahr', gloss: {en: month}, forms: {apc-Arab/standard: [شهر], apc-Latn/arabizi: [shahr]}}
@@ -486,6 +486,20 @@ sentences:
     en: |-
       What do you do on (holiday|vacation)?
       What are you doing (on|for) the holiday?
+- id: s.time.27
+  node: apc.time.day-parts
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ الليل.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: الليل, sense: lel, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليل, kc: 'sense:lel'}]}]
+      reverse: (بحبّ|أنا بحبّ) الليل
+    apc-Latn/arabizi:
+      text: b7ebb el lel.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: lel, sense: lel}]
+      reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (lel|leil|layl)
+  translations:
+    en: I (love|like) (the night|nighttime).
 stories:
 - id: apc.story.free-on-saturday
   node: apc.time.story

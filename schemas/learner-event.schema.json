@@ -1076,7 +1076,7 @@
     },
     "SentenceReported": {
       "title": "SentenceReported",
-      "description": "A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.",
+      "description": "A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.",
       "type": "object",
       "required": [
         "id",
@@ -1154,7 +1154,7 @@
           "minLength": 1
         },
         "item": {
-          "description": "A sentence id, or a story id with `step`.",
+          "description": "A sentence id, a story id with `step`, or a word's KC id (ADR 0057).",
           "type": "string",
           "minLength": 1
         },

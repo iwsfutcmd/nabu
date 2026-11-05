@@ -70,6 +70,10 @@ Their open questions are in `courses/REVIEW.md`.
 
 - "Show vowel marks" works throughout the fa and apc lessons, stories and word cards. Turning it
   off shows the letters alone, as before.
+- **Wherever a word is written.** Story characters' names take marks too. So does a word cut into
+  morphs whose source writes some marks itself (الحمّام: ال + حمّام); morphs are matched to the
+  marked word by their letters. A course test checks that every letter the vocalization marks is
+  marked in the compiled course.
 - **Errata 26 is resolved for the fixture courses.** The vocalizations are drafts, though, and
   the marks a learner sees are only as good as their review.
 - **A new word needs an entry** (or a token's `vocalized`), or it is shown unmarked. Nothing

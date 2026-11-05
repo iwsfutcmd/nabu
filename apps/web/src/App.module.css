@@ -495,3 +495,49 @@
   outline: 3px solid var(--nabu-color-wrong);
   outline-offset: 2px;
 }
+
+/* "One of these is wrong" (ADR 0057): a match-the-pairs exercise's words, each with its meaning. */
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.choice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.choice[data-hovered] {
+  border-color: var(--nabu-color-accent);
+}
+
+.choice[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.choiceWord {
+  font-size: 1.25em;
+}
+
+.choiceMeaning {
+  color: var(--nabu-color-muted);
+}

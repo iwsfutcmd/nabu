@@ -102,6 +102,8 @@ export const labelsOf = (s: ReportSubmission): readonly string[] => ["report", `
 
 /** What the bundle says about the item: each orthography's text, the translation, the accept sets. */
 interface ItemContext {
+  /** A word (ADR 0057): its translation is its gloss, its meaning. */
+  readonly word: boolean;
   readonly forms: Readonly<Record<string, string>>;
   readonly translation?: string | undefined;
   readonly reverse: Readonly<Record<string, string>>;
@@ -116,6 +118,7 @@ const contextOf = (course: CourseView | undefined, s: ReportSubmission): ItemCon
   const sentence = step === undefined ? allSentences(course).find((x) => x.id === s.item) : undefined;
   const reverse = Object.fromEntries(Object.entries(sentence?.forms ?? {}).flatMap(([o, f]) => (f.reverse === undefined ? [] : [[o, f.reverse]])));
   return {
+    word: found.kind === "word",
     forms: Object.fromEntries(Object.entries(found.forms).map(([o, t]) => [o, surfaceOf(t)])),
     translation: found.translation === undefined ? undefined : surfaceOf(found.translation),
     reverse,
@@ -141,7 +144,7 @@ export const issueOf = (s: ReportSubmission, course: CourseView | undefined): { 
   } else {
     lines.push("**As the course has it now:**", "");
     for (const [o, text] of Object.entries(context.forms)) lines.push(`- ${o}: ${code(text)}`);
-    if (context.translation !== undefined) lines.push(`- translation: ${code(context.translation)}`);
+    if (context.translation !== undefined) lines.push(`- ${context.word ? "meaning" : "translation"}: ${code(context.translation)}`);
     lines.push("");
     for (const [o, reverse] of Object.entries(context.reverse)) lines.push(`<details><summary>Accepted answers in ${o}</summary>`, "", block(reverse), "", "</details>", "");
     if (context.accept !== undefined) lines.push("<details><summary>Accepted translations</summary>", "", block(context.accept), "", "</details>", "");

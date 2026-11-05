@@ -1,15 +1,17 @@
 /**
- * Corrections in the app (ADR 0051): the sentence list page, and "This sentence is wrong" under
- * an exercise's feedback and on story lines. A correction is a sentence_reported event in the
+ * Corrections in the app (ADR 0051, 0057): the sentence list page, and "This sentence is wrong"
+ * under an exercise's feedback and on story lines; "This word is wrong" under a word exercise's,
+ * and "One of these is wrong" under match-the-pairs, which asks which word first. A correction is a sentence_reported event in the
  * device's log: it syncs like any other and joins the server's review queue. The sentence list
  * also downloads the device's own corrections as the file `nabu corrections apply` reads, so a
  * reviewer can apply them with no server at all.
  */
-import { correctable, correctionKey, correctionRows, jsonLines, latestCorrections, sentenceReportedOf, type Correctable } from "@nabu/core/corrections";
-import type { CourseView } from "@nabu/core/lesson";
+import { correctable, correctablesOf, correctionKey, correctionRows, jsonLines, latestCorrections, sentenceReportedOf, type Correctable } from "@nabu/core/corrections";
+import type { CourseView, Exercise } from "@nabu/core/lesson";
 import type { CorrectionFields, LearnerEvent, SentenceReported } from "@nabu/schema";
-import { chromeClass, useChrome, useTranslator } from "@nabu/ui";
+import { chromeClass, T, useChrome, useTranslator } from "@nabu/ui";
 import { CorrectionForm, SentenceList } from "@nabu/ui/corrections";
+import { rubySchemeOf } from "@nabu/ui/player";
 import { useEffect, useState, type JSX } from "react";
 import { Button, Dialog, Modal } from "react-aria-components";
 import styles from "./App.module.css";
@@ -102,30 +104,123 @@ interface MarkProps extends Recording {
 
 /** "This sentence is wrong": a button that opens the form, for any item the course source holds. */
 export const MarkIncorrect = ({ item, step, corrections, className, ...recording }: MarkProps): JSX.Element | null => {
-  const t = useTranslator();
-  const [open, setOpen] = useState(false);
-  const [sent, setSent] = useState(false);
   const target = correctable(recording.course, item, step);
-  if (target === undefined) return null;
-  const previous = corrections.get(correctionKey(item, step));
+  return target === undefined ? null : <MarkTargets {...recording} targets={[target]} corrections={corrections} className={className} />;
+};
+
+interface ExerciseMarkProps extends Recording {
+  readonly ex: Pick<Exercise, "template" | "item" | "kcs">;
+  readonly corrections: ReadonlyMap<string, SentenceReported>;
+}
+
+/**
+ * Under an exercise's feedback: the sentence or word it was built from can be marked as wrong;
+ * match-the-pairs asks which of its words first.
+ */
+export const MarkExercise = ({ ex, ...props }: ExerciseMarkProps): JSX.Element | null => {
+  const targets = correctablesOf(props.course, ex);
+  return targets.length === 0 ? null : <MarkTargets {...props} targets={targets} />;
+};
+
+interface TargetsProps extends Recording {
+  readonly targets: readonly Correctable[];
+  readonly corrections: ReadonlyMap<string, SentenceReported>;
+  readonly className?: string | undefined;
+}
+
+const MarkTargets = ({ targets, corrections, className, ...recording }: TargetsProps): JSX.Element | null => {
+  const t = useTranslator();
+  const [choosing, setChoosing] = useState(false);
+  const [target, setTarget] = useState<Correctable | undefined>(undefined);
+  const [sent, setSent] = useState(false);
+  const [first] = targets;
+  if (first === undefined) return null;
+  const previousOf = (c: Correctable): SentenceReported | undefined => corrections.get(correctionKey(c.item, c.step));
+  const several = targets.length > 1;
+  const label = several ? "corrections.mark.pairs" : previousOf(first) !== undefined ? "corrections.edit" : first.kind === "word" ? "corrections.mark.word" : "corrections.mark";
   return (
     <>
-      <Button className={className ?? styles.textButton} onPress={() => setOpen(true)} data-action="mark-incorrect" data-item={item} data-step={step}>
-        {t.format(previous === undefined ? "corrections.mark" : "corrections.edit")}
+      <Button
+        className={className ?? styles.textButton}
+        onPress={() => (several ? setChoosing(true) : setTarget(first))}
+        data-action="mark-incorrect"
+        data-item={several ? undefined : first.item}
+        data-step={several ? undefined : first.step}
+      >
+        {t.format(label)}
       </Button>
       {sent && <Sent />}
-      {open && (
+      {choosing && (
+        <ChooseDialog
+          course={recording.course}
+          targets={targets}
+          corrections={corrections}
+          onChoose={(c) => {
+            setChoosing(false);
+            setTarget(c);
+          }}
+          onClose={() => setChoosing(false)}
+        />
+      )}
+      {target !== undefined && (
         <CorrectionDialog
           {...recording}
           target={target}
-          previous={previous}
+          previous={previousOf(target)}
           onClose={(done) => {
-            setOpen(false);
+            setTarget(undefined);
             if (done) setSent(true);
           }}
         />
       )}
     </>
+  );
+};
+
+interface ChooseProps {
+  readonly course: CourseView;
+  readonly targets: readonly Correctable[];
+  readonly corrections: ReadonlyMap<string, SentenceReported>;
+  readonly onChoose: (target: Correctable) => void;
+  readonly onClose: () => void;
+}
+
+/**
+ * "Which one is wrong?": each word in the learner's orthography (with its readings, which can be
+ * what is wrong), and its meaning, through <T>.
+ */
+const ChooseDialog = ({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
+  const t = useTranslator();
+  const chrome = useChrome();
+  const ruby = rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false;
+  return (
+    <Modal className={styles.modal} isOpen isDismissable onOpenChange={(open) => !open && onClose()}>
+      <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} aria-label={t.format("corrections.choose")} data-correction-choose="">
+        <div lang={chrome.lang} dir={chrome.dir} className={styles.dialogBody}>
+          <h2 className={styles.heading}>{t.format("corrections.choose")}</h2>
+          <ul className={styles.choices}>
+            {targets.map((c) => {
+              const word = c.forms[course.orthography];
+              const corrected = corrections.has(correctionKey(c.item, c.step));
+              return (
+                <li key={c.item}>
+                  <Button className={styles.choice} onPress={() => onChoose(c)} data-choose={c.item} data-corrected={corrected || undefined}>
+                    {word !== undefined && <T className={styles.choiceWord} text={word} ruby={ruby} />}
+                    {c.translation !== undefined && <T className={styles.choiceMeaning} text={c.translation} />}
+                    {corrected && <span className={styles.muted}>{t.format("corrections.pending")}</span>}
+                  </Button>
+                </li>
+              );
+            })}
+          </ul>
+          <div className={styles.dialogActions}>
+            <Button className={styles.textButton} onPress={onClose} data-action="cancel-choose">
+              {t.format("corrections.cancel")}
+            </Button>
+          </div>
+        </div>
+      </Dialog>
+    </Modal>
   );
 };
 

@@ -16,7 +16,7 @@ kcs:
 - {id: 'sense:fi', gloss: {en: there is; there are}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'ma fi: there isn''t, there''s no.'}}
 - {id: 'sense:ghorfe', gloss: {en: room; bedroom}, forms: {apc-Arab/standard: [غرفة], apc-Latn/arabizi: [ghorfe]}}
 - {id: 'sense:matbakh', gloss: {en: kitchen}, forms: {apc-Arab/standard: [المطبخ], apc-Latn/arabizi: [matbakh]}}
-- {id: 'sense:salon', gloss: {en: living room}, forms: {apc-Arab/standard: [بالصالون], apc-Latn/arabizi: [salon]}}
+- {id: 'sense:salon', gloss: {en: living room}, forms: {apc-Arab/standard: [الصالون, بالصالون], apc-Latn/arabizi: [salon]}}
 - {id: 'sense:7ammem', gloss: {en: bathroom; toilet}, forms: {apc-Arab/standard: [الحمّام], apc-Latn/arabizi: [7ammem]}}
 - {id: 'sense:shoghl', gloss: {en: work; job}, forms: {apc-Arab/standard: [الشغل], apc-Latn/arabizi: [shoghl]}}
 - {id: 'sense:madrase', gloss: {en: school}, forms: {apc-Arab/standard: [المدرسة], apc-Latn/arabizi: [madrase]}}
@@ -565,6 +565,20 @@ sentences:
     en: |-
       Yes, straight (ahead|on), and the house is on your right.
       Yes, straight (ahead|on), and the house's on your right.
+- id: s.home.33
+  node: apc.home.rooms
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الصالون حلو.
+      tokens: [{surface: الصالون, sense: salon, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صالون, kc: 'sense:salon'}]}, {surface: حلو, sense: 7elo}]
+      reverse: الصالون حلو
+    apc-Latn/arabizi:
+      text: el salon 7elo.
+      tokens: [{surface: el, sense: el}, {surface: salon, sense: salon}, {surface: 7elo, sense: 7elo}]
+      reverse: (el|l|il) (salon|salone) (7elo|7ilo|helo|7elu)
+  translations:
+    en: The (living room|sitting room|lounge) is (nice|pretty|lovely|beautiful).
 stories:
 - id: apc.story.new-house
   node: apc.home.story
