@@ -62,11 +62,11 @@ interface Candidate {
 
 /**
  * How strongly the session's mean p̂ is pulled toward the target (tuned on test/simulation.test.ts).
- * 70 since every unit of fa and uz has clips (ADR 0050): listening exercises are hard for a weak
- * learner, and with every new KC presented first the weakest uz-Latn learner sets the weight
- * (78.6% at 34, 80.5% at 40–44, 81.7% at 50, 82.7% at 70, 80.4% at 80; the content limits it).
+ * 90 since uz speaks with Navoiy (ADR 0059): far more uz clips pass the round trip, so its lessons
+ * carry more listening exercises, which are hard for a weak learner. The weakest uz-Latn learner
+ * still sets the weight (79.6% at 70, 81.5% at 80, 82.0% at 90; every other run 83.7–86.6%).
  */
-const CALIBRATION_WEIGHT = 70;
+const CALIBRATION_WEIGHT = 90;
 
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
