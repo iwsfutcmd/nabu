@@ -9,6 +9,8 @@
   not settle its pinned reading, and the plain spelling for the rest;
 - a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
   gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
+- a voice with `finalStop` gets text with no final punctuation (word cards) ended with its
+  script's full stop (ADR 0063: punctuation.py);
 - each item gets one clip, at normal speed: the player slows it down itself (ADR 0062), so a
   slow clip is never another take with its own mistakes;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
@@ -30,7 +32,7 @@ import tempfile
 import unicodedata
 import wave
 from collections.abc import Callable, Mapping
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, cast
 
@@ -48,6 +50,7 @@ from nabu.audio.providers import (
     Request,
     provider,
 )
+from nabu.audio.punctuation import with_final_stop
 from nabu.schema.models import (
     AudioIndex,
     AudioRejection,
@@ -268,6 +271,11 @@ def plan(
                     w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
                 )
                 items.append(Item(key, planned[0], planned[1], text))
+    if voice.finalStop and voice.reading == "text":
+        # Text with no final punctuation reads as a sentence (ADR 0063); spans are unaffected:
+        # the stop comes after the last word.
+        tag = orth.split("/")[0]
+        items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
     return items, skipped
 
 

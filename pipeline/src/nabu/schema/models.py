@@ -766,6 +766,12 @@ class AudioVoice(BaseModel):
             description='With reading "text": read the text with the vowel marks the course\'s vocalization gives (ADR 0053) rather than as the source writes it, for a voice whose model reads them (Lahgtna reads تشكيل). A change to the vocalization then changes the clips it touches.'
         ),
     ] = None
+    finalStop: Annotated[
+        bool | None,
+        Field(
+            description='With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
+        ),
+    ] = None
     pronounce: Annotated[
         str | None,
         Field(

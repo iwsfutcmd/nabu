@@ -1794,6 +1794,10 @@ export interface AudioVoice {
    */
   readonly vowelMarks?: boolean;
   /**
+   * With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.
+   */
+  readonly finalStop?: boolean;
+  /**
    * With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).
    */
   readonly pronounce?: string;
