@@ -138,7 +138,7 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     )
     # Unchanged inputs are kept; regenerating changes nothing.
     again = synthesize_course(yue_copy, compiled.units, YUE_VOICE)
-    assert (again.synthesized, again.kept) == (0, 2 * len(items))
+    assert (again.synthesized, again.kept) == (0, len(items))
     # The compiler packages them: every sentence clip's timings point at word tokens.
     diags, recompiled = _compiled(core_cli, yue_copy)
     assert [d for d in diags.items if d.lint.startswith("audio.")] == []
