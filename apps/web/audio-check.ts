@@ -4,7 +4,8 @@
  * the learners' bundles too, with what the round-trip check heard. Never part of a bundle.
  *
  * - The dev and preview servers serve it straight from courses/ (`audioCheck()`, a Vite plugin).
- * - `node audio-check.ts <dir>` writes it for a static site: Pages puts it beside the demo.
+ * - `node audio-check.ts <dir> [<bundles>]` writes it for a static site: Pages puts it beside the
+ *   demo. Clips the demo's bundles already carry are not copied again: the data points at them.
  */
 import { copyFileSync, createReadStream, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import type { ServerResponse } from "node:http";
@@ -21,6 +22,8 @@ export interface AudioCheckData {
   readonly course: string;
   readonly voices: readonly AudioVoice[];
   readonly index: AudioIndex;
+  /** Clips a bundle beside the app also carries, by file: their path from the app's base. */
+  readonly bundled?: Readonly<Record<string, string>>;
 }
 
 const COURSE = /^[a-z][a-z0-9-]*$/u;
@@ -90,17 +93,37 @@ export const audioCheck = (root: string = COURSES): Plugin => ({
   },
 });
 
-/** Writes every course's data, clips and reference voices under `out` (a static site). */
-export const writeAudioCheck = (out: string, root: string = COURSES): readonly string[] => {
+/**
+ * A clip's copy in the course's bundle, if `bundles` (the app's bundles/ directory) has it: bundles
+ * name their clips by sha256, and the bytes are the same (the compiler copies them).
+ */
+const bundledAt = (bundles: string, course: string, sha256: string): string | undefined => {
+  const path = `${course}/audio/${sha256.slice(0, 16)}.mp3`;
+  return existsSync(join(bundles, path)) ? `bundles/${path}` : undefined;
+};
+
+/**
+ * Writes every course's data, clips and reference voices under `out` (a static site). With
+ * `bundles`, the clips a bundle carries are left to it: Pages publishes far fewer files.
+ */
+export const writeAudioCheck = (out: string, root: string = COURSES, bundles?: string): readonly string[] => {
   const courses = coursesWithAudio(root);
   mkdirSync(out, { recursive: true });
   writeFileSync(join(out, "index.json"), JSON.stringify({ courses }));
   for (const course of courses) {
-    const data = dataOf(course, root);
+    const source = dataOf(course, root);
+    const bundled: Record<string, string> = {};
+    if (bundles !== undefined) {
+      for (const clip of source.index.clips) {
+        const at = bundledAt(bundles, course, clip.sha256);
+        if (at !== undefined) bundled[clip.file] = at;
+      }
+    }
+    const data: AudioCheckData = { ...source, bundled };
     const dir = join(out, course);
     mkdirSync(join(dir, "clips"), { recursive: true });
     writeFileSync(join(dir, "index.json"), JSON.stringify(data));
-    const files = [...data.index.clips.map((c) => c.file), ...(data.index.references ?? []).map((r) => r.file)];
+    const files = [...data.index.clips.map((c) => c.file).filter((f) => bundled[f] === undefined), ...(data.index.references ?? []).map((r) => r.file)];
     for (const file of files) {
       if (!FILE.test(file)) throw new Error(`${course}: unexpected audio file ${file}`);
       mkdirSync(join(dir, file, ".."), { recursive: true });
@@ -111,11 +134,11 @@ export const writeAudioCheck = (out: string, root: string = COURSES): readonly s
 };
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const out = process.argv[2];
+  const [out, bundles] = process.argv.slice(2);
   if (out === undefined) {
-    process.stderr.write("usage: node audio-check.ts <out-dir>\n");
+    process.stderr.write("usage: node audio-check.ts <out-dir> [<bundles-dir>]\n");
     process.exit(2);
   }
-  const written = writeAudioCheck(resolve(out));
+  const written = writeAudioCheck(resolve(out), COURSES, bundles === undefined ? undefined : resolve(bundles));
   process.stdout.write(`audio check: ${written.join(", ")} → ${out}\n`);
 }

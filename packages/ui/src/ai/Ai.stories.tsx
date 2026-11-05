@@ -10,6 +10,7 @@ import type { AiProvenance, Explanation, ExplanationOutput, TaggedText } from "@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useState, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
+import { BUNDLES } from "../demo/bundles.ts";
 import { fetchCourse, type LoadedCourse } from "../player/load.ts";
 import { ExplanationView, type Rating } from "./Explanation.tsx";
 import { RoleplayChat, type ChatTurn, type ScenarioCard } from "./Roleplay.tsx";
@@ -139,7 +140,7 @@ const meta = {
   loaders: [
     async ({ globals }) => {
       const [id, orthography] = COURSES[(globals as NabuGlobals).target];
-      return { course: await fetchCourse("bundles/", id, orthography) };
+      return { course: await fetchCourse(BUNDLES, id, orthography) };
     },
   ],
   parameters: { layout: "padded" },

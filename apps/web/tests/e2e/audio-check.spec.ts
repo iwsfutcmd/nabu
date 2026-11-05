@@ -3,11 +3,15 @@
  * judge. Verdicts are kept on the device and download as a file for `nabu audio verdicts`.
  * The preview server serves the clips from courses/ (audio-check.ts).
  */
-import { readFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
+import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import AxeBuilder from "@axe-core/playwright";
 import type { AudioVerdicts } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { parse } from "yaml";
+import { writeAudioCheck, type AudioCheckData } from "../../audio-check.ts";
 
 test.beforeEach(({ page: _ }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
@@ -72,4 +76,22 @@ test("a clip plays from the audio check", async ({ page }) => {
   const row = page.locator("[data-audio-item]").first();
   await row.locator("[data-action=play]").click();
   await expect(row.locator("[data-action=play]")).toHaveAttribute("data-playing", "true");
+});
+
+test("Pages' copy points at the clips the bundles carry and copies only the others", ({ page: _ }, info) => {
+  const out = info.outputPath("audio-check");
+  const bundles = fileURLToPath(new URL("../../public/bundles", import.meta.url));
+  writeAudioCheck(out, undefined, bundles);
+  const data = JSON.parse(readFileSync(join(out, "fa", "index.json"), "utf8")) as AudioCheckData;
+  const bundled = data.bundled ?? {};
+  expect(Object.keys(bundled).length).toBeGreaterThan(0);
+  const sha = (path: string): string => createHash("sha256").update(readFileSync(path)).digest("hex");
+  for (const clip of data.index.clips) {
+    const at = bundled[clip.file];
+    if (at === undefined) expect(sha(join(out, "fa", clip.file))).toBe(clip.sha256);
+    else {
+      expect(existsSync(join(out, "fa", clip.file))).toBe(false);
+      expect(sha(join(bundles, at.slice("bundles/".length)))).toBe(clip.sha256);
+    }
+  }
 });

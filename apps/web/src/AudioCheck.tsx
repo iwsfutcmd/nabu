@@ -248,7 +248,14 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
   const voice = data?.voices[0];
   const orthography = voice?.orthography ?? course.orthography;
   const ruby = rubySchemeOf(course.profiles.get(orthography)?.source) ?? false;
-  const url = useCallback((path: string): string => `${base}audio-check/${course.id}/${path}`, [base, course.id]);
+  const bundled = data?.bundled;
+  const url = useCallback(
+    (path: string): string => {
+      const inBundle = bundled?.[path];
+      return inBundle === undefined ? `${base}audio-check/${course.id}/${path}` : `${base}${inBundle}`;
+    },
+    [base, bundled, course.id],
+  );
   const rows = useMemo(() => (data === null || data === undefined ? [] : rowsOf(course, data.index.clips)), [course, data]);
 
   const judge = useCallback(
