@@ -1198,7 +1198,7 @@ export interface TokenReading {
  */
 export interface CorrectedForm {
   /**
-   * The whole sentence or line in this orthography, NFC.
+   * The whole sentence, line or word form in this orthography, NFC.
    */
   readonly text?: string;
   /**
@@ -1217,12 +1217,12 @@ export interface CorrectionFields {
     readonly [k: string]: CorrectedForm;
   };
   /**
-   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   * The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.
    */
   readonly translation?: string;
 }
 /**
- * A correction to one sentence or story line, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
+ * A correction to one sentence, story line or word, as the review queue keeps it (GET /admin/v1/corrections.jsonl) and as the app exports a device's own: one JSON object per line, what `nabu corrections apply` reads. Identical corrections from several learners are one row.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "SentenceCorrection".
@@ -1240,7 +1240,7 @@ export interface SentenceCorrection {
    */
   readonly bundle?: string;
   /**
-   * A sentence id, or a story id with `step`.
+   * A sentence id, a story id with `step`, or a word's KC id (ADR 0057).
    */
   readonly item: string;
   /**
@@ -2281,7 +2281,7 @@ export interface ProgressReset {
   readonly tz: string;
 }
 /**
- * A learner marked a sentence or a story line as incorrect and said what it should be (ADR 0051). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
+ * A learner marked a sentence, a story line or a word as incorrect and said what it should be (ADR 0051, 0057). A suggestion: it reaches the course only once a reviewer applies it (`nabu corrections apply`). A later report of the same item from the same device replaces this one. Projections of learning ignore it.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "SentenceReported".
@@ -2322,7 +2322,7 @@ export interface SentenceReported {
    */
   readonly tz: string;
   /**
-   * A sentence id, or a story id with `step`.
+   * A sentence id, a story id with `step`, or a word's KC id (ADR 0057).
    */
   readonly item: string;
   /**
@@ -2344,7 +2344,7 @@ export interface CorrectionFields1 {
     readonly [k: string]: CorrectedForm;
   };
   /**
-   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   * The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.
    */
   readonly translation?: string;
 }
@@ -2356,7 +2356,7 @@ export interface CorrectionFields2 {
     readonly [k: string]: CorrectedForm;
   };
   /**
-   * The translation in the support language, as displayed (a sentence's first accepted translation), NFC.
+   * The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.
    */
   readonly translation?: string;
 }
@@ -2680,7 +2680,7 @@ export interface Transliteration {
  */
 export interface Reports {}
 /**
- * A correction to a sentence or story line: what the device showed and what the learner changed (correction.schema.json).
+ * A correction to a sentence, story line or word: what the device showed and what the learner changed (correction.schema.json).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "CorrectionSubmission".
@@ -2697,7 +2697,7 @@ export interface CorrectionSubmission {
   readonly support: string;
   readonly bundle: string;
   /**
-   * The sentence id, or the story id for a story line.
+   * The sentence id, the story id for a story line, or a word's KC id.
    */
   readonly item: string;
   /**

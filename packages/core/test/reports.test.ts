@@ -98,6 +98,14 @@ describe("the GitHub issue", () => {
     expect(outsideCode).not.toContain("@octocat");
   });
 
+  it("a word's issue quotes its forms and its meaning", () => {
+    const word = submissionOf({ ...correction, course: "apc", orthography: "apc-Arab/standard" as OrthographyId, item: "sense:salon", shown: { forms: { "apc-Arab/standard": { text: "الصّالون" } }, translation: "living room" }, correction: { translation: "the living room" } });
+    const issue = issueOf(word, loadCourse("apc"));
+    expect(issueKeyOf(word)).toBe("apc/sense:salon");
+    expect(issue.body).toContain("- meaning: `\u2068living room\u2069`");
+    expect(issue.body).not.toContain("Accepted answers");
+  });
+
   it("says so when the bundle no longer has the item", () => {
     const issue = issueOf(submissionOf({ ...correction, item: "s.gone" }), loadCourse("fa"));
     expect(issue.body).toContain("The current bundle has no s.gone in fa");

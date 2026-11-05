@@ -48,8 +48,13 @@ Policies the pass adopted, to confirm or reverse:
 - **apc:**
   - The English progressive (*I'm eating*) is no longer accepted for b- verbs; عم carries it.
   - Initial ق in Arabizi is inconsistent (*ahwe* but *2arib*). Both are accepted; pick one.
-  - Some KC forms are inflected (بنتي, البيت) to keep glossary entries alive, so word cards show
-    them inflected.
+  - Word cards show a noun with its article (البيت, الصالون), as Arabic writes it alone. Five
+    forms carried a preposition or a possessive their gloss did not (بالصالون, بالليل, عالمطعم,
+    عالسوق, بنتي). The bare form is first now, and the attached one second, so a tap on it in a
+    sentence still glosses. Each bare form has a new sentence to check: s.fam.34, s.home.33,
+    s.time.27, s.past.30, s.past.31.
+  - The breakfast story line writes تِرْويقَة (*terwi2a*), as the vocalization and the Arabizi do;
+    *tarwi2a* is heard too.
   - Plural "you" (*baddkon*, إنتو) is not accepted.
   - Still open in the vocalization: الضهر, هيدا, ترويقة.
   - **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md)). 75 sentences say who speaks or who is

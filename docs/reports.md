@@ -1,7 +1,8 @@
 # Reports: from the app to GitHub issues
 
 Learners report problems in the app:
-- **"This sentence is wrong"**: a correction (ADR 0051);
+- **"This sentence is wrong"**, **"This word is wrong"** or, under match-the-pairs, **"One of these
+  is wrong"**: a correction (ADR 0051, 0057);
 - **"My answer should have been accepted"** or **"This should have been wrong"**: a claim
   (ADR 0052).
 
@@ -14,8 +15,8 @@ in this repository, with no account needed ([ADR 0055](adr/0055-report-intake.md
    - **Offline.** It waits on the device and goes once the device is back online.
 2. **A workflow files it.** Every 30 minutes, the **Reports** workflow
    (`.github/workflows/reports.yml`) reads new reports with a service account.
-   - **One issue per sentence or story line.** It quotes the item from the bundle, with its
-     accepted answers. The first report opens the issue; later ones are comments, and a closed
+   - **One issue per sentence, story line or word.** It quotes the item from the bundle, with its
+     accepted answers (a word: its forms and its meaning). The first report opens the issue; later ones are comments, and a closed
      issue is reopened.
    - **Labels:** `report`, `course:<id>`, and `correction`, `should-accept` or `should-reject`.
    - **Applying a correction.** A correction's comment holds the row

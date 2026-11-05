@@ -1,8 +1,8 @@
 /**
- * The correction form (ADR 0051): a learner says what a sentence or story line should be. It
- * starts from what the course has (or from the learner's own earlier correction) and records
- * only what they change: the text in every orthography the course is taught in, each word's
- * pinned reading (Jyutping), the translation, and a note for the reviewer.
+ * The correction form (ADR 0051): a learner says what a sentence, story line or word (ADR 0057)
+ * should be. It starts from what the course has (or from the learner's own earlier correction)
+ * and records only what they change: the text in every orthography the course is taught in, each
+ * word's pinned reading (Jyutping), the translation (a word's meaning), and a note for the reviewer.
  *
  * - Every field takes its text's own `lang` and `dir` (from the script, never the UI) and font;
  *   the course's text is shown beside it through <T>.
@@ -88,6 +88,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
     else setError(made.error);
   };
   const translation: TaggedText | undefined = target.translation;
+  const word = target.kind === "word";
 
   return (
     <form
@@ -96,6 +97,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
       data-correction-form=""
       data-item={target.item}
       data-step={target.step}
+      data-kind={target.kind}
       onSubmit={(e) => {
         e.preventDefault();
         send();
@@ -104,7 +106,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
       <h2 className={styles.heading} id={headingId}>
         {t.format("corrections.title")}
       </h2>
-      <p className={styles.muted}>{t.format("corrections.intro")}</p>
+      <p className={styles.muted}>{t.format(word ? "corrections.word.intro" : "corrections.intro")}</p>
 
       {orthographiesOf(course, target).map((o) => {
         const text = target.forms[o];
@@ -115,7 +117,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
         return (
           <div key={o} className={styles.field} data-orthography={o}>
             <TextField className={styles.field} value={form.text} onChange={(v) => setForm(o, { text: v })} isInvalid={errorOf(`text:${o}`) !== undefined}>
-              <Label className={styles.label}>{t.format("corrections.text", { orthography: orthographyName(o) })}</Label>
+              <Label className={styles.label}>{t.format(word ? "corrections.word.text" : "corrections.text", { orthography: orthographyName(o) })}</Label>
               <TextArea className={styles.input} lang={text.lang} dir={directionOf(text.lang)} rows={2} spellCheck={false} style={fieldStyle(text.lang, profile?.fonts)} data-field="correction-text" {...ime} />
               <Text slot="description" className={styles.now} data-ink-container={`now:${o}`}>
                 {t.format("corrections.now")} <T text={text} />
@@ -152,7 +154,7 @@ export const CorrectionForm = ({ course, target, previous, onSubmit, onCancel }:
 
       {translation !== undefined && (
         <TextField className={styles.field} value={draft.translation} onChange={(v) => edit({ ...draft, translation: v })} isInvalid={errorOf("translation") !== undefined}>
-          <Label className={styles.label}>{t.format("corrections.translation")}</Label>
+          <Label className={styles.label}>{t.format(word ? "corrections.word.meaning" : "corrections.translation")}</Label>
           <TextArea className={styles.input} lang={translation.lang} dir={directionOf(translation.lang)} rows={2} style={fieldStyle(translation.lang)} data-field="correction-translation" {...ime} />
           <Text slot="description" className={styles.now} data-ink-container="now:translation">
             {t.format("corrections.now")} <T text={translation} />

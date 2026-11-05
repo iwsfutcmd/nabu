@@ -2,10 +2,13 @@
 
 from __future__ import annotations
 
+import unicodedata
 from collections import Counter
 from typing import Any, cast
 
 import pytest
+import regex
+import yaml
 
 from nabu.analyzers import analyzers_by_tool
 from nabu.compiler import Diagnostics, compile_course, load_profiles
@@ -198,3 +201,60 @@ def test_select_image_has_licensed_pictures(core_cli: CoreCli, course: str) -> N
     assert len(pictured) >= 3, [k["id"] for k in pictured]
     assert all(k["image"] in compiled.images for k in pictured)
     assert all(license_ == "CC0-1.0" for _, license_, _ in compiled.images.values())
+
+
+VOCALIZED = {"fa": "fa-Arab/standard", "apc": "apc-Arab/standard"}
+
+
+def _texts(node: Any, orth: str) -> list[list[dict[str, Any]]]:
+    """Every TaggedText in `orth` under a compiled unit: sentences, story lines, word forms."""
+    if isinstance(node, dict):
+        node = cast(dict[str, Any], node)
+        if node.get("orthography") == orth and isinstance(node.get("tokens"), list):
+            return [cast(list[dict[str, Any]], node["tokens"])]
+        return [t for v in node.values() for t in _texts(v, orth)]
+    if isinstance(node, list):
+        return [t for v in cast(list[Any], node) for t in _texts(v, orth)]
+    return []
+
+
+@pytest.mark.parametrize("course", sorted(VOCALIZED))
+def test_every_word_the_vocalization_knows_is_marked(core_cli: CoreCli, course: str) -> None:
+    """With "Show vowel marks" on, every letter the course's vocalization marks carries a mark,
+    wherever the word is: written with a shadda, cut into morphs, a word form, a character's name.
+    Marks the source writes itself win (بدِّك, to a woman), and so does a token's own `vocalized`."""
+    orth = VOCALIZED[course]
+    _, compiled = build(core_cli, course)
+    profile = PROFILES[orth]
+    assert profile.match and profile.match.marks
+    marks = regex.compile(profile.match.marks.set)
+    root = COURSES / course
+    source = yaml.safe_load((root / "vocalization.yaml").read_text(encoding="utf-8"))
+    words = {
+        marks.sub("", unicodedata.normalize("NFC", k)): unicodedata.normalize("NFC", v)
+        for k, v in source["words"].items()
+    }
+    units = "".join(p.read_text(encoding="utf-8") for p in sorted((root / "units").glob("*.yaml")))
+    pinned = {
+        unicodedata.normalize("NFC", v)
+        for v in regex.findall(r"vocalized: ['\"]?([^,}'\"]+)", units)
+    }
+    unmarked: list[str] = []
+    seen = 0
+    for unit in compiled.units:
+        for tokens in _texts(unit, orth):
+            for t in tokens:
+                if t["kind"] != "word" or t["surface"] in pinned:
+                    continue
+                want = words.get(marks.sub("", t["surface"]))
+                if want is None:
+                    continue
+                seen += 1
+                have = regex.findall(r"\X", t["surface"])
+                need = regex.findall(r"\X", want)
+                if len(have) != len(need) or any(
+                    marks.search(b) and not marks.search(a) for a, b in zip(have, need, strict=True)
+                ):
+                    unmarked.append(f"{unit['id']}: {t['surface']} (wants {want})")
+    assert seen > 100
+    assert unmarked == [], "\n".join(unmarked)

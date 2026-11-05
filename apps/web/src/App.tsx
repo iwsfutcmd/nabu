@@ -24,7 +24,7 @@ import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type 
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
-import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { reportIntake } from "./reports.ts";
 import { CardsPage, debugOn } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
@@ -500,7 +500,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
           return (
             <>
               <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />
-              <MarkIncorrect key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} item={ex.item} corrections={corrections} />
+              <MarkExercise key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} ex={ex} corrections={corrections} />
             </>
           );
         }}

@@ -46,7 +46,8 @@ jobs:
         env:
           PROJECT: ${{ vars.NABU_FIREBASE_PROJECT }}
           API_KEY: ${{ vars.NABU_FIREBASE_API_KEY }}
-        run: node -e 'process.stdout.write(JSON.stringify({ firestore: { project: process.env.PROJECT, apiKey: process.env.API_KEY } }))' > site/demo/reports.json
+        run: |
+          node -e 'process.stdout.write(JSON.stringify({ firestore: { project: process.env.PROJECT, apiKey: process.env.API_KEY } }))' > site/demo/reports.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

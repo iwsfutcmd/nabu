@@ -12,6 +12,9 @@ comments and formatting stay:
 - **Translation**: a sentence's first accepted translation, edited inside its accept notation when
   the change touches only plain text (`(Hello|Hi), Maryam!` keeps its alternatives); otherwise
   the line is replaced and the variants it accepted are flagged. A story line's, replaced.
+- **Words** (ADR 0057): a KC's first form in an orthography (what word exercises show) and its
+  gloss. Sentences and stories that write the word are listed to check, not changed. A word's
+  reading comes from the sentences that pin it, so a reading correction is left for a person.
 
 Every edit first checks that the source still says what the learner saw (`shown`); if not, the
 correction is skipped with the reason, never applied to text it was not about. Nothing is dropped
@@ -143,11 +146,12 @@ def _apply_edits(text: str, edits: list[Edit]) -> str:
 
 @dataclass
 class Entry:
-    """A sentence, or a story step's `line`, in its unit file."""
+    """A sentence, a story step's `line`, or a word (a KC), in its unit file."""
 
     file: Path
     node: yaml.MappingNode
     line: int
+    word: bool = False
 
     def where(self, root: Path) -> str:
         try:
@@ -164,6 +168,9 @@ def locate(units: list[Path], texts: dict[Path, str], item: str, step: int | Non
             for s in _items(_get(root, "sentences")):
                 if _scalar(_get(s, "id")) == item and isinstance(s, yaml.MappingNode):
                     return Entry(file, s, s.start_mark.line + 1)
+            for k in _items(_get(root, "kcs")):
+                if _scalar(_get(k, "id")) == item and isinstance(k, yaml.MappingNode):
+                    return Entry(file, k, k.start_mark.line + 1, word=True)
         else:
             for story in _items(_get(root, "stories")):
                 if _scalar(_get(story, "id")) != item:
@@ -366,9 +373,67 @@ def _label(row: SentenceCorrection) -> str:
     return row.item if row.step is None else f"{row.item} step {row.step}"
 
 
+def _apply_word(row: SentenceCorrection, entry: Entry, text: str) -> tuple[list[Edit], Applied]:
+    """A word: its first form in each orthography, and its gloss (ADR 0057)."""
+    applied = Applied(row, "")
+    edits: list[Edit] = []
+    fixed, shown = row.correction, row.shown
+    forms = _get(entry.node, "forms")
+    for orth, change in (fixed.forms or {}).items():
+        if change.readings:
+            raise Conflict(
+                f"{orth}: a word's reading comes from the sentences that pin it: correct it there"
+            )
+        if change.text is None:
+            continue
+        listed = _items(_get(forms, str(orth)))
+        first = listed[0] if listed else None
+        current = _scalar(first)
+        before = (shown.forms or {}).get(orth)
+        if first is None or current is None or before is None or before.text is None:
+            raise Conflict(f"no {orth} form in the source")
+        unmark = unmarker(str(orth))
+        if unmark(_nfc(current)) != unmark(_nfc(before.text)):
+            raise Conflict(f"the source changed since: {orth} now reads {current!r}")
+        new = change.text
+        if unmark(new) == unmark(current):
+            raise Conflict(
+                f"{orth}: only vowel marks changed: correct them in the course's vocalization"
+            )
+        if unmark(current) == current and unmark(new) != new:
+            new = unmark(new)
+            applied.checks.append(
+                f"{orth}: the correction's vowel marks were left to the vocalization: "
+                f"are they right? The learner wrote {change.text!r}"
+            )
+        edits.append(_replace(first, new, text, flow=_flow(_get(forms, str(orth)))))
+        applied.changes.append(f"{orth} form: {current} → {new}")
+        applied.checks.append(
+            f"{orth}: sentences, stories and the vocalization that write {current!r} "
+            "may need the same change"
+        )
+    if fixed.translation is not None:
+        gloss = _get(entry.node, "gloss")
+        node = _get(gloss, row.support)
+        current = _scalar(node)
+        if node is None or current is None:
+            raise Conflict(f"no {row.support} gloss in the source")
+        if _nfc(current) != _nfc(shown.translation or ""):
+            raise Conflict(f"the source changed since: the gloss now reads {current!r}")
+        edits.append(_replace(node, fixed.translation, text, flow=_flow(gloss)))
+        applied.changes.append(f"gloss: {current} → {fixed.translation}")
+    if not edits:
+        raise Conflict(
+            "nothing to change: a note only" + (f" ({'; '.join(row.notes)})" if row.notes else "")
+        )
+    return edits, applied
+
+
 def _apply_one(
     row: SentenceCorrection, entry: Entry, text: str, cli: Any
 ) -> tuple[list[Edit], Applied]:
+    if entry.word:
+        return _apply_word(row, entry, text)
     applied = Applied(row, "")
     edits: list[Edit] = []
     fixed = row.correction
@@ -562,7 +627,7 @@ def summary(outcome: Outcome) -> str:
         return f"<bdi>{html.escape(s)}</bdi>"
 
     lines = ["## Apply corrections to the course source", ""]
-    lines += ["Corrections learners made to sentences and story lines (ADR 0051).", ""]
+    lines += ["Corrections learners made to sentences, story lines and words (ADR 0051).", ""]
     for a in outcome.applied:
         lines.append(
             f"- **{a.row.course} `{_label(a.row)}`** (`{a.where}`, {a.row.reports} learner(s))"

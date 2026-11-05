@@ -60,12 +60,13 @@ def _public(tagged: dict[str, Any]) -> dict[str, Any]:
 
 class _Compiler:
     def __init__(self, ctx: Ctx, course: CourseSource, units: list[Unit]) -> None:
-        from nabu.compiler.build import compile_form, support_key, support_text
+        from nabu.compiler.build import compile_form, marked, support_key, support_text
 
         self.ctx = ctx
         self.course = course
         self.compile_form: Callable[..., dict[str, Any] | None] = compile_form
         self.support_text: Callable[..., dict[str, Any]] = support_text
+        self.marked: Callable[..., dict[str, Any]] = marked
         self.support_keys = [support_key(ctx, o) for o in course.support]
         self.support_by_key = dict(zip(self.support_keys, course.support, strict=True))
         self.nodes: dict[str, tuple[int, str]] = {}
@@ -125,8 +126,11 @@ class _Compiler:
             characters.append(
                 {
                     "id": character.id,
+                    # A name takes its vowel marks as any word does (ADR 0053).
                     "name": {
-                        o: self.support_text(self.ctx, o, n, self.course.target)
+                        o: self.marked(
+                            self.ctx, o, self.support_text(self.ctx, o, n, self.course.target), None
+                        )
                         for o, n in names.items()
                         if o in orths
                     },

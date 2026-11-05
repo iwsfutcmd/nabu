@@ -8,8 +8,8 @@ cefr: A2
 kcs:
 - {id: 'form:past-1sg', gloss: {en: '-t: I (past)'}, notes: {en: 'ru7t: I went; akalt: I ate. The same word means ''you (a man)'': context decides.'}}
 - {id: 'sense:mbere7', gloss: {en: yesterday}, forms: {apc-Arab/standard: [مبارح], apc-Latn/arabizi: [mbere7]}}
-- {id: 'sense:mat3am', gloss: {en: restaurant}, forms: {apc-Arab/standard: [عالمطعم], apc-Latn/arabizi: [mat3am]}}
-- {id: 'sense:sou2', gloss: {en: market}, forms: {apc-Arab/standard: [عالسوق], apc-Latn/arabizi: [sou2]}}
+- {id: 'sense:mat3am', gloss: {en: restaurant}, forms: {apc-Arab/standard: [المطعم, عالمطعم], apc-Latn/arabizi: [mat3am]}}
+- {id: 'sense:sou2', gloss: {en: market}, forms: {apc-Arab/standard: [السوق, عالسوق], apc-Latn/arabizi: [sou2]}}
 - {id: 'form:past-2ms', gloss: {en: '-t: you (past, to a man)'}, notes: {en: 'shu 3melt? What did you do? Spelled like ''I'': ru7t, 3melt.'}}
 - {id: 'sense:eshtara', gloss: {en: buy}, forms: {apc-Arab/standard: [اشتريت], apc-Latn/arabizi: [eshtarit]}}
 - {id: 'sense:zar', gloss: {en: visit}, forms: {apc-Arab/standard: [زرت], apc-Latn/arabizi: [zert]}}
@@ -541,6 +541,34 @@ sentences:
     en: |-
       I (travelled|traveled) yesterday.
       I went (away|on a trip) yesterday.
+- id: s.past.30
+  node: apc.past.i-went
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المطعم قريب.
+      tokens: [{surface: المطعم, sense: mat3am, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مطعم, kc: 'sense:mat3am'}]}, {surface: قريب, sense: 2arib}]
+      reverse: المطعم قريب
+    apc-Latn/arabizi:
+      text: el mat3am 2arib.
+      tokens: [{surface: el, sense: el}, {surface: mat3am, sense: mat3am}, {surface: 2arib, sense: 2arib}]
+      reverse: (el|l|il) (mat3am|mat3em) (2arib|arib|2rib|2areeb|areeb)
+  translations:
+    en: The restaurant is (close|near|nearby|close by).
+- id: s.past.31
+  node: apc.past.i-went
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: السوق بعيد.
+      tokens: [{surface: السوق, sense: sou2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سوق, kc: 'sense:sou2'}]}, {surface: بعيد, sense: b3id}]
+      reverse: السوق بعيد
+    apc-Latn/arabizi:
+      text: el sou2 b3id.
+      tokens: [{surface: el, sense: el}, {surface: sou2, sense: sou2}, {surface: b3id, sense: b3id}]
+      reverse: (el|l|il) (sou2|souk|souq) (b3id|ba3id|b3eed)
+  translations:
+    en: The market is (far|far away).
 stories:
 - id: apc.story.weekend
   node: apc.past.story
@@ -591,8 +619,8 @@ stories:
       distractors: ['sense:ghada', 'sense:man2oushe']
       forms:
         apc-Arab/standard:
-          text: إيه، كْتير! أَكَلْنا تَرْويقَة طَيّْبِة وشْرِبْنا قَهْوِة.
-          tokens: [{surface: إيه, sense: eh}, {surface: كْتير, sense: ktir}, {surface: أَكَلْنا, sense: akal, form: 'form:past-1pl'}, {surface: تَرْويقَة, sense: terwi2a}, {surface: طَيّْبِة, sense: tayyeb,
+          text: إيه، كْتير! أَكَلْنا تِرْويقَة طَيّْبِة وشْرِبْنا قَهْوِة.
+          tokens: [{surface: إيه, sense: eh}, {surface: كْتير, sense: ktir}, {surface: أَكَلْنا, sense: akal, form: 'form:past-1pl'}, {surface: تِرْويقَة, sense: terwi2a}, {surface: طَيّْبِة, sense: tayyeb,
               form: 'form:fem'}, {surface: وشْرِبْنا, sense: shereb, form: 'form:past-1pl', morphs: [{surface: و, kc: 'sense:w'}, {surface: شْرِبْنا, kc: 'sense:shereb'}]}, {surface: قَهْوِة, sense: ahwe}]
         apc-Latn/arabizi:
           text: eh, ktir! akalna terwi2a tayybe w shrebna ahwe.

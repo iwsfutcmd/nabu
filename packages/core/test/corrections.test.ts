@@ -2,9 +2,9 @@
  * Corrections (ADR 0051): what a device shows of a sentence or story line, a learner's draft
  * turned into a correction (only what changed, NFC), and a device's own corrections as rows.
  */
-import type { LearnerEvent, SentenceReported } from "@nabu/schema";
+import type { KcId, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { correctable, correctablesByUnit, correctionKey, correctionOf, correctionRows, draftFrom, jsonLines, latestCorrections, sentenceReportedOf, shownOf, CORRECTION_LIMITS } from "../src/corrections/index.ts";
+import { correctable, correctablesByUnit, correctablesOf, correctionKey, correctionOf, correctionRows, draftFrom, jsonLines, latestCorrections, sentenceReportedOf, shownOf, CORRECTION_LIMITS } from "../src/corrections/index.ts";
 import { replay, type EventMeta } from "../src/learner/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
@@ -12,6 +12,7 @@ const ZWNJ = "‌";
 const yue = loadCourse("yue");
 const uz = loadCourse("uz", "uz-Latn/standard");
 const fa = loadCourse("fa");
+const apc = loadCourse("apc");
 
 const meta = (n: number, clientTime = `2026-05-0${String(n)}T10:00:00.000+02:00`): EventMeta => ({
   id: `00000000-0000-7000-8000-${String(n).padStart(12, "0")}`,
@@ -58,10 +59,38 @@ describe("what can be corrected", () => {
     const step = story.steps.findIndex((s) => s.line !== undefined);
     const line = correctable(uz, story.id, step);
     expect(line?.step).toBe(step);
-    expect(Object.keys(shownOf(line ?? { item: "", forms: {}, translation: undefined }).forms ?? {}).sort()).toEqual(["uz-Cyrl/standard", "uz-Latn/standard"]);
+    expect(line?.kind).toBe("line");
+    expect(Object.keys(shownOf(line ?? { kind: "line", item: "", forms: {}, translation: undefined }).forms ?? {}).sort()).toEqual(["uz-Cyrl/standard", "uz-Latn/standard"]);
     expect(correctable(uz, story.id, story.steps.length)).toBeUndefined();
     expect(correctable(yue, "drill.numbers.6")).toBeUndefined();
     expect(correctable(yue, "no-such-sentence")).toBeUndefined();
+  });
+});
+
+describe("a word can be corrected (ADR 0057)", () => {
+  it("shows the form word exercises show, in every orthography, and its gloss as the meaning", () => {
+    const salon = correctable(apc, "sense:salon");
+    expect(salon?.kind).toBe("word");
+    expect(shownOf(salon ?? { kind: "word", item: "", forms: {}, translation: undefined })).toEqual({
+      forms: { "apc-Arab/standard": { text: "الصّالون" }, "apc-Latn/arabizi": { text: "salon" } },
+      translation: "living room",
+    });
+    // A sentence id still finds the sentence; a KC with no forms (a grammar form) is not a word.
+    expect(correctable(apc, "s.home.15")?.kind).toBe("sentence");
+    expect(correctable(apc, "form:poss-1sg")).toBeUndefined();
+  });
+
+  it("carries Cantonese readings on a word, as its exercises show them", () => {
+    const word = correctable(yue, "sense:唔該");
+    expect(word === undefined ? undefined : shownOf(word).forms?.["yue-Hant-HK/standard"]?.readings).toEqual([{ token: 0, surface: "唔該", scheme: "jyutping", reading: "m4 goi1" }]);
+  });
+
+  it("an exercise offers its sentence or word; match-pairs, each pair's word", () => {
+    const kcs = (...ids: string[]): KcId[] => ids as KcId[];
+    expect(correctablesOf(apc, { template: "translate-tap.l1-l2", item: "s.home.15", kcs: kcs("sense:wen", "sense:7ammem") }).map((c) => c.item)).toEqual(["s.home.15"]);
+    expect(correctablesOf(apc, { template: "select-image", item: "sense:salon", kcs: kcs("sense:salon") }).map((c) => c.item)).toEqual(["sense:salon"]);
+    const pairs = kcs("sense:fi", "sense:ghorfe", "sense:matbakh", "sense:salon", "sense:7ammem");
+    expect(correctablesOf(apc, { template: "match-pairs", item: "sense:fi", kcs: pairs }).map((c) => c.item)).toEqual(pairs);
   });
 });
 

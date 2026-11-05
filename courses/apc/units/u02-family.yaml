@@ -31,7 +31,7 @@ kcs:
 - {id: 'sense:zghir', gloss: {en: small; little; young}, forms: {apc-Arab/standard: [زغير, زغيرة], apc-Latn/arabizi: [zghir, zghire]}}
 - {id: 'form:fem', gloss: {en: '-e / -a: feminine ending on an adjective'}, notes: {en: 'kbir → kbire, zghir → zghire. Arabic script: ة (كبيرة).'}}
 - {id: 'sense:ebn', gloss: {en: son}, forms: {apc-Arab/standard: [إبن], apc-Latn/arabizi: [ebn]}}
-- {id: 'sense:bent', gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنتي], apc-Latn/arabizi: [bent]}}
+- {id: 'sense:bent', gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنت, بنتي], apc-Latn/arabizi: [bent]}}
 - {id: 'sense:7elo', gloss: {en: nice; pretty; sweet}, forms: {apc-Arab/standard: [حلو, حلوة], apc-Latn/arabizi: [7elo, 7elwe]}}
 - {id: 'sense:wlad', gloss: {en: children; kids}, forms: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}}
 nodes:
@@ -593,6 +593,22 @@ sentences:
       Do you have a big family?
       Have you got a big family?
       Is your family big?
+- id: s.fam.34
+  node: apc.fam.children
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عندي بنت.
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بنت, sense: bent}]
+      reverse: (عندي|أنا عندي) بنت
+    apc-Latn/arabizi:
+      text: 3endi bent.
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: bent, sense: bent}]
+      reverse: ((3endi|3ende|3andi|3indi)|ana (3endi|3ende|3andi|3indi)) (bent|bint)
+  translations:
+    en: |-
+      I have a (daughter|girl).
+      I've got a (daughter|girl).
 stories:
 - id: apc.story.family
   node: apc.fam.story

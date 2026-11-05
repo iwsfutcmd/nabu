@@ -5,6 +5,10 @@ declare const styles: {
   readonly back: string;
   readonly button: string;
   readonly check: string;
+  readonly choice: string;
+  readonly choiceMeaning: string;
+  readonly choiceWord: string;
+  readonly choices: string;
   readonly count: string;
   readonly course: string;
   readonly courseName: string;
