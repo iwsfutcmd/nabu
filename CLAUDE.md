@@ -107,7 +107,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
 - Audio check (ADR 0060): `#/<course>/<orth>/audio` (debug link) plays every clip, held-back ones too; clips come from
   courses/ via apps/web/audio-check.ts (Vite plugin; Pages writes a copy), never from bundles. Its verdicts file goes
-  through `nabu audio verdicts <course> <file> --reviewer human:<id>`: right → reviewed (ships), wrong → rejected (held).
+  through `nabu audio verdicts <course> <file> --reviewer human:<id>`: right → reviewed (ships), wrong → rejected (held);
+  the next `generate` makes a rejected clip again as its next take (another seed; seeded voices only).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
 - Hosted voices (ADR 0042): provider elevenlabs/cartesia with `model` and `language`. Keys only from the environment

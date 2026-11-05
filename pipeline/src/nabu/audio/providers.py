@@ -61,6 +61,9 @@ class Request:
     voice: str
     #: Relative speed: 1 normal, below 1 slower.
     rate: float = 1.0
+    #: Which attempt (ADR 0060): a clip a listener rejected is made again with the next take,
+    #: which a seeded provider samples with another seed.
+    take: int = 0
 
 
 @dataclass(frozen=True)
@@ -85,6 +88,8 @@ class Clip:
 
 class Provider(Protocol):
     name: str
+    #: Whether its audio depends on a seed (`seed_of`): only then does a new take sound different.
+    seeded: bool
 
     def version(self) -> str: ...
 
@@ -101,6 +106,7 @@ class Provider(Protocol):
 
 class EspeakProvider:
     name = "espeak-ng"
+    seeded = False
 
     def version(self) -> str:
         return espeak.version()
@@ -128,6 +134,7 @@ class PiperProvider:
     """Piper voices by id ("fa_IR-amir-medium"), downloaded from the rhasspy/piper-voices repo."""
 
     name = "piper"
+    seeded = False
 
     def version(self) -> str:
         from importlib.metadata import version
@@ -249,6 +256,7 @@ class ElevenLabsProvider:
     """Eleven v4 by voice_id, through the with-timestamps endpoint (PCM 22.05 kHz)."""
 
     name = "elevenlabs"
+    seeded = True
     API = "https://api.elevenlabs.io"
     KEY = "ELEVENLABS_API_KEY"
     MIN_SPEED, MAX_SPEED = 0.7, 1.2
@@ -322,6 +330,7 @@ class CartesiaProvider:
     """Sonic by voice id, through the server-sent-events endpoint with word timestamps."""
 
     name = "cartesia"
+    seeded = False
     API = "https://api.cartesia.ai"
     KEY = "CARTESIA_API_KEY"
     API_VERSION = "2026-08-14"
@@ -407,8 +416,12 @@ class CartesiaProvider:
 
 
 def seed_of(request: Request) -> int:
-    """Best-effort determinism: the same voice, input and rate ask for the same seed."""
-    key = json.dumps([request.voice, request.input, request.rate], ensure_ascii=False)
+    """Best-effort determinism: the same voice, input, rate and take ask for the same seed. A
+    first take keeps the seed clips had before takes existed."""
+    fields: list[Any] = [request.voice, request.input, request.rate]
+    if request.take:
+        fields.append(request.take)
+    key = json.dumps(fields, ensure_ascii=False)
     return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
 
 
@@ -518,6 +531,7 @@ class OmniVoiceProvider:
     rate and settings give the same clip on the same kind of machine and library versions."""
 
     name = "omnivoice"
+    seeded = True
     #: Decoding steps and guidance: OmniVoice's defaults, pinned so a change of defaults cannot
     #: change new clips silently.
     NUM_STEP = 32
@@ -718,6 +732,7 @@ class NavoiyProvider:
     per clip (`seed_of`); the instruction asks for its calm style. No timings."""
 
     name = "navoiy"
+    seeded = True
     #: The checkpoint's "calm" (xotirjam) preset, word for word from its emotions_40h.json:
     #: an even, neutral voice for learners.
     STYLE = "calm"

@@ -373,6 +373,22 @@ def _entry(
     return entry
 
 
+def take_field(take: int) -> dict[str, Any]:
+    """The take as part of a clip's identity: absent for a first take, so clips made before
+    takes existed keep their identities."""
+    return {"take": take} if take else {}
+
+
+def take_of(old: Any, item: Item, tts: Provider) -> int:
+    """Which take an item's clip is at (ADR 0060). A clip a listener rejected gets the next one,
+    if its provider samples with a seed (another take of eSpeak NG would sound the same);
+    otherwise the take of the clip there is, for the same input."""
+    if old is None or old.synthesis is None or old.synthesis.input != item.input:
+        return 0
+    take = old.synthesis.take or 0
+    return take + 1 if old.rejected is not None and getattr(tts, "seeded", False) else take
+
+
 def synthesize_course(
     course_dir: Path,
     units: list[dict[str, Any]],
@@ -392,13 +408,16 @@ def synthesize_course(
     human = [c for c in index.clips if not c.synthetic]
     previous = {(c.item, c.speed): c for c in index.clips if c.synthetic}
     report = Report(skipped=skipped)
-    wanted: list[tuple[Item, str, float, str]] = []
+    wanted: list[tuple[Item, str, float, str, int]] = []
     kept: list[Any] = []
     for item in items:
         for speed, requested in (("normal", 1.0), ("slow", SLOW)):
             rate = tts.speed(requested)
-            ident = identity(tts.name, version, voice.voice, item.input, rate, settings)
             old = previous.get((item.item, speed))
+            take = take_of(old, item, tts)
+            ident = identity(
+                tts.name, version, voice.voice, item.input, rate, settings | take_field(take)
+            )
             if (
                 old is not None
                 and old.synthesis is not None
@@ -407,7 +426,7 @@ def synthesize_course(
             ):
                 kept.append(old)
                 continue
-            wanted.append((item, speed, rate, ident))
+            wanted.append((item, speed, rate, ident, take))
     author = f"generated:{tts.name}@{version}"
     fresh: list[dict[str, Any]] = []
     # Everything but the clips (the reference voices) is kept as it was.
@@ -423,7 +442,7 @@ def synthesize_course(
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
         waiting = [
-            previous[(i.item, sp)] for i, sp, _, _ in wanted[done:] if (i.item, sp) in previous
+            previous[(i.item, sp)] for i, sp, _, _, _ in wanted[done:] if (i.item, sp) in previous
         ]
         clips = [*dump([*human, *kept, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
@@ -433,13 +452,16 @@ def synthesize_course(
     for start in range(0, len(wanted), BATCH):
         batch = wanted[start : start + BATCH]
         clips = tts.synthesize(
-            [Request(item.input, voice.voice, rate) for item, _, rate, _ in batch]
+            [Request(item.input, voice.voice, rate, take) for item, _, rate, _, take in batch]
         )
-        for (item, speed, rate, ident), clip in zip(batch, clips, strict=True):
+        for (item, speed, rate, ident, take), clip in zip(batch, clips, strict=True):
             if len(clip.pcm) < 2:
                 report.silent.append(f"{item.item} ({speed})")
                 continue
-            fresh.append(_entry(item, speed, rate, ident, clip, tts, voice, author, adir, check))
+            entry = _entry(item, speed, rate, ident, clip, tts, voice, author, adir, check)
+            if take:
+                entry["synthesis"]["take"] = take
+            fresh.append(entry)
         save(start + len(batch))
     report.synthesized = len(fresh)
     report.kept = len(kept)
