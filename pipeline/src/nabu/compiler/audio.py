@@ -4,9 +4,9 @@ The compiler never synthesizes: `nabu audio` writes clips and audio/index.yaml, 
 checked in, and this stage only reads them, so builds stay deterministic and need no speech
 model. It checks that every clip exists with its recorded hash, carries a license and
 provenance, is not synthetic in a human-required course, still matches what the voice would
-read now (a changed reading makes a clip stale), and that its timings point at word tokens of
-its sentence. Clips the round-trip check failed stay out of the bundle until a human marks
-them reviewed.
+read now (a changed reading makes a clip stale) and the reference voice it cloned (ADR 0058),
+and that its timings point at word tokens of its sentence. Clips the round-trip check failed
+stay out of the bundle until a human marks them reviewed.
 """
 
 from __future__ import annotations
@@ -94,6 +94,18 @@ def check_audio(
         and c.qa.status == "fail"
         and c.provenance.status not in ("reviewed", "published")
     }
+    # Reference voices a cloning provider imitates: each must be its recorded file.
+    references: dict[str, str] = {}
+    for i, ref in enumerate(index.references or []):
+        file = adir / ref.file
+        if not file.exists() or hashlib.sha256(file.read_bytes()).hexdigest() != ref.sha256:
+            ctx.diags.report(
+                "audio.missing-file",
+                f"reference voice {ref.id}: {ref.file} is missing or does not match its sha256",
+                doc.loc("references", i),
+            )
+            continue
+        references[ref.id] = ref.sha256
     held = 0
     items: dict[str, dict[str, Any]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
@@ -130,6 +142,15 @@ def check_audio(
                     f"{clip.item}: synthesized by {clip.synthesis.provider} "
                     f"({clip.synthesis.voice}), which is no longer in the course's cast; "
                     "run `nabu audio generate`",
+                    loc,
+                )
+                continue
+            cloned = (clip.synthesis.settings or {}).get("reference")
+            if cloned is not None and references.get(clip.synthesis.voice) != cloned:
+                ctx.diags.report(
+                    "audio.stale",
+                    f"{clip.item}: cloned from an earlier reference voice "
+                    f"({clip.synthesis.voice}); run `nabu audio generate`",
                     loc,
                 )
                 continue

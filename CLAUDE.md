@@ -97,7 +97,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
-- Synthesize from pinned readings (Jyutping), never raw characters. apc is human-required: `nabu audio ingest`.
+- Synthesize from pinned readings (Jyutping), never raw characters. Human recordings: `nabu audio ingest`.
+- apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
+  vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
+  (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
@@ -200,7 +203,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0056 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0058 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

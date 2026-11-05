@@ -1,0 +1,21 @@
+# Written by `nabu audio`: clips, licenses, provenance, timings, QA. Never hand-edit.
+version: 1
+clips: []
+references:
+- id: beirut-m
+  file: voices/beirut-m.wav
+  sha256: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+  text: مَرْحَبا! أَنا سامي. أَنا مِن لِبْنان، وأَنا بْبيروت. كيفَك؟
+  durationMs: 3930
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  design:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    language: lb
+    instruct: male, young adult, moderate pitch
+    seed: 7
+    dtype: bfloat16
