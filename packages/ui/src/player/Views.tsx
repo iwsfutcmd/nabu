@@ -34,7 +34,7 @@ import type {
 import { calibrate, CANTONESE, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
-import type { TaggedText } from "@nabu/schema";
+import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
@@ -342,6 +342,35 @@ const WordBank = ({ props, ex }: { props: Props<TranslateTap | ListenTap | Story
   );
 };
 
+const SPEAKER: Readonly<Record<NonNullable<Persons["speaker"]>, MessageId>> = { m: "player.persons.speaker.m", f: "player.persons.speaker.f" };
+const ADDRESSEE: Readonly<Record<NonNullable<Persons["addressee"]>, MessageId>> = {
+  m: "player.persons.addressee.m",
+  f: "player.persons.addressee.f",
+  pl: "player.persons.addressee.pl",
+};
+
+/**
+ * Who speaks and who is spoken to, under a prompt in the support language, where the target
+ * language marks it and the prompt cannot (a feminine or plural "you" in Arabic): the accept set
+ * holds only the forms that fit.
+ */
+const PersonsNote = ({ persons, prompt }: { readonly persons: Persons | undefined; readonly prompt: TaggedText }): JSX.Element | null => {
+  const t = useTranslator();
+  if (persons === undefined) return null;
+  const tags = [...(persons.speaker === undefined ? [] : [SPEAKER[persons.speaker]]), ...(persons.addressee === undefined ? [] : [ADDRESSEE[persons.addressee]])];
+  const data = [persons.speaker === undefined ? [] : [`speaker:${persons.speaker}`], persons.addressee === undefined ? [] : [`addressee:${persons.addressee}`]].flat().join(" ");
+  return (
+    // Lined up under the prompt (its direction), each tag in the UI's language and direction.
+    <p className={styles.persons} dir={directionOf(prompt.lang)} data-persons={data}>
+      {tags.map((id) => (
+        <span key={id} className={styles.personTag} lang={t.locale} dir={t.dir}>
+          {t.format(id)}
+        </span>
+      ))}
+    </p>
+  );
+};
+
 export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
   const { ex } = props;
   const t = useTranslator();
@@ -352,6 +381,7 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
       ) : (
         <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
           <T as="p" text={ex.prompt} />
+          <PersonsNote persons={ex.persons} prompt={ex.prompt} />
         </div>
       )}
       <WordBank props={props} ex={ex} />
@@ -388,6 +418,7 @@ export const TranslateTypeView = (props: Props<TranslateType>): JSX.Element => {
     <div className={styles.body}>
       <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-ink-container="prompt">
         <T as="p" text={ex.prompt} />
+        <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <TypedAnswer props={props} label={t.format("exercise.answer.input-label", { language: props.language })} answer={ex.canonical} />
     </div>
@@ -402,6 +433,7 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
     <div className={styles.body}>
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
         <T as="p" text={ex.prompt} />
+        <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <GapSentence before={ex.before} after={ex.after} fill={typed} props={props} />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />

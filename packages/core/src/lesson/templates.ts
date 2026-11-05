@@ -4,7 +4,7 @@
  * not eligible), `grade` turns a response into an outcome. Randomness comes
  * from the injected seeded Rng only.
  */
-import type { BundleKc, BundleSentence, KcId, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
+import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
 import { glossUnits } from "../match/gloss.ts";
 import { gradeReading, gradeVowels, hasVowelMarks, transcribable, withoutMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
@@ -122,6 +122,9 @@ const formOf = (course: CourseView, s: BundleSentence): { readonly text: TaggedT
 
 const translationOf = (course: CourseView, s: BundleSentence): { readonly text: TaggedText; readonly accept: string } | undefined =>
   s.translations[course.supportKey];
+
+/** The sentence's speaker and addressee, for an exercise that writes it in the target language. */
+const personsOf = (s: BundleSentence): { readonly persons?: Persons } => (s.persons === undefined ? {} : { persons: s.persons });
 
 const producible = (course: CourseView, s: BundleSentence): string | undefined => (s.production ? formOf(course, s)?.reverse : undefined);
 
@@ -280,6 +283,8 @@ const makeTap = (
     joiner: joinerOf(answer),
     accept,
     canonical: answer,
+    // Writing into the target: who speaks and who is spoken to, where the prompt cannot say.
+    ...(template === "translate-tap.l1-l2" ? personsOf(s) : {}),
   };
 };
 
@@ -314,6 +319,7 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
     prompt: translation.text,
     accept,
     canonical: form.text,
+    ...personsOf(s),
   };
 };
 
@@ -348,6 +354,7 @@ export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): Co
     blank: single(form.text, form.text.tokens[at] as Token),
     accept,
     canonical: form.text,
+    ...personsOf(s),
   };
 };
 

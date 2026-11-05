@@ -50,5 +50,6 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0053](0053-vocalization.md) | A course's vocalization (`vocalization:` files: words, ambiguous, uncertain) gives its words their vowel marks at compile time; tokens can pin `vocalized`; grading, credit, glossary, voices and corrections compare letters | Proposed |
 | [0054](0054-pronunciation-exercises.md) | Learners write in what the script leaves out: `vocalize` (an abjad word's vowel marks, from the vocalization) and `transcribe` (a Han word's Jyutping), on the read-script facet, graded all or nothing (`gradeVowels`, `gradeReading`); sukun optional per profile | Proposed |
 | [0055](0055-report-intake.md) | Reports (corrections and answer claims) go from the app to a Firestore intake named in `reports.json`, without account or device ids; a scheduled workflow files them as GitHub issues, one per sentence, quoting the bundle | Proposed |
+| [0056](0056-persons.md) | A sentence can say who speaks and who is spoken to (`persons`: speaker m/f, addressee m/f/pl); prompts that write into the target show it as UI tags, and the accept set holds only the forms that fit | Proposed |
 
 Template: [0000-template.md](0000-template.md).

@@ -191,10 +191,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   The rules in deploy/firebase/ are merged into a shared project's rules, never deployed on their own.
 - Learner text in issues stays in code spans (no mentions, links, markup); keep it so when changing the rendering.
 
+## Persons notes (see docs/adr/0056)
+- `persons` on a sentence (ADR 0056: speaker m/f, addressee m/f/pl) is shown as tags under l1-l2 prompts; tag
+  where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0055 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0056 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

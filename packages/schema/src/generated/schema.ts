@@ -340,6 +340,7 @@ export interface NabuSchemaIndex {
   readonly SchemeId: SchemeId;
   readonly SenseId: SenseId1;
   readonly KcId: KcId;
+  readonly Persons: Persons;
   readonly ScriptCode: ScriptCode;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
@@ -1018,8 +1019,25 @@ export interface BundleSentence {
   readonly kcs: readonly KcId[];
   readonly production: boolean;
   readonly register?: string;
+  readonly persons?: Persons;
   readonly provenance: Provenance;
   readonly license: string;
+}
+/**
+ * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Persons".
+ */
+export interface Persons {
+  /**
+   * The speaker's gender, where the sentence marks it.
+   */
+  readonly speaker?: "m" | "f";
+  /**
+   * Who is spoken to: one man, one woman, or several people.
+   */
+  readonly addressee?: "m" | "f" | "pl";
 }
 /**
  * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
@@ -1411,6 +1429,7 @@ export interface SentenceSource {
    */
   readonly production?: boolean;
   readonly register?: "formal" | "neutral" | "colloquial";
+  readonly persons?: Persons;
   readonly provenance?: Provenance;
   readonly license?: Spdx;
 }

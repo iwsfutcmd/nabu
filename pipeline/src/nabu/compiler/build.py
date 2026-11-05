@@ -1358,6 +1358,8 @@ def _bundle_unit(
         }
         if s.register_ is not None:
             sentence["register"] = s.register_
+        if s.persons is not None:
+            sentence["persons"] = s.persons.model_dump(exclude_none=True)
         sentences.append(sentence)
 
     nodes: list[dict[str, Any]] = []

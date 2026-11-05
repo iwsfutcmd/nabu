@@ -53,6 +53,25 @@
       "tsType": "string & { readonly __brand: \"KcId\" }",
       "examples": ["sense:早晨", "construction:sfp-aa3", "form:acc"]
     },
+    "Persons": {
+      "title": "Persons",
+      "description": "Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.",
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "speaker": {
+          "description": "The speaker's gender, where the sentence marks it.",
+          "type": "string",
+          "enum": ["m", "f"]
+        },
+        "addressee": {
+          "description": "Who is spoken to: one man, one woman, or several people.",
+          "type": "string",
+          "enum": ["m", "f", "pl"]
+        }
+      }
+    },
     "ScriptCode": {
       "title": "ScriptCode",
       "description": "An ISO 15924 script code in titlecase.",

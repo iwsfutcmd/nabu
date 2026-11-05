@@ -216,6 +216,7 @@
         "kcs": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "production": { "type": "boolean" },
         "register": { "type": "string" },
+        "persons": { "$ref": "common.schema.json#/$defs/Persons" },
         "provenance": { "$ref": "course-source.schema.json#/$defs/Provenance" },
         "license": { "type": "string" }
       }
