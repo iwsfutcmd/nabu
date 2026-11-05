@@ -187,31 +187,6 @@ type ReportStatus = Annotated[
 type Note = Annotated[str, Field(max_length=500)]
 
 
-class Design(BaseModel):
-    """
-    How a synthetic reference was made, so it can be made again.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    provider: Annotated[str, Field(min_length=1)]
-    version: Annotated[str, Field(min_length=1)]
-    language: Annotated[str, Field(min_length=1)]
-    instruct: Annotated[
-        str,
-        Field(
-            description='The speaker attributes ("male, young adult, moderate pitch").',
-            min_length=1,
-        ),
-    ]
-    seed: Annotated[int, Field(ge=0)]
-    dtype: Annotated[
-        str | None, Field(description='The weights\' precision ("bfloat16").', min_length=1)
-    ] = None
-
-
 class SynthesisRecord(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -272,6 +247,64 @@ class AudioQa(BaseModel):
         ),
     ] = None
     status: Literal["pass", "review", "fail"] | None = None
+
+
+class AudioRejection(BaseModel):
+    """
+    A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    by: Annotated[str, Field(description="Who judged it: human:<id>.", pattern="^human:[^\\s@]+$")]
+    at: Annotated[str, Field(pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$")]
+    note: Annotated[str | None, Field(max_length=500, min_length=1)] = None
+
+
+type Clip = Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+
+
+class AudioVerdict(BaseModel):
+    """
+    One item's clips as heard: the normal-speed clip and its slow one together, since the round trip checks the item as one.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    item: Annotated[
+        str,
+        Field(
+            description='Sentence id, KC id for a word, or "<story>#<step>" for a story line.',
+            min_length=1,
+        ),
+    ]
+    clips: Annotated[
+        list[Clip],
+        Field(
+            description="sha256 of each clip heard. A verdict applies only to these: a clip made again since is left alone.",
+            min_length=1,
+        ),
+    ]
+    verdict: Literal["right", "wrong"]
+    note: Annotated[
+        str | None,
+        Field(
+            description="What is wrong (or anything else worth saying), in the listener's words.",
+            max_length=500,
+            min_length=1,
+        ),
+    ] = None
+    at: Annotated[
+        str,
+        Field(
+            description="When the listener judged it (ISO 8601).",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
 
 
 class BundleFile(BaseModel):
@@ -696,20 +729,20 @@ class AudioVoice(BaseModel):
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
     provider: Annotated[
-        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice"],
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
         Field(description="A provider of nabu.audio.providers."),
     ]
     voice: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
             min_length=1,
         ),
     ]
     model: Annotated[
         str | None,
         Field(
-            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…"). It is the clips\' recorded version.',
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
             min_length=1,
         ),
     ] = None
@@ -1956,6 +1989,57 @@ class EvalGate(BaseModel):
     evaluatedAt: AwareDatetime
 
 
+class Prompt(BaseModel):
+    """
+    A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    source: Annotated[
+        str,
+        Field(
+            description='The file at a pinned commit ("https://github.com/FunAudioLLM/CosyVoice/blob/<commit>/asset/zero_shot_prompt.wav").',
+            min_length=1,
+        ),
+    ]
+    sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    license: Spdx
+
+
+class Design(BaseModel):
+    """
+    How a synthetic reference was made, so it can be made again.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    provider: Annotated[str, Field(min_length=1)]
+    version: Annotated[str, Field(min_length=1)]
+    language: Annotated[str, Field(min_length=1)]
+    instruct: Annotated[
+        str,
+        Field(
+            description='The speaker attributes ("male, young adult, moderate pitch"), or for Navoiy the style instruction.',
+            min_length=1,
+        ),
+    ]
+    seed: Annotated[int, Field(ge=0)]
+    dtype: Annotated[
+        str | None, Field(description='The weights\' precision ("bfloat16").', min_length=1)
+    ] = None
+    prompt: Annotated[
+        Prompt | None,
+        Field(
+            description="A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course."
+        ),
+    ] = None
+
+
 class ReferenceVoice(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -1988,7 +2072,7 @@ class ReferenceVoice(BaseModel):
     synthetic: Annotated[
         bool,
         Field(
-            description="Designed by the model from speaker attributes (`design`), not recorded."
+            description="Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy)."
         ),
     ]
     design: Annotated[
@@ -2031,6 +2115,20 @@ class AudioClip(BaseModel):
     ] = None
     timingSource: Literal["synthesis", "alignment"] | None = None
     qa: AudioQa | None = None
+    rejected: AudioRejection | None = None
+
+
+class AudioVerdicts(BaseModel):
+    """
+    A listener's verdicts on a course's clips (ADR 0060): written by the web app's audio check, applied to the audio index by `nabu audio verdicts`. A clip judged right is marked reviewed (a clip the round-trip check failed then ships); a clip judged wrong is rejected and stays out of bundles.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[str, Field(description="The course id.", pattern="^[a-z][a-z0-9-]*$")]
+    verdicts: list[AudioVerdict]
 
 
 class BundleManifest(BaseModel):
@@ -3159,6 +3257,7 @@ class CourseSource(BaseModel):
 type NabuSchemaBundle = Annotated[
     AiOutputs
     | AudioIndex
+    | AudioVerdicts
     | BundleManifest
     | Corrections
     | CourseSource

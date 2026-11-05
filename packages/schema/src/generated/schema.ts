@@ -321,6 +321,9 @@ export interface NabuSchemaIndex {
   readonly SynthesisRecord: SynthesisRecord;
   readonly TokenTiming: TokenTiming;
   readonly AudioQa: AudioQa;
+  readonly AudioRejection: AudioRejection;
+  readonly AudioVerdicts: AudioVerdicts;
+  readonly AudioVerdict: AudioVerdict;
   readonly BundleManifest: BundleManifest;
   readonly BundleFile: BundleFile;
   readonly BundleManifestUnit: BundleManifestUnit;
@@ -818,6 +821,7 @@ export interface AudioClip {
   readonly timings?: readonly TokenTiming[];
   readonly timingSource?: "synthesis" | "alignment";
   readonly qa?: AudioQa;
+  readonly rejected?: AudioRejection;
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
@@ -882,6 +886,20 @@ export interface AudioQa {
   readonly status?: "pass" | "review" | "fail";
 }
 /**
+ * A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioRejection".
+ */
+export interface AudioRejection {
+  /**
+   * Who judged it: human:<id>.
+   */
+  readonly by: string;
+  readonly at: string;
+  readonly note?: string;
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReferenceVoice".
  */
@@ -903,7 +921,7 @@ export interface ReferenceVoice {
   readonly license: Spdx;
   readonly provenance: Provenance;
   /**
-   * Designed by the model from speaker attributes (`design`), not recorded.
+   * Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy).
    */
   readonly synthetic: boolean;
   /**
@@ -914,7 +932,7 @@ export interface ReferenceVoice {
     readonly version: string;
     readonly language: string;
     /**
-     * The speaker attributes ("male, young adult, moderate pitch").
+     * The speaker attributes ("male, young adult, moderate pitch"), or for Navoiy the style instruction.
      */
     readonly instruct: string;
     readonly seed: number;
@@ -922,7 +940,58 @@ export interface ReferenceVoice {
      * The weights' precision ("bfloat16").
      */
     readonly dtype?: string;
+    /**
+     * A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.
+     */
+    readonly prompt?: {
+      /**
+       * The file at a pinned commit ("https://github.com/FunAudioLLM/CosyVoice/blob/<commit>/asset/zero_shot_prompt.wav").
+       */
+      readonly source: string;
+      readonly sha256: string;
+      readonly license: Spdx;
+    };
   };
+}
+/**
+ * A listener's verdicts on a course's clips (ADR 0060): written by the web app's audio check, applied to the audio index by `nabu audio verdicts`. A clip judged right is marked reviewed (a clip the round-trip check failed then ships); a clip judged wrong is rejected and stays out of bundles.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioVerdicts".
+ */
+export interface AudioVerdicts {
+  /**
+   * The course id.
+   */
+  readonly course: string;
+  readonly verdicts: readonly AudioVerdict[];
+}
+/**
+ * One item's clips as heard: the normal-speed clip and its slow one together, since the round trip checks the item as one.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioVerdict".
+ */
+export interface AudioVerdict {
+  /**
+   * Sentence id, KC id for a word, or "<story>#<step>" for a story line.
+   */
+  readonly item: string;
+  /**
+   * sha256 of each clip heard. A verdict applies only to these: a clip made again since is left alone.
+   *
+   * @minItems 1
+   */
+  readonly clips: readonly string[];
+  readonly verdict: "right" | "wrong";
+  /**
+   * What is wrong (or anything else worth saying), in the listener's words.
+   */
+  readonly note?: string;
+  /**
+   * When the listener judged it (ISO 8601).
+   */
+  readonly at: string;
 }
 /**
  * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
@@ -1703,13 +1772,13 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**

@@ -37,9 +37,24 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import jyutping
-from nabu.audio.providers import Clip, OmniVoiceProvider, Provider, Reference, Request, provider
-from nabu.schema.models import AudioIndex, AudioVoice, ReferenceVoice
+from nabu.audio import espeak, jyutping
+from nabu.audio.providers import (
+    Clip,
+    NavoiyProvider,
+    OmniVoiceProvider,
+    Provider,
+    Reference,
+    Request,
+    provider,
+)
+from nabu.schema.models import (
+    AudioIndex,
+    AudioRejection,
+    AudioVerdicts,
+    AudioVoice,
+    ReferenceVoice,
+    TokenTiming,
+)
 
 INDEX = "index.yaml"
 SLOW = 0.67
@@ -437,6 +452,130 @@ def synthesize_course(
     return report
 
 
+# ------------------------------------------------------------------------------------ alignment
+
+#: Forced alignment: (16 kHz s16le PCM, its rate, each word's phones) → each word's span.
+Aligner = Callable[[bytes, int, list[list[str]]], list[Any]]
+ALIGN_RATE = 16_000
+
+
+def decode_clip(path: Path) -> bytes:
+    """A clip as 16 kHz mono s16le, as the aligner takes it."""
+    command = ["ffmpeg", "-v", "error", "-i", str(path), "-f", "s16le", "-ac", "1"]
+    out = subprocess.run([*command, "-ar", str(ALIGN_RATE), "-"], capture_output=True, check=True)
+    return out.stdout
+
+
+def align_course(
+    course_dir: Path,
+    units: list[dict[str, Any]],
+    voice: AudioVoice,
+    phonemes: str,
+    written: Written | None = None,
+    aligner: Aligner | None = None,
+) -> int:
+    """Word timings by forced alignment for the voice's clips that have none (a model that
+    reports no word onsets: OmniVoice, Navoiy), so its sentences get karaoke and tap-a-word.
+    Each word's phones come from eSpeak NG (`phonemes`: its voice for the language). Only clips
+    of the text the voice reads now are aligned; the index is saved as it goes. Returns how many
+    clips got timings."""
+    if aligner is None:
+        from nabu.audio.phones import align_words
+
+        aligner = align_words
+    adir = audio_dir(course_dir)
+    items = {i.item: i for i in plan(units, voice, written)[0]}
+    index = read_index(adir)
+    clips = list(index.clips)
+    done = 0
+    for k, clip in enumerate(clips):
+        item = items.get(clip.item)
+        if (
+            clip.timings is not None
+            or clip.synthesis is None
+            or clip.synthesis.voice != voice.voice
+            or item is None
+            or clip.synthesis.input != item.input
+            or not item.spans
+        ):
+            continue
+        words = [
+            [p for w in espeak.phonemes(item.input[s.start : s.end], phonemes) for p in w]
+            for s in item.spans
+        ]
+        found = aligner(decode_clip(adir / clip.file), ALIGN_RATE, words)
+        timings = [
+            {
+                "token": s.token,
+                "startMs": min(t.start_ms, clip.durationMs),
+                "endMs": min(t.end_ms, clip.durationMs),
+            }
+            for s, t in zip(item.spans, found, strict=True)
+        ]
+        clips[k] = clip.model_copy(
+            update={
+                "timings": [TokenTiming.model_validate(t) for t in timings],
+                "timingSource": "alignment",
+            }
+        )
+        done += 1
+        if done % BATCH == 0:
+            write_index(adir, index.model_copy(update={"clips": clips}))
+    write_index(adir, index.model_copy(update={"clips": clips}))
+    return done
+
+
+# ------------------------------------------------------------------------------------ verdicts
+
+
+@dataclass
+class VerdictResult:
+    right: int = 0
+    wrong: int = 0
+    #: Items whose clips were made again after the verdict: it no longer applies.
+    skipped: list[str] = field(default_factory=lambda: [])
+
+
+def apply_verdicts(course_dir: Path, verdicts: AudioVerdicts, reviewer: str) -> VerdictResult:
+    """A listener's verdicts (ADR 0060) into the audio index. Right: the clips are reviewed, so
+    they ship whatever the round trip said. Wrong: they are rejected, and their item stays out of
+    bundles. A verdict names the clips it heard by sha256 and touches only those."""
+    if not regex.fullmatch(r"human:[^\s@]+", reviewer):
+        raise ValueError(f"reviewer {reviewer!r}: give it as human:<id>")
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    clips = list(index.clips)
+    result = VerdictResult()
+    for v in verdicts.verdicts:
+        heard = set(v.clips)
+        matched = [k for k, c in enumerate(clips) if c.item == v.item and c.sha256 in heard]
+        if not matched:
+            result.skipped.append(v.item)
+            continue
+        day = v.at[:10]  # ISO 8601: the date the listener judged it
+        for k in matched:
+            clip = clips[k]
+            if v.verdict == "right":
+                provenance = clip.provenance.model_copy(
+                    update={"status": "reviewed", "reviewedBy": reviewer, "reviewedAt": day}
+                )
+                clips[k] = clip.model_copy(update={"provenance": provenance, "rejected": None})
+            else:
+                provenance = clip.provenance.model_copy(
+                    update={"status": "draft", "reviewedBy": None, "reviewedAt": None}
+                )
+                rejection = AudioRejection.model_validate(
+                    {"by": reviewer, "at": day, **({"note": v.note} if v.note else {})}
+                )
+                clips[k] = clip.model_copy(update={"provenance": provenance, "rejected": rejection})
+        if v.verdict == "right":
+            result.right += 1
+        else:
+            result.wrong += 1
+    write_index(adir, index.model_copy(update={"clips": clips}))
+    return result
+
+
 # ------------------------------------------------------------------------------- reference voices
 
 
@@ -468,13 +607,19 @@ def cast_reference(
     text: str,
     instruct: str,
     seed: int,
-    tts: OmniVoiceProvider | None = None,
+    tts: OmniVoiceProvider | NavoiyProvider | None = None,
 ) -> ReferenceVoice:
-    """Designs the voice's reference from speaker attributes and keeps it in the audio index
-    (voices/<voice>.wav), replacing an earlier one. Clips cloned from the old one become stale."""
+    """Makes the voice's reference and keeps it in the audio index (voices/<voice>.wav),
+    replacing an earlier one: OmniVoice designs it from speaker attributes, Navoiy clones its
+    prompt recording. Clips cloned from the old one become stale."""
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    designer = tts or OmniVoiceProvider(voice, Reference(Path(), "", "0" * 64))
+    none = Reference(Path(), "", "0" * 64)
+    designer = tts or (
+        NavoiyProvider(voice, none)
+        if voice.provider == "navoiy"
+        else OmniVoiceProvider(voice, none)
+    )
     text = unicodedata.normalize("NFC", text.strip())
     clip = designer.design(text, instruct, seed)
     data = wav_bytes(clip.pcm, clip.sample_rate)
@@ -492,14 +637,7 @@ def cast_reference(
             "license": voice.license,
             "provenance": {"author": f"generated:{designer.name}@{version}", "status": "draft"},
             "synthetic": True,
-            "design": {
-                "provider": designer.name,
-                "version": version,
-                "language": designer.language,
-                "instruct": instruct,
-                "seed": seed,
-                "dtype": designer.settings()["dtype"],
-            },
+            "design": designer.design_record(instruct, seed),
         }
     )
     others = [r for r in index.references or [] if r.id != voice.voice]

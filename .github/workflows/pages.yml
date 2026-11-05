@@ -40,6 +40,9 @@ jobs:
           cp deploy/pages/index.html site/
           cp -r packages/ui/storybook-static site/storybook
           cp -r apps/web/dist site/demo
+      # The audio check (ADR 0060): every course's clips, held-back ones too, beside the demo.
+      - name: Audio check
+        run: node apps/web/audio-check.ts site/demo/audio-check
       # The report intake (ADR 0055, docs/reports.md): only when the repository names one.
       - name: Report intake
         if: ${{ vars.NABU_FIREBASE_PROJECT != '' }}

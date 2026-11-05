@@ -73,7 +73,7 @@
           "$ref": "course-source.schema.json#/$defs/Provenance"
         },
         "synthetic": {
-          "description": "Designed by the model from speaker attributes (`design`), not recorded.",
+          "description": "Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy).",
           "type": "boolean"
         },
         "design": {
@@ -101,7 +101,7 @@
               "minLength": 1
             },
             "instruct": {
-              "description": "The speaker attributes (\"male, young adult, moderate pitch\").",
+              "description": "The speaker attributes (\"male, young adult, moderate pitch\"), or for Navoiy the style instruction.",
               "type": "string",
               "minLength": 1
             },
@@ -113,6 +113,30 @@
               "description": "The weights' precision (\"bfloat16\").",
               "type": "string",
               "minLength": 1
+            },
+            "prompt": {
+              "description": "A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.",
+              "type": "object",
+              "required": [
+                "source",
+                "sha256",
+                "license"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "source": {
+                  "description": "The file at a pinned commit (\"https://github.com/FunAudioLLM/CosyVoice/blob/<commit>/asset/zero_shot_prompt.wav\").",
+                  "type": "string",
+                  "minLength": 1
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "license": {
+                  "$ref": "course-source.schema.json#/$defs/Spdx"
+                }
+              }
             }
           }
         }
@@ -192,6 +216,9 @@
         },
         "qa": {
           "$ref": "#/$defs/AudioQa"
+        },
+        "rejected": {
+          "$ref": "#/$defs/AudioRejection"
         }
       }
     },
@@ -291,6 +318,32 @@
             "review",
             "fail"
           ]
+        }
+      }
+    },
+    "AudioRejection": {
+      "title": "AudioRejection",
+      "description": "A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.",
+      "type": "object",
+      "required": [
+        "by",
+        "at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "description": "Who judged it: human:<id>.",
+          "type": "string",
+          "pattern": "^human:[^\\s@]+$"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
         }
       }
     }

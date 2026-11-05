@@ -52,6 +52,8 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0055](0055-report-intake.md) | Reports (corrections and answer claims) go from the app to a Firestore intake named in `reports.json`, without account or device ids; a scheduled workflow files them as GitHub issues, one per sentence, quoting the bundle | Proposed |
 | [0056](0056-persons.md) | A sentence can say who speaks and who is spoken to (`persons`: speaker m/f, addressee m/f/pl); prompts that write into the target show it as UI tags, and the accept set holds only the forms that fit | Proposed |
 | [0058](0058-lahgtna-voice.md) | apc gets a voice: Lahgtna (an OmniVoice fine-tune for Arabic dialects, `lb` Lebanese), run locally, reading the vowel-marked text and cloning one designed reference (`nabu audio cast`); a man's voice; clips CC-BY-NC-4.0 | Proposed |
+| [0059](0059-navoiy-voice.md) | uz gets a natural voice: Navoiy (a CosyVoice2 fine-tune for Uzbek), run by a worker in its own environment (pipeline/runtimes/cosyvoice); one cast reference cloned from CosyVoice's prompt recording; clips Apache-2.0; `nabu audio align` gives timing-less clips word timings | Proposed |
+| [0060](0060-audio-check.md) | Audio check: a web page lists every clip of a course (held-back ones too) beside its text and the round trip's result; a listener judges each, and `nabu audio verdicts` marks clips reviewed (they ship) or rejected (held back) | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).

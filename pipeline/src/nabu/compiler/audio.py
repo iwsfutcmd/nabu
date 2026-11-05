@@ -92,6 +92,7 @@ def check_audio(
             continue
         planned[(voice.provider, voice.voice)] = {r.item: r.input for r in reads}
     # The round trip checks the normal-speed clip; when it fails, the whole item (slow too) waits.
+    # So does an item a listener rejected a clip of (ADR 0060), until the clip is made again.
     failed = {
         c.item
         for c in index.clips
@@ -99,7 +100,7 @@ def check_audio(
         and c.qa is not None
         and c.qa.status == "fail"
         and c.provenance.status not in ("reviewed", "published")
-    }
+    } | {c.item for c in index.clips if c.rejected is not None}
     # Reference voices a cloning provider imitates: each must be its recorded file.
     references: dict[str, str] = {}
     for i, ref in enumerate(index.references or []):
@@ -207,8 +208,8 @@ def check_audio(
     if held:
         ctx.diags.report(
             "audio.held-back",
-            f"{held} clips failed the round-trip check and stay out of the bundle until reviewed "
-            "(`nabu audio report`)",
+            f"{held} clips failed the round-trip check or a listener rejected them; they stay out "
+            "of the bundle until reviewed or made again (`nabu audio report`)",
             doc.loc("clips"),
         )
     # An item plays only with its normal-speed clip; only playable items' files ship.

@@ -585,6 +585,233 @@ class OmniVoiceProvider:
         """A reference voice from speaker attributes (voice design), as `nabu audio cast` keeps."""
         return self._speak(self.load(self.repo, self.revision), text, seed, instruct=instruct)
 
+    def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
+        """How `design` made a reference, as the audio index keeps it."""
+        return {
+            "provider": self.name,
+            "version": self.version(),
+            "language": self.language,
+            "instruct": instruct,
+            "seed": seed,
+            "dtype": OMNIVOICE_DTYPE,
+        }
+
+
+#: Navoiy's runtime (ADR 0059): CosyVoice's source and the CosyVoice2 base model at the commits
+#: the checkpoint's own demos were made with (its demo/manifest.json).
+COSYVOICE_URL = "https://github.com/FunAudioLLM/CosyVoice"
+COSYVOICE_REVISION = "074ca6dc9e80a2f424f1f74b48bdd7d3fea531cc"
+COSYVOICE2_BASE = ("FunAudioLLM/CosyVoice2-0.5B", "eec1ae6c79877dbd9379285cf8789c9e0879293d")
+#: The fine-tuned LLM of each known checkpoint repo: its file, sha256 and text normalizer.
+NAVOIY_WEIGHTS = {
+    "aisha-org/navoiy-tts": (
+        "emotion_600h_joint.pt",
+        "ced40fe65cf0a006a1708fd033cfee37b2c583747d3fd06279ba12d3dbe058af",
+        "uztts.normalize",
+    ),
+}
+#: The recording a Navoiy voice is first cloned from (`nabu audio cast`): the prompt of CosyVoice's
+#: own examples, which the checkpoint's demos clone too. Path in the source, sha256, license.
+NAVOIY_PROMPT = (
+    "asset/zero_shot_prompt.wav",
+    "c7b31d6dbe7cc6a716dded00550db5b50940bf209e424e4ad207b12e657c8ff6",
+    "Apache-2.0",
+)
+#: The CosyVoice runtime's own environment (pipeline/runtimes/cosyvoice).
+COSYVOICE_RUNTIME = Path(__file__).resolve().parents[3] / "runtimes" / "cosyvoice"
+
+
+class CosyVoiceEngine(Protocol):
+    """What the provider needs of a CosyVoice2 model (a fake one in tests)."""
+
+    sampling_rate: int
+    #: The CosyVoice source checkout the model runs from.
+    source: Path
+
+    def speak(self, text: str, instruct: str, prompt: Path, seed: int, speed: float) -> bytes:
+        """s16le mono PCM of `text` in the prompt recording's voice."""
+        ...
+
+
+def runtime_command(runtime: Path = COSYVOICE_RUNTIME) -> list[str]:
+    """worker.py in the runtime's environment, which uv makes on first use."""
+    import shutil
+
+    uv = shutil.which("uv")
+    if uv is None:
+        raise ProviderError("navoiy: uv is needed to run the CosyVoice runtime")
+    return [uv, "run", "--project", str(runtime), "python", str(runtime / "worker.py")]
+
+
+class CosyVoiceWorker:
+    """The model in its own environment: worker.py of the runtime, spoken to in JSON lines."""
+
+    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+        import atexit
+        import subprocess
+
+        self.process = subprocess.Popen(
+            command or runtime_command(),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+        )
+        atexit.register(self.close)
+        ready = self._ask(config)
+        if "ready" not in ready:
+            raise ProviderError(f"navoiy: the runtime did not start: {ready.get('error', ready)}")
+        self.sampling_rate = int(ready["ready"]["sampleRate"])
+        self.source = Path(ready["ready"]["source"])
+
+    def _ask(self, message: dict[str, Any]) -> dict[str, Any]:
+        stdin, stdout = self.process.stdin, self.process.stdout
+        assert stdin is not None and stdout is not None
+        stdin.write(json.dumps(message, ensure_ascii=False) + "\n")
+        stdin.flush()
+        line = stdout.readline()
+        if not line:
+            raise ProviderError(f"navoiy: the runtime exited ({self.process.wait()})")
+        answer: dict[str, Any] = json.loads(line)
+        return answer
+
+    def speak(self, text: str, instruct: str, prompt: Path, seed: int, speed: float) -> bytes:
+        answer = self._ask(
+            {
+                "text": text,
+                "instruct": instruct,
+                "prompt": str(prompt),
+                "seed": seed,
+                "speed": speed,
+            }
+        )
+        if "error" in answer:
+            raise ProviderError(f"navoiy: {text!r}: {answer['error']}")
+        return base64.b64decode(answer["pcm"])
+
+    def close(self) -> None:
+        if self.process.poll() is None:
+            assert self.process.stdin is not None
+            self.process.stdin.close()
+            self.process.wait(timeout=60)
+
+
+@cache
+def load_navoiy(repo: str, revision: str) -> CosyVoiceEngine:
+    """The Navoiy checkpoint at that commit over its CosyVoice2 base, in the runtime (cached)."""
+    if repo not in NAVOIY_WEIGHTS:
+        raise ValueError(f"{repo}: not a known Navoiy checkpoint ({', '.join(NAVOIY_WEIGHTS)})")
+    file, sha256, normalizer = NAVOIY_WEIGHTS[repo]
+    return CosyVoiceWorker(
+        {
+            "runtime": {"url": COSYVOICE_URL, "revision": COSYVOICE_REVISION},
+            "base": {"repo": COSYVOICE2_BASE[0], "revision": COSYVOICE2_BASE[1]},
+            "checkpoint": {"repo": repo, "revision": revision, "file": file, "sha256": sha256},
+            "normalizer": normalizer,
+        }
+    )
+
+
+class NavoiyProvider:
+    """Navoiy (`model`: aisha-org/navoiy-tts@commit), a CosyVoice2 fine-tune that reads Uzbek in
+    Latin script, in the voice of a reference recording. Its LLM samples speech tokens, seeded
+    per clip (`seed_of`); the instruction asks for its calm style. No timings."""
+
+    name = "navoiy"
+    #: The checkpoint's "calm" (xotirjam) preset, word for word from its emotions_40h.json:
+    #: an even, neutral voice for learners.
+    STYLE = "calm"
+    INSTRUCT = "Speak in a calm, steady, neutral voice with even pacing and relaxed intonation."
+    #: float32 everywhere: the same clip on a CPU and a GPU (upstream uses float16 on GPUs).
+    DTYPE = "float32"
+    TRIES = OmniVoiceProvider.TRIES
+
+    def __init__(
+        self,
+        voice: AudioVoice,
+        reference: Reference | None,
+        load: Callable[[str, str], CosyVoiceEngine] = load_navoiy,
+    ) -> None:
+        self.repo, self.revision = checkpoint(_required(voice, "model"))
+        #: Navoiy reads one language; the voice may say which for the record.
+        self.language = voice.language or "uz"
+        if reference is None:
+            raise ValueError(
+                f"voice {voice.id}: no reference voice {voice.voice!r} in the audio index "
+                f"(`nabu audio cast <course> --voice {voice.id}`)"
+            )
+        self.reference = reference
+        self.load = load
+
+    def version(self) -> str:
+        # No spaces or "@": it also names the clips' author (generated:navoiy@<version>).
+        return f"{self.repo}#{self.revision}+cosyvoice-{COSYVOICE_REVISION[:12]}"
+
+    def settings(self) -> dict[str, Any]:
+        return {
+            "base": f"{COSYVOICE2_BASE[0]}#{COSYVOICE2_BASE[1]}",
+            "style": self.STYLE,
+            "dtype": self.DTYPE,
+            "reference": self.reference.sha256,
+        }
+
+    def speed(self, rate: float) -> float:
+        return rate
+
+    def _speak(
+        self, engine: CosyVoiceEngine, text: str, prompt: Path, seed: int, rate: float
+    ) -> Clip:
+        clip = Clip(b"", engine.sampling_rate, None, None)
+        for attempt in range(self.TRIES):
+            pcm = engine.speak(text, self.INSTRUCT, prompt, seed + attempt, rate)
+            clip = Clip(pcm, engine.sampling_rate, None, None)
+            if len(pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
+                break
+        return clip
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        engine = self.load(self.repo, self.revision)
+        return [
+            self._speak(engine, r.input, self.reference.path, seed_of(r), r.rate) for r in requests
+        ]
+
+    def design(self, text: str, instruct: str, seed: int) -> Clip:
+        """A reference voice, as `nabu audio cast` keeps: the model reads `text` in the voice of
+        CosyVoice's prompt recording (NAVOIY_PROMPT). Navoiy cannot design a voice from
+        attributes; `instruct` is the style instruction."""
+        engine = self.load(self.repo, self.revision)
+        path, sha256, _ = NAVOIY_PROMPT
+        prompt = engine.source / path
+        if hashlib.sha256(prompt.read_bytes()).hexdigest() != sha256:
+            raise ProviderError(f"navoiy: {prompt} differs from the pinned prompt recording")
+        clip = Clip(b"", engine.sampling_rate, None, None)
+        for attempt in range(self.TRIES):
+            clip = Clip(
+                engine.speak(text, instruct, prompt, seed + attempt, 1.0),
+                engine.sampling_rate,
+                None,
+                None,
+            )
+            if len(clip.pcm) // 2 >= engine.sampling_rate // 10:
+                break
+        return clip
+
+    def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
+        path, sha256, license = NAVOIY_PROMPT
+        return {
+            "provider": self.name,
+            "version": self.version(),
+            "language": self.language,
+            "instruct": instruct,
+            "seed": seed,
+            "dtype": self.DTYPE,
+            "prompt": {
+                "source": f"{COSYVOICE_URL}/blob/{COSYVOICE_REVISION}/{path}",
+                "sha256": sha256,
+                "license": license,
+            },
+        }
+
 
 PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "espeak-ng": lambda _voice, _ref: EspeakProvider(),
@@ -592,6 +819,7 @@ PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "elevenlabs": lambda voice, _ref: ElevenLabsProvider(voice),
     "cartesia": lambda voice, _ref: CartesiaProvider(voice),
     "omnivoice": lambda voice, ref: OmniVoiceProvider(voice, ref),
+    "navoiy": lambda voice, ref: NavoiyProvider(voice, ref),
 }
 
 
