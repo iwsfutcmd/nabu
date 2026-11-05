@@ -52,8 +52,8 @@ says it reads text with vowel marks (تشكيل) more accurately.
 - `humanRequired` is off for apc. Human recordings still come in through `nabu audio ingest`.
 
 **License: the clips are CC-BY-NC-4.0.** The voice's `license` sets every clip's license. The
-weights are non-commercial and the fine-tune grants nothing more. This is the conservative
-reading until Lahgtna's author says otherwise.
+weights are non-commercial and the fine-tune grants nothing more. The project maintainer
+accepted non-commercial audio for apc (2026-11-05).
 
 ## Consequences
 
