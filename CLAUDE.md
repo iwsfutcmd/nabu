@@ -147,6 +147,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
   sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
 - Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.
+  A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
+  text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
 - `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
   clip. Lessons keep their rotation length (golden files): substitute slots, never add rotation entries.
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.

@@ -134,6 +134,11 @@ def promote(reports: list[AnswerReport], courses: Path, cli: Any, weight: float 
                 (r, "should have been wrong: remove it from the accept set by hand (ADR 0052)")
             )
             continue
+        if r.template in ("speak", "listen-speak"):
+            out.skipped.append(
+                (r, f"{r.template}: the learner says the speech scoring was wrong; no accept set")
+            )
+            continue
         if r.template.startswith("story-"):
             out.skipped.append(
                 (r, f"{r.template}: a story line has no accept set; change the story by hand")

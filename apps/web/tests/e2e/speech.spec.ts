@@ -8,7 +8,8 @@
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 import { lessonNodes } from "@nabu/core/lesson";
-import type { LearnerEvent } from "@nabu/schema";
+import { surfaceOf } from "@nabu/core/text";
+import type { LearnerEvent, TaggedText } from "@nabu/schema";
 import { answer, expectRightAndContinue, historyBefore, loadCourse, logOf, pathUrl, planned, seedLog, sessionUrl, waitFor } from "./solver.ts";
 
 const MIC = join(import.meta.dirname, "fixtures/yue-ngo-hai-hok-saang.wav");
@@ -59,6 +60,22 @@ test("a scored speaking exercise: record, scored on the device, logged without a
   // The pitch range stays on this device: three numbers, no audio.
   const range = await page.evaluate(() => localStorage.getItem("nabu.voice-calibration"));
   expect(Object.keys(JSON.parse(range ?? "{}") as object).sort()).toEqual(["frames", "mean", "sd"]);
+
+  // Tone scoring can be wrong: unless it said "right", the learner can say they said it right. The
+  // claim names the sentence they were asked to say, never what was heard.
+  const claim = page.locator("[data-action=report]");
+  if (logged?.outcome.kind.startsWith("CORRECT") === true) {
+    await expect(claim).toHaveCount(0);
+  } else {
+    await expect(claim).toHaveText("I said it right");
+    await claim.click();
+    await expect
+      .poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported"))
+      .toMatchObject({ answer: logged?.id, text: surfaceOf((ex as { prompt: TaggedText }).prompt) });
+    // An accept claim leaves `claim` out (accept is the default, ADR 0052).
+    const reported = (await logOf(page, "yue")).find((e): e is Extract<LearnerEvent, { type: "answer_reported" }> => e.type === "answer_reported");
+    expect(reported?.claim ?? "accept").toBe("accept");
+  }
 });
 
 test("rating yourself: a recording keeps going until it is stopped, then plays back", async ({ page }, info) => {
