@@ -44,7 +44,8 @@ review could get back into the index.
   `courses/<id>/audio` (a Vite plugin, apps/web/audio-check.ts): the index as JSON, the voices
   from course.yaml, and the clips.
 - **On Pages:** the workflow writes the same files beside the demo (`node
-  apps/web/audio-check.ts`).
+  apps/web/audio-check.ts`). It copies only the clips the demo's bundles lack; the index points at
+  the bundled ones.
 - **Learners never download them.**
 
 **`nabu audio verdicts <course> <file> --reviewer human:<id>`** applies a verdicts file to the
@@ -59,7 +60,10 @@ index.
 ## Consequences
 
 - **A person's ear decides what ships,** and Whisper only sorts the queue.
-- **The demo site is larger:** about 55 MB of clips for the four courses.
+- **The demo site is larger:** about 30 MB of held-back clips for the four courses.
+  - Pages times out publishing much over 6,000 files, and every clip counts. So the site carries
+    each clip once: the audio check points at the bundles' copies, and Pages builds Storybook to
+    read the demo's bundles (`NABU_STORYBOOK_BUNDLES`) instead of its own.
 - **A rejected clip is made again on the next `generate`, as its next take** (`synthesis.take`).
   - The take joins the clip's identity and the seed it samples with, so a seeded voice (OmniVoice,
     Navoiy, ElevenLabs) says it otherwise.

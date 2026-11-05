@@ -32,7 +32,10 @@ jobs:
           package-manager-cache: false
       - run: corepack enable && pnpm --version
       - run: pnpm install --frozen-lockfile
+      # Storybook reads the demo's bundles rather than carrying a copy (packages/ui/.storybook/main.ts).
       - run: pnpm --filter @nabu/ui build-storybook
+        env:
+          NABU_STORYBOOK_BUNDLES: ../demo/bundles/
       - run: pnpm --filter @nabu/web exec vite build --base=./
       - name: Assemble site
         run: |
@@ -40,9 +43,10 @@ jobs:
           cp deploy/pages/index.html site/
           cp -r packages/ui/storybook-static site/storybook
           cp -r apps/web/dist site/demo
-      # The audio check (ADR 0060): every course's clips, held-back ones too, beside the demo.
+      # The audio check (ADR 0060): every course's clips, held-back ones too, beside the demo. Clips
+      # the demo's bundles carry are not copied again.
       - name: Audio check
-        run: node apps/web/audio-check.ts site/demo/audio-check
+        run: node apps/web/audio-check.ts site/demo/audio-check site/demo/bundles
       # The report intake (ADR 0055, docs/reports.md): only when the repository names one.
       - name: Report intake
         if: ${{ vars.NABU_FIREBASE_PROJECT != '' }}
@@ -65,7 +69,3 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          # The site carries every course's clips twice (bundles, audio check): some 10,000 files,
-          # which can take Pages longer than the default 10 minutes to publish.
-          timeout: 1800000

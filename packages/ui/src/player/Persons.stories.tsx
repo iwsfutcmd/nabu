@@ -8,6 +8,7 @@ import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
 import { useTranslator } from "../context.tsx";
+import { BUNDLES } from "../demo/bundles.ts";
 import { fetchCourse, type LoadedCourse } from "./load.ts";
 import { LessonPlayer } from "./LessonPlayer.tsx";
 
@@ -49,7 +50,7 @@ const meta = {
   loaders: [
     async ({ globals }) => {
       const [id, orthography] = COURSES[(globals as NabuGlobals).target];
-      return { course: await fetchCourse("bundles/", id, orthography) };
+      return { course: await fetchCourse(BUNDLES, id, orthography) };
     },
   ],
   parameters: { layout: "padded" },

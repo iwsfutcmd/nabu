@@ -5,6 +5,7 @@ import type { SentenceReported } from "@nabu/schema";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, useState, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
+import { BUNDLES } from "../demo/bundles.ts";
 import { fetchCourse, type LoadedCourse } from "../player/load.ts";
 import { CorrectionForm } from "./CorrectionForm.tsx";
 import { SentenceList } from "./SentenceList.tsx";
@@ -66,7 +67,7 @@ const meta = {
   loaders: [
     async ({ globals }) => {
       const [id, orthography] = COURSES[(globals as NabuGlobals).target];
-      return { course: await fetchCourse("bundles/", id, orthography) };
+      return { course: await fetchCourse(BUNDLES, id, orthography) };
     },
   ],
   parameters: { layout: "padded" },
