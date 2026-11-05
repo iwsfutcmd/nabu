@@ -170,7 +170,9 @@ def test_cantonese_words_carry_the_readings_their_sentences_pin(core_cli: CoreCl
     missing = [key for key, t in forms.items() if "jyutping" not in t.get("readings", {})]
     assert missing == []
     assert forms[("sense:唔該", "唔該")]["readings"] == {"jyutping": "m4 goi1"}
-    assert forms[("sense:我", "我哋")]["readings"] == {"jyutping": "ngo5 dei6"}
+    # Lemmas (ADR 0061): 呢, no longer 呢個; its reading comes from the morph in 呢個 and the rest.
+    assert forms[("sense:我", "我")]["readings"] == {"jyutping": "ngo5"}
+    assert forms[("sense:呢", "呢")]["readings"] == {"jyutping": "ni1"}
     assert forms[("sense:禮拜", "禮拜")]["ruby"] == {
         "jyutping": [{"base": "禮", "text": "lai5"}, {"base": "拜", "text": "baai3"}]
     }
