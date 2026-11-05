@@ -1,7 +1,7 @@
 """A course's audio (gameplan §10): plan, synthesize, check and index its clips.
 
-`nabu audio <course>` compiles the course, then for each sentence (and each word KC) reads
-the course voice's orthography:
+`nabu audio <course>` compiles the course, then for each sentence, word KC and story line (item
+"<story>#<step>") reads the course voice's orthography:
 - the voice reads the **pinned reading** when it has one (Jyutping for Cantonese), never raw
   characters, so polyphones are said as the content says; otherwise the form's text,
   punctuation included (it carries the intonation of questions and exclamations). A voice that
@@ -31,7 +31,7 @@ import wave
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import regex
 import yaml
@@ -231,6 +231,26 @@ def plan(
                 piece = marked if voice.vowelMarks else surface
             assert piece is not None
             items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface))
+    # Story lines last, each read like a sentence: its id is "<story>#<step>".
+    for unit in units:
+        for story in unit.get("stories", []):
+            for step, s in enumerate(story["steps"]):
+                line = cast(dict[str, Any], s.get("line") or {})
+                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
+                if form is None:
+                    continue
+                key = f"{story['id']}#{step}"
+                tokens = cast(list[dict[str, Any]], form["tokens"])
+                as_written = (written or {}).get((key, orth))
+                planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
+                if planned is None:
+                    skipped.append(key)
+                    continue
+                surfaces = as_written or [str(t["surface"]) for t in tokens]
+                text = "".join(
+                    w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
+                )
+                items.append(Item(key, planned[0], planned[1], text))
     return items, skipped
 
 

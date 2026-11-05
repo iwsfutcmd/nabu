@@ -1,10 +1,12 @@
 /**
- * Match the pairs: a tapped word says itself when it has a clip, as the learner hears it in
- * listening exercises. Meanings say nothing, and with sound off nothing plays.
+ * Clips that play by themselves:
+ * - match the pairs: a tapped word says itself when it has a clip; meanings say nothing;
+ * - complete the translation: once answered, the whole sentence is said;
+ * - with sound off nothing plays.
  */
 import { cardGallery } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
-import { loadCourse } from "./solver.ts";
+import { answer, loadCourse } from "./solver.ts";
 
 declare global {
   interface Window {
@@ -27,11 +29,12 @@ const recordPlays = async (page: Page): Promise<void> => {
   });
 };
 
-const pairsCard = async (page: Page, query: string): Promise<void> => {
-  await page.goto(`/?debug=1${query}#/fa/fa-Arab.standard/cards`);
-  await page.locator('[data-card="match-pairs"] [data-action=try-card]').click();
-  await expect(page.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", "match-pairs");
+const tryCard = async (page: Page, template: string, query = "", route = "#/fa/fa-Arab.standard"): Promise<void> => {
+  await page.goto(`/?debug=1${query}${route}/cards`);
+  await page.locator(`[data-card="${template}"] [data-action=try-card]`).click();
+  await expect(page.locator("[data-debug-template]")).toHaveAttribute("data-debug-template", template);
 };
+const pairsCard = (page: Page, query: string): Promise<void> => tryCard(page, "match-pairs", query);
 
 test("a tapped word plays its clip; a meaning plays nothing", async ({ page }) => {
   const course = loadCourse("fa", "fa-Arab/standard");
@@ -56,4 +59,21 @@ test("with sound off, a tapped word plays nothing", async ({ page }) => {
   await page.locator('[data-pair^="left-"][data-clip]').first().click();
   await page.waitForTimeout(200);
   expect(await page.evaluate(() => window.nabuPlayed)).toEqual([]);
+});
+
+test("complete the translation: once answered, the whole sentence is said", async ({ page }) => {
+  // apc's gallery card is a sentence with a clip (fa's, uz's and yue's are held back or have none).
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardGallery(course, 7).find((c) => c.template === "complete-translation")?.exercise;
+  if (ex?.template !== "complete-translation") throw new Error("apc has a complete-translation card");
+  const clip = course.audio[ex.item]?.normal.path;
+  expect(clip).toBeDefined();
+
+  await recordPlays(page);
+  await tryCard(page, "complete-translation", "", "#/apc/apc-Arab.standard");
+  expect(await page.evaluate(() => window.nabuPlayed)).toEqual([]);
+  await answer(page, ex, "keyboard");
+  await expect(page.locator("[data-feedback]")).toBeVisible();
+  await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([clip]);
+  await expect(page.locator("[data-lesson-player] [data-action=play]")).toBeVisible();
 });

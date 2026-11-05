@@ -11,13 +11,14 @@
  * - Vertical reading (§11.4): where the profile allows it, the transcript turns into columns
  *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
  */
-import { draftOf, emptyDraft, isCorrect, responseOf, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { NabuUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
+import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import playerStyles from "../player/Player.module.css";
@@ -70,19 +71,42 @@ interface LineProps {
   readonly onTranslate: () => void;
   readonly latest: boolean;
   readonly action?: ReactNode;
+  /** The line's clip, if it has one. */
+  readonly audio: AudioRef | undefined;
+  readonly url: (path: string) => string;
+  /** Say the line as it appears (the newest line, with sound on). */
+  readonly autoPlay: boolean;
 }
 
-const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action }: LineProps): JSX.Element => {
+const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action, audio, url, autoPlay }: LineProps): JSX.Element => {
   const t = useTranslator();
   const translationId = `story-line-${line.index}-translation`;
+  const player = useClipPlayer(audio, url);
+  // A line is read out once, when it first appears; its buttons say it again.
+  const said = useRef(false);
+  useEffect(() => {
+    if (!autoPlay || said.current || audio === undefined) return;
+    said.current = true;
+    player.play();
+  }, [autoPlay, audio, player]);
   return (
-    <div className={styles.line} data-line={line.index} data-speaker={line.speaker?.id} data-latest={latest || undefined}>
+    <div className={styles.line} data-line={line.index} data-speaker={line.speaker?.id} data-latest={latest || undefined} data-clip={audio?.normal.path}>
       {line.speaker?.name !== undefined ? (
         <T as="div" className={styles.speaker} text={line.speaker.name} />
       ) : (
         <span className={styles.narration} aria-label={t.format("story.narration")} />
       )}
-      <T as="p" className={styles.lineText} text={line.text} ruby={ruby} marks={marks} onTokenPress={onToken} pressed={pressed} />
+      {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
+      <T
+        as="p"
+        className={styles.lineText}
+        text={line.text}
+        ruby={ruby}
+        marks={marks}
+        onTokenPress={onToken}
+        pressed={pressed}
+        {...(player.token === undefined ? {} : { highlight: [player.token] })}
+      />
       {line.translation !== undefined && (
         <>
           <Button className={styles.translate} onPress={onTranslate} aria-expanded={translated} aria-controls={translationId} data-action="translate">
@@ -163,6 +187,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   }, []);
 
   const lines = state.shown.map((i) => script.lines[i]).filter((l) => l !== undefined);
+  // A story line's clip is the course's audio of "<story>#<step>" (ADR 0058's audio items).
+  const lineAudio = (line: StoryLine): AudioRef | undefined => course.audio[`${script.id}#${String(line.step)}`];
+  const synthetic = script.lines.some((line) => lineAudio(line)?.normal.synthetic === true);
   const glossLineAt = selected === undefined ? undefined : script.lines[selected.line];
   const glosses = useMemo(
     () => (glossLineAt === undefined || selected === undefined ? [] : glossAt(course, glossary, glossLine(course, glossary, glossLineAt.text), glossLineAt.text, selected.token)),
@@ -243,6 +270,12 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
 
+      {synthetic && (
+        <p className={playerStyles.synthetic} data-story-synthetic="">
+          {t.format("player.audio.synthetic")}
+        </p>
+      )}
+
       {(scheme !== undefined || hasMarksLayer(profile) || canVertical) && (
         <div className={playerStyles.toggles}>
           {scheme !== undefined && <Toggle id="readings" selected={readings} onChange={setReadings} label={t.format("exercise.readings.toggle")} />}
@@ -277,6 +310,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             ruby={ruby}
             marks={marks}
             latest={k === lines.length - 1}
+            audio={lineAudio(line)}
+            url={imageUrl}
+            autoPlay={k === lines.length - 1 && sound !== false}
             pressed={selected?.line === line.index ? selected.token : undefined}
             onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
             translated={translations.has(line.index)}

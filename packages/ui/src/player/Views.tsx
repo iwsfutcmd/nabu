@@ -429,12 +429,23 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
   const { ex } = props;
   const t = useTranslator();
   const typed = props.draft.tag === "text" && props.draft.text !== "" ? textOfSurface(ex.blank, props.draft.text) : undefined;
+  // Once answered, the whole sentence is said (and can be said again), if it has a clip.
+  const audio = props.course.audio[ex.item];
+  const player = useClipPlayer(audio, props.imageUrl);
+  const answered = props.outcome !== undefined;
+  const said = useRef(false);
+  useEffect(() => {
+    if (!answered || said.current || audio === undefined || props.sound === false) return;
+    said.current = true;
+    player.play();
+  }, [answered, audio, player, props.sound]);
   return (
     <div className={styles.body}>
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
         <T as="p" text={ex.prompt} />
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
+      {answered && audio !== undefined && <AudioButtons player={player} audio={audio} />}
       <GapSentence before={ex.before} after={ex.after} fill={typed} props={props} />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />
     </div>

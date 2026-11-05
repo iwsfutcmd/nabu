@@ -29,12 +29,18 @@ WORD_KINDS = {"word", "number"}
 
 
 def _items(units: list[dict[str, Any]]) -> tuple[dict[str, list[list[dict[str, Any]]]], set[str]]:
-    """Every sentence's tokens per orthography (sentence id → forms), and every KC id."""
+    """Every sentence's and story line's tokens per orthography (id → forms; a line's id is
+    "<story>#<step>"), and every KC id."""
     sentences: dict[str, list[list[dict[str, Any]]]] = {}
     kcs: set[str] = set()
     for unit in units:
         for s in unit["sentences"]:
             sentences[s["id"]] = [form["text"]["tokens"] for form in s["forms"].values()]
+        for story in unit.get("stories", []):
+            for step, s in enumerate(story["steps"]):
+                if s.get("line"):
+                    key = f"{story['id']}#{step}"
+                    sentences[key] = [form["tokens"] for form in s["line"]["forms"].values()]
         kcs.update(kc["id"] for kc in unit.get("kcs", []))
     return sentences, kcs
 
@@ -131,7 +137,9 @@ def check_audio(
             continue
         if clip.item not in sentences and clip.item not in kcs:
             ctx.diags.report(
-                "audio.unknown-item", f"{clip.item}: no such sentence or KC in the course", loc
+                "audio.unknown-item",
+                f"{clip.item}: no such sentence, story line or KC in the course",
+                loc,
             )
             continue
         if clip.synthesis is not None and voices:

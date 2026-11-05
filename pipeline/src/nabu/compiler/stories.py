@@ -44,6 +44,11 @@ class Stories:
     lines: list[LineForm] = field(default_factory=lambda: [])
 
 
+def line_item(story: str, step: int) -> str:
+    """A story line's id among a course's audio items (and corrections): "<story>#<step>"."""
+    return f"{story}#{step}"
+
+
 def token_kcs(token: dict[str, Any]) -> list[str]:
     refs = [f"sense:{token['sense']}"] if "sense" in token else []
     refs += [token["_form"]] if "_form" in token else []
@@ -141,7 +146,7 @@ class _Compiler:
         for si, step in enumerate(story.steps):
             at: Path = (*base, "steps", si)
             if step.line is not None:
-                line = self.line(story, step.line, doc, (*at, "line"), speakers, position, out)
+                line = self.line(story, step.line, doc, (*at, "line"), speakers, position, out, si)
                 if line is None:
                     return None
                 kcs += [k for k in line["kcs"] if k not in kcs]
@@ -171,6 +176,7 @@ class _Compiler:
         speakers: set[str],
         position: int,
         out: Stories,
+        step: int,
     ) -> dict[str, Any] | None:
         if line.speaker is not None and line.speaker not in speakers:
             self.report(
@@ -194,6 +200,11 @@ class _Compiler:
                 return None
             forms[orth] = tagged
             out.lines.append(LineForm(orth, tagged["tokens"], doc, (*at, "forms", orth)))
+            # Voices read a line as written (ADR 0053): its audio item is "<story>#<step>".
+            if any("_written" in t for t in tagged["tokens"]):
+                self.ctx.written[(line_item(story.id, step), orth)] = [
+                    str(t.get("_written", t["surface"])) for t in tagged["tokens"]
+                ]
         absent = [o for o in self.course.orthographies if o not in line.forms]
         if absent:
             self.report(
