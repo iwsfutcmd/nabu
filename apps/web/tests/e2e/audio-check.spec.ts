@@ -71,6 +71,34 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   expect(errors).toEqual([]);
 });
 
+test("a course still keeping an older voice opens on its own voice; the voice filter shows the others", async ({ page }) => {
+  const cast = (parse(readFileSync(new URL("../../../../courses/uz/course.yaml", import.meta.url), "utf8")) as { audio: { voices: { provider: string; voice: string }[] } }).audio.voices.map((v) => `${v.provider}:${v.voice}`);
+  const clips = (indexOf("uz") as { clips: { item: string; speed: string; synthesis?: { provider: string; voice: string } }[] }).clips;
+  const byItem = new Map<string, string>();
+  for (const c of [...clips].sort((a, b) => Number(a.speed !== "normal") - Number(b.speed !== "normal")))
+    if (!byItem.has(c.item)) byItem.set(c.item, c.synthesis === undefined ? "recorded" : `${c.synthesis.provider}:${c.synthesis.voice}`);
+  const made = new Set(byItem.values());
+  const count = (voice: string): number => [...byItem.values()].filter((v) => v === voice).length;
+
+  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  await expect(page.locator("[data-audio-item]").first()).toBeVisible();
+  if (made.size < 2) {
+    await expect(page.locator("[data-filter=voice]")).toHaveCount(0);
+    await expect(page.locator("[data-audio-item]")).toHaveCount(byItem.size);
+    return;
+  }
+  const own = cast.find((v) => made.has(v)) ?? "";
+  await expect(page.locator("[data-filter=voice]")).toHaveValue(own);
+  await expect(page.locator("[data-audio-item]")).toHaveCount(count(own));
+  await expect(page.locator(`[data-audio-item]:not([data-voice="${own}"])`)).toHaveCount(0);
+  for (const voice of made) {
+    await page.locator("[data-filter=voice]").selectOption(voice);
+    await expect(page.locator("[data-audio-item]")).toHaveCount(count(voice));
+  }
+  await page.locator("[data-filter=voice]").selectOption("all");
+  await expect(page.locator("[data-audio-item]")).toHaveCount(byItem.size);
+});
+
 test("a clip plays from the audio check", async ({ page }) => {
   await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();

@@ -602,6 +602,10 @@
       "message": "Round trip",
       "description": "Audio check: label of the filter by how the speech recognizer check went."
     },
+    "audio.check.filter.voice": {
+      "message": "Voice",
+      "description": "Audio check: label of the filter by the voice that made the clips (shown when a course has clips from more than one voice)."
+    },
     "audio.check.heard": {
       "message": "Heard:",
       "description": "Audio check: label before what the speech recognizer heard in the clip (shown in the course's language)."
@@ -733,6 +737,18 @@
     "audio.check.voice": {
       "message": "Voice: {$voice} ({$provider})",
       "description": "Audio check: which voice made the clips. $voice is the course's voice id, $provider the speech synthesizer's technical name (navoiy, omnivoice, espeak-ng); neither is translated."
+    },
+    "audio.check.voice.all": {
+      "message": "All voices",
+      "description": "Audio check: voice filter option that shows every voice's clips."
+    },
+    "audio.check.voice.option": {
+      "message": "{$name} ({$provider})",
+      "description": "Audio check: a voice in the voice filter. $name is the course's name for the voice (e.g. toshkent), $provider the speech engine (e.g. navoiy, espeak-ng); both are identifiers, not translated."
+    },
+    "audio.check.voice.recorded": {
+      "message": "Recordings",
+      "description": "Audio check: voice filter option for clips a person recorded rather than a speech engine."
     },
     "audio.check.wrong": {
       "message": "Sounds wrong",
