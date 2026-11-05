@@ -163,6 +163,8 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "我哋去飲茶啦",
             template="story-arrange",
         ),
+        # "I said it right": the speech scoring was wrong, not the accept set.
+        report("yue", "yue-Hant-HK/standard", "s.12", "我係學生", template="speak"),
         # "This should have been wrong": an alternative to take out, by hand.
         report("yue", "yue-Hant-HK/standard", "s.13", "我唔係學生啊", claim="reject"),
     ]
@@ -182,9 +184,11 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
             "translate-tap.l2-l1:",
             "status",
             "story-arrange:",
+            "speak:",
             "should",
         ]
-        assert "no accept set" in outcome.skipped[-2][1]
+        assert "no accept set" in outcome.skipped[-3][1]
+        assert "speech scoring" in outcome.skipped[-2][1]
         assert "by hand" in outcome.skipped[-1][1]
         yue = (courses / "yue" / "units" / "intro.yaml").read_text(encoding="utf-8")
         assert "      reverse: |-\n        我係學生\n        我係一個學生 @0.5\n" in yue

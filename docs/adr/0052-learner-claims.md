@@ -44,6 +44,10 @@ mistakes and XP change on the spot. The report uploads like any event.
 
 ## Consequences
 
+- **Scored speaking cards** (speak, listen-speak; 2026-11-05). Tone and sound scoring can be wrong,
+  so a learner can claim a spoken answer right: "I said it right". The claim's text is the sentence
+  they were asked to say, never a recording or a transcript, and promotion skips it: the scoring was
+  wrong, not the accept set. A self-rated card (speak.tier-0) has nothing to overrule.
 - A learner can now change their own grading, and only their own. Others' progress and the
   course do not move until a reviewer applies the report.
 - Claims earn or lose XP like the answers they revise, in leagues too. Leagues' plausibility

@@ -88,7 +88,14 @@ export interface AnswerHelpProps {
  * been wrong"; either counts that way for the learner at once and joins the review queue.
  * Speaking is graded by the voice, and pairs have no single answer: neither is reported.
  */
-const reportable = (template: string): boolean => !SPEAKING.has(template as TemplateId) && template !== "match-pairs";
+const reportable = (template: string): boolean => (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && template !== "match-pairs";
+
+/**
+ * Speaking cards the device scores (tones, sounds): the scoring can be wrong, so the learner can
+ * say they said it right. The claim's text is the sentence they were asked to say: no recording
+ * and no transcript leave the device. A self-rated card (speak.tier-0) has nothing to overrule.
+ */
+const SCORED_SPEECH: ReadonlySet<string> = new Set(["speak", "listen-speak"]);
 
 /** "My answer should have been accepted" or "this should have been wrong" (§13.2, ADR 0052). */
 const reportOf = (answer: AnswerSubmitted, text: string, claim: "accept" | "reject"): AnswerReported => {
@@ -124,11 +131,12 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
   const [judge, setJudge] = useState<Judge>("idle");
   const [explain, setExplain] = useState<Explain>({ tag: "idle" });
   const published = useReportsPublic();
-  const text = (answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
+  const spoken = SCORED_SPEECH.has(ex.template) && "prompt" in ex ? surfaceOf(ex.prompt) : undefined;
+  const text = (spoken ?? answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
   const right = answer !== undefined && answer.outcome.kind.startsWith("CORRECT");
   const wrong = answer !== undefined && !right && text !== "";
-  // A wrong answer can be claimed right, a right one wrong.
-  const claim = answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? "reject" : "accept";
+  // A wrong answer can be claimed right, a right one wrong; a spoken answer only right.
+  const claim = answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? (spoken === undefined ? "reject" : undefined) : "accept";
   const explainable = wrong && status.explain && EXPLAINED.has(ex.template);
 
   useEffect(() => {
@@ -185,7 +193,7 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
             }}
             data-action={claim === "accept" ? "report" : "report-wrong"}
           >
-            {t.format(claim === "accept" ? "ai.report.button" : "ai.report.reject")}
+            {t.format(claim === "reject" ? "ai.report.reject" : spoken === undefined ? "ai.report.button" : "ai.report.spoken")}
           </button>
         )}
         {explainable && explain.tag === "idle" && (
