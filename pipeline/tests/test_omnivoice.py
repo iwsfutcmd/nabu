@@ -148,8 +148,9 @@ def test_a_vowel_marks_voice_reads_the_marks_and_is_checked_against_the_letters(
     bathroom = items["s.home.15"]
     assert "الحَمّام" in bathroom.input
     assert FATHA not in bathroom.expected
-    assert items["sense:salon"].input == "الصّالون"
-    assert items["sense:salon"].expected == "الصالون"
+    # A word card reads the lemma's marks too (ADR 0061: حمّام, not الحمّام).
+    assert items["sense:7ammem"].input == "حَمّام"
+    assert FATHA not in items["sense:7ammem"].expected
     # Without vowelMarks the voice reads the text as the source writes it.
     plain = {i.item: i for i in plan(apc.units, voice(vowelMarks=False), apc.written)[0]}
     assert FATHA not in plain["s.home.15"].input
@@ -275,3 +276,50 @@ def test_an_item_the_voice_says_nothing_for_gets_no_clip(
     report = synthesize_course(course, intro, v, None, apc.written)
     assert report.synthesized == 0 and report.silent
     assert read_index(audio_dir(course)).clips == []
+
+
+@pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
+def test_a_rejected_clip_is_made_again_as_its_next_take(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, apc: Any
+) -> None:
+    """ADR 0060: a clip a listener judged wrong is sampled again with another seed; the others
+    stay as they are."""
+    from nabu.audio.course import apply_verdicts
+    from nabu.schema.models import AudioVerdicts
+
+    course = tmp_path / "apc"
+    shutil.copytree(ROOT / "courses" / "apc", course, ignore=shutil.ignore_patterns("audio"))
+    engine = FakeEngine()
+    monkeypatch.setitem(providers.PROVIDERS, "omnivoice", lambda v, r: fake(engine, v, r))
+    v = voice()
+    cast_reference(course, v, "مَرْحَبا!", "male", 7, fake(engine, v, REF))
+    intro: list[dict[str, Any]] = [{**u, "stories": []} for u in apc.units if u["id"] == "intro"]
+    synthesize_course(course, intro, v, None, apc.written)
+    adir = audio_dir(course)
+    first = read_index(adir).clips
+    target = first[0].item
+    heard = [c.sha256 for c in first if c.item == target]
+    verdicts = AudioVerdicts.model_validate(
+        {
+            "course": "apc",
+            "verdicts": [
+                {"item": target, "clips": heard, "verdict": "wrong", "at": "2026-11-05T18:00:00Z"}
+            ],
+        }
+    )
+    apply_verdicts(course, verdicts, "human:ben")
+
+    engine.calls.clear()
+    report = synthesize_course(course, intro, v, None, apc.written)
+    assert report.synthesized == 2 and report.kept == len(first) - 2
+    clips = {(c.item, c.speed): c for c in read_index(adir).clips}
+    for speed, rate in (("normal", 1.0), ("slow", 0.67)):
+        clip = clips[(target, speed)]
+        assert clip.synthesis is not None and clip.synthesis.take == 1
+        assert clip.rejected is None
+        assert seed_of(Request(clip.synthesis.input, "beirut-m", rate, 1)) in {
+            c["seed"] for c in engine.calls
+        }
+    # A first take keeps its seed; the new take keeps its place on the next run.
+    assert seed_of(Request("x", "v", 1.0)) == seed_of(Request("x", "v", 1.0, 0))
+    assert synthesize_course(course, intro, v, None, apc.written).synthesized == 0

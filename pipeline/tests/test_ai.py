@@ -212,7 +212,7 @@ def test_promote_adds_weighted_alternatives_and_the_course_still_compiles(
 
 def test_author_prompt_lists_what_was_taught_up_to_the_node() -> None:
     values = prompt_values(load_course(REPO / "courses" / "uz"), "uz.my", 3)
-    assert "sense:kitob: kitob, kitobim / китоб, китобим (book)" in values["kcs"]
+    assert "sense:kitob: kitob / китоб (book)" in values["kcs"]
     assert "sense:salom" in values["kcs"] and "sense:ism" in values["kcs"]
     assert values["orthographies"] == "uz-Latn/standard, uz-Cyrl/standard"
     assert values["introduces"].startswith("form:poss-1sg-im")

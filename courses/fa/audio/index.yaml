@@ -573,11 +573,11 @@ clips:
   timingSource: synthesis
   qa:
     trace: na
-- item: form:1pl-im
+- item: fa.story.books#0
   speed: normal
-  file: clips/d1011270cf6b6340.mp3
-  sha256: 5de74715e295f8e152047afd06227d0c693cb31c61ea49b85a0e34cc5e94a9e7
-  durationMs: 611
+  file: clips/9d61f006ac8be44f.mp3
+  sha256: 843cad196959f8a018d3353976c1974638f18d6f6e794adf673c7391ba6f2b4a
+  durationMs: 625
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -587,25 +587,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: هستیم
+    input: سلام!
     rate: 1.0
-    inputHash: d1011270cf6b6340469fb280899be5fe882ae0667c1d6aeb29418f62c2887f3d
+    inputHash: 9d61f006ac8be44fe1d9a43e42c426bea2de56da8842e5077c15e1af9e9abe50
   timings:
   - token: 0
     startMs: 0
-    endMs: 611
+    endMs: 625
   timingSource: synthesis
   qa:
-    trace: hastim
+    trace: salɑm
     asrModel: whisper-large-v3-turbo
-    asrText: هستیم
+    asrText: سلام
     cer: 0.0
     status: pass
-- item: form:1pl-im
+- item: fa.story.books#0
   speed: slow
-  file: clips/4bd935ef39f48825.mp3
-  sha256: 058fba7ea3f61e83721fe7c260f5cda4bcdf2352af518875f26e7ecd0d87f08f
-  durationMs: 900
+  file: clips/c8ab80d37a684a9b.mp3
+  sha256: a31703241d84879f0a0a17c033814596b4869fadbab27521d7c90720b9e60e94
+  durationMs: 994
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -615,16 +615,7190 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: هستیم
+    input: سلام!
     rate: 0.67
-    inputHash: 4bd935ef39f48825e9f41657872aaf3868a7946d650f12b8b04fe5f6d274d4d6
+    inputHash: c8ab80d37a684a9b99f77e78de479cfcf1d840ea5f15052fa603e8e70931b4c7
   timings:
   - token: 0
     startMs: 0
-    endMs: 900
+    endMs: 994
   timingSource: synthesis
   qa:
-    trace: hastim
+    trace: salɑm
+- item: fa.story.books#1
+  speed: normal
+  file: clips/e73f6f0958073562.mp3
+  sha256: 1c69ca444b33c913748fe28bb81f739268ecdd40d7abbde31b6a95e6bb12b258
+  durationMs: 2122
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! تو علی هستی؟
+    rate: 1.0
+    inputHash: e73f6f0958073562c5911105703889a7cab5728736ae2beb33a9a848a2ddf855
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1053
+  - token: 3
+    startMs: 1053
+    endMs: 1266
+  - token: 5
+    startMs: 1266
+    endMs: 1577
+  - token: 7
+    startMs: 1577
+    endMs: 2122
+  timingSource: synthesis
+  qa:
+    trace: salɑm to aːli hasti
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام توالی هستی
+    cer: 0.077
+    status: pass
+- item: fa.story.books#1
+  speed: slow
+  file: clips/6a1ae9eb45ccb610.mp3
+  sha256: d71d89f908c4ed7cdf56d7f8b6d182bbd05fa41349f751647a28f29385361398
+  durationMs: 3440
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! تو علی هستی؟
+    rate: 0.67
+    inputHash: 6a1ae9eb45ccb61054f7a1cb35c960c32ce2fe2029939914b4cfe22c03747152
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1775
+  - token: 3
+    startMs: 1775
+    endMs: 2094
+  - token: 5
+    startMs: 2094
+    endMs: 2627
+  - token: 7
+    startMs: 2627
+    endMs: 3440
+  timingSource: synthesis
+  qa:
+    trace: salɑm to aːli hasti
+- item: fa.story.books#2
+  speed: normal
+  file: clips/f0f41160b7890258.mp3
+  sha256: 11a13809b3f7dcb1aa98182812f8707d8f5a0bdd5c634666a6227ca8533b8e31
+  durationMs: 1730
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، من علی هستم.
+    rate: 1.0
+    inputHash: f0f41160b7890258303d0d6f212b9e59fcf1c1fa99606944b0621ed1d78caf9b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 795
+  - token: 5
+    startMs: 795
+    endMs: 1143
+  - token: 7
+    startMs: 1143
+    endMs: 1730
+  timingSource: synthesis
+  qa:
+    trace: baleː man aːli hastam
+    asrModel: whisper-large-v3-turbo
+    asrText: با لے مانالی هستم
+    cer: 0.333
+    status: review
+- item: fa.story.books#2
+  speed: slow
+  file: clips/aff154cf53578446.mp3
+  sha256: 55768c27f961215621308a1fe51f3641ecd43882087173d5d8a081f70019caad
+  durationMs: 2815
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، من علی هستم.
+    rate: 0.67
+    inputHash: aff154cf53578446c7999099cbe699716ae92572a452efea260b04dee4803a8e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1338
+  - token: 5
+    startMs: 1338
+    endMs: 1939
+  - token: 7
+    startMs: 1939
+    endMs: 2815
+  timingSource: synthesis
+  qa:
+    trace: baleː man aːli hastam
+- item: fa.story.books#3
+  speed: normal
+  file: clips/da35e0608e9280cf.mp3
+  sha256: 71eef77af0b6e501366c557413fc94e119b8a44575b937eb17ae96c8fbac6ed4
+  durationMs: 1272
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: من مریم هستم.
+    rate: 1.0
+    inputHash: da35e0608e9280cfbf65d12c59bd210a8572ab6b163d75163a3a02013e958a3c
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 220
+  - token: 2
+    startMs: 220
+    endMs: 685
+  - token: 4
+    startMs: 685
+    endMs: 1272
+  timingSource: synthesis
+  qa:
+    trace: man marjam hastam
+    asrModel: whisper-large-v3-turbo
+    asrText: ملناریم هستم
+    cer: 0.2
+    status: review
+- item: fa.story.books#3
+  speed: slow
+  file: clips/7e5a698dc2fae5cb.mp3
+  sha256: ba86c6284598845507596060f80e4dfa05ae20684e3d5b1b3abb3cea81b6d7d7
+  durationMs: 1925
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: من مریم هستم.
+    rate: 0.67
+    inputHash: 7e5a698dc2fae5cb077b320016eb3e1fe7e1508aca327da32a40d69c04d9c76d
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 336
+  - token: 2
+    startMs: 336
+    endMs: 1049
+  - token: 4
+    startMs: 1049
+    endMs: 1925
+  timingSource: synthesis
+  qa:
+    trace: man marjam hastam
+- item: fa.story.books#5
+  speed: normal
+  file: clips/0693de6bcc96f2ab.mp3
+  sha256: e0b7fd650022420def5a6849b213ad39c5d63640ee96628e5ec35f3809a6c628
+  durationMs: 1339
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این کتابِ تو است؟
+    rate: 1.0
+    inputHash: 0693de6bcc96f2ab49596329bae0c3566b8a72f401bdddb80d5d3946cd2ba04b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 231
+  - token: 2
+    startMs: 231
+    endMs: 788
+  - token: 4
+    startMs: 788
+    endMs: 1001
+  - token: 6
+    startMs: 1001
+    endMs: 1339
+  timingSource: synthesis
+  qa:
+    trace: iːn ketɑbe to ast
+    asrModel: whisper-large-v3-turbo
+    asrText: این که توب تو هست
+    cer: 0.333
+    status: review
+- item: fa.story.books#5
+  speed: slow
+  file: clips/b5b270becf2121c8.mp3
+  sha256: f6552370ab7f583fdb840b7de1aa5f59a97d1e8ccbe1e254061cd22f9ea517c3
+  durationMs: 2022
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این کتابِ تو است؟
+    rate: 0.67
+    inputHash: b5b270becf2121c8ccf179609ee27bc9054ed4e7bede279adeb7552dbebdcef8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 368
+  - token: 2
+    startMs: 368
+    endMs: 1208
+  - token: 4
+    startMs: 1208
+    endMs: 1527
+  - token: 6
+    startMs: 1527
+    endMs: 2022
+  timingSource: synthesis
+  qa:
+    trace: iːn ketɑbe to ast
+- item: fa.story.books#6
+  speed: normal
+  file: clips/51cf402f1e72eb49.mp3
+  sha256: ae4eea19b12f0db617e65dc8756429004db6701cf6df95d7a367265c23d58531
+  durationMs: 3340
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله. کتاب\u200cهای من خیلی خوب هستند."
+    rate: 1.0
+    inputHash: 51cf402f1e72eb49af50b66d64be2541ec588b22c0878d2cae6052d9423be025
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 840
+  - token: 3
+    startMs: 840
+    endMs: 1674
+  - token: 5
+    startMs: 1674
+    endMs: 1866
+  - token: 7
+    startMs: 1866
+    endMs: 2307
+  - token: 9
+    startMs: 2307
+    endMs: 2728
+  - token: 11
+    startMs: 2728
+    endMs: 3340
+  timingSource: synthesis
+  qa:
+    trace: baleː ketɑbhɑje man xejli xuːb hastand
+    asrModel: whisper-large-v3-turbo
+    asrText: بله. که توم هایمان خیلی خوب هستند.
+    cer: 0.167
+    status: review
+- item: fa.story.books#6
+  speed: slow
+  file: clips/132f3c25395a9021.mp3
+  sha256: 188b632d5649d42816107c1882e0c80b31ff2f661c669f80386f35e0cb20f714
+  durationMs: 5187
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله. کتاب\u200cهای من خیلی خوب هستند."
+    rate: 0.67
+    inputHash: 132f3c25395a90210a7b9dc066c9a606181fb0dec46747b59d89415e5ac124a9
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1447
+  - token: 3
+    startMs: 1447
+    endMs: 2678
+  - token: 5
+    startMs: 2678
+    endMs: 2959
+  - token: 7
+    startMs: 2959
+    endMs: 3667
+  - token: 9
+    startMs: 3667
+    endMs: 4312
+  - token: 11
+    startMs: 4312
+    endMs: 5187
+  timingSource: synthesis
+  qa:
+    trace: baleː ketɑbhɑje man xejli xuːb hastand
+- item: fa.story.books#7
+  speed: normal
+  file: clips/78ff2ba04e805e78.mp3
+  sha256: 72cd183498c5e11982134e48bb517a14e34a8f871d653079015ddd5bfa978f58
+  durationMs: 2715
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، مریم! خداحافظ!
+    rate: 1.0
+    inputHash: 78ff2ba04e805e78a382a5d9fd3ef6a00d64fd6df7e486114755b05e85edc4a8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 780
+  - token: 3
+    startMs: 780
+    endMs: 1787
+  - token: 6
+    startMs: 1787
+    endMs: 2715
+  timingSource: synthesis
+  qa:
+    trace: mamnun marjam xodɑhɑfez
+    asrModel: whisper-large-v3-turbo
+    asrText: مامل، ماریم، جو دو آفن
+    cer: 0.688
+    status: fail
+- item: fa.story.books#7
+  speed: slow
+  file: clips/dd38e5b7ebfeb548.mp3
+  sha256: 89afd00e3a16d42117b2ea4e4430e538338d48a7ee156332571b73cc66235b40
+  durationMs: 4320
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، مریم! خداحافظ!
+    rate: 0.67
+    inputHash: dd38e5b7ebfeb548e94532d4e36a9091f6a6903606c88838701be5186ec91819
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1256
+  - token: 3
+    startMs: 1256
+    endMs: 2912
+  - token: 6
+    startMs: 2912
+    endMs: 4320
+  timingSource: synthesis
+  qa:
+    trace: mamnun marjam xodɑhɑfez
+- item: fa.story.books#8
+  speed: normal
+  file: clips/0f8c475ce9c9d61f.mp3
+  sha256: 378676a07c09389205d794dcf90b7b35d465c48dc12a606def5743db9218a01d
+  durationMs: 926
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خداحافظ!
+    rate: 1.0
+    inputHash: 0f8c475ce9c9d61f0887b8e7434b51016323361e146032079c08b57d3365068a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 926
+  timingSource: synthesis
+  qa:
+    trace: xodɑhɑfez
+    asrModel: whisper-large-v3-turbo
+    asrText: خدا هافیم
+    cer: 0.429
+    status: review
+- item: fa.story.books#8
+  speed: slow
+  file: clips/0a54e1c7fed63d2a.mp3
+  sha256: 26ad81cc570b1753367f05fb5798bc131f540d8aec22336219196bcafab9890b
+  durationMs: 1408
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خداحافظ!
+    rate: 0.67
+    inputHash: 0a54e1c7fed63d2aafa20810b3c4fbf596f5b9acf82072809c0a60ea8b83f6a8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1408
+  timingSource: synthesis
+  qa:
+    trace: xodɑhɑfez
+- item: fa.story.family#0
+  speed: normal
+  file: clips/e9c10abb47fc0aa3.mp3
+  sha256: a98d5ba0b2b5a9d99a1d7b0da805c1ce7e29ea5065ec541dc8b93132ef46c629
+  durationMs: 3134
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام سارا! این خانوادهٔ من است.
+    rate: 1.0
+    inputHash: e9c10abb47fc0aa305056036de300d6b3a51b041e2848997b84316414da95d91
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 478
+  - token: 2
+    startMs: 478
+    endMs: 1548
+  - token: 5
+    startMs: 1548
+    endMs: 1780
+  - token: 7
+    startMs: 1780
+    endMs: 2606
+  - token: 9
+    startMs: 2606
+    endMs: 2724
+  - token: 11
+    startMs: 2724
+    endMs: 3134
+  timingSource: synthesis
+  qa:
+    trace: salɑm sɑrɑ iːn xɑnevɑdeːje man ast
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام سو رو این خونه مو دیمانست
+    cer: 0.391
+    status: review
+- item: fa.story.family#0
+  speed: slow
+  file: clips/191c3717e4ab1373.mp3
+  sha256: 98c9c42e0d6719013fb967b6dd9d6a15e1d30408d714b4b18821fe0ec3ac0f1e
+  durationMs: 5029
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام سارا! این خانوادهٔ من است.
+    rate: 0.67
+    inputHash: 191c3717e4ab13730b8c20042f855b45dab838ab556c00a7f6567bb726e74fe3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 768
+  - token: 2
+    startMs: 768
+    endMs: 2582
+  - token: 5
+    startMs: 2582
+    endMs: 2952
+  - token: 7
+    startMs: 2952
+    endMs: 4242
+  - token: 9
+    startMs: 4242
+    endMs: 4428
+  - token: 11
+    startMs: 4428
+    endMs: 5029
+  timingSource: synthesis
+  qa:
+    trace: salɑm sɑrɑ iːn xɑnevɑdeːje man ast
+- item: fa.story.family#1
+  speed: normal
+  file: clips/c04fd4b82f4a2b5f.mp3
+  sha256: 708ecc257f09b4c8273a8617be6d37b5108b9659fcf7d3159473c6be8be564c4
+  durationMs: 1767
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! این کیست؟
+    rate: 1.0
+    inputHash: c04fd4b82f4a2b5fe2968eeddac508c73ac8bb2371983c9c437a702591ed57f6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1053
+  - token: 3
+    startMs: 1053
+    endMs: 1282
+  - token: 5
+    startMs: 1282
+    endMs: 1767
+  timingSource: synthesis
+  qa:
+    trace: salɑm iːn kist
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام. اینکیست.
+    cer: 0.0
+    status: pass
+- item: fa.story.family#1
+  speed: slow
+  file: clips/0f53396cd09f9e21.mp3
+  sha256: aa77ca31b99413226e0c668f6e25fb01e3147a330cc290b61a01ee43a01bebc8
+  durationMs: 2828
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! این کیست؟
+    rate: 0.67
+    inputHash: 0f53396cd09f9e2176e32beb62f992aaa730aea30742d6a4da3fb33cf03b1389
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1775
+  - token: 3
+    startMs: 1775
+    endMs: 2149
+  - token: 5
+    startMs: 2149
+    endMs: 2828
+  timingSource: synthesis
+  qa:
+    trace: salɑm iːn kist
+- item: fa.story.family#11
+  speed: normal
+  file: clips/92a91c358cd9ebef.mp3
+  sha256: c235dd9bff9f4098cc09577e37ed7aaa6f7fdf314ac67bbc9594b1e206c79b50
+  durationMs: 2440
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خانوادهٔ تو خیلی مهربان است!
+    rate: 1.0
+    inputHash: 92a91c358cd9ebefeb3137e10d87a7c26cb27819d9ea2dcbff91e0f72c3ca7b7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 812
+  - token: 2
+    startMs: 812
+    endMs: 1039
+  - token: 4
+    startMs: 1039
+    endMs: 1488
+  - token: 6
+    startMs: 1488
+    endMs: 2043
+  - token: 8
+    startMs: 2043
+    endMs: 2440
+  timingSource: synthesis
+  qa:
+    trace: xɑnevɑdeːje to xejli meːhrbɑn ast
+    asrModel: whisper-large-v3-turbo
+    asrText: خانه ماده ایتو خیلی میه ردا نیست
+    cer: 0.364
+    status: review
+- item: fa.story.family#11
+  speed: slow
+  file: clips/c8dc87a4b0e23623.mp3
+  sha256: abfa9e313d0a0d0cdb86ba5fdae1b18e099e7f744aa3bcae5858df3525836cd3
+  durationMs: 3763
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خانوادهٔ تو خیلی مهربان است!
+    rate: 0.67
+    inputHash: c8dc87a4b0e23623571053a7ea1f378511633ffd8ee7ad59c16568356b3d04cc
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1277
+  - token: 2
+    startMs: 1277
+    endMs: 1610
+  - token: 4
+    startMs: 1610
+    endMs: 2328
+  - token: 6
+    startMs: 2328
+    endMs: 3156
+  - token: 8
+    startMs: 3156
+    endMs: 3763
+  timingSource: synthesis
+  qa:
+    trace: xɑnevɑdeːje to xejli meːhrbɑn ast
+- item: fa.story.family#12
+  speed: normal
+  file: clips/4c72c31caf2ec152.mp3
+  sha256: d26055120d4c256791081865f5f07cdde5b9e313d3f164bb337e9a9decea9d15
+  durationMs: 1426
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، سارا!
+    rate: 1.0
+    inputHash: 4c72c31caf2ec152817061c57e151d61bcd937cb92165ffad29a24fd686949bf
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 780
+  - token: 3
+    startMs: 780
+    endMs: 1426
+  timingSource: synthesis
+  qa:
+    trace: mamnun sɑrɑ
+    asrModel: whisper-large-v3-turbo
+    asrText: مامل سورا
+    cer: 0.556
+    status: fail
+- item: fa.story.family#12
+  speed: slow
+  file: clips/7831d6c095b28f6d.mp3
+  sha256: d1ec10d3fd43014ce529a1cd4e852156edd529be33ccac78c3845b6bf82b08de
+  durationMs: 2288
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، سارا!
+    rate: 0.67
+    inputHash: 7831d6c095b28f6ddd7722337617c80e1147d5d3e5af4cb5f64d4b5409cf85e2
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1256
+  - token: 3
+    startMs: 1256
+    endMs: 2288
+  timingSource: synthesis
+  qa:
+    trace: mamnun sɑrɑ
+- item: fa.story.family#2
+  speed: normal
+  file: clips/830388cdea35a946.mp3
+  sha256: 82f60edebcfdc0ad7f1f58570a3d6bc073da5b81fdec7997fbb4270962a31e3a
+  durationMs: 2624
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پدرم است. او پزشک است.
+    rate: 1.0
+    inputHash: 830388cdea35a9464de7b457885fac26b0a9440f8fdf4f33bd5941354fe97323
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 230
+  - token: 2
+    startMs: 230
+    endMs: 729
+  - token: 4
+    startMs: 729
+    endMs: 1517
+  - token: 7
+    startMs: 1517
+    endMs: 1717
+  - token: 9
+    startMs: 1717
+    endMs: 2263
+  - token: 11
+    startMs: 2263
+    endMs: 2624
+  timingSource: synthesis
+  qa:
+    trace: iːn pedaram ast uː pezeʃk ast
+    asrModel: whisper-large-v3-turbo
+    asrText: این پیدا را مست. او پیلشکست.
+    cer: 0.368
+    status: review
+- item: fa.story.family#2
+  speed: slow
+  file: clips/633212ead1a72bb6.mp3
+  sha256: ea5d7a063a8f6a58cfa276e937b21851ac7f2e559574a51c4808e969ad2c2ebd
+  durationMs: 4051
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پدرم است. او پزشک است.
+    rate: 0.67
+    inputHash: 633212ead1a72bb695ca7e32a4c5fcc9bce1a0f786aa6e41ad924e07bc5c61c7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 366
+  - token: 2
+    startMs: 366
+    endMs: 1117
+  - token: 4
+    startMs: 1117
+    endMs: 2405
+  - token: 7
+    startMs: 2405
+    endMs: 2743
+  - token: 9
+    startMs: 2743
+    endMs: 3533
+  - token: 11
+    startMs: 3533
+    endMs: 4051
+  timingSource: synthesis
+  qa:
+    trace: iːn pedaram ast uː pezeʃk ast
+- item: fa.story.family#3
+  speed: normal
+  file: clips/8542efbec7ddf971.mp3
+  sha256: 44249f007f24d6db4f74ef0c93b4e967cb7c1056a9488061e8f41668296db2e2
+  durationMs: 1441
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: و این مادرِ تو است؟
+    rate: 1.0
+    inputHash: 8542efbec7ddf9710de760ddc4cd7010096a8ca31a041836ab6318c3edbb4c2d
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 207
+  - token: 2
+    startMs: 207
+    endMs: 433
+  - token: 4
+    startMs: 433
+    endMs: 890
+  - token: 6
+    startMs: 890
+    endMs: 1103
+  - token: 8
+    startMs: 1103
+    endMs: 1441
+  timingSource: synthesis
+  qa:
+    trace: va iːn mɑdare to ast
+    asrModel: whisper-large-v3-turbo
+    asrText: فاییل مطا ری تو هست
+    cer: 0.538
+    status: fail
+- item: fa.story.family#3
+  speed: slow
+  file: clips/0862ca5638a04add.mp3
+  sha256: 6897cac0d84a23784a5e4841ec3ec61fd82c549b4ece5da68e151ca5ad6f4ed5
+  durationMs: 2231
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: و این مادرِ تو است؟
+    rate: 0.67
+    inputHash: 0862ca5638a04add6392451a254c2bd9f21e767cf68c69096b5c186edcb3c35a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 335
+  - token: 2
+    startMs: 335
+    endMs: 701
+  - token: 4
+    startMs: 701
+    endMs: 1418
+  - token: 6
+    startMs: 1418
+    endMs: 1737
+  - token: 8
+    startMs: 1737
+    endMs: 2231
+  timingSource: synthesis
+  qa:
+    trace: va iːn mɑdare to ast
+- item: fa.story.family#4
+  speed: normal
+  file: clips/c22d56edb6880523.mp3
+  sha256: b581f8e3a6e903603bdf73dc54a15beea6ccd49e344a964953fa1f41d1d28549
+  durationMs: 4400
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. مادرم معلم است. او خیلی مهربان است.
+    rate: 1.0
+    inputHash: c22d56edb68805239bde665e64e724cf064e44bffee33b9da1371bb5f500975f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 840
+  - token: 3
+    startMs: 840
+    endMs: 1427
+  - token: 5
+    startMs: 1427
+    endMs: 1967
+  - token: 7
+    startMs: 1967
+    endMs: 2755
+  - token: 10
+    startMs: 2755
+    endMs: 2964
+  - token: 12
+    startMs: 2964
+    endMs: 3417
+  - token: 14
+    startMs: 3417
+    endMs: 3969
+  - token: 16
+    startMs: 3969
+    endMs: 4400
+  timingSource: synthesis
+  qa:
+    trace: baleː mɑdaram moʔallem ast uː xejli meːhrbɑn ast
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله. مطارم مال مست. او هیلی مه ردونست.
+    cer: 0.333
+    status: review
+- item: fa.story.family#4
+  speed: slow
+  file: clips/36f7f800c4f5dd29.mp3
+  sha256: 6e734dc8c90e02e0529143e28192e3cc4e6b4a46c2127cbfe3093bdc3c24658a
+  durationMs: 7048
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. مادرم معلم است. او خیلی مهربان است.
+    rate: 0.67
+    inputHash: 36f7f800c4f5dd2935db342ec8bf5b7682def75a2dcf34be9d2f46ade1ec3840
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1447
+  - token: 3
+    startMs: 1447
+    endMs: 2352
+  - token: 5
+    startMs: 2352
+    endMs: 3204
+  - token: 7
+    startMs: 3204
+    endMs: 4496
+  - token: 10
+    startMs: 4496
+    endMs: 4861
+  - token: 12
+    startMs: 4861
+    endMs: 5575
+  - token: 14
+    startMs: 5575
+    endMs: 6414
+  - token: 16
+    startMs: 6414
+    endMs: 7048
+  timingSource: synthesis
+  qa:
+    trace: baleː mɑdaram moʔallem ast uː xejli meːhrbɑn ast
+- item: fa.story.family#6
+  speed: normal
+  file: clips/644eb70a78436fa5.mp3
+  sha256: 2685b9e14d3b1a837a11bb393fa4c881c193f7619d051fe8e87145eca5a04997
+  durationMs: 1119
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آن پسر کیست؟
+    rate: 1.0
+    inputHash: 644eb70a78436fa5525786bd28d24474c0eac224067d30623301cdac875090c9
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 186
+  - token: 2
+    startMs: 186
+    endMs: 634
+  - token: 4
+    startMs: 634
+    endMs: 1119
+  timingSource: synthesis
+  qa:
+    trace: ɑn pesar kist
+    asrModel: whisper-large-v3-turbo
+    asrText: هم پسارکیست
+    cer: 0.333
+    status: review
+- item: fa.story.family#6
+  speed: slow
+  file: clips/d9062fbd5b05b664.mp3
+  sha256: a77a5e109a16fd60657b1fc158f2b3e947fa5fbd575734ad049d47a2ed6d21e6
+  durationMs: 1636
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آن پسر کیست؟
+    rate: 0.67
+    inputHash: d9062fbd5b05b66402e801bf30daa68478c6311f76d0b9a4dedc92235bcea84c
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 301
+  - token: 2
+    startMs: 301
+    endMs: 958
+  - token: 4
+    startMs: 958
+    endMs: 1636
+  timingSource: synthesis
+  qa:
+    trace: ɑn pesar kist
+- item: fa.story.family#7
+  speed: normal
+  file: clips/a2e43338ec47a8d7.mp3
+  sha256: 9c6b2cd103ef2797beac6b921f09814480993ba03c9fd8a6027d69e0323e750a
+  durationMs: 3067
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: او برادرِ من است. اسمِ او رضا است.
+    rate: 1.0
+    inputHash: a2e43338ec47a8d75717436630483a0d19c01dda5c7784d6770e8b629250c232
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 220
+  - token: 2
+    startMs: 220
+    endMs: 899
+  - token: 4
+    startMs: 899
+    endMs: 1018
+  - token: 6
+    startMs: 1018
+    endMs: 1799
+  - token: 9
+    startMs: 1799
+    endMs: 2125
+  - token: 11
+    startMs: 2125
+    endMs: 2344
+  - token: 13
+    startMs: 2344
+    endMs: 2729
+  - token: 15
+    startMs: 2729
+    endMs: 3067
+  timingSource: synthesis
+  qa:
+    trace: uː barɑdare man ast esme uː rezɑ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: با رو داره مانیست. از با روز آست.
+    cer: 0.609
+    status: fail
+- item: fa.story.family#7
+  speed: slow
+  file: clips/0b3001b7b2de2b62.mp3
+  sha256: d89b6c97f4e7b118f50854ae56e0ed18e537cf8e38ac7984316cd59cf9b5fdd5
+  durationMs: 4900
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: او برادرِ من است. اسمِ او رضا است.
+    rate: 0.67
+    inputHash: 0b3001b7b2de2b6257062e8bdc0061c649d72db9f36424ba1e9000f7a53353eb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 386
+  - token: 2
+    startMs: 386
+    endMs: 1425
+  - token: 4
+    startMs: 1425
+    endMs: 1611
+  - token: 6
+    startMs: 1611
+    endMs: 2902
+  - token: 9
+    startMs: 2902
+    endMs: 3415
+  - token: 11
+    startMs: 3415
+    endMs: 3787
+  - token: 13
+    startMs: 3787
+    endMs: 4397
+  - token: 15
+    startMs: 4397
+    endMs: 4900
+  timingSource: synthesis
+  qa:
+    trace: uː barɑdare man ast esme uː rezɑ ast
+- item: fa.story.family#8
+  speed: normal
+  file: clips/df704ed77bc43312.mp3
+  sha256: 2297a0c7a6a9a7e1da23678efe4c39c0acd665a13b55a2df1c32e251801e5796
+  durationMs: 1574
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: رضا هم پزشک است؟
+    rate: 1.0
+    inputHash: df704ed77bc4331269a35127facc35aaf8474f68f8feea6ae60fdf0e72f49e51
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 390
+  - token: 2
+    startMs: 390
+    endMs: 693
+  - token: 4
+    startMs: 693
+    endMs: 1239
+  - token: 6
+    startMs: 1239
+    endMs: 1574
+  timingSource: synthesis
+  qa:
+    trace: rezɑ ham pezeʃk ast
+    asrModel: whisper-large-v3-turbo
+    asrText: ری نه هم پیش کهات
+    cer: 0.5
+    status: review
+- item: fa.story.family#8
+  speed: slow
+  file: clips/52bea4f85e3ff522.mp3
+  sha256: 9325823c9e3e4114dc6af7ef069c2f785d2e7fcacc2fa3a833fba0d9538cae70
+  durationMs: 2339
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: رضا هم پزشک است؟
+    rate: 0.67
+    inputHash: 52bea4f85e3ff522961baaed08e3201336717b39e4bcbb87866917d7d40b850e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 608
+  - token: 2
+    startMs: 608
+    endMs: 1073
+  - token: 4
+    startMs: 1073
+    endMs: 1857
+  - token: 6
+    startMs: 1857
+    endMs: 2339
+  timingSource: synthesis
+  qa:
+    trace: rezɑ ham pezeʃk ast
+- item: fa.story.family#9
+  speed: normal
+  file: clips/91c182cc5d313ebd.mp3
+  sha256: e01b7984f11bc2021fb76ecbbd38adbee807951f56684c0bb0bd0dbd7fc347e2
+  durationMs: 3410
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، او پزشک نیست. رضا دانشجو است.
+    rate: 1.0
+    inputHash: 91c182cc5d313ebd6787e8ed47bd33faa73d80ec7e7d01c0b2fcff9009717555
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 545
+  - token: 3
+    startMs: 545
+    endMs: 745
+  - token: 5
+    startMs: 745
+    endMs: 1281
+  - token: 7
+    startMs: 1281
+    endMs: 2099
+  - token: 10
+    startMs: 2099
+    endMs: 2494
+  - token: 12
+    startMs: 2494
+    endMs: 3074
+  - token: 14
+    startMs: 3074
+    endMs: 3410
+  timingSource: synthesis
+  qa:
+    trace: na uː pezeʃk nist rezɑ dɑneʃdʒu ast
+    asrModel: whisper-large-v3-turbo
+    asrText: نیا، او پیلش نیست. ری نانش دو است.
+    cer: 0.375
+    status: review
+- item: fa.story.family#9
+  speed: slow
+  file: clips/f796808f31e7f4f6.mp3
+  sha256: 38f83392abdaa0da8f62a15f3528cb49699894787ec9e1bf5aabaaa2dec735bd
+  durationMs: 5411
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، او پزشک نیست. رضا دانشجو است.
+    rate: 0.67
+    inputHash: f796808f31e7f4f63a26990174046361474ada16e121f94e7533d4ab17e809da
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 925
+  - token: 3
+    startMs: 925
+    endMs: 1264
+  - token: 5
+    startMs: 1264
+    endMs: 2041
+  - token: 7
+    startMs: 2041
+    endMs: 3382
+  - token: 10
+    startMs: 3382
+    endMs: 4006
+  - token: 12
+    startMs: 4006
+    endMs: 4912
+  - token: 14
+    startMs: 4912
+    endMs: 5411
+  timingSource: synthesis
+  qa:
+    trace: na uː pezeʃk nist rezɑ dɑneʃdʒu ast
+- item: fa.story.flat#0
+  speed: normal
+  file: clips/c75156fd6f5234f6.mp3
+  sha256: ba58dc9b57d0f5cb08ae111591667cddbdd3471217ff492a4bc46f4adb65192b
+  durationMs: 2348
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام مریم! بفرمایید!
+    rate: 1.0
+    inputHash: c75156fd6f5234f6ae2bdfade0e6b880208fcfcce4c540b490fb78a6677beac4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 478
+  - token: 2
+    startMs: 478
+    endMs: 1464
+  - token: 5
+    startMs: 1464
+    endMs: 2348
+  timingSource: synthesis
+  qa:
+    trace: salɑm marjam befarmɑiːd
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام ماریم بفرموید
+    cer: 0.188
+    status: review
+- item: fa.story.flat#0
+  speed: slow
+  file: clips/9274cd7b8b402410.mp3
+  sha256: 21c3d2ece25ce9aa3ef15d4422674f3b463a64ab2daab9407c2934c73d8b0794
+  durationMs: 3741
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام مریم! بفرمایید!
+    rate: 0.67
+    inputHash: 9274cd7b8b4024101459dbbeca635e98c9f6b9cce9bf35eeef0688dea4a28416
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 764
+  - token: 2
+    startMs: 764
+    endMs: 2394
+  - token: 5
+    startMs: 2394
+    endMs: 3741
+  timingSource: synthesis
+  qa:
+    trace: salɑm marjam befarmɑiːd
+- item: fa.story.flat#1
+  speed: normal
+  file: clips/2cecb31c6de361af.mp3
+  sha256: 71228c085f0e8051bd95411607d9582476944b04924c63fc9e4c44954a1ee1a3
+  durationMs: 3392
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! آپارتمانِ تو خیلی قشنگ است!
+    rate: 1.0
+    inputHash: 2cecb31c6de361af82351079c66bb2a3ad1c99e23dd0efb0355414aab0246057
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1053
+  - token: 3
+    startMs: 1053
+    endMs: 1862
+  - token: 5
+    startMs: 1862
+    endMs: 2090
+  - token: 7
+    startMs: 2090
+    endMs: 2538
+  - token: 9
+    startMs: 2538
+    endMs: 3063
+  - token: 11
+    startMs: 3063
+    endMs: 3392
+  timingSource: synthesis
+  qa:
+    trace: salɑm ɑpɑrtemɑne to xejli q1aʃanɡ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام! اپورتمونه تو هیلی پاشنگست
+    cer: 0.36
+    status: review
+- item: fa.story.flat#1
+  speed: slow
+  file: clips/9d70d7098d67caf6.mp3
+  sha256: 9d218e7b124175e8240e68d78cab90ef14288dbc53fe454f912cf62b0da5bd34
+  durationMs: 5328
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! آپارتمانِ تو خیلی قشنگ است!
+    rate: 0.67
+    inputHash: 9d70d7098d67caf6eb5a5787577272c993ea669178e6f552e88a2f538e81ba91
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1775
+  - token: 3
+    startMs: 1775
+    endMs: 3026
+  - token: 5
+    startMs: 3026
+    endMs: 3360
+  - token: 7
+    startMs: 3360
+    endMs: 4056
+  - token: 9
+    startMs: 4056
+    endMs: 4838
+  - token: 11
+    startMs: 4838
+    endMs: 5328
+  timingSource: synthesis
+  qa:
+    trace: salɑm ɑpɑrtemɑne to xejli q1aʃanɡ ast
+- item: fa.story.flat#10
+  speed: normal
+  file: clips/4bf3e4a46665ef7f.mp3
+  sha256: a7599e8e3a18698c046feeecc69e68d5953b0daffa6c630ff9793ec57812a46b
+  durationMs: 852
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: زیرِ تخت؟!
+    rate: 1.0
+    inputHash: 4bf3e4a46665ef7f9238129ad49bfba1ce2b7f1961c34ffa821ebcd3c98af2f3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 392
+  - token: 2
+    startMs: 392
+    endMs: 852
+  timingSource: synthesis
+  qa:
+    trace: zire taxt
+    asrModel: whisper-large-v3-turbo
+    asrText: زیرت اخت
+    cer: 0.333
+    status: review
+- item: fa.story.flat#10
+  speed: slow
+  file: clips/5128ef7d2677de57.mp3
+  sha256: 60e0844d5b1f44ad4253d0411aacf8795e98c26ebf6602ebfda691c2dcf6e928
+  durationMs: 1255
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: زیرِ تخت؟!
+    rate: 0.67
+    inputHash: 5128ef7d2677de575a69da446adbeec5f29e95c39833f95bd6420f3b242ea972
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 615
+  - token: 2
+    startMs: 615
+    endMs: 1255
+  timingSource: synthesis
+  qa:
+    trace: zire taxt
+- item: fa.story.flat#2
+  speed: normal
+  file: clips/e5d950204d86d79e.mp3
+  sha256: 6892ca95aa886f0b5a87e393740fd3f404c45a2c4669090917a5a3bfda99176f
+  durationMs: 4351
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون. آپارتمانِ من کوچک است، اما جدید است.
+    rate: 1.0
+    inputHash: e5d950204d86d79ef1c9cc87bf62776cc7606af7192575b46e0954d38a1b4ff3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 974
+  - token: 3
+    startMs: 974
+    endMs: 1787
+  - token: 5
+    startMs: 1787
+    endMs: 1979
+  - token: 7
+    startMs: 1979
+    endMs: 2595
+  - token: 9
+    startMs: 2595
+    endMs: 3111
+  - token: 12
+    startMs: 3111
+    endMs: 3497
+  - token: 14
+    startMs: 3497
+    endMs: 3959
+  - token: 16
+    startMs: 3959
+    endMs: 4351
+  timingSource: synthesis
+  qa:
+    trace: mamnun ɑpɑrtemɑne man kuːtʃak ast ammɑ dʒadid ast
+    asrModel: whisper-large-v3-turbo
+    asrText: مامل. اپورتمونه مالکو چاکست. اممو جا دیدست.
+    cer: 0.531
+    status: fail
+- item: fa.story.flat#2
+  speed: slow
+  file: clips/3ae5c3792f69a08b.mp3
+  sha256: 78ac59a04c2e89f5589e4e382c53121d07701a2929bd19599c8c21d4612ea014
+  durationMs: 6754
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون. آپارتمانِ من کوچک است، اما جدید است.
+    rate: 0.67
+    inputHash: 3ae5c3792f69a08b8008e11ddfb2d2312f49c65adae35a05bac35e075ffc97cb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1614
+  - token: 3
+    startMs: 1614
+    endMs: 2878
+  - token: 5
+    startMs: 2878
+    endMs: 3155
+  - token: 7
+    startMs: 3155
+    endMs: 4031
+  - token: 9
+    startMs: 4031
+    endMs: 4857
+  - token: 12
+    startMs: 4857
+    endMs: 5481
+  - token: 14
+    startMs: 5481
+    endMs: 6195
+  - token: 16
+    startMs: 6195
+    endMs: 6754
+  timingSource: synthesis
+  qa:
+    trace: mamnun ɑpɑrtemɑne man kuːtʃak ast ammɑ dʒadid ast
+- item: fa.story.flat#3
+  speed: normal
+  file: clips/460b58c62606a8a3.mp3
+  sha256: d11939839da9e055165f8bc90fd95ab5b3322db1d16016d1d46f3eded3e00d77
+  durationMs: 1382
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آشپزخانه کجاست؟
+    rate: 1.0
+    inputHash: 460b58c62606a8a3e0959301b032677d2dadbaf414bd88c5f50909d603dc1675
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 771
+  - token: 2
+    startMs: 771
+    endMs: 1382
+  timingSource: synthesis
+  qa:
+    trace: ɑʃpazxɑne kodʒɑst
+    asrModel: whisper-large-v3-turbo
+    asrText: اوش پل خونه کونست
+    cer: 0.462
+    status: review
+- item: fa.story.flat#3
+  speed: slow
+  file: clips/b64ca677f8bb5765.mp3
+  sha256: 4389352efe419811857e0becf1fda2a2d2f8e7ffc2d5835b4c6cfa04425c6e6a
+  durationMs: 2058
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آشپزخانه کجاست؟
+    rate: 0.67
+    inputHash: b64ca677f8bb57657c6a9a1dc0c6637ace0513441da27bafb26ae4bde6d24b47
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1178
+  - token: 2
+    startMs: 1178
+    endMs: 2058
+  timingSource: synthesis
+  qa:
+    trace: ɑʃpazxɑne kodʒɑst
+- item: fa.story.flat#4
+  speed: normal
+  file: clips/947d27498b790671.mp3
+  sha256: fd19177eb640e360edc84aed954a3aaaf41ca296206114450c700c9ee858de3a
+  durationMs: 1438
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آشپزخانه آنجاست.
+    rate: 1.0
+    inputHash: 947d27498b790671fd386b3371f4affcc896def7dcd2d4c492a946fa9cff5bb4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 776
+  - token: 2
+    startMs: 776
+    endMs: 1438
+  timingSource: synthesis
+  qa:
+    trace: ɑʃpazxɑne ɑndʒɑst
+    asrModel: whisper-large-v3-turbo
+    asrText: اوش پل خونه اون جوست
+    cer: 0.5
+    status: review
+- item: fa.story.flat#4
+  speed: slow
+  file: clips/c1a5e018e2e77597.mp3
+  sha256: 9d0cad94234aaa5e37f6c8807d6aff1485bee07239e918090b9de372206cd784
+  durationMs: 2156
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آشپزخانه آنجاست.
+    rate: 0.67
+    inputHash: c1a5e018e2e77597e4c0b8b1a2673b84475dc322358b500b1bb5de2c3c3a0a81
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1167
+  - token: 2
+    startMs: 1167
+    endMs: 2156
+  timingSource: synthesis
+  qa:
+    trace: ɑʃpazxɑne ɑndʒɑst
+- item: fa.story.flat#5
+  speed: normal
+  file: clips/b4dabfdb2929c673.mp3
+  sha256: 785fb5ba01e9b0552115fd38851e1b285abd0070963dccec24a64e0cf9c1806c
+  durationMs: 1332
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: اتاقِ تو کجاست؟
+    rate: 1.0
+    inputHash: b4dabfdb2929c673c24162054ce840edc0b85326a922cd3a80030ace519a77d6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 507
+  - token: 2
+    startMs: 507
+    endMs: 721
+  - token: 4
+    startMs: 721
+    endMs: 1332
+  timingSource: synthesis
+  qa:
+    trace: otɑːq1e to kodʒɑst
+    asrModel: whisper-large-v3-turbo
+    asrText: او تاو تاو کیو جاست
+    cer: 0.455
+    status: review
+- item: fa.story.flat#5
+  speed: slow
+  file: clips/b355b8affd8fd114.mp3
+  sha256: a72f941a3554d80f4dc432f29889c2307d7260b23917a3ae0c296c6a6200bde2
+  durationMs: 1997
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: اتاقِ تو کجاست؟
+    rate: 0.67
+    inputHash: b355b8affd8fd114caee268ca425d2bbd99db01642d70db4720cb4fedff33273
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 796
+  - token: 2
+    startMs: 796
+    endMs: 1117
+  - token: 4
+    startMs: 1117
+    endMs: 1997
+  timingSource: synthesis
+  qa:
+    trace: otɑːq1e to kodʒɑst
+- item: fa.story.flat#6
+  speed: normal
+  file: clips/a0e9b62dcaa1f25b.mp3
+  sha256: 5c71861123b9b415992e4d83c8698b254d35554823de311ae58230ef0eb2377d
+  durationMs: 3711
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: اتاقِ من اینجاست. یک تخت و یک میز دارد.
+    rate: 1.0
+    inputHash: a0e9b62dcaa1f25b098713107205a9ac896550aa91d224f909e03c065d59d754
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 519
+  - token: 2
+    startMs: 519
+    endMs: 637
+  - token: 4
+    startMs: 637
+    endMs: 1677
+  - token: 7
+    startMs: 1677
+    endMs: 1958
+  - token: 9
+    startMs: 1958
+    endMs: 2357
+  - token: 11
+    startMs: 2357
+    endMs: 2590
+  - token: 13
+    startMs: 2590
+    endMs: 2866
+  - token: 15
+    startMs: 2866
+    endMs: 3177
+  - token: 17
+    startMs: 3177
+    endMs: 3711
+  timingSource: synthesis
+  qa:
+    trace: otɑːq1e man indʒɑst jek taxt va jek miz dɑrad
+    asrModel: whisper-large-v3-turbo
+    asrText: او چه مانین جاست؟ یک تا هتوا یک ميز دارد؟
+    cer: 0.321
+    status: review
+- item: fa.story.flat#6
+  speed: slow
+  file: clips/2e6f8491a3e514e5.mp3
+  sha256: 75b351469726fd507a9c23fda06c0947560d292b7816650e626977eeb919e527
+  durationMs: 5710
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: اتاقِ من اینجاست. یک تخت و یک میز دارد.
+    rate: 0.67
+    inputHash: 2e6f8491a3e514e58ba53f416289cc04e4181aa45683f25dd10237c3c263dfbe
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 813
+  - token: 2
+    startMs: 813
+    endMs: 999
+  - token: 4
+    startMs: 999
+    endMs: 2679
+  - token: 7
+    startMs: 2679
+    endMs: 3098
+  - token: 9
+    startMs: 3098
+    endMs: 3653
+  - token: 11
+    startMs: 3653
+    endMs: 4015
+  - token: 13
+    startMs: 4015
+    endMs: 4419
+  - token: 15
+    startMs: 4419
+    endMs: 4900
+  - token: 17
+    startMs: 4900
+    endMs: 5710
+  timingSource: synthesis
+  qa:
+    trace: otɑːq1e man indʒɑst jek taxt va jek miz dɑrad
+- item: fa.story.flat#8
+  speed: normal
+  file: clips/a76ed436b20ff6c3.mp3
+  sha256: 3f9d9282a82372934f3083b325474bc2dd4cbbf878519b65bb6143836a2479eb
+  durationMs: 2082
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "کتاب\u200cهای تو کجا هستند؟"
+    rate: 1.0
+    inputHash: a76ed436b20ff6c3bb2592234d8d2211d677c5eb679e509f695bf6a099296385
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 833
+  - token: 2
+    startMs: 833
+    endMs: 1047
+  - token: 4
+    startMs: 1047
+    endMs: 1465
+  - token: 6
+    startMs: 1465
+    endMs: 2082
+  timingSource: synthesis
+  qa:
+    trace: ketɑbhɑje to kodʒɑ hastand
+    asrModel: whisper-large-v3-turbo
+    asrText: که تم هایی توکو نا هستند
+    cer: 0.353
+    status: review
+- item: fa.story.flat#8
+  speed: slow
+  file: clips/341b7301d0633ec1.mp3
+  sha256: 4fb0a8339c27b1f426649c6926fbd3a32a7387493ece75a3183b55d6b9f7d1b5
+  durationMs: 3040
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "کتاب\u200cهای تو کجا هستند؟"
+    rate: 0.67
+    inputHash: 341b7301d0633ec10b234c78e3bd7db6b42d07ab4e0bb2455d2812bbc3ddf4d7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1224
+  - token: 2
+    startMs: 1224
+    endMs: 1546
+  - token: 4
+    startMs: 1546
+    endMs: 2164
+  - token: 6
+    startMs: 2164
+    endMs: 3040
+  timingSource: synthesis
+  qa:
+    trace: ketɑbhɑje to kodʒɑ hastand
+- item: fa.story.flat#9
+  speed: normal
+  file: clips/76628ef729d36b79.mp3
+  sha256: 8d555c8c9a1eb7d6e3b4d94994e391a7f39f0ede0c7374bde6564f0b397ff724
+  durationMs: 2444
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "کتاب\u200cهای من زیرِ تخت هستند!"
+    rate: 1.0
+    inputHash: 76628ef729d36b79adb1fd659b876a32b45b7bd070bf075390c74291361d618a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 839
+  - token: 2
+    startMs: 839
+    endMs: 1037
+  - token: 4
+    startMs: 1037
+    endMs: 1434
+  - token: 6
+    startMs: 1434
+    endMs: 1833
+  - token: 8
+    startMs: 1833
+    endMs: 2444
+  timingSource: synthesis
+  qa:
+    trace: ketɑbhɑje man zire taxt hastand
+    asrModel: whisper-large-v3-turbo
+    asrText: که توم هایمان زیری تاحت هستند
+    cer: 0.4
+    status: review
+- item: fa.story.flat#9
+  speed: slow
+  file: clips/ef7b9c92badb50d1.mp3
+  sha256: 06c3a597e8dd5254f04751ca8de615f4502d8e24ffbd457510e16226936aefda
+  durationMs: 3550
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "کتاب\u200cهای من زیرِ تخت هستند!"
+    rate: 0.67
+    inputHash: ef7b9c92badb50d1249f093b1181559641679f36acc2d20b74cddd5de30b75d5
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1231
+  - token: 2
+    startMs: 1231
+    endMs: 1516
+  - token: 4
+    startMs: 1516
+    endMs: 2132
+  - token: 6
+    startMs: 2132
+    endMs: 2682
+  - token: 8
+    startMs: 2682
+    endMs: 3550
+  timingSource: synthesis
+  qa:
+    trace: ketɑbhɑje man zire taxt hastand
+- item: fa.story.metro#0
+  speed: normal
+  file: clips/a1cd0c98b917a76f.mp3
+  sha256: 4d43575bf8dffdcb6ab1cd6b7a8bf152f8b1e5432db7206407a19a9fca281686
+  durationMs: 1574
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ببخشید، خانم!
+    rate: 1.0
+    inputHash: a1cd0c98b917a76fcce3b8b731ec4dbbc1ddbff1c83d96ccd2d37456f917e5cb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1008
+  - token: 3
+    startMs: 1008
+    endMs: 1574
+  timingSource: synthesis
+  qa:
+    trace: bebaxʃid xɑnom
+    asrModel: whisper-large-v3-turbo
+    asrText: ببهشید خانم
+    cer: 0.1
+    status: pass
+- item: fa.story.metro#0
+  speed: slow
+  file: clips/a498d1bcfb0f2342.mp3
+  sha256: 65e67b871bff4acd487f7146e5a01fe964ec3a33659a4be57f0232c3d3eba5bb
+  durationMs: 2435
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ببخشید، خانم!
+    rate: 0.67
+    inputHash: a498d1bcfb0f23427516981d052b0c19371149e72016b7d0aadc0a71360ae5ea
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1561
+  - token: 3
+    startMs: 1561
+    endMs: 2435
+  timingSource: synthesis
+  qa:
+    trace: bebaxʃid xɑnom
+- item: fa.story.metro#1
+  speed: normal
+  file: clips/6640798e6ba3d70d.mp3
+  sha256: 4ca6be17e390f262ad31821af3fcf1a56ab9f63890e2c3c052234927ec5afdb3
+  durationMs: 453
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله؟
+    rate: 1.0
+    inputHash: 6640798e6ba3d70d6ea23f53f2ecbd3c5c951c13e61f7ea247354baed37b6cc4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 453
+  timingSource: synthesis
+  qa:
+    trace: baleː
+    asrModel: whisper-large-v3-turbo
+    asrText: با لید
+    cer: 1.0
+    status: fail
+- item: fa.story.metro#1
+  speed: slow
+  file: clips/350d941c2bdb4587.mp3
+  sha256: 208acf477904be678de4b8fcf15db9436eb8b6b7a7342720bb0336f386468632
+  durationMs: 758
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله؟
+    rate: 0.67
+    inputHash: 350d941c2bdb45870b3adbf32b918bd500837bb53618e2424ef1fdb3863118de
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 758
+  timingSource: synthesis
+  qa:
+    trace: baleː
+- item: fa.story.metro#10
+  speed: normal
+  file: clips/985d87c5df203bf5.mp3
+  sha256: 3c961f2ea25227436bf6d4942d7bd8187ab4417a3c2ef0677595fa7b7313762d
+  durationMs: 2194
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: شیراز هم خیلی قشنگ است!
+    rate: 1.0
+    inputHash: 985d87c5df203bf5d7c1848e0ed3b48e3ba56e71a9865758d44fe3a3a5ac6303
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 572
+  - token: 2
+    startMs: 572
+    endMs: 881
+  - token: 4
+    startMs: 881
+    endMs: 1330
+  - token: 6
+    startMs: 1330
+    endMs: 1865
+  - token: 8
+    startMs: 1865
+    endMs: 2194
+  timingSource: synthesis
+  qa:
+    trace: ʃirɑz ham xejli q1aʃanɡ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: شی روز هم هیلی پاشنگست
+    cer: 0.278
+    status: review
+- item: fa.story.metro#10
+  speed: slow
+  file: clips/6436bd45a8072cc4.mp3
+  sha256: 171618fcf1b4cf61a109123b47bd1941095a0164f6694cd146fd16e7136b0f55
+  durationMs: 3290
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: شیراز هم خیلی قشنگ است!
+    rate: 0.67
+    inputHash: 6436bd45a8072cc4d8d8e0a6fa85e427ac0000511c07a2e2724c9ed93d8c9935
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 856
+  - token: 2
+    startMs: 856
+    endMs: 1322
+  - token: 4
+    startMs: 1322
+    endMs: 2018
+  - token: 6
+    startMs: 2018
+    endMs: 2800
+  - token: 8
+    startMs: 2800
+    endMs: 3290
+  timingSource: synthesis
+  qa:
+    trace: ʃirɑz ham xejli q1aʃanɡ ast
+- item: fa.story.metro#2
+  speed: normal
+  file: clips/551eeba6f4170441.mp3
+  sha256: 2cb2b0e94b7475e6fb8a6a97b5c369a6193fec1c4bec110db59162c2741f5d35
+  durationMs: 1714
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ایستگاهِ مترو کجاست؟
+    rate: 1.0
+    inputHash: 551eeba6f4170441e53a39e3ae3df1e3c5f5c48564ec622f37f2c98a6975632f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 650
+  - token: 2
+    startMs: 650
+    endMs: 1102
+  - token: 4
+    startMs: 1102
+    endMs: 1714
+  timingSource: synthesis
+  qa:
+    trace: iːstɡɑhe metro kodʒɑst
+    asrModel: whisper-large-v3-turbo
+    asrText: ایست را همیترو کیو جاست
+    cer: 0.312
+    status: review
+- item: fa.story.metro#2
+  speed: slow
+  file: clips/f936793fea5451c9.mp3
+  sha256: 2a6b56e4ce144b8e11fdb2dc7726109f9d7296f003eb876026452d1c208720d1
+  durationMs: 2520
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ایستگاهِ مترو کجاست؟
+    rate: 0.67
+    inputHash: f936793fea5451c9d822175f3ced922ca96074c38a4255872c90256073953628
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 983
+  - token: 2
+    startMs: 983
+    endMs: 1640
+  - token: 4
+    startMs: 1640
+    endMs: 2520
+  timingSource: synthesis
+  qa:
+    trace: iːstɡɑhe metro kodʒɑst
+- item: fa.story.metro#3
+  speed: normal
+  file: clips/5d38b2df9934932d.mp3
+  sha256: 446372f7271c5fe941c68fa7592bc0f12d6881d591ed6468d5b81afb4c0880f8
+  durationMs: 4474
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نزدیک است. مستقیم بروید، بعد به چپ بپیچید.
+    rate: 1.0
+    inputHash: 5d38b2df9934932d2bc28b1b0dd8cfa9d0fd3cd7cc007996e60faeedf8668027
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 578
+  - token: 2
+    startMs: 578
+    endMs: 1296
+  - token: 5
+    startMs: 1296
+    endMs: 1972
+  - token: 7
+    startMs: 1972
+    endMs: 2875
+  - token: 10
+    startMs: 2875
+    endMs: 3155
+  - token: 12
+    startMs: 3155
+    endMs: 3348
+  - token: 14
+    startMs: 3348
+    endMs: 3721
+  - token: 16
+    startMs: 3721
+    endMs: 4474
+  timingSource: synthesis
+  qa:
+    trace: nazdik ast mostaq1im beravid baʔd beː tʃap bepitʃid
+    asrModel: whisper-large-v3-turbo
+    asrText: نزدیکست مستقیم برابید بات بچاپ بیچید
+    cer: 0.25
+    status: review
+- item: fa.story.metro#3
+  speed: slow
+  file: clips/ccc1dea0ab418c11.mp3
+  sha256: 4e16c182d73753ca1aff31735bafe9f9e45b07163cd52fa85e2e8ef962cb2103
+  durationMs: 6751
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نزدیک است. مستقیم بروید، بعد به چپ بپیچید.
+    rate: 0.67
+    inputHash: ccc1dea0ab418c11d389dde1330360cdbf3cc4d5680255ececfa64d2f206ba21
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 847
+  - token: 2
+    startMs: 847
+    endMs: 2026
+  - token: 5
+    startMs: 2026
+    endMs: 3032
+  - token: 7
+    startMs: 3032
+    endMs: 4431
+  - token: 10
+    startMs: 4431
+    endMs: 4838
+  - token: 12
+    startMs: 4838
+    endMs: 5147
+  - token: 14
+    startMs: 5147
+    endMs: 5649
+  - token: 16
+    startMs: 5649
+    endMs: 6751
+  timingSource: synthesis
+  qa:
+    trace: nazdik ast mostaq1im beravid baʔd beː tʃap bepitʃid
+- item: fa.story.metro#5
+  speed: normal
+  file: clips/48a62f82f1b11ae2.mp3
+  sha256: 92444a0601eb0b25c756eef0d7f3fd3e8f763de6eb922de73d5adce6c1a63921
+  durationMs: 1156
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی دور است؟
+    rate: 1.0
+    inputHash: 48a62f82f1b11ae27694a9e1b48bbee1b1840146b7b0b9408cae9c708e5c14d7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 450
+  - token: 2
+    startMs: 450
+    endMs: 816
+  - token: 4
+    startMs: 816
+    endMs: 1156
+  timingSource: synthesis
+  qa:
+    trace: xejli duːr ast
+    asrModel: whisper-large-v3-turbo
+    asrText: هیلی دورست
+    cer: 0.2
+    status: review
+- item: fa.story.metro#5
+  speed: slow
+  file: clips/fb759af6d6c21d5c.mp3
+  sha256: e9a0ba83bab67d67c521ff36932f835f94d52c74f708ad38e85c5fd11c351e35
+  durationMs: 1810
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی دور است؟
+    rate: 0.67
+    inputHash: fb759af6d6c21d5cedc57aa7c5cb92561a95bf6fc3b00ec791d5fee573fd498c
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 722
+  - token: 2
+    startMs: 722
+    endMs: 1311
+  - token: 4
+    startMs: 1311
+    endMs: 1810
+  timingSource: synthesis
+  qa:
+    trace: xejli duːr ast
+- item: fa.story.metro#6
+  speed: normal
+  file: clips/cb23b0a0a5f1752c.mp3
+  sha256: 3408e092bb3d7c9c754f5b5beba796a8f485b5c646f27bf37702b52ac4bf8a5e
+  durationMs: 1935
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، ده دقیقه پیاده.
+    rate: 1.0
+    inputHash: cb23b0a0a5f1752c6a0e2b93d12a9334f94b0dfda96b5baad49471f71cc0b4cb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 545
+  - token: 3
+    startMs: 545
+    endMs: 771
+  - token: 5
+    startMs: 771
+    endMs: 1304
+  - token: 7
+    startMs: 1304
+    endMs: 1935
+  timingSource: synthesis
+  qa:
+    trace: na dah daq1iq1eː piɑdeː
+    asrModel: whisper-large-v3-turbo
+    asrText: از دیواره
+    cer: 0.714
+    status: fail
+- item: fa.story.metro#6
+  speed: slow
+  file: clips/49446175a98e3b04.mp3
+  sha256: 0ea5f4aa9dd0f66baf5a7e193482e52555269799718da083db7d7ebcc14aaec4
+  durationMs: 3105
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، ده دقیقه پیاده.
+    rate: 0.67
+    inputHash: 49446175a98e3b048067343852c215e10a18d156b80e894b56cd7de65bfaca30
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 925
+  - token: 3
+    startMs: 925
+    endMs: 1279
+  - token: 5
+    startMs: 1279
+    endMs: 2101
+  - token: 7
+    startMs: 2101
+    endMs: 3105
+  timingSource: synthesis
+  qa:
+    trace: na dah daq1iq1eː piɑdeː
+- item: fa.story.metro#7
+  speed: normal
+  file: clips/bab26aa6520cd407.mp3
+  sha256: 82175e75041def12ef976d4a791786bb21a5aacd62d952365097ef7c31563c8f
+  durationMs: 2905
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون! شما اهلِ تهران هستید؟
+    rate: 1.0
+    inputHash: bab26aa6520cd407b4e346601e5ff34c1b07701a7513cff4b03f61c217fff5e5
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1024
+  - token: 3
+    startMs: 1024
+    endMs: 1388
+  - token: 5
+    startMs: 1388
+    endMs: 1751
+  - token: 7
+    startMs: 1751
+    endMs: 2298
+  - token: 9
+    startMs: 2298
+    endMs: 2905
+  timingSource: synthesis
+  qa:
+    trace: mamnun ʃomɑ aːhle tehrɑn hastid
+    asrModel: whisper-large-v3-turbo
+    asrText: مام نون. شما احل ته ران هستید.
+    cer: 0.143
+    status: pass
+- item: fa.story.metro#7
+  speed: slow
+  file: clips/150c3adf388c0a98.mp3
+  sha256: 8bb98cda5a5eb98a408ef704a78548b0a9cb9e2318adb71dfff901ba5b93e93c
+  durationMs: 4546
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون! شما اهلِ تهران هستید؟
+    rate: 0.67
+    inputHash: 150c3adf388c0a9879197dbcba92f8d0fabdbf1d2b61dffb43d0add4b13dd350
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1702
+  - token: 3
+    startMs: 1702
+    endMs: 2288
+  - token: 5
+    startMs: 2288
+    endMs: 2878
+  - token: 7
+    startMs: 2878
+    endMs: 3680
+  - token: 9
+    startMs: 3680
+    endMs: 4546
+  timingSource: synthesis
+  qa:
+    trace: mamnun ʃomɑ aːhle tehrɑn hastid
+- item: fa.story.metro#8
+  speed: normal
+  file: clips/33536865ccb520b4.mp3
+  sha256: a1603de22ccc6023ac3a3818c9cbc735d786c7dd65d5df4b4772aea65eb1c081
+  durationMs: 4590
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، من اهلِ اصفهان هستم. اصفهان خیلی قشنگ است!
+    rate: 1.0
+    inputHash: 33536865ccb520b49c9bfa47bb16a6878321124b39b5b5dfc795dabcd260646a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 545
+  - token: 3
+    startMs: 545
+    endMs: 693
+  - token: 5
+    startMs: 693
+    endMs: 1093
+  - token: 7
+    startMs: 1093
+    endMs: 1705
+  - token: 9
+    startMs: 1705
+    endMs: 2673
+  - token: 12
+    startMs: 2673
+    endMs: 3293
+  - token: 14
+    startMs: 3293
+    endMs: 3738
+  - token: 16
+    startMs: 3738
+    endMs: 4261
+  - token: 18
+    startMs: 4261
+    endMs: 4590
+  timingSource: synthesis
+  qa:
+    trace: na man aːhle esfahɑn hastam esfahɑn xejli q1aʃanɡ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: مانه لیست هان هستم هست هان هیلی پاشان هست
+    cer: 0.5
+    status: review
+- item: fa.story.metro#8
+  speed: slow
+  file: clips/ec5dd93bf0a5538d.mp3
+  sha256: ecf010b2189ea483e9cf42a9ffee4caaea7abf2c16c2aeacd02c87751dd674ae
+  durationMs: 7230
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، من اهلِ اصفهان هستم. اصفهان خیلی قشنگ است!
+    rate: 0.67
+    inputHash: ec5dd93bf0a5538d81b2cc16ace6c96cc928fef4ca11a5aaf24e846ef62664b2
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 925
+  - token: 3
+    startMs: 925
+    endMs: 1163
+  - token: 5
+    startMs: 1163
+    endMs: 1809
+  - token: 7
+    startMs: 1809
+    endMs: 2737
+  - token: 9
+    startMs: 2737
+    endMs: 4304
+  - token: 12
+    startMs: 4304
+    endMs: 5261
+  - token: 14
+    startMs: 5261
+    endMs: 5953
+  - token: 16
+    startMs: 5953
+    endMs: 6739
+  - token: 18
+    startMs: 6739
+    endMs: 7230
+  timingSource: synthesis
+  qa:
+    trace: na man aːhle esfahɑn hastam esfahɑn xejli q1aʃanɡ ast
+- item: fa.story.metro#9
+  speed: normal
+  file: clips/7da3a8688f7d82fd.mp3
+  sha256: 593bc743427b10e76aa4409746f1b8d74e18c45b72f75005d5809276d2501001
+  durationMs: 1695
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: من اهلِ شیراز هستم.
+    rate: 1.0
+    inputHash: 7da3a8688f7d82fdc5abf088d7d017b11b5a12a074c2d1679c26058c2c6fac49
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 148
+  - token: 2
+    startMs: 148
+    endMs: 558
+  - token: 4
+    startMs: 558
+    endMs: 1109
+  - token: 6
+    startMs: 1109
+    endMs: 1695
+  timingSource: synthesis
+  qa:
+    trace: man aːhle ʃirɑz hastam
+    asrModel: whisper-large-v3-turbo
+    asrText: مانه لشی روز هستم
+    cer: 0.286
+    status: review
+- item: fa.story.metro#9
+  speed: slow
+  file: clips/297ade2b7624bf9a.mp3
+  sha256: 97cb16a2e1089ee1ea6f29063fe10b1003b68a5a052de8b0650029716bfa4218
+  durationMs: 2593
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: من اهلِ شیراز هستم.
+    rate: 0.67
+    inputHash: 297ade2b7624bf9af963d56924618d38f5a2dfdc03b9db6302e71c15ecccbe86
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 238
+  - token: 2
+    startMs: 238
+    endMs: 901
+  - token: 4
+    startMs: 901
+    endMs: 1717
+  - token: 6
+    startMs: 1717
+    endMs: 2593
+  timingSource: synthesis
+  qa:
+    trace: man aːhle ʃirɑz hastam
+- item: fa.story.notebook#0
+  speed: normal
+  file: clips/f0af34b10992b89d.mp3
+  sha256: ca2c0462f835e5680dd7d34f1fccaf33105d6f43b5d6e64d72f19be91e49ba0f
+  durationMs: 928
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام آقا!
+    rate: 1.0
+    inputHash: f0af34b10992b89d618e02dfef9f44560471a01a8e77ca7af3d30838bf9811fa
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 379
+  - token: 2
+    startMs: 379
+    endMs: 928
+  timingSource: synthesis
+  qa:
+    trace: salɑm ɑq1ɑ
+    asrModel: whisper-large-v3-turbo
+    asrText: سلامتا
+    cer: 0.286
+    status: review
+- item: fa.story.notebook#0
+  speed: slow
+  file: clips/b58d945cef071e24.mp3
+  sha256: 6ecaeff791729bc822c17f21eb4ad73ba435933744a78ca8b2af69491cc9ae6f
+  durationMs: 1502
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام آقا!
+    rate: 0.67
+    inputHash: b58d945cef071e242c6facf2e9832a2b1280bba1fefa73d125ca312d265a9423
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 625
+  - token: 2
+    startMs: 625
+    endMs: 1502
+  timingSource: synthesis
+  qa:
+    trace: salɑm ɑq1ɑ
+- item: fa.story.notebook#1
+  speed: normal
+  file: clips/736a2e63e967914e.mp3
+  sha256: 3378a8bc29716ac46f5ff19141068c7dd82d47372afd5d35883eff1e241c4a7f
+  durationMs: 3029
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام خانم! حالِ شما چطور است؟
+    rate: 1.0
+    inputHash: 736a2e63e967914e956ba08e074f768211fa6cc36f70e0cece8343e81a8bd80d
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 478
+  - token: 2
+    startMs: 478
+    endMs: 1472
+  - token: 5
+    startMs: 1472
+    endMs: 1808
+  - token: 7
+    startMs: 1808
+    endMs: 2180
+  - token: 9
+    startMs: 2180
+    endMs: 2688
+  - token: 11
+    startMs: 2688
+    endMs: 3029
+  timingSource: synthesis
+  qa:
+    trace: salɑm xɑnom hɑle ʃomɑ tʃetor ast
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام حانوم هل شما چه تو راست
+    cer: 0.333
+    status: review
+- item: fa.story.notebook#1
+  speed: slow
+  file: clips/5846c5218378f042.mp3
+  sha256: a5595620b5bf29c343f7e0a16907bed65e6eac4ae02b797e8f43e2051be79455
+  durationMs: 4798
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام خانم! حالِ شما چطور است؟
+    rate: 0.67
+    inputHash: 5846c5218378f0427b6ffe45719d3178a956c39ebbd11e0b2668dda65f339d87
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 768
+  - token: 2
+    startMs: 768
+    endMs: 2425
+  - token: 5
+    startMs: 2425
+    endMs: 2980
+  - token: 7
+    startMs: 2980
+    endMs: 3574
+  - token: 9
+    startMs: 3574
+    endMs: 4300
+  - token: 11
+    startMs: 4300
+    endMs: 4798
+  timingSource: synthesis
+  qa:
+    trace: salɑm xɑnom hɑle ʃomɑ tʃetor ast
+- item: fa.story.notebook#10
+  speed: normal
+  file: clips/59f0fdfe59959e06.mp3
+  sha256: 643c93e8e34bf9166f92a4f3ba49028bd9dcdf738a750deb3f36ad74780b32d9
+  durationMs: 3694
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. قیمتِ این خودکار ده هزار تومان است.
+    rate: 1.0
+    inputHash: 59f0fdfe59959e06f6358cc7dcadd7e3bd522106100f44fbc71c5c83718b9a4a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 840
+  - token: 3
+    startMs: 840
+    endMs: 1370
+  - token: 5
+    startMs: 1370
+    endMs: 1567
+  - token: 7
+    startMs: 1567
+    endMs: 2150
+  - token: 9
+    startMs: 2150
+    endMs: 2404
+  - token: 11
+    startMs: 2404
+    endMs: 2861
+  - token: 13
+    startMs: 2861
+    endMs: 3286
+  - token: 15
+    startMs: 3286
+    endMs: 3694
+  timingSource: synthesis
+  qa:
+    trace: baleː q1ejmate iːn xodkɑr dah hezɑr tuːmɑn ast
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله. ایماته این خود کار پا هزار تو من هست.
+    cer: 0.333
+    status: review
+- item: fa.story.notebook#10
+  speed: slow
+  file: clips/a284cd1506c5dfd7.mp3
+  sha256: 3426bd32271c59cce0d89ce7b6af9c06f99e4b71c128d2da2b4624ec2f000f8b
+  durationMs: 5766
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. قیمتِ این خودکار ده هزار تومان است.
+    rate: 0.67
+    inputHash: a284cd1506c5dfd72ff034173f8d0bb56be59a388bfa3aec08abcfc0dbf0ade6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1447
+  - token: 3
+    startMs: 1447
+    endMs: 2256
+  - token: 5
+    startMs: 2256
+    endMs: 2561
+  - token: 7
+    startMs: 2561
+    endMs: 3397
+  - token: 9
+    startMs: 3397
+    endMs: 3784
+  - token: 11
+    startMs: 3784
+    endMs: 4475
+  - token: 13
+    startMs: 4475
+    endMs: 5160
+  - token: 15
+    startMs: 5160
+    endMs: 5766
+  timingSource: synthesis
+  qa:
+    trace: baleː q1ejmate iːn xodkɑr dah hezɑr tuːmɑn ast
+- item: fa.story.notebook#12
+  speed: normal
+  file: clips/fdaaaf413736d6a8.mp3
+  sha256: ddfcc83a91ad270440ef15145ca9dfb6985cc46e49ce6165a30088c658c7d34e
+  durationMs: 2594
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، آقا. خداحافظ!
+    rate: 1.0
+    inputHash: fdaaaf413736d6a8c9dc54af077f84496d6e24decccaf56e3ef745e6a65910fb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 780
+  - token: 3
+    startMs: 780
+    endMs: 1666
+  - token: 6
+    startMs: 1666
+    endMs: 2594
+  timingSource: synthesis
+  qa:
+    trace: mamnun ɑq1ɑ xodɑhɑfez
+    asrModel: whisper-large-v3-turbo
+    asrText: مانون، آقا، خود آقا فیز
+    cer: 0.4
+    status: review
+- item: fa.story.notebook#12
+  speed: slow
+  file: clips/030fa9ce9a488c3d.mp3
+  sha256: 313c1334ebed467b5eae087787ce17f67f90341d87e14779193456ebffe52478
+  durationMs: 4170
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، آقا. خداحافظ!
+    rate: 0.67
+    inputHash: 030fa9ce9a488c3d77999c8c2a22790b228cc013801b32ff19a0f53b3b24e611
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1256
+  - token: 3
+    startMs: 1256
+    endMs: 2761
+  - token: 6
+    startMs: 2761
+    endMs: 4170
+  timingSource: synthesis
+  qa:
+    trace: mamnun ɑq1ɑ xodɑhɑfez
+- item: fa.story.notebook#2
+  speed: normal
+  file: clips/ba30949ba4535d1e.mp3
+  sha256: fef4c2326f59b78bde7d05f3caa36d4a2dfb989beb68e23d3a74edab61c545ef
+  durationMs: 3609
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، خوب هستم. شما دفتر دارید؟
+    rate: 1.0
+    inputHash: ba30949ba4535d1e9ee9d554d88f41696967718bd59f26f2d9f7afe3ac07e382
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 780
+  - token: 3
+    startMs: 780
+    endMs: 1206
+  - token: 5
+    startMs: 1206
+    endMs: 2173
+  - token: 8
+    startMs: 2173
+    endMs: 2557
+  - token: 10
+    startMs: 2557
+    endMs: 3054
+  - token: 12
+    startMs: 3054
+    endMs: 3609
+  timingSource: synthesis
+  qa:
+    trace: mamnun xuːb hastam ʃomɑ daftar dɑrid
+    asrModel: whisper-large-v3-turbo
+    asrText: مامل، خوب هستم. شما دفتر دارید.
+    cer: 0.167
+    status: review
+- item: fa.story.notebook#2
+  speed: slow
+  file: clips/11c519d99e16bb25.mp3
+  sha256: ed64a2fd6b04985ff08718f4cac5e5f9fd7cf948d235cd991aada99d544cb490
+  durationMs: 5660
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، خوب هستم. شما دفتر دارید؟
+    rate: 0.67
+    inputHash: 11c519d99e16bb25811b7a13dfff9a4516dfec8ed46bc223e6c26857509879ef
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1256
+  - token: 3
+    startMs: 1256
+    endMs: 1900
+  - token: 5
+    startMs: 1900
+    endMs: 3468
+  - token: 8
+    startMs: 3468
+    endMs: 4083
+  - token: 10
+    startMs: 4083
+    endMs: 4822
+  - token: 12
+    startMs: 4822
+    endMs: 5660
+  timingSource: synthesis
+  qa:
+    trace: mamnun xuːb hastam ʃomɑ daftar dɑrid
+- item: fa.story.notebook#3
+  speed: normal
+  file: clips/fb46f3439cc0852e.mp3
+  sha256: dc8232c2d5692b8a24dd096c26a3ca98b579c3ee55194a62fe2cc0fa686742c5
+  durationMs: 2605
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، این دفتر خیلی خوب است.
+    rate: 1.0
+    inputHash: fb46f3439cc0852e0c962cf4f939de7162e857324c579818f9ece3202efe4c61
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 895
+  - token: 5
+    startMs: 895
+    endMs: 1372
+  - token: 7
+    startMs: 1372
+    endMs: 1814
+  - token: 9
+    startMs: 1814
+    endMs: 2259
+  - token: 11
+    startMs: 2259
+    endMs: 2605
+  timingSource: synthesis
+  qa:
+    trace: baleː iːn daftar xejli xuːb ast
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله، این تافتر هیلی خوبیست
+    cer: 0.3
+    status: review
+- item: fa.story.notebook#3
+  speed: slow
+  file: clips/0f99b7f1a42091ca.mp3
+  sha256: bc3ba7f9917b9ed3d4bb3eba884364c72da54c5efc30582fffc7944a5493c5db
+  durationMs: 4107
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، این دفتر خیلی خوب است.
+    rate: 0.67
+    inputHash: 0f99b7f1a42091ca11662b0f0aac1ad032212a74b3f09917281e19b7d62bae96
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1502
+  - token: 5
+    startMs: 1502
+    endMs: 2199
+  - token: 7
+    startMs: 2199
+    endMs: 2903
+  - token: 9
+    startMs: 2903
+    endMs: 3605
+  - token: 11
+    startMs: 3605
+    endMs: 4107
+  timingSource: synthesis
+  qa:
+    trace: baleː iːn daftar xejli xuːb ast
+- item: fa.story.notebook#4
+  speed: normal
+  file: clips/8bda02505d65d948.mp3
+  sha256: 595f9b9a724ae563871fb4db354b02952cc411cedd44c3fcd49acd9631274fe0
+  durationMs: 1598
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: قیمتِ آن چقدر است؟
+    rate: 1.0
+    inputHash: 8bda02505d65d94839c37d178304b65b9cf351a56f2df20e85f0326850df20fe
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 534
+  - token: 2
+    startMs: 534
+    endMs: 705
+  - token: 4
+    startMs: 705
+    endMs: 1261
+  - token: 6
+    startMs: 1261
+    endMs: 1598
+  timingSource: synthesis
+  qa:
+    trace: q1ejmate ɑn tʃeq1adr ast
+    asrModel: whisper-large-v3-turbo
+    asrText: ایماتن چکا درست
+    cer: 0.462
+    status: review
+- item: fa.story.notebook#4
+  speed: slow
+  file: clips/6c552f3a990055e8.mp3
+  sha256: 7d3280205fa2af4ded810bdad59286f9d7cceba1a4e71f555e4d19ce6a6c1515
+  durationMs: 2336
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: قیمتِ آن چقدر است؟
+    rate: 0.67
+    inputHash: 6c552f3a990055e8dc1d675330825c309844c3941c1d14dbb287161ce0688904
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 816
+  - token: 2
+    startMs: 816
+    endMs: 1060
+  - token: 4
+    startMs: 1060
+    endMs: 1839
+  - token: 6
+    startMs: 1839
+    endMs: 2336
+  timingSource: synthesis
+  qa:
+    trace: q1ejmate ɑn tʃeq1adr ast
+- item: fa.story.notebook#5
+  speed: normal
+  file: clips/41d7e3e4c479b770.mp3
+  sha256: 869ad33e9e4ee825c2a596ac8fb3fffa09a473bebed0f3bfd658edd8944d6774
+  durationMs: 1584
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: پنجاه هزار تومان.
+    rate: 1.0
+    inputHash: 41d7e3e4c479b770f85a0fc39278c0a58097c2adcc3aab5761bf4028ac607751
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 520
+  - token: 2
+    startMs: 520
+    endMs: 977
+  - token: 4
+    startMs: 977
+    endMs: 1584
+  timingSource: synthesis
+  qa:
+    trace: pandʒɑh hezɑr tuːmɑn
+    asrModel: whisper-large-v3-turbo
+    asrText: پانجا هیزار تو من
+    cer: 0.214
+    status: review
+- item: fa.story.notebook#5
+  speed: slow
+  file: clips/cbd767bc73fb3a73.mp3
+  sha256: 707e36a0353a7b2c3957850826996de396ac9b870f0f06deece472c09ddfc349
+  durationMs: 2390
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: پنجاه هزار تومان.
+    rate: 0.67
+    inputHash: cbd767bc73fb3a734984240e19678b3719b3d8a37a931b9fabe993390d6fbd81
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 756
+  - token: 2
+    startMs: 756
+    endMs: 1447
+  - token: 4
+    startMs: 1447
+    endMs: 2390
+  timingSource: synthesis
+  qa:
+    trace: pandʒɑh hezɑr tuːmɑn
+- item: fa.story.notebook#6
+  speed: normal
+  file: clips/ad391688e8f8e849.mp3
+  sha256: b4fef871f18a6469cd2a1e159c78dd8f0ecef8ee1c4fc5b7670416df13c54bb3
+  durationMs: 1224
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی گران است!
+    rate: 1.0
+    inputHash: ad391688e8f8e8497f25077e28bb99f5aa8f62ff6216f22a66b7d731391a32c6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 450
+  - token: 2
+    startMs: 450
+    endMs: 818
+  - token: 4
+    startMs: 818
+    endMs: 1224
+  timingSource: synthesis
+  qa:
+    trace: xejli ɡerɑn ast
+    asrModel: whisper-large-v3-turbo
+    asrText: های لیگه رو ناست
+    cer: 0.364
+    status: review
+- item: fa.story.notebook#6
+  speed: slow
+  file: clips/1106c4743712f644.mp3
+  sha256: bd7aca337b67ef960d0a3a8282967a80d8ea52a9732a9db5a7069e1b2b0d1b97
+  durationMs: 1902
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی گران است!
+    rate: 0.67
+    inputHash: 1106c4743712f64435f198881c0b6ab67fe84f4fed43cb913b6d345fe699d9a4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 722
+  - token: 2
+    startMs: 722
+    endMs: 1305
+  - token: 4
+    startMs: 1305
+    endMs: 1902
+  timingSource: synthesis
+  qa:
+    trace: xejli ɡerɑn ast
+- item: fa.story.notebook#7
+  speed: normal
+  file: clips/986b8c71dcd99cd4.mp3
+  sha256: 92b5fdfed53890bc8419f711475c499837c12361d4cf9dd31fcf109319c561b9
+  durationMs: 3346
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این دفتر ارزان است. بیست هزار تومان.
+    rate: 1.0
+    inputHash: 986b8c71dcd99cd4eee60dc22b1b932c34c1babaf7efb77265d733b1e8779ae8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 247
+  - token: 2
+    startMs: 247
+    endMs: 737
+  - token: 4
+    startMs: 737
+    endMs: 1172
+  - token: 6
+    startMs: 1172
+    endMs: 1958
+  - token: 9
+    startMs: 1958
+    endMs: 2266
+  - token: 11
+    startMs: 2266
+    endMs: 2715
+  - token: 13
+    startMs: 2715
+    endMs: 3346
+  timingSource: synthesis
+  qa:
+    trace: iːn daftar aːrzɑn ast bist hezɑr tuːmɑn
+    asrModel: whisper-large-v3-turbo
+    asrText: این دفتر ارزنیست. بیست هزار تو من.
+    cer: 0.107
+    status: pass
+- item: fa.story.notebook#7
+  speed: slow
+  file: clips/607db72e3e498295.mp3
+  sha256: b80f611b01c8164705089c62ca6502a5ce4fca3983d537b65ca865ba8029e1ab
+  durationMs: 5242
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این دفتر ارزان است. بیست هزار تومان.
+    rate: 0.67
+    inputHash: 607db72e3e4982957df4deafc9e7e23da57f3f0636df5799f496f9febb5b9d29
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 402
+  - token: 2
+    startMs: 402
+    endMs: 1125
+  - token: 4
+    startMs: 1125
+    endMs: 1833
+  - token: 6
+    startMs: 1833
+    endMs: 3127
+  - token: 9
+    startMs: 3127
+    endMs: 3575
+  - token: 11
+    startMs: 3575
+    endMs: 4267
+  - token: 13
+    startMs: 4267
+    endMs: 5242
+  timingSource: synthesis
+  qa:
+    trace: iːn daftar aːrzɑn ast bist hezɑr tuːmɑn
+- item: fa.story.notebook#9
+  speed: normal
+  file: clips/ad05cf6844fb69de.mp3
+  sha256: b1f9a9bdd2eab6eb8929df51ac80b360e4a3301a3fee4d4d9177324a87442003
+  durationMs: 2633
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوب است. خودکار هم دارید؟
+    rate: 1.0
+    inputHash: ad05cf6844fb69de85ac14964358c43569a336b037e1f486e612e52c7f9bb6fa
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 444
+  - token: 2
+    startMs: 444
+    endMs: 1168
+  - token: 5
+    startMs: 1168
+    endMs: 1739
+  - token: 7
+    startMs: 1739
+    endMs: 2079
+  - token: 9
+    startMs: 2079
+    endMs: 2633
+  timingSource: synthesis
+  qa:
+    trace: xuːb ast xodkɑr ham dɑrid
+    asrModel: whisper-large-v3-turbo
+    asrText: خوب است. خود کارم دارید.
+    cer: 0.053
+    status: pass
+- item: fa.story.notebook#9
+  speed: slow
+  file: clips/1b25c2e9f05150d3.mp3
+  sha256: bde44dab281cddc1f9de9b07f716645c25162d4324a88bf5f1b96e05125fc036
+  durationMs: 4054
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوب است. خودکار هم دارید؟
+    rate: 0.67
+    inputHash: 1b25c2e9f05150d3ac15109bc10c8c53ecef76df9acb7211303ab681151fb2c8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 702
+  - token: 2
+    startMs: 702
+    endMs: 1895
+  - token: 5
+    startMs: 1895
+    endMs: 2698
+  - token: 7
+    startMs: 2698
+    endMs: 3217
+  - token: 9
+    startMs: 3217
+    endMs: 4054
+  timingSource: synthesis
+  qa:
+    trace: xuːb ast xodkɑr ham dɑrid
+- item: fa.story.reza-day#0
+  speed: normal
+  file: clips/90bad89a57845f77.mp3
+  sha256: 09c72a69550f39a098c6758405330c7f3902a8725849ce77321c9a53ab6178fb
+  durationMs: 2410
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام رضا! کجا می\u200cروی؟"
+    rate: 1.0
+    inputHash: 90bad89a57845f770a528ceb00a283b9814466084e032322ba9dd47228913076
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 478
+  - token: 2
+    startMs: 478
+    endMs: 1416
+  - token: 5
+    startMs: 1416
+    endMs: 1834
+  - token: 7
+    startMs: 1834
+    endMs: 2410
+  timingSource: synthesis
+  qa:
+    trace: salɑm rezɑ kodʒɑ miruje
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام ریزا چونمی رویه
+    cer: 0.467
+    status: review
+- item: fa.story.reza-day#0
+  speed: slow
+  file: clips/5bdaf81d9875667f.mp3
+  sha256: fb1852a343f90faf109982905686c3f75fc8b2a1481e7efbab82b78d480fd0c3
+  durationMs: 3902
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام رضا! کجا می\u200cروی؟"
+    rate: 0.67
+    inputHash: 5bdaf81d9875667f94643613e15f63d41bcdcdfbcda837b406f55e7c4beaf210
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 764
+  - token: 2
+    startMs: 764
+    endMs: 2353
+  - token: 5
+    startMs: 2353
+    endMs: 2988
+  - token: 7
+    startMs: 2988
+    endMs: 3902
+  timingSource: synthesis
+  qa:
+    trace: salɑm rezɑ kodʒɑ miruje
+- item: fa.story.reza-day#1
+  speed: normal
+  file: clips/fb77481c3d761bb5.mp3
+  sha256: 1e354f48a31ff1116e7a7d4e360054707e32b5c8b956d70bd5575d7f9ede2525
+  durationMs: 2621
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام! به دانشگاه می\u200cروم."
+    rate: 1.0
+    inputHash: fb77481c3d761bb5f56d823e5c16cc9b7eeb769b05a84d59a81d49e2739d498a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1053
+  - token: 3
+    startMs: 1053
+    endMs: 1238
+  - token: 5
+    startMs: 1238
+    endMs: 1918
+  - token: 7
+    startMs: 1918
+    endMs: 2621
+  timingSource: synthesis
+  qa:
+    trace: salɑm beː dɑneʃɡɑh miravam
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام! به دونه شده می رامم
+    cer: 0.389
+    status: review
+- item: fa.story.reza-day#1
+  speed: slow
+  file: clips/b7bf91fa289dd840.mp3
+  sha256: 7445f7e280ced2a1f0b7168bdacdd4e36b4799bb4c9744e241a70c7d9371c268
+  durationMs: 4218
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام! به دانشگاه می\u200cروم."
+    rate: 0.67
+    inputHash: b7bf91fa289dd8406950d27e250fdf3d6c4ee76c1ca45fa36b0ce4eec5918d59
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1775
+  - token: 3
+    startMs: 1775
+    endMs: 2077
+  - token: 5
+    startMs: 2077
+    endMs: 3128
+  - token: 7
+    startMs: 3128
+    endMs: 4218
+  timingSource: synthesis
+  qa:
+    trace: salɑm beː dɑneʃɡɑh miravam
+- item: fa.story.reza-day#10
+  speed: normal
+  file: clips/dab8cd6265683698.mp3
+  sha256: ba6661cf9c7078f404ec18b9c7293350f1f28c2edc3557b8e6f7353994ffd3ea
+  durationMs: 1696
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خداحافظ، مریم!
+    rate: 1.0
+    inputHash: dab8cd62656836984b75d1a6406824143867a80b886b501d2a462fc9c05e3348
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1116
+  - token: 3
+    startMs: 1116
+    endMs: 1696
+  timingSource: synthesis
+  qa:
+    trace: xodɑhɑfez marjam
+    asrModel: whisper-large-v3-turbo
+    asrText: هده هافه ماریم
+    cer: 0.455
+    status: review
+- item: fa.story.reza-day#10
+  speed: slow
+  file: clips/38f32ec354a9098f.mp3
+  sha256: c0a889ed0c216fa557bf89cce8a9df7616ea40c390c968bb92372e66a1168074
+  durationMs: 2616
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خداحافظ، مریم!
+    rate: 0.67
+    inputHash: 38f32ec354a9098faf6d9356f9fc4259e5112bd4293cd69f0f1a168f42d64bbf
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1740
+  - token: 3
+    startMs: 1740
+    endMs: 2616
+  timingSource: synthesis
+  qa:
+    trace: xodɑhɑfez marjam
+- item: fa.story.reza-day#2
+  speed: normal
+  file: clips/30c32d943e18e4dd.mp3
+  sha256: d1095b85b249190151b3583b10e41aa4c0db9659395884b0b927c1560bdb7127
+  durationMs: 2363
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "تو هر روز به دانشگاه می\u200cروی؟"
+    rate: 1.0
+    inputHash: 30c32d943e18e4dde2f3fe325e05ef4295c92a522c3742a016682706970d743e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 224
+  - token: 2
+    startMs: 224
+    endMs: 456
+  - token: 4
+    startMs: 456
+    endMs: 868
+  - token: 6
+    startMs: 868
+    endMs: 1076
+  - token: 8
+    startMs: 1076
+    endMs: 1764
+  - token: 10
+    startMs: 1764
+    endMs: 2363
+  timingSource: synthesis
+  qa:
+    trace: to har ruːz beː dɑneʃɡɑh miruje
+    asrModel: whisper-large-v3-turbo
+    asrText: تو هر روز به دانش را بیرویه
+    cer: 0.238
+    status: review
+- item: fa.story.reza-day#2
+  speed: slow
+  file: clips/4931671281c20595.mp3
+  sha256: efcebde273af02702a2bb66257655378f40252ec9da9b6d8790ad17a25c92db4
+  durationMs: 3642
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "تو هر روز به دانشگاه می\u200cروی؟"
+    rate: 0.67
+    inputHash: 4931671281c2059548accdbb543012d5b1ef080825adab99bd7f974c61118834
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 328
+  - token: 2
+    startMs: 328
+    endMs: 672
+  - token: 4
+    startMs: 672
+    endMs: 1314
+  - token: 6
+    startMs: 1314
+    endMs: 1646
+  - token: 8
+    startMs: 1646
+    endMs: 2704
+  - token: 10
+    startMs: 2704
+    endMs: 3642
+  timingSource: synthesis
+  qa:
+    trace: to har ruːz beː dɑneʃɡɑh miruje
+- item: fa.story.reza-day#3
+  speed: normal
+  file: clips/66c20806755ec381.mp3
+  sha256: 5c91c3f54c9cb154037da80efbf7b41c471d1672e42bc7426b15cd7f7e30fcd2
+  durationMs: 4401
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، من دانشجو هستم. در دانشگاه درس می\u200cخوانم."
+    rate: 1.0
+    inputHash: 66c20806755ec381ec72dc3d336c36cbdbd6343ff5f92786d9881bbb8c93b599
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 890
+  - token: 5
+    startMs: 890
+    endMs: 1474
+  - token: 7
+    startMs: 1474
+    endMs: 2440
+  - token: 10
+    startMs: 2440
+    endMs: 2672
+  - token: 12
+    startMs: 2672
+    endMs: 3353
+  - token: 14
+    startMs: 3353
+    endMs: 3712
+  - token: 16
+    startMs: 3712
+    endMs: 4401
+  timingSource: synthesis
+  qa:
+    trace: baleː man dɑneʃdʒu hastam dar dɑneʃɡɑh dars mixɑnam
+    asrModel: whisper-large-v3-turbo
+    asrText: مانتونش دو هستم تار تونش دو تار سمی خونام
+    cer: 0.529
+    status: fail
+- item: fa.story.reza-day#3
+  speed: slow
+  file: clips/a3c093eb7b9b5242.mp3
+  sha256: 15acf74bf0feb98326afaaaf21349c6e63bfdcc6759ba1a2f676f315cd93674b
+  durationMs: 6995
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، من دانشجو هستم. در دانشگاه درس می\u200cخوانم."
+    rate: 0.67
+    inputHash: a3c093eb7b9b52423cec168fb7eb5b6925c62c0826a464e035933d44c2530065
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1470
+  - token: 5
+    startMs: 1470
+    endMs: 2393
+  - token: 7
+    startMs: 2393
+    endMs: 3961
+  - token: 10
+    startMs: 3961
+    endMs: 4329
+  - token: 12
+    startMs: 4329
+    endMs: 5376
+  - token: 14
+    startMs: 5376
+    endMs: 5909
+  - token: 16
+    startMs: 5909
+    endMs: 6995
+  timingSource: synthesis
+  qa:
+    trace: baleː man dɑneʃdʒu hastam dar dɑneʃɡɑh dars mixɑnam
+- item: fa.story.reza-day#5
+  speed: normal
+  file: clips/c2c77b94ebf0ca09.mp3
+  sha256: 803918101532bdd85baf7772a74016498ac94fb3fdc25ebf599fbf8a3506a972
+  durationMs: 1499
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "ناهار کجا می\u200cخوری؟"
+    rate: 1.0
+    inputHash: c2c77b94ebf0ca0982b1e2360e0842db30bf378022310e9cb9bfb40deba4e0f3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 443
+  - token: 2
+    startMs: 443
+    endMs: 859
+  - token: 4
+    startMs: 859
+    endMs: 1499
+  timingSource: synthesis
+  qa:
+    trace: nɑhɑr kodʒɑ mixori
+    asrModel: whisper-large-v3-turbo
+    asrText: نهار تو نمی خوری
+    cer: 0.357
+    status: review
+- item: fa.story.reza-day#5
+  speed: slow
+  file: clips/be7388c9ee0e5b7d.mp3
+  sha256: 251aacd91f23a9c3619bf058a6e7fa511f67b69458b95af03cb090d82c9391fd
+  durationMs: 2322
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "ناهار کجا می\u200cخوری؟"
+    rate: 0.67
+    inputHash: be7388c9ee0e5b7d0e6d62efa8b9056c2945120cb77ec3a9a13cd5ffd9992895
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 695
+  - token: 2
+    startMs: 695
+    endMs: 1329
+  - token: 4
+    startMs: 1329
+    endMs: 2322
+  timingSource: synthesis
+  qa:
+    trace: nɑhɑr kodʒɑ mixori
+- item: fa.story.reza-day#6
+  speed: normal
+  file: clips/bc8462a87f5924cf.mp3
+  sha256: 662138c78f52625737e68dd0b42424d041b0bf31a481f237e1678117a9c58926
+  durationMs: 2068
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "در دانشگاه ناهار می\u200cخورم."
+    rate: 1.0
+    inputHash: bc8462a87f5924cf123d78dd6c2df169c72812fc1475a4f14a271fffc5acea94
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 231
+  - token: 2
+    startMs: 231
+    endMs: 912
+  - token: 4
+    startMs: 912
+    endMs: 1343
+  - token: 6
+    startMs: 1343
+    endMs: 2068
+  timingSource: synthesis
+  qa:
+    trace: dar dɑneʃɡɑh nɑhɑr mixoram
+    asrModel: whisper-large-v3-turbo
+    asrText: بردانش ده نهار می خورم
+    cer: 0.25
+    status: review
+- item: fa.story.reza-day#6
+  speed: slow
+  file: clips/0dc0265a0656a3f2.mp3
+  sha256: 2495a3653889ad67ce2f4129e34e57a9291e6d789dd97f87c840efccfc8fbae1
+  durationMs: 3198
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "در دانشگاه ناهار می\u200cخورم."
+    rate: 0.67
+    inputHash: 0dc0265a0656a3f23736dbfcb118716ed4b0780087211e2ac312900478287ee4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 367
+  - token: 2
+    startMs: 367
+    endMs: 1415
+  - token: 4
+    startMs: 1415
+    endMs: 2087
+  - token: 6
+    startMs: 2087
+    endMs: 3198
+  timingSource: synthesis
+  qa:
+    trace: dar dɑneʃɡɑh nɑhɑr mixoram
+- item: fa.story.reza-day#7
+  speed: normal
+  file: clips/867a0fc7bd0f3d2c.mp3
+  sha256: a491c22b617290677cc2a9ea6426879fd92e3707919404d02700561aa13a41e9
+  durationMs: 1475
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "شب کتاب می\u200cخوانی؟"
+    rate: 1.0
+    inputHash: 867a0fc7bd0f3d2c635878806d1d78e6b7551fc27cda3235ff9e0d36575e662a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 330
+  - token: 2
+    startMs: 330
+    endMs: 842
+  - token: 4
+    startMs: 842
+    endMs: 1475
+  timingSource: synthesis
+  qa:
+    trace: ʃab ketɑb mixɑni
+    asrModel: whisper-large-v3-turbo
+    asrText: شمکه تو بحالی
+    cer: 0.615
+    status: fail
+- item: fa.story.reza-day#7
+  speed: slow
+  file: clips/aca497ea4f1da139.mp3
+  sha256: eeff8e25165f572cf16f9271cc40e30e145b143394a23a1f0a3b0e3c6dcdb697
+  durationMs: 2175
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "شب کتاب می\u200cخوانی؟"
+    rate: 0.67
+    inputHash: aca497ea4f1da139175229034e8985341593cbd27f30fe030d9a1104179c38e4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 464
+  - token: 2
+    startMs: 464
+    endMs: 1179
+  - token: 4
+    startMs: 1179
+    endMs: 2175
+  timingSource: synthesis
+  qa:
+    trace: ʃab ketɑb mixɑni
+- item: fa.story.reza-day#8
+  speed: normal
+  file: clips/1fe039439b02b680.mp3
+  sha256: 9fd0e6bedab1e0d6589bf2e5721313901b422befb443c7af4fb580ef7b379bf1
+  durationMs: 3437
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، شب کتاب می\u200cخوانم و زود می\u200cخوابم."
+    rate: 1.0
+    inputHash: 1fe039439b02b680408bc63bebb7532bc62128136195310577c4e3587e868a3f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 981
+  - token: 5
+    startMs: 981
+    endMs: 1488
+  - token: 7
+    startMs: 1488
+    endMs: 2064
+  - token: 9
+    startMs: 2064
+    endMs: 2307
+  - token: 11
+    startMs: 2307
+    endMs: 2698
+  - token: 13
+    startMs: 2698
+    endMs: 3437
+  timingSource: synthesis
+  qa:
+    trace: baleː ʃab ketɑb mixɑnam va zuːd mixɑbam
+    asrModel: whisper-large-v3-turbo
+    asrText: بَلَهْ شَابْكَ طَبْ مِحَوَمْ وَا زُودْ مِحَوَمْ
+    cer: 0.963
+    status: fail
+- item: fa.story.reza-day#8
+  speed: slow
+  file: clips/afda3334e9552a62.mp3
+  sha256: 2bd77d717593cdc618a89eae3aee8959e2ab83685651005a34c912a6967b9427
+  durationMs: 5308
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، شب کتاب می\u200cخوانم و زود می\u200cخوابم."
+    rate: 0.67
+    inputHash: afda3334e9552a6242a0d4400ee2bc277eef4e475e9bbbab4f2c580b7b3200fb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1566
+  - token: 5
+    startMs: 1566
+    endMs: 2276
+  - token: 7
+    startMs: 2276
+    endMs: 3173
+  - token: 9
+    startMs: 3173
+    endMs: 3562
+  - token: 11
+    startMs: 3562
+    endMs: 4155
+  - token: 13
+    startMs: 4155
+    endMs: 5308
+  timingSource: synthesis
+  qa:
+    trace: baleː ʃab ketɑb mixɑnam va zuːd mixɑbam
+- item: fa.story.reza-day#9
+  speed: normal
+  file: clips/64a9a227e520370a.mp3
+  sha256: 979b344703b32630f8ed83c31f56adcc4aef5c330e341f2a5be1e5ba1502ac67
+  durationMs: 1849
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "من همیشه دیر می\u200cخوابم!"
+    rate: 1.0
+    inputHash: 64a9a227e520370abb5a8603608d837fe06a48d7658a0bcb5cbbef6791b876be
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 224
+  - token: 2
+    startMs: 224
+    endMs: 804
+  - token: 4
+    startMs: 804
+    endMs: 1091
+  - token: 6
+    startMs: 1091
+    endMs: 1849
+  timingSource: synthesis
+  qa:
+    trace: man hamiʃeː dir mixɑbam
+    asrModel: whisper-large-v3-turbo
+    asrText: ملتا می شدیر می خوبم
+    cer: 0.353
+    status: review
+- item: fa.story.reza-day#9
+  speed: slow
+  file: clips/1d24a76fd8fb90b9.mp3
+  sha256: 44a800085a241d7ae4be0e4894273b1ece43ab5e448cae67a26de567c8855aec
+  durationMs: 2886
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "من همیشه دیر می\u200cخوابم!"
+    rate: 0.67
+    inputHash: 1d24a76fd8fb90b991c436dadb50825b5f2f69d53d7a7d7b3bca41a9ff590f36
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 342
+  - token: 2
+    startMs: 342
+    endMs: 1252
+  - token: 4
+    startMs: 1252
+    endMs: 1697
+  - token: 6
+    startMs: 1697
+    endMs: 2886
+  timingSource: synthesis
+  qa:
+    trace: man hamiʃeː dir mixɑbam
+- item: fa.story.shirt#0
+  speed: normal
+  file: clips/b1164679beabce11.mp3
+  sha256: d4137e12af5887ff2757af3753ae6d1cf42b494e581d10952fc72c127b407d17
+  durationMs: 3499
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام خانم، بفرمایید! چه می\u200cخواهید؟"
+    rate: 1.0
+    inputHash: b1164679beabce1135a6356101b69965c0bd7ff35465f7f2b7d6f11e8f82913f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 482
+  - token: 2
+    startMs: 482
+    endMs: 1230
+  - token: 5
+    startMs: 1230
+    endMs: 2542
+  - token: 8
+    startMs: 2542
+    endMs: 2790
+  - token: 10
+    startMs: 2790
+    endMs: 3499
+  timingSource: synthesis
+  qa:
+    trace: salɑm xɑnom befarmɑiːd tʃeː mixɑhid
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام حالوم بفرماید چه محاید
+    cer: 0.308
+    status: review
+- item: fa.story.shirt#0
+  speed: slow
+  file: clips/1a90ca6a1ea825c3.mp3
+  sha256: d3bd8ad339744934dfd5b6c3ade8ff2ca9a75a37561b91ac6287475987e4aaf7
+  durationMs: 5540
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام خانم، بفرمایید! چه می\u200cخواهید؟"
+    rate: 0.67
+    inputHash: 1a90ca6a1ea825c303741ea66fbad3555a8a93870f997f30585ef45662ffaaca
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 772
+  - token: 2
+    startMs: 772
+    endMs: 1979
+  - token: 5
+    startMs: 1979
+    endMs: 4108
+  - token: 8
+    startMs: 4108
+    endMs: 4463
+  - token: 10
+    startMs: 4463
+    endMs: 5540
+  timingSource: synthesis
+  qa:
+    trace: salɑm xɑnom befarmɑiːd tʃeː mixɑhid
+- item: fa.story.shirt#1
+  speed: normal
+  file: clips/c93a2231ef3b6c60.mp3
+  sha256: 0e8797f00c75076b334997df7fadd12d36f5010356ed29cb6991ec5cfb635889
+  durationMs: 2630
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام. یک پیراهن می\u200cخواهم."
+    rate: 1.0
+    inputHash: c93a2231ef3b6c60057841cec35525397f6a7bd5b3bb1b9c5f893da4cbbadbd3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1012
+  - token: 3
+    startMs: 1012
+    endMs: 1282
+  - token: 5
+    startMs: 1282
+    endMs: 1927
+  - token: 7
+    startMs: 1927
+    endMs: 2630
+  timingSource: synthesis
+  qa:
+    trace: salɑm jek pirɑhan mixɑham
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام، یک تی روحا محاوام
+    cer: 0.368
+    status: review
+- item: fa.story.shirt#1
+  speed: slow
+  file: clips/97e6494457c342be.mp3
+  sha256: 3d9db8b49056750a1744968f4ab8108095ebae8f75d324ed06cc46640d0dbad1
+  durationMs: 4127
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "سلام. یک پیراهن می\u200cخواهم."
+    rate: 0.67
+    inputHash: 97e6494457c342be08ac5f25f0ba27ad9d611fd3b32d08d2584a9f44139066bd
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1682
+  - token: 3
+    startMs: 1682
+    endMs: 2085
+  - token: 5
+    startMs: 2085
+    endMs: 3068
+  - token: 7
+    startMs: 3068
+    endMs: 4127
+  timingSource: synthesis
+  qa:
+    trace: salɑm jek pirɑhan mixɑham
+- item: fa.story.shirt#10
+  speed: normal
+  file: clips/805e7e988fa9824a.mp3
+  sha256: df14ec16ee94c055235e762f536580a8248fa6f0ff75e4f9e694d343927a2be1
+  durationMs: 2989
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، خوب است. این را می\u200cخرم."
+    rate: 1.0
+    inputHash: 805e7e988fa9824a5e23b05ce761765fdd5e50f1e29b2b18866b8ffb712c46f7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 1091
+  - token: 5
+    startMs: 1091
+    endMs: 1816
+  - token: 8
+    startMs: 1816
+    endMs: 2042
+  - token: 10
+    startMs: 2042
+    endMs: 2225
+  - token: 12
+    startMs: 2225
+    endMs: 2989
+  timingSource: synthesis
+  qa:
+    trace: baleː xuːb ast iːn rɑ mixorram
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله حو باست این رو محورم
+    cer: 0.316
+    status: review
+- item: fa.story.shirt#10
+  speed: slow
+  file: clips/52e78d4864604361.mp3
+  sha256: 0fee5cb96520d63f15f34c40dfa3cc5b131cc22ee3e58354c363a5685c8b04c6
+  durationMs: 4799
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "بله، خوب است. این را می\u200cخرم."
+    rate: 0.67
+    inputHash: 52e78d48646043617c02b525911f4cc9fd296c98a21735793e082c0ae768420b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1802
+  - token: 5
+    startMs: 1802
+    endMs: 2996
+  - token: 8
+    startMs: 2996
+    endMs: 3362
+  - token: 10
+    startMs: 3362
+    endMs: 3657
+  - token: 12
+    startMs: 3657
+    endMs: 4799
+  timingSource: synthesis
+  qa:
+    trace: baleː xuːb ast iːn rɑ mixorram
+- item: fa.story.shirt#11
+  speed: normal
+  file: clips/3a6b9c57732983bf.mp3
+  sha256: 517da1f7fe5bed7b6120aae40c07c0bdcbe7dbd35dbdf52962f86c54625e3ff2
+  durationMs: 2652
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، خانم. خداحافظ!
+    rate: 1.0
+    inputHash: 3a6b9c57732983bfaf3ed340bdd40feb527b14af9ebcdf9c0fdc8388493e7a8a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 780
+  - token: 3
+    startMs: 780
+    endMs: 1724
+  - token: 6
+    startMs: 1724
+    endMs: 2652
+  timingSource: synthesis
+  qa:
+    trace: mamnun xɑnom xodɑhɑfez
+    asrModel: whisper-large-v3-turbo
+    asrText: مانون، خانم، خود آفهن
+    cer: 0.438
+    status: review
+- item: fa.story.shirt#11
+  speed: slow
+  file: clips/fd644e3007d7fa37.mp3
+  sha256: 19d362e4b1ea6e3d409532e02ba026bb97d413b64bf50e1cebd744ed8de020a9
+  durationMs: 4229
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون، خانم. خداحافظ!
+    rate: 0.67
+    inputHash: fd644e3007d7fa37a396bf9a399f5b628c3001bc7bd0a0b9064423e88805c406
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1256
+  - token: 3
+    startMs: 1256
+    endMs: 2820
+  - token: 6
+    startMs: 2820
+    endMs: 4229
+  timingSource: synthesis
+  qa:
+    trace: mamnun xɑnom xodɑhɑfez
+- item: fa.story.shirt#2
+  speed: normal
+  file: clips/5c9a23d0b934ea8d.mp3
+  sha256: e67420618d959787d6b537bb9cdc7bbd2ea1dee5c23226cfd505ec8f185942ec
+  durationMs: 1662
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: چه رنگی دوست دارید؟
+    rate: 1.0
+    inputHash: 5c9a23d0b934ea8d9c75b8310395e99934580d6319f50b33092231126821432b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 245
+  - token: 2
+    startMs: 245
+    endMs: 683
+  - token: 4
+    startMs: 683
+    endMs: 1106
+  - token: 6
+    startMs: 1106
+    endMs: 1662
+  timingSource: synthesis
+  qa:
+    trace: tʃeː ranɡi duːst dɑrid
+    asrModel: whisper-large-v3-turbo
+    asrText: چه رنگی دوست دارید؟
+    cer: 0.0
+    status: pass
+- item: fa.story.shirt#2
+  speed: slow
+  file: clips/7aad10f845a24f54.mp3
+  sha256: fe1f46887544adac09a8ce09d67101b825fefcebf91ed9e0a5346417452e2f50
+  durationMs: 2508
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: چه رنگی دوست دارید؟
+    rate: 0.67
+    inputHash: 7aad10f845a24f54d0426014d9d0a54cf361bc6d711dbf30d3c28ce2abf944d0
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 351
+  - token: 2
+    startMs: 351
+    endMs: 1035
+  - token: 4
+    startMs: 1035
+    endMs: 1669
+  - token: 6
+    startMs: 1669
+    endMs: 2508
+  timingSource: synthesis
+  qa:
+    trace: tʃeː ranɡi duːst dɑrid
+- item: fa.story.shirt#3
+  speed: normal
+  file: clips/b0c30559af7acff0.mp3
+  sha256: 84ec8870fecdff2f6b4cb55732c259b90355823c3df6891e6a209494a75682fe
+  durationMs: 1006
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آبی یا سبز.
+    rate: 1.0
+    inputHash: b0c30559af7acff0b7b3cebd3e01eb21e506f06e0385aef63b708c26f812f636
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 338
+  - token: 2
+    startMs: 338
+    endMs: 530
+  - token: 4
+    startMs: 530
+    endMs: 1006
+  timingSource: synthesis
+  qa:
+    trace: ɑbi jɑː sabz
+    asrModel: whisper-large-v3-turbo
+    asrText: آبی آسابس.
+    cer: 0.5
+    status: review
+- item: fa.story.shirt#3
+  speed: slow
+  file: clips/cc58213bb634d9e8.mp3
+  sha256: 5105ccc316103fd98832387d2692b38ab2a35719d215b3312a368bcc91bcff9a
+  durationMs: 1531
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: آبی یا سبز.
+    rate: 0.67
+    inputHash: cc58213bb634d9e83ef523d37ed69254e5293d6452f0c3fe4fb79b8aab9b67cb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 561
+  - token: 2
+    startMs: 561
+    endMs: 874
+  - token: 4
+    startMs: 874
+    endMs: 1531
+  timingSource: synthesis
+  qa:
+    trace: ɑbi jɑː sabz
+- item: fa.story.shirt#4
+  speed: normal
+  file: clips/daaaaf800d31b3f1.mp3
+  sha256: e25b4c85001b2a2989f5805258761044f5afe26e4a251537fe3bab5f74c4c1e4
+  durationMs: 2510
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پیراهنِ آبی خیلی قشنگ است.
+    rate: 1.0
+    inputHash: daaaaf800d31b3f11dc3f4e305ce9f07b9acc7a55498777fc29654fc17070e7f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 230
+  - token: 2
+    startMs: 230
+    endMs: 880
+  - token: 4
+    startMs: 880
+    endMs: 1210
+  - token: 6
+    startMs: 1210
+    endMs: 1651
+  - token: 8
+    startMs: 1651
+    endMs: 2174
+  - token: 10
+    startMs: 2174
+    endMs: 2510
+  timingSource: synthesis
+  qa:
+    trace: iːn pirɑhane ɑbi xejli q1aʃanɡ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: این پیروحا نه بیهیلی پاشنگست
+    cer: 0.391
+    status: review
+- item: fa.story.shirt#4
+  speed: slow
+  file: clips/3e2be1055a96fcfe.mp3
+  sha256: 7751973ec601fdb77cc5bca453da8ed1944c5799a569cba5fb2ae3f6fc320201
+  durationMs: 3875
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پیراهنِ آبی خیلی قشنگ است.
+    rate: 0.67
+    inputHash: 3e2be1055a96fcfe0f4a5b3b42a75fae80b5a3ccc6c91e6463799bc724ec5be9
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 366
+  - token: 2
+    startMs: 366
+    endMs: 1375
+  - token: 4
+    startMs: 1375
+    endMs: 1918
+  - token: 6
+    startMs: 1918
+    endMs: 2606
+  - token: 8
+    startMs: 2606
+    endMs: 3392
+  - token: 10
+    startMs: 3392
+    endMs: 3875
+  timingSource: synthesis
+  qa:
+    trace: iːn pirɑhane ɑbi xejli q1aʃanɡ ast
+- item: fa.story.shirt#5
+  speed: normal
+  file: clips/fb9404a8f426c6b8.mp3
+  sha256: 65782e036ac713a6e9359e95ea9ddf196dac8901bbad612b9029cf11bc2fddf7
+  durationMs: 3487
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، قشنگ است. قیمتِ آن چقدر است؟
+    rate: 1.0
+    inputHash: fb9404a8f426c6b8ba0d9c54d6174a4856ac460ea83b40e08ea0e86f4ab54823
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 1174
+  - token: 5
+    startMs: 1174
+    endMs: 1888
+  - token: 8
+    startMs: 1888
+    endMs: 2422
+  - token: 10
+    startMs: 2422
+    endMs: 2593
+  - token: 12
+    startMs: 2593
+    endMs: 3149
+  - token: 14
+    startMs: 3149
+    endMs: 3487
+  timingSource: synthesis
+  qa:
+    trace: baleː q1aʃanɡ ast q1ejmate ɑn tʃeq1adr ast
+    asrModel: whisper-large-v3-turbo
+    asrText: باله، کشانگست ایماتن چه قدرست
+    cer: 0.391
+    status: review
+- item: fa.story.shirt#5
+  speed: slow
+  file: clips/814934d5350be765.mp3
+  sha256: 6cea493804f6f401056683e0f25ad396e7fb3f2091a68e1ccbed810d9631ef76
+  durationMs: 5403
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، قشنگ است. قیمتِ آن چقدر است؟
+    rate: 0.67
+    inputHash: 814934d5350be765a0e6b1efd196bd0c8871670f32c9cab578ae571d9f006d3e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1882
+  - token: 5
+    startMs: 1882
+    endMs: 3067
+  - token: 8
+    startMs: 3067
+    endMs: 3884
+  - token: 10
+    startMs: 3884
+    endMs: 4128
+  - token: 12
+    startMs: 4128
+    endMs: 4907
+  - token: 14
+    startMs: 4907
+    endMs: 5403
+  timingSource: synthesis
+  qa:
+    trace: baleː q1aʃanɡ ast q1ejmate ɑn tʃeq1adr ast
+- item: fa.story.shirt#6
+  speed: normal
+  file: clips/f0b41d754d5bda56.mp3
+  sha256: aae79f5eb9051d26fb129bf4ab1faa63be0d9a5fc61addb518025992a80a4eb0
+  durationMs: 2124
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: صد و پنجاه هزار تومان.
+    rate: 1.0
+    inputHash: f0b41d754d5bda56e52624761aa9b9ea53c2ac79d2c81713782526d96de183a2
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 331
+  - token: 2
+    startMs: 331
+    endMs: 542
+  - token: 4
+    startMs: 542
+    endMs: 1060
+  - token: 6
+    startMs: 1060
+    endMs: 1516
+  - token: 8
+    startMs: 1516
+    endMs: 2124
+  timingSource: synthesis
+  qa:
+    trace: sad va pandʒɑh hezɑr tuːmɑn
+    asrModel: whisper-large-v3-turbo
+    asrText: سات با پنجا هزار تومن
+    cer: 0.412
+    status: review
+- item: fa.story.shirt#6
+  speed: slow
+  file: clips/e7fd6f040bf09fa0.mp3
+  sha256: 75524db6b3bb2a157eaf1b7b6fa314dda34749deb6faa3a9129d340b480b68cf
+  durationMs: 3207
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: صد و پنجاه هزار تومان.
+    rate: 0.67
+    inputHash: e7fd6f040bf09fa095ab85f08e03c527fbf6ba5f19aec8d84af6140efbd261c9
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 470
+  - token: 2
+    startMs: 470
+    endMs: 815
+  - token: 4
+    startMs: 815
+    endMs: 1574
+  - token: 6
+    startMs: 1574
+    endMs: 2265
+  - token: 8
+    startMs: 2265
+    endMs: 3207
+  timingSource: synthesis
+  qa:
+    trace: sad va pandʒɑh hezɑr tuːmɑn
+- item: fa.story.shirt#7
+  speed: normal
+  file: clips/ce23abd5e6f6e0e7.mp3
+  sha256: 1bdadb2ea734e78faed1782a931c520eaa7f5c3eec49182e636f965ee89538ff
+  durationMs: 2884
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "خیلی گران است! تخفیف می\u200cدهید؟"
+    rate: 1.0
+    inputHash: ce23abd5e6f6e0e7705cb42967de96d10b09f51f142dd56be0b0ca6dd1a728d4
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 450
+  - token: 2
+    startMs: 450
+    endMs: 818
+  - token: 4
+    startMs: 818
+    endMs: 1652
+  - token: 7
+    startMs: 1652
+    endMs: 2248
+  - token: 9
+    startMs: 2248
+    endMs: 2884
+  timingSource: synthesis
+  qa:
+    trace: xejli ɡerɑn ast taxfif midahid
+    asrModel: whisper-large-v3-turbo
+    asrText: هیلی گرو نیست تخفیف مدهید
+    cer: 0.182
+    status: review
+- item: fa.story.shirt#7
+  speed: slow
+  file: clips/55cf1bdb86f0665b.mp3
+  sha256: bca8a8fe1c66451f19ef211bc6f476be85bfb220e8eecee5c90d908d91bb0601
+  durationMs: 4529
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "خیلی گران است! تخفیف می\u200cدهید؟"
+    rate: 0.67
+    inputHash: 55cf1bdb86f0665b1f99e9888ab6994ba870e40b45ee0f7962ca1620ce4ce367
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 722
+  - token: 2
+    startMs: 722
+    endMs: 1305
+  - token: 4
+    startMs: 1305
+    endMs: 2683
+  - token: 7
+    startMs: 2683
+    endMs: 3560
+  - token: 9
+    startMs: 3560
+    endMs: 4529
+  timingSource: synthesis
+  qa:
+    trace: xejli ɡerɑn ast taxfif midahid
+- item: fa.story.shirt#8
+  speed: normal
+  file: clips/085608670a7cd8e4.mp3
+  sha256: 9c510fbfb95d3614b0dc63862d57a7c7b79c218c83331f05003cd61ec0f84653
+  durationMs: 3131
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: صد و بیست هزار تومان. خوب است؟
+    rate: 1.0
+    inputHash: 085608670a7cd8e422bc4a7aaae555d3133b5cb8dba9778d8d885e20a2714c72
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 331
+  - token: 2
+    startMs: 331
+    endMs: 561
+  - token: 4
+    startMs: 561
+    endMs: 897
+  - token: 6
+    startMs: 897
+    endMs: 1354
+  - token: 8
+    startMs: 1354
+    endMs: 2341
+  - token: 11
+    startMs: 2341
+    endMs: 2786
+  - token: 13
+    startMs: 2786
+    endMs: 3131
+  timingSource: synthesis
+  qa:
+    trace: sad va bist hezɑr tuːmɑn xuːb ast
+    asrModel: whisper-large-v3-turbo
+    asrText: سات بابیست هزار تومن خوبیست
+    cer: 0.318
+    status: review
+- item: fa.story.shirt#8
+  speed: slow
+  file: clips/69009605d94e13f3.mp3
+  sha256: 5ca9684528544b06c07159323b80d6cd043b933e93d7be2a7864051bcd0cb2e7
+  durationMs: 4848
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: صد و بیست هزار تومان. خوب است؟
+    rate: 0.67
+    inputHash: 69009605d94e13f3ba066b6e5390d498d82a2f67ac6c7bbf96f6b61c71a4e5ac
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 470
+  - token: 2
+    startMs: 470
+    endMs: 841
+  - token: 4
+    startMs: 841
+    endMs: 1319
+  - token: 6
+    startMs: 1319
+    endMs: 2010
+  - token: 8
+    startMs: 2010
+    endMs: 3645
+  - token: 11
+    startMs: 3645
+    endMs: 4347
+  - token: 13
+    startMs: 4347
+    endMs: 4848
+  timingSource: synthesis
+  qa:
+    trace: sad va bist hezɑr tuːmɑn xuːb ast
+- item: fa.story.tea#0
+  speed: normal
+  file: clips/e61626d35931233b.mp3
+  sha256: 90cf139c9574a033bebada0c255b2c4bf6511c85f86de75ff5e6f87e78313691
+  durationMs: 2810
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام علی! بفرمایید، چای!
+    rate: 1.0
+    inputHash: e61626d35931233b5214424d3eec6333ec1e29e047bf610b8af2d7c3d020146e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 379
+  - token: 2
+    startMs: 379
+    endMs: 1296
+  - token: 5
+    startMs: 1296
+    endMs: 2364
+  - token: 8
+    startMs: 2364
+    endMs: 2810
+  timingSource: synthesis
+  qa:
+    trace: salɑm aːli befarmɑiːd tʃɑj
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام علی، بفرموید، چوی
+    cer: 0.167
+    status: review
+- item: fa.story.tea#0
+  speed: slow
+  file: clips/9c6547e9abf864da.mp3
+  sha256: 8dc79b4fb92505f7583174ffe6055ea48cb2b02ad4d409a749b5f099996bbd62
+  durationMs: 4530
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام علی! بفرمایید، چای!
+    rate: 0.67
+    inputHash: 9c6547e9abf864dab3cf1c4b4aca15cabde250e606670c465248811bc091bb14
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 625
+  - token: 2
+    startMs: 625
+    endMs: 2192
+  - token: 5
+    startMs: 2192
+    endMs: 3874
+  - token: 8
+    startMs: 3874
+    endMs: 4530
+  timingSource: synthesis
+  qa:
+    trace: salɑm aːli befarmɑiːd tʃɑj
+- item: fa.story.tea#1
+  speed: normal
+  file: clips/2c90e06f5fb62b64.mp3
+  sha256: bbf9fb6f59214de1d3e8266fbe3234f91dc90fd51baf94aed0e3f291248dfc22
+  durationMs: 3011
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون! من چای خیلی دوست دارم.
+    rate: 1.0
+    inputHash: 2c90e06f5fb62b64f557a792e9bad527fa97e780c5340d85f10675bfe675b3d3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1024
+  - token: 3
+    startMs: 1024
+    endMs: 1247
+  - token: 5
+    startMs: 1247
+    endMs: 1595
+  - token: 7
+    startMs: 1595
+    endMs: 2045
+  - token: 9
+    startMs: 2045
+    endMs: 2464
+  - token: 11
+    startMs: 2464
+    endMs: 3011
+  timingSource: synthesis
+  qa:
+    trace: mamnun man tʃɑj xejli duːst dɑram
+    asrModel: whisper-large-v3-turbo
+    asrText: مام دون. ملچوی خیلی دوست دورم.
+    cer: 0.227
+    status: review
+- item: fa.story.tea#1
+  speed: slow
+  file: clips/0ac7c018fe79a89e.mp3
+  sha256: dd0e3da705a938c16ecbb0e865d4645b763826f94647978e31d8484e9de7c9a2
+  durationMs: 4767
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ممنون! من چای خیلی دوست دارم.
+    rate: 0.67
+    inputHash: 0ac7c018fe79a89eb6ad6005d5147874743667db899c527283d088e12ace72ff
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1702
+  - token: 3
+    startMs: 1702
+    endMs: 2041
+  - token: 5
+    startMs: 2041
+    endMs: 2572
+  - token: 7
+    startMs: 2572
+    endMs: 3294
+  - token: 9
+    startMs: 3294
+    endMs: 3932
+  - token: 11
+    startMs: 3932
+    endMs: 4767
+  timingSource: synthesis
+  qa:
+    trace: mamnun man tʃɑj xejli duːst dɑram
+- item: fa.story.tea#2
+  speed: normal
+  file: clips/1e54a7e66fc30a7d.mp3
+  sha256: 57a6ff18b705de08ddaf6bae3ed59f9fa10e56b1c3e22480647eb453bf33d4cb
+  durationMs: 1787
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: چای با قند دوست داری؟
+    rate: 1.0
+    inputHash: 1e54a7e66fc30a7d50916fb42e0fb4df38944a5fdd949b11513e27ae2e82f0ed
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 361
+  - token: 2
+    startMs: 361
+    endMs: 538
+  - token: 4
+    startMs: 538
+    endMs: 881
+  - token: 6
+    startMs: 881
+    endMs: 1293
+  - token: 8
+    startMs: 1293
+    endMs: 1787
+  timingSource: synthesis
+  qa:
+    trace: tʃɑj bɑ q1and duːst dɑri
+    asrModel: whisper-large-v3-turbo
+    asrText: چای کاند بوستاری؟
+    cer: 0.25
+    status: review
+- item: fa.story.tea#2
+  speed: slow
+  file: clips/7c4b6d461352d65f.mp3
+  sha256: 3e6f024f3b4a1e1fb915550e96403dc7ae4e70f0c0a8493feb2e09f047f891fa
+  durationMs: 2769
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: چای با قند دوست داری؟
+    rate: 0.67
+    inputHash: 7c4b6d461352d65f924e149b3026cc56834ae4ef88dcf349f0dbd81daf74c067
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 548
+  - token: 2
+    startMs: 548
+    endMs: 831
+  - token: 4
+    startMs: 831
+    endMs: 1349
+  - token: 6
+    startMs: 1349
+    endMs: 1970
+  - token: 8
+    startMs: 1970
+    endMs: 2769
+  timingSource: synthesis
+  qa:
+    trace: tʃɑj bɑ q1and duːst dɑri
+- item: fa.story.tea#3
+  speed: normal
+  file: clips/d7d89156460094d3.mp3
+  sha256: f73e067ab4c5595ae2d53332e3f47057a20e179ab106e9f6e1c6bbf60706a4a8
+  durationMs: 2777
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، چای با قند خیلی خوب است.
+    rate: 1.0
+    inputHash: d7d89156460094d381da7493698bf6d276bacb96071236ef39bc8b9144f215e3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 1012
+  - token: 5
+    startMs: 1012
+    endMs: 1186
+  - token: 7
+    startMs: 1186
+    endMs: 1545
+  - token: 9
+    startMs: 1545
+    endMs: 1986
+  - token: 11
+    startMs: 1986
+    endMs: 2431
+  - token: 13
+    startMs: 2431
+    endMs: 2777
+  timingSource: synthesis
+  qa:
+    trace: baleː tʃɑj bɑ q1and xejli xuːb ast
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله چای تو کنه هیلی خوب است
+    cer: 0.333
+    status: review
+- item: fa.story.tea#3
+  speed: slow
+  file: clips/db691fecf0848340.mp3
+  sha256: f84d9954fd20d69a2d62c7adb28c114c90fe11830ed998604474627aedbbc9f0
+  durationMs: 4375
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، چای با قند خیلی خوب است.
+    rate: 0.67
+    inputHash: db691fecf08483407c5f94010a0d66e50a2f904308611639f4a8220281e301c7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1648
+  - token: 5
+    startMs: 1648
+    endMs: 1927
+  - token: 7
+    startMs: 1927
+    endMs: 2462
+  - token: 9
+    startMs: 2462
+    endMs: 3171
+  - token: 11
+    startMs: 3171
+    endMs: 3873
+  - token: 13
+    startMs: 3873
+    endMs: 4375
+  timingSource: synthesis
+  qa:
+    trace: baleː tʃɑj bɑ q1and xejli xuːb ast
+- item: fa.story.tea#5
+  speed: normal
+  file: clips/58256f1fa20701c9.mp3
+  sha256: f12cc533a092f297cb0925a2bea78dab230d9c553f4254ba9dd3f3d026b471ad
+  durationMs: 3120
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نان و پنیر هم داریم. بفرمایید!
+    rate: 1.0
+    inputHash: 58256f1fa20701c9f9368da4949b3796b71fb4b153bf1fd28cdf0b318a97c37d
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 322
+  - token: 2
+    startMs: 322
+    endMs: 533
+  - token: 4
+    startMs: 533
+    endMs: 950
+  - token: 6
+    startMs: 950
+    endMs: 1283
+  - token: 8
+    startMs: 1283
+    endMs: 2223
+  - token: 11
+    startMs: 2223
+    endMs: 3120
+  timingSource: synthesis
+  qa:
+    trace: nɑn va panir ham dɑrim befarmɑiːd
+    asrModel: whisper-large-v3-turbo
+    asrText: نون باپنیر هم نوریم بفرموید
+    cer: 0.304
+    status: review
+- item: fa.story.tea#5
+  speed: slow
+  file: clips/e11b15d5b0286c1b.mp3
+  sha256: 107748180c467a54af66a286e6dad3a4d91ac65543a1a2b61e731202bf7076d7
+  durationMs: 4938
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نان و پنیر هم داریم. بفرمایید!
+    rate: 0.67
+    inputHash: e11b15d5b0286c1bc1cde5d19519e41f6d19367e7bad0ab0d1394bdd2fd2aaae
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 513
+  - token: 2
+    startMs: 513
+    endMs: 857
+  - token: 4
+    startMs: 857
+    endMs: 1485
+  - token: 6
+    startMs: 1485
+    endMs: 2006
+  - token: 8
+    startMs: 2006
+    endMs: 3572
+  - token: 11
+    startMs: 3572
+    endMs: 4938
+  timingSource: synthesis
+  qa:
+    trace: nɑn va panir ham dɑrim befarmɑiːd
+- item: fa.story.tea#6
+  speed: normal
+  file: clips/23c4986c10c41029.mp3
+  sha256: cfa36ee0de730f5918da055aad04a5ba9ba71e93a296f496aadee94d8d5ec8f9
+  durationMs: 2073
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پنیر خیلی خوشمزه است!
+    rate: 1.0
+    inputHash: 23c4986c10c4102973cc9c30cf6bd8ec590bb59fb27eff84831f077905d47eef
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 227
+  - token: 2
+    startMs: 227
+    endMs: 636
+  - token: 4
+    startMs: 636
+    endMs: 1082
+  - token: 6
+    startMs: 1082
+    endMs: 1730
+  - token: 8
+    startMs: 1730
+    endMs: 2073
+  timingSource: synthesis
+  qa:
+    trace: iːn panir xejli xoʃmazeː ast
+    asrModel: whisper-large-v3-turbo
+    asrText: این پانی رهیلی خوشمانه است.
+    cer: 0.2
+    status: review
+- item: fa.story.tea#6
+  speed: slow
+  file: clips/9d73070ce05e2ae9.mp3
+  sha256: c100ef43f84bdc7fe50fea93287513279b502f111f1fda67ec2a028faf0dc01a
+  durationMs: 3213
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این پنیر خیلی خوشمزه است!
+    rate: 0.67
+    inputHash: 9d73070ce05e2ae90b336b2010b5c200dc6eada1fba4606c4c87165417911c08
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 371
+  - token: 2
+    startMs: 371
+    endMs: 1002
+  - token: 4
+    startMs: 1002
+    endMs: 1713
+  - token: 6
+    startMs: 1713
+    endMs: 2708
+  - token: 8
+    startMs: 2708
+    endMs: 3213
+  timingSource: synthesis
+  qa:
+    trace: iːn panir xejli xoʃmazeː ast
+- item: fa.story.tea#7
+  speed: normal
+  file: clips/6961e8a6ea595c97.mp3
+  sha256: 777a55436c6f2252f1d2c3c49f0c491ddcdf09f532e83604359035359db7116d
+  durationMs: 804
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نوش جان!
+    rate: 1.0
+    inputHash: 6961e8a6ea595c9758c7c2bd5639bd75cc2ce0aefb3a5d20c8962a6f43c9940b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 371
+  - token: 2
+    startMs: 371
+    endMs: 804
+  timingSource: synthesis
+  qa:
+    trace: nuːʃ dʒɑn
+    asrModel: whisper-large-v3-turbo
+    asrText: نوش جان
+    cer: 0.0
+    status: pass
+- item: fa.story.tea#7
+  speed: slow
+  file: clips/044e375afa58393e.mp3
+  sha256: 504ed9a66435e200d0ddb1545d76546047df30def91d9601e3874ec831d484ac
+  durationMs: 1284
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نوش جان!
+    rate: 0.67
+    inputHash: 044e375afa58393e8d4dff38082b0bf7aa37727d961d1dcd234ab46b270aeb2b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 602
+  - token: 2
+    startMs: 602
+    endMs: 1284
+  timingSource: synthesis
+  qa:
+    trace: nuːʃ dʒɑn
+- item: fa.story.tea#8
+  speed: normal
+  file: clips/07f873494dde317c.mp3
+  sha256: 24e8e3006cb83f487aed86bd9dc7db72058083315648646819e39c8d3c573fd2
+  durationMs: 3306
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این چای هم خیلی خوشمزه است. ممنون!
+    rate: 1.0
+    inputHash: 07f873494dde317ce87b72dd395077e7fd982414f5ea6560545fe533ee30b594
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 227
+  - token: 2
+    startMs: 227
+    endMs: 575
+  - token: 4
+    startMs: 575
+    endMs: 884
+  - token: 6
+    startMs: 884
+    endMs: 1325
+  - token: 8
+    startMs: 1325
+    endMs: 1980
+  - token: 10
+    startMs: 1980
+    endMs: 2709
+  - token: 13
+    startMs: 2709
+    endMs: 3306
+  timingSource: synthesis
+  qa:
+    trace: iːn tʃɑj ham xejli xoʃmazeː ast mamnun
+    asrModel: whisper-large-v3-turbo
+    asrText: این چایم هیلی خوشمانه است. مام دون.
+    cer: 0.231
+    status: review
+- item: fa.story.tea#8
+  speed: slow
+  file: clips/45878f04ad0d5d96.mp3
+  sha256: 1e4fb018f1e8363570a5992794a1ee44deef0ebf7935ab22e5b82767288c602e
+  durationMs: 5177
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: این چای هم خیلی خوشمزه است. ممنون!
+    rate: 0.67
+    inputHash: 45878f04ad0d5d964ecaf4c3bd42b410e1908feaec579d2bd3ff9716257b1049
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 371
+  - token: 2
+    startMs: 371
+    endMs: 902
+  - token: 4
+    startMs: 902
+    endMs: 1367
+  - token: 6
+    startMs: 1367
+    endMs: 2076
+  - token: 8
+    startMs: 2076
+    endMs: 3068
+  - token: 10
+    startMs: 3068
+    endMs: 4256
+  - token: 13
+    startMs: 4256
+    endMs: 5177
+  timingSource: synthesis
+  qa:
+    trace: iːn tʃɑj ham xejli xoʃmazeː ast mamnun
+- item: fa.story.tomorrow#0
+  speed: normal
+  file: clips/d50c83031c22873e.mp3
+  sha256: 068686a86d0d7c2811484dbd17393491b5e86f4d6a20d53c6bb682ed2c5b1a83
+  durationMs: 2917
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام سارا! فردا وقت داری؟
+    rate: 1.0
+    inputHash: d50c83031c22873e08610376967c841b8ab54fe5d323b580a25605088a79d23e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 478
+  - token: 2
+    startMs: 478
+    endMs: 1548
+  - token: 5
+    startMs: 1548
+    endMs: 2027
+  - token: 7
+    startMs: 2027
+    endMs: 2423
+  - token: 9
+    startMs: 2423
+    endMs: 2917
+  timingSource: synthesis
+  qa:
+    trace: salɑm sɑrɑ fardɑ vaq1t dɑri
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام سورا فردو باقتوری
+    cer: 0.316
+    status: review
+- item: fa.story.tomorrow#0
+  speed: slow
+  file: clips/5da47de5e7688ba4.mp3
+  sha256: ac3dfeac9ce600f5bef5cfc5466bcad744be40f08d7ee7d74330a4b8ca2bf738
+  durationMs: 4702
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام سارا! فردا وقت داری؟
+    rate: 0.67
+    inputHash: 5da47de5e7688ba4bd63552eb2e9395f186b8ca25e57c4269259814ad2609dd2
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 768
+  - token: 2
+    startMs: 768
+    endMs: 2582
+  - token: 5
+    startMs: 2582
+    endMs: 3334
+  - token: 7
+    startMs: 3334
+    endMs: 3903
+  - token: 9
+    startMs: 3903
+    endMs: 4702
+  timingSource: synthesis
+  qa:
+    trace: salɑm sɑrɑ fardɑ vaq1t dɑri
+- item: fa.story.tomorrow#1
+  speed: normal
+  file: clips/32964dc9e7ee45d6.mp3
+  sha256: e315242b98f801d211630ecef29f6985477e0577b46570b2c61e6602313f0c60
+  durationMs: 1564
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: فردا چندشنبه است؟
+    rate: 1.0
+    inputHash: 32964dc9e7ee45d6f47b17309279dbe0f17a112249644400ad0940735b3dcbae
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 452
+  - token: 2
+    startMs: 452
+    endMs: 1228
+  - token: 4
+    startMs: 1228
+    endMs: 1564
+  timingSource: synthesis
+  qa:
+    trace: fardɑ tʃandʃanbeː ast
+    asrModel: whisper-large-v3-turbo
+    asrText: فردوچند شن بیست
+    cer: 0.214
+    status: review
+- item: fa.story.tomorrow#1
+  speed: slow
+  file: clips/96a328ad37f054d7.mp3
+  sha256: a002cf0b2007b3a613249f34f84faf3f3cde9d03372110b8ceb8d5296bac4afc
+  durationMs: 2337
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: فردا چندشنبه است؟
+    rate: 0.67
+    inputHash: 96a328ad37f054d7ed79960bceb737145bee18490db0b12989abc984e4007c11
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 706
+  - token: 2
+    startMs: 706
+    endMs: 1843
+  - token: 4
+    startMs: 1843
+    endMs: 2337
+  timingSource: synthesis
+  qa:
+    trace: fardɑ tʃandʃanbeː ast
+- item: fa.story.tomorrow#2
+  speed: normal
+  file: clips/57ca7000824c277c.mp3
+  sha256: f6784b45ecdbbbde005a6fa9ee70d58adf995aff7f8b440e1ff6b5dc272327fa
+  durationMs: 3280
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: فردا پنجشنبه است. تولدِ من است!
+    rate: 1.0
+    inputHash: 57ca7000824c277cea7ec21beb2a32315f3cb40dbaf008a94aedbeef9da27587
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 457
+  - token: 2
+    startMs: 457
+    endMs: 1266
+  - token: 4
+    startMs: 1266
+    endMs: 1989
+  - token: 7
+    startMs: 1989
+    endMs: 2740
+  - token: 9
+    startMs: 2740
+    endMs: 2858
+  - token: 11
+    startMs: 2858
+    endMs: 3280
+  timingSource: synthesis
+  qa:
+    trace: fardɑ pandʒʃanbeː ast tavallode man ast
+    asrModel: whisper-large-v3-turbo
+    asrText: فردو پانشان بیست تا فالو دیمان است
+    cer: 0.565
+    status: fail
+- item: fa.story.tomorrow#2
+  speed: slow
+  file: clips/8dbc1d78e12f41da.mp3
+  sha256: d5364677512fe6f8929384c7df0a385ec2a99ad34681d62a34ffd8c4e732b558
+  durationMs: 5033
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: فردا پنجشنبه است. تولدِ من است!
+    rate: 0.67
+    inputHash: 8dbc1d78e12f41da76df367a1f5e98fb98c6826bfd17813d04fabf62f0af43e8
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 708
+  - token: 2
+    startMs: 708
+    endMs: 1870
+  - token: 4
+    startMs: 1870
+    endMs: 3066
+  - token: 7
+    startMs: 3066
+    endMs: 4208
+  - token: 9
+    startMs: 4208
+    endMs: 4395
+  - token: 11
+    startMs: 4395
+    endMs: 5033
+  timingSource: synthesis
+  qa:
+    trace: fardɑ pandʒʃanbeː ast tavallode man ast
+- item: fa.story.tomorrow#3
+  speed: normal
+  file: clips/936f6e8c509b7727.mp3
+  sha256: 65bae7019f3c4a50d61af474c17e8f16f42a856194b9bdc5da9ef45aeb5813f9
+  durationMs: 2116
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: تولدت مبارک، علی!
+    rate: 1.0
+    inputHash: 936f6e8c509b77273fc934f30f8e4c63c759397933c3d7c65dcde5aa2e568fdb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 837
+  - token: 2
+    startMs: 837
+    endMs: 1689
+  - token: 5
+    startMs: 1689
+    endMs: 2116
+  timingSource: synthesis
+  qa:
+    trace: tavallodat mobɑrak aːli
+    asrModel: whisper-large-v3-turbo
+    asrText: تَمَلُونَتْ مُنَارَك، اَلِي
+    cer: 1.0
+    status: fail
+- item: fa.story.tomorrow#3
+  speed: slow
+  file: clips/eddfd1e51f53ad89.mp3
+  sha256: 0064b2112306e5ccd1e5bddfe32b3ab69529feabb7310e5b10c2725d7a269d2e
+  durationMs: 3305
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: تولدت مبارک، علی!
+    rate: 0.67
+    inputHash: eddfd1e51f53ad895e66f6041bc0aef818a8b6264ba9c49c87d7840f235e346e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1238
+  - token: 2
+    startMs: 1238
+    endMs: 2584
+  - token: 5
+    startMs: 2584
+    endMs: 3305
+  timingSource: synthesis
+  qa:
+    trace: tavallodat mobɑrak aːli
+- item: fa.story.tomorrow#4
+  speed: normal
+  file: clips/982e3c79f6c8407b.mp3
+  sha256: 06bd668e3d57c6a384e385d8e3a4ba3dde69fb79550b4a3dd1bb6a6abb5c6e17
+  durationMs: 4067
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: پنجشنبه صبح کلاس دارم، اما عصر وقت دارم.
+    rate: 1.0
+    inputHash: 982e3c79f6c8407b75fa33d5588c27cd98a168ab40577ef31f3fad80741c9b8b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 817
+  - token: 2
+    startMs: 817
+    endMs: 1209
+  - token: 4
+    startMs: 1209
+    endMs: 1628
+  - token: 6
+    startMs: 1628
+    endMs: 2357
+  - token: 9
+    startMs: 2357
+    endMs: 2726
+  - token: 11
+    startMs: 2726
+    endMs: 3091
+  - token: 13
+    startMs: 3091
+    endMs: 3483
+  - token: 15
+    startMs: 3483
+    endMs: 4067
+  timingSource: synthesis
+  qa:
+    trace: pandʒʃanbeː sobh kelɑs dɑram ammɑ aːsr vaq1t dɑram
+    asrModel: whisper-large-v3-turbo
+    asrText: پنشان به صبح کلستارم اما آسر وقتارم
+    cer: 0.226
+    status: review
+- item: fa.story.tomorrow#4
+  speed: slow
+  file: clips/e454266dd389d3ef.mp3
+  sha256: 36c0327403356111bd6cc466b903f206d586b48e0a1fe58e1cd2d219fd589f4a
+  durationMs: 6126
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: پنجشنبه صبح کلاس دارم، اما عصر وقت دارم.
+    rate: 0.67
+    inputHash: e454266dd389d3efb06c16be9a178389668b0241f2ea23f98887d241a0990a1e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1175
+  - token: 2
+    startMs: 1175
+    endMs: 1734
+  - token: 4
+    startMs: 1734
+    endMs: 2377
+  - token: 6
+    startMs: 2377
+    endMs: 3557
+  - token: 9
+    startMs: 3557
+    endMs: 4149
+  - token: 11
+    startMs: 4149
+    endMs: 4668
+  - token: 13
+    startMs: 4668
+    endMs: 5240
+  - token: 15
+    startMs: 5240
+    endMs: 6126
+  timingSource: synthesis
+  qa:
+    trace: pandʒʃanbeː sobh kelɑs dɑram ammɑ aːsr vaq1t dɑram
+- item: fa.story.tomorrow#6
+  speed: normal
+  file: clips/9fa8096cc26f797a.mp3
+  sha256: edcf8e6c00bd156740bc7100bf3e3f5bf3af3696e393853d250cda5490c45303
+  durationMs: 1847
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ساعتِ چهار خوب است؟
+    rate: 1.0
+    inputHash: 9fa8096cc26f797ac2015b0e5304d0b9f1130f68e51c62d6933a2395e34dd160
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 552
+  - token: 2
+    startMs: 552
+    endMs: 1059
+  - token: 4
+    startMs: 1059
+    endMs: 1503
+  - token: 6
+    startMs: 1503
+    endMs: 1847
+  timingSource: synthesis
+  qa:
+    trace: sɑʔate tʃɑhɑr xuːb ast
+    asrModel: whisper-large-v3-turbo
+    asrText: ساته چار خوبیست
+    cer: 0.286
+    status: review
+- item: fa.story.tomorrow#6
+  speed: slow
+  file: clips/64f8e826258b4b3a.mp3
+  sha256: fd8d8bac5db6bef716eae35c82c9b6e7436193400f0ccef57d0b818c8b50b4c0
+  durationMs: 2778
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: ساعتِ چهار خوب است؟
+    rate: 0.67
+    inputHash: 64f8e826258b4b3a71fc5a778cc00675bfa081db999fc46e1c027badcbf2d61a
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 825
+  - token: 2
+    startMs: 825
+    endMs: 1578
+  - token: 4
+    startMs: 1578
+    endMs: 2280
+  - token: 6
+    startMs: 2280
+    endMs: 2778
+  timingSource: synthesis
+  qa:
+    trace: sɑʔate tʃɑhɑr xuːb ast
+- item: fa.story.tomorrow#7
+  speed: normal
+  file: clips/41a5e485f3f6d64f.mp3
+  sha256: a9342f266ed8ccbba89b9638eac779e6ac4bc28ec0867e5d5331344616a651cd
+  durationMs: 2321
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، ساعتِ پنج خوب است.
+    rate: 1.0
+    inputHash: 41a5e485f3f6d64fcb999f4a378e6f740b1bee637fed1c79e7ea3f8b954100bb
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 545
+  - token: 3
+    startMs: 545
+    endMs: 1102
+  - token: 5
+    startMs: 1102
+    endMs: 1531
+  - token: 7
+    startMs: 1531
+    endMs: 1975
+  - token: 9
+    startMs: 1975
+    endMs: 2321
+  timingSource: synthesis
+  qa:
+    trace: na sɑʔate pandʒ xuːb ast
+    asrModel: whisper-large-v3-turbo
+    asrText: یا سا تپنج خوبیست
+    cer: 0.333
+    status: review
+- item: fa.story.tomorrow#7
+  speed: slow
+  file: clips/4fcfc7b4bd421995.mp3
+  sha256: d49b820f211dc2809b0bf08691fe398316574303d7a9e5413911d48960811950
+  durationMs: 3558
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: نه، ساعتِ پنج خوب است.
+    rate: 0.67
+    inputHash: 4fcfc7b4bd421995dae75b3fdd99d74c51d302230bb0cc3590df40c92021af27
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 925
+  - token: 3
+    startMs: 925
+    endMs: 1753
+  - token: 5
+    startMs: 1753
+    endMs: 2355
+  - token: 7
+    startMs: 2355
+    endMs: 3057
+  - token: 9
+    startMs: 3057
+    endMs: 3558
+  timingSource: synthesis
+  qa:
+    trace: na sɑʔate pandʒ xuːb ast
+- item: fa.story.tomorrow#8
+  speed: normal
+  file: clips/ea06695c6436840e.mp3
+  sha256: 43891daba8a019d373d0a3fc67f465a097f77a2db075571a3f62835183ff7f46
+  durationMs: 1992
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوب است. تا فردا!
+    rate: 1.0
+    inputHash: ea06695c6436840eff62643a05bf8677fce38b0029c24566561d10441c1d3007
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 444
+  - token: 2
+    startMs: 444
+    endMs: 1168
+  - token: 5
+    startMs: 1168
+    endMs: 1404
+  - token: 7
+    startMs: 1404
+    endMs: 1992
+  timingSource: synthesis
+  qa:
+    trace: xuːb ast tɑː fardɑ
+    asrModel: whisper-large-v3-turbo
+    asrText: خوب است. توفرد آف.
+    cer: 0.25
+    status: review
+- item: fa.story.tomorrow#8
+  speed: slow
+  file: clips/4e678dc5f213379e.mp3
+  sha256: 191db8207aa15784e5f6e0b5c2eac53c6e6fd2b05aecbbb47cfc05f193a7da8e
+  durationMs: 3175
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوب است. تا فردا!
+    rate: 0.67
+    inputHash: 4e678dc5f213379ef3ac3a6885f12322f7e74a854ac1a262969d158cd218ac37
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 702
+  - token: 2
+    startMs: 702
+    endMs: 1895
+  - token: 5
+    startMs: 1895
+    endMs: 2257
+  - token: 7
+    startMs: 2257
+    endMs: 3175
+  timingSource: synthesis
+  qa:
+    trace: xuːb ast tɑː fardɑ
+- item: fa.story.tomorrow#9
+  speed: normal
+  file: clips/818c13b5d0544a7f.mp3
+  sha256: 4b6a4f96191cce617c75b361f4a670c9e7a813246034d7377dc91310e73f6d55
+  durationMs: 1928
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: تا فردا، خداحافظ!
+    rate: 1.0
+    inputHash: 818c13b5d0544a7fb31ba80341a4f2fcaa57d8676bf4263fd2cad19303e7a351
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 235
+  - token: 2
+    startMs: 235
+    endMs: 1002
+  - token: 5
+    startMs: 1002
+    endMs: 1928
+  timingSource: synthesis
+  qa:
+    trace: tɑː fardɑ xodɑhɑfez
+    asrModel: whisper-large-v3-turbo
+    asrText: تو فردو، خود آفن
+    cer: 0.538
+    status: fail
+- item: fa.story.tomorrow#9
+  speed: slow
+  file: clips/633645a89445ea7f.mp3
+  sha256: e7d7d048b3d5da66f837f2bbb96fe70de2189f2187a11a49d7cefbe895556031
+  durationMs: 3027
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: تا فردا، خداحافظ!
+    rate: 0.67
+    inputHash: 633645a89445ea7f901640675baaa59e2f4caf723b952cca8bb2bd650cd3330c
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 360
+  - token: 2
+    startMs: 360
+    endMs: 1619
+  - token: 5
+    startMs: 1619
+    endMs: 3027
+  timingSource: synthesis
+  qa:
+    trace: tɑː fardɑ xodɑhɑfez
+- item: fa.story.weekend#0
+  speed: normal
+  file: clips/22400cfd1a8c2753.mp3
+  sha256: 219384ca1a60c18c91159b3e80c74f94ac722f278e5512390fb07ae50018c328
+  durationMs: 3264
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام علی! آخرِ هفته کجا بودی؟
+    rate: 1.0
+    inputHash: 22400cfd1a8c2753b36eb1f8adedd5dcb98d3f98b796ee1bff5d79544ba9fd5f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 379
+  - token: 2
+    startMs: 379
+    endMs: 1296
+  - token: 5
+    startMs: 1296
+    endMs: 1779
+  - token: 7
+    startMs: 1779
+    endMs: 2242
+  - token: 9
+    startMs: 2242
+    endMs: 2661
+  - token: 11
+    startMs: 2661
+    endMs: 3264
+  timingSource: synthesis
+  qa:
+    trace: salɑm aːli ɑxare hafteː kodʒɑ buːdi
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام علی احره هفته که دو دو دی
+    cer: 0.381
+    status: review
+- item: fa.story.weekend#0
+  speed: slow
+  file: clips/be2a6380eceb978a.mp3
+  sha256: 2b43a708feefc3fc57e83e061eede3d5d707cb6d537d47f332c0b01b1f27f080
+  durationMs: 5235
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام علی! آخرِ هفته کجا بودی؟
+    rate: 0.67
+    inputHash: be2a6380eceb978a04ba899c15acf2abb2c5551d304350c2ee54d613e54c777e
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 625
+  - token: 2
+    startMs: 625
+    endMs: 2192
+  - token: 5
+    startMs: 2192
+    endMs: 2948
+  - token: 7
+    startMs: 2948
+    endMs: 3641
+  - token: 9
+    startMs: 3641
+    endMs: 4280
+  - token: 11
+    startMs: 4280
+    endMs: 5235
+  timingSource: synthesis
+  qa:
+    trace: salɑm aːli ɑxare hafteː kodʒɑ buːdi
+- item: fa.story.weekend#1
+  speed: normal
+  file: clips/5e9c50f24dc84925.mp3
+  sha256: ec55c4f0f8e840fbe7c88578a2fc58225182f868857fca848952921ecef536b0
+  durationMs: 3290
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! با خانواده به شمال رفتیم.
+    rate: 1.0
+    inputHash: 5e9c50f24dc8492591a3a04f7af96d6ead85754cba2c9c0f8ca568bb731016e6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1053
+  - token: 3
+    startMs: 1053
+    endMs: 1216
+  - token: 5
+    startMs: 1216
+    endMs: 1960
+  - token: 7
+    startMs: 1960
+    endMs: 2160
+  - token: 9
+    startMs: 2160
+    endMs: 2630
+  - token: 11
+    startMs: 2630
+    endMs: 3290
+  timingSource: synthesis
+  qa:
+    trace: salɑm bɑ xɑnevɑdeː beː ʃomɑl raftim
+    asrModel: whisper-large-v3-turbo
+    asrText: سلام! تو خونه با دب شمال رافتیم
+    cer: 0.333
+    status: review
+- item: fa.story.weekend#1
+  speed: slow
+  file: clips/9dacac4995ba211b.mp3
+  sha256: e020e4ec871a936761472fe2f59c3ddcff9665dfa222675dd255ce1df73cc578
+  durationMs: 5262
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: سلام! با خانواده به شمال رفتیم.
+    rate: 0.67
+    inputHash: 9dacac4995ba211b4f059d79c6406827da44b0bd0d295a96f632a6f576596692
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1775
+  - token: 3
+    startMs: 1775
+    endMs: 2030
+  - token: 5
+    startMs: 2030
+    endMs: 3229
+  - token: 7
+    startMs: 3229
+    endMs: 3546
+  - token: 9
+    startMs: 3546
+    endMs: 4300
+  - token: 11
+    startMs: 4300
+    endMs: 5262
+  timingSource: synthesis
+  qa:
+    trace: salɑm bɑ xɑnevɑdeː beː ʃomɑl raftim
+- item: fa.story.weekend#10
+  speed: normal
+  file: clips/1ee53e70cb58abc6.mp3
+  sha256: f1a60e86711fa2d18262946b7518f21e81dd4bf309d5bf8a966519a51c1c7971
+  durationMs: 2446
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "تابستان هم به شمال می\u200cرویم."
+    rate: 1.0
+    inputHash: 1ee53e70cb58abc609fc32a15cb097ac90d7b21064b558731fded694f8b8b067
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 734
+  - token: 2
+    startMs: 734
+    endMs: 1067
+  - token: 4
+    startMs: 1067
+    endMs: 1271
+  - token: 6
+    startMs: 1271
+    endMs: 1740
+  - token: 8
+    startMs: 1740
+    endMs: 2446
+  timingSource: synthesis
+  qa:
+    trace: tɑbestɑn ham beː ʃomɑl miravim
+    asrModel: whisper-large-v3-turbo
+    asrText: تو بستان هم به شمال می راویم
+    cer: 0.143
+    status: pass
+- item: fa.story.weekend#10
+  speed: slow
+  file: clips/565edf7f55a13436.mp3
+  sha256: dac742e19ae291da9d0ed468e110da35149da141fc0c36c0831e7de488cc2d6d
+  durationMs: 3786
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: "تابستان هم به شمال می\u200cرویم."
+    rate: 0.67
+    inputHash: 565edf7f55a134360956416248d507014b4a7b85f1068416bb95a90fc2238a90
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1079
+  - token: 2
+    startMs: 1079
+    endMs: 1599
+  - token: 4
+    startMs: 1599
+    endMs: 1914
+  - token: 6
+    startMs: 1914
+    endMs: 2668
+  - token: 8
+    startMs: 2668
+    endMs: 3786
+  timingSource: synthesis
+  qa:
+    trace: tɑbestɑn ham beː ʃomɑl miravim
+- item: fa.story.weekend#2
+  speed: normal
+  file: clips/c41c98c03d11fd0b.mp3
+  sha256: 3be552adb33ae1621b5295bc912515367d39df938a37cf3889e0b9f10dfc1e3e
+  durationMs: 943
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوش گذشت؟
+    rate: 1.0
+    inputHash: c41c98c03d11fd0b231becda023ccebd3470cac9a72b97e1153fe7fbe9261bc3
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 348
+  - token: 2
+    startMs: 348
+    endMs: 943
+  timingSource: synthesis
+  qa:
+    trace: xoʃ ɡozaʃt
+    asrModel: whisper-large-v3-turbo
+    asrText: خوش رو ناشت
+    cer: 0.571
+    status: fail
+- item: fa.story.weekend#2
+  speed: slow
+  file: clips/63a919cf6f86e716.mp3
+  sha256: 4a9b5a6fc9b201541d9f0d52a6ccb296e7f03ad6cf992bdd350988ab5b4e648e
+  durationMs: 1390
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خوش گذشت؟
+    rate: 0.67
+    inputHash: 63a919cf6f86e71610e73fbf92c2727c6f6f2a22b90299ee89a5c48b3f9afd27
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 510
+  - token: 2
+    startMs: 510
+    endMs: 1390
+  timingSource: synthesis
+  qa:
+    trace: xoʃ ɡozaʃt
+- item: fa.story.weekend#3
+  speed: normal
+  file: clips/aa3c3acf928112bd.mp3
+  sha256: c01f4ae0fca1c00432c39b2c38979026d19cc69736c496fa2f756754a08fd490
+  durationMs: 4179
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، خیلی خوش گذشت! کنارِ دریا بودیم.
+    rate: 1.0
+    inputHash: aa3c3acf928112bd89538e38a2d302ac60fac476a21a5af1b08b4180abef0229
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 647
+  - token: 3
+    startMs: 647
+    endMs: 1089
+  - token: 5
+    startMs: 1089
+    endMs: 1434
+  - token: 7
+    startMs: 1434
+    endMs: 2457
+  - token: 10
+    startMs: 2457
+    endMs: 3045
+  - token: 12
+    startMs: 3045
+    endMs: 3518
+  - token: 14
+    startMs: 3518
+    endMs: 4179
+  timingSource: synthesis
+  qa:
+    trace: baleː xejli xoʃ ɡozaʃt kenɑːre dariɑ buːdim
+    asrModel: whisper-large-v3-turbo
+    asrText: بله، خیلی خوش دوست، که ناره داری آدودیم
+    cer: 0.333
+    status: review
+- item: fa.story.weekend#3
+  speed: slow
+  file: clips/f1dd9179b7963cc3.mp3
+  sha256: 776e0a913b33d1d97a7dc5f379af94e3a1bfdfcc41c4bb47ed058d7472de136f
+  durationMs: 6688
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله، خیلی خوش گذشت! کنارِ دریا بودیم.
+    rate: 0.67
+    inputHash: f1dd9179b7963cc3ff88b6cdf6031770d05fbd22c860f6d017cac83327212dae
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1100
+  - token: 3
+    startMs: 1100
+    endMs: 1806
+  - token: 5
+    startMs: 1806
+    endMs: 2323
+  - token: 7
+    startMs: 2323
+    endMs: 3979
+  - token: 10
+    startMs: 3979
+    endMs: 4914
+  - token: 12
+    startMs: 4914
+    endMs: 5660
+  - token: 14
+    startMs: 5660
+    endMs: 6688
+  timingSource: synthesis
+  qa:
+    trace: baleː xejli xoʃ ɡozaʃt kenɑːre dariɑ buːdim
+- item: fa.story.weekend#5
+  speed: normal
+  file: clips/2d072f69ca02e75c.mp3
+  sha256: af75256317ca8e8a0662cd4b92a74fba6f7fd1c2625a04117f03bea0ce81cd14
+  durationMs: 1400
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: هوا چطور بود؟
+    rate: 1.0
+    inputHash: 2d072f69ca02e75c0b3beb393f9211a7899d8c024f829d3da1899b69d036597c
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 382
+  - token: 2
+    startMs: 382
+    endMs: 872
+  - token: 4
+    startMs: 872
+    endMs: 1400
+  timingSource: synthesis
+  qa:
+    trace: havɑ tʃetor buːd
+    asrModel: whisper-large-v3-turbo
+    asrText: همچه تردود
+    cer: 0.5
+    status: review
+- item: fa.story.weekend#5
+  speed: slow
+  file: clips/070f378c238406c4.mp3
+  sha256: 960ae3df58c6260b8579bb172fcf3a3e47f0e3f89f45a3aced241aaf02e967ee
+  durationMs: 2122
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: هوا چطور بود؟
+    rate: 0.67
+    inputHash: 070f378c238406c49b2819b38b28ec91a007da1e827f828f09b9a78cdb7133f7
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 602
+  - token: 2
+    startMs: 602
+    endMs: 1309
+  - token: 4
+    startMs: 1309
+    endMs: 2122
+  timingSource: synthesis
+  qa:
+    trace: havɑ tʃetor buːd
+- item: fa.story.weekend#6
+  speed: normal
+  file: clips/3c5e49dbf5b9be39.mp3
+  sha256: 8c323bac3a1d642ed8c33d4a81a6891e4343c22322e1420242c83125cd5320c5
+  durationMs: 2167
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: هوا گرم و آفتابی بود.
+    rate: 1.0
+    inputHash: 3c5e49dbf5b9be397e1433f9361a99916e3f3d0e684811ccb0e3f46bfe358a9f
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 392
+  - token: 2
+    startMs: 392
+    endMs: 772
+  - token: 4
+    startMs: 772
+    endMs: 979
+  - token: 6
+    startMs: 979
+    endMs: 1604
+  - token: 8
+    startMs: 1604
+    endMs: 2167
+  timingSource: synthesis
+  qa:
+    trace: havɑ ɡarm va ɑftɑbi buːd
+    asrModel: whisper-large-v3-turbo
+    asrText: هفا گرم فا افتا بیدود
+    cer: 0.312
+    status: review
+- item: fa.story.weekend#6
+  speed: slow
+  file: clips/6b940f7c9476f5c9.mp3
+  sha256: bf880c63f211805f196cd98694fe399eb3ad5d0b617483562373e0c79ac7e46b
+  durationMs: 3377
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: هوا گرم و آفتابی بود.
+    rate: 0.67
+    inputHash: 6b940f7c9476f5c90fc39e7ae25f9d6bd72c5628dc646449d2f9e0434791a1f0
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 630
+  - token: 2
+    startMs: 630
+    endMs: 1199
+  - token: 4
+    startMs: 1199
+    endMs: 1534
+  - token: 6
+    startMs: 1534
+    endMs: 2519
+  - token: 8
+    startMs: 2519
+    endMs: 3377
+  timingSource: synthesis
+  qa:
+    trace: havɑ ɡarm va ɑftɑbi buːd
+- item: fa.story.weekend#7
+  speed: normal
+  file: clips/e78e2f03b4f3b403.mp3
+  sha256: edd4333b7cf92afe9132bda2ed08520aa27cc5ffff80f677ffc29e10fe4c70cf
+  durationMs: 1490
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی عکس گرفتی؟
+    rate: 1.0
+    inputHash: e78e2f03b4f3b403450e9614946485d380bbddf4c24aeabdf39db104b2e19e41
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 435
+  - token: 2
+    startMs: 435
+    endMs: 789
+  - token: 4
+    startMs: 789
+    endMs: 1490
+  timingSource: synthesis
+  qa:
+    trace: xejli aːks ɡerefti
+    asrModel: whisper-large-v3-turbo
+    asrText: هیلی اکس گرفتی
+    cer: 0.167
+    status: review
+- item: fa.story.weekend#7
+  speed: slow
+  file: clips/d301e99c36d30156.mp3
+  sha256: e624b8ebb5625f93df07e98dd21263d111b27a8240de45fa327e2adc12c6db08
+  durationMs: 2258
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: خیلی عکس گرفتی؟
+    rate: 0.67
+    inputHash: d301e99c36d30156f61a2ddef0784fb9d6acd2089e38f2c481e95566637bff83
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 687
+  - token: 2
+    startMs: 687
+    endMs: 1205
+  - token: 4
+    startMs: 1205
+    endMs: 2258
+  timingSource: synthesis
+  qa:
+    trace: xejli aːks ɡerefti
+- item: fa.story.weekend#8
+  speed: normal
+  file: clips/2347391021447876.mp3
+  sha256: bdba2d3999fbaff9b791be3c185040e235830b457c31f315d83aeadd5fa1602b
+  durationMs: 3036
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. این عکسِ دریاست. ببین!
+    rate: 1.0
+    inputHash: 234739102144787615b9bca43bb93c13f4e84e53cf9697a95b823ba8340314e6
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 840
+  - token: 3
+    startMs: 840
+    endMs: 994
+  - token: 5
+    startMs: 994
+    endMs: 1445
+  - token: 7
+    startMs: 1445
+    endMs: 2499
+  - token: 10
+    startMs: 2499
+    endMs: 3036
+  timingSource: synthesis
+  qa:
+    trace: baleː iːn aːkse dariɑst bebin
+    asrModel: whisper-large-v3-turbo
+    asrText: پاله. ایناکس اداریوست. بیبین.
+    cer: 0.421
+    status: review
+- item: fa.story.weekend#8
+  speed: slow
+  file: clips/e49cd32cddbb3d88.mp3
+  sha256: ba6d2db95ebea3bb88494c879a477e3acc04d0347575677f07f0af0af2cd3aa2
+  durationMs: 4934
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: بله. این عکسِ دریاست. ببین!
+    rate: 0.67
+    inputHash: e49cd32cddbb3d880baf5d7a7b711de80b11da530cd86df232458766b72f856b
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 1447
+  - token: 3
+    startMs: 1447
+    endMs: 1714
+  - token: 5
+    startMs: 1714
+    endMs: 2405
+  - token: 7
+    startMs: 2405
+    endMs: 4111
+  - token: 10
+    startMs: 4111
+    endMs: 4934
+  timingSource: synthesis
+  qa:
+    trace: baleː iːn aːkse dariɑst bebin
+- item: fa.story.weekend#9
+  speed: normal
+  file: clips/1406b24ed026586d.mp3
+  sha256: 3912a5729a56fcb5092dcb70d753670318b6b991898119b6016e39f703585005
+  durationMs: 1730
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: دریا خیلی قشنگ است!
+    rate: 1.0
+    inputHash: 1406b24ed026586d1c78cbcad90fc485a62c5ec13b2a7b7def71a3a14d76ea93
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 433
+  - token: 2
+    startMs: 433
+    endMs: 878
+  - token: 4
+    startMs: 878
+    endMs: 1402
+  - token: 6
+    startMs: 1402
+    endMs: 1730
+  timingSource: synthesis
+  qa:
+    trace: dariɑ xejli q1aʃanɡ ast
+    asrModel: whisper-large-v3-turbo
+    asrText: تا بیوه هیلی پاشنگست
+    cer: 0.6
+    status: fail
+- item: fa.story.weekend#9
+  speed: slow
+  file: clips/7624293037ea0665.mp3
+  sha256: e9d52d8b394f06ec6a6f74a891ec6ccd67b0834c295af21d725ea1ae5dde9d33
+  durationMs: 2662
+  license: CC0-1.0
+  provenance:
+    author: generated:espeak-ng@1.51
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: espeak-ng
+    version: '1.51'
+    voice: fa
+    input: دریا خیلی قشنگ است!
+    rate: 0.67
+    inputHash: 7624293037ea06651c5813952791c9025a65c74c2efb3a64db926012e83c36e2
+  timings:
+  - token: 0
+    startMs: 0
+    endMs: 692
+  - token: 2
+    startMs: 692
+    endMs: 1384
+  - token: 4
+    startMs: 1384
+    endMs: 2171
+  - token: 6
+    startMs: 2171
+    endMs: 2662
+  timingSource: synthesis
+  qa:
+    trace: dariɑ xejli q1aʃanɡ ast
 - item: s.1
   speed: normal
   file: clips/9d61f006ac8be44f.mp3
@@ -23059,8 +30233,8 @@ clips:
     trace: aːli
 - item: sense:amadan
   speed: normal
-  file: clips/46f5a7a799bd0eb1.mp3
-  sha256: 8a496c87cc9579a45af4c0e0e06bd4dd665d1cf128576c3cbe0eaf1437318c5a
+  file: clips/3189e3e0f3b3ba2e.mp3
+  sha256: 9db6ef325daa0a3dcb4ae3d209f75aa7a0f7f84fd3fbc59934f3eb017e1c4e91
   durationMs: 592
   license: CC0-1.0
   provenance:
@@ -23071,25 +30245,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cآید"
+    input: آمدن
     rate: 1.0
-    inputHash: 46f5a7a799bd0eb10dbdf04b7e54c116fac6d655c73b331daea8063e0f33be26
+    inputHash: 3189e3e0f3b3ba2eac7ce8fda1d679dfd91114a632cb2dfa936c16f1a510daf2
   timings:
   - token: 0
     startMs: 0
     endMs: 592
   timingSource: synthesis
   qa:
-    trace: miɑjad
+    trace: ɑmadan
     asrModel: whisper-large-v3-turbo
-    asrText: می آید
-    cer: 0.2
+    asrText: امیدن
+    cer: 0.5
     status: review
 - item: sense:amadan
   speed: slow
-  file: clips/5ab09550b8f7389f.mp3
-  sha256: d1407726984201e2c6846bda1cbb77dc81b68675935c5e0dfc68528bcbbaaf83
-  durationMs: 904
+  file: clips/2961026daf88f685.mp3
+  sha256: 085001b3d5c218038242f945e9c45eca44561bcbbf188c0b83bb62b71ef5e0e9
+  durationMs: 934
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -23099,16 +30273,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cآید"
+    input: آمدن
     rate: 0.67
-    inputHash: 5ab09550b8f7389f056ce661da6c6fa0dd208b678cde86219acfe0b54dc50c49
+    inputHash: 2961026daf88f685b86ce17c6bc18c645d96f6f0e5001fe3162e7f95a9cde428
   timings:
   - token: 0
     startMs: 0
-    endMs: 904
+    endMs: 934
   timingSource: synthesis
   qa:
-    trace: miɑjad
+    trace: ɑmadan
 - item: sense:amma
   speed: normal
   file: clips/d4ab6ef915e4f8f4.mp3
@@ -24411,9 +31585,9 @@ clips:
     trace: buːd
 - item: sense:budan
   speed: normal
-  file: clips/69dc1109d6cb706f.mp3
-  sha256: f557143657baf6c9581fc8bebb398f53ab839fa4328f0c1f227143542d8c6f71
-  durationMs: 348
+  file: clips/d73280805beafafb.mp3
+  sha256: 6c2a168b9382e43381a8f4cbb786c3b79bcb6637bdbe5beb893b2eb7132ae1b3
+  durationMs: 593
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -24423,25 +31597,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: است
+    input: بودن
     rate: 1.0
-    inputHash: 69dc1109d6cb706f505e02c819d9d0a856ada49191116fc78341d579b8d9009d
+    inputHash: d73280805beafafb7d4c38755c25bd1a4a7bb219531e24d21849f26fbaa93d1e
   timings:
   - token: 0
     startMs: 0
-    endMs: 348
+    endMs: 593
   timingSource: synthesis
   qa:
-    trace: ast
+    trace: buːdan
     asrModel: whisper-large-v3-turbo
-    asrText: موسیقی
-    cer: 1.667
-    status: fail
+    asrText: دو دن
+    cer: 0.25
+    status: review
 - item: sense:budan
   speed: slow
-  file: clips/139545555f52eff0.mp3
-  sha256: d4add3f35467388168ec34400635a040ccb6d04da831fe097e3cbeb88d4e7d78
-  durationMs: 497
+  file: clips/0c6612e71b0f5340.mp3
+  sha256: 0e3c7f0a30418b55645e1686ba3c5d21aff1f857df13fbaa5a1009c158d6e430
+  durationMs: 927
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -24451,16 +31625,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: است
+    input: بودن
     rate: 0.67
-    inputHash: 139545555f52eff067c27f9f998ab142820c42281ce8dd80a6abd4d8d52ac6c7
+    inputHash: 0c6612e71b0f53404b308701cfda71ab7092ee082ca4950febd3971259c876a5
   timings:
   - token: 0
     startMs: 0
-    endMs: 497
+    endMs: 927
   timingSource: synthesis
   qa:
-    trace: ast
+    trace: buːdan
 - item: sense:chahar
   speed: normal
   file: clips/bab2b8dc998096c8.mp3
@@ -24983,9 +32157,9 @@ clips:
     trace: tʃist
 - item: sense:dadan
   speed: normal
-  file: clips/439e1ec69ed56a01.mp3
-  sha256: 86f058825b2c8e9cae641104a78818cca154b25f4c347e08e41446dbb0eda670
-  durationMs: 674
+  file: clips/e2403fb3ac6cc2ef.mp3
+  sha256: 0d2e36c0774b5fc6e49ab6c086ef44b997e0fae510a9349648690c895b22b4cb
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -24995,25 +32169,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cدهم"
+    input: دادن
     rate: 1.0
-    inputHash: 439e1ec69ed56a013d1e614ff0caf18ddc64a7526ae25ee3ee2b69ef008eb8f1
+    inputHash: e2403fb3ac6cc2ef9d74d3af93eb5ced272a1d1c7e97443b8bf52fc6d1d92bb2
   timings:
   - token: 0
     startMs: 0
-    endMs: 674
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: midahom
+    trace: dɑdan
     asrModel: whisper-large-v3-turbo
-    asrText: میده هم
-    cer: 0.4
+    asrText: دارد
+    cer: 0.5
     status: review
 - item: sense:dadan
   speed: slow
-  file: clips/ee0b664bfc8f5e0d.mp3
-  sha256: d7713bf43b0d3fbefe0927ac123ae261aaa0b363c607b602923cb3d35edefa1d
-  durationMs: 1041
+  file: clips/bad07f5bee37cddc.mp3
+  sha256: a259ae5bff08b593e8e47a2719cd81c1f7885c4d1c9148e0faef8c164099dd68
+  durationMs: 780
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25023,16 +32197,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cدهم"
+    input: دادن
     rate: 0.67
-    inputHash: ee0b664bfc8f5e0d1d1c13081524b575fa7a966ac4ce293993c79fc7fb699fdf
+    inputHash: bad07f5bee37cddc744eff55a19902d8c460c989acc6011b64ac349f226d7407
   timings:
   - token: 0
     startMs: 0
-    endMs: 1041
+    endMs: 780
   timingSource: synthesis
   qa:
-    trace: midahom
+    trace: dɑdan
 - item: sense:daftar
   speed: normal
   file: clips/a2e94842121f3dd5.mp3
@@ -25503,9 +32677,9 @@ clips:
     trace: dariɑ
 - item: sense:dashtan
   speed: normal
-  file: clips/f06cbc8eeb9b00eb.mp3
-  sha256: ddefce7c40431f59ebc4a22d998576d908aaba00c96da42e7aa44d022532739c
-  durationMs: 523
+  file: clips/bc356034d3d50612.mp3
+  sha256: 9eaa124dfcf9ef5436cb012d1e428ebe5dfdf08809ae2aa12f6996b1cdfaffec
+  durationMs: 564
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25515,25 +32689,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دارم
+    input: داشتن
     rate: 1.0
-    inputHash: f06cbc8eeb9b00ebf25dcd455204c5c49e8e92913689b623d081df81b7a6d315
+    inputHash: bc356034d3d50612efd1f072ea2ab7642521ba123890df863af7e39e41a8a183
   timings:
   - token: 0
     startMs: 0
-    endMs: 523
+    endMs: 564
   timingSource: synthesis
   qa:
-    trace: dɑram
+    trace: dɑʃtan
     asrModel: whisper-large-v3-turbo
-    asrText: دارم
+    asrText: داشتن
     cer: 0.0
     status: pass
 - item: sense:dashtan
   speed: slow
-  file: clips/84757d0a4154b44c.mp3
-  sha256: fc682ec4a9567a65ecf928baefb254ac447dcbeafd3c55f4512d83d779618739
-  durationMs: 803
+  file: clips/989090807733f133.mp3
+  sha256: bdac7e87759ccccc53a6a8554706cfdb6f3c604a65f02fa3574a141fb933d217
+  durationMs: 852
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25543,16 +32717,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دارم
+    input: داشتن
     rate: 0.67
-    inputHash: 84757d0a4154b44c89375773a8766b7326cac3265a1bcafa3657159f133ec354
+    inputHash: 989090807733f133197ee907a9a9671d5e9410b5bdfdc180c9fad7a2709df41c
   timings:
   - token: 0
     startMs: 0
-    endMs: 803
+    endMs: 852
   timingSource: synthesis
   qa:
-    trace: dɑram
+    trace: dɑʃtan
 - item: sense:dastshui
   speed: normal
   file: clips/7244d85bc49c7372.mp3
@@ -25607,9 +32781,9 @@ clips:
     trace: dastʃuiː
 - item: sense:didan
   speed: normal
-  file: clips/fea26498feb6291e.mp3
-  sha256: 4f3f4d5328812fcbf0a850e8042c6bc3aaad742a3cada1126fac2693a4183546
-  durationMs: 701
+  file: clips/a19b4b333fe28ace.mp3
+  sha256: cd06fff675ddce591d38b01103738a6aca277038fdcf56cf08fab9a41cd00f76
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25619,25 +32793,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cبینم"
+    input: دیدن
     rate: 1.0
-    inputHash: fea26498feb6291e32b2acb218b7ae9dcf457ee149a9650e2d3da5e1e4cc2c20
+    inputHash: a19b4b333fe28ace2acbfb84fc52d7857c03e21e03c266dfe3610179223d8c6b
   timings:
   - token: 0
     startMs: 0
-    endMs: 701
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: mibinam
+    trace: didan
     asrModel: whisper-large-v3-turbo
-    asrText: می بینام
-    cer: 0.333
+    asrText: دیگر
+    cer: 0.5
     status: review
 - item: sense:didan
   speed: slow
-  file: clips/ed36d4529d84c95f.mp3
-  sha256: 70ddae3fea14b161cce84d03a86fe3262181e50bac31a22ef80fbffdd83d622d
-  durationMs: 1102
+  file: clips/98675ae1c4c0cfcf.mp3
+  sha256: f3822402daa862ee26a21b91ee6a9aef3f7d327cdf48b5b11749f028177fcd75
+  durationMs: 780
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25647,21 +32821,21 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cبینم"
+    input: دیدن
     rate: 0.67
-    inputHash: ed36d4529d84c95fcf7f2299739fa73e1c99fb4c84c34a3875a9666b4a8a86f1
+    inputHash: 98675ae1c4c0cfcfa07be1f74cc6421c84a767085603e616acff52eecf3a425a
   timings:
   - token: 0
     startMs: 0
-    endMs: 1102
+    endMs: 780
   timingSource: synthesis
   qa:
-    trace: mibinam
+    trace: didan
 - item: sense:digar
   speed: normal
-  file: clips/0ffa53cc5d82dc6f.mp3
-  sha256: 05d7f1ee3b123ce3df67ab88ffde2adb9eb064a0a7fed02740ba7b1a741f7796
-  durationMs: 649
+  file: clips/adbad53f625d9509.mp3
+  sha256: d30aca48d2977e8113a26d67a963778fbc84a14ecd112febde3b791e6c45c8de
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25671,25 +32845,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دیگری
+    input: دیگر
     rate: 1.0
-    inputHash: 0ffa53cc5d82dc6fad68539cf4d81ef98ab3daf5d56e0517b6afc1593f4e27dc
+    inputHash: adbad53f625d95093fc41ac7b5aecc41b0ff0d88c299ee5d8461f9dfde98be2d
   timings:
   - token: 0
     startMs: 0
-    endMs: 649
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: diɡari
+    trace: diɡar
     asrModel: whisper-large-v3-turbo
-    asrText: دیگاری
-    cer: 0.2
-    status: review
+    asrText: دیگر
+    cer: 0.0
+    status: pass
 - item: sense:digar
   speed: slow
-  file: clips/21e34dbec309b733.mp3
-  sha256: 89a0fa0aa60a0dd52ee3b4ff3f7e85b431ed5ad46d135cf5f9d11b040007c41d
-  durationMs: 1017
+  file: clips/d7e5b1111d5876ee.mp3
+  sha256: f7263be59729408e40f3cb6e214a409e8709fa1ee1a4257f6198401f25ee364f
+  durationMs: 767
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -25699,16 +32873,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دیگری
+    input: دیگر
     rate: 0.67
-    inputHash: 21e34dbec309b73392f4a8a311ecd61d6b1816cd9053fe33eb4988b9fd857927
+    inputHash: d7e5b1111d5876ee7d5460a36891e3a6a673df43034b4edd89a8597385737c25
   timings:
   - token: 0
     startMs: 0
-    endMs: 1017
+    endMs: 767
   timingSource: synthesis
   qa:
-    trace: diɡari
+    trace: diɡar
 - item: sense:dir
   speed: normal
   file: clips/e1ba4747bd6d166e.mp3
@@ -26595,9 +33769,9 @@ clips:
     trace: ɡerɑn
 - item: sense:gereftan
   speed: normal
-  file: clips/7df4ee0045f9715b.mp3
-  sha256: a53ad03666aa76354a6c67b22239fe7ae22db957c38a9e60057020026f787283
-  durationMs: 754
+  file: clips/922525e76916a19d.mp3
+  sha256: ced01c9b7e2b7f1b507920417c67cf758c6256f8ba10ec7b1f29240209e448de
+  durationMs: 716
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -26607,25 +33781,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: گرفتیم
+    input: گرفتن
     rate: 1.0
-    inputHash: 7df4ee0045f9715b6d8ae7f8cd7e39e114e684618d279f243941b68e17a229ee
+    inputHash: 922525e76916a19d545c00d718172dbed5ed4fa253801a873fed6035a7cb3f56
   timings:
   - token: 0
     startMs: 0
-    endMs: 754
+    endMs: 716
   timingSource: synthesis
   qa:
-    trace: ɡereftim
+    trace: ɡereftan
     asrModel: whisper-large-v3-turbo
-    asrText: گرفتین
-    cer: 0.167
-    status: review
+    asrText: گرفتن
+    cer: 0.0
+    status: pass
 - item: sense:gereftan
   speed: slow
-  file: clips/f3e7dc657062f59a.mp3
-  sha256: d37d3d1e4b506b04449d85a53c2bdd0579c25fffcf52081b211961bf10af7278
-  durationMs: 1116
+  file: clips/e19ec852b8a4ce0a.mp3
+  sha256: 5f0526be11e01ea9dfef9f052ca75145958db0f3862e1458bd6c690f615a931e
+  durationMs: 1053
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -26635,16 +33809,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: گرفتیم
+    input: گرفتن
     rate: 0.67
-    inputHash: f3e7dc657062f59a42043f8bb4edce5084d3cfedc01cf532e81e36d4618cc13f
+    inputHash: e19ec852b8a4ce0a68458f710577a5e9f79d6d9c11210761fb087af7b7dc46e7
   timings:
   - token: 0
     startMs: 0
-    endMs: 1116
+    endMs: 1053
   timingSource: synthesis
   qa:
-    trace: ɡereftim
+    trace: ɡereftan
 - item: sense:ghadimi
   speed: normal
   file: clips/d100dd9b17869b61.mp3
@@ -28311,9 +35485,9 @@ clips:
     trace: ketɑb
 - item: sense:khabidan
   speed: normal
-  file: clips/e05a2a553d758b66.mp3
-  sha256: 6dd35c23834ecbcf8c41b2a0e8a05b9c435877299ae887b8c8dfb92228d73a04
-  durationMs: 772
+  file: clips/097752e95e97bdd7.mp3
+  sha256: ba6ad8f4b52504167ab07de4b9d338c3b5c76c6afd6e2cbdc3ac87cfd1d048cc
+  durationMs: 775
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28323,25 +35497,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوابند"
+    input: خوابیدن
     rate: 1.0
-    inputHash: e05a2a553d758b66f582982903850a53631f2c94c779ebe86c604e3f1e526b5e
+    inputHash: 097752e95e97bdd7f3a1ce53e1d56e66181593fbc18e559ef33b1a5c782d44e9
   timings:
   - token: 0
     startMs: 0
-    endMs: 772
+    endMs: 775
   timingSource: synthesis
   qa:
-    trace: mixɑband
+    trace: xɑbidan
     asrModel: whisper-large-v3-turbo
-    asrText: می خواباید
-    cer: 0.375
+    asrText: خبیدن
+    cer: 0.286
     status: review
 - item: sense:khabidan
   speed: slow
-  file: clips/bcdc02bdb207515f.mp3
-  sha256: cfe2bfbb9b065a712822ba557e03d789e9f741f534735f2f2585b4ffb196306c
-  durationMs: 1158
+  file: clips/cfab93e99541ba4a.mp3
+  sha256: c18c9cb3f5401183ea6609c4a0de70b346ed8cb710aa54c308fc712b4965884d
+  durationMs: 1170
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28351,16 +35525,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوابند"
+    input: خوابیدن
     rate: 0.67
-    inputHash: bcdc02bdb207515f1de588b24eed872443ce65ba7c8eec6cdecf0a2abc5a1cc6
+    inputHash: cfab93e99541ba4a6d27967800f3a530b11160ceb05574fbf81e41f68d0e5731
   timings:
   - token: 0
     startMs: 0
-    endMs: 1158
+    endMs: 1170
   timingSource: synthesis
   qa:
-    trace: mixɑband
+    trace: xɑbidan
 - item: sense:khahar
   speed: normal
   file: clips/59eb19b0608ac7fe.mp3
@@ -28415,9 +35589,9 @@ clips:
     trace: xɑhar
 - item: sense:khandan
   speed: normal
-  file: clips/d676cf264fb8cbc8.mp3
-  sha256: 7b7e0579b7f7f206a5f6413b3f5f19e1ce8583ca854e5da6e3c6eeec26dfa369
-  durationMs: 712
+  file: clips/04f95860a3bc05f2.mp3
+  sha256: c91429818df38a3a404d6b187d5e0e9824a4a6f173e72bd3de8cca9ab37ded9b
+  durationMs: 645
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28427,25 +35601,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوانم"
+    input: خواندن
     rate: 1.0
-    inputHash: d676cf264fb8cbc85a4b92514b5dc17f993de5c5a011b46a4f3381ed2b9f356a
+    inputHash: 04f95860a3bc05f2cb290adeaa46ec55cd99c2adc8f9c8769cee05db0b07c6e1
   timings:
   - token: 0
     startMs: 0
-    endMs: 712
+    endMs: 645
   timingSource: synthesis
   qa:
-    trace: mixɑnam
+    trace: xɑndan
     asrModel: whisper-large-v3-turbo
-    asrText: می خونم.
-    cer: 0.286
+    asrText: هاوندن
+    cer: 0.5
     status: review
 - item: sense:khandan
   speed: slow
-  file: clips/e0db0c25e70cbbc6.mp3
-  sha256: f7fcbab63cffabdb93b845a5b3b5ce7891ce9eb364fb1f6f2988642125cf7328
-  durationMs: 1099
+  file: clips/a6096e53e1f7ba13.mp3
+  sha256: 0372aeac8189abc050a2e557dc9906b7cca18795be04d46de8f7ad6f22c11df9
+  durationMs: 976
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28455,16 +35629,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوانم"
+    input: خواندن
     rate: 0.67
-    inputHash: e0db0c25e70cbbc6ca8160c574ac64ed07eb9b5104e41291af95244c8bb00e00
+    inputHash: a6096e53e1f7ba138795914790ce00fbca7f04fae2dc6b815a9e755bbf01b81e
   timings:
   - token: 0
     startMs: 0
-    endMs: 1099
+    endMs: 976
   timingSource: synthesis
   qa:
-    trace: mixɑnam
+    trace: xɑndan
 - item: sense:khane
   speed: normal
   file: clips/9a430dba0fdb2ae9.mp3
@@ -28623,9 +35797,9 @@ clips:
     trace: xɑnom
 - item: sense:kharidan
   speed: normal
-  file: clips/6a9ce899568a5641.mp3
-  sha256: 37dc2a0221c7aa2a7672243b1596aeebbddbec7b02f0d1dbab609a79514a5140
-  durationMs: 727
+  file: clips/c55c471d7058cb01.mp3
+  sha256: 13cc53212a921704fae1a90e25411448be69686204e984d1f272ce7a4fbf59cf
+  durationMs: 753
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28635,25 +35809,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخریم"
+    input: خریدن
     rate: 1.0
-    inputHash: 6a9ce899568a5641eb454b9733b2c99b79a6e91b387e6f6b1801bd612112321b
+    inputHash: c55c471d7058cb0169935b2ff0f898e9b8dc5bd35a33cc2c49351384ec818fe6
   timings:
   - token: 0
     startMs: 0
-    endMs: 727
+    endMs: 753
   timingSource: synthesis
   qa:
-    trace: mixarim
+    trace: xaridan
     asrModel: whisper-large-v3-turbo
-    asrText: محارم
-    cer: 0.5
-    status: review
+    asrText: ها ریدان
+    cer: 0.6
+    status: fail
 - item: sense:kharidan
   speed: slow
-  file: clips/3c1d21d349b6b622.mp3
-  sha256: b6c82cf8d7f82c97d1826a21e6f2f3356d869a2c7b0ef14de4c9f4c7070b7600
-  durationMs: 1117
+  file: clips/d299c3ddf63f3e78.mp3
+  sha256: ff6728f0824e3825bf8269951356e05ee4be3a4aa3ebfc966c70bab91d1ea9ef
+  durationMs: 1161
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28663,21 +35837,21 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخریم"
+    input: خریدن
     rate: 0.67
-    inputHash: 3c1d21d349b6b622aa13da3f2532d72191dbaf3ed3db60ee3dd1134cef72601f
+    inputHash: d299c3ddf63f3e78e1e2ab94e7a7604505d6959c0ad097da0e7f2c1ce741756a
   timings:
   - token: 0
     startMs: 0
-    endMs: 1117
+    endMs: 1161
   timingSource: synthesis
   qa:
-    trace: mixarim
+    trace: xaridan
 - item: sense:khastan
   speed: normal
-  file: clips/d2a4c0f74c92728d.mp3
-  sha256: 23de0650f08f83efcafa1d567434f69b2a6eeeb7afdfcda109a5f00593394f6b
-  durationMs: 746
+  file: clips/5d1ea2bb79856005.mp3
+  sha256: 5dcfc3057c64a94cb15b0b47a41a2b178c36dfc4fd98645aef521ccca13588b4
+  durationMs: 643
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28687,25 +35861,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخواهم"
+    input: خواستن
     rate: 1.0
-    inputHash: d2a4c0f74c92728dd70bb2d77057b76cb1eca7bd8f145bf0d54c26dd49c3fc9a
+    inputHash: 5d1ea2bb798560054a2dd29b44492feb66447dfb036f76b6c8dd8fd7a11ff8ce
   timings:
   - token: 0
     startMs: 0
-    endMs: 746
+    endMs: 643
   timingSource: synthesis
   qa:
-    trace: mixɑham
+    trace: xɑstan
     asrModel: whisper-large-v3-turbo
-    asrText: می خوشم
-    cer: 0.429
+    asrText: خوستن
+    cer: 0.167
     status: review
 - item: sense:khastan
   speed: slow
-  file: clips/a825c149bd8a6f0c.mp3
-  sha256: 97cf76f788f6bb86e2cd511759380dfea993a5eaab9e49ce352447e37aec3d29
-  durationMs: 1119
+  file: clips/8125797426ca1e5b.mp3
+  sha256: 5363cc1ff6925b52a5e8c859812a77765debcf2ad3f69df06288feb20bd6b612
+  durationMs: 955
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28715,16 +35889,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخواهم"
+    input: خواستن
     rate: 0.67
-    inputHash: a825c149bd8a6f0c9606c9cb8ff1d7e91a324149a1bfa8b6b8e3c05350c71452
+    inputHash: 8125797426ca1e5ba503fd6cfc6e942752d317572926f0e65663367df9e06cdf
   timings:
   - token: 0
     startMs: 0
-    endMs: 1119
+    endMs: 955
   timingSource: synthesis
   qa:
-    trace: mixɑham
+    trace: xɑstan
 - item: sense:kheyli
   speed: normal
   file: clips/8b558f0f9fd85da8.mp3
@@ -28935,9 +36109,9 @@ clips:
     trace: xodkɑr
 - item: sense:khordan
   speed: normal
-  file: clips/f5c497eb2d483cc3.mp3
-  sha256: f535cceb5eaa81907e5aae17d5b25a27684fd6c4232b38e2ba844c13ae6039f3
-  durationMs: 715
+  file: clips/84b04c3b022fcb3a.mp3
+  sha256: 6fc5d876802fbed9ce18598d4f62b79963d63273a39f164ca8b9171d4158d0ea
+  durationMs: 598
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28947,25 +36121,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخورم"
+    input: خوردن
     rate: 1.0
-    inputHash: f5c497eb2d483cc30264175d005db8180eeae46c900aa3233248c0cd55dc3c6c
+    inputHash: 84b04c3b022fcb3ace70dde3f0a5863098be3fbfb115f25345bfcdb7c5b610d1
   timings:
   - token: 0
     startMs: 0
-    endMs: 715
+    endMs: 598
   timingSource: synthesis
   qa:
-    trace: mixoram
+    trace: xordan
     asrModel: whisper-large-v3-turbo
-    asrText: ميحورم.
-    cer: 0.333
+    asrText: جورن
+    cer: 0.4
     status: review
 - item: sense:khordan
   speed: slow
-  file: clips/6ecb554b63349724.mp3
-  sha256: 3575ec5682fd1234aaeffc9770cb9328290072572ca04793c890a129b1153245
-  durationMs: 1092
+  file: clips/5968161b58819ed0.mp3
+  sha256: e3c041d18b2a8fc2a3c0ba019f0bd674fd99254852e9d0d137ac03943fa7cdd4
+  durationMs: 923
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -28975,16 +36149,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخورم"
+    input: خوردن
     rate: 0.67
-    inputHash: 6ecb554b63349724e2738a758d4f746585f8742d76178e0d2fe4dd0e7b8fcdac
+    inputHash: 5968161b58819ed0f200e8fcb2ab0b169e08cca2f74c8b74a77554ce574deb3d
   timings:
   - token: 0
     startMs: 0
-    endMs: 1092
+    endMs: 923
   timingSource: synthesis
   qa:
-    trace: mixoram
+    trace: xordan
 - item: sense:khosh
   speed: normal
   file: clips/28bdfaaa710af10c.mp3
@@ -31431,9 +38605,9 @@ clips:
     trace: pezeʃk
 - item: sense:pichidan
   speed: normal
-  file: clips/69cbe4e3ba5b0f4d.mp3
-  sha256: 35a4bcdb0afff65e12175069824582feaef7a9724ea47179938a60393e50abc7
-  durationMs: 727
+  file: clips/f0d7bbe9092e8e42.mp3
+  sha256: c9316efe013ffbd09dc15e6e7e064f0fc2f57cce4bb21e4c02a0bc082604cc03
+  durationMs: 760
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31443,25 +38617,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: بپیچید
+    input: پیچیدن
     rate: 1.0
-    inputHash: 69cbe4e3ba5b0f4d609c24686ee8427805520468f0d0f95d7ea8cf2882e78237
+    inputHash: f0d7bbe9092e8e42be1e3f15926c29ba5877168f13b024c5d1a15b376df0cf11
   timings:
   - token: 0
     startMs: 0
-    endMs: 727
+    endMs: 760
   timingSource: synthesis
   qa:
-    trace: bepitʃid
+    trace: pitʃidan
     asrModel: whisper-large-v3-turbo
-    asrText: ببیچید.
+    asrText: بیچی دن
     cer: 0.167
     status: review
 - item: sense:pichidan
   speed: slow
-  file: clips/2db60b1cba8fbba5.mp3
-  sha256: 240ad6e60db0c00cedabbca894a09749985b13ff72f7cb061e39191311d3d282
-  durationMs: 1067
+  file: clips/d23d6c42e5e838c6.mp3
+  sha256: 150ad9ff27b743990925c80c73c50c7d31f16f1270fdd65cbba6f6bef6972e6b
+  durationMs: 1116
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31471,16 +38645,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: بپیچید
+    input: پیچیدن
     rate: 0.67
-    inputHash: 2db60b1cba8fbba5d6e729428888fb671ff2f67b1e4acec86855f3420de0adf7
+    inputHash: d23d6c42e5e838c65e2df997b50f38f3450ebbf3f86d91246b889f8693def239
   timings:
   - token: 0
     startMs: 0
-    endMs: 1067
+    endMs: 1116
   timingSource: synthesis
   qa:
-    trace: bepitʃid
+    trace: pitʃidan
 - item: sense:pirahan
   speed: normal
   file: clips/eb889104db3aa054.mp3
@@ -31743,9 +38917,9 @@ clips:
     trace: rɑ
 - item: sense:raftan
   speed: normal
-  file: clips/f8fd1d3b1ae79499.mp3
-  sha256: fd20abc291c05415b3e091dfb9975f71b7b4d16ef63297c32cdfe9de3d1cb743
-  durationMs: 714
+  file: clips/47853af75d253994.mp3
+  sha256: 0e0717f90aa0532d8b0c818fc2b55f84e2df67db49a9192bc9a44692ece2b9e8
+  durationMs: 599
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31755,25 +38929,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cروم"
+    input: رفتن
     rate: 1.0
-    inputHash: f8fd1d3b1ae79499098ff61d2c808f9732e874965d59597e297892d96b8c9ae9
+    inputHash: 47853af75d2539946996d6596aec04953ce6abd2736d149b0783aedf2051570c
   timings:
   - token: 0
     startMs: 0
-    endMs: 714
+    endMs: 599
   timingSource: synthesis
   qa:
-    trace: miravam
+    trace: raftan
     asrModel: whisper-large-v3-turbo
-    asrText: بیرام
-    cer: 0.6
+    asrText: افتای
+    cer: 0.75
     status: fail
 - item: sense:raftan
   speed: slow
-  file: clips/fda45f3104bfb2d3.mp3
-  sha256: 74d83faf8e2b40030daebe6abd3d55683f04c8a77d8d484a5f96bf4be1a0669b
-  durationMs: 1114
+  file: clips/17d3a4da25309f8d.mp3
+  sha256: 1375a5dadb39862081dababa2bed8879ebebe28564443d52fdebd0c94314fca0
+  durationMs: 867
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31783,16 +38957,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cروم"
+    input: رفتن
     rate: 0.67
-    inputHash: fda45f3104bfb2d30f99ada6dbc6092a8042d3774ffc0069397853faae20a006
+    inputHash: 17d3a4da25309f8d810d0684debd919e5ec59e2984ba280a4e8a49f2a547156e
   timings:
   - token: 0
     startMs: 0
-    endMs: 1114
+    endMs: 867
   timingSource: synthesis
   qa:
-    trace: miravam
+    trace: raftan
 - item: sense:rang
   speed: normal
   file: clips/09078f41ed6a7c13.mp3
@@ -34031,9 +41205,9 @@ clips:
     trace: tavallod
 - item: sense:tavanestan
   speed: normal
-  file: clips/6b0ac36a61c183b8.mp3
-  sha256: 4df67e7ad0726754f1700944b76182b4c9da1282aca111085dadab2730f49dd0
-  durationMs: 836
+  file: clips/ae86f02c34f02f96.mp3
+  sha256: 24328a0dfcba5c9c0020179af29de15d186510d5034ee6d986687f2d9b046816
+  durationMs: 871
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -34043,25 +41217,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cتوانم"
+    input: توانستن
     rate: 1.0
-    inputHash: 6b0ac36a61c183b88e1773de8fb004df7ca64d0c8339c1dc2cc492b7d12b5b9b
+    inputHash: ae86f02c34f02f963447a27193afbac662c0e3c94f54bf7bd0ac45614cbad0f3
   timings:
   - token: 0
     startMs: 0
-    endMs: 836
+    endMs: 871
   timingSource: synthesis
   qa:
-    trace: mitavɑnam
+    trace: tavɑnestan
     asrModel: whisper-large-v3-turbo
-    asrText: میتا کنیم
+    asrText: تامونستان
     cer: 0.571
     status: fail
 - item: sense:tavanestan
   speed: slow
-  file: clips/0e24c0384103128c.mp3
-  sha256: 2d0f49b7adb215a8bd95c8e0df255b4934e31f76b1d4d1b682dae4ddf07c7dba
-  durationMs: 1307
+  file: clips/95a7b803d12eea3d.mp3
+  sha256: d7e60e78076f96a3c2bdc8bf613d0a2bd9f8b7945b564a84f1ba160613242565
+  durationMs: 1314
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -34071,16 +41245,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cتوانم"
+    input: توانستن
     rate: 0.67
-    inputHash: 0e24c0384103128c09265624aa7330b672e1737c6d283012a4e78b2ab1e10567
+    inputHash: 95a7b803d12eea3d7e07cf71adf1ab5f8c8825019be640893206283497292283
   timings:
   - token: 0
     startMs: 0
-    endMs: 1307
+    endMs: 1314
   timingSource: synthesis
   qa:
-    trace: mitavɑnam
+    trace: tavɑnestan
 - item: sense:tehran
   speed: normal
   file: clips/63b5a18f26ab5d61.mp3

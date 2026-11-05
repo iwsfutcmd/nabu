@@ -853,6 +853,10 @@ export interface SynthesisRecord {
    */
   readonly settings?: {};
   /**
+   * Which attempt this is (ADR 0060): a clip a listener rejected is made again with the next take, which samples with another seed. Part of the identity when present.
+   */
+  readonly take?: number;
+  /**
    * sha256 of provider, version, voice, input, rate and settings: the clip's identity.
    */
   readonly inputHash: string;

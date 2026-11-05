@@ -571,6 +571,19 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         m(lambda c: unit(c)["kcs"][0]["forms"]["uz-Latn/standard"].append("assalomu alaykum")),
     ),
     "glossary.shadowed": ("salom loses to the longer entry salom men.", m(_shadowed)),
+    "kc.inflected-form": (
+        "talabaman, a form of sense:talaba, is analysed as talaba+man in the sentence.",
+        m(
+            lambda c: next(s for s in unit(c)["sentences"] if s["id"] == "s.4")["forms"][
+                "uz-Latn/standard"
+            ]["tokens"][1].update(
+                morphs=[
+                    {"surface": "talaba", "kc": "sense:talaba"},
+                    {"surface": "man", "kc": "construction:copula-man"},
+                ]
+            )
+        ),
+    ),
     "glossary.tile-split": (
         "Tiles split salom inside one runtime unit.",
         m(

@@ -60,6 +60,9 @@ index.
 
 - **A person's ear decides what ships,** and Whisper only sorts the queue.
 - **The demo site is larger:** about 55 MB of clips for the four courses.
-- **A rejected clip leaves its item without audio** until it is made again. Making it again with
-  another seed (a new take) is left for later. For now it means `generate` after changing the
-  text or the voice, or a human recording (`nabu audio ingest`).
+- **A rejected clip is made again on the next `generate`, as its next take** (`synthesis.take`).
+  - The take joins the clip's identity and the seed it samples with, so a seeded voice (OmniVoice,
+    Navoiy, ElevenLabs) says it otherwise.
+  - The new take goes back through the round trip and the audio check.
+  - A deterministic voice (eSpeak NG, Piper) would say it the same way. Its rejected clips stay
+    held back until the text or the voice changes, or a person records it (`nabu audio ingest`).

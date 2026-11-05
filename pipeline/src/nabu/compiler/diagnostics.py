@@ -205,6 +205,12 @@ _LINTS = [
     ),
     # 7 · glossary and segmentation simulation
     Lint(
+        "kc.inflected-form",
+        "error",
+        7,
+        "A KC form is a word the sentences analyse into several KCs: forms are lemmas (ADR 0061).",
+    ),
+    Lint(
         "glossary.dead-entry",
         "warning",
         7,

@@ -72,7 +72,8 @@ describe("a word can be corrected (ADR 0057)", () => {
     const salon = correctable(apc, "sense:salon");
     expect(salon?.kind).toBe("word");
     expect(shownOf(salon ?? { kind: "word", item: "", forms: {}, translation: undefined })).toEqual({
-      forms: { "apc-Arab/standard": { text: "الصّالون" }, "apc-Latn/arabizi": { text: "salon" } },
+      // The lemma (ADR 0061): the bare noun, not الصّالون.
+      forms: { "apc-Arab/standard": { text: "صالون" }, "apc-Latn/arabizi": { text: "salon" } },
       translation: "living room",
     });
     // A sentence id still finds the sentence; a KC with no forms (a grammar form) is not a word.

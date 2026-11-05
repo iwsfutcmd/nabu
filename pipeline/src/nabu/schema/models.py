@@ -205,6 +205,13 @@ class SynthesisRecord(BaseModel):
             description="Provider settings that shape the audio besides the voice and rate (a hosted provider's language and voice settings); part of the identity when present."
         ),
     ] = None
+    take: Annotated[
+        int | None,
+        Field(
+            description="Which attempt this is (ADR 0060): a clip a listener rejected is made again with the next take, which samples with another seed. Part of the identity when present.",
+            ge=1,
+        ),
+    ] = None
     inputHash: Annotated[
         str,
         Field(

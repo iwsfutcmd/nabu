@@ -341,6 +341,11 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
                 <dd>
                   {g.meaning !== undefined && <T text={g.meaning} />}
                   {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
+                  {g.lemma !== undefined && (
+                    <span className={styles.glossNote} data-gloss-lemma="">
+                      {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={scheme ?? false} marks={marks} />
+                    </span>
+                  )}
                 </dd>
               </div>
             ))}
