@@ -65,3 +65,7 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # The site carries every course's clips twice (bundles, audio check): some 10,000 files,
+          # which can take Pages longer than the default 10 minutes to publish.
+          timeout: 1800000
