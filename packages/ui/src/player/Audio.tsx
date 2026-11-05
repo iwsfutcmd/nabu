@@ -78,10 +78,12 @@ export interface AudioButtonsProps {
   readonly audio: AudioRef;
   /** The big button of a listening exercise, or the small one beside a prompt. */
   readonly size?: "large" | "small";
+  /** Say "Synthetic voice" here (default); a story says it once instead of on every line. */
+  readonly label?: boolean;
 }
 
 /** Play and play-slowly buttons, with the synthetic-voice label when the clip is synthesized. */
-export const AudioButtons = ({ player, audio, size = "small" }: AudioButtonsProps): JSX.Element => {
+export const AudioButtons = ({ player, audio, size = "small", label = true }: AudioButtonsProps): JSX.Element => {
   const t = useTranslator();
   return (
     <div className={styles.audio} data-audio-buttons="" data-size={size}>
@@ -99,7 +101,7 @@ export const AudioButtons = ({ player, audio, size = "small" }: AudioButtonsProp
           <SlowIcon size={20} />
         </Button>
       )}
-      {audio.normal.synthetic && <span className={styles.synthetic}>{t.format("player.audio.synthetic")}</span>}
+      {label && audio.normal.synthetic && <span className={styles.synthetic}>{t.format("player.audio.synthetic")}</span>}
     </div>
   );
 };

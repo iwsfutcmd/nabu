@@ -208,3 +208,20 @@ def test_live_the_course_voice_speaks_lebanese() -> None:
     [clip] = tts.synthesize([Request("أَنا مْنيح.", v.voice, 1.0)])
     assert 0.3 < len(clip.pcm) / 2 / clip.sample_rate < 5
     assert cer(transcribe(clip, "ar"), "أنا منيح") <= 0.15
+
+
+def test_story_lines_are_read_too(apc: Any) -> None:
+    """Each story line is an audio item "<story>#<step>", read like a sentence."""
+    items = {i.item: i for i in plan(apc.units, voice(), apc.written)[0]}
+    lines = [
+        (story["id"], step)
+        for unit in apc.units
+        for story in unit.get("stories", [])
+        for step, s in enumerate(story["steps"])
+        if s.get("line")
+    ]
+    assert lines
+    assert all(f"{story}#{step}" in items for story, step in lines)
+    story, step = lines[0]
+    line = items[f"{story}#{step}"]
+    assert line.input and len(line.spans) >= 1
