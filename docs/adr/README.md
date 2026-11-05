@@ -54,6 +54,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0058](0058-lahgtna-voice.md) | apc gets a voice: Lahgtna (an OmniVoice fine-tune for Arabic dialects, `lb` Lebanese), run locally, reading the vowel-marked text and cloning one designed reference (`nabu audio cast`); a man's voice; clips CC-BY-NC-4.0 | Proposed |
 | [0059](0059-navoiy-voice.md) | uz gets a natural voice: Navoiy (a CosyVoice2 fine-tune for Uzbek), run by a worker in its own environment (pipeline/runtimes/cosyvoice); one cast reference cloned from CosyVoice's prompt recording; clips Apache-2.0; `nabu audio align` gives timing-less clips word timings | Proposed |
 | [0060](0060-audio-check.md) | Audio check: a web page lists every clip of a course (held-back ones too) beside its text and the round trip's result; a listener judges each, and `nabu audio verdicts` marks clips reviewed (they ship) or rejected (held back) | Proposed |
+| [0061](0061-lemmas-and-morphs.md) | A KC's forms are its lemma and variants, never an inflected word (lint `kc.inflected-form`); word cards show the lemma; a tap on an analysed word shows its morphs with their meanings and the lemma | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).

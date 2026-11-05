@@ -54,7 +54,7 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   await expect(page.locator("[data-audio-item]")).toHaveCount(1);
 
   const [download] = await Promise.all([page.waitForEvent("download"), page.locator("[data-action=export-verdicts]").click()]);
-  const file = JSON.parse(readFileSync((await download.path()) as string, "utf8")) as AudioVerdicts;
+  const file = JSON.parse(readFileSync(await download.path(), "utf8")) as AudioVerdicts;
   expect(file.course).toBe("fa");
   expect(file.verdicts.map((v) => v.verdict).sort()).toEqual(["right", "wrong"]);
   const wrong = file.verdicts.find((v) => v.verdict === "wrong");

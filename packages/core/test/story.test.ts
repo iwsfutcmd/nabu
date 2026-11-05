@@ -7,7 +7,7 @@ import { join, resolve } from "node:path";
 import type { BundleManifest, LearnerEvent, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnerEventOf, pathOf, replay, type EventMeta, type SessionMeta } from "../src/learner/index.ts";
-import { answerTextOf, assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
+import { allKcs, answerTextOf, assembleCourse, createGrader, gradeExercise, MEDIA_ROLES, seededRng, type CourseView, type Effect, type Exercise, type LessonEvent, type Response } from "../src/lesson/index.ts";
 import { allStories, courseGlossary, glossAt, glossLine, startStory, stepStory, storyAt, storyScript, type StoryScript, type StoryState } from "../src/story/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
@@ -253,14 +253,36 @@ describe("tap-for-gloss on story lines", () => {
     expect(folded).toBeGreaterThan(0);
   });
 
-  it("a token two entries share is glossed in parts (我哋)", () => {
+  it("an analysed word is glossed morph by morph (我哋 = 我 + 哋, ADR 0061)", () => {
     const course = loadCourse("yue");
     const glossary = courseGlossary(course);
     const line = scriptOf(course).lines.find((l) => surfaceOf(l.text).startsWith("我哋"));
     if (line === undefined) throw new Error("no 我哋 line");
+    const token = line.text.tokens[0];
     const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, 0);
-    // 我哋 is a glossary form of 我 itself: the whole token, one entry.
-    expect(hits.map((h) => [h.kc, h.span])).toEqual([["sense:我", "whole"]]);
+    expect(hits.map((h) => [h.kc, surfaceOf(h.form), h.span])).toEqual((token?.morphs ?? []).map((m) => [m.kc, m.surface, "part"]));
+    expect(hits.length).toBe(2);
+    expect(hits.every((h) => h.meaning !== undefined)).toBe(true);
+  });
+
+  it("a stem written otherwise than its dictionary form names it (ADR 0061)", () => {
+    const course = loadCourse("uz", "uz-Latn/standard");
+    const glossary = courseGlossary(course);
+    for (const line of scriptOf(course).lines) {
+      for (const [i, token] of line.text.tokens.entries()) {
+        const morphs = token.morphs ?? [];
+        if (new Set(morphs.map((m) => m.kc)).size < 2) continue;
+        const hits = glossAt(course, glossary, glossLine(course, glossary, line.text), line.text, i);
+        expect(hits.map((h) => h.kc)).toEqual(morphs.map((m) => m.kc));
+        for (const [k, h] of hits.entries()) {
+          const lemma = allKcs(course).find((kc) => kc.id === h.kc)?.forms?.["uz-Latn/standard"]?.[0];
+          if (lemma === undefined || surfaceOf(lemma) === morphs[k]?.surface) expect(h.lemma).toBeUndefined();
+          else expect(h.lemma).toEqual(lemma);
+        }
+        return;
+      }
+    }
+    throw new Error("no analysed word in the uz story");
   });
 
   it("falls back to the token's own sense when no entry reaches it", () => {

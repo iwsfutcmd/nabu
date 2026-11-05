@@ -114,13 +114,11 @@ def test_the_reviewer_is_a_human_id(fa: Path) -> None:
 
 def test_the_web_apps_file_validates() -> None:
     """The shape AudioCheck.tsx downloads (a note only on some verdicts)."""
-    data = {
-        "course": "uz",
-        "verdicts": [
-            {"item": "s.1", "clips": ["a" * 64, "b" * 64], "verdict": "right", "at": AT},
-            {"item": "story.x#3", "clips": ["c" * 64], "verdict": "wrong", "at": AT, "note": "x"},
-        ],
-    }
+    right: dict[str, Any] = {"item": "s.1", "clips": ["a" * 64, "b" * 64], "verdict": "right"}
+    wrong: dict[str, Any] = {"item": "story.x#3", "clips": ["c" * 64], "verdict": "wrong"}
+    data = {"course": "uz", "verdicts": [right | {"at": AT}, wrong | {"at": AT, "note": "x"}]}
     assert len(AudioVerdicts.model_validate(data).verdicts) == 2
     with pytest.raises(ValueError):
-        AudioVerdicts.model_validate({**data, "verdicts": [{**data["verdicts"][0], "clips": []}]})
+        AudioVerdicts.model_validate(
+            {"course": "uz", "verdicts": [right | {"at": AT, "clips": []}]}
+        )

@@ -7799,58 +7799,6 @@ clips:
   timingSource: synthesis
   qa:
     trace: dariɑ xejli q1aʃanɡ ast
-- item: form:1pl-im
-  speed: normal
-  file: clips/d1011270cf6b6340.mp3
-  sha256: 5de74715e295f8e152047afd06227d0c693cb31c61ea49b85a0e34cc5e94a9e7
-  durationMs: 611
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: fa
-    input: هستیم
-    rate: 1.0
-    inputHash: d1011270cf6b6340469fb280899be5fe882ae0667c1d6aeb29418f62c2887f3d
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 611
-  timingSource: synthesis
-  qa:
-    trace: hastim
-    asrModel: whisper-large-v3-turbo
-    asrText: هستیم
-    cer: 0.0
-    status: pass
-- item: form:1pl-im
-  speed: slow
-  file: clips/4bd935ef39f48825.mp3
-  sha256: 058fba7ea3f61e83721fe7c260f5cda4bcdf2352af518875f26e7ecd0d87f08f
-  durationMs: 900
-  license: CC0-1.0
-  provenance:
-    author: generated:espeak-ng@1.51
-    status: draft
-  synthetic: true
-  synthesis:
-    provider: espeak-ng
-    version: '1.51'
-    voice: fa
-    input: هستیم
-    rate: 0.67
-    inputHash: 4bd935ef39f48825e9f41657872aaf3868a7946d650f12b8b04fe5f6d274d4d6
-  timings:
-  - token: 0
-    startMs: 0
-    endMs: 900
-  timingSource: synthesis
-  qa:
-    trace: hastim
 - item: s.1
   speed: normal
   file: clips/9d61f006ac8be44f.mp3
@@ -30285,8 +30233,8 @@ clips:
     trace: aːli
 - item: sense:amadan
   speed: normal
-  file: clips/46f5a7a799bd0eb1.mp3
-  sha256: 8a496c87cc9579a45af4c0e0e06bd4dd665d1cf128576c3cbe0eaf1437318c5a
+  file: clips/3189e3e0f3b3ba2e.mp3
+  sha256: 9db6ef325daa0a3dcb4ae3d209f75aa7a0f7f84fd3fbc59934f3eb017e1c4e91
   durationMs: 592
   license: CC0-1.0
   provenance:
@@ -30297,25 +30245,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cآید"
+    input: آمدن
     rate: 1.0
-    inputHash: 46f5a7a799bd0eb10dbdf04b7e54c116fac6d655c73b331daea8063e0f33be26
+    inputHash: 3189e3e0f3b3ba2eac7ce8fda1d679dfd91114a632cb2dfa936c16f1a510daf2
   timings:
   - token: 0
     startMs: 0
     endMs: 592
   timingSource: synthesis
   qa:
-    trace: miɑjad
+    trace: ɑmadan
     asrModel: whisper-large-v3-turbo
-    asrText: می آید
-    cer: 0.2
+    asrText: امیدن
+    cer: 0.5
     status: review
 - item: sense:amadan
   speed: slow
-  file: clips/5ab09550b8f7389f.mp3
-  sha256: d1407726984201e2c6846bda1cbb77dc81b68675935c5e0dfc68528bcbbaaf83
-  durationMs: 904
+  file: clips/2961026daf88f685.mp3
+  sha256: 085001b3d5c218038242f945e9c45eca44561bcbbf188c0b83bb62b71ef5e0e9
+  durationMs: 934
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -30325,16 +30273,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cآید"
+    input: آمدن
     rate: 0.67
-    inputHash: 5ab09550b8f7389f056ce661da6c6fa0dd208b678cde86219acfe0b54dc50c49
+    inputHash: 2961026daf88f685b86ce17c6bc18c645d96f6f0e5001fe3162e7f95a9cde428
   timings:
   - token: 0
     startMs: 0
-    endMs: 904
+    endMs: 934
   timingSource: synthesis
   qa:
-    trace: miɑjad
+    trace: ɑmadan
 - item: sense:amma
   speed: normal
   file: clips/d4ab6ef915e4f8f4.mp3
@@ -31637,9 +31585,9 @@ clips:
     trace: buːd
 - item: sense:budan
   speed: normal
-  file: clips/69dc1109d6cb706f.mp3
-  sha256: f557143657baf6c9581fc8bebb398f53ab839fa4328f0c1f227143542d8c6f71
-  durationMs: 348
+  file: clips/d73280805beafafb.mp3
+  sha256: 6c2a168b9382e43381a8f4cbb786c3b79bcb6637bdbe5beb893b2eb7132ae1b3
+  durationMs: 593
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31649,25 +31597,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: است
+    input: بودن
     rate: 1.0
-    inputHash: 69dc1109d6cb706f505e02c819d9d0a856ada49191116fc78341d579b8d9009d
+    inputHash: d73280805beafafb7d4c38755c25bd1a4a7bb219531e24d21849f26fbaa93d1e
   timings:
   - token: 0
     startMs: 0
-    endMs: 348
+    endMs: 593
   timingSource: synthesis
   qa:
-    trace: ast
+    trace: buːdan
     asrModel: whisper-large-v3-turbo
-    asrText: موسیقی
-    cer: 1.667
-    status: fail
+    asrText: دو دن
+    cer: 0.25
+    status: review
 - item: sense:budan
   speed: slow
-  file: clips/139545555f52eff0.mp3
-  sha256: d4add3f35467388168ec34400635a040ccb6d04da831fe097e3cbeb88d4e7d78
-  durationMs: 497
+  file: clips/0c6612e71b0f5340.mp3
+  sha256: 0e3c7f0a30418b55645e1686ba3c5d21aff1f857df13fbaa5a1009c158d6e430
+  durationMs: 927
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -31677,16 +31625,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: است
+    input: بودن
     rate: 0.67
-    inputHash: 139545555f52eff067c27f9f998ab142820c42281ce8dd80a6abd4d8d52ac6c7
+    inputHash: 0c6612e71b0f53404b308701cfda71ab7092ee082ca4950febd3971259c876a5
   timings:
   - token: 0
     startMs: 0
-    endMs: 497
+    endMs: 927
   timingSource: synthesis
   qa:
-    trace: ast
+    trace: buːdan
 - item: sense:chahar
   speed: normal
   file: clips/bab2b8dc998096c8.mp3
@@ -32209,9 +32157,9 @@ clips:
     trace: tʃist
 - item: sense:dadan
   speed: normal
-  file: clips/439e1ec69ed56a01.mp3
-  sha256: 86f058825b2c8e9cae641104a78818cca154b25f4c347e08e41446dbb0eda670
-  durationMs: 674
+  file: clips/e2403fb3ac6cc2ef.mp3
+  sha256: 0d2e36c0774b5fc6e49ab6c086ef44b997e0fae510a9349648690c895b22b4cb
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32221,25 +32169,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cدهم"
+    input: دادن
     rate: 1.0
-    inputHash: 439e1ec69ed56a013d1e614ff0caf18ddc64a7526ae25ee3ee2b69ef008eb8f1
+    inputHash: e2403fb3ac6cc2ef9d74d3af93eb5ced272a1d1c7e97443b8bf52fc6d1d92bb2
   timings:
   - token: 0
     startMs: 0
-    endMs: 674
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: midahom
+    trace: dɑdan
     asrModel: whisper-large-v3-turbo
-    asrText: میده هم
-    cer: 0.4
+    asrText: دارد
+    cer: 0.5
     status: review
 - item: sense:dadan
   speed: slow
-  file: clips/ee0b664bfc8f5e0d.mp3
-  sha256: d7713bf43b0d3fbefe0927ac123ae261aaa0b363c607b602923cb3d35edefa1d
-  durationMs: 1041
+  file: clips/bad07f5bee37cddc.mp3
+  sha256: a259ae5bff08b593e8e47a2719cd81c1f7885c4d1c9148e0faef8c164099dd68
+  durationMs: 780
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32249,16 +32197,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cدهم"
+    input: دادن
     rate: 0.67
-    inputHash: ee0b664bfc8f5e0d1d1c13081524b575fa7a966ac4ce293993c79fc7fb699fdf
+    inputHash: bad07f5bee37cddc744eff55a19902d8c460c989acc6011b64ac349f226d7407
   timings:
   - token: 0
     startMs: 0
-    endMs: 1041
+    endMs: 780
   timingSource: synthesis
   qa:
-    trace: midahom
+    trace: dɑdan
 - item: sense:daftar
   speed: normal
   file: clips/a2e94842121f3dd5.mp3
@@ -32729,9 +32677,9 @@ clips:
     trace: dariɑ
 - item: sense:dashtan
   speed: normal
-  file: clips/f06cbc8eeb9b00eb.mp3
-  sha256: ddefce7c40431f59ebc4a22d998576d908aaba00c96da42e7aa44d022532739c
-  durationMs: 523
+  file: clips/bc356034d3d50612.mp3
+  sha256: 9eaa124dfcf9ef5436cb012d1e428ebe5dfdf08809ae2aa12f6996b1cdfaffec
+  durationMs: 564
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32741,25 +32689,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دارم
+    input: داشتن
     rate: 1.0
-    inputHash: f06cbc8eeb9b00ebf25dcd455204c5c49e8e92913689b623d081df81b7a6d315
+    inputHash: bc356034d3d50612efd1f072ea2ab7642521ba123890df863af7e39e41a8a183
   timings:
   - token: 0
     startMs: 0
-    endMs: 523
+    endMs: 564
   timingSource: synthesis
   qa:
-    trace: dɑram
+    trace: dɑʃtan
     asrModel: whisper-large-v3-turbo
-    asrText: دارم
+    asrText: داشتن
     cer: 0.0
     status: pass
 - item: sense:dashtan
   speed: slow
-  file: clips/84757d0a4154b44c.mp3
-  sha256: fc682ec4a9567a65ecf928baefb254ac447dcbeafd3c55f4512d83d779618739
-  durationMs: 803
+  file: clips/989090807733f133.mp3
+  sha256: bdac7e87759ccccc53a6a8554706cfdb6f3c604a65f02fa3574a141fb933d217
+  durationMs: 852
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32769,16 +32717,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دارم
+    input: داشتن
     rate: 0.67
-    inputHash: 84757d0a4154b44c89375773a8766b7326cac3265a1bcafa3657159f133ec354
+    inputHash: 989090807733f133197ee907a9a9671d5e9410b5bdfdc180c9fad7a2709df41c
   timings:
   - token: 0
     startMs: 0
-    endMs: 803
+    endMs: 852
   timingSource: synthesis
   qa:
-    trace: dɑram
+    trace: dɑʃtan
 - item: sense:dastshui
   speed: normal
   file: clips/7244d85bc49c7372.mp3
@@ -32833,9 +32781,9 @@ clips:
     trace: dastʃuiː
 - item: sense:didan
   speed: normal
-  file: clips/fea26498feb6291e.mp3
-  sha256: 4f3f4d5328812fcbf0a850e8042c6bc3aaad742a3cada1126fac2693a4183546
-  durationMs: 701
+  file: clips/a19b4b333fe28ace.mp3
+  sha256: cd06fff675ddce591d38b01103738a6aca277038fdcf56cf08fab9a41cd00f76
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32845,25 +32793,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cبینم"
+    input: دیدن
     rate: 1.0
-    inputHash: fea26498feb6291e32b2acb218b7ae9dcf457ee149a9650e2d3da5e1e4cc2c20
+    inputHash: a19b4b333fe28ace2acbfb84fc52d7857c03e21e03c266dfe3610179223d8c6b
   timings:
   - token: 0
     startMs: 0
-    endMs: 701
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: mibinam
+    trace: didan
     asrModel: whisper-large-v3-turbo
-    asrText: می بینام
-    cer: 0.333
+    asrText: دیگر
+    cer: 0.5
     status: review
 - item: sense:didan
   speed: slow
-  file: clips/ed36d4529d84c95f.mp3
-  sha256: 70ddae3fea14b161cce84d03a86fe3262181e50bac31a22ef80fbffdd83d622d
-  durationMs: 1102
+  file: clips/98675ae1c4c0cfcf.mp3
+  sha256: f3822402daa862ee26a21b91ee6a9aef3f7d327cdf48b5b11749f028177fcd75
+  durationMs: 780
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32873,21 +32821,21 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cبینم"
+    input: دیدن
     rate: 0.67
-    inputHash: ed36d4529d84c95fcf7f2299739fa73e1c99fb4c84c34a3875a9666b4a8a86f1
+    inputHash: 98675ae1c4c0cfcfa07be1f74cc6421c84a767085603e616acff52eecf3a425a
   timings:
   - token: 0
     startMs: 0
-    endMs: 1102
+    endMs: 780
   timingSource: synthesis
   qa:
-    trace: mibinam
+    trace: didan
 - item: sense:digar
   speed: normal
-  file: clips/0ffa53cc5d82dc6f.mp3
-  sha256: 05d7f1ee3b123ce3df67ab88ffde2adb9eb064a0a7fed02740ba7b1a741f7796
-  durationMs: 649
+  file: clips/adbad53f625d9509.mp3
+  sha256: d30aca48d2977e8113a26d67a963778fbc84a14ecd112febde3b791e6c45c8de
+  durationMs: 499
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32897,25 +32845,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دیگری
+    input: دیگر
     rate: 1.0
-    inputHash: 0ffa53cc5d82dc6fad68539cf4d81ef98ab3daf5d56e0517b6afc1593f4e27dc
+    inputHash: adbad53f625d95093fc41ac7b5aecc41b0ff0d88c299ee5d8461f9dfde98be2d
   timings:
   - token: 0
     startMs: 0
-    endMs: 649
+    endMs: 499
   timingSource: synthesis
   qa:
-    trace: diɡari
+    trace: diɡar
     asrModel: whisper-large-v3-turbo
-    asrText: دیگاری
-    cer: 0.2
-    status: review
+    asrText: دیگر
+    cer: 0.0
+    status: pass
 - item: sense:digar
   speed: slow
-  file: clips/21e34dbec309b733.mp3
-  sha256: 89a0fa0aa60a0dd52ee3b4ff3f7e85b431ed5ad46d135cf5f9d11b040007c41d
-  durationMs: 1017
+  file: clips/d7e5b1111d5876ee.mp3
+  sha256: f7263be59729408e40f3cb6e214a409e8709fa1ee1a4257f6198401f25ee364f
+  durationMs: 767
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -32925,16 +32873,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: دیگری
+    input: دیگر
     rate: 0.67
-    inputHash: 21e34dbec309b73392f4a8a311ecd61d6b1816cd9053fe33eb4988b9fd857927
+    inputHash: d7e5b1111d5876ee7d5460a36891e3a6a673df43034b4edd89a8597385737c25
   timings:
   - token: 0
     startMs: 0
-    endMs: 1017
+    endMs: 767
   timingSource: synthesis
   qa:
-    trace: diɡari
+    trace: diɡar
 - item: sense:dir
   speed: normal
   file: clips/e1ba4747bd6d166e.mp3
@@ -33821,9 +33769,9 @@ clips:
     trace: ɡerɑn
 - item: sense:gereftan
   speed: normal
-  file: clips/7df4ee0045f9715b.mp3
-  sha256: a53ad03666aa76354a6c67b22239fe7ae22db957c38a9e60057020026f787283
-  durationMs: 754
+  file: clips/922525e76916a19d.mp3
+  sha256: ced01c9b7e2b7f1b507920417c67cf758c6256f8ba10ec7b1f29240209e448de
+  durationMs: 716
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -33833,25 +33781,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: گرفتیم
+    input: گرفتن
     rate: 1.0
-    inputHash: 7df4ee0045f9715b6d8ae7f8cd7e39e114e684618d279f243941b68e17a229ee
+    inputHash: 922525e76916a19d545c00d718172dbed5ed4fa253801a873fed6035a7cb3f56
   timings:
   - token: 0
     startMs: 0
-    endMs: 754
+    endMs: 716
   timingSource: synthesis
   qa:
-    trace: ɡereftim
+    trace: ɡereftan
     asrModel: whisper-large-v3-turbo
-    asrText: گرفتین
-    cer: 0.167
-    status: review
+    asrText: گرفتن
+    cer: 0.0
+    status: pass
 - item: sense:gereftan
   speed: slow
-  file: clips/f3e7dc657062f59a.mp3
-  sha256: d37d3d1e4b506b04449d85a53c2bdd0579c25fffcf52081b211961bf10af7278
-  durationMs: 1116
+  file: clips/e19ec852b8a4ce0a.mp3
+  sha256: 5f0526be11e01ea9dfef9f052ca75145958db0f3862e1458bd6c690f615a931e
+  durationMs: 1053
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -33861,16 +33809,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: گرفتیم
+    input: گرفتن
     rate: 0.67
-    inputHash: f3e7dc657062f59a42043f8bb4edce5084d3cfedc01cf532e81e36d4618cc13f
+    inputHash: e19ec852b8a4ce0a68458f710577a5e9f79d6d9c11210761fb087af7b7dc46e7
   timings:
   - token: 0
     startMs: 0
-    endMs: 1116
+    endMs: 1053
   timingSource: synthesis
   qa:
-    trace: ɡereftim
+    trace: ɡereftan
 - item: sense:ghadimi
   speed: normal
   file: clips/d100dd9b17869b61.mp3
@@ -35537,9 +35485,9 @@ clips:
     trace: ketɑb
 - item: sense:khabidan
   speed: normal
-  file: clips/e05a2a553d758b66.mp3
-  sha256: 6dd35c23834ecbcf8c41b2a0e8a05b9c435877299ae887b8c8dfb92228d73a04
-  durationMs: 772
+  file: clips/097752e95e97bdd7.mp3
+  sha256: ba6ad8f4b52504167ab07de4b9d338c3b5c76c6afd6e2cbdc3ac87cfd1d048cc
+  durationMs: 775
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35549,25 +35497,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوابند"
+    input: خوابیدن
     rate: 1.0
-    inputHash: e05a2a553d758b66f582982903850a53631f2c94c779ebe86c604e3f1e526b5e
+    inputHash: 097752e95e97bdd7f3a1ce53e1d56e66181593fbc18e559ef33b1a5c782d44e9
   timings:
   - token: 0
     startMs: 0
-    endMs: 772
+    endMs: 775
   timingSource: synthesis
   qa:
-    trace: mixɑband
+    trace: xɑbidan
     asrModel: whisper-large-v3-turbo
-    asrText: می خواباید
-    cer: 0.375
+    asrText: خبیدن
+    cer: 0.286
     status: review
 - item: sense:khabidan
   speed: slow
-  file: clips/bcdc02bdb207515f.mp3
-  sha256: cfe2bfbb9b065a712822ba557e03d789e9f741f534735f2f2585b4ffb196306c
-  durationMs: 1158
+  file: clips/cfab93e99541ba4a.mp3
+  sha256: c18c9cb3f5401183ea6609c4a0de70b346ed8cb710aa54c308fc712b4965884d
+  durationMs: 1170
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35577,16 +35525,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوابند"
+    input: خوابیدن
     rate: 0.67
-    inputHash: bcdc02bdb207515f1de588b24eed872443ce65ba7c8eec6cdecf0a2abc5a1cc6
+    inputHash: cfab93e99541ba4a6d27967800f3a530b11160ceb05574fbf81e41f68d0e5731
   timings:
   - token: 0
     startMs: 0
-    endMs: 1158
+    endMs: 1170
   timingSource: synthesis
   qa:
-    trace: mixɑband
+    trace: xɑbidan
 - item: sense:khahar
   speed: normal
   file: clips/59eb19b0608ac7fe.mp3
@@ -35641,9 +35589,9 @@ clips:
     trace: xɑhar
 - item: sense:khandan
   speed: normal
-  file: clips/d676cf264fb8cbc8.mp3
-  sha256: 7b7e0579b7f7f206a5f6413b3f5f19e1ce8583ca854e5da6e3c6eeec26dfa369
-  durationMs: 712
+  file: clips/04f95860a3bc05f2.mp3
+  sha256: c91429818df38a3a404d6b187d5e0e9824a4a6f173e72bd3de8cca9ab37ded9b
+  durationMs: 645
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35653,25 +35601,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوانم"
+    input: خواندن
     rate: 1.0
-    inputHash: d676cf264fb8cbc85a4b92514b5dc17f993de5c5a011b46a4f3381ed2b9f356a
+    inputHash: 04f95860a3bc05f2cb290adeaa46ec55cd99c2adc8f9c8769cee05db0b07c6e1
   timings:
   - token: 0
     startMs: 0
-    endMs: 712
+    endMs: 645
   timingSource: synthesis
   qa:
-    trace: mixɑnam
+    trace: xɑndan
     asrModel: whisper-large-v3-turbo
-    asrText: می خونم.
-    cer: 0.286
+    asrText: هاوندن
+    cer: 0.5
     status: review
 - item: sense:khandan
   speed: slow
-  file: clips/e0db0c25e70cbbc6.mp3
-  sha256: f7fcbab63cffabdb93b845a5b3b5ce7891ce9eb364fb1f6f2988642125cf7328
-  durationMs: 1099
+  file: clips/a6096e53e1f7ba13.mp3
+  sha256: 0372aeac8189abc050a2e557dc9906b7cca18795be04d46de8f7ad6f22c11df9
+  durationMs: 976
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35681,16 +35629,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخوانم"
+    input: خواندن
     rate: 0.67
-    inputHash: e0db0c25e70cbbc6ca8160c574ac64ed07eb9b5104e41291af95244c8bb00e00
+    inputHash: a6096e53e1f7ba138795914790ce00fbca7f04fae2dc6b815a9e755bbf01b81e
   timings:
   - token: 0
     startMs: 0
-    endMs: 1099
+    endMs: 976
   timingSource: synthesis
   qa:
-    trace: mixɑnam
+    trace: xɑndan
 - item: sense:khane
   speed: normal
   file: clips/9a430dba0fdb2ae9.mp3
@@ -35849,9 +35797,9 @@ clips:
     trace: xɑnom
 - item: sense:kharidan
   speed: normal
-  file: clips/6a9ce899568a5641.mp3
-  sha256: 37dc2a0221c7aa2a7672243b1596aeebbddbec7b02f0d1dbab609a79514a5140
-  durationMs: 727
+  file: clips/c55c471d7058cb01.mp3
+  sha256: 13cc53212a921704fae1a90e25411448be69686204e984d1f272ce7a4fbf59cf
+  durationMs: 753
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35861,25 +35809,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخریم"
+    input: خریدن
     rate: 1.0
-    inputHash: 6a9ce899568a5641eb454b9733b2c99b79a6e91b387e6f6b1801bd612112321b
+    inputHash: c55c471d7058cb0169935b2ff0f898e9b8dc5bd35a33cc2c49351384ec818fe6
   timings:
   - token: 0
     startMs: 0
-    endMs: 727
+    endMs: 753
   timingSource: synthesis
   qa:
-    trace: mixarim
+    trace: xaridan
     asrModel: whisper-large-v3-turbo
-    asrText: محارم
-    cer: 0.5
-    status: review
+    asrText: ها ریدان
+    cer: 0.6
+    status: fail
 - item: sense:kharidan
   speed: slow
-  file: clips/3c1d21d349b6b622.mp3
-  sha256: b6c82cf8d7f82c97d1826a21e6f2f3356d869a2c7b0ef14de4c9f4c7070b7600
-  durationMs: 1117
+  file: clips/d299c3ddf63f3e78.mp3
+  sha256: ff6728f0824e3825bf8269951356e05ee4be3a4aa3ebfc966c70bab91d1ea9ef
+  durationMs: 1161
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35889,21 +35837,21 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخریم"
+    input: خریدن
     rate: 0.67
-    inputHash: 3c1d21d349b6b622aa13da3f2532d72191dbaf3ed3db60ee3dd1134cef72601f
+    inputHash: d299c3ddf63f3e78e1e2ab94e7a7604505d6959c0ad097da0e7f2c1ce741756a
   timings:
   - token: 0
     startMs: 0
-    endMs: 1117
+    endMs: 1161
   timingSource: synthesis
   qa:
-    trace: mixarim
+    trace: xaridan
 - item: sense:khastan
   speed: normal
-  file: clips/d2a4c0f74c92728d.mp3
-  sha256: 23de0650f08f83efcafa1d567434f69b2a6eeeb7afdfcda109a5f00593394f6b
-  durationMs: 746
+  file: clips/5d1ea2bb79856005.mp3
+  sha256: 5dcfc3057c64a94cb15b0b47a41a2b178c36dfc4fd98645aef521ccca13588b4
+  durationMs: 643
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35913,25 +35861,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخواهم"
+    input: خواستن
     rate: 1.0
-    inputHash: d2a4c0f74c92728dd70bb2d77057b76cb1eca7bd8f145bf0d54c26dd49c3fc9a
+    inputHash: 5d1ea2bb798560054a2dd29b44492feb66447dfb036f76b6c8dd8fd7a11ff8ce
   timings:
   - token: 0
     startMs: 0
-    endMs: 746
+    endMs: 643
   timingSource: synthesis
   qa:
-    trace: mixɑham
+    trace: xɑstan
     asrModel: whisper-large-v3-turbo
-    asrText: می خوشم
-    cer: 0.429
+    asrText: خوستن
+    cer: 0.167
     status: review
 - item: sense:khastan
   speed: slow
-  file: clips/a825c149bd8a6f0c.mp3
-  sha256: 97cf76f788f6bb86e2cd511759380dfea993a5eaab9e49ce352447e37aec3d29
-  durationMs: 1119
+  file: clips/8125797426ca1e5b.mp3
+  sha256: 5363cc1ff6925b52a5e8c859812a77765debcf2ad3f69df06288feb20bd6b612
+  durationMs: 955
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -35941,16 +35889,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخواهم"
+    input: خواستن
     rate: 0.67
-    inputHash: a825c149bd8a6f0c9606c9cb8ff1d7e91a324149a1bfa8b6b8e3c05350c71452
+    inputHash: 8125797426ca1e5ba503fd6cfc6e942752d317572926f0e65663367df9e06cdf
   timings:
   - token: 0
     startMs: 0
-    endMs: 1119
+    endMs: 955
   timingSource: synthesis
   qa:
-    trace: mixɑham
+    trace: xɑstan
 - item: sense:kheyli
   speed: normal
   file: clips/8b558f0f9fd85da8.mp3
@@ -36161,9 +36109,9 @@ clips:
     trace: xodkɑr
 - item: sense:khordan
   speed: normal
-  file: clips/f5c497eb2d483cc3.mp3
-  sha256: f535cceb5eaa81907e5aae17d5b25a27684fd6c4232b38e2ba844c13ae6039f3
-  durationMs: 715
+  file: clips/84b04c3b022fcb3a.mp3
+  sha256: 6fc5d876802fbed9ce18598d4f62b79963d63273a39f164ca8b9171d4158d0ea
+  durationMs: 598
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -36173,25 +36121,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخورم"
+    input: خوردن
     rate: 1.0
-    inputHash: f5c497eb2d483cc30264175d005db8180eeae46c900aa3233248c0cd55dc3c6c
+    inputHash: 84b04c3b022fcb3ace70dde3f0a5863098be3fbfb115f25345bfcdb7c5b610d1
   timings:
   - token: 0
     startMs: 0
-    endMs: 715
+    endMs: 598
   timingSource: synthesis
   qa:
-    trace: mixoram
+    trace: xordan
     asrModel: whisper-large-v3-turbo
-    asrText: ميحورم.
-    cer: 0.333
+    asrText: جورن
+    cer: 0.4
     status: review
 - item: sense:khordan
   speed: slow
-  file: clips/6ecb554b63349724.mp3
-  sha256: 3575ec5682fd1234aaeffc9770cb9328290072572ca04793c890a129b1153245
-  durationMs: 1092
+  file: clips/5968161b58819ed0.mp3
+  sha256: e3c041d18b2a8fc2a3c0ba019f0bd674fd99254852e9d0d137ac03943fa7cdd4
+  durationMs: 923
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -36201,16 +36149,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cخورم"
+    input: خوردن
     rate: 0.67
-    inputHash: 6ecb554b63349724e2738a758d4f746585f8742d76178e0d2fe4dd0e7b8fcdac
+    inputHash: 5968161b58819ed0f200e8fcb2ab0b169e08cca2f74c8b74a77554ce574deb3d
   timings:
   - token: 0
     startMs: 0
-    endMs: 1092
+    endMs: 923
   timingSource: synthesis
   qa:
-    trace: mixoram
+    trace: xordan
 - item: sense:khosh
   speed: normal
   file: clips/28bdfaaa710af10c.mp3
@@ -38657,9 +38605,9 @@ clips:
     trace: pezeʃk
 - item: sense:pichidan
   speed: normal
-  file: clips/69cbe4e3ba5b0f4d.mp3
-  sha256: 35a4bcdb0afff65e12175069824582feaef7a9724ea47179938a60393e50abc7
-  durationMs: 727
+  file: clips/f0d7bbe9092e8e42.mp3
+  sha256: c9316efe013ffbd09dc15e6e7e064f0fc2f57cce4bb21e4c02a0bc082604cc03
+  durationMs: 760
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -38669,25 +38617,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: بپیچید
+    input: پیچیدن
     rate: 1.0
-    inputHash: 69cbe4e3ba5b0f4d609c24686ee8427805520468f0d0f95d7ea8cf2882e78237
+    inputHash: f0d7bbe9092e8e42be1e3f15926c29ba5877168f13b024c5d1a15b376df0cf11
   timings:
   - token: 0
     startMs: 0
-    endMs: 727
+    endMs: 760
   timingSource: synthesis
   qa:
-    trace: bepitʃid
+    trace: pitʃidan
     asrModel: whisper-large-v3-turbo
-    asrText: ببیچید.
+    asrText: بیچی دن
     cer: 0.167
     status: review
 - item: sense:pichidan
   speed: slow
-  file: clips/2db60b1cba8fbba5.mp3
-  sha256: 240ad6e60db0c00cedabbca894a09749985b13ff72f7cb061e39191311d3d282
-  durationMs: 1067
+  file: clips/d23d6c42e5e838c6.mp3
+  sha256: 150ad9ff27b743990925c80c73c50c7d31f16f1270fdd65cbba6f6bef6972e6b
+  durationMs: 1116
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -38697,16 +38645,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: بپیچید
+    input: پیچیدن
     rate: 0.67
-    inputHash: 2db60b1cba8fbba5d6e729428888fb671ff2f67b1e4acec86855f3420de0adf7
+    inputHash: d23d6c42e5e838c65e2df997b50f38f3450ebbf3f86d91246b889f8693def239
   timings:
   - token: 0
     startMs: 0
-    endMs: 1067
+    endMs: 1116
   timingSource: synthesis
   qa:
-    trace: bepitʃid
+    trace: pitʃidan
 - item: sense:pirahan
   speed: normal
   file: clips/eb889104db3aa054.mp3
@@ -38969,9 +38917,9 @@ clips:
     trace: rɑ
 - item: sense:raftan
   speed: normal
-  file: clips/f8fd1d3b1ae79499.mp3
-  sha256: fd20abc291c05415b3e091dfb9975f71b7b4d16ef63297c32cdfe9de3d1cb743
-  durationMs: 714
+  file: clips/47853af75d253994.mp3
+  sha256: 0e0717f90aa0532d8b0c818fc2b55f84e2df67db49a9192bc9a44692ece2b9e8
+  durationMs: 599
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -38981,25 +38929,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cروم"
+    input: رفتن
     rate: 1.0
-    inputHash: f8fd1d3b1ae79499098ff61d2c808f9732e874965d59597e297892d96b8c9ae9
+    inputHash: 47853af75d2539946996d6596aec04953ce6abd2736d149b0783aedf2051570c
   timings:
   - token: 0
     startMs: 0
-    endMs: 714
+    endMs: 599
   timingSource: synthesis
   qa:
-    trace: miravam
+    trace: raftan
     asrModel: whisper-large-v3-turbo
-    asrText: بیرام
-    cer: 0.6
+    asrText: افتای
+    cer: 0.75
     status: fail
 - item: sense:raftan
   speed: slow
-  file: clips/fda45f3104bfb2d3.mp3
-  sha256: 74d83faf8e2b40030daebe6abd3d55683f04c8a77d8d484a5f96bf4be1a0669b
-  durationMs: 1114
+  file: clips/17d3a4da25309f8d.mp3
+  sha256: 1375a5dadb39862081dababa2bed8879ebebe28564443d52fdebd0c94314fca0
+  durationMs: 867
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -39009,16 +38957,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cروم"
+    input: رفتن
     rate: 0.67
-    inputHash: fda45f3104bfb2d30f99ada6dbc6092a8042d3774ffc0069397853faae20a006
+    inputHash: 17d3a4da25309f8d810d0684debd919e5ec59e2984ba280a4e8a49f2a547156e
   timings:
   - token: 0
     startMs: 0
-    endMs: 1114
+    endMs: 867
   timingSource: synthesis
   qa:
-    trace: miravam
+    trace: raftan
 - item: sense:rang
   speed: normal
   file: clips/09078f41ed6a7c13.mp3
@@ -41257,9 +41205,9 @@ clips:
     trace: tavallod
 - item: sense:tavanestan
   speed: normal
-  file: clips/6b0ac36a61c183b8.mp3
-  sha256: 4df67e7ad0726754f1700944b76182b4c9da1282aca111085dadab2730f49dd0
-  durationMs: 836
+  file: clips/ae86f02c34f02f96.mp3
+  sha256: 24328a0dfcba5c9c0020179af29de15d186510d5034ee6d986687f2d9b046816
+  durationMs: 871
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -41269,25 +41217,25 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cتوانم"
+    input: توانستن
     rate: 1.0
-    inputHash: 6b0ac36a61c183b88e1773de8fb004df7ca64d0c8339c1dc2cc492b7d12b5b9b
+    inputHash: ae86f02c34f02f963447a27193afbac662c0e3c94f54bf7bd0ac45614cbad0f3
   timings:
   - token: 0
     startMs: 0
-    endMs: 836
+    endMs: 871
   timingSource: synthesis
   qa:
-    trace: mitavɑnam
+    trace: tavɑnestan
     asrModel: whisper-large-v3-turbo
-    asrText: میتا کنیم
+    asrText: تامونستان
     cer: 0.571
     status: fail
 - item: sense:tavanestan
   speed: slow
-  file: clips/0e24c0384103128c.mp3
-  sha256: 2d0f49b7adb215a8bd95c8e0df255b4934e31f76b1d4d1b682dae4ddf07c7dba
-  durationMs: 1307
+  file: clips/95a7b803d12eea3d.mp3
+  sha256: d7e60e78076f96a3c2bdc8bf613d0a2bd9f8b7945b564a84f1ba160613242565
+  durationMs: 1314
   license: CC0-1.0
   provenance:
     author: generated:espeak-ng@1.51
@@ -41297,16 +41245,16 @@ clips:
     provider: espeak-ng
     version: '1.51'
     voice: fa
-    input: "می\u200cتوانم"
+    input: توانستن
     rate: 0.67
-    inputHash: 0e24c0384103128c09265624aa7330b672e1737c6d283012a4e78b2ab1e10567
+    inputHash: 95a7b803d12eea3d7e07cf71adf1ab5f8c8825019be640893206283497292283
   timings:
   - token: 0
     startMs: 0
-    endMs: 1307
+    endMs: 1314
   timingSource: synthesis
   qa:
-    trace: mitavɑnam
+    trace: tavɑnestan
 - item: sense:tehran
   speed: normal
   file: clips/63b5a18f26ab5d61.mp3

@@ -12,7 +12,7 @@ import { allKcs, profileOf } from "../lesson/course.ts";
 import type { Exercise, StoryArrange, StoryChoose, StoryComplete } from "../lesson/exercise.ts";
 import type { Rng } from "../lesson/rng.ts";
 import { compileGlossary, glossesAt, glossTokens, type CompiledGlossary, type TokenGloss } from "../match/glossary.ts";
-import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
+import { surfaceOf, textOfSurface, tileGroups } from "../text/tagged-text.ts";
 
 export interface StoryLine {
   readonly index: number;
@@ -174,14 +174,40 @@ export interface Gloss {
   readonly meaning: TaggedText | undefined;
   /** The entry covers only part of the tapped token (我 in 我哋), or more than it (唔該). */
   readonly span: "whole" | "part" | "phrase";
+  /**
+   * A morph's dictionary form, where the word writes the morph otherwise: bor in boraman is
+   * bormoq (ADR 0061). The KC's first form in the line's orthography.
+   */
+  readonly lemma?: TaggedText;
 }
 
 /**
- * What a tap on a token shows: the glossary entries covering it, in order. A word no entry
- * reaches falls back to its own sense, so a tap always explains an annotated word.
+ * What a tap on a token shows (ADR 0061).
+ * - A phrase entry covering the word and its neighbours comes first: what they mean together.
+ * - A word its annotation analyses into several KCs (Angliya·dan·mi·siz) is shown morph by
+ *   morph, each with its meaning, and the dictionary form where the morph is written otherwise.
+ * - Any other word: the glossary entries covering it, in order; a word no entry reaches falls
+ *   back to its own sense, so a tap always explains an annotated word.
  */
 export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: readonly TokenGloss[], text: TaggedText, token: number): readonly Gloss[] => {
-  const meaning = new Map(allKcs(course).map((k) => [k.id, k.gloss?.[course.supportKey]]));
+  const kcs = new Map(allKcs(course).map((k) => [k.id, k]));
+  const meaning = new Map([...kcs.values()].map((k) => [k.id, k.gloss?.[course.supportKey]]));
+  const own = text.tokens[token];
+  const morphs = own === undefined || !isWord(own) ? [] : (own.morphs ?? []);
+  if (new Set(morphs.map((m) => m.kc)).size > 1) {
+    const phrases = glossesAt(glosses, token).flatMap((g): Gloss[] => {
+      const form = glossary.forms[g.entry];
+      return form === undefined || g.tokenEnd - g.tokenStart < 2 ? [] : [{ kc: g.kc, form, meaning: meaning.get(g.kc), span: "phrase" }];
+    });
+    return [
+      ...phrases,
+      ...morphs.map((m): Gloss => {
+        const lemma = kcs.get(m.kc)?.forms?.[text.orthography]?.[0];
+        const gloss: Gloss = { kc: m.kc, form: textOfSurface(text, m.surface), meaning: meaning.get(m.kc), span: "part" };
+        return lemma === undefined || surfaceOf(lemma).normalize("NFC") === m.surface.normalize("NFC") ? gloss : { ...gloss, lemma };
+      }),
+    ];
+  }
   const hits = glossesAt(glosses, token).flatMap((g): Gloss[] => {
     const form = glossary.forms[g.entry];
     if (form === undefined) return [];
@@ -189,7 +215,6 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
     return [{ kc: g.kc, form, meaning: meaning.get(g.kc), span }];
   });
   if (hits.length > 0) return hits;
-  const own = text.tokens[token];
   if (own === undefined || !isWord(own)) return [];
   // No entry reaches the word (an ezafe form, a name): its own sense, shown as written here.
   return tokenKcs(own)

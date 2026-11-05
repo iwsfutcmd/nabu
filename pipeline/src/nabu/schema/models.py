@@ -298,7 +298,13 @@ class AudioVerdict(BaseModel):
             min_length=1,
         ),
     ] = None
-    at: Annotated[AwareDatetime, Field(description="When the listener judged it (ISO 8601).")]
+    at: Annotated[
+        str,
+        Field(
+            description="When the listener judged it (ISO 8601).",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
 
 
 class BundleFile(BaseModel):

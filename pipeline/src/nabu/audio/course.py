@@ -552,7 +552,7 @@ def apply_verdicts(course_dir: Path, verdicts: AudioVerdicts, reviewer: str) -> 
         if not matched:
             result.skipped.append(v.item)
             continue
-        day = v.at.date().isoformat()
+        day = v.at[:10]  # ISO 8601: the date the listener judged it
         for k in matched:
             clip = clips[k]
             if v.verdict == "right":

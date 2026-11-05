@@ -1235,8 +1235,39 @@ def _glossary(
                     f"runtime units {units_}",
                     loc,
                 )
+        # A KC form is a lemma or a variant of one, never a word the sentences analyse into
+        # several KCs (ADR 0061): bormoq, not boraman (bor+a+man).
+        analysed: dict[str, list[list[dict[str, Any]]]] = {}
+        for _name, tokens, _loc in texts:
+            for t in tokens:
+                if len({m["kc"] for m in t.get("morphs", [])}) > 1:
+                    key = unicodedata.normalize("NFC", t["surface"])
+                    analysed.setdefault(key, []).append(t["morphs"])
+        for kc, surface, _u, loc in entries:
+            for morphs in analysed.get(unicodedata.normalize("NFC", surface), []):
+                if kc in {m["kc"] for m in morphs}:
+                    parts = "+".join(m["surface"] for m in morphs)
+                    diags.report(
+                        "kc.inflected-form",
+                        f"{kc} form {surface!r} is an inflected word ({parts}): give the lemma; "
+                        "a tap on the word reaches it through its morphs",
+                        loc,
+                    )
+                    break
+        # A KC's first form is its lemma (ADR 0061): a word card shows it, and a tap on an
+        # inflected word reaches it through the word's morphs, so it need not occur as written.
+        annotated = {
+            kc_
+            for _name, tokens, _loc in texts
+            for t in tokens
+            for kc_ in ([f"sense:{t['sense']}"] if "sense" in t else [])
+            + [m["kc"] for m in t.get("morphs", [])]
+        }
+        lemmas = {
+            (kc.id, (kc.forms or {}).get(orth, [""])[0]) for unit in units for kc in unit.source.kcs
+        }
         for ei, (kc, surface, _u, loc) in enumerate(entries):
-            if hits[ei] == 0:
+            if hits[ei] == 0 and not ((kc, surface) in lemmas and kc in annotated):
                 diags.report(
                     "glossary.dead-entry",
                     f"{kc} form {surface!r} is never reached in any {orth} sentence or story",
