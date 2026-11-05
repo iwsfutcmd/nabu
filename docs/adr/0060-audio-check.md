@@ -34,6 +34,8 @@ review could get back into the index.
     sorted in course order or worst first.
   - **Keys:** go by position (`event.code`), so they work on any keyboard layout, and never act
     while the listener types.
+  - **Voices:** a course replacing a voice keeps the old one's clips until each item is made again.
+    Such a course opens on its own voice (the first it casts); a voice filter shows the others.
 - **The listener's verdict:** "Sounds right" or "Sounds wrong", with a note.
   - Verdicts stay on the device (local storage) and download as a file
     (schemas/audio-verdicts.schema.json).

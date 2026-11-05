@@ -43,6 +43,11 @@ interface Stored {
 }
 
 const statusOf = (row: Row): Status => row.normal?.qa?.status ?? "none";
+/** Which voice made the item's clips: "<provider>:<voice>", or "recorded" for a person's recording. */
+const voiceOf = (row: Row): string => {
+  const synthesis = (row.normal ?? row.slow)?.synthesis;
+  return synthesis === undefined ? "recorded" : `${synthesis.provider}:${synthesis.voice}`;
+};
 const clipsOf = (row: Row): readonly AudioClip[] => [row.normal, row.slow].flatMap((c) => (c === undefined ? [] : [c]));
 const shasOf = (row: Row): readonly string[] => clipsOf(row).map((c) => c.sha256);
 const reviewed = (clip: AudioClip | undefined): boolean => clip?.provenance.status === "reviewed" || clip?.provenance.status === "published";
@@ -145,7 +150,7 @@ const ItemRow = ({ row, orthography, ruby, url, isCurrent, stored, onJudge, onFo
   const heard = row.normal?.qa?.asrText;
   const cer = row.normal?.qa?.cer;
   return (
-    <li ref={element} className={styles.row} data-audio-item={row.key} data-kind={row.kind} data-status={status} data-current={isCurrent || undefined}>
+    <li ref={element} className={styles.row} data-audio-item={row.key} data-voice={voiceOf(row)} data-kind={row.kind} data-status={status} data-current={isCurrent || undefined}>
       <div className={styles.play}>{audio !== undefined && <AudioButtons player={{ ...player, play }} audio={audio} label={false} />}</div>
       <div className={styles.body}>
         {form === undefined ? (
@@ -220,7 +225,14 @@ interface PageProps {
   readonly base: string;
 }
 
-type Filter = { readonly kind: Kind | "all"; readonly status: Status | "held" | "all"; readonly mine: "all" | "none" | "right" | "wrong"; readonly order: "course" | "worst" };
+type Filter = {
+  readonly kind: Kind | "all";
+  readonly status: Status | "held" | "all";
+  readonly mine: "all" | "none" | "right" | "wrong";
+  readonly order: "course" | "worst";
+  /** A voice (voiceOf) or "all"; "" until the listener picks one: the course's own voice. */
+  readonly voice: string;
+};
 
 /** Every clip of the course, to listen to and judge. */
 export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element => {
@@ -240,7 +252,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
     };
   }, [base, course.id]);
   const [stored, setStored] = useState(() => load(course.id));
-  const [filter, setFilter] = useState<Filter>({ kind: "all", status: "all", mine: "all", order: "course" });
+  const [filter, setFilter] = useState<Filter>({ kind: "all", status: "all", mine: "all", order: "course", voice: "" });
   const [focus, setFocus] = useState<string | undefined>(undefined);
   const players = useRef(new Map<string, (speed: Speed) => void>());
   const stopActive = useRef<(() => void) | undefined>(undefined);
@@ -286,17 +298,32 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
     else players.current.set(key, play);
   }, []);
 
+  /**
+   * The voices that made the course's clips, in the order the course casts them. A course that
+   * keeps an older voice for the clips not yet made again opens on its own (first) voice: the
+   * older one's clips are on their way out.
+   */
+  const voices = useMemo(() => {
+    const made = new Set(rows.map(voiceOf));
+    const cast = (data?.voices ?? []).map((v) => ({ key: `${v.provider}:${v.voice}`, name: v.id, provider: v.provider }));
+    const listed = cast.filter((v) => made.has(v.key));
+    const others = [...made].filter((key) => !listed.some((v) => v.key === key)).sort();
+    return [...listed, ...others.map((key) => ({ key, name: key.slice(key.indexOf(":") + 1), provider: key.slice(0, Math.max(0, key.indexOf(":"))) }))];
+  }, [rows, data]);
+  const voiceShown = filter.voice !== "" ? filter.voice : voices.length > 1 ? (voices[0]?.key ?? "all") : "all";
+
   const shown = useMemo(() => {
     const kept = rows.filter((row) => {
       const mine = current(stored[row.key], row)?.verdict;
       return (
+        (voiceShown === "all" || voiceOf(row) === voiceShown) &&
         (filter.kind === "all" || row.kind === filter.kind) &&
         (filter.status === "all" || (filter.status === "held" ? heldBack(row) : statusOf(row) === filter.status)) &&
         (filter.mine === "all" || (filter.mine === "none" ? mine === undefined : mine === filter.mine))
       );
     });
     return filter.order === "worst" ? [...kept].sort((a, b) => (b.normal?.qa?.cer ?? -1) - (a.normal?.qa?.cer ?? -1)) : kept;
-  }, [rows, stored, filter]);
+  }, [rows, stored, filter, voiceShown]);
   const at = Math.max(0, shown.findIndex((r) => r.key === focus));
   const focused = shown[at];
 
@@ -344,10 +371,10 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
   const reference = data?.index.references?.find((r) => r.id === voice?.voice);
   const sample = rows.find((r) => r.target?.forms[orthography] !== undefined)?.target?.forms[orthography];
 
-  const select = <K extends keyof Filter>(key: K, label: string, options: readonly [Filter[K], string][]): JSX.Element => (
+  const select = <K extends keyof Filter>(key: K, label: string, options: readonly [Filter[K], string][], value: Filter[K] = filter[key]): JSX.Element => (
     <label className={styles.filter}>
       <span>{label}</span>
-      <select value={filter[key]} onChange={(e) => setFilter({ ...filter, [key]: e.target.value as Filter[K] })} data-filter={key}>
+      <select value={value} onChange={(e) => setFilter({ ...filter, [key]: e.target.value as Filter[K] })} data-filter={key}>
         {options.map(([value, text]) => (
           <option key={value} value={value}>
             {text}
@@ -413,6 +440,16 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
             </div>
           </dl>
           <div className={styles.filters}>
+            {voices.length > 1 &&
+              select(
+                "voice",
+                t.format("audio.check.filter.voice"),
+                [
+                  ...voices.map((v): [string, string] => [v.key, v.key === "recorded" ? t.format("audio.check.voice.recorded") : t.format("audio.check.voice.option", { name: v.name, provider: v.provider })]),
+                  ["all", t.format("audio.check.voice.all")],
+                ],
+                voiceShown,
+              )}
             {select("kind", t.format("audio.check.filter.kind"), [
               ["all", t.format("audio.check.kind.all")],
               ["word", t.format("audio.check.kind.word")],
