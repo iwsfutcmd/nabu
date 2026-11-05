@@ -7,6 +7,8 @@ the course voice's orthography:
   punctuation included (it carries the intonation of questions and exclamations). A voice that
   reads text but takes inline IPA (`pronounce`) gets IPA for every token whose spelling does
   not settle its pinned reading, and the plain spelling for the rest;
+- a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
+  gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
 - each clip comes at normal and slow speed;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
   token indices the app highlights (karaoke) and taps;
@@ -20,9 +22,12 @@ Human recordings (`ingest`) live in the same index and are never touched by rege
 from __future__ import annotations
 
 import hashlib
+import io
 import json
 import subprocess
 import tempfile
+import unicodedata
+import wave
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -33,8 +38,8 @@ import yaml
 
 from nabu import yamlio
 from nabu.audio import jyutping
-from nabu.audio.providers import Clip, Provider, Request, provider
-from nabu.schema.models import AudioIndex, AudioVoice
+from nabu.audio.providers import Clip, OmniVoiceProvider, Provider, Reference, Request, provider
+from nabu.schema.models import AudioIndex, AudioVoice, ReferenceVoice
 
 INDEX = "index.yaml"
 SLOW = 0.67
@@ -195,7 +200,8 @@ def plan(
                     for surface, reading in _morph_readings(t, t["readings"][scheme]):
                         in_words.setdefault(surface, reading)
             as_written = (written or {}).get((s["id"], orth))
-            planned = _input_of(tokens, voice, as_written)
+            # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
+            planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
             if planned is None:
                 skipped.append(s["id"])
                 continue
@@ -211,13 +217,8 @@ def plan(
                 continue
             word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
             kc_written = (written or {}).get((kc["id"], orth))
-            surface = (
-                "".join(kc_written)
-                if kc_written is not None
-                else "".join(t["surface"] for t in word)
-                if word
-                else str(forms[0])
-            )
+            marked = "".join(t["surface"] for t in word) if word else str(forms[0])
+            surface = "".join(kc_written) if kc_written is not None else marked
             reading = readings.get(surface, in_words.get(surface))
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
@@ -227,7 +228,7 @@ def plan(
             elif voice.pronounce is not None and reading is not None:
                 piece = pronounced(surface, reading, voice.pronounce)
             else:
-                piece = surface
+                piece = marked if voice.vowelMarks else surface
             assert piece is not None
             items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface))
     return items, skipped
@@ -343,12 +344,12 @@ def synthesize_course(
     written: Written | None = None,
 ) -> Report:
     """(Re)synthesizes the course's clips; unchanged inputs keep their files."""
-    tts = provider(voice)
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    tts = provider(voice, reference_of(adir, index, voice.voice))
     version = tts.version()
     settings = tts.settings()
     items, skipped = plan(units, voice, written)
-    adir = audio_dir(course_dir)
-    index = read_index(adir)
     clips_dir = adir / "clips"
     clips_dir.mkdir(parents=True, exist_ok=True)
     human = [c for c in index.clips if not c.synthetic]
@@ -372,6 +373,12 @@ def synthesize_course(
             wanted.append((item, speed, rate, ident))
     author = f"generated:{tts.name}@{version}"
     fresh: list[dict[str, Any]] = []
+    # Everything but the clips (the reference voices) is kept as it was.
+    references = {
+        k: v
+        for k, v in index.model_dump(mode="json", by_alias=True, exclude_none=True).items()
+        if k != "clips"
+    }
 
     def dump(clips: list[Any]) -> list[dict[str, Any]]:
         return [c.model_dump(mode="json", by_alias=True, exclude_none=True) for c in clips]
@@ -382,7 +389,7 @@ def synthesize_course(
             previous[(i.item, sp)] for i, sp, _, _ in wanted[done:] if (i.item, sp) in previous
         ]
         clips = [*dump([*human, *kept, *waiting]), *fresh]
-        write_index(adir, AudioIndex.model_validate({"version": 1, "clips": clips}))
+        write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
     # In batches, saving the index after each: a provider failing midway (a rate limit, an
     # outage) keeps every clip already made, and the next run picks up from there.
@@ -403,3 +410,73 @@ def synthesize_course(
             report.removed += 1
     save(len(wanted))
     return report
+
+
+# ------------------------------------------------------------------------------- reference voices
+
+
+def reference_of(adir: Path, index: AudioIndex, voice: str) -> Reference | None:
+    """The index's reference voice by id, checked against its file."""
+    ref = next((r for r in index.references or [] if r.id == voice), None)
+    if ref is None:
+        return None
+    path = adir / ref.file
+    if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != ref.sha256:
+        raise ValueError(f"reference voice {ref.id}: {ref.file} is missing or changed")
+    return Reference(path, ref.text, ref.sha256)
+
+
+def wav_bytes(pcm: bytes, sample_rate: int) -> bytes:
+    """16-bit mono PCM as a WAV file, byte-for-byte reproducible."""
+    out = io.BytesIO()
+    with wave.open(out, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(sample_rate)
+        w.writeframes(pcm)
+    return out.getvalue()
+
+
+def cast_reference(
+    course_dir: Path,
+    voice: AudioVoice,
+    text: str,
+    instruct: str,
+    seed: int,
+    tts: OmniVoiceProvider | None = None,
+) -> ReferenceVoice:
+    """Designs the voice's reference from speaker attributes and keeps it in the audio index
+    (voices/<voice>.wav), replacing an earlier one. Clips cloned from the old one become stale."""
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    designer = tts or OmniVoiceProvider(voice, Reference(Path(), "", "0" * 64))
+    text = unicodedata.normalize("NFC", text.strip())
+    clip = designer.design(text, instruct, seed)
+    data = wav_bytes(clip.pcm, clip.sample_rate)
+    rel = f"voices/{voice.voice}.wav"
+    (adir / "voices").mkdir(parents=True, exist_ok=True)
+    (adir / rel).write_bytes(data)
+    version = designer.version()
+    ref = ReferenceVoice.model_validate(
+        {
+            "id": voice.voice,
+            "file": rel,
+            "sha256": hashlib.sha256(data).hexdigest(),
+            "text": text,
+            "durationMs": len(clip.pcm) // 2 * 1000 // clip.sample_rate,
+            "license": voice.license,
+            "provenance": {"author": f"generated:{designer.name}@{version}", "status": "draft"},
+            "synthetic": True,
+            "design": {
+                "provider": designer.name,
+                "version": version,
+                "language": designer.language,
+                "instruct": instruct,
+                "seed": seed,
+                "dtype": designer.settings()["dtype"],
+            },
+        }
+    )
+    others = [r for r in index.references or [] if r.id != voice.voice]
+    write_index(adir, index.model_copy(update={"references": [*others, ref]}))
+    return ref

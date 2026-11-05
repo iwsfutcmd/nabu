@@ -47,7 +47,8 @@ def generate(
 ) -> None:
     """Synthesize the course's clips from pinned readings; unchanged inputs are kept.
 
-    Hosted voices (elevenlabs, cartesia) read their API key from the environment.
+    Hosted voices (elevenlabs, cartesia) read their API key from the environment. OmniVoice
+    voices need the omnivoice group (`uv sync --group omnivoice`) and a reference (`cast`).
     """
     from nabu.audio.course import synthesize_course
     from nabu.audio.providers import MissingKey, ProviderError
@@ -87,6 +88,45 @@ def generate(
     )
     for item in report.skipped:
         typer.echo(f"  - {item}: no {voice.reading} reading", err=True)
+
+
+@app.command()
+def cast(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+    text: Annotated[
+        str, typer.Option(help="What the reference says (a few seconds, the course's language).")
+    ],
+    instruct: Annotated[
+        str, typer.Option(help='Speaker attributes, e.g. "male, young adult, moderate pitch".')
+    ],
+    seed: Annotated[
+        int, typer.Option(help="Sampling seed: the same seed gives the same voice.")
+    ] = 0,
+    voice_id: Annotated[
+        str | None,
+        typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
+    ] = None,
+) -> None:
+    """Design an OmniVoice voice's reference from speaker attributes (ADR 0058).
+
+    Every clip of the voice clones the reference, so the course voice is one speaker. Casting
+    again replaces it, and its clips are synthesized again on the next `generate`.
+    """
+    from nabu.audio.course import cast_reference
+
+    _, source, _, _ = _compiled(course)
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    voice = next((v for v in voices if voice_id in (None, v.id)), None)
+    if voice is None or voice.provider != "omnivoice":
+        typer.echo(f"✗ {source.id}: no OmniVoice voice {voice_id or ''} in the cast", err=True)
+        raise typer.Exit(code=1)
+    course_dir = course if course.is_dir() else course.parent
+    try:
+        ref = cast_reference(course_dir, voice, text, instruct, seed)
+    except ValueError as error:
+        typer.echo(f"✗ {source.id}: {error}", err=True)
+        raise typer.Exit(code=1) from None
+    typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license}), {instruct}")
 
 
 @app.command()

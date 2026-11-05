@@ -316,6 +316,7 @@ export interface NabuSchemaIndex {
   readonly EvalItem: EvalItem;
   readonly EvalGate: EvalGate;
   readonly AudioIndex: AudioIndex;
+  readonly ReferenceVoice: ReferenceVoice;
   readonly AudioClip: AudioClip;
   readonly SynthesisRecord: SynthesisRecord;
   readonly TokenTiming: TokenTiming;
@@ -779,6 +780,10 @@ export interface EvalGate {
 export interface AudioIndex {
   readonly version: 1;
   readonly clips: readonly AudioClip[];
+  /**
+   * Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker.
+   */
+  readonly references?: readonly ReferenceVoice[];
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -875,6 +880,49 @@ export interface AudioQa {
    */
   readonly cer?: number;
   readonly status?: "pass" | "review" | "fail";
+}
+/**
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ReferenceVoice".
+ */
+export interface ReferenceVoice {
+  /**
+   * The id a course voice names as its `voice`.
+   */
+  readonly id: string;
+  /**
+   * The recording, relative to the audio directory (voices/<id>.wav: 16-bit PCM, kept lossless for cloning).
+   */
+  readonly file: string;
+  readonly sha256: string;
+  /**
+   * What the recording says, NFC: the cloning prompt's transcript.
+   */
+  readonly text: string;
+  readonly durationMs: number;
+  readonly license: Spdx;
+  readonly provenance: Provenance;
+  /**
+   * Designed by the model from speaker attributes (`design`), not recorded.
+   */
+  readonly synthetic: boolean;
+  /**
+   * How a synthetic reference was made, so it can be made again.
+   */
+  readonly design?: {
+    readonly provider: string;
+    readonly version: string;
+    readonly language: string;
+    /**
+     * The speaker attributes ("male, young adult, moderate pitch").
+     */
+    readonly instruct: string;
+    readonly seed: number;
+    /**
+     * The weights' precision ("bfloat16").
+     */
+    readonly dtype?: string;
+  };
 }
 /**
  * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
@@ -1655,19 +1703,23 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id or a Cartesia voice id.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**
-   * Hosted providers: the language code the provider takes for this course (ElevenLabs language_code, Cartesia language), e.g. "fa", "uz", "yue", "ar".
+   * The language code the provider takes for this course (ElevenLabs language_code, Cartesia language, OmniVoice language id), e.g. "fa", "uz", "yue", "ar". The Lahgtna checkpoint's dialect ids reuse country codes: "lb" is Lebanese Arabic there.
    */
   readonly language?: string;
+  /**
+   * With reading "text": read the text with the vowel marks the course's vocalization gives (ADR 0053) rather than as the source writes it, for a voice whose model reads them (Lahgtna reads تشكيل). A change to the vocalization then changes the clips it touches.
+   */
+  readonly vowelMarks?: boolean;
   /**
    * With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).
    */

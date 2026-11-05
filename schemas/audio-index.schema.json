@@ -18,9 +18,106 @@
       "items": {
         "$ref": "#/$defs/AudioClip"
       }
+    },
+    "references": {
+      "description": "Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/ReferenceVoice"
+      }
     }
   },
   "$defs": {
+    "ReferenceVoice": {
+      "title": "ReferenceVoice",
+      "type": "object",
+      "required": [
+        "id",
+        "file",
+        "sha256",
+        "text",
+        "durationMs",
+        "license",
+        "provenance",
+        "synthetic"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "description": "The id a course voice names as its `voice`.",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "file": {
+          "description": "The recording, relative to the audio directory (voices/<id>.wav: 16-bit PCM, kept lossless for cloning).",
+          "type": "string",
+          "pattern": "^voices/[a-z][a-z0-9-]*\\.wav$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "text": {
+          "description": "What the recording says, NFC: the cloning prompt's transcript.",
+          "type": "string",
+          "minLength": 1
+        },
+        "durationMs": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "license": {
+          "$ref": "course-source.schema.json#/$defs/Spdx"
+        },
+        "provenance": {
+          "$ref": "course-source.schema.json#/$defs/Provenance"
+        },
+        "synthetic": {
+          "description": "Designed by the model from speaker attributes (`design`), not recorded.",
+          "type": "boolean"
+        },
+        "design": {
+          "description": "How a synthetic reference was made, so it can be made again.",
+          "type": "object",
+          "required": [
+            "provider",
+            "version",
+            "language",
+            "instruct",
+            "seed"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "provider": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            },
+            "language": {
+              "type": "string",
+              "minLength": 1
+            },
+            "instruct": {
+              "description": "The speaker attributes (\"male, young adult, moderate pitch\").",
+              "type": "string",
+              "minLength": 1
+            },
+            "seed": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "dtype": {
+              "description": "The weights' precision (\"bfloat16\").",
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
     "AudioClip": {
       "title": "AudioClip",
       "type": "object",

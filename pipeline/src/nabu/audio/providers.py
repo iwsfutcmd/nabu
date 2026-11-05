@@ -18,6 +18,13 @@ Two hosted providers, for languages the local voices serve badly (ADR 0042):
   timestamps. Speed 0.7-1.2.
 - **cartesia** (Sonic): word timestamps over server-sent events; speed 0.6-1.5; no seed.
 
+One local model for dialects the others do not serve (ADR 0058):
+
+- **omnivoice**: OmniVoice checkpoints from Hugging Face, run on this machine. The Lahgtna
+  fine-tune reads Arabic dialects, Lebanese among them (language id "lb"), and reads vowel marks.
+  Every clip clones the course's reference voice (`nabu audio cast`), so one course voice is one
+  speaker; each clip's sampling is seeded from its identity. No timings.
+
 Hosted providers read their key from the environment (ELEVENLABS_API_KEY, CARTESIA_API_KEY),
 never from course files, and only when synthesizing. Their audio is not reproducible
 bit-for-bit (the provider's model may change under the same id); clips are committed, so
@@ -30,9 +37,11 @@ import base64
 import hashlib
 import json
 import os
+import sys
 import time
 import urllib.error
 import urllib.request
+from array import array
 from collections.abc import Callable
 from dataclasses import dataclass
 from functools import cache
@@ -51,6 +60,15 @@ class Request:
     voice: str
     #: Relative speed: 1 normal, below 1 slower.
     rate: float = 1.0
+
+
+@dataclass(frozen=True)
+class Reference:
+    """A reference voice a cloning provider imitates: the recording and what it says."""
+
+    path: Path
+    text: str
+    sha256: str
 
 
 @dataclass(frozen=True)
@@ -258,8 +276,7 @@ class ElevenLabsProvider:
     @staticmethod
     def seed(request: Request) -> int:
         """Best-effort determinism: the same input and rate ask for the same seed."""
-        key = json.dumps([request.voice, request.input, request.rate], ensure_ascii=False)
-        return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
+        return seed_of(request)
 
     def body(self, request: Request) -> dict[str, Any]:
         return {
@@ -388,16 +405,188 @@ class CartesiaProvider:
         return out
 
 
-PROVIDERS: dict[str, Callable[[AudioVoice], Provider]] = {
-    "espeak-ng": lambda _voice: EspeakProvider(),
-    "piper": lambda _voice: PiperProvider(),
-    "elevenlabs": ElevenLabsProvider,
-    "cartesia": CartesiaProvider,
+def seed_of(request: Request) -> int:
+    """Best-effort determinism: the same voice, input and rate ask for the same seed."""
+    key = json.dumps([request.voice, request.input, request.rate], ensure_ascii=False)
+    return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:4], "big")
+
+
+def checkpoint(model: str) -> tuple[str, str]:
+    """A Hugging Face checkpoint pinned to a commit: "owner/name@<40 hex>"."""
+    repo, _, revision = model.partition("@")
+    if (
+        not repo.count("/") == 1
+        or len(revision) != 40
+        or not all(c in "0123456789abcdef" for c in revision)
+    ):
+        raise ValueError(f"{model!r}: an OmniVoice model is owner/name@<the 40-hex commit>")
+    return repo, revision
+
+
+class OmniVoiceEngine(Protocol):
+    """What the provider needs of an OmniVoice model (a fake one in tests)."""
+
+    sampling_rate: int
+
+    def clone_prompt(self, audio: Path, text: str) -> Any: ...
+
+    def speak(
+        self,
+        text: str,
+        language: str,
+        seed: int,
+        num_step: int,
+        guidance_scale: float,
+        **extra: Any,
+    ) -> Any:
+        """Float samples in [-1, 1]; `extra`: voice_clone_prompt, instruct, speed."""
+        ...
+
+
+class _OmniVoice:
+    def __init__(self, model: Any) -> None:
+        self.model = model
+        self.sampling_rate = int(model.sampling_rate)
+
+    def clone_prompt(self, audio: Path, text: str) -> Any:
+        return self.model.create_voice_clone_prompt(ref_audio=str(audio), ref_text=text)
+
+    def speak(
+        self,
+        text: str,
+        language: str,
+        seed: int,
+        num_step: int,
+        guidance_scale: float,
+        **extra: Any,
+    ) -> Any:
+        torch = optional("torch")
+        omnivoice = optional("omnivoice")
+        torch.manual_seed(seed)
+        config = omnivoice.OmniVoiceGenerationConfig(
+            num_step=num_step, guidance_scale=guidance_scale
+        )
+        return self.model.generate(text=text, language=language, generation_config=config, **extra)[
+            0
+        ]
+
+
+#: The weights' precision: bfloat16, as the checkpoint was trained. On a CPU with AMX it runs two
+#: to three times faster than float32; GPUs from Ampere on run it natively.
+OMNIVOICE_DTYPE = "bfloat16"
+
+
+@cache
+def load_omnivoice(repo: str, revision: str) -> OmniVoiceEngine:
+    """The OmniVoice model at that commit (cached), on the GPU when there is one."""
+    hub = optional("huggingface_hub")
+    torch = optional("torch")
+    omnivoice = optional("omnivoice")
+    path = hub.snapshot_download(repo, revision=revision)
+    cuda = bool(torch.cuda.is_available())
+    model = omnivoice.OmniVoice.from_pretrained(
+        path, device_map="cuda:0" if cuda else "cpu", dtype=getattr(torch, OMNIVOICE_DTYPE)
+    )
+    return _OmniVoice(model)
+
+
+def omnivoice_version() -> str:
+    from importlib.metadata import version
+
+    return version("omnivoice")
+
+
+def to_pcm(samples: Any) -> bytes:
+    """Float samples in [-1, 1] as s16le: numpy's when it is there (the model's arrays), plain
+    Python otherwise (without the speech groups)."""
+    try:
+        import numpy as np
+    except ImportError:
+        pcm = array("h", (round(max(-1.0, min(1.0, float(x))) * 32767.0) for x in samples))
+        if sys.byteorder == "big":
+            pcm.byteswap()
+        return pcm.tobytes()
+    data = np.clip(np.asarray(samples, dtype=np.float32), -1.0, 1.0)
+    return bytes((data * 32767.0).round().astype("<i2").tobytes())
+
+
+class OmniVoiceProvider:
+    """An OmniVoice checkpoint (`model`: owner/name@commit) speaking `language` in the voice of a
+    reference recording. Diffusion sampling is seeded per clip (`seed_of`), so the same input,
+    rate and settings give the same clip on the same kind of machine and library versions."""
+
+    name = "omnivoice"
+    #: Decoding steps and guidance: OmniVoice's defaults, pinned so a change of defaults cannot
+    #: change new clips silently.
+    NUM_STEP = 32
+    GUIDANCE_SCALE = 2.0
+
+    def __init__(
+        self,
+        voice: AudioVoice,
+        reference: Reference | None,
+        load: Callable[[str, str], OmniVoiceEngine] = load_omnivoice,
+        package: Callable[[], str] = omnivoice_version,
+    ) -> None:
+        self.repo, self.revision = checkpoint(_required(voice, "model"))
+        self.language = _required(voice, "language")
+        if reference is None:
+            raise ValueError(
+                f"voice {voice.id}: no reference voice {voice.voice!r} in the audio index "
+                f"(`nabu audio cast <course> --voice {voice.id}`)"
+            )
+        self.reference = reference
+        self.load = load
+        self.package = package
+
+    def version(self) -> str:
+        # No spaces or "@": it also names the clips' author (generated:omnivoice@<version>).
+        return f"{self.repo}#{self.revision}+omnivoice-{self.package()}"
+
+    def settings(self) -> dict[str, Any]:
+        return {
+            "language": self.language,
+            "numStep": self.NUM_STEP,
+            "guidanceScale": self.GUIDANCE_SCALE,
+            "dtype": OMNIVOICE_DTYPE,
+            "reference": self.reference.sha256,
+        }
+
+    def speed(self, rate: float) -> float:
+        return rate
+
+    def _speak(self, engine: OmniVoiceEngine, text: str, seed: int, **extra: Any) -> Clip:
+        samples = engine.speak(
+            text, self.language, seed, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
+        )
+        return Clip(to_pcm(samples), engine.sampling_rate, None, None)
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        engine = self.load(self.repo, self.revision)
+        prompt = engine.clone_prompt(self.reference.path, self.reference.text)
+        out: list[Clip] = []
+        for r in requests:
+            speed = {} if r.rate == 1.0 else {"speed": r.rate}
+            out.append(self._speak(engine, r.input, seed_of(r), voice_clone_prompt=prompt, **speed))
+        return out
+
+    def design(self, text: str, instruct: str, seed: int) -> Clip:
+        """A reference voice from speaker attributes (voice design), as `nabu audio cast` keeps."""
+        return self._speak(self.load(self.repo, self.revision), text, seed, instruct=instruct)
+
+
+PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
+    "espeak-ng": lambda _voice, _ref: EspeakProvider(),
+    "piper": lambda _voice, _ref: PiperProvider(),
+    "elevenlabs": lambda voice, _ref: ElevenLabsProvider(voice),
+    "cartesia": lambda voice, _ref: CartesiaProvider(voice),
+    "omnivoice": lambda voice, ref: OmniVoiceProvider(voice, ref),
 }
 
 
-def provider(voice: AudioVoice) -> Provider:
-    """The provider of a course voice, configured from it (model, language)."""
+def provider(voice: AudioVoice, reference: Reference | None = None) -> Provider:
+    """The provider of a course voice, configured from it (model, language) and, for a cloning
+    provider, its reference voice."""
     if voice.provider not in PROVIDERS:
         raise ValueError(f"unknown TTS provider {voice.provider!r}")
-    return PROVIDERS[voice.provider](voice)
+    return PROVIDERS[voice.provider](voice, reference)

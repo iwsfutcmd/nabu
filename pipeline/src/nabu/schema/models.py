@@ -187,6 +187,31 @@ type ReportStatus = Annotated[
 type Note = Annotated[str, Field(max_length=500)]
 
 
+class Design(BaseModel):
+    """
+    How a synthetic reference was made, so it can be made again.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    provider: Annotated[str, Field(min_length=1)]
+    version: Annotated[str, Field(min_length=1)]
+    language: Annotated[str, Field(min_length=1)]
+    instruct: Annotated[
+        str,
+        Field(
+            description='The speaker attributes ("male, young adult, moderate pitch").',
+            min_length=1,
+        ),
+    ]
+    seed: Annotated[int, Field(ge=0)]
+    dtype: Annotated[
+        str | None, Field(description='The weights\' precision ("bfloat16").', min_length=1)
+    ] = None
+
+
 class SynthesisRecord(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -671,28 +696,34 @@ class AudioVoice(BaseModel):
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
     provider: Annotated[
-        Literal["espeak-ng", "piper", "elevenlabs", "cartesia"],
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice"],
         Field(description="A provider of nabu.audio.providers."),
     ]
     voice: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id or a Cartesia voice id.",
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
             min_length=1,
         ),
     ]
     model: Annotated[
         str | None,
         Field(
-            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). It is the clips\' recorded version.',
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…"). It is the clips\' recorded version.',
             min_length=1,
         ),
     ] = None
     language: Annotated[
         str | None,
         Field(
-            description='Hosted providers: the language code the provider takes for this course (ElevenLabs language_code, Cartesia language), e.g. "fa", "uz", "yue", "ar".',
+            description='The language code the provider takes for this course (ElevenLabs language_code, Cartesia language, OmniVoice language id), e.g. "fa", "uz", "yue", "ar". The Lahgtna checkpoint\'s dialect ids reuse country codes: "lb" is Lebanese Arabic there.',
             pattern="^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+        ),
+    ] = None
+    vowelMarks: Annotated[
+        bool | None,
+        Field(
+            description='With reading "text": read the text with the vowel marks the course\'s vocalization gives (ADR 0053) rather than as the source writes it, for a voice whose model reads them (Lahgtna reads تشكيل). A change to the vocalization then changes the clips it touches.'
         ),
     ] = None
     pronounce: Annotated[
@@ -1925,6 +1956,47 @@ class EvalGate(BaseModel):
     evaluatedAt: AwareDatetime
 
 
+class ReferenceVoice(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[
+        str,
+        Field(
+            description="The id a course voice names as its `voice`.", pattern="^[a-z][a-z0-9-]*$"
+        ),
+    ]
+    file: Annotated[
+        str,
+        Field(
+            description="The recording, relative to the audio directory (voices/<id>.wav: 16-bit PCM, kept lossless for cloning).",
+            pattern="^voices/[a-z][a-z0-9-]*\\.wav$",
+        ),
+    ]
+    sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+    text: Annotated[
+        str,
+        Field(
+            description="What the recording says, NFC: the cloning prompt's transcript.",
+            min_length=1,
+        ),
+    ]
+    durationMs: Annotated[int, Field(ge=1)]
+    license: Spdx
+    provenance: Provenance
+    synthetic: Annotated[
+        bool,
+        Field(
+            description="Designed by the model from speaker attributes (`design`), not recorded."
+        ),
+    ]
+    design: Annotated[
+        Design | None,
+        Field(description="How a synthetic reference was made, so it can be made again."),
+    ] = None
+
+
 class AudioClip(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2576,6 +2648,12 @@ class AudioIndex(BaseModel):
     )
     version: Literal[1]
     clips: list[AudioClip]
+    references: Annotated[
+        list[ReferenceVoice] | None,
+        Field(
+            description="Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker."
+        ),
+    ] = None
 
 
 class BundleAudio(BaseModel):

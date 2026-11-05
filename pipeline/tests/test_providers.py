@@ -309,7 +309,7 @@ def test_a_provider_failing_midway_keeps_the_clips_already_made(
         return eleven_reply(url, json.loads(body))
 
     monkeypatch.setitem(
-        providers.PROVIDERS, "elevenlabs", lambda v: ElevenLabsProvider(v, transport=flaky)
+        providers.PROVIDERS, "elevenlabs", lambda v, _r: ElevenLabsProvider(v, transport=flaky)
     )
     pronouncing = voice("elevenlabs", pronounce="jyutping")
     total = 2 * len(plan(yue_units, pronouncing)[0])

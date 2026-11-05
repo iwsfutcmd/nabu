@@ -9,5 +9,10 @@ provenance: {author: 'llm:claude@6914f241714e', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-food.yaml, units/u04-home.yaml, units/u05-numbers.yaml, units/u06-day.yaml, units/u07-likes.yaml, units/u08-time.yaml, units/u09-past.yaml, units/u10-plans.yaml]
 # Vowel marks (ADR 0053): the compiler marks each Arabic-script word from vocalization.yaml; Arabizi is untouched.
 vocalization: [vocalization.yaml]
-# Audio (§10.1): Lebanese Arabic has no TTS good enough to teach with; only human recordings.
-audio: {humanRequired: true}
+# Audio (§10.1, ADR 0058): a synthetic Beirut voice, Lahgtna on OmniVoice, reading the vowel-marked Arabic
+# and cloning one reference (`nabu audio cast`). A man's voice: sentences tagged with a speaker are a man speaking.
+# The model's weights are CC-BY-NC (OmniVoice's training data), so its clips are too.
+audio:
+  voices:
+  - {id: beirut, provider: omnivoice, voice: beirut-m, model: 'oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2',
+    language: lb, orthography: apc-Arab/standard, reading: text, vowelMarks: true, license: CC-BY-NC-4.0}
