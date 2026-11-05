@@ -35,6 +35,7 @@ from __future__ import annotations
 
 import base64
 import hashlib
+import importlib
 import json
 import os
 import sys
@@ -500,7 +501,8 @@ def to_pcm(samples: Any) -> bytes:
     """Float samples in [-1, 1] as s16le: numpy's when it is there (the model's arrays), plain
     Python otherwise (without the speech groups)."""
     try:
-        import numpy as np
+        # By name: numpy comes with the speech groups, which CI and its type check leave out.
+        np: Any = importlib.import_module("numpy")
     except ImportError:
         pcm = array("h", (round(max(-1.0, min(1.0, float(x))) * 32767.0) for x in samples))
         if sys.byteorder == "big":
