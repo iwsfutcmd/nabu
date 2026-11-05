@@ -121,7 +121,20 @@ test.describe("sync", () => {
     await home(page);
     const status = page.locator("[data-sync-status]");
     await expect(status).toHaveAttribute("data-sync-status", /^(offline|pending)$/u);
-    const pending = Number(await status.getAttribute("data-pending"));
+    // The session's last events are still being stored as the path opens: read the queue once
+    // it holds still (the same size twice, half a second apart).
+    let pending = -1;
+    await expect
+      .poll(
+        async () => {
+          const now = Number(await status.getAttribute("data-pending"));
+          const settled = now === pending;
+          pending = now;
+          return settled;
+        },
+        { intervals: [500] },
+      )
+      .toBe(true);
     expect(pending).toBeGreaterThan(10);
 
     // A reload keeps the queue: it lives in IndexedDB.
