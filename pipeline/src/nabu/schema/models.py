@@ -249,6 +249,58 @@ class AudioQa(BaseModel):
     status: Literal["pass", "review", "fail"] | None = None
 
 
+class AudioRejection(BaseModel):
+    """
+    A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    by: Annotated[str, Field(description="Who judged it: human:<id>.", pattern="^human:[^\\s@]+$")]
+    at: Annotated[str, Field(pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}$")]
+    note: Annotated[str | None, Field(max_length=500, min_length=1)] = None
+
+
+type Clip = Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
+
+
+class AudioVerdict(BaseModel):
+    """
+    One item's clips as heard: the normal-speed clip and its slow one together, since the round trip checks the item as one.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    item: Annotated[
+        str,
+        Field(
+            description='Sentence id, KC id for a word, or "<story>#<step>" for a story line.',
+            min_length=1,
+        ),
+    ]
+    clips: Annotated[
+        list[Clip],
+        Field(
+            description="sha256 of each clip heard. A verdict applies only to these: a clip made again since is left alone.",
+            min_length=1,
+        ),
+    ]
+    verdict: Literal["right", "wrong"]
+    note: Annotated[
+        str | None,
+        Field(
+            description="What is wrong (or anything else worth saying), in the listener's words.",
+            max_length=500,
+            min_length=1,
+        ),
+    ] = None
+    at: Annotated[AwareDatetime, Field(description="When the listener judged it (ISO 8601).")]
+
+
 class BundleFile(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2057,6 +2109,20 @@ class AudioClip(BaseModel):
     ] = None
     timingSource: Literal["synthesis", "alignment"] | None = None
     qa: AudioQa | None = None
+    rejected: AudioRejection | None = None
+
+
+class AudioVerdicts(BaseModel):
+    """
+    A listener's verdicts on a course's clips (ADR 0060): written by the web app's audio check, applied to the audio index by `nabu audio verdicts`. A clip judged right is marked reviewed (a clip the round-trip check failed then ships); a clip judged wrong is rejected and stays out of bundles.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[str, Field(description="The course id.", pattern="^[a-z][a-z0-9-]*$")]
+    verdicts: list[AudioVerdict]
 
 
 class BundleManifest(BaseModel):
@@ -3185,6 +3251,7 @@ class CourseSource(BaseModel):
 type NabuSchemaBundle = Annotated[
     AiOutputs
     | AudioIndex
+    | AudioVerdicts
     | BundleManifest
     | Corrections
     | CourseSource

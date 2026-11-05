@@ -574,6 +574,170 @@
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
       "description": "Total experience points in this course. XP: experience points, often left as XP."
     },
+    "audio.check.back": {
+      "message": "Back to the course",
+      "description": "Audio check: link back to the course page."
+    },
+    "audio.check.cer": {
+      "message": ".input {$cer :number maximumFractionDigits=2}\n{{Error rate {$cer}}}",
+      "description": "Audio check: the speech recognizer's character error rate for the clip, from 0 (heard exactly) up."
+    },
+    "audio.check.export": {
+      "message": ".input {$count :number}\n.match $count\none {{Download your verdict ({$count})}}\n* {{Download your verdicts ({$count})}}",
+      "description": "Audio check: button that saves the listener's verdicts as a file for `nabu audio verdicts`. $count is how many."
+    },
+    "audio.check.filter.kind": {
+      "message": "Show",
+      "description": "Audio check: label of the filter by kind of item."
+    },
+    "audio.check.filter.mine": {
+      "message": "Your verdict",
+      "description": "Audio check: label of the filter by the listener's own verdict."
+    },
+    "audio.check.filter.order": {
+      "message": "Order",
+      "description": "Audio check: label of the sort order."
+    },
+    "audio.check.filter.status": {
+      "message": "Round trip",
+      "description": "Audio check: label of the filter by how the speech recognizer check went."
+    },
+    "audio.check.heard": {
+      "message": "Heard:",
+      "description": "Audio check: label before what the speech recognizer heard in the clip (shown in the course's language)."
+    },
+    "audio.check.held": {
+      "message": "Held back",
+      "description": "Audio check: badge on an item the learners' app does not play, because its clip failed the check or a listener rejected it."
+    },
+    "audio.check.intro": {
+      "message": "Every clip of this course, with what the speech recognizer heard when it was made. Listen, and say whether each one sounds right. Your verdicts stay on this device until you download them.",
+      "description": "Audio check: explanation under the heading."
+    },
+    "audio.check.keys": {
+      "message": "Keys: J and K move between items, Space plays, S plays slowly, R says it sounds right, W says it sounds wrong.",
+      "description": "Audio check: keyboard shortcuts, shown under the filters. Name the keys as they are on the keyboard (J, K, Space, S, R, W)."
+    },
+    "audio.check.kind.all": {
+      "message": "Everything",
+      "description": "Audio check: filter option, every kind of item."
+    },
+    "audio.check.kind.line": {
+      "message": "Story lines",
+      "description": "Audio check: filter option and badge, a line of a story."
+    },
+    "audio.check.kind.sentence": {
+      "message": "Sentences",
+      "description": "Audio check: filter option and badge, a sentence."
+    },
+    "audio.check.kind.word": {
+      "message": "Words",
+      "description": "Audio check: filter option and badge, a word (a vocabulary item)."
+    },
+    "audio.check.loading": {
+      "message": "Loading the clips…",
+      "description": "Audio check: shown while the list of clips loads."
+    },
+    "audio.check.mine.all": {
+      "message": "Any",
+      "description": "Audio check: filter option, whatever the listener said."
+    },
+    "audio.check.mine.none": {
+      "message": "Not judged yet",
+      "description": "Audio check: filter option, items the listener has not judged."
+    },
+    "audio.check.missing": {
+      "message": "This site has no audio check for this course.",
+      "description": "Audio check: the page could not load the course's list of clips (it is published with the demo, not with the app)."
+    },
+    "audio.check.note": {
+      "message": "What is wrong?",
+      "description": "Audio check: label of the optional note a listener writes when a clip sounds wrong."
+    },
+    "audio.check.open": {
+      "message": "Check the audio",
+      "description": "Debug mode: link on the course page to the audio check, a page listing every clip of the course to listen to and judge."
+    },
+    "audio.check.order.course": {
+      "message": "Course order",
+      "description": "Audio check: sort option, unit by unit as the course runs."
+    },
+    "audio.check.order.worst": {
+      "message": "Worst round trip first",
+      "description": "Audio check: sort option, highest speech recognizer error rate first."
+    },
+    "audio.check.other": {
+      "message": "Not in the course any more",
+      "description": "Audio check: heading of clips whose sentence or word the course no longer has."
+    },
+    "audio.check.outdated": {
+      "message": "You judged an earlier version of this clip.",
+      "description": "Audio check: the clip was made again after the listener judged it; the old verdict no longer applies."
+    },
+    "audio.check.read": {
+      "message": "Read from:",
+      "description": "Audio check: label before the text the voice was given, when it differs from the text shown (vowel marks added, for instance)."
+    },
+    "audio.check.reference": {
+      "message": "Reference recording",
+      "description": "Audio check: label of the recording every clip's voice imitates (a cloning voice clones one reference)."
+    },
+    "audio.check.rejected": {
+      "message": "Rejected",
+      "description": "Audio check: badge on a clip a person has listened to and rejected."
+    },
+    "audio.check.reviewed": {
+      "message": "Reviewed",
+      "description": "Audio check: badge on a clip a person has listened to and approved."
+    },
+    "audio.check.right": {
+      "message": "Sounds right",
+      "description": "Audio check: toggle button, the listener says the clip sounds right."
+    },
+    "audio.check.shown": {
+      "message": ".input {$shown :number}\n.input {$total :number}\n{{{$shown} of {$total} items}}",
+      "description": "Audio check: how many items the filters show, out of all."
+    },
+    "audio.check.stats": {
+      "message": "Round trip",
+      "description": "Audio check: heading of the counts of clips by how the speech recognizer check went."
+    },
+    "audio.check.status.all": {
+      "message": "Any",
+      "description": "Audio check: filter option, any result of the speech recognizer check."
+    },
+    "audio.check.status.fail": {
+      "message": "Failed",
+      "description": "Audio check: the speech recognizer heard something else."
+    },
+    "audio.check.status.none": {
+      "message": "Not checked",
+      "description": "Audio check: the clip was never checked by the speech recognizer."
+    },
+    "audio.check.status.pass": {
+      "message": "Passed",
+      "description": "Audio check: the speech recognizer heard what the clip should say."
+    },
+    "audio.check.status.review": {
+      "message": "To review",
+      "description": "Audio check: the speech recognizer heard something close; a person should listen."
+    },
+    "audio.check.title": {
+      "message": "Audio check",
+      "description": "Heading of the audio check page: every clip of a course, to listen to and judge."
+    },
+    "audio.check.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number}}}",
+      "description": "Audio check: heading of a unit without a title."
+    },
+    "audio.check.voice": {
+      "message": "Voice: {$voice} ({$provider})",
+      "description": "Audio check: which voice made the clips. $voice is the course's voice id, $provider the speech synthesizer's technical name (navoiy, omnivoice, espeak-ng); neither is translated."
+    },
+    "audio.check.wrong": {
+      "message": "Sounds wrong",
+      "description": "Audio check: toggle button, the listener says the clip sounds wrong."
+    },
     "corrections.cancel": {
       "message": "Cancel",
       "description": "Button that closes the correction form without saving."

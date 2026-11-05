@@ -236,5 +236,54 @@ def report(course: Annotated[Path, typer.Argument(exists=True, help="Course dire
         f"normal speed by QA: {dict(sorted(counts.items()))}"
     )
     for c in normal:
+        if c.provenance.status in ("reviewed", "published"):
+            continue
         if c.qa is not None and c.qa.status in ("review", "fail"):
             typer.echo(f"  {c.qa.status:6} {c.item}: CER {c.qa.cer} heard {c.qa.asrText!r}")
+    rejected = [c for c in index.clips if c.rejected is not None]
+    reviewed = [c for c in normal if c.provenance.status in ("reviewed", "published")]
+    if reviewed:
+        typer.echo(
+            f"{len(reviewed)} items a listener judged right (they ship whatever the check said)"
+        )
+    for c in rejected:
+        assert c.rejected is not None
+        note = f": {c.rejected.note}" if c.rejected.note else ""
+        typer.echo(f"  rejected {c.item} ({c.speed}) by {c.rejected.by} on {c.rejected.at}{note}")
+
+
+@app.command()
+def verdicts(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+    file: Annotated[
+        Path, typer.Argument(exists=True, dir_okay=False, help="Verdicts from the audio check.")
+    ],
+    reviewer: Annotated[str, typer.Option(help="Who listened: human:<id>.")],
+) -> None:
+    """Apply a listener's verdicts from the web app's audio check (ADR 0060).
+
+    A clip judged right is marked reviewed, so it ships even if the round-trip check failed it;
+    one judged wrong is rejected and its item stays out of bundles. A verdict on a clip that has
+    been made again since is skipped.
+    """
+    import json
+
+    from nabu.audio.course import apply_verdicts
+    from nabu.schema.models import AudioVerdicts
+
+    course_dir = course if course.is_dir() else course.parent
+    data = AudioVerdicts.model_validate(json.loads(file.read_text(encoding="utf-8")))
+    if data.course != course_dir.name:
+        typer.echo(f"✗ {file.name} is for {data.course}, not {course_dir.name}", err=True)
+        raise typer.Exit(code=1)
+    try:
+        result = apply_verdicts(course_dir, data, reviewer)
+    except ValueError as error:
+        typer.echo(f"✗ {course_dir.name}: {error}", err=True)
+        raise typer.Exit(code=1) from None
+    typer.echo(
+        f"✓ {course_dir.name}: {result.right} right, {result.wrong} wrong, "
+        f"{len(result.skipped)} skipped"
+    )
+    for item in result.skipped:
+        typer.echo(f"  - {item}: its clips were made again after the verdict", err=True)

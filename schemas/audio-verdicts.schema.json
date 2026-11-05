@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/audio-verdicts.schema.json",
+  "title": "AudioVerdicts",
+  "description": "A listener's verdicts on a course's clips (ADR 0060): written by the web app's audio check, applied to the audio index by `nabu audio verdicts`. A clip judged right is marked reviewed (a clip the round-trip check failed then ships); a clip judged wrong is rejected and stays out of bundles.",
+  "type": "object",
+  "required": [
+    "course",
+    "verdicts"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "course": {
+      "description": "The course id.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "verdicts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/AudioVerdict"
+      }
+    }
+  },
+  "$defs": {
+    "AudioVerdict": {
+      "title": "AudioVerdict",
+      "description": "One item's clips as heard: the normal-speed clip and its slow one together, since the round trip checks the item as one.",
+      "type": "object",
+      "required": [
+        "item",
+        "clips",
+        "verdict",
+        "at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "description": "Sentence id, KC id for a word, or \"<story>#<step>\" for a story line.",
+          "type": "string",
+          "minLength": 1
+        },
+        "clips": {
+          "description": "sha256 of each clip heard. A verdict applies only to these: a clip made again since is left alone.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "verdict": {
+          "type": "string",
+          "enum": [
+            "right",
+            "wrong"
+          ]
+        },
+        "note": {
+          "description": "What is wrong (or anything else worth saying), in the listener's words.",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "at": {
+          "description": "When the listener judged it (ISO 8601).",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

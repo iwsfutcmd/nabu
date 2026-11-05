@@ -1,4 +1,5 @@
 export { AnswerInput, type AnswerInputProps } from "./AnswerInput.tsx";
+export { AudioButtons, useClipPlayer, type ClipPlayer, type Speed } from "./Audio.tsx";
 export { Feedback, type FeedbackProps } from "./Feedback.tsx";
 export { LessonPlayer, type LessonPlayerProps } from "./LessonPlayer.tsx";
 export { effectiveWritingMode, hasMarksLayer, rubySchemeOf, type ViewProps, type WritingMode } from "./shared.ts";

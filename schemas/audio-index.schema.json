@@ -216,6 +216,9 @@
         },
         "qa": {
           "$ref": "#/$defs/AudioQa"
+        },
+        "rejected": {
+          "$ref": "#/$defs/AudioRejection"
         }
       }
     },
@@ -315,6 +318,32 @@
             "review",
             "fail"
           ]
+        }
+      }
+    },
+    "AudioRejection": {
+      "title": "AudioRejection",
+      "description": "A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.",
+      "type": "object",
+      "required": [
+        "by",
+        "at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "by": {
+          "description": "Who judged it: human:<id>.",
+          "type": "string",
+          "pattern": "^human:[^\\s@]+$"
+        },
+        "at": {
+          "type": "string",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
         }
       }
     }

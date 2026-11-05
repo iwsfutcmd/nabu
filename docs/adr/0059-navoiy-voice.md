@@ -76,7 +76,8 @@ its base model, and the prompt recording the reference was cloned from. Unlike a
 
 ## Consequences
 
-- **uz sounds like a person.** TODO(numbers): pass, review and fail counts after generation.
+- **uz sounds like a person.** The course switches to the voice once its clips are made and
+  checked; the round trip's counts come with them.
 - **Whisper is a weak judge of Uzbek.** It writes Uzbek in Turkish or Azerbaijani spelling, and
   makes up text for one-word clips. Navoiy's own demos score CER 0.21–0.35. Many good clips land
   in review, and a native speaker should still listen.

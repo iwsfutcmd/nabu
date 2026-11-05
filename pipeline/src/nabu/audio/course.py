@@ -47,7 +47,14 @@ from nabu.audio.providers import (
     Request,
     provider,
 )
-from nabu.schema.models import AudioIndex, AudioVoice, ReferenceVoice, TokenTiming
+from nabu.schema.models import (
+    AudioIndex,
+    AudioRejection,
+    AudioVerdicts,
+    AudioVoice,
+    ReferenceVoice,
+    TokenTiming,
+)
 
 INDEX = "index.yaml"
 SLOW = 0.67
@@ -516,6 +523,57 @@ def align_course(
             write_index(adir, index.model_copy(update={"clips": clips}))
     write_index(adir, index.model_copy(update={"clips": clips}))
     return done
+
+
+# ------------------------------------------------------------------------------------ verdicts
+
+
+@dataclass
+class VerdictResult:
+    right: int = 0
+    wrong: int = 0
+    #: Items whose clips were made again after the verdict: it no longer applies.
+    skipped: list[str] = field(default_factory=lambda: [])
+
+
+def apply_verdicts(course_dir: Path, verdicts: AudioVerdicts, reviewer: str) -> VerdictResult:
+    """A listener's verdicts (ADR 0060) into the audio index. Right: the clips are reviewed, so
+    they ship whatever the round trip said. Wrong: they are rejected, and their item stays out of
+    bundles. A verdict names the clips it heard by sha256 and touches only those."""
+    if not regex.fullmatch(r"human:[^\s@]+", reviewer):
+        raise ValueError(f"reviewer {reviewer!r}: give it as human:<id>")
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    clips = list(index.clips)
+    result = VerdictResult()
+    for v in verdicts.verdicts:
+        heard = set(v.clips)
+        matched = [k for k, c in enumerate(clips) if c.item == v.item and c.sha256 in heard]
+        if not matched:
+            result.skipped.append(v.item)
+            continue
+        day = v.at.date().isoformat()
+        for k in matched:
+            clip = clips[k]
+            if v.verdict == "right":
+                provenance = clip.provenance.model_copy(
+                    update={"status": "reviewed", "reviewedBy": reviewer, "reviewedAt": day}
+                )
+                clips[k] = clip.model_copy(update={"provenance": provenance, "rejected": None})
+            else:
+                provenance = clip.provenance.model_copy(
+                    update={"status": "draft", "reviewedBy": None, "reviewedAt": None}
+                )
+                rejection = AudioRejection.model_validate(
+                    {"by": reviewer, "at": day, **({"note": v.note} if v.note else {})}
+                )
+                clips[k] = clip.model_copy(update={"provenance": provenance, "rejected": rejection})
+        if v.verdict == "right":
+            result.right += 1
+        else:
+            result.wrong += 1
+    write_index(adir, index.model_copy(update={"clips": clips}))
+    return result
 
 
 # ------------------------------------------------------------------------------- reference voices

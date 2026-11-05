@@ -321,6 +321,9 @@ export interface NabuSchemaIndex {
   readonly SynthesisRecord: SynthesisRecord;
   readonly TokenTiming: TokenTiming;
   readonly AudioQa: AudioQa;
+  readonly AudioRejection: AudioRejection;
+  readonly AudioVerdicts: AudioVerdicts;
+  readonly AudioVerdict: AudioVerdict;
   readonly BundleManifest: BundleManifest;
   readonly BundleFile: BundleFile;
   readonly BundleManifestUnit: BundleManifestUnit;
@@ -818,6 +821,7 @@ export interface AudioClip {
   readonly timings?: readonly TokenTiming[];
   readonly timingSource?: "synthesis" | "alignment";
   readonly qa?: AudioQa;
+  readonly rejected?: AudioRejection;
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
@@ -882,6 +886,20 @@ export interface AudioQa {
   readonly status?: "pass" | "review" | "fail";
 }
 /**
+ * A listener heard the clip and judged it wrong (`nabu audio verdicts`): its item stays out of bundles until it is made again.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioRejection".
+ */
+export interface AudioRejection {
+  /**
+   * Who judged it: human:<id>.
+   */
+  readonly by: string;
+  readonly at: string;
+  readonly note?: string;
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReferenceVoice".
  */
@@ -934,6 +952,46 @@ export interface ReferenceVoice {
       readonly license: Spdx;
     };
   };
+}
+/**
+ * A listener's verdicts on a course's clips (ADR 0060): written by the web app's audio check, applied to the audio index by `nabu audio verdicts`. A clip judged right is marked reviewed (a clip the round-trip check failed then ships); a clip judged wrong is rejected and stays out of bundles.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioVerdicts".
+ */
+export interface AudioVerdicts {
+  /**
+   * The course id.
+   */
+  readonly course: string;
+  readonly verdicts: readonly AudioVerdict[];
+}
+/**
+ * One item's clips as heard: the normal-speed clip and its slow one together, since the round trip checks the item as one.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioVerdict".
+ */
+export interface AudioVerdict {
+  /**
+   * Sentence id, KC id for a word, or "<story>#<step>" for a story line.
+   */
+  readonly item: string;
+  /**
+   * sha256 of each clip heard. A verdict applies only to these: a clip made again since is left alone.
+   *
+   * @minItems 1
+   */
+  readonly clips: readonly string[];
+  readonly verdict: "right" | "wrong";
+  /**
+   * What is wrong (or anything else worth saying), in the listener's words.
+   */
+  readonly note?: string;
+  /**
+   * When the listener judged it (ISO 8601).
+   */
+  readonly at: string;
 }
 /**
  * A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
