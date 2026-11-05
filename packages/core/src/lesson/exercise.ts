@@ -3,7 +3,7 @@
  * Instances are plain data: everything a template needs to render and to
  * grade is in them, so a lesson can be serialized, replayed and tested.
  */
-import type { BundleAudioItem, KcId, TaggedText } from "@nabu/schema";
+import type { BundleAudioItem, KcId, Persons, TaggedText } from "@nabu/schema";
 import type { AlignOp, Verdict } from "../match/grade.ts";
 import type { SpeechResult } from "../speech/score.ts";
 
@@ -89,6 +89,8 @@ export interface TranslateTap extends Common {
   readonly joiner: string;
   readonly accept: string;
   readonly canonical: TaggedText;
+  /** Who speaks and who is spoken to, where the target marks it and the prompt cannot (writing into the target). */
+  readonly persons?: Persons | undefined;
 }
 
 /** Type the translation of a support-language sentence. */
@@ -97,6 +99,8 @@ export interface TranslateType extends Common {
   readonly prompt: TaggedText;
   readonly accept: string;
   readonly canonical: TaggedText;
+  /** Who speaks and who is spoken to, where the target marks it and the prompt cannot (writing into the target). */
+  readonly persons?: Persons | undefined;
 }
 
 /** The translation with one word missing; type the missing word. */
@@ -108,6 +112,8 @@ export interface CompleteTranslation extends Common {
   readonly blank: TaggedText;
   readonly accept: string;
   readonly canonical: TaggedText;
+  /** Who speaks and who is spoken to, where the target marks it and the prompt cannot (writing into the target). */
+  readonly persons?: Persons | undefined;
 }
 
 /** A target sentence with a gap; choose the word that fits. */

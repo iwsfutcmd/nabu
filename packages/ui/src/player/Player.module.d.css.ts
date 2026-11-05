@@ -36,6 +36,8 @@ declare const styles: {
   readonly pair: string;
   readonly pairColumn: string;
   readonly pairs: string;
+  readonly personTag: string;
+  readonly persons: string;
   readonly picture: string;
   readonly pictureImage: string;
   readonly play: string;

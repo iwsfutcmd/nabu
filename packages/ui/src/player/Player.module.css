@@ -612,3 +612,21 @@
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+/* Who speaks and who is spoken to, under a support-language prompt (a feminine or plural "you"). */
+.persons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1);
+  margin: 0;
+  margin-block-start: var(--nabu-space-1);
+}
+
+.personTag {
+  padding-block: 0;
+  padding-inline: var(--nabu-space-2);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  color: var(--nabu-color-muted);
+  font-size: 0.875em;
+}

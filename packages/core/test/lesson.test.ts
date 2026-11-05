@@ -3,6 +3,7 @@ import { join, resolve } from "node:path";
 import type { BundleManifest } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
+  allSentences,
   assembleCourse,
   buildLesson,
   cardGallery,
@@ -25,6 +26,7 @@ import {
   type Response,
   type TemplateId,
 } from "../src/lesson/index.ts";
+import { SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -268,6 +270,28 @@ describe("writing in a word's pronunciation (ADR 0054)", () => {
     expect(cardOf("uz", "uz-Latn/standard", "transcribe")).toBeUndefined();
     expect(cardOf("fa", undefined, "transcribe")).toBeUndefined();
     expect(cardOf("yue", undefined, "vocalize")).toBeUndefined();
+  });
+});
+
+describe("who speaks and who is spoken to (persons)", () => {
+  it("goes with the exercises that write the sentence in the target language, and only those", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const words = (s: (typeof course.units)[number]["sentences"][number]): number => s.forms["apc-Arab/standard"]?.text.tokens.filter((t) => t.kind === "word").length ?? 0;
+    const sentence = allSentences(course).find((s) => s.production && words(s) >= 2);
+    if (sentence === undefined) throw new Error("no apc sentence");
+    // The blank in complete-translation is a word the lesson introduces.
+    const ctx = { course, rng: seededRng(5), introduced: sentence.kcs };
+    const tagged = { ...sentence, persons: { addressee: "f" as const, speaker: "m" as const } };
+    for (const template of ["translate-type.l1-l2", "translate-tap.l1-l2", "complete-translation"] as const) {
+      const ex = SENTENCE_TEMPLATES[template]?.(ctx, tagged);
+      expect(ex && "persons" in ex ? ex.persons : undefined, template).toEqual({ addressee: "f", speaker: "m" });
+    }
+    // Reading the target into the support language: the target text shows it already.
+    const reading = SENTENCE_TEMPLATES["translate-tap.l2-l1"]?.(ctx, tagged);
+    expect(reading && "persons" in reading ? reading.persons : undefined).toBeUndefined();
+    // Untagged: nothing.
+    const plain = SENTENCE_TEMPLATES["translate-type.l1-l2"]?.(ctx, sentence);
+    expect(plain && "persons" in plain).toBe(false);
   });
 });
 

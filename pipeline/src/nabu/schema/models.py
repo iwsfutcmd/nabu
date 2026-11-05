@@ -371,6 +371,25 @@ type KcId = Annotated[
 ]
 
 
+class Persons(BaseModel):
+    """
+    Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    speaker: Annotated[
+        Literal["m", "f"] | None,
+        Field(description="The speaker's gender, where the sentence marks it."),
+    ] = None
+    addressee: Annotated[
+        Literal["m", "f", "pl"] | None,
+        Field(description="Who is spoken to: one man, one woman, or several people."),
+    ] = None
+
+
 type ScriptCode = Annotated[
     str,
     Field(
@@ -2811,6 +2830,7 @@ class BundleSentence(BaseModel):
     kcs: list[KcId]
     production: bool
     register_: Annotated[str | None, Field(alias="register")] = None
+    persons: Persons | None = None
     provenance: Provenance
     license: str
 
@@ -2843,6 +2863,7 @@ class SentenceSource(BaseModel):
     register_: Annotated[
         Literal["formal", "neutral", "colloquial"] | None, Field(alias="register")
     ] = None
+    persons: Persons | None = None
     provenance: Provenance | None = None
     license: Spdx | None = None
 
