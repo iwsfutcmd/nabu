@@ -20,6 +20,7 @@ import yaml
 
 from nabu.analyzers import Analyzer, versions
 from nabu.compiler.build import Compiled
+from nabu.compiler.stories import line_item
 from nabu.drills.rbnf import icu_version
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import BundleAudio, BundleManifest, BundleUnit, OrthographyProfile
@@ -106,7 +107,14 @@ def unit_assets(unit: dict[str, Any], compiled: Compiled) -> list[str]:
     """The media a unit's items use (Phase 10 per-unit downloads): the images it names, and the
     bundled clips of every item id it names (its sentences, drills and story lines). An item
     another unit owns but this one uses is included, so a downloaded unit never misses a clip."""
-    named = _strings(unit)
+    # Story lines are items by position ("<story>#<step>"), a string the unit itself never holds.
+    lines = {
+        line_item(story["id"], step)
+        for story in unit.get("stories", [])
+        for step, s in enumerate(story["steps"])
+        if s.get("line")
+    }
+    named = _strings(unit) | lines
     images = {p for p in named if p in compiled.images}
     clips = {
         clip["path"]

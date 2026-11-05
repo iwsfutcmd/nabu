@@ -101,6 +101,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
+- uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
+  transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
+  `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.
 - Clips that fail the round-trip check stay out of bundles until reviewed (`nabu audio report`).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
@@ -205,7 +208,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0058 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0059 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

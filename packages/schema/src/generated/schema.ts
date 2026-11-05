@@ -903,7 +903,7 @@ export interface ReferenceVoice {
   readonly license: Spdx;
   readonly provenance: Provenance;
   /**
-   * Designed by the model from speaker attributes (`design`), not recorded.
+   * Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy).
    */
   readonly synthetic: boolean;
   /**
@@ -914,7 +914,7 @@ export interface ReferenceVoice {
     readonly version: string;
     readonly language: string;
     /**
-     * The speaker attributes ("male, young adult, moderate pitch").
+     * The speaker attributes ("male, young adult, moderate pitch"), or for Navoiy the style instruction.
      */
     readonly instruct: string;
     readonly seed: number;
@@ -922,6 +922,17 @@ export interface ReferenceVoice {
      * The weights' precision ("bfloat16").
      */
     readonly dtype?: string;
+    /**
+     * A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.
+     */
+    readonly prompt?: {
+      /**
+       * The file at a pinned commit ("https://github.com/FunAudioLLM/CosyVoice/blob/<commit>/asset/zero_shot_prompt.wav").
+       */
+      readonly source: string;
+      readonly sha256: string;
+      readonly license: Spdx;
+    };
   };
 }
 /**
@@ -1703,13 +1714,13 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**

@@ -101,8 +101,12 @@ def cast(
         str, typer.Option(help="What the reference says (a few seconds, the course's language).")
     ],
     instruct: Annotated[
-        str, typer.Option(help='Speaker attributes, e.g. "male, young adult, moderate pitch".')
-    ],
+        str | None,
+        typer.Option(
+            help='OmniVoice: speaker attributes, e.g. "male, young adult, moderate pitch". '
+            "Navoiy: the style instruction (default its calm preset)."
+        ),
+    ] = None,
     seed: Annotated[
         int, typer.Option(help="Sampling seed: the same seed gives the same voice.")
     ] = 0,
@@ -111,26 +115,61 @@ def cast(
         typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
     ] = None,
 ) -> None:
-    """Design an OmniVoice voice's reference from speaker attributes (ADR 0058).
+    """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058),
+    Navoiy reads the text in the voice of CosyVoice's prompt recording (ADR 0059).
 
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting
     again replaces it, and its clips are synthesized again on the next `generate`.
     """
     from nabu.audio.course import cast_reference
+    from nabu.audio.providers import NavoiyProvider, ProviderError
 
     _, source, _, _ = _compiled(course)
     voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
     voice = next((v for v in voices if voice_id in (None, v.id)), None)
-    if voice is None or voice.provider != "omnivoice":
-        typer.echo(f"✗ {source.id}: no OmniVoice voice {voice_id or ''} in the cast", err=True)
+    if voice is None or voice.provider not in ("omnivoice", "navoiy"):
+        typer.echo(
+            f"✗ {source.id}: no OmniVoice or Navoiy voice {voice_id or ''} in the cast", err=True
+        )
         raise typer.Exit(code=1)
+    if instruct is None:
+        if voice.provider == "omnivoice":
+            typer.echo(f"✗ {source.id}: an OmniVoice voice needs --instruct", err=True)
+            raise typer.Exit(code=1)
+        instruct = NavoiyProvider.INSTRUCT
     course_dir = course if course.is_dir() else course.parent
     try:
         ref = cast_reference(course_dir, voice, text, instruct, seed)
-    except ValueError as error:
+    except (ValueError, ProviderError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None
     typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license}), {instruct}")
+
+
+@app.command()
+def align(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+    voice_id: Annotated[
+        str | None,
+        typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
+    ] = None,
+) -> None:
+    """Word timings by forced alignment for clips their voice gave none (speech group).
+
+    OmniVoice and Navoiy report no word onsets; aligned, their sentences highlight word by word
+    and their words can be tapped. Phones come from eSpeak NG for the course's language.
+    """
+    from nabu.audio.course import align_course
+
+    course_dir, source, units, written = _compiled(course)
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    voice = next((v for v in voices if voice_id in (None, v.id)), None)
+    if voice is None:
+        typer.echo(f"✗ {source.id}: no voice {voice_id or ''} in the cast", err=True)
+        raise typer.Exit(code=1)
+    phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
+    done = align_course(course_dir, units, voice, phonemes, written)
+    typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
 
 
 @app.command()

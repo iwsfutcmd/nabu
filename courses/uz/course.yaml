@@ -8,6 +8,9 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@887599f213ef', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-home.yaml, units/u04-numbers.yaml, units/u05-food.yaml, units/u06-city.yaml, units/u07-day.yaml, units/u08-bazaar.yaml, units/u09-past.yaml, units/u10-travel.yaml]
 # Audio (§10.1): one recording per sentence, read from the Latin forms; the Cyrillic orthography shares it.
+# Navoiy (ADR 0059): a CosyVoice2 fine-tune for Uzbek, every clip cloning one cast reference
+# (audio/voices/toshkent-f.wav, `nabu audio cast`). Word timings by `nabu audio align`.
 audio:
   voices:
-  - {id: narrator, provider: espeak-ng, voice: uz, orthography: uz-Latn/standard, reading: text, license: CC0-1.0}
+  - {id: toshkent, provider: navoiy, voice: toshkent-f, model: 'aisha-org/navoiy-tts@9445f41ee5f38bd3a34eb16b0279dc05f9997fc2',
+    language: uz, orthography: uz-Latn/standard, reading: text, license: Apache-2.0}
