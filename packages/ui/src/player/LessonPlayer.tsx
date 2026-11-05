@@ -218,6 +218,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         marks={marks}
         writingMode={mode}
         imageUrl={imageUrl}
+        sound={sound !== false}
         outcome={outcome}
         language={language}
         shortcuts={shortcuts}

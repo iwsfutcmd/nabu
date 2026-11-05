@@ -19,8 +19,10 @@ export interface ViewProps<E extends Exercise = Exercise> {
   readonly marks: "show" | "hide";
   /** Writing mode for target-language prompts and word banks (§11.4). */
   readonly writingMode: WritingMode;
-  /** Maps a bundle path (images/…) to a URL. */
+  /** Maps a bundle path (images/…, audio/…) to a URL. */
   readonly imageUrl: (path: string) => string;
+  /** Whether a tap may play a word's clip (match-pairs); off with the player's sound. */
+  readonly sound?: boolean | undefined;
   /** Where a view registers its digit and Backspace shortcuts; the player listens on the window. */
   readonly shortcuts: { current: Shortcuts | null };
 }
