@@ -109,6 +109,7 @@ sentences:
 - id: s.home.5
   node: apc.home.where
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: وين بيتك؟
@@ -117,7 +118,7 @@ sentences:
     apc-Latn/arabizi:
       text: wen betak?
       tokens: [{surface: wen, sense: wen}, {surface: betak, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (wen|wein|wayn) (betak|beitak|baytak|betik|beitik)
+      reverse: (wen|wein|wayn) (betak|beitak|baytak)
   translations:
     en: |-
       Where is your (house|home)?
@@ -186,19 +187,20 @@ sentences:
 - id: s.home.10
   node: apc.home.city
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: إنت من وين؟
       tokens: [{surface: إنت, sense: enta}, {surface: من, sense: men}, {surface: وين, sense: wen}]
       reverse: |-
-        [(إنت|إنتي|إنتِ)] من وين
-        من وين (إنت|إنتي|إنتِ)
+        [إنت] من وين
+        من وين إنت
     apc-Latn/arabizi:
       text: enta men wen?
       tokens: [{surface: enta, sense: enta}, {surface: men, sense: men}, {surface: wen, sense: wen}]
       reverse: |-
-        [(enta|inta|enti|inti|ente|inte)] (men|min|mn) (wen|wein|wayn)
-        (men|min|mn) (wen|wein|wayn) (enta|inta|enti|inti|ente|inte)
+        [(enta|inta)] (men|min|mn) (wen|wein|wayn)
+        (men|min|mn) (wen|wein|wayn) (enta|inta)
   translations:
     en: Where are you from?
 - id: s.home.11
@@ -515,6 +517,7 @@ sentences:
 - id: s.home.30
   node: apc.home.directions
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: الحمّام ع شمالك.
@@ -524,7 +527,7 @@ sentences:
     apc-Latn/arabizi:
       text: el 7ammem 3a shmelak.
       tokens: [{surface: el, sense: el}, {surface: 7ammem, sense: 7ammem}, {surface: 3a, sense: 3a}, {surface: shmelak, sense: shmel, morphs: [{surface: shmel, kc: 'sense:shmel'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (el|l|il) (7ammem|7ammam|hammam|7amam) (3a|3ala) (shmelak|shmalak|shmelik|shmalik)
+      reverse: (el|l|il) (7ammem|7ammam|hammam|7amam) (3a|3ala) (shmelak|shmalak)
   translations:
     en: |-
       The (bathroom|toilet) is on your left.
@@ -546,6 +549,7 @@ sentences:
 - id: s.home.32
   node: apc.home.directions
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: إيه، دغري، والبيت ع يمينك.
@@ -556,7 +560,7 @@ sentences:
       text: eh, dighri, w el bet 3a yaminak.
       tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 3a, sense: 3a}, {surface: yaminak, sense: yamin,
           morphs: [{surface: yamin, kc: 'sense:yamin'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (eh|ee) (dighri|deghri|doghri) (w|wa) (el|l) (bet|beit|bayt) (3a|3ala) (yaminak|yminak|yaminik)
+      reverse: (eh|ee) (dighri|deghri|doghri) (w|wa) (el|l) (bet|beit|bayt) (3a|3ala) (yaminak|yminak)
   translations:
     en: |-
       Yes, straight (ahead|on), and the house is on your right.

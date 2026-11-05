@@ -163,19 +163,20 @@ sentences:
 - id: s.day.8
   node: apc.day.you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بتعمل؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}]
       reverse: |-
-        شو (بتعمل|بتعملي|بتشتغل|بتشتغلي)
-        (إنت|إنتي) شو (بتعمل|بتعملي|بتشتغل|بتشتغلي)
+        شو (بتعمل|بتشتغل)
+        إنت شو (بتعمل|بتشتغل)
     apc-Latn/arabizi:
       text: shu bta3mel?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}]
       reverse: |-
-        (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle|btishteghel|bteshteghel|btishtighli|btishteghle)
-        (enta|inta|enti|inti) (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle|btishteghel|bteshteghel|btishtighli|btishteghle)
+        (shu|sho) (bta3mel|bte3mel|bta3mil|btishteghel|bteshteghel)
+        (enta|inta) (shu|sho) (bta3mel|bte3mel|bta3mil|btishteghel|bteshteghel)
   translations:
     en: |-
       What do you do?
@@ -198,37 +199,39 @@ sentences:
 - id: s.day.10
   node: apc.day.you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: وين بتشتغل؟
       tokens: [{surface: وين, sense: wen}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-2ms'}]
       reverse: |-
-        وين (بتشتغل|بتشتغلي)
-        (إنت|إنتي) وين (بتشتغل|بتشتغلي)
+        وين بتشتغل
+        إنت وين بتشتغل
     apc-Latn/arabizi:
       text: wen btishteghel?
       tokens: [{surface: wen, sense: wen}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-2ms'}]
       reverse: |-
-        (wen|wein|wayn) (btishteghel|bteshteghel|btishtighli|btishteghle)
-        (enta|inta|enti|inti) (wen|wein|wayn) (btishteghel|bteshteghel|btishtighli|btishteghle)
+        (wen|wein|wayn) (btishteghel|bteshteghel)
+        (enta|inta) (wen|wein|wayn) (btishteghel|bteshteghel)
   translations:
     en: Where do you work?
 - id: s.day.11
   node: apc.day.you
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بتقرا؟
       tokens: [{surface: شو, sense: shu}, {surface: بتقرا, sense: 2ara, form: 'form:impf-2ms'}]
       reverse: |-
-        شو (بتقرا|بتقري)
-        (إنت|إنتي) شو (بتقرا|بتقري)
+        شو بتقرا
+        إنت شو بتقرا
     apc-Latn/arabizi:
       text: shu bti2ra?
       tokens: [{surface: shu, sense: shu}, {surface: bti2ra, sense: 2ara, form: 'form:impf-2ms'}]
       reverse: |-
-        (shu|sho) (bti2ra|bte2ra|bt2ra|bti2ri|bte2re)
-        (enta|inta|enti|inti) (shu|sho) (bti2ra|bte2ra|bt2ra|bti2ri|bte2re)
+        (shu|sho) (bti2ra|bte2ra|bt2ra)
+        (enta|inta) (shu|sho) (bti2ra|bte2ra|bt2ra)
   translations:
     en: |-
       What do you read?
@@ -335,19 +338,20 @@ sentences:
 - id: s.day.18
   node: apc.day.we
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بتعمل اليوم؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
       reverse: |-
-        شو (بتعمل|بتعملي) اليوم
-        اليوم شو (بتعمل|بتعملي)
+        شو بتعمل اليوم
+        اليوم شو بتعمل
     apc-Latn/arabizi:
       text: shu bta3mel el yom?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
       reverse: |-
-        (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle) (el|l|il) (yom|yawm|youm)
-        (el|l|il) (yom|yawm|youm) (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle)
+        (shu|sho) (bta3mel|bte3mel|bta3mil) (el|l|il) (yom|yawm|youm)
+        (el|l|il) (yom|yawm|youm) (shu|sho) (bta3mel|bte3mel|bta3mil)
   translations:
     en: |-
       What are you doing today?
@@ -411,19 +415,20 @@ sentences:
 - id: s.day.22
   node: apc.day.talk
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بتعمل هلّق؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: هلّق, sense: hala2}]
       reverse: |-
-        شو (بتعمل|بتعملي) (هلّق|هلق|هلأ)
-        شو عم (تعمل|بتعمل|تعملي|بتعملي) (هلّق|هلق|هلأ)
+        شو بتعمل (هلّق|هلق|هلأ)
+        شو عم (تعمل|بتعمل) (هلّق|هلق|هلأ)
     apc-Latn/arabizi:
       text: shu bta3mel hala2?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: hala2, sense: hala2}]
       reverse: |-
-        (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle) (hala2|halla2|hal2|hala)
-        (shu|sho) (3am|3m) (ta3mel|te3mel|bta3mel|ta3mli|ta3mle|bta3mli) (hala2|halla2|hal2|hala)
+        (shu|sho) (bta3mel|bte3mel|bta3mil) (hala2|halla2|hal2|hala)
+        (shu|sho) (3am|3m) (ta3mel|te3mel|bta3mel) (hala2|halla2|hal2|hala)
   translations:
     en: |-
       What are you doing now?
@@ -495,6 +500,7 @@ sentences:
 - id: s.day.27
   node: apc.day.you-f
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: مايا، شو بتعملي؟
@@ -512,19 +518,16 @@ sentences:
 - id: s.day.28
   node: apc.day.you-f
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: إنتي بتشربي قهوة؟
       tokens: [{surface: إنتي, sense: enti}, {surface: بتشربي, sense: shereb, form: 'form:impf-2fs'}, {surface: قهوة, sense: ahwe}]
-      reverse: |-
-        [(إنتي|إنتِ)] بتشربي قهوة
-        [إنت] بتشرب قهوة
+      reverse: '[(إنتي|إنتِ)] بتشربي قهوة'
     apc-Latn/arabizi:
       text: enti btishrabi ahwe?
       tokens: [{surface: enti, sense: enti}, {surface: btishrabi, sense: shereb, form: 'form:impf-2fs'}, {surface: ahwe, sense: ahwe}]
-      reverse: |-
-        [(enti|inti|ente)] (btishrabi|bteshrabi|btshrabi) (ahwe|2ahwe)
-        [(enta|inta)] (btishrab|bteshrab|btshrab) (ahwe|2ahwe)
+      reverse: '[(enti|inti|ente)] (btishrabi|bteshrabi|btshrabi) (ahwe|2ahwe)'
   translations:
     en: |-
       Do you drink coffee?
@@ -533,18 +536,19 @@ sentences:
 - id: s.day.29
   node: apc.day.you-f
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: أنا مأخّر!
       tokens: [{surface: أنا, sense: ana}, {surface: مأخّر, sense: m2akhkhar}]
       reverse: |-
-        [أنا] (مأخّر|متأخّر|مأخّرة|متأخّرة)
+        [أنا] (مأخّر|متأخّر)
         [أنا] تأخّرت
     apc-Latn/arabizi:
       text: ana m2akhkhar!
       tokens: [{surface: ana, sense: ana}, {surface: m2akhkhar, sense: m2akhkhar}]
       reverse: |-
-        [ana] (m2akhkhar|m2akhar|m2a5ar|met2akhkher|mit2akhkhir|m2akhkhra|m2akhra|met2akhkhra)
+        [ana] (m2akhkhar|m2akhar|m2a5ar|met2akhkher|mit2akhkhir)
         [ana] (t2akhkhart|t2akhart|ta2akhart|t2a5art)
   translations:
     en: I('m| am) late!
@@ -572,15 +576,16 @@ sentences:
 - id: s.day.31
   node: apc.day.you-f
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: بتروحي عالمدرسة؟
       tokens: [{surface: بتروحي, sense: ra7, form: 'form:impf-2fs'}, {surface: عالمدرسة, sense: madrase, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
-      reverse: (بتروحي|بتروح) (عالمدرسة|ع المدرسة|على المدرسة)
+      reverse: بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
     apc-Latn/arabizi:
       text: btru7i 3al madrase?
       tokens: [{surface: btru7i, sense: ra7, form: 'form:impf-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
-      reverse: (btru7i|btrou7e|btro7i|btru7|btro7) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+      reverse: (btru7i|btrou7e|btro7i) (3al|3a l|3a el) (madrase|madrasi|madrasse)
   translations:
     en: |-
       Do you go to school?

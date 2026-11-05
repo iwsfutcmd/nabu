@@ -58,19 +58,20 @@ sentences:
 - id: s.time.2
   node: apc.time.when
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: إمتى بتروح عالشغل؟
       tokens: [{surface: إمتى, sense: emta}, {surface: بتروح, sense: ra7, form: 'form:impf-2ms'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
               surface: شغل, kc: 'sense:shoghl'}]}]
       reverse: |-
-        (إمتى|امتى) (بتروح|بتروحي) (عالشغل|ع الشغل|على الشغل)
-        (إنت|إنتي) (إمتى|امتى) (بتروح|بتروحي) (عالشغل|ع الشغل|على الشغل)
+        (إمتى|امتى) بتروح (عالشغل|ع الشغل|على الشغل)
+        إنت (إمتى|امتى) بتروح (عالشغل|ع الشغل|على الشغل)
     apc-Latn/arabizi:
       text: emta btru7 3al shoghl?
       tokens: [{surface: emta, sense: emta}, {surface: btru7, sense: ra7, form: 'form:impf-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
           sense: shoghl}]
-      reverse: (emta|imta|emtah) (btru7|btrou7|btro7|btru7i|btro7i) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+      reverse: (emta|imta|emtah) (btru7|btrou7|btro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
   translations:
     en: |-
       When do you go to work?
@@ -95,24 +96,22 @@ sentences:
 - id: s.time.4
   node: apc.time.when
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: إنت فاضي بكرا؟
       tokens: [{surface: إنت, sense: enta}, {surface: فاضي, sense: fadi}, {surface: بكرا, sense: bukra}]
-      reverse: |-
-        [إنت] فاضي (بكرا|بكرة)
-        [(إنتي|إنتِ)] فاضية (بكرا|بكرة)
+      reverse: '[إنت] فاضي (بكرا|بكرة)'
     apc-Latn/arabizi:
       text: enta fadi bukra?
       tokens: [{surface: enta, sense: enta}, {surface: fadi, sense: fadi}, {surface: bukra, sense: bukra}]
-      reverse: |-
-        [(enta|inta)] (fadi|fade) (bukra|bokra|bukrah)
-        [(enti|inti)] (fadye|fadie|fadiye) (bukra|bokra|bukrah)
+      reverse: '[(enta|inta)] (fadi|fade) (bukra|bokra|bukrah)'
   translations:
     en: Are you free tomorrow?
 - id: s.time.5
   node: apc.time.when
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: لأ، أنا مشغول بكرا.
@@ -148,6 +147,7 @@ sentences:
 - id: s.time.7
   node: apc.time.days
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: أنا فاضي نهار السبت.
@@ -196,6 +196,7 @@ sentences:
 - id: s.time.10
   node: apc.time.days
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: هالجمعة أنا مشغول.
@@ -313,15 +314,16 @@ sentences:
 - id: s.time.17
   node: apc.time.clock
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: استنّى دقيقة.
       tokens: [{surface: استنّى, sense: stanna}, {surface: دقيقة, sense: da2i2a}]
-      reverse: (استنّى|استنا|استنّي) دقيقة
+      reverse: (استنّى|استنا) دقيقة
     apc-Latn/arabizi:
       text: stanna da2i2a.
       tokens: [{surface: stanna, sense: stanna}, {surface: da2i2a, sense: da2i2a}]
-      reverse: (stanna|estanna|stana|stanne|stanni|estanne) (da2i2a|de2i2a|d2i2a)
+      reverse: (stanna|estanna|stana) (da2i2a|de2i2a|d2i2a)
   translations:
     en: |-
       Wait a minute.
@@ -468,17 +470,18 @@ sentences:
 - id: s.time.26
   node: apc.time.calendar
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو بتعمل بالعطلة؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: عطلة,
               kc: 'sense:3otle'}]}]
-      reverse: شو (بتعمل|بتعملي) بالعطلة
+      reverse: شو بتعمل بالعطلة
     apc-Latn/arabizi:
       text: shu bta3mel bel 3otle?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
           sense: 3otle}]
-      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil|bta3mli|bta3mle) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil) (bel|bil|b el) (3otle|3otli|3otla|3etle)
   translations:
     en: |-
       What do you do on (holiday|vacation)?

@@ -43,19 +43,20 @@ sentences:
 - id: s.plans.1
   node: apc.plans.going
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: وين رايح؟
       tokens: [{surface: وين, sense: wen}, {surface: رايح, sense: raye7}]
       reverse: |-
-        وين (رايح|رايحة)
-        (إنت وين رايح|إنتي وين رايحة)
+        وين رايح
+        إنت وين رايح
     apc-Latn/arabizi:
       text: wen raye7?
       tokens: [{surface: wen, sense: wen}, {surface: raye7, sense: raye7}]
       reverse: |-
-        (wen|wein|wayn) (raye7|rayi7|rayeh|ray7a|rayha)
-        ((enta|inta) (wen|wein|wayn) (raye7|rayi7|rayeh)|(enti|inti) (wen|wein|wayn) (ray7a|rayha))
+        (wen|wein|wayn) (raye7|rayi7|rayeh)
+        (enta|inta) (wen|wein|wayn) (raye7|rayi7|rayeh)
   translations:
     en: |-
       Where are you going?
@@ -63,22 +64,25 @@ sentences:
 - id: s.plans.2
   node: apc.plans.going
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: رايح عالبحر.
       tokens: [{surface: رايح, sense: raye7}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (رايح|أنا رايح|رايحة|أنا رايحة) (عالبحر|ع البحر|على البحر)
+      reverse: (رايح|أنا رايح) (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
       text: raye7 3al ba7r.
       tokens: [{surface: raye7, sense: raye7}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: ((raye7|rayi7|rayeh|ray7a|rayha)|ana (raye7|rayi7|rayeh|ray7a|rayha)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: ((raye7|rayi7|rayeh)|ana (raye7|rayi7|rayeh)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
       I('m| am) going to the (beach|sea).
       (He's|He is) going to the (beach|sea).
+      You('re| are) going to the (beach|sea).
 - id: s.plans.3
   node: apc.plans.going
   register: colloquial
+  persons: {addressee: f}
   forms:
     apc-Arab/standard:
       text: وين رايحة، مايا؟
@@ -113,6 +117,7 @@ sentences:
 - id: s.plans.5
   node: apc.plans.going
   register: colloquial
+  persons: {speaker: m}
   forms:
     apc-Arab/standard:
       text: الليلة أنا فاضي.
@@ -129,19 +134,20 @@ sentences:
 - id: s.plans.6
   node: apc.plans.going
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: بدّك تطلع الليلة؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: تطلع, sense: tele3, form: 'form:subj-2ms'}, {surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
       reverse: |-
-        (بدّك|إنت بدّك|إنتي بدّك) (تطلع|تطلعي) الليلة
-        الليلة بدّك (تطلع|تطلعي)
+        (بدّك|إنت بدّك) تطلع الليلة
+        الليلة بدّك تطلع
     apc-Latn/arabizi:
       text: baddak titla3 el lele?
       tokens: [{surface: baddak, sense: baddak}, {surface: titla3, sense: tele3, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
       reverse: |-
         ((baddak|badak)|(enta|inta) (baddak|badak)) (titla3|tetla3) (el|l|il) (lele|leile|layle|leyle)
-        ((baddik|badik)|(enti|inti) (baddik|badik)) (titla3i|tetla3i|titla3e) (el|l|il) (lele|leile|layle|leyle)
+        (el|l|il) (lele|leile|layle|leyle) (baddak|badak) (titla3|tetla3)
   translations:
     en: |-
       Do you want to go out tonight?
@@ -298,15 +304,16 @@ sentences:
 - id: s.plans.16
   node: apc.plans.friends
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: مرحبا حبيبي!
       tokens: [{surface: مرحبا, sense: marhaba}, {surface: حبيبي, sense: 7abibi}]
-      reverse: مرحبا (حبيبي|حبيبتي)
+      reverse: مرحبا حبيبي
     apc-Latn/arabizi:
       text: mar7aba 7abibi!
       tokens: [{surface: mar7aba, sense: marhaba}, {surface: 7abibi, sense: 7abibi}]
-      reverse: (mar7aba|marhaba|mar7ba) (7abibi|habibi|7abibe|7bibi|7abibti|habibti|7abibte)
+      reverse: (mar7aba|marhaba|mar7ba) (7abibi|habibi|7abibe|7bibi)
   translations:
     en: (Hi|Hello), (my dear|dear|buddy|mate|habibi)!
 - id: s.plans.17

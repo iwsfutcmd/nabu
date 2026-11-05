@@ -271,15 +271,16 @@ sentences:
 - id: s.num.15
   node: apc.num.money
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: معك مصاري؟
       tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: مصاري, sense: masari}]
-      reverse: (معك|إنت معك|إنتي معك) مصاري
+      reverse: (معك|إنت معك) مصاري
     apc-Latn/arabizi:
       text: ma3ak masari?
       tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: masari, sense: masari}]
-      reverse: ((ma3ak|m3ak|ma3ik|m3ik)|(enta|inta) (ma3ak|m3ak)|(enti|inti) (ma3ik|m3ik)) (masari|masare|msari)
+      reverse: ((ma3ak|m3ak)|(enta|inta) (ma3ak|m3ak)) (masari|masare|msari)
   translations:
     en: |-
       Do you have [any] money [on you]?
@@ -417,59 +418,58 @@ sentences:
 - id: s.num.24
   node: apc.num.prices
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: قهوة، عمول معروف.
       tokens: [{surface: قهوة, sense: ahwe}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
       reverse: |-
         قهوة (عمول|اعمول|عمل) معروف
-        قهوة (عملي|اعملي) معروف
-        قهوة لو (سمحت|سمحتي)
-        قهوة (إذا|اذا) (بتريد|بتريدي)
+        قهوة لو سمحت
+        قهوة (إذا|اذا) بتريد
     apc-Latn/arabizi:
       text: ahwe, 3mol ma3rouf.
       tokens: [{surface: ahwe, sense: ahwe}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
       reverse: |-
         (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
-        (ahwe|2ahwe) (3mele|3emli|3mili|e3mli) (ma3rouf|ma3ruf|ma3roof)
-        (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti)
-        (ahwe|2ahwe) (iza|eza|eiza) (btrid|betrid|bitrid|btride|btridi)
+        (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t)
+        (ahwe|2ahwe) (iza|eza|eiza) (btrid|betrid|bitrid)
   translations:
     en: (A coffee|Coffee), please.
 - id: s.num.25
   node: apc.num.prices
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: الحساب، عمول معروف.
       tokens: [{surface: الحساب, sense: 7sab, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حساب, kc: 'sense:7sab'}]}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
       reverse: |-
         الحساب (عمول|اعمول|عمل) معروف
-        الحساب (عملي|اعملي) معروف
-        الحساب لو (سمحت|سمحتي)
-        الحساب (إذا|اذا) (بتريد|بتريدي)
+        الحساب لو سمحت
+        الحساب (إذا|اذا) بتريد
     apc-Latn/arabizi:
       text: el 7sab, 3mol ma3rouf.
       tokens: [{surface: el, sense: el}, {surface: 7sab, sense: 7sab}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
       reverse: |-
         (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
-        (el|l|il) (7sab|hsab|7isab) (3mele|3emli|3mili|e3mli) (ma3rouf|ma3ruf|ma3roof)
-        (el|l|il) (7sab|hsab|7isab) (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti)
-        (el|l|il) (7sab|hsab|7isab) (iza|eza|eiza) (btrid|betrid|bitrid|btride|btridi)
+        (el|l|il) (7sab|hsab|7isab) (law|lau|low) (sama7t|samaht|sma7t)
+        (el|l|il) (7sab|hsab|7isab) (iza|eza|eiza) (btrid|betrid|bitrid)
   translations:
     en: The (bill|check), please.
 - id: s.num.26
   node: apc.num.prices
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: لو سمحت، قدّيش هيدا؟
       tokens: [{surface: لو, sense: law-sama7t}, {surface: سمحت, sense: law-sama7t}, {surface: قدّيش, sense: 2addesh}, {surface: هيدا, sense: hayda}]
-      reverse: لو (سمحت|سمحتي) (قدّيش|أدّيش) (هيدا|هيدي)
+      reverse: لو سمحت (قدّيش|أدّيش) (هيدا|هيدي)
     apc-Latn/arabizi:
       text: law sama7t, 2addesh hayda?
       tokens: [{surface: law, sense: law-sama7t}, {surface: sama7t, sense: law-sama7t}, {surface: 2addesh, sense: 2addesh}, {surface: hayda, sense: hayda}]
-      reverse: (law|lau|low) (sama7t|samaht|sma7t|sama7te|sama7ti) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda|hayde)
+      reverse: (law|lau|low) (sama7t|samaht|sma7t) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda|hayde)
   translations:
     en: |-
       Excuse me, how much is this?
@@ -477,6 +477,7 @@ sentences:
 - id: s.num.27
   node: apc.num.age
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: قدّيش عمرك؟
@@ -485,7 +486,7 @@ sentences:
     apc-Latn/arabizi:
       text: 2addesh 3omrak?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 3omrak, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak|3omrik|3umrik)
+      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak)
   translations:
     en: How old are you?
 - id: s.num.28
@@ -525,6 +526,7 @@ sentences:
 - id: s.num.30
   node: apc.num.age
   register: colloquial
+  persons: {addressee: m}
   forms:
     apc-Arab/standard:
       text: شو رقمك؟
@@ -533,7 +535,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu ra2mak?
       tokens: [{surface: shu, sense: shu}, {surface: ra2mak, sense: ra2m, morphs: [{surface: ra2m, kc: 'sense:ra2m'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (shu|sho) (ra2mak|ra2emak|rakamak|ra2mik|ra2emik)
+      reverse: (shu|sho) (ra2mak|ra2emak|rakamak)
   translations:
     en: What('s| is) your (number|phone number)?
 stories:
