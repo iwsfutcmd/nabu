@@ -227,3 +227,13 @@ With an account on a server, corrections also reach the review queue at `/admin/
      fatha). Some stories leave it off.
 10. **Accept sets.** How generous should the Arabizi variants be (2 or no 2, e/i, kh/5, gh/8),
     and the English alternatives?
+11. **The voice** ([ADR 0058](../docs/adr/0058-lahgtna-voice.md)). Every clip is synthetic: Lahgtna
+    (OmniVoice), cloning one designed Beirut man's voice (`audio/voices/beirut-m.wav`), reading
+    the vowel-marked text.
+    - **Listen for:** a Lebanese accent rather than MSA or another dialect; the vowels the marks
+      ask for (a wrong mark is said as written); stress; how questions sound.
+    - **Where to start:** `nabu audio report ../courses/apc` lists the clips the round-trip check
+      put up for review. Whisper writes Lebanese words in MSA spelling (هيدا as هذا), so a high CER
+      is not always a bad clip, and a low one is not always a good one.
+    - **A wrong clip:** fix the vowel marks (vocalization.yaml or the token's `vocalized`) and
+      regenerate, or record the sentence (`nabu audio ingest`).

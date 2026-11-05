@@ -17,6 +17,8 @@ app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's a
 
 #: Whisper language codes of the fixture courses' targets.
 ASR_LANGUAGE = {"fa": "fa", "yue": "yue", "uz": "uz", "apc": "ar"}
+#: eSpeak NG voices for forced alignment where the course voice is not eSpeak's.
+ESPEAK_VOICE = {"apc": "ar"}
 
 
 def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
@@ -151,21 +153,28 @@ def ingest(
     course_dir, src, units, _ = _compiled(course)
     alignment = None
     if align:
+        voices: list[AudioVoice] = list(src.audio.voices or []) if src.audio is not None else []
+        voice = voices[0] if voices else None
+        # The sentence in the voice's orthography: the one its recordings say.
         tokens = next(
             (
-                form["text"]["tokens"]
+                s["forms"][voice.orthography]["text"]["tokens"]
                 for u in units
                 for s in u["sentences"]
-                if s["id"] == item
-                for form in s["forms"].values()
+                if s["id"] == item and voice is not None and voice.orthography in s["forms"]
             ),
             None,
         )
-        voices: list[AudioVoice] = list(src.audio.voices or []) if src.audio is not None else []
-        if tokens is None or not voices:
+        if tokens is None or voice is None:
             typer.echo(f"✗ {item}: alignment needs a sentence and a course voice", err=True)
             raise typer.Exit(code=1)
-        alignment = (tokens, voices[0].reading, voices[0].voice)
+        # Phonemes come from eSpeak NG: the voice's own, or one for the course's language.
+        phonemes = (
+            voice.voice
+            if voice.provider == "espeak-ng"
+            else ESPEAK_VOICE.get(src.id, str(src.target).split("-")[0])
+        )
+        alignment = (tokens, voice.reading, phonemes)
     entries = add(course_dir, Recording(item, file, license, author, source, status), alignment)
     typer.echo(f"✓ {item}: {len(entries)} clips ({license}, {author})")
 
