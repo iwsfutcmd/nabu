@@ -38,8 +38,8 @@ npx wrangler@4 deploy
 `localhost:8976`, the browser can't reach the machine wrangler runs on: use the API token instead.
 
 The first deploy asks you to choose a `workers.dev` subdomain. Note the address it prints,
-`https://nabu-references.<subdomain>.workers.dev`: the steps below call it `RELAY`. Until the
-secrets are in, it answers every request with `misconfigured`.
+`https://nabu-references.<subdomain>.workers.dev`: the steps below call it `RELAY`. Its home page
+answers at once; until the secrets are in, everything else answers `misconfigured`.
 
 ### 2. A Google Cloud project for the sign-in (no billing)
 
@@ -49,10 +49,14 @@ At <https://console.cloud.google.com>:
 2. **APIs & Services → Library → Google Drive API → Enable.**
 3. **Google Auth Platform** (formerly "OAuth consent screen") → **Get started**: any app name,
    your email, audience **External**.
-4. **Audience → Publish app**, so the app is **In production**. In "Testing", Google ends the
+4. **Branding**: app name, your email as support and developer contact, no logo (a logo needs
+   verification). App domain: home page `RELAY/`, privacy policy `RELAY/privacy`, terms
+   `RELAY/terms` (the relay serves them). Authorized domains: `<subdomain>.workers.dev`. Save.
+   Without the app domain links, **Publish app** stays greyed out.
+5. **Audience → Publish app**, so the app is **In production**. In "Testing", Google ends the
    sign-in after 7 days. Google doesn't need to verify an app only you use; at sign-in it shows
    "Google hasn't verified this app", and you continue with **Advanced → Go to … (unsafe)**.
-5. **Clients → Create client → Web application.** Under authorized redirect URIs, add
+6. **Clients → Create client → Web application.** Under authorized redirect URIs, add
    `RELAY/oauth/callback`, exactly. Copy the **client ID** and **client secret**.
 
 ### 3. The Worker's secrets

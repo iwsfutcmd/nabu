@@ -319,3 +319,22 @@ describe("signing in", () => {
     expect(await response.json()).toMatchObject({ error: "google-refused", detail: "access_denied" });
   });
 });
+
+describe("the pages Google asks for", () => {
+  it("serves a home page, a privacy policy and terms, without the key", async () => {
+    const { call } = setup({ GOOGLE_REFRESH_TOKEN: "" });
+    for (const [path, words] of [
+      ["/", "one user, its owner"],
+      ["/privacy", "Limited Use requirements"],
+      ["/terms", "without warranty"],
+    ] as const) {
+      const response = await call("GET", path, { headers: { authorization: "" } });
+      expect(response.status).toBe(200);
+      expect(response.headers.get("content-type")).toBe("text/html; charset=utf-8");
+      const html = await response.text();
+      expect(html).toContain('<html lang="en" dir="ltr">');
+      expect(html).toContain(words);
+    }
+    expect((await call("POST", "/")).status).toBe(404);
+  });
+});

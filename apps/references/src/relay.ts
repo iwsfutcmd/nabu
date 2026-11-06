@@ -13,6 +13,7 @@
  *   POST /v1/trash?path=…                to Drive's trash (restorable); nothing is ever deleted
  *
  * GET /oauth/start and /oauth/callback sign the relay in (oauth.ts), only while it is signed out.
+ * GET /, /privacy and /terms are the pages Google needs before the sign-in app can be published (pages.ts).
  */
 import {
   accountEmail,
@@ -36,6 +37,7 @@ import {
 } from "./drive.ts";
 import { finishSignIn, refreshingTokens, sameSecret, startSignIn, type Clock, type Secrets, type TokenCell } from "./oauth.ts";
 import { fail, failure, json, ok, type Outcome } from "./outcome.ts";
+import { pageFor } from "./pages.ts";
 import { parsePath, within, type RefPath } from "./paths.ts";
 
 /** The Worker's secrets (`wrangler secret put`). All optional here: a missing one is a 500, not a crash. */
@@ -219,6 +221,8 @@ const signIn = async (request: Request, url: URL, env: Env, deps: Deps): Promise
 
 export const handle = async (request: Request, env: Env, deps: Deps): Promise<Response> => {
   const url = new URL(request.url);
+  const shown = request.method === "GET" ? pageFor(url.pathname) : null;
+  if (shown !== null) return shown;
   if (request.method === "GET" && (url.pathname === "/oauth/start" || url.pathname === "/oauth/callback")) {
     return signIn(request, url, env, deps);
   }

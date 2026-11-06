@@ -61,6 +61,9 @@ against the references, and stay LLM drafts until a native speaker reviews them.
 - **The stored sign-in reaches the whole Drive.** Only the relay's code limits it to the folder.
   The Cloudflare account needs two-factor authentication. A leaked relay key reaches only the
   folder.
+- **Google wants pages before it publishes the sign-in app:** a home page, a privacy policy and terms
+  on the app's domain. The relay serves them (`/`, `/privacy`, `/terms`), in English only, for Google
+  and the owner; they are not part of the app.
 - **The sign-in lapses** if Google revokes it or it goes unused for six months. The relay says
   `sign-in-expired`, and the owner signs in again (apps/references/README.md).
 - **Not yet:**
