@@ -6,7 +6,7 @@ import { loadCourse } from "./learner-fixtures.ts";
 /** apc's s.1 as the app shows it: pinned here and in pipeline/tests/test_review.py (the Python twin). */
 const APC_S1 = ["sentence\ts.1", "form\tapc-Arab/standard\t\u0645\u064E\u0631\u0652\u062D\u064E\u0628\u0627!", "form\tapc-Latn/arabizi\tmar7aba!", "translation\ten\tHello!"].join("\n");
 
-describe("sign-off text (ADR 0071)", () => {
+describe("sign-off text (ADR 0072)", () => {
   const apc = loadCourse("apc");
   const sentences = apc.units.flatMap((u) => u.sentences);
   const stories = apc.units.flatMap((u) => u.stories ?? []);

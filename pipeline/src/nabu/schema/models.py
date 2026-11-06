@@ -2208,7 +2208,7 @@ class BundleManifest(BaseModel):
     release: Annotated[
         bool | None,
         Field(
-            description="A release build (ADR 0072): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
+            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
         ),
     ] = None
 
@@ -2800,7 +2800,7 @@ type ReportSubmission = Annotated[
 
 class SignOffs(BaseModel):
     """
-    A reviewer's sign-offs on a course's content (ADR 0071): written by the web app's sentence list, applied to the course source by `nabu review apply`. A signed-off sentence or story becomes reviewed, with the reviewer's provenance.
+    A reviewer's sign-offs on a course's content (ADR 0072): written by the web app's sentence list, applied to the course source by `nabu review apply`. A signed-off sentence or story becomes reviewed, with the reviewer's provenance.
     """
 
     model_config = ConfigDict(

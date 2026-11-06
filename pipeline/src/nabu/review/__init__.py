@@ -1,4 +1,4 @@
-"""`nabu review apply` (ADR 0071): a reviewer's sign-offs into the course source.
+"""`nabu review apply` (ADR 0072): a reviewer's sign-offs into the course source.
 
 The web app's sentence list lets a reviewer sign off a sentence, a whole story or everything in a
 unit, and downloads the sign-offs (schemas/signoffs.schema.json). Applying them sets each item's

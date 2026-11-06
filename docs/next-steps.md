@@ -118,9 +118,9 @@ These cannot be done in code. Each one gates something below.
     - audio playback and accept-set edits;
     - the report queue (`/admin/v1` has no interface today).
   - **Sign-off.** Signing off moves an item from draft to reviewed, with the reviewer's
-    provenance. (Done: [ADR 0071](adr/0071-sign-off.md), in the sentence list with `nabu review apply`.)
+    provenance. (Done: [ADR 0072](adr/0072-sign-off.md), in the sentence list with `nabu review apply`.)
   - **Release builds.** A release build of a course leaves out unreviewed items. The demo keeps
-    showing drafts, labelled as drafts. (Done: [ADR 0072](adr/0072-release-builds.md),
+    showing drafts, labelled as drafts. (Done: [ADR 0073](adr/0073-release-builds.md),
     `nabu build --release`; each course's page says how many sentences are unchecked.)
   - **Larger courses.** Each fixture course grows to an A1 path of about 8–10 units, drafted with
     `nabu author draft`, linted, and then reviewed.

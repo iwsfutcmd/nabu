@@ -1,8 +1,8 @@
 /**
- * Sign-off (ADR 0071, Phase 13 acceptance): in the browser, a reviewer signs off a whole unit
+ * Sign-off (ADR 0072, Phase 13 acceptance): in the browser, a reviewer signs off a whole unit
  * from the sentence list; the sign-offs stay on the device and download as the file
  * `nabu review apply` reads, each with the sha256 of what was shown. Learners see none of it.
- * The demo's full builds keep drafts, and each course's page says how many (ADR 0072).
+ * The demo's full builds keep drafts, and each course's page says how many (ADR 0073).
  */
 import { createHash } from "node:crypto";
 import { correctablesByUnit, draftCount, sentenceSignoffText, storySignoffText } from "@nabu/core/corrections";

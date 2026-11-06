@@ -186,7 +186,7 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
   const studied = Object.keys(state.cards).length > 0;
   const mistakes = state.mistakes.length;
   const today = state.xp.byDate[localDate(now)] ?? 0;
-  // The demo's full builds keep drafts and say so (ADR 0072); a release build has none.
+  // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
   const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
     const last = acc.at(-1);

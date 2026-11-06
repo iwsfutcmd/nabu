@@ -6,7 +6,7 @@
  * also downloads the device's own corrections as the file `nabu corrections apply` reads, so a
  * reviewer can apply them with no server at all.
  *
- * For a reviewer (debug mode, ADR 0071) the list also signs items off: each sign-off holds the
+ * For a reviewer (debug mode, ADR 0072) the list also signs items off: each sign-off holds the
  * sha256 of what was shown (signoffText), stays on this device, and downloads as the file
  * `nabu review apply` reads.
  */
@@ -253,7 +253,7 @@ const download = (course: string, corrections: ReadonlyMap<string, SentenceRepor
   URL.revokeObjectURL(url);
 };
 
-// ------------------------------------------------------------------------------- sign-off (ADR 0071)
+// ------------------------------------------------------------------------------- sign-off (ADR 0072)
 
 const SIGNOFFS = "nabu.signoffs.";
 

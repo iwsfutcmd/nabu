@@ -1,5 +1,5 @@
 /**
- * Sign-off (ADR 0071), pure: a reviewer reads a sentence or a whole story and finds it right.
+ * Sign-off (ADR 0072), pure: a reviewer reads a sentence or a whole story and finds it right.
  * What they saw is pinned by `signoffText`, which the app hashes (sha256) into the sign-off's
  * `shown`; `nabu review apply` builds the same text from its own compile of the course and applies
  * a sign-off only while the two agree. The text is every orthography's form and every
@@ -47,7 +47,7 @@ export const signedOff = (provenance: Provenance | undefined): boolean => proven
 
 /**
  * How much of a course no reviewer has signed off yet, in sentences: its own, and its stories'
- * lines (a story is signed off whole). A release build (ADR 0072) has none; the demo shows the count.
+ * lines (a story is signed off whole). A release build (ADR 0073) has none; the demo shows the count.
  */
 export const draftCount = (units: readonly BundleUnit[]): { readonly drafts: number; readonly total: number } => {
   let drafts = 0;

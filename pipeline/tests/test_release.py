@@ -1,4 +1,4 @@
-"""Release builds (ADR 0072): only what a reviewer signed off, with the nodes, units and clips that
+"""Release builds (ADR 0073): only what a reviewer signed off, with the nodes, units and clips that
 still have content; the full build is unchanged."""
 
 from __future__ import annotations

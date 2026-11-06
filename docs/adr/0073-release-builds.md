@@ -1,13 +1,13 @@
-# 0072. Release builds: only what a reviewer signed off
+# 0073. Release builds: only what a reviewer signed off
 
 - Status: Proposed
 - Date: 2026-11-06
-- Amends: [0071](0071-sign-off.md)
+- Amends: [0072](0072-sign-off.md)
 
 ## Context
 
 Phase 13 asks that a release build of a course leave out unreviewed items, while the demo keeps
-showing drafts, labelled as drafts. Sign-off (ADR 0071) now marks items reviewed in the source,
+showing drafts, labelled as drafts. Sign-off (ADR 0072) now marks items reviewed in the source,
 but every build still shipped everything, and nothing in the app said a course was an unchecked
 draft.
 
@@ -34,7 +34,7 @@ construction. Then:
 - **The report:** the command prints how many sentences, stories, scenarios and units it kept and
   left out.
 
-**Words (KCs) stay with their unit.** They have no provenance of their own yet (ADR 0071), and
+**Words (KCs) stay with their unit.** They have no provenance of their own yet (ADR 0072), and
 the sentences and stories that teach them are what a reviewer signs off.
 
 **The demo labels drafts.** A course's page shows how many of its sentences (story lines included)

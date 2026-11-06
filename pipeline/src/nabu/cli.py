@@ -130,7 +130,7 @@ def build(
     release: Annotated[
         bool,
         typer.Option(
-            help="A release build (ADR 0072): only reviewed content. Demo bundles keep drafts."
+            help="A release build (ADR 0073): only reviewed content. Demo bundles keep drafts."
         ),
     ] = False,
 ) -> None:

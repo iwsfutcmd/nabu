@@ -1,4 +1,4 @@
-"""`nabu review …`: a reviewer's sign-offs into the course source (ADR 0071)."""
+"""`nabu review …`: a reviewer's sign-offs into the course source (ADR 0072)."""
 
 from __future__ import annotations
 

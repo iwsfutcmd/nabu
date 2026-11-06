@@ -1,5 +1,5 @@
-"""Release builds (ADR 0072): a course as learners outside the demo get it, with only what a
-reviewer has signed off (ADR 0071).
+"""Release builds (ADR 0073): a course as learners outside the demo get it, with only what a
+reviewer has signed off (ADR 0072).
 
 `nabu build --release` keeps the sentences, stories and roleplay scenarios whose provenance is
 reviewed or published (generated drills are reviewed by construction), and then:

@@ -1,4 +1,4 @@
-"""`nabu review apply` (ADR 0071): sign-offs into the course source, only where the source still
+"""`nabu review apply` (ADR 0072): sign-offs into the course source, only where the source still
 compiles to what the reviewer saw. The fingerprint text is pinned here and in
 packages/core/test/signoff.test.ts: both sides must build the same text."""
 

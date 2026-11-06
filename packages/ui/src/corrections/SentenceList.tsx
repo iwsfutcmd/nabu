@@ -4,7 +4,7 @@
  * readings, where the profile has them), then the course's other orthographies and the
  * translation, all through <T>. Items this device already corrected say so.
  *
- * With `review` (a reviewer, ADR 0071), each sentence and each story can be signed off ("Looks
+ * With `review` (a reviewer, ADR 0072), each sentence and each story can be signed off ("Looks
  * right"), and a whole unit at once; items the source already marks reviewed say so instead.
  */
 import { correctablesByUnit, correctionKey, signedOff, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
@@ -20,7 +20,7 @@ import styles from "./Corrections.module.css";
 /** How a signed-off item is known on the device: "sentence:<id>" or "story:<id>". */
 export const signOffKey = (kind: SignOffKind, item: string): string => `${kind}:${item}`;
 
-/** A reviewer's controls (ADR 0071): what this device signed off, and how to sign off more. */
+/** A reviewer's controls (ADR 0072): what this device signed off, and how to sign off more. */
 export interface ReviewControls {
   readonly signed: ReadonlySet<string>;
   readonly onSignOff: (kind: SignOffKind, item: string, on: boolean) => void;
