@@ -92,6 +92,8 @@ def generate(
         typer.echo(f"  - {item}: no {voice.reading} reading", err=True)
     for item in report.silent:
         typer.echo(f"  - {item}: the voice said nothing; no clip", err=True)
+    for item in report.other_speaker:
+        typer.echo(f"  - {item}: said by someone the voice ({voice.speaker}) is not; no clip")
 
 
 @app.command()

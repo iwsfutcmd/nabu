@@ -376,13 +376,15 @@ const SPEAKER: Readonly<Record<NonNullable<Persons["speaker"]>, MessageId>> = { 
 const ADDRESSEE: Readonly<Record<NonNullable<Persons["addressee"]>, MessageId>> = {
   m: "player.persons.addressee.m",
   f: "player.persons.addressee.f",
+  sg: "player.persons.addressee.sg",
+  du: "player.persons.addressee.du",
   pl: "player.persons.addressee.pl",
 };
 
 /**
  * Who speaks and who is spoken to, under a prompt in the support language, where the target
- * language marks it and the prompt cannot (a feminine or plural "you" in Arabic): the accept set
- * holds only the forms that fit.
+ * language marks it and the prompt cannot (a feminine or plural "you" in Arabic, a singular one
+ * in Cantonese): the accept set holds only the forms that fit.
  */
 const PersonsNote = ({ persons, prompt }: { readonly persons: Persons | undefined; readonly prompt: TaggedText }): JSX.Element | null => {
   const t = useTranslator();

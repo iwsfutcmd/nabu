@@ -210,6 +210,42 @@ def test_clips_of_a_voice_that_left_the_cast_are_stale(core_cli: CoreCli, yue_co
 
 
 @needs_espeak
+def test_a_voice_never_says_words_someone_else_says(core_cli: CoreCli, yue_copy: Path) -> None:
+    """A man's voice gives a sentence a woman says no clip; a clip it made before is stale, and
+    the next generation drops it (ADR 0075)."""
+    course = yue_copy / "course.yaml"
+    text = course.read_text(encoding="utf-8")
+    cast = "reading: jyutping, license: CC0-1.0}"
+    assert text.count(cast) == 1
+    course.write_text(
+        text.replace(cast, "reading: jyutping, speaker: m, license: CC0-1.0}"), "utf-8"
+    )
+    man = YUE_VOICE.model_copy(update={"speaker": "m"})
+    _, compiled = _compiled(core_cli, yue_copy)
+    synthesize_course(yue_copy, compiled.units, man)
+    assert "s.1" in {c.item for c in read_index(audio_dir(yue_copy)).clips}
+
+    unit = yue_copy / "units" / "intro.yaml"
+    text = unit.read_text(encoding="utf-8")
+    assert text.count("- id: s.1\n") == 1
+    unit.write_text(text.replace("- id: s.1\n", "- id: s.1\n  persons: {speaker: f}\n"), "utf-8")
+    diags, compiled = _compiled(core_cli, yue_copy)
+    stale = [d for d in diags.items if d.lint == "audio.stale"]
+    assert [d.message.split(":")[0] for d in stale] == ["s.1"], [d.format() for d in diags.items]
+    assert "s.1" not in compiled.audio_items
+
+    items, skipped = plan(compiled.units, man)
+    assert "s.1" not in {i.item for i in items} and skipped == []
+    assert "s.1" in {i.item for i in plan(compiled.units, YUE_VOICE)[0]}  # no speaker: any
+    woman = YUE_VOICE.model_copy(update={"speaker": "f"})
+    assert "s.1" in {i.item for i in plan(compiled.units, woman)[0]}
+
+    report = synthesize_course(yue_copy, compiled.units, man)
+    assert report.other_speaker == ["s.1"]  # its file may live on: another item's clip alike
+    assert "s.1" not in {c.item for c in read_index(audio_dir(yue_copy)).clips}
+
+
+@needs_espeak
 def test_human_recordings_keep_their_license(
     tmp_path: Path, core_cli: CoreCli, yue_copy: Path
 ) -> None:

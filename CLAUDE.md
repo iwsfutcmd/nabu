@@ -229,9 +229,18 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `kc.inflected-form` catches forms the sentences analyse into several KCs. Verbs: infinitive (ichmoq, خوردن).
 - Taps on analysed words show their morphs (`glossAt`); annotate morphs rather than listing inflected forms.
 
-## Persons notes (see docs/adr/0056)
-- `persons` on a sentence (ADR 0056: speaker m/f, addressee m/f/pl) is shown as tags under l1-l2 prompts; tag
-  where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
+## Persons and register notes (see docs/adr/0056, 0075)
+- `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
+  under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
+  forms that fit. Untagged means every form is accepted.
+- Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
+  woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
+  before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
+- Register is the same idea, not yet modelled: Javanese speech levels (ngoko/krama/krama inggil), T–V (fa تو/شما,
+  uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
+  sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
+- A voice says whose voice it is (`speaker: m|f`); it never reads a sentence the other gender says (no clip; an old
+  one is `audio.stale`). apc's voice is a man's, so its woman-speaker sentences have no audio until one is cast.
 
 ## Account data notes (see docs/adr/0067, 0069)
 - `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must
@@ -282,7 +291,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0074 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0075 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
