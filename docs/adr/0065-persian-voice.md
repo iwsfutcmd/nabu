@@ -57,8 +57,13 @@ samples anew. Sentences of one item are joined with 200 ms of silence.
   (word cards, mostly) in the carrier. Whisper's round trip passes 365 and fails 90, 74 of them
   short items, where it is least reliable (it writes نه, said right, as نا).
 - **Word cards say their word,** at about the length a speaker gives it (سلام 0.5 s).
-- **Two words still fail:** نه and اسم, short and ending the carrier. They go through the audio
-  check like any clip; a listener's rejection makes a new take.
+- **The shortest words need nothing more.** A listener compared four ways of saying ten of
+  them (نه, اسم, و, از, تو, من, به, آب, سه, یک): the carrier as it is, the word stretched to
+  0.4 s, the same with a calmer voice, and the word opening the carrier. The carrier as it is
+  won all ten (2026-11-06). A bad take is a matter of the seed: it goes through the audio
+  check like any clip, and a listener's rejection makes a new take.
+- **Whisper fails good short words** (it hears و and سه as موسیقی), so 91 clips, most of them
+  word cards, wait out of the bundles until a listener passes them in the audio check.
 - **و between numbers is read "va"** (بیست و پنج, ده و نیم; 2 of 318 sentences), as eSpeak's
   phonemizer reads it. Written بیستُ پنج it says bist-o panj, but that has a word fewer, which
   `spoken` does not allow (the word timings would not map).
