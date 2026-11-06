@@ -14,4 +14,6 @@ drills:
 # Audio (§10.1): eSpeak NG reads the forms without their vowel marks, as they were written (ADR 0053).
 audio:
   voices:
-  - {id: narrator, provider: espeak-ng, voice: fa, orthography: fa-Arab/standard, reading: text, license: CC0-1.0}
+  - {id: tehran, provider: piper, voice: fa_IR-mana-medium, model: 'MahtaFetrat/Mana-Persian-Piper@ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0',
+    orthography: fa-Arab/standard, reading: text, finalStop: true, carrier: {text: 'حالا این کلمه را تکرار کن، '},
+    license: MIT}
