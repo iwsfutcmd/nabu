@@ -13,7 +13,7 @@ import { textOfSurface } from "@nabu/core/text";
 import { fontStackFor, type Direction } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { useId, useLayoutEffect, useRef, type CSSProperties, type JSX, type KeyboardEvent } from "react";
-import { useOrthography, useTranslator } from "../context.tsx";
+import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
@@ -109,6 +109,7 @@ export const AnswerInput = ({
   const t = useTranslator();
   const id = useId();
   const scale = fontStackFor(base.lang, useOrthography(base.orthography)?.fonts).scale;
+  const target = useIsTarget(base.orthography);
   const input = useRef<HTMLInputElement>(null);
   const composing = useRef(false);
   const caret = useRef<number | null>(null);
@@ -151,6 +152,7 @@ export const AnswerInput = ({
         ref={input}
         className={styles.input}
         style={scale === 1 ? undefined : ({ "--nabu-input-scale": String(scale) } as CSSProperties)}
+        data-target={target ? "" : undefined}
         value={value}
         lang={base.lang}
         dir={dir}

@@ -141,9 +141,12 @@ The app could not express any of this:
     to the words inside `<T>`, so a size a caller gives the element still holds, and to the
     answer field.
   - Other profiles name no scale and look as they did.
-- The learner's own text size (Preferences, `#/preferences`, kept on the device) scales the
-  root font size, so the chrome and every course's text follow it, and the profile's scale on
-  top of that.
+- The learner's text size for the language being learned (Preferences, `#/preferences`, kept
+  on the device) sets `--nabu-target-scale`. It applies only to the course's own orthographies:
+  `CourseUiProvider` tells <T> which they are (all but the support language), and <T> marks
+  their text `data-target`. It also applies to the answer field when typing them. The chrome
+  and the translations keep their size; the browser's zoom is there for everything at once.
+  It multiplies the profile's scale.
 
 **The course.**
 

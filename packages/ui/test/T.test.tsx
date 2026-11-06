@@ -2,7 +2,9 @@ import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { demoExercise } from "../src/demo/fixtures.ts";
 import { T } from "../src/T.tsx";
-import { render } from "./render.tsx";
+import { NabuUiProvider } from "../src/context.tsx";
+import { DEMO_ORTHOGRAPHIES } from "../src/demo/profiles.ts";
+import { render, translator } from "./render.tsx";
 
 const attr = (html: string, name: string): string | undefined => new RegExp(`${name}="([^"]*)"`).exec(html)?.[1];
 
@@ -80,6 +82,21 @@ describe("<T>", () => {
     const yue = render(<T text={demoExercise("yue-Hant-HK").answer} />);
     expect(yue).not.toContain("data-scaled");
     expect(yue).not.toContain("--nabu-text-scale");
+  });
+
+  it("marks only the language being learned for the learner's text size (ADR 0071)", () => {
+    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "word" }] } as unknown as TaggedText;
+    const en = { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "good", kind: "word" }] } as unknown as TaggedText;
+    const inCourse = (text: TaggedText): string =>
+      render(
+        <NabuUiProvider translator={translator()} orthographies={DEMO_ORTHOGRAPHIES} targets={new Set(["lzh-Hant/standard"])}>
+          <T text={text} />
+        </NabuUiProvider>,
+      );
+    expect(inCourse(lzh)).toContain("data-target");
+    expect(inCourse(en)).not.toContain("data-target");
+    // Outside a course nothing is a target.
+    expect(render(<T text={lzh} />)).not.toContain("data-target");
   });
 
   it("marks short numbers for tate-chū-yoko", () => {
