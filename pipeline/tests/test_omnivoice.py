@@ -23,8 +23,8 @@ from nabu.audio.course import (
     audio_dir,
     cast_reference,
     plan,
-    record_reference,
     read_index,
+    record_reference,
     reference_of,
     synthesize_course,
 )
