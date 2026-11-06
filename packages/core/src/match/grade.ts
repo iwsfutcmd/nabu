@@ -221,6 +221,12 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     }
     const c = compare(op.expected, op.actual);
     for (const f of c.folds) {
+      // Marks that tell words apart (ADR 0074): left out or added, they can spell another word (esta for está).
+      if (f.kind === "marks" && profile.marks?.distinguishes === true && options.lexicon?.has(profile.fold(op.actual)) === true) {
+        raise("WRONG_WORD");
+        note(profile.marks.wordNote ?? f.note ?? f.id);
+        continue;
+      }
       applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
     }
     if (c.kind === "homophone") applyPolicy(profile.homophones?.policy, "PARTIAL", "ime-homophone");

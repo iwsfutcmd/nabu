@@ -2729,6 +2729,18 @@ class Marks(BaseModel):
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
         ),
     ] = None
+    distinguishes: Annotated[
+        bool | None,
+        Field(
+            description="Marks that tell words apart (ADR 0074): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies."
+        ),
+    ] = None
+    wordNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose marks spell another word (with `distinguishes`)."
+        ),
+    ] = None
 
 
 class Zwnj(BaseModel):

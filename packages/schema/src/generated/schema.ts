@@ -272,6 +272,10 @@ export type NoteId = string;
  */
 export type UnicodeSetPattern1 = string;
 /**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId1 = string;
+/**
  * A CLDR Keyboard 3.0 layout (UTS #35 Part 7).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2732,6 +2736,11 @@ export interface MatchPolicy {
     readonly policy: Policy;
     readonly note?: NoteId;
     readonly optional?: UnicodeSetPattern1;
+    /**
+     * Marks that tell words apart (ADR 0074): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
+     */
+    readonly distinguishes?: boolean;
+    readonly wordNote?: NoteId1;
   };
   readonly zwnj?: {
     /**
