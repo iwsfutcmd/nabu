@@ -84,6 +84,43 @@ export const fileReport = async (db: Db, courses: Courses, r: ReportInput, now: 
   return row.id;
 };
 
+/** The template a reviewer's accepted answer is filed under: a target-language answer, as promote takes it. */
+export const REVIEWER_TEMPLATE = "translate-type.l1-l2";
+
+/**
+ * An answer a reviewer accepts from the review workspace (ADR 0074): filed approved, so `nabu reports
+ * promote` adds it to the sentence's `reverse` accept set. No learner stands behind it, so it has no vote.
+ */
+export const addAccepted = async (db: Db, courses: Courses, r: { readonly course: string; readonly orthography: string; readonly item: string; readonly answer: string; readonly note?: string | undefined }, now: number): Promise<string> => {
+  const at = new Date(now);
+  const note = r.note?.normalize("NFC").trim();
+  const [row] = await db
+    .insert(answerReports)
+    .values({
+      id: uuidv7(now),
+      course: r.course,
+      orthography: r.orthography,
+      template: REVIEWER_TEMPLATE,
+      item: r.item,
+      answer: r.answer.normalize("NFC").trim(),
+      normalized: normalizedAnswer(courses, r.course, r.orthography, r.answer),
+      claim: "accept",
+      status: "approved",
+      notes: note === undefined || note === "" ? [] : [note],
+      judge: null,
+      createdAt: at,
+      updatedAt: at,
+    })
+    .onConflictDoUpdate({
+      target: [answerReports.course, answerReports.orthography, answerReports.template, answerReports.item, answerReports.normalized, answerReports.claim],
+      // Promoted stays promoted; anything else is now approved.
+      set: { status: sql`case when ${answerReports.status} = 'promoted' then ${answerReports.status} else 'approved' end`, updatedAt: at },
+    })
+    .returning({ id: answerReports.id });
+  if (row === undefined) throw new Error("accepted answer not stored");
+  return row.id;
+};
+
 export const listReports = async (db: Db, filter: { readonly status?: ReportStatus | undefined; readonly course?: string | undefined }): Promise<AnswerReport[]> => {
   const where = and(filter.status === undefined ? undefined : eq(answerReports.status, filter.status), filter.course === undefined ? undefined : eq(answerReports.course, filter.course));
   const rows = await db

@@ -28,6 +28,12 @@
  *   GET  /admin/v1/corrections?status=&course=       corrections to sentences and story lines (ADR 0051)
  *   GET  /admin/v1/corrections.jsonl?status=approved  what `nabu corrections apply` reads
  *   POST /admin/v1/corrections/:id                    {status: approved | rejected | applied}
+ *   GET  /admin/v1/reviewers                         reviewer accounts (ADR 0074)
+ *   PUT  /admin/v1/reviewers                         {email, handle, courses: [id…] | ["*"]}: grants or changes the role
+ *   DELETE /admin/v1/reviewers/:handle               takes it away (their sign-offs stay)
+ *   GET  /admin/v1/signoffs?course=                  {files: SignOffs[]}: what `nabu review apply` takes, per reviewer
+ *
+ * Reviewers, signed in with their own accounts: /v1/review/* (review.ts), the review workspace.
  *
  * Authenticated routes take `Authorization: Bearer <token>`. No cookies, so
  * any origin may call it (CORS *) without exposing a session to CSRF.
@@ -59,6 +65,7 @@ import { deleteAccount, exportOf } from "./privacy.ts";
 import { getProfile, setProfile } from "./profiles.ts";
 import { CORRECTION_STATUSES, fileCorrection, listCorrections, setCorrectionStatus } from "./corrections.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
+import { allSignOffs, grant, listReviewers, reviewRoutes, revoke } from "./review.ts";
 import { base64url, fromBase64url, type Vapid } from "./webpush.ts";
 
 export interface AppDeps {
@@ -211,6 +218,15 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
       if (typeof status !== "string" || !CORRECTION_STATUSES.includes(status as CorrectionStatus) || status === "pending") return c.json({ error: "invalid-status" }, 400);
       return (await setCorrectionStatus(db, c.req.param("id"), status as CorrectionStatus, now())) ? c.body(null, 204) : c.json({ error: "not-found" }, 404);
     });
+    app.get("/admin/v1/reviewers", async (c) => c.json({ reviewers: await listReviewers(db) }));
+    app.put("/admin/v1/reviewers", async (c) => {
+      const b = await body(c);
+      const result = await grant(db, { email: b?.["email"], handle: b?.["handle"], courses: b?.["courses"] });
+      if (result.ok) return c.json({ reviewer: result.value });
+      return c.json({ error: result.error }, result.error === "no-account" ? 404 : result.error === "handle-taken" ? 409 : 400);
+    });
+    app.delete("/admin/v1/reviewers/:handle", async (c) => ((await revoke(db, c.req.param("handle").normalize("NFC"))) ? c.body(null, 204) : c.json({ error: "not-found" }, 404)));
+    app.get("/admin/v1/signoffs", async (c) => c.json({ files: await allSignOffs(db, c.req.query("course")) }));
   }
 
   app.post("/v1/auth/sign-up", async (c) => {
@@ -388,6 +404,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     return c.body(null, 204);
   });
 
+  reviewRoutes(app, { db, courses: ai?.courses, now });
   if (ai !== undefined) aiRoutes(app, { db, ...ai, now });
   if (ai !== undefined && speech !== undefined) speechRoutes(app, { db, courses: ai.courses, gateway: ai.gateway, now, ...speech });
 

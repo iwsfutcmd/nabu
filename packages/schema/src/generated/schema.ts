@@ -2982,6 +2982,10 @@ export interface SignOffs {
    * The course id.
    */
   readonly course: string;
+  /**
+   * Who signed these off, as provenance names a person (human:<handle>). The review workspace (ADR 0074) fills it in; a file from the sentence list leaves it out and `nabu review apply` takes --reviewer.
+   */
+  readonly reviewer?: string;
   readonly signoffs: readonly SignOff[];
 }
 /**
