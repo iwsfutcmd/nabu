@@ -55,6 +55,9 @@
         "$ref": "common.schema.json#/$defs/Facet"
       }
     },
+    "placement": {
+      "$ref": "common.schema.json#/$defs/PlacementPolicy"
+    },
     "iPlusOne": {
       "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
       "type": "integer",

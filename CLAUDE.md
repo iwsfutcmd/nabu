@@ -17,7 +17,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -276,13 +276,24 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
   pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
 
+## Cuban Spanish notes (see docs/adr/0075–0076)
+- courses/es: thirty units A1–B2 for heritage speakers; courses/es/README.md is the brief, syllabus and conventions.
+  Cuban forms are canonical (guagua, ¿Qué tú quieres?); pan-Hispanic ones are accepted, never the reverse.
+- Verb tenses are `form:` KCs on the token (form:pres-1s, form:pret-3s, form:impf, form:subj…), not morphs;
+  `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
+- es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
+  (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
+- Placement is adaptive (ADR 0076: a block per unit, gallop then bisect, then node steps); `placement: {production:
+  typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
+- The voice clones a CC0 Cuban recording (`nabu audio cast --recording`); clips are CC-BY-NC-4.0 (OmniVoice weights).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0074 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0076 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

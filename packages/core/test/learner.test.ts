@@ -16,6 +16,7 @@ import {
   learnerEventOf,
   plan,
   progressResetOf,
+  pathNodes,
   pathOf,
   placementOf,
   ratingOf,
@@ -25,7 +26,7 @@ import {
   type LearnerState,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -324,28 +325,76 @@ describe("a course that names its facets (ADR 0071)", () => {
   });
 });
 
-describe("placement v0 (§9.5)", () => {
+describe("placement (§9.5, ADR 0076)", () => {
   const now = "2026-03-01T08:00:00.000Z";
   const test = plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 });
   const nodes = lessonNodes(fa).map((n) => n.node.id);
+  const placement = test.placement as NonNullable<typeof test.placement>;
+  const unitOf = new Map(fa.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
+  const units = [...new Set(lessonNodes(fa).map((n) => n.unit.id))];
+  const events0 = eventFactory(fa, faBundle);
+  events0.at(now);
+  events0.session();
+  /** Runs the test one question at a time, as the player does, for a learner who knows `knows`. */
+  const take = (knows: (ex: Exercise) => boolean): { readonly placed: readonly string[]; readonly asked: number } => {
+    const answers = new Map<string, boolean>();
+    for (let next = runTest(placement.test, answers).next; next.length > 0; next = runTest(placement.test, answers).next) {
+      const ex = next[0] as Exercise;
+      answers.set(ex.id, knows(ex));
+    }
+    return { placed: placementOf(placement, answers), asked: answers.size };
+  };
+  const knowsUnits = (k: number) => (ex: Exercise) => units.indexOf(unitOf.get(ex.item) ?? "") < k;
 
-  it("probes every lesson node in path order, recognition then production, without speaking", () => {
-    expect(test.probes).toBeDefined();
-    const probes = test.probes ?? [];
-    expect([...new Set(probes)]).toEqual(nodes);
-    expect(probes.length).toBeLessThanOrEqual(2 * nodes.length);
-    expect(test.exercises.some((e) => e.template === "speak.tier-0" || e.template === "match-pairs")).toBe(false);
+  it("has a block of at most four probes per unit, production and recognition, without speaking", () => {
+    expect(placement.test.blocks.map((b) => b.id)).toEqual(units);
+    for (const b of placement.test.blocks) {
+      expect(b.exercises.length).toBeGreaterThan(0);
+      expect(b.exercises.length).toBeLessThanOrEqual(4);
+      expect(b.exercises.every((e) => unitOf.get(e.item) === b.id)).toBe(true);
+      // Into the target (tiles or typed) and out of it.
+      expect(b.exercises.some((e) => e.template.endsWith("l1-l2") || e.template === "complete-translation")).toBe(true);
+      expect(b.exercises.some((e) => e.template === "choose-translation" || e.template === "translate-tap.l2-l1")).toBe(true);
+      expect(b.steps.map((s) => s.id)).toEqual(lessonNodes(fa).filter((n) => n.unit.id === b.id).map((n) => n.node.id));
+    }
+    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]);
+    expect(all.some((e) => e.template === "speak.tier-0" || e.template === "match-pairs" || TEMPLATES[e.template].modality.audioOut)).toBe(false);
+    expect(Object.keys(placement.predictions).sort()).toEqual([...new Set(all.map((e) => e.id))].sort());
+    expect(test.exercises).toEqual(placement.test.blocks[0]?.exercises);
     expect(plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 })).toEqual(test);
   });
 
-  it("places through the longest run of nodes answered right the first time", () => {
-    const probes = test.probes ?? [];
-    const right = new Map(test.exercises.map((e) => [e.id, true]));
-    expect(placementOf({ exercises: test.exercises, probes }, right)).toEqual(nodes);
-    const firstOfThird = test.exercises.find((_, i) => probes[i] === nodes[2]);
-    const missed = new Map([...right, [firstOfThird?.id ?? "", false]]);
-    expect(placementOf({ exercises: test.exercises, probes }, missed)).toEqual(nodes.slice(0, 2));
-    expect(placementOf({ exercises: test.exercises, probes }, new Map())).toEqual([]);
+  it("places a learner after the units they know, asking far fewer questions than it has", () => {
+    const total = placement.test.blocks.reduce((n, b) => n + b.exercises.length, 0);
+    for (let k = 0; k <= units.length; k++) {
+      const { placed, asked } = take(knowsUnits(k));
+      // A unit passed places out of its lessons and its story.
+      expect(placed).toEqual(pathNodes(fa).filter((n) => units.indexOf(n.unit.id) < k).map((n) => n.node.id));
+      expect(asked).toBeLessThan(total / 2);
+    }
+    // Two misses fail the first unit, and its first lesson's probe ends the test.
+    expect(take(() => false)).toEqual({ placed: [], asked: 3 });
+  });
+
+  it("places inside the first unit not passed, up to the first node missed", () => {
+    const fourth = lessonNodes(fa).filter((n) => n.unit.id === units[3]);
+    const knownNodes = new Set([...lessonNodes(fa).filter((n) => units.indexOf(n.unit.id) < 3), ...fourth.slice(0, 2)].map((n) => n.node.id));
+    const nodeOf = new Map(fa.units.flatMap((u) => u.sentences.map((s) => [s.id, s.node] as const)));
+    const { placed } = take((ex) => knownNodes.has(nodeOf.get(ex.item) ?? ""));
+    const passedUnits = pathNodes(fa).filter((n) => units.indexOf(n.unit.id) < 3).map((n) => n.node.id);
+    expect(placed).toEqual([...passedUnits, ...fourth.slice(0, 2).map((n) => n.node.id)]);
+    // The path then opens at the third lesson of the fourth unit.
+    const done = { ...events0.completed("lesson", undefined, { exercises: 1, correctFirstTry: 1, retries: 0 }), mode: "placement" as const, placed: [...placed] };
+    const state = replay([events0.started("lesson", undefined, 1), done]);
+    expect(pathOf(fa, state).filter((n) => n.status === "available").map((n) => n.node)).toEqual([fourth[2]?.node.id]);
+  });
+
+  it("asks production typed where the course says (placement: {production: typed})", () => {
+    const typed = plan({ ...fa, placement: { production: "typed" } }, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 }).placement;
+    const produced = (typed?.test.blocks ?? []).flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]).filter((e) => TEMPLATES[e.template].facet === "produce");
+    expect(produced.length).toBeGreaterThan(0);
+    expect(produced.every((e) => TEMPLATES[e.template].modality.input === "text")).toBe(true);
+    expect(placement.test.blocks.flatMap((b) => b.exercises).some((e) => e.template === "translate-tap.l1-l2")).toBe(true);
   });
 
   it("marks placed nodes done in the projection, so the path opens after them", () => {

@@ -50,6 +50,9 @@ export interface CompiledProfile {
     readonly set: ReadonlySet<string>;
     /** Marks a learner supplying the vowel marks may write or leave out (ADR 0054). */
     readonly optional: ReadonlySet<string>;
+    /** Marks that tell words apart (Spanish está/esta, ADR 0075): another word of the course is WRONG_WORD. */
+    readonly distinguishes: boolean;
+    readonly wordNote?: string | undefined;
   };
   readonly zwnj?: Policied & { readonly equivalents: readonly string[] };
   readonly variants?: Policied & { readonly key: StepFn };
@@ -153,6 +156,8 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         strip: (t) => Array.from(t.normalize("NFD")).filter((c) => !set.has(c)).join("").normalize("NFC"),
         set,
         optional,
+        distinguishes: match.marks.distinguishes === true,
+        wordNote: match.marks.wordNote,
       };
     } catch (e) {
       errors.push({ code: "bad-unicode-set", message: (e as Error).message });

@@ -464,6 +464,18 @@ type Facet = Annotated[
 ]
 
 
+class PlacementPolicy(BaseModel):
+    """
+    How a course's placement test probes (ADR 0076). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    production: Literal["tiles", "typed"] | None = None
+
+
 type ScriptCode = Annotated[
     str,
     Field(
@@ -2137,6 +2149,13 @@ class ReferenceVoice(BaseModel):
             description="Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy)."
         ),
     ]
+    source: Annotated[
+        str | None,
+        Field(
+            description="A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0075). The speaker is the provenance's human:<id>.",
+            min_length=1,
+        ),
+    ] = None
     design: Annotated[
         Design | None,
         Field(description="How a synthetic reference was made, so it can be made again."),
@@ -2216,6 +2235,12 @@ class BundleManifest(BaseModel):
         Field(
             description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
             min_length=1,
+        ),
+    ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0076)."
         ),
     ] = None
     versions: Annotated[
@@ -2727,6 +2752,18 @@ class Marks(BaseModel):
         UnicodeSetPattern | None,
         Field(
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
+        ),
+    ] = None
+    distinguishes: Annotated[
+        bool | None,
+        Field(
+            description="Marks that tell words apart (ADR 0075): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies."
+        ),
+    ] = None
+    wordNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose marks spell another word (with `distinguishes`)."
         ),
     ] = None
 
@@ -3430,6 +3467,7 @@ class CourseSource(BaseModel):
             min_length=1,
         ),
     ] = None
+    placement: PlacementPolicy | None = None
     iPlusOne: Annotated[
         int | None,
         Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),

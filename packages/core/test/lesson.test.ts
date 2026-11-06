@@ -13,7 +13,10 @@ import {
   lessonNodes,
   LISTENING,
   MEDIA_ROLES,
+  placedBy,
+  progressOf,
   responseOf,
+  runTest,
   seededRng,
   start,
   step,
@@ -26,6 +29,8 @@ import {
   type Response,
   type TemplateId,
 } from "../src/lesson/index.ts";
+import { pathNodes } from "../src/learner/path.ts";
+import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
@@ -423,6 +428,32 @@ describe("player", () => {
     const shell = run(course, s0, [...answer(first, wrongAnswer(first) as Response), { tag: "continue" }]);
     const end = shell.get();
     expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 0, skipped: 0 });
+  });
+
+  it("asks an adaptive test as its answers decide (placement, ADR 0076)", () => {
+    const test = placementTest(course, 4).test;
+    const units = test.blocks.map((b) => b.id);
+    const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((x) => [x.id, u.id] as const)));
+    // A learner who knows the first two units.
+    const knows = (ex: Exercise): boolean => units.indexOf(unitOf.get(ex.item) ?? "") < 2;
+    const [s0] = start("placement", runTest(test, new Map()).next, { adaptive: test });
+    const shell = run(course, s0, []);
+    const progress: number[] = [];
+    for (let s = shell.get(); s.tag !== "finished"; s = shell.get()) {
+      if (s.tag !== "presenting") throw new Error(`unexpected ${s.tag}`);
+      const response = knows(s.ex) ? rightAnswer(s.ex) : (wrongAnswer(s.ex) as Response);
+      for (const e of [...answer(s.ex, response), { tag: "continue" } as const]) shell.dispatch(e);
+      progress.push(progressOf(shell.get()).total);
+    }
+    const end = shell.get();
+    if (end.tag !== "finished") return;
+    const answers = new Map(end.session.results.map((r) => [r.exercise, isCorrect(r.verdict)]));
+    expect(answers.size).toBe(end.session.queue.length);
+    expect(end.summary.exercises).toBe(end.session.queue.length);
+    expect(end.summary.retries).toBe(0);
+    expect(placedBy(test, answers)).toEqual(pathNodes(course).filter((n) => units.indexOf(n.unit.id) < 2).map((n) => n.node.id));
+    expect(progressOf(end)).toEqual({ done: end.session.queue.length, total: end.session.queue.length });
+    expect(progress.every((t) => t >= 1)).toBe(true);
   });
 
   it("never submits during IME composition, and grades the settled text", () => {

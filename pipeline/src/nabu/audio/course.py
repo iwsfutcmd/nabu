@@ -679,6 +679,50 @@ def wav_bytes(pcm: bytes, sample_rate: int) -> bytes:
     return out.getvalue()
 
 
+def record_reference(
+    course_dir: Path,
+    voice: AudioVoice,
+    recording: Path,
+    text: str,
+    license_: str,
+    author: str,
+    source: str,
+) -> ReferenceVoice:
+    """Keeps a real speaker's recording as the voice's reference (voices/<voice>.wav), replacing
+    an earlier one (ADR 0075): every clip of an OmniVoice voice then clones that speaker, accent
+    and all. `text` is what the recording says, word for word; the recording is loudness-normalized
+    and trimmed like an ingested one. Clips cloned from the old reference become stale."""
+    from nabu.audio.ingest import prepare
+
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    pcm, _ = prepare(recording)
+    data = wav_bytes(pcm, INGEST_RATE)
+    rel = f"voices/{voice.voice}.wav"
+    (adir / "voices").mkdir(parents=True, exist_ok=True)
+    (adir / rel).write_bytes(data)
+    ref = ReferenceVoice.model_validate(
+        {
+            "id": voice.voice,
+            "file": rel,
+            "sha256": hashlib.sha256(data).hexdigest(),
+            "text": unicodedata.normalize("NFC", text.strip()),
+            "durationMs": len(pcm) // 2 * 1000 // INGEST_RATE,
+            "license": license_,
+            "provenance": {"author": author, "status": "draft"},
+            "synthetic": False,
+            "source": source,
+        }
+    )
+    others = [r for r in index.references or [] if r.id != voice.voice]
+    write_index(adir, index.model_copy(update={"references": [*others, ref]}))
+    return ref
+
+
+#: The sample rate a recorded reference is kept at (ingest.SAMPLE_RATE).
+INGEST_RATE = 22_050
+
+
 def cast_reference(
     course_dir: Path,
     voice: AudioVoice,

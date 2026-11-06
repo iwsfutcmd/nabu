@@ -78,6 +78,15 @@
       "type": "string",
       "enum": ["recognize", "produce", "listen", "speak", "read-script", "write-script"]
     },
+    "PlacementPolicy": {
+      "title": "PlacementPolicy",
+      "description": "How a course's placement test probes (ADR 0076). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "production": { "type": "string", "enum": ["tiles", "typed"] }
+      }
+    },
     "ScriptCode": {
       "title": "ScriptCode",
       "description": "An ISO 15924 script code in titlecase.",

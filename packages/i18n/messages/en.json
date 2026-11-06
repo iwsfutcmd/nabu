@@ -938,6 +938,10 @@
       "message": "Lebanese Arabic",
       "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety."
     },
+    "course.name.es": {
+      "message": "Cuban Spanish",
+      "description": "Name of the Cuban Spanish (es) course, used inside other messages as $language. Spanish as Cuban families speak it, in Cuba and in Miami; the course is for heritage speakers but starts from the beginning."
+    },
     "course.name.fa": {
       "message": "Persian",
       "description": "Name of the Persian (fa) course, used inside other messages as $language."
@@ -1034,6 +1038,14 @@
       "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n* {{{$count} tiles left}}",
       "description": "How many tiles are still in the word bank. $count is a number."
     },
+    "feedback.note.accent": {
+      "message": "Mind the accent marks: they are part of the spelling.",
+      "description": "Feedback note for Spanish: the answer left out an accent mark (cancion for canción) or put one in the wrong place. The answer still counts."
+    },
+    "feedback.note.accent-word": {
+      "message": "The accent mark makes it another word (está “is”, esta “this”).",
+      "description": "Feedback note for Spanish: with an accent mark left out or added, the answer spells a different word (esta for está, hablo for habló, el for él), so it does not count. The examples are Spanish words and stay as they are."
+    },
     "feedback.note.alef-maqsura": {
       "message": "Watch the alif maqsura (ى) at the end of the word.",
       "description": "Feedback note for Arabic: alif maqsura and ya were confused."
@@ -1045,6 +1057,10 @@
     "feedback.note.contrast-case": {
       "message": "The ending changes the word's role in the sentence (to, at, from, of…), not just its spelling.",
       "description": "Feedback note: the answer has a different case ending (for example Uzbek -ga for -da), which changes the meaning."
+    },
+    "feedback.note.contrast-ending": {
+      "message": "The ending changes the meaning (who, how many, when), not just the spelling.",
+      "description": "Feedback note: the answer has another ending one or two letters away (for example Spanish hablas for hablo, or niña for niño), which changes the meaning."
     },
     "feedback.note.contrast-person": {
       "message": "The ending changes who it is about (I, you, we…), not just its spelling.",
@@ -1301,6 +1317,10 @@
     "orthography.apc-Latn.arabizi": {
       "message": "Arabizi (Latin letters and numbers)",
       "description": "Name of Arabizi, Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع, 2 for ء)."
+    },
+    "orthography.es-Latn.standard": {
+      "message": "Spanish spelling",
+      "description": "Name of the Spanish orthography: the Latin alphabet with ñ and accent marks, as the Royal Spanish Academy spells it."
     },
     "orthography.fa-Arab.standard": {
       "message": "Persian script",

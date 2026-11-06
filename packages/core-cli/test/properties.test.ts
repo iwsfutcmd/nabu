@@ -31,6 +31,7 @@ const ALPHABETS: Readonly<Record<string, string>> = {
   "tg-Cyrl/standard": "Манҳарӯзкормеунҷхру",
   "tr-Latn/standard": "İIıistanbuldaşyorumâğ",
   "apc-Latn/arabizi": "shubadktelomy2378SHU",
+  "es-Latn/standard": "MiabuelstáéíóúüñÑÁÉ¿¡",
 };
 
 const textFor = (id: string) =>
@@ -48,6 +49,7 @@ const SENTENCES: Readonly<Record<string, string>> = {
   "tg-Cyrl/standard": "Ман ҳар рӯз кор мекунам",
   "tr-Latn/standard": "İstanbul'da yaşıyorum",
   "apc-Latn/arabizi": "shu baddak tekol el yom",
+  "es-Latn/standard": "¿Mi abuela [ya] está en La Habana?",
 };
 
 describe.each(Object.keys(SENTENCES))("%s", (id) => {
