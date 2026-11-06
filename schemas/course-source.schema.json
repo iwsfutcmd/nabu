@@ -620,6 +620,17 @@
         "carrier": {
           "$ref": "#/$defs/AudioCarrier"
         },
+        "spoken": {
+          "description": "What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh \"nine\" in the numbers drill, na \"no\" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.",
+          "type": "object",
+          "propertyNames": {
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
         "orthography": {
           "$ref": "common.schema.json#/$defs/OrthographyId"
         },

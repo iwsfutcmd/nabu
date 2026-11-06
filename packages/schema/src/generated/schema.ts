@@ -1803,6 +1803,12 @@ export interface AudioVoice {
    */
   readonly pronounce?: string;
   readonly carrier?: AudioCarrier;
+  /**
+   * What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh "nine" in the numbers drill, na "no" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.
+   */
+  readonly spoken?: {
+    readonly [k: string]: string;
+  };
   readonly orthography: OrthographyId;
   /**
    * What the voice reads: "text" (the orthography's form) or a reading scheme pinned on tokens ("jyutping").

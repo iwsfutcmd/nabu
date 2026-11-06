@@ -195,6 +195,36 @@ def _morph_readings(token: dict[str, Any], reading: str) -> list[tuple[str, str]
     return out
 
 
+#: A word of a voice's `spoken` text: letters, marks, digits and the format characters inside
+#: words (ZWNJ).
+_WORD = regex.compile(r"[\p{L}\p{M}\p{N}\p{Cf}]+")
+
+
+def _spoken(items: list[Item], spoken: dict[str, str]) -> list[Item]:
+    """Items read as the voice's `spoken` says (a homograph's reading), their word spans moved
+    onto its words, which must be as many as the item's."""
+    by_id = {i.item: i for i in items}
+    unknown = sorted(set(spoken) - set(by_id))
+    if unknown:
+        raise ValueError(f"spoken: no item {', '.join(unknown)} for this voice")
+    out: list[Item] = []
+    for item in items:
+        text = spoken.get(item.item)
+        if text is None:
+            out.append(item)
+            continue
+        words = list(_WORD.finditer(text))
+        if len(words) != len(item.spans):
+            raise ValueError(
+                f"spoken: {item.item} has {len(item.spans)} words, its spoken text {len(words)}"
+            )
+        spans = tuple(
+            Span(s.token, w.start(), w.end()) for s, w in zip(item.spans, words, strict=True)
+        )
+        out.append(replace(item, input=text, spans=spans))
+    return out
+
+
 def plan(
     units: list[dict[str, Any]], voice: AudioVoice, written: Written | None = None
 ) -> tuple[list[Item], list[str]]:
@@ -271,6 +301,8 @@ def plan(
                     w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
                 )
                 items.append(Item(key, planned[0], planned[1], text))
+    if voice.spoken:
+        items = _spoken(items, voice.spoken)
     if voice.finalStop and voice.reading == "text":
         # Text with no final punctuation reads as a sentence (ADR 0063); spans are unaffected:
         # the stop comes after the last word.

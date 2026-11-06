@@ -6,7 +6,7 @@ from __future__ import annotations
 from typing import Annotated, Any, Literal
 from uuid import UUID
 
-from pydantic import AwareDatetime, BaseModel, ConfigDict, Field
+from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StringConstraints
 
 
 class AiOutputs(BaseModel):
@@ -723,6 +723,9 @@ class ImageAsset(BaseModel):
             description="Where it came from (URL or description), for attribution.", min_length=1
         ),
     ] = None
+
+
+type SpokenAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
 class AudioCarrier(BaseModel):
@@ -2261,6 +2264,12 @@ class AudioVoice(BaseModel):
         ),
     ] = None
     carrier: AudioCarrier | None = None
+    spoken: Annotated[
+        dict[Annotated[str, StringConstraints(min_length=1)], SpokenAdditionalProperty] | None,
+        Field(
+            description='What the voice reads instead of an item\'s text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh "nine" in the numbers drill, na "no" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.'
+        ),
+    ] = None
     orthography: OrthographyId
     reading: Annotated[
         str,

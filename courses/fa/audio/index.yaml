@@ -353,9 +353,9 @@ clips:
     status: fail
 - item: drill.numbers.9
   speed: normal
-  file: clips/9b5e09ace399262a.mp3
-  sha256: 8b95246a9e7aaf5895cb7c738263e925b3b4999525c152384cc78b77d3314eee
-  durationMs: 255
+  file: clips/7b16a1a37c65c0ea.mp3
+  sha256: 52ab6a05855bd7096acef434aab8fbc7ac064bf4c71563b23304f551545acd76
+  durationMs: 301
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -365,7 +365,7 @@ clips:
     provider: piper
     version: MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
     voice: fa_IR-mana-medium
-    input: نه.
+    input: نُه.
     rate: 1.0
     settings:
       sentenceGapMs: 200
@@ -374,18 +374,18 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 9b5e09ace399262ab41ac518b922331de74bf3ecef77a26113faebfb8b78c305
+    inputHash: 7b16a1a37c65c0eabe2703e1f4dc524af1bd9f2c60802755c1445a368c148eca
   timings:
   - token: 0
     startMs: 0
-    endMs: 64
+    endMs: 216
   timingSource: alignment
   qa:
-    trace: n_ˈ_a
+    trace: n_ˈ_o_h
     asrModel: whisper-large-v3-turbo
-    asrText: نا
-    cer: 0.5
-    status: review
+    asrText: موسیقی
+    cer: 3.0
+    status: fail
 - item: fa.story.books#0
   speed: normal
   file: clips/ae7437dd23d94580.mp3

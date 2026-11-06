@@ -43,6 +43,11 @@ carrier sentence, then cut out (nabu/audio/carrier.py):
 - **Checked:** the carrier said alone must be how the item's utterance begins (a prefix of its
   phoneme ids), or the clip fails rather than being cut in the wrong place.
 
+**A voice can read an item otherwise** (`spoken: {item: text}`): for a reading its text does
+not settle. fa's numbers drill says 9 as نه, which is noh ("nine"); spelled bare, the voice says
+na ("no"), and the two items shared one clip. It reads نُه. The text must have as many words as
+the item, so word timings still map; the full stop of `finalStop` comes after it.
+
 **Piper is seeded** (`seed_of`, a fresh session per clip), so a rejected clip's next take
 samples anew. Sentences of one item are joined with 200 ms of silence.
 
@@ -55,7 +60,8 @@ samples anew. Sentences of one item are joined with 200 ms of silence.
 - **Two words still fail:** نه and اسم, short and ending the carrier. They go through the audio
   check like any clip; a listener's rejection makes a new take.
 - **و between numbers is read "va"** (بیست و پنج, ده و نیم; 2 of 318 sentences), as eSpeak's
-  phonemizer reads it. A way to pin a pronunciation for Piper is still to come.
+  phonemizer reads it. Written بیستُ پنج it says bist-o panj, but that has a word fewer, which
+  `spoken` does not allow (the word timings would not map).
 - **Licence chain:** the model card says MIT; its training data (Mana-TTS, from the magazine of
   Iran's blind community, Nasl-e-Mana) is CC0. Its base checkpoint (SadeghK's amir voice) sits
   in an Apache-2.0 repository whose recordings come from a podcast, with no stated rights.
