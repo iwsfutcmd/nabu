@@ -1704,6 +1704,14 @@ class Fonts(BaseModel):
     )
     stack: Annotated[list[StackItem], Field(min_length=1)]
     lineHeight: Annotated[float | None, Field(gt=0.0)] = None
+    scale: Annotated[
+        float | None,
+        Field(
+            description="How much larger than the text around it the orthography's text is set (1: the same). Han characters at the size of the Latin around them are hard to read: Classical Chinese is 1.25 (ADR 0071). The learner's text size preference scales both.",
+            ge=0.5,
+            le=3.0,
+        ),
+    ] = None
 
 
 class Transliteration(BaseModel):

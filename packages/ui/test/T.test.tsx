@@ -71,6 +71,17 @@ describe("<T>", () => {
     expect(render(<T text={text} />)).not.toContain("--nabu-ruby-font");
   });
 
+  it("sets an orthography's text larger where its profile says so (Classical Chinese, ADR 0071)", () => {
+    const lzh = { lang: "lzh-Hant", orthography: "lzh-Hant/standard", tokens: [{ surface: "善", kind: "word" }] } as unknown as TaggedText;
+    const html = render(<T text={lzh} />);
+    expect(html).toContain("data-scaled");
+    expect(html).toContain("--nabu-text-scale:1.25");
+    // Other courses are set at the size around them, as before.
+    const yue = render(<T text={demoExercise("yue-Hant-HK").answer} />);
+    expect(yue).not.toContain("data-scaled");
+    expect(yue).not.toContain("--nabu-text-scale");
+  });
+
   it("marks short numbers for tate-chū-yoko", () => {
     const text = {
       lang: "yue-Hant-HK",

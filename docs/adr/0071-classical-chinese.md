@@ -136,6 +136,14 @@ The app could not express any of this:
   - Vertical writing in prompts, readings and word banks.
   - Set in a Ming face: Noto Serif CJK TC, self-hosted as `@fontsource/noto-serif-tc` (OFL-1.1),
     with Noto Sans HK after it.
+  - A quarter larger than the text around it (`fonts.scale: 1.25`, a new profile field).
+    Characters at the size of the Latin glosses beside them were hard to read. The scale applies
+    to the words inside `<T>`, so a size a caller gives the element still holds, and to the
+    answer field.
+  - Other profiles name no scale and look as they did.
+- The learner's own text size (Preferences, `#/preferences`, kept on the device) scales the
+  root font size, so the chrome and every course's text follow it, and the profile's scale on
+  top of that.
 
 **The course.**
 

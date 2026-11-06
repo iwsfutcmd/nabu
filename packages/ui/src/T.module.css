@@ -8,6 +8,12 @@
   text-combine-upright: all;
 }
 
+/* An orthography set larger than the text around it (its profile's fonts.scale: Classical
+   Chinese). The tokens scale, not the element, so a size the caller gives the element still holds. */
+.text[data-scaled] > .token {
+  font-size: calc(var(--nabu-text-scale) * 1em);
+}
+
 /* `over` is above in horizontal text and to the right in vertical-rl */
 .ruby {
   ruby-position: over;

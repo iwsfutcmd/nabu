@@ -32,6 +32,7 @@ import { CardsPage, debugOn } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
+import { PreferencesPage } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
 import { isNative } from "./platform.ts";
@@ -54,6 +55,7 @@ const DEBUG = debugOn();
 
 type Route =
   | { readonly tag: "home" }
+  | { readonly tag: "preferences" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
   | { readonly tag: "session"; readonly course: string; readonly orthography: string; readonly request: SessionRequest }
   | { readonly tag: "story"; readonly course: string; readonly orthography: string; readonly node: string }
@@ -72,6 +74,7 @@ const requestOf = (segment: string): SessionRequest =>
 
 const parse = (hash: string): Route => {
   const [course, orthography, session, node] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
+  if (course === "preferences" && orthography === undefined) return { tag: "preferences" };
   if (course === undefined || orthography === undefined) return { tag: "home" };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
@@ -87,7 +90,9 @@ const segmentOf = (request: SessionRequest): string => (request.mode === "lesson
 export const href = (route: Route): string =>
   route.tag === "home"
     ? "#/"
-    : route.tag === "course"
+    : route.tag === "preferences"
+      ? "#/preferences"
+      : route.tag === "course"
       ? `#/${route.course}/${slug(route.orthography)}`
       : route.tag === "story"
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
@@ -149,6 +154,11 @@ const Home = ({ courses, store, sync, game, gameConfig, version, online }: { cou
         ))}
       </ul>
       <Progress store={store} sync={sync} />
+      <div className={styles.links}>
+        <a className={styles.link} href={href({ tag: "preferences" })} data-preferences-link="">
+          {t.format("app.preferences.link")}
+        </a>
+      </div>
     </main>
   );
 };
@@ -676,10 +686,12 @@ export const App = (): JSX.Element => {
   const version = `${recorded}:${pulled}:${href(route)}`;
   const game = useGame(store, gameConfig, version);
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
-  const courseKey = route.tag === "home" ? null : `${route.course}:${route.orthography}`;
-  const courseId = route.tag === "home" ? null : route.course;
-  const ai = useAiStatus(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
-  const speechTiers = useSpeechTiers(account, courseId ?? "", route.tag === "home" ? "" : route.orthography);
+  // The route's course, if it has one (home and preferences have none).
+  const inCourse = route.tag === "home" || route.tag === "preferences" ? null : route;
+  const courseKey = inCourse === null ? null : `${inCourse.course}:${inCourse.orthography}`;
+  const courseId = inCourse === null ? null : inCourse.course;
+  const ai = useAiStatus(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
+  const speechTiers = useSpeechTiers(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
   const online = useOnline();
   const [downloads, setDownloads] = useState(0);
   const root = courseId === null ? undefined : `${BUNDLES}${courseId}/`;
@@ -703,12 +715,12 @@ export const App = (): JSX.Element => {
     void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
   }, [revised, store, courseId]);
   useEffect(() => {
-    if (route.tag === "home" || courseKey === null || loaded?.key === courseKey) return;
-    fetchCourse(BUNDLES, route.course, route.orthography).then(
+    if (inCourse === null || courseKey === null || loaded?.key === courseKey) return;
+    fetchCourse(BUNDLES, inCourse.course, inCourse.orthography).then(
       (value) => setLoaded({ key: courseKey, value }),
       (e: unknown) => setLoaded({ key: courseKey, error: String(e) }),
     );
-  }, [route, courseKey, loaded]);
+  }, [inCourse, courseKey, loaded]);
   useEffect(() => {
     if (store === null || courseId === null || log?.course === courseId) return;
     void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
@@ -743,6 +755,7 @@ export const App = (): JSX.Element => {
     [store, sync],
   );
 
+  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
   if (route.tag === "home") {
     return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
   }

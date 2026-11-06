@@ -94,6 +94,36 @@
   color: var(--nabu-color-accent);
 }
 
+/* Preferences: one choice of several, each a full-width row. */
+.preferenceOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+}
+
+.preferenceOption {
+  display: flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.preferenceOption[data-selected] {
+  border-color: var(--nabu-color-accent);
+  box-shadow: inset 0 0 0 1px var(--nabu-color-accent);
+}
+
+.preferenceOption[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
 .link:focus-visible,
 .lesson:focus-visible,
 .back:focus-visible {

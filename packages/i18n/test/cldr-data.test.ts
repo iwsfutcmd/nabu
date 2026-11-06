@@ -26,7 +26,10 @@ describe("font stacks", () => {
     expect(fontStackFor("fa-Arab", { stack: ["Vazirmatn", "Noto Naskh Arabic"], lineHeight: 1.9 })).toEqual({
       family: '"Vazirmatn", "Noto Naskh Arabic", sans-serif',
       lineHeight: 1.9,
+      scale: 1,
     });
+    // A profile may set its text larger than the text around it (Classical Chinese, ADR 0071).
+    expect(fontStackFor("lzh-Hant", { stack: ["Noto Serif TC"], lineHeight: 1.7, scale: 1.25 }).scale).toBe(1.25);
     expect(fontStackFor("uz-Latn").family).toBe('"Noto Sans", sans-serif');
     expect(fontStackFor("apc-Arab").lineHeight).toBeGreaterThan(fontStackFor("uz-Latn").lineHeight);
     expect(uiFontStack("ar-XB").family.startsWith('"Noto Sans Arabic"')).toBe(true);
