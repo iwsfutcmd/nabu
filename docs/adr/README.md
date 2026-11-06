@@ -59,6 +59,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0063](0063-final-stop.md) | A voice with `finalStop` reads text that has no final punctuation (word cards) ended with its script's full stop (. 。 । …), chosen by script subtag and language | Proposed |
 | [0064](0064-say-when-answered.md) | Every card with a clip plays it once answered (prompt clip, or an answer block with play/slow); listening cards replay with the transcript; each view owns its clip | Proposed |
 | [0065](0065-persian-voice.md) | fa speaks with Mana-Persian-Piper (MIT, pinned); a Piper voice's `carrier` says short items (word cards) at the end of a carrier sentence, with durations set from it, and cuts them out exactly | Proposed |
+| [0066](0066-meaningful-endings.md) | A profile's `typo.contrasts` (person, possessive and case endings, pronouns) make a slip that trades one for another WRONG_WORD, not a typo; the lexicon holds every word the course writes (erratum 46) | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).

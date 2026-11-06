@@ -6,7 +6,8 @@
  * only then a substitution.
  */
 import type { Policy } from "@nabu/schema";
-import type { CompiledProfile } from "../profile/compile.ts";
+import type { CompiledContrast, CompiledProfile } from "../profile/compile.ts";
+import { graphemes } from "../text/graphemes.ts";
 
 export type MatchKind = "exact" | "case" | "fold" | "typo" | "homophone";
 
@@ -129,4 +130,49 @@ export const compareUnits = (profile: CompiledProfile, expected: string, actual:
   // A fold that rejects explains the mismatch even when other differences remain.
   const rejecting = folds.find((f) => f.policy === "reject-with-note");
   return { kind: "mismatch", cost: COST.mismatch, folds, note: rejecting?.note ?? rejecting?.id };
+};
+
+const startsAt = (word: readonly string[], at: number, part: readonly string[]): boolean =>
+  at + part.length <= word.length && part.every((g, i) => word[at + i] === g);
+
+/** Whether graphemes `from…` of a key are nothing but endings of the profile's contrasts, stacked. */
+const onlyEndings = (word: readonly string[], from: number, contrasts: readonly CompiledContrast[]): boolean => {
+  const ok = new Array<boolean>(word.length + 1).fill(false);
+  ok[word.length] = true;
+  for (let i = word.length - 1; i >= from; i--) {
+    ok[i] = contrasts.some((c) => c.members.some((spellings) => spellings.some((m) => m.length > 0 && startsAt(word, i, m) && ok[i + m.length] === true)));
+  }
+  return ok[from] === true;
+};
+
+/**
+ * The contrast set (profile `typo.contrasts`) an edit trades one member of for
+ * another, the rest of the word unchanged: talabasan for talabaman, Сен for Мен,
+ * Lebanese wa-ana for wa-inte. That is a meaning change, not a typo (erratum 46). The member
+ * ends the word or is followed only by other endings, as suffixes stack
+ * (maktabgaman for maktabdaman). Compared by graphemes of the units' contrast keys.
+ */
+export const contrastOf = (profile: CompiledProfile, expected: string, actual: string): CompiledContrast | undefined => {
+  const typo = profile.typo;
+  if (typo === undefined || typo.contrasts.length === 0) return undefined;
+  const e = graphemes(typo.key(expected));
+  const a = graphemes(typo.key(actual));
+  for (const set of typo.contrasts) {
+    for (const [i, spellings] of set.members.entries()) {
+      for (const m of spellings) {
+        // Every place the member starts, where only endings follow it.
+        for (let at = 0; at + m.length <= e.length; at++) {
+          if (!startsAt(e, at, m) || !onlyEndings(e, at + m.length, typo.contrasts)) continue;
+          const rest = e.slice(at + m.length);
+          for (const [j, others] of set.members.entries()) {
+            if (j === i) continue;
+            for (const o of others) {
+              if (a.length === at + o.length + rest.length && startsAt(a, 0, e.slice(0, at)) && startsAt(a, at, o) && startsAt(a, at + o.length, rest)) return set;
+            }
+          }
+        }
+      }
+    }
+  }
+  return undefined;
 };

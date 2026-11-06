@@ -13,7 +13,16 @@ match:
   equivalences:
     # REVIEW: Russian-keyboard stand-ins for Uzbek letters are wrong, but say why.
     - { id: uzbek-letters, map: { "\u045E": "\u0443", "\u049B": "\u043A", "\u0493": "\u0433", "\u04B3": "\u0445" }, policy: reject-with-note, note: uzbek-letters }
-  typo: { model: keyboard, layout: cldr-kbd:uz-Cyrl, maxRatio: 0.2 }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:uz-Cyrl
+    maxRatio: 0.2
+    # REVIEW (erratum 46): as uz-Latn/standard, in Cyrillic: Сен for Мен, талабасан for талабаман are WRONG_WORD.
+    contrasts:
+      - { id: person, note: contrast-person, members: [ман, сан, дир, миз, сиз, лар] }
+      - { id: possessive, note: contrast-possessive, members: [[им, м], [инг, нг], [и, си], [имиз, миз], [ингиз, нгиз], лари] }
+      - { id: case, note: contrast-case, members: [ни, нинг, [га, ка, қа], [да, та], [дан, тан]] }
+      - { id: pronoun, note: contrast-pronoun, members: [мен, сен, у, биз, сиз, улар] }
 input:
   extraKeys: ["\u045E", "\u049B", "\u0493", "\u04B3"]
 layout: { vertical: none }

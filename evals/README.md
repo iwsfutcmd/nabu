@@ -52,15 +52,18 @@ language**. That is the designed fallback (§13.1): accept sets plus learner rep
 
 ## What check mode found in the grader
 
-Drafting the sets turned up meaning changes that the deterministic cascade accepts before any
-judge sees them (gameplan errata 46):
+Drafting the sets turned up meaning changes that the deterministic cascade accepted before any
+judge saw them (gameplan errata 46). Person and possessive suffixes one letter apart looked like
+typos to the keyboard model. Since [ADR 0066](../docs/adr/0066-meaningful-endings.md), each
+profile lists the endings and pronouns that carry meaning (`typo.contrasts`), so these are wrong
+words, with a note on what the ending changes:
 
-| Orthography | Answer | Expected | Grader says |
-|---|---|---|---|
-| `uz-Latn` | *Talabasan* ("you're a student") | *Talabaman* | typo |
-| `uz-Latn` | *Bu kitobing* ("your book") | *Bu kitobim* | typo |
-| `uz-Latn` | *Azizsan* | *Azizman* | typo |
-| `uz-Cyrl` | *Сен талабасан* | *Мен талабаман* | typo (С is next to М on the keyboard) |
-| `apc-Arab` | ⁨وأنا؟⁩ ("and me?") | ⁨وإنت؟⁩ ("and you?") | typo |
+| Orthography | Answer | Expected | Grader said | Grader says |
+|---|---|---|---|---|
+| `uz-Latn` | *Talabasan* ("you're a student") | *Talabaman* | typo | wrong word (person) |
+| `uz-Latn` | *Bu kitobing* ("your book") | *Bu kitobim* | typo | wrong word (possessive) |
+| `uz-Latn` | *Azizsan* | *Azizman* | typo | wrong word (person) |
+| `uz-Cyrl` | *Сен талабасан* | *Мен талабаман* | typo (С is next to М on the keyboard) | wrong word (pronoun, person) |
+| `apc-Arab` | ⁨وأنا؟⁩ ("and me?") | ⁨وإنت؟⁩ ("and you?") | typo | wrong word (pronoun) |
 
-Person and possessive suffixes one letter apart look like typos to the keyboard model.
+A wrong word never reaches the judge either: it is wrong without a second check.

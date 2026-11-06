@@ -9,7 +9,7 @@ import { compileLattice, type Lattice, type LatticeAlternative, type LatticeWarn
 import { parseAcceptSet, type NotationError, type NotationWarning } from "../accept/notation.ts";
 import type { CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
-import { compareUnits, COST, type Comparison, type MatchKind } from "./compare.ts";
+import { compareUnits, contrastOf, COST, type Comparison, type MatchKind } from "./compare.ts";
 
 export type Verdict =
   | "CORRECT"
@@ -57,7 +57,10 @@ export const compileAcceptSet = (source: string, profile: CompiledProfile): Resu
 };
 
 export interface GradeOptions {
-  /** Case-folded word forms of the target language: a typo that lands on one is WRONG_WORD. */
+  /**
+   * Case-folded word forms of the target language: a typo that lands on one is
+   * WRONG_WORD. The profile's contrasts (meaningful endings) apply without it.
+   */
   readonly lexicon?: ReadonlySet<string>;
 }
 
@@ -221,7 +224,13 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
       applyPolicy(f.policy, f.kind === "marks" ? "CORRECT_MARKS" : f.kind === "variant" ? "CORRECT_VARIANT" : verdict, f.note ?? f.id);
     }
     if (c.kind === "homophone") applyPolicy(profile.homophones?.policy, "PARTIAL", "ime-homophone");
-    else if (c.kind === "typo") raise(options.lexicon?.has(profile.fold(op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
+    else if (c.kind === "typo") {
+      // A typo that makes another word, or trades a meaningful ending for another (erratum 46),
+      // changes what the answer says.
+      const contrast = contrastOf(profile, op.expected, op.actual);
+      if (contrast !== undefined) note(contrast.note);
+      raise(contrast !== undefined || options.lexicon?.has(profile.fold(op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
+    }
   }
   if (final.flags.includes("zwnj") && profile.zwnj !== undefined) applyPolicy(profile.zwnj.policy, verdict, profile.zwnj.note ?? "zwnj");
   if (profile.apostrophe !== undefined && APOSTROPHES.test(answer) && MODIFIER_APOSTROPHES.test(alt.normalized)) {

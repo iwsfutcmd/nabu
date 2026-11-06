@@ -3,7 +3,7 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile, TaggedText } from "@nabu/schema";
 import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
@@ -86,9 +86,31 @@ export interface Grader {
 }
 
 /**
- * A grader with a per-orthography lexicon (every glossary form, normalized and
- * case-folded as grade() compares units) so that a typo landing on a real word
- * is WRONG_WORD. Compiled accept sets are
+ * Every text the course writes in an orthography: its glossary forms, its
+ * sentences, and its story lines. Since KC forms are lemmas (ADR 0061), the
+ * inflected words a learner types (talabasan, kitobing, وأنا) are only found in
+ * the sentences and stories that use them.
+ */
+const textsOf = function* (course: CourseView, orthography: string): Generator<TaggedText> {
+  for (const kc of allKcs(course)) yield* kc.forms?.[orthography] ?? [];
+  for (const s of allSentences(course)) {
+    const form = s.forms[orthography];
+    if (form !== undefined) yield form.text;
+  }
+  for (const u of course.units) {
+    for (const story of u.stories ?? []) {
+      for (const step of story.steps) {
+        const line = step.line?.forms[orthography];
+        if (line !== undefined) yield line;
+      }
+    }
+  }
+};
+
+/**
+ * A grader with a per-orthography lexicon (every word the course writes in it,
+ * normalized and case-folded as grade() compares units) so that a typo landing
+ * on a real word is WRONG_WORD (erratum 46). Compiled accept sets are
  * memoized; grading itself stays pure.
  */
 export const createGrader = (course: CourseView): Grader => {
@@ -99,10 +121,8 @@ export const createGrader = (course: CourseView): Grader => {
     if (words === undefined) {
       const profile = profileOf(course, orthography);
       const found = new Set<string>();
-      for (const kc of allKcs(course)) {
-        for (const form of kc.forms?.[orthography] ?? []) {
-          for (const unit of profile.units(profile.normalize(surfaceOf(form)))) found.add(profile.fold(unit));
-        }
+      for (const text of textsOf(course, orthography)) {
+        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(profile.fold(unit));
       }
       words = found;
       lexicons.set(orthography, words);

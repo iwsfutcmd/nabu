@@ -178,8 +178,9 @@ ADR is linked. The gameplan text itself is left as written.
     so they never reach the judge or a reviewer. Examples are the person and possessive suffixes
     one letter apart in Uzbek (*talabasan* for *talabaman*, *kitobing* for *kitobim*), Сен for
     Мен (adjacent keys on the Cyrillic layout), and ⁨وأنا⁩ for ⁨وإنت⁩ in Lebanese. The judge's
-    harness found them (`evals/README.md`). The typo model needs to know about inflectional
-    suffixes: open, for review.
+    harness found them (`evals/README.md`). Resolved by
+    [ADR 0066](adr/0066-meaningful-endings.md): a profile lists the endings and pronouns that carry
+    meaning (`typo.contrasts`, REVIEW), and a slip that trades one for another is WRONG_WORD.
 47. **§8.3 "online, the judge gets up to about 2 seconds while a checking state shows":** the
     player grades at once and moves on. A second check runs in the background, and its accept
     revises the answer retroactively. It is the same mechanism as offline, without holding the

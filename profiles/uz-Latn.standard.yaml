@@ -21,7 +21,19 @@ normalize:
 match:
   case: { locale: uz }
   apostrophe: { policy: accept-with-note, note: apostrophe }   # typed ASCII ' is fine, but tell them
-  typo: { model: keyboard, unit: letters, layout: cldr-kbd:uz, maxRatio: 0.2 }   # distance over profile letters, not graphemes
+  typo:
+    model: keyboard
+    unit: letters                      # distance over profile letters, not graphemes
+    layout: cldr-kbd:uz
+    maxRatio: 0.2
+    # REVIEW (erratum 46): endings one or two letters apart that change the meaning. A slip that trades one for
+    # another at the end of a word (talabasan for talabaman, kitobing for kitobim) is WRONG_WORD, not a typo. A list
+    # groups the spellings of one ending: after a consonant or a vowel (im, m), or by the last sound (ga, ka, qa).
+    contrasts:
+      - { id: person, note: contrast-person, members: [man, san, dir, miz, siz, lar] }
+      - { id: possessive, note: contrast-possessive, members: [[im, m], [ing, ng], [i, si], [imiz, miz], [ingiz, ngiz], lari] }
+      - { id: case, note: contrast-case, members: [ni, ning, [ga, ka, qa], [da, ta], [dan, tan]] }
+      - { id: pronoun, note: contrast-pronoun, members: [men, sen, u, biz, siz, ular] }
 input:
   extraKeys: ["\u02BB", "\u02BC"]
 transliterate: { to: uz-Cyrl/standard, via: cldr-transform }       # powers script-convert exercises

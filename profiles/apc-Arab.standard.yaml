@@ -22,7 +22,17 @@ match:
     - { id: alef-maqsura, map: { "\u0649": "\u064A" }, policy: accept }
     - { id: ta-marbuta, map: { "\u0629": "\u0647" }, policy: accept }
     - { id: loan-letters, map: { "\u06A4": "\u0641", "\u067E": "\u0628" }, policy: accept }   # REVIEW: ڤ/ف (v), پ/ب (p)
-  typo: { model: keyboard, layout: cldr-kbd:ar, maxRatio: 0.2 }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:ar
+    maxRatio: 0.2
+    # REVIEW (erratum 46): pronouns and possessive endings a letter apart. A slip that trades one for another at the
+    # end of a word (وأنا for وإنت) is WRONG_WORD, not a typo. Members compare without vowel marks and with hamza
+    # seats folded, as answers do, so إنت and إنتِ are one member: inte/inti differ in writing only as إنت/إنتي.
+    # Pronouns: anā, inta, inti, huwwe, hiyye, naḥna, intu, hinne. Endings: -i, -ak/-ik, -o, -a, -na, -kon, -hon.
+    contrasts:
+      - { id: pronoun, note: contrast-pronoun, members: [أنا, إنت, إنتي, هو, هي, [نحنا, نحن], [إنتو, إنتوا], هني] }
+      - { id: possessive, note: contrast-possessive, members: [ي, ك, ه, ها, نا, [كن, كم], [هن, هم]] }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
 input:
