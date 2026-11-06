@@ -14,7 +14,8 @@ import { createGateway, killSwitch, standalone, validAi, type Gateway } from "..
 import { asData, loadPrompt, placeholders, PROMPTS, render } from "../src/ai/prompts.ts";
 import { createProvider, providerFromEnv, type CompletionRequest, type Provider, type Transport } from "../src/ai/providers.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 import { eventsOf } from "../src/log.ts";
 
 // ----------------------------------------------------------------------------------- providers
@@ -135,7 +136,7 @@ const clock = Date.parse("2026-06-03T10:00:00Z");
 const ADMIN = "review-token-for-tests";
 
 beforeAll(async () => {
-  database = await openDatabase({ pglite: "memory" });
+  database = await testDatabase();
   model = scripted();
   gateway = createGateway({ db: database.db, provider: model, budgets: { perUser: 5, perInstance: 1000 }, now: () => clock, log: (e) => logs.push({ ...e }) });
   // A gate opened for the stand-in, so the judge's plumbing can run; no real gate is claimed here.

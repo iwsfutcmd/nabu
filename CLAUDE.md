@@ -90,6 +90,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   window.nabu, and plan with the solver's `planned()`. Seeded history that gets uploaded needs `freshIds()`.
 - The API (apps/api) runs on PGlite unless DATABASE_URL is set; migrations are SQL in src/db/migrations.ts
   (append, never edit). Events are validated against schemas/learner-event.schema.json with Ajv.
+- API tests open their database with test/database.ts: PGlite, or with NABU_TEST_DATABASE_URL a fresh Postgres
+  database per test file (CI's api-postgres job).
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
   Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
   differently from core's replay.
