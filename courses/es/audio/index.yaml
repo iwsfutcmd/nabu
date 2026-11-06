@@ -1,6 +1,454 @@
 # Written by `nabu audio`: clips, licenses, provenance, timings, QA. Never hand-edit.
 version: 1
-clips: []
+clips:
+- item: s.u01.1
+  speed: normal
+  file: clips/625e1e2af619a09d.mp3
+  sha256: 832408810f7dc9039875c3e43b1acfdfa86ca2ab31a7719f085ced240e4af4f0
+  durationMs: 1240
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¡Hola!
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 625e1e2af619a09d4c671e03371e1b1b070e3e4823fcefa8dcf9e00f57f05ecc
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Hola.
+    cer: 0.0
+    status: pass
+- item: s.u01.10
+  speed: normal
+  file: clips/502f18f9459960d7.mp3
+  sha256: 2ad587f521ae3e8a164ba57044a924a23e23caffbee8ac6a6d0271feacba5186
+  durationMs: 1680
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¿Qué bolá, asere?
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 502f18f9459960d77230c55efa304ca78a7ccda180e6d26bdeb2a0caf4e7e7b3
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: que vola seré
+    cer: 0.417
+    status: review
+- item: s.u01.11
+  speed: normal
+  file: clips/115c1e1d3f03601c.mp3
+  sha256: 615e8feebd3363b274bfba10cc3cb6b4fbd68b205cb81f32c33c6db8f696b8dd
+  durationMs: 1200
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Bien.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 115c1e1d3f03601ca4c266d41621fc401baf727865cacc34883f018fd69afe5a
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Bien.
+    cer: 0.0
+    status: pass
+- item: s.u01.12
+  speed: normal
+  file: clips/6b0089577dc6135a.mp3
+  sha256: 3eca92258f522dabc2ce28fc8514d44d6cb301d12413e1e1ecccda07bf020b91
+  durationMs: 1400
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Muy bien.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 6b0089577dc6135abdb3394f7ee6294d367f0dab882dd4da720afe7f3a766cfe
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Muy bien.
+    cer: 0.0
+    status: pass
+- item: s.u01.13
+  speed: normal
+  file: clips/8107be9f7317ead8.mp3
+  sha256: d7ed80b3b713b5241c68d68298d526d0b501ad786bb9ca70d0c3548168a05d5d
+  durationMs: 1480
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Bien, ¿y tú?
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 8107be9f7317ead8793283c3008e58a92db7668bf621acd2be2982bd9a44fc3e
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Bien, y tú.
+    cer: 0.0
+    status: pass
+- item: s.u01.14
+  speed: normal
+  file: clips/8590797d0880d294.mp3
+  sha256: f1a615c476ce3291e6b1c86714e1a41e04d54fbad314d9af92ab0e1d160c3a6d
+  durationMs: 1880
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Muy bien, gracias. ¿Y tú?
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 8590797d0880d294a198c951177d0b15e822c46abb007cdc15aba41c817e73da
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Muy bien, gracias. ¿Y tú?
+    cer: 0.0
+    status: pass
+- item: s.u01.15
+  speed: normal
+  file: clips/13410b6e0d1c7bdb.mp3
+  sha256: f4103ee8aea1fb30266de746667d6e6b4e84db4cca5a56d82226bda557c69747
+  durationMs: 1520
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Estoy bien.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 13410b6e0d1c7bdba1b01d63b83d6ff30216f4ab8026285b7431b3935b03ccc6
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Estoy bien
+    cer: 0.0
+    status: pass
+- item: s.u01.16
+  speed: normal
+  file: clips/6c53aa0c94e677fb.mp3
+  sha256: 3b5270547ffea049f610a370ad847b17e4e9ca80800caf904288ed6c5074fc30
+  durationMs: 1520
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¿Cómo estás?
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 6c53aa0c94e677fb9f865768cc4a979d57fa469ddc61835dae7a4b1f8689f92a
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ¿Cómo estás?
+    cer: 0.0
+    status: pass
+- item: s.u01.2
+  speed: normal
+  file: clips/5c0f2924b8d9f9f6.mp3
+  sha256: 4bbc941847e6379fd0cc17c2f32e8d841d0d160acf95d068188043a661bc92ed
+  durationMs: 1560
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¡Buenos días!
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 5c0f2924b8d9f9f63b9fc5c5439045aa8f203eb72c532b646fa7c62a097cb3cc
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Buenos días.
+    cer: 0.0
+    status: pass
+- item: s.u01.3
+  speed: normal
+  file: clips/7d30a8c3d953d093.mp3
+  sha256: 05b9a08da997f9559b465273860df1f3c648aed8ab4ff44f3c213a3757c1d364
+  durationMs: 1640
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¡Buenas tardes!
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 7d30a8c3d953d0935226e372900e24b861eb711e829beca3f4b2bc86b253e420
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Buenas tardes.
+    cer: 0.0
+    status: pass
+- item: s.u01.4
+  speed: normal
+  file: clips/9ef28bc90cdb5deb.mp3
+  sha256: 5daebdb0b4ce3470ef08fa5068b5d7bc95d30162b1d1891363b307bae51b5bd8
+  durationMs: 1400
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Gracias.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 9ef28bc90cdb5deba87d4ce9ce65252451891465907f3c0223566c70904be0a0
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Gracias.
+    cer: 0.0
+    status: pass
+- item: s.u01.5
+  speed: normal
+  file: clips/c799c6d7a673ccba.mp3
+  sha256: 15b66663b541f732defaee1176cb9ca15630114149fb99462b9d335aea9c2c44
+  durationMs: 1520
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Sí, gracias.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: c799c6d7a673ccba66611ad02cfc7952bd44b1248d4afd5d76c6e906dc061bc3
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Y gracias.
+    cer: 0.222
+    status: review
+- item: s.u01.6
+  speed: normal
+  file: clips/217d79552071e6ac.mp3
+  sha256: c23541b1da912e63ea0ae9e19f38df9b904bd6673f5f2d09d23535b8eb517370
+  durationMs: 1520
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: No, gracias.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 217d79552071e6accf888632ef2c120961390b1bcdfeba96e273676c89ff6198
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: No, gracias.
+    cer: 0.0
+    status: pass
+- item: s.u01.7
+  speed: normal
+  file: clips/9b914c1b3c0ae025.mp3
+  sha256: 36376831acc85b23930edc2366610db7f2a27ab10631149aa137858eecb7188e
+  durationMs: 1320
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¡Adiós!
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 9b914c1b3c0ae0250a8a2a0cf4761e8ef8cdf1dd5bc54daf2db9cc5dea619092
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Adiós.
+    cer: 0.0
+    status: pass
+- item: s.u01.8
+  speed: normal
+  file: clips/84f111c98965ef88.mp3
+  sha256: 18ab9ada5e027ba712ea44b435cbf3a65e3186445f61ee12cc57137c5b066dd7
+  durationMs: 1720
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: Hola, buenos días.
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 84f111c98965ef88f97d4b466c5fe29e603df3cc2b2d99055fbe114030f49e33
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: Hola, buenos días.
+    cer: 0.0
+    status: pass
+- item: s.u01.9
+  speed: normal
+  file: clips/9d031365a2714a6b.mp3
+  sha256: 330d8936b384b1cfe200665c4d76a04175e1e87cceb92374ae784bd3f86b36bd
+  durationMs: 1440
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: k2-fsa/OmniVoice#c5fdb5ccb189668d56333f77ba2629f4cd7535f4+omnivoice-0.2.1
+    voice: zapata-m
+    input: ¿Qué bolá?
+    rate: 1.0
+    settings:
+      language: es
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 2addd5d1f2b97951bdde560583779a307ead18f74ca30493de06184a33719e81
+    inputHash: 9d031365a2714a6ba055bb683c4defdf9c1a1a82b767b0b37ba573a508983f4b
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ¿Por qué volar?
+    cer: 1.0
+    status: fail
 references:
 - id: zapata-m
   file: voices/zapata-m.wav
