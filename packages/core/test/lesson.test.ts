@@ -487,7 +487,7 @@ describe("listening cards say what was heard means", () => {
     it(`${id}: a heard word comes with its gloss, a heard sentence with its translation`, () => {
       const course = loadCourse(id, orthography);
       const gallery = cardGallery(course, 7);
-      const kcs = new Map(course.units.flatMap((u) => u.kcs).map((k) => [k.id, k]));
+      const kcs = new Map(course.units.flatMap((u) => u.kcs).map((k) => [String(k.id), k] as const));
       const sentences = new Map(course.units.flatMap((u) => u.sentences).map((s) => [s.id, s]));
       let words = 0;
       for (const { exercise: ex } of gallery) {
