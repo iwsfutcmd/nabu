@@ -1,0 +1,563 @@
+# Unit 7 (es): a day in the family. Reflexive verbs (me levanto, me baño, me acuesto), desayunar, por la mañana,
+# por la tarde, por la noche, temprano and tarde, the days of the week, estar + gerund (estoy trabajando);
+# Mami's coffee in the morning, the colada at work, Abuela's novela at night.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u07
+title: {en: 'Un día: a day'}
+cefr: A2
+kcs:
+- {id: 'sense:levantarse', gloss: {en: to get up}, forms: {es-Latn/standard: [levantarse]}, notes: {en: 'Reflexive: me levanto, te levantas, se levanta. To wake up is despertarse.'}}
+- {id: 'sense:temprano', gloss: {en: early}, forms: {es-Latn/standard: [temprano]}, notes: {en: 'Its opposite is tarde, late.'}}
+- {id: 'sense:bañarse', gloss: {en: to take a shower; to bathe}, forms: {es-Latn/standard: [bañarse]}, notes: {en: 'Cubans, like most Latin Americans, say bañarse for a shower; ducharse is more usual in Spain. Without se, bañar is to bathe someone else.'}}
+- {id: 'sense:después', gloss: {en: after; afterwards; then; later}, forms: {es-Latn/standard: [después]}, notes: {en: 'Written with an accent on the é. Después de: after (después de la novela).'}}
+- {id: 'sense:desayunar', gloss: {en: to have breakfast}, forms: {es-Latn/standard: [desayunar]}, notes: {en: 'Desayuno: I have breakfast; el desayuno is breakfast. The Cuban one: café con leche, with buttered Cuban toast (tostada) to dip in it.'}}
+- {id: 'sense:por', gloss: {en: 'by; through; for (por la mañana: in the morning)'}, forms: {es-Latn/standard: [por]}, notes: {en: 'Por la mañana, por la tarde, por la noche: in the morning, in the afternoon, at night. In the Caribbean and the US you also hear en la mañana.'}}
+- {id: 'sense:mañana', gloss: {en: morning; tomorrow}, forms: {es-Latn/standard: [mañana]}, notes: {en: 'La mañana is the morning; mañana alone is tomorrow. Tomorrow morning: mañana por la mañana.'}}
+- {id: 'sense:hacer', gloss: {en: to do; to make}, forms: {es-Latn/standard: [hacer]}, notes: {en: 'Hago, haces, hace; haciendo. The h is written but never said.'}}
+- {id: 'sense:tarde', gloss: {en: afternoon; evening; late}, forms: {es-Latn/standard: [tarde]}, notes: {en: 'La tarde lasts until dark: por la tarde, in the afternoon. Tarde alone means late: me levanto tarde.'}}
+- {id: 'sense:noche', gloss: {en: night; evening}, forms: {es-Latn/standard: [noche]}, notes: {en: 'Por la noche: at night, in the evening. Buenas noches: good evening, good night.'}}
+- {id: 'sense:colada', gloss: {en: colada (Cuban coffee to share)}, forms: {es-Latn/standard: [colada]}, notes: {en: 'A big shot of café cubano in a foam cup, with tiny plastic cups to share it out. In Miami someone brings la colada from the ventanita to work in the afternoon. From colar, to brew: Mami cuela el café.'}}
+- {id: 'sense:trabajo', gloss: {en: work; job}, forms: {es-Latn/standard: [trabajo]}, notes: {en: 'En el trabajo: at work. Trabajo is also I work, from trabajar.'}}
+- {id: 'sense:hoy', gloss: {en: today}, forms: {es-Latn/standard: [hoy]}, notes: {en: 'With an h that is never said.'}}
+- {id: 'sense:lunes', gloss: {en: Monday}, forms: {es-Latn/standard: [lunes]}, notes: {en: 'Days take no capital in Spanish. El lunes: on Monday; los lunes: on Mondays. Lunes to viernes are the same in the plural.'}}
+- {id: 'sense:qué', gloss: {en: 'what; how (¡qué…!)'}, forms: {es-Latn/standard: [qué]}, notes: {en: 'With an accent when it asks or exclaims; que without one means that. Cubans keep tú before the verb: ¿Qué tú haces?'}}
+- {id: 'sense:día', gloss: {en: day}, forms: {es-Latn/standard: [día]}, notes: {en: 'Masculine though it ends in -a: el día, buenos días. Written with an accent on the í.'}}
+- {id: 'sense:martes', gloss: {en: Tuesday}, forms: {es-Latn/standard: [martes]}}
+- {id: 'sense:miércoles', gloss: {en: Wednesday}, forms: {es-Latn/standard: [miércoles]}, notes: {en: 'With an accent on the é.'}}
+- {id: 'sense:jueves', gloss: {en: Thursday}, forms: {es-Latn/standard: [jueves]}}
+- {id: 'sense:viernes', gloss: {en: Friday}, forms: {es-Latn/standard: [viernes]}}
+- {id: 'sense:sábado', gloss: {en: Saturday}, forms: {es-Latn/standard: [sábado]}, notes: {en: 'With an accent on the first á. On Saturdays: los sábados.'}}
+- {id: 'sense:domingo', gloss: {en: Sunday}, forms: {es-Latn/standard: [domingo]}, notes: {en: 'On Sundays: los domingos. The Spanish week starts on Monday.'}}
+- {id: 'sense:ver', gloss: {en: to see; to watch}, forms: {es-Latn/standard: [ver]}, notes: {en: 'Veo, ves, ve; viendo. Ver la novela, ver la pelota: to watch the soap opera, the ball game.'}}
+- {id: 'sense:novela', gloss: {en: soap opera; telenovela; novel}, forms: {es-Latn/standard: [novela]}, notes: {en: 'On TV, la novela is the telenovela the whole family watches at night. A novel you read is also una novela.'}}
+- {id: 'sense:siempre', gloss: {en: always}, forms: {es-Latn/standard: [siempre]}}
+- {id: 'sense:acostarse', gloss: {en: to go to bed; to lie down}, forms: {es-Latn/standard: [acostarse]}, notes: {en: 'The o becomes ue when stressed: me acuesto, te acuestas, se acuesta.'}}
+- {id: 'form:ger', gloss: {en: 'gerund, -ando, -iendo (estoy trabajando: I''m working)'}, notes: {en: 'Estar + gerund is for what is going on right now. Not for plans as in English: I''m working tomorrow is trabajo mañana. With me, te or se on the end it takes an accent: bañándose.'}}
+- {id: 'sense:ahora', gloss: {en: now}, forms: {es-Latn/standard: [ahora]}, notes: {en: 'Cubans also say ahorita, which can mean right now or in a little while, depending on who says it.'}}
+- {id: 'sense:lili', gloss: {en: Lili (a name)}, forms: {es-Latn/standard: [Lili]}}
+- {id: 'sense:dormir', gloss: {en: to sleep}, forms: {es-Latn/standard: [dormir]}, notes: {en: 'The o becomes ue (duermo, duermes, duerme) and u in the gerund: durmiendo.'}}
+nodes:
+- {id: es.u07.me-levanto, kind: lesson, introduces: ['sense:levantarse', 'sense:temprano', 'sense:bañarse', 'sense:después', 'sense:desayunar']}
+- {id: es.u07.por-la-manana, kind: lesson, introduces: ['sense:por', 'sense:mañana', 'sense:hacer', 'sense:tarde', 'sense:noche', 'sense:colada', 'sense:trabajo']}
+- {id: es.u07.los-dias, kind: lesson, introduces: ['sense:hoy', 'sense:lunes', 'sense:qué', 'sense:día', 'sense:martes', 'sense:miércoles']}
+- {id: es.u07.los-domingos, kind: lesson, introduces: ['sense:jueves', 'sense:viernes', 'sense:sábado', 'sense:domingo']}
+- {id: es.u07.la-novela, kind: lesson, introduces: ['sense:ver', 'sense:novela', 'sense:siempre', 'sense:acostarse']}
+- {id: es.u07.estoy-trabajando, kind: lesson, introduces: ['form:ger', 'sense:ahora', 'sense:lili', 'sense:dormir']}
+- {id: es.u07.story, kind: story}
+sentences:
+- id: s.u07.1
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: Me levanto.
+      tokens: [{surface: Me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}]
+      reverse: '[Yo] me levanto'
+  translations:
+    en: (I get up|I'm getting up|I get out of bed).
+- id: s.u07.2
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: Me levanto temprano.
+      tokens: [{surface: Me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
+      reverse: '[Yo] me levanto temprano'
+  translations:
+    en: I (get up|wake up) early.
+- id: s.u07.3
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: ¿Tú te levantas temprano?
+      tokens: [{surface: Tú, sense: tú}, {surface: te, sense: te}, {surface: levantas, sense: levantarse, form: 'form:pres-2s'}, {surface: temprano, sense: temprano}]
+      reverse: (Tú te levantas|Te levantas [tú]|Usted se levanta|Se levanta [usted]|Ustedes se levantan|Se levantan [ustedes]) temprano
+  translations:
+    en: Do you (get up|wake up) early?
+- id: s.u07.4
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: Me baño.
+      tokens: [{surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}]
+      reverse: '[Yo] me (baño|ducho)'
+  translations:
+    en: |-
+      I (take a shower|shower|have a shower|take a bath|have a bath|bathe).
+      I'm (taking a shower|showering|having a shower|taking a bath).
+- id: s.u07.5
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: Después, desayuno.
+      tokens: [{surface: Después, sense: después}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
+      reverse: (Después|Luego) [yo] desayuno
+  translations:
+    en: (Then|After that|Afterwards|Later) I (have|eat) breakfast.
+- id: s.u07.6
+  node: es.u07.me-levanto
+  forms:
+    es-Latn/standard:
+      text: Me levanto, me baño y desayuno.
+      tokens: [{surface: Me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
+      reverse: '[Yo] me levanto me (baño|ducho) y desayuno'
+  translations:
+    en: I get up, (take a shower|shower|have a shower|take a bath) and (have|eat) breakfast.
+- id: s.u07.7
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Por la mañana, me baño.
+      tokens: [{surface: Por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}]
+      reverse: |-
+        (Por|En) la mañana [yo] me (baño|ducho)
+        [Yo] me (baño|ducho) (por|en) la mañana
+  translations:
+    en: |-
+      In the (morning|mornings), I (take a shower|shower|have a shower|take a bath).
+      I (take a shower|shower|have a shower|take a bath) in the (morning|mornings).
+- id: s.u07.8
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Mami hace café por la mañana.
+      tokens: [{surface: Mami, sense: mami}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: café, sense: café}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      reverse: |-
+        (Mami|Mamá) (hace|cuela) (café|el café) (por|en) la mañana
+        (Por|En) la mañana (mami|mamá) (hace|cuela) (café|el café)
+  translations:
+    en: |-
+      (Mom|Mommy|Mum|Ma) makes (coffee|the coffee) in the (morning|mornings).
+      In the (morning|mornings), (Mom|Mommy|Mum|Ma) makes (coffee|the coffee).
+- id: s.u07.9
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Trabajo por la tarde.
+      tokens: [{surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      reverse: |-
+        [Yo] trabajo (por|en) la tarde
+        (Por|En) la tarde [yo] trabajo
+  translations:
+    en: |-
+      I work in the (afternoon|afternoons|evening|evenings).
+      In the (afternoon|afternoons|evening|evenings), I work.
+- id: s.u07.10
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Me levanto tarde.
+      tokens: [{surface: Me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: tarde, sense: tarde}]
+      reverse: '[Yo] me levanto tarde'
+  translations:
+    en: I (get up|wake up) late.
+- id: s.u07.11
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Me baño por la noche.
+      tokens: [{surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: |-
+        [Yo] me (baño|ducho) (por|en) la noche
+        (Por|En) la noche [yo] me (baño|ducho)
+  translations:
+    en: |-
+      I (take a shower|shower|have a shower|take a bath) (at night|in the evening|in the evenings).
+      (At night|In the evening|In the evenings), I (take a shower|shower|have a shower|take a bath).
+- id: s.u07.12
+  node: es.u07.por-la-manana
+  forms:
+    es-Latn/standard:
+      text: Hay colada en el trabajo.
+      tokens: [{surface: Hay, sense: hay}, {surface: colada, sense: colada}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: trabajo, sense: trabajo}]
+      reverse: |-
+        (Hay colada|Hay una colada) en el trabajo
+        En el trabajo hay [una] colada
+  translations:
+    en: |-
+      There('s| is) (a colada|colada|Cuban coffee) at work.
+      At work there('s| is) (a colada|colada|Cuban coffee).
+- id: s.u07.13
+  node: es.u07.los-dias
+  forms:
+    es-Latn/standard:
+      text: Hoy es lunes.
+      tokens: [{surface: Hoy, sense: hoy}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: lunes, sense: lunes}]
+      reverse: Hoy es lunes
+  translations:
+    en: |-
+      (Today is|Today's) Monday.
+      It's Monday [today].
+- id: s.u07.14
+  node: es.u07.los-dias
+  forms:
+    es-Latn/standard:
+      text: ¿Qué día es hoy?
+      tokens: [{surface: Qué, sense: qué}, {surface: día, sense: día}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: hoy, sense: hoy}]
+      reverse: Qué día es hoy
+  translations:
+    en: What day is (it today|it|today)?
+- id: s.u07.15
+  node: es.u07.los-dias
+  forms:
+    es-Latn/standard:
+      text: Mañana es martes.
+      tokens: [{surface: Mañana, sense: mañana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: martes, sense: martes}]
+      reverse: Mañana es martes
+  translations:
+    en: |-
+      (Tomorrow is|Tomorrow's) Tuesday.
+      It's Tuesday tomorrow.
+- id: s.u07.16
+  node: es.u07.los-dias
+  forms:
+    es-Latn/standard:
+      text: El miércoles trabajo.
+      tokens: [{surface: El, sense: el}, {surface: miércoles, sense: miércoles}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}]
+      reverse: |-
+        El miércoles [yo] trabajo
+        [Yo] trabajo el miércoles
+  translations:
+    en: |-
+      I( work|'m working) on Wednesday.
+      On Wednesday, I( work|'m working).
+- id: s.u07.17
+  node: es.u07.los-dias
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú haces los lunes?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: los, sense: el}, {surface: lunes, sense: lunes}]
+      reverse: |-
+        (Qué tú haces|Qué haces [tú]|Qué usted hace|Qué hace [usted]|Qué ustedes hacen|Qué hacen [ustedes]) los lunes
+        Los lunes (qué tú haces|qué haces [tú]|qué usted hace|qué hace [usted]|qué ustedes hacen|qué hacen [ustedes])
+  translations:
+    en: |-
+      What do you do on Mondays?
+      On Mondays, what do you do?
+- id: s.u07.18
+  node: es.u07.los-domingos
+  forms:
+    es-Latn/standard:
+      text: Los jueves voy a la Calle Ocho.
+      tokens: [{surface: Los, sense: el}, {surface: jueves, sense: jueves}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      reverse: |-
+        Los jueves [yo] voy a la Calle Ocho
+        [Yo] voy a la Calle Ocho los jueves
+  translations:
+    en: |-
+      On Thursdays, I go to (Calle Ocho|Eighth Street|8th Street).
+      I go to (Calle Ocho|Eighth Street|8th Street) (on Thursdays|every Thursday).
+      Every Thursday, I go to (Calle Ocho|Eighth Street|8th Street).
+- id: s.u07.19
+  node: es.u07.los-domingos
+  forms:
+    es-Latn/standard:
+      text: El viernes trabajo por la noche.
+      tokens: [{surface: El, sense: el}, {surface: viernes, sense: viernes}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: |-
+        El viernes [yo] trabajo (por|en) la noche
+        [Yo] trabajo el viernes (por|en) la noche
+        [Yo] trabajo (por|en) la noche el viernes
+  translations:
+    en: |-
+      On Friday, I( work|'m working) (at night|in the evening).
+      I( work|'m working) on Friday (night|evening).
+      I( work|'m working) (at night|in the evening) on Friday.
+- id: s.u07.20
+  node: es.u07.los-domingos
+  forms:
+    es-Latn/standard:
+      text: El sábado me levanto tarde.
+      tokens: [{surface: El, sense: el}, {surface: sábado, sense: sábado}, {surface: me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: tarde, sense: tarde}]
+      reverse: |-
+        El sábado [yo] me levanto tarde
+        [Yo] me levanto tarde el sábado
+  translations:
+    en: |-
+      On Saturday, I( get up| wake up|'m getting up) late.
+      I( get up| wake up|'m getting up) late on Saturday.
+- id: s.u07.21
+  node: es.u07.los-domingos
+  forms:
+    es-Latn/standard:
+      text: Los domingos vamos a casa de Abuela.
+      tokens: [{surface: Los, sense: el}, {surface: domingos, sense: domingo}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}]
+      reverse: |-
+        Los domingos [nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela)
+        [Nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela) los domingos
+  translations:
+    en: |-
+      On Sundays, we go to (Grandma's|Grandma's house|Grandmother's|Grandmother's house|Granny's|Granny's house).
+      We go to (Grandma's|Grandma's house|Grandmother's|Grandmother's house|Granny's|Granny's house) (on Sundays|every Sunday).
+      Every Sunday, we go to (Grandma's|Grandma's house|Grandmother's|Grandmother's house|Granny's|Granny's house).
+- id: s.u07.22
+  node: es.u07.los-domingos
+  forms:
+    es-Latn/standard:
+      text: Hoy es viernes. ¡Mañana es sábado!
+      tokens: [{surface: Hoy, sense: hoy}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: viernes, sense: viernes}, {surface: Mañana, sense: mañana}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}]
+      reverse: Hoy es viernes [y] mañana es sábado
+  translations:
+    en: (Today is|Today's) Friday. (Tomorrow is|Tomorrow's) Saturday!
+- id: s.u07.23
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: Abuela ve la novela.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      reverse: (Abuela|Mi abuela|La abuela) ve la (novela|telenovela)
+  translations:
+    en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) (watches|is watching) the (soap opera|soap|novela|telenovela).
+- id: s.u07.24
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: ¿Tú ves la novela?
+      tokens: [{surface: Tú, sense: tú}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      reverse: (Tú ves|Ves [tú]|Usted ve|Ve [usted]|Ustedes ven|Ven [ustedes]) la (novela|telenovela)
+  translations:
+    en: (Do you watch|Are you watching) the (soap opera|soap|novela|telenovela)?
+- id: s.u07.25
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: Abuela siempre ve la novela por la noche.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: siempre, sense: siempre}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: novela, sense: novela}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: |-
+        (Abuela|Mi abuela|La abuela) siempre ve la (novela|telenovela) (por|en) la noche
+        (Por|En) la noche (abuela|mi abuela|la abuela) siempre ve la (novela|telenovela)
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) always watches the (soap opera|soap|novela|telenovela) (at night|in the evening).
+      (At night|In the evening), (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) always watches the (soap opera|soap|novela|telenovela).
+- id: s.u07.26
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: Me acuesto tarde.
+      tokens: [{surface: Me, sense: me}, {surface: acuesto, sense: acostarse, form: 'form:pres-1s'}, {surface: tarde, sense: tarde}]
+      reverse: '[Yo] me acuesto tarde'
+  translations:
+    en: I go to bed late.
+- id: s.u07.27
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: Los domingos me acuesto temprano.
+      tokens: [{surface: Los, sense: el}, {surface: domingos, sense: domingo}, {surface: me, sense: me}, {surface: acuesto, sense: acostarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
+      reverse: |-
+        Los domingos [yo] me acuesto temprano
+        [Yo] me acuesto temprano los domingos
+  translations:
+    en: |-
+      On Sundays, I go to bed early.
+      I go to bed early (on Sundays|every Sunday).
+- id: s.u07.28
+  node: es.u07.la-novela
+  forms:
+    es-Latn/standard:
+      text: Después de la novela, Abuela se acuesta.
+      tokens: [{surface: Después, sense: después}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: novela, sense: novela}, {surface: Abuela, sense: abuela}, {surface: se, sense: se}, {surface: acuesta, sense: acostarse, form: 'form:pres-3s'}]
+      reverse: |-
+        Después de la (novela|telenovela) (Abuela|mi abuela|la abuela) se acuesta
+        (Abuela|Mi abuela|La abuela) se acuesta después de la (novela|telenovela)
+  translations:
+    en: |-
+      After the (soap opera|soap|novela|telenovela), (Grandma|Grandmother|Granny|my grandma|my grandmother|my granny) goes to bed.
+      (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) goes to bed after the (soap opera|soap|novela|telenovela).
+- id: s.u07.29
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Estoy trabajando.
+      tokens: [{surface: Estoy, sense: estar, form: 'form:pres-1s'}, {surface: trabajando, sense: trabajar, form: 'form:ger'}]
+      reverse: '[Yo] estoy trabajando'
+  translations:
+    en: (I'm|I am) working.
+- id: s.u07.30
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Ahora no, estoy trabajando.
+      tokens: [{surface: Ahora, sense: ahora}, {surface: 'no', sense: 'no'}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: trabajando, sense: trabajar, form: 'form:ger'}]
+      reverse: |-
+        Ahora no [yo] estoy trabajando
+        Ahorita no [yo] estoy trabajando
+  translations:
+    en: |-
+      Not now, (I'm|I am) working.
+      (I'm|I am) working, not now.
+- id: s.u07.31
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú estás haciendo?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}]
+      reverse: (Qué tú estás haciendo|Qué estás haciendo [tú]|Qué usted está haciendo|Qué está haciendo [usted]|Qué ustedes están haciendo|Qué están haciendo [ustedes]|Qué tú haces|Qué haces [tú])
+  translations:
+    en: What are you doing?
+- id: s.u07.32
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Abuela está viendo la novela.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: viendo, sense: ver, form: 'form:ger'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      reverse: (Abuela|Mi abuela|La abuela) está viendo la (novela|telenovela)
+  translations:
+    en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) is watching the (soap opera|soap|novela|telenovela).
+- id: s.u07.33
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Lili se está bañando.
+      tokens: [{surface: Lili, sense: lili}, {surface: se, sense: se}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bañando, sense: bañarse, form: 'form:ger'}]
+      reverse: Lili (se está bañando|está bañándose|se está duchando|está duchándose)
+  translations:
+    en: Lili is (taking a shower|showering|in the shower|having a shower|taking a bath).
+- id: s.u07.34
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Lili está durmiendo.
+      tokens: [{surface: Lili, sense: lili}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: durmiendo, sense: dormir, form: 'form:ger'}]
+      reverse: Lili está durmiendo
+  translations:
+    en: Lili is (sleeping|asleep).
+- id: s.u07.35
+  node: es.u07.estoy-trabajando
+  forms:
+    es-Latn/standard:
+      text: Mami está haciendo café.
+      tokens: [{surface: Mami, sense: mami}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}, {surface: café, sense: café}]
+      reverse: (Mami|Mamá) está (haciendo|colando) (café|el café)
+  translations:
+    en: (Mom|Mommy|Mum|Ma) is making (coffee|the coffee).
+stories:
+- id: es.story.u07
+  node: es.u07.story
+  title: {en: Saturday morning}
+  characters:
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: mami, name: {es-Latn/standard: Mami}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Daniel! ¿Tú estás durmiendo?
+          tokens: [{surface: Daniel, sense: daniel}, {surface: Tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: durmiendo, sense: dormir, form: 'form:ger'}]
+      translations: {en: 'Daniel! Are you sleeping?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, abuela. Hoy es sábado.
+          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: Hoy, sense: hoy}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}]
+      translations: {en: 'Yes, Grandma. Today is Saturday.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Y qué? Los sábados yo me levanto temprano.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: Los, sense: el}, {surface: sábados, sense: sábado}, {surface: yo, sense: yo}, {surface: me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: temprano, sense: temprano}]
+      translations: {en: 'So what? On Saturdays I get up early.'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Y yo me levanto tarde.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: me, sense: me}, {surface: levanto, sense: levantarse, form: 'form:pres-1s'}, {surface: tarde, sense: tarde}]
+      translations: {en: And I get up late.}
+  - choose:
+      prompt: {en: 'What day is it?'}
+      options: [{en: Saturday}, {en: Sunday}, {en: Monday}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Hay café, mi vida.
+          tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      translations: {en: 'There''s coffee, darling.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Voy, abuela. Me baño y después desayuno.
+          tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: abuela, sense: abuela}, {surface: Me, sense: me}, {surface: baño, sense: bañarse, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
+      translations: {en: 'Coming, Grandma. I''ll take a shower and then have breakfast.'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡No, Daniel! ¡Yo me estoy bañando!
+          tokens: [{surface: 'No', sense: 'no'}, {surface: Daniel, sense: daniel}, {surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: bañando, sense: bañarse, form: 'form:ger'}]
+      translations: {en: 'No, Daniel! I''m in the shower!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Lili! ¡Tú siempre te bañas por la mañana!
+          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      translations: {en: 'Lili! You always shower in the morning!'}
+  - line:
+      speaker: lili
+      ask: complete
+      gap: sense:noche
+      distractors: ['sense:novela', 'sense:calle']
+      forms:
+        es-Latn/standard:
+          text: Sí, y tú te bañas por la noche.
+          tokens: [{surface: Sí, sense: sí}, {surface: 'y', sense: 'y'}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: bañas, sense: bañarse, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      translations: {en: 'Yes, and you shower at night.'}
+  - choose:
+      prompt: {en: 'Who is in the shower?'}
+      options: [{en: Lili}, {en: Daniel}, {en: Abuela}]
+      answer: 0
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: Daniel, ¿hoy tú trabajas?
+          tokens: [{surface: Daniel, sense: daniel}, {surface: hoy, sense: hoy}, {surface: tú, sense: tú}, {surface: trabajas, sense: trabajar, form: 'form:pres-2s'}]
+      translations: {en: 'Daniel, are you working today?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, mami. Trabajo por la tarde.
+          tokens: [{surface: Sí, sense: sí}, {surface: mami, sense: mami}, {surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      translations: {en: 'Yes, Mom. I work in the afternoon.'}
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: ¿Y ahora qué tú estás haciendo?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: ahora, sense: ahora}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}]
+      translations: {en: 'And what are you doing now?'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Ahora estoy desayunando, mami.
+          tokens: [{surface: Ahora, sense: ahora}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: desayunando, sense: desayunar, form: 'form:ger'}, {surface: mami, sense: mami}]
+      translations: {en: 'Now I''m having breakfast, Mom.'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:novela
+      distractors: ['sense:guagua', 'sense:tienda']
+      forms:
+        es-Latn/standard:
+          text: Y por la noche, ¡la novela!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      translations: {en: 'And at night, the soap opera!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¡tú siempre ves la novela!
+          tokens: [{surface: Abuela, sense: abuela}, {surface: tú, sense: tú}, {surface: siempre, sense: siempre}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
+      translations: {en: 'Grandma, you always watch the soap opera!'}
