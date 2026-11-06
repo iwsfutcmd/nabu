@@ -1,0 +1,579 @@
+# Unit 19 (es): register and respect, the heritage speaker's weakest spot. usted and ustedes with elders, neighbours
+# and offices; señor, don and doña; la bendición (¡Bendición, abuela! ¡Dios te bendiga!); con permiso, disculpe,
+# perdone; polite requests with the conditional (me gustaría, ¿podría…?, ¿sería posible…?) and quisiera; Doña Ofelia
+# next door; calling the doctor's office for Abuelo.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u19
+title: {en: 'Con respeto: With respect'}
+cefr: B1
+kcs:
+- {id: 'sense:señor', gloss: {en: 'sir; Mr; gentleman'}, forms: {es-Latn/standard: [señor]}, notes: {en: 'Señora for a woman, señorita for a young one. Before a surname it takes el when you talk about him (el señor Díaz) but not when you talk to him (buenos días, señor Díaz).'}}
+- {id: 'sense:vecino', gloss: {en: 'neighbour (vecina: a woman)'}, forms: {es-Latn/standard: [vecino]}, notes: {en: 'La vecina de al lado: the next-door neighbour. With v, and c before i: vecino, vecina.'}}
+- {id: 'sense:amanecer', gloss: {en: 'to wake up; to dawn'}, forms: {es-Latn/standard: [amanecer]}, notes: {en: '¿Cómo amaneció? (usted) or ¿Cómo amaneciste? (tú): how are you this morning? A Cuban morning greeting, above all to elders. El amanecer: dawn.'}}
+- {id: 'sense:bendición', gloss: {en: 'blessing'}, forms: {es-Latn/standard: [bendición]}, notes: {en: '¡La bendición! or ¡Bendición, abuela!: what Cuban children say to grandparents, parents and godparents when they arrive and when they leave, and many grown men still do. The answer is ¡Dios te bendiga!'}}
+- {id: 'sense:dios-te-bendiga', gloss: {en: 'God bless you'}, forms: {es-Latn/standard: [Dios te bendiga]}, notes: {en: 'The answer to ¡Bendición! To someone you call usted: Dios lo bendiga (a man), Dios la bendiga (a woman). Bendiga is the subjunctive of bendecir (unit 21).'}}
+- {id: 'sense:pedir', gloss: {en: 'to ask for; to order (food)'}, forms: {es-Latn/standard: [pedir]}, notes: {en: 'Pido, pides, pide, piden: the e becomes i. Pedir is to ask for something (pedir la bendición, pedir una cita); to ask a question is preguntar.'}}
+- {id: 'sense:mayor', gloss: {en: 'older; elder; los mayores: elders, grown-ups'}, forms: {es-Latn/standard: [mayor]}, notes: {en: 'Mi hermano mayor: my older brother. Una persona mayor: an older person, the polite way to say old. Respect for los mayores is the first rule of a Cuban house.'}}
+- {id: 'sense:respeto', gloss: {en: 'respect'}, forms: {es-Latn/standard: [respeto]}, notes: {en: 'Con respeto; con todo respeto. ¡Más respeto! is what an abuela says when you answer back. The verb is respetar.'}}
+- {id: 'sense:permiso', gloss: {en: 'permission; con permiso: excuse me (to pass, come in or leave)'}, forms: {es-Latn/standard: [permiso]}, notes: {en: 'Say con permiso when you walk past someone, come into a house or get up from the table. Cubans answer ¡propio! or ¡adelante!'}}
+- {id: 'sense:disculpar', gloss: {en: 'to excuse; disculpe: excuse me, sorry (usted)'}, forms: {es-Latn/standard: [disculpar]}, notes: {en: 'Disculpe to get someone''s attention or to say sorry; disculpa to a friend. Heritage speakers often say excúseme, after English; Cubans say disculpe, perdone or con permiso.'}}
+- {id: 'sense:perdonar', gloss: {en: 'to forgive; perdone: sorry, pardon me (usted)'}, forms: {es-Latn/standard: [perdonar]}, notes: {en: 'Perdone or perdón: sorry, pardon me. Perdona to a friend. ¿Perdón? also asks someone to say it again.'}}
+- {id: 'sense:molestia', gloss: {en: 'bother; trouble'}, forms: {es-Latn/standard: [molestia]}, notes: {en: 'Disculpe la molestia: sorry to bother you. No es molestia: it''s no trouble. A false friend: molestar is to bother, never to molest.'}}
+- {id: 'sense:momento', gloss: {en: 'moment'}, forms: {es-Latn/standard: [momento]}, notes: {en: 'Un momento, por favor: one moment, please. Cubans make words ending in -to smaller with -ico: un momentico, chiquitico.'}}
+- {id: 'form:cond', gloss: {en: 'conditional: would (hablaría, podría)'}, notes: {en: 'The infinitive plus -ía, always with its accent: hablaría, comería, iría. Some stems shorten as in the future: podría, tendría, haría, vendría. Me gustaría, ¿podría…? and ¿sería posible…? are the polite way to ask.'}}
+- {id: 'form:subj-past', gloss: {en: 'imperfect subjunctive (si hablara, si tuviera)'}, notes: {en: 'Here only quisiera, I would like: the politest way to ask (quisiera una cita). Units 27 and 28 teach the rest.'}}
+- {id: 'sense:ayudar', gloss: {en: 'to help'}, forms: {es-Latn/standard: [ayudar]}, notes: {en: 'Ayudar a alguien. Spelled with y. ¿Me podría ayudar?: could you help me? La ayuda: help.'}}
+- {id: 'sense:favor', gloss: {en: 'favour; ¿me hace el favor de…?: would you please…?'}, forms: {es-Latn/standard: [favor]}, notes: {en: '¿Me hace el favor de…? is how Cubans ask an elder or a stranger; ¿me haces el favor? to a friend. Por favor: please. El favor is masculine.'}}
+- {id: 'sense:amable', gloss: {en: 'kind; nice'}, forms: {es-Latn/standard: [amable]}, notes: {en: 'Muy amable, or es usted muy amable: how kind of you. One form for men and women.'}}
+- {id: 'sense:consultorio', gloss: {en: 'doctor''s office; clinic'}, forms: {es-Latn/standard: [consultorio]}, notes: {en: 'El consultorio del médico. In Miami you hear la oficina del doctor, from English; una oficina is where people work at desks.'}}
+- {id: 'sense:cita', gloss: {en: 'appointment; date'}, forms: {es-Latn/standard: [cita]}, notes: {en: 'Hacer una cita: to make an appointment (not hacer un appointment). Also a date with someone. In Cuba a doctor''s appointment is often un turno.'}}
+- {id: 'sense:posible', gloss: {en: 'possible'}, forms: {es-Latn/standard: [posible]}, notes: {en: '¿Sería posible…?: would it be possible…? The politest way to ask an office for something. Lo antes posible: as soon as possible.'}}
+nodes:
+- {id: es.u19.don-y-dona, kind: lesson, introduces: ['sense:señor', 'sense:vecino', 'sense:amanecer']}
+- {id: es.u19.la-bendicion, kind: lesson, introduces: ['sense:bendición', 'sense:dios-te-bendiga', 'sense:pedir', 'sense:mayor', 'sense:respeto']}
+- {id: es.u19.con-permiso, kind: lesson, introduces: ['sense:permiso', 'sense:disculpar', 'sense:perdonar', 'sense:molestia', 'sense:momento']}
+- {id: es.u19.quisiera, kind: lesson, introduces: ['form:cond', 'form:subj-past', 'sense:ayudar', 'sense:favor', 'sense:amable']}
+- {id: es.u19.ustedes, kind: lesson, introduces: []}
+- {id: es.u19.por-telefono, kind: lesson, introduces: ['sense:consultorio', 'sense:cita', 'sense:posible']}
+- {id: es.u19.story, kind: story}
+sentences:
+- id: s.u19.1
+  node: es.u19.don-y-dona
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Buenos días, señor. ¿Cómo está usted?
+      tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: señor, sense: señor}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
+      reverse: (Buenos días|Buen día|Buenas) señor (cómo está [usted]|cómo usted está)
+  translations:
+    en: Good morning, sir. How (are you|are you doing)?
+- id: s.u19.2
+  node: es.u19.don-y-dona
+  forms:
+    es-Latn/standard:
+      text: Ella es doña Ofelia. Vive al lado.
+      tokens: [{surface: Ella, sense: ella}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: Vive, sense: vivir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}]
+      reverse: '[Ella] es doña Ofelia [y] (vive|ella vive) (al lado|aquí al lado)'
+  translations:
+    en: (She's|She is|This is) (Doña|Miss|Mrs.) Ofelia. She lives next door.
+- id: s.u19.3
+  node: es.u19.don-y-dona
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia es la vecina de mi abuela.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: vecina, sense: vecino}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}]
+      reverse: Doña Ofelia es [la] vecina de (mi abuela|la abuela|abuela)
+  translations:
+    en: (Doña|Miss|Mrs.) Ofelia is my (grandmother's|grandma's|granny's) (neighbour|neighbor).
+- id: s.u19.4
+  node: es.u19.don-y-dona
+  forms:
+    es-Latn/standard:
+      text: Siempre le hablo de usted a doña Ofelia.
+      tokens: [{surface: Siempre, sense: siempre}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}, {surface: a, sense: a}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      reverse: |-
+        [Yo] siempre le hablo de usted a doña Ofelia
+        A doña Ofelia [yo] siempre le hablo de usted
+        [Yo] siempre (trato|la trato|le trato) de usted a doña Ofelia
+        Con doña Ofelia [yo] siempre hablo de usted
+  translations:
+    en: |-
+      I always use usted with (Doña|Miss|Mrs.) Ofelia.
+      I always (speak|talk) (formally|politely) (to|with) (Doña|Miss|Mrs.) Ofelia.
+      I always address (Doña|Miss|Mrs.) Ofelia (as usted|formally).
+- id: s.u19.5
+  node: es.u19.don-y-dona
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia me habla de tú, pero yo le hablo de usted.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: me, sense: me}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: tú, sense: tú}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: le, sense: le}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
+      reverse: |-
+        Doña Ofelia me habla de tú pero [yo] le hablo de usted
+        Doña Ofelia me trata de tú pero [yo] la trato de usted
+  translations:
+    en: |-
+      (Doña|Miss|Mrs.) Ofelia uses tú with me, but I use usted with her.
+      (Doña|Miss|Mrs.) Ofelia (speaks|talks) to me informally, but I (speak|talk) to her formally.
+- id: s.u19.6
+  node: es.u19.don-y-dona
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Cómo amaneció usted, don Pepe?
+      tokens: [{surface: Cómo, sense: cómo}, {surface: amaneció, sense: amanecer, form: 'form:pret-3s'}, {surface: usted, sense: usted}, {surface: don, sense: don}, {surface: Pepe, sense: pepe}]
+      reverse: |-
+        (Cómo amaneció [usted]|Cómo usted amaneció) don Pepe
+        Don Pepe (cómo amaneció [usted]|cómo usted amaneció)
+  translations:
+    en: |-
+      How are you this morning, (Don|Mr.) Pepe?
+      How did you (sleep|wake up), (Don|Mr.) Pepe?
+- id: s.u19.7
+  node: es.u19.la-bendicion
+  forms:
+    es-Latn/standard:
+      text: ¡Bendición, abuela! Me voy para el trabajo.
+      tokens: [{surface: Bendición, sense: bendición}, {surface: abuela, sense: abuela}, {surface: Me, sense: me}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: trabajo, sense: trabajo}]
+      reverse: "[La] bendición (abuela|abuelita) [ya] me voy (para el|al|pa'l) trabajo"
+  translations:
+    en: (Bless me|Your blessing|Give me your blessing), (Grandma|Grandmother|Granny|Abuela)! (I'm|I am) (leaving|going|off) (for work|to work).
+- id: s.u19.8
+  node: es.u19.la-bendicion
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: ¡Dios te bendiga, mi'jo!
+      tokens: [{surface: Dios, sense: dios-te-bendiga}, {surface: te, sense: dios-te-bendiga}, {surface: bendiga, sense: dios-te-bendiga}, {surface: "mi'jo", sense: mijo}]
+      reverse: "[Que] Dios te bendiga (mi'jo|mi hijo|mijito)"
+  translations:
+    en: God bless you, (son|my son|sweetheart|honey|dear|my boy|kid)!
+- id: s.u19.9
+  node: es.u19.la-bendicion
+  forms:
+    es-Latn/standard:
+      text: Daniel le pide la bendición a su abuela.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: pide, sense: pedir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: bendición, sense: bendición}, {surface: a, sense: a}, {surface: su, sense: su}, {surface: abuela, sense: abuela}]
+      reverse: Daniel le pide la bendición a (su abuela|la abuela)
+  translations:
+    en: |-
+      Daniel asks his (grandmother|grandma|granny) for (her|a) blessing.
+      Daniel asks for his (grandmother's|grandma's|granny's) blessing.
+- id: s.u19.10
+  node: es.u19.la-bendicion
+  forms:
+    es-Latn/standard:
+      text: Con los mayores, yo hablo con respeto.
+      tokens: [{surface: Con, sense: con}, {surface: los, sense: el}, {surface: mayores, sense: mayor}, {surface: yo, sense: yo}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: con, sense: con}, {surface: respeto, sense: respeto}]
+      reverse: |-
+        Con los mayores [yo] hablo con respeto
+        [Yo] hablo con respeto (con|a) los mayores
+  translations:
+    en: |-
+      I (speak|talk) (respectfully|with respect) (to|with) (my elders|elders|older people|the elderly).
+      With (my elders|elders|older people|the elderly), I (speak|talk) (respectfully|with respect).
+- id: s.u19.11
+  node: es.u19.la-bendicion
+  forms:
+    es-Latn/standard:
+      text: Por la noche, le pido la bendición a mi abuela.
+      tokens: [{surface: Por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: le, sense: le}, {surface: pido, sense: pedir, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: bendición, sense: bendición}, {surface: a, sense: a}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}]
+      reverse: |-
+        (Por|En) la noche [yo] le pido la bendición a (mi abuela|la abuela|abuela)
+        [Yo] le pido la bendición a (mi abuela|la abuela|abuela) (por|en) la noche
+  translations:
+    en: |-
+      At night, I ask my (grandmother|grandma|granny) for (her|a) blessing.
+      I ask my (grandmother|grandma|granny) for (her|a) blessing at night.
+- id: s.u19.12
+  node: es.u19.la-bendicion
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes les piden la bendición a sus padres?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: les, sense: le}, {surface: piden, sense: pedir, form: 'form:pres-3p'}, {surface: la, sense: el}, {surface: bendición, sense: bendición}, {surface: a, sense: a}, {surface: sus, sense: su}, {surface: padres, sense: padre}]
+      reverse: (Ustedes les piden|Les piden [ustedes]|Ustedes le piden|Le piden [ustedes]) la bendición a sus padres
+  translations:
+    en: Do (you|you all|you guys|y'all) ask your parents for (their|a) blessing?
+- id: s.u19.13
+  node: es.u19.con-permiso
+  forms:
+    es-Latn/standard:
+      text: Con permiso, señora, ¿puedo pasar?
+      tokens: [{surface: Con, sense: con}, {surface: permiso, sense: permiso}, {surface: señora, sense: señora}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: pasar, sense: pasar}]
+      reverse: Con permiso señora (puedo pasar|se puede pasar|se puede)
+  translations:
+    en: (Excuse me|Pardon me), (ma'am|madam), (may|can) I come in?
+- id: s.u19.14
+  node: es.u19.con-permiso
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Disculpe, señor, ¿dónde está la parada de la guagua?
+      tokens: [{surface: Disculpe, sense: disculpar, form: 'form:imp-ud'}, {surface: señor, sense: señor}, {surface: dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: parada, sense: parada}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
+      reverse: (Disculpe|Perdone|Perdón) señor (dónde está|dónde queda) la parada (de la guagua|del autobús|del bus)
+  translations:
+    en: (Excuse me|Sorry|Pardon me), sir, (where's|where is) the bus stop?
+- id: s.u19.15
+  node: es.u19.con-permiso
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Perdone, señora, ¿usted vive en este barrio?
+      tokens: [{surface: Perdone, sense: perdonar, form: 'form:imp-ud'}, {surface: señora, sense: señora}, {surface: usted, sense: usted}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: este, sense: este}, {surface: barrio, sense: barrio}]
+      reverse: (Perdone|Disculpe|Perdón) señora (usted vive|vive [usted]) en este barrio
+  translations:
+    en: (Excuse me|Sorry|Pardon me), (ma'am|madam), do you live in this (neighbourhood|neighborhood)?
+- id: s.u19.16
+  node: es.u19.con-permiso
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Pase, pase, doña Ofelia. Está en su casa.
+      tokens: [{surface: Pase, sense: pasar, form: 'form:imp-ud'}, {surface: pase, sense: pasar, form: 'form:imp-ud'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: casa, sense: casa}]
+      reverse: (Pase [pase]|Pase adelante|Adelante|Entre) doña Ofelia (está [usted] en su casa|usted está en su casa|esta es su casa)
+  translations:
+    en: |-
+      Come in, come in, (Doña|Miss|Mrs.) Ofelia. Make yourself at home.
+      Come (in|on in), (Doña|Miss|Mrs.) Ofelia. (Make yourself at home|This is your home).
+- id: s.u19.17
+  node: es.u19.con-permiso
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Disculpe la molestia, señora. ¿Está su hijo en casa?
+      tokens: [{surface: Disculpe, sense: disculpar, form: 'form:imp-ud'}, {surface: la, sense: el}, {surface: molestia, sense: molestia}, {surface: señora, sense: señora}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: su, sense: su}, {surface: hijo, sense: hijo}, {surface: en, sense: en}, {surface: casa, sense: casa}]
+      reverse: (Disculpe|Perdone) la molestia señora (está su hijo|su hijo está) en (casa|la casa)
+  translations:
+    en: |-
+      (Sorry|I'm sorry) to (bother|trouble) you, (ma'am|madam). Is your son (at home|home|in)?
+      (Excuse|Pardon|Forgive) the (bother|trouble|inconvenience), (ma'am|madam). Is your son (at home|home|in)?
+- id: s.u19.18
+  node: es.u19.con-permiso
+  forms:
+    es-Latn/standard:
+      text: Un momento, por favor. Mi abuela viene ahora.
+      tokens: [{surface: Un, sense: un}, {surface: momento, sense: momento}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: ahora, sense: ahora}]
+      reverse: Un (momento|momentico|momentito) por favor (mi abuela viene ahora|mi abuela ya viene|ahora viene mi abuela|mi abuela viene ahorita)
+  translations:
+    en: (One|Just a) (moment|minute|second), please. My (grandmother|grandma|granny) is coming (now|right now).
+- id: s.u19.19
+  node: es.u19.quisiera
+  forms:
+    es-Latn/standard:
+      text: Me gustaría un cafecito, por favor.
+      tokens: [{surface: Me, sense: me}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: (Me gustaría|Quisiera) un (cafecito|café) por favor
+  translations:
+    en: (I'd|I would) like (a Cuban coffee|a coffee|a cafecito|some coffee), please.
+- id: s.u19.20
+  node: es.u19.quisiera
+  forms:
+    es-Latn/standard:
+      text: Quisiera hablar con doña Ofelia.
+      tokens: [{surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      reverse: ([Yo] quisiera|[Yo] querría|Me gustaría) hablar con doña Ofelia
+  translations:
+    en: (I'd|I would) like to (speak|talk) (with|to) (Doña|Miss|Mrs.) Ofelia.
+- id: s.u19.21
+  node: es.u19.quisiera
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Disculpe, señora, ¿me podría ayudar?
+      tokens: [{surface: Disculpe, sense: disculpar, form: 'form:imp-ud'}, {surface: señora, sense: señora}, {surface: me, sense: me}, {surface: podría, sense: poder, form: 'form:cond'}, {surface: ayudar, sense: ayudar}]
+      reverse: (Disculpe|Perdone) señora (me podría ayudar [usted]|usted me podría ayudar|podría ayudarme|me puede ayudar|puede ayudarme)
+  translations:
+    en: (Excuse me|Sorry|Pardon me), (ma'am|madam), (could|would|can) you help me?
+- id: s.u19.22
+  node: es.u19.quisiera
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Me hace el favor de ayudar a mi abuela?
+      tokens: [{surface: Me, sense: me}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: favor, sense: favor}, {surface: de, sense: de}, {surface: ayudar, sense: ayudar}, {surface: a, sense: a}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}]
+      reverse: (Me hace|Me haría|Usted me hace|Usted me haría) el favor de ayudar a (mi abuela|la abuela)
+  translations:
+    en: |-
+      Would you (please|kindly) help my (grandmother|grandma|granny)?
+      Could you (please|kindly) help my (grandmother|grandma|granny)?
+      Would you do me the (favour|favor) of helping my (grandmother|grandma|granny)?
+- id: s.u19.23
+  node: es.u19.quisiera
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Le gustaría un cafecito, doña Ofelia?
+      tokens: [{surface: Le, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      reverse: |-
+        (Le gustaría|Quisiera [usted]|Usted quisiera|Quiere [usted]|Usted quiere) un (cafecito|café) doña Ofelia
+        Doña Ofelia (le gustaría|quisiera [usted]|usted quisiera|quiere [usted]|usted quiere) un (cafecito|café)
+  translations:
+    en: |-
+      Would you like a (Cuban coffee|coffee|cafecito), (Doña|Miss|Mrs.) Ofelia?
+      (Doña|Miss|Mrs.) Ofelia, would you like a (Cuban coffee|coffee|cafecito)?
+- id: s.u19.24
+  node: es.u19.quisiera
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: Sí, gracias, mi'jo. Tú eres muy amable.
+      tokens: [{surface: Sí, sense: sí}, {surface: gracias, sense: gracias}, {surface: "mi'jo", sense: mijo}, {surface: Tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: muy, sense: muy}, {surface: amable, sense: amable}]
+      reverse: "Sí [muchas] gracias (mi'jo|mi hijo|mijito) [tú] eres muy amable"
+  translations:
+    en: Yes, (thank you|thanks), (son|dear|honey|sweetheart|my boy). (You're|You are) very kind.
+- id: s.u19.25
+  node: es.u19.ustedes
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes podrían venir el domingo?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: podrían, sense: poder, form: 'form:cond'}, {surface: venir, sense: venir}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
+      reverse: (Ustedes podrían|Podrían [ustedes]) venir el domingo
+  translations:
+    en: Could (you|you all|you guys|y'all) come (on Sunday|Sunday)?
+- id: s.u19.26
+  node: es.u19.ustedes
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Les gustaría comer con nosotros?
+      tokens: [{surface: Les, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: comer, sense: comer}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: (Les gustaría|A ustedes les gustaría|Ustedes quisieran) comer con (nosotros|nosotras)
+  translations:
+    en: Would (you|you all|you guys|y'all) like to (eat|have dinner|have lunch) with us?
+- id: s.u19.27
+  node: es.u19.ustedes
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia estaría feliz con un cafecito.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: estaría, sense: estar, form: 'form:cond'}, {surface: feliz, sense: feliz}, {surface: con, sense: con}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
+      reverse: Doña Ofelia estaría (feliz|contenta) con un (cafecito|café)
+  translations:
+    en: (Doña|Miss|Mrs.) Ofelia would be happy with a (Cuban coffee|coffee|cafecito).
+- id: s.u19.28
+  node: es.u19.ustedes
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Qué haría usted, señora?
+      tokens: [{surface: Qué, sense: qué}, {surface: haría, sense: hacer, form: 'form:cond'}, {surface: usted, sense: usted}, {surface: señora, sense: señora}]
+      reverse: (Qué haría [usted]|Qué usted haría) señora
+  translations:
+    en: What would you do, (ma'am|madam)?
+- id: s.u19.29
+  node: es.u19.ustedes
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: Yo iría con ustedes, pero hoy trabajo.
+      tokens: [{surface: Yo, sense: yo}, {surface: iría, sense: ir, form: 'form:cond'}, {surface: con, sense: con}, {surface: ustedes, sense: ustedes}, {surface: pero, sense: pero}, {surface: hoy, sense: hoy}, {surface: trabajo, sense: trabajar, form: 'form:pres-1s'}]
+      reverse: |-
+        [Yo] iría con ustedes pero hoy (trabajo|tengo que trabajar|estoy trabajando)
+        [Yo] iría con ustedes pero (trabajo|tengo que trabajar|estoy trabajando) hoy
+  translations:
+    en: (I'd|I would) go with (you|you all|you guys|y'all), but (I'm working|I work|I have to work) today.
+- id: s.u19.30
+  node: es.u19.ustedes
+  forms:
+    es-Latn/standard:
+      text: Mis primos vendrían, pero no tienen pasaporte.
+      tokens: [{surface: Mis, sense: mi}, {surface: primos, sense: primo}, {surface: vendrían, sense: venir, form: 'form:cond'}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: pasaporte, sense: pasaporte}]
+      reverse: Mis (primos|primas) vendrían pero no tienen (pasaporte|pasaportes)
+  translations:
+    en: My cousins would come, but they (don't have (passports|a passport)|have no passports).
+- id: s.u19.31
+  node: es.u19.por-telefono
+  forms:
+    es-Latn/standard:
+      text: Voy a llamar al médico de abuelo.
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: llamar, sense: llamar}, {surface: al, sense: al}, {surface: médico, sense: médico}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}]
+      reverse: '[Yo] voy a llamar al (médico|doctor) (de abuelo|de mi abuelo|del abuelo)'
+  translations:
+    en: (I'm|I am) going to call (Grandpa's|my grandpa's|my grandfather's|Abuelo's) doctor.
+- id: s.u19.32
+  node: es.u19.por-telefono
+  forms:
+    es-Latn/standard:
+      text: Mami llama por teléfono al consultorio.
+      tokens: [{surface: Mami, sense: mami}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: por, sense: por}, {surface: teléfono, sense: teléfono}, {surface: al, sense: al}, {surface: consultorio, sense: consultorio}]
+      reverse: (Mami|Mamá) (llama|está llamando) [por teléfono] al consultorio
+  translations:
+    en: (Mom|Mommy|Mum) (is calling|calls|is phoning|phones) the (doctor's office|doctor's|clinic).
+- id: s.u19.33
+  node: es.u19.por-telefono
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Consultorio, buenos días. ¿En qué le puedo ayudar?
+      tokens: [{surface: Consultorio, sense: consultorio}, {surface: buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: En, sense: en}, {surface: qué, sense: qué}, {surface: le, sense: le}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: ayudar, sense: ayudar}]
+      reverse: '[Consultorio] (buenos días|buen día|buenas) (en qué le puedo ayudar|en qué puedo ayudarle|en qué lo puedo ayudar|en qué la puedo ayudar)'
+  translations:
+    en: |-
+      (Doctor's office|Office), good morning. How (can|may) I help you?
+      Good morning, (doctor's office|office). How (can|may) I help you?
+- id: s.u19.34
+  node: es.u19.por-telefono
+  forms:
+    es-Latn/standard:
+      text: Buenos días, quisiera hacer una cita para mi abuelo.
+      tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: quisiera, sense: querer, form: 'form:subj-past'}, {surface: hacer, sense: hacer}, {surface: una, sense: un}, {surface: cita, sense: cita}, {surface: para, sense: para}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}]
+      reverse: (Buenos días|Buen día|Buenas) (quisiera|me gustaría) (hacer|pedir|sacar) una cita para (mi abuelo|el abuelo)
+  translations:
+    en: Good morning, (I'd|I would) like to make an appointment for my (grandfather|grandpa).
+- id: s.u19.35
+  node: es.u19.por-telefono
+  forms:
+    es-Latn/standard:
+      text: ¿Sería posible ir el lunes por la mañana?
+      tokens: [{surface: Sería, sense: ser, form: 'form:cond'}, {surface: posible, sense: posible}, {surface: ir, sense: ir}, {surface: el, sense: el}, {surface: lunes, sense: lunes}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      reverse: Sería posible (ir|venir) el lunes (por|en) la mañana
+  translations:
+    en: Would it be possible to (come|go) (on Monday morning|Monday morning)?
+- id: s.u19.36
+  node: es.u19.por-telefono
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Muchas gracias, es usted muy amable.
+      tokens: [{surface: Muchas, sense: mucho}, {surface: gracias, sense: gracias}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: muy, sense: muy}, {surface: amable, sense: amable}]
+      reverse: '[Muchas] gracias (es usted muy amable|usted es muy amable|muy amable)'
+  translations:
+    en: Thank you (very much|so much), (you're very kind|that's very kind of you|very kind of you).
+stories:
+- id: es.story.u19
+  node: es.u19.story
+  title: {en: 'A plate for Doña Ofelia'}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: ofelia, name: {es-Latn/standard: Doña Ofelia}}
+  - {id: recepcionista, name: {es-Latn/standard: La recepcionista}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Daniel, ¿me haces el favor de llevar este arroz con pollo a doña Ofelia?
+          tokens: [{surface: Daniel, sense: daniel}, {surface: me, sense: me}, {surface: haces, sense: hacer, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: favor, sense: favor}, {surface: de, sense: de}, {surface: llevar, sense: llevar}, {surface: este, sense: este}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: a, sense: a}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      translations: {en: 'Daniel, would you please take this chicken and rice to Doña Ofelia?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, abuela. ¡Bendición!
+          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: Bendición, sense: bendición}]
+      translations: {en: 'Yes, Grandma. Bless me!'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Dios te bendiga, mi'jo. Y con doña Ofelia, tú le hablas de usted.
+          tokens: [{surface: Dios, sense: dios-te-bendiga}, {surface: te, sense: dios-te-bendiga}, {surface: bendiga, sense: dios-te-bendiga}, {surface: "mi'jo", sense: mijo}, {surface: 'Y', sense: 'y'}, {surface: con, sense: con}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: tú, sense: tú}, {surface: le, sense: le}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
+      translations: {en: 'God bless you, son. And with Doña Ofelia, you use usted.'}
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Daniel camina a la casa de al lado.
+          tokens: [{surface: Daniel, sense: daniel}, {surface: camina, sense: caminar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: al, sense: al}, {surface: lado, sense: lado}]
+      translations: {en: Daniel walks to the house next door.}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Hola, Ofelia! ¿Qué bolá? ¿Cómo tú estás?
+          tokens: [{surface: Hola, sense: hola}, {surface: Ofelia, sense: ofelia}, {surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Cómo, sense: cómo}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}]
+      translations: {en: 'Hi, Ofelia! What''s up? How are you doing?'}
+  - line:
+      speaker: ofelia
+      forms:
+        es-Latn/standard:
+          text: ¿Qué bolá? Mi'jo, yo no soy tu asere. ¡Soy doña Ofelia!
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: "Mi'jo", sense: mijo}, {surface: yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: tu, sense: tu}, {surface: asere, sense: asere}, {surface: Soy, sense: ser, form: 'form:pres-1s'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      translations: {en: '"What''s up"? Son, I''m not your buddy. I''m Doña Ofelia!'}
+  - choose:
+      prompt: {en: 'What does Daniel get wrong?'}
+      options: [{en: He talks to Doña Ofelia like a friend his own age.}, {en: He forgets the chicken and rice.}, {en: He goes to the wrong house.}]
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Perdone, doña Ofelia. ¿Cómo está usted?
+          tokens: [{surface: Perdone, sense: perdonar, form: 'form:imp-ud'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
+      translations: {en: 'Sorry, Doña Ofelia. How are you?'}
+  - line:
+      speaker: ofelia
+      forms:
+        es-Latn/standard:
+          text: Ahora sí. ¿Tú quieres un cafecito?
+          tokens: [{surface: Ahora, sense: ahora}, {surface: sí, sense: sí}, {surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
+      translations: {en: 'That''s better. Do you want a Cuban coffee?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, gracias. Este arroz con pollo es para usted, de mi abuela.
+          tokens: [{surface: Sí, sense: sí}, {surface: gracias, sense: gracias}, {surface: Este, sense: este}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: usted, sense: usted}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}]
+      translations: {en: 'Yes, thank you. This chicken and rice is for you, from my grandmother.'}
+  - line:
+      speaker: ofelia
+      forms:
+        es-Latn/standard:
+          text: ¡Qué rico! Tu abuela es muy amable.
+          tokens: [{surface: Qué, sense: qué}, {surface: rico, sense: rico}, {surface: Tu, sense: tu}, {surface: abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: amable, sense: amable}]
+      translations: {en: 'How delicious! Your grandmother is very kind.'}
+  - line:
+      speaker: ofelia
+      forms:
+        es-Latn/standard:
+          text: Mi'jo, ¿tú me podrías llamar al consultorio? Necesito una cita.
+          tokens: [{surface: "Mi'jo", sense: mijo}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: podrías, sense: poder, form: 'form:cond'}, {surface: llamar, sense: llamar}, {surface: al, sense: al}, {surface: consultorio, sense: consultorio}, {surface: Necesito, sense: necesitar, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: cita, sense: cita}]
+      translations: {en: 'Son, could you call the doctor''s office for me? I need an appointment.'}
+  - choose:
+      prompt: {en: 'What does Doña Ofelia ask Daniel to do?'}
+      options: [{en: 'Call the doctor''s office for her'}, {en: Take her to the doctor}, {en: Make her a coffee}]
+      answer: 0
+  - line:
+      speaker: recepcionista
+      forms:
+        es-Latn/standard:
+          text: Consultorio, buenos días. ¿En qué le puedo ayudar?
+          tokens: [{surface: Consultorio, sense: consultorio}, {surface: buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: En, sense: en}, {surface: qué, sense: qué}, {surface: le, sense: le}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: ayudar, sense: ayudar}]
+      translations: {en: 'Doctor''s office, good morning. How can I help you?'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:cita
+      distractors: ['sense:playa', 'sense:guagua']
+      forms:
+        es-Latn/standard:
+          text: Buenos días. Quisiera hacer una cita para doña Ofelia.
+          tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: Quisiera, sense: querer, form: 'form:subj-past'}, {surface: hacer, sense: hacer}, {surface: una, sense: un}, {surface: cita, sense: cita}, {surface: para, sense: para}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      translations: {en: 'Good morning. I''d like to make an appointment for Doña Ofelia.'}
+  - line:
+      speaker: recepcionista
+      forms:
+        es-Latn/standard:
+          text: ¿Sería posible el martes a las diez?
+          tokens: [{surface: Sería, sense: ser, form: 'form:cond'}, {surface: posible, sense: posible}, {surface: el, sense: el}, {surface: martes, sense: martes}, {surface: a, sense: a}, {surface: las, sense: el}, {surface: diez, sense: diez}]
+      translations: {en: 'Would Tuesday at ten be possible?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Un momento, por favor. Doña Ofelia, ¿el martes a las diez está bien?
+          tokens: [{surface: Un, sense: un}, {surface: momento, sense: momento}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: el, sense: el}, {surface: martes, sense: martes}, {surface: a, sense: a}, {surface: las, sense: el}, {surface: diez, sense: diez}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}]
+      translations: {en: 'One moment, please. Doña Ofelia, is Tuesday at ten all right?'}
+  - line:
+      speaker: ofelia
+      forms:
+        es-Latn/standard:
+          text: Sí, mi'jo. ¡Dios te bendiga!
+          tokens: [{surface: Sí, sense: sí}, {surface: "mi'jo", sense: mijo}, {surface: Dios, sense: dios-te-bendiga}, {surface: te, sense: dios-te-bendiga}, {surface: bendiga, sense: dios-te-bendiga}]
+      translations: {en: 'Yes, son. God bless you!'}
+  - choose:
+      prompt: {en: 'When is Doña Ofelia''s appointment?'}
+      options: [{en: Tuesday at ten}, {en: Monday at ten}, {en: Tuesday at two}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Y? ¿Tú le hablaste de usted?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: Tú, sense: tú}, {surface: le, sense: le}, {surface: hablaste, sense: hablar, form: 'form:pret-2s'}, {surface: de, sense: de}, {surface: usted, sense: usted}]
+      translations: {en: 'So? Did you use usted with her?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, abuela. ¡Después!
+          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: Después, sense: después}]
+      translations: {en: 'Yes, Grandma. Afterwards!'}
+scenarios:
+- id: es.consultorio
+  after: es.u19.por-telefono
+  title: {en: 'Calling the doctor''s office'}
+  setting: {en: 'A Monday morning in Hialeah. Abuelo Pepe needs a check-up for his blood pressure (la presión), and he has asked you to phone the consultorio of his doctor, Dr. Hernández, because he cannot hear well on the phone.'}
+  character: {en: 'Mercedes, the receptionist at the consultorio: a polite, busy Cuban-American woman in her fifties who answers with Consultorio, buenos días, speaks formally (usted) and expects the same. She asks for the patient''s name, date of birth and insurance (el seguro), and offers only a few times.'}
+  goal: {en: 'Using usted throughout, say who you are and that you are calling for your grandfather, ask politely for an appointment (quisiera…, ¿sería posible…?, ¿me podría…?), agree on a day and time, spell Abuelo''s name if she asks, and thank her.'}

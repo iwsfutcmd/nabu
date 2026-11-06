@@ -1,0 +1,555 @@
+# Unit 14 (es): cooking Cuban food with Abuela. Commands (tú: pica, échale, pon; usted and ustedes: venga, coman;
+# negative: no eches, no abras) and the impersonal se of recipes (se pica, se fríe, se echa); picadillo, sofrito,
+# mojo, yuca con mojo, ropa vieja, frijoles negros dormidos and the olla de presión.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u14
+title: {en: 'La cocina cubana: Cuban cooking'}
+cefr: B1
+kcs:
+- {id: 'form:imp-tu', gloss: {en: 'command, tú (¡habla!, ¡come!, ¡ven!)'}, notes: {en: 'Like the él form of the present: pica, echa, revuelve, fríe. Irregular: ven, pon, haz, di, sal, ten, ve. With a pronoun on the end it takes a written accent: échale, cómelos. Haz (do!) is not has (you have).'}}
+- {id: 'sense:cocinar', gloss: {en: to cook}, forms: {es-Latn/standard: [cocinar]}, notes: {en: 'La cocina is the kitchen (and the stove); cocina is also she cooks. Generations of Cubans learned from Nitza Villapol''s cookbook and TV show, Cocina al minuto.'}}
+- {id: 'sense:picadillo', gloss: {en: Cuban ground beef hash}, forms: {es-Latn/standard: [picadillo]}, notes: {en: 'Ground beef cooked in sofrito with tomato, olives and raisins (picadillo a la habanera), with white rice, black beans and maduros. From picar, to chop.'}}
+- {id: 'sense:picar', gloss: {en: to chop; to dice; to cut up}, forms: {es-Latn/standard: [picar]}, notes: {en: 'In the Cuban kitchen picar is to chop: pica la cebolla. Pique, no piques: c becomes qu before e. Also to sting or to itch; spicy is picante (in Mexico, pica means it''s hot).'}}
+- {id: 'sense:cebolla', gloss: {en: onion}, forms: {es-Latn/standard: [cebolla]}, notes: {en: 'With ll, though Cubans say it with a y sound. A heritage writer''s slip: ceboya.'}}
+- {id: 'sense:ajo', gloss: {en: garlic}, forms: {es-Latn/standard: [ajo]}, notes: {en: 'Un diente de ajo: a clove of garlic. With j. Cuban cooking runs on it: mojo, sofrito, frijoles.'}}
+- {id: 'sense:carne', gloss: {en: meat; beef}, forms: {es-Latn/standard: [carne]}, notes: {en: 'Carne alone often means beef (carne de res); carne molida is ground beef, carne de puerco is pork. Cubans say puerco where Spain says cerdo.'}}
+- {id: 'sense:se.impersonal', gloss: {en: 'one; you (impersonal se: se pica, you chop)'}, forms: {es-Latn/standard: [se]}, notes: {en: 'The se of recipes and rules: se pica la cebolla, you chop the onion (the onion is chopped). With a plural the verb is plural: se pican la cebolla y el ají. Sé, with an accent, is I know.'}}
+- {id: 'sense:ají', gloss: {en: sweet pepper; bell pepper (Cuban)}, forms: {es-Latn/standard: [ají]}, notes: {en: 'In Cuba ají is the sweet pepper (the little ají cachucha is the soul of a sofrito); a hot one is ají picante. Pimiento elsewhere. Plural: ajíes.'}}
+- {id: 'sense:freír', gloss: {en: to fry}, forms: {es-Latn/standard: [freír]}, notes: {en: 'Fríe (it fries; fry!) keeps a written accent on the í, and so do fríes, frío and fría. Frito: fried (plátanos fritos).'}}
+- {id: 'sense:aceite', gloss: {en: oil}, forms: {es-Latn/standard: [aceite]}, notes: {en: 'Aceite de oliva: olive oil. Abuela''s mother fried in manteca (lard).'}}
+- {id: 'sense:sofrito', gloss: {en: 'sofrito: onion, garlic and pepper fried slowly'}, forms: {es-Latn/standard: [sofrito]}, notes: {en: 'Onion, garlic and ají fried slowly in oil, often with tomato, cumin and oregano: the start of picadillo, frijoles negros and ropa vieja.'}}
+- {id: 'sense:echar', gloss: {en: to put in; to add; to throw}, forms: {es-Latn/standard: [echar]}, notes: {en: 'No h: echar, echa, eché (hecho, with an h, is from hacer). Échale sal: put some salt in it; adding le brings a written accent. Echar is what Cubans say for adding to a pot.'}}
+- {id: 'sense:poco', gloss: {en: 'little; a little, a bit (un poco)'}, forms: {es-Latn/standard: [poco]}, notes: {en: 'Un poco de sal: a little salt. Un poquito: a tiny bit. Cubans also say un chin: un chin de sal.'}}
+- {id: 'sense:sal', gloss: {en: salt}, forms: {es-Latn/standard: [sal]}, notes: {en: 'La sal: feminine. Sal is also the tú command of salir: ¡sal de la cocina!, get out of the kitchen.'}}
+- {id: 'sense:comino', gloss: {en: cumin}, forms: {es-Latn/standard: [comino]}, notes: {en: 'With oregano and bay leaf (laurel), it seasons Cuban beans and picadillo. Me importa un comino: I couldn''t care less.'}}
+- {id: 'sense:yuca', gloss: {en: cassava; yuca}, forms: {es-Latn/standard: [yuca]}, notes: {en: 'The starchy root, boiled and served con mojo, at every Nochebuena. Not the yucca plant of American gardens.'}}
+- {id: 'sense:mojo', gloss: {en: Cuban garlic and sour-orange sauce}, forms: {es-Latn/standard: [mojo]}, notes: {en: 'Garlic crushed with salt, sour orange juice and hot oil, sometimes with cumin and onion. For yuca, and to marinate pork. Miami supermarkets sell it bottled; abuelas make it.'}}
+- {id: 'sense:naranja-agria', gloss: {en: sour orange; bitter orange}, forms: {es-Latn/standard: [naranja agria]}, notes: {en: 'The Seville orange: too sour to eat, the juice of mojo. When there is none, Cubans in the US mix orange juice with lime. Agrio: sour.'}}
+- {id: 'form:imp-ud', gloss: {en: 'command, usted or ustedes (¡hable!, ¡coman!)'}, notes: {en: '-ar verbs take e, -er and -ir verbs take a: pique, eche; coma, abra. Ustedes adds n: coman, vengan. Irregular: venga, ponga, haga. For elders and strangers (doña Ofelia), and for more than one person.'}}
+- {id: 'sense:ropa-vieja', gloss: {en: ropa vieja (shredded beef stew)}, forms: {es-Latn/standard: [ropa vieja]}, notes: {en: 'Literally old clothes: beef cooked until it shreds like rags, then stewed in sofrito with tomato. With white rice, black beans and maduros, the Cuban plate.'}}
+- {id: 'sense:don', gloss: {en: 'Don, Doña (title of respect before a first name)'}, forms: {es-Latn/standard: [don]}, notes: {en: 'Doña for a woman: doña Ofelia, don Pepe. Before a first name, never a surname alone, and lowercase inside a sentence. It shows respect, and goes with usted. With an ñ.'}}
+- {id: 'sense:ofelia', gloss: {en: Ofelia (a name)}, forms: {es-Latn/standard: [Ofelia]}, notes: {en: 'Doña Ofelia, the neighbour in Hialeah, eighty years old. Everyone says usted to her, Abuela too.'}}
+- {id: 'sense:olla-de-presión', gloss: {en: pressure cooker}, forms: {es-Latn/standard: [olla de presión]}, notes: {en: 'Every Cuban kitchen has one, for frijoles, carne and yuca, and every family has a story of one that blew. Una olla alone is a pot.'}}
+- {id: 'form:imp-neg', gloss: {en: 'negative command (¡no hables!, ¡no coma!)'}, notes: {en: 'Tú: no eches, no abras, no revuelvas (the vowel swaps and an s is added). Usted: no eche, no abra. Spelling changes: no piques (c to qu), no pongas, no hagas.'}}
+- {id: 'sense:revolver', gloss: {en: to stir; to mix}, forms: {es-Latn/standard: [revolver]}, notes: {en: 'Revuelve, no revuelvas: the o becomes ue when stressed. Cubans never stir the rice once the pot is covered. Revólver, with an accent, is a gun.'}}
+- {id: 'sense:poner', gloss: {en: to put; to place}, forms: {es-Latn/standard: [poner]}, notes: {en: 'Pon (tú), ponga (usted), no pongas. Pongo: I put; puse, puso: I put, he put. Poner la mesa: to set the table.'}}
+- {id: 'sense:abrir', gloss: {en: to open}, forms: {es-Latn/standard: [abrir]}, notes: {en: 'Abre (tú), abra (usted), no abras. Never open an olla de presión until it stops hissing.'}}
+- {id: 'sense:dormido', gloss: {en: 'asleep; frijoles dormidos: beans left overnight'}, forms: {es-Latn/standard: [dormido]}, notes: {en: 'Frijoles negros dormidos: black beans cooked the day before and left to sleep overnight, so they come out thicker and tastier. Every Cuban cook swears by it.'}}
+nodes:
+- {id: es.u14.ven-a-la-cocina, kind: lesson, introduces: ['form:imp-tu', 'sense:cocinar', 'sense:picadillo', 'sense:picar', 'sense:cebolla', 'sense:ajo', 'sense:carne']}
+- {id: es.u14.asi-se-hace, kind: lesson, introduces: ['sense:se.impersonal', 'sense:ají', 'sense:freír', 'sense:aceite', 'sense:sofrito', 'sense:echar', 'sense:poco', 'sense:sal', 'sense:comino']}
+- {id: es.u14.yuca-con-mojo, kind: lesson, introduces: ['sense:yuca', 'sense:mojo', 'sense:naranja-agria']}
+- {id: es.u14.coman, kind: lesson, introduces: ['form:imp-ud', 'sense:ropa-vieja', 'sense:don', 'sense:ofelia', 'sense:olla-de-presión']}
+- {id: es.u14.no-abras, kind: lesson, introduces: ['form:imp-neg', 'sense:revolver', 'sense:poner', 'sense:abrir', 'sense:dormido']}
+- {id: es.u14.story, kind: story}
+sentences:
+- id: s.u14.1
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Daniel, ven a la cocina con tu hermana.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: con, sense: con}, {surface: tu, sense: tu}, {surface: hermana, sense: hermano}]
+      reverse: Daniel (ven a la cocina con tu hermana|venga a la cocina con su hermana)
+  translations:
+    en: Daniel, come (to|into) the kitchen with your sister.
+- id: s.u14.2
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Hoy vamos a cocinar picadillo, mi vida.
+      tokens: [{surface: Hoy, sense: hoy}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: cocinar, sense: cocinar}, {surface: picadillo, sense: picadillo}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      reverse: Hoy vamos a (cocinar|hacer|preparar) picadillo [mi (vida|amor|cielo)]
+  translations:
+    en: |-
+      Today (we're|we are) going to (cook|make) picadillo, (darling|honey|sweetheart|my love|dear).
+      Today (we're|we are) going to (cook|make) picadillo.
+      (We're|We are) going to (cook|make) picadillo today[, (darling|honey|sweetheart|my love|dear)].
+- id: s.u14.3
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Primero, pica esta cebolla.
+      tokens: [{surface: Primero, sense: primero}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: esta, sense: este}, {surface: cebolla, sense: cebolla}]
+      reverse: Primero (pica|pique|piquen) esta cebolla
+  translations:
+    en: First, (chop|dice|cut up) this onion.
+- id: s.u14.4
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Pica el ajo también, pero bien chiquito.
+      tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: también, sense: también}, {surface: pero, sense: pero}, {surface: bien, sense: bien}, {surface: chiquito, sense: chiquito}]
+      reverse: (Pica|Pique|Piquen) el ajo también pero (bien chiquito|bien chiquitico|muy chiquito|muy pequeño|bien fino|muy fino)
+  translations:
+    en: (Chop|Dice|Cut up) the garlic too, but (really|very) (small|fine|finely).
+- id: s.u14.5
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Abuela, ¿qué lleva el picadillo cubano?
+      tokens: [{surface: Abuela, sense: abuela}, {surface: qué, sense: qué}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: cubano, sense: cubano}]
+      reverse: '[Abuela] qué (lleva|tiene) el picadillo cubano'
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela), what (goes in|goes into|is in) Cuban picadillo?
+      (Grandma|Grandmother|Abuela), what's in Cuban picadillo?
+- id: s.u14.6
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: El picadillo lleva carne, cebolla y ajo.
+      tokens: [{surface: El, sense: el}, {surface: picadillo, sense: picadillo}, {surface: lleva, sense: llevar, form: 'form:pres-3s'}, {surface: carne, sense: carne}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: ajo, sense: ajo}]
+      reverse: El picadillo (lleva|tiene) carne [molida] cebolla y ajo
+  translations:
+    en: |-
+      Picadillo (has|takes|contains) (meat|beef|ground beef), (onion|onions) and garlic [in it].
+      Picadillo is made with (meat|beef|ground beef), (onion|onions) and garlic.
+- id: s.u14.7
+  node: es.u14.ven-a-la-cocina
+  forms:
+    es-Latn/standard:
+      text: Toma, mi'jo, pica tú la cebolla y yo pico el ajo.
+      tokens: [{surface: Toma, sense: tomar, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: pica, sense: picar, form: 'form:imp-tu'}, {surface: tú, sense: tú}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: pico, sense: picar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
+      reverse: "[Toma] (mi'jo|mi hijo) pica [tú] la cebolla y yo pico el ajo"
+  translations:
+    en: Here, (honey|sweetie|son|kiddo|my boy), you (chop|dice) the onion and (I'll|I will|I) (chop|dice) the garlic.
+- id: s.u14.8
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: ¿Cómo se hace el picadillo, abuela?
+      tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: abuela, sense: abuela}]
+      reverse: (Cómo se hace|Cómo se prepara|Cómo se cocina|Cómo tú haces|Cómo haces [tú]|Cómo usted hace|Cómo hace [usted]) el picadillo [abuela]
+  translations:
+    en: |-
+      How do you make picadillo, (Grandma|Grandmother|Abuela)?
+      How is picadillo made, (Grandma|Grandmother|Abuela)?
+- id: s.u14.9
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: Primero se pican la cebolla y el ají.
+      tokens: [{surface: Primero, sense: primero}, {surface: se, sense: se.impersonal}, {surface: pican, sense: picar, form: 'form:pres-3p'}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ají, sense: ají}]
+      reverse: Primero se (pican|pica) la cebolla y el (ají|pimiento)
+  translations:
+    en: |-
+      First you (chop|dice) the onion and the (pepper|bell pepper|green pepper).
+      First the onion and the (pepper|bell pepper|green pepper) are (chopped|diced).
+- id: s.u14.10
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: Después, todo se fríe en aceite.
+      tokens: [{surface: Después, sense: después}, {surface: todo, sense: todo}, {surface: se, sense: se.impersonal}, {surface: fríe, sense: freír, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: aceite, sense: aceite}]
+      reverse: |-
+        Después todo se fríe en aceite
+        Después se fríe todo en aceite
+  translations:
+    en: (Then|Next|After that|Afterwards) (you fry everything|everything is fried|everything gets fried) in oil.
+- id: s.u14.11
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: El sofrito se hace con ajo, cebolla y ají.
+      tokens: [{surface: El, sense: el}, {surface: sofrito, sense: sofrito}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: ajo, sense: ajo}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: ají, sense: ají}]
+      reverse: El sofrito se hace con ajo cebolla y (ají|pimiento)
+  translations:
+    en: |-
+      [The] sofrito is made with garlic, (onion|onions) and (pepper|bell pepper|green pepper).
+      You make sofrito with garlic, (onion|onions) and (pepper|bell pepper|green pepper).
+- id: s.u14.12
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: Ahora échale la carne al sofrito.
+      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: la, sense: el}, {surface: carne, sense: carne}, {surface: al, sense: al}, {surface: sofrito, sense: sofrito}]
+      reverse: Ahora (échale|echa|échele|eche|agrégale|agrega|ponle|pon) la carne al sofrito
+  translations:
+    en: Now (add|put) the (meat|beef) (to|into|in) the sofrito.
+- id: s.u14.13
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: Después se echa un poco de sal.
+      tokens: [{surface: Después, sense: después}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: sal, sense: sal}]
+      reverse: Después se (echa|pone|le echa|le pone) (un poco|un poquito|un chin) de sal
+  translations:
+    en: |-
+      (Then|Next|After that|Afterwards) you (add|put in) (a little|a bit of|some) salt.
+      (Then|Next|After that|Afterwards) (a little|a bit of|some) salt is added.
+- id: s.u14.14
+  node: es.u14.asi-se-hace
+  forms:
+    es-Latn/standard:
+      text: Échale comino también, pero no mucho.
+      tokens: [{surface: Échale, sense: echar, form: 'form:imp-tu'}, {surface: comino, sense: comino}, {surface: también, sense: también}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: mucho, sense: mucho}]
+      reverse: (Échale|Echa|Échele|Eche|Ponle|Pon) comino también pero no (mucho|demasiado)
+  translations:
+    en: (Add|Put in) [some] cumin (too|as well), but not (much|too much|a lot).
+- id: s.u14.15
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: Me gusta mucho la yuca con mojo.
+      tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: yuca, sense: yuca}, {surface: con, sense: con}, {surface: mojo, sense: mojo}]
+      reverse: |-
+        Me gusta mucho la yuca con mojo
+        Me encanta la yuca con mojo
+  translations:
+    en: |-
+      I (really like|love) (yuca|cassava) (with|con) mojo.
+      I like (yuca|cassava) (with|con) mojo (a lot|very much).
+- id: s.u14.16
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: El mojo se hace con ajo y naranja agria.
+      tokens: [{surface: El, sense: el}, {surface: mojo, sense: mojo}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: ajo, sense: ajo}, {surface: 'y', sense: 'y'}, {surface: naranja, sense: naranja-agria}, {surface: agria, sense: naranja-agria}]
+      reverse: El mojo se hace con ajo y naranja agria
+  translations:
+    en: |-
+      Mojo is made with garlic and (sour orange|bitter orange|Seville orange) [juice].
+      You make mojo with garlic and (sour orange|bitter orange|Seville orange) [juice].
+- id: s.u14.17
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: En Miami se vende mojo en pomos, pero Abuela lo hace.
+      tokens: [{surface: En, sense: en}, {surface: Miami, sense: miami}, {surface: se, sense: se.impersonal}, {surface: vende, sense: vender, form: 'form:pres-3s'}, {surface: mojo, sense: mojo}, {surface: en, sense: en}, {surface: pomos, sense: pomo}, {surface: pero, sense: pero}, {surface: Abuela, sense: abuela}, {surface: lo, sense: lo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}]
+      reverse: En Miami (se vende|venden) mojo en (pomos|botellas|frascos) pero (Abuela|mi abuela|la abuela) lo hace [en casa]
+  translations:
+    en: In Miami (they sell mojo|mojo is sold|you can buy mojo) in (bottles|jars), but (Grandma|Abuela|my grandma) makes it [herself].
+- id: s.u14.18
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: Pica el ajo y échalo en la naranja agria.
+      tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: 'y', sense: 'y'}, {surface: échalo, sense: echar, form: 'form:imp-tu'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: naranja, sense: naranja-agria}, {surface: agria, sense: naranja-agria}]
+      reverse: (Pica el ajo y échalo|Pique el ajo y échelo|Piquen el ajo y échenlo) en la naranja agria
+  translations:
+    en: (Chop|Dice) the garlic and (put|add) it (to|into|in) the (sour orange|bitter orange|Seville orange) [juice].
+- id: s.u14.19
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: Después, fríe el ajo un poco en el aceite.
+      tokens: [{surface: Después, sense: después}, {surface: fríe, sense: freír, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aceite, sense: aceite}]
+      reverse: |-
+        Después (fríe|fría|frían) el ajo un poco en [el] aceite
+        Después (fríe|fría|frían) un poco el ajo en [el] aceite
+  translations:
+    en: (Then|Next|After that|Afterwards) fry the garlic (a little|a bit|for a bit) in [the] oil.
+- id: s.u14.20
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: Ahora échale el mojo a la yuca.
+      tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: mojo, sense: mojo}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: yuca, sense: yuca}]
+      reverse: Ahora (échale|echa|échele|eche|ponle|pon) el mojo a la yuca
+  translations:
+    en: Now (pour|put) the mojo (on|over) the (yuca|cassava).
+- id: s.u14.21
+  node: es.u14.yuca-con-mojo
+  forms:
+    es-Latn/standard:
+      text: ¡Qué rica está esta yuca, abuela!
+      tokens: [{surface: Qué, sense: qué}, {surface: rica, sense: rico}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: esta, sense: este}, {surface: yuca, sense: yuca}, {surface: abuela, sense: abuela}]
+      reverse: Qué rica (está|quedó) esta yuca [abuela]
+  translations:
+    en: |-
+      This (yuca|cassava) is (delicious|so good|really good|so tasty), (Grandma|Grandmother|Abuela)!
+      (How delicious|How tasty) this (yuca|cassava) is, (Grandma|Grandmother|Abuela)!
+- id: s.u14.22
+  node: es.u14.coman
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: Lili y Daniel, vengan a comer.
+      tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: Daniel, sense: daniel}, {surface: vengan, sense: venir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: comer, sense: comer}]
+      reverse: (Lili y Daniel|Daniel y Lili) vengan a comer
+  translations:
+    en: (Lili and Daniel|Daniel and Lili), come (and eat|to eat|eat).
+- id: s.u14.23
+  node: es.u14.coman
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¡Coman, coman! Hay mucha ropa vieja.
+      tokens: [{surface: Coman, sense: comer, form: 'form:imp-ud'}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: Hay, sense: hay}, {surface: mucha, sense: mucho}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      reverse: Coman [coman] hay mucha ropa vieja
+  translations:
+    en: |-
+      Eat, eat! (There's|There is) (plenty of|lots of|a lot of) ropa vieja.
+      Eat up! (There's|There is) (plenty of|lots of|a lot of) ropa vieja.
+- id: s.u14.24
+  node: es.u14.coman
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Venga, doña Ofelia, coma con nosotros.
+      tokens: [{surface: Venga, sense: venir, form: 'form:imp-ud'}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: |-
+        Venga doña Ofelia [y] coma con nosotros
+        Doña Ofelia venga [y] coma con nosotros
+  translations:
+    en: |-
+      Come, (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), (eat|have something) with us.
+      Come (and eat|eat) with us, (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia).
+- id: s.u14.25
+  node: es.u14.coman
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia, coma un poco de ropa vieja.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      reverse: Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
+  translations:
+    en: (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), (have|eat|try) (some|a little) ropa vieja.
+- id: s.u14.26
+  node: es.u14.coman
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Tome un cafecito con nosotros, doña Ofelia.
+      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}]
+      reverse: |-
+        Tome un (cafecito|café) con nosotros doña Ofelia
+        Doña Ofelia tome un (cafecito|café) con nosotros
+  translations:
+    en: (Have|Drink) a (cafecito|Cuban coffee|coffee) with us, (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia).
+- id: s.u14.27
+  node: es.u14.coman
+  forms:
+    es-Latn/standard:
+      text: La ropa vieja se cocina en la olla de presión.
+      tokens: [{surface: La, sense: el}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}, {surface: se, sense: se.impersonal}, {surface: cocina, sense: cocinar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      reverse: La ropa vieja se (cocina|hace|prepara) en la olla de presión
+  translations:
+    en: |-
+      Ropa vieja is (cooked|made) in the pressure cooker.
+      You (cook|make) ropa vieja in (the|a) pressure cooker.
+- id: s.u14.28
+  node: es.u14.coman
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia, lleve un poco de picadillo para su casa.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su}, {surface: casa, sense: casa}]
+      reverse: Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
+  translations:
+    en: (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), take (some|a little) picadillo home [with you].
+- id: s.u14.29
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: No eches mucha sal al picadillo.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: eches, sense: echar, form: 'form:imp-neg'}, {surface: mucha, sense: mucho}, {surface: sal, sense: sal}, {surface: al, sense: al}, {surface: picadillo, sense: picadillo}]
+      reverse: No (le eches|eches|le eche|eche|le echen|echen|le pongas|pongas) (mucha|tanta|demasiada) sal al picadillo
+  translations:
+    en: (Don't|Do not) (put|add) (too much|a lot of|much|so much) salt (in|to|into|on) the picadillo.
+- id: s.u14.30
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: Revuelve el picadillo, pero no revuelvas el arroz.
+      tokens: [{surface: Revuelve, sense: revolver, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: picadillo, sense: picadillo}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: revuelvas, sense: revolver, form: 'form:imp-neg'}, {surface: el, sense: el}, {surface: arroz, sense: arroz}]
+      reverse: (Revuelve el picadillo pero no revuelvas|Revuelva el picadillo pero no revuelva|Revuelvan el picadillo pero no revuelvan) el arroz
+  translations:
+    en: Stir the picadillo, but (don't|do not) stir the rice.
+- id: s.u14.31
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: Pon los frijoles negros en la olla de presión.
+      tokens: [{surface: Pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      reverse: (Pon|Ponga|Pongan|Echa|Eche|Echen) los frijoles negros en la olla de presión
+  translations:
+    en: Put the black beans (in|into) the pressure cooker.
+- id: s.u14.32
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: No abras la olla de presión ahora, mi vida.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      reverse: No (abras|abra|abran) la olla de presión ahora [mi (vida|amor|cielo)]
+  translations:
+    en: |-
+      (Don't|Do not) open the pressure cooker (now|yet), (darling|honey|sweetheart|my love|dear).
+      (Don't|Do not) open the pressure cooker (now|yet).
+- id: s.u14.33
+  node: es.u14.no-abras
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Doña Ofelia, no abra la olla de presión, por favor.
+      tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: 'no', sense: 'no'}, {surface: abra, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: |-
+        Doña Ofelia no abra la olla de presión por favor
+        Doña Ofelia por favor no abra la olla de presión
+        Por favor doña Ofelia no abra la olla de presión
+  translations:
+    en: |-
+      (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), please (don't|do not) open the pressure cooker.
+      (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), (don't|do not) open the pressure cooker, please.
+- id: s.u14.34
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: Haz los frijoles hoy y cómelos mañana.
+      tokens: [{surface: Haz, sense: hacer, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: hoy, sense: hoy}, {surface: 'y', sense: 'y'}, {surface: cómelos, sense: comer, form: 'form:imp-tu'}, {surface: mañana, sense: mañana}]
+      reverse: (Haz los frijoles hoy y cómelos|Haga los frijoles hoy y cómalos|Hagan los frijoles hoy y cómanlos) mañana
+  translations:
+    en: (Make|Cook) the beans today and eat them tomorrow.
+- id: s.u14.35
+  node: es.u14.no-abras
+  forms:
+    es-Latn/standard:
+      text: Los frijoles negros dormidos están muy ricos.
+      tokens: [{surface: Los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: dormidos, sense: dormido}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico}]
+      reverse: Los frijoles negros dormidos (están muy ricos|están riquísimos|son muy ricos|saben muy ricos)
+  translations:
+    en: |-
+      (Day-old|Overnight) black beans are (delicious|really good|very good|so good|really tasty).
+      Black beans (left|rested) overnight are (delicious|really good|very good|so good|really tasty).
+      Frijoles negros dormidos are (delicious|really good|very good|so good|really tasty).
+stories:
+- id: es.story.u14
+  node: es.u14.story
+  title: {en: Frijoles dormidos}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  steps:
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, quiero hacer frijoles negros. ¿Cómo se hacen?
+          tokens: [{surface: Abuela, sense: abuela}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: hacer, sense: hacer}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hacen, sense: hacer, form: 'form:pres-3p'}]
+      translations: {en: 'Grandma, I want to make black beans. How do you make them?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ven a la cocina, mi'jo. Primero, pon los frijoles en la olla de presión.
+          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: "mi'jo", sense: mijo}, {surface: Primero, sense: primero}, {surface: pon, sense: poner, form: 'form:imp-tu'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      translations: {en: 'Come to the kitchen, honey. First, put the beans in the pressure cooker.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y el sofrito? ¿Cómo se hace?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: sofrito, sense: sofrito}, {surface: Cómo, sense: cómo}, {surface: se, sense: se.impersonal}, {surface: hace, sense: hacer, form: 'form:pres-3s'}]
+      translations: {en: 'And the sofrito? How do you make it?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Pica la cebolla, el ají y el ajo.
+          tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: el, sense: el}, {surface: ají, sense: ají}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}]
+      translations: {en: 'Chop the onion, the pepper and the garlic.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Después, fríe todo en un poco de aceite.
+          tokens: [{surface: Después, sense: después}, {surface: fríe, sense: freír, form: 'form:imp-tu'}, {surface: todo, sense: todo}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: aceite, sense: aceite}]
+      translations: {en: 'Then fry it all in a little oil.'}
+  - line:
+      speaker: lili
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿cuánto comino se echa?
+          tokens: [{surface: Abuela, sense: abuela}, {surface: cuánto, sense: cuánto}, {surface: comino, sense: comino}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}]
+      translations: {en: 'Grandma, how much cumin do you put in?'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:echar
+      distractors: ['sense:picar', 'sense:abrir']
+      forms:
+        es-Latn/standard:
+          text: Un poco. ¡No eches mucho!
+          tokens: [{surface: Un, sense: un}, {surface: poco, sense: poco}, {surface: 'No', sense: 'no'}, {surface: eches, sense: echar, form: 'form:imp-neg'}, {surface: mucho, sense: mucho}]
+      translations: {en: 'A little. Don''t put in too much!'}
+  - choose:
+      prompt: {en: 'What goes into Abuela''s sofrito?'}
+      options: [{en: 'Onion, pepper and garlic'}, {en: Yuca and sour orange}, {en: Rice and black beans}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿puedo abrir la olla de presión ahora?
+          tokens: [{surface: Abuela, sense: abuela}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: abrir, sense: abrir}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}, {surface: ahora, sense: ahora}]
+      translations: {en: 'Grandma, can I open the pressure cooker now?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡No, no la abras!
+          tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: la, sense: lo}, {surface: abras, sense: abrir, form: 'form:imp-neg'}]
+      translations: {en: 'No, don''t open it!'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Una vez yo la abrí, y tu abuela no me habló por una semana.
+          tokens: [{surface: Una, sense: un}, {surface: vez, sense: vez}, {surface: yo, sense: yo}, {surface: la, sense: lo}, {surface: abrí, sense: abrir, form: 'form:pret-1s'}, {surface: 'y', sense: 'y'}, {surface: tu, sense: tu}, {surface: abuela, sense: abuela}, {surface: 'no', sense: 'no'}, {surface: me, sense: me}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: por, sense: por}, {surface: una, sense: un}, {surface: semana, sense: semana}]
+      translations: {en: 'I opened it once, and your grandmother didn''t speak to me for a week.'}
+  - choose:
+      prompt: {en: 'What happened when Abuelo Pepe opened the pressure cooker?'}
+      options: [{en: Abuela didn't speak to him for a week.}, {en: The beans were ready to eat.}, {en: Abuela gave him a cafecito.}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Los frijoles no se comen hoy.
+          tokens: [{surface: Los, sense: el}, {surface: frijoles, sense: frijol}, {surface: 'no', sense: 'no'}, {surface: se, sense: se.impersonal}, {surface: comen, sense: comer, form: 'form:pres-3p'}, {surface: hoy, sense: hoy}]
+      translations: {en: 'The beans don''t get eaten today.'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿No? ¿Y cuándo se comen?
+          tokens: [{surface: 'No', sense: 'no'}, {surface: 'Y', sense: 'y'}, {surface: cuándo, sense: cuándo}, {surface: se, sense: se.impersonal}, {surface: comen, sense: comer, form: 'form:pres-3p'}]
+      translations: {en: 'No? Then when do we eat them?'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:dormido
+      distractors: ['sense:viejo', 'sense:rico']
+      forms:
+        es-Latn/standard:
+          text: 'Mañana. Son frijoles dormidos: duermen toda la noche.'
+          tokens: [{surface: Mañana, sense: mañana}, {surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: frijoles, sense: frijol}, {surface: dormidos, sense: dormido}, {surface: duermen, sense: dormir, form: 'form:pres-3p'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      translations: {en: 'Tomorrow. They''re frijoles dormidos: they sleep all night.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¡Y mañana están muy ricos!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: mañana, sense: mañana}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: ricos, sense: rico}]
+      translations: {en: 'And tomorrow they''re delicious!'}
+  - choose:
+      prompt: {en: 'Why does the family eat the beans tomorrow?'}
+      options: [{en: Beans that rest overnight taste better.}, {en: The pressure cooker is broken.}, {en: There is no rice today.}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Mañana vengo a comer, abuela.
+          tokens: [{surface: Mañana, sense: mañana}, {surface: vengo, sense: venir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: comer, sense: comer}, {surface: abuela, sense: abuela}]
+      translations: {en: 'I''m coming to eat tomorrow, Grandma.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Ven, mi'jo. ¡Pero no abras la olla de presión!
+          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}, {surface: Pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: abras, sense: abrir, form: 'form:imp-neg'}, {surface: la, sense: el}, {surface: olla, sense: olla-de-presión}, {surface: de, sense: olla-de-presión}, {surface: presión, sense: olla-de-presión}]
+      translations: {en: 'Come, kiddo. But don''t open the pressure cooker!'}
