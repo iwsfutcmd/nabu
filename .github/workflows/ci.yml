@@ -58,6 +58,22 @@ jobs:
           git diff --exit-code -- apps/web/public/bundles
           test -z "$(git status --porcelain -- apps/web/public/bundles)"
 
+  deploy:
+    name: Self-hosted instance (deploy/compose.yaml over HTTPS, smoke test)
+    runs-on: ubuntu-24.04
+    env:
+      POSTGRES_PASSWORD: ci-only-not-a-secret
+      NABU_DOMAIN: localhost
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build the images and start Caddy, the API and Postgres
+        run: docker compose -f deploy/compose.yaml up -d --build --wait --wait-timeout 300
+      - name: Sign up, upload, sync, export and delete, through Caddy
+        run: deploy/smoke.sh https://localhost
+      - name: Container logs
+        if: failure()
+        run: docker compose -f deploy/compose.yaml logs
+
   visual:
     name: Visual matrix, lesson e2e and grading performance (Playwright)
     runs-on: ubuntu-24.04

@@ -1,0 +1,16 @@
+# Images (deploy/*.Dockerfile) build from the repository root; they install their own dependencies.
+**/node_modules
+**/dist
+**/test-results
+**/.data
+**/__pycache__
+.git
+.turbo
+# The pipeline's environments and models, the native projects, and the course audio sources:
+# the images need the compiled bundles (apps/web/public/bundles), not these.
+pipeline/.venv
+pipeline/runtimes
+apps/mobile/android
+apps/mobile/ios
+courses/*/audio
+packages/ui/storybook-static

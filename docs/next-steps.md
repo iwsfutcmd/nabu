@@ -20,8 +20,9 @@ follows two things the gameplan already says:
 - **Interface.** The interface is in English only, plus the en-XA and ar-XB pseudo-locales.
   Course content handles RTL, vertical text and mixed scripts. The chrome around it has never
   been translated.
-- **Running it.** The demo on GitHub Pages is local-only. There is no recipe for running a full
-  instance with accounts, sync, reminders and speech: `deploy/` is still a placeholder.
+- **Running it.** The demo on GitHub Pages is local-only. `deploy/compose.yaml` runs a full
+  instance (Caddy over HTTPS, the API, Postgres; optional Ollama and speech): see
+  `deploy/README.md`. CI starts it on every push and checks it end to end (`deploy/smoke.sh`).
 - **Grading bug (erratum 46): fixed.** The typo model accepted some meaning changes as typos:
   Uzbek person and possessive suffixes one letter apart (*talabasan* for *talabaman*), Сен for Мен,
   a Lebanese pronoun. Profiles now list the endings and pronouns that carry meaning
@@ -54,13 +55,13 @@ These cannot be done in code. Each one gates something below.
       not a typo (`typo.contrasts`);
     - neighbouring-key slips that make another real word are checked against the lexicon first
       (which now holds every word the course writes).
-  - **Self-hosting** (`deploy/compose.yaml`):
+  - **Self-hosting** (`deploy/compose.yaml`; done, see `deploy/README.md`):
     - Caddy serving the web build over HTTPS (the microphone and the service worker need it);
     - the API and Postgres;
     - optional profiles for the speech service and Ollama;
     - one `.env` file;
     - images built in CI.
-  - **Running a server:** migrations run on start, and backups (`pg_dump`) and upgrades are
+  - **Running a server** (done: `deploy/README.md`): migrations run on start, and backups (`pg_dump`) and upgrades are
     documented. The API checks `NABU_GAME` at startup.
   - **Privacy** (§14.4):
     - export of a learner's server data (events and projections) (done: [ADR 0067](adr/0067-account-data-and-limits.md));

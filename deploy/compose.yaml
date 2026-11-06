@@ -1,0 +1,98 @@
+# Self-hosting Nabu (gameplan §14.5): the web app and the API behind Caddy (HTTPS), and Postgres.
+#
+#   cp deploy/.env.example deploy/.env      # then set NABU_DOMAIN and POSTGRES_PASSWORD
+#   docker compose -f deploy/compose.yaml --env-file deploy/.env up -d --build
+#
+# Optional profiles: `--profile llm` (Ollama, for the judge and explanations) and `--profile speech`
+# (the speech service, tiers 1–2; a large image). deploy/README.md covers backups and upgrades.
+name: nabu
+
+x-restart: &restart
+  restart: unless-stopped
+
+services:
+  postgres:
+    <<: *restart
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: nabu
+      POSTGRES_USER: nabu
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nabu -d nabu"]
+      interval: 5s
+      retries: 30
+
+  api:
+    <<: *restart
+    build:
+      context: ..
+      dockerfile: deploy/api.Dockerfile
+    image: nabu-api
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgres://nabu:${POSTGRES_PASSWORD}@postgres:5432/nabu
+      # Requests reach the API through Caddy only, which sets X-Forwarded-For.
+      NABU_TRUST_PROXY: "1"
+      NABU_RATE_LIMITS: ${NABU_RATE_LIMITS:-}
+      NABU_LEAGUES: ${NABU_LEAGUES:-}
+      NABU_PUSH: ${NABU_PUSH:-}
+      NABU_VAPID_SUBJECT: ${NABU_VAPID_SUBJECT:-}
+      NABU_ADMIN_TOKEN: ${NABU_ADMIN_TOKEN:-}
+      NABU_LLM: ${NABU_LLM:-}
+      NABU_LLM_MODEL: ${NABU_LLM_MODEL:-}
+      NABU_LLM_URL: ${NABU_LLM_URL:-}
+      NABU_LLM_KEY: ${NABU_LLM_KEY:-}
+      NABU_SPEECH_URL: ${NABU_SPEECH_URL:-}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:8787/healthz').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 5s
+      retries: 30
+
+  web:
+    <<: *restart
+    build:
+      context: ..
+      dockerfile: deploy/web.Dockerfile
+    image: nabu-web
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      NABU_DOMAIN: ${NABU_DOMAIN:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+
+  # A local model for the AI features: then NABU_LLM=ollama, NABU_LLM_URL=http://ollama:11434 and
+  # NABU_LLM_MODEL=<a model you pulled>. The judge stays off until evals open its gates (evals/).
+  ollama:
+    <<: *restart
+    profiles: [llm]
+    image: ollama/ollama:0.12.6
+    volumes:
+      - ollama:/root/.ollama
+
+  # Speech scoring, tiers 1–2 (gameplan §10.4): then NABU_SPEECH_URL=http://speech:8790. CPU PyTorch
+  # and the recognizers: several gigabytes.
+  speech:
+    <<: *restart
+    profiles: [speech]
+    build:
+      context: ..
+      dockerfile: deploy/speech.Dockerfile
+    image: nabu-speech
+
+volumes:
+  postgres:
+  caddy-data:
+  caddy-config:
+  ollama:

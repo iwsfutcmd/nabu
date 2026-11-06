@@ -54,7 +54,7 @@ export const limitsFromEnv = (env: Readonly<Record<string, string | undefined>>)
   if (env["NABU_RATE_LIMITS"] === "off") return {};
   const one = (name: string, fallback: Limit | undefined): Limit | undefined => {
     const raw = env[`NABU_RATE_LIMIT_${name}`];
-    if (raw === undefined) return fallback;
+    if (raw === undefined || raw.trim() === "") return fallback;
     const m = /^(\d+)\/(\d+)$/u.exec(raw.trim());
     if (m === null) throw new Error(`NABU_RATE_LIMIT_${name} is <max>/<seconds>, not ${JSON.stringify(raw)}`);
     return { max: Number(m[1]), windowMs: Number(m[2]) * 1000 };

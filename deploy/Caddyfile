@@ -1,0 +1,29 @@
+# The web app and the API on one origin, over HTTPS (gameplan §14.5). The microphone and the
+# service worker need a secure context. Caddy gets a certificate for NABU_DOMAIN by itself; for
+# "localhost" it issues one from its own local CA.
+{$NABU_DOMAIN:localhost} {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+	}
+
+	# The API (apps/api). The app reaches it on this origin (VITE_NABU_API=/). Caddy sends the
+	# client's address as X-Forwarded-For, ignoring any the client sent (NABU_TRUST_PROXY=1).
+	@api path /v1/* /admin/v1/* /v0/* /healthz
+	handle @api {
+		reverse_proxy api:8787
+	}
+
+	# The app: static files, and the single-page app's index for every other path.
+	handle {
+		root * /srv/www
+		# The service worker decides what the app caches: never cache it long.
+		@sw path /sw.js
+		header @sw Cache-Control "no-cache"
+		try_files {path} /index.html
+		file_server
+	}
+}

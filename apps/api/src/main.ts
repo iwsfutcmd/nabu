@@ -53,7 +53,8 @@ const { db, close } = await openDatabase({ url: process.env["DATABASE_URL"], pgl
 
 const leagues = on("NABU_LEAGUES") ? DEFAULT_LEAGUE : undefined;
 let vapid: Promise<Vapid> | undefined;
-const keys = on("NABU_PUSH") ? () => (vapid ??= vapidKeys(db, process.env["NABU_VAPID_SUBJECT"] ?? "mailto:nabu@localhost")) : undefined;
+// An empty setting is an unset one: deploy/compose.yaml passes every option, set or not.
+const keys = on("NABU_PUSH") ? () => (vapid ??= vapidKeys(db, process.env["NABU_VAPID_SUBJECT"] || "mailto:nabu@localhost")) : undefined;
 
 const env = process.env;
 const count = (name: string, fallback: number): number => {
@@ -68,7 +69,7 @@ const gateway = createGateway({
   kill: env["NABU_AI_KILL"],
   budgets: { perUser: count("NABU_AI_BUDGET_USER", DEFAULT_BUDGETS.perUser), perInstance: count("NABU_AI_BUDGET_INSTANCE", DEFAULT_BUDGETS.perInstance) },
 });
-const gatesFile = env["NABU_GATES"] === undefined ? new URL("../../../evals/gates.json", import.meta.url) : pathToFileURL(env["NABU_GATES"]);
+const gatesFile = env["NABU_GATES"] === undefined || env["NABU_GATES"] === "" ? new URL("../../../evals/gates.json", import.meta.url) : pathToFileURL(env["NABU_GATES"]);
 const gates = (JSON.parse(readFileSync(gatesFile, "utf8")) as unknown[]).filter((g): g is EvalGate => {
   if (validAi("EvalGate", g)) return true;
   console.warn("ignoring an invalid judge gate in", gatesFile.pathname);
