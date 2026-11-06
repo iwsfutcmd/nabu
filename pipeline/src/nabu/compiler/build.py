@@ -165,11 +165,14 @@ def _unit_kind(profile: OrthographyProfile) -> str:
     return "token"
 
 
-def _ruby_scheme(profile: OrthographyProfile) -> str | None:
-    for layer in profile.annotations or []:
-        if layer.kind == "reading" and layer.render == "ruby":
-            return layer.scheme
-    return None
+def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
+    """The profile's ruby reading layers, in order: Jyutping for yue; Pinyin, Jyutping and Baxter's
+    Middle Chinese for lzh. Each gets its pinned reading and ruby on every Han word."""
+    return [
+        layer.scheme
+        for layer in profile.annotations or []
+        if layer.kind == "reading" and layer.render == "ruby" and layer.scheme is not None
+    ]
 
 
 def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
@@ -338,9 +341,8 @@ def compile_form(
             t["tileGroup"] = next_group
             next_group += 1
 
-    # stage 3: readings and ruby
-    scheme = _ruby_scheme(profile)
-    if scheme is not None:
+    # stage 3: readings and ruby, for every ruby layer
+    for scheme in _ruby_schemes(profile):
         for t in toks:
             if t["kind"] != "word" or not tx.HAN.search(t["surface"]):
                 continue
@@ -367,7 +369,7 @@ def compile_form(
                     loc,
                 )
             else:
-                t["ruby"] = {scheme: segments}
+                t["ruby"] = {**t.get("ruby", {}), scheme: segments}
 
     _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
     mark_vowels(ctx, orth, toks, loc, warn)
@@ -728,9 +730,13 @@ def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) ->
     characters' share of their reading (禮拜 in 禮拜一); a form no token names takes the reading
     its surface always has, and none if that varies (a polyphone). Nothing is guessed."""
     for orth in course.orthographies:
-        scheme = _ruby_scheme(ctx.profiles[orth])
-        if scheme is None:
-            continue
+        for scheme in _ruby_schemes(ctx.profiles[orth]):
+            _kc_readings_of(units, orth, scheme)
+
+
+def _kc_readings_of(units: list[dict[str, Any]], orth: str, scheme: str) -> None:
+    """One ruby layer of KC forms: see _kc_readings."""
+    if True:
         by_kc: dict[Any, Tally] = {}
         by_surface: dict[Any, Tally] = {}
         for u in units:
@@ -755,8 +761,8 @@ def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) ->
                         segments = None if reading is None else tx.ruby_segments(surface, reading)
                         if reading is None or segments is None:
                             continue
-                        t["readings"] = {scheme: reading}
-                        t["ruby"] = {scheme: segments}
+                        t["readings"] = {**t.get("readings", {}), scheme: reading}
+                        t["ruby"] = {**t.get("ruby", {}), scheme: segments}
 
 
 def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
