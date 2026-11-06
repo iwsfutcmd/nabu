@@ -1898,8 +1898,11 @@ class SignOff(BaseModel):
         ),
     ]
     at: Annotated[
-        AwareDatetime,
-        Field(description="When the reviewer signed it off; its date becomes reviewedAt."),
+        str,
+        Field(
+            description="When the reviewer signed it off; its date becomes reviewedAt.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
     ]
 
 

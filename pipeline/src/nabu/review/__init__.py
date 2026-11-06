@@ -20,7 +20,7 @@ from __future__ import annotations
 import hashlib
 import unicodedata
 from dataclasses import dataclass, field
-from datetime import UTC
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any, cast
 
@@ -179,9 +179,8 @@ def apply(
         if key in reviewed:
             out.already.append(s.item)
             continue
-        # The day it was signed off, in UTC (a naive time is taken as UTC).
-        at = s.at if s.at.tzinfo is not None else s.at.replace(tzinfo=UTC)
-        day = at.astimezone(UTC).date().isoformat()
+        # The day it was signed off, in UTC (the schema's pattern requires an offset or Z).
+        day = datetime.fromisoformat(s.at).astimezone(UTC).date().isoformat()
         for f in units:
             node = _find(roots[f], s.kind, s.item)
             if node is None:
