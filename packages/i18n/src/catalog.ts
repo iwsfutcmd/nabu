@@ -28,7 +28,11 @@ const CATALOGS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
  * CATALOGS when a native reviewer signs it off.
  */
 const DRAFTS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
+  ar: async () => (await import("../messages/ar.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
   fa: async () => (await import("../messages/fa.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
+  uz: async () => (await import("../messages/uz.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
+  "uz-Cyrl": async () => (await import("../messages/uz-Cyrl.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
+  "zh-Hant-HK": async () => (await import("../messages/zh-Hant-HK.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
 };
 
 /** The source locale every pseudo-locale is derived from. */

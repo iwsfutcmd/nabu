@@ -86,6 +86,8 @@ These cannot be done in code. Each one gates something below.
 - **Deliverables:**
   - **First locales.** UI catalogs for the fixture courses' own communities: Persian, Arabic,
     Traditional Chinese (Hong Kong), and Uzbek in Latin and Cyrillic script.
+    (Drafted: all five are `llm:` drafts in packages/i18n/messages, listed in DRAFTS and clean under
+    `pnpm check:catalogs`; reviewers see them with `?ui=<locale>&drafts=1`. None ships until reviewed.)
   - **Same gate as course content.** Catalogs are drafted with `llm:` provenance and ship only
     after a native reviewer signs them off. The per-message descriptions written so far are the
     translators' notes.
@@ -116,7 +118,7 @@ These cannot be done in code. Each one gates something below.
     - audio playback and accept-set edits;
     - the report queue (`/admin/v1` has no interface today).
   - **Sign-off.** Signing off moves an item from draft to reviewed, with the reviewer's
-    provenance.
+    provenance. (Done: [ADR 0071](adr/0071-sign-off.md), in the sentence list with `nabu review apply`.)
   - **Release builds.** A release build of a course leaves out unreviewed items. The demo keeps
     showing drafts, labelled as drafts.
   - **Larger courses.** Each fixture course grows to an A1 path of about 8–10 units, drafted with

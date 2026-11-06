@@ -1,0 +1,1842 @@
+{
+  "$schema": "../../../schemas/message-catalog.schema.json",
+  "locale": "zh-Hant-HK",
+  "provenance": {
+    "author": "llm:claude@baa6bf1d5e24",
+    "status": "draft"
+  },
+  "messages": {
+    "achievement.right": {
+      "message": ".input {$target :number}\n{{答對{$target}題}}",
+      "source": "126156e2db332f"
+    },
+    "achievement.sessions": {
+      "message": ".input {$target :number}\n{{完成{$target}次練習}}",
+      "source": "040b27d0e2e865"
+    },
+    "achievement.stories": {
+      "message": ".input {$target :number}\n{{讀完{$target}個故事}}",
+      "source": "0baecd1132f96d"
+    },
+    "achievement.streak": {
+      "message": ".input {$days :number}\n{{連續學習{$days}天}}",
+      "source": "105f7e7013ca54"
+    },
+    "ai.budget": {
+      "message": "你今日的 AI 協助已經用完，明日會恢復。",
+      "source": "14e9089a3c5a5c"
+    },
+    "ai.explain.button": {
+      "message": "解釋我的答案",
+      "source": "1bba4a2334ac35"
+    },
+    "ai.explain.by": {
+      "message": "由語言模型（{$model}）撰寫，內容可能有誤。",
+      "source": "10ed1349cb222b"
+    },
+    "ai.explain.failed": {
+      "message": "這次未能提供解釋，請稍後再試。",
+      "source": "12859e0222f70c"
+    },
+    "ai.explain.helpful": {
+      "message": "有幫助",
+      "source": "1d3d96efda6835"
+    },
+    "ai.explain.loading": {
+      "message": "正在撰寫解釋……",
+      "source": "1af71f461b148e"
+    },
+    "ai.explain.rate": {
+      "message": "這個解釋有幫助嗎？",
+      "source": "0cc348cea81c14"
+    },
+    "ai.explain.title": {
+      "message": "解釋",
+      "source": "16fce1d7d80a8b"
+    },
+    "ai.explain.unhelpful": {
+      "message": "沒有幫助",
+      "source": "0f4cda6e7ccbcc"
+    },
+    "ai.judge.accepted": {
+      "message": "再次檢查後，你的答案獲接納，計為正確。",
+      "source": "16541d0f177a53"
+    },
+    "ai.judge.checking": {
+      "message": "正在再次檢查你的答案……",
+      "source": "0b108f06b1aec3"
+    },
+    "ai.judge.queued": {
+      "message": "待你重新連線後，系統會再次檢查你的答案。",
+      "source": "1fa4695de34707"
+    },
+    "ai.report.button": {
+      "message": "我的答案應該算對",
+      "source": "0f6ce7d90c7595"
+    },
+    "ai.report.done": {
+      "message": "已計為正確。審核員亦會查看你的答案。",
+      "source": "02db1b7edfe79d"
+    },
+    "ai.report.reject": {
+      "message": "這個答案應該算錯",
+      "source": "116cdfb2089941"
+    },
+    "ai.report.rejected": {
+      "message": "已計為錯誤。審核員亦會查看。",
+      "source": "03fcf61b525298"
+    },
+    "ai.report.spoken": {
+      "message": "我說對了",
+      "source": "0465e9d59299b1"
+    },
+    "ai.roleplay.character": {
+      "message": "角色",
+      "source": "12c7ee29368860"
+    },
+    "ai.roleplay.goal": {
+      "message": "你的目標",
+      "source": "03443dae54742d"
+    },
+    "ai.roleplay.hide-translation": {
+      "message": "隱藏翻譯",
+      "source": "065eaf87d9350b"
+    },
+    "ai.roleplay.log": {
+      "message": "對話",
+      "source": "0da7be4ae86f4d"
+    },
+    "ai.roleplay.no-turn": {
+      "message": "對方未能用你學過的詞語回覆，試試換個說法。",
+      "source": "15e2f480e5b87b"
+    },
+    "ai.roleplay.send": {
+      "message": "傳送",
+      "source": "16b55d7868e000"
+    },
+    "ai.roleplay.setting": {
+      "message": "地點",
+      "source": "122adee6bf9c84"
+    },
+    "ai.roleplay.show-translation": {
+      "message": "顯示翻譯",
+      "source": "02b713e9854aff"
+    },
+    "ai.roleplay.start": {
+      "message": "開始對話",
+      "source": "176bbe229507da"
+    },
+    "ai.roleplay.them": {
+      "message": "角色",
+      "source": "08aa9e22716b65"
+    },
+    "ai.roleplay.thinking": {
+      "message": "角色正在回覆……",
+      "source": "0a7921b0a1ba09"
+    },
+    "ai.roleplay.you": {
+      "message": "你",
+      "source": "1f107a64fd97ca"
+    },
+    "ai.roleplay.your-turn": {
+      "message": "你的回覆",
+      "source": "1fc52576f64280"
+    },
+    "ai.unavailable": {
+      "message": "目前無法連接語言模型。",
+      "source": "0c86164bfd1b5c"
+    },
+    "app.account.age": {
+      "message": "你今年多少歲？",
+      "source": "145b7ec98c4d57"
+    },
+    "app.account.age-note": {
+      "message": "以歲數填寫。伺服器會核對，但不會保留。",
+      "source": "1c1cbd28a58bee"
+    },
+    "app.account.age-refused": {
+      "message": "這個伺服器無法為你建立帳戶。你仍可在這部裝置上繼續學習，進度會保存在這裏。",
+      "source": "194d32a9c4ac75"
+    },
+    "app.account.create": {
+      "message": "建立帳戶",
+      "source": "04c7844b8f56f1"
+    },
+    "app.account.data": {
+      "message": "你的帳戶資料",
+      "source": "1f323684d47c91"
+    },
+    "app.account.delete": {
+      "message": "刪除我的帳戶",
+      "source": "14fcfcc401d791"
+    },
+    "app.account.delete-cancel": {
+      "message": "保留我的帳戶",
+      "source": "008002c75c32ce"
+    },
+    "app.account.delete-confirm": {
+      "message": "永久刪除我的帳戶",
+      "source": "0a24767da0b046"
+    },
+    "app.account.delete-note": {
+      "message": "這會刪除你的帳戶，以及伺服器為它保存的一切：已同步的進度、個人檔案和聯賽排名。刪除後無法復原。這部裝置上的進度會保留。請輸入密碼確認。",
+      "source": "1fc27943e9d85e"
+    },
+    "app.account.deleted": {
+      "message": "你的帳戶及其在伺服器上的資料已刪除。這部裝置上的進度會保留。",
+      "source": "140a223af75a65"
+    },
+    "app.account.email": {
+      "message": "電郵",
+      "source": "00a0ba9938bdff"
+    },
+    "app.account.export": {
+      "message": "下載我的帳戶資料",
+      "source": "1e53f1f98c3a9e"
+    },
+    "app.account.have-account": {
+      "message": "我已有帳戶",
+      "source": "0f6fc8ff251358"
+    },
+    "app.account.new-account": {
+      "message": "我需要新帳戶",
+      "source": "0f5f9d59948761"
+    },
+    "app.account.password": {
+      "message": "密碼",
+      "source": "155d0bdc9a243f"
+    },
+    "app.account.password-hint": {
+      "message": ".input {$min :number}\n{{最少{$min}個字元}}",
+      "source": "08d3b6afb0d194"
+    },
+    "app.account.pitch": {
+      "message": "建立帳戶，便可妥善保存你的進度，並在你的其他裝置上使用。你到目前為止的學習紀錄都會一併帶過去。",
+      "source": "103879ec2a3563"
+    },
+    "app.account.sign-in": {
+      "message": "登入",
+      "source": "1d1210bb1b1dca"
+    },
+    "app.account.sign-out": {
+      "message": "登出",
+      "source": "15fa385f9d4f64"
+    },
+    "app.account.signed-in": {
+      "message": "已登入：{$email}",
+      "source": "0fd0bca2ba6a61"
+    },
+    "app.account.welcome-back": {
+      "message": "登入即可取回你在其他裝置上的進度。",
+      "source": "0c96b1d7b37239"
+    },
+    "app.error.account.age-required": {
+      "message": "這個伺服器要先知道你的年齡，才會建立帳戶。",
+      "source": "119a0817415c6c"
+    },
+    "app.error.account.email-taken": {
+      "message": "這個電郵已有帳戶，請改為登入。",
+      "source": "1515ad876f38b2"
+    },
+    "app.error.account.invalid-age": {
+      "message": "請以數字填寫你的歲數。",
+      "source": "14918c6d0de8d6"
+    },
+    "app.error.account.invalid-email": {
+      "message": "請輸入有效的電郵地址。",
+      "source": "138795dd31c061"
+    },
+    "app.error.account.rate-limited": {
+      "message": "嘗試次數太多，請等幾分鐘再試。",
+      "source": "146aee830fea15"
+    },
+    "app.error.account.rejected": {
+      "message": "伺服器沒有接受你的部分進度。",
+      "source": "1b0fc15b588fb1"
+    },
+    "app.error.account.signed-out": {
+      "message": "你已被登出。請重新登入，以繼續同步。",
+      "source": "1f4169398c9397"
+    },
+    "app.error.account.unknown": {
+      "message": "出現錯誤，請再試一次。",
+      "source": "054c14a408761e"
+    },
+    "app.error.account.unreachable": {
+      "message": "無法連接伺服器。請檢查網絡連線，然後再試。",
+      "source": "0f3cd56cc7713e"
+    },
+    "app.error.account.weak-password": {
+      "message": ".input {$min :number}\n{{請使用最少{$min}個字元。}}",
+      "source": "1072ffd7a1d5ef"
+    },
+    "app.error.account.wrong-credentials": {
+      "message": "電郵與密碼不符。",
+      "source": "0f63d3c9b0ffaf"
+    },
+    "app.error.load": {
+      "message": "無法載入這個課程。",
+      "source": "128e8d51e09fd9"
+    },
+    "app.error.profile.characters": {
+      "message": "用戶名稱只可使用字母、數字，以及夾在中間的 _、- 或 . 符號。",
+      "source": "19524bf932c5fb"
+    },
+    "app.error.profile.display-name": {
+      "message": "這個顯示名稱不能使用。",
+      "source": "0fde5d0eeb6ffc"
+    },
+    "app.error.profile.length": {
+      "message": "這個用戶名稱太短或太長。",
+      "source": "0484e908c5cf21"
+    },
+    "app.error.profile.mixed-script": {
+      "message": "這個用戶名稱混合了不同文字，可能令人誤會。請只用一種文字。",
+      "source": "0e7c2ad455a9d2"
+    },
+    "app.error.profile.separators": {
+      "message": "符號 _、- 或 . 只可放在字母或數字之間，而且不可連續使用。",
+      "source": "15ba887cb4993a"
+    },
+    "app.error.profile.username-confusable": {
+      "message": "這個用戶名稱與一個已被使用的名稱太相似。",
+      "source": "0f0e0e7ef8b829"
+    },
+    "app.error.profile.username-taken": {
+      "message": "這個用戶名稱已被使用。",
+      "source": "0ad0942b2cd115"
+    },
+    "app.home.title": {
+      "message": "選擇課程",
+      "source": "0a86910ba967fc"
+    },
+    "app.home.writing": {
+      "message": "書寫系統",
+      "source": "070a1043a733d3"
+    },
+    "app.lessons.back": {
+      "message": "所有課程",
+      "source": "1eff369e8cceb6"
+    },
+    "app.lessons.lesson": {
+      "message": ".input {$number :number}\n{{第{$number}課}}",
+      "source": "0d0b71656d5b05"
+    },
+    "app.lessons.new-words": {
+      "message": "新詞語",
+      "source": "0b3535a9dca360"
+    },
+    "app.lessons.title": {
+      "message": "課堂",
+      "source": "0170799cd6a988"
+    },
+    "app.listening.off": {
+      "message": "聽力練習暫時關閉，一小時後會恢復。",
+      "source": "1e319901c7bb1c"
+    },
+    "app.listening.on": {
+      "message": "重新開啟聽力練習",
+      "source": "0f732642b9aade"
+    },
+    "app.name": {
+      "message": "Nabu",
+      "source": "09423bfe962f80"
+    },
+    "app.offline.core-missing": {
+      "message": "下載這個課程，即可在沒有網絡時使用。",
+      "source": "004315783a2d50"
+    },
+    "app.offline.core-ready": {
+      "message": "這個課程的課堂可在這部裝置上離線使用。如要離線使用音訊和圖片，請另行下載。",
+      "source": "0bb1e0f79b6361"
+    },
+    "app.offline.download": {
+      "message": "下載（{$size}）",
+      "source": "0495c4c79c4d0c"
+    },
+    "app.offline.download-all": {
+      "message": "全部下載（{$size}）",
+      "source": "1d771fd1435c38"
+    },
+    "app.offline.downloading": {
+      "message": "下載中",
+      "source": "12a0983fedd056"
+    },
+    "app.offline.error.integrity": {
+      "message": "有檔案下載後不完整，因此沒有保留。請再試一次。",
+      "source": "09513998ae0d3e"
+    },
+    "app.offline.error.network": {
+      "message": "連線中斷，下載已停止。請在重新連線後再試。",
+      "source": "14ffd696266720"
+    },
+    "app.offline.error.quota": {
+      "message": "這部裝置的儲存空間不足，無法完成這次下載。",
+      "source": "0158c9517879d2"
+    },
+    "app.offline.notice": {
+      "message": "你目前處於離線狀態。這部裝置上的課堂仍可使用，你的進度會保存在這裏，並在你重新連線後同步。",
+      "source": "1823455234d67b"
+    },
+    "app.offline.progress": {
+      "message": "已下載{$done}，共{$total}",
+      "source": "1ba1d29178903d"
+    },
+    "app.offline.remove": {
+      "message": "移除下載（{$size}）",
+      "source": "0a768fb1433a34"
+    },
+    "app.offline.state.missing": {
+      "message": "未下載",
+      "source": "006c238a1b7ade"
+    },
+    "app.offline.state.partial": {
+      "message": "部分已下載",
+      "source": "1b7ba08dae6ea5"
+    },
+    "app.offline.state.ready": {
+      "message": "可離線使用",
+      "source": "0c1ac338f12c1a"
+    },
+    "app.offline.title": {
+      "message": "離線使用",
+      "source": "19642a2b0ca412"
+    },
+    "app.offline.unavailable": {
+      "message": "這個課程尚未儲存在這部裝置上。請在連線時開啟一次，之後便可離線使用。",
+      "source": "060f2438ff8ef8"
+    },
+    "app.offline.unit": {
+      "message": ".input {$number :number}\n{{第{$number}單元}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "app.path.done": {
+      "message": "已完成",
+      "source": "00609f822e0571"
+    },
+    "app.path.locked": {
+      "message": "未解鎖",
+      "source": "0e259fa0babc2d"
+    },
+    "app.path.start": {
+      "message": "開始",
+      "source": "144de7fabb13dc"
+    },
+    "app.path.story": {
+      "message": "故事",
+      "source": "099aa4c2ee7e8c"
+    },
+    "app.practice.back": {
+      "message": "返回課程",
+      "source": "0820c073883099"
+    },
+    "app.practice.due": {
+      "message": ".input {$count :number}\n{{{$count}項待溫習}}",
+      "source": "0f59593aca6c20"
+    },
+    "app.practice.empty": {
+      "message": "目前沒有需要練習的內容。",
+      "source": "1569dd1a1c05f6"
+    },
+    "app.practice.mistakes": {
+      "message": "錯題",
+      "source": "1c8e9c3040547f"
+    },
+    "app.practice.placement": {
+      "message": "已懂一點{$language}？測試你的程度",
+      "source": "1d75f0c5c407f9"
+    },
+    "app.practice.review": {
+      "message": "溫習",
+      "source": "0e315ebf127b18"
+    },
+    "app.practice.title": {
+      "message": "練習",
+      "source": "1bb4b01c6ca9a0"
+    },
+    "app.practice.to-fix": {
+      "message": ".input {$count :number}\n{{{$count}項待改正}}",
+      "source": "018a1da69b8e6e"
+    },
+    "app.profile.display-name": {
+      "message": "顯示名稱（選填）",
+      "source": "144e85fa7b6988"
+    },
+    "app.profile.save": {
+      "message": "儲存個人檔案",
+      "source": "1635e9d2cb063a"
+    },
+    "app.profile.saved": {
+      "message": "已儲存。",
+      "source": "06de620ec8bcdf"
+    },
+    "app.profile.title": {
+      "message": "個人檔案",
+      "source": "087c02cfd3d740"
+    },
+    "app.profile.username": {
+      "message": "用戶名稱",
+      "source": "16f6fcdc5b3341"
+    },
+    "app.profile.username-hint": {
+      "message": "3至30個字母或數字，中間可用 _、- 或 . 分隔。",
+      "source": "107355ec7eb50b"
+    },
+    "app.progress.device": {
+      "message": "你的進度保存在這部裝置上。",
+      "source": "1b4bb7e86eea6c"
+    },
+    "app.progress.export": {
+      "message": "下載我的學習資料",
+      "source": "139603a6ece948"
+    },
+    "app.progress.title": {
+      "message": "你的進度",
+      "source": "1936981e166550"
+    },
+    "app.reminders.denied": {
+      "message": "這個網站的通知已在瀏覽器設定中被封鎖。",
+      "source": "041565a91ea509"
+    },
+    "app.reminders.failed": {
+      "message": "這部裝置未能登記接收提醒，請稍後再試。",
+      "source": "0763e87e92fff9"
+    },
+    "app.reminders.hint": {
+      "message": "每日最多一次，約在你平常練習的時間，而且只在你當天還未練習時才提醒。",
+      "source": "16d05c5f49f4ab"
+    },
+    "app.reminders.label": {
+      "message": "每日練習提醒",
+      "source": "075045dd5b51b5"
+    },
+    "app.reminders.unsupported": {
+      "message": "這個瀏覽器無法顯示提醒。",
+      "source": "13fd157356b3c1"
+    },
+    "app.reset.cancel": {
+      "message": "保留我的進度",
+      "source": "0580b9629f5825"
+    },
+    "app.reset.confirm": {
+      "message": "重新開始",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.confirm-body": {
+      "message": "除了第一課，所有課堂都會重新鎖上，詞語也會變回新詞語。這會套用到你所有的裝置，而且無法復原。你的連續學習紀錄、XP 和成就會保留。",
+      "source": "12c7dfd45198c0"
+    },
+    "app.reset.confirm-title": {
+      "message": "要重新開始{$language}嗎？",
+      "source": "08baa0f7779f08"
+    },
+    "app.reset.done": {
+      "message": "{$language}已從頭開始。",
+      "source": "05a9db0ce81475"
+    },
+    "app.reset.hint": {
+      "message": "回到{$language}的起點：課堂、你認識的詞語和錯題都會重設。你的連續學習紀錄和 XP 會保留。",
+      "source": "1f5d692a73b5b4"
+    },
+    "app.reset.open": {
+      "message": "重新開始這個課程",
+      "source": "096c4b0b4acb1e"
+    },
+    "app.reset.title": {
+      "message": "重新開始",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.type-hint": {
+      "message": "照着上面的課程名稱輸入即可。",
+      "source": "045e79d005dda7"
+    },
+    "app.reset.type-label": {
+      "message": "請輸入「{$language}」以確認",
+      "source": "0bd62aa477adf8"
+    },
+    "app.roleplay.back": {
+      "message": "返回課程",
+      "source": "0820c073883099"
+    },
+    "app.roleplay.note": {
+      "message": "對話中的另一方由語言模型扮演，只會用你學過的詞語，但可能會出錯。",
+      "source": "12026862d750f2"
+    },
+    "app.roleplay.title": {
+      "message": "對話練習",
+      "source": "10e79f46fb5744"
+    },
+    "app.roleplay.unavailable": {
+      "message": "對話練習需要帳戶，以及設有語言模型的伺服器。",
+      "source": "16ec70f0bc2190"
+    },
+    "app.speaking.off": {
+      "message": "口語練習暫時關閉，一小時後會恢復。",
+      "source": "0328e6038bf84d"
+    },
+    "app.speaking.on": {
+      "message": "重新開啟口語練習",
+      "source": "0ca13e185e788f"
+    },
+    "app.store.memory": {
+      "message": "這個瀏覽器視窗無法保存你的進度，關閉視窗後進度便會消失。",
+      "source": "16ff818d9dfd17"
+    },
+    "app.sync.mismatch": {
+      "message": "伺服器上的進度與這部裝置上的不一致。",
+      "source": "1db3fdcb09f699"
+    },
+    "app.sync.offline": {
+      "message": ".input {$count :number}\n{{離線中。重新連線後會上載{$count}項更新。}}",
+      "source": "0f28354b16e8e2"
+    },
+    "app.sync.pending": {
+      "message": ".input {$count :number}\n{{{$count}項更新等待上載}}",
+      "source": "1708dd416e6d0d"
+    },
+    "app.sync.saved": {
+      "message": "所有進度已儲存到你的帳戶",
+      "source": "1d8c42b786e1d0"
+    },
+    "app.sync.syncing": {
+      "message": "儲存中……",
+      "source": "106811f2aac664"
+    },
+    "app.voice.forget": {
+      "message": "清除我的音域資料",
+      "source": "0f20f5dc4eb0f9"
+    },
+    "app.voice.forgotten": {
+      "message": "已清除。",
+      "source": "0dd4a649045a2b"
+    },
+    "app.voice.note": {
+      "message": "錄音評分後即會丟棄，絕不會保存在這部裝置或任何伺服器上。",
+      "source": "036fe14bdcbbd3"
+    },
+    "app.voice.server": {
+      "message": "在伺服器上檢查詞語和發音",
+      "source": "1eddaca93059d4"
+    },
+    "app.voice.title": {
+      "message": "你的聲音",
+      "source": "04028f765253d4"
+    },
+    "app.xp.today": {
+      "message": ".input {$xp :number}\n{{今日：{$xp} XP}}",
+      "source": "105e6997ce60db"
+    },
+    "app.xp.total": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "audio.check.back": {
+      "message": "返回課程",
+      "source": "0820c073883099"
+    },
+    "audio.check.cer": {
+      "message": ".input {$cer :number maximumFractionDigits=2}\n{{錯誤率：{$cer}}}",
+      "source": "08bf51cf947fe2"
+    },
+    "audio.check.export": {
+      "message": ".input {$count :number}\n{{下載你的評定（{$count}）}}",
+      "source": "14aaf933d9c7de"
+    },
+    "audio.check.filter.kind": {
+      "message": "顯示",
+      "source": "00fbddc6309531"
+    },
+    "audio.check.filter.mine": {
+      "message": "你的評定",
+      "source": "17828d34f2393b"
+    },
+    "audio.check.filter.order": {
+      "message": "排序",
+      "source": "126e942baf656b"
+    },
+    "audio.check.filter.status": {
+      "message": "往返檢查",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.filter.voice": {
+      "message": "聲音",
+      "source": "09cc0458faf589"
+    },
+    "audio.check.heard": {
+      "message": "聽到：",
+      "source": "057ed12895bc6a"
+    },
+    "audio.check.held": {
+      "message": "暫不播放",
+      "source": "1f8de18b83890e"
+    },
+    "audio.check.intro": {
+      "message": "這裏列出本課程的每個音訊片段，以及生成時語音識別所聽到的內容。請逐一聆聽，判斷每段聽來是否正確。你的評定會留在這部裝置上，直至你下載為止。",
+      "source": "0925929154a626"
+    },
+    "audio.check.keys": {
+      "message": "按鍵：J 和 K 在項目之間移動，Space 播放，S 慢速播放，R 表示聽來正確，W 表示聽來有誤。",
+      "source": "10103b803792c5"
+    },
+    "audio.check.kind.all": {
+      "message": "全部",
+      "source": "0a0c861befca14"
+    },
+    "audio.check.kind.line": {
+      "message": "故事句子",
+      "source": "0773178ab972c9"
+    },
+    "audio.check.kind.sentence": {
+      "message": "句子",
+      "source": "1288e2339c15cd"
+    },
+    "audio.check.kind.word": {
+      "message": "詞語",
+      "source": "0fcae096923b28"
+    },
+    "audio.check.loading": {
+      "message": "正在載入音訊片段……",
+      "source": "1e1c379620b54a"
+    },
+    "audio.check.mine.all": {
+      "message": "不限",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.mine.none": {
+      "message": "尚未評定",
+      "source": "0e64fcea62866c"
+    },
+    "audio.check.missing": {
+      "message": "這個網站沒有這個課程的音訊檢查。",
+      "source": "1f978d0f7527d3"
+    },
+    "audio.check.note": {
+      "message": "有甚麼問題？",
+      "source": "14c1c50287ec84"
+    },
+    "audio.check.open": {
+      "message": "檢查音訊",
+      "source": "09c2f262b144d3"
+    },
+    "audio.check.order.course": {
+      "message": "課程順序",
+      "source": "13ff38d97920d1"
+    },
+    "audio.check.order.worst": {
+      "message": "往返檢查最差者優先",
+      "source": "0097ae2a860af4"
+    },
+    "audio.check.other": {
+      "message": "已不在課程內",
+      "source": "0ab83bbb5f6408"
+    },
+    "audio.check.outdated": {
+      "message": "你評定的是這個片段的較早版本。",
+      "source": "1e93856320378d"
+    },
+    "audio.check.read": {
+      "message": "朗讀文本：",
+      "source": "12f049bfcf7e55"
+    },
+    "audio.check.reference": {
+      "message": "參考錄音",
+      "source": "0e105fd5ce8e09"
+    },
+    "audio.check.rejected": {
+      "message": "已否決",
+      "source": "1870217cd63ffc"
+    },
+    "audio.check.reviewed": {
+      "message": "已審核",
+      "source": "08791cd0d5daff"
+    },
+    "audio.check.right": {
+      "message": "聽來正確",
+      "source": "17f6e3024a0e22"
+    },
+    "audio.check.shown": {
+      "message": ".input {$shown :number}\n.input {$total :number}\n{{顯示{$shown}項（共{$total}項）}}",
+      "source": "0de32067b417d8"
+    },
+    "audio.check.stats": {
+      "message": "往返檢查",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.status.all": {
+      "message": "不限",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.status.fail": {
+      "message": "未通過",
+      "source": "031021f2893bc9"
+    },
+    "audio.check.status.none": {
+      "message": "未檢查",
+      "source": "1b396d7f264de0"
+    },
+    "audio.check.status.pass": {
+      "message": "已通過",
+      "source": "10cad12b9fc18d"
+    },
+    "audio.check.status.review": {
+      "message": "待審核",
+      "source": "1af7fd298d31cb"
+    },
+    "audio.check.title": {
+      "message": "音訊檢查",
+      "source": "1efc282e620676"
+    },
+    "audio.check.unit": {
+      "message": ".input {$number :number}\n{{第{$number}單元}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "audio.check.voice": {
+      "message": "聲音：{$voice}（{$provider}）",
+      "source": "17c0b0285c4282"
+    },
+    "audio.check.voice.all": {
+      "message": "所有聲音",
+      "source": "07876467c8c942"
+    },
+    "audio.check.voice.option": {
+      "message": "{$name}（{$provider}）",
+      "source": "1a384ab37c7496"
+    },
+    "audio.check.voice.recorded": {
+      "message": "真人錄音",
+      "source": "01bebdacd206d7"
+    },
+    "audio.check.wrong": {
+      "message": "聽來有誤",
+      "source": "0031917bd66a07"
+    },
+    "corrections.cancel": {
+      "message": "取消",
+      "source": "112e2e8ecda428"
+    },
+    "corrections.choose": {
+      "message": "哪一個有錯？",
+      "source": "096af91f34dd52"
+    },
+    "corrections.edit": {
+      "message": "修改你的更正",
+      "source": "05366fcc2c8933"
+    },
+    "corrections.error.empty": {
+      "message": "此欄不可留空。",
+      "source": "03d82cbe9409f5"
+    },
+    "corrections.error.too-long": {
+      "message": "內容太長。",
+      "source": "11bdc151ef75f5"
+    },
+    "corrections.error.unchanged": {
+      "message": "請作出修改，或給審核員留言。",
+      "source": "065ad46ed78a1e"
+    },
+    "corrections.export": {
+      "message": ".input {$count :number}\n{{下載你的更正（{$count}）}}",
+      "source": "1b5c55b6e38b6d"
+    },
+    "corrections.intro": {
+      "message": "修改任何錯處：文字、詞語的讀音或翻譯。每項更正都會先經審核員檢查，才會加入課程。",
+      "source": "16f77dde65b4ba"
+    },
+    "corrections.mark": {
+      "message": "這個句子有錯",
+      "source": "03127dd3b047fa"
+    },
+    "corrections.mark.pairs": {
+      "message": "其中一項有錯",
+      "source": "0842a0f3922b2b"
+    },
+    "corrections.mark.word": {
+      "message": "這個詞語有錯",
+      "source": "103ed262b2e660"
+    },
+    "corrections.note": {
+      "message": "給審核員的留言（選填）",
+      "source": "15a68737f0ce95"
+    },
+    "corrections.now": {
+      "message": "目前：",
+      "source": "0e7ae9926955b4"
+    },
+    "corrections.page.back": {
+      "message": "返回課程",
+      "source": "0820c073883099"
+    },
+    "corrections.page.intro": {
+      "message": "這裏按單元列出本課程的所有句子和故事句子。如發現有錯，請標示出來，並寫下正確的內容。",
+      "source": "152193f019cdc5"
+    },
+    "corrections.page.open": {
+      "message": "檢查句子",
+      "source": "0c59e6eaeb129d"
+    },
+    "corrections.page.story": {
+      "message": "故事",
+      "source": "099aa4c2ee7e8c"
+    },
+    "corrections.page.title": {
+      "message": "句子",
+      "source": "1288e2339c15cd"
+    },
+    "corrections.page.unit": {
+      "message": ".input {$number :number}\n{{第{$number}單元}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "corrections.page.units": {
+      "message": "單元",
+      "source": "1a23d69043b0ea"
+    },
+    "corrections.pending": {
+      "message": "你已提出更正",
+      "source": "00f4588986c49c"
+    },
+    "corrections.readings": {
+      "message": "每個詞語的讀音",
+      "source": "187ff5713fb95f"
+    },
+    "corrections.sent": {
+      "message": "謝謝！審核員會檢查你的更正。",
+      "source": "12fbf92b2deab2"
+    },
+    "corrections.submit": {
+      "message": "提交更正",
+      "source": "1440fa85d282df"
+    },
+    "corrections.text": {
+      "message": "句子（{$orthography}）",
+      "source": "16c2396e05f7b1"
+    },
+    "corrections.title": {
+      "message": "這裏應該怎樣寫？",
+      "source": "182c709dd2de76"
+    },
+    "corrections.translation": {
+      "message": "翻譯",
+      "source": "04d57102a24465"
+    },
+    "corrections.word.intro": {
+      "message": "修改任何錯處：詞語、讀音或意思。每項更正都會先經審核員檢查，才會加入課程。",
+      "source": "08eeee221c97ff"
+    },
+    "corrections.word.meaning": {
+      "message": "意思",
+      "source": "1031b11de169ce"
+    },
+    "corrections.word.text": {
+      "message": "詞語（{$orthography}）",
+      "source": "0f55aaa03db2e2"
+    },
+    "course.name.apc": {
+      "message": "黎巴嫩阿拉伯語",
+      "source": "156dd02569cccd"
+    },
+    "course.name.fa": {
+      "message": "波斯語",
+      "source": "0814f27aca872d"
+    },
+    "course.name.uz": {
+      "message": "烏茲別克語",
+      "source": "00eccd2e4cea3a"
+    },
+    "course.name.yue": {
+      "message": "粵語",
+      "source": "1b9e50f7526657"
+    },
+    "debug.cards.back": {
+      "message": "返回課程",
+      "source": "0820c073883099"
+    },
+    "debug.cards.intro": {
+      "message": "這個課程能產生的每種題型各一題。你在這裏的操作不會被記錄，也不會計入進度。",
+      "source": "09dafe669d386b"
+    },
+    "debug.cards.none": {
+      "message": "這個課程沒有這種題型",
+      "source": "07eb1f5b19cb7e"
+    },
+    "debug.cards.open": {
+      "message": "試做每種題型",
+      "source": "06a28a765e4df1"
+    },
+    "debug.cards.play-all": {
+      "message": "逐一試做",
+      "source": "196d4e9446360f"
+    },
+    "debug.cards.title": {
+      "message": "所有題型",
+      "source": "1ddf29c0ae6ca0"
+    },
+    "debug.cards.try": {
+      "message": "試做",
+      "source": "05f2766626d94e"
+    },
+    "debug.template": {
+      "message": "題型：{$template}",
+      "source": "0f00d66710b4f5"
+    },
+    "exercise.action.check": {
+      "message": "檢查",
+      "source": "067681d06872f1"
+    },
+    "exercise.action.play-audio": {
+      "message": "播放音訊",
+      "source": "06221b5bee73f3"
+    },
+    "exercise.action.quit": {
+      "message": "離開這一課",
+      "source": "05b3289f0fc785"
+    },
+    "exercise.action.skip": {
+      "message": "跳過",
+      "source": "1c245bd4ba0d6f"
+    },
+    "exercise.answer.input-label": {
+      "message": "用{$language}輸入你的答案",
+      "source": "1a032be6aed23c"
+    },
+    "exercise.answer.label": {
+      "message": "你的答案",
+      "source": "196b73b49f8369"
+    },
+    "exercise.instruction.write-in": {
+      "message": "用{$language}寫出這句",
+      "source": "0ab1a8325a085b"
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{第{$current}題，共{$total}題}}",
+      "source": "18c97697d8f912"
+    },
+    "exercise.prompt.label": {
+      "message": "要翻譯的句子",
+      "source": "10e152af217b29"
+    },
+    "exercise.readings.toggle": {
+      "message": "顯示讀音",
+      "source": "15c24795350b3d"
+    },
+    "exercise.wordbank.label": {
+      "message": "詞庫",
+      "source": "19ad1969f99daa"
+    },
+    "exercise.wordbank.remaining": {
+      "message": ".input {$count :number}\n{{尚餘{$count}個詞塊}}",
+      "source": "0ed82389e564a2"
+    },
+    "feedback.note.alef-maqsura": {
+      "message": "留意詞尾的 alif maqsura（ى）。",
+      "source": "0207d57b3b99a2"
+    },
+    "feedback.note.apostrophe": {
+      "message": "烏茲別克語的 oʻ 和 gʻ 用倒逗號（ʻ），分隔符號則是 ʼ。不過直接輸入普通的 ' 也可以。",
+      "source": "152e8925abd36e"
+    },
+    "feedback.note.contrast-case": {
+      "message": "詞尾改變了這個詞在句中的作用（到、在、從、的……），不只是拼寫不同。",
+      "source": "1dce20981c496c"
+    },
+    "feedback.note.contrast-person": {
+      "message": "詞尾改變了所指的人（我、你、我們……），不只是拼寫不同。",
+      "source": "0f069e217d4ff2"
+    },
+    "feedback.note.contrast-possessive": {
+      "message": "詞尾改變了所屬的人（我的、你的、他的……），不只是拼寫不同。",
+      "source": "0f198186f5f77b"
+    },
+    "feedback.note.contrast-pronoun": {
+      "message": "這是另一個代詞，不是打錯字。",
+      "source": "113842c4f5afa3"
+    },
+    "feedback.note.hamza": {
+      "message": "留意 hamza（أ、إ、آ）。",
+      "source": "03b67432cfff80"
+    },
+    "feedback.note.hk-tw-variant": {
+      "message": "這是這個字的台灣寫法，香港通常寫法不同。",
+      "source": "0110036abf43a7"
+    },
+    "feedback.note.ime-homophone": {
+      "message": "有一個字讀音正確，但字不對：請檢查輸入法建議的字。",
+      "source": "1bbc587127c480"
+    },
+    "feedback.note.judge": {
+      "message": "經語言模型再次檢查後接納。",
+      "source": "05cc6f80e30bbd"
+    },
+    "feedback.note.marks": {
+      "message": "請檢查變音符號和元音符號。",
+      "source": "0f575a377146fe"
+    },
+    "feedback.note.pairs-mistakes": {
+      "message": "有些配對試了不止一次。",
+      "source": "0d03bb934478e9"
+    },
+    "feedback.note.reading-no-tones": {
+      "message": "每個音節都要加上聲調數字。",
+      "source": "143c87c3508e88"
+    },
+    "feedback.note.reading-syllables": {
+      "message": "請檢查每個音節的發音。",
+      "source": "1e71923b0c8359"
+    },
+    "feedback.note.reading-tone": {
+      "message": "發音正確，請檢查聲調。",
+      "source": "05072e38d2eb3a"
+    },
+    "feedback.note.script-mismatch": {
+      "message": "請檢查你是否用了正確的文字書寫。",
+      "source": "134b180851260b"
+    },
+    "feedback.note.spacing": {
+      "message": "留意這個詞中間的半空格（ZWNJ）。",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.note.speech-phones": {
+      "message": "有些發音不太準。這只是回饋，不是評分：口音本來就各有不同。",
+      "source": "05daa70cf553b3"
+    },
+    "feedback.note.speech-silent": {
+      "message": "沒有聽到任何聲音。",
+      "source": "080a39cc7e559e"
+    },
+    "feedback.note.speech-tone-shapes": {
+      "message": "有些聲調走向不對：升、降或平。",
+      "source": "0c7638ed68fb1d"
+    },
+    "feedback.note.speech-tones": {
+      "message": "有些聲調不準。",
+      "source": "0e902d722728e3"
+    },
+    "feedback.note.speech-words": {
+      "message": "未能聽清楚那些詞語，請與句子對照。",
+      "source": "11b9df98e9e5c8"
+    },
+    "feedback.note.ta-marbuta": {
+      "message": "留意詞尾的 ta marbuta（ة）。",
+      "source": "022ddd2cbdf318"
+    },
+    "feedback.note.tajik-letters": {
+      "message": "請使用塔吉克字母 ғ、ӣ、қ、ӯ、ҳ 和 ҷ。",
+      "source": "148f4eb60bf982"
+    },
+    "feedback.note.use-traditional": {
+      "message": "請使用繁體字。",
+      "source": "0d41b4810db702"
+    },
+    "feedback.note.uzbek-letters": {
+      "message": "請使用烏茲別克字母 ў、қ、ғ 和 ҳ，而不是 у、к、г 和 х。",
+      "source": "1951fe37b93e13"
+    },
+    "feedback.note.variant": {
+      "message": "這個字在這裏較常用另一種寫法。",
+      "source": "024ba8249c3846"
+    },
+    "feedback.note.vocalize-letters": {
+      "message": "字母保持不變，只需加上元音符號。",
+      "source": "12ccf98295f99e"
+    },
+    "feedback.note.vocalize-marks": {
+      "message": "請檢查每個字母上的元音符號。",
+      "source": "13259d798ab24f"
+    },
+    "feedback.note.zwnj": {
+      "message": "留意這個詞中間的半空格（ZWNJ）。",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.verdict.correct": {
+      "message": "正確！",
+      "source": "0c0624dc06b399"
+    },
+    "feedback.verdict.correct-alt": {
+      "message": "正確！另一個正確答案：",
+      "source": "0b86c8b2908b58"
+    },
+    "feedback.verdict.correct-marks": {
+      "message": "正確，不過要留意變音符號和元音符號。",
+      "source": "15262c2eb93c44"
+    },
+    "feedback.verdict.correct-provisional": {
+      "message": "看來正確！我們會再核實一次。",
+      "source": "0943ecb847767e"
+    },
+    "feedback.verdict.correct-variant": {
+      "message": "正確，不過這裏慣用另一種寫法。",
+      "source": "0944f85125c278"
+    },
+    "feedback.verdict.correct-with-typo": {
+      "message": "正確，不過要留意錯字。",
+      "source": "0861c223f13b0c"
+    },
+    "feedback.verdict.partial": {
+      "message": "差一點：有一個字讀音對了，但選錯了字。",
+      "source": "0ce14970e35138"
+    },
+    "feedback.verdict.skipped": {
+      "message": "已跳過",
+      "source": "10f29eb13173cb"
+    },
+    "feedback.verdict.speech-close": {
+      "message": "很接近！再聽一次，比較一下。",
+      "source": "110851d79835c2"
+    },
+    "feedback.verdict.wrong": {
+      "message": "不太對。",
+      "source": "0825aebbcf39f5"
+    },
+    "feedback.verdict.wrong-word": {
+      "message": "這是另一個詞。",
+      "source": "0120cc97f18e12"
+    },
+    "game.achievements.none": {
+      "message": "暫時未有。多練習就會解鎖。",
+      "source": "1e32e2a8fb62d6"
+    },
+    "game.achievements.title": {
+      "message": "成就",
+      "source": "0da6edc54cc8eb"
+    },
+    "game.freezes": {
+      "message": ".input {$count :number}\n{{{$count}張連續學習保護卡}}",
+      "source": "05212f0be9925b"
+    },
+    "game.gate.empty": {
+      "message": "你暫時用完了。可以溫習或練習錯題來補充，或者稍後再來。",
+      "source": "0b4148340a874a"
+    },
+    "game.gate.energy": {
+      "message": ".input {$count :number}\n{{{$count}點能量}}",
+      "source": "091f3dd93a2d53"
+    },
+    "game.gate.hearts": {
+      "message": ".input {$count :number}\n{{{$count}顆心}}",
+      "source": "1726dbe9c3df80"
+    },
+    "game.quests.done": {
+      "message": "已完成",
+      "source": "00609f822e0571"
+    },
+    "game.quests.progress": {
+      "message": ".input {$progress :number}\n.input {$target :number}\n{{{$progress}/{$target}}}",
+      "source": "0d4761709eb5eb"
+    },
+    "game.quests.title": {
+      "message": "今日任務",
+      "source": "1a11ce0273bd84"
+    },
+    "game.streak": {
+      "message": ".input {$days :number}\n{{連續學習{$days}天}}",
+      "source": "064a23222272c5"
+    },
+    "game.streak.longest": {
+      "message": ".input {$days :number}\n{{最長紀錄：{$days}天}}",
+      "source": "1d5d07e36c81e8"
+    },
+    "game.streak.today-done": {
+      "message": "你今日已經練習了。",
+      "source": "18248f36781962"
+    },
+    "game.streak.today-pending": {
+      "message": "今日練習一下，就能延續紀錄。",
+      "source": "1cc4f4ce2c152b"
+    },
+    "game.title": {
+      "message": "連續學習紀錄",
+      "source": "0fe67f53d96cb0"
+    },
+    "league.anonymous": {
+      "message": "一位學員",
+      "source": "13dd001d483e91"
+    },
+    "league.days-left": {
+      "message": ".input {$days :number}\n{{尚餘{$days}天}}",
+      "source": "1b4e8178f6f76c"
+    },
+    "league.join": {
+      "message": "本星期賺取 XP，即可加入聯賽。",
+      "source": "0d260077bc6e32"
+    },
+    "league.tier": {
+      "message": ".input {$tier :number}\n{{第{$tier}級}}",
+      "source": "1cd9ec062def13"
+    },
+    "league.title": {
+      "message": "聯賽",
+      "source": "02f1616b366536"
+    },
+    "league.xp": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "league.you": {
+      "message": "你",
+      "source": "1f107a64fd97ca"
+    },
+    "league.zone.demote": {
+      "message": "降級區",
+      "source": "04a040edad26bd"
+    },
+    "league.zone.promote": {
+      "message": "升級區",
+      "source": "1cdef66c79e45d"
+    },
+    "orthography.apc-Arab.standard": {
+      "message": "阿拉伯字母",
+      "source": "08f5b94b048129"
+    },
+    "orthography.apc-Latn.arabizi": {
+      "message": "Arabizi（拉丁字母和數字）",
+      "source": "078998ef01b429"
+    },
+    "orthography.fa-Arab.standard": {
+      "message": "波斯字母",
+      "source": "1a96004e1beccf"
+    },
+    "orthography.uz-Cyrl.standard": {
+      "message": "西里爾字母",
+      "source": "0c0f5c83735b6c"
+    },
+    "orthography.uz-Latn.standard": {
+      "message": "拉丁字母",
+      "source": "15289618d8a1e5"
+    },
+    "orthography.yue-Hant-HK.standard": {
+      "message": "繁體字",
+      "source": "0768e08b58f7c1"
+    },
+    "player.action.cant-listen": {
+      "message": "現在不能聽",
+      "source": "140179193b2176"
+    },
+    "player.action.cant-speak": {
+      "message": "現在不能說話",
+      "source": "083c23e03f8bbb"
+    },
+    "player.action.continue": {
+      "message": "繼續",
+      "source": "0f3baa7dcc6267"
+    },
+    "player.audio.label": {
+      "message": "音訊",
+      "source": "126a24a49284c5"
+    },
+    "player.audio.play": {
+      "message": "播放",
+      "source": "0db390678866e5"
+    },
+    "player.audio.slow": {
+      "message": "慢速播放",
+      "source": "17c237b40c535e"
+    },
+    "player.audio.synthetic": {
+      "message": "合成語音",
+      "source": "145cf67c7232e5"
+    },
+    "player.blank.label": {
+      "message": "空缺的詞語",
+      "source": "16b94a14d691a1"
+    },
+    "player.chars.label": {
+      "message": "特殊字元",
+      "source": "0c3a90360623f8"
+    },
+    "player.feedback.marked": {
+      "message": "（已標示不同之處）",
+      "source": "1ed6f7b2b14b4d"
+    },
+    "player.feedback.solution": {
+      "message": "正確答案：",
+      "source": "08f8d29ea3c01e"
+    },
+    "player.feedback.your-answer": {
+      "message": "你的答案：",
+      "source": "016b88025de79d"
+    },
+    "player.finished.score": {
+      "message": ".input {$correct :number}\n.input {$total :number}\n{{{$total}題中首次答對{$correct}題}}",
+      "source": "03cfbdcc54fdef"
+    },
+    "player.finished.stopped": {
+      "message": "這一課已中止",
+      "source": "06ab497db6712b"
+    },
+    "player.finished.title": {
+      "message": "完成這一課！",
+      "source": "1859634875e68d"
+    },
+    "player.finished.xp": {
+      "message": ".input {$xp :number}\n{{+{$xp} XP}}",
+      "source": "10d9c04ce5ff3f"
+    },
+    "player.instruction.char-read": {
+      "message": "這個詞怎樣讀？",
+      "source": "09f22944d314cc"
+    },
+    "player.instruction.choose-translation": {
+      "message": "這是甚麼意思？",
+      "source": "029357139d5ace"
+    },
+    "player.instruction.complete-translation": {
+      "message": "完成翻譯",
+      "source": "16e5c17e13aaec"
+    },
+    "player.instruction.gap-fill": {
+      "message": "填寫空格",
+      "source": "0fecadc0573056"
+    },
+    "player.instruction.listen-select": {
+      "message": "你聽到哪個詞語？",
+      "source": "046edf8832a029"
+    },
+    "player.instruction.listen-speak": {
+      "message": "聆聽，然後說出你聽到的內容",
+      "source": "0993ec028d7c01"
+    },
+    "player.instruction.listen-tap": {
+      "message": "選出你聽到的詞語",
+      "source": "1aee714f11c769"
+    },
+    "player.instruction.listen-type": {
+      "message": "輸入你聽到的內容",
+      "source": "12d6a6ad5522ac"
+    },
+    "player.instruction.match-pairs": {
+      "message": "找出相配的組合",
+      "source": "1e0c0c00e8ff2f"
+    },
+    "player.instruction.minimal-pair": {
+      "message": "仔細聽：是哪個詞語？",
+      "source": "1d3562cfb5e258"
+    },
+    "player.instruction.reading-disambiguation": {
+      "message": "標示的字在這裏怎樣讀？",
+      "source": "058ffba3d14972"
+    },
+    "player.instruction.select-image": {
+      "message": "選出正確的圖片",
+      "source": "042ade432b0d84"
+    },
+    "player.instruction.speak": {
+      "message": "大聲讀出來",
+      "source": "0b2d21b5ce3893"
+    },
+    "player.instruction.speak-scored": {
+      "message": "說出這個句子",
+      "source": "0faceee5e6c9b9"
+    },
+    "player.instruction.story-arrange": {
+      "message": "選出詞語，組成這句話",
+      "source": "17afd79420592e"
+    },
+    "player.instruction.story-choose": {
+      "message": "回答問題",
+      "source": "1d68038847012f"
+    },
+    "player.instruction.story-complete": {
+      "message": "選出缺少的詞語",
+      "source": "1acd299e07e3f4"
+    },
+    "player.instruction.tone-identify": {
+      "message": "你聽到哪個聲調？",
+      "source": "16db060d6d4816"
+    },
+    "player.instruction.transcribe": {
+      "message": "寫出這個詞的讀音",
+      "source": "17544047c67949"
+    },
+    "player.instruction.translate-into-support": {
+      "message": "翻譯這個句子",
+      "source": "0ca18e83db09fc"
+    },
+    "player.instruction.vocalize": {
+      "message": "加上元音符號",
+      "source": "041a63b98f57c1"
+    },
+    "player.key.mark.064b": {
+      "message": "雙開口符（fathatan）",
+      "source": "19c90ca7e61dbc"
+    },
+    "player.key.mark.064c": {
+      "message": "雙合口符（dammatan）",
+      "source": "1c0e6112bc94e9"
+    },
+    "player.key.mark.064d": {
+      "message": "雙齊齒符（kasratan）",
+      "source": "14cb0d65761146"
+    },
+    "player.key.mark.064e": {
+      "message": "開口符（fatha）",
+      "source": "19edd52ce12905"
+    },
+    "player.key.mark.064f": {
+      "message": "合口符（damma）",
+      "source": "117f1993aec79f"
+    },
+    "player.key.mark.0650": {
+      "message": "齊齒符（kasra）",
+      "source": "085f5bfa4255e7"
+    },
+    "player.key.mark.0651": {
+      "message": "疊音符（shadda）",
+      "source": "1bd8f09a19a5d5"
+    },
+    "player.key.mark.0652": {
+      "message": "靜符（sukun）",
+      "source": "0b6f2ac6b05bcb"
+    },
+    "player.key.mark.0670": {
+      "message": "上標阿立夫（superscript alef）",
+      "source": "1f05f6728a5d1c"
+    },
+    "player.key.zwj": {
+      "message": "{$short}：零寬連接符",
+      "source": "1dc058411d5d13"
+    },
+    "player.key.zwj.short": {
+      "message": "ZWJ",
+      "source": "039d40017eb1b2"
+    },
+    "player.key.zwnj": {
+      "message": "{$short}：半空格（零寬不連字）",
+      "source": "0163828ca074fa"
+    },
+    "player.key.zwnj.short": {
+      "message": "ZWNJ",
+      "source": "15560dc8d9cef8"
+    },
+    "player.listen.type-label": {
+      "message": "用{$language}輸入你聽到的內容",
+      "source": "098b06d063d843"
+    },
+    "player.loading": {
+      "message": "載入中……",
+      "source": "0e65697ec32c03"
+    },
+    "player.meaning.label": {
+      "message": "意思",
+      "source": "1031b11de169ce"
+    },
+    "player.options.label": {
+      "message": "答案選項",
+      "source": "1cfa5f47c656d4"
+    },
+    "player.pairs.meanings": {
+      "message": "意思",
+      "source": "0559e9f3993223"
+    },
+    "player.pairs.words": {
+      "message": "{$language}詞語",
+      "source": "0edc961ec0e09a"
+    },
+    "player.persons.addressee.f": {
+      "message": "對一位女性說",
+      "source": "1352530e5e09c1"
+    },
+    "player.persons.addressee.m": {
+      "message": "對一位男性說",
+      "source": "0599c0a50176ff"
+    },
+    "player.persons.addressee.pl": {
+      "message": "對多於一人說",
+      "source": "131e5e041dc353"
+    },
+    "player.persons.speaker.f": {
+      "message": "說話者是女性",
+      "source": "148a7788770a37"
+    },
+    "player.persons.speaker.m": {
+      "message": "說話者是男性",
+      "source": "166783a7b6c4f7"
+    },
+    "player.prompt.hint": {
+      "message": "翻譯",
+      "source": "04d57102a24465"
+    },
+    "player.prompt.meaning": {
+      "message": "意思",
+      "source": "1031b11de169ce"
+    },
+    "player.quit.body": {
+      "message": "你在這一課的進度將會失去。",
+      "source": "0ab86dd29faeef"
+    },
+    "player.quit.cancel": {
+      "message": "繼續學習",
+      "source": "059d6b2b56381d"
+    },
+    "player.quit.confirm": {
+      "message": "離開",
+      "source": "0cddcce51f726d"
+    },
+    "player.quit.title": {
+      "message": "要離開這一課嗎？",
+      "source": "16af157c41917c"
+    },
+    "player.speak.play": {
+      "message": "播放我的錄音",
+      "source": "00638b7d6dd048"
+    },
+    "player.speak.rate": {
+      "message": "說得怎樣？",
+      "source": "12e92974d023b1"
+    },
+    "player.speak.rate.again": {
+      "message": "說不出來",
+      "source": "0abcf340181aae"
+    },
+    "player.speak.rate.good": {
+      "message": "聽來正確",
+      "source": "1be066525c9821"
+    },
+    "player.speak.rate.hard": {
+      "message": "不確定",
+      "source": "0f6d88d0b8dd3e"
+    },
+    "player.speak.record": {
+      "message": "錄音",
+      "source": "04b73b25d3382c"
+    },
+    "player.speak.recording": {
+      "message": "錄音中……",
+      "source": "06cd071961c528"
+    },
+    "player.speak.stop": {
+      "message": "停止",
+      "source": "0889ad146e26ca"
+    },
+    "player.speak.unavailable": {
+      "message": "這裏無法錄音。你仍可大聲說出來，再自行評分。",
+      "source": "01f41cf321722f"
+    },
+    "player.speech.calibrating": {
+      "message": "待應用程式多聽一些你的聲音後，便會全面評估你的聲調。",
+      "source": "04d270eab2bdb9"
+    },
+    "player.speech.checking": {
+      "message": "正在聆聽你的錄音……",
+      "source": "15813131fb0d84"
+    },
+    "player.speech.contour-off": {
+      "message": "應為{$expected}",
+      "source": "131e09498776b2"
+    },
+    "player.speech.contour.falling": {
+      "message": "降調",
+      "source": "0848dae7b2526c"
+    },
+    "player.speech.contour.level": {
+      "message": "平調",
+      "source": "0986ab300ef7f4"
+    },
+    "player.speech.contour.rising": {
+      "message": "升調",
+      "source": "09844f2d86cbd8"
+    },
+    "player.speech.heard": {
+      "message": "我們聽到：",
+      "source": "0cf130000eb253"
+    },
+    "player.speech.partial": {
+      "message": "我們只聽到一部分。請試試說出整個句子，說慢一點。",
+      "source": "02399d82dbf8fc"
+    },
+    "player.speech.rate-instead": {
+      "message": "沒有麥克風：請自行評分",
+      "source": "1f32c806cf6468"
+    },
+    "player.speech.silent": {
+      "message": "我們聽不到任何聲音。請檢查麥克風，然後再試。",
+      "source": "09fb89d1ff926f"
+    },
+    "player.speech.tone-off": {
+      "message": ".input {$heard :number}\n.input {$expected :number}\n{{聽到第{$heard}聲，應為第{$expected}聲}}",
+      "source": "1e34116823fbfc"
+    },
+    "player.toggle.marks": {
+      "message": "顯示元音符號",
+      "source": "17bb7ce344c4e6"
+    },
+    "player.toggle.vertical": {
+      "message": "直排文字",
+      "source": "1fa81eb3e6f25e"
+    },
+    "player.tone.yue-jyutping.1": {
+      "message": "1 · 高平",
+      "source": "0eeda0fb5b3a04"
+    },
+    "player.tone.yue-jyutping.2": {
+      "message": "2 · 高升",
+      "source": "02fa98567b0205"
+    },
+    "player.tone.yue-jyutping.3": {
+      "message": "3 · 中平",
+      "source": "0911e5c7447f54"
+    },
+    "player.tone.yue-jyutping.4": {
+      "message": "4 · 低降",
+      "source": "1df41eb52dab37"
+    },
+    "player.tone.yue-jyutping.5": {
+      "message": "5 · 低升",
+      "source": "00ad4735faecfd"
+    },
+    "player.tone.yue-jyutping.6": {
+      "message": "6 · 低平",
+      "source": "0c9f5d02772e14"
+    },
+    "player.transcribe.label": {
+      "message": "讀音",
+      "source": "0acd9d880cd089"
+    },
+    "player.transcribe.label.jyutping": {
+      "message": "粵拼讀音",
+      "source": "0e6c8b2c872445"
+    },
+    "player.vocalize.label": {
+      "message": "加上元音符號的詞語",
+      "source": "09f512786abfe5"
+    },
+    "player.word.label": {
+      "message": "詞語",
+      "source": "05d88136696d61"
+    },
+    "player.wordbank.answer-label": {
+      "message": "你的答案",
+      "source": "196b73b49f8369"
+    },
+    "push.reminder.gentle.body": {
+      "message": "下一課隨時等你。",
+      "source": "0591105ca603b7"
+    },
+    "push.reminder.gentle.title": {
+      "message": "想練習一下嗎？",
+      "source": "1c220a31280718"
+    },
+    "push.reminder.quest.body": {
+      "message": "完成任務可獲額外 XP。",
+      "source": "099f028deec7c1"
+    },
+    "push.reminder.quest.title": {
+      "message": ".input {$count :number}\n{{今日還有{$count}個任務}}",
+      "source": "137c1318fa77dc"
+    },
+    "push.reminder.streak.body": {
+      "message": "今日花幾分鐘，就能延續紀錄。",
+      "source": "1b518ed886e847"
+    },
+    "push.reminder.streak.title": {
+      "message": ".input {$days :number}\n{{你的{$days}天連續學習紀錄正等着你}}",
+      "source": "0d83cc47879b43"
+    },
+    "quest.listen-5": {
+      "message": ".input {$target :number}\n{{答對{$target}題聽力練習}}",
+      "source": "0875f3506e2717"
+    },
+    "quest.perfect-1": {
+      "message": ".input {$target :number}\n{{零錯誤完成{$target}次練習}}",
+      "source": "037706a0d33b57"
+    },
+    "quest.produce-5": {
+      "message": ".input {$target :number}\n{{用你正在學的語言答對{$target}題}}",
+      "source": "0e5b60c37ddb77"
+    },
+    "quest.review-1": {
+      "message": ".input {$target :number}\n{{完成{$target}次溫習或錯題練習}}",
+      "source": "12c21ea415dbc6"
+    },
+    "quest.right-20": {
+      "message": ".input {$target :number}\n{{答對{$target}題}}",
+      "source": "03dc2539ace6f8"
+    },
+    "quest.sessions-2": {
+      "message": ".input {$target :number}\n{{完成{$target}次練習}}",
+      "source": "04508fc5457212"
+    },
+    "quest.story-1": {
+      "message": ".input {$target :number}\n{{讀完{$target}個故事}}",
+      "source": "007c06cc289b4d"
+    },
+    "quest.xp-30": {
+      "message": ".input {$target :number}\n{{賺取{$target} XP}}",
+      "source": "1f2468bc1998a6"
+    },
+    "reports.public": {
+      "message": "報告會以公開 GitHub issue 的形式送交課程審核員，不會附上你的名字或裝置資料。",
+      "source": "1e7d13dc2653d5"
+    },
+    "review.export": {
+      "message": ".input {$count :number}\n{{下載 {$count} 項確認}}",
+      "source": "116e4b8fe9a9b9"
+    },
+    "review.intro": {
+      "message": "審核中：確認內容無誤，並標示有錯的地方。你的確認會留在這部裝置上，直至你下載為止。",
+      "source": "18707c760522e3"
+    },
+    "review.looks-right": {
+      "message": "內容正確",
+      "source": "1105ecf4091a83"
+    },
+    "review.reviewed": {
+      "message": "已審核",
+      "source": "08791cd0d5daff"
+    },
+    "review.story-looks-right": {
+      "message": "整個故事正確",
+      "source": "15a8a0748ecef2"
+    },
+    "review.unit": {
+      "message": "確認本單元所有內容",
+      "source": "0de29eafac5899"
+    },
+    "story.finished.stopped": {
+      "message": "故事已中止",
+      "source": "151456f06b67ec"
+    },
+    "story.finished.title": {
+      "message": "故事讀完了！",
+      "source": "0649359022ea9b"
+    },
+    "story.gloss.hint": {
+      "message": "按一下詞語，即可查看意思。",
+      "source": "14e30eccbb11fb"
+    },
+    "story.gloss.label": {
+      "message": "詞語意思",
+      "source": "0f7d61f5dd66a4"
+    },
+    "story.gloss.lemma": {
+      "message": "詞典形式：",
+      "source": "06d03db42850b1"
+    },
+    "story.gloss.none": {
+      "message": "這個詞語暫時未有列出意思。",
+      "source": "1665d08d1fe646"
+    },
+    "story.gloss.part": {
+      "message": "詞語的一部分",
+      "source": "13b458312d8382"
+    },
+    "story.gloss.phrase": {
+      "message": "詞組",
+      "source": "135a248a87bda6"
+    },
+    "story.narration": {
+      "message": "旁白",
+      "source": "063db69c225753"
+    },
+    "story.transcript.label": {
+      "message": "目前為止的故事",
+      "source": "01267fdf008b55"
+    },
+    "story.translation.hide": {
+      "message": "隱藏翻譯",
+      "source": "065eaf87d9350b"
+    },
+    "story.translation.show": {
+      "message": "顯示翻譯",
+      "source": "02b713e9854aff"
+    }
+  }
+}
