@@ -298,7 +298,6 @@ class PiperProvider:
         self, engine: Any, raw: bytes, r: Request, route: list[tuple[str, bool]]
     ) -> Clip:
         """Each sentence on its own, the collapsing ones in the carrier, joined with the gap."""
-        np: Any = importlib.import_module("numpy")
         clips = [
             self._carried(engine, replace(r, input=part))
             if carried
@@ -306,7 +305,8 @@ class PiperProvider:
             for part, carried in route
         ]
         rate = clips[0].sample_rate
-        gap = np.zeros(rate * self.SENTENCE_GAP_MS // 1000, dtype=np.int16).tobytes()
+        # Silence: zero samples, two bytes each (s16le).
+        gap = bytes(2 * (rate * self.SENTENCE_GAP_MS // 1000))
         return Clip(gap.join(c.pcm for c in clips), rate, None, None)
 
     def _plain(self, engine: Any, raw: bytes, r: Request) -> Clip:
