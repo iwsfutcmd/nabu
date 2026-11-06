@@ -398,7 +398,8 @@
   padding-block: var(--nabu-space-2);
   padding-inline: var(--nabu-space-3);
   font: inherit;
-  font-size: 1.25rem;
+  /* An orthography set larger than the text around it is typed larger too (fonts.scale). */
+  font-size: calc(1.25rem * var(--nabu-input-scale, 1));
   border: 2px solid var(--nabu-color-border);
   border-radius: var(--nabu-radius-tile);
 }

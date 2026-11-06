@@ -120,6 +120,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
     ...(rubyLang === undefined ? {} : { "--nabu-ruby-font": fontStackFor(rubyLang).family }),
+    ...(font.scale === 1 ? {} : { "--nabu-text-scale": String(font.scale) }),
   } as CSSProperties;
   return (
     <Tag
@@ -129,6 +130,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
       data-nabu-text=""
       data-script={scriptOf(text.lang)}
       data-orthography={text.orthography}
+      data-scaled={font.scale === 1 ? undefined : ""}
       id={id}
       style={style}
     >

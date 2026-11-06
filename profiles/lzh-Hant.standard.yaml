@@ -25,5 +25,6 @@ annotations:
 input:
   ime: [os]
 layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }
-# The classics are set in a Ming (Song) face: Noto Serif CJK, Traditional Chinese.
-fonts: { stack: [Noto Serif TC, Noto Serif CJK TC, Noto Sans HK], lineHeight: 1.7 }
+# The classics are set in a Ming (Song) face: Noto Serif CJK, Traditional Chinese, a quarter larger
+# than the text around them (characters at the size of Latin text are hard to read).
+fonts: { stack: [Noto Serif TC, Noto Serif CJK TC, Noto Sans HK], lineHeight: 1.7, scale: 1.25 }

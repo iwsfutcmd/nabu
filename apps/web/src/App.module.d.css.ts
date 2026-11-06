@@ -44,6 +44,8 @@ declare const styles: {
   readonly offlineUnits: string;
   readonly page: string;
   readonly player: string;
+  readonly preferenceOption: string;
+  readonly preferenceOptions: string;
   readonly preview: string;
   readonly progress: string;
   readonly quest: string;

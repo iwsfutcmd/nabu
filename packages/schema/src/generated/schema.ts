@@ -2883,6 +2883,10 @@ export interface Fonts {
    */
   readonly stack: readonly string[];
   readonly lineHeight?: number;
+  /**
+   * How much larger than the text around it the orthography's text is set (1: the same). Han characters at the size of the Latin around them are hard to read: Classical Chinese is 1.25 (ADR 0071). The learner's text size preference scales both.
+   */
+  readonly scale?: number;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

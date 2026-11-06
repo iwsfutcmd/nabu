@@ -10,6 +10,8 @@ export interface FontStack {
   /** A CSS font-family value, quoted, ending with the generic family. */
   readonly family: string;
   readonly lineHeight: number;
+  /** How much larger than the text around it (1: the same); the profile's `fonts.scale`. */
+  readonly scale: number;
 }
 
 interface StackData {
@@ -29,12 +31,12 @@ export const fontStackFor = (tag: string, profileFonts?: Fonts): FontStack => {
   const byScript = script === undefined ? undefined : SCRIPTS[script];
   const stack = profileFonts?.stack ?? byScript?.stack ?? UI.default.stack;
   const lineHeight = profileFonts?.lineHeight ?? byScript?.lineHeight ?? UI.default.lineHeight;
-  return { family: css(stack), lineHeight };
+  return { family: css(stack), lineHeight, scale: profileFonts?.scale ?? 1 };
 };
 
 /** The stack for UI chrome in a UI locale. */
 export const uiFontStack = (uiLocale: string): FontStack => {
   const script = scriptOf(uiLocale);
   const data = (script !== undefined ? UI[script] : undefined) ?? UI.default;
-  return { family: css(data.stack), lineHeight: data.lineHeight };
+  return { family: css(data.stack), lineHeight: data.lineHeight, scale: 1 };
 };
