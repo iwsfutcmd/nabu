@@ -36,7 +36,7 @@ export interface Account {
 }
 
 /** Error codes from the server, plus the client's own. The UI turns them into messages. */
-export type SyncError = "invalid-email" | "weak-password" | "email-taken" | "wrong-credentials" | "unreachable" | "signed-out" | "rejected" | "unknown";
+export type SyncError = "invalid-email" | "weak-password" | "email-taken" | "wrong-credentials" | "rate-limited" | "unreachable" | "signed-out" | "rejected" | "unknown";
 
 export interface SyncState {
   /** The sync server, if this build or URL names one: without it the app is local-only. */
@@ -60,6 +60,10 @@ export interface Sync {
   readonly signUp: (email: string, password: string) => Promise<SyncError | undefined>;
   readonly signIn: (email: string, password: string) => Promise<SyncError | undefined>;
   readonly signOut: () => Promise<void>;
+  /** Everything the server holds for the account (§14.4), as GET /v1/export gives it. */
+  readonly exportAccount: () => Promise<{ readonly ok: true; readonly data: unknown } | { readonly ok: false; readonly error: SyncError }>;
+  /** Deletes the account and its data on the server (the password confirms it); this device keeps its progress. */
+  readonly deleteAccount: (password: string) => Promise<SyncError | undefined>;
   /** Sync soon (debounced), e.g. after recording an event. */
   readonly schedule: () => void;
   readonly syncNow: () => Promise<void>;
@@ -71,6 +75,7 @@ const CURSOR = "cursor";
 const errorOf = (e: unknown): SyncError => {
   if (isHttpError(e)) {
     if (e.status === 401 && e.code === "unauthorized") return "signed-out";
+    if (e.status === 429) return "rate-limited";
     const known: readonly SyncError[] = ["invalid-email", "weak-password", "email-taken", "wrong-credentials"];
     if (known.includes(e.code as SyncError)) return e.code as SyncError;
     return e.status === 400 ? "rejected" : "unknown";
@@ -248,6 +253,13 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     }
   };
 
+  /** This device no longer has an account: the session and the sync cursor go; its own log stays. */
+  const forget = async (): Promise<void> => {
+    await store.deleteMeta(ACCOUNT);
+    await store.deleteMeta(CURSOR);
+    set({ account: undefined, phase: "idle", error: undefined, verified: undefined });
+  };
+
   let timer: ReturnType<typeof setTimeout> | undefined;
   const schedule = (): void => {
     void store.pendingCount().then((pending) => set({ pending }));
@@ -283,9 +295,28 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     signOut: async () => {
       const account = state.account;
       if (account !== undefined) await request(account.server, "/v1/auth/sign-out", { token: account.token, body: {} }).catch(() => undefined);
-      await store.deleteMeta(ACCOUNT);
-      await store.deleteMeta(CURSOR);
-      set({ account: undefined, phase: "idle", error: undefined, verified: undefined });
+      await forget();
+    },
+    exportAccount: async () => {
+      const account = state.account;
+      if (account === undefined) return { ok: false, error: "signed-out" };
+      try {
+        return { ok: true, data: await request<unknown>(account.server, "/v1/export", { token: account.token }) };
+      } catch (e) {
+        return { ok: false, error: errorOf(e) };
+      }
+    },
+    deleteAccount: async (password) => {
+      const account = state.account;
+      if (account === undefined) return "signed-out";
+      try {
+        await request(account.server, "/v1/account", { token: account.token, method: "DELETE", body: { password } });
+      } catch (e) {
+        return errorOf(e);
+      }
+      // The session went with the account: forget it here too, as signing out does.
+      await forget();
+      return undefined;
     },
     schedule,
     syncNow,

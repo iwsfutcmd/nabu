@@ -4,6 +4,8 @@
  *   signs up: the server's projections are identical to the device's.
  * - The offline queue survives a page reload, and drains when the server is
  *   back.
+ * - Phase 11 (§14.4): a learner downloads what the server keeps for the account, then deletes
+ *   it; the server forgets them and the device keeps its progress.
  */
 import { replay } from "@nabu/core/learner";
 import { lessonNodes } from "@nabu/core/lesson";
@@ -149,5 +151,53 @@ test.describe("sync", () => {
     await expect(status).toHaveAttribute("data-verified", "true");
     const server = await serverState(page, email, password);
     expect(server.events).toBe((await logOf(page, "fa")).length);
+  });
+
+  test("a learner downloads their account's data, then deletes the account", async ({ page }) => {
+    const now = new Date("2026-04-07T08:15:00Z");
+    await page.clock.setFixedTime(now);
+    await page.goto(app("#/"));
+    await expect(page.locator("[data-progress]")).toBeVisible();
+    const email = "دلارام@example.com";
+    const password = "یک رمز بلند";
+    await signUp(page, email, password);
+    const status = page.locator("[data-sync-status]");
+    await expect(status).toHaveAttribute("data-sync-status", "saved");
+    await coursePath(page);
+    await session(page, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
+    await home(page);
+    await expect(status).toHaveAttribute("data-pending", "0");
+    await expect(status).toHaveAttribute("data-verified", "true");
+    const local = (await logOf(page, "fa")).length;
+
+    // Everything the server keeps, as one file.
+    const downloading = page.waitForEvent("download");
+    await page.locator("[data-action=export-account]").click();
+    const file = await downloading;
+    expect(file.suggestedFilename()).toBe("nabu-account.json");
+    const chunks: Buffer[] = [];
+    for await (const chunk of await file.createReadStream()) chunks.push(chunk as Buffer);
+    const data = JSON.parse(Buffer.concat(chunks).toString("utf8")) as { user: { email: string }; events: unknown[]; courses: { course: string }[] };
+    expect(data.user.email).toBe(email);
+    expect(data.events).toHaveLength(local);
+    expect(data.courses.map((c) => c.course)).toEqual(["fa"]);
+
+    // Deleting asks for the password again, and says what goes.
+    await page.locator("[data-action=delete-account]").click();
+    await expect(page.locator("[data-delete-account]")).toBeVisible();
+    const axe = (await new AxeBuilder({ page }).include("[data-account-data]").analyze()).violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+    expect(axe.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    await page.locator("[data-field=delete-password]").fill("not my password");
+    await page.locator("[data-action=delete-account-confirm]").click();
+    await expect(page.locator("[data-account-data-error]")).toHaveAttribute("data-account-data-error", "wrong-credentials");
+    await page.locator("[data-field=delete-password]").fill(password);
+    await page.locator("[data-action=delete-account-confirm]").click();
+    await expect(page.locator("[data-account-deleted]")).toBeVisible();
+    await expect(page.locator("[data-account-form]")).toBeVisible();
+
+    // The server no longer knows them; this device keeps its progress.
+    const signIn = await page.request.post(`${API}/v1/auth/sign-in`, { data: { email, password } });
+    expect(signIn.status()).toBe(401);
+    expect(await logOf(page, "fa")).toHaveLength(local);
   });
 });

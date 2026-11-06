@@ -225,10 +225,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - `persons` on a sentence (ADR 0056: speaker m/f, addressee m/f/pl) is shown as tags under l1-l2 prompts; tag
   where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
 
+## Account data notes (see docs/adr/0067)
+- `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must
+  be in both. Deleting asks for the password; the device keeps its log.
+- Abuse limits (src/limits.ts): sign-up, sign-in, uploads; 429 + Retry-After. `NABU_RATE_LIMITS=off` (the e2e API sets it),
+  `NABU_TRUST_PROXY=1` only behind a proxy the instance runs.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0066 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0067 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

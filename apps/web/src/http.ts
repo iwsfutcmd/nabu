@@ -11,7 +11,7 @@ const httpError = (status: number, code: string | undefined, detail?: unknown): 
 export const isHttpError = (e: unknown): e is HttpError => e instanceof Error && (e as Partial<HttpError>).kind === "http";
 
 /** A JSON request to the sync server; errors carry the HTTP status and the server's error code. */
-export const request = async <T>(server: string, path: string, init: { token?: string; body?: unknown; method?: "GET" | "POST" | "PUT" } = {}): Promise<T> => {
+export const request = async <T>(server: string, path: string, init: { token?: string; body?: unknown; method?: "GET" | "POST" | "PUT" | "DELETE" } = {}): Promise<T> => {
   const response = await fetch(`${server}${path}`, {
     method: init.method ?? (init.body === undefined ? "GET" : "POST"),
     headers: {
