@@ -8,6 +8,8 @@
  *   POST /v1/auth/sign-in              {email, password} → {user, token}
  *   POST /v1/auth/sign-out
  *   GET  /v1/auth/me
+ *   GET  /v1/export                    everything the account holds, as one JSON file (§14.4)
+ *   DELETE /v1/account                 {password}: deletes the account and its data (§14.4)
  *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor}
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
@@ -29,6 +31,9 @@
  *
  * Authenticated routes take `Authorization: Bearer <token>`. No cookies, so
  * any origin may call it (CORS *) without exposing a session to CSRF.
+ *
+ * Abuse limits (limits.ts): sign-up by client address, sign-in by address and by account, uploads
+ * by user. Over a limit: 429 with Retry-After.
  */
 import { DEFAULT_UI_LOCALE, directionOf, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import { timingSafeEqual } from "node:crypto";
@@ -37,7 +42,7 @@ import { cors } from "hono/cors";
 import { DEFAULT_GAME, type GameConfig, type LeagueConfig } from "@nabu/core/game";
 import type { CorrectionStatus, EvalGate, ReportStatus } from "@nabu/schema";
 import { and, eq } from "drizzle-orm";
-import type { Account, Accounts } from "./accounts.ts";
+import { normalizeEmail, type Account, type Accounts } from "./accounts.ts";
 import type { Courses } from "./ai/courses.ts";
 import type { Gateway } from "./ai/gateway.ts";
 import { aiRoutes } from "./ai/routes.ts";
@@ -48,6 +53,8 @@ import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
 import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
+import { createLimiter, type Limits } from "./limits.ts";
+import { deleteAccount, exportOf } from "./privacy.ts";
 import { getProfile, setProfile } from "./profiles.ts";
 import { CORRECTION_STATUSES, fileCorrection, listCorrections, setCorrectionStatus } from "./corrections.ts";
 import { fileReport, listReports, setStatus, STATUSES } from "./reports.ts";
@@ -72,6 +79,10 @@ export interface AppDeps {
   readonly game?: GameConfig | undefined;
   /** The speech service (Phase 9): its URL and how to reach it. Needs `ai` for courses and hashing. */
   readonly speech?: { readonly url: string | undefined; readonly transport: Transport; readonly budget?: number } | undefined;
+  /** Abuse limits (unset: none; main.ts sets DEFAULT_LIMITS unless the environment says otherwise). */
+  readonly limits?: Limits | undefined;
+  /** The client's address, for the limits by address (main.ts: the socket, or X-Forwarded-For behind a proxy). */
+  readonly clientOf?: ((c: Context) => string | undefined) | undefined;
 }
 
 export type Env = { Variables: { user: Account; token: string } };
@@ -127,9 +138,25 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {} }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined }: AppDeps) => {
   const app = new Hono<Env>();
-  app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT"], maxAge: 600 }));
+  app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT", "DELETE"], exposeHeaders: ["Retry-After"], maxAge: 600 }));
+  const limiter = (l: Limits[keyof Limits]): ((key: string) => ReturnType<ReturnType<typeof createLimiter>>) => (l === undefined ? () => ({ ok: true }) : createLimiter(l, now));
+  const signUps = limiter(limits.signUp);
+  const signIns = limiter(limits.signIn);
+  const uploads = limiter(limits.events);
+  /** The first of `keys` over its limit, as a 429; undefined when all are within theirs. */
+  const overLimit = (c: Context, check: (key: string) => ReturnType<typeof signUps>, keys: readonly (string | undefined)[]): Response | undefined => {
+    for (const key of keys) {
+      if (key === undefined) continue;
+      const v = check(key);
+      if (!v.ok) {
+        c.header("Retry-After", String(v.retryAfterSeconds));
+        return c.json({ error: "rate-limited", retryAfter: v.retryAfterSeconds }, 429);
+      }
+    }
+    return undefined;
+  };
   app.route("/", publicRoutes);
 
   // The review queue, for reviewers only. No CORS: reviewers use tools, not the learner app.
@@ -185,6 +212,8 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
   }
 
   app.post("/v1/auth/sign-up", async (c) => {
+    const limited = overLimit(c, signUps, [`addr:${clientOf(c) ?? "unknown"}`]);
+    if (limited !== undefined) return limited;
     const body = await credentials(c);
     if (body === undefined) return c.json({ error: "invalid-request" }, 400);
     const result = await accounts.signUp(body.email, body.password);
@@ -194,6 +223,10 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
   app.post("/v1/auth/sign-in", async (c) => {
     const body = await credentials(c);
     if (body === undefined) return c.json({ error: "invalid-request" }, 400);
+    // By address (one client trying many accounts) and by account (many clients trying one).
+    const email = normalizeEmail(body.email);
+    const limited = overLimit(c, signIns, [`addr:${clientOf(c) ?? "unknown"}`, email === undefined ? undefined : `account:${email}`]);
+    if (limited !== undefined) return limited;
     const result = await accounts.signIn(body.email, body.password);
     return result.ok ? c.json(result.value) : c.json({ error: result.error }, 401);
   });
@@ -216,8 +249,28 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
 
   app.get("/v1/auth/me", (c) => c.json({ user: c.get("user") }));
 
+  // A learner's own data (§14.4): all of it, and deleting it.
+  const subjectOf = async (user: string): Promise<string | undefined> => (ai === undefined ? undefined : ai.gateway.subjectOf(user));
+  app.get("/v1/export", async (c) => {
+    const user = c.get("user").id;
+    const data = await exportOf(db, user, await subjectOf(user), game, new Date(now()));
+    if (data === undefined) return c.json({ error: "not-found" }, 404);
+    c.header("Content-Disposition", `attachment; filename="nabu-account-${data.exportedAt.slice(0, 10)}.json"`);
+    return c.json(data);
+  });
+  app.delete("/v1/account", async (c) => {
+    const user = c.get("user").id;
+    const b = await body(c);
+    const password = b?.["password"];
+    // A session is not enough: deleting asks for the password again.
+    if (typeof password !== "string" || !(await accounts.confirm(user, password))) return c.json({ error: "wrong-credentials" }, 403);
+    return (await deleteAccount(db, user, await subjectOf(user))) ? c.body(null, 204) : c.json({ error: "not-found" }, 404);
+  });
+
   app.post("/v1/events", async (c) => {
     const user = c.get("user").id;
+    const limited = overLimit(c, uploads, [`user:${user}`]);
+    if (limited !== undefined) return limited;
     const checked = checkBatch(await c.req.json().catch(() => undefined), user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
     // Only the server issues revisions (§8.3): a device may hand back one it was given, never a new one.

@@ -63,10 +63,10 @@ These cannot be done in code. Each one gates something below.
   - **Running a server:** migrations run on start, and backups (`pg_dump`) and upgrades are
     documented. The API checks `NABU_GAME` at startup.
   - **Privacy** (§14.4):
-    - export of a learner's server data (events and projections);
-    - deleting an account, which recomputes shared aggregates;
+    - export of a learner's server data (events and projections) (done: [ADR 0067](adr/0067-account-data-and-limits.md));
+    - deleting an account, which recomputes shared aggregates (done: ADR 0067);
     - an optional age gate for instances that may serve minors.
-  - **Abuse limits:** rate limits on sign-up, sign-in and uploads.
+  - **Abuse limits:** rate limits on sign-up, sign-in and uploads (done: ADR 0067).
   - **CI:**
     - the API tests also run against real Postgres (today they run on PGlite only);
     - a license check that fails on copyleft code in what ships (§17);

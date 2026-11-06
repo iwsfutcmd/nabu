@@ -146,9 +146,37 @@
       "message": "Create account",
       "description": "Button that creates an account and uploads the progress on this device."
     },
+    "app.account.data": {
+      "message": "Your account's data",
+      "description": "Heading of the section that downloads or deletes what the server keeps for the account."
+    },
+    "app.account.delete": {
+      "message": "Delete my account",
+      "description": "Button that opens the form for deleting the account and its data on the server."
+    },
+    "app.account.delete-cancel": {
+      "message": "Keep my account",
+      "description": "Button that closes the delete-account form without deleting anything."
+    },
+    "app.account.delete-confirm": {
+      "message": "Delete my account for good",
+      "description": "Button that deletes the account and its data on the server. It cannot be undone."
+    },
+    "app.account.delete-note": {
+      "message": "This deletes your account and everything the server keeps for it: your synced progress, your profile and your league places. It cannot be undone. Your progress on this device stays. Enter your password to confirm.",
+      "description": "Explains what deleting the account does, above the password field that confirms it."
+    },
+    "app.account.deleted": {
+      "message": "Your account is deleted, with its data on the server. Your progress on this device stays.",
+      "description": "Shown after the account was deleted."
+    },
     "app.account.email": {
       "message": "Email",
       "description": "Label of the email address field."
+    },
+    "app.account.export": {
+      "message": "Download my account data",
+      "description": "Button that downloads, as one file, everything the server keeps for the account."
     },
     "app.account.have-account": {
       "message": "I already have an account",
@@ -193,6 +221,10 @@
     "app.error.account.invalid-email": {
       "message": "Enter a valid email address.",
       "description": "Shown when the email address is not valid."
+    },
+    "app.error.account.rate-limited": {
+      "message": "Too many tries. Wait a few minutes and try again.",
+      "description": "Shown when the server refuses more sign-ins or sign-ups for a while."
     },
     "app.error.account.rejected": {
       "message": "The server didn't accept some of your progress.",

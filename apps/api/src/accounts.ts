@@ -33,6 +33,8 @@ export interface Accounts {
   readonly signIn: (email: string, password: string) => Promise<Result<SignedIn, AccountError>>;
   readonly signOut: (token: string) => Promise<void>;
   readonly userOf: (token: string) => Promise<Account | undefined>;
+  /** Whether `password` is the user's: what deleting an account asks for, beyond a session. */
+  readonly confirm: (user: string, password: string) => Promise<boolean>;
 }
 
 /** Shortest password, in user-perceived characters (grapheme clusters). */
@@ -117,6 +119,10 @@ export const createAccounts = (db: Db, now: () => Date = () => new Date()): Acco
         .innerJoin(users, eq(users.id, authSessions.userId))
         .where(and(eq(authSessions.tokenHash, tokenHash(token)), gt(authSessions.expiresAt, now())));
       return row;
+    },
+    confirm: async (user, password) => {
+      const [row] = await db.select({ passwordHash: users.passwordHash }).from(users).where(eq(users.id, user));
+      return row !== undefined && (await verifyPassword(password, row.passwordHash));
     },
   };
 };

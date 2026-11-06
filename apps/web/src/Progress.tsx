@@ -29,21 +29,100 @@ const ERRORS = {
   "weak-password": "app.error.account.weak-password",
   "email-taken": "app.error.account.email-taken",
   "wrong-credentials": "app.error.account.wrong-credentials",
+  "rate-limited": "app.error.account.rate-limited",
   unreachable: "app.error.account.unreachable",
   "signed-out": "app.error.account.signed-out",
   rejected: "app.error.account.rejected",
   unknown: "app.error.account.unknown",
 } as const satisfies Record<SyncError, string>;
 
-const download = async (store: EventStore): Promise<void> => {
-  const events = await store.allEvents();
-  const blob = new Blob(events.map((e) => `${JSON.stringify(e)}\n`), { type: "application/x-ndjson" });
+const save = (blob: Blob, name: string): void => {
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
-  a.download = "nabu-events.jsonl";
+  a.download = name;
   a.click();
   URL.revokeObjectURL(url);
+};
+
+const download = async (store: EventStore): Promise<void> => {
+  const events = await store.allEvents();
+  save(new Blob(events.map((e) => `${JSON.stringify(e)}\n`), { type: "application/x-ndjson" }), "nabu-events.jsonl");
+};
+
+/**
+ * What the server keeps for the account (§14.4): download all of it, or delete the account. Deleting
+ * asks for the password, says what goes and what stays, and cannot be undone.
+ */
+const AccountData = ({ sync, onDeleted }: { sync: Sync; onDeleted: () => void }): JSX.Element => {
+  const t = useTranslator();
+  const [deleting, setDeleting] = useState(false);
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<SyncError | undefined>(undefined);
+  const [busy, setBusy] = useState(false);
+  const exportData = (): void => {
+    setBusy(true);
+    void sync.exportAccount().then((result) => {
+      setBusy(false);
+      if (result.ok) save(new Blob([JSON.stringify(result.data, null, 2)], { type: "application/json" }), "nabu-account.json");
+      setError(result.ok ? undefined : result.error);
+    });
+  };
+  const submit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    if (busy) return;
+    setBusy(true);
+    void sync.deleteAccount(password).then((result) => {
+      setBusy(false);
+      setError(result);
+      if (result === undefined) onDeleted();
+    });
+  };
+  return (
+    <div className={styles.voice} data-account-data="">
+      <h3 className={styles.subheading}>{t.format("app.account.data")}</h3>
+      <div className={styles.links}>
+        <Button className={styles.textButton} onPress={exportData} isDisabled={busy} data-action="export-account">
+          {t.format("app.account.export")}
+        </Button>
+        {!deleting && (
+          <Button className={styles.textButton} onPress={() => setDeleting(true)} data-action="delete-account">
+            {t.format("app.account.delete")}
+          </Button>
+        )}
+      </div>
+      {deleting && (
+        <Form className={styles.form} onSubmit={submit} data-delete-account="">
+          <p className={styles.formIntro}>{t.format("app.account.delete-note")}</p>
+          <TextField className={styles.field} value={password} onChange={setPassword} isRequired type="password" autoComplete="current-password" name="password">
+            <Label className={styles.label}>{t.format("app.account.password")}</Label>
+            <Input className={styles.input} dir="auto" data-field="delete-password" />
+          </TextField>
+          <div className={styles.links}>
+            <Button className={styles.dangerButton} type="submit" isDisabled={busy} data-action="delete-account-confirm">
+              {t.format("app.account.delete-confirm")}
+            </Button>
+            <Button
+              className={styles.textButton}
+              onPress={() => {
+                setDeleting(false);
+                setPassword("");
+                setError(undefined);
+              }}
+              data-action="delete-account-cancel"
+            >
+              {t.format("app.account.delete-cancel")}
+            </Button>
+          </div>
+        </Form>
+      )}
+      {error !== undefined && (
+        <p className={styles.notice} role="alert" data-account-data-error={error}>
+          {t.format(ERRORS[error], { min: MIN_PASSWORD })}
+        </p>
+      )}
+    </div>
+  );
 };
 
 const Status = ({ state }: { state: SyncState }): JSX.Element => {
@@ -126,12 +205,18 @@ const AccountForm = ({ sync }: { sync: Sync }): JSX.Element => {
 export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JSX.Element => {
   const t = useTranslator();
   const state = useSyncExternalStore(sync.subscribe, sync.get);
+  const [deleted, setDeleted] = useState(false);
   return (
     <section className={`${styles.course} ${styles.progress}`} data-progress="" aria-labelledby="progress-title">
       <h2 className={styles.courseName} id="progress-title">
         {t.format("app.progress.title")}
       </h2>
       <p className={styles.muted}>{t.format(store.persistent ? "app.progress.device" : "app.store.memory")}</p>
+      {deleted && state.account === undefined && (
+        <p className={styles.notice} role="status" data-account-deleted="">
+          {t.format("app.account.deleted")}
+        </p>
+      )}
       {state.server !== undefined &&
         (state.account === undefined ? (
           <AccountForm sync={sync} />
@@ -146,6 +231,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
             <Button className={styles.textButton} onPress={() => void sync.signOut()} data-action="sign-out">
               {t.format("app.account.sign-out")}
             </Button>
+            <AccountData sync={sync} onDeleted={() => setDeleted(true)} />
           </div>
         ))}
       <div className={styles.links}>

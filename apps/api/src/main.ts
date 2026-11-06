@@ -9,6 +9,9 @@
  *   NABU_VAPID_SUBJECT          mailto: or https: contact for push services
  *   NABU_VAPID_PRIVATE_JWK      VAPID key (else generated once and kept in the database)
  *   NABU_TEST_HOOKS=1           test-only routes: a push sink and a job runner (never in production)
+ *   NABU_RATE_LIMITS=off        no abuse limits (default on: limits.ts DEFAULT_LIMITS)
+ *   NABU_RATE_LIMIT_SIGN_UP, _SIGN_IN, _EVENTS   one limit as <max>/<seconds>, e.g. 5/3600
+ *   NABU_TRUST_PROXY=1          the client address is the first X-Forwarded-For entry (behind a proxy you run)
  *
  * AI (gameplan §13; ai/providers.ts lists the model settings):
  *   NABU_LLM, NABU_LLM_MODEL, NABU_LLM_URL, NABU_LLM_KEY   the model (unset: every AI feature off)
@@ -27,6 +30,7 @@
  *   NABU_GAME                   the game rules: the game.json the web app is deployed with (default: the defaults)
  */
 import { serve } from "@hono/node-server";
+import { getConnInfo } from "@hono/node-server/conninfo";
 import { DEFAULT_GAME, DEFAULT_LEAGUE, gameConfig } from "@nabu/core/game";
 import { createAccounts } from "./accounts.ts";
 import { readFileSync } from "node:fs";
@@ -36,6 +40,7 @@ import { createCourses, DEFAULT_BUNDLES } from "./ai/courses.ts";
 import { createGateway, DEFAULT_BUDGETS, validAi } from "./ai/gateway.ts";
 import { providerFromEnv } from "./ai/providers.ts";
 import { createApp } from "./app.ts";
+import { limitsFromEnv } from "./limits.ts";
 import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
 import { nativeSendersFromEnv } from "./nativepush.ts";
@@ -86,6 +91,10 @@ const app = createApp({
   speech: { url: speechUrl, transport: (url, init) => fetch(url, init) },
   game,
   native,
+  limits: limitsFromEnv(env),
+  // Behind a proxy every request comes from it: then the address it forwards counts, and only then,
+  // as anyone can send that header.
+  clientOf: (c) => (on("NABU_TRUST_PROXY") ? c.req.header("x-forwarded-for")?.split(",")[0]?.trim() : getConnInfo(c).remote.address) || undefined,
 });
 
 /** The periodic jobs: league rollover and reminders. */
