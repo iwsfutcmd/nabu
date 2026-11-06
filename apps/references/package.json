@@ -1,0 +1,18 @@
+{
+  "name": "@nabu/references",
+  "version": "0.0.0",
+  "private": true,
+  "description": "The reference library relay (ADR 0075): a Cloudflare Worker that reads and writes one Google Drive folder of grammars, dictionaries and notes for course authors. Never part of the app.",
+  "license": "MIT OR Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "deploy": "npx --yes wrangler@4 deploy"
+  },
+  "devDependencies": {
+    "typescript": "~6.0.3",
+    "vitest": "^5.1.0"
+  }
+}

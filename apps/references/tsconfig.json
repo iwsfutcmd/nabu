@@ -1,0 +1,6 @@
+{
+  "extends": "../../tsconfig.base.json",
+  // A Worker has the web platform (fetch, crypto.subtle, URL), not Node.
+  "compilerOptions": { "lib": ["esnext", "dom"] },
+  "include": ["src", "test", "vitest.config.ts"]
+}
