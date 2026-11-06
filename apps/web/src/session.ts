@@ -59,7 +59,7 @@ const eventRecorder = ({
   const session = uuidv7();
   const request = plan?.request;
   // Retries ("…#2") were not planned: they carry no prediction.
-  const predictions = new Map((plan?.exercises ?? []).map((ex, i) => [ex.id, plan?.predictions[i]]));
+  const predictions = new Map<string, number | undefined>([...(plan?.exercises ?? []).map((ex, i) => [ex.id, plan?.predictions[i]] as const), ...Object.entries(plan?.placement?.predictions ?? {})]);
   let presentedAt = performance.now();
   const firstTry = new Map<string, boolean>();
   return (e) => {
@@ -68,7 +68,7 @@ const eventRecorder = ({
     if (e.type === "answer_submitted" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, isCorrect(e.graded.verdict));
     if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
     const placed =
-      e.type === "session_completed" && plan !== undefined && request?.mode === "placement" && e.summary.completed ? placementOf({ exercises: plan.exercises, probes: plan.probes ?? [] }, firstTry) : undefined;
+      e.type === "session_completed" && plan?.placement !== undefined && request?.mode === "placement" && e.summary.completed ? placementOf(plan.placement, firstTry) : undefined;
     const p = e.type === "exercise_presented" || e.type === "answer_submitted" ? predictions.get(e.ex.id) : undefined;
     const prediction: Prediction | undefined = p === undefined ? undefined : { p, model: PERFORMANCE_MODEL };
     const event = learnerEventOf(

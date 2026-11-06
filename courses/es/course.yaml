@@ -11,4 +11,6 @@ provenance: {author: 'llm:claude@1ebc6e7db77a', status: draft}
 # A Spanish verb is fusional: a new verb in a new tense is two KCs on one word (sense + form), so a
 # sentence may bring in two.
 iPlusOne: 2
+# Placement (ADR 0075) has production typed, so it also checks spelling and accent marks.
+placement: {production: typed}
 units: [units/u01-que-bola.yaml]

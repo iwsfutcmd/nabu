@@ -7,6 +7,7 @@
  * draft is stored exactly as typed. Only `compositionend` settles text.
  */
 import type { Verdict } from "../match/grade.ts";
+import { runTest, type AdaptiveTest } from "./adaptive.ts";
 import type { SpeechResult } from "../speech/score.ts";
 import { isCorrect, type Exercise, type Outcome, type Response, type SelfRating, type SkipReason, type TemplateId } from "./exercise.ts";
 import { solutionOf, TEMPLATES } from "./templates.ts";
@@ -39,10 +40,19 @@ export interface Session {
   readonly excluded: readonly TemplateId[];
   /** Missed exercises come back at the end (default). A placement test asks each question once. */
   readonly retries?: boolean;
+  /**
+   * An adaptive test (ADR 0075): after each answer, the exercises still to come are the test's
+   * next ones for the first-try answers so far. Its exercises are asked once (no retries).
+   */
+  readonly adaptive?: AdaptiveTest;
+  /** Adaptive tests: at most this many exercises after the queue, for the progress bar. */
+  readonly later?: number;
 }
 
 export interface StartOptions {
   readonly retries?: boolean;
+  /** Ask this adaptive test (ADR 0075); `exercises` should be what it asks first. */
+  readonly adaptive?: AdaptiveTest;
 }
 
 export interface SessionSummary {
@@ -187,7 +197,8 @@ export const summarize = (session: Session, completed: boolean): SessionSummary 
   const first = session.results.filter((r) => !r.retry);
   return {
     completed,
-    exercises: session.planned,
+    // An adaptive test plans as it goes: its size is what it asked.
+    exercises: session.adaptive === undefined ? session.planned : session.queue.length,
     correctFirstTry: first.filter((r) => isCorrect(r.verdict)).length,
     retries: session.results.filter((r) => r.retry).length,
     skipped: session.results.filter((r) => r.verdict === "SKIPPED").length,
@@ -196,7 +207,8 @@ export const summarize = (session: Session, completed: boolean): SessionSummary 
 
 /** Starts a lesson. Mistakes come back at the end of the lesson until answered. */
 export const start = (lesson: string, exercises: readonly Exercise[], options: StartOptions = {}): readonly [PlayerState, readonly Effect[]] => {
-  const session: Session = { lesson, queue: exercises, position: 0, planned: exercises.length, results: [], excluded: [], ...(options.retries === false ? { retries: false } : {}) };
+  const adaptive = options.adaptive === undefined ? {} : { adaptive: options.adaptive, retries: false, later: runTest(options.adaptive, new Map()).later };
+  const session: Session = { lesson, queue: exercises, position: 0, planned: exercises.length, results: [], excluded: [], ...(options.retries === false ? { retries: false } : {}), ...adaptive };
   const [state, effects] = present(session);
   return [state, [{ tag: "emit", event: { type: "session_started", lesson, exercises: exercises.length } }, ...effects]];
 };
@@ -205,8 +217,15 @@ export const start = (lesson: string, exercises: readonly Exercise[], options: S
 /** Speaking is not brought back (a recording is feedback, not a test), nor are pairs. */
 const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mic && ex.template !== "match-pairs";
 
+/** First tries so far: exercise id → right. A skip counts as a miss. */
+const firstTries = (session: Session): ReadonlyMap<string, boolean> => new Map(session.results.filter((r) => !r.retry).map((r) => [r.exercise, isCorrect(r.verdict)]));
+
 const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerState, readonly Effect[]] => {
   const { session, ex, outcome } = state;
+  if (session.adaptive !== undefined) {
+    const run = runTest(session.adaptive, firstTries(session));
+    return present({ ...session, queue: [...session.queue.slice(0, session.position + 1), ...run.next], position: session.position + 1, later: run.later });
+  }
   const again = session.retries !== false && !isCorrect(outcome.verdict) && outcome.skipped !== "cant-speak" && outcome.skipped !== "cant-listen" && retryable(ex);
   const attempt = session.queue.filter((e) => e.item === ex.item && e.template === ex.template).length + 1;
   const queue = again ? [...session.queue, { ...ex, id: `${ex.id.split("#")[0] as string}#${attempt}` }] : session.queue;
@@ -312,5 +331,5 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
 export const progressOf = (state: PlayerState): { readonly done: number; readonly total: number } => {
   const { session } = state;
   const done = state.tag === "finished" ? session.queue.length : session.position + (state.tag === "feedback" ? 1 : 0);
-  return { done, total: session.queue.length };
+  return { done, total: session.queue.length + (state.tag === "finished" ? 0 : (session.later ?? 0)) };
 };

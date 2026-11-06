@@ -541,6 +541,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onEvent={setup.onEvent}
         sound={sound}
         retries={request.mode !== "placement"}
+        adaptive={setup.planned.placement?.test}
         debug={DEBUG}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}

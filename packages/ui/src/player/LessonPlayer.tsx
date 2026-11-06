@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -42,6 +42,8 @@ export interface LessonPlayerProps {
   readonly xpEarned?: number | undefined;
   /** Missed exercises come back at the end (default); off for a placement test. */
   readonly retries?: boolean | undefined;
+  /** An adaptive test (the placement test, ADR 0075): what comes next depends on the answers. */
+  readonly adaptive?: AdaptiveTest | undefined;
   /** The learner pressed "Can't listen now": the app leaves listening out of the next sessions. */
   readonly onCantListen?: (() => void) | undefined;
   /** The learner pressed "Can't speak now": the app leaves speaking out of the next sessions. */
@@ -71,9 +73,9 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, onCantListen, onCantSpeak } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries });
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries, adaptive });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {

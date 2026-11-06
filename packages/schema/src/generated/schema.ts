@@ -361,6 +361,7 @@ export interface NabuSchemaIndex {
   readonly KcId: KcId;
   readonly Persons: Persons;
   readonly Facet: Facet;
+  readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
@@ -1039,6 +1040,7 @@ export interface BundleManifest {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
+  readonly placement?: PlacementPolicy;
   /**
    * Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.
    */
@@ -1069,6 +1071,12 @@ export interface BundleManifest {
    * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
    */
   readonly release?: boolean;
+}
+/**
+ * How the placement test probes, where the course says (course source `placement`, ADR 0075).
+ */
+export interface PlacementPolicy {
+  readonly production?: "tiles" | "typed";
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1320,6 +1328,15 @@ export interface BundleClip {
   readonly timings?: readonly TokenTiming[];
 }
 /**
+ * How a course's placement test probes (ADR 0075). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "PlacementPolicy".
+ */
+export interface PlacementPolicy1 {
+  readonly production?: "tiles" | "typed";
+}
+/**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1442,6 +1459,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
+  readonly placement?: PlacementPolicy1;
   /**
    * Maximum new knowledge components per sentence (§7.5). Default 1.
    */

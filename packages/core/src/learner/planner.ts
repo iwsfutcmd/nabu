@@ -20,7 +20,8 @@ import { seededRng } from "../lesson/rng.ts";
 import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
-import { placementTest } from "./placement.ts";
+import { runTest } from "../lesson/adaptive.ts";
+import { placementTest, type PlacementTest } from "./placement.ts";
 import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
@@ -50,8 +51,11 @@ export interface SessionPlan {
   /** p̂ for each exercise, logged in shadow mode (§9.3). */
   readonly predictions: readonly number[];
   readonly planner: string;
-  /** Placement only: the lesson node each exercise probes (placement.ts). */
-  readonly probes?: readonly string[];
+  /**
+   * Placement only (ADR 0075): the adaptive test. `exercises` are what it asks first; the player
+   * asks the rest as the answers decide, and `predictions` covers every exercise it may ask.
+   */
+  readonly placement?: PlacementTest & { readonly predictions: Readonly<Record<string, number>> };
 }
 
 interface Candidate {
@@ -131,8 +135,11 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const { now } = options;
   const orthography = course.orthography;
   if (request.mode === "placement") {
-    const test = placementTest(course, options.seed, exclude);
-    return { request, exercises: test.exercises, predictions: test.exercises.map((ex) => predictExercise(state, ex, orthography, now)), planner: PLANNER, probes: test.probes };
+    const placement = placementTest(course, options.seed, exclude);
+    const all = placement.test.blocks.flatMap((b) => [...b.exercises, ...b.steps.map((s) => s.exercise)]);
+    const predictions: Record<string, number> = Object.fromEntries(all.map((ex) => [ex.id, predictExercise(state, ex, orthography, now)]));
+    const exercises = runTest(placement.test, new Map()).next;
+    return { request, exercises, predictions: exercises.map((ex) => predictions[ex.id] as number), planner: PLANNER, placement: { ...placement, predictions } };
   }
   const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
   const seen = seenKcs(state);

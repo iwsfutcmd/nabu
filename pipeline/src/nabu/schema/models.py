@@ -464,6 +464,18 @@ type Facet = Annotated[
 ]
 
 
+class PlacementPolicy(BaseModel):
+    """
+    How a course's placement test probes (ADR 0075). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    production: Literal["tiles", "typed"] | None = None
+
+
 type ScriptCode = Annotated[
     str,
     Field(
@@ -2218,6 +2230,12 @@ class BundleManifest(BaseModel):
             min_length=1,
         ),
     ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0075)."
+        ),
+    ] = None
     versions: Annotated[
         dict[str, str],
         Field(
@@ -3435,6 +3453,7 @@ class CourseSource(BaseModel):
             min_length=1,
         ),
     ] = None
+    placement: PlacementPolicy | None = None
     iPlusOne: Annotated[
         int | None,
         Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),
