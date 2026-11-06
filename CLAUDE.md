@@ -240,6 +240,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## UI catalogs notes (see docs/adr/0070)
 - A translated catalog (packages/i18n/messages/<locale>.json) carries `provenance`; drafts are `llm:` and status draft.
   It ships (CATALOGS in src/catalog.ts) only when reviewed, complete and clean under `pnpm check:catalogs`.
+  Until then it is listed in DRAFTS: reviewers see it with `?ui=<locale>&drafts=1` or in Storybook's UI-locale menu.
 - Each translated message records `source`, the fingerprint of the English it translates (`check-catalogs.ts --stamp`).
   Changing an English message's meaning means a new key; a wording change makes translations stale until re-stamped.
 - A plural selector covers the locale's CLDR categories; a language that needs no plural forms drops the `.match`.

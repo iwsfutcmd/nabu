@@ -9,7 +9,7 @@
  */
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import type { MessageCatalog } from "@nabu/schema";
-import { UI_LOCALES } from "../src/catalog.ts";
+import { DRAFT_UI_LOCALES, UI_LOCALES } from "../src/catalog.ts";
 import { checkCatalog, sourceHash } from "../src/check.ts";
 
 const dir = new URL("../messages/", import.meta.url);
@@ -46,6 +46,10 @@ let errors = 0;
 for (const locale of locales) {
   const shipped = UI_LOCALES.includes(locale);
   const diagnostics = checkCatalog(read(locale), { fileLocale: locale, source, shipped });
+  // A catalog nobody can load is one nobody can review: list it in CATALOGS or DRAFTS.
+  if (!shipped && !DRAFT_UI_LOCALES.includes(locale)) {
+    diagnostics.push({ code: "locale", severity: "error", detail: "listed in neither CATALOGS nor DRAFTS (src/catalog.ts), so no one can see it" });
+  }
   const count = Object.keys((JSON.parse(read(locale)) as MessageCatalog).messages).length;
   for (const d of diagnostics) {
     const where = `messages/${locale}.json${d.line === undefined ? "" : `:${d.line}`}`;

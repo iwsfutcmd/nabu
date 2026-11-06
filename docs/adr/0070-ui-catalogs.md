@@ -20,6 +20,11 @@ the English source catalog existed, and nothing checked a translation against it
 shipped locales by hand, and the check refuses a shipped catalog that is a draft or lacks a
 message. A draft can sit in `messages/` and be checked without reaching anyone.
 
+**A reviewer sees a draft in place.** `DRAFTS` in `src/catalog.ts` lists draft catalogs. The web
+app offers them only with `?drafts=1` (`?ui=fa&drafts=1`, also on the Pages demo), and Storybook's
+UI-locale menu lists them as drafts. A catalog file listed in neither `CATALOGS` nor `DRAFTS` fails
+the check, as no one could review it.
+
 **Each translated message records the English it was made from:** `source`, a 14-digit fingerprint
 of the English message's NFC text (`sourceHash`). `check-catalogs.ts --stamp <locale>` writes it.
 - **A change of wording** makes the translation stale: the check lists it until a translator has

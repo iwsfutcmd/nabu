@@ -2,6 +2,7 @@ export { asciiLowercase, asciiTitlecase, asciiUppercase } from "@nabu/core/text"
 export {
   createTranslator,
   DEFAULT_UI_LOCALE,
+  DRAFT_UI_LOCALES,
   isPseudoLocale,
   loadTranslator,
   PSEUDO_LOCALES,

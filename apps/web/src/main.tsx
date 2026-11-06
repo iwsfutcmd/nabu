@@ -5,12 +5,13 @@
  *
  * Query parameters stand in for settings until there is a settings screen:
  *   ?ui=ar-XB            UI locale or pseudo-locale
+ *   ?drafts=1            also offer draft UI catalogs (reviewers, ADR 0070): ?ui=fa&drafts=1
  *   ?seed=7              session seed (with a fixed clock and log, reproducible sessions for tests)
  *   ?sound=off           no feedback sounds
  *   ?target=yue-Hant-HK  the Phase 0 demo exercise card instead (fa, yue-Hant-HK, uz-Latn, apc-Arab)
  *   ?mode=vertical-rl    the demo card's requested writing mode
  */
-import { DEFAULT_UI_LOCALE, loadTranslator, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
+import { DEFAULT_UI_LOCALE, DRAFT_UI_LOCALES, loadTranslator, negotiateLocale, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import { NabuUiProvider, UiRoot } from "@nabu/ui";
 import { DEMO_ORTHOGRAPHIES, DEMO_TARGETS, DemoExerciseCard, type DemoTarget, type WritingMode } from "@nabu/ui/demo";
 import "@nabu/ui/fonts.css";
@@ -20,14 +21,15 @@ import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
 
 const params = new URLSearchParams(window.location.search);
+const drafts = params.get("drafts") === "1";
 const negotiated = negotiateLocale({
   userSetting: params.get("ui") ?? undefined,
   accepted: navigator.languages,
-  available: UI_LOCALES,
+  available: drafts ? [...UI_LOCALES, ...DRAFT_UI_LOCALES] : UI_LOCALES,
   pseudo: PSEUDO_LOCALES,
   defaultLocale: DEFAULT_UI_LOCALE,
 });
-const translator = await loadTranslator(negotiated.locale, { formattingLocale: negotiated.formattingLocale });
+const translator = await loadTranslator(negotiated.locale, { formattingLocale: negotiated.formattingLocale, drafts });
 
 document.documentElement.lang = translator.locale;
 document.documentElement.dir = translator.dir;

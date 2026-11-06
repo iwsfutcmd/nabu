@@ -3,7 +3,7 @@
  * dir and writing mode. The visual tests drive the same globals through the
  * iframe URL, so what you click here is what CI screenshots.
  */
-import { type PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
+import { DRAFT_UI_LOCALES, type PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import type { Preview } from "@storybook/react-vite";
 import { DEMO_TARGETS } from "../src/demo/fixtures.ts";
 
@@ -30,7 +30,7 @@ export const effectiveUiLocale = (g: Partial<NabuGlobals>): string =>
 export const globalTypes: NonNullable<Preview["globalTypes"]> = {
   uiLocale: {
     description: "UI locale (real catalogs)",
-    toolbar: { title: "UI locale", icon: "globe", dynamicTitle: true, items: UI_LOCALES.map((l) => ({ value: l, title: l })) },
+    toolbar: { title: "UI locale", icon: "globe", dynamicTitle: true, items: [...UI_LOCALES.map((l) => ({ value: l, title: l })), ...DRAFT_UI_LOCALES.map((l) => ({ value: l, title: `${l} (draft)` }))] },
   },
   pseudoLocale: {
     description: "Pseudo-locale (overrides the UI locale)",
