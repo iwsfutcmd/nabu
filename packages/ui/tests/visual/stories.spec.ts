@@ -33,8 +33,8 @@ test.describe("every story × pseudo-locales", () => {
         await expect(page.locator("[data-ui-root]"), story.id).toHaveAttribute("dir", dir);
         await expect(page.locator("[data-ui-root]"), story.id).toHaveAttribute("lang", ui);
         expect(errors, story.id).toEqual([]);
-        // The exercise card, the player and corrections have their own matrices; the check fixtures are broken on purpose.
-        if (comparesPixels && !story.id.startsWith("demo-exercise-card") && !story.id.startsWith("player-") && !story.id.startsWith("corrections-") && !story.id.startsWith("fixtures-")) {
+        // The exercise card, the player, corrections and review have their own matrices; the check fixtures are broken on purpose.
+        if (comparesPixels && !story.id.startsWith("demo-exercise-card") && !story.id.startsWith("player-") && !story.id.startsWith("corrections-") && !story.id.startsWith("review-") && !story.id.startsWith("fixtures-")) {
           await expect(page.locator("#storybook-root")).toHaveScreenshot(`story__${story.id}__${ui}.png`);
         }
       }
