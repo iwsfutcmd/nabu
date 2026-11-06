@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 from pydantic import ValidationError
 
-from nabu.audio.course import INDEX, audio_dir, other_speaker, plan
+from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.schema.models import AudioClip, AudioIndex, CourseSource
@@ -85,16 +85,17 @@ def check_audio(
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
     # What each voice of the cast would read now, by (provider, voice).
     planned: dict[tuple[str, str], dict[str, str]] = {}
-    # Sentences each voice must not say: said by a woman, in a man's voice (ADR 0075).
-    unsaid: dict[tuple[str, str], set[str]] = {}
+    # Which voice of the cast reads each item (ADR 0078); a person's check keeps a clip's voice.
+    checked = checked_voices(index, voices)
+    owner = assignment(compiled.units, voices, checked) if voices else {}
+    by_id = {v.id: v for v in voices}
     for voice in voices:
         try:
-            reads = plan(compiled.units, voice, compiled.written)[0]
+            reads = plan(compiled.units, voice, compiled.written, voices, checked)[0]
         except ValueError as error:
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue
         planned[(voice.provider, voice.voice)] = {r.item: r.input for r in reads}
-        unsaid[(voice.provider, voice.voice)] = set(other_speaker(compiled.units, voice))
     # The round trip checks the normal-speed clip; when it fails, the whole item (slow too) waits.
     # So does an item a listener rejected a clip of (ADR 0060), until the clip is made again.
     failed = {
@@ -158,11 +159,15 @@ def check_audio(
                     loc,
                 )
                 continue
-            if clip.item in unsaid.get((clip.synthesis.provider, clip.synthesis.voice), set()):
+            reader = by_id.get(owner.get(clip.item, ""))
+            if reader is not None and (reader.provider, reader.voice) != (
+                clip.synthesis.provider,
+                clip.synthesis.voice,
+            ):
                 ctx.diags.report(
                     "audio.stale",
-                    f"{clip.item}: said by someone the voice ({clip.synthesis.voice}) is not "
-                    "(persons.speaker); run `nabu audio generate`",
+                    f"{clip.item}: in {clip.synthesis.voice}'s voice, but {reader.id} reads it now "
+                    "(ADR 0078); run `nabu audio generate`",
                     loc,
                 )
                 continue

@@ -1201,6 +1201,10 @@ export interface BundleStory {
   readonly characters: readonly {
     readonly id: string;
     /**
+     * The character's gender as a speaker, where the course sets it (ADR 0078).
+     */
+    readonly speaker?: "m" | "f";
+    /**
      * Per orthography.
      */
     readonly name: {
@@ -1656,6 +1660,10 @@ export interface StorySource {
 export interface StoryCharacter {
   readonly id: string;
   /**
+   * The character's gender as a speaker, where the course sets it: a man (m) or a woman (f). Its lines go to a voice of the cast that matches (ADR 0078); without it, the character gets a voice of the cast at random, the same for every line of the story.
+   */
+  readonly speaker?: "m" | "f";
+  /**
    * The name as written in each orthography of the course (keys: orthography ids).
    */
   readonly name: {
@@ -1806,7 +1814,7 @@ export interface CourseAudio {
 export interface AudioVoice {
   readonly id: string;
   /**
-   * Whose voice it is: a man's (m) or a woman's (f). A sentence whose persons.speaker is the other gets no clip from it, so a man's voice never says a woman's words (ADR 0075). Optional: a voice without it reads every sentence, whoever says it (apc's man's voice does, for now).
+   * Whose voice it is: a man's (m) or a woman's (f). A course's voices share its items at random; a sentence or story character whose grammar says who speaks goes to a voice of that gender, if the cast has one (ADR 0078). A cast of one voice reads everything.
    */
   readonly speaker?: "m" | "f";
   /**

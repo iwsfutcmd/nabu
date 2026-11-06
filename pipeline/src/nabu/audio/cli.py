@@ -44,10 +44,14 @@ def generate(
     ] = False,
     voice_id: Annotated[
         str | None,
-        typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
+        typer.Option("--voice", help="Run one voice of the cast (its id); default all of them."),
     ] = None,
 ) -> None:
     """Synthesize the course's clips from pinned readings; unchanged inputs are kept.
+
+    Each item is read by one voice of the cast, picked at random (seeded by the item), or by
+    one of the gender its grammar wants (ADR 0078). With --voice, the others' clips stay as
+    they are.
 
     Hosted voices (elevenlabs, cartesia) read their API key from the environment. OmniVoice
     voices need the omnivoice group (`uv sync --group omnivoice`) and a reference (`cast`).
@@ -65,8 +69,7 @@ def generate(
     if audio is None or not audio.voices:
         typer.echo(f"✗ {source.id}: no audio voices in course.yaml", err=True)
         raise typer.Exit(code=1)
-    voice = next((v for v in audio.voices if voice_id in (None, v.id)), None)
-    if voice is None:
+    if voice_id is not None and all(v.id != voice_id for v in audio.voices):
         typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
         raise typer.Exit(code=1)
     checker: Callable[[Item, Clip], dict[str, Any]] | None = None
@@ -80,20 +83,19 @@ def generate(
 
         checker = round_trip_check
     try:
-        report = synthesize_course(course_dir, units, voice, checker, written)
+        report = synthesize_course(course_dir, units, audio.voices, checker, written, voice_id)
     except (MissingKey, ProviderError, ValueError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None
+    shares = ", ".join(f"{v} reads {n}" for v, n in report.shares.items())
     typer.echo(
         f"✓ {source.id}: {report.synthesized} synthesized, {report.kept} kept, "
-        f"{report.removed} removed; {len(report.skipped)} without a pinned reading"
+        f"{report.removed} removed; {len(report.skipped)} without a pinned reading ({shares})"
     )
     for item in report.skipped:
-        typer.echo(f"  - {item}: no {voice.reading} reading", err=True)
+        typer.echo(f"  - {item}: no pinned reading", err=True)
     for item in report.silent:
         typer.echo(f"  - {item}: the voice said nothing; no clip", err=True)
-    for item in report.other_speaker:
-        typer.echo(f"  - {item}: said by someone the voice ({voice.speaker}) is not; no clip")
 
 
 @app.command()
@@ -170,7 +172,7 @@ def align(
         typer.echo(f"✗ {source.id}: no voice {voice_id or ''} in the cast", err=True)
         raise typer.Exit(code=1)
     phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
-    done = align_course(course_dir, units, voice, phonemes, written)
+    done = align_course(course_dir, units, voice, phonemes, written, voices=voices)
     typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
 
 

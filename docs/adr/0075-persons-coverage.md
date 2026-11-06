@@ -3,6 +3,7 @@
 - Status: Proposed
 - Date: 2026-11-06
 - Amends: [0056](0056-persons.md), [0040](0040-audio-pipeline.md)
+- Amended by: [0078](0078-random-voices.md) (how a cast's voices share the items)
 
 ## Context
 
@@ -47,16 +48,13 @@ read in a man's voice.
 - **`du`, "to two people":** for a language with a dual (Slovene, Modern Standard Arabic,
   Sámi). No course uses it yet. The tag and its UI message exist so that one can.
 
-**A voice may say whose voice it is: `speaker: m | f`** on a course voice. It is opt-in.
-- **No wrong-gender clips:** a sentence whose `persons.speaker` is the other gender gets no
-  clip from that voice. `nabu audio generate` lists it and leaves it out.
-- **Existing clips:** the compiler marks a clip that such a voice already made as `audio.stale`,
-  and it stays out of the bundle.
-- **No `speaker`:** a voice without it says everything, as before.
-- **For now, no course sets it.** A voice of either gender reading any line is acceptable
-  until a course has voices for both. A woman's sentence with a man's clip is better than one
-  with no audio. apc's man's voice reads its woman-speaker sentences too. Set `speaker` on each
-  voice once a course casts a second one.
+**A voice may say whose voice it is: `speaker: m | f`** on a course voice.
+- **First design:** a filter. A voice with it set left out every sentence the other gender
+  says.
+- **Superseded by [ADR 0078](0078-random-voices.md):**
+  - a course's voices share the items at random;
+  - grammar picks the gender where it says who speaks;
+  - nothing is left without a clip because of it.
 
 **Register is the next dimension. It is not modelled yet.**
 - **Javanese speech levels:** ngoko, krama, krama inggil.
@@ -95,6 +93,5 @@ course has them.
   same lesson. The fa sentences use شما with -ید; the uz sentences use sizlar with -sizlar.
 - **UI:** the new tags `player.persons.addressee.sg` and `.du` are in every catalog (drafts
   stamped).
-- **One voice per course, for now.** apc's woman-speaker sentences and Maya's story lines are
-  read in the man's voice. Casting a woman's voice and setting `speaker`, and letting a story
-  character say which voice reads it, is the follow-up.
+- **Voices:** see [ADR 0078](0078-random-voices.md). apc now has a man's and a woman's voice, and
+  story characters can carry a gender.

@@ -131,6 +131,7 @@ class _Compiler:
             characters.append(
                 {
                     "id": character.id,
+                    **({} if character.speaker is None else {"speaker": character.speaker}),
                     # A name takes its vowel marks as any word does (ADR 0053).
                     "name": {
                         o: self.marked(
