@@ -215,6 +215,9 @@ describe("matching pairs", () => {
   const key = (t: TaggedText): string => surfaceOf(t).normalize("NFC").toLocaleLowerCase("und").replace(/[\p{P}\s]+/gu, " ").trim();
   const distinct = (texts: readonly TaggedText[]): boolean => new Set(texts.map(key)).size === texts.length;
 
+  /** Builds every lesson of every course three times: about a second alone, far more on a busy CI runner. */
+  const EVERY_LESSON_TIMEOUT_MS = 30_000;
+
   it("never shows two words or two meanings alike, in any course's lessons", () => {
     for (const [id, orthography] of [...VARIANTS, ["lzh", undefined] as const]) {
       const course = loadCourse(id, orthography);
@@ -228,7 +231,7 @@ describe("matching pairs", () => {
         }
       }
     }
-  });
+  }, EVERY_LESSON_TIMEOUT_MS);
 
   it("keeps synonyms glossed alike apart: Classical Chinese 汝 and 爾 are both \"you\"", () => {
     const course = loadCourse("lzh");
