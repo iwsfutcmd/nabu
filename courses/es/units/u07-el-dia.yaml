@@ -16,11 +16,9 @@ kcs:
 - {id: 'sense:hacer', gloss: {en: to do; to make}, forms: {es-Latn/standard: [hacer]}, notes: {en: 'Hago, haces, hace; haciendo. The h is written but never said.'}}
 - {id: 'sense:tarde', gloss: {en: afternoon; evening; late}, forms: {es-Latn/standard: [tarde]}, notes: {en: 'La tarde lasts until dark: por la tarde, in the afternoon. Tarde alone means late: me levanto tarde.'}}
 - {id: 'sense:noche', gloss: {en: night; evening}, forms: {es-Latn/standard: [noche]}, notes: {en: 'Por la noche: at night, in the evening. Buenas noches: good evening, good night.'}}
-- {id: 'sense:colada', gloss: {en: colada (Cuban coffee to share)}, forms: {es-Latn/standard: [colada]}, notes: {en: 'A big shot of café cubano in a foam cup, with tiny plastic cups to share it out. In Miami someone brings la colada from the ventanita to work in the afternoon. From colar, to brew: Mami cuela el café.'}}
 - {id: 'sense:trabajo', gloss: {en: work; job}, forms: {es-Latn/standard: [trabajo]}, notes: {en: 'En el trabajo: at work. Trabajo is also I work, from trabajar.'}}
 - {id: 'sense:hoy', gloss: {en: today}, forms: {es-Latn/standard: [hoy]}, notes: {en: 'With an h that is never said.'}}
 - {id: 'sense:lunes', gloss: {en: Monday}, forms: {es-Latn/standard: [lunes]}, notes: {en: 'Days take no capital in Spanish. El lunes: on Monday; los lunes: on Mondays. Lunes to viernes are the same in the plural.'}}
-- {id: 'sense:qué', gloss: {en: 'what; how (¡qué…!)'}, forms: {es-Latn/standard: [qué]}, notes: {en: 'With an accent when it asks or exclaims; que without one means that. Cubans keep tú before the verb: ¿Qué tú haces?'}}
 - {id: 'sense:día', gloss: {en: day}, forms: {es-Latn/standard: [día]}, notes: {en: 'Masculine though it ends in -a: el día, buenos días. Written with an accent on the í.'}}
 - {id: 'sense:martes', gloss: {en: Tuesday}, forms: {es-Latn/standard: [martes]}}
 - {id: 'sense:miércoles', gloss: {en: Wednesday}, forms: {es-Latn/standard: [miércoles]}, notes: {en: 'With an accent on the é.'}}
@@ -34,15 +32,14 @@ kcs:
 - {id: 'sense:acostarse', gloss: {en: to go to bed; to lie down}, forms: {es-Latn/standard: [acostarse]}, notes: {en: 'The o becomes ue when stressed: me acuesto, te acuestas, se acuesta.'}}
 - {id: 'form:ger', gloss: {en: 'gerund, -ando, -iendo (estoy trabajando: I''m working)'}, notes: {en: 'Estar + gerund is for what is going on right now. Not for plans as in English: I''m working tomorrow is trabajo mañana. With me, te or se on the end it takes an accent: bañándose.'}}
 - {id: 'sense:ahora', gloss: {en: now}, forms: {es-Latn/standard: [ahora]}, notes: {en: 'Cubans also say ahorita, which can mean right now or in a little while, depending on who says it.'}}
-- {id: 'sense:lili', gloss: {en: Lili (a name)}, forms: {es-Latn/standard: [Lili]}}
 - {id: 'sense:dormir', gloss: {en: to sleep}, forms: {es-Latn/standard: [dormir]}, notes: {en: 'The o becomes ue (duermo, duermes, duerme) and u in the gerund: durmiendo.'}}
 nodes:
 - {id: es.u07.me-levanto, kind: lesson, introduces: ['sense:levantarse', 'sense:temprano', 'sense:bañarse', 'sense:después', 'sense:desayunar']}
-- {id: es.u07.por-la-manana, kind: lesson, introduces: ['sense:por', 'sense:mañana', 'sense:hacer', 'sense:tarde', 'sense:noche', 'sense:colada', 'sense:trabajo']}
-- {id: es.u07.los-dias, kind: lesson, introduces: ['sense:hoy', 'sense:lunes', 'sense:qué', 'sense:día', 'sense:martes', 'sense:miércoles']}
+- {id: es.u07.por-la-manana, kind: lesson, introduces: ['sense:por', 'sense:mañana', 'sense:hacer', 'sense:tarde', 'sense:noche', 'sense:trabajo']}
+- {id: es.u07.los-dias, kind: lesson, introduces: ['sense:hoy', 'sense:lunes', 'sense:día', 'sense:martes', 'sense:miércoles']}
 - {id: es.u07.los-domingos, kind: lesson, introduces: ['sense:jueves', 'sense:viernes', 'sense:sábado', 'sense:domingo']}
 - {id: es.u07.la-novela, kind: lesson, introduces: ['sense:ver', 'sense:novela', 'sense:siempre', 'sense:acostarse']}
-- {id: es.u07.estoy-trabajando, kind: lesson, introduces: ['form:ger', 'sense:ahora', 'sense:lili', 'sense:dormir']}
+- {id: es.u07.estoy-trabajando, kind: lesson, introduces: ['form:ger', 'sense:ahora', 'sense:dormir']}
 - {id: es.u07.story, kind: story}
 sentences:
 - id: s.u07.1

@@ -1,0 +1,528 @@
+# Unit 4 (es): food and drink the Cuban way (arroz con frijoles negros, congrí, maduros, tostones, fruta bomba,
+# cafecito, colada), gustar, querer, comer and tomar in every present person; lunch at Abuela's.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u04
+title: {en: 'La comida: food and drink'}
+cefr: A1
+kcs:
+- {id: 'sense:comer', gloss: {en: to eat}, forms: {es-Latn/standard: [comer]}, notes: {en: 'Como, comes, come, comemos, comen: the model for regular -er verbs (beber, to drink, goes the same way). Como without an accent is I eat; cómo with one asks how.'}}
+- {id: 'sense:arroz', gloss: {en: rice}, forms: {es-Latn/standard: [arroz]}, notes: {en: 'Written with z, though Cubans say it with an s sound. Arroz blanco with frijoles negros is the everyday Cuban plate.'}}
+- {id: 'sense:con', gloss: {en: with}, forms: {es-Latn/standard: [con]}, notes: {en: 'Arroz con pollo, café con leche.'}}
+- {id: 'sense:pollo', gloss: {en: chicken}, forms: {es-Latn/standard: [pollo]}, notes: {en: 'Written with ll, said like y in Cuba and most of the Americas. Arroz con pollo is a Sunday dish.'}}
+- {id: 'sense:frijol', gloss: {en: bean}, forms: {es-Latn/standard: [frijol]}, notes: {en: 'Frijoles in Cuba, Mexico and Central America; habichuelas in Puerto Rico and the Dominican Republic, caraotas in Venezuela, porotos in the Southern Cone, judías or alubias in Spain.'}}
+- {id: 'sense:negro', gloss: {en: black}, forms: {es-Latn/standard: [negro]}, notes: {en: 'Frijoles negros: black beans, the Cuban default. In Cuban families mi negro, mi negra is also a term of endearment.'}}
+- {id: 'sense:congrí', gloss: {en: rice and beans cooked together}, forms: {es-Latn/standard: [congrí]}, notes: {en: 'Rice cooked in one pot with beans. Strictly, congrí is made with red beans, as in eastern Cuba, and moros y cristianos with black beans, but many families call both congrí. Write the accent: con-GRÍ.'}}
+- {id: 'sense:gustar', gloss: {en: 'to like (me gusta: I like)'}, forms: {es-Latn/standard: [gustar]}, notes: {en: 'Me gusta el café: literally, coffee pleases me. With something plural the verb is plural too: me gustan los tostones, not me gusta los tostones. Te gusta: you like.'}}
+- {id: 'sense:mucho', gloss: {en: a lot; much; many}, forms: {es-Latn/standard: [mucho]}, notes: {en: 'It agrees with its noun: mucho café, mucha hambre, muchos frijoles. After a verb it stays mucho: me gusta mucho.'}}
+- {id: 'sense:plátano', gloss: {en: plantain; banana}, forms: {es-Latn/standard: [plátano]}, notes: {en: 'In Cuba the plátano is the plantain, cooked green (tostones) or ripe (maduros). A sweet banana is a plátano fruta (guineo in Puerto Rico and the Dominican Republic, banana elsewhere). The accent is on the first a: PLÁ-ta-no.'}}
+- {id: 'sense:maduro', gloss: {en: 'ripe; maduros: fried sweet plantains'}, forms: {es-Latn/standard: [maduro]}, notes: {en: 'Plátanos maduros, or just maduros: ripe plantains fried until sweet and dark at the edges. Maduro also means mature, of people.'}}
+- {id: 'sense:tostón', gloss: {en: fried green plantain slice}, forms: {es-Latn/standard: [tostón]}, notes: {en: 'Green plantain cut in thick slices, fried, flattened and fried again. The accent goes away in the plural: tostón, tostones. Patacón in Colombia and Venezuela.'}}
+- {id: 'sense:querer', gloss: {en: to want; to love}, forms: {es-Latn/standard: [querer]}, notes: {en: 'Quiero, quieres, quiere, quieren: e becomes ie, except in queremos. Te quiero: I love you (family, friends, a partner).'}}
+- {id: 'sense:agua', gloss: {en: water}, forms: {es-Latn/standard: [agua]}, notes: {en: 'Feminine, but el agua: el comes before a stressed a-, as in el hambre. Agua fría: cold water.'}}
+- {id: 'sense:por-favor', gloss: {en: please}, forms: {es-Latn/standard: [por favor]}}
+- {id: 'sense:rico', gloss: {en: delicious; tasty; rich}, forms: {es-Latn/standard: [rico]}, notes: {en: '¡Qué rico!: how delicious! Cubans say it about food, a breeze, a nap, anything good. Está rico: it tastes good; es rico: he is rich.'}}
+- {id: 'sense:fruta-bomba', gloss: {en: papaya (Cuban)}, forms: {es-Latn/standard: [fruta bomba]}, notes: {en: 'In Cuba papaya is a vulgar slang word, so the fruit is called fruta bomba. Everywhere else it is papaya.'}}
+- {id: 'sense:cafecito', gloss: {en: Cuban coffee; a shot of Cuban espresso}, forms: {es-Latn/standard: [cafecito]}, notes: {en: 'Café plus -ito, which makes things small or dear (Danielito, ahorita). A cafecito is a shot of strong espresso with sugar whipped into a foam, la espumita.'}}
+- {id: 'sense:tomar', gloss: {en: to drink; to take}, forms: {es-Latn/standard: [tomar]}, notes: {en: 'Cubans usually say tomar for drinks: tomar café, tomar agua. Beber means the same and is understood everywhere.'}}
+- {id: 'sense:leche', gloss: {en: milk}, forms: {es-Latn/standard: [leche]}, notes: {en: 'Café con leche, with buttered and toasted Cuban bread to dip in it, is the Cuban breakfast.'}}
+- {id: 'sense:colada', gloss: {en: a big Cuban coffee to share}, forms: {es-Latn/standard: [colada]}, notes: {en: 'A large Cuban coffee in a foam cup, sold with a stack of thimble-sized plastic cups so it can go round the office: a Miami ritual.'}}
+- {id: 'sense:hambre', gloss: {en: 'hunger; tener hambre: to be hungry'}, forms: {es-Latn/standard: [hambre]}, notes: {en: 'Written with an h that is never said. Feminine, though it takes el (el hambre): mucha hambre.'}}
+- {id: 'sense:cerveza', gloss: {en: beer}, forms: {es-Latn/standard: [cerveza]}, notes: {en: 'Written with v and z: cer-VE-za. Una cerveza bien fría: an ice-cold beer (bien: very).'}}
+nodes:
+- {id: es.u04.arroz-con-pollo, kind: lesson, introduces: ['sense:comer', 'sense:arroz', 'sense:con', 'sense:pollo', 'sense:frijol', 'sense:negro', 'sense:congrí']}
+- {id: es.u04.me-gusta, kind: lesson, introduces: ['sense:gustar', 'sense:mucho', 'sense:plátano', 'sense:maduro', 'sense:tostón']}
+- {id: es.u04.que-tu-quieres, kind: lesson, introduces: ['sense:querer', 'sense:agua', 'sense:por-favor', 'sense:rico', 'sense:fruta-bomba']}
+- {id: es.u04.cafecito, kind: lesson, introduces: ['sense:cafecito', 'sense:tomar', 'sense:leche', 'sense:colada']}
+- {id: es.u04.tengo-hambre, kind: lesson, introduces: ['sense:hambre', 'sense:cerveza']}
+- {id: es.u04.story, kind: story}
+sentences:
+- id: s.u04.1
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Como arroz.
+      tokens: [{surface: Como, sense: comer, form: 'form:pres-1s'}, {surface: arroz, sense: arroz}]
+      reverse: '[Yo] como arroz'
+  translations:
+    en: |-
+      I eat rice.
+      (I'm|I am) eating rice.
+- id: s.u04.2
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Daniel come arroz con pollo.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: come, sense: comer, form: 'form:pres-3s'}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}]
+      reverse: Daniel come arroz con pollo
+  translations:
+    en: |-
+      Daniel (eats|is eating) (chicken and rice|rice with chicken|arroz con pollo).
+- id: s.u04.3
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: ¿Tú comes pollo?
+      tokens: [{surface: Tú, sense: tú}, {surface: comes, sense: comer, form: 'form:pres-2s'}, {surface: pollo, sense: pollo}]
+      reverse: (Tú comes pollo|Comes [tú] pollo|Usted come pollo|Come [usted] pollo|Ustedes comen pollo|Comen [ustedes] pollo)
+  translations:
+    en: |-
+      Do you eat chicken?
+      Are you eating chicken?
+- id: s.u04.4
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: Como arroz con frijoles negros.
+      tokens: [{surface: Como, sense: comer, form: 'form:pres-1s'}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}]
+      reverse: '[Yo] como arroz con frijoles negros'
+  translations:
+    en: |-
+      I eat (rice and black beans|rice with black beans|black beans and rice).
+      (I'm|I am) eating (rice and black beans|rice with black beans|black beans and rice).
+- id: s.u04.5
+  node: es.u04.arroz-con-pollo
+  forms:
+    es-Latn/standard:
+      text: ¿Tú comes congrí?
+      tokens: [{surface: Tú, sense: tú}, {surface: comes, sense: comer, form: 'form:pres-2s'}, {surface: congrí, sense: congrí}]
+      reverse: (Tú comes congrí|Comes [tú] congrí|Usted come congrí|Come [usted] congrí|Ustedes comen congrí|Comen [ustedes] congrí)
+  translations:
+    en: |-
+      Do you eat (congrí|rice and beans)?
+      Are you eating (congrí|rice and beans)?
+- id: s.u04.6
+  node: es.u04.arroz-con-pollo
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Usted come frijoles negros, señora?
+      tokens: [{surface: Usted, sense: usted}, {surface: come, sense: comer, form: 'form:pres-3s'}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: señora, sense: señora}]
+      reverse: (Usted come frijoles negros señora|Come [usted] frijoles negros señora)
+  translations:
+    en: |-
+      Do you eat black beans, (ma'am|madam)?
+      Are you eating black beans, (ma'am|madam)?
+- id: s.u04.7
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gusta el arroz.
+      tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: arroz, sense: arroz}]
+      reverse: '[A mí] me gusta el arroz'
+  translations:
+    en: |-
+      I like rice.
+      I like the rice.
+- id: s.u04.8
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gusta mucho el congrí.
+      tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: el, sense: el}, {surface: congrí, sense: congrí}]
+      reverse: '[A mí] me gusta mucho el congrí'
+  translations:
+    en: |-
+      I like congrí a lot.
+      I like the congrí a lot.
+      I really like [the] congrí.
+      I like [the] congrí very much.
+- id: s.u04.9
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: ¿Te gusta el pollo?
+      tokens: [{surface: Te, sense: te}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: pollo, sense: pollo}]
+      reverse: (Te gusta el pollo|A ti te gusta el pollo|Le gusta el pollo|A usted le gusta el pollo|Les gusta el pollo|A ustedes les gusta el pollo)
+  translations:
+    en: |-
+      Do you like chicken?
+      Do you like the chicken?
+- id: s.u04.10
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gustan los frijoles negros.
+      tokens: [{surface: Me, sense: me}, {surface: gustan, sense: gustar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}]
+      reverse: '[A mí] me gustan los frijoles negros'
+  translations:
+    en: |-
+      I like black beans.
+      I like the black beans.
+- id: s.u04.11
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Me gustan los plátanos maduros.
+      tokens: [{surface: Me, sense: me}, {surface: gustan, sense: gustar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: plátanos, sense: plátano}, {surface: maduros, sense: maduro}]
+      reverse: '[A mí] me gustan los (plátanos maduros|maduros)'
+  translations:
+    en: |-
+      I like (sweet plantains|ripe plantains|maduros).
+      I like the (sweet plantains|ripe plantains|maduros).
+      I like [the] (fried sweet plantains|fried ripe plantains).
+- id: s.u04.12
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: ¿Te gustan los tostones?
+      tokens: [{surface: Te, sense: te}, {surface: gustan, sense: gustar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: tostones, sense: tostón}]
+      reverse: (Te gustan los tostones|A ti te gustan los tostones|Le gustan los tostones|A usted le gustan los tostones|Les gustan los tostones|A ustedes les gustan los tostones)
+  translations:
+    en: |-
+      Do you like (tostones|fried green plantains|fried plantains)?
+      Do you like the (tostones|fried green plantains|fried plantains)?
+- id: s.u04.13
+  node: es.u04.me-gusta
+  forms:
+    es-Latn/standard:
+      text: Sí, me gustan mucho.
+      tokens: [{surface: Sí, sense: sí}, {surface: me, sense: me}, {surface: gustan, sense: gustar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}]
+      reverse: Sí [a mí] me gustan mucho
+  translations:
+    en: |-
+      Yes, I like them a lot.
+      Yes, I really like them.
+      Yes, I like them very much.
+- id: s.u04.14
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú quieres?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}]
+      reverse: (Qué tú quieres|Qué quieres [tú]|Qué usted quiere|Qué quiere [usted]|Qué ustedes quieren|Qué quieren [ustedes])
+  translations:
+    en: |-
+      What do you want?
+      What would you like?
+- id: s.u04.15
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Quiero arroz con pollo.
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}]
+      reverse: '[Yo] quiero arroz con pollo'
+  translations:
+    en: |-
+      I want (chicken and rice|rice with chicken|arroz con pollo).
+      (I'd like|I would like) (chicken and rice|rice with chicken|arroz con pollo).
+- id: s.u04.16
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Agua, por favor.
+      tokens: [{surface: Agua, sense: agua}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: (Agua|Un agua|Un vaso de agua) por favor
+  translations:
+    en: |-
+      (Water|Some water|A water|A glass of water), please.
+- id: s.u04.17
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¿Tú quieres un tostón?
+      tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: un, sense: un}, {surface: tostón, sense: tostón}]
+      reverse: (Tú quieres un tostón|Quieres [tú] un tostón|Usted quiere un tostón|Quiere [usted] un tostón|Ustedes quieren un tostón|Quieren [ustedes] un tostón)
+  translations:
+    en: |-
+      Do you want a (tostón|fried plantain)?
+      Would you like a (tostón|fried plantain)?
+- id: s.u04.18
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: ¡Qué rico!
+      tokens: [{surface: Qué, sense: qué}, {surface: rico, sense: rico}]
+      reverse: (Qué rico|Qué rica|Qué sabroso|Qué sabrosa|Qué bueno|Qué buena|Qué delicioso|Qué delicia)
+  translations:
+    en: |-
+      How delicious!
+      (That's|That is|It's|It is|This is) (delicious|so good|really good)!
+      So good!
+      Delicious!
+      Yum!
+- id: s.u04.19
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: Quiero fruta bomba, por favor.
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: fruta, sense: fruta-bomba}, {surface: bomba, sense: fruta-bomba}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: '[Yo] quiero (fruta bomba|papaya) por favor'
+  translations:
+    en: |-
+      I want (papaya|some papaya), please.
+      (I'd like|I would like) (papaya|some papaya), please.
+- id: s.u04.20
+  node: es.u04.que-tu-quieres
+  forms:
+    es-Latn/standard:
+      text: La fruta bomba está rica.
+      tokens: [{surface: La, sense: el}, {surface: fruta, sense: fruta-bomba}, {surface: bomba, sense: fruta-bomba}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: rica, sense: rico}]
+      reverse: La (fruta bomba|papaya) está (rica|buena|sabrosa|deliciosa)
+  translations:
+    en: |-
+      The papaya is (delicious|good|tasty).
+      The papaya tastes (good|great|delicious).
+- id: s.u04.21
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Un cafecito, por favor.
+      tokens: [{surface: Un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: (Un cafecito|Un café cubano|Un cafecito cubano) por favor
+  translations:
+    en: |-
+      A (Cuban coffee|cafecito|Cuban espresso), please.
+      One (Cuban coffee|cafecito|Cuban espresso), please.
+- id: s.u04.22
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Yo tomo mucho café.
+      tokens: [{surface: Yo, sense: yo}, {surface: tomo, sense: tomar, form: 'form:pres-1s'}, {surface: mucho, sense: mucho}, {surface: café, sense: café}]
+      reverse: '[Yo] (tomo|bebo) mucho café'
+  translations:
+    en: |-
+      I drink a lot of coffee.
+      I drink lots of coffee.
+- id: s.u04.23
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Un café con leche, por favor.
+      tokens: [{surface: Un, sense: un}, {surface: café, sense: café}, {surface: con, sense: con}, {surface: leche, sense: leche}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: Un café con leche por favor
+  translations:
+    en: |-
+      A (café con leche|coffee with milk|milky coffee|latte), please.
+- id: s.u04.24
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tomas café con leche?
+      tokens: [{surface: Tú, sense: tú}, {surface: tomas, sense: tomar, form: 'form:pres-2s'}, {surface: café, sense: café}, {surface: con, sense: con}, {surface: leche, sense: leche}]
+      reverse: |-
+        (Tú (tomas|bebes)|(Tomas|Bebes) [tú]|Usted (toma|bebe)|(Toma|Bebe) [usted]) café con leche
+        (Ustedes (toman|beben)|(Toman|Beben) [ustedes]) café con leche
+  translations:
+    en: |-
+      Do you drink (café con leche|coffee with milk)?
+      Are you drinking (café con leche|coffee with milk)?
+      Do you take your coffee with milk?
+- id: s.u04.25
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: Daniel quiere una colada.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: una, sense: un}, {surface: colada, sense: colada}]
+      reverse: Daniel quiere una colada
+  translations:
+    en: |-
+      Daniel (wants|would like) a colada.
+- id: s.u04.26
+  node: es.u04.cafecito
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú quieres tomar?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: tomar, sense: tomar}]
+      reverse: |-
+        Qué (tú quieres|quieres [tú]|usted quiere|quiere [usted]) (tomar|beber)
+        Qué (ustedes quieren|quieren [ustedes]) (tomar|beber)
+  translations:
+    en: |-
+      What do you want to drink?
+      What would you like to drink?
+- id: s.u04.27
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Comemos congrí.
+      tokens: [{surface: Comemos, sense: comer, form: 'form:pres-1p'}, {surface: congrí, sense: congrí}]
+      reverse: '[Nosotros] comemos congrí'
+  translations:
+    en: |-
+      We eat (congrí|rice and beans).
+      (We're|We are) eating (congrí|rice and beans).
+- id: s.u04.28
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Abuela y yo tomamos café.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: tomamos, sense: tomar, form: 'form:pres-1p'}, {surface: café, sense: café}]
+      reverse: (Abuela|La abuela|Mi abuela) y yo (tomamos|bebemos) café
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny|My grandma|My grandmother) and I drink coffee.
+      (Grandma|Grandmother|Granny|My grandma|My grandmother) and I are drinking coffee.
+- id: s.u04.29
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tienes hambre?
+      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: hambre, sense: hambre}]
+      reverse: (Tú tienes hambre|Tienes [tú] hambre|Usted tiene hambre|Tiene [usted] hambre|Ustedes tienen hambre|Tienen [ustedes] hambre)
+  translations:
+    en: Are you hungry?
+- id: s.u04.30
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Sí, tengo mucha hambre.
+      tokens: [{surface: Sí, sense: sí}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: mucha, sense: mucho}, {surface: hambre, sense: hambre}]
+      reverse: Sí [yo] tengo mucha hambre
+  translations:
+    en: |-
+      Yes, (I'm|I am) (very|really|so) hungry.
+      Yes, (I'm|I am) starving.
+- id: s.u04.31
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Daniel y Yasiel toman cerveza.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: toman, sense: tomar, form: 'form:pres-3p'}, {surface: cerveza, sense: cerveza}]
+      reverse: Daniel y Yasiel (toman|beben) cerveza
+  translations:
+    en: |-
+      Daniel and Yasiel (drink|are drinking) beer.
+- id: s.u04.32
+  node: es.u04.tengo-hambre
+  forms:
+    es-Latn/standard:
+      text: Tenemos hambre. ¿Comemos?
+      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: hambre, sense: hambre}, {surface: Comemos, sense: comer, form: 'form:pres-1p'}]
+      reverse: '[Nosotros] tenemos hambre (comemos|vamos a comer)'
+  translations:
+    en: |-
+      (We're|We are) hungry. (Shall we eat|Should we eat|Let's eat)?
+stories:
+- id: es.story.u04
+  node: es.u04.story
+  title: {en: Lunch at Abuela's}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Hola, mi vida! ¿Tú tienes hambre?
+          tokens: [{surface: Hola, sense: hola}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: hambre, sense: hambre}]
+      translations: {en: 'Hi, darling! Are you hungry?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: No, abuela, gracias.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: abuela, sense: abuela}, {surface: gracias, sense: gracias}]
+      translations: {en: 'No, Grandma, thanks.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Tengo arroz con pollo, congrí y maduros.
+          tokens: [{surface: Tengo, sense: tener, form: 'form:pres-1s'}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: congrí, sense: congrí}, {surface: 'y', sense: 'y'}, {surface: maduros, sense: maduro}]
+      translations: {en: 'I have chicken and rice, congrí and sweet plantains.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Maduros? ¡Me gustan mucho los maduros!
+          tokens: [{surface: Maduros, sense: maduro}, {surface: Me, sense: me}, {surface: gustan, sense: gustar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}, {surface: los, sense: el}, {surface: maduros, sense: maduro}]
+      translations: {en: 'Maduros? I really like maduros!'}
+  - choose:
+      prompt: {en: 'What is Abuela cooking for lunch?'}
+      options: [{en: 'Chicken and rice, congrí and sweet plantains'}, {en: Black beans and tostones}, {en: Nothing; she only has coffee.}]
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Sí, tengo mucha hambre.
+          tokens: [{surface: Sí, sense: sí}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: mucha, sense: mucho}, {surface: hambre, sense: hambre}]
+      translations: {en: 'Yes, I''m very hungry.'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Abuela, yo quiero fruta bomba.
+          tokens: [{surface: Abuela, sense: abuela}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: fruta, sense: fruta-bomba}, {surface: bomba, sense: fruta-bomba}]
+      translations: {en: 'Grandma, I want papaya.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Fruta bomba? Sí, mi vida. ¡Está muy rica!
+          tokens: [{surface: Fruta, sense: fruta-bomba}, {surface: bomba, sense: fruta-bomba}, {surface: Sí, sense: sí}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: rica, sense: rico}]
+      translations: {en: 'Papaya? Yes, darling. It''s really good!'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:agua
+      distractors: ['sense:arroz', 'sense:congrí']
+      forms:
+        es-Latn/standard:
+          text: Daniel, ¿qué tú quieres tomar? ¿Agua? ¿Cerveza?
+          tokens: [{surface: Daniel, sense: daniel}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: tomar, sense: tomar}, {surface: Agua, sense: agua}, {surface: Cerveza, sense: cerveza}]
+      translations: {en: 'Daniel, what do you want to drink? Water? Beer?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Agua, por favor.
+          tokens: [{surface: Agua, sense: agua}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      translations: {en: 'Water, please.'}
+  - choose:
+      prompt: {en: 'What does Daniel want to drink?'}
+      options: [{en: Water}, {en: Beer}, {en: Coffee with milk}]
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Qué rico el congrí, abuela!
+          tokens: [{surface: Qué, sense: qué}, {surface: rico, sense: rico}, {surface: el, sense: el}, {surface: congrí, sense: congrí}, {surface: abuela, sense: abuela}]
+      translations: {en: 'The congrí is so good, Grandma!'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:cafecito
+      distractors: ['sense:hambre', 'sense:gracias']
+      forms:
+        es-Latn/standard:
+          text: ¿Y un cafecito, mi vida?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      translations: {en: 'And a little coffee, darling?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, por favor. ¡Me gusta mucho el café cubano!
+          tokens: [{surface: Sí, sense: sí}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: el, sense: el}, {surface: café, sense: café}, {surface: cubano, sense: cubano}]
+      translations: {en: 'Yes, please. I really like Cuban coffee!'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Daniel toma mucho café, abuela!
+          tokens: [{surface: Daniel, sense: daniel}, {surface: toma, sense: tomar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: café, sense: café}, {surface: abuela, sense: abuela}]
+      translations: {en: 'Daniel drinks a lot of coffee, Grandma!'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Y yo también!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: también, sense: también}]
+      translations: {en: So do I!}
+  - choose:
+      prompt: {en: 'Who drinks a lot of coffee?'}
+      options: [{en: 'Daniel, and Abuela too'}, {en: Only Lili}, {en: Nobody in the family}]
+      answer: 0
+scenarios:
+- id: es.ventanita
+  after: es.u04.tengo-hambre
+  title: {en: At la ventanita}
+  setting: {en: 'The walk-up coffee window (la ventanita) of a Cuban café on Calle Ocho in Little Havana, Miami, at eight in the morning. People on their way to work wait for their coffee; behind the glass there are pastelitos, croquetas and Cuban bread.'}
+  character: {en: 'Mayra, who has worked the ventanita for twenty years: quick, warm and teasing. She calls everyone mi vida or mi amor, speaks fast Miami Cuban Spanish, and switches to English only if you are really lost.'}
+  goal: {en: 'Greet Mayra, order a cafecito for yourself and a colada for the office, ask for something to eat, say what you like, and thank her.'}
