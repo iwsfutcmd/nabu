@@ -35,13 +35,15 @@ One family runs through the stories, so a learner meets the same people from uni
 |---|---|
 | **Daniel** | 24, grew up in Hialeah (Miami). Understands everything, answers in Spanglish. The learner's stand-in: first-person sentences with gendered words are his (`persons: {speaker: m}`). |
 | **Lili** | Daniel's younger sister, 19, studies at FIU. |
-| **Mami (Lourdes)** and **Papi (Alberto)** | Daniel's parents. Lourdes was born in Miami; Alberto came from Cienfuegos as a boy. |
-| **Abuela Cachita** (Caridad) | Lourdes's mother, born in Matanzas, came in the Mariel boatlift (1980). Cooks, tells stories, speaks in refranes. |
-| **Abuelo Pepe** (José) | Cachita's husband, a retired mechanic. Pelota and dominó in the park on Calle Ocho. |
-| **Tía Marisol** | Cachita's daughter who stayed in Cuba. Lives in Centro Habana; talks to the family on WhatsApp. |
+| **Mami (Lourdes)** and **Papi (Alberto)** | Daniel's parents. Lourdes was born in Miami. Alberto grew up in Cienfuegos, by the sea, and came with his father on a raft in the summer of 1994, a *balsero* of about fourteen; he had never told his children (u24). |
+| **Abuela Cachita** (Caridad) | Lourdes's mother, born in Matanzas, where her father built the family's *bohío* (u26). Married Pepe at twenty (u13); came with him in the Mariel boatlift (1980), in a motorboat a cousin of Pepe's brought (u24). 79 in u05, 80 at her birthday party in u30. Cooks, tells stories, speaks in refranes, and still misses Marisol every day. |
+| **Abuelo Pepe** (José) | Cachita's husband, a retired mechanic. Pelota and dominó in the park on Calle Ocho. He courted Cachita in his 1957 car, which stayed in Matanzas with a cousin of his (u13); says he came for freedom (u24). |
+| **Tía Marisol** | Cachita's daughter who stayed in Cuba: she was thirteen and with her grandmother in the countryside the night the boat left in 1980, and could never leave later (u24). Lives in Centro Habana, in a flat with a balcony over the neighbourhood; talks to the family on WhatsApp. Daniel first met her in person on his trip (u25). |
 | **Yunior** | Marisol's son, Daniel's cousin, 25, in Havana. Very Cuban speech. |
 | **Yasiel** | Daniel's friend in Miami, arrived from Holguín two years ago. |
 | **Doña Ofelia** | The neighbour in Hialeah, 80, whom everyone addresses as *usted*. |
+
+Further back: Daniel's great-grandfather cut cane at a *central* in Matanzas (u26).
 
 ## Conventions
 
