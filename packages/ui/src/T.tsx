@@ -16,7 +16,7 @@ import { graphemeCount, parseExemplarSet } from "@nabu/core/text";
 import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
-import { useOrthography } from "./context.tsx";
+import { useIsTarget, useOrthography } from "./context.tsx";
 import styles from "./T.module.css";
 
 export interface TProps {
@@ -112,6 +112,7 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, focus, on
 
 export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
+  const target = useIsTarget(text.orthography);
   const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   const font = fontStackFor(text.lang, profile?.fonts);
@@ -131,6 +132,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
       data-script={scriptOf(text.lang)}
       data-orthography={text.orthography}
       data-scaled={font.scale === 1 ? undefined : ""}
+      data-target={target ? "" : undefined}
       id={id}
       style={style}
     >

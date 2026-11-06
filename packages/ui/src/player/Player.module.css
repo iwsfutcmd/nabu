@@ -404,6 +404,11 @@
   border-radius: var(--nabu-radius-tile);
 }
 
+/* Typing the language being learned: the learner's text size for it applies too. */
+.input[data-target] {
+  font-size: calc(1.25rem * var(--nabu-input-scale, 1) * var(--nabu-target-scale, 1));
+}
+
 .charBar {
   display: flex;
   flex-wrap: wrap;

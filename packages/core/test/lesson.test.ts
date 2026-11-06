@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { BundleManifest } from "@nabu/schema";
+import type { BundleManifest, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
@@ -26,7 +26,7 @@ import {
   type Response,
   type TemplateId,
 } from "../src/lesson/index.ts";
-import { SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { makeMatchPairs, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -207,6 +207,43 @@ describe("template coverage", () => {
     const course = loadCourse("fa");
     for (const { node } of lessonNodes(course)) {
       expect(buildLesson(course, node.id, { seed: 1, exclude: new Set(["speak.tier-0"]) }).some((e) => e.template === "speak.tier-0")).toBe(false);
+    }
+  });
+});
+
+describe("matching pairs", () => {
+  const key = (t: TaggedText): string => surfaceOf(t).normalize("NFC").toLocaleLowerCase("und").replace(/[\p{P}\s]+/gu, " ").trim();
+  const distinct = (texts: readonly TaggedText[]): boolean => new Set(texts.map(key)).size === texts.length;
+
+  /** Builds every lesson of every course three times: about a second alone, far more on a busy CI runner. */
+  const EVERY_LESSON_TIMEOUT_MS = 30_000;
+
+  it("never shows two words or two meanings alike, in any course's lessons", () => {
+    for (const [id, orthography] of [...VARIANTS, ["lzh", undefined] as const]) {
+      const course = loadCourse(id, orthography);
+      for (const { node } of lessonNodes(course)) {
+        for (const seed of [1, 7, 11]) {
+          for (const ex of buildLesson(course, node.id, { seed })) {
+            if (ex.template !== "match-pairs") continue;
+            expect(distinct(ex.left), `${id} ${node.id} ${ex.id}`).toBe(true);
+            expect(distinct(ex.right), `${id} ${node.id} ${ex.id}`).toBe(true);
+          }
+        }
+      }
+    }
+  }, EVERY_LESSON_TIMEOUT_MS);
+
+  it("keeps synonyms glossed alike apart: Classical Chinese 汝 and 爾 are both \"you\"", () => {
+    const course = loadCourse("lzh");
+    const kcs = course.units.flatMap((u) => u.kcs);
+    const you = kcs.filter((k) => k.id === "sense:汝" || k.id === "sense:爾");
+    expect(you.map((k) => k.gloss?.["en"] === undefined ? "" : surfaceOf(k.gloss["en"]))).toEqual(["you", "you"]);
+    const others = kcs.filter((k) => ["sense:吾", "sense:其", "sense:誰", "sense:何"].includes(k.id));
+    for (let seed = 1; seed <= 40; seed++) {
+      const ex = makeMatchPairs({ course, rng: seededRng(seed), introduced: [] }, [...you, ...others]);
+      if (ex === undefined) throw new Error("no pairs");
+      expect(ex.kcs.filter((k) => k === "sense:汝" || k === "sense:爾").length).toBeLessThanOrEqual(1);
+      expect(distinct(ex.right)).toBe(true);
     }
   });
 });

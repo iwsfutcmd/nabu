@@ -10,9 +10,9 @@
  */
 import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
-import { NabuUiProvider, useTranslator } from "../context.tsx";
+import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
@@ -300,15 +300,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   );
 };
 
-/** Plays one lesson. Provides the course's orthography profiles to <T> (fonts, marks). */
-export const LessonPlayer = (props: LessonPlayerProps): JSX.Element => {
-  const translator = useTranslator();
-  const orthographies = useMemo(() => new Map([...props.course.profiles].map(([id, p]) => [id, p.source])), [props.course]);
-  return (
-    <NabuUiProvider translator={translator} orthographies={orthographies}>
-      <SpeechProvider value={props.speech}>
-        <PlayerBody {...props} profile={orthographies.get(props.course.orthography)} />
-      </SpeechProvider>
-    </NabuUiProvider>
-  );
-};
+/** Plays one lesson. Provides the course's orthography profiles, and its target ones, to <T>. */
+export const LessonPlayer = (props: LessonPlayerProps): JSX.Element => (
+  <CourseUiProvider course={props.course}>
+    <SpeechProvider value={props.speech}>
+      <PlayerBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+    </SpeechProvider>
+  </CourseUiProvider>
+);

@@ -270,6 +270,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
 - Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.
 - Each unit's lessons teach the words of its story, an authentic passage; stories may use no word taught later.
+- Target-language text is sized apart from the rest: a profile's `fonts.scale` (lzh 1.25), times the learner's size
+  for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
+  pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.

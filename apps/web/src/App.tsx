@@ -17,7 +17,7 @@ import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
 import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "@nabu/schema";
-import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
+import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
 import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
@@ -794,11 +794,19 @@ export const App = (): JSX.Element => {
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;
-    return <CardsPage loaded={loaded.value} language={courseName(t, course.id)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />;
+    return (
+      <CourseUiProvider course={course}>
+        <CardsPage loaded={loaded.value} language={courseName(t, course.id)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
+    );
   }
   if (route.tag === "audio") {
     const { course } = loaded.value;
-    return <AudioCheckPage loaded={loaded.value} base={import.meta.env.BASE_URL} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />;
+    return (
+      <CourseUiProvider course={course}>
+        <AudioCheckPage loaded={loaded.value} base={import.meta.env.BASE_URL} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
+    );
   }
   if (route.tag === "review-course") {
     const { course, manifest } = loaded.value;
@@ -811,13 +819,21 @@ export const App = (): JSX.Element => {
   if (route.tag === "sentences") {
     const { course, manifest } = loaded.value;
     const back = href({ tag: "course", course: course.id, orthography: course.orthography });
-    return <SentencesPage course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={back} review={DEBUG} />;
+    return (
+      <CourseUiProvider course={course}>
+        <SentencesPage course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={back} review={DEBUG} />
+      </CourseUiProvider>
+    );
   }
   // Offline, a session uses only the media on this device: no listening without the clip.
   const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };
   if (route.tag === "roleplay") {
     const back = href({ tag: "course", course: route.course, orthography: route.orthography });
-    return <RoleplayPage key={href(route)} course={loaded.value.course} scenario={route.scenario} account={account} status={ai} back={back} />;
+    return (
+      <CourseUiProvider course={loaded.value.course}>
+        <RoleplayPage key={href(route)} course={loaded.value.course} scenario={route.scenario} account={account} status={ai} back={back} />
+      </CourseUiProvider>
+    );
   }
   if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
   if (route.tag === "story")

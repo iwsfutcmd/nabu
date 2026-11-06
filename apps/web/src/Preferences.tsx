@@ -3,9 +3,10 @@
  * localStorage, as the reading layer and the listening and speaking breaks do, and without
  * storage it lasts the page.
  *
- * Text size scales the root font size, so every rem in the app follows it: the chrome and
- * every course's text alike. It is a percentage of the browser's own font size, so a size the
- * learner set in the browser still counts.
+ * Text size is for the language being learned only: it sets --nabu-target-scale, which <T>
+ * applies to the words of the course's own orthographies (and the answer field when typing
+ * them), on top of the profile's scale. The chrome and the support language keep their size;
+ * the browser's zoom is there for everything at once.
  */
 import { useTranslator } from "@nabu/ui";
 import { useState, type JSX } from "react";
@@ -15,18 +16,18 @@ import styles from "./App.module.css";
 export const TEXT_SIZES = ["smaller", "default", "large", "larger", "largest"] as const;
 export type TextSize = (typeof TEXT_SIZES)[number];
 
-/** Percent of the browser's font size. */
-const PERCENT: Readonly<Record<TextSize, number>> = { smaller: 87.5, default: 100, large: 115, larger: 130, largest: 150 };
+/** Times the size the course sets it at. */
+const SCALE: Readonly<Record<TextSize, number>> = { smaller: 0.85, default: 1, large: 1.25, larger: 1.5, largest: 1.75 };
 
 const LABEL = {
-  smaller: "preferences.text-size.smaller",
-  default: "preferences.text-size.default",
-  large: "preferences.text-size.large",
-  larger: "preferences.text-size.larger",
-  largest: "preferences.text-size.largest",
+  smaller: "preferences.target-size.smaller",
+  default: "preferences.target-size.default",
+  large: "preferences.target-size.large",
+  larger: "preferences.target-size.larger",
+  largest: "preferences.target-size.largest",
 } as const satisfies Readonly<Record<TextSize, string>>;
 
-const TEXT_SIZE_KEY = "nabu.text-size";
+const TEXT_SIZE_KEY = "nabu.target-size";
 let fallback: TextSize = "default";
 
 const isTextSize = (value: string | null): value is TextSize => value !== null && (TEXT_SIZES as readonly string[]).includes(value);
@@ -51,15 +52,15 @@ const storeTextSize = (size: TextSize): void => {
   }
 };
 
-/** Sets the root font size to the chosen size (the default leaves the browser's own). */
+/** Sets the scale of the language being learned (the default leaves it as the course sets it). */
 export const applyTextSize = (size: TextSize): void => {
   const root = document.documentElement;
-  if (size === "default") root.style.removeProperty("font-size");
-  else root.style.setProperty("font-size", `${PERCENT[size]}%`);
-  root.dataset["nabuTextSize"] = size;
+  if (size === "default") root.style.removeProperty("--nabu-target-scale");
+  else root.style.setProperty("--nabu-target-scale", String(SCALE[size]));
+  root.dataset["nabuTargetSize"] = size;
 };
 
-/** The preferences screen: text size, applied as the learner chooses. */
+/** The preferences screen: the size of the language being learned, applied as the learner chooses. */
 export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
@@ -72,13 +73,13 @@ export const PreferencesPage = ({ back }: { readonly back: string }): JSX.Elemen
   return (
     <main className={styles.page} data-preferences="">
       <h1 className={styles.heading}>{t.format("preferences.title")}</h1>
-      <RadioGroup className={styles.preferenceOptions} value={size} onChange={choose} data-preference="text-size">
-        <Label className={styles.subheading}>{t.format("preferences.text-size.label")}</Label>
+      <RadioGroup className={styles.preferenceOptions} value={size} onChange={choose} data-preference="target-size">
+        <Label className={styles.subheading}>{t.format("preferences.target-size.label")}</Label>
         <Text slot="description" className={styles.muted}>
-          {t.format("preferences.text-size.hint")}
+          {t.format("preferences.target-size.hint")}
         </Text>
         {TEXT_SIZES.map((s) => (
-          <Radio key={s} value={s} className={styles.preferenceOption} data-text-size={s}>
+          <Radio key={s} value={s} className={styles.preferenceOption} data-target-size={s}>
             {t.format(LABEL[s])}
           </Radio>
         ))}

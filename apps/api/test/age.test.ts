@@ -58,7 +58,10 @@ describe("the age gate", () => {
     const res = await signUp(gated, { email: "old-enough@example.com", age: 16 });
     expect(res.status).toBe(201);
     const [row] = await database.db.select().from(users);
-    expect(JSON.stringify(row)).not.toMatch(/\b16\b/u);
+    // No column holds the age, and none is named for it. The time stamp and the password hash are
+    // left out of the search: a sign-up at 13:16, or a random salt, holds a 16 by chance.
+    const { createdAt: _created, passwordHash: _hash, ...kept } = row ?? {};
+    expect(JSON.stringify(kept)).not.toMatch(/\b16\b/u);
     expect(Object.keys(row ?? {}).some((k) => /age|birth/iu.test(k))).toBe(false);
   });
 

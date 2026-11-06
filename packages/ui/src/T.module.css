@@ -14,6 +14,12 @@
   font-size: calc(var(--nabu-text-scale) * 1em);
 }
 
+/* The language being learned follows the learner's text size for it (Preferences), on top of its
+   profile's scale; the chrome and the support language keep their size. 1 until they choose. */
+.text[data-target] > .token {
+  font-size: calc(var(--nabu-text-scale, 1) * var(--nabu-target-scale, 1) * 1em);
+}
+
 /* `over` is above in horizontal text and to the right in vertical-rl */
 .ruby {
   ruby-position: over;

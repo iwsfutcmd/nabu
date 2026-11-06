@@ -16,7 +16,7 @@ import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
-import { NabuUiProvider, useTranslator } from "../context.tsx";
+import { CourseUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
@@ -431,13 +431,11 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   );
 };
 
-/** Reads one story. Provides the course's orthography profiles to <T> (fonts, marks). */
+/** Reads one story. Provides the course's orthography profiles, and its target ones, to <T>. */
 export const StoryReader = (props: StoryReaderProps): JSX.Element => {
-  const translator = useTranslator();
-  const orthographies = useMemo(() => new Map([...props.course.profiles].map(([id, p]) => [id, p.source])), [props.course]);
   return (
-    <NabuUiProvider translator={translator} orthographies={orthographies}>
-      <ReaderBody {...props} profile={orthographies.get(props.course.orthography)} />
-    </NabuUiProvider>
+    <CourseUiProvider course={props.course}>
+      <ReaderBody {...props} profile={props.course.profiles.get(props.course.orthography)?.source} />
+    </CourseUiProvider>
   );
 };
