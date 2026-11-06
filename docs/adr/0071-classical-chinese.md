@@ -56,12 +56,14 @@ The app could not express any of this:
 - The profile lists one annotation layer per scheme. The compiler gives every Han word token
   each layer's reading and ruby (stage 3), and every KC form too (ADR 0050). Readings are
   pinned per token and never guessed.
-- A layer can name its own language (`lang`), so ruby text is tagged as what it is: `<rt lang>`.
+- A layer can name its own language (`lang`), so ruby text is tagged as what it is
+  (`<rt lang>`) and set in that script's face. Pinyin's tone letters (ā, ǖ) need a Latin font:
+  the CJK Ming face drew zāi as "zaī".
 
   | Layer | Tag | Why this tag |
   |---|---|---|
   | Pinyin | `zh-Latn-pinyin` | |
-  | Jyutping | `yue-Latn-jyutping` | yue's layer gets it too |
+  | Jyutping | `yue-Latn-jyutping` | |
   | Baxter | `ltc-Latn-x-baxter` | ISO 639-3 `ltc`, Late Middle Chinese, is the nearest code; the private-use subtag names Baxter's notation |
 
 - **The player.**
@@ -96,6 +98,18 @@ The app could not express any of this:
   | 有 "and", in 十有五 (= 又) | yòu | jau6 | hjuwH |
   | 知 "wise" (= 智) | zhì | zi3 | trjeH |
 
+- **Checked against Wiktionary** (CC-BY-SA-4.0, read through kaikki.org's wiktextract data),
+  whose entries group each reading with the senses it carries. 242 of the course's 246
+  characters agree on all three readings for their sense. Wiktionary decided the two
+  disagreements:
+  - 生 is *sraeng*, not the derived *srjaeng*: the Guangyun data puts 生 in division III and
+    Baxter writes it in division II;
+  - 從容 is *sung1 jung4* in Cantonese.
+
+  The four left are:
+  - three borrowings that Wiktionary gives no Middle Chinese for in that sense: 女 = 汝 *nyoX*,
+    知 = 智 *trjeH*, 有 = 又 *hjuwH*. Each takes the borrowed character's reading;
+  - 踰, an entry with no readings of its own (it points to 逾).
 - The readings are content: pinned in the course YAML and reviewed like the sentences. Nothing
   derives them at runtime.
 
@@ -153,7 +167,9 @@ The app could not express any of this:
 - Other courses do not change.
   - Their manifests name no facets, and nothing is ruled out for them.
   - Their lessons and goldens are as they were.
-  - yue's `<rt>` now carries `lang="yue-Latn-jyutping"`.
+  - yue's layer names no `lang` yet. Naming it would set its Jyutping in Noto Sans rather than
+    Noto Sans HK, which changes the visual baselines; that waits for an update in the pinned
+    container.
 - Tests:
   - The pipeline checks that lzh pins three layers on every word and KC form, reads each
     sense one way, has no audio and names its facets.
@@ -161,8 +177,9 @@ The app could not express any of this:
   - The UI tests the control, the default and `<rt lang>`.
   - The simulation runs lzh learners too.
 - Not done:
-  - A lint that checks pinned Pinyin, Jyutping and Baxter against the data, as PyCantonese
-    checks yue's Jyutping.
+  - A lint that checks pinned Pinyin, Jyutping and Baxter against Wiktionary's per-sense
+    readings in CI, as PyCantonese checks yue's Jyutping. That needs a committed, pinned
+    extract of the Wiktionary data (CC-BY-SA).
   - An IME-homophone model for Pinyin input.
   - Old Chinese reconstructions.
   - Zhuyin.

@@ -40,7 +40,7 @@ describe("<T>", () => {
     expect(render(<T text={yue} />)).not.toContain("<ruby");
     const html = render(<T text={yue} ruby={"jyutping" as SchemeId} />);
     expect(html).toContain("<ruby");
-    expect(html).toContain('我<rt lang="yue-Latn-jyutping">ngo5</rt>哋<rt lang="yue-Latn-jyutping">dei6</rt>');
+    expect(html).toContain("我<rt>ngo5</rt>哋<rt>dei6</rt>");
   });
 
   it("tags each ruby layer with its own language (ADR 0071)", () => {
@@ -66,6 +66,9 @@ describe("<T>", () => {
     } as unknown as TaggedText;
     expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin">jūn</rt>子<rt lang="zh-Latn-pinyin">zǐ</rt>');
     expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter">kjun</rt>子<rt lang="ltc-Latn-x-baxter">tsiX</rt>');
+    // Latin readings are set in the Latin face, whose tone letters (ū, ǖ) the CJK face lacks.
+    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain("--nabu-ruby-font:&quot;Noto Sans&quot;, sans-serif");
+    expect(render(<T text={text} />)).not.toContain("--nabu-ruby-font");
   });
 
   it("marks short numbers for tate-chū-yoko", () => {

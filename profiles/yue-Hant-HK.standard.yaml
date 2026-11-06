@@ -18,7 +18,7 @@ match:
   homophones:     { model: jyutping-ime, table: jyutping-ime, policy: partial-credit }   # IME slip, §8.4
   typo:           { model: ime-homophone }
 annotations:
-  - { id: jyutping, kind: reading, scheme: jyutping, lang: yue-Latn-jyutping, toggle: true, render: ruby, fade: by-facet }
+  - { id: jyutping, kind: reading, scheme: jyutping, toggle: true, render: ruby, fade: by-facet }
 input:
   ime: [os, rime-wasm:jyutping]
 layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }

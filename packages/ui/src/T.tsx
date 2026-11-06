@@ -119,6 +119,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const style = {
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
+    ...(rubyLang === undefined ? {} : { "--nabu-ruby-font": fontStackFor(rubyLang).family }),
   } as CSSProperties;
   return (
     <Tag

@@ -22,12 +22,14 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["yue", "yue-Hant-HK/standard", "yue.who"],
     ["uz", "uz-Latn/standard", "uz.i-am"],
     ["apc", "apc-Arab/standard", "apc.cafe"],
+    ["lzh", "lzh-Hant/standard", "lzh.u01.well-said"],
   ],
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
     ["yue", "yue-Hant-HK/standard", "yue.yum-cha"],
     ["uz", "uz-Cyrl/standard", "uz.my"],
     ["apc", "apc-Latn/arabizi", "apc.how-are-you"],
+    ["lzh", "lzh-Hant/standard", "lzh.u01.it-is"],
   ],
 };
 
@@ -82,3 +84,32 @@ test("Cantonese words show their Jyutping, as sentences do, and the toggle hides
   await page.locator("[data-toggle=readings]").click();
   await expect(player.locator("rt")).toHaveCount(0);
 });
+
+test("Classical Chinese shows no readings until the learner picks one, and keeps the choice (ADR 0071)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("lzh", "lzh-Hant/standard");
+  const request = { mode: "lesson", node: "lzh.u01.well-said" } as const;
+  const exercises = planned(course, [], request, NOW, SEED);
+  // Read and written only: nothing to hear, say or transcribe.
+  expect(exercises.map((e) => e.template).filter((t) => /speak|listen|tone|char-read|reading|transcribe/u.test(t))).toEqual([]);
+  await page.goto(sessionUrl(course, request, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  await expect(player.locator("rt")).toHaveCount(0);
+  const readings = page.locator("[data-toggle=readings]");
+  await expect(readings.locator("[data-reading]")).toHaveText(["Off", "Pinyin", "Jyutping", "Middle Chinese (Baxter)"]);
+  await readings.locator("[data-reading=pinyin]").click();
+  await expect(player.locator("rt").first()).toHaveAttribute("lang", "zh-Latn-pinyin");
+  await expect(player.getByText("shàn").first()).toBeVisible();
+  await readings.locator("[data-reading=baxter]").click();
+  await expect(player.locator("rt").first()).toHaveAttribute("lang", "ltc-Latn-x-baxter");
+  await expect(player.getByText("dzyenX").first()).toBeVisible();
+  // The next session starts with the layer the learner chose.
+  await page.goto(sessionUrl(course, { mode: "lesson", node: "lzh.u01.it-is" }, SEED));
+  await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "answering");
+  await expect(page.locator("[data-lesson-player] rt").first()).toHaveAttribute("lang", "ltc-Latn-x-baxter");
+  await page.locator("[data-toggle=readings] [data-reading=off]").click();
+  await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
+});
+

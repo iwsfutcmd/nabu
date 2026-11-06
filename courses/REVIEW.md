@@ -243,7 +243,9 @@ With an account on a server, corrections also reach the review queue at `/admin/
 Drafted after the native-speaker pass above, so it has had no second reading
 ([ADR 0071](../docs/adr/0071-classical-chinese.md)). A reviewer of Classical Chinese should check:
 
-1. **Readings by sense.** Each sense is read one way in all three layers. Check the borrowings
+1. **Readings by sense.** Each sense is read one way in all three layers. They were checked
+   against Wiktionary, whose entries group readings by sense: 242 of 246 characters agree on all
+   three. 生 *sraeng* and 從容 *sung1 jung4* were corrected to Wiktionary. Check the borrowings
    and polyphones first:
    - 說 "pleased" yuè / jyut6 / ywet (= 悅);
    - 女 "you" rǔ / jyu5 / nyoX (= 汝). The Guangyun lists 女 only as nrjoX, so nyoX follows
@@ -253,7 +255,7 @@ Drafted after the native-speaker pass above, so it has had no second reading
    - 強 "force oneself" qiǎng / koeng5 / gjangX;
    - 舍 "give up" shě / se2 / syaeX (= 捨);
    - 見 "have an audience with" jiàn / kenH, not xiàn;
-   - 覺 jué, 處 chù, 從容 cóng róng / tshjowng yowng (the Guangyun's 七恭切 for 從容);
+   - 覺 jué, 處 chù, 從容 cóng róng / sung1 jung4 / tshjowng yowng;
    - 不 is pjuw throughout, not pjut;
    - 遠 in 叟不遠千里 is the rising-tone hjwonX.
 2. **Literary Jyutping where Unihan lists a colloquial reading first:** 生 sang1, 聲 sing1,

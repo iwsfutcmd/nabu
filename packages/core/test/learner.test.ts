@@ -30,6 +30,8 @@ import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const GOLDEN = join(import.meta.dirname, "golden");
+/** Tests that plan every lesson of a course: under a second alone, far more on a busy CI runner. */
+const WHOLE_COURSE_TIMEOUT_MS = 30_000;
 const fa = loadCourse("fa");
 const faBundle = manifestOf("fa").id;
 
@@ -273,8 +275,7 @@ describe("planner constraints", () => {
         if (!produces) ex.kcs.forEach((kc) => recognized.add(kc));
       }
     }
-    // Under a second alone; it plans every fa lesson, and shares the CPU with the simulations.
-  }, 30_000);
+  }, WHOLE_COURSE_TIMEOUT_MS);
 
   it("can leave speaking out", () => {
     const node = lessonNodes(fa)[1]?.node.id as string;
@@ -312,7 +313,7 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
     expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
-  });
+  }, WHOLE_COURSE_TIMEOUT_MS);
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
