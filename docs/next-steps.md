@@ -22,13 +22,11 @@ follows two things the gameplan already says:
   been translated.
 - **Running it.** The demo on GitHub Pages is local-only. There is no recipe for running a full
   instance with accounts, sync, reminders and speech: `deploy/` is still a placeholder.
-- **Grading bug (erratum 46).** The typo model accepts some meaning changes as typos, so they
-  never reach the judge:
-  - Uzbek person and possessive suffixes one letter apart (*talabasan* for *talabaman*);
-  - Сен for Мен, which are neighbouring keys on the Cyrillic layout;
-  - a Lebanese pronoun.
-
-  Learners are told these answers are right.
+- **Grading bug (erratum 46): fixed.** The typo model accepted some meaning changes as typos:
+  Uzbek person and possessive suffixes one letter apart (*talabasan* for *talabaman*), Сен for Мен,
+  a Lebanese pronoun. Profiles now list the endings and pronouns that carry meaning
+  ([ADR 0066](adr/0066-meaningful-endings.md); the sets await sign-off), and these grade
+  WRONG_WORD.
 
 ## What needs you, or people you know
 
@@ -37,7 +35,7 @@ These cannot be done in code. Each one gates something below.
 | What | Why | Unblocks |
 |---|---|---|
 | Native review of the four fixture courses (start with `courses/REVIEW.md`; mark mistakes in the app's sentence list, ADR 0051) | All content is an LLM draft (`status: draft`) | Phase 13; any public release |
-| Sign-off on the 10 REVIEW markers: 8 in orthography profiles, the speech tiers per orthography, the Cantonese tone templates | Linguistic policy is yours to set (CLAUDE.md) | Grading and speech defaults |
+| Sign-off on the REVIEW markers: those in orthography profiles (with the meaningful endings of uz and apc, ADR 0066), the speech tiers per orthography, the Cantonese tone templates | Linguistic policy is yours to set (CLAUDE.md) | Grading and speech defaults |
 | Recordings of native Cantonese speakers saying each tone, right and deliberately wrong (`evals/tones/README.md`) | The Phase 9 acceptance; tone templates are tuned only on native speech | Tone scoring you can trust |
 | Listening to apc's synthetic voice, and human audio where it falls short (`nabu audio report`, `nabu audio ingest`) | Lahgtna is synthetic and its clips are non-commercial (ADR 0058) | apc audio you can trust; commercial use |
 | A model for the judge: Ollama on the server, or an endpoint and key in its environment, then `pnpm --filter @nabu/api evals -- --run` | No gate can open without real evaluations | The second check on answers |
@@ -50,11 +48,12 @@ These cannot be done in code. Each one gates something below.
 ### Phase 11: Correct grading, and an instance anyone can run (§8.4, §14.4–14.5)
 
 - **Deliverables:**
-  - **Erratum 46.** The typo model learns each profile's inflectional minimal pairs, with
-    conformance vectors in both harnesses:
+  - **Erratum 46** (done: [ADR 0066](adr/0066-meaningful-endings.md)). The typo model learns each
+    profile's inflectional minimal pairs, with conformance vectors in both harnesses:
     - an edit that turns one known form into another known form of the same word is WRONG_WORD,
-      not a typo;
-    - neighbouring-key slips that make another real word are checked against the lexicon first.
+      not a typo (`typo.contrasts`);
+    - neighbouring-key slips that make another real word are checked against the lexicon first
+      (which now holds every word the course writes).
   - **Self-hosting** (`deploy/compose.yaml`):
     - Caddy serving the web build over HTTPS (the microphone and the service worker need it);
     - the API and Postgres;

@@ -465,6 +465,13 @@
               "description": "Tokens shorter than this many units get no typo tolerance (default 3).",
               "type": "integer",
               "minimum": 1
+            },
+            "contrasts": {
+              "description": "Endings, or whole words, that carry meaning, in sets: person endings, possessive endings, case endings, pronouns. A slip that turns one member of a set into another at the end of a word, the rest unchanged, is WRONG_WORD, not a typo: talabasan for talabaman, kitobing for kitobim (erratum 46). Members match after case folding, the profile's equivalences and its marks, as units are compared, so a hamza-less spelling still counts. A member may list several spellings of one meaning (the dative ga, ka, qa): trading those stays a typo.",
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/Contrast"
+              }
             }
           }
         },
@@ -794,6 +801,48 @@
       "description": "Id of a data table in profiles/tables/<id>.json (schemas/data-table.schema.json).",
       "type": "string",
       "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "Contrast": {
+      "title": "Contrast",
+      "description": "A set of endings (or whole words) one letter or two apart that mean different things.",
+      "type": "object",
+      "required": [
+        "id",
+        "members"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "members": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "oneOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "description": "Spellings of one member (allomorphs)."
+              }
+            ]
+          }
+        },
+        "note": {
+          "description": "The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9-]*$"
+        }
+      }
     }
   }
 }

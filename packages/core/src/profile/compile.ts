@@ -60,8 +60,18 @@ export interface CompiledProfile {
     readonly maxRatio: number;
     readonly minLength: number;
     readonly adjacent: (a: string, b: string) => boolean;
+    /** A unit as contrasts compare it: case-folded, equivalences applied, marks stripped. */
+    readonly key: StepFn;
+    /** Sets of meaningful endings (erratum 46): each member's spellings, keyed, as graphemes. */
+    readonly contrasts: readonly CompiledContrast[];
   };
   readonly apostrophe?: Policied;
+}
+
+export interface CompiledContrast {
+  readonly id: string;
+  readonly note?: string | undefined;
+  readonly members: readonly (readonly (readonly string[])[])[];
 }
 
 export type ProfileError =
@@ -171,6 +181,14 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     scriptMismatch = { policy: match.scriptMismatch.policy, note: match.scriptMismatch.note, chars: new Set(Array.from(t?.chars ?? "")) };
   }
 
+  const equivalences = (match.equivalences ?? []).map((e) => ({ id: e.id, policy: e.policy, note: e.note, apply: literalMap(e.map) }));
+  // As compareUnits folds two units: case, then each equivalence, then the marks.
+  const key: StepFn = memo((t) => {
+    let k = fold(t);
+    for (const eq of equivalences) k = eq.apply(k);
+    return (marks?.strip(k) ?? k).normalize("NFC");
+  });
+
   let typo: CompiledProfile["typo"];
   if (match.typo !== undefined) {
     const kbdId = match.typo.layout === undefined ? undefined : asciiLowercase(match.typo.layout.replace(/^cldr-kbd:/u, ""));
@@ -181,6 +199,12 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
       maxRatio: match.typo.maxRatio ?? DEFAULT_MAX_RATIO,
       minLength: match.typo.minLength ?? DEFAULT_MIN_LENGTH,
       adjacent: keyboardAdjacency(layout),
+      key,
+      contrasts: (match.typo.contrasts ?? []).map((c) => ({
+        id: c.id,
+        note: c.note,
+        members: c.members.map((m) => (typeof m === "string" ? [m] : m).map((spelling) => graphemes(key(normalize(spelling))))),
+      })),
     };
   }
 
@@ -194,7 +218,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
     units: graphemeUnits ? (t) => graphemes(t) : (t) => t.split(" ").filter((u) => u !== ""),
     fold,
     letters,
-    equivalences: (match.equivalences ?? []).map((e) => ({ id: e.id, policy: e.policy, note: e.note, apply: literalMap(e.map) })),
+    equivalences,
     ...(marks && { marks }),
     ...(match.zwnj && { zwnj: { policy: match.zwnj.policy, note: match.zwnj.note, equivalents: match.zwnj.equivalents } }),
     ...(variants && { variants }),

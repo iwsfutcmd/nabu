@@ -424,6 +424,7 @@ export interface NabuSchemaIndex {
   readonly Transliteration: Transliteration;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
+  readonly Contrast: Contrast;
   readonly Reports: Reports;
   readonly ReportSubmission: ReportSubmission;
   readonly CorrectionSubmission: CorrectionSubmission;
@@ -2710,6 +2711,10 @@ export interface MatchPolicy {
      * Tokens shorter than this many units get no typo tolerance (default 3).
      */
     readonly minLength?: number;
+    /**
+     * Endings, or whole words, that carry meaning, in sets: person endings, possessive endings, case endings, pronouns. A slip that turns one member of a set into another at the end of a word, the rest unchanged, is WRONG_WORD, not a typo: talabasan for talabaman, kitobing for kitobim (erratum 46). Members match after case folding, the profile's equivalences and its marks, as units are compared, so a hamza-less spelling still counts. A member may list several spellings of one meaning (the dative ga, ka, qa): trading those stays a typo.
+     */
+    readonly contrasts?: readonly Contrast[];
   };
   readonly variants?: {
     readonly table: TableRef;
@@ -2735,6 +2740,23 @@ export interface MatchPolicy {
    * Folds applied to both the answer and the accept set only for comparison, each with its own policy, e.g. Arabic hamza seats (accept-with-note) or Arabizi ch/sh (accept). The first equivalence that makes two units equal decides the policy; normalization steps, by contrast, fold silently.
    */
   readonly equivalences?: readonly Equivalence[];
+}
+/**
+ * A set of endings (or whole words) one letter or two apart that mean different things.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Contrast".
+ */
+export interface Contrast {
+  readonly id: string;
+  /**
+   * @minItems 2
+   */
+  readonly members: readonly (string | readonly string[])[];
+  /**
+   * The feedback note shown with the verdict (MF2 message feedback.note.<note>).
+   */
+  readonly note?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

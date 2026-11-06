@@ -1333,6 +1333,206 @@
         "notes": []
       },
       "note": "3alba7r, as عالبحر is one word."
+    },
+    {
+      "id": "grade/uz/contrast-person",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Talabaman",
+        "answer": "Talabasan"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "erratum 46: -san (you) for -man (I) is a meaning change, though m and s are a keyboard slip apart"
+    },
+    {
+      "id": "grade/uz/contrast-person-unseen",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Azizman",
+        "answer": "Azizsan"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "erratum 46: no lexicon needed; the ending set decides"
+    },
+    {
+      "id": "grade/uz/contrast-possessive",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Bu kitobim",
+        "answer": "Bu kitobing"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "erratum 46: -ing (your) for -im (my)"
+    },
+    {
+      "id": "grade/uz/contrast-case",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men maktabdaman",
+        "answer": "Men maktabgaman"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-case"
+        ]
+      },
+      "note": "-ga (to) for -da (at), followed by the person ending -man: suffixes stack"
+    },
+    {
+      "id": "grade/uz/contrast-allomorph-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Men maktabga boraman",
+        "answer": "Men maktabka boraman"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "ga and ka spell one ending (the dative): trading them is a spelling slip, not a meaning change"
+    },
+    {
+      "id": "grade/uz/contrast-typo-in-suffixed-word",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Latn/standard",
+        "accept": "Bu kitobim",
+        "answer": "Bu kitobum"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "u for i next to it on the keyboard: -um is no ending, so still a typo"
+    },
+    {
+      "id": "grade/uz-cyrl/contrast-pronoun",
+      "op": "grade",
+      "args": {
+        "profile": "uz-Cyrl/standard",
+        "accept": "Мен талабаман",
+        "answer": "Сен талабасан"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun",
+          "contrast-person"
+        ]
+      },
+      "note": "erratum 46: Сен for Мен (adjacent keys) and -сан for -ман"
+    },
+    {
+      "id": "grade/apc/contrast-pronoun",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "وإنت؟",
+        "answer": "وأنا؟"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun"
+        ]
+      },
+      "note": "erratum 46: and me? for and you?; و stays, the pronoun changes"
+    },
+    {
+      "id": "grade/apc/contrast-pronoun-without-hamza",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "وإنت؟",
+        "answer": "وانا؟"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun"
+        ]
+      },
+      "note": "members compare with hamza seats folded, as answers do"
+    },
+    {
+      "id": "grade/apc/contrast-possessive",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "هيدي مدرستي",
+        "answer": "هيدي مدرستك"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-ak (your) for -i (my): long enough a word for a one-letter slip to count as a typo"
+    },
+    {
+      "id": "grade/fa/contrast-possessive",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتابشان بزرگ است",
+        "answer": "کتابتان بزرگ است"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-etān (your) for -ešān (their)"
+    },
+    {
+      "id": "grade/fa/contrast-possessive-after-zwnj",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "خانه\u200Cشان بزرگ است",
+        "answer": "خانه\u200Cتان بزرگ است"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "the ending after a ZWNJ: the same contrast"
+    },
+    {
+      "id": "grade/fa/contrast-typo-in-suffixed-word",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتابشان بزرگ است",
+        "answer": "کتابشام بزرگ است"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "-šām is no ending: still a typo"
     }
 ]
 }

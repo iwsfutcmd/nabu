@@ -1720,6 +1720,37 @@ type TableRef = Annotated[
 ]
 
 
+type Members = Annotated[str, Field(min_length=1)]
+
+
+type Members1Item = Annotated[str, Field(min_length=1)]
+
+
+type Members1 = Annotated[
+    list[Members1Item], Field(description="Spellings of one member (allomorphs).", min_length=1)
+]
+
+
+class Contrast(BaseModel):
+    """
+    A set of endings (or whole words) one letter or two apart that mean different things.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    members: Annotated[list[Members | Members1], Field(min_length=2)]
+    note: Annotated[
+        str | None,
+        Field(
+            description="The feedback note shown with the verdict (MF2 message feedback.note.<note>).",
+            pattern="^[a-z][a-z0-9-]*$",
+        ),
+    ] = None
+
+
 class Reports(BaseModel):
     """
     What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.
@@ -2642,6 +2673,12 @@ class Typo(BaseModel):
         Field(
             description="Tokens shorter than this many units get no typo tolerance (default 3).",
             ge=1,
+        ),
+    ] = None
+    contrasts: Annotated[
+        list[Contrast] | None,
+        Field(
+            description="Endings, or whole words, that carry meaning, in sets: person endings, possessive endings, case endings, pronouns. A slip that turns one member of a set into another at the end of a word, the rest unchanged, is WRONG_WORD, not a typo: talabasan for talabaman, kitobing for kitobim (erratum 46). Members match after case folding, the profile's equivalences and its marks, as units are compared, so a hamza-less spelling still counts. A member may list several spellings of one meaning (the dative ga, ka, qa): trading those stays a typo."
         ),
     ] = None
 
