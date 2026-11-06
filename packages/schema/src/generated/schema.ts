@@ -1806,7 +1806,7 @@ export interface CourseAudio {
 export interface AudioVoice {
   readonly id: string;
   /**
-   * Whose voice it is: a man's (m) or a woman's (f). A sentence whose persons.speaker is the other gets no clip from it, so a man's voice never says a woman's words (ADR 0075). Leave it out for a voice whose sentences mark no speaker.
+   * Whose voice it is: a man's (m) or a woman's (f). A sentence whose persons.speaker is the other gets no clip from it, so a man's voice never says a woman's words (ADR 0075). Optional: a voice without it reads every sentence, whoever says it (apc's man's voice does, for now).
    */
   readonly speaker?: "m" | "f";
   /**

@@ -260,8 +260,8 @@ With an account on a server, corrections also reach the review queue at `/admin/
       -in (جوعانين, مبسوطين, رايحين), and إنتو.
     - **Spelling to check:** the Arabizi *-o* rather than *-u* (both are accepted), and ـوا rather
       than ـو in Arabic script (both are accepted).
-    - **A woman speaking:** جوعانة, عطشانة, مأخّرة, مشغولة, تعبانة, مبسوطة, رايحة, فاضية. These
-      sentences have no audio: the course voice is a man's.
+    - **A woman speaking:** جوعانة, عطشانة, مأخّرة, مشغولة, تعبانة, مبسوطة, رايحة, فاضية. Their
+      clips are in the course's man's voice, for now.
     - **To a woman:** عندِك, يمينِك, عمرِك (vowel marks pinned), بتشتغلي, بتحبّي, بدِّك, اشتريتي, كنتي
       مشغولة, استنّي, حبيبتي (tagged "to a woman"; it is also said to men).
 

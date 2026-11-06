@@ -23,8 +23,8 @@ The other courses tagged nothing:
 - Persian (تو / شما) and Uzbek (sen / siz / sizlar) mark number and politeness. Their untagged
   sentences already accept both, as ADR 0056 asks, so plural was never asked for on its own.
 
-The sentences were also voiced by a single voice. apc's voice is a man's, so a woman's words would
-have been read in a man's voice.
+The sentences were also voiced by a single voice. apc's voice is a man's, so a woman's words are
+read in a man's voice.
 
 ## Decision
 
@@ -47,15 +47,16 @@ have been read in a man's voice.
 - **`du`, "to two people":** for a language with a dual (Slovene, Modern Standard Arabic,
   Sámi). No course uses it yet. The tag and its UI message exist so that one can.
 
-**A voice says whose voice it is: `speaker: m | f`** on a course voice.
+**A voice may say whose voice it is: `speaker: m | f`** on a course voice. It is opt-in.
 - **No wrong-gender clips:** a sentence whose `persons.speaker` is the other gender gets no
   clip from that voice. `nabu audio generate` lists it and leaves it out.
 - **Existing clips:** the compiler marks a clip that such a voice already made as `audio.stale`,
   and it stays out of the bundle.
 - **No `speaker`:** a voice without it says everything, as before.
-- **Until a second voice is cast:** apc's voice is `speaker: m`, so its sentences said by a
-  woman have no audio. They are still taught; listening exercises skip them, as they skip any
-  item without a clip.
+- **For now, no course sets it.** A voice of either gender reading any line is acceptable
+  until a course has voices for both. A woman's sentence with a man's clip is better than one
+  with no audio. apc's man's voice reads its woman-speaker sentences too. Set `speaker` on each
+  voice once a course casts a second one.
 
 **Register is the next dimension. It is not modelled yet.**
 - **Javanese speech levels:** ngoko, krama, krama inggil.
@@ -94,6 +95,6 @@ course has them.
   same lesson. The fa sentences use شما with -ید; the uz sentences use sizlar with -sizlar.
 - **UI:** the new tags `player.persons.addressee.sg` and `.du` are in every catalog (drafts
   stamped).
-- **Stories are not covered yet.** Story lines have characters but no gender, so apc's Maya
-  still speaks in the course's one voice. Casting a woman's voice, and letting a character say
-  which voice reads it, is the follow-up.
+- **One voice per course, for now.** apc's woman-speaker sentences and Maya's story lines are
+  read in the man's voice. Casting a woman's voice and setting `speaker`, and letting a story
+  character say which voice reads it, is the follow-up.

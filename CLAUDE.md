@@ -239,8 +239,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Register is the same idea, not yet modelled: Javanese speech levels (ngoko/krama/krama inggil), T–V (fa تو/شما,
   uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
   sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
-- A voice says whose voice it is (`speaker: m|f`); it never reads a sentence the other gender says (no clip; an old
-  one is `audio.stale`). apc's voice is a man's, so its woman-speaker sentences have no audio until one is cast.
+- A voice may say whose voice it is (`speaker: m|f`, opt-in); it then never reads a sentence the other gender says
+  (no clip; an old one is `audio.stale`). For now a voice of either gender reading any line is fine (Ben's call):
+  apc's man's voice sets no `speaker` and reads its woman-speaker sentences too. Set it once a second voice is cast.
 
 ## Account data notes (see docs/adr/0067, 0069)
 - `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must

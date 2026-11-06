@@ -10,10 +10,10 @@ units: [units/intro.yaml, units/u02-family.yaml, units/u03-food.yaml, units/u04-
 # Vowel marks (ADR 0053): the compiler marks each Arabic-script word from vocalization.yaml; Arabizi is untouched.
 vocalization: [vocalization.yaml]
 # Audio (§10.1, ADR 0058): a synthetic Beirut voice, Lahgtna on OmniVoice, reading the vowel-marked Arabic
-# and cloning one reference (`nabu audio cast`). A man's voice (`speaker: m`): a sentence a woman says gets no
-# clip from it (ADR 0075) until a woman's voice is cast.
+# and cloning one reference (`nabu audio cast`). A man's voice; for now it also reads the sentences a woman says
+# (no `speaker` set, ADR 0075). Set `speaker: m` once a woman's voice is cast for them.
 # The model's weights are CC-BY-NC (OmniVoice's training data), so its clips are too.
 audio:
   voices:
-  - {id: beirut, provider: omnivoice, voice: beirut-m, speaker: m, model: 'oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2',
+  - {id: beirut, provider: omnivoice, voice: beirut-m, model: 'oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2',
     language: lb, orthography: apc-Arab/standard, reading: text, vowelMarks: true, license: CC-BY-NC-4.0}
