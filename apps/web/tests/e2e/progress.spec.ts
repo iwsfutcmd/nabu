@@ -9,8 +9,8 @@
  * Each session is planned by the test from the log the page holds, at the
  * page's (fixed) clock, and must match what the app shows exercise by exercise.
  */
-import { emptyLearnerState, plan } from "@nabu/core/learner";
-import { lessonNodes } from "@nabu/core/lesson";
+import { emptyLearnerState, pathNodes, placementOf, plan } from "@nabu/core/learner";
+import { lessonNodes, runTest, type Exercise } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
 import { activate, canMiss, loadCourse, logOf, pathUrl, planned, playSession, type Mode } from "./solver.ts";
 
@@ -91,31 +91,49 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
   expect(errors).toEqual([]);
 });
 
-test("placement: a learner who knows the first lessons starts after them", async ({ page }, info) => {
+test("placement: a learner who knows the first units starts after them", async ({ page }, info) => {
   const mode = info.project.name as Mode;
   const course = loadCourse("uz", "uz-Latn/standard");
-  const nodes = lessonNodes(course).map((n) => n.node.id);
   const now = new Date("2026-03-12T07:45:00Z");
   await page.clock.setFixedTime(now);
   await page.goto(pathUrl(course, SEED));
 
-  // The test probes every lesson; this learner misses one probe of the third lesson.
-  const test = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED });
-  const probes = test.probes ?? [];
-  const k = test.exercises.findIndex((e, i) => canMiss(e) && nodes.indexOf(probes[i] ?? "") >= 2);
-  const missed = test.exercises[k];
-  const stop = nodes.indexOf(probes[k] ?? "");
-  if (missed === undefined || stop < 2) throw new Error("no missable probe from the third lesson on");
+  // The test is adaptive (ADR 0077): what it asks depends on the answers. This learner knows the
+  // first two units, and misses what they can miss after that, so the questions are known ahead.
+  const planned = plan(course, emptyLearnerState(), { mode: "placement" }, { now: now.toISOString(), seed: SEED }).placement;
+  if (planned === undefined) throw new Error("no placement test");
+  const units = planned.test.blocks.map((b) => b.id);
+  const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((s) => [s.id, u.id] as const)));
+  const knows = (e: Exercise): boolean => units.indexOf(unitOf.get(e.item) ?? "") < 2 || !canMiss(e);
+  const answers = new Map<string, boolean>();
+  const asked: Exercise[] = [];
+  for (let next = runTest(planned.test, answers).next; next.length > 0; next = runTest(planned.test, answers).next) {
+    const ex = next[0] as Exercise;
+    asked.push(ex);
+    answers.set(ex.id, knows(ex));
+  }
+  const placed = placementOf(planned, answers);
+  const path = pathNodes(course);
+  // The first two units, lessons and stories, then lessons of the third as far as its probes go
+  // (this solver can miss only multiple-choice questions, so its tiles are always right).
+  const firstTwo = path.filter((n) => units.indexOf(n.unit.id) < 2).map((n) => n.node.id);
+  expect(placed.slice(0, firstTwo.length)).toEqual(firstTwo);
+  expect(placed.every((n) => path.findIndex((p) => p.node.id === n) < path.findIndex((p) => p.unit.id === units[3]))).toBe(true);
+  const next = path.find((n) => !placed.includes(n.node.id));
+  if (next === undefined) throw new Error("this learner should not place out of everything");
+  const nodeAt = (id: string) => page.locator(`[data-lesson="${id}"], [data-story-node="${id}"]`);
 
   await activate(page, mode, '[data-practice-mode="placement"]');
-  const played = await playSession(page, test.exercises, mode, { miss: new Set([missed.id]) });
-  expect(played.seen).toEqual(test.exercises.map((e) => e.id)); // asked once each: no retries
+  const played = await playSession(page, asked, mode, { miss: new Set(asked.filter((e) => !knows(e)).map((e) => e.id)) });
+  expect(played.seen).toEqual(asked.map((e) => e.id)); // asked once each, as the answers decided
   await activate(page, mode, "[data-action=exit]");
 
-  for (const node of nodes.slice(0, stop)) await expect(statusOf(page, node)).toHaveAttribute("data-status", "done");
-  await expect(statusOf(page, nodes[stop] ?? "")).toHaveAttribute("data-status", "available");
+  // Lessons and stories: a unit passed places out of both.
+  for (const node of placed) await expect(nodeAt(node)).toHaveAttribute("data-status", "done");
+  await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
   await expect(page.locator('[data-practice-mode="placement"]')).toHaveCount(0);
   await page.reload();
-  await expect(statusOf(page, nodes[stop] ?? "")).toHaveAttribute("data-status", "available");
+  await expect(nodeAt(next.node.id)).toHaveAttribute("data-status", "available");
 });
+
 

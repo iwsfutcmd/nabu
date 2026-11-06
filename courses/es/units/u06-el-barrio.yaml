@@ -1,0 +1,492 @@
+# Unit 6 (es): the neighbourhood and getting around. ir a (voy, vas, va, vamos), ¿dónde está?, aquí, cerca and
+# lejos, a la derecha and a la izquierda, hay; regular -ar verbs (trabajar, caminar) and vivir; la guagua, la
+# bodega, la Calle Ocho, la ventanita.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u06
+title: {en: 'El barrio: the neighbourhood'}
+cefr: A1
+kcs:
+- {id: 'sense:ir', gloss: {en: to go}, forms: {es-Latn/standard: [ir]}, notes: {en: 'Irregular: voy, vas, va, vamos, van. ¡Voy! also answers a call: Coming!'}}
+- {id: 'sense:bodega', gloss: {en: corner store; bodega}, forms: {es-Latn/standard: [bodega]}, notes: {en: 'The little grocery on the corner. In Cuba la bodega is also the state store where families get their rations with la libreta. In Spain a bodega is a wine cellar.'}}
+- {id: 'sense:tienda', gloss: {en: store; shop}, forms: {es-Latn/standard: [tienda]}, notes: {en: 'Any store or shop: una tienda de ropa, a clothes shop. In Spanglish you may also hear el store.'}}
+- {id: 'sense:guagua', gloss: {en: bus}, forms: {es-Latn/standard: [guagua]}, notes: {en: 'The bus in Cuba, Puerto Rico, the Dominican Republic and the Canaries; elsewhere el autobús (el camión in Mexico, el colectivo in Argentina). In Chile and the Andes a guagua is a baby!'}}
+- {id: 'sense:cerca', gloss: {en: near; close; nearby}, forms: {es-Latn/standard: [cerca]}, notes: {en: 'Cerca de: near (to). Cerca de aquí: near here.'}}
+- {id: 'sense:lejos', gloss: {en: far; far away}, forms: {es-Latn/standard: [lejos]}, notes: {en: 'Lejos de: far from.'}}
+- {id: 'sense:calle', gloss: {en: street}, forms: {es-Latn/standard: [calle]}, notes: {en: 'Where English lives on a street, Spanish uses en: vive en mi calle, she lives on my street.'}}
+- {id: 'sense:barrio', gloss: {en: neighbourhood; neighborhood}, forms: {es-Latn/standard: [barrio]}, notes: {en: 'In Cuba el barrio is where you grew up and everybody knows your family. In US English a barrio is a Spanish-speaking neighbourhood.'}}
+- {id: 'sense:coger', gloss: {en: to take; to catch (a bus); to get}, forms: {es-Latn/standard: [coger]}, notes: {en: 'Cubans (and Spaniards) say coger la guagua. In Mexico and much of Latin America coger is vulgar: say tomar el autobús there. Cojo is spelled with j: coges, coge, but cojo.'}}
+- {id: 'sense:parada', gloss: {en: stop (bus stop)}, forms: {es-Latn/standard: [parada]}, notes: {en: 'La parada de la guagua: the bus stop.'}}
+- {id: 'sense:esquina', gloss: {en: corner (of a street)}, forms: {es-Latn/standard: [esquina]}, notes: {en: 'En la esquina: on the corner, where the bodega always is. The inside corner of a room is el rincón.'}}
+- {id: 'sense:caminar', gloss: {en: to walk}, forms: {es-Latn/standard: [caminar]}, notes: {en: 'A regular -ar verb: camino, caminas, camina, caminamos, caminan.'}}
+- {id: 'sense:derecha', gloss: {en: right (side)}, forms: {es-Latn/standard: [derecha]}, notes: {en: 'A la derecha: on the right, to the right. Derecho means straight ahead: sigue derecho.'}}
+- {id: 'sense:izquierda', gloss: {en: left (side)}, forms: {es-Latn/standard: [izquierda]}, notes: {en: 'A la izquierda: on the left, to the left.'}}
+- {id: 'sense:calle-ocho', gloss: {en: 'Calle Ocho (SW 8th Street, Little Havana)'}, forms: {es-Latn/standard: [Calle Ocho]}, notes: {en: 'Southwest 8th Street, the heart of La Pequeña Habana (Little Havana) in Miami: its cafés, Domino Park (Parque Máximo Gómez) and the Calle Ocho festival.'}}
+- {id: 'sense:ventanita', gloss: {en: walk-up coffee window (Miami)}, forms: {es-Latn/standard: [ventanita]}, notes: {en: 'Little window: the counter on the street side of a Cuban café in Miami, where people stand for a cafecito, a colada or a pastelito, and talk politics.'}}
+- {id: 'sense:trabajar', gloss: {en: to work}, forms: {es-Latn/standard: [trabajar]}, notes: {en: 'A regular -ar verb: trabajo, trabajas, trabaja, trabajamos, trabajan.'}}
+nodes:
+- {id: es.u06.voy, kind: lesson, introduces: ['sense:ir', 'sense:bodega', 'sense:tienda']}
+- {id: es.u06.donde, kind: lesson, introduces: ['sense:guagua', 'sense:cerca', 'sense:lejos']}
+- {id: es.u06.el-barrio, kind: lesson, introduces: ['sense:calle', 'sense:barrio']}
+- {id: es.u06.la-guagua, kind: lesson, introduces: ['sense:coger', 'sense:parada', 'sense:esquina', 'sense:caminar']}
+- {id: es.u06.a-la-derecha, kind: lesson, introduces: ['sense:derecha', 'sense:izquierda', 'sense:calle-ocho', 'sense:ventanita']}
+- {id: es.u06.trabajo, kind: lesson, introduces: ['sense:trabajar']}
+- {id: es.u06.story, kind: story}
+sentences:
+- id: s.u06.1
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: ¡Voy, mami!
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: mami, sense: mami}]
+      reverse: (Voy|Ya voy) (mami|mamá)
+  translations:
+    en: (Coming|I'm coming|I'm going|I'm on my way), (Mom|Mommy|Mum|Ma)!
+- id: s.u06.2
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: Voy a casa.
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: casa, sense: casa}]
+      reverse: |-
+        [Yo] voy a casa
+        [Yo] me voy a casa
+        [Yo] [me] voy (a|para|pa') la casa
+  translations:
+    en: (I'm going|I'm heading|I go) home.
+- id: s.u06.3
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: Voy a la bodega.
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      reverse: '[Yo] voy (a|para|pa'') la bodega'
+  translations:
+    en: (I'm going|I go) to the (bodega|corner store|store|grocery store).
+- id: s.u06.4
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vas a la bodega?
+      tokens: [{surface: Tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      reverse: (Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) a la bodega
+  translations:
+    en: (Are you going|Do you go) to the (bodega|corner store|store|grocery store)?
+- id: s.u06.5
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: Mami va a la tienda.
+      tokens: [{surface: Mami, sense: mami}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: tienda, sense: tienda}]
+      reverse: (Mami|Mamá) va a la tienda
+  translations:
+    en: |-
+      (Mom|Mommy|Mum|Ma) (is going|goes) to the (store|shop).
+      (Mom's|Mommy's|Mum's|Ma's) going to the (store|shop).
+- id: s.u06.6
+  node: es.u06.voy
+  forms:
+    es-Latn/standard:
+      text: Vamos a la bodega.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      reverse: '[Nosotros] vamos (a|para|pa'') la bodega'
+  translations:
+    en: (We're going|We are going|We go|Let's go) to the (bodega|corner store|store|grocery store).
+- id: s.u06.7
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está la bodega?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      reverse: Dónde (está|queda) la bodega
+  translations:
+    en: (Where is|Where's) the (bodega|corner store|store|grocery store)?
+- id: s.u06.8
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: La bodega está aquí.
+      tokens: [{surface: La, sense: el}, {surface: bodega, sense: bodega}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
+      reverse: La bodega (está|queda) (aquí|acá)
+  translations:
+    en: |-
+      The (bodega|corner store|store|grocery store) is here.
+      Here's the (bodega|corner store|store|grocery store).
+- id: s.u06.9
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: ¡La guagua está aquí!
+      tokens: [{surface: La, sense: el}, {surface: guagua, sense: guagua}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
+      reverse: (La guagua|El autobús|El bus) está (aquí|acá)
+  translations:
+    en: |-
+      The bus is here!
+      (Here's|Here is|Here comes) the bus!
+- id: s.u06.10
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: La bodega está cerca.
+      tokens: [{surface: La, sense: el}, {surface: bodega, sense: bodega}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: cerca, sense: cerca}]
+      reverse: La bodega (está|queda) cerca
+  translations:
+    en: The (bodega|corner store|store|grocery store) is (nearby|near|close|close by).
+- id: s.u06.11
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Hay una bodega cerca?
+      tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: bodega, sense: bodega}, {surface: cerca, sense: cerca}]
+      reverse: Hay una bodega (cerca|cerca de aquí|cerca de acá|por aquí)
+  translations:
+    en: Is there a (bodega|corner store|store|grocery store) (nearby|near here|close by|around here)?
+- id: s.u06.12
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: Cuba no está lejos.
+      tokens: [{surface: Cuba, sense: cuba}, {surface: 'no', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: lejos, sense: lejos}]
+      reverse: Cuba no (está|queda) lejos
+  translations:
+    en: (Cuba isn't|Cuba is not|Cuba's not) (far|far away).
+- id: s.u06.13
+  node: es.u06.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está la guagua, por favor?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: |-
+        Dónde está (la guagua|el autobús|el bus) por favor
+        Por favor dónde está (la guagua|el autobús|el bus)
+  translations:
+    en: |-
+      (Where is|Where's) the bus, please?
+      Excuse me, (where is|where's) the bus?
+- id: s.u06.14
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: Vivo en Miami.
+      tokens: [{surface: Vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
+      reverse: '[Yo] vivo en Miami'
+  translations:
+    en: I live in Miami.
+- id: s.u06.15
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: Vivo en Hialeah.
+      tokens: [{surface: Vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: '[Yo] vivo en Hialeah'
+  translations:
+    en: I live in Hialeah.
+- id: s.u06.16
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde tú vives?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}]
+      reverse: (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+  translations:
+    en: Where do you live?
+- id: s.u06.17
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: Mi casa está en Hialeah.
+      tokens: [{surface: Mi, sense: mi}, {surface: casa, sense: casa}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: Mi casa (está|queda) en Hialeah
+  translations:
+    en: My (house|home) is in Hialeah.
+- id: s.u06.18
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: Abuela vive en mi calle.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: mi, sense: mi}, {surface: calle, sense: calle}]
+      reverse: (Abuela|Mi abuela|La abuela) vive en mi calle
+  translations:
+    en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) lives on my street.
+- id: s.u06.19
+  node: es.u06.el-barrio
+  forms:
+    es-Latn/standard:
+      text: Mi barrio es muy cubano.
+      tokens: [{surface: Mi, sense: mi}, {surface: barrio, sense: barrio}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: cubano, sense: cubano}]
+      reverse: Mi barrio es muy cubano
+  translations:
+    en: My (neighbourhood|neighborhood|barrio|hood) is very Cuban.
+- id: s.u06.20
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: Cojo la guagua.
+      tokens: [{surface: Cojo, sense: coger, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
+      reverse: '[Yo] (cojo|tomo) (la guagua|el autobús|el bus)'
+  translations:
+    en: (I take|I'm taking|I catch|I'm catching|I get) the bus.
+- id: s.u06.21
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: ¿Tú coges la guagua aquí?
+      tokens: [{surface: Tú, sense: tú}, {surface: coges, sense: coger, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: aquí, sense: aquí}]
+      reverse: |-
+        (Tú coges|Coges [tú]|Usted coge|Coge [usted]|Ustedes cogen|Cogen [ustedes]) (la guagua|el autobús|el bus) (aquí|acá)
+        (Tú tomas|Tomas [tú]|Usted toma|Toma [usted]|Ustedes toman|Toman [ustedes]) (la guagua|el autobús|el bus) (aquí|acá)
+  translations:
+    en: (Do you take|Do you catch|Are you taking|Are you catching|Do you get) the bus here?
+- id: s.u06.22
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: La parada está en la esquina.
+      tokens: [{surface: La, sense: el}, {surface: parada, sense: parada}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: esquina, sense: esquina}]
+      reverse: |-
+        La parada (está|queda) en la esquina
+        La parada de (la guagua|las guaguas) (está|queda) en la esquina
+  translations:
+    en: The [bus] stop is (on|at) the corner.
+- id: s.u06.23
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: Camino a la parada.
+      tokens: [{surface: Camino, sense: caminar, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: parada, sense: parada}]
+      reverse: |-
+        [Yo] camino (a|hasta) la parada
+        [Yo] camino (a|hasta) la parada de la guagua
+  translations:
+    en: (I walk|I'm walking) to the [bus] stop.
+- id: s.u06.24
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: Vamos a la parada de la guagua.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: parada, sense: parada}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
+      reverse: '[Nosotros] vamos (a|para|pa'') la parada [de (la guagua|las guaguas|el autobús)]'
+  translations:
+    en: (We're going|We are going|We go|Let's go) to the bus stop.
+- id: s.u06.25
+  node: es.u06.la-guagua
+  forms:
+    es-Latn/standard:
+      text: ¿Hay una parada cerca de aquí?
+      tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: parada, sense: parada}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: aquí, sense: aquí}]
+      reverse: |-
+        Hay una parada (cerca de aquí|cerca de acá|cerca|por aquí)
+        Hay una parada de guagua (cerca de aquí|cerca de acá|cerca|por aquí)
+  translations:
+    en: Is there a [bus] stop (near here|nearby|close by|around here)?
+- id: s.u06.26
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: La bodega está a la derecha.
+      tokens: [{surface: La, sense: el}, {surface: bodega, sense: bodega}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: derecha, sense: derecha}]
+      reverse: La bodega (está|queda) a la derecha
+  translations:
+    en: The (bodega|corner store|store|grocery store) is (on|to) the right.
+- id: s.u06.27
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: La parada está a la izquierda.
+      tokens: [{surface: La, sense: el}, {surface: parada, sense: parada}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: izquierda, sense: izquierda}]
+      reverse: |-
+        La parada (está|queda) a la izquierda
+        La parada de la guagua (está|queda) a la izquierda
+  translations:
+    en: The [bus] stop is (on|to) the left.
+- id: s.u06.28
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está la Calle Ocho?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      reverse: Dónde (está|queda) la Calle Ocho
+  translations:
+    en: (Where is|Where's) (Calle Ocho|Eighth Street|8th Street)?
+- id: s.u06.29
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: La ventanita está en la Calle Ocho.
+      tokens: [{surface: La, sense: el}, {surface: ventanita, sense: ventanita}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      reverse: La ventanita (está|queda) en la Calle Ocho
+  translations:
+    en: The (coffee window|ventanita|café window|walk-up window) is on (Calle Ocho|Eighth Street|8th Street).
+- id: s.u06.30
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: Un café, por favor.
+      tokens: [{surface: Un, sense: un}, {surface: café, sense: café}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: |-
+        Un (café|cafecito) por favor
+        Por favor un (café|cafecito)
+  translations:
+    en: |-
+      (A|One) (coffee|Cuban coffee|cafecito), please.
+      (Can I have|Can I get|I'd like) (a|one) (coffee|Cuban coffee|cafecito), please.
+- id: s.u06.31
+  node: es.u06.a-la-derecha
+  forms:
+    es-Latn/standard:
+      text: Mi casa está lejos de la Calle Ocho.
+      tokens: [{surface: Mi, sense: mi}, {surface: casa, sense: casa}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: lejos, sense: lejos}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      reverse: Mi casa (está|queda) lejos de la Calle Ocho
+  translations:
+    en: My (house|home) is (far|a long way) from (Calle Ocho|Eighth Street|8th Street).
+- id: s.u06.32
+  node: es.u06.trabajo
+  forms:
+    es-Latn/standard:
+      text: Trabajo en la Calle Ocho.
+      tokens: [{surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      reverse: '[Yo] trabajo en la Calle Ocho'
+  translations:
+    en: I work (on|in) (Calle Ocho|Eighth Street|8th Street).
+- id: s.u06.33
+  node: es.u06.trabajo
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde tú trabajas?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: trabajas, sense: trabajar, form: 'form:pres-2s'}]
+      reverse: (Dónde tú trabajas|Dónde trabajas [tú]|Dónde usted trabaja|Dónde trabaja [usted]|Dónde ustedes trabajan|Dónde trabajan [ustedes])
+  translations:
+    en: Where do you work?
+- id: s.u06.34
+  node: es.u06.trabajo
+  forms:
+    es-Latn/standard:
+      text: Yasiel trabaja en la ventanita.
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: trabaja, sense: trabajar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: ventanita, sense: ventanita}]
+      reverse: Yasiel trabaja en la ventanita
+  translations:
+    en: Yasiel works at the (coffee window|ventanita|café window|walk-up window).
+- id: s.u06.35
+  node: es.u06.trabajo
+  forms:
+    es-Latn/standard:
+      text: Mami trabaja cerca de casa.
+      tokens: [{surface: Mami, sense: mami}, {surface: trabaja, sense: trabajar, form: 'form:pres-3s'}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: casa, sense: casa}]
+      reverse: (Mami|Mamá) trabaja cerca de (casa|la casa)
+  translations:
+    en: (Mom|Mommy|Mum|Ma) works (near|close to) (home|the house).
+- id: s.u06.36
+  node: es.u06.trabajo
+  forms:
+    es-Latn/standard:
+      text: Trabajo y vivo en Hialeah.
+      tokens: [{surface: Trabajo, sense: trabajar, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: '[Yo] (trabajo y vivo|vivo y trabajo) en Hialeah'
+  translations:
+    en: I (work and live|live and work) in Hialeah.
+stories:
+- id: es.story.u06
+  node: es.u06.story
+  title: {en: Off to Calle Ocho}
+  characters:
+  - {id: mami, name: {es-Latn/standard: Mami}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: yasiel, name: {es-Latn/standard: Yasiel}}
+  steps:
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: Daniel, ¿a dónde tú vas?
+          tokens: [{surface: Daniel, sense: daniel}, {surface: a, sense: a}, {surface: dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}]
+      translations: {en: 'Daniel, where are you going?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Voy a la Calle Ocho, mami. Yasiel trabaja en la ventanita.
+          tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}, {surface: mami, sense: mami}, {surface: Yasiel, sense: yasiel}, {surface: trabaja, sense: trabajar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: ventanita, sense: ventanita}]
+      translations: {en: 'I''m going to Calle Ocho, Mom. Yasiel works at the coffee window.'}
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: ¿La Calle Ocho? ¡Está muy lejos!
+          tokens: [{surface: La, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}, {surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: lejos, sense: lejos}]
+      translations: {en: 'Calle Ocho? That''s very far!'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:guagua
+      distractors: ['sense:bodega', 'sense:ventanita']
+      forms:
+        es-Latn/standard:
+          text: No, mami. Cojo la guagua.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: mami, sense: mami}, {surface: Cojo, sense: coger, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
+      translations: {en: 'No, Mom. I''m taking the bus.'}
+  - choose:
+      prompt: {en: 'Where is Daniel going?'}
+      options: [{en: To Calle Ocho}, {en: To the bodega}, {en: To Grandma's house}]
+      answer: 0
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: ¿Y dónde está la parada?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: parada, sense: parada}]
+      translations: {en: 'And where''s the bus stop?'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:cerca
+      distractors: ['sense:calle', 'sense:tienda']
+      forms:
+        es-Latn/standard:
+          text: Está cerca, a la derecha de la bodega.
+          tokens: [{surface: Está, sense: estar, form: 'form:pres-3s'}, {surface: cerca, sense: cerca}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: derecha, sense: derecha}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
+      translations: {en: 'It''s close, to the right of the bodega.'}
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Daniel coge la guagua a la Calle Ocho.
+          tokens: [{surface: Daniel, sense: daniel}, {surface: coge, sense: coger, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
+      translations: {en: Daniel takes the bus to Calle Ocho.}
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¡Qué bolá, asere! ¿Un café?
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: asere, sense: asere}, {surface: Un, sense: un}, {surface: café, sense: café}]
+      translations: {en: 'What''s up, man! A coffee?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, por favor. ¡Gracias, asere! ¿Tú vives cerca de aquí?
+          tokens: [{surface: Sí, sense: sí}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}, {surface: Gracias, sense: gracias}, {surface: asere, sense: asere}, {surface: Tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: aquí, sense: aquí}]
+      translations: {en: 'Yes, please. Thanks, man! Do you live near here?'}
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: No, yo vivo en Hialeah. Cojo la guagua también.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: yo, sense: yo}, {surface: vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: Cojo, sense: coger, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: también, sense: también}]
+      translations: {en: 'No, I live in Hialeah. I take the bus too.'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Yo también vivo en Hialeah.
+          tokens: [{surface: Yo, sense: yo}, {surface: también, sense: también}, {surface: vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      translations: {en: I live in Hialeah too.}
+  - choose:
+      prompt: {en: 'Where does Yasiel live?'}
+      options: [{en: In Hialeah}, {en: On Calle Ocho}, {en: In Cuba}]
+      answer: 0
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¡Vamos a casa en la guagua, asere!
+          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: asere, sense: asere}]
+      translations: {en: 'Let''s go home on the bus, man!'}

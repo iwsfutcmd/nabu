@@ -1,0 +1,31 @@
+# profiles/es-Latn.standard.yaml
+# Spanish in Latin script, as the RAE and ASALE spell it (Ortografía, 2010), for the es course (Cuban Spanish, ADR 0076).
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+#  - Accent marks (tilde, diéresis) left out or misplaced are accepted with a note (CORRECT_MARKS), unless the answer
+#    then spells another word of the course (está/esta, sí/si, él/el, habló/hablo): that is WRONG_WORD.
+#  - ñ is a letter of its own, not n with a mark: año and ano are different words.
+id: es-Latn/standard
+lang: es-Latn
+exemplars: cldr:es
+letters: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, "\u00F1", o, p, q, r, s, t, u, v, w, x, y, z]
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "\u2019": "'", "\u2018": "'" }    # curly apostrophes (rare in Spanish; names like O'Farrill)
+  - punctuation: strip                    # also the opening marks \u00BF and \u00A1
+  - whitespace: collapse
+match:
+  case: { locale: es }
+  # REVIEW: the acute accent and the diaeresis (pingüino). Not the tilde of ñ, which makes another letter.
+  marks: { set: "[\u0301\u0308]", policy: accept-with-note, note: accent, distinguishes: true, wordNote: accent-word }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:es
+    maxRatio: 0.2
+    # REVIEW (ADR 0066): endings one or two letters apart that change the meaning: person and tense on verbs
+    # (hablo, habla, hablas, hablan; hablé, habló; hable), gender and number on nouns and adjectives (niño, niña,
+    # niños). Compared without accents, so hablé/habló is a contrast here, and habló/hablo is the marks rule above.
+    contrasts:
+      - { id: ending, note: contrast-ending, members: [o, a, e, os, as, es, an, en, amos, emos, imos, aste, iste, aron, ieron, io, i, aba, abas, aban, ia, ias, ian] }
+      - { id: pronoun, note: contrast-pronoun, members: [yo, tu, el, ella, ellos, ellas, usted, ustedes, nosotros, nosotras] }
+layout: { vertical: none }

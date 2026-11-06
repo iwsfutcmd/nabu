@@ -20,6 +20,10 @@
       "uniqueItems": true,
       "items": { "$ref": "common.schema.json#/$defs/Facet" }
     },
+    "placement": {
+      "$ref": "common.schema.json#/$defs/PlacementPolicy",
+      "description": "How the placement test probes, where the course says (course source `placement`, ADR 0077)."
+    },
     "versions": {
       "description": "Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.",
       "type": "object",

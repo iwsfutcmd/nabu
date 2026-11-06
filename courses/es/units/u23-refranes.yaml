@@ -1,0 +1,597 @@
+# Unit 23 (es): Abuela's refranes and por and para. Camarón que se duerme se lo lleva la corriente; No hay mal que
+# por bien no venga; Más vale tarde que nunca; Al que madruga, Dios lo ayuda (and No por mucho madrugar…); Dime con
+# quién andas…; El que no llora no mama; Más sabe el diablo por viejo que por diablo; En casa del herrero, cuchillo de
+# palo. Por and para side by side (gracias por, para ti; por la mañana, para mañana; por ti, para que + the present
+# subjunctive), and Cuban idioms: estar en talla, coger lucha (¡no cojas lucha!), tirar un cabo, estar en el aire,
+# dar muela.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u23
+title: {en: 'Refranes: Abuela''s sayings'}
+cefr: B2
+kcs:
+- {id: 'sense:refrán', gloss: {en: saying; proverb}, forms: {es-Latn/standard: [refrán]}, notes: {en: 'Refrán has an accent; the plural refranes does not. Un dicho says the same: como dice el dicho, as the saying goes. Cuban grandmothers end arguments with them, and a heritage speaker often knows the first half and not the second.'}}
+- {id: 'sense:dormirse', gloss: {en: to fall asleep; to doze off}, forms: {es-Latn/standard: [dormirse]}, notes: {en: 'Dormir is to sleep; dormirse is to drop off: me dormí en la guagua. Overslept is me quedé dormido. The o becomes ue (se duerme) and, in the past, u (se durmió).'}}
+- {id: 'sense:llevarse', gloss: {en: 'to take away; to carry off; llevarse bien: to get along'}, forms: {es-Latn/standard: [llevarse]}, notes: {en: 'Llevar is to take or carry; llevarse is to take away for good: la corriente se lo lleva. Me llevo bien con mi primo: I get along with my cousin.'}}
+- {id: 'sense:camarón', gloss: {en: shrimp}, forms: {es-Latn/standard: [camarón]}, notes: {en: 'Camarón has an accent; camarones does not. Camarón que se duerme se lo lleva la corriente: the shrimp that dozes off is swept away by the current, you snooze, you lose. Cubans often say just the first half: ¡Camarón que se duerme…!'}}
+- {id: 'sense:otro', gloss: {en: other; another}, forms: {es-Latn/standard: [otro]}, notes: {en: 'Never un otro: otro día, another day; otra vez, again; otro más, one more. Un otro comes from English another; in Spanish it is just otro.'}}
+- {id: 'sense:examen', gloss: {en: exam; test}, forms: {es-Latn/standard: [examen]}, notes: {en: 'With x. No accent on examen, but the plural has one: exámenes, because the stress stays on the a.'}}
+- {id: 'sense:aprender', gloss: {en: to learn}, forms: {es-Latn/standard: [aprender]}, notes: {en: 'Aprender a + infinitive: aprender a cocinar. Learn is aprender, teach is enseñar. Aprendemos (we learn) and aprendamos (that we learn): one letter is the mood.'}}
+- {id: 'sense:mal.harm', gloss: {en: 'harm; a bad thing; evil (un mal, el mal)'}, forms: {es-Latn/standard: [mal]}, notes: {en: 'The noun: el bien y el mal, good and evil; un mal, a misfortune. No hay mal que por bien no venga: every cloud has a silver lining. The adverb mal (badly, ill) is spelled the same.'}}
+- {id: 'sense:madrugar', gloss: {en: to get up very early; to be up before dawn}, forms: {es-Latn/standard: [madrugar]}, notes: {en: 'From la madrugada, the small hours. Al que madruga, Dios lo ayuda: the early bird catches the worm. But also no por mucho madrugar amanece más temprano: getting up earlier does not bring the dawn. Cubans keep both handy, to win either side of an argument.'}}
+- {id: 'sense:dios', gloss: {en: God}, forms: {es-Latn/standard: [Dios]}, notes: {en: 'With a capital for God: ¡Ay, Dios mío!, gracias a Dios, si Dios quiere (God willing), which Cubans add to any plan. Dios te bendiga is one set expression.'}}
+- {id: 'sense:valer', gloss: {en: 'to be worth; to cost; más vale: it''s better'}, forms: {es-Latn/standard: [valer]}, notes: {en: '¿Cuánto vale?: how much is it? (cuesta says the same). Más vale tarde que nunca: better late than never. ¡Vale! for OK is from Spain; Cubans and Miami say ¡dale! or ¡está bien!'}}
+- {id: 'sense:diablo', gloss: {en: devil}, forms: {es-Latn/standard: [diablo]}, notes: {en: 'Más sabe el diablo por viejo que por diablo: the devil knows more from being old than from being the devil; wisdom comes with age. Here por gives the reason: because of.'}}
+- {id: 'sense:andar', gloss: {en: 'to walk; to go around; andar con: to hang out with'}, forms: {es-Latn/standard: [andar]}, notes: {en: 'Andar con alguien: to go around with someone. ¿Con quién tú andas?: who are you hanging out with? The past is irregular: anduve, anduvo, never andé, andó.'}}
+- {id: 'sense:llorar', gloss: {en: to cry}, forms: {es-Latn/standard: [llorar]}, notes: {en: 'Llorar is to cry tears; to cry out is gritar. With ll: llora, lloró.'}}
+- {id: 'sense:mamar', gloss: {en: to suckle; to nurse (of a baby)}, forms: {es-Latn/standard: [mamar]}, notes: {en: 'El que no llora no mama: the baby who does not cry does not get fed; if you don''t ask, you don''t get. Mama (it nurses) has no accent; mamá (mom) has one on the last a.'}}
+- {id: 'sense:cuchillo', gloss: {en: knife}, forms: {es-Latn/standard: [cuchillo]}, notes: {en: 'With ll. Cuchillo de palo: a wooden knife.'}}
+- {id: 'sense:herrero', gloss: {en: blacksmith}, forms: {es-Latn/standard: [herrero]}, notes: {en: 'From hierro, iron; both with h, which no one says. En casa del herrero, cuchillo de palo: the blacksmith''s house has wooden knives; the shoemaker''s children go barefoot.'}}
+- {id: 'sense:palo', gloss: {en: 'stick; wood; de palo: wooden'}, forms: {es-Latn/standard: [palo]}, notes: {en: 'Un palo de escoba: a broomstick. De palo: made of wood (cuchillo de palo).'}}
+- {id: 'sense:talla', gloss: {en: 'size (of clothes); estar en talla: to be with it, looking sharp (Cuban)'}, forms: {es-Latn/standard: [talla]}, notes: {en: '¿Qué talla tú usas?: what size do you wear? In Cuban slang estar en talla is to be up to date, with it, looking good: ese pulóver está en talla. Ponerse en talla: to get up to speed.'}}
+- {id: 'sense:lucha', gloss: {en: 'fight; struggle; coger lucha: to get stressed (Cuban)'}, forms: {es-Latn/standard: [lucha]}, notes: {en: 'La lucha is the daily struggle: estamos en la lucha. Coger lucha, Cuban: to get stressed, worked up; ¡no cojas lucha!: don''t sweat it! Cojas is written with j, like cojo.'}}
+- {id: 'sense:salir', gloss: {en: 'to go out; to leave; to come out; salir bien: to turn out well'}, forms: {es-Latn/standard: [salir]}, notes: {en: 'Salir de Cuba: to leave Cuba. Yo salgo, with a g. Todo va a salir bien: everything will turn out fine. Leaving something behind is dejar: dejé las llaves en la casa, I left my keys at home.'}}
+- {id: 'sense:cabo', gloss: {en: 'end (of a rope); rope; tirar un cabo: to help out (Cuban)'}, forms: {es-Latn/standard: [cabo]}, notes: {en: 'A sailor''s word: un cabo is a rope. Tirar un cabo, Cuban: to throw someone a rope, to give them a hand: ¡tírame un cabo! Elsewhere echar una mano. Also a cape (Cabo de San Antonio) and a corporal.'}}
+- {id: 'sense:aire', gloss: {en: 'air; estar en el aire: to be lost, not to get it (Cuban)'}, forms: {es-Latn/standard: [aire]}, notes: {en: 'Cubans in Miami say el aire for the air conditioning (el aire acondicionado). Estar en el aire, Cuban: to have no idea what is going on; elsewhere a plan that is en el aire is up in the air.'}}
+- {id: 'sense:dar', gloss: {en: to give}, forms: {es-Latn/standard: [dar]}, notes: {en: 'Doy, das, da; di, dio, without accents. Dé, with one, is the subjunctive: que te dé. ¡Dale!: OK, go ahead, let''s go (Cuba and Miami). Dar muela: to talk someone''s ear off.'}}
+- {id: 'sense:muela', gloss: {en: 'molar (tooth); dar muela: to talk on and on (Cuban)'}, forms: {es-Latn/standard: [muela]}, notes: {en: 'Me duele una muela: I have a toothache. Dar muela, Cuban: to talk and talk, to sweet-talk or talk someone into something; ¡qué muela!: what a lot of talk.'}}
+nodes:
+- {id: es.u23.camaron, kind: lesson, introduces: ['sense:refrán', 'sense:dormirse', 'sense:llevarse', 'sense:camarón', 'sense:otro']}
+- {id: es.u23.por-o-para, kind: lesson, introduces: ['sense:examen']}
+- {id: es.u23.para-que, kind: lesson, introduces: ['sense:aprender', 'sense:mal.harm']}
+- {id: es.u23.al-que-madruga, kind: lesson, introduces: ['sense:madrugar', 'sense:dios', 'sense:valer', 'sense:diablo']}
+- {id: es.u23.dime-con-quien, kind: lesson, introduces: ['sense:andar', 'sense:llorar', 'sense:mamar', 'sense:cuchillo', 'sense:herrero', 'sense:palo']}
+- {id: es.u23.en-talla, kind: lesson, introduces: ['sense:talla', 'sense:lucha', 'sense:salir', 'sense:cabo', 'sense:aire', 'sense:dar', 'sense:muela']}
+- {id: es.u23.story, kind: story}
+sentences:
+- id: s.u23.1
+  node: es.u23.camaron
+  forms:
+    es-Latn/standard:
+      text: Abuela Cachita siempre habla con refranes cuando está en la cocina.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: Cachita, sense: cachita}, {surface: siempre, sense: siempre}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: refranes, sense: refrán}, {surface: cuando, sense: cuando}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      reverse: |-
+        (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) siempre habla (con|en) refranes cuando está en la cocina
+        Cuando está en la cocina (abuela Cachita|la abuela Cachita|mi abuela Cachita) siempre habla (con|en) refranes
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita always (talks|speaks) in (sayings|proverbs|refranes) when (she's|she is) in the kitchen.
+      When (she's|she is) in the kitchen, (Grandma|Grandmother|Abuela|my grandma|my grandmother) Cachita always (talks|speaks) in (sayings|proverbs|refranes).
+- id: s.u23.2
+  node: es.u23.camaron
+  forms:
+    es-Latn/standard:
+      text: Ayer Yasiel se durmió en la guagua y llegó tarde al trabajo.
+      tokens: [{surface: Ayer, sense: ayer}, {surface: Yasiel, sense: yasiel}, {surface: se, sense: se}, {surface: durmió, sense: dormirse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: guagua, sense: guagua}, {surface: 'y', sense: 'y'}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: tarde, sense: tarde}, {surface: al, sense: al}, {surface: trabajo, sense: trabajo}]
+      reverse: |-
+        Ayer Yasiel se durmió en (la guagua|el autobús|el bus) y llegó tarde al trabajo
+        Yasiel se durmió en (la guagua|el autobús|el bus) ayer y llegó tarde al trabajo
+  translations:
+    en: |-
+      Yesterday Yasiel fell asleep on the bus and (was late (for|to) work|got to work late|arrived late (at|to|for) work).
+      Yasiel fell asleep on the bus yesterday and (was late (for|to) work|got to work late|arrived late (at|to|for) work).
+- id: s.u23.3
+  node: es.u23.camaron
+  forms:
+    es-Latn/standard:
+      text: La corriente del río se llevó la pelota de Lili.
+      tokens: [{surface: La, sense: el}, {surface: corriente, sense: corriente}, {surface: del, sense: del}, {surface: río, sense: río}, {surface: se, sense: se}, {surface: llevó, sense: llevarse, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      reverse: La corriente del río se llevó la pelota de Lili
+  translations:
+    en: The (current|river current|current of the river|river's current) (carried|took|swept) (away Lili's ball|Lili's ball away).
+- id: s.u23.4
+  node: es.u23.camaron
+  forms:
+    es-Latn/standard:
+      text: Camarón que se duerme se lo lleva la corriente.
+      tokens: [{surface: Camarón, sense: camarón}, {surface: que, sense: que}, {surface: se, sense: se}, {surface: duerme, sense: dormirse, form: 'form:pres-3s'}, {surface: se, sense: se}, {surface: lo, sense: lo}, {surface: lleva, sense: llevarse, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: corriente, sense: corriente}]
+      reverse: (Camarón|El camarón) que se duerme se lo lleva la corriente
+  translations:
+    en: |-
+      (The|A) shrimp that (falls asleep|dozes off) (is|gets) (carried|swept) away by the current.
+      You snooze, you lose.
+- id: s.u23.5
+  node: es.u23.camaron
+  forms:
+    es-Latn/standard:
+      text: Yasiel se durmió y otro se llevó el trabajo.
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: se, sense: se}, {surface: durmió, sense: dormirse, form: 'form:pret-3s'}, {surface: 'y', sense: 'y'}, {surface: otro, sense: otro}, {surface: se, sense: se}, {surface: llevó, sense: llevarse, form: 'form:pret-3s'}, {surface: el, sense: el}, {surface: trabajo, sense: trabajo}]
+      reverse: Yasiel se durmió y otro se llevó el (trabajo|puesto)
+  translations:
+    en: Yasiel (overslept|fell asleep|dozed off) and (someone else|somebody else|another guy|another person) (got|took) the job.
+- id: s.u23.6
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Gracias por el cafecito, abuela. Este regalo es para ti.
+      tokens: [{surface: Gracias, sense: gracias}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: cafecito, sense: cafecito}, {surface: abuela, sense: abuela}, {surface: Este, sense: este}, {surface: regalo, sense: regalo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: ti, sense: ti}]
+      reverse: '[Muchas] gracias por el (cafecito|café) (abuela|abuelita) este regalo es para ti'
+  translations:
+    en: (Thanks|Thank you) for the (coffee|Cuban coffee|cafecito), (Grandma|Grandmother|Abuela). This (present|gift) is for you.
+- id: s.u23.7
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Lili estudia por la noche para el examen del lunes.
+      tokens: [{surface: Lili, sense: lili}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: examen, sense: examen}, {surface: del, sense: del}, {surface: lunes, sense: lunes}]
+      reverse: |-
+        Lili estudia (por la noche|en la noche|de noche) para el examen del lunes
+        Lili estudia para el examen del lunes (por la noche|en la noche|de noche)
+  translations:
+    en: |-
+      Lili (studies|is studying) (at night|in the evening) for (Monday's (exam|test)|the (exam|test) on Monday).
+      Lili (studies|is studying) for (Monday's (exam|test)|the (exam|test) on Monday) (at night|in the evening).
+- id: s.u23.8
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Tengo que terminar este trabajo para mañana por la mañana.
+      tokens: [{surface: Tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: terminar, sense: terminar}, {surface: este, sense: este}, {surface: trabajo, sense: trabajo}, {surface: para, sense: para}, {surface: mañana, sense: mañana}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      reverse: '[Yo] tengo que terminar este trabajo para mañana (por|en) la mañana'
+  translations:
+    en: I (have to|need to|must|have got to) finish this (work|job|assignment|paper|project) (by|for) tomorrow morning.
+- id: s.u23.9
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Ayer pasamos por la Calle Ocho para comprar café.
+      tokens: [{surface: Ayer, sense: ayer}, {surface: pasamos, sense: pasar, form: 'form:pret-1p'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}, {surface: para, sense: para}, {surface: comprar, sense: comprar}, {surface: café, sense: café}]
+      reverse: |-
+        Ayer [nosotros] pasamos por [la] Calle Ocho para comprar café
+        [Nosotros] pasamos por [la] Calle Ocho ayer para comprar café
+  translations:
+    en: |-
+      Yesterday we (went|stopped|passed|drove|walked) (by|through|along|down) Calle Ocho to buy coffee.
+      We (went|stopped|passed|drove|walked) (by|through|along|down) Calle Ocho yesterday to buy coffee.
+- id: s.u23.10
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Compré este pulóver por diez dólares para Yunior.
+      tokens: [{surface: Compré, sense: comprar, form: 'form:pret-1s'}, {surface: este, sense: este}, {surface: pulóver, sense: pulóver}, {surface: por, sense: por}, {surface: diez, sense: diez}, {surface: dólares, sense: dólar}, {surface: para, sense: para}, {surface: Yunior, sense: yunior}]
+      reverse: |-
+        [Yo] compré este (pulóver|pullover) por diez dólares para Yunior
+        [Yo] compré este (pulóver|pullover) para Yunior por diez dólares
+  translations:
+    en: |-
+      I bought this (T-shirt|tee shirt|shirt) for ten dollars for Yunior.
+      I bought this (T-shirt|tee shirt|shirt) for Yunior for ten dollars.
+- id: s.u23.11
+  node: es.u23.por-o-para
+  forms:
+    es-Latn/standard:
+      text: Para mí, el café de abuela es el mejor de Miami.
+      tokens: [{surface: Para, sense: para}, {surface: mí, sense: mí}, {surface: el, sense: el}, {surface: café, sense: café}, {surface: de, sense: de}, {surface: abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: mejor, sense: mejor}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
+      reverse: |-
+        Para mí el café de (abuela|la abuela|mi abuela) es el mejor de Miami
+        El café de (abuela|la abuela|mi abuela) es el mejor de Miami para mí
+  translations:
+    en: |-
+      (For me|To me|In my opinion), (Grandma's|Grandmother's|Abuela's|my grandma's|my grandmother's) coffee is the best in Miami.
+      (Grandma's|Grandmother's|Abuela's|My grandma's|My grandmother's) coffee is the best in Miami, (for me|to me|in my opinion).
+- id: s.u23.12
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: Lo hago por ti, no por mí.
+      tokens: [{surface: Lo, sense: lo}, {surface: hago, sense: hacer, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: ti, sense: ti}, {surface: 'no', sense: 'no'}, {surface: por, sense: por}, {surface: mí, sense: mí}]
+      reverse: '[Yo] lo hago por (ti|usted|ustedes) no por mí'
+  translations:
+    en: |-
+      (I do it|I'm doing it|I am doing it) for you, not for me.
+      (I do it|I'm doing it|I am doing it) for your sake, not (for me|mine).
+- id: s.u23.13
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: Abuela habla con refranes para que nosotros aprendamos.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: refranes, sense: refrán}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: nosotros, sense: nosotros}, {surface: aprendamos, sense: aprender, form: 'form:subj'}]
+      reverse: (Abuela|La abuela|Mi abuela) habla (con|en) refranes para que [nosotros] aprendamos
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) (talks|speaks) in (sayings|proverbs|refranes) so [that] we (learn|will learn|can learn).
+- id: s.u23.14
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: Te lo digo por tu bien, para que aprendas.
+      tokens: [{surface: Te, sense: te}, {surface: lo, sense: lo}, {surface: digo, sense: decir, form: 'form:pres-1s'}, {surface: por, sense: por}, {surface: tu, sense: tu}, {surface: bien, sense: bien}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: aprendas, sense: aprender, form: 'form:subj'}]
+      reverse: |-
+        [Yo] te lo digo por tu bien para que [tú] aprendas
+        [Yo] se lo digo por su bien para que [usted] aprenda
+        [Yo] se lo digo por su bien para que [ustedes] aprendan
+  translations:
+    en: (I'm telling you|I tell you) [this] for your own good, so [that] you (learn|will learn|can learn).
+- id: s.u23.15
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: Mami y Papi trabajan mucho para que Lili pueda estudiar.
+      tokens: [{surface: Mami, sense: mami}, {surface: 'y', sense: 'y'}, {surface: Papi, sense: papi}, {surface: trabajan, sense: trabajar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: Lili, sense: lili}, {surface: pueda, sense: poder, form: 'form:subj'}, {surface: estudiar, sense: estudiar}]
+      reverse: (Mami|Mamá|Mi mamá) y (Papi|Papá|mi papá) trabajan mucho para que Lili pueda estudiar
+  translations:
+    en: (Mom|Mommy|Mum) and (Dad|Daddy) work (hard|a lot|so hard) so [that] Lili can study.
+- id: s.u23.16
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: Yasiel perdió su trabajo, pero ahora tiene otro mejor.
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: perdió, sense: perder, form: 'form:pret-3s'}, {surface: su, sense: su}, {surface: trabajo, sense: trabajo}, {surface: pero, sense: pero}, {surface: ahora, sense: ahora}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: otro, sense: otro}, {surface: mejor, sense: mejor}]
+      reverse: Yasiel perdió (su|el) trabajo pero ahora tiene (otro|uno) mejor
+  translations:
+    en: Yasiel lost his job, but now (he has|he's got) a better one.
+- id: s.u23.17
+  node: es.u23.para-que
+  forms:
+    es-Latn/standard:
+      text: No hay mal que por bien no venga.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: hay, sense: hay}, {surface: mal, sense: mal.harm}, {surface: que, sense: que}, {surface: por, sense: por}, {surface: bien, sense: bien}, {surface: 'no', sense: 'no'}, {surface: venga, sense: venir, form: 'form:subj'}]
+      reverse: No hay mal que por bien no venga
+  translations:
+    en: |-
+      There's no (bad thing|harm|misfortune) that doesn't (bring|come with) some good.
+      There is no (bad thing|harm|misfortune) that does not (bring|come with) some good.
+      Every cloud has a silver lining.
+      It's a blessing in disguise.
+- id: s.u23.18
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe madruga todos los días para ir al parque.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: madruga, sense: madrugar, form: 'form:pres-3s'}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: días, sense: día}, {surface: para, sense: para}, {surface: ir, sense: ir}, {surface: al, sense: al}, {surface: parque, sense: parque}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) madruga todos los días para ir al parque
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe gets up (early|very early|at dawn) every day to go to the park.
+- id: s.u23.19
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: Al que madruga, Dios lo ayuda.
+      tokens: [{surface: Al, sense: al}, {surface: que, sense: que}, {surface: madruga, sense: madrugar, form: 'form:pres-3s'}, {surface: Dios, sense: dios}, {surface: lo, sense: lo}, {surface: ayuda, sense: ayudar, form: 'form:pres-3s'}]
+      reverse: Al que madruga Dios (lo|le) ayuda
+  translations:
+    en: |-
+      God helps (the one|anyone|the person|the man) who (gets up|rises) early.
+      God helps whoever (gets up|rises) early.
+      God helps those who (get up|rise) early.
+      The early bird (catches|gets) the worm.
+- id: s.u23.20
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: No por mucho madrugar amanece más temprano.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: por, sense: por}, {surface: mucho, sense: mucho}, {surface: madrugar, sense: madrugar}, {surface: amanece, sense: amanecer, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: temprano, sense: temprano}]
+      reverse: No por mucho madrugar amanece más temprano
+  translations:
+    en: |-
+      Getting up (early|very early) doesn't make the (sun rise|sun come up|day dawn) [any] (sooner|earlier).
+      Getting up (early|very early) does not make the (sun rise|sun come up|day dawn) [any] (sooner|earlier).
+      You can't rush things.
+- id: s.u23.21
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: Más vale tarde que nunca.
+      tokens: [{surface: Más, sense: más}, {surface: vale, sense: valer, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: que, sense: que.than}, {surface: nunca, sense: nunca}]
+      reverse: Más vale tarde que nunca
+  translations:
+    en: |-
+      Better late than never.
+      It's better late than never.
+- id: s.u23.22
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: Yunior llegó tarde a la fiesta, pero más vale tarde que nunca.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: tarde, sense: tarde}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: fiesta, sense: fiesta}, {surface: pero, sense: pero}, {surface: más, sense: más}, {surface: vale, sense: valer, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: que, sense: que.than}, {surface: nunca, sense: nunca}]
+      reverse: Yunior llegó tarde a la fiesta pero más vale tarde que nunca
+  translations:
+    en: Yunior (got to the party late|arrived late (at|to) the party|was late (to|for) the party|came late to the party), but [it's] better late than never.
+- id: s.u23.23
+  node: es.u23.al-que-madruga
+  forms:
+    es-Latn/standard:
+      text: Más sabe el diablo por viejo que por diablo.
+      tokens: [{surface: Más, sense: más}, {surface: sabe, sense: saber, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: diablo, sense: diablo}, {surface: por, sense: por}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: por, sense: por}, {surface: diablo, sense: diablo}]
+      reverse: Más sabe el diablo por viejo que por diablo
+  translations:
+    en: |-
+      The devil knows more (from|for|because of) being old than (from|for|because of) being the devil.
+      With age comes wisdom.
+      Wisdom comes with age.
+- id: s.u23.24
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: Daniel anda con Yasiel por la Calle Ocho los sábados.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: anda, sense: andar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}, {surface: los, sense: el}, {surface: sábados, sense: sábado}]
+      reverse: |-
+        Daniel anda con Yasiel por [la] Calle Ocho los sábados
+        Los sábados Daniel anda con Yasiel por [la] Calle Ocho
+  translations:
+    en: |-
+      Daniel (hangs out|goes around|walks around) with Yasiel (on|along|around) Calle Ocho on Saturdays.
+      On Saturdays Daniel (hangs out|goes around|walks around) with Yasiel (on|along|around) Calle Ocho.
+- id: s.u23.25
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: Dime con quién andas y te diré quién eres.
+      tokens: [{surface: Dime, sense: decir, form: 'form:imp-tu'}, {surface: con, sense: con}, {surface: quién, sense: quién}, {surface: andas, sense: andar, form: 'form:pres-2s'}, {surface: 'y', sense: 'y'}, {surface: te, sense: te}, {surface: diré, sense: decir, form: 'form:fut'}, {surface: quién, sense: quién}, {surface: eres, sense: ser, form: 'form:pres-2s'}]
+      reverse: Dime con quién andas y te (diré|digo) quién eres
+  translations:
+    en: |-
+      Tell me who you (hang out|go around|spend time|run around) with, and (I'll|I will) tell you who you are.
+      A man is known by the company he keeps.
+      You are known by the company you keep.
+      Birds of a feather flock together.
+- id: s.u23.26
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: El niño llora porque tiene hambre.
+      tokens: [{surface: El, sense: el}, {surface: niño, sense: niño}, {surface: llora, sense: llorar, form: 'form:pres-3s'}, {surface: porque, sense: porque}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: hambre, sense: hambre}]
+      reverse: El niño llora porque tiene hambre
+  translations:
+    en: The (boy|child|kid|little boy) (is crying|cries) because (he's|he is) hungry.
+- id: s.u23.27
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: El que no llora no mama.
+      tokens: [{surface: El, sense: el}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: llora, sense: llorar, form: 'form:pres-3s'}, {surface: 'no', sense: 'no'}, {surface: mama, sense: mamar, form: 'form:pres-3s'}]
+      reverse: (El que|Quien) no llora no mama
+  translations:
+    en: |-
+      The (baby|one) who (doesn't|does not) cry (doesn't|does not) (get fed|get milk|nurse).
+      The squeaky wheel gets the grease.
+      If you don't ask, you don't get.
+- id: s.u23.28
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: Pásame el cuchillo para picar la cebolla.
+      tokens: [{surface: Pásame, sense: pasar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: cuchillo, sense: cuchillo}, {surface: para, sense: para}, {surface: picar, sense: picar}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}]
+      reverse: (Pásame|Dame|Alcánzame) el cuchillo para picar la cebolla
+  translations:
+    en: |-
+      (Pass|Hand|Give) me the knife to (chop|cut|dice) the onion.
+      (Pass|Hand|Give) me the knife so (I can|that I can) (chop|cut|dice) the onion.
+- id: s.u23.29
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe era mecánico, pero su máquina siempre se rompía.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: era, sense: ser, form: 'form:impf'}, {surface: mecánico, sense: mecánico}, {surface: pero, sense: pero}, {surface: su, sense: su}, {surface: máquina, sense: máquina}, {surface: siempre, sense: siempre}, {surface: se, sense: se}, {surface: rompía, sense: romperse, form: 'form:impf'}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) era mecánico pero su (máquina|carro|auto|coche) siempre se (rompía|descomponía)
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe was a mechanic, but his [own] car (was always breaking down|always broke down|kept breaking down).
+- id: s.u23.30
+  node: es.u23.dime-con-quien
+  forms:
+    es-Latn/standard:
+      text: En casa del herrero, cuchillo de palo.
+      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa}, {surface: del, sense: del}, {surface: herrero, sense: herrero}, {surface: cuchillo, sense: cuchillo}, {surface: de, sense: de}, {surface: palo, sense: palo}]
+      reverse: En casa (del|de) herrero cuchillo de palo
+  translations:
+    en: |-
+      In the blacksmith's house, (a wooden knife|wooden knives).
+      In the house of the blacksmith, (a wooden knife|wooden knives).
+      The shoemaker's (children|kids) go barefoot.
+- id: s.u23.31
+  node: es.u23.en-talla
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Con ese pulóver nuevo, Yunior está en talla.
+      tokens: [{surface: Con, sense: con}, {surface: ese, sense: ese}, {surface: pulóver, sense: pulóver}, {surface: nuevo, sense: nuevo}, {surface: Yunior, sense: yunior}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: talla, sense: talla}]
+      reverse: |-
+        Con ese (pulóver|pullover) nuevo Yunior está en talla
+        Yunior está en talla con ese (pulóver|pullover) nuevo
+  translations:
+    en: |-
+      In that new (T-shirt|tee shirt|shirt), Yunior (looks sharp|is looking sharp|looks cool|looks good|is in style).
+      Yunior (looks sharp|is looking sharp|looks cool|looks good|is in style) in that new (T-shirt|tee shirt|shirt).
+- id: s.u23.32
+  node: es.u23.en-talla
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Lili siempre coge lucha cuando tiene un examen.
+      tokens: [{surface: Lili, sense: lili}, {surface: siempre, sense: siempre}, {surface: coge, sense: coger, form: 'form:pres-3s'}, {surface: lucha, sense: lucha}, {surface: cuando, sense: cuando}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: examen, sense: examen}]
+      reverse: Lili siempre (coge lucha|se estresa|se preocupa) cuando tiene (un examen|exámenes)
+  translations:
+    en: Lili always (gets stressed|stresses out|gets worked up|worries) when she has (an exam|a test|exams|tests).
+- id: s.u23.33
+  node: es.u23.en-talla
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: 'No cojas lucha, mi''jo: todo va a salir bien.'
+      tokens: [{surface: 'No', sense: 'no'}, {surface: cojas, sense: coger, form: 'form:imp-neg'}, {surface: lucha, sense: lucha}, {surface: mi'jo, sense: mijo}, {surface: todo, sense: todo}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: bien, sense: bien}]
+      reverse: No (cojas lucha|te preocupes) (mi'jo|mi hijo|mijito) todo va a salir bien
+  translations:
+    en: '(Don''t|Do not) (stress|worry|sweat it), (son|honey|sweetie|kiddo): (everything''s|everything is) going to (turn out|be|work out) (fine|all right|okay|OK).'
+- id: s.u23.34
+  node: es.u23.en-talla
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: 'Asere, tírame un cabo: tengo que arreglar la máquina.'
+      tokens: [{surface: Asere, sense: asere}, {surface: tírame, sense: tirar, form: 'form:imp-tu'}, {surface: un, sense: un}, {surface: cabo, sense: cabo}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: arreglar, sense: arreglar}, {surface: la, sense: el}, {surface: máquina, sense: máquina}]
+      reverse: (Asere|Acere|Socio) (tírame un cabo|échame una mano|ayúdame) [yo] tengo que arreglar (la máquina|el carro)
+  translations:
+    en: '(Man|Buddy|Bro|Dude|Pal), (give me a hand|help me out|lend me a hand|throw me a rope): I (have to|need to|have got to|gotta) fix the car.'
+- id: s.u23.35
+  node: es.u23.en-talla
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Cuando hablan en inglés, abuela está en el aire.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: hablan, sense: hablar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: inglés, sense: inglés}, {surface: abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aire, sense: aire}]
+      reverse: |-
+        Cuando hablan en inglés (abuela|la abuela|mi abuela) está en el aire
+        (Abuela|La abuela|Mi abuela) está en el aire cuando hablan en inglés
+  translations:
+    en: |-
+      When (they|people) (speak|talk) [in] English, (Grandma|Grandmother|Abuela|my grandma|my grandmother) is (lost|clueless|in the dark|totally lost).
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) is (lost|clueless|in the dark|totally lost) when (they|people) (speak|talk) [in] English.
+- id: s.u23.36
+  node: es.u23.en-talla
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Yunior me dio muela dos horas por teléfono.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: me, sense: me}, {surface: dio, sense: dar, form: 'form:pret-3s'}, {surface: muela, sense: muela}, {surface: dos, sense: dos}, {surface: horas, sense: hora}, {surface: por, sense: por}, {surface: teléfono, sense: teléfono}]
+      reverse: |-
+        Yunior me dio muela (dos horas|por dos horas|durante dos horas) por teléfono
+        Yunior me dio muela por teléfono (dos horas|por dos horas|durante dos horas)
+  translations:
+    en: Yunior (talked my ear off|chatted my ear off|talked and talked) (for two hours on the phone|on the phone for two hours).
+stories:
+- id: es.story.u23
+  node: es.u23.story
+  title: {en: Abuela's sayings}
+  characters:
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Es sábado por la mañana. Lili estudia en la cocina para un examen.
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: sábado, sense: sábado}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: Lili, sense: lili}, {surface: estudia, sense: estudiar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: examen, sense: examen}]
+      translations: {en: It's Saturday morning. Lili is studying in the kitchen for an exam.}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: '¡Ay, abuela! Estoy cogiendo lucha: el examen es el lunes.'
+          tokens: [{surface: Ay, sense: ay}, {surface: abuela, sense: abuela}, {surface: Estoy, sense: estar, form: 'form:pres-1s'}, {surface: cogiendo, sense: coger, form: 'form:ger'}, {surface: lucha, sense: lucha}, {surface: el, sense: el}, {surface: examen, sense: examen}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: lunes, sense: lunes}]
+      translations: {en: 'Oh, Grandma! I''m stressing out: the exam is on Monday.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No cojas lucha, mi'ja. Más vale estudiar hoy que llorar el lunes.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: cojas, sense: coger, form: 'form:imp-neg'}, {surface: lucha, sense: lucha}, {surface: mi'ja, sense: mijo}, {surface: Más, sense: más}, {surface: vale, sense: valer, form: 'form:pres-3s'}, {surface: estudiar, sense: estudiar}, {surface: hoy, sense: hoy}, {surface: que, sense: que.than}, {surface: llorar, sense: llorar}, {surface: el, sense: el}, {surface: lunes, sense: lunes}]
+      translations: {en: 'Don''t stress, sweetie. Better to study today than to cry on Monday.'}
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Daniel se levanta tarde y llega a la cocina.
+          tokens: [{surface: Daniel, sense: daniel}, {surface: se, sense: se}, {surface: levanta, sense: levantarse, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: 'y', sense: 'y'}, {surface: llega, sense: llegar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      translations: {en: Daniel gets up late and comes into the kitchen.}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Mira quién llegó! Camarón que se duerme se lo lleva la corriente.
+          tokens: [{surface: Mira, sense: mirar, form: 'form:imp-tu'}, {surface: quién, sense: quién}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: Camarón, sense: camarón}, {surface: que, sense: que}, {surface: se, sense: se}, {surface: duerme, sense: dormirse, form: 'form:pres-3s'}, {surface: se, sense: se}, {surface: lo, sense: lo}, {surface: lleva, sense: llevarse, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: corriente, sense: corriente}]
+      translations: {en: Look who's here! The shrimp that falls asleep is swept away by the current.}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Ay, abuela, ¿qué tú quieres decir con eso?
+          tokens: [{surface: Ay, sense: ay}, {surface: abuela, sense: abuela}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: decir, sense: decir}, {surface: con, sense: con}, {surface: eso, sense: ese}]
+      translations: {en: 'Oh, Grandma, what do you mean by that?'}
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: sense:café
+      distractors: ['sense:herrero', 'sense:palo']
+      forms:
+        es-Latn/standard:
+          text: Quiere decir que ya no hay café, mi'jo.
+          tokens: [{surface: Quiere, sense: querer, form: 'form:pres-3s'}, {surface: decir, sense: decir}, {surface: que, sense: que}, {surface: ya, sense: ya}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: café, sense: café}, {surface: mi'jo, sense: mijo}]
+      translations: {en: 'It means there''s no coffee left, son.'}
+  - choose:
+      prompt: {en: 'According to Abuelo Pepe, what does Abuela''s saying mean for Daniel?'}
+      options: [{en: There's no coffee left for him.}, {en: He has to study for an exam.}, {en: He has to go to the river.}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Aquí está tu cafecito, mi'jo. Lo hice para ti.
+          tokens: [{surface: Aquí, sense: aquí}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: cafecito, sense: cafecito}, {surface: mi'jo, sense: mijo}, {surface: Lo, sense: lo}, {surface: hice, sense: hacer, form: 'form:pret-1s'}, {surface: para, sense: para}, {surface: ti, sense: ti}]
+      translations: {en: 'Here''s your coffee, sweetheart. I made it for you.'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Gracias por el cafecito, abuela!
+          tokens: [{surface: Gracias, sense: gracias}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: cafecito, sense: cafecito}, {surface: abuela, sense: abuela}]
+      translations: {en: 'Thanks for the coffee, Grandma!'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: 'Daniel, ¿tú me tiras un cabo? Es un examen de español: por y para.'
+          tokens: [{surface: Daniel, sense: daniel}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: tiras, sense: tirar, form: 'form:pres-2s'}, {surface: un, sense: un}, {surface: cabo, sense: cabo}, {surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: examen, sense: examen}, {surface: de, sense: de}, {surface: español, sense: español}, {surface: por, sense: por}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}]
+      translations: {en: 'Daniel, can you give me a hand? It''s a Spanish exam: por and para.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Por y para? Ay, Lili, ahí yo estoy en el aire.
+          tokens: [{surface: Por, sense: por}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}, {surface: Ay, sense: ay}, {surface: Lili, sense: lili}, {surface: ahí, sense: ahí}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: aire, sense: aire}]
+      translations: {en: 'Por and para? Oh, Lili, I''m lost there.'}
+  - choose:
+      prompt: {en: 'What is Lili''s exam about?'}
+      options: [{en: Por and para}, {en: Cuban sayings}, {en: English}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: 'Mira, mi''ja: yo trabajé mucho por ustedes, para que ustedes estudien.'
+          tokens: [{surface: Mira, sense: mirar, form: 'form:imp-tu'}, {surface: mi'ja, sense: mijo}, {surface: yo, sense: yo}, {surface: trabajé, sense: trabajar, form: 'form:pret-1s'}, {surface: mucho, sense: mucho}, {surface: por, sense: por}, {surface: ustedes, sense: ustedes}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: ustedes, sense: ustedes}, {surface: estudien, sense: estudiar, form: 'form:subj'}]
+      translations: {en: 'Look, sweetie: I worked hard for all of you, so that you could study.'}
+  - line:
+      speaker: lili
+      ask: complete
+      gap: sense:talla
+      distractors: ['sense:cabo', 'sense:muela']
+      forms:
+        es-Latn/standard:
+          text: ¡Gracias, abuela! Ahora yo estoy en talla con por y para.
+          tokens: [{surface: Gracias, sense: gracias}, {surface: abuela, sense: abuela}, {surface: Ahora, sense: ahora}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: talla, sense: talla}, {surface: con, sense: con}, {surface: por, sense: por}, {surface: 'y', sense: 'y'}, {surface: para, sense: para}]
+      translations: {en: 'Thanks, Grandma! Now I''m on top of por and para.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Y al que madruga, Dios lo ayuda. Mañana te levantas temprano, Daniel.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: al, sense: al}, {surface: que, sense: que}, {surface: madruga, sense: madrugar, form: 'form:pres-3s'}, {surface: Dios, sense: dios}, {surface: lo, sense: lo}, {surface: ayuda, sense: ayudar, form: 'form:pres-3s'}, {surface: Mañana, sense: mañana}, {surface: te, sense: te}, {surface: levantas, sense: levantarse, form: 'form:pres-2s'}, {surface: temprano, sense: temprano}, {surface: Daniel, sense: daniel}]
+      translations: {en: 'And the early bird catches the worm. Tomorrow you get up early, Daniel.'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Abuelo, no por mucho madrugar amanece más temprano.
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'no', sense: 'no'}, {surface: por, sense: por}, {surface: mucho, sense: mucho}, {surface: madrugar, sense: madrugar}, {surface: amanece, sense: amanecer, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: temprano, sense: temprano}]
+      translations: {en: 'Grandpa, getting up early doesn''t make the sun rise any sooner.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Ay, este niño! Más sabe el diablo por viejo que por diablo.
+          tokens: [{surface: Ay, sense: ay}, {surface: este, sense: este}, {surface: niño, sense: niño}, {surface: Más, sense: más}, {surface: sabe, sense: saber, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: diablo, sense: diablo}, {surface: por, sense: por}, {surface: viejo, sense: viejo}, {surface: que, sense: que.than}, {surface: por, sense: por}, {surface: diablo, sense: diablo}]
+      translations: {en: 'Oh, this boy! With age comes wisdom.'}
+  - choose:
+      prompt: {en: 'What does Abuela mean by her last saying?'}
+      options: [{en: 'Old people know more, from experience.'}, {en: The devil is very old.}, {en: Daniel is a little devil.}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¡tú das más muela que Yunior!
+          tokens: [{surface: Abuela, sense: abuela}, {surface: tú, sense: tú}, {surface: das, sense: dar, form: 'form:pres-2s'}, {surface: más, sense: más}, {surface: muela, sense: muela}, {surface: que, sense: que.than}, {surface: Yunior, sense: yunior}]
+      translations: {en: 'Grandma, you talk even more than Yunior!'}

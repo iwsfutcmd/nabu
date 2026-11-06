@@ -3,7 +3,7 @@
  * effects (gameplan §11.5). Grading runs synchronously through the core grader;
  * events go to `onEvent` (Phase 4 stores them); sounds are synthesized.
  */
-import { gradeExercise, start, step, type Effect, type Exercise, type Grader, type LessonEvent, type PlayerEvent, type PlayerState } from "@nabu/core/lesson";
+import { gradeExercise, start, step, type AdaptiveTest, type Effect, type Exercise, type Grader, type LessonEvent, type PlayerEvent, type PlayerState } from "@nabu/core/lesson";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { playFeedbackSound } from "./sound.ts";
 
@@ -15,10 +15,12 @@ export interface PlayerOptions {
   readonly sound?: boolean | undefined;
   /** Missed exercises come back at the end (default); off for a placement test. */
   readonly retries?: boolean | undefined;
+  /** An adaptive test (the placement test, ADR 0077): what comes next depends on the answers. */
+  readonly adaptive?: AdaptiveTest | undefined;
 }
 
-export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, retries = true }: PlayerOptions) => {
-  const [initial] = useState(() => start(lesson, exercises, { retries }));
+export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, retries = true, adaptive }: PlayerOptions) => {
+  const [initial] = useState(() => start(lesson, exercises, { retries, ...(adaptive === undefined ? {} : { adaptive }) }));
   const [state, setState] = useState<PlayerState>(initial[0]);
   const current = useRef<PlayerState>(initial[0]);
   const listener = useRef(onEvent);

@@ -1,0 +1,25 @@
+# Cuban Spanish (es) for heritage speakers, A1 to B2 in thirty units (ADR 0076; the brief is README.md).
+# The canonical answers are Cuban (guagua, ¿Qué tú quieres?); pan-Hispanic forms are accepted too.
+# A heritage speaker places with the adaptive placement test (ADR 0077), which has them type their answers.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
+id: es
+target: es-Latn-CU
+orthographies: [es-Latn/standard]
+support: [en-Latn/standard]
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@1ebc6e7db77a', status: draft}
+# A Spanish verb is fusional: a new verb in a new tense is two KCs on one word (sense + form), so a
+# sentence may bring in two.
+iPlusOne: 2
+# Placement (ADR 0077) has production typed, so it also checks spelling and accent marks.
+placement: {production: typed}
+# Audio (ADR 0076): OmniVoice cloning a Cuban speaker, a newsreader of Radio La Voz de la Victoria
+# (Ciénaga de Zapata, Matanzas), from a CC0 recording (`nabu audio cast --recording`). OmniVoice's
+# voice design has no Cuban accent; cloning carries the speaker's. A man's voice: sentences tagged
+# with a speaker are a man speaking. The weights are CC-BY-NC (OmniVoice's training data), so the
+# clips are too.
+audio:
+  voices:
+  - {id: zapata, provider: omnivoice, voice: zapata-m, model: 'k2-fsa/OmniVoice@c5fdb5ccb189668d56333f77ba2629f4cd7535f4',
+    language: es, orthography: es-Latn/standard, reading: text, finalStop: true, license: CC-BY-NC-4.0}
+units: [units/u01-que-bola.yaml, units/u02-la-familia.yaml, units/u03-la-casa.yaml, units/u04-la-comida.yaml, units/u05-los-numeros.yaml, units/u06-el-barrio.yaml, units/u07-el-dia.yaml, units/u08-de-compras.yaml, units/u09-ayer.yaml, units/u10-el-viaje.yaml, units/u11-las-tildes.yaml, units/u12-cuando-era-nino.yaml, units/u13-los-cuentos-de-abuela.yaml, units/u14-la-cocina-cubana.yaml, units/u15-la-carta.yaml, units/u16-la-musica.yaml, units/u17-pelota-y-domino.yaml, units/u18-la-salud.yaml, units/u19-con-respeto.yaml, units/u20-nochebuena.yaml, units/u21-los-consejos.yaml, units/u22-la-llamada.yaml, units/u23-refranes.yaml, units/u24-la-historia.yaml, units/u25-la-habana.yaml, units/u26-el-campo.yaml, units/u27-marti.yaml, units/u28-si-pudiera.yaml, units/u29-quien-soy.yaml, units/u30-el-brindis.yaml]

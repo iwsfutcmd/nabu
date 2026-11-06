@@ -796,6 +796,34 @@
       },
       "expected": "el lele",
       "note": "lele (night) has one grapheme after lel: left as written."
+    },
+    {
+      "id": "normalize/es/opening-marks",
+      "op": "normalize",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "¡Hola! ¿Qué bolá, asere?"
+      },
+      "expected": "Hola Qué bolá asere",
+      "note": "¡ and ¿ are punctuation and go"
+    },
+    {
+      "id": "normalize/es/nfc",
+      "op": "normalize",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "E\u0301l esta\u0301 aqui\u0301"
+      },
+      "expected": "Él está aquí"
+    },
+    {
+      "id": "normalize/es/enye-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "es-Latn/standard",
+        "text": "Año"
+      },
+      "expected": "Año"
     }
-]
+  ]
 }
