@@ -40,7 +40,7 @@ import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
-import { AudioButtons, useClipPlayer } from "./Audio.tsx";
+import { AudioButtons, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
 import { toPcm16k, useRecorder, useSpeech, type Decoded } from "./speech.tsx";
 import { effectiveWritingMode, type ViewProps } from "./shared.ts";
@@ -123,6 +123,33 @@ const chooseByKey = (props: ViewProps, index: number, count: number): void => {
 
 const selectedOf = (props: ViewProps): number | null => (props.draft.tag === "choice" ? props.draft.index : null);
 
+/** Once the card is answered, its clip is said (once), if sound is on: whatever the card asked. */
+const useSayWhenAnswered = (player: ClipPlayer, props: ViewProps & ViewExtras, audio: AudioRef | undefined): void => {
+  const answered = props.outcome !== undefined;
+  const said = useRef(false);
+  const { play } = player;
+  useEffect(() => {
+    if (!answered || said.current || audio === undefined || props.sound === false) return;
+    said.current = true;
+    play();
+  }, [answered, audio, play, props.sound]);
+};
+
+/**
+ * For a card whose prompt is not the target text (it is the answer): once answered, the target
+ * text is said, with buttons to hear it again, normal or slow.
+ */
+const AnswerAudio = ({ props }: { props: ViewProps & ViewExtras }): JSX.Element | null => {
+  const audio = props.course.audio[props.ex.item];
+  const player = useClipPlayer(audio, props.imageUrl);
+  useSayWhenAnswered(player, props, audio);
+  return audio === undefined || props.outcome === undefined ? null : (
+    <div data-answer-audio="">
+      <AudioButtons player={player} audio={audio} />
+    </div>
+  );
+};
+
 export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   const { ex, imageUrl } = props;
   const t = useTranslator();
@@ -132,6 +159,7 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
       <div className={styles.prompt} role="group" aria-label={t.format("player.prompt.meaning")}>
         <T as="p" text={ex.prompt} />
       </div>
+      <AnswerAudio props={props} />
       <Options
         grid
         options={ex.options.map((o, i) => (
@@ -151,12 +179,13 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
 };
 
 /** A target sentence in its own direction (and vertical where allowed); with its clip, a play button and karaoke. */
-const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: ViewProps; focus?: ReadingDisambiguation["focus"]; ruby?: false }): JSX.Element => {
+const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: ViewProps & ViewExtras; focus?: ReadingDisambiguation["focus"]; ruby?: false }): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
   const mode = effectiveWritingMode(profile, props.writingMode, "prompt");
   const audio = props.course.audio[props.ex.item];
   const player = useClipPlayer(audio, props.imageUrl);
+  useSayWhenAnswered(player, props, audio);
   return (
     <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-writing-mode={mode} data-ink-container="prompt">
       {audio !== undefined && <AudioButtons player={player} audio={audio} />}
@@ -239,6 +268,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
         <T as="p" text={ex.hint} />
       </div>
+      <AnswerAudio props={props} />
       <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />
       <Options
         grid
@@ -384,6 +414,7 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
           <PersonsNote persons={ex.persons} prompt={ex.prompt} />
         </div>
       )}
+      {ex.template !== "translate-tap.l2-l1" && <AnswerAudio props={props} />}
       <WordBank props={props} ex={ex} />
     </div>
   );
@@ -420,6 +451,7 @@ export const TranslateTypeView = (props: Props<TranslateType>): JSX.Element => {
         <T as="p" text={ex.prompt} />
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
+      <AnswerAudio props={props} />
       <TypedAnswer props={props} label={t.format("exercise.answer.input-label", { language: props.language })} answer={ex.canonical} />
     </div>
   );
@@ -429,23 +461,13 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
   const { ex } = props;
   const t = useTranslator();
   const typed = props.draft.tag === "text" && props.draft.text !== "" ? textOfSurface(ex.blank, props.draft.text) : undefined;
-  // Once answered, the whole sentence is said (and can be said again), if it has a clip.
-  const audio = props.course.audio[ex.item];
-  const player = useClipPlayer(audio, props.imageUrl);
-  const answered = props.outcome !== undefined;
-  const said = useRef(false);
-  useEffect(() => {
-    if (!answered || said.current || audio === undefined || props.sound === false) return;
-    said.current = true;
-    player.play();
-  }, [answered, audio, player, props.sound]);
   return (
     <div className={styles.body}>
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
         <T as="p" text={ex.prompt} />
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
-      {answered && audio !== undefined && <AudioButtons player={player} audio={audio} />}
+      <AnswerAudio props={props} />
       <GapSentence before={ex.before} after={ex.after} fill={typed} props={props} />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />
     </div>
@@ -476,6 +498,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   return (
     <div className={styles.body}>
       <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={undefined} />
+      <AnswerAudio props={props} />
       <TypedAnswer props={props} label={t.format("player.vocalize.label")} answer={ex.vocalized} keys={ex.marks} />
     </div>
   );
@@ -490,6 +513,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   return (
     <div className={styles.body}>
       <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={false} />
+      <AnswerAudio props={props} />
       <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} />
     </div>
   );
@@ -836,7 +860,7 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
 
 /**
  * The clip of a listening exercise: plays once when the exercise opens, again on request (normal
- * or slow). After the answer, the transcript appears and follows the clip as it replays.
+ * or slow), and again once answered, as the transcript appears and follows it.
  */
 const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText; translation?: TaggedText }): JSX.Element => {
   const t = useTranslator();
@@ -846,6 +870,7 @@ const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioR
   useEffect(() => {
     play("normal");
   }, [play]);
+  useSayWhenAnswered(player, props, audio);
   return (
     <div className={styles.listen} role="group" aria-label={t.format("player.audio.label")} data-listen-prompt="">
       <AudioButtons player={player} audio={audio} size="large" />

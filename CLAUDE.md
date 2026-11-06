@@ -100,6 +100,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Synthesize from pinned readings (Jyutping), never raw characters. Human recordings: `nabu audio ingest`.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
+- `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
+  (nabu/audio/punctuation.py: by script subtag, language overrides). Turning it on makes those clips stale.
 - apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
@@ -113,6 +115,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   the next `generate` makes a rejected clip again as its next take (another seed; seeded voices only).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+- Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
+  its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
 - Hosted voices (ADR 0042): provider elevenlabs/cartesia with `model` and `language`. Keys only from the environment
   (ELEVENLABS_API_KEY, CARTESIA_API_KEY): never in course files, commits or chat. `pronounce: jyutping` sends IPA for
   tokens whose characters do not settle the pinned reading. `--voice <id>` picks a cast voice. Live tests: NABU_HOSTED=1.
@@ -219,7 +223,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0062 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0064 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -1,7 +1,8 @@
 /**
  * Clips that play by themselves:
  * - match the pairs: a tapped word says itself when it has a clip; meanings say nothing;
- * - complete the translation: once answered, the whole sentence is said;
+ * - every card with a clip says it once answered (complete the translation, translations both
+ *   ways, gap-fill, pictures, pronunciation, listening cards again);
  * - with sound off nothing plays.
  */
 import { cardGallery } from "@nabu/core/lesson";
@@ -77,3 +78,25 @@ test("complete the translation: once answered, the whole sentence is said", asyn
   await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([clip]);
   await expect(page.locator("[data-lesson-player] [data-action=play]")).toBeVisible();
 });
+
+/** Cards that say their clip once answered, beyond complete-the-translation (listening cards also play when they open). */
+const SAY_WHEN_ANSWERED = ["choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "translate-type.l1-l2", "gap-fill", "select-image", "vocalize", "listen-type"] as const;
+
+for (const template of SAY_WHEN_ANSWERED) {
+  test(`${template}: once answered, the card's clip is said`, async ({ page }) => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const ex = cardGallery(course, 7).find((c) => c.template === template)?.exercise;
+    const clip = ex === undefined ? undefined : course.audio[ex.item]?.normal.path;
+    test.skip(ex === undefined || clip === undefined, `apc's gallery has no ${template} card with a clip`);
+    if (ex === undefined || clip === undefined) return;
+
+    await recordPlays(page);
+    await tryCard(page, template, "", "#/apc/apc-Arab.standard");
+    const opened = template.startsWith("listen-") ? [clip] : [];
+    await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual(opened);
+    await answer(page, ex, "keyboard");
+    await expect(page.locator("[data-feedback]")).toBeVisible();
+    await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([...opened, clip]);
+  });
+}
+
