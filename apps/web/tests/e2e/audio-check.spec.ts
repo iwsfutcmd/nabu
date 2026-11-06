@@ -17,7 +17,16 @@ test.beforeEach(({ page: _ }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
 });
 
-const indexOf = (course: string): { clips: { item: string; speed: string; sha256: string; qa?: { status?: string } }[] } =>
+interface IndexClip {
+  readonly item: string;
+  readonly speed: string;
+  readonly sha256: string;
+  readonly qa?: { readonly status?: string };
+  readonly provenance?: { readonly status?: string };
+  readonly rejected?: unknown;
+}
+
+const indexOf = (course: string): { clips: IndexClip[] } =>
   parse(readFileSync(new URL(`../../../../courses/${course}/audio/index.yaml`, import.meta.url), "utf8")) as never;
 
 test("every item with a clip can be heard and judged, and the verdicts download", async ({ page }) => {
@@ -26,6 +35,9 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   const index = indexOf("fa");
   const items = new Set(index.clips.map((c) => c.item));
   const failed = index.clips.filter((c) => c.speed === "normal" && c.qa?.status === "fail").length;
+  // Held back (as the compiler holds them): a failed clip nobody has passed, or a rejected one.
+  const passed = (c: IndexClip): boolean => c.provenance?.status === "reviewed" || c.provenance?.status === "published";
+  const held = new Set(index.clips.filter((c) => (c.speed === "normal" && c.qa?.status === "fail" && !passed(c)) || c.rejected !== undefined).map((c) => c.item)).size;
 
   await page.goto("/?sound=off&debug=1#/fa/fa-Arab.standard");
   await page.locator("[data-audio-check-link]").click();
@@ -33,9 +45,9 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   await expect(page.locator("[data-audio-item]")).toHaveCount(items.size);
   await expect(page.locator("[data-count=fail] dd")).toHaveText(String(failed));
 
-  // Held-back items are listed too: the filter shows exactly the failed ones (none reviewed yet).
+  // Held-back items are listed too: the filter shows exactly those.
   await page.locator("[data-filter=status]").selectOption("held");
-  await expect(page.locator("[data-audio-item]")).toHaveCount(failed);
+  await expect(page.locator("[data-audio-item]")).toHaveCount(held);
   await page.locator("[data-filter=status]").selectOption("all");
 
   // Keys move and judge; a click on "Sounds wrong" opens the note.
