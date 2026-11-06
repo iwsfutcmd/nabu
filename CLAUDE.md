@@ -121,6 +121,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   the next `generate` makes a rejected clip again as its next take (another seed; seeded voices only).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
 - Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+  Once answered, a listening card shows what was heard and what it means: a sentence's translation, a word's gloss
+  (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
   its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most

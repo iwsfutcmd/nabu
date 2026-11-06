@@ -531,6 +531,7 @@ export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdent
   const tones = Object.keys(system.tones);
   const answer = tones.indexOf(only.tone);
   if (answer < 0) return undefined;
+  const translation = translationOf(ctx.course, s);
   return {
     template: "tone-identify",
     id: id("tone-identify", s.id),
@@ -542,6 +543,7 @@ export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdent
     system: system.id,
     tones,
     answer,
+    ...(translation === undefined ? {} : { translation: translation.text }),
   };
 };
 
@@ -584,6 +586,12 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
 
 const writtenForm = (ctx: MakeContext, kc: BundleKc): TaggedText | undefined => kc.forms?.[ctx.course.orthography]?.[0];
 
+/** A heard word's meaning (its gloss in the support language), for the feedback; nothing if the KC has none. */
+const meaningOf = (ctx: MakeContext, kc: BundleKc): { readonly translation?: TaggedText } => {
+  const gloss = kc.gloss?.[ctx.course.supportKey];
+  return gloss === undefined ? {} : { translation: gloss };
+};
+
 export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect | undefined => {
   const audio = audioOf(ctx, kc.id);
   const word = writtenForm(ctx, kc);
@@ -592,7 +600,7 @@ export const makeListenSelect = (ctx: MakeContext, kc: BundleKc): ListenSelect |
   const others = pickDistinct(ctx, pool, [word], 2);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, word, others);
-  return { template: "listen-select", id: id("listen-select", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer };
+  return { template: "listen-select", id: id("listen-select", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
 };
 
 const distance = <T>(a: readonly T[], b: readonly T[]): number => {
@@ -666,7 +674,7 @@ export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | u
   const rival = ctx.rng.shuffle(rivals)[0];
   if (rival === undefined) return undefined;
   const { options, answer } = withAnswer(ctx, word, [rival]);
-  return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer };
+  return { template: "minimal-pair", id: id("minimal-pair", kc.id), item: kc.id, kcs: [kc.id], orthography: ctx.course.orthography, audio, options, answer, ...meaningOf(ctx, kc) };
 };
 
 // ------------------------------------------------------------------------------------ pronunciation (ADR 0054)

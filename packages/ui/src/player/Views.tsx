@@ -838,7 +838,7 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
   };
   return (
     <div className={styles.body}>
-      <ListenPrompt audio={ex.audio} props={props} transcript={ex.syllable} />
+      <ListenPrompt audio={ex.audio} props={props} transcript={ex.syllable} translation={ex.translation} />
       <Options
         options={ex.tones.map((tone) => (
           <span key={tone} data-tone={tone}>
@@ -860,9 +860,10 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
 
 /**
  * The clip of a listening exercise: plays once when the exercise opens, again on request (normal
- * or slow), and again once answered, as the transcript appears and follows it.
+ * or slow), and again once answered, as the transcript appears and follows it. Once answered, the
+ * translation shows under the transcript: what was heard, and what it means.
  */
-const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText; translation?: TaggedText }): JSX.Element => {
+const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText | undefined; translation?: TaggedText | undefined }): JSX.Element => {
   const t = useTranslator();
   const player = useClipPlayer(audio, props.imageUrl);
   const { play } = player;
@@ -912,7 +913,7 @@ export const ListenChoiceView = (props: Props<ListenSelect | MinimalPair>): JSX.
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <ListenPrompt audio={ex.audio} props={props} />
+      <ListenPrompt audio={ex.audio} props={props} transcript={ex.options[ex.answer]} translation={ex.translation} />
       <Options
         options={ex.options.map((o, i) => <T key={i} text={o} ruby={props.ruby} marks={props.marks} />)}
         selected={selectedOf(props)}
