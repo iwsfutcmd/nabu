@@ -544,7 +544,7 @@
     },
     "app.reset.type-hint": {
       "message": "Capital letters and accents do not matter.",
-      "description": "Hint under the confirmation field."
+      "description": "Hint under the field where the learner types the course's name to confirm starting over. Letter case and accent marks are ignored there: mention only what your script has (a script without capital letters need not mention them)."
     },
     "app.reset.type-label": {
       "message": "To confirm, type {$language}",
@@ -1019,7 +1019,7 @@
       "description": "Accessible label of the group of word tiles to choose from."
     },
     "exercise.wordbank.remaining": {
-      "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n*   {{{$count} tiles left}}",
+      "message": ".input {$count :number}\n.match $count\none {{{$count} tile left}}\n* {{{$count} tiles left}}",
       "description": "How many tiles are still in the word bank. $count is a number."
     },
     "feedback.note.alef-maqsura": {
@@ -1223,8 +1223,8 @@
       "description": "Heading of the day's quests."
     },
     "game.streak": {
-      "message": ".input {$days :number}\n.match $days\none {{{$days}-day streak}}\n* {{{$days}-day streak}}",
-      "description": "The learner's current streak: days in a row with practice."
+      "message": ".input {$days :number}\n{{{$days}-day streak}}",
+      "description": "The learner's current streak: days in a row with practice. In English the number never makes \"day\" plural; select on $days if your language needs to."
     },
     "game.streak.longest": {
       "message": ".input {$days :number}\n{{Longest: {$days}}}",
@@ -1723,8 +1723,8 @@
       "description": "Push notification body for the streak reminder."
     },
     "push.reminder.streak.title": {
-      "message": ".input {$days :number}\n.match $days\none {{Your {$days}-day streak is waiting}}\n* {{Your {$days}-day streak is waiting}}",
-      "description": "Push notification title: the learner has a streak and has not practised today."
+      "message": ".input {$days :number}\n{{Your {$days}-day streak is waiting}}",
+      "description": "Push notification title: the learner has a streak and has not practised today. Select on $days if your language's plural forms need it."
     },
     "quest.listen-5": {
       "message": ".input {$target :number}\n.match $target\none {{Get {$target} listening exercise right}}\n* {{Get {$target} listening exercises right}}",
