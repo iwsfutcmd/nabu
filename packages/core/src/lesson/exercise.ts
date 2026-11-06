@@ -210,6 +210,8 @@ export interface ToneIdentify extends Common {
   readonly system: string;
   readonly tones: readonly string[];
   readonly answer: number;
+  /** The syllable's support-language translation, shown with it after the answer. */
+  readonly translation?: TaggedText | undefined;
 }
 
 /** A clip to play: normal and slow speed, token timings for karaoke (bundle paths; the shell maps them to URLs). */
@@ -244,6 +246,8 @@ export interface ListenSelect extends Common {
   readonly audio: AudioRef;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /** The word's meaning in the support language (its gloss), shown with it after the answer. */
+  readonly translation?: TaggedText | undefined;
 }
 
 /** Hear one of two words that differ in a single sound or tone; choose which (§8.1 minimal-pair). */
@@ -252,6 +256,8 @@ export interface MinimalPair extends Common {
   readonly audio: AudioRef;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /** The word's meaning in the support language (its gloss), shown with it after the answer. */
+  readonly translation?: TaggedText | undefined;
 }
 
 /** A comprehension question about a story, in the support language (Phase 6). */

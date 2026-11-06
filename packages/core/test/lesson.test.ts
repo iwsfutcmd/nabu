@@ -477,3 +477,31 @@ describe("player", () => {
     expect(end.tag === "finished" && end.summary.completed).toBe(false);
   });
 });
+
+describe("listening cards say what was heard means", () => {
+  for (const [id, orthography] of [
+    ["fa", "fa-Arab/standard"],
+    ["uz", "uz-Latn/standard"],
+    ["apc", "apc-Arab/standard"],
+  ] as const) {
+    it(`${id}: a heard word comes with its gloss, a heard sentence with its translation`, () => {
+      const course = loadCourse(id, orthography);
+      const gallery = cardGallery(course, 7);
+      const kcs = new Map(course.units.flatMap((u) => u.kcs).map((k) => [k.id, k]));
+      const sentences = new Map(course.units.flatMap((u) => u.sentences).map((s) => [s.id, s]));
+      let words = 0;
+      for (const { exercise: ex } of gallery) {
+        if (ex === undefined) continue;
+        if (ex.template === "listen-select" || ex.template === "minimal-pair") {
+          words += 1;
+          expect(ex.translation, ex.id).toEqual(kcs.get(ex.item)?.gloss?.[course.supportKey]);
+          expect(ex.translation, ex.id).toBeDefined();
+        }
+        if (ex.template === "listen-tap" || ex.template === "listen-type") {
+          expect(ex.translation, ex.id).toEqual(sentences.get(ex.item)?.translations[course.supportKey]?.text);
+        }
+      }
+      expect(words).toBeGreaterThan(0);
+    });
+  }
+});
