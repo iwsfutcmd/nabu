@@ -51,7 +51,14 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "呢隻"),
     }
 }
-TOOLS = {"fa": ["hazm", "icu"], "yue": ["pycantonese", "icu"], "uz": ["icu"], "apc": [], "lzh": []}
+TOOLS = {
+    "fa": ["hazm", "icu"],
+    "yue": ["pycantonese", "icu"],
+    "uz": ["icu"],
+    "apc": [],
+    "lzh": [],
+    "es": [],
+}
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}
 

@@ -2,8 +2,8 @@
  * Phase 3 acceptance, on the Phase 4 app: Playwright completes one lesson per
  * fixture course, by keyboard (number keys, Enter, Backspace) and by touch
  * (taps; text from the device keyboard), with axe finding no serious
- * violations on any screen. Between them the two passes cover all six
- * orthographies.
+ * violations on any screen. Between them the two passes cover every
+ * orthography.
  *
  * Lessons are planned from the learner's history, so each test fixes the
  * page's clock, writes the history of a learner who finished the earlier
@@ -23,6 +23,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["uz", "uz-Latn/standard", "uz.i-am"],
     ["apc", "apc-Arab/standard", "apc.cafe"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.well-said"],
+    ["es", "es-Latn/standard", "es.u01.como-estas"],
   ],
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
@@ -30,6 +31,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["uz", "uz-Cyrl/standard", "uz.my"],
     ["apc", "apc-Latn/arabizi", "apc.how-are-you"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.it-is"],
+    ["es", "es-Latn/standard", "es.u01.soy"],
   ],
 };
 

@@ -1,0 +1,633 @@
+# Unit 10 (es): planning the family trip to Cuba: ir a + infinitive, querer and poder + infinitive, the weather
+# (hace calor, llueve); the plane, the airport, the passport and the suitcases; Varadero, Matanzas, and what to take
+# Tía Marisol in Havana.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u10
+title: {en: 'El viaje: The trip'}
+cefr: A2
+kcs:
+- {id: 'sense:ir', gloss: {en: 'to go'}, forms: {es-Latn/standard: [ir]}, notes: {en: 'Voy, vas, va, vamos, van. Ir a + infinitive is the everyday future: voy a viajar, I''m going to travel.'}}
+- {id: 'sense:a', gloss: {en: 'to; at'}, forms: {es-Latn/standard: [a]}, notes: {en: 'Also before a person you visit or see: visitar a tía Marisol. A + el is always al.'}}
+- {id: 'sense:el', gloss: {en: 'the'}, forms: {es-Latn/standard: [el]}, notes: {en: 'El, la, los, las. In La Habana the article is part of the name and takes a capital.'}}
+- {id: 'sense:habana', gloss: {en: 'Havana (La Habana)'}, forms: {es-Latn/standard: [Habana]}, notes: {en: 'Always with its article: La Habana, en La Habana. Someone from Havana is habanero or habanera.'}}
+- {id: 'sense:nosotros', gloss: {en: 'we'}, forms: {es-Latn/standard: [nosotros]}, notes: {en: 'Nosotras when the group is all women. Often left out: vamos, we go.'}}
+- {id: 'form:pres-1p', gloss: {en: 'present tense: we (nosotros)'}, notes: {en: 'Vamos, queremos, podemos, tenemos. Vamos also means let''s go.'}}
+- {id: 'sense:mami', gloss: {en: 'mom; mommy (what Cubans call their mother at any age)'}, forms: {es-Latn/standard: [mami]}, notes: {en: 'Mamá in much of the Spanish-speaking world; in Cuba, as across the Caribbean, mami at any age.'}}
+- {id: 'form:pres-3p', gloss: {en: 'present tense: they, you all (ellos, ustedes)'}, notes: {en: 'Van, quieren, pueden, tienen: they go, want, can, have. Ustedes van: you all go.'}}
+- {id: 'sense:viajar', gloss: {en: 'to travel'}, forms: {es-Latn/standard: [viajar]}, notes: {en: 'Viajar a Cuba, or just ir a Cuba. Spelled with j, like el viaje.'}}
+- {id: 'sense:este', gloss: {en: 'this'}, forms: {es-Latn/standard: [este]}, notes: {en: 'Este, esta, estos, estas: este verano, esta semana. Está, with an accent, is from estar.'}}
+- {id: 'sense:verano', gloss: {en: 'summer'}, forms: {es-Latn/standard: [verano]}, notes: {en: 'With v. Cuba''s hot, rainy season runs from May to October. En el verano: in (the) summer.'}}
+- {id: 'sense:marisol', gloss: {en: 'Marisol (a name)'}, forms: {es-Latn/standard: [Marisol]}, notes: {en: 'Short for María de la Soledad; it also sounds like mar y sol, sea and sun.'}}
+- {id: 'sense:tío', gloss: {en: 'uncle (tía: aunt)'}, forms: {es-Latn/standard: [tío]}, notes: {en: 'Before a name it is lowercase in Spanish: tía Marisol. Los tíos: uncles, or aunts and uncles.'}}
+- {id: 'sense:visitar', gloss: {en: 'to visit'}, forms: {es-Latn/standard: [visitar]}, notes: {en: 'With a before a person (visitar a tía Marisol), but not before a place (visitar Matanzas).'}}
+- {id: 'sense:venir', gloss: {en: 'to come'}, forms: {es-Latn/standard: [venir]}, notes: {en: 'Vengo, vienes, viene. Que viene means next: la semana que viene, next week.'}}
+- {id: 'sense:con', gloss: {en: 'with'}, forms: {es-Latn/standard: [con]}, notes: {en: 'With me and with you (tú) are conmigo and contigo, never con mí or con tú.'}}
+- {id: 'sense:cuándo', gloss: {en: 'when'}, forms: {es-Latn/standard: [cuándo]}, notes: {en: 'With the accent when it asks: ¿cuándo? Cubans keep the subject before the verb: ¿Cuándo tú vas?'}}
+- {id: 'sense:viaje', gloss: {en: 'trip; journey'}, forms: {es-Latn/standard: [viaje]}, notes: {en: '¡Buen viaje!: have a good trip. To take a trip is hacer un viaje; tomar un viaje is English in Spanish words.'}}
+- {id: 'sense:semana', gloss: {en: 'week'}, forms: {es-Latn/standard: [semana]}, notes: {en: 'La semana que viene or la próxima semana: next week.'}}
+- {id: 'sense:que', gloss: {en: 'that; which; who'}, forms: {es-Latn/standard: [que]}, notes: {en: 'No accent when it joins (la semana que viene); qué, with an accent, asks or exclaims.'}}
+- {id: 'sense:en', gloss: {en: 'in; on; at'}, forms: {es-Latn/standard: [en]}, notes: {en: 'Also by, with transport: en avión, en guagua, en carro.'}}
+- {id: 'sense:avión', gloss: {en: 'plane; airplane'}, forms: {es-Latn/standard: [avión]}, notes: {en: 'The accent falls on the last syllable: avión. The plural drops it: aviones.'}}
+- {id: 'sense:al', gloss: {en: 'to the; at the (a + el)'}, forms: {es-Latn/standard: [al]}, notes: {en: 'A + el is always al: al aeropuerto, never a el. Not with la: a la playa, a La Habana. Para el is often said pa''l.'}}
+- {id: 'sense:aeropuerto', gloss: {en: 'airport'}, forms: {es-Latn/standard: [aeropuerto]}, notes: {en: 'Flights from Miami to Havana land at the José Martí airport, in Boyeros.'}}
+- {id: 'sense:papi', gloss: {en: 'dad; daddy (Cuban, at any age)'}, forms: {es-Latn/standard: [papi]}, notes: {en: 'Papá in much of the Spanish-speaking world. Cuban parents also call their little ones papi and mami.'}}
+- {id: 'sense:tener', gloss: {en: 'to have; tener … años: to be … years old'}, forms: {es-Latn/standard: [tener]}, notes: {en: 'Tengo, tienes, tiene, tenemos, tienen.'}}
+- {id: 'sense:pasaporte', gloss: {en: 'passport'}, forms: {es-Latn/standard: [pasaporte]}, notes: {en: 'Cubans who left the island after 1970 enter Cuba on a Cuban passport, even when they are US citizens.'}}
+- {id: 'sense:dónde', gloss: {en: 'where'}, forms: {es-Latn/standard: [dónde]}, notes: {en: 'With the accent when it asks: ¿Dónde está? Without it, donde joins: la casa donde vivo.'}}
+- {id: 'sense:tu', gloss: {en: 'your (tú)'}, forms: {es-Latn/standard: [tu]}, notes: {en: 'No accent: tu pasaporte, your passport. Tú with an accent is you.'}}
+- {id: 'sense:maleta', gloss: {en: 'suitcase'}, forms: {es-Latn/standard: [maleta]}, notes: {en: 'Valija in Argentina and Uruguay. A family going to Cuba packs its maletas full of things for the relatives.'}}
+- {id: 'sense:querer', gloss: {en: 'to want; to love'}, forms: {es-Latn/standard: [querer]}, notes: {en: 'Quiero, quieres, quiere, queremos, quieren. With an infinitive: quiero ir, I want to go. Te quiero: I love you.'}}
+- {id: 'sense:playa', gloss: {en: 'beach'}, forms: {es-Latn/standard: [playa]}, notes: {en: 'Habaneros go to the Playas del Este, a short ride east of the city.'}}
+- {id: 'sense:varadero', gloss: {en: 'Varadero (a beach town)'}, forms: {es-Latn/standard: [Varadero]}, notes: {en: 'Cuba''s best-known beach, on a long, narrow peninsula in Matanzas province.'}}
+- {id: 'sense:matanzas', gloss: {en: 'Matanzas (a city and province)'}, forms: {es-Latn/standard: [Matanzas]}, notes: {en: 'East of Havana, and Abuela Cachita''s home town. The Athens of Cuba (la Atenas de Cuba), where the danzón was born.'}}
+- {id: 'sense:poder', gloss: {en: 'can; to be able to'}, forms: {es-Latn/standard: [poder]}, notes: {en: 'Puedo, puedes, puede, pueden: the o becomes ue, but not in podemos. With an infinitive: no puedo ir, I can''t go.'}}
+- {id: 'sense:pero', gloss: {en: 'but'}, forms: {es-Latn/standard: [pero]}, notes: {en: 'One r. Perro, with rr, is dog.'}}
+- {id: 'sense:lili', gloss: {en: 'Lili (a name)'}, forms: {es-Latn/standard: [Lili]}}
+- {id: 'sense:abuelo', gloss: {en: 'grandfather; grandpa'}, forms: {es-Latn/standard: [abuelo]}, notes: {en: 'Abuelo and abuela are said like names, without the article: Abuelo no quiere ir.'}}
+- {id: 'sense:hacer', gloss: {en: 'to do; to make'}, forms: {es-Latn/standard: [hacer]}, notes: {en: 'The weather uses hace: hace calor, it''s hot; hace frío, it''s cold. Always with h.'}}
+- {id: 'sense:calor', gloss: {en: 'heat'}, forms: {es-Latn/standard: [calor]}, notes: {en: 'Hace calor: it''s hot (the weather). Tengo calor: I''m hot. Not estoy caliente, which means something else.'}}
+- {id: 'sense:mucho', gloss: {en: 'a lot; much; many'}, forms: {es-Latn/standard: [mucho]}, notes: {en: 'Mucho calor, mucha agua, muchos viajes. Before an adjective it is muy: muy bien.'}}
+- {id: 'sense:qué', gloss: {en: 'what; how (¡qué…!)'}, forms: {es-Latn/standard: [qué]}, notes: {en: 'Cubans keep the subject before the verb: ¿Qué tú quieres? ¡Qué calor!: it''s so hot!'}}
+- {id: 'sense:tiempo', gloss: {en: 'weather; time'}, forms: {es-Latn/standard: [tiempo]}, notes: {en: '¿Qué tiempo hace?: what''s the weather like? Also time: no tengo tiempo, I have no time.'}}
+- {id: 'sense:llover', gloss: {en: 'to rain'}, forms: {es-Latn/standard: [llover]}, notes: {en: 'Llueve: it rains, it''s raining. A Cuban summer brings a short, heavy aguacero (downpour) most afternoons.'}}
+- {id: 'sense:hoy', gloss: {en: 'today'}, forms: {es-Latn/standard: [hoy]}, notes: {en: 'With a silent h, like hay and hacer.'}}
+- {id: 'sense:aquí', gloss: {en: 'here'}, forms: {es-Latn/standard: [aquí]}, notes: {en: 'Acá is heard too. Cubans in Miami say aquí for Miami and allá for Cuba.'}}
+- {id: 'sense:llevar', gloss: {en: 'to take; to carry'}, forms: {es-Latn/standard: [llevar]}, notes: {en: 'Llevar takes things there; traer brings them here. Families going to Cuba llevan coffee, clothes and medicine.'}}
+- {id: 'sense:café', gloss: {en: 'coffee'}, forms: {es-Latn/standard: [café]}, image: {file: ../images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0b7ee10fe47d', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'With its accent: café. Cuban coffee is small, strong and sweet: un cafecito.'}}
+- {id: 'sense:para', gloss: {en: 'for; to, in order to'}, forms: {es-Latn/standard: [para]}, notes: {en: 'Often said pa'': pa'' Cuba, pa''l aeropuerto. It is written para.'}}
+- {id: 'sense:yunior', gloss: {en: 'Yunior (a name)'}, forms: {es-Latn/standard: [Yunior]}, notes: {en: 'From English junior, spelled the way Cubans say it.'}}
+- {id: 'sense:primo', gloss: {en: 'cousin'}, forms: {es-Latn/standard: [primo]}, notes: {en: 'Prima for a woman. Primo hermano: first cousin.'}}
+- {id: 'sense:ropa', gloss: {en: 'clothes; clothing'}, forms: {es-Latn/standard: [ropa]}, notes: {en: 'Singular in Spanish: la ropa es nueva, the clothes are new.'}}
+- {id: 'sense:medicina', gloss: {en: 'medicine'}, forms: {es-Latn/standard: [medicina]}, notes: {en: 'Also medicamento. Medicines are scarce in Cuba, so families take them in their suitcases.'}}
+nodes:
+- {id: es.u10.vamos, kind: lesson, introduces: ['sense:ir', 'sense:a', 'sense:el', 'sense:habana', 'sense:nosotros', 'form:pres-1p', 'sense:mami', 'form:pres-3p']}
+- {id: es.u10.vamos-a-viajar, kind: lesson, introduces: ['sense:viajar', 'sense:este', 'sense:verano', 'sense:marisol', 'sense:tío', 'sense:visitar', 'sense:venir', 'sense:con', 'sense:cuándo', 'sense:viaje', 'sense:semana', 'sense:que']}
+- {id: es.u10.el-aeropuerto, kind: lesson, introduces: ['sense:en', 'sense:avión', 'sense:al', 'sense:aeropuerto', 'sense:papi', 'sense:tener', 'sense:pasaporte', 'sense:dónde', 'sense:tu', 'sense:maleta']}
+- {id: es.u10.quiero-ir, kind: lesson, introduces: ['sense:querer', 'sense:playa', 'sense:varadero', 'sense:matanzas', 'sense:pero', 'sense:poder', 'sense:lili', 'sense:abuelo']}
+- {id: es.u10.el-tiempo, kind: lesson, introduces: ['sense:hacer', 'sense:calor', 'sense:mucho', 'sense:qué', 'sense:tiempo', 'sense:llover', 'sense:hoy', 'sense:aquí']}
+- {id: es.u10.para-marisol, kind: lesson, introduces: ['sense:llevar', 'sense:café', 'sense:para', 'sense:yunior', 'sense:primo', 'sense:ropa', 'sense:medicina']}
+- {id: es.u10.story, kind: story}
+sentences:
+- id: s.u10.1
+  node: es.u10.vamos
+  forms:
+    es-Latn/standard:
+      text: Voy a Cuba.
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: "[Yo] voy (a|para|pa') Cuba"
+  translations:
+    en: |-
+      (I'm|I am) going to Cuba.
+      I go to Cuba.
+- id: s.u10.2
+  node: es.u10.vamos
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vas a Cuba?
+      tokens: [{surface: Tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: "(Tú vas|Vas [tú]|Usted va|Va [usted]|Ustedes van|Van [ustedes]) (a|para|pa') Cuba"
+  translations:
+    en: |-
+      Are you going to Cuba?
+      Do you go to Cuba?
+- id: s.u10.3
+  node: es.u10.vamos
+  forms:
+    es-Latn/standard:
+      text: Sí, voy a La Habana.
+      tokens: [{surface: Sí, sense: sí}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: "Sí [yo] voy (a|para|pa') La Habana"
+  translations:
+    en: Yes, (I'm|I am) going to Havana.
+- id: s.u10.4
+  node: es.u10.vamos
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Nosotros vamos a Cuba.
+      tokens: [{surface: Nosotros, sense: nosotros}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: "[Nosotros] vamos (a|para|pa') Cuba"
+  translations:
+    en: |-
+      (We're|We are) going to Cuba.
+      We go to Cuba.
+- id: s.u10.5
+  node: es.u10.vamos
+  forms:
+    es-Latn/standard:
+      text: Mami va a La Habana.
+      tokens: [{surface: Mami, sense: mami}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: "(Mami|Mamá) va (a|para|pa') La Habana"
+  translations:
+    en: |-
+      (Mom|Mommy|Mum) is going to Havana.
+      (Mom's|Mommy's|Mum's) going to Havana.
+- id: s.u10.6
+  node: es.u10.vamos
+  forms:
+    es-Latn/standard:
+      text: Abuela y mami van a Cuba.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: 'y', sense: 'y'}, {surface: mami, sense: mami}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: |-
+        [La] abuela y (mami|mamá) van (a|para|pa') Cuba
+        (Mami|Mamá) y [la] abuela van (a|para|pa') Cuba
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) and (Mom|Mommy|Mum) are going to Cuba.
+      (Grandma|Grandmother|Granny) and (Mom|Mommy|Mum) go to Cuba.
+- id: s.u10.7
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: Voy a viajar a Cuba.
+      tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: "[Yo] voy a viajar (a|para|pa') Cuba"
+  translations:
+    en: |-
+      (I'm|I am) going to (travel|go) to Cuba.
+      (I'll|I will) (travel|go) to Cuba.
+- id: s.u10.8
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: Este verano vamos a viajar.
+      tokens: [{surface: Este, sense: este}, {surface: verano, sense: verano}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}]
+      reverse: |-
+        Este verano [nosotros|nosotras] vamos a viajar
+        [Nosotros|Nosotras] vamos a viajar este verano
+  translations:
+    en: |-
+      This summer (we're|we are) going to (travel|take a trip).
+      (We're|We are) going to (travel|take a trip) this summer.
+- id: s.u10.9
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: Marisol es mi tía.
+      tokens: [{surface: Marisol, sense: marisol}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: tía, sense: tío}]
+      reverse: Marisol es mi tía
+  translations:
+    en: |-
+      Marisol is my aunt.
+      Marisol's my aunt.
+- id: s.u10.10
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: Vamos a visitar a tía Marisol.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      reverse: "[Nosotros|Nosotras] vamos a visitar a [mi|la] tía Marisol"
+  translations:
+    en: |-
+      (We're|We are) going to visit (Aunt|my aunt) Marisol.
+      Let's visit (Aunt|my aunt) Marisol.
+- id: s.u10.11
+  node: es.u10.vamos-a-viajar
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vienes con nosotros?
+      tokens: [{surface: Tú, sense: tú}, {surface: vienes, sense: venir, form: 'form:pres-2s'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: (Tú vienes|Vienes [tú]|Usted viene|Viene [usted]|Ustedes vienen|Vienen [ustedes]) con nosotros
+  translations:
+    en: |-
+      Are you coming with us?
+      Will you come with us?
+      You're coming with us?
+- id: s.u10.12
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: ¿Cuándo es el viaje?
+      tokens: [{surface: Cuándo, sense: cuándo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: viaje, sense: viaje}]
+      reverse: Cuándo es el viaje
+  translations:
+    en: |-
+      When is the trip?
+      When's the trip?
+- id: s.u10.13
+  node: es.u10.vamos-a-viajar
+  forms:
+    es-Latn/standard:
+      text: El viaje es la semana que viene.
+      tokens: [{surface: El, sense: el}, {surface: viaje, sense: viaje}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: semana, sense: semana}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
+      reverse: El viaje es (la semana que viene|la próxima semana)
+  translations:
+    en: |-
+      The trip is next week.
+      The trip's next week.
+- id: s.u10.14
+  node: es.u10.el-aeropuerto
+  forms:
+    es-Latn/standard:
+      text: Vamos a ir en avión.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
+      reverse: "[Nosotros|Nosotras] vamos a (ir|viajar) en avión"
+  translations:
+    en: |-
+      (We're|We are) going to (go|travel) by (plane|air).
+      (We're|We are) going to fly.
+      Let's (go|travel) by plane.
+- id: s.u10.15
+  node: es.u10.el-aeropuerto
+  forms:
+    es-Latn/standard:
+      text: Vamos al aeropuerto.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: al, sense: al}, {surface: aeropuerto, sense: aeropuerto}]
+      reverse: "[Nosotros|Nosotras] vamos (al|para el|pa'l) aeropuerto"
+  translations:
+    en: |-
+      (We're|We are) going to the airport.
+      Let's go to the airport.
+      We go to the airport.
+- id: s.u10.16
+  node: es.u10.el-aeropuerto
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Papi va al aeropuerto con nosotros.
+      tokens: [{surface: Papi, sense: papi}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: aeropuerto, sense: aeropuerto}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: "(Papi|Papá) va (al|para el|pa'l) aeropuerto con nosotros"
+  translations:
+    en: |-
+      (Dad|Daddy) is going to the airport with us.
+      (Dad's|Daddy's) going to the airport with us.
+      (Dad|Daddy) goes to the airport with us.
+- id: s.u10.17
+  node: es.u10.el-aeropuerto
+  forms:
+    es-Latn/standard:
+      text: ¿Tú tienes el pasaporte?
+      tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: pasaporte, sense: pasaporte}]
+      reverse: (Tú tienes|Tienes [tú]|Usted tiene|Tiene [usted]|Ustedes tienen|Tienen [ustedes]) el pasaporte
+  translations:
+    en: |-
+      Do you have the passport?
+      Have you got the passport?
+      You have the passport?
+- id: s.u10.18
+  node: es.u10.el-aeropuerto
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está tu pasaporte?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: pasaporte, sense: pasaporte}]
+      reverse: Dónde está (tu|su) pasaporte
+  translations:
+    en: |-
+      Where is your passport?
+      Where's your passport?
+- id: s.u10.19
+  node: es.u10.el-aeropuerto
+  forms:
+    es-Latn/standard:
+      text: Mi pasaporte está en la maleta.
+      tokens: [{surface: Mi, sense: mi}, {surface: pasaporte, sense: pasaporte}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: maleta, sense: maleta}]
+      reverse: Mi pasaporte está en la maleta
+  translations:
+    en: |-
+      My passport is in the (suitcase|bag|case).
+      My passport's in the (suitcase|bag|case).
+- id: s.u10.20
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: Quiero ir a la playa.
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: playa, sense: playa}]
+      reverse: "[Yo] quiero ir a la playa"
+  translations:
+    en: |-
+      I want to go to the beach.
+      (I'd|I would) like to go to the beach.
+- id: s.u10.21
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: ¿Tú quieres ir a Varadero?
+      tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Varadero, sense: varadero}]
+      reverse: (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) ir a Varadero
+  translations:
+    en: |-
+      Do you want to go to Varadero?
+      Would you like to go to Varadero?
+      You want to go to Varadero?
+- id: s.u10.22
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: Abuela quiere visitar Matanzas.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: visitar, sense: visitar}, {surface: Matanzas, sense: matanzas}]
+      reverse: "[La] abuela quiere visitar Matanzas"
+  translations:
+    en: (Grandma|Grandmother|Granny) wants to visit Matanzas.
+- id: s.u10.23
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: Quiero ir, pero no puedo.
+      tokens: [{surface: Quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}]
+      reverse: "[Yo] quiero ir pero [yo] no puedo"
+  translations:
+    en: |-
+      I want to go, but I (can't|cannot).
+      (I'd|I would) like to go, but I (can't|cannot).
+- id: s.u10.24
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: Lili no puede viajar este verano.
+      tokens: [{surface: Lili, sense: lili}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}]
+      reverse: Lili no puede viajar este verano
+  translations:
+    en: Lili (can't|cannot) (travel|go|take a trip) this summer.
+- id: s.u10.25
+  node: es.u10.quiero-ir
+  forms:
+    es-Latn/standard:
+      text: Abuelo no quiere ir en avión.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'no', sense: 'no'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
+      reverse: "[El] abuelo no quiere (ir|viajar) en avión"
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Granddad) (doesn't|does not) want to (go|travel) by (plane|air).
+      (Grandpa|Grandfather|Granddad) (doesn't|does not) want to fly.
+- id: s.u10.26
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: Hace calor.
+      tokens: [{surface: Hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      reverse: Hace calor
+  translations:
+    en: |-
+      (It's|It is) hot.
+      (It's|It is) warm.
+- id: s.u10.27
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: En Cuba hace mucho calor.
+      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
+      reverse: |-
+        En Cuba hace mucho calor
+        Hace mucho calor en Cuba
+  translations:
+    en: |-
+      (It's|It is) (very|really) hot in Cuba.
+      In Cuba (it's|it is) (very|really) hot.
+      Cuba is (very|really) hot.
+- id: s.u10.28
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tiempo hace en La Habana?
+      tokens: [{surface: Qué, sense: qué}, {surface: tiempo, sense: tiempo}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: |-
+        Qué tiempo hace en La Habana
+        Cómo está el tiempo en La Habana
+  translations:
+    en: |-
+      (What's|What is) the weather like in Havana?
+      (How's|How is) the weather in Havana?
+- id: s.u10.29
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: En el verano llueve mucho.
+      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}]
+      reverse: |-
+        En el verano llueve mucho
+        Llueve mucho en el verano
+  translations:
+    en: |-
+      In [the] summer it rains a lot.
+      It rains a lot in [the] summer.
+- id: s.u10.30
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: Hoy va a llover.
+      tokens: [{surface: Hoy, sense: hoy}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: llover, sense: llover}]
+      reverse: |-
+        Hoy va a llover
+        Va a llover hoy
+  translations:
+    en: |-
+      (It's|It is) going to rain today.
+      Today (it's|it is) going to rain.
+      (It'll|It will) rain today.
+- id: s.u10.31
+  node: es.u10.el-tiempo
+  forms:
+    es-Latn/standard:
+      text: Aquí en Miami también hace calor.
+      tokens: [{surface: Aquí, sense: aquí}, {surface: en, sense: en}, {surface: Miami, sense: miami}, {surface: también, sense: también}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      reverse: |-
+        Aquí en Miami también hace calor
+        Aquí en Miami hace calor también
+        En Miami también hace calor
+  translations:
+    en: |-
+      Here in Miami (it's|it is) hot too.
+      Here in Miami (it's|it is) also hot.
+      (It's|It is) hot here in Miami too.
+      (It's|It is) also hot here in Miami.
+- id: s.u10.32
+  node: es.u10.para-marisol
+  forms:
+    es-Latn/standard:
+      text: Vamos a llevar café.
+      tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: café, sense: café}]
+      reverse: "[Nosotros|Nosotras] vamos a llevar café"
+  translations:
+    en: |-
+      (We're|We are) going to (take|bring) [some] coffee.
+      Let's (take|bring) [some] coffee.
+- id: s.u10.33
+  node: es.u10.para-marisol
+  forms:
+    es-Latn/standard:
+      text: El café es para tía Marisol.
+      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      reverse: "El café es (para|pa') [mi|la] tía Marisol"
+  translations:
+    en: |-
+      The coffee is for (Aunt|my aunt) Marisol.
+      The coffee's for (Aunt|my aunt) Marisol.
+- id: s.u10.34
+  node: es.u10.para-marisol
+  forms:
+    es-Latn/standard:
+      text: Yunior es mi primo.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: primo, sense: primo}]
+      reverse: Yunior es mi primo
+  translations:
+    en: |-
+      Yunior is my cousin.
+      Yunior's my cousin.
+- id: s.u10.35
+  node: es.u10.para-marisol
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú vas a llevar para Yunior?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: Yunior, sense: yunior}]
+      reverse: |-
+        (Qué tú vas|Qué vas [tú]|Qué usted va|Qué va [usted]|Qué ustedes van|Qué van [ustedes]) a llevar (para|pa') Yunior
+        (Qué tú le vas|Qué le vas [tú]|Qué usted le va|Qué le va [usted]|Qué ustedes le van|Qué le van [ustedes]) a llevar a Yunior
+  translations:
+    en: |-
+      What are you going to (take|bring) for Yunior?
+      What will you (take|bring) for Yunior?
+- id: s.u10.36
+  node: es.u10.para-marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela va a llevar ropa y medicinas.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: ropa, sense: ropa}, {surface: 'y', sense: 'y'}, {surface: medicinas, sense: medicina}]
+      reverse: "[La] abuela va a llevar ropa y (medicinas|medicamentos)"
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is going to (take|bring) clothes and (medicine|medicines).
+      (Grandma's|Grandmother's|Granny's) going to (take|bring) clothes and (medicine|medicines).
+stories:
+- id: es.story.u10
+  node: es.u10.story
+  title: {en: 'Who''s going to Cuba?'}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: mami, name: {es-Latn/standard: Mami}}
+  - {id: papi, name: {es-Latn/standard: Papi}}
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  steps:
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: ¡Vamos a viajar a Cuba!
+          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: viajar, sense: viajar}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      translations: {en: 'We''re going to travel to Cuba!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Sí? ¿Cuándo es el viaje?
+          tokens: [{surface: Sí, sense: sí}, {surface: Cuándo, sense: cuándo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: viaje, sense: viaje}]
+      translations: {en: 'Really? When''s the trip?'}
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: En el verano. Vamos a visitar a tía Marisol.
+          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: visitar, sense: visitar}, {surface: a, sense: a}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      translations: {en: 'In the summer. We''re going to visit Aunt Marisol.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿En el verano? ¡En Cuba hace mucho calor!
+          tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}]
+      translations: {en: 'In the summer? It''s really hot in Cuba!'}
+  - line:
+      speaker: mami
+      forms:
+        es-Latn/standard:
+          text: Sí, mi vida, y llueve mucho. ¡Pero es Cuba!
+          tokens: [{surface: Sí, sense: sí}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: 'y', sense: 'y'}, {surface: llueve, sense: llover, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: Pero, sense: pero}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba}]
+      translations: {en: 'Yes, darling, and it rains a lot. But it''s Cuba!'}
+  - line:
+      speaker: papi
+      forms:
+        es-Latn/standard:
+          text: Yo no puedo ir, pero tú sí, Daniel.
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: pero, sense: pero}, {surface: tú, sense: tú}, {surface: sí, sense: sí}, {surface: Daniel, sense: daniel}]
+      translations: {en: 'I can''t go, but you can, Daniel.'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Yo quiero ir a Varadero.
+          tokens: [{surface: Yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: a, sense: a}, {surface: Varadero, sense: varadero}]
+      translations: {en: I want to go to Varadero.}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y yo quiero visitar Matanzas.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: visitar, sense: visitar}, {surface: Matanzas, sense: matanzas}]
+      translations: {en: And I want to visit Matanzas.}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Yo no puedo viajar este verano. ¡Pero quiero ir!
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}, {surface: Pero, sense: pero}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}]
+      translations: {en: 'I can''t travel this summer. But I want to go!'}
+  - choose:
+      prompt: {en: 'Who can''t go to Cuba this summer?'}
+      options: [{en: Papi and Lili}, {en: Daniel and Abuela Cachita}, {en: Mami}]
+      answer: 0
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Yo no voy. No quiero ir en avión.
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: 'No', sense: 'no'}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
+      translations: {en: 'I''m not going. I don''t want to go by plane.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuelo, ¿tú quieres ir en la maleta?
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: maleta, sense: maleta}]
+      translations: {en: 'Grandpa, do you want to go in the suitcase?'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: No, yo estoy bien aquí. Aquí también hace calor.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: aquí, sense: aquí}, {surface: Aquí, sense: aquí}, {surface: también, sense: también}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      translations: {en: 'No, I''m fine here. It''s hot here too.'}
+  - choose:
+      prompt: {en: 'Why doesn''t Abuelo Pepe want to go?'}
+      options: [{en: He doesn't want to fly.}, {en: It's too hot in Cuba.}, {en: He has no passport.}]
+      answer: 0
+  - line:
+      speaker: mami
+      ask: complete
+      gap: sense:llevar
+      distractors: ['sense:visitar', 'sense:viajar']
+      forms:
+        es-Latn/standard:
+          text: ¿Qué vamos a llevar para tía Marisol?
+          tokens: [{surface: Qué, sense: qué}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: para, sense: para}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}]
+      translations: {en: 'What are we going to take for Aunt Marisol?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Café, ropa y medicinas.
+          tokens: [{surface: Café, sense: café}, {surface: ropa, sense: ropa}, {surface: 'y', sense: 'y'}, {surface: medicinas, sense: medicina}]
+      translations: {en: 'Coffee, clothes and medicine.'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Y Yunior quiere ropa de Miami.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: Yunior, sense: yunior}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ropa, sense: ropa}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
+      translations: {en: And Yunior wants clothes from Miami.}
+  - choose:
+      prompt: {en: 'What are they taking for Tía Marisol?'}
+      options: [{en: 'Coffee, clothes and medicine'}, {en: Clothes from Miami}, {en: Only coffee}]
+      answer: 0
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: sense:maleta
+      distractors: ['sense:playa', 'sense:aeropuerto']
+      forms:
+        es-Latn/standard:
+          text: Yo voy también. ¡Pero no en la maleta!
+          tokens: [{surface: Yo, sense: yo}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: también, sense: también}, {surface: Pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: maleta, sense: maleta}]
+      translations: {en: 'I''m going too. But not in the suitcase!'}
