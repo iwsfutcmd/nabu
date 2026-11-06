@@ -1,0 +1,1878 @@
+{
+  "$schema": "../../../schemas/message-catalog.schema.json",
+  "locale": "uz-Cyrl",
+  "provenance": {
+    "author": "llm:claude@baa6bf1d5e24",
+    "status": "draft"
+  },
+  "messages": {
+    "achievement.right": {
+      "message": ".input {$target :number}\n{{{$target} та тўғри жавоб}}",
+      "source": "126156e2db332f"
+    },
+    "achievement.sessions": {
+      "message": ".input {$target :number}\n{{{$target} та якунланган машғулот}}",
+      "source": "040b27d0e2e865"
+    },
+    "achievement.stories": {
+      "message": ".input {$target :number}\n{{{$target} та ўқилган ҳикоя}}",
+      "source": "0baecd1132f96d"
+    },
+    "achievement.streak": {
+      "message": ".input {$days :number}\n{{{$days} кунлик серия}}",
+      "source": "105f7e7013ca54"
+    },
+    "ai.budget": {
+      "message": "Бугунги сунъий интеллект ёрдамидан фойдаланиб бўлдингиз. Эртага яна фойдаланишингиз мумкин.",
+      "source": "14e9089a3c5a5c"
+    },
+    "ai.explain.button": {
+      "message": "Жавобимни тушунтириб беринг",
+      "source": "1bba4a2334ac35"
+    },
+    "ai.explain.by": {
+      "message": "Буни тил модели ({$model}) ёзган. У хато қилиши мумкин.",
+      "source": "10ed1349cb222b"
+    },
+    "ai.explain.failed": {
+      "message": "Бу сафар тушунтириш чиқмади. Кейинроқ қайта уриниб кўринг.",
+      "source": "12859e0222f70c"
+    },
+    "ai.explain.helpful": {
+      "message": "Фойдали бўлди",
+      "source": "1d3d96efda6835"
+    },
+    "ai.explain.loading": {
+      "message": "Тушунтириш ёзилмоқда…",
+      "source": "1af71f461b148e"
+    },
+    "ai.explain.rate": {
+      "message": "Бу тушунтириш фойдали бўлдими?",
+      "source": "0cc348cea81c14"
+    },
+    "ai.explain.title": {
+      "message": "Тушунтириш",
+      "source": "16fce1d7d80a8b"
+    },
+    "ai.explain.unhelpful": {
+      "message": "Фойдали бўлмади",
+      "source": "0f4cda6e7ccbcc"
+    },
+    "ai.judge.accepted": {
+      "message": "Қайта текширилганда жавобингиз қабул қилинди. У тўғри деб ҳисобланади.",
+      "source": "16541d0f177a53"
+    },
+    "ai.judge.checking": {
+      "message": "Жавобингиз қайта текширилмоқда…",
+      "source": "0b108f06b1aec3"
+    },
+    "ai.judge.queued": {
+      "message": "Интернетга қайта уланганингизда жавобингиз яна текширилади.",
+      "source": "1fa4695de34707"
+    },
+    "ai.report.button": {
+      "message": "Жавобим қабул қилиниши керак эди",
+      "source": "0f6ce7d90c7595"
+    },
+    "ai.report.done": {
+      "message": "Тўғри деб ҳисобланди. Жавобингизни текширувчи ҳам кўриб чиқади.",
+      "source": "02db1b7edfe79d"
+    },
+    "ai.report.reject": {
+      "message": "Бу нотўғри деб ҳисобланиши керак эди",
+      "source": "116cdfb2089941"
+    },
+    "ai.report.rejected": {
+      "message": "Нотўғри деб ҳисобланди. Текширувчи ҳам уни кўриб чиқади.",
+      "source": "03fcf61b525298"
+    },
+    "ai.report.spoken": {
+      "message": "Мен тўғри айтдим",
+      "source": "0465e9d59299b1"
+    },
+    "ai.roleplay.character": {
+      "message": "Ким",
+      "source": "12c7ee29368860"
+    },
+    "ai.roleplay.goal": {
+      "message": "Мақсадингиз",
+      "source": "03443dae54742d"
+    },
+    "ai.roleplay.hide-translation": {
+      "message": "Таржимани яширинг",
+      "source": "065eaf87d9350b"
+    },
+    "ai.roleplay.log": {
+      "message": "Суҳбат",
+      "source": "0da7be4ae86f4d"
+    },
+    "ai.roleplay.no-turn": {
+      "message": "Сиз биладиган сўзлардан иборат жавоб келмади. Бошқачароқ айтиб кўринг.",
+      "source": "15e2f480e5b87b"
+    },
+    "ai.roleplay.send": {
+      "message": "Юборинг",
+      "source": "16b55d7868e000"
+    },
+    "ai.roleplay.setting": {
+      "message": "Қаерда",
+      "source": "122adee6bf9c84"
+    },
+    "ai.roleplay.show-translation": {
+      "message": "Таржимани кўринг",
+      "source": "02b713e9854aff"
+    },
+    "ai.roleplay.start": {
+      "message": "Суҳбатни бошланг",
+      "source": "176bbe229507da"
+    },
+    "ai.roleplay.them": {
+      "message": "Персонаж",
+      "source": "08aa9e22716b65"
+    },
+    "ai.roleplay.thinking": {
+      "message": "Персонаж жавоб бермоқда…",
+      "source": "0a7921b0a1ba09"
+    },
+    "ai.roleplay.you": {
+      "message": "Сиз",
+      "source": "1f107a64fd97ca"
+    },
+    "ai.roleplay.your-turn": {
+      "message": "Жавобингиз",
+      "source": "1fc52576f64280"
+    },
+    "ai.unavailable": {
+      "message": "Тил моделига ҳозир уланиб бўлмаяпти.",
+      "source": "0c86164bfd1b5c"
+    },
+    "app.account.age": {
+      "message": "Ёшингиз нечада?",
+      "source": "145b7ec98c4d57"
+    },
+    "app.account.age-note": {
+      "message": "Йил ҳисобида. Сервер уни текширади, лекин сақлаб қолмайди.",
+      "source": "1c1cbd28a58bee"
+    },
+    "app.account.age-refused": {
+      "message": "Бу сервер сиз учун аккаунт ярата олмайди. Шу қурилмада ўқишни давом эттираверишингиз мумкин: натижаларингиз шу ерда сақланади.",
+      "source": "194d32a9c4ac75"
+    },
+    "app.account.create": {
+      "message": "Аккаунт яратинг",
+      "source": "04c7844b8f56f1"
+    },
+    "app.account.data": {
+      "message": "Аккаунтингиз маълумотлари",
+      "source": "1f323684d47c91"
+    },
+    "app.account.delete": {
+      "message": "Аккаунтимни ўчиринг",
+      "source": "14fcfcc401d791"
+    },
+    "app.account.delete-cancel": {
+      "message": "Аккаунтим қолсин",
+      "source": "008002c75c32ce"
+    },
+    "app.account.delete-confirm": {
+      "message": "Аккаунтимни бутунлай ўчиринг",
+      "source": "0a24767da0b046"
+    },
+    "app.account.delete-note": {
+      "message": "Бу амал аккаунтингизни ва сервер у учун сақлайдиган ҳамма нарсани ўчиради: синхронланган натижаларингизни, профилингизни ва лигадаги ўринларингизни. Уни ортга қайтариб бўлмайди. Шу қурилмадаги натижаларингиз сақланиб қолади. Тасдиқлаш учун паролингизни киритинг.",
+      "source": "1fc27943e9d85e"
+    },
+    "app.account.deleted": {
+      "message": "Аккаунтингиз сервердаги маълумотлари билан бирга ўчирилди. Шу қурилмадаги натижаларингиз сақланиб қолди.",
+      "source": "140a223af75a65"
+    },
+    "app.account.email": {
+      "message": "Электрон почта",
+      "source": "00a0ba9938bdff"
+    },
+    "app.account.export": {
+      "message": "Аккаунтим маълумотларини юклаб олинг",
+      "source": "1e53f1f98c3a9e"
+    },
+    "app.account.have-account": {
+      "message": "Менда аккаунт бор",
+      "source": "0f6fc8ff251358"
+    },
+    "app.account.new-account": {
+      "message": "Менга янги аккаунт керак",
+      "source": "0f5f9d59948761"
+    },
+    "app.account.password": {
+      "message": "Пароль",
+      "source": "155d0bdc9a243f"
+    },
+    "app.account.password-hint": {
+      "message": ".input {$min :number}\n{{Камида {$min} та белги}}",
+      "source": "08d3b6afb0d194"
+    },
+    "app.account.pitch": {
+      "message": "Натижаларингизни хавфсиз сақлаш ва бошқа қурилмаларингизда ҳам фойдаланиш учун аккаунт яратинг. Шу пайтгача қилган ҳамма ишингиз ўзингиз билан бирга ўтади.",
+      "source": "103879ec2a3563"
+    },
+    "app.account.sign-in": {
+      "message": "Киринг",
+      "source": "1d1210bb1b1dca"
+    },
+    "app.account.sign-out": {
+      "message": "Аккаунтдан чиқинг",
+      "source": "15fa385f9d4f64"
+    },
+    "app.account.signed-in": {
+      "message": "{$email} сифатида киргансиз",
+      "source": "0fd0bca2ba6a61"
+    },
+    "app.account.welcome-back": {
+      "message": "Бошқа қурилмаларингиздаги натижаларни олиб келиш учун аккаунтингизга киринг.",
+      "source": "0c96b1d7b37239"
+    },
+    "app.course.drafts": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Она тили эгаси ҳали текширмаган гаплар: {$total} тадан {$drafts} таси.}}",
+      "source": "0ae497240733b1"
+    },
+    "app.error.account.age-required": {
+      "message": "Бу сервер аккаунт яратишдан олдин ёшингизни сўрайди.",
+      "source": "119a0817415c6c"
+    },
+    "app.error.account.email-taken": {
+      "message": "Бу электрон почта билан аккаунт аллақачон бор. Унинг ўрнига аккаунтга киринг.",
+      "source": "1515ad876f38b2"
+    },
+    "app.error.account.invalid-age": {
+      "message": "Ёшингизни йил ҳисобида, сон билан киритинг.",
+      "source": "14918c6d0de8d6"
+    },
+    "app.error.account.invalid-email": {
+      "message": "Тўғри электрон почта манзилини киритинг.",
+      "source": "138795dd31c061"
+    },
+    "app.error.account.rate-limited": {
+      "message": "Уринишлар жуда кўп. Бир неча дақиқа кутиб, қайта уриниб кўринг.",
+      "source": "146aee830fea15"
+    },
+    "app.error.account.rejected": {
+      "message": "Сервер натижаларингизнинг бир қисмини қабул қилмади.",
+      "source": "1b0fc15b588fb1"
+    },
+    "app.error.account.signed-out": {
+      "message": "Аккаунтдан чиқарилдингиз. Синхронлашни давом эттириш учун қайта киринг.",
+      "source": "1f4169398c9397"
+    },
+    "app.error.account.unknown": {
+      "message": "Нимадир хато кетди. Қайта уриниб кўринг.",
+      "source": "054c14a408761e"
+    },
+    "app.error.account.unreachable": {
+      "message": "Серверга уланиб бўлмади. Интернет алоқасини текшириб, қайта уриниб кўринг.",
+      "source": "0f3cd56cc7713e"
+    },
+    "app.error.account.weak-password": {
+      "message": ".input {$min :number}\n{{Камида {$min} та белгидан фойдаланинг.}}",
+      "source": "1072ffd7a1d5ef"
+    },
+    "app.error.account.wrong-credentials": {
+      "message": "Электрон почта ва пароль мос келмади.",
+      "source": "0f63d3c9b0ffaf"
+    },
+    "app.error.load": {
+      "message": "Бу курсни юклаб бўлмади.",
+      "source": "128e8d51e09fd9"
+    },
+    "app.error.profile.characters": {
+      "message": "Фойдаланувчи номида фақат ҳарфлар, рақамлар ва улар орасида _ - . белгилари бўлиши мумкин.",
+      "source": "19524bf932c5fb"
+    },
+    "app.error.profile.display-name": {
+      "message": "Бу кўрсатиладиган исмдан фойдаланиб бўлмайди.",
+      "source": "0fde5d0eeb6ffc"
+    },
+    "app.error.profile.length": {
+      "message": "Бу фойдаланувчи номи жуда қисқа ёки жуда узун.",
+      "source": "0484e908c5cf21"
+    },
+    "app.error.profile.mixed-script": {
+      "message": "Бу фойдаланувчи номида ёзувлар чалғитиши мумкин бўлган тарзда аралашган. Битта ёзувдан фойдаланинг.",
+      "source": "0e7c2ad455a9d2"
+    },
+    "app.error.profile.separators": {
+      "message": "_ - ёки . белгисини фақат ҳарфлар ёки рақамлар орасига, биттадан қўйинг.",
+      "source": "15ba887cb4993a"
+    },
+    "app.error.profile.username-confusable": {
+      "message": "Бу фойдаланувчи номи банд қилинган бошқа номга жуда ўхшайди.",
+      "source": "0f0e0e7ef8b829"
+    },
+    "app.error.profile.username-taken": {
+      "message": "Бу фойдаланувчи номи банд.",
+      "source": "0ad0942b2cd115"
+    },
+    "app.home.title": {
+      "message": "Курсни танланг",
+      "source": "0a86910ba967fc"
+    },
+    "app.home.writing": {
+      "message": "Ёзув",
+      "source": "070a1043a733d3"
+    },
+    "app.lessons.back": {
+      "message": "Барча курслар",
+      "source": "1eff369e8cceb6"
+    },
+    "app.lessons.lesson": {
+      "message": ".input {$number :number}\n{{{$number}-дарс}}",
+      "source": "0d0b71656d5b05"
+    },
+    "app.lessons.new-words": {
+      "message": "Янги сўзлар",
+      "source": "0b3535a9dca360"
+    },
+    "app.lessons.title": {
+      "message": "Дарслар",
+      "source": "0170799cd6a988"
+    },
+    "app.listening.off": {
+      "message": "Тинглаш машқлари ҳозирча ўчирилган. Улар бир соатдан кейин қайтади.",
+      "source": "1e319901c7bb1c"
+    },
+    "app.listening.on": {
+      "message": "Тинглашни қайта ёқинг",
+      "source": "0f732642b9aade"
+    },
+    "app.name": {
+      "message": "Nabu",
+      "source": "09423bfe962f80"
+    },
+    "app.offline.core-missing": {
+      "message": "Интернетсиз фойдаланиш учун бу курсни юклаб олинг.",
+      "source": "004315783a2d50"
+    },
+    "app.offline.core-ready": {
+      "message": "Бу курснинг дарслари шу қурилмада интернетсиз ишлайди. Аудио ва расмлар ҳам офлайн бўлиши учун уларни юклаб олинг.",
+      "source": "0bb1e0f79b6361"
+    },
+    "app.offline.download": {
+      "message": "Юклаб олинг ({$size})",
+      "source": "0495c4c79c4d0c"
+    },
+    "app.offline.download-all": {
+      "message": "Ҳаммасини юклаб олинг ({$size})",
+      "source": "1d771fd1435c38"
+    },
+    "app.offline.downloading": {
+      "message": "Юклаб олинмоқда",
+      "source": "12a0983fedd056"
+    },
+    "app.offline.error.integrity": {
+      "message": "Файл бутун ҳолда келмади, шунинг учун сақланмади. Қайта уриниб кўринг.",
+      "source": "09513998ae0d3e"
+    },
+    "app.offline.error.network": {
+      "message": "Алоқа узилгани учун юклаб олиш тўхтади. Интернетга уланганингизда қайта уриниб кўринг.",
+      "source": "14ffd696266720"
+    },
+    "app.offline.error.quota": {
+      "message": "Бу қурилмада ушбу юклаб олиш учун жой етарли эмас.",
+      "source": "0158c9517879d2"
+    },
+    "app.offline.notice": {
+      "message": "Сиз офлайн режимдасиз. Шу қурилмадаги дарслар ишлайверади, натижаларингиз шу ерда сақланади ва интернетга қайта уланганингизда синхронланади.",
+      "source": "1823455234d67b"
+    },
+    "app.offline.progress": {
+      "message": "{$done} / {$total}",
+      "source": "1ba1d29178903d"
+    },
+    "app.offline.remove": {
+      "message": "Юклаб олинганини ўчиринг ({$size})",
+      "source": "0a768fb1433a34"
+    },
+    "app.offline.state.missing": {
+      "message": "Юклаб олинмаган",
+      "source": "006c238a1b7ade"
+    },
+    "app.offline.state.partial": {
+      "message": "Қисман юклаб олинган",
+      "source": "1b7ba08dae6ea5"
+    },
+    "app.offline.state.ready": {
+      "message": "Офлайн фойдаланиш мумкин",
+      "source": "0c1ac338f12c1a"
+    },
+    "app.offline.title": {
+      "message": "Офлайн режим",
+      "source": "19642a2b0ca412"
+    },
+    "app.offline.unavailable": {
+      "message": "Бу курс ҳали бу қурилмада йўқ. Уни офлайн ишлатиш учун интернетга уланган ҳолда бир марта очинг.",
+      "source": "060f2438ff8ef8"
+    },
+    "app.offline.unit": {
+      "message": ".input {$number :number}\n{{{$number}-бўлим}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "app.path.done": {
+      "message": "Бажарилди",
+      "source": "00609f822e0571"
+    },
+    "app.path.locked": {
+      "message": "Ёпиқ",
+      "source": "0e259fa0babc2d"
+    },
+    "app.path.start": {
+      "message": "Бошланг",
+      "source": "144de7fabb13dc"
+    },
+    "app.path.story": {
+      "message": "Ҳикоя",
+      "source": "099aa4c2ee7e8c"
+    },
+    "app.practice.back": {
+      "message": "Курсга қайтиш",
+      "source": "0820c073883099"
+    },
+    "app.practice.due": {
+      "message": ".input {$count :number}\n{{{$count} та такрорлаш керак}}",
+      "source": "0f59593aca6c20"
+    },
+    "app.practice.empty": {
+      "message": "Ҳозирча машқ қиладиган нарса йўқ.",
+      "source": "1569dd1a1c05f6"
+    },
+    "app.practice.mistakes": {
+      "message": "Хатолар",
+      "source": "1c8e9c3040547f"
+    },
+    "app.practice.placement": {
+      "message": "{$language}ни бироз биласизми? Даражангизни аниқланг",
+      "source": "1d75f0c5c407f9"
+    },
+    "app.practice.review": {
+      "message": "Такрорлаш",
+      "source": "0e315ebf127b18"
+    },
+    "app.practice.title": {
+      "message": "Машқ",
+      "source": "1bb4b01c6ca9a0"
+    },
+    "app.practice.to-fix": {
+      "message": ".input {$count :number}\n{{{$count} та тузатиш керак}}",
+      "source": "018a1da69b8e6e"
+    },
+    "app.profile.display-name": {
+      "message": "Кўрсатиладиган исм (ихтиёрий)",
+      "source": "144e85fa7b6988"
+    },
+    "app.profile.save": {
+      "message": "Профилни сақланг",
+      "source": "1635e9d2cb063a"
+    },
+    "app.profile.saved": {
+      "message": "Сақланди.",
+      "source": "06de620ec8bcdf"
+    },
+    "app.profile.title": {
+      "message": "Профиль",
+      "source": "087c02cfd3d740"
+    },
+    "app.profile.username": {
+      "message": "Фойдаланувчи номи",
+      "source": "16f6fcdc5b3341"
+    },
+    "app.profile.username-hint": {
+      "message": "3 тадан 30 тагача ҳарф ёки рақам, улар орасида _ - ёки . бўлиши мумкин.",
+      "source": "107355ec7eb50b"
+    },
+    "app.progress.device": {
+      "message": "Натижаларингиз шу қурилмада сақланади.",
+      "source": "1b4bb7e86eea6c"
+    },
+    "app.progress.export": {
+      "message": "Ўқув маълумотларимни юклаб олинг",
+      "source": "139603a6ece948"
+    },
+    "app.progress.title": {
+      "message": "Натижаларингиз",
+      "source": "1936981e166550"
+    },
+    "app.reminders.denied": {
+      "message": "Браузерингиз созламаларида бу сайт учун билдиришномалар блокланган.",
+      "source": "041565a91ea509"
+    },
+    "app.reminders.failed": {
+      "message": "Бу қурилма эслатмаларга обуна бўла олмади. Кейинроқ қайта уриниб кўринг.",
+      "source": "0763e87e92fff9"
+    },
+    "app.reminders.hint": {
+      "message": "Кунига кўпи билан бир марта, одатда машқ қиладиган вақтингизда ва фақат ҳали машқ қилмаган бўлсангиз.",
+      "source": "16d05c5f49f4ab"
+    },
+    "app.reminders.label": {
+      "message": "Кундалик машқ эслатмаси",
+      "source": "075045dd5b51b5"
+    },
+    "app.reminders.unsupported": {
+      "message": "Бу браузер эслатмаларни кўрсата олмайди.",
+      "source": "13fd157356b3c1"
+    },
+    "app.reset.cancel": {
+      "message": "Натижаларим қолсин",
+      "source": "0580b9629f5825"
+    },
+    "app.reset.confirm": {
+      "message": "Бошидан бошланг",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.confirm-body": {
+      "message": "Биринчисидан бошқа барча дарслар яна ёпилади, сўзлар эса яна янги бўлиб қайтади. Бу ўзгариш барча қурилмаларингизда амал қилади ва уни ортга қайтариб бўлмайди. Сериянгиз, XP ва ютуқларингиз сақланиб қолади.",
+      "source": "12c7dfd45198c0"
+    },
+    "app.reset.confirm-title": {
+      "message": "{$language} курсини бошидан бошлайсизми?",
+      "source": "08baa0f7779f08"
+    },
+    "app.reset.done": {
+      "message": "{$language} курси яна бошидан бошланади.",
+      "source": "05a9db0ce81475"
+    },
+    "app.reset.hint": {
+      "message": "{$language} курсининг бошига қайтинг: дарслар, сиз билган сўзлар ва хатоларингиз. Сериянгиз ва XP сақланиб қолади.",
+      "source": "1f5d692a73b5b4"
+    },
+    "app.reset.open": {
+      "message": "Бу курсни бошидан бошланг",
+      "source": "096c4b0b4acb1e"
+    },
+    "app.reset.title": {
+      "message": "Бошидан бошлаш",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.type-hint": {
+      "message": "Катта-кичик ҳарфлар ва диакритик белгилар аҳамиятга эга эмас.",
+      "source": "045e79d005dda7"
+    },
+    "app.reset.type-label": {
+      "message": "Тасдиқлаш учун {$language} деб ёзинг",
+      "source": "0bd62aa477adf8"
+    },
+    "app.roleplay.back": {
+      "message": "Курсга қайтиш",
+      "source": "0820c073883099"
+    },
+    "app.roleplay.note": {
+      "message": "Суҳбатдошингиз ролини тил модели ижро этади ва фақат сиз биладиган сўзлардан фойдаланади. У хато қилиши мумкин.",
+      "source": "12026862d750f2"
+    },
+    "app.roleplay.title": {
+      "message": "Суҳбатлар",
+      "source": "10e79f46fb5744"
+    },
+    "app.roleplay.unavailable": {
+      "message": "Суҳбатлар учун аккаунт ва тил модели уланган сервер керак.",
+      "source": "16ec70f0bc2190"
+    },
+    "app.speaking.off": {
+      "message": "Гапириш машқлари ҳозирча ўчирилган. Улар бир соатдан кейин қайтади.",
+      "source": "0328e6038bf84d"
+    },
+    "app.speaking.on": {
+      "message": "Гапиришни қайта ёқинг",
+      "source": "0ca13e185e788f"
+    },
+    "app.store.memory": {
+      "message": "Бу браузер ойнаси натижаларингизни сақлай олмайди. Ойнани ёпганингизда улар йўқолади.",
+      "source": "16ff818d9dfd17"
+    },
+    "app.sync.mismatch": {
+      "message": "Сервердаги натижаларингиз нусхаси шу қурилмадагисига мос келмайди.",
+      "source": "1db3fdcb09f699"
+    },
+    "app.sync.offline": {
+      "message": ".input {$count :number}\n{{Офлайн. Интернетга қайта уланганингизда {$count} та янгиланиш юкланади.}}",
+      "source": "0f28354b16e8e2"
+    },
+    "app.sync.pending": {
+      "message": ".input {$count :number}\n{{{$count} та янгиланиш юкланишни кутмоқда}}",
+      "source": "1708dd416e6d0d"
+    },
+    "app.sync.saved": {
+      "message": "Барча натижалар аккаунтингизга сақланди",
+      "source": "1d8c42b786e1d0"
+    },
+    "app.sync.syncing": {
+      "message": "Сақланмоқда…",
+      "source": "106811f2aac664"
+    },
+    "app.voice.forget": {
+      "message": "Овозим диапазонини унутинг",
+      "source": "0f20f5dc4eb0f9"
+    },
+    "app.voice.forgotten": {
+      "message": "Унутилди.",
+      "source": "0dd4a649045a2b"
+    },
+    "app.voice.note": {
+      "message": "Овоз ёзувлари баҳоланади, сўнг ўчириб ташланади. Улар ҳеч қачон сақланмайди: на шу қурилмада, на серверда.",
+      "source": "036fe14bdcbbd3"
+    },
+    "app.voice.server": {
+      "message": "Сўз ва товушларни серверда текшириш",
+      "source": "1eddaca93059d4"
+    },
+    "app.voice.title": {
+      "message": "Овозингиз",
+      "source": "04028f765253d4"
+    },
+    "app.xp.today": {
+      "message": ".input {$xp :number}\n{{Бугун: {$xp} XP}}",
+      "source": "105e6997ce60db"
+    },
+    "app.xp.total": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "audio.check.back": {
+      "message": "Курсга қайтиш",
+      "source": "0820c073883099"
+    },
+    "audio.check.cer": {
+      "message": ".input {$cer :number maximumFractionDigits=2}\n{{Хатолик даражаси: {$cer}}}",
+      "source": "08bf51cf947fe2"
+    },
+    "audio.check.export": {
+      "message": ".input {$count :number}\n{{Хулосаларингизни юклаб олинг ({$count})}}",
+      "source": "14aaf933d9c7de"
+    },
+    "audio.check.filter.kind": {
+      "message": "Кўрсатиш",
+      "source": "00fbddc6309531"
+    },
+    "audio.check.filter.mine": {
+      "message": "Хулосангиз",
+      "source": "17828d34f2393b"
+    },
+    "audio.check.filter.order": {
+      "message": "Тартиб",
+      "source": "126e942baf656b"
+    },
+    "audio.check.filter.status": {
+      "message": "Айланма текширув",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.filter.voice": {
+      "message": "Овоз",
+      "source": "09cc0458faf589"
+    },
+    "audio.check.heard": {
+      "message": "Эшитилгани:",
+      "source": "057ed12895bc6a"
+    },
+    "audio.check.held": {
+      "message": "Ушлаб қолинган",
+      "source": "1f8de18b83890e"
+    },
+    "audio.check.intro": {
+      "message": "Бу курснинг ҳар бир клипи ва у яратилганда нутқни таниш тизими эшитган матн. Тингланг ва ҳар бири тўғри эшитиладими, йўқми, белгиланг. Хулосаларингиз уларни юклаб олмагунингизча шу қурилмада қолади.",
+      "source": "0925929154a626"
+    },
+    "audio.check.keys": {
+      "message": "Тугмалар: J ва K — элементлар орасида ўтиш, Space — тинглаш, S — секин тинглаш, R — тўғри эшитилади, W — нотўғри эшитилади.",
+      "source": "10103b803792c5"
+    },
+    "audio.check.kind.all": {
+      "message": "Ҳаммаси",
+      "source": "0a0c861befca14"
+    },
+    "audio.check.kind.line": {
+      "message": "Ҳикоя сатрлари",
+      "source": "0773178ab972c9"
+    },
+    "audio.check.kind.sentence": {
+      "message": "Гаплар",
+      "source": "1288e2339c15cd"
+    },
+    "audio.check.kind.word": {
+      "message": "Сўзлар",
+      "source": "0fcae096923b28"
+    },
+    "audio.check.loading": {
+      "message": "Клиплар юкланмоқда…",
+      "source": "1e1c379620b54a"
+    },
+    "audio.check.mine.all": {
+      "message": "Ҳар қандай",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.mine.none": {
+      "message": "Ҳали баҳоланмаган",
+      "source": "0e64fcea62866c"
+    },
+    "audio.check.missing": {
+      "message": "Бу сайтда ушбу курс учун аудио текшируви йўқ.",
+      "source": "1f978d0f7527d3"
+    },
+    "audio.check.note": {
+      "message": "Нимаси нотўғри?",
+      "source": "14c1c50287ec84"
+    },
+    "audio.check.open": {
+      "message": "Аудиони текширинг",
+      "source": "09c2f262b144d3"
+    },
+    "audio.check.order.course": {
+      "message": "Курс тартибида",
+      "source": "13ff38d97920d1"
+    },
+    "audio.check.order.worst": {
+      "message": "Энг юқори хатолик даражасидан бошлаб",
+      "source": "0097ae2a860af4"
+    },
+    "audio.check.other": {
+      "message": "Энди курсда йўқ",
+      "source": "0ab83bbb5f6408"
+    },
+    "audio.check.outdated": {
+      "message": "Сиз бу клипнинг олдинги версиясини баҳолагансиз.",
+      "source": "1e93856320378d"
+    },
+    "audio.check.read": {
+      "message": "Овоз ўқиган матн:",
+      "source": "12f049bfcf7e55"
+    },
+    "audio.check.reference": {
+      "message": "Намуна овоз ёзуви",
+      "source": "0e105fd5ce8e09"
+    },
+    "audio.check.rejected": {
+      "message": "Рад этилган",
+      "source": "1870217cd63ffc"
+    },
+    "audio.check.reviewed": {
+      "message": "Тасдиқланган",
+      "source": "08791cd0d5daff"
+    },
+    "audio.check.right": {
+      "message": "Тўғри эшитилади",
+      "source": "17f6e3024a0e22"
+    },
+    "audio.check.shown": {
+      "message": ".input {$shown :number}\n.input {$total :number}\n{{{$total} та элементдан {$shown} таси}}",
+      "source": "0de32067b417d8"
+    },
+    "audio.check.stats": {
+      "message": "Айланма текширув",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.status.all": {
+      "message": "Ҳар қандай",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.status.fail": {
+      "message": "Ўтмади",
+      "source": "031021f2893bc9"
+    },
+    "audio.check.status.none": {
+      "message": "Текширилмаган",
+      "source": "1b396d7f264de0"
+    },
+    "audio.check.status.pass": {
+      "message": "Ўтди",
+      "source": "10cad12b9fc18d"
+    },
+    "audio.check.status.review": {
+      "message": "Кўриб чиқиш керак",
+      "source": "1af7fd298d31cb"
+    },
+    "audio.check.title": {
+      "message": "Аудио текшируви",
+      "source": "1efc282e620676"
+    },
+    "audio.check.unit": {
+      "message": ".input {$number :number}\n{{{$number}-бўлим}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "audio.check.voice": {
+      "message": "Овоз: {$voice} ({$provider})",
+      "source": "17c0b0285c4282"
+    },
+    "audio.check.voice.all": {
+      "message": "Барча овозлар",
+      "source": "07876467c8c942"
+    },
+    "audio.check.voice.option": {
+      "message": "{$name} ({$provider})",
+      "source": "1a384ab37c7496"
+    },
+    "audio.check.voice.recorded": {
+      "message": "Ёзиб олинган овозлар",
+      "source": "01bebdacd206d7"
+    },
+    "audio.check.wrong": {
+      "message": "Нотўғри эшитилади",
+      "source": "0031917bd66a07"
+    },
+    "corrections.cancel": {
+      "message": "Бекор қилинг",
+      "source": "112e2e8ecda428"
+    },
+    "corrections.choose": {
+      "message": "Қайси бири нотўғри?",
+      "source": "096af91f34dd52"
+    },
+    "corrections.edit": {
+      "message": "Тузатишингизни ўзгартиринг",
+      "source": "05366fcc2c8933"
+    },
+    "corrections.error.empty": {
+      "message": "Бу майдон бўш бўлиши мумкин эмас.",
+      "source": "03d82cbe9409f5"
+    },
+    "corrections.error.too-long": {
+      "message": "Бу жуда узун.",
+      "source": "11bdc151ef75f5"
+    },
+    "corrections.error.unchanged": {
+      "message": "Бирор нарсани ўзгартиринг ёки текширувчига изоҳ ёзинг.",
+      "source": "065ad46ed78a1e"
+    },
+    "corrections.export": {
+      "message": ".input {$count :number}\n{{Тузатишларингизни юклаб олинг ({$count})}}",
+      "source": "1b5c55b6e38b6d"
+    },
+    "corrections.intro": {
+      "message": "Нотўғри бўлган нарсани ўзгартиринг: матнни, сўз қандай ўқилишини ёки таржимани. Ҳар бир тузатиш курсга киритилишидан олдин текширувчи томонидан кўриб чиқилади.",
+      "source": "16f77dde65b4ba"
+    },
+    "corrections.mark": {
+      "message": "Бу гап нотўғри",
+      "source": "03127dd3b047fa"
+    },
+    "corrections.mark.pairs": {
+      "message": "Булардан бири нотўғри",
+      "source": "0842a0f3922b2b"
+    },
+    "corrections.mark.word": {
+      "message": "Бу сўз нотўғри",
+      "source": "103ed262b2e660"
+    },
+    "corrections.note": {
+      "message": "Текширувчи учун изоҳ (ихтиёрий)",
+      "source": "15a68737f0ce95"
+    },
+    "corrections.now": {
+      "message": "Ҳозир:",
+      "source": "0e7ae9926955b4"
+    },
+    "corrections.page.back": {
+      "message": "Курсга қайтиш",
+      "source": "0820c073883099"
+    },
+    "corrections.page.intro": {
+      "message": "Бу курсдаги ҳар бир гап ва ҳикоя сатри, бўлимма-бўлим. Агар бири нотўғри бўлса, уни белгиланг ва қандай бўлиши кераклигини ёзинг.",
+      "source": "152193f019cdc5"
+    },
+    "corrections.page.open": {
+      "message": "Гапларни текширинг",
+      "source": "0c59e6eaeb129d"
+    },
+    "corrections.page.story": {
+      "message": "Ҳикоя",
+      "source": "099aa4c2ee7e8c"
+    },
+    "corrections.page.title": {
+      "message": "Гаплар",
+      "source": "1288e2339c15cd"
+    },
+    "corrections.page.unit": {
+      "message": ".input {$number :number}\n{{{$number}-бўлим}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "corrections.page.units": {
+      "message": "Бўлимлар",
+      "source": "1a23d69043b0ea"
+    },
+    "corrections.pending": {
+      "message": "Сиз тузатиш таклиф қилгансиз",
+      "source": "00f4588986c49c"
+    },
+    "corrections.readings": {
+      "message": "Ҳар бир сўз қандай ўқилади",
+      "source": "187ff5713fb95f"
+    },
+    "corrections.sent": {
+      "message": "Раҳмат! Тузатишингизни текширувчи кўриб чиқади.",
+      "source": "12fbf92b2deab2"
+    },
+    "corrections.submit": {
+      "message": "Тузатишни юборинг",
+      "source": "1440fa85d282df"
+    },
+    "corrections.text": {
+      "message": "Гап ({$orthography})",
+      "source": "16c2396e05f7b1"
+    },
+    "corrections.title": {
+      "message": "Бу ерда нима ёзилиши керак?",
+      "source": "182c709dd2de76"
+    },
+    "corrections.translation": {
+      "message": "Таржима",
+      "source": "04d57102a24465"
+    },
+    "corrections.word.intro": {
+      "message": "Нотўғри бўлган нарсани ўзгартиринг: сўзни, у қандай ўқилишини ёки маъносини. Ҳар бир тузатиш курсга киритилишидан олдин текширувчи томонидан кўриб чиқилади.",
+      "source": "08eeee221c97ff"
+    },
+    "corrections.word.meaning": {
+      "message": "Маъноси",
+      "source": "1031b11de169ce"
+    },
+    "corrections.word.text": {
+      "message": "Сўз ({$orthography})",
+      "source": "0f55aaa03db2e2"
+    },
+    "course.name.apc": {
+      "message": "Ливан араб тили",
+      "source": "156dd02569cccd"
+    },
+    "course.name.fa": {
+      "message": "Форс тили",
+      "source": "0814f27aca872d"
+    },
+    "course.name.lzh": {
+      "message": "Классик хитой тили",
+      "source": "169053e6ceef8d"
+    },
+    "course.name.uz": {
+      "message": "Ўзбек тили",
+      "source": "00eccd2e4cea3a"
+    },
+    "course.name.yue": {
+      "message": "Кантон тили",
+      "source": "1b9e50f7526657"
+    },
+    "debug.cards.back": {
+      "message": "Курсга қайтиш",
+      "source": "0820c073883099"
+    },
+    "debug.cards.intro": {
+      "message": "Бу курс ярата оладиган ҳар бир турдаги карточкадан биттадан. Бу ерда қилган ҳеч бир ишингиз ёзиб олинмайди ва натижаларингизга таъсир қилмайди.",
+      "source": "09dafe669d386b"
+    },
+    "debug.cards.none": {
+      "message": "Бу курсда йўқ",
+      "source": "07eb1f5b19cb7e"
+    },
+    "debug.cards.open": {
+      "message": "Ҳар бир турдаги карточкани синаб кўринг",
+      "source": "06a28a765e4df1"
+    },
+    "debug.cards.play-all": {
+      "message": "Ҳаммасини кетма-кет ўйнанг",
+      "source": "196d4e9446360f"
+    },
+    "debug.cards.title": {
+      "message": "Карточкаларнинг барча турлари",
+      "source": "1ddf29c0ae6ca0"
+    },
+    "debug.cards.try": {
+      "message": "Синаб кўринг",
+      "source": "05f2766626d94e"
+    },
+    "debug.template": {
+      "message": "Карточка: {$template}",
+      "source": "0f00d66710b4f5"
+    },
+    "exercise.action.check": {
+      "message": "Текширинг",
+      "source": "067681d06872f1"
+    },
+    "exercise.action.play-audio": {
+      "message": "Аудиони тингланг",
+      "source": "06221b5bee73f3"
+    },
+    "exercise.action.quit": {
+      "message": "Дарсдан чиқинг",
+      "source": "05b3289f0fc785"
+    },
+    "exercise.action.skip": {
+      "message": "Ўтказиб юборинг",
+      "source": "1c245bd4ba0d6f"
+    },
+    "exercise.answer.input-label": {
+      "message": "Жавобингизни {$language}да ёзинг",
+      "source": "1a032be6aed23c"
+    },
+    "exercise.answer.label": {
+      "message": "Жавобингиз",
+      "source": "196b73b49f8369"
+    },
+    "exercise.instruction.write-in": {
+      "message": "Буни {$language}да ёзинг",
+      "source": "0ab1a8325a085b"
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{{$current}-машқ, жами {$total} та}}",
+      "source": "18c97697d8f912"
+    },
+    "exercise.prompt.label": {
+      "message": "Таржима қилинадиган гап",
+      "source": "10e152af217b29"
+    },
+    "exercise.readings.toggle": {
+      "message": "Ўқилишини кўрсатиш",
+      "source": "15c24795350b3d"
+    },
+    "exercise.wordbank.label": {
+      "message": "Сўзлар тўплами",
+      "source": "19ad1969f99daa"
+    },
+    "exercise.wordbank.remaining": {
+      "message": ".input {$count :number}\n{{{$count} та сўз қолди}}",
+      "source": "0ed82389e564a2"
+    },
+    "feedback.note.alef-maqsura": {
+      "message": "Сўз охиридаги алиф мақсурага (ى) эътибор беринг.",
+      "source": "0207d57b3b99a2"
+    },
+    "feedback.note.apostrophe": {
+      "message": "Ўзбек лотин ёзувида oʻ ва gʻ ҳарфлари тескари вергул (ʻ) билан ёзилади, тутуқ белгиси эса ʼ. Аммо оддий ' ёзсангиз ҳам бўлади.",
+      "source": "152e8925abd36e"
+    },
+    "feedback.note.contrast-case": {
+      "message": "Қўшимча сўзнинг гапдаги вазифасини ўзгартиради (-га, -да, -дан, -нинг…), фақат имлосини эмас.",
+      "source": "1dce20981c496c"
+    },
+    "feedback.note.contrast-person": {
+      "message": "Қўшимча гап ким ҳақида эканини ўзгартиради (мен, сен, биз…), фақат имлосини эмас.",
+      "source": "0f069e217d4ff2"
+    },
+    "feedback.note.contrast-possessive": {
+      "message": "Қўшимча нарса кимники эканини ўзгартиради (меники, сеники, уники…), фақат имлосини эмас.",
+      "source": "0f198186f5f77b"
+    },
+    "feedback.note.contrast-pronoun": {
+      "message": "Бу бошқа олмош, териш хатоси эмас.",
+      "source": "113842c4f5afa3"
+    },
+    "feedback.note.hamza": {
+      "message": "Ҳамзага (أ, إ, آ) эътибор беринг.",
+      "source": "03b67432cfff80"
+    },
+    "feedback.note.hk-tw-variant": {
+      "message": "Бу иероглифнинг Тайвань шакли; Гонконгда у одатда бошқача ёзилади.",
+      "source": "0110036abf43a7"
+    },
+    "feedback.note.ime-homophone": {
+      "message": "Битта иероглифнинг ўқилиши тўғри, лекин иероглифнинг ўзи бошқа: клавиатурангиз нимани таклиф қилганини текширинг.",
+      "source": "1bbc587127c480"
+    },
+    "feedback.note.judge": {
+      "message": "Тил модели қайта текширгач қабул қилинди.",
+      "source": "05cc6f80e30bbd"
+    },
+    "feedback.note.marks": {
+      "message": "Диакритик ва унли белгиларни текширинг.",
+      "source": "0f575a377146fe"
+    },
+    "feedback.note.pairs-mistakes": {
+      "message": "Баъзи жуфтликлар биринчи уринишда топилмади.",
+      "source": "0d03bb934478e9"
+    },
+    "feedback.note.reading-no-tones": {
+      "message": "Ҳар бир бўғинга оҳанг рақами керак.",
+      "source": "143c87c3508e88"
+    },
+    "feedback.note.reading-syllables": {
+      "message": "Ҳар бир бўғин товушларини текширинг.",
+      "source": "1e71923b0c8359"
+    },
+    "feedback.note.reading-tone": {
+      "message": "Товушлар тўғри: оҳангларни текширинг.",
+      "source": "05072e38d2eb3a"
+    },
+    "feedback.note.script-mismatch": {
+      "message": "Тўғри ёзувда ёзаётганингизни текширинг.",
+      "source": "134b180851260b"
+    },
+    "feedback.note.spacing": {
+      "message": "Бу сўз ичидаги ярим бўшлиққа (ZWNJ) эътибор беринг.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.note.speech-phones": {
+      "message": "Баъзи товушлар бошқача чиқди. Бу баҳо эмас, шунчаки изоҳ: талаффуз ҳар кимда ҳар хил бўлади.",
+      "source": "05daa70cf553b3"
+    },
+    "feedback.note.speech-silent": {
+      "message": "Ҳеч нарса эшитилмади.",
+      "source": "080a39cc7e559e"
+    },
+    "feedback.note.speech-tone-shapes": {
+      "message": "Баъзи оҳанглар нотўғри йўналишда кетди: юқорига, пастга ёки текис.",
+      "source": "0c7638ed68fb1d"
+    },
+    "feedback.note.speech-tones": {
+      "message": "Баъзи оҳанглар нотўғри чиқди.",
+      "source": "0e902d722728e3"
+    },
+    "feedback.note.speech-words": {
+      "message": "Сўзлар аниқ эшитилмади: гап билан солиштириб кўринг.",
+      "source": "11b9df98e9e5c8"
+    },
+    "feedback.note.ta-marbuta": {
+      "message": "Сўз охиридаги та марбутага (ة) эътибор беринг.",
+      "source": "022ddd2cbdf318"
+    },
+    "feedback.note.tajik-letters": {
+      "message": "Тожик ҳарфларидан фойдаланинг: ғ, ӣ, қ, ӯ, ҳ ва ҷ.",
+      "source": "148f4eb60bf982"
+    },
+    "feedback.note.use-traditional": {
+      "message": "Анъанавий иероглифлардан фойдаланинг.",
+      "source": "0d41b4810db702"
+    },
+    "feedback.note.uzbek-letters": {
+      "message": "у, к, г ва х ўрнига ўзбекча ў, қ, ғ ва ҳ ҳарфларидан фойдаланинг.",
+      "source": "1951fe37b93e13"
+    },
+    "feedback.note.variant": {
+      "message": "Бу ерда бу иероглифнинг бошқа ёзилиши кўпроқ қўлланади.",
+      "source": "024ba8249c3846"
+    },
+    "feedback.note.variant-form": {
+      "message": "Бу айни иероглифнинг бошқа шакли; курсда у бошқача ёзилади.",
+      "source": "1eab7d76e74357"
+    },
+    "feedback.note.vocalize-letters": {
+      "message": "Ҳарфларни ўзгартирманг, фақат унли белгиларни қўйинг.",
+      "source": "12ccf98295f99e"
+    },
+    "feedback.note.vocalize-marks": {
+      "message": "Ҳар бир ҳарфдаги унли белгиларни текширинг.",
+      "source": "13259d798ab24f"
+    },
+    "feedback.note.zwnj": {
+      "message": "Бу сўз ичидаги ярим бўшлиққа (ZWNJ) эътибор беринг.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.verdict.correct": {
+      "message": "Тўғри!",
+      "source": "0c0624dc06b399"
+    },
+    "feedback.verdict.correct-alt": {
+      "message": "Тўғри! Яна бир тўғри жавоб:",
+      "source": "0b86c8b2908b58"
+    },
+    "feedback.verdict.correct-marks": {
+      "message": "Тўғри, лекин диакритик ва унли белгиларга эътибор беринг.",
+      "source": "15262c2eb93c44"
+    },
+    "feedback.verdict.correct-provisional": {
+      "message": "Тўғрига ўхшайди! Буни яна бир бор текшириб кўрамиз.",
+      "source": "0943ecb847767e"
+    },
+    "feedback.verdict.correct-variant": {
+      "message": "Тўғри, лекин бу ерда бу шакл бошқача ёзилади.",
+      "source": "0944f85125c278"
+    },
+    "feedback.verdict.correct-with-typo": {
+      "message": "Тўғри, лекин териш хатосига эътибор беринг.",
+      "source": "0861c223f13b0c"
+    },
+    "feedback.verdict.partial": {
+      "message": "Деярли: битта иероглифнинг ўқилиши тўғри, лекин ўзи бошқа.",
+      "source": "0ce14970e35138"
+    },
+    "feedback.verdict.skipped": {
+      "message": "Ўтказиб юборилди",
+      "source": "10f29eb13173cb"
+    },
+    "feedback.verdict.speech-close": {
+      "message": "Жуда яқин! Яна тинглаб, солиштиринг.",
+      "source": "110851d79835c2"
+    },
+    "feedback.verdict.wrong": {
+      "message": "Унчалик тўғри эмас.",
+      "source": "0825aebbcf39f5"
+    },
+    "feedback.verdict.wrong-word": {
+      "message": "Бу бошқа сўз.",
+      "source": "0120cc97f18e12"
+    },
+    "game.achievements.none": {
+      "message": "Ҳали йўқ. Улар машқ билан келади.",
+      "source": "1e32e2a8fb62d6"
+    },
+    "game.achievements.title": {
+      "message": "Ютуқлар",
+      "source": "0da6edc54cc8eb"
+    },
+    "game.freezes": {
+      "message": ".input {$count :number}\n{{{$count} та серия ҳимояси}}",
+      "source": "05212f0be9925b"
+    },
+    "game.gate.empty": {
+      "message": "Ҳозирча имконият қолмади. Тўлдириш учун такрорлаш ёки хатолар устида машқ қилинг ёки бироздан кейин қайтинг.",
+      "source": "0b4148340a874a"
+    },
+    "game.gate.energy": {
+      "message": ".input {$count :number}\n{{Энергия: {$count}}}",
+      "source": "091f3dd93a2d53"
+    },
+    "game.gate.hearts": {
+      "message": ".input {$count :number}\n{{{$count} та юрак}}",
+      "source": "1726dbe9c3df80"
+    },
+    "game.quests.done": {
+      "message": "Бажарилди",
+      "source": "00609f822e0571"
+    },
+    "game.quests.progress": {
+      "message": ".input {$progress :number}\n.input {$target :number}\n{{{$progress} / {$target}}}",
+      "source": "0d4761709eb5eb"
+    },
+    "game.quests.title": {
+      "message": "Бугунги топшириқлар",
+      "source": "1a11ce0273bd84"
+    },
+    "game.streak": {
+      "message": ".input {$days :number}\n{{{$days} кунлик серия}}",
+      "source": "064a23222272c5"
+    },
+    "game.streak.longest": {
+      "message": ".input {$days :number}\n{{Энг узуни: {$days} кун}}",
+      "source": "1d5d07e36c81e8"
+    },
+    "game.streak.today-done": {
+      "message": "Бугун машқ қилдингиз.",
+      "source": "18248f36781962"
+    },
+    "game.streak.today-pending": {
+      "message": "Серияни давом эттириш учун бугун машқ қилинг.",
+      "source": "1cc4f4ce2c152b"
+    },
+    "game.title": {
+      "message": "Сериянгиз",
+      "source": "0fe67f53d96cb0"
+    },
+    "league.anonymous": {
+      "message": "Ўқувчи",
+      "source": "13dd001d483e91"
+    },
+    "league.days-left": {
+      "message": ".input {$days :number}\n{{{$days} кун қолди}}",
+      "source": "1b4e8178f6f76c"
+    },
+    "league.join": {
+      "message": "Лигага қўшилиш учун бу ҳафта XP тўпланг.",
+      "source": "0d260077bc6e32"
+    },
+    "league.tier": {
+      "message": ".input {$tier :number}\n{{{$tier}-босқич}}",
+      "source": "1cd9ec062def13"
+    },
+    "league.title": {
+      "message": "Лига",
+      "source": "02f1616b366536"
+    },
+    "league.xp": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "league.you": {
+      "message": "Сиз",
+      "source": "1f107a64fd97ca"
+    },
+    "league.zone.demote": {
+      "message": "Тушиш зонаси",
+      "source": "04a040edad26bd"
+    },
+    "league.zone.promote": {
+      "message": "Кўтарилиш зонаси",
+      "source": "1cdef66c79e45d"
+    },
+    "orthography.apc-Arab.standard": {
+      "message": "Араб ёзуви",
+      "source": "08f5b94b048129"
+    },
+    "orthography.apc-Latn.arabizi": {
+      "message": "Арабизи (лотин ҳарфлари ва рақамлар)",
+      "source": "078998ef01b429"
+    },
+    "orthography.fa-Arab.standard": {
+      "message": "Форс ёзуви",
+      "source": "1a96004e1beccf"
+    },
+    "orthography.lzh-Hant.standard": {
+      "message": "Анъанавий иероглифлар",
+      "source": "0768e08b58f7c1"
+    },
+    "orthography.uz-Cyrl.standard": {
+      "message": "Кирилл",
+      "source": "0c0f5c83735b6c"
+    },
+    "orthography.uz-Latn.standard": {
+      "message": "Лотин",
+      "source": "15289618d8a1e5"
+    },
+    "orthography.yue-Hant-HK.standard": {
+      "message": "Анъанавий иероглифлар",
+      "source": "0768e08b58f7c1"
+    },
+    "player.action.cant-listen": {
+      "message": "Ҳозир тинглай олмайман",
+      "source": "140179193b2176"
+    },
+    "player.action.cant-speak": {
+      "message": "Ҳозир гапира олмайман",
+      "source": "083c23e03f8bbb"
+    },
+    "player.action.continue": {
+      "message": "Давом этинг",
+      "source": "0f3baa7dcc6267"
+    },
+    "player.audio.label": {
+      "message": "Аудио",
+      "source": "126a24a49284c5"
+    },
+    "player.audio.play": {
+      "message": "Тингланг",
+      "source": "0db390678866e5"
+    },
+    "player.audio.slow": {
+      "message": "Секин тингланг",
+      "source": "17c237b40c535e"
+    },
+    "player.audio.synthetic": {
+      "message": "Сунъий овоз",
+      "source": "145cf67c7232e5"
+    },
+    "player.blank.label": {
+      "message": "Тушиб қолган сўз",
+      "source": "16b94a14d691a1"
+    },
+    "player.chars.label": {
+      "message": "Махсус белгилар",
+      "source": "0c3a90360623f8"
+    },
+    "player.feedback.marked": {
+      "message": "(белгиланган қисмлар фарқ қилади)",
+      "source": "1ed6f7b2b14b4d"
+    },
+    "player.feedback.solution": {
+      "message": "Тўғри жавоб:",
+      "source": "08f8d29ea3c01e"
+    },
+    "player.feedback.your-answer": {
+      "message": "Жавобингиз:",
+      "source": "016b88025de79d"
+    },
+    "player.finished.score": {
+      "message": ".input {$correct :number}\n.input {$total :number}\n{{{$total} тадан {$correct} таси биринчи уринишдаёқ тўғри}}",
+      "source": "03cfbdcc54fdef"
+    },
+    "player.finished.stopped": {
+      "message": "Дарс тўхтатилди",
+      "source": "06ab497db6712b"
+    },
+    "player.finished.title": {
+      "message": "Дарс якунланди!",
+      "source": "1859634875e68d"
+    },
+    "player.finished.xp": {
+      "message": ".input {$xp :number}\n{{+{$xp} XP}}",
+      "source": "10d9c04ce5ff3f"
+    },
+    "player.instruction.char-read": {
+      "message": "Бу қандай ўқилади?",
+      "source": "09f22944d314cc"
+    },
+    "player.instruction.choose-translation": {
+      "message": "Бу нимани англатади?",
+      "source": "029357139d5ace"
+    },
+    "player.instruction.complete-translation": {
+      "message": "Таржимани тўлдиринг",
+      "source": "16e5c17e13aaec"
+    },
+    "player.instruction.gap-fill": {
+      "message": "Бўш жойни тўлдиринг",
+      "source": "0fecadc0573056"
+    },
+    "player.instruction.listen-select": {
+      "message": "Қайси сўзни эшитяпсиз?",
+      "source": "046edf8832a029"
+    },
+    "player.instruction.listen-speak": {
+      "message": "Тингланг ва эшитганингизни айтинг",
+      "source": "0993ec028d7c01"
+    },
+    "player.instruction.listen-tap": {
+      "message": "Эшитганингизни сўзлардан тузинг",
+      "source": "1aee714f11c769"
+    },
+    "player.instruction.listen-type": {
+      "message": "Эшитганингизни ёзинг",
+      "source": "12d6a6ad5522ac"
+    },
+    "player.instruction.match-pairs": {
+      "message": "Мос жуфтликларни танланг",
+      "source": "1e0c0c00e8ff2f"
+    },
+    "player.instruction.minimal-pair": {
+      "message": "Диққат билан тингланг: қайси сўз?",
+      "source": "1d3562cfb5e258"
+    },
+    "player.instruction.reading-disambiguation": {
+      "message": "Ажратиб кўрсатилган иероглиф бу ерда қандай ўқилади?",
+      "source": "058ffba3d14972"
+    },
+    "player.instruction.select-image": {
+      "message": "Тўғри расмни танланг",
+      "source": "042ade432b0d84"
+    },
+    "player.instruction.speak": {
+      "message": "Буни овоз чиқариб ўқинг",
+      "source": "0b2d21b5ce3893"
+    },
+    "player.instruction.speak-scored": {
+      "message": "Бу гапни айтинг",
+      "source": "0faceee5e6c9b9"
+    },
+    "player.instruction.story-arrange": {
+      "message": "Сўзларни босиб, шу сатрни тузинг",
+      "source": "17afd79420592e"
+    },
+    "player.instruction.story-choose": {
+      "message": "Саволга жавоб беринг",
+      "source": "1d68038847012f"
+    },
+    "player.instruction.story-complete": {
+      "message": "Тушиб қолган сўзни танланг",
+      "source": "1acd299e07e3f4"
+    },
+    "player.instruction.tone-identify": {
+      "message": "Қайси оҳангни эшитяпсиз?",
+      "source": "16db060d6d4816"
+    },
+    "player.instruction.transcribe": {
+      "message": "Бу сўз қандай ўқилишини ёзинг",
+      "source": "17544047c67949"
+    },
+    "player.instruction.translate-into-support": {
+      "message": "Бу гапни таржима қилинг",
+      "source": "0ca18e83db09fc"
+    },
+    "player.instruction.vocalize": {
+      "message": "Унли белгиларни қўйинг",
+      "source": "041a63b98f57c1"
+    },
+    "player.key.mark.064b": {
+      "message": "Икки забар",
+      "source": "19c90ca7e61dbc"
+    },
+    "player.key.mark.064c": {
+      "message": "Икки пеш",
+      "source": "1c0e6112bc94e9"
+    },
+    "player.key.mark.064d": {
+      "message": "Икки зер",
+      "source": "14cb0d65761146"
+    },
+    "player.key.mark.064e": {
+      "message": "Забар",
+      "source": "19edd52ce12905"
+    },
+    "player.key.mark.064f": {
+      "message": "Пеш",
+      "source": "117f1993aec79f"
+    },
+    "player.key.mark.0650": {
+      "message": "Зер",
+      "source": "085f5bfa4255e7"
+    },
+    "player.key.mark.0651": {
+      "message": "Ташдид",
+      "source": "1bd8f09a19a5d5"
+    },
+    "player.key.mark.0652": {
+      "message": "Сукун",
+      "source": "0b6f2ac6b05bcb"
+    },
+    "player.key.mark.0670": {
+      "message": "Тик забар",
+      "source": "1f05f6728a5d1c"
+    },
+    "player.key.zwj": {
+      "message": "{$short}: нол кенгликдаги бириктирувчи",
+      "source": "1dc058411d5d13"
+    },
+    "player.key.zwj.short": {
+      "message": "ZWJ",
+      "source": "039d40017eb1b2"
+    },
+    "player.key.zwnj": {
+      "message": "{$short}: ярим бўшлиқ (нол кенгликдаги ажратувчи)",
+      "source": "0163828ca074fa"
+    },
+    "player.key.zwnj.short": {
+      "message": "ZWNJ",
+      "source": "15560dc8d9cef8"
+    },
+    "player.listen.type-label": {
+      "message": "Эшитганингизни {$language}да ёзинг",
+      "source": "098b06d063d843"
+    },
+    "player.loading": {
+      "message": "Юкланмоқда…",
+      "source": "0e65697ec32c03"
+    },
+    "player.meaning.label": {
+      "message": "Маъноси",
+      "source": "1031b11de169ce"
+    },
+    "player.options.label": {
+      "message": "Жавоб вариантлари",
+      "source": "1cfa5f47c656d4"
+    },
+    "player.pairs.meanings": {
+      "message": "Маънолар",
+      "source": "0559e9f3993223"
+    },
+    "player.pairs.words": {
+      "message": "{$language} сўзлари",
+      "source": "0edc961ec0e09a"
+    },
+    "player.persons.addressee.f": {
+      "message": "аёлга",
+      "source": "1352530e5e09c1"
+    },
+    "player.persons.addressee.m": {
+      "message": "эркакка",
+      "source": "0599c0a50176ff"
+    },
+    "player.persons.addressee.pl": {
+      "message": "бир неча кишига",
+      "source": "131e5e041dc353"
+    },
+    "player.persons.speaker.f": {
+      "message": "аёл гапиряпти",
+      "source": "148a7788770a37"
+    },
+    "player.persons.speaker.m": {
+      "message": "эркак гапиряпти",
+      "source": "166783a7b6c4f7"
+    },
+    "player.prompt.hint": {
+      "message": "Таржима",
+      "source": "04d57102a24465"
+    },
+    "player.prompt.meaning": {
+      "message": "Маъноси",
+      "source": "1031b11de169ce"
+    },
+    "player.quit.body": {
+      "message": "Бу дарсдаги натижаларингиз йўқолади.",
+      "source": "0ab86dd29faeef"
+    },
+    "player.quit.cancel": {
+      "message": "Дарсни давом эттиринг",
+      "source": "059d6b2b56381d"
+    },
+    "player.quit.confirm": {
+      "message": "Чиқинг",
+      "source": "0cddcce51f726d"
+    },
+    "player.quit.title": {
+      "message": "Бу дарсдан чиқасизми?",
+      "source": "16af157c41917c"
+    },
+    "player.readings.label": {
+      "message": "Ўқилиши",
+      "source": "13980c304b1f94"
+    },
+    "player.readings.off": {
+      "message": "Ўчиқ",
+      "source": "0580723cde1d9a"
+    },
+    "player.speak.play": {
+      "message": "Овоз ёзувимни тингланг",
+      "source": "00638b7d6dd048"
+    },
+    "player.speak.rate": {
+      "message": "Қандай чиқди?",
+      "source": "12e92974d023b1"
+    },
+    "player.speak.rate.again": {
+      "message": "Айта олмадим",
+      "source": "0abcf340181aae"
+    },
+    "player.speak.rate.good": {
+      "message": "Тўғри чиқди",
+      "source": "1be066525c9821"
+    },
+    "player.speak.rate.hard": {
+      "message": "Ишончим комил эмас",
+      "source": "0f6d88d0b8dd3e"
+    },
+    "player.speak.record": {
+      "message": "Ёзиб олинг",
+      "source": "04b73b25d3382c"
+    },
+    "player.speak.recording": {
+      "message": "Ёзиб олинмоқда…",
+      "source": "06cd071961c528"
+    },
+    "player.speak.stop": {
+      "message": "Тўхтатинг",
+      "source": "0889ad146e26ca"
+    },
+    "player.speak.unavailable": {
+      "message": "Бу ерда овоз ёзиб бўлмайди. Барибир овоз чиқариб айтиб, ўзингизни баҳолашингиз мумкин.",
+      "source": "01f41cf321722f"
+    },
+    "player.speech.calibrating": {
+      "message": "Илова овозингизни бироз кўпроқ эшитгач, оҳангларингиз тўлиқ баҳоланади.",
+      "source": "04d270eab2bdb9"
+    },
+    "player.speech.checking": {
+      "message": "Овоз ёзувингиз тингланмоқда…",
+      "source": "15813131fb0d84"
+    },
+    "player.speech.contour-off": {
+      "message": "кутилгани: {$expected}",
+      "source": "131e09498776b2"
+    },
+    "player.speech.contour.falling": {
+      "message": "пасаювчи оҳанг",
+      "source": "0848dae7b2526c"
+    },
+    "player.speech.contour.level": {
+      "message": "текис оҳанг",
+      "source": "0986ab300ef7f4"
+    },
+    "player.speech.contour.rising": {
+      "message": "кўтарилувчи оҳанг",
+      "source": "09844f2d86cbd8"
+    },
+    "player.speech.heard": {
+      "message": "Эшитганимиз:",
+      "source": "0cf130000eb253"
+    },
+    "player.speech.partial": {
+      "message": "Фақат бир қисмини эшитдик. Бутун гапни бироз секинроқ айтиб кўринг.",
+      "source": "02399d82dbf8fc"
+    },
+    "player.speech.rate-instead": {
+      "message": "Микрофон йўқ: ўзингизни баҳоланг",
+      "source": "1f32c806cf6468"
+    },
+    "player.speech.silent": {
+      "message": "Ҳеч нарса эшитмадик. Микрофонингизни текшириб, қайта уриниб кўринг.",
+      "source": "09fb89d1ff926f"
+    },
+    "player.speech.tone-off": {
+      "message": ".input {$heard :number}\n.input {$expected :number}\n{{{$heard}-оҳанг, кутилгани {$expected}-оҳанг}}",
+      "source": "1e34116823fbfc"
+    },
+    "player.toggle.marks": {
+      "message": "Унли белгиларни кўрсатиш",
+      "source": "17bb7ce344c4e6"
+    },
+    "player.toggle.vertical": {
+      "message": "Вертикал матн",
+      "source": "1fa81eb3e6f25e"
+    },
+    "player.tone.yue-jyutping.1": {
+      "message": "1 · баланд текис",
+      "source": "0eeda0fb5b3a04"
+    },
+    "player.tone.yue-jyutping.2": {
+      "message": "2 · баланд кўтарилувчи",
+      "source": "02fa98567b0205"
+    },
+    "player.tone.yue-jyutping.3": {
+      "message": "3 · ўрта текис",
+      "source": "0911e5c7447f54"
+    },
+    "player.tone.yue-jyutping.4": {
+      "message": "4 · паст пасаювчи",
+      "source": "1df41eb52dab37"
+    },
+    "player.tone.yue-jyutping.5": {
+      "message": "5 · паст кўтарилувчи",
+      "source": "00ad4735faecfd"
+    },
+    "player.tone.yue-jyutping.6": {
+      "message": "6 · паст текис",
+      "source": "0c9f5d02772e14"
+    },
+    "player.transcribe.label": {
+      "message": "Ўқилиши",
+      "source": "0acd9d880cd089"
+    },
+    "player.transcribe.label.jyutping": {
+      "message": "Ўқилиши (Jyutping)",
+      "source": "0e6c8b2c872445"
+    },
+    "player.vocalize.label": {
+      "message": "Унли белгилари билан сўз",
+      "source": "09f512786abfe5"
+    },
+    "player.word.label": {
+      "message": "Сўз",
+      "source": "05d88136696d61"
+    },
+    "player.wordbank.answer-label": {
+      "message": "Жавобингиз",
+      "source": "196b73b49f8369"
+    },
+    "push.reminder.gentle.body": {
+      "message": "Қачон тайёр бўлсангиз, кейинги дарсингиз шу ерда.",
+      "source": "0591105ca603b7"
+    },
+    "push.reminder.gentle.title": {
+      "message": "Бироз машқ қиласизми?",
+      "source": "1c220a31280718"
+    },
+    "push.reminder.quest.body": {
+      "message": "Қўшимча XP олиш учун уларни бажаринг.",
+      "source": "099f028deec7c1"
+    },
+    "push.reminder.quest.title": {
+      "message": ".input {$count :number}\n{{Бугун {$count} та топшириқ қолди}}",
+      "source": "137c1318fa77dc"
+    },
+    "push.reminder.streak.body": {
+      "message": "Бугун бир неча дақиқа машқ қилсангиз, серия давом этади.",
+      "source": "1b518ed886e847"
+    },
+    "push.reminder.streak.title": {
+      "message": ".input {$days :number}\n{{{$days} кунлик сериянгиз сизни кутмоқда}}",
+      "source": "0d83cc47879b43"
+    },
+    "quest.listen-5": {
+      "message": ".input {$target :number}\n{{{$target} та тинглаш машқига тўғри жавоб беринг}}",
+      "source": "0875f3506e2717"
+    },
+    "quest.perfect-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Битта машғулотни хатосиз якунланг}}\n* {{{$target} та машғулотни хатосиз якунланг}}",
+      "source": "037706a0d33b57"
+    },
+    "quest.produce-5": {
+      "message": ".input {$target :number}\n{{Ўрганаётган тилингизда {$target} та тўғри жавоб ёзинг}}",
+      "source": "0e5b60c37ddb77"
+    },
+    "quest.review-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Бир марта такрорланг ёки хатоларингизни тузатинг}}\n* {{{$target} та такрорлаш ёки хатолар машғулотини бажаринг}}",
+      "source": "12c21ea415dbc6"
+    },
+    "quest.right-20": {
+      "message": ".input {$target :number}\n{{{$target} та тўғри жавоб беринг}}",
+      "source": "03dc2539ace6f8"
+    },
+    "quest.sessions-2": {
+      "message": ".input {$target :number}\n{{{$target} та машғулотни якунланг}}",
+      "source": "04508fc5457212"
+    },
+    "quest.story-1": {
+      "message": ".input {$target :number}\n.match $target\none {{Битта ҳикоя ўқинг}}\n* {{{$target} та ҳикоя ўқинг}}",
+      "source": "007c06cc289b4d"
+    },
+    "quest.xp-30": {
+      "message": ".input {$target :number}\n{{{$target} XP тўпланг}}",
+      "source": "1f2468bc1998a6"
+    },
+    "reading.scheme.baxter": {
+      "message": "Ўрта хитой тили (Бакстер)",
+      "source": "19597222ec8510"
+    },
+    "reading.scheme.jyutping": {
+      "message": "Жютпинг",
+      "source": "060334df66e05a"
+    },
+    "reading.scheme.pinyin": {
+      "message": "Пиньинь",
+      "source": "158f03ef25e7f5"
+    },
+    "reports.public": {
+      "message": "Хабарлар курс текширувчиларига GitHub сайтида ҳамма кўра оладиган мурожаат сифатида юборилади; уларда исмингиз ҳам, қурилмангиз ҳам кўрсатилмайди.",
+      "source": "1e7d13dc2653d5"
+    },
+    "review.export": {
+      "message": ".input {$count :number}\n{{{$count} та тасдиқни юклаб олинг}}",
+      "source": "116e4b8fe9a9b9"
+    },
+    "review.intro": {
+      "message": "Текширув: тўғри кўринганини тасдиқланг, нотўғрисини белгиланг. Тасдиқларингиз уларни юклаб олмагунингизча шу қурилмада қолади.",
+      "source": "18707c760522e3"
+    },
+    "review.looks-right": {
+      "message": "Тўғри кўринади",
+      "source": "1105ecf4091a83"
+    },
+    "review.reviewed": {
+      "message": "Кўриб чиқилган",
+      "source": "08791cd0d5daff"
+    },
+    "review.story-looks-right": {
+      "message": "Бутун ҳикоя тўғри кўринади",
+      "source": "15a8a0748ecef2"
+    },
+    "review.unit": {
+      "message": "Бу ердаги ҳаммасини тасдиқланг",
+      "source": "0de29eafac5899"
+    },
+    "story.finished.stopped": {
+      "message": "Ҳикоя тўхтатилди",
+      "source": "151456f06b67ec"
+    },
+    "story.finished.title": {
+      "message": "Ҳикоя якунланди!",
+      "source": "0649359022ea9b"
+    },
+    "story.gloss.hint": {
+      "message": "Маъносини кўриш учун сўзни босинг.",
+      "source": "14e30eccbb11fb"
+    },
+    "story.gloss.label": {
+      "message": "Сўз маънолари",
+      "source": "0f7d61f5dd66a4"
+    },
+    "story.gloss.lemma": {
+      "message": "луғатдаги шакли:",
+      "source": "06d03db42850b1"
+    },
+    "story.gloss.none": {
+      "message": "Бу сўзнинг маъноси ҳали киритилмаган.",
+      "source": "1665d08d1fe646"
+    },
+    "story.gloss.part": {
+      "message": "сўзнинг бир қисми",
+      "source": "13b458312d8382"
+    },
+    "story.gloss.phrase": {
+      "message": "ибора",
+      "source": "135a248a87bda6"
+    },
+    "story.narration": {
+      "message": "Муаллиф сўзи",
+      "source": "063db69c225753"
+    },
+    "story.transcript.label": {
+      "message": "Ҳозиргача бўлган ҳикоя",
+      "source": "01267fdf008b55"
+    },
+    "story.translation.hide": {
+      "message": "Таржимани яширинг",
+      "source": "065eaf87d9350b"
+    },
+    "story.translation.show": {
+      "message": "Таржимани кўринг",
+      "source": "02b713e9854aff"
+    }
+  }
+}

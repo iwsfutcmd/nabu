@@ -1,4 +1,4 @@
-import { parseMessage } from "messageformat";
+import { parseMessage, validate } from "messageformat";
 import { describe, expect, it } from "vitest";
 import { createTranslator, DRAFT_UI_LOCALES, loadTranslator, sourceCatalog, UI_LOCALES, type MessageId } from "../src/index.ts";
 
@@ -81,6 +81,19 @@ describe("draft catalogs (ADR 0070)", () => {
     const draft = await loadTranslator("fa", { ...strict, drafts: true });
     expect(draft.format("exercise.action.check")).not.toBe(shipped.format("exercise.action.check"));
     expect(draft.format("exercise.action.check")).toMatch(/\p{Script=Arabic}/u);
+  });
+
+  it("each loads in its own language when asked, and every message formats", async () => {
+    for (const locale of DRAFT_UI_LOCALES) {
+      const draft = await loadTranslator(locale, { ...strict, drafts: true });
+      expect(draft.format("exercise.action.check"), locale).not.toBe(sourceCatalog().messages["exercise.action.check"]?.message);
+      for (const [id, entry] of Object.entries(sourceCatalog().messages)) {
+        // Each variable the English uses: a number where it is declared :number or :integer.
+        const numeric = new Set([...entry.message.matchAll(/\{\$(\w+)\s+:(?:number|integer)/gu)].map((m) => m[1]));
+        const values = Object.fromEntries([...validate(parseMessage(entry.message)).variables].map((v) => [v, numeric.has(v) ? 3 : "x"]));
+        expect(() => draft.format(id as MessageId, values), `${locale} ${id}`).not.toThrow();
+      }
+    }
   });
 
   it("format numbers in the locale's own digits", async () => {

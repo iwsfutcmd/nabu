@@ -203,6 +203,13 @@
   border-inline-start: 4px solid var(--nabu-color-accent);
 }
 
+/* An item's buttons: sign off (reviewers) and mark incorrect, where the one button used to be. */
+.itemActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
 /* Room for glyphs that overhang their advance (a J's tail, Arabic swashes, stacked marks). */
 .texts {
   display: flex;

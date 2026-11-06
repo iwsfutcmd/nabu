@@ -226,6 +226,10 @@
       "message": "Sign in to bring your progress from your other devices.",
       "description": "Introduces the sign-in form."
     },
+    "app.course.drafts": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
+      "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
+    },
     "app.error.account.age-required": {
       "message": "This server asks for your age before it creates an account.",
       "description": "Shown when the server needs the person's age to create an account; the age field appears with it."
@@ -1793,6 +1797,30 @@
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",
       "description": "Shown where a learner can report a problem (a correction, or a claim about their answer) when the app sends reports to the project: says they become public issues and carry no name or device."
+    },
+    "review.export": {
+      "message": ".input {$count :number}\n.match $count\none {{Download {$count} sign-off}}\n* {{Download {$count} sign-offs}}",
+      "description": "Reviewers only: a button that downloads this device's sign-offs in the course as a file for `nabu review apply`. $count is how many."
+    },
+    "review.intro": {
+      "message": "Reviewing: sign off what reads right, and mark what does not. Your sign-offs stay on this device until you download them.",
+      "description": "Reviewers only: shown at the top of the sentence list when its review controls are on."
+    },
+    "review.looks-right": {
+      "message": "Looks right",
+      "description": "Reviewers only (ADR 0072): a toggle under a sentence in the sentence list. On, the reviewer signs the sentence off; it becomes reviewed once their sign-offs are applied to the course."
+    },
+    "review.reviewed": {
+      "message": "Reviewed",
+      "description": "Reviewers only: a badge on a sentence or story the course source already marks reviewed."
+    },
+    "review.story-looks-right": {
+      "message": "The whole story looks right",
+      "description": "Reviewers only: a toggle under a story's heading that signs off every line of the story at once."
+    },
+    "review.unit": {
+      "message": "Sign off everything here",
+      "description": "Reviewers only: a button that signs off every sentence and story in this unit that is neither marked incorrect nor reviewed already."
     },
     "story.finished.stopped": {
       "message": "Story stopped",

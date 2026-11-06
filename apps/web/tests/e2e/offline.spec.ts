@@ -27,7 +27,8 @@ const API = `http://127.0.0.1:${API_PORT}`;
 const TZ = "Asia/Kathmandu";
 const SEED = 11;
 const HOUR = 3_600_000;
-/** The whole fa course is about 10 MB in over a thousand files (every unit has clips). */
+/** The whole fa course is about 10 MB in over a thousand files (every unit has clips); one unit
+ * brings the course's text, about 4 s on a fast machine. */
 const DOWNLOAD_TIMEOUT_MS = 60_000;
 const course = loadCourse("fa", "fa-Arab/standard");
 const manifest = JSON.parse(readFileSync(join(import.meta.dirname, "../../public/bundles/fa/manifest.json"), "utf8")) as BundleManifest;
@@ -103,7 +104,8 @@ test.describe("offline", () => {
 
     // One unit: the course's text and that unit's media, nothing else.
     await numbers.locator("[data-action=download-unit]").click();
-    await expect(numbers).toHaveAttribute("data-state", "ready");
+    // The course's text comes with its first unit: every unit file, profile and table, checked by sha256.
+    await expect(numbers).toHaveAttribute("data-state", "ready", { timeout: DOWNLOAD_TIMEOUT_MS });
     await expect(panel).toHaveAttribute("data-offline-core", "true");
     await expect(intro).toHaveAttribute("data-state", "missing");
     const numberAssets = manifest.units.find((u) => u.id === "drill-numbers")?.assets ?? [];

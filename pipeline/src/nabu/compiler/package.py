@@ -130,8 +130,11 @@ def write_bundle(
     profiles: dict[str, OrthographyProfile],
     analyzers: dict[str, Analyzer],
     out_dir: Path,
+    *,
+    release: bool = False,
 ) -> dict[str, Any]:
-    """Writes the bundle into out_dir (replacing it) and returns the manifest."""
+    """Writes the bundle into out_dir (replacing it) and returns the manifest. With `release`, the
+    compiled course is a release (compiler/release.py) and the manifest says so."""
     if out_dir.exists():
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
@@ -239,6 +242,8 @@ def write_bundle(
         "licenses": dict(sorted(compiled.licenses.items())),
         "provenance": dict(sorted(compiled.provenance.items())),
     }
+    if release:
+        manifest["release"] = True
     manifest["id"] = sha256(canonical(manifest))
     BundleManifest.model_validate(manifest)
     (out_dir / "manifest.json").write_bytes(canonical(manifest))

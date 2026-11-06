@@ -5,14 +5,32 @@
  * device's log: it syncs like any other and joins the server's review queue. The sentence list
  * also downloads the device's own corrections as the file `nabu corrections apply` reads, so a
  * reviewer can apply them with no server at all.
+ *
+ * For a reviewer (debug mode, ADR 0072) the list also signs items off: each sign-off holds the
+ * sha256 of what was shown (signoffText), stays on this device, and downloads as the file
+ * `nabu review apply` reads.
  */
-import { correctable, correctablesOf, correctionKey, correctionRows, jsonLines, latestCorrections, sentenceReportedOf, type Correctable } from "@nabu/core/corrections";
+import {
+  correctable,
+  correctablesOf,
+  correctionKey,
+  correctionRows,
+  jsonLines,
+  latestCorrections,
+  sentenceReportedOf,
+  sentenceSignoffText,
+  signedOff,
+  storySignoffText,
+  type Correctable,
+  type SignOffKind,
+  type UnitCorrectables,
+} from "@nabu/core/corrections";
 import type { CourseView, Exercise } from "@nabu/core/lesson";
-import type { CorrectionFields, LearnerEvent, SentenceReported } from "@nabu/schema";
+import type { CorrectionFields, LearnerEvent, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { chromeClass, T, useChrome, useTranslator } from "@nabu/ui";
-import { CorrectionForm, SentenceList } from "@nabu/ui/corrections";
+import { CorrectionForm, SentenceList, signOffKey } from "@nabu/ui/corrections";
 import { rubySchemeOf } from "@nabu/ui/player";
-import { useEffect, useState, type JSX } from "react";
+import { useEffect, useMemo, useState, type JSX } from "react";
 import { Button, Dialog, Modal } from "react-aria-components";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
@@ -235,18 +253,113 @@ const download = (course: string, corrections: ReadonlyMap<string, SentenceRepor
   URL.revokeObjectURL(url);
 };
 
+// ------------------------------------------------------------------------------- sign-off (ADR 0072)
+
+const SIGNOFFS = "nabu.signoffs.";
+
+/** This device's sign-offs in a course, by signOffKey (an empty set where storage is unavailable). */
+const loadSignoffs = (course: string): Record<string, SignOff> => {
+  try {
+    return JSON.parse(localStorage.getItem(SIGNOFFS + course) ?? "{}") as Record<string, SignOff>;
+  } catch {
+    return {};
+  }
+};
+
+const saveSignoffs = (course: string, signoffs: Record<string, SignOff>): void => {
+  try {
+    localStorage.setItem(SIGNOFFS + course, JSON.stringify(signoffs));
+  } catch {
+    // Private mode or full: they last as long as the page.
+  }
+};
+
+const sha256 = async (text: string): Promise<string> => {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, "0")).join("");
+};
+
+/** What the reviewer sees of an item, as its sign-off fingerprints it; undefined if the course has no such item. */
+const signoffTextOf = (course: CourseView, kind: SignOffKind, item: string): string | undefined => {
+  for (const unit of course.units) {
+    if (kind === "sentence") {
+      const s = unit.sentences.find((x) => x.id === item);
+      if (s !== undefined) return sentenceSignoffText(s);
+    } else {
+      const story = (unit.stories ?? []).find((x) => x.id === item);
+      if (story !== undefined) return storySignoffText(story);
+    }
+  }
+  return undefined;
+};
+
+const signOffOf = async (course: CourseView, kind: SignOffKind, item: string, at: string): Promise<SignOff | undefined> => {
+  const text = signoffTextOf(course, kind, item);
+  return text === undefined ? undefined : { item, kind, shown: await sha256(text), at };
+};
+
+/** Saves the device's sign-offs in this course as the file `nabu review apply` reads. */
+const downloadSignoffs = (course: string, signoffs: Record<string, SignOff>): void => {
+  const file: SignOffs = { course, signoffs: Object.values(signoffs).sort((a, b) => (a.kind === b.kind ? (a.item < b.item ? -1 : a.item > b.item ? 1 : 0) : a.kind < b.kind ? -1 : 1)) };
+  const url = URL.createObjectURL(new Blob([`${JSON.stringify(file, null, 2)}\n`], { type: "application/json" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `nabu-signoffs-${course}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 interface PageProps extends Recording {
   readonly corrections: ReadonlyMap<string, SentenceReported>;
   readonly back: string;
+  /** A reviewer's controls: sign items off (debug mode). */
+  readonly review?: boolean | undefined;
 }
 
 /** Every sentence and story line of the course, unit by unit, each one correctable. */
-export const SentencesPage = ({ corrections, back, ...recording }: PageProps): JSX.Element => {
+export const SentencesPage = ({ corrections, back, review = false, ...recording }: PageProps): JSX.Element => {
   const t = useTranslator();
   const { course } = recording;
   const [unit, setUnit] = useState<string | undefined>(undefined);
   const [target, setTarget] = useState<Correctable | undefined>(undefined);
   const [sent, setSent] = useState(false);
+  const [signoffs, setSignoffs] = useState<Record<string, SignOff>>(() => (review ? loadSignoffs(course.id) : {}));
+  const update = (change: (before: Record<string, SignOff>) => Record<string, SignOff>): void =>
+    setSignoffs((before) => {
+      const next = change(before);
+      saveSignoffs(course.id, next);
+      return next;
+    });
+  const signOff = async (pairs: readonly (readonly [SignOffKind, string])[]): Promise<void> => {
+    const at = new Date().toISOString();
+    const made = (await Promise.all(pairs.map(([kind, item]) => signOffOf(course, kind, item, at)))).filter((s): s is SignOff => s !== undefined);
+    update((before) => ({ ...before, ...Object.fromEntries(made.map((s) => [signOffKey(s.kind, s.item), s])) }));
+  };
+  const controls = useMemo(
+    () => ({
+      signed: new Set(Object.keys(signoffs)),
+      onSignOff: (kind: SignOffKind, item: string, on: boolean): void => {
+        if (on) void signOff([[kind, item]]);
+        else
+          update((before) => {
+            const { [signOffKey(kind, item)]: _gone, ...rest } = before;
+            return rest;
+          });
+      },
+      // Everything the reviewer has not marked incorrect, and the source does not mark reviewed.
+      onSignOffUnit: ({ unit: u, sentences, stories }: UnitCorrectables): void => {
+        const reviewed = new Set(u.sentences.filter((s) => signedOff(s.provenance)).map((s) => s.id));
+        const pairs: (readonly [SignOffKind, string])[] = [
+          ...sentences.filter((c) => !reviewed.has(c.item) && !corrections.has(correctionKey(c.item))).map((c) => ["sentence", c.item] as const),
+          ...stories.filter(({ story, lines }) => !signedOff(story.provenance) && !lines.some((l) => corrections.has(correctionKey(l.item, l.step)))).map(({ story }) => ["story", story.id] as const),
+        ];
+        void signOff(pairs);
+      },
+    }),
+    // signOff and update close over course, corrections and setState only.
+    [signoffs, corrections, course],
+  );
+  const count = Object.keys(signoffs).length;
   return (
     <main className={styles.page} data-sentences-page={course.id}>
       <p>
@@ -256,9 +369,15 @@ export const SentencesPage = ({ corrections, back, ...recording }: PageProps): J
       </p>
       <h1 className={styles.heading}>{t.format("corrections.page.title")}</h1>
       <p className={styles.muted}>{t.format("corrections.page.intro")}</p>
+      {review && <p className={styles.muted}>{t.format("review.intro")}</p>}
       {corrections.size > 0 && (
         <Button className={styles.textButton} onPress={() => download(course.id, corrections)} data-action="export-corrections">
           {t.format("corrections.export", { count: corrections.size })}
+        </Button>
+      )}
+      {review && count > 0 && (
+        <Button className={styles.textButton} onPress={() => downloadSignoffs(course.id, signoffs)} data-action="export-signoffs">
+          {t.format("review.export", { count })}
         </Button>
       )}
       {sent && <Sent />}
@@ -271,6 +390,7 @@ export const SentencesPage = ({ corrections, back, ...recording }: PageProps): J
           setSent(false);
           setTarget(c);
         }}
+        review={review ? controls : undefined}
       />
       {target !== undefined && (
         <CorrectionDialog

@@ -19,6 +19,7 @@ from typing import TYPE_CHECKING, Any
 from pydantic import ValidationError
 
 from nabu.audio.course import INDEX, audio_dir, plan
+from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.schema.models import AudioClip, AudioIndex, CourseSource
 
@@ -217,7 +218,5 @@ def check_audio(
     for item in compiled.audio_items:
         compiled.audio_files.update(files.get(item, {}))
         for clip in tallies.get(item, []):
-            compiled.licenses[clip.license] = compiled.licenses.get(clip.license, 0) + 1
-            kind = clip.provenance.author.split(":", 1)[0]
-            for key in (f"status.{clip.provenance.status}", f"author.{kind}"):
-                compiled.provenance[key] = compiled.provenance.get(key, 0) + 1
+            p = clip.provenance
+            count(compiled, Counted(item, clip.license, p.status, p.author))

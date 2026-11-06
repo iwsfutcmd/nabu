@@ -1,0 +1,1878 @@
+{
+  "$schema": "../../../schemas/message-catalog.schema.json",
+  "locale": "ar",
+  "provenance": {
+    "author": "llm:claude@baa6bf1d5e24",
+    "status": "draft"
+  },
+  "messages": {
+    "achievement.right": {
+      "message": ".input {$target :number}\n.match $target\nzero {{لا إجابات صحيحة}}\none {{إجابة صحيحة واحدة}}\ntwo {{إجابتان صحيحتان}}\nfew {{{$target} إجابات صحيحة}}\nmany {{{$target} إجابة صحيحة}}\n* {{{$target} إجابة صحيحة}}",
+      "source": "126156e2db332f"
+    },
+    "achievement.sessions": {
+      "message": ".input {$target :number}\n.match $target\nzero {{لا جلسات مكتملة}}\none {{جلسة مكتملة واحدة}}\ntwo {{جلستان مكتملتان}}\nfew {{{$target} جلسات مكتملة}}\nmany {{{$target} جلسة مكتملة}}\n* {{{$target} جلسة مكتملة}}",
+      "source": "040b27d0e2e865"
+    },
+    "achievement.stories": {
+      "message": ".input {$target :number}\n.match $target\nzero {{لا قصص مقروءة}}\none {{قصة مقروءة واحدة}}\ntwo {{قصتان مقروءتان}}\nfew {{{$target} قصص مقروءة}}\nmany {{{$target} قصة مقروءة}}\n* {{{$target} قصة مقروءة}}",
+      "source": "0baecd1132f96d"
+    },
+    "achievement.streak": {
+      "message": ".input {$days :number}\n.match $days\nzero {{سلسلة {$days} يوم}}\none {{سلسلة يوم واحد}}\ntwo {{سلسلة يومين}}\nfew {{سلسلة {$days} أيام}}\nmany {{سلسلة {$days} يومًا}}\n* {{سلسلة {$days} يوم}}",
+      "source": "105f7e7013ca54"
+    },
+    "ai.budget": {
+      "message": "استنفدتم مساعدة الذكاء الاصطناعي لهذا اليوم. تعود غدًا.",
+      "source": "14e9089a3c5a5c"
+    },
+    "ai.explain.button": {
+      "message": "شرح إجابتي",
+      "source": "1bba4a2334ac35"
+    },
+    "ai.explain.by": {
+      "message": "كتبه نموذج لغوي ({$model}). وقد يخطئ.",
+      "source": "10ed1349cb222b"
+    },
+    "ai.explain.failed": {
+      "message": "تعذّر الحصول على شرح هذه المرة. حاولوا مرة أخرى لاحقًا.",
+      "source": "12859e0222f70c"
+    },
+    "ai.explain.helpful": {
+      "message": "مفيد",
+      "source": "1d3d96efda6835"
+    },
+    "ai.explain.loading": {
+      "message": "جارٍ كتابة الشرح…",
+      "source": "1af71f461b148e"
+    },
+    "ai.explain.rate": {
+      "message": "هل كان هذا الشرح مفيدًا؟",
+      "source": "0cc348cea81c14"
+    },
+    "ai.explain.title": {
+      "message": "الشرح",
+      "source": "16fce1d7d80a8b"
+    },
+    "ai.explain.unhelpful": {
+      "message": "غير مفيد",
+      "source": "0f4cda6e7ccbcc"
+    },
+    "ai.judge.accepted": {
+      "message": "بعد إعادة النظر، قُبلت إجابتكم وتُحتسب صحيحة.",
+      "source": "16541d0f177a53"
+    },
+    "ai.judge.checking": {
+      "message": "جارٍ التحقّق من إجابتكم مرة أخرى…",
+      "source": "0b108f06b1aec3"
+    },
+    "ai.judge.queued": {
+      "message": "سيُعاد التحقّق من إجابتكم عند عودة الاتصال بالإنترنت.",
+      "source": "1fa4695de34707"
+    },
+    "ai.report.button": {
+      "message": "كان يجب قبول إجابتي",
+      "source": "0f6ce7d90c7595"
+    },
+    "ai.report.done": {
+      "message": "احتُسبت صحيحة. وسيطّلع أحد المراجعين على إجابتكم أيضًا.",
+      "source": "02db1b7edfe79d"
+    },
+    "ai.report.reject": {
+      "message": "كان يجب أن تُحتسب خاطئة",
+      "source": "116cdfb2089941"
+    },
+    "ai.report.rejected": {
+      "message": "احتُسبت خاطئة. وسيطّلع عليها أحد المراجعين أيضًا.",
+      "source": "03fcf61b525298"
+    },
+    "ai.report.spoken": {
+      "message": "نطقي كان صحيحًا",
+      "source": "0465e9d59299b1"
+    },
+    "ai.roleplay.character": {
+      "message": "الشخصية",
+      "source": "12c7ee29368860"
+    },
+    "ai.roleplay.goal": {
+      "message": "هدفكم",
+      "source": "03443dae54742d"
+    },
+    "ai.roleplay.hide-translation": {
+      "message": "إخفاء الترجمة",
+      "source": "065eaf87d9350b"
+    },
+    "ai.roleplay.log": {
+      "message": "المحادثة",
+      "source": "0da7be4ae86f4d"
+    },
+    "ai.roleplay.no-turn": {
+      "message": "لم يأتِ أي رد بكلمات تعرفونها. جرّبوا قول ذلك بطريقة أخرى.",
+      "source": "15e2f480e5b87b"
+    },
+    "ai.roleplay.send": {
+      "message": "إرسال",
+      "source": "16b55d7868e000"
+    },
+    "ai.roleplay.setting": {
+      "message": "المكان",
+      "source": "122adee6bf9c84"
+    },
+    "ai.roleplay.show-translation": {
+      "message": "إظهار الترجمة",
+      "source": "02b713e9854aff"
+    },
+    "ai.roleplay.start": {
+      "message": "بدء المحادثة",
+      "source": "176bbe229507da"
+    },
+    "ai.roleplay.them": {
+      "message": "الشخصية",
+      "source": "08aa9e22716b65"
+    },
+    "ai.roleplay.thinking": {
+      "message": "الشخصية تكتب ردّها…",
+      "source": "0a7921b0a1ba09"
+    },
+    "ai.roleplay.you": {
+      "message": "أنتم",
+      "source": "1f107a64fd97ca"
+    },
+    "ai.roleplay.your-turn": {
+      "message": "ردّكم",
+      "source": "1fc52576f64280"
+    },
+    "ai.unavailable": {
+      "message": "تعذّر الوصول إلى النموذج اللغوي الآن.",
+      "source": "0c86164bfd1b5c"
+    },
+    "app.account.age": {
+      "message": "كم عمركم؟",
+      "source": "145b7ec98c4d57"
+    },
+    "app.account.age-note": {
+      "message": "بالسنوات. يتحقّق منه الخادم ولا يحتفظ به.",
+      "source": "1c1cbd28a58bee"
+    },
+    "app.account.age-refused": {
+      "message": "لا يستطيع هذا الخادم إنشاء حساب لكم. يمكنكم مواصلة التعلّم على هذا الجهاز، فتقدّمكم محفوظ هنا.",
+      "source": "194d32a9c4ac75"
+    },
+    "app.account.create": {
+      "message": "إنشاء حساب",
+      "source": "04c7844b8f56f1"
+    },
+    "app.account.data": {
+      "message": "بيانات حسابكم",
+      "source": "1f323684d47c91"
+    },
+    "app.account.delete": {
+      "message": "حذف حسابي",
+      "source": "14fcfcc401d791"
+    },
+    "app.account.delete-cancel": {
+      "message": "الإبقاء على حسابي",
+      "source": "008002c75c32ce"
+    },
+    "app.account.delete-confirm": {
+      "message": "حذف حسابي نهائيًا",
+      "source": "0a24767da0b046"
+    },
+    "app.account.delete-note": {
+      "message": "يحذف هذا حسابكم وكل ما يحتفظ به الخادم له: تقدّمكم المُزامَن، وملفكم الشخصي، ومراكزكم في الدوري. ولا يمكن التراجع عن ذلك. أما تقدّمكم على هذا الجهاز فيبقى. أدخلوا كلمة المرور للتأكيد.",
+      "source": "1fc27943e9d85e"
+    },
+    "app.account.deleted": {
+      "message": "حُذف حسابكم مع بياناته على الخادم. ويبقى تقدّمكم على هذا الجهاز.",
+      "source": "140a223af75a65"
+    },
+    "app.account.email": {
+      "message": "البريد الإلكتروني",
+      "source": "00a0ba9938bdff"
+    },
+    "app.account.export": {
+      "message": "تنزيل بيانات حسابي",
+      "source": "1e53f1f98c3a9e"
+    },
+    "app.account.have-account": {
+      "message": "لديّ حساب بالفعل",
+      "source": "0f6fc8ff251358"
+    },
+    "app.account.new-account": {
+      "message": "أحتاج إلى حساب جديد",
+      "source": "0f5f9d59948761"
+    },
+    "app.account.password": {
+      "message": "كلمة المرور",
+      "source": "155d0bdc9a243f"
+    },
+    "app.account.password-hint": {
+      "message": ".input {$min :number}\n.match $min\nzero {{{$min} حرف على الأقل}}\none {{حرف واحد على الأقل}}\ntwo {{حرفان على الأقل}}\nfew {{{$min} أحرف على الأقل}}\nmany {{{$min} حرفًا على الأقل}}\n* {{{$min} حرف على الأقل}}",
+      "source": "08d3b6afb0d194"
+    },
+    "app.account.pitch": {
+      "message": "أنشئوا حسابًا لتحفظوا تقدّمكم بأمان وتستخدموه على أجهزتكم الأخرى. كل ما أنجزتموه حتى الآن ينتقل معكم.",
+      "source": "103879ec2a3563"
+    },
+    "app.account.sign-in": {
+      "message": "تسجيل الدخول",
+      "source": "1d1210bb1b1dca"
+    },
+    "app.account.sign-out": {
+      "message": "تسجيل الخروج",
+      "source": "15fa385f9d4f64"
+    },
+    "app.account.signed-in": {
+      "message": "تم تسجيل الدخول باسم {$email}",
+      "source": "0fd0bca2ba6a61"
+    },
+    "app.account.welcome-back": {
+      "message": "سجّلوا الدخول لتجلبوا تقدّمكم من أجهزتكم الأخرى.",
+      "source": "0c96b1d7b37239"
+    },
+    "app.course.drafts": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{جمل لم يراجعها متحدّث أصلي بعد: {$drafts} من {$total}.}}",
+      "source": "0ae497240733b1"
+    },
+    "app.error.account.age-required": {
+      "message": "يطلب هذا الخادم معرفة عمركم قبل أن ينشئ الحساب.",
+      "source": "119a0817415c6c"
+    },
+    "app.error.account.email-taken": {
+      "message": "يوجد حساب بهذا البريد الإلكتروني بالفعل. سجّلوا الدخول بدلًا من ذلك.",
+      "source": "1515ad876f38b2"
+    },
+    "app.error.account.invalid-age": {
+      "message": "أدخلوا عمركم بالسنوات، رقمًا.",
+      "source": "14918c6d0de8d6"
+    },
+    "app.error.account.invalid-email": {
+      "message": "أدخلوا عنوان بريد إلكتروني صالحًا.",
+      "source": "138795dd31c061"
+    },
+    "app.error.account.rate-limited": {
+      "message": "محاولات كثيرة جدًا. انتظروا بضع دقائق ثم حاولوا مرة أخرى.",
+      "source": "146aee830fea15"
+    },
+    "app.error.account.rejected": {
+      "message": "لم يقبل الخادم جزءًا من تقدّمكم.",
+      "source": "1b0fc15b588fb1"
+    },
+    "app.error.account.signed-out": {
+      "message": "تم تسجيل خروجكم. سجّلوا الدخول مجددًا لمواصلة المزامنة.",
+      "source": "1f4169398c9397"
+    },
+    "app.error.account.unknown": {
+      "message": "حدث خطأ ما. حاولوا مرة أخرى.",
+      "source": "054c14a408761e"
+    },
+    "app.error.account.unreachable": {
+      "message": "تعذّر الوصول إلى الخادم. تحقّقوا من اتصالكم ثم حاولوا مرة أخرى.",
+      "source": "0f3cd56cc7713e"
+    },
+    "app.error.account.weak-password": {
+      "message": ".input {$min :number}\n.match $min\nzero {{يجب أن تتكون كلمة المرور من {$min} حرف على الأقل.}}\none {{يجب أن تتكون كلمة المرور من حرف واحد على الأقل.}}\ntwo {{يجب أن تتكون كلمة المرور من حرفين على الأقل.}}\nfew {{يجب أن تتكون كلمة المرور من {$min} أحرف على الأقل.}}\nmany {{يجب أن تتكون كلمة المرور من {$min} حرفًا على الأقل.}}\n* {{يجب أن تتكون كلمة المرور من {$min} حرف على الأقل.}}",
+      "source": "1072ffd7a1d5ef"
+    },
+    "app.error.account.wrong-credentials": {
+      "message": "البريد الإلكتروني وكلمة المرور غير متطابقين.",
+      "source": "0f63d3c9b0ffaf"
+    },
+    "app.error.load": {
+      "message": "تعذّر تحميل هذه الدورة.",
+      "source": "128e8d51e09fd9"
+    },
+    "app.error.profile.characters": {
+      "message": "لا يمكن أن يحتوي اسم المستخدم إلا على حروف وأرقام، مع _ أو - أو . بينها.",
+      "source": "19524bf932c5fb"
+    },
+    "app.error.profile.display-name": {
+      "message": "لا يمكن استخدام اسم العرض هذا.",
+      "source": "0fde5d0eeb6ffc"
+    },
+    "app.error.profile.length": {
+      "message": "اسم المستخدم هذا قصير جدًا أو طويل جدًا.",
+      "source": "0484e908c5cf21"
+    },
+    "app.error.profile.mixed-script": {
+      "message": "يخلط اسم المستخدم هذا بين أنظمة كتابة بطريقة قد تكون مضلِّلة. جرّبوا نظام كتابة واحدًا.",
+      "source": "0e7c2ad455a9d2"
+    },
+    "app.error.profile.separators": {
+      "message": "ضعوا _ أو - أو . بين الحروف أو الأرقام فقط، علامةً واحدة في كل موضع.",
+      "source": "15ba887cb4993a"
+    },
+    "app.error.profile.username-confusable": {
+      "message": "اسم المستخدم هذا يشبه كثيرًا اسمًا محجوزًا بالفعل.",
+      "source": "0f0e0e7ef8b829"
+    },
+    "app.error.profile.username-taken": {
+      "message": "اسم المستخدم هذا محجوز.",
+      "source": "0ad0942b2cd115"
+    },
+    "app.home.title": {
+      "message": "اختيار دورة",
+      "source": "0a86910ba967fc"
+    },
+    "app.home.writing": {
+      "message": "نظام الكتابة",
+      "source": "070a1043a733d3"
+    },
+    "app.lessons.back": {
+      "message": "كل الدورات",
+      "source": "1eff369e8cceb6"
+    },
+    "app.lessons.lesson": {
+      "message": ".input {$number :number}\n{{الدرس {$number}}}",
+      "source": "0d0b71656d5b05"
+    },
+    "app.lessons.new-words": {
+      "message": "كلمات جديدة",
+      "source": "0b3535a9dca360"
+    },
+    "app.lessons.title": {
+      "message": "الدروس",
+      "source": "0170799cd6a988"
+    },
+    "app.listening.off": {
+      "message": "تمارين الاستماع متوقفة الآن، وستعود بعد ساعة.",
+      "source": "1e319901c7bb1c"
+    },
+    "app.listening.on": {
+      "message": "إعادة تشغيل تمارين الاستماع",
+      "source": "0f732642b9aade"
+    },
+    "app.name": {
+      "message": "Nabu",
+      "source": "09423bfe962f80"
+    },
+    "app.offline.core-missing": {
+      "message": "نزّلوا هذه الدورة لاستخدامها دون اتصال.",
+      "source": "004315783a2d50"
+    },
+    "app.offline.core-ready": {
+      "message": "دروس هذه الدورة تعمل على هذا الجهاز دون اتصال. نزّلوا الصوت والصور لتتوفر دون اتصال أيضًا.",
+      "source": "0bb1e0f79b6361"
+    },
+    "app.offline.download": {
+      "message": "تنزيل ({$size})",
+      "source": "0495c4c79c4d0c"
+    },
+    "app.offline.download-all": {
+      "message": "تنزيل الكل ({$size})",
+      "source": "1d771fd1435c38"
+    },
+    "app.offline.downloading": {
+      "message": "جارٍ التنزيل",
+      "source": "12a0983fedd056"
+    },
+    "app.offline.error.integrity": {
+      "message": "وصل أحد الملفات تالفًا، فلم يُحفظ. حاولوا مرة أخرى.",
+      "source": "09513998ae0d3e"
+    },
+    "app.offline.error.network": {
+      "message": "توقف التنزيل لانقطاع الاتصال. حاولوا مرة أخرى عند عودة الاتصال.",
+      "source": "14ffd696266720"
+    },
+    "app.offline.error.quota": {
+      "message": "لا توجد مساحة تخزين كافية على هذا الجهاز لهذا التنزيل.",
+      "source": "0158c9517879d2"
+    },
+    "app.offline.notice": {
+      "message": "لا اتصال بالإنترنت. لا تزال الدروس الموجودة على هذا الجهاز تعمل، ويُحفظ تقدّمكم هنا ثم يُزامَن عند عودة الاتصال.",
+      "source": "1823455234d67b"
+    },
+    "app.offline.progress": {
+      "message": "{$done} من {$total}",
+      "source": "1ba1d29178903d"
+    },
+    "app.offline.remove": {
+      "message": "إزالة التنزيل ({$size})",
+      "source": "0a768fb1433a34"
+    },
+    "app.offline.state.missing": {
+      "message": "غير منزَّلة",
+      "source": "006c238a1b7ade"
+    },
+    "app.offline.state.partial": {
+      "message": "منزَّلة جزئيًا",
+      "source": "1b7ba08dae6ea5"
+    },
+    "app.offline.state.ready": {
+      "message": "متاحة دون اتصال",
+      "source": "0c1ac338f12c1a"
+    },
+    "app.offline.title": {
+      "message": "الاستخدام دون اتصال",
+      "source": "19642a2b0ca412"
+    },
+    "app.offline.unavailable": {
+      "message": "هذه الدورة ليست على هذا الجهاز بعد. افتحوها مرة واحدة وأنتم متصلون بالإنترنت لتستخدموها دون اتصال.",
+      "source": "060f2438ff8ef8"
+    },
+    "app.offline.unit": {
+      "message": ".input {$number :number}\n{{الوحدة {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "app.path.done": {
+      "message": "مكتمل",
+      "source": "00609f822e0571"
+    },
+    "app.path.locked": {
+      "message": "مقفل",
+      "source": "0e259fa0babc2d"
+    },
+    "app.path.start": {
+      "message": "البدء",
+      "source": "144de7fabb13dc"
+    },
+    "app.path.story": {
+      "message": "قصة",
+      "source": "099aa4c2ee7e8c"
+    },
+    "app.practice.back": {
+      "message": "العودة إلى الدورة",
+      "source": "0820c073883099"
+    },
+    "app.practice.due": {
+      "message": ".input {$count :number}\n{{{$count} للمراجعة}}",
+      "source": "0f59593aca6c20"
+    },
+    "app.practice.empty": {
+      "message": "لا شيء للتدرّب عليه الآن.",
+      "source": "1569dd1a1c05f6"
+    },
+    "app.practice.mistakes": {
+      "message": "الأخطاء",
+      "source": "1c8e9c3040547f"
+    },
+    "app.practice.placement": {
+      "message": "أتعرفون شيئًا من {$language}؟ حدّدوا مستواكم",
+      "source": "1d75f0c5c407f9"
+    },
+    "app.practice.review": {
+      "message": "مراجعة",
+      "source": "0e315ebf127b18"
+    },
+    "app.practice.title": {
+      "message": "التدرّب",
+      "source": "1bb4b01c6ca9a0"
+    },
+    "app.practice.to-fix": {
+      "message": ".input {$count :number}\n{{{$count} للتصحيح}}",
+      "source": "018a1da69b8e6e"
+    },
+    "app.profile.display-name": {
+      "message": "اسم العرض (اختياري)",
+      "source": "144e85fa7b6988"
+    },
+    "app.profile.save": {
+      "message": "حفظ الملف الشخصي",
+      "source": "1635e9d2cb063a"
+    },
+    "app.profile.saved": {
+      "message": "تم الحفظ.",
+      "source": "06de620ec8bcdf"
+    },
+    "app.profile.title": {
+      "message": "الملف الشخصي",
+      "source": "087c02cfd3d740"
+    },
+    "app.profile.username": {
+      "message": "اسم المستخدم",
+      "source": "16f6fcdc5b3341"
+    },
+    "app.profile.username-hint": {
+      "message": "من ثلاثة إلى ثلاثين حرفًا أو رقمًا، مع _ أو - أو . بينها.",
+      "source": "107355ec7eb50b"
+    },
+    "app.progress.device": {
+      "message": "يُحفظ تقدّمكم على هذا الجهاز.",
+      "source": "1b4bb7e86eea6c"
+    },
+    "app.progress.export": {
+      "message": "تنزيل بيانات تعلّمي",
+      "source": "139603a6ece948"
+    },
+    "app.progress.title": {
+      "message": "تقدّمكم",
+      "source": "1936981e166550"
+    },
+    "app.reminders.denied": {
+      "message": "الإشعارات محظورة لهذا الموقع في إعدادات متصفحكم.",
+      "source": "041565a91ea509"
+    },
+    "app.reminders.failed": {
+      "message": "تعذّر تسجيل هذا الجهاز لتلقّي التذكيرات. حاولوا مرة أخرى لاحقًا.",
+      "source": "0763e87e92fff9"
+    },
+    "app.reminders.hint": {
+      "message": "تذكير واحد في اليوم على الأكثر، قرب الوقت الذي تتدرّبون فيه عادةً، وفقط إن لم تتدرّبوا بعد.",
+      "source": "16d05c5f49f4ab"
+    },
+    "app.reminders.label": {
+      "message": "تذكير يومي بالتدرّب",
+      "source": "075045dd5b51b5"
+    },
+    "app.reminders.unsupported": {
+      "message": "لا يستطيع هذا المتصفح عرض التذكيرات.",
+      "source": "13fd157356b3c1"
+    },
+    "app.reset.cancel": {
+      "message": "الإبقاء على تقدّمي",
+      "source": "0580b9629f5825"
+    },
+    "app.reset.confirm": {
+      "message": "البدء من جديد",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.confirm-body": {
+      "message": "ستُقفل مجددًا كل الدروس ما عدا الأول، وستعود الكلمات كأنها جديدة. ينطبق هذا على كل أجهزتكم ولا يمكن التراجع عنه. أما سلسلتكم ونقاط XP وإنجازاتكم فتبقى كما هي.",
+      "source": "12c7dfd45198c0"
+    },
+    "app.reset.confirm-title": {
+      "message": "البدء من جديد في دورة {$language}؟",
+      "source": "08baa0f7779f08"
+    },
+    "app.reset.done": {
+      "message": "عادت دورة {$language} إلى البداية.",
+      "source": "05a9db0ce81475"
+    },
+    "app.reset.hint": {
+      "message": "العودة إلى بداية دورة {$language}: الدروس، والكلمات التي تعرفونها، وأخطاؤكم. أما سلسلتكم ونقاط XP فتبقى.",
+      "source": "1f5d692a73b5b4"
+    },
+    "app.reset.open": {
+      "message": "البدء في هذه الدورة من جديد",
+      "source": "096c4b0b4acb1e"
+    },
+    "app.reset.title": {
+      "message": "البدء من جديد",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.type-hint": {
+      "message": "لا يهمّ التشكيل.",
+      "source": "045e79d005dda7"
+    },
+    "app.reset.type-label": {
+      "message": "للتأكيد، اكتبوا {$language}",
+      "source": "0bd62aa477adf8"
+    },
+    "app.roleplay.back": {
+      "message": "العودة إلى الدورة",
+      "source": "0820c073883099"
+    },
+    "app.roleplay.note": {
+      "message": "يؤدي نموذج لغوي دور الطرف الآخر، مستخدمًا كلمات تعرفونها فقط. وقد يخطئ.",
+      "source": "12026862d750f2"
+    },
+    "app.roleplay.title": {
+      "message": "المحادثات",
+      "source": "10e79f46fb5744"
+    },
+    "app.roleplay.unavailable": {
+      "message": "تحتاج المحادثات إلى حساب وإلى خادم فيه نموذج لغوي.",
+      "source": "16ec70f0bc2190"
+    },
+    "app.speaking.off": {
+      "message": "تمارين التحدّث متوقفة الآن، وستعود بعد ساعة.",
+      "source": "0328e6038bf84d"
+    },
+    "app.speaking.on": {
+      "message": "إعادة تشغيل تمارين التحدّث",
+      "source": "0ca13e185e788f"
+    },
+    "app.store.memory": {
+      "message": "لا تستطيع نافذة المتصفح هذه حفظ تقدّمكم، وسيضيع عند إغلاقها.",
+      "source": "16ff818d9dfd17"
+    },
+    "app.sync.mismatch": {
+      "message": "نسخة تقدّمكم على الخادم لا تطابق نسخته على هذا الجهاز.",
+      "source": "1db3fdcb09f699"
+    },
+    "app.sync.offline": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا اتصال بالإنترنت. لا تحديثات بانتظار الرفع.}}\none {{لا اتصال بالإنترنت. سيُرفع تحديث واحد عند عودة الاتصال.}}\ntwo {{لا اتصال بالإنترنت. سيُرفع تحديثان عند عودة الاتصال.}}\nfew {{لا اتصال بالإنترنت. ستُرفع {$count} تحديثات عند عودة الاتصال.}}\nmany {{لا اتصال بالإنترنت. سيُرفع {$count} تحديثًا عند عودة الاتصال.}}\n* {{لا اتصال بالإنترنت. سيُرفع {$count} تحديث عند عودة الاتصال.}}",
+      "source": "0f28354b16e8e2"
+    },
+    "app.sync.pending": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا تحديثات بانتظار الرفع}}\none {{تحديث واحد بانتظار الرفع}}\ntwo {{تحديثان بانتظار الرفع}}\nfew {{{$count} تحديثات بانتظار الرفع}}\nmany {{{$count} تحديثًا بانتظار الرفع}}\n* {{{$count} تحديث بانتظار الرفع}}",
+      "source": "1708dd416e6d0d"
+    },
+    "app.sync.saved": {
+      "message": "حُفظ كل التقدّم في حسابكم",
+      "source": "1d8c42b786e1d0"
+    },
+    "app.sync.syncing": {
+      "message": "جارٍ الحفظ…",
+      "source": "106811f2aac664"
+    },
+    "app.voice.forget": {
+      "message": "مسح نطاق طبقة صوتي",
+      "source": "0f20f5dc4eb0f9"
+    },
+    "app.voice.forgotten": {
+      "message": "تم المسح.",
+      "source": "0dd4a649045a2b"
+    },
+    "app.voice.note": {
+      "message": "تُقيَّم التسجيلات ثم تُحذف. لا تُحفظ أبدًا، لا على هذا الجهاز ولا على أي خادم.",
+      "source": "036fe14bdcbbd3"
+    },
+    "app.voice.server": {
+      "message": "التحقّق من الكلمات والأصوات على الخادم",
+      "source": "1eddaca93059d4"
+    },
+    "app.voice.title": {
+      "message": "صوتكم",
+      "source": "04028f765253d4"
+    },
+    "app.xp.today": {
+      "message": ".input {$xp :number}\n{{اليوم: {$xp} XP}}",
+      "source": "105e6997ce60db"
+    },
+    "app.xp.total": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "audio.check.back": {
+      "message": "العودة إلى الدورة",
+      "source": "0820c073883099"
+    },
+    "audio.check.cer": {
+      "message": ".input {$cer :number maximumFractionDigits=2}\n{{نسبة الخطأ {$cer}}}",
+      "source": "08bf51cf947fe2"
+    },
+    "audio.check.export": {
+      "message": ".input {$count :number}\n.match $count\nzero {{تنزيل أحكامكم ({$count})}}\none {{تنزيل حكمكم ({$count})}}\ntwo {{تنزيل حكميكم ({$count})}}\nfew {{تنزيل أحكامكم ({$count})}}\nmany {{تنزيل أحكامكم ({$count})}}\n* {{تنزيل أحكامكم ({$count})}}",
+      "source": "14aaf933d9c7de"
+    },
+    "audio.check.filter.kind": {
+      "message": "العرض",
+      "source": "00fbddc6309531"
+    },
+    "audio.check.filter.mine": {
+      "message": "حكمكم",
+      "source": "17828d34f2393b"
+    },
+    "audio.check.filter.order": {
+      "message": "الترتيب",
+      "source": "126e942baf656b"
+    },
+    "audio.check.filter.status": {
+      "message": "فحص التعرّف",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.filter.voice": {
+      "message": "الصوت",
+      "source": "09cc0458faf589"
+    },
+    "audio.check.heard": {
+      "message": "المسموع:",
+      "source": "057ed12895bc6a"
+    },
+    "audio.check.held": {
+      "message": "محجوب",
+      "source": "1f8de18b83890e"
+    },
+    "audio.check.intro": {
+      "message": "كل المقاطع الصوتية في هذه الدورة، مع ما سمعه نظام التعرّف على الكلام عند إنشائها. استمعوا إليها، وبيّنوا هل يبدو كل منها صحيحًا. تبقى أحكامكم على هذا الجهاز إلى أن تنزّلوها.",
+      "source": "0925929154a626"
+    },
+    "audio.check.keys": {
+      "message": "المفاتيح: J و K للتنقّل بين العناصر، و Space للتشغيل، و S للتشغيل ببطء، و R للحكم بأن المقطع يبدو صحيحًا، و W للحكم بأنه يبدو خاطئًا.",
+      "source": "10103b803792c5"
+    },
+    "audio.check.kind.all": {
+      "message": "الكل",
+      "source": "0a0c861befca14"
+    },
+    "audio.check.kind.line": {
+      "message": "أسطر القصص",
+      "source": "0773178ab972c9"
+    },
+    "audio.check.kind.sentence": {
+      "message": "الجمل",
+      "source": "1288e2339c15cd"
+    },
+    "audio.check.kind.word": {
+      "message": "الكلمات",
+      "source": "0fcae096923b28"
+    },
+    "audio.check.loading": {
+      "message": "جارٍ تحميل المقاطع…",
+      "source": "1e1c379620b54a"
+    },
+    "audio.check.mine.all": {
+      "message": "الكل",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.mine.none": {
+      "message": "لم يُحكم عليه بعد",
+      "source": "0e64fcea62866c"
+    },
+    "audio.check.missing": {
+      "message": "لا يتوفر على هذا الموقع فحص صوت لهذه الدورة.",
+      "source": "1f978d0f7527d3"
+    },
+    "audio.check.note": {
+      "message": "ما الخطأ؟",
+      "source": "14c1c50287ec84"
+    },
+    "audio.check.open": {
+      "message": "فحص الصوت",
+      "source": "09c2f262b144d3"
+    },
+    "audio.check.order.course": {
+      "message": "ترتيب الدورة",
+      "source": "13ff38d97920d1"
+    },
+    "audio.check.order.worst": {
+      "message": "الأسوأ في فحص التعرّف أولًا",
+      "source": "0097ae2a860af4"
+    },
+    "audio.check.other": {
+      "message": "ما لم يعد في الدورة",
+      "source": "0ab83bbb5f6408"
+    },
+    "audio.check.outdated": {
+      "message": "حكمتم على نسخة سابقة من هذا المقطع.",
+      "source": "1e93856320378d"
+    },
+    "audio.check.read": {
+      "message": "النص المقروء:",
+      "source": "12f049bfcf7e55"
+    },
+    "audio.check.reference": {
+      "message": "التسجيل المرجعي",
+      "source": "0e105fd5ce8e09"
+    },
+    "audio.check.rejected": {
+      "message": "مرفوض",
+      "source": "1870217cd63ffc"
+    },
+    "audio.check.reviewed": {
+      "message": "تمت المراجعة",
+      "source": "08791cd0d5daff"
+    },
+    "audio.check.right": {
+      "message": "يبدو صحيحًا",
+      "source": "17f6e3024a0e22"
+    },
+    "audio.check.shown": {
+      "message": ".input {$shown :number}\n.input {$total :number}\n{{العناصر المعروضة: {$shown} من {$total}}}",
+      "source": "0de32067b417d8"
+    },
+    "audio.check.stats": {
+      "message": "فحص التعرّف",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.status.all": {
+      "message": "الكل",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.status.fail": {
+      "message": "لم ينجح",
+      "source": "031021f2893bc9"
+    },
+    "audio.check.status.none": {
+      "message": "لم يُفحص",
+      "source": "1b396d7f264de0"
+    },
+    "audio.check.status.pass": {
+      "message": "نجح",
+      "source": "10cad12b9fc18d"
+    },
+    "audio.check.status.review": {
+      "message": "للمراجعة",
+      "source": "1af7fd298d31cb"
+    },
+    "audio.check.title": {
+      "message": "فحص الصوت",
+      "source": "1efc282e620676"
+    },
+    "audio.check.unit": {
+      "message": ".input {$number :number}\n{{الوحدة {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "audio.check.voice": {
+      "message": "الصوت: {$voice} ({$provider})",
+      "source": "17c0b0285c4282"
+    },
+    "audio.check.voice.all": {
+      "message": "كل الأصوات",
+      "source": "07876467c8c942"
+    },
+    "audio.check.voice.option": {
+      "message": "{$name} ({$provider})",
+      "source": "1a384ab37c7496"
+    },
+    "audio.check.voice.recorded": {
+      "message": "التسجيلات",
+      "source": "01bebdacd206d7"
+    },
+    "audio.check.wrong": {
+      "message": "يبدو خاطئًا",
+      "source": "0031917bd66a07"
+    },
+    "corrections.cancel": {
+      "message": "إلغاء",
+      "source": "112e2e8ecda428"
+    },
+    "corrections.choose": {
+      "message": "أيّها خاطئ؟",
+      "source": "096af91f34dd52"
+    },
+    "corrections.edit": {
+      "message": "تعديل تصحيحكم",
+      "source": "05366fcc2c8933"
+    },
+    "corrections.error.empty": {
+      "message": "لا يمكن ترك هذا الحقل فارغًا.",
+      "source": "03d82cbe9409f5"
+    },
+    "corrections.error.too-long": {
+      "message": "النص طويل جدًا.",
+      "source": "11bdc151ef75f5"
+    },
+    "corrections.error.unchanged": {
+      "message": "غيّروا شيئًا، أو اكتبوا ملاحظة للمراجع.",
+      "source": "065ad46ed78a1e"
+    },
+    "corrections.export": {
+      "message": ".input {$count :number}\n.match $count\nzero {{تنزيل تصحيحاتكم ({$count})}}\none {{تنزيل تصحيحكم ({$count})}}\ntwo {{تنزيل تصحيحيكم ({$count})}}\nfew {{تنزيل تصحيحاتكم ({$count})}}\nmany {{تنزيل تصحيحاتكم ({$count})}}\n* {{تنزيل تصحيحاتكم ({$count})}}",
+      "source": "1b5c55b6e38b6d"
+    },
+    "corrections.intro": {
+      "message": "غيّروا كل ما هو خطأ: النص، أو نطق إحدى الكلمات، أو الترجمة. يُراجَع كل تصحيح قبل أن يدخل الدورة.",
+      "source": "16f77dde65b4ba"
+    },
+    "corrections.mark": {
+      "message": "هذه الجملة خاطئة",
+      "source": "03127dd3b047fa"
+    },
+    "corrections.mark.pairs": {
+      "message": "في أحدها خطأ",
+      "source": "0842a0f3922b2b"
+    },
+    "corrections.mark.word": {
+      "message": "هذه الكلمة خاطئة",
+      "source": "103ed262b2e660"
+    },
+    "corrections.note": {
+      "message": "ملاحظة للمراجع (اختيارية)",
+      "source": "15a68737f0ce95"
+    },
+    "corrections.now": {
+      "message": "حاليًا:",
+      "source": "0e7ae9926955b4"
+    },
+    "corrections.page.back": {
+      "message": "العودة إلى الدورة",
+      "source": "0820c073883099"
+    },
+    "corrections.page.intro": {
+      "message": "كل جمل هذه الدورة وأسطر قصصها، وحدةً وحدة. إن وجدتم خطأً في إحداها، فأشيروا إليها وبيّنوا الصواب.",
+      "source": "152193f019cdc5"
+    },
+    "corrections.page.open": {
+      "message": "تدقيق الجمل",
+      "source": "0c59e6eaeb129d"
+    },
+    "corrections.page.story": {
+      "message": "قصة",
+      "source": "099aa4c2ee7e8c"
+    },
+    "corrections.page.title": {
+      "message": "الجمل",
+      "source": "1288e2339c15cd"
+    },
+    "corrections.page.unit": {
+      "message": ".input {$number :number}\n{{الوحدة {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "corrections.page.units": {
+      "message": "الوحدات",
+      "source": "1a23d69043b0ea"
+    },
+    "corrections.pending": {
+      "message": "اقترحتم تصحيحًا",
+      "source": "00f4588986c49c"
+    },
+    "corrections.readings": {
+      "message": "نطق كل كلمة",
+      "source": "187ff5713fb95f"
+    },
+    "corrections.sent": {
+      "message": "شكرًا! سيتحقّق أحد المراجعين من تصحيحكم.",
+      "source": "12fbf92b2deab2"
+    },
+    "corrections.submit": {
+      "message": "إرسال التصحيح",
+      "source": "1440fa85d282df"
+    },
+    "corrections.text": {
+      "message": "الجملة ({$orthography})",
+      "source": "16c2396e05f7b1"
+    },
+    "corrections.title": {
+      "message": "ما الصواب هنا؟",
+      "source": "182c709dd2de76"
+    },
+    "corrections.translation": {
+      "message": "الترجمة",
+      "source": "04d57102a24465"
+    },
+    "corrections.word.intro": {
+      "message": "غيّروا كل ما هو خطأ: الكلمة، أو نطقها، أو معناها. يُراجَع كل تصحيح قبل أن يدخل الدورة.",
+      "source": "08eeee221c97ff"
+    },
+    "corrections.word.meaning": {
+      "message": "المعنى",
+      "source": "1031b11de169ce"
+    },
+    "corrections.word.text": {
+      "message": "الكلمة ({$orthography})",
+      "source": "0f55aaa03db2e2"
+    },
+    "course.name.apc": {
+      "message": "العربية اللبنانية",
+      "source": "156dd02569cccd"
+    },
+    "course.name.fa": {
+      "message": "الفارسية",
+      "source": "0814f27aca872d"
+    },
+    "course.name.lzh": {
+      "message": "الصينية الكلاسيكية",
+      "source": "169053e6ceef8d"
+    },
+    "course.name.uz": {
+      "message": "الأوزبكية",
+      "source": "00eccd2e4cea3a"
+    },
+    "course.name.yue": {
+      "message": "الكانتونية",
+      "source": "1b9e50f7526657"
+    },
+    "debug.cards.back": {
+      "message": "العودة إلى الدورة",
+      "source": "0820c073883099"
+    },
+    "debug.cards.intro": {
+      "message": "بطاقة واحدة من كل نوع تستطيع هذه الدورة إنشاءه. لا يُسجَّل شيء مما تفعلونه هنا، ولا يُحتسب في تقدّمكم.",
+      "source": "09dafe669d386b"
+    },
+    "debug.cards.none": {
+      "message": "لا يوجد في هذه الدورة",
+      "source": "07eb1f5b19cb7e"
+    },
+    "debug.cards.open": {
+      "message": "تجربة كل أنواع البطاقات",
+      "source": "06a28a765e4df1"
+    },
+    "debug.cards.play-all": {
+      "message": "تشغيلها كلها",
+      "source": "196d4e9446360f"
+    },
+    "debug.cards.title": {
+      "message": "كل أنواع البطاقات",
+      "source": "1ddf29c0ae6ca0"
+    },
+    "debug.cards.try": {
+      "message": "تجربة",
+      "source": "05f2766626d94e"
+    },
+    "debug.template": {
+      "message": "البطاقة: {$template}",
+      "source": "0f00d66710b4f5"
+    },
+    "exercise.action.check": {
+      "message": "تحقّق",
+      "source": "067681d06872f1"
+    },
+    "exercise.action.play-audio": {
+      "message": "تشغيل الصوت",
+      "source": "06221b5bee73f3"
+    },
+    "exercise.action.quit": {
+      "message": "الخروج من الدرس",
+      "source": "05b3289f0fc785"
+    },
+    "exercise.action.skip": {
+      "message": "تخطٍّ",
+      "source": "1c245bd4ba0d6f"
+    },
+    "exercise.answer.input-label": {
+      "message": "اكتبوا الإجابة باللغة {$language}",
+      "source": "1a032be6aed23c"
+    },
+    "exercise.answer.label": {
+      "message": "إجابتكم",
+      "source": "196b73b49f8369"
+    },
+    "exercise.instruction.write-in": {
+      "message": "اكتبوا هذا باللغة {$language}",
+      "source": "0ab1a8325a085b"
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{التمرين {$current} من {$total}}}",
+      "source": "18c97697d8f912"
+    },
+    "exercise.prompt.label": {
+      "message": "الجملة المطلوب ترجمتها",
+      "source": "10e152af217b29"
+    },
+    "exercise.readings.toggle": {
+      "message": "إظهار دليل النطق",
+      "source": "15c24795350b3d"
+    },
+    "exercise.wordbank.label": {
+      "message": "بنك الكلمات",
+      "source": "19ad1969f99daa"
+    },
+    "exercise.wordbank.remaining": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا بطاقات متبقية}}\none {{بطاقة واحدة متبقية}}\ntwo {{بطاقتان متبقيتان}}\nfew {{{$count} بطاقات متبقية}}\nmany {{{$count} بطاقة متبقية}}\n* {{{$count} بطاقة متبقية}}",
+      "source": "0ed82389e564a2"
+    },
+    "feedback.note.alef-maqsura": {
+      "message": "انتبهوا إلى الألف المقصورة (ى) في آخر الكلمة.",
+      "source": "0207d57b3b99a2"
+    },
+    "feedback.note.apostrophe": {
+      "message": "في الأوزبكية، يُكتب oʻ و gʻ بفاصلة مقلوبة (ʻ)، وعلامة الفصل هي ʼ. لكن لا بأس بكتابة ' العادية.",
+      "source": "152e8925abd36e"
+    },
+    "feedback.note.contrast-case": {
+      "message": "هذه اللاحقة تغيّر دور الكلمة في الجملة (إلى، في، من، عن…)، لا إملاءها فحسب.",
+      "source": "1dce20981c496c"
+    },
+    "feedback.note.contrast-person": {
+      "message": "هذه اللاحقة تغيّر الشخص المقصود (أنا، أنت، نحن…)، لا إملاء الكلمة فحسب.",
+      "source": "0f069e217d4ff2"
+    },
+    "feedback.note.contrast-possessive": {
+      "message": "هذه اللاحقة تغيّر صاحب الشيء (لي، لك، له…)، لا إملاء الكلمة فحسب.",
+      "source": "0f198186f5f77b"
+    },
+    "feedback.note.contrast-pronoun": {
+      "message": "هذا ضمير مختلف، وليس خطأً مطبعيًا.",
+      "source": "113842c4f5afa3"
+    },
+    "feedback.note.hamza": {
+      "message": "انتبهوا إلى الهمزة (أ، إ، آ).",
+      "source": "03b67432cfff80"
+    },
+    "feedback.note.hk-tw-variant": {
+      "message": "هذا شكل الرمز المستخدم في تايوان؛ أما في هونغ كونغ فيُكتب عادةً بشكل مختلف.",
+      "source": "0110036abf43a7"
+    },
+    "feedback.note.ime-homophone": {
+      "message": "أحد الرموز نطقه صحيح لكنه ليس الرمز المطلوب: راجعوا ما اقترحته لوحة المفاتيح.",
+      "source": "1bbc587127c480"
+    },
+    "feedback.note.judge": {
+      "message": "قُبلت بعد تحقّق ثانٍ أجراه نموذج لغوي.",
+      "source": "05cc6f80e30bbd"
+    },
+    "feedback.note.marks": {
+      "message": "راجعوا علامات الحروف والتشكيل.",
+      "source": "0f575a377146fe"
+    },
+    "feedback.note.pairs-mistakes": {
+      "message": "احتاجت بعض الأزواج إلى أكثر من محاولة.",
+      "source": "0d03bb934478e9"
+    },
+    "feedback.note.reading-no-tones": {
+      "message": "يحتاج كل مقطع إلى رقم نغمته.",
+      "source": "143c87c3508e88"
+    },
+    "feedback.note.reading-syllables": {
+      "message": "راجعوا أصوات كل مقطع.",
+      "source": "1e71923b0c8359"
+    },
+    "feedback.note.reading-tone": {
+      "message": "الأصوات صحيحة: راجعوا النغمات.",
+      "source": "05072e38d2eb3a"
+    },
+    "feedback.note.script-mismatch": {
+      "message": "تأكّدوا من أنكم تكتبون بنظام الكتابة الصحيح.",
+      "source": "134b180851260b"
+    },
+    "feedback.note.spacing": {
+      "message": "انتبهوا إلى نصف المسافة (ZWNJ) داخل هذه الكلمة.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.note.speech-phones": {
+      "message": "بعض الأصوات لم تكن دقيقة. هذه ملاحظة لا تقييم: فاللكنات تختلف.",
+      "source": "05daa70cf553b3"
+    },
+    "feedback.note.speech-silent": {
+      "message": "لم يُسمع شيء.",
+      "source": "080a39cc7e559e"
+    },
+    "feedback.note.speech-tone-shapes": {
+      "message": "بعض النغمات اتجهت اتجاهًا خاطئًا: صعودًا أو هبوطًا أو ثباتًا.",
+      "source": "0c7638ed68fb1d"
+    },
+    "feedback.note.speech-tones": {
+      "message": "بعض النغمات لم تكن دقيقة.",
+      "source": "0e902d722728e3"
+    },
+    "feedback.note.speech-words": {
+      "message": "لم تتضح الكلمات: قارنوا ما قلتموه بالجملة.",
+      "source": "11b9df98e9e5c8"
+    },
+    "feedback.note.ta-marbuta": {
+      "message": "انتبهوا إلى التاء المربوطة (ة) في آخر الكلمة.",
+      "source": "022ddd2cbdf318"
+    },
+    "feedback.note.tajik-letters": {
+      "message": "استخدموا الحروف الطاجيكية ғ، ӣ، қ، ӯ، ҳ و ҷ.",
+      "source": "148f4eb60bf982"
+    },
+    "feedback.note.use-traditional": {
+      "message": "استخدموا الرموز التقليدية.",
+      "source": "0d41b4810db702"
+    },
+    "feedback.note.uzbek-letters": {
+      "message": "استخدموا الحروف الأوزبكية ў، қ، ғ و ҳ، لا у، к، г و х.",
+      "source": "1951fe37b93e13"
+    },
+    "feedback.note.variant": {
+      "message": "هناك شكل آخر لهذا الرمز أكثر شيوعًا هنا.",
+      "source": "024ba8249c3846"
+    },
+    "feedback.note.variant-form": {
+      "message": "هذا شكل آخر للرمز نفسه؛ الدورة تكتبه بشكل مختلف.",
+      "source": "1eab7d76e74357"
+    },
+    "feedback.note.vocalize-letters": {
+      "message": "أبقوا الحروف كما هي، وأضيفوا التشكيل فقط.",
+      "source": "12ccf98295f99e"
+    },
+    "feedback.note.vocalize-marks": {
+      "message": "راجعوا تشكيل كل حرف.",
+      "source": "13259d798ab24f"
+    },
+    "feedback.note.zwnj": {
+      "message": "انتبهوا إلى نصف المسافة (ZWNJ) داخل هذه الكلمة.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.verdict.correct": {
+      "message": "صحيح!",
+      "source": "0c0624dc06b399"
+    },
+    "feedback.verdict.correct-alt": {
+      "message": "صحيح! وهذا حل صحيح آخر:",
+      "source": "0b86c8b2908b58"
+    },
+    "feedback.verdict.correct-marks": {
+      "message": "صحيح، لكن انتبهوا إلى علامات الحروف والتشكيل.",
+      "source": "15262c2eb93c44"
+    },
+    "feedback.verdict.correct-provisional": {
+      "message": "تبدو صحيحة! سنتحقّق منها مرة أخرى.",
+      "source": "0943ecb847767e"
+    },
+    "feedback.verdict.correct-variant": {
+      "message": "صحيح، لكن هذا الشكل يُكتب بطريقة مختلفة هنا.",
+      "source": "0944f85125c278"
+    },
+    "feedback.verdict.correct-with-typo": {
+      "message": "صحيح، لكن انتبهوا إلى الخطأ المطبعي.",
+      "source": "0861c223f13b0c"
+    },
+    "feedback.verdict.partial": {
+      "message": "تقريبًا: أحد الرموز نطقه صحيح لكنه ليس الرمز المطلوب.",
+      "source": "0ce14970e35138"
+    },
+    "feedback.verdict.skipped": {
+      "message": "تم التخطّي",
+      "source": "10f29eb13173cb"
+    },
+    "feedback.verdict.speech-close": {
+      "message": "اقتربتم! استمعوا مجددًا وقارنوا.",
+      "source": "110851d79835c2"
+    },
+    "feedback.verdict.wrong": {
+      "message": "ليس تمامًا.",
+      "source": "0825aebbcf39f5"
+    },
+    "feedback.verdict.wrong-word": {
+      "message": "هذه كلمة مختلفة.",
+      "source": "0120cc97f18e12"
+    },
+    "game.achievements.none": {
+      "message": "لا شيء بعد. تأتي الإنجازات مع التدرّب.",
+      "source": "1e32e2a8fb62d6"
+    },
+    "game.achievements.title": {
+      "message": "الإنجازات",
+      "source": "0da6edc54cc8eb"
+    },
+    "game.freezes": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا تجميدات للسلسلة}}\none {{تجميد واحد للسلسلة}}\ntwo {{تجميدان للسلسلة}}\nfew {{{$count} تجميدات للسلسلة}}\nmany {{{$count} تجميدًا للسلسلة}}\n* {{{$count} تجميد للسلسلة}}",
+      "source": "05212f0be9925b"
+    },
+    "game.gate.empty": {
+      "message": "نفد رصيدكم حاليًا. أجروا مراجعة أو صحّحوا أخطاءكم لاستعادته، أو عودوا بعد قليل.",
+      "source": "0b4148340a874a"
+    },
+    "game.gate.energy": {
+      "message": ".input {$count :number}\n{{الطاقة: {$count}}}",
+      "source": "091f3dd93a2d53"
+    },
+    "game.gate.hearts": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا قلوب}}\none {{قلب واحد}}\ntwo {{قلبان}}\nfew {{{$count} قلوب}}\nmany {{{$count} قلبًا}}\n* {{{$count} قلب}}",
+      "source": "1726dbe9c3df80"
+    },
+    "game.quests.done": {
+      "message": "مكتملة",
+      "source": "00609f822e0571"
+    },
+    "game.quests.progress": {
+      "message": ".input {$progress :number}\n.input {$target :number}\n{{{$progress} من {$target}}}",
+      "source": "0d4761709eb5eb"
+    },
+    "game.quests.title": {
+      "message": "مهام اليوم",
+      "source": "1a11ce0273bd84"
+    },
+    "game.streak": {
+      "message": ".input {$days :number}\n.match $days\nzero {{سلسلة {$days} يوم}}\none {{سلسلة يوم واحد}}\ntwo {{سلسلة يومين}}\nfew {{سلسلة {$days} أيام}}\nmany {{سلسلة {$days} يومًا}}\n* {{سلسلة {$days} يوم}}",
+      "source": "064a23222272c5"
+    },
+    "game.streak.longest": {
+      "message": ".input {$days :number}\n{{أطول سلسلة: {$days}}}",
+      "source": "1d5d07e36c81e8"
+    },
+    "game.streak.today-done": {
+      "message": "تدرّبتم اليوم.",
+      "source": "18248f36781962"
+    },
+    "game.streak.today-pending": {
+      "message": "تدرّبوا اليوم لتستمر السلسلة.",
+      "source": "1cc4f4ce2c152b"
+    },
+    "game.title": {
+      "message": "سلسلتكم",
+      "source": "0fe67f53d96cb0"
+    },
+    "league.anonymous": {
+      "message": "أحد المتعلّمين",
+      "source": "13dd001d483e91"
+    },
+    "league.days-left": {
+      "message": ".input {$days :number}\n.match $days\nzero {{لم يبق أي يوم}}\none {{بقي يوم واحد}}\ntwo {{بقي يومان}}\nfew {{بقيت {$days} أيام}}\nmany {{بقي {$days} يومًا}}\n* {{بقي {$days} يوم}}",
+      "source": "1b4e8178f6f76c"
+    },
+    "league.join": {
+      "message": "اكسبوا نقاط XP هذا الأسبوع للانضمام إلى دوري.",
+      "source": "0d260077bc6e32"
+    },
+    "league.tier": {
+      "message": ".input {$tier :number}\n{{الدرجة {$tier}}}",
+      "source": "1cd9ec062def13"
+    },
+    "league.title": {
+      "message": "الدوري",
+      "source": "02f1616b366536"
+    },
+    "league.xp": {
+      "message": ".input {$xp :number}\n{{{$xp} XP}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "league.you": {
+      "message": "أنتم",
+      "source": "1f107a64fd97ca"
+    },
+    "league.zone.demote": {
+      "message": "منطقة الهبوط",
+      "source": "04a040edad26bd"
+    },
+    "league.zone.promote": {
+      "message": "منطقة الصعود",
+      "source": "1cdef66c79e45d"
+    },
+    "orthography.apc-Arab.standard": {
+      "message": "الحروف العربية",
+      "source": "08f5b94b048129"
+    },
+    "orthography.apc-Latn.arabizi": {
+      "message": "العربيزي (حروف لاتينية وأرقام)",
+      "source": "078998ef01b429"
+    },
+    "orthography.fa-Arab.standard": {
+      "message": "الحروف الفارسية",
+      "source": "1a96004e1beccf"
+    },
+    "orthography.lzh-Hant.standard": {
+      "message": "الرموز التقليدية",
+      "source": "0768e08b58f7c1"
+    },
+    "orthography.uz-Cyrl.standard": {
+      "message": "الحروف السيريلية",
+      "source": "0c0f5c83735b6c"
+    },
+    "orthography.uz-Latn.standard": {
+      "message": "الحروف اللاتينية",
+      "source": "15289618d8a1e5"
+    },
+    "orthography.yue-Hant-HK.standard": {
+      "message": "الرموز التقليدية",
+      "source": "0768e08b58f7c1"
+    },
+    "player.action.cant-listen": {
+      "message": "لا أستطيع الاستماع الآن",
+      "source": "140179193b2176"
+    },
+    "player.action.cant-speak": {
+      "message": "لا أستطيع التحدّث الآن",
+      "source": "083c23e03f8bbb"
+    },
+    "player.action.continue": {
+      "message": "متابعة",
+      "source": "0f3baa7dcc6267"
+    },
+    "player.audio.label": {
+      "message": "الصوت",
+      "source": "126a24a49284c5"
+    },
+    "player.audio.play": {
+      "message": "تشغيل",
+      "source": "0db390678866e5"
+    },
+    "player.audio.slow": {
+      "message": "تشغيل ببطء",
+      "source": "17c237b40c535e"
+    },
+    "player.audio.synthetic": {
+      "message": "صوت اصطناعي",
+      "source": "145cf67c7232e5"
+    },
+    "player.blank.label": {
+      "message": "الكلمة الناقصة",
+      "source": "16b94a14d691a1"
+    },
+    "player.chars.label": {
+      "message": "حروف خاصة",
+      "source": "0c3a90360623f8"
+    },
+    "player.feedback.marked": {
+      "message": "(الأجزاء المميَّزة مختلفة)",
+      "source": "1ed6f7b2b14b4d"
+    },
+    "player.feedback.solution": {
+      "message": "الإجابة الصحيحة:",
+      "source": "08f8d29ea3c01e"
+    },
+    "player.feedback.your-answer": {
+      "message": "إجابتكم:",
+      "source": "016b88025de79d"
+    },
+    "player.finished.score": {
+      "message": ".input {$correct :number}\n.input {$total :number}\n{{إجابات صحيحة من أول محاولة: {$correct} من {$total}}}",
+      "source": "03cfbdcc54fdef"
+    },
+    "player.finished.stopped": {
+      "message": "توقّف الدرس",
+      "source": "06ab497db6712b"
+    },
+    "player.finished.title": {
+      "message": "اكتمل الدرس!",
+      "source": "1859634875e68d"
+    },
+    "player.finished.xp": {
+      "message": ".input {$xp :number}\n{{+{$xp} XP}}",
+      "source": "10d9c04ce5ff3f"
+    },
+    "player.instruction.char-read": {
+      "message": "كيف يُقرأ هذا؟",
+      "source": "09f22944d314cc"
+    },
+    "player.instruction.choose-translation": {
+      "message": "ما معنى هذا؟",
+      "source": "029357139d5ace"
+    },
+    "player.instruction.complete-translation": {
+      "message": "أكملوا الترجمة",
+      "source": "16e5c17e13aaec"
+    },
+    "player.instruction.gap-fill": {
+      "message": "املؤوا الفراغ",
+      "source": "0fecadc0573056"
+    },
+    "player.instruction.listen-select": {
+      "message": "أيّ كلمة تسمعون؟",
+      "source": "046edf8832a029"
+    },
+    "player.instruction.listen-speak": {
+      "message": "استمعوا، ثم قولوا ما سمعتموه",
+      "source": "0993ec028d7c01"
+    },
+    "player.instruction.listen-tap": {
+      "message": "انقروا على ما تسمعونه",
+      "source": "1aee714f11c769"
+    },
+    "player.instruction.listen-type": {
+      "message": "اكتبوا ما تسمعونه",
+      "source": "12d6a6ad5522ac"
+    },
+    "player.instruction.match-pairs": {
+      "message": "انقروا على الأزواج المتطابقة",
+      "source": "1e0c0c00e8ff2f"
+    },
+    "player.instruction.minimal-pair": {
+      "message": "استمعوا جيدًا: أيّ كلمة هذه؟",
+      "source": "1d3562cfb5e258"
+    },
+    "player.instruction.reading-disambiguation": {
+      "message": "كيف يُقرأ الرمز المميَّز هنا؟",
+      "source": "058ffba3d14972"
+    },
+    "player.instruction.select-image": {
+      "message": "اختاروا الصورة الصحيحة",
+      "source": "042ade432b0d84"
+    },
+    "player.instruction.speak": {
+      "message": "اقرؤوا هذا بصوت عالٍ",
+      "source": "0b2d21b5ce3893"
+    },
+    "player.instruction.speak-scored": {
+      "message": "قولوا هذه الجملة",
+      "source": "0faceee5e6c9b9"
+    },
+    "player.instruction.story-arrange": {
+      "message": "انقروا على الكلمات لتكوين ما يُقال",
+      "source": "17afd79420592e"
+    },
+    "player.instruction.story-choose": {
+      "message": "أجيبوا عن السؤال",
+      "source": "1d68038847012f"
+    },
+    "player.instruction.story-complete": {
+      "message": "اختاروا الكلمة الناقصة",
+      "source": "1acd299e07e3f4"
+    },
+    "player.instruction.tone-identify": {
+      "message": "أيّ نغمة تسمعون؟",
+      "source": "16db060d6d4816"
+    },
+    "player.instruction.transcribe": {
+      "message": "اكتبوا نطق هذه الكلمة",
+      "source": "17544047c67949"
+    },
+    "player.instruction.translate-into-support": {
+      "message": "ترجموا هذه الجملة",
+      "source": "0ca18e83db09fc"
+    },
+    "player.instruction.vocalize": {
+      "message": "أضيفوا التشكيل",
+      "source": "041a63b98f57c1"
+    },
+    "player.key.mark.064b": {
+      "message": "تنوين الفتح",
+      "source": "19c90ca7e61dbc"
+    },
+    "player.key.mark.064c": {
+      "message": "تنوين الضم",
+      "source": "1c0e6112bc94e9"
+    },
+    "player.key.mark.064d": {
+      "message": "تنوين الكسر",
+      "source": "14cb0d65761146"
+    },
+    "player.key.mark.064e": {
+      "message": "فتحة",
+      "source": "19edd52ce12905"
+    },
+    "player.key.mark.064f": {
+      "message": "ضمة",
+      "source": "117f1993aec79f"
+    },
+    "player.key.mark.0650": {
+      "message": "كسرة",
+      "source": "085f5bfa4255e7"
+    },
+    "player.key.mark.0651": {
+      "message": "شدّة",
+      "source": "1bd8f09a19a5d5"
+    },
+    "player.key.mark.0652": {
+      "message": "سكون",
+      "source": "0b6f2ac6b05bcb"
+    },
+    "player.key.mark.0670": {
+      "message": "ألف خنجرية",
+      "source": "1f05f6728a5d1c"
+    },
+    "player.key.zwj": {
+      "message": "{$short}: محرف وصل صفري العرض",
+      "source": "1dc058411d5d13"
+    },
+    "player.key.zwj.short": {
+      "message": "ZWJ",
+      "source": "039d40017eb1b2"
+    },
+    "player.key.zwnj": {
+      "message": "{$short}: نصف مسافة (محرف منع وصل صفري العرض)",
+      "source": "0163828ca074fa"
+    },
+    "player.key.zwnj.short": {
+      "message": "ZWNJ",
+      "source": "15560dc8d9cef8"
+    },
+    "player.listen.type-label": {
+      "message": "اكتبوا ما تسمعونه باللغة {$language}",
+      "source": "098b06d063d843"
+    },
+    "player.loading": {
+      "message": "جارٍ التحميل…",
+      "source": "0e65697ec32c03"
+    },
+    "player.meaning.label": {
+      "message": "المعنى",
+      "source": "1031b11de169ce"
+    },
+    "player.options.label": {
+      "message": "خيارات الإجابة",
+      "source": "1cfa5f47c656d4"
+    },
+    "player.pairs.meanings": {
+      "message": "المعاني",
+      "source": "0559e9f3993223"
+    },
+    "player.pairs.words": {
+      "message": "كلمات باللغة {$language}",
+      "source": "0edc961ec0e09a"
+    },
+    "player.persons.addressee.f": {
+      "message": "موجّه إلى امرأة",
+      "source": "1352530e5e09c1"
+    },
+    "player.persons.addressee.m": {
+      "message": "موجّه إلى رجل",
+      "source": "0599c0a50176ff"
+    },
+    "player.persons.addressee.pl": {
+      "message": "موجّه إلى عدة أشخاص",
+      "source": "131e5e041dc353"
+    },
+    "player.persons.speaker.f": {
+      "message": "بلسان امرأة",
+      "source": "148a7788770a37"
+    },
+    "player.persons.speaker.m": {
+      "message": "بلسان رجل",
+      "source": "166783a7b6c4f7"
+    },
+    "player.prompt.hint": {
+      "message": "الترجمة",
+      "source": "04d57102a24465"
+    },
+    "player.prompt.meaning": {
+      "message": "المعنى",
+      "source": "1031b11de169ce"
+    },
+    "player.quit.body": {
+      "message": "ستفقدون تقدّمكم في هذا الدرس.",
+      "source": "0ab86dd29faeef"
+    },
+    "player.quit.cancel": {
+      "message": "مواصلة التعلّم",
+      "source": "059d6b2b56381d"
+    },
+    "player.quit.confirm": {
+      "message": "الخروج",
+      "source": "0cddcce51f726d"
+    },
+    "player.quit.title": {
+      "message": "الخروج من هذا الدرس؟",
+      "source": "16af157c41917c"
+    },
+    "player.readings.label": {
+      "message": "القراءات",
+      "source": "13980c304b1f94"
+    },
+    "player.readings.off": {
+      "message": "إيقاف",
+      "source": "0580723cde1d9a"
+    },
+    "player.speak.play": {
+      "message": "تشغيل تسجيلي",
+      "source": "00638b7d6dd048"
+    },
+    "player.speak.rate": {
+      "message": "كيف كان الأداء؟",
+      "source": "12e92974d023b1"
+    },
+    "player.speak.rate.again": {
+      "message": "لم أستطع نطقها",
+      "source": "0abcf340181aae"
+    },
+    "player.speak.rate.good": {
+      "message": "بدا صحيحًا",
+      "source": "1be066525c9821"
+    },
+    "player.speak.rate.hard": {
+      "message": "يصعب الحكم",
+      "source": "0f6d88d0b8dd3e"
+    },
+    "player.speak.record": {
+      "message": "تسجيل",
+      "source": "04b73b25d3382c"
+    },
+    "player.speak.recording": {
+      "message": "جارٍ التسجيل…",
+      "source": "06cd071961c528"
+    },
+    "player.speak.stop": {
+      "message": "إيقاف",
+      "source": "0889ad146e26ca"
+    },
+    "player.speak.unavailable": {
+      "message": "التسجيل غير متاح هنا. لا يزال بإمكانكم قولها بصوت عالٍ وتقييم أنفسكم.",
+      "source": "01f41cf321722f"
+    },
+    "player.speech.calibrating": {
+      "message": "ستُقيَّم نغماتكم تقييمًا كاملًا بعد أن يسمع التطبيق المزيد من صوتكم.",
+      "source": "04d270eab2bdb9"
+    },
+    "player.speech.checking": {
+      "message": "جارٍ الاستماع إلى تسجيلكم…",
+      "source": "15813131fb0d84"
+    },
+    "player.speech.contour-off": {
+      "message": "كان المتوقَّع {$expected}",
+      "source": "131e09498776b2"
+    },
+    "player.speech.contour.falling": {
+      "message": "طبقة صوت هابطة",
+      "source": "0848dae7b2526c"
+    },
+    "player.speech.contour.level": {
+      "message": "طبقة صوت ثابتة",
+      "source": "0986ab300ef7f4"
+    },
+    "player.speech.contour.rising": {
+      "message": "طبقة صوت صاعدة",
+      "source": "09844f2d86cbd8"
+    },
+    "player.speech.heard": {
+      "message": "سمعنا:",
+      "source": "0cf130000eb253"
+    },
+    "player.speech.partial": {
+      "message": "سمعنا جزءًا منها فقط. حاولوا قول الجملة كاملة، وببطء أكثر قليلًا.",
+      "source": "02399d82dbf8fc"
+    },
+    "player.speech.rate-instead": {
+      "message": "لا يوجد ميكروفون: قيّموا أنفسكم بدلًا من ذلك",
+      "source": "1f32c806cf6468"
+    },
+    "player.speech.silent": {
+      "message": "لم نسمع شيئًا. تحقّقوا من الميكروفون وحاولوا مرة أخرى.",
+      "source": "09fb89d1ff926f"
+    },
+    "player.speech.tone-off": {
+      "message": ".input {$heard :number}\n.input {$expected :number}\n{{النغمة {$heard}، والمتوقَّعة {$expected}}}",
+      "source": "1e34116823fbfc"
+    },
+    "player.toggle.marks": {
+      "message": "إظهار التشكيل",
+      "source": "17bb7ce344c4e6"
+    },
+    "player.toggle.vertical": {
+      "message": "نص عمودي",
+      "source": "1fa81eb3e6f25e"
+    },
+    "player.tone.yue-jyutping.1": {
+      "message": "1 · عالية مستوية",
+      "source": "0eeda0fb5b3a04"
+    },
+    "player.tone.yue-jyutping.2": {
+      "message": "2 · عالية صاعدة",
+      "source": "02fa98567b0205"
+    },
+    "player.tone.yue-jyutping.3": {
+      "message": "3 · متوسطة مستوية",
+      "source": "0911e5c7447f54"
+    },
+    "player.tone.yue-jyutping.4": {
+      "message": "4 · منخفضة هابطة",
+      "source": "1df41eb52dab37"
+    },
+    "player.tone.yue-jyutping.5": {
+      "message": "5 · منخفضة صاعدة",
+      "source": "00ad4735faecfd"
+    },
+    "player.tone.yue-jyutping.6": {
+      "message": "6 · منخفضة مستوية",
+      "source": "0c9f5d02772e14"
+    },
+    "player.transcribe.label": {
+      "message": "النطق",
+      "source": "0acd9d880cd089"
+    },
+    "player.transcribe.label.jyutping": {
+      "message": "النطق بنظام Jyutping",
+      "source": "0e6c8b2c872445"
+    },
+    "player.vocalize.label": {
+      "message": "الكلمة مع تشكيلها",
+      "source": "09f512786abfe5"
+    },
+    "player.word.label": {
+      "message": "الكلمة",
+      "source": "05d88136696d61"
+    },
+    "player.wordbank.answer-label": {
+      "message": "إجابتكم",
+      "source": "196b73b49f8369"
+    },
+    "push.reminder.gentle.body": {
+      "message": "درسكم التالي بانتظاركم متى شئتم.",
+      "source": "0591105ca603b7"
+    },
+    "push.reminder.gentle.title": {
+      "message": "هل من وقت لتدرّب قصير؟",
+      "source": "1c220a31280718"
+    },
+    "push.reminder.quest.body": {
+      "message": "أكملوها لتكسبوا نقاط XP إضافية.",
+      "source": "099f028deec7c1"
+    },
+    "push.reminder.quest.title": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لم تبق مهام اليوم}}\none {{بقيت مهمة واحدة اليوم}}\ntwo {{بقيت مهمتان اليوم}}\nfew {{بقيت {$count} مهام اليوم}}\nmany {{بقيت {$count} مهمة اليوم}}\n* {{بقيت {$count} مهمة اليوم}}",
+      "source": "137c1318fa77dc"
+    },
+    "push.reminder.streak.body": {
+      "message": "بضع دقائق اليوم تكفي لتستمر.",
+      "source": "1b518ed886e847"
+    },
+    "push.reminder.streak.title": {
+      "message": ".input {$days :number}\n.match $days\nzero {{سلسلتكم بانتظاركم}}\none {{سلسلتكم المستمرة منذ يوم واحد بانتظاركم}}\ntwo {{سلسلتكم المستمرة منذ يومين بانتظاركم}}\nfew {{سلسلتكم المستمرة منذ {$days} أيام بانتظاركم}}\nmany {{سلسلتكم المستمرة منذ {$days} يومًا بانتظاركم}}\n* {{سلسلتكم المستمرة منذ {$days} يوم بانتظاركم}}",
+      "source": "0d83cc47879b43"
+    },
+    "quest.listen-5": {
+      "message": ".input {$target :number}\n.match $target\nzero {{تقديم {$target} إجابة صحيحة في تمارين الاستماع}}\none {{تقديم إجابة صحيحة واحدة في تمارين الاستماع}}\ntwo {{تقديم إجابتين صحيحتين في تمارين الاستماع}}\nfew {{تقديم {$target} إجابات صحيحة في تمارين الاستماع}}\nmany {{تقديم {$target} إجابة صحيحة في تمارين الاستماع}}\n* {{تقديم {$target} إجابة صحيحة في تمارين الاستماع}}",
+      "source": "0875f3506e2717"
+    },
+    "quest.perfect-1": {
+      "message": ".input {$target :number}\n.match $target\nzero {{إنهاء {$target} جلسة دون أخطاء}}\none {{إنهاء جلسة دون أخطاء}}\ntwo {{إنهاء جلستين دون أخطاء}}\nfew {{إنهاء {$target} جلسات دون أخطاء}}\nmany {{إنهاء {$target} جلسة دون أخطاء}}\n* {{إنهاء {$target} جلسة دون أخطاء}}",
+      "source": "037706a0d33b57"
+    },
+    "quest.produce-5": {
+      "message": ".input {$target :number}\n.match $target\nzero {{كتابة {$target} إجابة صحيحة باللغة التي تتعلّمونها}}\none {{كتابة إجابة صحيحة واحدة باللغة التي تتعلّمونها}}\ntwo {{كتابة إجابتين صحيحتين باللغة التي تتعلّمونها}}\nfew {{كتابة {$target} إجابات صحيحة باللغة التي تتعلّمونها}}\nmany {{كتابة {$target} إجابة صحيحة باللغة التي تتعلّمونها}}\n* {{كتابة {$target} إجابة صحيحة باللغة التي تتعلّمونها}}",
+      "source": "0e5b60c37ddb77"
+    },
+    "quest.review-1": {
+      "message": ".input {$target :number}\n.match $target\nzero {{إجراء {$target} جلسة مراجعة أو تصحيح أخطاء}}\none {{إجراء مراجعة أو تصحيح أخطائكم}}\ntwo {{إجراء جلستين للمراجعة أو لتصحيح الأخطاء}}\nfew {{إجراء {$target} جلسات مراجعة أو تصحيح أخطاء}}\nmany {{إجراء {$target} جلسة مراجعة أو تصحيح أخطاء}}\n* {{إجراء {$target} جلسة مراجعة أو تصحيح أخطاء}}",
+      "source": "12c21ea415dbc6"
+    },
+    "quest.right-20": {
+      "message": ".input {$target :number}\n.match $target\nzero {{تقديم {$target} إجابة صحيحة}}\none {{تقديم إجابة صحيحة واحدة}}\ntwo {{تقديم إجابتين صحيحتين}}\nfew {{تقديم {$target} إجابات صحيحة}}\nmany {{تقديم {$target} إجابة صحيحة}}\n* {{تقديم {$target} إجابة صحيحة}}",
+      "source": "03dc2539ace6f8"
+    },
+    "quest.sessions-2": {
+      "message": ".input {$target :number}\n.match $target\nzero {{إنهاء {$target} جلسة}}\none {{إنهاء جلسة واحدة}}\ntwo {{إنهاء جلستين}}\nfew {{إنهاء {$target} جلسات}}\nmany {{إنهاء {$target} جلسة}}\n* {{إنهاء {$target} جلسة}}",
+      "source": "04508fc5457212"
+    },
+    "quest.story-1": {
+      "message": ".input {$target :number}\n.match $target\nzero {{قراءة {$target} قصة}}\none {{قراءة قصة}}\ntwo {{قراءة قصتين}}\nfew {{قراءة {$target} قصص}}\nmany {{قراءة {$target} قصة}}\n* {{قراءة {$target} قصة}}",
+      "source": "007c06cc289b4d"
+    },
+    "quest.xp-30": {
+      "message": ".input {$target :number}\n{{كسب {$target} XP}}",
+      "source": "1f2468bc1998a6"
+    },
+    "reading.scheme.baxter": {
+      "message": "الصينية الوسطى (باكستر)",
+      "source": "19597222ec8510"
+    },
+    "reading.scheme.jyutping": {
+      "message": "جيوتبينغ",
+      "source": "060334df66e05a"
+    },
+    "reading.scheme.pinyin": {
+      "message": "بينيين",
+      "source": "158f03ef25e7f5"
+    },
+    "reports.public": {
+      "message": "تصل البلاغات إلى مراجعي الدورة على شكل مشكلات (issues) عامة على GitHub، من دون اسمكم أو أي معلومات عن جهازكم.",
+      "source": "1e7d13dc2653d5"
+    },
+    "review.export": {
+      "message": ".input {$count :number}\n.match $count\nzero {{تنزيل الاعتمادات ({$count})}}\none {{تنزيل اعتماد واحد}}\ntwo {{تنزيل اعتمادين}}\nfew {{تنزيل {$count} اعتمادات}}\nmany {{تنزيل {$count} اعتمادًا}}\n* {{تنزيل {$count} اعتماد}}",
+      "source": "116e4b8fe9a9b9"
+    },
+    "review.intro": {
+      "message": "وضع المراجعة: اعتمدوا ما يبدو صحيحًا، وأشيروا إلى ما ليس كذلك. تبقى اعتماداتكم على هذا الجهاز إلى أن تنزّلوها.",
+      "source": "18707c760522e3"
+    },
+    "review.looks-right": {
+      "message": "تبدو صحيحة",
+      "source": "1105ecf4091a83"
+    },
+    "review.reviewed": {
+      "message": "تمت المراجعة",
+      "source": "08791cd0d5daff"
+    },
+    "review.story-looks-right": {
+      "message": "القصة كلها تبدو صحيحة",
+      "source": "15a8a0748ecef2"
+    },
+    "review.unit": {
+      "message": "اعتماد كل ما هنا",
+      "source": "0de29eafac5899"
+    },
+    "story.finished.stopped": {
+      "message": "توقّفت القصة",
+      "source": "151456f06b67ec"
+    },
+    "story.finished.title": {
+      "message": "اكتملت القصة!",
+      "source": "0649359022ea9b"
+    },
+    "story.gloss.hint": {
+      "message": "انقروا على كلمة لمعرفة معناها.",
+      "source": "14e30eccbb11fb"
+    },
+    "story.gloss.label": {
+      "message": "معاني الكلمات",
+      "source": "0f7d61f5dd66a4"
+    },
+    "story.gloss.lemma": {
+      "message": "الصيغة المعجمية:",
+      "source": "06d03db42850b1"
+    },
+    "story.gloss.none": {
+      "message": "لم يُدرج معنى لهذه الكلمة بعد.",
+      "source": "1665d08d1fe646"
+    },
+    "story.gloss.part": {
+      "message": "جزء من الكلمة",
+      "source": "13b458312d8382"
+    },
+    "story.gloss.phrase": {
+      "message": "عبارة",
+      "source": "135a248a87bda6"
+    },
+    "story.narration": {
+      "message": "السرد",
+      "source": "063db69c225753"
+    },
+    "story.transcript.label": {
+      "message": "القصة حتى الآن",
+      "source": "01267fdf008b55"
+    },
+    "story.translation.hide": {
+      "message": "إخفاء الترجمة",
+      "source": "065eaf87d9350b"
+    },
+    "story.translation.show": {
+      "message": "إظهار الترجمة",
+      "source": "02b713e9854aff"
+    }
+  }
+}

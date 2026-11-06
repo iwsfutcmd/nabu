@@ -441,6 +441,8 @@ export interface NabuSchemaIndex {
   readonly ReportSubmission: ReportSubmission;
   readonly CorrectionSubmission: CorrectionSubmission;
   readonly AnswerSubmission: AnswerSubmission;
+  readonly SignOffs: SignOffs;
+  readonly SignOff: SignOff;
   readonly TaggedText: TaggedText;
   readonly TokenKind: TokenKind;
   readonly Token: Token;
@@ -1059,6 +1061,10 @@ export interface BundleManifest {
   readonly provenance: {
     readonly [k: string]: number;
   };
+  /**
+   * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
+   */
+  readonly release?: boolean;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2960,6 +2966,40 @@ export interface AnswerSubmission {
    * The learner's local date.
    */
   readonly reportedOn: string;
+}
+/**
+ * A reviewer's sign-offs on a course's content (ADR 0072): written by the web app's sentence list, applied to the course source by `nabu review apply`. A signed-off sentence or story becomes reviewed, with the reviewer's provenance.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SignOffs".
+ */
+export interface SignOffs {
+  /**
+   * The course id.
+   */
+  readonly course: string;
+  readonly signoffs: readonly SignOff[];
+}
+/**
+ * One item the reviewer read and found right, as it was shown.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SignOff".
+ */
+export interface SignOff {
+  /**
+   * A sentence id, or a story id (a story is signed off whole: its provenance is the story's).
+   */
+  readonly item: string;
+  readonly kind: "sentence" | "story";
+  /**
+   * sha256 of what the reviewer saw (signoffText in @nabu/core/corrections: every form and translation, as compiled). A sign-off applies only while the source still compiles to it.
+   */
+  readonly shown: string;
+  /**
+   * When the reviewer signed it off; its date becomes reviewedAt.
+   */
+  readonly at: string;
 }
 /**
  * One ruby base and its annotation. Sub-token annotation always uses segments, never integer offsets.

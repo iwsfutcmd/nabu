@@ -1873,6 +1873,39 @@ class AnswerSubmission(BaseModel):
     ]
 
 
+class SignOff(BaseModel):
+    """
+    One item the reviewer read and found right, as it was shown.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    item: Annotated[
+        str,
+        Field(
+            description="A sentence id, or a story id (a story is signed off whole: its provenance is the story's).",
+            min_length=1,
+        ),
+    ]
+    kind: Literal["sentence", "story"]
+    shown: Annotated[
+        str,
+        Field(
+            description="sha256 of what the reviewer saw (signoffText in @nabu/core/corrections: every form and translation, as compiled). A sign-off applies only while the source still compiles to it.",
+            pattern="^[0-9a-f]{64}$",
+        ),
+    ]
+    at: Annotated[
+        str,
+        Field(
+            description="When the reviewer signed it off; its date becomes reviewedAt.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+
+
 type TokenKind = Annotated[
     Literal["word", "punct", "space", "number", "symbol"], Field(title="TokenKind")
 ]
@@ -2197,6 +2230,12 @@ class BundleManifest(BaseModel):
         dict[str, int], Field(description="SPDX expression → number of content items.")
     ]
     provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+    release: Annotated[
+        bool | None,
+        Field(
+            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
+        ),
+    ] = None
 
 
 class BundleNode(BaseModel):
@@ -2782,6 +2821,19 @@ class MatchPolicy(BaseModel):
 type ReportSubmission = Annotated[
     CorrectionSubmission | AnswerSubmission, Field(title="ReportSubmission")
 ]
+
+
+class SignOffs(BaseModel):
+    """
+    A reviewer's sign-offs on a course's content (ADR 0072): written by the web app's sentence list, applied to the course source by `nabu review apply`. A signed-off sentence or story becomes reviewed, with the reviewer's provenance.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[str, Field(description="The course id.", pattern="^[a-z][a-z0-9-]*$")]
+    signoffs: list[SignOff]
 
 
 type RubyAdditionalProperty = Annotated[list[RubySegment], Field(min_length=1)]
@@ -3391,6 +3443,7 @@ type NabuSchemaBundle = Annotated[
     | MessageCatalog
     | OrthographyProfile
     | Reports
+    | SignOffs
     | TaggedText,
     Field(
         description="Every Nabu document type. Generated from /schemas; do not edit.",
