@@ -60,8 +60,10 @@ def with_final_stop(text: str, tag: str) -> str:
     """`text` ended with its script's full stop, unless it already ends with punctuation, ends in
     a digit, or its script takes none. Trailing spaces and format characters stay after it."""
     stop = full_stop(tag)
-    if stop is None or not text.strip() or _ENDED.search(text) or _DIGIT_END.search(text):
+    if stop is None or _ENDED.search(text) or _DIGIT_END.search(text):
         return text
     tail = _TAIL.search(text)
     at = tail.start() if tail is not None else len(text)
+    if at == 0:  # nothing but spaces and format characters: nothing to end
+        return text
     return text[:at] + stop + text[at:]

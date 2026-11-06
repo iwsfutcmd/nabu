@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import pytest
+import regex
 from hypothesis import given
 from hypothesis import strategies as st
 
@@ -52,6 +53,8 @@ def test_the_stop_follows_the_script(tag: str, stop: str | None) -> None:
         ("12", "uz-Latn", "12"),  # "12." would be an ordinal
         ("สวัสดี", "th-Thai", "สวัสดี"),
         ("", "uz-Latn", ""),
+        ("\u00ad", "uz-Latn", "\u00ad"),  # only a format character: nothing to end
+        (" \u200c ", "fa-Arab", " \u200c "),
     ],
 )
 def test_text_without_final_punctuation_gets_its_scripts_stop(
@@ -64,7 +67,12 @@ def test_text_without_final_punctuation_gets_its_scripts_stop(
 def test_a_stop_is_added_at_most_once(text: str, tag: str) -> None:
     once = with_final_stop(text, tag)
     assert with_final_stop(once, tag) == once
-    assert once.startswith(text.rstrip()) or once == text
+    # Otherwise unchanged: the stop goes before any trailing spaces and format characters.
+    tail = regex.compile(r"[\s\p{Cf}]*$")
+    body, after = tail.sub("", text), tail.sub("", once)
+    assert once == text or (
+        after == body + (full_stop(tag) or "") and once[len(after) :] == text[len(body) :]
+    )
 
 
 def test_a_final_stop_voice_reads_word_cards_as_sentences(core_cli: CoreCli) -> None:
