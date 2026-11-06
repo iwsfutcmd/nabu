@@ -58,4 +58,4 @@ must not be enough.
 - **A learner can take their data and leave.** Nothing that names them stays on the server.
 - **One process, one memory:** limits reset on restart, and several API processes would each
   count alone. A shared store (Postgres or Redis) waits until an instance needs more than one.
-- **An age gate** (§14.4, optional) is still to do.
+- **An age gate** (§14.4, optional): [ADR 0069](0069-age-gate.md).

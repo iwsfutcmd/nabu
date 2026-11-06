@@ -34,6 +34,8 @@ deploy/smoke.sh https://your.domain     # optional: checks the instance end to e
   `postgres` volume.
 - **Abuse limits** are on (ADR 0067). Caddy passes the client's address; `NABU_RATE_LIMITS=off`
   turns them off.
+- **Minors:** if the instance may serve them, set `NABU_MIN_AGE` (ADR 0069). Sign-up then asks the
+  person's age, neutrally, and keeps nothing of it. Which age is right depends on where you serve.
 
 ## Options
 

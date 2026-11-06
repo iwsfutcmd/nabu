@@ -228,11 +228,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - `persons` on a sentence (ADR 0056: speaker m/f, addressee m/f/pl) is shown as tags under l1-l2 prompts; tag
   where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
 
-## Account data notes (see docs/adr/0067)
+## Account data notes (see docs/adr/0067, 0069)
 - `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must
   be in both. Deleting asks for the password; the device keeps its log.
 - Abuse limits (src/limits.ts): sign-up, sign-in, uploads; 429 + Retry-After. `NABU_RATE_LIMITS=off` (the e2e API sets it),
   `NABU_TRUST_PROXY=1` only behind a proxy the instance runs.
+- Age gate (ADR 0069, src/age.ts): `NABU_MIN_AGE` makes sign-up ask the age (400 age-required, 403 age). Keep nothing of
+  the answer anywhere, never show the threshold, and parse digits with `parseDigits` (@nabu/i18n), never Number().
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
@@ -240,7 +242,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0068 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0069 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

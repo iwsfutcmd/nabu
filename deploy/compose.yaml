@@ -39,6 +39,7 @@ services:
       # Requests reach the API through Caddy only, which sets X-Forwarded-For.
       NABU_TRUST_PROXY: "1"
       NABU_RATE_LIMITS: ${NABU_RATE_LIMITS:-}
+      NABU_MIN_AGE: ${NABU_MIN_AGE:-}
       NABU_LEAGUES: ${NABU_LEAGUES:-}
       NABU_PUSH: ${NABU_PUSH:-}
       NABU_VAPID_SUBJECT: ${NABU_VAPID_SUBJECT:-}

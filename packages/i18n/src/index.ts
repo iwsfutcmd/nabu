@@ -12,6 +12,7 @@ export {
   type Translator,
   type TranslatorOptions,
 } from "./catalog.ts";
+export { parseDigits } from "./digits.ts";
 export { fontStackFor, uiFontStack, type FontStack } from "./fonts.ts";
 export { cldrLocaleId, formatTag, maximize, parentChain, parentOf, parseTag, sameLocale, scriptOf, type ParsedTag } from "./locale.ts";
 export { negotiateLocale, parseAcceptLanguage, type Negotiated, type NegotiationInput } from "./negotiate.ts";
