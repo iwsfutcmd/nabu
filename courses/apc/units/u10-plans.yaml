@@ -6,8 +6,7 @@ id: u10-plans
 title: {en: Plans for tonight}
 cefr: A2
 kcs:
-- {id: 'sense:raye7', gloss: {en: going (a man going somewhere)}, forms: {apc-Arab/standard: [رايح, رايحة], apc-Latn/arabizi: [raye7, ray7a]}, notes: {en: 'wen raye7? Where are you going? To a woman: wen
-      ray7a?'}}
+- {id: 'sense:raye7', gloss: {en: going (a man going somewhere)}, forms: {apc-Arab/standard: [رايح, رايحة], apc-Latn/arabizi: [raye7, ray7a]}, notes: {en: 'wen raye7? Where are you going? To a woman: wen ray7a? To several people: wen ray7in?'}}
 - {id: 'sense:ta', gloss: {en: let's; so that (before a verb without b-)}, forms: {apc-Arab/standard: [تا], apc-Latn/arabizi: [ta]}, notes: {en: 'yalla ta nru7: come on, let''s go.'}}
 - {id: 'sense:lele', gloss: {en: night; tonight (el lele)}, forms: {apc-Arab/standard: [ليلة], apc-Latn/arabizi: [lele]}, notes: {en: 'el lele: tonight.'}}
 - {id: 'sense:tele3', gloss: {en: go out; go up}, forms: {apc-Arab/standard: [تطلع], apc-Latn/arabizi: [titla3]}}
@@ -509,6 +508,110 @@ sentences:
     en: |-
       Welcome!
       Hello and welcome!
+- id: s.plans.29
+  node: apc.plans.going
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا رايحة عالبحر.
+      tokens: [{surface: أنا, sense: ana}, {surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر,
+              kc: 'sense:ba7r'}]}]
+      reverse: '[أنا] رايحة (عالبحر|ع البحر|على البحر)'
+    apc-Latn/arabizi:
+      text: ana ray7a 3al ba7r.
+      tokens: [{surface: ana, sense: ana}, {surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
+          sense: ba7r}]
+      reverse: '[ana] (ray7a|rayha|raye7a) (3al|3a l|3a el) (ba7r|ba7er|bahr)'
+  translations:
+    en: I('m| am) going to the (beach|sea).
+- id: s.plans.30
+  node: apc.plans.going
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: الليلة أنا فاضية.
+      tokens: [{surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}, {surface: أنا, sense: ana}, {surface: فاضية, sense: fadi, form: 'form:fem'}]
+      reverse: الليلة [أنا] فاضية
+    apc-Latn/arabizi:
+      text: el lele ana fadye.
+      tokens: [{surface: el, sense: el}, {surface: lele, sense: lele}, {surface: ana, sense: ana}, {surface: fadye, sense: fadi, form: 'form:fem'}]
+      reverse: (el|l|il) (lele|leile|layle|leyle) [ana] (fadye|fadie|fadyi|fadya)
+  translations:
+    en: |-
+      Tonight I('m| am) free.
+      I('m| am) free tonight.
+- id: s.plans.31
+  node: apc.plans.going
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وين رايحين؟
+      tokens: [{surface: وين, sense: wen}, {surface: رايحين, sense: raye7, form: 'form:pl'}]
+      reverse: |-
+        وين رايحين
+        إنتو وين رايحين
+    apc-Latn/arabizi:
+      text: wen ray7in?
+      tokens: [{surface: wen, sense: wen}, {surface: ray7in, sense: raye7, form: 'form:pl'}]
+      reverse: |-
+        (wen|wein|wayn) (ray7in|rayhin|raye7in|ray7een)
+        (ento|into) (wen|wein|wayn) (ray7in|rayhin|raye7in|ray7een)
+  translations:
+    en: |-
+      Where are you going?
+      Where are you off to?
+- id: s.plans.32
+  node: apc.plans.friends
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: إنتو رايحين عالسهرة؟
+      tokens: [{surface: إنتو, sense: ento}, {surface: رايحين, sense: raye7, form: 'form:pl'}, {surface: عالسهرة, sense: sahra, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: سهرة,
+              kc: 'sense:sahra'}]}]
+      reverse: '[إنتو] رايحين (عالسهرة|ع السهرة|على السهرة)'
+    apc-Latn/arabizi:
+      text: ento ray7in 3al sahra?
+      tokens: [{surface: ento, sense: ento}, {surface: ray7in, sense: raye7, form: 'form:pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sahra,
+          sense: sahra}]
+      reverse: '[(ento|into|entu)] (ray7in|rayhin|raye7in) (3al|3a l|3a el) (sahra|sahre|sahrah)'
+  translations:
+    en: Are you going to the (party|get-together)?
+- id: s.plans.33
+  node: apc.plans.friends
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: إنتي رايحة عالسهرة؟
+      tokens: [{surface: إنتي, sense: enti}, {surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: عالسهرة, sense: sahra, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: سهرة,
+              kc: 'sense:sahra'}]}]
+      reverse: '[إنتي] رايحة (عالسهرة|ع السهرة|على السهرة)'
+    apc-Latn/arabizi:
+      text: enti ray7a 3al sahra?
+      tokens: [{surface: enti, sense: enti}, {surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sahra,
+          sense: sahra}]
+      reverse: '[(enti|inti)] (ray7a|rayha|raye7a) (3al|3a l|3a el) (sahra|sahre|sahrah)'
+  translations:
+    en: Are you going to the (party|get-together)?
+- id: s.plans.34
+  node: apc.plans.friends
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: مرحبا حبيبتي!
+      tokens: [{surface: مرحبا, sense: marhaba}, {surface: حبيبتي, sense: 7abibi, form: 'form:fem'}]
+      reverse: مرحبا حبيبتي
+    apc-Latn/arabizi:
+      text: mar7aba 7abibti!
+      tokens: [{surface: mar7aba, sense: marhaba}, {surface: 7abibti, sense: 7abibi, form: 'form:fem'}]
+      reverse: (mar7aba|marhaba|mar7ba) (7abibti|habibti|7abibte|7bibti)
+  translations:
+    en: (Hi|Hello), (my dear|dear|habibti)!
 stories:
 - id: apc.story.saturday-night
   node: apc.plans.story

@@ -42,6 +42,7 @@ nodes:
 sentences:
 - id: s.u05.1
   node: yue.where
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你去邊度呀？
@@ -90,6 +91,7 @@ sentences:
     en: My (mum|mom|mother) is (there|over there).
 - id: s.u05.6
   node: yue.where
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -114,6 +116,7 @@ sentences:
     en: Where('s| is) my book?
 - id: s.u05.8
   node: yue.come-go
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -325,6 +328,7 @@ sentences:
       They('re| are) in there.
 - id: s.u05.28
   node: yue.live
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你住喺邊度呀？
@@ -343,6 +347,7 @@ sentences:
     en: I live in Hong Kong.
 - id: s.u05.30
   node: yue.live
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -364,6 +369,7 @@ sentences:
     en: I work in Central.
 - id: s.u05.32
   node: yue.live
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -394,6 +400,46 @@ sentences:
       reverse: 我住(喺|)學校附近
   translations:
     en: I live near the school.
+- id: s.u05.35
+  node: yue.where
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋去邊度呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}},
+        {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你(哋|地)去邊(度|)[呀]
+  translations:
+    en: Where are you (going|off to|headed)?
+- id: s.u05.36
+  node: yue.come-go
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋嚟唔嚟呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 嚟, sense: 嚟, readings: {jyutping: lai4}}, {
+          surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 嚟, sense: 嚟, readings: {jyutping: lai4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)(嚟唔嚟|黎唔黎)[呀]
+        你(哋|地)(係唔係|係咪)(嚟|黎)[呀]
+        你(哋|地)(嚟|黎)嗎
+  translations:
+    en: |-
+      Are you coming?
+      (Will you come|Are you going to come)?
+- id: s.u05.37
+  node: yue.live
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋住喺邊度呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {
+          surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你(哋|地)住(喺|)邊(度|)[呀]
+  translations:
+    en: Where do you live?
 stories:
 - id: yue.story.neighbours
   node: yue.places-story

@@ -505,6 +505,87 @@ sentences:
     en: |-
       The (sea|beach) is (nicer|better|more beautiful)!
       The (sea|beach)'s (nicer|better|more beautiful)!
+- id: s.like.30
+  node: apc.like.like
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بتحبّي البحر؟
+      tokens: [{surface: بتحبّي, sense: 7abb, form: 'form:impf-2fs'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: (بتحبّي|إنتي بتحبّي) البحر
+    apc-Latn/arabizi:
+      text: bt7ebbi el ba7r?
+      tokens: [{surface: bt7ebbi, sense: 7abb, form: 'form:impf-2fs'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: ((bt7ebbi|bt7ebbe|bit7ebbi)|(enti|inti) (bt7ebbi|bt7ebbe|bit7ebbi)) (el|l|il) (ba7r|ba7er|bahr)
+  translations:
+    en: Do you (like|love) the (sea|beach)?
+- id: s.like.31
+  node: apc.like.like
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: بتحبّوا الجبل؟
+      tokens: [{surface: بتحبّوا, sense: 7abb, form: 'form:impf-2pl'}, {surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: (بتحبّوا|بتحبّو|إنتو بتحبّوا|إنتو بتحبّو) الجبل
+    apc-Latn/arabizi:
+      text: bt7ebbo el jabal?
+      tokens: [{surface: bt7ebbo, sense: 7abb, form: 'form:impf-2pl'}, {surface: el, sense: el}, {surface: jabal, sense: jabal}]
+      reverse: ((bt7ebbo|bt7ebbu|bit7ebbo)|(ento|into) (bt7ebbo|bt7ebbu|bit7ebbo)) (el|l|il) (jabal|jabel|jbal)
+  translations:
+    en: Do you (like|love) the (mountains|mountain)?
+- id: s.like.32
+  node: apc.like.want-to
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بدّك قهوة؟
+      tokens: [{surface: بدّك, sense: badd, vocalized: بَدِّك, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: قهوة, sense: ahwe}]
+      reverse: (بدّك|إنتي بدّك) قهوة
+    apc-Latn/arabizi:
+      text: baddik ahwe?
+      tokens: [{surface: baddik, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: ahwe, sense: ahwe}]
+      reverse: ((baddik|badik|baddek)|(enti|inti) (baddik|badik|baddek)) (ahwe|2ahwe)
+  translations:
+    en: |-
+      Do you want (coffee|a coffee|some coffee)?
+      Would you like (coffee|a coffee|some coffee)?
+- id: s.like.33
+  node: apc.like.want-to
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: بدّكن شي؟
+      tokens: [{surface: بدّكن, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: شي, sense: shi}]
+      reverse: (بدّكن|إنتو بدّكن) شي
+    apc-Latn/arabizi:
+      text: baddkon shi?
+      tokens: [{surface: baddkon, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: shi, sense: shi}]
+      reverse: ((baddkon|badkon|baddkun)|(ento|into) (baddkon|badkon|baddkun)) (shi|she)
+  translations:
+    en: |-
+      Do you want anything?
+      Do you need anything?
+      Would you like something?
+      Do you want something?
+- id: s.like.34
+  node: apc.like.watch-play
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: بتلعبوا فوتبول؟
+      tokens: [{surface: بتلعبوا, sense: le3eb, form: 'form:impf-2pl'}, {surface: فوتبول, sense: football}]
+      reverse: (بتلعبوا|بتلعبو|إنتو بتلعبوا|إنتو بتلعبو) (فوتبول|فوتبال)
+    apc-Latn/arabizi:
+      text: btil3abo football?
+      tokens: [{surface: btil3abo, sense: le3eb, form: 'form:impf-2pl'}, {surface: football, sense: football}]
+      reverse: ((btil3abo|btel3abo|btil3abu)|(ento|into) (btil3abo|btel3abo|btil3abu)) (football|futbol|foot)
+  translations:
+    en: Do you play (football|soccer)?
 stories:
 - id: apc.story.sea-or-mountain
   node: apc.like.story

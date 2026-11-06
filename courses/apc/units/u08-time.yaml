@@ -500,6 +500,112 @@ sentences:
       reverse: ((b7ebb|b7eb|bhebb|b7ib)|ana (b7ebb|b7eb|bhebb|b7ib)) (el|l|il) (lel|leil|layl)
   translations:
     en: I (love|like) (the night|nighttime).
+- id: s.time.28
+  node: apc.time.when
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: إنتي فاضية بكرا؟
+      tokens: [{surface: إنتي, sense: enti}, {surface: فاضية, sense: fadi, form: 'form:fem'}, {surface: بكرا, sense: bukra}]
+      reverse: '[إنتي] فاضية (بكرا|بكرة)'
+    apc-Latn/arabizi:
+      text: enti fadye bukra?
+      tokens: [{surface: enti, sense: enti}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: bukra, sense: bukra}]
+      reverse: '[(enti|inti)] (fadye|fadie|fadyi|fadya) (bukra|bokra|bukrah)'
+  translations:
+    en: Are you free tomorrow?
+- id: s.time.29
+  node: apc.time.when
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: إنتو فاضيين بكرا؟
+      tokens: [{surface: إنتو, sense: ento}, {surface: فاضيين, sense: fadi, form: 'form:pl'}, {surface: بكرا, sense: bukra}]
+      reverse: '[إنتو] فاضيين (بكرا|بكرة)'
+    apc-Latn/arabizi:
+      text: ento fadyin bukra?
+      tokens: [{surface: ento, sense: ento}, {surface: fadyin, sense: fadi, form: 'form:pl'}, {surface: bukra, sense: bukra}]
+      reverse: '[(ento|into|entu)] (fadyin|fadyeen|fadiyin|fadiyeen) (bukra|bokra|bukrah)'
+  translations:
+    en: Are you free tomorrow?
+- id: s.time.30
+  node: apc.time.when
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا مشغولة اليوم.
+      tokens: [{surface: أنا, sense: ana}, {surface: مشغولة, sense: mashghoul, form: 'form:fem'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: |-
+        [أنا] مشغولة اليوم
+        اليوم [أنا] مشغولة
+    apc-Latn/arabizi:
+      text: ana mashghoule el yom.
+      tokens: [{surface: ana, sense: ana}, {surface: mashghoule, sense: mashghoul, form: 'form:fem'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: |-
+        [ana] (mashghoule|mashghoula|mash8oule) (el|l|il) (yom|yawm|youm)
+        (el|l|il) (yom|yawm|youm) [ana] (mashghoule|mashghoula|mash8oule)
+  translations:
+    en: |-
+      I('m| am) busy today.
+      Today I('m| am) busy.
+- id: s.time.31
+  node: apc.time.clock
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: استنّي دقيقة.
+      tokens: [{surface: استنّي, sense: stanna, form: 'form:imp-2fs'}, {surface: دقيقة, sense: da2i2a}]
+      reverse: استنّي دقيقة
+    apc-Latn/arabizi:
+      text: stanni da2i2a.
+      tokens: [{surface: stanni, sense: stanna, form: 'form:imp-2fs'}, {surface: da2i2a, sense: da2i2a}]
+      reverse: (stanni|estanni|stanne|stani) (da2i2a|de2i2a|d2i2a)
+  translations:
+    en: |-
+      Wait a minute.
+      Wait one minute.
+      (Hang|Hold) on a minute.
+- id: s.time.32
+  node: apc.time.clock
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: استنّوا دقيقة.
+      tokens: [{surface: استنّوا, sense: stanna, form: 'form:imp-2pl'}, {surface: دقيقة, sense: da2i2a}]
+      reverse: (استنّوا|استنّو) دقيقة
+    apc-Latn/arabizi:
+      text: stanno da2i2a.
+      tokens: [{surface: stanno, sense: stanna, form: 'form:imp-2pl'}, {surface: da2i2a, sense: da2i2a}]
+      reverse: (stanno|estanno|stannu|stano) (da2i2a|de2i2a|d2i2a)
+  translations:
+    en: |-
+      Wait a minute.
+      Wait one minute.
+      (Hang|Hold) on a minute.
+- id: s.time.33
+  node: apc.time.calendar
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعملوا بالعطلة؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
+              surface: عطلة, kc: 'sense:3otle'}]}]
+      reverse: شو (بتعملوا|بتعملو) بالعطلة
+    apc-Latn/arabizi:
+      text: shu bta3mlo bel 3otle?
+      tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
+          sense: 3otle}]
+      reverse: (shu|sho) (bta3mlo|bte3mlo|bta3mlu) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+  translations:
+    en: |-
+      What do you do on (holiday|vacation)?
+      What are you doing (on|for) the holiday?
 stories:
 - id: apc.story.free-on-saturday
   node: apc.time.story

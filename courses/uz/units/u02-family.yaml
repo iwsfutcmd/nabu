@@ -519,6 +519,22 @@ sentences:
       reverse: У [менинг] акам эмас
   translations:
     en: He('s not| isn't| is not) my (older|elder|big) brother.
+- id: s.family.34
+  node: uz.family.we
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Yaxshimisizlar?
+      tokens: [{surface: Yaxshimisizlar, sense: yaxshi, morphs: [{surface: Yaxshi, kc: 'sense:yaxshi'}, {surface: mi, kc: 'form:q-mi'}, {surface: siz, kc: 'form:cop-2-siz'}, {surface: lar, kc: 'form:plural-lar'}]}]
+      reverse: '[(Sizlar|Siz)] ((yaxshimisizlar|yaxshimisiz)|(qalaysizlar|qalaysiz)|(qandaysizlar|qandaysiz))'
+    uz-Cyrl/standard:
+      text: Яхшимисизлар?
+      tokens: [{surface: Яхшимисизлар, sense: yaxshi, morphs: [{surface: Яхши, kc: 'sense:yaxshi'}, {surface: ми, kc: 'form:q-mi'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: лар, kc: 'form:plural-lar'}]}]
+      reverse: '[(Сизлар|Сиз)] ((яхшимисизлар|яхшимисиз)|(қалайсизлар|қалайсиз)|(қандайсизлар|қандайсиз))'
+  translations:
+    en: |-
+      How are you?
+      Are you (well|okay|OK|fine|all right)?
 stories:
 - id: uz.story.family
   node: uz.family.story

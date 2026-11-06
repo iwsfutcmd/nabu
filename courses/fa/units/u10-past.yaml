@@ -431,6 +431,30 @@ sentences:
     en: |-
       Yes, (we|I) had a (great|very good|wonderful|lovely) time!
       Yes, it was (great|a lot of fun|very nice)!
+- id: s.past.35
+  node: fa.past.was
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: دیروز کجا بودید؟
+      tokens: [{surface: دیروز, sense: dirooz}, {surface: کجا, sense: koja}, {surface: بودید, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: |-
+        [شما] دیروز کجا بودید
+        دیروز شما کجا بودید
+  translations:
+    en: Where were you yesterday?
+- id: s.past.36
+  node: fa.past.did
+  constructions:
+  - construction:past
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: چه خریدید؟
+      tokens: [{surface: چه, sense: che}, {surface: خریدید, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] (چه|چی) خریدید'
+  translations:
+    en: What did you buy?
 stories:
 - id: fa.story.weekend
   node: fa.past.story

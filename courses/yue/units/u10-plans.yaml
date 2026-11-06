@@ -39,6 +39,7 @@ nodes:
 sentences:
 - id: s.u10.1
   node: yue.doing
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你做緊咩呀？
@@ -63,6 +64,7 @@ sentences:
     en: I('m| am) (eating|having a meal|having dinner|having lunch|having my meal).
 - id: s.u10.3
   node: yue.doing
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我等緊你。
@@ -238,6 +240,7 @@ sentences:
       I (haven't|have not) got an umbrella.
 - id: s.u10.17
   node: yue.forecast
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你帶咗遮未呀？
@@ -294,6 +297,7 @@ sentences:
       Let's go to the (movies|cinema) together!
 - id: s.u10.21
   node: yue.invite
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -331,6 +335,7 @@ sentences:
       I('ve| have) got plans with (a friend|friends|my friends).
 - id: s.u10.24
   node: yue.invite
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你搵邊個呀？
@@ -414,6 +419,7 @@ sentences:
       I('m| am) definitely going!
 - id: s.u10.31
   node: yue.summer
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -438,6 +444,7 @@ sentences:
     en: Let's go to the beach!
 - id: s.u10.33
   node: yue.summer
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你週末想做咩呀？
@@ -460,6 +467,39 @@ sentences:
     en: |-
       Let's meet at the (MTR|metro|subway) station at (seven|7)[ o'clock].
       Let's meet at (seven|7)[ o'clock] at the (MTR|metro|subway) station.
+- id: s.u10.35
+  node: yue.doing
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋做緊咩呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {
+          surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)做緊(咩|乜嘢|乜野|乜)[呀]
+        你(哋|地)喺度做(咩|乜嘢|乜野|乜)[呀]
+  translations:
+    en: |-
+      What are you doing?
+      What are you up to?
+- id: s.u10.36
+  node: yue.invite
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋想唔想去行山呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}},
+        {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 行山, sense: 行山, readings: {
+            jyutping: haang4 saan1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)想唔想去行山[呀]
+        你(哋|地)想去行山嗎
+  translations:
+    en: |-
+      Do you want to go hiking?
+      Would you like to go hiking?
 stories:
 - id: yue.story.rainy-saturday
   node: yue.plans-story

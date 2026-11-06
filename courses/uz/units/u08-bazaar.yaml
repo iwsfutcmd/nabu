@@ -544,6 +544,24 @@ sentences:
       reverse: Мана ўн минг сўм раҳмат
   translations:
     en: Here('s| is| are) (ten thousand|10,000) (som|soum|sum|soums|sums). (Thank you|Thanks)!
+- id: s.bazaar.33
+  node: uz.bazaar.like
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Nima xohlaysizlar?
+      tokens: [{surface: Nima, sense: nima}, {surface: xohlaysizlar, sense: xohlamoq, morphs: [{surface: xohla, kc: 'sense:xohlamoq'}, {surface: y, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'},
+            {surface: lar, kc: 'form:plural-lar'}]}]
+      reverse: '[(Sizlar|Siz)] nima (xohlaysizlar|xohlaysiz)'
+    uz-Cyrl/standard:
+      text: Нима хоҳлайсизлар?
+      tokens: [{surface: Нима, sense: nima}, {surface: хоҳлайсизлар, sense: xohlamoq, morphs: [{surface: хоҳла, kc: 'sense:xohlamoq'}, {surface: й, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'},
+            {surface: лар, kc: 'form:plural-lar'}]}]
+      reverse: '[(Сизлар|Сиз)] нима (хоҳлайсизлар|хоҳлайсиз)'
+  translations:
+    en: |-
+      What would you like?
+      What do you want?
 stories:
 - id: uz.story.bazaar
   node: uz.bazaar.story

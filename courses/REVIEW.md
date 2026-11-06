@@ -55,18 +55,19 @@ Policies the pass adopted, to confirm or reverse:
     s.time.27, s.past.30, s.past.31.
   - The breakfast story line writes تِرْويقَة (*terwi2a*), as the vocalization and the Arabizi do;
     *tarwi2a* is heard too.
-  - Plural "you" (*baddkon*, إنتو) is not accepted.
+  - Plural "you" (*baddkon*, إنتو) is accepted only where a sentence is tagged "to several people"
+    (ADR 0075); a sentence tagged "to a man" still takes only the masculine.
   - Still open in the vocalization: الضهر, هيدا, ترويقة.
-  - **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md)). 75 sentences say who speaks or who is
-    spoken to: 56 to a man, 8 to a woman, 11 a man speaking. Their accept sets keep only the forms that fit.
+  - **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md), [0075](../docs/adr/0075-persons-coverage.md)).
+    125 sentences say who speaks or who is spoken to: 56 to a man, 21 to a woman, 29 to several people,
+    11 a man speaking, 8 a woman speaking. Their accept sets keep only the forms that fit.
     To confirm:
     - منيح (s.7) accepts both genders, untagged, as a reaction to news; s.8 and s.9 are tagged "a man speaking".
     - Arabizi *ente*/*inte* are read as feminine: some people write *inte* for the masculine.
     - حبيبي (s.plans.16) is tagged "to a man". In Beirut it is often said to women too.
     - Reading Arabic into English, *ru7t*, *kent* and *zert* also mean "you (m)", and *bt-* forms also mean
       "she". The English sets take only the course's reading (s.plans.2 now takes both).
-    - No sentence is tagged for plural "you", so *baddkon* and كيفكن are rejected wherever a sentence is
-      tagged "to a man".
+    - Plural "you" is taught in four new lessons (ADR 0075); see apc point 12 below.
   - The judge's golden items keep ميرسي, تمام, باي and شكرا as rejects.
 
 ## Marking what is wrong
@@ -135,6 +136,11 @@ With an account on a server, corrections also reach the review queue at `/admin/
     - ezafe carriers (ی, ٔ) stay bare.
 
     نه is pinned *na* on its 11 tokens; the drill's "nine" stays unmarked.
+12. **Several people** ([ADR 0075](../docs/adr/0075-persons-coverage.md)). Ten new sentences,
+    tagged "to several people", are the شما + -ید counterparts of تو sentences in the same lessons. Their
+    accept sets drop the تو forms. Should colloquial شماها also be accepted? The singular stays
+    untagged: شما is also the polite singular, so a "to one person" tag would rule nothing out until
+    register (T–V) is modelled.
 
 ## yue (Cantonese)
 
@@ -161,6 +167,11 @@ With an account on a server, corrections also reach the review queue at `/admin/
     嚿 囡 are not in CLDR's yue_Hant exemplars. So the course uses 俾 for "give/pay" and has no
     細佬, 埋單 or 叉燒. Allowing them means adding them to the profile's `exemplarsExtra`, marked
     REVIEW.
+11. **One person or several** ([ADR 0075](../docs/adr/0075-persons-coverage.md)). The 57 "you"
+    sentences whose English does not say how many (outside the intro unit) are tagged "to one person",
+    so they take 你 and not 你哋. 15 new sentences, tagged "to several people", are their 你哋
+    counterparts with the same tokens and readings (s.u02.39 …). Check that each still sounds natural
+    to a group: 你哋媽媽 (siblings), 你哋有冇貓, 我等你哋.
 
 ## uz (Uzbek)
 
@@ -184,6 +195,10 @@ With an account on a server, corrections also reach the review queue at `/admin/
 10. **The Cyrillic.** The 121 info notes where ICU's transform differs are ICU errors (э after
     consonants, ёʻ for йў). The pinned Cyrillic follows the standard spelling. Loanwords are
     pinned in their standard form (поезд, самолёт, Англия).
+11. **Several people** ([ADR 0075](../docs/adr/0075-persons-coverage.md)). Seven new sentences,
+    tagged "to several people", say *Sizlar … -sizlar* (Yaxshimisizlar?, Tushundingizlarmi?). Their
+    accept sets take *siz* or *sizlar* forms and drop *sen*. Is the doubled plural (*Sizlar … borasizlar*)
+    natural, or should *Siz … borasizlar* be the shown form?
 
 ## apc (Lebanese Arabic)
 
@@ -237,6 +252,18 @@ With an account on a server, corrections also reach the review queue at `/admin/
       is not always a bad clip, and a low one is not always a good one.
     - **A wrong clip:** fix the vowel marks (vocalization.yaml or the token's `vocalized`) and
       regenerate, or record the sentence (`nabu audio ingest`).
+12. **Women speaking, women and groups addressed** ([ADR 0075](../docs/adr/0075-persons-coverage.md)).
+    50 new sentences.
+    - **Plural "you"** in four new lessons (`apc.fam.you-pl`, `apc.food.you-pl`, `apc.day.you-pl`,
+      `apc.past.you-pl`): the -kon ending (كيفكن, بدّكن, عندكن), imperatives in -o (تفضّلوا, كلوا,
+      اشربوا, استنّوا), the present bt-…-o (بتعملوا), the past -to (رحتوا, أكلتوا, اشتريتوا), adjectives in
+      -in (جوعانين, مبسوطين, رايحين), and إنتو.
+    - **Spelling to check:** the Arabizi *-o* rather than *-u* (both are accepted), and ـوا rather
+      than ـو in Arabic script (both are accepted).
+    - **A woman speaking:** جوعانة, عطشانة, مأخّرة, مشغولة, تعبانة, مبسوطة, رايحة, فاضية. These
+      sentences have no audio: the course voice is a man's.
+    - **To a woman:** عندِك, يمينِك, عمرِك (vowel marks pinned), بتشتغلي, بتحبّي, بدِّك, اشتريتي, كنتي
+      مشغولة, استنّي, حبيبتي (tagged "to a woman"; it is also said to men).
 
 ## lzh (Classical Chinese)
 

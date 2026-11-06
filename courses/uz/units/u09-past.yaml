@@ -570,6 +570,46 @@ sentences:
       reverse: Ош жуда мазали эди
   translations:
     en: The (plov|pilaf|palov|food) was (very tasty|delicious|very delicious|very good).
+- id: s.past.32
+  node: uz.past.went
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Sizlar kecha qayerga bordingizlar?
+      tokens: [{surface: Sizlar, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: lar, kc: 'form:plural-lar'}]}, {surface: kecha, sense: kecha}, {surface: qayerga, sense: qayer, morphs: [
+            {surface: qayer, kc: 'sense:qayer'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: bordingizlar, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: di, kc: 'form:past-di'},
+            {surface: ngiz, kc: 'form:past-2-ngiz'}, {surface: lar, kc: 'form:plural-lar'}]}]
+      reverse: |-
+        [(Sizlar|Siz)] kecha qayerga (bordingizlar|bordingiz)
+        Kecha [(sizlar|siz)] qayerga (bordingizlar|bordingiz)
+    uz-Cyrl/standard:
+      text: Сизлар кеча қаерга бордингизлар?
+      tokens: [{surface: Сизлар, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: лар, kc: 'form:plural-lar'}]}, {surface: кеча, sense: kecha}, {surface: қаерга, sense: qayer, morphs: [{
+              surface: қаер, kc: 'sense:qayer'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бордингизлар, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: ди, kc: 'form:past-di'},
+            {surface: нгиз, kc: 'form:past-2-ngiz'}, {surface: лар, kc: 'form:plural-lar'}]}]
+      reverse: |-
+        [(Сизлар|Сиз)] кеча қаерга (бордингизлар|бордингиз)
+        Кеча [(сизлар|сиз)] қаерга (бордингизлар|бордингиз)
+  translations:
+    en: Where did you go yesterday?
+- id: s.past.33
+  node: uz.past.understand
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Tushundingizlarmi?
+      tokens: [{surface: Tushundingizlarmi, sense: tushunmoq, morphs: [{surface: Tushun, kc: 'sense:tushunmoq'}, {surface: di, kc: 'form:past-di'}, {surface: ngiz, kc: 'form:past-2-ngiz'}, {surface: lar,
+              kc: 'form:plural-lar'}, {surface: mi, kc: 'form:q-mi'}]}]
+      reverse: '[(Sizlar|Siz)] (tushundingizlarmi|tushundingizmi)'
+    uz-Cyrl/standard:
+      text: Тушундингизларми?
+      tokens: [{surface: Тушундингизларми, sense: tushunmoq, morphs: [{surface: Тушун, kc: 'sense:tushunmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: нгиз, kc: 'form:past-2-ngiz'}, {surface: лар,
+              kc: 'form:plural-lar'}, {surface: ми, kc: 'form:q-mi'}]}]
+      reverse: '[(Сизлар|Сиз)] (тушундингизларми|тушундингизми)'
+  translations:
+    en: |-
+      Did you understand?
+      Do you understand?
 stories:
 - id: uz.story.past
   node: uz.past.story
