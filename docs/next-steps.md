@@ -66,7 +66,7 @@ These cannot be done in code. Each one gates something below.
   - **Privacy** (§14.4):
     - export of a learner's server data (events and projections) (done: [ADR 0067](adr/0067-account-data-and-limits.md));
     - deleting an account, which recomputes shared aggregates (done: ADR 0067);
-    - an optional age gate for instances that may serve minors.
+    - an optional age gate for instances that may serve minors (done: [ADR 0069](adr/0069-age-gate.md)).
   - **Abuse limits:** rate limits on sign-up, sign-in and uploads (done: ADR 0067).
   - **CI:**
     - the API tests also run against real Postgres (done: the `api-postgres` job, one fresh database per test file);

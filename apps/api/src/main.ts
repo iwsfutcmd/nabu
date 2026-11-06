@@ -12,6 +12,7 @@
  *   NABU_RATE_LIMITS=off        no abuse limits (default on: limits.ts DEFAULT_LIMITS)
  *   NABU_RATE_LIMIT_SIGN_UP, _SIGN_IN, _EVENTS   one limit as <max>/<seconds>, e.g. 5/3600
  *   NABU_TRUST_PROXY=1          the client address is the first X-Forwarded-For entry (behind a proxy you run)
+ *   NABU_MIN_AGE                the age gate (ADR 0069): sign-up asks the age and needs at least this (unset: no gate)
  *
  * AI (gameplan §13; ai/providers.ts lists the model settings):
  *   NABU_LLM, NABU_LLM_MODEL, NABU_LLM_URL, NABU_LLM_KEY   the model (unset: every AI feature off)
@@ -40,6 +41,7 @@ import { createCourses, DEFAULT_BUNDLES } from "./ai/courses.ts";
 import { createGateway, DEFAULT_BUDGETS, validAi } from "./ai/gateway.ts";
 import { providerFromEnv } from "./ai/providers.ts";
 import { createApp } from "./app.ts";
+import { minAgeFromEnv } from "./age.ts";
 import { limitsFromEnv } from "./limits.ts";
 import { openDatabase } from "./db/index.ts";
 import { rollover } from "./leagues.ts";
@@ -93,6 +95,7 @@ const app = createApp({
   game,
   native,
   limits: limitsFromEnv(env),
+  minAge: minAgeFromEnv(env["NABU_MIN_AGE"]),
   // Behind a proxy every request comes from it: then the address it forwards counts, and only then,
   // as anyone can send that header.
   clientOf: (c) => (on("NABU_TRUST_PROXY") ? c.req.header("x-forwarded-for")?.split(",")[0]?.trim() : getConnInfo(c).remote.address) || undefined,

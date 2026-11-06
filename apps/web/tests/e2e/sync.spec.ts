@@ -200,4 +200,64 @@ test.describe("sync", () => {
     expect(signIn.status()).toBe(401);
     expect(await logOf(page, "fa")).toHaveLength(local);
   });
+
+  test("a server with an age gate asks the age neutrally, turns a child away and is remembered", async ({ page }) => {
+    // The e2e API has no gate (NABU_MIN_AGE unset): this plays a gated server's answers (ADR 0069).
+    const ages: unknown[] = [];
+    await page.route(`${API}/v1/auth/sign-up`, async (route) => {
+      const body = route.request().postDataJSON() as { age?: unknown };
+      ages.push(body.age);
+      if (body.age === undefined) return route.fulfill({ status: 400, contentType: "application/json", headers: { "Access-Control-Allow-Origin": "*" }, body: JSON.stringify({ error: "age-required" }) });
+      if (typeof body.age === "number" && body.age < 16) return route.fulfill({ status: 403, contentType: "application/json", headers: { "Access-Control-Allow-Origin": "*" }, body: JSON.stringify({ error: "age" }) });
+      return route.continue();
+    });
+    await page.goto(app("#/"));
+    await expect(page.locator("[data-progress]")).toBeVisible();
+    await signUp(page, "young@example.com", "a long enough password");
+    await expect(page.locator("[data-account-error]")).toHaveAttribute("data-account-error", "age-required");
+    const age = page.locator("[data-field=age]");
+    await expect(age).toBeVisible();
+    await expect(page.locator("[data-account-form]")).not.toContainText("16");
+    const axe = (await new AxeBuilder({ page }).include("[data-account-form]").analyze()).violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+    expect(axe.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+
+    // Not a number: the form says so and sends nothing.
+    await age.fill("twelve");
+    await page.locator("[data-action=account-submit]").click();
+    await expect(page.locator("[data-account-error]")).toHaveAttribute("data-account-error", "invalid-age");
+    expect(ages).toEqual([undefined]);
+
+    // A Persian keyboard's digits are a number like any other.
+    await age.fill("\u06F1\u06F2");
+    await page.locator("[data-action=account-submit]").click();
+    await expect(page.locator("[data-age-refused]")).toBeVisible();
+    expect(ages).toEqual([undefined, 12]);
+    await expect(page.locator("[data-field=age]")).toHaveCount(0);
+    await expect(page.locator("[data-action=account-submit]")).toHaveCount(0);
+
+    // The device remembers; signing in to an existing account is still offered.
+    await page.reload();
+    await expect(page.locator("[data-age-refused]")).toBeVisible();
+    await page.locator("[data-action=account-mode]").click();
+    await expect(page.locator("[data-account-form=sign-in] [data-field=email]")).toBeVisible();
+  });
+
+  test("an age at or over the gate's minimum creates the account", async ({ page }) => {
+    let asked = false;
+    await page.route(`${API}/v1/auth/sign-up`, async (route) => {
+      const body = route.request().postDataJSON() as { age?: unknown };
+      if (body.age === undefined) {
+        asked = true;
+        return route.fulfill({ status: 400, contentType: "application/json", headers: { "Access-Control-Allow-Origin": "*" }, body: JSON.stringify({ error: "age-required" }) });
+      }
+      expect(body.age).toBe(16);
+      return route.continue();
+    });
+    await page.goto(app("#/"));
+    await signUp(page, "old-enough@example.com", "a long enough password");
+    await page.locator("[data-field=age]").fill("\u0661\u0666");
+    await page.locator("[data-action=account-submit]").click();
+    await expect(page.locator("[data-sync-status]")).toBeVisible();
+    expect(asked).toBe(true);
+  });
 });

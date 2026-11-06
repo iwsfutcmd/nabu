@@ -4,7 +4,7 @@
  *
  *   GET  /healthz
  *   GET  /v0/ui-locale                 negotiated UI locale
- *   POST /v1/auth/sign-up              {email, password} → {user, token}
+ *   POST /v1/auth/sign-up              {email, password, age?} → {user, token} (age: with NABU_MIN_AGE, ADR 0069)
  *   POST /v1/auth/sign-in              {email, password} → {user, token}
  *   POST /v1/auth/sign-out
  *   GET  /v1/auth/me
@@ -53,6 +53,7 @@ import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
 import { append, checkBatch, existing, gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
+import { ageCheck } from "./age.ts";
 import { createLimiter, type Limits } from "./limits.ts";
 import { deleteAccount, exportOf } from "./privacy.ts";
 import { getProfile, setProfile } from "./profiles.ts";
@@ -83,6 +84,8 @@ export interface AppDeps {
   readonly limits?: Limits | undefined;
   /** The client's address, for the limits by address (main.ts: the socket, or X-Forwarded-For behind a proxy). */
   readonly clientOf?: ((c: Context) => string | undefined) | undefined;
+  /** The age gate (ADR 0069): sign-up needs an age of at least this many years (unset: no gate). */
+  readonly minAge?: number | undefined;
 }
 
 export type Env = { Variables: { user: Account; token: string } };
@@ -93,10 +96,9 @@ const sameSecret = (a: string, b: string): boolean => {
   return x.length === y.length && timingSafeEqual(x, y);
 };
 
-const credentials = async (c: Context): Promise<{ email: string; password: string } | undefined> => {
-  const body: unknown = await c.req.json().catch(() => undefined);
-  if (typeof body !== "object" || body === null) return undefined;
-  const { email, password } = body as { email?: unknown; password?: unknown };
+const credentialsOf = (b: Record<string, unknown> | undefined): { email: string; password: string } | undefined => {
+  const email = b?.["email"];
+  const password = b?.["password"];
   return typeof email === "string" && typeof password === "string" ? { email, password } : undefined;
 };
 
@@ -138,7 +140,7 @@ const validSubscription = (b: Record<string, unknown>): { endpoint: string; p256
   return { endpoint, p256dh: keys.p256dh, auth: keys.auth };
 };
 
-export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined }: AppDeps) => {
+export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, adminToken, speech, game = DEFAULT_GAME, native = {}, limits = {}, clientOf = () => undefined, minAge }: AppDeps) => {
   const app = new Hono<Env>();
   app.use("/v1/*", cors({ origin: "*", allowHeaders: ["Authorization", "Content-Type"], allowMethods: ["GET", "POST", "PUT", "DELETE"], exposeHeaders: ["Retry-After"], maxAge: 600 }));
   const limiter = (l: Limits[keyof Limits]): ((key: string) => ReturnType<ReturnType<typeof createLimiter>>) => (l === undefined ? () => ({ ok: true }) : createLimiter(l, now));
@@ -212,22 +214,28 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
   }
 
   app.post("/v1/auth/sign-up", async (c) => {
+    const b = await body(c);
+    const credentials = credentialsOf(b);
+    if (credentials === undefined) return c.json({ error: "invalid-request" }, 400);
+    // Asking for the age costs no attempt; answering it does, like any sign-up.
+    const age = ageCheck(minAge, b?.["age"]);
+    if (!age.ok && age.error === "age-required") return c.json({ error: age.error }, 400);
     const limited = overLimit(c, signUps, [`addr:${clientOf(c) ?? "unknown"}`]);
     if (limited !== undefined) return limited;
-    const body = await credentials(c);
-    if (body === undefined) return c.json({ error: "invalid-request" }, 400);
-    const result = await accounts.signUp(body.email, body.password);
+    // Nothing of the age is kept, whatever the answer.
+    if (!age.ok) return c.json({ error: age.error }, age.error === "age" ? 403 : 400);
+    const result = await accounts.signUp(credentials.email, credentials.password);
     return result.ok ? c.json(result.value, 201) : c.json({ error: result.error }, result.error === "email-taken" ? 409 : 400);
   });
 
   app.post("/v1/auth/sign-in", async (c) => {
-    const body = await credentials(c);
-    if (body === undefined) return c.json({ error: "invalid-request" }, 400);
+    const credentials = credentialsOf(await body(c));
+    if (credentials === undefined) return c.json({ error: "invalid-request" }, 400);
     // By address (one client trying many accounts) and by account (many clients trying one).
-    const email = normalizeEmail(body.email);
+    const email = normalizeEmail(credentials.email);
     const limited = overLimit(c, signIns, [`addr:${clientOf(c) ?? "unknown"}`, email === undefined ? undefined : `account:${email}`]);
     if (limited !== undefined) return limited;
-    const result = await accounts.signIn(body.email, body.password);
+    const result = await accounts.signIn(credentials.email, credentials.password);
     return result.ok ? c.json(result.value) : c.json({ error: result.error }, 401);
   });
 

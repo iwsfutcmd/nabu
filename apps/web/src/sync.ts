@@ -36,7 +36,20 @@ export interface Account {
 }
 
 /** Error codes from the server, plus the client's own. The UI turns them into messages. */
-export type SyncError = "invalid-email" | "weak-password" | "email-taken" | "wrong-credentials" | "rate-limited" | "unreachable" | "signed-out" | "rejected" | "unknown";
+export type SyncError =
+  | "invalid-email"
+  | "weak-password"
+  | "email-taken"
+  | "wrong-credentials"
+  | "rate-limited"
+  /** The server's age gate (ADR 0069) needs the person's age. */
+  | "age-required"
+  /** The server's age gate turned the person away. */
+  | "age"
+  | "unreachable"
+  | "signed-out"
+  | "rejected"
+  | "unknown";
 
 export interface SyncState {
   /** The sync server, if this build or URL names one: without it the app is local-only. */
@@ -52,12 +65,15 @@ export interface SyncState {
   readonly pulled: number;
   /** Bumped when a queued second check (the judge) revised an answer: open views replay in place. */
   readonly revised: number;
+  /** This server's age gate turned the person away (ADR 0069): the device remembers, and offers no new account there. */
+  readonly ageRefused: boolean;
 }
 
 export interface Sync {
   readonly get: () => SyncState;
   readonly subscribe: (listener: () => void) => () => void;
-  readonly signUp: (email: string, password: string) => Promise<SyncError | undefined>;
+  /** `age` in years, when the server asks for it (ADR 0069); it is sent for that check alone. */
+  readonly signUp: (email: string, password: string, age?: number) => Promise<SyncError | undefined>;
   readonly signIn: (email: string, password: string) => Promise<SyncError | undefined>;
   readonly signOut: () => Promise<void>;
   /** Everything the server holds for the account (§14.4), as GET /v1/export gives it. */
@@ -70,13 +86,15 @@ export interface Sync {
 }
 
 const ACCOUNT = "account";
+/** The servers whose age gate turned the person away (ADR 0069). */
+const AGE_REFUSED = "age-refused";
 const CURSOR = "cursor";
 
 const errorOf = (e: unknown): SyncError => {
   if (isHttpError(e)) {
     if (e.status === 401 && e.code === "unauthorized") return "signed-out";
     if (e.status === 429) return "rate-limited";
-    const known: readonly SyncError[] = ["invalid-email", "weak-password", "email-taken", "wrong-credentials"];
+    const known: readonly SyncError[] = ["invalid-email", "weak-password", "email-taken", "wrong-credentials", "age-required", "age"];
     if (known.includes(e.code as SyncError)) return e.code as SyncError;
     return e.status === 400 ? "rejected" : "unknown";
   }
@@ -136,6 +154,7 @@ const VISIBLE_QUIET_MS = 30_000;
 
 export const createSync = async (store: EventStore, server: string | undefined, options: SyncOptions = {}): Promise<Sync> => {
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
+  const refused = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
   let state: SyncState = {
     server: saved?.server ?? server,
     account: saved,
@@ -145,6 +164,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     verified: undefined,
     pulled: 0,
     revised: 0,
+    ageRefused: refused.includes(saved?.server ?? server ?? ""),
   };
   const listeners = new Set<() => void>();
   const set = (patch: Partial<SyncState>): void => {
@@ -237,11 +257,11 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     return running;
   };
 
-  const enter = async (path: string, email: string, password: string): Promise<SyncError | undefined> => {
+  const enter = async (path: string, email: string, password: string, age?: number): Promise<SyncError | undefined> => {
     const base = state.server;
     if (base === undefined) return "unreachable";
     try {
-      const result = await request<{ user: Account["user"]; token: string }>(base, path, { body: { email, password } });
+      const result = await request<{ user: Account["user"]; token: string }>(base, path, { body: age === undefined ? { email, password } : { email, password, age } });
       const account: Account = { server: base, token: result.token, user: result.user };
       await store.setMeta(ACCOUNT, account);
       await store.deleteMeta(CURSOR);
@@ -249,7 +269,13 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       await syncNow();
       return undefined;
     } catch (e) {
-      return errorOf(e);
+      const error = errorOf(e);
+      if (error === "age") {
+        const servers = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
+        if (!servers.includes(base)) await store.setMeta(AGE_REFUSED, [...servers, base]);
+        set({ ageRefused: true });
+      }
+      return error;
     }
   };
 
@@ -290,7 +316,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    signUp: (email, password) => enter("/v1/auth/sign-up", email, password),
+    signUp: (email, password, age) => enter("/v1/auth/sign-up", email, password, age),
     signIn: (email, password) => enter("/v1/auth/sign-in", email, password),
     signOut: async () => {
       const account = state.account;

@@ -142,6 +142,18 @@
       "message": "The language model can't be reached right now.",
       "description": "AI help failed because the model service is unreachable."
     },
+    "app.account.age": {
+      "message": "How old are you?",
+      "description": "Label of the age field, shown only when the server asks for an age before it creates an account (an age gate). Ask neutrally: never hint at a minimum age."
+    },
+    "app.account.age-note": {
+      "message": "In years. The server checks it and doesn't keep it.",
+      "description": "Hint under the age field."
+    },
+    "app.account.age-refused": {
+      "message": "This server can't create an account for you. You can keep learning on this device: your progress stays here.",
+      "description": "Shown when the server's age gate turned the person away. Neutral: it does not say why or name an age. Learning without an account always works."
+    },
     "app.account.create": {
       "message": "Create account",
       "description": "Button that creates an account and uploads the progress on this device."
@@ -214,9 +226,17 @@
       "message": "Sign in to bring your progress from your other devices.",
       "description": "Introduces the sign-in form."
     },
+    "app.error.account.age-required": {
+      "message": "This server asks for your age before it creates an account.",
+      "description": "Shown when the server needs the person's age to create an account; the age field appears with it."
+    },
     "app.error.account.email-taken": {
       "message": "There's already an account with this email. Sign in instead.",
       "description": "Shown when creating an account with an email that has one."
+    },
+    "app.error.account.invalid-age": {
+      "message": "Enter your age in years, as a number.",
+      "description": "Shown when the age field holds something other than a whole number."
     },
     "app.error.account.invalid-email": {
       "message": "Enter a valid email address.",

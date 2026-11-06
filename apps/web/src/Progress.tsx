@@ -8,7 +8,12 @@
  * email keyboard, not type=email (which rejects non-ASCII local parts). An
  * address is a left-to-right structure (local@domain) even when its local
  * part is Arabic or Hebrew, so it is shown as an LTR isolate.
+ *
+ * A server with an age gate (ADR 0069) answers the first sign-up with "age-required": the form then
+ * asks the person's age, neutrally (no threshold shown), in any script's digits. If the server turns
+ * them away, the device remembers and offers no new account there; learning on the device goes on.
  */
+import { parseDigits } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
 import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
@@ -30,11 +35,14 @@ const ERRORS = {
   "email-taken": "app.error.account.email-taken",
   "wrong-credentials": "app.error.account.wrong-credentials",
   "rate-limited": "app.error.account.rate-limited",
+  "age-required": "app.error.account.age-required",
+  age: "app.account.age-refused",
   unreachable: "app.error.account.unreachable",
   "signed-out": "app.error.account.signed-out",
   rejected: "app.error.account.rejected",
   unknown: "app.error.account.unknown",
-} as const satisfies Record<SyncError, string>;
+  "invalid-age": "app.error.account.invalid-age",
+} as const satisfies Record<SyncError | "invalid-age", string>;
 
 const save = (blob: Blob, name: string): void => {
   const url = URL.createObjectURL(blob);
@@ -146,24 +154,83 @@ const Status = ({ state }: { state: SyncState }): JSX.Element => {
   );
 };
 
-const AccountForm = ({ sync }: { sync: Sync }): JSX.Element => {
+const AccountForm = ({ sync, ageRefused }: { sync: Sync; ageRefused: boolean }): JSX.Element => {
   const t = useTranslator();
   const [mode, setMode] = useState<"create" | "sign-in">("create");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<SyncError | undefined>(undefined);
+  // Only once the server asks (ADR 0069); the answer goes with the sign-up and nowhere else.
+  const [askAge, setAskAge] = useState(false);
+  const [age, setAge] = useState("");
+  const [error, setError] = useState<SyncError | "invalid-age" | undefined>(undefined);
   const [busy, setBusy] = useState(false);
   const submit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (busy) return;
+    const years = askAge ? parseDigits(age) : undefined;
+    if (mode === "create" && askAge && years === undefined) {
+      setError("invalid-age");
+      return;
+    }
     setBusy(true);
-    void (mode === "create" ? sync.signUp(email, password) : sync.signIn(email, password)).then((result) => {
+    void (mode === "create" ? sync.signUp(email, password, years) : sync.signIn(email, password)).then((result) => {
       setBusy(false);
       setError(result);
+      if (result === "age-required") setAskAge(true);
+      if (result === "age") setAge("");
     });
   };
+  const turnedAway = mode === "create" && ageRefused;
   return (
     <Form className={styles.form} onSubmit={submit} data-account-form={mode}>
+      {turnedAway ? (
+        <p className={styles.formIntro} role="status" data-age-refused="">
+          {t.format("app.account.age-refused")}
+        </p>
+      ) : (
+        <AccountFields mode={mode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} askAge={askAge} age={age} setAge={setAge} />
+      )}
+      {error !== undefined && !(turnedAway && error === "age") && (
+        <p className={styles.notice} role="alert" data-account-error={error}>
+          {t.format(ERRORS[error], { min: MIN_PASSWORD })}
+        </p>
+      )}
+      <div className={styles.links}>
+        {!turnedAway && (
+          <Button className={styles.button} type="submit" isDisabled={busy} data-action="account-submit">
+            {t.format(mode === "create" ? "app.account.create" : "app.account.sign-in")}
+          </Button>
+        )}
+        <Button
+          className={styles.textButton}
+          onPress={() => {
+            setMode(mode === "create" ? "sign-in" : "create");
+            setError(undefined);
+          }}
+          data-action="account-mode"
+        >
+          {t.format(mode === "create" ? "app.account.have-account" : "app.account.new-account")}
+        </Button>
+      </div>
+    </Form>
+  );
+};
+
+interface FieldsProps {
+  readonly mode: "create" | "sign-in";
+  readonly email: string;
+  readonly setEmail: (v: string) => void;
+  readonly password: string;
+  readonly setPassword: (v: string) => void;
+  readonly askAge: boolean;
+  readonly age: string;
+  readonly setAge: (v: string) => void;
+}
+
+const AccountFields = ({ mode, email, setEmail, password, setPassword, askAge, age, setAge }: FieldsProps): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <>
       <p className={styles.formIntro}>{t.format(mode === "create" ? "app.account.pitch" : "app.account.welcome-back")}</p>
       <TextField className={styles.field} value={email} onChange={setEmail} isRequired autoComplete="email" name="email">
         <Label className={styles.label}>{t.format("app.account.email")}</Label>
@@ -178,27 +245,16 @@ const AccountForm = ({ sync }: { sync: Sync }): JSX.Element => {
           </Text>
         )}
       </TextField>
-      {error !== undefined && (
-        <p className={styles.notice} role="alert" data-account-error={error}>
-          {t.format(ERRORS[error], { min: MIN_PASSWORD })}
-        </p>
+      {mode === "create" && askAge && (
+        <TextField className={styles.field} value={age} onChange={setAge} isRequired autoComplete="off" name="age">
+          <Label className={styles.label}>{t.format("app.account.age")}</Label>
+          <Input className={styles.input} inputMode="numeric" data-field="age" />
+          <Text slot="description" className={styles.muted}>
+            {t.format("app.account.age-note")}
+          </Text>
+        </TextField>
       )}
-      <div className={styles.links}>
-        <Button className={styles.button} type="submit" isDisabled={busy} data-action="account-submit">
-          {t.format(mode === "create" ? "app.account.create" : "app.account.sign-in")}
-        </Button>
-        <Button
-          className={styles.textButton}
-          onPress={() => {
-            setMode(mode === "create" ? "sign-in" : "create");
-            setError(undefined);
-          }}
-          data-action="account-mode"
-        >
-          {t.format(mode === "create" ? "app.account.have-account" : "app.account.new-account")}
-        </Button>
-      </div>
-    </Form>
+    </>
   );
 };
 
@@ -219,7 +275,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
       )}
       {state.server !== undefined &&
         (state.account === undefined ? (
-          <AccountForm sync={sync} />
+          <AccountForm sync={sync} ageRefused={state.ageRefused} />
         ) : (
           <div data-account={state.account.user.email}>
             <p>
