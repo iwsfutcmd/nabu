@@ -14,6 +14,9 @@
 }
 
 .ruby rt {
+  /* A layer that names its language is set in that script's face (ADR 0071): Pinyin's tone
+     letters (ā ǖ) need a Latin font, not the CJK one around them. */
+  font-family: var(--nabu-ruby-font, inherit);
   /* keeps adjacent romanized syllables (ngo5 dei6) from running together */
   padding-inline: 0.15em;
   font-size: 0.55em;
