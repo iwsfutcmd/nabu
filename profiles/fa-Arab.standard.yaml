@@ -17,7 +17,19 @@ match:
   # REVIEW: sukun is optional when a learner writes the vowel marks (ADR 0054); the drafts disagree on it.
   zwnj:  { equivalents: ["\u200C", " ", ""], policy: accept-with-note, note: spacing }
   case:  none
-  typo:  { model: keyboard, layout: cldr-kbd:fa, maxRatio: 0.15, minLength: 3 }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:fa
+    maxRatio: 0.15
+    minLength: 3
+    # REVIEW (ADR 0066): endings that carry meaning, a letter or two apart. A slip that trades one for another at the
+    # end of a word (کتابتان "your book" for کتابشان "their book") is WRONG_WORD, not a typo. A list groups the
+    # spellings of one ending (after a consonant, or with alef after a vowel: م, ام).
+    # Possessive -am -at -ash -emān -etān -eshān; verb person -am -i -ad -im -id -and; the copula am, i, ast, im, id, and.
+    contrasts:
+      - { id: possessive, note: contrast-possessive, members: [[م, ام], [ت, ات], [ش, اش], مان, تان, شان] }
+      - { id: person, note: contrast-person, members: [م, ی, د, یم, ید, ند] }
+      - { id: copula, note: contrast-person, members: [ام, ای, است, ایم, اید, اند] }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: on-for-new-words }
 input:

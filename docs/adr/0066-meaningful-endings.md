@@ -41,6 +41,10 @@ whole words, one or two letters apart.
 - **uz-Latn, uz-Cyrl:** person endings (-man, -san, -dir, -miz, -siz, -lar), possessive endings,
   case endings, personal pronouns.
 - **apc-Arab:** independent pronouns, and possessive endings (-i, -ak/-ik, -o, -a, -na, -kon, -hon).
+- **fa-Arab:** possessive endings (-am, -at, -aš, -emān, -etān, -ešān), verb person endings, and
+  the attached copula. Persian had the same gap: *kitābetān* ("your book") for *kitābešān*
+  ("their book") was a typo. Most of its one-letter swaps were already wrong (its typo budget is
+  smaller).
 
 **The lexicon also grows.** It holds every word the course writes in an orthography: glossary
 forms, sentences and story lines. A slip that lands on any of them is a wrong word.
@@ -51,7 +55,7 @@ forms, sentences and story lines. A slip that lands on any of them is a wrong wo
 - **A wrong word gets no second check.** Like any wrong word, it never reaches the judge.
 - **Real slips in suffixed words stay typos:** *kitobum* for *kitobim* (-um is no ending), and
   *maktabka* for *maktabga* (one ending, two spellings).
-- **Other profiles can add sets** as their courses need them: Persian person endings (-am, -i,
-  -ad), Turkish's.
+- **Other profiles can add sets** as their courses need them (Turkish's person endings, Arabizi's
+  pronouns).
 - **Single-letter members** (Uzbek possessive -i, the Arabic endings ي ه ك) match many word ends.
   They count only within the typo budget, which leaves out words under three letters.

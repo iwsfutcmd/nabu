@@ -1488,6 +1488,51 @@
         ]
       },
       "note": "-ak (your) for -i (my): long enough a word for a one-letter slip to count as a typo"
+    },
+    {
+      "id": "grade/fa/contrast-possessive",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتابشان بزرگ است",
+        "answer": "کتابتان بزرگ است"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-etān (your) for -ešān (their)"
+    },
+    {
+      "id": "grade/fa/contrast-possessive-after-zwnj",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "خانه\u200Cشان بزرگ است",
+        "answer": "خانه\u200Cتان بزرگ است"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "the ending after a ZWNJ: the same contrast"
+    },
+    {
+      "id": "grade/fa/contrast-typo-in-suffixed-word",
+      "op": "grade",
+      "args": {
+        "profile": "fa-Arab/standard",
+        "accept": "کتابشان بزرگ است",
+        "answer": "کتابشام بزرگ است"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "-šām is no ending: still a typo"
     }
 ]
 }
