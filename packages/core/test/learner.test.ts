@@ -273,7 +273,8 @@ describe("planner constraints", () => {
         if (!produces) ex.kcs.forEach((kc) => recognized.add(kc));
       }
     }
-  });
+    // Under a second alone; it plans every fa lesson, and shares the CPU with the simulations.
+  }, 30_000);
 
   it("can leave speaking out", () => {
     const node = lessonNodes(fa)[1]?.node.id as string;
