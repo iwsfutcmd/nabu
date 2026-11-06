@@ -589,10 +589,15 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   );
 };
 
-/** The sync server: ?api= (tests, trying a server), else the build's VITE_NABU_API, else none (local-only). */
+/**
+ * The sync server: ?api= (tests, trying a server), else the build's VITE_NABU_API, else none
+ * (local-only). "/" is this origin: a self-hosted instance serves the app and the API together
+ * (deploy/compose.yaml), so one build works under any domain.
+ */
 const apiBase = (): string | undefined => {
   const value = new URLSearchParams(window.location.search).get("api") ?? import.meta.env.VITE_NABU_API;
-  return value === undefined || value === "" ? undefined : value.replace(/\/+$/u, "");
+  if (value === undefined || value === "") return undefined;
+  return value === "/" ? window.location.origin : value.replace(/\/+$/u, "");
 };
 
 /** The open store and sync, for tests and debugging (import history, read the log). */

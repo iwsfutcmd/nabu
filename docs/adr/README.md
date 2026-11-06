@@ -61,6 +61,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0065](0065-persian-voice.md) | fa speaks with Mana-Persian-Piper (MIT, pinned); a Piper voice's `carrier` says short items (word cards) at the end of a carrier sentence, with durations set from it, and cuts them out exactly | Proposed |
 | [0066](0066-meaningful-endings.md) | A profile's `typo.contrasts` (person, possessive and case endings, pronouns) make a slip that trades one for another WRONG_WORD, not a typo; the lexicon holds every word the course writes (erratum 46) | Proposed |
 | [0067](0067-account-data-and-limits.md) | `GET /v1/export` (all the account holds) and `DELETE /v1/account` (password again; votes and unbacked pending reports go); abuse limits on sign-up, sign-in and uploads (429, Retry-After) | Proposed |
+| [0068](0068-self-hosting.md) | `deploy/compose.yaml`: Caddy (HTTPS) serving the app with the API on one origin (`VITE_NABU_API=/`), Postgres, optional Ollama and speech; the API image keeps the workspace layout; CI smoke-tests it | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).
