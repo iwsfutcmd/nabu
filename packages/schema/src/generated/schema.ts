@@ -2523,9 +2523,19 @@ export interface CorrectionFields2 {
 export interface MessageCatalog {
   readonly $schema?: string;
   readonly locale: LangTag;
+  readonly provenance?: Provenance2;
   readonly messages: {
     readonly [k: string]: CatalogMessage;
   };
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance2 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -2540,6 +2550,10 @@ export interface CatalogMessage {
    * Context for translators: where the message appears and what each variable holds. Required in the source (en) catalog by test.
    */
   readonly description?: string;
+  /**
+   * In a translation: the fingerprint (sourceHash in @nabu/i18n) of the English message it was made from. When the English wording changes, the catalog check reports the translation as stale until a translator checks it and stamps it again. A change of meaning gets a new key instead.
+   */
+  readonly source?: string;
 }
 /**
  * Declarative description of how a writing system behaves: normalization, matching, segmentation, annotation layers, input aids and layout (gameplan §6.3). Adding a script means adding one of these plus fixtures, not editing the grader.

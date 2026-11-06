@@ -27,6 +27,7 @@
     "tables": "cd pipeline && uv run --frozen nabu tables",
     "courses": "cd pipeline && uv run --frozen nabu build ../courses --check",
     "bundles": "cd pipeline && uv run --frozen nabu build ../courses --out ../apps/web/public/bundles",
+    "check:catalogs": "pnpm --filter @nabu/i18n check:catalogs",
     "license-check": "node packages/lint/scripts/licenses.ts"
   },
   "devDependencies": {

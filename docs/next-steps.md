@@ -89,7 +89,7 @@ These cannot be done in code. Each one gates something below.
   - **Same gate as course content.** Catalogs are drafted with `llm:` provenance and ship only
     after a native reviewer signs them off. The per-message descriptions written so far are the
     translators' notes.
-  - **A catalog check in CI.** For every message:
+  - **A catalog check in CI** (done: `pnpm check:catalogs`, [ADR 0070](adr/0070-ui-catalogs.md)). For every message:
     - it parses as MF2;
     - its placeholders match English;
     - its selectors cover the locale's CLDR plural categories;

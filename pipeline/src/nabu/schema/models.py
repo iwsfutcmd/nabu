@@ -1413,6 +1413,13 @@ class CatalogMessage(BaseModel):
             description="Context for translators: where the message appears and what each variable holds. Required in the source (en) catalog by test."
         ),
     ] = None
+    source: Annotated[
+        str | None,
+        Field(
+            description="In a translation: the fingerprint (sourceHash in @nabu/i18n) of the English message it was made from. When the English wording changes, the catalog check reports the translation as stale until a translator checks it and stamps it again. A change of meaning gets a new key instead.",
+            pattern="^[0-9a-f]{14}$",
+        ),
+    ] = None
 
 
 type ExemplarsExtraItem = Annotated[str, Field(min_length=1)]
@@ -2612,6 +2619,12 @@ class MessageCatalog(BaseModel):
     )
     field_schema: Annotated[str | None, Field(alias="$schema")] = None
     locale: LangTag
+    provenance: Annotated[
+        Provenance | None,
+        Field(
+            description="Who translated the catalog and whether a native reviewer signed it off (ADR 0070). Required in every catalog but the source (en); only a reviewed catalog ships."
+        ),
+    ] = None
     messages: dict[MessageKey, CatalogMessage]
 
 

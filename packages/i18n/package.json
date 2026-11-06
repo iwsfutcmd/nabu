@@ -13,6 +13,7 @@
   "scripts": {
     "generate:cldr": "node scripts/generate-cldr.ts",
     "generate:security": "node scripts/generate-security.ts",
+    "check:catalogs": "node scripts/check-catalogs.ts",
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "test": "vitest run"
