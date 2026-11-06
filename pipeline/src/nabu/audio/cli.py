@@ -156,8 +156,8 @@ def align(
 ) -> None:
     """Word timings by forced alignment for clips their voice gave none (speech group).
 
-    OmniVoice and Navoiy report no word onsets; aligned, their sentences highlight word by word
-    and their words can be tapped. Phones come from eSpeak NG for the course's language.
+    OmniVoice, Navoiy and Piper report no word onsets; aligned, their sentences highlight word
+    by word and their words can be tapped. Phones come from eSpeak NG for the course's language.
     """
     from nabu.audio.course import align_course
 
