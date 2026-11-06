@@ -1187,7 +1187,7 @@ export interface BundleSentence {
   readonly license: string;
 }
 /**
- * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+ * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Persons".
@@ -1198,9 +1198,9 @@ export interface Persons {
    */
   readonly speaker?: "m" | "f";
   /**
-   * Who is spoken to: one man, one woman, or several people.
+   * Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl).
    */
-  readonly addressee?: "m" | "f" | "pl";
+  readonly addressee?: "m" | "f" | "sg" | "du" | "pl";
 }
 /**
  * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
@@ -1831,6 +1831,10 @@ export interface CourseAudio {
  */
 export interface AudioVoice {
   readonly id: string;
+  /**
+   * Whose voice it is: a man's (m) or a woman's (f). A sentence whose persons.speaker is the other gets no clip from it, so a man's voice never says a woman's words (ADR 0075). Optional: a voice without it reads every sentence, whoever says it (apc's man's voice does, for now).
+   */
+  readonly speaker?: "m" | "f";
   /**
    * A provider of nabu.audio.providers.
    */

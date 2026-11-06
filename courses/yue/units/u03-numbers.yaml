@@ -94,6 +94,7 @@ sentences:
     en: I have (a|one) daughter.
 - id: s.u03.6
   node: yue.how-many
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你有幾個仔呀？
@@ -103,6 +104,7 @@ sentences:
     en: How many sons do you have?
 - id: s.u03.7
   node: yue.how-many
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你有幾個細妹呀？
@@ -112,6 +114,7 @@ sentences:
     en: How many (younger|little) sisters do you have?
 - id: s.u03.8
   node: yue.pets-books
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -188,6 +191,7 @@ sentences:
       They have (five|5) books.
 - id: s.u03.15
   node: yue.pets-books
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -249,6 +253,7 @@ sentences:
     en: My cat is (very|really|so) (pretty|beautiful|good-looking).
 - id: s.u03.20
   node: yue.this-that
+  persons: {addressee: sg}
   constructions: ['construction:cl-possessive']
   forms:
     yue-Hant-HK/standard:
@@ -259,6 +264,7 @@ sentences:
     en: Your son is (very|really|so) tall.
 - id: s.u03.21
   node: yue.this-that
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -274,6 +280,7 @@ sentences:
       Is this your dog?
 - id: s.u03.22
   node: yue.money
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你有幾多本書呀？
@@ -376,6 +383,7 @@ sentences:
       I('m| am) buying this book.
 - id: s.u03.32
   node: yue.ages
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你幾多歲呀？
@@ -442,6 +450,21 @@ sentences:
       reverse: 我(|嘅|既)(細妹|妹妹)(|今年)十二歲
   translations:
     en: My (younger|little) sister is (twelve|12)[ years old].
+- id: s.u03.39
+  node: yue.pets-books
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋有冇貓呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {
+          surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你(哋|地)有(冇|無)(|養)貓[呀]
+  translations:
+    en: |-
+      Do you have (a cat|cats|any cats)?
+      Have you got (a cat|any cats)?
 stories:
 - id: yue.story.book-stall
   node: yue.numbers-story

@@ -370,6 +370,30 @@ sentences:
       reverse: "(بله|آره) [من] (کمی|یک کمی) فارسی (صحبت می\u200cکنم|حرف می\u200cزنم)"
   translations:
     en: Yes, I speak a little (Persian|Farsi).
+- id: s.day.34
+  node: fa.day.go
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: "شما کجا می\u200cروید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ید,
+              kc: 'form:2pl-id'}]}]
+      reverse: "[شما] کجا می\u200cروید"
+  translations:
+    en: |-
+      Where are you going?
+      Where do you go?
+- id: s.day.35
+  node: fa.day.meals
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: "شما چای می\u200cخورید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: چای, sense: chay}, {surface: "می\u200cخورید", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: ید,
+              kc: 'form:2pl-id'}]}]
+      reverse: "[شما] چای می\u200cخورید"
+  translations:
+    en: (Do you drink|Will you have|Would you like) [some] tea?
 stories:
 - id: fa.story.reza-day
   node: fa.day.story

@@ -538,6 +538,38 @@ sentences:
       reverse: (shu|sho) (ra2mak|ra2emak|rakamak)
   translations:
     en: What('s| is) your (number|phone number)?
+- id: s.num.31
+  node: apc.num.money
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: معكن مصاري؟
+      tokens: [{surface: معكن, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: مصاري, sense: masari}]
+      reverse: معكن مصاري
+    apc-Latn/arabizi:
+      text: ma3kon masari?
+      tokens: [{surface: ma3kon, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: masari, sense: masari}]
+      reverse: (ma3kon|m3kon|ma3kun) (masari|masare|msari)
+  translations:
+    en: |-
+      Do you have [any] money [on you]?
+      Have you got [any] money [on you]?
+- id: s.num.32
+  node: apc.num.age
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: مايا، قدّيش عمرك؟
+      tokens: [{surface: مايا, sense: maya}, {surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, vocalized: عُمْرِك, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      reverse: مايا (قدّيش|أدّيش) عمرك
+    apc-Latn/arabizi:
+      text: Maya, 2addesh 3omrik?
+      tokens: [{surface: Maya, sense: maya}, {surface: 2addesh, sense: 2addesh}, {surface: 3omrik, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      reverse: Maya (2addesh|addesh|2adesh|2addeish) (3omrik|3umrik|3omorik|3omrek)
+  translations:
+    en: Maya, how old are you?
 stories:
 - id: apc.story.dekkene
   node: apc.num.story

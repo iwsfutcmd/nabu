@@ -374,6 +374,21 @@ sentences:
       reverse: "[من] این را می\u200cخرم"
   translations:
     en: I('ll| will) (buy|take) this [one].
+- id: s.shopping.31
+  node: fa.shop.bazaar
+  constructions:
+  - construction:subjunctive
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: "شما چه می\u200cخواهید بخرید؟"
+      tokens: [{surface: شما, sense: shoma}, {surface: چه, sense: che}, {surface: "می\u200cخواهید", sense: khastan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواه, kc: 'sense:khastan'}, {surface: ید,
+              kc: 'form:2pl-id'}]}, {surface: بخرید, sense: kharidan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: خر, kc: 'sense:kharidan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: "[شما] (چه|چی) می\u200cخواهید بخرید"
+  translations:
+    en: |-
+      What do you want to buy?
+      What would you like to buy?
 stories:
 - id: fa.story.shirt
   node: fa.shop.story

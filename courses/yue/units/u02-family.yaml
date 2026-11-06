@@ -92,6 +92,7 @@ sentences:
       What's that?
 - id: s.u02.4
   node: yue.names
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你叫咩名呀？
@@ -125,6 +126,7 @@ sentences:
       I('m| am) surnamed Chan.
 - id: s.u02.7
   node: yue.names
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你姓乜嘢呀？
@@ -164,6 +166,7 @@ sentences:
       (Miss|Ms) Lee, (hello|hi)!
 - id: s.u02.10
   node: yue.titles
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我係學生，你呢？
@@ -173,6 +176,7 @@ sentences:
     en: I('m| am) a student, (and you|what about you|how about you|and yourself)?
 - id: s.u02.11
   node: yue.titles
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我叫美玲，你呢？
@@ -255,6 +259,7 @@ sentences:
     en: They('re| are) my (family|family members).
 - id: s.u02.19
   node: yue.family
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -310,6 +315,7 @@ sentences:
       I (haven't|have not) got (an older sister|a big sister|any older sisters).
 - id: s.u02.24
   node: yue.siblings
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -417,6 +423,7 @@ sentences:
       They('re| are) (very|really|so) tall.
 - id: s.u02.34
   node: yue.describe
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你媽媽好靚。
@@ -444,6 +451,7 @@ sentences:
     en: I('m| am) (so|really|very) tired.
 - id: s.u02.37
   node: yue.describe
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -465,6 +473,37 @@ sentences:
     en: |-
       My (older|big) brother is (very|really|so) tall too.
       My (older|big) brother is also (very|really|so) tall.
+- id: s.u02.39
+  node: yue.family
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋媽媽係唔係老師呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}},
+        {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5
+              si1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)(|嘅|既)(媽媽|阿媽)(係唔係|係咪)老師[呀]
+        你(哋|地)(|嘅|既)(媽媽|阿媽)係老師(嗎|呀)
+  translations:
+    en: Is your (mum|mom|mother) a teacher?
+- id: s.u02.40
+  node: yue.describe
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋攰唔攰呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {
+          surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)攰唔攰[呀]
+        你(哋|地)攰嗎
+  translations:
+    en: Are you tired?
 stories:
 - id: yue.story.family-photo
   node: yue.family-story

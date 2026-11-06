@@ -93,6 +93,8 @@ class Report:
     skipped: list[str] = field(default_factory=lambda: [])
     #: Items the voice said nothing for (left without a clip, so the index stays valid).
     silent: list[str] = field(default_factory=lambda: [])
+    #: Sentences said by someone the voice is not (a woman's words, a man's voice): no clip.
+    other_speaker: list[str] = field(default_factory=lambda: [])
 
 
 def audio_dir(course: Path) -> Path:
@@ -225,10 +227,29 @@ def _spoken(items: list[Item], spoken: dict[str, str]) -> list[Item]:
     return out
 
 
+def speaks_for(voice: AudioVoice, sentence: Mapping[str, Any]) -> bool:
+    """Whether the voice may say the sentence: not when the sentence is said by a woman and the
+    voice is a man's, or the other way round (persons.speaker, ADR 0075). A voice or a sentence
+    that names no speaker always may."""
+    said_by = cast("Mapping[str, Any]", sentence.get("persons") or {}).get("speaker")
+    return voice.speaker is None or said_by is None or said_by == voice.speaker
+
+
+def other_speaker(units: list[dict[str, Any]], voice: AudioVoice) -> list[str]:
+    """The sentences the voice must not say (speaks_for): they get no clip from it."""
+    return [
+        s["id"]
+        for unit in units
+        for s in unit["sentences"]
+        if voice.orthography in s["forms"] and not speaks_for(voice, s)
+    ]
+
+
 def plan(
     units: list[dict[str, Any]], voice: AudioVoice, written: Written | None = None
 ) -> tuple[list[Item], list[str]]:
     """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
+    Sentences said by someone the voice is not are neither (other_speaker).
     `written`: the source's own surfaces where the compiler added vowel marks."""
     orth = voice.orthography
     items: list[Item] = []
@@ -249,6 +270,8 @@ def plan(
                     readings.setdefault(t["surface"], t["readings"][scheme])
                     for surface, reading in _morph_readings(t, t["readings"][scheme]):
                         in_words.setdefault(surface, reading)
+            if not speaks_for(voice, s):
+                continue  # its readings still serve word KCs
             as_written = (written or {}).get((s["id"], orth))
             # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
             planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
@@ -458,7 +481,7 @@ def synthesize_course(
     clips_dir.mkdir(parents=True, exist_ok=True)
     human = [c for c in index.clips if not c.synthetic]
     previous = {(c.item, c.speed): c for c in index.clips if c.synthetic}
-    report = Report(skipped=skipped)
+    report = Report(skipped=skipped, other_speaker=other_speaker(units, voice))
     wanted: list[tuple[Item, str, float, str, int]] = []
     kept: list[Any] = []
     for item in items:

@@ -1079,7 +1079,32 @@ def _curriculum(
                     f"{kc.id} is never used in a sentence",
                     unit.doc.loc("kcs", i),
                 )
+    _one_gender(units, diags)
     return out
+
+
+_GENDERS = {"m": "a man", "f": "a woman"}
+
+
+def _one_gender(units: list[Unit], diags: Diagnostics) -> None:
+    """A course that tags one gender of speaker or addressee must tag the other too: where the
+    language marks it, both are taught (ADR 0075)."""
+    for role, said in (("speaker", "speaking"), ("addressee", "spoken to")):
+        first: dict[str, tuple[Unit, int]] = {}
+        for unit in units:
+            for si, s in enumerate(unit.source.sentences):
+                value = getattr(s.persons, role, None) if s.persons is not None else None
+                if value in _GENDERS and value not in first:
+                    first[value] = (unit, si)
+        if len(first) == 1:
+            ((value, (unit, si)),) = first.items()
+            other = "f" if value == "m" else "m"
+            diags.report(
+                "curriculum.one-gender",
+                f"every sentence tagged with its {role} has {_GENDERS[value]} {said}, "
+                f"none {_GENDERS[other]}: tag both, as the language marks both (ADR 0075)",
+                unit.doc.loc("sentences", si, "persons"),
+            )
 
 
 # ------------------------------------------------------------ stage 6: grading

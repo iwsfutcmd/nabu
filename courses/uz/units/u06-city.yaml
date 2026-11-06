@@ -498,6 +498,27 @@ sentences:
       reverse: Автобус бекати яқин
   translations:
     en: The bus stop is (near|close|nearby|close by).
+- id: s.city.32
+  node: uz.city.go
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Sizlar qayerga borasizlar?
+      tokens: [{surface: Sizlar, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: lar, kc: 'form:plural-lar'}]}, {surface: qayerga, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'},
+            {surface: ga, kc: 'form:dat-ga'}]}, {surface: borasizlar, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {
+              surface: lar, kc: 'form:plural-lar'}]}]
+      reverse: '[(Sizlar|Siz)] qayerga ((borasizlar|borasiz)|(boryapsizlar|boryapsiz)|(ketyapsizlar|ketyapsiz))'
+    uz-Cyrl/standard:
+      text: Сизлар қаерга борасизлар?
+      tokens: [{surface: Сизлар, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: лар, kc: 'form:plural-lar'}]}, {surface: қаерга, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'},
+            {surface: га, kc: 'form:dat-ga'}]}, {surface: борасизлар, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {
+              surface: лар, kc: 'form:plural-lar'}]}]
+      reverse: '[(Сизлар|Сиз)] қаерга ((борасизлар|борасиз)|(боряпсизлар|боряпсиз)|(кетяпсизлар|кетяпсиз))'
+  translations:
+    en: |-
+      Where are you going?
+      Where will you go?
+      Where do you go?
 stories:
 - id: uz.story.city
   node: uz.city.story

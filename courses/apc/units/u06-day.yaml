@@ -33,6 +33,8 @@ kcs:
 - {id: 'form:impf-2fs', gloss: {en: 'bt-…-i: you (present, to a woman)'}, notes: {en: 'btishrabi: you drink; bta3mli: you do. Arabic script: بت before the verb and ي after it (بتشربي).'}}
 - {id: 'sense:enti', gloss: {en: you (to a woman)}, forms: {apc-Arab/standard: [إنتي], apc-Latn/arabizi: [enti]}}
 - {id: 'sense:m2akhkhar', gloss: {en: late}, forms: {apc-Arab/standard: [مأخّر, مأخّرة], apc-Latn/arabizi: [m2akhkhar, m2akhkhra]}}
+- {id: 'form:impf-2pl', gloss: {en: 'bt-…-o: you (present, to several people)'}, notes: {en: 'btishrabo: you drink; bta3mlo: you do. Arabic script: بت before the verb and وا after it (بتشربوا).'}}
+- {id: 'sense:ento', gloss: {en: you (to several people)}, forms: {apc-Arab/standard: [إنتو], apc-Latn/arabizi: [ento]}}
 nodes:
 - {id: apc.day.morning, kind: lesson, introduces: ['form:impf-1sg', 'sense:sob7', 'sense:fi2', 'sense:bakkir', 'sense:ra7']}
 - {id: apc.day.you, kind: lesson, introduces: ['sense:3emel', 'form:impf-2ms', 'sense:eshteghel', 'sense:2ara']}
@@ -40,6 +42,7 @@ nodes:
 - {id: apc.day.we, kind: lesson, introduces: ['form:impf-1pl', 'sense:yom', 'sense:kell', 'sense:dayman', 'sense:ba3dein']}
 - {id: apc.day.talk, kind: lesson, introduces: ['sense:hala2', 'sense:7aka', 'sense:3arabe', 'sense:englize']}
 - {id: apc.day.you-f, kind: lesson, introduces: ['form:impf-2fs', 'sense:enti', 'sense:m2akhkhar']}
+- {id: apc.day.you-pl, kind: lesson, introduces: ['form:impf-2pl', 'sense:ento']}
 - {id: apc.day.story, kind: story}
 sentences:
 - id: s.day.1
@@ -590,6 +593,125 @@ sentences:
     en: |-
       Do you go to school?
       Are you going to school?
+- id: s.day.32
+  node: apc.day.you-f
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا مأخّرة!
+      tokens: [{surface: أنا, sense: ana}, {surface: مأخّرة, sense: m2akhkhar, form: 'form:fem'}]
+      reverse: '[أنا] (مأخّرة|متأخّرة)'
+    apc-Latn/arabizi:
+      text: ana m2akhkhra!
+      tokens: [{surface: ana, sense: ana}, {surface: m2akhkhra, sense: m2akhkhar, form: 'form:fem'}]
+      reverse: '[ana] (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)'
+  translations:
+    en: I('m| am) late!
+- id: s.day.33
+  node: apc.day.you-f
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: وين بتشتغلي؟
+      tokens: [{surface: وين, sense: wen}, {surface: بتشتغلي, sense: eshteghel, form: 'form:impf-2fs'}]
+      reverse: |-
+        وين بتشتغلي
+        إنتي وين بتشتغلي
+    apc-Latn/arabizi:
+      text: wen btishteghli?
+      tokens: [{surface: wen, sense: wen}, {surface: btishteghli, sense: eshteghel, form: 'form:impf-2fs'}]
+      reverse: |-
+        (wen|wein|wayn) (btishteghli|bteshteghli|btishtighli)
+        (enti|inti) (wen|wein|wayn) (btishteghli|bteshteghli|btishtighli)
+  translations:
+    en: Where do you work?
+- id: s.day.34
+  node: apc.day.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: شو بتعملوا؟
+      tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}]
+      reverse: شو (بتعملوا|بتعملو)
+    apc-Latn/arabizi:
+      text: shu bta3mlo?
+      tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}]
+      reverse: (shu|sho) (bta3mlo|bte3mlo|bta3mlu|bta3mlou)
+  translations:
+    en: |-
+      What are you doing?
+      What do you do?
+      What are you up to?
+- id: s.day.35
+  node: apc.day.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: إنتو بتشربوا قهوة؟
+      tokens: [{surface: إنتو, sense: ento}, {surface: بتشربوا, sense: shereb, form: 'form:impf-2pl'}, {surface: قهوة, sense: ahwe}]
+      reverse: '[إنتو] (بتشربوا|بتشربو) قهوة'
+    apc-Latn/arabizi:
+      text: ento btishrabo ahwe?
+      tokens: [{surface: ento, sense: ento}, {surface: btishrabo, sense: shereb, form: 'form:impf-2pl'}, {surface: ahwe, sense: ahwe}]
+      reverse: '[(ento|into|entu|intu)] (btishrabo|bteshrabo|btshrabo|btishrabu) (ahwe|2ahwe)'
+  translations:
+    en: |-
+      Do you drink coffee?
+      Would you like (a coffee|some coffee|coffee)?
+      Will you have (a coffee|some coffee|coffee)?
+- id: s.day.36
+  node: apc.day.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وين بتروحوا الصبح؟
+      tokens: [{surface: وين, sense: wen}, {surface: بتروحوا, sense: ra7, form: 'form:impf-2pl'}, {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صبح, kc: 'sense:sob7'}]}]
+      reverse: |-
+        وين (بتروحوا|بتروحو) الصبح
+        الصبح وين (بتروحوا|بتروحو)
+    apc-Latn/arabizi:
+      text: wen btru7o el sob7?
+      tokens: [{surface: wen, sense: wen}, {surface: btru7o, sense: ra7, form: 'form:impf-2pl'}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
+      reverse: |-
+        (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u) (el|l|il) (sob7|sobo7|sobh)
+        (el|l|il) (sob7|sobo7|sobh) (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u)
+  translations:
+    en: Where do you go in the morning?
+- id: s.day.37
+  node: apc.day.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: بتحكوا عربي؟
+      tokens: [{surface: بتحكوا, sense: 7aka, form: 'form:impf-2pl'}, {surface: عربي, sense: 3arabe}]
+      reverse: '[إنتو] (بتحكوا|بتحكو) عربي'
+    apc-Latn/arabizi:
+      text: bti7ko 3arabe?
+      tokens: [{surface: bti7ko, sense: 7aka, form: 'form:impf-2pl'}, {surface: 3arabe, sense: 3arabe}]
+      reverse: '[(ento|into)] (bti7ko|bt7ko|bti7ku) (3arabe|3arabi|arabi)'
+  translations:
+    en: Do you speak Arabic?
+- id: s.day.38
+  node: apc.day.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: إنتو مأخّرين!
+      tokens: [{surface: إنتو, sense: ento}, {surface: مأخّرين, sense: m2akhkhar, form: 'form:pl'}]
+      reverse: '[إنتو] (مأخّرين|متأخّرين)'
+    apc-Latn/arabizi:
+      text: ento m2akhkhrin!
+      tokens: [{surface: ento, sense: ento}, {surface: m2akhkhrin, sense: m2akhkhar, form: 'form:pl'}]
+      reverse: '[(ento|into|entu)] (m2akhkhrin|m2akhrin|m2a5rin|met2akhkhrin)'
+  translations:
+    en: You('re| are) late!
 stories:
 - id: apc.story.my-day
   node: apc.day.story

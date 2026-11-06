@@ -55,6 +55,7 @@ sentences:
       I('ve| have) had (my dinner|my lunch|dinner|lunch|a meal).
 - id: s.u09.2
   node: yue.done
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你食咗飯未呀？
@@ -103,6 +104,7 @@ sentences:
       They went to the office.
 - id: s.u09.6
   node: yue.done
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你買咗咩呀？
@@ -114,6 +116,7 @@ sentences:
       What have you bought?
 - id: s.u09.7
   node: yue.weekend
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你做咗咩呀？
@@ -125,6 +128,7 @@ sentences:
       What have you done?
 - id: s.u09.8
   node: yue.weekend
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你週末做咗咩呀？
@@ -169,6 +173,7 @@ sentences:
     en: They went hiking.
 - id: s.u09.12
   node: yue.weekend
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你去咗邊度玩呀？
@@ -203,6 +208,7 @@ sentences:
     en: I('ve| have) (had|eaten|tried) (har gow|shrimp dumplings|prawn dumplings)( before|).
 - id: s.u09.15
   node: yue.been-there
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你去過日本未呀？
@@ -255,6 +261,7 @@ sentences:
     en: I('ve| have) been (there |)(three|3) times.
 - id: s.u09.20
   node: yue.been-there
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你試過未呀？
@@ -292,6 +299,7 @@ sentences:
       They just came back.
 - id: s.u09.23
   node: yue.just-now
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我聽日打電話俾你。
@@ -337,6 +345,7 @@ sentences:
       They didn't (eat|have) dinner.
 - id: s.u09.27
   node: yue.languages
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你講咩呀？
@@ -405,6 +414,7 @@ sentences:
       I speak a little Cantonese.
 - id: s.u09.33
   node: yue.study
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -417,6 +427,33 @@ sentences:
     en: |-
       Can you speak Chinese?
       Do you speak Chinese?
+- id: s.u09.34
+  node: yue.done
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋食咗飯未呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {
+          surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 你(哋|地)食(咗|左)飯未[呀]
+  translations:
+    en: |-
+      Have you eaten (yet|)?
+      Have you had (your meal|dinner|lunch|a meal) (yet|)?
+      Did you eat (yet|)?
+- id: s.u09.35
+  node: yue.weekend
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋週末做咗咩呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}},
+        {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: (你(哋|地)(週|周)末|(週|周)末你(哋|地))做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+  translations:
+    en: |-
+      What did you do (on the|at the|over the|this|last) weekend?
+      What did you get up to (on the|at the|over the|this|last) weekend?
 stories:
 - id: yue.story.monday
   node: yue.past-story

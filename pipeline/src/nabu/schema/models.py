@@ -438,7 +438,7 @@ type KcId = Annotated[
 
 class Persons(BaseModel):
     """
-    Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+    Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
     """
 
     model_config = ConfigDict(
@@ -450,8 +450,10 @@ class Persons(BaseModel):
         Field(description="The speaker's gender, where the sentence marks it."),
     ] = None
     addressee: Annotated[
-        Literal["m", "f", "pl"] | None,
-        Field(description="Who is spoken to: one man, one woman, or several people."),
+        Literal["m", "f", "sg", "du", "pl"] | None,
+        Field(
+            description="Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl)."
+        ),
     ] = None
 
 
@@ -2351,6 +2353,12 @@ class AudioVoice(BaseModel):
         frozen=True,
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    speaker: Annotated[
+        Literal["m", "f"] | None,
+        Field(
+            description="Whose voice it is: a man's (m) or a woman's (f). A sentence whose persons.speaker is the other gets no clip from it, so a man's voice never says a woman's words (ADR 0075). Optional: a voice without it reads every sentence, whoever says it (apc's man's voice does, for now)."
+        ),
+    ] = None
     provider: Annotated[
         Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
         Field(description="A provider of nabu.audio.providers."),
