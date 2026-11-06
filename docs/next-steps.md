@@ -69,9 +69,12 @@ These cannot be done in code. Each one gates something below.
     - an optional age gate for instances that may serve minors.
   - **Abuse limits:** rate limits on sign-up, sign-in and uploads (done: ADR 0067).
   - **CI:**
-    - the API tests also run against real Postgres (today they run on PGlite only);
-    - a license check that fails on copyleft code in what ships (§17);
-    - Renovate for dependency updates.
+    - the API tests also run against real Postgres (done: the `api-postgres` job, one fresh database per test file);
+    - a license check that fails on copyleft code in what ships (§17) (done: `pnpm license-check` over the production
+      dependencies of the web app, the API and the mobile shell; the optional speech image's Python packages are not
+      covered yet);
+    - Renovate for dependency updates (config done: `.github/renovate.json5`; it takes effect once the Renovate app is
+      installed on the repository).
 - **Acceptance:**
   - The Uzbek, Uzbek Cyrillic and Lebanese examples from erratum 46 grade WRONG_WORD in both
     harnesses, and every existing conformance vector still passes.

@@ -36,6 +36,8 @@ jobs:
       - name: ICU headers for PyICU (CLDR RBNF drills and transforms; Ubuntu 24.04 ships ICU 74), eSpeak NG and ffmpeg (audio tests)
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libicu-dev pkg-config espeak-ng ffmpeg
       - run: pnpm install --frozen-lockfile
+      - name: What ships carries no copyleft code (pnpm license-check)
+        run: pnpm license-check
       - name: uv sync (all groups but speech and omnivoice; committed audio needs no speech model)
         run: uv sync --frozen --all-groups --no-group speech --no-group omnivoice
         working-directory: pipeline
@@ -73,6 +75,32 @@ jobs:
       - name: Container logs
         if: failure()
         run: docker compose -f deploy/compose.yaml logs
+
+  api-postgres:
+    name: API tests on Postgres (the image deploy/compose.yaml runs)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: nabu
+          POSTGRES_PASSWORD: ci-only-not-a-secret
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U nabu" --health-interval 2s --health-timeout 5s --health-retries 30
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          package-manager-cache: false
+      - name: pnpm (version from package.json#packageManager)
+        run: corepack enable && pnpm --version
+      - run: pnpm install --frozen-lockfile
+      - name: Every API test file on its own fresh Postgres database (test/database.ts)
+        run: pnpm --filter @nabu/api test
+        env:
+          NABU_TEST_DATABASE_URL: postgres://nabu:ci-only-not-a-secret@localhost:5432/postgres
 
   visual:
     name: Visual matrix, lesson e2e and grading performance (Playwright)

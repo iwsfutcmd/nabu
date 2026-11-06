@@ -13,7 +13,8 @@ import { createAccounts } from "../src/accounts.ts";
 import { createCourses } from "../src/ai/courses.ts";
 import { createGateway } from "../src/ai/gateway.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 
 const ADMIN = "review-token-for-tests";
 const YUE = "yue-Hant-HK/standard" as OrthographyId;
@@ -25,7 +26,7 @@ if (yue === undefined) throw new Error("the yue bundle is committed");
 let database: Database;
 let app: App;
 beforeAll(async () => {
-  database = await openDatabase({ pglite: "memory" });
+  database = await testDatabase();
   const gateway = createGateway({ db: database.db, provider: undefined });
   app = createApp({ db: database.db, accounts: createAccounts(database.db), now: () => clock, ai: { gateway, courses, gates: [] }, adminToken: ADMIN });
 });

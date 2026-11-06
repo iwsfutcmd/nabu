@@ -11,7 +11,8 @@ import { createCourses } from "../src/ai/courses.ts";
 import { createGateway } from "../src/ai/gateway.ts";
 import type { Transport } from "../src/ai/providers.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 
 let database: Database;
 let app: App;
@@ -23,7 +24,7 @@ const service: Transport = (_url, init) => {
 };
 
 beforeAll(async () => {
-  database = await openDatabase({ pglite: "memory" });
+  database = await testDatabase();
   const ai = { gateway: createGateway({ db: database.db, provider: undefined }), courses: createCourses(), gates: [] };
   app = createApp({ db: database.db, accounts: createAccounts(database.db), ai, speech: { url: "http://speech.invalid", transport: service, budget: 3 } });
 });

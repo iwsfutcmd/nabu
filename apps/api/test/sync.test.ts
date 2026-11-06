@@ -1,7 +1,7 @@
 /**
  * Phase 4 acceptance on the server (gameplan §16): duplicate uploads are
  * idempotent, and the server's projection of an uploaded log is identical to
- * the device's. Runs against PGlite, the same SQL as Postgres.
+ * the device's. Runs on PGlite, and on Postgres in CI (test/database.ts).
  */
 import { emptyLearnerState, plan, progressResetOf, replay, applyEvents, type LearnerState } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
@@ -9,13 +9,14 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eventFactory, loadCourse, manifestOf } from "../../../packages/core/test/learner-fixtures.ts";
 import { createAccounts, normalizeEmail } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 
 let database: Database;
 let app: App;
 
 beforeAll(async () => {
-  database = await openDatabase({ pglite: "memory" });
+  database = await testDatabase();
   app = createApp({ db: database.db, accounts: createAccounts(database.db) });
 });
 afterAll(async () => database.close());

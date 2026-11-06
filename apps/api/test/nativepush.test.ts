@@ -9,7 +9,8 @@ import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 import { nativePushTokens } from "../src/db/schema.ts";
 import { apnsSender, FCM_SCOPE, fcmSender, validToken, type Delivery, type Http, type HttpRequest, type HttpResponse, type NativeSend } from "../src/nativepush.ts";
 import { sendReminders, type Notification } from "../src/reminders.ts";
@@ -124,7 +125,7 @@ describe("native reminders on the server", () => {
   const native = { android: sender("android"), ios: sender("ios") };
 
   beforeAll(async () => {
-    database = await openDatabase({ pglite: "memory" });
+    database = await testDatabase();
     app = createApp({ db: database.db, accounts: createAccounts(database.db), native });
   });
   afterAll(async () => database.close());

@@ -10,7 +10,8 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createCourses } from "../src/ai/courses.ts";
 import { createGateway, validAi } from "../src/ai/gateway.ts";
 import type { Provider } from "../src/ai/providers.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 import { check, EVALS, gatesOf, loadItems, mergeGates, run } from "../src/evals.ts";
 
 const courses = createCourses();
@@ -41,7 +42,7 @@ describe("golden sets (check mode)", () => {
 describe("run mode", () => {
   let database: Database;
   beforeAll(async () => {
-    database = await openDatabase({ pglite: "memory" });
+    database = await testDatabase();
   });
   afterAll(async () => database.close());
 

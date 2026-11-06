@@ -11,7 +11,8 @@ import { eq } from "drizzle-orm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
-import { openDatabase, type Database } from "../src/db/index.ts";
+import type { Database } from "../src/db/index.ts";
+import { testDatabase } from "./database.ts";
 import { leagueResults, pushLog } from "../src/db/schema.ts";
 import { rollover } from "../src/leagues.ts";
 import { chooseTemplate, decide, habitualMinute, renderReminder, sendReminders, TEMPLATES, type Notification } from "../src/reminders.ts";
@@ -23,7 +24,7 @@ let clock = Date.parse("2026-06-03T10:00:00Z"); // a Wednesday
 const LEAGUE: LeagueConfig = { ...DEFAULT_LEAGUE, cohortSize: 4, promote: [1, 1, 1, 1, 1, 1, 1, 1, 1, 0], demote: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1] };
 
 beforeAll(async () => {
-  database = await openDatabase({ pglite: "memory" });
+  database = await testDatabase();
   app = createApp({ db: database.db, accounts: createAccounts(database.db), leagues: LEAGUE, vapid: () => vapidKeys(database.db, "mailto:test@example.org", ""), now: () => clock });
 });
 afterAll(async () => database.close());
