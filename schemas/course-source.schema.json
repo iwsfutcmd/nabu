@@ -590,12 +590,12 @@
           ]
         },
         "voice": {
-          "description": "The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+          "description": "The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
           "type": "string",
           "minLength": 1
         },
         "model": {
-          "description": "Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia \"sonic-3.6-2026-08-27\"; ElevenLabs \"eleven_v4\"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit (\"oddadmix/lahgtna-omnivoice-v2@55c38a61…\", \"aisha-org/navoiy-tts@9445f41e…\"). It is the clips' recorded version.",
+          "description": "Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia \"sonic-3.6-2026-08-27\"; ElevenLabs \"eleven_v4\"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit (\"MahtaFetrat/Mana-Persian-Piper@ad9dd851…\", \"oddadmix/lahgtna-omnivoice-v2@55c38a61…\", \"aisha-org/navoiy-tts@9445f41e…\"). It is the clips' recorded version.",
           "type": "string",
           "minLength": 1
         },
@@ -609,13 +609,16 @@
           "type": "boolean"
         },
         "finalStop": {
-          "description": "With reading \"text\": end text that has no final punctuation (word cards, mostly) with the full stop of its script (\".\" in Latin, Cyrillic and Arabic script, \"\u3002\" in Han, \"\u0964\" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.",
+          "description": "With reading \"text\": end text that has no final punctuation (word cards, mostly) with the full stop of its script (\".\" in Latin, Cyrillic and Arabic script, \"。\" in Han, \"।\" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.",
           "type": "boolean"
         },
         "pronounce": {
           "description": "With reading \"text\": a reading scheme pinned on tokens (\"jyutping\"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).",
           "type": "string",
           "minLength": 1
+        },
+        "carrier": {
+          "$ref": "#/$defs/AudioCarrier"
         },
         "orthography": {
           "$ref": "common.schema.json#/$defs/OrthographyId"
@@ -628,6 +631,28 @@
         "license": {
           "description": "License of the audio this voice produces: it follows the voice's own terms.",
           "$ref": "#/$defs/Spdx"
+        }
+      }
+    },
+    "AudioCarrier": {
+      "title": "AudioCarrier",
+      "description": "Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.",
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "description": "The carrier, in the voice's orthography, ending where the item begins (\"حالا این کلمه را تکرار کن، \": \"now repeat this word, …\").",
+          "type": "string",
+          "minLength": 1
+        },
+        "maxWords": {
+          "description": "The longest item the carrier says, in words (split at spaces).",
+          "type": "integer",
+          "minimum": 1,
+          "default": 2
         }
       }
     },

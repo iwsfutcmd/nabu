@@ -9,7 +9,9 @@ only what changed. Two local providers:
   timings. Robotic: the round-trip check usually sends its clips to review.
 - **piper**: neural (VITS, ONNX). Natural-sounding where a voice exists; reads text or eSpeak
   phonemes in `[[ ]]`. Its voices carry their own licenses, which the course must declare
-  (`AudioVoice.license`): several Piper voices derive from datasets with restrictive terms.
+  (`AudioVoice.license`): several Piper voices derive from datasets with restrictive terms. A
+  voice can be pinned outside rhasspy/piper-voices (`model`), and can say short items inside a
+  carrier sentence (`carrier`, ADR 0065). Seeded; no timings.
 
 Two hosted providers, for languages the local voices serve badly (ADR 0042):
 
@@ -49,6 +51,8 @@ from functools import cache
 from pathlib import Path
 from typing import Any, ClassVar, Protocol
 from urllib.parse import quote
+
+import regex
 
 from nabu.audio import espeak
 from nabu.audio.phones import optional
@@ -130,44 +134,175 @@ class EspeakProvider:
 PIPER_REPO = "rhasspy/piper-voices"
 
 
+@cache
+def _piper_files(voice: str, model: str | None) -> tuple[Path, Path]:
+    """A Piper voice's .onnx and .onnx.json: from rhasspy/piper-voices by id
+    ("fa_IR-amir-medium"), or, with `model` ("owner/name@<commit>"), the files named after the
+    voice in that repo at that commit."""
+    hub = optional("huggingface_hub")
+    if model is None:
+        lang, name, quality = voice.split("-", 2)
+        repo, revision, stem = (
+            PIPER_REPO,
+            None,
+            f"{lang.split('_')[0]}/{lang}/{name}/{quality}/{voice}",
+        )
+    else:
+        (repo, revision), stem = checkpoint(model), voice
+    onnx = hub.hf_hub_download(repo, f"{stem}.onnx", revision=revision)
+    config = hub.hf_hub_download(repo, f"{stem}.onnx.json", revision=revision)
+    return Path(onnx), Path(config)
+
+
 class PiperProvider:
-    """Piper voices by id ("fa_IR-amir-medium"), downloaded from the rhasspy/piper-voices repo."""
+    """Piper voices (VITS, ONNX): from rhasspy/piper-voices by id, or a voice pinned elsewhere on
+    Hugging Face (`model`: owner/name@commit, `voice`: the file stem). Sampling is seeded per clip
+    (`seed_of`). Sentences are joined with SENTENCE_GAP_MS of silence.
+
+    With a `carrier` (ADR 0065), an item of at most `maxWords` words is said at the end of the
+    carrier sentence with durations set from it, and cut out (nabu.audio.carrier)."""
 
     name = "piper"
-    seeded = False
+    seeded = True
+    SENTENCE_GAP_MS = 200
+    #: The sampling noise (Piper's default); the duration noise is off on the carrier path.
+    NOISE_SCALE = 0.667
+
+    def __init__(self, voice: AudioVoice | None = None) -> None:
+        self.model = voice.model if voice is not None else None
+        carrier = voice.carrier if voice is not None else None
+        self.carrier = carrier.text if carrier is not None else None
+        self.max_words = carrier.maxWords if carrier is not None else 0
 
     def version(self) -> str:
         from importlib.metadata import version
 
-        return version("piper-tts")
+        package = version("piper-tts")
+        if self.model is None:
+            return package
+        repo, revision = checkpoint(self.model)
+        # No spaces or "@": it also names the clips' author (generated:piper@<version>).
+        return f"{repo}#{revision}+piper-{package}"
 
     def settings(self) -> dict[str, Any]:
-        return {}
+        if self.model is None and self.carrier is None:
+            return {}
+        out: dict[str, Any] = {
+            "sentenceGapMs": self.SENTENCE_GAP_MS,
+            "noiseScale": self.NOISE_SCALE,
+        }
+        if self.carrier is not None:
+            from nabu.audio import carrier
+
+            out["carrier"] = {
+                "text": self.carrier,
+                "maxWords": self.max_words,
+                "method": carrier.METHOD,
+            }
+        return out
 
     def speed(self, rate: float) -> float:
         return rate
 
     @staticmethod
     @cache
-    def _voice(voice: str) -> Any:
-        hub = optional("huggingface_hub")
+    def _engine(voice: str, model: str | None) -> Any:
         piper = optional("piper")
-        lang, name, quality = voice.split("-", 2)
-        stem = f"{lang.split('_')[0]}/{lang}/{name}/{quality}/{voice}"
-        model: str = hub.hf_hub_download(PIPER_REPO, f"{stem}.onnx")
-        hub.hf_hub_download(PIPER_REPO, f"{stem}.onnx.json")
-        return piper.PiperVoice.load(Path(model))
+        onnx, _config = _piper_files(voice, model)
+        return piper.PiperVoice.load(onnx), onnx.read_bytes()
+
+    @staticmethod
+    @cache
+    def _split(voice: str, model: str | None) -> tuple[Any, bytes]:
+        """The duration-reading session (deterministic: no duration noise), and the graph that
+        takes durations, for a fresh seeded session per clip."""
+        from nabu.audio import carrier
+
+        ort = optional("onnxruntime")
+        _engine, raw = PiperProvider._engine(voice, model)
+        reading, given = carrier.split(raw)
+        return ort.InferenceSession(reading, providers=["CPUExecutionProvider"]), given
+
+    def _session(self, graph: bytes, seed: int) -> Any:
+        """Piper's sampling draws from onnxruntime's generator, which a seed sets only for a
+        session made after it."""
+        ort = optional("onnxruntime")
+        ort.set_seed(seed % 2**31)
+        return ort.InferenceSession(graph, providers=["CPUExecutionProvider"])
+
+    def _plain(self, engine: Any, raw: bytes, r: Request) -> Clip:
+        piper = optional("piper")
+        np: Any = importlib.import_module("numpy")
+        engine.session = self._session(raw, seed_of(r))
+        config = piper.SynthesisConfig(length_scale=1 / r.rate, noise_scale=self.NOISE_SCALE)
+        chunks: list[Any] = list(engine.synthesize(r.input, syn_config=config))
+        rate = int(chunks[0].sample_rate) if chunks else engine.config.sample_rate
+        gap = np.zeros(rate * self.SENTENCE_GAP_MS // 1000, dtype=np.int16).tobytes()
+        pcm = gap.join(bytes(c.audio_int16_bytes) for c in chunks)
+        return Clip(pcm, rate, None, None)
+
+    def _carried(self, engine: Any, r: Request) -> Clip:
+        from nabu.audio import carrier
+
+        np: Any = importlib.import_module("numpy")
+        assert self.carrier is not None
+        reading, given = self._split(r.voice, self.model)
+        inv = {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
+        space = engine.config.phoneme_id_map[carrier.SPACE][0]
+        pad = engine.config.phoneme_id_map[carrier.PAD][0]
+
+        def ids_of(text: str) -> list[int]:
+            return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
+
+        def frames(ids: list[int]) -> list[float]:
+            feed = {
+                "input": np.array([ids], dtype=np.int64),
+                "input_lengths": np.array([len(ids)], dtype=np.int64),
+                "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
+            }
+            return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
+
+        lead = self.carrier.rstrip()
+        # The carrier said on its own, as a sentence: the floors come from a reading the model
+        # gets right.
+        alone = ids_of(regex.sub(r"[\p{P}\s]+$", "", lead) + ".")
+        floor_phone, floor_pad = carrier.floors([inv[i] for i in alone], frames(alone))
+        ids = ids_of(f"{lead} {r.input}")
+        first = carrier.item_start(ids, ids_of(lead), space, pad)
+        if first is None:
+            raise ProviderError(f"piper: the carrier is not read the same before {r.input!r}")
+        plan = carrier.plan([inv[i] for i in ids], frames(ids), first, floor_phone, floor_pad)
+        scaled = (
+            [max(1.0, -(-f / r.rate // 1)) for f in plan.frames] if r.rate != 1.0 else plan.frames
+        )
+        plan = carrier.Plan(scaled, plan.first, plan.last)
+        feed = {
+            "input": np.array([ids], dtype=np.int64),
+            "input_lengths": np.array([len(ids)], dtype=np.int64),
+            "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
+            "durations": np.array([[plan.frames]], dtype=np.float32),
+        }
+        audio = self._session(given, seed_of(r)).run(None, feed)[0].ravel()
+        hop = engine.config.hop_length
+        begin, end = carrier.bounds(plan, hop)
+        cut = np.array(audio[begin:end], dtype=np.float32)
+        rate = engine.config.sample_rate
+        fade_in = min(len(cut), rate * carrier.FADE_IN_MS // 1000)
+        fade_out = min(len(cut), rate * carrier.FADE_OUT_MS // 1000)
+        cut[:fade_in] *= np.linspace(0, 1, fade_in, dtype=np.float32)
+        cut[len(cut) - fade_out :] *= np.linspace(1, 0, fade_out, dtype=np.float32)
+        peak = float(np.abs(cut).max()) if len(cut) else 0.0
+        if peak < 1e-8:
+            raise ProviderError(f"piper: no audio for {r.input!r}")
+        trace = "".join(inv[i] for i in ids[plan.first : plan.last + 1])
+        return Clip(to_pcm(cut / peak), rate, None, trace)
 
     def synthesize(self, requests: list[Request]) -> list[Clip]:
-        piper = optional("piper")
         out: list[Clip] = []
         for r in requests:
-            voice = self._voice(r.voice)
-            config = piper.SynthesisConfig(length_scale=1 / r.rate)
-            chunks: list[Any] = list(voice.synthesize(r.input, syn_config=config))
-            pcm = b"".join(bytes(c.audio_int16_bytes) for c in chunks)
-            rate = int(chunks[0].sample_rate) if chunks else 22050
-            out.append(Clip(pcm, rate, None, None))
+            engine, raw = self._engine(r.voice, self.model)
+            short = self.carrier is not None and len(r.input.split()) <= self.max_words
+            out.append(self._carried(engine, r) if short else self._plain(engine, raw, r))
         return out
 
 
@@ -433,7 +568,7 @@ def checkpoint(model: str) -> tuple[str, str]:
         or len(revision) != 40
         or not all(c in "0123456789abcdef" for c in revision)
     ):
-        raise ValueError(f"{model!r}: an OmniVoice model is owner/name@<the 40-hex commit>")
+        raise ValueError(f"{model!r}: a pinned model is owner/name@<the 40-hex commit>")
     return repo, revision
 
 
@@ -830,7 +965,7 @@ class NavoiyProvider:
 
 PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "espeak-ng": lambda _voice, _ref: EspeakProvider(),
-    "piper": lambda _voice, _ref: PiperProvider(),
+    "piper": lambda voice, _ref: PiperProvider(voice),
     "elevenlabs": lambda voice, _ref: ElevenLabsProvider(voice),
     "cartesia": lambda voice, _ref: CartesiaProvider(voice),
     "omnivoice": lambda voice, ref: OmniVoiceProvider(voice, ref),

@@ -367,6 +367,7 @@ export interface NabuSchemaIndex {
   readonly ImageAsset: ImageAsset;
   readonly CourseAudio: CourseAudio;
   readonly AudioVoice: AudioVoice;
+  readonly AudioCarrier: AudioCarrier;
   readonly StorySource: StorySource;
   readonly StoryCharacter: StoryCharacter;
   readonly StoryStep: StoryStep;
@@ -1778,11 +1779,11 @@ export interface AudioVoice {
    */
   readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**
@@ -1801,12 +1802,29 @@ export interface AudioVoice {
    * With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).
    */
   readonly pronounce?: string;
+  readonly carrier?: AudioCarrier;
   readonly orthography: OrthographyId;
   /**
    * What the voice reads: "text" (the orthography's form) or a reading scheme pinned on tokens ("jyutping").
    */
   readonly reading: string;
   readonly license: Spdx2;
+}
+/**
+ * Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioCarrier".
+ */
+export interface AudioCarrier {
+  /**
+   * The carrier, in the voice's orthography, ending where the item begins ("حالا این کلمه را تکرار کن، ": "now repeat this word, …").
+   */
+  readonly text: string;
+  /**
+   * The longest item the carrier says, in words (split at spaces).
+   */
+  readonly maxWords?: number;
 }
 /**
  * A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).

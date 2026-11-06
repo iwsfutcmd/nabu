@@ -725,74 +725,26 @@ class ImageAsset(BaseModel):
     ] = None
 
 
-class AudioVoice(BaseModel):
+class AudioCarrier(BaseModel):
     """
-    A synthetic voice of the course's cast.
+    Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
-    provider: Annotated[
-        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
-        Field(description="A provider of nabu.audio.providers."),
-    ]
-    voice: Annotated[
+    text: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, a Piper voice id, an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+            description='The carrier, in the voice\'s orthography, ending where the item begins ("حالا این کلمه را تکرار کن، ": "now repeat this word, …").',
             min_length=1,
         ),
     ]
-    model: Annotated[
-        str | None,
-        Field(
-            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice and Navoiy: the Hugging Face checkpoint and its commit ("oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
-            min_length=1,
-        ),
-    ] = None
-    language: Annotated[
-        str | None,
-        Field(
-            description='The language code the provider takes for this course (ElevenLabs language_code, Cartesia language, OmniVoice language id), e.g. "fa", "uz", "yue", "ar". The Lahgtna checkpoint\'s dialect ids reuse country codes: "lb" is Lebanese Arabic there.',
-            pattern="^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
-        ),
-    ] = None
-    vowelMarks: Annotated[
-        bool | None,
-        Field(
-            description='With reading "text": read the text with the vowel marks the course\'s vocalization gives (ADR 0053) rather than as the source writes it, for a voice whose model reads them (Lahgtna reads تشكيل). A change to the vocalization then changes the clips it touches.'
-        ),
-    ] = None
-    finalStop: Annotated[
-        bool | None,
-        Field(
-            description='With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
-        ),
-    ] = None
-    pronounce: Annotated[
-        str | None,
-        Field(
-            description='With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).',
-            min_length=1,
-        ),
-    ] = None
-    orthography: OrthographyId
-    reading: Annotated[
-        str,
-        Field(
-            description='What the voice reads: "text" (the orthography\'s form) or a reading scheme pinned on tokens ("jyutping").',
-            min_length=1,
-        ),
-    ]
-    license: Annotated[
-        Spdx,
-        Field(
-            description="License of the audio this voice produces: it follows the voice's own terms."
-        ),
-    ]
+    maxWords: Annotated[
+        int,
+        Field(description="The longest item the carrier says, in words (split at spaces).", ge=1),
+    ] = 2
 
 
 type NameAdditionalProperty = Annotated[str, Field(min_length=1)]
@@ -2254,22 +2206,75 @@ class SourceToken(BaseModel):
     ] = None
 
 
-class CourseAudio(BaseModel):
+class AudioVoice(BaseModel):
     """
-    How the course gets audio (gameplan §10): synthesized from pinned readings by the listed voices, or recorded by people only. Audio belongs to the language, not an orthography: each voice reads one orthography's forms.
+    A synthetic voice of the course's cast.
     """
 
     model_config = ConfigDict(
         extra="forbid",
         frozen=True,
     )
-    humanRequired: Annotated[
-        bool | None,
+    id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    provider: Annotated[
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
+        Field(description="A provider of nabu.audio.providers."),
+    ]
+    voice: Annotated[
+        str,
         Field(
-            description="Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1)."
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+            min_length=1,
+        ),
+    ]
+    model: Annotated[
+        str | None,
+        Field(
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
+            min_length=1,
         ),
     ] = None
-    voices: Annotated[list[AudioVoice] | None, Field(min_length=1)] = None
+    language: Annotated[
+        str | None,
+        Field(
+            description='The language code the provider takes for this course (ElevenLabs language_code, Cartesia language, OmniVoice language id), e.g. "fa", "uz", "yue", "ar". The Lahgtna checkpoint\'s dialect ids reuse country codes: "lb" is Lebanese Arabic there.',
+            pattern="^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$",
+        ),
+    ] = None
+    vowelMarks: Annotated[
+        bool | None,
+        Field(
+            description='With reading "text": read the text with the vowel marks the course\'s vocalization gives (ADR 0053) rather than as the source writes it, for a voice whose model reads them (Lahgtna reads تشكيل). A change to the vocalization then changes the clips it touches.'
+        ),
+    ] = None
+    finalStop: Annotated[
+        bool | None,
+        Field(
+            description='With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
+        ),
+    ] = None
+    pronounce: Annotated[
+        str | None,
+        Field(
+            description='With reading "text": a reading scheme pinned on tokens ("jyutping"). A token whose spelling does not settle its pinned reading (a polyphone, or a reading the character table lacks) is given to the provider as IPA instead of its spelling. Needs a provider that reads inline IPA (elevenlabs).',
+            min_length=1,
+        ),
+    ] = None
+    carrier: AudioCarrier | None = None
+    orthography: OrthographyId
+    reading: Annotated[
+        str,
+        Field(
+            description='What the voice reads: "text" (the orthography\'s form) or a reading scheme pinned on tokens ("jyutping").',
+            min_length=1,
+        ),
+    ]
+    license: Annotated[
+        Spdx,
+        Field(
+            description="License of the audio this voice produces: it follows the voice's own terms."
+        ),
+    ]
 
 
 class ExerciseRef(BaseModel):
@@ -2794,6 +2799,24 @@ class SentenceForm(BaseModel):
         str | None,
         Field(description="Target-language accept set (§7.4) for L1→L2 production.", min_length=1),
     ] = None
+
+
+class CourseAudio(BaseModel):
+    """
+    How the course gets audio (gameplan §10): synthesized from pinned readings by the listed voices, or recorded by people only. Audio belongs to the language, not an orthography: each voice reads one orthography's forms.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    humanRequired: Annotated[
+        bool | None,
+        Field(
+            description="Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1)."
+        ),
+    ] = None
+    voices: Annotated[list[AudioVoice] | None, Field(min_length=1)] = None
 
 
 class StoryLineSource(BaseModel):
