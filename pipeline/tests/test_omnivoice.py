@@ -180,9 +180,13 @@ def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
     assert reference_of(adir, read_index(adir), "beirut-m") is not None
 
     intro = [u for u in apc.units if u["id"] == "intro"]
-    report = synthesize_course(course, intro, v, None, apc.written)
+    # The man's voice alone, within the course's cast: its share of the items (ADR 0078).
+    cast = list(apc.course.audio.voices)
+    assert [x.voice for x in cast] == ["beirut-m", "beirut-f"]
+    report = synthesize_course(course, intro, cast, None, apc.written, only=cast[0].id)
     index = read_index(adir)
-    assert report.synthesized == len(index.clips) > 0
+    assert report.synthesized == len(index.clips) == report.shares[cast[0].id] > 0
+    assert {c.synthesis.voice for c in index.clips if c.synthesis} == {"beirut-m"}
     assert index.references is not None and [r.id for r in index.references] == ["beirut-m"]
     assert all(c.license == "CC-BY-NC-4.0" for c in index.clips)
     diags, compiled = compile_course(course, core_cli)

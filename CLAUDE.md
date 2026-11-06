@@ -108,8 +108,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
   (nabu/audio/punctuation.py: by script subtag, language overrides). Turning it on makes those clips stale.
-- apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
-  vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
+- apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
+  vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
@@ -241,9 +241,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Register is the same idea, not yet modelled: Javanese speech levels (ngoko/krama/krama inggil), T–V (fa تو/شما,
   uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
   sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
-- A voice may say whose voice it is (`speaker: m|f`, opt-in); it then never reads a sentence the other gender says
-  (no clip; an old one is `audio.stale`). For now a voice of either gender reading any line is fine (Ben's call):
-  apc's man's voice sets no `speaker` and reads its woman-speaker sentences too. Set it once a second voice is cast.
+- A course's voices share its items (ADR 0078): each sentence, word and story character gets one voice at random
+  (seeded by its id: `assignment` in nabu/audio/course.py), except where grammar says who speaks (`persons.speaker`, a
+  story character's `speaker`): then a voice of that gender, if cast. A one-voice cast reads everything (a man reading a
+  woman's line is fine). Checked clips keep their voice. Set a character's `speaker` only where the text fixes it
+  (agreement, kinship words), never from a name alone. Adding a voice re-draws about half the items: regenerate.
 
 ## Account data notes (see docs/adr/0067, 0069)
 - `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must
@@ -305,7 +307,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0077 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0078 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -242,9 +242,14 @@ With an account on a server, corrections also reach the review queue at `/admin/
      fatha). Some stories leave it off.
 10. **Accept sets.** How generous should the Arabizi variants be (2 or no 2, e/i, kh/5, gh/8),
     and the English alternatives?
-11. **The voice** ([ADR 0058](../docs/adr/0058-lahgtna-voice.md)). Every clip is synthetic: Lahgtna
-    (OmniVoice), cloning one designed Beirut man's voice (`audio/voices/beirut-m.wav`), reading
-    the vowel-marked text.
+11. **The voices** ([ADR 0058](../docs/adr/0058-lahgtna-voice.md), [0078](../docs/adr/0078-random-voices.md)).
+    Every clip is synthetic: Lahgtna (OmniVoice), reading the vowel-marked text. Each clip clones
+    one of two designed Beirut voices, a man's (`audio/voices/beirut-m.wav`) or a woman's
+    (`beirut-f.wav`).
+    - **Who reads what:** each item draws one voice at random. Sentences and story characters
+      whose grammar says who speaks take a voice of that gender.
+    - **The woman's voice is new:** listen to it first, for the same points as the man's. Do Maya
+      and Teta sound right in the stories?
     - **Listen for:** a Lebanese accent rather than MSA or another dialect; the vowels the marks
       ask for (a wrong mark is said as written); stress; how questions sound.
     - **Where to start:** `nabu audio report ../courses/apc` lists the clips the round-trip check
@@ -261,7 +266,7 @@ With an account on a server, corrections also reach the review queue at `/admin/
     - **Spelling to check:** the Arabizi *-o* rather than *-u* (both are accepted), and ـوا rather
       than ـو in Arabic script (both are accepted).
     - **A woman speaking:** جوعانة, عطشانة, مأخّرة, مشغولة, تعبانة, مبسوطة, رايحة, فاضية. Their
-      clips are in the course's man's voice, for now.
+      clips are in the course's woman's voice (ADR 0078).
     - **To a woman:** عندِك, يمينِك, عمرِك (vowel marks pinned), بتشتغلي, بتحبّي, بدِّك, اشتريتي, كنتي
       مشغولة, استنّي, حبيبتي (tagged "to a woman"; it is also said to men).
 

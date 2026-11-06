@@ -120,6 +120,7 @@
             "additionalProperties": false,
             "properties": {
               "id": { "type": "string" },
+              "speaker": { "description": "The character's gender as a speaker, where the course sets it (ADR 0078).", "type": "string", "enum": ["m", "f"] },
               "name": { "description": "Per orthography.", "type": "object", "additionalProperties": { "$ref": "tagged-text.schema.json" } }
             }
           }
