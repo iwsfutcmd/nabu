@@ -1,0 +1,854 @@
+# Classical Chinese (lzh), unit 1: The Master said.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u01-the-master-said
+title:
+  en: The Master said
+cefr: A1
+kcs:
+- id: sense:善
+  gloss:
+    en: good; excellent; well said
+  forms:
+    lzh-Hant/standard: [善]
+- id: sense:哉
+  gloss:
+    en: 'exclamation particle: how …!, … indeed!'
+  forms:
+    lzh-Hant/standard: [哉]
+- id: sense:曰
+  gloss:
+    en: to say (introduces what is said)
+  forms:
+    lzh-Hant/standard: [曰]
+- id: sense:王
+  gloss:
+    en: king
+  forms:
+    lzh-Hant/standard: [王]
+- id: sense:然
+  gloss:
+    en: so, thus; yes, it is so
+  forms:
+    lzh-Hant/standard: [然]
+- id: sense:也
+  gloss:
+    en: 'sentence-final particle: it is (after a noun predicate)'
+  forms:
+    lzh-Hant/standard: [也]
+  notes:
+    en: 'Classical Chinese has no verb "to be" between two nouns: 我，王也 is "I [am] the king", the 也 closing the statement.'
+- id: construction:ye
+  gloss:
+    en: 'A，B也: “A is B”, a noun as the predicate'
+- id: sense:我
+  gloss:
+    en: I; me
+  forms:
+    lzh-Hant/standard: [我]
+- id: sense:人
+  gloss:
+    en: person, people; others
+  forms:
+    lzh-Hant/standard: [人]
+- id: sense:非
+  gloss:
+    en: 'is not (negates a noun predicate: 非A也)'
+  forms:
+    lzh-Hant/standard: [非]
+- id: sense:子
+  gloss:
+    en: the Master (Confucius); master, sir
+  forms:
+    lzh-Hant/standard: [子]
+  image: {file: ../images/teacher.svg, license: CC0-1.0, provenance: {author: 'llm:claude@ff0d70b80db5', status: draft}, source: Drawn for Nabu (courses/images)}
+  notes:
+    en: In the Analects, 子曰 is always “the Master said”. Later units meet 子 as a polite “you”.
+- id: sense:孔子
+  gloss:
+    en: Confucius (Master Kong)
+  forms:
+    lzh-Hant/standard: [孔子]
+- id: sense:魯
+  gloss:
+    en: Lu, Confucius's home state
+  forms:
+    lzh-Hant/standard: [魯]
+- id: sense:君子
+  gloss:
+    en: gentleman, noble person (by conduct, not birth)
+  forms:
+    lzh-Hant/standard: [君子]
+- id: sense:不
+  gloss:
+    en: not (negates a verb or adjective)
+  forms:
+    lzh-Hant/standard: [不]
+- id: sense:知
+  gloss:
+    en: to know; to understand; to recognize (someone)
+  forms:
+    lzh-Hant/standard: [知]
+- id: sense:乎
+  gloss:
+    en: question particle (yes-or-no questions)
+  forms:
+    lzh-Hant/standard: [乎]
+- id: sense:之
+  gloss:
+    en: him, her, it, them (after a verb)
+  forms:
+    lzh-Hant/standard: [之]
+- id: sense:學
+  gloss:
+    en: to learn, to study
+  forms:
+    lzh-Hant/standard: [學]
+- id: sense:而
+  gloss:
+    en: and; and yet (joins two verbs or clauses)
+  forms:
+    lzh-Hant/standard: [而]
+- id: sense:時
+  gloss:
+    en: time, season; at the right time
+  forms:
+    lzh-Hant/standard: [時]
+- id: sense:習
+  gloss:
+    en: to practise, to rehearse what one has learned
+  forms:
+    lzh-Hant/standard: [習]
+- id: sense:亦
+  gloss:
+    en: also, too
+  forms:
+    lzh-Hant/standard: [亦]
+- id: sense:說.yue
+  gloss:
+    en: pleased, delighted (read as 悅)
+  forms:
+    lzh-Hant/standard: [說]
+  notes:
+    en: The same character as 說 “to speak”, read differently. Later texts write 悅.
+- id: construction:buyi-hu
+  gloss:
+    en: '不亦…乎: “isn’t it …?”, a question that expects “yes”'
+- id: sense:有
+  gloss:
+    en: to have; there is, there are
+  forms:
+    lzh-Hant/standard: [有]
+- id: sense:朋
+  gloss:
+    en: friend, companion in study
+  forms:
+    lzh-Hant/standard: [朋]
+- id: sense:自
+  gloss:
+    en: from
+  forms:
+    lzh-Hant/standard: [自]
+- id: sense:遠
+  gloss:
+    en: far, distant
+  forms:
+    lzh-Hant/standard: [遠]
+- id: sense:方
+  gloss:
+    en: direction, region, place
+  forms:
+    lzh-Hant/standard: [方]
+- id: sense:來
+  gloss:
+    en: to come
+  forms:
+    lzh-Hant/standard: [來]
+- id: sense:樂
+  gloss:
+    en: joyful, happy; joy
+  forms:
+    lzh-Hant/standard: [樂]
+  image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:慍
+  gloss:
+    en: resentful, indignant
+  forms:
+    lzh-Hant/standard: [慍]
+nodes:
+- {id: lzh.u01.well-said, kind: lesson, introduces: ['sense:善', 'sense:哉', 'sense:曰', 'sense:王', 'sense:然']}
+- {id: lzh.u01.it-is, kind: lesson, introduces: ['sense:也', 'sense:我', 'construction:ye', 'sense:人', 'sense:非']}
+- {id: lzh.u01.the-master, kind: lesson, introduces: ['sense:子', 'sense:孔子', 'sense:魯', 'sense:君子']}
+- {id: lzh.u01.knowing, kind: lesson, introduces: ['sense:不', 'sense:知', 'sense:乎', 'sense:之']}
+- {id: lzh.u01.learning, kind: lesson, introduces: ['sense:學', 'sense:而', 'sense:時', 'sense:習', 'sense:亦', 'sense:說.yue', 'construction:buyi-hu']}
+- {id: lzh.u01.friends, kind: lesson, introduces: ['sense:有', 'sense:來', 'sense:朋', 'sense:自', 'sense:遠', 'sense:方', 'sense:樂', 'sense:慍']}
+- {id: lzh.u01.story, kind: story}
+sentences:
+- id: s.01.1
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 善。
+      tokens: [{surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 善[哉]
+  translations:
+    en: |-
+      Good!
+      Excellent!
+      Well said!
+      Very good!
+      Fine!
+- id: s.01.2
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 善哉！
+      tokens: [{surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 哉, sense: 哉, readings: {pinyin: zāi, jyutping: zoi1, baxter: tsoj}}]
+      reverse: 善[哉]
+  translations:
+    en: |-
+      Excellent!
+      How (good|excellent)!
+      Excellent indeed!
+      Splendid!
+      Good!
+- id: s.01.3
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 曰：「善。」
+      tokens: [{surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 曰善[哉]
+  translations:
+    en: (He|She) said, “(Good|Excellent|Well said|Very good).”
+- id: s.01.4
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 王曰：「善。」
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 王曰善[哉]
+  translations:
+    en: The king said, “(Good|Excellent|Well said|Very good).”
+- id: s.01.5
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 王曰：「善哉！」
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 哉, sense: 哉, readings: {pinyin: zāi, jyutping: zoi1, baxter: tsoj}}]
+      reverse: 王曰善哉
+  translations:
+    en: The king said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+- id: s.01.6
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 然。
+      tokens: [{surface: 然, sense: 然, readings: {pinyin: rán, jyutping: jin4, baxter: nyen}}]
+      reverse: 然[也]
+  translations:
+    en: |-
+      It is so.
+      That is so.
+      So it is.
+      Yes.
+      Indeed.
+      (That's|It's) (so|right).
+- id: s.01.7
+  node: lzh.u01.well-said
+  forms:
+    lzh-Hant/standard:
+      text: 王曰：「然。」
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 然, sense: 然, readings: {pinyin: rán, jyutping: jin4, baxter: nyen}}]
+      reverse: 王曰然[也]
+  translations:
+    en: The king said, “(It is so|That is so|So it is|Yes|Indeed|That's right).”
+- id: s.01.8
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 王也。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 王也
+  translations:
+    en: |-
+      It is the king.
+      It's the king.
+      (He|This|That) is the king.
+      (He's|That's) the king.
+- id: s.01.9
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 我也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)也
+  translations:
+    en: |-
+      It is I.
+      It's me.
+      It is me.
+- id: s.01.10
+  node: lzh.u01.it-is
+  constructions: ['construction:ye']
+  forms:
+    lzh-Hant/standard:
+      text: 我，王也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)王也
+  translations:
+    en: |-
+      I am the king.
+      I'm the king.
+- id: s.01.11
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 王，人也。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 王人也
+  translations:
+    en: |-
+      The king is a person.
+      The king is (human|a man|a human being).
+- id: s.01.12
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 我，人也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)人也
+  translations:
+    en: |-
+      I am a person.
+      I('m| am) (human|a human being).
+- id: s.01.13
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 我非王也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)非王也
+  translations:
+    en: |-
+      I am not the king.
+      I'm not the king.
+- id: s.01.14
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 非我也。
+      tokens: [{surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 非(我|吾)也
+  translations:
+    en: |-
+      It is not me.
+      It's not me.
+      It isn't me.
+      It wasn't me.
+      It was not me.
+- id: s.01.15
+  node: lzh.u01.it-is
+  forms:
+    lzh-Hant/standard:
+      text: 王曰：「我，人也。」
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 王曰(我|吾)人也
+  translations:
+    en: The king said, “I( am|'m) (a person|human|a human being).”
+- id: s.01.16
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 子曰：「善。」
+      tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 子曰善[哉]
+  translations:
+    en: |-
+      The Master said, “(Good|Excellent|Well said|Very good).”
+      Confucius said, “(Good|Excellent|Well said|Very good).”
+- id: s.01.17
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 孔子曰：「善哉！」
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 哉, sense: 哉, readings: {pinyin: zāi, jyutping: zoi1, baxter: tsoj}}]
+      reverse: 孔子曰善哉
+  translations:
+    en: |-
+      Confucius said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+      The Master said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+- id: s.01.18
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 子曰：「非我也。」
+      tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 子曰非(我|吾)也
+  translations:
+    en: |-
+      The Master said, “It (is not|isn't|was not|wasn't) me.”
+      The Master said, “It's not me.”
+      Confucius said, “It (is not|isn't|was not|wasn't) me.”
+      Confucius said, “It's not me.”
+- id: s.01.19
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 孔子，魯人也。
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 孔子魯人也
+  translations:
+    en: |-
+      Confucius was (a man|a person|someone) (of|from) Lu.
+      Confucius is (a man|a person|someone) (of|from) Lu.
+      Confucius (was|is) from Lu.
+- id: s.01.20
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 我，魯人也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)魯人也
+  translations:
+    en: |-
+      I am (a man|a person|someone) (of|from) Lu.
+      I'm (a man|a person|someone) (of|from) Lu.
+      I( am|'m) from Lu.
+- id: s.01.21
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 孔子，君子也。
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 孔子君子也
+  translations:
+    en: |-
+      Confucius is a (gentleman|noble person|noble man|superior man).
+      Confucius was a (gentleman|noble person|noble man|superior man).
+- id: s.01.22
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 我非君子也。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (我|吾)非君子也
+  translations:
+    en: |-
+      I am not a (gentleman|noble person|noble man|superior man).
+      I'm not a (gentleman|noble person|noble man|superior man).
+- id: s.01.23
+  node: lzh.u01.the-master
+  forms:
+    lzh-Hant/standard:
+      text: 王非魯人也。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 王非魯人也
+  translations:
+    en: |-
+      The king is not (a man|a person|someone) (of|from) Lu.
+      The king (was not|isn't|wasn't) (a man|a person|someone) (of|from) Lu.
+      The king (is not|was not|isn't|wasn't) from Lu.
+- id: s.01.24
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 不善。
+      tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 不善[也]
+  translations:
+    en: |-
+      Not good.
+      (It is|It's|That is|That's) not good.
+- id: s.01.25
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 我知。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: (我|吾)知[之]
+  translations:
+    en: |-
+      I know.
+      I understand.
+- id: s.01.26
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 我不知。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: (我|吾)不知[也]
+  translations:
+    en: |-
+      I do not know.
+      I don't know.
+- id: s.01.27
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 王知乎？
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 王知[之]乎
+  translations:
+    en: |-
+      Does the king know?
+      Does the king understand?
+- id: s.01.28
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 我知之。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (我|吾)知之
+  translations:
+    en: |-
+      I know it.
+      I know (this|that).
+      I know (him|her).
+- id: s.01.29
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 王知之乎？
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 王知之乎
+  translations:
+    en: |-
+      Does the king know it?
+      Does the king know (this|that|him|her)?
+- id: s.01.30
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 王不知我。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}]
+      reverse: 王不知我
+  translations:
+    en: |-
+      The king does not know me.
+      The king doesn't (know|recognize|understand) me.
+      The king does not (recognize|understand) me.
+- id: s.01.31
+  node: lzh.u01.knowing
+  forms:
+    lzh-Hant/standard:
+      text: 子曰：「不知也。」
+      tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 子曰不知[也]
+  translations:
+    en: |-
+      The Master said, “I do not know.”
+      The Master said, “I don't know.”
+      Confucius said, “I (do not|don't) know.”
+- id: s.01.32
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 我學之。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (我|吾)學之
+  translations:
+    en: |-
+      I learn it.
+      I (study|am learning|am studying) it.
+- id: s.01.33
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 學而知之。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 學而知之
+  translations:
+    en: |-
+      Learn it and know it.
+      (Learn|Study) it and (come to know|understand) it.
+      Know it by (learning|studying) it.
+- id: s.01.34
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 非時也。
+      tokens: [{surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 時, sense: 時, readings: {pinyin: shí, jyutping: si4, baxter: dzyi}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 非時也
+  translations:
+    en: |-
+      It is not the time.
+      It('s| is) not the (right|proper) time.
+      Now is not the time.
+- id: s.01.35
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 我習之。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 習, sense: 習, readings: {pinyin: xí, jyutping: zaap6, baxter: zip}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (我|吾)習之
+  translations:
+    en: |-
+      I practise it.
+      I (practice|rehearse|review) it.
+- id: s.01.36
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 學而時習之。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 時, sense: 時, readings: {pinyin: shí, jyutping: si4, baxter: dzyi}}, {surface: 習, sense: 習, readings: {pinyin: xí, jyutping: zaap6, baxter: zip}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 學而時習之
+  translations:
+    en: |-
+      Learn it and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
+      Study it and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
+      (Learn|Study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
+- id: s.01.37
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 我亦知之。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (我|吾)亦知之
+  translations:
+    en: |-
+      I also know it.
+      I know it too.
+      I too know it.
+      I (also know|know) (this|that) too.
+- id: s.01.38
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 王說。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 說, sense: 說.yue, readings: {pinyin: yuè, jyutping: jyut6, baxter: ywet}}]
+      reverse: 王(說|悅)
+  translations:
+    en: |-
+      The king was (pleased|delighted|happy).
+      The king is (pleased|delighted|happy).
+- id: s.01.39
+  node: lzh.u01.learning
+  constructions: ['construction:buyi-hu']
+  forms:
+    lzh-Hant/standard:
+      text: 不亦說乎？
+      tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 說, sense: 說.yue, readings: {pinyin: yuè, jyutping: jyut6, baxter: ywet}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 不亦(說|悅)乎
+  translations:
+    en: |-
+      Is it not (a pleasure|a delight|delightful|pleasing)?
+      Is that not (a pleasure|a delight|delightful|pleasing)?
+      Isn't (it|that) (a pleasure|a delight|delightful|pleasing)?
+- id: s.01.40
+  node: lzh.u01.learning
+  forms:
+    lzh-Hant/standard:
+      text: 學而時習之，不亦說乎？
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 時, sense: 時, readings: {pinyin: shí, jyutping: si4, baxter: dzyi}}, {surface: 習, sense: 習, readings: {pinyin: xí, jyutping: zaap6, baxter: zip}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 說, sense: 說.yue, readings: {pinyin: yuè, jyutping: jyut6, baxter: ywet}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 學而時習之不亦(說|悅)乎
+  translations:
+    en: |-
+      Is it not (a pleasure|a delight|delightful) to (learn|study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly)?
+      Isn't it (a pleasure|a delight|delightful) to (learn|study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly)?
+- id: s.01.41
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 有人。
+      tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 有人[也]
+  translations:
+    en: |-
+      There is someone.
+      There is a (person|man).
+      Someone is (here|there).
+- id: s.01.42
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 王來。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 王來
+  translations:
+    en: |-
+      The king comes.
+      The king (is coming|has come|came).
+- id: s.01.43
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 有朋來。
+      tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 有朋來
+  translations:
+    en: |-
+      A friend comes.
+      A friend (is coming|has come|came).
+      (Friends come|Friends are coming|Friends have come).
+- id: s.01.44
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 自魯來。
+      tokens: [{surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 自魯來
+  translations:
+    en: |-
+      (He|She) (comes|came|has come) from Lu.
+      They (come|came|have come) from Lu.
+- id: s.01.45
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 魯遠乎？
+      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 魯遠乎
+  translations:
+    en: |-
+      Is Lu far?
+      Is Lu far away?
+      Is Lu (distant|a long way)?
+- id: s.01.46
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 自遠方來。
+      tokens: [{surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 自遠方來
+  translations:
+    en: |-
+      (He|She) (comes|came|has come) from (afar|far away|a distant place|distant parts).
+      They (come|came|have come) from (afar|far away|a distant place|distant parts).
+- id: s.01.47
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 有朋自遠方來。
+      tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 有朋自遠方來
+  translations:
+    en: |-
+      A friend (comes|has come|came) from (afar|far away|a distant place|distant parts).
+      Friends (come|have come|came) from (afar|far away|a distant place|distant parts).
+- id: s.01.48
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 我亦樂。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}]
+      reverse: (我|吾)亦樂
+  translations:
+    en: |-
+      I am happy too.
+      I'm happy too.
+      I('m| am) (also happy|joyful too|also joyful|glad too|also glad).
+- id: s.01.49
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 有朋自遠方來，不亦樂乎？
+      tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 有朋自遠方來不亦樂乎
+  translations:
+    en: |-
+      Is it not a joy to have friends come from (afar|far away|a distant place|distant parts)?
+      Is it not (joyful|delightful|a delight) to have friends come from (afar|far away|a distant place|distant parts)?
+      Is it not (a joy|joyful|delightful|a delight) (when friends come|when a friend comes|to have a friend come) from (afar|far away|a distant place|distant parts)?
+      Isn't it (a joy|joyful|delightful|a delight) (to have friends come|when friends come|when a friend comes|to have a friend come) from (afar|far away|a distant place|distant parts)?
+- id: s.01.50
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 王慍。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 慍, sense: 慍, readings: {pinyin: yùn, jyutping: wan3, baxter: '''junH'}}]
+      reverse: 王慍
+  translations:
+    en: |-
+      The king was (resentful|indignant|annoyed|angry|upset).
+      The king is (resentful|indignant|annoyed|angry|upset).
+- id: s.01.51
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 人不知而不慍。
+      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 慍, sense: 慍, readings: {pinyin: yùn, jyutping: wan3, baxter: '''junH'}}]
+      reverse: 人不知而不慍
+  translations:
+    en: |-
+      Others do not know him, and he does not resent it.
+      Others (do not|don't) (know|recognize|understand) (him|you|one), and (he|you|one) (is|are) not (resentful|indignant|annoyed).
+      (Unrecognized|Unknown) by others (and|yet) not (resentful|indignant|annoyed).
+      Not (to be|being) resentful when others do not (know|recognize|understand) (you|one|him).
+- id: s.01.52
+  node: lzh.u01.friends
+  forms:
+    lzh-Hant/standard:
+      text: 君子不慍。
+      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 慍, sense: 慍, readings: {pinyin: yùn, jyutping: wan3, baxter: '''junH'}}]
+      reverse: 君子不慍
+  translations:
+    en: |-
+      A gentleman (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
+      The (gentleman|noble person|superior man) (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
+      A (noble person|superior man) (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
+stories:
+- id: lzh.story.analects-1-1
+  node: lzh.u01.story
+  title:
+    en: Is it not a pleasure? (Analects 1.1)
+  characters:
+  - {id: kongzi, name: {lzh-Hant/standard: 孔子}}
+  steps:
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 子曰：
+          tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'The Master said:'}
+  - line:
+      speaker: kongzi
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 學而時習之，不亦說乎？
+          tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 時, sense: 時, readings: {pinyin: shí, jyutping: si4, baxter: dzyi}}, {surface: 習, sense: 習, readings: {pinyin: xí, jyutping: zaap6, baxter: zip}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 說, sense: 說.yue, readings: {pinyin: yuè, jyutping: jyut6, baxter: ywet}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      translations: {en: 'Is it not a pleasure to learn and practise it at the right times?'}
+  - choose:
+      prompt:
+        en: What does the Master find a pleasure?
+      options: [{en: 'learning, and practising what one has learned'}, {en: being known by everyone}, {en: serving the king}]
+      answer: 0
+  - line:
+      speaker: kongzi
+      ask: complete
+      gap: sense:遠
+      distractors: ['sense:人', 'sense:君子']
+      forms:
+        lzh-Hant/standard:
+          text: 有朋自遠方來，不亦樂乎？
+          tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 樂, sense: 樂, readings: {pinyin: lè, jyutping: lok6, baxter: lak}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      translations: {en: 'Is it not a joy to have friends come from afar?'}
+  - line:
+      speaker: kongzi
+      forms:
+        lzh-Hant/standard:
+          text: 人不知而不慍，
+          tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 慍, sense: 慍, readings: {pinyin: yùn, jyutping: wan3, baxter: '''junH'}}]
+      translations: {en: 'Others do not know him, and he does not resent it:'}
+  - line:
+      speaker: kongzi
+      ask: complete
+      gap: sense:君子
+      distractors: ['sense:王', 'sense:魯']
+      forms:
+        lzh-Hant/standard:
+          text: 不亦君子乎？
+          tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      translations: {en: 'is he not a gentleman?'}
+  - choose:
+      prompt:
+        en: What makes someone a gentleman here?
+      options: [{en: not resenting it when others do not know him}, {en: coming from far away}, {en: being king of Lu}]
+      answer: 0
+scenarios:
+- id: lzh.disciple
+  after: lzh.u01.learning
+  title: {en: A new disciple}
+  setting: {en: 'Confucius’s school in Lu, about 500 BCE: a few students study the Odes and practise the rites.'}
+  character: {en: 'An older disciple of the Master, patient and a little formal, who speaks only Classical Chinese.'}
+  goal: {en: 'Greet the disciple, say you are from Lu, and agree that learning and practising is a pleasure.'}

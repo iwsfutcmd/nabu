@@ -934,6 +934,10 @@
       "message": "Persian",
       "description": "Name of the Persian (fa) course, used inside other messages as $language."
     },
+    "course.name.lzh": {
+      "message": "Classical Chinese",
+      "description": "Name of the Classical (Literary) Chinese (lzh) course, used inside other messages as $language. The written language of the classics, read and written in Traditional characters."
+    },
     "course.name.uz": {
       "message": "Uzbek",
       "description": "Name of the Uzbek (uz) course, used inside other messages as $language."
@@ -1130,6 +1134,10 @@
       "message": "Another spelling of this character is more usual here.",
       "description": "Feedback note: an accepted variant form was used."
     },
+    "feedback.note.variant-form": {
+      "message": "This is another form of the same character; the course writes it differently.",
+      "description": "Feedback note for Classical Chinese: an older or regional form of a character (爲 for 為) was used. The answer still counts."
+    },
     "feedback.note.vocalize-letters": {
       "message": "Keep the letters as they are, and only add vowel marks.",
       "description": "Feedback note: the learner changed the word's letters while adding vowel marks."
@@ -1289,6 +1297,10 @@
     "orthography.fa-Arab.standard": {
       "message": "Persian script",
       "description": "Name of the Persian orthography (Arabic script as used for Persian)."
+    },
+    "orthography.lzh-Hant.standard": {
+      "message": "Traditional characters",
+      "description": "Name of the Classical Chinese orthography: Traditional Chinese characters."
     },
     "orthography.uz-Cyrl.standard": {
       "message": "Cyrillic",
@@ -1570,6 +1582,14 @@
       "message": "Quit this lesson?",
       "description": "Title of the dialog shown when the learner closes a lesson."
     },
+    "player.readings.label": {
+      "message": "Readings",
+      "description": "Label of the choice of pronunciation guide shown above the characters (Pinyin, Jyutping, Middle Chinese), where a course offers several. Shown before the choices."
+    },
+    "player.readings.off": {
+      "message": "Off",
+      "description": "Choice in the readings control: show no pronunciation guide."
+    },
     "player.speak.play": {
       "message": "Play my recording",
       "description": "Button that plays back what the learner recorded."
@@ -1757,6 +1777,18 @@
     "quest.xp-30": {
       "message": ".input {$target :number}\n{{Earn {$target} XP}}",
       "description": "Daily quest: earn XP."
+    },
+    "reading.scheme.baxter": {
+      "message": "Middle Chinese (Baxter)",
+      "description": "William Baxter's transcription of Middle Chinese (the language of the 601 CE Qieyun rhyme dictionary), a choice in the readings control. Keep Baxter's name: it names the transcription."
+    },
+    "reading.scheme.jyutping": {
+      "message": "Jyutping",
+      "description": "Name of the Jyutping romanization (Cantonese readings of Chinese characters), a choice in the readings control."
+    },
+    "reading.scheme.pinyin": {
+      "message": "Pinyin",
+      "description": "Name of the Pinyin romanization (Mandarin readings of Chinese characters), a choice in the readings control."
     },
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",

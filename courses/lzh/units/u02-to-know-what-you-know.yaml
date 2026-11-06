@@ -1,0 +1,676 @@
+# Classical Chinese (lzh), unit 2: To know what you know.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u02-to-know-what-you-know
+title:
+  en: To know what you know
+cefr: A1
+kcs:
+- id: sense:吾
+  gloss:
+    en: I, my (as subject or before a noun, never as an object)
+  forms:
+    lzh-Hant/standard: [吾]
+- id: sense:汝
+  gloss:
+    en: you
+  forms:
+    lzh-Hant/standard: [汝]
+- id: sense:爾
+  gloss:
+    en: you
+  forms:
+    lzh-Hant/standard: [爾]
+- id: sense:其
+  gloss:
+    en: his, her, its, their; that
+  forms:
+    lzh-Hant/standard: [其]
+- id: sense:是
+  gloss:
+    en: this, that (pointing back)
+  forms:
+    lzh-Hant/standard: [是]
+  notes:
+    en: 'In early Classical Chinese 是 points: “this”. Later texts also use it for “to be”.'
+- id: sense:此
+  gloss:
+    en: this, here
+  forms:
+    lzh-Hant/standard: [此]
+- id: sense:為
+  gloss:
+    en: to do, to make; to be, to count as
+  forms:
+    lzh-Hant/standard: [為]
+- id: sense:誰
+  gloss:
+    en: who
+  forms:
+    lzh-Hant/standard: [誰]
+- id: sense:何
+  gloss:
+    en: what; why; how
+  forms:
+    lzh-Hant/standard: [何]
+  notes:
+    en: 'As an object it comes before the verb: 何學 “study what?”.'
+- id: sense:問
+  gloss:
+    en: to ask
+  forms:
+    lzh-Hant/standard: [問]
+- id: sense:對
+  gloss:
+    en: to reply (to a superior)
+  forms:
+    lzh-Hant/standard: [對]
+- id: sense:諾
+  gloss:
+    en: yes (I will); very well
+  forms:
+    lzh-Hant/standard: [諾]
+- id: sense:否
+  gloss:
+    en: no; not so
+  forms:
+    lzh-Hant/standard: [否]
+- id: sense:弟子
+  gloss:
+    en: disciple, student
+  forms:
+    lzh-Hant/standard: [弟子]
+  image: {file: ../images/student.svg, license: CC0-1.0, provenance: {author: 'llm:claude@db6a47561192', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:子路
+  gloss:
+    en: Zilu, a disciple of Confucius
+  forms:
+    lzh-Hant/standard: [子路]
+- id: sense:由
+  gloss:
+    en: 'Yu: Zilu’s personal name, used by his teacher'
+  forms:
+    lzh-Hant/standard: [由]
+  notes:
+    en: Zilu is his courtesy name; the Master calls him by his personal name, 由 (Zhong You).
+- id: sense:小人
+  gloss:
+    en: petty person, small-minded man (the opposite of 君子)
+  forms:
+    lzh-Hant/standard: [小人]
+- id: sense:言
+  gloss:
+    en: to speak; words
+  forms:
+    lzh-Hant/standard: [言]
+- id: sense:誨
+  gloss:
+    en: to teach, to instruct
+  forms:
+    lzh-Hant/standard: [誨]
+- id: sense:女.ru
+  gloss:
+    en: you (read rǔ, = 汝)
+  forms:
+    lzh-Hant/standard: [女]
+  notes:
+    en: The character for “woman” (nǚ), borrowed for 汝 “you” and read like it.
+- id: sense:知.zhi
+  gloss:
+    en: wise; wisdom (read zhì, = 智)
+  forms:
+    lzh-Hant/standard: [知]
+  notes:
+    en: The character 知 “to know”, read zhì. Later texts write 智.
+- id: sense:思
+  gloss:
+    en: to think, to reflect
+  forms:
+    lzh-Hant/standard: [思]
+- id: sense:則
+  gloss:
+    en: 'then (in the second clause: if A, then B)'
+  forms:
+    lzh-Hant/standard: [則]
+- id: sense:罔
+  gloss:
+    en: lost, confused; in vain
+  forms:
+    lzh-Hant/standard: [罔]
+- id: sense:殆
+  gloss:
+    en: in danger, perilous
+  forms:
+    lzh-Hant/standard: [殆]
+nodes:
+- {id: lzh.u02.i-and-you, kind: lesson, introduces: ['sense:吾', 'sense:汝', 'sense:爾', 'sense:其']}
+- {id: lzh.u02.this-and-that, kind: lesson, introduces: ['sense:是', 'sense:此', 'sense:為']}
+- {id: lzh.u02.questions, kind: lesson, introduces: ['sense:誰', 'sense:何', 'sense:問', 'sense:對', 'sense:諾', 'sense:否']}
+- {id: lzh.u02.disciples, kind: lesson, introduces: ['sense:弟子', 'sense:子路', 'sense:由', 'sense:小人', 'sense:言']}
+- {id: lzh.u02.teaching, kind: lesson, introduces: ['sense:誨', 'sense:女.ru', 'sense:知.zhi']}
+- {id: lzh.u02.thinking, kind: lesson, introduces: ['sense:思', 'sense:則', 'sense:罔', 'sense:殆']}
+- {id: lzh.u02.story, kind: story}
+sentences:
+- id: s.02.1
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 吾知之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)知之
+  translations:
+    en: I know (it|this|that|him|her).
+- id: s.02.2
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 汝知之乎？
+      tokens: [{surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: (汝|爾|女|子)知之乎
+  translations:
+    en: Do you know (it|this|that|him|her)?
+- id: s.02.3
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 吾不知汝。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}]
+      reverse: (吾|我)不知(汝|爾|女|子)
+  translations:
+    en: I (do not|don't) know you.
+- id: s.02.4
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 爾，魯人也。
+      tokens: [{surface: 爾, sense: 爾, readings: {pinyin: ěr, jyutping: ji5, baxter: nyeX}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (爾|汝|女|子)魯人也
+  translations:
+    en: |-
+      You are (a man|a person|someone) (of|from) Lu.
+      You're (a man|a person|someone) (of|from) Lu.
+      You( are|'re) from Lu.
+- id: s.02.5
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 爾非王也。
+      tokens: [{surface: 爾, sense: 爾, readings: {pinyin: ěr, jyutping: ji5, baxter: nyeX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (爾|汝|女|子)非王也
+  translations:
+    en: |-
+      You are not the king.
+      You('re not|aren't) the king.
+- id: s.02.6
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 其朋來。
+      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 其朋來
+  translations:
+    en: (His|Her|Their) friend (comes|is coming|has come|came).
+- id: s.02.7
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 吾知其人。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: (吾|我)知其人
+  translations:
+    en: I know (the|that) (man|person).
+- id: s.02.8
+  node: lzh.u02.i-and-you
+  forms:
+    lzh-Hant/standard:
+      text: 吾朋亦知之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)朋亦知之
+  translations:
+    en: |-
+      My friend also knows (it|this|that).
+      My friend knows (it|this|that) too.
+- id: s.02.9
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 是王也。
+      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (是|此)王也
+  translations:
+    en: |-
+      (This|That|He) is the king.
+      (That's|He's) the king.
+- id: s.02.10
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 是吾朋也。
+      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (是|此)(吾|我)朋也
+  translations:
+    en: |-
+      (This|That|He) is my friend.
+      (That's|He's) my friend.
+- id: s.02.11
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 此魯人也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (此|是)魯人也
+  translations:
+    en: |-
+      This is (a man|a person|someone) (of|from) Lu.
+      (This man|This person|He) is (from Lu|a man of Lu|a person of Lu).
+- id: s.02.12
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 此非吾朋也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (此|是)非(吾|我)朋也
+  translations:
+    en: |-
+      (This|That|He) is not my friend.
+      (This|That|He) isn't my friend.
+      (That's|He's) not my friend.
+- id: s.02.13
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 吾為之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)為之
+  translations:
+    en: I (will do|do|did) it.
+- id: s.02.14
+  node: lzh.u02.this-and-that
+  forms:
+    lzh-Hant/standard:
+      text: 王為之。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 王為之
+  translations:
+    en: The king (does|did|will do) it.
+- id: s.02.15
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 誰知之？
+      tokens: [{surface: 誰, sense: 誰, readings: {pinyin: shuí, jyutping: seoi4, baxter: dzywij}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 誰知之
+  translations:
+    en: |-
+      Who knows (it|this|that)?
+      Who knows about (it|this|that)?
+- id: s.02.16
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 誰來？
+      tokens: [{surface: 誰, sense: 誰, readings: {pinyin: shuí, jyutping: seoi4, baxter: dzywij}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 誰來
+  translations:
+    en: Who (is coming|comes|has come|came)?
+- id: s.02.17
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 何也？
+      tokens: [{surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 何也
+  translations:
+    en: |-
+      Why (is that|is it|so)?
+      How (so|is that)?
+- id: s.02.18
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 此何人也？
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (此|是)何人也
+  translations:
+    en: |-
+      Who is this (man|person)?
+      What (man|person) is this?
+- id: s.02.19
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 汝何學？
+      tokens: [{surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}]
+      reverse: (汝|爾|女|子)何學
+  translations:
+    en: |-
+      What do you (study|learn)?
+      What are you (studying|learning)?
+- id: s.02.20
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 吾問之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)問之
+  translations:
+    en: |-
+      I ask (him|her|them).
+      I asked (him|her|them).
+      I('ll| will) ask (him|her|them).
+- id: s.02.21
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 王問孔子。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}]
+      reverse: 王問孔子
+  translations:
+    en: The king (asked|asks) Confucius.
+- id: s.02.22
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 孔子對曰：「然。」
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 對, sense: 對, readings: {pinyin: duì, jyutping: deoi3, baxter: twojH}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 然, sense: 然, readings: {pinyin: rán, jyutping: jin4, baxter: nyen}}]
+      reverse: 孔子對曰然[也]
+  translations:
+    en: |-
+      Confucius replied, “(It is so|That is so|So it is|Yes|Indeed).”
+      Confucius answered, “(It is so|That is so|So it is|Yes|Indeed).”
+- id: s.02.23
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 諾。
+      tokens: [{surface: 諾, sense: 諾, readings: {pinyin: nuò, jyutping: nok6, baxter: nak}}]
+      reverse: 諾
+  translations:
+    en: |-
+      Yes, I will.
+      (Yes|Very well|All right|Certainly|Agreed)!
+- id: s.02.24
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 否。
+      tokens: [{surface: 否, sense: 否, readings: {pinyin: fǒu, jyutping: fau2, baxter: pjuwX}}]
+      reverse: 否
+  translations:
+    en: (No|Not so|It is not so|It's not so).
+- id: s.02.25
+  node: lzh.u02.questions
+  forms:
+    lzh-Hant/standard:
+      text: 王問曰：「汝知之乎？」對曰：「否。」
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 汝, sense: 汝, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}, {surface: 對, sense: 對, readings: {pinyin: duì, jyutping: deoi3, baxter: twojH}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 否, sense: 否, readings: {pinyin: fǒu, jyutping: fau2, baxter: pjuwX}}]
+      reverse: 王問曰(汝|爾|女|子)知之乎對曰否
+  translations:
+    en: The king asked, “Do you know (it|this|that)?” (He|She) (answered|replied), “No.”
+- id: s.02.26
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 吾，孔子弟子也。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 弟子, sense: 弟子, readings: {pinyin: dì zǐ, jyutping: dai6 zi2, baxter: dejX tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (吾|我)孔子[之]弟子也
+  translations:
+    en: |-
+      I am (a disciple|a student|a pupil) of Confucius.
+      I'm (a disciple|a student|a pupil) of Confucius.
+      I( am|'m) Confucius's (disciple|student|pupil).
+- id: s.02.27
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 子路，孔子弟子也。
+      tokens: [{surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 弟子, sense: 弟子, readings: {pinyin: dì zǐ, jyutping: dai6 zi2, baxter: dejX tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 子路孔子[之]弟子也
+  translations:
+    en: |-
+      Zilu (was|is) (a disciple|a student|a pupil) of Confucius.
+      Zilu (was|is) Confucius's (disciple|student|pupil).
+- id: s.02.28
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 子曰：「由！」
+      tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 由, sense: 由, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}]
+      reverse: 子曰由
+  translations:
+    en: |-
+      The Master said, “(Yu|You|Zilu|Zhong You)!”
+      Confucius said, “(Yu|You|Zilu|Zhong You)!”
+- id: s.02.29
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 由，吾弟子也。
+      tokens: [{surface: 由, sense: 由, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 弟子, sense: 弟子, readings: {pinyin: dì zǐ, jyutping: dai6 zi2, baxter: dejX tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 由(吾|我)弟子也
+  translations:
+    en: (Yu|You|Zhong You|Zilu) is my (disciple|student|pupil).
+- id: s.02.30
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 是小人也。
+      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 小人, sense: 小人, readings: {pinyin: xiǎo rén, jyutping: siu2 jan4, baxter: sjewX nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (是|此)小人也
+  translations:
+    en: |-
+      (This|That|He) is a (petty man|small man|petty person|small person|mean person).
+      (That's|He's) a (petty man|small man|petty person|small person|mean person).
+- id: s.02.31
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 吾不言。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 言, sense: 言, readings: {pinyin: yán, jyutping: jin4, baxter: ngjon}}]
+      reverse: (吾|我)不言
+  translations:
+    en: I (do not|don't|will not|won't) (speak|say anything|talk).
+- id: s.02.32
+  node: lzh.u02.disciples
+  forms:
+    lzh-Hant/standard:
+      text: 子路問，子不言。
+      tokens: [{surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 言, sense: 言, readings: {pinyin: yán, jyutping: jin4, baxter: ngjon}}]
+      reverse: 子路問子不言
+  translations:
+    en: |-
+      Zilu asked, (and|but) the Master (did not|didn't) (speak|say anything|answer).
+      Zilu asked, (and|but) Confucius (did not|didn't) (speak|say anything|answer).
+- id: s.02.33
+  node: lzh.u02.teaching
+  forms:
+    lzh-Hant/standard:
+      text: 孔子誨子路。
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 誨, sense: 誨, readings: {pinyin: huì, jyutping: fui3, baxter: xwojH}}, {surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}]
+      reverse: 孔子誨子路
+  translations:
+    en: Confucius (taught|teaches|instructed|instructs) Zilu.
+- id: s.02.34
+  node: lzh.u02.teaching
+  forms:
+    lzh-Hant/standard:
+      text: 吾誨女。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 誨, sense: 誨, readings: {pinyin: huì, jyutping: fui3, baxter: xwojH}}, {surface: 女, sense: 女.ru, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}]
+      reverse: (吾|我)誨(女|汝|爾)
+  translations:
+    en: I( will|'ll|) teach you.
+- id: s.02.35
+  node: lzh.u02.teaching
+  forms:
+    lzh-Hant/standard:
+      text: 誨女知之乎？
+      tokens: [{surface: 誨, sense: 誨, readings: {pinyin: huì, jyutping: fui3, baxter: xwojH}}, {surface: 女, sense: 女.ru, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 誨(女|汝|爾)知之乎
+  translations:
+    en: |-
+      Shall I teach you what knowing is?
+      Shall I teach you (what knowledge is|what it is to know|about knowing|about knowledge)?
+- id: s.02.36
+  node: lzh.u02.teaching
+  forms:
+    lzh-Hant/standard:
+      text: 是知也。
+      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (是|此)(知|智)也
+  translations:
+    en: (This|That) is (wisdom|knowledge|being wise|true knowledge).
+- id: s.02.37
+  node: lzh.u02.teaching
+  forms:
+    lzh-Hant/standard:
+      text: 知之為知之，不知為不知。
+      tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: 知之為知之不知為不知
+  translations:
+    en: |-
+      When you know (something|a thing), (hold|say|admit) that you know it; when you (do not|don't), (hold|say|admit) that you (do not|don't).
+      Count what you know as knowing[ it], and what you (do not|don't) know as not knowing[ it].
+- id: s.02.38
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 吾思之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)思之
+  translations:
+    en: I (think about|think over|reflect on|ponder) (it|this|that).
+- id: s.02.39
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 學而不思。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}]
+      reverse: 學而不思
+  translations:
+    en: |-
+      (Learn|Study|Learning|Studying) without (thinking|thought|reflecting|reflection).
+      (Learn|Study) (and|but) (do not|don't) (think|reflect).
+- id: s.02.40
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 不學則不知。
+      tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: 不學則不知
+  translations:
+    en: |-
+      If you (do not|don't) (learn|study), (then |)you (do not|don't|will not|won't) know.
+      Without (learning|studying|study), you (do not|don't|will not|won't) know.
+- id: s.02.41
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 學而不思則罔。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 罔, sense: 罔, readings: {pinyin: wǎng, jyutping: mong5, baxter: mjangX}}]
+      reverse: 學而不思則罔
+  translations:
+    en: |-
+      (Learning|Study|Studying) without (thinking|thought|reflection) leaves you (lost|confused|bewildered).
+      (Learning|Study|Studying) without (thinking|thought|reflection) is (useless|labour lost|labor lost|in vain).
+      If you (learn|study) but (do not|don't) think, you (are|will be) (lost|confused|bewildered).
+- id: s.02.42
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 思而不學則殆。
+      tokens: [{surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 殆, sense: 殆, readings: {pinyin: dài, jyutping: toi5, baxter: dojX}}]
+      reverse: 思而不學則殆
+  translations:
+    en: |-
+      (Thinking|Thought) without (learning|study|studying) leaves you in danger.
+      (Thinking|Thought) without (learning|study|studying) is (dangerous|perilous|risky).
+      If you think but (do not|don't) (learn|study), you (are|will be) in (danger|peril).
+- id: s.02.43
+  node: lzh.u02.thinking
+  forms:
+    lzh-Hant/standard:
+      text: 學而不思則罔，思而不學則殆。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 罔, sense: 罔, readings: {pinyin: wǎng, jyutping: mong5, baxter: mjangX}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 殆, sense: 殆, readings: {pinyin: dài, jyutping: toi5, baxter: dojX}}]
+      reverse: 學而不思則罔思而不學則殆
+  translations:
+    en: |-
+      Learning without thinking leaves you lost; thinking without learning leaves you in danger.
+      (Learning|Study) without (thought|thinking) is (labour lost|labor lost|useless); (thought|thinking) without (learning|study) is (perilous|dangerous).
+stories:
+- id: lzh.story.analects-2-17
+  node: lzh.u02.story
+  title:
+    en: To know what you know (Analects 2.17, 2.15)
+  characters:
+  - {id: kongzi, name: {lzh-Hant/standard: 孔子}}
+  steps:
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 子曰：
+          tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'The Master said:'}
+  - line:
+      speaker: kongzi
+      forms:
+        lzh-Hant/standard:
+          text: 由！
+          tokens: [{surface: 由, sense: 由, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}]
+      translations: {en: Yu!}
+  - line:
+      speaker: kongzi
+      ask: complete
+      gap: sense:誨
+      distractors: ['sense:問', 'sense:思']
+      forms:
+        lzh-Hant/standard:
+          text: 誨女知之乎？
+          tokens: [{surface: 誨, sense: 誨, readings: {pinyin: huì, jyutping: fui3, baxter: xwojH}}, {surface: 女, sense: 女.ru, readings: {pinyin: rǔ, jyutping: jyu5, baxter: nyoX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      translations: {en: 'Shall I teach you what knowing is?'}
+  - line:
+      speaker: kongzi
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 知之為知之，不知為不知，
+          tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      translations: {en: 'When you know something, hold that you know it; when you do not, hold that you do not:'}
+  - line:
+      speaker: kongzi
+      forms:
+        lzh-Hant/standard:
+          text: 是知也。
+          tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: this is knowledge.}
+  - choose:
+      prompt:
+        en: What does the Master call knowledge?
+      options: [{en: 'knowing what you know, and knowing what you do not know'}, {en: knowing everything there is to know}, {en: never asking anyone a question}]
+      answer: 0
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 子曰：
+          tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'The Master also said:'}
+  - line:
+      speaker: kongzi
+      ask: complete
+      gap: sense:思
+      distractors: ['sense:問', 'sense:言']
+      forms:
+        lzh-Hant/standard:
+          text: 學而不思則罔，
+          tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 罔, sense: 罔, readings: {pinyin: wǎng, jyutping: mong5, baxter: mjangX}}]
+      translations: {en: Learning without thinking leaves you lost;}
+  - line:
+      speaker: kongzi
+      forms:
+        lzh-Hant/standard:
+          text: 思而不學則殆。
+          tokens: [{surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 則, sense: 則, readings: {pinyin: zé, jyutping: zak1, baxter: tsok}}, {surface: 殆, sense: 殆, readings: {pinyin: dài, jyutping: toi5, baxter: dojX}}]
+      translations: {en: thinking without learning leaves you in danger.}
+  - choose:
+      prompt:
+        en: What happens to someone who thinks but does not learn?
+      options: [{en: they are in danger}, {en: they become wise}, {en: they become king}]
+      answer: 0

@@ -72,6 +72,12 @@
         }
       }
     },
+    "Facet": {
+      "title": "Facet",
+      "description": "What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.",
+      "type": "string",
+      "enum": ["recognize", "produce", "listen", "speak", "read-script", "write-script"]
+    },
     "ScriptCode": {
       "title": "ScriptCode",
       "description": "An ISO 15924 script code in titlecase.",

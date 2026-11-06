@@ -13,8 +13,9 @@ Real courses can live in separate repositories.
 | [`yue`](yue/) | yue-Hant-HK | 348 sentences, 263 KCs, 58 lessons | Pinned Jyutping shown as ruby; sentence-final particles; A-not-A questions; classifiers; 咗 未 過 and 緊; colloquial characters missing from CLDR (`exemplarsExtra`); an RBNF numbers drill |
 | [`uz`](uz/) | uz-Latn, uz-Cyrl | 318 sentences, 244 KCs, 58 lessons | Every sentence pinned in both scripts; ʻ (U+02BB) in oʻ; person, possessive, case and tense suffixes as morphs; a Latin→Cyrillic script-convert node |
 | [`apc`](apc/) | apc-Arab, apc-Latn (Arabizi) | 293 sentences, 252 KCs, 55 lessons | Learner-selectable script; Arabizi spelling variants in accept sets; possessive endings and verb persons as morphs; the b- present, subjunctive and past; vocalized stories; an Arabic→Arabizi script-convert node teaching 7, 3 and 2 |
+| [`lzh`](lzh/) | lzh-Hant | 379 sentences, 230 KCs, 50 lessons | Classical Chinese, read and written only (`facets: [recognize, produce]`, no audio, ADR 0071); every unit ends in an authentic passage (Analects, Laozi, Zhuangzi, Mencius, Han Feizi, Tang poems); readings pinned by sense in three layers shown on request: Pinyin, Jyutping, Baxter's Middle Chinese |
 
-Every unit ends in a story, and each course has six roleplay scenarios.
+Every unit ends in a story, and each course has six roleplay scenarios (lzh has seven).
 
 ## Review status
 
@@ -28,7 +29,8 @@ drafts were least sure of are listed course by course in [REVIEW.md](REVIEW.md).
 - the sentences;
 - the translations and accept sets;
 - the glosses;
-- the yue readings.
+- the yue readings;
+- the lzh readings (Pinyin, literary Jyutping, Baxter's Middle Chinese), chosen by sense.
 
 Promote reviewed items with `status: reviewed` (or `published`, which requires `reviewedBy` and
 `reviewedAt`).

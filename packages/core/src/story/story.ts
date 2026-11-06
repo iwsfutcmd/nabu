@@ -208,11 +208,16 @@ export const glossAt = (course: CourseView, glossary: StoryGlossary, glosses: re
       }),
     ];
   }
+  // A homograph (知 "know", 知 "wise"; ADR 0071): an entry over this word alone, spelled as the
+  // word is, glosses the sense the token names rather than whichever entry the glossary met first.
+  const named = own !== undefined && isWord(own) && own.sense !== undefined ? (`sense:${own.sense}` as KcId) : undefined;
+  const spells = (kc: KcId): boolean => (kcs.get(kc)?.forms?.[text.orthography] ?? []).some((f) => surfaceOf(f).normalize("NFC") === own?.surface.normalize("NFC"));
   const hits = glossesAt(glosses, token).flatMap((g): Gloss[] => {
     const form = glossary.forms[g.entry];
     if (form === undefined) return [];
     const span = g.partial ? "part" : g.tokenEnd - g.tokenStart > 1 ? "phrase" : "whole";
-    return [{ kc: g.kc, form, meaning: meaning.get(g.kc), span }];
+    const kc = span === "whole" && named !== undefined && named !== g.kc && spells(named) ? named : g.kc;
+    return [{ kc, form, meaning: meaning.get(kc), span }];
   });
   if (hits.length > 0) return hits;
   if (own === undefined || !isWord(own)) return [];

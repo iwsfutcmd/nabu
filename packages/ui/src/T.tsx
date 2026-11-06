@@ -56,6 +56,8 @@ interface TokenViewProps {
   readonly token: Token;
   readonly index: number;
   readonly ruby: SchemeId | false;
+  /** The ruby layer's own language tag (zh-Latn-pinyin), from the profile (ADR 0071). */
+  readonly rubyLang: string | undefined;
   readonly strip: RegExp | undefined;
   readonly highlighted: boolean;
   readonly focus: number | undefined;
@@ -63,7 +65,7 @@ interface TokenViewProps {
   readonly pressed: boolean;
 }
 
-const TokenView = ({ token, index, ruby, strip, highlighted, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
@@ -80,7 +82,7 @@ const TokenView = ({ token, index, ruby, strip, highlighted, focus, onPress, pre
         {segments.map((segment, i) => (
           <Fragment key={i}>
             {base(segment.base, i)}
-            <rt>{segment.text}</rt>
+            <rt lang={rubyLang}>{segment.text}</rt>
           </Fragment>
         ))}
       </ruby>
@@ -113,6 +115,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
   const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
   const strip = useMemo(() => markStripper(markSet), [markSet]);
   const font = fontStackFor(text.lang, profile?.fonts);
+  const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
   const style = {
     "--nabu-text-font": font.family,
     "--nabu-text-line-height": String(font.lineHeight),
@@ -134,6 +137,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           token={token}
           index={index}
           ruby={ruby}
+          rubyLang={rubyLang}
           strip={strip}
           highlighted={highlight?.includes(index) ?? false}
           focus={focus?.token === index ? focus.segment : undefined}

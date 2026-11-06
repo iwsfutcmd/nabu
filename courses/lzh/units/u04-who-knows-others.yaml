@@ -1,0 +1,544 @@
+# Classical Chinese (lzh), unit 4: Who knows others.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u04-who-knows-others
+title:
+  en: Who knows others
+cefr: A1
+kcs:
+- id: sense:老子
+  gloss:
+    en: Laozi (Master Lao), the Daoist sage
+  forms:
+    lzh-Hant/standard: [老子]
+- id: sense:道
+  gloss:
+    en: the Way; road, path
+  forms:
+    lzh-Hant/standard: [道]
+- id: sense:德
+  gloss:
+    en: virtue, moral power
+  forms:
+    lzh-Hant/standard: [德]
+- id: sense:者
+  gloss:
+    en: the one who …, those who … (after a verb phrase)
+  forms:
+    lzh-Hant/standard: [者]
+  notes:
+    en: '者 turns what comes before it into a noun: 知人者 “the one who knows others”.'
+- id: sense:之.de
+  gloss:
+    en: ’s, of (joins a noun to what it describes or owns)
+  forms:
+    lzh-Hant/standard: [之]
+  notes:
+    en: 'The same character as 之 “him, it”, read the same: between two nouns it joins them, 孔子之道 “the Way of Confucius”.'
+- id: sense:矣
+  gloss:
+    en: 'sentence-final particle: now, already (a new situation)'
+  forms:
+    lzh-Hant/standard: [矣]
+- id: sense:大
+  gloss:
+    en: big, great
+  forms:
+    lzh-Hant/standard: [大]
+- id: sense:小
+  gloss:
+    en: small, little
+  forms:
+    lzh-Hant/standard: [小]
+- id: sense:多
+  gloss:
+    en: many, much
+  forms:
+    lzh-Hant/standard: [多]
+- id: sense:少
+  gloss:
+    en: few, little
+  forms:
+    lzh-Hant/standard: [少]
+- id: sense:天下
+  gloss:
+    en: 'all under Heaven: the world, the realm'
+  forms:
+    lzh-Hant/standard: [天下]
+- id: sense:於
+  gloss:
+    en: at, in, from; than (after an adjective)
+  forms:
+    lzh-Hant/standard: [於]
+- id: sense:智
+  gloss:
+    en: wise; wisdom
+  forms:
+    lzh-Hant/standard: [智]
+- id: sense:自.self
+  gloss:
+    en: oneself, by oneself (before a verb)
+  forms:
+    lzh-Hant/standard: [自]
+  notes:
+    en: 'Written like 自 “from”: 自知 is “know oneself”.'
+- id: sense:明
+  gloss:
+    en: bright; clear-sighted, enlightened
+  forms:
+    lzh-Hant/standard: [明]
+- id: sense:勝
+  gloss:
+    en: to overcome, to defeat
+  forms:
+    lzh-Hant/standard: [勝]
+- id: sense:力
+  gloss:
+    en: strength, force
+  forms:
+    lzh-Hant/standard: [力]
+- id: sense:強
+  gloss:
+    en: strong
+  forms:
+    lzh-Hant/standard: [強]
+- id: sense:足
+  gloss:
+    en: enough; to be enough
+  forms:
+    lzh-Hant/standard: [足]
+- id: sense:富
+  gloss:
+    en: rich, wealthy
+  forms:
+    lzh-Hant/standard: [富]
+- id: sense:行
+  gloss:
+    en: to go, to walk; to act, to put into practice
+  forms:
+    lzh-Hant/standard: [行]
+- id: sense:強.qiang
+  gloss:
+    en: to force oneself, to make an effort (read qiǎng)
+  forms:
+    lzh-Hant/standard: [強]
+  notes:
+    en: 'The character 強 “strong”, read qiǎng: 強行 “to keep going by effort”.'
+nodes:
+- {id: lzh.u04.laozi, kind: lesson, introduces: ['sense:老子', 'sense:道', 'sense:德']}
+- {id: lzh.u04.those-who, kind: lesson, introduces: ['sense:者', 'sense:之.de', 'sense:矣']}
+- {id: lzh.u04.big-and-small, kind: lesson, introduces: ['sense:大', 'sense:小', 'sense:多', 'sense:少', 'sense:天下', 'sense:於']}
+- {id: lzh.u04.yourself, kind: lesson, introduces: ['sense:智', 'sense:自.self', 'sense:明', 'sense:勝', 'sense:力', 'sense:強']}
+- {id: lzh.u04.enough, kind: lesson, introduces: ['sense:足', 'sense:富', 'sense:行', 'sense:強.qiang']}
+- {id: lzh.u04.story, kind: story}
+sentences:
+- id: s.04.1
+  node: lzh.u04.laozi
+  forms:
+    lzh-Hant/standard:
+      text: 孔子問老子。
+      tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 老子, sense: 老子, readings: {pinyin: lǎo zǐ, jyutping: lou5 zi2, baxter: lawX tsiX}}]
+      reverse: 孔子問老子
+  translations:
+    en: Confucius (asked|asks|questioned|consulted) Laozi.
+- id: s.04.2
+  node: lzh.u04.laozi
+  forms:
+    lzh-Hant/standard:
+      text: 吾學道。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}]
+      reverse: (吾|我)學道
+  translations:
+    en: I (study|learn|am learning|am studying) the Way.
+- id: s.04.3
+  node: lzh.u04.laozi
+  forms:
+    lzh-Hant/standard:
+      text: 道不遠人。
+      tokens: [{surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 道不遠人
+  translations:
+    en: |-
+      The Way is not far from (people|others|man|humankind).
+      The Way (isn't|does not stay|doesn't stay) far from (people|man).
+- id: s.04.4
+  node: lzh.u04.laozi
+  forms:
+    lzh-Hant/standard:
+      text: 君子有德。
+      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 德, sense: 德, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}]
+      reverse: 君子有德
+  translations:
+    en: (A|The) (gentleman|noble person|superior man) (has|possesses) virtue.
+- id: s.04.5
+  node: lzh.u04.laozi
+  forms:
+    lzh-Hant/standard:
+      text: 王不知德。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 德, sense: 德, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}]
+      reverse: 王不知德
+  translations:
+    en: The king (does not|doesn't) (know|understand) virtue.
+- id: s.04.6
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 知者不惑。
+      tokens: [{surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 惑, sense: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}]
+      reverse: (知|智)者不惑
+  translations:
+    en: |-
+      The wise (are not|aren't) (perplexed|confused|in doubt).
+      (A wise man|A wise person|The wise man|One who is wise) (is not|isn't) (perplexed|confused|in doubt).
+- id: s.04.7
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 學者知之。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 學者知之
+  translations:
+    en: |-
+      Those who (learn|study) know (it|this).
+      (Scholars|Learners|Students) know (it|this).
+- id: s.04.8
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 是孔子之道也。
+      tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (是|此)孔子之道也
+  translations:
+    en: |-
+      (This|That) is the Way of Confucius.
+      (This|That) is Confucius's Way.
+- id: s.04.9
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 王之心善。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 心, sense: 心, readings: {pinyin: xīn, jyutping: sam1, baxter: sim}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 王之心善
+  translations:
+    en: |-
+      The king's (heart|mind) is good.
+      The (heart|mind) of the king is good.
+- id: s.04.10
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 吾知之矣。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: (吾|我)知之矣
+  translations:
+    en: |-
+      Now I (know|understand) (it|this|that).
+      I (know|understand) (it|this|that) now.
+      I have understood (it|this|that).
+- id: s.04.11
+  node: lzh.u04.those-who
+  forms:
+    lzh-Hant/standard:
+      text: 王來矣。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: 王來矣
+  translations:
+    en: |-
+      The king has (come|arrived).
+      The king is (here|coming now).
+- id: s.04.12
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 魯大乎？
+      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 魯大乎
+  translations:
+    en: Is Lu (big|large|great)?
+- id: s.04.13
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 魯小。
+      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 小, sense: 小, readings: {pinyin: xiǎo, jyutping: siu2, baxter: sjewX}}]
+      reverse: 魯小
+  translations:
+    en: |-
+      Lu is small.
+      Lu (is|was) (a small state|little|tiny).
+- id: s.04.14
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 人多。
+      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 多, sense: 多, readings: {pinyin: duō, jyutping: do1, baxter: ta}}]
+      reverse: 人多
+  translations:
+    en: |-
+      There are many people.
+      (People are|The people are) many.
+- id: s.04.15
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 君子少。
+      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 少, sense: 少, readings: {pinyin: shǎo, jyutping: siu2, baxter: syewX}}]
+      reverse: 君子少
+  translations:
+    en: |-
+      Gentlemen are (few|rare).
+      There are few (gentlemen|noble people).
+- id: s.04.16
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 弟子多矣。
+      tokens: [{surface: 弟子, sense: 弟子, readings: {pinyin: dì zǐ, jyutping: dai6 zi2, baxter: dejX tsiX}}, {surface: 多, sense: 多, readings: {pinyin: duō, jyutping: do1, baxter: ta}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: 弟子多矣
+  translations:
+    en: |-
+      The disciples are many[ now].
+      There are many disciples[ now].
+- id: s.04.17
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 王有天下。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 天下, sense: 天下, readings: {pinyin: tiān xià, jyutping: tin1 haa6, baxter: then haeX}}]
+      reverse: 王有天下
+  translations:
+    en: The king (possesses|has|rules) (the world|all under Heaven|the whole world|the empire).
+- id: s.04.18
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 子路學於孔子。
+      tokens: [{surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}]
+      reverse: 子路學(於|于)孔子
+  translations:
+    en: Zilu (studied|learned) (with|from|under) Confucius.
+- id: s.04.19
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 天大於人。
+      tokens: [{surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 天大(於|于)人
+  translations:
+    en: Heaven is (greater|bigger|larger) than (man|people|humans).
+- id: s.04.20
+  node: lzh.u04.big-and-small
+  forms:
+    lzh-Hant/standard:
+      text: 吾志於道。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}]
+      reverse: (吾|我)志(於|于)道
+  translations:
+    en: I (set|have set) my heart on the Way.
+- id: s.04.21
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 知人者智。
+      tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 智, sense: 智, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}]
+      reverse: 知人者(智|知)
+  translations:
+    en: |-
+      Those who (know|understand) others are (wise|clever|intelligent).
+      (He|One) who (knows|understands) others is (wise|clever|intelligent).
+- id: s.04.22
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 君子自知。
+      tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
+      reverse: 君子自知
+  translations:
+    en: (The|A) (gentleman|noble person|superior man) knows (himself|themselves).
+- id: s.04.23
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 自知者明。
+      tokens: [{surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}]
+      reverse: 自知者明
+  translations:
+    en: |-
+      Those who (know|understand) themselves are (enlightened|clear-sighted|wise|bright).
+      (He|One) who (knows|understands) (himself|oneself) is (enlightened|clear-sighted|wise|bright).
+- id: s.04.24
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 吾勝之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 勝, sense: 勝, readings: {pinyin: shèng, jyutping: sing3, baxter: syingH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)勝之
+  translations:
+    en: |-
+      I (defeated|beat|overcame) (him|her|them|it).
+      I (defeat|overcome) (him|her|them|it).
+- id: s.04.25
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 王有力。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 力, sense: 力, readings: {pinyin: lì, jyutping: lik6, baxter: lik}}]
+      reverse: 王有力
+  translations:
+    en: |-
+      The king (has|possesses) (strength|power|might).
+      The king is (strong|powerful).
+- id: s.04.26
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 勝人者有力。
+      tokens: [{surface: 勝, sense: 勝, readings: {pinyin: shèng, jyutping: sing3, baxter: syingH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 力, sense: 力, readings: {pinyin: lì, jyutping: lik6, baxter: lik}}]
+      reverse: 勝人者有力
+  translations:
+    en: |-
+      Those who (overcome|defeat|conquer) others (have strength|are forceful|have force).
+      (He|One) who (overcomes|defeats|conquers) others (has strength|is forceful|has force).
+- id: s.04.27
+  node: lzh.u04.yourself
+  forms:
+    lzh-Hant/standard:
+      text: 自勝者強。
+      tokens: [{surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 勝, sense: 勝, readings: {pinyin: shèng, jyutping: sing3, baxter: syingH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 強, sense: 強, readings: {pinyin: qiáng, jyutping: koeng4, baxter: gjang}}]
+      reverse: 自勝者強
+  translations:
+    en: |-
+      Those who (overcome|conquer|master) themselves are (strong|mighty).
+      (He|One) who (overcomes|conquers|masters) (himself|oneself) is (strong|mighty).
+- id: s.04.28
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 吾足矣。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 足, sense: 足, readings: {pinyin: zú, jyutping: zuk1, baxter: tsjowk}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: (吾|我)足矣
+  translations:
+    en: |-
+      I have enough[ now].
+      (That|This|It) is enough for me.
+      I am (satisfied|content).
+- id: s.04.29
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 魯人富。
+      tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 富, sense: 富, readings: {pinyin: fù, jyutping: fu3, baxter: pjuwH}}]
+      reverse: 魯人富
+  translations:
+    en: |-
+      The people of Lu are (rich|wealthy).
+      (The men|The people) from Lu are (rich|wealthy).
+- id: s.04.30
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 知足者富。
+      tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 足, sense: 足, readings: {pinyin: zú, jyutping: zuk1, baxter: tsjowk}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 富, sense: 富, readings: {pinyin: fù, jyutping: fu3, baxter: pjuwH}}]
+      reverse: 知足者富
+  translations:
+    en: |-
+      Those who know (contentment|when they have enough|what is enough) are (rich|wealthy).
+      (He|One) who knows (contentment|when he has enough|what is enough) is (rich|wealthy).
+- id: s.04.31
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 吾行矣。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: (吾|我)行矣
+  translations:
+    en: |-
+      I (am going|must go|am leaving|will go) now.
+      I('m going|'m leaving) now.
+- id: s.04.32
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 吾不欲行。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
+      reverse: (吾|我)不欲行
+  translations:
+    en: I (do not|don't) (want|wish) to (go|leave).
+- id: s.04.33
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 學而行之。
+      tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 學而行之
+  translations:
+    en: (Learn|Study) it and (put it into practice|practise it|practice it|act on it).
+- id: s.04.34
+  node: lzh.u04.enough
+  forms:
+    lzh-Hant/standard:
+      text: 強行者有志。
+      tokens: [{surface: 強, sense: 強.qiang, readings: {pinyin: qiǎng, jyutping: koeng5, baxter: gjangX}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}]
+      reverse: 強行者有志
+  translations:
+    en: |-
+      Those who (persevere|keep going|press on|force themselves to act) have (will|willpower|resolve|purpose).
+      (He|One) who (perseveres|keeps going|presses on) has (will|willpower|resolve|purpose).
+stories:
+- id: lzh.story.laozi-33
+  node: lzh.u04.story
+  title:
+    en: Who knows others (Laozi 33)
+  characters:
+  - {id: laozi, name: {lzh-Hant/standard: 老子}}
+  steps:
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 老子曰：
+          tokens: [{surface: 老子, sense: 老子, readings: {pinyin: lǎo zǐ, jyutping: lou5 zi2, baxter: lawX tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'Laozi said:'}
+  - line:
+      speaker: laozi
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 知人者智，自知者明。
+          tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 智, sense: 智, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}]
+      translations: {en: Those who know others are wise; those who know themselves are enlightened.}
+  - line:
+      speaker: laozi
+      ask: complete
+      gap: sense:力
+      distractors: ['sense:德', 'sense:道']
+      forms:
+        lzh-Hant/standard:
+          text: 勝人者有力，自勝者強。
+          tokens: [{surface: 勝, sense: 勝, readings: {pinyin: shèng, jyutping: sing3, baxter: syingH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 力, sense: 力, readings: {pinyin: lì, jyutping: lik6, baxter: lik}}, {surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 勝, sense: 勝, readings: {pinyin: shèng, jyutping: sing3, baxter: syingH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 強, sense: 強, readings: {pinyin: qiáng, jyutping: koeng4, baxter: gjang}}]
+      translations: {en: Those who overcome others have strength; those who overcome themselves are strong.}
+  - choose:
+      prompt:
+        en: Who, according to Laozi, is truly strong?
+      options: [{en: those who overcome themselves}, {en: those who overcome others}, {en: those who know others}]
+      answer: 0
+  - line:
+      speaker: laozi
+      forms:
+        lzh-Hant/standard:
+          text: 知足者富。
+          tokens: [{surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 足, sense: 足, readings: {pinyin: zú, jyutping: zuk1, baxter: tsjowk}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 富, sense: 富, readings: {pinyin: fù, jyutping: fu3, baxter: pjuwH}}]
+      translations: {en: Those who know when they have enough are rich.}
+  - line:
+      speaker: laozi
+      ask: complete
+      gap: sense:志
+      distractors: ['sense:心', 'sense:命']
+      forms:
+        lzh-Hant/standard:
+          text: 強行者有志。
+          tokens: [{surface: 強, sense: 強.qiang, readings: {pinyin: qiǎng, jyutping: koeng5, baxter: gjangX}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}]
+      translations: {en: Those who persevere have will.}
+  - choose:
+      prompt:
+        en: Who is rich, according to Laozi?
+      options: [{en: those who know when they have enough}, {en: those who have strength}, {en: those who know others}]
+      answer: 0

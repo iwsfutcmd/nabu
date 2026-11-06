@@ -285,6 +285,27 @@ describe("tap-for-gloss on story lines", () => {
     throw new Error("no analysed word in the uz story");
   });
 
+  it("a word spelled like another glosses the sense it names (知 'wise', ADR 0071)", () => {
+    const course = loadCourse("lzh");
+    const glossary = courseGlossary(course);
+    let homographs = 0;
+    for (const story of allStories(course)) {
+      for (const line of storyScript(course, story, seededRng(1)).lines) {
+        const glosses = glossLine(course, glossary, line.text);
+        for (const [i, token] of line.text.tokens.entries()) {
+          if (token.kind !== "word" || token.sense === undefined || token.morphs !== undefined) continue;
+          const hits = glossAt(course, glossary, glosses, line.text, i);
+          const whole = hits.filter((h) => h.span === "whole");
+          if (whole.length === 0) continue;
+          expect(whole.map((h) => h.kc), `${surfaceOf(line.text)} ${token.surface}`).toEqual([`sense:${token.sense}`]);
+          if (token.sense.includes(".")) homographs += 1;
+        }
+      }
+    }
+    // 女.ru and 知.zhi (Analects 2.17), 子.you (Zhuangzi), 是.cop (Li Bai) and others.
+    expect(homographs).toBeGreaterThanOrEqual(5);
+  });
+
   it("falls back to the token's own sense when no entry reaches it", () => {
     const course = loadCourse("fa");
     const glossary = courseGlossary(course);

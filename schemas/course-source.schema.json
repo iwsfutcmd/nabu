@@ -46,6 +46,15 @@
       "$ref": "#/$defs/Provenance",
       "description": "Default provenance for every content item that gives none."
     },
+    "facets": {
+      "description": "The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "common.schema.json#/$defs/Facet"
+      }
+    },
     "iPlusOne": {
       "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
       "type": "integer",

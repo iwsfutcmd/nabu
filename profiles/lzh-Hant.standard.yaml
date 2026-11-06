@@ -1,0 +1,29 @@
+# profiles/lzh-Hant.standard.yaml
+# Classical (Literary) Chinese in Traditional characters (ADR 0071). A written language: the course
+# practises reading and writing its characters, never their sounds. Readings are a display aid, three
+# ruby layers the learner picks from (or none), and no exercise drills them.
+id: lzh-Hant/standard
+lang: lzh-Hant
+exemplars: cldr:zh_Hant
+# REVIEW: classical function words and the classics' vocabulary that CLDR 49's zh_Hant sets lack.
+# These are gaps to report upstream (docs/gameplan-errata.md), not a wider audit.
+exemplarsExtra: [焉, 歟, 孰, 奚, 罔, 慍, 誨, 殆, 踰, 矩, 濠, 鯈, 遽, 墜, 耕, 株, 冀, 耒, 鬻, 叟, 啼]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - fold-width: { ascii: half, punctuation: full }
+  - whitespace: remove                 # spaces carry no meaning
+  - punctuation: strip                 # editors punctuate the classics differently
+match:
+  # 爲 for 為, 説 for 說: older and regional forms of the same character are right, with a note.
+  variants:       { table: hk-tw-variants, policy: accept-with-note, note: variant-form }
+  scriptMismatch: { detect: Hans, table: hans-only, policy: reject-with-note, note: use-traditional }
+annotations:
+  - { id: pinyin, kind: reading, scheme: pinyin, lang: zh-Latn-pinyin, toggle: true, default: "off", render: ruby, fade: none }
+  - { id: jyutping, kind: reading, scheme: jyutping, lang: yue-Latn-jyutping, toggle: true, default: "off", render: ruby, fade: none }
+  - { id: baxter, kind: reading, scheme: baxter, lang: ltc-Latn-x-baxter, toggle: true, default: "off", render: ruby, fade: none }
+input:
+  ime: [os]
+layout: { vertical: vertical-rl, verticalScope: [prompt, reading, wordbank] }
+# The classics are set in a Ming (Song) face: Noto Serif CJK, Traditional Chinese.
+fonts: { stack: [Noto Serif TC, Noto Serif CJK TC, Noto Sans HK], lineHeight: 1.7 }

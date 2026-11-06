@@ -165,11 +165,14 @@ def _unit_kind(profile: OrthographyProfile) -> str:
     return "token"
 
 
-def _ruby_scheme(profile: OrthographyProfile) -> str | None:
-    for layer in profile.annotations or []:
-        if layer.kind == "reading" and layer.render == "ruby":
-            return layer.scheme
-    return None
+def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
+    """Every reading layer shown as ruby, in profile order: Jyutping for yue; Pinyin, Jyutping and
+    Baxter's Middle Chinese for lzh (ADR 0071), each pinned on every Han word."""
+    return [
+        layer.scheme
+        for layer in profile.annotations or []
+        if layer.kind == "reading" and layer.render == "ruby" and layer.scheme is not None
+    ]
 
 
 def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
@@ -338,9 +341,8 @@ def compile_form(
             t["tileGroup"] = next_group
             next_group += 1
 
-    # stage 3: readings and ruby
-    scheme = _ruby_scheme(profile)
-    if scheme is not None:
+    # stage 3: readings and ruby, for every ruby layer
+    for scheme in _ruby_schemes(profile):
         for t in toks:
             if t["kind"] != "word" or not tx.HAN.search(t["surface"]):
                 continue
@@ -367,7 +369,7 @@ def compile_form(
                     loc,
                 )
             else:
-                t["ruby"] = {scheme: segments}
+                t.setdefault("ruby", {})[scheme] = segments
 
     _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
     mark_vowels(ctx, orth, toks, loc, warn)
@@ -728,35 +730,38 @@ def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) ->
     characters' share of their reading (禮拜 in 禮拜一); a form no token names takes the reading
     its surface always has, and none if that varies (a polyphone). Nothing is guessed."""
     for orth in course.orthographies:
-        scheme = _ruby_scheme(ctx.profiles[orth])
-        if scheme is None:
-            continue
-        by_kc: dict[Any, Tally] = {}
-        by_surface: dict[Any, Tally] = {}
-        for u in units:
-            for sentence in cast(list[dict[str, Any]], u["sentences"]):
-                form = cast(dict[str, Any] | None, sentence["forms"].get(orth))
-                if form is not None:
-                    _tally_readings(form["text"]["tokens"], scheme, by_kc, by_surface)
-            for story in cast(list[dict[str, Any]], u.get("stories", [])):
-                for step in cast(list[dict[str, Any]], story["steps"]):
-                    line = cast(dict[str, Any], step.get("line") or {}).get("forms", {}).get(orth)
-                    if line is not None:
-                        _tally_readings(line["tokens"], scheme, by_kc, by_surface)
-        for u in units:
-            for kc in cast(list[dict[str, Any]], u["kcs"]):
-                forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
-                for form in forms.get(orth, []):
-                    for t in cast(list[dict[str, Any]], form["tokens"]):
-                        surface = str(t["surface"])
-                        if t["kind"] != "word" or not tx.HAN.search(surface):
-                            continue
-                        reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
-                        segments = None if reading is None else tx.ruby_segments(surface, reading)
-                        if reading is None or segments is None:
-                            continue
-                        t["readings"] = {scheme: reading}
-                        t["ruby"] = {scheme: segments}
+        for scheme in _ruby_schemes(ctx.profiles[orth]):
+            _kc_readings_in(ctx, units, orth, scheme)
+
+
+def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: str) -> None:
+    """One orthography's KC forms, one ruby layer: see _kc_readings."""
+    by_kc: dict[Any, Tally] = {}
+    by_surface: dict[Any, Tally] = {}
+    for u in units:
+        for sentence in cast(list[dict[str, Any]], u["sentences"]):
+            form = cast(dict[str, Any] | None, sentence["forms"].get(orth))
+            if form is not None:
+                _tally_readings(form["text"]["tokens"], scheme, by_kc, by_surface)
+        for story in cast(list[dict[str, Any]], u.get("stories", [])):
+            for step in cast(list[dict[str, Any]], story["steps"]):
+                line = cast(dict[str, Any], step.get("line") or {}).get("forms", {}).get(orth)
+                if line is not None:
+                    _tally_readings(line["tokens"], scheme, by_kc, by_surface)
+    for u in units:
+        for kc in cast(list[dict[str, Any]], u["kcs"]):
+            forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
+            for form in forms.get(orth, []):
+                for t in cast(list[dict[str, Any]], form["tokens"]):
+                    surface = str(t["surface"])
+                    if t["kind"] != "word" or not tx.HAN.search(surface):
+                        continue
+                    reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
+                    segments = None if reading is None else tx.ruby_segments(surface, reading)
+                    if reading is None or segments is None:
+                        continue
+                    t.setdefault("readings", {})[scheme] = reading
+                    t.setdefault("ruby", {})[scheme] = segments
 
 
 def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -> dict[str, str]:
@@ -1206,7 +1211,15 @@ def _glossary(
                 if not own or not tu or not any(entries[ei][2] == tu for ei in own):
                     continue
                 covering = [m for m in matches if m["tokenStart"] <= ti < m["tokenEnd"]]
-                won = any(m["entry"] in own for m in covering)
+                # A homograph (知 "know", 知 "wise"): an entry spelled like the word, over the word
+                # alone, glosses the sense the token names (glossAt), so it does not shadow it.
+                homograph = any(
+                    m["tokenStart"] == ti
+                    and m["tokenEnd"] == ti + 1
+                    and entries[cast(int, m["entry"])][2] == tu
+                    for m in covering
+                )
+                won = homograph or any(m["entry"] in own for m in covering)
                 if covering and not won and sense not in shadowed:
                     shadowed.add(sense)
                     winner: int = covering[0]["entry"]

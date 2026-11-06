@@ -9,14 +9,15 @@
  * script's direction, never the UI's.
  */
 import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
-import type { OrthographyProfile } from "@nabu/schema";
+import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
 import { NabuUiProvider, useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, rubySchemeOf, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
+import { ReadingsControl, useReadings } from "./Readings.tsx";
+import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -54,6 +55,10 @@ export interface LessonPlayerProps {
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
   readonly debug?: boolean | undefined;
+  /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
+  readonly reading?: SchemeId | false | undefined;
+  /** The learner chose a reading layer, or none. */
+  readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -75,14 +80,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     setOverride(undefined);
     shell.dispatch(event);
   };
-  const scheme = rubySchemeOf(profile);
   const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
   // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
-  const [readings, setReadings] = useState(mode === "horizontal-tb");
+  const readings = useReadings(profile, mode, props.reading, props.onReadingChange);
   const [vowels, setVowels] = useState(true);
   const verticalMode = profile?.layout?.vertical;
   const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "wordbank") !== "horizontal-tb";
-  const ruby = scheme !== undefined && readings ? scheme : false;
+  const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
   const shortcuts = useRef<Shortcuts | null>(null);
@@ -189,9 +193,9 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         </p>
       )}
 
-      {(scheme !== undefined || hasMarksLayer(profile) || canVertical) && (
+      {(readings.layers.length > 0 || hasMarksLayer(profile) || canVertical) && (
         <div className={styles.toggles}>
-          {scheme !== undefined && <Toggle id="readings" selected={readings} onChange={setReadings} label={t.format("exercise.readings.toggle")} />}
+          <ReadingsControl readings={readings} />
           {hasMarksLayer(profile) && <Toggle id="marks" selected={vowels} onChange={setVowels} label={t.format("player.toggle.marks")} />}
           {canVertical && verticalMode !== undefined && (
             <Toggle
@@ -199,7 +203,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
               selected={mode !== "horizontal-tb"}
               onChange={(v) => {
                 setMode(v ? verticalMode : "horizontal-tb");
-                setReadings(!v);
+                readings.onVertical(v);
               }}
               label={t.format("player.toggle.vertical")}
             />

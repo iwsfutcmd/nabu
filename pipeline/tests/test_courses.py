@@ -51,7 +51,7 @@ EXPECTED_WARNINGS = {
         ("enrich.reading-mismatch", "呢隻"),
     }
 }
-TOOLS = {"fa": ["hazm", "icu"], "yue": ["pycantonese", "icu"], "uz": ["icu"], "apc": []}
+TOOLS = {"fa": ["hazm", "icu"], "yue": ["pycantonese", "icu"], "uz": ["icu"], "apc": [], "lzh": []}
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}
 
@@ -260,3 +260,59 @@ def test_every_word_the_vocalization_knows_is_marked(core_cli: CoreCli, course: 
                     unmarked.append(f"{unit['id']}: {t['surface']} (wants {want})")
     assert seen > 100
     assert unmarked == [], "\n".join(unmarked)
+
+
+LZH = "lzh-Hant/standard"
+LZH_SCHEMES = ["baxter", "jyutping", "pinyin"]
+
+
+def test_classical_chinese_is_read_and_written_never_spoken(core_cli: CoreCli) -> None:
+    """lzh (ADR 0071): no audio, and it practises recognize and produce only."""
+    _, compiled = build(core_cli, "lzh")
+    assert compiled.course.audio is None and compiled.audio_items == {}
+    assert compiled.course.facets == ["recognize", "produce"]
+    assert compiled.orthographies == [LZH]
+
+
+def test_classical_chinese_pins_three_reading_layers(core_cli: CoreCli) -> None:
+    """Every Han word carries Pinyin, Jyutping and Baxter's Middle Chinese, as readings and as
+    ruby, one segment per character; the word cards (KC forms) carry them too."""
+    _, compiled = build(core_cli, "lzh")
+    han = regex.compile(r"\p{Han}")
+
+    def check(tokens: list[dict[str, Any]], where: str) -> int:
+        n = 0
+        for t in tokens:
+            if t["kind"] != "word" or not han.search(t["surface"]):
+                continue
+            n += 1
+            assert sorted(t["readings"]) == LZH_SCHEMES, (where, t["surface"])
+            for scheme in LZH_SCHEMES:
+                segments = t["ruby"][scheme]
+                assert "".join(seg["base"] for seg in segments) == t["surface"], (where, scheme)
+                assert [seg["text"] for seg in segments] == t["readings"][scheme].split(), where
+        return n
+
+    words = sum(check(s["forms"][LZH]["text"]["tokens"], s["id"]) for s in sentences(compiled))
+    assert words > 1000
+    for u in compiled.units:
+        for kc in u["kcs"]:
+            for form in kc.get("forms", {}).get(LZH, []):
+                assert check(form["tokens"], kc["id"]) == 1, kc["id"]
+
+
+def test_classical_chinese_reads_a_character_by_its_sense(core_cli: CoreCli) -> None:
+    """Senses written alike keep their own readings: 說 "pleased" is read as 悅, 女 "you" as 汝."""
+    _, compiled = build(core_cli, "lzh")
+    by_sense: dict[str, set[tuple[str, ...]]] = {}
+    for s in sentences(compiled):
+        for t in s["forms"][LZH]["text"]["tokens"]:
+            if "sense" in t:
+                reading = tuple(t["readings"][k] for k in LZH_SCHEMES)
+                by_sense.setdefault(t["sense"], set()).add(reading)
+    assert by_sense["說.yue"] == {("ywet", "jyut6", "yuè")}
+    assert by_sense["女.ru"] == {("nyoX", "jyu5", "rǔ")}
+    assert by_sense["知"] == {("trje", "zi1", "zhī")}
+    assert by_sense["知.zhi"] == {("trjeH", "zi3", "zhì")}
+    several = {k: v for k, v in by_sense.items() if len(v) > 1}
+    assert several == {}

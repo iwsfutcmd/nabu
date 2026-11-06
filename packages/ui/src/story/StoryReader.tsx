@@ -22,7 +22,8 @@ import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import playerStyles from "../player/Player.module.css";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, rubySchemeOf, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { ReadingsControl, useReadings } from "../player/Readings.tsx";
+import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -42,6 +43,10 @@ export interface StoryReaderProps {
   readonly writingMode?: WritingMode;
   /** XP the story earned, shown when it ends. */
   readonly xpEarned?: number | undefined;
+  /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
+  readonly reading?: SchemeId | false | undefined;
+  /** The learner chose a reading layer, or none. */
+  readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
   /** For Storybook and tests: lines whose translation starts open, and a token whose gloss starts open. */
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
@@ -127,18 +132,19 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const t = useTranslator();
   const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound, initialState: props.initialState });
   const glossary = useMemo(() => courseGlossary(course), [course]);
-  const scheme = rubySchemeOf(profile);
   const verticalMode = profile?.layout?.vertical;
   const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "reading") !== "horizontal-tb";
   const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
   const transcriptMode = effectiveWritingMode(profile, mode, "reading");
   // Rotated Latin ruby reads badly in vertical text: off by default there (§11.4).
-  const [readings, setReadings] = useState(transcriptMode === "horizontal-tb");
+  const readings = useReadings(profile, transcriptMode, props.reading, props.onReadingChange);
+  // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
+  const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
   const [vowels, setVowels] = useState(true);
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
-  const ruby = scheme !== undefined && readings ? scheme : false;
+  const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
   const transcript = useRef<HTMLDivElement>(null);
@@ -276,9 +282,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         </p>
       )}
 
-      {(scheme !== undefined || hasMarksLayer(profile) || canVertical) && (
+      {(readings.layers.length > 0 || hasMarksLayer(profile) || canVertical) && (
         <div className={playerStyles.toggles}>
-          {scheme !== undefined && <Toggle id="readings" selected={readings} onChange={setReadings} label={t.format("exercise.readings.toggle")} />}
+          <ReadingsControl readings={readings} />
           {hasMarksLayer(profile) && <Toggle id="marks" selected={vowels} onChange={setVowels} label={t.format("player.toggle.marks")} />}
           {canVertical && verticalMode !== undefined && (
             <Toggle
@@ -286,7 +292,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
               selected={mode !== "horizontal-tb"}
               onChange={(v) => {
                 setMode(v ? verticalMode : "horizontal-tb");
-                setReadings(!v);
+                readings.onVertical(v);
               }}
               label={t.format("player.toggle.vertical")}
             />
@@ -336,14 +342,14 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             {glosses.map((g, i) => (
               <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
                 <dt>
-                  <T text={g.form} ruby={scheme ?? false} marks={marks} />
+                  <T text={g.form} ruby={glossRuby} marks={marks} />
                 </dt>
                 <dd>
                   {g.meaning !== undefined && <T text={g.meaning} />}
                   {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
                   {g.lemma !== undefined && (
                     <span className={styles.glossNote} data-gloss-lemma="">
-                      {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={scheme ?? false} marks={marks} />
+                      {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={glossRuby} marks={marks} />
                     </span>
                   )}
                 </dd>

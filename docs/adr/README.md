@@ -64,6 +64,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0068](0068-self-hosting.md) | `deploy/compose.yaml`: Caddy (HTTPS) serving the app with the API on one origin (`VITE_NABU_API=/`), Postgres, optional Ollama and speech; the API image keeps the workspace layout; CI smoke-tests it | Proposed |
 | [0069](0069-age-gate.md) | An optional age gate at sign-up (`NABU_MIN_AGE`): a neutral "How old are you?" in any script's digits; the server keeps nothing of the answer; the device remembers a refusal; learning without an account goes on | Proposed |
 | [0070](0070-ui-catalogs.md) | UI catalogs carry provenance and ship only reviewed and complete; each translation records the fingerprint of its English (stale on a wording change; a new key for a new meaning); `pnpm check:catalogs` checks MF2, placeholders, CLDR plural categories and invisibles in CI | Proposed |
+| [0071](0071-classical-chinese.md) | A course names the facets it practises (`facets`: Classical Chinese is recognize and produce, so never spoken, heard or drilled on readings); an orthography may pin several reading layers (Pinyin, Jyutping, Baxter's Middle Chinese), shown one at a time on request with `<rt lang>`; senses spelled alike gloss as themselves; the lzh course | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).
