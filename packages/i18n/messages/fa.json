@@ -1,0 +1,1818 @@
+{
+  "$schema": "../../../schemas/message-catalog.schema.json",
+  "locale": "fa",
+  "provenance": {
+    "author": "llm:claude@baa6bf1d5e24",
+    "status": "draft"
+  },
+  "messages": {
+    "achievement.right": {
+      "message": ".input {$target :number}\n{{{$target} پاسخ درست}}",
+      "source": "126156e2db332f"
+    },
+    "achievement.sessions": {
+      "message": ".input {$target :number}\n{{{$target} جلسهٔ کامل}}",
+      "source": "040b27d0e2e865"
+    },
+    "achievement.stories": {
+      "message": ".input {$target :number}\n{{{$target} داستان خوانده\u200cشده}}",
+      "source": "0baecd1132f96d"
+    },
+    "achievement.streak": {
+      "message": ".input {$days :number}\n{{زنجیرهٔ {$days} روزه}}",
+      "source": "105f7e7013ca54"
+    },
+    "ai.budget": {
+      "message": "سهم امروز شما از کمک هوش مصنوعی تمام شد. فردا دوباره در دسترس است.",
+      "source": "14e9089a3c5a5c"
+    },
+    "ai.explain.button": {
+      "message": "توضیح پاسخ من",
+      "source": "1bba4a2334ac35"
+    },
+    "ai.explain.by": {
+      "message": "نوشتهٔ یک مدل زبانی ({$model}). ممکن است اشتباه باشد.",
+      "source": "10ed1349cb222b"
+    },
+    "ai.explain.failed": {
+      "message": "این بار توضیحی به دست نیامد. بعداً دوباره امتحان کنید.",
+      "source": "12859e0222f70c"
+    },
+    "ai.explain.helpful": {
+      "message": "مفید بود",
+      "source": "1d3d96efda6835"
+    },
+    "ai.explain.loading": {
+      "message": "در حال نوشتن توضیح…",
+      "source": "1af71f461b148e"
+    },
+    "ai.explain.rate": {
+      "message": "آیا این توضیح مفید بود؟",
+      "source": "0cc348cea81c14"
+    },
+    "ai.explain.title": {
+      "message": "توضیح",
+      "source": "16fce1d7d80a8b"
+    },
+    "ai.explain.unhelpful": {
+      "message": "مفید نبود",
+      "source": "0f4cda6e7ccbcc"
+    },
+    "ai.judge.accepted": {
+      "message": "با بررسی دوباره، پاسخ شما پذیرفته شد و درست حساب می\u200cشود.",
+      "source": "16541d0f177a53"
+    },
+    "ai.judge.checking": {
+      "message": "در حال بررسی دوبارهٔ پاسخ شما…",
+      "source": "0b108f06b1aec3"
+    },
+    "ai.judge.queued": {
+      "message": "وقتی دوباره آنلاین شوید، پاسخ شما بار دیگر بررسی می\u200cشود.",
+      "source": "1fa4695de34707"
+    },
+    "ai.report.button": {
+      "message": "پاسخ من باید پذیرفته می\u200cشد",
+      "source": "0f6ce7d90c7595"
+    },
+    "ai.report.done": {
+      "message": "درست حساب شد. یک بازبین هم پاسخ شما را بررسی می\u200cکند.",
+      "source": "02db1b7edfe79d"
+    },
+    "ai.report.reject": {
+      "message": "این باید غلط حساب می\u200cشد",
+      "source": "116cdfb2089941"
+    },
+    "ai.report.rejected": {
+      "message": "غلط حساب شد. یک بازبین هم آن را بررسی می\u200cکند.",
+      "source": "03fcf61b525298"
+    },
+    "ai.report.spoken": {
+      "message": "درست گفتم",
+      "source": "0465e9d59299b1"
+    },
+    "ai.roleplay.character": {
+      "message": "چه کسی",
+      "source": "12c7ee29368860"
+    },
+    "ai.roleplay.goal": {
+      "message": "هدف شما",
+      "source": "03443dae54742d"
+    },
+    "ai.roleplay.hide-translation": {
+      "message": "ترجمه را پنهان کنید",
+      "source": "065eaf87d9350b"
+    },
+    "ai.roleplay.log": {
+      "message": "گفت\u200cوگو",
+      "source": "0da7be4ae86f4d"
+    },
+    "ai.roleplay.no-turn": {
+      "message": "پاسخی با کلمه\u200cهایی که می\u200cدانید به دست نیامد. آن را جور دیگری بگویید.",
+      "source": "15e2f480e5b87b"
+    },
+    "ai.roleplay.send": {
+      "message": "بفرستید",
+      "source": "16b55d7868e000"
+    },
+    "ai.roleplay.setting": {
+      "message": "کجا",
+      "source": "122adee6bf9c84"
+    },
+    "ai.roleplay.show-translation": {
+      "message": "ترجمه را نشان دهید",
+      "source": "02b713e9854aff"
+    },
+    "ai.roleplay.start": {
+      "message": "گفت\u200cوگو را شروع کنید",
+      "source": "176bbe229507da"
+    },
+    "ai.roleplay.them": {
+      "message": "شخصیت",
+      "source": "08aa9e22716b65"
+    },
+    "ai.roleplay.thinking": {
+      "message": "شخصیت در حال پاسخ دادن است…",
+      "source": "0a7921b0a1ba09"
+    },
+    "ai.roleplay.you": {
+      "message": "شما",
+      "source": "1f107a64fd97ca"
+    },
+    "ai.roleplay.your-turn": {
+      "message": "پاسخ شما",
+      "source": "1fc52576f64280"
+    },
+    "ai.unavailable": {
+      "message": "در حال حاضر دسترسی به مدل زبانی ممکن نیست.",
+      "source": "0c86164bfd1b5c"
+    },
+    "app.account.age": {
+      "message": "چند سال دارید؟",
+      "source": "145b7ec98c4d57"
+    },
+    "app.account.age-note": {
+      "message": "به سال. سرور آن را بررسی می\u200cکند و نگه نمی\u200cدارد.",
+      "source": "1c1cbd28a58bee"
+    },
+    "app.account.age-refused": {
+      "message": "این سرور نمی\u200cتواند برای شما حساب بسازد. می\u200cتوانید روی همین دستگاه به یادگیری ادامه دهید: پیشرفت شما همین\u200cجا می\u200cماند.",
+      "source": "194d32a9c4ac75"
+    },
+    "app.account.create": {
+      "message": "حساب بسازید",
+      "source": "04c7844b8f56f1"
+    },
+    "app.account.data": {
+      "message": "داده\u200cهای حساب شما",
+      "source": "1f323684d47c91"
+    },
+    "app.account.delete": {
+      "message": "حذف حساب من",
+      "source": "14fcfcc401d791"
+    },
+    "app.account.delete-cancel": {
+      "message": "حسابم را نگه می\u200cدارم",
+      "source": "008002c75c32ce"
+    },
+    "app.account.delete-confirm": {
+      "message": "حسابم برای همیشه حذف شود",
+      "source": "0a24767da0b046"
+    },
+    "app.account.delete-note": {
+      "message": "با این کار حساب شما و هر چه سرور برای آن نگه می\u200cدارد حذف می\u200cشود: پیشرفت همگام\u200cشده، نمایه و جایگاه\u200cهایتان در لیگ. این کار برگشت\u200cپذیر نیست. پیشرفت شما روی این دستگاه می\u200cماند. برای تأیید، گذرواژه\u200cتان را وارد کنید.",
+      "source": "1fc27943e9d85e"
+    },
+    "app.account.deleted": {
+      "message": "حساب شما همراه با داده\u200cهایش روی سرور حذف شد. پیشرفت شما روی این دستگاه می\u200cماند.",
+      "source": "140a223af75a65"
+    },
+    "app.account.email": {
+      "message": "ایمیل",
+      "source": "00a0ba9938bdff"
+    },
+    "app.account.export": {
+      "message": "دانلود داده\u200cهای حساب من",
+      "source": "1e53f1f98c3a9e"
+    },
+    "app.account.have-account": {
+      "message": "از قبل حساب دارم",
+      "source": "0f6fc8ff251358"
+    },
+    "app.account.new-account": {
+      "message": "حساب تازه می\u200cخواهم",
+      "source": "0f5f9d59948761"
+    },
+    "app.account.password": {
+      "message": "گذرواژه",
+      "source": "155d0bdc9a243f"
+    },
+    "app.account.password-hint": {
+      "message": ".input {$min :number}\n{{دست\u200cکم {$min} نویسه}}",
+      "source": "08d3b6afb0d194"
+    },
+    "app.account.pitch": {
+      "message": "یک حساب بسازید تا پیشرفتتان امن بماند و روی دستگاه\u200cهای دیگرتان هم از آن استفاده کنید. هر کاری تا اینجا کرده\u200cاید با شما می\u200cآید.",
+      "source": "103879ec2a3563"
+    },
+    "app.account.sign-in": {
+      "message": "وارد شوید",
+      "source": "1d1210bb1b1dca"
+    },
+    "app.account.sign-out": {
+      "message": "خارج شوید",
+      "source": "15fa385f9d4f64"
+    },
+    "app.account.signed-in": {
+      "message": "با {$email} وارد شده\u200cاید",
+      "source": "0fd0bca2ba6a61"
+    },
+    "app.account.welcome-back": {
+      "message": "وارد شوید تا پیشرفتتان را از دستگاه\u200cهای دیگرتان بیاورید.",
+      "source": "0c96b1d7b37239"
+    },
+    "app.error.account.age-required": {
+      "message": "این سرور پیش از ساختن حساب، سن شما را می\u200cپرسد.",
+      "source": "119a0817415c6c"
+    },
+    "app.error.account.email-taken": {
+      "message": "با این ایمیل از قبل حسابی وجود دارد. به جای آن وارد شوید.",
+      "source": "1515ad876f38b2"
+    },
+    "app.error.account.invalid-age": {
+      "message": "سن خود را به سال و به صورت عدد وارد کنید.",
+      "source": "14918c6d0de8d6"
+    },
+    "app.error.account.invalid-email": {
+      "message": "یک نشانی ایمیل معتبر وارد کنید.",
+      "source": "138795dd31c061"
+    },
+    "app.error.account.rate-limited": {
+      "message": "تلاش\u200cها بیش از حد بوده است. چند دقیقه صبر کنید و دوباره امتحان کنید.",
+      "source": "146aee830fea15"
+    },
+    "app.error.account.rejected": {
+      "message": "سرور قسمتی از پیشرفت شما را نپذیرفت.",
+      "source": "1b0fc15b588fb1"
+    },
+    "app.error.account.signed-out": {
+      "message": "از حساب خود خارج شده\u200cاید. برای ادامهٔ همگام\u200cسازی دوباره وارد شوید.",
+      "source": "1f4169398c9397"
+    },
+    "app.error.account.unknown": {
+      "message": "مشکلی پیش آمد. دوباره امتحان کنید.",
+      "source": "054c14a408761e"
+    },
+    "app.error.account.unreachable": {
+      "message": "دسترسی به سرور ممکن نیست. اتصال خود را بررسی کنید و دوباره امتحان کنید.",
+      "source": "0f3cd56cc7713e"
+    },
+    "app.error.account.weak-password": {
+      "message": ".input {$min :number}\n{{دست\u200cکم {$min} نویسه به کار ببرید.}}",
+      "source": "1072ffd7a1d5ef"
+    },
+    "app.error.account.wrong-credentials": {
+      "message": "این ایمیل و گذرواژه با هم جور نیستند.",
+      "source": "0f63d3c9b0ffaf"
+    },
+    "app.error.load": {
+      "message": "این دوره بارگذاری نشد.",
+      "source": "128e8d51e09fd9"
+    },
+    "app.error.profile.characters": {
+      "message": "نام کاربری فقط می\u200cتواند حرف و رقم داشته باشد، با _ یا - یا . میان آن\u200cها.",
+      "source": "19524bf932c5fb"
+    },
+    "app.error.profile.display-name": {
+      "message": "این نام نمایشی را نمی\u200cشود به کار برد.",
+      "source": "0fde5d0eeb6ffc"
+    },
+    "app.error.profile.length": {
+      "message": "این نام کاربری خیلی کوتاه یا خیلی بلند است.",
+      "source": "0484e908c5cf21"
+    },
+    "app.error.profile.mixed-script": {
+      "message": "این نام کاربری خط\u200cها را طوری با هم آمیخته که ممکن است گمراه\u200cکننده باشد. فقط از یک خط استفاده کنید.",
+      "source": "0e7c2ad455a9d2"
+    },
+    "app.error.profile.separators": {
+      "message": "_ یا - یا . را فقط میان حرف\u200cها یا رقم\u200cها بگذارید، و هر بار فقط یکی.",
+      "source": "15ba887cb4993a"
+    },
+    "app.error.profile.username-confusable": {
+      "message": "این نام کاربری بیش از حد به نامی شبیه است که پیش\u200cتر گرفته شده.",
+      "source": "0f0e0e7ef8b829"
+    },
+    "app.error.profile.username-taken": {
+      "message": "این نام کاربری قبلاً گرفته شده است.",
+      "source": "0ad0942b2cd115"
+    },
+    "app.home.title": {
+      "message": "یک دوره انتخاب کنید",
+      "source": "0a86910ba967fc"
+    },
+    "app.home.writing": {
+      "message": "خط",
+      "source": "070a1043a733d3"
+    },
+    "app.lessons.back": {
+      "message": "همهٔ دوره\u200cها",
+      "source": "1eff369e8cceb6"
+    },
+    "app.lessons.lesson": {
+      "message": ".input {$number :number}\n{{درس {$number}}}",
+      "source": "0d0b71656d5b05"
+    },
+    "app.lessons.new-words": {
+      "message": "کلمه\u200cهای تازه",
+      "source": "0b3535a9dca360"
+    },
+    "app.lessons.title": {
+      "message": "درس\u200cها",
+      "source": "0170799cd6a988"
+    },
+    "app.listening.off": {
+      "message": "تمرین\u200cهای شنیداری فعلاً خاموش\u200cاند. یک ساعت دیگر برمی\u200cگردند.",
+      "source": "1e319901c7bb1c"
+    },
+    "app.listening.on": {
+      "message": "تمرین\u200cهای شنیداری را دوباره روشن کنید",
+      "source": "0f732642b9aade"
+    },
+    "app.name": {
+      "message": "Nabu",
+      "source": "09423bfe962f80"
+    },
+    "app.offline.core-missing": {
+      "message": "این دوره را دانلود کنید تا بدون اینترنت هم از آن استفاده کنید.",
+      "source": "004315783a2d50"
+    },
+    "app.offline.core-ready": {
+      "message": "درس\u200cهای این دوره روی این دستگاه بدون اینترنت کار می\u200cکنند. صداها و تصویرها را دانلود کنید تا آن\u200cها هم آفلاین در دسترس باشند.",
+      "source": "0bb1e0f79b6361"
+    },
+    "app.offline.download": {
+      "message": "دانلود ({$size})",
+      "source": "0495c4c79c4d0c"
+    },
+    "app.offline.download-all": {
+      "message": "دانلود همه ({$size})",
+      "source": "1d771fd1435c38"
+    },
+    "app.offline.downloading": {
+      "message": "در حال دانلود",
+      "source": "12a0983fedd056"
+    },
+    "app.offline.error.integrity": {
+      "message": "یک فایل سالم نرسید، پس نگه داشته نشد. دوباره امتحان کنید.",
+      "source": "09513998ae0d3e"
+    },
+    "app.offline.error.network": {
+      "message": "دانلود متوقف شد، چون اتصال قطع شد. وقتی آنلاین شدید دوباره امتحان کنید.",
+      "source": "14ffd696266720"
+    },
+    "app.offline.error.quota": {
+      "message": "روی این دستگاه فضای کافی برای این دانلود نیست.",
+      "source": "0158c9517879d2"
+    },
+    "app.offline.notice": {
+      "message": "آفلاین هستید. درس\u200cهای روی این دستگاه همچنان کار می\u200cکنند، و پیشرفت شما همین\u200cجا ذخیره می\u200cشود و وقتی دوباره آنلاین شوید همگام\u200cسازی می\u200cشود.",
+      "source": "1823455234d67b"
+    },
+    "app.offline.progress": {
+      "message": "{$done} از {$total}",
+      "source": "1ba1d29178903d"
+    },
+    "app.offline.remove": {
+      "message": "حذف دانلود ({$size})",
+      "source": "0a768fb1433a34"
+    },
+    "app.offline.state.missing": {
+      "message": "دانلود نشده",
+      "source": "006c238a1b7ade"
+    },
+    "app.offline.state.partial": {
+      "message": "تا حدی دانلود شده",
+      "source": "1b7ba08dae6ea5"
+    },
+    "app.offline.state.ready": {
+      "message": "آفلاین در دسترس",
+      "source": "0c1ac338f12c1a"
+    },
+    "app.offline.title": {
+      "message": "آفلاین",
+      "source": "19642a2b0ca412"
+    },
+    "app.offline.unavailable": {
+      "message": "این دوره هنوز روی این دستگاه نیست. یک بار وقتی آنلاین هستید بازش کنید تا آفلاین هم بتوانید از آن استفاده کنید.",
+      "source": "060f2438ff8ef8"
+    },
+    "app.offline.unit": {
+      "message": ".input {$number :number}\n{{بخش {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "app.path.done": {
+      "message": "انجام شد",
+      "source": "00609f822e0571"
+    },
+    "app.path.locked": {
+      "message": "قفل",
+      "source": "0e259fa0babc2d"
+    },
+    "app.path.start": {
+      "message": "شروع",
+      "source": "144de7fabb13dc"
+    },
+    "app.path.story": {
+      "message": "داستان",
+      "source": "099aa4c2ee7e8c"
+    },
+    "app.practice.back": {
+      "message": "بازگشت به دوره",
+      "source": "0820c073883099"
+    },
+    "app.practice.due": {
+      "message": ".input {$count :number}\n{{{$count} مورد آمادهٔ مرور}}",
+      "source": "0f59593aca6c20"
+    },
+    "app.practice.empty": {
+      "message": "فعلاً چیزی برای تمرین نیست.",
+      "source": "1569dd1a1c05f6"
+    },
+    "app.practice.mistakes": {
+      "message": "اشتباه\u200cها",
+      "source": "1c8e9c3040547f"
+    },
+    "app.practice.placement": {
+      "message": "از قبل کمی {$language} بلدید؟ سطح خود را پیدا کنید",
+      "source": "1d75f0c5c407f9"
+    },
+    "app.practice.review": {
+      "message": "مرور",
+      "source": "0e315ebf127b18"
+    },
+    "app.practice.title": {
+      "message": "تمرین",
+      "source": "1bb4b01c6ca9a0"
+    },
+    "app.practice.to-fix": {
+      "message": ".input {$count :number}\n{{{$count} اشتباه برای رفع}}",
+      "source": "018a1da69b8e6e"
+    },
+    "app.profile.display-name": {
+      "message": "نام نمایشی (اختیاری)",
+      "source": "144e85fa7b6988"
+    },
+    "app.profile.save": {
+      "message": "نمایه را ذخیره کنید",
+      "source": "1635e9d2cb063a"
+    },
+    "app.profile.saved": {
+      "message": "ذخیره شد.",
+      "source": "06de620ec8bcdf"
+    },
+    "app.profile.title": {
+      "message": "نمایه",
+      "source": "087c02cfd3d740"
+    },
+    "app.profile.username": {
+      "message": "نام کاربری",
+      "source": "16f6fcdc5b3341"
+    },
+    "app.profile.username-hint": {
+      "message": "۳ تا ۳۰ حرف یا رقم، با _ یا - یا . میان آن\u200cها.",
+      "source": "107355ec7eb50b"
+    },
+    "app.progress.device": {
+      "message": "پیشرفت شما روی این دستگاه ذخیره می\u200cشود.",
+      "source": "1b4bb7e86eea6c"
+    },
+    "app.progress.export": {
+      "message": "دانلود داده\u200cهای یادگیری من",
+      "source": "139603a6ece948"
+    },
+    "app.progress.title": {
+      "message": "پیشرفت شما",
+      "source": "1936981e166550"
+    },
+    "app.reminders.denied": {
+      "message": "اعلان\u200cها برای این سایت در تنظیمات مرورگرتان مسدود شده\u200cاند.",
+      "source": "041565a91ea509"
+    },
+    "app.reminders.failed": {
+      "message": "این دستگاه نتوانست برای یادآورها ثبت\u200cنام کند. بعداً دوباره امتحان کنید.",
+      "source": "0763e87e92fff9"
+    },
+    "app.reminders.hint": {
+      "message": "حداکثر روزی یک بار، نزدیک زمانی که معمولاً تمرین می\u200cکنید، و فقط اگر هنوز تمرین نکرده باشید.",
+      "source": "16d05c5f49f4ab"
+    },
+    "app.reminders.label": {
+      "message": "یادآور روزانهٔ تمرین",
+      "source": "075045dd5b51b5"
+    },
+    "app.reminders.unsupported": {
+      "message": "این مرورگر نمی\u200cتواند یادآور نشان دهد.",
+      "source": "13fd157356b3c1"
+    },
+    "app.reset.cancel": {
+      "message": "پیشرفتم را نگه می\u200cدارم",
+      "source": "0580b9629f5825"
+    },
+    "app.reset.confirm": {
+      "message": "از نو شروع کنید",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.confirm-body": {
+      "message": "همهٔ درس\u200cها جز اولی دوباره قفل می\u200cشوند و کلمه\u200cها دوباره تازه به حساب می\u200cآیند. این تغییر روی همهٔ دستگاه\u200cهایتان اعمال می\u200cشود و برگشت\u200cپذیر نیست. زنجیره، امتیاز و دستاوردهایتان می\u200cمانند.",
+      "source": "12c7dfd45198c0"
+    },
+    "app.reset.confirm-title": {
+      "message": "{$language} را از نو شروع می\u200cکنید؟",
+      "source": "08baa0f7779f08"
+    },
+    "app.reset.done": {
+      "message": "{$language} دوباره از ابتدا شروع می\u200cشود.",
+      "source": "05a9db0ce81475"
+    },
+    "app.reset.hint": {
+      "message": "به ابتدای {$language} برگردید: درس\u200cها، کلمه\u200cهایی که می\u200cدانید و اشتباه\u200cهایتان. زنجیره و امتیازتان می\u200cمانند.",
+      "source": "1f5d692a73b5b4"
+    },
+    "app.reset.open": {
+      "message": "این دوره را از نو شروع کنید",
+      "source": "096c4b0b4acb1e"
+    },
+    "app.reset.title": {
+      "message": "شروع دوباره",
+      "source": "14764ce2296c20"
+    },
+    "app.reset.type-hint": {
+      "message": "اعراب و نشانه\u200cها، و بزرگی و کوچکی حروف مهم نیستند.",
+      "source": "045e79d005dda7"
+    },
+    "app.reset.type-label": {
+      "message": "برای تأیید، {$language} را تایپ کنید",
+      "source": "0bd62aa477adf8"
+    },
+    "app.roleplay.back": {
+      "message": "بازگشت به دوره",
+      "source": "0820c073883099"
+    },
+    "app.roleplay.note": {
+      "message": "یک مدل زبانی نقش طرف مقابل را بازی می\u200cکند و فقط کلمه\u200cهایی را به کار می\u200cبرد که می\u200cدانید. ممکن است اشتباه کند.",
+      "source": "12026862d750f2"
+    },
+    "app.roleplay.title": {
+      "message": "گفت\u200cوگوها",
+      "source": "10e79f46fb5744"
+    },
+    "app.roleplay.unavailable": {
+      "message": "برای گفت\u200cوگو به یک حساب و سروری با مدل زبانی نیاز است.",
+      "source": "16ec70f0bc2190"
+    },
+    "app.speaking.off": {
+      "message": "تمرین\u200cهای گفتاری فعلاً خاموش\u200cاند. یک ساعت دیگر برمی\u200cگردند.",
+      "source": "0328e6038bf84d"
+    },
+    "app.speaking.on": {
+      "message": "تمرین\u200cهای گفتاری را دوباره روشن کنید",
+      "source": "0ca13e185e788f"
+    },
+    "app.store.memory": {
+      "message": "این پنجرهٔ مرورگر نمی\u200cتواند پیشرفت شما را ذخیره کند. با بستن آن، پیشرفتتان از دست می\u200cرود.",
+      "source": "16ff818d9dfd17"
+    },
+    "app.sync.mismatch": {
+      "message": "نسخهٔ سرور از پیشرفت شما با نسخهٔ این دستگاه یکی نیست.",
+      "source": "1db3fdcb09f699"
+    },
+    "app.sync.offline": {
+      "message": ".input {$count :number}\n{{آفلاین. {$count} تغییر وقتی دوباره آنلاین شوید آپلود می\u200cشود.}}",
+      "source": "0f28354b16e8e2"
+    },
+    "app.sync.pending": {
+      "message": ".input {$count :number}\n{{{$count} تغییر در انتظار آپلود}}",
+      "source": "1708dd416e6d0d"
+    },
+    "app.sync.saved": {
+      "message": "تمام پیشرفت شما در حسابتان ذخیره شده است",
+      "source": "1d8c42b786e1d0"
+    },
+    "app.sync.syncing": {
+      "message": "در حال ذخیره…",
+      "source": "106811f2aac664"
+    },
+    "app.voice.forget": {
+      "message": "محدودهٔ صدای مرا فراموش کنید",
+      "source": "0f20f5dc4eb0f9"
+    },
+    "app.voice.forgotten": {
+      "message": "فراموش شد.",
+      "source": "0dd4a649045a2b"
+    },
+    "app.voice.note": {
+      "message": "ضبط\u200cها ارزیابی و سپس دور ریخته می\u200cشوند. هرگز نگه داشته نمی\u200cشوند، نه روی این دستگاه و نه روی سرور.",
+      "source": "036fe14bdcbbd3"
+    },
+    "app.voice.server": {
+      "message": "بررسی کلمه\u200cها و آواها روی سرور",
+      "source": "1eddaca93059d4"
+    },
+    "app.voice.title": {
+      "message": "صدای شما",
+      "source": "04028f765253d4"
+    },
+    "app.xp.today": {
+      "message": ".input {$xp :number}\n{{امروز: {$xp} امتیاز}}",
+      "source": "105e6997ce60db"
+    },
+    "app.xp.total": {
+      "message": ".input {$xp :number}\n{{{$xp} امتیاز}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "audio.check.back": {
+      "message": "بازگشت به دوره",
+      "source": "0820c073883099"
+    },
+    "audio.check.cer": {
+      "message": ".input {$cer :number maximumFractionDigits=2}\n{{نرخ خطا {$cer}}}",
+      "source": "08bf51cf947fe2"
+    },
+    "audio.check.export": {
+      "message": ".input {$count :number}\n{{دانلود داوری\u200cهای شما ({$count})}}",
+      "source": "14aaf933d9c7de"
+    },
+    "audio.check.filter.kind": {
+      "message": "نمایش",
+      "source": "00fbddc6309531"
+    },
+    "audio.check.filter.mine": {
+      "message": "داوری شما",
+      "source": "17828d34f2393b"
+    },
+    "audio.check.filter.order": {
+      "message": "ترتیب",
+      "source": "126e942baf656b"
+    },
+    "audio.check.filter.status": {
+      "message": "رفت\u200cوبرگشت",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.filter.voice": {
+      "message": "صدا",
+      "source": "09cc0458faf589"
+    },
+    "audio.check.heard": {
+      "message": "شنیده\u200cشده:",
+      "source": "057ed12895bc6a"
+    },
+    "audio.check.held": {
+      "message": "کنار گذاشته شده",
+      "source": "1f8de18b83890e"
+    },
+    "audio.check.intro": {
+      "message": "همهٔ کلیپ\u200cهای این دوره، همراه با آنچه بازشناس گفتار هنگام ساختنشان شنید. گوش دهید و بگویید هر کدام درست به نظر می\u200cرسد یا نه. داوری\u200cهای شما تا وقتی دانلودشان نکنید روی این دستگاه می\u200cمانند.",
+      "source": "0925929154a626"
+    },
+    "audio.check.keys": {
+      "message": "کلیدها: J و K میان موارد جابه\u200cجا می\u200cشوند، Space پخش می\u200cکند، S آهسته پخش می\u200cکند، R یعنی درست به نظر می\u200cرسد، W یعنی نادرست به نظر می\u200cرسد.",
+      "source": "10103b803792c5"
+    },
+    "audio.check.kind.all": {
+      "message": "همه",
+      "source": "0a0c861befca14"
+    },
+    "audio.check.kind.line": {
+      "message": "سطرهای داستان",
+      "source": "0773178ab972c9"
+    },
+    "audio.check.kind.sentence": {
+      "message": "جمله\u200cها",
+      "source": "1288e2339c15cd"
+    },
+    "audio.check.kind.word": {
+      "message": "کلمه\u200cها",
+      "source": "0fcae096923b28"
+    },
+    "audio.check.loading": {
+      "message": "در حال بارگذاری کلیپ\u200cها…",
+      "source": "1e1c379620b54a"
+    },
+    "audio.check.mine.all": {
+      "message": "همه",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.mine.none": {
+      "message": "هنوز داوری نشده",
+      "source": "0e64fcea62866c"
+    },
+    "audio.check.missing": {
+      "message": "این سایت برای این دوره بررسی صدا ندارد.",
+      "source": "1f978d0f7527d3"
+    },
+    "audio.check.note": {
+      "message": "چه چیزی اشتباه است؟",
+      "source": "14c1c50287ec84"
+    },
+    "audio.check.open": {
+      "message": "صداها را بررسی کنید",
+      "source": "09c2f262b144d3"
+    },
+    "audio.check.order.course": {
+      "message": "ترتیب دوره",
+      "source": "13ff38d97920d1"
+    },
+    "audio.check.order.worst": {
+      "message": "بدترین رفت\u200cوبرگشت اول",
+      "source": "0097ae2a860af4"
+    },
+    "audio.check.other": {
+      "message": "دیگر در دوره نیست",
+      "source": "0ab83bbb5f6408"
+    },
+    "audio.check.outdated": {
+      "message": "شما نسخهٔ قبلی این کلیپ را داوری کرده بودید.",
+      "source": "1e93856320378d"
+    },
+    "audio.check.read": {
+      "message": "متن خوانده\u200cشده:",
+      "source": "12f049bfcf7e55"
+    },
+    "audio.check.reference": {
+      "message": "ضبط مرجع",
+      "source": "0e105fd5ce8e09"
+    },
+    "audio.check.rejected": {
+      "message": "رد شده",
+      "source": "1870217cd63ffc"
+    },
+    "audio.check.reviewed": {
+      "message": "بازبینی\u200cشده",
+      "source": "08791cd0d5daff"
+    },
+    "audio.check.right": {
+      "message": "درست به نظر می\u200cرسد",
+      "source": "17f6e3024a0e22"
+    },
+    "audio.check.shown": {
+      "message": ".input {$shown :number}\n.input {$total :number}\n{{{$shown} مورد از {$total}}}",
+      "source": "0de32067b417d8"
+    },
+    "audio.check.stats": {
+      "message": "رفت\u200cوبرگشت",
+      "source": "0b52912f7e2976"
+    },
+    "audio.check.status.all": {
+      "message": "همه",
+      "source": "1ec3617d2cde86"
+    },
+    "audio.check.status.fail": {
+      "message": "ناموفق",
+      "source": "031021f2893bc9"
+    },
+    "audio.check.status.none": {
+      "message": "بررسی\u200cنشده",
+      "source": "1b396d7f264de0"
+    },
+    "audio.check.status.pass": {
+      "message": "موفق",
+      "source": "10cad12b9fc18d"
+    },
+    "audio.check.status.review": {
+      "message": "نیازمند بازبینی",
+      "source": "1af7fd298d31cb"
+    },
+    "audio.check.title": {
+      "message": "بررسی صدا",
+      "source": "1efc282e620676"
+    },
+    "audio.check.unit": {
+      "message": ".input {$number :number}\n{{بخش {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "audio.check.voice": {
+      "message": "صدا: {$voice} ({$provider})",
+      "source": "17c0b0285c4282"
+    },
+    "audio.check.voice.all": {
+      "message": "همهٔ صداها",
+      "source": "07876467c8c942"
+    },
+    "audio.check.voice.option": {
+      "message": "{$name} ({$provider})",
+      "source": "1a384ab37c7496"
+    },
+    "audio.check.voice.recorded": {
+      "message": "ضبط\u200cهای انسانی",
+      "source": "01bebdacd206d7"
+    },
+    "audio.check.wrong": {
+      "message": "نادرست به نظر می\u200cرسد",
+      "source": "0031917bd66a07"
+    },
+    "corrections.cancel": {
+      "message": "انصراف",
+      "source": "112e2e8ecda428"
+    },
+    "corrections.choose": {
+      "message": "کدام یک اشتباه است؟",
+      "source": "096af91f34dd52"
+    },
+    "corrections.edit": {
+      "message": "اصلاح خود را تغییر دهید",
+      "source": "05366fcc2c8933"
+    },
+    "corrections.error.empty": {
+      "message": "این کادر نباید خالی بماند.",
+      "source": "03d82cbe9409f5"
+    },
+    "corrections.error.too-long": {
+      "message": "متن این کادر بیش از حد طولانی است.",
+      "source": "11bdc151ef75f5"
+    },
+    "corrections.error.unchanged": {
+      "message": "چیزی را تغییر دهید، یا برای بازبین یادداشتی بنویسید.",
+      "source": "065ad46ed78a1e"
+    },
+    "corrections.export": {
+      "message": ".input {$count :number}\n{{دانلود اصلاح\u200cهای شما ({$count})}}",
+      "source": "1b5c55b6e38b6d"
+    },
+    "corrections.intro": {
+      "message": "هر چه اشتباه است تغییر دهید: متن، خوانش یک کلمه یا ترجمه. یک بازبین هر اصلاح را پیش از آنکه به دوره برسد بررسی می\u200cکند.",
+      "source": "16f77dde65b4ba"
+    },
+    "corrections.mark": {
+      "message": "این جمله اشتباه است",
+      "source": "03127dd3b047fa"
+    },
+    "corrections.mark.pairs": {
+      "message": "یکی از این\u200cها اشتباه است",
+      "source": "0842a0f3922b2b"
+    },
+    "corrections.mark.word": {
+      "message": "این کلمه اشتباه است",
+      "source": "103ed262b2e660"
+    },
+    "corrections.note": {
+      "message": "یادداشت برای بازبین (اختیاری)",
+      "source": "15a68737f0ce95"
+    },
+    "corrections.now": {
+      "message": "متن فعلی:",
+      "source": "0e7ae9926955b4"
+    },
+    "corrections.page.back": {
+      "message": "بازگشت به دوره",
+      "source": "0820c073883099"
+    },
+    "corrections.page.intro": {
+      "message": "همهٔ جمله\u200cها و سطرهای داستان\u200cهای این دوره، بخش به بخش. اگر یکی اشتباه است، علامتش بزنید و بگویید چه باید باشد.",
+      "source": "152193f019cdc5"
+    },
+    "corrections.page.open": {
+      "message": "جمله\u200cها را بررسی کنید",
+      "source": "0c59e6eaeb129d"
+    },
+    "corrections.page.story": {
+      "message": "داستان",
+      "source": "099aa4c2ee7e8c"
+    },
+    "corrections.page.title": {
+      "message": "جمله\u200cها",
+      "source": "1288e2339c15cd"
+    },
+    "corrections.page.unit": {
+      "message": ".input {$number :number}\n{{بخش {$number}}}",
+      "source": "17c2e55b6f5c7d"
+    },
+    "corrections.page.units": {
+      "message": "بخش\u200cها",
+      "source": "1a23d69043b0ea"
+    },
+    "corrections.pending": {
+      "message": "اصلاحی پیشنهاد داده\u200cاید",
+      "source": "00f4588986c49c"
+    },
+    "corrections.readings": {
+      "message": "خوانش هر کلمه",
+      "source": "187ff5713fb95f"
+    },
+    "corrections.sent": {
+      "message": "ممنون! یک بازبین اصلاح شما را بررسی می\u200cکند.",
+      "source": "12fbf92b2deab2"
+    },
+    "corrections.submit": {
+      "message": "اصلاح را بفرستید",
+      "source": "1440fa85d282df"
+    },
+    "corrections.text": {
+      "message": "جمله ({$orthography})",
+      "source": "16c2396e05f7b1"
+    },
+    "corrections.title": {
+      "message": "متن درست چیست؟",
+      "source": "182c709dd2de76"
+    },
+    "corrections.translation": {
+      "message": "ترجمه",
+      "source": "04d57102a24465"
+    },
+    "corrections.word.intro": {
+      "message": "هر چه اشتباه است تغییر دهید: کلمه، خوانش آن یا معنی\u200cاش. یک بازبین هر اصلاح را پیش از آنکه به دوره برسد بررسی می\u200cکند.",
+      "source": "08eeee221c97ff"
+    },
+    "corrections.word.meaning": {
+      "message": "معنی",
+      "source": "1031b11de169ce"
+    },
+    "corrections.word.text": {
+      "message": "کلمه ({$orthography})",
+      "source": "0f55aaa03db2e2"
+    },
+    "course.name.apc": {
+      "message": "عربی لبنانی",
+      "source": "156dd02569cccd"
+    },
+    "course.name.fa": {
+      "message": "فارسی",
+      "source": "0814f27aca872d"
+    },
+    "course.name.uz": {
+      "message": "ازبکی",
+      "source": "00eccd2e4cea3a"
+    },
+    "course.name.yue": {
+      "message": "کانتونی",
+      "source": "1b9e50f7526657"
+    },
+    "debug.cards.back": {
+      "message": "بازگشت به دوره",
+      "source": "0820c073883099"
+    },
+    "debug.cards.intro": {
+      "message": "از هر نوع کارتی که این دوره می\u200cسازد، یکی. هیچ کاری که اینجا انجام می\u200cدهید ثبت نمی\u200cشود یا در پیشرفت شما به حساب نمی\u200cآید.",
+      "source": "09dafe669d386b"
+    },
+    "debug.cards.none": {
+      "message": "در این دوره نیست",
+      "source": "07eb1f5b19cb7e"
+    },
+    "debug.cards.open": {
+      "message": "همهٔ انواع کارت را امتحان کنید",
+      "source": "06a28a765e4df1"
+    },
+    "debug.cards.play-all": {
+      "message": "همه را پشت سر هم اجرا کنید",
+      "source": "196d4e9446360f"
+    },
+    "debug.cards.title": {
+      "message": "همهٔ انواع کارت",
+      "source": "1ddf29c0ae6ca0"
+    },
+    "debug.cards.try": {
+      "message": "امتحان کنید",
+      "source": "05f2766626d94e"
+    },
+    "debug.template": {
+      "message": "کارت: {$template}",
+      "source": "0f00d66710b4f5"
+    },
+    "exercise.action.check": {
+      "message": "بررسی کنید",
+      "source": "067681d06872f1"
+    },
+    "exercise.action.play-audio": {
+      "message": "پخش صدا",
+      "source": "06221b5bee73f3"
+    },
+    "exercise.action.quit": {
+      "message": "خروج از درس",
+      "source": "05b3289f0fc785"
+    },
+    "exercise.action.skip": {
+      "message": "رد شوید",
+      "source": "1c245bd4ba0d6f"
+    },
+    "exercise.answer.input-label": {
+      "message": "پاسخ خود را به {$language} بنویسید",
+      "source": "1a032be6aed23c"
+    },
+    "exercise.answer.label": {
+      "message": "پاسخ شما",
+      "source": "196b73b49f8369"
+    },
+    "exercise.instruction.write-in": {
+      "message": "این را به {$language} بنویسید",
+      "source": "0ab1a8325a085b"
+    },
+    "exercise.progress": {
+      "message": ".input {$current :number}\n.input {$total :number}\n{{تمرین {$current} از {$total}}}",
+      "source": "18c97697d8f912"
+    },
+    "exercise.prompt.label": {
+      "message": "جمله برای ترجمه",
+      "source": "10e152af217b29"
+    },
+    "exercise.readings.toggle": {
+      "message": "نمایش خوانش",
+      "source": "15c24795350b3d"
+    },
+    "exercise.wordbank.label": {
+      "message": "بانک کلمه\u200cها",
+      "source": "19ad1969f99daa"
+    },
+    "exercise.wordbank.remaining": {
+      "message": ".input {$count :number}\n{{{$count} کلمه مانده}}",
+      "source": "1e4bc7d0ad39aa"
+    },
+    "feedback.note.alef-maqsura": {
+      "message": "به الف مقصوره (ى) در پایان کلمه دقت کنید.",
+      "source": "0207d57b3b99a2"
+    },
+    "feedback.note.apostrophe": {
+      "message": "در ازبکی، oʻ و gʻ با ویرگول وارونه (ʻ) نوشته می\u200cشوند و نشانهٔ جداکننده ʼ است. البته تایپ ' ساده هم اشکالی ندارد.",
+      "source": "152e8925abd36e"
+    },
+    "feedback.note.contrast-case": {
+      "message": "این پسوند نقش کلمه را در جمله تعیین می\u200cکند (به، در، از…)، و فقط املای آن را عوض نمی\u200cکند.",
+      "source": "1dce20981c496c"
+    },
+    "feedback.note.contrast-person": {
+      "message": "این پسوند تعیین می\u200cکند سخن دربارهٔ چه کسی است (من، تو، ما…)، و فقط املای کلمه را عوض نمی\u200cکند.",
+      "source": "0f069e217d4ff2"
+    },
+    "feedback.note.contrast-possessive": {
+      "message": "این پسوند تعیین می\u200cکند چیزی مال چه کسی است (مال من، مال تو، مال او…)، و فقط املای کلمه را عوض نمی\u200cکند.",
+      "source": "0f198186f5f77b"
+    },
+    "feedback.note.contrast-pronoun": {
+      "message": "این ضمیر دیگری است، نه غلط تایپی.",
+      "source": "113842c4f5afa3"
+    },
+    "feedback.note.hamza": {
+      "message": "به همزه (أ، إ، آ) دقت کنید.",
+      "source": "03b67432cfff80"
+    },
+    "feedback.note.hk-tw-variant": {
+      "message": "این شکل تایوانی این نویسه است؛ در هنگ\u200cکنگ معمولاً آن را جور دیگری می\u200cنویسند.",
+      "source": "0110036abf43a7"
+    },
+    "feedback.note.ime-homophone": {
+      "message": "یکی از نویسه\u200cها آوای درستی دارد اما نویسهٔ درستی نیست: پیشنهاد صفحه\u200cکلیدتان را بررسی کنید.",
+      "source": "1bbc587127c480"
+    },
+    "feedback.note.judge": {
+      "message": "پس از بررسی دوباره به دست یک مدل زبانی پذیرفته شد.",
+      "source": "05cc6f80e30bbd"
+    },
+    "feedback.note.marks": {
+      "message": "نشانه\u200cها و اعراب را بررسی کنید.",
+      "source": "0f575a377146fe"
+    },
+    "feedback.note.pairs-mistakes": {
+      "message": "برخی جفت\u200cها بیش از یک بار تلاش لازم داشتند.",
+      "source": "0d03bb934478e9"
+    },
+    "feedback.note.reading-no-tones": {
+      "message": "هر هجا به شمارهٔ نواختش نیاز دارد.",
+      "source": "143c87c3508e88"
+    },
+    "feedback.note.reading-syllables": {
+      "message": "آواهای هر هجا را بررسی کنید.",
+      "source": "1e71923b0c8359"
+    },
+    "feedback.note.reading-tone": {
+      "message": "آواها درست است: نواخت\u200cها را بررسی کنید.",
+      "source": "05072e38d2eb3a"
+    },
+    "feedback.note.script-mismatch": {
+      "message": "بررسی کنید که با خط درست می\u200cنویسید.",
+      "source": "134b180851260b"
+    },
+    "feedback.note.spacing": {
+      "message": "به نیم\u200cفاصله (ZWNJ) درون این کلمه دقت کنید.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.note.speech-phones": {
+      "message": "برخی آواها درست ادا نشدند. این بازخورد است، نه نمره: لهجه\u200cها با هم فرق دارند.",
+      "source": "05daa70cf553b3"
+    },
+    "feedback.note.speech-silent": {
+      "message": "چیزی شنیده نشد.",
+      "source": "080a39cc7e559e"
+    },
+    "feedback.note.speech-tone-shapes": {
+      "message": "جهت برخی نواخت\u200cها اشتباه بود: بالارونده، پایین\u200cرونده یا ثابت.",
+      "source": "0c7638ed68fb1d"
+    },
+    "feedback.note.speech-tones": {
+      "message": "برخی نواخت\u200cها درست نبودند.",
+      "source": "0e902d722728e3"
+    },
+    "feedback.note.speech-words": {
+      "message": "کلمه\u200cها درست شنیده نشدند: با جمله مقایسه کنید.",
+      "source": "11b9df98e9e5c8"
+    },
+    "feedback.note.ta-marbuta": {
+      "message": "به تاء مربوطه (ة) در پایان کلمه دقت کنید.",
+      "source": "022ddd2cbdf318"
+    },
+    "feedback.note.tajik-letters": {
+      "message": "از حروف تاجیکی ғ، ӣ، қ، ӯ، ҳ و ҷ استفاده کنید.",
+      "source": "148f4eb60bf982"
+    },
+    "feedback.note.use-traditional": {
+      "message": "از نویسه\u200cهای سنتی استفاده کنید.",
+      "source": "0d41b4810db702"
+    },
+    "feedback.note.uzbek-letters": {
+      "message": "از حروف ازبکی ў، қ، ғ و ҳ استفاده کنید، نه у، к، г و х.",
+      "source": "1951fe37b93e13"
+    },
+    "feedback.note.variant": {
+      "message": "اینجا شکل دیگری از این نویسه رایج\u200cتر است.",
+      "source": "024ba8249c3846"
+    },
+    "feedback.note.vocalize-letters": {
+      "message": "حروف را همان\u200cطور که هست نگه دارید و فقط اعراب بگذارید.",
+      "source": "12ccf98295f99e"
+    },
+    "feedback.note.vocalize-marks": {
+      "message": "اعراب هر حرف را بررسی کنید.",
+      "source": "13259d798ab24f"
+    },
+    "feedback.note.zwnj": {
+      "message": "به نیم\u200cفاصله (ZWNJ) درون این کلمه دقت کنید.",
+      "source": "1ef6b0b3dea18f"
+    },
+    "feedback.verdict.correct": {
+      "message": "درست است!",
+      "source": "0c0624dc06b399"
+    },
+    "feedback.verdict.correct-alt": {
+      "message": "درست است! یک پاسخ درست دیگر:",
+      "source": "0b86c8b2908b58"
+    },
+    "feedback.verdict.correct-marks": {
+      "message": "درست است، اما به نشانه\u200cها و اعراب دقت کنید.",
+      "source": "15262c2eb93c44"
+    },
+    "feedback.verdict.correct-provisional": {
+      "message": "درست به نظر می\u200cرسد! این یکی را دوباره بررسی می\u200cکنیم.",
+      "source": "0943ecb847767e"
+    },
+    "feedback.verdict.correct-variant": {
+      "message": "درست است، اما این شکل اینجا جور دیگری نوشته می\u200cشود.",
+      "source": "0944f85125c278"
+    },
+    "feedback.verdict.correct-with-typo": {
+      "message": "درست است، اما به غلط تایپی دقت کنید.",
+      "source": "0861c223f13b0c"
+    },
+    "feedback.verdict.partial": {
+      "message": "تقریباً: آوای یکی از نویسه\u200cها درست است، اما خود نویسه نادرست است.",
+      "source": "0ce14970e35138"
+    },
+    "feedback.verdict.skipped": {
+      "message": "رد شد",
+      "source": "10f29eb13173cb"
+    },
+    "feedback.verdict.speech-close": {
+      "message": "نزدیک بود! دوباره گوش دهید و مقایسه کنید.",
+      "source": "110851d79835c2"
+    },
+    "feedback.verdict.wrong": {
+      "message": "کاملاً درست نیست.",
+      "source": "0825aebbcf39f5"
+    },
+    "feedback.verdict.wrong-word": {
+      "message": "این کلمهٔ دیگری است.",
+      "source": "0120cc97f18e12"
+    },
+    "game.achievements.none": {
+      "message": "هنوز دستاوردی ندارید. با تمرین به دست می\u200cآیند.",
+      "source": "1e32e2a8fb62d6"
+    },
+    "game.achievements.title": {
+      "message": "دستاوردها",
+      "source": "0da6edc54cc8eb"
+    },
+    "game.freezes": {
+      "message": ".input {$count :number}\n{{{$count} محافظ زنجیره}}",
+      "source": "05212f0be9925b"
+    },
+    "game.gate.empty": {
+      "message": "فعلاً موجودی\u200cتان تمام شده است. برای پر کردن دوباره، مرور کنید یا اشتباه\u200cهایتان را تمرین کنید، یا کمی بعد برگردید.",
+      "source": "0b4148340a874a"
+    },
+    "game.gate.energy": {
+      "message": ".input {$count :number}\n{{{$count} انرژی}}",
+      "source": "091f3dd93a2d53"
+    },
+    "game.gate.hearts": {
+      "message": ".input {$count :number}\n{{{$count} قلب}}",
+      "source": "1726dbe9c3df80"
+    },
+    "game.quests.done": {
+      "message": "انجام شد",
+      "source": "00609f822e0571"
+    },
+    "game.quests.progress": {
+      "message": ".input {$progress :number}\n.input {$target :number}\n{{{$progress} از {$target}}}",
+      "source": "0d4761709eb5eb"
+    },
+    "game.quests.title": {
+      "message": "مأموریت\u200cهای امروز",
+      "source": "1a11ce0273bd84"
+    },
+    "game.streak": {
+      "message": ".input {$days :number}\n{{زنجیرهٔ {$days} روزه}}",
+      "source": "192ce25bba3226"
+    },
+    "game.streak.longest": {
+      "message": ".input {$days :number}\n{{طولانی\u200cترین: {$days}}}",
+      "source": "1d5d07e36c81e8"
+    },
+    "game.streak.today-done": {
+      "message": "امروز تمرین کرده\u200cاید.",
+      "source": "18248f36781962"
+    },
+    "game.streak.today-pending": {
+      "message": "امروز تمرین کنید تا زنجیره ادامه پیدا کند.",
+      "source": "1cc4f4ce2c152b"
+    },
+    "game.title": {
+      "message": "زنجیرهٔ شما",
+      "source": "0fe67f53d96cb0"
+    },
+    "league.anonymous": {
+      "message": "یک زبان\u200cآموز",
+      "source": "13dd001d483e91"
+    },
+    "league.days-left": {
+      "message": ".input {$days :number}\n{{{$days} روز مانده}}",
+      "source": "1b4e8178f6f76c"
+    },
+    "league.join": {
+      "message": "این هفته امتیاز بگیرید تا به یک لیگ بپیوندید.",
+      "source": "0d260077bc6e32"
+    },
+    "league.tier": {
+      "message": ".input {$tier :number}\n{{ردهٔ {$tier}}}",
+      "source": "1cd9ec062def13"
+    },
+    "league.title": {
+      "message": "لیگ",
+      "source": "02f1616b366536"
+    },
+    "league.xp": {
+      "message": ".input {$xp :number}\n{{{$xp} امتیاز}}",
+      "source": "02cf2e3c7aeac5"
+    },
+    "league.you": {
+      "message": "شما",
+      "source": "1f107a64fd97ca"
+    },
+    "league.zone.demote": {
+      "message": "منطقهٔ سقوط",
+      "source": "04a040edad26bd"
+    },
+    "league.zone.promote": {
+      "message": "منطقهٔ صعود",
+      "source": "1cdef66c79e45d"
+    },
+    "orthography.apc-Arab.standard": {
+      "message": "خط عربی",
+      "source": "08f5b94b048129"
+    },
+    "orthography.apc-Latn.arabizi": {
+      "message": "عربیزی (حروف و اعداد لاتین)",
+      "source": "078998ef01b429"
+    },
+    "orthography.fa-Arab.standard": {
+      "message": "خط فارسی",
+      "source": "1a96004e1beccf"
+    },
+    "orthography.uz-Cyrl.standard": {
+      "message": "سیریلیک",
+      "source": "0c0f5c83735b6c"
+    },
+    "orthography.uz-Latn.standard": {
+      "message": "لاتین",
+      "source": "15289618d8a1e5"
+    },
+    "orthography.yue-Hant-HK.standard": {
+      "message": "نویسه\u200cهای سنتی",
+      "source": "0768e08b58f7c1"
+    },
+    "player.action.cant-listen": {
+      "message": "الان نمی\u200cتوانم گوش کنم",
+      "source": "140179193b2176"
+    },
+    "player.action.cant-speak": {
+      "message": "الان نمی\u200cتوانم صحبت کنم",
+      "source": "083c23e03f8bbb"
+    },
+    "player.action.continue": {
+      "message": "ادامه دهید",
+      "source": "0f3baa7dcc6267"
+    },
+    "player.audio.label": {
+      "message": "صدا",
+      "source": "126a24a49284c5"
+    },
+    "player.audio.play": {
+      "message": "پخش",
+      "source": "0db390678866e5"
+    },
+    "player.audio.slow": {
+      "message": "پخش آهسته",
+      "source": "17c237b40c535e"
+    },
+    "player.audio.synthetic": {
+      "message": "صدای ساختگی",
+      "source": "145cf67c7232e5"
+    },
+    "player.blank.label": {
+      "message": "کلمهٔ جاافتاده",
+      "source": "16b94a14d691a1"
+    },
+    "player.chars.label": {
+      "message": "نویسه\u200cهای ویژه",
+      "source": "0c3a90360623f8"
+    },
+    "player.feedback.marked": {
+      "message": "(قسمت\u200cهای علامت\u200cدار فرق دارند)",
+      "source": "1ed6f7b2b14b4d"
+    },
+    "player.feedback.solution": {
+      "message": "پاسخ درست:",
+      "source": "08f8d29ea3c01e"
+    },
+    "player.feedback.your-answer": {
+      "message": "پاسخ شما:",
+      "source": "016b88025de79d"
+    },
+    "player.finished.score": {
+      "message": ".input {$correct :number}\n.input {$total :number}\n{{{$correct} از {$total} درست در بار اول}}",
+      "source": "03cfbdcc54fdef"
+    },
+    "player.finished.stopped": {
+      "message": "درس متوقف شد",
+      "source": "06ab497db6712b"
+    },
+    "player.finished.title": {
+      "message": "درس تمام شد!",
+      "source": "1859634875e68d"
+    },
+    "player.finished.xp": {
+      "message": ".input {$xp :number}\n{{+{$xp} امتیاز}}",
+      "source": "10d9c04ce5ff3f"
+    },
+    "player.instruction.char-read": {
+      "message": "این چطور خوانده می\u200cشود؟",
+      "source": "09f22944d314cc"
+    },
+    "player.instruction.choose-translation": {
+      "message": "معنی این چیست؟",
+      "source": "029357139d5ace"
+    },
+    "player.instruction.complete-translation": {
+      "message": "ترجمه را کامل کنید",
+      "source": "16e5c17e13aaec"
+    },
+    "player.instruction.gap-fill": {
+      "message": "جای خالی را پر کنید",
+      "source": "0fecadc0573056"
+    },
+    "player.instruction.listen-select": {
+      "message": "کدام کلمه را می\u200cشنوید؟",
+      "source": "046edf8832a029"
+    },
+    "player.instruction.listen-speak": {
+      "message": "گوش دهید، سپس آنچه را شنیدید بگویید",
+      "source": "0993ec028d7c01"
+    },
+    "player.instruction.listen-tap": {
+      "message": "آنچه را می\u200cشنوید با زدن روی کلمه\u200cها بسازید",
+      "source": "1aee714f11c769"
+    },
+    "player.instruction.listen-type": {
+      "message": "آنچه را می\u200cشنوید تایپ کنید",
+      "source": "12d6a6ad5522ac"
+    },
+    "player.instruction.match-pairs": {
+      "message": "جفت\u200cهای جور را پیدا کنید",
+      "source": "1e0c0c00e8ff2f"
+    },
+    "player.instruction.minimal-pair": {
+      "message": "با دقت گوش دهید: کدام کلمه است؟",
+      "source": "1d3562cfb5e258"
+    },
+    "player.instruction.reading-disambiguation": {
+      "message": "نویسهٔ مشخص\u200cشده اینجا چطور خوانده می\u200cشود؟",
+      "source": "058ffba3d14972"
+    },
+    "player.instruction.select-image": {
+      "message": "تصویر درست را انتخاب کنید",
+      "source": "042ade432b0d84"
+    },
+    "player.instruction.speak": {
+      "message": "این را بلند بخوانید",
+      "source": "0b2d21b5ce3893"
+    },
+    "player.instruction.speak-scored": {
+      "message": "این جمله را بگویید",
+      "source": "0faceee5e6c9b9"
+    },
+    "player.instruction.story-arrange": {
+      "message": "با زدن روی کلمه\u200cها، همین معنی را بسازید",
+      "source": "17afd79420592e"
+    },
+    "player.instruction.story-choose": {
+      "message": "به پرسش پاسخ دهید",
+      "source": "1d68038847012f"
+    },
+    "player.instruction.story-complete": {
+      "message": "کلمهٔ جاافتاده را انتخاب کنید",
+      "source": "1acd299e07e3f4"
+    },
+    "player.instruction.tone-identify": {
+      "message": "کدام نواخت را می\u200cشنوید؟",
+      "source": "16db060d6d4816"
+    },
+    "player.instruction.transcribe": {
+      "message": "بنویسید این کلمه چطور خوانده می\u200cشود",
+      "source": "17544047c67949"
+    },
+    "player.instruction.translate-into-support": {
+      "message": "این جمله را ترجمه کنید",
+      "source": "0ca18e83db09fc"
+    },
+    "player.instruction.vocalize": {
+      "message": "اعراب را بگذارید",
+      "source": "041a63b98f57c1"
+    },
+    "player.key.mark.064b": {
+      "message": "تنوین نصب",
+      "source": "19c90ca7e61dbc"
+    },
+    "player.key.mark.064c": {
+      "message": "تنوین رفع",
+      "source": "1c0e6112bc94e9"
+    },
+    "player.key.mark.064d": {
+      "message": "تنوین جر",
+      "source": "14cb0d65761146"
+    },
+    "player.key.mark.064e": {
+      "message": "فتحه",
+      "source": "19edd52ce12905"
+    },
+    "player.key.mark.064f": {
+      "message": "ضمه",
+      "source": "117f1993aec79f"
+    },
+    "player.key.mark.0650": {
+      "message": "کسره",
+      "source": "085f5bfa4255e7"
+    },
+    "player.key.mark.0651": {
+      "message": "تشدید",
+      "source": "1bd8f09a19a5d5"
+    },
+    "player.key.mark.0652": {
+      "message": "سکون",
+      "source": "0b6f2ac6b05bcb"
+    },
+    "player.key.mark.0670": {
+      "message": "الف خنجری",
+      "source": "1f05f6728a5d1c"
+    },
+    "player.key.zwj": {
+      "message": "{$short}: اتصال\u200cدهندهٔ بی\u200cپهنا",
+      "source": "1dc058411d5d13"
+    },
+    "player.key.zwj.short": {
+      "message": "ZWJ",
+      "source": "039d40017eb1b2"
+    },
+    "player.key.zwnj": {
+      "message": "{$short}: نیم\u200cفاصله (فاصلهٔ مجازی)",
+      "source": "0163828ca074fa"
+    },
+    "player.key.zwnj.short": {
+      "message": "ZWNJ",
+      "source": "15560dc8d9cef8"
+    },
+    "player.listen.type-label": {
+      "message": "آنچه را به {$language} می\u200cشنوید تایپ کنید",
+      "source": "098b06d063d843"
+    },
+    "player.loading": {
+      "message": "در حال بارگذاری…",
+      "source": "0e65697ec32c03"
+    },
+    "player.meaning.label": {
+      "message": "معنی",
+      "source": "1031b11de169ce"
+    },
+    "player.options.label": {
+      "message": "گزینه\u200cهای پاسخ",
+      "source": "1cfa5f47c656d4"
+    },
+    "player.pairs.meanings": {
+      "message": "معنی\u200cها",
+      "source": "0559e9f3993223"
+    },
+    "player.pairs.words": {
+      "message": "کلمه\u200cهای {$language}",
+      "source": "0edc961ec0e09a"
+    },
+    "player.persons.addressee.f": {
+      "message": "خطاب به یک زن",
+      "source": "1352530e5e09c1"
+    },
+    "player.persons.addressee.m": {
+      "message": "خطاب به یک مرد",
+      "source": "0599c0a50176ff"
+    },
+    "player.persons.addressee.pl": {
+      "message": "خطاب به چند نفر",
+      "source": "131e5e041dc353"
+    },
+    "player.persons.speaker.f": {
+      "message": "گوینده: یک زن",
+      "source": "148a7788770a37"
+    },
+    "player.persons.speaker.m": {
+      "message": "گوینده: یک مرد",
+      "source": "166783a7b6c4f7"
+    },
+    "player.prompt.hint": {
+      "message": "ترجمه",
+      "source": "04d57102a24465"
+    },
+    "player.prompt.meaning": {
+      "message": "معنی",
+      "source": "1031b11de169ce"
+    },
+    "player.quit.body": {
+      "message": "پیشرفتتان در این درس از دست می\u200cرود.",
+      "source": "0ab86dd29faeef"
+    },
+    "player.quit.cancel": {
+      "message": "به یادگیری ادامه دهید",
+      "source": "059d6b2b56381d"
+    },
+    "player.quit.confirm": {
+      "message": "خارج شوید",
+      "source": "0cddcce51f726d"
+    },
+    "player.quit.title": {
+      "message": "از این درس خارج می\u200cشوید؟",
+      "source": "16af157c41917c"
+    },
+    "player.speak.play": {
+      "message": "پخش صدای ضبط\u200cشدهٔ من",
+      "source": "00638b7d6dd048"
+    },
+    "player.speak.rate": {
+      "message": "چطور پیش رفت؟",
+      "source": "12e92974d023b1"
+    },
+    "player.speak.rate.again": {
+      "message": "نتوانستم بگویم",
+      "source": "0abcf340181aae"
+    },
+    "player.speak.rate.good": {
+      "message": "درست به نظر می\u200cرسید",
+      "source": "1be066525c9821"
+    },
+    "player.speak.rate.hard": {
+      "message": "مطمئن نیستم",
+      "source": "0f6d88d0b8dd3e"
+    },
+    "player.speak.record": {
+      "message": "ضبط کنید",
+      "source": "04b73b25d3382c"
+    },
+    "player.speak.recording": {
+      "message": "در حال ضبط…",
+      "source": "06cd071961c528"
+    },
+    "player.speak.stop": {
+      "message": "توقف",
+      "source": "0889ad146e26ca"
+    },
+    "player.speak.unavailable": {
+      "message": "ضبط صدا اینجا ممکن نیست. باز هم می\u200cتوانید آن را بلند بگویید و به خودتان نمره بدهید.",
+      "source": "01f41cf321722f"
+    },
+    "player.speech.calibrating": {
+      "message": "وقتی برنامه کمی بیشتر صدایتان را بشنود، نواخت\u200cهایتان کامل ارزیابی می\u200cشوند.",
+      "source": "04d270eab2bdb9"
+    },
+    "player.speech.checking": {
+      "message": "در حال گوش دادن به صدای ضبط\u200cشدهٔ شما…",
+      "source": "15813131fb0d84"
+    },
+    "player.speech.contour-off": {
+      "message": "مورد انتظار: {$expected}",
+      "source": "131e09498776b2"
+    },
+    "player.speech.contour.falling": {
+      "message": "زیروبمی پایین\u200cرونده",
+      "source": "0848dae7b2526c"
+    },
+    "player.speech.contour.level": {
+      "message": "زیروبمی ثابت",
+      "source": "0986ab300ef7f4"
+    },
+    "player.speech.contour.rising": {
+      "message": "زیروبمی بالارونده",
+      "source": "09844f2d86cbd8"
+    },
+    "player.speech.heard": {
+      "message": "شنیدیم:",
+      "source": "0cf130000eb253"
+    },
+    "player.speech.partial": {
+      "message": "فقط قسمتی از آن را شنیدیم. تمام جمله را کمی آهسته\u200cتر بگویید.",
+      "source": "02399d82dbf8fc"
+    },
+    "player.speech.rate-instead": {
+      "message": "میکروفون در دسترس نیست: به جای آن به خودتان نمره بدهید",
+      "source": "1f32c806cf6468"
+    },
+    "player.speech.silent": {
+      "message": "چیزی نشنیدیم. میکروفونتان را بررسی کنید و دوباره امتحان کنید.",
+      "source": "09fb89d1ff926f"
+    },
+    "player.speech.tone-off": {
+      "message": ".input {$heard :number}\n.input {$expected :number}\n{{نواخت {$heard}، مورد انتظار {$expected}}}",
+      "source": "1e34116823fbfc"
+    },
+    "player.toggle.marks": {
+      "message": "نمایش اعراب",
+      "source": "17bb7ce344c4e6"
+    },
+    "player.toggle.vertical": {
+      "message": "متن عمودی",
+      "source": "1fa81eb3e6f25e"
+    },
+    "player.tone.yue-jyutping.1": {
+      "message": "1 · بالا، ثابت",
+      "source": "0eeda0fb5b3a04"
+    },
+    "player.tone.yue-jyutping.2": {
+      "message": "2 · بالا، بالارونده",
+      "source": "02fa98567b0205"
+    },
+    "player.tone.yue-jyutping.3": {
+      "message": "3 · میانه، ثابت",
+      "source": "0911e5c7447f54"
+    },
+    "player.tone.yue-jyutping.4": {
+      "message": "4 · پایین، پایین\u200cرونده",
+      "source": "1df41eb52dab37"
+    },
+    "player.tone.yue-jyutping.5": {
+      "message": "5 · پایین، بالارونده",
+      "source": "00ad4735faecfd"
+    },
+    "player.tone.yue-jyutping.6": {
+      "message": "6 · پایین، ثابت",
+      "source": "0c9f5d02772e14"
+    },
+    "player.transcribe.label": {
+      "message": "خوانش",
+      "source": "0acd9d880cd089"
+    },
+    "player.transcribe.label.jyutping": {
+      "message": "خوانش به Jyutping",
+      "source": "0e6c8b2c872445"
+    },
+    "player.vocalize.label": {
+      "message": "کلمه با اعرابش",
+      "source": "09f512786abfe5"
+    },
+    "player.word.label": {
+      "message": "کلمه",
+      "source": "05d88136696d61"
+    },
+    "player.wordbank.answer-label": {
+      "message": "پاسخ شما",
+      "source": "196b73b49f8369"
+    },
+    "push.reminder.gentle.body": {
+      "message": "درس بعدی\u200cتان هر وقت آماده باشید منتظر شماست.",
+      "source": "0591105ca603b7"
+    },
+    "push.reminder.gentle.title": {
+      "message": "برای کمی تمرین آماده\u200cاید؟",
+      "source": "1c220a31280718"
+    },
+    "push.reminder.quest.body": {
+      "message": "تمامشان کنید تا امتیاز جایزه بگیرید.",
+      "source": "099f028deec7c1"
+    },
+    "push.reminder.quest.title": {
+      "message": ".input {$count :number}\n{{امروز {$count} مأموریت مانده است}}",
+      "source": "137c1318fa77dc"
+    },
+    "push.reminder.streak.body": {
+      "message": "چند دقیقه تمرین امروز، زنجیره را نگه می\u200cدارد.",
+      "source": "1b518ed886e847"
+    },
+    "push.reminder.streak.title": {
+      "message": ".input {$days :number}\n{{زنجیرهٔ {$days} روزهٔ شما منتظر است}}",
+      "source": "014e2362e15e36"
+    },
+    "quest.listen-5": {
+      "message": ".input {$target :number}\n{{{$target} تمرین شنیداری را درست جواب دهید}}",
+      "source": "0875f3506e2717"
+    },
+    "quest.perfect-1": {
+      "message": ".input {$target :number}\n.match $target\none {{یک جلسه را بدون اشتباه تمام کنید}}\n* {{{$target} جلسه را بدون اشتباه تمام کنید}}",
+      "source": "037706a0d33b57"
+    },
+    "quest.produce-5": {
+      "message": ".input {$target :number}\n{{{$target} پاسخ درست به زبانی که یاد می\u200cگیرید بنویسید}}",
+      "source": "0e5b60c37ddb77"
+    },
+    "quest.review-1": {
+      "message": ".input {$target :number}\n.match $target\none {{یک مرور انجام دهید یا اشتباه\u200cهایتان را رفع کنید}}\n* {{{$target} جلسهٔ مرور یا رفع اشتباه انجام دهید}}",
+      "source": "12c21ea415dbc6"
+    },
+    "quest.right-20": {
+      "message": ".input {$target :number}\n{{{$target} پاسخ درست بدهید}}",
+      "source": "03dc2539ace6f8"
+    },
+    "quest.sessions-2": {
+      "message": ".input {$target :number}\n{{{$target} جلسه را تمام کنید}}",
+      "source": "04508fc5457212"
+    },
+    "quest.story-1": {
+      "message": ".input {$target :number}\n.match $target\none {{یک داستان بخوانید}}\n* {{{$target} داستان بخوانید}}",
+      "source": "007c06cc289b4d"
+    },
+    "quest.xp-30": {
+      "message": ".input {$target :number}\n{{{$target} امتیاز بگیرید}}",
+      "source": "1f2468bc1998a6"
+    },
+    "reports.public": {
+      "message": "گزارش\u200cها بدون نام شما یا مشخصات دستگاهتان، به صورت issue عمومی در گیت\u200cهاب به دست بازبین\u200cهای دوره می\u200cرسند.",
+      "source": "1e7d13dc2653d5"
+    },
+    "story.finished.stopped": {
+      "message": "داستان متوقف شد",
+      "source": "151456f06b67ec"
+    },
+    "story.finished.title": {
+      "message": "داستان تمام شد!",
+      "source": "0649359022ea9b"
+    },
+    "story.gloss.hint": {
+      "message": "روی یک کلمه بزنید تا معنی\u200cاش را ببینید.",
+      "source": "14e30eccbb11fb"
+    },
+    "story.gloss.label": {
+      "message": "معنی کلمه\u200cها",
+      "source": "0f7d61f5dd66a4"
+    },
+    "story.gloss.lemma": {
+      "message": "شکل لغت\u200cنامه\u200cای:",
+      "source": "06d03db42850b1"
+    },
+    "story.gloss.none": {
+      "message": "هنوز معنایی برای این کلمه ثبت نشده است.",
+      "source": "1665d08d1fe646"
+    },
+    "story.gloss.part": {
+      "message": "جزئی از کلمه",
+      "source": "13b458312d8382"
+    },
+    "story.gloss.phrase": {
+      "message": "عبارت",
+      "source": "135a248a87bda6"
+    },
+    "story.narration": {
+      "message": "روایت",
+      "source": "063db69c225753"
+    },
+    "story.transcript.label": {
+      "message": "داستان تا اینجا",
+      "source": "01267fdf008b55"
+    },
+    "story.translation.hide": {
+      "message": "ترجمه را پنهان کنید",
+      "source": "065eaf87d9350b"
+    },
+    "story.translation.show": {
+      "message": "ترجمه را نشان دهید",
+      "source": "02b713e9854aff"
+    }
+  }
+}

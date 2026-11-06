@@ -41,6 +41,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - pnpm bundles                     # rebuild apps/web/public/bundles (committed; CI fails if stale)
 - pnpm test:e2e                    # lesson per course by keyboard and touch, IME composition, axe
 - pnpm license-check               # what ships (web, API, mobile) has only allowed licenses (packages/lint/src/licenses.ts)
+- pnpm check:catalogs              # every UI catalog in packages/i18n/messages passes the catalog check (ADR 0070)
 
 ## Phase 0–1 notes (see docs/adr/0013–0026)
 - TypeScript is pinned to 6.0.x: typescript-eslint's type-aware rules need the JS compiler API, which TS 7 lacks.
@@ -236,13 +237,22 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Age gate (ADR 0069, src/age.ts): `NABU_MIN_AGE` makes sign-up ask the age (400 age-required, 403 age). Keep nothing of
   the answer anywhere, never show the threshold, and parse digits with `parseDigits` (@nabu/i18n), never Number().
 
+## UI catalogs notes (see docs/adr/0070)
+- A translated catalog (packages/i18n/messages/<locale>.json) carries `provenance`; drafts are `llm:` and status draft.
+  It ships (CATALOGS in src/catalog.ts) only when reviewed, complete and clean under `pnpm check:catalogs`.
+  Until then it is listed in DRAFTS: reviewers see it with `?ui=<locale>&drafts=1` or in Storybook's UI-locale menu.
+- Each translated message records `source`, the fingerprint of the English it translates (`check-catalogs.ts --stamp`).
+  Changing an English message's meaning means a new key; a wording change makes translations stale until re-stamped.
+- A plural selector covers the locale's CLDR categories; a language that needs no plural forms drops the `.match`.
+- Invisible characters in catalogs are JSON escapes (\u200c), never literal; bidi controls never (MF2 isolates).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0069 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0070 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

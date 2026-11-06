@@ -9,7 +9,8 @@ import "./preview.css";
 import { effectiveUiLocale, globalTypes, initialGlobals, type NabuGlobals } from "./toolbar.ts";
 
 const loaders: Loader[] = [
-  async ({ globals }) => ({ translator: await loadTranslator(effectiveUiLocale(globals)) }),
+  // Drafts too: Storybook is where reviewers look at a draft catalog (ADR 0070); the app ships only reviewed ones.
+  async ({ globals }) => ({ translator: await loadTranslator(effectiveUiLocale(globals), { drafts: true }) }),
 ];
 
 const withNabu: Decorator = (Story, { globals, loaded }) => {

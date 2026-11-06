@@ -17,15 +17,26 @@ import { directionOf, type Direction } from "./script.ts";
 export type MessageId = keyof typeof en.messages;
 export type MessageValues = Readonly<Record<string, unknown>>;
 
-/** Real UI locales and how to load them. Add a line per shipped locale. */
+/** Real UI locales and how to load them. Add a line per shipped locale: reviewed and complete (ADR 0070). */
 const CATALOGS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
   en: () => Promise.resolve(en as unknown as MessageCatalog),
+};
+
+/**
+ * Draft catalogs (ADR 0070): checked in CI, shipped to nobody. A reviewer sees one in place with
+ * `?ui=<locale>&drafts=1` in the web app, or from Storybook's UI-locale menu. A catalog moves to
+ * CATALOGS when a native reviewer signs it off.
+ */
+const DRAFTS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
+  fa: async () => (await import("../messages/fa.json", { with: { type: "json" } })).default as unknown as MessageCatalog,
 };
 
 /** The source locale every pseudo-locale is derived from. */
 const PSEUDO_SOURCE = "en";
 
 export const UI_LOCALES: readonly string[] = Object.keys(CATALOGS);
+/** Locales with a draft catalog, for reviewers only. */
+export const DRAFT_UI_LOCALES: readonly string[] = Object.keys(DRAFTS).filter((l) => !(l in CATALOGS));
 export const DEFAULT_UI_LOCALE = "en";
 export { PSEUDO_LOCALES };
 
@@ -98,15 +109,17 @@ export const createTranslator = (options: TranslatorOptions): Translator => {
   };
 };
 
-/** Loads the catalogs for a UI locale (or pseudo-locale) along its parent chain. */
+/** Loads the catalogs for a UI locale (or pseudo-locale) along its parent chain; with `drafts`, draft catalogs too (reviewers). */
 export const loadTranslator = async (
   locale: string,
-  options: Omit<TranslatorOptions, "locale" | "catalogs"> = {},
+  options: Omit<TranslatorOptions, "locale" | "catalogs"> & { readonly drafts?: boolean | undefined } = {},
 ): Promise<Translator> => {
-  const chain = isPseudoLocale(locale) ? [PSEUDO_SOURCE] : parentChain(locale).filter((l) => l in CATALOGS);
+  const { drafts = false, ...rest } = options;
+  const loaderOf = (l: string): (() => Promise<MessageCatalog>) | undefined => CATALOGS[l] ?? (drafts ? DRAFTS[l] : undefined);
+  const chain = isPseudoLocale(locale) ? [PSEUDO_SOURCE] : parentChain(locale).filter((l) => loaderOf(l) !== undefined);
   if (!chain.includes(DEFAULT_UI_LOCALE)) chain.push(DEFAULT_UI_LOCALE);
-  const catalogs = await Promise.all(chain.map((l) => (CATALOGS[l] as () => Promise<MessageCatalog>)()));
-  return createTranslator({ ...options, locale, catalogs });
+  const catalogs = await Promise.all(chain.map((l) => (loaderOf(l) as () => Promise<MessageCatalog>)()));
+  return createTranslator({ ...rest, locale, catalogs });
 };
 
 /** Synchronous English translator for tests and server-side defaults. */

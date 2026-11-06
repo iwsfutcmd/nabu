@@ -1,6 +1,6 @@
 import { parseMessage } from "messageformat";
 import { describe, expect, it } from "vitest";
-import { createTranslator, loadTranslator, sourceCatalog, type MessageId } from "../src/index.ts";
+import { createTranslator, DRAFT_UI_LOCALES, loadTranslator, sourceCatalog, UI_LOCALES, type MessageId } from "../src/index.ts";
 
 const strict = { onError: (e: unknown) => { throw e; } };
 const FSI = "\u2068";
@@ -65,5 +65,26 @@ describe("fallback along the parent chain", () => {
     });
     expect(t.format("exercise.action.check")).toBe("Check it");
     expect(t.format("exercise.action.skip")).toBe("Skip");
+  });
+});
+
+describe("draft catalogs (ADR 0070)", () => {
+  it("are offered to reviewers only, never shipped", () => {
+    expect(DRAFT_UI_LOCALES).toContain("fa");
+    for (const l of DRAFT_UI_LOCALES) expect(UI_LOCALES).not.toContain(l);
+  });
+
+  it("load only when asked: otherwise the chrome stays in the shipped catalogs", async () => {
+    const shipped = await loadTranslator("fa", strict);
+    expect(shipped.dir).toBe("rtl");
+    expect(shipped.format("exercise.action.check")).toBe(sourceCatalog().messages["exercise.action.check"]?.message);
+    const draft = await loadTranslator("fa", { ...strict, drafts: true });
+    expect(draft.format("exercise.action.check")).not.toBe(shipped.format("exercise.action.check"));
+    expect(draft.format("exercise.action.check")).toMatch(/\p{Script=Arabic}/u);
+  });
+
+  it("format numbers in the locale's own digits", async () => {
+    const draft = await loadTranslator("fa", { ...strict, drafts: true });
+    expect(draft.format("app.account.password-hint", { min: 8 })).toContain("\u06F8");
   });
 });

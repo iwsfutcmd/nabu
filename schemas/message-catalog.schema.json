@@ -3,13 +3,17 @@
   "$id": "https://nabu.invalid/schemas/v0/message-catalog.schema.json",
   "title": "MessageCatalog",
   "description": "UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.",
-  "$comment": "v0 (Phase 0). Pseudo-locales (en-XA, ar-XB) have no catalog file: they are derived from en at load time.",
+  "$comment": "v0 (Phase 0); provenance and source fingerprints in Phase 12 (ADR 0070). Pseudo-locales (en-XA, ar-XB) have no catalog file: they are derived from en at load time.",
   "type": "object",
   "required": ["locale", "messages"],
   "additionalProperties": false,
   "properties": {
     "$schema": { "type": "string" },
     "locale": { "$ref": "common.schema.json#/$defs/LangTag" },
+    "provenance": {
+      "description": "Who translated the catalog and whether a native reviewer signed it off (ADR 0070). Required in every catalog but the source (en); only a reviewed catalog ships.",
+      "$ref": "course-source.schema.json#/$defs/Provenance"
+    },
     "messages": {
       "type": "object",
       "propertyNames": { "$ref": "#/$defs/MessageKey" },
@@ -37,6 +41,11 @@
         "description": {
           "description": "Context for translators: where the message appears and what each variable holds. Required in the source (en) catalog by test.",
           "type": "string"
+        },
+        "source": {
+          "description": "In a translation: the fingerprint (sourceHash in @nabu/i18n) of the English message it was made from. When the English wording changes, the catalog check reports the translation as stale until a translator checks it and stamps it again. A change of meaning gets a new key instead.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{14}$"
         }
       }
     }

@@ -38,6 +38,8 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: What ships carries no copyleft code (pnpm license-check)
         run: pnpm license-check
+      - name: UI catalogs pass the catalog check (MF2, placeholders, CLDR plurals, invisibles; ADR 0070)
+        run: pnpm check:catalogs
       - name: uv sync (all groups but speech and omnivoice; committed audio needs no speech model)
         run: uv sync --frozen --all-groups --no-group speech --no-group omnivoice
         working-directory: pipeline
