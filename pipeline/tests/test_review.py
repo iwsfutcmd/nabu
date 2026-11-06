@@ -161,3 +161,53 @@ def test_apply_wants_a_person(course: Path, tmp_path: Path) -> None:
         app, ["review", "apply", str(course), str(file), "--reviewer", "ben"]
     )
     assert result.exit_code == 2
+
+
+def test_the_file_can_say_who_signed_off(course: Path, tmp_path: Path) -> None:
+    file = tmp_path / "signoffs.json"
+    file.write_text(
+        json.dumps({"course": "apc", "reviewer": "human:mei", "signoffs": []}), encoding="utf-8"
+    )
+    ok = CliRunner().invoke(app, ["review", "apply", str(course), str(file)])
+    assert ok.exit_code == 0, ok.output
+    assert "apc (human:mei)" in ok.output
+    # Two different people for the same sign-offs is a mistake, not a choice.
+    clash = CliRunner().invoke(
+        app, ["review", "apply", str(course), str(file), "--reviewer", "human:ben"]
+    )
+    assert clash.exit_code == 2
+    nobody = tmp_path / "nobody.json"
+    nobody.write_text(json.dumps({"course": "apc", "signoffs": []}), encoding="utf-8")
+    assert CliRunner().invoke(app, ["review", "apply", str(course), str(nobody)]).exit_code == 2
+
+
+def test_the_admin_export_applies_each_reviewers_file(
+    course: Path, tmp_path: Path, apc_compiled: list[dict[str, Any]]
+) -> None:
+    shown = shown_of(apc_compiled)
+    one = {"item": "s.1", "kind": "sentence", "shown": shown[("sentence", "s.1")]}
+    two = {"item": "s.2", "kind": "sentence", "shown": shown[("sentence", "s.2")]}
+    export: dict[str, list[dict[str, Any]]] = {
+        "files": [
+            {
+                "course": "apc",
+                "reviewer": "human:mei",
+                "signoffs": [{**one, "at": "2026-11-06T10:00:00Z"}],
+            },
+            {
+                "course": "apc",
+                "reviewer": "human:wing",
+                "signoffs": [{**two, "at": "2026-11-05T10:00:00Z"}],
+            },
+            {"course": "fa", "reviewer": "human:mei", "signoffs": []},
+        ]
+    }
+    file = tmp_path / "export.json"
+    file.write_text(json.dumps(export), encoding="utf-8")
+    result = CliRunner().invoke(app, ["review", "apply", str(course), str(file)])
+    assert result.exit_code == 0, result.output
+    assert "apc (human:mei): signed off 1" in result.output
+    assert "apc (human:wing): signed off 1" in result.output
+    intro = (course / "units" / "intro.yaml").read_text(encoding="utf-8")
+    assert "reviewedBy: 'human:mei', reviewedAt: '2026-11-06'" in intro
+    assert "reviewedBy: 'human:wing', reviewedAt: '2026-11-05'" in intro

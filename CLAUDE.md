@@ -239,7 +239,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Age gate (ADR 0069, src/age.ts): `NABU_MIN_AGE` makes sign-up ask the age (400 age-required, 403 age). Keep nothing of
   the answer anywhere, never show the threshold, and parse digits with `parseDigits` (@nabu/i18n), never Number().
 
-## Sign-off notes (see docs/adr/0072)
+## Sign-off notes (see docs/adr/0072–0074)
 - Reviewers sign off sentences, whole stories or a unit in the sentence list (debug mode); the file goes through
   `cd pipeline && uv run nabu review apply ../courses/<id> <file> --reviewer human:<id>`, which edits provenance in place.
 - A sign-off pins the sha256 of `signoffText` (@nabu/core/corrections); its Python twin is nabu/review. Change both,
@@ -247,6 +247,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Release builds (ADR 0073): `uv run nabu build ../courses/<id> --release` keeps only reviewed sentences, stories and
   scenarios. Committed bundles and the demo stay full builds. The manifest's summary counts come from
   `compiled.counted` (compiler/counts.py): count through `count()`, never by editing the dicts.
+- Review workspace (ADR 0074): reviewer accounts (`PUT /admin/v1/reviewers {email, handle, courses}`) work at `#/review`
+  through /v1/review/* (apps/api/src/review.ts, apps/web/src/Review.tsx, @nabu/ui/review). Every route checks the course is
+  the reviewer's. Sign-offs wait on the server; `GET /admin/v1/signoffs` is a file `nabu review apply` takes as it is.
+  An accepted answer is an approved report (`addAccepted`); promote writes it. The tables are in export and delete.
 
 ## UI catalogs notes (see docs/adr/0070)
 - A translated catalog (packages/i18n/messages/<locale>.json) carries `provenance`; drafts are `llm:` and status draft.
@@ -276,7 +280,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0073 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0074 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

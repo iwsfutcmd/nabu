@@ -242,3 +242,30 @@ export const reportVotes = pgTable(
   },
   (t) => [primaryKey({ columns: [t.reportId, t.subject] })],
 );
+
+/** Reviewer accounts (ADR 0074): the handle provenance names them by, and the courses they review (["*"]: all). */
+export const reviewers = pgTable("reviewers", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  handle: text("handle").notNull().unique(),
+  courses: jsonb("courses").notNull(),
+  grantedAt: timestamp("granted_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+/** Sign-offs from the review workspace (ADR 0074), until `nabu review apply` writes them into the source. */
+export const signoffs = pgTable(
+  "signoffs",
+  {
+    userId: uuid("user_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+    handle: text("handle").notNull(),
+    course: text("course").notNull(),
+    kind: text("kind").notNull(),
+    item: text("item").notNull(),
+    shown: text("shown").notNull(),
+    signedAt: timestamp("signed_at", { withTimezone: true }).notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.userId, t.course, t.kind, t.item] }), index("signoffs_course").on(t.course)],
+);

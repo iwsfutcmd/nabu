@@ -199,4 +199,30 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       `alter table answer_reports add constraint answer_reports_claim_key unique (course, orthography, template, item, normalized, claim)`,
     ],
   ],
+  [
+    "0007_reviewers",
+    [
+      // Reviewer accounts (ADR 0074): a handle (provenance names them human:<handle>) and the courses
+      // they review (["*"]: all). An instance's admin grants and revokes them.
+      `create table reviewers (
+        user_id uuid primary key references users(id) on delete cascade,
+        handle text not null unique,
+        courses jsonb not null,
+        granted_at timestamptz not null default now()
+      )`,
+      // Sign-offs made in the review workspace, until nabu review apply writes them into the source.
+      // They keep the handle they were made under, so revoking a reviewer keeps their work.
+      `create table signoffs (
+        user_id uuid not null references users(id) on delete cascade,
+        handle text not null,
+        course text not null,
+        kind text not null check (kind in ('sentence', 'story')),
+        item text not null,
+        shown text not null,
+        signed_at timestamptz not null,
+        primary key (user_id, course, kind, item)
+      )`,
+      `create index signoffs_course on signoffs (course)`,
+    ],
+  ],
 ];

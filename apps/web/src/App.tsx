@@ -26,6 +26,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugOn } from "./Debug.tsx";
@@ -62,7 +63,9 @@ type Route =
   | { readonly tag: "roleplay"; readonly course: string; readonly orthography: string; readonly scenario: string }
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
-  | { readonly tag: "audio"; readonly course: string; readonly orthography: string };
+  | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "review" }
+  | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
 /** Orthography ids carry a "/" (fa-Arab/standard): "." in the URL. */
 const slug = (orthography: string): string => orthography.replace("/", ".");
@@ -75,6 +78,8 @@ const requestOf = (segment: string): SessionRequest =>
 const parse = (hash: string): Route => {
   const [course, orthography, session, node] = hash.replace(/^#\/?/u, "").split("/").filter((p) => p !== "").map(decodeURIComponent);
   if (course === "preferences" && orthography === undefined) return { tag: "preferences" };
+  // The review workspace (ADR 0074): #/review, and #/review/<course>/<orthography>.
+  if (course === "review") return orthography === undefined || session === undefined ? { tag: "review" } : { tag: "review-course", course: orthography, orthography: unslug(session) };
   if (course === undefined || orthography === undefined) return { tag: "home" };
   if (session === undefined) return { tag: "course", course, orthography: unslug(orthography) };
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
@@ -92,6 +97,10 @@ export const href = (route: Route): string =>
     ? "#/"
     : route.tag === "preferences"
       ? "#/preferences"
+      : route.tag === "review"
+        ? "#/review"
+        : route.tag === "review-course"
+          ? `#/review/${route.course}/${slug(route.orthography)}`
       : route.tag === "course"
       ? `#/${route.course}/${slug(route.orthography)}`
       : route.tag === "story"
@@ -132,6 +141,7 @@ interface GameProps {
 const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
+  const reviewer = useReviewer(sync);
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
@@ -158,6 +168,11 @@ const Home = ({ courses, store, sync, game, gameConfig, version, online }: { cou
         <a className={styles.link} href={href({ tag: "preferences" })} data-preferences-link="">
           {t.format("app.preferences.link")}
         </a>
+        {reviewer.kind === "reviewer" && (
+          <a className={styles.link} href={href({ tag: "review" })} data-review-link="">
+            {t.format("review.workspace.link")}
+          </a>
+        )}
       </div>
     </main>
   );
@@ -687,7 +702,7 @@ export const App = (): JSX.Element => {
   const game = useGame(store, gameConfig, version);
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
   // The route's course, if it has one (home and preferences have none).
-  const inCourse = route.tag === "home" || route.tag === "preferences" ? null : route;
+  const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
   const courseKey = inCourse === null ? null : `${inCourse.course}:${inCourse.orthography}`;
   const courseId = inCourse === null ? null : inCourse.course;
   const ai = useAiStatus(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
@@ -756,6 +771,14 @@ export const App = (): JSX.Element => {
   );
 
   if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
+  if (route.tag === "review") {
+    const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
+    return index === null || sync === null ? (
+      <p className={styles.page}>{t.format("player.loading")}</p>
+    ) : (
+      <ReviewHome courses={index} sync={sync} names={names} back={href({ tag: "home" })} hrefOf={(course, orthography) => href({ tag: "review-course", course, orthography })} />
+    );
+  }
   if (route.tag === "home") {
     return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
   }
@@ -783,6 +806,14 @@ export const App = (): JSX.Element => {
       <CourseUiProvider course={course}>
         <AudioCheckPage loaded={loaded.value} base={import.meta.env.BASE_URL} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
       </CourseUiProvider>
+    );
+  }
+  if (route.tag === "review-course") {
+    const { course, manifest } = loaded.value;
+    return sync === null ? (
+      <p className={styles.page}>{t.format("player.loading")}</p>
+    ) : (
+      <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
     );
   }
   if (route.tag === "sentences") {

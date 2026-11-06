@@ -117,6 +117,10 @@ These cannot be done in code. Each one gates something below.
     - the source beside the compiled forms;
     - audio playback and accept-set edits;
     - the report queue (`/admin/v1` has no interface today).
+
+    (Done: [ADR 0074](adr/0074-review-workspace.md), `#/review`. It shows the compiled forms with
+    their clips and accept sets. Accept-set additions go through `nabu reports promote`, and the
+    source YAML itself is not shown.)
   - **Sign-off.** Signing off moves an item from draft to reviewed, with the reviewer's
     provenance. (Done: [ADR 0072](adr/0072-sign-off.md), in the sentence list with `nabu review apply`.)
   - **Release builds.** A release build of a course leaves out unreviewed items. The demo keeps

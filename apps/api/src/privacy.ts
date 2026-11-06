@@ -25,6 +25,7 @@ import {
 } from "./db/schema.ts";
 import { gameStateOf, MAX_BATCH, since, stateOf } from "./log.ts";
 import { getProfile } from "./profiles.ts";
+import { reviewerExport } from "./review.ts";
 
 export interface AccountExport {
   readonly exportedAt: string;
@@ -43,6 +44,8 @@ export interface AccountExport {
   readonly corrections: readonly Record<string, unknown>[];
   readonly explanationRatings: readonly Record<string, unknown>[];
   readonly aiUsage: readonly Record<string, unknown>[];
+  /** The reviewer role (ADR 0074), if the account has it, and the sign-offs it has not had applied yet. */
+  readonly review: Awaited<ReturnType<typeof reviewerExport>>;
 }
 
 const allEvents = async (db: Db, user: string): Promise<LearnerEvent[]> => {
@@ -95,12 +98,13 @@ export const exportOf = async (db: Db, user: string, subject: string | undefined
     },
     reminders: { web: Number(web?.n ?? 0), android: nativeOf("android"), ios: nativeOf("ios") },
     ...filed,
+    review: await reviewerExport(db, user),
   };
 };
 
 /**
  * Deletes an account and everything it holds. The user row takes its sessions, events, profile,
- * league rows and push registrations with it. Through the subject: the learner's votes on reports
+ * league rows, push registrations, reviewer role and unapplied sign-offs with it. Through the subject: the learner's votes on reports
  * and corrections go, and so does a pending report or correction no one else backs (it holds
  * their words); one a reviewer already decided stays, no longer linked to anyone. Their
  * explanation ratings and AI usage go too. A league's standings are computed from its members,

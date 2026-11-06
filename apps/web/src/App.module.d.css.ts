@@ -61,6 +61,9 @@ declare const styles: {
   readonly streak: string;
   readonly streakCount: string;
   readonly subheading: string;
+  readonly tab: string;
+  readonly tabList: string;
+  readonly tabs: string;
   readonly textButton: string;
   readonly track: string;
   readonly unit: string;

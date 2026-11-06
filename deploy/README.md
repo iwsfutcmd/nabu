@@ -41,6 +41,17 @@ deploy/smoke.sh https://your.domain     # optional: checks the instance end to e
 
 - **Leagues, reminders, review:** `NABU_LEAGUES`, `NABU_PUSH` and `NABU_ADMIN_TOKEN` in `.env`
   (see `.env.example`).
+- **Reviewers** (ADR 0074): with `NABU_ADMIN_TOKEN` set, make an account a reviewer of some
+  courses (`["*"]`: all):
+
+  ```sh
+  curl -X PUT https://<host>/admin/v1/reviewers -H "Authorization: Bearer $NABU_ADMIN_TOKEN" \
+    -H "Content-Type: application/json" -d '{"email": "…", "handle": "…", "courses": ["fa"]}'
+  ```
+
+  They review from the app's course list. Their sign-offs come out of
+  `GET /admin/v1/signoffs?course=fa`, a file `nabu review apply` takes as it is. Approved reports
+  come out of `GET /admin/v1/reports.jsonl?status=approved`, for `nabu reports promote`.
 - **Game rules** (§12): to change them, mount a `game.json` into both the web image
   (`/srv/www/game.json`) and the API (set `NABU_GAME` to its path). The API checks the file when
   it starts.

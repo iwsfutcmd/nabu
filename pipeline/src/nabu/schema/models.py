@@ -2841,6 +2841,13 @@ class SignOffs(BaseModel):
         frozen=True,
     )
     course: Annotated[str, Field(description="The course id.", pattern="^[a-z][a-z0-9-]*$")]
+    reviewer: Annotated[
+        str | None,
+        Field(
+            description="Who signed these off, as provenance names a person (human:<handle>). The review workspace (ADR 0074) fills it in; a file from the sentence list leaves it out and `nabu review apply` takes --reviewer.",
+            pattern="^human:[^\\s@]+$",
+        ),
+    ] = None
     signoffs: list[SignOff]
 
 

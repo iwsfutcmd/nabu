@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
-from typing import Annotated
+from typing import Annotated, cast
 
 import typer
 
@@ -23,12 +23,19 @@ def apply_command(
     signoffs: Annotated[
         Path,
         typer.Argument(
-            exists=True, dir_okay=False, help="The sign-offs the app's sentence list downloads."
+            exists=True,
+            dir_okay=False,
+            help="Sign-offs: the sentence list's download, the review workspace's, "
+            "or the admin export (GET /admin/v1/signoffs).",
         ),
     ],
     reviewer: Annotated[
-        str, typer.Option(help="Who signed off, as provenance names a person: human:<id>.")
-    ],
+        str | None,
+        typer.Option(
+            help="Who signed off, as provenance names a person: human:<id>. "
+            "Needed only when the file does not say."
+        ),
+    ] = None,
     dry_run: Annotated[
         bool, typer.Option("--dry-run", help="Show what would change; write nothing.")
     ] = False,
@@ -40,10 +47,17 @@ def apply_command(
     from nabu.review import apply
     from nabu.schema.models import SignOffs
 
-    if not reviewer.startswith("human:") or len(reviewer) <= len("human:"):
-        typer.echo("✗ --reviewer names a person: human:<id>", err=True)
-        raise typer.Exit(code=2)
-    data = SignOffs.model_validate(json.loads(signoffs.read_text(encoding="utf-8")))
+    raw: object = json.loads(signoffs.read_text(encoding="utf-8"))
+    # The admin export holds one file per course and reviewer.
+    listed = cast(dict[str, object], raw).get("files") if isinstance(raw, dict) else None
+    entries: list[object] = cast(list[object], listed) if isinstance(listed, list) else [raw]
+    files = [SignOffs.model_validate(f) for f in entries]
+    batches: list[tuple[SignOffs, str]] = []
+    for data in files:
+        who = _reviewer_of(data.reviewer, reviewer)
+        if who is None:
+            raise typer.Exit(code=2)
+        batches.append((data, who))
     profiles = load_profiles()
     analyzers = analyzers_by_tool()
     with CoreCli() as cli:
@@ -52,29 +66,44 @@ def apply_command(
             for d in diags.sorted():
                 typer.echo(d.format(), err=True)
             raise typer.Exit(code=1)
-        if compiled.course.id != data.course:
-            typer.echo(
-                f"✗ these sign-offs are for {data.course}, not {compiled.course.id}", err=True
-            )
+        mine = [(d, who) for d, who in batches if d.course == compiled.course.id]
+        if not mine:
+            courses = ", ".join(sorted({d.course for d, _ in batches})) or "no course"
+            typer.echo(f"✗ these sign-offs are for {courses}, not {compiled.course.id}", err=True)
             raise typer.Exit(code=1)
         # Units written inline in course.yaml are not files to edit; their items are skipped.
         units = [course / u for u in compiled.course.units if isinstance(u, str)]
         author = compiled.course.provenance.author if compiled.course.provenance else ""
-        outcome = apply(data, course, units, compiled.units, author, reviewer)
-        if not dry_run and outcome.files:
-            for file, text in outcome.files.items():
-                file.write_text(text, encoding="utf-8")
-            # The edited source must still compile, with the items now reviewed.
-            diags, again = compile_course(course, cli, profiles, analyzers)
-            if again is None or diags.errors:
-                for d in diags.sorted():
-                    typer.echo(d.format(), err=True)
-                typer.echo("✗ the course no longer compiles after the sign-offs", err=True)
-                raise typer.Exit(code=1)
-    for item in outcome.skipped:
-        typer.echo(f"  skipped {item.item}: {item.reason}", err=True)
-    verb = "would sign off" if dry_run else "signed off"
-    typer.echo(
-        f"✓ {data.course}: {verb} {len(outcome.signed)}, already reviewed {len(outcome.already)}, "
-        f"skipped {len(outcome.skipped)}"
-    )
+        for data, who in mine:
+            outcome = apply(data, course, units, compiled.units, author, who)
+            if not dry_run and outcome.files:
+                for file, text in outcome.files.items():
+                    file.write_text(text, encoding="utf-8")
+                # The edited source must still compile, with the items now reviewed.
+                diags, compiled = compile_course(course, cli, profiles, analyzers)
+                if compiled is None or diags.errors:
+                    for d in diags.sorted():
+                        typer.echo(d.format(), err=True)
+                    typer.echo("✗ the course no longer compiles after the sign-offs", err=True)
+                    raise typer.Exit(code=1)
+            for item in outcome.skipped:
+                typer.echo(f"  skipped {item.item}: {item.reason}", err=True)
+            verb = "would sign off" if dry_run else "signed off"
+            typer.echo(
+                f"✓ {data.course} ({who}): {verb} {len(outcome.signed)}, "
+                f"already reviewed {len(outcome.already)}, skipped {len(outcome.skipped)}"
+            )
+
+
+def _reviewer_of(in_file: str | None, given: str | None) -> str | None:
+    """Who signed off: the file's reviewer, or --reviewer; never two different people."""
+    if given is not None and (not given.startswith("human:") or len(given) <= len("human:")):
+        typer.echo("✗ --reviewer names a person: human:<id>", err=True)
+        return None
+    if in_file is not None and given is not None and in_file != given:
+        typer.echo(f"✗ the file says {in_file} signed these off, not {given}", err=True)
+        return None
+    who = in_file or given
+    if who is None:
+        typer.echo("✗ the file does not say who signed off: give --reviewer human:<id>", err=True)
+    return who

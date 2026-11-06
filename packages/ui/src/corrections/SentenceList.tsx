@@ -10,7 +10,7 @@
 import { correctablesByUnit, correctionKey, signedOff, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
 import type { CourseView } from "@nabu/core/lesson";
 import type { SentenceReported, TaggedText } from "@nabu/schema";
-import { useId, useMemo, type JSX } from "react";
+import { useId, useMemo, type JSX, type ReactNode } from "react";
 import { Button, ToggleButton } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import { rubySchemeOf } from "../player/shared.ts";
@@ -37,6 +37,8 @@ export interface SentenceListProps {
   readonly onUnit: (unit: string) => void;
   readonly onCorrect: (target: Correctable) => void;
   readonly review?: ReviewControls | undefined;
+  /** More under each item: the review workspace's clip, accept sets and answer field (ADR 0074). */
+  readonly details?: ((target: Correctable) => ReactNode) | undefined;
 }
 
 /** A sign-off toggle, or the badge of an item the source already marks reviewed. */
@@ -64,9 +66,10 @@ interface ItemProps {
   readonly onCorrect: (target: Correctable) => void;
   /** For a sentence, with a reviewer's controls: whether the source marks it reviewed. */
   readonly review?: { readonly controls: ReviewControls; readonly reviewed: boolean } | undefined;
+  readonly details?: ((target: Correctable) => ReactNode) | undefined;
 }
 
-const Item = ({ course, target, corrected, onCorrect, review }: ItemProps): JSX.Element | null => {
+const Item = ({ course, target, corrected, onCorrect, review, details }: ItemProps): JSX.Element | null => {
   const t = useTranslator();
   const textId = useId();
   const own = target.forms[course.orthography];
@@ -88,6 +91,7 @@ const Item = ({ course, target, corrected, onCorrect, review }: ItemProps): JSX.
             {t.format("corrections.pending")}
           </p>
         )}
+        {details?.(target)}
       </div>
       <div className={styles.itemActions}>
         {review !== undefined && target.kind === "sentence" && (
@@ -103,7 +107,7 @@ const Item = ({ course, target, corrected, onCorrect, review }: ItemProps): JSX.
 
 const titleOf = (title: Readonly<Record<string, TaggedText>> | undefined, key: string): TaggedText | undefined => title?.[key];
 
-export const SentenceList = ({ course, corrections, unit, onUnit, onCorrect, review }: SentenceListProps): JSX.Element => {
+export const SentenceList = ({ course, corrections, unit, onUnit, onCorrect, review, details }: SentenceListProps): JSX.Element => {
   const t = useTranslator();
   // Units with nothing to correct (the generated number drills) are left out.
   const units = useMemo(() => correctablesByUnit(course).filter((u) => u.sentences.length > 0 || u.stories.some((s) => s.lines.length > 0)), [course]);
@@ -118,6 +122,7 @@ export const SentenceList = ({ course, corrections, unit, onUnit, onCorrect, rev
       corrected={corrections.has(correctionKey(target.item, target.step))}
       onCorrect={onCorrect}
       review={review === undefined ? undefined : { controls: review, reviewed: reviewedSentences.has(target.item) }}
+      details={details}
     />
   );
   return (
