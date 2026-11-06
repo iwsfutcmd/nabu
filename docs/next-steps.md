@@ -120,7 +120,8 @@ These cannot be done in code. Each one gates something below.
   - **Sign-off.** Signing off moves an item from draft to reviewed, with the reviewer's
     provenance. (Done: [ADR 0071](adr/0071-sign-off.md), in the sentence list with `nabu review apply`.)
   - **Release builds.** A release build of a course leaves out unreviewed items. The demo keeps
-    showing drafts, labelled as drafts.
+    showing drafts, labelled as drafts. (Done: [ADR 0072](adr/0072-release-builds.md),
+    `nabu build --release`; each course's page says how many sentences are unchecked.)
   - **Larger courses.** Each fixture course grows to an A1 path of about 8–10 units, drafted with
     `nabu author draft`, linted, and then reviewed.
   - **One new course to stretch the design.** Either Tajik, with the tg↔fa script conversion left

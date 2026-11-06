@@ -127,6 +127,12 @@ def build(
     ] = Path("dist"),
     strict: Annotated[bool, typer.Option(help="Fail on warnings too.")] = False,
     check: Annotated[bool, typer.Option(help="Lint only; write nothing.")] = False,
+    release: Annotated[
+        bool,
+        typer.Option(
+            help="A release build (ADR 0072): only reviewed content. Demo bundles keep drafts."
+        ),
+    ] = False,
 ) -> None:
     """Compile courses into content-addressed bundles (gameplan §7.5)."""
     from nabu.analyzers import analyzers_by_tool
@@ -156,7 +162,20 @@ def build(
             elif check:
                 typer.echo(f"✓ {compiled.course.id} ({summary})")
             else:
-                manifest = write_bundle(compiled, profiles, analyzers, out / compiled.course.id)
+                if release:
+                    from nabu.compiler.release import release as release_of
+
+                    compiled, report = release_of(compiled)
+                    if not compiled.units:
+                        typer.echo(f"✗ {course}: nothing reviewed yet, so no release", err=True)
+                        failed = True
+                        continue
+                    kept = ", ".join(f"{v} {k}" for k, v in sorted(report.kept.items()))
+                    dropped = ", ".join(f"{v} {k}" for k, v in sorted(report.dropped.items()) if v)
+                    typer.echo(f"  release: kept {kept}; left out {dropped or 'nothing'}")
+                manifest = write_bundle(
+                    compiled, profiles, analyzers, out / compiled.course.id, release=release
+                )
                 typer.echo(f"✓ {compiled.course.id} → {manifest['id']} ({summary})")
                 index.append(
                     {

@@ -2,9 +2,10 @@
  * Sign-off (ADR 0071, Phase 13 acceptance): in the browser, a reviewer signs off a whole unit
  * from the sentence list; the sign-offs stay on the device and download as the file
  * `nabu review apply` reads, each with the sha256 of what was shown. Learners see none of it.
+ * The demo's full builds keep drafts, and each course's page says how many (ADR 0072).
  */
 import { createHash } from "node:crypto";
-import { correctablesByUnit, sentenceSignoffText, storySignoffText } from "@nabu/core/corrections";
+import { correctablesByUnit, draftCount, sentenceSignoffText, storySignoffText } from "@nabu/core/corrections";
 import type { SignOffs } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
 import { loadCourse, seriousAxeViolations } from "./solver.ts";
@@ -64,4 +65,14 @@ test("learners see no sign-off controls", async ({ page }) => {
   await expect(page.locator("[data-sentences-page=apc]")).toBeVisible();
   await expect(page.locator("[data-action=mark-incorrect]").first()).toBeVisible();
   await expect(page.locator("[data-action=sign-off], [data-action=sign-off-unit]")).toHaveCount(0);
+});
+
+test("the demo says how much of a course no native speaker has checked yet", async ({ page }) => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const { drafts, total } = draftCount(course.units);
+  expect(drafts).toBeGreaterThan(0);
+  await page.goto("/?sound=off#/apc/apc-Arab.standard");
+  const note = page.locator("[data-drafts]");
+  await expect(note).toHaveAttribute("data-drafts", String(drafts));
+  await expect(note).toContainText(`${drafts} of ${total}`);
 });

@@ -29,7 +29,8 @@
       "items": { "$ref": "#/$defs/BundleManifestUnit" }
     },
     "licenses": { "description": "SPDX expression → number of content items.", "type": "object", "additionalProperties": { "type": "integer" } },
-    "provenance": { "description": "Counts by status and author kind.", "type": "object", "additionalProperties": { "type": "integer" } }
+    "provenance": { "description": "Counts by status and author kind.", "type": "object", "additionalProperties": { "type": "integer" } },
+    "release": { "description": "A release build (ADR 0072): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.", "type": "boolean" }
   },
   "$defs": {
     "BundleFile": {

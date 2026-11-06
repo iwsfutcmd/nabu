@@ -2205,6 +2205,12 @@ class BundleManifest(BaseModel):
         dict[str, int], Field(description="SPDX expression → number of content items.")
     ]
     provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+    release: Annotated[
+        bool | None,
+        Field(
+            description="A release build (ADR 0072): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
+        ),
+    ] = None
 
 
 class BundleNode(BaseModel):

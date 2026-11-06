@@ -12,6 +12,7 @@
 import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
+import { draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
@@ -185,6 +186,8 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
   const studied = Object.keys(state.cards).length > 0;
   const mistakes = state.mistakes.length;
   const today = state.xp.byDate[localDate(now)] ?? 0;
+  // The demo's full builds keep drafts and say so (ADR 0072); a release build has none.
+  const drafts = draftCount(course.units);
   const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
     const last = acc.at(-1);
     if (last?.unit === entry.unit) last.entries.push(entry);
@@ -209,6 +212,11 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
         <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
       </p>
       {!offline.online && <OfflineNotice />}
+      {drafts.drafts > 0 && (
+        <p className={styles.notice} role="note" data-drafts={drafts.drafts}>
+          {t.format("app.course.drafts", { drafts: drafts.drafts, total: drafts.total })}
+        </p>
+      )}
       {!persistent && (
         <p className={styles.notice} role="note" data-not-saved="">
           {t.format("app.store.memory")}

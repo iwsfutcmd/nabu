@@ -22,6 +22,7 @@ from pydantic import BaseModel, ValidationError
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
 from nabu.compiler.audio import check_audio
+from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.scenarios import compile_scenarios
 from nabu.compiler.source import Doc, load_doc
@@ -72,6 +73,8 @@ class Compiled:
     support: list[str] = field(default_factory=lambda: [])
     licenses: dict[str, int] = field(default_factory=lambda: {})
     provenance: dict[str, int] = field(default_factory=lambda: {})
+    # What the two summaries above count, one entry each.
+    counted: list[Counted] = field(default_factory=lambda: [])
     # bundle path → (bytes, SPDX license, attribution source)
     images: dict[str, tuple[bytes, str, str | None]] = field(default_factory=lambda: {})
     # audio: bundle path → (bytes, SPDX license, credit); item → {normal, slow} clips (audio.json)
@@ -780,10 +783,8 @@ def _images(ctx: Ctx, course_dir: Path, units: list[Unit], compiled: Compiled) -
             rel = f"images/{path.stem}.{digest[:16]}{path.suffix}"
             compiled.images[rel] = (data, image.license, image.source)
             out[kc.id] = rel
-            compiled.licenses[image.license] = compiled.licenses.get(image.license, 0) + 1
-            kind = image.provenance.author.split(":", 1)[0]
-            for key in (f"status.{image.provenance.status}", f"author.{kind}"):
-                compiled.provenance[key] = compiled.provenance.get(key, 0) + 1
+            p = image.provenance
+            count(compiled, Counted(rel, image.license, p.status, p.author))
     return out
 
 
@@ -1310,14 +1311,13 @@ def _packaging(ctx: Ctx, course: CourseSource, units: list[Unit], compiled: Comp
                     f"{s.id} has no SPDX license and the course gives no default",
                     loc,
                 )
-            else:
-                compiled.licenses[license_] = compiled.licenses.get(license_, 0) + 1
             if provenance is None:
                 ctx.diags.report(
                     "package.provenance",
                     f"{s.id} has no provenance and the course gives no default",
                     loc,
                 )
+                count(compiled, Counted(s.id, license_, None, None))
                 continue
             if provenance.status == "published" and (
                 provenance.reviewedBy is None or provenance.reviewedAt is None
@@ -1327,9 +1327,7 @@ def _packaging(ctx: Ctx, course: CourseSource, units: list[Unit], compiled: Comp
                     f"{s.id} is published without reviewedBy/reviewedAt",
                     loc,
                 )
-            kind = provenance.author.split(":", 1)[0]
-            for key in (f"status.{provenance.status}", f"author.{kind}"):
-                compiled.provenance[key] = compiled.provenance.get(key, 0) + 1
+            count(compiled, Counted(s.id, license_, provenance.status, provenance.author))
 
 
 def _bundle_unit(

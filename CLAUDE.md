@@ -244,6 +244,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `cd pipeline && uv run nabu review apply ../courses/<id> <file> --reviewer human:<id>`, which edits provenance in place.
 - A sign-off pins the sha256 of `signoffText` (@nabu/core/corrections); its Python twin is nabu/review. Change both,
   with the pinned text in packages/core/test/signoff.test.ts and pipeline/tests/test_review.py.
+- Release builds (ADR 0072): `uv run nabu build ../courses/<id> --release` keeps only reviewed sentences, stories and
+  scenarios. Committed bundles and the demo stay full builds. The manifest's summary counts come from
+  `compiled.counted` (compiler/counts.py): count through `count()`, never by editing the dicts.
 
 ## UI catalogs notes (see docs/adr/0070)
 - A translated catalog (packages/i18n/messages/<locale>.json) carries `provenance`; drafts are `llm:` and status draft.
@@ -260,7 +263,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0071 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0072 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

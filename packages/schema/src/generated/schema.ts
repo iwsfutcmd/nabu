@@ -1043,6 +1043,10 @@ export interface BundleManifest {
   readonly provenance: {
     readonly [k: string]: number;
   };
+  /**
+   * A release build (ADR 0072): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
+   */
+  readonly release?: boolean;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema

@@ -226,6 +226,10 @@
       "message": "Sign in to bring your progress from your other devices.",
       "description": "Introduces the sign-in form."
     },
+    "app.course.drafts": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
+      "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0072). A release build has none, so it never shows there."
+    },
     "app.error.account.age-required": {
       "message": "This server asks for your age before it creates an account.",
       "description": "Shown when the server needs the person's age to create an account; the age field appears with it."

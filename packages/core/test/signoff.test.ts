@@ -1,6 +1,6 @@
 import { createHash } from "node:crypto";
 import { describe, expect, it } from "vitest";
-import { sentenceSignoffText, signedOff, storySignoffText } from "../src/corrections/index.ts";
+import { draftCount, sentenceSignoffText, signedOff, storySignoffText } from "../src/corrections/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 /** apc's s.1 as the app shows it: pinned here and in pipeline/tests/test_review.py (the Python twin). */
@@ -35,5 +35,17 @@ describe("sign-off text (ADR 0071)", () => {
     expect(signedOff({ author: "llm:x@y", status: "draft" })).toBe(false);
     expect(signedOff({ author: "llm:x@y", status: "reviewed", reviewedBy: "human:ben", reviewedAt: "2026-11-06" })).toBe(true);
     expect(signedOff(undefined)).toBe(false);
+  });
+
+  it("counts the sentences no reviewer has signed off, story lines included", () => {
+    const lines = stories.reduce((n, story) => n + story.steps.filter((s) => s.line !== undefined).length, 0);
+    const reviewed = sentences.filter((s) => signedOff(s.provenance)).length;
+    expect(draftCount(apc.units)).toEqual({ drafts: sentences.length - reviewed + lines, total: sentences.length + lines });
+    const signed = apc.units.map((u) => ({
+      ...u,
+      sentences: u.sentences.map((s) => ({ ...s, provenance: { author: "llm:x@y", status: "reviewed" as const } })),
+      stories: (u.stories ?? []).map((s) => ({ ...s, provenance: { author: "llm:x@y", status: "published" as const } })),
+    }));
+    expect(draftCount(signed)).toEqual({ drafts: 0, total: sentences.length + lines });
   });
 });
