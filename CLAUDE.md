@@ -40,6 +40,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - cd pipeline && uv run nabu build ../courses/<id>   # write the bundle to dist/<id>; `uv run nabu lints` lists lints
 - pnpm bundles                     # rebuild apps/web/public/bundles (committed; CI fails if stale)
 - pnpm test:e2e                    # lesson per course by keyboard and touch, IME composition, axe
+- pnpm license-check               # what ships (web, API, mobile) has only allowed licenses (packages/lint/src/licenses.ts)
 
 ## Phase 0–1 notes (see docs/adr/0013–0026)
 - TypeScript is pinned to 6.0.x: typescript-eslint's type-aware rules need the JS compiler API, which TS 7 lacks.

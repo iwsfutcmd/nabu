@@ -48,3 +48,12 @@ subtags, use `asciiLowercase()` from `@nabu/i18n`.
 - `[dir=…]` selectors
 
 Introducing any of them fails `pnpm lint`.
+
+## The license check (`pnpm license-check`)
+
+What ships (the web app, the API, the mobile shell) carries no copyleft code (gameplan §17). The
+check reads `pnpm licenses list --prod --json` for those three and fails on any package whose SPDX
+expression cannot be satisfied with the permissive licenses in `src/licenses.ts` (one side of an
+OR, both sides of an AND). Unknown and missing licenses fail too, so a new license is a decision:
+add it to `ALLOWED`, with why, or drop the dependency. `test/licenses.test.ts` is the fixture that
+proves it fires.
