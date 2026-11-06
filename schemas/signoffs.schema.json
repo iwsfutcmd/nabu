@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nabu.invalid/schemas/v0/signoffs.schema.json",
+  "title": "SignOffs",
+  "description": "A reviewer's sign-offs on a course's content (ADR 0071): written by the web app's sentence list, applied to the course source by `nabu review apply`. A signed-off sentence or story becomes reviewed, with the reviewer's provenance.",
+  "type": "object",
+  "required": [
+    "course",
+    "signoffs"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "course": {
+      "description": "The course id.",
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "signoffs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/SignOff"
+      }
+    }
+  },
+  "$defs": {
+    "SignOff": {
+      "title": "SignOff",
+      "description": "One item the reviewer read and found right, as it was shown.",
+      "type": "object",
+      "required": [
+        "item",
+        "kind",
+        "shown",
+        "at"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "description": "A sentence id, or a story id (a story is signed off whole: its provenance is the story's).",
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "sentence",
+            "story"
+          ]
+        },
+        "shown": {
+          "description": "sha256 of what the reviewer saw (signoffText in @nabu/core/corrections: every form and translation, as compiled). A sign-off applies only while the source still compiles to it.",
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "at": {
+          "description": "When the reviewer signed it off; its date becomes reviewedAt.",
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

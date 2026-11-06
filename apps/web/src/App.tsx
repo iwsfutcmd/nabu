@@ -731,7 +731,7 @@ export const App = (): JSX.Element => {
   if (route.tag === "sentences") {
     const { course, manifest } = loaded.value;
     const back = href({ tag: "course", course: course.id, orthography: course.orthography });
-    return <SentencesPage course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={back} />;
+    return <SentencesPage course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={back} review={DEBUG} />;
   }
   // Offline, a session uses only the media on this device: no listening without the clip.
   const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };

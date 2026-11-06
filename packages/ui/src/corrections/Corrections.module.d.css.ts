@@ -8,6 +8,7 @@ declare const styles: {
   readonly heading: string;
   readonly input: string;
   readonly item: string;
+  readonly itemActions: string;
   readonly items: string;
   readonly label: string;
   readonly legend: string;

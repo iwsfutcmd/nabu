@@ -244,3 +244,4 @@ export const correctionRows = (reports: Iterable<SentenceReported>): readonly Se
 
 /** JSON Lines: one row per line. */
 export const jsonLines = (rows: readonly SentenceCorrection[]): string => rows.map((r) => `${JSON.stringify(r)}\n`).join("");
+export { sentenceSignoffText, signedOff, storySignoffText, type SignOffKind } from "./signoff.ts";

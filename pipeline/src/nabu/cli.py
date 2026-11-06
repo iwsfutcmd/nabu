@@ -42,6 +42,15 @@ def _register_corrections() -> None:
 _register_corrections()
 
 
+def _register_review() -> None:
+    from nabu.review.cli import app as review_app
+
+    app.add_typer(review_app, name="review")
+
+
+_register_review()
+
+
 def _register_speech() -> None:
     from nabu.speech.cli import app as speech_app
 
