@@ -73,7 +73,8 @@ These cannot be done in code. Each one gates something below.
     - a license check that fails on copyleft code in what ships (§17) (done: `pnpm license-check` over the production
       dependencies of the web app, the API and the mobile shell; the optional speech image's Python packages are not
       covered yet);
-    - Renovate for dependency updates.
+    - Renovate for dependency updates (config done: `.github/renovate.json5`; it takes effect once the Renovate app is
+      installed on the repository).
 - **Acceptance:**
   - The Uzbek, Uzbek Cyrillic and Lebanese examples from erratum 46 grade WRONG_WORD in both
     harnesses, and every existing conformance vector still passes.
