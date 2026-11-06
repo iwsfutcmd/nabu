@@ -48,7 +48,9 @@ samples anew. Sentences of one item are joined with 200 ms of silence.
 
 ## Consequences
 
-- **fa's clips are made again:** 664, sentences as plain text, 35 short items in the carrier.
+- **fa's clips are made again:** 664. 369 sentences as plain text; 295 items of one or two words
+  (word cards, mostly) in the carrier. Whisper's round trip passes 365 and fails 90, 74 of them
+  short items, where it is least reliable (it writes نه, said right, as نا).
 - **Word cards say their word,** at about the length a speaker gives it (سلام 0.5 s).
 - **Two words still fail:** نه and اسم, short and ending the carrier. They go through the audio
   check like any clip; a listener's rejection makes a new take.
