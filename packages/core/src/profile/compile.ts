@@ -50,7 +50,7 @@ export interface CompiledProfile {
     readonly set: ReadonlySet<string>;
     /** Marks a learner supplying the vowel marks may write or leave out (ADR 0054). */
     readonly optional: ReadonlySet<string>;
-    /** Marks that tell words apart (Spanish está/esta, ADR 0075): another word of the course is WRONG_WORD. */
+    /** Marks that tell words apart (Spanish está/esta, ADR 0076): another word of the course is WRONG_WORD. */
     readonly distinguishes: boolean;
     readonly wordNote?: string | undefined;
   };

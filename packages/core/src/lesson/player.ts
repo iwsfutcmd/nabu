@@ -41,7 +41,7 @@ export interface Session {
   /** Missed exercises come back at the end (default). A placement test asks each question once. */
   readonly retries?: boolean;
   /**
-   * An adaptive test (ADR 0076): after each answer, the exercises still to come are the test's
+   * An adaptive test (ADR 0077): after each answer, the exercises still to come are the test's
    * next ones for the first-try answers so far. Its exercises are asked once (no retries).
    */
   readonly adaptive?: AdaptiveTest;
@@ -51,7 +51,7 @@ export interface Session {
 
 export interface StartOptions {
   readonly retries?: boolean;
-  /** Ask this adaptive test (ADR 0076); `exercises` should be what it asks first. */
+  /** Ask this adaptive test (ADR 0077); `exercises` should be what it asks first. */
   readonly adaptive?: AdaptiveTest;
 }
 

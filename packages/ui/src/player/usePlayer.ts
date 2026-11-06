@@ -15,7 +15,7 @@ export interface PlayerOptions {
   readonly sound?: boolean | undefined;
   /** Missed exercises come back at the end (default); off for a placement test. */
   readonly retries?: boolean | undefined;
-  /** An adaptive test (the placement test, ADR 0076): what comes next depends on the answers. */
+  /** An adaptive test (the placement test, ADR 0077): what comes next depends on the answers. */
   readonly adaptive?: AdaptiveTest | undefined;
 }
 

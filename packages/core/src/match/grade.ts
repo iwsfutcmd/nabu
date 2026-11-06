@@ -221,7 +221,7 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     }
     const c = compare(op.expected, op.actual);
     for (const f of c.folds) {
-      // Marks that tell words apart (ADR 0075): left out or added, they can spell another word (esta for está).
+      // Marks that tell words apart (ADR 0076): left out or added, they can spell another word (esta for está).
       if (f.kind === "marks" && profile.marks?.distinguishes === true && options.lexicon?.has(profile.fold(op.actual)) === true) {
         raise("WRONG_WORD");
         note(profile.marks.wordNote ?? f.note ?? f.id);

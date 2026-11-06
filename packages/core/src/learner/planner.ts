@@ -52,7 +52,7 @@ export interface SessionPlan {
   readonly predictions: readonly number[];
   readonly planner: string;
   /**
-   * Placement only (ADR 0076): the adaptive test. `exercises` are what it asks first; the player
+   * Placement only (ADR 0077): the adaptive test. `exercises` are what it asks first; the player
    * asks the rest as the answers decide, and `predictions` covers every exercise it may ask.
    */
   readonly placement?: PlacementTest & { readonly predictions: Readonly<Record<string, number>> };

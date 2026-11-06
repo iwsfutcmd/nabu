@@ -2,10 +2,10 @@
 
 A course in Cuban Spanish (`es-Latn-CU`) for people who grew up hearing it at home: they understand
 a lot and speak "kitchen Spanish", but never studied it. It starts at A1, so anyone can take it,
-and goes to B2. A placement test at the start ([ADR 0076](../../docs/adr/0076-adaptive-placement.md))
+and goes to B2. A placement test at the start ([ADR 0077](../../docs/adr/0077-adaptive-placement.md))
 lets a heritage speaker skip what they already know. Thirty units: the first ten are the
 everyday core, and the twenty after them are where a heritage speaker does most of their work
-([ADR 0075](../../docs/adr/0075-cuban-spanish.md)).
+([ADR 0076](../../docs/adr/0076-cuban-spanish.md)).
 
 Every sentence, story and scenario is an LLM draft (`llm:claude@…`, `status: draft`) awaiting a
 native speaker's review. This file is the brief the drafts were written from.

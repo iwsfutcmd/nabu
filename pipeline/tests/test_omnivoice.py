@@ -199,7 +199,7 @@ def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_a_real_speakers_recording_can_be_the_reference(tmp_path: Path) -> None:
-    """ADR 0075: a recorded reference (a Cuban speaker for es) keeps its license, speaker and
+    """ADR 0076: a recorded reference (a Cuban speaker for es) keeps its license, speaker and
     source, is marked as not synthetic, and is normalized like an ingested recording."""
     course = tmp_path / "apc"
     (course / "audio").mkdir(parents=True)

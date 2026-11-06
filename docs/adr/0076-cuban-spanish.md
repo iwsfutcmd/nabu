@@ -1,4 +1,4 @@
-# 0075. Cuban Spanish for heritage speakers, and accent marks that make another word
+# 0076. Cuban Spanish for heritage speakers, and accent marks that make another word
 
 - Status: Proposed
 - Date: 2026-11-06
@@ -43,7 +43,7 @@ brief and syllabus in `courses/es/README.md`).
   morphs: Spanish is fusional, and *tengo*, *fui* and *hizo* have no segmentation. The planner
   then knows which tenses a learner misses. A new verb in a new tense is two new KCs on one word,
   so the course allows two a sentence (`iPlusOne: 2`).
-- **Placement has production typed** (`placement: {production: typed}`, ADR 0076).
+- **Placement has production typed** (`placement: {production: typed}`, ADR 0077).
 
 **The profile `es-Latn/standard`** (RAE and ASALE spelling).
 

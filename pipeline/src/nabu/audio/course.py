@@ -689,7 +689,7 @@ def record_reference(
     source: str,
 ) -> ReferenceVoice:
     """Keeps a real speaker's recording as the voice's reference (voices/<voice>.wav), replacing
-    an earlier one (ADR 0075): every clip of an OmniVoice voice then clones that speaker, accent
+    an earlier one (ADR 0076): every clip of an OmniVoice voice then clones that speaker, accent
     and all. `text` is what the recording says, word for word; the recording is loudness-normalized
     and trimmed like an ingested one. Clips cloned from the old reference become stale."""
     from nabu.audio.ingest import prepare

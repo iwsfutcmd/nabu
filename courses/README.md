@@ -14,7 +14,7 @@ Real courses can live in separate repositories.
 | [`uz`](uz/) | uz-Latn, uz-Cyrl | 318 sentences, 244 KCs, 58 lessons | Every sentence pinned in both scripts; ʻ (U+02BB) in oʻ; person, possessive, case and tense suffixes as morphs; a Latin→Cyrillic script-convert node |
 | [`apc`](apc/) | apc-Arab, apc-Latn (Arabizi) | 293 sentences, 252 KCs, 55 lessons | Learner-selectable script; Arabizi spelling variants in accept sets; possessive endings and verb persons as morphs; the b- present, subjunctive and past; vocalized stories; an Arabic→Arabizi script-convert node teaching 7, 3 and 2 |
 | [`lzh`](lzh/) | lzh-Hant | 379 sentences, 230 KCs, 50 lessons | Classical Chinese, read and written only (`facets: [recognize, produce]`, no audio, ADR 0071); every unit ends in an authentic passage (Analects, Laozi, Zhuangzi, Mencius, Han Feizi, Tang poems); readings pinned by sense in three layers shown on request: Pinyin, Jyutping, Baxter's Middle Chinese |
-| [`es`](es/) | es-Latn/standard | 913 sentences, 640 KCs, 147 lessons (units 1–26 of 30) | Cuban Spanish for heritage speakers (ADR 0075): Cuban answers canonical, pan-Hispanic accepted; verb tenses as `form:` KCs; accent marks that make another word graded wrong; typed adaptive placement (ADR 0076); a Cuban voice cloned from a CC0 recording |
+| [`es`](es/) | es-Latn/standard | 913 sentences, 640 KCs, 147 lessons (units 1–26 of 30) | Cuban Spanish for heritage speakers (ADR 0076): Cuban answers canonical, pan-Hispanic accepted; verb tenses as `form:` KCs; accent marks that make another word graded wrong; typed adaptive placement (ADR 0077); a Cuban voice cloned from a CC0 recording |
 
 Every unit ends in a story, and each course has six roleplay scenarios (lzh has seven; es one about every three units).
 

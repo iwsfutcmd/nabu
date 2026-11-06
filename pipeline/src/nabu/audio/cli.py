@@ -134,7 +134,7 @@ def cast(
     ] = None,
 ) -> None:
     """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058)
-    or keeps a real speaker's recording (--recording, ADR 0075); Navoiy reads the text in the
+    or keeps a real speaker's recording (--recording, ADR 0076); Navoiy reads the text in the
     voice of CosyVoice's prompt recording (ADR 0059).
 
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting

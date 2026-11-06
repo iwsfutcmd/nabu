@@ -22,8 +22,8 @@ Decisions Ben made (do not re-ask):
 
 | Commit theme | Where |
 |---|---|
-| Spanish profile; `marks.distinguishes` (an accent that spells another word of the course is WRONG_WORD); 24 conformance vectors | `profiles/es-Latn.standard.yaml`, `packages/core/src/match/grade.ts`, ADR 0075 |
-| Adaptive placement: a block per unit, gallop 1, 2, 4, 8… then bisect, then node steps; `placement: {production: typed}`; unit, player and e2e tests | `packages/core/src/lesson/adaptive.ts`, `learner/placement.ts`, ADR 0076 |
+| Spanish profile; `marks.distinguishes` (an accent that spells another word of the course is WRONG_WORD); 24 conformance vectors | `profiles/es-Latn.standard.yaml`, `packages/core/src/match/grade.ts`, ADR 0076 |
+| Adaptive placement: a block per unit, gallop 1, 2, 4, 8… then bisect, then node steps; `placement: {production: typed}`; unit, player and e2e tests | `packages/core/src/lesson/adaptive.ts`, `learner/placement.ts`, ADR 0077 |
 | `nabu audio cast --recording` (a real speaker as the reference) | `pipeline/src/nabu/audio/{cli,course}.py` |
 | The course brief and syllabus (30 units, the family, conventions) | `courses/es/README.md` |
 | **Units 1–26 on the path**: 913 sentences, 640 KCs, 147 lessons, 26 stories, 8 scenarios; builds with 0 errors, 0 warnings | `courses/es/units/`, `courses/es/course.yaml` |
@@ -70,7 +70,7 @@ and the e2e placement and es lesson tests passed at the time of the last full ru
    (*¿Qué bolá?* heard as *¿Por qué volar?*); a listener decides them in the audio check
    (`#/es/es-Latn.standard/audio`, then `nabu audio verdicts`).
 6. **Docs**: `courses/README.md` row (update the counts), `courses/REVIEW.md` (add u27–u30 notes from the
-   agents' reports), ADR 0075's consequences if anything changed.
+   agents' reports), ADR 0076's consequences if anything changed.
 7. **Checks, then push**: `pnpm bundles`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm conformance`,
    `pnpm check:catalogs`, `cd packages/core && npx vitest run test/simulation.test.ts -t "es "`, and
    `cd apps/web && npx playwright test tests/e2e/lesson.spec.ts tests/e2e/progress.spec.ts --trace off`.

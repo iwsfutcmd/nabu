@@ -430,7 +430,7 @@ describe("player", () => {
     expect(end.tag === "finished" && end.summary).toEqual({ completed: true, exercises: 1, correctFirstTry: 0, retries: 0, skipped: 0 });
   });
 
-  it("asks an adaptive test as its answers decide (placement, ADR 0076)", () => {
+  it("asks an adaptive test as its answers decide (placement, ADR 0077)", () => {
     const test = placementTest(course, 4).test;
     const units = test.blocks.map((b) => b.id);
     const unitOf = new Map(course.units.flatMap((u) => u.sentences.map((x) => [x.id, u.id] as const)));

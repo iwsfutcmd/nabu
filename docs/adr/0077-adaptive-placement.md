@@ -1,4 +1,4 @@
-# 0076. An adaptive placement test
+# 0077. An adaptive placement test
 
 - Status: Proposed
 - Date: 2026-11-06
@@ -7,7 +7,7 @@
 ## Context
 
 Placement v0 (ADR 0039) asks two questions of every lesson node, in path order. Ten units of six
-lessons make about 120 questions; the Cuban Spanish course (ADR 0075) has thirty units, so about
+lessons make about 120 questions; the Cuban Spanish course (ADR 0076) has thirty units, so about
 360. That is too long for anyone, and it is the course's main entrance: its learners are heritage
 speakers who will place well past the first units.
 
@@ -56,7 +56,7 @@ first try. `SessionPlan.probes` is gone.
   30 questions instead of v0's 110 to 120.
 - **The search assumes the path gets harder in order.** A heritage speaker is uneven: they may
   pass unit 15 and still miss the accent marks of unit 11. Units the search skips over count as
-  known. The planner's reviews, and the accent-mark grading of every typed answer (ADR 0075),
+  known. The planner's reviews, and the accent-mark grading of every typed answer (ADR 0076),
   are what catches such gaps; the learner can also open any done unit to practise it.
 - Placement grain is the unit, then the node inside the boundary unit, as fine as v0 was.
 - When there are calibrated items, the blocks can become an item pool and the search a proper

@@ -26,7 +26,7 @@ export interface CourseView {
    * readings are shown, never drilled.
    */
   readonly facets?: readonly Facet[] | undefined;
-  /** How the placement test probes, where the course says (ADR 0076). */
+  /** How the placement test probes, where the course says (ADR 0077). */
   readonly placement?: PlacementPolicy | undefined;
 }
 

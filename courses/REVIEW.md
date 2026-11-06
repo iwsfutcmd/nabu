@@ -286,7 +286,7 @@ Drafted after the native-speaker pass above, so it has had no second reading
 
 ## es (Cuban Spanish)
 
-Thirty units for heritage speakers ([ADR 0075](../docs/adr/0075-cuban-spanish.md); the brief and
+Thirty units for heritage speakers ([ADR 0076](../docs/adr/0076-cuban-spanish.md); the brief and
 syllabus are in [es/README.md](es/README.md)). Units 1–26 are on the path; 27–30 are still to be
 drafted. Every sentence, story and scenario is an LLM draft. The drafts aim at the Spanish of a
 Cuban family in Miami and in Havana: Cuban forms first, pan-Hispanic ones accepted.

@@ -1,5 +1,5 @@
 /**
- * Placement (gameplan §9.5; ADR 0039, adaptive since ADR 0076). A test that finds how far into
+ * Placement (gameplan §9.5; ADR 0039, adaptive since ADR 0077). A test that finds how far into
  * the path a learner already is, in a few dozen questions however long the course.
  *
  * - **A block per unit**: up to four probes from the unit's lesson nodes, later nodes first,

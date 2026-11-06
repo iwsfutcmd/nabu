@@ -236,7 +236,7 @@ def write_bundle(
         "support": compiled.support,
         # Only where the course names them (ADR 0071): other manifests stay as they were.
         **({"facets": list(course.facets)} if course.facets else {}),
-        # Only where the course says (ADR 0076).
+        # Only where the course says (ADR 0077).
         **(
             {"placement": course.placement.model_dump(exclude_none=True)}
             if course.placement is not None

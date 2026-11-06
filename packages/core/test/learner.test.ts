@@ -325,7 +325,7 @@ describe("a course that names its facets (ADR 0071)", () => {
   });
 });
 
-describe("placement (§9.5, ADR 0076)", () => {
+describe("placement (§9.5, ADR 0077)", () => {
   const now = "2026-03-01T08:00:00.000Z";
   const test = plan(fa, emptyLearnerState(), { mode: "placement" }, { now, seed: 4 });
   const nodes = lessonNodes(fa).map((n) => n.node.id);

@@ -1,5 +1,5 @@
 /**
- * Adaptive tests (ADR 0076): the search behind placement, on synthetic blocks. A learner who
+ * Adaptive tests (ADR 0077): the search behind placement, on synthetic blocks. A learner who
  * knows the first k blocks places after exactly those, for every k and every course length,
  * in a number of questions that grows with the logarithm of the course.
  */
@@ -36,7 +36,7 @@ const take = (test: AdaptiveTest, knows: (id: string) => boolean): { readonly pl
   return { placed: placedBy(test, answers), asked };
 };
 
-describe("adaptive tests (ADR 0076)", () => {
+describe("adaptive tests (ADR 0077)", () => {
   it("places a learner who knows the first k blocks after exactly those, for every k and length", () => {
     for (let n = 1; n <= 40; n++) {
       const test = blocks(n);

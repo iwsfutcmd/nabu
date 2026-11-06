@@ -466,7 +466,7 @@ type Facet = Annotated[
 
 class PlacementPolicy(BaseModel):
     """
-    How a course's placement test probes (ADR 0076). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+    How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
     """
 
     model_config = ConfigDict(
@@ -2152,7 +2152,7 @@ class ReferenceVoice(BaseModel):
     source: Annotated[
         str | None,
         Field(
-            description="A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0075). The speaker is the provenance's human:<id>.",
+            description="A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0076). The speaker is the provenance's human:<id>.",
             min_length=1,
         ),
     ] = None
@@ -2240,7 +2240,7 @@ class BundleManifest(BaseModel):
     placement: Annotated[
         PlacementPolicy | None,
         Field(
-            description="How the placement test probes, where the course says (course source `placement`, ADR 0076)."
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
         ),
     ] = None
     versions: Annotated[
@@ -2757,7 +2757,7 @@ class Marks(BaseModel):
     distinguishes: Annotated[
         bool | None,
         Field(
-            description="Marks that tell words apart (ADR 0075): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies."
+            description="Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies."
         ),
     ] = None
     wordNote: Annotated[

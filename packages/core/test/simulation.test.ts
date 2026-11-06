@@ -31,7 +31,7 @@ describe("planner: 30 simulated days", () => {
     // Classical Chinese (ADR 0071): recognize and produce only, no audio.
     ["lzh", undefined, 10, 1.3],
     ["lzh", undefined, 11, 2.0],
-    // Cuban Spanish (ADR 0075): thirty units; a month covers the first ten or so.
+    // Cuban Spanish (ADR 0076): thirty units; a month covers the first ten or so.
     ["es", undefined, 12, 1.0],
     ["es", undefined, 13, 2.0],
   ];
