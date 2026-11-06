@@ -237,3 +237,47 @@ With an account on a server, corrections also reach the review queue at `/admin/
       is not always a bad clip, and a low one is not always a good one.
     - **A wrong clip:** fix the vowel marks (vocalization.yaml or the token's `vocalized`) and
       regenerate, or record the sentence (`nabu audio ingest`).
+
+## lzh (Classical Chinese)
+
+Drafted after the native-speaker pass above, so it has had no second reading
+([ADR 0071](../docs/adr/0071-classical-chinese.md)). A reviewer of Classical Chinese should check:
+
+1. **Readings by sense.** Each sense is read one way in all three layers. Check the borrowings
+   and polyphones first:
+   - 說 "pleased" yuè / jyut6 / ywet (= 悅);
+   - 女 "you" rǔ / jyu5 / nyoX (= 汝). The Guangyun lists 女 only as nrjoX, so nyoX follows
+     the borrowing;
+   - 有 "and" in 十有五 yòu / jau6 / hjuwH (= 又). The Guangyun lists 有 only as hjuwX;
+   - 知 "wise" zhì / zi3 / trjeH (= 智);
+   - 強 "force oneself" qiǎng / koeng5 / gjangX;
+   - 舍 "give up" shě / se2 / syaeX (= 捨);
+   - 見 "have an audience with" jiàn / kenH, not xiàn;
+   - 覺 jué, 處 chù, 從容 cóng róng / tshjowng yowng (the Guangyun's 七恭切 for 從容);
+   - 不 is pjuw throughout, not pjut;
+   - 遠 in 叟不遠千里 is the rising-tone hjwonX.
+2. **Literary Jyutping where Unihan lists a colloquial reading first:** 生 sang1, 聲 sing1,
+   頸 ging2, 耕 gang1, 復 "again" fau6, 鯈 tiu4 (kSMSZD2003Readings). 曰 is joek6.
+3. **Grammar as taught:**
+   - 為…笑 as a passive (`construction:wei-passive`); some editions read 為 as "become";
+   - the fable opener 楚人有涉江者 (`construction:you-zhe`);
+   - 之 in 吾劍之所從墜 tagged as the genitive 之.de, although it nominalizes a clause;
+   - 上善若水 under 上 "above";
+   - 此是霜, a Tang copula in a made-up sentence.
+4. **Constructed sentences that may not be idiomatic:** 吾為之, 魯小, 人多, 君子少, 弟子十人,
+   吾年十有五, 吾足矣, 吾行矣, 我與子路朋也, 天上有日, 兔身小, 此，矛也.
+5. **Texts and editions:**
+   - 吾矛之利，於物無不陷也 (with 於);
+   - Han Feizi's 楯 is written 盾;
+   - Laozi 25 王亦大 (some editions: 人亦大);
+   - 道不遠人 (Doctrine of the Mean 13);
+   - 天何言哉 (Analects 17.19);
+   - 知者無不知也 (Mencius 7A46).
+6. **English:** 仁者人也 "To be humane is to be human", 罔 "lost", 殆 "in danger", 耳順 "my ear
+   was attuned", 矩 "the bounds" (carpenter's square accepted), 由 Yu/Zilu, 夜來 "in the night".
+   A few accepted English answers are ungrammatical but harmless.
+7. **Accept sets in Chinese** take 吾 or 我 as subject, 汝, 爾 or 子 for "you", optional 也
+   where it does not change the meaning, 悅 for 說 "pleased", 捨 for 舍 and 智 for 知 "wise".
+   Older and regional forms (爲, 説) are accepted with a note.
+8. **Characters outside CLDR zh_Hant** are in the profile's `exemplarsExtra`, marked REVIEW:
+   焉 歟 孰 奚 罔 慍 誨 殆 踰 矩 濠 鯈 遽 墜 耕 株 冀 耒 鬻 叟 啼.

@@ -49,6 +49,13 @@ export type ReportStatus = "pending" | "approved" | "rejected" | "promoted";
  */
 export type Spdx = string;
 /**
+ * What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Facet".
+ */
+export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -279,6 +286,10 @@ export type KeyboardRef = string;
  */
 export type TableRef = string;
 /**
+ * A LangTag that carries an explicit script subtag. Every piece of language data uses one (gameplan §1 decision 3, §6.1): direction, fonts, Han glyph selection and input all key off the script.
+ */
+export type ScriptedLangTag1 = LangTag;
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "StrokeOrderStandard".
  */
@@ -345,6 +356,7 @@ export interface NabuSchemaIndex {
   readonly SenseId: SenseId1;
   readonly KcId: KcId;
   readonly Persons: Persons;
+  readonly Facet: Facet;
   readonly ScriptCode: ScriptCode;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
@@ -1018,6 +1030,12 @@ export interface BundleManifest {
   readonly orthographies: readonly OrthographyId[];
   readonly support: readonly OrthographyId[];
   /**
+   * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
+   *
+   * @minItems 1
+   */
+  readonly facets?: readonly Facet[];
+  /**
    * Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.
    */
   readonly versions: {
@@ -1414,6 +1432,12 @@ export interface CourseSource {
   readonly support: readonly OrthographyId[];
   readonly license?: Spdx1;
   readonly provenance?: Provenance1;
+  /**
+   * The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.
+   *
+   * @minItems 1
+   */
+  readonly facets?: readonly Facet[];
   /**
    * Maximum new knowledge components per sentence (§7.5). Default 1.
    */
@@ -2803,6 +2827,7 @@ export interface AnnotationLayer {
   readonly toggle: boolean;
   readonly default?: "on" | "off" | "on-for-new-words";
   readonly scheme?: SchemeId;
+  readonly lang?: ScriptedLangTag1;
   readonly render?: "ruby" | "inline" | "interlinear";
   readonly fade?: "none" | "by-facet";
 }

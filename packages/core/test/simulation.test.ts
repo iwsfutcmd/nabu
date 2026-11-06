@@ -28,6 +28,9 @@ describe("planner: 30 simulated days", () => {
     ["apc", "apc-Latn/arabizi", 7, 1.0],
     ["fa", undefined, 8, 2.0],
     ["yue", undefined, 9, 2.0],
+    // Classical Chinese (ADR 0071): recognize and produce only, no audio.
+    ["lzh", undefined, 10, 1.3],
+    ["lzh", undefined, 11, 2.0],
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {

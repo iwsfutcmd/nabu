@@ -102,6 +102,41 @@
   margin-inline-start: 1rem;
 }
 
+/* Several reading layers (ADR 0071): a labelled row of choices, one of them "off". */
+.readings {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.readingsLabel {
+  color: var(--nabu-color-muted);
+}
+
+.segments {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1);
+}
+
+.segment {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: inherit;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.segment[data-selected] {
+  border-color: var(--nabu-color-accent);
+  box-shadow: inset 0 0 0 1px var(--nabu-color-accent);
+}
+
 .body {
   display: flex;
   flex-direction: column;
@@ -523,6 +558,7 @@
 .pair:focus-visible,
 .charKey:focus-visible,
 .switch[data-focus-visible] .switchTrack,
+.segment[data-focus-visible],
 .input:focus-visible {
   outline: 3px solid var(--nabu-color-accent);
   outline-offset: 2px;

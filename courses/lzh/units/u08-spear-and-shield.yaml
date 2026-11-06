@@ -1,0 +1,546 @@
+# Classical Chinese (lzh), unit 8: Spear and shield.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u08-spear-and-shield
+title:
+  en: Spear and shield
+cefr: A2
+kcs:
+- id: sense:矛
+  gloss:
+    en: spear, lance
+  forms:
+    lzh-Hant/standard: [矛]
+- id: sense:盾
+  gloss:
+    en: shield
+  forms:
+    lzh-Hant/standard: [盾]
+- id: sense:利
+  gloss:
+    en: sharp
+  forms:
+    lzh-Hant/standard: [利]
+- id: sense:堅
+  gloss:
+    en: hard, solid, strong
+  forms:
+    lzh-Hant/standard: [堅]
+- id: sense:鬻
+  gloss:
+    en: to sell
+  forms:
+    lzh-Hant/standard: [鬻]
+- id: sense:譽
+  gloss:
+    en: to praise, to boast of
+  forms:
+    lzh-Hant/standard: [譽]
+- id: sense:物
+  gloss:
+    en: thing; the things of the world
+  forms:
+    lzh-Hant/standard: [物]
+- id: sense:能
+  gloss:
+    en: can, to be able to
+  forms:
+    lzh-Hant/standard: [能]
+- id: sense:莫
+  gloss:
+    en: 'no one, nothing (莫能: none can)'
+  forms:
+    lzh-Hant/standard: [莫]
+  notes:
+    en: '莫 is itself the subject: 物莫能陷 “of things, none can pierce [it]”.'
+- id: sense:無
+  gloss:
+    en: there is no; to have no, without
+  forms:
+    lzh-Hant/standard: [無]
+- id: sense:皆
+  gloss:
+    en: all, every one
+  forms:
+    lzh-Hant/standard: [皆]
+- id: sense:又
+  gloss:
+    en: again; also, moreover
+  forms:
+    lzh-Hant/standard: [又]
+- id: sense:或
+  gloss:
+    en: someone, some people
+  forms:
+    lzh-Hant/standard: [或]
+- id: sense:以
+  gloss:
+    en: to use; with, by means of
+  forms:
+    lzh-Hant/standard: [以]
+- id: sense:陷
+  gloss:
+    en: to pierce, to break through
+  forms:
+    lzh-Hant/standard: [陷]
+- id: sense:何如
+  gloss:
+    en: how is it? what about …?
+  forms:
+    lzh-Hant/standard: [何如]
+- id: sense:弗
+  gloss:
+    en: not (with the object left out)
+  forms:
+    lzh-Hant/standard: [弗]
+  notes:
+    en: '弗 is 不 with an object understood: 弗能應 “could not answer [him]”.'
+- id: sense:應
+  gloss:
+    en: to answer, to respond
+  forms:
+    lzh-Hant/standard: [應]
+nodes:
+- {id: lzh.u08.weapons, kind: lesson, introduces: ['sense:矛', 'sense:盾', 'sense:利', 'sense:堅', 'sense:鬻']}
+- {id: lzh.u08.praise, kind: lesson, introduces: ['sense:譽', 'sense:物', 'sense:能', 'sense:莫']}
+- {id: lzh.u08.none, kind: lesson, introduces: ['sense:無', 'sense:皆', 'sense:又', 'sense:或']}
+- {id: lzh.u08.using, kind: lesson, introduces: ['sense:以', 'sense:陷', 'sense:何如', 'sense:弗', 'sense:應']}
+- {id: lzh.u08.story, kind: story}
+sentences:
+- id: s.08.1
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 此，矛也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此矛也
+  translations:
+    en: |-
+      This is a spear.
+      (It|That) is a spear.
+      (This|That|It)'s a spear.
+- id: s.08.2
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 此，盾也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此盾也
+  translations:
+    en: |-
+      This is a shield.
+      (It|That) is a shield.
+      (This|That|It)'s a shield.
+- id: s.08.3
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 吾有矛與盾。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}]
+      reverse: (吾|我)有矛與盾
+  translations:
+    en: |-
+      I have a spear and a shield.
+      I have (spears and shields|a shield and a spear|shields and spears).
+- id: s.08.4
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 此矛利。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
+      reverse: 此矛利
+  translations:
+    en: |-
+      This spear is sharp.
+      That spear is sharp.
+- id: s.08.5
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 吾盾堅。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
+      reverse: (吾|我)盾堅
+  translations:
+    en: |-
+      My shield is (strong|hard|solid|sturdy).
+      My shields are (strong|hard|solid|sturdy).
+- id: s.08.6
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 楚人鬻矛。
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      reverse: 楚人鬻矛
+  translations:
+    en: |-
+      A man of Chu (sells|sold|was selling) spears.
+      The man of Chu (sells|sold|was selling) spears.
+      (A|The) (man|person) from Chu (sells|sold|was selling) spears.
+- id: s.08.7
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 楚人有鬻盾與矛者。
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      reverse: 楚人有鬻盾與矛者
+  translations:
+    en: |-
+      There was a man (of|from) Chu who sold (shields and spears|spears and shields).
+      A man (of|from) Chu sold (shields and spears|spears and shields).
+      Among the people of Chu there was one who sold (shields and spears|spears and shields).
+- id: s.08.8
+  node: lzh.u08.weapons
+  forms:
+    lzh-Hant/standard:
+      text: 其矛利，其盾堅。
+      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}]
+      reverse: 其矛利其盾堅
+  translations:
+    en: |-
+      His spear is sharp( and|,) his shield is (strong|hard|solid|sturdy).
+      Their spears are sharp( and|,) their shields are (strong|hard|solid|sturdy).
+- id: s.08.9
+  node: lzh.u08.praise
+  forms:
+    lzh-Hant/standard:
+      text: 楚人譽其盾。
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}]
+      reverse: 楚人譽其盾
+  translations:
+    en: |-
+      The man of Chu (praised|praises|boasted about) his (shield|shields).
+      (A man|The man|A person) from Chu (praised|praises|boasted about) his (shield|shields).
+      A man of Chu (praised|praises|boasted about) his (shield|shields).
+- id: s.08.10
+  node: lzh.u08.praise
+  forms:
+    lzh-Hant/standard:
+      text: 此何物也？
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此何物[也]
+  translations:
+    en: |-
+      What is this thing?
+      What (thing|kind of thing) is this?
+      What is this?
+- id: s.08.11
+  node: lzh.u08.praise
+  forms:
+    lzh-Hant/standard:
+      text: 吾能學之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)能學之
+  translations:
+    en: |-
+      I can (learn|study) it.
+      I('m| am) able to (learn|study) it.
+- id: s.08.12
+  node: lzh.u08.praise
+  forms:
+    lzh-Hant/standard:
+      text: 吾不能也。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (吾|我)不能[也]
+  translations:
+    en: |-
+      I (cannot|can't)[ do it].
+      I('m| am) not able to[ do it].
+- id: s.08.13
+  node: lzh.u08.praise
+  forms:
+    lzh-Hant/standard:
+      text: 人莫能知之。
+      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: |-
+        [人]莫能知之
+        無人能知之
+  translations:
+    en: |-
+      No one (can|is able to) (know|understand) it.
+      Nobody (can|is able to) (know|understand) it.
+- id: s.08.14
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 吾無矛。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      reverse: (吾|我)無矛
+  translations:
+    en: |-
+      I have no spear.
+      I (don't|do not) have a spear.
+- id: s.08.15
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 無人知之。
+      tokens: [{surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: |-
+        無人知之
+        [人]莫知之
+  translations:
+    en: |-
+      No one knows it.
+      Nobody knows (it|this|him).
+      No one knows (this|him).
+- id: s.08.16
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 人皆知之。
+      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, sense: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 人皆知之
+  translations:
+    en: |-
+      Everyone knows it.
+      Everybody knows (it|this).
+      Everyone knows this.
+      (People|They) all know (it|this).
+- id: s.08.17
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 人皆譽之。
+      tokens: [{surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 皆, sense: 皆, readings: {pinyin: jiē, jyutping: gaai1, baxter: keaj}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 人皆譽之
+  translations:
+    en: |-
+      Everyone praises (him|it|them).
+      Everybody praises (him|it|them).
+      (People|They) all praise (him|it|them).
+- id: s.08.18
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 楚人又譽其矛。
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 又, sense: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
+      reverse: 楚人又譽其矛
+  translations:
+    en: |-
+      The man of Chu also praised his spear.
+      The man of Chu (then|again) praised his (spear|spears).
+      The man of Chu also praised his spears.
+      Then the man of Chu praised his (spear|spears).
+- id: s.08.19
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 或曰：「善。」
+      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 或曰善[哉]
+  translations:
+    en: |-
+      Someone said, “(Good|Excellent|Well said|Very good).”
+      Somebody said, “(Good|Excellent|Well said|Very good).”
+- id: s.08.20
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 或問之。
+      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 或問之
+  translations:
+    en: |-
+      Someone asked him.
+      Somebody asked (him|her|them).
+      Someone asked (her|them).
+- id: s.08.21
+  node: lzh.u08.none
+  forms:
+    lzh-Hant/standard:
+      text: 知者無不知也。
+      tokens: [{surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (知|智)者無不知也
+  translations:
+    en: |-
+      The wise know everything.
+      There is nothing the wise do not know.
+      The wise (man|person) knows everything.
+      There is nothing (that |)the wise (man|person) does not know.
+- id: s.08.22
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 以劍刻舟。
+      tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 刻, sense: 刻, readings: {pinyin: kè, jyutping: hak1, baxter: khok}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}]
+      reverse: 以劍刻舟
+  translations:
+    en: |-
+      He carved the boat with (his|a|the) sword.
+      (She|They) carved the boat with (her|their|a|the) sword.
+      (He|She|They) carved a boat with (a|the|his|her|their) sword.
+      (Use|Using) (a|the) sword to (carve|cut) the boat.
+- id: s.08.23
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 矛陷盾。
+      tokens: [{surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}]
+      reverse: 矛陷盾
+  translations:
+    en: |-
+      The spear pierces the shield.
+      The spear (pierced|penetrates|penetrated|goes through|went through) the shield.
+      (A|The) spear (pierces|pierced|penetrates|penetrated|goes through|went through) a shield.
+      A spear (pierces|pierced|penetrates|penetrated|goes through|went through) the shield.
+- id: s.08.24
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 吾盾之堅，物莫能陷也。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (吾|我)盾之堅物莫能陷也
+  translations:
+    en: |-
+      My shield is so (strong|hard|solid|sturdy) that nothing can (pierce|penetrate) it.
+      My shields are so (strong|hard|solid|sturdy) that nothing can (pierce|penetrate) them.
+      (Such is the|So great is the) (strength|hardness) of my (shield|shields) that nothing can (pierce|penetrate) (it|them).
+- id: s.08.25
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 吾矛之利，於物無不陷也。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (吾|我)矛之利[於]物無不陷也
+  translations:
+    en: |-
+      My spear is so sharp that there is nothing it (cannot|can't) (pierce|penetrate).
+      My spears are so sharp that there is nothing they (cannot|can't) (pierce|penetrate).
+      My spear is so sharp that it can (pierce|penetrate) anything.
+      My spears are so sharp that they can (pierce|penetrate) anything.
+- id: s.08.26
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 此矛何如？
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      reverse: 此矛何如
+  translations:
+    en: |-
+      How is this spear?
+      What about this spear?
+      What do you think of this spear?
+      How good is this spear?
+- id: s.08.27
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 以子之矛，陷子之盾，何如？
+      tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      reverse: 以(子|汝|爾)之矛陷(子|汝|爾)之盾何如
+  translations:
+    en: |-
+      What if you pierced your shield with your spear?
+      What would happen if you pierced your shield with your spear?
+      What (if|would happen if) you (used|took) your spear to pierce your shield?
+      How about piercing your shield with your spear?
+- id: s.08.28
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 其人弗知也。
+      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 其人弗知[也]
+  translations:
+    en: |-
+      The man did not know.
+      The man (didn't know|did not know it|didn't know it).
+      That man (did not|didn't) know[ it].
+- id: s.08.29
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 或問之，不應。
+      tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}]
+      reverse: 或問之[而]不應
+  translations:
+    en: |-
+      Someone asked him, (but|and) he (did not|didn't) (answer|respond|reply).
+      Somebody asked him, (but|and) he (did not|didn't) (answer|respond|reply).
+      He was asked, (but|and) he (did not|didn't) (answer|respond|reply).
+- id: s.08.30
+  node: lzh.u08.using
+  forms:
+    lzh-Hant/standard:
+      text: 其人弗能應也。
+      tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 其人弗能應[也]
+  translations:
+    en: |-
+      The man (could not|couldn't|was unable to) (answer|reply|respond).
+      That man (could not|couldn't|was unable to) (answer|reply|respond).
+      He (could not|couldn't|was unable to) (answer|reply|respond).
+stories:
+- id: lzh.story.spear-and-shield
+  node: lzh.u08.story
+  title:
+    en: Spear and shield (Han Feizi)
+  characters:
+  - {id: seller, name: {lzh-Hant/standard: 楚人}}
+  - {id: passerby, name: {lzh-Hant/standard: 路人}}
+  steps:
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 楚人有鬻盾與矛者，譽之曰：
+          tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鬻, sense: 鬻, readings: {pinyin: yù, jyutping: juk6, baxter: yuwk}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'A man of Chu sold shields and spears. He praised them, saying:'}
+  - line:
+      speaker: seller
+      ask: complete
+      gap: sense:堅
+      distractors: ['sense:利', 'sense:遠']
+      forms:
+        lzh-Hant/standard:
+          text: 吾盾之堅，物莫能陷也。
+          tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: My shields are so strong that nothing can pierce them.}
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 又譽其矛曰：
+          tokens: [{surface: 又, sense: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'Then he praised his spears, saying:'}
+  - line:
+      speaker: seller
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 吾矛之利，於物無不陷也。
+          tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: My spears are so sharp that there is nothing they cannot pierce.}
+  - choose:
+      prompt:
+        en: What did the man praise first?
+      options: [{en: his shields}, {en: his spears}, {en: his boat}]
+      answer: 0
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 或曰：
+          tokens: [{surface: 或, sense: 或, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'Someone said:'}
+  - line:
+      speaker: passerby
+      forms:
+        lzh-Hant/standard:
+          text: 以子之矛，陷子之盾，何如？
+          tokens: [{surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 子, sense: 子.you, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 何如, sense: 何如, readings: {pinyin: hé rú, jyutping: ho4 jyu4, baxter: ha nyo}}]
+      translations: {en: 'What if you pierced your shield with your spear?'}
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 其人弗能應也。
+          tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: The man could not answer.}
+  - choose:
+      prompt:
+        en: Why could the man not answer?
+      options: [{en: his two boasts cannot both be true}, {en: he did not hear the question}, {en: he had sold everything}]
+      answer: 0
+scenarios:
+- id: lzh.market
+  after: lzh.u08.using
+  title: {en: In the market of Chu}
+  setting: {en: 'A busy market in the state of Chu in the Warring States period: stalls of bronze weapons, boats on the river behind.'}
+  character: {en: 'A boastful weapons seller who praises everything he sells, and speaks only Classical Chinese.'}
+  goal: {en: 'Ask the seller about his spears and shields, praise or doubt them, and catch him contradicting himself.'}

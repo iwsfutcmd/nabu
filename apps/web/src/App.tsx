@@ -16,7 +16,7 @@ import { draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
-import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
+import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
@@ -405,6 +405,30 @@ const setBreakUntil = (b: Break, until: number): void => {
 
 const onBreak = (b: Break): boolean => breakUntil(b) > Date.now();
 
+/**
+ * The reading layer the learner last chose for an orthography (ADR 0071): Pinyin, Jyutping, Middle
+ * Chinese or none for Classical Chinese. A per-device preference in localStorage; without storage
+ * the player starts from the profile's default each time.
+ */
+const READING_KEY = "nabu.reading.";
+
+const storedReading = (orthography: string): SchemeId | false | undefined => {
+  try {
+    const value = localStorage.getItem(READING_KEY + orthography);
+    return value === null ? undefined : value === "" ? false : (value as SchemeId);
+  } catch {
+    return undefined;
+  }
+};
+
+const storeReading = (orthography: string, scheme: SchemeId | false): void => {
+  try {
+    localStorage.setItem(READING_KEY + orthography, scheme === false ? "" : scheme);
+  } catch {
+    // Storage unavailable: the choice lasts this session.
+  }
+};
+
 /** What new sessions leave out: listening and speaking while they are on a break. */
 const excluded = (): ReadonlySet<TemplateId> => new Set<TemplateId>([...(onBreak("listening") ? LISTENING : []), ...(onBreak("speaking") ? SPEAKING : [])]);
 
@@ -508,6 +532,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         sound={sound}
         retries={request.mode !== "placement"}
         debug={DEBUG}
+        reading={storedReading(course.orthography)}
+        onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
@@ -584,6 +610,8 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         onEvent={setup.onEvent}
         sound={sound}
         xpEarned={state.xp.total - setup.xpBefore}
+        reading={storedReading(course.orthography)}
+        onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         onExit={() => {
           window.location.hash = back;
         }}

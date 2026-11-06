@@ -234,6 +234,8 @@ def write_bundle(
         "target": course.target,
         "orthographies": compiled.orthographies,
         "support": compiled.support,
+        # Only where the course names them (ADR 0071): other manifests stay as they were.
+        **({"facets": list(course.facets)} if course.facets else {}),
         "versions": tool_versions(analyzers, *_used_tools(compiled, profiles)),
         "files": sorted(files, key=lambda f: f["path"]),
         "units": units,

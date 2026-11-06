@@ -47,17 +47,31 @@ export interface SpeechSupport {
 export const speechSupportOf = (
   course: CourseView,
   serverTiers: number,
-): SpeechSupport => ({
-  scored:
-    serverTiers > 0 ||
-    course.units.some((u) =>
-      u.sentences.some((s) => {
-        const text = s.forms[course.orthography]?.text;
-        return text !== undefined && toneSystemOf(text) !== undefined;
-      }),
-    ),
-  tones: true,
-});
+): SpeechSupport =>
+  // A course that is never spoken or heard (ADR 0071) needs no scoring, whatever its readings carry.
+  course.facets !== undefined && !course.facets.includes("speak") && !course.facets.includes("listen")
+    ? { scored: false, tones: false }
+    : {
+        scored:
+          serverTiers > 0 ||
+          course.units.some((u) =>
+            u.sentences.some((s) => {
+              const text = s.forms[course.orthography]?.text;
+              return text !== undefined && toneSystemOf(text) !== undefined;
+            }),
+          ),
+        tones: true,
+      };
+
+/**
+ * The templates a course rules out by what it practises (ADR 0071): every template whose facet
+ * the course does not name. Classical Chinese practises recognize and produce, so it never plans
+ * speaking, listening or reading drills; a course that names no facets rules nothing out.
+ */
+export const facetExclusions = (course: CourseView): ReadonlySet<TemplateId> => {
+  const facets = course.facets;
+  return facets === undefined ? new Set() : new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !facets.includes(TEMPLATES[t].facet)));
+};
 
 /** The templates a speech support rules out. */
 export const speechExclusions = (
@@ -130,6 +144,7 @@ export const buildLesson = (
   const excluded = new Set([
     ...(options.exclude ?? []),
     ...speechExclusions(options.speech),
+    ...facetExclusions(course),
   ]);
   const allowed = (t: TemplateId): boolean => !excluded.has(t);
   const out: Exercise[] = [];
@@ -245,8 +260,9 @@ export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[
     }
     return undefined;
   };
+  const excluded = facetExclusions(course);
   return (Object.keys(TEMPLATES) as TemplateId[])
-    .filter((t) => !t.startsWith("story-"))
+    .filter((t) => !t.startsWith("story-") && !excluded.has(t))
     .map((template): GalleryCard => {
       const sentence = SENTENCE_TEMPLATES[template];
       const word = KC_TEMPLATES[template];
@@ -271,6 +287,7 @@ export const sampleExercise = (
   template: TemplateId,
   seed = 1,
 ): Exercise | undefined => {
+  if (facetExclusions(course).has(template)) return undefined;
   for (const { node } of lessonNodes(course)) {
     const found = buildLesson(course, node.id, { seed }).find(
       (e) => e.template === template,

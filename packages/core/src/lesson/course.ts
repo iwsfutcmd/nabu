@@ -3,7 +3,7 @@
  * for one taught orthography and one support language. Assembling it is pure;
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
-import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, KeyboardLayout, OrthographyProfile, TaggedText } from "@nabu/schema";
+import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, Facet, KeyboardLayout, OrthographyProfile, TaggedText } from "@nabu/schema";
 import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
@@ -20,6 +20,12 @@ export interface CourseView {
   readonly profiles: ReadonlyMap<string, CompiledProfile>;
   /** Playable clips by sentence or KC id (gameplan §10); empty for a course without audio. */
   readonly audio: Readonly<Record<string, BundleAudioItem>>;
+  /**
+   * The facets the course practises (ADR 0071), where it names them; undefined: all of them.
+   * Classical Chinese practises recognize and produce only: it is never spoken or heard, and its
+   * readings are shown, never drilled.
+   */
+  readonly facets?: readonly Facet[] | undefined;
 }
 
 /** Bundle files that stay URLs (pictures, audio); every other file is JSON the course needs. */
@@ -68,6 +74,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     supportKey: supportKeyOf(support),
     profiles,
     audio,
+    ...(manifest.facets === undefined ? {} : { facets: manifest.facets }),
   });
 };
 

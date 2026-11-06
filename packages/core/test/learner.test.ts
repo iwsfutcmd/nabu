@@ -25,7 +25,7 @@ import {
   type LearnerState,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { buildLesson, createGrader, gradeExercise, lessonNodes, sampleExercise, seededRng, start, step, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -286,6 +286,39 @@ describe("planner constraints", () => {
     const ex = sampleExercise(fa, "choose-translation") as Exercise;
     const e = events.answer(ex, true, 1);
     expect(e.type).toBe("answer_submitted");
+  });
+});
+
+describe("a course that names its facets (ADR 0071)", () => {
+  const lzh = loadCourse("lzh");
+  const practised = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "recognize" || TEMPLATES[ex.template].facet === "produce";
+  const now = "2026-03-01T08:00:00.000Z";
+
+  it("reads them from its bundle; the other courses name none and rule nothing out", () => {
+    expect(lzh.facets).toEqual(["recognize", "produce"]);
+    for (const id of ["fa", "yue", "uz", "apc"]) expect(facetExclusions(loadCourse(id)).size).toBe(0);
+  });
+
+  it("is never spoken, heard or drilled on its readings, whatever the app can score", () => {
+    const speech = speechSupportOf(lzh, 2);
+    expect(speech).toEqual({ scored: false, tones: false });
+    for (const { node } of lessonNodes(lzh)) {
+      expect(buildLesson(lzh, node.id, { seed: 3, speech }).filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
+      const p = plan(lzh, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3, speech });
+      expect(p.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
+    }
+    const placement = plan(lzh, emptyLearnerState(), { mode: "placement" }, { now, seed: 3, speech });
+    expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
+    expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
+    expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
+  });
+
+  it("still shows its readings: every word of a lesson carries all three layers", () => {
+    const node = lessonNodes(lzh)[0]?.node.id as string;
+    const words = buildLesson(lzh, node, { seed: 3 }).flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
+    const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
+    expect(han.length).toBeGreaterThan(0);
+    for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
   });
 });
 

@@ -1,0 +1,718 @@
+# Classical Chinese (lzh), unit 10: Moonlight.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u10-moonlight
+title:
+  en: Moonlight
+cefr: A2
+kcs:
+- id: sense:月
+  gloss:
+    en: moon; month
+  forms:
+    lzh-Hant/standard: [月]
+- id: sense:光
+  gloss:
+    en: light; to shine
+  forms:
+    lzh-Hant/standard: [光]
+- id: sense:夜
+  gloss:
+    en: night; at night
+  forms:
+    lzh-Hant/standard: [夜]
+- id: sense:地
+  gloss:
+    en: earth, ground
+  forms:
+    lzh-Hant/standard: [地]
+- id: sense:霜
+  gloss:
+    en: frost
+  forms:
+    lzh-Hant/standard: [霜]
+- id: sense:床
+  gloss:
+    en: bed, couch
+  forms:
+    lzh-Hant/standard: [床]
+- id: sense:前
+  gloss:
+    en: in front of, before
+  forms:
+    lzh-Hant/standard: [前]
+- id: sense:是.cop
+  gloss:
+    en: to be (the copula of later Chinese)
+  forms:
+    lzh-Hant/standard: [是]
+  notes:
+    en: Early texts use 是 for “this”; by the Tang it is also “to be”, as in 疑是地上霜 “I took it to be frost on the ground”.
+- id: sense:疑
+  gloss:
+    en: to doubt, to suspect; to take for
+  forms:
+    lzh-Hant/standard: [疑]
+- id: sense:舉
+  gloss:
+    en: to raise, to lift
+  forms:
+    lzh-Hant/standard: [舉]
+- id: sense:頭
+  gloss:
+    en: head
+  forms:
+    lzh-Hant/standard: [頭]
+- id: sense:望
+  gloss:
+    en: to gaze at, to look into the distance
+  forms:
+    lzh-Hant/standard: [望]
+- id: sense:低
+  gloss:
+    en: low; to lower
+  forms:
+    lzh-Hant/standard: [低]
+- id: sense:故鄉
+  gloss:
+    en: home town, old home
+  forms:
+    lzh-Hant/standard: [故鄉]
+- id: sense:春
+  gloss:
+    en: spring
+  forms:
+    lzh-Hant/standard: [春]
+- id: sense:花
+  gloss:
+    en: flower, blossom
+  forms:
+    lzh-Hant/standard: [花]
+- id: sense:鳥
+  gloss:
+    en: bird
+  forms:
+    lzh-Hant/standard: [鳥]
+- id: sense:風
+  gloss:
+    en: wind
+  forms:
+    lzh-Hant/standard: [風]
+- id: sense:雨
+  gloss:
+    en: rain
+  forms:
+    lzh-Hant/standard: [雨]
+- id: sense:聲
+  gloss:
+    en: sound, voice
+  forms:
+    lzh-Hant/standard: [聲]
+- id: sense:眠
+  gloss:
+    en: to sleep
+  forms:
+    lzh-Hant/standard: [眠]
+- id: sense:覺
+  gloss:
+    en: to become aware of, to notice; to wake
+  forms:
+    lzh-Hant/standard: [覺]
+- id: sense:曉
+  gloss:
+    en: dawn, daybreak
+  forms:
+    lzh-Hant/standard: [曉]
+- id: sense:處
+  gloss:
+    en: 'place (處處: everywhere)'
+  forms:
+    lzh-Hant/standard: [處]
+- id: sense:聞
+  gloss:
+    en: to hear
+  forms:
+    lzh-Hant/standard: [聞]
+- id: sense:啼
+  gloss:
+    en: to cry, to sing (of birds)
+  forms:
+    lzh-Hant/standard: [啼]
+- id: sense:落
+  gloss:
+    en: to fall (of flowers and leaves); to set (of the moon)
+  forms:
+    lzh-Hant/standard: [落]
+- id: sense:多少
+  gloss:
+    en: how many, how much
+  forms:
+    lzh-Hant/standard: [多少]
+nodes:
+- {id: lzh.u10.night, kind: lesson, introduces: ['sense:月', 'sense:光', 'sense:夜', 'sense:地', 'sense:霜']}
+- {id: lzh.u10.bed, kind: lesson, introduces: ['sense:床', 'sense:前', 'sense:是.cop', 'sense:疑']}
+- {id: lzh.u10.looking, kind: lesson, introduces: ['sense:舉', 'sense:頭', 'sense:望', 'sense:低', 'sense:故鄉']}
+- {id: lzh.u10.spring, kind: lesson, introduces: ['sense:春', 'sense:花', 'sense:鳥', 'sense:風', 'sense:雨', 'sense:聲']}
+- {id: lzh.u10.waking, kind: lesson, introduces: ['sense:眠', 'sense:覺', 'sense:曉', 'sense:處']}
+- {id: lzh.u10.listening, kind: lesson, introduces: ['sense:聞', 'sense:啼', 'sense:落', 'sense:多少']}
+- {id: lzh.u10.story, kind: story}
+sentences:
+- id: s.10.1
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 月明。
+      tokens: [{surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}]
+      reverse: 月明
+  translations:
+    en: |-
+      The moon is bright.
+      The moon (shines|is shining|is clear).
+- id: s.10.2
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 月光明。
+      tokens: [{surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 光, sense: 光, readings: {pinyin: guāng, jyutping: gwong1, baxter: kwang}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}]
+      reverse: 月光明
+  translations:
+    en: |-
+      The moonlight is bright.
+      The moon's light is bright.
+      The moonlight is (clear|shining).
+- id: s.10.3
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 月出。
+      tokens: [{surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 出, sense: 出, readings: {pinyin: chū, jyutping: ceot1, baxter: tsyhwit}}]
+      reverse: 月出
+  translations:
+    en: |-
+      The moon rises.
+      The moon (comes out|has risen|is rising|came out|rose).
+- id: s.10.4
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 夜，月明。
+      tokens: [{surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}]
+      reverse: 夜月明
+  translations:
+    en: |-
+      (At night|In the night|Tonight), the moon (is bright|shines|is shining).
+      The moon is bright (at night|in the night|tonight).
+      The night is moonlit.
+- id: s.10.5
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 道大，天大，地大，王亦大。
+      tokens: [{surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}]
+      reverse: 道大天大地大王亦大
+  translations:
+    en: |-
+      The Way is great, Heaven is great, Earth is great, and the king (is also|too is|is) great.
+      The Dao is great, Heaven is great, Earth is great, and the king (is also|too is|is) great.
+- id: s.10.6
+  node: lzh.u10.night
+  forms:
+    lzh-Hant/standard:
+      text: 地上有霜。
+      tokens: [{surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
+      reverse: 地上有霜
+  translations:
+    en: |-
+      There is frost on the ground.
+      The ground is (covered with|white with) frost.
+      On the ground there is frost.
+- id: s.10.7
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 此，吾床也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此(吾|我)床也
+  translations:
+    en: |-
+      This is my bed.
+      This bed is mine.
+      That is my bed.
+- id: s.10.8
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 床前有月光。
+      tokens: [{surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 前, sense: 前, readings: {pinyin: qián, jyutping: cin4, baxter: dzen}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 光, sense: 光, readings: {pinyin: guāng, jyutping: gwong1, baxter: kwang}}]
+      reverse: 床前有月光
+  translations:
+    en: |-
+      There is moonlight in front of the bed.
+      (In front of|Before) the bed (there is|is) moonlight.
+      Moonlight (lies|falls) (in front of|before) the bed.
+- id: s.10.9
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 此是霜。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 是, sense: 是.cop, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
+      reverse: |-
+        此是霜
+        此霜也
+  translations:
+    en: |-
+      This is frost.
+      That is frost.
+      It is frost.
+      (This|That|It)'s frost.
+- id: s.10.10
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 吾疑之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 疑, sense: 疑, readings: {pinyin: yí, jyutping: ji4, baxter: ngi}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)疑之
+  translations:
+    en: |-
+      I doubt it.
+      I (suspect|wonder about|have doubts about) it.
+      I am doubtful.
+- id: s.10.11
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 疑是地上霜。
+      tokens: [{surface: 疑, sense: 疑, readings: {pinyin: yí, jyutping: ji4, baxter: ngi}}, {surface: 是, sense: 是.cop, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
+      reverse: 疑是地上霜
+  translations:
+    en: |-
+      I took it for frost on the ground.
+      I (thought|wondered if) it was frost on the ground.
+      It (looked|seemed) like frost on the ground.
+      I took it for frost upon the ground.
+- id: s.10.12
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 床前明月光。
+      tokens: [{surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 前, sense: 前, readings: {pinyin: qián, jyutping: cin4, baxter: dzen}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 光, sense: 光, readings: {pinyin: guāng, jyutping: gwong1, baxter: kwang}}]
+      reverse: 床前明月光
+  translations:
+    en: |-
+      Before my bed, the bright moonlight.
+      (Before|In front of) (my|the) bed is (bright moonlight|the light of the bright moon).
+      (In front of my bed|Before the bed|In front of the bed), the bright moonlight.
+- id: s.10.13
+  node: lzh.u10.bed
+  forms:
+    lzh-Hant/standard:
+      text: 床前明月光，疑是地上霜。
+      tokens: [{surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 前, sense: 前, readings: {pinyin: qián, jyutping: cin4, baxter: dzen}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 光, sense: 光, readings: {pinyin: guāng, jyutping: gwong1, baxter: kwang}}, {surface: 疑, sense: 疑, readings: {pinyin: yí, jyutping: ji4, baxter: ngi}}, {surface: 是, sense: 是.cop, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
+      reverse: 床前明月光疑是地上霜
+  translations:
+    en: |-
+      Before my bed, the bright moonlight: I took it for frost on the ground.
+      (Before|In front of) (my|the) bed (is|was) bright moonlight; I (thought|wondered if) it was frost on the ground.
+      The moonlight before my bed (looked|seemed) like frost on the ground.
+- id: s.10.14
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 舉之。
+      tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: 舉之
+  translations:
+    en: |-
+      (Lift|Raise) it.
+      Lift it up.
+      (He|She) (lifted|raised) it.
+- id: s.10.15
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 舉頭。
+      tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}]
+      reverse: 舉頭
+  translations:
+    en: |-
+      (He|She) (raised|raises|lifted|lifts) (his|her) head.
+      I (raise|raised|lift|lifted) my head.
+      (Raise|Lift) your head.
+- id: s.10.16
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 望山。
+      tokens: [{surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 山, sense: 山, readings: {pinyin: shān, jyutping: saan1, baxter: srean}}]
+      reverse: 望山
+  translations:
+    en: |-
+      (Gaze|Look) (at|toward|towards) the (mountains|mountain).
+      (He|She) (gazed|gazes|looked|looks) (at|toward|towards) the (mountains|mountain).
+- id: s.10.17
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 舉頭望明月。
+      tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}]
+      reverse: 舉頭望明月
+  translations:
+    en: |-
+      I (raise|raised|lift|lifted) my head and (gaze|gazed|look|looked) at the bright moon.
+      (He|She) (raises|raised|lifts|lifted) (his|her) head and (gazes|gazed|looks|looked) at the bright moon.
+      Raising my head, I (gaze|look) at the bright moon.
+- id: s.10.18
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 低頭。
+      tokens: [{surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}]
+      reverse: 低頭
+  translations:
+    en: |-
+      (He|She) (lowered|lowers|bowed|bows) (his|her) head.
+      I (lower|lowered|bow|bowed) my head.
+      (Lower|Bow) your head.
+- id: s.10.19
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 思故鄉。
+      tokens: [{surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
+      reverse: 思故鄉
+  translations:
+    en: |-
+      I think of (home|my home town|my hometown|my old home|my home village).
+      I (miss|long for) (home|my home town|my hometown|my old home|my home village).
+      (He|She) (thinks of|misses|longs for) (home|his home town|her home town|his hometown|her hometown).
+- id: s.10.20
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 低頭思故鄉。
+      tokens: [{surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
+      reverse: 低頭思故鄉
+  translations:
+    en: |-
+      I (lower|lowered|bow|bowed) my head and (think|thought) of (home|my home town|my hometown|my old home).
+      Lowering my head, I (think|thought) of (home|my home town|my hometown|my old home).
+      (He|She) (lowers|lowered|bows|bowed) (his|her) head and (thinks|thought) of home.
+- id: s.10.21
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 吾故鄉遠矣。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: (吾|我)故鄉遠矣
+  translations:
+    en: |-
+      My (home town|hometown|home|old home) is far away.
+      My (home town|hometown|home|old home) is (so|very) far( away|).
+      My (home town|hometown|home|old home) is far away now.
+- id: s.10.22
+  node: lzh.u10.looking
+  forms:
+    lzh-Hant/standard:
+      text: 舉頭望明月，低頭思故鄉。
+      tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
+      reverse: 舉頭望明月低頭思故鄉
+  translations:
+    en: |-
+      I (raise|lift) my head and (gaze|look) at the bright moon(;| and) I (lower|bow) my head and think of (home|my home town|my hometown).
+      Raising my head, I (gaze|look) at the bright moon(;| and) lowering my head, I think of (home|my home town|my hometown).
+- id: s.10.23
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 春來。
+      tokens: [{surface: 春, sense: 春, readings: {pinyin: chūn, jyutping: ceon1, baxter: tsyhwin}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 春來
+  translations:
+    en: |-
+      Spring comes.
+      Spring (is coming|has come|came|is here).
+- id: s.10.24
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 春有花。
+      tokens: [{surface: 春, sense: 春, readings: {pinyin: chūn, jyutping: ceon1, baxter: tsyhwin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 花, sense: 花, readings: {pinyin: huā, jyutping: faa1, baxter: xwae}}]
+      reverse: 春有花
+  translations:
+    en: |-
+      Spring has flowers.
+      In spring there are flowers.
+      There are flowers in spring.
+- id: s.10.25
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 山中有鳥。
+      tokens: [{surface: 山, sense: 山, readings: {pinyin: shān, jyutping: saan1, baxter: srean}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鳥, sense: 鳥, readings: {pinyin: niǎo, jyutping: niu5, baxter: tewX}}]
+      reverse: 山中有鳥
+  translations:
+    en: |-
+      There (are birds|is a bird) (in the mountains|in the mountain|on the mountain).
+      In the mountains there (are birds|is a bird).
+- id: s.10.26
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 山上有風。
+      tokens: [{surface: 山, sense: 山, readings: {pinyin: shān, jyutping: saan1, baxter: srean}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}]
+      reverse: 山上有風
+  translations:
+    en: |-
+      There is wind on the mountain.
+      It is windy (on the mountain|in the mountains|on top of the mountain).
+      The wind blows on the mountain.
+- id: s.10.27
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 風雨來。
+      tokens: [{surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 風雨來
+  translations:
+    en: |-
+      Wind and rain are coming.
+      (Wind and rain|The wind and the rain) (come|came|have come).
+      (A|The) storm (is coming|comes|came|has come).
+- id: s.10.28
+  node: lzh.u10.spring
+  forms:
+    lzh-Hant/standard:
+      text: 此何聲也？
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此何聲[也]
+  translations:
+    en: |-
+      What sound is this?
+      What is (this|that) sound?
+      What sound is that?
+      What's (this|that) sound?
+- id: s.10.29
+  node: lzh.u10.waking
+  forms:
+    lzh-Hant/standard:
+      text: 吾夜不眠。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 眠, sense: 眠, readings: {pinyin: mián, jyutping: min4, baxter: men}}]
+      reverse: (吾|我)夜不眠
+  translations:
+    en: |-
+      I do not sleep at night.
+      I (don't|cannot|can't) sleep at night.
+      At night I (do not|don't|cannot|can't) sleep.
+      I (did not|didn't) sleep (at night|that night|last night).
+- id: s.10.30
+  node: lzh.u10.waking
+  forms:
+    lzh-Hant/standard:
+      text: 吾不覺。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 覺, sense: 覺, readings: {pinyin: jué, jyutping: gok3, baxter: kaewk}}]
+      reverse: (吾|我)不覺
+  translations:
+    en: |-
+      I did not notice.
+      I (didn't|did not) (realize|realise|notice it|wake up|wake).
+      I was not aware( of it|).
+- id: s.10.31
+  node: lzh.u10.waking
+  forms:
+    lzh-Hant/standard:
+      text: 春眠不覺曉。
+      tokens: [{surface: 春, sense: 春, readings: {pinyin: chūn, jyutping: ceon1, baxter: tsyhwin}}, {surface: 眠, sense: 眠, readings: {pinyin: mián, jyutping: min4, baxter: men}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 覺, sense: 覺, readings: {pinyin: jué, jyutping: gok3, baxter: kaewk}}, {surface: 曉, sense: 曉, readings: {pinyin: xiǎo, jyutping: hiu2, baxter: xewX}}]
+      reverse: 春眠不覺曉
+  translations:
+    en: |-
+      Sleeping in spring, I (did not|didn't) notice the (dawn|daybreak).
+      In spring I (sleep|slept) (and|but) (did not|didn't) (notice|know) (the dawn|the daybreak|it was dawn).
+      In spring sleep I (did not|didn't) (notice|know) (the dawn|the daybreak|it was dawn).
+- id: s.10.32
+  node: lzh.u10.waking
+  forms:
+    lzh-Hant/standard:
+      text: 處處有鳥。
+      tokens: [{surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 鳥, sense: 鳥, readings: {pinyin: niǎo, jyutping: niu5, baxter: tewX}}]
+      reverse: 處處有鳥
+  translations:
+    en: |-
+      There are birds everywhere.
+      Everywhere there are birds.
+      Birds are everywhere.
+- id: s.10.33
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 吾聞之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 聞, sense: 聞, readings: {pinyin: wén, jyutping: man4, baxter: mjun}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)聞之
+  translations:
+    en: |-
+      I have heard it.
+      I (heard|hear) (it|this|of it|about it).
+      I have heard (this|of it|about it|so).
+- id: s.10.34
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 鳥啼。
+      tokens: [{surface: 鳥, sense: 鳥, readings: {pinyin: niǎo, jyutping: niu5, baxter: tewX}}, {surface: 啼, sense: 啼, readings: {pinyin: tí, jyutping: tai4, baxter: dej}}]
+      reverse: 鳥啼
+  translations:
+    en: |-
+      Birds sing.
+      (The |)birds (are singing|sang|cry|are crying|call|are calling).
+      A bird (sings|sang|cries|calls).
+      The birds sing.
+- id: s.10.35
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 處處聞啼鳥。
+      tokens: [{surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 聞, sense: 聞, readings: {pinyin: wén, jyutping: man4, baxter: mjun}}, {surface: 啼, sense: 啼, readings: {pinyin: tí, jyutping: tai4, baxter: dej}}, {surface: 鳥, sense: 鳥, readings: {pinyin: niǎo, jyutping: niu5, baxter: tewX}}]
+      reverse: 處處聞啼鳥
+  translations:
+    en: |-
+      Everywhere I hear the birds singing.
+      Everywhere I hear (birds singing|singing birds|the birds sing|the singing of birds|the birds crying).
+      I hear birds singing everywhere.
+      I hear the birds singing everywhere.
+- id: s.10.36
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 夜來風雨聲。
+      tokens: [{surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
+      reverse: 夜來風雨聲
+  translations:
+    en: |-
+      (In the night came|During the night came|In the night there was|Last night there was|At night came) the sound of (wind and rain|the wind and the rain).
+      (The sound of wind and rain|Wind and rain) (came|were heard) in the night.
+- id: s.10.37
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 花落。
+      tokens: [{surface: 花, sense: 花, readings: {pinyin: huā, jyutping: faa1, baxter: xwae}}, {surface: 落, sense: 落, readings: {pinyin: luò, jyutping: lok6, baxter: lak}}]
+      reverse: 花落
+  translations:
+    en: |-
+      The (flowers|blossoms) (fall|are falling|fell|have fallen).
+      (Flowers|Blossoms) (fall|are falling|fell|have fallen).
+- id: s.10.38
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 花落知多少。
+      tokens: [{surface: 花, sense: 花, readings: {pinyin: huā, jyutping: faa1, baxter: xwae}}, {surface: 落, sense: 落, readings: {pinyin: luò, jyutping: lok6, baxter: lak}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 多少, sense: 多少, readings: {pinyin: duō shǎo, jyutping: do1 siu2, baxter: ta syewX}}]
+      reverse: 花落知多少
+  translations:
+    en: |-
+      Who knows how many (blossoms|flowers) (fell|have fallen)?
+      How many (blossoms|flowers) (fell|have fallen), who knows?
+      (I wonder|And who can tell) how many (blossoms|flowers) (fell|have fallen).
+- id: s.10.39
+  node: lzh.u10.listening
+  forms:
+    lzh-Hant/standard:
+      text: 月落。
+      tokens: [{surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 落, sense: 落, readings: {pinyin: luò, jyutping: lok6, baxter: lak}}]
+      reverse: 月落
+  translations:
+    en: |-
+      The moon sets.
+      The moon (has set|set|is setting|goes down|went down).
+stories:
+- id: lzh.story.moonlight
+  node: lzh.u10.story
+  title:
+    en: Moonlight and a spring morning (Li Bai, Meng Haoran)
+  characters:
+  - {id: li-bai, name: {lzh-Hant/standard: 李白}}
+  - {id: meng-haoran, name: {lzh-Hant/standard: 孟浩然}}
+  steps:
+  - line:
+      speaker: li-bai
+      forms:
+        lzh-Hant/standard:
+          text: 床前明月光，
+          tokens: [{surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 前, sense: 前, readings: {pinyin: qián, jyutping: cin4, baxter: dzen}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 光, sense: 光, readings: {pinyin: guāng, jyutping: gwong1, baxter: kwang}}]
+      translations: {en: 'Before my bed, the bright moonlight —'}
+  - line:
+      speaker: li-bai
+      ask: complete
+      gap: sense:霜
+      distractors: ['sense:花', 'sense:雨']
+      forms:
+        lzh-Hant/standard:
+          text: 疑是地上霜。
+          tokens: [{surface: 疑, sense: 疑, readings: {pinyin: yí, jyutping: ji4, baxter: ngi}}, {surface: 是, sense: 是.cop, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
+      translations: {en: I took it for frost upon the ground.}
+  - line:
+      speaker: li-bai
+      forms:
+        lzh-Hant/standard:
+          text: 舉頭望明月，
+          tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}]
+      translations: {en: 'I raise my head and gaze at the bright moon,'}
+  - line:
+      speaker: li-bai
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 低頭思故鄉。
+          tokens: [{surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
+      translations: {en: I lower my head and think of home.}
+  - choose:
+      prompt:
+        en: What did the poet take the moonlight for?
+      options: [{en: frost on the ground}, {en: rain}, {en: fallen blossoms}]
+      answer: 0
+  - choose:
+      prompt:
+        en: What is the poet thinking of?
+      options: [{en: his home}, {en: the spring}, {en: the king}]
+      answer: 0
+  - line:
+      speaker: meng-haoran
+      forms:
+        lzh-Hant/standard:
+          text: 春眠不覺曉，
+          tokens: [{surface: 春, sense: 春, readings: {pinyin: chūn, jyutping: ceon1, baxter: tsyhwin}}, {surface: 眠, sense: 眠, readings: {pinyin: mián, jyutping: min4, baxter: men}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 覺, sense: 覺, readings: {pinyin: jué, jyutping: gok3, baxter: kaewk}}, {surface: 曉, sense: 曉, readings: {pinyin: xiǎo, jyutping: hiu2, baxter: xewX}}]
+      translations: {en: 'Sleeping in spring, I did not notice the dawn;'}
+  - line:
+      speaker: meng-haoran
+      forms:
+        lzh-Hant/standard:
+          text: 處處聞啼鳥。
+          tokens: [{surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 處, sense: 處, readings: {pinyin: chù, jyutping: cyu3, baxter: tsyhoH}}, {surface: 聞, sense: 聞, readings: {pinyin: wén, jyutping: man4, baxter: mjun}}, {surface: 啼, sense: 啼, readings: {pinyin: tí, jyutping: tai4, baxter: dej}}, {surface: 鳥, sense: 鳥, readings: {pinyin: niǎo, jyutping: niu5, baxter: tewX}}]
+      translations: {en: everywhere I hear the birds singing.}
+  - line:
+      speaker: meng-haoran
+      forms:
+        lzh-Hant/standard:
+          text: 夜來風雨聲，
+          tokens: [{surface: 夜, sense: 夜, readings: {pinyin: yè, jyutping: je6, baxter: yaeH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 風, sense: 風, readings: {pinyin: fēng, jyutping: fung1, baxter: pjuwng}}, {surface: 雨, sense: 雨, readings: {pinyin: yǔ, jyutping: jyu5, baxter: hjuX}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}]
+      translations: {en: 'In the night came the sound of wind and rain:'}
+  - line:
+      speaker: meng-haoran
+      ask: complete
+      gap: sense:落
+      distractors: ['sense:來', 'sense:出']
+      forms:
+        lzh-Hant/standard:
+          text: 花落知多少。
+          tokens: [{surface: 花, sense: 花, readings: {pinyin: huā, jyutping: faa1, baxter: xwae}}, {surface: 落, sense: 落, readings: {pinyin: luò, jyutping: lok6, baxter: lak}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 多少, sense: 多少, readings: {pinyin: duō shǎo, jyutping: do1 siu2, baxter: ta syewX}}]
+      translations: {en: 'who knows how many blossoms fell?'}
+  - choose:
+      prompt:
+        en: What happened during the night?
+      options: [{en: wind and rain came}, {en: the moon set}, {en: the birds flew away}]
+      answer: 0
+scenarios:
+- id: lzh.poets
+  after: lzh.u10.listening
+  title: {en: A night of poetry}
+  setting: {en: 'An inn in the Tang dynasty on a spring night: rain outside, a lamp, friends writing short poems.'}
+  character: {en: 'A travelling poet, homesick and gentle, who answers in short, simple Classical Chinese.'}
+  goal: {en: 'Ask the poet where his home is, talk about the moon and the rain, and recite a line of poetry you know.'}

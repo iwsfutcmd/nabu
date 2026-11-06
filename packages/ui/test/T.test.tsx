@@ -40,7 +40,32 @@ describe("<T>", () => {
     expect(render(<T text={yue} />)).not.toContain("<ruby");
     const html = render(<T text={yue} ruby={"jyutping" as SchemeId} />);
     expect(html).toContain("<ruby");
-    expect(html).toContain("我<rt>ngo5</rt>哋<rt>dei6</rt>");
+    expect(html).toContain('我<rt lang="yue-Latn-jyutping">ngo5</rt>哋<rt lang="yue-Latn-jyutping">dei6</rt>');
+  });
+
+  it("tags each ruby layer with its own language (ADR 0071)", () => {
+    const text = {
+      lang: "lzh-Hant",
+      orthography: "lzh-Hant/standard",
+      tokens: [
+        {
+          surface: "君子",
+          kind: "word",
+          ruby: {
+            pinyin: [
+              { base: "君", text: "jūn" },
+              { base: "子", text: "zǐ" },
+            ],
+            baxter: [
+              { base: "君", text: "kjun" },
+              { base: "子", text: "tsiX" },
+            ],
+          },
+        },
+      ],
+    } as unknown as TaggedText;
+    expect(render(<T text={text} ruby={"pinyin" as SchemeId} />)).toContain('君<rt lang="zh-Latn-pinyin">jūn</rt>子<rt lang="zh-Latn-pinyin">zǐ</rt>');
+    expect(render(<T text={text} ruby={"baxter" as SchemeId} />)).toContain('君<rt lang="ltc-Latn-x-baxter">kjun</rt>子<rt lang="ltc-Latn-x-baxter">tsiX</rt>');
   });
 
   it("marks short numbers for tate-chū-yoko", () => {

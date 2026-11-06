@@ -610,6 +610,10 @@
         "scheme": {
           "$ref": "common.schema.json#/$defs/SchemeId"
         },
+        "lang": {
+          "description": "The language tag of the layer's own text (ADR 0071), so it is announced and shaped as what it is: Jyutping is yue-Latn-jyutping, Pinyin zh-Latn-pinyin, Baxter's Middle Chinese ltc-Latn-x-baxter. Without it the annotation takes the base text's tag.",
+          "$ref": "common.schema.json#/$defs/ScriptedLangTag"
+        },
         "render": {
           "type": "string",
           "enum": [

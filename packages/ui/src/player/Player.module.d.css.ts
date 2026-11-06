@@ -47,8 +47,12 @@ declare const styles: {
   readonly progress: string;
   readonly prompt: string;
   readonly ratings: string;
+  readonly readings: string;
+  readonly readingsLabel: string;
   readonly recorder: string;
   readonly secondary: string;
+  readonly segment: string;
+  readonly segments: string;
   readonly solution: string;
   readonly spokenName: string;
   readonly switch: string;

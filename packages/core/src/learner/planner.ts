@@ -13,7 +13,7 @@
  * 5. Order: selection order (new words first), ending on a likely success.
  */
 import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
-import { lessonNodes, sentencesOf, speechExclusions, type SpeechSupport } from "../lesson/build.ts";
+import { facetExclusions, lessonNodes, sentencesOf, speechExclusions, type SpeechSupport } from "../lesson/build.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
@@ -127,7 +127,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const rng = seededRng(options.seed);
   const target = options.targetSuccess ?? 0.85;
   const desired = options.desiredRetention ?? DESIRED_RETENTION;
-  const exclude: ReadonlySet<TemplateId> = new Set([...(options.exclude ?? []), ...speechExclusions(options.speech)]);
+  const exclude: ReadonlySet<TemplateId> = new Set([...(options.exclude ?? []), ...speechExclusions(options.speech), ...facetExclusions(course)]);
   const { now } = options;
   const orthography = course.orthography;
   if (request.mode === "placement") {

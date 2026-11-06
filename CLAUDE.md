@@ -17,7 +17,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -256,6 +256,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Changing an English message's meaning means a new key; a wording change makes translations stale until re-stamped.
 - A plural selector covers the locale's CLDR categories; a language that needs no plural forms drops the `.match`.
 - Invisible characters in catalogs are JSON escapes (\u200c), never literal; bidi controls never (MF2 isolates).
+
+## Classical Chinese notes (see docs/adr/0071)
+- A course's `facets` (course.yaml, manifest) rule out every template of another facet (`facetExclusions`, wherever
+  speechExclusions applies). lzh is [recognize, produce]: no audio, never spoken, heard or drilled on its readings.
+- An orthography may pin several ruby layers (lzh: pinyin, jyutping, baxter). Every Han word token pins all of them,
+  chosen by sense (說.yue is yuè / jyut6 / ywet); the compiler checks they line up per character. Jyutping is the
+  literary reading; Baxter is Baxter & Sagart 2014 ASCII from the Guangyun. The player shows one layer or none.
+- A layer's `lang` tags its ruby text (`<rt lang>`): zh-Latn-pinyin, yue-Latn-jyutping, ltc-Latn-x-baxter.
+- Senses spelled alike are KCs with a suffix (知, 知.zhi); a token names its sense, and glossAt glosses it as that.
+- Each unit's lessons teach the words of its story, an authentic passage; stories may use no word taught later.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.

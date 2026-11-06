@@ -455,6 +455,15 @@ class Persons(BaseModel):
     ] = None
 
 
+type Facet = Annotated[
+    Literal["recognize", "produce", "listen", "speak", "read-script", "write-script"],
+    Field(
+        description="What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.",
+        title="Facet",
+    ),
+]
+
+
 type ScriptCode = Annotated[
     str,
     Field(
@@ -1618,6 +1627,12 @@ class AnnotationLayer(BaseModel):
     toggle: bool
     default: Literal["on", "off", "on-for-new-words"] | None = None
     scheme: SchemeId | None = None
+    lang: Annotated[
+        ScriptedLangTag | None,
+        Field(
+            description="The language tag of the layer's own text (ADR 0071), so it is announced and shaped as what it is: Jyutping is yue-Latn-jyutping, Pinyin zh-Latn-pinyin, Baxter's Middle Chinese ltc-Latn-x-baxter. Without it the annotation takes the base text's tag."
+        ),
+    ] = None
     render: Literal["ruby", "inline", "interlinear"] | None = None
     fade: Literal["none", "by-facet"] | None = None
 
@@ -2185,6 +2200,13 @@ class BundleManifest(BaseModel):
     target: ScriptedLangTag
     orthographies: list[OrthographyId]
     support: list[OrthographyId]
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
+            min_length=1,
+        ),
+    ] = None
     versions: Annotated[
         dict[str, str],
         Field(
@@ -3382,6 +3404,13 @@ class CourseSource(BaseModel):
     provenance: Annotated[
         Provenance | None,
         Field(description="Default provenance for every content item that gives none."),
+    ] = None
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.",
+            min_length=1,
+        ),
     ] = None
     iPlusOne: Annotated[
         int | None,

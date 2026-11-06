@@ -1,0 +1,740 @@
+# Classical Chinese (lzh), unit 7: Waiting for rabbits.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u07-waiting-for-rabbits
+title:
+  en: Waiting for rabbits
+cefr: A1
+kcs:
+- id: sense:宋
+  gloss:
+    en: Song, a small state in the central plain
+  forms:
+    lzh-Hant/standard: [宋]
+- id: sense:國
+  gloss:
+    en: state, country
+  forms:
+    lzh-Hant/standard: [國]
+- id: sense:田
+  gloss:
+    en: field, farmland
+  forms:
+    lzh-Hant/standard: [田]
+- id: sense:耕
+  gloss:
+    en: to plough, to till
+  forms:
+    lzh-Hant/standard: [耕]
+- id: sense:兔
+  gloss:
+    en: hare, rabbit
+  forms:
+    lzh-Hant/standard: [兔]
+- id: sense:走
+  gloss:
+    en: to run
+  forms:
+    lzh-Hant/standard: [走]
+  notes:
+    en: In Classical Chinese 走 is “run”; “walk” is 行.
+- id: sense:死
+  gloss:
+    en: to die; dead
+  forms:
+    lzh-Hant/standard: [死]
+- id: sense:得
+  gloss:
+    en: to get, to obtain; to catch
+  forms:
+    lzh-Hant/standard: [得]
+- id: sense:可
+  gloss:
+    en: can, may; acceptable
+  forms:
+    lzh-Hant/standard: [可]
+  notes:
+    en: 不可 “it will not do; cannot”. 不可得 “cannot be had”.
+- id: sense:復
+  gloss:
+    en: again
+  forms:
+    lzh-Hant/standard: [復]
+  notes:
+    en: 'Read as 又 “again”: fù, Cantonese fau6.'
+- id: sense:待
+  gloss:
+    en: to wait for
+  forms:
+    lzh-Hant/standard: [待]
+- id: sense:守
+  gloss:
+    en: to guard, to keep watch over
+  forms:
+    lzh-Hant/standard: [守]
+- id: sense:株
+  gloss:
+    en: tree stump
+  forms:
+    lzh-Hant/standard: [株]
+- id: sense:觸
+  gloss:
+    en: to bump into, to run into
+  forms:
+    lzh-Hant/standard: [觸]
+- id: sense:折
+  gloss:
+    en: to break, to snap
+  forms:
+    lzh-Hant/standard: [折]
+- id: sense:頸
+  gloss:
+    en: neck
+  forms:
+    lzh-Hant/standard: [頸]
+- id: sense:因
+  gloss:
+    en: thereupon, and so
+  forms:
+    lzh-Hant/standard: [因]
+- id: sense:釋
+  gloss:
+    en: to let go of, to put down
+  forms:
+    lzh-Hant/standard: [釋]
+- id: sense:耒
+  gloss:
+    en: plough (a wooden digging plough)
+  forms:
+    lzh-Hant/standard: [耒]
+- id: sense:冀
+  gloss:
+    en: to hope
+  forms:
+    lzh-Hant/standard: [冀]
+- id: sense:身
+  gloss:
+    en: body; oneself, in person
+  forms:
+    lzh-Hant/standard: [身]
+- id: sense:笑
+  gloss:
+    en: to laugh, to laugh at
+  forms:
+    lzh-Hant/standard: [笑]
+- id: construction:wei-passive
+  gloss:
+    en: '為 A V: “be V-ed by A”, as in 為人笑 “be laughed at by people”'
+nodes:
+- {id: lzh.u07.song, kind: lesson, introduces: ['sense:宋', 'sense:國', 'sense:田', 'sense:耕']}
+- {id: lzh.u07.the-rabbit, kind: lesson, introduces: ['sense:兔', 'sense:走', 'sense:死', 'sense:得', 'sense:可']}
+- {id: lzh.u07.waiting, kind: lesson, introduces: ['sense:復', 'sense:待', 'sense:守', 'sense:株']}
+- {id: lzh.u07.broke-its-neck, kind: lesson, introduces: ['sense:觸', 'sense:折', 'sense:頸', 'sense:因']}
+- {id: lzh.u07.laughed-at, kind: lesson, introduces: ['sense:釋', 'sense:耒', 'sense:冀', 'sense:身', 'sense:笑', 'construction:wei-passive']}
+- {id: lzh.u07.story, kind: story}
+sentences:
+- id: s.07.1
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 莊子，宋人也。
+      tokens: [{surface: 莊子, sense: 莊子, readings: {pinyin: zhuāng zǐ, jyutping: zong1 zi2, baxter: tsrjang tsiX}}, {surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 莊子宋人也
+  translations:
+    en: |-
+      Zhuangzi was a man of Song.
+      Zhuangzi was a man from Song.
+      Zhuangzi was a person (of|from) Song.
+      Zhuangzi was someone (of|from) Song.
+      Zhuangzi is (a man|a person|someone) (of|from) Song.
+      Zhuangzi (was|is) from Song.
+- id: s.07.2
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 宋，小國也。
+      tokens: [{surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 小, sense: 小, readings: {pinyin: xiǎo, jyutping: siu2, baxter: sjewX}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 宋小國也
+  translations:
+    en: |-
+      Song is a small state.
+      Song is a small country.
+      Song was a small (state|country).
+- id: s.07.3
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 楚，大國也。
+      tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 楚大國也
+  translations:
+    en: |-
+      Chu is a large state.
+      Chu is a large country.
+      Chu is a big (state|country).
+      Chu is a great (state|country).
+      Chu was a (large|big|great) (state|country).
+- id: s.07.4
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 宋人有田。
+      tokens: [{surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}]
+      reverse: 宋人有田
+  translations:
+    en: |-
+      A man of Song had a field.
+      A man of Song has a field.
+      A man from Song (had|has) a field.
+      Someone (of|from) Song (had|has) a field.
+      The people of Song have fields.
+- id: s.07.5
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 我耕田。
+      tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 耕, sense: 耕, readings: {pinyin: gēng, jyutping: gang1, baxter: keang}}, {surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}]
+      reverse: (我|吾)耕田
+  translations:
+    en: |-
+      I plough the fields.
+      I plough the field.
+      I plow the (field|fields).
+      I till the (field|fields).
+      I (am ploughing|am plowing|am tilling) the (field|fields).
+- id: s.07.6
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 宋人有耕田者。
+      tokens: [{surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 耕, sense: 耕, readings: {pinyin: gēng, jyutping: gang1, baxter: keang}}, {surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      reverse: 宋人有耕田者
+  translations:
+    en: |-
+      There was a man of Song who ploughed his field.
+      There was a man of Song who ploughed a (field|fields).
+      There was a man of Song who ploughed his fields.
+      There was a man of Song who ploughed the (field|fields).
+      There was a man of Song who plowed (a|his|the) (field|fields).
+      There was a man of Song who tilled (a|his|the) (field|fields).
+      There was a man from Song who (ploughed|plowed|tilled) (a|his|the) (field|fields).
+      There was someone (of|from) Song who (ploughed|plowed|tilled) (a|his|the) (field|fields).
+      There was a farmer (of|from) Song who (ploughed|plowed|tilled) (a|his|the) (field|fields).
+      A man of Song (ploughed|plowed|tilled) (a|his|the) (field|fields).
+- id: s.07.7
+  node: lzh.u07.song
+  forms:
+    lzh-Hant/standard:
+      text: 田中有人。
+      tokens: [{surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 田中有人
+  translations:
+    en: |-
+      There is someone in the field.
+      There (is a man|is a person|are people) in the (field|fields).
+      In the field there (is someone|is a man|are people).
+- id: s.07.8
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 田中有兔。
+      tokens: [{surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      reverse: 田中有兔
+  translations:
+    en: |-
+      There is a rabbit in the field.
+      There is a hare in the (field|fields).
+      There is a rabbit in the fields.
+      There are rabbits in the (field|fields).
+      There are hares in the (field|fields).
+      In the field there (is a rabbit|is a hare).
+- id: s.07.9
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 兔走。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 走, sense: 走, readings: {pinyin: zǒu, jyutping: zau2, baxter: tsuwX}}]
+      reverse: 兔走
+  translations:
+    en: |-
+      The rabbit runs.
+      The rabbit ran.
+      The rabbit is running.
+      The rabbit ran off.
+      The rabbit runs away.
+      The rabbit ran away.
+      The hare (ran|runs|is running|ran off|runs away|ran away).
+- id: s.07.10
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 兔死。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 死, sense: 死, readings: {pinyin: sǐ, jyutping: sei2, baxter: sijX}}]
+      reverse: 兔死
+  translations:
+    en: |-
+      The rabbit died.
+      The (rabbit|hare) (dies|is dead|was dead).
+- id: s.07.11
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 吾得兔。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      reverse: (吾|我)得兔
+  translations:
+    en: |-
+      I caught a rabbit.
+      I got a (rabbit|hare).
+      I caught a hare.
+      I have caught a (rabbit|hare).
+      I have got a (rabbit|hare).
+      I (get|catch) a (rabbit|hare).
+- id: s.07.12
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 可。
+      tokens: [{surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}]
+      reverse: 可[也]
+  translations:
+    en: |-
+      All right.
+      (It is|That is|It's|That's) (acceptable|all right|fine).
+      Very well.
+- id: s.07.13
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 不可。
+      tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}]
+      reverse: 不可[也]
+  translations:
+    en: |-
+      That will not do.
+      That will not be done.
+      That won't (do|be done).
+      That cannot (do|be done).
+      That can't (do|be done).
+      It (will not|won't|cannot|can't) (do|be done).
+      (It is|That is|It's|That's) not (acceptable|allowed|permitted).
+      No, you may not.
+- id: s.07.14
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 兔不可得。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}]
+      reverse: 兔不可得
+  translations:
+    en: |-
+      The rabbit cannot be caught.
+      The rabbit cannot be had.
+      The rabbit cannot be got.
+      The rabbit can't be (caught|had|got).
+      A rabbit (cannot|can't) be (caught|had|got).
+      The hare (cannot|can't) be (caught|had|got).
+      A hare (cannot|can't) be (caught|had|got).
+      (Rabbits|Hares) (cannot|can't) be (caught|had).
+- id: s.07.15
+  node: lzh.u07.the-rabbit
+  forms:
+    lzh-Hant/standard:
+      text: 兔走而死。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 走, sense: 走, readings: {pinyin: zǒu, jyutping: zau2, baxter: tsuwX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 死, sense: 死, readings: {pinyin: sǐ, jyutping: sei2, baxter: sijX}}]
+      reverse: 兔走而死
+  translations:
+    en: |-
+      The rabbit ran and died.
+      The rabbit ran and then died.
+      The rabbit ran off and died.
+      The hare ran (and died|and then died|off and died).
+- id: s.07.16
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 王復來。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 王復來
+  translations:
+    en: |-
+      The king came again.
+      The king comes (again|back).
+      The king came back.
+      The king has come (again|back).
+- id: s.07.17
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 不復來。
+      tokens: [{surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 不復來
+  translations:
+    en: |-
+      He did not come again.
+      He did not come back.
+      He did not came (again|back).
+      He didn't (come|came) (again|back).
+      He never (come|came) (again|back).
+      She (did not|didn't|never) (come|came) (again|back).
+      They (did not|didn't|never) (come|came) (again|back).
+      (He|She) (does not|doesn't) come (again|back).
+- id: s.07.18
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 吾待之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 待, sense: 待, readings: {pinyin: dài, jyutping: doi6, baxter: dojX}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)待之
+  translations:
+    en: |-
+      I am waiting for him.
+      I'm waiting for (him|her|it|them).
+      I am waiting for her.
+      I am waiting for it.
+      I am waiting for them.
+      I (wait|will wait|waited) for (him|her|it|them).
+- id: s.07.19
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 吾守之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)守之
+  translations:
+    en: |-
+      I guard it.
+      I guard him.
+      I guard her.
+      I guard them.
+      I watch over (it|him|her|them).
+      I keep watch over (it|him|her|them).
+      I('m| am) (guarding|watching over) (it|him|her|them).
+- id: s.07.20
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 田中有株。
+      tokens: [{surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}]
+      reverse: 田中有株
+  translations:
+    en: |-
+      There was a tree stump in the field.
+      There is a (tree stump|stump) in the field.
+      There was a stump in the field.
+      In the field there (is|was) a (tree stump|stump).
+- id: s.07.21
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 守株待兔。
+      tokens: [{surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}, {surface: 待, sense: 待, readings: {pinyin: dài, jyutping: doi6, baxter: dojX}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      reverse: 守株待兔
+  translations:
+    en: |-
+      He watched the stump and waited for rabbits.
+      He watched the stump and waited for a rabbit.
+      He watched the stump and waited for a hare.
+      He watched the stump and waited for hares.
+      He watched the stump waiting for (a rabbit|rabbits|a hare|hares).
+      He watched the tree stump (and waited|waiting) for (a rabbit|rabbits|a hare|hares).
+      He guarded the (stump|tree stump) (and waited|waiting) for (a rabbit|rabbits|a hare|hares).
+      He kept watch over the (stump|tree stump) (and waited|waiting) for (a rabbit|rabbits|a hare|hares).
+      She (watched|guarded|kept watch over) the (stump|tree stump) (and waited|waiting) for (a rabbit|rabbits|a hare|hares).
+      Watch the stump and wait for (rabbits|a rabbit|hares|a hare).
+      Guard the stump and wait for (rabbits|a rabbit|hares|a hare).
+- id: s.07.22
+  node: lzh.u07.waiting
+  forms:
+    lzh-Hant/standard:
+      text: 吾復得兔。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      reverse: (吾|我)復得兔
+  translations:
+    en: |-
+      I caught another rabbit.
+      I (got|caught) (a rabbit|a hare) again.
+      I caught another hare.
+- id: s.07.23
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 兔走觸株。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 走, sense: 走, readings: {pinyin: zǒu, jyutping: zau2, baxter: tsuwX}}, {surface: 觸, sense: 觸, readings: {pinyin: chù, jyutping: zuk1, baxter: tsyhowk}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}]
+      reverse: 兔走觸株
+  translations:
+    en: |-
+      A rabbit ran into the stump.
+      A rabbit ran into the tree stump.
+      A rabbit bumped into the (stump|tree stump).
+      A rabbit ran and hit the (stump|tree stump).
+      A rabbit crashed into the (stump|tree stump).
+      A hare (ran into|bumped into|ran and hit|crashed into) the (stump|tree stump).
+      The (rabbit|hare) (ran into|bumped into|ran and hit|crashed into) the (stump|tree stump).
+- id: s.07.24
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 劍折。
+      tokens: [{surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}]
+      reverse: 劍折
+  translations:
+    en: |-
+      The sword broke.
+      The sword snapped.
+      The sword is broken.
+      The sword was broken.
+- id: s.07.25
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 折頸而死。
+      tokens: [{surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}, {surface: 頸, sense: 頸, readings: {pinyin: jǐng, jyutping: ging2, baxter: kjiengX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 死, sense: 死, readings: {pinyin: sǐ, jyutping: sei2, baxter: sijX}}]
+      reverse: 折頸而死
+  translations:
+    en: |-
+      It broke its neck and died.
+      It broke his neck and died.
+      It broke her neck and died.
+      It snapped (its|his|her) neck and died.
+      He (broke|snapped) (its|his|her) neck and died.
+      She (broke|snapped) (its|his|her) neck and died.
+- id: s.07.26
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 兔走觸株，折頸而死。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 走, sense: 走, readings: {pinyin: zǒu, jyutping: zau2, baxter: tsuwX}}, {surface: 觸, sense: 觸, readings: {pinyin: chù, jyutping: zuk1, baxter: tsyhowk}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}, {surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}, {surface: 頸, sense: 頸, readings: {pinyin: jǐng, jyutping: ging2, baxter: kjiengX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 死, sense: 死, readings: {pinyin: sǐ, jyutping: sei2, baxter: sijX}}]
+      reverse: 兔走觸株折頸而死
+  translations:
+    en: |-
+      A rabbit ran into the stump, broke its neck and died.
+      A rabbit ran into the stump, snapped its neck, and died.
+      A rabbit ran into the tree stump, (broke|snapped) its neck, and died.
+      A rabbit bumped into the (stump|tree stump), (broke|snapped) its neck, and died.
+      A rabbit crashed into the (stump|tree stump), (broke|snapped) its neck, and died.
+      A hare (ran into|bumped into|crashed into) the (stump|tree stump), (broke|snapped) its neck, and died.
+      The (rabbit|hare) (ran into|bumped into|crashed into) the (stump|tree stump), (broke|snapped) its neck, and died.
+- id: s.07.27
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 因守株。
+      tokens: [{surface: 因, sense: 因, readings: {pinyin: yīn, jyutping: jan1, baxter: '''jin'}}, {surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}]
+      reverse: 因守株
+  translations:
+    en: |-
+      So he watched the stump.
+      So he watched the tree stump.
+      So he guarded the (stump|tree stump).
+      So he kept watch over the (stump|tree stump).
+      So she (watched|guarded|kept watch over) the (stump|tree stump).
+      Thereupon (he|she) (watched|guarded|kept watch over) the (stump|tree stump).
+      And so (he|she) (watched|guarded|kept watch over) the (stump|tree stump).
+- id: s.07.28
+  node: lzh.u07.broke-its-neck
+  forms:
+    lzh-Hant/standard:
+      text: 因復來。
+      tokens: [{surface: 因, sense: 因, readings: {pinyin: yīn, jyutping: jan1, baxter: '''jin'}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 因復來
+  translations:
+    en: |-
+      And so he came again.
+      So (he|she) (came|comes) (again|back).
+      Thereupon (he|she) (came|comes) (again|back).
+      And so he came back.
+      And so he comes (again|back).
+      And so she (came|comes) (again|back).
+- id: s.07.29
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 釋其劍。
+      tokens: [{surface: 釋, sense: 釋, readings: {pinyin: shì, jyutping: sik1, baxter: syek}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
+      reverse: 釋其劍
+  translations:
+    en: |-
+      He put down his sword.
+      He put down her sword.
+      He laid down (his|her) sword.
+      He let go of (his|her) sword.
+      He dropped (his|her) sword.
+      She (put down|laid down|let go of|dropped) (his|her) sword.
+- id: s.07.30
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 釋其耒。
+      tokens: [{surface: 釋, sense: 釋, readings: {pinyin: shì, jyutping: sik1, baxter: syek}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 耒, sense: 耒, readings: {pinyin: lěi, jyutping: loi6, baxter: lwijX}}]
+      reverse: 釋其耒
+  translations:
+    en: |-
+      He put down his plough.
+      He put down his plow.
+      He put down her (plough|plow).
+      He laid down (his|her) (plough|plow).
+      He let go of (his|her) (plough|plow).
+      He dropped (his|her) (plough|plow).
+      She (put down|laid down|let go of|dropped) (his|her) (plough|plow).
+- id: s.07.31
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 因釋其耒而守株。
+      tokens: [{surface: 因, sense: 因, readings: {pinyin: yīn, jyutping: jan1, baxter: '''jin'}}, {surface: 釋, sense: 釋, readings: {pinyin: shì, jyutping: sik1, baxter: syek}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 耒, sense: 耒, readings: {pinyin: lěi, jyutping: loi6, baxter: lwijX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}]
+      reverse: 因釋其耒而守株
+  translations:
+    en: |-
+      So he put down his plough and watched the stump.
+      So he put down his plough and watched the tree stump.
+      So he put down his plough and guarded the (stump|tree stump).
+      So he put down his plough and kept watch over the (stump|tree stump).
+      So he put down his plow and (watched|guarded|kept watch over) the (stump|tree stump).
+      So he put down her (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      So he laid down (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      So he let go of (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      So he dropped (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      So she (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      Thereupon (he|she) (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      And so (he|she) (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+- id: s.07.32
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 冀復得兔。
+      tokens: [{surface: 冀, sense: 冀, readings: {pinyin: jì, jyutping: kei3, baxter: kijH}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      reverse: 冀復得兔
+  translations:
+    en: |-
+      He hoped to catch another rabbit.
+      He hoped to catch another hare.
+      He hoped to catch a rabbit again.
+      He hoped to catch a hare again.
+      He hoped to get (another rabbit|another hare|a rabbit again|a hare again).
+      She hoped to (catch|get) (another rabbit|another hare|a rabbit again|a hare again).
+      Hoping to (catch|get) (another rabbit|another hare|a rabbit again|a hare again).
+- id: s.07.33
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 兔身小。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 身, sense: 身, readings: {pinyin: shēn, jyutping: san1, baxter: syin}}, {surface: 小, sense: 小, readings: {pinyin: xiǎo, jyutping: siu2, baxter: sjewX}}]
+      reverse: 兔身小
+  translations:
+    en: |-
+      A rabbit's body is small.
+      (A rabbit|The rabbit|A hare|The hare) (has a small body|is small).
+      (The rabbit's|A hare's|The hare's) body is small.
+- id: s.07.34
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 惠子笑。
+      tokens: [{surface: 惠子, sense: 惠子, readings: {pinyin: huì zǐ, jyutping: wai6 zi2, baxter: hwejH tsiX}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
+      reverse: 惠子笑
+  translations:
+    en: |-
+      Huizi laughed.
+      Huizi (laughs|smiled|smiles|was laughing).
+- id: s.07.35
+  node: lzh.u07.laughed-at
+  constructions: ['construction:wei-passive']
+  forms:
+    lzh-Hant/standard:
+      text: 為人笑。
+      tokens: [{surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
+      reverse: 為人(笑|所笑)
+  translations:
+    en: |-
+      He was laughed at by people.
+      He was laughed at by others.
+      He was laughed at by everyone.
+      He is laughed at by (people|others|everyone).
+      He became laughed at by (people|others|everyone).
+      She (was|is|became) laughed at by (people|others|everyone).
+      (He|She) became a laughingstock.
+- id: s.07.36
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 身為宋國笑。
+      tokens: [{surface: 身, sense: 身, readings: {pinyin: shēn, jyutping: san1, baxter: syin}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
+      reverse: 身為宋國(笑|所笑)
+  translations:
+    en: |-
+      He himself became the laughingstock of Song.
+      He himself became the laughingstock of the state of Song.
+      He himself became the laughingstock of all Song.
+      He herself became the laughingstock of (Song|the state of Song|all Song).
+      He became the laughingstock of (Song|the state of Song|all Song).
+      She (himself |herself |)became the laughingstock of (Song|the state of Song|all Song).
+      (He|She) (himself |herself |)was laughed at by (the whole state of Song|the people of Song|all Song).
+- id: s.07.37
+  node: lzh.u07.laughed-at
+  forms:
+    lzh-Hant/standard:
+      text: 兔不可復得，而身為宋國笑。
+      tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 身, sense: 身, readings: {pinyin: shēn, jyutping: san1, baxter: syin}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
+      reverse: 兔不可復得而身為宋國(笑|所笑)
+  translations:
+    en: |-
+      No rabbit could be caught again, and he became the laughingstock of Song.
+      No rabbit could be caught again, and he became the laughingstock of the state of Song.
+      No rabbit could be caught again, and he himself became the laughingstock of (Song|the state of Song).
+      No rabbit could be had again, and (he|he himself) became the laughingstock of (Song|the state of Song).
+      No hare could be (caught|had) again, and (he|he himself) became the laughingstock of (Song|the state of Song).
+      (The rabbit|Rabbits|The hare|Hares) could not be (caught|had) again, and (he|he himself) became the laughingstock of (Song|the state of Song).
+      (He|She) never (caught|got) another (rabbit|hare), and became the laughingstock of (Song|the state of Song).
+stories:
+- id: lzh.story.waiting-for-rabbits
+  node: lzh.u07.story
+  title:
+    en: Watching the stump for rabbits (Han Feizi)
+  steps:
+  - line:
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 宋人有耕田者。
+          tokens: [{surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 耕, sense: 耕, readings: {pinyin: gēng, jyutping: gang1, baxter: keang}}, {surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}]
+      translations: {en: There was a man of Song who ploughed his field.}
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 田中有株，
+          tokens: [{surface: 田, sense: 田, readings: {pinyin: tián, jyutping: tin4, baxter: den}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}]
+      translations: {en: In his field there was a tree stump.}
+  - line:
+      ask: complete
+      gap: sense:觸
+      distractors: ['sense:守', 'sense:釋']
+      forms:
+        lzh-Hant/standard:
+          text: 兔走觸株，折頸而死。
+          tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 走, sense: 走, readings: {pinyin: zǒu, jyutping: zau2, baxter: tsuwX}}, {surface: 觸, sense: 觸, readings: {pinyin: chù, jyutping: zuk1, baxter: tsyhowk}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}, {surface: 折, sense: 折, readings: {pinyin: zhé, jyutping: zit3, baxter: tsyet}}, {surface: 頸, sense: 頸, readings: {pinyin: jǐng, jyutping: ging2, baxter: kjiengX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 死, sense: 死, readings: {pinyin: sǐ, jyutping: sei2, baxter: sijX}}]
+      translations: {en: 'A rabbit ran into the stump, broke its neck and died.'}
+  - choose:
+      prompt:
+        en: How did the man get his first rabbit?
+      options: [{en: It ran into a stump and broke its neck.}, {en: He caught it with his plough.}, {en: He bought it in the state of Song.}]
+      answer: 0
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 因釋其耒而守株，冀復得兔。
+          tokens: [{surface: 因, sense: 因, readings: {pinyin: yīn, jyutping: jan1, baxter: '''jin'}}, {surface: 釋, sense: 釋, readings: {pinyin: shì, jyutping: sik1, baxter: syek}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 耒, sense: 耒, readings: {pinyin: lěi, jyutping: loi6, baxter: lwijX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}, {surface: 冀, sense: 冀, readings: {pinyin: jì, jyutping: kei3, baxter: kijH}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
+      translations: {en: 'So he put down his plough and watched the stump, hoping to catch another rabbit.'}
+  - line:
+      ask: complete
+      gap: sense:笑
+      distractors: ['sense:樂', 'sense:慍']
+      forms:
+        lzh-Hant/standard:
+          text: 兔不可復得，而身為宋國笑。
+          tokens: [{surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 復, sense: 復, readings: {pinyin: fù, jyutping: fau6, baxter: bjuwH}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 身, sense: 身, readings: {pinyin: shēn, jyutping: san1, baxter: syin}}, {surface: 為, sense: 為, readings: {pinyin: wéi, jyutping: wai4, baxter: hjwe}}, {surface: 宋, sense: 宋, readings: {pinyin: sòng, jyutping: sung3, baxter: sowngH}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 笑, sense: 笑, readings: {pinyin: xiào, jyutping: siu3, baxter: sjewH}}]
+      translations: {en: 'No rabbit could be caught again, and he became the laughingstock of Song.'}
+  - choose:
+      prompt:
+        en: What happened in the end?
+      options: [{en: 'He caught no more rabbits, and everyone in Song laughed at him.'}, {en: He caught a rabbit every day.}, {en: The king of Song gave him a new field.}]
+      answer: 0

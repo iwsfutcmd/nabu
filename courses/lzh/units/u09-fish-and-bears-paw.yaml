@@ -1,0 +1,560 @@
+# Classical Chinese (lzh), unit 9: Fish and bear's paw.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: u09-fish-and-bears-paw
+title:
+  en: Fish and bear's paw
+cefr: A2
+kcs:
+- id: sense:孟子
+  gloss:
+    en: Mencius (Master Meng)
+  forms:
+    lzh-Hant/standard: [孟子]
+- id: sense:見.meet
+  gloss:
+    en: to call on, to have an audience with (a ruler)
+  forms:
+    lzh-Hant/standard: [見]
+- id: sense:梁惠王
+  gloss:
+    en: King Hui of Liang
+  forms:
+    lzh-Hant/standard: [梁惠王]
+- id: sense:叟
+  gloss:
+    en: old man; venerable sir (a term of address)
+  forms:
+    lzh-Hant/standard: [叟]
+  notes:
+    en: In Mencius 1A1 the king calls Mencius 叟, “venerable sir”.
+- id: sense:千
+  gloss:
+    en: thousand
+  forms:
+    lzh-Hant/standard: [千]
+- id: sense:里
+  gloss:
+    en: li, a measure of distance (about half a kilometre)
+  forms:
+    lzh-Hant/standard: [里]
+- id: sense:將
+  gloss:
+    en: about to, going to; will
+  forms:
+    lzh-Hant/standard: [將]
+- id: sense:利.profit
+  gloss:
+    en: profit, benefit; to benefit
+  forms:
+    lzh-Hant/standard: [利]
+  notes:
+    en: The same word as 利 “sharp” in origin; here it is gain.
+- id: sense:何必
+  gloss:
+    en: why must …? what need is there to …?
+  forms:
+    lzh-Hant/standard: [何必]
+- id: sense:仁
+  gloss:
+    en: humaneness, benevolence
+  forms:
+    lzh-Hant/standard: [仁]
+- id: sense:義
+  gloss:
+    en: rightness, righteousness, duty
+  forms:
+    lzh-Hant/standard: [義]
+- id: sense:而已
+  gloss:
+    en: and that is all; only
+  forms:
+    lzh-Hant/standard: [而已]
+- id: sense:熊掌
+  gloss:
+    en: bear's paw (a delicacy)
+  forms:
+    lzh-Hant/standard: [熊掌]
+- id: sense:兼
+  gloss:
+    en: both together; to have both at once
+  forms:
+    lzh-Hant/standard: [兼]
+- id: sense:舍
+  gloss:
+    en: to give up, to let go
+  forms:
+    lzh-Hant/standard: [舍]
+  notes:
+    en: Later texts write 捨 for this sense; 舍 shè is also “a house”.
+- id: sense:取
+  gloss:
+    en: to take, to choose
+  forms:
+    lzh-Hant/standard: [取]
+- id: sense:生
+  gloss:
+    en: life; to live
+  forms:
+    lzh-Hant/standard: [生]
+nodes:
+- {id: lzh.u09.mencius, kind: lesson, introduces: ['sense:孟子', 'sense:見.meet', 'sense:梁惠王', 'sense:叟']}
+- {id: lzh.u09.distance, kind: lesson, introduces: ['sense:千', 'sense:里', 'sense:將', 'sense:利.profit']}
+- {id: lzh.u09.why-profit, kind: lesson, introduces: ['sense:何必', 'sense:仁', 'sense:義', 'sense:而已']}
+- {id: lzh.u09.desire, kind: lesson, introduces: ['sense:熊掌', 'sense:兼', 'sense:舍', 'sense:取', 'sense:生']}
+- {id: lzh.u09.story, kind: story}
+sentences:
+- id: s.09.1
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 孟子曰：「善。」
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
+      reverse: 孟子曰善[哉]
+  translations:
+    en: Mencius said, “(Good|Excellent|Well said|Very good).”
+- id: s.09.2
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 孟子，君子也。
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 孟子君子也
+  translations:
+    en: |-
+      Mencius was a gentleman.
+      Mencius (is|was) a (noble person|noble man|superior man).
+      Mencius is a gentleman.
+- id: s.09.3
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 孟子見王。
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 見, sense: 見.meet, readings: {pinyin: jiàn, jyutping: gin3, baxter: kenH}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}]
+      reverse: 孟子見王
+  translations:
+    en: |-
+      Mencius had an audience with the king.
+      Mencius (met|visited|went to see|called on) the king.
+      Mencius has an audience with the king.
+- id: s.09.4
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 孟子見梁惠王。
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 見, sense: 見.meet, readings: {pinyin: jiàn, jyutping: gin3, baxter: kenH}}, {surface: 梁惠王, sense: 梁惠王, readings: {pinyin: liáng huì wáng, jyutping: loeng4 wai6 wong4, baxter: ljang hwejH hjwang}}]
+      reverse: 孟子見梁惠王
+  translations:
+    en: |-
+      Mencius had an audience with King Hui of Liang.
+      Mencius (met|visited|went to see|called on) King Hui of Liang.
+      Mencius has an audience with King Hui of Liang.
+- id: s.09.5
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 梁惠王問孟子。
+      tokens: [{surface: 梁惠王, sense: 梁惠王, readings: {pinyin: liáng huì wáng, jyutping: loeng4 wai6 wong4, baxter: ljang hwejH hjwang}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}]
+      reverse: 梁惠王問孟子
+  translations:
+    en: |-
+      King Hui of Liang (asked|questioned) Mencius.
+      The king of Liang (asked|questioned) Mencius.
+- id: s.09.6
+  node: lzh.u09.mencius
+  forms:
+    lzh-Hant/standard:
+      text: 叟自遠方來。
+      tokens: [{surface: 叟, sense: 叟, readings: {pinyin: sǒu, jyutping: sau2, baxter: suwX}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 叟自遠方來
+  translations:
+    en: |-
+      The old man has come from afar.
+      The old man (comes|came) from (afar|far away|a distant place).
+      The old man has come from (far away|a distant place).
+      (Venerable sir|Sir), you have come from (afar|far away|a distant place).
+- id: s.09.7
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 有千人。
+      tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 千, sense: 千, readings: {pinyin: qiān, jyutping: cin1, baxter: tshen}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
+      reverse: 有千人
+  translations:
+    en: |-
+      There are a thousand people.
+      There (were a thousand people|are a thousand men|were a thousand men).
+- id: s.09.8
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 行百里。
+      tokens: [{surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 百, sense: 百, readings: {pinyin: bǎi, jyutping: baak3, baxter: paek}}, {surface: 里, sense: 里, readings: {pinyin: lǐ, jyutping: lei5, baxter: liX}}]
+      reverse: 行百里
+  translations:
+    en: |-
+      He (travelled|traveled|walked|went) a hundred li.
+      (She|They) (travelled|traveled|walked|went) a hundred li.
+      (Travel|Walk|Go) a hundred li.
+- id: s.09.9
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 叟不遠千里而來。
+      tokens: [{surface: 叟, sense: 叟, readings: {pinyin: sǒu, jyutping: sau2, baxter: suwX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 千, sense: 千, readings: {pinyin: qiān, jyutping: cin1, baxter: tshen}}, {surface: 里, sense: 里, readings: {pinyin: lǐ, jyutping: lei5, baxter: liX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 叟不遠千里而來
+  translations:
+    en: |-
+      Sir, you did not think a thousand li too far, and came.
+      (Sir|Venerable sir), you (have come|came) a thousand li.
+      Venerable sir, you did not think a thousand li too far, and came.
+      (Sir|Venerable sir), you (did not think|didn't think) a thousand li too far to come.
+- id: s.09.10
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 王將來。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 將, sense: 將, readings: {pinyin: jiāng, jyutping: zoeng1, baxter: tsjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
+      reverse: 王將來
+  translations:
+    en: |-
+      The king will come.
+      The king (is about to come|is going to come|is coming).
+- id: s.09.11
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 吾將學之。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 將, sense: 將, readings: {pinyin: jiāng, jyutping: zoeng1, baxter: tsjang}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
+      reverse: (吾|我)將學之
+  translations:
+    en: |-
+      I am going to (study|learn) it.
+      I'm going to (study|learn) it.
+      I will (study|learn) it.
+      I'll (study|learn) it.
+- id: s.09.12
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 何以利吾國？
+      tokens: [{surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}]
+      reverse: 何以利(吾|我)國
+  translations:
+    en: |-
+      How (can|shall|will) I (profit|benefit) my (state|country)?
+      What (can|will) (profit|benefit) my (state|country)?
+      With what can I (profit|benefit) my (state|country)?
+- id: s.09.13
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 亦將有以利吾國乎？
+      tokens: [{surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 將, sense: 將, readings: {pinyin: jiāng, jyutping: zoeng1, baxter: tsjang}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 亦將有以利(吾|我)國乎
+  translations:
+    en: |-
+      Will you also have something with which to (profit|benefit) my (state|country)?
+      Surely you (also |)have something (with which |)to (profit|benefit) my (state|country)?
+      Do you also have (a way|something) to (profit|benefit) my (state|country)?
+- id: s.09.14
+  node: lzh.u09.distance
+  forms:
+    lzh-Hant/standard:
+      text: 叟不遠千里而來，亦將有以利吾國乎？
+      tokens: [{surface: 叟, sense: 叟, readings: {pinyin: sǒu, jyutping: sau2, baxter: suwX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 千, sense: 千, readings: {pinyin: qiān, jyutping: cin1, baxter: tshen}}, {surface: 里, sense: 里, readings: {pinyin: lǐ, jyutping: lei5, baxter: liX}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 將, sense: 將, readings: {pinyin: jiāng, jyutping: zoeng1, baxter: tsjang}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 以, sense: 以, readings: {pinyin: yǐ, jyutping: ji5, baxter: yiX}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 國, sense: 國, readings: {pinyin: guó, jyutping: gwok3, baxter: kwok}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
+      reverse: 叟不遠千里而來亦將有以利(吾|我)國乎
+  translations:
+    en: |-
+      Sir, you did not think a thousand li too far to come: will you also have something with which to (profit|benefit) my (state|country)?
+      (Sir|Venerable sir), you have come a thousand li: (surely you|will you) (also |)have something (with which |)to (profit|benefit) my (state|country)?
+- id: s.09.15
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 何必問？
+      tokens: [{surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}]
+      reverse: 何必問
+  translations:
+    en: |-
+      Why must you ask?
+      Why (ask|do you have to ask|must you ask that)?
+      What need is there to ask?
+- id: s.09.16
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 王何必曰利？
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
+      reverse: 王何必曰利
+  translations:
+    en: |-
+      Why must Your Majesty speak of profit?
+      Why must (the king|Your Majesty) (talk about|mention|say) profit?
+      Why must the king speak of profit?
+      Why does (the king|Your Majesty) have to (speak of|talk about|mention) profit?
+- id: s.09.17
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 仁者，人也。
+      tokens: [{surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 仁者人也
+  translations:
+    en: |-
+      To be humane is to be human.
+      Humaneness is (being human|humanity|what makes us human).
+      Benevolence is (being human|humanity|what makes us human).
+      The humane (person |)is (human|a true person).
+- id: s.09.18
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 此非義也。
+      tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 此非義也
+  translations:
+    en: |-
+      This is not right.
+      This is not (righteous|just|rightness).
+      That is not (right|righteous|just).
+      This isn't (right|righteous|just).
+- id: s.09.19
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 孟子言仁義。
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 言, sense: 言, readings: {pinyin: yán, jyutping: jin4, baxter: ngjon}}, {surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}]
+      reverse: 孟子言仁義
+  translations:
+    en: |-
+      Mencius (spoke of|talked about|spoke about) (humaneness|benevolence) and (rightness|righteousness).
+      Mencius (speaks of|talks about) (humaneness|benevolence) and (rightness|righteousness).
+- id: s.09.20
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 仁義而已。
+      tokens: [{surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 而已, sense: 而已, readings: {pinyin: ér yǐ, jyutping: ji4 ji5, baxter: nyi yiX}}]
+      reverse: 仁義而已[矣]
+  translations:
+    en: |-
+      (Only|Just) (humaneness|benevolence) and (rightness|righteousness).
+      (Humaneness|Benevolence) and (rightness|righteousness), (that is all|and nothing else|nothing more).
+- id: s.09.21
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 亦有仁義而已矣。
+      tokens: [{surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 而已, sense: 而已, readings: {pinyin: ér yǐ, jyutping: ji4 ji5, baxter: nyi yiX}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: 亦有仁義而已矣
+  translations:
+    en: |-
+      There (is|are) (also |)(humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+      (I|We) (also |)have (humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+- id: s.09.22
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 孟子對曰：「王何必曰利？」
+      tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 對, sense: 對, readings: {pinyin: duì, jyutping: deoi3, baxter: twojH}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
+      reverse: 孟子對曰王何必曰利
+  translations:
+    en: Mencius (replied|answered), “Why must (Your Majesty|the king) (speak of|talk about|mention) profit?”
+- id: s.09.23
+  node: lzh.u09.why-profit
+  forms:
+    lzh-Hant/standard:
+      text: 王何必曰利？亦有仁義而已矣。
+      tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 而已, sense: 而已, readings: {pinyin: ér yǐ, jyutping: ji4 ji5, baxter: nyi yiX}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
+      reverse: 王何必曰利亦有仁義而已矣
+  translations:
+    en: Why must (Your Majesty|the king) (speak of|talk about|mention) profit? There (is|are) (also |)(humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+- id: s.09.24
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 魚，我所欲也。
+      tokens: [{surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 魚(我|吾)所欲也
+  translations:
+    en: |-
+      Fish is (what|something) I (want|desire).
+      I (want|desire|like) fish.
+- id: s.09.25
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 熊掌，亦我所欲也。
+      tokens: [{surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 熊掌亦(我|吾)所欲也
+  translations:
+    en: |-
+      Bear's paw is also (what|something) I (want|desire).
+      I also (want|desire) bear's paw.
+      I (want|desire) bear's paw too.
+      Bear's paw, too, is (what|something) I (want|desire).
+- id: s.09.26
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 二者不可得兼。
+      tokens: [{surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兼, sense: 兼, readings: {pinyin: jiān, jyutping: gim1, baxter: kem}}]
+      reverse: 二者不可得兼
+  translations:
+    en: |-
+      I cannot have both.
+      The two cannot both be had.
+      (One|You) cannot have both.
+      I (can't|can not) have both.
+      (One|You) can't have both.
+- id: s.09.27
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 吾舍魚。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
+      reverse: (吾|我)(舍|捨)魚
+  translations:
+    en: |-
+      I (give up|let go of|forgo|forego) the fish.
+      I (give up|let go of|forgo|forego) fish.
+- id: s.09.28
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 吾取熊掌。
+      tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}]
+      reverse: (吾|我)取熊掌
+  translations:
+    en: |-
+      I (take|choose|pick) the bear's paw.
+      I (take|choose|pick) bear's paw.
+- id: s.09.29
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 舍魚而取熊掌者也。
+      tokens: [{surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (舍|捨)魚而取熊掌[者也]
+  translations:
+    en: |-
+      I (would|will) (give up|let go of|forgo) the fish and (take|choose) the bear's paw.
+      (Give up|Forgo) the fish and (take|choose) the bear's paw.
+- id: s.09.30
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 生，亦我所欲也。
+      tokens: [{surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: srjaeng}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 生亦(我|吾)所欲也
+  translations:
+    en: |-
+      Life is also (what|something) I (want|desire).
+      I also (want|desire) life.
+      I (want|desire) life too.
+      Life, too, is (what|something) I (want|desire).
+- id: s.09.31
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 義，亦我所欲也。
+      tokens: [{surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 義亦(我|吾)所欲也
+  translations:
+    en: |-
+      Rightness is also (what|something) I (want|desire).
+      Righteousness is also (what|something) I (want|desire).
+      I also (want|desire) (rightness|righteousness).
+      (Rightness|Righteousness), too, is (what|something) I (want|desire).
+- id: s.09.32
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 舍生而取義者也。
+      tokens: [{surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: srjaeng}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: (舍|捨)生而取義[者也]
+  translations:
+    en: |-
+      I (would|will) (give up|sacrifice|forgo) (my |)life and (choose|take) (rightness|righteousness).
+      (Give up|Sacrifice) (my |)life and (choose|take) (rightness|righteousness).
+- id: s.09.33
+  node: lzh.u09.desire
+  forms:
+    lzh-Hant/standard:
+      text: 二者不可得兼，舍生而取義者也。
+      tokens: [{surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兼, sense: 兼, readings: {pinyin: jiān, jyutping: gim1, baxter: kem}}, {surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: srjaeng}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      reverse: 二者不可得兼(舍|捨)生而取義者也
+  translations:
+    en: |-
+      If I (cannot|can't) have both, I (would|will) (give up|sacrifice) my life and (choose|take) (rightness|righteousness).
+      (One|You) cannot have both: (give up|sacrifice) life and (choose|take) (rightness|righteousness).
+stories:
+- id: lzh.story.fish-and-bears-paw
+  node: lzh.u09.story
+  title:
+    en: Fish and bear's paw (Mencius 6A10)
+  characters:
+  - {id: mengzi, name: {lzh-Hant/standard: 孟子}}
+  steps:
+  - line:
+      forms:
+        lzh-Hant/standard:
+          text: 孟子曰：
+          tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}]
+      translations: {en: 'Mencius said:'}
+  - line:
+      speaker: mengzi
+      forms:
+        lzh-Hant/standard:
+          text: 魚，我所欲也；
+          tokens: [{surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: Fish is something I want;}
+  - line:
+      speaker: mengzi
+      ask: complete
+      gap: sense:熊掌
+      distractors: ['sense:兔', 'sense:劍']
+      forms:
+        lzh-Hant/standard:
+          text: 熊掌，亦我所欲也。
+          tokens: [{surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: bear's paw is also something I want.}
+  - line:
+      speaker: mengzi
+      forms:
+        lzh-Hant/standard:
+          text: 二者不可得兼，舍魚而取熊掌者也。
+          tokens: [{surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兼, sense: 兼, readings: {pinyin: jiān, jyutping: gim1, baxter: kem}}, {surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: 'If I cannot have both, I will give up the fish and take the bear''s paw.'}
+  - choose:
+      prompt:
+        en: If Mencius cannot have both, what does he give up?
+      options: [{en: the fish}, {en: the bear's paw}, {en: nothing}]
+      answer: 0
+  - line:
+      speaker: mengzi
+      forms:
+        lzh-Hant/standard:
+          text: 生，亦我所欲也；義，亦我所欲也。
+          tokens: [{surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: srjaeng}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: Life is something I want; rightness is also something I want.}
+  - line:
+      speaker: mengzi
+      ask: arrange
+      forms:
+        lzh-Hant/standard:
+          text: 二者不可得兼，舍生而取義者也。
+          tokens: [{surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 可, sense: 可, readings: {pinyin: kě, jyutping: ho2, baxter: khaX}}, {surface: 得, sense: 得, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}, {surface: 兼, sense: 兼, readings: {pinyin: jiān, jyutping: gim1, baxter: kem}}, {surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: srjaeng}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
+      translations: {en: 'If I cannot have both, I will give up life and choose rightness.'}
+  - choose:
+      prompt:
+        en: What does Mencius choose over life?
+      options: [{en: rightness}, {en: profit}, {en: a bear's paw}]
+      answer: 0
+scenarios:
+- id: lzh.audience
+  after: lzh.u09.why-profit
+  title: {en: An audience with the king}
+  setting: {en: 'The court of King Hui of Liang, about 320 BCE. The old king is worried about his state and its wars.'}
+  character: {en: 'King Hui of Liang, proud and practical, who wants to hear how his state can profit; he speaks Classical Chinese.'}
+  goal: {en: 'Greet the king, tell him you have come a long way, and persuade him to speak of humaneness and rightness rather than profit.'}
