@@ -125,6 +125,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
   its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
+- A clip said on answering waits for the feedback sound (`SAY_AFTER_ANSWER_MS`), never over it. Clip elements load with
+  the card and are reused (`useClipElements`); never `new Audio()` at play time (choppy starts, Firefox on Android).
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most
   `maxWords` words inside "حالا این کلمه را تکرار کن، …" with durations set from the carrier (the graph split at
   /Ceil, nabu/audio/carrier.py) and cuts them out exactly; lone words otherwise collapse. Piper is seeded.

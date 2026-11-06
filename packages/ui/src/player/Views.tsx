@@ -40,8 +40,9 @@ import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
-import { AudioButtons, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
+import { AudioButtons, useClipElements, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
+import { FEEDBACK_SOUND_MS } from "./sound.ts";
 import { toPcm16k, useRecorder, useSpeech, type Decoded } from "./speech.tsx";
 import { effectiveWritingMode, type ViewProps } from "./shared.ts";
 
@@ -123,6 +124,12 @@ const chooseByKey = (props: ViewProps, index: number, count: number): void => {
 
 const selectedOf = (props: ViewProps): number | null => (props.draft.tag === "choice" ? props.draft.index : null);
 
+/**
+ * How long after an answer its clip is said: once the feedback sound is over, so the two never
+ * overlap (the clip's first word was lost under it).
+ */
+const SAY_AFTER_ANSWER_MS = FEEDBACK_SOUND_MS + 60;
+
 /** Once the card is answered, its clip is said (once), if sound is on: whatever the card asked. */
 const useSayWhenAnswered = (player: ClipPlayer, props: ViewProps & ViewExtras, audio: AudioRef | undefined): void => {
   const answered = props.outcome !== undefined;
@@ -130,8 +137,11 @@ const useSayWhenAnswered = (player: ClipPlayer, props: ViewProps & ViewExtras, a
   const { play } = player;
   useEffect(() => {
     if (!answered || said.current || audio === undefined || props.sound === false) return;
-    said.current = true;
-    play();
+    const timer = setTimeout(() => {
+      said.current = true;
+      play();
+    }, SAY_AFTER_ANSWER_MS);
+    return () => clearTimeout(timer);
   }, [answered, audio, play, props.sound]);
 };
 
@@ -532,16 +542,26 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
   const matched = props.draft.tag === "pairs" ? props.draft.matched : [];
   const mistakes = props.draft.tag === "pairs" ? props.draft.mistakes : 0;
   const matchedRight = new Set(matched.map((l) => ex.pairs[l]));
-  // A word says itself when tapped, if it has a clip and sound is on.
+  // A word says itself when tapped, if it has a clip and sound is on; the clips load with the card.
   const voice = useRef<HTMLAudioElement | null>(null);
-  useEffect(() => () => voice.current?.pause(), []);
+  const voices = useClipElements();
+  const { element: voiceFor, release } = voices;
   const clipOf = (i: number) => props.course.audio[ex.kcs[i] ?? ""]?.normal;
+  const { imageUrl, sound } = props;
+  useEffect(() => {
+    if (sound === false) return;
+    for (const kc of ex.kcs) {
+      const clip = props.course.audio[kc]?.normal;
+      if (clip !== undefined) voiceFor(clip, imageUrl(clip.path));
+    }
+  }, [ex.kcs, imageUrl, props.course.audio, sound, voiceFor]);
+  useEffect(() => release, [release]);
   const say = (i: number): void => {
     const clip = clipOf(i);
     if (clip === undefined || props.sound === false) return;
     voice.current?.pause();
-    const el = new Audio(props.imageUrl(clip.path));
-    el.dataset["clip"] = clip.path;
+    const el = voiceFor(clip, props.imageUrl(clip.path));
+    el.currentTime = 0;
     voice.current = el;
     void el.play().catch(() => undefined);
   };
