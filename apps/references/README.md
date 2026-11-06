@@ -30,9 +30,12 @@ You need Node (for `npx wrangler`), a Cloudflare account and a Google account. R
 ### 1. Deploy the Worker (Cloudflare)
 
 ```sh
-npx wrangler@4 login
-pnpm --filter @nabu/references deploy
+npx wrangler@4 login     # or set CLOUDFLARE_API_TOKEN (an "Edit Cloudflare Workers" token)
+npx wrangler@4 deploy
 ```
+
+(Not `pnpm deploy`: that is pnpm's own command.) If `wrangler login` ends at "Unable to connect" to
+`localhost:8976`, the browser can't reach the machine wrangler runs on: use the API token instead.
 
 The first deploy asks you to choose a `workers.dev` subdomain. Note the address it prints,
 `https://nabu-references.<subdomain>.workers.dev`: the steps below call it `RELAY`. Until the

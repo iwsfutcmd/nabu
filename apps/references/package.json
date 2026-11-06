@@ -9,7 +9,7 @@
     "typecheck": "tsc -p tsconfig.json",
     "lint": "eslint .",
     "test": "vitest run",
-    "deploy": "npx --yes wrangler@4 deploy"
+    "worker:deploy": "npx --yes wrangler@4 deploy"
   },
   "devDependencies": {
     "typescript": "~6.0.3",
