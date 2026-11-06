@@ -423,9 +423,9 @@ clips:
     status: pass
 - item: fa.story.books#1
   speed: normal
-  file: clips/bddd8656c6c331f5.mp3
-  sha256: 3f094893121c7d997ade4e5d8afba836af41fc97148b46897a8f13a6138875be
-  durationMs: 2266
+  file: clips/564a0368d293b59a.mp3
+  sha256: 422b6f4053e68ea3530e5868326c21b2f8df99be9c7291a2b87a81ef495ba26b
+  durationMs: 1790
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -444,26 +444,29 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: bddd8656c6c331f58e8f1c14bce93cb7833016b2d209c3f98b91d6cafd2db111
+      sentences:
+      - carrier
+      - plain
+    inputHash: 564a0368d293b59a5c762dc1e3a9d6aa623cf1cc49513c71321a8f81c4219403
   timings:
   - token: 0
-    startMs: 80
-    endMs: 700
+    startMs: 20
+    endMs: 720
   - token: 3
-    startMs: 700
-    endMs: 1120
+    startMs: 720
+    endMs: 865
   - token: 5
-    startMs: 1120
-    endMs: 1615
+    startMs: 865
+    endMs: 1127
   - token: 7
-    startMs: 1615
-    endMs: 2026
+    startMs: 1127
+    endMs: 1549
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: تو آلی هستی
-    cer: 0.385
-    status: review
+    asrText: سلام، تو علی هستی؟
+    cer: 0.0
+    status: pass
 - item: fa.story.books#2
   speed: normal
   file: clips/59c485ba413552f2.mp3
@@ -592,9 +595,9 @@ clips:
     status: review
 - item: fa.story.books#6
   speed: normal
-  file: clips/64c3ff2a7614d3e9.mp3
-  sha256: fe4fdea891f4fdb450c75a2a6cff47aaff8c1445b5575208dad3e5714fb63b0e
-  durationMs: 2614
+  file: clips/ab68da5248d573df.mp3
+  sha256: ff37fda9df3f91b9676dfd29f40adc2693a80248748fdd7ac2a80b971421f8e6
+  durationMs: 2719
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -613,37 +616,40 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 64c3ff2a7614d3e92ba1577de8649e803615698efd7d510e4387bb28fc19ab02
+      sentences:
+      - carrier
+      - plain
+    inputHash: ab68da5248d573df4aa4ca1a9ae9b15065634df15d3594b48cd95c9485c023fe
   timings:
   - token: 0
-    startMs: 342
-    endMs: 740
+    startMs: 0
+    endMs: 700
   - token: 3
-    startMs: 740
-    endMs: 1297
+    startMs: 700
+    endMs: 1199
   - token: 5
-    startMs: 1297
-    endMs: 1468
+    startMs: 1199
+    endMs: 1380
   - token: 7
-    startMs: 1468
-    endMs: 1800
+    startMs: 1380
+    endMs: 1752
   - token: 9
-    startMs: 1800
-    endMs: 2062
+    startMs: 1752
+    endMs: 2024
   - token: 11
-    startMs: 2062
-    endMs: 2514
+    startMs: 2024
+    endMs: 2498
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: کتاب های من خیلی خوب هستند
-    cer: 0.167
-    status: review
+    asrText: بله کتاب های من خیلی خوب هستند.
+    cer: 0.042
+    status: pass
 - item: fa.story.books#7
   speed: normal
-  file: clips/1a7c572e54f81212.mp3
-  sha256: b3d0ba3c3c4032f24f94bfffc5597625c99eff060f8321d82d6b10e248ad5793
-  durationMs: 2603
+  file: clips/9403a5dafaf8cba3.mp3
+  sha256: a0f383f0e64b72ab61f34d974bf5eda312a944d0436d2b2e605d086642dec852
+  durationMs: 2266
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -662,23 +668,27 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 1a7c572e54f812122be22dab5855a63601fc1cf73ed38d36b01dca67ba00b018
+      sentences:
+      - carrier
+      - carrier
+    take: 1
+    inputHash: 9403a5dafaf8cba38c716c1be59738124f5bcba56e782fbc64a59ca01c808855
   timings:
   - token: 0
-    startMs: 424
-    endMs: 1180
+    startMs: 0
+    endMs: 542
   - token: 3
-    startMs: 1180
-    endMs: 1740
+    startMs: 542
+    endMs: 1360
   - token: 6
-    startMs: 1740
-    endMs: 2442
+    startMs: 1360
+    endMs: 2227
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: مات بطفی
-    cer: 0.875
-    status: fail
+    asrText: ممنون مریم. خدا حافظ.
+    cer: 0.0
+    status: pass
 - item: fa.story.books#8
   speed: normal
   file: clips/36539d4b074f52c4.mp3
@@ -765,9 +775,9 @@ clips:
     status: pass
 - item: fa.story.family#1
   speed: normal
-  file: clips/b3d3578eb7926e25.mp3
-  sha256: 69bb786971b8d3a98eadbb7266b18ad40955afe0fe83bbc74a3ac5d84dcbc24e
-  durationMs: 896
+  file: clips/debaf384db448e5d.mp3
+  sha256: df851de72a021265ee5fad1e185fa802c9dfb0d47b643c2c60d687e42f1a2014
+  durationMs: 1372
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -786,23 +796,27 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: b3d3578eb7926e25350ca71afdbbd27c67a05f2a2573ddfd458eb80294466cbc
+      sentences:
+      - carrier
+      - carrier
+    take: 1
+    inputHash: debaf384db448e5dbde6e44bd5a6b97c858a2079f69dd34bb3e2745df30fe0fa
   timings:
   - token: 0
-    startMs: 163
-    endMs: 611
+    startMs: 20
+    endMs: 680
   - token: 3
-    startMs: 611
-    endMs: 683
+    startMs: 680
+    endMs: 898
   - token: 5
-    startMs: 683
-    endMs: 896
+    startMs: 898
+    endMs: 1332
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: PYM JBZ
-    cer: 1.0
-    status: fail
+    asrText: سلام، این کیست؟
+    cer: 0.0
+    status: pass
 - item: fa.story.family#11
   speed: normal
   file: clips/e1bf941202d442e7.mp3
@@ -984,9 +998,9 @@ clips:
     status: review
 - item: fa.story.family#4
   speed: normal
-  file: clips/3d34a26325abb36a.mp3
-  sha256: 7520b639829b4922a06707d99a57dda0ec058a4185423ace2382909412e432c3
-  durationMs: 3848
+  file: clips/55930ac883f096ba.mp3
+  sha256: 5c85822332c8b55209b4f38cf27cba4accb43ee619f6bf54e74567eaed0faae7
+  durationMs: 4091
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -1005,38 +1019,42 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 3d34a26325abb36a5b106c19b689ed0de8f0b66051ee421b920e42ae68163cbb
+      sentences:
+      - carrier
+      - plain
+      - plain
+    inputHash: 55930ac883f096badb61b2b0d6cbf7adce7a2f04f4f20d70b0f779921bde0153
   timings:
   - token: 0
     startMs: 0
-    endMs: 660
+    endMs: 790
   - token: 3
-    startMs: 660
-    endMs: 1243
+    startMs: 790
+    endMs: 1214
   - token: 5
-    startMs: 1243
-    endMs: 1724
+    startMs: 1214
+    endMs: 1645
   - token: 7
-    startMs: 1724
-    endMs: 2260
+    startMs: 1645
+    endMs: 2300
   - token: 10
-    startMs: 2260
-    endMs: 2586
+    startMs: 2300
+    endMs: 2788
   - token: 12
-    startMs: 2586
-    endMs: 2976
+    startMs: 2788
+    endMs: 3149
   - token: 14
-    startMs: 2976
-    endMs: 3507
+    startMs: 3149
+    endMs: 3731
   - token: 16
-    startMs: 3507
-    endMs: 3748
+    startMs: 3731
+    endMs: 3952
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: مادرم معلم است او خیلی مهوان است
-    cer: 0.167
-    status: review
+    asrText: بله مادرم معلم است و خیلی مهربان است
+    cer: 0.033
+    status: pass
 - item: fa.story.family#6
   speed: normal
   file: clips/5aace836996d1b69.mp3
@@ -1269,9 +1287,9 @@ clips:
     status: pass
 - item: fa.story.flat#1
   speed: normal
-  file: clips/a524ecfe5a5169a5.mp3
-  sha256: 3b4fe139cc51877427405b77aa85c7973d6819b7b854e71526f2101b7f7eb38b
-  durationMs: 2684
+  file: clips/e6b10ff0ec84463e.mp3
+  sha256: aff102ce8f1e80adfde239cceceac598ec6805ed528bb4f80efa18e9ce5251d0
+  durationMs: 2881
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -1290,31 +1308,34 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: a524ecfe5a5169a5b7a23c861cc5f340d1dc5ec6dfb1e095281c69f8db645221
+      sentences:
+      - carrier
+      - plain
+    inputHash: e6b10ff0ec84463e9613b9e660264c34aecd3aaec92c2189b999065f6c0279fb
   timings:
   - token: 0
-    startMs: 283
-    endMs: 727
+    startMs: 20
+    endMs: 770
   - token: 3
-    startMs: 727
-    endMs: 1330
+    startMs: 770
+    endMs: 1491
   - token: 5
-    startMs: 1330
-    endMs: 1514
+    startMs: 1491
+    endMs: 1653
   - token: 7
-    startMs: 1514
-    endMs: 1847
+    startMs: 1653
+    endMs: 2005
   - token: 9
-    startMs: 1847
-    endMs: 2321
+    startMs: 2005
+    endMs: 2519
   - token: 11
-    startMs: 2321
-    endMs: 2543
+    startMs: 2519
+    endMs: 2761
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: آبار تامانه تو خیلی قشنگ است
-    cer: 0.32
+    asrText: سلام. آبات مانه تو خیلی قشنگ است.
+    cer: 0.16
     status: review
 - item: fa.story.flat#10
   speed: normal
@@ -1356,9 +1377,9 @@ clips:
     status: review
 - item: fa.story.flat#2
   speed: normal
-  file: clips/fc990dbc43e0a2fb.mp3
-  sha256: 3a2c2d4687a55c56d3508f9e6fdb8a20816e15012655ec850e9cae9302358bbd
-  durationMs: 3288
+  file: clips/6732d61165905f22.mp3
+  sha256: fefe22d7ce5f3182cf9df28e20bd1db93d56ad602f381a7eecc2a2c70b07a8a0
+  durationMs: 3578
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -1377,38 +1398,41 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: fc990dbc43e0a2fb5013575eefe1492eca30089cb86c42910017489851cdcdc3
+      sentences:
+      - carrier
+      - plain
+    inputHash: 6732d61165905f22671b074bb03255a12a78f577baec827d46d42a7f049fc9d2
   timings:
   - token: 0
-    startMs: 401
-    endMs: 742
+    startMs: 0
+    endMs: 820
   - token: 3
-    startMs: 742
-    endMs: 1434
+    startMs: 820
+    endMs: 1568
   - token: 5
-    startMs: 1434
-    endMs: 1634
+    startMs: 1568
+    endMs: 1790
   - token: 7
-    startMs: 1634
-    endMs: 2095
+    startMs: 1790
+    endMs: 2242
   - token: 9
-    startMs: 2095
-    endMs: 2366
+    startMs: 2242
+    endMs: 2493
   - token: 12
-    startMs: 2366
-    endMs: 2617
+    startMs: 2493
+    endMs: 2764
   - token: 14
-    startMs: 2617
-    endMs: 3008
+    startMs: 2764
+    endMs: 3197
   - token: 16
-    startMs: 3008
-    endMs: 3268
+    startMs: 3197
+    endMs: 3438
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: اپارسمان من کوچک هست اما جدید هست
-    cer: 0.312
-    status: review
+    asrText: ممنون. آپارسمان من کچک است. اما جدید است.
+    cer: 0.094
+    status: pass
 - item: fa.story.flat#3
   speed: normal
   file: clips/aeedc187b063c8bd.mp3
@@ -1833,9 +1857,9 @@ clips:
     status: pass
 - item: fa.story.metro#3
   speed: normal
-  file: clips/201073b76c96b1c0.mp3
-  sha256: 10ae4d82752d3bcb057c164dc8c60e1b1134b0a0a202869443fc502121562e98
-  durationMs: 4507
+  file: clips/c13bca81db317a8a.mp3
+  sha256: 115d6153bb4b6ed6ef9f46921f5617ac4524c9cc34b518e43eef624162f1c68b
+  durationMs: 3288
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -1854,38 +1878,41 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 201073b76c96b1c0e7041dd0d50acc4e6daeaddfbd5b69cb172231bf099a16bb
+      sentences:
+      - carrier
+      - plain
+    inputHash: c13bca81db317a8a334aabe9a3a1c7eddf6366e2b8f2d64244e6fc57b373ccb5
   timings:
   - token: 0
-    startMs: 361
-    endMs: 811
+    startMs: 0
+    endMs: 511
   - token: 2
-    startMs: 811
-    endMs: 1890
+    startMs: 511
+    endMs: 1120
   - token: 5
-    startMs: 1890
-    endMs: 2344
+    startMs: 1120
+    endMs: 1624
   - token: 7
-    startMs: 2344
-    endMs: 3140
+    startMs: 1624
+    endMs: 2100
   - token: 10
-    startMs: 3140
-    endMs: 3345
+    startMs: 2100
+    endMs: 2286
   - token: 12
-    startMs: 3345
-    endMs: 3456
+    startMs: 2286
+    endMs: 2396
   - token: 14
-    startMs: 3456
-    endMs: 3660
+    startMs: 2396
+    endMs: 2667
   - token: 16
-    startMs: 3660
-    endMs: 4227
+    startMs: 2667
+    endMs: 3208
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: و سقیم برای بید بعد به چپ بپیشید
-    cer: 0.438
-    status: review
+    asrText: نزدیک است. مستقیم بروید و به چپ بپیشید.
+    cer: 0.125
+    status: pass
 - item: fa.story.metro#5
   speed: normal
   file: clips/4f24aeda8238f6b3.mp3
@@ -1971,8 +1998,8 @@ clips:
     status: review
 - item: fa.story.metro#7
   speed: normal
-  file: clips/17c66931983b4183.mp3
-  sha256: efff1a7b74b2efe36051deb62ebcd04fd2ae83028a0c23ad8d4fbf5e0450c6b6
+  file: clips/9e3bb3400f13d4d7.mp3
+  sha256: 65f3f392cf678461d7e0cd9b26907e14026b52c9907bd645c176fc057328991e
   durationMs: 2487
   license: MIT
   provenance:
@@ -1992,28 +2019,31 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 17c66931983b4183d26d2331583b78bdde1628fda482c2990c3d674b348cfc7d
+      sentences:
+      - carrier
+      - plain
+    inputHash: 9e3bb3400f13d4d7042272afa0da74ea607f01b705c84e1f0c8f0f34d48e0acc
   timings:
   - token: 0
-    startMs: 341
-    endMs: 883
+    startMs: 0
+    endMs: 750
   - token: 3
-    startMs: 883
-    endMs: 1123
+    startMs: 750
+    endMs: 1224
   - token: 5
-    startMs: 1123
-    endMs: 1444
+    startMs: 1224
+    endMs: 1504
   - token: 7
-    startMs: 1444
-    endMs: 1895
+    startMs: 1504
+    endMs: 1946
   - token: 9
-    startMs: 1895
+    startMs: 1946
     endMs: 2387
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: شما اهل تهران هستید
-    cer: 0.286
+    asrText: شما عهد تهران هستید.
+    cer: 0.333
     status: review
 - item: fa.story.metro#8
   speed: normal
@@ -2205,9 +2235,9 @@ clips:
     status: pass
 - item: fa.story.notebook#10
   speed: normal
-  file: clips/7c8ef76c9886b34a.mp3
-  sha256: bf48debec2cdb072d5005c8c92bba59687101299284930e9b661fcef48e8c121
-  durationMs: 3439
+  file: clips/226a4b4cef04ec19.mp3
+  sha256: 7c728eaa8a036bb5736c1c8d1aedf4c4caad306a906bd4d0ce963e8241af0da2
+  durationMs: 3392
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -2226,43 +2256,46 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 7c8ef76c9886b34ab936b7366dfb6f230d5eea1f6ceb4d56f7a6485c7c313b46
+      sentences:
+      - carrier
+      - plain
+    inputHash: 226a4b4cef04ec198b1d1a64ea4aef4e1f37a4486865de467a686a6414082e8e
   timings:
   - token: 0
     startMs: 0
-    endMs: 730
+    endMs: 380
   - token: 3
-    startMs: 730
-    endMs: 1428
+    startMs: 380
+    endMs: 1445
   - token: 5
-    startMs: 1428
-    endMs: 1589
+    startMs: 1445
+    endMs: 1576
   - token: 7
-    startMs: 1589
-    endMs: 2162
+    startMs: 1576
+    endMs: 2190
   - token: 9
-    startMs: 2162
-    endMs: 2373
+    startMs: 2190
+    endMs: 2439
   - token: 11
-    startMs: 2373
-    endMs: 2760
+    startMs: 2439
+    endMs: 2800
   - token: 13
-    startMs: 2760
-    endMs: 3117
+    startMs: 2800
+    endMs: 3152
   - token: 15
-    startMs: 3117
-    endMs: 3379
+    startMs: 3152
+    endMs: 3392
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: قیمت این خوبکار ده هزار تومان است
-    cer: 0.167
-    status: review
+    asrText: بله، بهمت این خودکار ده هزار تومان است.
+    cer: 0.1
+    status: pass
 - item: fa.story.notebook#12
   speed: normal
-  file: clips/4db4de1ececec496.mp3
-  sha256: 9d60eda223f75a16e5c964d6ff2ab0c398b4702a9ba6d25b71ff68b51a9b8118
-  durationMs: 2939
+  file: clips/847ab75f1d4531b3.mp3
+  sha256: fdcaa56501245d920a8e28c9498f0ea1b2947c78d5448e171f94c0db9ab70deb
+  durationMs: 2266
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -2281,23 +2314,27 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 4db4de1ececec4962a86dc735a9ed2ace394d72d823233c6b67f782222a19e1e
+      sentences:
+      - plain
+      - carrier
+    take: 1
+    inputHash: 847ab75f1d4531b376fa1034d378fd83cfa898cd0efff73a1bfed2f80afbabaa
   timings:
   - token: 0
-    startMs: 262
-    endMs: 1190
+    startMs: 120
+    endMs: 510
   - token: 3
-    startMs: 1190
-    endMs: 2180
+    startMs: 510
+    endMs: 1360
   - token: 6
-    startMs: 2180
-    endMs: 2819
+    startMs: 1360
+    endMs: 2227
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: من میروند آخواست خود فر
-    cer: 0.8
-    status: fail
+    asrText: منون آقا خدا حافظ
+    cer: 0.067
+    status: pass
 - item: fa.story.notebook#2
   speed: normal
   file: clips/1e713c7a58fdff7b.mp3
@@ -2573,9 +2610,9 @@ clips:
     status: pass
 - item: fa.story.notebook#9
   speed: normal
-  file: clips/48edea6ef40f6d7d.mp3
-  sha256: 4a125513ff5626e83f30f6c4e247751a58d5a6560452fb5cd0665c0a5602d639
-  durationMs: 2463
+  file: clips/1c22edd734e186e1.mp3
+  sha256: 8bbf554214628ec0063d6b0f84ff81bb29a42e7680c178a942ea33c41829af4b
+  durationMs: 2115
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -2594,29 +2631,32 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 48edea6ef40f6d7dac69eb7f33b21ce36578972df841d13ca7ef0e4828fbe455
+      sentences:
+      - carrier
+      - plain
+    inputHash: 1c22edd734e186e176702f65db9f43d8964e3cf1bf1a7153ce25f6904887aa69
   timings:
   - token: 0
-    startMs: 242
-    endMs: 454
+    startMs: 60
+    endMs: 353
   - token: 2
-    startMs: 454
-    endMs: 1120
+    startMs: 353
+    endMs: 960
   - token: 5
-    startMs: 1120
-    endMs: 1666
+    startMs: 960
+    endMs: 1441
   - token: 7
-    startMs: 1666
-    endMs: 1929
+    startMs: 1441
+    endMs: 1672
   - token: 9
-    startMs: 1929
-    endMs: 2282
+    startMs: 1672
+    endMs: 2035
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: خودکار هم داری
-    cer: 0.368
-    status: review
+    asrText: خوب بس خودکار هم دارید
+    cer: 0.105
+    status: pass
 - item: fa.story.reza-day#0
   speed: normal
   file: clips/55ae78ebffb73e5c.mp3
@@ -2662,9 +2702,9 @@ clips:
     status: fail
 - item: fa.story.reza-day#1
   speed: normal
-  file: clips/7fc0100c012b1466.mp3
-  sha256: 463244ce9f8ebd75b441592518fc0522ff46407415544d41e90728215bb596cb
-  durationMs: 1987
+  file: clips/995fb2f6c5998cf9.mp3
+  sha256: 43ebdb517d865ba26b3d982183c5f088a592d30100f6128efa8281937b989ab8
+  durationMs: 2231
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -2683,26 +2723,29 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 7fc0100c012b14666d4d01cb5e561bde0848a03237eef58e0e6af20000d6f9e2
+      sentences:
+      - carrier
+      - plain
+    inputHash: 995fb2f6c5998cf920ea8d6d00d392630126453e4294aa5a6a8b5ed00d09ea95
   timings:
   - token: 0
-    startMs: 281
-    endMs: 560
+    startMs: 20
+    endMs: 750
   - token: 3
-    startMs: 560
-    endMs: 723
+    startMs: 750
+    endMs: 865
   - token: 5
-    startMs: 723
-    endMs: 1365
+    startMs: 865
+    endMs: 1488
   - token: 7
-    startMs: 1365
-    endMs: 1827
+    startMs: 1488
+    endMs: 1950
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: به دانشگاه می رویم
-    cer: 0.333
-    status: review
+    asrText: سلام. به دانشگاه می رویم.
+    cer: 0.111
+    status: pass
 - item: fa.story.reza-day#10
   speed: normal
   file: clips/cca71d494bcadbe5.mp3
@@ -3111,9 +3154,9 @@ clips:
     status: pass
 - item: fa.story.shirt#1
   speed: normal
-  file: clips/e220de2b12e5a78e.mp3
-  sha256: 1ecedcfdb24f463cecf53ead51fd328102115a7c901a61b13a95e349a43f11e9
-  durationMs: 2347
+  file: clips/2e4a296d8f5ea8b5.mp3
+  sha256: 7c5a9a2dc4672cd57d7790f6713e6a520a1e30ceeeb02ea226c5fdb716d707ef
+  durationMs: 2150
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -3132,26 +3175,29 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: e220de2b12e5a78eeef131bec10ff6c6e6e2bc95caa1571132a8a2860b8af20a
+      sentences:
+      - carrier
+      - plain
+    inputHash: 2e4a296d8f5ea8b5c998e72a5a92a4d0100077d26697cc1eaca47e57db319ecc
   timings:
   - token: 0
-    startMs: 522
-    endMs: 1003
+    startMs: 20
+    endMs: 770
   - token: 3
-    startMs: 1003
-    endMs: 1260
+    startMs: 770
+    endMs: 1010
   - token: 5
-    startMs: 1260
-    endMs: 1826
+    startMs: 1010
+    endMs: 1568
   - token: 7
-    startMs: 1826
-    endMs: 2347
+    startMs: 1568
+    endMs: 2110
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: یک پیراهن می خواهم
-    cer: 0.263
-    status: review
+    asrText: سلام. یک پیراهم می خواهم.
+    cer: 0.105
+    status: pass
 - item: fa.story.shirt#10
   speed: normal
   file: clips/ce40f3df63630541.mp3
@@ -3203,9 +3249,9 @@ clips:
     status: review
 - item: fa.story.shirt#11
   speed: normal
-  file: clips/68bfe663df00daa4.mp3
-  sha256: 30e0309e819acad179a73b3739c93e6e8ffaab2081ff656976d68767ee494d7d
-  durationMs: 2939
+  file: clips/06afb72facafef71.mp3
+  sha256: acc6d94dcfb064a129a80a5a3f8637a1fc13506831fe926651bb2607b450b0a7
+  durationMs: 2173
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -3224,23 +3270,26 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 68bfe663df00daa4fd582cf1ae0b9520a855973a5cb00ecf43ecddb2bc8c0b02
+      sentences:
+      - carrier
+      - carrier
+    inputHash: 06afb72facafef716d024380d71347413c83185a20d960a99b6421e511feb273
   timings:
   - token: 0
-    startMs: 222
-    endMs: 970
+    startMs: 0
+    endMs: 564
   - token: 3
-    startMs: 970
-    endMs: 1360
+    startMs: 564
+    endMs: 1270
   - token: 6
-    startMs: 1360
-    endMs: 2698
+    startMs: 1270
+    endMs: 2133
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: درست کنید کنید
-    cer: 0.875
-    status: fail
+    asrText: ممنون خانم. خدا حافظ.
+    cer: 0.0
+    status: pass
 - item: fa.story.shirt#2
   speed: normal
   file: clips/2948c4f15bbb2d55.mp3
@@ -3614,9 +3663,9 @@ clips:
     status: review
 - item: fa.story.tea#1
   speed: normal
-  file: clips/1ba4465c43fbf19f.mp3
-  sha256: 501de2f64d80deced54408c9af01ada927b5d40ef6b64fc1f7a41d2eb9396a43
-  durationMs: 2115
+  file: clips/ec7ef9315b6c9c9a.mp3
+  sha256: d8ae4c2469a2953b40bfdbc33c52e2181a46bd050eaa26b172376c9536b1fa49
+  durationMs: 2394
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -3635,37 +3684,40 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 1ba4465c43fbf19f1333ed0b98ef724dc23676d22fbe93fcee4c30b3d8f44ff6
+      sentences:
+      - carrier
+      - plain
+    inputHash: ec7ef9315b6c9c9ab36434cb5988a5929bdcbf320716a1bc98a5c47e2678c9c0
   timings:
   - token: 0
-    startMs: 766
-    endMs: 1007
+    startMs: 0
+    endMs: 960
   - token: 3
-    startMs: 1007
-    endMs: 1088
+    startMs: 960
+    endMs: 1167
   - token: 5
-    startMs: 1088
-    endMs: 1189
+    startMs: 1167
+    endMs: 1338
   - token: 7
-    startMs: 1189
-    endMs: 1491
+    startMs: 1338
+    endMs: 1650
   - token: 9
-    startMs: 1491
-    endMs: 1773
+    startMs: 1650
+    endMs: 1891
   - token: 11
-    startMs: 1773
-    endMs: 2075
+    startMs: 1891
+    endMs: 2193
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: من چه خیلی دوست دارم
-    cer: 0.318
+    asrText: من چا خیلی دوست دارم
+    cer: 0.273
     status: review
 - item: fa.story.tea#2
   speed: normal
-  file: clips/187048b2ae30e847.mp3
-  sha256: bcb09221390a8c8c329e4caf67b9a938baca14092422902bb8775396dca09dd5
-  durationMs: 1462
+  file: clips/f20ee35f395ee305.mp3
+  sha256: d965a8a627178580efdb1e965650f05c2afde7ed6b33be0af4814e8e06d12543
+  durationMs: 1938
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -3684,28 +3736,30 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 187048b2ae30e847bc73b38220b62fa6704775759ffb61e4a18e303d782e02a1
+      sentences:
+      - carrier
+    inputHash: f20ee35f395ee3054952a982d494ed5a71e1c7d9cc79ddba7cc4db0c8b356693
   timings:
   - token: 0
-    startMs: 122
-    endMs: 315
+    startMs: 61
+    endMs: 364
   - token: 2
-    startMs: 315
-    endMs: 447
+    startMs: 364
+    endMs: 580
   - token: 4
-    startMs: 447
-    endMs: 762
+    startMs: 580
+    endMs: 1050
   - token: 6
-    startMs: 762
-    endMs: 996
+    startMs: 1050
+    endMs: 1450
   - token: 8
-    startMs: 996
-    endMs: 1199
+    startMs: 1450
+    endMs: 1838
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: چای باقا هم دوست داری؟
-    cer: 0.188
+    asrText: شای باقا دوست دارید.
+    cer: 0.25
     status: review
 - item: fa.story.tea#3
   speed: normal
@@ -3894,9 +3948,9 @@ clips:
     status: pass
 - item: fa.story.tea#8
   speed: normal
-  file: clips/3162fb3cf28b48a3.mp3
-  sha256: d76da917bcfa99d1dc8bb8def2bd6ccd0e0f90d328d9709ebabce153d3122a50
-  durationMs: 2498
+  file: clips/15d16fd0b1e1ca1d.mp3
+  sha256: 805a567ad1820a8324570b150ebbbad2777531f9c25bbe10d817b181909b094a
+  durationMs: 2614
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -3915,35 +3969,38 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 3162fb3cf28b48a3feca5abe07f6b1283b847ccf7a06dba840ec8019357794ee
+      sentences:
+      - plain
+      - carrier
+    inputHash: 15d16fd0b1e1ca1d73f1669334350d4885feff34fa538e54d350579a8d699f8b
   timings:
   - token: 0
-    startMs: 81
-    endMs: 191
+    startMs: 101
+    endMs: 201
   - token: 2
-    startMs: 191
-    endMs: 403
+    startMs: 201
+    endMs: 412
   - token: 4
-    startMs: 403
-    endMs: 605
+    startMs: 412
+    endMs: 644
   - token: 6
-    startMs: 605
-    endMs: 937
+    startMs: 644
+    endMs: 1006
   - token: 8
-    startMs: 937
-    endMs: 1592
+    startMs: 1006
+    endMs: 1649
   - token: 10
-    startMs: 1592
-    endMs: 1834
+    startMs: 1649
+    endMs: 2070
   - token: 13
-    startMs: 1834
-    endMs: 2479
+    startMs: 2070
+    endMs: 2534
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: این چای هم خیلی خوشمزه است.
-    cer: 0.192
-    status: review
+    asrText: این چای هم خیلی خوشمزه است. ممنون.
+    cer: 0.0
+    status: pass
 - item: fa.story.tomorrow#0
   speed: normal
   file: clips/aca53b2361247766.mp3
@@ -4265,9 +4322,9 @@ clips:
     status: pass
 - item: fa.story.tomorrow#8
   speed: normal
-  file: clips/9aff925566094df8.mp3
-  sha256: 9755df3f73733f840d18d1c9e13670e15ecad9e18d2b96b5fb07271f9a239916
-  durationMs: 2045
+  file: clips/d728298cc652e34d.mp3
+  sha256: cc6f40fc961491505ea131543e2fa3e839d87c7993a7b56cce1d26b07e885c3e
+  durationMs: 1790
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -4286,25 +4343,28 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 9aff925566094df8716bc081d08539c1a52020afe721a44308722003c3a7fbf1
+      sentences:
+      - carrier
+      - plain
+    inputHash: d728298cc652e34d168a122da113607b7d5dfaa0567872bd4a1d8826a3859a7f
   timings:
   - token: 0
-    startMs: 40
-    endMs: 431
+    startMs: 60
+    endMs: 362
   - token: 2
-    startMs: 431
-    endMs: 1150
+    startMs: 362
+    endMs: 930
   - token: 5
-    startMs: 1150
-    endMs: 1294
+    startMs: 930
+    endMs: 1208
   - token: 7
-    startMs: 1294
-    endMs: 1705
+    startMs: 1208
+    endMs: 1610
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: خوب ناست تو فردا
-    cer: 0.167
+    asrText: رو باز. تو فارده.
+    cer: 0.5
     status: review
 - item: fa.story.tomorrow#9
   speed: normal
@@ -4397,9 +4457,9 @@ clips:
     status: review
 - item: fa.story.weekend#1
   speed: normal
-  file: clips/ffdffcf88efb5062.mp3
-  sha256: 43170305c90f45f110ff88e8b8a82307560f90ffacb0e4a49667713f8df264eb
-  durationMs: 2394
+  file: clips/a8572f4161e9c41b.mp3
+  sha256: 0dd309797320d143cba4dc5060425ff84fe8c9359f300e4ee0fdea7ca72904a3
+  durationMs: 2429
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -4418,32 +4478,35 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: ffdffcf88efb5062960e235bec7e3dd00e7a3f984015cdcc238d5e49bc4bcdcd
+      sentences:
+      - carrier
+      - plain
+    inputHash: a8572f4161e9c41b353cc6e5692024a8b27f73ce146d109ad1b69f2d1e8fc28c
   timings:
   - token: 0
-    startMs: 60
-    endMs: 560
+    startMs: 20
+    endMs: 730
   - token: 3
-    startMs: 560
-    endMs: 724
+    startMs: 730
+    endMs: 813
   - token: 5
-    startMs: 724
-    endMs: 1278
+    startMs: 813
+    endMs: 1345
   - token: 7
-    startMs: 1278
-    endMs: 1408
+    startMs: 1345
+    endMs: 1445
   - token: 9
-    startMs: 1408
-    endMs: 1811
+    startMs: 1445
+    endMs: 1827
   - token: 11
-    startMs: 1811
-    endMs: 2233
+    startMs: 1827
+    endMs: 2228
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: با خانواده به شما لفتیم
-    cer: 0.208
-    status: review
+    asrText: سلام و خانواده به شمال رفتیم.
+    cer: 0.083
+    status: pass
 - item: fa.story.weekend#10
   speed: normal
   file: clips/f5545453ea5f5bbe.mp3
@@ -4708,9 +4771,9 @@ clips:
     status: review
 - item: fa.story.weekend#8
   speed: normal
-  file: clips/2756822727c8c2b7.mp3
-  sha256: f6408525f11b4337a89e995022b138b642783db3848c128b88d178a9027b92b5
-  durationMs: 2826
+  file: clips/5bbf121bd31033bf.mp3
+  sha256: 60749d8586c1f721ad4cbedf82205663b9c671a5181b156e97573a0b043e432c
+  durationMs: 2687
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -4729,28 +4792,32 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 2756822727c8c2b74eb54a616df5681c8dc221b634e3f795c301c9b4cd63c2b4
+      sentences:
+      - carrier
+      - plain
+      - carrier
+    inputHash: 5bbf121bd31033bf859b8d440fc625154c9fd1ff13c3a13f3418d25e3845b99d
   timings:
   - token: 0
-    startMs: 301
-    endMs: 982
+    startMs: 0
+    endMs: 800
   - token: 3
-    startMs: 982
-    endMs: 1183
+    startMs: 800
+    endMs: 973
   - token: 5
-    startMs: 1183
-    endMs: 1574
+    startMs: 973
+    endMs: 1293
   - token: 7
-    startMs: 1574
-    endMs: 2205
+    startMs: 1293
+    endMs: 2230
   - token: 10
-    startMs: 2205
-    endMs: 2786
+    startMs: 2230
+    endMs: 2607
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: این اکس دری است
-    cer: 0.474
+    asrText: بله این عکس دریاز ببین
+    cer: 0.158
     status: review
 - item: fa.story.weekend#9
   speed: normal
@@ -4832,9 +4899,9 @@ clips:
     status: pass
 - item: s.10
   speed: normal
-  file: clips/53b90984ac854fd2.mp3
-  sha256: 1a1ff31407c115aa29541d4f1712f3f8612b90c631e81005d15b6def704b1883
-  durationMs: 557
+  file: clips/eabf7e1d0d837a8b.mp3
+  sha256: df7f9b6892b2e7be0bd578292881d5e07b49f2415724b783c2a637fef55115b4
+  durationMs: 1114
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -4853,28 +4920,31 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 53b90984ac854fd236f86957228e64c63b463f58ecf9206ae249239513d19670
+      sentences:
+      - carrier
+    take: 1
+    inputHash: eabf7e1d0d837a8bbf246d357bd03056d8823ad17e6be33a320314e074dba81e
   timings:
   - token: 0
-    startMs: 0
-    endMs: 83
+    startMs: 41
+    endMs: 213
   - token: 2
-    startMs: 83
-    endMs: 382
+    startMs: 213
+    endMs: 790
   - token: 4
-    startMs: 382
-    endMs: 557
+    startMs: 790
+    endMs: 1094
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: PYM JBZ
-    cer: 1.0
-    status: fail
+    asrText: این ماریا مست.
+    cer: 0.3
+    status: review
 - item: s.11
   speed: normal
-  file: clips/096f77a8ac04ae99.mp3
-  sha256: 853ad619b091d59ff56d27dd065dffd53a356199dbdf67c444147d9a4e0ccb91
-  durationMs: 661
+  file: clips/50b01056e29cfaa9.mp3
+  sha256: 6f042a51bc9e9aab6fe78fe15b69e7412dd74ecc55102e6fbf2e10bd9300820a
+  durationMs: 963
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -4893,23 +4963,26 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 096f77a8ac04ae999b38678a69cb219736d319512703188932b020b7caa8d5d3
+      sentences:
+      - carrier
+    take: 1
+    inputHash: 50b01056e29cfaa9f5cffd42f45024f89689a38e64ae8f27d09f56daefa3fb55
   timings:
   - token: 0
-    startMs: 310
-    endMs: 352
+    startMs: 41
+    endMs: 248
   - token: 2
-    startMs: 352
-    endMs: 517
+    startMs: 248
+    endMs: 625
   - token: 4
-    startMs: 517
-    endMs: 661
+    startMs: 625
+    endMs: 861
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: موسیقی
-    cer: 0.889
-    status: fail
+    asrText: این آلیست
+    cer: 0.222
+    status: review
 - item: s.12
   speed: normal
   file: clips/4f681507d89c21ac.mp3
@@ -5154,9 +5227,9 @@ clips:
     status: review
 - item: s.18
   speed: normal
-  file: clips/b8b15f75ff7d8651.mp3
-  sha256: 264dffbb6274940355b21923bd40c306b4d8d7ac5984cf40b0d48f1b8e8f3a13
-  durationMs: 743
+  file: clips/199ed3c478fff854.mp3
+  sha256: b551b877a2f7fda3169db8b9b2ac2d7f8c292453a0aa216c2f2cfaf096a28785
+  durationMs: 1056
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -5175,23 +5248,26 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: b8b15f75ff7d86511d7ca25b7aaaf68f1fdeef3d04ae92284b20694b9ee04784
+      sentences:
+      - carrier
+    take: 1
+    inputHash: 199ed3c478fff854713d3b32504a5328cf9766a8024e19c9649d4cec3ffc8d17
   timings:
   - token: 0
-    startMs: 248
-    endMs: 351
+    startMs: 41
+    endMs: 203
   - token: 2
-    startMs: 351
-    endMs: 557
+    startMs: 203
+    endMs: 731
   - token: 4
-    startMs: 557
-    endMs: 722
+    startMs: 731
+    endMs: 1036
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: ویدیوست
-    cer: 0.7
-    status: fail
+    asrText: این کتاب است.
+    cer: 0.0
+    status: pass
 - item: s.19
   speed: normal
   file: clips/2cde821efbc2f67b.mp3
@@ -5732,7 +5808,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -5924,7 +6002,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -8560,9 +8640,9 @@ clips:
     status: pass
 - item: s.day.8
   speed: normal
-  file: clips/b985850231386265.mp3
-  sha256: 3d69f78fac9b3641ab160f6deecaf7c9c763eaed9028b94a81d5623a5baa9819
-  durationMs: 1732
+  file: clips/ee0a39b1adb5de58.mp3
+  sha256: 636daf735a6acac5cd544e0b0376789a38ba27ea79d17b6f6ddeb4835665779e
+  durationMs: 2011
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -8581,23 +8661,26 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: b985850231386265b47e9df1323cf45b9bec992d80f8db26399a1e1457662319
+      sentences:
+      - carrier
+      - carrier
+    inputHash: ee0a39b1adb5de58d99994c048a3f3ac60ea0c46cf49823538dfa15c15ef5400
   timings:
   - token: 0
-    startMs: 302
-    endMs: 420
+    startMs: 0
+    endMs: 231
   - token: 2
-    startMs: 420
-    endMs: 920
+    startMs: 231
+    endMs: 1110
   - token: 5
-    startMs: 920
-    endMs: 1712
+    startMs: 1110
+    endMs: 1951
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: از سرکانه خودم و از سرکانه
-    cer: 1.214
-    status: fail
+    asrText: من می روم. خدا حافظ.
+    cer: 0.071
+    status: pass
 - item: s.day.9
   speed: normal
   file: clips/446042253a54243c.mp3
@@ -10098,7 +10181,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -11501,9 +11586,9 @@ clips:
     status: pass
 - item: s.food.9
   speed: normal
-  file: clips/e756d9058abc80e2.mp3
-  sha256: 3a9765932ed24675293baee9f4b2101b788dcf02c849d9a455b101a7c77ace68
-  durationMs: 1219
+  file: clips/78d7524284e34bc1.mp3
+  sha256: ffaab0e351f5182b080838947a7ba9fd417caf8bb14f6681d613cfb64d1fbc49
+  durationMs: 1741
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -11522,24 +11607,26 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: e756d9058abc80e2de09cb7c09f583b36eaaeefaa1a9b91ba96fb15241e2306a
+      sentences:
+      - carrier
+    inputHash: 78d7524284e34bc1840c1fab5e89060f8778f2e11dfecfd0e634b2f2ef0b7dd3
   timings:
   - token: 0
-    startMs: 183
-    endMs: 264
+    startMs: 20
+    endMs: 220
   - token: 2
-    startMs: 264
-    endMs: 569
+    startMs: 220
+    endMs: 831
   - token: 4
-    startMs: 569
-    endMs: 833
+    startMs: 831
+    endMs: 1357
   - token: 6
-    startMs: 833
-    endMs: 1016
+    startMs: 1357
+    endMs: 1640
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: تو قهفه دوست داری
+    asrText: تو قهبه دوست داری
     cer: 0.071
     status: pass
 - item: s.home.1
@@ -12442,9 +12529,9 @@ clips:
     status: pass
 - item: s.home.29
   speed: normal
-  file: clips/b4a6fd308599c1b7.mp3
-  sha256: fda6b2c4e84a4d3307f0a5d64e7b106d8e65b6b992f414fde6018632f9a6f12e
-  durationMs: 708
+  file: clips/160ca87bbee553d6.mp3
+  sha256: 71da73c1be0b5cd714e5ef6c32e1f47480bc4d0a7f0dc1a3bac3a3d7c7a94f9f
+  durationMs: 1044
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -12463,23 +12550,25 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: b4a6fd308599c1b759d6c583b435bb178f20ba08b980985ff39fa3e1a13a2fe8
+      sentences:
+      - carrier
+    inputHash: 160ca87bbee553d63f3ef379ab7a66842e81eb0f5bd1cf200bd426cae472c6ab
   timings:
   - token: 0
-    startMs: 40
-    endMs: 330
+    startMs: 0
+    endMs: 247
   - token: 3
-    startMs: 330
-    endMs: 465
+    startMs: 247
+    endMs: 625
   - token: 5
-    startMs: 465
-    endMs: 688
+    startMs: 625
+    endMs: 983
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: تک رو دل.
-    cer: 1.0
-    status: fail
+    asrText: را نونیست
+    cer: 0.444
+    status: review
 - item: s.home.3
   speed: normal
   file: clips/a6e754ae2d433f7d.mp3
@@ -15556,9 +15645,9 @@ clips:
     status: pass
 - item: s.past.5
   speed: normal
-  file: clips/b40fad5109018ba8.mp3
-  sha256: d5139d29f413f91f2f397a10a156ede0139ddb9c330690211662a58633bc9212
-  durationMs: 1288
+  file: clips/4d03c867ea0aeb33.mp3
+  sha256: 71eb93dd322995ba3c319b77f6cf6b83bf7f7ded39ff0f8dc27926a911b57c30
+  durationMs: 1451
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
@@ -15577,23 +15666,25 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: b40fad5109018ba840482b067e25671af4775c3d5689805b35c9bd2644bcbd6a
+      sentences:
+      - carrier
+    inputHash: 4d03c867ea0aeb33d98e42df95c26abe3ca679dcfbf8082a47e1e83e4704cc26
   timings:
   - token: 0
-    startMs: 403
-    endMs: 544
+    startMs: 60
+    endMs: 363
   - token: 2
-    startMs: 544
-    endMs: 906
+    startMs: 363
+    endMs: 937
   - token: 4
-    startMs: 906
-    endMs: 1288
+    startMs: 937
+    endMs: 1431
   timingSource: alignment
   qa:
     asrModel: whisper-large-v3-turbo
-    asrText: آتوز آب
-    cer: 0.727
-    status: fail
+    asrText: علی دیروز آمد.
+    cer: 0.0
+    status: pass
 - item: s.past.6
   speed: normal
   file: clips/79f821e34c732c73.mp3
@@ -18338,7 +18429,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -18478,7 +18571,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -18653,7 +18748,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -18758,7 +18855,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -19143,7 +19242,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -19598,7 +19699,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -19872,8 +19975,8 @@ clips:
     status: pass
 - item: sense:cheghadr
   speed: normal
-  file: clips/c054d3905c821b6a.mp3
-  sha256: d06a961acfc7803fbc76d9298d8e6dd339d6a591e7beed7d8ca619004f1aeab6
+  file: clips/0ce31569e3f14226.mp3
+  sha256: 10d1f77d50d1a1cb35cdf90d9c6bba833b02266d8e2d1b5797518593545dab72
   durationMs: 708
   license: MIT
   provenance:
@@ -19893,18 +19996,19 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: c054d3905c821b6a0c2d319494541b0e99938ab8eaa287fc07891e2416dcd7cd
+    take: 1
+    inputHash: 0ce31569e3f14226c8aafb1ca9d4b762298c84537f2491a9331bad5b8b79f9e9
   timings:
   - token: 0
     startMs: 81
-    endMs: 668
+    endMs: 648
   timingSource: alignment
   qa:
     trace: t_ʃ_ˈ_e_q_1_a_d_r
     asrModel: whisper-large-v3-turbo
-    asrText: شه آتر.
-    cer: 1.0
-    status: fail
+    asrText: چقدر
+    cer: 0.0
+    status: pass
 - item: sense:chetor
   speed: normal
   file: clips/17ac6fbaaa6b8473.mp3
@@ -19913,7 +20017,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -19948,7 +20054,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -20333,7 +20441,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -20578,7 +20688,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -20823,7 +20935,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -21138,7 +21252,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -21167,8 +21283,8 @@ clips:
     status: fail
 - item: sense:ghand
   speed: normal
-  file: clips/44936ed55f5cbc12.mp3
-  sha256: f5721b369a36ba36da0ee459a572995adbe48926ab388193b062bdb6a7c8842c
+  file: clips/a0b72583da9c0952.mp3
+  sha256: 83f8363a3a8fbeff5cf2965b91aaf8841d2d199eb500b44a366830f87cbe55d6
   durationMs: 464
   license: MIT
   provenance:
@@ -21188,17 +21304,18 @@ clips:
         text: 'حالا این کلمه را تکرار کن، '
         maxWords: 2
         method: carrier-1
-    inputHash: 44936ed55f5cbc12271f723c822fab549e7c6583f402a316edefebfdc2773def
+    take: 1
+    inputHash: a0b72583da9c09522ea5f093559ca60056f7593cd72f4b7ef6cdac0ae96fe296
   timings:
   - token: 0
     startMs: 21
-    endMs: 464
+    endMs: 401
   timingSource: alignment
   qa:
     trace: q_1_ˈ_a_n_d
     asrModel: whisper-large-v3-turbo
-    asrText: PYM JBZ
-    cer: 2.0
+    asrText: راند
+    cer: 0.667
     status: fail
 - item: sense:ghashang
   speed: normal
@@ -21523,7 +21640,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -21628,7 +21747,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -21733,7 +21854,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -22188,7 +22311,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -22573,7 +22698,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -22818,7 +22945,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -23133,7 +23262,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -23203,7 +23334,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -23238,7 +23371,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -23483,7 +23618,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -23623,7 +23760,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -24218,7 +24357,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -24253,7 +24394,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -24673,7 +24816,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -24848,7 +24993,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -24953,7 +25100,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -25128,7 +25277,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -25618,7 +25769,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -26143,7 +26296,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -26178,7 +26333,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -26213,7 +26370,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper
@@ -26248,7 +26407,9 @@ clips:
   license: MIT
   provenance:
     author: generated:piper@MahtaFetrat/Mana-Persian-Piper#ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0+piper-1.8.0
-    status: draft
+    status: reviewed
+    reviewedBy: human:ben
+    reviewedAt: '2026-11-06'
   synthetic: true
   synthesis:
     provider: piper

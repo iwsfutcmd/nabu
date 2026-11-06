@@ -13,11 +13,16 @@ most a few words is said at the end of a carrier sentence ("…, X."), and:
    first phoneme through the pad after its last one (not the closing full stop, which the model
    fills with an in-breath), with short fades.
 
+Longer items are said as they are, except a sentence the model would collapse (`collapses`: its
+sounds predicted well under the carrier's): "این مریم است." or the "خداحافظ!" closing a story line.
+That sentence goes through the carrier on its own, and the item's sentences are joined as usual.
+
 Everything here but `split` is pure: ids and frames in, frames and sample offsets out.
 """
 
 from __future__ import annotations
 
+import re
 import unicodedata
 from dataclasses import dataclass
 from typing import Any
@@ -35,6 +40,12 @@ FADE_IN_MS = 10
 FADE_OUT_MS = 40
 #: Shapes the clips: part of their identity, so changing any of the above means a new method id.
 METHOD = "carrier-1"
+#: A sentence whose sounds the model predicts, on average, at under this share of the carrier's is
+#: one it would collapse. Measured on fa: every sentence a listener heard as static or cut off was
+#: under it, and none they passed.
+COLLAPSE = 0.8
+#: Where Piper (eSpeak) ends a sentence: its closing punctuation, then a space.
+_SENTENCE_END = re.compile(r"(?<=[.!?\u061F\u06D4])\s+")
 
 
 @dataclass(frozen=True)
@@ -64,6 +75,18 @@ def item_start(ids: list[int], carrier_ids: list[int], space: int, pad: int) -> 
     if ids[: len(head)] != head or len(ids) < len(head) + 3 or ids[len(head)] != space:
         return None
     return len(head) + 2
+
+
+def sentences(text: str) -> list[str]:
+    """The text's sentences, split where Piper splits them (closing punctuation and a space)."""
+    return [s for s in _SENTENCE_END.split(text.strip()) if s]
+
+
+def collapses(syms: list[str], frames: list[float], phone_floor: float) -> bool:
+    """Whether the model would collapse this sentence: its sounds' predicted frames average under
+    COLLAPSE times the carrier's."""
+    sounds = [f for s, f in zip(syms, frames, strict=True) if not _marker(s)]
+    return bool(sounds) and sum(sounds) / len(sounds) < COLLAPSE * phone_floor
 
 
 def floors(syms: list[str], frames: list[float]) -> tuple[float, float]:

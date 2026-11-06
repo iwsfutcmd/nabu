@@ -43,6 +43,18 @@ carrier sentence, then cut out (nabu/audio/carrier.py):
 - **Checked:** the carrier said alone must be how the item's utterance begins (a prefix of its
   phoneme ids), or the clip fails rather than being cut in the wrong place.
 
+**A longer item's collapsing sentences go through the carrier too.** Piper reads an item sentence
+by sentence, so a long item can still hold a short sentence the model collapses: «این مریم است.»
+came out as half a second of static, the «خداحافظ!» closing a story line was cut off. Before
+synthesis, each sentence's sounds are measured with the duration predictor (deterministic): a
+sentence whose sounds average under 0.8 of the carrier's floor is said in the carrier on its own,
+the others as before, and the item's sentences are joined as usual.
+- **Measured:** under 0.8 were all six sentence clips a listener heard as static or cut off and
+  10 of the 16 plain items the round trip failed, and none of the clips a listener passed.
+- **Only those items change:** the route (`"sentences": ["carrier", "plain", …]`) joins the
+  clip's own settings and identity (`item_settings`), so the other clips, those passed by a
+  listener among them, keep theirs. 28 of 369 longer items take the route.
+
 **A voice can read an item otherwise** (`spoken: {item: text}`): for a reading its text does
 not settle. fa's numbers drill says 9 as نه, which is noh ("nine"); spelled bare, the voice says
 na ("no"), and the two items shared one clip. It reads نُه. The text must have as many words as
@@ -64,6 +76,9 @@ samples anew. Sentences of one item are joined with 200 ms of silence.
   check like any clip, and a listener's rejection makes a new take.
 - **Whisper fails good short words** (it hears و and سه as موسیقی), so 91 clips, most of them
   word cards, wait out of the bundles until a listener passes them in the audio check.
+- **First pass of the audio check** (2026-11-06, human:ben): 46 clips judged, 37 passed, 8
+  rejected. Six of the rejections were collapsed sentences, now routed through the carrier; the
+  other two (چقدر, قند, cut off) were made again as their next take.
 - **و between numbers is read "va"** (بیست و پنج, ده و نیم; 2 of 318 sentences), as eSpeak's
   phonemizer reads it. Written بیستُ پنج it says bist-o panj, but that has a word fewer, which
   `spoken` does not allow (the word timings would not map).

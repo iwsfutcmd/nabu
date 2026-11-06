@@ -46,7 +46,7 @@ import urllib.error
 import urllib.request
 from array import array
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from functools import cache
 from pathlib import Path
 from typing import Any, ClassVar, Protocol
@@ -160,7 +160,10 @@ class PiperProvider:
     (`seed_of`). Sentences are joined with SENTENCE_GAP_MS of silence.
 
     With a `carrier` (ADR 0065), an item of at most `maxWords` words is said at the end of the
-    carrier sentence with durations set from it, and cut out (nabu.audio.carrier)."""
+    carrier sentence with durations set from it, and cut out (nabu.audio.carrier). So is any
+    sentence of a longer item that the model would collapse (`carrier.collapses`); the item's
+    other sentences are said as they are. `item_settings` names that route, so only the items
+    it changes have new identities."""
 
     name = "piper"
     seeded = True
@@ -169,6 +172,7 @@ class PiperProvider:
     NOISE_SCALE = 0.667
 
     def __init__(self, voice: AudioVoice | None = None) -> None:
+        self.voice = voice.voice if voice is not None else None
         self.model = voice.model if voice is not None else None
         carrier = voice.carrier if voice is not None else None
         self.carrier = carrier.text if carrier is not None else None
@@ -229,6 +233,81 @@ class PiperProvider:
         ort = optional("onnxruntime")
         ort.set_seed(seed % 2**31)
         return ort.InferenceSession(graph, providers=["CPUExecutionProvider"])
+
+    def _ids(self, engine: Any, text: str) -> list[int]:
+        return list(engine.phonemes_to_ids([p for s in engine.phonemize(text) for p in s]))
+
+    def _frames(self, voice: str, ids: list[int]) -> list[float]:
+        """Predicted frames per phoneme id (no duration noise: deterministic)."""
+        from nabu.audio import carrier
+
+        np: Any = importlib.import_module("numpy")
+        reading, _given = self._split(voice, self.model)
+        feed = {
+            "input": np.array([ids], dtype=np.int64),
+            "input_lengths": np.array([len(ids)], dtype=np.int64),
+            "scales": np.array([self.NOISE_SCALE, 1.0, 0.0], dtype=np.float32),
+        }
+        return [float(f) for f in reading.run([carrier.DURATIONS], feed)[0][0, 0]]
+
+    def _symbols(self, engine: Any) -> dict[int, str]:
+        return {i: p for p, ids in engine.config.phoneme_id_map.items() for i in ids}
+
+    def _floors(self, engine: Any, voice: str) -> tuple[float, float]:
+        """The carrier said on its own, as a sentence: a reading the model gets right."""
+        from nabu.audio import carrier
+
+        assert self.carrier is not None
+        inv = self._symbols(engine)
+        alone = self._ids(engine, regex.sub(r"[\p{P}\s]+$", "", self.carrier.rstrip()) + ".")
+        return carrier.floors([inv[i] for i in alone], self._frames(voice, alone))
+
+    def _route(self, engine: Any, voice: str, text: str) -> list[tuple[str, bool]] | None:
+        """A longer item's sentences, each with whether the model would collapse it (then it is
+        said in the carrier); None when none would, or when the text does not split as Piper
+        splits it (then the item is said as it is)."""
+        from nabu.audio import carrier
+
+        if self.carrier is None or len(text.split()) <= self.max_words:
+            return None
+        parts = carrier.sentences(text)
+        whole = [list(engine.phonemes_to_ids(s)) for s in engine.phonemize(text)]
+        alone = [self._ids(engine, part) for part in parts]
+        if alone != whole:
+            return None
+        inv = self._symbols(engine)
+        floor, _pad = self._floors(engine, voice)
+        route = [
+            (part, carrier.collapses([inv[i] for i in ids], self._frames(voice, ids), floor))
+            for part, ids in zip(parts, alone, strict=True)
+        ]
+        return route if any(c for _, c in route) else None
+
+    def item_settings(self, text: str) -> dict[str, Any]:
+        """What shapes this item's clip beyond `settings`: the route through its sentences, when a
+        sentence goes through the carrier. Empty otherwise, so other clips keep their identity."""
+        if self.voice is None:
+            return {}
+        engine, _raw = self._engine(self.voice, self.model)
+        route = self._route(engine, self.voice, text)
+        if route is None:
+            return {}
+        return {"sentences": ["carrier" if c else "plain" for _, c in route]}
+
+    def _sentences(
+        self, engine: Any, raw: bytes, r: Request, route: list[tuple[str, bool]]
+    ) -> Clip:
+        """Each sentence on its own, the collapsing ones in the carrier, joined with the gap."""
+        np: Any = importlib.import_module("numpy")
+        clips = [
+            self._carried(engine, replace(r, input=part))
+            if carried
+            else self._plain(engine, raw, replace(r, input=part))
+            for part, carried in route
+        ]
+        rate = clips[0].sample_rate
+        gap = np.zeros(rate * self.SENTENCE_GAP_MS // 1000, dtype=np.int16).tobytes()
+        return Clip(gap.join(c.pcm for c in clips), rate, None, None)
 
     def _plain(self, engine: Any, raw: bytes, r: Request) -> Clip:
         piper = optional("piper")
@@ -302,7 +381,15 @@ class PiperProvider:
         for r in requests:
             engine, raw = self._engine(r.voice, self.model)
             short = self.carrier is not None and len(r.input.split()) <= self.max_words
-            out.append(self._carried(engine, r) if short else self._plain(engine, raw, r))
+            if short:
+                out.append(self._carried(engine, r))
+                continue
+            route = self._route(engine, r.voice, r.input)
+            out.append(
+                self._plain(engine, raw, r)
+                if route is None
+                else self._sentences(engine, raw, r, route)
+            )
         return out
 
 

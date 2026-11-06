@@ -44,6 +44,9 @@ def syms(xs: list[int]) -> list[str]:
     return [SYMS[i] for i in xs]
 
 
+#: Not sounds: Piper's markers and the punctuation in SYMS.
+MARKERS = {"_", "^", "$", " ", ",", "."}
+
 CARRIER = ids("beɡu,")
 WHOLE = ids("beɡu, salɑm.")
 
@@ -152,6 +155,73 @@ def test_the_split_reads_and_takes_the_frames() -> None:
     assert float(y2) == 12.0  # the frames given, not the ones it predicts
 
 
+def test_sentences_split_where_piper_splits_them() -> None:
+    assert carrier.sentences("ممنون، مریم! خداحافظ!") == ["ممنون، مریم!", "خداحافظ!"]
+    assert carrier.sentences(" سلام! این کیست؟ بله. ") == ["سلام!", "این کیست؟", "بله."]
+    # A sentence ends at closing punctuation and a space: not inside a number.
+    assert carrier.sentences("این مریم است.") == ["این مریم است."]
+    assert carrier.sentences("۱.۵ کیلو") == ["۱.۵ کیلو"]
+
+
+def test_a_sentence_collapses_when_its_sounds_are_predicted_well_under_the_floor() -> None:
+    s = syms(ids("salɑm."))
+    sounds = [k for k, x in enumerate(s) if x not in MARKERS]
+
+    def frames(each: float) -> list[float]:
+        return [each if k in sounds else 2.0 for k in range(len(s))]
+
+    floor = 5.0
+    assert carrier.collapses(s, frames(1.0), floor)
+    assert carrier.collapses(s, frames(floor * carrier.COLLAPSE - 0.01), floor)
+    assert not carrier.collapses(s, frames(floor * carrier.COLLAPSE), floor)
+    assert not carrier.collapses(s, frames(6.0), floor)
+    # Markers (pads, punctuation, the word gap) never count.
+    assert not carrier.collapses(syms(ids(".")), [1.0] * len(ids(".")), floor)
+
+
+def test_an_item_with_a_route_is_said_sentence_by_sentence(monkeypatch: pytest.MonkeyPatch) -> None:
+    v = AudioVoice.model_validate(
+        {
+            "id": "narrator",
+            "provider": "piper",
+            "voice": "fa_IR-mana-medium",
+            "orthography": "fa-Arab/standard",
+            "reading": "text",
+            "license": "MIT",
+            "carrier": {"text": "حالا این کلمه را تکرار کن، "},
+        }
+    )
+    tts = PiperProvider(v)
+    said: list[tuple[str, str]] = []
+    from nabu.audio.providers import Clip
+
+    piece = Clip(b"\x01\x00" * 10, 1000, None, None)
+
+    def carried(_engine: Any, r: Request) -> Clip:
+        said.append(("carrier", r.input))
+        return piece
+
+    def plain(_engine: Any, _raw: bytes, r: Request) -> Clip:
+        said.append(("plain", r.input))
+        return piece
+
+    # No model: the engine, the route and the two ways of saying a sentence are stand-ins.
+    def engine(_voice: str, _model: str | None) -> tuple[object, bytes]:
+        return object(), b""
+
+    def route(_engine: Any, _voice: str, _text: str) -> list[tuple[str, bool]]:
+        return [("سلام!", True), ("تو علی هستی؟", False)]
+
+    monkeypatch.setattr(PiperProvider, "_engine", staticmethod(engine))
+    monkeypatch.setattr(tts, "_route", route)
+    monkeypatch.setattr(tts, "_carried", carried)
+    monkeypatch.setattr(tts, "_plain", plain)
+    [clip] = tts.synthesize([Request("سلام! تو علی هستی؟", v.voice)])
+    assert said == [("carrier", "سلام!"), ("plain", "تو علی هستی؟")]
+    # Joined with the sentence gap: 200 ms at 1 kHz.
+    assert len(clip.pcm) == 2 * (10 + 200 + 10)
+
+
 # --- Live (NABU_SPEECH=1 and the speech group: downloads the Mana-Persian-Piper voice) -------
 
 MANA = "MahtaFetrat/Mana-Persian-Piper@ad9dd8518bedf517bd7cbc9f63b8e5c844bf5bc0"
@@ -183,3 +253,28 @@ def test_live_a_lone_word_is_said_at_a_speaking_length() -> None:
     # Seeded: the same request gives the same clip.
     [again] = tts.synthesize([Request("سلام.", v.voice)])
     assert again.pcm == word.pcm
+
+
+@pytest.mark.skipif(os.environ.get("NABU_SPEECH") != "1", reason="needs NABU_SPEECH=1")
+def test_live_only_collapsing_sentences_are_routed_through_the_carrier() -> None:
+    v = AudioVoice.model_validate(
+        {
+            "id": "narrator",
+            "provider": "piper",
+            "voice": "fa_IR-mana-medium",
+            "model": MANA,
+            "orthography": "fa-Arab/standard",
+            "reading": "text",
+            "license": "MIT",
+            "carrier": {"text": "حالا این کلمه را تکرار کن، "},
+        }
+    )
+    tts = PiperProvider(v)
+    # A listener heard these as static and cut off (ADR 0065); a long sentence is said as it is,
+    # and a short item already goes through the carrier, so neither has a route.
+    assert tts.item_settings("این مریم است.") == {"sentences": ["carrier"]}
+    assert tts.item_settings("ممنون، مریم! خداحافظ!") == {"sentences": ["carrier", "carrier"]}
+    assert tts.item_settings("ما معمولاً در خانه شام می\u200cخوریم.") == {}
+    assert tts.item_settings("سلام.") == {}
+    [clip] = tts.synthesize([Request("این مریم است.", v.voice)])
+    assert len(clip.pcm) / 2 / clip.sample_rate > 0.8
