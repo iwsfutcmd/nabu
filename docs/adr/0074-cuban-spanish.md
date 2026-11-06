@@ -61,6 +61,25 @@ brief and syllabus in `courses/es/README.md`).
 The policies are marked REVIEW in the profile, and the conformance vectors pin them in both
 harnesses.
 
+**A Cuban voice: OmniVoice cloning a Cuban speaker** (amends 0058).
+
+- OmniVoice's voice design has accents for English only and dialects for Chinese only, so a
+  designed voice would not sound Cuban. Cloning keeps the speaker's accent.
+- `nabu audio cast --recording <file> --text <transcript> --license --author human:<id>
+  --source` keeps a real speaker's recording as the voice's reference: normalized and trimmed
+  like an ingested recording, with its license, speaker and source (`ReferenceVoice.source`,
+  `synthetic: false`).
+- The es reference is 7.5 s of a newscast by Radio La Voz de la Victoria, the municipal station
+  of Ciénaga de Zapata, Matanzas (archive.org `compendio-30-7`, CC0 1.0). The newsreader is not
+  named, so the evidence that he is Cuban is the station. It is formal read speech, so it may
+  carry fewer Cuban features (aspirated *s*) than conversation would.
+- A man's voice, like the learner: sentences with `persons.speaker` are a man speaking.
+- Like apc's, the clips are CC-BY-NC-4.0, because OmniVoice's weights are. A CC0 reference adds
+  no condition of its own; a ShareAlike one would have conflicted with NC.
+- On a CPU, cloning takes about 15–25 s a clip (the reference is part of every sequence), so the
+  course's clips take many hours; generation resumes where it stopped. A recording by a Cuban
+  family member, cast the same way, would replace the voice and make every clip stale.
+
 ## Consequences
 
 - A heritage speaker gets a course that starts where they are and goes on for twenty units after
@@ -71,3 +90,5 @@ harnesses.
 - Every item is an LLM draft. Cuban usage, register and the accept sets need a native speaker's
   review (`courses/REVIEW.md`).
 - `form:` KCs give the planner per-tense knowledge. Other fusional languages can do the same.
+- The course sounds Cuban, from a newsreader's voice. A conversational recording would sound more
+  like home; the course can be recast at any time.
