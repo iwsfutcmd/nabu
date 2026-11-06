@@ -1,0 +1,551 @@
+# Unit 29 (es): ¿Quién soy? Being Cuban-American: ni de aquí ni de allá, ¿De dónde tú eres?, medio yuma. Spanglish
+# is how the family talks at home, and nothing here corrects it; the unit adds the Spanish a form, a job interview or
+# a cousin in Havana expects: la carpeta and la alfombra, el rufo and el techo, vacunar la carpeta and pasar la
+# aspiradora, aplicar and solicitar (la planilla, el puesto bilingüe), llamar para atrás and devolver la llamada,
+# hacer sentido and tener sentido, realizar and darse cuenta. Reported speech with the shift of tenses: dijo que era,
+# me dijo que me llamarían, me preguntó si podía, me preguntó de dónde era, me pidió que le contara.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u29
+title: {en: '¿Quién soy? Who am I?'}
+cefr: B2
+kcs:
+- {id: 'sense:americano', gloss: {en: American (from the US)}, forms: {es-Latn/standard: [americano]}, notes: {en: 'In Cuba and in Miami, americano means from the United States. Formal Spanish also says estadounidense, and many Latin Americans will remind you that they are americanos too. No capital: los americanos, el inglés americano.'}}
+- {id: 'sense:cubanoamericano', gloss: {en: Cuban-American}, forms: {es-Latn/standard: [cubanoamericano]}, notes: {en: 'One word, no hyphen and no capital: cubanoamericano, and for a woman cubanoamericana (the first part keeps its o). Some write cubano-americano.'}}
+- {id: 'sense:ni', gloss: {en: 'neither; nor; not even (ni… ni…: neither… nor…)'}, forms: {es-Latn/standard: [ni]}, notes: {en: 'Ni de aquí ni de allá: neither from here nor from there, how many children of exiles feel. Ni una palabra: not a single word. After a verb with no, the second item takes ni: no hablo francés ni alemán.'}}
+- {id: 'sense:espanglish', gloss: {en: Spanglish}, forms: {es-Latn/standard: [espanglish]}, notes: {en: 'The RAE spells it espanglish; Spanglish is just as common. Switching between English and Spanish, even inside one sentence, takes two languages and real skill (linguists call it code-switching). It is how many Cuban families in Miami talk at home.'}}
+- {id: 'sense:idioma', gloss: {en: language}, forms: {es-Latn/standard: [idioma]}, notes: {en: 'Masculine though it ends in -a: el idioma, like el día and el problema. La lengua says the same (and is also the tongue). Languages take no capital: el inglés, el español.'}}
+- {id: 'sense:alfombra', gloss: {en: carpet; rug}, forms: {es-Latn/standard: [alfombra]}, notes: {en: 'La alfombra: a carpet or a rug. With f, never ph. In Miami many say la carpeta, from English carpet; in Spanish una carpeta is a folder.'}}
+- {id: 'sense:techo', gloss: {en: roof; ceiling}, forms: {es-Latn/standard: [techo]}, notes: {en: 'El techo is both the roof and the ceiling inside; la azotea is a flat roof you can walk on. Miami Spanglish says el rufo.'}}
+- {id: 'sense:aspiradora', gloss: {en: 'vacuum cleaner; pasar la aspiradora: to vacuum'}, forms: {es-Latn/standard: [aspiradora]}, notes: {en: 'Pasar la aspiradora (por la alfombra): to vacuum (the carpet). Aspirar: to breathe in; to suck up. In Hialeah you may hear vacunar la carpeta, which in Spanish would be to vaccinate the folder.'}}
+- {id: 'sense:carpeta', gloss: {en: 'folder; (Miami Spanglish) carpet'}, forms: {es-Latn/standard: [carpeta]}, notes: {en: 'In Spanish una carpeta is a folder for papers, and in Cuba also the front desk of a hotel. Carpeta for carpet is Miami Spanglish, from English; the carpet is la alfombra.'}}
+- {id: 'sense:rufo', gloss: {en: 'roof (Miami Spanglish)'}, forms: {es-Latn/standard: [rufo]}, notes: {en: 'Miami Spanglish, from English roof. In Spanish, el techo. Hialeah understands el rufo; Havana does not.'}}
+- {id: 'sense:vacunar', gloss: {en: 'to vaccinate; (Miami Spanglish) to vacuum'}, forms: {es-Latn/standard: [vacunar]}, notes: {en: 'Vacunar is to vaccinate: vacunar a los niños; la vacuna, the vaccine. Vacunar la carpeta (to vacuum the carpet) is the classic Miami Spanglish joke: a Cuban from the island pictures someone giving a folder a shot. Say pasar la aspiradora por la alfombra.'}}
+- {id: 'sense:solicitar', gloss: {en: to apply for; to request}, forms: {es-Latn/standard: [solicitar]}, notes: {en: 'Solicitar un puesto, el pasaporte, una beca: to apply for a job, a passport, a scholarship. La solicitud: the application. In Miami you hear aplicar para un trabajo, from English apply for.'}}
+- {id: 'sense:puesto', gloss: {en: 'job; position; post'}, forms: {es-Latn/standard: [puesto]}, notes: {en: 'Un puesto (de trabajo): a job, a position; un trabajo and un empleo say the same. Also a stall at a market (un puesto de frutas). Puesto is also the participle of poner: he puesto la mesa.'}}
+- {id: 'sense:aplicar', gloss: {en: 'to apply (a cream, a rule); (Miami Spanglish) to apply for'}, forms: {es-Latn/standard: [aplicar]}, notes: {en: 'In Spanish you aplicar a cream, a rule or a discount: aplicar la ley. Aplicar para un trabajo comes from English; in a job interview, say solicitar un puesto (aplicar a un puesto is spreading in Latin America). Apliqué, with qu.'}}
+- {id: 'sense:entrevista', gloss: {en: interview}, forms: {es-Latn/standard: [entrevista]}, notes: {en: 'Una entrevista de trabajo: a job interview. Entrevistar: to interview. With v: entre + vista.'}}
+- {id: 'sense:bilingüe', gloss: {en: bilingual}, forms: {es-Latn/standard: [bilingüe]}, notes: {en: 'With ü: the two dots (la diéresis) tell you to say the u, bi-lin-güe, as in pingüino and vergüenza. Without them, gue sounds as in guerra. In Miami, un puesto bilingüe often pays more.'}}
+- {id: 'sense:llenar', gloss: {en: 'to fill; to fill in, fill out (a form)'}, forms: {es-Latn/standard: [llenar]}, notes: {en: 'Llenar un vaso: to fill a glass; llenar la planilla: to fill in (or out) the form, with nothing after the verb. With ll, like llamar and llegar.'}}
+- {id: 'sense:planilla', gloss: {en: 'form (to fill in) (Cuban)'}, forms: {es-Latn/standard: [planilla]}, notes: {en: 'What Cubans call a form you fill in: llenar una planilla. Elsewhere el formulario, which is accepted too. In Spain una planilla is a template.'}}
+- {id: 'sense:devolver', gloss: {en: 'to give back; to return (something); devolver la llamada: to call back'}, forms: {es-Latn/standard: [devolver]}, notes: {en: 'Devolver un libro: to return a book. Devolver la llamada: to call back (te devuelvo la llamada). O becomes ue: devuelvo, devuelve; the participle is devuelto. Llamar para atrás is English call back, word for word.'}}
+- {id: 'sense:atrás', gloss: {en: 'back; behind (para atrás: backwards)'}, forms: {es-Latn/standard: [atrás]}, notes: {en: 'With an accent on the á. Está atrás: it''s at the back. Te llamo para atrás (I''ll call you back) is Miami Spanglish: a Cuban on the island hears I''ll call you backwards. In Spanish: te devuelvo la llamada, or ahorita te llamo.'}}
+- {id: 'sense:sentido', gloss: {en: 'sense; meaning; tener sentido: to make sense'}, forms: {es-Latn/standard: [sentido]}, notes: {en: 'Eso tiene sentido: that makes sense. Hace sentido, from English makes sense, is heard all over Miami; in an interview or in writing, say tiene sentido. Also el sentido del humor, a sense of humour.'}}
+- {id: 'sense:cuenta', gloss: {en: 'bill; account; darse cuenta: to realize'}, forms: {es-Latn/standard: [cuenta]}, notes: {en: 'La cuenta: the bill (la cuenta, por favor) and an account (una cuenta de banco). Darse cuenta de que…: to realize that… (me di cuenta de que era tarde); keep the de before que. To realize is never realizar.'}}
+- {id: 'sense:realizar', gloss: {en: 'to carry out; to hold; to make come true'}, forms: {es-Latn/standard: [realizar]}, notes: {en: 'A formal verb: realizar una entrevista, to hold an interview; realizar un sueño, to make a dream come true. It never means to realize: that is darse cuenta. Realicé, with c before e.'}}
+- {id: 'sense:preguntar', gloss: {en: 'to ask (a question); preguntar si: to ask whether'}, forms: {es-Latn/standard: [preguntar]}, notes: {en: 'Me preguntó si era cubano; me preguntó dónde vivía (the question word keeps its accent inside the sentence). To ask for something, or to ask someone to do it, is pedir: me pidió un favor, me pidió que lo llamara. Me preguntó por un favor is English asked for.'}}
+- {id: 'sense:contar', gloss: {en: to tell (a story); to count}, forms: {es-Latn/standard: [contar]}, notes: {en: 'O becomes ue: cuento, cuentas. Contarle algo a alguien: to tell someone about something (cuéntame todo). ¿Qué me cuentas?: what''s new? Un cuento is a story, as in los cuentos de Abuela.'}}
+nodes:
+- {id: es.u29.de-donde, kind: lesson, introduces: ['sense:americano', 'sense:cubanoamericano', 'sense:ni']}
+- {id: es.u29.espanglish, kind: lesson, introduces: ['sense:espanglish', 'sense:idioma']}
+- {id: es.u29.la-alfombra, kind: lesson, introduces: ['sense:alfombra', 'sense:techo', 'sense:aspiradora', 'sense:carpeta', 'sense:rufo', 'sense:vacunar']}
+- {id: es.u29.la-entrevista, kind: lesson, introduces: ['sense:solicitar', 'sense:puesto', 'sense:aplicar', 'sense:entrevista', 'sense:bilingüe', 'sense:llenar', 'sense:planilla']}
+- {id: es.u29.te-devuelvo, kind: lesson, introduces: ['sense:devolver', 'sense:atrás', 'sense:sentido', 'sense:cuenta', 'sense:realizar']}
+- {id: es.u29.me-dijo, kind: lesson, introduces: ['sense:preguntar', 'sense:contar']}
+- {id: es.u29.story, kind: story}
+sentences:
+- id: s.u29.1
+  node: es.u29.de-donde
+  forms:
+    es-Latn/standard:
+      text: Daniel nació en Miami y creció en Hialeah.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: nació, sense: nacer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Miami, sense: miami}, {surface: 'y', sense: 'y'}, {surface: creció, sense: crecer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: Daniel nació en Miami y creció en Hialeah
+  translations:
+    en: Daniel was born in Miami and grew up in Hialeah.
+- id: s.u29.2
+  node: es.u29.de-donde
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: ¿De dónde tú eres? ¿Eres cubano o americano?
+      tokens: [{surface: De, sense: de}, {surface: dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: Eres, sense: ser, form: 'form:pres-2s'}, {surface: cubano, sense: cubano}, {surface: o, sense: o}, {surface: americano, sense: americano}]
+      reverse: |-
+        (De dónde tú eres|De dónde eres) ([tú] eres|eres tú) cubano o americano
+        (De dónde usted es|De dónde es) ([usted] es|es usted) cubano o americano
+  translations:
+    en: Where are you from? Are you Cuban or American?
+- id: s.u29.3
+  node: es.u29.de-donde
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: En la escuela yo era el cubano, y en Cuba soy el americano.
+      tokens: [{surface: En, sense: en}, {surface: la, sense: el}, {surface: escuela, sense: escuela}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: el, sense: el}, {surface: cubano, sense: cubano}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: americano, sense: americano}]
+      reverse: En la escuela [yo] era el cubano y en Cuba [yo] soy el americano
+  translations:
+    en: At school I was the Cuban (one|kid|guy), and in Cuba (I'm|I am) the American (one|guy).
+- id: s.u29.4
+  node: es.u29.de-donde
+  forms:
+    es-Latn/standard:
+      text: Muchos cubanoamericanos no se sienten ni de aquí ni de allá.
+      tokens: [{surface: Muchos, sense: mucho}, {surface: cubanoamericanos, sense: cubanoamericano}, {surface: 'no', sense: 'no'}, {surface: se, sense: se}, {surface: sienten, sense: sentirse, form: 'form:pres-3p'}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: aquí, sense: aquí}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: allá, sense: allá}]
+      reverse: Muchos cubanoamericanos no se sienten ni de aquí ni de allá
+  translations:
+    en: |-
+      Many Cuban-Americans feel [that] (they're|they are) neither from here nor from there.
+      Many Cuban-Americans (don't|do not) feel (like|that) (they're|they are) from here or from there.
+- id: s.u29.5
+  node: es.u29.de-donde
+  forms:
+    es-Latn/standard:
+      text: Para abuela, su país es Cuba; para mí, son los dos.
+      tokens: [{surface: Para, sense: para}, {surface: abuela, sense: abuela}, {surface: su, sense: su}, {surface: país, sense: país}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Cuba, sense: cuba}, {surface: para, sense: para}, {surface: mí, sense: mí}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: dos, sense: dos}]
+      reverse: Para (abuela|la abuela|mi abuela) su país es Cuba para mí son los dos
+  translations:
+    en: For (Grandma|Grandmother|Abuela|my grandma|my grandmother), her country is Cuba; for me, (it's|it is) both.
+- id: s.u29.6
+  node: es.u29.de-donde
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: 'Yo no soy ni de aquí ni de allá: soy cubanoamericana.'
+      tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: aquí, sense: aquí}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: allá, sense: allá}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: cubanoamericana, sense: cubanoamericano}]
+      reverse: '[Yo] no soy ni de aquí ni de allá [yo] soy cubanoamericana'
+  translations:
+    en: |-
+      (I'm|I am) neither from here nor from there: (I'm|I am) Cuban-American.
+      (I'm|I am) not from here or from there: (I'm|I am) Cuban-American.
+- id: s.u29.7
+  node: es.u29.de-donde
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Abuela dijo que yo era más americano que cubano.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: más, sense: más}, {surface: americano, sense: americano}, {surface: que, sense: que.than}, {surface: cubano, sense: cubano}]
+      reverse: (Abuela|La abuela|Mi abuela) dijo que [yo] era más americano que cubano
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) said [that] I was more American than Cuban.
+- id: s.u29.8
+  node: es.u29.espanglish
+  forms:
+    es-Latn/standard:
+      text: En casa hablamos espanglish, y eso está bien.
+      tokens: [{surface: En, sense: en}, {surface: casa, sense: casa}, {surface: hablamos, sense: hablar, form: 'form:pres-1p'}, {surface: espanglish, sense: espanglish}, {surface: 'y', sense: 'y'}, {surface: eso, sense: ese}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}]
+      reverse: En (casa|la casa) [nosotros] hablamos (espanglish|spanglish) y eso está bien
+  translations:
+    en: At home we speak Spanglish, and (that's|that is) (fine|okay|OK|all right|alright).
+- id: s.u29.9
+  node: es.u29.espanglish
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: De niña, yo siempre le contestaba a abuela en inglés.
+      tokens: [{surface: De, sense: de}, {surface: niña, sense: niño}, {surface: yo, sense: yo}, {surface: siempre, sense: siempre}, {surface: le, sense: le}, {surface: contestaba, sense: contestar, form: 'form:impf'}, {surface: a, sense: a}, {surface: abuela, sense: abuela}, {surface: en, sense: en}, {surface: inglés, sense: inglés}]
+      reverse: (De niña|Cuando era niña) [yo] siempre le contestaba a (abuela|la abuela|mi abuela) en inglés
+  translations:
+    en: |-
+      As a (girl|little girl|child|kid), I always (answered|used to answer) (Grandma|Grandmother|Abuela|my grandma|my grandmother) in English.
+      When I was a (girl|little girl|child|kid), I always (answered|used to answer) (Grandma|Grandmother|Abuela|my grandma|my grandmother) in English.
+- id: s.u29.10
+  node: es.u29.espanglish
+  forms:
+    es-Latn/standard:
+      text: '¿Cuántos idiomas tú hablas? Dos, y a veces tres: el espanglish.'
+      tokens: [{surface: Cuántos, sense: cuánto}, {surface: idiomas, sense: idioma}, {surface: tú, sense: tú}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: Dos, sense: dos}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: veces, sense: vez}, {surface: tres, sense: tres}, {surface: el, sense: el}, {surface: espanglish, sense: espanglish}]
+      reverse: (Cuántos idiomas tú hablas|Cuántos idiomas hablas [tú]|Cuántos idiomas usted habla|Cuántos idiomas habla [usted]|Cuántos idiomas ustedes hablan|Cuántos idiomas hablan [ustedes]) dos y a veces tres [el] (espanglish|spanglish)
+  translations:
+    en: 'How many languages do you speak? Two, and sometimes three: Spanglish.'
+- id: s.u29.11
+  node: es.u29.espanglish
+  forms:
+    es-Latn/standard:
+      text: Yunior no entiende muchas palabras de Miami.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: 'no', sense: 'no'}, {surface: entiende, sense: entender, form: 'form:pres-3s'}, {surface: muchas, sense: mucho}, {surface: palabras, sense: palabra}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
+      reverse: Yunior no entiende muchas palabras de Miami
+  translations:
+    en: Yunior (doesn't|does not) understand (many|a lot of|lots of) (Miami words|words from Miami).
+- id: s.u29.12
+  node: es.u29.espanglish
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Yunior dice que yo soy medio yuma porque hablo espanglish.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: medio, sense: medio}, {surface: yuma, sense: yuma}, {surface: porque, sense: porque}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: espanglish, sense: espanglish}]
+      reverse: Yunior dice que [yo] soy medio yuma porque [yo] hablo (espanglish|spanglish)
+  translations:
+    en: Yunior says [that] (I'm|I am) (half|kind of|sort of|a bit|a little) (American|gringo|a gringo|a Yankee|a foreigner) because I speak Spanglish.
+- id: s.u29.13
+  node: es.u29.espanglish
+  forms:
+    es-Latn/standard:
+      text: Yunior dijo que no entendía ni una palabra de mi espanglish.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: entendía, sense: entender, form: 'form:impf'}, {surface: ni, sense: ni}, {surface: una, sense: un}, {surface: palabra, sense: palabra}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: espanglish, sense: espanglish}]
+      reverse: Yunior dijo que no entendía ni una palabra de mi (espanglish|spanglish)
+  translations:
+    en: Yunior said [that] he (didn't|did not|couldn't|could not) understand (a single|one single|one|a) word of my Spanglish.
+- id: s.u29.14
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: Abuela quiere una alfombra nueva para la sala.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: una, sense: un}, {surface: alfombra, sense: alfombra}, {surface: nueva, sense: nuevo}, {surface: para, sense: para}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+      reverse: (Abuela|La abuela|Mi abuela) quiere una alfombra nueva para la sala
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) wants a new (carpet|rug) for the living room.
+- id: s.u29.15
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: Papi y abuelo arreglaron el techo del portal.
+      tokens: [{surface: Papi, sense: papi}, {surface: 'y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: arreglaron, sense: arreglar, form: 'form:pret-3p'}, {surface: el, sense: el}, {surface: techo, sense: techo}, {surface: del, sense: del}, {surface: portal, sense: portal}]
+      reverse: (Papi|Papá|Mi papá|Mi papi) y (abuelo|el abuelo|mi abuelo) arreglaron el techo del portal
+  translations:
+    en: (Dad|Daddy|My dad) and (Grandpa|Grandfather|my grandpa|my grandfather) (fixed|repaired) the (roof of the porch|porch roof).
+- id: s.u29.16
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: Los sábados yo paso la aspiradora por toda la casa.
+      tokens: [{surface: Los, sense: el}, {surface: sábados, sense: sábado}, {surface: yo, sense: yo}, {surface: paso, sense: pasar, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: aspiradora, sense: aspiradora}, {surface: por, sense: por}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: casa, sense: casa}]
+      reverse: |-
+        Los sábados [yo] paso la aspiradora por toda la casa
+        [Yo] paso la aspiradora por toda la casa los sábados
+  translations:
+    en: |-
+      (On Saturdays|Every Saturday) I (vacuum|hoover) the whole house.
+      I (vacuum|hoover) the whole house (on Saturdays|every Saturday).
+- id: s.u29.17
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: En Hialeah decimos carpeta; en Cuba dicen alfombra.
+      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: decimos, sense: decir, form: 'form:pres-1p'}, {surface: carpeta, sense: carpeta}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: alfombra, sense: alfombra}]
+      reverse: En Hialeah [nosotros] decimos carpeta en Cuba dicen alfombra
+  translations:
+    en: In Hialeah we say carpeta; in Cuba (they|people) say alfombra.
+- id: s.u29.18
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: El rufo es el techo en espanglish.
+      tokens: [{surface: El, sense: el}, {surface: rufo, sense: rufo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: techo, sense: techo}, {surface: en, sense: en}, {surface: espanglish, sense: espanglish}]
+      reverse: El rufo es el techo en (espanglish|spanglish)
+  translations:
+    en: |-
+      (Rufo|El rufo) is Spanglish for (techo|el techo|roof).
+      (Rufo|El rufo) is (techo|el techo) in Spanglish.
+- id: s.u29.19
+  node: es.u29.la-alfombra
+  forms:
+    es-Latn/standard:
+      text: 'Vacunar la carpeta es espanglish: se dice pasar la aspiradora.'
+      tokens: [{surface: Vacunar, sense: vacunar}, {surface: la, sense: el}, {surface: carpeta, sense: carpeta}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: espanglish, sense: espanglish}, {surface: se, sense: se.impersonal}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: pasar, sense: pasar}, {surface: la, sense: el}, {surface: aspiradora, sense: aspiradora}]
+      reverse: Vacunar la carpeta es (espanglish|spanglish) se dice pasar la aspiradora [por la alfombra]
+  translations:
+    en: 'Vacunar la carpeta is Spanglish: (you say|people say|the phrase is) pasar la aspiradora.'
+- id: s.u29.20
+  node: es.u29.la-entrevista
+  forms:
+    es-Latn/standard:
+      text: Daniel solicitó un puesto en un banco de Miami.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: solicitó, sense: solicitar, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: puesto, sense: puesto}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: banco, sense: banco}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
+      reverse: Daniel solicitó un (puesto|trabajo|empleo) en un banco de Miami
+  translations:
+    en: Daniel applied for a (job|position) (at|in|with) a (bank in Miami|Miami bank).
+- id: s.u29.21
+  node: es.u29.la-entrevista
+  forms:
+    es-Latn/standard:
+      text: En Hialeah dicen aplicar para un trabajo; en Cuba dicen solicitar un puesto.
+      tokens: [{surface: En, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: aplicar, sense: aplicar}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: trabajo, sense: trabajo}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: solicitar, sense: solicitar}, {surface: un, sense: un}, {surface: puesto, sense: puesto}]
+      reverse: En Hialeah dicen aplicar para un trabajo en Cuba dicen solicitar un puesto
+  translations:
+    en: In Hialeah (they|people) say aplicar para un trabajo; in Cuba (they|people) say solicitar un puesto.
+- id: s.u29.22
+  node: es.u29.la-entrevista
+  forms:
+    es-Latn/standard:
+      text: Mañana tengo una entrevista de trabajo, y es en español.
+      tokens: [{surface: Mañana, sense: mañana}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: entrevista, sense: entrevista}, {surface: de, sense: de}, {surface: trabajo, sense: trabajo}, {surface: 'y', sense: 'y'}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: español, sense: español}]
+      reverse: |-
+        Mañana [yo] tengo una entrevista de trabajo y es en español
+        [Yo] tengo una entrevista de trabajo mañana y es en español
+  translations:
+    en: |-
+      Tomorrow (I have|I've got) a job interview, and (it's|it is) in Spanish.
+      (I have|I've got) a job interview tomorrow, and (it's|it is) in Spanish.
+- id: s.u29.23
+  node: es.u29.la-entrevista
+  forms:
+    es-Latn/standard:
+      text: Busco un puesto bilingüe, porque hablo inglés y español.
+      tokens: [{surface: Busco, sense: buscar, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: puesto, sense: puesto}, {surface: bilingüe, sense: bilingüe}, {surface: porque, sense: porque}, {surface: hablo, sense: hablar, form: 'form:pres-1s'}, {surface: inglés, sense: inglés}, {surface: 'y', sense: 'y'}, {surface: español, sense: español}]
+      reverse: '[Yo] (busco|estoy buscando) un (puesto|trabajo|empleo) bilingüe porque [yo] hablo inglés y español'
+  translations:
+    en: (I'm|I am) looking for a bilingual (job|position) because I speak English and Spanish.
+- id: s.u29.24
+  node: es.u29.la-entrevista
+  forms:
+    es-Latn/standard:
+      text: Antes de la entrevista, tienes que llenar esta planilla.
+      tokens: [{surface: Antes, sense: antes}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: entrevista, sense: entrevista}, {surface: tienes, sense: tener-que, form: 'form:pres-2s'}, {surface: que, sense: tener-que}, {surface: llenar, sense: llenar}, {surface: esta, sense: este}, {surface: planilla, sense: planilla}]
+      reverse: |-
+        Antes de la entrevista ([tú] tienes|[usted] tiene|[ustedes] tienen) que llenar (esta planilla|este formulario)
+        ([Tú] tienes|[Usted] tiene|[Ustedes] tienen) que llenar (esta planilla|este formulario) antes de la entrevista
+  translations:
+    en: |-
+      Before the interview, you (have to|need to|must) fill (in|out) this form.
+      You (have to|need to|must) fill (in|out) this form before the interview.
+- id: s.u29.25
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: Del banco me llamaron, y yo les devolví la llamada por la tarde.
+      tokens: [{surface: Del, sense: del}, {surface: banco, sense: banco}, {surface: me, sense: me}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: les, sense: le}, {surface: devolví, sense: devolver, form: 'form:pret-1s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      reverse: (Del banco me llamaron|Me llamaron del banco) y [yo] les devolví la llamada (por la tarde|en la tarde)
+  translations:
+    en: (They called me from the bank|The bank called me), and I called them back in the afternoon.
+- id: s.u29.26
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: Decir te llamo para atrás es espanglish; en Cuba dicen te devuelvo la llamada.
+      tokens: [{surface: Decir, sense: decir}, {surface: te, sense: te}, {surface: llamo, sense: llamar, form: 'form:pres-1s'}, {surface: para, sense: para}, {surface: atrás, sense: atrás}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: espanglish, sense: espanglish}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: te, sense: te}, {surface: devuelvo, sense: devolver, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}]
+      reverse: '[Decir] te llamo para atrás es (espanglish|spanglish) en Cuba dicen te devuelvo la llamada'
+  translations:
+    en: (Saying te llamo para atrás|Te llamo para atrás) is Spanglish; in Cuba (they|people) say te devuelvo la llamada.
+- id: s.u29.27
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: ¿Eso tiene sentido? Sí, tiene mucho sentido.
+      tokens: [{surface: Eso, sense: ese}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: sentido, sense: sentido}, {surface: Sí, sense: sí}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: sentido, sense: sentido}]
+      reverse: Eso tiene sentido sí tiene mucho sentido
+  translations:
+    en: Does that make sense? Yes, it makes (a lot of|lots of|a great deal of) sense.
+- id: s.u29.28
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: Daniel se dio cuenta de que Yunior no entendía su espanglish.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: se, sense: se}, {surface: dio, sense: dar, form: 'form:pret-3s'}, {surface: cuenta, sense: cuenta}, {surface: de, sense: de}, {surface: que, sense: que}, {surface: Yunior, sense: yunior}, {surface: 'no', sense: 'no'}, {surface: entendía, sense: entender, form: 'form:impf'}, {surface: su, sense: su}, {surface: espanglish, sense: espanglish}]
+      reverse: Daniel se dio cuenta de que Yunior no entendía su (espanglish|spanglish)
+  translations:
+    en: Daniel realized [that] Yunior (didn't|did not|couldn't|could not) understand his Spanglish.
+- id: s.u29.29
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: Realizar no quiere decir darse cuenta.
+      tokens: [{surface: Realizar, sense: realizar}, {surface: 'no', sense: 'no'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: decir, sense: decir}, {surface: darse, sense: dar}, {surface: cuenta, sense: cuenta}]
+      reverse: Realizar no (quiere decir|significa) darse cuenta
+  translations:
+    en: Realizar (doesn't|does not) mean (darse cuenta|to realize|realize).
+- id: s.u29.30
+  node: es.u29.te-devuelvo
+  forms:
+    es-Latn/standard:
+      text: El banco realiza las entrevistas en los dos idiomas.
+      tokens: [{surface: El, sense: el}, {surface: banco, sense: banco}, {surface: realiza, sense: realizar, form: 'form:pres-3s'}, {surface: las, sense: el}, {surface: entrevistas, sense: entrevista}, {surface: en, sense: en}, {surface: los, sense: el}, {surface: dos, sense: dos}, {surface: idiomas, sense: idioma}]
+      reverse: El banco (realiza|hace) las entrevistas en los dos idiomas
+  translations:
+    en: The bank (holds|conducts|carries out|does) (the|its) interviews in both languages.
+- id: s.u29.31
+  node: es.u29.te-devuelvo
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Me di cuenta de que yo era más cubana de lo que pensaba.
+      tokens: [{surface: Me, sense: me}, {surface: di, sense: dar, form: 'form:pret-1s'}, {surface: cuenta, sense: cuenta}, {surface: de, sense: de}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: más, sense: más}, {surface: cubana, sense: cubano}, {surface: de, sense: de}, {surface: lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: pensaba, sense: pensar, form: 'form:impf'}]
+      reverse: '[Yo] me di cuenta de que [yo] (era|soy) más cubana de lo que [yo] pensaba'
+  translations:
+    en: I realized [that] I was more Cuban than I (thought|had thought).
+- id: s.u29.32
+  node: es.u29.me-dijo
+  forms:
+    es-Latn/standard:
+      text: La señora de la entrevista me preguntó de dónde era yo.
+      tokens: [{surface: La, sense: el}, {surface: señora, sense: señora}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: entrevista, sense: entrevista}, {surface: me, sense: me}, {surface: preguntó, sense: preguntar, form: 'form:pret-3s'}, {surface: de, sense: de}, {surface: dónde, sense: dónde}, {surface: era, sense: ser, form: 'form:impf'}, {surface: yo, sense: yo}]
+      reverse: La señora de la entrevista me preguntó (de dónde era [yo]|de dónde yo era|de dónde soy [yo]|de dónde yo soy)
+  translations:
+    en: The (lady|woman) (at|from) the interview asked me where I was from.
+- id: s.u29.33
+  node: es.u29.me-dijo
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Le dije que era cubano, pero que había nacido en Miami.
+      tokens: [{surface: Le, sense: le}, {surface: dije, sense: decir, form: 'form:pret-1s'}, {surface: que, sense: que}, {surface: era, sense: ser, form: 'form:impf'}, {surface: cubano, sense: cubano}, {surface: pero, sense: pero}, {surface: que, sense: que}, {surface: había, sense: haber, form: 'form:impf'}, {surface: nacido, sense: nacer, form: 'form:part'}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
+      reverse: '[Yo] le dije que (era|soy) cubano pero (que había nacido|que nací) en Miami'
+  translations:
+    en: I told (her|him|you) [that] I was Cuban, but [that] I (had been|was) born in Miami.
+- id: s.u29.34
+  node: es.u29.me-dijo
+  forms:
+    es-Latn/standard:
+      text: Después me preguntó si podía trabajar los sábados.
+      tokens: [{surface: Después, sense: después}, {surface: me, sense: me}, {surface: preguntó, sense: preguntar, form: 'form:pret-3s'}, {surface: si, sense: si}, {surface: podía, sense: poder, form: 'form:impf'}, {surface: trabajar, sense: trabajar}, {surface: los, sense: el}, {surface: sábados, sense: sábado}]
+      reverse: (Después|Luego) me preguntó si [yo] podía trabajar los sábados
+  translations:
+    en: (Then|After that|Afterwards|Later) (she|he) asked me (if|whether) I could work [on] Saturdays.
+- id: s.u29.35
+  node: es.u29.me-dijo
+  forms:
+    es-Latn/standard:
+      text: Me dijo que me llamarían la semana que viene.
+      tokens: [{surface: Me, sense: me}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: me, sense: me}, {surface: llamarían, sense: llamar, form: 'form:cond'}, {surface: la, sense: el}, {surface: semana, sense: semana}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
+      reverse: '[(Ella|Él)] me dijo que me llamarían la (semana que viene|próxima semana)'
+  translations:
+    en: (She|He) (told me|said) [that] (they would|they'd) call me next week.
+- id: s.u29.36
+  node: es.u29.me-dijo
+  forms:
+    es-Latn/standard:
+      text: Mami me pidió que le contara todo de la entrevista.
+      tokens: [{surface: Mami, sense: mami}, {surface: me, sense: me}, {surface: pidió, sense: pedir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: le, sense: le}, {surface: contara, sense: contar, form: 'form:subj-past'}, {surface: todo, sense: todo}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: entrevista, sense: entrevista}]
+      reverse: (Mami|Mamá|Mi mamá|Mi mami) me pidió que le contara todo (de|sobre) la entrevista
+  translations:
+    en: (Mom|Mommy|Mum|My mom) asked me to tell her (everything|all) about the interview.
+stories:
+- id: es.story.u29
+  node: es.u29.story
+  title: {en: 'I''ll call you back'}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: yunior, name: {es-Latn/standard: Yunior}}
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Daniel tiene una entrevista mañana, y llama a Yunior por WhatsApp.
+          tokens: [{surface: Daniel, sense: daniel}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: una, sense: un}, {surface: entrevista, sense: entrevista}, {surface: mañana, sense: mañana}, {surface: 'y', sense: 'y'}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Yunior, sense: yunior}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
+      translations: {en: 'Daniel has an interview tomorrow, and he calls Yunior on WhatsApp.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Qué bolá, primo? Mañana tengo una entrevista en español, y tengo un poco de miedo.
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: primo, sense: primo}, {surface: Mañana, sense: mañana}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: entrevista, sense: entrevista}, {surface: en, sense: en}, {surface: español, sense: español}, {surface: 'y', sense: 'y'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: miedo, sense: miedo}]
+      translations: {en: 'What''s up, cousin? Tomorrow I have an interview in Spanish, and I''m a little scared.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¡Dale, asere! ¿Y qué trabajo es?
+          tokens: [{surface: Dale, sense: dar, form: 'form:imp-tu'}, {surface: asere, sense: asere}, {surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: trabajo, sense: trabajo}, {surface: es, sense: ser, form: 'form:pres-3s'}]
+      translations: {en: 'Go for it, man! And what job is it?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Apliqué para un puesto bilingüe en un banco.
+          tokens: [{surface: Apliqué, sense: aplicar, form: 'form:pret-1s'}, {surface: para, sense: para}, {surface: un, sense: un}, {surface: puesto, sense: puesto}, {surface: bilingüe, sense: bilingüe}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: banco, sense: banco}]
+      translations: {en: 'I applied for a bilingual job at a bank.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Aplicaste? Asere, aquí eso se dice solicitar.
+          tokens: [{surface: Aplicaste, sense: aplicar, form: 'form:pret-2s'}, {surface: Asere, sense: asere}, {surface: aquí, sense: aquí}, {surface: eso, sense: ese}, {surface: se, sense: se.impersonal}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: solicitar, sense: solicitar}]
+      translations: {en: 'You "applied"? Man, here we say solicitar.'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:solicitar
+      distractors: ['sense:aplicar', 'sense:llenar']
+      forms:
+        es-Latn/standard:
+          text: Bueno, solicité un puesto. ¿Ahora hace más sentido?
+          tokens: [{surface: Bueno, sense: bueno}, {surface: solicité, sense: solicitar, form: 'form:pret-1s'}, {surface: un, sense: un}, {surface: puesto, sense: puesto}, {surface: Ahora, sense: ahora}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: sentido, sense: sentido}]
+      translations: {en: 'OK, I applied for a job. Does that make more sense now?'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Hace sentido? Primo, tú hablas como un yuma. Aquí decimos tiene sentido.
+          tokens: [{surface: Hace, sense: hacer, form: 'form:pres-3s'}, {surface: sentido, sense: sentido}, {surface: Primo, sense: primo}, {surface: tú, sense: tú}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: como, sense: como.like}, {surface: un, sense: un}, {surface: yuma, sense: yuma}, {surface: Aquí, sense: aquí}, {surface: decimos, sense: decir, form: 'form:pres-1p'}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: sentido, sense: sentido}]
+      translations: {en: '"Hace sentido"? Cousin, you talk like a gringo. Here we say tiene sentido.'}
+  - choose:
+      prompt: {en: 'What does Yunior teach Daniel to say?'}
+      options: [{en: Solicitar and tiene sentido}, {en: Aplicar and hace sentido}, {en: Nothing; he answers in English}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Espérate, que abuela me está llamando. Te llamo para atrás en un momento.
+          tokens: [{surface: Espérate, sense: esperar, form: 'form:imp-tu'}, {surface: que, sense: que}, {surface: abuela, sense: abuela}, {surface: me, sense: me}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: llamando, sense: llamar, form: 'form:ger'}, {surface: Te, sense: te}, {surface: llamo, sense: llamar, form: 'form:pres-1s'}, {surface: para, sense: para}, {surface: atrás, sense: atrás}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: momento, sense: momento}]
+      translations: {en: 'Hang on, Grandma''s calling me. I''ll call you back in a moment.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Para atrás? ¿Tú me vas a llamar de espaldas?
+          tokens: [{surface: Para, sense: para}, {surface: atrás, sense: atrás}, {surface: Tú, sense: tú}, {surface: me, sense: me}, {surface: vas, sense: ir, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: llamar, sense: llamar}, {surface: de, sense: de}, {surface: espaldas, sense: espalda}]
+      translations: {en: 'Backwards? You''re going to call me with your back turned?'}
+  - choose:
+      prompt: {en: 'Why doesn''t Yunior understand Daniel?'}
+      options: [{en: 'Llamar para atrás is Miami Spanglish for to call back'}, {en: The call dropped in a blackout}, {en: Daniel hung up on him}]
+      answer: 0
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Después, Daniel le devuelve la llamada a Yunior.
+          tokens: [{surface: Después, sense: después}, {surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: devuelve, sense: devolver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}, {surface: a, sense: a}, {surface: Yunior, sense: yunior}]
+      translations: {en: 'Later, Daniel calls Yunior back.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Ves? Eso se llama devolver la llamada.
+          tokens: [{surface: Ves, sense: ver, form: 'form:pres-2s'}, {surface: Eso, sense: ese}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: devolver, sense: devolver}, {surface: la, sense: el}, {surface: llamada, sense: llamada}]
+      translations: {en: 'See? That''s called devolver la llamada.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Ya, ya. Abuela me preguntó si yo había comido, y le dije que sí.
+          tokens: [{surface: Ya, sense: ya}, {surface: ya, sense: ya}, {surface: Abuela, sense: abuela}, {surface: me, sense: me}, {surface: preguntó, sense: preguntar, form: 'form:pret-3s'}, {surface: si, sense: si}, {surface: yo, sense: yo}, {surface: había, sense: haber, form: 'form:impf'}, {surface: comido, sense: comer, form: 'form:part'}, {surface: 'y', sense: 'y'}, {surface: le, sense: le}, {surface: dije, sense: decir, form: 'form:pret-1s'}, {surface: que, sense: que}, {surface: sí, sense: sí}]
+      translations: {en: 'OK, OK. Grandma asked me if I had eaten, and I told her I had.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¡Abuela siempre pregunta eso! ¿Y qué te van a preguntar en la entrevista?
+          tokens: [{surface: Abuela, sense: abuela}, {surface: siempre, sense: siempre}, {surface: pregunta, sense: preguntar, form: 'form:pres-3s'}, {surface: eso, sense: ese}, {surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: te, sense: te}, {surface: van, sense: ir, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: preguntar, sense: preguntar}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: entrevista, sense: entrevista}]
+      translations: {en: 'Grandma always asks that! And what are they going to ask you in the interview?'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Me dijeron que me preguntarían de dónde era.
+          tokens: [{surface: Me, sense: me}, {surface: dijeron, sense: decir, form: 'form:pret-3p'}, {surface: que, sense: que}, {surface: me, sense: me}, {surface: preguntarían, sense: preguntar, form: 'form:cond'}, {surface: de, sense: de}, {surface: dónde, sense: dónde}, {surface: era, sense: ser, form: 'form:impf'}]
+      translations: {en: 'They told me they would ask me where I was from.'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: ¿Y de dónde tú eres, primo? ¿De aquí o de allá?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: de, sense: de}, {surface: dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: primo, sense: primo}, {surface: De, sense: de}, {surface: aquí, sense: aquí}, {surface: o, sense: o}, {surface: de, sense: de}, {surface: allá, sense: allá}]
+      translations: {en: 'And where are you from, cousin? From here or from there?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: A veces siento que no soy ni de aquí ni de allá.
+          tokens: [{surface: A, sense: a}, {surface: veces, sense: vez}, {surface: siento, sense: sentir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: aquí, sense: aquí}, {surface: ni, sense: ni}, {surface: de, sense: de}, {surface: allá, sense: allá}]
+      translations: {en: 'Sometimes I feel I''m neither from here nor from there.'}
+  - line:
+      speaker: yunior
+      ask: complete
+      gap: sense:cubano
+      distractors: ['sense:americano', 'sense:yuma']
+      forms:
+        es-Latn/standard:
+          text: ¡Qué va! Tú eres cubano de Hialeah, con tu espanglish y todo.
+          tokens: [{surface: Qué, sense: qué}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: Tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: cubano, sense: cubano}, {surface: de, sense: de}, {surface: Hialeah, sense: hialeah}, {surface: con, sense: con}, {surface: tu, sense: tu}, {surface: espanglish, sense: espanglish}, {surface: 'y', sense: 'y'}, {surface: todo, sense: todo}]
+      translations: {en: 'No way! You''re a Cuban from Hialeah, Spanglish and all.'}
+  - choose:
+      prompt: {en: 'What does Yunior think of Daniel?'}
+      options: [{en: 'He is Cuban, Spanglish and all'}, {en: He is more American than Cuban}, {en: He should stop speaking Spanglish}]
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Gracias, primo. Mañana te cuento cómo me fue.
+          tokens: [{surface: Gracias, sense: gracias}, {surface: primo, sense: primo}, {surface: Mañana, sense: mañana}, {surface: te, sense: te}, {surface: cuento, sense: contar, form: 'form:pres-1s'}, {surface: cómo, sense: cómo}, {surface: me, sense: me}, {surface: fue, sense: ir, form: 'form:pret-3s'}]
+      translations: {en: 'Thanks, cousin. Tomorrow I''ll tell you how it went.'}

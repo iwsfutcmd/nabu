@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import unicodedata
 from collections import Counter
+from pathlib import Path
 from typing import Any, cast
 
 import pytest
@@ -11,7 +12,7 @@ import regex
 import yaml
 
 from nabu.analyzers import analyzers_by_tool
-from nabu.compiler import Diagnostics, compile_course, load_profiles
+from nabu.compiler import Diagnostics, compile_course, load_profiles, write_bundle
 from nabu.compiler.build import Compiled
 from nabu.drills.rbnf import icu_version
 
@@ -323,3 +324,25 @@ def test_classical_chinese_reads_a_character_by_its_sense(core_cli: CoreCli) -> 
     assert by_sense["知.zhi"] == {("trjeH", "zi3", "zhì")}
     several = {k: v for k, v in by_sense.items() if len(v) > 1}
     assert several == {}
+
+
+ES_FORMS = ["pres-1s", "pret-3s", "impf", "imp-tu", "part", "cond", "fut", "subj", "subj-past"]
+
+
+def test_cuban_spanish_runs_thirty_units_each_ending_in_a_story(
+    core_cli: CoreCli, tmp_path: Path
+) -> None:
+    """es (ADR 0075): thirty units, A1 to B2, each ending in a story; the tenses and moods the
+    syllabus promises are all taught; the placement test types its answers (ADR 0076)."""
+    _, compiled = build(core_cli, "es")
+    assert compiled.course.target == "es-Latn-CU"
+    assert [u["id"] for u in compiled.units] == [f"u{n:02d}" for n in range(1, 31)]
+    assert (compiled.units[0]["cefr"], compiled.units[-1]["cefr"]) == ("A1", "B2")
+    for u in compiled.units:
+        assert len(u["stories"]) == 1, u["id"]
+        assert u["nodes"][-1]["kind"] == "story", u["id"]
+    used = {kc for s in sentences(compiled) for kc in s["kcs"]}
+    assert [f for f in ES_FORMS if f"form:{f}" not in used] == []
+    manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
+    assert manifest["placement"] == {"production": "typed"}
+    assert manifest["target"] == "es-Latn-CU"

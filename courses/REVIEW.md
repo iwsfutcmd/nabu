@@ -314,8 +314,8 @@ Drafted after the native-speaker pass above, so it has had no second reading
 ## es (Cuban Spanish)
 
 Thirty units for heritage speakers ([ADR 0076](../docs/adr/0076-cuban-spanish.md); the brief and
-syllabus are in [es/README.md](es/README.md)). Units 1–26 are on the path; 27–30 are still to be
-drafted. Every sentence, story and scenario is an LLM draft. The drafts aim at the Spanish of a
+syllabus are in [es/README.md](es/README.md)). All thirty units are on the path. Every sentence,
+story and scenario is an LLM draft. The drafts aim at the Spanish of a
 Cuban family in Miami and in Havana: Cuban forms first, pan-Hispanic ones accepted.
 
 Across the course, check first:
@@ -334,7 +334,11 @@ Across the course, check first:
 5. **Family story continuity.** The family table in es/README.md, plus what the stories added:
    Abuela born in Matanzas, came in the Mariel boatlift (1980) and is 79; Marisol stayed in
    Cuba; Papi came as a balsero in 1994, aged about 14.
-6. **The voice.** The clips clone a newsreader of Radio La Voz de la Victoria (Ciénaga de
+6. **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md),
+   [0075](../docs/adr/0075-persons-coverage.md)). 78 sentences say who speaks or who is spoken to:
+   24 to a man, 8 to a woman, 18 to several people, 22 a man speaking, 12 a woman speaking. The
+   woman-speaker sentences only start in u27 (Abuela, Lili, Mami); units 1–26 have Daniel alone.
+7. **The voice.** The clips clone a newsreader of Radio La Voz de la Victoria (Ciénaga de
    Zapata, Matanzas; CC0). Held-back clips (`nabu audio report`) are mostly slang Whisper does not
    know (*¿Qué bolá?*), so a listener should decide them in the audio check.
 
@@ -465,3 +469,19 @@ By unit, what the drafts were least sure of:
 - Family: Abuela's father built her bohío; Daniel's great-grandfather cut cane at a central in Matanzas; s.u25.13 Daniel had never met Tía Marisol in person (conocido).
 - Relative clauses: adonde / a donde / donde with van (s.u25.19); quien in non-restrictive clauses (s.u26.30).
 - English names of the mariposa: white ginger lily / ginger lily / butterfly lily (s.u26.26).
+
+### u27 José Martí, u28 Si pudiera
+- The verses: the story's lines from *Versos sencillos* I (lines 1–4, read by Abuela) and XXXIX (lines 1–4, read by Daniel) come verbatim from Wikisource's text, written in by a script, never retyped. XXXIX line 2 there is *En julio como enero* (Ciudad Seva has the same); the song and some editions have *como en enero*: check against a scholarly edition. XXXIX 5–8 is paraphrased by Abuela ("Martí la cultiva también para el cruel").
+- Provenance: the u27 story is marked as an LLM draft as a whole, though eight of its lines are Martí's (1891, public domain); the schema has provenance per story only. The story's title and a comment in the unit name the source.
+- Facts: Martí "Pepe" to his family (the `josé` note and the story's link to Abuelo Pepe); *Versos sencillos* written in the Catskills in 1890, 46 poems; *Guantanamera*: Joseíto Fernández on Havana radio from the 1930s, Julián Orbón fitting Martí's verses to it, Pete Seeger in the 1960s; *La Edad de Oro*, four issues, 1889; "en el noventa y cinco" for 1895.
+- Usage: *el bombo* (the US visa lottery) and *sacarse el bombo*; *la Yuma* and its supposed origin in *3:10 to Yuma*; Miami *reclamar* (to petition for a relative); *paladar* named after the telenovela *Vale tudo*; Cuba without a legal lottery since the early 1960s, *la bolita* living on; *mi'ja* from Cachita to Marisol.
+- Accept sets: *pa' la Yuma*, *Yo que tú*, *hay que luchar*, *se aprendió los versos*, *toda el alma*, *estoy mayor* as an alternative to *vieja*; every -se form (*tuviese*, *pudiese*) accepted beside the -ra form.
+- Heritage-error notes: *si tendría* (on `lotería`), *haiga* (on `cliente`), *trajiera/trayera* (on `traer`), *moverse* for *mudarse*, *soñar de*.
+
+### u29 ¿Quién soy?, u30 El brindis
+- Is it really Miami usage: *el rufo*, *vacunar la carpeta* (maybe more joke than speech), *aplicar para un trabajo*, *hace sentido*, *te llamo para atrás*. Each anglicism KC appears once in a lesson sentence about the word ("En Hialeah decimos carpeta; en Cuba dicen alfombra."); no accept set offers an anglicism for the Spanish word. Check that these sentences read well without quotation marks (the course uses none).
+- Island words: *el cake* for a birthday cake (*pastel*, *bizcocho* accepted); *la planilla* for a form; *carpeta* as a hotel front desk in Cuba (a note); *yuma* / *la Yuma*, *medio yuma*.
+- Usage: *¡Dale, asere!* and *¡Qué va!* from Yunior; *Por ustedes, mi'jo*; *agradecida con todos ustedes* vs. *a todos ustedes*; *Me gustaría agradecerles a todos que estén aquí*; *Abuela tiene una rosa blanca en el patio, por Martí* (is *por* natural?).
+- Spelling: *espanglish* (RAE) canonical, *spanglish* accepted; *cubanoamericano* as one word.
+- Accept sets: reported-speech tenses (*me preguntó de dónde era/soy*, *le dije que era/soy cubano*); *Cuando era niña / De niña*; the English of the toasts (*Many happy returns*, *Here's to many more*).
+- The u30 scenario: Abuelo Pepe as master of ceremonies, teasing Daniel when he slips into Spanglish.
