@@ -213,14 +213,23 @@ export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | u
 export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): MatchPairs | undefined => {
   const { orthography, supportKey } = ctx.course;
   const usable = kcs.filter((k) => k.kind === "sense" && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
-  const chosen = pickDistinct(
-    ctx,
-    usable.map((k) => k.forms?.[orthography]?.[0] as TaggedText),
-    [],
-    5,
-  );
-  if (chosen.length < 3) return undefined;
   const byText = (t: TaggedText) => usable.find((k) => k.forms?.[orthography]?.[0] === t) as BundleKc;
+  // Distinct in both columns. Two words alike, or two meanings alike (synonyms glossed alike, as
+  // Classical Chinese 汝 and 爾 are both "you"), would make either pairing right, and the card
+  // accepts only one. The draws are pickDistinct's, so cards without such a pair are unchanged.
+  const words = new Set<string>();
+  const meanings = new Set<string>();
+  const chosen: TaggedText[] = [];
+  for (const candidate of ctx.rng.shuffle(usable.map((k) => k.forms?.[orthography]?.[0] as TaggedText))) {
+    if (chosen.length === 5) break;
+    const word = keyOf(ctx.course, candidate);
+    const meaning = keyOf(ctx.course, byText(candidate).gloss?.[supportKey] as TaggedText);
+    if (word === "" || words.has(word) || meanings.has(meaning)) continue;
+    words.add(word);
+    meanings.add(meaning);
+    chosen.push(candidate);
+  }
+  if (chosen.length < 3) return undefined;
   const glosses = chosen.map((t) => byText(t).gloss?.[supportKey] as TaggedText);
   const order = ctx.rng.shuffle(glosses.map((_, i) => i));
   return {
