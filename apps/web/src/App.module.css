@@ -571,3 +571,37 @@
 .choiceMeaning {
   color: var(--nabu-color-muted);
 }
+
+/* The review workspace's tabs (ADR 0074): the selected tab is underlined on its block-end side,
+   which stays the bottom in horizontal chrome whatever the inline direction. */
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-4);
+}
+
+.tabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  border-block-end: 1px solid var(--nabu-color-border);
+}
+
+.tab {
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+  border-block-end: 3px solid transparent;
+  cursor: pointer;
+}
+
+.tab[data-selected] {
+  color: var(--nabu-color-text);
+  border-block-end-color: var(--nabu-color-accent);
+}
+
+.tab[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}

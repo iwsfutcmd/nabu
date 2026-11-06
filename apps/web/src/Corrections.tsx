@@ -61,7 +61,7 @@ export const correctionEvent = (course: CourseView, bundle: string, device: stri
   return sentenceReportedOf(course, target, shown, made, { id: uuidv7(now.getTime()), clientTime: localIso(now), localDate: localDate(now), tz: timeZone(), device, session: uuidv7(now.getTime()), bundle });
 };
 
-interface Recording {
+export interface Recording {
   readonly course: CourseView;
   readonly bundle: string;
   readonly device: string;
@@ -75,7 +75,7 @@ interface DialogProps extends Recording {
 }
 
 /** The correction form in a modal dialog; closing it without sending changes nothing. */
-const CorrectionDialog = ({ course, bundle, device, record, target, previous, onClose }: DialogProps): JSX.Element => {
+export const CorrectionDialog = ({ course, bundle, device, record, target, previous, onClose }: DialogProps): JSX.Element => {
   const t = useTranslator();
   const chrome = useChrome();
   const published = useReportsPublic();
@@ -104,7 +104,7 @@ const CorrectionDialog = ({ course, bundle, device, record, target, previous, on
   );
 };
 
-const Sent = (): JSX.Element => {
+export const Sent = (): JSX.Element => {
   const t = useTranslator();
   return (
     <p className={styles.muted} role="status" data-correction-sent="">
@@ -293,7 +293,7 @@ const signoffTextOf = (course: CourseView, kind: SignOffKind, item: string): str
   return undefined;
 };
 
-const signOffOf = async (course: CourseView, kind: SignOffKind, item: string, at: string): Promise<SignOff | undefined> => {
+export const signOffOf = async (course: CourseView, kind: SignOffKind, item: string, at: string): Promise<SignOff | undefined> => {
   const text = signoffTextOf(course, kind, item);
   return text === undefined ? undefined : { item, kind, shown: await sha256(text), at };
 };
@@ -307,6 +307,15 @@ const downloadSignoffs = (course: string, signoffs: Record<string, SignOff>): vo
   a.download = `nabu-signoffs-${course}.json`;
   a.click();
   URL.revokeObjectURL(url);
+};
+
+/** What "Sign off everything here" signs: every item the reviewer has not marked incorrect, and the source does not mark reviewed. */
+export const unitSignOffs = ({ unit: u, sentences, stories }: UnitCorrectables, corrections: ReadonlyMap<string, SentenceReported>): (readonly [SignOffKind, string])[] => {
+  const reviewed = new Set(u.sentences.filter((s) => signedOff(s.provenance)).map((s) => s.id));
+  return [
+    ...sentences.filter((c) => !reviewed.has(c.item) && !corrections.has(correctionKey(c.item))).map((c) => ["sentence", c.item] as const),
+    ...stories.filter(({ story, lines }) => !signedOff(story.provenance) && !lines.some((l) => corrections.has(correctionKey(l.item, l.step)))).map(({ story }) => ["story", story.id] as const),
+  ];
 };
 
 interface PageProps extends Recording {
@@ -346,15 +355,7 @@ export const SentencesPage = ({ corrections, back, review = false, ...recording 
             return rest;
           });
       },
-      // Everything the reviewer has not marked incorrect, and the source does not mark reviewed.
-      onSignOffUnit: ({ unit: u, sentences, stories }: UnitCorrectables): void => {
-        const reviewed = new Set(u.sentences.filter((s) => signedOff(s.provenance)).map((s) => s.id));
-        const pairs: (readonly [SignOffKind, string])[] = [
-          ...sentences.filter((c) => !reviewed.has(c.item) && !corrections.has(correctionKey(c.item))).map((c) => ["sentence", c.item] as const),
-          ...stories.filter(({ story, lines }) => !signedOff(story.provenance) && !lines.some((l) => corrections.has(correctionKey(l.item, l.step)))).map(({ story }) => ["story", story.id] as const),
-        ];
-        void signOff(pairs);
-      },
+      onSignOffUnit: (unit: UnitCorrectables): void => void signOff(unitSignOffs(unit, corrections)),
     }),
     // signOff and update close over course, corrections and setState only.
     [signoffs, corrections, course],

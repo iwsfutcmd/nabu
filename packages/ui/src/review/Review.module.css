@@ -1,0 +1,209 @@
+/* The review workspace (ADR 0074): accept sets, the add-an-answer field and the queue under the
+   sentence list. Logical properties only: the same rules lay out LTR, RTL and vertical chrome, and
+   every text takes its own language's direction through <T>. */
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  padding-block-start: var(--nabu-space-2);
+}
+
+.accepted {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.subheading {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}
+
+.alternatives {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin: 0;
+  padding-inline-start: var(--nabu-space-5);
+  /* Accept notation runs alternatives together with no spaces, (mni7|mnih|mnee7): it may break anywhere. */
+  overflow-wrap: anywhere;
+}
+
+.add {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--nabu-space-2);
+}
+
+.field {
+  display: flex;
+  flex: 1 1 14rem;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.label {
+  font-weight: 700;
+}
+
+.input {
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  font-family: var(--nabu-field-font, inherit);
+  font-size: 1.125rem;
+  line-height: var(--nabu-field-line-height, 1.5);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.input[data-focus-visible],
+.input:focus-visible {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.small {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  font-weight: 700;
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-surface);
+  border: 2px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.small[data-disabled] {
+  cursor: default;
+  opacity: 0.6;
+}
+
+.small[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.muted {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.error {
+  margin: 0;
+  color: var(--nabu-color-wrong);
+  font-weight: 700;
+}
+
+.queue {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-5);
+}
+
+.heading {
+  margin: 0;
+  margin-block-end: var(--nabu-space-3);
+  font-size: 1.125rem;
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--nabu-space-3);
+  padding: var(--nabu-space-3);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.texts {
+  display: flex;
+  flex: 1 1 18rem;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  min-inline-size: 0;
+}
+
+.target {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.claim {
+  margin: 0;
+  font-weight: 700;
+}
+
+.answer {
+  margin: 0;
+  overflow-wrap: anywhere;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font-size: 1.125rem;
+  background-color: var(--nabu-color-surface);
+  border-inline-start: 4px solid var(--nabu-color-accent);
+}
+
+.notes {
+  margin: 0;
+  padding-inline-start: var(--nabu-space-5);
+  color: var(--nabu-color-muted);
+}
+
+.changes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin: 0;
+}
+
+.change {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-2);
+}
+
+.change dd {
+  margin: 0;
+}
+
+.reading {
+  display: inline-flex;
+  gap: var(--nabu-space-1);
+}
+
+.decide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.badge {
+  margin: 0;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}

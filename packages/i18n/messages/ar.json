@@ -1842,6 +1842,26 @@
       "message": "تصل البلاغات إلى مراجعي الدورة على شكل مشكلات (issues) عامة على GitHub، من دون اسمكم أو أي معلومات عن جهازكم.",
       "source": "1e7d13dc2653d5"
     },
+    "review.accepted.add": {
+      "message": "قبول",
+      "source": "1f912c687f75bf"
+    },
+    "review.accepted.add-label": {
+      "message": "إجابة مقبولة أخرى",
+      "source": "1e71f314d6a481"
+    },
+    "review.accepted.added": {
+      "message": "أُضيفت. ستنضم إلى الإجابات المقبولة عند التحديث التالي للدورة.",
+      "source": "155a3f180a524a"
+    },
+    "review.accepted.failed": {
+      "message": "لم يُحفظ ذلك. حاول مرة أخرى.",
+      "source": "0e005855daf11e"
+    },
+    "review.accepted.title": {
+      "message": "الإجابات المقبولة",
+      "source": "097e1a471708d2"
+    },
     "review.export": {
       "message": ".input {$count :number}\n.match $count\nzero {{تنزيل الاعتمادات ({$count})}}\none {{تنزيل اعتماد واحد}}\ntwo {{تنزيل اعتمادين}}\nfew {{تنزيل {$count} اعتمادات}}\nmany {{تنزيل {$count} اعتمادًا}}\n* {{تنزيل {$count} اعتماد}}",
       "source": "116e4b8fe9a9b9"
@@ -1854,6 +1874,50 @@
       "message": "تبدو صحيحة",
       "source": "1105ecf4091a83"
     },
+    "review.queue.answers": {
+      "message": "إجابات أبلغ عنها المتعلّمون",
+      "source": "0d276047dacf40"
+    },
+    "review.queue.approve": {
+      "message": "موافقة",
+      "source": "05194a49d7f46e"
+    },
+    "review.queue.approved": {
+      "message": "تمت الموافقة",
+      "source": "1d8e20d8b5d488"
+    },
+    "review.queue.claim.accept": {
+      "message": "يجب أن تُقبل:",
+      "source": "1142bbe9e07ec1"
+    },
+    "review.queue.claim.reject": {
+      "message": "يجب ألّا تُقبل:",
+      "source": "11d436065b1356"
+    },
+    "review.queue.corrected": {
+      "message": "المقترح:",
+      "source": "099e67893d951e"
+    },
+    "review.queue.corrections": {
+      "message": "تصحيحات اقترحها المتعلّمون",
+      "source": "03e63a5fafcc8a"
+    },
+    "review.queue.empty": {
+      "message": "لا شيء هنا الآن.",
+      "source": "148fdc810bbdc2"
+    },
+    "review.queue.learners": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا متعلّمين}}\none {{متعلّم واحد}}\ntwo {{متعلّمان}}\nfew {{{$count} متعلّمين}}\nmany {{{$count} متعلّمًا}}\n* {{{$count} متعلّم}}",
+      "source": "16c7a8d47f900b"
+    },
+    "review.queue.reject": {
+      "message": "رفض",
+      "source": "0f51548c04b27f"
+    },
+    "review.queue.rejected": {
+      "message": "مرفوض",
+      "source": "1870217cd63ffc"
+    },
     "review.reviewed": {
       "message": "تمت المراجعة",
       "source": "08791cd0d5daff"
@@ -1865,6 +1929,54 @@
     "review.unit": {
       "message": "اعتماد كل ما هنا",
       "source": "0de29eafac5899"
+    },
+    "review.workspace.as": {
+      "message": "تراجع باسم {$handle}.",
+      "source": "1ee1591b7d53ea"
+    },
+    "review.workspace.back": {
+      "message": "كل الدورات التي تراجعها",
+      "source": "042bcf1f62ca15"
+    },
+    "review.workspace.courses": {
+      "message": "الدورات التي تراجعها",
+      "source": "04c0e01a2fc4e5"
+    },
+    "review.workspace.error": {
+      "message": "تعذّر الوصول إلى الخادم. حاول مرة أخرى.",
+      "source": "101b4faca80af9"
+    },
+    "review.workspace.intro": {
+      "message": "وقّع على ما تراه صحيحًا، وقرّر في ما أبلغ عنه المتعلّمون. تبقى توقيعاتك في حسابك حتى تُحدَّث الدورة بها.",
+      "source": "062e15f22699db"
+    },
+    "review.workspace.link": {
+      "message": "مراجعة الدورات",
+      "source": "1e91f8cf1e4dff"
+    },
+    "review.workspace.no-server": {
+      "message": "تحتاج المراجعة إلى خادم، وهذا التطبيق يعمل من دون خادم.",
+      "source": "01bcf1ed7f518c"
+    },
+    "review.workspace.not-reviewer": {
+      "message": "هذا الحساب لا يراجع أي دورة. يمكن لمسؤول هذا الخادم أن يجعله مراجعًا.",
+      "source": "0720931621c1fc"
+    },
+    "review.workspace.queue": {
+      "message": "البلاغات",
+      "source": "09bb00824b733b"
+    },
+    "review.workspace.sentences": {
+      "message": "الجمل والقصص",
+      "source": "01e5e12467ca4a"
+    },
+    "review.workspace.sign-in": {
+      "message": "سجّل الدخول بحساب مراجع لمراجعة الدورات.",
+      "source": "1745e101867548"
+    },
+    "review.workspace.title": {
+      "message": "مساحة المراجعة",
+      "source": "0722f5a80c690d"
     },
     "story.finished.stopped": {
       "message": "توقّفت القصة",

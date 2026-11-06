@@ -1838,6 +1838,26 @@
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",
       "description": "Shown where a learner can report a problem (a correction, or a claim about their answer) when the app sends reports to the project: says they become public issues and carry no name or device."
     },
+    "review.accepted.add": {
+      "message": "Accept",
+      "description": "Review workspace (reviewers only): the button that adds the answer typed beside it to the sentence's accepted answers."
+    },
+    "review.accepted.add-label": {
+      "message": "Another accepted answer",
+      "description": "Review workspace: label of a field where a reviewer types one more answer, in the language being learned, that should be graded correct."
+    },
+    "review.accepted.added": {
+      "message": "Added. It joins the accepted answers when the course is next updated.",
+      "description": "Review workspace: shown after a reviewer adds an accepted answer. The course itself changes later, when its team updates it."
+    },
+    "review.accepted.failed": {
+      "message": "That did not save. Try again.",
+      "description": "Review workspace: adding an accepted answer failed (no connection, or the server refused it)."
+    },
+    "review.accepted.title": {
+      "message": "Accepted answers",
+      "description": "Review workspace: heading over the answers a sentence's grading accepts, in the language being learned and in the learner's language."
+    },
     "review.export": {
       "message": ".input {$count :number}\n.match $count\none {{Download {$count} sign-off}}\n* {{Download {$count} sign-offs}}",
       "description": "Reviewers only: a button that downloads this device's sign-offs in the course as a file for `nabu review apply`. $count is how many."
@@ -1850,6 +1870,50 @@
       "message": "Looks right",
       "description": "Reviewers only (ADR 0072): a toggle under a sentence in the sentence list. On, the reviewer signs the sentence off; it becomes reviewed once their sign-offs are applied to the course."
     },
+    "review.queue.answers": {
+      "message": "Answers learners reported",
+      "description": "Review workspace, Reports tab: heading over answers learners said should, or should not, have been graded correct."
+    },
+    "review.queue.approve": {
+      "message": "Approve",
+      "description": "Review workspace: approve a learner's report or correction."
+    },
+    "review.queue.approved": {
+      "message": "Approved",
+      "description": "Review workspace: a report or correction a reviewer has approved."
+    },
+    "review.queue.claim.accept": {
+      "message": "Should be accepted:",
+      "description": "Review workspace: the learner says the answer below should have been graded correct. The answer follows on its own line."
+    },
+    "review.queue.claim.reject": {
+      "message": "Should not be accepted:",
+      "description": "Review workspace: the learner says the answer below was graded correct but is wrong. The answer follows on its own line."
+    },
+    "review.queue.corrected": {
+      "message": "Suggested:",
+      "description": "Review workspace: before a learner's suggested correction of a sentence, a reading or a translation."
+    },
+    "review.queue.corrections": {
+      "message": "Corrections learners suggested",
+      "description": "Review workspace, Reports tab: heading over corrections learners suggested to sentences and story lines."
+    },
+    "review.queue.empty": {
+      "message": "Nothing here right now.",
+      "description": "Review workspace: a list of reports or corrections is empty."
+    },
+    "review.queue.learners": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} learner}}\n* {{{$count} learners}}",
+      "description": "Review workspace: how many learners filed the same report or correction. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "review.queue.reject": {
+      "message": "Reject",
+      "description": "Review workspace: reject a learner's report or correction."
+    },
+    "review.queue.rejected": {
+      "message": "Rejected",
+      "description": "Review workspace: a report or correction a reviewer has rejected."
+    },
     "review.reviewed": {
       "message": "Reviewed",
       "description": "Reviewers only: a badge on a sentence or story the course source already marks reviewed."
@@ -1861,6 +1925,54 @@
     "review.unit": {
       "message": "Sign off everything here",
       "description": "Reviewers only: a button that signs off every sentence and story in this unit that is neither marked incorrect nor reviewed already."
+    },
+    "review.workspace.as": {
+      "message": "You review as {$handle}.",
+      "description": "Review workspace: the name the reviewer's sign-offs are recorded under. $handle is a name the server's admin chose, in any script."
+    },
+    "review.workspace.back": {
+      "message": "All the courses you review",
+      "description": "Review workspace: link back from one course to the list of courses the reviewer reviews."
+    },
+    "review.workspace.courses": {
+      "message": "Courses you review",
+      "description": "Review workspace: heading over the list of courses this reviewer can review."
+    },
+    "review.workspace.error": {
+      "message": "The server could not be reached. Try again.",
+      "description": "Review workspace: loading or saving failed."
+    },
+    "review.workspace.intro": {
+      "message": "Sign off what reads right, and decide what learners reported. Your sign-offs are kept with your account until the course is updated with them.",
+      "description": "Review workspace: introduction at the top of a course's review page."
+    },
+    "review.workspace.link": {
+      "message": "Review courses",
+      "description": "Course list: link to the review workspace, shown only to accounts that review courses."
+    },
+    "review.workspace.no-server": {
+      "message": "Reviewing needs a server, and this app is running without one.",
+      "description": "Review workspace: shown when the app has no sync server to save reviews to."
+    },
+    "review.workspace.not-reviewer": {
+      "message": "This account does not review any courses. An admin of this server can make it a reviewer.",
+      "description": "Review workspace: the signed-in account is not a reviewer."
+    },
+    "review.workspace.queue": {
+      "message": "Reports",
+      "description": "Review workspace: tab with the answers and corrections learners reported."
+    },
+    "review.workspace.sentences": {
+      "message": "Sentences and stories",
+      "description": "Review workspace: tab with the course's sentences and stories, to sign off."
+    },
+    "review.workspace.sign-in": {
+      "message": "Sign in with a reviewer account to review courses.",
+      "description": "Review workspace: shown when no one is signed in. Signing in happens on the course list."
+    },
+    "review.workspace.title": {
+      "message": "Review workspace",
+      "description": "Review workspace: page title."
     },
     "story.finished.stopped": {
       "message": "Story stopped",
