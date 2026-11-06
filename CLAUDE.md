@@ -126,6 +126,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most
   `maxWords` words inside "حالا این کلمه را تکرار کن، …" with durations set from the carrier (the graph split at
   /Ceil, nabu/audio/carrier.py) and cuts them out exactly; lone words otherwise collapse. Piper is seeded.
+  A longer item's sentence the duration predictor collapses (`carrier.collapses`) is carried too; that route is in
+  the clip's own identity (`item_settings`), so changing how some items are said never makes every clip stale.
 - Hosted voices (ADR 0042): provider elevenlabs/cartesia with `model` and `language`. Keys only from the environment
   (ELEVENLABS_API_KEY, CARTESIA_API_KEY): never in course files, commits or chat. `pronounce: jyutping` sends IPA for
   tokens whose characters do not settle the pinned reading. `--voice <id>` picks a cast voice. Live tests: NABU_HOSTED=1.

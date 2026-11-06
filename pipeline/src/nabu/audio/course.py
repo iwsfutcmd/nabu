@@ -311,6 +311,17 @@ def plan(
     return items, skipped
 
 
+def item_settings(tts: Provider, text: str) -> dict[str, Any]:
+    """What shapes one item's clip beyond the provider's settings (Piper: the route through its
+    sentences, ADR 0065). Part of that clip's identity alone, so a provider can change how it says
+    some items without making every clip stale."""
+    extra = getattr(tts, "item_settings", None)
+    if not callable(extra):
+        return {}
+    out = extra(text)
+    return cast("dict[str, Any]", out) if isinstance(out, dict) else {}
+
+
 def identity(
     provider_name: str,
     version: str,
@@ -375,7 +386,7 @@ def _entry(
 ) -> dict[str, Any]:
     """Encode and write one clip; its index entry."""
     version = tts.version()
-    settings = tts.settings()
+    settings = tts.settings() | item_settings(tts, item.input)
     data = encode_mp3(
         clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
     )
@@ -456,7 +467,12 @@ def synthesize_course(
             old = previous.get((item.item, speed))
             take = take_of(old, item, tts)
             ident = identity(
-                tts.name, version, voice.voice, item.input, rate, settings | take_field(take)
+                tts.name,
+                version,
+                voice.voice,
+                item.input,
+                rate,
+                settings | item_settings(tts, item.input) | take_field(take),
             )
             if (
                 old is not None
