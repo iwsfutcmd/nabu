@@ -2149,6 +2149,13 @@ class ReferenceVoice(BaseModel):
             description="Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy)."
         ),
     ]
+    source: Annotated[
+        str | None,
+        Field(
+            description="A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0074). The speaker is the provenance's human:<id>.",
+            min_length=1,
+        ),
+    ] = None
     design: Annotated[
         Design | None,
         Field(description="How a synthetic reference was made, so it can be made again."),

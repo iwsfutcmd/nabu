@@ -100,6 +100,24 @@ def cast(
     text: Annotated[
         str, typer.Option(help="What the reference says (a few seconds, the course's language).")
     ],
+    recording: Annotated[
+        Path | None,
+        typer.Option(
+            exists=True,
+            dir_okay=False,
+            help="OmniVoice: a real speaker's recording to clone instead of a designed voice "
+            "(any audio ffmpeg reads); --text is its transcript. Needs --license, --author and "
+            "--source.",
+        ),
+    ] = None,
+    license_: Annotated[
+        str | None, typer.Option("--license", help="With --recording: its SPDX license.")
+    ] = None,
+    author: Annotated[str | None, typer.Option(help="With --recording: human:<speaker>.")] = None,
+    origin: Annotated[
+        str | None,
+        typer.Option("--source", help="With --recording: where it came from (URL)."),
+    ] = None,
     instruct: Annotated[
         str | None,
         typer.Option(
@@ -115,13 +133,14 @@ def cast(
         typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
     ] = None,
 ) -> None:
-    """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058),
-    Navoiy reads the text in the voice of CosyVoice's prompt recording (ADR 0059).
+    """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058)
+    or keeps a real speaker's recording (--recording, ADR 0074); Navoiy reads the text in the
+    voice of CosyVoice's prompt recording (ADR 0059).
 
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting
     again replaces it, and its clips are synthesized again on the next `generate`.
     """
-    from nabu.audio.course import cast_reference
+    from nabu.audio.course import cast_reference, record_reference
     from nabu.audio.providers import NavoiyProvider, ProviderError
 
     _, source, _, _ = _compiled(course)
@@ -132,12 +151,25 @@ def cast(
             f"✗ {source.id}: no OmniVoice or Navoiy voice {voice_id or ''} in the cast", err=True
         )
         raise typer.Exit(code=1)
+    course_dir = course if course.is_dir() else course.parent
+    if recording is not None:
+        if voice.provider != "omnivoice" or None in (license_, author, origin):
+            typer.echo(
+                f"✗ {source.id}: --recording is for an OmniVoice voice, with --license, "
+                "--author and --source",
+                err=True,
+            )
+            raise typer.Exit(code=1)
+        ref = record_reference(
+            course_dir, voice, recording, text, str(license_), str(author), str(origin)
+        )
+        typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
+        return
     if instruct is None:
         if voice.provider == "omnivoice":
             typer.echo(f"✗ {source.id}: an OmniVoice voice needs --instruct", err=True)
             raise typer.Exit(code=1)
         instruct = NavoiyProvider.INSTRUCT
-    course_dir = course if course.is_dir() else course.parent
     try:
         ref = cast_reference(course_dir, voice, text, instruct, seed)
     except (ValueError, ProviderError) as error:

@@ -950,6 +950,10 @@ export interface ReferenceVoice {
    */
   readonly synthetic: boolean;
   /**
+   * A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0074). The speaker is the provenance's human:<id>.
+   */
+  readonly source?: string;
+  /**
    * How a synthetic reference was made, so it can be made again.
    */
   readonly design?: {

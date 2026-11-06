@@ -11,6 +11,7 @@ from __future__ import annotations
 import hashlib
 import os
 import shutil
+import subprocess
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,7 @@ from nabu.audio.course import (
     audio_dir,
     cast_reference,
     plan,
+    record_reference,
     read_index,
     reference_of,
     synthesize_course,
@@ -193,6 +195,53 @@ def test_a_new_reference_makes_the_clips_cloned_from_the_old_one_stale(
     stale = [d for d in diags.items if d.lint == "audio.stale"]
     assert len(stale) == len(index.clips)
     assert "earlier reference voice" in stale[0].message
+
+
+@pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
+def test_a_real_speakers_recording_can_be_the_reference(tmp_path: Path) -> None:
+    """ADR 0074: a recorded reference (a Cuban speaker for es) keeps its license, speaker and
+    source, is marked as not synthetic, and is normalized like an ingested recording."""
+    course = tmp_path / "apc"
+    (course / "audio").mkdir(parents=True)
+    wav = tmp_path / "speaker.wav"
+    # One second of a 220 Hz tone between silences stands in for speech.
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-v",
+            "error",
+            "-f",
+            "lavfi",
+            "-i",
+            "anullsrc=r=44100:cl=stereo:d=0.5",
+            "-f",
+            "lavfi",
+            "-i",
+            "sine=frequency=220:sample_rate=44100:duration=1",
+            "-filter_complex",
+            "[0][1][0]concat=n=3:v=0:a=1",
+            str(wav),
+        ],
+        check=True,
+    )
+    v = voice()
+    ref = record_reference(
+        course, v, wav, " Hola, ¿qué tal? ", "CC0-1.0", "human:speaker-1", "https://example.org/a"
+    )
+    adir = audio_dir(course)
+    assert (ref.file, ref.license, ref.synthetic, ref.source) == (
+        "voices/beirut-m.wav",
+        "CC0-1.0",
+        False,
+        "https://example.org/a",
+    )
+    assert ref.provenance == Provenance(author="human:speaker-1", status="draft")
+    assert ref.text == "Hola, ¿qué tal?"
+    assert ref.design is None
+    # Leading and trailing silence trimmed: about the tone's second.
+    assert 800 <= ref.durationMs <= 1200
+    assert ref.sha256 == hashlib.sha256((adir / ref.file).read_bytes()).hexdigest()
+    assert reference_of(adir, read_index(adir), "beirut-m") is not None
 
 
 LIVE = os.environ.get("NABU_OMNIVOICE") == "1"
