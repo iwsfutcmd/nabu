@@ -1,0 +1,10 @@
+// The reference library relay (ADR 0079). Deploy from this directory: `npx wrangler@4 deploy`.
+// Everything about one deployment is a secret (`npx wrangler@4 secret put <NAME>`, here too), never in this file:
+// RELAY_KEY, ROOT_FOLDER_ID, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, GOOGLE_REFRESH_TOKEN. See README.md.
+{
+  "name": "nabu-references",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "preview_urls": false
+}

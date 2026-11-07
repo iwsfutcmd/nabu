@@ -51,6 +51,15 @@ def _register_review() -> None:
 _register_review()
 
 
+def _register_refs() -> None:
+    from nabu.refs.cli import app as refs_app
+
+    app.add_typer(refs_app, name="refs")
+
+
+_register_refs()
+
+
 def _register_speech() -> None:
     from nabu.speech.cli import app as speech_app
 
