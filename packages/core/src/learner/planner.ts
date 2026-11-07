@@ -111,6 +111,41 @@ export const dueFacets = (state: LearnerState, orthography: string, now: string,
     .filter((f) => f.r < desired)
     .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
 
+/** What plans leave out: the caller's exclusions, the speech support's, and the course's facets'. */
+const exclusionsOf = (course: CourseView, options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined }): ReadonlySet<TemplateId> =>
+  new Set([...(options.exclude ?? []), ...speechExclusions(options.speech), ...facetExclusions(course)]);
+
+/**
+ * The open mistakes rebuilt as their exercises, most recent first: those whose template is not
+ * excluded, whose item the course still makes that exercise from, and whose KCs are all seen.
+ */
+const mistakeExercises = (ctx: MakeContext, state: LearnerState, exclude: ReadonlySet<TemplateId>, seen: ReadonlySet<string>): Exercise[] => {
+  const byId = new Map(allSentences(ctx.course).map((s) => [s.id, s]));
+  const kcById = new Map(allKcs(ctx.course).map((k) => [k.id as string, k]));
+  const out: Exercise[] = [];
+  for (const m of [...state.mistakes].reverse()) {
+    if (exclude.has(m.template)) continue;
+    const s = byId.get(m.item);
+    const kc = kcById.get(m.item);
+    const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(ctx, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(ctx, kc) : undefined;
+    if (ex !== undefined && ex.kcs.every((k) => seen.has(k)) && !out.some((e) => e.id === ex.id)) out.push(ex);
+  }
+  return out;
+};
+
+/**
+ * The open mistakes a mistakes session can practise now, most recent first. A mistake is left
+ * out while its template is (a listening or speaking break, speech the app cannot score, a facet
+ * the course does not practise), once the course no longer makes it (its item was removed or
+ * changed), or while it needs a word this learner has not seen. Count these, not
+ * `state.mistakes`: a session plans from exactly these (at most ten at a time).
+ */
+export const practicableMistakes = (
+  course: CourseView,
+  state: LearnerState,
+  options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined } = {},
+): readonly Exercise[] => mistakeExercises({ course, rng: seededRng(1), introduced: [] }, state, exclusionsOf(course, options), seenKcs(state));
+
 const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], kcs: readonly BundleKc[], exclude: ReadonlySet<TemplateId>): Exercise[] => {
   const out: Exercise[] = [];
   const add = (ex: Exercise | undefined): void => {
@@ -131,7 +166,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const rng = seededRng(options.seed);
   const target = options.targetSuccess ?? 0.85;
   const desired = options.desiredRetention ?? DESIRED_RETENTION;
-  const exclude: ReadonlySet<TemplateId> = new Set([...(options.exclude ?? []), ...speechExclusions(options.speech), ...facetExclusions(course)]);
+  const exclude = exclusionsOf(course, options);
   const { now } = options;
   const orthography = course.orthography;
   if (request.mode === "placement") {
@@ -147,7 +182,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
 
   // ---- 1–2. targets and candidates
   let introduced: readonly KcId[] = [];
-  let pool: Exercise[] = [];
+  let pool: Exercise[];
   let size: number;
   if (request.mode === "lesson") {
     const found = lessonNodes(course).find((n) => n.node.id === request.node);
@@ -172,16 +207,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     // As long as there is something due to review, up to 10.
     size = options.size ?? Math.max(5, Math.min(10, due.size));
   } else {
-    const ctx: MakeContext = { course, rng, introduced: [] };
-    const byId = new Map(allSentences(course).map((s) => [s.id, s]));
-    const kcById = new Map(allKcs(course).map((k) => [k.id as string, k]));
-    for (const m of [...state.mistakes].reverse()) {
-      if (exclude.has(m.template)) continue;
-      const s = byId.get(m.item);
-      const kc = kcById.get(m.item);
-      const ex = s !== undefined ? SENTENCE_TEMPLATES[m.template]?.(ctx, s) : kc !== undefined ? KC_TEMPLATES[m.template]?.(ctx, kc) : undefined;
-      if (ex !== undefined && !pool.some((e) => e.id === ex.id)) pool.push(ex);
-    }
+    pool = mistakeExercises({ course, rng, introduced: [] }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);
   }
 
