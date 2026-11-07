@@ -4,7 +4,7 @@
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
 import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
-import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
+import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
@@ -132,7 +132,7 @@ export const createGrader = (course: CourseView): Grader => {
       const profile = profileOf(course, orthography);
       const found = new Set<string>();
       for (const text of textsOf(course, orthography)) {
-        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(profile.fold(unit));
+        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(lexiconKey(profile, unit));
       }
       words = found;
       lexicons.set(orthography, words);

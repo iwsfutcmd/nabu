@@ -55,6 +55,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Endings that carry meaning (ADR 0066): a profile's `typo.contrasts` (person, possessive, case endings, pronouns;
   REVIEW). A slip trading one member for another is WRONG_WORD, not a typo. Group allomorphs (ga, ka, qa) in one member.
+- A typo that spells another word of the course is WRONG_WORD (the lexicon). Key lexicon words and lookups with
+  `lexiconKey` (marks the profile ignores stripped), or a vocalized course's marked words never match typed answers.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)

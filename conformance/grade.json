@@ -1038,6 +1038,62 @@
       }
     },
     {
+      "id": "grade/apc-arab/real-word-vocalized",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بعدين منروح عالشغل",
+        "answer": "بعدين نروح عالشغل",
+        "lexicon": [
+          "بَعْدين",
+          "مْنْروح",
+          "نْروح",
+          "عالشُّغُل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "nrou7 (subjunctive) for mnrou7 (we go): the course writes نْروح with vowel marks, the answer without; the lexicon ignores marks the profile ignores"
+    },
+    {
+      "id": "grade/apc-arab/typo-not-a-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بعدين منروح عالشغل",
+        "answer": "بعدين منرح عالشغل",
+        "lexicon": [
+          "بَعْدين",
+          "مْنْروح",
+          "نْروح",
+          "عالشُّغُل"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "a slip that spells no word of the course stays a typo"
+    },
+    {
+      "id": "grade/apc-arab/person-prefix-real-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "بتشتغل ببيروت",
+        "lexicon": [
+          "بِشْتِغِل",
+          "بْتِشْتِغِل",
+          "بِبيروت"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "bt- (you, she) for b- (I): another word of the course"
+    },
+    {
       "id": "grade/apc-latn/exact",
       "op": "grade",
       "args": {
