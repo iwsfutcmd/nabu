@@ -77,7 +77,7 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
 | u19-work | work and study | iza, la2anno, enno; Sar and Sarli (10, 21) |
 | u20-celebrations | congratulations! | mabrouk; -na, -kon objects; 3ajabni; feelings; lesh; shu + adjective (28, 30) |
 
-- **Size.** The course grows from 348 to 685 sentences, from 258 to 410 KCs and from 55 to 99
+- **Size.** The course grows from 348 to 685 sentences, from 258 to 410 KCs and from 59 to 99
   lessons. It now has 20 stories and 16 scenarios.
 - **Facts, not sentences.** Every sentence was written for the course. The book's example
   sentences are not copied (ADR 0079).
@@ -97,7 +97,7 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
 
 - **The planner holds.** With CALIBRATION_WEIGHT unchanged, the 30-day simulations stay within
   ±5pp of 85% (apc-Arab 86.4%, apc-Latn 83.9%) and present every new KC in its lesson. A simulated
-  month is 60 lessons; units 1–10 have 55, so the new units barely enter it. A longer simulation
+  month is 60 lessons; units 1–10 have 59, so the new units barely enter it. A longer simulation
   would test them.
 - **Audio.** The new units are read by the course's two Lahgtna voices (ADR 0058, 0078). The
   round-trip check holds back the doubtful clips, as before. Six older clips were made again
