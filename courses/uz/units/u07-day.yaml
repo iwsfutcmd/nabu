@@ -598,6 +598,22 @@ sentences:
       reverse: '[Менинг] укам ухлаяпти'
   translations:
     en: My (younger|little) brother is (sleeping|asleep).
+- id: s.day.34
+  node: uz.day.now
+  persons: {addressee: pl}
+  forms:
+    uz-Latn/standard:
+      text: Nima qilyapsizlar?
+      tokens: [{surface: Nima, sense: nima}, {surface: qilyapsizlar, sense: qilmoq, morphs: [{surface: qil, kc: 'sense:qilmoq'}, {surface: yap, kc: 'form:prog-yap'}, {surface: siz, kc: 'form:cop-2-siz'},
+            {surface: lar, kc: 'form:plural-lar'}]}]
+      reverse: '[(Sizlar|Siz)] nima ((qilyapsizlar|qilyapsiz)|(qilayapsizlar|qilayapsiz))'
+    uz-Cyrl/standard:
+      text: Нима қиляпсизлар?
+      tokens: [{surface: Нима, sense: nima}, {surface: қиляпсизлар, sense: qilmoq, morphs: [{surface: қил, kc: 'sense:qilmoq'}, {surface: яп, kc: 'form:prog-yap'}, {surface: сиз, kc: 'form:cop-2-siz'},
+            {surface: лар, kc: 'form:plural-lar'}]}]
+      reverse: '[(Сизлар|Сиз)] нима ((қиляпсизлар|қиляпсиз)|(қилаяпсизлар|қилаяпсиз))'
+  translations:
+    en: What are you doing?
 stories:
 - id: uz.story.day
   node: uz.day.story

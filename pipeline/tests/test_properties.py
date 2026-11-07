@@ -22,6 +22,8 @@ PROFILES = {
     "ar-Arab/standard": "".join(
         map(chr, (0x623, 0x625, 0x627, 0x643, 0x644, 0x62A, 0x629, 0x647, 0x649, 0x64A))
     ),
+    "es-Latn/standard": "Miabuelst"
+    + "".join(map(chr, (0xE1, 0xE9, 0xED, 0xF3, 0xFA, 0xFC, 0xF1, 0xD1, 0xBF, 0xA1))),
 }
 NOISE = " ,.!?'`-" + "".join(
     map(
@@ -58,6 +60,7 @@ ACCEPT = {
     "uz-Latn/standard": "[Men] o'zbek tilini o'rganyapman",
     "tr-Latn/standard": chr(0x130) + "stanbul'da ya" + chr(0x15F) + chr(0x131) + "yorum",
     "ar-Arab/standard": "".join(map(chr, (0x623, 0x643, 0x644, 0x62A))),
+    "es-Latn/standard": chr(0xBF) + "Mi abuela [ya] est" + chr(0xE1) + " en La Habana?",
 }
 SETTINGS = settings(
     max_examples=60, deadline=None, suppress_health_check=[HealthCheck.function_scoped_fixture]

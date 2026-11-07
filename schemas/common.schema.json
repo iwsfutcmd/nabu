@@ -55,7 +55,7 @@
     },
     "Persons": {
       "title": "Persons",
-      "description": "Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.",
+      "description": "Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).",
       "type": "object",
       "minProperties": 1,
       "additionalProperties": false,
@@ -66,9 +66,9 @@
           "enum": ["m", "f"]
         },
         "addressee": {
-          "description": "Who is spoken to: one man, one woman, or several people.",
+          "description": "Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl).",
           "type": "string",
-          "enum": ["m", "f", "pl"]
+          "enum": ["m", "f", "sg", "du", "pl"]
         }
       }
     },
@@ -77,6 +77,15 @@
       "description": "What an exercise practises about a knowledge component (gameplan §8.5): recognizing it, producing it, hearing it, saying it, reading or writing its script.",
       "type": "string",
       "enum": ["recognize", "produce", "listen", "speak", "read-script", "write-script"]
+    },
+    "PlacementPolicy": {
+      "title": "PlacementPolicy",
+      "description": "How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "production": { "type": "string", "enum": ["tiles", "typed"] }
+      }
     },
     "ScriptCode": {
       "title": "ScriptCode",

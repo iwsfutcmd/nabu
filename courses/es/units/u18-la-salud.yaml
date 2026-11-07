@@ -1,0 +1,589 @@
+# Unit 18 (es): health. Doler (me duele la cabeza, le duelen las rodillas), sentirse, tener que and deber; the body;
+# Abuelo Pepe's check-up, talking to the doctor with usted and following her usted commands (tome, camine, vaya);
+# la presión, el azúcar, la pastilla, la receta, la farmacia, el turno; Abuela's remedies (el tilo, la manzanilla,
+# el cocimiento).
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u18
+title: {en: 'La salud: Health'}
+cefr: B1
+kcs:
+- {id: 'sense:doler', gloss: {en: 'to hurt; to ache (me duele: it hurts me)'}, forms: {es-Latn/standard: [doler]}, notes: {en: 'Works like gustar: me duele la cabeza (my head hurts), me duelen los pies (my feet hurt). Spanish says la cabeza, not mi cabeza: "mi cabeza duele" is English in Spanish words. O becomes ue: duele, duelen.'}}
+- {id: 'sense:cabeza', gloss: {en: head}, forms: {es-Latn/standard: [cabeza]}, notes: {en: 'Written with z. Dolor de cabeza: a headache. Cubans say tengo tremendo dolor de cabeza, with no un.'}}
+- {id: 'sense:estómago', gloss: {en: stomach}, forms: {es-Latn/standard: [estómago]}, notes: {en: 'With an accent on the first o. La barriga is the belly, the word for children and for home.'}}
+- {id: 'sense:espalda', gloss: {en: back (of the body)}, forms: {es-Latn/standard: [espalda]}, notes: {en: 'Only the body part. Coming back is volver, and the back of a house is el fondo.'}}
+- {id: 'sense:cuerpo', gloss: {en: body}, forms: {es-Latn/standard: [cuerpo]}, notes: {en: 'Me duele el cuerpo (or todo el cuerpo): I ache all over, the first sign of a catarro (cold) or a gripe (flu).'}}
+- {id: 'sense:sentirse', gloss: {en: 'to feel (well, ill, tired)'}, forms: {es-Latn/standard: [sentirse]}, notes: {en: 'Me siento bien, ¿cómo se siente usted? E becomes ie: siento, sientes. Without se, sentir is to feel something or to be sorry (lo siento). Me siento is also I sit down (sentarse).'}}
+- {id: 'sense:mal', gloss: {en: 'badly; ill; unwell'}, forms: {es-Latn/standard: [mal]}, notes: {en: 'The opposite of bien: me siento mal. Before a masculine noun malo becomes mal too: un mal día. ¡Qué mal!: how awful.'}}
+- {id: 'sense:pecho', gloss: {en: chest}, forms: {es-Latn/standard: [pecho]}, notes: {en: 'A pain in the chest (un dolor en el pecho) is a reason to call 911 in Miami, not to wait for the turno.'}}
+- {id: 'sense:rodilla', gloss: {en: knee}, forms: {es-Latn/standard: [rodilla]}, notes: {en: 'With ll. De rodillas: on your knees.'}}
+- {id: 'sense:corazón', gloss: {en: heart}, forms: {es-Latn/standard: [corazón]}, notes: {en: 'Accent on the last syllable; the plural corazones has none. Also a pet name: mi corazón, sweetheart.'}}
+- {id: 'sense:médico', gloss: {en: doctor; physician}, forms: {es-Latn/standard: [médico]}, notes: {en: 'With an accent on the é: medico without it is I medicate. Ir al médico: to go to the doctor''s. A woman is la médica (or la doctora). In Cuba every neighbourhood has its médico de la familia.'}}
+- {id: 'sense:turno', gloss: {en: 'appointment (Cuban); turn'}, forms: {es-Latn/standard: [turno]}, notes: {en: 'Cubans say tener turno con el médico; most other places, and many in Miami, say tener cita. Also your turn in a game or a line: ahora es mi turno.'}}
+- {id: 'sense:salud', gloss: {en: 'health; ¡salud!: bless you; cheers'}, forms: {es-Latn/standard: [salud]}, notes: {en: '¡Salud! after a sneeze, and when glasses are raised. La salud es lo primero: health comes first.'}}
+- {id: 'sense:doctor', gloss: {en: 'doctor (what you call one: doctora for a woman)'}, forms: {es-Latn/standard: [doctor]}, notes: {en: 'What a patient calls a physician to their face: Buenos días, doctora. Written in small letters in a sentence; Dr. and Dra. before a name. El médico is the job; doctor is the title.'}}
+- {id: 'sense:presión', gloss: {en: 'pressure; blood pressure'}, forms: {es-Latn/standard: [presión]}, notes: {en: 'Short for la presión arterial. Tener la presión alta: to have high blood pressure. The doctor''s next question is about el azúcar: tener azúcar, or tener el azúcar alta, is how Cubans say diabetes.'}}
+- {id: 'sense:alto', gloss: {en: 'high; tall; loud'}, forms: {es-Latn/standard: [alto]}, notes: {en: 'Alta with feminine nouns: la presión alta. Daniel es alto: Daniel is tall. Hablar alto: to talk loudly.'}}
+- {id: 'sense:tener-que', gloss: {en: 'to have to (tener que + infinitive)'}, forms: {es-Latn/standard: [tener que]}, notes: {en: 'Tengo que ir: I have to go; tener changes, que does not. Stronger than deber (should). With nobody in particular: hay que caminar, one has to walk.'}}
+- {id: 'sense:pastilla', gloss: {en: pill; tablet}, forms: {es-Latn/standard: [pastilla]}, notes: {en: 'La pastilla de la presión: the blood-pressure pill. Also a lozenge or a hard sweet: una pastilla de menta.'}}
+- {id: 'sense:deber', gloss: {en: 'should; must; to owe'}, forms: {es-Latn/standard: [deber]}, notes: {en: 'Usted debe descansar: you should rest. No debe: you shouldn''t. Debo cien dólares: I owe a hundred dollars.'}}
+- {id: 'sense:descansar', gloss: {en: to rest}, forms: {es-Latn/standard: [descansar]}, notes: {en: 'Descanse: rest (usted). ¡Que descanses!: sleep well, to someone going to bed.'}}
+- {id: 'sense:receta', gloss: {en: 'prescription; recipe'}, forms: {es-Latn/standard: [receta]}, notes: {en: 'Both the doctor''s prescription and Abuela''s recipe for flan. Sin receta: over the counter.'}}
+- {id: 'sense:farmacia', gloss: {en: 'pharmacy; drugstore'}, forms: {es-Latn/standard: [farmacia]}, notes: {en: 'Written with f, never ph. Families in Miami send medicines from the farmacia to relatives in Cuba.'}}
+- {id: 'sense:cocimiento', gloss: {en: 'herbal tea (a home remedy, boiled)'}, forms: {es-Latn/standard: [cocimiento]}, notes: {en: 'Cuban for a remedy of boiled leaves or flowers: un cocimiento de caña santa (lemongrass) for a cold, de manzanilla for the stomach. Elsewhere un té or una infusión.'}}
+- {id: 'sense:manzanilla', gloss: {en: 'chamomile; chamomile tea'}, forms: {es-Latn/standard: [manzanilla]}, notes: {en: 'For the stomach and for sleep. In Spain it is also a dry sherry.'}}
+- {id: 'sense:tilo', gloss: {en: 'linden tea (for the nerves)'}, forms: {es-Latn/standard: [tilo]}, notes: {en: 'The Cuban remedy for nerves: bad news, a scare or a family fight, and someone runs to make un tilo. ¡Tómate un tilo!: calm down!'}}
+nodes:
+- {id: es.u18.me-duele, kind: lesson, introduces: ['sense:doler', 'sense:cabeza', 'sense:estómago', 'sense:espalda', 'sense:cuerpo']}
+- {id: es.u18.como-se-siente, kind: lesson, introduces: ['sense:sentirse', 'sense:mal', 'sense:pecho', 'sense:rodilla', 'sense:corazón']}
+- {id: es.u18.el-medico, kind: lesson, introduces: ['sense:médico', 'sense:turno', 'sense:salud', 'sense:doctor', 'sense:presión', 'sense:alto']}
+- {id: es.u18.tiene-que, kind: lesson, introduces: ['sense:tener-que', 'sense:pastilla', 'sense:deber']}
+- {id: es.u18.tome, kind: lesson, introduces: ['sense:descansar', 'sense:receta', 'sense:farmacia']}
+- {id: es.u18.remedios, kind: lesson, introduces: ['sense:cocimiento', 'sense:manzanilla', 'sense:tilo']}
+- {id: es.u18.story, kind: story}
+sentences:
+- id: s.u18.1
+  node: es.u18.me-duele
+  forms:
+    es-Latn/standard:
+      text: Hoy me duele mucho la cabeza.
+      tokens: [{surface: Hoy, sense: hoy}, {surface: me, sense: me}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: cabeza, sense: cabeza}]
+      reverse: |-
+        Hoy me duele mucho la cabeza
+        Me duele mucho la cabeza hoy
+        Hoy tengo (mucho dolor de cabeza|tremendo dolor de cabeza|un dolor de cabeza tremendo)
+  translations:
+    en: |-
+      My head hurts a lot today.
+      Today my head hurts a lot.
+      (I've got|I have) a (bad|terrible|really bad) headache today.
+      Today (I've got|I have) a (bad|terrible|really bad) headache.
+- id: s.u18.2
+  node: es.u18.me-duele
+  forms:
+    es-Latn/standard:
+      text: Lili, ¿todavía te duele el estómago?
+      tokens: [{surface: Lili, sense: lili}, {surface: todavía, sense: todavía}, {surface: te, sense: te}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: estómago, sense: estómago}]
+      reverse: Lili (todavía te duele el estómago|te duele el estómago todavía|aún te duele el estómago|te sigue doliendo el estómago)
+  translations:
+    en: |-
+      Lili, does your (stomach|tummy|belly) still hurt?
+      Lili, is your (stomach|tummy|belly) still hurting?
+      Lili, do you still have a (stomachache|stomach ache|tummy ache)?
+- id: s.u18.3
+  node: es.u18.me-duele
+  forms:
+    es-Latn/standard:
+      text: A abuelo le duele la espalda por la mañana.
+      tokens: [{surface: A, sense: a}, {surface: abuelo, sense: abuelo}, {surface: le, sense: le}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: espalda, sense: espalda}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      reverse: |-
+        (A abuelo|A mi abuelo|Al abuelo) le duele la espalda (por|en) la mañana
+        (Por|En) la mañana (a abuelo|a mi abuelo|al abuelo) le duele la espalda
+        (Abuelo|Mi abuelo|El abuelo) tiene dolor de espalda (por|en) la mañana
+  translations:
+    en: |-
+      (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) back hurts in the (morning|mornings).
+      In the (morning|mornings) (Grandpa's|Abuelo's|Grandfather's|my grandpa's|my grandfather's) back hurts.
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) has a (sore back|backache) in the (morning|mornings).
+- id: s.u18.4
+  node: es.u18.me-duele
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Buenos días, señora. ¿Qué le duele?
+      tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: señora, sense: señora}, {surface: Qué, sense: qué}, {surface: le, sense: le}, {surface: duele, sense: doler, form: 'form:pres-3s'}]
+      reverse: (Buenos días|Buen día|Buenas) señora (qué le duele|dónde le duele)
+  translations:
+    en: Good morning, (ma'am|madam). (What hurts|Where does it hurt|What's hurting|What is hurting)?
+- id: s.u18.5
+  node: es.u18.me-duele
+  forms:
+    es-Latn/standard:
+      text: Me duele el cuerpo y no puedo dormir.
+      tokens: [{surface: Me, sense: me}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: cuerpo, sense: cuerpo}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: dormir, sense: dormir}]
+      reverse: Me duele [todo] el cuerpo y [yo] no puedo dormir
+  translations:
+    en: |-
+      My (body hurts|body aches|whole body hurts|whole body aches) and I (can't|cannot) sleep.
+      (I ache all over|I'm aching all over|Everything hurts) and I (can't|cannot) sleep.
+- id: s.u18.6
+  node: es.u18.me-duele
+  forms:
+    es-Latn/standard:
+      text: Papi ha comido mucho y ahora le duele el estómago.
+      tokens: [{surface: Papi, sense: papi}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: comido, sense: comer, form: 'form:part'}, {surface: mucho, sense: mucho}, {surface: 'y', sense: 'y'}, {surface: ahora, sense: ahora}, {surface: le, sense: le}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: estómago, sense: estómago}]
+      reverse: (Papi|Papá|Mi papá|Mi papi) (ha comido|comió) mucho y ahora le duele el estómago
+  translations:
+    en: |-
+      (Dad|Papi|My dad) has eaten a lot and now his (stomach|tummy|belly) hurts.
+      (Dad's|Papi's|My dad's) eaten a lot and now his (stomach|tummy|belly) hurts.
+      (Dad|Papi|My dad) ate a lot and now his (stomach|tummy|belly) hurts.
+- id: s.u18.7
+  node: es.u18.como-se-siente
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: ¿Cómo se siente usted hoy?
+      tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se}, {surface: siente, sense: sentirse, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: hoy, sense: hoy}]
+      reverse: (Cómo se siente [usted]|Cómo usted se siente) hoy
+  translations:
+    en: How (are you feeling|do you feel) today?
+- id: s.u18.8
+  node: es.u18.como-se-siente
+  forms:
+    es-Latn/standard:
+      text: Me siento mal y me duele el pecho.
+      tokens: [{surface: Me, sense: me}, {surface: siento, sense: sentirse, form: 'form:pres-1s'}, {surface: mal, sense: mal}, {surface: 'y', sense: 'y'}, {surface: me, sense: me}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: pecho, sense: pecho}]
+      reverse: '[Yo] me siento mal y me duele el pecho'
+  translations:
+    en: |-
+      (I feel|I'm feeling|I am feeling) (sick|bad|ill|unwell) and my chest hurts.
+      (I feel|I'm feeling|I am feeling) (sick|bad|ill|unwell) and I have (a pain in my chest|chest pain|chest pains).
+- id: s.u18.9
+  node: es.u18.como-se-siente
+  forms:
+    es-Latn/standard:
+      text: A abuelo le duelen las rodillas y no puede caminar mucho.
+      tokens: [{surface: A, sense: a}, {surface: abuelo, sense: abuelo}, {surface: le, sense: le}, {surface: duelen, sense: doler, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: rodillas, sense: rodilla}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: caminar, sense: caminar}, {surface: mucho, sense: mucho}]
+      reverse: (A abuelo|A mi abuelo|Al abuelo) le duelen las rodillas y no puede caminar mucho
+  translations:
+    en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) knees hurt and he (can't|cannot) walk (much|very much|a lot|very far|far).
+- id: s.u18.10
+  node: es.u18.como-se-siente
+  forms:
+    es-Latn/standard:
+      text: El corazón de abuelo está muy bien, pero le duelen las rodillas.
+      tokens: [{surface: El, sense: el}, {surface: corazón, sense: corazón}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: le, sense: le}, {surface: duelen, sense: doler, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: rodillas, sense: rodilla}]
+      reverse: El corazón (de abuelo|de mi abuelo|del abuelo) está muy bien pero le duelen las rodillas
+  translations:
+    en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) heart is (fine|very good|in very good shape|very healthy|doing very well), but his knees hurt.
+- id: s.u18.11
+  node: es.u18.como-se-siente
+  forms:
+    es-Latn/standard:
+      text: Abuela, ¿tú te sientes mal? ¿Qué te duele?
+      tokens: [{surface: Abuela, sense: abuela}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: sientes, sense: sentirse, form: 'form:pres-2s'}, {surface: mal, sense: mal}, {surface: Qué, sense: qué}, {surface: te, sense: te}, {surface: duele, sense: doler, form: 'form:pres-3s'}]
+      reverse: (Abuela|Mi abuela) (tú te sientes mal|te sientes mal [tú]) (qué te duele|dónde te duele)
+  translations:
+    en: (Grandma|Abuela|Grandmother|Granny), (are you feeling|do you feel) (sick|unwell|bad|ill)? (What hurts|Where does it hurt)?
+- id: s.u18.12
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: Abuelo tiene turno con el médico el lunes.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: turno, sense: turno}, {surface: con, sense: con}, {surface: el, sense: el}, {surface: médico, sense: médico}, {surface: el, sense: el}, {surface: lunes, sense: lunes}]
+      reverse: |-
+        (Abuelo|Mi abuelo|El abuelo) tiene (turno|un turno|cita|una cita) con el (médico|doctor) el lunes
+        El lunes (abuelo|mi abuelo|el abuelo) tiene (turno|un turno|cita|una cita) con el (médico|doctor)
+  translations:
+    en: |-
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) has (an appointment with the doctor|a doctor's appointment) on Monday.
+      On Monday (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) has (an appointment with the doctor|a doctor's appointment).
+- id: s.u18.13
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: Daniel va a ir con él al médico.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: ir, sense: ir}, {surface: con, sense: con}, {surface: él, sense: él}, {surface: al, sense: al}, {surface: médico, sense: médico}]
+      reverse: |-
+        Daniel va a ir (con él al (médico|doctor)|al (médico|doctor) con él)
+        Daniel va (con él al (médico|doctor)|al (médico|doctor) con él)
+  translations:
+    en: Daniel is going to go (with him to the doctor|with him to the doctor's|to the doctor with him|to the doctor's with him).
+- id: s.u18.14
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: ¡Salud! ¿Tú estás bien, Lili?
+      tokens: [{surface: Salud, sense: salud}, {surface: Tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: bien, sense: bien}, {surface: Lili, sense: lili}]
+      reverse: (Salud|Jesús) (tú estás bien|estás [tú] bien) Lili
+  translations:
+    en: (Bless you|Gesundheit)! (Are you okay|Are you OK|Are you all right|Are you alright), Lili?
+- id: s.u18.15
+  node: es.u18.el-medico
+  persons: {addressee: f}
+  forms:
+    es-Latn/standard:
+      text: Buenos días, doctora. Vengo con mi abuelo.
+      tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: doctora, sense: doctor}, {surface: Vengo, sense: venir, form: 'form:pres-1s'}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}]
+      reverse: (Buenos días|Buen día|Buenas) doctora [yo] (vengo|estoy aquí|vine) con mi abuelo
+  translations:
+    en: Good morning, Doctor. (I'm here|I am here|I've come|I came) with my (grandfather|grandpa).
+- id: s.u18.16
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: El médico dice que abuelo tiene la presión alta.
+      tokens: [{surface: El, sense: el}, {surface: médico, sense: médico}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: presión, sense: presión}, {surface: alta, sense: alto}]
+      reverse: (El médico|El doctor|La médica|La doctora) dice que (abuelo|mi abuelo|el abuelo) tiene [la] presión alta
+  translations:
+    en: The doctor says [that] (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) has high blood pressure.
+- id: s.u18.17
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: Abuelo también tiene el azúcar alta.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: azúcar, sense: azúcar}, {surface: alta, sense: alto}]
+      reverse: |-
+        (Abuelo|Mi abuelo|El abuelo) también tiene (el azúcar alta|el azúcar alto|la azúcar alta|azúcar|diabetes)
+        (Abuelo|Mi abuelo|El abuelo) tiene (el azúcar alta|el azúcar alto|la azúcar alta|azúcar|diabetes) también
+  translations:
+    en: |-
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) also has (high blood sugar|high sugar|diabetes).
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) has (high blood sugar|high sugar|diabetes) too.
+- id: s.u18.18
+  node: es.u18.el-medico
+  forms:
+    es-Latn/standard:
+      text: Hoy la presión está bien, pero el azúcar está alta.
+      tokens: [{surface: Hoy, sense: hoy}, {surface: la, sense: el}, {surface: presión, sense: presión}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: el, sense: el}, {surface: azúcar, sense: azúcar}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: alta, sense: alto}]
+      reverse: |-
+        Hoy la presión está bien pero el azúcar está (alta|alto)
+        La presión está bien hoy pero el azúcar está (alta|alto)
+  translations:
+    en: |-
+      Today (his|the|your|her) blood pressure is (fine|good|okay|OK|normal), but (his|the|your|her) (blood sugar|sugar) is high.
+      (His|The|Your|Her) blood pressure is (fine|good|okay|OK|normal) today, but (his|the|your|her) (blood sugar|sugar) is high.
+- id: s.u18.19
+  node: es.u18.tiene-que
+  forms:
+    es-Latn/standard:
+      text: Abuelo tiene que tomar una pastilla por la mañana.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener-que, form: 'form:pres-3s'}, {surface: que, sense: tener-que}, {surface: tomar, sense: tomar}, {surface: una, sense: un}, {surface: pastilla, sense: pastilla}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}]
+      reverse: |-
+        (Abuelo|Mi abuelo|El abuelo) tiene que (tomar|tomarse) una pastilla (por|en) la mañana
+        (Por|En) la mañana (abuelo|mi abuelo|el abuelo) tiene que (tomar|tomarse) una pastilla
+  translations:
+    en: |-
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) (has to|needs to|must) take a pill in the morning.
+      In the morning (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) (has to|needs to|must) take a pill.
+- id: s.u18.20
+  node: es.u18.tiene-que
+  forms:
+    es-Latn/standard:
+      text: Mañana yo tengo que trabajar, pero Lili puede ir con abuelo.
+      tokens: [{surface: Mañana, sense: mañana}, {surface: yo, sense: yo}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: trabajar, sense: trabajar}, {surface: pero, sense: pero}, {surface: Lili, sense: lili}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: con, sense: con}, {surface: abuelo, sense: abuelo}]
+      reverse: |-
+        (Mañana [yo]|Yo mañana) tengo que trabajar pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
+        [Yo] tengo que trabajar mañana pero Lili puede ir con (abuelo|mi abuelo|el abuelo)
+  translations:
+    en: |-
+      Tomorrow I (have to|need to|must) work, but Lili can go with (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather).
+      I (have to|need to|must) work tomorrow, but Lili can go with (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather).
+- id: s.u18.21
+  node: es.u18.tiene-que
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Usted debe caminar media hora por la tarde.
+      tokens: [{surface: Usted, sense: usted}, {surface: debe, sense: deber, form: 'form:pres-3s'}, {surface: caminar, sense: caminar}, {surface: media, sense: medio}, {surface: hora, sense: hora}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      reverse: |-
+        [Usted] debe caminar media hora (por|en) la tarde
+        (Por|En) la tarde [usted] debe caminar media hora
+  translations:
+    en: |-
+      You (should|must|ought to) walk [for] half an hour in the (afternoon|afternoons).
+      In the (afternoon|afternoons) you (should|must|ought to) walk [for] half an hour.
+- id: s.u18.22
+  node: es.u18.tiene-que
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Usted debe comer menos azúcar y tomar menos café.
+      tokens: [{surface: Usted, sense: usted}, {surface: debe, sense: deber, form: 'form:pres-3s'}, {surface: comer, sense: comer}, {surface: menos, sense: menos}, {surface: azúcar, sense: azúcar}, {surface: 'y', sense: 'y'}, {surface: tomar, sense: tomar}, {surface: menos, sense: menos}, {surface: café, sense: café}]
+      reverse: '[Usted] debe comer menos azúcar y (tomar|beber) menos café'
+  translations:
+    en: You (should|must|ought to) eat less sugar and drink less coffee.
+- id: s.u18.23
+  node: es.u18.tiene-que
+  forms:
+    es-Latn/standard:
+      text: Abuelo no debe tomar café por la noche.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'no', sense: 'no'}, {surface: debe, sense: deber, form: 'form:pres-3s'}, {surface: tomar, sense: tomar}, {surface: café, sense: café}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: |-
+        (Abuelo|Mi abuelo|El abuelo) no debe (tomar|beber) café (por|en) la noche
+        (Por|En) la noche (abuelo|mi abuelo|el abuelo) no debe (tomar|beber) café
+  translations:
+    en: |-
+      (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) (shouldn't|should not|mustn't|must not) drink coffee at night.
+      At night (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) (shouldn't|should not|mustn't|must not) drink coffee.
+- id: s.u18.24
+  node: es.u18.tiene-que
+  forms:
+    es-Latn/standard:
+      text: Y tú tienes que tomar mucha agua, abuelo.
+      tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: tienes, sense: tener-que, form: 'form:pres-2s'}, {surface: que, sense: tener-que}, {surface: tomar, sense: tomar}, {surface: mucha, sense: mucho}, {surface: agua, sense: agua}, {surface: abuelo, sense: abuelo}]
+      reverse: '[Y] [tú] tienes que (tomar|beber) mucha agua (abuelo|mi abuelo)'
+  translations:
+    en: '[And] you (have to|need to|must) drink (a lot of|lots of|plenty of) water, (Grandpa|Abuelo|Grandfather).'
+- id: s.u18.25
+  node: es.u18.tome
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Tome esta pastilla por la mañana y por la noche.
+      tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: esta, sense: este}, {surface: pastilla, sense: pastilla}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: 'y', sense: 'y'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: (Tome|Tómese) esta pastilla (por|en) la mañana y (por|en) la noche
+  translations:
+    en: Take this pill in the morning and (at night|in the evening).
+- id: s.u18.26
+  node: es.u18.tome
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Descanse esta semana y camine por la tarde.
+      tokens: [{surface: Descanse, sense: descansar, form: 'form:imp-ud'}, {surface: esta, sense: este}, {surface: semana, sense: semana}, {surface: 'y', sense: 'y'}, {surface: camine, sense: caminar, form: 'form:imp-ud'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      reverse: Descanse esta semana y camine (por|en) la tarde
+  translations:
+    en: (Rest|Get some rest) this week and (walk|go for a walk|take a walk) in the (afternoon|afternoons).
+- id: s.u18.27
+  node: es.u18.tome
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Aquí tiene la receta para la farmacia.
+      tokens: [{surface: Aquí, sense: aquí}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: receta, sense: receta}, {surface: para, sense: para}, {surface: la, sense: el}, {surface: farmacia, sense: farmacia}]
+      reverse: Aquí (tiene|está) la receta para la farmacia
+  translations:
+    en: (Here's|Here is|Here you have) the prescription for the (pharmacy|drugstore).
+- id: s.u18.28
+  node: es.u18.tome
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Vaya a la farmacia hoy y compre las pastillas.
+      tokens: [{surface: Vaya, sense: ir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: farmacia, sense: farmacia}, {surface: hoy, sense: hoy}, {surface: 'y', sense: 'y'}, {surface: compre, sense: comprar, form: 'form:imp-ud'}, {surface: las, sense: el}, {surface: pastillas, sense: pastilla}]
+      reverse: |-
+        Vaya a la farmacia hoy y compre las pastillas
+        Hoy vaya a la farmacia y compre las pastillas
+  translations:
+    en: |-
+      Go to the (pharmacy|drugstore) today and (buy|get|pick up) the pills.
+      Today go to the (pharmacy|drugstore) and (buy|get|pick up) the pills.
+- id: s.u18.29
+  node: es.u18.tome
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: Vuelva en dos semanas, por favor.
+      tokens: [{surface: Vuelva, sense: volver, form: 'form:imp-ud'}, {surface: en, sense: en}, {surface: dos, sense: dos}, {surface: semanas, sense: semana}, {surface: por, sense: por-favor}, {surface: favor, sense: por-favor}]
+      reverse: |-
+        (Vuelva|Regrese|Venga) en dos semanas por favor
+        Por favor (vuelva|regrese|venga) en dos semanas
+  translations:
+    en: |-
+      (Come back|Come again|Return) in two weeks, please.
+      Please (come back|come again|return) in two weeks.
+- id: s.u18.30
+  node: es.u18.tome
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: Y ustedes también, coman menos azúcar.
+      tokens: [{surface: 'Y', sense: 'y'}, {surface: ustedes, sense: ustedes}, {surface: también, sense: también}, {surface: coman, sense: comer, form: 'form:imp-ud'}, {surface: menos, sense: menos}, {surface: azúcar, sense: azúcar}]
+      reverse: |-
+        [Y] ustedes también coman menos azúcar
+        [Y] coman menos azúcar ustedes también
+  translations:
+    en: |-
+      And (you|you all|you guys|y'all|you two) (too|as well), eat less sugar.
+      (You|You all|You guys|Y'all|You two) eat less sugar too.
+- id: s.u18.31
+  node: es.u18.remedios
+  forms:
+    es-Latn/standard:
+      text: Para el estómago, abuela hace un cocimiento de manzanilla.
+      tokens: [{surface: Para, sense: para}, {surface: el, sense: el}, {surface: estómago, sense: estómago}, {surface: abuela, sense: abuela}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: cocimiento, sense: cocimiento}, {surface: de, sense: de}, {surface: manzanilla, sense: manzanilla}]
+      reverse: |-
+        Para el estómago (abuela|mi abuela|la abuela) hace (un cocimiento|un té|una infusión) de manzanilla
+        (Abuela|Mi abuela|La abuela) hace (un cocimiento|un té|una infusión) de manzanilla para el estómago
+  translations:
+    en: |-
+      For (an upset|the|a bad) stomach, (Grandma|Abuela|Grandmother|Granny|my grandma|my grandmother) makes (chamomile tea|a chamomile tea|a chamomile infusion).
+      (Grandma|Abuela|Grandmother|Granny|My grandma|My grandmother) makes (chamomile tea|a chamomile tea|a chamomile infusion) for (an upset|the|a bad) stomach.
+- id: s.u18.32
+  node: es.u18.remedios
+  forms:
+    es-Latn/standard:
+      text: Mami toma un tilo por la noche para dormir.
+      tokens: [{surface: Mami, sense: mami}, {surface: toma, sense: tomar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: tilo, sense: tilo}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: para, sense: para}, {surface: dormir, sense: dormir}]
+      reverse: |-
+        (Mami|Mamá|Mi mamá|Mi mami) (toma|se toma) un tilo (por|en) la noche para dormir
+        (Por|En) la noche (mami|mamá|mi mamá|mi mami) (toma|se toma) un tilo para dormir
+  translations:
+    en: |-
+      (Mom|Mami|My mom) (drinks|has) (linden tea|a linden tea|a cup of linden tea) at night (to sleep|to help her sleep|so she can sleep).
+      At night (Mom|Mami|my mom) (drinks|has) (linden tea|a linden tea|a cup of linden tea) (to sleep|to help her sleep|so she can sleep).
+- id: s.u18.33
+  node: es.u18.remedios
+  forms:
+    es-Latn/standard:
+      text: Abuela, ¿tú has tomado tu pastilla hoy?
+      tokens: [{surface: Abuela, sense: abuela}, {surface: tú, sense: tú}, {surface: has, sense: haber, form: 'form:pres-2s'}, {surface: tomado, sense: tomar, form: 'form:part'}, {surface: tu, sense: tu}, {surface: pastilla, sense: pastilla}, {surface: hoy, sense: hoy}]
+      reverse: (Abuela|Mi abuela) (tú has tomado|has tomado [tú]|tú tomaste|tomaste [tú]) (tu|la) pastilla hoy
+  translations:
+    en: (Grandma|Abuela|Grandmother|Granny), (have you taken|did you take) your pill today?
+- id: s.u18.34
+  node: es.u18.remedios
+  register: formal
+  forms:
+    es-Latn/standard:
+      text: El tilo está bien, pero usted tiene que tomar sus pastillas.
+      tokens: [{surface: El, sense: el}, {surface: tilo, sense: tilo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: usted, sense: usted}, {surface: tiene, sense: tener-que, form: 'form:pres-3s'}, {surface: que, sense: tener-que}, {surface: tomar, sense: tomar}, {surface: sus, sense: su}, {surface: pastillas, sense: pastilla}]
+      reverse: El tilo está bien pero [usted] tiene que tomar (sus|las) pastillas
+  translations:
+    en: (The|Your) linden tea is (fine|okay|OK|good), but you (have to|need to|must) take your pills.
+stories:
+- id: es.story.u18
+  node: es.u18.story
+  title: {en: 'Abuelo''s check-up'}
+  characters:
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: doctora, name: {es-Latn/standard: La doctora}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Pepe, hoy tú tienes turno con el médico.
+          tokens: [{surface: Pepe, sense: pepe}, {surface: hoy, sense: hoy}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: turno, sense: turno}, {surface: con, sense: con}, {surface: el, sense: el}, {surface: médico, sense: médico}]
+      translations: {en: 'Pepe, you have a doctor''s appointment today.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Yo me siento bien, Cachita. No tengo que ir.
+          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: siento, sense: sentirse, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: Cachita, sense: cachita}, {surface: 'No', sense: 'no'}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: ir, sense: ir}]
+      translations: {en: 'I feel fine, Cachita. I don''t have to go.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Tú tienes la presión alta y te duelen las rodillas!
+          tokens: [{surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: presión, sense: presión}, {surface: alta, sense: alto}, {surface: 'y', sense: 'y'}, {surface: te, sense: te}, {surface: duelen, sense: doler, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: rodillas, sense: rodilla}]
+      translations: {en: 'You have high blood pressure, and your knees hurt!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Vamos, abuelo. Yo voy también.
+          tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: abuelo, sense: abuelo}, {surface: Yo, sense: yo}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: también, sense: también}]
+      translations: {en: 'Come on, Grandpa. I''m going too.'}
+  - choose:
+      prompt: {en: 'Why doesn''t Abuelo want to go to the doctor?'}
+      options: [{en: He says he feels fine.}, {en: His knees hurt too much.}, {en: He has no appointment.}]
+      answer: 0
+  - line:
+      speaker: doctora
+      forms:
+        es-Latn/standard:
+          text: Buenos días. ¿Cómo se siente usted?
+          tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: Cómo, sense: cómo}, {surface: se, sense: se}, {surface: siente, sense: sentirse, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
+      translations: {en: 'Good morning. How are you feeling?'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Bien, doctora. Pero me duelen las rodillas.
+          tokens: [{surface: Bien, sense: bien}, {surface: doctora, sense: doctor}, {surface: Pero, sense: pero}, {surface: me, sense: me}, {surface: duelen, sense: doler, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: rodillas, sense: rodilla}]
+      translations: {en: 'Fine, Doctor. But my knees hurt.'}
+  - line:
+      speaker: doctora
+      forms:
+        es-Latn/standard:
+          text: ¿Y el pecho? ¿Le duele el pecho?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: pecho, sense: pecho}, {surface: Le, sense: le}, {surface: duele, sense: doler, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: pecho, sense: pecho}]
+      translations: {en: 'And your chest? Does your chest hurt?'}
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: sense:corazón
+      distractors: ['sense:turno', 'sense:parque']
+      forms:
+        es-Latn/standard:
+          text: No, el corazón está muy bien.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: el, sense: el}, {surface: corazón, sense: corazón}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}]
+      translations: {en: 'No, my heart is fine.'}
+  - line:
+      speaker: doctora
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Pero usted tiene la presión alta.
+          tokens: [{surface: Pero, sense: pero}, {surface: usted, sense: usted}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: presión, sense: presión}, {surface: alta, sense: alto}]
+      translations: {en: But you have high blood pressure.}
+  - line:
+      speaker: doctora
+      forms:
+        es-Latn/standard:
+          text: Tome esta pastilla por la mañana y camine por la tarde.
+          tokens: [{surface: Tome, sense: tomar, form: 'form:imp-ud'}, {surface: esta, sense: este}, {surface: pastilla, sense: pastilla}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: 'y', sense: 'y'}, {surface: camine, sense: caminar, form: 'form:imp-ud'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
+      translations: {en: Take this pill in the morning and walk in the afternoon.}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¿Y el café, doctora? ¿Debo tomar menos café?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: el, sense: el}, {surface: café, sense: café}, {surface: doctora, sense: doctor}, {surface: Debo, sense: deber, form: 'form:pres-1s'}, {surface: tomar, sense: tomar}, {surface: menos, sense: menos}, {surface: café, sense: café}]
+      translations: {en: 'And coffee, Doctor? Should I drink less coffee?'}
+  - line:
+      speaker: doctora
+      forms:
+        es-Latn/standard:
+          text: Un cafecito por la mañana está bien. Por la noche, no.
+          tokens: [{surface: Un, sense: un}, {surface: cafecito, sense: cafecito}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: mañana, sense: mañana}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}, {surface: Por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: 'no', sense: 'no'}]
+      translations: {en: 'A cafecito in the morning is fine. At night, no.'}
+  - line:
+      speaker: doctora
+      ask: complete
+      gap: sense:farmacia
+      distractors: ['sense:playa', 'sense:estadio']
+      forms:
+        es-Latn/standard:
+          text: Aquí tiene la receta. Vaya a la farmacia hoy.
+          tokens: [{surface: Aquí, sense: aquí}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: receta, sense: receta}, {surface: Vaya, sense: ir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: farmacia, sense: farmacia}, {surface: hoy, sense: hoy}]
+      translations: {en: 'Here''s the prescription. Go to the pharmacy today.'}
+  - choose:
+      prompt: {en: 'What does the doctor tell Abuelo to do?'}
+      options: [{en: Take a pill in the morning and walk in the afternoon.}, {en: Stop drinking coffee.}, {en: Rest at home for two weeks.}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Qué te ha dicho el médico, Pepe?
+          tokens: [{surface: Qué, sense: qué}, {surface: te, sense: te}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: dicho, sense: decir, form: 'form:part'}, {surface: el, sense: el}, {surface: médico, sense: médico}, {surface: Pepe, sense: pepe}]
+      translations: {en: 'What did the doctor tell you, Pepe?'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Que tengo que tomar una pastilla y caminar.
+          tokens: [{surface: Que, sense: que}, {surface: tengo, sense: tener-que, form: 'form:pres-1s'}, {surface: que, sense: tener-que}, {surface: tomar, sense: tomar}, {surface: una, sense: un}, {surface: pastilla, sense: pastilla}, {surface: 'y', sense: 'y'}, {surface: caminar, sense: caminar}]
+      translations: {en: That I have to take a pill and walk.}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Muy bien. Y yo te voy a hacer un cocimiento.
+          tokens: [{surface: Muy, sense: muy}, {surface: bien, sense: bien}, {surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: te, sense: te}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: hacer, sense: hacer}, {surface: un, sense: un}, {surface: cocimiento, sense: cocimiento}]
+      translations: {en: 'Very good. And I''m going to make you an herbal tea.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¿Un cocimiento? Cachita, ¡yo quiero un cafecito!
+          tokens: [{surface: Un, sense: un}, {surface: cocimiento, sense: cocimiento}, {surface: Cachita, sense: cachita}, {surface: yo, sense: yo}, {surface: quiero, sense: querer, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: cafecito, sense: cafecito}]
+      translations: {en: 'An herbal tea? Cachita, I want a cafecito!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuelo, la doctora dice que por la noche no.
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: la, sense: el}, {surface: doctora, sense: doctor}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}, {surface: 'no', sense: 'no'}]
+      translations: {en: 'Grandpa, the doctor says not at night.'}
+  - choose:
+      prompt: {en: 'What does Abuela want to make for Abuelo?'}
+      options: [{en: An herbal tea (un cocimiento)}, {en: A cafecito}, {en: A linden tea for her nerves}]
+      answer: 0

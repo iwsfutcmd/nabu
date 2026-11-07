@@ -420,6 +420,30 @@ sentences:
     en: |-
       (This pen costs|This pen is|The price of this pen is) (twenty|20) thousand (tomans|toman).
       (This pen costs|This pen is|The price of this pen is) 20000 (tomans|toman).
+- id: s.numbers.35
+  node: fa.numbers.have
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: شما کتاب دارید؟
+      tokens: [{surface: شما, sense: shoma}, {surface: کتاب, sense: ketab}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] [یک] کتاب دارید'
+  translations:
+    en: |-
+      Do you have (a book|books|any books)?
+      Have you got (a book|any books)?
+- id: s.numbers.36
+  node: fa.numbers.age
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: شما چند خواهر دارید؟
+      tokens: [{surface: شما, sense: shoma}, {surface: چند, sense: chand}, {surface: خواهر, sense: khahar}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] چند [تا] خواهر دارید'
+  translations:
+    en: |-
+      How many sisters do you have?
+      How many sisters have you got?
 stories:
 - id: fa.story.notebook
   node: fa.numbers.story

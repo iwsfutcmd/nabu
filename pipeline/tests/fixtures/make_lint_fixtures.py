@@ -539,6 +539,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
         "Men talabaman brings in sense:talaba and the copula at once.",
         m(_iplus),
     ),
+    "curriculum.one-gender": (
+        "The only sentence that names its speaker has a man speaking (ADR 0075).",
+        m(set_(["units", 0, "sentences", 0, "persons"], {"speaker": "m"})),
+    ),
     "curriculum.cycle": ("salom requires men requires salom.", m(_cycle)),
     "curriculum.order": ("A KC is introduced before its prerequisite.", m(_order)),
     "curriculum.unused-kc": ("sense:kitob is introduced but never used.", m(_unused)),

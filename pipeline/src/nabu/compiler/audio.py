@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 from pydantic import ValidationError
 
-from nabu.audio.course import INDEX, audio_dir, plan
+from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.schema.models import AudioClip, AudioIndex, CourseSource
@@ -85,9 +85,13 @@ def check_audio(
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
     # What each voice of the cast would read now, by (provider, voice).
     planned: dict[tuple[str, str], dict[str, str]] = {}
+    # Which voice of the cast reads each item (ADR 0078); a person's check keeps a clip's voice.
+    checked = checked_voices(index, voices)
+    owner = assignment(compiled.units, voices, checked) if voices else {}
+    by_id = {v.id: v for v in voices}
     for voice in voices:
         try:
-            reads = plan(compiled.units, voice, compiled.written)[0]
+            reads = plan(compiled.units, voice, compiled.written, voices, checked)[0]
         except ValueError as error:
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue
@@ -152,6 +156,18 @@ def check_audio(
                     f"{clip.item}: synthesized by {clip.synthesis.provider} "
                     f"({clip.synthesis.voice}), which is no longer in the course's cast; "
                     "run `nabu audio generate`",
+                    loc,
+                )
+                continue
+            reader = by_id.get(owner.get(clip.item, ""))
+            if reader is not None and (reader.provider, reader.voice) != (
+                clip.synthesis.provider,
+                clip.synthesis.voice,
+            ):
+                ctx.diags.report(
+                    "audio.stale",
+                    f"{clip.item}: in {clip.synthesis.voice}'s voice, but {reader.id} reads it now "
+                    "(ADR 0078); run `nabu audio generate`",
                     loc,
                 )
                 continue

@@ -44,10 +44,14 @@ def generate(
     ] = False,
     voice_id: Annotated[
         str | None,
-        typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
+        typer.Option("--voice", help="Run one voice of the cast (its id); default all of them."),
     ] = None,
 ) -> None:
     """Synthesize the course's clips from pinned readings; unchanged inputs are kept.
+
+    Each item is read by one voice of the cast, picked at random (seeded by the item), or by
+    one of the gender its grammar wants (ADR 0078). With --voice, the others' clips stay as
+    they are.
 
     Hosted voices (elevenlabs, cartesia) read their API key from the environment. OmniVoice
     voices need the omnivoice group (`uv sync --group omnivoice`) and a reference (`cast`).
@@ -65,8 +69,7 @@ def generate(
     if audio is None or not audio.voices:
         typer.echo(f"✗ {source.id}: no audio voices in course.yaml", err=True)
         raise typer.Exit(code=1)
-    voice = next((v for v in audio.voices if voice_id in (None, v.id)), None)
-    if voice is None:
+    if voice_id is not None and all(v.id != voice_id for v in audio.voices):
         typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
         raise typer.Exit(code=1)
     checker: Callable[[Item, Clip], dict[str, Any]] | None = None
@@ -80,16 +83,17 @@ def generate(
 
         checker = round_trip_check
     try:
-        report = synthesize_course(course_dir, units, voice, checker, written)
+        report = synthesize_course(course_dir, units, audio.voices, checker, written, voice_id)
     except (MissingKey, ProviderError, ValueError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None
+    shares = ", ".join(f"{v} reads {n}" for v, n in report.shares.items())
     typer.echo(
         f"✓ {source.id}: {report.synthesized} synthesized, {report.kept} kept, "
-        f"{report.removed} removed; {len(report.skipped)} without a pinned reading"
+        f"{report.removed} removed; {len(report.skipped)} without a pinned reading ({shares})"
     )
     for item in report.skipped:
-        typer.echo(f"  - {item}: no {voice.reading} reading", err=True)
+        typer.echo(f"  - {item}: no pinned reading", err=True)
     for item in report.silent:
         typer.echo(f"  - {item}: the voice said nothing; no clip", err=True)
 
@@ -100,6 +104,24 @@ def cast(
     text: Annotated[
         str, typer.Option(help="What the reference says (a few seconds, the course's language).")
     ],
+    recording: Annotated[
+        Path | None,
+        typer.Option(
+            exists=True,
+            dir_okay=False,
+            help="OmniVoice: a real speaker's recording to clone instead of a designed voice "
+            "(any audio ffmpeg reads); --text is its transcript. Needs --license, --author and "
+            "--source.",
+        ),
+    ] = None,
+    license_: Annotated[
+        str | None, typer.Option("--license", help="With --recording: its SPDX license.")
+    ] = None,
+    author: Annotated[str | None, typer.Option(help="With --recording: human:<speaker>.")] = None,
+    origin: Annotated[
+        str | None,
+        typer.Option("--source", help="With --recording: where it came from (URL)."),
+    ] = None,
     instruct: Annotated[
         str | None,
         typer.Option(
@@ -115,13 +137,14 @@ def cast(
         typer.Option("--voice", help="Which voice of the cast (its id); default the first."),
     ] = None,
 ) -> None:
-    """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058),
-    Navoiy reads the text in the voice of CosyVoice's prompt recording (ADR 0059).
+    """Make a cloning voice's reference: OmniVoice designs it from speaker attributes (ADR 0058)
+    or keeps a real speaker's recording (--recording, ADR 0076); Navoiy reads the text in the
+    voice of CosyVoice's prompt recording (ADR 0059).
 
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting
     again replaces it, and its clips are synthesized again on the next `generate`.
     """
-    from nabu.audio.course import cast_reference
+    from nabu.audio.course import cast_reference, record_reference
     from nabu.audio.providers import NavoiyProvider, ProviderError
 
     _, source, _, _ = _compiled(course)
@@ -132,12 +155,25 @@ def cast(
             f"✗ {source.id}: no OmniVoice or Navoiy voice {voice_id or ''} in the cast", err=True
         )
         raise typer.Exit(code=1)
+    course_dir = course if course.is_dir() else course.parent
+    if recording is not None:
+        if voice.provider != "omnivoice" or None in (license_, author, origin):
+            typer.echo(
+                f"✗ {source.id}: --recording is for an OmniVoice voice, with --license, "
+                "--author and --source",
+                err=True,
+            )
+            raise typer.Exit(code=1)
+        ref = record_reference(
+            course_dir, voice, recording, text, str(license_), str(author), str(origin)
+        )
+        typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
+        return
     if instruct is None:
         if voice.provider == "omnivoice":
             typer.echo(f"✗ {source.id}: an OmniVoice voice needs --instruct", err=True)
             raise typer.Exit(code=1)
         instruct = NavoiyProvider.INSTRUCT
-    course_dir = course if course.is_dir() else course.parent
     try:
         ref = cast_reference(course_dir, voice, text, instruct, seed)
     except (ValueError, ProviderError) as error:
@@ -168,7 +204,7 @@ def align(
         typer.echo(f"✗ {source.id}: no voice {voice_id or ''} in the cast", err=True)
         raise typer.Exit(code=1)
     phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
-    done = align_course(course_dir, units, voice, phonemes, written)
+    done = align_course(course_dir, units, voice, phonemes, written, voices=voices)
     typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
 
 

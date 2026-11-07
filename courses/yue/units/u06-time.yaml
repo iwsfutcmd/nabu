@@ -184,6 +184,7 @@ sentences:
       It's Sunday tomorrow.
 - id: s.u06.13
   node: yue.days
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你幾時去呀？
@@ -281,6 +282,7 @@ sentences:
       They get up (very|really) early.
 - id: s.u06.22
   node: yue.night
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你幾點瞓覺呀？
@@ -290,6 +292,7 @@ sentences:
     en: What time do you go to (bed|sleep)?
 - id: s.u06.23
   node: yue.work-day
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你幾點返工呀？
@@ -320,6 +323,7 @@ sentences:
       Today I('m| am) (not free|busy).
 - id: s.u06.26
   node: yue.work-day
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -350,6 +354,7 @@ sentences:
     en: (Sorry|I'm sorry), I('m| am) (very|really|so) busy.
 - id: s.u06.29
   node: yue.meet
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我等你。
@@ -361,6 +366,7 @@ sentences:
       I('m| am) waiting for you.
 - id: s.u06.30
   node: yue.meet
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 我喺公司等你。
@@ -412,6 +418,35 @@ sentences:
     en: |-
       Let's meet in Central at (seven|7)[ o'clock].
       Let's meet at (seven|7)[ o'clock] in Central.
+- id: s.u06.35
+  node: yue.work-day
+  constructions:
+  - construction:a-not-a
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋聽日得唔得閒呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}},
+        {surface: 得唔得閒, sense: 得閒, morphs: [{surface: 得, kc: 'sense:得閒'}, {surface: 唔, kc: 'sense:唔'}, {surface: 得閒, kc: 'sense:得閒'}], readings: {jyutping: dak1 m4 dak1 haan4}}, {surface: 呀, sense: 呀, readings: {
+            jyutping: aa3}}]
+      reverse: |-
+        (你(哋|地)聽日|聽日你(哋|地))得唔得閒[呀]
+        你(哋|地)聽日得閒嗎
+  translations:
+    en: Are you free tomorrow?
+- id: s.u06.36
+  node: yue.meet
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 我等你哋。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 等, sense: 等, readings: {jyutping: dang2}}, {surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}],
+          readings: {jyutping: nei5 dei6}}]
+      reverse: 我(|會)等你(哋|地)
+  translations:
+    en: |-
+      I('ll| will) wait for you.
+      I('m| am) waiting for you.
 stories:
 - id: yue.story.free-tomorrow
   node: yue.time-story

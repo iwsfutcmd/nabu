@@ -368,6 +368,36 @@ sentences:
       reverse: بله (خوب است|خوبه) تا فردا
   translations:
     en: Yes, (that's|that is|it's|it is) (fine|good|OK|okay). See you tomorrow!
+- id: s.time.31
+  node: fa.time.today
+  constructions:
+  - construction:ezafe
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: "ساعتِ چند می\u200cآیید؟"
+      tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید,
+              kc: 'form:2pl-id'}]}]
+      reverse: "[شما] ساعت چند می\u200cآیید"
+  translations:
+    en: |-
+      (What time|When) are you coming?
+      (What time|When) will you come?
+- id: s.time.32
+  node: fa.time.weekend
+  constructions:
+  - construction:ezafe
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: "آخرِ هفته کجا می\u200cروید؟"
+      tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو,
+              kc: 'sense:raftan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: "[شما] آخر هفته کجا می\u200cروید"
+  translations:
+    en: |-
+      Where are you going (at the|on the|this) weekend?
+      Where do you go (at|on) the weekend?
 stories:
 - id: fa.story.tomorrow
   node: fa.time.story

@@ -17,7 +17,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -108,8 +108,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
   (nabu/audio/punctuation.py: by script subtag, language overrides). Turning it on makes those clips stale.
-- apc's voice (ADR 0058): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
-  vowel-marked text and cloning one reference (`nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
+- apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
+  vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
@@ -125,6 +125,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns
   its clip (never the shell), so nothing plays twice. New views with a clip use the same hook.
+- A clip said on answering waits for the feedback sound (`SAY_AFTER_ANSWER_MS`), never over it. Clip elements load with
+  the card and are reused (`useClipElements`); never `new Audio()` at play time (choppy starts, Firefox on Android).
 - fa's voice (ADR 0065): Mana-Persian-Piper (Piper, pinned `model`, MIT). Its `carrier` says items of at most
   `maxWords` words inside "حالا این کلمه را تکرار کن، …" with durations set from the carrier (the graph split at
   /Ceil, nabu/audio/carrier.py) and cuts them out exactly; lone words otherwise collapse. Piper is seeded.
@@ -229,9 +231,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `kc.inflected-form` catches forms the sentences analyse into several KCs. Verbs: infinitive (ichmoq, خوردن).
 - Taps on analysed words show their morphs (`glossAt`); annotate morphs rather than listing inflected forms.
 
-## Persons notes (see docs/adr/0056)
-- `persons` on a sentence (ADR 0056: speaker m/f, addressee m/f/pl) is shown as tags under l1-l2 prompts; tag
-  where the target marks gender/number and English cannot, and keep the accept set to the forms that fit.
+## Persons and register notes (see docs/adr/0056, 0075)
+- `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
+  under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
+  forms that fit. Untagged means every form is accepted.
+- Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
+  woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
+  before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
+- Register is the same idea, not yet modelled: Javanese speech levels (ngoko/krama/krama inggil), T–V (fa تو/شما,
+  uz sen/siz), Korean/Japanese honorifics. When a register language arrives: an ADR, a tag the prompt shows, accept
+  sets that fit it, and every level exercised. Gendered plurals (Hebrew atem/aten) will need a gendered pl.
+- A course's voices share its items (ADR 0078): each sentence, word and story character gets one voice at random
+  (seeded by its id: `assignment` in nabu/audio/course.py), except where grammar says who speaks (`persons.speaker`, a
+  story character's `speaker`): then a voice of that gender, if cast. A one-voice cast reads everything (a man reading a
+  woman's line is fine). Checked clips keep their voice. Set a character's `speaker` only where the text fixes it
+  (agreement, kinship words), never from a name alone. Adding a voice re-draws about half the items: regenerate.
 
 ## Account data notes (see docs/adr/0067, 0069)
 - `GET /v1/export` and `DELETE /v1/account` (src/privacy.ts): a new table that names a learner (user id or subject) must
@@ -276,13 +290,42 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   for the language being learned (Preferences; `--nabu-target-scale` on <T> text marked `data-target`). Render course
   pages inside `CourseUiProvider` so <T> knows which orthographies are targets.
 
+## Cuban Spanish notes (see docs/adr/0076–0077)
+- courses/es: thirty units A1–B2 for heritage speakers; courses/es/README.md is the brief, syllabus and conventions.
+  Cuban forms are canonical (guagua, ¿Qué tú quieres?); pan-Hispanic ones are accepted, never the reverse.
+- Verb tenses are `form:` KCs on the token (form:pres-1s, form:pret-3s, form:impf, form:subj…), not morphs;
+  `iPlusOne: 2`. A unit that first teaches a tense defines its form KC.
+- es-Latn/standard: a missing accent is CORRECT_MARKS; one that spells another word of the course is WRONG_WORD
+  (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
+- Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
+  typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
+- The voice clones a CC0 Cuban recording (`nabu audio cast --recording`); clips are CC-BY-NC-4.0 (OmniVoice weights).
+
+## Reference library notes (see docs/adr/0079)
+- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay
+  (apps/references), never in the repo, bundles, issues or commits; nor does text extracted from them.
+- `cd pipeline && uv run nabu refs ls -r`, `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git
+  work tree), `put <file> notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
+- Courses take facts from references (forms, paradigms, glosses), never example sentences or definitions verbatim.
+- Cloud sessions: NABU_REFS_URL is an environment variable; the key is the relay host's network secret (never chat).
+  The relay trashes, never deletes; uploads stop at 25 MB (scans go into Drive directly).
+- The PDF text layer garbles Arabic (presentation forms, loose shaddas, words out of order): read Latin from the text
+  and check every Arabic spelling on a page image (`pdftoppm -png -f N -l N`).
+
+## apc twenty units notes (see docs/adr/0080)
+- apc has twenty units, checked against Kline (2022). Senses spelled alike take a suffix (ra7.fut, fi.can, men.than,
+  ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
+- Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
+  Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. Six clips a listener checked in the old
+  spelling keep it through the voice's `spoken`. New vocalizations mark ج as a sun letter.
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0074 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0080 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

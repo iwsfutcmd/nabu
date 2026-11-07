@@ -1321,6 +1321,47 @@
       "note": "And the other way round."
     },
     {
+      "id": "grade/apc-latn/gh-8",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ekhti zghire",
+        "answer": "ekhti z8ire"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "8 for gh, as Kline (2022) writes غ (REVIEW)."
+    },
+    {
+      "id": "grade/apc-latn/gh-8-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "8ali ktir",
+        "answer": "ghali ktir"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "And the other way round."
+    },
+    {
+      "id": "grade/apc-latn/gh-8-other-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ghali ktir",
+        "answer": "7ali ktir"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Only 8 stands for gh: another digit letter is another word."
+    },
+    {
       "id": "grade/apc-latn/attached-3al",
       "op": "grade",
       "args": {
@@ -1533,6 +1574,395 @@
         "verdict": "CORRECT_WITH_TYPO"
       },
       "note": "-šām is no ending: still a typo"
+    },
+    {
+      "id": "grade/es/exact",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi mamá está en la cocina",
+        "answer": "Mi mamá está en la cocina"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/es/accent-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Me gusta la canción",
+        "answer": "Me gusta la cancion",
+        "lexicon": [
+          "me",
+          "gusta",
+          "la"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ]
+      },
+      "note": "cancion is no word of the course: the accent is noted, the answer counts"
+    },
+    {
+      "id": "grade/es/accent-misplaced",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Me gusta la canción",
+        "answer": "Me gusta la cáncion",
+        "lexicon": [
+          "me",
+          "gusta",
+          "la"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ]
+      }
+    },
+    {
+      "id": "grade/es/accent-word-esta",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi mamá está en la cocina",
+        "answer": "Mi mamá esta en la cocina",
+        "lexicon": [
+          "mi",
+          "mamá",
+          "está",
+          "esta",
+          "en",
+          "la",
+          "cocina"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ]
+      },
+      "note": "esta (this) is another word of the course"
+    },
+    {
+      "id": "grade/es/accent-word-added",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Esta casa es grande",
+        "answer": "Está casa es grande",
+        "lexicon": [
+          "esta",
+          "está",
+          "casa",
+          "es",
+          "grande"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ]
+      },
+      "note": "an accent added can make another word too"
+    },
+    {
+      "id": "grade/es/accent-word-preterite",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Ayer habló con su abuela",
+        "answer": "Ayer hablo con su abuela",
+        "lexicon": [
+          "ayer",
+          "habló",
+          "hablo",
+          "con",
+          "su",
+          "abuela"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ]
+      },
+      "note": "hablo (I speak) for habló (he spoke)"
+    },
+    {
+      "id": "grade/es/accent-word-capital",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Él es mi tío",
+        "answer": "El es mi tío",
+        "lexicon": [
+          "él",
+          "el",
+          "es",
+          "mi",
+          "tío"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ]
+      },
+      "note": "capitals keep their accents: El (the) for Él (he)"
+    },
+    {
+      "id": "grade/es/accent-without-lexicon",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi mamá está en la cocina",
+        "answer": "Mi mamá esta en la cocina"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ]
+      },
+      "note": "with no lexicon the grader cannot know esta is a word"
+    },
+    {
+      "id": "grade/es/question-marks",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Qué bolá?",
+        "answer": "Que bola",
+        "lexicon": [
+          "bolá"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ]
+      },
+      "note": "¿ and ? are punctuation; que is no word of this lexicon"
+    },
+    {
+      "id": "grade/es/question-que",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Qué bolá?",
+        "answer": "que bolá",
+        "lexicon": [
+          "qué",
+          "que",
+          "bolá"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ]
+      },
+      "note": "que (that) for qué (what)"
+    },
+    {
+      "id": "grade/es/diaeresis",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "El pingüino come pescado",
+        "answer": "El pinguino come pescado",
+        "lexicon": [
+          "el",
+          "come",
+          "pescado"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ]
+      }
+    },
+    {
+      "id": "grade/es/nfd-answer",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi mamá está en la cocina",
+        "answer": "Mi mama\u0301 esta\u0301 en la cocina",
+        "lexicon": [
+          "mi",
+          "mamá",
+          "está",
+          "esta",
+          "en",
+          "la",
+          "cocina"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "accents typed as combining marks"
+    },
+    {
+      "id": "grade/es/enye-is-a-letter",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Tengo veinte años",
+        "answer": "Tengo veinte anos",
+        "lexicon": [
+          "tengo",
+          "veinte",
+          "años"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "ñ is a letter, not n with a mark: años and anos are different words"
+    },
+    {
+      "id": "grade/es/enye-typo",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Nos vemos mañana",
+        "answer": "Nos vemos manana",
+        "lexicon": [
+          "nos",
+          "vemos",
+          "mañana"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "n for ñ in a long word is a typo, not an accent"
+    },
+    {
+      "id": "grade/es/contrast-ending",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo español",
+        "answer": "Yo habla español",
+        "lexicon": [
+          "yo",
+          "hablo",
+          "español"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "habla (he speaks) for hablo (I speak) is another person, not a typo"
+    },
+    {
+      "id": "grade/es/contrast-gender",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi abuela es cubana",
+        "answer": "Mi abuela es cubano",
+        "lexicon": [
+          "mi",
+          "abuela",
+          "es",
+          "cubana"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      }
+    },
+    {
+      "id": "grade/es/contrast-number",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Tengo dos hermanos",
+        "answer": "Tengo dos hermano",
+        "lexicon": [
+          "tengo",
+          "dos",
+          "hermanos"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      }
+    },
+    {
+      "id": "grade/es/typo",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Mi abuela cocina frijoles negros",
+        "answer": "Mi abuela cocina frijolrs negros",
+        "lexicon": [
+          "mi",
+          "abuela",
+          "cocina",
+          "frijoles",
+          "negros"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "e→r: neighbouring keys"
+    },
+    {
+      "id": "grade/es/wrong-word",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Voy en guagua",
+        "answer": "Voy en carro"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      }
+    },
+    {
+      "id": "grade/es/alternatives",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "(Voy en guagua|Cojo la guagua)",
+        "answer": "Cojo la guagua"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT"
+      }
     }
-]
+  ]
 }

@@ -47,6 +47,7 @@ nodes:
 sentences:
 - id: s.u04.1
   node: yue.eat
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你食咩呀？
@@ -114,6 +115,7 @@ sentences:
       (She|He) eats beef noodles.
 - id: s.u04.6
   node: yue.eat
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -137,6 +139,7 @@ sentences:
     en: I (don't|do not) eat beef.
 - id: s.u04.8
   node: yue.drink
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你飲咩呀？
@@ -302,6 +305,7 @@ sentences:
       A cold one, please.
 - id: s.u04.21
   node: yue.order
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你要咖啡定茶呀？
@@ -419,6 +423,7 @@ sentences:
     en: I('d like|'ll have| want| will have| would like) (|some )(har gow|shrimp dumplings|prawn dumplings).
 - id: s.u04.32
   node: yue.dim-sum
+  persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
@@ -443,6 +448,7 @@ sentences:
     en: I('d like| want| would like) to (have|eat|get) (|some )dim sum.
 - id: s.u04.34
   node: yue.dim-sum
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你想飲咩呀？
@@ -535,6 +541,7 @@ sentences:
       (Not at all|No need to thank me)!
 - id: s.u04.42
   node: yue.cafe
+  persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
       text: 你鍾意食咩呀？
@@ -544,6 +551,57 @@ sentences:
     en: |-
       What do you like to eat?
       What food do you like?
+- id: s.u04.43
+  node: yue.eat
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋食咩呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {
+          surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)食(|緊)(咩|乜嘢|乜野|乜)[呀]
+        你(哋|地)想食(咩|乜嘢|乜野|乜)[呀]
+  translations:
+    en: |-
+      What are you (eating|having)?
+      What( will|'ll) you have?
+      What do you want to eat?
+      What would you like( to eat|)?
+      What do you eat?
+- id: s.u04.44
+  node: yue.drink
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋飲咩呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {
+          surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)飲(|緊)(咩|乜嘢|乜野|乜)[呀]
+        你(哋|地)想飲(咩|乜嘢|乜野|乜)[呀]
+  translations:
+    en: |-
+      What (would you like|do you want) to drink?
+      What are you drinking?
+      What( will|'ll) you have to drink?
+      What do you drink?
+- id: s.u04.45
+  node: yue.order
+  persons: {addressee: pl}
+  forms:
+    yue-Hant-HK/standard:
+      text: 你哋要咖啡定茶呀？
+      tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 要, sense: 要, readings: {jyutping: jiu3}}, {
+          surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}, {surface: 定, sense: 定, readings: {jyutping: ding6}}, {surface: 茶, sense: 茶, readings: {jyutping: caa4}}, {surface: 呀, sense: 呀, readings: {
+            jyutping: aa3}}]
+      reverse: |-
+        你(哋|地)(要|飲)咖啡(定|定係)茶[呀]
+        咖啡(定|定係)茶[呀]
+  translations:
+    en: |-
+      (Do you want|Would you like) coffee or tea?
+      Coffee or tea?
 stories:
 - id: yue.story.cha-chaan-teng
   node: yue.food-story

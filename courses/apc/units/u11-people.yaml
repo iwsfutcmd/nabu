@@ -1,0 +1,861 @@
+# Fixture course (apc), unit 11: he, she and they. huwwe, hiyye, henne; the -on ending (their: beton,
+# written ـهن as Kline 2022 writes it); the present for 'they' (byishrabo) and the past (ra7o, keno);
+# where people live (seken, an active participle) and where they are from (lebnene, amerkene).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 3, 7, 12,
+# 13 and 17: every sentence awaits a native speaker's review.
+id: u11-people
+title: {en: Friends and neighbours}
+cefr: A2
+kcs:
+- {id: 'sense:huwwe', gloss: {en: he}, forms: {apc-Arab/standard: [هو], apc-Latn/arabizi: [huwwe]}}
+- {id: 'sense:hiyye', gloss: {en: she}, forms: {apc-Arab/standard: [هي], apc-Latn/arabizi: [hiyye]}}
+- {id: 'sense:jar', gloss: {en: neighbour}, forms: {apc-Arab/standard: [جار], apc-Latn/arabizi: [jar]}, notes: {en: 'A woman neighbour: جارة, jara; jarti: my neighbour (a woman).'}}
+- {id: 'sense:zalame', gloss: {en: man; guy}, forms: {apc-Arab/standard: [زلمة], apc-Latn/arabizi: [zalame]}}
+- {id: 'sense:mara', gloss: {en: woman; wife}, forms: {apc-Arab/standard: [مرة], apc-Latn/arabizi: [mara]}, notes: {en: 'Also written مرا. Before a name or a noun it is mart: mart Sami, Sami''s wife.'}}
+- {id: 'sense:seken', gloss: {en: 'living (somewhere): I live, you live'}, forms: {apc-Arab/standard: [ساكن], apc-Latn/arabizi: [seken]}, notes: {en: 'An active participle: it agrees like an adjective.
+      seken (a man), sekne (a woman), seknin (several people). wen seken? Where do you live?'}}
+- {id: 'sense:bineye', gloss: {en: building (of flats)}, forms: {apc-Arab/standard: [بناية], apc-Latn/arabizi: [bineye]}}
+- {id: 'sense:lebnene', gloss: {en: Lebanese}, forms: {apc-Arab/standard: [لبناني], apc-Latn/arabizi: [lebnene]}, notes: {en: 'A woman: لبنانية, lebneniyye; several people: لبنانيين, lebneniyyin.'}}
+- {id: 'sense:amerkene', gloss: {en: American}, forms: {apc-Arab/standard: [أميركاني], apc-Latn/arabizi: [amerkene]}, notes: {en: 'A woman: أميركانية, amerkeniyye. Also written amarkene, أمركاني.'}}
+- {id: 'sense:henne', gloss: {en: they}, forms: {apc-Arab/standard: [هنّ], apc-Latn/arabizi: [henne]}}
+- {id: 'form:impf-3pl', gloss: {en: 'bi-…-o: they (present)'}, notes: {en: 'byishrabo: they drink; byi7ko: they speak. Arabic script: بي before the verb and وا after it (بيشربوا), also written بيشربو.'}}
+- {id: 'sense:rfi2', gloss: {en: friend}, forms: {apc-Arab/standard: [رفيق], apc-Latn/arabizi: [rfi2]}, notes: {en: 'A woman friend: رفيقة, rfi2a (rfi2ti: my friend). Compare صاحب, sa7eb.'}}
+- {id: 'form:poss-3pl', gloss: {en: '-on: their (ending on a noun)'}, notes: {en: 'beton: their house; 3endon: they have. Arabic script: هن joined to the noun (بيتهن), as Kline (2022) writes it; also written
+      ـن (بيتن).'}}
+- {id: 'sense:ahl', gloss: {en: parents; family}, forms: {apc-Arab/standard: [أهل], apc-Latn/arabizi: [ahl]}, notes: {en: 'ahli: my parents; bet ahli: my parents'' house.'}}
+- {id: 'sense:jiren', gloss: {en: neighbours}, forms: {apc-Arab/standard: [جيران], apc-Latn/arabizi: [jiren]}, notes: {en: 'The plural of جار, jar.'}}
+- {id: 'form:past-3pl', gloss: {en: '-o: they (past)'}, notes: {en: 'ra7o: they went; keno: they were; akalo: they ate. Arabic script: وا at the end (راحوا), also written راحو.'}}
+nodes:
+- {id: apc.ppl.he-she, kind: lesson, introduces: ['sense:huwwe', 'sense:hiyye', 'sense:jar', 'sense:zalame', 'sense:mara']}
+- {id: apc.ppl.live, kind: lesson, introduces: ['sense:seken', 'sense:bineye', 'sense:lebnene', 'sense:amerkene']}
+- {id: apc.ppl.they, kind: lesson, introduces: ['sense:henne', 'form:impf-3pl', 'sense:rfi2']}
+- {id: apc.ppl.their, kind: lesson, introduces: ['form:poss-3pl', 'sense:ahl', 'sense:jiren']}
+- {id: apc.ppl.they-did, kind: lesson, introduces: ['form:past-3pl']}
+- {id: apc.ppl.story, kind: story}
+sentences:
+- id: s.ppl.1
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هو سامي.
+      tokens: [{surface: هو, sense: huwwe}, {surface: سامي, sense: sami}]
+      reverse: هو سامي
+    apc-Latn/arabizi:
+      text: huwwe Sami.
+      tokens: [{surface: huwwe, sense: huwwe}, {surface: Sami, sense: sami}]
+      reverse: (huwwe|huwe|howwe) Sami
+  translations:
+    en: |-
+      He('s| is) Sami.
+      That('s| is) Sami.
+- id: s.ppl.2
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هي مايا.
+      tokens: [{surface: هي, sense: hiyye}, {surface: مايا, sense: maya}]
+      reverse: هي مايا
+    apc-Latn/arabizi:
+      text: hiyye Maya.
+      tokens: [{surface: hiyye, sense: hiyye}, {surface: Maya, sense: maya}]
+      reverse: (hiyye|hiye|hiya|heyye) Maya
+  translations:
+    en: |-
+      She('s| is) Maya.
+      That('s| is) Maya.
+- id: s.ppl.3
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هو بالشغل.
+      tokens: [{surface: هو, sense: huwwe}, {surface: بالشغل, sense: shoghl, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: هو بالشغل
+    apc-Latn/arabizi:
+      text: huwwe bel shoghl.
+      tokens: [{surface: huwwe, sense: huwwe}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (huwwe|huwe|howwe) (bel|bil|b el) (shoghl|shoghol|shughl)
+  translations:
+    en: He('s| is) at work.
+- id: s.ppl.4
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هي بالبيت؟
+      tokens: [{surface: هي, sense: hiyye}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: هي بالبيت
+    apc-Latn/arabizi:
+      text: hiyye bel bet?
+      tokens: [{surface: hiyye, sense: hiyye}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (hiyye|hiye|hiya|heyye) (bel|bil|b el) (bet|beit)
+  translations:
+    en: |-
+      Is she (at home|home)?
+      Is she in the house?
+- id: s.ppl.5
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا جارنا.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: جارنا, sense: jar, morphs: [{surface: جار, kc: 'sense:jar'}, {surface: نا, kc: 'form:poss-1pl'}]}]
+      reverse: هيدا جارنا
+    apc-Latn/arabizi:
+      text: hayda jarna.
+      tokens: [{surface: hayda, sense: hayda}, {surface: jarna, sense: jar, morphs: [{surface: jar, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
+      reverse: (hayda|haida|hyda) (jarna|jarana)
+  translations:
+    en: |-
+      (This|That|He) is our (neighbour|neighbor).
+      (That|He)'s our (neighbour|neighbor).
+- id: s.ppl.6
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هي جارتي.
+      tokens: [{surface: هي, sense: hiyye}, {surface: جارتي, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هي جارتي
+    apc-Latn/arabizi:
+      text: hiyye jarti.
+      tokens: [{surface: hiyye, sense: hiyye}, {surface: jarti, sense: jar, form: 'form:fem', morphs: [{surface: jart, kc: 'sense:jar'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hiyye|hiye|hiya|heyye) (jarti|jarte)
+  translations:
+    en: She('s| is) my (neighbour|neighbor).
+- id: s.ppl.7
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مين هالزلمة؟
+      tokens: [{surface: مين, sense: meen}, {surface: هالزلمة, sense: zalame, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: زلمة, kc: 'sense:zalame'}]}]
+      reverse: مين هالزلمة
+    apc-Latn/arabizi:
+      text: meen hal zalame?
+      tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: zalame, sense: zalame}]
+      reverse: (meen|mien|min) (hal|hel) (zalame|zalami|zalameh|zalmi)
+  translations:
+    en: Who('s| is) (this|that) (man|guy)?
+- id: s.ppl.8
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الزلمة جارنا.
+      tokens: [{surface: الزلمة, sense: zalame, morphs: [{surface: ال, kc: 'sense:el'}, {surface: زلمة, kc: 'sense:zalame'}]}, {surface: جارنا, sense: jar, morphs: [{surface: جار, kc: 'sense:jar'}, {surface: نا,
+              kc: 'form:poss-1pl'}]}]
+      reverse: الزلمة جارنا
+    apc-Latn/arabizi:
+      text: el zalame jarna.
+      tokens: [{surface: el, sense: el}, {surface: zalame, sense: zalame}, {surface: jarna, sense: jar, morphs: [{surface: jar, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
+      reverse: (el|l|il) (zalame|zalami|zalameh|zalmi) (jarna|jarana)
+  translations:
+    en: |-
+      The (man|guy) is our (neighbour|neighbor).
+      The (man|guy)'s our (neighbour|neighbor).
+- id: s.ppl.9
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مين هالمرة؟
+      tokens: [{surface: مين, sense: meen}, {surface: هالمرة, sense: mara, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: مرة, kc: 'sense:mara'}]}]
+      reverse: مين (هالمرة|هالمرا)
+    apc-Latn/arabizi:
+      text: meen hal mara?
+      tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara}]
+      reverse: (meen|mien|min) (hal|hel) (mara|mra|mare)
+  translations:
+    en: |-
+      Who('s| is) (this|that) woman?
+      Who('s| is) (this|that) lady?
+- id: s.ppl.10
+  node: apc.ppl.he-she
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المرة جارتنا.
+      tokens: [{surface: المرة, sense: mara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مرة, kc: 'sense:mara'}]}, {surface: جارتنا, sense: jar, form: 'form:fem', morphs: [{surface: جارت, kc: 'sense:jar'},
+            {surface: نا, kc: 'form:poss-1pl'}]}]
+      reverse: (المرة|المرا) جارتنا
+    apc-Latn/arabizi:
+      text: el mara jaretna.
+      tokens: [{surface: el, sense: el}, {surface: mara, sense: mara}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
+      reverse: (el|l|il) (mara|mra|mare) (jaretna|jaritna|jartna)
+  translations:
+    en: |-
+      The (woman|lady) is our (neighbour|neighbor).
+      The (woman|lady)'s our (neighbour|neighbor).
+- id: s.ppl.11
+  node: apc.ppl.live
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: وين ساكن؟
+      tokens: [{surface: وين, sense: wen}, {surface: ساكن, sense: seken}]
+      reverse: '[إنت] وين ساكن'
+    apc-Latn/arabizi:
+      text: wen seken?
+      tokens: [{surface: wen, sense: wen}, {surface: seken, sense: seken}]
+      reverse: '[(enta|inta)] (wen|wein) (seken|saken|sakin)'
+  translations:
+    en: |-
+      Where do you live?
+      Where are you living?
+- id: s.ppl.12
+  node: apc.ppl.live
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا ساكن ببيروت.
+      tokens: [{surface: أنا, sense: ana}, {surface: ساكن, sense: seken}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      reverse: '[أنا] ساكن ببيروت'
+    apc-Latn/arabizi:
+      text: ana seken b Beirut.
+      tokens: [{surface: ana, sense: ana}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      reverse: '[ana] (seken|saken|sakin) (b|bi) (Beirut|Bayrut|Beyrouth)'
+  translations:
+    en: |-
+      I live in Beirut.
+      I('m| am) living in Beirut.
+- id: s.ppl.13
+  node: apc.ppl.live
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: وين ساكنة؟
+      tokens: [{surface: وين, sense: wen}, {surface: ساكنة, sense: seken, form: 'form:fem'}]
+      reverse: '[إنتي] وين ساكنة'
+    apc-Latn/arabizi:
+      text: wen sekne?
+      tokens: [{surface: wen, sense: wen}, {surface: sekne, sense: seken, form: 'form:fem'}]
+      reverse: '[(enti|inti)] (wen|wein) (sekne|sakne|sekni|sakni)'
+  translations:
+    en: |-
+      Where do you live?
+      Where are you living?
+- id: s.ppl.14
+  node: apc.ppl.live
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا ساكنة حدّ البحر.
+      tokens: [{surface: أنا, sense: ana}, {surface: ساكنة, sense: seken, form: 'form:fem'}, {surface: حدّ, sense: 7add}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر,
+              kc: 'sense:ba7r'}]}]
+      reverse: '[أنا] ساكنة حدّ البحر'
+    apc-Latn/arabizi:
+      text: ana sekne 7add el ba7r.
+      tokens: [{surface: ana, sense: ana}, {surface: sekne, sense: seken, form: 'form:fem'}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: '[ana] (sekne|sakne|sekni|sakni) (7add|7ad|hadd) (el|l|il) (ba7r|ba7er|bahr)'
+  translations:
+    en: |-
+      I live (next to|by|near) the (sea|beach).
+      I('m| am) living (next to|by|near) the (sea|beach).
+- id: s.ppl.15
+  node: apc.ppl.live
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي ساكن بهيدي البناية.
+      tokens: [{surface: سامي, sense: sami}, {surface: ساكن, sense: seken}, {surface: بهيدي, sense: hayde, morphs: [{surface: ب, kc: 'sense:b'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: البناية,
+          sense: bineye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}]
+      reverse: سامي ساكن بهيدي البناية
+    apc-Latn/arabizi:
+      text: Sami seken b hayde el bineye.
+      tokens: [{surface: Sami, sense: sami}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: hayde, sense: hayde}, {surface: el, sense: el}, {surface: bineye, sense: bineye}]
+      reverse: Sami (seken|saken|sakin) (b|bi) (hayde|haide|haydi) (el|l|il) (bineye|binaye|bineyi)
+  translations:
+    en: |-
+      Sami lives in this building.
+      Sami('s| is) living in this building.
+- id: s.ppl.16
+  node: apc.ppl.live
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البناية حدّ الدكّانة.
+      tokens: [{surface: البناية, sense: bineye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, morphs: [
+            {surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}]
+      reverse: البناية حدّ الدكّانة
+    apc-Latn/arabizi:
+      text: el bineye 7add el dekkene.
+      tokens: [{surface: el, sense: el}, {surface: bineye, sense: bineye}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}]
+      reverse: (el|l|il) (bineye|binaye|bineyi) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)
+  translations:
+    en: |-
+      The building is next to the (shop|corner shop|store).
+      The building's next to the (shop|corner shop|store).
+- id: s.ppl.17
+  node: apc.ppl.live
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هو لبناني.
+      tokens: [{surface: هو, sense: huwwe}, {surface: لبناني, sense: lebnene}]
+      reverse: هو لبناني
+    apc-Latn/arabizi:
+      text: huwwe lebnene.
+      tokens: [{surface: huwwe, sense: huwwe}, {surface: lebnene, sense: lebnene}]
+      reverse: (huwwe|huwe|howwe) (lebnene|lebnani|libnani|lebneni|lebnane)
+  translations:
+    en: He('s| is) Lebanese.
+- id: s.ppl.18
+  node: apc.ppl.live
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هي لبنانية.
+      tokens: [{surface: هي, sense: hiyye}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
+      reverse: هي لبنانية
+    apc-Latn/arabizi:
+      text: hiyye lebneniyye.
+      tokens: [{surface: hiyye, sense: hiyye}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
+      reverse: (hiyye|hiye|hiya|heyye) (lebneniyye|lebnaniyye|libnaniyye|lebnaniye|lebneniye|lebnaniyya)
+  translations:
+    en: She('s| is) Lebanese.
+- id: s.ppl.19
+  node: apc.ppl.live
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: إنتي لبنانية؟
+      tokens: [{surface: إنتي, sense: enti}, {surface: لبنانية, sense: lebnene, form: 'form:fem'}]
+      reverse: '[(إنتي|إنتِ)] لبنانية'
+    apc-Latn/arabizi:
+      text: enti lebneniyye?
+      tokens: [{surface: enti, sense: enti}, {surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
+      reverse: '[(enti|inti)] (lebneniyye|lebnaniyye|libnaniyye|lebnaniye|lebneniye|lebnaniyya)'
+  translations:
+    en: Are you Lebanese?
+- id: s.ppl.20
+  node: apc.ppl.live
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: لأ، أنا أميركانية.
+      tokens: [{surface: لأ, sense: la2}, {surface: أنا, sense: ana}, {surface: أميركانية, sense: amerkene, form: 'form:fem'}]
+      reverse: لأ [أنا] (أميركانية|أمركانية)
+    apc-Latn/arabizi:
+      text: la2, ana amerkeniyye.
+      tokens: [{surface: la2, sense: la2}, {surface: ana, sense: ana}, {surface: amerkeniyye, sense: amerkene, form: 'form:fem'}]
+      reverse: (la2|la) [ana] (amerkeniyye|amarkeniyye|amerkaniyye|amarkaniyye|amerkaniye|amirkaniyye)
+  translations:
+    en: No, I('m| am) American.
+- id: s.ppl.21
+  node: apc.ppl.live
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: إنت أميركاني؟
+      tokens: [{surface: إنت, sense: enta}, {surface: أميركاني, sense: amerkene}]
+      reverse: '[إنت] (أميركاني|أمركاني)'
+    apc-Latn/arabizi:
+      text: enta amerkene?
+      tokens: [{surface: enta, sense: enta}, {surface: amerkene, sense: amerkene}]
+      reverse: '[(enta|inta)] (amerkene|amarkene|amerkani|amarkani|amerkeni|amirkani)'
+  translations:
+    en: Are you American?
+- id: s.ppl.22
+  node: apc.ppl.live
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وين ساكنين؟
+      tokens: [{surface: وين, sense: wen}, {surface: ساكنين, sense: seken, form: 'form:pl'}]
+      reverse: '[إنتو] وين ساكنين'
+    apc-Latn/arabizi:
+      text: wen seknin?
+      tokens: [{surface: wen, sense: wen}, {surface: seknin, sense: seken, form: 'form:pl'}]
+      reverse: '[(ento|into)] (wen|wein) (seknin|saknin|seknen|saknen)'
+  translations:
+    en: |-
+      Where do you live?
+      Where are you living?
+- id: s.ppl.23
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هنّ بالبيت.
+      tokens: [{surface: هنّ, sense: henne}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: (هنّ|هني) بالبيت
+    apc-Latn/arabizi:
+      text: henne bel bet.
+      tokens: [{surface: henne, sense: henne}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (henne|hinne|hene|henneh) (bel|bil|b el) (bet|beit)
+  translations:
+    en: They('re| are) (at home|home).
+- id: s.ppl.24
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هنّ لبنانيين.
+      tokens: [{surface: هنّ, sense: henne}, {surface: لبنانيين, sense: lebnene, form: 'form:pl'}]
+      reverse: (هنّ|هني) لبنانيين
+    apc-Latn/arabizi:
+      text: henne lebneniyyin.
+      tokens: [{surface: henne, sense: henne}, {surface: lebneniyyin, sense: lebnene, form: 'form:pl'}]
+      reverse: (henne|hinne|hene|henneh) (lebneniyyin|lebnaniyyin|libnaniyyin|lebnaniyeen|lebneniyeen|lebnanyin)
+  translations:
+    en: They('re| are) Lebanese.
+- id: s.ppl.25
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيشربوا قهوة كلّ يوم.
+      tokens: [{surface: بيشربوا, sense: shereb, form: 'form:impf-3pl'}, {surface: قهوة, sense: ahwe}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
+      reverse: '[هنّ] (بيشربوا|بيشربو) قهوة كلّ يوم'
+    apc-Latn/arabizi:
+      text: byishrabo ahwe kell yom.
+      tokens: [{surface: byishrabo, sense: shereb, form: 'form:impf-3pl'}, {surface: ahwe, sense: ahwe}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      reverse: '[(henne|hinne)] (byishrabo|bishrabo|byeshrabo|byishrabu|byeshrabu) (ahwe|2ahwe) (kell|kel|kull) (yom|youm)'
+  translations:
+    en: |-
+      They drink coffee every day.
+      Every day they drink coffee.
+- id: s.ppl.26
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين بيشتغلوا؟
+      tokens: [{surface: وين, sense: wen}, {surface: بيشتغلوا, sense: eshteghel, form: 'form:impf-3pl'}]
+      reverse: وين (بيشتغلوا|بيشتغلو)
+    apc-Latn/arabizi:
+      text: wen byishteghlo?
+      tokens: [{surface: wen, sense: wen}, {surface: byishteghlo, sense: eshteghel, form: 'form:impf-3pl'}]
+      reverse: (wen|wein) (byishteghlo|bishteghlo|byeshteghlo|byishtighlo|byishteghlu)
+  translations:
+    en: Where do they work?
+- id: s.ppl.27
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي ومايا بيحكوا عربي.
+      tokens: [{surface: سامي, sense: sami}, {surface: ومايا, sense: maya, morphs: [{surface: و, kc: 'sense:w'}, {surface: مايا, kc: 'sense:maya'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'},
+        {surface: عربي, sense: 3arabe}]
+      reverse: سامي (ومايا|و مايا) (بيحكوا|بيحكو) عربي
+    apc-Latn/arabizi:
+      text: Sami w Maya byi7ko 3arabe.
+      tokens: [{surface: Sami, sense: sami}, {surface: w, sense: w}, {surface: Maya, sense: maya}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: 3arabe, sense: 3arabe}]
+      reverse: Sami (w|wa) Maya (byi7ko|bi7ko|bye7ko|byi7ku|bihko) (3arabe|3arabi|arabi)
+  translations:
+    en: |-
+      Sami and Maya speak Arabic.
+      Sami and Maya can speak Arabic.
+- id: s.ppl.28
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا رفيقي.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: رفيقي, sense: rfi2, morphs: [{surface: رفيق, kc: 'sense:rfi2'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: هيدا رفيقي
+    apc-Latn/arabizi:
+      text: hayda rfi2i.
+      tokens: [{surface: hayda, sense: hayda}, {surface: rfi2i, sense: rfi2, morphs: [{surface: rfi2, kc: 'sense:rfi2'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (hayda|haida|hyda) (rfi2i|rfi2e|rfi2y|rfiqi)
+  translations:
+    en: |-
+      (This|That|He) is my friend.
+      (That|He)'s my friend.
+- id: s.ppl.29
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: رفيقتي بتشتغل بالمدرسة.
+      tokens: [{surface: رفيقتي, sense: rfi2, form: 'form:fem', morphs: [{surface: رفيقت, kc: 'sense:rfi2'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-3fs'},
+        {surface: بالمدرسة, sense: madrase, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
+      reverse: رفيقتي بتشتغل بالمدرسة
+    apc-Latn/arabizi:
+      text: rfi2ti btishteghel bel madrase.
+      tokens: [{surface: rfi2ti, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-3fs'},
+        {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+      reverse: (rfi2ti|rfi2te|rfiqti) (btishteghel|bteshteghel) (bel|bil|b el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      My friend works at the school.
+      My friend works at a school.
+      My (girlfriend|girl friend) works at the school.
+- id: s.ppl.30
+  node: apc.ppl.they
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا ورفيقتها بيحبّوا البحر.
+      tokens: [{surface: مايا, sense: maya}, {surface: ورفيقتها, sense: rfi2, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: رفيقت, kc: 'sense:rfi2'}, {surface: ها, kc: 'form:poss-3fs'}]},
+        {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: مايا (ورفيقتها|ورفيقتا|و رفيقتها|و رفيقتا) (بيحبّوا|بيحبّو) البحر
+    apc-Latn/arabizi:
+      text: Maya w rfi2ta by7ebbo el ba7r.
+      tokens: [{surface: Maya, sense: maya}, {surface: w, sense: w}, {surface: rfi2ta, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: a, kc: 'form:poss-3fs'}]}, {
+          surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: Maya (w|wa) (rfi2ta|rfi2eta|rfiqta) (by7ebbo|bi7ebbo|byi7ebbo|by7ibbo|by7ebbu) (el|l|il) (ba7r|ba7er|bahr)
+  translations:
+    en: Maya and her friend (love|like) the (sea|beach).
+- id: s.ppl.31
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين بيتهن؟
+      tokens: [{surface: وين, sense: wen}, {surface: بيتهن, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: هن, kc: 'form:poss-3pl'}]}]
+      reverse: وين (بيتهن|بيتن)
+    apc-Latn/arabizi:
+      text: wen beton?
+      tokens: [{surface: wen, sense: wen}, {surface: beton, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
+      reverse: (wen|wein) (beton|beiton|betun|bayton|bethon)
+  translations:
+    en: |-
+      Where('s| is) their (house|home)?
+      Where do they live?
+- id: s.ppl.32
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيتهن قريب.
+      tokens: [{surface: بيتهن, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: هن, kc: 'form:poss-3pl'}]}, {surface: قريب, sense: 2arib}]
+      reverse: (بيتهن|بيتن) قريب
+    apc-Latn/arabizi:
+      text: beton 2arib.
+      tokens: [{surface: beton, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: 2arib, sense: 2arib}]
+      reverse: (beton|beiton|betun|bayton|bethon) (2arib|2areeb|2rib|areeb|arib)
+  translations:
+    en: |-
+      Their (house|home) is (close|near|nearby|close by).
+      Their (house|home)'s (close|near|nearby|close by).
+- id: s.ppl.33
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا إبنهن.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: إبنهن, sense: ebn, morphs: [{surface: إبن, kc: 'sense:ebn'}, {surface: هن, kc: 'form:poss-3pl'}]}]
+      reverse: هيدا (إبنهن|إبنن)
+    apc-Latn/arabizi:
+      text: hayda ebnon.
+      tokens: [{surface: hayda, sense: hayda}, {surface: ebnon, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
+      reverse: (hayda|haida|hyda) (ebnon|ibnon|ebnun|ebnhon)
+  translations:
+    en: |-
+      (This|That|He) is their son.
+      (That|He)'s their son.
+- id: s.ppl.34
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كلّهن بالبيت.
+      tokens: [{surface: كلّهن, sense: kell, morphs: [{surface: كلّ, kc: 'sense:kell'}, {surface: هن, kc: 'form:poss-3pl'}]}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+              kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: (كلّهن|كلن) بالبيت
+    apc-Latn/arabizi:
+      text: kellon bel bet.
+      tokens: [{surface: kellon, sense: kell, morphs: [{surface: kell, kc: 'sense:kell'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
+              kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (kellon|killon|kellun|kilon|kullon) (bel|bil|b el) (bet|beit)
+  translations:
+    en: |-
+      They('re| are) all (at home|home).
+      All of them are (at home|home).
+      Everyone('s| is) (at home|home).
+- id: s.ppl.35
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أهلي ساكنين بالجبل.
+      tokens: [{surface: أهلي, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: ساكنين, sense: seken, form: 'form:pl'}, {surface: بالجبل, sense: jabal,
+          morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: أهلي ساكنين بالجبل
+    apc-Latn/arabizi:
+      text: ahli seknin bel jabal.
+      tokens: [{surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: seknin, sense: seken, form: 'form:pl'}, {surface: bel, sense: b, morphs: [
+            {surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
+      reverse: (ahli|ahle|2ahli) (seknin|saknin|seknen|saknen) (bel|bil|b el) (jabal|jabel|jbal)
+  translations:
+    en: |-
+      My parents live in the mountains.
+      My (family|folks) live(s|) in the mountains.
+- id: s.ppl.36
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أهله بيحبّوا البحر.
+      tokens: [{surface: أهله, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r,
+          morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: (أهله|أهلو) (بيحبّوا|بيحبّو) البحر
+    apc-Latn/arabizi:
+      text: ahlo by7ebbo el ba7r.
+      tokens: [{surface: ahlo, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el},
+        {surface: ba7r, sense: ba7r}]
+      reverse: (ahlo|ahlu|2ahlo) (by7ebbo|bi7ebbo|byi7ebbo|by7ibbo|by7ebbu) (el|l|il) (ba7r|ba7er|bahr)
+  translations:
+    en: |-
+      His parents (love|like) the (sea|beach).
+      His (family|folks) (love|like) the (sea|beach).
+- id: s.ppl.37
+  node: apc.ppl.their
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الجيران بيحكوا كتير!
+      tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: بيحكوا, sense: 7aka, form: 'form:impf-3pl'}, {surface: كتير, sense: ktir}]
+      reverse: الجيران (بيحكوا|بيحكو) كتير
+    apc-Latn/arabizi:
+      text: el jiren byi7ko ktir!
+      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: byi7ko, sense: 7aka, form: 'form:impf-3pl'}, {surface: ktir, sense: ktir}]
+      reverse: (el|l|il) (jiren|jiran|jeeran|jeren) (byi7ko|bi7ko|bye7ko|byi7ku|bihko) (ktir|kteer)
+  translations:
+    en: |-
+      The (neighbours|neighbors) talk a lot!
+      The (neighbours|neighbors) talk too much!
+- id: s.ppl.38
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: راحوا عالبحر.
+      tokens: [{surface: راحوا, sense: ra7, form: 'form:past-3pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: (راحوا|راحو) (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: ra7o 3al ba7r.
+      tokens: [{surface: ra7o, sense: ra7, form: 'form:past-3pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      reverse: (ra7o|ra7u|raho) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: They went to the (beach|sea).
+- id: s.ppl.39
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الجيران رجعوا مبارح.
+      tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رجعوا, sense: rje3, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
+      reverse: الجيران (رجعوا|رجعو) (مبارح|مبارحة)
+    apc-Latn/arabizi:
+      text: el jiren rej3o mbere7.
+      tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: rej3o, sense: rje3, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
+      reverse: (el|l|il) (jiren|jiran|jeeran|jeren) (rej3o|rij3o|reje3o|rej3u) (mbere7|embere7|mbare7|mberi7)
+  translations:
+    en: |-
+      The (neighbours|neighbors) came back yesterday.
+      The (neighbours|neighbors) got back yesterday.
+- id: s.ppl.40
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أكلوا عند تيتا.
+      tokens: [{surface: أكلوا, sense: akal, form: 'form:past-3pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
+      reverse: (أكلوا|أكلو) عند تيتا
+    apc-Latn/arabizi:
+      text: akalo 3end teta.
+      tokens: [{surface: akalo, sense: akal, form: 'form:past-3pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
+      reverse: (akalo|akalu|2akalo) (3end|3and|3ind) teta
+  translations:
+    en: They (ate|had (lunch|dinner|a meal)) at (grandma's|granny's).
+- id: s.ppl.41
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو عملوا مبارح؟
+      tokens: [{surface: شو, sense: shu}, {surface: عملوا, sense: 3emel, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
+      reverse: شو (عملوا|عملو) (مبارح|مبارحة)
+    apc-Latn/arabizi:
+      text: shu 3emlo mbere7?
+      tokens: [{surface: shu, sense: shu}, {surface: 3emlo, sense: 3emel, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
+      reverse: (shu|sho) (3emlo|3amlo|3imlo|3emlu) (mbere7|embere7|mbare7|mberi7)
+  translations:
+    en: What did they do yesterday?
+- id: s.ppl.42
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كانوا مبسوطين؟
+      tokens: [{surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: مبسوطين, sense: mabsout, form: 'form:pl'}]
+      reverse: (كانوا|كانو) مبسوطين
+    apc-Latn/arabizi:
+      text: keno mabsoutin?
+      tokens: [{surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: mabsoutin, sense: mabsout, form: 'form:pl'}]
+      reverse: (keno|kano|kenu|kanu) (mabsoutin|mabsouteen|mabsootin)
+  translations:
+    en: |-
+      Did they have (a good time|fun)?
+      Were they happy?
+- id: s.ppl.43
+  node: apc.ppl.they-did
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: زاروا أهلهن.
+      tokens: [{surface: زاروا, sense: zar, form: 'form:past-3pl'}, {surface: أهلهن, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: هن, kc: 'form:poss-3pl'}]}]
+      reverse: (زاروا|زارو) (أهلهن|أهلن)
+    apc-Latn/arabizi:
+      text: zaro ahlon.
+      tokens: [{surface: zaro, sense: zar, form: 'form:past-3pl'}, {surface: ahlon, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
+      reverse: (zaro|zaru) (ahlon|ahlhon|ahlun|2ahlon)
+  translations:
+    en: |-
+      They visited their (parents|family).
+      They went to see their (parents|family).
+stories:
+- id: apc.story.neighbours
+  node: apc.ppl.story
+  title: {en: The new neighbours}
+  provenance: {author: 'llm:claude@8a5567b189a3', status: draft}
+  characters:
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: سامي، مين هَالمَرَة؟
+          tokens: [{surface: سامي, sense: sami}, {surface: مين, sense: meen}, {surface: هَالمَرَة, sense: mara, morphs: [{surface: هَال, kc: 'sense:hal'}, {surface: مَرَة, kc: 'sense:mara'}]}]
+        apc-Latn/arabizi:
+          text: Sami, meen hal mara?
+          tokens: [{surface: Sami, sense: sami}, {surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara}]
+      translations: {en: 'Sami, who''s that woman?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: هِيّ جارِتْنا. ساكْنِة فوق.
+          tokens: [{surface: هِيّ, sense: hiyye}, {surface: جارِتْنا, sense: jar, form: 'form:fem', morphs: [{surface: جارِتْ, kc: 'sense:jar'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: ساكْنِة,
+              sense: seken, form: 'form:fem'}, {surface: فوق, sense: fo2}]
+        apc-Latn/arabizi:
+          text: hiyye jaretna. sekne fo2.
+          tokens: [{surface: hiyye, sense: hiyye}, {surface: jaretna, sense: jar, form: 'form:fem', morphs: [{surface: jaret, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: sekne, sense: seken,
+              form: 'form:fem'}, {surface: fo2, sense: fo2}]
+      translations: {en: She's our neighbour. She lives upstairs.}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: لِبْنانِيِّة؟
+          tokens: [{surface: لِبْنانِيِّة, sense: lebnene, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: lebneniyye?
+          tokens: [{surface: lebneniyye, sense: lebnene, form: 'form:fem'}]
+      translations: {en: 'Is she Lebanese?'}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:amerkene
+      distractors: ['sense:lebnene']
+      forms:
+        apc-Arab/standard:
+          text: لَأ، هِيّ أَميرْكانِيِّة، بَسّ بْتِحْكي عَرَبي.
+          tokens: [{surface: لَأ, sense: la2}, {surface: هِيّ, sense: hiyye}, {surface: أَميرْكانِيِّة, sense: amerkene, form: 'form:fem'}, {surface: بَسّ, sense: bas}, {surface: بْتِحْكي, sense: 7aka,
+              form: 'form:impf-3fs'}, {surface: عَرَبي, sense: 3arabe}]
+        apc-Latn/arabizi:
+          text: la2, hiyye amerkeniyye, bas bt7ki 3arabe.
+          tokens: [{surface: la2, sense: la2}, {surface: hiyye, sense: hiyye}, {surface: amerkeniyye, sense: amerkene, form: 'form:fem'}, {surface: bas, sense: bas}, {surface: bt7ki, sense: 7aka, form: 'form:impf-3fs'},
+            {surface: 3arabe, sense: 3arabe}]
+      translations: {en: 'No, she''s American, but she speaks Arabic.'}
+  - choose:
+      prompt: {en: 'Where is the new neighbour from?'}
+      options: [{en: America}, {en: Lebanon}, {en: Beirut}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: والزَّلَمِة؟
+          tokens: [{surface: والزَّلَمِة, sense: zalame, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: زَّلَمِة, kc: 'sense:zalame'}]}]
+        apc-Latn/arabizi:
+          text: w el zalame?
+          tokens: [{surface: w, sense: w}, {surface: el, sense: el}, {surface: zalame, sense: zalame}]
+      translations: {en: 'And the man?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: هُوّ لِبْناني. بْيِشْتِغْلوا كِلّ يوم بْبيروت.
+          tokens: [{surface: هُوّ, sense: huwwe}, {surface: لِبْناني, sense: lebnene}, {surface: بْيِشْتِغْلوا, sense: eshteghel, form: 'form:impf-3pl'}, {surface: كِلّ, sense: kell}, {surface: يوم, sense: yom},
+            {surface: بْبيروت, sense: beirut, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+        apc-Latn/arabizi:
+          text: huwwe lebnene. byishteghlo kell yom b Beirut.
+          tokens: [{surface: huwwe, sense: huwwe}, {surface: lebnene, sense: lebnene}, {surface: byishteghlo, sense: eshteghel, form: 'form:impf-3pl'}, {surface: kell, sense: kell}, {surface: yom, sense: yom},
+            {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      translations: {en: He's Lebanese. They work in Beirut every day.}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: عِنْدْهُن وْلاد؟
+          tokens: [{surface: عِنْدْهُن, sense: 3end, morphs: [{surface: عِنْدْ, kc: 'sense:3end'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وْلاد, sense: wlad}]
+        apc-Latn/arabizi:
+          text: 3endon wlad?
+          tokens: [{surface: 3endon, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: wlad, sense: wlad}]
+      translations: {en: 'Do they have children?'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: إيه، إِبِنْهُن وبِنِتْهُن بِالمَدْرَسِة.
+          tokens: [{surface: إيه, sense: eh}, {surface: إِبِنْهُن, sense: ebn, morphs: [{surface: إِبِنْ, kc: 'sense:ebn'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: وبِنِتْهُن, sense: bent, morphs: [
+                {surface: و, kc: 'sense:w'}, {surface: بِنِتْ, kc: 'sense:bent'}, {surface: هُن, kc: 'form:poss-3pl'}]}, {surface: بِالمَدْرَسِة, sense: madrase, morphs: [{surface: بِ, kc: 'sense:b'}, {
+                  surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}]
+        apc-Latn/arabizi:
+          text: eh, ebnon w benton bel madrase.
+          tokens: [{surface: eh, sense: eh}, {surface: ebnon, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: w, sense: w}, {surface: benton, sense: bent,
+              morphs: [{surface: bent, kc: 'sense:bent'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: madrase,
+              sense: madrase}]
+      translations: {en: 'Yes, their son and their daughter are at school.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، بُكْرا مْنِشْرَب قَهْوِة عِنْدْهُن؟
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: بُكْرا, sense: bukra}, {surface: مْنِشْرَب, sense: shereb, form: 'form:impf-1pl'}, {surface: قَهْوِة, sense: ahwe}, {surface: عِنْدْهُن, sense: 3end,
+              morphs: [{surface: عِنْدْ, kc: 'sense:3end'}, {surface: هُن, kc: 'form:poss-3pl'}]}]
+        apc-Latn/arabizi:
+          text: yalla, bukra mnishrab ahwe 3endon?
+          tokens: [{surface: yalla, sense: yalla}, {surface: bukra, sense: bukra}, {surface: mnishrab, sense: shereb, form: 'form:impf-1pl'}, {surface: ahwe, sense: ahwe}, {surface: 3endon, sense: 3end,
+              morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
+      translations: {en: 'Come on, shall we have coffee at their place tomorrow?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَكيد! بْيْحِبّوا القَهْوِة.
+          tokens: [{surface: أَكيد, sense: akid}, {surface: بْيْحِبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: القَهْوِة, sense: ahwe, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قَهْوِة,
+                  kc: 'sense:ahwe'}]}]
+        apc-Latn/arabizi:
+          text: akid! by7ebbo el ahwe.
+          tokens: [{surface: akid, sense: akid}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el}, {surface: ahwe, sense: ahwe}]
+      translations: {en: Sure! They love coffee.}
+  - choose:
+      prompt: {en: 'What will Sami and Maya do tomorrow?'}
+      options: [{en: Have coffee at the neighbours'}, {en: Go to Beirut}, {en: Go to school}]
+      answer: 0
+scenarios:
+- id: apc.new-neighbour
+  after: apc.ppl.story
+  title: {en: Meeting a neighbour}
+  setting: {en: 'The stairwell of a building in Beirut, on a Saturday morning.'}
+  character: {en: 'Um Karim, a talkative neighbour from the third floor, who knows everyone in the building.'}
+  goal: {en: 'Say who you are and where you live, ask who lives in the building, where people are from and what they do, and talk about your family and friends.'}
+  provenance: {author: 'llm:claude@8a5567b189a3', status: draft}

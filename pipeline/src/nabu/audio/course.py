@@ -31,7 +31,7 @@ import subprocess
 import tempfile
 import unicodedata
 import wave
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, cast
@@ -93,6 +93,8 @@ class Report:
     skipped: list[str] = field(default_factory=lambda: [])
     #: Items the voice said nothing for (left without a clip, so the index stays valid).
     silent: list[str] = field(default_factory=lambda: [])
+    #: How many items each voice of the cast reads (ADR 0078), by voice id.
+    shares: dict[str, int] = field(default_factory=lambda: {})
 
 
 def audio_dir(course: Path) -> Path:
@@ -225,11 +227,105 @@ def _spoken(items: list[Item], spoken: dict[str, str]) -> list[Item]:
     return out
 
 
+# ------------------------------------------------------------------------------------ the cast
+
+#: Clips a person checked keep their voice when the cast changes (ADR 0078).
+CHECKED = ("reviewed", "published")
+
+
+def _seeded(key: str) -> int:
+    return int.from_bytes(hashlib.sha256(key.encode("utf-8")).digest()[:8], "big")
+
+
+def pick_voice(key: str, said_by: str | None, voices: Sequence[AudioVoice]) -> AudioVoice:
+    """The voice of the cast that reads an item (ADR 0078). Where the item's grammar says who
+    speaks (`said_by`: a sentence a woman says, a story character's lines), a voice of that
+    gender if the cast has one. Otherwise one at random: a gender first, so a man and three women
+    still read half the items each, then a voice of that gender, both seeded by `key` (the item,
+    or a story and its character), so every run chooses the same."""
+    candidates = [v for v in voices if said_by is not None and v.speaker == said_by] or list(voices)
+    groups: dict[str, list[AudioVoice]] = {}
+    for v in sorted(candidates, key=lambda v: v.id):
+        groups.setdefault(v.speaker or "", []).append(v)
+    genders = sorted(groups)
+    seed = _seeded(key)
+    group = groups[genders[seed % len(genders)]]
+    return group[(seed // len(genders)) % len(group)]
+
+
+def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str, str]:
+    """Items whose clip a person checked (reviewed or published), and the id of the cast voice
+    it is in: they keep that voice rather than lose the check (ADR 0078)."""
+    by_name = {(v.provider, v.voice): v.id for v in voices}
+    out: dict[str, str] = {}
+    for c in index.clips:
+        if c.synthesis is None or c.provenance.status not in CHECKED:
+            continue
+        found = by_name.get((c.synthesis.provider, c.synthesis.voice))
+        if found is not None:
+            out[c.item] = found
+    return out
+
+
+def assignment(
+    units: list[dict[str, Any]],
+    voices: Sequence[AudioVoice],
+    checked: Mapping[str, str] | None = None,
+) -> dict[str, str]:
+    """Every sentence, word KC and story line, and the id of the cast voice that reads it
+    (pick_voice). A story character keeps one voice through the story. An item a person checked
+    keeps the voice it was checked in (a story character: that of its first checked line), unless
+    the item's grammar wants the other gender and the cast has a voice of it."""
+    by_id = {v.id: v for v in voices}
+    kept = checked or {}
+
+    def choose(key: str, said_by: str | None, items: list[str]) -> str:
+        voice = pick_voice(key, said_by, voices)
+        before = next((by_id[kept[i]] for i in items if kept.get(i) in by_id), None)
+        if before is not None and (
+            said_by is None
+            or before.speaker in (None, said_by)
+            or not any(v.speaker == said_by for v in voices)
+        ):
+            voice = before
+        return voice.id
+
+    out: dict[str, str] = {}
+    for unit in units:
+        for s in unit["sentences"]:
+            said_by = speaker_of(s.get("persons"))
+            out[s["id"]] = choose(s["id"], said_by, [s["id"]])
+        for kc in unit.get("kcs", []):
+            out[kc["id"]] = choose(kc["id"], None, [kc["id"]])
+        for story in unit.get("stories", []):
+            genders = {c["id"]: c.get("speaker") for c in story.get("characters", [])}
+            lines: dict[str | None, list[str]] = {}
+            for step, st in enumerate(story["steps"]):
+                if st.get("line"):
+                    lines.setdefault(st["line"].get("speaker"), []).append(f"{story['id']}#{step}")
+            for who, keys in lines.items():
+                chosen = choose(f"{story['id']}#{who or ''}", genders.get(who or ""), keys)
+                out.update(dict.fromkeys(keys, chosen))
+    return out
+
+
+def speaker_of(persons: Any) -> str | None:
+    """A sentence's persons.speaker (m or f), if it has one."""
+    return cast("Mapping[str, Any]", persons or {}).get("speaker")
+
+
 def plan(
-    units: list[dict[str, Any]], voice: AudioVoice, written: Written | None = None
+    units: list[dict[str, Any]],
+    voice: AudioVoice,
+    written: Written | None = None,
+    voices: Sequence[AudioVoice] | None = None,
+    checked: Mapping[str, str] | None = None,
 ) -> tuple[list[Item], list[str]]:
     """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
+    Given the course's whole cast (`voices`, and the voices people `checked`), only the items
+    the assignment gives this voice (ADR 0078); alone, every item.
     `written`: the source's own surfaces where the compiler added vowel marks."""
+    owner = assignment(units, voices or [voice], checked)
     orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
@@ -249,6 +345,8 @@ def plan(
                     readings.setdefault(t["surface"], t["readings"][scheme])
                     for surface, reading in _morph_readings(t, t["readings"][scheme]):
                         in_words.setdefault(surface, reading)
+            if owner[s["id"]] != voice.id:
+                continue  # another voice reads it; its readings still serve word KCs
             as_written = (written or {}).get((s["id"], orth))
             # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
             planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
@@ -263,7 +361,7 @@ def plan(
     for unit in units:
         for kc in unit.get("kcs", []):
             forms = kc.get("forms", {}).get(orth)
-            if not forms:
+            if not forms or owner[kc["id"]] != voice.id:
                 continue
             word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
             kc_written = (written or {}).get((kc["id"], orth))
@@ -290,6 +388,8 @@ def plan(
                 if form is None:
                     continue
                 key = f"{story['id']}#{step}"
+                if owner.get(key) != voice.id:
+                    continue
                 tokens = cast(list[dict[str, Any]], form["tokens"])
                 as_written = (written or {}).get((key, orth))
                 planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
@@ -443,47 +543,66 @@ def take_of(old: Any, item: Item, tts: Provider) -> int:
 def synthesize_course(
     course_dir: Path,
     units: list[dict[str, Any]],
-    voice: AudioVoice,
+    voices: AudioVoice | Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
+    only: str | None = None,
 ) -> Report:
-    """(Re)synthesizes the course's clips; unchanged inputs keep their files."""
+    """(Re)synthesizes the course's clips; unchanged inputs keep their files. Each item is read by
+    the voice of the cast the assignment gives it (ADR 0078). `only`: run that voice alone; the
+    clips of the others stay as they are until they run."""
+    cast_ = [voices] if isinstance(voices, AudioVoice) else list(voices)
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    tts = provider(voice, reference_of(adir, index, voice.voice))
-    version = tts.version()
-    settings = tts.settings()
-    items, skipped = plan(units, voice, written)
+    checked = checked_voices(index, cast_)
+    owner = assignment(units, cast_, checked)
+    running = [v for v in cast_ if only in (None, v.id)]
     clips_dir = adir / "clips"
     clips_dir.mkdir(parents=True, exist_ok=True)
     human = [c for c in index.clips if not c.synthetic]
     previous = {(c.item, c.speed): c for c in index.clips if c.synthetic}
-    report = Report(skipped=skipped)
-    wanted: list[tuple[Item, str, float, str, int]] = []
+    report = Report()
+    for v in cast_:
+        report.shares[v.id] = len(plan(units, v, written, cast_, checked)[0])
+    #: (voice, provider, author, item, speed, rate, identity, take), voice by voice.
+    wanted: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
     kept: list[Any] = []
-    for item in items:
-        for speed, requested in (("normal", 1.0),):
-            rate = tts.speed(requested)
-            old = previous.get((item.item, speed))
-            take = take_of(old, item, tts)
-            ident = identity(
-                tts.name,
-                version,
-                voice.voice,
-                item.input,
-                rate,
-                settings | item_settings(tts, item.input) | take_field(take),
-            )
-            if (
-                old is not None
-                and old.synthesis is not None
-                and old.synthesis.inputHash == ident
-                and (adir / old.file).exists()
-            ):
-                kept.append(old)
-                continue
-            wanted.append((item, speed, rate, ident, take))
-    author = f"generated:{tts.name}@{version}"
+    claimed: set[tuple[str, str]] = set()
+    for voice in running:
+        tts = provider(voice, reference_of(adir, index, voice.voice))
+        version = tts.version()
+        settings = tts.settings()
+        author = f"generated:{tts.name}@{version}"
+        items, skipped = plan(units, voice, written, cast_, checked)
+        report.skipped += skipped
+        for item in items:
+            for speed, requested in (("normal", 1.0),):
+                claimed.add((item.item, speed))
+                rate = tts.speed(requested)
+                old = previous.get((item.item, speed))
+                take = take_of(old, item, tts)
+                ident = identity(
+                    tts.name,
+                    version,
+                    voice.voice,
+                    item.input,
+                    rate,
+                    settings | item_settings(tts, item.input) | take_field(take),
+                )
+                if (
+                    old is not None
+                    and old.synthesis is not None
+                    and old.synthesis.inputHash == ident
+                    and (adir / old.file).exists()
+                ):
+                    kept.append(old)
+                    continue
+                wanted.append((voice, tts, author, item, speed, rate, ident, take))
+    # Items another voice reads, not run this time, keep their clips until it runs.
+    resting = {v.id for v in cast_} - {v.id for v in running}
+    others = [
+        c for key, c in previous.items() if key not in claimed and owner.get(c.item) in resting
+    ]
     fresh: list[dict[str, Any]] = []
     # Everything but the clips (the reference voices) is kept as it was.
     references = {
@@ -498,19 +617,19 @@ def synthesize_course(
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
         waiting = [
-            previous[(i.item, sp)] for i, sp, _, _, _ in wanted[done:] if (i.item, sp) in previous
+            previous[(w[3].item, w[4])] for w in wanted[done:] if (w[3].item, w[4]) in previous
         ]
-        clips = [*dump([*human, *kept, *waiting]), *fresh]
+        clips = [*dump([*human, *kept, *others, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
-    # In batches, saving the index after each: a provider failing midway (a rate limit, an
-    # outage) keeps every clip already made, and the next run picks up from there.
-    for start in range(0, len(wanted), BATCH):
-        batch = wanted[start : start + BATCH]
-        clips = tts.synthesize(
-            [Request(item.input, voice.voice, rate, take) for item, _, rate, _, take in batch]
-        )
-        for (item, speed, rate, ident, take), clip in zip(batch, clips, strict=True):
+    # In batches of one voice, saving the index after each: a provider failing midway (a rate
+    # limit, an outage) keeps every clip already made, and the next run picks up from there.
+    done = 0
+    while done < len(wanted):
+        voice, tts = wanted[done][0], wanted[done][1]
+        batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]
+        clips = tts.synthesize([Request(w[3].input, voice.voice, w[5], w[7]) for w in batch])
+        for (_, _, author, item, speed, rate, ident, take), clip in zip(batch, clips, strict=True):
             if len(clip.pcm) < 2:
                 report.silent.append(f"{item.item} ({speed})")
                 continue
@@ -518,10 +637,11 @@ def synthesize_course(
             if take:
                 entry["synthesis"]["take"] = take
             fresh.append(entry)
-        save(start + len(batch))
+        done += len(batch)
+        save(done)
     report.synthesized = len(fresh)
     report.kept = len(kept)
-    live = {c.file for c in kept} | {e["file"] for e in fresh} | {c.file for c in human}
+    live = {c.file for c in [*kept, *others, *human]} | {e["file"] for e in fresh}
     for path in sorted(clips_dir.glob("*.mp3")):
         if f"clips/{path.name}" not in live:
             path.unlink()
@@ -551,6 +671,7 @@ def align_course(
     phonemes: str,
     written: Written | None = None,
     aligner: Aligner | None = None,
+    voices: Sequence[AudioVoice] | None = None,
 ) -> int:
     """Word timings by forced alignment for the voice's clips that have none (a model that
     reports no word onsets: OmniVoice, Navoiy), so its sentences get karaoke and tap-a-word.
@@ -562,8 +683,9 @@ def align_course(
 
         aligner = align_words
     adir = audio_dir(course_dir)
-    items = {i.item: i for i in plan(units, voice, written)[0]}
     index = read_index(adir)
+    cast_ = voices or [voice]
+    items = {i.item: i for i in plan(units, voice, written, cast_, checked_voices(index, cast_))[0]}
     clips = list(index.clips)
     done = 0
     for k, clip in enumerate(clips):
@@ -677,6 +799,50 @@ def wav_bytes(pcm: bytes, sample_rate: int) -> bytes:
         w.setframerate(sample_rate)
         w.writeframes(pcm)
     return out.getvalue()
+
+
+def record_reference(
+    course_dir: Path,
+    voice: AudioVoice,
+    recording: Path,
+    text: str,
+    license_: str,
+    author: str,
+    source: str,
+) -> ReferenceVoice:
+    """Keeps a real speaker's recording as the voice's reference (voices/<voice>.wav), replacing
+    an earlier one (ADR 0076): every clip of an OmniVoice voice then clones that speaker, accent
+    and all. `text` is what the recording says, word for word; the recording is loudness-normalized
+    and trimmed like an ingested one. Clips cloned from the old reference become stale."""
+    from nabu.audio.ingest import prepare
+
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    pcm, _ = prepare(recording)
+    data = wav_bytes(pcm, INGEST_RATE)
+    rel = f"voices/{voice.voice}.wav"
+    (adir / "voices").mkdir(parents=True, exist_ok=True)
+    (adir / rel).write_bytes(data)
+    ref = ReferenceVoice.model_validate(
+        {
+            "id": voice.voice,
+            "file": rel,
+            "sha256": hashlib.sha256(data).hexdigest(),
+            "text": unicodedata.normalize("NFC", text.strip()),
+            "durationMs": len(pcm) // 2 * 1000 // INGEST_RATE,
+            "license": license_,
+            "provenance": {"author": author, "status": "draft"},
+            "synthetic": False,
+            "source": source,
+        }
+    )
+    others = [r for r in index.references or [] if r.id != voice.voice]
+    write_index(adir, index.model_copy(update={"references": [*others, ref]}))
+    return ref
+
+
+#: The sample rate a recorded reference is kept at (ingest.SAMPLE_RATE).
+INGEST_RATE = 22_050
 
 
 def cast_reference(

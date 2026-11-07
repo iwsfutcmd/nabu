@@ -18,11 +18,11 @@ kcs:
 - {id: 'sense:3end', gloss: {en: 'at; have (with an ending: 3endi, I have)'}, forms: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}, notes: {en: '3endi: I have; 3endak: you have. Not a verb: the ending
       says who has.'}}
 - {id: 'sense:ma', gloss: {en: not (before a verb or 3endi)}, forms: {apc-Arab/standard: [ما], apc-Latn/arabizi: [ma]}}
-- {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script: و joined to the noun (بيّو), also written ه (بيّه).'}}
+- {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}}
 - {id: 'sense:esm', gloss: {en: name}, forms: {apc-Arab/standard: [اسم], apc-Latn/arabizi: [esm]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931',
       status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'esmo: his name; esma: her name. Compare اسمي (esmi) and اسمك (esmak).'}}
-- {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script: ا joined to the noun (إمّا), also written ها (إمّها).'}}
-- {id: 'sense:kif', gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman).'}}
+- {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script: ها joined to the noun (إمّها), also written ا (إمّا).'}}
+- {id: 'sense:kif', gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman); kifkon? (to several people).'}}
 - {id: 'form:poss-2fs', gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}}
 - {id: 'sense:teta', gloss: {en: grandma}, forms: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}}
 - {id: 'sense:jeddo', gloss: {en: grandpa}, forms: {apc-Arab/standard: [جدّو], apc-Latn/arabizi: [jeddo]}}
@@ -34,6 +34,7 @@ kcs:
 - {id: 'sense:bent', gloss: {en: daughter; girl}, forms: {apc-Arab/standard: [بنت], apc-Latn/arabizi: [bent]}}
 - {id: 'sense:7elo', gloss: {en: nice; pretty; sweet}, forms: {apc-Arab/standard: [حلو, حلوة], apc-Latn/arabizi: [7elo, 7elwe]}}
 - {id: 'sense:wlad', gloss: {en: children; kids}, forms: {apc-Arab/standard: [ولاد], apc-Latn/arabizi: [wlad]}}
+- {id: 'form:poss-2pl', gloss: {en: '-kon: your (to several people)'}, notes: {en: 'kifkon? how are you (all)?; 3endkon: you have. Arabic script: كن joined to the word (كيفكن).'}}
 nodes:
 - {id: apc.fam.this, kind: lesson, introduces: ['sense:hayda', 'sense:meen', 'sense:maya', 'sense:hayde']}
 - {id: apc.fam.parents, kind: lesson, introduces: ['sense:bayy', 'form:poss-1sg', 'sense:emm', 'form:poss-2ms']}
@@ -41,6 +42,7 @@ nodes:
 - {id: apc.fam.his-her, kind: lesson, introduces: ['form:poss-3ms', 'sense:esm', 'form:poss-3fs', 'sense:kif', 'form:poss-2fs']}
 - {id: apc.fam.grandparents, kind: lesson, introduces: ['sense:teta', 'sense:jeddo', 'sense:3ayle', 'sense:kbir', 'sense:zghir', 'form:fem']}
 - {id: apc.fam.children, kind: lesson, introduces: ['sense:ebn', 'sense:bent', 'sense:7elo', 'sense:wlad']}
+- {id: apc.fam.you-pl, kind: lesson, introduces: ['form:poss-2pl']}
 - {id: apc.fam.story, kind: story}
 sentences:
 - id: s.fam.1
@@ -274,9 +276,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: هيدا بيّو.
-      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّو, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: هيدا (بيّو|بيّه)
+      text: هيدا بيّه.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّه, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: هيدا (بيّه|بيّو)
     apc-Latn/arabizi:
       text: hayda bayyo.
       tokens: [{surface: hayda, sense: hayda}, {surface: bayyo, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -290,9 +292,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: شو اسمو؟
-      tokens: [{surface: شو, sense: shu}, {surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: شو (اسمو|اسمه)
+      text: شو اسمه؟
+      tokens: [{surface: شو, sense: shu}, {surface: اسمه, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: شو (اسمه|اسمو)
     apc-Latn/arabizi:
       text: shu esmo?
       tokens: [{surface: shu, sense: shu}, {surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -306,9 +308,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: اسمو سامي.
-      tokens: [{surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: سامي, sense: sami}]
-      reverse: (اسمو|اسمه) سامي
+      text: اسمه سامي.
+      tokens: [{surface: اسمه, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: سامي, sense: sami}]
+      reverse: (اسمه|اسمو) سامي
     apc-Latn/arabizi:
       text: esmo Sami.
       tokens: [{surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: Sami, sense: sami}]
@@ -323,10 +325,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: وهيدي إمّا.
-      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: إمّا, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ا,
+      text: وهيدي إمّها.
+      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: إمّها, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ها,
               kc: 'form:poss-3fs'}]}]
-      reverse: (وهيدي|و هيدي) (إمّا|إمّها)
+      reverse: (وهيدي|و هيدي) (إمّها|إمّا)
     apc-Latn/arabizi:
       text: w hayde emma.
       tokens: [{surface: w, sense: w}, {surface: hayde, sense: hayde}, {surface: emma, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
@@ -341,10 +343,10 @@ sentences:
   persons: {addressee: m}
   forms:
     apc-Arab/standard:
-      text: كيفو بيّك؟
-      tokens: [{surface: كيفو, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
+      text: كيفه بيّك؟
+      tokens: [{surface: كيفه, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
               kc: 'form:poss-2ms'}]}]
-      reverse: (كيفو|كيفه) بيّك
+      reverse: (كيفه|كيفو) بيّك
     apc-Latn/arabizi:
       text: kifo bayyak?
       tokens: [{surface: kifo, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak,
@@ -609,14 +611,101 @@ sentences:
     en: |-
       I have a (daughter|girl).
       I've got a (daughter|girl).
+- id: s.fam.35
+  node: apc.fam.children
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: مايا، عندك ولاد؟
+      tokens: [{surface: مايا, sense: maya}, {surface: عندك, sense: 3end, vocalized: عِنْدِك, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: ولاد, sense: wlad}]
+      reverse: مايا (عندك|إنتي عندك) ولاد
+    apc-Latn/arabizi:
+      text: Maya, 3endik wlad?
+      tokens: [{surface: Maya, sense: maya}, {surface: 3endik, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: wlad, sense: wlad}]
+      reverse: Maya ((3endik|3andik|3indik|3endek)|(enti|inti) (3endik|3andik|3indik|3endek)) (wlad|wled)
+  translations:
+    en: |-
+      Maya, do you have (kids|children)?
+      Maya, have you got (kids|children)?
+- id: s.fam.36
+  node: apc.fam.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: كيفكن؟
+      tokens: [{surface: كيفكن, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: كن, kc: 'form:poss-2pl'}]}]
+      reverse: كيفكن
+    apc-Latn/arabizi:
+      text: kifkon?
+      tokens: [{surface: kifkon, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: kon, kc: 'form:poss-2pl'}]}]
+      reverse: (kifkon|kifkun|keefkon|kifkoun)
+  translations:
+    en: |-
+      How are you?
+      How are you doing?
+      How's it going?
+- id: s.fam.37
+  node: apc.fam.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: عندكن ولاد؟
+      tokens: [{surface: عندكن, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: ولاد, sense: wlad}]
+      reverse: عندكن ولاد
+    apc-Latn/arabizi:
+      text: 3endkon wlad?
+      tokens: [{surface: 3endkon, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: wlad, sense: wlad}]
+      reverse: (3endkon|3andkon|3indkon|3andkun) (wlad|wled)
+  translations:
+    en: |-
+      Do you have (kids|children)?
+      Have you got (kids|children)?
+- id: s.fam.38
+  node: apc.fam.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: شو اسم بنتكن؟
+      tokens: [{surface: شو, sense: shu}, {surface: اسم, sense: esm}, {surface: بنتكن, sense: bent, morphs: [{surface: بنت, kc: 'sense:bent'}, {surface: كن, kc: 'form:poss-2pl'}]}]
+      reverse: شو اسم بنتكن
+    apc-Latn/arabizi:
+      text: shu esm bentkon?
+      tokens: [{surface: shu, sense: shu}, {surface: esm, sense: esm}, {surface: bentkon, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: kon, kc: 'form:poss-2pl'}]}]
+      reverse: (shu|sho) (esm|ism) (bentkon|bintkon|bentkun)
+  translations:
+    en: |-
+      What is your daughter's name?
+      What's your daughter's name?
+      What's your daughter called?
+- id: s.fam.39
+  node: apc.fam.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: بنتكن حلوة!
+      tokens: [{surface: بنتكن, sense: bent, morphs: [{surface: بنت, kc: 'sense:bent'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
+      reverse: بنتكن حلوة
+    apc-Latn/arabizi:
+      text: bentkon 7elwe!
+      tokens: [{surface: bentkon, sense: bent, morphs: [{surface: bent, kc: 'sense:bent'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
+      reverse: (bentkon|bintkon|bentkun) (7elwe|7ilwe|helwe|7elwi)
+  translations:
+    en: |-
+      Your daughter is (lovely|pretty|cute|sweet|beautiful)!
+      Your daughter's (lovely|pretty|cute|sweet|beautiful)!
 stories:
 - id: apc.story.family
   node: apc.fam.story
   title: {en: 'Who''s this?'}
   provenance: {author: 'llm:claude@6914f241714e', status: draft}
   characters:
-  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
   steps:
   - line:
       speaker: sami

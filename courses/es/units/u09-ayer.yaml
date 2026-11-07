@@ -1,0 +1,504 @@
+# Unit 9 (es): the past. The preterite of regular verbs in every person, ir and ser (fui, fue), hacer (hice,
+# hizo), tener (tuve, tuvo); a Sunday at Abuela's: dominó with Abuelo Pepe, pelota on TV.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u09
+title: {en: 'Ayer: Yesterday'}
+cefr: A2
+kcs:
+- {id: 'sense:ayer', gloss: {en: yesterday}, forms: {es-Latn/standard: [ayer]}, notes: {en: 'Antier (antes de ayer) is the day before yesterday, in Cuba and much of Latin America.'}}
+- {id: 'form:pret-1s', gloss: {en: 'past tense (preterite): I (yo)'}, notes: {en: '-é, -í: compré, comí. The accent matters: compré is I bought, compre is buy! Irregular: fui, hice, tuve, vi.'}}
+- {id: 'form:pret-3s', gloss: {en: 'past tense (preterite): he, she, it, you (usted)'}, notes: {en: '-ó, -ió: compró, comió. Without its accent compró is compro, I buy. Irregular, and with no accent: fue, hizo, tuvo, vio.'}}
+- {id: 'form:pret-2s', gloss: {en: 'past tense (preterite): you (tú)'}, notes: {en: '-aste, -iste: compraste, comiste, fuiste. Many Cubans say comprastes, fuistes, with an s; it is written without one.'}}
+- {id: 'sense:hablar', gloss: {en: to speak; to talk}, forms: {es-Latn/standard: [hablar]}, notes: {en: 'Hablar con: to talk to someone. Written with a silent h. Hablo (I speak) and habló (he spoke) differ only by the accent.'}}
+- {id: 'sense:jugar', gloss: {en: to play (a game or sport)}, forms: {es-Latn/standard: [jugar]}, notes: {en: 'Cubans say jugar dominó, jugar pelota, with no al. U becomes ue when stressed (juego, juegas), and jugué keeps a u after the g. An instrument is tocar.'}}
+- {id: 'sense:dominó', gloss: {en: dominoes (the game); a domino}, forms: {es-Latn/standard: [dominó]}, notes: {en: 'With an accent. Cubans play doble nueve (55 tiles), in pairs, slapping the tiles down. On Calle Ocho the tables of Domino Park (Parque Máximo Gómez) are always full.'}}
+- {id: 'sense:ganar', gloss: {en: to win; to earn}, forms: {es-Latn/standard: [ganar]}, notes: {en: 'Ganar dinero: to earn money. Gané (I won) and ganó (he won) need their accents.'}}
+- {id: 'sense:fin-de-semana', gloss: {en: weekend}, forms: {es-Latn/standard: [fin de semana]}, notes: {en: 'Three words, one idea: el fin de semana. In Miami some say el weekend.'}}
+- {id: 'sense:anoche', gloss: {en: last night}, forms: {es-Latn/standard: [anoche]}, notes: {en: 'One word. Ayer por la noche says the same.'}}
+- {id: 'sense:pelota', gloss: {en: baseball (Cuban); ball}, forms: {es-Latn/standard: [pelota]}, notes: {en: 'In Cuba la pelota is baseball, the national sport; elsewhere béisbol. Jugar pelota, ver la pelota; a player is un pelotero.'}}
+- {id: 'sense:televisión', gloss: {en: television; TV}, forms: {es-Latn/standard: [televisión, tele]}, notes: {en: 'La tele for short. En la tele: on TV.'}}
+- {id: 'form:pret-1p', gloss: {en: 'past tense (preterite): we (nosotros)'}, notes: {en: 'For -ar and -ir verbs it is the same as the present (compramos), and ayer or anoche tells them apart; -er verbs differ: comemos, comimos. Irregular: fuimos, hicimos, tuvimos, vimos.'}}
+- {id: 'form:pret-3p', gloss: {en: 'past tense (preterite): they, you all (ellos, ustedes)'}, notes: {en: '-aron, -ieron: compraron, comieron. Irregular: fueron, hicieron, tuvieron, vieron.'}}
+- {id: 'sense:suerte', gloss: {en: luck}, forms: {es-Latn/standard: [suerte]}, notes: {en: 'Tener suerte: to be lucky. ¡Qué suerte! What luck!'}}
+nodes:
+- {id: es.u09.ayer, kind: lesson, introduces: ['sense:ayer', 'form:pret-1s', 'form:pret-3s', 'form:pret-2s', 'sense:hablar']}
+- {id: es.u09.fui, kind: lesson, introduces: []}
+- {id: es.u09.domino, kind: lesson, introduces: ['sense:jugar', 'sense:dominó', 'sense:ganar', 'sense:fin-de-semana']}
+- {id: es.u09.la-pelota, kind: lesson, introduces: ['sense:anoche', 'sense:pelota', 'sense:televisión', 'form:pret-1p', 'form:pret-3p']}
+- {id: es.u09.que-hiciste, kind: lesson, introduces: ['sense:suerte']}
+- {id: es.u09.story, kind: story}
+sentences:
+- id: s.u09.1
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: Ayer compré un pulóver.
+      tokens: [{surface: Ayer, sense: ayer}, {surface: compré, sense: comprar, form: 'form:pret-1s'}, {surface: un, sense: un}, {surface: pulóver, sense: pulóver}]
+      reverse: |-
+        Ayer [yo] compré (un pulóver|una camiseta|una playera)
+        [Yo] compré (un pulóver|una camiseta|una playera) ayer
+        Yo ayer compré (un pulóver|una camiseta|una playera)
+  translations:
+    en: |-
+      I bought a T-shirt yesterday.
+      Yesterday I bought a T-shirt.
+- id: s.u09.2
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: Ayer pagué diez dólares.
+      tokens: [{surface: Ayer, sense: ayer}, {surface: pagué, sense: pagar, form: 'form:pret-1s'}, {surface: diez, sense: diez}, {surface: dólares, sense: dólar}]
+      reverse: |-
+        Ayer [yo] pagué diez dólares
+        [Yo] pagué diez dólares ayer
+        Yo ayer pagué diez dólares
+  translations:
+    en: |-
+      I paid ten dollars yesterday.
+      Yesterday I paid ten dollars.
+- id: s.u09.3
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: Abuela compró mangos.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: compró, sense: comprar, form: 'form:pret-3s'}, {surface: mangos, sense: mango}]
+      reverse: (Abuela|Mi abuela|La abuela) compró mangos
+  translations:
+    en: |-
+      Grandma bought (mangoes|mangos).
+      (Grandmother|Granny|Abuela|My grandma|My grandmother|My granny) bought (mangoes|mangos).
+- id: s.u09.4
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: ¿Tú compraste el pomo?
+      tokens: [{surface: Tú, sense: tú}, {surface: compraste, sense: comprar, form: 'form:pret-2s'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
+      reverse: (Tú compraste|Compraste [tú]|Usted compró|Compró [usted]|Ustedes compraron|Compraron [ustedes]) (el (pomo|frasco)|la botella)
+  translations:
+    en: Did you buy the (bottle|jar)?
+- id: s.u09.5
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: Hablé con mi abuela.
+      tokens: [{surface: Hablé, sense: hablar, form: 'form:pret-1s'}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}]
+      reverse: '[Yo] hablé con (mi abuela|abuela|la abuela)'
+  translations:
+    en: I (talked|spoke) (to|with) (my grandma|my grandmother|my granny|Grandma|Abuela).
+- id: s.u09.6
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: ¿Tú hablaste con Yasiel ayer?
+      tokens: [{surface: Tú, sense: tú}, {surface: hablaste, sense: hablar, form: 'form:pret-2s'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}, {surface: ayer, sense: ayer}]
+      reverse: |-
+        (Tú hablaste|Hablaste [tú]|Usted habló|Habló [usted]|Ustedes hablaron|Hablaron [ustedes]) con Yasiel ayer
+        Ayer (tú hablaste|hablaste [tú]|usted habló|habló [usted]|ustedes hablaron|hablaron [ustedes]) con Yasiel
+  translations:
+    en: Did you (talk|speak) (to|with) Yasiel yesterday?
+- id: s.u09.7
+  node: es.u09.ayer
+  forms:
+    es-Latn/standard:
+      text: Sí, ayer hablé con él.
+      tokens: [{surface: Sí, sense: sí}, {surface: ayer, sense: ayer}, {surface: hablé, sense: hablar, form: 'form:pret-1s'}, {surface: con, sense: con}, {surface: él, sense: él}]
+      reverse: |-
+        Sí ayer [yo] hablé con él
+        Sí [yo] hablé con él ayer
+  translations:
+    en: |-
+      Yes, I (talked|spoke) (to|with) him yesterday.
+      Yes, yesterday I (talked|spoke) (to|with) him.
+- id: s.u09.8
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: Yasiel fue a Cuba.
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: fue, sense: ir, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: Yasiel fue a Cuba
+  translations:
+    en: Yasiel went to Cuba.
+- id: s.u09.9
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: ¿Tú fuiste a Cuba?
+      tokens: [{surface: Tú, sense: tú}, {surface: fuiste, sense: ir, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: (Tú fuiste|Fuiste [tú]|Usted fue|Fue [usted]|Ustedes fueron|Fueron [ustedes]) a Cuba
+  translations:
+    en: Did you go to Cuba?
+- id: s.u09.10
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: No, fui a casa de abuela.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: fui, sense: ir, form: 'form:pret-1s'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      reverse: No [yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela)
+  translations:
+    en: No, I went to (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
+- id: s.u09.11
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: El domingo fui a casa de abuela.
+      tokens: [{surface: El, sense: el}, {surface: domingo, sense: domingo}, {surface: fui, sense: ir, form: 'form:pret-1s'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      reverse: |-
+        El domingo [yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela)
+        [Yo] fui a (casa de|la casa de) (abuela|mi abuela|la abuela) el domingo
+  translations:
+    en: |-
+      On Sunday I went to (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
+      I went to (Grandma's|my grandma's|my grandmother's|Abuela's) [house] on Sunday.
+- id: s.u09.12
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: Fue un domingo muy cubano.
+      tokens: [{surface: Fue, sense: ser, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: domingo, sense: domingo}, {surface: muy, sense: muy}, {surface: cubano, sense: cubano}]
+      reverse: Fue un domingo muy cubano
+  translations:
+    en: It was a (very|really) Cuban Sunday.
+- id: s.u09.13
+  node: es.u09.fui
+  forms:
+    es-Latn/standard:
+      text: El domingo Lili no fue.
+      tokens: [{surface: El, sense: el}, {surface: domingo, sense: domingo}, {surface: Lili, sense: lili}, {surface: 'no', sense: 'no'}, {surface: fue, sense: ir, form: 'form:pret-3s'}]
+      reverse: |-
+        El domingo Lili no fue
+        Lili no fue el domingo
+  translations:
+    en: |-
+      Lili (didn't|did not) go on Sunday.
+      On Sunday Lili (didn't|did not) go.
+- id: s.u09.14
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe habló con Yasiel.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) habló con Yasiel
+  translations:
+    en: (Grandpa|Grandfather|Abuelo) Pepe (talked|spoke) (to|with) Yasiel.
+- id: s.u09.15
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: Abuelo jugó dominó.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: jugó, sense: jugar, form: 'form:pret-3s'}, {surface: dominó, sense: dominó}]
+      reverse: (Abuelo|Mi abuelo|El abuelo) jugó [al] dominó
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) played (dominoes|domino).
+- id: s.u09.16
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: Yo jugué dominó con mi abuelo.
+      tokens: [{surface: Yo, sense: yo}, {surface: jugué, sense: jugar, form: 'form:pret-1s'}, {surface: dominó, sense: dominó}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}]
+      reverse: '[Yo] jugué [al] dominó con (mi abuelo|abuelo|el abuelo)'
+  translations:
+    en: I played (dominoes|domino) with (my grandpa|my grandfather|Grandpa|Abuelo).
+- id: s.u09.17
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe ganó.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) ganó
+  translations:
+    en: (Grandpa|Grandfather|Abuelo) Pepe won.
+- id: s.u09.18
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: Yo no gané.
+      tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: gané, sense: ganar, form: 'form:pret-1s'}]
+      reverse: '[Yo] no gané'
+  translations:
+    en: I (didn't|did not) win.
+- id: s.u09.19
+  node: es.u09.domino
+  forms:
+    es-Latn/standard:
+      text: ¿Tú jugaste dominó el fin de semana?
+      tokens: [{surface: Tú, sense: tú}, {surface: jugaste, sense: jugar, form: 'form:pret-2s'}, {surface: dominó, sense: dominó}, {surface: el, sense: el}, {surface: fin, sense: fin-de-semana}, {surface: de, sense: fin-de-semana}, {surface: semana, sense: fin-de-semana}]
+      reverse: (Tú jugaste|Jugaste [tú]|Usted jugó|Jugó [usted]|Ustedes jugaron|Jugaron [ustedes]) [al] dominó el fin de semana
+  translations:
+    en: Did you play (dominoes|domino) (on the|over the|last) weekend?
+- id: s.u09.20
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Anoche jugué dominó.
+      tokens: [{surface: Anoche, sense: anoche}, {surface: jugué, sense: jugar, form: 'form:pret-1s'}, {surface: dominó, sense: dominó}]
+      reverse: |-
+        Anoche [yo] jugué [al] dominó
+        [Yo] jugué [al] dominó anoche
+  translations:
+    en: |-
+      Last night I played (dominoes|domino).
+      I played (dominoes|domino) last night.
+- id: s.u09.21
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Anoche vi la pelota.
+      tokens: [{surface: Anoche, sense: anoche}, {surface: vi, sense: ver, form: 'form:pret-1s'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}]
+      reverse: |-
+        Anoche [yo] vi (la pelota|el béisbol|el juego [de pelota])
+        [Yo] vi (la pelota|el béisbol|el juego [de pelota]) anoche
+  translations:
+    en: |-
+      Last night I (watched|saw) (the baseball game|the game|baseball).
+      I (watched|saw) (the baseball game|the game|baseball) last night.
+- id: s.u09.22
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Abuelo vio la pelota en la tele.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: vio, sense: ver, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: tele, sense: televisión}]
+      reverse: (Abuelo|Mi abuelo|El abuelo) vio (la pelota|el béisbol|el juego) en la (tele|televisión)
+  translations:
+    en: (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) (watched|saw) (the baseball game|the game|baseball) on (TV|television|the TV).
+- id: s.u09.23
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Vimos la pelota en casa de abuela.
+      tokens: [{surface: Vimos, sense: ver, form: 'form:pret-1p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}, {surface: en, sense: en}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      reverse: '[(Nosotros|Nosotras)] vimos (la pelota|el béisbol|el juego) en (casa de|la casa de) (abuela|mi abuela|la abuela)'
+  translations:
+    en: We (watched|saw) (the baseball game|the game|baseball) at (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
+- id: s.u09.24
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe y Yasiel vieron la pelota.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) y Yasiel vieron (la pelota|el béisbol|el juego)
+  translations:
+    en: (Grandpa|Grandfather|Abuelo) Pepe and Yasiel (watched|saw) (the baseball game|the game|baseball).
+- id: s.u09.25
+  node: es.u09.la-pelota
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes vieron la pelota anoche?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}, {surface: anoche, sense: anoche}]
+      reverse: |-
+        (Ustedes vieron|Vieron [ustedes]) (la pelota|el béisbol|el juego) anoche
+        Anoche (ustedes vieron|vieron [ustedes]) (la pelota|el béisbol|el juego)
+  translations:
+    en: Did (you|you all|you guys|y'all) (watch|see) (the baseball game|the game|baseball) last night?
+- id: s.u09.26
+  node: es.u09.la-pelota
+  forms:
+    es-Latn/standard:
+      text: Anoche ganó Cuba.
+      tokens: [{surface: Anoche, sense: anoche}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba}]
+      reverse: |-
+        Anoche ganó Cuba
+        Anoche Cuba ganó
+        Cuba ganó anoche
+        Ganó Cuba anoche
+  translations:
+    en: |-
+      Cuba won last night.
+      Last night Cuba won.
+- id: s.u09.27
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú hiciste ayer?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: hiciste, sense: hacer, form: 'form:pret-2s'}, {surface: ayer, sense: ayer}]
+      reverse: (Qué tú hiciste|Qué hiciste [tú]|Qué usted hizo|Qué hizo [usted]|Qué ustedes hicieron|Qué hicieron [ustedes]) ayer
+  translations:
+    en: What did you do yesterday?
+- id: s.u09.28
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: Abuela hizo café.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: hizo, sense: hacer, form: 'form:pret-3s'}, {surface: café, sense: café}]
+      reverse: (Abuela|Mi abuela|La abuela) hizo (café|cafecito|un café|un cafecito)
+  translations:
+    en: (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) made (coffee|some coffee|a coffee|Cuban coffee).
+- id: s.u09.29
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: Comimos en casa de abuela.
+      tokens: [{surface: Comimos, sense: comer, form: 'form:pret-1p'}, {surface: en, sense: en}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      reverse: '[(Nosotros|Nosotras)] comimos en (casa de|la casa de) (abuela|mi abuela|la abuela)'
+  translations:
+    en: We (ate|had dinner|had lunch) at (Grandma's|my grandma's|my grandmother's|Abuela's) [house].
+- id: s.u09.30
+  node: es.u09.que-hiciste
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes comieron con Yasiel?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: comieron, sense: comer, form: 'form:pret-3p'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
+      reverse: (Ustedes comieron|Comieron [ustedes]) con Yasiel
+  translations:
+    en: Did (you|you all|you guys|y'all) (eat|have dinner|have lunch) with Yasiel?
+- id: s.u09.31
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe tuvo suerte.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: tuvo, sense: tener, form: 'form:pret-3s'}, {surface: suerte, sense: suerte}]
+      reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) tuvo suerte
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Abuelo) Pepe was lucky.
+      (Grandpa|Grandfather|Abuelo) Pepe (got lucky|had luck|had good luck).
+- id: s.u09.32
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: Yo no tuve suerte.
+      tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: tuve, sense: tener, form: 'form:pret-1s'}, {surface: suerte, sense: suerte}]
+      reverse: '[Yo] no tuve suerte'
+  translations:
+    en: |-
+      I (wasn't|was not) lucky.
+      I (didn't|did not) (get lucky|have any luck|have luck).
+      I had no luck.
+- id: s.u09.33
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: ¿Qué hicieron ellos el domingo?
+      tokens: [{surface: Qué, sense: qué}, {surface: hicieron, sense: hacer, form: 'form:pret-3p'}, {surface: ellos, sense: ellos}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
+      reverse: (Qué hicieron [(ellos|ellas)]|Qué (ellos|ellas) hicieron) el domingo
+  translations:
+    en: What did they do on Sunday?
+- id: s.u09.34
+  node: es.u09.que-hiciste
+  forms:
+    es-Latn/standard:
+      text: Jugaron dominó y vieron la pelota.
+      tokens: [{surface: Jugaron, sense: jugar, form: 'form:pret-3p'}, {surface: dominó, sense: dominó}, {surface: 'y', sense: 'y'}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}]
+      reverse: '[(Ellos|Ellas)] jugaron [al] dominó y vieron (la pelota|el béisbol|el juego)'
+  translations:
+    en: They played (dominoes|domino) and (watched|saw) (the baseball game|the game|baseball).
+stories:
+- id: es.story.u09
+  node: es.u09.story
+  title: {en: Sunday at Abuela's}
+  characters:
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  steps:
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Qué bolá, Daniel? ¿Qué tú hiciste el domingo?
+          tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: Daniel, sense: daniel}, {surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: hiciste, sense: hacer, form: 'form:pret-2s'}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
+      translations: {en: 'What''s up, Daniel? What did you do on Sunday?'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:casa
+      distractors: ['sense:jaba', 'sense:pomo']
+      forms:
+        es-Latn/standard:
+          text: Fui a casa de abuela. ¿Y tú?
+          tokens: [{surface: Fui, sense: ir, form: 'form:pret-1s'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: abuela, sense: abuela}, {surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}]
+      translations: {en: 'I went to Grandma''s. And you?'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Yo no fui. ¿Qué hicieron ustedes?
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: fui, sense: ir, form: 'form:pret-1s'}, {surface: Qué, sense: qué}, {surface: hicieron, sense: hacer, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes}]
+      translations: {en: 'I didn''t go. What did you all do?'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Comimos y jugamos dominó.
+          tokens: [{surface: Comimos, sense: comer, form: 'form:pret-1p'}, {surface: 'y', sense: 'y'}, {surface: jugamos, sense: jugar, form: 'form:pret-1p'}, {surface: dominó, sense: dominó}]
+      translations: {en: We ate and played dominoes.}
+  - choose:
+      prompt: {en: 'Where did Daniel go on Sunday?'}
+      options: [{en: To Grandma's house}, {en: To Cuba}, {en: To the farmers' market}]
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Abuelo Pepe ganó?
+          tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}]
+      translations: {en: 'Did Grandpa Pepe win?'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:suerte
+      distractors: ['sense:domingo', 'sense:dólar']
+      forms:
+        es-Latn/standard:
+          text: Sí, ganó. Yo no tuve suerte.
+          tokens: [{surface: Sí, sense: sí}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: tuve, sense: tener, form: 'form:pret-1s'}, {surface: suerte, sense: suerte}]
+      translations: {en: 'Yes, he won. I wasn''t lucky.'}
+  - choose:
+      prompt: {en: 'Who won at dominoes?'}
+      options: [{en: Abuelo Pepe}, {en: Daniel}, {en: Lili}]
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Y anoche vimos la pelota en la tele.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: anoche, sense: anoche}, {surface: vimos, sense: ver, form: 'form:pret-1p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: tele, sense: televisión}]
+      translations: {en: And last night we watched the baseball game on TV.}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y ganó Cuba?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: Cuba, sense: cuba}]
+      translations: {en: 'And did Cuba win?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: No, Cuba no ganó. ¡Y abuelo habló con la tele!
+          tokens: [{surface: 'No', sense: 'no'}, {surface: Cuba, sense: cuba}, {surface: 'no', sense: 'no'}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}, {surface: 'Y', sense: 'y'}, {surface: abuelo, sense: abuelo}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: la, sense: el}, {surface: tele, sense: televisión}]
+      translations: {en: 'No, Cuba didn''t win. And Grandpa talked to the TV!'}
+  - choose:
+      prompt: {en: 'What did Abuelo Pepe do during the game?'}
+      options: [{en: He talked to the TV.}, {en: He went to sleep.}, {en: He played dominoes.}]
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡Ese abuelo!
+          tokens: [{surface: Ese, sense: ese}, {surface: abuelo, sense: abuelo}]
+      translations: {en: That Grandpa!}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela hizo café. ¡Fue un domingo muy cubano!
+          tokens: [{surface: Abuela, sense: abuela}, {surface: hizo, sense: hacer, form: 'form:pret-3s'}, {surface: café, sense: café}, {surface: Fue, sense: ser, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: domingo, sense: domingo}, {surface: muy, sense: muy}, {surface: cubano, sense: cubano}]
+      translations: {en: 'Grandma made coffee. It was a very Cuban Sunday!'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¡El domingo yo también voy!
+          tokens: [{surface: El, sense: el}, {surface: domingo, sense: domingo}, {surface: yo, sense: yo}, {surface: también, sense: también}, {surface: voy, sense: ir, form: 'form:pres-1s'}]
+      translations: {en: 'On Sunday I''m going too!'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Y tú juegas dominó con abuelo!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: juegas, sense: jugar, form: 'form:pres-2s'}, {surface: dominó, sense: dominó}, {surface: con, sense: con}, {surface: abuelo, sense: abuelo}]
+      translations: {en: 'And you''re playing dominoes with Grandpa!'}

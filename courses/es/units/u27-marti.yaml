@@ -1,0 +1,594 @@
+# Unit 27 (es): José Martí, read as a Cuban family reads him. His life (Havana 1853, prison and exile, New York,
+# Dos Ríos 1895; el Apóstol, el héroe nacional, la patria libre); the poet of Versos sencillos (1891) and La Edad de
+# Oro; the words of the two poems every Cuban knows, Yo soy un hombre sincero (I) and Cultivo una rosa blanca (XXXIX);
+# the Guantanamera, which sings the first; the imperfect subjunctive met in reading (quería que Cuba fuera libre, me
+# pidió que leyera, como si hablara). The story's verse lines come from Wikisource through marti_story.py (public domain).
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u27
+title: {en: 'José Martí: the poet of Cuba'}
+cefr: B2
+kcs:
+- {id: 'sense:martí', gloss: {en: 'José Martí (1853–1895), Cuba''s national hero and poet'}, forms: {es-Latn/standard: [Martí]}, notes: {en: 'Born in Havana in 1853, jailed at sixteen for his ideas and deported to Spain, he spent most of his life in exile, from 1880 mostly in New York, writing and organizing the war of independence. He landed in Cuba in April 1895 and was killed at Dos Ríos, in the east, on 19 May. Mar-tí, with the accent on the í. Cubans call him el Apóstol, and the best-known verses of Guantanamera are his.'}}
+- {id: 'sense:héroe', gloss: {en: 'hero'}, forms: {es-Latn/standard: [héroe]}, notes: {en: 'With an accent: hé-ro-e, three syllables. Martí is el Héroe Nacional: his birthday, 28 January, is marked in Cuban schools, and his bust stands in schools and parks in Havana and in Miami. A woman is una heroína.'}}
+- {id: 'sense:josé', gloss: {en: 'José (a name; Pepe for short)'}, forms: {es-Latn/standard: [José]}, notes: {en: 'At home a José is Pepe, like Abuelo Pepe; Martí was Pepe to his family too. Jo-sé, with the accent on the é.'}}
+- {id: 'sense:apóstol', gloss: {en: 'apostle; el Apóstol: José Martí'}, forms: {es-Latn/standard: [apóstol]}, notes: {en: 'El Apóstol (de la independencia) is what Cubans call Martí, who gave his life to preaching it. A-pós-tol, with an accent; plural apóstoles. A Martí le dicen el Apóstol: le dicen, they call him, is how Cubans say it.'}}
+- {id: 'sense:morir', gloss: {en: 'to die (morirse: to die, to pass away)'}, forms: {es-Latn/standard: [morir]}, notes: {en: 'O becomes ue (muere, mueren) or u (murió, murieron, muriendo); the participle is muerto. Morirse is the everyday word for a death (se murió anoche), and the one in Martí''s verse antes de morirme. Me muero de hambre: I''m starving.'}}
+- {id: 'sense:luchar', gloss: {en: 'to fight; to struggle; (Cuban) to hustle, to get by'}, forms: {es-Latn/standard: [luchar]}, notes: {en: 'Luchar por: to fight for (luchó por la independencia). In Cuba luchar is also the daily struggle to get by: ¿Qué haces? Aquí, luchando. La lucha: the fight (coger lucha, unit 23).'}}
+- {id: 'sense:libre', gloss: {en: 'free'}, forms: {es-Latn/standard: [libre]}, notes: {en: 'Free as in freedom: un país libre, un día libre. Free of charge is gratis. The same for a man or a woman. A Cuba libre is also rum and cola, a drink named for Cuba''s independence around 1900. After quería que the verb goes into the past subjunctive: Martí quería que Cuba fuera libre.'}}
+- {id: 'sense:patria', gloss: {en: 'homeland; fatherland'}, forms: {es-Latn/standard: [patria]}, notes: {en: 'La patria, feminine, though it comes from padre. It was Martí''s word: Patria was the newspaper he founded in New York in 1892, and Patria es humanidad one of his sayings. Cubans abroad say la patria, or mi tierra, of the island.'}}
+- {id: 'sense:nueva-york', gloss: {en: 'New York'}, forms: {es-Latn/standard: [Nueva York]}, notes: {en: 'Two words, both with capitals. Martí lived there from 1880 to 1895, with a stay in Venezuela: he wrote for newspapers all over Latin America and organized the Cuban exiles of New York, Tampa and Key West for the war. A New Yorker is un neoyorquino.'}}
+- {id: 'sense:poeta', gloss: {en: 'poet'}, forms: {es-Latn/standard: [poeta]}, notes: {en: 'Ends in -a but is masculine: el poeta, like el turista; a woman is la poeta or la poetisa. Gran before a noun means great: un gran poeta. After it, grande means big.'}}
+- {id: 'sense:poema', gloss: {en: 'poem'}, forms: {es-Latn/standard: [poema]}, notes: {en: 'Masculine despite the -a: el poema, like el problema and el idioma. La poesía is poetry, and also a single poem. Recitar un poema: to recite one.'}}
+- {id: 'sense:verso', gloss: {en: 'line (of a poem); los versos: poems, poetry'}, forms: {es-Latn/standard: [verso]}, notes: {en: 'Un verso is one line of a poem; a stanza is una estrofa. Los versos is also poetry in general: los versos de Martí. With v. The Versos sencillos have eight syllables a line, the meter of the décima and of Cuban country song.'}}
+- {id: 'sense:sencillo', gloss: {en: 'simple; plain; modest'}, forms: {es-Latn/standard: [sencillo]}, notes: {en: 'Una persona sencilla: a modest, down-to-earth person. Versos sencillos (Simple Verses, New York, 1891): forty-six short poems that Martí says came to him in the Catskill mountains, where he went to rest in 1890. With c and ll: sen-ci-llo, though Cubans say s and y.'}}
+- {id: 'sense:leer', gloss: {en: 'to read'}, forms: {es-Latn/standard: [leer]}, notes: {en: 'Between vowels the i becomes y: leyó, leyeron, leyendo, leyera. Leer a Martí: the personal a goes before an author you read. Leer en voz alta: to read aloud.'}}
+- {id: 'sense:libro', gloss: {en: 'book'}, forms: {es-Latn/standard: [libro]}, notes: {en: 'Un libro. A false friend: una librería is a bookshop; a library is una biblioteca.'}}
+- {id: 'sense:edad-de-oro', gloss: {en: 'La Edad de Oro (The Golden Age), Martí''s magazine for children'}, forms: {es-Latn/standard: [Edad de Oro]}, notes: {en: 'A monthly magazine for the children of America that Martí wrote almost alone in New York in 1889: four issues of stories, poems and articles (Los zapaticos de rosa, Tres héroes). Gathered into a book, it is still what Cuban children read first of Martí.'}}
+- {id: 'sense:hombre', gloss: {en: 'man'}, forms: {es-Latn/standard: [hombre]}, notes: {en: 'With a silent h: hom-bre; plural hombres. ¡Hombre! is also an exclamation: ¡Claro, hombre!, of course! Martí''s first poem in Versos sencillos opens with a sincere man saying who he is.'}}
+- {id: 'sense:sincero', gloss: {en: 'sincere; honest'}, forms: {es-Latn/standard: [sincero]}, notes: {en: 'Sincera for a woman. Written with c, though Cubans say it with an s: sin-ce-ro. Para serte sincero: to be honest with you.'}}
+- {id: 'sense:crecer', gloss: {en: 'to grow; to grow up'}, forms: {es-Latn/standard: [crecer]}, notes: {en: 'Plants and people grow: crecí en Hialeah, I grew up in Hialeah. Growing crops is cultivar or sembrar. Yo crezco, with zc; everything else with c: crece, creció. Criarse says the same of people: me crié en Hialeah.'}}
+- {id: 'sense:palma', gloss: {en: 'palm (tree); palm (of the hand)'}, forms: {es-Latn/standard: [palma]}, notes: {en: 'In Cuba la palma is above all the royal palm (la palma real), the emblem of the island: Martí names it to say he comes from Cuba. La palma de la mano: the palm of the hand.'}}
+- {id: 'sense:alma', gloss: {en: 'soul'}, forms: {es-Latn/standard: [alma]}, notes: {en: 'Feminine, but el alma and un alma, because it begins with a stressed a (like el agua): el alma cubana, las almas. Con el alma: with all my heart. Me llegó al alma: it moved me deeply.'}}
+- {id: 'sense:guantanamera', gloss: {en: 'Guantanamera (the song: the girl from Guantánamo)'}, forms: {es-Latn/standard: [Guantanamera]}, notes: {en: 'Guajira guantanamera, a country song about a girl from Guantánamo, sung on Havana radio by Joseíto Fernández from the 1930s. The verses everyone knows were fitted to it later from Versos sencillos (the arrangement is credited to the composer Julián Orbón), and Pete Seeger took that version around the world in the 1960s.'}}
+- {id: 'sense:memoria', gloss: {en: 'memory; de memoria: by heart'}, forms: {es-Latn/standard: [memoria]}, notes: {en: 'Saberse algo de memoria: to know it by heart; aprender de memoria: to learn it by heart, as Cuban schoolchildren learn Martí. A souvenir, or a memory of something, is un recuerdo.'}}
+- {id: 'sense:entender', gloss: {en: 'to understand'}, forms: {es-Latn/standard: [entender]}, notes: {en: 'E becomes ie: entiendo, entiendes, entiende, entienden (but entendemos). ¿Me entiendes? Comprender means the same and sounds a little more formal. Many heritage speakers say entiendo todo, pero no lo hablo bien: understanding comes first, and speaking follows.'}}
+- {id: 'sense:palabra', gloss: {en: 'word'}, forms: {es-Latn/standard: [palabra]}, notes: {en: 'La palabra, feminine. Dar la palabra: to give your word. Una palabrota: a swear word. ¿Qué quiere decir esta palabra?: what does this word mean? Unas palabras: a few words (quisiera decir unas palabras).'}}
+- {id: 'sense:rosa', gloss: {en: 'rose; pink'}, forms: {es-Latn/standard: [rosa]}, notes: {en: 'La rosa, the flower; as a colour, rosa or rosado is pink. Martí''s best-known poem, XXXIX of Versos sencillos, is about the white rose he grows for friend and enemy alike.'}}
+- {id: 'sense:julio', gloss: {en: 'July'}, forms: {es-Latn/standard: [julio]}, notes: {en: 'Months take no capital in Spanish: en julio, el 4 de julio. With j, which Cubans say softly, like an English h.'}}
+- {id: 'sense:mano', gloss: {en: 'hand'}, forms: {es-Latn/standard: [mano]}, notes: {en: 'Feminine, though it ends in -o: la mano, las manos. Dar la mano: to shake hands, and to give a hand. Echar una mano: to help out. A mano: by hand. Among Cuban friends mano, from hermano, also means bro.'}}
+- {id: 'sense:franco', gloss: {en: 'frank; open; candid'}, forms: {es-Latn/standard: [franco]}, notes: {en: 'Franca for a woman. Una mano franca is a hand held out openly, in friendship. Para serte franco: to be frank with you.'}}
+- {id: 'sense:cruel', gloss: {en: 'cruel'}, forms: {es-Latn/standard: [cruel]}, notes: {en: 'The same for a man or a woman; plural crueles. El cruel: the cruel one. In the second half of the rose poem, Martí grows the white rose for the cruel one too: neither thistles nor nettles.'}}
+nodes:
+- {id: es.u27.el-apostol, kind: lesson, introduces: ['sense:martí', 'sense:héroe', 'sense:josé', 'sense:apóstol', 'sense:morir', 'sense:luchar', 'sense:libre', 'sense:patria']}
+- {id: es.u27.nueva-york, kind: lesson, introduces: ['sense:nueva-york', 'sense:poeta', 'sense:poema', 'sense:verso', 'sense:sencillo', 'sense:leer', 'sense:libro', 'sense:edad-de-oro']}
+- {id: es.u27.hombre-sincero, kind: lesson, introduces: ['sense:hombre', 'sense:sincero', 'sense:crecer', 'sense:palma', 'sense:alma']}
+- {id: es.u27.guantanamera, kind: lesson, introduces: ['sense:guantanamera', 'sense:memoria', 'sense:entender', 'sense:palabra']}
+- {id: es.u27.rosa-blanca, kind: lesson, introduces: ['sense:rosa', 'sense:julio', 'sense:mano', 'sense:franco', 'sense:cruel']}
+- {id: es.u27.story, kind: story}
+sentences:
+- id: s.u27.1
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí es el héroe nacional de Cuba.
+      tokens: [{surface: Martí, sense: martí}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: héroe, sense: héroe}, {surface: nacional, sense: nacional}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      reverse: (Martí|José Martí) es el héroe nacional (de Cuba|cubano)
+  translations:
+    en: |-
+      (Martí|José Martí) is (Cuba's national hero|the national hero of Cuba).
+- id: s.u27.2
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Todos los cubanos conocen a José Martí.
+      tokens: [{surface: Todos, sense: todo}, {surface: los, sense: el}, {surface: cubanos, sense: cubano}, {surface: conocen, sense: conocer, form: 'form:pres-3p'}, {surface: a, sense: a}, {surface: José, sense: josé}, {surface: Martí, sense: martí}]
+      reverse: Todos los cubanos (conocen a|saben quién es) José Martí
+  translations:
+    en: |-
+      (Every Cuban knows|All Cubans know) (José Martí|who José Martí is|who José Martí was).
+- id: s.u27.3
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: A Martí le dicen el Apóstol.
+      tokens: [{surface: A, sense: a}, {surface: Martí, sense: martí}, {surface: le, sense: le}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: el, sense: el}, {surface: Apóstol, sense: apóstol}]
+      reverse: A Martí (le dicen|lo llaman|le llaman) el Apóstol
+  translations:
+    en: |-
+      (Martí is called|They call Martí|People call Martí) (the Apostle|el Apóstol).
+- id: s.u27.4
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí nació en La Habana y murió en Dos Ríos.
+      tokens: [{surface: Martí, sense: martí}, {surface: nació, sense: nacer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: 'y', sense: 'y'}, {surface: murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Dos, sense: dos}, {surface: Ríos, sense: río}]
+      reverse: Martí nació en La Habana y murió en Dos Ríos
+  translations:
+    en: |-
+      Martí was born in Havana and died (in|at) Dos Ríos.
+- id: s.u27.5
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Murió en el noventa y cinco, luchando por la libertad de Cuba.
+      tokens: [{surface: Murió, sense: morir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: noventa, sense: noventa}, {surface: 'y', sense: 'y'}, {surface: cinco, sense: cinco}, {surface: luchando, sense: luchar, form: 'form:ger'}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: libertad, sense: libertad}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      reverse: '[Martí] murió en (el noventa y cinco|el 95|mil ochocientos noventa y cinco|1895) luchando por la (libertad de Cuba|independencia de Cuba)'
+  translations:
+    en: |-
+      (He|Martí) died in ('95|1895|ninety-five), fighting for (Cuba's freedom|the freedom of Cuba|Cuban freedom|Cuba's independence).
+- id: s.u27.6
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Martí quería que Cuba fuera libre.
+      tokens: [{surface: Martí, sense: martí}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: Cuba, sense: cuba}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: libre, sense: libre}]
+      reverse: Martí quería que Cuba (fuera|fuese) libre
+  translations:
+    en: |-
+      Martí wanted Cuba to be free.
+      What Martí wanted was for Cuba to be free.
+- id: s.u27.7
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Para Martí, la patria era de todos los cubanos.
+      tokens: [{surface: Para, sense: para}, {surface: Martí, sense: martí}, {surface: la, sense: el}, {surface: patria, sense: patria}, {surface: era, sense: ser, form: 'form:impf'}, {surface: de, sense: de}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: cubanos, sense: cubano}]
+      reverse: Para Martí la patria era de todos los cubanos
+  translations:
+    en: |-
+      For Martí, the (homeland|fatherland|nation) belonged to (all Cubans|every Cuban).
+      For Martí, the (homeland|fatherland|nation) was for (all Cubans|every Cuban).
+- id: s.u27.8
+  node: es.u27.el-apostol
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe se llama José, como Martí.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: José, sense: josé}, {surface: como, sense: como.like}, {surface: Martí, sense: martí}]
+      reverse: (Abuelo|El abuelo|Mi abuelo) Pepe se llama José (como|igual que) Martí
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe's (name|real name) is José, (like Martí|like Martí's|just like Martí|just like Martí's).
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe is called José, (like Martí|just like Martí).
+- id: s.u27.9
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí vivió muchos años en Nueva York.
+      tokens: [{surface: Martí, sense: martí}, {surface: vivió, sense: vivir, form: 'form:pret-3s'}, {surface: muchos, sense: mucho}, {surface: años, sense: año}, {surface: en, sense: en}, {surface: Nueva, sense: nueva-york}, {surface: York, sense: nueva-york}]
+      reverse: |-
+        Martí vivió muchos años en Nueva York
+        Martí vivió en Nueva York muchos años
+  translations:
+    en: |-
+      Martí lived in New York for (many|a lot of) years.
+      Martí lived [for] (many|a lot of) years in New York.
+- id: s.u27.10
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí era un gran poeta y escribió muchos poemas.
+      tokens: [{surface: Martí, sense: martí}, {surface: era, sense: ser, form: 'form:impf'}, {surface: un, sense: un}, {surface: gran, sense: grande}, {surface: poeta, sense: poeta}, {surface: 'y', sense: 'y'}, {surface: escribió, sense: escribir, form: 'form:pret-3s'}, {surface: muchos, sense: mucho}, {surface: poemas, sense: poema}]
+      reverse: Martí (era|fue) un gran poeta y escribió muchos poemas
+  translations:
+    en: |-
+      Martí was a great poet and (he wrote|wrote) (many|a lot of|lots of) poems.
+- id: s.u27.11
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí escribió los Versos sencillos en Nueva York.
+      tokens: [{surface: Martí, sense: martí}, {surface: escribió, sense: escribir, form: 'form:pret-3s'}, {surface: los, sense: el}, {surface: Versos, sense: verso}, {surface: sencillos, sense: sencillo}, {surface: en, sense: en}, {surface: Nueva, sense: nueva-york}, {surface: York, sense: nueva-york}]
+      reverse: Martí escribió [los] Versos sencillos en Nueva York
+  translations:
+    en: |-
+      Martí wrote (the Versos sencillos|Versos sencillos|the Simple Verses|Simple Verses) in New York.
+- id: s.u27.12
+  node: es.u27.nueva-york
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, leía a Martí con mi padre.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño}, {surface: leía, sense: leer, form: 'form:impf'}, {surface: a, sense: a}, {surface: Martí, sense: martí}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: padre, sense: padre}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita) leía a Martí con mi (padre|papá)
+        [Yo] leía a Martí con mi (padre|papá) cuando era (niña|chiquita)
+  translations:
+    en: |-
+      When I was (a girl|a little girl|a child|little), I (used to read|read|would read) Martí with my (father|dad).
+      I (used to read|read|would read) Martí with my (father|dad) when I was (a girl|a little girl|a child|little).
+- id: s.u27.13
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: La Edad de Oro es el libro de Martí para los niños.
+      tokens: [{surface: La, sense: el}, {surface: Edad, sense: edad-de-oro}, {surface: de, sense: edad-de-oro}, {surface: Oro, sense: edad-de-oro}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: libro, sense: libro}, {surface: de, sense: de}, {surface: Martí, sense: martí}, {surface: para, sense: para}, {surface: los, sense: el}, {surface: niños, sense: niño}]
+      reverse: La Edad de Oro es el libro de Martí para [los] niños
+  translations:
+    en: |-
+      (La Edad de Oro|The Golden Age) is Martí's book for (children|kids).
+      (La Edad de Oro|The Golden Age) is the book [that] Martí wrote for (children|kids).
+- id: s.u27.14
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Abuela me pidió que leyera un poema de Martí.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: me, sense: me}, {surface: pidió, sense: pedir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: leyera, sense: leer, form: 'form:subj-past'}, {surface: un, sense: un}, {surface: poema, sense: poema}, {surface: de, sense: de}, {surface: Martí, sense: martí}]
+      reverse: (Abuela|La abuela|Mi abuela) me pidió que (leyera|leyese) un poema de Martí
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) asked me to read (a poem by Martí|a Martí poem|one of Martí's poems).
+- id: s.u27.15
+  node: es.u27.nueva-york
+  forms:
+    es-Latn/standard:
+      text: Martí escribe como si hablara con un amigo.
+      tokens: [{surface: Martí, sense: martí}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: como, sense: como.like}, {surface: si, sense: si}, {surface: hablara, sense: hablar, form: 'form:subj-past'}, {surface: con, sense: con}, {surface: un, sense: un}, {surface: amigo, sense: amigo}]
+      reverse: Martí escribe como si (hablara|hablase|estuviera hablando) con un amigo
+  translations:
+    en: |-
+      Martí writes (as if|as though|like) he (were|was) (talking|speaking) (to|with) a friend.
+- id: s.u27.16
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe es un hombre sincero.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: hombre, sense: hombre}, {surface: sincero, sense: sincero}]
+      reverse: (Abuelo|El abuelo|Mi abuelo) Pepe es un hombre sincero
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Abuelo|My grandpa|My grandfather) Pepe is (a sincere|an honest) man.
+- id: s.u27.17
+  node: es.u27.hombre-sincero
+  persons: {speaker: f, addressee: m}
+  forms:
+    es-Latn/standard:
+      text: 'Yo soy sincera, mi''jo: digo lo que pienso.'
+      tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: sincera, sense: sincero}, {surface: "mi'jo", sense: mijo}, {surface: digo, sense: decir, form: 'form:pres-1s'}, {surface: lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: pienso, sense: pensar, form: 'form:pres-1s'}]
+      reverse: '[Yo] soy sincera (mi''jo|mi hijo) [y] digo lo que pienso'
+  translations:
+    en: |-
+      (I'm|I am) (honest|sincere), (sweetheart|son|honey|my boy): I say what I think.
+      (I'm|I am) (honest|sincere), (sweetheart|son|honey|my boy), and I say what I think.
+- id: s.u27.18
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: En Cuba, las palmas crecen en todo el campo.
+      tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: las, sense: el}, {surface: palmas, sense: palma}, {surface: crecen, sense: crecer, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: todo, sense: todo}, {surface: el, sense: el}, {surface: campo, sense: campo}]
+      reverse: |-
+        En Cuba las palmas crecen (en|por) todo el campo
+        Las palmas crecen (en|por) todo el campo (en Cuba|cubano)
+  translations:
+    en: |-
+      In Cuba, (palm trees|palms|the palm trees|the palms) grow all over the countryside.
+      In Cuba, (palm trees|palms|the palm trees|the palms) grow (everywhere in|throughout|across) the countryside.
+- id: s.u27.19
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Daniel creció en Hialeah, lejos de las palmas de Cuba.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: creció, sense: crecer, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}, {surface: lejos, sense: lejos}, {surface: de, sense: de}, {surface: las, sense: el}, {surface: palmas, sense: palma}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
+      reverse: Daniel creció en Hialeah lejos de las palmas (de Cuba|cubanas)
+  translations:
+    en: |-
+      Daniel grew up in Hialeah, far from (the palm trees|the palms) of Cuba.
+      Daniel grew up in Hialeah, far from Cuba's (palm trees|palms).
+- id: s.u27.20
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Martí escribía sus versos con el alma.
+      tokens: [{surface: Martí, sense: martí}, {surface: escribía, sense: escribir, form: 'form:impf'}, {surface: sus, sense: su}, {surface: versos, sense: verso}, {surface: con, sense: con}, {surface: el, sense: el}, {surface: alma, sense: alma}]
+      reverse: Martí escribía sus versos con (el alma|toda el alma|toda su alma)
+  translations:
+    en: |-
+      Martí wrote his (verses|poems|poetry) (from the soul|from the heart|with his soul|with all his soul|with all his heart).
+- id: s.u27.21
+  node: es.u27.hombre-sincero
+  forms:
+    es-Latn/standard:
+      text: Ese poema me llegó al alma, abuela.
+      tokens: [{surface: Ese, sense: ese}, {surface: poema, sense: poema}, {surface: me, sense: me}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: al, sense: al}, {surface: alma, sense: alma}, {surface: abuela, sense: abuela}]
+      reverse: (Ese|Este) poema me llegó al alma [abuela]
+  translations:
+    en: |-
+      That poem (touched my soul|moved me deeply|really touched me|went straight to my heart), (Grandma|Abuela).
+- id: s.u27.22
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Todo el mundo conoce la Guantanamera.
+      tokens: [{surface: Todo, sense: todo}, {surface: el, sense: el}, {surface: mundo, sense: mundo}, {surface: conoce, sense: conocer, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}]
+      reverse: Todo el mundo (conoce|se sabe) la Guantanamera
+  translations:
+    en: |-
+      (Everybody|Everyone|The whole world) knows (Guantanamera|the Guantanamera|the song Guantanamera).
+- id: s.u27.23
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Los versos de la Guantanamera son de Martí.
+      tokens: [{surface: Los, sense: el}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Martí, sense: martí}]
+      reverse: Los versos de la Guantanamera son de Martí
+  translations:
+    en: |-
+      The (verses|lines|words|lyrics) of (Guantanamera|the Guantanamera) are (by Martí|Martí's).
+      (Guantanamera's|The Guantanamera's) (verses|lines|words|lyrics) are (by Martí|Martí's).
+- id: s.u27.24
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Daniel canta la Guantanamera, pero nunca ha leído a Martí.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
+      reverse: Daniel canta la Guantanamera pero nunca ha leído a Martí
+  translations:
+    en: |-
+      Daniel sings (Guantanamera|the Guantanamera), but (he's never|he has never|has never) read Martí.
+- id: s.u27.25
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: En la escuela, Abuela aprendió los versos de memoria.
+      tokens: [{surface: En, sense: en}, {surface: la, sense: el}, {surface: escuela, sense: escuela}, {surface: Abuela, sense: abuela}, {surface: aprendió, sense: aprender, form: 'form:pret-3s'}, {surface: los, sense: el}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: memoria, sense: memoria}]
+      reverse: |-
+        En la escuela (Abuela|la abuela|mi abuela) (aprendió|se aprendió) los versos de memoria
+        (Abuela|La abuela|Mi abuela) (aprendió|se aprendió) los versos de memoria en la escuela
+  translations:
+    en: |-
+      At school, (Grandma|Grandmother|Abuela|my grandma|my grandmother) learned the (verses|poems|lines) by heart.
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) learned the (verses|poems|lines) by heart at school.
+- id: s.u27.26
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: El padre de Abuela quería que ella supiera los versos de memoria.
+      tokens: [{surface: El, sense: el}, {surface: padre, sense: padre}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: ella, sense: ella}, {surface: supiera, sense: saber, form: 'form:subj-past'}, {surface: los, sense: el}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: memoria, sense: memoria}]
+      reverse: El (padre|papá) de (Abuela|la abuela|mi abuela) quería que [ella] (supiera|supiese|se supiera|se supiese) los versos de memoria
+  translations:
+    en: |-
+      (Grandma's|Grandmother's|Abuela's|My grandma's|My grandmother's) father wanted her to know the (verses|poems|lines) by heart.
+- id: s.u27.27
+  node: es.u27.guantanamera
+  forms:
+    es-Latn/standard:
+      text: Abuela, no entiendo esta palabra.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: 'no', sense: 'no'}, {surface: entiendo, sense: entender, form: 'form:pres-1s'}, {surface: esta, sense: este}, {surface: palabra, sense: palabra}]
+      reverse: '[Abuela] [yo] no (entiendo|comprendo) esta palabra'
+  translations:
+    en: |-
+      (Grandma|Abuela), I (don't|do not) understand this word.
+- id: s.u27.28
+  node: es.u27.guantanamera
+  persons: {addressee: f}
+  forms:
+    es-Latn/standard:
+      text: Lili, ¿tú te sabías los versos de memoria cuando eras niña?
+      tokens: [{surface: Lili, sense: lili}, {surface: tú, sense: tú}, {surface: te, sense: te}, {surface: sabías, sense: saber, form: 'form:impf'}, {surface: los, sense: el}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: memoria, sense: memoria}, {surface: cuando, sense: cuando}, {surface: eras, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño}]
+      reverse: Lili (tú te sabías|te sabías [tú]|tú sabías|sabías [tú]) los versos de memoria cuando eras (niña|chiquita)
+  translations:
+    en: |-
+      Lili, did you know the (verses|poems|lines) by heart when you were (a girl|a little girl|a child|little)?
+- id: s.u27.29
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Abuela cultiva rosas blancas en el patio.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: cultiva, sense: cultivar, form: 'form:pres-3s'}, {surface: rosas, sense: rosa}, {surface: blancas, sense: blanco}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      reverse: (Abuela|La abuela|Mi abuela) (cultiva|siembra|tiene) rosas blancas en el patio
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) (grows|cultivates) white roses in the (yard|backyard|garden).
+- id: s.u27.30
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: En Miami hace calor en enero y en julio.
+      tokens: [{surface: En, sense: en}, {surface: Miami, sense: miami}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: calor, sense: calor}, {surface: en, sense: en}, {surface: enero, sense: enero}, {surface: 'y', sense: 'y'}, {surface: en, sense: en}, {surface: julio, sense: julio}]
+      reverse: En Miami hace calor (en enero y [en] julio|en julio y [en] enero)
+  translations:
+    en: |-
+      In Miami (it's|it is) hot (in January and [in] July|in July and [in] January).
+- id: s.u27.31
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Un amigo sincero te da la mano cuando la necesitas.
+      tokens: [{surface: Un, sense: un}, {surface: amigo, sense: amigo}, {surface: sincero, sense: sincero}, {surface: te, sense: te}, {surface: da, sense: dar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: mano, sense: mano}, {surface: cuando, sense: cuando}, {surface: la, sense: lo}, {surface: necesitas, sense: necesitar, form: 'form:pres-2s'}]
+      reverse: Un amigo sincero (te da la mano cuando la necesitas|le da la mano cuando la necesita)
+  translations:
+    en: |-
+      A (sincere|true|real) friend (gives you a hand|lends you a hand|helps you) when you need it.
+- id: s.u27.32
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: 'Yasiel es un muchacho franco: siempre dice la verdad.'
+      tokens: [{surface: Yasiel, sense: yasiel}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: muchacho, sense: muchacho}, {surface: franco, sense: franco}, {surface: siempre, sense: siempre}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: verdad, sense: verdad}]
+      reverse: Yasiel es un (muchacho|joven) franco [y] siempre dice la verdad
+  translations:
+    en: |-
+      Yasiel is (a frank|an honest|a straightforward|an open) (guy|young man): he always tells the truth.
+      Yasiel is (a frank|an honest|a straightforward|an open) (guy|young man) and (he always tells|always tells) the truth.
+- id: s.u27.33
+  node: es.u27.rosa-blanca
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Para serte franco, abuela, yo nunca había leído a Martí.
+      tokens: [{surface: Para, sense: para}, {surface: serte, sense: ser}, {surface: franco, sense: franco}, {surface: abuela, sense: abuela}, {surface: yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
+      reverse: Para serte (franco|sincero) [abuela] [yo] nunca había leído a Martí
+  translations:
+    en: |-
+      To be (honest|frank) [with you], (Grandma|Abuela), (I had never|I'd never|I never) read Martí.
+- id: s.u27.34
+  node: es.u27.rosa-blanca
+  persons: {speaker: f, addressee: m}
+  forms:
+    es-Latn/standard:
+      text: Para serte franca, mi'jo, yo lloro cuando leo ese poema.
+      tokens: [{surface: Para, sense: para}, {surface: serte, sense: ser}, {surface: franca, sense: franco}, {surface: "mi'jo", sense: mijo}, {surface: yo, sense: yo}, {surface: lloro, sense: llorar, form: 'form:pres-1s'}, {surface: cuando, sense: cuando}, {surface: leo, sense: leer, form: 'form:pres-1s'}, {surface: ese, sense: ese}, {surface: poema, sense: poema}]
+      reverse: Para serte (franca|sincera) (mi'jo|mi hijo) [yo] lloro (cuando leo|cada vez que leo) (ese|este) poema
+  translations:
+    en: |-
+      To be (honest|frank) [with you], (sweetheart|son|honey), I cry (when|whenever|every time) I read (that|this) poem.
+- id: s.u27.35
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: Martí cultivaba la rosa blanca también para el hombre cruel.
+      tokens: [{surface: Martí, sense: martí}, {surface: cultivaba, sense: cultivar, form: 'form:impf'}, {surface: la, sense: el}, {surface: rosa, sense: rosa}, {surface: blanca, sense: blanco}, {surface: también, sense: también}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: hombre, sense: hombre}, {surface: cruel, sense: cruel}]
+      reverse: |-
+        Martí cultivaba la rosa blanca también para el (hombre cruel|cruel)
+        Martí cultivaba la rosa blanca para el (hombre cruel|cruel) también
+  translations:
+    en: |-
+      Martí (grew|cultivated|would grow) the white rose (for the cruel man too|for the cruel one too|for the cruel man as well|even for the cruel man|also for the cruel man).
+- id: s.u27.36
+  node: es.u27.rosa-blanca
+  forms:
+    es-Latn/standard:
+      text: En el poema, Martí perdona hasta al hombre cruel.
+      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: poema, sense: poema}, {surface: Martí, sense: martí}, {surface: perdona, sense: perdonar, form: 'form:pres-3s'}, {surface: hasta, sense: hasta}, {surface: al, sense: al}, {surface: hombre, sense: hombre}, {surface: cruel, sense: cruel}]
+      reverse: En el poema Martí perdona (hasta|incluso|aun) al (hombre cruel|cruel)
+  translations:
+    en: |-
+      In the poem, Martí forgives even the cruel (man|one).
+stories:
+- id: es.story.u27
+  node: es.u27.story
+  title: {en: 'A sincere man (José Martí, Versos sencillos, 1891)'}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ven, Daniel. Te voy a leer unos versos de Martí.
+          tokens: [{surface: Ven, sense: venir, form: 'form:imp-tu'}, {surface: Daniel, sense: daniel}, {surface: Te, sense: te}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: leer, sense: leer}, {surface: unos, sense: un}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: Martí, sense: martí}]
+      translations: {en: 'Come here, Daniel. I''m going to read you some of Martí''s verses.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Yo me sé la Guantanamera, pero nunca he leído a Martí.
+          tokens: [{surface: Yo, sense: yo}, {surface: me, sense: me}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
+      translations: {en: 'I know Guantanamera by heart, but I''ve never read Martí.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Mi padre me leía estos versos en el bohío. Oye, mi'jo.
+          tokens: [{surface: Mi, sense: mi}, {surface: padre, sense: padre}, {surface: me, sense: me}, {surface: leía, sense: leer, form: 'form:impf'}, {surface: estos, sense: este}, {surface: versos, sense: verso}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: bohío, sense: bohío}, {surface: Oye, sense: oír, form: 'form:imp-tu'}, {surface: "mi'jo", sense: mijo}]
+      translations: {en: 'My father used to read me these verses in the bohío. Listen, sweetheart.'}
+  # BEGIN MARTI I 1-4 (José Martí, Versos sencillos I, 1891, public domain; generated from Wikisource by marti_story.py: edit the spec, not these lines)
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Yo soy un hombre sincero
+          tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: hombre, sense: hombre}, {surface: sincero, sense: sincero}]
+      translations: {en: I am a sincere man}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:palma
+      distractors: ['sense:rosa', 'sense:caña']
+      forms:
+        es-Latn/standard:
+          text: De donde crece la palma.
+          tokens: [{surface: De, sense: de}, {surface: donde, sense: donde}, {surface: crece, sense: crecer, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: palma, sense: palma}]
+      translations: {en: 'from where the palm tree grows,'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y antes de morirme quiero
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: antes, sense: antes}, {surface: de, sense: de}, {surface: morirme, sense: morir}, {surface: quiero, sense: querer, form: 'form:pres-1s'}]
+      translations: {en: and before I die I want}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Echar mis versos del alma.
+          tokens: [{surface: Echar, sense: echar}, {surface: mis, sense: mi}, {surface: versos, sense: verso}, {surface: del, sense: del}, {surface: alma, sense: alma}]
+      translations: {en: to pour the verses out of my soul.}
+  # END MARTI I 1-4
+  - choose:
+      prompt: {en: 'In the poem, where does the poet say he comes from?'}
+      options: [{en: From where the palm tree grows}, {en: From New York}, {en: From the sea}]
+      answer: 0
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Pero esos son los versos de la Guantanamera!
+          tokens: [{surface: Pero, sense: pero}, {surface: esos, sense: ese}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: versos, sense: verso}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}]
+      translations: {en: 'But those are the words of Guantanamera!'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Sí, mi'jo. Martí los escribió en Nueva York, lejos de su patria.
+          tokens: [{surface: Sí, sense: sí}, {surface: "mi'jo", sense: mijo}, {surface: Martí, sense: martí}, {surface: los, sense: lo}, {surface: escribió, sense: escribir, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: Nueva, sense: nueva-york}, {surface: York, sense: nueva-york}, {surface: lejos, sense: lejos}, {surface: de, sense: de}, {surface: su, sense: su}, {surface: patria, sense: patria}]
+      translations: {en: 'Yes, son. Martí wrote them in New York, far from his homeland.'}
+  - choose:
+      prompt: {en: 'Where did Martí write these verses?'}
+      options: [{en: In New York}, {en: In Havana}, {en: In Abuela's bohío}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Ahora lee tú este, el de la rosa blanca.
+          tokens: [{surface: Ahora, sense: ahora}, {surface: lee, sense: leer, form: 'form:imp-tu'}, {surface: tú, sense: tú}, {surface: este, sense: este}, {surface: el, sense: el}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: rosa, sense: rosa}, {surface: blanca, sense: blanco}]
+      translations: {en: 'Now you read this one, the one about the white rose.'}
+  # BEGIN MARTI XXXIX 1-4 (José Martí, Versos sencillos XXXIX, 1891, public domain; generated from Wikisource by marti_story.py: edit the spec, not these lines)
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Cultivo una rosa blanca
+          tokens: [{surface: Cultivo, sense: cultivar, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: rosa, sense: rosa}, {surface: blanca, sense: blanco}]
+      translations: {en: I grow a white rose}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: 'En julio como enero,'
+          tokens: [{surface: En, sense: en}, {surface: julio, sense: julio}, {surface: como, sense: como.like}, {surface: enero, sense: enero}]
+      translations: {en: 'in July as in January,'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Para el amigo sincero
+          tokens: [{surface: Para, sense: para}, {surface: el, sense: el}, {surface: amigo, sense: amigo}, {surface: sincero, sense: sincero}]
+      translations: {en: for the sincere friend}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Que me da su mano franca.
+          tokens: [{surface: Que, sense: que}, {surface: me, sense: me}, {surface: da, sense: dar, form: 'form:pres-3s'}, {surface: su, sense: su}, {surface: mano, sense: mano}, {surface: franca, sense: franco}]
+      translations: {en: who gives me his open hand.}
+  # END MARTI XXXIX 1-4
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y después, Martí la cultiva también para el cruel.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: después, sense: después}, {surface: Martí, sense: martí}, {surface: la, sense: lo}, {surface: cultiva, sense: cultivar, form: 'form:pres-3s'}, {surface: también, sense: también}, {surface: para, sense: para}, {surface: el, sense: el}, {surface: cruel, sense: cruel}]
+      translations: {en: 'And then Martí grows it for the cruel one too.'}
+  - choose:
+      prompt: {en: 'Who does Martí grow the white rose for?'}
+      options: [{en: 'For the sincere friend, and for the cruel one too'}, {en: Only for his friends}, {en: Only for Cuba}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Para el cruel también? No entiendo, abuela.
+          tokens: [{surface: Para, sense: para}, {surface: el, sense: el}, {surface: cruel, sense: cruel}, {surface: también, sense: también}, {surface: 'No', sense: 'no'}, {surface: entiendo, sense: entender, form: 'form:pres-1s'}, {surface: abuela, sense: abuela}]
+      translations: {en: 'For the cruel one too? I don''t understand, Grandma.'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:perdonar
+      distractors: ['sense:cantar', 'sense:crecer']
+      forms:
+        es-Latn/standard:
+          text: Martí quería que perdonáramos, mi'jo. Por eso le dicen el Apóstol.
+          tokens: [{surface: Martí, sense: martí}, {surface: quería, sense: querer, form: 'form:impf'}, {surface: que, sense: que}, {surface: perdonáramos, sense: perdonar, form: 'form:subj-past'}, {surface: "mi'jo", sense: mijo}, {surface: Por, sense: por}, {surface: eso, sense: ese}, {surface: le, sense: le}, {surface: dicen, sense: decir, form: 'form:pres-3p'}, {surface: el, sense: el}, {surface: Apóstol, sense: apóstol}]
+      translations: {en: 'Martí wanted us to forgive, son. That''s why they call him the Apostle.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¡Bueno, ahora todos a cantar la Guantanamera!
+          tokens: [{surface: Bueno, sense: bueno}, {surface: ahora, sense: ahora}, {surface: todos, sense: todo}, {surface: a, sense: a}, {surface: cantar, sense: cantar}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}]
+      translations: {en: 'Well, now everybody sing Guantanamera!'}

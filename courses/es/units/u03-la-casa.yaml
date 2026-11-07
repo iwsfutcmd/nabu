@@ -1,0 +1,525 @@
+# Unit 3 (es): the house in Hialeah. Estar for where things are, hay, en, al and del, aquí and ¿dónde?; the rooms
+# (la sala, la cocina, el cuarto, el baño), el portal with Abuela's sillón, el patio with its mata de mango, and
+# Abuela's ventilador. Tener calor, never estar caliente.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u03
+title: {en: 'La casa: The house'}
+cefr: A1
+kcs:
+- {id: 'sense:casa', gloss: {en: house; home}, forms: {es-Latn/standard: [casa]}, notes: {en: 'Mi casa: my house, my home. En casa: at home.'}}
+- {id: 'sense:en', gloss: {en: in; on; at}, forms: {es-Latn/standard: [en]}, notes: {en: 'One word for in, on and at: en la casa, en el portal, en Hialeah.'}}
+- {id: 'sense:hialeah', gloss: {en: Hialeah (a city in Miami-Dade)}, forms: {es-Latn/standard: [Hialeah]}, notes: {en: 'Next to Miami; most of its people are Cuban or of Cuban descent.'}}
+- {id: 'sense:vivir', gloss: {en: to live}, forms: {es-Latn/standard: [vivir]}, notes: {en: 'Vivo, vives, vive, vivimos, viven. B and v sound the same in Spanish; vivir is spelled with two v''s.'}}
+- {id: 'sense:dónde', gloss: {en: where}, forms: {es-Latn/standard: [dónde]}, notes: {en: 'With the accent when it asks. Cubans keep the subject before the verb: ¿Dónde tú vives?'}}
+- {id: 'sense:aquí', gloss: {en: here}, forms: {es-Latn/standard: [aquí]}, notes: {en: 'Written with an accent on the í. Cubans say aquí far more than acá.'}}
+- {id: 'sense:qué', gloss: {en: 'what; how (¡qué…!)'}, forms: {es-Latn/standard: [qué]}, notes: {en: '¡Qué calor!: it''s so hot! ¿Qué…? asks what. Written with the accent in both.'}}
+- {id: 'sense:calor', gloss: {en: 'heat; tener calor: to be hot'}, forms: {es-Latn/standard: [calor]}, notes: {en: 'Tengo calor: I''m hot, I feel the heat. Never estoy caliente: that means aroused. El calor is masculine.'}}
+- {id: 'sense:hay', gloss: {en: there is; there are}, forms: {es-Latn/standard: [hay]}, notes: {en: 'One form for both: hay un ventilador, hay dos cuartos. It sounds like ay (oh!), and close to ahí (there): three spellings to keep apart.'}}
+- {id: 'sense:ventilador', gloss: {en: fan (electric)}, forms: {es-Latn/standard: [ventilador]}, notes: {en: 'Every Cuban grandmother has one, pointed straight at her. An abanico is a hand fan.'}}
+- {id: 'sense:sala', gloss: {en: living room}, forms: {es-Latn/standard: [sala]}, notes: {en: 'The front room of a Cuban house: visits, the TV, the novela.'}}
+- {id: 'sense:cocina', gloss: {en: kitchen; stove}, forms: {es-Latn/standard: [cocina]}, notes: {en: 'Also the stove itself, where the cafetera goes. Cocinar: to cook.'}}
+- {id: 'sense:café', gloss: {en: coffee}, forms: {es-Latn/standard: [café]}, image: {file: ../images/coffee.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0b7ee10fe47d', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'Cuban coffee is espresso brewed with sugar: a cafecito is one shot; a colada is a larger cup, poured out to share in thimble-sized cups.'}}
+- {id: 'sense:al', gloss: {en: to the; at the (a + el)}, forms: {es-Latn/standard: [al]}, notes: {en: 'A + el always becomes al: al lado, al patio. Not before la: a la cocina.'}}
+- {id: 'sense:lado', gloss: {en: 'side; al lado de: next to'}, forms: {es-Latn/standard: [lado]}, notes: {en: 'Al lado de la sala: next to the living room. Al lado alone: next door.'}}
+- {id: 'sense:cuarto', gloss: {en: room; bedroom}, forms: {es-Latn/standard: [cuarto]}, notes: {en: 'In Cuba el cuarto is the bedroom; habitación and dormitorio sound more formal. Cuarto is also a quarter.'}}
+- {id: 'sense:baño', gloss: {en: bathroom}, forms: {es-Latn/standard: [baño]}, notes: {en: 'The ñ is a letter of its own: baño, never bano.'}}
+- {id: 'sense:del', gloss: {en: of the; from the (de + el)}, forms: {es-Latn/standard: [del]}, notes: {en: 'De + el always becomes del: el cuarto del abuelo. Not before la (de la casa), nor before él, he (de él).'}}
+- {id: 'sense:chiquito', gloss: {en: small; little}, forms: {es-Latn/standard: [chiquito]}, notes: {en: 'Cubans love -ico after a t: chiquitico, and ahoritica for right now. Pequeño is the textbook word.'}}
+- {id: 'sense:pero', gloss: {en: but}, forms: {es-Latn/standard: [pero]}, notes: {en: 'One r. Perro, with a rolled double r, is a dog.'}}
+- {id: 'sense:portal', gloss: {en: front porch}, forms: {es-Latn/standard: [portal]}, notes: {en: 'The Cuban portal: the porch in front of the house, with its rocking chairs. Porche elsewhere.'}}
+- {id: 'sense:sillón', gloss: {en: rocking chair}, forms: {es-Latn/standard: [sillón]}, notes: {en: 'In Cuba a sillón is a rocking chair, the kind on every portal. Elsewhere sillón is an armchair, and a rocking chair a mecedora.'}}
+- {id: 'sense:patio', gloss: {en: yard; backyard}, forms: {es-Latn/standard: [patio]}, notes: {en: 'A Cuban patio is the yard behind the house: the mango tree, the clothesline, the dominó table.'}}
+- {id: 'sense:mata', gloss: {en: plant; tree (Cuban)}, forms: {es-Latn/standard: [mata]}, notes: {en: 'Cubans say mata de mango, mata de aguacate, where others say árbol (tree) or planta.'}}
+- {id: 'sense:mango', gloss: {en: mango}, forms: {es-Latn/standard: [mango]}, notes: {en: 'The fruit, and in Cuban slang a good-looking person: ¡Qué mango!'}}
+nodes:
+- {id: es.u03.mi-casa, kind: lesson, introduces: ['sense:casa', 'sense:en', 'sense:hialeah', 'sense:vivir']}
+- {id: es.u03.donde, kind: lesson, introduces: ['sense:dónde', 'sense:aquí']}
+- {id: es.u03.la-sala, kind: lesson, introduces: ['sense:qué', 'sense:calor', 'sense:hay', 'sense:ventilador', 'sense:sala']}
+- {id: es.u03.la-cocina, kind: lesson, introduces: ['sense:cocina', 'sense:café', 'sense:al', 'sense:lado']}
+- {id: es.u03.los-cuartos, kind: lesson, introduces: ['sense:cuarto', 'sense:baño', 'sense:del', 'sense:chiquito', 'sense:pero']}
+- {id: es.u03.el-portal, kind: lesson, introduces: ['sense:portal', 'sense:sillón', 'sense:patio', 'sense:mata', 'sense:mango']}
+- {id: es.u03.story, kind: story}
+sentences:
+- id: s.u03.1
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Esta es mi casa.
+      tokens: [{surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: casa, sense: casa}]
+      reverse: Esta es mi casa
+  translations:
+    en: |-
+      This is my (house|home).
+      This is my place.
+- id: s.u03.2
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Mi casa está en Hialeah.
+      tokens: [{surface: Mi, sense: mi}, {surface: casa, sense: casa}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: Mi casa está en Hialeah
+  translations:
+    en: |-
+      My (house|home) is in Hialeah.
+      My (house's|home's) in Hialeah.
+- id: s.u03.3
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Vivo en Hialeah.
+      tokens: [{surface: Vivo, sense: vivir, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: '[Yo] vivo en Hialeah'
+  translations:
+    en: I live in Hialeah.
+- id: s.u03.4
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: ¿Tú vives en Miami?
+      tokens: [{surface: Tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
+      reverse: (Tú vives en Miami|Vives [tú] en Miami|Usted vive en Miami|Vive [usted] en Miami|Ustedes viven en Miami|Viven [ustedes] en Miami)
+  translations:
+    en: Do you live in Miami?
+- id: s.u03.5
+  node: es.u03.mi-casa
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Nosotros vivimos en Hialeah.
+      tokens: [{surface: Nosotros, sense: nosotros}, {surface: vivimos, sense: vivir, form: 'form:pres-1p'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: '[Nosotros] vivimos en Hialeah'
+  translations:
+    en: We live in Hialeah.
+- id: s.u03.6
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Mi tía Marisol vive en La Habana.
+      tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: Mi tía Marisol vive en La Habana
+  translations:
+    en: My aunt Marisol lives in Havana.
+- id: s.u03.7
+  node: es.u03.mi-casa
+  forms:
+    es-Latn/standard:
+      text: Tenemos familia en Cuba.
+      tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: familia, sense: familia}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      reverse: '[(Nosotros|Nosotras)] tenemos (familia|parientes|familiares) en Cuba'
+  translations:
+    en: (We have|We've got) (family|relatives) in Cuba.
+- id: s.u03.8
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está mami?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: mami, sense: mami}]
+      reverse: (Dónde está (mami|mamá)|(Mami|Mamá) dónde está)
+  translations:
+    en: |-
+      Where is (mom|mommy|mother|mum|mama)?
+      Where's (mom|mommy|mother|mum|mama)?
+- id: s.u03.9
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: Mami está aquí.
+      tokens: [{surface: Mami, sense: mami}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
+      reverse: ((Mami|Mamá) está aquí|Aquí está (mami|mamá))
+  translations:
+    en: |-
+      (Mom|Mommy|Mother|Mum|Mama) is here.
+      (Mom's|Mommy's|Mother's|Mum's|Mama's) here.
+- id: s.u03.10
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde tú vives?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}]
+      reverse: (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+  translations:
+    en: Where do you live?
+- id: s.u03.11
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: Yo vivo aquí, en Hialeah.
+      tokens: [{surface: Yo, sense: yo}, {surface: vivo, sense: vivir, form: 'form:pres-1s'}, {surface: aquí, sense: aquí}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: '[Yo] vivo aquí en Hialeah'
+  translations:
+    en: I live here, in Hialeah.
+- id: s.u03.12
+  node: es.u03.donde
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde están los abuelos?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: abuelos, sense: abuelo}]
+      reverse: (Dónde están (los|mis) abuelos|(Los|Mis) abuelos dónde están)
+  translations:
+    en: |-
+      Where are (the grandparents|grandma and grandpa|grandpa and grandma)?
+      Where're (the grandparents|grandma and grandpa|grandpa and grandma)?
+- id: s.u03.13
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: ¡Qué calor!
+      tokens: [{surface: Qué, sense: qué}, {surface: calor, sense: calor}]
+      reverse: Qué calor
+  translations:
+    en: |-
+      (It's|It is) so hot!
+      (It's|It is) (really|very) hot!
+      (How|So) hot!
+      What heat!
+- id: s.u03.14
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: Abuela tiene calor.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
+      reverse: '[La] abuela tiene calor'
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is hot.
+      (Grandma's|Grandmother's|Granny's) hot.
+      (Grandma|Grandmother|Granny) feels hot.
+- id: s.u03.15
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: Hay un ventilador.
+      tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: ventilador, sense: ventilador}]
+      reverse: Hay un ventilador
+  translations:
+    en: (There's|There is) a fan.
+- id: s.u03.16
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: El ventilador está en la sala.
+      tokens: [{surface: El, sense: el}, {surface: ventilador, sense: ventilador}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+      reverse: El ventilador está en la sala
+  translations:
+    en: |-
+      The fan is in the (living room|front room|sitting room|lounge).
+      The fan's in the (living room|front room|sitting room|lounge).
+- id: s.u03.17
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: ¿Hay un ventilador aquí?
+      tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: ventilador, sense: ventilador}, {surface: aquí, sense: aquí}]
+      reverse: (Hay un ventilador aquí|Aquí hay un ventilador)
+  translations:
+    en: Is there a fan (here|in here)?
+- id: s.u03.18
+  node: es.u03.la-sala
+  forms:
+    es-Latn/standard:
+      text: No, aquí no hay ventilador.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: aquí, sense: aquí}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
+      reverse: No (aquí no hay [un] ventilador|no hay [un] ventilador aquí)
+  translations:
+    en: |-
+      No, there's no fan here.
+      No, there is no fan here.
+      No, there (isn't|is not) a fan here.
+      No, there (isn't|is not) a fan in here.
+      No, there's no fan in here.
+- id: s.u03.19
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: Hay café en la cocina.
+      tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      reverse: (Hay café en la cocina|En la cocina hay café)
+  translations:
+    en: (There's|There is) coffee in the kitchen.
+- id: s.u03.20
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: ¿Hay café?
+      tokens: [{surface: Hay, sense: hay}, {surface: café, sense: café}]
+      reverse: Hay café
+  translations:
+    en: |-
+      Is there (any coffee|coffee)?
+      (Do we have|Have we got) (any coffee|coffee)?
+- id: s.u03.21
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: Mami y papi están en la cocina.
+      tokens: [{surface: Mami, sense: mami}, {surface: 'y', sense: 'y'}, {surface: papi, sense: papi}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      reverse: (Mami|Mamá) y (papi|papá) están en la cocina
+  translations:
+    en: |-
+      (Mom|Mommy|Mum|Mama) and (dad|daddy|papa) are in the kitchen.
+- id: s.u03.22
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: La cocina está al lado de la sala.
+      tokens: [{surface: La, sense: el}, {surface: cocina, sense: cocina}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: sala, sense: sala}]
+      reverse: La cocina está al lado de la sala
+  translations:
+    en: |-
+      The kitchen is (next to|beside) the (living room|front room|sitting room|lounge).
+      The kitchen's (next to|beside) the (living room|front room|sitting room|lounge).
+- id: s.u03.23
+  node: es.u03.la-cocina
+  forms:
+    es-Latn/standard:
+      text: El café está en la cocina.
+      tokens: [{surface: El, sense: el}, {surface: café, sense: café}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}]
+      reverse: El café está en la cocina
+  translations:
+    en: |-
+      The coffee is in the kitchen.
+      The coffee's in the kitchen.
+- id: s.u03.24
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Este es mi cuarto.
+      tokens: [{surface: Este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: cuarto, sense: cuarto}]
+      reverse: (Este es mi (cuarto|dormitorio)|Esta es mi habitación)
+  translations:
+    en: This is my (room|bedroom).
+- id: s.u03.25
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: ¿Dónde está el baño?
+      tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: baño, sense: baño}]
+      reverse: Dónde está el baño
+  translations:
+    en: |-
+      Where is the (bathroom|restroom|toilet|washroom|loo)?
+      Where's the (bathroom|restroom|toilet|washroom|loo)?
+- id: s.u03.26
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: El baño está al lado del cuarto de Lili.
+      tokens: [{surface: El, sense: el}, {surface: baño, sense: baño}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: cuarto, sense: cuarto}, {surface: de, sense: de}, {surface: Lili, sense: lili}]
+      reverse: El baño está al lado (del (cuarto|dormitorio)|de la habitación) de Lili
+  translations:
+    en: |-
+      The bathroom is (next to|beside) Lili's (room|bedroom).
+      The bathroom's (next to|beside) Lili's (room|bedroom).
+- id: s.u03.27
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Mi cuarto es chiquito.
+      tokens: [{surface: Mi, sense: mi}, {surface: cuarto, sense: cuarto}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: chiquito, sense: chiquito}]
+      reverse: (Mi (cuarto|dormitorio) es (chiquito|chiquitico|pequeño)|Mi habitación es (chiquita|chiquitica|pequeña))
+  translations:
+    en: |-
+      My (room|bedroom) is (small|little|tiny).
+      My (room's|bedroom's) (small|little|tiny).
+- id: s.u03.28
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: La casa es chiquita, pero la familia es grande.
+      tokens: [{surface: La, sense: el}, {surface: casa, sense: casa}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: chiquita, sense: chiquito}, {surface: pero, sense: pero}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: grande, sense: grande}]
+      reverse: La casa es (chiquita|chiquitica|pequeña) pero la familia es grande
+  translations:
+    en: |-
+      The house is (small|little|tiny), but the family is (big|large).
+      The house is (small|little|tiny), but the family's (big|large).
+- id: s.u03.29
+  node: es.u03.los-cuartos
+  forms:
+    es-Latn/standard:
+      text: Hay un baño al lado del cuarto.
+      tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: baño, sense: baño}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: cuarto, sense: cuarto}]
+      reverse: Hay un baño al lado (del (cuarto|dormitorio)|de la habitación)
+  translations:
+    en: (There's|There is) a bathroom (next to|beside) the (bedroom|room).
+- id: s.u03.30
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuela está en el portal.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
+      reverse: '[La] abuela está en el portal'
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is (on|out on) the (porch|front porch).
+      (Grandma's|Grandmother's|Granny's) (on|out on) the (porch|front porch).
+- id: s.u03.31
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Hay un sillón en el portal.
+      tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: sillón, sense: sillón}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
+      reverse: (Hay (un sillón|una mecedora) en el portal|En el portal hay (un sillón|una mecedora))
+  translations:
+    en: (There's|There is) a rocking chair on the (porch|front porch).
+- id: s.u03.32
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuela está en su sillón.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: sillón, sense: sillón}]
+      reverse: '[La] abuela está en su (sillón|mecedora)'
+  translations:
+    en: |-
+      (Grandma|Grandmother|Granny) is in her rocking chair.
+      (Grandma's|Grandmother's|Granny's) in her rocking chair.
+- id: s.u03.33
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Abuelo Pepe está en el patio.
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      reverse: '[El] abuelo Pepe está en el patio'
+  translations:
+    en: |-
+      (Grandpa|Grandfather|Granddad|Grandad) Pepe is (in|out in) the (yard|backyard|back yard|patio).
+      (Grandpa|Grandfather|Granddad|Grandad) Pepe's (in|out in) the (yard|backyard|back yard|patio).
+- id: s.u03.34
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: Hay una mata de mango en el patio.
+      tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      reverse: (Hay (una mata de mango|un árbol de mango|un mango) en el patio|En el patio hay (una mata de mango|un árbol de mango|un mango))
+  translations:
+    en: (There's|There is) a mango tree in the (yard|backyard|back yard|patio).
+- id: s.u03.35
+  node: es.u03.el-portal
+  forms:
+    es-Latn/standard:
+      text: La mata de mango es muy grande.
+      tokens: [{surface: La, sense: el}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: grande, sense: grande}]
+      reverse: (La mata de mango|El árbol de mango|El mango) es muy grande
+  translations:
+    en: |-
+      The mango tree is (very|really) (big|large).
+      The mango tree's (very|really) (big|large).
+stories:
+- id: es.story.u03
+  node: es.u03.story
+  title: {en: Abuela's fan}
+  characters:
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Qué calor! ¿Dónde está mi ventilador?
+          tokens: [{surface: Qué, sense: qué}, {surface: calor, sense: calor}, {surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: ventilador, sense: ventilador}]
+      translations: {en: 'It''s so hot! Where''s my fan?'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿No está en la sala, abuela?
+          tokens: [{surface: 'No', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}, {surface: abuela, sense: abuela}]
+      translations: {en: 'Isn''t it in the living room, Grandma?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No, mi vida. En la sala no está.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: En, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}, {surface: 'no', sense: 'no'}, {surface: está, sense: estar, form: 'form:pres-3s'}]
+      translations: {en: 'No, darling. It''s not in the living room.'}
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: sense:café
+      distractors: ['sense:mango', 'sense:sillón']
+      forms:
+        es-Latn/standard:
+          text: En la cocina hay café, pero no hay ventilador.
+          tokens: [{surface: En, sense: en}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: hay, sense: hay}, {surface: café, sense: café}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
+      translations: {en: 'In the kitchen there''s coffee, but there''s no fan.'}
+  - choose:
+      prompt: {en: 'What is Abuela looking for?'}
+      options: [{en: Her fan}, {en: Her rocking chair}, {en: The coffee}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y en el portal, al lado del sillón?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: sillón, sense: sillón}]
+      translations: {en: 'And on the porch, next to the rocking chair?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: No, mi'jo. Yo estoy en el portal, y aquí no hay ventilador.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: "mi'jo", sense: mijo}, {surface: Yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}, {surface: 'y', sense: 'y'}, {surface: aquí, sense: aquí}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: ventilador, sense: ventilador}]
+      translations: {en: 'No, honey. I''m on the porch, and there''s no fan here.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y Lili? ¿Dónde está?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: Lili, sense: lili}, {surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}]
+      translations: {en: 'And Lili? Where is she?'}
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Lili está en su cuarto.
+          tokens: [{surface: Lili, sense: lili}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: cuarto, sense: cuarto}]
+      translations: {en: Lili is in her room.}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡Lili! ¿Tú tienes el ventilador de abuela?
+          tokens: [{surface: Lili, sense: lili}, {surface: Tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: ventilador, sense: ventilador}, {surface: de, sense: de}, {surface: abuela, sense: abuela}]
+      translations: {en: 'Lili! Do you have Grandma''s fan?'}
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Sí. Mi cuarto es chiquito y tengo calor.
+          tokens: [{surface: Sí, sense: sí}, {surface: Mi, sense: mi}, {surface: cuarto, sense: cuarto}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: chiquito, sense: chiquito}, {surface: 'y', sense: 'y'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: calor, sense: calor}]
+      translations: {en: 'Yes. My room is tiny and I''m hot.'}
+  - choose:
+      prompt: {en: 'Why does Lili have the fan?'}
+      options: [{en: Her room is small and she's hot.}, {en: She is fixing it.}, {en: Abuela gave it to her.}]
+      answer: 0
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:calor
+      distractors: ['sense:café', 'sense:patio']
+      forms:
+        es-Latn/standard:
+          text: Mi'ja, yo también tengo calor.
+          tokens: [{surface: "Mi'ja", sense: mijo}, {surface: yo, sense: yo}, {surface: también, sense: también}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: calor, sense: calor}]
+      translations: {en: 'Sweetie, I''m hot too.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¿Calor? Aquí en el patio no hay calor. ¡Hay una mata de mango!
+          tokens: [{surface: Calor, sense: calor}, {surface: Aquí, sense: aquí}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}, {surface: 'no', sense: 'no'}, {surface: hay, sense: hay}, {surface: calor, sense: calor}, {surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}]
+      translations: {en: 'Hot? Out here in the yard it isn''t hot. There''s a mango tree!'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Lili, Daniel! ¡Al patio!
+          tokens: [{surface: Lili, sense: lili}, {surface: Daniel, sense: daniel}, {surface: Al, sense: al}, {surface: patio, sense: patio}]
+      translations: {en: 'Lili, Daniel! Out to the yard!'}
+  - choose:
+      prompt: {en: 'Where does the family go at the end?'}
+      options: [{en: 'To the yard, by the mango tree'}, {en: To the kitchen}, {en: To Lili's room}]
+      answer: 0

@@ -1,0 +1,546 @@
+# Unit 8 (es): shopping. All present persons of regular verbs (comprar, necesitar, pagar, vender), ¿cuánto
+# cuesta?, colours, ese; la jaba, el pomo, la shopping, el agromercado.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u08
+title: {en: 'De compras: Shopping'}
+cefr: A2
+kcs:
+- {id: 'sense:jaba', gloss: {en: bag; shopping bag (Cuban)}, forms: {es-Latn/standard: [jaba]}, notes: {en: 'Cuban for a bag, above all a plastic shopping bag (una jaba de nylon); elsewhere bolsa. Cuban grandmothers fold and keep every jaba for the next trip to the store.'}}
+- {id: 'sense:necesitar', gloss: {en: to need}, forms: {es-Latn/standard: [necesitar]}, notes: {en: 'A regular -ar verb: necesito, necesitas, necesita, necesitamos, necesitan.'}}
+- {id: 'sense:comprar', gloss: {en: to buy}, forms: {es-Latn/standard: [comprar]}, notes: {en: 'Ir de compras: to go shopping. Miami Spanglish has shopear; comprar is the word.'}}
+- {id: 'sense:pomo', gloss: {en: bottle; jar (Cuban)}, forms: {es-Latn/standard: [pomo]}, notes: {en: 'Cuban for any bottle or jar: un pomo de agua, un pomo de ron. Elsewhere botella or frasco; in Spain a pomo is a doorknob or a perfume bottle.'}}
+- {id: 'sense:costar', gloss: {en: to cost}, forms: {es-Latn/standard: [costar]}, notes: {en: 'Its o becomes ue when stressed: cuesta, cuestan. ¿Cuánto cuesta? How much is it? At a market Cubans also ask ¿A cómo está…?'}}
+- {id: 'sense:caro', gloss: {en: expensive; dear}, forms: {es-Latn/standard: [caro]}, notes: {en: '¡Qué caro! is what every Cuban grandmother says at the register.'}}
+- {id: 'sense:barato', gloss: {en: cheap; inexpensive}, forms: {es-Latn/standard: [barato]}}
+- {id: 'sense:pulóver', gloss: {en: T-shirt (Cuban)}, forms: {es-Latn/standard: [pulóver]}, notes: {en: 'Cuban for a T-shirt, from English pullover (a sweater!). Elsewhere camiseta, playera or remera. Written with an accent; plural pulóveres.'}}
+- {id: 'sense:ese', gloss: {en: that}, forms: {es-Latn/standard: [ese]}, notes: {en: 'Ese, esa, esos, esas: that, those (near you). Este, esta: this (near me).'}}
+- {id: 'sense:rojo', gloss: {en: red}, forms: {es-Latn/standard: [rojo]}, notes: {en: 'Colours agree like other adjectives: un pulóver rojo, una jaba roja.'}}
+- {id: 'sense:blanco', gloss: {en: white}, forms: {es-Latn/standard: [blanco]}}
+- {id: 'sense:azul', gloss: {en: blue}, forms: {es-Latn/standard: [azul]}, notes: {en: 'The same for both genders: un pulóver azul, una jaba azul; plural azules. The Cuban flag is azul, blanca y roja.'}}
+- {id: 'sense:pagar', gloss: {en: to pay; to pay for}, forms: {es-Latn/standard: [pagar]}, notes: {en: 'Pagar el pomo: to pay for the bottle, with no word for for. In a Cuban family everyone fights to pay: ¡No, no, yo pago!'}}
+- {id: 'sense:agromercado', gloss: {en: farmers' market (Cuba)}, forms: {es-Latn/standard: [agromercado, agro]}, notes: {en: 'Cuba''s farmers'' markets, where prices follow supply and demand. Everyone says el agro. Bring your own jaba.'}}
+- {id: 'sense:vender', gloss: {en: to sell}, forms: {es-Latn/standard: [vender]}, notes: {en: 'A regular -er verb: vendo, vendes, vende, vendemos, venden. Venden mangos: they sell mangoes, or mangoes are sold.'}}
+- {id: 'sense:shopping', gloss: {en: hard-currency store (Cuba)}, forms: {es-Latn/standard: [shopping]}, notes: {en: 'La shopping (feminine, said chópin): in Cuba, a state store that sells in hard currency. In Miami people say el mall.'}}
+nodes:
+- {id: es.u08.la-jaba, kind: lesson, introduces: ['sense:jaba', 'sense:necesitar', 'sense:pomo', 'sense:comprar']}
+- {id: es.u08.cuanto-cuesta, kind: lesson, introduces: ['sense:costar', 'sense:caro', 'sense:barato']}
+- {id: es.u08.los-colores, kind: lesson, introduces: ['sense:pulóver', 'sense:ese', 'sense:rojo', 'sense:blanco', 'sense:azul']}
+- {id: es.u08.nosotros, kind: lesson, introduces: ['sense:pagar']}
+- {id: es.u08.el-agro, kind: lesson, introduces: ['sense:agromercado', 'sense:vender', 'sense:shopping']}
+- {id: es.u08.story, kind: story}
+sentences:
+- id: s.u08.1
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: ¿Una jaba?
+      tokens: [{surface: Una, sense: un}, {surface: jaba, sense: jaba}]
+      reverse: Una (jaba|bolsa)
+  translations:
+    en: |-
+      A bag?
+      One bag?
+- id: s.u08.2
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: Sí, necesito una jaba.
+      tokens: [{surface: Sí, sense: sí}, {surface: necesito, sense: necesitar, form: 'form:pres-1s'}, {surface: una, sense: un}, {surface: jaba, sense: jaba}]
+      reverse: Sí [yo] necesito una (jaba|bolsa)
+  translations:
+    en: Yes, I need a bag.
+- id: s.u08.3
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: ¿Tú necesitas una jaba?
+      tokens: [{surface: Tú, sense: tú}, {surface: necesitas, sense: necesitar, form: 'form:pres-2s'}, {surface: una, sense: un}, {surface: jaba, sense: jaba}]
+      reverse: (Tú necesitas|Necesitas [tú]|Usted necesita|Necesita [usted]|Ustedes necesitan|Necesitan [ustedes]) una (jaba|bolsa)
+  translations:
+    en: Do you need a bag?
+- id: s.u08.4
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: Abuela necesita un pomo.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: necesita, sense: necesitar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: pomo, sense: pomo}]
+      reverse: (Abuela|Mi abuela|La abuela) necesita (un (pomo|frasco)|una botella)
+  translations:
+    en: |-
+      Grandma needs a (bottle|jar).
+      (Grandmother|Granny|Abuela|My grandma|My grandmother|My granny) needs a (bottle|jar).
+- id: s.u08.5
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: Yo compro el pomo.
+      tokens: [{surface: Yo, sense: yo}, {surface: compro, sense: comprar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
+      reverse: '[Yo] compro (el (pomo|frasco)|la botella)'
+  translations:
+    en: |-
+      I'll buy the (bottle|jar).
+      (I will buy|I'm buying|I am buying|I buy|I'll get|I will get) the (bottle|jar).
+- id: s.u08.6
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: Daniel compra la jaba y el pomo.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: compra, sense: comprar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: jaba, sense: jaba}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
+      reverse: Daniel compra la (jaba|bolsa) y (el (pomo|frasco)|la botella)
+  translations:
+    en: |-
+      Daniel (buys|is buying|will buy) the bag and the (bottle|jar).
+- id: s.u08.7
+  node: es.u08.la-jaba
+  forms:
+    es-Latn/standard:
+      text: ¿Tú compras las jabas?
+      tokens: [{surface: Tú, sense: tú}, {surface: compras, sense: comprar, form: 'form:pres-2s'}, {surface: las, sense: el}, {surface: jabas, sense: jaba}]
+      reverse: (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) las (jabas|bolsas)
+  translations:
+    en: |-
+      Are you buying the bags?
+      (Will you buy|Do you buy|Are you going to buy|Are you getting|Will you get) the bags?
+- id: s.u08.8
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto cuesta?
+      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}]
+      reverse: Cuánto (cuesta|es|vale)
+  translations:
+    en: |-
+      How much is it?
+      How much does it cost?
+      How much?
+- id: s.u08.9
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto cuesta el pomo?
+      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
+      reverse: Cuánto (cuesta|vale) (el (pomo|frasco)|la botella)
+  translations:
+    en: |-
+      How much is the (bottle|jar)?
+      How much does the (bottle|jar) cost?
+- id: s.u08.10
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: Cuesta un dólar.
+      tokens: [{surface: Cuesta, sense: costar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: dólar, sense: dólar}]
+      reverse: (Cuesta|Vale|Es) un dólar
+  translations:
+    en: |-
+      It costs (a|one) dollar.
+      (It's|It is) (a|one) dollar.
+- id: s.u08.11
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¡Qué caro!
+      tokens: [{surface: Qué, sense: qué}, {surface: caro, sense: caro}]
+      reverse: (Qué caro|Está muy caro|Muy caro)
+  translations:
+    en: |-
+      So expensive!
+      How expensive!
+      (That's|That is|It's|It is) (so|really|very) expensive!
+- id: s.u08.12
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: La jaba cuesta diez pesos.
+      tokens: [{surface: La, sense: el}, {surface: jaba, sense: jaba}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: diez, sense: diez}, {surface: pesos, sense: peso}]
+      reverse: La (jaba|bolsa) (cuesta|vale|es) diez pesos
+  translations:
+    en: The bag (costs|is) ten pesos.
+- id: s.u08.13
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¿Un peso? ¡Qué barato!
+      tokens: [{surface: Un, sense: un}, {surface: peso, sense: peso}, {surface: Qué, sense: qué}, {surface: barato, sense: barato}]
+      reverse: Un peso (qué barato|está muy barato|muy barato)
+  translations:
+    en: |-
+      (One|A) peso? (So|How) cheap!
+      (One|A) peso? (That's|That is|It's|It is) (so|really|very) cheap!
+- id: s.u08.14
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú necesitas?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: necesitas, sense: necesitar, form: 'form:pres-2s'}]
+      reverse: (Qué tú necesitas|Qué necesitas [tú]|Qué usted necesita|Qué necesita [usted]|Qué ustedes necesitan|Qué necesitan [ustedes])
+  translations:
+    en: What do you need?
+- id: s.u08.15
+  node: es.u08.cuanto-cuesta
+  forms:
+    es-Latn/standard:
+      text: ¿Diez dólares? Es muy caro.
+      tokens: [{surface: Diez, sense: diez}, {surface: dólares, sense: dólar}, {surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: caro, sense: caro}]
+      reverse: Diez dólares (es|está) muy caro
+  translations:
+    en: |-
+      Ten dollars? (It's|It is|That's|That is) (very|really) expensive.
+- id: s.u08.16
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: Necesito un pulóver.
+      tokens: [{surface: Necesito, sense: necesitar, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: pulóver, sense: pulóver}]
+      reverse: '[Yo] necesito (un pulóver|una camiseta|una playera)'
+  translations:
+    en: I need a (T-shirt|tee).
+- id: s.u08.17
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto cuesta ese pulóver?
+      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: ese, sense: ese}, {surface: pulóver, sense: pulóver}]
+      reverse: Cuánto (cuesta|vale) (ese pulóver|esa camiseta|esa playera)
+  translations:
+    en: |-
+      How much is that T-shirt?
+      How much does that T-shirt cost?
+- id: s.u08.18
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: Ese pulóver rojo cuesta diez dólares.
+      tokens: [{surface: Ese, sense: ese}, {surface: pulóver, sense: pulóver}, {surface: rojo, sense: rojo}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: diez, sense: diez}, {surface: dólares, sense: dólar}]
+      reverse: (Ese pulóver rojo|Esa camiseta roja|Esa playera roja) (cuesta|vale|es) diez dólares
+  translations:
+    en: That red T-shirt (costs|is) ten dollars.
+- id: s.u08.19
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: Necesito un pulóver blanco.
+      tokens: [{surface: Necesito, sense: necesitar, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: pulóver, sense: pulóver}, {surface: blanco, sense: blanco}]
+      reverse: '[Yo] necesito (un pulóver blanco|una camiseta blanca|una playera blanca)'
+  translations:
+    en: I need a white T-shirt.
+- id: s.u08.20
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: La jaba azul es barata.
+      tokens: [{surface: La, sense: el}, {surface: jaba, sense: jaba}, {surface: azul, sense: azul}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: barata, sense: barato}]
+      reverse: La (jaba|bolsa) azul es barata
+  translations:
+    en: The blue bag is (cheap|inexpensive).
+- id: s.u08.21
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: ¿Tú compras esa jaba roja?
+      tokens: [{surface: Tú, sense: tú}, {surface: compras, sense: comprar, form: 'form:pres-2s'}, {surface: esa, sense: ese}, {surface: jaba, sense: jaba}, {surface: roja, sense: rojo}]
+      reverse: (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) esa (jaba|bolsa) roja
+  translations:
+    en: |-
+      Are you buying that red bag?
+      (Will you buy|Do you buy|Are you going to buy|Are you getting|Will you get) that red bag?
+- id: s.u08.22
+  node: es.u08.los-colores
+  forms:
+    es-Latn/standard:
+      text: Yo compro el pulóver blanco y el azul.
+      tokens: [{surface: Yo, sense: yo}, {surface: compro, sense: comprar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: pulóver, sense: pulóver}, {surface: blanco, sense: blanco}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: azul, sense: azul}]
+      reverse: |-
+        [Yo] compro el pulóver blanco y el azul
+        [Yo] compro la (camiseta|playera) blanca y la azul
+  translations:
+    en: |-
+      I'll buy the white T-shirt and the blue one.
+      (I will buy|I'm buying|I am buying|I buy|I'll get|I will get) the white T-shirt and the blue one.
+- id: s.u08.23
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: Nosotros necesitamos una jaba.
+      tokens: [{surface: Nosotros, sense: nosotros}, {surface: necesitamos, sense: necesitar, form: 'form:pres-1p'}, {surface: una, sense: un}, {surface: jaba, sense: jaba}]
+      reverse: '[(Nosotros|Nosotras)] necesitamos una (jaba|bolsa)'
+  translations:
+    en: We need a bag.
+- id: s.u08.24
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: Compramos el pulóver azul.
+      tokens: [{surface: Compramos, sense: comprar, form: 'form:pres-1p'}, {surface: el, sense: el}, {surface: pulóver, sense: pulóver}, {surface: azul, sense: azul}]
+      reverse: '[(Nosotros|Nosotras)] compramos (el pulóver|la camiseta|la playera) azul'
+  translations:
+    en: |-
+      We'll buy the blue T-shirt.
+      (We will buy|We're buying|We are buying|We buy|We'll get|We will get) the blue T-shirt.
+- id: s.u08.25
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: ¡No, no! Yo pago.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: Yo, sense: yo}, {surface: pago, sense: pagar, form: 'form:pres-1s'}]
+      reverse: No [no] [yo] pago
+  translations:
+    en: |-
+      No, no! I'll pay.
+      No, no! (I will pay|I'm paying|I am paying|I pay|I'll get it|I've got it|It's on me).
+- id: s.u08.26
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: Ellos necesitan un pomo.
+      tokens: [{surface: Ellos, sense: ellos}, {surface: necesitan, sense: necesitar, form: 'form:pres-3p'}, {surface: un, sense: un}, {surface: pomo, sense: pomo}]
+      reverse: '[(Ellos|Ellas)] necesitan (un (pomo|frasco)|una botella)'
+  translations:
+    en: They need a (bottle|jar).
+- id: s.u08.27
+  node: es.u08.nosotros
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes pagan los pulóveres?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: pulóveres, sense: pulóver}]
+      reverse: (Ustedes pagan|Pagan [ustedes]) (los pulóveres|las camisetas|las playeras)
+  translations:
+    en: |-
+      Are you paying for the T-shirts?
+      (Are you all|Are you guys|Are y'all) paying for the T-shirts?
+      (Will|Do) (you|you all|you guys|y'all) pay for the T-shirts?
+- id: s.u08.28
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: Daniel y Yasiel compran pulóveres.
+      tokens: [{surface: Daniel, sense: daniel}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: compran, sense: comprar, form: 'form:pres-3p'}, {surface: pulóveres, sense: pulóver}]
+      reverse: Daniel y Yasiel compran (pulóveres|camisetas|playeras)
+  translations:
+    en: Daniel and Yasiel (buy|are buying) T-shirts.
+- id: s.u08.29
+  node: es.u08.nosotros
+  forms:
+    es-Latn/standard:
+      text: Nosotros no necesitamos jabas.
+      tokens: [{surface: Nosotros, sense: nosotros}, {surface: 'no', sense: 'no'}, {surface: necesitamos, sense: necesitar, form: 'form:pres-1p'}, {surface: jabas, sense: jaba}]
+      reverse: '[(Nosotros|Nosotras)] no necesitamos (jabas|bolsas)'
+  translations:
+    en: |-
+      We don't need bags.
+      We do not need (bags|any bags).
+- id: s.u08.30
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: Compramos en el agro.
+      tokens: [{surface: Compramos, sense: comprar, form: 'form:pres-1p'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: agro, sense: agromercado}]
+      reverse: '[(Nosotros|Nosotras)] compramos en el (agro|agromercado|mercado)'
+  translations:
+    en: |-
+      (We shop|We buy|We're shopping|We are shopping) (at|in) the (farmers' market|market).
+- id: s.u08.31
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: En el agro venden mangos.
+      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: agro, sense: agromercado}, {surface: venden, sense: vender, form: 'form:pres-3p'}, {surface: mangos, sense: mango}]
+      reverse: |-
+        En el (agro|agromercado|mercado) venden mangos
+        Venden mangos en el (agro|agromercado|mercado)
+  translations:
+    en: |-
+      They sell (mangoes|mangos) at the (farmers' market|market).
+      (At|In) the (farmers' market|market) they sell (mangoes|mangos).
+      (Mangoes|Mangos) are sold (at|in) the (farmers' market|market).
+- id: s.u08.32
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: ¿Cuánto cuestan los mangos?
+      tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuestan, sense: costar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: mangos, sense: mango}]
+      reverse: (Cuánto (cuestan|valen)|A cómo están|A cuánto están) los mangos
+  translations:
+    en: |-
+      How much are the (mangoes|mangos)?
+      How much do the (mangoes|mangos) cost?
+- id: s.u08.33
+  node: es.u08.el-agro
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: ¿Ustedes venden jabas?
+      tokens: [{surface: Ustedes, sense: ustedes}, {surface: venden, sense: vender, form: 'form:pres-3p'}, {surface: jabas, sense: jaba}]
+      reverse: (Ustedes venden|Venden [ustedes]) (jabas|bolsas)
+  translations:
+    en: |-
+      Do you sell bags?
+      Do (you all|you guys|y'all) sell bags?
+- id: s.u08.34
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: No, no vendemos jabas.
+      tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: vendemos, sense: vender, form: 'form:pres-1p'}, {surface: jabas, sense: jaba}]
+      reverse: No [(nosotros|nosotras)] no vendemos (jabas|bolsas)
+  translations:
+    en: |-
+      No, we don't sell bags.
+      No, we do not sell bags.
+- id: s.u08.35
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: En la shopping pagamos en dólares.
+      tokens: [{surface: En, sense: en}, {surface: la, sense: el}, {surface: shopping, sense: shopping}, {surface: pagamos, sense: pagar, form: 'form:pres-1p'}, {surface: en, sense: en}, {surface: dólares, sense: dólar}]
+      reverse: |-
+        En la (shopping|tienda) [(nosotros|nosotras)] pagamos en dólares
+        [(Nosotros|Nosotras)] pagamos en dólares en la (shopping|tienda)
+  translations:
+    en: |-
+      (At|In) the (store|shop|hard currency store|dollar store) we pay in dollars.
+      We pay in dollars (at|in) the (store|shop|hard currency store|dollar store).
+- id: s.u08.36
+  node: es.u08.el-agro
+  forms:
+    es-Latn/standard:
+      text: Yo compro mangos en el agro, no en la shopping.
+      tokens: [{surface: Yo, sense: yo}, {surface: compro, sense: comprar, form: 'form:pres-1s'}, {surface: mangos, sense: mango}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: agro, sense: agromercado}, {surface: 'no', sense: 'no'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: shopping, sense: shopping}]
+      reverse: '[Yo] compro mangos en el (agro|agromercado|mercado) no en la (shopping|tienda)'
+  translations:
+    en: |-
+      I buy (mangoes|mangos) (at|in) the (farmers' market|market), not (at|in) the (store|shop|hard currency store|dollar store).
+stories:
+- id: es.story.u08
+  node: es.u08.story
+  title: {en: Mangoes for Abuela}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: yasiel, name: {es-Latn/standard: Yasiel}}
+  steps:
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Daniel, nosotros necesitamos mangos.
+          tokens: [{surface: Daniel, sense: daniel}, {surface: nosotros, sense: nosotros}, {surface: necesitamos, sense: necesitar, form: 'form:pres-1p'}, {surface: mangos, sense: mango}]
+      translations: {en: 'Daniel, we need mangoes.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Sí, abuela. Yasiel vende mangos.
+          tokens: [{surface: Sí, sense: sí}, {surface: abuela, sense: abuela}, {surface: Yasiel, sense: yasiel}, {surface: vende, sense: vender, form: 'form:pres-3s'}, {surface: mangos, sense: mango}]
+      translations: {en: 'Yes, Grandma. Yasiel sells mangoes.'}
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¡Buenas tardes! ¿Qué ustedes necesitan?
+          tokens: [{surface: Buenas, sense: buenas-tardes}, {surface: tardes, sense: buenas-tardes}, {surface: Qué, sense: qué}, {surface: ustedes, sense: ustedes}, {surface: necesitan, sense: necesitar, form: 'form:pres-3p'}]
+      translations: {en: 'Good afternoon! What do you need?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Hola, mi vida. ¿Cuánto cuestan los mangos?
+          tokens: [{surface: Hola, sense: hola}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: Cuánto, sense: cuánto}, {surface: cuestan, sense: costar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: mangos, sense: mango}]
+      translations: {en: 'Hi, dear. How much are the mangoes?'}
+  - line:
+      speaker: yasiel
+      ask: complete
+      gap: sense:dólar
+      distractors: ['sense:pomo', 'sense:pulóver']
+      forms:
+        es-Latn/standard:
+          text: Cuestan un dólar, señora.
+          tokens: [{surface: Cuestan, sense: costar, form: 'form:pres-3p'}, {surface: un, sense: un}, {surface: dólar, sense: dólar}, {surface: señora, sense: señora}]
+      translations: {en: 'They''re a dollar, ma''am.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¿Un dólar? ¡Qué caro!
+          tokens: [{surface: Un, sense: un}, {surface: dólar, sense: dólar}, {surface: Qué, sense: qué}, {surface: caro, sense: caro}]
+      translations: {en: 'A dollar? So expensive!'}
+  - choose:
+      prompt: {en: 'What does Abuela think of the price?'}
+      options: [{en: She thinks it's expensive.}, {en: She thinks it's cheap.}, {en: She doesn't say.}]
+      answer: 0
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: Abuela, un dólar es muy barato.
+          tokens: [{surface: Abuela, sense: abuela}, {surface: un, sense: un}, {surface: dólar, sense: dólar}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: barato, sense: barato}]
+      translations: {en: 'Grandma, a dollar is really cheap.'}
+  - line:
+      speaker: cachita
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: En Cuba los mangos son muy baratos.
+          tokens: [{surface: En, sense: en}, {surface: Cuba, sense: cuba}, {surface: los, sense: el}, {surface: mangos, sense: mango}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: muy, sense: muy}, {surface: baratos, sense: barato}]
+      translations: {en: In Cuba mangoes are really cheap.}
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: ¿Cuántos mangos usted necesita?
+          tokens: [{surface: Cuántos, sense: cuánto}, {surface: mangos, sense: mango}, {surface: usted, sense: usted}, {surface: necesita, sense: necesitar, form: 'form:pres-3s'}]
+      translations: {en: 'How many mangoes do you need?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Diez mangos, mi vida.
+          tokens: [{surface: Diez, sense: diez}, {surface: mangos, sense: mango}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
+      translations: {en: 'Ten mangoes, dear.'}
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: Son diez dólares, señora.
+          tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: diez, sense: diez}, {surface: dólares, sense: dólar}, {surface: señora, sense: señora}]
+      translations: {en: 'That''s ten dollars, ma''am.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¡No, no! Yo pago, abuela.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: Yo, sense: yo}, {surface: pago, sense: pagar, form: 'form:pres-1s'}, {surface: abuela, sense: abuela}]
+      translations: {en: 'No, no! I''ll pay, Grandma.'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:yo
+      distractors: ['sense:él', 'sense:ellos']
+      forms:
+        es-Latn/standard:
+          text: ¡No, Daniel! Yo pago.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: Daniel, sense: daniel}, {surface: Yo, sense: yo}, {surface: pago, sense: pagar, form: 'form:pres-1s'}]
+      translations: {en: 'No, Daniel! I''ll pay.'}
+  - choose:
+      prompt: {en: 'Who wants to pay?'}
+      options: [{en: Both Daniel and Abuela}, {en: Only Daniel}, {en: Only Abuela}]
+      answer: 0
+  - line:
+      speaker: yasiel
+      forms:
+        es-Latn/standard:
+          text: Ustedes no pagan, señora. ¡Usted es mi abuela también!
+          tokens: [{surface: Ustedes, sense: ustedes}, {surface: 'no', sense: 'no'}, {surface: pagan, sense: pagar, form: 'form:pres-3p'}, {surface: señora, sense: señora}, {surface: Usted, sense: usted}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: también, sense: también}]
+      translations: {en: 'You''re not paying, ma''am. You''re my grandma too!'}
+  - choose:
+      prompt: {en: 'Why don''t they pay?'}
+      options: [{en: 'Yasiel gives Abuela the mangoes, as if she were family.'}, {en: The mangoes are too expensive.}, {en: Daniel already paid.}]
+      answer: 0
+scenarios:
+- id: es.agro
+  after: es.u08.el-agro
+  title: {en: At the agro in Havana}
+  setting: {en: 'An agromercado in Centro Habana on a busy morning: wooden stalls of mangoes, avocados, plantains, malanga and peppers (ají), prices chalked on cardboard in Cuban pesos. You are visiting Tía Marisol, and she has sent you out with her jaba.'}
+  character: {en: 'Osmany, a fast-talking stallholder in his fifties who calls everyone mi amor or asere, quotes prices in pesos per libra, and enjoys a little haggling.'}
+  goal: {en: 'Greet the stallholder, ask what things cost (¿Cuánto cuesta…? ¿A cómo está…?), buy mangoes and tomatoes for Tía Marisol, say when something is too expensive, pay, and say goodbye. You brought your own jaba.'}

@@ -209,6 +209,64 @@ def test_clips_of_a_voice_that_left_the_cast_are_stale(core_cli: CoreCli, yue_co
     assert recompiled.audio_items == {}
 
 
+def _voices(course: Path) -> dict[str, str]:
+    """Each item's clip, by the voice that made it."""
+    return {c.item: c.synthesis.voice for c in read_index(audio_dir(course)).clips if c.synthesis}
+
+
+@needs_espeak
+def test_a_cast_reads_at_random_and_by_grammar(core_cli: CoreCli, yue_copy: Path) -> None:
+    """A man's and a woman's voice share the items at random; a sentence said by a woman goes to
+    the woman, and a clip the other voice made before is stale until generated again; a run of
+    one voice keeps the other's clips (ADR 0078)."""
+    course = yue_copy / "course.yaml"
+    text = course.read_text(encoding="utf-8")
+    one = (
+        "{id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, "
+        "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}"
+    )
+    assert text.count(one) == 1
+    two = (
+        "{id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, speaker: m, "
+        "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}\n"
+        "  - {id: narrator-f, provider: espeak-ng, voice: yue-Latn-jyutping+f3, speaker: f, "
+        "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}"
+    )
+    course.write_text(text.replace(one, two), encoding="utf-8")
+    man = YUE_VOICE.model_copy(update={"speaker": "m"})
+    woman = YUE_VOICE.model_copy(
+        update={"id": "narrator-f", "voice": "yue-Latn-jyutping+f3", "speaker": "f"}
+    )
+    _, compiled = _compiled(core_cli, yue_copy)
+    report = synthesize_course(yue_copy, compiled.units, [man, woman])
+    voices = _voices(yue_copy)
+    assert sum(report.shares.values()) == len(voices)
+    assert 0.3 < report.shares["narrator-f"] / len(voices) < 0.7, report.shares
+    diags, _ = _compiled(core_cli, yue_copy)
+    assert [d.format() for d in diags.items if d.lint == "audio.stale"] == []
+
+    # The sentence the man reads now is said by a woman.
+    said = next(i for i, v in sorted(voices.items()) if i.startswith("s.") and v == man.voice)
+    unit = yue_copy / "units" / "intro.yaml"
+    text = unit.read_text(encoding="utf-8")
+    assert text.count(f"- id: {said}\n") == 1
+    unit.write_text(
+        text.replace(f"- id: {said}\n", f"- id: {said}\n  persons: {{speaker: f}}\n"), "utf-8"
+    )
+    diags, compiled = _compiled(core_cli, yue_copy)
+    stale = [d.message for d in diags.items if d.lint == "audio.stale"]
+    assert [m.split(":")[0] for m in stale] == [said], stale
+    assert "narrator-f reads it now" in stale[0]
+
+    # Running the man alone leaves the woman's clips, and the stale one, as they are.
+    synthesize_course(yue_copy, compiled.units, [man, woman], only="narrator")
+    after = _voices(yue_copy)
+    assert after == voices
+    synthesize_course(yue_copy, compiled.units, [man, woman])
+    after = _voices(yue_copy)
+    assert after == {**voices, said: woman.voice}
+
+
 @needs_espeak
 def test_human_recordings_keep_their_license(
     tmp_path: Path, core_cli: CoreCli, yue_copy: Path

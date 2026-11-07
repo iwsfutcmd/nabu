@@ -386,13 +386,25 @@ sentences:
       reverse: سیب یا پرتقال
   translations:
     en: (An apple|Apples) or (an orange|oranges)?
+- id: s.food.32
+  node: fa.food.like
+  constructions:
+  - construction:doost-dashtan
+  persons: {addressee: pl}
+  forms:
+    fa-Arab/standard:
+      text: شما قهوه دوست دارید؟
+      tokens: [{surface: شما, sense: shoma}, {surface: قهوه, sense: ghahve}, {surface: دوست, sense: doost}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
+      reverse: '[شما] قهوه [را] دوست دارید'
+  translations:
+    en: Do you (like|love) coffee?
 stories:
 - id: fa.story.tea
   node: fa.food.story
   title: {en: Tea at Maryam's}
   provenance: {author: 'llm:claude@83a16c835c32', status: draft}
   characters:
-  - {id: mother, name: {fa-Arab/standard: مادرِ مریم}}
+  - {id: mother, speaker: f, name: {fa-Arab/standard: مادرِ مریم}}
   - {id: ali, name: {fa-Arab/standard: علی}}
   - {id: maryam, name: {fa-Arab/standard: مریم}}
   steps:

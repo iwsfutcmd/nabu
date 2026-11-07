@@ -34,12 +34,51 @@ export interface ClipPlayer {
   readonly token: number | undefined;
 }
 
-/** One audio element per clip; `url` maps a bundle path to a URL. */
-export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) => string): ClipPlayer => {
+/**
+ * Audio elements kept per clip, loaded ahead: `play()` on an element that already holds its clip
+ * starts at once, where a new element would fetch and decode first and can start choppy (Firefox
+ * on Android). `release` lets go of them all.
+ */
+export const useClipElements = (): { readonly element: (clip: BundleClip, src: string) => HTMLAudioElement; readonly release: () => void } => {
+  const elements = useRef(new Map<string, HTMLAudioElement>());
+  const element = useCallback((clip: BundleClip, src: string): HTMLAudioElement => {
+    const known = elements.current.get(src);
+    if (known !== undefined) return known;
+    const el = new Audio(src);
+    el.preload = "auto";
+    el.dataset["clip"] = clip.path;
+    elements.current.set(src, el);
+    return el;
+  }, []);
+  const release = useCallback((): void => {
+    for (const el of elements.current.values()) {
+      // Let go of the media player now, not when garbage is collected: browsers cap how many exist.
+      el.pause();
+      el.removeAttribute("src");
+      el.load();
+    }
+    elements.current.clear();
+  }, []);
+  return { element, release };
+};
+
+export interface ClipPlayerOptions {
+  /**
+   * Load the clip as soon as the player mounts (a lesson card, which says it once answered).
+   * Off for long lists (the audio check, the review workspace, a story's lines): browsers cap how
+   * many media players a page may hold, so there the element is made on the first play.
+   */
+  readonly preload?: boolean;
+}
+
+/** One audio element per clip, reused for every play; `url` maps a bundle path to a URL. */
+export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) => string, options: ClipPlayerOptions = {}): ClipPlayer => {
+  const preload = options.preload === true;
   const element = useRef<HTMLAudioElement | null>(null);
   const frame = useRef(0);
   const [playing, setPlaying] = useState<Speed | undefined>(undefined);
   const [token, setToken] = useState<number | undefined>(undefined);
+  const clips = useClipElements();
 
   const stop = useCallback((): void => {
     cancelAnimationFrame(frame.current);
@@ -49,6 +88,12 @@ export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) =
   }, []);
 
   useEffect(() => stop, [stop, audio]);
+  // Load the clip now, so it is ready when it is played (on a tap, or once the card is answered).
+  const { element: elementFor, release } = clips;
+  useEffect(() => {
+    if (preload && audio !== undefined) elementFor(audio.normal, url(audio.normal.path));
+  }, [audio, elementFor, preload, url]);
+  useEffect(() => release, [audio, release]);
 
   const play = useCallback(
     (speed: Speed = "normal"): void => {
@@ -56,29 +101,28 @@ export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) =
       const clip = own ?? audio?.normal;
       if (clip === undefined) return;
       stop();
-      const el = new Audio(url(clip.path));
-      if (speed === "slow" && own === undefined) {
-        el.preservesPitch = true;
-        el.playbackRate = SLOW_RATE;
-      }
+      const el = elementFor(clip, url(clip.path));
+      // The same element plays again from the start, at the speed asked for.
+      el.currentTime = 0;
+      el.preservesPitch = true;
+      el.playbackRate = speed === "slow" && own === undefined ? SLOW_RATE : 1;
       element.current = el;
-      el.dataset["clip"] = clip.path;
       const tick = (): void => {
         setToken(tokenAt(clip, el.currentTime * 1000));
         if (!el.paused && !el.ended) frame.current = requestAnimationFrame(tick);
       };
-      el.addEventListener("playing", () => {
+      el.onplaying = () => {
         frame.current = requestAnimationFrame(tick);
-      });
-      el.addEventListener("ended", () => {
+      };
+      el.onended = () => {
         cancelAnimationFrame(frame.current);
         setPlaying(undefined);
         setToken(undefined);
-      });
+      };
       setPlaying(speed);
       void el.play().catch(() => setPlaying(undefined));
     },
-    [audio, stop, url],
+    [audio, elementFor, stop, url],
   );
 
   return { play, stop, playing, token };

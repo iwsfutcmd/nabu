@@ -132,6 +132,13 @@ _LINTS = [
     Lint("curriculum.cycle", "error", 5, "The prerequisite graph has a cycle."),
     Lint("curriculum.order", "error", 5, "A node introduces a KC before its prerequisites."),
     Lint("curriculum.unused-kc", "warning", 5, "A KC is defined but no sentence uses it."),
+    Lint(
+        "curriculum.one-gender",
+        "warning",
+        5,
+        "Sentences tag a man speaking (or a man spoken to) and never a woman, or the other way"
+        " round (ADR 0075).",
+    ),
     # 6 · grading
     Lint("grading.accept-syntax", "error", 6, "An accept set does not parse (§7.4)."),
     Lint("grading.blowup", "warning", 6, "An accept set expands to too many answers."),

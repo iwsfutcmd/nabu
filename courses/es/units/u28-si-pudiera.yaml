@@ -1,0 +1,562 @@
+# Unit 28 (es): si clauses. Real conditions with si + present (si puedo, voy; si Yunior consigue la visa, viene), set
+# against unreal ones with the imperfect subjunctive and the conditional (si pudiera, volvería a Cuba; si tuviera
+# dinero, abriría un paladar). The family's dreams: Papi going back to his tierra, Abuela bringing Marisol to Miami
+# (reclamar, la visa), a paladar with Abuela's ropa vieja, Yunior's future in Havana or in la Yuma (el bombo, luchar).
+# KC notes cover what heritage speakers say: si tendría for si tuviera, haiga for haya, trajiera for trajera; the -se
+# forms (tuviese, pudiese) are accepted as written alternatives.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u28
+title: {en: 'Si pudiera: if I could'}
+cefr: B2
+kcs:
+- {id: 'sense:conseguir', gloss: {en: 'to get; to obtain; to manage to'}, forms: {es-Latn/standard: [conseguir]}, notes: {en: 'E becomes i: consigo, consigue, consiguió, consiguiera; yo consigo, with g before o. Cubans use it for anything hard to find: ¿Conseguiste pollo? Conseguir + infinitive: to manage to (consiguió salir).'}}
+- {id: 'sense:visa', gloss: {en: 'visa'}, forms: {es-Latn/standard: [visa]}, notes: {en: 'La visa in Cuba and the Americas; Spain says el visado. Sacar la visa: to get a visa. For a young Cuban a US visa is hard to get: most come through a relative''s petition (see reclamar) or the visa lottery (el bombo).'}}
+- {id: 'sense:entonces', gloss: {en: 'then; so'}, forms: {es-Latn/standard: [entonces]}, notes: {en: 'Si no puedes, entonces voy yo: if you can''t, then I''ll go. It also moves a story on: Entonces, ¿qué hacemos? Said fast it can sound like tonces; write entonces.'}}
+- {id: 'sense:bombo', gloss: {en: 'bass drum; el bombo: the US visa lottery (Cuban)'}, forms: {es-Latn/standard: [bombo]}, notes: {en: 'Colloquial. In Cuba el bombo is the lottery for US visas, after the drum the names are drawn from: meterse en el bombo, to enter it; sacarse el bombo, to win it. Since the 1990s it has been the dream of many young Cubans. With b and b.'}}
+- {id: 'sense:yuma', gloss: {en: 'la Yuma: the United States (Cuban slang); un yuma: a foreigner, an American'}, forms: {es-Latn/standard: [Yuma]}, notes: {en: 'Irse pa'' la Yuma: to leave for the US. People say it comes from the western 3:10 to Yuma, popular in Cuba in the late 1950s. Slang: on a form or at an office, say Estados Unidos. Cousins on the island tease a Cuban from Miami as medio yuma.'}}
+- {id: 'sense:tierra', gloss: {en: 'land; earth; mi tierra: my homeland'}, forms: {es-Latn/standard: [tierra]}, notes: {en: 'Mi tierra: my homeland, where I come from; Cubans abroad say it of the island (volver a mi tierra), as in Gloria Estefan''s Mi tierra (1993). La tierra is also soil and the ground; the planet is la Tierra.'}}
+- {id: 'sense:jubilarse', gloss: {en: 'to retire (from work)'}, forms: {es-Latn/standard: [jubilarse]}, notes: {en: 'Un jubilado, una jubilada: a retiree, like Abuelo Pepe. La jubilación: retirement, or the pension. Retirarse is heard too, above all of sportsmen and soldiers.'}}
+- {id: 'sense:mudarse', gloss: {en: 'to move (house)'}, forms: {es-Latn/standard: [mudarse]}, notes: {en: 'Nos mudamos a Hialeah: we moved to Hialeah. Never moverse for this, from English move: moverse is to move your body. La mudanza: the move. Si pudiese, me mudaría: the -se forms (pudiese, tuviese) mean the same as pudiera, tuviera, and are more formal and written; Cubans say the -ra forms.'}}
+- {id: 'sense:lotería', gloss: {en: 'lottery'}, forms: {es-Latn/standard: [lotería]}, notes: {en: 'The test of this unit: ¿Qué harías si te ganaras la lotería? After si comes the -ra form (ganaras, tuviera, pudiera), never the conditional: si tendría and si ganaría are heard at home, in Miami and elsewhere, but in writing they are wrong. Cubans say ganarse la lotería. Cuba has had no legal lottery since the early 1960s; la bolita, the old numbers game, lives on underground. Lo-te-rí-a, with an accent.'}}
+- {id: 'sense:país', gloss: {en: 'country'}, forms: {es-Latn/standard: [país]}, notes: {en: 'With an accent: pa-ís, two syllables; plural países. Un país is a nation; the countryside is el campo, never el país. Mi país can be Cuba, the United States or both, depending on whom you ask.'}}
+- {id: 'sense:paladar', gloss: {en: 'palate; (Cuba) paladar: a private family restaurant'}, forms: {es-Latn/standard: [paladar]}, notes: {en: 'Cuba allowed small family restaurants in people''s homes in the 1990s, and they were named after Paladar, the restaurant chain a heroine builds up in the Brazilian telenovela Vale tudo, a hit in Cuba at the time. El paladar is also the palate, the sense of taste.'}}
+- {id: 'sense:propio', gloss: {en: 'own'}, forms: {es-Latn/standard: [propio]}, notes: {en: 'Before the noun it means own: mi propio negocio, su propia casa; propia with a feminine noun. After the noun it means proper or typical.'}}
+- {id: 'sense:cliente', gloss: {en: 'customer; client'}, forms: {es-Latn/standard: [cliente]}, notes: {en: 'Ends in -e for a man or a woman: el cliente, la cliente (also la clienta). Ojalá que haya clientes: haya is the subjunctive of hay; haiga is heard at home, but write haya.'}}
+- {id: 'sense:plato', gloss: {en: 'plate; dish (food)'}, forms: {es-Latn/standard: [plato]}, notes: {en: 'Both the plate and what is on it: un plato de arroz, un plato típico. El plato fuerte: the main course, or the highlight. Fregar los platos: to do the dishes.'}}
+- {id: 'sense:negocio', gloss: {en: 'business; a deal'}, forms: {es-Latn/standard: [negocio]}, notes: {en: 'Spelled with g and c: ne-go-cio. Un negocio propio: your own business. Since 2010 many Cubans have opened small private businesses as cuentapropistas, the self-employed.'}}
+- {id: 'sense:sueño', gloss: {en: 'dream; sleep (tener sueño: to be sleepy)'}, forms: {es-Latn/standard: [sueño]}, notes: {en: 'Mi sueño es volver: my dream is to go back. El sueño americano: the American dream. Tengo sueño: I''m sleepy (never estoy sueño). With ñ.'}}
+- {id: 'sense:soñar', gloss: {en: 'to dream (soñar con: to dream of)'}, forms: {es-Latn/standard: [soñar]}, notes: {en: 'O becomes ue: sueño, sueñas, sueña. Soñar con, never soñar de (from English dream of): sueño con volver, I dream of going back; anoche soñé contigo.'}}
+- {id: 'sense:traer', gloss: {en: 'to bring'}, forms: {es-Latn/standard: [traer]}, notes: {en: 'Traigo, with g; the past is traje, trajo, trajeron, and so trajera, trajéramos (si la trajéramos). Trajiera and trayera are heard at home, but never write them. Traer is to bring here; llevar is to take there.'}}
+- {id: 'sense:reclamar', gloss: {en: 'to claim; to demand; (Cuban American) to petition for a relative to immigrate'}, forms: {es-Latn/standard: [reclamar]}, notes: {en: 'In Miami reclamar a alguien is to file the papers for a relative in Cuba to come (la reclamación): Abuela reclamó a Marisol. Elsewhere reclamar is to complain or to claim: reclamar el equipaje.'}}
+- {id: 'sense:nieto', gloss: {en: 'grandson (nieta: granddaughter; nietos: grandchildren)'}, forms: {es-Latn/standard: [nieto]}, notes: {en: 'Abuela Cachita''s nietos: Daniel, Lili and Yunior. A great-grandchild is un bisnieto. Mi nieto lindo: what every Cuban grandmother says.'}}
+- {id: 'sense:orgulloso', gloss: {en: 'proud'}, forms: {es-Latn/standard: [orgulloso]}, notes: {en: 'Orgullosa for a woman. Orgulloso de: proud of (estoy orgullosa de ti). El orgullo: pride. With one r and ll: or-gu-llo-so.'}}
+- {id: 'sense:futuro', gloss: {en: 'future'}, forms: {es-Latn/standard: [futuro]}, notes: {en: 'El futuro; en el futuro: in the future. The future tense (unit 20) is el futuro too, but for plans Cubans mostly say voy a…'}}
+- {id: 'sense:cambiar', gloss: {en: 'to change; to exchange'}, forms: {es-Latn/standard: [cambiar]}, notes: {en: 'Cambiar de casa, de trabajo: to move, to change jobs (with de). Cambiar dinero: to exchange money. Cambiarse: to change your clothes. Las cosas cambian: things change.'}}
+- {id: 'sense:así', gloss: {en: 'like this; like that; so'}, forms: {es-Latn/standard: [así]}, notes: {en: 'With an accent on the í. Así es: that''s right; así es la vida: that''s life; así así: so-so.'}}
+nodes:
+- {id: es.u28.si-puedo, kind: lesson, introduces: ['sense:conseguir', 'sense:visa', 'sense:entonces', 'sense:bombo', 'sense:yuma']}
+- {id: es.u28.si-pudiera, kind: lesson, introduces: ['sense:tierra', 'sense:jubilarse', 'sense:mudarse', 'sense:lotería']}
+- {id: es.u28.el-paladar, kind: lesson, introduces: ['sense:paladar', 'sense:propio', 'sense:cliente', 'sense:plato', 'sense:negocio']}
+- {id: es.u28.traer-a-marisol, kind: lesson, introduces: ['sense:sueño', 'sense:soñar', 'sense:traer', 'sense:reclamar', 'sense:nieto', 'sense:orgulloso']}
+- {id: es.u28.el-futuro, kind: lesson, introduces: ['sense:futuro', 'sense:cambiar', 'sense:país', 'sense:así']}
+- {id: es.u28.story, kind: story}
+sentences:
+- id: s.u28.1
+  node: es.u28.si-puedo
+  forms:
+    es-Latn/standard:
+      text: Si puedo, voy a Cuba en diciembre.
+      tokens: [{surface: Si, sense: si}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}, {surface: en, sense: en}, {surface: diciembre, sense: diciembre}]
+      reverse: |-
+        Si [yo] puedo (voy|iré|voy a ir) a Cuba en diciembre
+        (Voy|Iré|Voy a ir) a Cuba en diciembre si [yo] puedo
+  translations:
+    en: |-
+      If I can, (I'll go|I'm going|I will go|I am going) to Cuba in December.
+      (I'll go|I'm going|I will go|I am going) to Cuba in December if I can.
+- id: s.u28.2
+  node: es.u28.si-puedo
+  forms:
+    es-Latn/standard:
+      text: Si Yunior consigue la visa, viene a Miami en el verano.
+      tokens: [{surface: Si, sense: si}, {surface: Yunior, sense: yunior}, {surface: consigue, sense: conseguir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}]
+      reverse: Si Yunior consigue la visa (viene|vendrá|va a venir) a Miami (en el verano|este verano)
+  translations:
+    en: |-
+      If Yunior gets (the|his) visa, (he'll come|he's coming|he will come|he comes) to Miami (in the summer|this summer).
+- id: s.u28.3
+  node: es.u28.si-puedo
+  forms:
+    es-Latn/standard:
+      text: Si no consigue la visa, entonces lo visitamos nosotros.
+      tokens: [{surface: Si, sense: si}, {surface: 'no', sense: 'no'}, {surface: consigue, sense: conseguir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: entonces, sense: entonces}, {surface: lo, sense: lo}, {surface: visitamos, sense: visitar, form: 'form:pres-1p'}, {surface: nosotros, sense: nosotros}]
+      reverse: Si no consigue la visa entonces (lo visitamos nosotros|nosotros lo visitamos|lo visitamos|lo vamos a visitar|vamos a visitarlo|lo visitaremos)
+  translations:
+    en: |-
+      If he (doesn't|does not) get the visa, then (we'll visit him|we will visit him|we're going to visit him|we visit him|we'll go and visit him).
+- id: s.u28.4
+  node: es.u28.si-puedo
+  register: colloquial
+  forms:
+    es-Latn/standard:
+      text: Yunior dice que si se saca el bombo, se va para la Yuma.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: si, sense: si}, {surface: se, sense: se}, {surface: saca, sense: sacar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: bombo, sense: bombo}, {surface: se, sense: se}, {surface: va, sense: irse, form: 'form:pres-3s'}, {surface: para, sense: para}, {surface: la, sense: el}, {surface: Yuma, sense: yuma}]
+      reverse: Yunior dice que si se saca el bombo se va (para la Yuma|pa' la Yuma|a la Yuma|para Estados Unidos|a Estados Unidos|para los Estados Unidos|a los Estados Unidos)
+  translations:
+    en: |-
+      Yunior says [that] if he wins the (visa lottery|lottery|bombo), (he's going|he'll go|he's leaving|he'll leave|he's moving|he'll move) (to|for) the (US|States|United States).
+- id: s.u28.5
+  node: es.u28.si-puedo
+  persons: {addressee: pl}
+  forms:
+    es-Latn/standard:
+      text: Si ustedes tienen tiempo esta noche, llámenme por WhatsApp.
+      tokens: [{surface: Si, sense: si}, {surface: ustedes, sense: ustedes}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: tiempo, sense: tiempo}, {surface: esta, sense: este}, {surface: noche, sense: noche}, {surface: llámenme, sense: llamar, form: 'form:imp-ud'}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
+      reverse: Si [ustedes] tienen tiempo esta noche (llámenme|me llaman) por WhatsApp
+  translations:
+    en: |-
+      If you (have|guys have|all have) time tonight, (call me|give me a call) (on|over|via) WhatsApp.
+- id: s.u28.6
+  node: es.u28.si-pudiera
+  forms:
+    es-Latn/standard:
+      text: Si pudiera, volvería a Cuba.
+      tokens: [{surface: Si, sense: si}, {surface: pudiera, sense: poder, form: 'form:subj-past'}, {surface: volvería, sense: volver, form: 'form:cond'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
+      reverse: |-
+        Si [yo] (pudiera|pudiese) (volvería|regresaría) a Cuba
+        (Volvería|Regresaría) a Cuba si [yo] (pudiera|pudiese)
+  translations:
+    en: |-
+      If I could, (I'd|I would) (go back|return) to Cuba.
+      (I'd|I would) (go back|return) to Cuba if I could.
+- id: s.u28.7
+  node: es.u28.si-pudiera
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Si yo fuera rico, le compraría una casa a Abuela.
+      tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: rico, sense: rico}, {surface: le, sense: le}, {surface: compraría, sense: comprar, form: 'form:cond'}, {surface: una, sense: un}, {surface: casa, sense: casa}, {surface: a, sense: a}, {surface: Abuela, sense: abuela}]
+      reverse: |-
+        Si [yo] (fuera|fuese) rico (le compraría|compraría) una casa a (Abuela|la abuela|mi abuela)
+        (Le compraría|Compraría) una casa a (Abuela|la abuela|mi abuela) si [yo] (fuera|fuese) rico
+  translations:
+    en: |-
+      If I (were|was) rich, (I'd|I would) buy (Grandma|Abuela|my grandma|my grandmother) a house.
+      If I (were|was) rich, (I'd|I would) buy a house for (Grandma|Abuela|my grandma|my grandmother).
+      (I'd|I would) buy (Grandma|Abuela|my grandma|my grandmother) a house if I (were|was) rich.
+- id: s.u28.8
+  node: es.u28.si-pudiera
+  forms:
+    es-Latn/standard:
+      text: Papi dice que si pudiera, volvería a vivir en su tierra.
+      tokens: [{surface: Papi, sense: papi}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: si, sense: si}, {surface: pudiera, sense: poder, form: 'form:subj-past'}, {surface: volvería, sense: volver, form: 'form:cond'}, {surface: a, sense: a}, {surface: vivir, sense: vivir}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: tierra, sense: tierra}]
+      reverse: (Papi|Mi papá|Mi padre) dice que si (pudiera|pudiese) (volvería a vivir en|regresaría a vivir a|regresaría a|volvería a) su tierra
+  translations:
+    en: |-
+      (Dad|Papi|My dad|My father) says [that] if he could, (he'd|he would) (live in|go back to live in|go back to living in|go back to|return to) his (homeland|home country|native land) [again].
+- id: s.u28.9
+  node: es.u28.si-pudiera
+  forms:
+    es-Latn/standard:
+      text: Si Papi se jubilara, se mudaría a Cienfuegos.
+      tokens: [{surface: Si, sense: si}, {surface: Papi, sense: papi}, {surface: se, sense: se}, {surface: jubilara, sense: jubilarse, form: 'form:subj-past'}, {surface: se, sense: se}, {surface: mudaría, sense: mudarse, form: 'form:cond'}, {surface: a, sense: a}, {surface: Cienfuegos, sense: cienfuegos}]
+      reverse: |-
+        Si (Papi|mi papá|mi padre) se (jubilara|jubilase|retirara) se (mudaría|iría a vivir|iría) a Cienfuegos
+        (Papi|Mi papá|Mi padre) se (mudaría|iría a vivir|iría) a Cienfuegos si se (jubilara|jubilase|retirara)
+  translations:
+    en: |-
+      If (Dad|Papi|my dad|my father) (retired|were to retire), (he'd|he would) move to Cienfuegos.
+      (Dad|Papi|My dad|My father) would move to Cienfuegos if he (retired|were to retire).
+- id: s.u28.10
+  node: es.u28.si-pudiera
+  persons: {speaker: f, addressee: m}
+  forms:
+    es-Latn/standard:
+      text: Ya estoy vieja para mudarme, mi'jo.
+      tokens: [{surface: Ya, sense: ya}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: vieja, sense: viejo}, {surface: para, sense: para}, {surface: mudarme, sense: mudarse}, {surface: "mi'jo", sense: mijo}]
+      reverse: '[Yo] ya estoy (vieja|mayor) para mudarme [(mi''jo|mi hijo)]'
+  translations:
+    en: |-
+      (I'm|I am) too old to move (now|anymore), (sweetheart|son|honey).
+      (I'm|I am) already too old to move, (sweetheart|son|honey).
+- id: s.u28.11
+  node: es.u28.si-pudiera
+  persons: {speaker: m}
+  forms:
+    es-Latn/standard:
+      text: Yo estoy viejo, pero si pudiera, volvería a Matanzas.
+      tokens: [{surface: Yo, sense: yo}, {surface: estoy, sense: estar, form: 'form:pres-1s'}, {surface: viejo, sense: viejo}, {surface: pero, sense: pero}, {surface: si, sense: si}, {surface: pudiera, sense: poder, form: 'form:subj-past'}, {surface: volvería, sense: volver, form: 'form:cond'}, {surface: a, sense: a}, {surface: Matanzas, sense: matanzas}]
+      reverse: '[Yo] estoy (viejo|mayor) pero si (pudiera|pudiese) (volvería|regresaría) a Matanzas'
+  translations:
+    en: |-
+      (I'm|I am) old, but if I could, (I'd|I would) (go back|return) to Matanzas.
+- id: s.u28.12
+  node: es.u28.si-pudiera
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú harías si te ganaras la lotería?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: harías, sense: hacer, form: 'form:cond'}, {surface: si, sense: si}, {surface: te, sense: te}, {surface: ganaras, sense: ganar, form: 'form:subj-past'}, {surface: la, sense: el}, {surface: lotería, sense: lotería}]
+      reverse: |-
+        (Qué tú harías|Qué harías [tú]) si (te ganaras|te ganases|ganaras|ganases|te sacaras) la lotería
+        (Qué usted haría|Qué haría [usted]) si (se ganara|se ganase|ganara|ganase|se sacara) la lotería
+        (Qué ustedes harían|Qué harían [ustedes]) si (se ganaran|se ganasen|ganaran|ganasen|se sacaran) la lotería
+  translations:
+    en: |-
+      What would you do if you (won|were to win|hit) the lottery?
+- id: s.u28.13
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: Si Yunior tuviera dinero, abriría un paladar en La Habana.
+      tokens: [{surface: Si, sense: si}, {surface: Yunior, sense: yunior}, {surface: tuviera, sense: tener, form: 'form:subj-past'}, {surface: dinero, sense: dinero}, {surface: abriría, sense: abrir, form: 'form:cond'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: |-
+        Si Yunior (tuviera|tuviese) [el] dinero (abriría|pondría) un paladar en La Habana
+        Yunior (abriría|pondría) un paladar en La Habana si (tuviera|tuviese) [el] dinero
+  translations:
+    en: |-
+      If Yunior had [the] money, (he'd|he would) open a (paladar|restaurant|private restaurant) in Havana.
+      Yunior would open a (paladar|restaurant|private restaurant) in Havana if he had [the] money.
+- id: s.u28.14
+  node: es.u28.el-paladar
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Si yo fuera rica, abriría un paladar con Marisol.
+      tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: rica, sense: rico}, {surface: abriría, sense: abrir, form: 'form:cond'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: con, sense: con}, {surface: Marisol, sense: marisol}]
+      reverse: |-
+        Si [yo] (fuera|fuese) rica (abriría|pondría) un paladar con (Marisol|mi hija)
+        (Abriría|Pondría) un paladar con (Marisol|mi hija) si [yo] (fuera|fuese) rica
+  translations:
+    en: |-
+      If I (were|was) rich, (I'd|I would) open a (paladar|restaurant) with (Marisol|my daughter).
+      (I'd|I would) open a (paladar|restaurant) with (Marisol|my daughter) if I (were|was) rich.
+- id: s.u28.15
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: En La Habana, muchas familias tienen un paladar en su propia casa.
+      tokens: [{surface: En, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: muchas, sense: mucho}, {surface: familias, sense: familia}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: propia, sense: propio}, {surface: casa, sense: casa}]
+      reverse: En La Habana muchas familias tienen un paladar en (su propia casa|sus propias casas)
+  translations:
+    en: |-
+      In Havana, (many|a lot of|lots of) families have a (paladar|restaurant|private restaurant) in their own (home|house|homes|houses).
+- id: s.u28.16
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: Si abriéramos un paladar, Abuela cocinaría para los clientes.
+      tokens: [{surface: Si, sense: si}, {surface: abriéramos, sense: abrir, form: 'form:subj-past'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: Abuela, sense: abuela}, {surface: cocinaría, sense: cocinar, form: 'form:cond'}, {surface: para, sense: para}, {surface: los, sense: el}, {surface: clientes, sense: cliente}]
+      reverse: Si (abriéramos|abriésemos) un paladar (Abuela|la abuela|mi abuela) cocinaría para los clientes
+  translations:
+    en: |-
+      If we (opened|were to open) a (paladar|restaurant), (Grandma|Grandmother|Abuela|my grandma|my grandmother) would cook for the (customers|clients|guests).
+- id: s.u28.17
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: El mejor plato del paladar sería la ropa vieja de Abuela.
+      tokens: [{surface: El, sense: el}, {surface: mejor, sense: mejor}, {surface: plato, sense: plato}, {surface: del, sense: del}, {surface: paladar, sense: paladar}, {surface: sería, sense: ser, form: 'form:cond'}, {surface: la, sense: el}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}]
+      reverse: El mejor plato del paladar sería la ropa vieja de (Abuela|la abuela|mi abuela)
+  translations:
+    en: |-
+      The best dish (at|in|of) the (paladar|restaurant) would be (Grandma's|Grandmother's|Abuela's|my grandma's|my grandmother's) ropa vieja.
+- id: s.u28.18
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: Si el negocio fuera bien, abriríamos otro en Miami.
+      tokens: [{surface: Si, sense: si}, {surface: el, sense: el}, {surface: negocio, sense: negocio}, {surface: fuera, sense: ir, form: 'form:subj-past'}, {surface: bien, sense: bien}, {surface: abriríamos, sense: abrir, form: 'form:cond'}, {surface: otro, sense: otro}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
+      reverse: Si el negocio (fuera|fuese|saliera|anduviera) bien abriríamos otro [paladar] en Miami
+  translations:
+    en: |-
+      If the business (went|did|were going|was going) well, (we'd|we would) open another [one] in Miami.
+- id: s.u28.19
+  node: es.u28.el-paladar
+  forms:
+    es-Latn/standard:
+      text: Ojalá que haya clientes todos los días.
+      tokens: [{surface: Ojalá, sense: ojalá}, {surface: que, sense: que}, {surface: haya, sense: haber, form: 'form:subj'}, {surface: clientes, sense: cliente}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: días, sense: día}]
+      reverse: Ojalá [que] haya clientes todos los días
+  translations:
+    en: |-
+      (Hopefully|I hope|Let's hope) (there are|there will be|there'll be) (customers|clients) every day.
+- id: s.u28.20
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: El sueño de Abuela es ver a toda la familia junta.
+      tokens: [{surface: El, sense: el}, {surface: sueño, sense: sueño}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: ver, sense: ver}, {surface: a, sense: a}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: junta, sense: junto}]
+      reverse: El sueño de (Abuela|la abuela|mi abuela) es (ver a toda la familia junta|ver junta a toda la familia)
+  translations:
+    en: |-
+      (Grandma's|Grandmother's|Abuela's|My grandma's|My grandmother's) dream is to see (the whole family|all the family|the entire family) together.
+- id: s.u28.21
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela sueña con traer a Marisol a Miami.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: sueña, sense: soñar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: traer, sense: traer}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
+      reverse: (Abuela|La abuela|Mi abuela) sueña con traer a (Marisol|tía Marisol) a Miami
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) dreams of bringing (Marisol|Aunt Marisol|Tía Marisol) to Miami.
+- id: s.u28.22
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela reclamó a Marisol hace muchos años.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: reclamó, sense: reclamar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: Marisol, sense: marisol}, {surface: hace, sense: hacer, form: 'form:pres-3s'}, {surface: muchos, sense: mucho}, {surface: años, sense: año}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) reclamó a (Marisol|tía Marisol) hace muchos años
+        Hace muchos años (Abuela|la abuela|mi abuela) reclamó a (Marisol|tía Marisol)
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) (petitioned for|sponsored|filed the papers for|filed papers for) (Marisol|Aunt Marisol|Tía Marisol) (many years ago|a long time ago).
+- id: s.u28.23
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: Si le dieran la visa, la traeríamos en diciembre.
+      tokens: [{surface: Si, sense: si}, {surface: le, sense: le}, {surface: dieran, sense: dar, form: 'form:subj-past'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: la, sense: lo}, {surface: traeríamos, sense: traer, form: 'form:cond'}, {surface: en, sense: en}, {surface: diciembre, sense: diciembre}]
+      reverse: Si le (dieran|diesen) la visa la traeríamos [a Miami] en diciembre
+  translations:
+    en: |-
+      If (they gave her|she got) the visa, (we'd|we would) bring her [(here|over|to Miami)] in December.
+- id: s.u28.24
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela tendría a sus tres nietos juntos si Yunior viniera también.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: tendría, sense: tener, form: 'form:cond'}, {surface: a, sense: a}, {surface: sus, sense: su}, {surface: tres, sense: tres}, {surface: nietos, sense: nieto}, {surface: juntos, sense: junto}, {surface: si, sense: si}, {surface: Yunior, sense: yunior}, {surface: viniera, sense: venir, form: 'form:subj-past'}, {surface: también, sense: también}]
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) tendría a sus (tres|3) nietos juntos si Yunior (viniera|viniese) también
+        Si Yunior (viniera|viniese) también (Abuela|la abuela|mi abuela) tendría a sus (tres|3) nietos juntos
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) would have (all three of her|her three|all her) grandchildren together if Yunior (came|were to come) too.
+      If Yunior (came|were to come) too, (Grandma|Grandmother|Abuela|my grandma|my grandmother) would have (all three of her|her three|all her) grandchildren together.
+- id: s.u28.25
+  node: es.u28.traer-a-marisol
+  forms:
+    es-Latn/standard:
+      text: Abuela estaría muy orgullosa si sus nietos hablaran bien español.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: estaría, sense: estar, form: 'form:cond'}, {surface: muy, sense: muy}, {surface: orgullosa, sense: orgulloso}, {surface: si, sense: si}, {surface: sus, sense: su}, {surface: nietos, sense: nieto}, {surface: hablaran, sense: hablar, form: 'form:subj-past'}, {surface: bien, sense: bien}, {surface: español, sense: español}]
+      reverse: (Abuela|La abuela|Mi abuela) estaría muy orgullosa si sus nietos (hablaran|hablasen) (bien [el] español|[el] español bien)
+  translations:
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) would be (very|really|so) proud if her grandchildren (spoke Spanish well|spoke good Spanish).
+- id: s.u28.26
+  node: es.u28.traer-a-marisol
+  persons: {speaker: f, addressee: f}
+  forms:
+    es-Latn/standard:
+      text: Estoy muy orgullosa de ti, mi'ja.
+      tokens: [{surface: Estoy, sense: estar, form: 'form:pres-1s'}, {surface: muy, sense: muy}, {surface: orgullosa, sense: orgulloso}, {surface: de, sense: de}, {surface: ti, sense: ti}, {surface: "mi'ja", sense: mijo}]
+      reverse: '[Yo] estoy muy orgullosa de ti [(mi''ja|mi hija)]'
+  translations:
+    en: |-
+      (I'm|I am) (very|really|so) proud of you, (sweetheart|honey|sweetie|my girl).
+- id: s.u28.27
+  node: es.u28.el-futuro
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: ¿Qué tú piensas hacer en el futuro, primo?
+      tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: piensas, sense: pensar, form: 'form:pres-2s'}, {surface: hacer, sense: hacer}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: futuro, sense: futuro}, {surface: primo, sense: primo}]
+      reverse: (Qué tú piensas|Qué piensas [tú]) hacer en el futuro [primo]
+  translations:
+    en: |-
+      What (do you plan to do|are you planning to do|are you thinking of doing|do you want to do) in the future, (cousin|cuz|primo)?
+- id: s.u28.28
+  node: es.u28.el-futuro
+  forms:
+    es-Latn/standard:
+      text: Yunior quiere tener su propio negocio en La Habana.
+      tokens: [{surface: Yunior, sense: yunior}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: tener, sense: tener}, {surface: su, sense: su}, {surface: propio, sense: propio}, {surface: negocio, sense: negocio}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
+      reverse: Yunior quiere (tener|abrir) su propio negocio en La Habana
+  translations:
+    en: |-
+      Yunior wants to (have|open|start) his own business in Havana.
+- id: s.u28.29
+  node: es.u28.el-futuro
+  forms:
+    es-Latn/standard:
+      text: Si las cosas cambiaran, Yunior se quedaría en Cuba.
+      tokens: [{surface: Si, sense: si}, {surface: las, sense: el}, {surface: cosas, sense: cosa}, {surface: cambiaran, sense: cambiar, form: 'form:subj-past'}, {surface: Yunior, sense: yunior}, {surface: se, sense: se}, {surface: quedaría, sense: quedarse, form: 'form:cond'}, {surface: en, sense: en}, {surface: Cuba, sense: cuba}]
+      reverse: |-
+        Si las cosas (cambiaran|cambiasen) Yunior se quedaría en Cuba
+        Yunior se quedaría en Cuba si las cosas (cambiaran|cambiasen)
+  translations:
+    en: |-
+      If things (changed|were to change), Yunior would stay in Cuba.
+      Yunior would stay in Cuba if things (changed|were to change).
+- id: s.u28.30
+  node: es.u28.el-futuro
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: Aquí tenemos que luchar todos los días, asere.
+      tokens: [{surface: Aquí, sense: aquí}, {surface: tenemos, sense: tener-que, form: 'form:pres-1p'}, {surface: que, sense: tener-que}, {surface: luchar, sense: luchar}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: días, sense: día}, {surface: asere, sense: asere}]
+      reverse: Aquí (tenemos que|hay que) luchar todos los días [(asere|acere|primo|mi hermano)]
+  translations:
+    en: |-
+      (Here|Over here|Around here) (we have to|we've got to) (struggle|hustle|fight) every day, (man|bro|buddy|dude|cuz).
+- id: s.u28.31
+  node: es.u28.el-futuro
+  forms:
+    es-Latn/standard:
+      text: Si yo viviera en otro país, extrañaría mucho a mi familia.
+      tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: viviera, sense: vivir, form: 'form:subj-past'}, {surface: en, sense: en}, {surface: otro, sense: otro}, {surface: país, sense: país}, {surface: extrañaría, sense: extrañar, form: 'form:cond'}, {surface: mucho, sense: mucho}, {surface: a, sense: a}, {surface: mi, sense: mi}, {surface: familia, sense: familia}]
+      reverse: Si [yo] (viviera|viviese) en otro país (extrañaría mucho|echaría mucho de menos) a mi familia
+  translations:
+    en: |-
+      If I lived in (another|a different) country, (I'd|I would) miss my family (a lot|so much|very much).
+- id: s.u28.32
+  node: es.u28.el-futuro
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: 'Así es la vida, primo: unos se van y otros se quedan.'
+      tokens: [{surface: Así, sense: así}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: vida, sense: vida}, {surface: primo, sense: primo}, {surface: unos, sense: un}, {surface: se, sense: se}, {surface: van, sense: irse, form: 'form:pres-3p'}, {surface: 'y', sense: 'y'}, {surface: otros, sense: otro}, {surface: se, sense: se}, {surface: quedan, sense: quedarse, form: 'form:pres-3p'}]
+      reverse: Así es la vida [primo] unos se van y otros se quedan
+  translations:
+    en: |-
+      (That's life|Such is life|That's how life is), (cousin|cuz|primo): some (leave|go) and (others|some) stay.
+- id: s.u28.33
+  node: es.u28.el-futuro
+  persons: {addressee: m}
+  forms:
+    es-Latn/standard:
+      text: Si yo fuera tú, primo, estudiaría inglés.
+      tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: fuera, sense: ser, form: 'form:subj-past'}, {surface: tú, sense: tú}, {surface: primo, sense: primo}, {surface: estudiaría, sense: estudiar, form: 'form:cond'}, {surface: inglés, sense: inglés}]
+      reverse: |-
+        Si yo (fuera|fuese) tú [primo] estudiaría inglés
+        [Primo] si yo (fuera|fuese) tú estudiaría inglés
+        Yo que tú [primo] estudiaría inglés
+  translations:
+    en: |-
+      If I (were|was) you, (cousin|cuz|primo), (I'd|I would) study English.
+      (Cousin|Cuz|Primo), if I (were|was) you, (I'd|I would) study English.
+stories:
+- id: es.story.u28
+  node: es.u28.story
+  title: {en: 'What would you do?'}
+  characters:
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: papi, name: {es-Latn/standard: Papi}}
+  - {id: marisol, name: {es-Latn/standard: Tía Marisol}}
+  - {id: yunior, name: {es-Latn/standard: Yunior}}
+  steps:
+  - line:
+      forms:
+        es-Latn/standard:
+          text: Es domingo, y toda la familia habla con Marisol y Yunior por videollamada.
+          tokens: [{surface: Es, sense: ser, form: 'form:pres-3s'}, {surface: domingo, sense: domingo}, {surface: 'y', sense: 'y'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: familia, sense: familia}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: con, sense: con}, {surface: Marisol, sense: marisol}, {surface: 'y', sense: 'y'}, {surface: Yunior, sense: yunior}, {surface: por, sense: por}, {surface: videollamada, sense: videollamada}]
+      translations: {en: 'It''s Sunday, and the whole family is on a video call with Marisol and Yunior.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: 'Díganme una cosa: ¿qué harían ustedes si pudieran?'
+          tokens: [{surface: Díganme, sense: decir, form: 'form:imp-ud'}, {surface: una, sense: un}, {surface: cosa, sense: cosa}, {surface: qué, sense: qué}, {surface: harían, sense: hacer, form: 'form:cond'}, {surface: ustedes, sense: ustedes}, {surface: si, sense: si}, {surface: pudieran, sense: poder, form: 'form:subj-past'}]
+      translations: {en: 'Tell me something: what would you all do if you could?'}
+  - line:
+      speaker: papi
+      forms:
+        es-Latn/standard:
+          text: Si yo pudiera, volvería a Cienfuegos a ver la casa donde nací.
+          tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: pudiera, sense: poder, form: 'form:subj-past'}, {surface: volvería, sense: volver, form: 'form:cond'}, {surface: a, sense: a}, {surface: Cienfuegos, sense: cienfuegos}, {surface: a, sense: a}, {surface: ver, sense: ver}, {surface: la, sense: el}, {surface: casa, sense: casa}, {surface: donde, sense: donde}, {surface: nací, sense: nacer, form: 'form:pret-1s'}]
+      translations: {en: 'If I could, I''d go back to Cienfuegos to see the house where I was born.'}
+  - line:
+      speaker: marisol
+      forms:
+        es-Latn/standard:
+          text: Y si yo tuviera la visa, me iría a Miami mañana.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: si, sense: si}, {surface: yo, sense: yo}, {surface: tuviera, sense: tener, form: 'form:subj-past'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: me, sense: me}, {surface: iría, sense: irse, form: 'form:cond'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: mañana, sense: mañana}]
+      translations: {en: 'And if I had the visa, I''d leave for Miami tomorrow.'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:vivir
+      distractors: ['sense:luchar', 'sense:soñar']
+      forms:
+        es-Latn/standard:
+          text: Ay, mi'ja, si tú vivieras aquí, yo no necesitaría nada más.
+          tokens: [{surface: Ay, sense: ay}, {surface: "mi'ja", sense: mijo}, {surface: si, sense: si}, {surface: tú, sense: tú}, {surface: vivieras, sense: vivir, form: 'form:subj-past'}, {surface: aquí, sense: aquí}, {surface: yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: necesitaría, sense: necesitar, form: 'form:cond'}, {surface: nada, sense: nada}, {surface: más, sense: más}]
+      translations: {en: 'Oh, sweetheart, if you lived here, I wouldn''t need anything else.'}
+  - choose:
+      prompt: {en: 'What would Marisol do if she had the visa?'}
+      options: [{en: Leave for Miami the next day}, {en: Open a paladar in Havana}, {en: Move to Cienfuegos}]
+      answer: 0
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: Yo no sé, primo. Si me sacara el bombo, no sé si me iría.
+          tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: primo, sense: primo}, {surface: Si, sense: si}, {surface: me, sense: me}, {surface: sacara, sense: sacar, form: 'form:subj-past'}, {surface: el, sense: el}, {surface: bombo, sense: bombo}, {surface: 'no', sense: 'no'}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: si, sense: si}, {surface: me, sense: me}, {surface: iría, sense: irse, form: 'form:cond'}]
+      translations: {en: 'I don''t know, cousin. If I won the visa lottery, I don''t know if I''d go.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿En serio? ¿Y qué tú harías entonces?
+          tokens: [{surface: En, sense: en}, {surface: serio, sense: serio}, {surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: harías, sense: hacer, form: 'form:cond'}, {surface: entonces, sense: entonces}]
+      translations: {en: 'Seriously? So what would you do?'}
+  - line:
+      speaker: yunior
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Si tuviera dinero, abriría un paladar aquí en Centro Habana.
+          tokens: [{surface: Si, sense: si}, {surface: tuviera, sense: tener, form: 'form:subj-past'}, {surface: dinero, sense: dinero}, {surface: abriría, sense: abrir, form: 'form:cond'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: aquí, sense: aquí}, {surface: en, sense: en}, {surface: Centro, sense: centro}, {surface: Habana, sense: habana}]
+      translations: {en: 'If I had money, I''d open a paladar here in Centro Habana.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Y yo te daría la receta de mi ropa vieja!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: te, sense: te}, {surface: daría, sense: dar, form: 'form:cond'}, {surface: la, sense: el}, {surface: receta, sense: receta}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
+      translations: {en: 'And I''d give you the recipe for my ropa vieja!'}
+  - line:
+      speaker: daniel
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: Y yo sería tu primer cliente, primo.
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: sería, sense: ser, form: 'form:cond'}, {surface: tu, sense: tu}, {surface: primer, sense: primero}, {surface: cliente, sense: cliente}, {surface: primo, sense: primo}]
+      translations: {en: 'And I''d be your first customer, cousin.'}
+  - choose:
+      prompt: {en: 'What would Yunior do if he had money?'}
+      options: [{en: Open a paladar in Havana}, {en: Leave for Miami}, {en: Buy a house in Cienfuegos}]
+      answer: 0
+  - line:
+      speaker: papi
+      forms:
+        es-Latn/standard:
+          text: ¿Y tú, Daniel? ¿Cuál es tu sueño?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: Daniel, sense: daniel}, {surface: Cuál, sense: cuál}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: sueño, sense: sueño}]
+      translations: {en: 'And you, Daniel? What''s your dream?'}
+  - line:
+      speaker: daniel
+      ask: complete
+      gap: sense:hablar
+      distractors: ['sense:cocinar', 'sense:cantar']
+      forms:
+        es-Latn/standard:
+          text: Si pudiera, hablaría español tan bien como Abuela.
+          tokens: [{surface: Si, sense: si}, {surface: pudiera, sense: poder, form: 'form:subj-past'}, {surface: hablaría, sense: hablar, form: 'form:cond'}, {surface: español, sense: español}, {surface: tan, sense: tan}, {surface: bien, sense: bien}, {surface: como, sense: como.like}, {surface: Abuela, sense: abuela}]
+      translations: {en: 'If I could, I''d speak Spanish as well as Grandma.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Pero mi'jo, ¡tú ya hablas como un cubano de Matanzas!
+          tokens: [{surface: Pero, sense: pero}, {surface: "mi'jo", sense: mijo}, {surface: tú, sense: tú}, {surface: ya, sense: ya}, {surface: hablas, sense: hablar, form: 'form:pres-2s'}, {surface: como, sense: como.like}, {surface: un, sense: un}, {surface: cubano, sense: cubano}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}]
+      translations: {en: 'But sweetheart, you already talk like a Cuban from Matanzas!'}
+  - line:
+      speaker: yunior
+      forms:
+        es-Latn/standard:
+          text: Bueno, primo, el año que viene, si puedo, voy a Miami.
+          tokens: [{surface: Bueno, sense: bueno}, {surface: primo, sense: primo}, {surface: el, sense: el}, {surface: año, sense: año}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: si, sense: si}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
+      translations: {en: 'Well, cousin, next year, if I can, I''m coming to Miami.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Si Dios quiere, mi'jo. Si Dios quiere.
+          tokens: [{surface: Si, sense: si}, {surface: Dios, sense: dios}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: "mi'jo", sense: mijo}, {surface: Si, sense: si}, {surface: Dios, sense: dios}, {surface: quiere, sense: querer, form: 'form:pres-3s'}]
+      translations: {en: 'God willing, sweetheart. God willing.'}
+  - choose:
+      prompt: {en: 'What does Yunior say about next year?'}
+      options: [{en: 'He''ll come to Miami, if he can'}, {en: He'll open a paladar in Matanzas}, {en: He'll stay in Cienfuegos}]
+      answer: 0
+scenarios:
+- id: es.futuro-yunior
+  after: es.u28.el-futuro
+  title: {en: 'Talking about the future with Yunior'}
+  setting: {en: 'Late on a Saturday night, a WhatsApp video call between Hialeah and Centro Habana. Yunior is up on the azotea of his building, where the signal is better, with the lights of the city behind him when there is power. A friend of his has just left Cuba, and he is turning over his own future: wait for a visa or the bombo, or stay and open a paladar.'}
+  character: {en: 'Yunior, Daniel''s cousin, 25, a habanero from Centro Habana: funny, quick and proud, with a hundred plans and little money. He speaks fast and very Cuban (asere, ¿qué bolá?, la Yuma, el bombo, aquí luchando), asks Daniel what he would do in his place, and teases his Miami cousin about his Spanish.'}
+  goal: {en: 'Ask Yunior what he would do if he could (¿qué harías si…?, si pudieras…), tell him what you would do in his place (si yo fuera tú…), talk about real plans with si and the present (si puedo, voy en el verano), tell him about the family''s dreams (Abuela''s paladar, bringing Marisol to Miami), and end by promising something you will do if you can.'}

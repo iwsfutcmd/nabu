@@ -394,7 +394,7 @@ sentences:
     apc-Latn/arabizi:
       text: la2, mish ghali, rkhis.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: rkhis, sense: rkhis}]
-      reverse: (la2|la) (mish|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
+      reverse: (la2|la) (mish|msh|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
   translations:
     en: |-
       No, (it's|it is) not expensive, (it's|it is) cheap.
@@ -510,10 +510,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: تيتا عمرا مية سنة!
-      tokens: [{surface: تيتا, sense: teta}, {surface: عمرا, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
+      text: تيتا عمرها مية سنة!
+      tokens: [{surface: تيتا, sense: teta}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
           sense: sene}]
-      reverse: تيتا (عمرا|عمرها) (مية|مئة|ميت) سنة
+      reverse: تيتا (عمرها|عمرا) (مية|مئة|ميت) سنة
     apc-Latn/arabizi:
       text: teta 3omra mit sene!
       tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,
@@ -538,14 +538,46 @@ sentences:
       reverse: (shu|sho) (ra2mak|ra2emak|rakamak)
   translations:
     en: What('s| is) your (number|phone number)?
+- id: s.num.31
+  node: apc.num.money
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: معكن مصاري؟
+      tokens: [{surface: معكن, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: مصاري, sense: masari}]
+      reverse: معكن مصاري
+    apc-Latn/arabizi:
+      text: ma3kon masari?
+      tokens: [{surface: ma3kon, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: masari, sense: masari}]
+      reverse: (ma3kon|m3kon|ma3kun) (masari|masare|msari)
+  translations:
+    en: |-
+      Do you have [any] money [on you]?
+      Have you got [any] money [on you]?
+- id: s.num.32
+  node: apc.num.age
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: مايا، قدّيش عمرك؟
+      tokens: [{surface: مايا, sense: maya}, {surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, vocalized: عُمْرِك, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      reverse: مايا (قدّيش|أدّيش) عمرك
+    apc-Latn/arabizi:
+      text: Maya, 2addesh 3omrik?
+      tokens: [{surface: Maya, sense: maya}, {surface: 2addesh, sense: 2addesh}, {surface: 3omrik, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      reverse: Maya (2addesh|addesh|2adesh|2addeish) (3omrik|3umrik|3omorik|3omrek)
+  translations:
+    en: Maya, how old are you?
 stories:
 - id: apc.story.dekkene
   node: apc.num.story
   title: {en: At the corner shop}
   provenance: {author: 'llm:claude@6914f241714e', status: draft}
   characters:
-  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: abu-ali, name: {apc-Arab/standard: أبو علي, apc-Latn/arabizi: Abu Ali}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: abu-ali, speaker: m, name: {apc-Arab/standard: أبو علي, apc-Latn/arabizi: Abu Ali}}
   steps:
   - line:
       speaker: sami

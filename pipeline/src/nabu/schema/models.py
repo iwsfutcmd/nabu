@@ -438,7 +438,7 @@ type KcId = Annotated[
 
 class Persons(BaseModel):
     """
-    Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+    Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
     """
 
     model_config = ConfigDict(
@@ -450,8 +450,10 @@ class Persons(BaseModel):
         Field(description="The speaker's gender, where the sentence marks it."),
     ] = None
     addressee: Annotated[
-        Literal["m", "f", "pl"] | None,
-        Field(description="Who is spoken to: one man, one woman, or several people."),
+        Literal["m", "f", "sg", "du", "pl"] | None,
+        Field(
+            description="Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl)."
+        ),
     ] = None
 
 
@@ -462,6 +464,18 @@ type Facet = Annotated[
         title="Facet",
     ),
 ]
+
+
+class PlacementPolicy(BaseModel):
+    """
+    How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    production: Literal["tiles", "typed"] | None = None
 
 
 type ScriptCode = Annotated[
@@ -768,6 +782,12 @@ class StoryCharacter(BaseModel):
         frozen=True,
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    speaker: Annotated[
+        Literal["m", "f"] | None,
+        Field(
+            description="The character's gender as a speaker, where the course sets it: a man (m) or a woman (f). Its lines go to a voice of the cast that matches (ADR 0078); without it, the character gets a voice of the cast at random, the same for every line of the story."
+        ),
+    ] = None
     name: Annotated[
         dict[OrthographyId, NameAdditionalProperty],
         Field(
@@ -2137,6 +2157,13 @@ class ReferenceVoice(BaseModel):
             description="Made by a model (`design`), not recorded: designed from speaker attributes (OmniVoice) or cloned from a prompt recording (Navoiy)."
         ),
     ]
+    source: Annotated[
+        str | None,
+        Field(
+            description="A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0076). The speaker is the provenance's human:<id>.",
+            min_length=1,
+        ),
+    ] = None
     design: Annotated[
         Design | None,
         Field(description="How a synthetic reference was made, so it can be made again."),
@@ -2216,6 +2243,12 @@ class BundleManifest(BaseModel):
         Field(
             description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
             min_length=1,
+        ),
+    ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
         ),
     ] = None
     versions: Annotated[
@@ -2326,6 +2359,12 @@ class AudioVoice(BaseModel):
         frozen=True,
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
+    speaker: Annotated[
+        Literal["m", "f"] | None,
+        Field(
+            description="Whose voice it is: a man's (m) or a woman's (f). A course's voices share its items at random; a sentence or story character whose grammar says who speaks goes to a voice of that gender, if the cast has one (ADR 0078). A cast of one voice reads everything."
+        ),
+    ] = None
     provider: Annotated[
         Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
         Field(description="A provider of nabu.audio.providers."),
@@ -2729,6 +2768,18 @@ class Marks(BaseModel):
             description="Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
         ),
     ] = None
+    distinguishes: Annotated[
+        bool | None,
+        Field(
+            description="Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies."
+        ),
+    ] = None
+    wordNote: Annotated[
+        NoteId | None,
+        Field(
+            description="The note for an answer whose marks spell another word (with `distinguishes`)."
+        ),
+    ] = None
 
 
 class Zwnj(BaseModel):
@@ -3125,6 +3176,12 @@ class Character(BaseModel):
         frozen=True,
     )
     id: str
+    speaker: Annotated[
+        Literal["m", "f"] | None,
+        Field(
+            description="The character's gender as a speaker, where the course sets it (ADR 0078)."
+        ),
+    ] = None
     name: Annotated[dict[str, TaggedText], Field(description="Per orthography.")]
 
 
@@ -3430,6 +3487,7 @@ class CourseSource(BaseModel):
             min_length=1,
         ),
     ] = None
+    placement: PlacementPolicy | None = None
     iPlusOne: Annotated[
         int | None,
         Field(description="Maximum new knowledge components per sentence (§7.5). Default 1.", ge=1),

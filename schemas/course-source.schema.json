@@ -55,6 +55,9 @@
         "$ref": "common.schema.json#/$defs/Facet"
       }
     },
+    "placement": {
+      "$ref": "common.schema.json#/$defs/PlacementPolicy"
+    },
     "iPlusOne": {
       "description": "Maximum new knowledge components per sentence (§7.5). Default 1.",
       "type": "integer",
@@ -586,6 +589,11 @@
           "type": "string",
           "pattern": "^[a-z][a-z0-9-]*$"
         },
+        "speaker": {
+          "description": "Whose voice it is: a man's (m) or a woman's (f). A course's voices share its items at random; a sentence or story character whose grammar says who speaks goes to a voice of that gender, if the cast has one (ADR 0078). A cast of one voice reads everything.",
+          "type": "string",
+          "enum": ["m", "f"]
+        },
         "provider": {
           "description": "A provider of nabu.audio.providers.",
           "type": "string",
@@ -738,6 +746,11 @@
         "id": {
           "type": "string",
           "pattern": "^[a-z][a-z0-9-]*$"
+        },
+        "speaker": {
+          "description": "The character's gender as a speaker, where the course sets it: a man (m) or a woman (f). Its lines go to a voice of the cast that matches (ADR 0078); without it, the character gets a voice of the cast at random, the same for every line of the story.",
+          "type": "string",
+          "enum": ["m", "f"]
         },
         "name": {
           "description": "The name as written in each orthography of the course (keys: orthography ids).",

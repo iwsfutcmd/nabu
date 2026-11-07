@@ -414,7 +414,7 @@ sentences:
     apc-Latn/arabizi:
       text: la2, mish b3ide.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
-      reverse: (la2|la) (mish|mesh|mush) (b3ide|ba3ide|b3eede)
+      reverse: (la2|la) (mish|msh|mesh|mush) (b3ide|ba3ide|b3eede)
   translations:
     en: |-
       No, it('s| is) not far.
@@ -579,14 +579,68 @@ sentences:
       reverse: (el|l|il) (salon|salone) (7elo|7ilo|helo|7elu)
   translations:
     en: The (living room|sitting room|lounge) is (nice|pretty|lovely|beautiful).
+- id: s.home.34
+  node: apc.home.where
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وين بيتكن؟
+      tokens: [{surface: وين, sense: wen}, {surface: بيتكن, sense: bet, morphs: [{surface: بيت, kc: 'sense:bet'}, {surface: كن, kc: 'form:poss-2pl'}]}]
+      reverse: وين بيتكن
+    apc-Latn/arabizi:
+      text: wen betkon?
+      tokens: [{surface: wen, sense: wen}, {surface: betkon, sense: bet, morphs: [{surface: bet, kc: 'sense:bet'}, {surface: kon, kc: 'form:poss-2pl'}]}]
+      reverse: (wen|wein|wayn) (betkon|beitkon|baytkon|betkun)
+  translations:
+    en: |-
+      Where is your (house|home)?
+      Where's your (house|home)?
+      Where do you live?
+- id: s.home.35
+  node: apc.home.directions
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: المطبخ ع يمينك.
+      tokens: [{surface: المطبخ, sense: matbakh, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مطبخ, kc: 'sense:matbakh'}]}, {surface: ع, sense: 3a}, {surface: يمينك, sense: yamin, vocalized: يَمينِك,
+          morphs: [{surface: يمين, kc: 'sense:yamin'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      reverse: المطبخ (ع|على) يمينك
+    apc-Latn/arabizi:
+      text: el matbakh 3a yaminik.
+      tokens: [{surface: el, sense: el}, {surface: matbakh, sense: matbakh}, {surface: 3a, sense: 3a}, {surface: yaminik, sense: yamin, morphs: [{surface: yamin, kc: 'sense:yamin'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      reverse: (el|l|il) (matbakh|matba5) (3a|3ala) (yaminik|yaminek|yamenik)
+  translations:
+    en: |-
+      The kitchen is on your right.
+      The kitchen's on your right.
+- id: s.home.36
+  node: apc.home.directions
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: الحمّام ع شمالكن.
+      tokens: [{surface: الحمّام, sense: 7ammem, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حمّام, kc: 'sense:7ammem'}]}, {surface: ع, sense: 3a}, {surface: شمالكن, sense: shmel, morphs: [{surface: شمال,
+              kc: 'sense:shmel'}, {surface: كن, kc: 'form:poss-2pl'}]}]
+      reverse: الحمّام (ع|على) شمالكن
+    apc-Latn/arabizi:
+      text: el 7ammem 3a shmelkon.
+      tokens: [{surface: el, sense: el}, {surface: 7ammem, sense: 7ammem}, {surface: 3a, sense: 3a}, {surface: shmelkon, sense: shmel, morphs: [{surface: shmel, kc: 'sense:shmel'}, {surface: kon, kc: 'form:poss-2pl'}]}]
+      reverse: (el|l|il) (7ammem|7ammam|hammam|7amam) (3a|3ala) (shmelkon|shmalkon|shmelkun)
+  translations:
+    en: |-
+      The (bathroom|toilet) is on your left.
+      The (bathroom|toilet)'s on your left.
 stories:
 - id: apc.story.new-house
   node: apc.home.story
   title: {en: Maya's house}
   provenance: {author: 'llm:claude@6914f241714e', status: draft}
   characters:
-  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
   steps:
   - line:
       speaker: sami

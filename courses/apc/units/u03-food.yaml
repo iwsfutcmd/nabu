@@ -6,12 +6,9 @@ id: u03-food
 title: {en: At the table}
 cefr: A1
 kcs:
-- {id: 'sense:tfaddal', gloss: {en: 'here you are; please, go ahead; come in'}, forms: {apc-Arab/standard: [تفضّل, تفضّلي], apc-Latn/arabizi: [tfaddal, tfaddali]}, notes: {en: 'Offering something or inviting
-      someone in. To a woman: تفضّلي, tfaddali.'}}
-- {id: 'sense:akal', gloss: {en: eat}, forms: {apc-Arab/standard: [كول, باكل, آكل, مناكل, أكلت, أكل, أكلنا], apc-Latn/arabizi: [kol, bekol, ekol, mnekol, akalt, akal, akalna]}, notes: {en: 'kol! eat! (to
-      a man); kili! (to a woman). I eat: bekol (unit 6).'}}
-- {id: 'sense:shereb', gloss: {en: drink}, forms: {apc-Arab/standard: [اشرب, بشرب, منشرب, بتشربي, تشرب, شربت], apc-Latn/arabizi: [eshrab, bishrab, mnishrab, btishrabi, tishrab, shrebt]}, notes: {en: eshrab!
-      drink! (to a man); eshrabi! (to a woman).}}
+- {id: 'sense:tfaddal', gloss: {en: 'here you are; please, go ahead; come in'}, forms: {apc-Arab/standard: [تفضّل, تفضّلي], apc-Latn/arabizi: [tfaddal, tfaddali]}, notes: {en: 'Offering something or inviting someone in. To a woman: تفضّلي, tfaddali; to several people: تفضّلوا, tfaddalo.'}}
+- {id: 'sense:akal', gloss: {en: eat}, forms: {apc-Arab/standard: [كول, باكل, آكل, مناكل, أكلت, أكل, أكلنا], apc-Latn/arabizi: [kol, bekol, ekol, mnekol, akalt, akal, akalna]}, notes: {en: 'kol! eat! (to a man); kili! (to a woman); kilo! (to several people). I eat: bekol (unit 6).'}}
+- {id: 'sense:shereb', gloss: {en: drink}, forms: {apc-Arab/standard: [اشرب, بشرب, منشرب, بتشربي, تشرب, شربت], apc-Latn/arabizi: [eshrab, bishrab, mnishrab, btishrabi, tishrab, shrebt]}, notes: {en: eshrab! drink! (to a man); eshrabi! (to a woman); eshrabo! (to several people).}}
 - {id: 'sense:sa77tein', gloss: {en: enjoy your meal; to your health}, forms: {apc-Arab/standard: [صحتين], apc-Latn/arabizi: [sa77tein]}, notes: {en: 'Said to someone eating or drinking. The answer: ع
       قلبك, 3a albak.'}}
 - {id: 'sense:3a-albak', gloss: {en: and to you (the answer to sa77tein)}, forms: {apc-Arab/standard: [ع قلبك], apc-Latn/arabizi: [3a albak]}, notes: {en: 'Literally ''on your heart''; also written على قلبك. To a woman:
@@ -40,6 +37,8 @@ kcs:
 - {id: 'sense:7ummus', gloss: {en: hummus}, forms: {apc-Arab/standard: [حمّص], apc-Latn/arabizi: [7ummus]}}
 - {id: 'sense:tabbouleh', gloss: {en: tabbouleh (parsley salad)}, forms: {apc-Arab/standard: [تبّولة], apc-Latn/arabizi: [tabboule]}}
 - {id: 'sense:sa7n', gloss: {en: plate; dish}, forms: {apc-Arab/standard: [صحن], apc-Latn/arabizi: [sa7n]}}
+- {id: 'form:imp-2pl', gloss: {en: '-o: telling several people to do something'}, notes: {en: 'tfaddalo! kilo! eshrabo! Arabic script: وا after the verb (تفضّلوا).'}}
+- {id: 'form:pl', gloss: {en: '-in: plural ending on an adjective'}, notes: {en: 'jou3anin: hungry (several people); mabsoutin: happy. Arabic script: ين (جوعانين).'}}
 nodes:
 - {id: apc.food.welcome, kind: lesson, introduces: ['sense:tfaddal', 'sense:akal', 'sense:shereb', 'sense:sa77tein', 'sense:3a-albak', 'form:imp-2fs']}
 - {id: apc.food.basics, kind: lesson, introduces: ['sense:khebz', 'sense:may', 'sense:sukkar', 'sense:ma3', 'sense:el', 'sense:akl']}
@@ -47,6 +46,7 @@ nodes:
 - {id: apc.food.taste, kind: lesson, introduces: ['sense:tayyeb', 'sense:ktir', 'sense:shway', 'sense:bas']}
 - {id: apc.food.hungry, kind: lesson, introduces: ['sense:jou3an', 'sense:3atshan', 'sense:kamen', 'sense:fenjen']}
 - {id: apc.food.mezze, kind: lesson, introduces: ['sense:7ummus', 'sense:tabbouleh', 'sense:sa7n']}
+- {id: apc.food.you-pl, kind: lesson, introduces: ['form:imp-2pl', 'form:pl']}
 - {id: apc.food.story, kind: story}
 sentences:
 - id: s.food.1
@@ -577,15 +577,145 @@ sentences:
     en: |-
       Eat (more|some more)!
       Have (more|some more)!
+- id: s.food.32
+  node: apc.food.hungry
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا جوعانة.
+      tokens: [{surface: أنا, sense: ana}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      reverse: '[أنا] جوعانة'
+    apc-Latn/arabizi:
+      text: ana jou3ane.
+      tokens: [{surface: ana, sense: ana}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      reverse: '[ana] (jou3ane|jo3ane|ju3ane|jou3ana)'
+  translations:
+    en: I('m| am) hungry.
+- id: s.food.33
+  node: apc.food.hungry
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا عطشانة.
+      tokens: [{surface: أنا, sense: ana}, {surface: عطشانة, sense: 3atshan, form: 'form:fem'}]
+      reverse: '[أنا] عطشانة'
+    apc-Latn/arabizi:
+      text: ana 3atshane.
+      tokens: [{surface: ana, sense: ana}, {surface: 3atshane, sense: 3atshan, form: 'form:fem'}]
+      reverse: '[ana] (3atshane|3atchane|3atshana|3atshene)'
+  translations:
+    en: I('m| am) thirsty.
+- id: s.food.34
+  node: apc.food.hungry
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: مايا، جوعانة؟
+      tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
+      reverse: مايا [إنتي] جوعانة
+    apc-Latn/arabizi:
+      text: Maya, jou3ane?
+      tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
+      reverse: Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
+  translations:
+    en: Maya, are you hungry?
+- id: s.food.35
+  node: apc.food.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: تفضّلوا!
+      tokens: [{surface: تفضّلوا, sense: tfaddal, form: 'form:imp-2pl'}]
+      reverse: (تفضّلوا|تفضّلو)
+    apc-Latn/arabizi:
+      text: tfaddalo!
+      tokens: [{surface: tfaddalo, sense: tfaddal, form: 'form:imp-2pl'}]
+      reverse: (tfaddalo|tfadalo|tfaddalu|tfaddaloo)
+  translations:
+    en: |-
+      Here you go!
+      Here you are!
+      Help yourselves!
+      Go ahead!
+      Come in!
+- id: s.food.36
+  node: apc.food.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: كلوا!
+      tokens: [{surface: كلوا, sense: akal, form: 'form:imp-2pl'}]
+      reverse: (كلوا|كلو|كولوا|كولو)
+    apc-Latn/arabizi:
+      text: kilo!
+      tokens: [{surface: kilo, sense: akal, form: 'form:imp-2pl'}]
+      reverse: (kilo|kelo|kulu|kolo|kilu)
+  translations:
+    en: |-
+      Eat!
+      Eat up!
+      Go on, eat!
+- id: s.food.37
+  node: apc.food.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: اشربوا شاي!
+      tokens: [{surface: اشربوا, sense: shereb, form: 'form:imp-2pl'}, {surface: شاي, sense: shay}]
+      reverse: (اشربوا|اشربو) شاي
+    apc-Latn/arabizi:
+      text: eshrabo shay!
+      tokens: [{surface: eshrabo, sense: shereb, form: 'form:imp-2pl'}, {surface: shay, sense: shay}]
+      reverse: (eshrabo|ishrabo|shrabo|eshrabu) (shay|shai)
+  translations:
+    en: |-
+      Drink (some tea|tea)!
+      Have (some tea|a tea|a cup of tea)!
+- id: s.food.38
+  node: apc.food.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: جوعانين؟
+      tokens: [{surface: جوعانين, sense: jou3an, form: 'form:pl'}]
+      reverse: '[إنتو] جوعانين'
+    apc-Latn/arabizi:
+      text: jou3anin?
+      tokens: [{surface: jou3anin, sense: jou3an, form: 'form:pl'}]
+      reverse: '[(ento|into)] (jou3anin|jo3anin|ju3anin|jou3enin)'
+  translations:
+    en: Are you hungry?
+- id: s.food.39
+  node: apc.food.you-pl
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: عطشانين؟
+      tokens: [{surface: عطشانين, sense: 3atshan, form: 'form:pl'}]
+      reverse: '[إنتو] عطشانين'
+    apc-Latn/arabizi:
+      text: 3atshanin?
+      tokens: [{surface: 3atshanin, sense: 3atshan, form: 'form:pl'}]
+      reverse: '[(ento|into)] (3atshanin|3atchanin|3atshenin)'
+  translations:
+    en: Are you thirsty?
 stories:
 - id: apc.story.teta-lunch
   node: apc.food.story
   title: {en: Breakfast at Teta's}
   provenance: {author: 'llm:claude@6914f241714e', status: draft}
   characters:
-  - {id: teta, name: {apc-Arab/standard: تيتا, apc-Latn/arabizi: Teta}}
-  - {id: sami, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
-  - {id: maya, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: teta, speaker: f, name: {apc-Arab/standard: تيتا, apc-Latn/arabizi: Teta}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
   steps:
   - line:
       speaker: teta

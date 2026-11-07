@@ -272,6 +272,10 @@ export type NoteId = string;
  */
 export type UnicodeSetPattern1 = string;
 /**
+ * Key of a feedback note in the MF2 catalogs (feedback.note.<id>).
+ */
+export type NoteId1 = string;
+/**
  * A CLDR Keyboard 3.0 layout (UTS #35 Part 7).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -357,6 +361,7 @@ export interface NabuSchemaIndex {
   readonly KcId: KcId;
   readonly Persons: Persons;
   readonly Facet: Facet;
+  readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
@@ -945,6 +950,10 @@ export interface ReferenceVoice {
    */
   readonly synthetic: boolean;
   /**
+   * A recorded reference (not synthetic): where the recording came from, a URL or a description, for its license's attribution (ADR 0076). The speaker is the provenance's human:<id>.
+   */
+  readonly source?: string;
+  /**
    * How a synthetic reference was made, so it can be made again.
    */
   readonly design?: {
@@ -1035,6 +1044,7 @@ export interface BundleManifest {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
+  readonly placement?: PlacementPolicy;
   /**
    * Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU.
    */
@@ -1065,6 +1075,12 @@ export interface BundleManifest {
    * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
    */
   readonly release?: boolean;
+}
+/**
+ * How the placement test probes, where the course says (course source `placement`, ADR 0077).
+ */
+export interface PlacementPolicy {
+  readonly production?: "tiles" | "typed";
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1171,7 +1187,7 @@ export interface BundleSentence {
   readonly license: string;
 }
 /**
- * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit.
+ * Who says a sentence and who it is said to, where the target language marks it and the support language does not: a masculine or feminine you, a singular, dual or plural you, a speaker's gender on adjectives (Arabic jou3an / jou3ane). The prompt shows it when the learner writes the sentence in the target language, so the accept set holds only the forms that fit. A course should exercise every value its language marks, not one (ADR 0075).
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Persons".
@@ -1182,9 +1198,9 @@ export interface Persons {
    */
   readonly speaker?: "m" | "f";
   /**
-   * Who is spoken to: one man, one woman, or several people.
+   * Who is spoken to: one man (m), one woman (f), one person where the language marks number but not gender (sg: Cantonese 你 against 你哋), two people where it has a dual (du), or several people (pl).
    */
-  readonly addressee?: "m" | "f" | "pl";
+  readonly addressee?: "m" | "f" | "sg" | "du" | "pl";
 }
 /**
  * A compiled story (Phase 6): its lines in every orthography of the course, translations and questions in every support language.
@@ -1200,6 +1216,10 @@ export interface BundleStory {
   };
   readonly characters: readonly {
     readonly id: string;
+    /**
+     * The character's gender as a speaker, where the course sets it (ADR 0078).
+     */
+    readonly speaker?: "m" | "f";
     /**
      * Per orthography.
      */
@@ -1314,6 +1334,15 @@ export interface BundleClip {
    */
   readonly credit?: string;
   readonly timings?: readonly TokenTiming[];
+}
+/**
+ * How a course's placement test probes (ADR 0077). By default it checks production with word tiles, which is quick; `typed` has the learner type, which also checks spelling and accent marks: what a heritage speaker most often lacks.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "PlacementPolicy".
+ */
+export interface PlacementPolicy1 {
+  readonly production?: "tiles" | "typed";
 }
 /**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
@@ -1438,6 +1467,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly facets?: readonly Facet[];
+  readonly placement?: PlacementPolicy1;
   /**
    * Maximum new knowledge components per sentence (§7.5). Default 1.
    */
@@ -1656,6 +1686,10 @@ export interface StorySource {
 export interface StoryCharacter {
   readonly id: string;
   /**
+   * The character's gender as a speaker, where the course sets it: a man (m) or a woman (f). Its lines go to a voice of the cast that matches (ADR 0078); without it, the character gets a voice of the cast at random, the same for every line of the story.
+   */
+  readonly speaker?: "m" | "f";
+  /**
    * The name as written in each orthography of the course (keys: orthography ids).
    */
   readonly name: {
@@ -1805,6 +1839,10 @@ export interface CourseAudio {
  */
 export interface AudioVoice {
   readonly id: string;
+  /**
+   * Whose voice it is: a man's (m) or a woman's (f). A course's voices share its items at random; a sentence or story character whose grammar says who speaks goes to a voice of that gender, if the cast has one (ADR 0078). A cast of one voice reads everything.
+   */
+  readonly speaker?: "m" | "f";
   /**
    * A provider of nabu.audio.providers.
    */
@@ -2732,6 +2770,11 @@ export interface MatchPolicy {
     readonly policy: Policy;
     readonly note?: NoteId;
     readonly optional?: UnicodeSetPattern1;
+    /**
+     * Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.
+     */
+    readonly distinguishes?: boolean;
+    readonly wordNote?: NoteId1;
   };
   readonly zwnj?: {
     /**

@@ -19,12 +19,52 @@ def _compile(core_cli: CoreCli, tmp_path: Path, course: dict[str, Any]) -> Any:
     return compile_course(path, core_cli)
 
 
+def _besides_coverage(diags: Any) -> list[str]:
+    """Diagnostics other than curriculum.one-gender: these one-sentence courses tag one gender."""
+    return [d.format() for d in diags.items if d.lint != "curriculum.one-gender"]
+
+
 def test_persons_reach_the_bundle(core_cli: CoreCli, tmp_path: Path) -> None:
     course = copy.deepcopy(FA)
     course["units"][0]["sentences"][0]["persons"] = {"addressee": "f", "speaker": "m"}
     diags, compiled = _compile(core_cli, tmp_path, course)
-    assert [d.format() for d in diags.items] == []
+    assert _besides_coverage(diags) == []
     assert compiled.units[0]["sentences"][0]["persons"] == {"addressee": "f", "speaker": "m"}
+
+
+def test_every_number_of_addressees_is_a_person(core_cli: CoreCli, tmp_path: Path) -> None:
+    """One person where only number is marked (Cantonese 你), two where there is a dual."""
+    for addressee in ("sg", "du", "pl"):
+        course = copy.deepcopy(FA)
+        course["units"][0]["sentences"][0]["persons"] = {"addressee": addressee, "speaker": "f"}
+        diags, compiled = _compile(core_cli, tmp_path, course)
+        assert _besides_coverage(diags) == []
+        persons = compiled.units[0]["sentences"][0]["persons"]
+        assert persons == {"addressee": addressee, "speaker": "f"}
+
+
+def test_one_gender_alone_is_a_warning(core_cli: CoreCli, tmp_path: Path) -> None:
+    """Tagging a man speaking (or spoken to) and never a woman warns, once per role; tagging the
+    other gender too clears it (ADR 0075)."""
+    course = copy.deepcopy(FA)
+    first = course["units"][0]["sentences"][0]
+    first["persons"] = {"speaker": "m", "addressee": "m"}
+    diags, _ = _compile(core_cli, tmp_path, course)
+    warned = [d for d in diags.items if d.lint == "curriculum.one-gender"]
+    assert [d.severity for d in warned] == ["warning", "warning"]
+    assert ["speaker" in warned[0].message, "addressee" in warned[1].message] == [True, True]
+
+    second = copy.deepcopy(first)
+    second["id"] = "s.2"
+    second["persons"] = {"speaker": "f", "addressee": "pl"}
+    course["units"][0]["sentences"].append(second)
+    diags, _ = _compile(core_cli, tmp_path, course)
+    warned = [d.message for d in diags.items if d.lint == "curriculum.one-gender"]
+    assert len(warned) == 1 and "spoken to" in warned[0], warned  # plural is not a gender
+
+    second["persons"] = {"speaker": "f", "addressee": "f"}
+    diags, _ = _compile(core_cli, tmp_path, course)
+    assert [d.format() for d in diags.items] == []
 
 
 def test_untagged_sentences_carry_none(core_cli: CoreCli, tmp_path: Path) -> None:

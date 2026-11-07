@@ -1,0 +1,582 @@
+# Unit 13 (es): the preterite and the imperfect together. Abuela Cachita tells how she met Abuelo Pepe at a guateque
+# in the Matanzas countryside: what life was like (the imperfect: vivía, había, bailaba) and what happened that
+# night (the preterite: llegó, se rompió, me sacó a bailar); his 1957 máquina, the music, the first dance.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a native speaker.
+id: u13
+title: {en: 'Los cuentos de Abuela: Grandma''s stories'}
+cefr: B1
+kcs:
+- {id: 'sense:joven', gloss: {en: young; young person}, forms: {es-Latn/standard: [joven]}, notes: {en: 'The same for men and women: un joven, una joven. The plural takes an accent: jóvenes.'}}
+- {id: 'sense:guateque', gloss: {en: country party with music and dancing (Cuban)}, forms: {es-Latn/standard: [guateque]}, notes: {en: 'A Cuban country party: a roast pig, son played on the tres, décimas improvised by guajiros, dancing till dawn. Now also any lively party at home.'}}
+- {id: 'sense:música', gloss: {en: music}, forms: {es-Latn/standard: [música]}, notes: {en: 'With the accent on the mú, which heritage writers often leave out. Cuban music: son, danzón, bolero, guaracha.'}}
+- {id: 'sense:bailar', gloss: {en: to dance}, forms: {es-Latn/standard: [bailar]}, notes: {en: 'Bailar con alguien: to dance with someone. Cubans dance casino (Cuban salsa) and, in Abuela''s day, son and danzón. Bailábamos: we used to dance, with its accent.'}}
+- {id: 'sense:gente', gloss: {en: people}, forms: {es-Latn/standard: [gente]}, notes: {en: 'Singular in Spanish: la gente baila, la gente bailaba. La gente bailaban is a common slip. Mucha gente: a lot of people.'}}
+- {id: 'sense:viejo', gloss: {en: 'old; old man (los viejos: old folks)'}, forms: {es-Latn/standard: [viejo]}, notes: {en: 'In Cuba mis viejos is my parents, said with love, and mi vieja my mom (or my wife). For people, mayor is the polite word: una señora mayor.'}}
+- {id: 'sense:penoso', gloss: {en: shy; easily embarrassed (Cuban)}, forms: {es-Latn/standard: [penoso]}, notes: {en: 'In Cuba and the Caribbean, ser penoso is to be shy, and me da pena is I''m embarrassed. In Spain and Mexico penoso means painful or pitiful, and shy is tímido.'}}
+- {id: 'sense:máquina', gloss: {en: car (Cuban); machine}, forms: {es-Latn/standard: [máquina]}, notes: {en: 'Older Cubans call a car una máquina; carro is common too (coche in Spain). The 1950s American cars still running in Cuba are almendrones; Abuelo Pepe''s was a 1957 Chevrolet.'}}
+- {id: 'sense:lindo', gloss: {en: pretty; lovely; handsome}, forms: {es-Latn/standard: [lindo]}, notes: {en: 'Cubans say lindo of people and things: una máquina linda, un muchacho lindo. In Cuba guapo often means tough or angry (se puso guapo: he got mad); a handsome man is lindo or buen mozo.'}}
+- {id: 'sense:lo', gloss: {en: 'him; it (la: her, it; los, las: them)'}, forms: {es-Latn/standard: [lo]}, notes: {en: 'Lo for a man or a masculine word, la for a woman or a feminine one: la arregló (the máquina). It goes before the verb: todos lo miraron, everyone looked at him.'}}
+- {id: 'sense:mirar', gloss: {en: to look (at); to watch}, forms: {es-Latn/standard: [mirar]}, notes: {en: 'Mirar is to look at, ver to see. A before a person (mirar a Pepe), not before a thing (mirar la máquina). Cubans open sentences with ¡Mira…!: look, listen.'}}
+- {id: 'sense:mecánico', gloss: {en: mechanic}, forms: {es-Latn/standard: [mecánico]}, notes: {en: 'Stress and accent on the cá. In Cuba a good mechanic keeps a seventy-year-old car running with parts he makes himself.'}}
+- {id: 'sense:romperse', gloss: {en: to break; to break down}, forms: {es-Latn/standard: [romperse]}, notes: {en: 'La máquina se rompió: the car broke down. Cubans also say se descompuso. Without se, romper is to break something: rompí el vaso.'}}
+- {id: 'sense:arreglar', gloss: {en: to fix; to repair}, forms: {es-Latn/standard: [arreglar]}, notes: {en: 'Arreglar la máquina: to fix the car. Arreglarse is to get dressed up: Abuela se arreglaba para los guateques.'}}
+- {id: 'sense:mientras', gloss: {en: while}, forms: {es-Latn/standard: [mientras]}, notes: {en: 'Mientras todos miraban: while everyone watched. What goes on in the background is in the imperfect.'}}
+- {id: 'sense:conocer', gloss: {en: 'to know (a person, a place); to meet (conocí: I met)'}, forms: {es-Latn/standard: [conocer]}, notes: {en: 'In the preterite it is to meet for the first time: conocí a tu abuelo. A before a person. To know a fact is saber. Conozco, I know, is spelled with zc.'}}
+- {id: 'sense:sacar', gloss: {en: 'to take out; sacar a bailar: to ask to dance'}, forms: {es-Latn/standard: [sacar]}, notes: {en: 'Sacar a bailar: to ask someone to dance, to lead them onto the floor. Saqué, I took out: c becomes qu before e.'}}
+- {id: 'sense:primero', gloss: {en: first}, forms: {es-Latn/standard: [primero]}, notes: {en: 'Primer before a masculine noun: mi primer novio, el primer baile; but la primera vez. On its own it also means first of all.'}}
+- {id: 'sense:vez', gloss: {en: 'time (an occasion); una vez: once'}, forms: {es-Latn/standard: [vez]}, notes: {en: 'La primera vez: the first time. The plural is veces, with c. Clock time is la hora, and time that passes is el tiempo.'}}
+- {id: 'sense:decir', gloss: {en: to say; to tell}, forms: {es-Latn/standard: [decir]}, notes: {en: 'Me dijo que…: he told me that… No i after the j: dijeron, not dijieron; dijiste, not dijistes.'}}
+- {id: 'sense:novio', gloss: {en: 'boyfriend; fiancé; groom (novia: girlfriend; bride)'}, forms: {es-Latn/standard: [novio]}, notes: {en: 'One word for boyfriend, fiancé and groom. In Abuela''s day a novio visited at the house, with the family in the sala.'}}
+- {id: 'sense:enamorarse', gloss: {en: to fall in love}, forms: {es-Latn/standard: [enamorarse]}, notes: {en: 'Enamorarse de alguien: to fall in love with someone. De, not con: me enamoré de él.'}}
+- {id: 'sense:casarse', gloss: {en: to get married}, forms: {es-Latn/standard: [casarse]}, notes: {en: 'Casarse con alguien: to marry someone. Casar (to marry) and cazar (to hunt) sound the same in Cuba; the spelling tells them apart.'}}
+nodes:
+- {id: es.u13.cuando-era-joven, kind: lesson, introduces: ['sense:joven', 'sense:guateque']}
+- {id: es.u13.el-guateque, kind: lesson, introduces: ['sense:música', 'sense:bailar', 'sense:gente', 'sense:viejo', 'sense:penoso']}
+- {id: es.u13.la-maquina, kind: lesson, introduces: ['sense:máquina', 'sense:lindo', 'sense:lo', 'sense:mirar', 'sense:mecánico', 'sense:romperse', 'sense:arreglar', 'sense:mientras']}
+- {id: es.u13.el-primer-baile, kind: lesson, introduces: ['sense:conocer', 'sense:sacar', 'sense:primero', 'sense:vez', 'sense:decir']}
+- {id: es.u13.nos-casamos, kind: lesson, introduces: ['sense:novio', 'sense:enamorarse', 'sense:casarse']}
+- {id: es.u13.story, kind: story}
+sentences:
+- id: s.u13.1
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Abuela Cachita vivía en Matanzas con su familia.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: Cachita, sense: cachita}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}, {surface: con, sense: con}, {surface: su, sense: su}, {surface: familia, sense: familia}]
+      reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) vivía en Matanzas con su familia
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita (lived|used to live|was living) in Matanzas with her family.
+- id: s.u13.2
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era joven, vivía en Matanzas.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: joven, sense: joven}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+      reverse: |-
+        Cuando [yo] era joven [yo] vivía en Matanzas
+        [Yo] vivía en Matanzas cuando [yo] era joven
+  translations:
+    en: |-
+      When I was young, I (lived|used to live) in Matanzas.
+      I (lived|used to live) in Matanzas when I was young.
+- id: s.u13.3
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Mi familia vivía en el campo, cerca de Matanzas.
+      tokens: [{surface: Mi, sense: mi}, {surface: familia, sense: familia}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}]
+      reverse: Mi familia vivía en el campo cerca de Matanzas
+  translations:
+    en: My family (lived|used to live) in the (countryside|country), (near|close to|outside [of]) Matanzas.
+- id: s.u13.4
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: En el campo todos trabajaban mucho.
+      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}, {surface: todos, sense: todo}, {surface: trabajaban, sense: trabajar, form: 'form:impf'}, {surface: mucho, sense: mucho}]
+      reverse: |-
+        En el campo todos trabajaban mucho
+        Todos trabajaban mucho en el campo
+  translations:
+    en: |-
+      In the (countryside|country), (everyone|everybody) (worked|used to work) (hard|a lot).
+      (Everyone|Everybody) (worked|used to work) (hard|a lot) in the (countryside|country).
+- id: s.u13.5
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Yo tenía diecinueve años y tu abuelo, veinticuatro.
+      tokens: [{surface: Yo, sense: yo}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año}, {surface: 'y', sense: 'y'}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: veinticuatro, sense: veinticuatro}]
+      reverse: '[Yo] tenía diecinueve años y tu abuelo [tenía] veinticuatro [años]'
+  translations:
+    en: I was nineteen [years old] and your (grandfather|grandpa) [was] twenty-four.
+- id: s.u13.6
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Todos los sábados había un guateque en el campo.
+      tokens: [{surface: Todos, sense: todo}, {surface: los, sense: el}, {surface: sábados, sense: sábado}, {surface: había, sense: hay, form: 'form:impf'}, {surface: un, sense: un}, {surface: guateque, sense: guateque}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}]
+      reverse: |-
+        Todos los sábados había un guateque en el campo
+        En el campo había un guateque todos los sábados
+  translations:
+    en: |-
+      (Every Saturday|On Saturdays) there (was|used to be|would be) a (guateque|country party|party) in the (countryside|country).
+      There (was|used to be|would be) a (guateque|country party|party) in the (countryside|country) (every Saturday|on Saturdays).
+- id: s.u13.7
+  node: es.u13.cuando-era-joven
+  forms:
+    es-Latn/standard:
+      text: Mis hermanos y yo siempre íbamos a los guateques.
+      tokens: [{surface: Mis, sense: mi}, {surface: hermanos, sense: hermano}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: siempre, sense: siempre}, {surface: íbamos, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: los, sense: el}, {surface: guateques, sense: guateque}]
+      reverse: Mis hermanos y yo siempre íbamos a los guateques
+  translations:
+    en: My (brothers|siblings|brothers and sisters) and I always (went|used to go|would go) to the (guateques|country parties|parties).
+- id: s.u13.8
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: En el guateque había música toda la noche.
+      tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: guateque, sense: guateque}, {surface: había, sense: hay, form: 'form:impf'}, {surface: música, sense: música}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: |-
+        En el guateque había música toda la noche
+        Había música toda la noche en el guateque
+  translations:
+    en: |-
+      At the (guateque|country party|party) there (was|would be|used to be) music all night [long].
+      There (was|would be|used to be) music all night [long] at the (guateque|country party|party).
+- id: s.u13.9
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: La gente bailaba y comía en el patio.
+      tokens: [{surface: La, sense: el}, {surface: gente, sense: gente}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: 'y', sense: 'y'}, {surface: comía, sense: comer, form: 'form:impf'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
+      reverse: La gente bailaba y comía en el patio
+  translations:
+    en: |-
+      [The] people (danced|were dancing|used to dance|would dance) and (ate|were eating|used to eat|would eat) in the (yard|backyard|patio).
+- id: s.u13.10
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: Los viejos jugaban dominó en el portal.
+      tokens: [{surface: Los, sense: el}, {surface: viejos, sense: viejo}, {surface: jugaban, sense: jugar, form: 'form:impf'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
+      reverse: Los (viejos|ancianos|mayores) jugaban [al] dominó en el portal
+  translations:
+    en: The old (folks|people|men|timers) (played|were playing|used to play|would play) (dominoes|domino) on the [front] porch.
+- id: s.u13.11
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: Abuela Cachita era muy penosa y no bailaba mucho.
+      tokens: [{surface: Abuela, sense: abuela}, {surface: Cachita, sense: cachita}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: penosa, sense: penoso}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: mucho, sense: mucho}]
+      reverse: (Abuela Cachita|La abuela Cachita|Mi abuela Cachita) era muy (penosa|tímida) y no bailaba mucho
+  translations:
+    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) Cachita was (very|really|so) shy and (didn't|did not|wouldn't|would not) dance (much|a lot).
+- id: s.u13.12
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: Mi primo y yo bailábamos todos los sábados.
+      tokens: [{surface: Mi, sense: mi}, {surface: primo, sense: primo}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: bailábamos, sense: bailar, form: 'form:impf'}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: sábados, sense: sábado}]
+      reverse: |-
+        Mi primo y yo bailábamos todos los sábados
+        Todos los sábados mi primo y yo bailábamos
+  translations:
+    en: |-
+      My cousin and I (danced|used to dance|would dance) (every Saturday|on Saturdays).
+      (Every Saturday|On Saturdays) my cousin and I (danced|used to dance|would dance).
+- id: s.u13.13
+  node: es.u13.el-guateque
+  forms:
+    es-Latn/standard:
+      text: Una noche, cuando yo estaba bailando con mi primo, llegó tu abuelo.
+      tokens: [{surface: Una, sense: un}, {surface: noche, sense: noche}, {surface: cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: bailando, sense: bailar, form: 'form:ger'}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: primo, sense: primo}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}]
+      reverse: Una noche (cuando|mientras) [yo] (estaba bailando|bailaba) con mi primo (llegó tu abuelo|tu abuelo llegó)
+  translations:
+    en: One (night|evening), (when|while) I was dancing with my cousin, your (grandfather|grandpa) (arrived|came|showed up|got there).
+- id: s.u13.14
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Tu abuelo llegó en una máquina vieja.
+      tokens: [{surface: Tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: vieja, sense: viejo}]
+      reverse: Tu abuelo llegó en (una máquina vieja|un carro viejo|un auto viejo|un coche viejo)
+  translations:
+    en: Your (grandfather|grandpa) (arrived|came|showed up|got there) in an old car.
+- id: s.u13.15
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Era una máquina del cincuenta y siete.
+      tokens: [{surface: Era, sense: ser, form: 'form:impf'}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: del, sense: del}, {surface: cincuenta, sense: cincuenta}, {surface: 'y', sense: 'y'}, {surface: siete, sense: siete}]
+      reverse: Era (una máquina|un carro|un auto|un coche) del cincuenta y siete
+  translations:
+    en: |-
+      It was a (1957|fifty-seven) car.
+      It was a car from (1957|fifty-seven|nineteen fifty-seven).
+- id: s.u13.16
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: La máquina era roja y blanca, y muy linda.
+      tokens: [{surface: La, sense: el}, {surface: máquina, sense: máquina}, {surface: era, sense: ser, form: 'form:impf'}, {surface: roja, sense: rojo}, {surface: 'y', sense: 'y'}, {surface: blanca, sense: blanco}, {surface: 'y', sense: 'y'}, {surface: muy, sense: muy}, {surface: linda, sense: lindo}]
+      reverse: |-
+        La máquina era roja y blanca y muy (linda|bonita)
+        El (carro|auto|coche) era rojo y blanco y muy (lindo|bonito)
+  translations:
+    en: The car was red and white, and (very|really) (pretty|beautiful|nice|lovely).
+- id: s.u13.17
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Cuando llegó, todos lo miraron.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: todos, sense: todo}, {surface: lo, sense: lo}, {surface: miraron, sense: mirar, form: 'form:pret-3p'}]
+      reverse: |-
+        Cuando [él] llegó todos lo miraron
+        Todos lo miraron cuando [él] llegó
+  translations:
+    en: |-
+      When he (arrived|got there|showed up|came), (everyone|everybody) (looked at|stared at|watched) him.
+      (Everyone|Everybody) (looked at|stared at|watched) him when he (arrived|got there|showed up|came).
+- id: s.u13.18
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Tu abuelo era mecánico y trabajaba en Matanzas.
+      tokens: [{surface: Tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: mecánico, sense: mecánico}, {surface: 'y', sense: 'y'}, {surface: trabajaba, sense: trabajar, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+      reverse: Tu abuelo era mecánico y trabajaba en Matanzas
+  translations:
+    en: Your (grandfather|grandpa) was a mechanic and (worked|used to work|was working) in Matanzas.
+- id: s.u13.19
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Esa noche, la máquina se rompió en el guateque.
+      tokens: [{surface: Esa, sense: ese}, {surface: noche, sense: noche}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: se, sense: se}, {surface: rompió, sense: romperse, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: guateque, sense: guateque}]
+      reverse: |-
+        Esa noche (la máquina|el carro|el auto|el coche) se (rompió|descompuso) en el guateque
+        (La máquina|El carro|El auto|El coche) se (rompió|descompuso) en el guateque esa noche
+  translations:
+    en: |-
+      That night the car broke down at the (guateque|country party|party).
+      The car broke down at the (guateque|country party|party) that night.
+- id: s.u13.20
+  node: es.u13.la-maquina
+  forms:
+    es-Latn/standard:
+      text: Pepe la arregló mientras todos miraban.
+      tokens: [{surface: Pepe, sense: pepe}, {surface: la, sense: lo}, {surface: arregló, sense: arreglar, form: 'form:pret-3s'}, {surface: mientras, sense: mientras}, {surface: todos, sense: todo}, {surface: miraban, sense: mirar, form: 'form:impf'}]
+      reverse: |-
+        Pepe (la|lo) arregló mientras todos miraban
+        Mientras todos miraban Pepe (la|lo) arregló
+  translations:
+    en: |-
+      Pepe (fixed|repaired) it while (everyone|everybody) (watched|was watching|looked on).
+      While (everyone|everybody) (watched|was watching|looked on), Pepe (fixed|repaired) it.
+- id: s.u13.21
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Esa noche conocí a tu abuelo.
+      tokens: [{surface: Esa, sense: ese}, {surface: noche, sense: noche}, {surface: conocí, sense: conocer, form: 'form:pret-1s'}, {surface: a, sense: a}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}]
+      reverse: |-
+        Esa noche [yo] conocí a tu abuelo
+        [Yo] conocí a tu abuelo esa noche
+  translations:
+    en: |-
+      That night I met your (grandfather|grandpa).
+      I met your (grandfather|grandpa) that night.
+- id: s.u13.22
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Abuelo, ¿dónde tú conociste a Abuela?
+      tokens: [{surface: Abuelo, sense: abuelo}, {surface: dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: conociste, sense: conocer, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Abuela, sense: abuela}]
+      reverse: '[Abuelo] (dónde tú conociste|dónde conociste [tú]|dónde usted conoció|dónde conoció [usted]) a (Abuela|la abuela|mi abuela)'
+  translations:
+    en: (Grandpa|Grandfather|Abuelo), where did you meet (Grandma|Grandmother|Abuela)?
+- id: s.u13.23
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: La conocí en un guateque en Matanzas.
+      tokens: [{surface: La, sense: lo}, {surface: conocí, sense: conocer, form: 'form:pret-1s'}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: guateque, sense: guateque}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+      reverse: '[Yo] la conocí en un guateque en Matanzas'
+  translations:
+    en: I met her at a (guateque|country party|party) in Matanzas.
+- id: s.u13.24
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Después, tu abuelo me sacó a bailar.
+      tokens: [{surface: Después, sense: después}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: me, sense: me}, {surface: sacó, sense: sacar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: bailar, sense: bailar}]
+      reverse: Después tu abuelo me (sacó|invitó) a bailar
+  translations:
+    en: (Afterwards|Afterward|Later|Then|After that), your (grandfather|grandpa) asked me (to dance|for a dance).
+- id: s.u13.25
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Fue la primera vez que bailé con él.
+      tokens: [{surface: Fue, sense: ser, form: 'form:pret-3s'}, {surface: la, sense: el}, {surface: primera, sense: primero}, {surface: vez, sense: vez}, {surface: que, sense: que}, {surface: bailé, sense: bailar, form: 'form:pret-1s'}, {surface: con, sense: con}, {surface: él, sense: él}]
+      reverse: Fue la primera vez que [yo] bailé con él
+  translations:
+    en: It was the first time [that] (I danced|I'd danced|I had danced) with him.
+- id: s.u13.26
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Él no bailaba muy bien, pero era muy lindo.
+      tokens: [{surface: Él, sense: él}, {surface: 'no', sense: 'no'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: lindo, sense: lindo}]
+      reverse: '[Él] no bailaba muy bien pero era muy (lindo|buen mozo|guapo)'
+  translations:
+    en: He (didn't|did not) dance very well, but he was (very|really|so) (handsome|good-looking|good looking|cute).
+- id: s.u13.27
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: Me dijo que yo bailaba muy bien.
+      tokens: [{surface: Me, sense: me}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}]
+      reverse: '[Él] me dijo que [yo] bailaba muy bien'
+  translations:
+    en: |-
+      He (told me|said) [that] I danced (very|really) well.
+      He (told me|said) [that] I was a (very|really) good dancer.
+- id: s.u13.28
+  node: es.u13.el-primer-baile
+  forms:
+    es-Latn/standard:
+      text: ¿Y qué tú dijiste, abuela?
+      tokens: [{surface: 'Y', sense: 'y'}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: dijiste, sense: decir, form: 'form:pret-2s'}, {surface: abuela, sense: abuela}]
+      reverse: '[Y] (qué tú dijiste|qué dijiste [tú]|tú qué dijiste|qué usted dijo|qué dijo [usted]) [abuela]'
+  translations:
+    en: And what did you say, (Grandma|Grandmother|Abuela)?
+- id: s.u13.29
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Dije que sí, y bailamos toda la noche.
+      tokens: [{surface: Dije, sense: decir, form: 'form:pret-1s'}, {surface: que, sense: que}, {surface: sí, sense: sí}, {surface: 'y', sense: 'y'}, {surface: bailamos, sense: bailar, form: 'form:pret-1p'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      reverse: '[Yo] dije que sí y bailamos toda la noche'
+  translations:
+    en: I said yes, and we danced all night [long].
+- id: s.u13.30
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Después del guateque, Pepe venía a mi casa todos los domingos.
+      tokens: [{surface: Después, sense: después}, {surface: del, sense: del}, {surface: guateque, sense: guateque}, {surface: Pepe, sense: pepe}, {surface: venía, sense: venir, form: 'form:impf'}, {surface: a, sense: a}, {surface: mi, sense: mi}, {surface: casa, sense: casa}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: domingos, sense: domingo}]
+      reverse: |-
+        Después del guateque Pepe venía a mi casa todos los domingos
+        Pepe venía a mi casa todos los domingos después del guateque
+  translations:
+    en: |-
+      After the (guateque|country party|party), Pepe (came|used to come|would come) to my (house|place) (every Sunday|on Sundays).
+      Pepe (came|used to come|would come) to my (house|place) (every Sunday|on Sundays) after the (guateque|country party|party).
+- id: s.u13.31
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Mi padre siempre estaba en la sala con nosotros.
+      tokens: [{surface: Mi, sense: mi}, {surface: padre, sense: padre}, {surface: siempre, sense: siempre}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: sala, sense: sala}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: Mi (padre|papá) siempre estaba en la sala con nosotros
+  translations:
+    en: My (father|dad) was always in the living room with us.
+- id: s.u13.32
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Pepe fue mi primer novio.
+      tokens: [{surface: Pepe, sense: pepe}, {surface: fue, sense: ser, form: 'form:pret-3s'}, {surface: mi, sense: mi}, {surface: primer, sense: primero}, {surface: novio, sense: novio}]
+      reverse: Pepe fue mi primer novio
+  translations:
+    en: Pepe was my first boyfriend.
+- id: s.u13.33
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Me enamoré de él en ese guateque.
+      tokens: [{surface: Me, sense: me}, {surface: enamoré, sense: enamorarse, form: 'form:pret-1s'}, {surface: de, sense: de}, {surface: él, sense: él}, {surface: en, sense: en}, {surface: ese, sense: ese}, {surface: guateque, sense: guateque}]
+      reverse: |-
+        [Yo] me enamoré de él en ese guateque
+        En ese guateque [yo] me enamoré de él
+  translations:
+    en: |-
+      I fell in love with him at that (guateque|country party|party).
+      At that (guateque|country party|party) I fell in love with him.
+- id: s.u13.34
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Nos casamos un año después.
+      tokens: [{surface: Nos, sense: nos}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}]
+      reverse: |-
+        [Nosotros] nos casamos un año después
+        Un año después [nosotros] nos casamos
+  translations:
+    en: |-
+      We (got married|married) (a|one) year later.
+      (A|One) year later we (got married|married).
+- id: s.u13.35
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Cuando vinimos a Miami, la máquina no vino con nosotros.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: vinimos, sense: venir, form: 'form:pret-1p'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: 'no', sense: 'no'}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      reverse: |-
+        Cuando [nosotros] vinimos a Miami (la máquina|el carro|el auto|el coche) no vino con nosotros
+        (La máquina|El carro|El auto|El coche) no vino con nosotros cuando [nosotros] vinimos a Miami
+  translations:
+    en: |-
+      When we came to Miami, the car (didn't|did not) come with us.
+      The car (didn't|did not) come with us when we came to Miami.
+- id: s.u13.36
+  node: es.u13.nos-casamos
+  forms:
+    es-Latn/standard:
+      text: Ahora un primo de Pepe la tiene en Matanzas.
+      tokens: [{surface: Ahora, sense: ahora}, {surface: un, sense: un}, {surface: primo, sense: primo}, {surface: de, sense: de}, {surface: Pepe, sense: pepe}, {surface: la, sense: lo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+      reverse: |-
+        Ahora un primo de Pepe la tiene en Matanzas
+        Ahora la tiene un primo de Pepe en Matanzas
+        Un primo de Pepe la tiene ahora en Matanzas
+  translations:
+    en: |-
+      (Now|Today) (a cousin of Pepe's|one of Pepe's cousins) has it in Matanzas.
+      (A cousin of Pepe's|One of Pepe's cousins) has it in Matanzas (now|today).
+stories:
+- id: es.story.u13
+  node: es.u13.story
+  title: {en: How Abuela met Abuelo}
+  characters:
+  - {id: lili, name: {es-Latn/standard: Lili}}
+  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  steps:
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: Abuela, ¿cómo tú conociste a Abuelo?
+          tokens: [{surface: Abuela, sense: abuela}, {surface: cómo, sense: cómo}, {surface: tú, sense: tú}, {surface: conociste, sense: conocer, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Abuelo, sense: abuelo}]
+      translations: {en: 'Grandma, how did you meet Grandpa?'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Yo tenía diecinueve años y vivía en el campo, cerca de Matanzas.
+          tokens: [{surface: Yo, sense: yo}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año}, {surface: 'y', sense: 'y'}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: campo, sense: campo}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}]
+      translations: {en: 'I was nineteen and lived in the country, near Matanzas.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Todos los sábados había un guateque, con música toda la noche.
+          tokens: [{surface: Todos, sense: todo}, {surface: los, sense: el}, {surface: sábados, sense: sábado}, {surface: había, sense: hay, form: 'form:impf'}, {surface: un, sense: un}, {surface: guateque, sense: guateque}, {surface: con, sense: con}, {surface: música, sense: música}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
+      translations: {en: 'Every Saturday there was a guateque, with music all night long.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y tú bailabas mucho, abuela?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}, {surface: bailabas, sense: bailar, form: 'form:impf'}, {surface: mucho, sense: mucho}, {surface: abuela, sense: abuela}]
+      translations: {en: 'And did you dance a lot, Grandma?'}
+  - line:
+      speaker: cachita
+      ask: complete
+      gap: sense:penoso
+      distractors: ['sense:lindo', 'sense:joven']
+      forms:
+        es-Latn/standard:
+          text: No, mi vida. Yo era muy penosa y bailaba con mis primos.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: mi, sense: mi}, {surface: vida, sense: vida}, {surface: Yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: penosa, sense: penoso}, {surface: 'y', sense: 'y'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: con, sense: con}, {surface: mis, sense: mi}, {surface: primos, sense: primo}]
+      translations: {en: 'No, darling. I was very shy, and I danced with my cousins.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Una noche, mientras yo bailaba con mi primo, llegó un joven en una máquina vieja.
+          tokens: [{surface: Una, sense: un}, {surface: noche, sense: noche}, {surface: mientras, sense: mientras}, {surface: yo, sense: yo}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: primo, sense: primo}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: un, sense: un}, {surface: joven, sense: joven}, {surface: en, sense: en}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: vieja, sense: viejo}]
+      translations: {en: 'One night, while I was dancing with my cousin, a young man arrived in an old car.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: ¡No era vieja! Era una máquina del cincuenta y siete.
+          tokens: [{surface: 'No', sense: 'no'}, {surface: era, sense: ser, form: 'form:impf'}, {surface: vieja, sense: viejo}, {surface: Era, sense: ser, form: 'form:impf'}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: del, sense: del}, {surface: cincuenta, sense: cincuenta}, {surface: 'y', sense: 'y'}, {surface: siete, sense: siete}]
+      translations: {en: 'It wasn''t old! It was a 1957 car.'}
+  - choose:
+      prompt: {en: 'What did the young man arrive in?'}
+      options: [{en: A car from 1957}, {en: A bus}, {en: He came on foot.}]
+      answer: 0
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Todos miraban la máquina. Y yo lo miraba a él.
+          tokens: [{surface: Todos, sense: todo}, {surface: miraban, sense: mirar, form: 'form:impf'}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: 'Y', sense: 'y'}, {surface: yo, sense: yo}, {surface: lo, sense: lo}, {surface: miraba, sense: mirar, form: 'form:impf'}, {surface: a, sense: a}, {surface: él, sense: él}]
+      translations: {en: 'Everyone was looking at the car. And I was looking at him.'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Esa noche la máquina se rompió, pero yo la arreglé.
+          tokens: [{surface: Esa, sense: ese}, {surface: noche, sense: noche}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: se, sense: se}, {surface: rompió, sense: romperse, form: 'form:pret-3s'}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: la, sense: lo}, {surface: arreglé, sense: arreglar, form: 'form:pret-1s'}]
+      translations: {en: 'That night the car broke down, but I fixed it.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Y después me sacó a bailar. ¡No bailaba muy bien!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: después, sense: después}, {surface: me, sense: me}, {surface: sacó, sense: sacar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: bailar, sense: bailar}, {surface: 'No', sense: 'no'}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}]
+      translations: {en: 'And then he asked me to dance. He didn''t dance very well!'}
+  - line:
+      speaker: pepe
+      ask: arrange
+      forms:
+        es-Latn/standard:
+          text: ¡Pero tú me dijiste que yo bailaba bien!
+          tokens: [{surface: Pero, sense: pero}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: dijiste, sense: decir, form: 'form:pret-2s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: bailaba, sense: bailar, form: 'form:impf'}, {surface: bien, sense: bien}]
+      translations: {en: 'But you told me I danced well!'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: Sí, pero tú eras muy lindo, Pepe.
+          tokens: [{surface: Sí, sense: sí}, {surface: pero, sense: pero}, {surface: tú, sense: tú}, {surface: eras, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: lindo, sense: lindo}, {surface: Pepe, sense: pepe}]
+      translations: {en: 'Yes, but you were very handsome, Pepe.'}
+  - choose:
+      prompt: {en: 'Why did Cachita tell Pepe that he danced well?'}
+      options: [{en: 'She liked him: he was handsome.'}, {en: He was the best dancer at the guateque.}, {en: Her father told her to.}]
+      answer: 0
+  - line:
+      speaker: lili
+      forms:
+        es-Latn/standard:
+          text: ¿Y cuándo se casaron ustedes?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: cuándo, sense: cuándo}, {surface: se, sense: se}, {surface: casaron, sense: casarse, form: 'form:pret-3p'}, {surface: ustedes, sense: ustedes}]
+      translations: {en: 'And when did you two get married?'}
+  - line:
+      speaker: pepe
+      ask: complete
+      gap: sense:casarse
+      distractors: ['sense:conocer', 'sense:bailar']
+      forms:
+        es-Latn/standard:
+          text: Nos casamos un año después, en Matanzas.
+          tokens: [{surface: Nos, sense: nos}, {surface: casamos, sense: casarse, form: 'form:pret-1p'}, {surface: un, sense: un}, {surface: año, sense: año}, {surface: después, sense: después}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
+      translations: {en: 'We got married a year later, in Matanzas.'}
+  - line:
+      speaker: daniel
+      forms:
+        es-Latn/standard:
+          text: ¿Y la máquina, abuelo?
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: abuelo, sense: abuelo}]
+      translations: {en: 'And the car, Grandpa?'}
+  - line:
+      speaker: pepe
+      forms:
+        es-Latn/standard:
+          text: Cuando vinimos a Miami, la máquina no vino con nosotros.
+          tokens: [{surface: Cuando, sense: cuando}, {surface: vinimos, sense: venir, form: 'form:pret-1p'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: la, sense: el}, {surface: máquina, sense: máquina}, {surface: 'no', sense: 'no'}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
+      translations: {en: 'When we came to Miami, the car didn''t come with us.'}
+  - line:
+      speaker: cachita
+      forms:
+        es-Latn/standard:
+          text: ¡Y él siempre habla de esa máquina!
+          tokens: [{surface: 'Y', sense: 'y'}, {surface: él, sense: él}, {surface: siempre, sense: siempre}, {surface: habla, sense: hablar, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: esa, sense: ese}, {surface: máquina, sense: máquina}]
+      translations: {en: 'And he''s always talking about that car!'}
+  - choose:
+      prompt: {en: 'What does Abuelo Pepe always talk about?'}
+      options: [{en: His 1957 car}, {en: His cousins in Miami}, {en: The dominó games}]
+      answer: 0
+scenarios:
+- id: es.como-conociste
+  after: es.u13.nos-casamos
+  title: {en: 'How did you meet Abuela?'}
+  setting: {en: 'A Saturday afternoon in the carport of the family house in Hialeah. Abuelo Pepe, a retired mechanic, has his head under the hood of a neighbour''s old car; a radio plays boleros, and there is a cafecito on the toolbox.'}
+  character: {en: 'Abuelo Pepe, in his eighties, born in Matanzas: a retired mechanic who loves to tell stories and improves them a little each time. His version of how he met Cachita (a guateque in the Matanzas countryside, his 1957 Chevrolet, the first dance) is not quite hers. He speaks warm, fast Cuban Spanish and says tú to his grandchildren.'}
+  goal: {en: 'Ask Abuelo Pepe where and how he met Abuela, what she was like then, what the guateque and his car were like, and what happened that night. Use the imperfect for how things were and the preterite for what happened, and tell him one thing Abuela tells differently.'}
