@@ -93,9 +93,9 @@ harnesses.
 - The course sounds Cuban, from a newsreader's voice. A conversational recording would sound more
   like home; the course can be recast at any time.
 - Persons coverage ([ADR 0075](0075-persons-coverage.md)) applies here too: the learner is a man, but
-  the course also has women speaking (Abuela, Lili, Mami), from unit 27 on. The man's voice reads
-  their sentences until the course casts a second voice. Units 1–26 still have Daniel alone, so
-  they should gain women's sentences too.
+  the course also has women speaking: a woman's version beside most of Daniel's gendered sentences
+  (*soy cubana*, *cuando era niña*), and Abuela, Lili and Mami in units 27–30. The man's voice reads
+  their sentences until the course casts a second voice (ADR 0078).
 - Authentic texts are quoted from a published public-domain edition, not from memory: the Martí
   verses in u27's story are written in from Wikisource's text by a script. The schema keeps
   provenance per story, so the story stays an LLM draft as a whole; its title names the source.

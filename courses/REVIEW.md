@@ -340,9 +340,11 @@ Across the course, check first:
    Abuela born in Matanzas, came in the Mariel boatlift (1980) and is 79; Marisol stayed in
    Cuba; Papi came as a balsero in 1994, aged about 14.
 6. **Gender and number** ([ADR 0056](../docs/adr/0056-persons.md),
-   [0075](../docs/adr/0075-persons-coverage.md)). 78 sentences say who speaks or who is spoken to:
-   24 to a man, 8 to a woman, 18 to several people, 22 a man speaking, 12 a woman speaking. The
-   woman-speaker sentences only start in u27 (Abuela, Lili, Mami); units 1–26 have Daniel alone.
+   [0075](../docs/adr/0075-persons-coverage.md)). 86 sentences say who speaks or who is spoken to:
+   24 to a man, 9 to a woman, 18 to several people, 22 a man speaking, 20 a woman speaking. Most
+   of Daniel's gendered sentences have a woman's version beside them (*soy cubana*, *encantada*,
+   *la última*, *cuando era niña*, *mecánica*, *Lili y yo somos cubanas*); u27–u30 add Abuela,
+   Lili and Mami.
 7. **The voice.** The clips clone a newsreader of Radio La Voz de la Victoria (Ciénaga de
    Zapata, Matanzas; CC0). Held-back clips (`nabu audio report`) are mostly slang Whisper does not
    know (*¿Qué bolá?*), so a listener should decide them in the audio check.

@@ -1,6 +1,6 @@
 # Handoff: the Cuban Spanish course (es), what is left
 
-The course is done and on main: thirty units, A1 to B2, 1054 sentences, 741 KCs, 169 lessons, 30
+The course is done and on main: thirty units, A1 to B2, 1062 sentences, 741 KCs, 169 lessons, 30
 stories and 10 scenarios, with the typed adaptive placement test. It builds with 0 errors and 0
 warnings, and `pipeline/tests/test_courses.py` pins its shape. The brief is `courses/es/README.md`;
 the decisions are ADR 0076 (the course) and ADR 0077 (placement); reviewer notes are in
@@ -32,17 +32,7 @@ Held-back clips (failed the Whisper round trip) are mostly Cuban slang Whisper d
 (`#/es/es-Latn.standard/audio`, debug mode), then `uv run nabu audio verdicts ../courses/es <file> --reviewer
 human:<id>`.
 
-## 2. Women speaking in units 1–26
-
-ADR 0075 asks every course to exercise every person its language marks. Units 27–30 have women
-speaking (Abuela, Lili, Mami: 12 sentences); units 1–26 have only Daniel (`persons: {speaker: m}`,
-17 sentences). Add a woman's version beside most of Daniel's gendered sentences (*Estoy cansada*,
-Lili or Mami speaking), with `persons: {speaker: f}` and accept sets of the feminine forms only. No
-new KCs are needed (*cansada* is `sense:cansado`), so i+1 holds. Rebuild, run the es simulation
-(`cd packages/core && npx vitest run test/simulation.test.ts -t "es "`), `pnpm bundles`, and
-generate the new clips.
-
-## 3. A native speaker's review
+## 2. A native speaker's review
 
 Every sentence, story and scenario is an LLM draft. `courses/REVIEW.md` § es lists what to check
 first, unit by unit: Cuban usage and slang, Miami anglicisms (u29), facts in KC notes (exile dates,
