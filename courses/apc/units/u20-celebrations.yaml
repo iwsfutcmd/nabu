@@ -1,0 +1,728 @@
+# Fixture course (apc), unit 20: celebrations and feelings. mabrouk and allah ybarek fik, a wedding and a
+# present; inviting (3azamni, he invited me; 3azmetna, she invited us) and liking (3ajabni: I liked it,
+# literally 'it pleased me'), with the object endings -na and -kon; feelings (za3len, m3asseb, khayef),
+# lesh (why) and ya 7aram; exclamations with shu + adjective (shu 7elo!) and lek! (look!).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 7, 17, 28
+# (exclamation) and 30 (discourse markers): every sentence awaits a native speaker's review.
+id: u20-celebrations
+title: {en: Congratulations!}
+cefr: A2
+kcs:
+- {id: 'sense:mabrouk', gloss: {en: congratulations!}, forms: {apc-Arab/standard: [مبروك], apc-Latn/arabizi: [mabrouk]}, notes: {en: 'The answer: allah ybarek fik (fiki to a woman).'}}
+- {id: 'sense:allah-ybarek', gloss: {en: thank you (the answer to mabrouk)}, forms: {apc-Arab/standard: [الله يبارك فيك], apc-Latn/arabizi: [allah ybarek fik]}, notes: {en: 'Literally ''God bless you''.
+      To a woman: allah ybarek fiki; to several people: allah ybarek fikon.'}}
+- {id: 'sense:3irs', gloss: {en: wedding}, forms: {apc-Arab/standard: [عرس], apc-Latn/arabizi: [3irs]}}
+- {id: 'sense:hdiyye', gloss: {en: present; gift}, forms: {apc-Arab/standard: [هديّة], apc-Latn/arabizi: [hdiyye]}}
+- {id: 'sense:3azam', gloss: {en: invite}, forms: {apc-Arab/standard: [عزم], apc-Latn/arabizi: [3azam]}, notes: {en: '3azamni: he invited me; 3azmetna: she invited us.'}}
+- {id: 'form:obj-1pl', gloss: {en: '-na: us (on a verb)'}, notes: {en: '3azmetna: she invited us. Arabic script: نا (عزمتنا). The same ending as ''our''.'}}
+- {id: 'sense:3ajab', gloss: {en: 'please (3ajabni: I liked it)'}, forms: {apc-Arab/standard: [عجب], apc-Latn/arabizi: [3ajab]}, notes: {en: 'The thing liked is the subject: 3ajabni el fostan, I liked the
+      dress (the dress pleased me); 3ajabetni el 7afle, I liked the party.'}}
+- {id: 'form:obj-2pl', gloss: {en: '-kon: you (on a verb, to several people)'}, notes: {en: '3ajabetkon? Did you like it? Arabic script: كن.'}}
+- {id: 'sense:za3len', gloss: {en: upset; sad; cross}, forms: {apc-Arab/standard: [زعلان], apc-Latn/arabizi: [za3len]}, notes: {en: 'A woman: زعلانة, za3lene.'}}
+- {id: 'sense:lesh', gloss: {en: why}, forms: {apc-Arab/standard: [ليش], apc-Latn/arabizi: [lesh]}, notes: {en: Also le (ليه).}}
+- {id: 'sense:m3asseb', gloss: {en: angry; annoyed}, forms: {apc-Arab/standard: [معصّب], apc-Latn/arabizi: [m3asseb]}, notes: {en: 'A woman: معصّبة, m3assbe.'}}
+- {id: 'sense:khayef', gloss: {en: afraid; scared; worried}, forms: {apc-Arab/standard: [خايف], apc-Latn/arabizi: [khayef]}, notes: {en: 'A woman: خايفة, khayfe. ma tkhaf!: don''t be afraid (to a woman:
+      ma tkhafi!).'}}
+- {id: 'sense:ya-7aram', gloss: {en: what a pity!; poor thing!}, forms: {apc-Arab/standard: [يا حرام], apc-Latn/arabizi: [ya 7aram]}}
+- {id: 'construction:shu-excl', gloss: {en: 'shu + adjective: how …!'}, notes: {en: 'shu 7elo!: how nice!; shu 7elwe hal hdiyye!: what a lovely present! The adjective agrees with what it describes.'}}
+- {id: 'sense:lek', gloss: {en: look!; hey (to a man)}, forms: {apc-Arab/standard: [ليك], apc-Latn/arabizi: [lek]}, notes: {en: 'To draw attention: to a woman leke (ليكي), to several people leko (ليكو).'}}
+nodes:
+- {id: apc.party.congrats, kind: lesson, introduces: ['sense:mabrouk', 'sense:allah-ybarek', 'sense:3irs', 'sense:hdiyye']}
+- {id: apc.party.invite, kind: lesson, introduces: ['sense:3azam', 'form:obj-1pl', 'sense:3ajab', 'form:obj-2pl']}
+- {id: apc.party.feelings, kind: lesson, introduces: ['sense:za3len', 'sense:lesh', 'sense:m3asseb', 'sense:khayef', 'sense:ya-7aram']}
+- {id: apc.party.how, kind: lesson, introduces: ['construction:shu-excl', 'sense:lek']}
+- {id: apc.party.story, kind: story}
+sentences:
+- id: s.party.1
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مبروك!
+      tokens: [{surface: مبروك, sense: mabrouk}]
+      reverse: (مبروك|مبارك)
+    apc-Latn/arabizi:
+      text: mabrouk!
+      tokens: [{surface: mabrouk, sense: mabrouk}]
+      reverse: (mabrouk|mabrook|mbarak)
+  translations:
+    en: |-
+      Congratulations!
+      Congrats!
+- id: s.party.2
+  node: apc.party.congrats
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: الله يبارك فيك!
+      tokens: [{surface: الله, sense: allah-ybarek}, {surface: يبارك, sense: allah-ybarek}, {surface: فيك, sense: allah-ybarek}]
+      reverse: الله (يبارك|يباركك) فيك
+    apc-Latn/arabizi:
+      text: allah ybarek fik!
+      tokens: [{surface: allah, sense: allah-ybarek}, {surface: ybarek, sense: allah-ybarek}, {surface: fik, sense: allah-ybarek}]
+      reverse: (allah|alla|2allah) (ybarek|ybarik|ibarek) (fik|feek|fiyak)
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+      God bless you!
+- id: s.party.3
+  node: apc.party.congrats
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: الله يبارك فيكي!
+      tokens: [{surface: الله, sense: allah-ybarek}, {surface: يبارك, sense: allah-ybarek}, {surface: فيكي, sense: allah-ybarek}]
+      reverse: الله (يبارك|يباركك) فيكي
+    apc-Latn/arabizi:
+      text: allah ybarek fiki!
+      tokens: [{surface: allah, sense: allah-ybarek}, {surface: ybarek, sense: allah-ybarek}, {surface: fiki, sense: allah-ybarek}]
+      reverse: (allah|alla|2allah) (ybarek|ybarik|ibarek) (fiki|fike|feeki)
+  translations:
+    en: |-
+      Thank you!
+      Thanks!
+      God bless you!
+- id: s.party.4
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مبروك العرس!
+      tokens: [{surface: مبروك, sense: mabrouk}, {surface: العرس, sense: 3irs, morphs: [{surface: ال, kc: 'sense:el'}, {surface: عرس, kc: 'sense:3irs'}]}]
+      reverse: (مبروك|مبارك) العرس
+    apc-Latn/arabizi:
+      text: mabrouk el 3irs!
+      tokens: [{surface: mabrouk, sense: mabrouk}, {surface: el, sense: el}, {surface: 3irs, sense: 3irs}]
+      reverse: (mabrouk|mabrook|mbarak) (el|l|il) (3irs|3eres|3ers)
+  translations:
+    en: |-
+      Congratulations on the wedding!
+      Congratulations on your wedding!
+- id: s.party.5
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: العرس بأيلول.
+      tokens: [{surface: العرس, sense: 3irs, morphs: [{surface: ال, kc: 'sense:el'}, {surface: عرس, kc: 'sense:3irs'}]}, {surface: بأيلول, sense: aylul, morphs: [{surface: ب, kc: 'sense:b'}, {surface: أيلول,
+              kc: 'sense:aylul'}]}]
+      reverse: العرس بأيلول
+    apc-Latn/arabizi:
+      text: el 3irs b aylul.
+      tokens: [{surface: el, sense: el}, {surface: 3irs, sense: 3irs}, {surface: b, sense: b}, {surface: aylul, sense: aylul}]
+      reverse: (el|l|il) (3irs|3eres|3ers) (b|bi) (aylul|2aylul|eilul)
+  translations:
+    en: |-
+      The wedding is in September.
+      The wedding's in September.
+- id: s.party.6
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: رح نروح عالعرس سوا.
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالعرس, sense: 3irs, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عرس,
+              kc: 'sense:3irs'}]}, {surface: سوا, sense: sawa}]
+      reverse: (رح|لح) نروح (عالعرس|ع العرس|على العرس) سوا
+    apc-Latn/arabizi:
+      text: ra7 nru7 3al 3irs sawa.
+      tokens: [{surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3irs,
+          sense: 3irs}, {surface: sawa, sense: sawa}]
+      reverse: (ra7|la7|rah) (nru7|nro7) (3al|3a l|3a el) (3irs|3eres|3ers) (sawa|sawe)
+  translations:
+    en: |-
+      We('ll| will) go to the wedding together.
+      We('re| are) going to the wedding together.
+- id: s.party.7
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عندي هديّة!
+      tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: هديّة, sense: hdiyye}]
+      reverse: (عندي|أنا عندي) هديّة
+    apc-Latn/arabizi:
+      text: 3endi hdiyye!
+      tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: hdiyye, sense: hdiyye}]
+      reverse: (3endi|3andi|3ende|3indi) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
+  translations:
+    en: |-
+      I have a (present|gift)!
+      I('ve| have) got a (present|gift)!
+- id: s.party.8
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الهديّة حلوة كتير!
+      tokens: [{surface: الهديّة, sense: hdiyye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: هديّة, kc: 'sense:hdiyye'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
+      reverse: الهديّة حلوة كتير
+    apc-Latn/arabizi:
+      text: el hdiyye 7elwe ktir!
+      tokens: [{surface: el, sense: el}, {surface: hdiyye, sense: hdiyye}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      reverse: (el|l|il) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye) (7elwe|7elwi|7ilwe|helwe) (ktir|kteer)
+  translations:
+    en: The (present|gift) is (really|very|so) (nice|lovely)!
+- id: s.party.9
+  node: apc.party.congrats
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: اشترينا هديّة.
+      tokens: [{surface: اشترينا, sense: eshtara, form: 'form:past-1pl'}, {surface: هديّة, sense: hdiyye}]
+      reverse: اشترينا هديّة
+    apc-Latn/arabizi:
+      text: eshtarayna hdiyye.
+      tokens: [{surface: eshtarayna, sense: eshtara, form: 'form:past-1pl'}, {surface: hdiyye, sense: hdiyye}]
+      reverse: (eshtarayna|shtarayna|eshtarena|shtarena|eshtareina) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
+  translations:
+    en: We bought a (present|gift).
+- id: s.party.10
+  node: apc.party.invite
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عزمني عالعرس.
+      tokens: [{surface: عزمني, sense: 3azam, form: 'form:past-3ms', morphs: [{surface: عزم, kc: 'sense:3azam'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: عالعرس, sense: 3irs, morphs: [{surface: ع,
+              kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عرس, kc: 'sense:3irs'}]}]
+      reverse: عزمني (عالعرس|ع العرس|على العرس)
+    apc-Latn/arabizi:
+      text: 3azamni 3al 3irs.
+      tokens: [{surface: 3azamni, sense: 3azam, form: 'form:past-3ms', morphs: [{surface: 3azam, kc: 'sense:3azam'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: 3al, sense: 3a, morphs: [{surface: 3a,
+              kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3irs, sense: 3irs}]
+      reverse: (3azamni|3azamne|3azzamni|3azameni) (3al|3a l|3a el) (3irs|3eres|3ers)
+  translations:
+    en: He invited me to the wedding.
+- id: s.party.11
+  node: apc.party.invite
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا عزمتنا عالغدا.
+      tokens: [{surface: تيتا, sense: teta}, {surface: عزمتنا, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: عزمت, kc: 'sense:3azam'}, {surface: نا, kc: 'form:obj-1pl'}]}, {surface: عالغدا, sense: ghada,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: غدا, kc: 'sense:ghada'}]}]
+      reverse: تيتا عزمتنا (عالغدا|ع الغدا|على الغدا)
+    apc-Latn/arabizi:
+      text: teta 3azmetna 3al ghada.
+      tokens: [{surface: teta, sense: teta}, {surface: 3azmetna, sense: 3azam, form: 'form:past-3fs', morphs: [{surface: 3azmet, kc: 'sense:3azam'}, {surface: na, kc: 'form:obj-1pl'}]}, {surface: 3al, sense: 3a,
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ghada, sense: ghada}]
+      reverse: teta (3azmetna|3azametna|3azmitna) (3al|3a l|3a el) (ghada|ghade)
+  translations:
+    en: (Grandma|Granny) invited us (to|for) lunch.
+- id: s.party.12
+  node: apc.party.invite
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: بدّي اعزمك عالعشا.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: اعزمك, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: اعزم, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2ms'}]}, {surface: عالعشا, sense: 3asha,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}]
+      reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
+    apc-Latn/arabizi:
+      text: baddi e3zmak 3al 3asha.
+      tokens: [{surface: baddi, sense: baddi}, {surface: e3zmak, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: e3zm, kc: 'sense:3azam'}, {surface: ak, kc: 'form:obj-2ms'}]}, {surface: 3al, sense: 3a,
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha}]
+      reverse: (baddi|badde|badi) (e3zmak|e3zemak|i3zmak|a3zmak) (3al|3a l|3a el) (3asha|3ashe)
+  translations:
+    en: |-
+      I want to invite you (to|for) dinner.
+      I('d| would) like to invite you (to|for) dinner.
+- id: s.party.13
+  node: apc.party.invite
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بدّي اعزمك عالعشا.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: اعزمك, sense: 3azam, form: 'form:subj-1sg', vocalized: اِعْزْمِك, morphs: [{surface: اعزم, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2fs'}]},
+        {surface: عالعشا, sense: 3asha, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}]
+      reverse: (بدّي|أنا بدّي) اعزمك (عالعشا|ع العشا|على العشا)
+    apc-Latn/arabizi:
+      text: baddi e3zmik 3al 3asha.
+      tokens: [{surface: baddi, sense: baddi}, {surface: e3zmik, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: e3zm, kc: 'sense:3azam'}, {surface: ik, kc: 'form:obj-2fs'}]}, {surface: 3al, sense: 3a,
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 3asha, sense: 3asha}]
+      reverse: (baddi|badde|badi) (e3zmik|e3zemik|i3zmik|a3zmik) (3al|3a l|3a el) (3asha|3ashe)
+  translations:
+    en: |-
+      I want to invite you (to|for) dinner.
+      I('d| would) like to invite you (to|for) dinner.
+- id: s.party.14
+  node: apc.party.invite
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عجبني الفستان.
+      tokens: [{surface: عجبني, sense: 3ajab, form: 'form:past-3ms', morphs: [{surface: عجب, kc: 'sense:3ajab'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: الفستان, sense: fostan, morphs: [{surface: ال,
+              kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]}]
+      reverse: عجبني الفستان
+    apc-Latn/arabizi:
+      text: 3ajabni el fostan.
+      tokens: [{surface: 3ajabni, sense: 3ajab, form: 'form:past-3ms', morphs: [{surface: 3ajab, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: fostan, sense: fostan}]
+      reverse: (3ajabni|3ajabne|3ejebni|3ajabeni) (el|l|il) (fostan|fistan|fustan|festan)
+  translations:
+    en: |-
+      I liked the dress.
+      I like the dress.
+- id: s.party.15
+  node: apc.party.invite
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عجبتني الحفلة.
+      tokens: [{surface: عجبتني, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: الحفلة, sense: 7afle, morphs: [{surface: ال,
+              kc: 'sense:el'}, {surface: حفلة, kc: 'sense:7afle'}]}]
+      reverse: عجبتني الحفلة
+    apc-Latn/arabizi:
+      text: 3ajabetni el 7afle.
+      tokens: [{surface: 3ajabetni, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: el, sense: el}, {surface: 7afle, sense: 7afle}]
+      reverse: (3ajabetni|3ajbetni|3ajabitni|3ajabetne) (el|l|il) (7afle|7afla|7afli|hafle)
+  translations:
+    en: |-
+      I liked the party.
+      I enjoyed the party.
+- id: s.party.16
+  node: apc.party.invite
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: عجبك الأكل؟
+      tokens: [{surface: عجبك, sense: 3ajab, form: 'form:past-3ms', morphs: [{surface: عجب, kc: 'sense:3ajab'}, {surface: ك, kc: 'form:obj-2ms'}]}, {surface: الأكل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'},
+            {surface: أكل, kc: 'sense:akl'}]}]
+      reverse: عجبك الأكل
+    apc-Latn/arabizi:
+      text: 3ajabak el akl?
+      tokens: [{surface: 3ajabak, sense: 3ajab, form: 'form:past-3ms', morphs: [{surface: 3ajab, kc: 'sense:3ajab'}, {surface: ak, kc: 'form:obj-2ms'}]}, {surface: el, sense: el}, {surface: akl, sense: akl}]
+      reverse: (3ajabak|3ajabek|3ejebak) (el|l|il) (akl|2akl|akel|akil)
+  translations:
+    en: |-
+      Did you like the food?
+      Do you like the food?
+- id: s.party.17
+  node: apc.party.invite
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: عجبتكن الحفلة؟
+      tokens: [{surface: عجبتكن, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: عجبت, kc: 'sense:3ajab'}, {surface: كن, kc: 'form:obj-2pl'}]}, {surface: الحفلة, sense: 7afle, morphs: [{surface: ال,
+              kc: 'sense:el'}, {surface: حفلة, kc: 'sense:7afle'}]}]
+      reverse: عجبتكن الحفلة
+    apc-Latn/arabizi:
+      text: 3ajabetkon el 7afle?
+      tokens: [{surface: 3ajabetkon, sense: 3ajab, form: 'form:past-3fs', morphs: [{surface: 3ajabet, kc: 'sense:3ajab'}, {surface: kon, kc: 'form:obj-2pl'}]}, {surface: el, sense: el}, {surface: 7afle,
+          sense: 7afle}]
+      reverse: (3ajabetkon|3ajbetkon|3ajabitkon|3ajabetkun) (el|l|il) (7afle|7afla|7afli|hafle)
+  translations:
+    en: |-
+      Did you like the party?
+      Did you enjoy the party?
+- id: s.party.18
+  node: apc.party.feelings
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا زعلان.
+      tokens: [{surface: أنا, sense: ana}, {surface: زعلان, sense: za3len}]
+      reverse: '[أنا] زعلان'
+    apc-Latn/arabizi:
+      text: ana za3len.
+      tokens: [{surface: ana, sense: ana}, {surface: za3len, sense: za3len}]
+      reverse: '[ana] (za3len|za3lan|zaalen|za3lane)'
+  translations:
+    en: I('m| am) (upset|sad).
+- id: s.party.19
+  node: apc.party.feelings
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: ليش زعلانة؟
+      tokens: [{surface: ليش, sense: lesh}, {surface: زعلانة, sense: za3len, form: 'form:fem'}]
+      reverse: (ليش|ليه) زعلانة
+    apc-Latn/arabizi:
+      text: lesh za3lene?
+      tokens: [{surface: lesh, sense: lesh}, {surface: za3lene, sense: za3len, form: 'form:fem'}]
+      reverse: (lesh|leh|laysh|leish) (za3lene|za3lane|za3leni|za3lena)
+  translations:
+    en: Why are you (upset|sad)?
+- id: s.party.20
+  node: apc.party.feelings
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: ليش ما رحت عالعرس؟
+      tokens: [{surface: ليش, sense: lesh}, {surface: ما, sense: ma}, {surface: رحت, sense: ra7, form: 'form:past-2ms'}, {surface: عالعرس, sense: 3irs, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال,
+              kc: 'sense:el'}, {surface: عرس, kc: 'sense:3irs'}]}]
+      reverse: (ليش|ليه) ما (رحت|أنا رحت) (عالعرس|ع العرس|على العرس)
+    apc-Latn/arabizi:
+      text: lesh ma ru7t 3al 3irs?
+      tokens: [{surface: lesh, sense: lesh}, {surface: ma, sense: ma}, {surface: ru7t, sense: ra7, form: 'form:past-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
+              kc: 'sense:el'}]}, {surface: 3irs, sense: 3irs}]
+      reverse: (lesh|leh|laysh|leish) ma (ru7t|re7et|ri7t|ro7t|re7t) (3al|3a l|3a el) (3irs|3eres|3ers)
+  translations:
+    en: Why (didn't|did not) you go to the wedding?
+- id: s.party.21
+  node: apc.party.feelings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المدير معصّب اليوم.
+      tokens: [{surface: المدير, sense: mudir, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدير, kc: 'sense:mudir'}]}, {surface: معصّب, sense: m3asseb}, {surface: اليوم, sense: yom, morphs: [{surface: ال,
+              kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: المدير معصّب اليوم
+    apc-Latn/arabizi:
+      text: el mudir m3asseb el yom.
+      tokens: [{surface: el, sense: el}, {surface: mudir, sense: mudir}, {surface: m3asseb, sense: m3asseb}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: (el|l|il) (mudir|modir|mudeer|modeer) (m3asseb|m3aseb|me3asseb|m3asab) (el|l|il) (yom|youm)
+  translations:
+    en: |-
+      The (boss|manager) is angry today.
+      The (boss|manager)'s (angry|in a bad mood) today.
+- id: s.party.22
+  node: apc.party.feelings
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا مش معصّبة!
+      tokens: [{surface: أنا, sense: ana}, {surface: مش, sense: mish}, {surface: معصّبة, sense: m3asseb, form: 'form:fem'}]
+      reverse: '[أنا] مش معصّبة'
+    apc-Latn/arabizi:
+      text: ana mish m3assbe!
+      tokens: [{surface: ana, sense: ana}, {surface: mish, sense: mish}, {surface: m3assbe, sense: m3asseb, form: 'form:fem'}]
+      reverse: '[ana] (mish|mesh|msh|mush) (m3assbe|m3asbe|m3assabe|me3assbe)'
+  translations:
+    en: |-
+      I('m| am) not angry!
+      I'm not annoyed!
+- id: s.party.23
+  node: apc.party.feelings
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: ليش معصّبين؟
+      tokens: [{surface: ليش, sense: lesh}, {surface: معصّبين, sense: m3asseb, form: 'form:pl'}]
+      reverse: (ليش|ليه) معصّبين
+    apc-Latn/arabizi:
+      text: lesh m3assbin?
+      tokens: [{surface: lesh, sense: lesh}, {surface: m3assbin, sense: m3asseb, form: 'form:pl'}]
+      reverse: (lesh|leh|laysh|leish) (m3assbin|m3asbin|m3assbeen|m3assabin)
+  translations:
+    en: Why are you angry?
+- id: s.party.24
+  node: apc.party.feelings
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا خايف.
+      tokens: [{surface: أنا, sense: ana}, {surface: خايف, sense: khayef}]
+      reverse: '[أنا] خايف'
+    apc-Latn/arabizi:
+      text: ana khayef.
+      tokens: [{surface: ana, sense: ana}, {surface: khayef, sense: khayef}]
+      reverse: '[ana] (khayef|khayif|khayf)'
+  translations:
+    en: I('m| am) (scared|afraid|worried).
+- id: s.party.25
+  node: apc.party.feelings
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: ما تخافي!
+      tokens: [{surface: ما, sense: ma}, {surface: تخافي, sense: khayef, form: 'form:subj-2fs'}]
+      reverse: ما تخافي
+    apc-Latn/arabizi:
+      text: ma tkhafi!
+      tokens: [{surface: ma, sense: ma}, {surface: tkhafi, sense: khayef, form: 'form:subj-2fs'}]
+      reverse: ma (tkhafi|tkhafe|tekhafi)
+  translations:
+    en: |-
+      Don't be (afraid|scared)!
+      Don't worry!
+- id: s.party.26
+  node: apc.party.feelings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: يا حرام!
+      tokens: [{surface: يا, sense: ya-7aram}, {surface: حرام, sense: ya-7aram}]
+      reverse: يا حرام
+    apc-Latn/arabizi:
+      text: ya 7aram!
+      tokens: [{surface: ya, sense: ya-7aram}, {surface: 7aram, sense: ya-7aram}]
+      reverse: ya (7aram|haram)
+  translations:
+    en: (What a pity|What a shame|Poor thing|Oh no)!
+- id: s.party.27
+  node: apc.party.feelings
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا مريضة؟ يا حرام!
+      tokens: [{surface: تيتا, sense: teta}, {surface: مريضة, sense: mrid, form: 'form:fem'}, {surface: يا, sense: ya-7aram}, {surface: حرام, sense: ya-7aram}]
+      reverse: تيتا مريضة يا حرام
+    apc-Latn/arabizi:
+      text: teta mrida? ya 7aram!
+      tokens: [{surface: teta, sense: teta}, {surface: mrida, sense: mrid, form: 'form:fem'}, {surface: ya, sense: ya-7aram}, {surface: 7aram, sense: ya-7aram}]
+      reverse: teta (mrida|mreeda|marida|mride) ya (7aram|haram)
+  translations:
+    en: (Grandma|Granny) is (sick|ill)? (Poor thing|What a pity|Oh no)!
+- id: s.party.28
+  node: apc.party.how
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو حلو!
+      tokens: [{surface: شو, sense: shu}, {surface: حلو, sense: 7elo}]
+      reverse: شو حلو
+    apc-Latn/arabizi:
+      text: shu 7elo!
+      tokens: [{surface: shu, sense: shu}, {surface: 7elo, sense: 7elo}]
+      reverse: (shu|sho) (7elo|7elu|7ilo|helo)
+  constructions: ['construction:shu-excl']
+  translations:
+    en: |-
+      How (nice|lovely|beautiful|pretty)!
+      (That's|It's) so (nice|lovely|beautiful|pretty)!
+- id: s.party.29
+  node: apc.party.how
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو طيّب هالأكل!
+      tokens: [{surface: شو, sense: shu}, {surface: طيّب, sense: tayyeb}, {surface: هالأكل, sense: akl, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: أكل, kc: 'sense:akl'}]}]
+      reverse: شو طيّب هالأكل
+    apc-Latn/arabizi:
+      text: shu tayyeb hal akl!
+      tokens: [{surface: shu, sense: shu}, {surface: tayyeb, sense: tayyeb}, {surface: hal, sense: hal}, {surface: akl, sense: akl}]
+      reverse: (shu|sho) (tayyeb|tayeb|tayyib|tayib) (hal|hel) (akl|2akl|akel|akil)
+  constructions: ['construction:shu-excl']
+  translations:
+    en: |-
+      How (tasty|delicious) this food is!
+      This food is so (tasty|delicious|good)!
+- id: s.party.30
+  node: apc.party.how
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو حلوة هالهديّة!
+      tokens: [{surface: شو, sense: shu}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: هالهديّة, sense: hdiyye, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: هديّة, kc: 'sense:hdiyye'}]}]
+      reverse: شو حلوة هالهديّة
+    apc-Latn/arabizi:
+      text: shu 7elwe hal hdiyye!
+      tokens: [{surface: shu, sense: shu}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: hal, sense: hal}, {surface: hdiyye, sense: hdiyye}]
+      reverse: (shu|sho) (7elwe|7elwi|7ilwe|helwe) (hal|hel) (hdiyye|hdiye|hadiyye|hdiyyi|hadiye)
+  constructions: ['construction:shu-excl']
+  translations:
+    en: |-
+      What a (lovely|nice|beautiful) (present|gift)!
+      How (lovely|nice|beautiful) this (present|gift) is!
+- id: s.party.31
+  node: apc.party.how
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: ليك!
+      tokens: [{surface: ليك, sense: lek}]
+      reverse: ليك
+    apc-Latn/arabizi:
+      text: lek!
+      tokens: [{surface: lek, sense: lek}]
+      reverse: (lek|lak|layk)
+  translations:
+    en: |-
+      Look!
+      Hey, look!
+- id: s.party.32
+  node: apc.party.how
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: ليك شو حلو البحر!
+      tokens: [{surface: ليك, sense: lek}, {surface: شو, sense: shu}, {surface: حلو, sense: 7elo}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: ليك شو حلو البحر
+    apc-Latn/arabizi:
+      text: lek shu 7elo el ba7r!
+      tokens: [{surface: lek, sense: lek}, {surface: shu, sense: shu}, {surface: 7elo, sense: 7elo}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      reverse: (lek|lak|layk) (shu|sho) (7elo|7elu|7ilo|helo) (el|l|il) (ba7r|ba7er|bahr)
+  constructions: ['construction:shu-excl']
+  translations:
+    en: |-
+      Look how (beautiful|lovely) the sea is!
+      Look, the sea is so (beautiful|lovely)!
+- id: s.party.33
+  node: apc.party.how
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: ليكي شو كبير العرس!
+      tokens: [{surface: ليكي, sense: lek, form: 'form:imp-2fs'}, {surface: شو, sense: shu}, {surface: كبير, sense: kbir}, {surface: العرس, sense: 3irs, morphs: [{surface: ال, kc: 'sense:el'}, {surface: عرس,
+              kc: 'sense:3irs'}]}]
+      reverse: (ليكي|ليك) شو كبير العرس
+    apc-Latn/arabizi:
+      text: leke shu kbir el 3irs!
+      tokens: [{surface: leke, sense: lek, form: 'form:imp-2fs'}, {surface: shu, sense: shu}, {surface: kbir, sense: kbir}, {surface: el, sense: el}, {surface: 3irs, sense: 3irs}]
+      reverse: (leke|layke|leki|lik) (shu|sho) (kbir|kbeer|kebir) (el|l|il) (3irs|3eres|3ers)
+  constructions: ['construction:shu-excl']
+  translations:
+    en: |-
+      Look how big the wedding is!
+      Look, the wedding is so big!
+- id: s.party.34
+  node: apc.party.how
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: ليكو!
+      tokens: [{surface: ليكو, sense: lek, form: 'form:imp-2pl'}]
+      reverse: ليكو
+    apc-Latn/arabizi:
+      text: leko!
+      tokens: [{surface: leko, sense: lek, form: 'form:imp-2pl'}]
+      reverse: (leko|layko|leku|lekon)
+  translations:
+    en: |-
+      Look!
+      Hey, look!
+stories:
+- id: apc.story.wedding
+  node: apc.party.story
+  title: {en: The wedding invitation}
+  provenance: {author: 'llm:claude@54fd03d0864d', status: draft}
+  characters:
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، مَبْروك عِرْس خَيَّك!
+          tokens: [{surface: مايا, sense: maya}, {surface: مَبْروك, sense: mabrouk}, {surface: عِرْس, sense: 3irs}, {surface: خَيَّك, sense: khayy, morphs: [{surface: خَيَّ, kc: 'sense:khayy'}, {surface: ك,
+                  kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: Maya, mabrouk 3irs khayyik!
+          tokens: [{surface: Maya, sense: maya}, {surface: mabrouk, sense: mabrouk}, {surface: 3irs, sense: 3irs}, {surface: khayyik, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: ik,
+                  kc: 'form:poss-2fs'}]}]
+      translations: {en: 'Maya, congratulations on your brother''s wedding!'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: الله يْبارِك فيك!
+          tokens: [{surface: الله, sense: allah-ybarek}, {surface: يْبارِك, sense: allah-ybarek}, {surface: فيك, sense: allah-ybarek}]
+        apc-Latn/arabizi:
+          text: allah ybarek fik!
+          tokens: [{surface: allah, sense: allah-ybarek}, {surface: ybarek, sense: allah-ybarek}, {surface: fik, sense: allah-ybarek}]
+      translations: {en: Thank you!}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: إِمْتى العِرْس؟
+          tokens: [{surface: إِمْتى, sense: emta}, {surface: العِرْس, sense: 3irs, morphs: [{surface: ال, kc: 'sense:el'}, {surface: عِرْس, kc: 'sense:3irs'}]}]
+        apc-Latn/arabizi:
+          text: emta el 3irs?
+          tokens: [{surface: emta, sense: emta}, {surface: el, sense: el}, {surface: 3irs, sense: 3irs}]
+      translations: {en: 'When''s the wedding?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بْأَيْلول. وبَدّي اِعْزْمَك!
+          tokens: [{surface: بْأَيْلول, sense: aylul, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: أَيْلول, kc: 'sense:aylul'}]}, {surface: وبَدّي, sense: baddi, morphs: [{surface: و, kc: 'sense:w'},
+                {surface: بَدّي, kc: 'sense:baddi'}]}, {surface: اِعْزْمَك, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: اِعْزْمَ, kc: 'sense:3azam'}, {surface: ك, kc: 'form:obj-2ms'}]}]
+        apc-Latn/arabizi:
+          text: b aylul. w baddi e3zmak!
+          tokens: [{surface: b, sense: b}, {surface: aylul, sense: aylul}, {surface: w, sense: w}, {surface: baddi, sense: baddi}, {surface: e3zmak, sense: 3azam, form: 'form:subj-1sg', morphs: [{surface: e3zm,
+                  kc: 'sense:3azam'}, {surface: ak, kc: 'form:obj-2ms'}]}]
+      translations: {en: In September. And I want to invite you!}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:hdiyye
+      distractors: ['sense:3irs']
+      forms:
+        apc-Arab/standard:
+          text: أَكيد! رَح اِشْتِري هْدِيِّة حِلْوِة.
+          tokens: [{surface: أَكيد, sense: akid}, {surface: رَح, sense: ra7.fut}, {surface: اِشْتِري, sense: eshtara, form: 'form:subj-1sg'}, {surface: هْدِيِّة, sense: hdiyye}, {surface: حِلْوِة, sense: 7elo,
+              form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: akid! ra7 eshtiri hdiyye 7elwe.
+          tokens: [{surface: akid, sense: akid}, {surface: ra7, sense: ra7.fut}, {surface: eshtiri, sense: eshtara, form: 'form:subj-1sg'}, {surface: hdiyye, sense: hdiyye}, {surface: 7elwe, sense: 7elo,
+              form: 'form:fem'}]
+      translations: {en: Of course! I'll buy a nice present.}
+  - choose:
+      prompt: {en: 'When is the wedding?'}
+      options: [{en: In September}, {en: Next week}, {en: In April}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بَسّ أَنا خايْفِة شْوَي.
+          tokens: [{surface: بَسّ, sense: bas}, {surface: أَنا, sense: ana}, {surface: خايْفِة, sense: khayef, form: 'form:fem'}, {surface: شْوَي, sense: shway}]
+        apc-Latn/arabizi:
+          text: bas ana khayfe shway.
+          tokens: [{surface: bas, sense: bas}, {surface: ana, sense: ana}, {surface: khayfe, sense: khayef, form: 'form:fem'}, {surface: shway, sense: shway}]
+      translations: {en: But I'm a bit worried.}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: ليش؟
+          tokens: [{surface: ليش, sense: lesh}]
+        apc-Latn/arabizi:
+          text: lesh?
+          tokens: [{surface: lesh, sense: lesh}]
+      translations: {en: 'Why?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: لَأَنّو ما بَعْرِف اُرْقُص!
+          tokens: [{surface: لَأَنّو, sense: la2anno}, {surface: ما, sense: ma}, {surface: بَعْرِف, sense: 3eref, form: 'form:impf-1sg'}, {surface: اُرْقُص, sense: ra2as, form: 'form:subj-1sg'}]
+        apc-Latn/arabizi:
+          text: la2anno ma ba3ref or2os!
+          tokens: [{surface: la2anno, sense: la2anno}, {surface: ma, sense: ma}, {surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}, {surface: or2os, sense: ra2as, form: 'form:subj-1sg'}]
+      translations: {en: Because I don't know how to dance!}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: يا حَرام! ما تْخافي، أَنا كَمان ما بَعْرِف!
+          tokens: [{surface: يا, sense: ya-7aram}, {surface: حَرام, sense: ya-7aram}, {surface: ما, sense: ma}, {surface: تْخافي, sense: khayef, form: 'form:subj-2fs'}, {surface: أَنا, sense: ana}, {surface: كَمان,
+              sense: kamen}, {surface: ما, sense: ma}, {surface: بَعْرِف, sense: 3eref, form: 'form:impf-1sg'}]
+        apc-Latn/arabizi:
+          text: ya 7aram! ma tkhafi, ana kamen ma ba3ref!
+          tokens: [{surface: ya, sense: ya-7aram}, {surface: 7aram, sense: ya-7aram}, {surface: ma, sense: ma}, {surface: tkhafi, sense: khayef, form: 'form:subj-2fs'}, {surface: ana, sense: ana}, {surface: kamen,
+              sense: kamen}, {surface: ma, sense: ma}, {surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}]
+      translations: {en: 'Oh dear! Don''t worry, I don''t know how either!'}
+  - choose:
+      prompt: {en: 'Why is Maya a bit worried?'}
+      options: [{en: She can't dance}, {en: She is sick}, {en: She has no dress}]
+      answer: 0
+scenarios:
+- id: apc.wedding
+  after: apc.party.story
+  title: {en: At a wedding}
+  setting: {en: A Lebanese wedding in a hall in the mountains; the dabke has just started.}
+  character: {en: 'Tante Nada, the bride''s aunt, who is delighted to meet you and wants you to dance.'}
+  goal: {en: 'Congratulate the family, answer when you are congratulated, say what you like about the wedding (the food, the music, the dress), say how you feel, and politely say no to dancing, or yes.'}
+  provenance: {author: 'llm:claude@54fd03d0864d', status: draft}

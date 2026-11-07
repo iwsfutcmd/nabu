@@ -1,0 +1,710 @@
+# Fixture course (apc), unit 13: can and must. fi- with the possessive endings (fiyyi, fik, fiki, fiya,
+# fina, fikon: I can, you can…), lezem + a verb without b- (lezem ru7: I have to go; ma lezem: you shouldn't),
+# being ill (mrid, ma3i wja3 ras, shu bak?), the doctor, medicine, resting and salemtak.
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapter 15 (fi,
+# badd-, lezem) and chapter 3 (a7san): every sentence awaits a native speaker's review.
+id: u13-health
+title: {en: I don't feel well}
+cefr: A2
+kcs:
+- {id: 'sense:mrid', gloss: {en: sick; ill}, forms: {apc-Arab/standard: [مريض], apc-Latn/arabizi: [mrid]}, notes: {en: 'A woman: مريضة, mrida.'}}
+- {id: 'sense:shu-bak', gloss: {en: 'what''s wrong? (to a man)'}, forms: {apc-Arab/standard: [شو بك], apc-Latn/arabizi: [shu bak]}, notes: {en: 'Literally ''what is in you?''. To a woman: شو بكي, shu biki;
+      to several people: شو بكن, shu bkon.'}}
+- {id: 'sense:ras', gloss: {en: head}, forms: {apc-Arab/standard: [راس], apc-Latn/arabizi: [ras]}}
+- {id: 'sense:wja3', gloss: {en: pain; ache}, forms: {apc-Arab/standard: [وجع], apc-Latn/arabizi: [wja3]}, notes: {en: 'ma3i wja3 ras: I have a headache (ma3, as for what you have on you right now).'}}
+- {id: 'sense:batn', gloss: {en: stomach; belly}, forms: {apc-Arab/standard: [بطن], apc-Latn/arabizi: [batn]}}
+- {id: 'sense:fi.can', gloss: {en: 'can (with an ending: fiyyi, fik…)'}, forms: {apc-Arab/standard: [في], apc-Latn/arabizi: [fi]}, notes: {en: 'fi + the possessive ending says who can: fiyyi (I, also fini),
+      fik (you, to a man), fiki (to a woman), fih (he), fiya (she), fina (we), fikon (you, several), fiyon (they). The verb after it has no b-: ma fiyyi nem, I can''t sleep. Without an ending, في is ''there
+      is''.'}}
+- {id: 'sense:a7san', gloss: {en: better; best}, forms: {apc-Arab/standard: [أحسن], apc-Latn/arabizi: [a7san]}}
+- {id: 'sense:lezem', gloss: {en: must; have to; should}, forms: {apc-Arab/standard: [لازم], apc-Latn/arabizi: [lezem]}, notes: {en: 'lezem + a verb without b-: lezem ru7, I have to go. ma lezem: you shouldn''t;
+      lezem ma: you must not (Kline 2022).'}}
+- {id: 'sense:rte7', gloss: {en: rest}, forms: {apc-Arab/standard: [ارتاح], apc-Latn/arabizi: [rte7]}, notes: {en: 'lezem tirte7: you should rest (to a woman: tirte7i).'}}
+- {id: 'sense:7akim', gloss: {en: doctor}, forms: {apc-Arab/standard: [حكيم], apc-Latn/arabizi: [7akim]}, notes: {en: 'Also دكتور, doktor.'}}
+- {id: 'sense:dawa', gloss: {en: medicine}, forms: {apc-Arab/standard: [دوا], apc-Latn/arabizi: [dawa]}}
+- {id: 'sense:salemtak', gloss: {en: get well soon (to a man)}, forms: {apc-Arab/standard: [سلامتك], apc-Latn/arabizi: [salemtak]}, notes: {en: 'Literally ''your safety''. To a woman: salemtik; to several
+      people: salemetkon.'}}
+nodes:
+- {id: apc.health.sick, kind: lesson, introduces: ['sense:mrid', 'sense:shu-bak', 'sense:ras', 'sense:wja3', 'sense:batn']}
+- {id: apc.health.can, kind: lesson, introduces: ['sense:fi.can', 'sense:a7san']}
+- {id: apc.health.must, kind: lesson, introduces: ['sense:lezem', 'sense:rte7', 'sense:7akim', 'sense:dawa', 'sense:salemtak']}
+- {id: apc.health.story, kind: story}
+sentences:
+- id: s.health.1
+  node: apc.health.sick
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا مريض.
+      tokens: [{surface: أنا, sense: ana}, {surface: مريض, sense: mrid}]
+      reverse: '[أنا] مريض'
+    apc-Latn/arabizi:
+      text: ana mrid.
+      tokens: [{surface: ana, sense: ana}, {surface: mrid, sense: mrid}]
+      reverse: '[ana] (mrid|mareed|mreed)'
+  translations:
+    en: |-
+      I('m| am) (sick|ill).
+      I('m| am) not well.
+- id: s.health.2
+  node: apc.health.sick
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا مريضة.
+      tokens: [{surface: أنا, sense: ana}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
+      reverse: '[أنا] مريضة'
+    apc-Latn/arabizi:
+      text: ana mrida.
+      tokens: [{surface: ana, sense: ana}, {surface: mrida, sense: mrid, form: 'form:fem'}]
+      reverse: '[ana] (mrida|mreeda|marida|mride)'
+  translations:
+    en: |-
+      I('m| am) (sick|ill).
+      I('m| am) not well.
+- id: s.health.3
+  node: apc.health.sick
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سامي مريض اليوم.
+      tokens: [{surface: سامي, sense: sami}, {surface: مريض, sense: mrid}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: سامي مريض اليوم
+    apc-Latn/arabizi:
+      text: Sami mrid el yom.
+      tokens: [{surface: Sami, sense: sami}, {surface: mrid, sense: mrid}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: Sami (mrid|mareed|mreed) (el|l|il) (yom|youm)
+  translations:
+    en: |-
+      Sami is (sick|ill) today.
+      Sami's (sick|ill) today.
+- id: s.health.4
+  node: apc.health.sick
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: شو بك؟
+      tokens: [{surface: شو, sense: shu-bak}, {surface: بك, sense: shu-bak}]
+      reverse: شو بك
+    apc-Latn/arabizi:
+      text: shu bak?
+      tokens: [{surface: shu, sense: shu-bak}, {surface: bak, sense: shu-bak}]
+      reverse: (shu|sho) (bak|bek|bik)
+  translations:
+    en: |-
+      What's wrong?
+      What's the matter?
+      What's wrong with you?
+      What's the matter with you?
+- id: s.health.5
+  node: apc.health.sick
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: شو بكي؟
+      tokens: [{surface: شو, sense: shu-bak}, {surface: بكي, sense: shu-bak, form: 'form:poss-2fs'}]
+      reverse: شو (بكي|بك)
+    apc-Latn/arabizi:
+      text: shu biki?
+      tokens: [{surface: shu, sense: shu-bak}, {surface: biki, sense: shu-bak, form: 'form:poss-2fs'}]
+      reverse: (shu|sho) (biki|bike|beke|bik)
+  translations:
+    en: |-
+      What's wrong?
+      What's the matter?
+      What's wrong with you?
+      What's the matter with you?
+- id: s.health.6
+  node: apc.health.sick
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: شو بكن؟
+      tokens: [{surface: شو, sense: shu-bak}, {surface: بكن, sense: shu-bak, form: 'form:poss-2pl'}]
+      reverse: شو بكن
+    apc-Latn/arabizi:
+      text: shu bkon?
+      tokens: [{surface: shu, sense: shu-bak}, {surface: bkon, sense: shu-bak, form: 'form:poss-2pl'}]
+      reverse: (shu|sho) (bkon|bikon|bkun)
+  translations:
+    en: |-
+      What's wrong?
+      What's the matter?
+      What's wrong with you?
+      What's the matter with you?
+- id: s.health.7
+  node: apc.health.sick
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: راسي!
+      tokens: [{surface: راسي, sense: ras, morphs: [{surface: راس, kc: 'sense:ras'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: راسي
+    apc-Latn/arabizi:
+      text: rasi!
+      tokens: [{surface: rasi, sense: ras, morphs: [{surface: ras, kc: 'sense:ras'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (rasi|rase)
+  translations:
+    en: My head!
+- id: s.health.8
+  node: apc.health.sick
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: معي وجع راس.
+      tokens: [{surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      reverse: معي وجع راس
+    apc-Latn/arabizi:
+      text: ma3i wja3 ras.
+      tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
+      reverse: (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (ras|rass)
+  translations:
+    en: |-
+      I have a headache.
+      I('ve| have) got a headache.
+- id: s.health.9
+  node: apc.health.sick
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: معي وجع بطن.
+      tokens: [{surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وجع, sense: wja3}, {surface: بطن, sense: batn}]
+      reverse: معي وجع بطن
+    apc-Latn/arabizi:
+      text: ma3i wja3 batn.
+      tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wja3, sense: wja3}, {surface: batn, sense: batn}]
+      reverse: (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (batn|baten|batin)
+  translations:
+    en: |-
+      I have a stomach ache.
+      I('ve| have) got a stomach ache.
+      I have a (stomachache|tummy ache|bellyache).
+- id: s.health.10
+  node: apc.health.sick
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا معا وجع راس.
+      tokens: [{surface: تيتا, sense: teta}, {surface: معا, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      reverse: تيتا (معا|معها) وجع راس
+    apc-Latn/arabizi:
+      text: teta ma3a wja3 ras.
+      tokens: [{surface: teta, sense: teta}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
+      reverse: teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
+  translations:
+    en: |-
+      (Grandma|Granny) has a headache.
+      (Grandma|Granny)('s| has) got a headache.
+- id: s.health.11
+  node: apc.health.sick
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: معك وجع راس؟
+      tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      reverse: (معك|إنت معك) وجع راس
+    apc-Latn/arabizi:
+      text: ma3ak wja3 ras?
+      tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
+      reverse: (ma3ak|m3ak) (wja3|waja3|wje3|waje3) (ras|rass)
+  translations:
+    en: |-
+      Do you have a headache?
+      Have you got a headache?
+- id: s.health.12
+  node: apc.health.can
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: فيك تروح عالشغل؟
+      tokens: [{surface: فيك, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالشغل, sense: shoghl,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: فيك تروح (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: fik tru7 3al shoghl?
+      tokens: [{surface: fik, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: k, kc: 'form:poss-2ms'}]}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a,
+          morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (fik|feek|fiyak) tru7 (3al|3a l|3a el) (shoghl|shoghol|shughl)
+  translations:
+    en: |-
+      Can you go to work?
+      Are you able to go to work?
+- id: s.health.13
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لأ، ما فيّي روح.
+      tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: روح, sense: ra7,
+          form: 'form:subj-1sg'}]
+      reverse: لأ ما (فيّي|فيني) روح
+    apc-Latn/arabizi:
+      text: la2, ma fiyyi ru7.
+      tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ru7, sense: ra7,
+          form: 'form:subj-1sg'}]
+      reverse: (la2|la) ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (ru7|ro7)
+  translations:
+    en: |-
+      No, I can't go.
+      No, I cannot go.
+      No, I('m| am) not able to go.
+- id: s.health.14
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما فيّي نام.
+      tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: نام, sense: nem, form: 'form:subj-1sg'}]
+      reverse: ما (فيّي|فيني) نام
+    apc-Latn/arabizi:
+      text: ma fiyyi nem.
+      tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: nem, sense: nem, form: 'form:subj-1sg'}]
+      reverse: ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (nem|nam)
+  translations:
+    en: |-
+      I can't sleep.
+      I cannot sleep.
+- id: s.health.15
+  node: apc.health.can
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: فيكي تنامي؟
+      tokens: [{surface: فيكي, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: كي, kc: 'form:poss-2fs'}]}, {surface: تنامي, sense: nem, form: 'form:subj-2fs'}]
+      reverse: فيكي تنامي
+    apc-Latn/arabizi:
+      text: fiki tnemi?
+      tokens: [{surface: fiki, sense: fi.can, morphs: [{surface: f, kc: 'sense:fi.can'}, {surface: iki, kc: 'form:poss-2fs'}]}, {surface: tnemi, sense: nem, form: 'form:subj-2fs'}]
+      reverse: (fiki|fike|fiyki|feeki) (tnemi|tneme|tnami)
+  translations:
+    en: |-
+      Can you sleep?
+      Are you able to sleep?
+- id: s.health.16
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: فيها تحكي إنكليزي.
+      tokens: [{surface: فيها, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: إنكليزي, sense: englize}]
+      reverse: (فيها|فيا) تحكي (إنكليزي|انجليزي)
+    apc-Latn/arabizi:
+      text: fiya t7ki englize.
+      tokens: [{surface: fiya, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: ya, kc: 'form:poss-3fs'}]}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: englize, sense: englize}]
+      reverse: (fiya|fiyya|fiha|feeya) (t7ki|te7ke|ti7ki|t7ke) (englize|englizi|inglize|inglizi)
+  translations:
+    en: She can speak English.
+- id: s.health.17
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: فينا نروح سوا.
+      tokens: [{surface: فينا, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: سوا, sense: sawa}]
+      reverse: فينا نروح سوا
+    apc-Latn/arabizi:
+      text: fina nru7 sawa.
+      tokens: [{surface: fina, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: sawa, sense: sawa}]
+      reverse: (fina|feena) (nru7|nro7) (sawa|sawe)
+  translations:
+    en: We can go together.
+- id: s.health.18
+  node: apc.health.can
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: فيكن تاكلوا هون.
+      tokens: [{surface: فيكن, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: تاكلوا, sense: akal, form: 'form:subj-2pl'}, {surface: هون, sense: hon}]
+      reverse: فيكن (تاكلوا|تاكلو) هون
+    apc-Latn/arabizi:
+      text: fikon teklo hon.
+      tokens: [{surface: fikon, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: teklo, sense: akal, form: 'form:subj-2pl'}, {surface: hon, sense: hon}]
+      reverse: (fikon|fikun|feekon) (teklo|tekelo|taklo|teklu) (hon|hone|houn)
+  translations:
+    en: You can eat here.
+- id: s.health.19
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا أحسن اليوم.
+      tokens: [{surface: أنا, sense: ana}, {surface: أحسن, sense: a7san}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: '[أنا] أحسن اليوم'
+    apc-Latn/arabizi:
+      text: ana a7san el yom.
+      tokens: [{surface: ana, sense: ana}, {surface: a7san, sense: a7san}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: '[ana] (a7san|ahsan|a7sen) (el|l|il) (yom|youm)'
+  translations:
+    en: |-
+      I('m| am) (better|feeling better) today.
+      Today I('m| am) (better|feeling better).
+- id: s.health.20
+  node: apc.health.can
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا أحسن.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: أحسن, sense: a7san}]
+      reverse: هيدا أحسن
+    apc-Latn/arabizi:
+      text: hayda a7san.
+      tokens: [{surface: hayda, sense: hayda}, {surface: a7san, sense: a7san}]
+      reverse: (hayda|haida|hyda) (a7san|ahsan|a7sen)
+  translations:
+    en: (This|That)('s| is) better.
+- id: s.health.21
+  node: apc.health.must
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: لازم روح.
+      tokens: [{surface: لازم, sense: lezem}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}]
+      reverse: لازم روح
+    apc-Latn/arabizi:
+      text: lezem ru7.
+      tokens: [{surface: lezem, sense: lezem}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}]
+      reverse: (lezem|lazem|lezim|lazim) (ru7|ro7)
+  translations:
+    en: |-
+      I (have to|must|need to) go.
+      I('ve| have) got to go.
+- id: s.health.22
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: لازم ترتاح.
+      tokens: [{surface: لازم, sense: lezem}, {surface: ترتاح, sense: rte7, form: 'form:subj-2ms'}]
+      reverse: لازم ترتاح
+    apc-Latn/arabizi:
+      text: lezem tirte7.
+      tokens: [{surface: lezem, sense: lezem}, {surface: tirte7, sense: rte7, form: 'form:subj-2ms'}]
+      reverse: (lezem|lazem|lezim|lazim) (tirte7|tirta7|terte7)
+  translations:
+    en: |-
+      You (have to|must|need to|should) rest.
+      You('ve| have) got to rest.
+- id: s.health.23
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: لازم ترتاحي.
+      tokens: [{surface: لازم, sense: lezem}, {surface: ترتاحي, sense: rte7, form: 'form:subj-2fs'}]
+      reverse: لازم ترتاحي
+    apc-Latn/arabizi:
+      text: lezem tirte7i.
+      tokens: [{surface: lezem, sense: lezem}, {surface: tirte7i, sense: rte7, form: 'form:subj-2fs'}]
+      reverse: (lezem|lazem|lezim|lazim) (tirte7i|tirta7i|terte7i|tirte7e)
+  translations:
+    en: |-
+      You (have to|must|need to|should) rest.
+      You('ve| have) got to rest.
+- id: s.health.24
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: لازم تشرب مي كتير.
+      tokens: [{surface: لازم, sense: lezem}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: مي, sense: may}, {surface: كتير, sense: ktir}]
+      reverse: لازم تشرب (مي|مية) كتير
+    apc-Latn/arabizi:
+      text: lezem tishrab may ktir.
+      tokens: [{surface: lezem, sense: lezem}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: may, sense: may}, {surface: ktir, sense: ktir}]
+      reverse: (lezem|lazem|lezim|lazim) (tishrab|teshrab|tishrob|tshrab) (may|mai|mayy|mayye) (ktir|kteer)
+  translations:
+    en: You (have to|must|need to|should) drink (a lot of|lots of|plenty of) water.
+- id: s.health.25
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: ما لازم تشتغل اليوم.
+      tokens: [{surface: ما, sense: ma}, {surface: لازم, sense: lezem}, {surface: تشتغل, sense: eshteghel, form: 'form:subj-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {
+              surface: يوم, kc: 'sense:yom'}]}]
+      reverse: ما لازم تشتغل اليوم
+    apc-Latn/arabizi:
+      text: ma lezem tishteghel el yom.
+      tokens: [{surface: ma, sense: ma}, {surface: lezem, sense: lezem}, {surface: tishteghel, sense: eshteghel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: ma (lezem|lazem|lezim|lazim) (tishteghel|teshteghel|tishtighel) (el|l|il) (yom|youm)
+  translations:
+    en: |-
+      You (shouldn't|should not) work today.
+      You (mustn't|must not) work today.
+- id: s.health.26
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: لازم تروح عالحكيم.
+      tokens: [{surface: لازم, sense: lezem}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالحكيم, sense: 7akim, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
+              surface: حكيم, kc: 'sense:7akim'}]}]
+      reverse: لازم تروح (عالحكيم|ع الحكيم|على الحكيم)
+    apc-Latn/arabizi:
+      text: lezem tru7 3al 7akim.
+      tokens: [{surface: lezem, sense: lezem}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 7akim,
+          sense: 7akim}]
+      reverse: (lezem|lazem|lezim|lazim) tru7 (3al|3a l|3a el) (7akim|hakim|7akeem|7kim)
+  translations:
+    en: |-
+      You (have to|must|need to|should) go to the doctor('s|).
+      You('ve| have) got to go to the doctor('s|).
+- id: s.health.27
+  node: apc.health.must
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين الحكيم؟
+      tokens: [{surface: وين, sense: wen}, {surface: الحكيم, sense: 7akim, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حكيم, kc: 'sense:7akim'}]}]
+      reverse: وين الحكيم
+    apc-Latn/arabizi:
+      text: wen el 7akim?
+      tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: 7akim, sense: 7akim}]
+      reverse: (wen|wein) (el|l|il) (7akim|hakim|7akeem|7kim)
+  translations:
+    en: Where('s| is) the doctor?
+- id: s.health.28
+  node: apc.health.must
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي دوا.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: دوا, sense: dawa}]
+      reverse: (بدّي|أنا بدّي) دوا
+    apc-Latn/arabizi:
+      text: baddi dawa.
+      tokens: [{surface: baddi, sense: baddi}, {surface: dawa, sense: dawa}]
+      reverse: (baddi|badde|badi) (dawa|dawe|dowa)
+  translations:
+    en: |-
+      I (need|want) (medicine|some medicine).
+      I need something (for it|).
+- id: s.health.29
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: لازم تاخدي الدوا.
+      tokens: [{surface: لازم, sense: lezem}, {surface: تاخدي, sense: akhad, form: 'form:subj-2fs'}, {surface: الدوا, sense: dawa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دوا, kc: 'sense:dawa'}]}]
+      reverse: لازم تاخدي الدوا
+    apc-Latn/arabizi:
+      text: lezem tekhdi el dawa.
+      tokens: [{surface: lezem, sense: lezem}, {surface: tekhdi, sense: akhad, form: 'form:subj-2fs'}, {surface: el, sense: el}, {surface: dawa, sense: dawa}]
+      reverse: (lezem|lazem|lezim|lazim) (tekhdi|tekhde|takhdi) (el|l|il) (dawa|dawe|dowa)
+  translations:
+    en: |-
+      You (have to|must|need to|should) take the medicine.
+      You('ve| have) got to take the medicine.
+- id: s.health.30
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: سلامتك!
+      tokens: [{surface: سلامتك, sense: salemtak}]
+      reverse: سلامتك
+    apc-Latn/arabizi:
+      text: salemtak!
+      tokens: [{surface: salemtak, sense: salemtak}]
+      reverse: (salemtak|salamtak|slemtak)
+  translations:
+    en: |-
+      Get well soon!
+      I hope you feel better!
+- id: s.health.31
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: سلامتك، مايا!
+      tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya}]
+      reverse: سلامتك مايا
+    apc-Latn/arabizi:
+      text: salemtik, Maya!
+      tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya}]
+      reverse: (salemtik|salamtik|salemtek|salemtike) Maya
+  translations:
+    en: |-
+      Get well soon, Maya!
+      I hope you feel better, Maya!
+- id: s.health.32
+  node: apc.health.must
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: سلامتكن!
+      tokens: [{surface: سلامتكن, sense: salemtak, form: 'form:poss-2pl'}]
+      reverse: (سلامتكن|سلامتكم)
+    apc-Latn/arabizi:
+      text: salemetkon!
+      tokens: [{surface: salemetkon, sense: salemtak, form: 'form:poss-2pl'}]
+      reverse: (salemetkon|salametkon|salamtkon|salemtkon)
+  translations:
+    en: |-
+      Get well soon!
+      I hope you feel better!
+- id: s.health.33
+  node: apc.health.must
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: ما فيّي اشتغل، أنا مريضة.
+      tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: اشتغل, sense: eshteghel, form: 'form:subj-1sg'},
+        {surface: أنا, sense: ana}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
+      reverse: ما (فيّي|فيني) اشتغل أنا مريضة
+    apc-Latn/arabizi:
+      text: ma fiyyi eshteghel, ana mrida.
+      tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: eshteghel, sense: eshteghel, form: 'form:subj-1sg'},
+        {surface: ana, sense: ana}, {surface: mrida, sense: mrid, form: 'form:fem'}]
+      reverse: ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (eshteghel|ishteghel|eshtighel) ana (mrida|mreeda|marida|mride)
+  translations:
+    en: |-
+      I can't work, I('m| am) (sick|ill).
+      I cannot work, I('m| am) (sick|ill).
+stories:
+- id: apc.story.sick-day
+  node: apc.health.story
+  title: {en: A sick day}
+  provenance: {author: 'llm:claude@a92756874d1e', status: draft}
+  characters:
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مَرْحَبا مايا، كيفِك؟
+          tokens: [{surface: مَرْحَبا, sense: marhaba}, {surface: مايا, sense: maya}, {surface: كيفِك, sense: kif, morphs: [{surface: كيفِ, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: mar7aba Maya, kifik?
+          tokens: [{surface: mar7aba, sense: marhaba}, {surface: Maya, sense: maya}, {surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'Hi Maya, how are you?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: مِش مْنيحَة، أَنا مْريضَة.
+          tokens: [{surface: مِش, sense: mish}, {surface: مْنيحَة, sense: mni7, form: 'form:fem'}, {surface: أَنا, sense: ana}, {surface: مْريضَة, sense: mrid, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: mish mni7a, ana mrida.
+          tokens: [{surface: mish, sense: mish}, {surface: mni7a, sense: mni7, form: 'form:fem'}, {surface: ana, sense: ana}, {surface: mrida, sense: mrid, form: 'form:fem'}]
+      translations: {en: 'Not good, I''m sick.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: شو بِكي؟
+          tokens: [{surface: شو, sense: shu-bak}, {surface: بِكي, sense: shu-bak, form: 'form:poss-2fs'}]
+        apc-Latn/arabizi:
+          text: shu biki?
+          tokens: [{surface: shu, sense: shu-bak}, {surface: biki, sense: shu-bak, form: 'form:poss-2fs'}]
+      translations: {en: 'What''s wrong?'}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:ras
+      distractors: ['sense:batn']
+      forms:
+        apc-Arab/standard:
+          text: مَعي وْجَع راس، وما فِيّي نام.
+          tokens: [{surface: مَعي, sense: ma3, morphs: [{surface: مَع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وْجَع, sense: wja3}, {surface: راس, sense: ras}, {surface: وما, sense: ma,
+              morphs: [{surface: و, kc: 'sense:w'}, {surface: ما, kc: 'sense:ma'}]}, {surface: فِيّي, sense: fi.can, morphs: [{surface: فِيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {
+              surface: نام, sense: nem, form: 'form:subj-1sg'}]
+        apc-Latn/arabizi:
+          text: ma3i wja3 ras, w ma fiyyi nem.
+          tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}, {surface: w, sense: w},
+            {surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: nem, sense: nem, form: 'form:subj-1sg'}]
+      translations: {en: 'I have a headache, and I can''t sleep.'}
+  - choose:
+      prompt: {en: 'What''s wrong with Maya?'}
+      options: [{en: She has a headache}, {en: She has a stomach ache}, {en: She's hungry}]
+      answer: 0
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: لازِم تْروحي عَالحَكيم!
+          tokens: [{surface: لازِم, sense: lezem}, {surface: تْروحي, sense: ra7, form: 'form:subj-2fs'}, {surface: عَالحَكيم, sense: 7akim, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+                {surface: حَكيم, kc: 'sense:7akim'}]}]
+        apc-Latn/arabizi:
+          text: lezem tru7i 3al 7akim!
+          tokens: [{surface: lezem, sense: lezem}, {surface: tru7i, sense: ra7, form: 'form:subj-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},
+            {surface: 7akim, sense: 7akim}]
+      translations: {en: You have to go to the doctor!}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: ما فِيّي، أَنا مَشْغولِة كْتير.
+          tokens: [{surface: ما, sense: ma}, {surface: فِيّي, sense: fi.can, morphs: [{surface: فِيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: أَنا, sense: ana}, {surface: مَشْغولِة,
+              sense: mashghoul, form: 'form:fem'}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: ma fiyyi, ana mashghoule ktir.
+          tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ana, sense: ana}, {surface: mashghoule,
+              sense: mashghoul, form: 'form:fem'}, {surface: ktir, sense: ktir}]
+      translations: {en: 'I can''t, I''m very busy.'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: لَأ، لازِم تِرْتاحي اليوم.
+          tokens: [{surface: لَأ, sense: la2}, {surface: لازِم, sense: lezem}, {surface: تِرْتاحي, sense: rte7, form: 'form:subj-2fs'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'},
+                {surface: يوم, kc: 'sense:yom'}]}]
+        apc-Latn/arabizi:
+          text: la2, lezem tirte7i el yom.
+          tokens: [{surface: la2, sense: la2}, {surface: lezem, sense: lezem}, {surface: tirte7i, sense: rte7, form: 'form:subj-2fs'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      translations: {en: 'No, you have to rest today.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: خَلَص، رَح نام شْوَي.
+          tokens: [{surface: خَلَص, sense: khalas}, {surface: رَح, sense: ra7.fut}, {surface: نام, sense: nem, form: 'form:subj-1sg'}, {surface: شْوَي, sense: shway}]
+        apc-Latn/arabizi:
+          text: khalas, ra7 nem shway.
+          tokens: [{surface: khalas, sense: khalas}, {surface: ra7, sense: ra7.fut}, {surface: nem, sense: nem, form: 'form:subj-1sg'}, {surface: shway, sense: shway}]
+      translations: {en: 'OK then, I''ll sleep for a bit.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: سَلامْتِك! بُكْرا أَحْسَن، إِن شاء الله.
+          tokens: [{surface: سَلامْتِك, sense: salemtak, form: 'form:poss-2fs'}, {surface: بُكْرا, sense: bukra}, {surface: أَحْسَن, sense: a7san}, {surface: إِن, sense: inshalla}, {surface: شاء, sense: inshalla},
+            {surface: الله, sense: inshalla}]
+        apc-Latn/arabizi:
+          text: salemtik! bukra a7san, inshalla.
+          tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: bukra, sense: bukra}, {surface: a7san, sense: a7san}, {surface: inshalla, sense: inshalla}]
+      translations: {en: 'Get well soon! Tomorrow will be better, hopefully.'}
+  - choose:
+      prompt: {en: 'What does Maya decide to do?'}
+      options: [{en: Sleep for a bit}, {en: Go to the doctor}, {en: Go to work}]
+      answer: 0
+scenarios:
+- id: apc.pharmacy
+  after: apc.health.story
+  title: {en: At the pharmacy}
+  setting: {en: 'A small pharmacy in Hamra, Beirut, in the evening.'}
+  character: {en: 'The pharmacist, calm and careful, who asks what is wrong before giving anything.'}
+  goal: {en: 'Say what is wrong (a headache, a stomach ache, you can''t sleep), answer the pharmacist''s questions, ask what you must and mustn''t do, and thank them.'}
+  provenance: {author: 'llm:claude@a92756874d1e', status: draft}

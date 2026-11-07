@@ -1,0 +1,755 @@
+# Fixture course (apc), unit 15: clothes, colours and comparing. Colours have their own feminine (abyad →
+# bayda, a7mar → 7amra); comparatives (arkhas, aghla, akbar, azghar) with men, than (akbar menni: older
+# than me); 2addesh 7a22o? (how much is it?), trying things on (fiyyi jarrbo?) and sizes.
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapter 3 (feminine
+# and comparative adjectives, colours) and chapter 15: every sentence awaits a native speaker's review.
+id: u15-shopping
+title: {en: At the clothes shop}
+cefr: A2
+kcs:
+- {id: 'sense:tyeb', gloss: {en: clothes}, forms: {apc-Arab/standard: [تياب], apc-Latn/arabizi: [tyeb]}}
+- {id: 'sense:2amis', gloss: {en: shirt}, forms: {apc-Arab/standard: [قميص], apc-Latn/arabizi: [2amis]}}
+- {id: 'sense:bantalon', gloss: {en: trousers; pants}, forms: {apc-Arab/standard: [بنطلون], apc-Latn/arabizi: [bantalon]}}
+- {id: 'sense:fostan', gloss: {en: dress}, forms: {apc-Arab/standard: [فستان], apc-Latn/arabizi: [fostan]}}
+- {id: 'sense:sobbat', gloss: {en: shoe; shoes}, forms: {apc-Arab/standard: [صبّاط], apc-Latn/arabizi: [sobbat]}}
+- {id: 'sense:lon', gloss: {en: colour}, forms: {apc-Arab/standard: [لون], apc-Latn/arabizi: [lon]}, notes: {en: 'shu lono? What colour is it?'}}
+- {id: 'sense:abyad', gloss: {en: white}, forms: {apc-Arab/standard: [أبيض, بيضا], apc-Latn/arabizi: [abyad, bayda]}, notes: {en: 'Colours have their own feminine: abyad → bayda (بيضا).'}}
+- {id: 'sense:aswad', gloss: {en: black}, forms: {apc-Arab/standard: [أسود, سودا], apc-Latn/arabizi: [aswad, sawda]}}
+- {id: 'sense:a7mar', gloss: {en: red}, forms: {apc-Arab/standard: [أحمر, حمرا], apc-Latn/arabizi: [a7mar, 7amra]}}
+- {id: 'sense:azra2', gloss: {en: blue}, forms: {apc-Arab/standard: [أزرق, زرقا], apc-Latn/arabizi: [azra2, zar2a]}}
+- {id: 'sense:akhdar', gloss: {en: green}, forms: {apc-Arab/standard: [أخضر, خضرا], apc-Latn/arabizi: [akhdar, khadra]}}
+- {id: 'sense:arkhas', gloss: {en: cheaper; cheapest}, forms: {apc-Arab/standard: [أرخص], apc-Latn/arabizi: [arkhas]}, notes: {en: 'rkhis → arkhas. A comparative does not change for a feminine noun: el
+      fostan arkhas, el siyyara arkhas.'}}
+- {id: 'sense:men.than', gloss: {en: than}, forms: {apc-Arab/standard: [من], apc-Latn/arabizi: [men]}, notes: {en: 'akbar men el day3a: bigger than the village; akbar menni: older than me.'}}
+- {id: 'sense:aghla', gloss: {en: more expensive; most expensive}, forms: {apc-Arab/standard: [أغلى], apc-Latn/arabizi: [aghla]}, notes: {en: ghali → aghla.}}
+- {id: 'sense:akbar', gloss: {en: bigger; older}, forms: {apc-Arab/standard: [أكبر], apc-Latn/arabizi: [akbar]}, notes: {en: kbir → akbar.}}
+- {id: 'sense:azghar', gloss: {en: smaller; younger}, forms: {apc-Arab/standard: [أزغر], apc-Latn/arabizi: [azghar]}, notes: {en: zghir → azghar.}}
+- {id: 'sense:7a22', gloss: {en: price (what something costs)}, forms: {apc-Arab/standard: [حقّ], apc-Latn/arabizi: [7a22]}, notes: {en: '2addesh 7a22o? How much is it? (7a22a for a feminine noun).'}}
+- {id: 'sense:jarrab', gloss: {en: try; try on}, forms: {apc-Arab/standard: [جرّب], apc-Latn/arabizi: [jarreb]}, notes: {en: 'fiyyi jarrbo? Can I try it on?'}}
+- {id: 'sense:2yes', gloss: {en: size}, forms: {apc-Arab/standard: [قياس], apc-Latn/arabizi: [2yes]}}
+- {id: 'sense:lebes', gloss: {en: wear; put on (clothes)}, forms: {apc-Arab/standard: [البس], apc-Latn/arabizi: [elbos]}, notes: {en: 'shu ra7 tilbos? What are you going to wear?'}}
+nodes:
+- {id: apc.shop.clothes, kind: lesson, introduces: ['sense:tyeb', 'sense:2amis', 'sense:bantalon', 'sense:fostan', 'sense:sobbat']}
+- {id: apc.shop.colours, kind: lesson, introduces: ['sense:lon', 'sense:abyad', 'sense:aswad', 'sense:a7mar', 'sense:azra2', 'sense:akhdar']}
+- {id: apc.shop.compare, kind: lesson, introduces: ['sense:arkhas', 'sense:men.than', 'sense:aghla', 'sense:akbar', 'sense:azghar']}
+- {id: apc.shop.try, kind: lesson, introduces: ['sense:7a22', 'sense:jarrab', 'sense:2yes', 'sense:lebes']}
+- {id: apc.shop.story, kind: story}
+sentences:
+- id: s.shop.1
+  node: apc.shop.clothes
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي اشتري تياب.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: اشتري, sense: eshtara, form: 'form:subj-1sg'}, {surface: تياب, sense: tyeb}]
+      reverse: (بدّي|أنا بدّي) اشتري (تياب|ثياب)
+    apc-Latn/arabizi:
+      text: baddi eshtiri tyeb.
+      tokens: [{surface: baddi, sense: baddi}, {surface: eshtiri, sense: eshtara, form: 'form:subj-1sg'}, {surface: tyeb, sense: tyeb}]
+      reverse: (baddi|badde|badi) (eshtiri|eshtere|ishtiri|eshteri|shtiri) (tyeb|tiyeb|tyab|tieb)
+  translations:
+    en: |-
+      I want to buy (some|) clothes.
+      I('d| would) like to buy (some|) clothes.
+- id: s.shop.2
+  node: apc.shop.clothes
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا القميص حلو.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: القميص, sense: 2amis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قميص, kc: 'sense:2amis'}]}, {surface: حلو, sense: 7elo}]
+      reverse: هيدا القميص حلو
+    apc-Latn/arabizi:
+      text: hayda el 2amis 7elo.
+      tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: 2amis, sense: 2amis}, {surface: 7elo, sense: 7elo}]
+      reverse: (hayda|haida|hyda) (el|l|il) (2amis|2amees|amis|2mis) (7elo|7elu|7ilo|helo)
+  translations:
+    en: |-
+      (This|That) shirt is (nice|pretty|lovely).
+      (This|That) shirt's (nice|pretty|lovely).
+- id: s.shop.3
+  node: apc.shop.clothes
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين البنطلون؟
+      tokens: [{surface: وين, sense: wen}, {surface: البنطلون, sense: bantalon, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بنطلون, kc: 'sense:bantalon'}]}]
+      reverse: وين البنطلون
+    apc-Latn/arabizi:
+      text: wen el bantalon?
+      tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: bantalon, sense: bantalon}]
+      reverse: (wen|wein) (el|l|il) (bantalon|bantaloun|pantalon)
+  translations:
+    en: |-
+      Where are the (trousers|pants)?
+      Where('s| is) the pair of (trousers|pants)?
+- id: s.shop.4
+  node: apc.shop.clothes
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا الفستان كتير حلو!
+      tokens: [{surface: هيدا, sense: hayda}, {surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]}, {surface: كتير, sense: ktir}, {surface: حلو,
+          sense: 7elo}]
+      reverse: هيدا الفستان كتير حلو
+    apc-Latn/arabizi:
+      text: hayda el fostan ktir 7elo!
+      tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: ktir, sense: ktir}, {surface: 7elo, sense: 7elo}]
+      reverse: (hayda|haida|hyda) (el|l|il) (fostan|fistan|fustan|festan) (ktir|kteer) (7elo|7elu|7ilo|helo)
+  translations:
+    en: |-
+      (This|That) dress is (very|really|so) (pretty|nice|beautiful|lovely)!
+      (This|That) dress's (very|really|so) (pretty|nice|beautiful|lovely)!
+- id: s.shop.5
+  node: apc.shop.clothes
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بتحبّي هالفستان؟
+      tokens: [{surface: بتحبّي, sense: 7abb, form: 'form:impf-2fs'}, {surface: هالفستان, sense: fostan, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: فستان, kc: 'sense:fostan'}]}]
+      reverse: (بتحبّي|إنتي بتحبّي) هالفستان
+    apc-Latn/arabizi:
+      text: bt7ebbi hal fostan?
+      tokens: [{surface: bt7ebbi, sense: 7abb, form: 'form:impf-2fs'}, {surface: hal, sense: hal}, {surface: fostan, sense: fostan}]
+      reverse: (bt7ebbi|bt7ebbe|bt7ibbi|btheb|bit7ebbi) (hal|hel) (fostan|fistan|fustan|festan)
+  translations:
+    en: Do you like (this|that) dress?
+- id: s.shop.6
+  node: apc.shop.clothes
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: صبّاطي زغير.
+      tokens: [{surface: صبّاطي, sense: sobbat, morphs: [{surface: صبّاط, kc: 'sense:sobbat'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: زغير, sense: zghir}]
+      reverse: (صبّاطي|سبّاطي) (زغير|صغير)
+    apc-Latn/arabizi:
+      text: sobbati zghir.
+      tokens: [{surface: sobbati, sense: sobbat, morphs: [{surface: sobbat, kc: 'sense:sobbat'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: zghir, sense: zghir}]
+      reverse: (sobbati|sobbate|sebbati|sabbati) (zghir|zgheer)
+  translations:
+    en: My (shoe is|shoes are) (too|) small.
+- id: s.shop.7
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شو لونو؟
+      tokens: [{surface: شو, sense: shu}, {surface: لونو, sense: lon, morphs: [{surface: لون, kc: 'sense:lon'}, {surface: و, kc: 'form:poss-3ms'}]}]
+      reverse: شو (لونو|لونه)
+    apc-Latn/arabizi:
+      text: shu lono?
+      tokens: [{surface: shu, sense: shu}, {surface: lono, sense: lon, morphs: [{surface: lon, kc: 'sense:lon'}, {surface: o, kc: 'form:poss-3ms'}]}]
+      reverse: (shu|sho) (lono|lonu|lounu|lawno)
+  translations:
+    en: What (colour|color) is it?
+- id: s.shop.8
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: القميص أبيض.
+      tokens: [{surface: القميص, sense: 2amis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قميص, kc: 'sense:2amis'}]}, {surface: أبيض, sense: abyad}]
+      reverse: القميص أبيض
+    apc-Latn/arabizi:
+      text: el 2amis abyad.
+      tokens: [{surface: el, sense: el}, {surface: 2amis, sense: 2amis}, {surface: abyad, sense: abyad}]
+      reverse: (el|l|il) (2amis|2amees|amis|2mis) (abyad|abiad|abyed)
+  translations:
+    en: |-
+      The shirt is white.
+      The shirt's white.
+- id: s.shop.8b
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الشنطة بيضا.
+      tokens: [{surface: الشنطة, sense: shanta, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شنطة, kc: 'sense:shanta'}]}, {surface: بيضا, sense: abyad, form: 'form:fem'}]
+      reverse: الشنطة (بيضا|بيضاء)
+    apc-Latn/arabizi:
+      text: el shanta bayda.
+      tokens: [{surface: el, sense: el}, {surface: shanta, sense: shanta}, {surface: bayda, sense: abyad, form: 'form:fem'}]
+      reverse: (el|l|il) (shanta|shante|shan6a) bayda
+  translations:
+    en: |-
+      The (bag|suitcase) is white.
+      The (bag|suitcase)'s white.
+- id: s.shop.9
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي فستان أبيض.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: فستان, sense: fostan}, {surface: أبيض, sense: abyad}]
+      reverse: (بدّي|أنا بدّي) فستان أبيض
+    apc-Latn/arabizi:
+      text: baddi fostan abyad.
+      tokens: [{surface: baddi, sense: baddi}, {surface: fostan, sense: fostan}, {surface: abyad, sense: abyad}]
+      reverse: (baddi|badde|badi) (fostan|fistan|fustan|festan) (abyad|abiad|abyed)
+  translations:
+    en: |-
+      I want a white dress.
+      I('d| would) like a white dress.
+- id: s.shop.10
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البنطلون أسود.
+      tokens: [{surface: البنطلون, sense: bantalon, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بنطلون, kc: 'sense:bantalon'}]}, {surface: أسود, sense: aswad}]
+      reverse: البنطلون أسود
+    apc-Latn/arabizi:
+      text: el bantalon aswad.
+      tokens: [{surface: el, sense: el}, {surface: bantalon, sense: bantalon}, {surface: aswad, sense: aswad}]
+      reverse: (el|l|il) (bantalon|bantaloun|pantalon) (aswad|aswed|aswd)
+  translations:
+    en: The (trousers|pants) are black.
+- id: s.shop.11
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: السيّارة سودا.
+      tokens: [{surface: السيّارة, sense: siyyara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}, {surface: سودا, sense: aswad, form: 'form:fem'}]
+      reverse: السيّارة (سودا|سوداء)
+    apc-Latn/arabizi:
+      text: el siyyara sawda.
+      tokens: [{surface: el, sense: el}, {surface: siyyara, sense: siyyara}, {surface: sawda, sense: aswad, form: 'form:fem'}]
+      reverse: (el|l|il) (siyyara|siyara|sayyara|sayara|syara) (sawda|sooda|sawde)
+  translations:
+    en: |-
+      The car is black.
+      The car's black.
+- id: s.shop.12
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحبّ اللون الأحمر.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اللون, sense: lon, morphs: [{surface: ال, kc: 'sense:el'}, {surface: لون, kc: 'sense:lon'}]}, {surface: الأحمر, sense: a7mar,
+          morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحمر, kc: 'sense:a7mar'}]}]
+      reverse: (بحبّ|أنا بحبّ) اللون الأحمر
+    apc-Latn/arabizi:
+      text: b7ebb el lon el a7mar.
+      tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: lon, sense: lon}, {surface: el, sense: el}, {surface: a7mar, sense: a7mar}]
+      reverse: (b7ebb|b7eb|b7ib|bhebb) (el|l|il) lon (el|l|il) (a7mar|ahmar|a7mer)
+  translations:
+    en: I (like|love) (the colour|the color|) red.
+- id: s.shop.12b
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي سيّارة حمرا.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: سيّارة, sense: siyyara}, {surface: حمرا, sense: a7mar, form: 'form:fem'}]
+      reverse: (بدّي|أنا بدّي) سيّارة (حمرا|حمراء)
+    apc-Latn/arabizi:
+      text: baddi siyyara 7amra.
+      tokens: [{surface: baddi, sense: baddi}, {surface: siyyara, sense: siyyara}, {surface: 7amra, sense: a7mar, form: 'form:fem'}]
+      reverse: (baddi|badde|badi) (siyyara|siyara|sayyara|sayara|syara) 7amra
+  translations:
+    en: |-
+      I want a red car.
+      I('d| would) like a red car.
+- id: s.shop.13
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الفستان أحمر وأسود.
+      tokens: [{surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]}, {surface: أحمر, sense: a7mar}, {surface: وأسود, sense: aswad, morphs: [{
+              surface: و, kc: 'sense:w'}, {surface: أسود, kc: 'sense:aswad'}]}]
+      reverse: الفستان أحمر (وأسود|و أسود)
+    apc-Latn/arabizi:
+      text: el fostan a7mar w aswad.
+      tokens: [{surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: a7mar, sense: a7mar}, {surface: w, sense: w}, {surface: aswad, sense: aswad}]
+      reverse: (el|l|il) (fostan|fistan|fustan|festan) (a7mar|ahmar|a7mer) (w|wa) (aswad|aswed|aswd)
+  translations:
+    en: |-
+      The dress is red and black.
+      The dress's red and black.
+- id: s.shop.14
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: البحر أزرق.
+      tokens: [{surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}, {surface: أزرق, sense: azra2}]
+      reverse: البحر أزرق
+    apc-Latn/arabizi:
+      text: el ba7r azra2.
+      tokens: [{surface: el, sense: el}, {surface: ba7r, sense: ba7r}, {surface: azra2, sense: azra2}]
+      reverse: (el|l|il) (ba7r|ba7er|bahr) (azra2|azra|azre2|azraq)
+  translations:
+    en: |-
+      The sea is blue.
+      The sea's blue.
+- id: s.shop.14b
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: شنطتي زرقا.
+      tokens: [{surface: شنطتي, sense: shanta, morphs: [{surface: شنطت, kc: 'sense:shanta'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: زرقا, sense: azra2, form: 'form:fem'}]
+      reverse: (شنطتي|شنطيتي) (زرقا|زرقاء)
+    apc-Latn/arabizi:
+      text: shantti zar2a.
+      tokens: [{surface: shantti, sense: shanta, morphs: [{surface: shantt, kc: 'sense:shanta'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: zar2a, sense: azra2, form: 'form:fem'}]
+      reverse: (shantti|shanteti|shanti|shantiti) zar2a
+  translations:
+    en: |-
+      My (bag|suitcase) is blue.
+      My (bag|suitcase)'s blue.
+- id: s.shop.15
+  node: apc.shop.colours
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بدّك الأزرق؟
+      tokens: [{surface: بدّك, sense: baddak, form: 'form:poss-2fs'}, {surface: الأزرق, sense: azra2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أزرق, kc: 'sense:azra2'}]}]
+      reverse: (بدّك|إنت بدّك) الأزرق
+    apc-Latn/arabizi:
+      text: baddik el azra2?
+      tokens: [{surface: baddik, sense: baddak, form: 'form:poss-2fs'}, {surface: el, sense: el}, {surface: azra2, sense: azra2}]
+      reverse: (baddik|badik|baddek) (el|l|il) (azra2|azra|azre2|azraq)
+  translations:
+    en: |-
+      Do you want the blue one?
+      Would you like the blue one?
+- id: s.shop.16
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الجبل أخضر.
+      tokens: [{surface: الجبل, sense: jabal, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}, {surface: أخضر, sense: akhdar}]
+      reverse: الجبل أخضر
+    apc-Latn/arabizi:
+      text: el jabal akhdar.
+      tokens: [{surface: el, sense: el}, {surface: jabal, sense: jabal}, {surface: akhdar, sense: akhdar}]
+      reverse: (el|l|il) (jabal|jabel|jbal) (akhdar|akhder)
+  translations:
+    en: The (mountain is|mountains are) green.
+- id: s.shop.17
+  node: apc.shop.colours
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: السيّارة خضرا.
+      tokens: [{surface: السيّارة, sense: siyyara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}, {surface: خضرا, sense: akhdar, form: 'form:fem'}]
+      reverse: السيّارة (خضرا|خضراء)
+    apc-Latn/arabizi:
+      text: el siyyara khadra.
+      tokens: [{surface: el, sense: el}, {surface: siyyara, sense: siyyara}, {surface: khadra, sense: akhdar, form: 'form:fem'}]
+      reverse: (el|l|il) (siyyara|siyara|sayyara|sayara|syara) (khadra|khadra2|khadre)
+  translations:
+    en: |-
+      The car is green.
+      The car's green.
+- id: s.shop.18
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا أرخص.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: أرخص, sense: arkhas}]
+      reverse: هيدا أرخص
+    apc-Latn/arabizi:
+      text: hayda arkhas.
+      tokens: [{surface: hayda, sense: hayda}, {surface: arkhas, sense: arkhas}]
+      reverse: (hayda|haida|hyda) (arkhas|arkhass|arkhes)
+  translations:
+    en: (This|That) (one|)('s| is) cheaper.
+- id: s.shop.19
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدا القميص أرخص من الأبيض.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: القميص, sense: 2amis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قميص, kc: 'sense:2amis'}]}, {surface: أرخص, sense: arkhas}, {surface: من,
+          sense: men.than}, {surface: الأبيض, sense: abyad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أبيض, kc: 'sense:abyad'}]}]
+      reverse: هيدا القميص أرخص من الأبيض
+    apc-Latn/arabizi:
+      text: hayda el 2amis arkhas men el abyad.
+      tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: 2amis, sense: 2amis}, {surface: arkhas, sense: arkhas}, {surface: men, sense: men.than}, {surface: el, sense: el}, {surface: abyad,
+          sense: abyad}]
+      reverse: (hayda|haida) (el|l) (2amis|2amees) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (abyad|abiad|abyed)
+  translations:
+    en: |-
+      (This|That) shirt is cheaper than the white one.
+      (This|That) shirt's cheaper than the white one.
+- id: s.shop.20
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الفستان الأحمر أغلى.
+      tokens: [{surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]}, {surface: الأحمر, sense: a7mar, morphs: [{surface: ال, kc: 'sense:el'}, {
+              surface: أحمر, kc: 'sense:a7mar'}]}, {surface: أغلى, sense: aghla}]
+      reverse: الفستان الأحمر أغلى
+    apc-Latn/arabizi:
+      text: el fostan el a7mar aghla.
+      tokens: [{surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: el, sense: el}, {surface: a7mar, sense: a7mar}, {surface: aghla, sense: aghla}]
+      reverse: (el|l|il) (fostan|fistan|fustan|festan) (el|l|il) (a7mar|ahmar|a7mer) (aghla|aghle)
+  translations:
+    en: |-
+      The red dress is more expensive.
+      The red dress costs more.
+- id: s.shop.21
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيروت أكبر من الضيعة.
+      tokens: [{surface: بيروت, sense: beirut}, {surface: أكبر, sense: akbar}, {surface: من, sense: men.than}, {surface: الضيعة, sense: day3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      reverse: بيروت أكبر من الضيعة
+    apc-Latn/arabizi:
+      text: Beirut akbar men el day3a.
+      tokens: [{surface: Beirut, sense: beirut}, {surface: akbar, sense: akbar}, {surface: men, sense: men.than}, {surface: el, sense: el}, {surface: day3a, sense: day3a}]
+      reverse: (Beirut|Bayrut|Beyrouth) (akbar|akbr) (men|min|mn) (el|l|il) (day3a|dey3a|day3ah|dai3a)
+  translations:
+    en: |-
+      Beirut is bigger than the village.
+      Beirut's bigger than the village.
+- id: s.shop.22
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خيّي أكبر منّي.
+      tokens: [{surface: خيّي, sense: khayy, morphs: [{surface: خيّ, kc: 'sense:khayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: أكبر, sense: akbar}, {surface: منّي, sense: men.than, morphs: [{surface: منّ,
+              kc: 'sense:men.than'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: خيّي أكبر منّي
+    apc-Latn/arabizi:
+      text: khayyi akbar menni.
+      tokens: [{surface: khayyi, sense: khayy, morphs: [{surface: khayy, kc: 'sense:khayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: akbar, sense: akbar}, {surface: menni, sense: men.than, morphs: [
+            {surface: menn, kc: 'sense:men.than'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (khayyi|5ayye|khaye|khayi) (akbar|akbr) (menni|minni|menne|menii)
+  translations:
+    en: |-
+      My brother is older than me.
+      My brother's older than (me|I am).
+- id: s.shop.23
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إختي أزغر منّي.
+      tokens: [{surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: أزغر, sense: azghar}, {surface: منّي, sense: men.than, morphs: [{surface: منّ,
+              kc: 'sense:men.than'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: إختي أزغر منّي
+    apc-Latn/arabizi:
+      text: ekhti azghar menni.
+      tokens: [{surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: azghar, sense: azghar}, {surface: menni, sense: men.than, morphs: [
+            {surface: menn, kc: 'sense:men.than'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (ekhti|e5te|ikhte|ikhti) (azghar|azgher|asghar) (menni|minni|menne|menii)
+  translations:
+    en: |-
+      My sister is younger than me.
+      My sister's younger than (me|I am).
+- id: s.shop.24
+  node: apc.shop.compare
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي واحد أزغر.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: واحد, sense: wa7ad}, {surface: أزغر, sense: azghar}]
+      reverse: (بدّي|أنا بدّي) واحد أزغر
+    apc-Latn/arabizi:
+      text: baddi wa7ad azghar.
+      tokens: [{surface: baddi, sense: baddi}, {surface: wa7ad, sense: wa7ad}, {surface: azghar, sense: azghar}]
+      reverse: (baddi|badde|badi) (wa7ad|wa7ed|wa7id|wahad) (azghar|azgher|asghar)
+  translations:
+    en: |-
+      I want a smaller one.
+      I('d| would) like a smaller one.
+- id: s.shop.25
+  node: apc.shop.try
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قدّيش حقّو؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّو, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: و, kc: 'form:poss-3ms'}]}]
+      reverse: (قدّيش|أدّيش) (حقّو|حقّه)
+    apc-Latn/arabizi:
+      text: 2addesh 7a22o?
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22o, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: o, kc: 'form:poss-3ms'}]}]
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22o|7a22u|ha22o|7a2o)
+  translations:
+    en: |-
+      How much is it?
+      How much does it cost?
+- id: s.shop.26
+  node: apc.shop.try
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: قدّيش حقّا؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّا, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ا, kc: 'form:poss-3fs'}]}]
+      reverse: (قدّيش|أدّيش) (حقّا|حقّها)
+    apc-Latn/arabizi:
+      text: 2addesh 7a22a?
+      tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22a, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: a, kc: 'form:poss-3fs'}]}]
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22a|ha22a|7a2a)
+  translations:
+    en: |-
+      How much is it?
+      How much does it cost?
+- id: s.shop.27
+  node: apc.shop.try
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: فيّي جرّبو؟
+      tokens: [{surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جرّبو, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جرّب,
+              kc: 'sense:jarrab'}, {surface: و, kc: 'form:obj-3ms'}]}]
+      reverse: (فيّي|فيني) (جرّبو|جرّبه)
+    apc-Latn/arabizi:
+      text: fiyyi jarrbo?
+      tokens: [{surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: jarrbo, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: jarrb,
+              kc: 'sense:jarrab'}, {surface: o, kc: 'form:obj-3ms'}]}]
+      reverse: (fiyyi|fiyye|fiye|fiyi|fini|fine) (jarrbo|jarrebo|jarbo|jarrbu)
+  translations:
+    en: |-
+      Can I try it (on|)?
+      May I try it (on|)?
+- id: s.shop.28
+  node: apc.shop.try
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: جرّبي!
+      tokens: [{surface: جرّبي, sense: jarrab, form: 'form:imp-2fs'}]
+      reverse: جرّبي
+    apc-Latn/arabizi:
+      text: jarrbi!
+      tokens: [{surface: jarrbi, sense: jarrab, form: 'form:imp-2fs'}]
+      reverse: (jarrbi|jarrebi|jarbi|jarrbe)
+  translations:
+    en: |-
+      Try it (on|)!
+      (Go on,|) try it!
+- id: s.shop.29
+  node: apc.shop.try
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: شو قياسك؟
+      tokens: [{surface: شو, sense: shu}, {surface: قياسك, sense: 2yes, morphs: [{surface: قياس, kc: 'sense:2yes'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: شو قياسك
+    apc-Latn/arabizi:
+      text: shu 2yesak?
+      tokens: [{surface: shu, sense: shu}, {surface: 2yesak, sense: 2yes, morphs: [{surface: 2yes, kc: 'sense:2yes'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (shu|sho) (2yesak|2yasak|2yesk|iyesak|2yasek)
+  translations:
+    en: |-
+      What('s| is) your size?
+      What size are you?
+- id: s.shop.30
+  node: apc.shop.try
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي قياس أكبر.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: قياس, sense: 2yes}, {surface: أكبر, sense: akbar}]
+      reverse: (بدّي|أنا بدّي) قياس أكبر
+    apc-Latn/arabizi:
+      text: baddi 2yes akbar.
+      tokens: [{surface: baddi, sense: baddi}, {surface: 2yes, sense: 2yes}, {surface: akbar, sense: akbar}]
+      reverse: (baddi|badde|badi) (2yes|2yas|2yess|iyes) (akbar|akbr)
+  translations:
+    en: |-
+      I (want|need) a bigger size.
+      I('d| would) like a bigger size.
+- id: s.shop.31
+  node: apc.shop.try
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: شو رح تلبس الليلة؟
+      tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تلبس, sense: lebes, form: 'form:subj-2ms'}, {surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة,
+              kc: 'sense:lele'}]}]
+      reverse: شو (رح|لح) تلبس الليلة
+    apc-Latn/arabizi:
+      text: shu ra7 tilbos el lele?
+      tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: tilbos, sense: lebes, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
+      reverse: (shu|sho) (ra7|la7|rah) (tilbos|telbos|tilbis|tolbos) (el|l|il) (lele|leile|leyle)
+  translations:
+    en: |-
+      What are you going to wear tonight?
+      What will you wear tonight?
+- id: s.shop.32
+  node: apc.shop.try
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: شو رح تلبسوا عالسهرة؟
+      tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تلبسوا, sense: lebes, form: 'form:subj-2pl'}, {surface: عالسهرة, sense: sahra, morphs: [{surface: ع, kc: 'sense:3a'}, {
+              surface: ال, kc: 'sense:el'}, {surface: سهرة, kc: 'sense:sahra'}]}]
+      reverse: شو (رح|لح) (تلبسوا|تلبسو) (عالسهرة|ع السهرة|على السهرة)
+    apc-Latn/arabizi:
+      text: shu ra7 tilbso 3al sahra?
+      tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: tilbso, sense: lebes, form: 'form:subj-2pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
+              kc: 'sense:el'}]}, {surface: sahra, sense: sahra}]
+      reverse: (shu|sho) (ra7|la7|rah) (tilbso|telbso|tilibso|telebso|tilbsu) (3al|3a l|3a el) (sahra|sahrah|sahre)
+  translations:
+    en: |-
+      What are you going to wear to the party?
+      What will you wear to the party?
+- id: s.shop.33
+  node: apc.shop.try
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: رح البس الفستان الأسود.
+      tokens: [{surface: رح, sense: ra7.fut}, {surface: البس, sense: lebes, form: 'form:subj-1sg'}, {surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]},
+        {surface: الأسود, sense: aswad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أسود, kc: 'sense:aswad'}]}]
+      reverse: (رح|لح) البس الفستان الأسود
+    apc-Latn/arabizi:
+      text: ra7 elbos el fostan el aswad.
+      tokens: [{surface: ra7, sense: ra7.fut}, {surface: elbos, sense: lebes, form: 'form:subj-1sg'}, {surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: el, sense: el}, {surface: aswad,
+          sense: aswad}]
+      reverse: (ra7|la7|rah) (elbos|elbes|ilbos) (el|l|il) (fostan|fistan|fustan) (el|l|il) (aswad|aswed|aswd)
+  translations:
+    en: |-
+      I('m| am) going to wear the black dress.
+      I('ll| will) wear the black dress.
+stories:
+- id: apc.story.dress
+  node: apc.shop.story
+  title: {en: The blue dress}
+  provenance: {author: 'llm:claude@d214e4396eeb', status: draft}
+  characters:
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: abu-ali, speaker: m, name: {apc-Arab/standard: أبو علي, apc-Latn/arabizi: Abu Ali}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: سامي، بْتْحِبّ هَالفُسْتان؟
+          tokens: [{surface: سامي, sense: sami}, {surface: بْتْحِبّ, sense: 7abb, form: 'form:impf-2ms'}, {surface: هَالفُسْتان, sense: fostan, morphs: [{surface: هَال, kc: 'sense:hal'}, {surface: فُسْتان,
+                  kc: 'sense:fostan'}]}]
+        apc-Latn/arabizi:
+          text: Sami, bt7ebb hal fostan?
+          tokens: [{surface: Sami, sense: sami}, {surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: hal, sense: hal}, {surface: fostan, sense: fostan}]
+      translations: {en: 'Sami, do you like this dress?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: حِلو، بَسّ الأَحْمَر أَحْلى.
+          tokens: [{surface: حِلو, sense: 7elo}, {surface: بَسّ, sense: bas}, {surface: الأَحْمَر, sense: a7mar, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحْمَر, kc: 'sense:a7mar'}]}, {surface: أَحْلى,
+              sense: a7la}]
+        apc-Latn/arabizi:
+          text: 7elo, bas el a7mar a7la.
+          tokens: [{surface: 7elo, sense: 7elo}, {surface: bas, sense: bas}, {surface: el, sense: el}, {surface: a7mar, sense: a7mar}, {surface: a7la, sense: a7la}]
+      translations: {en: 'It''s nice, but the red one is nicer.'}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: الأَحْمَر بْخَمْسين دولار، والأَزْرَق بْعِشْرين.
+          tokens: [{surface: الأَحْمَر, sense: a7mar, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَحْمَر, kc: 'sense:a7mar'}]}, {surface: بْخَمْسين, sense: khamsin, morphs: [{surface: بْ, kc: 'sense:b'},
+                {surface: خَمْسين, kc: 'sense:khamsin'}]}, {surface: دولار, sense: dollar}, {surface: والأَزْرَق, sense: azra2, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: أَزْرَق,
+                  kc: 'sense:azra2'}]}, {surface: بْعِشْرين, sense: 3eshrin, morphs: [{surface: بْ, kc: 'sense:b'}, {surface: عِشْرين, kc: 'sense:3eshrin'}]}]
+        apc-Latn/arabizi:
+          text: el a7mar b khamsin dollar, w el azra2 b 3eshrin.
+          tokens: [{surface: el, sense: el}, {surface: a7mar, sense: a7mar}, {surface: b, sense: b}, {surface: khamsin, sense: khamsin}, {surface: dollar, sense: dollar}, {surface: w, sense: w}, {surface: el,
+              sense: el}, {surface: azra2, sense: azra2}, {surface: b, sense: b}, {surface: 3eshrin, sense: 3eshrin}]
+      translations: {en: 'The red one is fifty dollars, and the blue one is twenty.'}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:arkhas
+      distractors: ['sense:aghla']
+      forms:
+        apc-Arab/standard:
+          text: الأَزْرَق أَرْخَص. فِيّي جَرّْبو؟
+          tokens: [{surface: الأَزْرَق, sense: azra2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَزْرَق, kc: 'sense:azra2'}]}, {surface: أَرْخَص, sense: arkhas}, {surface: فِيّي, sense: fi.can,
+              morphs: [{surface: فِيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جَرّْبو, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جَرّْب, kc: 'sense:jarrab'},
+                {surface: و, kc: 'form:obj-3ms'}]}]
+        apc-Latn/arabizi:
+          text: el azra2 arkhas. fiyyi jarrbo?
+          tokens: [{surface: el, sense: el}, {surface: azra2, sense: azra2}, {surface: arkhas, sense: arkhas}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i,
+                  kc: 'form:poss-1sg'}]}, {surface: jarrbo, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: jarrb, kc: 'sense:jarrab'}, {surface: o, kc: 'form:obj-3ms'}]}]
+      translations: {en: 'The blue one is cheaper. Can I try it on?'}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: أَكيد، تْفَضَّلي.
+          tokens: [{surface: أَكيد, sense: akid}, {surface: تْفَضَّلي, sense: tfaddal, form: 'form:imp-2fs'}]
+        apc-Latn/arabizi:
+          text: akid, tfaddali.
+          tokens: [{surface: akid, sense: akid}, {surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}]
+      translations: {en: 'Of course, go ahead.'}
+  - choose:
+      prompt: {en: 'Which dress is cheaper?'}
+      options: [{en: The blue one}, {en: The red one}, {en: The black one}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: زْغير كْتير. بَدّي قْياس أَكْبَر.
+          tokens: [{surface: زْغير, sense: zghir}, {surface: كْتير, sense: ktir}, {surface: بَدّي, sense: baddi}, {surface: قْياس, sense: 2yes}, {surface: أَكْبَر, sense: akbar}]
+        apc-Latn/arabizi:
+          text: zghir ktir. baddi 2yes akbar.
+          tokens: [{surface: zghir, sense: zghir}, {surface: ktir, sense: ktir}, {surface: baddi, sense: baddi}, {surface: 2yes, sense: 2yes}, {surface: akbar, sense: akbar}]
+      translations: {en: It's too small. I need a bigger size.}
+  - line:
+      speaker: abu-ali
+      forms:
+        apc-Arab/standard:
+          text: مَعْليش، ما عِنْدي أَكْبَر. بَسّ عِنْدي الأَسْوَد.
+          tokens: [{surface: مَعْليش, sense: ma3lesh}, {surface: ما, sense: ma}, {surface: عِنْدي, sense: 3end, morphs: [{surface: عِنْد, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: أَكْبَر,
+              sense: akbar}, {surface: بَسّ, sense: bas}, {surface: عِنْدي, sense: 3end, morphs: [{surface: عِنْد, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: الأَسْوَد, sense: aswad,
+              morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَسْوَد, kc: 'sense:aswad'}]}]
+        apc-Latn/arabizi:
+          text: ma3lesh, ma 3endi akbar. bas 3endi el aswad.
+          tokens: [{surface: ma3lesh, sense: ma3lesh}, {surface: ma, sense: ma}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: akbar,
+              sense: akbar}, {surface: bas, sense: bas}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: el, sense: el}, {surface: aswad,
+              sense: aswad}]
+      translations: {en: 'Sorry, I don''t have a bigger one. But I have the black one.'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: الأَسْوَد أَحْلى مِن الأَزْرَق!
+          tokens: [{surface: الأَسْوَد, sense: aswad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَسْوَد, kc: 'sense:aswad'}]}, {surface: أَحْلى, sense: a7la}, {surface: مِن, sense: men.than}, {
+              surface: الأَزْرَق, sense: azra2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَزْرَق, kc: 'sense:azra2'}]}]
+        apc-Latn/arabizi:
+          text: el aswad a7la men el azra2!
+          tokens: [{surface: el, sense: el}, {surface: aswad, sense: aswad}, {surface: a7la, sense: a7la}, {surface: men, sense: men.than}, {surface: el, sense: el}, {surface: azra2, sense: azra2}]
+      translations: {en: The black one is nicer than the blue one!}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: خَلَص، باخُد الأَسْوَد!
+          tokens: [{surface: خَلَص, sense: khalas}, {surface: باخُد, sense: akhad, form: 'form:impf-1sg'}, {surface: الأَسْوَد, sense: aswad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَسْوَد, kc: 'sense:aswad'}]}]
+        apc-Latn/arabizi:
+          text: khalas, bekhod el aswad!
+          tokens: [{surface: khalas, sense: khalas}, {surface: bekhod, sense: akhad, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: aswad, sense: aswad}]
+      translations: {en: 'OK then, I''ll take the black one!'}
+  - choose:
+      prompt: {en: 'Which dress does Maya take?'}
+      options: [{en: The black one}, {en: The blue one}, {en: The red one}]
+      answer: 0
+scenarios:
+- id: apc.clothes-shop
+  after: apc.shop.story
+  title: {en: At a clothes shop}
+  setting: {en: A small clothes shop in Bourj Hammoud on a busy Saturday.}
+  character: {en: 'The shopkeeper, who wants to sell you something and has an opinion on every colour.'}
+  goal: {en: 'Say what you are looking for, ask about colours, sizes and prices, ask to try something on, compare two things and decide what to buy.'}
+  provenance: {author: 'llm:claude@d214e4396eeb', status: draft}

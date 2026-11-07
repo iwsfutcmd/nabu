@@ -1,0 +1,640 @@
+# Fixture course (apc), unit 17: the past of habits and of what was going on. kent + a verb without b- (kent ru7:
+# I used to go), kent 3am + verb (kent 3am e2ra: I was reading), lamma (when), ba3d- with an ending (ba3dni:
+# I'm still), la7al- (la7ali: by myself) and ma 3ad (no longer).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 6 (ba3d-,
+# ma 3ad), 16 (3am), 22 (the imperfect past) and 26 (lamma): every sentence awaits a native speaker's review.
+id: u17-childhood
+title: {en: When I was little}
+cefr: A2
+kcs:
+- {id: 'construction:used-to', gloss: {en: 'kent + a verb without b-: used to; would'}, notes: {en: 'kent ru7: I used to go; kenna nekol: we used to eat; ken yishteghel: he used to work. Both verbs agree
+      with who did it.'}}
+- {id: 'sense:lamma', gloss: {en: when (not a question)}, forms: {apc-Arab/standard: [لمّا], apc-Latn/arabizi: [lamma]}, notes: {en: 'lamma kent zghir: when I was little. In a question, when is emta.'}}
+- {id: 'sense:3ash', gloss: {en: live (one's life); live somewhere}, forms: {apc-Arab/standard: [عاش], apc-Latn/arabizi: [3ash]}, notes: {en: 'kenna n3ish bel day3a: we used to live in the village. Where
+      someone lives now: seken.'}}
+- {id: 'construction:was-doing', gloss: {en: 'kent 3am + verb: was …ing'}, notes: {en: 'kent 3am e2ra: I was reading; keno 3am yeklo: they were eating.'}}
+- {id: 'sense:m3allem', gloss: {en: teacher}, forms: {apc-Arab/standard: [معلّم], apc-Latn/arabizi: [m3allem]}, notes: {en: 'A woman: معلّمة, m3allme.'}}
+- {id: 'sense:ba3d.still', gloss: {en: 'still (with an ending: ba3dni, ba3dak…)'}, forms: {apc-Arab/standard: [بعد], apc-Latn/arabizi: [ba3d]}, notes: {en: 'ba3dni (I''m still), ba3dak / ba3dik (you), ba3do
+      (he), ba3da (she), ba3dna (we), ba3dkon (you, several), ba3don (they). ''I'' takes -ni, as on a verb.'}}
+- {id: 'sense:la7al', gloss: {en: 'alone; by oneself (with an ending: la7ali, la7alo…)'}, forms: {apc-Arab/standard: [لحال], apc-Latn/arabizi: [la7al]}, notes: {en: 'la7ali: by myself; la7alo: by himself.'}}
+- {id: 'sense:ma-3ad', gloss: {en: no longer; not … any more}, forms: {apc-Arab/standard: [ما عاد], apc-Latn/arabizi: [ma 3ad]}, notes: {en: 'ma 3ad 3endi wa2t: I don''t have time any more. Also ma 3ash
+      (Kline 2022).'}}
+nodes:
+- {id: apc.child.used-to, kind: lesson, introduces: ['construction:used-to', 'sense:lamma', 'sense:3ash']}
+- {id: apc.child.was-doing, kind: lesson, introduces: ['construction:was-doing', 'sense:m3allem']}
+- {id: apc.child.still, kind: lesson, introduces: ['sense:ba3d.still', 'sense:la7al', 'sense:ma-3ad']}
+- {id: apc.child.story, kind: story}
+sentences:
+- id: s.child.1
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنت روح عالبحر كلّ يوم.
+      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+            {surface: بحر, kc: 'sense:ba7r'}]}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
+      reverse: (كنت|أنا كنت) روح (عالبحر|ع البحر|على البحر) كلّ يوم
+    apc-Latn/arabizi:
+      text: kent ru7 3al ba7r kell yom.
+      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]},
+        {surface: ba7r, sense: ba7r}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
+      reverse: (kent|kint|kunt) (ru7|ro7) (3al|3a l|3a el) (ba7r|ba7er|bahr) (kell|kel|kull) (yom|youm)
+  constructions: ['construction:used-to']
+  translations:
+    en: |-
+      I used to go to the (beach|sea) every day.
+      I would go to the (beach|sea) every day.
+- id: s.child.2
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنّا ناكل عند تيتا نهار الأحد.
+      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}, {surface: نهار, sense: nhar},
+        {surface: الأحد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحد, kc: 'sense:a7ad'}]}]
+      reverse: كنّا ناكل عند تيتا نهار الأحد
+    apc-Latn/arabizi:
+      text: kenna nekol 3end teta nhar el a7ad.
+      tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}, {surface: nhar, sense: nhar},
+        {surface: el, sense: el}, {surface: a7ad, sense: a7ad}]
+      reverse: (kenna|kinna|kanna|konna) (nekol|nakol|nekul) (3end|3and|3ind) teta (nhar|nehar) (el|l|il) (a7ad|2a7ad|ahad)
+  constructions: ['construction:used-to']
+  translations:
+    en: |-
+      We used to eat at (grandma's|granny's) on (Sunday|Sundays).
+      On Sundays we used to eat at (grandma's|granny's).
+- id: s.child.3
+  node: apc.child.used-to
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنت زغير، كنت العب فوتبول.
+      tokens: [{surface: لمّا, sense: lamma}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: زغير, sense: zghir}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: العب, sense: le3eb,
+          form: 'form:subj-1sg'}, {surface: فوتبول, sense: football}]
+      reverse: لمّا (كنت|أنا كنت) (زغير|صغير) (كنت|أنا كنت) العب (فوتبول|فوتبال)
+    apc-Latn/arabizi:
+      text: lamma kent zghir, kent el3ab football.
+      tokens: [{surface: lamma, sense: lamma}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: zghir, sense: zghir}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: el3ab, sense: le3eb,
+          form: 'form:subj-1sg'}, {surface: football, sense: football}]
+      reverse: (lamma|lama|lemma|lamman) (kent|kint|kunt) (zghir|zgheer) (kent|kint|kunt) (el3ab|il3ab|ele3ab) (football|foot|futbol)
+  constructions: ['construction:used-to']
+  translations:
+    en: When I was (little|young|small|a kid), I used to play (football|soccer).
+- id: s.child.4
+  node: apc.child.used-to
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنت زغيرة، كنت غنّي كتير.
+      tokens: [{surface: لمّا, sense: lamma}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: زغيرة, sense: zghir, form: 'form:fem'}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: غنّي,
+          sense: ghanne, form: 'form:subj-1sg'}, {surface: كتير, sense: ktir}]
+      reverse: لمّا (كنت|أنا كنت) (زغيرة|صغيرة) (كنت|أنا كنت) غنّي كتير
+    apc-Latn/arabizi:
+      text: lamma kent zghire, kent ghanne ktir.
+      tokens: [{surface: lamma, sense: lamma}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: zghire, sense: zghir, form: 'form:fem'}, {surface: kent, sense: kan, form: 'form:past-1sg'},
+        {surface: ghanne, sense: ghanne, form: 'form:subj-1sg'}, {surface: ktir, sense: ktir}]
+      reverse: (lamma|lama|lemma|lamman) (kent|kint|kunt) (zghire|zghiri|zgheere) (kent|kint|kunt) (ghanne|ghanni) (ktir|kteer)
+  constructions: ['construction:used-to']
+  translations:
+    en: When I was (little|young|small|a kid), I used to sing a lot.
+- id: s.child.5
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنّا نعيش بالضيعة.
+      tokens: [{surface: كنّا, sense: kan, form: 'form:past-1pl'}, {surface: نعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بالضيعة, sense: day3a, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+              kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      reverse: كنّا نعيش بالضيعة
+    apc-Latn/arabizi:
+      text: kenna n3ish bel day3a.
+      tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: n3ish, sense: 3ash, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]},
+        {surface: day3a, sense: day3a}]
+      reverse: (kenna|kinna|kanna|konna) (n3ish|n3eesh|ne3ish) (bel|bil|b el) (day3a|dey3a|day3ah|dai3a)
+  constructions: ['construction:used-to']
+  translations:
+    en: We used to live in the village.
+- id: s.child.6
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بيّي كان يشتغل ببيروت.
+      tokens: [{surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: كان, sense: kan, form: 'form:past-3ms'}, {surface: يشتغل, sense: eshteghel,
+          form: 'form:subj-3ms'}, {surface: ببيروت, sense: beirut, morphs: [{surface: ب, kc: 'sense:b'}, {surface: بيروت, kc: 'sense:beirut'}]}]
+      reverse: بيّي كان يشتغل ببيروت
+    apc-Latn/arabizi:
+      text: bayyi ken yishteghel b Beirut.
+      tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: yishteghel, sense: eshteghel,
+          form: 'form:subj-3ms'}, {surface: b, sense: b}, {surface: Beirut, sense: beirut}]
+      reverse: (bayyi|baye|bayi|bayye|beyye|beyyi) ken (yishteghel|yeshteghel) (b|bi) (Beirut|Bayrut|Beyrouth)
+  constructions: ['construction:used-to']
+  translations:
+    en: My (dad|father) used to work in Beirut.
+- id: s.child.7
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تيتا كانت تعمل منقوشة كلّ صبح.
+      tokens: [{surface: تيتا, sense: teta}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: منقوشة, sense: man2oushe}, {surface: كلّ,
+          sense: kell}, {surface: صبح, sense: sob7}]
+      reverse: تيتا كانت (تعمل|بتعمل) منقوشة كلّ صبح
+    apc-Latn/arabizi:
+      text: teta kenet ta3mel man2oushe kell sob7.
+      tokens: [{surface: teta, sense: teta}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: man2oushe, sense: man2oushe}, {surface: kell,
+          sense: kell}, {surface: sob7, sense: sob7}]
+      reverse: teta (kenet|kanet|kenit) (ta3mel|ta3mal|ta3mil|te3mel) (man2oushe|man2ushi|mankoushe|manoushe) (kell|kel|kull) (sob7|sobe7|sub7)
+  constructions: ['construction:used-to']
+  translations:
+    en: (Grandma|Granny) used to make (man'oushe|manakish) every morning.
+- id: s.child.8
+  node: apc.child.used-to
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: شو كنت تعمل لمّا كنت زغير؟
+      tokens: [{surface: شو, sense: shu}, {surface: كنت, sense: kan, form: 'form:past-2ms'}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}, {surface: لمّا, sense: lamma}, {surface: كنت, sense: kan,
+          form: 'form:past-2ms'}, {surface: زغير, sense: zghir}]
+      reverse: شو (كنت|أنا كنت) (تعمل|بتعمل) لمّا (كنت|أنا كنت) (زغير|صغير)
+    apc-Latn/arabizi:
+      text: shu kent ta3mel lamma kent zghir?
+      tokens: [{surface: shu, sense: shu}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: lamma, sense: lamma}, {surface: kent, sense: kan,
+          form: 'form:past-2ms'}, {surface: zghir, sense: zghir}]
+      reverse: (shu|sho) (kent|kint|kunt) (ta3mel|ta3mal|ta3mil|te3mel) (lamma|lama|lemma|lamman) (kent|kint|kunt) (zghir|zgheer)
+  constructions: ['construction:used-to']
+  translations:
+    en: What did you use to do when you were (little|young|small|a kid)?
+- id: s.child.9
+  node: apc.child.used-to
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: وين كنتي تعيشي؟
+      tokens: [{surface: وين, sense: wen}, {surface: كنتي, sense: kan, form: 'form:past-2fs'}, {surface: تعيشي, sense: 3ash, form: 'form:subj-2fs'}]
+      reverse: وين كنتي تعيشي
+    apc-Latn/arabizi:
+      text: wen kenti t3ishi?
+      tokens: [{surface: wen, sense: wen}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: t3ishi, sense: 3ash, form: 'form:subj-2fs'}]
+      reverse: (wen|wein) (kenti|kente|kinti) (t3ishi|t3eeshi|te3ishi|t3ishe)
+  constructions: ['construction:used-to']
+  translations:
+    en: Where did you use to live?
+- id: s.child.10
+  node: apc.child.used-to
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: كنتوا تحكوا عربي بالبيت؟
+      tokens: [{surface: كنتوا, sense: kan, form: 'form:past-2pl'}, {surface: تحكوا, sense: 7aka, form: 'form:subj-2pl'}, {surface: عربي, sense: 3arabe}, {surface: بالبيت, sense: bet, morphs: [{surface: ب,
+              kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: (كنتوا|كنتو) (تحكوا|تحكو) عربي بالبيت
+    apc-Latn/arabizi:
+      text: kento ti7ko 3arabe bel bet?
+      tokens: [{surface: kento, sense: kan, form: 'form:past-2pl'}, {surface: ti7ko, sense: 7aka, form: 'form:subj-2pl'}, {surface: 3arabe, sense: 3arabe}, {surface: bel, sense: b, morphs: [{surface: b,
+              kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (kento|kentu|kinto|kintu) (ti7ko|te7ko|ti7ku|t7ko) (3arabe|3arabi|arabi) (bel|bil|b el) (bet|beit)
+  constructions: ['construction:used-to']
+  translations:
+    en: Did you use to speak Arabic at home?
+- id: s.child.11
+  node: apc.child.used-to
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أهلي كانوا يحكوا عربي بالبيت.
+      tokens: [{surface: أهلي, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: يحكوا, sense: 7aka,
+          form: 'form:subj-3pl'}, {surface: عربي, sense: 3arabe}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: أهلي (كانوا|كانو) (يحكوا|يحكو) عربي بالبيت
+    apc-Latn/arabizi:
+      text: ahli keno yi7ko 3arabe bel bet.
+      tokens: [{surface: ahli, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: yi7ko, sense: 7aka,
+          form: 'form:subj-3pl'}, {surface: 3arabe, sense: 3arabe}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: (ahli|ahle|2ahli) (keno|kano|kenu|kanu) (yi7ko|ye7ko|yi7ku|y7ko) (3arabe|3arabi|arabi) (bel|bil|b el) (bet|beit)
+  constructions: ['construction:used-to']
+  translations:
+    en: My parents used to speak Arabic at home.
+- id: s.child.12
+  node: apc.child.was-doing
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنت عم اقرا.
+      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: عم, sense: 3am}, {surface: اقرا, sense: 2ara, form: 'form:subj-1sg'}]
+      reverse: (كنت|أنا كنت) عم اقرا
+    apc-Latn/arabizi:
+      text: kent 3am e2ra.
+      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: 3am, sense: 3am}, {surface: e2ra, sense: 2ara, form: 'form:subj-1sg'}]
+      reverse: (kent|kint|kunt) (3am|3a|3m) (e2ra|i2ra|e2ra2|2e2ra|2ra)
+  constructions: ['construction:was-doing']
+  translations:
+    en: I was reading.
+- id: s.child.13
+  node: apc.child.was-doing
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: شو كنت عم تعمل؟
+      tokens: [{surface: شو, sense: shu}, {surface: كنت, sense: kan, form: 'form:past-2ms'}, {surface: عم, sense: 3am}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}]
+      reverse: شو (كنت|أنا كنت) عم (تعمل|بتعمل)
+    apc-Latn/arabizi:
+      text: shu kent 3am ta3mel?
+      tokens: [{surface: shu, sense: shu}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: 3am, sense: 3am}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}]
+      reverse: (shu|sho) (kent|kint|kunt) (3am|3a|3m) (ta3mel|ta3mal|ta3mil|te3mel)
+  constructions: ['construction:was-doing']
+  translations:
+    en: What were you doing?
+- id: s.child.14
+  node: apc.child.was-doing
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنت عم نام لمّا دقّيت.
+      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: عم, sense: 3am}, {surface: نام, sense: nem, form: 'form:subj-1sg'}, {surface: لمّا, sense: lamma}, {surface: دقّيت, sense: de22,
+          form: 'form:past-2ms'}]
+      reverse: (كنت|أنا كنت) عم نام لمّا دقّيت
+    apc-Latn/arabizi:
+      text: kent 3am nem lamma da22et.
+      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: 3am, sense: 3am}, {surface: nem, sense: nem, form: 'form:subj-1sg'}, {surface: lamma, sense: lamma}, {surface: da22et, sense: de22,
+          form: 'form:past-2ms'}]
+      reverse: (kent|kint|kunt) (3am|3a|3m) (nem|nam) (lamma|lama|lemma|lamman) (da22et|da22eit|de22et|da22ait|de22eit)
+  constructions: ['construction:was-doing']
+  translations:
+    en: |-
+      I was sleeping when you called.
+      I was asleep when you called.
+- id: s.child.15
+  node: apc.child.was-doing
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مايا كانت عم تحكي مع إمّا.
+      tokens: [{surface: مايا, sense: maya}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: عم, sense: 3am}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: مع, sense: ma3},
+        {surface: إمّا, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ا, kc: 'form:poss-3fs'}]}]
+      reverse: مايا كانت عم تحكي مع (إمّا|إمّها)
+    apc-Latn/arabizi:
+      text: Maya kenet 3am t7ki ma3 emma.
+      tokens: [{surface: Maya, sense: maya}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 3am, sense: 3am}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: ma3, sense: ma3},
+        {surface: emma, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
+      reverse: Maya (kenet|kanet|kenit) (3am|3a|3m) (t7ki|te7ke|ti7ki|t7ke) (ma3|ma3a) (emma|imma|emha|ema)
+  constructions: ['construction:was-doing']
+  translations:
+    en: Maya was talking (to|with) her (mother|mom|mum).
+- id: s.child.16
+  node: apc.child.was-doing
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كانوا عم ياكلوا.
+      tokens: [{surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: عم, sense: 3am}, {surface: ياكلوا, sense: akal, form: 'form:subj-3pl'}]
+      reverse: (كانوا|كانو) عم (ياكلوا|ياكلو)
+    apc-Latn/arabizi:
+      text: keno 3am yeklo.
+      tokens: [{surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: 3am, sense: 3am}, {surface: yeklo, sense: akal, form: 'form:subj-3pl'}]
+      reverse: (keno|kano|kenu|kanu) (3am|3a|3m) (yeklo|yaklo|yeklu|yekelo)
+  constructions: ['construction:was-doing']
+  translations:
+    en: They were eating.
+- id: s.child.17
+  node: apc.child.was-doing
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: المعلّمة كانت عم تحكي.
+      tokens: [{surface: المعلّمة, sense: m3allem, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'}, {surface: معلّمة, kc: 'sense:m3allem'}]}, {surface: كانت, sense: kan, form: 'form:past-3fs'},
+        {surface: عم, sense: 3am}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}]
+      reverse: المعلّمة كانت عم تحكي
+    apc-Latn/arabizi:
+      text: el m3allme kenet 3am t7ki.
+      tokens: [{surface: el, sense: el}, {surface: m3allme, sense: m3allem, form: 'form:fem'}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 3am, sense: 3am}, {surface: t7ki, sense: 7aka,
+          form: 'form:subj-3fs'}]
+      reverse: (el|l|il) (m3allme|m3alme|mo3allme|m3allmi) (kenet|kanet|kenit) (3am|3a|3m) (t7ki|te7ke|ti7ki|t7ke)
+  constructions: ['construction:was-doing']
+  translations:
+    en: The teacher was (talking|speaking).
+- id: s.child.18
+  node: apc.child.was-doing
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا معلّم.
+      tokens: [{surface: أنا, sense: ana}, {surface: معلّم, sense: m3allem}]
+      reverse: '[أنا] معلّم'
+    apc-Latn/arabizi:
+      text: ana m3allem.
+      tokens: [{surface: ana, sense: ana}, {surface: m3allem, sense: m3allem}]
+      reverse: '[ana] (m3allem|m3alem|mo3allem|m3allim)'
+  translations:
+    en: I('m| am) a teacher.
+- id: s.child.19
+  node: apc.child.was-doing
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: إنتي معلّمة؟
+      tokens: [{surface: إنتي, sense: enti}, {surface: معلّمة, sense: m3allem, form: 'form:fem'}]
+      reverse: '[(إنتي|إنتِ)] معلّمة'
+    apc-Latn/arabizi:
+      text: enti m3allme?
+      tokens: [{surface: enti, sense: enti}, {surface: m3allme, sense: m3allem, form: 'form:fem'}]
+      reverse: '[(enti|inti)] (m3allme|m3alme|mo3allme|m3allmi)'
+  translations:
+    en: Are you a teacher?
+- id: s.child.20
+  node: apc.child.still
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: بعدني ساكن بالضيعة.
+      tokens: [{surface: بعدني, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ني, kc: 'form:obj-1sg'}]}, {surface: ساكن, sense: seken}, {surface: بالضيعة, sense: day3a, morphs: [
+            {surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      reverse: بعدني ساكن بالضيعة
+    apc-Latn/arabizi:
+      text: ba3dni seken bel day3a.
+      tokens: [{surface: ba3dni, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: ni, kc: 'form:obj-1sg'}]}, {surface: seken, sense: seken}, {surface: bel, sense: b, morphs: [
+            {surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      reverse: (ba3dni|ba3dne|ba3edni|ba3deni) (seken|saken|sakin) (bel|bil|b el) (day3a|dey3a|day3ah|dai3a)
+  translations:
+    en: |-
+      I still live in the village.
+      I('m| am) still living in the village.
+- id: s.child.21
+  node: apc.child.still
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: بعدك بالشغل؟
+      tokens: [{surface: بعدك, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: بالشغل, sense: shoghl, morphs: [{surface: ب, kc: 'sense:b'},
+            {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: بعدك بالشغل
+    apc-Latn/arabizi:
+      text: ba3dak bel shoghl?
+      tokens: [{surface: ba3dak, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'},
+            {surface: el, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (ba3dak|ba3dek|ba3edak) (bel|bil|b el) (shoghl|shoghol|shughl)
+  translations:
+    en: Are you still at work?
+- id: s.child.22
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هي بعدا مريضة.
+      tokens: [{surface: هي, sense: hiyye}, {surface: بعدا, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
+      reverse: هي (بعدا|بعدها) مريضة
+    apc-Latn/arabizi:
+      text: hiyye ba3da mrida.
+      tokens: [{surface: hiyye, sense: hiyye}, {surface: ba3da, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mrida, sense: mrid, form: 'form:fem'}]
+      reverse: (hiyye|hiye|hiya|heyye) (ba3da|ba3eda|ba3dha) (mrida|mreeda|marida|mride)
+  translations:
+    en: She('s| is) still (sick|ill).
+- id: s.child.23
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بعدهن عالبحر.
+      tokens: [{surface: بعدهن, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: هن, kc: 'form:poss-3pl'}]}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'},
+            {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: بعدهن (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: ba3don 3al ba7r.
+      tokens: [{surface: ba3don, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
+            {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      reverse: (ba3don|ba3dun|ba3dhon) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: They('re| are) still at the (beach|sea).
+- id: s.child.24
+  node: apc.child.still
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: بعدك عم تشتغلي؟
+      tokens: [{surface: بعدك, sense: ba3d.still, vocalized: بَعْدِك, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: عم, sense: 3am}, {surface: تشتغلي, sense: eshteghel,
+          form: 'form:subj-2fs'}]
+      reverse: بعدك عم تشتغلي
+    apc-Latn/arabizi:
+      text: ba3dik 3am tishteghli?
+      tokens: [{surface: ba3dik, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: 3am, sense: 3am}, {surface: tishteghli, sense: eshteghel,
+          form: 'form:subj-2fs'}]
+      reverse: (ba3dik|ba3dek|ba3edik|ba3dike) (3am|3a|3m) (tishteghli|teshteghli|tishtighli)
+  translations:
+    en: Are you still working?
+- id: s.child.25
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كنت روح لحالي.
+      tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: لحالي, sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: ي,
+              kc: 'form:poss-1sg'}]}]
+      reverse: (كنت|أنا كنت) روح لحالي
+    apc-Latn/arabizi:
+      text: kent ru7 la7ali.
+      tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: la7ali, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i,
+              kc: 'form:poss-1sg'}]}]
+      reverse: (kent|kint|kunt) (ru7|ro7) (la7ali|la7ale|lahali)
+  constructions: ['construction:used-to']
+  translations:
+    en: I used to go (by myself|alone|on my own).
+- id: s.child.26
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هو ساكن لحالو.
+      tokens: [{surface: هو, sense: huwwe}, {surface: ساكن, sense: seken}, {surface: لحالو, sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: و, kc: 'form:poss-3ms'}]}]
+      reverse: هو ساكن (لحالو|لحاله)
+    apc-Latn/arabizi:
+      text: huwwe seken la7alo.
+      tokens: [{surface: huwwe, sense: huwwe}, {surface: seken, sense: seken}, {surface: la7alo, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: o, kc: 'form:poss-3ms'}]}]
+      reverse: (huwwe|huwe|howwe) (seken|saken|sakin) (la7alo|la7alu|lahalo)
+  translations:
+    en: He lives (alone|by himself|on his own).
+- id: s.child.27
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما عاد عندي وقت.
+      tokens: [{surface: ما, sense: ma-3ad}, {surface: عاد, sense: ma-3ad}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وقت, sense: wa2t}]
+      reverse: ما عاد (عندي|أنا عندي) وقت
+    apc-Latn/arabizi:
+      text: ma 3ad 3endi wa2t.
+      tokens: [{surface: ma, sense: ma-3ad}, {surface: 3ad, sense: ma-3ad}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wa2t,
+          sense: wa2t}]
+      reverse: ma 3ad (3endi|3andi|3ende|3indi) (wa2t|wa2et|wa2ed|wa2it|wa2at)
+  translations:
+    en: |-
+      I (don't|do not) have time any more.
+      I no longer have time.
+      I (haven't|have not) got time any more.
+- id: s.child.28
+  node: apc.child.still
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما عاد فيّي نام بالليل.
+      tokens: [{surface: ما, sense: ma-3ad}, {surface: عاد, sense: ma-3ad}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: نام,
+          sense: nem, form: 'form:subj-1sg'}, {surface: بالليل, sense: lel, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليل, kc: 'sense:lel'}]}]
+      reverse: ما عاد (فيّي|فيني) نام بالليل
+    apc-Latn/arabizi:
+      text: ma 3ad fiyyi nem bel lel.
+      tokens: [{surface: ma, sense: ma-3ad}, {surface: 3ad, sense: ma-3ad}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: nem,
+          sense: nem, form: 'form:subj-1sg'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lel, sense: lel}]
+      reverse: ma 3ad (fiyyi|fiyye|fiye|fiyi|fini|fine) (nem|nam) (bel|bil|b el) (lel|leil)
+  translations:
+    en: |-
+      I can't sleep at night any more.
+      I can no longer sleep at night.
+- id: s.child.29
+  node: apc.child.still
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: لمّا كنت زغيرة، كنت روح عالمدرسة لحالي.
+      tokens: [{surface: لمّا, sense: lamma}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: زغيرة, sense: zghir, form: 'form:fem'}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: روح,
+          sense: ra7, form: 'form:subj-1sg'}, {surface: عالمدرسة, sense: madrase, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}, {surface: لحالي,
+          sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+      reverse: لمّا (كنت|أنا كنت) (زغيرة|صغيرة) (كنت|أنا كنت) روح (عالمدرسة|ع المدرسة|على المدرسة) لحالي
+    apc-Latn/arabizi:
+      text: lamma kent zghire, kent ru7 3al madrase la7ali.
+      tokens: [{surface: lamma, sense: lamma}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: zghire, sense: zghir, form: 'form:fem'}, {surface: kent, sense: kan, form: 'form:past-1sg'},
+        {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}, {surface: la7ali,
+          sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i, kc: 'form:poss-1sg'}]}]
+      reverse: (lamma|lama) (kent|kint) (zghire|zghiri) (kent|kint) (ru7|ro7) (3al|3a l|3a el) (madrase|madrasi|madrasse) (la7ali|la7ale|lahali)
+  constructions: ['construction:used-to']
+  translations:
+    en: When I was (little|young|small|a kid), I used to go to school (by myself|alone|on my own).
+stories:
+- id: apc.story.teta-childhood
+  node: apc.child.story
+  title: {en: When Teta was little}
+  provenance: {author: 'llm:claude@490b6002424f', status: draft}
+  characters:
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: teta, speaker: f, name: {apc-Arab/standard: تيتا, apc-Latn/arabizi: Teta}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: تيتا، شو كِنْتي تَعْمْلي لَمّا كِنْتي زْغيرِة؟
+          tokens: [{surface: تيتا, sense: teta}, {surface: شو, sense: shu}, {surface: كِنْتي, sense: kan, form: 'form:past-2fs'}, {surface: تَعْمْلي, sense: 3emel, form: 'form:subj-2fs'}, {surface: لَمّا,
+              sense: lamma}, {surface: كِنْتي, sense: kan, form: 'form:past-2fs'}, {surface: زْغيرِة, sense: zghir, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: teta, shu kenti ta3mli lamma kenti zghire?
+          tokens: [{surface: teta, sense: teta}, {surface: shu, sense: shu}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: ta3mli, sense: 3emel, form: 'form:subj-2fs'}, {surface: lamma,
+              sense: lamma}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: zghire, sense: zghir, form: 'form:fem'}]
+      translations: {en: 'Grandma, what did you use to do when you were little?'}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: كِنّا نْعيش بِالضَّيْعَة. كِنْت روح عَالمَدْرَسِة لَحالي.
+          tokens: [{surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: نْعيش, sense: 3ash, form: 'form:subj-1pl'}, {surface: بِالضَّيْعَة, sense: day3a, morphs: [{surface: بِ, kc: 'sense:b'},
+                {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}, {surface: كِنْت, sense: kan, form: 'form:past-1sg'}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عَالمَدْرَسِة,
+              sense: madrase, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}, {surface: لَحالي, sense: la7al, morphs: [{surface: لَحال,
+                  kc: 'sense:la7al'}, {surface: ي, kc: 'form:poss-1sg'}]}]
+        apc-Latn/arabizi:
+          text: kenna n3ish bel day3a. kent ru7 3al madrase la7ali.
+          tokens: [{surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: n3ish, sense: 3ash, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
+                  kc: 'sense:el'}]}, {surface: day3a, sense: day3a}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [
+                {surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}, {surface: la7ali, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: i,
+                  kc: 'form:poss-1sg'}]}]
+      translations: {en: We used to live in the village. I used to walk to school by myself.}
+  - line:
+      speaker: maya
+      ask: complete
+      gap: sense:la7al
+      distractors: ['sense:sawa']
+      forms:
+        apc-Arab/standard:
+          text: لَحالِك؟
+          tokens: [{surface: لَحالِك, sense: la7al, morphs: [{surface: لَحالِ, kc: 'sense:la7al'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: la7alik?
+          tokens: [{surface: la7alik, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'By yourself?'}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: إيه. وبَعْد المَدْرَسِة كِنّا نِلْعَب بِالضَّيْعَة.
+          tokens: [{surface: إيه, sense: eh}, {surface: وبَعْد, sense: ba3d, morphs: [{surface: و, kc: 'sense:w'}, {surface: بَعْد, kc: 'sense:ba3d'}]}, {surface: المَدْرَسِة, sense: madrase, morphs: [
+                {surface: ال, kc: 'sense:el'}, {surface: مَدْرَسِة, kc: 'sense:madrase'}]}, {surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: نِلْعَب, sense: le3eb, form: 'form:subj-1pl'},
+            {surface: بِالضَّيْعَة, sense: day3a, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ضَّيْعَة, kc: 'sense:day3a'}]}]
+        apc-Latn/arabizi:
+          text: eh. w ba3d el madrase kenna nel3ab bel day3a.
+          tokens: [{surface: eh, sense: eh}, {surface: w, sense: w}, {surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: madrase, sense: madrase}, {surface: kenna, sense: kan, form: 'form:past-1pl'},
+            {surface: nel3ab, sense: le3eb, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      translations: {en: Yes. And after school we used to play in the village.}
+  - choose:
+      prompt: {en: 'Where did Teta live when she was little?'}
+      options: [{en: In the village}, {en: In Beirut}, {en: By the sea}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: وكان في تِلِفون؟
+          tokens: [{surface: وكان, sense: kan, form: 'form:past-3ms', morphs: [{surface: و, kc: 'sense:w'}, {surface: كان, kc: 'sense:kan'}]}, {surface: في, sense: fi}, {surface: تِلِفون, sense: telefon}]
+        apc-Latn/arabizi:
+          text: w ken fi telefon?
+          tokens: [{surface: w, sense: w}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: fi, sense: fi}, {surface: telefon, sense: telefon}]
+      translations: {en: 'And was there a phone?'}
+  - line:
+      speaker: teta
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: لَأ، ما كان في تِلِفون!
+          tokens: [{surface: لَأ, sense: la2}, {surface: ما, sense: ma}, {surface: كان, sense: kan, form: 'form:past-3ms'}, {surface: في, sense: fi}, {surface: تِلِفون, sense: telefon}]
+        apc-Latn/arabizi:
+          text: la2, ma ken fi telefon!
+          tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: fi, sense: fi}, {surface: telefon, sense: telefon}]
+      translations: {en: 'No, there was no phone!'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: والله؟!
+          tokens: [{surface: والله, sense: walla}]
+        apc-Latn/arabizi:
+          text: walla?!
+          tokens: [{surface: walla, sense: walla}]
+      translations: {en: 'Really?!'}
+  - line:
+      speaker: teta
+      forms:
+        apc-Arab/standard:
+          text: بَسّ كِنّا مَبْسوطين.
+          tokens: [{surface: بَسّ, sense: bas}, {surface: كِنّا, sense: kan, form: 'form:past-1pl'}, {surface: مَبْسوطين, sense: mabsout, form: 'form:pl'}]
+        apc-Latn/arabizi:
+          text: bas kenna mabsoutin.
+          tokens: [{surface: bas, sense: bas}, {surface: kenna, sense: kan, form: 'form:past-1pl'}, {surface: mabsoutin, sense: mabsout, form: 'form:pl'}]
+      translations: {en: But we were happy.}
+  - choose:
+      prompt: {en: 'What didn''t they have when Teta was little?'}
+      options: [{en: A phone}, {en: A school}, {en: A village}]
+      answer: 0
+scenarios:
+- id: apc.childhood-memories
+  after: apc.child.story
+  title: {en: Old photos}
+  setting: {en: Looking through a box of old family photos at a relative's house.}
+  character: {en: 'Amto Hoda, an aunt who loves to tell stories about the family.'}
+  goal: {en: 'Ask where the family used to live and what they used to do, say what you used to do when you were little, and ask who still lives in the village.'}
+  provenance: {author: 'llm:claude@490b6002424f', status: draft}
