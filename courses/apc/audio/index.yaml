@@ -1935,9 +1935,9 @@ clips:
     status: fail
 - item: apc.story.sea-or-mountain#10
   speed: normal
-  file: clips/b8af3782056f635c.mp3
-  sha256: 85c25d996ffc273ccc17f34a3a67ca77bcee0250c0ca968a6611ccc83491859c
-  durationMs: 2890
+  file: clips/533df1464a276734.mp3
+  sha256: 2c0465b8c62a4097bb2b85d05787f7887805e2001dfe7dd898499989323bfe6b
+  durationMs: 2900
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -1947,7 +1947,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-f
-    input: يَلّا، بَدّنا نْروح عَالبَحِر ونِسْمَع موسيقى!
+    input: يَلّا، بَدْنا نْروح عَالبَحِر ونِسْمَع موسيقى!
     rate: 1.0
     settings:
       language: lb
@@ -1955,12 +1955,7 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: f380feaa1da1cea36b374fc4aa8099cf34e30e14e95bb03fd2261f97ebe347b6
-    inputHash: b8af3782056f635c3a716f5a4f4ea6f6b2db84280612a95d2bf8be038d94ca0d
-  qa:
-    asrModel: whisper-large-v3-turbo
-    asrText: يلا بدنا نروح على البحر ونسمع موسيقى
-    cer: 0.464
-    status: review
+    inputHash: 533df1464a2767341bd333b54c592c1c7d1c05d63d4c22c5789510803684f50d
 - item: apc.story.sea-or-mountain#11
   speed: normal
   file: clips/892c88b493cd9fb3.mp3
@@ -6798,6 +6793,314 @@ clips:
     asrText: بدأك سكتور
     cer: 0.833
     status: fail
+- item: s.health.1
+  speed: normal
+  file: clips/4d79344292a9e047.mp3
+  sha256: d8d828a3a8188117f71a2c63c8a75e3976ae051e70d85131295da98b9523ec71
+  durationMs: 1090
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَنا مْريض.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 4d79344292a9e0478766a61a680907437754bf9d90ed9ce3d1d92ccc41c53d3a
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أنا مريض
+    cer: 0.0
+    status: pass
+- item: s.health.11
+  speed: normal
+  file: clips/52da08530b8faaf9.mp3
+  sha256: ff082b835e590ca7b4916ca9259f94d2537d56e6a08addb98a9694164d457751
+  durationMs: 1290
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: مَعَك وْجَع راس؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 52da08530b8faaf9445f0539147a5734e585aee5a6ca030550f8f7c58ece13b9
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ماكوزاروس
+    cer: 0.444
+    status: review
+- item: s.health.13
+  speed: normal
+  file: clips/bf888f91b12c8bdf.mp3
+  sha256: 2d317604aacb11692c0f1666bc983dfdc18e807490ceb3f593722050bbd7ee05
+  durationMs: 1210
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: لَأ، ما فِيّي روح.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: bf888f91b12c8bdf642c5bdf6fd526398b507220706e59da81b4693af1d1ce9c
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: لا ما في يروح
+    cer: 0.2
+    status: review
+- item: s.health.15
+  speed: normal
+  file: clips/9798965c30df7f4c.mp3
+  sha256: f87e7ed29bf41fbf5d6d6a0a06706f1f4a6bbdbf0ad8028b9d9e7e62e7661e68
+  durationMs: 1180
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: فيكي تْنامي؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 9798965c30df7f4c70a33c7eb704f250e427be551cea9a0f200f1ad6f5bd0fd7
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: في كتنمي
+    cer: 0.222
+    status: review
+- item: s.health.16
+  speed: normal
+  file: clips/ab1052a9f2c20049.mp3
+  sha256: 6188cc2cd10f2f78d7e09570028217a2d23196d5ff56e5e37d7d04b577f6988c
+  durationMs: 1440
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: فيها تِحْكي إِنْكْليزي.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: ab1052a9f2c200491eda037bf65145eba2f81e14c6299c7a89d9316034357314
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: فيها تحكي إنكليزي
+    cer: 0.0
+    status: pass
+- item: s.health.17
+  speed: normal
+  file: clips/3d953733c8d21463.mp3
+  sha256: 1399ad1e3d16eac0ac76d0b02711f0b54ecafbfa5ee7898d0b072b5b45a09394
+  durationMs: 1300
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: فينا نْروح سَوا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 3d953733c8d2146376cf2f535ffab8678e3a592578a85fbb9bc7f23edc793818
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: فينا نروح سوى
+    cer: 0.091
+    status: pass
+- item: s.health.19
+  speed: normal
+  file: clips/5a2331f31f12d7d5.mp3
+  sha256: 228791082fde503103912af185dd75c05170a8184b0cee39ff5bc3aa9e3d7737
+  durationMs: 1330
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَنا أَحْسَن اليوم.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 5a2331f31f12d7d51d480c552653f70c32f917375c56dcff6854abfee640b4d5
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أنا أحسن اليوم
+    cer: 0.0
+    status: pass
+- item: s.health.20
+  speed: normal
+  file: clips/5626e8c3b74e2e70.mp3
+  sha256: 4c176d0a3d41571978d5df578e4f441e6b2d54139640b009bba80612a613b69c
+  durationMs: 1150
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هَيدا أَحْسَن.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 5626e8c3b74e2e70b233b6f668cd3d888b3635570101346317d81babad5a361e
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هيدا أحسن
+    cer: 0.0
+    status: pass
+- item: s.health.3
+  speed: normal
+  file: clips/dc145aea4d0e7cc5.mp3
+  sha256: 1a66c6586efd5b24222abd7fc494a780da9710e23db60d33671b0ffd80cd4f37
+  durationMs: 1390
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: سامي مْريض اليوم.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: dc145aea4d0e7cc51e4847d996a19728c16c5c886e1221132e1534a5850d6984
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سميم ريدلهم
+    cer: 0.385
+    status: review
+- item: s.health.8
+  speed: normal
+  file: clips/3b310e8b92a4c501.mp3
+  sha256: 7d190ac661c240b6ad610319bfd603003e9cb9532e6d32eeda14da2edbe4ea7c
+  durationMs: 1200
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: مَعي وْجَع راس.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 3b310e8b92a4c50198b41422d56462a750d1405348afc0a1c0c437aded553329
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ما يوجد عراس
+    cer: 0.222
+    status: review
+- item: s.health.9
+  speed: normal
+  file: clips/f7febc15ac905102.mp3
+  sha256: df4f822877831c5ca0c2b9ac9a9e5c12e3d2a76074a153cf73619db41cb41a53
+  durationMs: 1230
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: مَعي وْجَع بَطِن.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: f7febc15ac9051025c992e67eb6db8c16946792138e9404d69aed031b14e0bfb
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ما يوجع بطن
+    cer: 0.111
+    status: pass
 - item: s.home.1
   speed: normal
   file: clips/41a322e6e324617f.mp3
@@ -8067,9 +8370,9 @@ clips:
     status: review
 - item: s.like.18
   speed: normal
-  file: clips/0caefcd05480ecd2.mp3
-  sha256: 81c4b201bebdda9a46b2c53679db5fc809937207d0ed8100ec3b2339feda82cf
-  durationMs: 1110
+  file: clips/618d99a280150eed.mp3
+  sha256: 1373ee2136255d32056c961f62bd1e36a360ca63c0f8c5904d7a5169d9ea9cee
+  durationMs: 1310
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -8079,7 +8382,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: بَدّنا نْروح عَالبَحِر.
+    input: بَدْنا نْروح عَالبَحِر.
     rate: 1.0
     settings:
       language: lb
@@ -8087,12 +8390,7 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: 0caefcd05480ecd2ef4b2db5fc25b2529633ea5cca5710abf362a703de038a73
-  qa:
-    asrModel: whisper-large-v3-turbo
-    asrText: ونروح البحر
-    cer: 0.357
-    status: review
+    inputHash: 618d99a280150eed3300b38c430d48d7b01fdd2d77c9849100f7fbaf5e3aa763
 - item: s.like.19
   speed: normal
   file: clips/717405f127660151.mp3
@@ -8547,9 +8845,9 @@ clips:
     status: review
 - item: s.like.33
   speed: normal
-  file: clips/b103a6270e58cff4.mp3
-  sha256: 47132b339de7852c7acebcff530f4cfe9988953e7400eb98d0bf6909c28864b3
-  durationMs: 970
+  file: clips/7e32db54480daf76.mp3
+  sha256: f188f1a58306730de5602870378715efb78e8cbf61d029eca5ec0d2e7e4056cf
+  durationMs: 1010
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -8559,7 +8857,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: بَدّْكُن شي؟
+    input: بَدْكُن شي؟
     rate: 1.0
     settings:
       language: lb
@@ -8567,12 +8865,7 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: b103a6270e58cff4df1add6ae602689d341d4abb8fe4af50d136c72d97419d53
-  qa:
-    asrModel: whisper-large-v3-turbo
-    asrText: بدأ قنشي.
-    cer: 0.5
-    status: review
+    inputHash: 7e32db54480daf76ed6cefebcafd2144bfde2ee0dd756fdd3bf8d863120401de
 - item: s.like.34
   speed: normal
   file: clips/67fb4d486baa8837.mp3
@@ -11715,6 +12008,510 @@ clips:
     asrText: اليوم برد
     cer: 0.0
     status: pass
+- item: s.ppl.1
+  speed: normal
+  file: clips/d43459dcb01f5c0f.mp3
+  sha256: 040ab5a35dbedd60ffbeb1f6e90c899fe966f9ed539fd2e730860f69f7337b3b
+  durationMs: 990
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هُوّ سامي.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: d43459dcb01f5c0fb50e7f8fd886e0f1fc63f403d1eafc1921bdcd1bf75215fd
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هو سامة
+    cer: 0.167
+    status: review
+- item: s.ppl.12
+  speed: normal
+  file: clips/db3ea2bbe5183122.mp3
+  sha256: 7873c4902f3e9134b4f567e5fb6021da96a14f6b2cd5548b5b6b74ec835dc98d
+  durationMs: 1390
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَنا ساكِن بْبيروت.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: db3ea2bbe5183122e866fbd886472e3938069c880a4d5bbf562a630354c95b48
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أنا سيكم ببيروت
+    cer: 0.154
+    status: review
+- item: s.ppl.13
+  speed: normal
+  file: clips/20702e30629f0b4d.mp3
+  sha256: a2c423af943797dbc74505c511d7e715427407f9507d1ddf35d143871d949207
+  durationMs: 1250
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: وين ساكْنِة؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 20702e30629f0b4d9a7b676fba8b59607d7206a8b1ae803074dfba8f01191990
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: وين ساكني؟
+    cer: 0.125
+    status: pass
+- item: s.ppl.16
+  speed: normal
+  file: clips/669ea3cb6f8fa96d.mp3
+  sha256: 33a74f82f9ce85a6cafb5ea34aa56718137daf91a44475e15911135ffa103ebf
+  durationMs: 1490
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: البِنايِة حَدّ الدِّكّانِة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 669ea3cb6f8fa96da3399d1b90c01d7bf1722835bc3535acd03dee84ff820c30
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: بنية حد الدكانة
+    cer: 0.312
+    status: review
+- item: s.ppl.21
+  speed: normal
+  file: clips/945cbd2f0c76a29f.mp3
+  sha256: 89044002628b1d278bf341389cf563f0471aec71f850c65dd1f091050a2a62a8
+  durationMs: 1240
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: إِنْتَ أَميرْكاني؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 945cbd2f0c76a29fc704b7901b1d4ffc3c44a20d5c19e3301cd393ecf0eaacb0
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أنت أميركيني
+    cer: 0.182
+    status: review
+- item: s.ppl.23
+  speed: normal
+  file: clips/bafe0dd20956f486.mp3
+  sha256: 4556da2a96f0123da1df955ad9e779ecdd458eee5383b50baee3285a01e9ad95
+  durationMs: 1190
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هِنّ بِالبيت.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: bafe0dd20956f4864dc40824718a8aa9f5f061d3e848024b59af47e4709cd766
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هن بالبيت
+    cer: 0.125
+    status: pass
+- item: s.ppl.26
+  speed: normal
+  file: clips/08444c7b8379260e.mp3
+  sha256: eb0f52f3e04b5e11681739d033aab3b3d063a67d2d8b9ea6f243b3763fda4806
+  durationMs: 1260
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: وين بْيِشْتِغْلوا؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 08444c7b8379260eddfc87dc8455527f10961d921b09c50e860ccec1526d6939
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: وين بستخلو؟
+    cer: 0.364
+    status: review
+- item: s.ppl.27
+  speed: normal
+  file: clips/5cbaa345768202ee.mp3
+  sha256: 4a6fead76fd550391889c344774371a98bca58a5fa3daa4fdb16f83fed391425
+  durationMs: 1610
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: سامي ومايا بْيِحْكوا عَرَبي.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 5cbaa345768202eeca7584df67303e2473f4338bc0a087b75c976b700654be9d
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سَمِو مَيَا بِيَرْكُ عَرَبَ
+    cer: 0.895
+    status: fail
+- item: s.ppl.28
+  speed: normal
+  file: clips/fece3b510fead597.mp3
+  sha256: 435c7650b45a30f90a5ef8d02fe51b969de8ee133bd6f7a7c3cb58ad83850158
+  durationMs: 1170
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هَيدا رْفيقي.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: fece3b510fead5978a32d210057f00c011426e6c34906e5bb1510b46a1cd7f9e
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هاي درفيء
+    cer: 0.444
+    status: review
+- item: s.ppl.31
+  speed: normal
+  file: clips/2c58fbd9e9580ae7.mp3
+  sha256: 962643d298755f825766aa2b822e16d8f193412b9436c4e3b24a0f3dff27c20b
+  durationMs: 1080
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: وين بيتْهُن؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 2c58fbd9e9580ae78f4347c8bd2af256b967206826b5745f30ccc50566222fb5
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: وين بيتون
+    cer: 0.125
+    status: pass
+- item: s.ppl.33
+  speed: normal
+  file: clips/d7a6da6e6094ee57.mp3
+  sha256: bfee06f2c1bcb697186ea9de89d21adb60aaaffd32006304289c2490937306c6
+  durationMs: 1070
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هَيدا إِبِنْهُن.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: d7a6da6e6094ee572cd48c2e3e27c67273dac3355b207c8178305c3e09a066aa
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هيدا ابنون
+    cer: 0.222
+    status: review
+- item: s.ppl.34
+  speed: normal
+  file: clips/7dd8ad4beeddb7ca.mp3
+  sha256: f1b08059c039898308e00ae7e6f7271971f5eb62e76dcf9d3f4670ee15eeed93
+  durationMs: 1230
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: كِلّْهُن بِالبيت.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 7dd8ad4beeddb7ca556b90e66d3644ee290c019b66e68343e76e7afabf5795c8
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: كلون بالبيت
+    cer: 0.2
+    status: review
+- item: s.ppl.35
+  speed: normal
+  file: clips/0d38124dea4082f2.mp3
+  sha256: 9cef391b8b6362e0b7c3e4884d423dbae154ea4ca8f052a6822c2f069e46a1a6
+  durationMs: 1530
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَهْلي ساكْنين بِالجَبَل.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 0d38124dea4082f2266869ec96038f8b085ff2e9c16d0b009a5deb74218e25f0
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أهل سكنين بالجبل
+    cer: 0.125
+    status: pass
+- item: s.ppl.36
+  speed: normal
+  file: clips/b1d6c4a277d60bcb.mp3
+  sha256: 150d7a742320d6a32ad7cea86587e2478055f2a539fba32938c024dd88537a1e
+  durationMs: 1420
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَهْلو بْيْحِبّوا البَحِر.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: b1d6c4a277d60bcb2cfdf47e5f7fd4365fba62c0d1c73383551f7d853ed21fe8
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أهلوا بيحبوا البحر
+    cer: 0.133
+    status: pass
+- item: s.ppl.39
+  speed: normal
+  file: clips/ffb424e33d736e4f.mp3
+  sha256: 47107813cf0b9941812acb7a844c688e810fc2cb43126a122e8ba8b98c8171c6
+  durationMs: 1560
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: الجّيران رِجْعوا مْبارِح.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: ffb424e33d736e4f654e0cb24f3e64d46d65a94ab797ee272105c532028a4c0f
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: الجيران رجعوا مبارح
+    cer: 0.0
+    status: pass
+- item: s.ppl.5
+  speed: normal
+  file: clips/1e67e650c464cef9.mp3
+  sha256: d9882672af0ceb0e908d5823b420af77ea46145b67f5287043741570a6139234
+  durationMs: 1280
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هَيدا جارْنا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 1e67e650c464cef9c191813da452d85038c38d7f3ad083ec5b507fbbeef60d5c
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: هيدا جارنا
+    cer: 0.0
+    status: pass
+- item: s.ppl.6
+  speed: normal
+  file: clips/3ef8858dadc66cb9.mp3
+  sha256: 797112ee2c52d8a2f06c5a38cc8c5a24d3350b5f414c83047a08812ab8a60bc8
+  durationMs: 1090
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: هِيّ جارْتي.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 3ef8858dadc66cb94aa14b78bb55d086ec613c9cc824af4493593ac77062e91d
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: إيجارتي
+    cer: 0.143
+    status: pass
+- item: s.ppl.8
+  speed: normal
+  file: clips/e58693efb6cf41bf.mp3
+  sha256: c2c8dbb54a9aee0d3a18033e07d0447f7b09d5852f864c9ea660695357de946d
+  durationMs: 1400
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: الزَّلَمِة جارْنا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: e58693efb6cf41bffe9ec60e9e1e64d501eab14559e28d8055b8f540ea42bb38
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: زالة مجرنا
+    cer: 0.455
+    status: review
 - item: s.time.1
   speed: normal
   file: clips/0a4c0d0ef3f7518c.mp3
@@ -12641,6 +13438,538 @@ clips:
     asrText: نهار الجمعة بشتغل
     cer: 0.0
     status: pass
+- item: s.trip.10
+  speed: normal
+  file: clips/7cd28b019217ef8a.mp3
+  sha256: 55c2c1e1be6f8dfb04e827b1a7cf41edfb8e4b1180a867b14ee770ec4308b0cb
+  durationMs: 1440
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: بَيّي رَح يِشْتِغِل بُكْرا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 7cd28b019217ef8af948700426e936786f46cccb9eba62998d9e29677101a304
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: باية رح يشتغل بكرة
+    cer: 0.214
+    status: review
+- item: s.trip.14
+  speed: normal
+  file: clips/55f7ff13581735a9.mp3
+  sha256: 2ccd72c98a98ba70646984db4073e90af7f5875f5da6a1326758c0bcc70731a1
+  durationMs: 1360
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: السِّيّارَة زْغيرِة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 55f7ff13581735a9c8dc15044143b0c9dc90b373b5beb4fdf45b78ef4c6b8eb7
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سيارة زغيرة
+    cer: 0.25
+    status: review
+- item: s.trip.15
+  speed: normal
+  file: clips/a904e27bdeccf1d0.mp3
+  sha256: ee19882178957bb888a7487cd3e79c0d938c60d39589f0ce46131b2aec0028ea
+  durationMs: 1500
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: رَح نْروح بِالسِّيّارَة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: a904e27bdeccf1d0a8f1c0b9c5deaa3938a5ddcf1e68cf1999becae9f857e95f
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سنذهب بالسيارة
+    cer: 0.429
+    status: review
+- item: s.trip.19
+  speed: normal
+  file: clips/7675e783950a0456.mp3
+  sha256: 2db9d0d9d04e541f6591b074230fd7c3c744cffb90f227c8c86e7d6667ad67a0
+  durationMs: 1420
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: رَح نْروح يومين.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 7675e783950a045685695a0a9724d888f2b0c3be1e53d23ed98cbfd19de42616
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: نحن روح يومين
+    cer: 0.091
+    status: pass
+- item: s.trip.2
+  speed: normal
+  file: clips/80748ded6a32604b.mp3
+  sha256: 0005116340a026620d96f486c3f6c159caea7875378e332bac10fcead94729ad
+  durationMs: 1360
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: رَح ناكُل عِنْد تيتا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 80748ded6a32604b9734b3e2f91268a9de5df66df8d0e3269575dfc3f82e2c49
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سوف نأكل عن طايتها
+    cer: 0.538
+    status: fail
+- item: s.trip.22
+  speed: normal
+  file: clips/4ae36f8bd41b1b64.mp3
+  sha256: eecc918bad15a1fb2812b584ae66b423858bef38678179edc54c3a3a67fd4389
+  durationMs: 1140
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: وين شَنْطْتي؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 4ae36f8bd41b1b6455917626d89ec56e3869db1a8082e632587ae4968d0754d0
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: بوين شنطة
+    cer: 0.375
+    status: review
+- item: s.trip.24
+  speed: normal
+  file: clips/039b95da9c4eb0f2.mp3
+  sha256: 8cf582bb8c11b937653e455226c76d927c0b0e904ed651d9edf5f10b52233026
+  durationMs: 1530
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: رَح آخُد شَنْطَة زْغيرِة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 039b95da9c4eb0f28dd62b522bcfc67ea3c9bf04aadfc5ffd9cd2192a16db39f
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سأخذ شنطة صغيرة
+    cer: 0.357
+    status: review
+- item: s.trip.29
+  speed: normal
+  file: clips/06386be4e65fb1d6.mp3
+  sha256: 37ee3e12d3bc03589fece8b4119310ef9c98035441a0bd8ed3d3838df68d46e1
+  durationMs: 1490
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: مايا، رَح تْروحي مَعْنا؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 06386be4e65fb1d6ac18c555a34a642174bcbf7c5de020b91bf46799871bc7af
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ما يارات روحي مانا
+    cer: 0.133
+    status: pass
+- item: s.trip.3
+  speed: normal
+  file: clips/e6857a9e71bd70d1.mp3
+  sha256: 1a08c273262fa40a8bb03e0a84c050434f623568c4c35c9fc3bc40431434bf1c
+  durationMs: 1330
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: شو رَح تَعْمِل بُكْرا؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: e6857a9e71bd70d14f56922e5a403a3715b63976b1c6940e513e4f0182456301
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ماذا ستفعل بكرة؟
+    cer: 0.667
+    status: fail
+- item: s.trip.30
+  speed: normal
+  file: clips/89e3e6c2322861d3.mp3
+  sha256: 55faed7f6314e174cc1eb2accfa4a50e8903eec3c47b6c2be31db0807d5bb159
+  durationMs: 1690
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: شو رَح تَعْمْلوا بِالصَّيْفِيِّة؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 89e3e6c2322861d30dbc10da4738dbf7d9e392d06c849afc744aa7fe79e6c2b4
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: شو رح تعمله بالصيفية؟
+    cer: 0.167
+    status: review
+- item: s.trip.31
+  speed: normal
+  file: clips/17b38f49639c19f1.mp3
+  sha256: 42252e6afe5f87c7dc3607dd8ef363dc8dd95e9e522a3997384057860dc39283
+  durationMs: 1600
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: رَح تاكْلوا عِنْد تيتا؟
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 17b38f49639c19f172d55fbf512d8f105d7523b7adac93af106daeddd4f017f7
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: فلاح تقلو عن تيتر
+    cer: 0.533
+    status: fail
+- item: s.trip.32
+  speed: normal
+  file: clips/bd05990f71812542.mp3
+  sha256: 1a33df372e25ec139821101c99056350c49f6913622f2b56da00d5917467a097
+  durationMs: 2580
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: الجّيران رَح يْسافْروا الجِمْعَة الجّايِة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: bd05990f7181254230ac68d0304700cf0419b76bae0c33709a1db47f73a70d29
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: الجيران رح يسافروا الجمعة الجاية
+    cer: 0.0
+    status: pass
+- item: s.trip.33
+  speed: normal
+  file: clips/bd5ac563b2acf189.mp3
+  sha256: dfb62b7f30f3a04291d9b6542672d1ba04da3847ddfc08adceb6371067da8acc
+  durationMs: 1570
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَهْلي رَح يِطْلَعوا عَالضَّيْعَة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: bd5ac563b2acf1895cd85b85c7713315730ad8a6178ef9036dc23b8fd56c5a2e
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: أهلا لحيطلع على الضيعة
+    cer: 0.263
+    status: review
+- item: s.trip.35
+  speed: normal
+  file: clips/da9f09247a9940e5.mp3
+  sha256: c120fa1814dc0e025e1d29933c5abe70e416d504a15df327bab8e696a335b081
+  durationMs: 1980
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: أَنا تَعْبان، ما رَح اِطْلَع اللّيلِة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: da9f09247a9940e51e9609c67d0d68e2aab13f15c4efb4eba63a096f7ab9892a
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: انا تعبين ما رح اطلع الليلة
+    cer: 0.091
+    status: pass
+- item: s.trip.4
+  speed: normal
+  file: clips/0ce21f386eafea61.mp3
+  sha256: f38a2056eb1d5f9048b72ce52110a08fec0b01613e33334aa1882d27451b72b5
+  durationMs: 1390
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: ما رَح اِشْتِغِل بُكْرا.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 0ce21f386eafea612411701df8c8c8f2655b58c47f368463d29b92b2a2bbfba3
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: مرح اشتغل بكرة
+    cer: 0.154
+    status: review
+- item: s.trip.5
+  speed: normal
+  file: clips/53ac12b2ac4e564c.mp3
+  sha256: d4a040471edefd5be69242f066be3ea3192b19c68617f2af5273cddd65918eff
+  durationMs: 1570
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: بُكْرا رَح نِنْزَل عَ بيروت.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 53ac12b2ac4e564c8b772b4b5256f83d0f1df7ea85c0afabd6fc3f5bb1495397
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: بكرة رح ننزل ع بيروت
+    cer: 0.062
+    status: pass
+- item: s.trip.6
+  speed: normal
+  file: clips/a6c4f5fd135d11be.mp3
+  sha256: 6d22fc4c8be8a46c9cfc654df8d4cb55b4786bde06970d50c354d39a7694e17b
+  durationMs: 1470
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: ما رَح نِنْزَل عَالبَحِر.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: a6c4f5fd135d11be84fb6280e57756f0a4e97248c2537a529cbf0bfe233e4cb8
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سننزل على البحر
+    cer: 0.429
+    status: review
+- item: s.trip.8
+  speed: normal
+  file: clips/34af6d649a941aef.mp3
+  sha256: daf55bbf351220bfcf89cf883ec69a72b7ac13ae45a4844561f08a64625f441c
+  durationMs: 1410
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: الضَّيْعَة حِلْوِة كْتير.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 34af6d649a941aef2980710f8244916c72f4e8aec954d02fe2c26542b1751e91
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: ضيعة حلوة كتير
+    cer: 0.143
+    status: pass
+- item: s.trip.9
+  speed: normal
+  file: clips/3614bc8418147c63.mp3
+  sha256: 1c0687f902da1e462b20b4247ed29be8d1786cc43d16e680ae717c6cbaa0919f
+  durationMs: 1760
+  license: CC-BY-NC-4.0
+  provenance:
+    author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    status: draft
+  synthetic: true
+  synthesis:
+    provider: omnivoice
+    version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
+    voice: beirut-m
+    input: سامي رَح يْروح عَالضَّيْعَة.
+    rate: 1.0
+    settings:
+      language: lb
+      numStep: 32
+      guidanceScale: 2.0
+      dtype: bfloat16
+      reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
+    inputHash: 3614bc8418147c634b67edf9e01c5833b8b5bffb63a039cf5d03130d500a9a25
+  qa:
+    asrModel: whisper-large-v3-turbo
+    asrText: سامي رح يروح الضياء
+    cer: 0.176
+    status: review
 - item: sense:2abel
   speed: normal
   file: clips/6fc33cc8bec68aa8.mp3
@@ -15499,9 +16828,9 @@ clips:
     status: review
 - item: sense:kan
   speed: normal
-  file: clips/c175239adb60e60d.mp3
-  sha256: 8c0f6ea9430e7247a93346f15fe303a1395a89f3eb1fdc3ebcde980cd7f1d382
-  durationMs: 700
+  file: clips/c1280b4e2c044b02.mp3
+  sha256: 0df047fef809f765baa80fcf3ab9d07d53e7830292a5a76a9be21b8d7d637770
+  durationMs: 830
   license: CC-BY-NC-4.0
   provenance:
     author: generated:omnivoice@oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
@@ -15511,7 +16840,7 @@ clips:
     provider: omnivoice
     version: oddadmix/lahgtna-omnivoice-v2#55c38a613e316499829eef60b006edc6da9499e2+omnivoice-0.2.1
     voice: beirut-m
-    input: كِنْت
+    input: كان
     rate: 1.0
     settings:
       language: lb
@@ -15519,12 +16848,7 @@ clips:
       guidanceScale: 2.0
       dtype: bfloat16
       reference: 3345a725c70c4b239b3c23bed0b0da184d15080d93816cb778eae9bfaa9a07c8
-    inputHash: c175239adb60e60d449b463e592945dd33df7af6ec6bb723944ea26a58b5b0d1
-  qa:
-    asrModel: whisper-large-v3-turbo
-    asrText: كنت
-    cer: 0.0
-    status: pass
+    inputHash: c1280b4e2c044b0264163f49965ad273e1a072aba7013fbae6209507dde155e0
 - item: sense:kbir
   speed: normal
   file: clips/d701fa2f422f32e3.mp3
