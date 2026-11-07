@@ -51,14 +51,29 @@ export const useClipElements = (): { readonly element: (clip: BundleClip, src: s
     return el;
   }, []);
   const release = useCallback((): void => {
-    for (const el of elements.current.values()) el.pause();
+    for (const el of elements.current.values()) {
+      // Let go of the media player now, not when garbage is collected: browsers cap how many exist.
+      el.pause();
+      el.removeAttribute("src");
+      el.load();
+    }
     elements.current.clear();
   }, []);
   return { element, release };
 };
 
-/** One audio element per clip, loaded when the card shows; `url` maps a bundle path to a URL. */
-export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) => string): ClipPlayer => {
+export interface ClipPlayerOptions {
+  /**
+   * Load the clip as soon as the player mounts (a lesson card, which says it once answered).
+   * Off for long lists (the audio check, the review workspace, a story's lines): browsers cap how
+   * many media players a page may hold, so there the element is made on the first play.
+   */
+  readonly preload?: boolean;
+}
+
+/** One audio element per clip, reused for every play; `url` maps a bundle path to a URL. */
+export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) => string, options: ClipPlayerOptions = {}): ClipPlayer => {
+  const preload = options.preload === true;
   const element = useRef<HTMLAudioElement | null>(null);
   const frame = useRef(0);
   const [playing, setPlaying] = useState<Speed | undefined>(undefined);
@@ -76,8 +91,8 @@ export const useClipPlayer = (audio: AudioRef | undefined, url: (path: string) =
   // Load the clip now, so it is ready when it is played (on a tap, or once the card is answered).
   const { element: elementFor, release } = clips;
   useEffect(() => {
-    if (audio !== undefined) elementFor(audio.normal, url(audio.normal.path));
-  }, [audio, elementFor, url]);
+    if (preload && audio !== undefined) elementFor(audio.normal, url(audio.normal.path));
+  }, [audio, elementFor, preload, url]);
   useEffect(() => release, [audio, release]);
 
   const play = useCallback(

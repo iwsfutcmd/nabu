@@ -151,7 +151,7 @@ const useSayWhenAnswered = (player: ClipPlayer, props: ViewProps & ViewExtras, a
  */
 const AnswerAudio = ({ props }: { props: ViewProps & ViewExtras }): JSX.Element | null => {
   const audio = props.course.audio[props.ex.item];
-  const player = useClipPlayer(audio, props.imageUrl);
+  const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   useSayWhenAnswered(player, props, audio);
   return audio === undefined || props.outcome === undefined ? null : (
     <div data-answer-audio="">
@@ -194,7 +194,7 @@ const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: V
   const profile = useOrthography(text.orthography);
   const mode = effectiveWritingMode(profile, props.writingMode, "prompt");
   const audio = props.course.audio[props.ex.item];
-  const player = useClipPlayer(audio, props.imageUrl);
+  const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   useSayWhenAnswered(player, props, audio);
   return (
     <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-writing-mode={mode} data-ink-container="prompt">
@@ -887,7 +887,7 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
  */
 const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText | undefined; translation?: TaggedText | undefined }): JSX.Element => {
   const t = useTranslator();
-  const player = useClipPlayer(audio, props.imageUrl);
+  const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   const { play } = player;
   const answered = props.outcome !== undefined;
   useEffect(() => {
