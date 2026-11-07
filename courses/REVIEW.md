@@ -210,6 +210,10 @@ points below land, and its chapter is cited where it does.
   came back (was rje3).
 - **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
 - **Spelled as the book spells it:** the -o / -a endings, now ـه / ـها (item 4).
+- **Gender left open by the English** ("it", a bare "this", an untagged "you"): both forms are accepted
+  (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
+  s.work.29). "Shall we…?" (s.like.22) takes the subjunctive نشوف as well as منشوف. The two untagged "you"
+  sentences are tagged: s.day.24 to one person (بتحكي is a man's and a woman's), s.child.14 to a man.
 - **Still a judgement call:** whatever the book leaves open or contradicts, below.
 
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)

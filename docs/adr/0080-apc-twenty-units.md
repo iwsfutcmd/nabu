@@ -87,9 +87,10 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
   - Patterns that are not one word are `construction:` KCs on their sentences: `used-to`,
     `was-doing`, `shu-excl`.
 - **Persons** ([ADR 0075](0075-persons-coverage.md)). The new units tag:
-  - 46 sentences to a man, 33 to a woman and 19 to several people;
+  - 47 sentences to a man, 33 to a woman and 19 to several people;
   - a man speaking in 14, a woman in 13.
-  - Across the course: 102 / 54 / 48 and 25 / 21.
+  - Across the course: 103 / 54 / 48 and 25 / 21, and one to one person (s.day.24: بتحكي is a
+    man's and a woman's).
 - **Drafts.** Everything new is an LLM draft (`llm:claude@<hash>`, status draft) and waits for a
   native speaker, starting with courses/REVIEW.md (apc 13).
 

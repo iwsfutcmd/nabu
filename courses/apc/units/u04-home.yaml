@@ -410,11 +410,11 @@ sentences:
     apc-Arab/standard:
       text: لأ، مش بعيدة.
       tokens: [{surface: لأ, sense: la2}, {surface: مش, sense: mish}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
-      reverse: (لأ|لا) مش بعيدة
+      reverse: (لأ|لا) مش (بعيدة|بعيد)
     apc-Latn/arabizi:
       text: la2, mish b3ide.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
-      reverse: (la2|la) (mish|msh|mesh|mush) (b3ide|ba3ide|b3eede)
+      reverse: (la2|la) (mish|msh|mesh|mush) (b3ide|ba3ide|b3eede|b3id|ba3id|b3eed)
   translations:
     en: |-
       No, it('s| is) not far.

@@ -390,11 +390,15 @@ sentences:
     apc-Arab/standard:
       text: لأ، مش غالي، رخيص.
       tokens: [{surface: لأ, sense: la2}, {surface: مش, sense: mish}, {surface: غالي, sense: ghali}, {surface: رخيص, sense: rkhis}]
-      reverse: (لأ|لا) مش غالي رخيص
+      reverse: |-
+        (لأ|لا) مش غالي رخيص
+        (لأ|لا) مش غالية رخيصة
     apc-Latn/arabizi:
       text: la2, mish ghali, rkhis.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: rkhis, sense: rkhis}]
-      reverse: (la2|la) (mish|msh|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
+      reverse: |-
+        (la2|la) (mish|msh|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
+        (la2|la) (mish|msh|mesh|mush) (ghalye|ghalie|ghalya|ghelye) (rkhise|r5ise|rkheese|rakhise)
   translations:
     en: |-
       No, (it's|it is) not expensive, (it's|it is) cheap.

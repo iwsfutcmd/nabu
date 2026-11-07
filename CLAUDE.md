@@ -237,7 +237,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
   under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
-  forms that fit. Untagged means every form is accepted.
+  forms that fit. Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the
+  sentence names the thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
   woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
   before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.

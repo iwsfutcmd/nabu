@@ -136,11 +136,11 @@ sentences:
     apc-Arab/standard:
       text: شو لونه؟
       tokens: [{surface: شو, sense: shu}, {surface: لونه, sense: lon, morphs: [{surface: لون, kc: 'sense:lon'}, {surface: ه, kc: 'form:poss-3ms'}]}]
-      reverse: شو (لونه|لونو)
+      reverse: شو (لونه|لونو|لونها|لونا)
     apc-Latn/arabizi:
       text: shu lono?
       tokens: [{surface: shu, sense: shu}, {surface: lono, sense: lon, morphs: [{surface: lon, kc: 'sense:lon'}, {surface: o, kc: 'form:poss-3ms'}]}]
-      reverse: (shu|sho) (lono|lonu|lounu|lawno)
+      reverse: (shu|sho) (lono|lonu|lounu|lawno|lona|louna|lawna)
   translations:
     en: What (colour|color) is it?
 - id: s.shop.8
@@ -355,11 +355,11 @@ sentences:
     apc-Arab/standard:
       text: هيدا أرخص.
       tokens: [{surface: هيدا, sense: hayda}, {surface: أرخص, sense: arkhas}]
-      reverse: هيدا أرخص
+      reverse: (هيدا|هيدي) أرخص
     apc-Latn/arabizi:
       text: hayda arkhas.
       tokens: [{surface: hayda, sense: hayda}, {surface: arkhas, sense: arkhas}]
-      reverse: (hayda|haida|hyda) (arkhas|arkhass|arkhes)
+      reverse: (hayda|haida|hyda|hayde|haide|haydi) (arkhas|arkhass|arkhes)
   translations:
     en: (This|That) (one|)('s| is) cheaper.
 - id: s.shop.19
@@ -472,11 +472,11 @@ sentences:
     apc-Arab/standard:
       text: قدّيش حقّه؟
       tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّه, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ه, kc: 'form:poss-3ms'}]}]
-      reverse: (قدّيش|أدّيش) (حقّه|حقّو)
+      reverse: (قدّيش|أدّيش) (حقّه|حقّو|حقّها|حقّا)
     apc-Latn/arabizi:
       text: 2addesh 7a22o?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22o, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: o, kc: 'form:poss-3ms'}]}]
-      reverse: (2addesh|2addeish|2adesh|addesh) (7a22o|7a22u|ha22o|7a2o)
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22o|7a22u|ha22o|7a2o|7a22a|ha22a|7a2a)
   translations:
     en: |-
       How much is it?
@@ -488,11 +488,11 @@ sentences:
     apc-Arab/standard:
       text: قدّيش حقّها؟
       tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّها, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ها, kc: 'form:poss-3fs'}]}]
-      reverse: (قدّيش|أدّيش) (حقّها|حقّا)
+      reverse: (قدّيش|أدّيش) (حقّها|حقّا|حقّه|حقّو)
     apc-Latn/arabizi:
       text: 2addesh 7a22a?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22a, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: a, kc: 'form:poss-3fs'}]}]
-      reverse: (2addesh|2addeish|2adesh|addesh) (7a22a|ha22a|7a2a)
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22a|ha22a|7a2a|7a22o|7a22u|ha22o|7a2o)
   translations:
     en: |-
       How much is it?
@@ -505,12 +505,12 @@ sentences:
       text: فيّي جرّبه؟
       tokens: [{surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جرّبه, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جرّب,
               kc: 'sense:jarrab'}, {surface: ه, kc: 'form:obj-3ms'}]}]
-      reverse: (فيّي|فيني) (جرّبه|جرّبو)
+      reverse: (فيّي|فيني) (جرّبه|جرّبو|جرّبها|جرّبا)
     apc-Latn/arabizi:
       text: fiyyi jarrbo?
       tokens: [{surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: jarrbo, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: jarrb,
               kc: 'sense:jarrab'}, {surface: o, kc: 'form:obj-3ms'}]}]
-      reverse: (fiyyi|fiyye|fiye|fiyi|fini|fine) (jarrbo|jarrebo|jarbo|jarrbu)
+      reverse: (fiyyi|fiyye|fiye|fiyi|fini|fine) (jarrbo|jarrebo|jarbo|jarrbu|jarrba|jarreba|jarba)
   translations:
     en: |-
       Can I try it (on|)?
