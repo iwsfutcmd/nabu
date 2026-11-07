@@ -134,6 +134,18 @@ describe("reading", () => {
     expect(await found.json()).toMatchObject({ name: "Café.pdf" });
   });
 
+  it("lists and finds catalogue names without their control characters", async () => {
+    const { call, google, ids } = setup();
+    google.file(ids.grammars, "\u0098The\u009c fundamentals of Lebanese grammar.pdf", "%PDF-fundamentals");
+    const listed = (await (await call("GET", "/v1/list?path=grammars")).json()) as { entries: { name: string }[] };
+    expect(listed.entries.map((e) => e.name)).toContain("The fundamentals of Lebanese grammar.pdf");
+    for (const name of ["The fundamentals of Lebanese grammar.pdf", "\u0098The\u009c fundamentals of Lebanese grammar.pdf"]) {
+      const read = await call("GET", `/v1/file?path=${q(`grammars/${name}`)}`);
+      expect(await read.text()).toBe("%PDF-fundamentals");
+    }
+    expect((await call("GET", `/v1/stat?path=${q("grammars/\u0098")}`)).status).toBe(400);
+  });
+
   it("exports Google-native files", async () => {
     const { call, google, ids } = setup();
     google.add(ids.root, "notes", "application/vnd.google-apps.document");

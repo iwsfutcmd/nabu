@@ -1,20 +1,24 @@
 import { fail, ok, type Outcome } from "./outcome.ts";
 
-/** A path inside the reference folder, as its names: NFC, none empty, "." or "..". [] is the folder itself. */
+/** A path inside the reference folder, as its names' keys (nameKey). [] is the folder itself. */
 export type RefPath = readonly string[];
 
-/** Control characters (C0, DEL, C1) never name anything worth reaching. */
-const CONTROL = /\p{Cc}/u;
+const CONTROLS = /\p{Cc}/gu;
 
 /**
- * Parses a `path` parameter. Names are compared in NFC (CLAUDE.md: NFC at every boundary), so a
- * name Drive holds in NFD (as macOS often writes it) is still found by its NFC spelling.
+ * How a name is compared, listed and addressed: NFC (CLAUDE.md: NFC at every boundary), so a name
+ * Drive holds in NFD (as macOS often writes it) is found by its NFC spelling; and without control
+ * characters, which no one can type. Names taken from library catalogues carry them: MARC's
+ * non-sorting marks, U+0098 and U+009C, around a leading article ("\u0098The\u009c fundamentals of…").
  */
+export const nameKey = (name: string): string => name.normalize("NFC").replace(CONTROLS, "");
+
+/** Parses a `path` parameter into name keys; none may be empty, "." or "..". */
 export const parsePath = (raw: string | null): Outcome<RefPath> => {
-  const trimmed = (raw ?? "").normalize("NFC").replace(/^\/+|\/+$/gu, "");
+  const trimmed = (raw ?? "").replace(/^\/+|\/+$/gu, "");
   if (trimmed === "") return ok([]);
-  const names = trimmed.split("/");
-  const bad = names.some((name) => name === "" || name === "." || name === ".." || CONTROL.test(name));
+  const names = trimmed.split("/").map(nameKey);
+  const bad = names.some((name) => name === "" || name === "." || name === "..");
   return bad ? fail(400, "bad-path") : ok(names);
 };
 

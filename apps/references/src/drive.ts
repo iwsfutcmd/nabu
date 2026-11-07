@@ -4,7 +4,7 @@
  * searches the whole Drive and never follows a shortcut, so nothing outside the folder is reachable.
  */
 import { fail, ok, type Outcome } from "./outcome.ts";
-import type { RefPath } from "./paths.ts";
+import { nameKey, type RefPath } from "./paths.ts";
 
 export type Fetch = (input: string, init?: RequestInit) => Promise<Response>;
 
@@ -55,7 +55,7 @@ export const kindOf = (file: DriveFile): Entry["kind"] =>
         : "file";
 
 export const entryOf = (file: DriveFile): Entry => ({
-  name: file.name.normalize("NFC"),
+  name: nameKey(file.name),
   kind: kindOf(file),
   mimeType: file.mimeType,
   ...(file.size === undefined ? {} : { size: Number(file.size) }),
@@ -140,7 +140,7 @@ export const listChildren = async (drive: Drive, folderId: string): Promise<Outc
   return ok(files);
 };
 
-/** The one child of `folder` with this name (compared in NFC), if any. */
+/** The one child of `folder` whose name has this key (nameKey), if any. */
 export const childNamed = async (
   drive: Drive,
   folder: DriveFile,
@@ -148,7 +148,7 @@ export const childNamed = async (
 ): Promise<Outcome<DriveFile | null>> => {
   const children = await listChildren(drive, folder.id);
   if (!children.ok) return children;
-  const matches = children.value.filter((child) => child.name.normalize("NFC") === name);
+  const matches = children.value.filter((child) => nameKey(child.name) === name);
   const [only, ...others] = matches;
   if (others.length > 0) return fail(409, "ambiguous", `${matches.length} entries share this name`);
   return ok(only ?? null);

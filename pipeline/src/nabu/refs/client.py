@@ -32,6 +32,8 @@ NATIVE_EXPORTS: dict[str, tuple[str, str]] = {
 _TYPES = {".md": "text/markdown", ".yaml": "application/yaml", ".yml": "application/yaml"}
 _CHUNK = 1024 * 1024
 _TIMEOUT = 120
+#: Cloudflare refuses Python-urllib's default user agent (error 1010) in front of Workers.
+_USER_AGENT = "nabu-refs/0 (+https://github.com/iwsfutcmd/nabu)"
 
 Kind = Literal["folder", "file", "native", "shortcut"]
 
@@ -135,7 +137,10 @@ class Relay:
     ) -> Any:
         query = f"?{urllib.parse.urlencode(params)}" if params else ""
         request = urllib.request.Request(
-            f"{self.url.rstrip('/')}{route}{query}", data=body, method=method, headers=headers or {}
+            f"{self.url.rstrip('/')}{route}{query}",
+            data=body,
+            method=method,
+            headers={"User-Agent": _USER_AGENT, **(headers or {})},
         )
         if self.key:
             request.add_header("Authorization", f"Bearer {self.key}")

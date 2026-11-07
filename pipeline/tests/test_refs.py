@@ -33,6 +33,7 @@ class Library:
         default_factory=dict[str, tuple[str, str, bytes]]
     )
     corrupt: set[str] = field(default_factory=set[str])
+    agents: set[str] = field(default_factory=set[str])
 
     def entry(self, path: str) -> dict[str, Any]:
         kind, mime, content = self.items[path]
@@ -61,6 +62,7 @@ def _handler(library: Library) -> type[BaseHTTPRequestHandler]:
             self.wfile.write(data)
 
         def _route(self) -> tuple[str, dict[str, str]] | None:
+            library.agents.add(self.headers.get("User-Agent", ""))
             if self.headers.get("Authorization") != f"Bearer {KEY}":
                 self._send(401, {"error": "unauthorized"})
                 return None
@@ -262,3 +264,6 @@ def test_the_cli(
 
     status = runner.invoke(app, ["refs", "status"])
     assert "owner@example.com" in status.output
+
+    # Cloudflare turns Python-urllib's own user agent away (error 1010).
+    assert {a.split("/")[0] for a in served[1].agents} == {"nabu-refs"}

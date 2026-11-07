@@ -39,7 +39,9 @@ scope) and stores the refresh token as a Worker secret.
   to a cookie.
 
 **The relay's code confines it to the folder:**
-- Every path is resolved from the folder down, by listing children, with names compared in NFC.
+- Every path is resolved from the folder down, by listing children. Names are compared and listed
+  in NFC without control characters: catalogue-derived file names carry MARC's non-sorting marks
+  (U+0098, U+009C) around a leading article, and nobody can type those.
 - No file id is taken from a caller, the Drive is never searched and shortcuts are never followed.
 - Writes are new files and new content up to 25 MB, folders, renames and moves. Removal goes to
   Drive's trash, never deletion.
