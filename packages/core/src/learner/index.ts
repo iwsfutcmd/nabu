@@ -22,3 +22,4 @@ export {
   type Mistake,
   type StoredCard,
 } from "./state.ts";
+export { learnedWords, orderWords, wordMatcher, type LearnedWord, type WordOrder } from "./words.ts";

@@ -27,6 +27,7 @@ import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
+import { WordsPage } from "./Words.tsx";
 import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugOn } from "./Debug.tsx";
@@ -64,6 +65,7 @@ type Route =
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "review" }
   | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
@@ -85,6 +87,7 @@ const parse = (hash: string): Route => {
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
+  if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -107,7 +110,7 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -376,6 +379,11 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
         );
       })}
       <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
+      <p>
+        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="">
+          {t.format("words.title")}
+        </a>
+      </p>
       <p>
         <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
           {t.format("corrections.page.open")}
@@ -814,7 +822,17 @@ export const App = (): JSX.Element => {
     return sync === null ? (
       <p className={styles.page}>{t.format("player.loading")}</p>
     ) : (
-      <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
+      <CourseUiProvider course={course}>
+        <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "words") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <WordsPage loaded={loaded.value} state={log.state} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
     );
   }
   if (route.tag === "sentences") {
