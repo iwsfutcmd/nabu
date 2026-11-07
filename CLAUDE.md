@@ -98,6 +98,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   differently from core's replay.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
+- The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
+  facets count only in their orthography), `orderWords`, `wordMatcher` (letters as the profile compares them, marks
+  stripped; glosses folded in their own language); @nabu/ui/words WordList. It reads the log; it records nothing.
 
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
