@@ -17,8 +17,8 @@ kcs:
 - {id: 'sense:fehem', gloss: {en: understand}, forms: {apc-Arab/standard: [فهمت], apc-Latn/arabizi: [fhemt]}, notes: {en: 'fhemt: I understood; ma fhemt: I didn''t understand.'}}
 - {id: 'form:obj-2ms', gloss: {en: '-ak: you (on a verb, to a man)'}, notes: {en: 'b7ebbak: I love you; fhemtak: I understood you. Arabic script: ك.'}}
 - {id: 'form:obj-2fs', gloss: {en: '-ik: you (on a verb, to a woman)'}, notes: {en: 'b7ebbik: I love you. Arabic script: the same ك as -ak.'}}
-- {id: 'form:obj-3ms', gloss: {en: '-o: him; it (on a verb)'}, notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: و (شفتو), also written ه (شفته).'}}
-- {id: 'form:obj-3fs', gloss: {en: '-a: her; it (on a verb)'}, notes: {en: 'shefta: I saw her. Arabic script: ا (شفتا), also written ها (شفتها).'}}
+- {id: 'form:obj-3ms', gloss: {en: '-o: him; it (on a verb)'}, notes: {en: 'shefto: I saw him; ba3rfo: I know him. Arabic script: ه (شفته), also written و (شفتو).'}}
+- {id: 'form:obj-3fs', gloss: {en: '-a: her; it (on a verb)'}, notes: {en: 'shefta: I saw her. Arabic script: ها (شفتها), also written ا (شفتا).'}}
 - {id: 'sense:2al', gloss: {en: say; tell}, forms: {apc-Arab/standard: [قال], apc-Latn/arabizi: [2al]}, notes: {en: 'shu 2al? What did he say? 2elli!: tell me! (to a woman: 2ulili!).'}}
 - {id: 'sense:wa2t', gloss: {en: time}, forms: {apc-Arab/standard: [وقت], apc-Latn/arabizi: [wa2t]}}
 - {id: 'sense:resele', gloss: {en: message; letter}, forms: {apc-Arab/standard: [رسالة], apc-Latn/arabizi: [resele]}, notes: {en: 'Also msg, masaj.'}}
@@ -328,9 +328,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: شفتو مبارح.
-      tokens: [{surface: شفتو, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: و, kc: 'form:obj-3ms'}]}, {surface: مبارح, sense: mbere7}]
-      reverse: (شفتو|شفته) (مبارح|مبارحة)
+      text: شفته مبارح.
+      tokens: [{surface: شفته, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: ه, kc: 'form:obj-3ms'}]}, {surface: مبارح, sense: mbere7}]
+      reverse: (شفته|شفتو) (مبارح|مبارحة)
     apc-Latn/arabizi:
       text: shefto mbere7.
       tokens: [{surface: shefto, sense: shef, form: 'form:past-1sg', morphs: [{surface: sheft, kc: 'sense:shef'}, {surface: o, kc: 'form:obj-3ms'}]}, {surface: mbere7, sense: mbere7}]
@@ -344,9 +344,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: ما شفتا.
-      tokens: [{surface: ما, sense: ma}, {surface: شفتا, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: ا, kc: 'form:obj-3fs'}]}]
-      reverse: ما (شفتا|شفتها)
+      text: ما شفتها.
+      tokens: [{surface: ما, sense: ma}, {surface: شفتها, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: ها, kc: 'form:obj-3fs'}]}]
+      reverse: ما (شفتها|شفتا)
     apc-Latn/arabizi:
       text: ma shefta.
       tokens: [{surface: ma, sense: ma}, {surface: shefta, sense: shef, form: 'form:past-1sg', morphs: [{surface: sheft, kc: 'sense:shef'}, {surface: a, kc: 'form:obj-3fs'}]}]
@@ -361,9 +361,9 @@ sentences:
   persons: {addressee: m}
   forms:
     apc-Arab/standard:
-      text: بتعرفو؟
-      tokens: [{surface: بتعرفو, sense: 3eref, form: 'form:impf-2ms', morphs: [{surface: بتعرف, kc: 'sense:3eref'}, {surface: و, kc: 'form:obj-3ms'}]}]
-      reverse: (بتعرفو|بتعرفه)
+      text: بتعرفه؟
+      tokens: [{surface: بتعرفه, sense: 3eref, form: 'form:impf-2ms', morphs: [{surface: بتعرف, kc: 'sense:3eref'}, {surface: ه, kc: 'form:obj-3ms'}]}]
+      reverse: (بتعرفه|بتعرفو)
     apc-Latn/arabizi:
       text: bta3rfo?
       tokens: [{surface: bta3rfo, sense: 3eref, form: 'form:impf-2ms', morphs: [{surface: bta3rf, kc: 'sense:3eref'}, {surface: o, kc: 'form:obj-3ms'}]}]
@@ -375,9 +375,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: إيه، بعرفا منيح.
-      tokens: [{surface: إيه, sense: eh}, {surface: بعرفا, sense: 3eref, form: 'form:impf-1sg', morphs: [{surface: بعرف, kc: 'sense:3eref'}, {surface: ا, kc: 'form:obj-3fs'}]}, {surface: منيح, sense: mni7}]
-      reverse: إيه (بعرفا|بعرفها) (منيح|منيحة)
+      text: إيه، بعرفها منيح.
+      tokens: [{surface: إيه, sense: eh}, {surface: بعرفها, sense: 3eref, form: 'form:impf-1sg', morphs: [{surface: بعرف, kc: 'sense:3eref'}, {surface: ها, kc: 'form:obj-3fs'}]}, {surface: منيح, sense: mni7}]
+      reverse: إيه (بعرفها|بعرفا) (منيح|منيحة)
     apc-Latn/arabizi:
       text: eh, ba3rfa mni7.
       tokens: [{surface: eh, sense: eh}, {surface: ba3rfa, sense: 3eref, form: 'form:impf-1sg', morphs: [{surface: ba3rf, kc: 'sense:3eref'}, {surface: a, kc: 'form:obj-3fs'}]}, {surface: mni7, sense: mni7}]

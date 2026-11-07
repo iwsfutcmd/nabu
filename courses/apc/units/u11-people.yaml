@@ -497,10 +497,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: مايا ورفيقتا بيحبّوا البحر.
-      tokens: [{surface: مايا, sense: maya}, {surface: ورفيقتا, sense: rfi2, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: رفيقت, kc: 'sense:rfi2'}, {surface: ا, kc: 'form:poss-3fs'}]},
+      text: مايا ورفيقتها بيحبّوا البحر.
+      tokens: [{surface: مايا, sense: maya}, {surface: ورفيقتها, sense: rfi2, form: 'form:fem', morphs: [{surface: و, kc: 'sense:w'}, {surface: رفيقت, kc: 'sense:rfi2'}, {surface: ها, kc: 'form:poss-3fs'}]},
         {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: مايا (ورفيقتا|ورفيقتها|و رفيقتا|و رفيقتها) (بيحبّوا|بيحبّو) البحر
+      reverse: مايا (ورفيقتها|ورفيقتا|و رفيقتها|و رفيقتا) (بيحبّوا|بيحبّو) البحر
     apc-Latn/arabizi:
       text: Maya w rfi2ta by7ebbo el ba7r.
       tokens: [{surface: Maya, sense: maya}, {surface: w, sense: w}, {surface: rfi2ta, sense: rfi2, form: 'form:fem', morphs: [{surface: rfi2t, kc: 'sense:rfi2'}, {surface: a, kc: 'form:poss-3fs'}]}, {
@@ -598,10 +598,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: أهلو بيحبّوا البحر.
-      tokens: [{surface: أهلو, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r,
+      text: أهله بيحبّوا البحر.
+      tokens: [{surface: أهله, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيحبّوا, sense: 7abb, form: 'form:impf-3pl'}, {surface: البحر, sense: ba7r,
           morphs: [{surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (أهلو|أهله) (بيحبّوا|بيحبّو) البحر
+      reverse: (أهله|أهلو) (بيحبّوا|بيحبّو) البحر
     apc-Latn/arabizi:
       text: ahlo by7ebbo el ba7r.
       tokens: [{surface: ahlo, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: by7ebbo, sense: 7abb, form: 'form:impf-3pl'}, {surface: el, sense: el},

@@ -21,9 +21,9 @@ kcs:
 - {id: 'form:la-2ms', gloss: {en: '-lak: to you; for you (on a verb, to a man)'}, notes: {en: 'sarlak: it''s been … for you; 2ellak: he told you. Arabic script: لك joined to the verb.'}}
 - {id: 'sense:iza', gloss: {en: if}, forms: {apc-Arab/standard: [إذا], apc-Latn/arabizi: [iza]}, notes: {en: 'iza fi matar, ma ra7 nru7: if it rains, we won''t go. The verb after iza: present (with b-)
       or past.'}}
-- {id: 'sense:la2anno', gloss: {en: because}, forms: {apc-Arab/standard: [لأنّو], apc-Latn/arabizi: [la2anno]}, notes: {en: Written لأنّو or لأنّه.}}
-- {id: 'sense:enno', gloss: {en: 'that (after know, say, think)'}, forms: {apc-Arab/standard: [إنّو], apc-Latn/arabizi: [enno]}, notes: {en: 'ba3ref enno…: I know that…. Also a filler word, like ''I mean''.
-      Written إنّو or إنّه.'}}
+- {id: 'sense:la2anno', gloss: {en: because}, forms: {apc-Arab/standard: [لأنّه], apc-Latn/arabizi: [la2anno]}, notes: {en: Written لأنّه or لأنّو.}}
+- {id: 'sense:enno', gloss: {en: 'that (after know, say, think)'}, forms: {apc-Arab/standard: [إنّه], apc-Latn/arabizi: [enno]}, notes: {en: 'ba3ref enno…: I know that…. Also a filler word, like ''I mean''.
+      Written إنّه or إنّو.'}}
 - {id: 'sense:fakkar', gloss: {en: think}, forms: {apc-Arab/standard: [بفكّر], apc-Latn/arabizi: [bfakker]}, notes: {en: 'bfakker enno…: I think that….'}}
 nodes:
 - {id: apc.work.study, kind: lesson, introduces: ['sense:jem3a.uni', 'sense:tilmiz', 'sense:daras', 'sense:dars', 'sense:emte7an']}
@@ -414,10 +414,10 @@ sentences:
   persons: {speaker: m}
   forms:
     apc-Arab/standard:
-      text: ما رحت عالشغل لأنّو كنت مريض.
+      text: ما رحت عالشغل لأنّه كنت مريض.
       tokens: [{surface: ما, sense: ma}, {surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل,
-              kc: 'sense:shoghl'}]}, {surface: لأنّو, sense: la2anno}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مريض, sense: mrid}]
-      reverse: ما (رحت|أنا رحت) (عالشغل|ع الشغل|على الشغل) (لأنّو|لأنّه) (كنت|أنا كنت) مريض
+              kc: 'sense:shoghl'}]}, {surface: لأنّه, sense: la2anno}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مريض, sense: mrid}]
+      reverse: ما (رحت|أنا رحت) (عالشغل|ع الشغل|على الشغل) (لأنّه|لأنّو) (كنت|أنا كنت) مريض
     apc-Latn/arabizi:
       text: ma ru7t 3al shoghl la2anno kent mrid.
       tokens: [{surface: ma, sense: ma}, {surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
@@ -430,10 +430,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: ما فيّي اطلع لأنّو عندي امتحان.
+      text: ما فيّي اطلع لأنّه عندي امتحان.
       tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: اطلع, sense: tele3, form: 'form:subj-1sg'},
-        {surface: لأنّو, sense: la2anno}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: امتحان, sense: emte7an}]
-      reverse: ما (فيّي|فيني) اطلع (لأنّو|لأنّه) (عندي|أنا عندي) امتحان
+        {surface: لأنّه, sense: la2anno}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: امتحان, sense: emte7an}]
+      reverse: ما (فيّي|فيني) اطلع (لأنّه|لأنّو) (عندي|أنا عندي) امتحان
     apc-Latn/arabizi:
       text: ma fiyyi etla3 la2anno 3endi emte7an.
       tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: etla3, sense: tele3, form: 'form:subj-1sg'},
@@ -448,9 +448,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: بحبّ بيروت لأنّو حلوة.
-      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: بيروت, sense: beirut}, {surface: لأنّو, sense: la2anno}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
-      reverse: (بحبّ|أنا بحبّ) بيروت (لأنّو|لأنّه) حلوة
+      text: بحبّ بيروت لأنّه حلوة.
+      tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: بيروت, sense: beirut}, {surface: لأنّه, sense: la2anno}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
+      reverse: (بحبّ|أنا بحبّ) بيروت (لأنّه|لأنّو) حلوة
     apc-Latn/arabizi:
       text: b7ebb Beirut la2anno 7elwe.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: Beirut, sense: beirut}, {surface: la2anno, sense: la2anno}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
@@ -462,9 +462,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: بعرف إنّو سامي مشغول.
-      tokens: [{surface: بعرف, sense: 3eref, form: 'form:impf-1sg'}, {surface: إنّو, sense: enno}, {surface: سامي, sense: sami}, {surface: مشغول, sense: mashghoul}]
-      reverse: بعرف (إنّو|إنّه) سامي مشغول
+      text: بعرف إنّه سامي مشغول.
+      tokens: [{surface: بعرف, sense: 3eref, form: 'form:impf-1sg'}, {surface: إنّه, sense: enno}, {surface: سامي, sense: sami}, {surface: مشغول, sense: mashghoul}]
+      reverse: بعرف (إنّه|إنّو) سامي مشغول
     apc-Latn/arabizi:
       text: ba3ref enno Sami mashghoul.
       tokens: [{surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}, {surface: enno, sense: enno}, {surface: Sami, sense: sami}, {surface: mashghoul, sense: mashghoul}]
@@ -476,9 +476,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: قال إنّو جاي.
-      tokens: [{surface: قال, sense: 2al, form: 'form:past-3ms'}, {surface: إنّو, sense: enno}, {surface: جاي, sense: jeye}]
-      reverse: قال (إنّو|إنّه) جاي
+      text: قال إنّه جاي.
+      tokens: [{surface: قال, sense: 2al, form: 'form:past-3ms'}, {surface: إنّه, sense: enno}, {surface: جاي, sense: jeye}]
+      reverse: قال (إنّه|إنّو) جاي
     apc-Latn/arabizi:
       text: 2al enno jey.
       tokens: [{surface: 2al, sense: 2al, form: 'form:past-3ms'}, {surface: enno, sense: enno}, {surface: jey, sense: jeye}]
@@ -490,9 +490,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: بفكّر إنّو هيدا أحسن.
-      tokens: [{surface: بفكّر, sense: fakkar, form: 'form:impf-1sg'}, {surface: إنّو, sense: enno}, {surface: هيدا, sense: hayda}, {surface: أحسن, sense: a7san}]
-      reverse: بفكّر (إنّو|إنّه) هيدا أحسن
+      text: بفكّر إنّه هيدا أحسن.
+      tokens: [{surface: بفكّر, sense: fakkar, form: 'form:impf-1sg'}, {surface: إنّه, sense: enno}, {surface: هيدا, sense: hayda}, {surface: أحسن, sense: a7san}]
+      reverse: بفكّر (إنّه|إنّو) هيدا أحسن
     apc-Latn/arabizi:
       text: bfakker enno hayda a7san.
       tokens: [{surface: bfakker, sense: fakkar, form: 'form:impf-1sg'}, {surface: enno, sense: enno}, {surface: hayda, sense: hayda}, {surface: a7san, sense: a7san}]
@@ -522,10 +522,10 @@ sentences:
   persons: {addressee: pl}
   forms:
     apc-Arab/standard:
-      text: بتعرفوا إنّو المدير هون؟
-      tokens: [{surface: بتعرفوا, sense: 3eref, form: 'form:impf-2pl'}, {surface: إنّو, sense: enno}, {surface: المدير, sense: mudir, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدير, kc: 'sense:mudir'}]},
+      text: بتعرفوا إنّه المدير هون؟
+      tokens: [{surface: بتعرفوا, sense: 3eref, form: 'form:impf-2pl'}, {surface: إنّه, sense: enno}, {surface: المدير, sense: mudir, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدير, kc: 'sense:mudir'}]},
         {surface: هون, sense: hon}]
-      reverse: (بتعرفوا|بتعرفو) (إنّو|إنّه) المدير هون
+      reverse: (بتعرفوا|بتعرفو) (إنّه|إنّو) المدير هون
     apc-Latn/arabizi:
       text: bta3rfo enno el mudir hon?
       tokens: [{surface: bta3rfo, sense: 3eref, form: 'form:impf-2pl'}, {surface: enno, sense: enno}, {surface: el, sense: el}, {surface: mudir, sense: mudir}, {surface: hon, sense: hon}]
@@ -634,8 +634,8 @@ stories:
       speaker: sami
       forms:
         apc-Arab/standard:
-          text: بَعْرِف إِنّو رَح تَعْمْلي مْنيح.
-          tokens: [{surface: بَعْرِف, sense: 3eref, form: 'form:impf-1sg'}, {surface: إِنّو, sense: enno}, {surface: رَح, sense: ra7.fut}, {surface: تَعْمْلي, sense: 3emel, form: 'form:subj-2fs'}, {surface: مْنيح,
+          text: بَعْرِف إِنُّه رَح تَعْمْلي مْنيح.
+          tokens: [{surface: بَعْرِف, sense: 3eref, form: 'form:impf-1sg'}, {surface: إِنُّه, sense: enno}, {surface: رَح, sense: ra7.fut}, {surface: تَعْمْلي, sense: 3emel, form: 'form:subj-2fs'}, {surface: مْنيح,
               sense: mni7}]
         apc-Latn/arabizi:
           text: ba3ref enno ra7 ta3mli mni7.

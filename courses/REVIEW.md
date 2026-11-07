@@ -209,6 +209,7 @@ points below land, and its chapter is cited where it does.
 - **Fixed:** badna / badkon for baddna / baddkon (Kline p. 110); ken, he was (was kan); reje3, he
   came back (was rje3).
 - **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
+- **Spelled as the book spells it:** the -o / -a endings, now ـه / ـها (item 4).
 - **Still a judgement call:** whatever the book leaves open or contradicts, below.
 
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)
@@ -219,9 +220,12 @@ points below land, and its chapter is cited where it does.
 3. **Forms addressed to a woman.** kili (كلي), tfaddali, bta3mli, btghanne, ray7a, and
    m2akhkhar/m2akhkhra for "late".
 4. **The "my" ending.** It is spelled -i (bayyi, ekhti, 3ayelti), and -e is accepted. In Arabic
-   script, -o and -a are written ـو and ـا (بيّو, إمّا), and ـه and ـها are accepted.
-   - Kline writes ـه and ـها, and says most native speakers do (ch. 2).
-   - Should the course switch? The phonetic spelling also tells the voice to say -o.
+   script, -o and -a (his, her; him, her) are written ـه and ـها (بيّه, إمّها, شفته, شفتها), as Kline
+   writes them and says most native speakers do (ch. 2, pp. 41–42). ـو and ـا are accepted.
+   - So are enno and la2anno: إنّه, لأنّه (Kline pp. 65–66); إنّو, لأنّو are accepted.
+   - The vowel marks put a damma before ـه (بَيُّه, شِفْتُه): it is what tells the voice to say -o.
+     Before ـها the letter stays unmarked (إِمّها). Is that what a reader expects to see?
+   - Verb plurals are not this ending and keep ـوا (بتعرفوا, you all know; بتعرفو accepted).
    - Units 11–20 write "their" ـهن (بيتهن), as Kline does, and accept ـن.
 5. **Numbers and money.**
    - café orders: tnen ahwe, wa7ad shay;
@@ -295,8 +299,8 @@ points below land, and its chapter is cited where it does.
     - **u13 (can, must):** fiyyi (فيّي) as the canonical "I can", with fini / فيني accepted; fik, fiki
       (فيكي), fiya (فيها), fina, fikon; lezem tirte7, ma lezem; shu bak / shu biki / shu bkon;
       ma3i wja3 ras; salemtak / salemtik / salemetkon.
-    - **u14 (object endings):** sme3tni, fhemtni, fhemtuni; b7ebbak / b7ebbik; shefto, shefta (شفتا,
-      as إمّا); bta3rfo, ba3rfa; 2elli (قلّي), 2ulili, de22elli, de22ili, de22uli, b3atli, ba3atli.
+    - **u14 (object endings):** sme3tni, fhemtni, fhemtuni; b7ebbak / b7ebbik; shefto, shefta (شفته,
+      شفتها); bta3rfo, ba3rfa; 2elli (قلّي), 2ulili, de22elli, de22ili, de22uli, b3atli, ba3atli.
     - **u15 (shopping):** the colour feminines bayda, sawda, 7amra, zar2a, khadra; arkhas, aghla,
       akbar, azghar with men (akbar menni); 2addesh 7a22o / 7a22a; jarrbo, jarrbi; 2yes; tilbos /
       tilbso / elbos.
@@ -310,7 +314,7 @@ points below land, and its chapter is cited where it does.
       wa22fi / wa22fo; ishara.
     - **u19 (work, study):** jem3a for the university (جامعة), spelled as Friday and the week in
       Arabizi; tilmiz / tilmize, bedros / btidros / tedrso, dars, emte7an; mhandes / mhandse,
-      sherke, mudir; sar 3omri, sarli sinten 3am…, sarlak; iza, la2anno (لأنّو), enno (إنّو), bfakker,
+      sherke, mudir; sar 3omri, sarli sinten 3am…, sarlak; iza, la2anno (لأنّه), enno (إنّه), bfakker,
       btfakkri.
     - **u20 (celebrations):** mabrouk / allah ybarek fik(i); 3irs, hdiyye; 3azamni, 3azmetna, e3zmak /
       e3zmik; 3ajabni, 3ajabetni, 3ajabak, 3ajabetkon; za3len / za3lene, m3asseb / m3assbe / m3assbin,

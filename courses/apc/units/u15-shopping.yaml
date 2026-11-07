@@ -134,9 +134,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: شو لونو؟
-      tokens: [{surface: شو, sense: shu}, {surface: لونو, sense: lon, morphs: [{surface: لون, kc: 'sense:lon'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: شو (لونو|لونه)
+      text: شو لونه؟
+      tokens: [{surface: شو, sense: shu}, {surface: لونه, sense: lon, morphs: [{surface: لون, kc: 'sense:lon'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: شو (لونه|لونو)
     apc-Latn/arabizi:
       text: shu lono?
       tokens: [{surface: shu, sense: shu}, {surface: lono, sense: lon, morphs: [{surface: lon, kc: 'sense:lon'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -470,9 +470,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: قدّيش حقّو؟
-      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّو, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: (قدّيش|أدّيش) (حقّو|حقّه)
+      text: قدّيش حقّه؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّه, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: (قدّيش|أدّيش) (حقّه|حقّو)
     apc-Latn/arabizi:
       text: 2addesh 7a22o?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22o, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -486,9 +486,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: قدّيش حقّا؟
-      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّا, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ا, kc: 'form:poss-3fs'}]}]
-      reverse: (قدّيش|أدّيش) (حقّا|حقّها)
+      text: قدّيش حقّها؟
+      tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّها, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ها, kc: 'form:poss-3fs'}]}]
+      reverse: (قدّيش|أدّيش) (حقّها|حقّا)
     apc-Latn/arabizi:
       text: 2addesh 7a22a?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22a, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: a, kc: 'form:poss-3fs'}]}]
@@ -502,10 +502,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: فيّي جرّبو؟
-      tokens: [{surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جرّبو, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جرّب,
-              kc: 'sense:jarrab'}, {surface: و, kc: 'form:obj-3ms'}]}]
-      reverse: (فيّي|فيني) (جرّبو|جرّبه)
+      text: فيّي جرّبه؟
+      tokens: [{surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جرّبه, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جرّب,
+              kc: 'sense:jarrab'}, {surface: ه, kc: 'form:obj-3ms'}]}]
+      reverse: (فيّي|فيني) (جرّبه|جرّبو)
     apc-Latn/arabizi:
       text: fiyyi jarrbo?
       tokens: [{surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: jarrbo, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: jarrb,
@@ -672,10 +672,10 @@ stories:
       distractors: ['sense:aghla']
       forms:
         apc-Arab/standard:
-          text: الأَزْرَق أَرْخَص. فِيّي جَرّْبو؟
+          text: الأَزْرَق أَرْخَص. فِيّي جَرّْبُه؟
           tokens: [{surface: الأَزْرَق, sense: azra2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أَزْرَق, kc: 'sense:azra2'}]}, {surface: أَرْخَص, sense: arkhas}, {surface: فِيّي, sense: fi.can,
-              morphs: [{surface: فِيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جَرّْبو, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جَرّْب, kc: 'sense:jarrab'},
-                {surface: و, kc: 'form:obj-3ms'}]}]
+              morphs: [{surface: فِيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جَرّْبُه, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جَرّْبُ, kc: 'sense:jarrab'},
+                {surface: ه, kc: 'form:obj-3ms'}]}]
         apc-Latn/arabizi:
           text: el azra2 arkhas. fiyyi jarrbo?
           tokens: [{surface: el, sense: el}, {surface: azra2, sense: azra2}, {surface: arkhas, sense: arkhas}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i,

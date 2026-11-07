@@ -42,11 +42,19 @@ keep the old forms.
 alphabet gives *5 (kh)* and *8 (gh)*. Conformance vectors `grade/apc-latn/gh-8*` pass in both
 harnesses.
 
+**The -o / -a endings are written ـه / ـها, as Kline writes them.** He says most native speakers
+do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إمّا).
+- **What changed.** Every word whose ending is the 3rd person singular pronoun:
+  - possessives (بيّه, إمّها, عمره, بدّه, معها), the morphs tagged `form:poss-3ms` / `poss-3fs`;
+  - objects on verbs (شفته, شفتها, بتعرفه), tagged `form:obj-3ms` / `obj-3fs`;
+  - enno and la2anno, enn- and la2ann- with the same ending: إنّه, لأنّه (pp. 65–66).
+- **What did not.** Verb plurals end in -o too, but are not this ending: بتعرفوا (you all know)
+  keeps its spelling, and its accept set keeps بتعرفو.
+- **Accept sets** put the new spelling first and keep the old one, so ـو / ـا are still right.
+- **Vowel marks.** ـه takes a damma on the letter before it (بَيُّه, شِفْتُه), and the voice says -o
+  from it. Before ـها that letter stays unmarked (إِمّها).
+
 **Spelling choices the reference does not overturn stay, and are listed for review:**
-- **3rd person singular endings.** The course writes the -o / -a endings ـو / ـا (بيّو, إمّا) and
-  accepts ـه / ـها.
-  - Kline writes ـه / ـها, and says most native speakers do (ch. 2).
-  - Switching is a reviewer's call. The phonetic spelling also tells the voice to say -o.
 - **3rd person plural.** New in unit 11, the -on ending is written ـهن (بيتهن), as Kline writes it,
   and ـن is accepted. A bare ـن reads like other words (بدن).
 - **Sun letters.** Kline counts ج as a sun letter in Lebanese. New vocalizations mark the shadda
@@ -95,7 +103,7 @@ harnesses.
   round-trip check holds back the doubtful clips, as before. Six older clips were made again
   (s.like.18, s.like.33, s.past.14, the ken and reje3 word cards, a line of the u07 story):
   the fixes above changed what they read.
-- **Open for the reviewer:** the ـو / ـه question; ج as a sun letter in the older vowel marks;
+- **Open for the reviewer:** the damma before ـه; ج as a sun letter in the older vowel marks;
   the new words a native speaker should check first (REVIEW, apc 13).
 - **Not yet:** a `sources` field that cites the reference and page on each item (ADR 0079 leaves
   it for its own ADR). This ADR and REVIEW name the chapters instead.

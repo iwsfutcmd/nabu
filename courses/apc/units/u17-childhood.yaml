@@ -274,10 +274,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: مايا كانت عم تحكي مع إمّا.
+      text: مايا كانت عم تحكي مع إمّها.
       tokens: [{surface: مايا, sense: maya}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: عم, sense: 3am}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: مع, sense: ma3},
-        {surface: إمّا, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ا, kc: 'form:poss-3fs'}]}]
-      reverse: مايا كانت عم تحكي مع (إمّا|إمّها)
+        {surface: إمّها, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ها, kc: 'form:poss-3fs'}]}]
+      reverse: مايا كانت عم تحكي مع (إمّها|إمّا)
     apc-Latn/arabizi:
       text: Maya kenet 3am t7ki ma3 emma.
       tokens: [{surface: Maya, sense: maya}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 3am, sense: 3am}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: ma3, sense: ma3},
@@ -389,9 +389,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: هي بعدا مريضة.
-      tokens: [{surface: هي, sense: hiyye}, {surface: بعدا, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
-      reverse: هي (بعدا|بعدها) مريضة
+      text: هي بعدها مريضة.
+      tokens: [{surface: هي, sense: hiyye}, {surface: بعدها, sense: ba3d.still, morphs: [{surface: بعد, kc: 'sense:ba3d.still'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
+      reverse: هي (بعدها|بعدا) مريضة
     apc-Latn/arabizi:
       text: hiyye ba3da mrida.
       tokens: [{surface: hiyye, sense: hiyye}, {surface: ba3da, sense: ba3d.still, morphs: [{surface: ba3d, kc: 'sense:ba3d.still'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mrida, sense: mrid, form: 'form:fem'}]
@@ -453,9 +453,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: هو ساكن لحالو.
-      tokens: [{surface: هو, sense: huwwe}, {surface: ساكن, sense: seken}, {surface: لحالو, sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: هو ساكن (لحالو|لحاله)
+      text: هو ساكن لحاله.
+      tokens: [{surface: هو, sense: huwwe}, {surface: ساكن, sense: seken}, {surface: لحاله, sense: la7al, morphs: [{surface: لحال, kc: 'sense:la7al'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: هو ساكن (لحاله|لحالو)
     apc-Latn/arabizi:
       text: huwwe seken la7alo.
       tokens: [{surface: huwwe, sense: huwwe}, {surface: seken, sense: seken}, {surface: la7alo, sense: la7al, morphs: [{surface: la7al, kc: 'sense:la7al'}, {surface: o, kc: 'form:poss-3ms'}]}]

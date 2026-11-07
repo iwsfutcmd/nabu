@@ -189,9 +189,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: تيتا معا وجع راس.
-      tokens: [{surface: تيتا, sense: teta}, {surface: معا, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
-      reverse: تيتا (معا|معها) وجع راس
+      text: تيتا معها وجع راس.
+      tokens: [{surface: تيتا, sense: teta}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
+      reverse: تيتا (معها|معا) وجع راس
     apc-Latn/arabizi:
       text: teta ma3a wja3 ras.
       tokens: [{surface: teta, sense: teta}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]

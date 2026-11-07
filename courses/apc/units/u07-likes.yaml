@@ -280,9 +280,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: سامي بدّو قهوة.
-      tokens: [{surface: سامي, sense: sami}, {surface: بدّو, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
-      reverse: سامي (بدّو|بدّه) قهوة
+      text: سامي بدّه قهوة.
+      tokens: [{surface: سامي, sense: sami}, {surface: بدّه, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
+      reverse: سامي (بدّه|بدّو) قهوة
     apc-Latn/arabizi:
       text: Sami baddo ahwe.
       tokens: [{surface: Sami, sense: sami}, {surface: baddo, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: ahwe, sense: ahwe}]
@@ -296,9 +296,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: مايا بدّا شاي.
-      tokens: [{surface: مايا, sense: maya}, {surface: بدّا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
-      reverse: مايا (بدّا|بدّها) شاي
+      text: مايا بدّها شاي.
+      tokens: [{surface: مايا, sense: maya}, {surface: بدّها, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
+      reverse: مايا (بدّها|بدّا) شاي
     apc-Latn/arabizi:
       text: Maya badda shay.
       tokens: [{surface: Maya, sense: maya}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
