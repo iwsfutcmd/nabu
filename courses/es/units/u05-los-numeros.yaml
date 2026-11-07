@@ -420,6 +420,18 @@ sentences:
     en: |-
       (I'm|I am) last [in line].
       (I'm|I am) the last [one|person] [in line].
+- id: s.u05.37
+  node: es.u05.cumpleanos
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Yo soy la última.
+      tokens: [{surface: Yo, sense: yo}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: última, sense: último}]
+      reverse: '[Yo] soy la última'
+  translations:
+    en: |-
+      (I'm|I am) last [in line].
+      (I'm|I am) the last [one|person] [in line].
 stories:
 - id: es.story.u05
   node: es.u05.story

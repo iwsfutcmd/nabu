@@ -318,6 +318,16 @@ sentences:
       reverse: '[Nosotros] somos cubanos'
   translations:
     en: (We're|We are) (Cuban|Cubans).
+- id: s.u02.37
+  node: es.u02.nosotros
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Lili y yo somos cubanas.
+      tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: somos, sense: ser, form: 'form:pres-1p'}, {surface: cubanas, sense: cubano}]
+      reverse: Lili y yo somos cubanas
+  translations:
+    en: Lili and I are (Cuban|Cubans).
 - id: s.u02.26
   node: es.u02.nosotros
   forms:

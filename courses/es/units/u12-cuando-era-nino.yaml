@@ -52,6 +52,22 @@ sentences:
       When I was (a child|a kid|a boy|little|young|small), I (lived|used to live) in Hialeah.
       As a (child|kid|boy), I (lived|used to live) in Hialeah.
       I (lived|used to live) in Hialeah when I was (a child|a kid|a boy|little|young|small).
+- id: s.u12.32
+  node: es.u12.cuando-era-nino
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, vivía en Hialeah.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño}, {surface: vivía, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita|pequeña) [yo] vivía en Hialeah
+        De (niña|chiquita|pequeña) [yo] vivía en Hialeah
+        [Yo] vivía en Hialeah cuando [yo] era (niña|chiquita|pequeña)
+  translations:
+    en: |-
+      When I was (a child|a kid|a girl|little|young|small), I (lived|used to live) in Hialeah.
+      As a (child|kid|girl), I (lived|used to live) in Hialeah.
+      I (lived|used to live) in Hialeah when I was (a child|a kid|a girl|little|young|small).
 - id: s.u12.2
   node: es.u12.cuando-era-nino
   forms:
@@ -99,6 +115,21 @@ sentences:
       When I was (little|a kid|a child|a boy|small|young), I (really liked|loved) baseball.
       When I was (little|a kid|a child|a boy|small|young), I liked baseball a lot.
       As a (kid|child|boy), I (really liked|loved|liked) baseball.
+- id: s.u12.33
+  node: es.u12.cuando-era-nino
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Cuando era chiquita, me gustaba mucho la pelota.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: era, sense: ser, form: 'form:impf'}, {surface: chiquita, sense: chiquito}, {surface: me, sense: me}, {surface: gustaba, sense: gustar, form: 'form:impf'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: pelota, sense: pelota}]
+      reverse: |-
+        Cuando [yo] era (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
+        De (chiquita|niña|pequeña) me gustaba mucho (la pelota|el béisbol)
+  translations:
+    en: |-
+      When I was (little|a kid|a child|a girl|small|young), I (really liked|loved) baseball.
+      When I was (little|a kid|a child|a girl|small|young), I liked baseball a lot.
+      As a (kid|child|girl), I (really liked|loved|liked) baseball.
 - id: s.u12.6
   node: es.u12.cuando-era-nino
   persons: {addressee: m}
@@ -349,6 +380,19 @@ sentences:
   translations:
     en: |-
       When I was (a kid|a child|a boy|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
+- id: s.u12.34
+  node: es.u12.antes
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Cuando yo era niña, Abuela me hablaba en español.
+      tokens: [{surface: Cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: niña, sense: niño}, {surface: Abuela, sense: abuela}, {surface: me, sense: me}, {surface: hablaba, sense: hablar, form: 'form:impf'}, {surface: en, sense: en}, {surface: español, sense: español}]
+      reverse: |-
+        Cuando [yo] era (niña|chiquita|pequeña) (Abuela|la abuela|mi abuela) me hablaba en español
+        De (niña|chiquita|pequeña) (Abuela|la abuela|mi abuela) me hablaba en español
+  translations:
+    en: |-
+      When I was (a kid|a child|a girl|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
 - id: s.u12.28
   node: es.u12.antes
   forms:

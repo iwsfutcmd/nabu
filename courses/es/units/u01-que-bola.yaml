@@ -329,6 +329,18 @@ sentences:
     en: |-
       Yes, I'm Cuban.
       Yes, I am Cuban.
+- id: s.u01.43
+  node: es.u01.soy
+  persons: {speaker: f}
+  forms:
+    es-Latn/standard:
+      text: Sí, soy cubana.
+      tokens: [{surface: Sí, sense: sí}, {surface: soy, sense: ser, form: 'form:pres-1s'}, {surface: cubana, sense: cubano}]
+      reverse: Sí [yo] soy cubana
+  translations:
+    en: |-
+      Yes, I'm Cuban.
+      Yes, I am Cuban.
 - id: s.u01.26
   node: es.u01.soy
   forms:
@@ -488,6 +500,19 @@ sentences:
       text: Encantado, señora.
       tokens: [{surface: Encantado, sense: encantado}, {surface: señora, sense: señora}]
       reverse: (Encantado|Mucho gusto) señora
+  translations:
+    en: |-
+      (Nice|Pleased|Glad) to meet you, (ma'am|madam).
+      Delighted, (ma'am|madam).
+- id: s.u01.44
+  node: es.u01.mi-abuela
+  register: formal
+  persons: {speaker: f, addressee: f}
+  forms:
+    es-Latn/standard:
+      text: Encantada, señora.
+      tokens: [{surface: Encantada, sense: encantado}, {surface: señora, sense: señora}]
+      reverse: (Encantada|Mucho gusto) señora
   translations:
     en: |-
       (Nice|Pleased|Glad) to meet you, (ma'am|madam).
