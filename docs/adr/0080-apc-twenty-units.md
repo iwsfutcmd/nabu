@@ -92,7 +92,8 @@ harnesses.
   month is 60 lessons; units 1–10 have 55, so the new units barely enter it. A longer simulation
   would test them.
 - **Audio.** The new units are read by the course's two Lahgtna voices (ADR 0058, 0078). The
-  round-trip check holds back the doubtful clips, as before. Seven older clips were made again:
+  round-trip check holds back the doubtful clips, as before. Six older clips were made again
+  (s.like.18, s.like.33, s.past.14, the ken and reje3 word cards, a line of the u07 story):
   the fixes above changed what they read.
 - **Open for the reviewer:** the ـو / ـه question; ج as a sun letter in the older vowel marks;
   the new words a native speaker should check first (REVIEW, apc 13).
