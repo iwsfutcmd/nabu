@@ -54,7 +54,7 @@ case-folded, with silent equivalences applied, and without the marks the profile
 - **Why.** A vocalized course writes its words with vowel marks (ADR 0053), and learners type
   without them. Keyed by case alone, apc's lexicon held نْروح, never matched نروح, and the check
   did nothing in Arabic script while it worked in Arabizi.
-- **What it catches.** نروح for منروح (subjunctive for indicative) and بتشتغل for بشتغل (you for
+- **What it catches.** نروح for منروح (the bare imperfect for the indicative, Kline ch. 22) and بتشتغل for بشتغل (you for
   I) are wrong words now.
 - **What it keeps.** Marks that tell words apart (Spanish está/esta) are not ignored, so they stay
   in the key.

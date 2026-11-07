@@ -541,7 +541,7 @@ describe("a typo that spells another word of the course (erratum 46)", () => {
   it("is WRONG_WORD in a vocalized orthography too: the course writes نْروح, the learner types نروح", () => {
     const orthography = "apc-Arab/standard";
     const grader = createGrader(loadCourse("apc", orthography));
-    // nrou7 (let's go) for mnrou7 (we go); bt- (you, she) for b- (I).
+    // nrou7 (no indicative m-) for mnrou7 (we go); bt- (you, she) for b- (I).
     expect(grader.grade(orthography, "بعدين منروح عالشغل", "بعدين نروح عالشغل").verdict).toBe("WRONG_WORD");
     expect(grader.grade(orthography, "بشتغل ببيروت", "بتشتغل ببيروت").verdict).toBe("WRONG_WORD");
     // A slip that spells no word of the course stays a typo.
