@@ -103,9 +103,11 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
   round-trip check holds back the doubtful clips, as before. Six older clips were made again
   (s.like.18, s.like.33, s.past.14, the ken and reje3 word cards, a line of the u07 story):
   the fixes above changed what they read.
-  - The ـه / ـها spelling touches 37 clips. Six of them a listener had checked: they stay, and
-    the voice reads those items from the spelling they were checked in (`spoken` in course.yaml).
-    The 31 others were made again; the round-trip check holds back 9 of them, as it did before.
+  - The ـه / ـها spelling made 37 clips again, every item with the endings. The round-trip check
+    holds back 9 of them (10 before).
+  - Six of the 37 a listener had checked (s.fam.15–19, s.like.16). They are drafts again. A
+    voice's `spoken` could have kept the old takes, but it ties an item to one voice, and an
+    unchecked item's voice can change (ADR 0078); `nabu audio generate` then refuses.
   - A phoneme recognizer run on the old and new clips heard the same -o and -a endings. None says
     the h of ـها. Two old clips that said -o for -a (عِنْدا, بَعْدا) now say -a.
 - **Open for the reviewer:** the damma before ـه; ج as a sun letter in the older vowel marks;

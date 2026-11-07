@@ -226,6 +226,9 @@ points below land, and its chapter is cited where it does.
    - The vowel marks put a damma before ـه (بَيُّه, شِفْتُه): it is what tells the voice to say -o.
      Before ـها the letter stays unmarked (إِمّها). Is that what a reader expects to see?
    - Verb plurals are not this ending and keep ـوا (بتعرفوا, you all know; بتعرفو accepted).
+   - Six clips Ben had checked (s.fam.15–19, s.like.16) were made again from the new spelling:
+     they need a listen again in the audio check. s.fam.16 (شو اسمه؟) first: a phoneme model
+     hears esma (her name) in it, not esmo.
    - Units 11–20 write "their" ـهن (بيتهن), as Kline does, and accept ـن.
 5. **Numbers and money.**
    - café orders: tnen ahwe, wa7ad shay;
