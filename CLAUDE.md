@@ -319,8 +319,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - apc has twenty units, checked against Kline (2022). Senses spelled alike take a suffix (ra7.fut, fi.can, men.than,
   ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
 - Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
-  Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. Six clips a listener checked in the old
-  spelling keep it through the voice's `spoken`. New vocalizations mark ج as a sun letter.
+  Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
+- A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
+  and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
