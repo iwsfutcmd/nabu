@@ -100,6 +100,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   differently from core's replay.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
+- Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
+  a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
 - The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
   facets count only in their orthography), `orderWords`, `wordMatcher` (letters as the profile compares them, marks
   stripped; glosses folded in their own language); @nabu/ui/words WordList. It reads the log; it records nothing.
