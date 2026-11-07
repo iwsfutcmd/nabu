@@ -105,7 +105,7 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
   the fixes above changed what they read.
   - The ـه / ـها spelling touches 37 clips. Six of them a listener had checked: they stay, and
     the voice reads those items from the spelling they were checked in (`spoken` in course.yaml).
-    The 31 others were made again.
+    The 31 others were made again; the round-trip check holds back 9 of them, as it did before.
   - A phoneme recognizer run on the old and new clips heard the same -o and -a endings. None says
     the h of ـها. Two old clips that said -o for -a (عِنْدا, بَعْدا) now say -a.
 - **Open for the reviewer:** the damma before ـه; ج as a sun letter in the older vowel marks;
