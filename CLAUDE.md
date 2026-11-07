@@ -301,13 +301,22 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
 - The voice clones a CC0 Cuban recording (`nabu audio cast --recording`); clips are CC-BY-NC-4.0 (OmniVoice weights).
 
+## Reference library notes (see docs/adr/0079)
+- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay
+  (apps/references), never in the repo, bundles, issues or commits; nor does text extracted from them.
+- `cd pipeline && uv run nabu refs ls -r`, `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git
+  work tree), `put <file> notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
+- Courses take facts from references (forms, paradigms, glosses), never example sentences or definitions verbatim.
+- Cloud sessions: NABU_REFS_URL is an environment variable; the key is the relay host's network secret (never chat).
+  The relay trashes, never deletes; uploads stop at 25 MB (scans go into Drive directly).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0078 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0079 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
