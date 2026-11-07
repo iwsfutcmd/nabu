@@ -1,0 +1,605 @@
+# Fixture course (apc), unit 18: getting around Beirut. The service (shared taxi), taxi and bus, the road and
+# the traffic (3aj2a); where someone is right now with active participles (2a3ed, wa2ef, jey, nezel, raye7),
+# which agree like adjectives; asking the way (kif busal?), turning (liff 3al yamin) and stopping (wa22ef hon).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 17 (active
+# participles), 8 (prepositions) and 23 (the imperative): every sentence awaits a native speaker's review.
+id: u18-getting-around
+title: {en: Getting around}
+cefr: A2
+kcs:
+- {id: 'sense:servees', gloss: {en: service (a shared taxi on a fixed route)}, forms: {apc-Arab/standard: [سرفيس], apc-Latn/arabizi: [servees]}, notes: {en: A red-plated car that picks up several passengers
+      along its route for a fixed fare.}}
+- {id: 'sense:taxi', gloss: {en: taxi}, forms: {apc-Arab/standard: [تاكسي], apc-Latn/arabizi: [taxi]}}
+- {id: 'sense:bus', gloss: {en: bus}, forms: {apc-Arab/standard: [باص], apc-Latn/arabizi: [bus]}, notes: {en: Also written bas or baS; bas alone is 'only; but'.}}
+- {id: 'sense:tari2', gloss: {en: road; way}, forms: {apc-Arab/standard: [طريق], apc-Latn/arabizi: [tari2]}, notes: {en: '3al tari2: on the way.'}}
+- {id: 'sense:3aj2a', gloss: {en: traffic; traffic jam; crowd}, forms: {apc-Arab/standard: [عجقة], apc-Latn/arabizi: [3aj2a]}}
+- {id: 'sense:2a3ed', gloss: {en: sitting; staying (somewhere)}, forms: {apc-Arab/standard: [قاعد], apc-Latn/arabizi: [2a3ed]}, notes: {en: 'An active participle: 2a3de (a woman), 2a3din (several people).
+      wen 2a3ed? Where are you (sitting)?'}}
+- {id: 'sense:wa2ef', gloss: {en: standing; stopped; waiting}, forms: {apc-Arab/standard: [واقف], apc-Latn/arabizi: [wa2ef]}, notes: {en: 'An active participle: wa2fe (a woman), wa2fin (several people).'}}
+- {id: 'sense:laff', gloss: {en: turn}, forms: {apc-Arab/standard: [لفّ], apc-Latn/arabizi: [liff]}, notes: {en: 'liff 3al yamin: turn right (to a man); liffi (to a woman); liffo (to several people).'}}
+- {id: 'sense:ishara', gloss: {en: traffic light; sign}, forms: {apc-Arab/standard: [إشارة], apc-Latn/arabizi: [ishara]}}
+- {id: 'sense:wa22ef', gloss: {en: 'stop (a car, someone)'}, forms: {apc-Arab/standard: [وقّف], apc-Latn/arabizi: [wa22ef]}, notes: {en: 'wa22ef hon!: stop here! (to a driver). To a woman: wa22fi.'}}
+nodes:
+- {id: apc.road.transport, kind: lesson, introduces: ['sense:servees', 'sense:taxi', 'sense:bus', 'sense:tari2', 'sense:3aj2a']}
+- {id: apc.road.where, kind: lesson, introduces: ['sense:2a3ed', 'sense:wa2ef']}
+- {id: apc.road.directions, kind: lesson, introduces: ['sense:laff', 'sense:ishara', 'sense:wa22ef']}
+- {id: apc.road.story, kind: story}
+sentences:
+- id: s.road.1
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بدّي سرفيس.
+      tokens: [{surface: بدّي, sense: baddi}, {surface: سرفيس, sense: servees}]
+      reverse: (بدّي|أنا بدّي) (سرفيس|سيرفيس|سرڤيس)
+    apc-Latn/arabizi:
+      text: baddi servees.
+      tokens: [{surface: baddi, sense: baddi}, {surface: servees, sense: servees}]
+      reverse: (baddi|badde|badi) (servees|service|servis|srvis)
+  translations:
+    en: |-
+      I want a (service|shared taxi).
+      I need a (service|shared taxi).
+- id: s.road.2
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: سرفيس؟ ع بيروت؟
+      tokens: [{surface: سرفيس, sense: servees}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
+      reverse: (سرفيس|سيرفيس|سرڤيس) ع بيروت
+    apc-Latn/arabizi:
+      text: servees? 3a Beirut?
+      tokens: [{surface: servees, sense: servees}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
+      reverse: (servees|service|servis|srvis) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+  translations:
+    en: (Service|Shared taxi)? To Beirut?
+- id: s.road.3
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: منروح بالتاكسي.
+      tokens: [{surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: بالتاكسي, sense: taxi, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: تاكسي, kc: 'sense:taxi'}]}]
+      reverse: (منروح|نحنا منروح) بالتاكسي
+    apc-Latn/arabizi:
+      text: mnru7 bel taxi.
+      tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: taxi, sense: taxi}]
+      reverse: (mnru7|mnro7) (bel|bil|b el) (taxi|taksi|taxe)
+  translations:
+    en: |-
+      We('ll| will) go by taxi.
+      Let's take a taxi.
+      We('re| are) going by taxi.
+- id: s.road.4
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: التاكسي غالي.
+      tokens: [{surface: التاكسي, sense: taxi, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تاكسي, kc: 'sense:taxi'}]}, {surface: غالي, sense: ghali}]
+      reverse: التاكسي غالي
+    apc-Latn/arabizi:
+      text: el taxi ghali.
+      tokens: [{surface: el, sense: el}, {surface: taxi, sense: taxi}, {surface: ghali, sense: ghali}]
+      reverse: (el|l|il) (taxi|taksi|taxe) (ghali|ghale)
+  translations:
+    en: |-
+      The taxi is expensive.
+      Taxis are expensive.
+- id: s.road.5
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: وين الباص؟
+      tokens: [{surface: وين, sense: wen}, {surface: الباص, sense: bus, morphs: [{surface: ال, kc: 'sense:el'}, {surface: باص, kc: 'sense:bus'}]}]
+      reverse: وين (الباص|البص)
+    apc-Latn/arabizi:
+      text: wen el bus?
+      tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: bus, sense: bus}]
+      reverse: (wen|wein) (el|l|il) (bus|bas|busS)
+  translations:
+    en: Where('s| is) the bus?
+- id: s.road.6
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الباص أرخص من التاكسي.
+      tokens: [{surface: الباص, sense: bus, morphs: [{surface: ال, kc: 'sense:el'}, {surface: باص, kc: 'sense:bus'}]}, {surface: أرخص, sense: arkhas}, {surface: من, sense: men.than}, {surface: التاكسي,
+          sense: taxi, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تاكسي, kc: 'sense:taxi'}]}]
+      reverse: (الباص|البص) أرخص من التاكسي
+    apc-Latn/arabizi:
+      text: el bus arkhas men el taxi.
+      tokens: [{surface: el, sense: el}, {surface: bus, sense: bus}, {surface: arkhas, sense: arkhas}, {surface: men, sense: men.than}, {surface: el, sense: el}, {surface: taxi, sense: taxi}]
+      reverse: (el|l|il) (bus|bas|busS) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (taxi|taksi|taxe)
+  translations:
+    en: |-
+      The bus is cheaper than the taxi.
+      The bus is cheaper than a taxi.
+- id: s.road.7
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أنا عالطريق.
+      tokens: [{surface: أنا, sense: ana}, {surface: عالطريق, sense: tari2, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: طريق, kc: 'sense:tari2'}]}]
+      reverse: '[أنا] (عالطريق|ع الطريق|على الطريق)'
+    apc-Latn/arabizi:
+      text: ana 3al tari2.
+      tokens: [{surface: ana, sense: ana}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: tari2, sense: tari2}]
+      reverse: '[ana] (3al|3a l|3a el) (tari2|tare2|tari)'
+  translations:
+    en: I('m| am) on (the|my) way.
+- id: s.road.8
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: في عجقة كتير.
+      tokens: [{surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: كتير, sense: ktir}]
+      reverse: في عجقة كتير
+    apc-Latn/arabizi:
+      text: fi 3aj2a ktir.
+      tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: ktir, sense: ktir}]
+      reverse: fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
+  translations:
+    en: |-
+      There('s| is) a lot of traffic.
+      There('s| is) a (big|bad) traffic jam.
+      The traffic is really bad.
+- id: s.road.9
+  node: apc.road.transport
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ما في عجقة اليوم.
+      tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
+      reverse: ما في عجقة اليوم
+    apc-Latn/arabizi:
+      text: ma fi 3aj2a el yom.
+      tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: el, sense: el}, {surface: yom, sense: yom}]
+      reverse: ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
+  translations:
+    en: |-
+      There('s| is) no traffic today.
+      There isn't any traffic today.
+- id: s.road.10
+  node: apc.road.where
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: وينك؟
+      tokens: [{surface: وينك, sense: wen, morphs: [{surface: وين, kc: 'sense:wen'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: وينك
+    apc-Latn/arabizi:
+      text: wenak?
+      tokens: [{surface: wenak, sense: wen, morphs: [{surface: wen, kc: 'sense:wen'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (wenak|weinak|wenek)
+  translations:
+    en: Where are you?
+- id: s.road.11
+  node: apc.road.where
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: وينك؟
+      tokens: [{surface: وينك, sense: wen, vocalized: وينِك, morphs: [{surface: وين, kc: 'sense:wen'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      reverse: وينك
+    apc-Latn/arabizi:
+      text: wenik?
+      tokens: [{surface: wenik, sense: wen, morphs: [{surface: wen, kc: 'sense:wen'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      reverse: (wenik|weinik|wenek|wenke)
+  translations:
+    en: Where are you?
+- id: s.road.12
+  node: apc.road.where
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا جاي!
+      tokens: [{surface: أنا, sense: ana}, {surface: جاي, sense: jeye}]
+      reverse: '[أنا] جاي'
+    apc-Latn/arabizi:
+      text: ana jey!
+      tokens: [{surface: ana, sense: ana}, {surface: jey, sense: jeye}]
+      reverse: '[ana] (jey|jeye|jay|jaye|jeyi)'
+  translations:
+    en: |-
+      I('m| am) coming!
+      I('m| am) on my way!
+- id: s.road.13
+  node: apc.road.where
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا جاية!
+      tokens: [{surface: أنا, sense: ana}, {surface: جاية, sense: jeye, form: 'form:fem'}]
+      reverse: '[أنا] جاية'
+    apc-Latn/arabizi:
+      text: ana jeye!
+      tokens: [{surface: ana, sense: ana}, {surface: jeye, sense: jeye, form: 'form:fem'}]
+      reverse: '[ana] (jeye|jeyye|jaye|jeyi|jayye)'
+  translations:
+    en: |-
+      I('m| am) coming!
+      I('m| am) on my way!
+- id: s.road.14
+  node: apc.road.where
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا قاعد بالبيت.
+      tokens: [{surface: أنا, sense: ana}, {surface: قاعد, sense: 2a3ed}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
+      reverse: '[أنا] قاعد بالبيت'
+    apc-Latn/arabizi:
+      text: ana 2a3ed bel bet.
+      tokens: [{surface: ana, sense: ana}, {surface: 2a3ed, sense: 2a3ed}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
+      reverse: '[ana] (2a3ed|a3ed|2a3id|2e3id) (bel|bil|b el) (bet|beit)'
+  translations:
+    en: |-
+      I('m| am) (sitting|staying) at home.
+      I('m| am) (at home|home).
+- id: s.road.15
+  node: apc.road.where
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وين قاعدين؟
+      tokens: [{surface: وين, sense: wen}, {surface: قاعدين, sense: 2a3ed, form: 'form:pl'}]
+      reverse: '[إنتو] وين قاعدين'
+    apc-Latn/arabizi:
+      text: wen 2a3din?
+      tokens: [{surface: wen, sense: wen}, {surface: 2a3din, sense: 2a3ed, form: 'form:pl'}]
+      reverse: '[(ento|into)] (wen|wein) (2a3din|a3din|2a3deen|2a3dein)'
+  translations:
+    en: |-
+      Where are you (sitting|staying)?
+      Where are you?
+- id: s.road.16
+  node: apc.road.where
+  register: colloquial
+  persons: {speaker: f}
+  forms:
+    apc-Arab/standard:
+      text: أنا قاعدة بالسيّارة.
+      tokens: [{surface: أنا, sense: ana}, {surface: قاعدة, sense: 2a3ed, form: 'form:fem'}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة,
+              kc: 'sense:siyyara'}]}]
+      reverse: '[أنا] قاعدة بالسيّارة'
+    apc-Latn/arabizi:
+      text: ana 2a3de bel siyyara.
+      tokens: [{surface: ana, sense: ana}, {surface: 2a3de, sense: 2a3ed, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara,
+          sense: siyyara}]
+      reverse: '[ana] (2a3de|a3de|2a3di|2a3da) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)'
+  translations:
+    en: |-
+      I('m| am) sitting in the car.
+      I('m| am) in the car.
+- id: s.road.17
+  node: apc.road.where
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: التاكسي واقف هون.
+      tokens: [{surface: التاكسي, sense: taxi, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تاكسي, kc: 'sense:taxi'}]}, {surface: واقف, sense: wa2ef}, {surface: هون, sense: hon}]
+      reverse: التاكسي واقف هون
+    apc-Latn/arabizi:
+      text: el taxi wa2ef hon.
+      tokens: [{surface: el, sense: el}, {surface: taxi, sense: taxi}, {surface: wa2ef, sense: wa2ef}, {surface: hon, sense: hon}]
+      reverse: (el|l|il) (taxi|taksi|taxe) (wa2ef|wa2if|waaef|we2ef) (hon|hone|houn)
+  translations:
+    en: |-
+      The taxi is (stopped|waiting|parked) here.
+      The taxi's (stopped|waiting|parked) here.
+- id: s.road.18
+  node: apc.road.where
+  register: colloquial
+  persons: {speaker: m}
+  forms:
+    apc-Arab/standard:
+      text: أنا واقف حدّ الدكّانة.
+      tokens: [{surface: أنا, sense: ana}, {surface: واقف, sense: wa2ef}, {surface: حدّ, sense: 7add}, {surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}]
+      reverse: '[أنا] واقف حدّ الدكّانة'
+    apc-Latn/arabizi:
+      text: ana wa2ef 7add el dekkene.
+      tokens: [{surface: ana, sense: ana}, {surface: wa2ef, sense: wa2ef}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: dekkene, sense: dekkene}]
+      reverse: '[ana] (wa2ef|wa2if|waaef|we2ef) (7add|7ad|hadd) (el|l|il) (dekkene|dekene|dekkane|dikkene)'
+  translations:
+    en: |-
+      I('m| am) standing (next to|by) the (shop|corner shop|store).
+      I('m| am) waiting (next to|by) the (shop|corner shop|store).
+- id: s.road.19
+  node: apc.road.where
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: نازل ع بيروت؟
+      tokens: [{surface: نازل, sense: nezel}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
+      reverse: نازل ع بيروت
+    apc-Latn/arabizi:
+      text: nezel 3a Beirut?
+      tokens: [{surface: nezel, sense: nezel}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
+      reverse: (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+  translations:
+    en: Are you going (down|) to Beirut?
+- id: s.road.20
+  node: apc.road.where
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: رايحة عالشغل؟
+      tokens: [{surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
+      reverse: رايحة (عالشغل|ع الشغل|على الشغل)
+    apc-Latn/arabizi:
+      text: ray7a 3al shoghl?
+      tokens: [{surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
+      reverse: (ray7a|rayi7a|ray7e|rey7a|raye7a|rayha) (3al|3a l|3a el) (shoghl|shoghol|shughl)
+  translations:
+    en: |-
+      Are you going to work?
+      Are you on your way to work?
+- id: s.road.21
+  node: apc.road.directions
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كيف بوصل عالبحر؟
+      tokens: [{surface: كيف, sense: kif}, {surface: بوصل, sense: wesel, form: 'form:impf-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر,
+              kc: 'sense:ba7r'}]}]
+      reverse: كيف بوصل (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: kif busal 3al ba7r?
+      tokens: [{surface: kif, sense: kif}, {surface: busal, sense: wesel, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
+          sense: ba7r}]
+      reverse: (kif|keef) (busal|buwsal|bewsal|bisal) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: |-
+      How do I get to the (beach|sea)?
+      How can I get to the (beach|sea)?
+- id: s.road.22
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: لفّ عاليمين!
+      tokens: [{surface: لفّ, sense: laff}, {surface: عاليمين, sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
+      reverse: لفّ (عاليمين|ع اليمين|على اليمين)
+    apc-Latn/arabizi:
+      text: liff 3al yamin!
+      tokens: [{surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
+      reverse: (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+  translations:
+    en: |-
+      Turn right!
+      Turn to the right!
+- id: s.road.23
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: لفّي عالشمال.
+      tokens: [{surface: لفّي, sense: laff, form: 'form:imp-2fs'}, {surface: عالشمال, sense: shmel, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شمال, kc: 'sense:shmel'}]}]
+      reverse: لفّي (عالشمال|ع الشمال|على الشمال)
+    apc-Latn/arabizi:
+      text: liffi 3al shmel.
+      tokens: [{surface: liffi, sense: laff, form: 'form:imp-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shmel, sense: shmel}]
+      reverse: (liffi|leffi|liffe|lifi) (3al|3a l|3a el) shmel
+  translations:
+    en: |-
+      Turn left.
+      Turn to the left.
+- id: s.road.24
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: بعد الإشارة، لفّ عاليمين.
+      tokens: [{surface: بعد, sense: ba3d}, {surface: الإشارة, sense: ishara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: إشارة, kc: 'sense:ishara'}]}, {surface: لفّ, sense: laff}, {surface: عاليمين,
+          sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
+      reverse: بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
+    apc-Latn/arabizi:
+      text: ba3d el ishara, liff 3al yamin.
+      tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {
+              surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
+      reverse: (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+  translations:
+    en: |-
+      After the (traffic light|traffic lights|lights), turn right.
+      Turn right after the (traffic light|traffic lights|lights).
+- id: s.road.25
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: وقّف هون، عمول معروف.
+      tokens: [{surface: وقّف, sense: wa22ef}, {surface: هون, sense: hon}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
+      reverse: وقّف هون (عمول|اعمول|عمل) معروف
+    apc-Latn/arabizi:
+      text: wa22ef hon, 3mol ma3rouf.
+      tokens: [{surface: wa22ef, sense: wa22ef}, {surface: hon, sense: hon}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      reverse: (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
+  translations:
+    en: |-
+      Stop here, please.
+      (Please|) stop here(, please|).
+- id: s.road.26
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: وقّفي هون، عملي معروف.
+      tokens: [{surface: وقّفي, sense: wa22ef, form: 'form:imp-2fs'}, {surface: هون, sense: hon}, {surface: عملي, sense: 3mol-ma3rouf, form: 'form:imp-2fs'}, {surface: معروف, sense: 3mol-ma3rouf}]
+      reverse: وقّفي هون عملي معروف
+    apc-Latn/arabizi:
+      text: wa22fi hon, 3emli ma3rouf.
+      tokens: [{surface: wa22fi, sense: wa22ef, form: 'form:imp-2fs'}, {surface: hon, sense: hon}, {surface: 3emli, sense: 3mol-ma3rouf, form: 'form:imp-2fs'}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      reverse: (wa22fi|wa22efi|wa22ife|wa2fi) (hon|hone|houn) (3emli|3emle|3imli|a3mli) (ma3rouf|ma3roof)
+  translations:
+    en: |-
+      Stop here, please.
+      (Please|) stop here(, please|).
+- id: s.road.27
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: دغري، وبعدين لفّ عالشمال.
+      tokens: [{surface: دغري, sense: dighri}, {surface: وبعدين, sense: ba3dein, morphs: [{surface: و, kc: 'sense:w'}, {surface: بعدين, kc: 'sense:ba3dein'}]}, {surface: لفّ, sense: laff}, {surface: عالشمال,
+          sense: shmel, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شمال, kc: 'sense:shmel'}]}]
+      reverse: دغري (وبعدين|و بعدين) لفّ (عالشمال|ع الشمال|على الشمال)
+    apc-Latn/arabizi:
+      text: dighri, w ba3dein liff 3al shmel.
+      tokens: [{surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: ba3dein, sense: ba3dein}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
+            {surface: l, kc: 'sense:el'}]}, {surface: shmel, sense: shmel}]
+      reverse: (dighri|deghri|doghri|dughri) (w|wa) (ba3dein|ba3dain|ba3den) (liff|leff|lef|lif) (3al|3a l|3a el) shmel
+  translations:
+    en: |-
+      Straight (on|ahead), and then turn left.
+      Go straight, then turn left.
+- id: s.road.28
+  node: apc.road.directions
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: وقّفوا!
+      tokens: [{surface: وقّفوا, sense: wa22ef, form: 'form:imp-2pl'}]
+      reverse: (وقّفوا|وقّفو)
+    apc-Latn/arabizi:
+      text: wa22fo!
+      tokens: [{surface: wa22fo, sense: wa22ef, form: 'form:imp-2pl'}]
+      reverse: (wa22fo|wa22efo|wa22fu|wa2fo)
+  translations:
+    en: Stop!
+stories:
+- id: apc.story.service
+  node: apc.road.story
+  title: {en: In the service}
+  provenance: {author: 'llm:claude@a659420f546f', status: draft}
+  characters:
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  steps:
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَلو سامي، وينَك؟
+          tokens: [{surface: أَلو, sense: alo}, {surface: سامي, sense: sami}, {surface: وينَك, sense: wen, morphs: [{surface: وينَ, kc: 'sense:wen'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+        apc-Latn/arabizi:
+          text: alo Sami, wenak?
+          tokens: [{surface: alo, sense: alo}, {surface: Sami, sense: sami}, {surface: wenak, sense: wen, morphs: [{surface: wen, kc: 'sense:wen'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      translations: {en: 'Hello Sami, where are you?'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: أَنا بِالسِّرْفيس، جاي.
+          tokens: [{surface: أَنا, sense: ana}, {surface: بِالسِّرْفيس, sense: servees, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سِّرْفيس, kc: 'sense:servees'}]},
+            {surface: جاي, sense: jeye}]
+        apc-Latn/arabizi:
+          text: ana bel servees, jey.
+          tokens: [{surface: ana, sense: ana}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: servees, sense: servees}, {surface: jey, sense: jeye}]
+      translations: {en: 'I''m in the service, I''m coming.'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: في عَجْقَة؟
+          tokens: [{surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a}]
+        apc-Latn/arabizi:
+          text: fi 3aj2a?
+          tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}]
+      translations: {en: 'Is there traffic?'}
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:3aj2a
+      distractors: ['sense:tari2']
+      forms:
+        apc-Arab/standard:
+          text: إيه، في عَجْقَة كْتير!
+          tokens: [{surface: إيه, sense: eh}, {surface: في, sense: fi}, {surface: عَجْقَة, sense: 3aj2a}, {surface: كْتير, sense: ktir}]
+        apc-Latn/arabizi:
+          text: eh, fi 3aj2a ktir!
+          tokens: [{surface: eh, sense: eh}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: ktir, sense: ktir}]
+      translations: {en: 'Yes, there''s a lot of traffic!'}
+  - choose:
+      prompt: {en: 'How is Sami travelling?'}
+      options: [{en: By service taxi}, {en: By bus}, {en: On foot}]
+      answer: 0
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَنا قاعْدِة بِالمَطْعَم حَدّ البَحِر.
+          tokens: [{surface: أَنا, sense: ana}, {surface: قاعْدِة, sense: 2a3ed, form: 'form:fem'}, {surface: بِالمَطْعَم, sense: mat3am, morphs: [{surface: بِ, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
+                {surface: مَطْعَم, kc: 'sense:mat3am'}]}, {surface: حَدّ, sense: 7add}, {surface: البَحِر, sense: ba7r, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}]
+        apc-Latn/arabizi:
+          text: ana 2a3de bel mat3am 7add el ba7r.
+          tokens: [{surface: ana, sense: ana}, {surface: 2a3de, sense: 2a3ed, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: mat3am,
+              sense: mat3am}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: ba7r, sense: ba7r}]
+      translations: {en: I'm sitting in the restaurant by the sea.}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: كيف بوصَل عَالمَطْعَم؟
+          tokens: [{surface: كيف, sense: kif}, {surface: بوصَل, sense: wesel, form: 'form:impf-1sg'}, {surface: عَالمَطْعَم, sense: mat3am, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
+                {surface: مَطْعَم, kc: 'sense:mat3am'}]}]
+        apc-Latn/arabizi:
+          text: kif busal 3al mat3am?
+          tokens: [{surface: kif, sense: kif}, {surface: busal, sense: wesel, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {
+              surface: mat3am, sense: mat3am}]
+      translations: {en: 'How do I get to the restaurant?'}
+  - line:
+      speaker: maya
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: بَعْد الإِشارَة، لِفّ عَاليَمين.
+          tokens: [{surface: بَعْد, sense: ba3d}, {surface: الإِشارَة, sense: ishara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: إِشارَة, kc: 'sense:ishara'}]}, {surface: لِفّ, sense: laff}, {surface: عَاليَمين,
+              sense: yamin, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يَمين, kc: 'sense:yamin'}]}]
+        apc-Latn/arabizi:
+          text: ba3d el ishara, liff 3al yamin.
+          tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
+                {surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
+      translations: {en: 'After the traffic lights, turn right.'}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: وَقِّف هون، عْمول مَعْروف!
+          tokens: [{surface: وَقِّف, sense: wa22ef}, {surface: هون, sense: hon}, {surface: عْمول, sense: 3mol-ma3rouf}, {surface: مَعْروف, sense: 3mol-ma3rouf}]
+        apc-Latn/arabizi:
+          text: wa22ef hon, 3mol ma3rouf!
+          tokens: [{surface: wa22ef, sense: wa22ef}, {surface: hon, sense: hon}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
+      translations: {en: 'Stop here, please! (to the driver)'}
+  - choose:
+      prompt: {en: 'Where is Maya waiting?'}
+      options: [{en: In a restaurant by the sea}, {en: At home}, {en: On the bus}]
+      answer: 0
+scenarios:
+- id: apc.taxi-ride
+  after: apc.road.story
+  title: {en: Taking a service}
+  setting: {en: A street corner in Beirut; a service with one free seat slows down.}
+  character: {en: 'The driver, in a hurry, who asks where you are going and talks about the traffic.'}
+  goal: {en: 'Ask whether the service goes where you want, agree on the fare, give directions (straight on, turn right or left, after the traffic light) and ask him to stop.'}
+  provenance: {author: 'llm:claude@a659420f546f', status: draft}

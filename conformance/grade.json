@@ -1321,6 +1321,47 @@
       "note": "And the other way round."
     },
     {
+      "id": "grade/apc-latn/gh-8",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ekhti zghire",
+        "answer": "ekhti z8ire"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "8 for gh, as Kline (2022) writes غ (REVIEW)."
+    },
+    {
+      "id": "grade/apc-latn/gh-8-reverse",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "8ali ktir",
+        "answer": "ghali ktir"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "And the other way round."
+    },
+    {
+      "id": "grade/apc-latn/gh-8-other-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ghali ktir",
+        "answer": "7ali ktir"
+      },
+      "expected": {
+        "verdict": "WRONG"
+      },
+      "note": "Only 8 stands for gh: another digit letter is another word."
+    },
+    {
       "id": "grade/apc-latn/attached-3al",
       "op": "grade",
       "args": {

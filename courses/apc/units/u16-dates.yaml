@@ -1,0 +1,747 @@
+# Fixture course (apc), unit 16: numbers 11–19 and 30, the months (the Levantine names: kanoun el tene, shbat,
+# adar… as used in Lebanon), awwal and tene (first, second), marra (a time), birthdays and kell sene w enta salem.
+# 11–19 take a singular noun and keep their r before it (7da3shar sene) but not alone (7da3sh); the time
+# drops it (el sa3a tna3sh).
+# Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapter 25 (numbers,
+# ordinals, telling the time): every sentence awaits a native speaker's review.
+id: u16-dates
+title: {en: 'When''s your birthday?'}
+cefr: A2
+kcs:
+- {id: 'sense:7da3sh', gloss: {en: eleven}, forms: {apc-Arab/standard: [حدعشر], apc-Latn/arabizi: [7da3sh]}, notes: {en: 'Before a noun the r is said: 7da3shar sene, eleven years.'}}
+- {id: 'sense:tna3sh', gloss: {en: twelve}, forms: {apc-Arab/standard: [تنعشر], apc-Latn/arabizi: [tna3sh]}}
+- {id: 'sense:tleta3sh', gloss: {en: thirteen}, forms: {apc-Arab/standard: [تلاتعشر], apc-Latn/arabizi: [tleta3sh]}}
+- {id: 'sense:arba3ta3sh', gloss: {en: fourteen}, forms: {apc-Arab/standard: [أربعتعشر], apc-Latn/arabizi: [arba3ta3sh]}}
+- {id: 'sense:khamsta3sh', gloss: {en: fifteen}, forms: {apc-Arab/standard: [خمستعشر], apc-Latn/arabizi: [khamsta3sh]}}
+- {id: 'sense:setta3sh', gloss: {en: sixteen}, forms: {apc-Arab/standard: [ستّعشر], apc-Latn/arabizi: [setta3sh]}}
+- {id: 'sense:saba3ta3sh', gloss: {en: seventeen}, forms: {apc-Arab/standard: [سبعتعشر], apc-Latn/arabizi: [saba3ta3sh]}}
+- {id: 'sense:tmenta3sh', gloss: {en: eighteen}, forms: {apc-Arab/standard: [تمانتعشر], apc-Latn/arabizi: [tmenta3sh]}}
+- {id: 'sense:tsa3ta3sh', gloss: {en: nineteen}, forms: {apc-Arab/standard: [تسعتعشر], apc-Latn/arabizi: [tsa3ta3sh]}}
+- {id: 'sense:tleten', gloss: {en: thirty}, forms: {apc-Arab/standard: [تلاتين], apc-Latn/arabizi: [tleten]}}
+- {id: 'sense:kanoun-tene', gloss: {en: January}, forms: {apc-Arab/standard: [كانون التاني], apc-Latn/arabizi: [kanoun el tene]}}
+- {id: 'sense:shbat', gloss: {en: February}, forms: {apc-Arab/standard: [شباط], apc-Latn/arabizi: [shbat]}}
+- {id: 'sense:adar', gloss: {en: March}, forms: {apc-Arab/standard: [آذار], apc-Latn/arabizi: [adar]}}
+- {id: 'sense:nisan', gloss: {en: April}, forms: {apc-Arab/standard: [نيسان], apc-Latn/arabizi: [nisan]}}
+- {id: 'sense:ayyar', gloss: {en: May}, forms: {apc-Arab/standard: [أيّار], apc-Latn/arabizi: [ayyar]}}
+- {id: 'sense:7zeiran', gloss: {en: June}, forms: {apc-Arab/standard: [حزيران], apc-Latn/arabizi: [7zeiran]}}
+- {id: 'sense:tammouz', gloss: {en: July}, forms: {apc-Arab/standard: [تمّوز], apc-Latn/arabizi: [tammouz]}}
+- {id: 'sense:ab', gloss: {en: August}, forms: {apc-Arab/standard: [آب], apc-Latn/arabizi: [ab]}}
+- {id: 'sense:aylul', gloss: {en: September}, forms: {apc-Arab/standard: [أيلول], apc-Latn/arabizi: [aylul]}}
+- {id: 'sense:tishrin-awwal', gloss: {en: October}, forms: {apc-Arab/standard: [تشرين الأوّل], apc-Latn/arabizi: [tishrin el awwal]}}
+- {id: 'sense:tishrin-tene', gloss: {en: November}, forms: {apc-Arab/standard: [تشرين التاني], apc-Latn/arabizi: [tishrin el tene]}}
+- {id: 'sense:kanoun-awwal', gloss: {en: December}, forms: {apc-Arab/standard: [كانون الأوّل], apc-Latn/arabizi: [kanoun el awwal]}}
+- {id: 'sense:3id-milad', gloss: {en: birthday}, forms: {apc-Arab/standard: [عيد ميلاد], apc-Latn/arabizi: [3id milad]}, notes: {en: '3id miladi: my birthday; 3id miladak / miladik: your birthday.'}}
+- {id: 'sense:kell-sene', gloss: {en: happy birthday; many happy returns (to a man)}, forms: {apc-Arab/standard: [كلّ سنة وإنت سالم], apc-Latn/arabizi: [kell sene w enta salem]}, notes: {en: 'Literally
+      ''every year, and you are well''. To a woman: kell sene w enti salme; to several people: kell sene w ento salmin.'}}
+- {id: 'sense:marra', gloss: {en: 'time (once, twice…); once'}, forms: {apc-Arab/standard: [مرّة], apc-Latn/arabizi: [marra]}, notes: {en: 'marra bel jem3a: once a week; kam marra? how many times?'}}
+- {id: 'sense:awwal', gloss: {en: first}, forms: {apc-Arab/standard: [أوّل], apc-Latn/arabizi: [awwal]}, notes: {en: 'Before its noun it does not change: awwal marra, the first time.'}}
+- {id: 'sense:tene', gloss: {en: second; other}, forms: {apc-Arab/standard: [تاني], apc-Latn/arabizi: [tene]}}
+nodes:
+- {id: apc.date.teens, kind: lesson, introduces: ['sense:7da3sh', 'sense:tna3sh', 'sense:tleta3sh', 'sense:arba3ta3sh', 'sense:khamsta3sh']}
+- {id: apc.date.more, kind: lesson, introduces: ['sense:setta3sh', 'sense:saba3ta3sh', 'sense:tmenta3sh', 'sense:tsa3ta3sh', 'sense:tleten']}
+- {id: apc.date.spring, kind: lesson, introduces: ['sense:kanoun-tene', 'sense:shbat', 'sense:adar', 'sense:nisan', 'sense:ayyar', 'sense:7zeiran']}
+- {id: apc.date.autumn, kind: lesson, introduces: ['sense:tammouz', 'sense:ab', 'sense:aylul', 'sense:tishrin-awwal', 'sense:tishrin-tene', 'sense:kanoun-awwal']}
+- {id: apc.date.birthday, kind: lesson, introduces: ['sense:3id-milad', 'sense:kell-sene', 'sense:marra', 'sense:awwal', 'sense:tene']}
+- {id: apc.date.story, kind: story}
+sentences:
+- id: s.date.1
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: حدعشر!
+      tokens: [{surface: حدعشر, sense: 7da3sh}]
+      reverse: حدعشر
+    apc-Latn/arabizi:
+      text: 7da3sh!
+      tokens: [{surface: 7da3sh, sense: 7da3sh}]
+      reverse: (7da3sh|7di3sh|hda3sh|7da3esh|7da3shar)
+  translations:
+    en: Eleven!
+- id: s.date.2
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عمري حدعشر سنة.
+      tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: حدعشر, sense: 7da3sh}, {surface: سنة, sense: sene}]
+      reverse: (عمري|أنا عمري) حدعشر سنة
+    apc-Latn/arabizi:
+      text: 3omri 7da3shar sene.
+      tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 7da3shar, sense: 7da3sh}, {surface: sene, sense: sene}]
+      reverse: (3omri|3omore|3omori|3omre|3umre|3umri) (7da3shar|7di3shar|hda3shar|7da3sh) (sene|seni)
+  translations:
+    en: |-
+      I('m| am) eleven [years old].
+      I('m| am) 11 [years old].
+- id: s.date.3
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تنعشر دولار.
+      tokens: [{surface: تنعشر, sense: tna3sh}, {surface: دولار, sense: dollar}]
+      reverse: تنعشر دولار
+    apc-Latn/arabizi:
+      text: tna3shar dollar.
+      tokens: [{surface: tna3shar, sense: tna3sh}, {surface: dollar, sense: dollar}]
+      reverse: (tna3shar|tna3sh|tne3shar|tna3esh) (dollar|dolar|dular)
+  translations:
+    en: |-
+      Twelve dollars.
+      12 dollars.
+- id: s.date.4
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: الساعة تنعشر.
+      tokens: [{surface: الساعة, sense: sa3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: تنعشر, sense: tna3sh}]
+      reverse: الساعة تنعشر
+    apc-Latn/arabizi:
+      text: el sa3a tna3sh.
+      tokens: [{surface: el, sense: el}, {surface: sa3a, sense: sa3a}, {surface: tna3sh, sense: tna3sh}]
+      reverse: (el|l|il) (sa3a|se3a) (tna3sh|tna3shar|tne3sh)
+  translations:
+    en: |-
+      It's twelve o'clock.
+      It is twelve o'clock.
+      It's twelve.
+- id: s.date.5
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تلاتعشر يوم.
+      tokens: [{surface: تلاتعشر, sense: tleta3sh}, {surface: يوم, sense: yom}]
+      reverse: تلاتعشر يوم
+    apc-Latn/arabizi:
+      text: tleta3shar yom.
+      tokens: [{surface: tleta3shar, sense: tleta3sh}, {surface: yom, sense: yom}]
+      reverse: (tleta3shar|tlata3shar|tleta3sh|tlet3shar) (yom|youm)
+  translations:
+    en: |-
+      Thirteen days.
+      13 days.
+- id: s.date.6
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إبني عمره أربعتعشر سنة.
+      tokens: [{surface: إبني, sense: ebn, morphs: [{surface: إبن, kc: 'sense:ebn'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عمره, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ه,
+              kc: 'form:poss-3ms'}]}, {surface: أربعتعشر, sense: arba3ta3sh}, {surface: سنة, sense: sene}]
+      reverse: إبني (عمره|عمرو) أربعتعشر سنة
+    apc-Latn/arabizi:
+      text: ebni 3omro arba3ta3shar sene.
+      tokens: [{surface: ebni, sense: ebn, morphs: [{surface: ebn, kc: 'sense:ebn'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3omro, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: o,
+              kc: 'form:poss-3ms'}]}, {surface: arba3ta3shar, sense: arba3ta3sh}, {surface: sene, sense: sene}]
+      reverse: (ebni|ebne|ibni) (3omro|3omru|3emro|3umro) (arba3ta3shar|arba3ta3sh|arb3ta3shar|arba3t3shar) (sene|seni)
+  translations:
+    en: |-
+      My son is fourteen [years old].
+      My son's fourteen [years old].
+      My son is 14 [years old].
+- id: s.date.7
+  node: apc.date.teens
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: خمستعشر دقيقة.
+      tokens: [{surface: خمستعشر, sense: khamsta3sh}, {surface: دقيقة, sense: da2i2a}]
+      reverse: خمستعشر دقيقة
+    apc-Latn/arabizi:
+      text: khamsta3shar da2i2a.
+      tokens: [{surface: khamsta3shar, sense: khamsta3sh}, {surface: da2i2a, sense: da2i2a}]
+      reverse: (khamsta3shar|khamsta3sh|khamst3shar) (da2i2a|d2i2a|de2i2a)
+  translations:
+    en: |-
+      Fifteen minutes.
+      15 minutes.
+- id: s.date.8
+  node: apc.date.more
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: ستّعشر سنة.
+      tokens: [{surface: ستّعشر, sense: setta3sh}, {surface: سنة, sense: sene}]
+      reverse: ستّعشر سنة
+    apc-Latn/arabizi:
+      text: setta3shar sene.
+      tokens: [{surface: setta3shar, sense: setta3sh}, {surface: sene, sense: sene}]
+      reverse: (setta3shar|setta3sh|sitta3shar|sett3shar) (sene|seni)
+  translations:
+    en: |-
+      Sixteen years.
+      16 years.
+- id: s.date.9
+  node: apc.date.more
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: إختي عمرها سبعتعشر سنة.
+      tokens: [{surface: إختي, sense: ekht, morphs: [{surface: إخت, kc: 'sense:ekht'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها,
+              kc: 'form:poss-3fs'}]}, {surface: سبعتعشر, sense: saba3ta3sh}, {surface: سنة, sense: sene}]
+      reverse: إختي (عمرها|عمرا) سبعتعشر سنة
+    apc-Latn/arabizi:
+      text: ekhti 3omra saba3ta3shar sene.
+      tokens: [{surface: ekhti, sense: ekht, morphs: [{surface: ekht, kc: 'sense:ekht'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {
+              surface: a, kc: 'form:poss-3fs'}]}, {surface: saba3ta3shar, sense: saba3ta3sh}, {surface: sene, sense: sene}]
+      reverse: (ekhti|e5te|ikhte|ikhti) (3omra|3omora|3umra) (saba3ta3shar|saba3ta3sh|sab3ta3shar|saba3t3shar) (sene|seni)
+  translations:
+    en: |-
+      My sister is seventeen [years old].
+      My sister's seventeen [years old].
+      My sister is 17 [years old].
+- id: s.date.10
+  node: apc.date.more
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تمانتعشر ألف ليرة.
+      tokens: [{surface: تمانتعشر, sense: tmenta3sh}, {surface: ألف, sense: alf}, {surface: ليرة, sense: lira}]
+      reverse: تمانتعشر ألف ليرة
+    apc-Latn/arabizi:
+      text: tmenta3shar alf lira.
+      tokens: [{surface: tmenta3shar, sense: tmenta3sh}, {surface: alf, sense: alf}, {surface: lira, sense: lira}]
+      reverse: (tmenta3shar|tmenta3sh|tmanta3shar|tment3shar) (alf|elf) (lira|leira|lire)
+  translations:
+    en: |-
+      Eighteen thousand (lira|lire|pounds).
+      18000 (lira|lire|pounds).
+- id: s.date.11
+  node: apc.date.more
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تسعتعشر دولار؟ غالي!
+      tokens: [{surface: تسعتعشر, sense: tsa3ta3sh}, {surface: دولار, sense: dollar}, {surface: غالي, sense: ghali}]
+      reverse: تسعتعشر دولار غالي
+    apc-Latn/arabizi:
+      text: tsa3ta3shar dollar? ghali!
+      tokens: [{surface: tsa3ta3shar, sense: tsa3ta3sh}, {surface: dollar, sense: dollar}, {surface: ghali, sense: ghali}]
+      reverse: (tsa3ta3shar|tsa3ta3sh|tis3ta3shar|tes3ta3shar) (dollar|dolar|dular) (ghali|ghale)
+  translations:
+    en: |-
+      Nineteen dollars? (That's|It's) expensive!
+      19 dollars? (That's|It's) expensive!
+- id: s.date.12
+  node: apc.date.more
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عمري تلاتين سنة.
+      tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: تلاتين, sense: tleten}, {surface: سنة, sense: sene}]
+      reverse: (عمري|أنا عمري) تلاتين سنة
+    apc-Latn/arabizi:
+      text: 3omri tleten sene.
+      tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: tleten, sense: tleten}, {surface: sene, sense: sene}]
+      reverse: (3omri|3omore|3omori|3omre|3umre|3umri) (tleten|tletin|tlateen|tlatin) (sene|seni)
+  translations:
+    en: |-
+      I('m| am) thirty [years old].
+      I('m| am) 30 [years old].
+- id: s.date.13
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هلّق كانون التاني.
+      tokens: [{surface: هلّق, sense: hala2}, {surface: كانون, sense: kanoun-tene}, {surface: التاني, sense: kanoun-tene}]
+      reverse: (هلّق|هلأ) كانون التاني
+    apc-Latn/arabizi:
+      text: hala2 kanoun el tene.
+      tokens: [{surface: hala2, sense: hala2}, {surface: kanoun, sense: kanoun-tene}, {surface: el, sense: kanoun-tene}, {surface: tene, sense: kanoun-tene}]
+      reverse: (hala2|hal2|hala|halla2) (kanoun|kanoon) (el|l|il) (tene|teni|tani)
+  translations:
+    en: |-
+      It's January now.
+      Now it's January.
+- id: s.date.14
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بشباط في برد كتير.
+      tokens: [{surface: بشباط, sense: shbat, morphs: [{surface: ب, kc: 'sense:b'}, {surface: شباط, kc: 'sense:shbat'}]}, {surface: في, sense: fi}, {surface: برد, sense: bard}, {surface: كتير, sense: ktir}]
+      reverse: بشباط في برد كتير
+    apc-Latn/arabizi:
+      text: b shbat fi bard ktir.
+      tokens: [{surface: b, sense: b}, {surface: shbat, sense: shbat}, {surface: fi, sense: fi}, {surface: bard, sense: bard}, {surface: ktir, sense: ktir}]
+      reverse: (b|bi) (shbat|shubat) fi (bard|berd) (ktir|kteer)
+  translations:
+    en: |-
+      In February it's very cold.
+      It's very cold in February.
+- id: s.date.15
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بآذار في مطر.
+      tokens: [{surface: بآذار, sense: adar, morphs: [{surface: ب, kc: 'sense:b'}, {surface: آذار, kc: 'sense:adar'}]}, {surface: في, sense: fi}, {surface: مطر, sense: matar}]
+      reverse: بآذار في مطر
+    apc-Latn/arabizi:
+      text: b adar fi matar.
+      tokens: [{surface: b, sense: b}, {surface: adar, sense: adar}, {surface: fi, sense: fi}, {surface: matar, sense: matar}]
+      reverse: (b|bi) (adar|2adar|azar) fi (matar|mater)
+  translations:
+    en: |-
+      In March it rains.
+      There's rain in March.
+      It rains in March.
+- id: s.date.16
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بنيسان منطلع عالضيعة.
+      tokens: [{surface: بنيسان, sense: nisan, morphs: [{surface: ب, kc: 'sense:b'}, {surface: نيسان, kc: 'sense:nisan'}]}, {surface: منطلع, sense: tele3, form: 'form:impf-1pl'}, {surface: عالضيعة, sense: day3a,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
+      reverse: بنيسان منطلع (عالضيعة|ع الضيعة|على الضيعة)
+    apc-Latn/arabizi:
+      text: b nisan mnitla3 3al day3a.
+      tokens: [{surface: b, sense: b}, {surface: nisan, sense: nisan}, {surface: mnitla3, sense: tele3, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
+              kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
+      reverse: (b|bi) (nisan|neesan|nissan) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+  translations:
+    en: |-
+      In April we go (up|) to the village.
+      We go (up|) to the village in April.
+- id: s.date.17
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أيّار حلو كتير.
+      tokens: [{surface: أيّار, sense: ayyar}, {surface: حلو, sense: 7elo}, {surface: كتير, sense: ktir}]
+      reverse: أيّار حلو كتير
+    apc-Latn/arabizi:
+      text: ayyar 7elo ktir.
+      tokens: [{surface: ayyar, sense: ayyar}, {surface: 7elo, sense: 7elo}, {surface: ktir, sense: ktir}]
+      reverse: (ayyar|ayar|2ayyar) (7elo|7elu|7ilo|helo) (ktir|kteer)
+  translations:
+    en: |-
+      May is (really|very|so) (nice|lovely|beautiful).
+      May's (really|very|so) (nice|lovely|beautiful).
+- id: s.date.18
+  node: apc.date.spring
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بحزيران منروح عالبحر.
+      tokens: [{surface: بحزيران, sense: 7zeiran, morphs: [{surface: ب, kc: 'sense:b'}, {surface: حزيران, kc: 'sense:7zeiran'}]}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالبحر, sense: ba7r,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
+      reverse: بحزيران (منروح|نحنا منروح) (عالبحر|ع البحر|على البحر)
+    apc-Latn/arabizi:
+      text: b 7zeiran mnru7 3al ba7r.
+      tokens: [{surface: b, sense: b}, {surface: 7zeiran, sense: 7zeiran}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
+              kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
+      reverse: (b|bi) (7zeiran|7zayran|hzeiran|7zeran|7ziran) (mnru7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+  translations:
+    en: |-
+      In June we go to the (beach|sea).
+      We go to the (beach|sea) in June.
+- id: s.date.19
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتمّوز في شوب كتير.
+      tokens: [{surface: بتمّوز, sense: tammouz, morphs: [{surface: ب, kc: 'sense:b'}, {surface: تمّوز, kc: 'sense:tammouz'}]}, {surface: في, sense: fi}, {surface: شوب, sense: shob}, {surface: كتير, sense: ktir}]
+      reverse: بتمّوز في شوب كتير
+    apc-Latn/arabizi:
+      text: b tammouz fi shob ktir.
+      tokens: [{surface: b, sense: b}, {surface: tammouz, sense: tammouz}, {surface: fi, sense: fi}, {surface: shob, sense: shob}, {surface: ktir, sense: ktir}]
+      reverse: (b|bi) (tammouz|tamouz) fi shob (ktir|kteer)
+  translations:
+    en: |-
+      In July it's very hot.
+      It's very hot in July.
+- id: s.date.20
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بآب عندي عطلة.
+      tokens: [{surface: بآب, sense: ab, morphs: [{surface: ب, kc: 'sense:b'}, {surface: آب, kc: 'sense:ab'}]}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]},
+        {surface: عطلة, sense: 3otle}]
+      reverse: بآب (عندي|أنا عندي) عطلة
+    apc-Latn/arabizi:
+      text: b ab 3endi 3otle.
+      tokens: [{surface: b, sense: b}, {surface: ab, sense: ab}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3otle, sense: 3otle}]
+      reverse: (b|bi) (ab|2ab) (3endi|3andi|3ende|3indi) (3otle|3etle|3otla|3otli)
+  translations:
+    en: |-
+      In August I have a holiday.
+      I have (a holiday|time off) in August.
+      In August I('m| am) on holiday.
+- id: s.date.21
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بأيلول برجع عالمدرسة.
+      tokens: [{surface: بأيلول, sense: aylul, morphs: [{surface: ب, kc: 'sense:b'}, {surface: أيلول, kc: 'sense:aylul'}]}, {surface: برجع, sense: rje3, form: 'form:impf-1sg'}, {surface: عالمدرسة, sense: madrase,
+          morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
+      reverse: بأيلول برجع (عالمدرسة|ع المدرسة|على المدرسة)
+    apc-Latn/arabizi:
+      text: b aylul berja3 3al madrase.
+      tokens: [{surface: b, sense: b}, {surface: aylul, sense: aylul}, {surface: berja3, sense: rje3, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
+              kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
+      reverse: (b|bi) (aylul|2aylul|eilul) (berja3|birja3|berje3) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+  translations:
+    en: |-
+      In September I go back to school.
+      I go back to school in September.
+- id: s.date.22
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تشرين الأوّل حلو بالجبل.
+      tokens: [{surface: تشرين, sense: tishrin-awwal}, {surface: الأوّل, sense: tishrin-awwal}, {surface: حلو, sense: 7elo}, {surface: بالجبل, sense: jabal, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
+              kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: تشرين الأوّل حلو بالجبل
+    apc-Latn/arabizi:
+      text: tishrin el awwal 7elo bel jabal.
+      tokens: [{surface: tishrin, sense: tishrin-awwal}, {surface: el, sense: tishrin-awwal}, {surface: awwal, sense: tishrin-awwal}, {surface: 7elo, sense: 7elo}, {surface: bel, sense: b, morphs: [{surface: b,
+              kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
+      reverse: (tishrin|teshrin|tishreen) (el|l|il) (awwal|awal|2awwal) (7elo|7elu|7ilo) (bel|bil|b el) (jabal|jabel|jbal)
+  translations:
+    en: |-
+      October is (lovely|nice|beautiful) in the mountains.
+      October's (lovely|nice|beautiful) in the mountains.
+- id: s.date.23
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بتشرين التاني في مطر كتير.
+      tokens: [{surface: بتشرين, sense: tishrin-tene, morphs: [{surface: ب, kc: 'sense:b'}, {surface: تشرين, kc: 'sense:tishrin-tene'}]}, {surface: التاني, sense: tishrin-tene}, {surface: في, sense: fi},
+        {surface: مطر, sense: matar}, {surface: كتير, sense: ktir}]
+      reverse: بتشرين التاني في مطر كتير
+    apc-Latn/arabizi:
+      text: b tishrin el tene fi matar ktir.
+      tokens: [{surface: b, sense: b}, {surface: tishrin, sense: tishrin-tene}, {surface: el, sense: tishrin-tene}, {surface: tene, sense: tishrin-tene}, {surface: fi, sense: fi}, {surface: matar, sense: matar},
+        {surface: ktir, sense: ktir}]
+      reverse: (b|bi) (tishrin|teshrin|tishreen) (el|l|il) (tene|teni|tani) fi (matar|mater) (ktir|kteer)
+  translations:
+    en: |-
+      In November it rains a lot.
+      It rains a lot in November.
+      There's a lot of rain in November.
+- id: s.date.24
+  node: apc.date.autumn
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: بكانون الأوّل في تلج عالجبل.
+      tokens: [{surface: بكانون, sense: kanoun-awwal, morphs: [{surface: ب, kc: 'sense:b'}, {surface: كانون, kc: 'sense:kanoun-awwal'}]}, {surface: الأوّل, sense: kanoun-awwal}, {surface: في, sense: fi},
+        {surface: تلج, sense: talj}, {surface: عالجبل, sense: jabal, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
+      reverse: بكانون الأوّل في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+    apc-Latn/arabizi:
+      text: b kanoun el awwal fi talj 3al jabal.
+      tokens: [{surface: b, sense: b}, {surface: kanoun, sense: kanoun-awwal}, {surface: el, sense: kanoun-awwal}, {surface: awwal, sense: kanoun-awwal}, {surface: fi, sense: fi}, {surface: talj, sense: talj},
+        {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
+      reverse: (b|bi) (kanoun|kanoon) (el|l) (awwal|awal|2awwal) fi (talj|talej|telj) (3al|3a l|3a el) (jabal|jabel|jbal)
+  translations:
+    en: |-
+      In December there's snow (on|in) the mountains.
+      There's snow (on|in) the mountains in December.
+- id: s.date.25
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: إمتى عيد ميلادك؟
+      tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادك, sense: 3id-milad, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: ك, kc: 'form:poss-2ms'}]}]
+      reverse: إمتى عيد ميلادك
+    apc-Latn/arabizi:
+      text: emta 3id miladak?
+      tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladak, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: ak, kc: 'form:poss-2ms'}]}]
+      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladak|miledak|meeladak)
+  translations:
+    en: When('s| is) your birthday?
+- id: s.date.26
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: عيد ميلادي بنيسان.
+      tokens: [{surface: عيد, sense: 3id-milad}, {surface: ميلادي, sense: 3id-milad, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: بنيسان, sense: nisan,
+          morphs: [{surface: ب, kc: 'sense:b'}, {surface: نيسان, kc: 'sense:nisan'}]}]
+      reverse: عيد ميلادي بنيسان
+    apc-Latn/arabizi:
+      text: 3id miladi b nisan.
+      tokens: [{surface: 3id, sense: 3id-milad}, {surface: miladi, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: b, sense: b}, {surface: nisan,
+          sense: nisan}]
+      reverse: (3id|3eed|eid) (miladi|miledi|meeladi|milade) (b|bi) (nisan|neesan|nissan)
+  translations:
+    en: My birthday('s| is) in April.
+- id: s.date.27
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: إمتى عيد ميلادك؟
+      tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادك, sense: 3id-milad, vocalized: ميلادِك, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+      reverse: إمتى عيد ميلادك
+    apc-Latn/arabizi:
+      text: emta 3id miladik?
+      tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladik, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladik|miledik|meeladik|miladek)
+  translations:
+    en: When('s| is) your birthday?
+- id: s.date.28
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: إمتى عيد ميلادكن؟
+      tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادكن, sense: 3id-milad, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: كن, kc: 'form:poss-2pl'}]}]
+      reverse: إمتى عيد ميلادكن
+    apc-Latn/arabizi:
+      text: emta 3id miladkon?
+      tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladkon, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: kon, kc: 'form:poss-2pl'}]}]
+      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladkon|miledkon|miladkun)
+  translations:
+    en: |-
+      When('s| is) your birthday?
+      When are your birthdays?
+- id: s.date.29
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: m}
+  forms:
+    apc-Arab/standard:
+      text: كلّ سنة وإنت سالم!
+      tokens: [{surface: كلّ, sense: kell-sene}, {surface: سنة, sense: kell-sene}, {surface: وإنت, sense: kell-sene}, {surface: سالم, sense: kell-sene}]
+      reverse: كلّ سنة (وإنت|و إنت) سالم
+    apc-Latn/arabizi:
+      text: kell sene w enta salem!
+      tokens: [{surface: kell, sense: kell-sene}, {surface: sene, sense: kell-sene}, {surface: w, sense: kell-sene}, {surface: enta, sense: kell-sene}, {surface: salem, sense: kell-sene}]
+      reverse: (kell|kel|kull) (sene|seni) (w|wa) (enta|inta) (salem|salim|selem)
+  translations:
+    en: |-
+      Happy birthday!
+      Many happy returns!
+- id: s.date.30
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: f}
+  forms:
+    apc-Arab/standard:
+      text: كلّ سنة وإنتي سالمة!
+      tokens: [{surface: كلّ, sense: kell-sene}, {surface: سنة, sense: kell-sene}, {surface: وإنتي, sense: kell-sene}, {surface: سالمة, sense: kell-sene, form: 'form:fem'}]
+      reverse: كلّ سنة وإنتي سالمة
+    apc-Latn/arabizi:
+      text: kell sene w enti salme!
+      tokens: [{surface: kell, sense: kell-sene}, {surface: sene, sense: kell-sene}, {surface: w, sense: kell-sene}, {surface: enti, sense: kell-sene}, {surface: salme, sense: kell-sene, form: 'form:fem'}]
+      reverse: (kell|kel|kull) (sene|seni) (w|wa) (enti|inti) (salme|salmi|selme|salmeh)
+  translations:
+    en: |-
+      Happy birthday!
+      Many happy returns!
+- id: s.date.31
+  node: apc.date.birthday
+  register: colloquial
+  persons: {addressee: pl}
+  forms:
+    apc-Arab/standard:
+      text: كلّ سنة وإنتو سالمين!
+      tokens: [{surface: كلّ, sense: kell-sene}, {surface: سنة, sense: kell-sene}, {surface: وإنتو, sense: kell-sene}, {surface: سالمين, sense: kell-sene, form: 'form:pl'}]
+      reverse: كلّ سنة وإنتو سالمين
+    apc-Latn/arabizi:
+      text: kell sene w ento salmin!
+      tokens: [{surface: kell, sense: kell-sene}, {surface: sene, sense: kell-sene}, {surface: w, sense: kell-sene}, {surface: ento, sense: kell-sene}, {surface: salmin, sense: kell-sene, form: 'form:pl'}]
+      reverse: (kell|kel|kull) (sene|seni) (w|wa) (ento|entu|into) (salmin|salmeen)
+  translations:
+    en: |-
+      Happy birthday!
+      Many happy returns!
+      Happy holidays!
+- id: s.date.32
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: مرّة بالجمعة.
+      tokens: [{surface: مرّة, sense: marra}, {surface: بالجمعة, sense: jem3a, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}]
+      reverse: مرّة بالجمعة
+    apc-Latn/arabizi:
+      text: marra bel jem3a.
+      tokens: [{surface: marra, sense: marra}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jem3a, sense: jem3a}]
+      reverse: (marra|mara|marrah) (bel|bil|b el) (jem3a|jim3a|jum3a)
+  translations:
+    en: |-
+      Once a week.
+      One time a week.
+- id: s.date.33
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: كم مرّة؟
+      tokens: [{surface: كم, sense: kam}, {surface: مرّة, sense: marra}]
+      reverse: (كم|كام) مرّة
+    apc-Latn/arabizi:
+      text: kam marra?
+      tokens: [{surface: kam, sense: kam}, {surface: marra, sense: marra}]
+      reverse: (kam|kem) (marra|mara|marrah)
+  translations:
+    en: |-
+      How many times?
+      How often?
+- id: s.date.34
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: أوّل مرّة بلبنان.
+      tokens: [{surface: أوّل, sense: awwal}, {surface: مرّة, sense: marra}, {surface: بلبنان, sense: lebnen, morphs: [{surface: ب, kc: 'sense:b'}, {surface: لبنان, kc: 'sense:lebnen'}]}]
+      reverse: أوّل مرّة بلبنان
+    apc-Latn/arabizi:
+      text: awwal marra b Lebnen.
+      tokens: [{surface: awwal, sense: awwal}, {surface: marra, sense: marra}, {surface: b, sense: b}, {surface: Lebnen, sense: lebnen}]
+      reverse: (awwal|awal|2awwal) (marra|mara|marrah) (b|bi) (Lebnen|Lebnan|Libnan)
+  translations:
+    en: (It's my|My|The) first time in Lebanon.
+- id: s.date.35
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: هيدي تاني مرّة.
+      tokens: [{surface: هيدي, sense: hayde}, {surface: تاني, sense: tene}, {surface: مرّة, sense: marra}]
+      reverse: هيدي تاني مرّة
+    apc-Latn/arabizi:
+      text: hayde tene marra.
+      tokens: [{surface: hayde, sense: hayde}, {surface: tene, sense: tene}, {surface: marra, sense: marra}]
+      reverse: (hayde|haide|haydi) (tene|teni|tani) (marra|mara|marrah)
+  translations:
+    en: |-
+      (This|That) is the second time.
+      (This|That)'s the second time.
+- id: s.date.36
+  node: apc.date.birthday
+  register: colloquial
+  forms:
+    apc-Arab/standard:
+      text: تلاتين مرّة!
+      tokens: [{surface: تلاتين, sense: tleten}, {surface: مرّة, sense: marra}]
+      reverse: تلاتين مرّة
+    apc-Latn/arabizi:
+      text: tleten marra!
+      tokens: [{surface: tleten, sense: tleten}, {surface: marra, sense: marra}]
+      reverse: (tleten|tletin|tlateen|tlatin) (marra|mara|marrah)
+  translations:
+    en: |-
+      Thirty times!
+      30 times!
+stories:
+- id: apc.story.birthday
+  node: apc.date.story
+  title: {en: Maya's birthday}
+  provenance: {author: 'llm:claude@c50163d7a2cb', status: draft}
+  characters:
+  - {id: sami, speaker: m, name: {apc-Arab/standard: سامي, apc-Latn/arabizi: Sami}}
+  - {id: maya, speaker: f, name: {apc-Arab/standard: مايا, apc-Latn/arabizi: Maya}}
+  steps:
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: مايا، إِمْتى عيد ميلادِك؟
+          tokens: [{surface: مايا, sense: maya}, {surface: إِمْتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادِك, sense: 3id-milad, morphs: [{surface: ميلادِ, kc: 'sense:3id-milad'},
+                {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: Maya, emta 3id miladik?
+          tokens: [{surface: Maya, sense: maya}, {surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladik, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {
+                  surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'Maya, when''s your birthday?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: بَعْد بُكْرا! تْلاتَعْشَر نيسان.
+          tokens: [{surface: بَعْد, sense: ba3d-bukra}, {surface: بُكْرا, sense: ba3d-bukra}, {surface: تْلاتَعْشَر, sense: tleta3sh}, {surface: نيسان, sense: nisan}]
+        apc-Latn/arabizi:
+          text: ba3d bukra! tleta3sh nisan.
+          tokens: [{surface: ba3d, sense: ba3d-bukra}, {surface: bukra, sense: ba3d-bukra}, {surface: tleta3sh, sense: tleta3sh}, {surface: nisan, sense: nisan}]
+      translations: {en: The day after tomorrow! The thirteenth of April.}
+  - line:
+      speaker: sami
+      forms:
+        apc-Arab/standard:
+          text: والله؟ قَدّيش رَح يْكون عُمْرِك؟
+          tokens: [{surface: والله, sense: walla}, {surface: قَدّيش, sense: 2addesh}, {surface: رَح, sense: ra7.fut}, {surface: يْكون, sense: kan, form: 'form:subj-3ms'}, {surface: عُمْرِك, sense: 3omr,
+              morphs: [{surface: عُمْرِ, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
+        apc-Latn/arabizi:
+          text: walla? 2addesh ra7 ykoun 3omrik?
+          tokens: [{surface: walla, sense: walla}, {surface: 2addesh, sense: 2addesh}, {surface: ra7, sense: ra7.fut}, {surface: ykoun, sense: kan, form: 'form:subj-3ms'}, {surface: 3omrik, sense: 3omr,
+              morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
+      translations: {en: 'Really? How old will you be?'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: واحَد وعِشْرين.
+          tokens: [{surface: واحَد, sense: wa7ad}, {surface: وعِشْرين, sense: 3eshrin, morphs: [{surface: و, kc: 'sense:w'}, {surface: عِشْرين, kc: 'sense:3eshrin'}]}]
+        apc-Latn/arabizi:
+          text: wa7ad w 3eshrin.
+          tokens: [{surface: wa7ad, sense: wa7ad}, {surface: w, sense: w}, {surface: 3eshrin, sense: 3eshrin}]
+      translations: {en: Twenty-one.}
+  - choose:
+      prompt: {en: 'When is Maya''s birthday?'}
+      options: [{en: The day after tomorrow}, {en: Tomorrow}, {en: Next month}]
+      answer: 0
+  - line:
+      speaker: sami
+      ask: complete
+      gap: sense:7afle
+      distractors: ['sense:3otle']
+      forms:
+        apc-Arab/standard:
+          text: يَلّا، رَح نَعْمِل حَفْلِة!
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: رَح, sense: ra7.fut}, {surface: نَعْمِل, sense: 3emel, form: 'form:subj-1pl'}, {surface: حَفْلِة, sense: 7afle}]
+        apc-Latn/arabizi:
+          text: yalla, ra7 na3mel 7afle!
+          tokens: [{surface: yalla, sense: yalla}, {surface: ra7, sense: ra7.fut}, {surface: na3mel, sense: 3emel, form: 'form:subj-1pl'}, {surface: 7afle, sense: 7afle}]
+      translations: {en: 'Come on, we''re going to have a party!'}
+  - line:
+      speaker: maya
+      forms:
+        apc-Arab/standard:
+          text: أَوَّل مَرَّة! شُكْراً سامي!
+          tokens: [{surface: أَوَّل, sense: awwal}, {surface: مَرَّة, sense: marra}, {surface: شُكْراً, sense: shukran}, {surface: سامي, sense: sami}]
+        apc-Latn/arabizi:
+          text: awwal marra! shukran Sami!
+          tokens: [{surface: awwal, sense: awwal}, {surface: marra, sense: marra}, {surface: shukran, sense: shukran}, {surface: Sami, sense: sami}]
+      translations: {en: 'That''s a first! Thank you, Sami!'}
+  - line:
+      speaker: sami
+      ask: arrange
+      forms:
+        apc-Arab/standard:
+          text: كِلّ سِنِة وإِنْتي سالْمِة!
+          tokens: [{surface: كِلّ, sense: kell-sene}, {surface: سِنِة, sense: kell-sene}, {surface: وإِنْتي, sense: kell-sene}, {surface: سالْمِة, sense: kell-sene, form: 'form:fem'}]
+        apc-Latn/arabizi:
+          text: kell sene w enti salme!
+          tokens: [{surface: kell, sense: kell-sene}, {surface: sene, sense: kell-sene}, {surface: w, sense: kell-sene}, {surface: enti, sense: kell-sene}, {surface: salme, sense: kell-sene, form: 'form:fem'}]
+      translations: {en: Happy birthday!}
+  - choose:
+      prompt: {en: 'How old will Maya be?'}
+      options: [{en: Twenty-one}, {en: Twenty}, {en: Thirteen}]
+      answer: 0
+scenarios:
+- id: apc.birthday-plans
+  after: apc.date.story
+  title: {en: Planning a birthday}
+  setting: {en: 'A café in Achrafieh, a week before a friend''s birthday.'}
+  character: {en: 'Lina, a friend who wants to organise a surprise party and needs a date.'}
+  goal: {en: 'Find out when the birthday is and how old your friend will be, suggest a month, a day and a time, say how many people will come, and agree on a plan.'}
+  provenance: {author: 'llm:claude@c50163d7a2cb', status: draft}

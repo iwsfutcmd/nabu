@@ -394,7 +394,7 @@ sentences:
     apc-Latn/arabizi:
       text: la2, mish ghali, rkhis.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: ghali, sense: ghali}, {surface: rkhis, sense: rkhis}]
-      reverse: (la2|la) (mish|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
+      reverse: (la2|la) (mish|msh|mesh|mush) (ghali|8ali|ghale) (rkhis|r5is|rkhees|rakhis)
   translations:
     en: |-
       No, (it's|it is) not expensive, (it's|it is) cheap.
@@ -510,10 +510,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: تيتا عمرا مية سنة!
-      tokens: [{surface: تيتا, sense: teta}, {surface: عمرا, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
+      text: تيتا عمرها مية سنة!
+      tokens: [{surface: تيتا, sense: teta}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
           sense: sene}]
-      reverse: تيتا (عمرا|عمرها) (مية|مئة|ميت) سنة
+      reverse: تيتا (عمرها|عمرا) (مية|مئة|ميت) سنة
     apc-Latn/arabizi:
       text: teta 3omra mit sene!
       tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,

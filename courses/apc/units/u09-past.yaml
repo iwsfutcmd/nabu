@@ -16,14 +16,14 @@ kcs:
 - {id: 'sense:sa7eb', gloss: {en: friend (a man)}, forms: {apc-Arab/standard: [صاحب], apc-Latn/arabizi: [sa7eb]}, notes: {en: 'sa7bi: my friend. A woman friend: صاحبة, sa7be.'}}
 - {id: 'form:past-3ms', gloss: {en: 'he (past): the bare verb'}, notes: {en: 'ra7: he went; akal: he ate.'}}
 - {id: 'form:past-3fs', gloss: {en: '-et: she (past)'}, notes: {en: 'ra7et: she went; kenet: she was. Arabic script: ت at the end (راحت).'}}
-- {id: 'sense:rje3', gloss: {en: come back; go back}, forms: {apc-Arab/standard: [رجع], apc-Latn/arabizi: [rje3]}}
+- {id: 'sense:rje3', gloss: {en: come back; go back}, forms: {apc-Arab/standard: [رجع], apc-Latn/arabizi: [reje3]}, notes: {en: 'reje3: he came back; rje3t: I came back (the first vowel drops before an ending that starts with a consonant).'}}
 - {id: 'sense:wesel', gloss: {en: arrive}, forms: {apc-Arab/standard: [وصلت], apc-Latn/arabizi: [weslet]}}
 - {id: 'form:past-1pl', gloss: {en: '-na: we (past)'}, notes: {en: 'ru7na: we went; akalna: we ate.'}}
 - {id: 'sense:terwi2a', gloss: {en: breakfast}, forms: {apc-Arab/standard: [ترويقة], apc-Latn/arabizi: [terwi2a]}}
 - {id: 'sense:ghada', gloss: {en: lunch}, forms: {apc-Arab/standard: [غدا], apc-Latn/arabizi: [ghada]}}
 - {id: 'sense:3asha', gloss: {en: dinner}, forms: {apc-Arab/standard: [عشا], apc-Latn/arabizi: [3asha]}}
 - {id: 'sense:madi', gloss: {en: 'last; past (week, year)'}, forms: {apc-Arab/standard: [ماضي], apc-Latn/arabizi: [madi, madye]}, notes: {en: 'el jem3a el madye: last week; el sene el madye: last year.'}}
-- {id: 'sense:kan', gloss: {en: was; were (the verb 'be' in the past)}, forms: {apc-Arab/standard: [كنت, كانت, كنتي], apc-Latn/arabizi: [kan, kent, kenet, kenti]}}
+- {id: 'sense:kan', gloss: {en: was; were (the verb 'be' in the past)}, forms: {apc-Arab/standard: [كان, كنت, كانت, كنتي], apc-Latn/arabizi: [ken, kent, kenet, kenti]}, notes: {en: 'ken: he was; kenet: she was; kent: I was, you (a man) were. In Beirut the a of كان is said e, as in kenet: ken, also written kan.'}}
 - {id: 'sense:7afle', gloss: {en: party}, forms: {apc-Arab/standard: [حفلة], apc-Latn/arabizi: [7afle]}}
 - {id: 'sense:ta3ban', gloss: {en: tired}, forms: {apc-Arab/standard: [تعبان], apc-Latn/arabizi: [ta3ban]}}
 - {id: 'sense:mabsout', gloss: {en: happy; having a good time}, forms: {apc-Arab/standard: [مبسوط, مبسوطة], apc-Latn/arabizi: [mabsout, mabsouta]}}
@@ -52,7 +52,7 @@ sentences:
     apc-Latn/arabizi:
       text: ru7t 3al ba7r.
       tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: ((ru7t|re7t|ro7t)|ana (ru7t|re7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: I went to the (beach|sea).
 - id: s.past.2
@@ -68,7 +68,7 @@ sentences:
       text: mbere7 ru7t 3al ba7r.
       tokens: [{surface: mbere7, sense: mbere7}, {surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
           sense: ba7r}]
-      reverse: (mbere7|mbare7|embere7|mberi7) (ru7t|re7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: (mbere7|mbare7|embere7|mberi7) (ru7t|re7et|re7t|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
       Yesterday I went to the (beach|sea).
@@ -98,7 +98,7 @@ sentences:
     apc-Latn/arabizi:
       text: ru7t 3al mat3am.
       tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: mat3am, sense: mat3am}]
-      reverse: ((ru7t|re7t|ro7t)|ana (ru7t|re7t|ro7t)) (3al|3a l|3a el) (mat3am|mat3em)
+      reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (mat3am|mat3em)
   translations:
     en: |-
       I went to the restaurant.
@@ -119,8 +119,8 @@ sentences:
       tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sou2, sense: sou2}, {surface: el,
           sense: el}, {surface: sob7, sense: sob7}]
       reverse: |-
-        ((ru7t|re7t|ro7t)|ana (ru7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq) (el|l|3al) (sob7|sub7)
-        (el|l|3al) (sob7|sub7) ((ru7t|re7t|ro7t)|ana (ru7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq)
+        ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq) (el|l|3al) (sob7|sub7)
+        (el|l|3al) (sob7|sub7) ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (sou2|souk|souq)
   translations:
     en: |-
       I went to the market in the morning.
@@ -173,7 +173,7 @@ sentences:
     apc-Latn/arabizi:
       text: shu eshtarit?
       tokens: [{surface: shu, sense: shu}, {surface: eshtarit, sense: eshtara, form: 'form:past-2ms'}]
-      reverse: (shu|sho) (eshtarit|shtarit|ishtarit)
+      reverse: (shu|sho) (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)
   translations:
     en: What did you buy?
 - id: s.past.9
@@ -187,7 +187,7 @@ sentences:
     apc-Latn/arabizi:
       text: eshtarit khebz w jebne.
       tokens: [{surface: eshtarit, sense: eshtara, form: 'form:past-1sg'}, {surface: khebz, sense: khebz}, {surface: w, sense: w}, {surface: jebne, sense: jebne}]
-      reverse: ((eshtarit|shtarit|ishtarit)|ana (eshtarit|shtarit|ishtarit)) (khebz|5ebz|khibz|khebez) (w|wa) (jebne|jibne|jebni)
+      reverse: ((eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)|ana (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)) (khebz|5ebz|khibz|khebez) (w|wa) (jebne|jibne|jebni)
   translations:
     en: I bought bread and cheese.
 - id: s.past.10
@@ -267,10 +267,10 @@ sentences:
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
       reverse: بيّي رجع (عالبيت|ع البيت|على البيت)
     apc-Latn/arabizi:
-      text: bayyi rje3 3al bet.
-      tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: rje3, sense: rje3, form: 'form:past-3ms'}, {surface: 3al, sense: 3a,
+      text: bayyi reje3 3al bet.
+      tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: reje3, sense: rje3, form: 'form:past-3ms'}, {surface: 3al, sense: 3a,
           morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
-      reverse: (bayyi|bayye|bayi|baye|beyyi|beyye) (rje3|reje3|rij3) (3al|3a l|3a el) (bet|beit|bayt)
+      reverse: (bayyi|bayye|bayi|baye|beyyi|beyye) (reje3|rije3|rje3|rij3) (3al|3a l|3a el) (bet|beit|bayt)
   translations:
     en: |-
       My (dad|father) came [back] home.
@@ -835,8 +835,8 @@ stories:
           tokens: [{surface: وكان, sense: kan, form: 'form:past-3ms', morphs: [{surface: و, kc: 'sense:w'}, {surface: كان, kc: 'sense:kan'}]}, {surface: الأَكِل, sense: akl, morphs: [{surface: ال, kc: 'sense:el'},
                 {surface: أَكِل, kc: 'sense:akl'}]}, {surface: طَيِّب, sense: tayyeb}]
         apc-Latn/arabizi:
-          text: w kan el akl tayyeb?
-          tokens: [{surface: w, sense: w}, {surface: kan, sense: kan, form: 'form:past-3ms'}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}]
+          text: w ken el akl tayyeb?
+          tokens: [{surface: w, sense: w}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: el, sense: el}, {surface: akl, sense: akl}, {surface: tayyeb, sense: tayyeb}]
       translations: {en: 'And was the food good?'}
   - line:
       speaker: maya

@@ -1,6 +1,6 @@
 # Fixture course (apc), unit 7: likes and wants. b7ebb (I like), ma b7ebb, aktar, abadan; the verb after
-# baddi / b7ebb / 3am drops its b- (the subjunctive: baddi ekol, baddak tishrab, baddna nru7);
-# badd- takes the possessive endings (baddo, badda, baddna); 3am + verb: right now.
+# baddi / b7ebb / 3am drops its b- (the subjunctive: baddi ekol, baddak tishrab, badna nru7);
+# badd- takes the possessive endings (baddo, badda, badna: the dd of badd- is single before -na and -kon); 3am + verb: right now.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u07-likes
 title: {en: 'What do you like?'}
@@ -19,9 +19,9 @@ kcs:
       status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:shi', gloss: {en: something; anything}, forms: {apc-Arab/standard: [شي], apc-Latn/arabizi: [shi]}}
 - {id: 'form:subj-2ms', gloss: {en: 't-: you (after baddak, 3am…; to a man)'}, notes: {en: 'baddak tishrab? Do you want to drink? 3am ta3mel: you are doing.'}}
-- {id: 'sense:badd', gloss: {en: 'want (with an ending: baddo, badda, baddna)'}, forms: {apc-Arab/standard: [بدّ], apc-Latn/arabizi: [badd]}, notes: {en: 'badd + the possessive ending says who wants:
-      baddo (he), badda (she), baddna (we). Compare baddi, baddak.'}}
-- {id: 'form:subj-1pl', gloss: {en: 'n-: we (after baddna, ta…)'}, notes: {en: 'baddna nru7: we want to go.'}}
+- {id: 'sense:badd', gloss: {en: 'want (with an ending: baddo, badda, badna)'}, forms: {apc-Arab/standard: [بدّ], apc-Latn/arabizi: [badd]}, notes: {en: 'badd + the possessive ending says who wants:
+      baddo (he), badda (she), badna (we), badkon (you, to several people): before -na and -kon the dd is said single, and is written بدنا, بدكن. Compare baddi, baddak.'}}
+- {id: 'form:subj-1pl', gloss: {en: 'n-: we (after badna, ta…)'}, notes: {en: 'badna nru7: we want to go.'}}
 - {id: 'sense:film', gloss: {en: film; movie}, forms: {apc-Arab/standard: [فيلم], apc-Latn/arabizi: [film]}}
 - {id: 'sense:shef', gloss: {en: see; watch}, forms: {apc-Arab/standard: [شوف, منشوف], apc-Latn/arabizi: [shuf, mnshuf]}}
 - {id: 'sense:football', gloss: {en: football; soccer}, forms: {apc-Arab/standard: [فوتبول], apc-Latn/arabizi: [football]}}
@@ -280,9 +280,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: سامي بدّو قهوة.
-      tokens: [{surface: سامي, sense: sami}, {surface: بدّو, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
-      reverse: سامي (بدّو|بدّه) قهوة
+      text: سامي بدّه قهوة.
+      tokens: [{surface: سامي, sense: sami}, {surface: بدّه, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: قهوة, sense: ahwe}]
+      reverse: سامي (بدّه|بدّو) قهوة
     apc-Latn/arabizi:
       text: Sami baddo ahwe.
       tokens: [{surface: Sami, sense: sami}, {surface: baddo, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: ahwe, sense: ahwe}]
@@ -296,9 +296,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: مايا بدّا شاي.
-      tokens: [{surface: مايا, sense: maya}, {surface: بدّا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ا, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
-      reverse: مايا (بدّا|بدّها) شاي
+      text: مايا بدّها شاي.
+      tokens: [{surface: مايا, sense: maya}, {surface: بدّها, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: شاي, sense: shay}]
+      reverse: مايا (بدّها|بدّا) شاي
     apc-Latn/arabizi:
       text: Maya badda shay.
       tokens: [{surface: Maya, sense: maya}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
@@ -312,15 +312,15 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: بدّنا نروح عالبحر.
-      tokens: [{surface: بدّنا, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالبحر, sense: ba7r,
+      text: بدنا نروح عالبحر.
+      tokens: [{surface: بدنا, sense: badd, morphs: [{surface: بد, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالبحر, sense: ba7r,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (بدّنا|نحنا بدّنا) نروح (عالبحر|ع البحر|على البحر)
+      reverse: (بدنا|نحنا بدنا) نروح (عالبحر|ع البحر|على البحر)
     apc-Latn/arabizi:
-      text: baddna nru7 3al ba7r.
-      tokens: [{surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a,
+      text: badna nru7 3al ba7r.
+      tokens: [{surface: badna, sense: badd, morphs: [{surface: bad, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a,
           morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: ((baddna|badna)|(ne7na|na7na) (baddna|badna)) (nru7|nrou7|nro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: ((badna|baddna)|(ne7na|na7na) (badna|baddna)) (nru7|nrou7|nro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
     en: |-
       We want to go to the (beach|sea).
@@ -558,13 +558,13 @@ sentences:
   persons: {addressee: pl}
   forms:
     apc-Arab/standard:
-      text: بدّكن شي؟
-      tokens: [{surface: بدّكن, sense: badd, morphs: [{surface: بدّ, kc: 'sense:badd'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: شي, sense: shi}]
-      reverse: (بدّكن|إنتو بدّكن) شي
+      text: بدكن شي؟
+      tokens: [{surface: بدكن, sense: badd, morphs: [{surface: بد, kc: 'sense:badd'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: شي, sense: shi}]
+      reverse: (بدكن|إنتو بدكن) شي
     apc-Latn/arabizi:
-      text: baddkon shi?
-      tokens: [{surface: baddkon, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: shi, sense: shi}]
-      reverse: ((baddkon|badkon|baddkun)|(ento|into) (baddkon|badkon|baddkun)) (shi|she)
+      text: badkon shi?
+      tokens: [{surface: badkon, sense: badd, morphs: [{surface: bad, kc: 'sense:badd'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: shi, sense: shi}]
+      reverse: ((badkon|baddkon|badkun)|(ento|into) (badkon|baddkon|badkun)) (shi|she)
   translations:
     en: |-
       Do you want anything?
@@ -702,13 +702,13 @@ stories:
       speaker: maya
       forms:
         apc-Arab/standard:
-          text: يَلّا، بَدّنا نْروح عَالبَحِر ونِسْمَع موسيقى!
-          tokens: [{surface: يَلّا, sense: yalla}, {surface: بَدّنا, sense: badd, morphs: [{surface: بَدّ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نْروح, sense: ra7, form: 'form:subj-1pl'},
+          text: يَلّا، بَدْنا نْروح عَالبَحِر ونِسْمَع موسيقى!
+          tokens: [{surface: يَلّا, sense: yalla}, {surface: بَدْنا, sense: badd, morphs: [{surface: بَدْ, kc: 'sense:badd'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نْروح, sense: ra7, form: 'form:subj-1pl'},
             {surface: عَالبَحِر, sense: ba7r, morphs: [{surface: عَ, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بَحِر, kc: 'sense:ba7r'}]}, {surface: ونِسْمَع, sense: sama3, form: 'form:subj-1pl',
               morphs: [{surface: و, kc: 'sense:w'}, {surface: نِسْمَع, kc: 'sense:sama3'}]}, {surface: موسيقى, sense: musi2a}]
         apc-Latn/arabizi:
-          text: yalla, baddna nru7 3al ba7r w nisma3 musi2a!
-          tokens: [{surface: yalla, sense: yalla}, {surface: baddna, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'},
+          text: yalla, badna nru7 3al ba7r w nisma3 musi2a!
+          tokens: [{surface: yalla, sense: yalla}, {surface: badna, sense: badd, morphs: [{surface: bad, kc: 'sense:badd'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'},
             {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}, {surface: w, sense: w}, {surface: nisma3, sense: sama3, form: 'form:subj-1pl'},
             {surface: musi2a, sense: musi2a}]
       translations: {en: 'Come on, let''s go to the beach and listen to music!'}
