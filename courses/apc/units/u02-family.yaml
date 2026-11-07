@@ -18,10 +18,10 @@ kcs:
 - {id: 'sense:3end', gloss: {en: 'at; have (with an ending: 3endi, I have)'}, forms: {apc-Arab/standard: [عند], apc-Latn/arabizi: [3end]}, notes: {en: '3endi: I have; 3endak: you have. Not a verb: the ending
       says who has.'}}
 - {id: 'sense:ma', gloss: {en: not (before a verb or 3endi)}, forms: {apc-Arab/standard: [ما], apc-Latn/arabizi: [ma]}}
-- {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script: و joined to the noun (بيّو), also written ه (بيّه).'}}
+- {id: 'form:poss-3ms', gloss: {en: '-o: his'}, notes: {en: 'Arabic script: ه joined to the noun (بيّه), also written و (بيّو).'}}
 - {id: 'sense:esm', gloss: {en: name}, forms: {apc-Arab/standard: [اسم], apc-Latn/arabizi: [esm]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931',
       status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'esmo: his name; esma: her name. Compare اسمي (esmi) and اسمك (esmak).'}}
-- {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script: ا joined to the noun (إمّا), also written ها (إمّها).'}}
+- {id: 'form:poss-3fs', gloss: {en: '-a: her'}, notes: {en: 'Arabic script: ها joined to the noun (إمّها), also written ا (إمّا).'}}
 - {id: 'sense:kif', gloss: {en: how}, forms: {apc-Arab/standard: [كيف], apc-Latn/arabizi: [kif]}, notes: {en: 'kifo? how is he?; kifa? how is she?; kifik? how are you? (to a woman); kifkon? (to several people).'}}
 - {id: 'form:poss-2fs', gloss: {en: '-ik: your (to a woman)'}, notes: {en: 'Arabic script: the same ك as -ak, so كيفك reads kifak to a man and kifik to a woman.'}}
 - {id: 'sense:teta', gloss: {en: grandma}, forms: {apc-Arab/standard: [تيتا], apc-Latn/arabizi: [teta]}}
@@ -276,9 +276,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: هيدا بيّو.
-      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّو, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: هيدا (بيّو|بيّه)
+      text: هيدا بيّه.
+      tokens: [{surface: هيدا, sense: hayda}, {surface: بيّه, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: هيدا (بيّه|بيّو)
     apc-Latn/arabizi:
       text: hayda bayyo.
       tokens: [{surface: hayda, sense: hayda}, {surface: bayyo, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -292,9 +292,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: شو اسمو؟
-      tokens: [{surface: شو, sense: shu}, {surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}]
-      reverse: شو (اسمو|اسمه)
+      text: شو اسمه؟
+      tokens: [{surface: شو, sense: shu}, {surface: اسمه, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: ه, kc: 'form:poss-3ms'}]}]
+      reverse: شو (اسمه|اسمو)
     apc-Latn/arabizi:
       text: shu esmo?
       tokens: [{surface: shu, sense: shu}, {surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}]
@@ -308,9 +308,9 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: اسمو سامي.
-      tokens: [{surface: اسمو, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: سامي, sense: sami}]
-      reverse: (اسمو|اسمه) سامي
+      text: اسمه سامي.
+      tokens: [{surface: اسمه, sense: esm, morphs: [{surface: اسم, kc: 'sense:esm'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: سامي, sense: sami}]
+      reverse: (اسمه|اسمو) سامي
     apc-Latn/arabizi:
       text: esmo Sami.
       tokens: [{surface: esmo, sense: esm, morphs: [{surface: esm, kc: 'sense:esm'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: Sami, sense: sami}]
@@ -325,10 +325,10 @@ sentences:
   register: colloquial
   forms:
     apc-Arab/standard:
-      text: وهيدي إمّا.
-      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: إمّا, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ا,
+      text: وهيدي إمّها.
+      tokens: [{surface: وهيدي, sense: hayde, morphs: [{surface: و, kc: 'sense:w'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: إمّها, sense: emm, morphs: [{surface: إمّ, kc: 'sense:emm'}, {surface: ها,
               kc: 'form:poss-3fs'}]}]
-      reverse: (وهيدي|و هيدي) (إمّا|إمّها)
+      reverse: (وهيدي|و هيدي) (إمّها|إمّا)
     apc-Latn/arabizi:
       text: w hayde emma.
       tokens: [{surface: w, sense: w}, {surface: hayde, sense: hayde}, {surface: emma, sense: emm, morphs: [{surface: emm, kc: 'sense:emm'}, {surface: a, kc: 'form:poss-3fs'}]}]
@@ -343,10 +343,10 @@ sentences:
   persons: {addressee: m}
   forms:
     apc-Arab/standard:
-      text: كيفو بيّك؟
-      tokens: [{surface: كيفو, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: و, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
+      text: كيفه بيّك؟
+      tokens: [{surface: كيفه, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
               kc: 'form:poss-2ms'}]}]
-      reverse: (كيفو|كيفه) بيّك
+      reverse: (كيفه|كيفو) بيّك
     apc-Latn/arabizi:
       text: kifo bayyak?
       tokens: [{surface: kifo, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak,
