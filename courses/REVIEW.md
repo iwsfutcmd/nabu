@@ -202,20 +202,34 @@ With an account on a server, corrections also reach the review queue at `/admin/
 
 ## apc (Lebanese Arabic)
 
+**Checked against a reference grammar (November 2026, [ADR 0080](../docs/adr/0080-apc-twenty-units.md)).**
+The course was read against Kline, *The Fundamentals of Lebanese Grammar* (2022), from the
+reference library ([ADR 0079](../docs/adr/0079-reference-library.md)). The book says where several
+points below land, and its chapter is cited where it does.
+- **Fixed:** badna / badkon for baddna / baddkon (Kline p. 110); ken, he was (was kan); reje3, he
+  came back (was rje3).
+- **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
+- **Still a judgement call:** whatever the book leaves open or contradicts, below.
+
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)
-   rather than 3am b-. Is that right for Beirut?
+   rather than 3am b-. Is that right for Beirut? Kline (ch. 16) agrees: 3am b- is heard, but most
+   consider it less correct.
 2. **Present and no-b- verb spellings.** bekol/باكل, byekol, btekle, bishteghel, b2ra/بقرا,
    ekol/آكل, or2os/ارقص and tetla3.
 3. **Forms addressed to a woman.** kili (كلي), tfaddali, bta3mli, btghanne, ray7a, and
    m2akhkhar/m2akhkhra for "late".
 4. **The "my" ending.** It is spelled -i (bayyi, ekhti, 3ayelti), and -e is accepted. In Arabic
    script, -o and -a are written ـو and ـا (بيّو, إمّا), and ـه and ـها are accepted.
+   - Kline writes ـه and ـها, and says most native speakers do (ch. 2).
+   - Should the course switch? The phonetic spelling also tells the voice to say -o.
+   - Units 11–20 write "their" ـهن (بيتهن), as Kline does, and accept ـن.
 5. **Numbers and money.**
    - café orders: tnen ahwe, wa7ad shay;
    - prices: 3eshrin dollar, khamsin alf lira;
    - the drill "tnen w tlete khamse";
    - the spelling تمانة.
-6. **The past tense.** zert, wselt/weslet, rje3, safart, and kent mabsout for "I had a good time".
+6. **The past tense.** zert, wselt/weslet, safart, and kent mabsout for "I had a good time".
+   "He came back" is now reje3 (Kline ch. 11), and "he was" ken (ch. 10).
 7. **Time words.**
    - jem3a is one KC meaning both Friday and week (nhar el jem3a, hal jem3a).
    - 3al dohr and ba3d el dohr.
@@ -269,6 +283,42 @@ With an account on a server, corrections also reach the review queue at `/admin/
       clips are in the course's woman's voice (ADR 0078).
     - **To a woman:** عندِك, يمينِك, عمرِك (vowel marks pinned), بتشتغلي, بتحبّي, بدِّك, اشتريتي, كنتي
       مشغولة, استنّي, حبيبتي (tagged "to a woman"; it is also said to men).
+13. **Units 11–20** ([ADR 0080](../docs/adr/0080-apc-twenty-units.md)). 337 new sentences, ten stories
+    and ten scenarios, A2. Each unit takes its grammar from Kline. Their sentences are new, never the
+    book's. Check first:
+    - **u11 (they):** byishrabo, byi7ko, by7ebbo; ra7o, rej3o, 3emlo, keno; their: beton, ebnon, kellon,
+      written بيتهن; seken / sekne / seknin; bineye; lebnene / lebneniyye, amerkene. مرة for "woman"
+      (also written مرا).
+    - **u12 (the future):** ra7 + verb (ra7 ru7, ra7 netla3, ma ra7 eshteghel); 3enna (عندنا, the d
+      silent: Kline ch. 15; the voice reads عِنْدْنا); el shahr el jey, el jem3a el jeye; yomen, sa3ten,
+      sinten; shantti (شنطتي); ekhod / khod.
+    - **u13 (can, must):** fiyyi (فيّي) as the canonical "I can", with fini / فيني accepted; fik, fiki
+      (فيكي), fiya (فيها), fina, fikon; lezem tirte7, ma lezem; shu bak / shu biki / shu bkon;
+      ma3i wja3 ras; salemtak / salemtik / salemetkon.
+    - **u14 (object endings):** sme3tni, fhemtni, fhemtuni; b7ebbak / b7ebbik; shefto, shefta (شفتا,
+      as إمّا); bta3rfo, ba3rfa; 2elli (قلّي), 2ulili, de22elli, de22ili, de22uli, b3atli, ba3atli.
+    - **u15 (shopping):** the colour feminines bayda, sawda, 7amra, zar2a, khadra; arkhas, aghla,
+      akbar, azghar with men (akbar menni); 2addesh 7a22o / 7a22a; jarrbo, jarrbi; 2yes; tilbos /
+      tilbso / elbos.
+    - **u16 (dates):** 7da3sh … tsa3ta3sh, with the r before a noun (7da3shar sene) and not alone or in
+      the time (el sa3a tna3sh); the month names (kanoun el tene … kanoun el awwal); kell sene w
+      enta salem / enti salme / ento salmin; awwal marra, tene marra.
+    - **u17 (used to):** kent ru7, kenna n3ish, ken yishteghel; kent 3am e2ra; da22et (you called);
+      ba3dni / ba3dak / ba3dik / ba3da / ba3don (still); la7ali, la7alo; ma 3ad.
+    - **u18 (getting around):** servees, taxi, bus (Arabizi bus, so as not to read as bas); 3aj2a; wenak /
+      wenik; jey / jeye, 2a3ed / 2a3de / 2a3din, wa2ef, nezel; kif busal?; liff / liffi; wa22ef /
+      wa22fi / wa22fo; ishara.
+    - **u19 (work, study):** jem3a for the university (جامعة), spelled as Friday and the week in
+      Arabizi; tilmiz / tilmize, bedros / btidros / tedrso, dars, emte7an; mhandes / mhandse,
+      sherke, mudir; sar 3omri, sarli sinten 3am…, sarlak; iza, la2anno (لأنّو), enno (إنّو), bfakker,
+      btfakkri.
+    - **u20 (celebrations):** mabrouk / allah ybarek fik(i); 3irs, hdiyye; 3azamni, 3azmetna, e3zmak /
+      e3zmik; 3ajabni, 3ajabetni, 3ajabak, 3ajabetkon; za3len / za3lene, m3asseb / m3assbe / m3assbin,
+      khayef / khayfe, ma tkhafi; lesh; ya 7aram; shu 7elo!, lek / leke / leko.
+    - **Vowel marks:** 384 new entries in vocalization.yaml (a block of its own). ج is marked as a sun
+      letter (الجّيران, الجّايِة), as Kline counts it. The older marks (الجِمْعَة, بِالجَبَل) don't do
+      that yet; changing them changes their clips.
+    - **Persons:** 46 to a man, 33 to a woman, 19 to several people; a man speaking 14, a woman 13.
 
 ## lzh (Classical Chinese)
 

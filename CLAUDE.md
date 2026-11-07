@@ -309,6 +309,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Courses take facts from references (forms, paradigms, glosses), never example sentences or definitions verbatim.
 - Cloud sessions: NABU_REFS_URL is an environment variable; the key is the relay host's network secret (never chat).
   The relay trashes, never deletes; uploads stop at 25 MB (scans go into Drive directly).
+- The PDF text layer garbles Arabic (presentation forms, loose shaddas, words out of order): read Latin from the text
+  and check every Arabic spelling on a page image (`pdftoppm -png -f N -l N`).
+
+## apc twenty units notes (see docs/adr/0080)
+- apc has twenty units, checked against Kline (2022). Senses spelled alike take a suffix (ra7.fut, fi.can, men.than,
+  ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
+- Spelling: -o/-a are ـو/ـا (Kline's ـه/ـها accepted, REVIEW); -on (their) is ـهن. New vocalizations mark ج as a sun letter.
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
@@ -316,7 +323,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0079 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0080 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
