@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SHORTCUT } from "../src/drive.ts";
+import { DRIVE_BUDGET } from "../src/batch.ts";
 import { handle, MAX_UPLOAD, type Deps, type Env } from "../src/relay.ts";
 import { fakeGoogle } from "./fake-google.ts";
 
@@ -285,6 +286,96 @@ describe("writing", () => {
     const listed = (await (await call("GET", "/v1/list?path=grammars")).json()) as { entries: unknown[] };
     expect(listed.entries).toEqual([]);
     expect((await call("POST", "/v1/trash?path=")).status).toBe(400);
+  });
+});
+
+describe("batch moves", () => {
+  type Result = { from: string; to: string; status: string; error?: string };
+  type Answer = { results: Result[]; stopped: string | null; driveCalls: number };
+  const batch = async (call: ReturnType<typeof setup>["call"], moves: { from: string; to: string }[]) => {
+    const response = await call("POST", "/v1/moves", {
+      body: JSON.stringify({ moves, parents: true }),
+      headers: { "content-type": "application/json" },
+    });
+    return { status: response.status, answer: (await response.json()) as Answer };
+  };
+  const listingsOf = (google: ReturnType<typeof fakeGoogle>, folder: string) =>
+    google.requests.filter((r) => decodeURIComponent(r.url).includes(`'${folder}' in parents`)).length;
+
+  it("moves many files in one request, listing each folder once", async () => {
+    const { call, google, ids } = setup();
+    const names = ["a.pdf", "b.pdf", "c.pdf", "d.pdf"];
+    const files = names.map((name) => google.file(ids.grammars, name, name));
+    const before = google.requests.length;
+    const { status, answer } = await batch(
+      call,
+      names.map((name) => ({ from: `grammars/${name}`, to: `books/ling/apc/kline-${name}` })),
+    );
+    expect(status).toBe(200);
+    expect(answer.results.map((r) => r.status)).toEqual(["moved", "moved", "moved", "moved"]);
+    expect(answer.stopped).toBeNull();
+    const apc = google.nodes.get(files[0] ?? "")?.parent ?? "";
+    expect(google.nodes.get(apc)?.name).toBe("apc");
+    expect(files.map((f) => google.nodes.get(f)?.name)).toEqual(names.map((name) => `kline-${name}`));
+    expect(google.nodes.get(files[3] ?? "")?.parent).toBe(apc);
+    for (const folder of [ids.root, ids.grammars]) expect(listingsOf(google, folder)).toBeLessThanOrEqual(1);
+    expect(answer.driveCalls).toBeLessThanOrEqual(google.requests.length - before);
+  });
+
+  it("stops at the first failure and leaves the rest", async () => {
+    const { call, google, ids } = setup();
+    const kept = google.file(ids.grammars, "z.pdf", "z");
+    const { answer } = await batch(call, [
+      { from: "grammars/kline-2022.pdf", to: "books/kline.pdf" },
+      { from: "grammars/missing.pdf", to: "books/missing.pdf" },
+      { from: "grammars/z.pdf", to: "books/z.pdf" },
+    ]);
+    expect(answer.results.map((r) => [r.status, r.error])).toEqual([
+      ["moved", undefined],
+      ["failed", "not-found"],
+      ["not-attempted", undefined],
+    ]);
+    expect(answer.stopped).toBe("failure");
+    expect(google.nodes.get(kept)?.parent).toBe(ids.grammars);
+  });
+
+  it("sees its own moves: two files bound for one name clash", async () => {
+    const { call, google, ids } = setup();
+    google.file(ids.grammars, "twin.pdf", "x");
+    const { answer } = await batch(call, [
+      { from: "grammars/kline-2022.pdf", to: "books/same.pdf" },
+      { from: "grammars/twin.pdf", to: "books/same.pdf" },
+    ]);
+    expect(answer.results.map((r) => r.error ?? r.status)).toEqual(["moved", "exists"]);
+  });
+
+  it("keeps within the subrequest budget, and finishes when the rest is sent again", async () => {
+    const { call, google, ids } = setup();
+    const names = Array.from({ length: 70 }, (_, i) => `f${String(i).padStart(2, "0")}.pdf`);
+    for (const name of names) google.file(ids.grammars, name, name);
+    let todo = names.map((name) => ({ from: `grammars/${name}`, to: `books/all/${name}` }));
+    let rounds = 0;
+    while (todo.length > 0 && rounds < 5) {
+      const { answer } = await batch(call, todo);
+      expect(answer.driveCalls).toBeLessThanOrEqual(DRIVE_BUDGET);
+      expect(answer.results.some((r) => r.status === "failed")).toBe(false);
+      todo = answer.results.filter((r) => r.status === "not-attempted").map(({ from, to }) => ({ from, to }));
+      if (todo.length > 0) expect(answer.stopped).toBe("budget");
+      rounds += 1;
+    }
+    expect(todo).toEqual([]);
+    expect(rounds).toBeGreaterThan(1);
+    const listed = (await (await call("GET", "/v1/list?path=books%2Fall")).json()) as { entries: unknown[] };
+    expect(listed.entries).toHaveLength(70);
+  });
+
+  it("refuses a malformed batch", async () => {
+    const { call } = setup();
+    const send = (body: string) => call("POST", "/v1/moves", { body, headers: { "content-type": "application/json" } });
+    expect((await send("not json")).status).toBe(400);
+    expect((await send(JSON.stringify({ moves: [] }))).status).toBe(400);
+    expect((await send(JSON.stringify({ moves: [{ from: "..", to: "x" }] }))).status).toBe(400);
+    expect((await send(JSON.stringify({ moves: [{ from: "a" }] }))).status).toBe(400);
   });
 });
 
