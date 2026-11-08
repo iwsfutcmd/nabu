@@ -1038,6 +1038,213 @@
       }
     },
     {
+      "id": "grade/apc-arab/real-word-vocalized",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بعدين منروح عالشغل",
+        "answer": "بعدين نروح عالشغل",
+        "lexicon": [
+          "بَعْدين",
+          "مْنْروح",
+          "نْروح",
+          "عالشُّغُل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "nrou7 (the imperfect, without the indicative m-) for mnrou7 (we go): the course writes نْروح with vowel marks, the answer without; the lexicon ignores marks the profile ignores"
+    },
+    {
+      "id": "grade/apc-arab/typo-not-a-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بعدين منروح عالشغل",
+        "answer": "بعدين منرح عالشغل",
+        "lexicon": [
+          "بَعْدين",
+          "مْنْروح",
+          "نْروح",
+          "عالشُّغُل"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "a slip that spells no word of the course stays a typo"
+    },
+    {
+      "id": "grade/apc-arab/person-prefix-real-word",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "بتشتغل ببيروت",
+        "lexicon": [
+          "بِشْتِغِل",
+          "بْتِشْتِغِل",
+          "بِبيروت"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "bt- (you, she) for b- (I): another word of the course"
+    },
+    {
+      "id": "grade/apc-arab/prefix-person",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "بتشتغل ببيروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "bt- (you, she) for b- (I) on a verb the course inflects, not a word it writes"
+    },
+    {
+      "id": "grade/apc-arab/prefix-b-dropped",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "شتغل ببيروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "the imperfect without b- for the present: a statement needs b-"
+    },
+    {
+      "id": "grade/apc-arab/prefix-after-wa",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "وبشتغل ببيروت",
+        "answer": "وبتشتغل ببيروت",
+        "inflected": [
+          "وبشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "the prefix after the proclitic و (and)"
+    },
+    {
+      "id": "grade/apc-arab/prefix-noun-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بيروت",
+        "answer": "يروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "a noun's first letter is no prefix: the course does not inflect بيروت"
+    },
+    {
+      "id": "grade/apc-arab/agreement-feminine",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "المدرسة بعيدة",
+        "answer": "المدرسة بعيد",
+        "inflected": [
+          "بعيدة",
+          "بعيد"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "the school is feminine: بعيد does not agree"
+    },
+    {
+      "id": "grade/apc-latn/prefix-vowel-spelling",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "(b2ra|be2ra)",
+        "answer": "bt2ra",
+        "inflected": [
+          "b2ra",
+          "be2ra"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "bt- (you) for be- (I), a prefix spelled with its vowel"
+    },
+    {
+      "id": "grade/apc-latn/prefix-same-member-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ba3mel",
+        "answer": "bi3mel",
+        "inflected": [
+          "ba3mel"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "another vowel after b- is the same prefix: a typo"
+    },
+    {
+      "id": "grade/apc-latn/agreement-feminine",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el madrase b3ide",
+        "answer": "el madrase b3id",
+        "inflected": [
+          "b3ide",
+          "b3id"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "the feminine ending dropped where the noun is feminine"
+    },
+    {
       "id": "grade/apc-latn/exact",
       "op": "grade",
       "args": {
@@ -1963,6 +2170,164 @@
       "expected": {
         "verdict": "CORRECT_ALT"
       }
+    },
+    {
+      "id": "grade/hbo/unpointed",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "ויאמר אלהים"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Learners type unpointed Hebrew."
+    },
+    {
+      "id": "grade/hbo/pointed-answer",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "וַיֹּאמֶר אֱלֹהִים"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Points typed are ignored, as harakat are."
+    },
+    {
+      "id": "grade/hbo/accented-answer",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "וַיֹּ\u05A5אמֶר אֱלֹהִ\u0596ים׃"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "So are accents and sof pasuq."
+    },
+    {
+      "id": "grade/hbo/maqaf",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "את האור",
+        "answer": "את־האור"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Maqaf or space."
+    },
+    {
+      "id": "grade/hbo/hyphen",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "את האור",
+        "answer": "את-האור"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Hyphen or space."
+    },
+    {
+      "id": "grade/hbo/he-she",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "הוא בגן",
+        "answer": "היא בגן"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun"
+        ]
+      },
+      "note": "הוא / היא a letter apart: a pronoun contrast, not a typo (ADR 0066)."
+    },
+    {
+      "id": "grade/hbo/my-his",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמי",
+        "answer": "שמו"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-î my / -ô his: a suffix contrast."
+    },
+    {
+      "id": "grade/hbo/perfect-person",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמרתי",
+        "answer": "שמרנו"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "-tî / -nû, two letters apart: wrong."
+    },
+    {
+      "id": "grade/hbo/you-m-f",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "אתה בגן",
+        "answer": "את בגן"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "ʾattâ for a man, ʾatt for a woman."
+    },
+    {
+      "id": "grade/hbo/final-mem-typo",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "בראשית ברא אלהים",
+        "answer": "בראשית ברא אלהימ"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "A medial mem at the end of a long sentence is a typo."
+    },
+    {
+      "id": "grade/hbo/plene",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "(קל|קול)",
+        "answer": "קול"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT",
+        "notes": []
+      },
+      "note": "The plene spelling is accepted beside the defective one."
     }
   ]
 }

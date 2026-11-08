@@ -22,6 +22,16 @@ match:
     - { id: long-vowels, map: { aa: a, ee: e, ii: i, oo: o, uu: u }, policy: accept }   # REVIEW
     - { id: kh-5, map: { "5": kh }, policy: accept }   # REVIEW: 5 for kh (5obz = khobz), as Lebanese Arabizi writes it
     - { id: gh-8, map: { "8": gh }, policy: accept }   # REVIEW: 8 for gh (8ali = ghali), the digit Kline (2022, ch. 2) gives for غ beside 5 for خ
-  typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:en
+    maxRatio: 0.2
+    # REVIEW (ADR 0081): as apc-Arab, on words the course inflects. Each prefix with the vowel spellings it takes
+    # (b2ra, be2ra, bi2ra; bt2ra, bti2ra): b- I, bt- you/she, by- he/they, mn- we; t-, y-, n-, and none or a vowel (I)
+    # without b-. Endings: none (masculine, a man), -e/-a/-i (feminine, a woman; her), -o/-u (several people; him).
+    contrasts:
+      - { id: verb-prefix, note: contrast-prefix, at: start, inflected: true,
+          members: [[b, bi, be], [bt, bti, bte], [by, byi, bye], [mn, mni, mne], [t, ti, te], [y, yi, ye], [n, ni, ne], ["", e, a, i]] }
+      - { id: agreement, note: contrast-ending, inflected: true, members: ["", [e, a, i], [o, u]] }
 layout: { vertical: none }
 transliterate: { to: apc-Arab/standard, via: hand-pinned }

@@ -17,7 +17,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -55,6 +55,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Endings that carry meaning (ADR 0066): a profile's `typo.contrasts` (person, possessive, case endings, pronouns;
   REVIEW). A slip trading one member for another is WRONG_WORD, not a typo. Group allomorphs (ga, ka, qa) in one member.
+- A typo that spells another word of the course is WRONG_WORD (the lexicon). Key lexicon words and lookups with
+  `lexiconKey` (marks the profile ignores stripped), or a vocalized course's marked words never match typed answers.
+- Contrast sets can be prefixes (`at: start`, `after` proclitics) and can apply only to inflected words (`inflected`,
+  ADR 0081): bundled tokens carry their `form`, and createGrader passes the words whose sense has one. A slip that makes
+  a word ungrammatical is WRONG_WORD even when it looks like a typo; a noun's first letter stays a typo.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)
@@ -239,7 +244,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
   under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
-  forms that fit. Untagged means every form is accepted.
+  forms that fit. Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the
+  sentence names the thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
   woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
   before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
@@ -325,13 +331,27 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
+## Biblical Hebrew notes (see docs/adr/0082)
+- courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
+  reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
+  nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
+  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`.
+- Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
+  the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
+  normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
+- Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
+  Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
+  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py). The divine name is ʾăḏōnāy (its qere).
+- Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
+  stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0080 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0082 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -1,5 +1,5 @@
 # Fixture course (apc), unit 7: likes and wants. b7ebb (I like), ma b7ebb, aktar, abadan; the verb after
-# baddi / b7ebb / 3am drops its b- (the subjunctive: baddi ekol, baddak tishrab, badna nru7);
+# baddi / b7ebb / 3am drops its b- (the imperfect, Kline ch. 22: baddi ekol, baddak tishrab, badna nru7);
 # badd- takes the possessive endings (baddo, badda, badna: the dd of badd- is single before -na and -kon); 3am + verb: right now.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u07-likes
@@ -384,11 +384,11 @@ sentences:
     apc-Arab/standard:
       text: منشوف فيلم المسا؟
       tokens: [{surface: منشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلم, sense: film}, {surface: المسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مسا, kc: 'sense:masa'}]}]
-      reverse: منشوف (فيلم|فلم) المسا
+      reverse: (منشوف|نشوف) (فيلم|فلم) المسا
     apc-Latn/arabizi:
       text: mnshuf film el masa?
       tokens: [{surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}, {surface: el, sense: el}, {surface: masa, sense: masa}]
-      reverse: (mnshuf|mnshouf) (film|filem) (el|l|il) (masa|masa2)
+      reverse: (mnshuf|mnshouf|nshuf|nshouf) (film|filem) (el|l|il) (masa|masa2)
   translations:
     en: |-
       Shall we (watch|see) a (film|movie) (this|in the) evening?

@@ -824,6 +824,66 @@
         "text": "Año"
       },
       "expected": "Año"
+    },
+    {
+      "id": "normalize/hbo/sof-pasuq",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַיֹּאמֶר אֱלֹהִים׃"
+      },
+      "expected": "וַיֹּאמֶר אֱלֹהִים",
+      "note": "Points stay (they are matched, not normalized away); sof pasuq is punctuation."
+    },
+    {
+      "id": "normalize/hbo/accents-removed",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַיֹּ\u05A5אמֶר אֱלֹהִ\u0596ים"
+      },
+      "expected": "וַיֹּאמֶר אֱלֹהִים",
+      "note": "Cantillation accents (merkha, tipha) are removed: an answer copied from an accented text."
+    },
+    {
+      "id": "normalize/hbo/maqaf",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "אֶת־הָאוֹר"
+      },
+      "expected": "אֶת הָאוֹר",
+      "note": "Maqaf joins words; typed, it is a space."
+    },
+    {
+      "id": "normalize/hbo/hyphen",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "את-האור"
+      },
+      "expected": "את האור",
+      "note": "A hyphen typed for the maqaf is a space too."
+    },
+    {
+      "id": "normalize/hbo/meteg",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַ\u05BDיְהִי"
+      },
+      "expected": "וַיְהִי",
+      "note": "Meteg (ga'ya) is not part of the pointing a learner writes."
+    },
+    {
+      "id": "normalize/hbo/qamats-qatan",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "כ\u05C7ּל"
+      },
+      "expected": "כָּל",
+      "note": "Qamats qatan (U+05C7) is the qamets the course writes."
     }
   ]
 }

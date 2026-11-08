@@ -210,6 +210,13 @@ points below land, and its chapter is cited where it does.
   came back (was rje3).
 - **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
 - **Spelled as the book spells it:** the -o / -a endings, now ـه / ـها (item 4).
+- **Grammar slips are wrong, not typos** ([ADR 0081](../docs/adr/0081-affixes-on-inflected-words.md), REVIEW):
+  the profiles' verb-prefix sets (b-, bt-, bi-, mn-, the imperfect's t-, y-, n-) and agreement endings (feminine,
+  -i, -o). Check the members, above all Arabizi's vowel spellings (b / bi / be) and the 1pl بن beside من.
+- **Gender left open by the English** ("it", a bare "this", an untagged "you"): both forms are accepted
+  (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
+  s.work.29). "Shall we…?" (s.like.22) takes the bare imperfect نشوف as well as منشوف. The two untagged "you"
+  sentences are tagged: s.day.24 to one person (بتحكي is a man's and a woman's), s.child.14 to a man.
 - **Still a judgement call:** whatever the book leaves open or contradicts, below.
 
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)
@@ -372,6 +379,49 @@ Drafted after the native-speaker pass above, so it has had no second reading
    Older and regional forms (爲, 説) are accepted with a note.
 8. **Characters outside CLDR zh_Hant** are in the profile's `exemplarsExtra`, marked REVIEW:
    焉 歟 孰 奚 罔 慍 誨 殆 踰 矩 濠 鯈 遽 墜 耕 株 冀 耒 鬻 叟 啼.
+
+## hbo (Biblical Hebrew)
+
+Drafted after the native-speaker pass above ([ADR 0082](../docs/adr/0082-biblical-hebrew.md)). There are no
+native speakers: a reviewer who reads Biblical Hebrew, ideally one who knows the Tiberian reading tradition,
+should check:
+
+1. **The pinned readings** (`readings: {tiberian: …}`, SBL transliteration with an acute on non-final stress).
+   They were drafted from the Westminster Leningrad Codex: the stress from each word's accent, vocal shewa and
+   qamets gadol from meteg and from the morphology. Check first:
+   - words of constructed sentences, which take the reading of the same pointed form in the Bible; where the
+     Bible has none, the drafting script guessed (the generator reports these: מְבַקֶּשֶׁת məḇaqqéšeṯ);
+   - qamets before shewa with no meteg in the WLC: drafted as qamets qatan (ḥoḵmâ, qoḏšô) except in the qal
+     perfect (šāmərû) and before -ḵā/-ḵem on nouns (ləḇāḇəḵā);
+   - shewa after a long vowel, drafted vocal (šōmərîm, tēləḵî) as the classical rule has it;
+   - stress retraction kept from the text where the Bible has it (qā́rāʾ láylâ in Gen 1:5);
+   - the divine name read with its qere, ʾăḏōnāy (laʾḏōnāy after a preposition), and the Pentateuch's הִוא read
+     hîʾ.
+2. **The audio** says those readings in eSpeak NG's Arabic phoneme table, after Khan's description of the
+   Tiberian tradition. Approximations to listen for: segol said [e] like ṣere; qamets said as a backed [ɑ]
+   (Khan: [ɔ]); resh always alveolar (Khan: uvular except beside alveolars); vav [v]; vocal shewa [a], or the
+   vowel after a guttural, or [i] before yod. The voice is rule-based and sounds it. A recorded reader of the
+   Tiberian tradition (`nabu audio ingest`) would replace it.
+3. **Pointing of constructed sentences.** Every word was checked against the forms the Bible attests; a few
+   are unattested but regular (מְבַקֶּשֶׁת). Contextual forms are used, not pausal ones, except in quotations.
+   Begadkefat after a vowel-final word joined by maqaf are spirantized as in the text (וַיְהִי־בֹקֶר).
+4. **Analyses.** Token senses, morphs and forms come from the WLC's morphology (openscriptures/morphhb). Two
+   slips were corrected by hand: Gen 3:11 מִמֶּנּוּ "from it" (tagged "from us"), Gen 24:17 מִכַּדֵּךְ "from your
+   (f.) jar" (tagged "her"). Verbs are KCs by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה). Forms are
+   KCs by conjugation and person (`form:wayyiqtol-3ms`); is that the right grain?
+5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
+   nothing. Accept sets are generous with English word order; Hebrew accept sets accept the plene spelling of
+   ō and u (קול for קֹל) and a space, hyphen or maqaf between bound words.
+6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
+   שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
+   מְבַקֶּשֶׁת).
+7. **The profile's REVIEW markers:** the typo contrasts (pronouns, suffixes, perfect endings) and sof pasuq as
+   an exemplar CLDR's Modern Hebrew lacks.
+8. **Passages with textual quirks:** the Decalogue (Exod 20) has two sets of accents; its readings follow the
+   lower set (עַל־פָּנָי pānā́y), and Exod 20:12 לָךְ is the pausal "to you" (m.), tagged 2fs in the WLC. Jonah
+   1:3 אָנִיָּה is read ʾoniyyâ. Psalm 23 includes its title (מִזְמוֹר לְדָוִד) as the WLC numbers it.
+9. **Idioms translated loosely:** כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף (an oath), חַי־יְהוָה, בִּי אֲדֹנִי, כְפַעַם־בְּפַעַם,
+   כִּי־נִכְמְרוּ רַחֲמֶיהָ; these are recognition-only where English has no close equivalent.
 
 ## es (Cuban Spanish)
 

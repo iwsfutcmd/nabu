@@ -212,6 +212,28 @@ def lints() -> None:
         typer.echo(f"{lint.id:34} {lint.severity:8} stage {lint.stage}  {lint.description}")
 
 
+@app.command("tiberian")
+def tiberian_reading(
+    words: Annotated[
+        list[str],
+        typer.Argument(
+            help="Pointed Biblical Hebrew, with the cantillation accents where you have them "
+            "(WLC); words joined by maqaf are read as one stress unit."
+        ),
+    ],
+) -> None:
+    """The Tiberian reading of pointed words, as the hbo course pins them (ADR 0082): the reading,
+    its IPA, and where its stress came from."""
+    from nabu.audio import tiberian
+    from nabu.audio.pointing import reading, strip_accents
+
+    for argument in words:
+        parts = argument.split("\u05be")
+        for k, word in enumerate(parts):
+            r = reading(word, bound=k < len(parts) - 1)
+            typer.echo(f"{strip_accents(word)}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
+
+
 @app.command("calibration")
 def calibration_command(
     events: Annotated[

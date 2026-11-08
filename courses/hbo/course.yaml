@@ -1,0 +1,23 @@
+# Biblical Hebrew (hbo): the Hebrew of the Bible, read in the Tiberian pointing (ADR 0082). Not Modern Hebrew.
+# Each unit's lessons teach the words of a passage of the Hebrew Bible, and its story reads it: the text of
+# the Westminster Leningrad Codex (public domain), without its accents. Vowel points are shown by default;
+# "Vowel marks" off shows the consonantal text alone.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: hbo
+target: hbo-Hebr
+orthographies: [hbo-Hebr/tiberian]
+support: [en-Latn/standard]
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@hbo-draft-v1', status: draft}
+# A Hebrew verb is a root and a form: a new verb in a new form is two KCs on one word (sense + form).
+iPlusOne: 2
+# Audio (ADR 0082): the Tiberian pronunciation, as Khan describes the Masoretes' reading tradition, never
+# Modern Hebrew. Each word's pinned Tiberian reading is said as eSpeak NG phonemes (nabu.audio.tiberian)
+# through its Arabic phoneme table, which has the gutturals, the emphatics and the spirants. A man's voice
+# and a woman's: each item gets one at random (seeded by its id), and a line whose grammar says who speaks
+# gets that one (ADR 0078). Rule-based synthesis: the clips are CC0.
+audio:
+  voices:
+  - {id: tiberian-m, provider: espeak-ng, voice: ar, speaker: m, orthography: hbo-Hebr/tiberian, reading: tiberian, license: CC0-1.0}
+  - {id: tiberian-f, provider: espeak-ng, voice: ar+f2, speaker: f, orthography: hbo-Hebr/tiberian, reading: tiberian, license: CC0-1.0}
+units: [units/u01-let-there-be-light.yaml, units/u02-in-the-beginning.yaml, units/u03-where-are-you.yaml, units/u04-what-have-you-done.yaml, units/u05-my-brothers-keeper.yaml, units/u06-go-forth.yaml, units/u07-here-i-am.yaml, units/u08-at-the-well.yaml, units/u09-seeking-my-brothers.yaml, units/u10-the-burning-bush.yaml, units/u11-the-ten-words.yaml, units/u12-hear-o-israel.yaml, units/u13-where-you-go.yaml, units/u14-speak-lord.yaml, units/u15-in-the-name-of-the-lord.yaml, units/u16-the-wise-king.yaml, units/u17-jonah-runs-away.yaml, units/u18-i-am-a-hebrew.yaml, units/u19-my-shepherd.yaml, units/u20-a-time-for-everything.yaml]

@@ -1,0 +1,651 @@
+# Biblical Hebrew (hbo), unit 6: Go forth (Genesis 12:1-2, 4).
+# The imperative (to a man, a woman, several people), the imperfect "I will", the piel (bless, speak,
+# make great), the preposition כְּ "as, like", and nouns in the construct state with suffixes.
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u06-go-forth
+title:
+  en: Go forth
+cefr: A1
+kcs:
+- id: sense:avram
+  gloss:
+    en: Abram (later Abraham)
+  forms:
+    hbo-Hebr/tiberian: [אַבְרָם]
+- id: sense:halakh
+  gloss:
+    en: to go, walk
+  forms:
+    hbo-Hebr/tiberian: [הָלַךְ]
+- id: form:impv-ms
+  gloss:
+    en: 'imperative, to a man: do!'
+- id: form:impv-fs
+  gloss:
+    en: 'imperative, to a woman: do!'
+- id: form:impv-mp
+  gloss:
+    en: 'imperative, to several people: do!'
+- id: sense:bayit
+  gloss:
+    en: house; household, family
+  forms:
+    hbo-Hebr/tiberian: [בַּיִת]
+  image: {file: ../images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0d95656f8477', status: draft}, source: Drawn for Nabu (courses/images)}
+  notes:
+    en: 'Before another noun: בֵּית bêṯ, ''the house of''. בֵּית אָבִיךָ ''your father''s house'' is your family.'
+- id: sense:av
+  gloss:
+    en: father
+  forms:
+    hbo-Hebr/tiberian: [אָב]
+  notes:
+    en: 'With suffixes אָבִי- ʾāḇî-: אָבִי ''my father'', אָבִיךָ ''your father''.'
+- id: sense:moledet
+  gloss:
+    en: kindred, relatives; birthplace
+  forms:
+    hbo-Hebr/tiberian: [מוֹלֶדֶת]
+- id: sense:hirah
+  gloss:
+    en: to show (hiphil of רָאָה)
+  forms:
+    hbo-Hebr/tiberian: [הֶרְאָה]
+- id: form:yiqtol-1cs
+  gloss:
+    en: 'I will do: the imperfect (yiqtol), I'
+- id: sense:goy
+  gloss:
+    en: nation, people
+  forms:
+    hbo-Hebr/tiberian: [גּוֹי]
+- id: sense:gadol
+  gloss:
+    en: great, big
+  forms:
+    hbo-Hebr/tiberian: [גָּדוֹל]
+- id: sense:shem
+  gloss:
+    en: name
+  forms:
+    hbo-Hebr/tiberian: [שֵׁם]
+  image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:berakhah
+  gloss:
+    en: blessing
+  forms:
+    hbo-Hebr/tiberian: [בְּרָכָה]
+- id: sense:barakh
+  gloss:
+    en: to bless (piel)
+  forms:
+    hbo-Hebr/tiberian: [בֵּרַךְ]
+- id: sense:gadal
+  gloss:
+    en: to make great (piel)
+  forms:
+    hbo-Hebr/tiberian: [גִּדֵּל]
+- id: sense:ke
+  gloss:
+    en: like, as (written joined to the next word)
+  forms:
+    hbo-Hebr/tiberian: [כְּ]
+  notes:
+    en: 'כְּ kə- is written on its noun: כַּיּוֹם ''like the day''. כַּאֲשֶׁר kaʾăšer: ''as, just as''.'
+- id: sense:dibber
+  gloss:
+    en: to speak (piel)
+  forms:
+    hbo-Hebr/tiberian: [דִּבֶּר]
+nodes:
+- {id: hbo.u06.go, kind: lesson, introduces: ['sense:avram', 'sense:halakh', 'form:impv-ms', 'form:impv-fs', 'form:impv-mp']}
+- {id: hbo.u06.your-fathers-house, kind: lesson, introduces: ['sense:bayit', 'sense:av', 'sense:moledet']}
+- {id: hbo.u06.i-will-show-you, kind: lesson, introduces: ['sense:hirah', 'form:yiqtol-1cs']}
+- {id: hbo.u06.a-great-nation, kind: lesson, introduces: ['sense:goy', 'sense:gadol', 'sense:shem', 'sense:berakhah', 'sense:barakh', 'sense:gadal']}
+- {id: hbo.u06.as-he-said, kind: lesson, introduces: ['sense:ke', 'sense:dibber']}
+- {id: hbo.u06.story, kind: story}
+sentences:
+- id: s.06.1
+  node: hbo.u06.go
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַבְרָם
+      tokens: [{surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
+      reverse: אברם
+  translations:
+    en: Abram
+- id: s.06.2
+  node: hbo.u06.go
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ אַבְרָם׃
+      tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
+      reverse: וילך אברם
+  translations:
+    en: |-
+      [(And|So|Then)] Abram went.
+      [(And|So|Then)] Abram (left|set out|went away).
+- id: s.06.3
+  node: hbo.u06.go
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֵךְ׃
+      tokens: [{surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}]
+      reverse: לך
+  translations:
+    en: Go!
+- id: s.06.4
+  node: hbo.u06.go
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֶךְ־לְךָ׃
+      tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: ləḵā}}]
+      reverse: לך לך
+  translations:
+    en: |-
+      Go!
+      Go (forth|away|on your way)!
+      Get (going|moving)!
+- id: s.06.5
+  node: hbo.u06.go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכִי׃
+      tokens: [{surface: לְכִי, sense: halakh, form: 'form:impv-fs', readings: {tiberian: ləḵî}}]
+      reverse: לכי
+  translations:
+    en: Go!
+- id: s.06.6
+  node: hbo.u06.go
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכוּ׃
+      tokens: [{surface: לְכוּ, sense: halakh, form: 'form:impv-mp', readings: {tiberian: ləḵû}}]
+      reverse: לכו
+  translations:
+    en: Go!
+- id: s.06.7
+  node: hbo.u06.go
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֵךְ אֶל־הַשָּׂדֶה׃
+      tokens: [{surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
+      reverse: לך אל השדה
+  translations:
+    en: Go to the field!
+- id: s.06.8
+  node: hbo.u06.go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכִי אֶל־הַשָּׂדֶה׃
+      tokens: [{surface: לְכִי, sense: halakh, form: 'form:impv-fs', readings: {tiberian: ləḵî}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
+      reverse: לכי אל השדה
+  translations:
+    en: Go to the field!
+- id: s.06.9
+  node: hbo.u06.go
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכוּ אֶל־הַשָּׂדֶה׃
+      tokens: [{surface: לְכוּ, sense: halakh, form: 'form:impv-mp', readings: {tiberian: ləḵû}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
+      reverse: לכו אל השדה
+  translations:
+    en: Go to the field!
+- id: s.06.10
+  node: hbo.u06.go
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ אַבְרָם אֶל־הָאָרֶץ׃
+      tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}, {surface: אֶל, sense: el,
+          readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
+      reverse: וילך אברם אל הארץ
+  translations:
+    en: '[(And|So|Then)] Abram went to the land.'
+- id: s.06.11
+  node: hbo.u06.your-fathers-house
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּיִת
+      tokens: [{surface: בַּיִת, sense: bayit, readings: {tiberian: báyiṯ}}]
+      reverse: בית
+  translations:
+    en: |-
+      a house
+      house
+- id: s.06.12
+  node: hbo.u06.your-fathers-house
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַבַּיִת
+      tokens: [{surface: הַבַּיִת, sense: bayit, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: habbáyiṯ}}]
+      reverse: הבית
+  translations:
+    en: the house
+- id: s.06.13
+  node: hbo.u06.your-fathers-house
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָבִי בַּבַּיִת׃
+      tokens: [{surface: אָבִי, sense: av, readings: {tiberian: ʾāḇî}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
+      reverse: אבי בבית
+  translations:
+    en: |-
+      My father is in the house.
+      My father is (at home|home).
+- id: s.06.14
+  node: hbo.u06.your-fathers-house
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּית אָבִיךָ
+      tokens: [{surface: בֵּית, sense: bayit, readings: {tiberian: bêṯ}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}]
+      reverse: בית אביך
+  translations:
+    en: |-
+      your father's house
+      the house of your father
+      your father's (family|household)
+- id: s.06.15
+  node: hbo.u06.your-fathers-house
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּית אָבִיךְ
+      tokens: [{surface: בֵּית, sense: bayit, readings: {tiberian: bêṯ}}, {surface: אָבִיךְ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾāḇîḵ}}]
+      reverse: בית אביך
+  translations:
+    en: |-
+      your father's house
+      the house of your father
+      your father's (family|household)
+- id: s.06.16
+  node: hbo.u06.your-fathers-house
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַרְצְךָ
+      tokens: [{surface: אַרְצְךָ, sense: erets, morphs: [{surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾarṣəḵā}}]
+      reverse: ארצך
+  translations:
+    en: your (land|country)
+- id: s.06.17
+  node: hbo.u06.your-fathers-house
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֶךְ־לְךָ מֵאַרְצְךָ׃
+      tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}}]
+      reverse: לך לך מארצך
+  translations:
+    en: |-
+      Go (forth|away|out) from your (land|country)!
+      Leave your (land|country)!
+- id: s.06.18
+  node: hbo.u06.your-fathers-house
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֶךְ־לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ׃
+      tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: mēʾarṣəḵā}},
+        {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: ûmimmôlaḏtəḵā}}, {surface: וּמִבֵּית, sense: bayit, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: בֵּית, kc: 'sense:bayit'}], readings: {
+            tiberian: ûmibbêṯ}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}]
+      reverse: לך לך מארצך וממולדתך ומבית אביך
+  translations:
+    en: |-
+      Go (forth|away|out) from your (land|country), (from|and from) your (kindred|relatives|family|birthplace) and from your father's house!
+      Leave your (land|country), your (kindred|relatives|family|birthplace) and your father's house!
+- id: s.06.19
+  node: hbo.u06.i-will-show-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶל־הָאָרֶץ אֲשֶׁר אַרְאֶךָּ
+      tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
+        {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אַרְאֶךָּ, sense: hirah, form: 'form:yiqtol-1cs', morphs: [{surface: אַרְאֶ, kc: 'sense:hirah'}, {surface: ךָּ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: ʾarʾékkā}}]
+      reverse: אל הארץ אשר אראך
+  translations:
+    en: to the land (that|which) I will show you
+- id: s.06.20
+  node: hbo.u06.i-will-show-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵלֵךְ אֶל־הַשָּׂדֶה׃
+      tokens: [{surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
+      reverse: אלך אל השדה
+  translations:
+    en: |-
+      I will go to the field.
+      I('ll| shall) go to the field.
+- id: s.06.21
+  node: hbo.u06.i-will-show-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אֹכַל׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אֹכַל, sense: akhal, form: 'form:yiqtol-1cs', readings: {tiberian: ʾōḵal}}]
+      reverse: (לא|לוא) (אכל|אוכל)
+  translations:
+    en: |-
+      I will not eat.
+      I (won't|shall not|shan't) eat.
+- id: s.06.22
+  node: hbo.u06.i-will-show-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶשְׁמַע׃
+      tokens: [{surface: אֶשְׁמַע, sense: shama, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešmaʿ}}]
+      reverse: אשמע
+  translations:
+    en: |-
+      I will (listen|hear).
+      I('ll| shall) (listen|hear).
+- id: s.06.23
+  node: hbo.u06.i-will-show-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אֵלֵךְ׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}]
+      reverse: (לא|לוא) אלך
+  translations:
+    en: |-
+      I will not go.
+      I (won't|shall not|shan't) go.
+- id: s.06.24
+  node: hbo.u06.a-great-nation
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹי
+      tokens: [{surface: גּוֹי, sense: goy, readings: {tiberian: gôy}}]
+      reverse: גוי
+  translations:
+    en: |-
+      a nation
+      a people
+- id: s.06.25
+  node: hbo.u06.a-great-nation
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹי גָּדוֹל
+      tokens: [{surface: גּוֹי, sense: goy, readings: {tiberian: gôy}}, {surface: גָּדוֹל, sense: gadol, readings: {tiberian: gāḏôl}}]
+      reverse: גוי גדול
+  translations:
+    en: |-
+      a great nation
+      a (big|mighty) nation
+- id: s.06.26
+  node: hbo.u06.a-great-nation
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאֶעֶשְׂךָ לְגוֹי גָּדוֹל׃
+      tokens: [{surface: וְאֶעֶשְׂךָ, sense: asah, form: 'form:yiqtol-1cs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶעֶשְׂ, kc: 'sense:asah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: wəʾeʿeśḵā}}, {surface: לְגוֹי, sense: goy, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: גוֹי, kc: 'sense:goy'}], readings: {tiberian: ləḡôy}}, {surface: גָּדוֹל, sense: gadol,
+          readings: {tiberian: gāḏôl}}]
+      reverse: ואעשך לגוי גדול
+  translations:
+    en: And I will make (you into|of you|you) a great nation.
+- id: s.06.27
+  node: hbo.u06.a-great-nation
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמִי
+      tokens: [{surface: שְׁמִי, sense: shem, morphs: [{surface: שְׁמִ, kc: 'sense:shem'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: šəmî}}]
+      reverse: שמי
+  translations:
+    en: my name
+- id: s.06.28
+  node: hbo.u06.a-great-nation
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־שְּׁמֶךָ׃
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: שְּׁמֶךָ, sense: shem, morphs: [{surface: שְּׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}]
+      reverse: מה שמך
+  translations:
+    en: |-
+      What is your name?
+      What's your name?
+- id: s.06.29
+  node: hbo.u06.a-great-nation
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמוֹ גָּדוֹל׃
+      tokens: [{surface: שְׁמוֹ, sense: shem, morphs: [{surface: שְׁמ, kc: 'sense:shem'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: šəmô}}, {surface: גָּדוֹל, sense: gadol, readings: {tiberian: gāḏôl}}]
+      reverse: שמו גדול
+  translations:
+    en: His name is great.
+- id: s.06.30
+  node: hbo.u06.a-great-nation
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּרָכָה
+      tokens: [{surface: בְּרָכָה, sense: berakhah, readings: {tiberian: bərāḵâ}}]
+      reverse: ברכה
+  translations:
+    en: |-
+      a blessing
+      blessing
+- id: s.06.31
+  node: hbo.u06.a-great-nation
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וֶהְיֵה בְּרָכָה׃
+      tokens: [{surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms', morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah,
+          readings: {tiberian: bərāḵâ}}]
+      reverse: והיה ברכה
+  translations:
+    en: |-
+      And be a blessing!
+      And you will be a blessing.
+- id: s.06.32
+  node: hbo.u06.a-great-nation
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַאֲבָרֶכְךָ׃
+      tokens: [{surface: וַאֲבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: waʾăḇāreḵḵā}}]
+      reverse: ואברכך
+  translations:
+    en: |-
+      And I will bless you.
+      I will bless you.
+- id: s.06.33
+  node: hbo.u06.a-great-nation
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַאֲגַדְּלָה שְׁמֶךָ׃
+      tokens: [{surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}}, {surface: שְׁמֶךָ,
+          sense: shem, morphs: [{surface: שְׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}]
+      reverse: ואגדלה שמך
+  translations:
+    en: |-
+      And I will make your name great.
+      And I will (magnify|make great) your name.
+- id: s.06.34
+  node: hbo.u06.as-he-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: כַּיּוֹם
+      tokens: [{surface: כַּיּוֹם, sense: yom, morphs: [{surface: כַּ, kc: 'sense:ke'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: kayyôm}}]
+      reverse: כיום
+  translations:
+    en: |-
+      like the day
+      as (by|in the) day
+- id: s.06.35
+  node: hbo.u06.as-he-said
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַלַּיְלָה כַּיּוֹם׃
+      tokens: [{surface: הַלַּיְלָה, sense: layla, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: לַּיְלָה, kc: 'sense:layla'}], readings: {tiberian: halláylâ}}, {surface: כַּיּוֹם, sense: yom, morphs: [
+            {surface: כַּ, kc: 'sense:ke'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: kayyôm}}]
+      reverse: הלילה כיום
+  translations:
+    en: |-
+      The night is like the day.
+      The night is as (light|bright) as the day.
+- id: s.06.36
+  node: hbo.u06.as-he-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: כַּאֲשֶׁר
+      tokens: [{surface: כַּאֲשֶׁר, sense: asher, morphs: [{surface: כַּ, kc: 'sense:ke'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: kaʾăšer}}]
+      reverse: כאשר
+  translations:
+    en: |-
+      as
+      just as
+- id: s.06.37
+  node: hbo.u06.as-he-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: דִּבֶּר
+      tokens: [{surface: דִּבֶּר, sense: dibber, form: 'form:qatal-3ms', readings: {tiberian: dibber}}]
+      reverse: דבר
+  translations:
+    en: |-
+      he spoke
+      he has spoken
+- id: s.06.38
+  node: hbo.u06.as-he-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְדַבֵּר יְהוָה אֶל־אַבְרָם׃
+      tokens: [{surface: וַיְדַבֵּר, sense: dibber, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayḏabbēr}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
+          readings: {tiberian: ʾel-}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
+      reverse: וידבר יהוה אל אברם
+  translations:
+    en: '[(And|Then)] the LORD (spoke|said) to Abram.'
+- id: s.06.39
+  node: hbo.u06.as-he-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ אַבְרָם כַּאֲשֶׁר דִּבֶּר אֵלָיו יְהוָה׃
+      tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}, {surface: כַּאֲשֶׁר, sense: asher,
+          morphs: [{surface: כַּ, kc: 'sense:ke'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: kaʾăšer}}, {surface: דִּבֶּר, sense: dibber, form: 'form:qatal-3ms', readings: {tiberian: dibber}},
+        {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾēlāyw}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: וילך אברם כאשר דבר אליו יהוה
+  translations:
+    en: |-
+      [(And|So)] Abram went, as the LORD had (told|spoken to) him.
+      [(And|So)] Abram (left|set out), (as|just as) the LORD had (told|spoken to) him.
+stories:
+- id: hbo.story.go-forth
+  node: hbo.u06.story
+  title:
+    en: Go forth (Genesis 12:1–2, 4)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר יְהוָה אֶל־אַבְרָם
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
+      translations:
+        en: And the LORD said to Abram,
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:av
+      distractors: ['sense:ah', 'sense:adam']
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֶךְ־לְךָ מֵאַרְצְךָ וּמִמּוֹלַדְתְּךָ וּמִבֵּית אָבִיךָ
+          tokens: [{surface: לֶךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: leḵ-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+              readings: {tiberian: ləḵā}}, {surface: מֵאַרְצְךָ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַרְצְ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: mēʾarṣəḵā}}, {surface: וּמִמּוֹלַדְתְּךָ, sense: moledet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'}, {surface: מּוֹלַדְתְּ, kc: 'sense:moledet'}, {
+                  surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûmimmôlaḏtəḵā}}, {surface: וּמִבֵּית, sense: bayit, form: 'form:cstr', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִ, kc: 'sense:min'},
+                {surface: בֵּית, kc: 'sense:bayit'}], readings: {tiberian: ûmibbêṯ}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: ʾāḇî́ḵā}}]
+      translations:
+        en: “Go from your country, your kindred and your father's house
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֶל־הָאָרֶץ אֲשֶׁר אַרְאֶךָּ׃
+          tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}},
+            {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אַרְאֶךָּ, sense: hirah, form: 'form:yiqtol-1cs', morphs: [{surface: אַרְאֶ, kc: 'sense:hirah'}, {surface: ךָּ, kc: 'form:sfx-2ms'}],
+              readings: {tiberian: ʾarʾékkā}}]
+      translations:
+        en: to the land that I will show you.
+  - choose:
+      prompt:
+        en: Where does the LORD tell Abram to go?
+      options: [{en: to a land the LORD will show him}, {en: back to his father's house}, {en: into the garden}]
+      answer: 0
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְאֶעֶשְׂךָ לְגוֹי גָּדוֹל
+          tokens: [{surface: וְאֶעֶשְׂךָ, sense: asah, form: 'form:yiqtol-1cs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶעֶשְׂ, kc: 'sense:asah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: wəʾeʿeśḵā}}, {surface: לְגוֹי, sense: goy, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: גוֹי, kc: 'sense:goy'}], readings: {tiberian: ləḡôy}}, {surface: גָּדוֹל, sense: gadol,
+              readings: {tiberian: gāḏôl}}]
+      translations:
+        en: And I will make you a great nation,
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:shem
+      distractors: ['sense:bayit', 'sense:qol']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַאֲבָרֶכְךָ וַאֲגַדְּלָה שְׁמֶךָ וֶהְיֵה בְּרָכָה׃
+          tokens: [{surface: וַאֲבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: waʾăḇāreḵḵā}}, {surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}},
+            {surface: שְׁמֶךָ, sense: shem, morphs: [{surface: שְׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}, {surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms',
+              morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah, readings: {tiberian: bərāḵâ}}]
+      translations:
+        en: and I will bless you and make your name great, and you will be a blessing.”
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלֶךְ אַבְרָם כַּאֲשֶׁר דִּבֶּר אֵלָיו יְהוָה׃
+          tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}, {surface: כַּאֲשֶׁר, sense: asher,
+              morphs: [{surface: כַּ, kc: 'sense:ke'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: kaʾăšer}}, {surface: דִּבֶּר, sense: dibber, form: 'form:qatal-3ms', readings: {tiberian: dibber}},
+            {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾēlāyw}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      translations:
+        en: So Abram went, as the LORD had told him.
+  - choose:
+      prompt:
+        en: What does Abram do?
+      options: [{en: 'He goes, as the LORD told him.'}, {en: He stays in his father's house.}, {en: He hides in the garden.}]
+      answer: 0
+scenarios:
+- id: hbo.leaving-haran
+  after: hbo.u06.as-he-said
+  title:
+    en: Leaving Haran
+  setting:
+    en: 'Haran, about 1800 BCE: Abram''s household is loading the camels to go south, as the LORD told him.'
+  character:
+    en: Lot, Abram's nephew, busy and cheerful, who speaks only Biblical Hebrew.
+  goal:
+    en: Greet Lot, ask him where Abram is going, and say that you will go too.

@@ -1,0 +1,626 @@
+# Biblical Hebrew (hbo), unit 16: The wise king (1 Kings 3:22, 24-27).
+# Two women before King Solomon: "they (f.) spoke", the feminine participle, commands to several people
+# (take, cut, give), the hiphil "bring" and "kill", living and dead, half and two.
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u16-the-wise-king
+title:
+  en: The wise king
+cefr: A2
+kcs:
+- id: sense:melekh
+  gloss:
+    en: king
+  forms:
+    hbo-Hebr/tiberian: [מֶלֶךְ]
+- id: sense:chai
+  gloss:
+    en: living, alive; (חַי יְהוָה) as the LORD lives
+  forms:
+    hbo-Hebr/tiberian: [חַי]
+- id: sense:yeled
+  gloss:
+    en: child, boy
+  forms:
+    hbo-Hebr/tiberian: [יֶלֶד]
+- id: form:wayyiqtol-3fp
+  gloss:
+    en: 'and they (f.) did: the narrative past, they (women)'
+- id: sense:hevi
+  gloss:
+    en: to bring (hiphil of בּוֹא)
+  forms:
+    hbo-Hebr/tiberian: [הֵבִיא]
+- id: sense:gazar
+  gloss:
+    en: to cut, divide
+  forms:
+    hbo-Hebr/tiberian: [גָּזַר]
+- id: sense:hatsi
+  gloss:
+    en: half
+  forms:
+    hbo-Hebr/tiberian: [חֵצִי]
+- id: sense:yalad
+  gloss:
+    en: to bear, give birth; (passive participle) born, a child
+  forms:
+    hbo-Hebr/tiberian: [יָלַד]
+- id: sense:nikhmar
+  gloss:
+    en: to grow warm, be stirred (niphal)
+  forms:
+    hbo-Hebr/tiberian: [נִכְמַר]
+- id: sense:rahamim
+  gloss:
+    en: 'compassion, mercy (also: womb, the seat of feeling)'
+  forms:
+    hbo-Hebr/tiberian: [רַחֲמִים]
+- id: sense:bi
+  gloss:
+    en: 'please, pardon (בִּי אֲדֹנִי: please, my lord)'
+  forms:
+    hbo-Hebr/tiberian: [בִּי]
+- id: sense:hemit
+  gloss:
+    en: to kill, put to death (hiphil of מוּת)
+  forms:
+    hbo-Hebr/tiberian: [הֵמִית]
+nodes:
+- {id: hbo.u16.the-king, kind: lesson, introduces: ['sense:melekh', 'sense:chai', 'sense:yeled']}
+- {id: hbo.u16.two-women, kind: lesson, introduces: ['form:wayyiqtol-3fp']}
+- {id: hbo.u16.bring-a-sword, kind: lesson, introduces: ['sense:hevi', 'sense:gazar', 'sense:hatsi']}
+- {id: hbo.u16.her-compassion, kind: lesson, introduces: ['sense:yalad', 'sense:nikhmar', 'sense:rahamim', 'sense:bi', 'sense:hemit']}
+- {id: hbo.u16.story, kind: story}
+sentences:
+- id: s.16.1
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֶלֶךְ
+      tokens: [{surface: מֶלֶךְ, sense: melekh, readings: {tiberian: méleḵ}}]
+      reverse: מלך
+  translations:
+    en: a king
+- id: s.16.2
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַמֶּלֶךְ
+      tokens: [{surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
+      reverse: המלך
+  translations:
+    en: the king
+- id: s.16.3
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִפְנֵי הַמֶּלֶךְ
+      tokens: [{surface: לִפְנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh,
+          morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
+      reverse: לפני המלך
+  translations:
+    en: |-
+      before the king
+      in front of the king
+- id: s.16.4
+  node: hbo.u16.the-king
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַמֶּלֶךְ בַּבַּיִת׃
+      tokens: [{surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
+      reverse: המלך בבית
+  translations:
+    en: |-
+      The king is in the house.
+      The king is (at home|in the palace).
+- id: s.16.5
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: חַי
+      tokens: [{surface: חַי, sense: chai, readings: {tiberian: ḥay}}]
+      reverse: חי
+  translations:
+    en: |-
+      alive
+      living
+- id: s.16.6
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיֶּלֶד
+      tokens: [{surface: הַיֶּלֶד, sense: yeled, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יֶּלֶד, kc: 'sense:yeled'}], readings: {tiberian: hayyéleḏ}}]
+      reverse: הילד
+  translations:
+    en: |-
+      the child
+      the boy
+- id: s.16.7
+  node: hbo.u16.the-king
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיֶּלֶד חַי׃
+      tokens: [{surface: הַיֶּלֶד, sense: yeled, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יֶּלֶד, kc: 'sense:yeled'}], readings: {tiberian: hayyéleḏ}}, {surface: חַי, sense: chai, readings: {tiberian: ḥay}}]
+      reverse: הילד חי
+  translations:
+    en: The (child|boy) is (alive|living).
+- id: s.16.8
+  node: hbo.u16.the-king
+  persons: {addressee: f}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּנִי הַחַי וּבְנֵךְ הַמֵּת׃
+      tokens: [{surface: בְּנִי, sense: ben, morphs: [{surface: בְּנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}}, {surface: וּבְנֵךְ, sense: ben, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְנֵ, kc: 'sense:ben'},
+            {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ûḇənēḵ}}, {surface: הַמֵּת, sense: mut, form: 'form:ptc-ms', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֵּת, kc: 'sense:mut'}],
+          readings: {tiberian: hammēṯ}}]
+      reverse: בני החי ובנך המת
+  translations:
+    en: |-
+      My son is the living one, and your son is the dead one.
+      The living one is my son, and the dead one is your son.
+- id: s.16.9
+  node: hbo.u16.the-king
+  forms:
+    hbo-Hebr/tiberian:
+      text: חַי־יְהוָה׃
+      tokens: [{surface: חַי, sense: chai, readings: {tiberian: ḥay-}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: חי יהוה
+  translations:
+    en: |-
+      As the LORD lives!
+      By the life of the LORD!
+- id: s.16.10
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָשִׁים
+      tokens: [{surface: נָשִׁים, sense: ishah, form: 'form:pl', readings: {tiberian: nāšîm}}]
+      reverse: נשים
+  translations:
+    en: |-
+      women
+      wives
+- id: s.16.11
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁתַּיִם נָשִׁים
+      tokens: [{surface: שְׁתַּיִם, sense: shnayim, readings: {tiberian: šətáyim}}, {surface: נָשִׁים, sense: ishah, form: 'form:pl', readings: {tiberian: nāšîm}}]
+      reverse: שתים נשים
+  translations:
+    en: two women
+- id: s.16.12
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאִשָּׁה הָאַחֶרֶת
+      tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: הָאַחֶרֶת, sense: aher, form: 'form:f',
+          morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אַחֶרֶת, kc: 'sense:aher'}], readings: {tiberian: hāʾaḥéreṯ}}]
+      reverse: האשה האחרת
+  translations:
+    en: the other woman
+- id: s.16.13
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְזֹאת אֹמֶרֶת׃
+      tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+          readings: {tiberian: ʾōméreṯ}}]
+      reverse: (וזאת|וזואת) (אמרת|אומרת)
+  translations:
+    en: And this (one|woman) (says|is saying).
+- id: s.16.14
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתְּדַבֵּרְנָה לִפְנֵי הַמֶּלֶךְ׃
+      tokens: [{surface: וַתְּדַבֵּרְנָה, sense: dibber, form: 'form:wayyiqtol-3fp', readings: {tiberian: wattəḏabbḗrnâ}}, {surface: לִפְנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: לִ, kc: 'sense:le'},
+            {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {
+            tiberian: hamméleḵ}}]
+      reverse: ותדברנה לפני המלך
+  translations:
+    en: |-
+      [(And|Thus|So)] they spoke before the king.
+      [(And|So)] they (argued|talked) (before|in front of) the king.
+- id: s.16.15
+  node: hbo.u16.two-women
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֵּלַכְנָה׃
+      tokens: [{surface: וַתֵּלַכְנָה, sense: halakh, form: 'form:wayyiqtol-3fp', readings: {tiberian: wattēláḵnâ}}]
+      reverse: ותלכנה
+  translations:
+    en: |-
+      [(And|Then|So)] they went.
+      [(And|Then|So)] they (left|went away).
+- id: s.16.16
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קְחוּ לִי חָרֶב׃
+      tokens: [{surface: קְחוּ, sense: laqach, form: 'form:impv-mp', readings: {tiberian: qəḥû}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: lî}}, {surface: חָרֶב, sense: herev, readings: {tiberian: ḥā́reḇ}}]
+      reverse: קחו לי חרב
+  translations:
+    en: |-
+      Bring me a sword!
+      Get me a sword!
+- id: s.16.17
+  node: hbo.u16.bring-a-sword
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּבִאוּ הַחֶרֶב לִפְנֵי הַמֶּלֶךְ׃
+      tokens: [{surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}, {surface: הַחֶרֶב, sense: herev, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב,
+              kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {
+            tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
+      reverse: ויבאו החרב לפני המלך
+  translations:
+    en: |-
+      [(And|So)] they brought the sword before the king.
+      [(And|So)] they brought the sword (to|in front of) the king.
+- id: s.16.18
+  node: hbo.u16.bring-a-sword
+  forms:
+    hbo-Hebr/tiberian:
+      text: חֲצִי
+      tokens: [{surface: חֲצִי, sense: hatsi, readings: {tiberian: ḥăṣî}}]
+      reverse: חצי
+  translations:
+    en: half
+- id: s.16.19
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: גִּזְרוּ אֶת־הַיֶּלֶד לִשְׁנָיִם׃
+      tokens: [{surface: גִּזְרוּ, sense: gazar, form: 'form:impv-mp', readings: {tiberian: gizrû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיֶּלֶד, sense: yeled, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: יֶּלֶד, kc: 'sense:yeled'}], readings: {tiberian: hayyéleḏ}}, {surface: לִשְׁנָיִם, sense: shnayim, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׁנָיִם, kc: 'sense:shnayim'}],
+          readings: {tiberian: lišnā́yim}}]
+      reverse: גזרו את הילד לשנים
+  translations:
+    en: (Cut|Divide) the child in (two|half)!
+- id: s.16.20
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: תֵּן לִי׃
+      tokens: [{surface: תֵּן, sense: natan, form: 'form:impv-ms', readings: {tiberian: tēn}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: lî}}]
+      reverse: תן לי
+  translations:
+    en: Give (it to me|me)!
+- id: s.16.21
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: תְּנִי לִי׃
+      tokens: [{surface: תְּנִי, sense: natan, form: 'form:impv-fs', readings: {tiberian: tənî}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: lî}}]
+      reverse: תני לי
+  translations:
+    en: Give (it to me|me)!
+- id: s.16.22
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: תְּנוּ לִי׃
+      tokens: [{surface: תְּנוּ, sense: natan, form: 'form:impv-mp', readings: {tiberian: tənû}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: lî}}]
+      reverse: תנו לי
+  translations:
+    en: Give (it to me|me)!
+- id: s.16.23
+  node: hbo.u16.bring-a-sword
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וּתְנוּ אֶת־הַחֲצִי לְאַחַת׃
+      tokens: [{surface: וּתְנוּ, sense: natan, form: 'form:impv-mp', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: תְנוּ, kc: 'sense:natan'}], readings: {tiberian: ûṯənû}}, {surface: אֶת, sense: et,
+          readings: {tiberian: ʾeṯ-}}, {surface: הַחֲצִי, sense: hatsi, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֲצִי, kc: 'sense:hatsi'}], readings: {tiberian: haḥăṣî}}, {surface: לְאַחַת, sense: ehad,
+          morphs: [{surface: לְ, kc: 'sense:le'}, {surface: אַחַת, kc: 'sense:ehad'}], readings: {tiberian: ləʾaḥaṯ}}]
+      reverse: ותנו את החצי לאחת
+  translations:
+    en: |-
+      And give half to one.
+      And give [one] half to (the one|one of them).
+- id: s.16.24
+  node: hbo.u16.her-compassion
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֵּלֶד בֵּן׃
+      tokens: [{surface: וַתֵּלֶד, sense: yalad, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattḗleḏ}}, {surface: בֵּן, sense: ben, readings: {tiberian: bēn}}]
+      reverse: ותלד בן
+  translations:
+    en: |-
+      [(And|Then)] she (bore|gave birth to) a son.
+      [(And|Then)] she had a son.
+- id: s.16.25
+  node: hbo.u16.her-compassion
+  forms:
+    hbo-Hebr/tiberian:
+      text: רַחֲמִים
+      tokens: [{surface: רַחֲמִים, sense: rahamim, readings: {tiberian: raḥămîm}}]
+      reverse: רחמים
+  translations:
+    en: |-
+      compassion
+      (mercy|pity)
+- id: s.16.26
+  node: hbo.u16.her-compassion
+  forms:
+    hbo-Hebr/tiberian:
+      text: בִּי אֲדֹנִי
+      tokens: [{surface: בִּי, sense: bi, readings: {tiberian: bî}}, {surface: אֲדֹנִי, sense: adon, morphs: [{surface: אֲדֹנִ, kc: 'sense:adon'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḏōnî}}]
+      reverse: בי (אדני|אדוני)
+  translations:
+    en: |-
+      please, my lord
+      (pardon me|excuse me|oh), my lord
+- id: s.16.27
+  node: hbo.u16.her-compassion
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי׃
+      tokens: [{surface: תְּנוּ, sense: natan, form: 'form:impv-mp', readings: {tiberian: tənû-}}, {surface: לָהּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: הּ, kc: 'form:sfx-3fs'}],
+          readings: {tiberian: lāh}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, sense: yalad, form: 'form:ptc-pass', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּלוּד,
+              kc: 'sense:yalad'}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}}]
+      reverse: תנו לה את הילוד החי
+  translations:
+    en: |-
+      Give her the living child!
+      Give the living (child|baby) to her!
+- id: s.16.28
+  node: hbo.u16.her-compassion
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַל־תְּמִיתֻהוּ׃
+      tokens: [{surface: אַל, sense: al.neg, readings: {tiberian: ʾal-}}, {surface: תְּמִיתֻהוּ, sense: hemit, form: 'form:juss', morphs: [{surface: תְּמִיתֻ, kc: 'sense:hemit'}, {surface: הוּ, kc: 'form:sfx-3ms'}],
+          readings: {tiberian: təmîṯúhû}}]
+      reverse: אל (תמיתהו|תמיתוהו)
+  translations:
+    en: |-
+      Do not kill him!
+      (Don't|Do not) (kill|put him to death)!
+- id: s.16.29
+  node: hbo.u16.her-compassion
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִיא אִמּוֹ׃
+      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
+      reverse: היא אמו
+  translations:
+    en: (She is|She's) his mother.
+- id: s.16.30
+  node: hbo.u16.her-compassion
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי־נִכְמְרוּ רַחֲמֶיהָ עַל־בְּנָהּ
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, morphs: [
+            {surface: רַחֲמֶי, kc: 'sense:rahamim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: raḥămêhā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: בְּנָהּ, sense: ben,
+          morphs: [{surface: בְּנָ, kc: 'sense:ben'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}]
+      reverse: כי נכמרו רחמיה על בנה
+  translations:
+    en: |-
+      for her heart (yearned|went out) to her son
+      because she was filled with compassion for her son
+stories:
+- id: hbo.story.the-wise-king
+  node: hbo.u16.story
+  title:
+    en: The wise king (1 Kings 3:22, 24–27)
+  characters:
+  - {id: king, speaker: m, name: {hbo-Hebr/tiberian: הַמֶּלֶךְ}}
+  - {id: mother, speaker: f, name: {hbo-Hebr/tiberian: הָאִשָּׁה}}
+  - {id: other, speaker: f, name: {hbo-Hebr/tiberian: הָאַחֶרֶת}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר הָאִשָּׁה הָאַחֶרֶת
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+                  kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: הָאַחֶרֶת, sense: aher, form: 'form:f', morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אַחֶרֶת, kc: 'sense:aher'}], readings: {
+                tiberian: hāʾaḥéreṯ}}]
+      translations:
+        en: But the other woman said,
+  - line:
+      speaker: other
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא כִי בְּנִי הַחַי וּבְנֵךְ הַמֵּת
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: כִי, sense: ki, readings: {tiberian: ḵî}}, {surface: בְּנִי, sense: ben, morphs: [{surface: בְּנִ, kc: 'sense:ben'}, {
+                  surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
+            {surface: וּבְנֵךְ, sense: ben, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְנֵ, kc: 'sense:ben'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ûḇənēḵ}}, {surface: הַמֵּת,
+              sense: mut, form: 'form:ptc-ms', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֵּת, kc: 'sense:mut'}], readings: {tiberian: hammēṯ}}]
+      translations:
+        en: “No, my son is the living one, and your son is the dead one.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְזֹאת אֹמֶרֶת
+          tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+              readings: {tiberian: ʾōméreṯ}}]
+      translations:
+        en: And this one said,
+  - line:
+      speaker: mother
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא כִי בְּנֵךְ הַמֵּת וּבְנִי הֶחָי
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: כִי, sense: ki, readings: {tiberian: ḵî}}, {surface: בְּנֵךְ, sense: ben, morphs: [{surface: בְּנֵ, kc: 'sense:ben'}, {
+                  surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: bənēḵ}}, {surface: הַמֵּת, sense: mut, form: 'form:ptc-ms', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֵּת, kc: 'sense:mut'}],
+              readings: {tiberian: hammēṯ}}, {surface: וּבְנִי, sense: ben, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ûḇənî}},
+            {surface: הֶחָי, sense: chai, morphs: [{surface: הֶ, kc: 'sense:ha'}, {surface: חָי, kc: 'sense:chai'}], readings: {tiberian: heḥāy}}]
+      translations:
+        en: “No, your son is the dead one, and my son is the living one.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתְּדַבֵּרְנָה לִפְנֵי הַמֶּלֶךְ׃
+          tokens: [{surface: וַתְּדַבֵּרְנָה, sense: dibber, form: 'form:wayyiqtol-3fp', readings: {tiberian: wattəḏabbḗrnâ}}, {surface: לִפְנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: לִ,
+                  kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}],
+              readings: {tiberian: hamméleḵ}}]
+      translations:
+        en: Thus they argued before the king.
+  - choose:
+      prompt:
+        en: What are the two women arguing about?
+      options: [{en: whose son is the living one}, {en: who will marry the king}, {en: where the sword is}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר הַמֶּלֶךְ קְחוּ
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ,
+                  kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: קְחוּ, sense: laqach, form: 'form:impv-mp', readings: {tiberian: qəḥû}}]
+      translations:
+        en: And the king said,
+  - line:
+      speaker: king
+      forms:
+        hbo-Hebr/tiberian:
+          text: לִי־חָרֶב וַיָּבִאוּ
+          tokens: [{surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî-}}, {surface: חָרֶב, sense: herev, readings: {tiberian: ḥā́reḇ}},
+            {surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}]
+      translations:
+        en: “Bring me a sword.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַחֶרֶב לִפְנֵי הַמֶּלֶךְ׃
+          tokens: [{surface: הַחֶרֶב, sense: herev, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב, kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:cstr',
+              morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ,
+                  kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
+      translations:
+        en: So they brought the sword before the king.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר הַמֶּלֶךְ גִּזְרוּ
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ,
+                  kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: גִּזְרוּ, sense: gazar, form: 'form:impv-mp', readings: {tiberian: gizrû}}]
+      translations:
+        en: And the king said,
+  - line:
+      speaker: king
+      ask: complete
+      gap: sense:yeled
+      distractors: ['sense:melekh', 'sense:ben']
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֶת־הַיֶּלֶד הַחַי לִשְׁנָיִם וּתְנוּ אֶת־הַחֲצִי לְאַחַת וְאֶת־הַחֲצִי לְאֶחָת׃
+          tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיֶּלֶד, sense: yeled, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יֶּלֶד, kc: 'sense:yeled'}], readings: {tiberian: hayyéleḏ}},
+            {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}}, {surface: לִשְׁנָיִם, sense: shnayim, morphs: [{surface: לִ,
+                  kc: 'sense:le'}, {surface: שְׁנָיִם, kc: 'sense:shnayim'}], readings: {tiberian: lišnā́yim}}, {surface: וּתְנוּ, sense: natan, form: 'form:impv-mp', morphs: [{surface: וּ, kc: 'sense:we'},
+                {surface: תְנוּ, kc: 'sense:natan'}], readings: {tiberian: ûṯənû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַחֲצִי, sense: hatsi, morphs: [{surface: הַ, kc: 'sense:ha'},
+                {surface: חֲצִי, kc: 'sense:hatsi'}], readings: {tiberian: haḥăṣî}}, {surface: לְאַחַת, sense: ehad, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: אַחַת, kc: 'sense:ehad'}], readings: {
+                tiberian: ləʾaḥaṯ}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: הַחֲצִי, sense: hatsi,
+              morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֲצִי, kc: 'sense:hatsi'}], readings: {tiberian: haḥăṣî}}, {surface: לְאֶחָת, sense: ehad, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: אֶחָת,
+                  kc: 'sense:ehad'}], readings: {tiberian: ləʾeḥāṯ}}]
+      translations:
+        en: “Cut the living child in two, and give half to the one and half to the other.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר הָאִשָּׁה אֲשֶׁר־בְּנָהּ הַחַי אֶל־הַמֶּלֶךְ כִּי־נִכְמְרוּ רַחֲמֶיהָ עַל־בְּנָהּ
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+                  kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}}, {surface: בְּנָהּ, sense: ben, morphs: [{surface: בְּנָ, kc: 'sense:ben'},
+                {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
+            {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}},
+            {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: נִכְמְרוּ, sense: nikhmar, form: 'form:qatal-3cp', readings: {tiberian: niḵmərû}}, {surface: רַחֲמֶיהָ, sense: rahamim, morphs: [
+                {surface: רַחֲמֶי, kc: 'sense:rahamim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: raḥămêhā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: בְּנָהּ, sense: ben,
+              morphs: [{surface: בְּנָ, kc: 'sense:ben'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bənāh}}]
+      translations:
+        en: Then the woman whose son was the living one spoke to the king, for her heart yearned for her son,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}]
+      translations:
+        en: and she said,
+  - line:
+      speaker: mother
+      ask: complete
+      gap: sense:yalad
+      distractors: ['sense:melekh', 'sense:naar']
+      forms:
+        hbo-Hebr/tiberian:
+          text: בִּי אֲדֹנִי תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת אַל־תְּמִיתֻהוּ
+          tokens: [{surface: בִּי, sense: bi, readings: {tiberian: bî}}, {surface: אֲדֹנִי, sense: adon, morphs: [{surface: אֲדֹנִ, kc: 'sense:adon'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḏōnî}},
+            {surface: תְּנוּ, sense: natan, form: 'form:impv-mp', readings: {tiberian: tənû-}}, {surface: לָהּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {
+                tiberian: lāh}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, sense: yalad, form: 'form:ptc-pass', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּלוּד,
+                  kc: 'sense:yalad'}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
+            {surface: וְהָמֵת, sense: hemit, form: 'form:inf-abs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָמֵת, kc: 'sense:hemit'}], readings: {tiberian: wəhāmēṯ}}, {surface: אַל, sense: al.neg,
+              readings: {tiberian: ʾal-}}, {surface: תְּמִיתֻהוּ, sense: hemit, form: 'form:juss', morphs: [{surface: תְּמִיתֻ, kc: 'sense:hemit'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: təmîṯúhû}}]
+      translations:
+        en: “Please, my lord, give her the living child, and do not kill him!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְזֹאת אֹמֶרֶת
+          tokens: [{surface: וְזֹאת, sense: zot, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: זֹאת, kc: 'sense:zot'}], readings: {tiberian: wəzōʾṯ}}, {surface: אֹמֶרֶת, sense: amar, form: 'form:ptc-fs',
+              readings: {tiberian: ʾōméreṯ}}]
+      translations:
+        en: But the other said,
+  - line:
+      speaker: other
+      forms:
+        hbo-Hebr/tiberian:
+          text: גַּם־לִי גַם־לָךְ לֹא יִהְיֶה גְּזֹרוּ׃
+          tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam-}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}},
+            {surface: גַם, sense: gam, readings: {tiberian: ḡam-}}, {surface: לָךְ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: lāḵ}}, {surface: לֹא,
+              sense: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, sense: hayah, form: 'form:yiqtol-3ms', readings: {tiberian: yihyeh}}, {surface: גְּזֹרוּ, sense: gazar, form: 'form:impv-mp', readings: {
+                tiberian: gəzōrû}}]
+      translations:
+        en: “It shall be neither mine nor yours; divide it!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיַּעַן הַמֶּלֶךְ וַיֹּאמֶר
+          tokens: [{surface: וַיַּעַן, sense: anah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyáʿan}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ,
+                  kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: Then the king answered and said,
+  - line:
+      speaker: king
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: תְּנוּ־לָהּ אֶת־הַיָּלוּד הַחַי וְהָמֵת לֹא תְמִיתֻהוּ הִיא אִמּוֹ׃
+          tokens: [{surface: תְּנוּ, sense: natan, form: 'form:impv-mp', readings: {tiberian: tənû-}}, {surface: לָהּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: הּ, kc: 'form:sfx-3fs'}],
+              readings: {tiberian: lāh}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּלוּד, sense: yalad, form: 'form:ptc-pass', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּלוּד,
+                  kc: 'sense:yalad'}], readings: {tiberian: hayyālûḏ}}, {surface: הַחַי, sense: chai, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חַי, kc: 'sense:chai'}], readings: {tiberian: haḥay}},
+            {surface: וְהָמֵת, sense: hemit, form: 'form:inf-abs', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָמֵת, kc: 'sense:hemit'}], readings: {tiberian: wəhāmēṯ}}, {surface: לֹא, sense: lo,
+              readings: {tiberian: lōʾ}}, {surface: תְמִיתֻהוּ, sense: hemit, form: 'form:yiqtol-2mp', morphs: [{surface: תְמִיתֻ, kc: 'sense:hemit'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: ṯəmîṯúhû}},
+            {surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
+      translations:
+        en: '“Give her the living child, and do not kill him: she is his mother.”'
+  - choose:
+      prompt:
+        en: How does the king know the child's mother?
+      options: [{en: She would rather give her son away than see him killed.}, {en: She brings the sword.}, {en: She says she is a queen.}]
+      answer: 0
+scenarios:
+- id: hbo.at-the-kings-court
+  after: hbo.u16.her-compassion
+  title:
+    en: At the king's court
+  setting:
+    en: 'Jerusalem, in King Solomon''s hall of judgment: people come to the king with their disputes.'
+  character:
+    en: A royal servant at the door, polite and busy, who speaks only Biblical Hebrew.
+  goal:
+    en: Say that you must speak before the king, say who you are, and explain that your neighbour has taken your sheep.

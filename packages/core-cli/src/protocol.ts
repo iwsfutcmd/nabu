@@ -6,7 +6,7 @@
  *
  * Request: { id, op, ...args }. Response: { id, ok: true, result } or { id, ok: false, error }.
  */
-import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
+import { caseFold, checkTaggedText, compileAcceptSet, compileGlossary, glossText, glossTokens, glossUnits, gradeReading, gradeVowels, graphemes, grade, lexiconKey, parseExemplarSet, type CompiledAcceptSet, type CompiledGlossary, type CompiledProfile, type GlossEntry } from "@nabu/core";
 import { directionOf, scriptOf } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { loadProfiles } from "./load.ts";
@@ -96,8 +96,12 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
     };
   },
   grade: (a) => {
-    const lexicon = Array.isArray(a["lexicon"]) ? new Set((a["lexicon"] as unknown[]).map(String)) : undefined;
-    return grade(acceptSet(a), text(a, "answer"), lexicon === undefined ? {} : { lexicon });
+    const set = acceptSet(a);
+    const keyed = (name: string): ReadonlySet<string> | undefined =>
+      Array.isArray(a[name]) ? new Set((a[name] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
+    const lexicon = keyed("lexicon");
+    const inflected = keyed("inflected");
+    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }) });
   },
   /** A word's vowel marks as the learner wrote them, against its vocalized form (ADR 0054). */
   "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),
