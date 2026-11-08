@@ -58,8 +58,9 @@ def test_every_phoneme_is_one_the_voice_knows() -> None:
     readings = ["bərēʾšîṯ", "haššāmáyim", "wəhāʾā́reṣ", "ḥōšeḵ", "ṭôḇ", "ṣōʾn", "qôl", "ʿal-",
                 "p̄ənê", "ḡam", "ʾăḏōnāy", "yiṣḥāq", "ʾĕlōhîm", "ḥoḵmâ", "ʾattâ"]  # fmt: skip
     text = " ".join(tiberian.espeak(r) for r in readings)
-    said = espeak.synthesize(text + ".", "ar")
+    # Each in a fresh process, as the provider synthesizes: eSpeak carries state between utterances.
+    jobs = [espeak.Job(text + ".", "ar"), *(espeak.Job(tiberian.espeak(r), "ar") for r in readings)]
+    said, *ones = espeak.synthesize_all(jobs)
     assert len(said.words) == len(readings)
-    for r in readings:
-        one = espeak.synthesize(tiberian.espeak(r), "ar")
+    for r, one in zip(readings, ones, strict=True):
         assert one.duration_ms > 150, r
