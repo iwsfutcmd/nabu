@@ -31,7 +31,7 @@ import {
 } from "../src/lesson/index.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
-import { makeMatchPairs, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { makeMatchPairs, makeTapL1L2, makeTapL2L1, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -131,6 +131,23 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
       return undefined;
   }
 };
+
+describe.each(VARIANTS)("tiles: %s %s", (id, orthography) => {
+  const course = loadCourse(id, orthography);
+  const grader = createGrader(course);
+  // Every sentence, not a lesson's sample: tiles in their order are right in both directions,
+  // also where the words are joined by a hyphen or a maqaf alone (מִן־הַגָּן).
+  it("grades every sentence's tiles, put in order, as right", () => {
+    const ctx = { course, rng: seededRng(3), introduced: [] };
+    for (const s of course.units.flatMap((u) => u.sentences)) {
+      for (const ex of [makeTapL1L2(ctx, s), makeTapL2L1(ctx, s)]) {
+        if (ex === undefined) continue;
+        const right = gradeExercise(ex, { tag: "tiles", order: ex.solution }, grader);
+        expect(isCorrect(right.verdict), `${ex.id}: ${right.verdict} ${JSON.stringify(right.notes)}`).toBe(true);
+      }
+    }
+  }, 60_000);
+});
 
 describe.each(VARIANTS)("lessons: %s %s", (id, orthography) => {
   const course = loadCourse(id, orthography);

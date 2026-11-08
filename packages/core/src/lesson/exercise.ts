@@ -86,7 +86,10 @@ export interface TranslateTap extends Common {
   readonly tiles: readonly TaggedText[];
   /** Tile indexes that spell the canonical answer, in order. */
   readonly solution: readonly number[];
-  /** Placed tiles are joined with this before grading (" " where the script spaces words). */
+  /**
+   * Placed tiles are joined with this before grading (" " where the script spaces words), except
+   * two that follow each other as in the answer, which keep its separator (tilesText).
+   */
   readonly joiner: string;
   readonly accept: string;
   readonly canonical: TaggedText;
