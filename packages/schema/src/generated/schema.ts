@@ -229,7 +229,8 @@ export type NormalizeStep =
   | DigitsStep
   | PunctuationStep
   | WhitespaceStep
-  | DetachStep;
+  | DetachStep
+  | LogographsStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -433,6 +434,7 @@ export interface NabuSchemaIndex {
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
+  readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
   readonly KeyboardRef: KeyboardRef;
@@ -2763,6 +2765,29 @@ export interface DetachStep {
      */
     readonly prefixes: readonly string[];
     readonly minRest?: number;
+  };
+}
+/**
+ * Words typed in a script that spells them, written as this orthography's logographs (ADR 0085): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LogographsStep".
+ */
+export interface LogographsStep {
+  readonly logographs: {
+    /**
+     * Each word, as it is typed, and the logograph that writes it.
+     */
+    readonly words: {
+      readonly [k: string]: string;
+    };
+    /**
+     * The marks that open and close a name written with the logographs' first letters.
+     */
+    readonly cartouche?: {
+      readonly open: string;
+      readonly close: string;
+    };
   };
 }
 /**

@@ -98,6 +98,43 @@ const detach = (prefixes: readonly string[], minRest: number): StepFn => {
   return (text) => text.replace(/[^\s]+/gu, split);
 };
 
+/** A word as a run of letters and marks: what a learner types between spaces and punctuation. */
+const WORD = /[\p{L}\p{M}]+/gu;
+
+/**
+ * Words typed in the script that spells them, written as logographs (ADR 0085): sitelen Lasina
+ * typed into a sitelen pona answer (toki → U+F196C). A whole word that is a key, ignoring case
+ * as the collator does, becomes its logograph; anything else is left as it is. Inside a
+ * cartouche (its marks a grapheme each) every logograph reads as its word's first letter and the
+ * marks go, so a name written in one and the name typed in Latin letters compare alike. Names are
+ * read first, so a name that spells a word becomes that word's logograph on both sides.
+ */
+const logographs = (words: Readonly<Record<string, string>>, cartouche: { readonly open: string; readonly close: string } | undefined): StepFn => {
+  const same = new Intl.Collator("und", { sensitivity: "accent", usage: "search" });
+  const entries = Object.entries(words).map(([k, v]) => [k.normalize("NFC"), v.normalize("NFC")] as const);
+  const exact = new Map(entries);
+  const glyphOf = (word: string): string | undefined => exact.get(word) ?? entries.find(([k]) => same.compare(k, word) === 0)?.[1];
+  const letterOf = new Map(entries.map(([k, v]) => [v, graphemes(k)[0] ?? ""]));
+  const open = cartouche?.open.normalize("NFC");
+  const close = cartouche?.close.normalize("NFC");
+  const readNames = (text: string): string => {
+    let out = "";
+    let name: string[] | undefined;
+    for (const g of graphemes(text)) {
+      if (name === undefined) {
+        if (g === open) name = [];
+        else out += g;
+      } else if (g === close) {
+        out += name.map((n) => letterOf.get(n) ?? n).join("");
+        name = undefined;
+      } else name.push(g);
+    }
+    // A cartouche left open is left as it was.
+    return name === undefined ? out : `${out}${open ?? ""}${name.join("")}`;
+  };
+  return (text) => (open === undefined ? text : readNames(text)).replace(WORD, (word) => glyphOf(word) ?? word);
+};
+
 export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Record<string, string>>): StepFn => {
   if (step === "nfc") return (t) => t.normalize("NFC");
   if ("fold-compat" in step) return foldArabicPresentationForms;
@@ -107,6 +144,7 @@ export const compileStep = (step: NormalizeStep, numberingSystems: Readonly<Reco
   if ("digits" in step) return digits(step.digits.canonical, step.digits.accept, numberingSystems);
   if ("punctuation" in step) return step.punctuation === "strip" ? (t) => t.replace(PUNCTUATION, "") : (t) => t;
   if ("detach" in step) return detach(step.detach.prefixes, step.detach.minRest ?? 2);
+  if ("logographs" in step) return logographs(step.logographs.words, step.logographs.cartouche);
   // whitespace
   if (step.whitespace === "collapse") return (t) => t.replace(WHITESPACE, " ").trim();
   if (step.whitespace === "remove") return (t) => t.replace(WHITESPACE, "");

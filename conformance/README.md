@@ -13,10 +13,10 @@ it.
 | `unicode-set.json` | CLDR exemplar UnicodeSet syntax |
 | `direction.json` | Script and direction from a language tag (also cross-checked against the engine's Intl) |
 | `case-fold.json` | Locale-aware case folding: Turkish/Azerbaijani i, Greek final sigma, ẞ, Lithuanian |
-| `normalize.json` | Every profile's normalization pipeline |
+| `normalize.json` | Every profile's normalization pipeline (sitelen pona: typed Latin words as logographs, cartouches read as names, joiners and long glyphs dropped, ADR 0085) |
 | `segmentation.json` | Runtime units and orthographic letters |
 | `accept.json` | Accept-set notation, expansion and errors |
-| `grade.json` | Grading verdicts, notes and alignments across the profiles (Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts, and the sets limited by form: person prefixes, verb endings, agreement, ADR 0084) |
+| `grade.json` | Grading verdicts, notes and alignments across the profiles (Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts, and the sets limited by form: person prefixes, verb endings, agreement, ADR 0084; Toki Pona: Latin typed into sitelen pona, names against their cartouches, ADR 0085) |
 | `tagged-text.json` | TaggedText invariants |
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 | `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054) |

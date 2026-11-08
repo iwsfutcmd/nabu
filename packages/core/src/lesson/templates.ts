@@ -449,6 +449,8 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 /** How a reading scheme is tagged when its readings are shown as options (Jyutping: yue-Latn-HK-jyutping). */
 export const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
   jyutping: { lang: "yue-Latn-HK-jyutping", orthography: "yue-Latn/jyutping" },
+  // A sitelen pona logograph's word in sitelen Lasina (ADR 0085): options are the course's own Latin orthography.
+  lasina: { lang: "tok-Latn", orthography: "tok-Latn/standard" },
 };
 
 /** The profile's ruby reading scheme (Jyutping for yue), if it is one we can show as options. */

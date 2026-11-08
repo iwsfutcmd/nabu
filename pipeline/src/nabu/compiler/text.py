@@ -9,10 +9,27 @@ from typing import Any
 import regex
 
 GRAPHEME = regex.compile(r"\X")
+# sitelen pona (ADR 0085), in the UCSUR's private use block, runs its words together: each logograph
+# is a word, and so is a name, a whole cartouche (U+F1990 … U+F1991).
+_LOGOGRAPH = r"[\U000F1900-\U000F198F\U000F19A0-\U000F19FF]"
+SITELEN_PONA = rf"\U000F1990{_LOGOGRAPH}*\U000F1991|{_LOGOGRAPH}"
 # A word may hold an apostrophe between letters: English I'm and name's are one word, one tile.
-WORD = regex.compile(r"[\p{L}\p{M}\p{N}\u200c\u200d]+(?:['\u2019][\p{L}\p{M}\p{N}]+)*")
+WORD = regex.compile(
+    SITELEN_PONA + r"|[\p{L}\p{M}\p{N}\u200c\u200d]+(?:['\u2019][\p{L}\p{M}\p{N}]+)*"
+)
 WORDCHAR = regex.compile(r"[\p{L}\p{M}\p{N}]")
 HAN = regex.compile(r"\p{Han}")
+# sitelen pona's logographs as the UCSUR encodes them (ADR 0085), without its cartouche, joiner and
+# punctuation controls (U+F1990..U+F199F): a word written with one carries its sitelen Lasina
+# reading as ruby, as a Han word carries Jyutping. A name in a cartouche carries none.
+SITELEN_PONA_WORD = regex.compile(r"[\U000F1900-\U000F198F\U000F19A0-\U000F19FF]+")
+
+
+def ruby_bearing(surface: str) -> bool:
+    """Whether a word token carries ruby readings: Han characters, or sitelen pona logographs."""
+    return bool(HAN.search(surface)) or SITELEN_PONA_WORD.fullmatch(surface) is not None
+
+
 SYLLABLE = regex.compile(r"[a-z]+[1-6]")
 
 # Never allowed in content (§7.5): bidi embeddings/overrides/isolates, BOM, ZWSP, word joiner.

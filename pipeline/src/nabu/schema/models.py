@@ -1609,6 +1609,50 @@ class DetachStep(BaseModel):
     detach: Detach
 
 
+class Cartouche(BaseModel):
+    """
+    The marks that open and close a name written with the logographs' first letters.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    open: Annotated[str, Field(min_length=1)]
+    close: Annotated[str, Field(min_length=1)]
+
+
+class Logographs(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    words: Annotated[
+        dict[str, WordsAdditionalProperty],
+        Field(
+            description="Each word, as it is typed, and the logograph that writes it.", min_length=1
+        ),
+    ]
+    cartouche: Annotated[
+        Cartouche | None,
+        Field(
+            description="The marks that open and close a name written with the logographs' first letters."
+        ),
+    ] = None
+
+
+class LogographsStep(BaseModel):
+    """
+    Words typed in a script that spells them, written as this orthography's logographs (ADR 0085): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    logographs: Logographs
+
+
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3125,7 +3169,8 @@ type NormalizeStep = Annotated[
     | DigitsStep
     | PunctuationStep
     | WhitespaceStep
-    | DetachStep,
+    | DetachStep
+    | LogographsStep,
     Field(title="NormalizeStep"),
 ]
 

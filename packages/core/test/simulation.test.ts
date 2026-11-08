@@ -37,6 +37,9 @@ describe("planner: 30 simulated days", () => {
     // Biblical Hebrew (ADR 0082): Tiberian-pointed text, every word with a pinned reading.
     ["hbo", undefined, 14, 1.0],
     ["hbo", undefined, 15, 2.0],
+    // Toki Pona (ADR 0085): in sitelen Lasina and in sitelen pona.
+    ["tok", "tok-Latn/standard", 16, 1.3],
+    ["tok", "tok-Qaap/sitelen-pona", 17, 1.6],
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {

@@ -19,6 +19,7 @@ import regex
 import yaml
 from pydantic import BaseModel, ValidationError
 
+from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
 from nabu.compiler.audio import check_audio
@@ -179,13 +180,19 @@ def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
 
 
 def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
-    """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars."""
+    """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars.
+    A script CLDR has no locale for (sitelen pona, ADR 0085) lists its whole repertoire in
+    `exemplarsExtra`, with no `exemplars`: the audit then checks against that alone."""
     if profile.exemplars is None:
-        return None
-    key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
-    data = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
-    if data is None:
-        return None
+        if not profile.exemplarsExtra:
+            return None
+        data: dict[str, list[str]] = {}
+    else:
+        key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
+        found = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
+        if found is None:
+            return None
+        data = found
     chars: set[str] = set()
     for kind in ("main", "auxiliary", "index", "numbers"):
         for item in data.get(kind, []):
@@ -247,7 +254,7 @@ def _hygiene(
         if outside:
             diags.report(
                 "text.script-audit",
-                f"outside the {profile.exemplars} exemplars: {' '.join(outside)}",
+                f"outside the {profile.exemplars or 'listed'} exemplars: {' '.join(outside)}",
                 loc,
             )
         foreign_punct = sorted(
@@ -256,7 +263,8 @@ def _hygiene(
         if foreign_punct:
             diags.report(
                 "text.punctuation-audit",
-                f"punctuation not in the {profile.exemplars} exemplars: {' '.join(foreign_punct)}",
+                f"punctuation not in the {profile.exemplars or 'listed'} exemplars: "
+                + " ".join(foreign_punct),
                 loc,
             )
     script = profile.lang.split("-")[1]
@@ -349,7 +357,7 @@ def compile_form(
     # stage 3: readings and ruby, for every ruby layer
     for scheme in _ruby_schemes(profile):
         for t in toks:
-            if t["kind"] != "word" or not tx.HAN.search(t["surface"]):
+            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"]):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -759,7 +767,7 @@ def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: st
             for form in forms.get(orth, []):
                 for t in cast(list[dict[str, Any]], form["tokens"]):
                     surface = str(t["surface"])
-                    if t["kind"] != "word" or not tx.HAN.search(surface):
+                    if t["kind"] != "word" or not tx.ruby_bearing(surface):
                         continue
                     reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
                     segments = None if reading is None else tx.ruby_segments(surface, reading)
@@ -866,6 +874,11 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
     for orth, form in s.forms.items():
         profile = ctx.profiles.get(orth)
         tl = profile.transliterate if profile is not None else None
+        if tl is not None and tl.via == "sitelen-pona" and tl.to in s.forms:
+            _sitelen_pona(
+                ctx, unit.doc.loc("sentences", si, "forms", tl.to, "text"), form, s.forms[tl.to]
+            )
+            continue
         if tl is None or tl.via != "cldr-transform" or tl.to not in s.forms:
             continue
         target = ctx.profiles[tl.to]
@@ -878,6 +891,29 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
                 f"{tid} gives {converted!r}; pinned {pinned!r} wins",
                 unit.doc.loc("sentences", si, "forms", tl.to, "text"),
             )
+
+
+def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm) -> None:
+    """A tok sentence's pinned sitelen pona against its sitelen Lasina (ADR 0085): the words as
+    their logographs, each name as the cartouche its sitelen pona token pins."""
+    by_sense = {t.sense: t.surface for t in pinned.tokens or [] if t.sense is not None}
+    names = {
+        t.surface: by_sense[t.sense]
+        for t in latin.tokens or []
+        if t.sense is not None and t.surface[:1].isupper() and t.sense in by_sense
+    }
+    try:
+        converted = sitelen_pona.to_sitelen_pona(latin.text, names)
+    except sitelen_pona.SitelenPonaError as e:
+        ctx.diags.report("enrich.transliteration-mismatch", f"sitelen pona: {e}", loc)
+        return
+    if converted != pinned.text:
+        ctx.diags.report(
+            "enrich.transliteration-mismatch",
+            f"sitelen pona gives {converted.encode('unicode_escape').decode('ascii')}; "
+            f"pinned {pinned.text.encode('unicode_escape').decode('ascii')} wins",
+            loc,
+        )
 
 
 # ------------------------------------------------------------ stage 4: drills

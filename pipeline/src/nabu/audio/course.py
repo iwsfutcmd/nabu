@@ -43,7 +43,7 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import espeak, jyutping, tiberian
+from nabu.audio import espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
     Clip,
     NavoiyProvider,
@@ -71,8 +71,12 @@ BATCH = 16
 #: Reading schemes `pronounce` can turn into IPA.
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
-#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text.
-PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {"tiberian": tiberian.espeak}
+#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
+#: and Toki Pona's words in sitelen Lasina (ADR 0085), which no synthesizer has a voice for.
+PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "tiberian": tiberian.espeak,
+    "lasina": toki_pona.espeak,
+}
 WORD_KINDS = {"word", "number"}
 
 
