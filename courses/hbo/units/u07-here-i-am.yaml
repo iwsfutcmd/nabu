@@ -1,0 +1,776 @@
+# Biblical Hebrew (hbo), unit 7: Here I am (Genesis 22:1-2, 7-8).
+# הִנֵּה and הִנֵּנִי, the polite נָא, plural nouns, demonstratives (these), the imperfect "he will",
+# adverbs of place and manner (there, together), and the hiphil "offer up".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u07-here-i-am
+title:
+  en: Here I am
+cefr: A2
+kcs:
+- id: sense:davar
+  gloss:
+    en: word; thing, matter
+  forms:
+    hbo-Hebr/tiberian: [דָּבָר]
+- id: sense:elleh
+  gloss:
+    en: these
+  forms:
+    hbo-Hebr/tiberian: [אֵלֶּה]
+- id: sense:ahar
+  gloss:
+    en: after; behind
+  forms:
+    hbo-Hebr/tiberian: [אַחַר]
+- id: sense:avraham
+  gloss:
+    en: Abraham
+  forms:
+    hbo-Hebr/tiberian: [אַבְרָהָם]
+- id: sense:nissah
+  gloss:
+    en: to test, try (piel)
+  forms:
+    hbo-Hebr/tiberian: [נִסָּה]
+- id: sense:hinneh
+  gloss:
+    en: look!, here is …; (with a suffix) here I am
+  forms:
+    hbo-Hebr/tiberian: [הִנֵּה]
+  notes:
+    en: 'הִנֵּה hinnēh points to something: ''here is'', ''look''. With ''me'': הִנֵּנִי hinnḗnî ''here I am'', the answer to a call.'
+- id: sense:ben
+  gloss:
+    en: son; (בֶּן־ + years) aged
+  forms:
+    hbo-Hebr/tiberian: [בֵּן]
+  notes:
+    en: With suffixes בְּנִי bənî 'my son', בִּנְךָ binḵā 'your son'; plural בָּנִים bānîm 'sons, children'.
+- id: sense:laqach
+  gloss:
+    en: to take
+  forms:
+    hbo-Hebr/tiberian: [לָקַח]
+- id: sense:na
+  gloss:
+    en: please, now (softens a command or request)
+  forms:
+    hbo-Hebr/tiberian: [נָא]
+- id: sense:yahid
+  gloss:
+    en: only, only one
+  forms:
+    hbo-Hebr/tiberian: [יָחִיד]
+- id: sense:ahav
+  gloss:
+    en: to love
+  forms:
+    hbo-Hebr/tiberian: [אָהַב]
+- id: sense:yitshaq
+  gloss:
+    en: Isaac
+  forms:
+    hbo-Hebr/tiberian: [יִצְחָק]
+- id: sense:har
+  gloss:
+    en: mountain; hill country
+  forms:
+    hbo-Hebr/tiberian: [הַר]
+  image: {file: ../images/mountain.svg, license: CC0-1.0, provenance: {author: 'llm:claude@a8e4d984f938', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:sham
+  gloss:
+    en: there
+  forms:
+    hbo-Hebr/tiberian: [שָׁם]
+- id: sense:olah
+  gloss:
+    en: burnt offering (an offering wholly burnt)
+  forms:
+    hbo-Hebr/tiberian: [עֹלָה]
+- id: sense:heelah
+  gloss:
+    en: to offer up; to bring up (hiphil of עָלָה)
+  forms:
+    hbo-Hebr/tiberian: [הֶעֱלָה]
+- id: sense:moriyyah
+  gloss:
+    en: Moriah
+  forms:
+    hbo-Hebr/tiberian: [מוֹרִיָּה]
+- id: sense:esh
+  gloss:
+    en: fire
+  forms:
+    hbo-Hebr/tiberian: [אֵשׁ]
+  image: {file: ../images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:seh
+  gloss:
+    en: lamb; a sheep or goat
+  forms:
+    hbo-Hebr/tiberian: [שֶׂה]
+  image: {file: ../images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:ayyeh
+  gloss:
+    en: where?
+  forms:
+    hbo-Hebr/tiberian: [אַיֵּה]
+- id: form:yiqtol-3ms
+  gloss:
+    en: 'he will do: the imperfect (yiqtol), he or it'
+- id: sense:shnayim
+  gloss:
+    en: 'two (שְׁנֵיהֶם: the two of them)'
+  forms:
+    hbo-Hebr/tiberian: [שְׁנַיִם]
+- id: sense:yahdav
+  gloss:
+    en: together
+  forms:
+    hbo-Hebr/tiberian: [יַחַד]
+nodes:
+- {id: hbo.u07.after-these-things, kind: lesson, introduces: ['sense:davar', 'sense:elleh', 'sense:ahar', 'sense:avraham', 'sense:nissah']}
+- {id: hbo.u07.here-i-am, kind: lesson, introduces: ['sense:hinneh', 'sense:ben']}
+- {id: hbo.u07.take-your-son, kind: lesson, introduces: ['sense:laqach', 'sense:na', 'sense:yahid', 'sense:ahav', 'sense:yitshaq']}
+- {id: hbo.u07.the-mountain, kind: lesson, introduces: ['sense:har', 'sense:sham', 'sense:olah', 'sense:heelah', 'sense:moriyyah']}
+- {id: hbo.u07.the-fire-and-the-wood, kind: lesson, introduces: ['sense:esh', 'sense:seh', 'sense:ayyeh', 'form:yiqtol-3ms', 'sense:shnayim', 'sense:yahdav']}
+- {id: hbo.u07.story, kind: story}
+sentences:
+- id: s.07.1
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: דָּבָר
+      tokens: [{surface: דָּבָר, sense: davar, readings: {tiberian: dāḇār}}]
+      reverse: דבר
+  translations:
+    en: a (word|thing)
+- id: s.07.2
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַדָּבָר
+      tokens: [{surface: הַדָּבָר, sense: davar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּבָר, kc: 'sense:davar'}], readings: {tiberian: haddāḇār}}]
+      reverse: הדבר
+  translations:
+    en: the (word|thing|matter)
+- id: s.07.3
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַדְּבָרִים הָאֵלֶּה
+      tokens: [{surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה,
+          sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
+      reverse: הדברים האלה
+  translations:
+    en: (these|the following) (things|words|matters)
+- id: s.07.4
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַחַר הַדְּבָרִים הָאֵלֶּה
+      tokens: [{surface: אַחַר, sense: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}],
+          readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}]
+      reverse: אחר הדברים האלה
+  translations:
+    en: |-
+      after these things
+      after these (events|words|matters)
+      some time later
+- id: s.07.5
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַבְרָהָם
+      tokens: [{surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
+      reverse: אברהם
+  translations:
+    en: Abraham
+- id: s.07.6
+  node: hbo.u07.after-these-things
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם׃
+      tokens: [{surface: וְהָאֱלֹהִים, sense: elohim, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אֱלֹהִים, kc: 'sense:elohim'}], readings: {tiberian: wəhāʾĕlōhîm}},
+        {surface: נִסָּה, sense: nissah, form: 'form:qatal-3ms', readings: {tiberian: nissâ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
+      reverse: (והאלהים|והאלוהים) נסה את אברהם
+  translations:
+    en: |-
+      And God tested Abraham.
+      And God (put Abraham to the test|tried Abraham).
+- id: s.07.7
+  node: hbo.u07.after-these-things
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַדָּבָר טוֹב׃
+      tokens: [{surface: הַדָּבָר, sense: davar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּבָר, kc: 'sense:davar'}], readings: {tiberian: haddāḇār}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: הדבר טוב
+  translations:
+    en: |-
+      The (word|thing|matter) is good.
+      It is a good (word|thing).
+- id: s.07.8
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּנִי׃
+      tokens: [{surface: הִנֵּנִי, sense: hinneh, morphs: [{surface: הִנֵּ, kc: 'sense:hinneh'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hinnḗnî}}]
+      reverse: הנני
+  translations:
+    en: |-
+      Here I am.
+      I am here.
+- id: s.07.9
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּה
+      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}]
+      reverse: הנה
+  translations:
+    en: |-
+      look!
+      behold!
+      here is
+- id: s.07.10
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּן
+      tokens: [{surface: בֵּן, sense: ben, readings: {tiberian: bēn}}]
+      reverse: בן
+  translations:
+    en: a son
+- id: s.07.11
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּנִי
+      tokens: [{surface: בְּנִי, sense: ben, morphs: [{surface: בְּנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}]
+      reverse: בני
+  translations:
+    en: my son
+- id: s.07.12
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּנִי בְּנִי׃
+      tokens: [{surface: הִנֵּנִי, sense: hinneh, morphs: [{surface: הִנֵּ, kc: 'sense:hinneh'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hinnḗnî}}, {surface: בְּנִי, sense: ben, morphs: [
+            {surface: בְּנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}]
+      reverse: הנני בני
+  translations:
+    en: |-
+      Here I am, my son.
+      I am here, my son.
+- id: s.07.13
+  node: hbo.u07.here-i-am
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּנוֹ
+      tokens: [{surface: בְּנוֹ, sense: ben, morphs: [{surface: בְּנ, kc: 'sense:ben'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: bənô}}]
+      reverse: בנו
+  translations:
+    en: his son
+- id: s.07.14
+  node: hbo.u07.here-i-am
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בִּנְךָ
+      tokens: [{surface: בִּנְךָ, sense: ben, morphs: [{surface: בִּנְ, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: binḵā}}]
+      reverse: בנך
+  translations:
+    en: your son
+- id: s.07.15
+  node: hbo.u07.here-i-am
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּנֵךְ
+      tokens: [{surface: בְּנֵךְ, sense: ben, morphs: [{surface: בְּנֵ, kc: 'sense:ben'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: bənēḵ}}]
+      reverse: בנך
+  translations:
+    en: your son
+- id: s.07.16
+  node: hbo.u07.here-i-am
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּה בִּנְךָ׃
+      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: בִּנְךָ, sense: ben, morphs: [{surface: בִּנְ, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: binḵā}}]
+      reverse: הנה בנך
+  translations:
+    en: |-
+      Here is your son.
+      (Look|Behold), your son!
+- id: s.07.17
+  node: hbo.u07.here-i-am
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּה בְּנֵךְ׃
+      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: בְּנֵךְ, sense: ben, morphs: [{surface: בְּנֵ, kc: 'sense:ben'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {
+            tiberian: bənēḵ}}]
+      reverse: הנה בנך
+  translations:
+    en: |-
+      Here is your son.
+      (Look|Behold), your son!
+- id: s.07.18
+  node: hbo.u07.take-your-son
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קַח
+      tokens: [{surface: קַח, sense: laqach, form: 'form:impv-ms', readings: {tiberian: qaḥ}}]
+      reverse: קח
+  translations:
+    en: Take!
+- id: s.07.19
+  node: hbo.u07.take-your-son
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קַח־נָא אֶת־בִּנְךָ׃
+      tokens: [{surface: קַח, sense: laqach, form: 'form:impv-ms', readings: {tiberian: qaḥ-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}},
+        {surface: בִּנְךָ, sense: ben, morphs: [{surface: בִּנְ, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: binḵā}}]
+      reverse: קח נא את בנך
+  translations:
+    en: |-
+      Please take your son.
+      Take your son, please.
+      Take your son.
+- id: s.07.20
+  node: hbo.u07.take-your-son
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קְחִי־נָא מַיִם׃
+      tokens: [{surface: קְחִי, sense: laqach, form: 'form:impv-fs', readings: {tiberian: qəḥî-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}]
+      reverse: קחי נא מים
+  translations:
+    en: |-
+      Please take [some] water.
+      Take [some] water, please.
+- id: s.07.21
+  node: hbo.u07.take-your-son
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְחִידְךָ
+      tokens: [{surface: יְחִידְךָ, sense: yahid, morphs: [{surface: יְחִידְ, kc: 'sense:yahid'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḥîḏəḵā}}]
+      reverse: יחידך
+  translations:
+    en: your only (son|one)
+- id: s.07.22
+  node: hbo.u07.take-your-son
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר אָהַבְתָּ
+      tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אָהַבְתָּ, sense: ahav, form: 'form:qatal-2ms', readings: {tiberian: ʾāháḇtā}}]
+      reverse: אשר אהבת
+  translations:
+    en: |-
+      whom you love
+      (that|who) you love
+- id: s.07.23
+  node: hbo.u07.take-your-son
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָהַבְתִּי אֶת־אָבִי׃
+      tokens: [{surface: אָהַבְתִּי, sense: ahav, form: 'form:qatal-1cs', readings: {tiberian: ʾāháḇtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִי, sense: av, readings: {tiberian: ʾāḇî}}]
+      reverse: אהבתי את אבי
+  translations:
+    en: |-
+      I love my father.
+      I have loved my father.
+- id: s.07.24
+  node: hbo.u07.take-your-son
+  forms:
+    hbo-Hebr/tiberian:
+      text: יִצְחָק
+      tokens: [{surface: יִצְחָק, sense: yitshaq, readings: {tiberian: yiṣḥāq}}]
+      reverse: יצחק
+  translations:
+    en: Isaac
+- id: s.07.25
+  node: hbo.u07.take-your-son
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קַח אֶת־יִצְחָק בִּנְךָ׃
+      tokens: [{surface: קַח, sense: laqach, form: 'form:impv-ms', readings: {tiberian: qaḥ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, sense: yitshaq, readings: {tiberian: yiṣḥāq}},
+        {surface: בִּנְךָ, sense: ben, morphs: [{surface: בִּנְ, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: binḵā}}]
+      reverse: קח את יצחק בנך
+  translations:
+    en: |-
+      Take Isaac your son!
+      Take your son Isaac!
+- id: s.07.26
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַר
+      tokens: [{surface: הַר, sense: har, readings: {tiberian: har}}]
+      reverse: הר
+  translations:
+    en: a (mountain|hill)
+- id: s.07.27
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָהָר
+      tokens: [{surface: הָהָר, sense: har, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
+      reverse: ההר
+  translations:
+    en: the (mountain|hill)
+- id: s.07.28
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֶהָרִים
+      tokens: [{surface: הֶהָרִים, sense: har, form: 'form:pl', morphs: [{surface: הֶ, kc: 'sense:ha'}, {surface: הָרִים, kc: 'sense:har'}], readings: {tiberian: hehārîm}}]
+      reverse: ההרים
+  translations:
+    en: the (mountains|hills)
+- id: s.07.29
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׁם
+      tokens: [{surface: שָׁם, sense: sham, readings: {tiberian: šām}}]
+      reverse: שם
+  translations:
+    en: there
+- id: s.07.30
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֹלָה
+      tokens: [{surface: עֹלָה, sense: olah, readings: {tiberian: ʿōlâ}}]
+      reverse: (עלה|עולה)
+  translations:
+    en: a burnt offering
+- id: s.07.31
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ אַבְרָהָם אֶל־הָהָר׃
+      tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}, {surface: אֶל, sense: el,
+          readings: {tiberian: ʾel-}}, {surface: הָהָר, sense: har, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
+      reverse: וילך אברהם אל ההר
+  translations:
+    en: '[(And|So|Then)] Abraham went to the (mountain|hill).'
+- id: s.07.32
+  node: hbo.u07.the-mountain
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהַעֲלֵהוּ שָׁם לְעֹלָה׃
+      tokens: [{surface: וְהַעֲלֵהוּ, sense: heelah, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הַעֲלֵ, kc: 'sense:heelah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {
+            tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+          readings: {tiberian: ləʿōlâ}}]
+      reverse: והעלהו שם (לעלה|לעולה)
+  translations:
+    en: And offer him [up] there as a burnt offering!
+- id: s.07.33
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַל אַחַד הֶהָרִים
+      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: אַחַד, sense: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, sense: har, form: 'form:pl', morphs: [{surface: הֶ, kc: 'sense:ha'},
+            {surface: הָרִים, kc: 'sense:har'}], readings: {tiberian: hehārîm}}]
+      reverse: על אחד ההרים
+  translations:
+    en: on one of the (mountains|hills)
+- id: s.07.34
+  node: hbo.u07.the-mountain
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶרֶץ הַמֹּרִיָּה
+      tokens: [{surface: אֶרֶץ, sense: erets, readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {
+            tiberian: hammōriyyâ}}]
+      reverse: ארץ (המריה|המוריה)
+  translations:
+    en: the land of Moriah
+- id: s.07.35
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵשׁ
+      tokens: [{surface: אֵשׁ, sense: esh, readings: {tiberian: ʾēš}}]
+      reverse: אש
+  translations:
+    en: |-
+      fire
+      a fire
+- id: s.07.36
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנֵּה הָאֵשׁ וְהָעֵצִים׃
+      tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
+        {surface: וְהָעֵצִים, sense: ets, form: 'form:pl', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: עֵצִים, kc: 'sense:ets'}], readings: {tiberian: wəhāʿēṣîm}}]
+      reverse: הנה האש והעצים
+  translations:
+    en: |-
+      Here are the fire and the wood.
+      (Look|Behold), the fire and the wood!
+- id: s.07.37
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: שֶׂה
+      tokens: [{surface: שֶׂה, sense: seh, readings: {tiberian: śeh}}]
+      reverse: שה
+  translations:
+    en: a (lamb|sheep)
+- id: s.07.38
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאַיֵּה הַשֶּׂה׃
+      tokens: [{surface: וְאַיֵּה, sense: ayyeh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אַיֵּה, kc: 'sense:ayyeh'}], readings: {tiberian: wəʾayyēh}}, {surface: הַשֶּׂה, sense: seh, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: שֶּׂה, kc: 'sense:seh'}], readings: {tiberian: haśśeh}}]
+      reverse: ואיה השה
+  translations:
+    en: |-
+      But where is the lamb?
+      And where is the (lamb|sheep)?
+- id: s.07.39
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה׃
+      tokens: [{surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, sense: raah, form: 'form:yiqtol-3ms', readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, sense: le, morphs: [
+            {surface: לּ, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, sense: seh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שֶּׂה, kc: 'sense:seh'}],
+          readings: {tiberian: haśśeh}}]
+      reverse: (אלהים|אלוהים) יראה לו השה
+  translations:
+    en: |-
+      God will (provide|see to) [himself] the (lamb|sheep).
+      God will (provide|see to) the (lamb|sheep) for himself.
+- id: s.07.40
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁנֵיהֶם
+      tokens: [{surface: שְׁנֵיהֶם, sense: shnayim, morphs: [{surface: שְׁנֵי, kc: 'sense:shnayim'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: šənêhem}}]
+      reverse: שניהם
+  translations:
+    en: |-
+      the two of them
+      both of them
+- id: s.07.41
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: יַחְדָּו
+      tokens: [{surface: יַחְדָּו, sense: yahdav, readings: {tiberian: yaḥdāw}}]
+      reverse: יחדו
+  translations:
+    en: together
+- id: s.07.42
+  node: hbo.u07.the-fire-and-the-wood
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלְכוּ שְׁנֵיהֶם יַחְדָּו׃
+      tokens: [{surface: וַיֵּלְכוּ, sense: halakh, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyēləḵû}}, {surface: שְׁנֵיהֶם, sense: shnayim, morphs: [{surface: שְׁנֵי, kc: 'sense:shnayim'}, {
+              surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: šənêhem}}, {surface: יַחְדָּו, sense: yahdav, readings: {tiberian: yaḥdāw}}]
+      reverse: וילכו שניהם יחדו
+  translations:
+    en: |-
+      [(And|So)] the two of them went [on] together.
+      [(And|So)] both of them (walked|went) [on] together.
+stories:
+- id: hbo.story.here-i-am
+  node: hbo.u07.story
+  title:
+    en: Here I am (Genesis 22:1–2, 7–8)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: אֱלֹהִים}}
+  - {id: abraham, speaker: m, name: {hbo-Hebr/tiberian: אַבְרָהָם}}
+  - {id: isaac, speaker: m, name: {hbo-Hebr/tiberian: יִצְחָק}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי אַחַר הַדְּבָרִים הָאֵלֶּה וְהָאֱלֹהִים נִסָּה אֶת־אַבְרָהָם׃
+          tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: אַחַר, sense: ahar, readings: {tiberian: ʾaḥar}}, {surface: הַדְּבָרִים, sense: davar,
+              form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ,
+                  kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}}, {surface: וְהָאֱלֹהִים, sense: elohim, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'},
+                {surface: אֱלֹהִים, kc: 'sense:elohim'}], readings: {tiberian: wəhāʾĕlōhîm}}, {surface: נִסָּה, sense: nissah, form: 'form:qatal-3ms', readings: {tiberian: nissâ}}, {surface: אֶת, sense: et,
+              readings: {tiberian: ʾeṯ-}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
+      translations:
+        en: After these things God tested Abraham.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר אֵלָיו
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו, kc: 'form:sfx-3ms'}],
+              readings: {tiberian: ʾēlāyw}}]
+      translations:
+        en: And he said to him,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: אַבְרָהָם
+          tokens: [{surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
+      translations:
+        en: “Abraham!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: abraham
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֵּנִי׃
+          tokens: [{surface: הִנֵּנִי, sense: hinneh, morphs: [{surface: הִנֵּנִ, kc: 'sense:hinneh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: hinnḗnî}}]
+      translations:
+        en: “Here I am.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:ahav
+      distractors: ['sense:laqach', 'sense:yada']
+      forms:
+        hbo-Hebr/tiberian:
+          text: קַח־נָא אֶת־בִּנְךָ אֶת־יְחִידְךָ אֲשֶׁר־אָהַבְתָּ אֶת־יִצְחָק
+          tokens: [{surface: קַח, sense: laqach, form: 'form:impv-ms', readings: {tiberian: qaḥ-}}, {surface: נָא, sense: na, readings: {tiberian: nāʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}},
+            {surface: בִּנְךָ, sense: ben, morphs: [{surface: בִּנְ, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: binḵā}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}},
+            {surface: יְחִידְךָ, sense: yahid, morphs: [{surface: יְחִידְ, kc: 'sense:yahid'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḥîḏəḵā}}, {surface: אֲשֶׁר, sense: asher, readings: {
+                tiberian: ʾăšer-}}, {surface: אָהַבְתָּ, sense: ahav, form: 'form:qatal-2ms', readings: {tiberian: ʾāháḇtā}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: יִצְחָק, sense: yitshaq,
+              readings: {tiberian: yiṣḥāq}}]
+      translations:
+        en: “Take your son, your only son, whom you love, Isaac,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְלֶךְ־לְךָ אֶל־אֶרֶץ הַמֹּרִיָּה
+          tokens: [{surface: וְלֶךְ, sense: halakh, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: לֶךְ, kc: 'sense:halakh'}], readings: {tiberian: wəleḵ-}}, {surface: לְךָ, sense: le,
+              morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֶרֶץ, sense: erets,
+              form: 'form:cstr', readings: {tiberian: ʾéreṣ}}, {surface: הַמֹּרִיָּה, sense: moriyyah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֹּרִיָּה, kc: 'sense:moriyyah'}], readings: {tiberian: hammōriyyâ}}]
+      translations:
+        en: and go to the land of Moriah,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְהַעֲלֵהוּ שָׁם לְעֹלָה עַל אַחַד הֶהָרִים אֲשֶׁר אֹמַר אֵלֶיךָ׃
+          tokens: [{surface: וְהַעֲלֵהוּ, sense: heelah, form: 'form:impv-ms', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הַעֲלֵ, kc: 'sense:heelah'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {
+                tiberian: wəhaʿălḗhû}}, {surface: שָׁם, sense: sham, readings: {tiberian: šām}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+              readings: {tiberian: ləʿōlâ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: אַחַד, sense: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, sense: har, form: 'form:pl',
+              morphs: [{surface: הֶ, kc: 'sense:ha'}, {surface: הָרִים, kc: 'sense:har'}], readings: {tiberian: hehārîm}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אֹמַר,
+              sense: amar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾōmar}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: ʾēlêḵā}}]
+      translations:
+        en: and offer him there as a burnt offering on one of the mountains that I will tell you of.”
+  - choose:
+      prompt:
+        en: Where is Abraham to go?
+      options: [{en: to the land of Moriah}, {en: to his father's house}, {en: to the garden}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר יִצְחָק אֶל־אַבְרָהָם אָבִיו וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יִצְחָק, sense: yitshaq, readings: {tiberian: yiṣḥāq}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}, {surface: אָבִיו, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: ו, kc: 'form:sfx-3ms'}],
+              readings: {tiberian: ʾāḇîw}}, {surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And Isaac said to his father Abraham,
+  - line:
+      speaker: isaac
+      forms:
+        hbo-Hebr/tiberian:
+          text: אָבִי
+          tokens: [{surface: אָבִי, sense: av, morphs: [{surface: אָבִ, kc: 'sense:av'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḇî}}]
+      translations:
+        en: “My father!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: abraham
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֶּנִּי בְנִי
+          tokens: [{surface: הִנֶּנִּי, sense: hinneh, morphs: [{surface: הִנֶּנִּ, kc: 'sense:hinneh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: hinnénnî}}, {surface: בְנִי, sense: ben,
+              morphs: [{surface: בְנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ḇənî}}]
+      translations:
+        en: “Here I am, my son.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: isaac
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֵּה הָאֵשׁ וְהָעֵצִים וְאַיֵּה הַשֶּׂה לְעֹלָה׃
+          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}},
+            {surface: וְהָעֵצִים, sense: ets, form: 'form:pl', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: עֵצִים, kc: 'sense:ets'}], readings: {tiberian: wəhāʿēṣîm}},
+            {surface: וְאַיֵּה, sense: ayyeh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אַיֵּה, kc: 'sense:ayyeh'}], readings: {tiberian: wəʾayyēh}}, {surface: הַשֶּׂה, sense: seh, morphs: [{surface: הַ,
+                  kc: 'sense:ha'}, {surface: שֶּׂה, kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}],
+              readings: {tiberian: ləʿōlâ}}]
+      translations:
+        en: “Here are the fire and the wood, but where is the lamb for a burnt offering?”
+  - choose:
+      prompt:
+        en: What does Isaac ask?
+      options: [{en: where the lamb is}, {en: where the fire is}, {en: where his mother is}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר אַבְרָהָם
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אַבְרָהָם, sense: avraham, readings: {tiberian: ʾaḇrāhām}}]
+      translations:
+        en: And Abraham said,
+  - line:
+      speaker: abraham
+      ask: complete
+      gap: sense:seh
+      distractors: ['sense:esh', 'sense:har']
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֱלֹהִים יִרְאֶה־לּוֹ הַשֶּׂה לְעֹלָה בְּנִי
+          tokens: [{surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: יִרְאֶה, sense: raah, form: 'form:yiqtol-3ms', readings: {tiberian: yirʾeh-}}, {surface: לּוֹ, sense: le,
+              morphs: [{surface: לּ, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: lô}}, {surface: הַשֶּׂה, sense: seh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שֶּׂה,
+                  kc: 'sense:seh'}], readings: {tiberian: haśśeh}}, {surface: לְעֹלָה, sense: olah, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עֹלָה, kc: 'sense:olah'}], readings: {tiberian: ləʿōlâ}},
+            {surface: בְּנִי, sense: ben, morphs: [{surface: בְּנִ, kc: 'sense:ben'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bənî}}]
+      translations:
+        en: “God will provide the lamb for a burnt offering himself, my son.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלְכוּ שְׁנֵיהֶם יַחְדָּו׃
+          tokens: [{surface: וַיֵּלְכוּ, sense: halakh, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyēləḵû}}, {surface: שְׁנֵיהֶם, sense: shnayim, morphs: [{surface: שְׁנֵי, kc: 'sense:shnayim'},
+                {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: šənêhem}}, {surface: יַחְדָּו, sense: yahdav, readings: {tiberian: yaḥdāw}}]
+      translations:
+        en: And the two of them went on together.
