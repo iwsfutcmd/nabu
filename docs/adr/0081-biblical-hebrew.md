@@ -96,10 +96,23 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
 
 **The course** (`courses/hbo`):
 
-- Each unit's lessons teach the words of a passage of the Hebrew Bible, and its story reads the
-  passage (as lzh does, ADR 0071): Genesis 1:3–5, 1:1–2, 3:8–10, 3:11–13, 4:8–10, 12:1–4,
-  22:1–8, 24:17–20, 37:13–16, Exodus 3:2–6, and on. Lessons mix constructed sentences with
-  quotations once their words are known.
+- Twenty units, A1 to A2: 695 sentences, 357 KCs, 90 lessons, twenty stories and nine roleplay
+  scenarios. Each unit's lessons teach the words of a passage of the Hebrew Bible, and its story
+  reads the passage (as lzh does, ADR 0071). Lessons mix constructed sentences with quotations
+  once their words are known.
+
+  | Unit | Passage | Unit | Passage |
+  |---|---|---|---|
+  | 1 | Genesis 1:3–5, Let there be light | 11 | Exodus 20:2–3, 12–16, the ten words |
+  | 2 | Genesis 1:1–3, In the beginning | 12 | Deuteronomy 6:4–7, Hear, O Israel |
+  | 3 | Genesis 3:8–10, Where are you? | 13 | Ruth 1:15–17, Where you go |
+  | 4 | Genesis 3:11–13, What have you done? | 14 | 1 Samuel 3:4–10, Speak, LORD |
+  | 5 | Genesis 4:8–10, My brother's keeper | 15 | 1 Samuel 17:45–47, In the name of the LORD |
+  | 6 | Genesis 12:1–4, Go forth | 16 | 1 Kings 3:22–27, The wise king |
+  | 7 | Genesis 22:1–8, Here I am | 17 | Jonah 1:1–3, Jonah runs away |
+  | 8 | Genesis 24:17–20, At the well | 18 | Jonah 1:4–9, I am a Hebrew |
+  | 9 | Genesis 37:13–16, Seeking my brothers | 19 | Psalm 23:1–4, The LORD is my shepherd |
+  | 10 | Exodus 3:2–6, The burning bush | 20 | Ecclesiastes 3:1–4 and Numbers 6:24–26 |
 - KCs are lexemes (verbs by stem: `dibber` is the piel of דבר, `hirah` the hiphil of ראה);
   prefixes (וְ, הַ, בְּ, לְ, כְּ, מִן, הֲ) and pronoun suffixes are morphs; verb forms are `form:`
   KCs on the token, by conjugation and person (`form:wayyiqtol-3ms`, `form:qatal-1cs`,

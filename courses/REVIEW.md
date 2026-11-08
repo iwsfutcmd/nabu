@@ -414,6 +414,11 @@ should check:
    מְבַקֶּשֶׁת).
 7. **The profile's REVIEW markers:** the typo contrasts (pronouns, suffixes, perfect endings) and sof pasuq as
    an exemplar CLDR's Modern Hebrew lacks.
+8. **Passages with textual quirks:** the Decalogue (Exod 20) has two sets of accents; its readings follow the
+   lower set (עַל־פָּנָי pānā́y), and Exod 20:12 לָךְ is the pausal "to you" (m.), tagged 2fs in the WLC. Jonah
+   1:3 אָנִיָּה is read ʾoniyyâ. Psalm 23 includes its title (מִזְמוֹר לְדָוִד) as the WLC numbers it.
+9. **Idioms translated loosely:** כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף (an oath), חַי־יְהוָה, בִּי אֲדֹנִי, כְפַעַם־בְּפַעַם,
+   כִּי־נִכְמְרוּ רַחֲמֶיהָ; these are recognition-only where English has no close equivalent.
 
 ## es (Cuban Spanish)
 
