@@ -1,0 +1,619 @@
+# Biblical Hebrew (hbo), unit 3: Where are you? (Genesis 3:8-10).
+# The divine name and its reading, prepositions אֶל and מִן, pronoun suffixes (his, your, to him), "I",
+# the perfect "I did", the narrative past "they" and "I", and the participle "walking about".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u03-where-are-you
+title:
+  en: Where are you?
+cefr: A1
+kcs:
+- id: sense:gan
+  gloss:
+    en: garden
+  forms:
+    hbo-Hebr/tiberian: [גַּן]
+  image: {file: ../images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:adam
+  gloss:
+    en: 'man, a human being; humankind (הָאָדָם: the man, Adam)'
+  forms:
+    hbo-Hebr/tiberian: [אָדָם]
+- id: sense:ishah
+  gloss:
+    en: woman; wife
+  forms:
+    hbo-Hebr/tiberian: [אִשָּׁה]
+  notes:
+    en: 'Before a suffix or another noun: אֵשֶׁת ʾēšeṯ, אִשְׁתּוֹ ʾištô ''his wife''.'
+- id: sense:yhwh
+  gloss:
+    en: the LORD (the name of Israel's God)
+  forms:
+    hbo-Hebr/tiberian: [יְהוָה]
+  notes:
+    en: 'The four letters YHWH are not read as written: the Masoretes read the word אֲדֹנָי ʾăḏōnāy, ''my Lord'', and gave the letters its vowels. The course''s reading and audio say ʾăḏōnāy, as the Tiberian
+      readers did.'
+- id: sense:el
+  gloss:
+    en: to, toward (written אֶל־, joined to the next word)
+  forms:
+    hbo-Hebr/tiberian: [אֵל]
+- id: sense:qol
+  gloss:
+    en: voice; sound
+  forms:
+    hbo-Hebr/tiberian: [קוֹל]
+- id: sense:shama
+  gloss:
+    en: to hear; to listen, obey
+  forms:
+    hbo-Hebr/tiberian: [שָׁמַע]
+- id: form:wayyiqtol-3mp
+  gloss:
+    en: 'and they did: the narrative past, they'
+- id: form:qatal-1cs
+  gloss:
+    en: 'I did: the perfect (qatal), I (-tî)'
+- id: sense:ets
+  gloss:
+    en: tree; wood
+  forms:
+    hbo-Hebr/tiberian: [עֵץ]
+- id: sense:tokh
+  gloss:
+    en: 'middle (בְּתוֹךְ: in the middle of, among)'
+  forms:
+    hbo-Hebr/tiberian: [תָּוֶךְ]
+- id: sense:hithallekh
+  gloss:
+    en: to walk about, go to and fro (hithpael of הָלַךְ)
+  forms:
+    hbo-Hebr/tiberian: [הִתְהַלֵּךְ]
+- id: form:ptc-ms
+  gloss:
+    en: 'participle, masculine singular: he/it is doing; one who does'
+- id: sense:hava
+  gloss:
+    en: to hide oneself (niphal, hithpael)
+  forms:
+    hbo-Hebr/tiberian: [נֶחְבָּא]
+- id: sense:min
+  gloss:
+    en: from; out of; than (מִן־, or מִ- joined to the word)
+  forms:
+    hbo-Hebr/tiberian: [מִן]
+  notes:
+    en: 'Written apart as מִן־ min-, or joined with the next letter doubled: מִפְּנֵי mippənê ''from before''. Before a guttural it is מֵ mē-.'
+- id: form:sfx-3ms
+  gloss:
+    en: his; him (the suffix -ô, -w)
+- id: sense:ay
+  gloss:
+    en: where? (אַיֵּה, with a suffix אַיֶּכָּה 'where are you?')
+  forms:
+    hbo-Hebr/tiberian: [אַיֵּה]
+- id: form:sfx-2ms
+  gloss:
+    en: 'your; you (said to a man: the suffix -ḵā)'
+- id: sense:anokhi
+  gloss:
+    en: I
+  forms:
+    hbo-Hebr/tiberian: [אָנֹכִי]
+- id: sense:yare
+  gloss:
+    en: to fear, be afraid
+  forms:
+    hbo-Hebr/tiberian: [יָרֵא]
+- id: form:wayyiqtol-1cs
+  gloss:
+    en: 'and I did: the narrative past, I'
+- id: sense:erom
+  gloss:
+    en: naked
+  forms:
+    hbo-Hebr/tiberian: [עֵירֹם]
+nodes:
+- {id: hbo.u03.the-garden, kind: lesson, introduces: ['sense:gan', 'sense:adam', 'sense:ishah', 'sense:yhwh', 'sense:el']}
+- {id: hbo.u03.the-voice, kind: lesson, introduces: ['sense:qol', 'sense:shama', 'form:wayyiqtol-3mp', 'form:qatal-1cs']}
+- {id: hbo.u03.walking, kind: lesson, introduces: ['sense:ets', 'sense:tokh', 'sense:hithallekh', 'form:ptc-ms']}
+- {id: hbo.u03.hiding, kind: lesson, introduces: ['sense:hava', 'sense:min', 'form:sfx-3ms']}
+- {id: hbo.u03.where-are-you, kind: lesson, introduces: ['sense:ay', 'form:sfx-2ms', 'sense:anokhi', 'sense:yare', 'form:wayyiqtol-1cs', 'sense:erom']}
+- {id: hbo.u03.story, kind: story}
+sentences:
+- id: s.03.1
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַגָּן
+      tokens: [{surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: הגן
+  translations:
+    en: the garden
+- id: s.03.2
+  node: hbo.u03.the-garden
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאָדָם בַּגָּן׃
+      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ,
+              kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: האדם בגן
+  translations:
+    en: The man is in the garden.
+- id: s.03.3
+  node: hbo.u03.the-garden
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאִשָּׁה בַּגָּן׃
+      tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: בַּגָּן, sense: gan, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: האשה בגן
+  translations:
+    en: The woman is in the garden.
+- id: s.03.4
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאָדָם וְהָאִשָּׁה
+      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְהָאִשָּׁה, sense: ishah, morphs: [
+            {surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: wəhāʾiššâ}}]
+      reverse: האדם והאשה
+  translations:
+    en: the man and the woman
+- id: s.03.5
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהִים
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      reverse: יהוה (אלהים|אלוהים)
+  translations:
+    en: the LORD God
+- id: s.03.6
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר יְהוָה אֶל־הָאָדָם׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      reverse: (ויאמר|ויואמר) יהוה אל האדם
+  translations:
+    en: '[(And|Then)] the LORD said to the man.'
+- id: s.03.7
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר אֱלֹהִים אֶל־הָאִשָּׁה׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el,
+          readings: {tiberian: ʾel-}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
+      reverse: (ויאמר|ויואמר) (אלהים|אלוהים) אל האשה
+  translations:
+    en: '[(And|Then)] God said to the woman.'
+- id: s.03.8
+  node: hbo.u03.the-garden
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּקְרָא יְהוָה אֱלֹהִים אֶל־הָאָדָם׃
+      tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
+          readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}],
+          readings: {tiberian: hāʾāḏām}}]
+      reverse: ויקרא יהוה (אלהים|אלוהים) אל האדם
+  translations:
+    en: '[(And|Then)] the LORD God called (to|out to) the man.'
+- id: s.03.9
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוֹל
+      tokens: [{surface: קוֹל, sense: qol, readings: {tiberian: qôl}}]
+      reverse: קול
+  translations:
+    en: |-
+      a (voice|sound)
+      (voice|sound)
+- id: s.03.10
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוֹל יְהוָה
+      tokens: [{surface: קוֹל, sense: qol, readings: {tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: קול יהוה
+  translations:
+    en: the (voice|sound) of the LORD
+- id: s.03.11
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁמַע אֶת־הַקּוֹל׃
+      tokens: [{surface: וַיִּשְׁמַע, sense: shama, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, sense: qol, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: קּוֹל, kc: 'sense:qol'}], readings: {tiberian: haqqôl}}]
+      reverse: וישמע את הקול
+  translations:
+    en: '[(And|Then)] he heard the (voice|sound).'
+- id: s.03.12
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁמְעוּ אֶת־קוֹל יְהוָה׃
+      tokens: [{surface: וַיִּשְׁמְעוּ, sense: shama, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyišməʿû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, sense: qol, readings: {
+            tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: וישמעו את קול יהוה
+  translations:
+    en: '[(And|Then)] they heard the (voice|sound) of the LORD.'
+- id: s.03.13
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׁמַעְתִּי אֶת־הַקּוֹל׃
+      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַקּוֹל, sense: qol, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: קּוֹל, kc: 'sense:qol'}], readings: {tiberian: haqqôl}}]
+      reverse: שמעתי את הקול
+  translations:
+    en: |-
+      I heard the (voice|sound).
+      I have heard the (voice|sound).
+- id: s.03.14
+  node: hbo.u03.the-voice
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׁמַעְתִּי קוֹל בַּגָּן׃
+      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: קוֹל, sense: qol, readings: {tiberian: qôl}}, {surface: בַּגָּן, sense: gan, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: שמעתי קול בגן
+  translations:
+    en: |-
+      I heard a (sound|voice) in the garden.
+      I have heard a (sound|voice) in the garden.
+- id: s.03.15
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵץ
+      tokens: [{surface: עֵץ, sense: ets, readings: {tiberian: ʿēṣ}}]
+      reverse: עץ
+  translations:
+    en: |-
+      a tree
+      (tree|wood|trees)
+- id: s.03.16
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵץ הַגָּן
+      tokens: [{surface: עֵץ, sense: ets, readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: עץ הגן
+  translations:
+    en: the (trees|tree) of the garden
+- id: s.03.17
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּתוֹךְ הַגָּן
+      tokens: [{surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, sense: gan,
+          morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: בתוך הגן
+  translations:
+    en: |-
+      in the middle of the garden
+      (among|amid|amidst) the garden
+      in the (midst|centre|center) of the garden
+- id: s.03.18
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִתְהַלֵּךְ
+      tokens: [{surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}]
+      reverse: מתהלך
+  translations:
+    en: |-
+      walking about
+      (walking|strolling|going about|moving about|walking around)
+- id: s.03.19
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהִים מִתְהַלֵּךְ בַּגָּן׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms',
+          readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: יהוה (אלהים|אלוהים) מתהלך בגן
+  translations:
+    en: |-
+      The LORD God is walking [(about|around)] in the garden.
+      The LORD God (walks|was walking) [(about|around)] in the garden.
+- id: s.03.20
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאָדָם מִתְהַלֵּךְ בְּתוֹךְ הַגָּן׃
+      tokens: [{surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms',
+          readings: {tiberian: miṯhallēḵ}}, {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: bəṯôḵ}},
+        {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: האדם מתהלך בתוך הגן
+  translations:
+    en: |-
+      The man is walking [(about|around)] in the (middle|midst) of the garden.
+      The man (walks|was walking) [(about|around)] in the (middle|midst) of the garden.
+- id: s.03.21
+  node: hbo.u03.walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְרוּחַ הַיּוֹם
+      tokens: [{surface: לְרוּחַ, sense: ruach, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: lərûaḥ}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}]
+      reverse: לרוח היום
+  translations:
+    en: |-
+      in the (breeze|cool|wind) of the day
+      at the (breezy|windy|cool) time of (the day|day)
+- id: s.03.22
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתְחַבֵּא הָאָדָם׃
+      tokens: [{surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+              kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      reverse: ויתחבא האדם
+  translations:
+    en: '[(And|Then|So)] the man hid [himself].'
+- id: s.03.23
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִפְּנֵי יְהוָה
+      tokens: [{surface: מִפְּנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh,
+          readings: {tiberian: ʾăḏōnāy}}]
+      reverse: מפני יהוה
+  translations:
+    en: |-
+      from the (presence|face) of the LORD
+      from [before] the LORD
+- id: s.03.24
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִן־הַגָּן
+      tokens: [{surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: מן הגן
+  translations:
+    en: |-
+      from the garden
+      out of the garden
+- id: s.03.25
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִשְׁתּוֹ
+      tokens: [{surface: אִשְׁתּוֹ, sense: ishah, morphs: [{surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾištô}}]
+      reverse: אשתו
+  translations:
+    en: |-
+      his wife
+      his woman
+- id: s.03.26
+  node: hbo.u03.hiding
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִשְׁתּוֹ בַּגָּן׃
+      tokens: [{surface: אִשְׁתּוֹ, sense: ishah, morphs: [{surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾištô}}, {surface: בַּגָּן, sense: gan, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: אשתו בגן
+  translations:
+    en: His wife is in the garden.
+- id: s.03.27
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה׃
+      tokens: [{surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+              kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ, sense: ishah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
+          readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}},
+        {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: ויתחבא האדם ואשתו מפני יהוה
+  translations:
+    en: |-
+      [(And|Then|So)] the man and his wife hid [themselves] from the LORD.
+      [(And|Then|So)] the man and his wife hid [themselves] from the (presence|face) of the LORD.
+- id: s.03.28
+  node: hbo.u03.hiding
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁמַע אֶת־קוֹלוֹ׃
+      tokens: [{surface: וַיִּשְׁמַע, sense: shama, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišmaʿ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹלוֹ, sense: qol, morphs: [
+            {surface: קוֹל, kc: 'sense:qol'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: qôlô}}]
+      reverse: וישמע את קולו
+  translations:
+    en: '[(And|Then)] he heard his (voice|sound).'
+- id: s.03.29
+  node: hbo.u03.where-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַיֶּכָּה
+      tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+      reverse: איכה
+  translations:
+    en: Where are you?
+- id: s.03.30
+  node: hbo.u03.where-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר לוֹ אַיֶּכָּה׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, sense: le, morphs: [{surface: ל, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
+          readings: {tiberian: lô}}, {surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+      reverse: (ויאמר|ויואמר) לו איכה
+  translations:
+    en: '[(And|Then)] he said to him, “Where are you?”'
+- id: s.03.31
+  node: hbo.u03.where-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: (אנכי|אנוכי)
+  translations:
+    en: |-
+      I
+      me
+- id: s.03.32
+  node: hbo.u03.where-are-you
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי בַּגָּן׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: (אנכי|אנוכי) בגן
+  translations:
+    en: |-
+      I am in the garden.
+      I'm in the garden.
+- id: s.03.33
+  node: hbo.u03.where-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׁמַעְתִּי אֶת־קֹלְךָ׃
+      tokens: [{surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [
+            {surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}}]
+      reverse: שמעתי את (קלך|קולך)
+  translations:
+    en: |-
+      I heard your voice.
+      I have heard your voice.
+- id: s.03.34
+  node: hbo.u03.where-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: וָאִירָא׃
+      tokens: [{surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}]
+      reverse: ואירא
+  translations:
+    en: |-
+      [(And|So)] I was afraid.
+      [(And|So)] I (became afraid|feared|was frightened|got scared|was scared).
+- id: s.03.35
+  node: hbo.u03.where-are-you
+  persons: {speaker: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵירֹם אָנֹכִי׃
+      tokens: [{surface: עֵירֹם, sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: (עירם|עירום) (אנכי|אנוכי)
+  translations:
+    en: |-
+      I am naked.
+      I'm naked.
+- id: s.03.36
+  node: hbo.u03.where-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶת־קֹלְךָ שָׁמַעְתִּי בַּגָּן וָאִירָא׃
+      tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [{surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}},
+        {surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}],
+          readings: {tiberian: baggān}}, {surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}]
+      reverse: את (קלך|קולך) שמעתי בגן ואירא
+  translations:
+    en: |-
+      I heard your voice in the garden, and I was afraid.
+      I heard (the sound of you|your sound) in the garden, and I was afraid.
+- id: s.03.37
+  node: hbo.u03.where-are-you
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וָאִירָא כִּי־עֵירֹם אָנֹכִי׃
+      tokens: [{surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם, sense: erom, readings: {
+            tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: ואירא כי (עירם|עירום) (אנכי|אנוכי)
+  translations:
+    en: |-
+      [And] I was afraid, because I (was|am) naked.
+      [And] I was afraid, (for|since) I (was|am) naked.
+stories:
+- id: hbo.story.where-are-you
+  node: hbo.u03.story
+  title:
+    en: Where are you? (Genesis 3:8–10)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  - {id: adam, speaker: m, name: {hbo-Hebr/tiberian: הָאָדָם}}
+  steps:
+  - line:
+      ask: complete
+      gap: sense:qol
+      distractors: ['sense:ruach', 'sense:ets']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיִּשְׁמְעוּ אֶת־קוֹל יְהוָה אֱלֹהִים מִתְהַלֵּךְ בַּגָּן לְרוּחַ
+          tokens: [{surface: וַיִּשְׁמְעוּ, sense: shama, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyišməʿû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹל, sense: qol,
+              form: 'form:cstr', readings: {tiberian: qôl}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מִתְהַלֵּךְ,
+              sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {
+                tiberian: baggān}}, {surface: לְרוּחַ, sense: ruach, form: 'form:cstr', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: lərûaḥ}}]
+      translations:
+        en: And they heard the sound of the LORD God walking in the garden in the breeze of the day,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַיּוֹם וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה אֱלֹהִים בְּתוֹךְ עֵץ הַגָּן׃
+          tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms',
+              readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ,
+              sense: ishah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim,
+              form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}},
+            {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}],
+              readings: {tiberian: bəṯôḵ}}, {surface: עֵץ, sense: ets, form: 'form:cstr', readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן,
+                  kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      translations:
+        en: and the man and his wife hid from the LORD God among the trees of the garden.
+  - choose:
+      prompt:
+        en: Where did the man and his wife hide?
+      options: [{en: among the trees of the garden}, {en: in the water}, {en: in the darkness of the night}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיִּקְרָא יְהוָה אֱלֹהִים אֶל־הָאָדָם וַיֹּאמֶר לוֹ
+          tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
+              readings: {tiberian: ʾĕlōhîm}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}],
+              readings: {tiberian: hāʾāḏām}}, {surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, sense: le, morphs: [{surface: ל, kc: 'sense:le'},
+                {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: lô}}]
+      translations:
+        en: And the LORD God called to the man and said to him,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: אַיֶּכָּה׃
+          tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+      translations:
+        en: “Where are you?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: adam
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֶת־קֹלְךָ שָׁמַעְתִּי בַּגָּן וָאִירָא כִּי־עֵירֹם אָנֹכִי וָאֵחָבֵא׃
+          tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קֹלְךָ, sense: qol, morphs: [{surface: קֹלְ, kc: 'sense:qol'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: qōləḵā}},
+            {surface: שָׁמַעְתִּי, sense: shama, form: 'form:qatal-1cs', readings: {tiberian: šāmáʿtî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}],
+              readings: {tiberian: baggān}}, {surface: וָאִירָא, sense: yare, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾîrāʾ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עֵירֹם,
+              sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānṓḵî}}, {surface: וָאֵחָבֵא, sense: hava, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾēḥāḇēʾ}}]
+      translations:
+        en: “I heard your voice in the garden, and I was afraid, because I was naked; and I hid.”
+  - choose:
+      prompt:
+        en: Why was the man afraid?
+      options: [{en: because he was naked}, {en: because it was night}, {en: because the garden was dark}]
+      answer: 0
