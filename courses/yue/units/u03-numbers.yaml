@@ -72,6 +72,8 @@ sentences:
     en: |-
       (She|He) has a son.
       They have a son.
+      She's got a son.
+      They've got a son.
 - id: s.u03.4
   node: yue.how-many
   forms:
@@ -91,7 +93,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 女兒, sense: 女兒, readings: {jyutping: neoi5 ji2}}]
       reverse: 我有(一個|個)(女兒|女)
   translations:
-    en: I have (a|one) daughter.
+    en: |-
+      I have (a|one) daughter.
+      I've got a daughter.
 - id: s.u03.6
   node: yue.how-many
   persons: {addressee: sg}
@@ -101,7 +105,9 @@ sentences:
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾, sense: 幾, readings: {jyutping: gei2}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: 你有幾(|多)個(仔|兒子)[呀]
   translations:
-    en: How many sons do you have?
+    en: |-
+      How many sons do you have?
+      How many sons have you got?
 - id: s.u03.7
   node: yue.how-many
   persons: {addressee: sg}
@@ -111,7 +117,9 @@ sentences:
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾, sense: 幾, readings: {jyutping: gei2}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 細妹, sense: 細妹, readings: {jyutping: sai3 mui2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: 你有幾(|多)個(細妹|妹妹)[呀]
   translations:
-    en: How many (younger|little) sisters do you have?
+    en: |-
+      How many (younger|little) sisters do you have?
+      How many younger sisters have you got?
 - id: s.u03.8
   node: yue.pets-books
   persons: {addressee: sg}
@@ -120,7 +128,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你有冇貓呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你有(冇|無)(|養)貓[呀]
+      reverse: |-
+        你有(冇|無)(|養)貓[呀]
+        你有貓嗎
   translations:
     en: |-
       Do you have (a cat|cats|any cats)?
@@ -133,7 +143,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}]
       reverse: 我有(一隻|隻)貓
   translations:
-    en: I have (a|one) cat.
+    en: |-
+      I have (a|one) cat.
+      I've got a cat.
 - id: s.u03.10
   node: yue.pets-books
   forms:
@@ -145,6 +157,7 @@ sentences:
     en: |-
       (She|He) has (two|2) dogs.
       They have (two|2) dogs.
+      She's got two dogs.
 - id: s.u03.11
   node: yue.pets-books
   forms:
@@ -177,7 +190,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 一, sense: 一, readings: {jyutping: jat1}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}]
       reverse: 我有(一本|本)書
   translations:
-    en: I have (a|one) book.
+    en: |-
+      I have (a|one) book.
+      I've got a book.
 - id: s.u03.14
   node: yue.pets-books
   forms:
@@ -189,6 +204,7 @@ sentences:
     en: |-
       (She|He) has (five|5) books.
       They have (five|5) books.
+      He's got five books.
 - id: s.u03.15
   node: yue.pets-books
   persons: {addressee: sg}
@@ -287,25 +303,33 @@ sentences:
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 本, sense: 本, readings: {jyutping: bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: 你有幾(多|)本書[呀]
   translations:
-    en: How many books do you have?
+    en: |-
+      How many books do you have?
+      How many books have you got?
 - id: s.u03.23
   node: yue.money
   forms:
     yue-Hant-HK/standard:
       text: 幾多錢呀？
       tokens: [{surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (|呢個)幾(多|)錢[呀]
+      reverse: |-
+        (|呢個)幾(多|)錢[呀]
+        要幾多錢呀
   translations:
     en: |-
       How much (is it|is this|does it cost)?
       How much?
+      How much is that?
+      How much does this cost?
 - id: s.u03.24
   node: yue.money
   forms:
     yue-Hant-HK/standard:
       text: 呢本書幾多錢呀？
       tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢本(書|)幾(多|)錢[呀]
+      reverse: |-
+        呢本(書|)幾(多|)錢[呀]
+        呢本書要幾多錢呀
   translations:
     en: |-
       How much is this book?
@@ -318,7 +342,9 @@ sentences:
       tokens: [{surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
       reverse: 兩(蚊|元)
   translations:
-    en: (Two|2) dollars.
+    en: |-
+      (Two|2) dollars.
+      $2.
 - id: s.u03.26
   node: yue.money
   forms:
@@ -327,7 +353,9 @@ sentences:
       tokens: [{surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
       reverse: 六(蚊|元)
   translations:
-    en: (Six|6) dollars.
+    en: |-
+      (Six|6) dollars.
+      $6.
 - id: s.u03.27
   node: yue.prices
   forms:
@@ -339,6 +367,7 @@ sentences:
     en: |-
       This book is (seven|7) dollars.
       This book costs (seven|7) dollars.
+      This book is $7.
 - id: s.u03.28
   node: yue.prices
   forms:
@@ -350,6 +379,7 @@ sentences:
     en: |-
       That book is (eight|8) dollars.
       That book costs (eight|8) dollars.
+      That book is $8.
 - id: s.u03.29
   node: yue.prices
   forms:
@@ -370,6 +400,7 @@ sentences:
     en: |-
       This book is (ten|10) dollars.
       This book costs (ten|10) dollars.
+      This book is $10.
 - id: s.u03.31
   node: yue.prices
   forms:
@@ -430,6 +461,7 @@ sentences:
     en: |-
       This book is (a hundred|one hundred|100) dollars.
       This book costs (a hundred|one hundred|100) dollars.
+      This book is $100.
 - id: s.u03.37
   node: yue.ages
   forms:
@@ -441,6 +473,7 @@ sentences:
     en: |-
       That book is (forty|40) dollars.
       That book costs (forty|40) dollars.
+      That book is $40.
 - id: s.u03.38
   node: yue.ages
   forms:
@@ -460,11 +493,15 @@ sentences:
       text: 你哋有冇貓呀？
       tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {
           surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你(哋|地)有(冇|無)(|養)貓[呀]
+      reverse: |-
+        你(哋|地)有(冇|無)(|養)貓[呀]
+        你哋有貓嗎
   translations:
     en: |-
       Do you have (a cat|cats|any cats)?
       Have you got (a cat|any cats)?
+      Do you all have a cat?
+      Do you guys have a cat?
 stories:
 - id: yue.story.book-stall
   node: yue.numbers-story

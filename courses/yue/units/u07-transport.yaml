@@ -73,6 +73,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 搭, sense: 搭, readings: {jyutping: daap3}}, {surface: 巴士, sense: 巴士, readings: {jyutping: baa1 si2}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]搭巴士啦
+        不如搭巴士啦
   translations:
     en: |-
       Let's take the bus.
@@ -112,6 +113,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 搭, sense: 搭, readings: {jyutping: daap3}}, {surface: 電車, sense: 電車, readings: {jyutping: din6 ce1}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 中環, sense: 中環, readings: {jyutping: zung1 waan4}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]搭電車去中環啦
+        不如搭電車去中環啦
   translations:
     en: |-
       Let's take the tram to Central!
@@ -150,7 +152,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 地鐵站喺前面。
       tokens: [{surface: 地鐵, sense: 地鐵, readings: {jyutping: dei6 tit3}}, {surface: 站, sense: 站, readings: {jyutping: zaam6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 前面, sense: 前面, readings: {jyutping: cin4 min6}}]
-      reverse: 地鐵站喺前(面|邊)
+      reverse: |-
+        地鐵站喺前(面|邊)
+        地鐵站喺前便
   translations:
     en: The (MTR|metro|subway) station is (just |)(ahead|in front).
 - id: s.u07.10
@@ -170,6 +174,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 行路, sense: 行路, readings: {jyutping: haang4 lou6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]行路去啦
+        不如行路去啦
   translations:
     en: |-
       Let's walk (there|).
@@ -276,6 +281,7 @@ sentences:
     en: |-
       I('ll| will) get off (at|in) Central.
       I('m| am) getting off (at|in) Central.
+      I get off at Central.
 - id: s.u07.21
   node: yue.taxi
   forms:
@@ -330,7 +336,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你有冇八達通呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 八達通, sense: 八達通, readings: {jyutping: baat3 daat6 tung1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你有(冇|無)八達通[呀]
+      reverse: |-
+        你有(冇|無)八達通[呀]
+        你有八達通嗎
   translations:
     en: |-
       Do you have an Octopus (card|)?
@@ -366,7 +374,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我要買飛。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 要, sense: 要, readings: {jyutping: jiu3}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 飛, sense: 飛, readings: {jyutping: fei1}}]
-      reverse: 我(要|需要)買飛
+      reverse: |-
+        我(要|需要)買飛
+        我要買張飛
   translations:
     en: |-
       I need to buy a ticket.
@@ -394,7 +404,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢張飛幾多錢呀？
       tokens: [{surface: 呢張, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 張, kc: 'sense:張'}], readings: {jyutping: ni1 zoeng1}}, {surface: 飛, sense: 飛, readings: {jyutping: fei1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢張飛幾(多|)錢[呀]
+      reverse: |-
+        呢張飛幾(多|)錢[呀]
+        呢張飛要幾多錢呀
   translations:
     en: |-
       How much is this ticket?
@@ -414,7 +426,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我哋喺呢度上車。
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 呢度, sense: 呢度, readings: {jyutping: ni1 dou6}}, {surface: 上車, sense: 上車, readings: {jyutping: soeng5 ce1}}]
-      reverse: 我(哋|地)喺呢度上車
+      reverse: |-
+        我(哋|地)喺呢度上車
+        我哋喺度上車
   translations:
     en: |-
       We('ll| will) get on here.

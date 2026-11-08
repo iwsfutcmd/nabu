@@ -147,6 +147,7 @@ sentences:
       reverse: |-
         [你]飲(|緊)(咩|乜嘢|乜野|乜)[呀]
         你想飲(咩|乜嘢|乜野|乜)[呀]
+        你想飲啲咩呀
   translations:
     en: |-
       What (would you like|do you want) to drink?
@@ -177,6 +178,8 @@ sentences:
       (She|He)('s| is) (drinking|having) (a |)milk tea.
       (She|He) drinks milk tea.
       They('re| are) (drinking|having) (a |)milk tea.
+      They drink milk tea.
+      She'll have a milk tea.
 - id: s.u04.11
   node: yue.drink
   forms:
@@ -203,6 +206,8 @@ sentences:
       Have (a cup of|some) tea.
       Have a tea.
       Drink some tea.
+      Let's have a cup of tea.
+      Let's have some tea.
 - id: s.u04.13
   node: yue.drink
   forms:
@@ -283,7 +288,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 熱定凍呀？
       tokens: [{surface: 熱, sense: 熱, readings: {jyutping: jit6}}, {surface: 定, sense: 定, readings: {jyutping: ding6}}, {surface: 凍, sense: 凍, readings: {jyutping: dung3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (|要)熱(定|定係)凍[呀]
+      reverse: |-
+        (|要)熱(定|定係)凍[呀]
+        熱嘅定凍嘅呀
   translations:
     en: |-
       Hot or (iced|cold)?
@@ -313,6 +320,8 @@ sentences:
       reverse: |-
         你(要|飲)咖啡(定|定係)茶[呀]
         咖啡(定|定係)茶[呀]
+        你想要咖啡定茶呀
+        你想飲咖啡定茶呀
   translations:
     en: |-
       (Do you want|Would you like) coffee or tea?
@@ -323,18 +332,24 @@ sentences:
     yue-Hant-HK/standard:
       text: 好好食呀！
       tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好食, sense: 好食, readings: {jyutping: hou2 sik6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 好好食[呀]
+      reverse: |-
+        好好食[呀]
+        好好味呀
   translations:
     en: |-
       (It's|This is) (so|really|very) (good|tasty|delicious)!
       (So|Really) (good|tasty|delicious)!
+      That's so good!
+      It was so good!
 - id: s.u04.23
   node: yue.tasty
   forms:
     yue-Hant-HK/standard:
       text: 呢碗麵好好食。
       tokens: [{surface: 呢碗, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 碗, kc: 'sense:碗'}], readings: {jyutping: ni1 wun2}}, {surface: 麵, sense: 麵, readings: {jyutping: min6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好食, sense: 好食, readings: {jyutping: hou2 sik6}}]
-      reverse: 呢碗麵好好食(|呀)
+      reverse: |-
+        呢碗麵好好食(|呀)
+        呢碗麵好好味
   translations:
     en: |-
       (These|The) noodles are (very|really|so) (good|tasty|delicious).
@@ -345,7 +360,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢杯奶茶好好飲。
       tokens: [{surface: 呢杯, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 杯, kc: 'sense:杯'}], readings: {jyutping: ni1 bui1}}, {surface: 奶茶, sense: 奶茶, readings: {jyutping: naai5 caa4}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好飲, sense: 好飲, readings: {jyutping: hou2 jam2}}]
-      reverse: 呢杯奶茶好好飲(|呀)
+      reverse: |-
+        呢杯奶茶好好飲(|呀)
+        呢杯奶茶好好味
   translations:
     en: This (|cup of )milk tea is (very|really|so) (good|nice|tasty|delicious).
 - id: s.u04.25
@@ -410,6 +427,8 @@ sentences:
       reverse: |-
         [我(哋|地)]食點心啦
         [我(哋|地)]去食點心啦
+        我哋去飲茶啦
+        不如食點心啦
   translations:
     en: Let's (have|eat|go for|get) dim sum.
 - id: s.u04.31
@@ -437,6 +456,7 @@ sentences:
     en: |-
       Do you eat (siu mai|pork dumplings)?
       Would you like (some |)(siu mai|pork dumplings)?
+      Do you eat shumai?
 - id: s.u04.33
   node: yue.dim-sum
   forms:
@@ -453,7 +473,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你想飲咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你想飲(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        你想飲(咩|乜嘢|乜野|乜)[呀]
+        你想飲啲咩呀
   translations:
     en: |-
       What would you like to drink?
@@ -466,7 +488,10 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 鍾意, sense: 鍾意, readings: {jyutping: zung1 ji3}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 蝦餃, sense: 蝦餃, readings: {jyutping: haa1 gaau2}}]
       reverse: 我好(鍾|中)意(食|)蝦餃
   translations:
-    en: I (really |)(love|like) (eating |)(har gow|shrimp dumplings|prawn dumplings).
+    en: |-
+      I (really |)(love|like) (eating |)(har gow|shrimp dumplings|prawn dumplings).
+      I like har gow a lot.
+      I like shrimp dumplings very much.
 - id: s.u04.36
   node: yue.dim-sum
   forms:
@@ -475,6 +500,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]一齊食(|飯)啦
+        不如一齊食啦
   translations:
     en: Let's eat together!
 - id: s.u04.37
@@ -485,6 +511,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 茶餐廳, sense: 茶餐廳, readings: {jyutping: caa4 caan1 teng1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]去茶餐廳啦
+        不如去茶餐廳啦
   translations:
     en: Let's go to (a|the) (cha chaan teng|café|cafe|Hong Kong-style café|Hong Kong-style cafe).
 - id: s.u04.38
@@ -498,6 +525,8 @@ sentences:
     en: |-
       (She|He) (really |)(loves|likes) (eating |)fish.
       They (really |)(love|like) (eating |)fish.
+      She likes fish a lot.
+      He likes fish very much.
 - id: s.u04.39
   node: yue.cafe
   forms:
@@ -506,6 +535,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 一齊, sense: 一齊, readings: {jyutping: jat1 cai4}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 茶餐廳, sense: 茶餐廳, readings: {jyutping: caa4 caan1 teng1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]一齊去茶餐廳啦
+        不如一齊去茶餐廳啦
   translations:
     en: |-
       Let's go to (a|the) (cha chaan teng|café|cafe|Hong Kong-style café|Hong Kong-style cafe) together!
@@ -546,7 +576,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你鍾意食咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 鍾意, sense: 鍾意, readings: {jyutping: zung1 ji3}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你(鍾|中)意食(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        你(鍾|中)意食(咩|乜嘢|乜野|乜)[呀]
+        你鍾意食啲咩呀
   translations:
     en: |-
       What do you like to eat?
@@ -569,6 +601,8 @@ sentences:
       What do you want to eat?
       What would you like( to eat|)?
       What do you eat?
+      What are you all eating?
+      What are you guys eating?
 - id: s.u04.44
   node: yue.drink
   persons: {addressee: pl}
@@ -580,12 +614,14 @@ sentences:
       reverse: |-
         你(哋|地)飲(|緊)(咩|乜嘢|乜野|乜)[呀]
         你(哋|地)想飲(咩|乜嘢|乜野|乜)[呀]
+        你哋想飲啲咩呀
   translations:
     en: |-
       What (would you like|do you want) to drink?
       What are you drinking?
       What( will|'ll) you have to drink?
       What do you drink?
+      What would you all like to drink?
 - id: s.u04.45
   node: yue.order
   persons: {addressee: pl}
@@ -598,10 +634,12 @@ sentences:
       reverse: |-
         你(哋|地)(要|飲)咖啡(定|定係)茶[呀]
         咖啡(定|定係)茶[呀]
+        你哋想要咖啡定茶呀
   translations:
     en: |-
       (Do you want|Would you like) coffee or tea?
       Coffee or tea?
+      Do you all want coffee or tea?
 stories:
 - id: yue.story.cha-chaan-teng
   node: yue.food-story

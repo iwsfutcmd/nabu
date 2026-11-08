@@ -62,6 +62,7 @@ sentences:
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: |-
         [你]食(咗|左)飯未[呀]
+        你食飯未呀
   translations:
     en: |-
       Have you eaten (yet|)?
@@ -109,7 +110,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你買咗咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 買, sense: 買, readings: {jyutping: maai5}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你買(咗|左)(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        你買(咗|左)(咩|乜嘢|乜野|乜)[呀]
+        你買咗啲咩呀
   translations:
     en: |-
       What did you buy?
@@ -121,7 +124,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你做咗咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        你做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+        你做咗啲咩呀
   translations:
     en: |-
       What did you do?
@@ -133,7 +138,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你週末做咗咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (你(週|周)末|(週|周)末你)做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        (你(週|周)末|(週|周)末你)做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+        你週末做咗啲咩呀
   translations:
     en: |-
       What did you do (on the|at the|over the|this|last) weekend?
@@ -147,6 +154,7 @@ sentences:
       reverse: |-
         我去(咗|左)睇戲
         我睇(咗|左)戲
+        我去咗睇電影
   translations:
     en: |-
       I went to (see|watch) a (movie|film).
@@ -170,7 +178,9 @@ sentences:
       tokens: [{surface: 佢哋, sense: 佢, morphs: [{surface: 佢, kc: 'sense:佢'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: keoi5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 行山, sense: 行山, readings: {jyutping: haang4 saan1}}]
       reverse: 佢(哋|地)去(咗|左)行山
   translations:
-    en: They went hiking.
+    en: |-
+      They went hiking.
+      They've gone hiking.
 - id: s.u09.12
   node: yue.weekend
   persons: {addressee: sg}
@@ -279,7 +289,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我啱啱食咗飯。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 啱啱, sense: 啱啱, readings: {jyutping: ngaam1 ngaam1}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}]
-      reverse: 我(啱啱|岩岩)食(咗|左)(飯|)
+      reverse: |-
+        我(啱啱|岩岩)食(咗|左)(飯|)
+        我啱啱食完飯
   translations:
     en: |-
       I('ve| have) just eaten.
@@ -316,7 +328,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我尋日見咗美玲。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 尋日, sense: 尋日, readings: {jyutping: cam4 jat6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
-      reverse: (我(尋|琴|噚)日|(尋|琴|噚)日我)見(咗|左)美玲
+      reverse: |-
+        (我(尋|琴|噚)日|(尋|琴|噚)日我)見(咗|左)美玲
+        我尋日見到美玲
   translations:
     en: |-
       I (saw|met) (Mei-ling|Mei Ling) yesterday.
@@ -338,7 +352,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 佢冇食晚飯。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 晚飯, sense: 晚飯, readings: {jyutping: maan5 faan6}}]
-      reverse: 佢(冇|無)食晚飯
+      reverse: |-
+        佢(冇|無)食晚飯
+        佢冇食晚餐
   translations:
     en: |-
       (She|He) didn't (eat|have) dinner.
@@ -375,7 +391,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 識, sense: 識, readings: {jyutping: sik1}}, {surface: 講, sense: 講, readings: {jyutping: gong2}}, {surface: 廣東話, sense: 廣東話, readings: {jyutping: gwong2 dung1 waa2}}]
       reverse: 我識講(廣東話|粵語)
   translations:
-    en: I (can|know how to) speak Cantonese.
+    en: |-
+      I (can|know how to) speak Cantonese.
+      I speak Cantonese.
 - id: s.u09.30
   node: yue.languages
   forms:
@@ -435,12 +453,15 @@ sentences:
       text: 你哋食咗飯未呀？
       tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {
           surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 飯, sense: 飯, readings: {jyutping: faan6}}, {surface: 未, sense: 未, readings: {jyutping: mei6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你(哋|地)食(咗|左)飯未[呀]
+      reverse: |-
+        你(哋|地)食(咗|左)飯未[呀]
+        你哋食飯未呀
   translations:
     en: |-
       Have you eaten (yet|)?
       Have you had (your meal|dinner|lunch|a meal) (yet|)?
       Did you eat (yet|)?
+      Have you all eaten?
 - id: s.u09.35
   node: yue.weekend
   persons: {addressee: pl}
@@ -449,11 +470,14 @@ sentences:
       text: 你哋週末做咗咩呀？
       tokens: [{surface: 你哋, sense: 你, morphs: [{surface: 你, kc: 'sense:你'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: nei5 dei6}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}},
         {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咗, sense: 咗, readings: {jyutping: zo2}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (你(哋|地)(週|周)末|(週|周)末你(哋|地))做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        (你(哋|地)(週|周)末|(週|周)末你(哋|地))做(咗|左)(咩|乜嘢|乜野|乜)[呀]
+        你哋週末做咗啲咩呀
   translations:
     en: |-
       What did you do (on the|at the|over the|this|last) weekend?
       What did you get up to (on the|at the|over the|this|last) weekend?
+      What did you all do on the weekend?
 stories:
 - id: yue.story.monday
   node: yue.past-story

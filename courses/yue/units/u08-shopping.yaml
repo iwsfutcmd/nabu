@@ -54,7 +54,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢件衫幾多錢呀？
       tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢件(衫|)幾(多|)錢[呀]
+      reverse: |-
+        呢件(衫|)幾(多|)錢[呀]
+        呢件衫要幾多錢呀
   translations:
     en: |-
       How much is this (shirt|top)?
@@ -65,7 +67,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 嗰件衫好靚。
       tokens: [{surface: 嗰件, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: go2 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
-      reverse: 嗰件衫好靚(|呀)
+      reverse: |-
+        嗰件衫好靚(|呀)
+        嗰件衫好好睇
   translations:
     en: That (shirt|top) is (very|really|so) (nice|pretty|beautiful).
 - id: s.u08.4
@@ -83,7 +87,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢對鞋幾多錢呀？
       tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ni1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢對(鞋|)幾(多|)錢[呀]
+      reverse: |-
+        呢對(鞋|)幾(多|)錢[呀]
+        呢對鞋要幾多錢呀
   translations:
     en: |-
       How much are these shoes?
@@ -112,7 +118,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢個帽好靚。
       tokens: [{surface: 呢個, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 個, kc: 'sense:個'}], readings: {jyutping: ni1 go3}}, {surface: 帽, sense: 帽, readings: {jyutping: mou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
-      reverse: 呢(個|頂)帽好靚(|呀)
+      reverse: |-
+        呢(個|頂)帽好靚(|呀)
+        呢個帽好好睇
   translations:
     en: This (hat|cap) is (very|really|so) (nice|pretty).
 - id: s.u08.9
@@ -130,7 +138,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢條褲幾多錢呀？
       tokens: [{surface: 呢條, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 條, kc: 'sense:條'}], readings: {jyutping: ni1 tiu4}}, {surface: 褲, sense: 褲, readings: {jyutping: fu3}}, {surface: 幾多, sense: 幾多, readings: {jyutping: gei2 do1}}, {surface: 錢, sense: 錢, readings: {jyutping: cin2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 呢條(褲|)幾(多|)錢[呀]
+      reverse: |-
+        呢條(褲|)幾(多|)錢[呀]
+        呢條褲要幾多錢呀
   translations:
     en: |-
       How much are these (trousers|pants)?
@@ -148,6 +158,7 @@ sentences:
       They (really |)(love|like) looking at clothes.
       (She|He) (really |)(loves|likes) (to look at clothes|clothes shopping).
       They (really |)(love|like) (to look at clothes|clothes shopping).
+      She likes looking at clothes a lot.
 - id: s.u08.12
   node: yue.price
   forms:
@@ -189,6 +200,7 @@ sentences:
       reverse: |-
         得唔得[呀]
         可唔可以[呀]
+        可以嗎
   translations:
     en: |-
       Is that (OK|okay|all right|alright)?
@@ -207,6 +219,7 @@ sentences:
         平啲得唔得[呀]
         可唔可以平啲[呀]
         可以平啲嗎
+        平少少得唔得呀
   translations:
     en: |-
       Can you make it (a bit |a little |)cheaper?
@@ -245,7 +258,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 試, sense: 試, readings: {jyutping: si3}}]
       reverse: 我想試(|吓|身)
   translations:
-    en: I('d like| want| would like) to try (it|it on|it out).
+    en: |-
+      I('d like| want| would like) to try (it|it on|it out).
+      I want to try.
 - id: s.u08.20
   node: yue.try-on
   constructions: ['construction:a-not-a']
@@ -278,7 +293,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇細啲呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 細, sense: 細, readings: {jyutping: sai3}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有(冇|無)細啲(|嘅|既)[呀]
+      reverse: |-
+        有(冇|無)細啲(|嘅|既)[呀]
+        有細啲嘅嗎
   translations:
     en: |-
       Do you have (a |)smaller (one|size)?
@@ -290,7 +307,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇大啲嘅呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有(冇|無)大啲(嘅|既|)[呀]
+      reverse: |-
+        有(冇|無)大啲(嘅|既|)[呀]
+        有大啲嘅嗎
   translations:
     en: |-
       Do you have a bigger (one|size)?
@@ -337,7 +356,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 有冇黑色呀？
       tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 黑色, sense: 黑色, readings: {jyutping: hak1 sik1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 有(冇|無)黑色(|嘅|既)[呀]
+      reverse: |-
+        有(冇|無)黑色(|嘅|既)[呀]
+        有黑色嗎
   translations:
     en: |-
       Do you have (it in |)black?
@@ -355,6 +376,7 @@ sentences:
       I('ll| will) (take|have) the white one.
       I want the white one.
       I('d| would) like the white one.
+      I want a white one.
 - id: s.u08.29
   node: yue.colours
   forms:
@@ -370,7 +392,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 藍色都好好睇。
       tokens: [{surface: 藍色, sense: 藍色, readings: {jyutping: laam4 sik1}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好睇, sense: 好睇, readings: {jyutping: hou2 tai2}}]
-      reverse: 藍色(|嘅|既)都好(好睇|靚)
+      reverse: |-
+        藍色(|嘅|既)都好(好睇|靚)
+        藍色亦都好好睇
   translations:
     en: |-
       Blue (looks|is) (nice|good) too.
@@ -453,6 +477,7 @@ sentences:
       I('ll| will) give you (a|one) hundred dollars.
       Here's 100 dollars.
       I('ll| will) give you 100 dollars.
+      Here's $100.
 stories:
 - id: yue.story.market
   node: yue.shopping-story

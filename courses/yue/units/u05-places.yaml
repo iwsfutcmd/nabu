@@ -101,7 +101,9 @@ sentences:
         你(喺唔喺|係咪喺|係唔係喺)屋企[呀]
         你喺屋企(嗎|呀)
   translations:
-    en: Are you at home?
+    en: |-
+      Are you at home?
+      Are you home?
 - id: s.u05.7
   node: yue.where
   constructions: ['construction:cl-possessive']
@@ -251,7 +253,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢度有冇餐廳呀？
       tokens: [{surface: 呢度, sense: 呢度, readings: {jyutping: ni1 dou6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 餐廳, sense: 餐廳, readings: {jyutping: caan1 teng1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (呢度|呢度附近|附近)有(冇|無)餐廳[呀]
+      reverse: |-
+        (呢度|呢度附近|附近)有(冇|無)餐廳[呀]
+        呢度有餐廳嗎
   translations:
     en: |-
       Are there (any |)restaurants (here|around here)?
@@ -263,7 +267,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 附近有冇銀行呀？
       tokens: [{surface: 附近, sense: 附近, readings: {jyutping: fu6 gan6}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (|呢度)附近有(冇|無)銀行[呀]
+      reverse: |-
+        (|呢度)附近有(冇|無)銀行[呀]
+        附近有銀行嗎
   translations:
     en: |-
       Is there a bank (nearby|near here|around here)?
@@ -283,7 +289,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 學校喺醫院後面。
       tokens: [{surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 醫院, sense: 醫院, readings: {jyutping: ji1 jyun2}}, {surface: 後面, sense: 後面, readings: {jyutping: hau6 min6}}]
-      reverse: 學校喺醫院後(面|邊)
+      reverse: |-
+        學校喺醫院後(面|邊)
+        學校喺醫院後便
   translations:
     en: The school is behind the hospital.
 - id: s.u05.24
@@ -292,7 +300,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 餐廳喺銀行前面。
       tokens: [{surface: 餐廳, sense: 餐廳, readings: {jyutping: caan1 teng1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 銀行, sense: 銀行, readings: {jyutping: ngan4 hong4}}, {surface: 前面, sense: 前面, readings: {jyutping: cin4 min6}}]
-      reverse: 餐廳喺銀行前(面|邊)
+      reverse: |-
+        餐廳喺銀行前(面|邊)
+        餐廳喺銀行前便
   translations:
     en: The restaurant is in front of the bank.
 - id: s.u05.25
@@ -319,7 +329,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 佢喺入面。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 入面, sense: 入面, readings: {jyutping: jap6 min6}}]
-      reverse: 佢喺入(面|邊)
+      reverse: |-
+        佢喺入(面|邊)
+        佢喺入便
   translations:
     en: |-
       (She|He)('s| is) inside.
@@ -386,7 +398,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 唔係好遠。
       tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}]
-      reverse: 唔係(好|太)遠
+      reverse: |-
+        唔係(好|太)遠
+        冇幾遠
   translations:
     en: |-
       (It's|It is) not (very|that|too) far.
@@ -410,7 +424,10 @@ sentences:
         {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: 你(哋|地)去邊(度|)[呀]
   translations:
-    en: Where are you (going|off to|headed)?
+    en: |-
+      Where are you (going|off to|headed)?
+      Where are you all going?
+      Where are you guys going?
 - id: s.u05.36
   node: yue.come-go
   constructions:
@@ -429,6 +446,8 @@ sentences:
     en: |-
       Are you coming?
       (Will you come|Are you going to come)?
+      Are you all coming?
+      Are you guys coming?
 - id: s.u05.37
   node: yue.live
   persons: {addressee: pl}
@@ -439,7 +458,10 @@ sentences:
           surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       reverse: 你(哋|地)住(喺|)邊(度|)[呀]
   translations:
-    en: Where do you live?
+    en: |-
+      Where do you live?
+      Where do you all live?
+      Where do you guys live?
 stories:
 - id: yue.story.neighbours
   node: yue.places-story
