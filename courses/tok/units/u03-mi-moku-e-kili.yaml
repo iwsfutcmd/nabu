@@ -1,0 +1,846 @@
+# Unit 3 (tok): e before each direct object (mi moku e kili e pan), verbs with objects (wile, jo, lukin, pali, olin), wile before a verb (mi wile moku) and things to eat, have and use: kili, pan, ijo, ilo, lipu, kasi.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a fluent speaker.
+id: u03
+title:
+  en: 'mi moku e kili: I''m eating fruit'
+cefr: A1
+kcs:
+- {id: 'sense:e', gloss: {en: (comes before the direct object)}, forms: {tok-Latn/standard: [e], tok-Qaap/sitelen-pona: [󱤉]}, notes: {en: 'e marks what the verb acts on: mi moku e kili. Each object takes
+      its own e: mi moku e kili e pan.'}}
+- {id: 'sense:kili', gloss: {en: 'fruit, vegetable; mushroom'}, forms: {tok-Latn/standard: [kili], tok-Qaap/sitelen-pona: [󱤚]}}
+- {id: 'sense:pan', gloss: {en: 'bread, grain; rice, pasta, cereal'}, forms: {tok-Latn/standard: [pan], tok-Qaap/sitelen-pona: [󱥋]}}
+- {id: 'sense:wile', gloss: {en: 'want, need; want to; wish'}, forms: {tok-Latn/standard: [wile], tok-Qaap/sitelen-pona: [󱥷]}, notes: {en: 'Before another verb wile means want to, with no e: mi wile moku,
+      I want to eat.'}}
+- {id: 'sense:jo', gloss: {en: 'have, own, hold, carry'}, forms: {tok-Latn/standard: [jo], tok-Qaap/sitelen-pona: [󱤓]}}
+- {id: 'sense:ijo', gloss: {en: 'thing, something, object'}, forms: {tok-Latn/standard: [ijo], tok-Qaap/sitelen-pona: [󱤌]}}
+- {id: 'sense:lukin', gloss: {en: 'see, look at, watch; eye; read'}, forms: {tok-Latn/standard: [lukin], tok-Qaap/sitelen-pona: [󱤮]}, image: {file: ../images/eye.svg, license: CC0-1.0, provenance: {author: 'llm:claude@778ae7bbd2f2',
+      status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: lukin e lipu is reading.}}
+- {id: 'sense:lipu', gloss: {en: 'book, paper, page; document, card'}, forms: {tok-Latn/standard: [lipu], tok-Qaap/sitelen-pona: [󱤪]}, image: {file: ../images/book.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3b5a77ff7369',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:pali', gloss: {en: 'do, make, build; work'}, forms: {tok-Latn/standard: [pali], tok-Qaap/sitelen-pona: [󱥉]}, notes: {en: pali e moku is cooking.}}
+- {id: 'sense:ilo', gloss: {en: 'tool, device, machine'}, forms: {tok-Latn/standard: [ilo], tok-Qaap/sitelen-pona: [󱤎]}}
+- {id: 'sense:olin', gloss: {en: 'love; care for, respect'}, forms: {tok-Latn/standard: [olin], tok-Qaap/sitelen-pona: [󱥅]}}
+- {id: 'sense:kasi', gloss: {en: 'plant, tree, grass; leaf'}, forms: {tok-Latn/standard: [kasi], tok-Qaap/sitelen-pona: [󱤗]}, image: {file: ../images/tree.svg, license: CC0-1.0, provenance: {author: 'llm:claude@3868bb19b496',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+nodes:
+- {id: tok.u03.eat-fruit, kind: lesson, introduces: ['sense:e', 'sense:kili']}
+- {id: tok.u03.want, kind: lesson, introduces: ['sense:pan', 'sense:wile']}
+- {id: tok.u03.have, kind: lesson, introduces: ['sense:jo', 'sense:ijo']}
+- {id: tok.u03.see, kind: lesson, introduces: ['sense:lukin', 'sense:lipu']}
+- {id: tok.u03.make, kind: lesson, introduces: ['sense:pali', 'sense:ilo']}
+- {id: tok.u03.love, kind: lesson, introduces: ['sense:olin', 'sense:kasi']}
+- {id: tok.u03.story, kind: story}
+sentences:
+- id: s.u03.1
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: mi moku e kili.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili, readings: {
+            lasina: kili}}]
+      reverse: mi moku e kili
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤶󱤉󱤚
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
+            lasina: kili}}]
+      reverse: 󱤴󱤶󱤉󱤚
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) eating (fruit|the fruit|vegetables).
+      (I|We) (eat|ate) (fruit|the fruit|vegetables)
+- id: s.u03.2
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: sina moku e kili.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili,
+          readings: {lasina: kili}}]
+      reverse: sina moku e kili
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤶󱤉󱤚
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
+            lasina: kili}}]
+      reverse: 󱥞󱤶󱤉󱤚
+  translations:
+    en: |-
+      (You're|You are) eating (fruit|the fruit|vegetables).
+      You (eat|ate) (fruit|the fruit|vegetables)
+- id: s.u03.3
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: soweli li moku e kili.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e,
+          readings: {lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}]
+      reverse: soweli li moku e kili
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤶󱤉󱤚
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}]
+      reverse: 󱥢󱤧󱤶󱤉󱤚
+  translations:
+    en: |-
+      The animal is eating (fruit|the fruit|vegetables).
+      The animal (eats|ate) (fruit|the fruit|vegetables)
+      [The] animals are eating (fruit|the fruit|vegetables)
+- id: s.u03.4
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li moku e telo.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku,
+          readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: telo, sense: telo, readings: {lasina: telo}}]
+      reverse: jan Lina li moku e telo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤶󱤉󱥪
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥪, sense: telo, readings: {lasina: telo}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤶󱤉󱥪
+  translations:
+    en: |-
+      Lina is drinking (water|the water).
+      Lina (drinks|drank) [the] water
+- id: s.u03.5
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: waso li moku e pipi.
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: pipi, sense: pipi, readings: {lasina: pipi}}]
+      reverse: waso li moku e pipi
+    tok-Qaap/sitelen-pona:
+      text: 󱥴󱤧󱤶󱤉󱥑
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱥑, sense: pipi, readings: {lasina: pipi}}]
+      reverse: 󱥴󱤧󱤶󱤉󱥑
+  translations:
+    en: |-
+      The bird is eating (a bug|bugs|an insect|insects|the bug).
+      The bird (eats|ate) (a bug|bugs|an insect|insects|the bug)
+- id: s.u03.6
+  node: tok.u03.eat-fruit
+  forms:
+    tok-Latn/standard:
+      text: ona li moku e kili e telo.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: telo, sense: telo, readings: {lasina: telo}}]
+      reverse: ona li moku e kili e telo
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤶󱤉󱤚󱤉󱥪
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥪, sense: telo, readings: {lasina: telo}}]
+      reverse: 󱥆󱤧󱤶󱤉󱤚󱤉󱥪
+  translations:
+    en: |-
+      (She's|She is|He's|He is|They're|They are) having fruit and water.
+      (She's|She is|He's|He is|They're|They are) eating fruit and drinking water
+      (She|He) (has|had) fruit and water
+      They (have|had) fruit and water
+- id: s.u03.7
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: mi moku e pan.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {
+            lasina: pan}}]
+      reverse: mi moku e pan
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤶󱤉󱥋
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      reverse: 󱤴󱤶󱤉󱥋
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) eating bread.
+      (I|We) (eat|ate) bread
+- id: s.u03.8
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: mi wile e pan.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {
+            lasina: pan}}]
+      reverse: mi wile e pan
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥷󱤉󱥋
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      reverse: 󱤴󱥷󱤉󱥋
+  translations:
+    en: (I|We) want (bread|some bread).
+- id: s.u03.9
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li wile e telo.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile,
+          readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: telo, sense: telo, readings: {lasina: telo}}]
+      reverse: jan Mila li wile e telo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥷󱤉󱥪
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥪, sense: telo, readings: {lasina: telo}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥷󱤉󱥪
+  translations:
+    en: Mila wants (water|some water|a drink).
+- id: s.u03.10
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li wile e kili e pan.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile,
+          readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan,
+          sense: pan, readings: {lasina: pan}}]
+      reverse: jan Pita li wile e kili e pan
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥷󱤉󱤚󱤉󱥋
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥷󱤉󱤚󱤉󱥋
+  translations:
+    en: Pita (wants|wanted) fruit and bread.
+- id: s.u03.11
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: mi wile moku.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
+      reverse: mi wile moku
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥷󱤶
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      reverse: 󱤴󱥷󱤶
+  translations:
+    en: |-
+      (I|We) want to eat.
+      (I'm|I am|We're|We are) hungry
+- id: s.u03.12
+  node: tok.u03.want
+  forms:
+    tok-Latn/standard:
+      text: soweli lili li wile lape.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: lili, sense: lili, readings: {lasina: lili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile,
+          readings: {lasina: wile}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: soweli lili li wile lape
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤨󱤧󱥷󱤢
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {
+            lasina: wile}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱥢󱤨󱤧󱥷󱤢
+  translations:
+    en: |-
+      The (little|small) animal (wants|wanted) to sleep.
+      [The] (little|small) animals (want|wanted) to sleep
+      The (little|small) animal is (sleepy|tired)
+- id: s.u03.13
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: mi jo e soweli.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: soweli, sense: soweli, readings: {
+            lasina: soweli}}]
+      reverse: mi jo e soweli
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤓󱤉󱥢
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}]
+      reverse: 󱤴󱤓󱤉󱥢
+  translations:
+    en: (I|We) have (a pet|an animal|pets|animals).
+- id: s.u03.14
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li jo e waso.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jo, sense: jo, readings: {
+            lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: waso, sense: waso, readings: {lasina: waso}}]
+      reverse: jan Mila li jo e waso
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤓󱤉󱥴
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉,
+          sense: e, readings: {lasina: e}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤓󱤉󱥴
+  translations:
+    en: |-
+      Mila has (a bird|birds).
+      Mila had (a bird|birds)
+- id: s.u03.15
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: ona li jo e ijo.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: ijo, sense: ijo, readings: {lasina: ijo}}]
+      reverse: ona li jo e ijo
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤓󱤉󱤌
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
+        {surface: 󱤌, sense: ijo, readings: {lasina: ijo}}]
+      reverse: 󱥆󱤧󱤓󱤉󱤌
+  translations:
+    en: (She has|He has|They have|She had|He had|They had) something.
+- id: s.u03.16
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: ijo ni li suli.
+      tokens: [{surface: ijo, sense: ijo, readings: {lasina: ijo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: ijo ni li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱤌󱥁󱤧󱥣
+      tokens: [{surface: 󱤌, sense: ijo, readings: {lasina: ijo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: 󱤌󱥁󱤧󱥣
+  translations:
+    en: |-
+      (This|That) thing is (big|large).
+      (These|Those) things are (big|large)
+- id: s.u03.17
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: sina jo e ijo suwi.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: ijo, sense: ijo, readings: {
+            lasina: ijo}}, {surface: suwi, sense: suwi, readings: {lasina: suwi}}]
+      reverse: sina jo e ijo suwi
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤓󱤉󱤌󱥦
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤌, sense: ijo, readings: {lasina: ijo}},
+        {surface: 󱥦, sense: suwi, readings: {lasina: suwi}}]
+      reverse: 󱥞󱤓󱤉󱤌󱥦
+  translations:
+    en: |-
+      You have something (sweet|cute).
+      You have a (sweet|cute) thing
+- id: s.u03.18
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li jo e soweli e waso e kala.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jo, sense: jo, readings: {
+            lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: waso, sense: waso,
+          readings: {lasina: waso}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kala, sense: kala, readings: {lasina: kala}}]
+      reverse: jan Lina li jo e soweli e waso e kala
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤓󱤉󱥢󱤉󱥴󱤉󱤔
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉,
+          sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤔, sense: kala, readings: {lasina: kala}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤓󱤉󱥢󱤉󱥴󱤉󱤔
+  translations:
+    en: |-
+      Lina has (a pet|an animal), a bird and a fish.
+      Lina has (pets|animals), birds and fish
+- id: s.u03.19
+  node: tok.u03.have
+  forms:
+    tok-Latn/standard:
+      text: mi wile jo e tomo suli.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
+      reverse: mi wile jo e tomo suli
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥷󱤓󱤉󱥭󱥣
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
+        {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
+      reverse: 󱤴󱥷󱤓󱤉󱥭󱥣
+  translations:
+    en: (I|We) want to (have|own) a (big|large) house.
+- id: s.u03.20
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: mi lukin e soweli.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: soweli, sense: soweli,
+          readings: {lasina: soweli}}]
+      reverse: mi lukin e soweli
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤮󱤉󱥢
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {
+            lasina: soweli}}]
+      reverse: 󱤴󱤮󱤉󱥢
+  translations:
+    en: |-
+      (I|We) (see|saw) (an animal|the animal|animals).
+      (I'm|I am|We're|We are) (looking at|watching) the animal
+- id: s.u03.21
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: sina lukin e mi.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: mi, sense: mi,
+          readings: {lasina: mi}}]
+      reverse: sina lukin e mi
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤮󱤉󱤴
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤴, sense: mi, readings: {
+            lasina: mi}}]
+      reverse: 󱥞󱤮󱤉󱤴
+  translations:
+    en: |-
+      You (see|saw) (me|us).
+      (You're|You are) (looking at|watching) (me|us)
+- id: s.u03.22
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li lukin e lipu.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lukin, sense: lukin,
+          readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}]
+      reverse: jan Pita li lukin e lipu
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤮󱤉󱤪
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}},
+        {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤮󱤉󱤪
+  translations:
+    en: |-
+      Pita is reading (a book|the book).
+      Pita (reads|read) (a book|the book|books)
+      Pita is looking at (a|the) (book|paper)
+- id: s.u03.23
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: lipu ni li pona.
+      tokens: [{surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: lipu ni li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤪󱥁󱤧󱥔
+      tokens: [{surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: 󱤪󱥁󱤧󱥔
+  translations:
+    en: |-
+      (This|That) book is (good|nice).
+      (This|That) (paper|page|document) is (good|nice)
+      (These|Those) books are (good|nice)
+- id: s.u03.24
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: mi wile lukin e lipu.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e,
+          readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}]
+      reverse: mi wile lukin e lipu
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥷󱤮󱤉󱤪
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}]
+      reverse: 󱤴󱥷󱤮󱤉󱤪
+  translations:
+    en: |-
+      (I|We) want to read (a book|the book).
+      (I|We) want to see the book
+- id: s.u03.25
+  node: tok.u03.see
+  forms:
+    tok-Latn/standard:
+      text: waso li lukin e pipi.
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e,
+          readings: {lasina: e}}, {surface: pipi, sense: pipi, readings: {lasina: pipi}}]
+      reverse: waso li lukin e pipi
+    tok-Qaap/sitelen-pona:
+      text: 󱥴󱤧󱤮󱤉󱥑
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱥑, sense: pipi, readings: {lasina: pipi}}]
+      reverse: 󱥴󱤧󱤮󱤉󱥑
+  translations:
+    en: |-
+      The bird (sees|saw) (a bug|an insect|the bug).
+      The bird is (looking at|watching) (a|the) (bug|insect)
+- id: s.u03.26
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: mi pali.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: pali, sense: pali, readings: {lasina: pali}}]
+      reverse: mi pali
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥉
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}]
+      reverse: 󱤴󱥉
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) working.
+      (I|We) (work|worked)
+- id: s.u03.27
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li pali e tomo.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pali, sense: pali,
+          readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      reverse: jan Pita li pali e tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤉󱥭
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥉󱤉󱥭
+  translations:
+    en: |-
+      Pita is (building|making) (a house|the house).
+      Pita (builds|built|makes|made) (a house|the house)
+- id: s.u03.28
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: ilo ni li pona.
+      tokens: [{surface: ilo, sense: ilo, readings: {lasina: ilo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: ilo ni li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤎󱥁󱤧󱥔
+      tokens: [{surface: 󱤎, sense: ilo, readings: {lasina: ilo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: 󱤎󱥁󱤧󱥔
+  translations:
+    en: (This|That) (tool|device|machine) is (good|nice).
+- id: s.u03.29
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: sina pali e ilo.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: ilo, sense: ilo, readings: {
+            lasina: ilo}}]
+      reverse: sina pali e ilo
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱥉󱤉󱤎
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤎, sense: ilo, readings: {
+            lasina: ilo}}]
+      reverse: 󱥞󱥉󱤉󱤎
+  translations:
+    en: |-
+      (You're|You are) making (a tool|tools).
+      You (make|made) (a tool|tools)
+- id: s.u03.30
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li pali e moku.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pali, sense: pali,
+          readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
+      reverse: |-
+        jan Lina li pali e moku
+        jan Lina li seli e moku
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥉󱤉󱤶
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥉󱤉󱤶
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥗󱤉󱤶
+  translations:
+    en: |-
+      Lina is (cooking|making food).
+      Lina (cooks|cooked|makes food|made food)
+- id: s.u03.31
+  node: tok.u03.make
+  forms:
+    tok-Latn/standard:
+      text: ona li jo e ilo li pali e ijo.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: ilo, sense: ilo, readings: {lasina: ilo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e,
+          readings: {lasina: e}}, {surface: ijo, sense: ijo, readings: {lasina: ijo}}]
+      reverse: ona li jo e ilo li pali e ijo
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤓󱤉󱤎󱤧󱥉󱤉󱤌
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
+        {surface: 󱤎, sense: ilo, readings: {lasina: ilo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
+        {surface: 󱤌, sense: ijo, readings: {lasina: ijo}}]
+      reverse: 󱥆󱤧󱤓󱤉󱤎󱤧󱥉󱤉󱤌
+  translations:
+    en: |-
+      (He has a tool and is|She has a tool and is|They have a tool and are) making something.
+      (He|She) has a tool and makes something
+      They have a tool and make something
+- id: s.u03.32
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: mi olin e sina.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: sina, sense: sina, readings: {
+            lasina: sina}}]
+      reverse: mi olin e sina
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥅󱤉󱥞
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥞, sense: sina, readings: {
+            lasina: sina}}]
+      reverse: 󱤴󱥅󱤉󱥞
+  translations:
+    en: (I|We) love you.
+- id: s.u03.33
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: ona li olin e mi.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+      reverse: ona li olin e mi
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥅󱤉󱤴
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      reverse: 󱥆󱤧󱥅󱤉󱤴
+  translations:
+    en: (He loves|She loves|They love) (me|us).
+- id: s.u03.34
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: kasi li suli.
+      tokens: [{surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
+      reverse: kasi li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱤗󱤧󱥣
+      tokens: [{surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
+      reverse: 󱤗󱤧󱥣
+  translations:
+    en: |-
+      The (plant|tree) is (big|tall).
+      [The] (plants|trees) are (big|tall)
+- id: s.u03.35
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li olin e kasi.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: olin, sense: olin,
+          readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}]
+      reverse: jan Mila li olin e kasi
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥅󱤉󱤗
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥅󱤉󱤗
+  translations:
+    en: Mila loves (plants|the plant|the plants|trees).
+- id: s.u03.36
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: soweli li moku e kasi.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e,
+          readings: {lasina: e}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}]
+      reverse: soweli li moku e kasi
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤶󱤉󱤗
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
+      reverse: 󱥢󱤧󱤶󱤉󱤗
+  translations:
+    en: |-
+      The animal is eating (the plant|a plant|plants|grass|the grass).
+      The animal (eats|ate) (the plant|a plant|plants|grass|the grass)
+- id: s.u03.37
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: mi olin e soweli mi.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: soweli, sense: soweli, readings: {
+            lasina: soweli}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+      reverse: mi olin e soweli mi
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥅󱤉󱥢󱤴
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {
+            lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      reverse: 󱤴󱥅󱤉󱥢󱤴
+  translations:
+    en: (I|We) love (my|our) (pet|pets|animal|animals).
+- id: s.u03.38
+  node: tok.u03.love
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li olin e lipu e kasi.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: olin, sense: olin,
+          readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kasi,
+          sense: kasi, readings: {lasina: kasi}}]
+      reverse: jan Lina li olin e lipu e kasi
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥅󱤉󱤪󱤉󱤗
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥅󱤉󱤪󱤉󱤗
+  translations:
+    en: Lina loves (books|the books) and (plants|the plants).
+stories:
+- id: tok.story.lunch
+  node: tok.u03.story
+  title:
+    en: 'mi pali e moku: Lunch at Mila''s'
+  characters:
+  - {id: lina, name: {tok-Latn/standard: jan Lina, tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑}}
+  - {id: pita, name: {tok-Latn/standard: jan Pita, tok-Qaap/sitelen-pona: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑}}
+  - {id: mila, name: {tok-Latn/standard: jan Mila, tok-Qaap/sitelen-pona: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑}}
+  steps:
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: mi pali e moku.
+          tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: moku, sense: moku, readings: {
+                lasina: moku}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤴󱥉󱤉󱤶
+          tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤶, sense: moku, readings: {
+                lasina: moku}}]
+      translations:
+        en: I'm making food.
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: pona! mi wile moku a!
+          tokens: [{surface: pona, sense: pona, readings: {lasina: pona}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: moku, sense: moku,
+              readings: {lasina: moku}}, {surface: a, sense: a, readings: {lasina: a}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1954\u3000\U000F1934\U000F1977\U000F1936\U000F1900"
+          tokens: [{surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤶, sense: moku, readings: {
+                lasina: moku}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
+      translations:
+        en: Great! I'm so hungry!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: mi jo e kili e pan e telo.
+          tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili, readings: {
+                lasina: kili}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: telo, sense: telo,
+              readings: {lasina: telo}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤴󱤓󱤉󱤚󱤉󱥋󱤉󱥪
+          tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
+                lasina: kili}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥪, sense: telo,
+              readings: {lasina: telo}}]
+      translations:
+        en: I have fruit, bread and water.
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: jan Mila, kasi sina li suli a!
+          tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: sina, sense: sina,
+              readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: a, sense: a, readings: {lasina: a}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤗󱥞󱤧󱥣󱤀
+          tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}},
+            {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
+      translations:
+        en: Mila, your plants are so big!
+  - line:
+      speaker: mila
+      ask: complete
+      gap: sense:olin
+      distractors: ['sense:lukin', 'sense:pali']
+      forms:
+        tok-Latn/standard:
+          text: mi olin e kasi.
+          tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kasi, sense: kasi, readings: {
+                lasina: kasi}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤴󱥅󱤉󱤗
+          tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤗, sense: kasi, readings: {
+                lasina: kasi}}]
+      translations:
+        en: I love plants.
+  - choose:
+      prompt:
+        en: What does Mila love?
+      options: [{en: plants}, {en: bread}, {en: bugs}]
+      answer: 0
+  - line:
+      speaker: lina
+      ask: arrange
+      forms:
+        tok-Latn/standard:
+          text: a! soweli sina li lukin e pan!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li,
+              readings: {lasina: li}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {lasina: pan}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\u3000\U000F1962\U000F195E\U000F1927\U000F192E\U000F1909\U000F194B"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {
+                lasina: li}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      translations:
+        en: Oh! Your pet is looking at the bread!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: soweli mi li wile moku e pan.
+          tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile,
+              readings: {lasina: wile}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {lasina: pan}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥢󱤴󱤧󱥷󱤶󱤉󱥋
+          tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {
+                lasina: wile}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      translations:
+        en: My pet wants to eat the bread.
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: a a a! soweli li moku e pan!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: soweli, sense: soweli, readings: {
+                lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan,
+              sense: pan, readings: {lasina: pan}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\U000F1900\U000F1900\u3000\U000F1962\U000F1927\U000F1936\U000F1909\U000F194B"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}},
+            {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      translations:
+        en: Ha ha ha! The pet is eating the bread!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: soweli ike! pan li moku mi!
+          tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: ike, sense: ike, readings: {lasina: ike}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: li, sense: li,
+              readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1962\U000F190D\u3000\U000F194B\U000F1927\U000F1936\U000F1934"
+          tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤍, sense: ike, readings: {lasina: ike}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤧, sense: li,
+              readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
+      translations:
+        en: Bad pet! That bread is my food!
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: pona. mi jo e kili. kili li pona.
+          tokens: [{surface: pona, sense: pona, readings: {lasina: pona}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {
+                lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}, {surface: kili, sense: kili, readings: {lasina: kili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona,
+              sense: pona, readings: {lasina: pona}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1954\u3000\U000F1934\U000F1913\U000F1909\U000F191A\u3000\U000F191A\U000F1927\U000F1954"
+          tokens: [{surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {
+                lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona,
+              readings: {lasina: pona}}]
+      translations:
+        en: It's fine. I have fruit. Fruit is good.
+  - choose:
+      prompt:
+        en: Who eats the bread?
+      options: [{en: Mila's pet}, {en: Pita}, {en: Mila's bird}]
+      answer: 0
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: waso mi li wile e pan lili.
+          tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile,
+              readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥴󱤴󱤧󱥷󱤉󱥋󱤨
+          tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {
+                lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
+      translations:
+        en: My bird wants a little bread.
+scenarios:
+- id: tok.lunch-at-milas
+  after: tok.u03.love
+  title:
+    en: Lunch at Mila's
+  setting:
+    en: Mila's kitchen at noon. Fruit, bread and water are on the table, plants grow by the window, and Mila's pet keeps looking at the food.
+  character:
+    en: jan Mila, a cheerful child who loves plants and is making lunch; she speaks only very simple Toki Pona.
+  goal:
+    en: Say what you want, have and see with e (mi wile e pan, mi jo e kili, mi lukin e kasi), and say what you love.
