@@ -1,0 +1,543 @@
+# Biblical Hebrew (hbo), unit 12: Hear, O Israel (Deuteronomy 6:4-7).
+# "Our", the converted perfect (and you shall love, and they shall be, and you shall teach), infinitives with
+# suffixes for "when you …" (בְּשִׁבְתְּךָ "when you sit"), heart and soul, "very".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u12-hear-o-israel
+title:
+  en: Hear, O Israel
+cefr: A2
+kcs:
+- id: form:sfx-1cp
+  gloss:
+    en: our; us (the suffix -ēnû, -nû)
+- id: sense:levav
+  gloss:
+    en: heart; mind (the seat of thought and will)
+  forms:
+    hbo-Hebr/tiberian: [לֵבָב]
+- id: sense:nefesh
+  gloss:
+    en: soul, life; self; a living being
+  forms:
+    hbo-Hebr/tiberian: [נֶפֶשׁ]
+- id: sense:meod
+  gloss:
+    en: very; (as a noun) strength, might
+  forms:
+    hbo-Hebr/tiberian: [מְאֹד]
+- id: form:weqatal-3cp
+  gloss:
+    en: 'and they shall: the converted perfect (weqatal), they'
+- id: sense:shinnen
+  gloss:
+    en: to teach diligently, repeat (piel)
+  forms:
+    hbo-Hebr/tiberian: [שִׁנֵּן]
+- id: sense:yashav
+  gloss:
+    en: to sit; to dwell, live
+  forms:
+    hbo-Hebr/tiberian: [יָשַׁב]
+- id: sense:derekh
+  gloss:
+    en: way, road; journey
+  forms:
+    hbo-Hebr/tiberian: [דֶּרֶךְ]
+- id: sense:shakhav
+  gloss:
+    en: to lie down
+  forms:
+    hbo-Hebr/tiberian: [שָׁכַב]
+nodes:
+- {id: hbo.u12.hear-o-israel, kind: lesson, introduces: ['form:sfx-1cp']}
+- {id: hbo.u12.with-all-your-heart, kind: lesson, introduces: ['sense:levav', 'sense:nefesh', 'sense:meod']}
+- {id: hbo.u12.these-words, kind: lesson, introduces: ['form:weqatal-3cp', 'sense:shinnen']}
+- {id: hbo.u12.sitting-and-walking, kind: lesson, introduces: ['sense:yashav', 'sense:derekh', 'sense:shakhav']}
+- {id: hbo.u12.story, kind: story}
+sentences:
+- id: s.12.1
+  node: hbo.u12.hear-o-israel
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמַע יִשְׂרָאֵל׃
+      tokens: [{surface: שְׁמַע, sense: shama, form: 'form:impv-ms', readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, sense: yisrael, readings: {tiberian: yiśrāʾēl}}]
+      reverse: שמע ישראל
+  translations:
+    en: |-
+      Hear, O Israel!
+      (Hear|Listen), Israel!
+- id: s.12.2
+  node: hbo.u12.hear-o-israel
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שִׁמְעוּ׃
+      tokens: [{surface: שִׁמְעוּ, sense: shama, form: 'form:impv-mp', readings: {tiberian: šimʿû}}]
+      reverse: שמעו
+  translations:
+    en: (Hear|Listen)!
+- id: s.12.3
+  node: hbo.u12.hear-o-israel
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שִׁמְעִי׃
+      tokens: [{surface: שִׁמְעִי, sense: shama, form: 'form:impv-fs', readings: {tiberian: šimʿî}}]
+      reverse: שמעי
+  translations:
+    en: (Hear|Listen)!
+- id: s.12.4
+  node: hbo.u12.hear-o-israel
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֱלֹהֵינוּ
+      tokens: [{surface: אֱלֹהֵינוּ, sense: elohim, morphs: [{surface: אֱלֹהֵי, kc: 'sense:elohim'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾĕlōhếnû}}]
+      reverse: (אלהינו|אלוהינו)
+  translations:
+    en: our God
+- id: s.12.5
+  node: hbo.u12.hear-o-israel
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָבִינוּ
+      tokens: [{surface: אָבִינוּ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾāḇî́nû}}]
+      reverse: אבינו
+  translations:
+    en: our father
+- id: s.12.6
+  node: hbo.u12.hear-o-israel
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהֵינוּ
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, sense: elohim, morphs: [{surface: אֱלֹהֵי, kc: 'sense:elohim'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {
+            tiberian: ʾĕlōhếnû}}]
+      reverse: יהוה (אלהינו|אלוהינו)
+  translations:
+    en: the LORD our God
+- id: s.12.7
+  node: hbo.u12.hear-o-israel
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, sense: elohim, morphs: [{surface: אֱלֹהֵי, kc: 'sense:elohim'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {
+            tiberian: ʾĕlōhếnû}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      reverse: יהוה (אלהינו|אלוהינו) יהוה אחד
+  translations:
+    en: |-
+      The LORD our God, the LORD is one.
+      The LORD is our God, the LORD (alone|is one).
+- id: s.12.8
+  node: hbo.u12.hear-o-israel
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָבִינוּ בַּשָּׂדֶה׃
+      tokens: [{surface: אָבִינוּ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾāḇî́nû}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
+      reverse: אבינו בשדה
+  translations:
+    en: Our father is in the field.
+- id: s.12.9
+  node: hbo.u12.with-all-your-heart
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֵבָב
+      tokens: [{surface: לֵבָב, sense: levav, readings: {tiberian: lēḇāḇ}}]
+      reverse: לבב
+  translations:
+    en: |-
+      a heart
+      heart
+- id: s.12.10
+  node: hbo.u12.with-all-your-heart
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְבָבִי
+      tokens: [{surface: לְבָבִי, sense: levav, morphs: [{surface: לְבָבִ, kc: 'sense:levav'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləḇāḇî}}]
+      reverse: לבבי
+  translations:
+    en: my heart
+- id: s.12.11
+  node: hbo.u12.with-all-your-heart
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְבָבְךָ
+      tokens: [{surface: לְבָבְךָ, sense: levav, morphs: [{surface: לְבָבְ, kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}]
+      reverse: לבבך
+  translations:
+    en: your heart
+- id: s.12.12
+  node: hbo.u12.with-all-your-heart
+  forms:
+    hbo-Hebr/tiberian:
+      text: נֶפֶשׁ
+      tokens: [{surface: נֶפֶשׁ, sense: nefesh, readings: {tiberian: nép̄eš}}]
+      reverse: נפש
+  translations:
+    en: |-
+      a (soul|life|person)
+      (soul|life)
+- id: s.12.13
+  node: hbo.u12.with-all-your-heart
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַפְשִׁי
+      tokens: [{surface: נַפְשִׁי, sense: nefesh, morphs: [{surface: נַפְשִׁ, kc: 'sense:nefesh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: nap̄šî}}]
+      reverse: נפשי
+  translations:
+    en: |-
+      my soul
+      my life
+      myself
+- id: s.12.14
+  node: hbo.u12.with-all-your-heart
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַפְשְׁךָ
+      tokens: [{surface: נַפְשְׁךָ, sense: nefesh, morphs: [{surface: נַפְשְׁ, kc: 'sense:nefesh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: nap̄šəḵā}}]
+      reverse: נפשך
+  translations:
+    en: |-
+      your soul
+      your life
+      yourself
+- id: s.12.15
+  node: hbo.u12.with-all-your-heart
+  forms:
+    hbo-Hebr/tiberian:
+      text: טוֹב מְאֹד
+      tokens: [{surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}, {surface: מְאֹד, sense: meod, readings: {tiberian: məʾōḏ}}]
+      reverse: טוב (מאד|מאוד)
+  translations:
+    en: very good
+- id: s.12.16
+  node: hbo.u12.with-all-your-heart
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאָרֶץ טוֹבָה מְאֹד׃
+      tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f',
+          readings: {tiberian: ṭôḇâ}}, {surface: מְאֹד, sense: meod, readings: {tiberian: məʾōḏ}}]
+      reverse: הארץ טובה (מאד|מאוד)
+  translations:
+    en: |-
+      The land is very good.
+      The earth is very good.
+- id: s.12.17
+  node: hbo.u12.with-all-your-heart
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּכָל־לְבָבְךָ
+      tokens: [{surface: בְּכָל, sense: kol, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, sense: levav,
+          morphs: [{surface: לְבָבְ, kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}]
+      reverse: בכל לבבך
+  translations:
+    en: with all your heart
+- id: s.12.18
+  node: hbo.u12.with-all-your-heart
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ׃
+      tokens: [{surface: וְאָהַבְתָּ, sense: ahav, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, sense: et, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, sense: yhwh, readings: {
+            tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל,
+          sense: kol, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, sense: levav, morphs: [{surface: לְבָבְ,
+              kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}]
+      reverse: ואהבת את יהוה (אלהיך|אלוהיך) בכל לבבך
+  translations:
+    en: |-
+      And you shall love the LORD your God with all your heart.
+      You shall love the LORD your God with all your heart.
+- id: s.12.19
+  node: hbo.u12.with-all-your-heart
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ
+      tokens: [{surface: בְּכָל, sense: kol, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, sense: levav,
+          morphs: [{surface: לְבָבְ, kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}, {surface: וּבְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: וּ, kc: 'sense:we'},
+            {surface: בְ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ûḇəḵol-}}, {surface: נַפְשְׁךָ, sense: nefesh, morphs: [{surface: נַפְשְׁ, kc: 'sense:nefesh'}, {surface: ךָ,
+              kc: 'form:sfx-2ms'}], readings: {tiberian: nap̄šəḵā}}]
+      reverse: בכל לבבך ובכל נפשך
+  translations:
+    en: with all your heart and with all your soul
+- id: s.12.20
+  node: hbo.u12.these-words
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיוּ
+      tokens: [{surface: וְהָיוּ, sense: hayah, form: 'form:weqatal-3cp', readings: {tiberian: wəhāyû}}]
+      reverse: והיו
+  translations:
+    en: |-
+      and they shall be
+      and they will be
+- id: s.12.21
+  node: hbo.u12.these-words
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיוּ הַדְּבָרִים הָאֵלֶּה עַל־לְבָבֶךָ׃
+      tokens: [{surface: וְהָיוּ, sense: hayah, form: 'form:weqatal-3cp', readings: {tiberian: wəhāyû}}, {surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דְּבָרִים,
+              kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}], readings: {tiberian: hāʾḗlleh}},
+        {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: לְבָבֶךָ, sense: levav, morphs: [{surface: לְבָבֶ, kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇéḵā}}]
+      reverse: והיו הדברים האלה על לבבך
+  translations:
+    en: |-
+      And these words shall be on your heart.
+      These words shall be (on|upon|in) your heart.
+- id: s.12.22
+  node: hbo.u12.these-words
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם
+      tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מְצַוְּךָ, sense: tsivvah, form: 'form:ptc-ms', morphs: [
+            {surface: מְצַוְּ, kc: 'sense:tsivvah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: məṣawwəḵā}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם,
+              kc: 'sense:yom'}], readings: {tiberian: hayyôm}}]
+      reverse: אשר (אנכי|אנוכי) מצוך היום
+  translations:
+    en: |-
+      which I command you today
+      (that|which) I am commanding you (today|this day)
+- id: s.12.23
+  node: hbo.u12.these-words
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בָּנֶיךָ
+      tokens: [{surface: בָּנֶיךָ, sense: ben, form: 'form:pl', morphs: [{surface: בָּנֶי, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: bānếḵā}}]
+      reverse: בניך
+  translations:
+    en: your (sons|children)
+- id: s.12.24
+  node: hbo.u12.these-words
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְשִׁנַּנְתָּם לְבָנֶיךָ׃
+      tokens: [{surface: וְשִׁנַּנְתָּם, sense: shinnen, form: 'form:weqatal-2ms', morphs: [{surface: וְשִׁנַּנְתָּ, kc: 'sense:shinnen'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: wəšinnantām}},
+        {surface: לְבָנֶיךָ, sense: ben, form: 'form:pl', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: בָנֶי, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇānếḵā}}]
+      reverse: ושננתם לבניך
+  translations:
+    en: |-
+      And you shall teach them [diligently] to your children.
+      Teach them [diligently] to your (children|sons).
+- id: s.12.25
+  node: hbo.u12.these-words
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְדִבַּרְתָּ בָּם׃
+      tokens: [{surface: וְדִבַּרְתָּ, sense: dibber, form: 'form:weqatal-2ms', readings: {tiberian: wəḏibbartā}}, {surface: בָּם, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: ם, kc: 'form:sfx-3mp'}],
+          readings: {tiberian: bām}}]
+      reverse: ודברת בם
+  translations:
+    en: |-
+      And you shall (talk|speak) (of|about) them.
+      Talk about them.
+- id: s.12.26
+  node: hbo.u12.sitting-and-walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: דֶּרֶךְ
+      tokens: [{surface: דֶּרֶךְ, sense: derekh, readings: {tiberian: déreḵ}}]
+      reverse: דרך
+  translations:
+    en: a (way|road)
+- id: s.12.27
+  node: hbo.u12.sitting-and-walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּדֶּרֶךְ
+      tokens: [{surface: בַּדֶּרֶךְ, sense: derekh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: דֶּרֶךְ, kc: 'sense:derekh'}], readings: {tiberian: baddéreḵ}}]
+      reverse: בדרך
+  translations:
+    en: |-
+      on the (way|road)
+      (by|along) the way
+- id: s.12.28
+  node: hbo.u12.sitting-and-walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּשֶׁב׃
+      tokens: [{surface: וַיֵּשֶׁב, sense: yashav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗšeḇ}}]
+      reverse: וישב
+  translations:
+    en: |-
+      [(And|Then)] he sat [down].
+      [(And|Then)] he (stayed|dwelt|lived) [there].
+- id: s.12.29
+  node: hbo.u12.sitting-and-walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: יֹשֵׁב בַּבַּיִת
+      tokens: [{surface: יֹשֵׁב, sense: yashav, form: 'form:ptc-ms', readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}],
+          readings: {tiberian: babbáyiṯ}}]
+      reverse: (ישב|יושב) בבית
+  translations:
+    en: |-
+      sitting in the house
+      (living|dwelling) in the house
+- id: s.12.30
+  node: hbo.u12.sitting-and-walking
+  persons: {speaker: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי יֹשֶׁבֶת בַּבַּיִת׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יֹשֶׁבֶת, sense: yashav, form: 'form:ptc-fs', readings: {tiberian: yōšéḇeṯ}}, {surface: בַּבַּיִת, sense: bayit,
+          morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
+      reverse: (אנכי|אנוכי) (ישבת|יושבת) בבית
+  translations:
+    en: I( am|'m) sitting (in the house|at home).
+- id: s.12.31
+  node: hbo.u12.sitting-and-walking
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי יֹשֵׁב בַּבַּיִת׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יֹשֵׁב, sense: yashav, form: 'form:ptc-ms', readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
+      reverse: (אנכי|אנוכי) (ישב|יושב) בבית
+  translations:
+    en: I( am|'m) sitting (in the house|at home).
+- id: s.12.32
+  node: hbo.u12.sitting-and-walking
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁכַּב׃
+      tokens: [{surface: וַיִּשְׁכַּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}]
+      reverse: וישכב
+  translations:
+    en: '[(And|Then)] he lay down.'
+- id: s.12.33
+  node: hbo.u12.sitting-and-walking
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּשִׁבְתְּךָ בְּבֵיתֶךָ
+      tokens: [{surface: בְּשִׁבְתְּךָ, sense: yashav, form: 'form:inf', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: שִׁבְתְּ, kc: 'sense:yashav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: bəšiḇtəḵā}}, {surface: בְּבֵיתֶךָ, sense: bayit, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: בֵיתֶ, kc: 'sense:bayit'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: bəḇêṯéḵā}}]
+      reverse: בשבתך בביתך
+  translations:
+    en: |-
+      when you sit in your house
+      when you are (sitting|at home) in your house
+- id: s.12.34
+  node: hbo.u12.sitting-and-walking
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וּבְלֶכְתְּךָ בַדֶּרֶךְ
+      tokens: [{surface: וּבְלֶכְתְּךָ, sense: halakh, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: לֶכְתְּ, kc: 'sense:halakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: ûḇəleḵtəḵā}}, {surface: בַדֶּרֶךְ, sense: derekh, morphs: [{surface: בַ, kc: 'sense:be'}, {surface: דֶּרֶךְ, kc: 'sense:derekh'}], readings: {tiberian: ḇaddéreḵ}}]
+      reverse: ובלכתך בדרך
+  translations:
+    en: |-
+      and when you walk (by|on|along) the way
+      and when you are on the road
+- id: s.12.35
+  node: hbo.u12.sitting-and-walking
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וּבְשָׁכְבְּךָ וּבְקוּמֶךָ
+      tokens: [{surface: וּבְשָׁכְבְּךָ, sense: shakhav, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: שָׁכְבְּ, kc: 'sense:shakhav'}, {surface: ךָ,
+              kc: 'form:sfx-2ms'}], readings: {tiberian: ûḇəšoḵbəḵā}}, {surface: וּבְקוּמֶךָ, sense: qum, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: קוּמֶ,
+              kc: 'sense:qum'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûḇəqûméḵā}}]
+      reverse: ובשכבך ובקומך
+  translations:
+    en: |-
+      and when you lie down and when you (rise|get up)
+      when you lie down and when you (rise|get up)
+stories:
+- id: hbo.story.hear-o-israel
+  node: hbo.u12.story
+  title:
+    en: Hear, O Israel (Deuteronomy 6:4–7)
+  characters:
+  - {id: moses, speaker: m, name: {hbo-Hebr/tiberian: מֹשֶׁה}}
+  steps:
+  - line:
+      speaker: moses
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: שְׁמַע יִשְׂרָאֵל יְהוָה אֱלֹהֵינוּ יְהוָה אֶחָד׃
+          tokens: [{surface: שְׁמַע, sense: shama, form: 'form:impv-ms', readings: {tiberian: šəmaʿ}}, {surface: יִשְׂרָאֵל, sense: yisrael, readings: {tiberian: yiśrāʾēl}}, {surface: יְהוָה, sense: yhwh,
+              readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵינוּ, sense: elohim, morphs: [{surface: אֱלֹהֵי, kc: 'sense:elohim'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾĕlōhếnû}},
+            {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶחָד, sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      translations:
+        en: '“Hear, O Israel: the LORD our God, the LORD is one.'
+  - line:
+      speaker: moses
+      ask: complete
+      gap: sense:nefesh
+      distractors: ['sense:levav', 'sense:derekh']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְאָהַבְתָּ אֵת יְהוָה אֱלֹהֶיךָ בְּכָל־לְבָבְךָ וּבְכָל־נַפְשְׁךָ וּבְכָל־מְאֹדֶךָ׃
+          tokens: [{surface: וְאָהַבְתָּ, sense: ahav, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāhaḇtā}}, {surface: אֵת, sense: et, readings: {tiberian: ʾēṯ}}, {surface: יְהוָה, sense: yhwh, readings: {
+                tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל,
+              sense: kol, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, sense: levav, morphs: [{surface: לְבָבְ,
+                  kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}, {surface: וּבְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ,
+                  kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ûḇəḵol-}}, {surface: נַפְשְׁךָ, sense: nefesh, morphs: [{surface: נַפְשְׁ, kc: 'sense:nefesh'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+              readings: {tiberian: nap̄šəḵā}}, {surface: וּבְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}],
+              readings: {tiberian: ûḇəḵol-}}, {surface: מְאֹדֶךָ, sense: meod, morphs: [{surface: מְאֹדֶ, kc: 'sense:meod'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: məʾōḏéḵā}}]
+      translations:
+        en: And you shall love the LORD your God with all your heart and with all your soul and with all your strength.
+  - choose:
+      prompt:
+        en: With what shall Israel love the LORD?
+      options: [{en: 'with all their heart, soul and strength'}, {en: with gold and silver}, {en: with songs only}]
+      answer: 0
+  - line:
+      speaker: moses
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְהָיוּ הַדְּבָרִים הָאֵלֶּה אֲשֶׁר אָנֹכִי מְצַוְּךָ הַיּוֹם עַל־לְבָבֶךָ׃
+          tokens: [{surface: וְהָיוּ, sense: hayah, form: 'form:weqatal-3cp', readings: {tiberian: wəhāyû}}, {surface: הַדְּבָרִים, sense: davar, form: 'form:pl', morphs: [{surface: הַ, kc: 'sense:ha'},
+                {surface: דְּבָרִים, kc: 'sense:davar'}], readings: {tiberian: haddəḇārîm}}, {surface: הָאֵלֶּה, sense: elleh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵלֶּה, kc: 'sense:elleh'}],
+              readings: {tiberian: hāʾḗlleh}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מְצַוְּךָ, sense: tsivvah,
+              form: 'form:ptc-ms', morphs: [{surface: מְצַוְּ, kc: 'sense:tsivvah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: məṣawwəḵā}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ,
+                  kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: לְבָבֶךָ, sense: levav, morphs: [{
+                  surface: לְבָבֶ, kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇéḵā}}]
+      translations:
+        en: And these words that I command you today shall be on your heart.
+  - line:
+      speaker: moses
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְשִׁנַּנְתָּם לְבָנֶיךָ וְדִבַּרְתָּ בָּם
+          tokens: [{surface: וְשִׁנַּנְתָּם, sense: shinnen, form: 'form:weqatal-2ms', morphs: [{surface: וְשִׁנַּנְתָּ, kc: 'sense:shinnen'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: wəšinnantām}},
+            {surface: לְבָנֶיךָ, sense: ben, form: 'form:pl', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: בָנֶי, kc: 'sense:ben'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇānếḵā}},
+            {surface: וְדִבַּרְתָּ, sense: dibber, form: 'form:weqatal-2ms', readings: {tiberian: wəḏibbartā}}, {surface: בָּם, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: ם, kc: 'form:sfx-3mp'}],
+              readings: {tiberian: bām}}]
+      translations:
+        en: You shall teach them diligently to your children and talk of them
+  - line:
+      speaker: moses
+      ask: complete
+      gap: sense:derekh
+      distractors: ['sense:sadeh', 'sense:har']
+      forms:
+        hbo-Hebr/tiberian:
+          text: בְּשִׁבְתְּךָ בְּבֵיתֶךָ וּבְלֶכְתְּךָ בַדֶּרֶךְ וּבְשָׁכְבְּךָ וּבְקוּמֶךָ׃
+          tokens: [{surface: בְּשִׁבְתְּךָ, sense: yashav, form: 'form:inf', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: שִׁבְתְּ, kc: 'sense:yashav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: bəšiḇtəḵā}}, {surface: בְּבֵיתֶךָ, sense: bayit, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: בֵיתֶ, kc: 'sense:bayit'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: bəḇêṯéḵā}},
+            {surface: וּבְלֶכְתְּךָ, sense: halakh, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: לֶכְתְּ, kc: 'sense:halakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+              readings: {tiberian: ûḇəleḵtəḵā}}, {surface: בַדֶּרֶךְ, sense: derekh, morphs: [{surface: בַ, kc: 'sense:be'}, {surface: דֶּרֶךְ, kc: 'sense:derekh'}], readings: {tiberian: ḇaddéreḵ}}, {surface: וּבְשָׁכְבְּךָ,
+              sense: shakhav, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: שָׁכְבְּ, kc: 'sense:shakhav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: ûḇəšoḵbəḵā}}, {surface: וּבְקוּמֶךָ, sense: qum, form: 'form:inf', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בְ, kc: 'sense:be'}, {surface: קוּמֶ, kc: 'sense:qum'}, {surface: ךָ,
+                  kc: 'form:sfx-2ms'}], readings: {tiberian: ûḇəqûméḵā}}]
+      translations:
+        en: when you sit in your house and when you walk by the way, when you lie down and when you rise.”
+  - choose:
+      prompt:
+        en: To whom are these words to be taught?
+      options: [{en: to your children}, {en: to the king}, {en: to the priests only}]
+      answer: 0

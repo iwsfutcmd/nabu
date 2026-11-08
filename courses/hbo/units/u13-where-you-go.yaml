@@ -1,0 +1,603 @@
+# Biblical Hebrew (hbo), unit 13: Where you go, I will go (Ruth 1:15-17).
+# A woman speaking to a woman: "you" (f.) in the imperative, the imperfect and the suffixes; hollow verbs
+# (return, lodge, die); the imperfect of wishes and oaths (כֹּה יַעֲשֶׂה); the niphal "be buried".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u13-where-you-go
+title:
+  en: Where you go
+cefr: A2
+kcs:
+- id: sense:shuv
+  gloss:
+    en: to return, go back, turn back
+  forms:
+    hbo-Hebr/tiberian: [שׁוּב]
+- id: sense:am
+  gloss:
+    en: people, nation
+  forms:
+    hbo-Hebr/tiberian: [עַם]
+- id: sense:yevemet
+  gloss:
+    en: sister-in-law (a brother's widow)
+  forms:
+    hbo-Hebr/tiberian: [יְבֵמֶת]
+- id: sense:naomi
+  gloss:
+    en: Naomi
+  forms:
+    hbo-Hebr/tiberian: [נׇעֳמִי]
+- id: sense:rut
+  gloss:
+    en: Ruth
+  forms:
+    hbo-Hebr/tiberian: [רוּת]
+- id: sense:bat
+  gloss:
+    en: daughter
+  forms:
+    hbo-Hebr/tiberian: [בַּת]
+- id: sense:paga
+  gloss:
+    en: 'to meet; to press, urge (בְּ: someone)'
+  forms:
+    hbo-Hebr/tiberian: [פָּגַע]
+- id: sense:azav
+  gloss:
+    en: to leave, abandon, forsake
+  forms:
+    hbo-Hebr/tiberian: [עָזַב]
+- id: sense:lun
+  gloss:
+    en: to lodge, spend the night
+  forms:
+    hbo-Hebr/tiberian: [לוּן]
+- id: sense:mut
+  gloss:
+    en: to die
+  forms:
+    hbo-Hebr/tiberian: [מוּת]
+- id: sense:mawet
+  gloss:
+    en: death
+  forms:
+    hbo-Hebr/tiberian: [מָוֶת]
+- id: sense:nikbar
+  gloss:
+    en: to be buried (niphal of קָבַר)
+  forms:
+    hbo-Hebr/tiberian: [נִקְבַּר]
+- id: sense:koh
+  gloss:
+    en: thus, so; here
+  forms:
+    hbo-Hebr/tiberian: [כֹּה]
+- id: sense:hosif
+  gloss:
+    en: to add; to do again, do more (hiphil of יָסַף)
+  forms:
+    hbo-Hebr/tiberian: [הוֹסִיף]
+- id: sense:hifrid
+  gloss:
+    en: to separate, part (hiphil)
+  forms:
+    hbo-Hebr/tiberian: [הִפְרִיד]
+nodes:
+- {id: hbo.u13.return, kind: lesson, introduces: ['sense:shuv', 'sense:am', 'sense:naomi', 'sense:rut', 'sense:yevemet', 'sense:bat']}
+- {id: hbo.u13.do-not-urge-me, kind: lesson, introduces: ['sense:paga', 'sense:azav']}
+- {id: hbo.u13.where-you-go, kind: lesson, introduces: ['sense:lun']}
+- {id: hbo.u13.where-you-die, kind: lesson, introduces: ['sense:mut', 'sense:mawet', 'sense:nikbar', 'sense:koh', 'sense:hosif', 'sense:hifrid']}
+- {id: hbo.u13.story, kind: story}
+sentences:
+- id: s.13.1
+  node: hbo.u13.return
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּב׃
+      tokens: [{surface: שׁוּב, sense: shuv, form: 'form:impv-ms', readings: {tiberian: šûḇ}}]
+      reverse: שוב
+  translations:
+    en: (Return|Go back|Turn back)!
+- id: s.13.2
+  node: hbo.u13.return
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּבִי׃
+      tokens: [{surface: שׁוּבִי, sense: shuv, form: 'form:impv-fs', readings: {tiberian: šû́ḇî}}]
+      reverse: שובי
+  translations:
+    en: (Return|Go back|Turn back)!
+- id: s.13.3
+  node: hbo.u13.return
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּבוּ׃
+      tokens: [{surface: שׁוּבוּ, sense: shuv, form: 'form:impv-mp', readings: {tiberian: šû́ḇû}}]
+      reverse: שובו
+  translations:
+    en: (Return|Go back|Turn back)!
+- id: s.13.4
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַם
+      tokens: [{surface: עַם, sense: am, readings: {tiberian: ʿam}}]
+      reverse: עם
+  translations:
+    en: |-
+      a people
+      a nation
+- id: s.13.5
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַמִּי
+      tokens: [{surface: עַמִּי, sense: am, readings: {tiberian: ʿammî}}]
+      reverse: עמי
+  translations:
+    en: my people
+- id: s.13.6
+  node: hbo.u13.return
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַמְּךָ
+      tokens: [{surface: עַמְּךָ, sense: am, morphs: [{surface: עַמְּ, kc: 'sense:am'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʿamməḵā}}]
+      reverse: עמך
+  translations:
+    en: your people
+- id: s.13.7
+  node: hbo.u13.return
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַמֵּךְ
+      tokens: [{surface: עַמֵּךְ, sense: am, morphs: [{surface: עַמֵּ, kc: 'sense:am'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʿammēḵ}}]
+      reverse: עמך
+  translations:
+    en: your people
+- id: s.13.8
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׁבָה אֶל־עַמָּהּ׃
+      tokens: [{surface: שָׁבָה, sense: shuv, form: 'form:qatal-3fs', readings: {tiberian: šā́ḇâ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עַמָּהּ, sense: am, morphs: [{surface: עַמָּ,
+              kc: 'sense:am'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: ʿammāh}}]
+      reverse: שבה אל עמה
+  translations:
+    en: |-
+      She (went back|returned) to her people.
+      She has (gone back|returned) to her people.
+- id: s.13.9
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָעֳמִי
+      tokens: [{surface: נָעֳמִי, sense: naomi, readings: {tiberian: noʿŏmî}}]
+      reverse: נעמי
+  translations:
+    en: Naomi
+- id: s.13.10
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתָּשָׁב נָעֳמִי׃
+      tokens: [{surface: וַתָּשָׁב, sense: shuv, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattā́šoḇ}}, {surface: נָעֳמִי, sense: naomi, readings: {tiberian: noʿŏmî}}]
+      reverse: ותשב נעמי
+  translations:
+    en: '[(And|Then|So)] Naomi (returned|went back|came back).'
+- id: s.13.11
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: רוּת
+      tokens: [{surface: רוּת, sense: rut, readings: {tiberian: rûṯ}}]
+      reverse: רות
+  translations:
+    en: Ruth
+- id: s.13.12
+  node: hbo.u13.return
+  forms:
+    hbo-Hebr/tiberian:
+      text: בִּתִּי
+      tokens: [{surface: בִּתִּי, sense: bat, morphs: [{surface: בִּתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bittî}}]
+      reverse: בתי
+  translations:
+    en: my daughter
+- id: s.13.13
+  node: hbo.u13.return
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכִי בִתִּי׃
+      tokens: [{surface: לְכִי, sense: halakh, form: 'form:impv-fs', readings: {tiberian: ləḵî}}, {surface: בִתִּי, sense: bat, morphs: [{surface: בִתִּ, kc: 'sense:bat'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: ḇittî}}]
+      reverse: לכי בתי
+  translations:
+    en: Go, my daughter!
+- id: s.13.14
+  node: hbo.u13.return
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְבִמְתֵּךְ
+      tokens: [{surface: יְבִמְתֵּךְ, sense: yevemet, morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}]
+      reverse: יבמתך
+  translations:
+    en: your sister-in-law
+- id: s.13.15
+  node: hbo.u13.do-not-urge-me
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַל־תִּפְגְּעִי־בִי׃
+      tokens: [{surface: אַל, sense: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, sense: paga, form: 'form:juss', readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, sense: be, morphs: [{surface: בִ,
+              kc: 'sense:be'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ḇî}}]
+      reverse: אל תפגעי בי
+  translations:
+    en: (Do not|Don't) (urge|press|beg) me!
+- id: s.13.16
+  node: hbo.u13.do-not-urge-me
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַל־תַּעַזְבֵנִי׃
+      tokens: [{surface: אַל, sense: al.neg, readings: {tiberian: ʾal-}}, {surface: תַּעַזְבֵנִי, sense: azav, form: 'form:juss', morphs: [{surface: תַּעַזְבֵ, kc: 'sense:azav'}, {surface: נִי, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: taʿazḇḗnî}}]
+      reverse: אל תעזבני
+  translations:
+    en: (Do not|Don't) (leave|abandon|forsake) me!
+- id: s.13.17
+  node: hbo.u13.do-not-urge-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: לַעֲזֹב
+      tokens: [{surface: לַעֲזֹב, sense: azav, form: 'form:inf', morphs: [{surface: לַ, kc: 'sense:le'}, {surface: עֲזֹב, kc: 'sense:azav'}], readings: {tiberian: laʿăzōḇ}}]
+      reverse: (לעזב|לעזוב)
+  translations:
+    en: |-
+      to leave
+      to (abandon|forsake)
+- id: s.13.18
+  node: hbo.u13.do-not-urge-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: לָשׁוּב
+      tokens: [{surface: לָשׁוּב, sense: shuv, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: שׁוּב, kc: 'sense:shuv'}], readings: {tiberian: lāšûḇ}}]
+      reverse: לשוב
+  translations:
+    en: |-
+      to return
+      to (go|turn) back
+- id: s.13.19
+  node: hbo.u13.do-not-urge-me
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְעָזְבֵךְ לָשׁוּב מֵאַחֲרָיִךְ
+      tokens: [{surface: לְעָזְבֵךְ, sense: azav, form: 'form:inf', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: עָזְבֵ, kc: 'sense:azav'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ləʿozḇēḵ}},
+        {surface: לָשׁוּב, sense: shuv, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: שׁוּב, kc: 'sense:shuv'}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, sense: ahar,
+          morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַחֲרָיִ, kc: 'sense:ahar'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: mēʾaḥărā́yiḵ}}]
+      reverse: לעזבך לשוב מאחריך
+  translations:
+    en: |-
+      to leave you, to turn back from (following you|after you)
+      to leave you (and|or) (to go|turn) back from following you
+- id: s.13.20
+  node: hbo.u13.where-you-go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶל־אֲשֶׁר תֵּלְכִי אֵלֵךְ׃
+      tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: תֵּלְכִי, sense: halakh, form: 'form:yiqtol-2fs', readings: {
+            tiberian: tēləḵî}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}]
+      reverse: אל אשר תלכי אלך
+  translations:
+    en: |-
+      Where you go, I will go.
+      Wherever you go, I will go.
+- id: s.13.21
+  node: hbo.u13.where-you-go
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶל־אֲשֶׁר תֵּלֵךְ אֵלֵךְ׃
+      tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: תֵּלֵךְ, sense: halakh, form: 'form:yiqtol-2ms', readings: {
+            tiberian: tēlēḵ}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}]
+      reverse: אל אשר תלך אלך
+  translations:
+    en: |-
+      Where you go, I will go.
+      Wherever you go, I will go.
+- id: s.13.22
+  node: hbo.u13.where-you-go
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָלִין
+      tokens: [{surface: אָלִין, sense: lun, form: 'form:yiqtol-1cs', readings: {tiberian: ʾālîn}}]
+      reverse: אלין
+  translations:
+    en: |-
+      I will (lodge|stay)
+      I will spend the night
+- id: s.13.23
+  node: hbo.u13.where-you-go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וּבַאֲשֶׁר תָּלִינִי אָלִין׃
+      tokens: [{surface: וּבַאֲשֶׁר, sense: asher, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בַ, kc: 'sense:be'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: ûḇaʾăšer}}, {surface: תָּלִינִי,
+          sense: lun, form: 'form:yiqtol-2fs', readings: {tiberian: tālî́nî}}, {surface: אָלִין, sense: lun, form: 'form:yiqtol-1cs', readings: {tiberian: ʾālîn}}]
+      reverse: ובאשר תליני אלין
+  translations:
+    en: |-
+      And where you (lodge|stay), I will (lodge|stay).
+      And where you spend the night, I will spend the night.
+- id: s.13.24
+  node: hbo.u13.where-you-go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַמֵּךְ עַמִּי׃
+      tokens: [{surface: עַמֵּךְ, sense: am, morphs: [{surface: עַמֵּ, kc: 'sense:am'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʿammēḵ}}, {surface: עַמִּי, sense: am, readings: {tiberian: ʿammî}}]
+      reverse: עמך עמי
+  translations:
+    en: Your people (shall be|will be|are) my people.
+- id: s.13.25
+  node: hbo.u13.where-you-go
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי׃
+      tokens: [{surface: עַמֵּךְ, sense: am, morphs: [{surface: עַמֵּ, kc: 'sense:am'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʿammēḵ}}, {surface: עַמִּי, sense: am, readings: {tiberian: ʿammî}},
+        {surface: וֵאלֹהַיִךְ, sense: elohim, morphs: [{surface: וֵ, kc: 'sense:we'}, {surface: אלֹהַיִ, kc: 'sense:elohim'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: wēʾlōháyiḵ}}, {surface: אֱלֹהָי,
+          sense: elohim, morphs: [{surface: אֱלֹהָ, kc: 'sense:elohim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾĕlōhāy}}]
+      reverse: עמך עמי (ואלהיך|ואלוהיך) (אלהי|אלוהי)
+  translations:
+    en: Your people (shall be|will be|are) my people, and your God my God.
+- id: s.13.26
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: מָוֶת
+      tokens: [{surface: מָוֶת, sense: mawet, readings: {tiberian: mā́weṯ}}]
+      reverse: מות
+  translations:
+    en: death
+- id: s.13.27
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּמָת׃
+      tokens: [{surface: וַיָּמָת, sense: mut, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́moṯ}}]
+      reverse: וימת
+  translations:
+    en: '[(And|Then|So)] he died.'
+- id: s.13.28
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָמוּת
+      tokens: [{surface: אָמוּת, sense: mut, form: 'form:yiqtol-1cs', readings: {tiberian: ʾāmûṯ}}]
+      reverse: אמות
+  translations:
+    en: |-
+      I will die
+      I (shall|am going to) die
+- id: s.13.29
+  node: hbo.u13.where-you-die
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּאֲשֶׁר תָּמוּתִי אָמוּת׃
+      tokens: [{surface: בַּאֲשֶׁר, sense: asher, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: baʾăšer}}, {surface: תָּמוּתִי, sense: mut, form: 'form:yiqtol-2fs',
+          readings: {tiberian: tāmû́ṯî}}, {surface: אָמוּת, sense: mut, form: 'form:yiqtol-1cs', readings: {tiberian: ʾāmûṯ}}]
+      reverse: באשר תמותי אמות
+  translations:
+    en: |-
+      Where you die, I will die.
+      Wherever you die, I will die.
+- id: s.13.30
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְשָׁם אֶקָּבֵר׃
+      tokens: [{surface: וְשָׁם, sense: sham, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: שָׁם, kc: 'sense:sham'}], readings: {tiberian: wəšām}}, {surface: אֶקָּבֵר, sense: nikbar, form: 'form:yiqtol-1cs',
+          readings: {tiberian: ʾeqqāḇēr}}]
+      reverse: ושם אקבר
+  translations:
+    en: |-
+      And there I will be buried.
+      And I will be buried there.
+- id: s.13.31
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף׃
+      tokens: [{surface: כֹּה, sense: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, sense: asah, form: 'form:yiqtol-3ms', readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, sense: yhwh, readings: {
+            tiberian: ʾăḏōnāy}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: וְכֹה, sense: koh, morphs: [{surface: וְ,
+              kc: 'sense:we'}, {surface: כֹה, kc: 'sense:koh'}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, sense: hosif, form: 'form:yiqtol-3ms', readings: {tiberian: yōsîp̄}}]
+      reverse: (כה|כוה) יעשה יהוה לי (וכה|וכוה) (יסיף|יוסיף)
+  translations:
+    en: |-
+      May the LORD do so to me, and more (besides|also).
+      May the LORD deal with me, be it ever so (severely|harshly).
+  production: false
+- id: s.13.32
+  node: hbo.u13.where-you-die
+  forms:
+    hbo-Hebr/tiberian:
+      text: כֹּה אָמַר יְהוָה׃
+      tokens: [{surface: כֹּה, sense: koh, readings: {tiberian: kōh}}, {surface: אָמַר, sense: amar, form: 'form:qatal-3ms', readings: {tiberian: ʾāmar}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: (כה|כוה) אמר יהוה
+  translations:
+    en: |-
+      Thus says the LORD.
+      This is what the LORD says.
+      Thus said the LORD.
+- id: s.13.33
+  node: hbo.u13.where-you-die
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּינִי וּבֵינֶךָ
+      tokens: [{surface: בֵּינִי, sense: beyn, morphs: [{surface: בֵּינִ, kc: 'sense:beyn'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bênî}}, {surface: וּבֵינֶךָ, sense: beyn, morphs: [{
+              surface: וּ, kc: 'sense:we'}, {surface: בֵינֶ, kc: 'sense:beyn'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûḇênéḵā}}]
+      reverse: ביני ובינך
+  translations:
+    en: |-
+      between me and you
+      between you and me
+- id: s.13.34
+  node: hbo.u13.where-you-die
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּינִי וּבֵינֵךְ
+      tokens: [{surface: בֵּינִי, sense: beyn, morphs: [{surface: בֵּינִ, kc: 'sense:beyn'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, sense: beyn, morphs: [{
+              surface: וּ, kc: 'sense:we'}, {surface: בֵינֵ, kc: 'sense:beyn'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ûḇênēḵ}}]
+      reverse: ביני ובינך
+  translations:
+    en: |-
+      between me and you
+      between you and me
+- id: s.13.35
+  node: hbo.u13.where-you-die
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי הַמָּוֶת יַפְרִיד בֵּינִי וּבֵינֵךְ׃
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, sense: mawet, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּוֶת, kc: 'sense:mawet'}], readings: {tiberian: hammā́weṯ}},
+        {surface: יַפְרִיד, sense: hifrid, form: 'form:yiqtol-3ms', readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, sense: beyn, morphs: [{surface: בֵּינִ, kc: 'sense:beyn'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: bênî}}, {surface: וּבֵינֵךְ, sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵינֵ, kc: 'sense:beyn'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ûḇênēḵ}}]
+      reverse: כי המות יפריד ביני ובינך
+  translations:
+    en: |-
+      (if anything but|only) death (will part|parts|shall part) me (from|and) you
+      for death [alone] will (part|separate) me (from|and) you
+  production: false
+stories:
+- id: hbo.story.where-you-go
+  node: hbo.u13.story
+  title:
+    en: Where you go (Ruth 1:15–17)
+  characters:
+  - {id: naomi, speaker: f, name: {hbo-Hebr/tiberian: נָעֳמִי}}
+  - {id: ruth, speaker: f, name: {hbo-Hebr/tiberian: רוּת}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}]
+      translations:
+        en: And she said,
+  - line:
+      speaker: naomi
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֵּה שָׁבָה יְבִמְתֵּךְ אֶל־עַמָּהּ וְאֶל־אֱלֹהֶיהָ
+          tokens: [{surface: הִנֵּה, sense: hinneh, readings: {tiberian: hinnēh}}, {surface: שָׁבָה, sense: shuv, form: 'form:qatal-3fs', readings: {tiberian: šā́ḇâ}}, {surface: יְבִמְתֵּךְ, sense: yevemet,
+              morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עַמָּהּ,
+              sense: am, morphs: [{surface: עַמָּ, kc: 'sense:am'}, {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: ʿammāh}}, {surface: וְאֶל, sense: el, morphs: [{surface: וְ, kc: 'sense:we'},
+                {surface: אֶל, kc: 'sense:el'}], readings: {tiberian: wəʾel-}}, {surface: אֱלֹהֶיהָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {
+                tiberian: ʾĕlōhếhā}}]
+      translations:
+        en: “Look, your sister-in-law has gone back to her people and to her gods;
+  - line:
+      speaker: naomi
+      ask: complete
+      gap: sense:shuv
+      distractors: ['sense:halakh', 'sense:lun']
+      forms:
+        hbo-Hebr/tiberian:
+          text: שׁוּבִי אַחֲרֵי יְבִמְתֵּךְ׃
+          tokens: [{surface: שׁוּבִי, sense: shuv, form: 'form:impv-fs', readings: {tiberian: šû́ḇî}}, {surface: אַחֲרֵי, sense: ahar, readings: {tiberian: ʾaḥărê}}, {surface: יְבִמְתֵּךְ, sense: yevemet,
+              morphs: [{surface: יְבִמְתֵּ, kc: 'sense:yevemet'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: yəḇimtēḵ}}]
+      translations:
+        en: go back after your sister-in-law.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר רוּת
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: רוּת, sense: rut, readings: {tiberian: rûṯ}}]
+      translations:
+        en: But Ruth said,
+  - line:
+      speaker: ruth
+      forms:
+        hbo-Hebr/tiberian:
+          text: אַל־תִּפְגְּעִי־בִי לְעָזְבֵךְ לָשׁוּב מֵאַחֲרָיִךְ כִּי
+          tokens: [{surface: אַל, sense: al.neg, readings: {tiberian: ʾal-}}, {surface: תִּפְגְּעִי, sense: paga, form: 'form:juss', readings: {tiberian: tip̄gəʿî-}}, {surface: בִי, sense: be, morphs: [
+                {surface: בִ, kc: 'sense:be'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ḇî}}, {surface: לְעָזְבֵךְ, sense: azav, form: 'form:inf', morphs: [{surface: לְ, kc: 'sense:le'},
+                {surface: עָזְבֵ, kc: 'sense:azav'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ləʿozḇēḵ}}, {surface: לָשׁוּב, sense: shuv, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'},
+                {surface: שׁוּב, kc: 'sense:shuv'}], readings: {tiberian: lāšûḇ}}, {surface: מֵאַחֲרָיִךְ, sense: ahar, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַחֲרָיִ, kc: 'sense:ahar'}, {
+                  surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: mēʾaḥărā́yiḵ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}]
+      translations:
+        en: “Do not urge me to leave you, to turn back from following you;
+  - line:
+      speaker: ruth
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֶל־אֲשֶׁר תֵּלְכִי אֵלֵךְ וּבַאֲשֶׁר תָּלִינִי אָלִין עַמֵּךְ עַמִּי וֵאלֹהַיִךְ אֱלֹהָי׃
+          tokens: [{surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: תֵּלְכִי, sense: halakh, form: 'form:yiqtol-2fs', readings: {
+                tiberian: tēləḵî}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}, {surface: וּבַאֲשֶׁר, sense: asher, morphs: [{surface: וּ, kc: 'sense:we'}, {
+                  surface: בַ, kc: 'sense:be'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: ûḇaʾăšer}}, {surface: תָּלִינִי, sense: lun, form: 'form:yiqtol-2fs', readings: {tiberian: tālî́nî}},
+            {surface: אָלִין, sense: lun, form: 'form:yiqtol-1cs', readings: {tiberian: ʾālîn}}, {surface: עַמֵּךְ, sense: am, morphs: [{surface: עַמֵּ, kc: 'sense:am'}, {surface: ךְ, kc: 'form:sfx-2fs'}],
+              readings: {tiberian: ʿammēḵ}}, {surface: עַמִּי, sense: am, morphs: [{surface: עַמִּ, kc: 'sense:am'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿammî}}, {surface: וֵאלֹהַיִךְ,
+              sense: elohim, morphs: [{surface: וֵ, kc: 'sense:we'}, {surface: אלֹהַיִ, kc: 'sense:elohim'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: wēʾlōháyiḵ}}, {surface: אֱלֹהָי, sense: elohim,
+              morphs: [{surface: אֱלֹהָ, kc: 'sense:elohim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾĕlōhāy}}]
+      translations:
+        en: for where you go I will go, and where you lodge I will lodge; your people shall be my people, and your God my God.
+  - choose:
+      prompt:
+        en: What does Ruth decide?
+      options: [{en: to go with Naomi wherever she goes}, {en: to go back to her own people}, {en: to stay in the field}]
+      answer: 0
+  - line:
+      speaker: ruth
+      ask: complete
+      gap: sense:nikbar
+      distractors: ['sense:lun', 'sense:azav']
+      forms:
+        hbo-Hebr/tiberian:
+          text: בַּאֲשֶׁר תָּמוּתִי אָמוּת וְשָׁם אֶקָּבֵר׃
+          tokens: [{surface: בַּאֲשֶׁר, sense: asher, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: אֲשֶׁר, kc: 'sense:asher'}], readings: {tiberian: baʾăšer}}, {surface: תָּמוּתִי, sense: mut, form: 'form:yiqtol-2fs',
+              readings: {tiberian: tāmû́ṯî}}, {surface: אָמוּת, sense: mut, form: 'form:yiqtol-1cs', readings: {tiberian: ʾāmûṯ}}, {surface: וְשָׁם, sense: sham, morphs: [{surface: וְ, kc: 'sense:we'},
+                {surface: שָׁם, kc: 'sense:sham'}], readings: {tiberian: wəšām}}, {surface: אֶקָּבֵר, sense: nikbar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾeqqāḇēr}}]
+      translations:
+        en: Where you die I will die, and there I will be buried.
+  - line:
+      speaker: ruth
+      forms:
+        hbo-Hebr/tiberian:
+          text: כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף כִּי הַמָּוֶת יַפְרִיד בֵּינִי וּבֵינֵךְ׃
+          tokens: [{surface: כֹּה, sense: koh, readings: {tiberian: kōh}}, {surface: יַעֲשֶׂה, sense: asah, form: 'form:yiqtol-3ms', readings: {tiberian: yaʿăśeh}}, {surface: יְהוָה, sense: yhwh, readings: {
+                tiberian: ʾăḏōnāy}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: וְכֹה, sense: koh, morphs: [
+                {surface: וְ, kc: 'sense:we'}, {surface: כֹה, kc: 'sense:koh'}], readings: {tiberian: wəḵōh}}, {surface: יֹסִיף, sense: hosif, form: 'form:yiqtol-3ms', readings: {tiberian: yōsîp̄}}, {surface: כִּי,
+              sense: ki, readings: {tiberian: kî}}, {surface: הַמָּוֶת, sense: mawet, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּוֶת, kc: 'sense:mawet'}], readings: {tiberian: hammā́weṯ}}, {surface: יַפְרִיד,
+              sense: hifrid, form: 'form:yiqtol-3ms', readings: {tiberian: yap̄rîḏ}}, {surface: בֵּינִי, sense: beyn, morphs: [{surface: בֵּינִ, kc: 'sense:beyn'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
+                tiberian: bênî}}, {surface: וּבֵינֵךְ, sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵינֵ, kc: 'sense:beyn'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ûḇênēḵ}}]
+      translations:
+        en: May the LORD do so to me and more besides, if anything but death parts me from you.”
+  - choose:
+      prompt:
+        en: What alone will part Ruth from Naomi?
+      options: [{en: death}, {en: a king}, {en: her own gods}]
+      answer: 0
+scenarios:
+- id: hbo.on-the-road-to-bethlehem
+  after: hbo.u13.where-you-die
+  title:
+    en: On the road to Bethlehem
+  setting:
+    en: 'The road from Moab to Bethlehem, at the start of the barley harvest: two widows walk with their bundles.'
+  character:
+    en: Naomi, tired and grieving but kind, who speaks only Biblical Hebrew; she is about to send you back home.
+  goal:
+    en: 'Tell her you will not go back: where she goes you will go, her people will be your people.'

@@ -1,0 +1,588 @@
+# Biblical Hebrew (hbo), unit 11: The ten words (Exodus 20:2-3, 12-16).
+# Commands and prohibitions: לֹא with the imperfect ("you shall not"), the infinitive absolute as a
+# command (כַּבֵּד "honour"), the converted perfect "and you shall", "so that", plural imperfects.
+# The passage is the Westminster Leningrad Codex (public domain), without its accents (the Decalogue has
+# two sets; one reading follows the lower), and the rest was drafted by an LLM (provenance llm:…, status
+# draft) and awaits a reviewer.
+id: u11-the-ten-words
+title:
+  en: The ten words
+cefr: A2
+kcs:
+- id: sense:mitsrayim
+  gloss:
+    en: Egypt
+  forms:
+    hbo-Hebr/tiberian: [מִצְרַיִם]
+- id: sense:yatsa
+  gloss:
+    en: to go out, come out
+  forms:
+    hbo-Hebr/tiberian: [יָצָא]
+- id: sense:hotsi
+  gloss:
+    en: to bring out, lead out (hiphil of יָצָא)
+  forms:
+    hbo-Hebr/tiberian: [הוֹצִיא]
+- id: sense:aher
+  gloss:
+    en: other, another
+  forms:
+    hbo-Hebr/tiberian: [אַחֵר]
+- id: sense:em
+  gloss:
+    en: mother
+  forms:
+    hbo-Hebr/tiberian: [אֵם]
+  notes:
+    en: With suffixes אִמִּי ʾimmî 'my mother', אִמְּךָ / אִמֶּךָ 'your mother'.
+- id: sense:kibbed
+  gloss:
+    en: to honour (piel of כָּבֵד)
+  forms:
+    hbo-Hebr/tiberian: [כִּבֵּד]
+- id: form:inf-abs
+  gloss:
+    en: 'the infinitive absolute: as a command, ''do!'' (כַּבֵּד ''honour!'')'
+- id: sense:lemaan
+  gloss:
+    en: so that, in order that; for the sake of
+  forms:
+    hbo-Hebr/tiberian: [מַעַן]
+- id: sense:heerikh
+  gloss:
+    en: to make long, prolong (hiphil)
+  forms:
+    hbo-Hebr/tiberian: [הֶאֱרִיךְ]
+- id: form:yiqtol-3mp
+  gloss:
+    en: 'they will do: the imperfect (yiqtol), they'
+- id: sense:ratsach
+  gloss:
+    en: to murder
+  forms:
+    hbo-Hebr/tiberian: [רָצַח]
+- id: sense:naaf
+  gloss:
+    en: to commit adultery
+  forms:
+    hbo-Hebr/tiberian: [נָאַף]
+- id: sense:ganav
+  gloss:
+    en: to steal
+  forms:
+    hbo-Hebr/tiberian: [גָּנַב]
+- id: form:yiqtol-2mp
+  gloss:
+    en: 'you will do: the imperfect (yiqtol), you (to several people)'
+- id: sense:anah
+  gloss:
+    en: to answer; to testify
+  forms:
+    hbo-Hebr/tiberian: [עָנָה]
+- id: sense:rea
+  gloss:
+    en: neighbour, fellow, friend
+  forms:
+    hbo-Hebr/tiberian: [רֵעַ]
+- id: sense:ed
+  gloss:
+    en: witness
+  forms:
+    hbo-Hebr/tiberian: [עֵד]
+- id: sense:sheqer
+  gloss:
+    en: 'lie, falsehood (עֵד שָׁקֶר: a false witness)'
+  forms:
+    hbo-Hebr/tiberian: [שֶׁקֶר]
+- id: form:weqatal-2ms
+  gloss:
+    en: 'and you shall do: the converted perfect (weqatal), you'
+- id: sense:kemo
+  gloss:
+    en: 'like, as (with suffixes: כָּמוֹךָ ''like you, as yourself'')'
+  forms:
+    hbo-Hebr/tiberian: [כְּמוֹ]
+nodes:
+- {id: hbo.u11.out-of-egypt, kind: lesson, introduces: ['sense:mitsrayim', 'sense:yatsa', 'sense:hotsi']}
+- {id: hbo.u11.other-gods, kind: lesson, introduces: ['sense:aher', 'form:yiqtol-3mp']}
+- {id: hbo.u11.honour, kind: lesson, introduces: ['sense:em', 'sense:kibbed', 'form:inf-abs', 'sense:lemaan', 'sense:heerikh']}
+- {id: hbo.u11.you-shall-not, kind: lesson, introduces: ['sense:ratsach', 'sense:naaf', 'sense:ganav', 'form:yiqtol-2mp']}
+- {id: hbo.u11.false-witness, kind: lesson, introduces: ['sense:anah', 'sense:rea', 'sense:ed', 'sense:sheqer', 'form:weqatal-2ms', 'sense:kemo']}
+- {id: hbo.u11.story, kind: story}
+sentences:
+- id: s.11.1
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִצְרַיִם
+      tokens: [{surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+      reverse: מצרים
+  translations:
+    en: Egypt
+- id: s.11.2
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶרֶץ מִצְרַיִם
+      tokens: [{surface: אֶרֶץ, sense: erets, readings: {tiberian: ʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+      reverse: ארץ מצרים
+  translations:
+    en: the land of Egypt
+- id: s.11.3
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּצֵא׃
+      tokens: [{surface: וַיֵּצֵא, sense: yatsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyēṣēʾ}}]
+      reverse: ויצא
+  translations:
+    en: '[(And|Then)] he went out.'
+- id: s.11.4
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּצְאוּ מִמִּצְרַיִם׃
+      tokens: [{surface: וַיֵּצְאוּ, sense: yatsa, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyēṣəʾû}}, {surface: מִמִּצְרַיִם, sense: mitsrayim, morphs: [{surface: מִ, kc: 'sense:min'}, {surface: מִּצְרַיִם,
+              kc: 'sense:mitsrayim'}], readings: {tiberian: mimmiṣráyim}}]
+      reverse: ויצאו ממצרים
+  translations:
+    en: |-
+      [(And|Then)] they went out (of|from) Egypt.
+      [(And|Then)] they left Egypt.
+- id: s.11.5
+  node: hbo.u11.out-of-egypt
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּית עֲבָדִים
+      tokens: [{surface: בֵּית, sense: bayit, readings: {tiberian: bêṯ}}, {surface: עֲבָדִים, sense: eved, form: 'form:pl', readings: {tiberian: ʿăḇāḏîm}}]
+      reverse: בית עבדים
+  translations:
+    en: |-
+      a house of (slaves|slavery|bondage)
+      the house of (slaves|slavery|bondage)
+- id: s.11.6
+  node: hbo.u11.out-of-egypt
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי יְהוָה אֱלֹהֶיךָ׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי,
+              kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}]
+      reverse: (אנכי|אנוכי) יהוה (אלהיך|אלוהיך)
+  translations:
+    en: I am the LORD your God.
+- id: s.11.7
+  node: hbo.u11.out-of-egypt
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה אֱלֹהַיִךְ
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהַיִךְ, sense: elohim, morphs: [{surface: אֱלֹהַיִ, kc: 'sense:elohim'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {
+            tiberian: ʾĕlōháyiḵ}}]
+      reverse: יהוה (אלהיך|אלוהיך)
+  translations:
+    en: the LORD your God
+- id: s.11.8
+  node: hbo.u11.out-of-egypt
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם
+      tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, sense: hotsi, form: 'form:qatal-1cs', morphs: [{surface: הוֹצֵאתִי, kc: 'sense:hotsi'}, {surface: ךָ,
+              kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}},
+        {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}]
+      reverse: אשר הוצאתיך מארץ מצרים
+  translations:
+    en: (who|that) (brought|led) you out of the land of Egypt
+- id: s.11.9
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֱלֹהִים אֲחֵרִים
+      tokens: [{surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, sense: aher, form: 'form:pl', readings: {tiberian: ʾăḥērîm}}]
+      reverse: (אלהים|אלוהים) אחרים
+  translations:
+    en: other gods
+- id: s.11.10
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִישׁ אַחֵר
+      tokens: [{surface: אִישׁ, sense: ish, readings: {tiberian: ʾîš}}, {surface: אַחֵר, sense: aher, readings: {tiberian: ʾaḥēr}}]
+      reverse: איש אחר
+  translations:
+    en: |-
+      another man
+      someone else
+- id: s.11.11
+  node: hbo.u11.other-gods
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא יִהְיֶה לְךָ אֱלֹהִים אֲחֵרִים׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, sense: hayah, form: 'form:yiqtol-3ms', readings: {tiberian: yihyeh}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
+              kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, sense: aher, form: 'form:pl',
+          readings: {tiberian: ʾăḥērîm}}]
+      reverse: (לא|לוא) יהיה לך (אלהים|אלוהים) אחרים
+  translations:
+    en: |-
+      You shall have no other gods.
+      You (shall|will) not have other gods.
+      There shall be no other gods for you.
+- id: s.11.12
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: יִשְׁמְעוּ׃
+      tokens: [{surface: יִשְׁמְעוּ, sense: shama, form: 'form:yiqtol-3mp', readings: {tiberian: yišməʿû}}]
+      reverse: ישמעו
+  translations:
+    en: They (will|shall) (hear|listen).
+- id: s.11.13
+  node: hbo.u11.other-gods
+  forms:
+    hbo-Hebr/tiberian:
+      text: יִשְׁמְעוּ אֶת־קוֹלִי׃
+      tokens: [{surface: יִשְׁמְעוּ, sense: shama, form: 'form:yiqtol-3mp', readings: {tiberian: yišməʿû}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: קוֹלִי, sense: qol, morphs: [
+            {surface: קוֹלִ, kc: 'sense:qol'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: qôlî}}]
+      reverse: ישמעו את קולי
+  translations:
+    en: They (will|shall) (hear|listen to|obey) my voice.
+- id: s.11.14
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵם
+      tokens: [{surface: אֵם, sense: em, readings: {tiberian: ʾēm}}]
+      reverse: אם
+  translations:
+    en: |-
+      a mother
+      mother
+- id: s.11.15
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמִּי
+      tokens: [{surface: אִמִּי, sense: em, morphs: [{surface: אִמִּ, kc: 'sense:em'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾimmî}}]
+      reverse: אמי
+  translations:
+    en: my mother
+- id: s.11.16
+  node: hbo.u11.honour
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמֶּךָ
+      tokens: [{surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
+      reverse: אמך
+  translations:
+    en: your mother
+- id: s.11.17
+  node: hbo.u11.honour
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אִמֵּךְ
+      tokens: [{surface: אִמֵּךְ, sense: em, morphs: [{surface: אִמֵּ, kc: 'sense:em'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾimmēḵ}}]
+      reverse: אמך
+  translations:
+    en: your mother
+- id: s.11.18
+  node: hbo.u11.honour
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ׃
+      tokens: [{surface: כַּבֵּד, sense: kibbed, form: 'form:inf-abs', readings: {tiberian: kabbēḏ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, sense: av, morphs: [{surface: אָבִי,
+              kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}], readings: {
+            tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}}]
+      reverse: כבד את אביך ואת אמך
+  translations:
+    en: |-
+      Honour your father and your mother!
+      Honor your father and your mother!
+      Honour your father and mother!
+      Honor your father and mother!
+- id: s.11.19
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְמַעַן
+      tokens: [{surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}]
+      reverse: למען
+  translations:
+    en: |-
+      so that
+      in order that
+- id: s.11.20
+  node: hbo.u11.honour
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָמִים
+      tokens: [{surface: יָמִים, sense: yom, form: 'form:pl', readings: {tiberian: yāmîm}}]
+      reverse: ימים
+  translations:
+    en: days
+- id: s.11.21
+  node: hbo.u11.honour
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָמֶיךָ
+      tokens: [{surface: יָמֶיךָ, sense: yom, form: 'form:pl', morphs: [{surface: יָמֶי, kc: 'sense:yom'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yāmếḵā}}]
+      reverse: ימיך
+  translations:
+    en: your days
+- id: s.11.22
+  node: hbo.u11.honour
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְמַעַן יַאֲרִכוּן יָמֶיךָ
+      tokens: [{surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}, {surface: יַאֲרִכוּן, sense: heerikh, form: 'form:yiqtol-3mp', readings: {tiberian: yaʾăriḵûn}}, {surface: יָמֶיךָ, sense: yom,
+          form: 'form:pl', morphs: [{surface: יָמֶי, kc: 'sense:yom'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yāmếḵā}}]
+      reverse: למען יארכון ימיך
+  translations:
+    en: |-
+      so that your days may be long
+      so that you may live long
+- id: s.11.23
+  node: hbo.u11.you-shall-not
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּרְצָח׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּרְצָח, sense: ratsach, form: 'form:yiqtol-2ms', readings: {tiberian: tirṣāḥ}}]
+      reverse: (לא|לוא) תרצח
+  translations:
+    en: |-
+      You (shall|must) not (murder|kill).
+      (Do not|Don't) (murder|kill).
+- id: s.11.24
+  node: hbo.u11.you-shall-not
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּנְאָף׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּנְאָף, sense: naaf, form: 'form:yiqtol-2ms', readings: {tiberian: tinʾāp̄}}]
+      reverse: (לא|לוא) תנאף
+  translations:
+    en: |-
+      You shall not commit adultery.
+      (Do not|Don't) commit adultery.
+- id: s.11.25
+  node: hbo.u11.you-shall-not
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּגְנֹב׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹב, sense: ganav, form: 'form:yiqtol-2ms', readings: {tiberian: tiḡnōḇ}}]
+      reverse: (לא|לוא) (תגנב|תגנוב)
+  translations:
+    en: |-
+      You shall not steal.
+      You must not steal.
+      (Do not|Don't) steal.
+- id: s.11.26
+  node: hbo.u11.you-shall-not
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא תִּגְנֹבוּ׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹבוּ, sense: ganav, form: 'form:yiqtol-2mp', readings: {tiberian: tiḡnṓḇû}}]
+      reverse: (לא|לוא) (תגנבו|תגנובו)
+  translations:
+    en: |-
+      You shall not steal.
+      You must not steal.
+      (Do not|Don't) steal.
+- id: s.11.27
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: רֵעַ
+      tokens: [{surface: רֵעַ, sense: rea, readings: {tiberian: rēaʿ}}]
+      reverse: רע
+  translations:
+    en: a (neighbour|neighbor|friend|fellow)
+- id: s.11.28
+  node: hbo.u11.false-witness
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: רֵעֲךָ
+      tokens: [{surface: רֵעֲךָ, sense: rea, morphs: [{surface: רֵעֲ, kc: 'sense:rea'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: rēʿăḵā}}]
+      reverse: רעך
+  translations:
+    en: your (neighbour|neighbor|friend|fellow)
+- id: s.11.29
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵד
+      tokens: [{surface: עֵד, sense: ed, readings: {tiberian: ʿēḏ}}]
+      reverse: עד
+  translations:
+    en: a witness
+- id: s.11.30
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵד שֶׁקֶר
+      tokens: [{surface: עֵד, sense: ed, readings: {tiberian: ʿēḏ}}, {surface: שֶׁקֶר, sense: sheqer, readings: {tiberian: šéqer}}]
+      reverse: עד שקר
+  translations:
+    en: |-
+      a false witness
+      a lying witness
+- id: s.11.31
+  node: hbo.u11.false-witness
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּעַן יוֹסֵף׃
+      tokens: [{surface: וַיַּעַן, sense: anah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyáʿan}}, {surface: יוֹסֵף, sense: yosef, readings: {tiberian: yôsēp̄}}]
+      reverse: ויען יוסף
+  translations:
+    en: '[(And|Then)] Joseph answered.'
+- id: s.11.32
+  node: hbo.u11.false-witness
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ-}}, {surface: תַעֲנֶה, sense: anah, form: 'form:yiqtol-2ms', readings: {tiberian: ṯaʿăneh}}, {surface: בְרֵעֲךָ, sense: rea, morphs: [{
+              surface: בְ, kc: 'sense:be'}, {surface: רֵעֲ, kc: 'sense:rea'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ḇərēʿăḵā}}, {surface: עֵד, sense: ed, readings: {tiberian: ʿēḏ}}, {
+          surface: שָׁקֶר, sense: sheqer, readings: {tiberian: šā́qer}}]
+      reverse: (לא|לוא) תענה ברעך עד שקר
+  translations:
+    en: |-
+      You shall not bear false witness against your (neighbour|neighbor).
+      You (shall|must) not testify falsely against your (neighbour|neighbor).
+- id: s.11.33
+  node: hbo.u11.false-witness
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָהַבְתָּ לְרֵעֲךָ כָּמוֹךָ׃
+      tokens: [{surface: וְאָהַבְתָּ, sense: ahav, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāhaḇtā}}, {surface: לְרֵעֲךָ, sense: rea, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: רֵעֲ, kc: 'sense:rea'},
+            {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: lərēʿăḵā}}, {surface: כָּמוֹךָ, sense: kemo, morphs: [{surface: כָּמוֹ, kc: 'sense:kemo'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: kāmốḵā}}]
+      reverse: ואהבת לרעך כמוך
+  translations:
+    en: |-
+      And you shall love your (neighbour|neighbor) as yourself.
+      Love your (neighbour|neighbor) as yourself.
+- id: s.11.34
+  node: hbo.u11.false-witness
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָהַבְתָּ אֶת־יְהוָה אֱלֹהֶיךָ׃
+      tokens: [{surface: וְאָהַבְתָּ, sense: ahav, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāhaḇtā}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: יְהוָה, sense: yhwh, readings: {
+            tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}]
+      reverse: ואהבת את יהוה (אלהיך|אלוהיך)
+  translations:
+    en: |-
+      And you shall love the LORD your God.
+      You shall love the LORD your God.
+stories:
+- id: hbo.story.the-ten-words
+  node: hbo.u11.story
+  title:
+    en: The ten words (Exodus 20:2–3, 12–16)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: אֱלֹהִים}}
+  steps:
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: אָנֹכִי יְהוָה אֱלֹהֶיךָ אֲשֶׁר הוֹצֵאתִיךָ מֵאֶרֶץ מִצְרַיִם מִבֵּית עֲבָדִים׃
+          tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי,
+                  kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: הוֹצֵאתִיךָ, sense: hotsi,
+              form: 'form:qatal-1cs', morphs: [{surface: הוֹצֵאתִי, kc: 'sense:hotsi'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: hôṣēʾṯî́ḵā}}, {surface: מֵאֶרֶץ, sense: erets, form: 'form:cstr',
+              morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אֶרֶץ, kc: 'sense:erets'}], readings: {tiberian: mēʾéreṣ}}, {surface: מִצְרַיִם, sense: mitsrayim, readings: {tiberian: miṣráyim}}, {surface: מִבֵּית,
+              sense: bayit, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: בֵּית, kc: 'sense:bayit'}], readings: {tiberian: mibbêṯ}}, {surface: עֲבָדִים, sense: eved, form: 'form:pl',
+              readings: {tiberian: ʿăḇāḏîm}}]
+      translations:
+        en: “I am the LORD your God, who brought you out of the land of Egypt, out of the house of slavery.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא יִהְיֶה־לְךָ אֱלֹהִים אֲחֵרִים עַל־פָּנָיַ׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יִהְיֶה, sense: hayah, form: 'form:yiqtol-3ms', readings: {tiberian: yihyeh-}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
+                  kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֲחֵרִים, sense: aher, form: 'form:pl',
+              readings: {tiberian: ʾăḥērîm}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיַ, sense: panim, morphs: [{surface: פָּנָ, kc: 'sense:panim'}, {surface: יַ, kc: 'form:sfx-1cs'}],
+              readings: {tiberian: pānā́y}}]
+      translations:
+        en: You shall have no other gods before me.
+  - choose:
+      prompt:
+        en: Who speaks these words?
+      options: [{en: 'the LORD, who brought Israel out of Egypt'}, {en: 'Moses, to his father-in-law'}, {en: a king of Egypt}]
+      answer: 0
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:em
+      distractors: ['sense:ah', 'sense:ben']
+      forms:
+        hbo-Hebr/tiberian:
+          text: כַּבֵּד אֶת־אָבִיךָ וְאֶת־אִמֶּךָ לְמַעַן יַאֲרִכוּן יָמֶיךָ עַל הָאֲדָמָה אֲשֶׁר־יְהוָה אֱלֹהֶיךָ נֹתֵן לָךְ׃
+          tokens: [{surface: כַּבֵּד, sense: kibbed, form: 'form:inf-abs', readings: {tiberian: kabbēḏ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִיךָ, sense: av, morphs: [{
+                  surface: אָבִי, kc: 'sense:av'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḇî́ḵā}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת,
+                  kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: אִמֶּךָ, sense: em, morphs: [{surface: אִמֶּ, kc: 'sense:em'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾimméḵā}},
+            {surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}, {surface: יַאֲרִכוּן, sense: heerikh, form: 'form:yiqtol-3mp', readings: {tiberian: yaʾăriḵûn}}, {surface: יָמֶיךָ, sense: yom,
+              form: 'form:pl', morphs: [{surface: יָמֶי, kc: 'sense:yom'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yāmếḵā}}, {surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: הָאֲדָמָה,
+              sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}},
+            {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+                tiberian: ʾĕlōhếḵā}}, {surface: נֹתֵן, sense: natan, form: 'form:ptc-ms', readings: {tiberian: nōṯēn}}, {surface: לָךְ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: ךְ, kc: 'form:sfx-2fs'}],
+              readings: {tiberian: lāḵ}}]
+      translations:
+        en: Honour your father and your mother, so that your days may be long on the land that the LORD your God is giving you.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּרְצָח׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּרְצָח, sense: ratsach, form: 'form:yiqtol-2ms', readings: {tiberian: tirṣāḥ}}]
+      translations:
+        en: You shall not murder.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּנְאָף׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּנְאָף, sense: naaf, form: 'form:yiqtol-2ms', readings: {tiberian: tinʾāp̄}}]
+      translations:
+        en: You shall not commit adultery.
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:ganav
+      distractors: ['sense:ratsach', 'sense:naaf']
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא תִּגְנֹב׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: תִּגְנֹב, sense: ganav, form: 'form:yiqtol-2ms', readings: {tiberian: tiḡnōḇ}}]
+      translations:
+        en: You shall not steal.
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא־תַעֲנֶה בְרֵעֲךָ עֵד שָׁקֶר׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ-}}, {surface: תַעֲנֶה, sense: anah, form: 'form:yiqtol-2ms', readings: {tiberian: ṯaʿăneh}}, {surface: בְרֵעֲךָ, sense: rea, morphs: [
+                {surface: בְ, kc: 'sense:be'}, {surface: רֵעֲ, kc: 'sense:rea'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ḇərēʿăḵā}}, {surface: עֵד, sense: ed, form: 'form:cstr', readings: {
+                tiberian: ʿēḏ}}, {surface: שָׁקֶר, sense: sheqer, readings: {tiberian: šā́qer}}]
+      translations:
+        en: You shall not bear false witness against your neighbour.”
+  - choose:
+      prompt:
+        en: What is promised to those who honour their father and mother?
+      options: [{en: that their days will be long on the land}, {en: that they will be rich}, {en: that they will see God}]
+      answer: 0
