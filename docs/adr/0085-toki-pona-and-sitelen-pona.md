@@ -40,7 +40,7 @@ second way to write it. Fonts for sitelen pona exist. The rest of the stack does
 - `tok-Qaap/sitelen-pona`: the script subtag is **Qaap**, from ISO 15924's private-use range
   (Qaaa..Qabx), until a code is assigned; then the profile, the course and the bundles move to it
   together. `Qaac` and `Qaai` are avoided (ICU still reads them as Coptic and Inherited). Direction
-  is left to right, the default for a script with no metadata.
+  is left to right, the default for a script with no metadata. Ben accepted Qaap (2026-11-08).
 - Text is the UCSUR's code points, written as Common Sitelen Pona has it: no spaces between words,
   an ideographic space (U+3000) between sentences, ! ? and commas left out, a colon kept after ni.
   When Unicode encodes the script, a `map` step will fold the UCSUR code points into the new ones.
