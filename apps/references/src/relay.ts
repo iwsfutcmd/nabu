@@ -173,16 +173,18 @@ const relocate = async (context: Context): Promise<Outcome<Response>> => {
   const to = pathParam(url, "to");
   if (!to.ok) return to;
   if (from.value.length === 0 || to.value.length === 0) return fail(400, "bad-path", "not the folder itself");
-  if (within(to.value, from.value)) return fail(400, "into-itself");
+  // Strictly inside: the same path is a rename to the name's own cleaned spelling (below).
+  if (to.value.length > from.value.length && within(to.value, from.value)) return fail(400, "into-itself");
   const source = await locate(drive, root, from.value);
   if (!source.ok) return source;
+  const { file, parent } = source.value;
+  if (parent === null) return fail(400, "bad-path");
   const where = await destination(context, to.value);
   if (!where.ok) return where;
   const clash = await childNamed(drive, where.value.folder, where.value.name);
   if (!clash.ok) return clash;
-  if (clash.value !== null) return fail(409, "exists");
-  const { file, parent } = source.value;
-  if (parent === null) return fail(400, "bad-path");
+  // The file itself is no clash: renaming it to its own cleaned name (NFC, no MARC marks) cleans it in Drive.
+  if (clash.value !== null && clash.value.id !== file.id) return fail(409, "exists");
   const moved = await move(drive, file, parent, where.value.folder, where.value.name);
   return moved.ok ? ok(json(200, entryOf(moved.value))) : moved;
 };
