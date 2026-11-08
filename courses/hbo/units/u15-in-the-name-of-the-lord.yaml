@@ -168,7 +168,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הִיא בָּאָה׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: בָּאָה, sense: bo, form: 'form:ptc-fs', readings: {tiberian: bāʾâ}}]
-      reverse: היא באה
+      reverse: |-
+        היא באה
+        באה היא
   translations:
     en: She( is|'s) (coming|on her way).
 - id: s.15.10
@@ -177,7 +179,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הֵם בָּאִים׃
       tokens: [{surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: בָּאִים, sense: bo, form: 'form:ptc-mp', readings: {tiberian: bāʾîm}}]
-      reverse: הם באים
+      reverse: |-
+        הם באים
+        באים הם
   translations:
     en: They( are|'re) (coming|on their way).
 - id: s.15.11
@@ -264,7 +268,9 @@ sentences:
       tokens: [{surface: יְסַגֶּרְךָ, sense: siggar, form: 'form:yiqtol-3ms', morphs: [{surface: יְסַגֶּרְ, kc: 'sense:siggar'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəsaggerḵā}}, {
           surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: בְּיָדִי, sense: yad, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: יָדִ, kc: 'sense:yad'}, {surface: י, kc: 'form:sfx-1cs'}],
           readings: {tiberian: bəyāḏî}}]
-      reverse: יסגרך יהוה בידי
+      reverse: |-
+        יסגרך יהוה בידי
+        יהוה יסגרך בידי
   translations:
     en: |-
       The LORD will (deliver|hand) you (into|over to) my hand.

@@ -226,7 +226,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הָאוֹר טוֹב׃
       tokens: [{surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: האור טוב
+      reverse: |-
+        האור טוב
+        טוב האור
   translations:
     en: The light is good.
 - id: s.01.10
@@ -236,7 +238,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַיּוֹם טוֹב׃
       tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: היום טוב
+      reverse: |-
+        היום טוב
+        טוב היום
   translations:
     en: |-
       The day is good.
@@ -258,7 +262,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַבֹּקֶר טוֹב׃
       tokens: [{surface: הַבֹּקֶר, sense: boqer, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בֹּקֶר, kc: 'sense:boqer'}], readings: {tiberian: habbṓqer}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: (הבקר|הבוקר) טוב
+      reverse: |-
+        (הבקר|הבוקר) טוב
+        טוב (הבקר|הבוקר)
   translations:
     en: The morning is good.
 - id: s.01.13
@@ -278,7 +284,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: טוֹב הָאוֹר׃
       tokens: [{surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
-      reverse: טוב האור
+      reverse: |-
+        טוב האור
+        האור טוב
   translations:
     en: |-
       The light is good.
@@ -308,7 +316,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יְהִי אוֹר׃
       tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
-      reverse: יהי אור
+      reverse: |-
+        יהי אור
+        אור יהי
   translations:
     en: Let there be light!
 - id: s.01.18
@@ -317,7 +327,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יְהִי חֹשֶׁךְ׃
       tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: חֹשֶׁךְ, sense: hoshekh, readings: {tiberian: ḥṓšeḵ}}]
-      reverse: יהי (חשך|חושך)
+      reverse: |-
+        יהי (חשך|חושך)
+        (חשך|חושך) יהי
   translations:
     en: Let there be darkness!
 - id: s.01.19

@@ -268,7 +268,9 @@ sentences:
       text: הָאָרֶץ טוֹבָה׃
       tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: טוֹבָה, sense: tov, form: 'form:f',
           readings: {tiberian: ṭôḇâ}}]
-      reverse: הארץ טובה
+      reverse: |-
+        הארץ טובה
+        טובה הארץ
   translations:
     en: |-
       The land is good.
@@ -281,7 +283,9 @@ sentences:
       text: הָאָרֶץ הָיְתָה טוֹבָה׃
       tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: הָיְתָה, sense: hayah, form: 'form:qatal-3fs',
           readings: {tiberian: hāyəṯâ}}, {surface: טוֹבָה, sense: tov, form: 'form:f', readings: {tiberian: ṭôḇâ}}]
-      reverse: הארץ היתה טובה
+      reverse: |-
+        הארץ היתה טובה
+        היתה הארץ טובה
   translations:
     en: |-
       The land was good.
@@ -293,7 +297,9 @@ sentences:
       text: הַיּוֹם הָיָה טוֹב׃
       tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: הָיָה, sense: hayah, form: 'form:qatal-3ms',
           readings: {tiberian: hāyâ}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: היום היה טוב
+      reverse: |-
+        היום היה טוב
+        היה היום טוב
   translations:
     en: The day was good.
 - id: s.02.17
@@ -329,7 +335,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הָאָרֶץ תֹהוּ׃
       tokens: [{surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}, {surface: תֹהוּ, sense: tohu, readings: {tiberian: ṯṓhû}}]
-      reverse: הארץ (תהו|תוהו)
+      reverse: |-
+        הארץ (תהו|תוהו)
+        (תהו|תוהו) הארץ
   translations:
     en: |-
       The land is a waste.
@@ -393,7 +401,9 @@ sentences:
       text: הַחֹשֶׁךְ עַל־הָאָרֶץ׃
       tokens: [{surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}, {surface: עַל, sense: al, readings: {
             tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
-      reverse: (החשך|החושך) על הארץ
+      reverse: |-
+        (החשך|החושך) על הארץ
+        על הארץ (החשך|החושך)
   translations:
     en: '[The] darkness is (on|over|upon) the (earth|land).'
 - id: s.02.26
@@ -404,7 +414,9 @@ sentences:
       text: אוֹר עַל־הָאָרֶץ׃
       tokens: [{surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָרֶץ,
               kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
-      reverse: אור על הארץ
+      reverse: |-
+        אור על הארץ
+        על הארץ אור
   translations:
     en: |-
       There is light on the earth.
@@ -428,7 +440,9 @@ sentences:
       text: הַמַּיִם טוֹבִים׃
       tokens: [{surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: טוֹבִים, sense: tov, form: 'form:pl',
           readings: {tiberian: ṭôḇîm}}]
-      reverse: המים טובים
+      reverse: |-
+        המים טובים
+        טובים המים
   translations:
     en: |-
       The water is good.
@@ -464,7 +478,9 @@ sentences:
       tokens: [{surface: הָרוּחַ, sense: ruach, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: רוּחַ, kc: 'sense:ruach'}], readings: {tiberian: hārûaḥ}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
           readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}],
           readings: {tiberian: hammáyim}}]
-      reverse: הרוח מרחפת על המים
+      reverse: |-
+        הרוח מרחפת על המים
+        מרחפת הרוח על המים
   translations:
     en: The (wind|spirit) (is hovering|hovers|is moving|was hovering) (over|above|on) the (water|waters).
 - id: s.02.32
@@ -475,7 +491,9 @@ sentences:
       tokens: [{surface: רוּחַ, sense: ruach, form: 'form:cstr', readings: {tiberian: rûaḥ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: מְרַחֶפֶת, sense: rachaf, form: 'form:ptc-fs',
           readings: {tiberian: məraḥép̄eṯ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פְּנֵי, sense: panim, form: 'form:pl-cstr', readings: {tiberian: pənê}}, {surface: הַמָּיִם,
           sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מָּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammā́yim}}]
-      reverse: רוח (אלהים|אלוהים) מרחפת על פני המים
+      reverse: |-
+        רוח (אלהים|אלוהים) מרחפת על פני המים
+        מרחפת רוח (אלהים|אלוהים) על פני המים
   translations:
     en: The (spirit|wind|breath) of God (is hovering|hovers|was hovering|is moving|was moving) (over|above|on) the (face|surface) of the (waters|water).
 - id: s.02.33
@@ -485,7 +503,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: מַיִם בָּאָרֶץ׃
       tokens: [{surface: מַיִם, sense: mayim, readings: {tiberian: máyim}}, {surface: בָּאָרֶץ, sense: erets, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: bāʾā́reṣ}}]
-      reverse: מים בארץ
+      reverse: |-
+        מים בארץ
+        בארץ מים
   translations:
     en: There is water (in|on) the (land|earth|ground).
 - id: s.02.34

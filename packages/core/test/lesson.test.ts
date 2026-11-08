@@ -589,4 +589,24 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     // An infinitive's -ôṯ is no perfect ending, though its verb has perfects in the course.
     expect(graded("בהיותם", "בהיוותם")).toEqual(["CORRECT_WITH_TYPO", []]);
   });
+
+  it("accepts both orders of subject and predicate where Biblical Hebrew allows them, never a subject before wayyiqtol", () => {
+    const hebrew = "hbo-Hebr/tiberian";
+    const course = loadCourse("hbo", hebrew);
+    const grader = createGrader(course);
+    const reverse = (id: string): string => {
+      const s = course.units.flatMap((u) => u.sentences).find((x) => x.id === id);
+      const accept = s?.forms[hebrew]?.reverse;
+      if (accept === undefined) throw new Error(`no reverse set for ${id}`);
+      return accept;
+    };
+    // Another order is a correct alternative. A nominal clause (Joüon-Muraoka § 154f): הָאוֹר טוֹב,
+    // and טוֹב הָאוֹר as Gen 1:4 has it.
+    expect(grader.grade(hebrew, reverse("s.01.9"), "טוב האור").verdict).toBe("CORRECT_ALT");
+    // A participle clause and a jussive (§ 154f, § 155k): either side of the subject.
+    expect(grader.grade(hebrew, reverse("s.03.20"), "מתהלך האדם בתוך הגן").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.20.25"), "יהוה יברכך").verdict).toBe("CORRECT_ALT");
+    // wayyiqtol's vav never leaves its verb: a subject first would need another form (X-qatal).
+    expect(grader.grade(hebrew, reverse("s.03.22"), "האדם ויתחבא").verdict).not.toMatch(/^CORRECT/u);
+  });
 });

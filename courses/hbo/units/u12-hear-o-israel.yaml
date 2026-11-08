@@ -135,7 +135,9 @@ sentences:
       text: אָבִינוּ בַּשָּׂדֶה׃
       tokens: [{surface: אָבִינוּ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾāḇî́nû}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
-      reverse: אבינו בשדה
+      reverse: |-
+        אבינו בשדה
+        בשדה אבינו
   translations:
     en: Our father is in the field.
 - id: s.12.9
@@ -391,7 +393,9 @@ sentences:
       text: אָנֹכִי יֹשֶׁבֶת בַּבַּיִת׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יֹשֶׁבֶת, sense: yashav, form: 'form:ptc-fs', readings: {tiberian: yōšéḇeṯ}}, {surface: בַּבַּיִת, sense: bayit,
           morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: (אנכי|אנוכי) (ישבת|יושבת) בבית
+      reverse: |-
+        (אנכי|אנוכי) (ישבת|יושבת) בבית
+        (ישבת|יושבת) (אנכי|אנוכי) בבית
   translations:
     en: I( am|'m) sitting (in the house|at home).
 - id: s.12.31
@@ -402,7 +406,9 @@ sentences:
       text: אָנֹכִי יֹשֵׁב בַּבַּיִת׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: יֹשֵׁב, sense: yashav, form: 'form:ptc-ms', readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: (אנכי|אנוכי) (ישב|יושב) בבית
+      reverse: |-
+        (אנכי|אנוכי) (ישב|יושב) בבית
+        (ישב|יושב) (אנכי|אנוכי) בבית
   translations:
     en: I( am|'m) sitting (in the house|at home).
 - id: s.12.32

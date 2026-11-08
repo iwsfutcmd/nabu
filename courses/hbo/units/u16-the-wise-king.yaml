@@ -111,7 +111,9 @@ sentences:
       text: הַמֶּלֶךְ בַּבַּיִת׃
       tokens: [{surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: המלך בבית
+      reverse: |-
+        המלך בבית
+        בבית המלך
   translations:
     en: |-
       The king is in the house.
@@ -145,7 +147,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַיֶּלֶד חַי׃
       tokens: [{surface: הַיֶּלֶד, sense: yeled, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יֶּלֶד, kc: 'sense:yeled'}], readings: {tiberian: hayyéleḏ}}, {surface: חַי, sense: chai, readings: {tiberian: ḥay}}]
-      reverse: הילד חי
+      reverse: |-
+        הילד חי
+        חי הילד
   translations:
     en: The (child|boy) is (alive|living).
 - id: s.16.8
@@ -400,7 +404,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הִיא אִמּוֹ׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
-      reverse: היא אמו
+      reverse: |-
+        היא אמו
+        אמו היא
   translations:
     en: (She is|She's) his mother.
 - id: s.16.30

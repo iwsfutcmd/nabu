@@ -187,7 +187,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַתָּה בַּגָּן׃
       tokens: [{surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: אתה בגן
+      reverse: |-
+        אתה בגן
+        בגן אתה
   translations:
     en: |-
       You are in the garden.
@@ -200,7 +202,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַתְּ בַּגָּן׃
       tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: את בגן
+      reverse: |-
+        את בגן
+        בגן את
   translations:
     en: |-
       You are in the garden.
@@ -224,7 +228,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: עֵירֹם אַתָּה׃
       tokens: [{surface: עֵירֹם, sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}]
-      reverse: (עירם|עירום) אתה
+      reverse: |-
+        (עירם|עירום) אתה
+        אתה (עירם|עירום)
   translations:
     en: |-
       You are naked.
@@ -236,7 +242,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הוּא בַּגָּן׃
       tokens: [{surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: הוא בגן
+      reverse: |-
+        הוא בגן
+        בגן הוא
   translations:
     en: |-
       He is in the garden.
@@ -248,7 +256,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הִיא בַּגָּן׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: היא בגן
+      reverse: |-
+        היא בגן
+        בגן היא
   translations:
     en: |-
       She is in the garden.
@@ -261,7 +271,9 @@ sentences:
       text: הוּא הִגִּיד לְךָ׃
       tokens: [{surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}, {surface: הִגִּיד, sense: nagad, form: 'form:qatal-3ms', readings: {tiberian: higgîḏ}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
               kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}]
-      reverse: הוא הגיד לך
+      reverse: |-
+        הוא הגיד לך
+        הגיד הוא לך
   translations:
     en: |-
       He told you.
@@ -373,7 +385,10 @@ sentences:
       text: הִיא נָתְנָה־לִּי׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ,
               kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}]
-      reverse: היא נתנה לי
+      reverse: |-
+        היא נתנה לי
+        נתנה לי היא
+        נתנה היא לי
   translations:
     en: |-
       She gave (it|some) to me.
@@ -478,7 +493,9 @@ sentences:
       text: אָנֹכִי מִתְהַלֶּכֶת בַּגָּן׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֶּכֶת, sense: hithallekh, form: 'form:ptc-fs', readings: {tiberian: miṯhalléḵeṯ}}, {surface: בַּגָּן, sense: gan,
           morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: (אנכי|אנוכי) מתהלכת בגן
+      reverse: |-
+        (אנכי|אנוכי) מתהלכת בגן
+        מתהלכת (אנכי|אנוכי) בגן
   translations:
     en: |-
       I am walking [(about|around)] in the garden.
@@ -491,7 +508,9 @@ sentences:
       text: אָנֹכִי מִתְהַלֵּךְ בַּגָּן׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan,
           morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: (אנכי|אנוכי) מתהלך בגן
+      reverse: |-
+        (אנכי|אנוכי) מתהלך בגן
+        מתהלך (אנכי|אנוכי) בגן
   translations:
     en: |-
       I am walking [(about|around)] in the garden.
@@ -513,7 +532,9 @@ sentences:
       text: הַנָּחָשׁ בַּגָּן׃
       tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: בַּגָּן, sense: gan, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
-      reverse: הנחש בגן
+      reverse: |-
+        הנחש בגן
+        בגן הנחש
   translations:
     en: The (serpent|snake) is in the garden.
 - id: s.04.35
@@ -523,7 +544,9 @@ sentences:
       text: הַנָּחָשׁ הִשִּׁיאַנִי׃
       tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, sense: nasha,
           form: 'form:qatal-3ms', morphs: [{surface: הִשִּׁיאַ, kc: 'sense:nasha'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hiššîʾánî}}]
-      reverse: הנחש השיאני
+      reverse: |-
+        הנחש השיאני
+        השיאני הנחש
   translations:
     en: The (serpent|snake) (deceived|tricked|beguiled) me.
 - id: s.04.36

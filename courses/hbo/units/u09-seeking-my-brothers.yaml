@@ -174,7 +174,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הֵם בַּשָּׂדֶה׃
       tokens: [{surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
-      reverse: הם בשדה
+      reverse: |-
+        הם בשדה
+        בשדה הם
   translations:
     en: |-
       They are in the field.
@@ -224,7 +226,9 @@ sentences:
       tokens: [{surface: אַחֶיךָ, sense: ah, form: 'form:pl', morphs: [{surface: אַחֶי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾaḥếḵā}}, {surface: רֹעִים, sense: raah.graze,
           form: 'form:ptc-mp', readings: {tiberian: rōʿîm}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַצֹּאן, sense: tson, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן,
               kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}]
-      reverse: אחיך (רעים|רועים) את (הצאן|הצואן)
+      reverse: |-
+        אחיך (רעים|רועים) את (הצאן|הצואן)
+        (רעים|רועים) אחיך את (הצאן|הצואן)
   translations:
     en: Your brothers are (pasturing|tending|grazing) the (flock|sheep).
 - id: s.09.11
@@ -542,7 +546,9 @@ sentences:
       text: אֶת־אַחַי אָנֹכִי מְבַקֵּשׁ׃
       tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אַחַי, sense: ah, form: 'form:pl', morphs: [{surface: אַחַ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
             tiberian: ʾaḥay}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מְבַקֵּשׁ, sense: biqqesh, form: 'form:ptc-ms', readings: {tiberian: məḇaqqēš}}]
-      reverse: את אחי (אנכי|אנוכי) מבקש
+      reverse: |-
+        את אחי (אנכי|אנוכי) מבקש
+        את אחי מבקש (אנכי|אנוכי)
   translations:
     en: |-
       I am looking for my brothers.

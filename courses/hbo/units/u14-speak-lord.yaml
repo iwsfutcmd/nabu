@@ -114,7 +114,9 @@ sentences:
       text: הַנַּעַר יֹשֵׁב בַּבַּיִת׃
       tokens: [{surface: הַנַּעַר, sense: naar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נַּעַר, kc: 'sense:naar'}], readings: {tiberian: hannáʿar}}, {surface: יֹשֵׁב, sense: yashav, form: 'form:ptc-ms',
           readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: הנער (ישב|יושב) בבית
+      reverse: |-
+        הנער (ישב|יושב) בבית
+        (ישב|יושב) הנער בבית
   translations:
     en: |-
       The boy is sitting in the house.
@@ -308,7 +310,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אָנֹכִי שֹׁמַעַת׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמַעַת, sense: shama, form: 'form:ptc-fs', readings: {tiberian: šōmáʿaṯ}}]
-      reverse: (אנכי|אנוכי) (שמעת|שומעת)
+      reverse: |-
+        (אנכי|אנוכי) (שמעת|שומעת)
+        (שמעת|שומעת) (אנכי|אנוכי)
   translations:
     en: I( am|'m) listening.
 - id: s.14.25
@@ -318,7 +322,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אָנֹכִי שֹׁמֵעַ׃
       tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms', readings: {tiberian: šōmēaʿ}}]
-      reverse: (אנכי|אנוכי) (שמע|שומע)
+      reverse: |-
+        (אנכי|אנוכי) (שמע|שומע)
+        (שמע|שומע) (אנכי|אנוכי)
   translations:
     en: I( am|'m) listening.
 - id: s.14.26

@@ -80,6 +80,29 @@ nothing, and a reading shown to learners later is still the convention.
 
 The 52 other stem labels agree with Joüon–Muraoka.
 
+**Word order: the Hebrew accept sets take both orders where Biblical Hebrew has both.** Each
+sentence is shown in one order, but its `reverse` set had only that order. So "טוב האור" for "the
+light is good" was wrong, in tiles and typed. Each set now lists the text's own order first, then:
+
+| Clause | Other order accepted | Joüon–Muraoka |
+|---|---|---|
+| nominal (הָאוֹר טוֹב, אָנֹכִי בַּגָּן, יְהוָה רֹעִי) | predicate first (טוֹב הָאוֹר, Gen 1:4) | § 154f, p. 531: S–P in about two of three, P–S in the rest |
+| participle (הָאָדָם מִתְהַלֵּךְ, אָנֹכִי שֹׁמֵר) | the participle first; with a pronoun subject that is the unmarked order | § 154f, pp. 533–534 |
+| plain qatal, yiqtol, jussive, cohortative (יְבָרֶכְךָ יְהוָה, הַנָּחָשׁ הִשִּׁיאַנִי) | the subject on the other side of the verb; a pronoun's side makes no difference | § 155k, pp. 545–546 |
+
+- **Never moved.**
+  - Wayyiqtol and weqatal: their vav cannot leave the verb, and a subject first needs another
+    form, X-qatal (§ 155k, § 118d).
+  - Imperatives.
+  - A clause after a vav, a particle, a question word, a subordinator (לְמַעַן) or a relative:
+    after אֲשֶׁר, a pronoun comes before its participle (§ 154f, p. 533).
+  - Sentences of more than one clause.
+  - A subject inside a construct chain.
+- **Which sentences.** 70 of the course's 696. The drafting script finds the subject from the
+  Codex's morphology: a noun, a name or a pronoun that agrees with the verb, next to it, at the
+  start of the clause. Every result was read. Dictation (listen-type) shares the set, as it
+  does in es, which has word-order alternatives too.
+
 **Glosses: 305 of 312 agree with Holladay.** The others are fixed:
 
 | KC | Was | Now | Holladay |
@@ -151,6 +174,8 @@ shinnen, tsalmawet (pp. 172, 337, 273, 349, 379, 306).
   - a noun's first letter and an infinitive's -ôṯ, which stay typos;
   - the agreement slip without forms, which is a typo.
 - **Other courses** grade as before. Only hbo's profile has `forms`.
+- **Word order.** A reordered answer is CORRECT_ALT, in tiles, typing and fill-the-blank. A subject
+  before a wayyiqtol is still wrong (a createGrader test).
 - **The course.** 696 sentences and 358 KCs: one KC (hitchabbe) and one sentence (וָאֵחָבֵא).
   Lessons from unit 2 on change where form:pl-cstr, form:coh and hitchabbe are now taught.
 - **Left for a reviewer** (courses/REVIEW.md, hbo):

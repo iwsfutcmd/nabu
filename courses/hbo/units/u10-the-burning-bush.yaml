@@ -221,7 +221,9 @@ sentences:
       text: הַסְּנֶה בֹּעֵר בָּאֵשׁ׃
       tokens: [{surface: הַסְּנֶה, sense: seneh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: סְּנֶה, kc: 'sense:seneh'}], readings: {tiberian: hassəneh}}, {surface: בֹּעֵר, sense: baar, form: 'form:ptc-ms',
           readings: {tiberian: bōʿēr}}, {surface: בָּאֵשׁ, sense: esh, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: bāʾēš}}]
-      reverse: הסנה (בער|בוער) באש
+      reverse: |-
+        הסנה (בער|בוער) באש
+        (בער|בוער) הסנה באש
   translations:
     en: |-
       The bush is burning (with|in) fire.
@@ -492,7 +494,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַתָּה עוֹמֵד׃
       tokens: [{surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: עוֹמֵד, sense: amad, form: 'form:ptc-ms', readings: {tiberian: ʿômēḏ}}]
-      reverse: אתה עומד
+      reverse: |-
+        אתה עומד
+        עומד אתה
   translations:
     en: |-
       You are standing.
@@ -505,7 +509,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אַתְּ עֹמֶדֶת׃
       tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: עֹמֶדֶת, sense: amad, form: 'form:ptc-fs', readings: {tiberian: ʿōméḏeṯ}}]
-      reverse: את (עמדת|עומדת)
+      reverse: |-
+        את (עמדת|עומדת)
+        (עמדת|עומדת) את
   translations:
     en: |-
       You are standing.

@@ -243,7 +243,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אָבִי בַּבַּיִת׃
       tokens: [{surface: אָבִי, sense: av, readings: {tiberian: ʾāḇî}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: אבי בבית
+      reverse: |-
+        אבי בבית
+        בבית אבי
   translations:
     en: |-
       My father is in the house.
@@ -432,7 +434,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: שְׁמוֹ גָּדוֹל׃
       tokens: [{surface: שְׁמוֹ, sense: shem, morphs: [{surface: שְׁמ, kc: 'sense:shem'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: šəmô}}, {surface: גָּדוֹל, sense: gadol, readings: {tiberian: gāḏôl}}]
-      reverse: שמו גדול
+      reverse: |-
+        שמו גדול
+        גדול שמו
   translations:
     en: His name is great.
 - id: s.06.30
@@ -504,7 +508,9 @@ sentences:
       text: הַלַּיְלָה כַּיּוֹם׃
       tokens: [{surface: הַלַּיְלָה, sense: layla, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: לַּיְלָה, kc: 'sense:layla'}], readings: {tiberian: halláylâ}}, {surface: כַּיּוֹם, sense: yom, morphs: [
             {surface: כַּ, kc: 'sense:ke'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: kayyôm}}]
-      reverse: הלילה כיום
+      reverse: |-
+        הלילה כיום
+        כיום הלילה
   translations:
     en: |-
       The night is like the day.
