@@ -1,6 +1,6 @@
 /**
  * Storybook toolbar globals (gameplan §11.9): UI locale, pseudo-locale, target,
- * dir and writing mode. The visual tests drive the same globals through the
+ * dir, writing mode and theme. The visual tests drive the same globals through the
  * iframe URL, so what you click here is what CI screenshots.
  */
 import { DRAFT_UI_LOCALES, type PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
@@ -13,6 +13,8 @@ export interface NabuGlobals {
   readonly target: keyof typeof DEMO_TARGETS;
   readonly dir: "auto" | "ltr" | "rtl";
   readonly writingMode: "horizontal-tb" | "vertical-rl" | "vertical-lr";
+  /** data-theme on <html>, as the app sets it for a chosen theme (tokens.css). */
+  readonly theme: "light" | "dark";
 }
 
 export const initialGlobals: NabuGlobals = {
@@ -21,6 +23,7 @@ export const initialGlobals: NabuGlobals = {
   target: "fa",
   dir: "auto",
   writingMode: "horizontal-tb",
+  theme: "light",
 };
 
 /** The locale the chrome actually uses: a pseudo-locale overrides the UI locale. */
@@ -77,6 +80,18 @@ export const globalTypes: NonNullable<Preview["globalTypes"]> = {
         { value: "horizontal-tb", title: "horizontal-tb" },
         { value: "vertical-rl", title: "vertical-rl" },
         { value: "vertical-lr", title: "vertical-lr" },
+      ],
+    },
+  },
+  theme: {
+    description: "Light or dark theme",
+    toolbar: {
+      title: "Theme",
+      icon: "contrast",
+      dynamicTitle: true,
+      items: [
+        { value: "light", title: "Light" },
+        { value: "dark", title: "Dark" },
       ],
     },
   },

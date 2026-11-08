@@ -351,6 +351,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 
+## Themes notes (see docs/adr/0083)
+- Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
+  (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in
+  both themes and, if it carries text, a pairing in packages/ui/test/tokens.test.ts (AA in both). No colours in components.
+- The choice (Match the browser, Light, Dark) is per device (`nabu.theme`); index.html applies it before the first paint.
+- Pictures are drawn for a light page: dark sets them on `--nabu-color-picture`. Storybook has a Theme switch; every
+  story is in the dark pass (tests/visual/theme.spec.ts: LTR, RTL, vertical, axe colour contrast).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never

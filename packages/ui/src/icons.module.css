@@ -3,6 +3,11 @@
   flex: none;
 }
 
+/* The tick or cross inside a filled status icon: it contrasts with the fill in either theme. */
+.mark {
+  stroke: var(--nabu-color-on-status);
+}
+
 .mirror:dir(rtl) {
   transform: scaleX(-1);
 }

@@ -1,5 +1,13 @@
-/* Design tokens. Colours meet WCAG 2.2 AA contrast on their intended backgrounds. */
+/*
+ * Design tokens. Colours meet WCAG 2.2 AA contrast on their intended backgrounds, in both themes
+ * (test/tokens.test.ts checks every pairing the components use).
+ *
+ * Themes: light unless the learner chooses dark (data-theme="dark" on <html>), or chooses nothing
+ * and the browser prefers dark. data-theme="light" keeps light whatever the browser prefers.
+ * The two dark blocks below must stay identical (the test checks that too).
+ */
 :root {
+  color-scheme: light;
   --nabu-color-page: #f6f5f1;
   --nabu-color-surface: #fff;
   --nabu-color-text: #1d1d1b;
@@ -16,6 +24,11 @@
   --nabu-color-wrong: #a3241a;
   --nabu-color-wrong-bg: #f8e4e1;
   --nabu-color-focus-bg: #fbe3a3;
+  /* The mark inside a filled status icon (a tick on the correct colour, a cross on the wrong one). */
+  --nabu-color-on-status: #fff;
+  /* Behind a picture: pictures are drawn for a light page, so a dark theme gives them a light plate. */
+  --nabu-color-picture: transparent;
+  --nabu-color-backdrop: rgb(0 0 0 / 40%);
   --nabu-radius-card: 1rem;
   --nabu-radius-tile: 0.75rem;
   --nabu-space-1: 0.25rem;
@@ -23,6 +36,54 @@
   --nabu-space-3: 0.75rem;
   --nabu-space-4: 1rem;
   --nabu-space-5: 1.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --nabu-color-page: #161614;
+    --nabu-color-surface: #211f1c;
+    --nabu-color-text: #edebe5;
+    --nabu-color-muted: #bab6ac;
+    --nabu-color-border: #3d3a34;
+    --nabu-color-line: #5a5750;
+    --nabu-color-tile: #2a2824;
+    --nabu-color-tile-border: #4d4a43;
+    --nabu-color-accent: #74cfa3;
+    --nabu-color-accent-text: #10140f;
+    --nabu-color-track: #34322d;
+    --nabu-color-correct: #74cfa3;
+    --nabu-color-correct-bg: #173427;
+    --nabu-color-wrong: #f19a90;
+    --nabu-color-wrong-bg: #3e1f1b;
+    --nabu-color-focus-bg: #463b12;
+    --nabu-color-on-status: #161614;
+    --nabu-color-picture: #e9e6de;
+    --nabu-color-backdrop: rgb(0 0 0 / 65%);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --nabu-color-page: #161614;
+  --nabu-color-surface: #211f1c;
+  --nabu-color-text: #edebe5;
+  --nabu-color-muted: #bab6ac;
+  --nabu-color-border: #3d3a34;
+  --nabu-color-line: #5a5750;
+  --nabu-color-tile: #2a2824;
+  --nabu-color-tile-border: #4d4a43;
+  --nabu-color-accent: #74cfa3;
+  --nabu-color-accent-text: #10140f;
+  --nabu-color-track: #34322d;
+  --nabu-color-correct: #74cfa3;
+  --nabu-color-correct-bg: #173427;
+  --nabu-color-wrong: #f19a90;
+  --nabu-color-wrong-bg: #3e1f1b;
+  --nabu-color-focus-bg: #463b12;
+  --nabu-color-on-status: #161614;
+  --nabu-color-picture: #e9e6de;
+  --nabu-color-backdrop: rgb(0 0 0 / 65%);
 }
 
 @media (prefers-reduced-motion: reduce) {

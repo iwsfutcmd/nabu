@@ -15,6 +15,8 @@ const loaders: Loader[] = [
 
 const withNabu: Decorator = (Story, { globals, loaded }) => {
   const g = globals as Partial<NabuGlobals>;
+  // As the app does for a chosen theme: tokens.css switches on data-theme.
+  document.documentElement.dataset["theme"] = g.theme ?? initialGlobals.theme;
   return (
     <NabuUiProvider translator={loaded["translator"] as Translator} orthographies={DEMO_ORTHOGRAPHIES}>
       <UiRoot dir={g.dir === "ltr" || g.dir === "rtl" ? g.dir : undefined}>
