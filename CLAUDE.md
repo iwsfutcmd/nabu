@@ -331,7 +331,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
-## Biblical Hebrew notes (see docs/adr/0082)
+## Biblical Hebrew notes (see docs/adr/0082–0084)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
   nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
@@ -341,7 +341,13 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
 - Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
   Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
-  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py). The divine name is ʾăḏōnāy (its qere).
+  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
+  meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
+- Readings stay SBL's (šāmərû); tiberian.py says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
+  vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
+- References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
+  Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
+  prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 
@@ -351,7 +357,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0082 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0084 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

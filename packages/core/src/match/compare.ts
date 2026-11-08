@@ -156,12 +156,22 @@ const onlyEndings = (word: readonly string[], from: number, contrasts: readonly 
  * - An empty member is the word without the affix: shteghel for bishteghel, b3id for b3ide.
  * - Sets marked `inflected` apply only when `inflected` says the expected word is one the
  *   course inflects, so a noun's first letter stays a typo.
+ * - Sets with `forms` apply only when the expected word is pinned as one of them (`forms`, the
+ *   word's forms in the course; an entry also matches the forms it begins: form:yiqtol, ADR 0084).
  * Compared by graphemes of the units' contrast keys.
  */
-export const contrastOf = (profile: CompiledProfile, expected: string, actual: string, inflected = false): CompiledContrast | undefined => {
+export const contrastOf = (
+  profile: CompiledProfile,
+  expected: string,
+  actual: string,
+  inflected = false,
+  forms: readonly string[] = [],
+): CompiledContrast | undefined => {
   const typo = profile.typo;
   if (typo === undefined || typo.contrasts.length === 0) return undefined;
-  const sets = typo.contrasts.filter((c) => inflected || !c.inflected);
+  const applies = (c: CompiledContrast): boolean =>
+    c.forms === undefined ? inflected || !c.inflected : forms.some((f) => c.forms?.some((start) => f.startsWith(start)) === true);
+  const sets = typo.contrasts.filter(applies);
   const endings = sets.filter((c) => c.at === "end");
   const e = graphemes(typo.key(expected));
   const a = graphemes(typo.key(actual));

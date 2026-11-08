@@ -143,24 +143,42 @@ export const createGrader = (course: CourseView): Grader => {
   };
   // The words the course inflects (ADR 0081): every word of a sense some token pins a form on,
   // so a masculine adjective counts with its feminine, a bare past verb with its b- present.
-  const inflections = new Map<string, ReadonlySet<string>>();
-  const inflected = (orthography: string): ReadonlySet<string> => {
-    let words = inflections.get(orthography);
-    if (words === undefined) {
+  // And each word's own forms, the forms its tokens are pinned as, for contrasts limited to some
+  // (ADR 0084): a verb's infinitive is no perfect, whatever else its sense is pinned as.
+  interface Inflections {
+    readonly words: ReadonlySet<string>;
+    readonly forms: ReadonlyMap<string, readonly string[]>;
+  }
+  const inflections = new Map<string, Inflections>();
+  const inflected = (orthography: string): Inflections => {
+    let found = inflections.get(orthography);
+    if (found === undefined) {
       const profile = profileOf(course, orthography);
       const tokens = [...textsOf(course, orthography)].flatMap((text) => text.tokens.filter((t) => t.kind === "word" && t.sense !== undefined));
       const senses = new Set(tokens.filter((t) => t.form !== undefined).map((t) => t.sense));
       const keys = (text: string): string[] => profile.units(profile.normalize(text)).map((unit) => lexiconKey(profile, unit));
-      const found = new Set<string>();
-      for (const t of tokens) if (senses.has(t.sense)) for (const k of keys(t.surface)) found.add(k);
+      const words = new Set<string>();
+      const forms = new Map<string, Set<string>>();
+      const pin = (k: string, these: Iterable<string>): void => {
+        const all = forms.get(k) ?? new Set<string>();
+        for (const f of these) all.add(f);
+        forms.set(k, all);
+      };
+      for (const t of tokens) {
+        if (!senses.has(t.sense)) continue;
+        for (const k of keys(t.surface)) {
+          words.add(k);
+          if (t.form !== undefined) pin(k, [t.form]);
+        }
+      }
       // A sentence's accept set spells its words other ways too (be2ra beside b2ra): each of
-      // those words counts as inflected when the nearest word of the sentence is.
+      // those words counts as inflected when the nearest word of the sentence is, with its forms.
       for (const s of allSentences(course)) {
         const form = s.forms[orthography];
         if (form?.reverse === undefined) continue;
         const own = form.text.tokens
           .filter((t) => t.kind === "word" && t.sense !== undefined)
-          .flatMap((t) => keys(t.surface).map((k) => ({ letters: graphemes(k), inflected: senses.has(t.sense) })));
+          .flatMap((t) => keys(t.surface).map((k) => ({ key: k, letters: graphemes(k), inflected: senses.has(t.sense) })));
         if (!own.some((w) => w.inflected)) continue;
         for (const piece of form.reverse.split(/[\s()|[\]]+/u)) {
           for (const k of keys(piece)) {
@@ -171,14 +189,17 @@ export const createGrader = (course: CourseView): Grader => {
               const d = keyboardDistance(letters, w.letters, () => false);
               if (d < best) [nearest, best] = [w, d];
             }
-            if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) found.add(k);
+            if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) {
+              words.add(k);
+              pin(k, forms.get(nearest.key) ?? []);
+            }
           }
         }
       }
-      words = found;
-      inflections.set(orthography, words);
+      found = { words, forms: new Map([...forms].map(([k, fs]) => [k, [...fs].sort()])) };
+      inflections.set(orthography, found);
     }
-    return words;
+    return found;
   };
   return {
     grade: (orthography, accept, answer) => {
@@ -190,7 +211,8 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      return grade(set, answer, { lexicon: lexicon(orthography), inflected: inflected(orthography) });
+      const { words, forms } = inflected(orthography);
+      return grade(set, answer, { lexicon: lexicon(orthography), inflected: words, forms });
     },
   };
 };

@@ -67,6 +67,12 @@ export interface GradeOptions {
    * `inflected` (Lebanese verb prefixes, a feminine ending) apply to them alone.
    */
   readonly inflected?: ReadonlySet<string>;
+  /**
+   * The forms each inflected word is pinned as in the course (form KC ids, the forms of the
+   * tokens it spells), keyed by `lexiconKey`: contrasts with `forms` apply to the words pinned as
+   * one (ADR 0084).
+   */
+  readonly forms?: ReadonlyMap<string, readonly string[]>;
 }
 
 /**
@@ -250,7 +256,8 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     else if (c.kind === "typo") {
       // A typo that makes another word, or trades a meaningful ending for another (erratum 46),
       // changes what the answer says.
-      const contrast = contrastOf(profile, op.expected, op.actual, options.inflected?.has(lexiconKey(profile, op.expected)) === true);
+      const word = lexiconKey(profile, op.expected);
+      const contrast = contrastOf(profile, op.expected, op.actual, options.inflected?.has(word) === true, options.forms?.get(word));
       if (contrast !== undefined) note(contrast.note);
       raise(contrast !== undefined || options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
     }

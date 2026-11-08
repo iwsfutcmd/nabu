@@ -101,7 +101,13 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
       Array.isArray(a[name]) ? new Set((a[name] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
     const lexicon = keyed("lexicon");
     const inflected = keyed("inflected");
-    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }) });
+    // Each inflected word with the forms the course pins it as: { word: [form KC ids] } (ADR 0084).
+    const given = a["forms"];
+    const forms =
+      typeof given === "object" && given !== null && !Array.isArray(given)
+        ? new Map(Object.entries(given).map(([w, fs]) => [lexiconKey(set.profile, w), Array.isArray(fs) ? fs.map(String) : []]))
+        : undefined;
+    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }), ...(forms && { forms }) });
   },
   /** A word's vowel marks as the learner wrote them, against its vocalized form (ADR 0054). */
   "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),

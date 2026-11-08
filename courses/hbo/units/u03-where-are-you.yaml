@@ -72,12 +72,17 @@ kcs:
     hbo-Hebr/tiberian: [הִתְהַלֵּךְ]
 - id: form:ptc-ms
   gloss:
-    en: 'participle, masculine singular: he/it is doing; one who does'
+    en: 'participle, masculine singular: he/it is doing; one who does (of a verb of state, its adjective: יָרֵא ''afraid'')'
 - id: sense:hava
   gloss:
-    en: to hide oneself (niphal, hithpael)
+    en: to hide (oneself) (niphal)
   forms:
     hbo-Hebr/tiberian: [נֶחְבָּא]
+- id: sense:hitchabbe
+  gloss:
+    en: to hide oneself (hithpael)
+  forms:
+    hbo-Hebr/tiberian: [הִתְחַבֵּא]
 - id: sense:min
   gloss:
     en: from; out of; than (מִן־, or מִ- joined to the word)
@@ -87,7 +92,7 @@ kcs:
     en: 'Written apart as מִן־ min-, or joined with the next letter doubled: מִפְּנֵי mippənê ''from before''. Before a guttural it is מֵ mē-.'
 - id: form:sfx-3ms
   gloss:
-    en: his; him (the suffix -ô, -w)
+    en: his; him (the suffix -ô, -w, -hû)
 - id: sense:ay
   gloss:
     en: where? (אֵי; with a suffix אַיֶּכָּה 'where are you?')
@@ -118,7 +123,7 @@ nodes:
 - {id: hbo.u03.the-garden, kind: lesson, introduces: ['sense:gan', 'sense:adam', 'sense:ishah', 'sense:yhwh', 'sense:el']}
 - {id: hbo.u03.the-voice, kind: lesson, introduces: ['sense:qol', 'sense:shama', 'form:wayyiqtol-3mp', 'form:qatal-1cs']}
 - {id: hbo.u03.walking, kind: lesson, introduces: ['sense:ets', 'sense:tokh', 'sense:hithallekh', 'form:ptc-ms']}
-- {id: hbo.u03.hiding, kind: lesson, introduces: ['sense:hava', 'sense:min', 'form:sfx-3ms']}
+- {id: hbo.u03.hiding, kind: lesson, introduces: ['sense:hitchabbe', 'sense:hava', 'sense:min', 'form:sfx-3ms']}
 - {id: hbo.u03.where-are-you, kind: lesson, introduces: ['sense:ay', 'form:sfx-2ms', 'sense:anokhi', 'sense:yare', 'form:wayyiqtol-1cs', 'sense:erom']}
 - {id: hbo.u03.story, kind: story}
 sentences:
@@ -353,7 +358,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּתְחַבֵּא הָאָדָם׃
-      tokens: [{surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+      tokens: [{surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
               kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
       reverse: ויתחבא האדם
   translations:
@@ -363,7 +368,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מִפְּנֵי יְהוָה
-      tokens: [{surface: מִפְּנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh,
+      tokens: [{surface: מִפְּנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh,
           readings: {tiberian: ʾăḏōnāy}}]
       reverse: מפני יהוה
   translations:
@@ -408,9 +413,9 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה׃
-      tokens: [{surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+      tokens: [{surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
               kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ, sense: ishah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
-          readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}},
+          readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}},
         {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
       reverse: ויתחבא האדם ואשתו מפני יהוה
   translations:
@@ -433,7 +438,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אַיֶּכָּה
-      tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+      tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
       reverse: איכה
   translations:
     en: Where are you?
@@ -444,7 +449,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיֹּאמֶר לוֹ אַיֶּכָּה׃
       tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: לוֹ, sense: le, morphs: [{surface: ל, kc: 'sense:le'}, {surface: וֹ, kc: 'form:sfx-3ms'}],
-          readings: {tiberian: lô}}, {surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+          readings: {tiberian: lô}}, {surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
       reverse: (ויאמר|ויואמר) לו איכה
   translations:
     en: '[(And|Then)] he said to him, “Where are you?”'
@@ -535,6 +540,15 @@ sentences:
     en: |-
       [And] I was afraid, because I (was|am) naked.
       [And] I was afraid, (for|since) I (was|am) naked.
+- id: s.03.38
+  node: hbo.u03.where-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: וָאֵחָבֵא׃
+      tokens: [{surface: וָאֵחָבֵא, sense: hava, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾēḥāḇēʾ}}]
+      reverse: ואחבא
+  translations:
+    en: '[(And|So|Then)] I hid [myself].'
 stories:
 - id: hbo.story.where-are-you
   node: hbo.u03.story
@@ -561,10 +575,10 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: הַיּוֹם וַיִּתְחַבֵּא הָאָדָם וְאִשְׁתּוֹ מִפְּנֵי יְהוָה אֱלֹהִים בְּתוֹךְ עֵץ הַגָּן׃
-          tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: וַיִּתְחַבֵּא, sense: hava, form: 'form:wayyiqtol-3ms',
+          tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: וַיִּתְחַבֵּא, sense: hitchabbe, form: 'form:wayyiqtol-3ms',
               readings: {tiberian: wayyiṯḥabbēʾ}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}, {surface: וְאִשְׁתּוֹ,
               sense: ishah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אִשְׁתּ, kc: 'sense:ishah'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: wəʾištô}}, {surface: מִפְּנֵי, sense: panim,
-              form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}},
+              form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {surface: פְּנֵי, kc: 'sense:panim'}], readings: {tiberian: mippənê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}},
             {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}],
               readings: {tiberian: bəṯôḵ}}, {surface: עֵץ, sense: ets, form: 'form:cstr', readings: {tiberian: ʿēṣ}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן,
                   kc: 'sense:gan'}], readings: {tiberian: haggān}}]
@@ -590,7 +604,7 @@ stories:
       forms:
         hbo-Hebr/tiberian:
           text: אַיֶּכָּה׃
-          tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyekkâ}}]
+          tokens: [{surface: אַיֶּכָּה, sense: ay, morphs: [{surface: אַיֶּ, kc: 'sense:ay'}, {surface: כָּה, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾayyékkâ}}]
       translations:
         en: “Where are you?”
   - line:

@@ -12,7 +12,7 @@ from nabu.cli import app
 
 # Accents are written as escapes: merkha U+05A5, tipha U+0596, atnah U+0591, munah U+05A3,
 # silluq-meteg U+05BD.
-M, T, A, U, S = "֥", "֖", "֑", "֣", "ֽ"
+M, T, A, U, S, Y = "֥", "֖", "֑", "֣", "ֽ", "֚"
 
 
 def nfc(s: str) -> str:
@@ -30,9 +30,15 @@ def nfc(s: str) -> str:
         (f"קָ{U}רָא", False, "qā́rāʾ", "accent"),
         # A pausal qamets with the accent is long, and the syllable it heads may close.
         (f"לָ{A}יְלָה", False, "lā́ylâ", "accent"),
-        # Meteg makes the qamets long and the shewa vocal; without it, qamets qatan.
+        # Meteg makes the qamets gadol, SBL's šāmərû (said [ʃɔːɔmˈʀ̟uː], tiberian.py); without it,
+        # qamets qatan.
         (f"שָׁ{S}מְרוּ", False, "šāmərû", "rules"),
         ("חָכְמָה", False, "ḥoḵmâ", "rules"),
+        # At a verse's end (sof pasuq) the meteg sign is silluq, its accent (Khan p. 455): Gen 1:5
+        # wālā́yəlâ, Gen 1:8 šēnî. Yetiv marks its own syllable (p. 327): lā́mmâ, not lommâ.
+        (f"וָלָ{S}יְלָה׃", False, "wālā́yəlâ", "accent"),
+        (f"שֵׁנִ{S}י׃", False, "šēnî", "accent"),
+        (f"לָ{Y}מָּה", False, "lā́mmâ", "accent"),
         # Before maqaf: no stress of its own, qamets qatan in kol-.
         ("כָּל", True, "kol-", "bound"),
         ("אֶת", True, "ʾeṯ-", "bound"),
@@ -61,4 +67,4 @@ def test_the_command_reads_words_joined_by_maqaf_as_one_unit() -> None:
     assert result.exit_code == 0, result.output
     lines = [line.split("\t") for line in result.output.strip().split("\n")]
     assert [line[1] for line in lines] == ["ʾeṯ-", "hāʾôr"]
-    assert lines[1][2] == "hɔːˈʔoːr"
+    assert lines[1][2] == "hɔːˈʔoːoʀ̟"  # Khan, Gen 1:3 (p. 615)

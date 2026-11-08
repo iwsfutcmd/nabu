@@ -83,9 +83,12 @@ kcs:
     hbo-Hebr/tiberian: [בֵּרַךְ]
 - id: sense:gadal
   gloss:
-    en: to make great (piel)
+    en: to make great, magnify; to bring up (a child) (piel)
   forms:
     hbo-Hebr/tiberian: [גִּדֵּל]
+- id: form:coh
+  gloss:
+    en: 'let me do, let us do: the cohortative (-â); ''I will …'' after a command'
 - id: sense:ke
   gloss:
     en: like, as (written joined to the next word)
@@ -102,7 +105,7 @@ nodes:
 - {id: hbo.u06.go, kind: lesson, introduces: ['sense:avram', 'sense:halakh', 'form:impv-ms', 'form:impv-fs', 'form:impv-mp']}
 - {id: hbo.u06.your-fathers-house, kind: lesson, introduces: ['sense:bayit', 'sense:av', 'sense:moledet']}
 - {id: hbo.u06.i-will-show-you, kind: lesson, introduces: ['sense:hirah', 'form:yiqtol-1cs']}
-- {id: hbo.u06.a-great-nation, kind: lesson, introduces: ['sense:goy', 'sense:gadol', 'sense:shem', 'sense:berakhah', 'sense:barakh', 'sense:gadal']}
+- {id: hbo.u06.a-great-nation, kind: lesson, introduces: ['form:coh', 'sense:goy', 'sense:gadol', 'sense:shem', 'sense:berakhah', 'sense:barakh', 'sense:gadal']}
 - {id: hbo.u06.as-he-said, kind: lesson, introduces: ['sense:ke', 'sense:dibber']}
 - {id: hbo.u06.story, kind: story}
 sentences:
@@ -475,7 +478,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: וַאֲגַדְּלָה שְׁמֶךָ׃
-      tokens: [{surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}}, {surface: שְׁמֶךָ,
+      tokens: [{surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:coh', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}}, {surface: שְׁמֶךָ,
           sense: shem, morphs: [{surface: שְׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}]
       reverse: ואגדלה שמך
   translations:
@@ -618,7 +621,7 @@ stories:
         hbo-Hebr/tiberian:
           text: וַאֲבָרֶכְךָ וַאֲגַדְּלָה שְׁמֶךָ וֶהְיֵה בְּרָכָה׃
           tokens: [{surface: וַאֲבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
-                tiberian: waʾăḇāreḵḵā}}, {surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:yiqtol-1cs', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}},
+                tiberian: waʾăḇāreḵḵā}}, {surface: וַאֲגַדְּלָה, sense: gadal, form: 'form:coh', morphs: [{surface: וַ, kc: 'sense:we'}, {surface: אֲגַדְּלָה, kc: 'sense:gadal'}], readings: {tiberian: waʾăḡaddəlâ}},
             {surface: שְׁמֶךָ, sense: shem, morphs: [{surface: שְׁמֶ, kc: 'sense:shem'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šəméḵā}}, {surface: וֶהְיֵה, sense: hayah, form: 'form:impv-ms',
               morphs: [{surface: וֶ, kc: 'sense:we'}, {surface: הְיֵה, kc: 'sense:hayah'}], readings: {tiberian: wehyēh}}, {surface: בְּרָכָה, sense: berakhah, readings: {tiberian: bərāḵâ}}]
       translations:

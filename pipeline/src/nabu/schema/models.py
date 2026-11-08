@@ -1778,6 +1778,9 @@ type Members = Annotated[
 type AfterItem = Annotated[str, Field(min_length=1)]
 
 
+type Form = Annotated[str, Field(pattern="^form:[a-z0-9-]+$")]
+
+
 class Contrast(BaseModel):
     """
     A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
@@ -1811,6 +1814,13 @@ class Contrast(BaseModel):
         bool | None,
         Field(
             description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
+        ),
+    ] = None
+    forms: Annotated[
+        list[Form] | None,
+        Field(
+            description="Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
+            min_length=1,
         ),
     ] = None
     note: Annotated[

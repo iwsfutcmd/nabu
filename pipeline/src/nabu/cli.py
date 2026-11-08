@@ -218,7 +218,8 @@ def tiberian_reading(
         list[str],
         typer.Argument(
             help="Pointed Biblical Hebrew, with the cantillation accents where you have them "
-            "(WLC); words joined by maqaf are read as one stress unit."
+            "(WLC); words joined by maqaf are read as one stress unit. Keep a verse's sof pasuq "
+            "(׃) on its last word: that word's meteg sign is then silluq."
         ),
     ],
 ) -> None:
@@ -228,10 +229,11 @@ def tiberian_reading(
     from nabu.audio.pointing import reading, strip_accents
 
     for argument in words:
-        parts = argument.split("\u05be")
+        parts = argument.strip().split("\u05be")
         for k, word in enumerate(parts):
-            r = reading(word, bound=k < len(parts) - 1)
-            typer.echo(f"{strip_accents(word)}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
+            r = reading(word, bound=k < len(parts) - 1)  # a final ׃ makes it verse-final
+            shown = strip_accents(word.strip().removesuffix("\u05c3"))
+            typer.echo(f"{shown}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
 
 
 @app.command("calibration")

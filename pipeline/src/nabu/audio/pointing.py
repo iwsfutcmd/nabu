@@ -39,9 +39,12 @@ VOWEL_POINTS = {
 }  # fmt: skip
 ACCENTS = {chr(c) for c in range(0x0591, 0x05B0)}
 #: Accents written on a word's last letter (segolta, pashta, telisha qetana, zarqa) or first
-#: (telisha gedola, yetiv, dehi), wherever its stress is.
+#: (telisha gedola, dehi), wherever its stress is. Yetiv stands on the first letter too, but only
+#: of words stressed on their first syllable, so it marks the stress (Khan vol. I, p. 327).
 POSTPOSITIVE = {"֒", "֙", "֩", "֮"}
-PREPOSITIVE = {"֠", "֚", "֭"}
+PREPOSITIVE = {"֠", "֭"}
+#: Sof pasuq, after a verse's last word: that word's last meteg sign is silluq, its main accent.
+SOF_PASUQ = "׃"
 POSITIONAL = POSTPOSITIVE | PREPOSITIVE
 DOTS = {"ׄ", "ׅ"}
 BGDKPT = {
@@ -132,10 +135,19 @@ class Reading:
 
 
 def reading(
-    word: str, bound: bool = False, stress: int | None = None, morph: str | None = None
+    word: str,
+    bound: bool = False,
+    stress: int | None = None,
+    morph: str | None = None,
+    final: bool = False,
 ) -> Reading:
     """The word's reading. `bound`: joined by maqaf to the next word. `stress`: syllables from
-    the end, where the word has no accent. `morph`: the OSHB morphology code, if known."""
+    the end, where the word has no accent. `morph`: the OSHB morphology code, if known. `final`:
+    the verse's last word (also when the word ends in sof pasuq), whose last meteg sign is silluq
+    (Khan vol. I, p. 455)."""
+    word = word.strip()
+    if word.endswith(SOF_PASUQ):
+        word, final = word.removesuffix(SOF_PASUQ), True
     special = _special(word)
     if special is not None:
         return Reading(special + ("-" if bound else ""), "special")
@@ -165,7 +177,7 @@ def reading(
         and (us[-2].role in ("V", "M") or us[-2].vowel not in (None, ""))
     )
     full = [i for i in nuclei if us[i].vowel not in REDUCED and not (furtive and i == n - 1)]
-    stressed, how = _stress(us, full, furtive, bound, stress)
+    stressed, how = _stress(us, full, furtive, bound, stress, final)
     _qamets_qatan(us, nuclei, stressed, bound)
     out: list[str] = []
     final = stressed is None or (bool(full) and stressed == full[-1])
@@ -347,10 +359,13 @@ def _shewas(us: list[_Unit]) -> None:
 
 
 def _stress(
-    us: list[_Unit], full: list[int], furtive: bool, bound: bool, given: int | None
+    us: list[_Unit], full: list[int], furtive: bool, bound: bool, given: int | None, final: bool
 ) -> tuple[int | None, str]:
     accented = [i for i, u in enumerate(us) if u.accents]
     main = [i for i in accented if not set(us[i].accents) <= POSITIONAL]
+    if final and not main:
+        silluq = [i for i, u in enumerate(us) if u.meteg]
+        main = silluq[-1:]
     pashtas = [i for i in accented if PASHTA in us[i].accents]
     if bound:
         return None, "bound"

@@ -384,7 +384,9 @@ Drafted after the native-speaker pass above, so it has had no second reading
 
 Drafted after the native-speaker pass above ([ADR 0082](../docs/adr/0082-biblical-hebrew.md)). There are no
 native speakers: a reviewer who reads Biblical Hebrew, ideally one who knows the Tiberian reading tradition,
-should check:
+should check what follows. Khan (the sounds), Joüon–Muraoka (forms and stems) and Holladay (glosses) have
+since been read against the course ([ADR 0084](../docs/adr/0084-hbo-references.md); page-referenced notes in the
+reference library, notes/hbo): what they showed wrong is fixed, and what they leave open is listed here.
 
 1. **The pinned readings** (`readings: {tiberian: …}`, SBL transliteration with an acute on non-final stress).
    They were drafted from the Westminster Leningrad Codex: the stress from each word's accent, vocal shewa and
@@ -393,35 +395,51 @@ should check:
      Bible has none, the drafting script guessed (the generator reports these: מְבַקֶּשֶׁת məḇaqqéšeṯ);
    - qamets before shewa with no meteg in the WLC: drafted as qamets qatan (ḥoḵmâ, qoḏšô) except in the qal
      perfect (šāmərû) and before -ḵā/-ḵem on nouns (ləḇāḇəḵā);
-   - shewa after a long vowel, drafted vocal (šōmərîm, tēləḵî) as the classical rule has it;
+   - shewa after a long vowel: written vocal (šōmərîm, tēləḵî), as SBL and the classical rule have it, but said
+     silent with the vowel long, as Khan describes (§I.2.5.6). Should a reading shown to learners follow SBL
+     or Khan?
+   - stress at a verse's end now comes from silluq (Khan p. 455) and yetiv marks its syllable (p. 327): seven
+     story readings changed (ʾayyékkâ, ʾānṓḵî, ʾēlếḵā, šəḵémâ, gəzṓrû, ʾā́ttâ, yənaḥămúnî);
    - stress retraction kept from the text where the Bible has it (qā́rāʾ láylâ in Gen 1:5);
    - the divine name read with its qere, ʾăḏōnāy (laʾḏōnāy after a preposition), and the Pentateuch's הִוא read
      hîʾ.
-2. **The audio** says those readings in eSpeak NG's Arabic phoneme table, after Khan's description of the
-   Tiberian tradition. Approximations to listen for: segol said [e] like ṣere; qamets said as a backed [ɑ]
-   (Khan: [ɔ]); resh always alveolar (Khan: uvular except beside alveolars); vav [v]; vocal shewa [a], or the
-   vowel after a guttural, or [i] before yod. The voice is rule-based and sounds it. A recorded reader of the
-   Tiberian tradition (`nabu audio ingest`) would replace it.
+2. **The audio** says those readings in eSpeak NG's Arabic phoneme table, as Khan's vol. I describes the
+   Tiberian tradition (checked page by page, ADR 0084). Approximations to listen for: segol said [e] like ṣere;
+   qamets as a backed [ɑ] (Khan: [ɔ]); resh as a trill (Khan: uvular [ʀ̟], [rˤ] beside alveolars); ḡ as [ɣ]
+   (Khan: [ʁ]); k p t unaspirated (Khan: [kʰ pʰ tʰ]); a long vowel's echo in a closed syllable said as one long
+   vowel. Not modelled at all: gaʿya and what it does to a shewa, half-long vowels, deḥiq, segol-yod [ɛː], the
+   backed pataḥ, coda ʾalef. The voice is rule-based and sounds it. A recorded reader of the Tiberian
+   tradition (`nabu audio ingest`) would replace it.
 3. **Pointing of constructed sentences.** Every word was checked against the forms the Bible attests; a few
    are unattested but regular (מְבַקֶּשֶׁת). Contextual forms are used, not pausal ones, except in quotations.
    Begadkefat after a vowel-final word joined by maqaf are spirantized as in the text (וַיְהִי־בֹקֶר).
 4. **Analyses.** Token senses, morphs and forms come from the WLC's morphology (openscriptures/morphhb). Two
    slips were corrected by hand: Gen 3:11 מִמֶּנּוּ "from it" (tagged "from us"), Gen 24:17 מִכַּדֵּךְ "from your
-   (f.) jar" (tagged "her"). Verbs are KCs by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה). Forms are
-   KCs by conjugation and person (`form:wayyiqtol-3ms`); is that the right grain?
+   (f.) jar" (tagged "her"). Verbs are KCs by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה; נֶחְבָּא
+   and הִתְחַבֵּא since ADR 0084); the stems agree with Joüon–Muraoka. Forms are KCs by conjugation and person
+   (`form:wayyiqtol-3ms`); is that the right grain? Joüon–Muraoka corrected: the plural construct of nouns
+   always plural (פְּנֵי) is form:pl-cstr; Jonah 1:9 יָרֵא is the verbal adjective; Gen 12:2 וַאֲגַדְּלָה a
+   cohortative. Open: the long imperative לְכָה beside לֵךְ (accepted?), and jussives spelled like yiqtols
+   (Num 6:24–26), tagged by the WLC.
 5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
    nothing. Accept sets are generous with English word order; Hebrew accept sets accept the plene spelling of
    ō and u (קול for קֹל) and a space, hyphen or maqaf between bound words.
 6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
    שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
    מְבַקֶּשֶׁת).
-7. **The profile's REVIEW markers:** the typo contrasts (pronouns, suffixes, perfect endings) and sof pasuq as
-   an exemplar CLDR's Modern Hebrew lacks.
+7. **The profile's REVIEW markers:** the typo contrasts and sof pasuq as an exemplar CLDR's Modern Hebrew
+   lacks. The contrasts (ADR 0084, after Joüon–Muraoka § 42, 44, 89–90, 94): pronouns and suffixes on any word;
+   the perfect's endings on perfects; the person prefixes (א ת י נ, none, ה; after ו), the prefix conjugation's
+   endings and agreement only on words the course pins as those forms. Is ה (hiphil, hithpael) rightly a
+   prefix member? Are the shared forms (2ms = 3fs; I-aleph 1cs yiqtol = qatal 3ms) handled as you would?
 8. **Passages with textual quirks:** the Decalogue (Exod 20) has two sets of accents; its readings follow the
    lower set (עַל־פָּנָי pānā́y), and Exod 20:12 לָךְ is the pausal "to you" (m.), tagged 2fs in the WLC. Jonah
    1:3 אָנִיָּה is read ʾoniyyâ. Psalm 23 includes its title (מִזְמוֹר לְדָוִד) as the WLC numbers it.
 9. **Idioms translated loosely:** כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף (an oath), חַי־יְהוָה, בִּי אֲדֹנִי, כְפַעַם־בְּפַעַם,
    כִּי־נִכְמְרוּ רַחֲמֶיהָ; these are recognition-only where English has no close equivalent.
+10. **Glosses** agree with Holladay (305 of 312; the others fixed, ADR 0084), but his are narrower for נְאוֹת
+   (under נָוָה) and צַלְמָוֶת (he reads צַלְמוּת, "darkness"; the course keeps "the shadow of death" as the
+   traditional rendering).
 
 ## es (Cuban Spanish)
 

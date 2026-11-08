@@ -2860,6 +2860,12 @@ export interface Contrast {
    */
   readonly inflected?: boolean;
   /**
+   * Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).
+   *
+   * @minItems 1
+   */
+  readonly forms?: readonly string[];
+  /**
    * The feedback note shown with the verdict (MF2 message feedback.note.<note>).
    */
   readonly note?: string;

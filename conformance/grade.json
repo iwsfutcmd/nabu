@@ -2328,6 +2328,184 @@
         "notes": []
       },
       "note": "The plene spelling is accepted beside the defective one."
+    },
+    {
+      "id": "grade/hbo/prefix-person",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ישמרו",
+        "answer": "תשמרו",
+        "forms": {
+          "ישמרו": [
+            "form:yiqtol-3mp"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "you (pl.) for they on a yiqtol: a person prefix traded (ADR 0084)"
+    },
+    {
+      "id": "grade/hbo/prefix-dropped",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ישמרו",
+        "answer": "שמרו",
+        "forms": {
+          "ישמרו": [
+            "form:yiqtol-3mp"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "the prefix dropped: a perfect for the yiqtol"
+    },
+    {
+      "id": "grade/hbo/prefix-after-vav",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "וישמעו",
+        "answer": "ונשמעו",
+        "forms": {
+          "וישמעו": [
+            "form:wayyiqtol-3mp"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "after the vav of wayyiqtol: we for they"
+    },
+    {
+      "id": "grade/hbo/prefix-not-on-a-noun",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "אנשים",
+        "answer": "תנשים",
+        "forms": {
+          "אנשים": [
+            "form:pl"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "a noun's first letter is no prefix, though the course pins the noun's plural: still a typo"
+    },
+    {
+      "id": "grade/hbo/perfect-ending",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמרתם",
+        "answer": "שמרתי",
+        "forms": {
+          "שמרתם": [
+            "form:qatal-2mp"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "I for you (pl.) on a perfect"
+    },
+    {
+      "id": "grade/hbo/perfect-ending-not-on-an-infinitive",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "בהיותם",
+        "answer": "בהיוותם",
+        "forms": {
+          "בהיותם": [
+            "form:inf"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "an infinitive's -ôṯ is no perfect ending: a doubled letter stays a typo"
+    },
+    {
+      "id": "grade/hbo/verb-ending",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "וישמעו",
+        "answer": "וישמע",
+        "forms": {
+          "וישמעו": [
+            "form:wayyiqtol-3mp"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "he for they: the plural ending dropped from a wayyiqtol"
+    },
+    {
+      "id": "grade/hbo/agreement",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "גדולה",
+        "answer": "גדול",
+        "forms": {
+          "גדולה": [
+            "form:f"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "a masculine adjective for the feminine"
+    },
+    {
+      "id": "grade/hbo/agreement-without-forms",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "גדולה",
+        "answer": "גדול"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "without the course's forms, the same slip is a typo"
     }
   ]
 }

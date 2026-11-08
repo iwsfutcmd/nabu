@@ -68,9 +68,6 @@ kcs:
     en: 'blood (plural: bloodshed)'
   forms:
     hbo-Hebr/tiberian: [דָּם]
-- id: form:pl-cstr
-  gloss:
-    en: 'plural construct: ''the Xs of …'' (-ê: דְּמֵי ''the blood of'')'
 - id: sense:tsaaq
   gloss:
     en: to cry out
@@ -91,7 +88,7 @@ nodes:
 - {id: hbo.u05.my-brother, kind: lesson, introduces: ['sense:ah', 'sense:qayin', 'sense:hevel', 'sense:ahot', 'form:sfx-2fs']}
 - {id: hbo.u05.in-the-field, kind: lesson, introduces: ['sense:sadeh', 'sense:qum', 'sense:harag']}
 - {id: hbo.u05.i-do-not-know, kind: lesson, introduces: ['sense:lo', 'sense:yada', 'sense:shamar']}
-- {id: hbo.u05.the-blood-cries, kind: lesson, introduces: ['sense:dam', 'form:pl-cstr', 'sense:tsaaq', 'form:ptc-mp', 'sense:adamah', 'form:sfx-3mp']}
+- {id: hbo.u05.the-blood-cries, kind: lesson, introduces: ['sense:dam', 'sense:tsaaq', 'form:ptc-mp', 'sense:adamah', 'form:sfx-3mp']}
 - {id: hbo.u05.story, kind: story}
 sentences:
 - id: s.05.1
@@ -564,7 +561,7 @@ stories:
           text: לֹא יָדַעְתִּי הֲשֹׁמֵר אָחִי אָנֹכִי׃
           tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יָדַעְתִּי, sense: yada, form: 'form:qatal-1cs', readings: {tiberian: yāḏáʿtî}}, {surface: הֲשֹׁמֵר, sense: shamar, form: 'form:ptc-ms',
               morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: שֹׁמֵר, kc: 'sense:shamar'}], readings: {tiberian: hăšōmēr}}, {surface: אָחִי, sense: ah, morphs: [{surface: אָחִ, kc: 'sense:ah'}, {surface: י,
-                  kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+                  kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānṓḵî}}]
       translations:
         en: “I do not know. Am I my brother's keeper?”
   - line:

@@ -572,3 +572,21 @@ describe("affixes that carry meaning on the words a course inflects (ADR 0081)",
     expect(grader.grade(arabizi, "(el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)", "el masa bu2ra").verdict).toBe("CORRECT_WITH_TYPO");
   });
 });
+
+describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => {
+  it("makes a Biblical Hebrew verb's person prefix wrong, and leaves nouns and other typos alone", () => {
+    const hebrew = "hbo-Hebr/tiberian";
+    const grader = createGrader(loadCourse("hbo", hebrew));
+    const graded = (accept: string, answer: string): [string, readonly string[]] => {
+      const g = grader.grade(hebrew, accept, answer);
+      return [g.verdict, g.notes];
+    };
+    // "and she fled" for "and he fled" (wayyiqtol, Jonah 1:3), though it spells no word of the course.
+    expect(graded("ויברח", "ותברח")).toEqual(["WRONG_WORD", ["contrast-prefix"]]);
+    // A slip inside the verb is a typo; so is a noun's first letter (the article is no person prefix).
+    expect(graded("ויברח", "ויבברח")).toEqual(["CORRECT_WITH_TYPO", []]);
+    expect(graded("השמים", "ישמים")).toEqual(["CORRECT_WITH_TYPO", []]);
+    // An infinitive's -ôṯ is no perfect ending, though its verb has perfects in the course.
+    expect(graded("בהיותם", "בהיוותם")).toEqual(["CORRECT_WITH_TYPO", []]);
+  });
+});
