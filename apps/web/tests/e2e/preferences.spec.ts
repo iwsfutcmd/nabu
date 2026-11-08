@@ -6,6 +6,7 @@
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Locator, type Page } from "@playwright/test";
+import { lessonNodes } from "@nabu/core/lesson";
 import { loadCourse, planned, sessionUrl } from "./solver.ts";
 
 const NOW = new Date("2026-03-10T09:00:00Z");
@@ -65,4 +66,66 @@ test("the text size of the language being learned is chosen in Preferences, and 
   await page.locator("[data-target-size=default]").click();
   await page.goto(sessionUrl(course, request, 7));
   expect((await sizes(page)).word).toBe(before.word);
+});
+
+/** --nabu-color-page in each theme (tokens.css). */
+const PAGE = { light: "rgb(246, 245, 241)", dark: "rgb(22, 22, 20)" } as const;
+const pageColour = (page: Page): Promise<string> => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+const seriousViolations = async (page: Page, scope: string): Promise<string[]> =>
+  (await new AxeBuilder({ page }).include(scope).analyze()).violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).join(", ")}`);
+
+test("the theme matches the browser until the learner chooses light or dark, and a choice holds from the first paint", async ({ page, browser }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  // By default the theme follows the browser, and changes with it.
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/#/preferences");
+  const choices = page.locator("[data-preference=theme] [data-theme-choice]");
+  await expect(choices).toHaveText(["Match the browser", "Light", "Dark"]);
+  await expect(page.getByRole("radio", { name: "Match the browser" })).toBeChecked();
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
+  expect(await pageColour(page)).toBe(PAGE.dark);
+  expect(await seriousViolations(page, "[data-preferences]")).toEqual([]);
+  await page.emulateMedia({ colorScheme: "light" });
+  expect(await pageColour(page)).toBe(PAGE.light);
+
+  // Dark, chosen: whatever the browser prefers, and the browser's own chrome follows.
+  await page.locator("[data-theme-choice=dark]").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  expect(await pageColour(page)).toBe(PAGE.dark);
+  await expect(page.locator('meta[name=theme-color][data-theme-for="dark"]')).toHaveAttribute("media", "all");
+  await expect(page.locator('meta[name=theme-color][data-theme-for="light"]')).toHaveAttribute("media", "not all");
+
+  // Kept on the device. A course's page and a lesson in dark meet contrast (axe), right to left too.
+  await page.reload();
+  await expect(page.getByRole("radio", { name: "Dark" })).toBeChecked();
+  const fa = loadCourse("fa", "fa-Arab/standard");
+  await page.goto("/?sound=off#/fa/fa-Arab.standard");
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  expect(await pageColour(page)).toBe(PAGE.dark);
+  expect(await seriousViolations(page, "[data-course-path]")).toEqual([]);
+  const first = { mode: "lesson", node: lessonNodes(fa)[0]?.node.id ?? "" } as const;
+  await page.goto(sessionUrl(fa, first, 7));
+  await expect(page.locator("[data-lesson-player]")).toBeVisible();
+  expect(await seriousViolations(page, "[data-lesson-player]")).toEqual([]);
+
+  // Light, chosen, while the browser prefers dark; then back to matching the browser.
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/#/preferences");
+  await page.locator("[data-theme-choice=light]").click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  expect(await pageColour(page)).toBe(PAGE.light);
+  await page.locator("[data-theme-choice=system]").click();
+  await expect(page.locator("html")).not.toHaveAttribute("data-theme");
+  expect(await pageColour(page)).toBe(PAGE.dark);
+  await expect(page.locator('meta[name=theme-color][data-theme-for="light"]')).toHaveAttribute("media", "(prefers-color-scheme: light)");
+
+  // From the first paint: index.html applies a chosen theme before any of the app's code runs.
+  const context = await browser.newContext({ colorScheme: "light", serviceWorkers: "block" });
+  const fresh = await context.newPage();
+  await fresh.addInitScript(() => localStorage.setItem("nabu.theme", "dark"));
+  await fresh.route(/\.(js|mjs|ts|tsx)(\?.*)?$/u, (route) => route.abort());
+  await fresh.goto("/");
+  await expect(fresh.locator("html")).toHaveAttribute("data-theme", "dark");
+  await context.close();
 });
