@@ -1,0 +1,565 @@
+# Biblical Hebrew (hbo), unit 18: I am a Hebrew (Jonah 1:4, 7-9).
+# A storm at sea: "let us" (the cohortative plural), each to his fellow, questions of identity (what is your
+# work, where do you come from, of what people are you), the short relative שֶׁ-, and אֲנִי "I".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u18-i-am-a-hebrew
+title:
+  en: I am a Hebrew
+cefr: A2
+kcs:
+- id: sense:yam
+  gloss:
+    en: sea
+  forms:
+    hbo-Hebr/tiberian: [יָם]
+  image: {file: ../images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@39173f79ba6d', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:saar
+  gloss:
+    en: storm, tempest
+  forms:
+    hbo-Hebr/tiberian: [סַעַר]
+- id: sense:hetil
+  gloss:
+    en: to hurl, throw (hiphil)
+  forms:
+    hbo-Hebr/tiberian: [הֵטִיל]
+- id: sense:hishev
+  gloss:
+    en: to think, intend; be about to (piel)
+  forms:
+    hbo-Hebr/tiberian: [חִשֵּׁב]
+- id: sense:nishbar
+  gloss:
+    en: to be broken, break up (niphal of שָׁבַר)
+  forms:
+    hbo-Hebr/tiberian: [נִשְׁבַּר]
+- id: sense:goral
+  gloss:
+    en: lot (for casting)
+  forms:
+    hbo-Hebr/tiberian: [גּוֹרָל]
+- id: sense:hippil
+  gloss:
+    en: to cast, make fall (hiphil of נָפַל)
+  forms:
+    hbo-Hebr/tiberian: [הִפִּיל]
+- id: sense:nafal
+  gloss:
+    en: to fall
+  forms:
+    hbo-Hebr/tiberian: [נָפַל]
+- id: sense:she
+  gloss:
+    en: 'who, which, that (the short relative, written joined: שֶׁ־)'
+  forms:
+    hbo-Hebr/tiberian: [שֶׁ]
+- id: sense:melakhah
+  gloss:
+    en: work, occupation
+  forms:
+    hbo-Hebr/tiberian: [מְלָאכָה]
+- id: sense:ayin.whence
+  gloss:
+    en: 'where? (מֵאַיִן: from where?)'
+  forms:
+    hbo-Hebr/tiberian: [אַיִן]
+- id: sense:ivri
+  gloss:
+    en: Hebrew; a Hebrew
+  forms:
+    hbo-Hebr/tiberian: [עִבְרִי]
+- id: sense:ani
+  gloss:
+    en: I
+  forms:
+    hbo-Hebr/tiberian: [אֲנִי]
+- id: sense:yabbashah
+  gloss:
+    en: dry land
+  forms:
+    hbo-Hebr/tiberian: [יַבָּשָׁה]
+nodes:
+- {id: hbo.u18.a-great-storm, kind: lesson, introduces: ['sense:yam', 'sense:saar', 'sense:hetil', 'sense:hishev', 'sense:nishbar']}
+- {id: hbo.u18.let-us-cast-lots, kind: lesson, introduces: ['sense:goral', 'sense:hippil', 'sense:nafal']}
+- {id: hbo.u18.who-are-you, kind: lesson, introduces: ['sense:melakhah', 'sense:ayin.whence', 'sense:she']}
+- {id: hbo.u18.i-am-a-hebrew, kind: lesson, introduces: ['sense:ivri', 'sense:ani', 'sense:yabbashah']}
+- {id: hbo.u18.story, kind: story}
+sentences:
+- id: s.18.1
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָם
+      tokens: [{surface: יָם, sense: yam, readings: {tiberian: yām}}]
+      reverse: ים
+  translations:
+    en: |-
+      a sea
+      the sea
+- id: s.18.2
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיָּם
+      tokens: [{surface: הַיָּם, sense: yam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}}]
+      reverse: הים
+  translations:
+    en: the sea
+- id: s.18.3
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּיָּם
+      tokens: [{surface: בַּיָּם, sense: yam, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: bayyām}}]
+      reverse: בים
+  translations:
+    en: (on|in|at) the sea
+- id: s.18.4
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: סַעַר גָּדוֹל
+      tokens: [{surface: סַעַר, sense: saar, readings: {tiberian: sáʿar}}, {surface: גָּדוֹל, sense: gadol, readings: {tiberian: gāḏôl}}]
+      reverse: סער גדול
+  translations:
+    en: |-
+      a great storm
+      a (big|violent|mighty) storm
+- id: s.18.5
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי סַעַר גָּדוֹל בַּיָּם׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: סַעַר, sense: saar, readings: {tiberian: sáʿar}}, {surface: גָּדוֹל, sense: gadol, readings: {
+            tiberian: gāḏôl}}, {surface: בַּיָּם, sense: yam, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: bayyām}}]
+      reverse: ויהי סער גדול בים
+  translations:
+    en: |-
+      [(And|Then)] there was a great storm (on|at) the sea.
+      [(And|Then)] a (great|violent|mighty) storm (arose|came up) on the sea.
+- id: s.18.6
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיהוָה הֵטִיל רוּחַ־גְּדוֹלָה אֶל־הַיָּם׃
+      tokens: [{surface: וַיהוָה, sense: yhwh, morphs: [{surface: וַ, kc: 'sense:we'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: waʾḏōnāy}}, {surface: הֵטִיל, sense: hetil, form: 'form:qatal-3ms',
+          readings: {tiberian: hēṭîl}}, {surface: רוּחַ, sense: ruach, form: 'form:cstr', readings: {tiberian: rûaḥ-}}, {surface: גְּדוֹלָה, sense: gadol, form: 'form:f', readings: {tiberian: gəḏôlâ}},
+        {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַיָּם, sense: yam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}}]
+      reverse: ויהוה הטיל רוח גדולה אל הים
+  translations:
+    en: |-
+      But the LORD hurled a great wind (on|onto|upon) the sea.
+      And the LORD (sent|threw) a (great|mighty) wind (on|onto|upon) the sea.
+- id: s.18.7
+  node: hbo.u18.a-great-storm
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָאֳנִיָּה חִשְּׁבָה לְהִשָּׁבֵר׃
+      tokens: [{surface: וְהָאֳנִיָּה, sense: oniyyah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אֳנִיָּה, kc: 'sense:oniyyah'}], readings: {tiberian: wəhāʾŏniyyâ}},
+        {surface: חִשְּׁבָה, sense: hishev, form: 'form:qatal-3fs', readings: {tiberian: ḥiššəḇâ}}, {surface: לְהִשָּׁבֵר, sense: nishbar, form: 'form:inf', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: הִשָּׁבֵר,
+              kc: 'sense:nishbar'}], readings: {tiberian: ləhiššāḇēr}}]
+      reverse: והאניה חשבה להשבר
+  translations:
+    en: |-
+      And the ship was about to break up.
+      And the ship (threatened|was going) to break (up|apart).
+- id: s.18.8
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹרָל
+      tokens: [{surface: גּוֹרָל, sense: goral, readings: {tiberian: gôrāl}}]
+      reverse: גורל
+  translations:
+    en: a lot
+- id: s.18.9
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: גּוֹרָלוֹת
+      tokens: [{surface: גּוֹרָלוֹת, sense: goral, form: 'form:pl', readings: {tiberian: gôrālôṯ}}]
+      reverse: גורלות
+  translations:
+    en: lots
+- id: s.18.10
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ׃
+      tokens: [{surface: וַיֹּאמְרוּ, sense: amar, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyōʾmərû}}, {surface: אִישׁ, sense: ish, readings: {tiberian: ʾîš}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: רֵעֵהוּ, sense: rea, morphs: [{surface: רֵעֵ, kc: 'sense:rea'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: rēʿḗhû}}]
+      reverse: (ויאמרו|ויואמרו) איש אל רעהו
+  translations:
+    en: |-
+      [(And|Then)] they said to one another.
+      [(And|Then)] they said to each other.
+- id: s.18.11
+  node: hbo.u18.let-us-cast-lots
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְכוּ וְנַפִּילָה גוֹרָלוֹת׃
+      tokens: [{surface: לְכוּ, sense: halakh, form: 'form:impv-mp', readings: {tiberian: ləḵû}}, {surface: וְנַפִּילָה, sense: hippil, form: 'form:coh', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: נַפִּילָה,
+              kc: 'sense:hippil'}], readings: {tiberian: wənappî́lâ}}, {surface: גוֹרָלוֹת, sense: goral, form: 'form:pl', readings: {tiberian: ḡôrālôṯ}}]
+      reverse: לכו ונפילה גורלות
+  translations:
+    en: |-
+      Come, let us cast lots!
+      Come on, let's cast lots!
+- id: s.18.12
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְנֵדְעָה
+      tokens: [{surface: וְנֵדְעָה, sense: yada, form: 'form:coh', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: נֵדְעָה, kc: 'sense:yada'}], readings: {tiberian: wənēḏəʿâ}}]
+      reverse: ונדעה
+  translations:
+    en: |-
+      and let us know
+      so that we may know
+- id: s.18.13
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּפֹּל הַגּוֹרָל עַל־יוֹנָה׃
+      tokens: [{surface: וַיִּפֹּל, sense: nafal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyippōl}}, {surface: הַגּוֹרָל, sense: goral, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גּוֹרָל,
+              kc: 'sense:goral'}], readings: {tiberian: haggôrāl}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}]
+      reverse: (ויפל|ויפול) הגורל על יונה
+  translations:
+    en: '[(And|Then)] the lot fell on Jonah.'
+- id: s.18.14
+  node: hbo.u18.let-us-cast-lots
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּפֹּל עַל־פָּנָיו׃
+      tokens: [{surface: וַיִּפֹּל, sense: nafal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyippōl}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיו, sense: panim, morphs: [
+            {surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}]
+      reverse: (ויפל|ויפול) על פניו
+  translations:
+    en: |-
+      [(And|Then)] he fell on his face.
+      [(And|Then)] he fell face down.
+- id: s.18.15
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מְלָאכָה
+      tokens: [{surface: מְלָאכָה, sense: melakhah, readings: {tiberian: məlāʾḵâ}}]
+      reverse: מלאכה
+  translations:
+    en: |-
+      work
+      (an occupation|a task|a job)
+- id: s.18.16
+  node: hbo.u18.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־מְּלַאכְתְּךָ׃
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: מְּלַאכְתְּךָ, sense: melakhah, morphs: [{surface: מְּלַאכְתְּ, kc: 'sense:melakhah'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: məlaʾḵtəḵā}}]
+      reverse: מה מלאכתך
+  translations:
+    en: |-
+      What is your occupation?
+      What (is your work|do you do)?
+- id: s.18.17
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֵאַיִן
+      tokens: [{surface: מֵאַיִן, sense: ayin.whence, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַיִן, kc: 'sense:ayin.whence'}], readings: {tiberian: mēʾáyin}}]
+      reverse: מאין
+  translations:
+    en: |-
+      from where?
+      where from?
+- id: s.18.18
+  node: hbo.u18.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֵאַיִן תָּבוֹא׃
+      tokens: [{surface: מֵאַיִן, sense: ayin.whence, morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: אַיִן, kc: 'sense:ayin.whence'}], readings: {tiberian: mēʾáyin}}, {surface: תָּבוֹא, sense: bo, form: 'form:yiqtol-2ms',
+          readings: {tiberian: tāḇôʾ}}]
+      reverse: מאין תבוא
+  translations:
+    en: |-
+      Where do you come from?
+      Where (are you coming|have you come) from?
+- id: s.18.19
+  node: hbo.u18.who-are-you
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵי־מִזֶּה בָאת׃
+      tokens: [{surface: אֵי, sense: ay, readings: {tiberian: ʾê-}}, {surface: מִזֶּה, sense: zeh, morphs: [{surface: מִ, kc: 'sense:min'}, {surface: זֶּה, kc: 'sense:zeh'}], readings: {tiberian: mizzeh}},
+        {surface: בָאת, sense: bo, form: 'form:qatal-2fs', readings: {tiberian: ḇāʾṯ}}]
+      reverse: אי מזה באת
+  translations:
+    en: |-
+      Where have you come from?
+      Where did you come from?
+- id: s.18.20
+  node: hbo.u18.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מָה אַרְצֶךָ׃
+      tokens: [{surface: מָה, sense: mah, readings: {tiberian: mâ}}, {surface: אַרְצֶךָ, sense: erets, morphs: [{surface: אַרְצֶ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾarṣéḵā}}]
+      reverse: מה ארצך
+  translations:
+    en: |-
+      What is your country?
+      What is your land?
+- id: s.18.21
+  node: hbo.u18.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאֵי־מִזֶּה עַם אָתָּה׃
+      tokens: [{surface: וְאֵי, sense: ay, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֵי, kc: 'sense:ay'}], readings: {tiberian: wəʾê-}}, {surface: מִזֶּה, sense: zeh, morphs: [{surface: מִ, kc: 'sense:min'},
+            {surface: זֶּה, kc: 'sense:zeh'}], readings: {tiberian: mizzeh}}, {surface: עַם, sense: am, readings: {tiberian: ʿam}}, {surface: אָתָּה, sense: atta, readings: {tiberian: ʾā́ttâ}}]
+      reverse: ואי מזה עם אתה
+  translations:
+    en: |-
+      And of what people are you?
+      And (which|what) people are you from?
+- id: s.18.22
+  node: hbo.u18.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּשֶׁלְּמִי הָרָעָה הַזֹּאת לָנוּ
+      tokens: [{surface: בְּשֶׁלְּמִי, sense: mi, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: שֶׁ, kc: 'sense:she'}, {surface: לְּ, kc: 'sense:le'}, {surface: מִי, kc: 'sense:mi'}], readings: {tiberian: bəšelləmî}},
+        {surface: הָרָעָה, sense: raah.evil, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: רָעָה, kc: 'sense:raah.evil'}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, sense: zot, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: זֹּאת, kc: 'sense:zot'}], readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: נוּ, kc: 'form:sfx-1cp'}],
+          readings: {tiberian: lā́nû}}]
+      reverse: בשלמי הרעה (הזאת|הזואת) לנו
+  translations:
+    en: |-
+      on whose account this (evil|disaster|trouble) has come upon us
+      because of whom this (evil|disaster|trouble) has come (upon|on) us
+- id: s.18.23
+  node: hbo.u18.i-am-a-hebrew
+  persons: {speaker: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִבְרִי אָנֹכִי׃
+      tokens: [{surface: עִבְרִי, sense: ivri, readings: {tiberian: ʿiḇrî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: עברי (אנכי|אנוכי)
+  translations:
+    en: |-
+      I am a Hebrew.
+      I'm a Hebrew.
+- id: s.18.24
+  node: hbo.u18.i-am-a-hebrew
+  persons: {speaker: f}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִבְרִיָּה אָנֹכִי׃
+      tokens: [{surface: עִבְרִיָּה, sense: ivri, form: 'form:f', readings: {tiberian: ʿiḇriyyâ}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: עבריה (אנכי|אנוכי)
+  translations:
+    en: |-
+      I am a Hebrew.
+      I'm a Hebrew.
+- id: s.18.25
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲנִי
+      tokens: [{surface: אֲנִי, sense: ani, readings: {tiberian: ʾănî}}]
+      reverse: אני
+  translations:
+    en: |-
+      I
+      me
+- id: s.18.26
+  node: hbo.u18.i-am-a-hebrew
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲנִי יְהוָה׃
+      tokens: [{surface: אֲנִי, sense: ani, readings: {tiberian: ʾănî}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: אני יהוה
+  translations:
+    en: I am the LORD.
+- id: s.18.27
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיַּבָּשָׁה
+      tokens: [{surface: הַיַּבָּשָׁה, sense: yabbashah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יַּבָּשָׁה, kc: 'sense:yabbashah'}], readings: {tiberian: hayyabbāšâ}}]
+      reverse: היבשה
+  translations:
+    en: the dry land
+- id: s.18.28
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה
+      tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּם, sense: yam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}},
+        {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, sense: yabbashah, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: יַּבָּשָׁה, kc: 'sense:yabbashah'}], readings: {tiberian: hayyabbāšâ}}]
+      reverse: את הים ואת היבשה
+  translations:
+    en: the sea and the dry land
+- id: s.18.29
+  node: hbo.u18.i-am-a-hebrew
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר עָשָׂה אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה
+      tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: עָשָׂה, sense: asah, form: 'form:qatal-3ms', readings: {tiberian: ʿāśâ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}},
+        {surface: הַיָּם, sense: yam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'},
+            {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, sense: yabbashah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יַּבָּשָׁה, kc: 'sense:yabbashah'}],
+          readings: {tiberian: hayyabbāšâ}}]
+      reverse: אשר עשה את הים ואת היבשה
+  translations:
+    en: who made the sea and the dry land
+- id: s.18.30
+  node: hbo.u18.i-am-a-hebrew
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאֶת־יְהוָה אֲנִי יָרֵא׃
+      tokens: [{surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}},
+        {surface: אֲנִי, sense: ani, readings: {tiberian: ʾănî}}, {surface: יָרֵא, sense: yare, form: 'form:qatal-3ms', readings: {tiberian: yārēʾ}}]
+      reverse: ואת יהוה אני ירא
+  translations:
+    en: |-
+      And I fear the LORD.
+      And I (worship|revere) the LORD.
+stories:
+- id: hbo.story.i-am-a-hebrew
+  node: hbo.u18.story
+  title:
+    en: I am a Hebrew (Jonah 1:4, 7–9)
+  characters:
+  - {id: jonah, speaker: m, name: {hbo-Hebr/tiberian: יוֹנָה}}
+  - {id: sailors, speaker: m, name: {hbo-Hebr/tiberian: הָאֲנָשִׁים}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיהוָה הֵטִיל רוּחַ־גְּדוֹלָה אֶל־הַיָּם
+          tokens: [{surface: וַיהוָה, sense: yhwh, morphs: [{surface: וַ, kc: 'sense:we'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: waʾḏōnāy}}, {surface: הֵטִיל, sense: hetil, form: 'form:qatal-3ms',
+              readings: {tiberian: hēṭîl}}, {surface: רוּחַ, sense: ruach, readings: {tiberian: rûaḥ-}}, {surface: גְּדוֹלָה, sense: gadol, form: 'form:f', readings: {tiberian: gəḏôlâ}}, {surface: אֶל,
+              sense: el, readings: {tiberian: ʾel-}}, {surface: הַיָּם, sense: yam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}}]
+      translations:
+        en: But the LORD hurled a great wind onto the sea,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי סַעַר־גָּדוֹל בַּיָּם
+          tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: סַעַר, sense: saar, readings: {tiberian: saʿar-}}, {surface: גָּדוֹל, sense: gadol,
+              readings: {tiberian: gāḏôl}}, {surface: בַּיָּם, sense: yam, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: bayyām}}]
+      translations:
+        en: and there was a great storm on the sea,
+  - line:
+      ask: complete
+      gap: sense:oniyyah
+      distractors: ['sense:yam', 'sense:ir']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְהָאֳנִיָּה חִשְּׁבָה לְהִשָּׁבֵר׃
+          tokens: [{surface: וְהָאֳנִיָּה, sense: oniyyah, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הָ, kc: 'sense:ha'}, {surface: אֳנִיָּה, kc: 'sense:oniyyah'}], readings: {tiberian: wəhāʾŏniyyâ}},
+            {surface: חִשְּׁבָה, sense: hishev, form: 'form:qatal-3fs', readings: {tiberian: ḥiššəḇâ}}, {surface: לְהִשָּׁבֵר, sense: nishbar, form: 'form:inf', morphs: [{surface: לְ, kc: 'sense:le'}, {
+                  surface: הִשָּׁבֵר, kc: 'sense:nishbar'}], readings: {tiberian: ləhiššāḇēr}}]
+      translations:
+        en: and the ship was about to break up.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ
+          tokens: [{surface: וַיֹּאמְרוּ, sense: amar, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyōʾmərû}}, {surface: אִישׁ, sense: ish, readings: {tiberian: ʾîš}}, {surface: אֶל, sense: el, readings: {
+                tiberian: ʾel-}}, {surface: רֵעֵהוּ, sense: rea, morphs: [{surface: רֵעֵ, kc: 'sense:rea'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: rēʿḗhû}}]
+      translations:
+        en: And they said to one another,
+  - line:
+      speaker: sailors
+      forms:
+        hbo-Hebr/tiberian:
+          text: לְכוּ וְנַפִּילָה גוֹרָלוֹת וְנֵדְעָה בְּשֶׁלְּמִי הָרָעָה הַזֹּאת לָנוּ וַיַּפִּלוּ
+          tokens: [{surface: לְכוּ, sense: halakh, form: 'form:impv-mp', readings: {tiberian: ləḵû}}, {surface: וְנַפִּילָה, sense: hippil, form: 'form:coh', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: נַפִּילָה,
+                  kc: 'sense:hippil'}], readings: {tiberian: wənappî́lâ}}, {surface: גוֹרָלוֹת, sense: goral, form: 'form:pl', readings: {tiberian: ḡôrālôṯ}}, {surface: וְנֵדְעָה, sense: yada, form: 'form:coh',
+              morphs: [{surface: וְ, kc: 'sense:we'}, {surface: נֵדְעָה, kc: 'sense:yada'}], readings: {tiberian: wənēḏʿâ}}, {surface: בְּשֶׁלְּמִי, sense: mi, morphs: [{surface: בְּ, kc: 'sense:be'}, {
+                  surface: שֶׁ, kc: 'sense:she'}, {surface: לְּ, kc: 'sense:le'}, {surface: מִי, kc: 'sense:mi'}], readings: {tiberian: bəšelləmî}}, {surface: הָרָעָה, sense: raah.evil, morphs: [{surface: הָ,
+                  kc: 'sense:ha'}, {surface: רָעָה, kc: 'sense:raah.evil'}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, sense: zot, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: זֹּאת, kc: 'sense:zot'}],
+              readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: lā́nû}}, {surface: וַיַּפִּלוּ,
+              sense: hippil, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyappílû}}]
+      translations:
+        en: “Come, let us cast lots, so that we may know on whose account this evil has come upon us.”
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: גּוֹרָלוֹת וַיִּפֹּל הַגּוֹרָל עַל־יוֹנָה׃
+          tokens: [{surface: גּוֹרָלוֹת, sense: goral, form: 'form:pl', readings: {tiberian: gôrālôṯ}}, {surface: וַיִּפֹּל, sense: nafal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyippōl}}, {
+              surface: הַגּוֹרָל, sense: goral, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גּוֹרָל, kc: 'sense:goral'}], readings: {tiberian: haggôrāl}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}},
+            {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}]
+      translations:
+        en: So they cast lots, and the lot fell on Jonah.
+  - choose:
+      prompt:
+        en: On whom did the lot fall?
+      options: [{en: on Jonah}, {en: on the captain}, {en: on no one}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמְרוּ אֵלָיו
+          tokens: [{surface: וַיֹּאמְרוּ, sense: amar, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyōʾmərû}}, {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו,
+                  kc: 'form:sfx-3ms'}], readings: {tiberian: ʾēlāyw}}]
+      translations:
+        en: Then they said to him,
+  - line:
+      speaker: sailors
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַגִּידָה־נָּא לָנוּ בַּאֲשֶׁר לְמִי־הָרָעָה הַזֹּאת לָנוּ מַה־מְּלַאכְתְּךָ וּמֵאַיִן תָּבוֹא מָה אַרְצֶךָ וְאֵי־מִזֶּה עַם אָתָּה׃
+          tokens: [{surface: הַגִּידָה, sense: nagad, form: 'form:impv-ms', readings: {tiberian: haggîḏâ-}}, {surface: נָּא, sense: na, readings: {tiberian: nāʾ}}, {surface: לָנוּ, sense: le, morphs: [
+                {surface: לָ, kc: 'sense:le'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: lā́nû}}, {surface: בַּאֲשֶׁר, sense: asher, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: אֲשֶׁר,
+                  kc: 'sense:asher'}], readings: {tiberian: baʾăšer}}, {surface: לְמִי, sense: mi, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: מִי, kc: 'sense:mi'}], readings: {tiberian: ləmî-}},
+            {surface: הָרָעָה, sense: raah.evil, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: רָעָה, kc: 'sense:raah.evil'}], readings: {tiberian: hārāʿâ}}, {surface: הַזֹּאת, sense: zot, morphs: [
+                {surface: הַ, kc: 'sense:ha'}, {surface: זֹּאת, kc: 'sense:zot'}], readings: {tiberian: hazzōʾṯ}}, {surface: לָנוּ, sense: le, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: נוּ, kc: 'form:sfx-1cp'}],
+              readings: {tiberian: lā́nû}}, {surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: מְּלַאכְתְּךָ, sense: melakhah, morphs: [{surface: מְּלַאכְתְּ, kc: 'sense:melakhah'}, {surface: ךָ,
+                  kc: 'form:sfx-2ms'}], readings: {tiberian: məlaʾḵtəḵā}}, {surface: וּמֵאַיִן, sense: ayin.whence, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מֵ, kc: 'sense:min'}, {surface: אַיִן,
+                  kc: 'sense:ayin.whence'}], readings: {tiberian: ûmēʾáyin}}, {surface: תָּבוֹא, sense: bo, form: 'form:yiqtol-2ms', readings: {tiberian: tāḇôʾ}}, {surface: מָה, sense: mah, readings: {
+                tiberian: mâ}}, {surface: אַרְצֶךָ, sense: erets, morphs: [{surface: אַרְצֶ, kc: 'sense:erets'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾarṣéḵā}}, {surface: וְאֵי, sense: ay,
+              morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֵי, kc: 'sense:ay'}], readings: {tiberian: wəʾê-}}, {surface: מִזֶּה, sense: zeh, morphs: [{surface: מִ, kc: 'sense:min'}, {surface: זֶּה,
+                  kc: 'sense:zeh'}], readings: {tiberian: mizzeh}}, {surface: עַם, sense: am, readings: {tiberian: ʿam}}, {surface: אָתָּה, sense: atta, readings: {tiberian: ʾāttâ}}]
+      translations:
+        en: “Tell us, on whose account has this evil come upon us? What is your occupation, and where do you come from? What is your country, and of what people are you?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר אֲלֵיהֶם
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֲלֵיהֶם, sense: el, morphs: [{surface: אֲלֵי, kc: 'sense:el'}, {surface: הֶם,
+                  kc: 'form:sfx-3mp'}], readings: {tiberian: ʾălêhem}}]
+      translations:
+        en: And he said to them,
+  - line:
+      speaker: jonah
+      ask: complete
+      gap: sense:yam
+      distractors: ['sense:har', 'sense:sadeh']
+      forms:
+        hbo-Hebr/tiberian:
+          text: עִבְרִי אָנֹכִי וְאֶת־יְהוָה אֱלֹהֵי הַשָּׁמַיִם אֲנִי יָרֵא אֲשֶׁר־עָשָׂה אֶת־הַיָּם וְאֶת־הַיַּבָּשָׁה׃
+          tokens: [{surface: עִבְרִי, sense: ivri, readings: {tiberian: ʿiḇrî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānṓḵî}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'},
+                {surface: אֶת, kc: 'sense:et'}], readings: {tiberian: wəʾeṯ-}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֵי, sense: elohim, form: 'form:cstr', readings: {
+                tiberian: ʾĕlōhê}}, {surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}, {surface: אֲנִי,
+              sense: ani, readings: {tiberian: ʾănî}}, {surface: יָרֵא, sense: yare, form: 'form:qatal-3ms', readings: {tiberian: yārēʾ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer-}},
+            {surface: עָשָׂה, sense: asah, form: 'form:qatal-3ms', readings: {tiberian: ʿāśâ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַיָּם, sense: yam, morphs: [{surface: הַ,
+                  kc: 'sense:ha'}, {surface: יָּם, kc: 'sense:yam'}], readings: {tiberian: hayyām}}, {surface: וְאֶת, sense: et, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: אֶת, kc: 'sense:et'}],
+              readings: {tiberian: wəʾeṯ-}}, {surface: הַיַּבָּשָׁה, sense: yabbashah, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יַּבָּשָׁה, kc: 'sense:yabbashah'}], readings: {tiberian: hayyabbāšâ}}]
+      translations:
+        en: “I am a Hebrew, and I fear the LORD, the God of heaven, who made the sea and the dry land.”
+  - choose:
+      prompt:
+        en: Whom does Jonah say he fears?
+      options: [{en: 'the LORD, the God of heaven'}, {en: the sailors}, {en: the king of Nineveh}]
+      answer: 0
