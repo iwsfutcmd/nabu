@@ -335,7 +335,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
   nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
-  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`.
+  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`. It is read, not heard:
+  its `facets` leave out listen (no listening exercises; clips still play once a card is answered).
 - Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.

@@ -11,6 +11,9 @@ license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@hbo-draft-v1', status: draft}
 # A Hebrew verb is a root and a form: a new verb in a new form is two KCs on one word (sense + form).
 iPlusOne: 2
+# Every facet but listen (ADR 0071): Biblical Hebrew is read, not heard, so no listening exercises. The clips
+# still say each card once it is answered, and speaking cards stay (reading aloud).
+facets: [recognize, produce, speak, read-script, write-script]
 # Audio (ADR 0082): the Tiberian pronunciation, as Khan describes the Masoretes' reading tradition, never
 # Modern Hebrew. Each word's pinned Tiberian reading is said as eSpeak NG phonemes (nabu.audio.tiberian)
 # through its Arabic phoneme table, which has the gutturals, the emphatics and the spirants. A man's voice

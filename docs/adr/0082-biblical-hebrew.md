@@ -97,6 +97,9 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
   who speaks gets that voice. The clips are rule-based synthesis, CC0, labelled synthetic.
 - The QA trace of a phoneme clip is the phonemes it was given; there is no round-trip check
   (no recognizer knows Tiberian Hebrew).
+- The clips say each card once it is answered; there are no listening exercises. The course's
+  `facets` (ADR 0071) are every facet but listen: Biblical Hebrew is read, not heard, and a
+  synthetic voice is no ear-training (Ben, after the first draft).
 
 **The course** (`courses/hbo`):
 

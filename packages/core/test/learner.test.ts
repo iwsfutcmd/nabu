@@ -316,6 +316,20 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
   }, WHOLE_COURSE_TIMEOUT_MS);
 
+  it("Biblical Hebrew leaves out listening alone: never heard, still said once answered (ADR 0082)", () => {
+    const hbo = loadCourse("hbo");
+    expect(hbo.facets).toEqual(["recognize", "produce", "speak", "read-script", "write-script"]);
+    const heard = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "listen";
+    for (const { node } of lessonNodes(hbo)) {
+      expect(buildLesson(hbo, node.id, { seed: 3 }).filter(heard).map((ex) => ex.id)).toEqual([]);
+      const p = plan(hbo, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
+      expect(p.exercises.filter(heard).map((ex) => ex.id)).toEqual([]);
+    }
+    expect(cardGallery(hbo, 3).filter((c) => TEMPLATES[c.template].facet === "listen")).toEqual([]);
+    // The clips stay: every card says its sentence once answered (ADR 0064).
+    expect(Object.keys(hbo.audio).length).toBeGreaterThan(0);
+  }, WHOLE_COURSE_TIMEOUT_MS);
+
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
     const words = buildLesson(lzh, node, { seed: 3 }).flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
