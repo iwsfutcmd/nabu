@@ -151,7 +151,9 @@ sentences:
       text: בָּרָא אֱלֹהִים אֶת־הָאוֹר׃
       tokens: [{surface: בָּרָא, sense: bara, form: 'form:qatal-3ms', readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
             tiberian: ʾeṯ-}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
-      reverse: ברא (אלהים|אלוהים) את האור
+      reverse: |-
+        ברא (אלהים|אלוהים) את האור
+        (אלהים|אלוהים) ברא את האור
   translations:
     en: |-
       God created the light.
@@ -163,7 +165,9 @@ sentences:
       text: בָּרָא אֱלֹהִים אֶת־הַשָּׁמַיִם׃
       tokens: [{surface: בָּרָא, sense: bara, form: 'form:qatal-3ms', readings: {tiberian: bārāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
             tiberian: ʾeṯ-}}, {surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmáyim}}]
-      reverse: ברא (אלהים|אלוהים) את השמים
+      reverse: |-
+        ברא (אלהים|אלוהים) את השמים
+        (אלהים|אלוהים) ברא את השמים
   translations:
     en: |-
       God created the heavens.
@@ -513,7 +517,11 @@ sentences:
           readings: {tiberian: bên}}, {surface: הַמַּיִם, sense: mayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מַּיִם, kc: 'sense:mayim'}], readings: {tiberian: hammáyim}}, {surface: וּבֵין,
           sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הָאָרֶץ, sense: erets, morphs: [{surface: הָ, kc: 'sense:ha'}, {
               surface: אָרֶץ, kc: 'sense:erets'}], readings: {tiberian: hāʾā́reṣ}}]
-      reverse: ויבדל (אלהים|אלוהים) בין המים ובין הארץ
+      reverse: |-
+        ויבדל (אלהים|אלוהים) בין המים ובין הארץ
+        (אלהים|אלוהים) הבדיל בין המים ובין הארץ
+        (ואלהים|ואלוהים) הבדיל בין המים ובין הארץ
+        הבדיל (אלהים|אלוהים) בין המים ובין הארץ
   translations:
     en: |-
       [(And|Then)] God separated the water from the land.

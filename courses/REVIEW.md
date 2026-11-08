@@ -426,8 +426,10 @@ reference library, notes/hbo): what they showed wrong is fixed, and what they le
    ō and u (קול for קֹל), a space, hyphen or maqaf between bound words, and the other order of subject and
    predicate where Biblical Hebrew has both and the English would be the same (52 sentences, ADR 0084; not
    identity clauses, the blessing formula, a wish in a plain yiqtol, or what reads unpointed as a construct
-   chain). Check the 52 against that criterion. Should a subject first also be accepted with the X-qatal form
-   (הָאָדָם הִתְחַבֵּא for "the man hid")?
+   chain). Check the 52 against that criterion. And, by ADR 0085 (what the English does not decide, either is right),
+   the plain forms beside wayyiqtol and weqatal: X-qatal (הָאִשָּׁה אָמְרָה, וְהָאִשָּׁה אָמְרָה), a bare qatal with
+   or without its pronoun (בָּרַח, הוּא בָרַח), a weqatal's yiqtol (תֹּאהַב), and a pronoun before a plain verb
+   (אֲנִי אֶשְׁאָב): 86 sentences. Is any of them one you would mark wrong for its English?
 6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
    שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
    מְבַקֶּשֶׁת).

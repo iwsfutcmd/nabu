@@ -17,6 +17,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
+- What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
+  optional word and form whose translation would be the prompt, in both directions; never one that would translate
+  otherwise. The grader stays literal: the answers are listed in the accept set.
 - The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
@@ -355,6 +358,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   both and the English translation would be the same (ADR 0084): nominal and participle clauses, plain qatal/yiqtol,
   a distinct jussive. Never a subject before wayyiqtol or weqatal; not identity clauses (קין אחי), the blessing
   formula, a wish in a plain yiqtol, or an order that reads unpointed as a construct chain (בגן האדם). Keep it so.
+- Then the forms the English cannot tell apart (ADR 0085): a wayyiqtol's X-qatal (האשה אמרה, והאשה אמרה) or bare
+  qatal with or without its pronoun (ברח, הוא ברח, והוא ברח; never וברח), a weqatal's yiqtol, a pronoun before a plain
+  qatal/yiqtol; only Codex-attested forms; vav forms only where every English line has its "and".
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
@@ -370,7 +376,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0084 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0085 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

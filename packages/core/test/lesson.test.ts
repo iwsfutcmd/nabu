@@ -623,6 +623,11 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     // A participle clause and a yiqtol (§ 154f, § 155k): either side of the subject.
     expect(grader.grade(hebrew, reverse("s.03.20"), "מתהלך האדם בתוך הגן").verdict).toBe("CORRECT_ALT");
     expect(grader.grade(hebrew, reverse("s.15.18"), "יהוה יסגרך בידי").verdict).toBe("CORRECT_ALT");
+    // What the English does not decide (ADR 0085): "the woman said" is also X-qatal, "he fled" a
+    // bare qatal with or without its pronoun.
+    expect(grader.grade(hebrew, reverse("s.04.29"), "האשה אמרה").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.17.15"), "ברח").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.17.15"), "והוא ברח").verdict).toBe("CORRECT_ALT");
     const wrong = (id: string, answer: string): void =>
       expect(grader.grade(hebrew, reverse(id), answer).verdict, `${id} ${answer}`).not.toMatch(/^CORRECT/u);
     // wayyiqtol's vav never leaves its verb: a subject first would need another form (X-qatal).
@@ -633,5 +638,7 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     wrong("s.05.7", "אחי קין");
     wrong("s.20.25", "יהוה יברכך");
     wrong("s.03.2", "בגן האדם");
+    // A vav on a qatal makes it a weqatal, "and he will flee".
+    wrong("s.17.15", "וברח");
   });
 });

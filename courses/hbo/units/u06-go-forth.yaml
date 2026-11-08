@@ -332,7 +332,9 @@ sentences:
       text: אֵלֵךְ אֶל־הַשָּׂדֶה׃
       tokens: [{surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
-      reverse: אלך אל השדה
+      reverse: |-
+        אלך אל השדה
+        (אני|אנכי) אלך אל השדה
   translations:
     en: |-
       I will go to the field.
@@ -354,7 +356,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אֶשְׁמַע׃
       tokens: [{surface: אֶשְׁמַע, sense: shama, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešmaʿ}}]
-      reverse: אשמע
+      reverse: |-
+        אשמע
+        (אני|אנכי) אשמע
   translations:
     en: |-
       I will (listen|hear).
@@ -528,7 +532,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: דִּבֶּר
       tokens: [{surface: דִּבֶּר, sense: dibber, form: 'form:qatal-3ms', readings: {tiberian: dibber}}]
-      reverse: דבר
+      reverse: |-
+        דבר
+        הוא דבר
   translations:
     en: |-
       he spoke
@@ -540,7 +546,11 @@ sentences:
       text: וַיְדַבֵּר יְהוָה אֶל־אַבְרָם׃
       tokens: [{surface: וַיְדַבֵּר, sense: dibber, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayḏabbēr}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
           readings: {tiberian: ʾel-}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
-      reverse: וידבר יהוה אל אברם
+      reverse: |-
+        וידבר יהוה אל אברם
+        יהוה דבר אל אברם
+        ויהוה דבר אל אברם
+        דבר יהוה אל אברם
   translations:
     en: '[(And|Then)] the LORD (spoke|said) to Abram.'
 - id: s.06.39

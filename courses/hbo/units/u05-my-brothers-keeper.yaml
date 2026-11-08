@@ -227,7 +227,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיָּקָם קַיִן׃
       tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}]
-      reverse: ויקם קין
+      reverse: |-
+        ויקם קין
+        קין קם
+        וקין קם
+        קם קין
   translations:
     en: '[(And|Then)] Cain (rose up|got up|stood up|arose).'
 - id: s.05.15
@@ -262,7 +266,11 @@ sentences:
       tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, sense: el, readings: {
             tiberian: ʾel-}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {
             tiberian: ʾāḥîw}}]
-      reverse: (ויאמר|ויואמר) קין אל הבל אחיו
+      reverse: |-
+        (ויאמר|ויואמר) קין אל הבל אחיו
+        קין אמר אל הבל אחיו
+        וקין אמר אל הבל אחיו
+        אמר קין אל הבל אחיו
   translations:
     en: |-
       [(And|Then)] Cain said to his brother Abel.
@@ -284,7 +292,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יָדַעְתִּי׃
       tokens: [{surface: יָדַעְתִּי, sense: yada, form: 'form:qatal-1cs', readings: {tiberian: yāḏáʿtî}}]
-      reverse: ידעתי
+      reverse: |-
+        ידעתי
+        (אני|אנכי) ידעתי
   translations:
     en: |-
       I know.
@@ -308,7 +318,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יָדַעְתָּ׃
       tokens: [{surface: יָדַעְתָּ, sense: yada, form: 'form:qatal-2ms', readings: {tiberian: yāḏáʿtā}}]
-      reverse: ידעת
+      reverse: |-
+        ידעת
+        אתה ידעת
   translations:
     en: |-
       You know.
@@ -320,7 +332,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יָדַעַתְּ׃
       tokens: [{surface: יָדַעַתְּ, sense: yada, form: 'form:qatal-2fs', readings: {tiberian: yāḏáʿatt}}]
-      reverse: ידעת
+      reverse: |-
+        ידעת
+        את ידעת
   translations:
     en: |-
       You know.
