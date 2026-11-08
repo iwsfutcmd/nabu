@@ -16,7 +16,7 @@ it.
 | `normalize.json` | Every profile's normalization pipeline |
 | `segmentation.json` | Runtime units and orthographic letters |
 | `accept.json` | Accept-set notation, expansion and errors |
-| `grade.json` | Grading verdicts, notes and alignments across all nine profiles |
+| `grade.json` | Grading verdicts, notes and alignments across the profiles (Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts) |
 | `tagged-text.json` | TaggedText invariants |
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 | `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054) |

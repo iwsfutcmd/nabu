@@ -730,3 +730,14 @@ stories:
         en: Whom is Joseph looking for?
       options: [{en: his brothers}, {en: his father}, {en: a lost sheep}]
       answer: 0
+scenarios:
+- id: hbo.lost-near-shechem
+  after: hbo.u09.what-are-you-seeking
+  title:
+    en: Lost near Shechem
+  setting:
+    en: 'The fields near Shechem: you have been wandering all morning, looking for your brothers and their flock.'
+  character:
+    en: A shepherd watching his sheep, curious about strangers, who speaks only Biblical Hebrew.
+  goal:
+    en: Greet him with peace, tell him whom you are looking for, and ask him where they are pasturing.

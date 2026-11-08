@@ -17,7 +17,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -328,13 +328,26 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
+## Biblical Hebrew notes (see docs/adr/0081)
+- courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
+  reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
+  nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
+  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`.
+- Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
+  the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
+  normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
+- Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
+  Codex (stress from its accent): never guess one. The divine name is ʾăḏōnāy (its qere).
+- Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
+  stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
+
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0080 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0081 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

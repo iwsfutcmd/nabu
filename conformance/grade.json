@@ -2019,6 +2019,164 @@
       "expected": {
         "verdict": "CORRECT_ALT"
       }
+    },
+    {
+      "id": "grade/hbo/unpointed",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "ויאמר אלהים"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Learners type unpointed Hebrew."
+    },
+    {
+      "id": "grade/hbo/pointed-answer",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "וַיֹּאמֶר אֱלֹהִים"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Points typed are ignored, as harakat are."
+    },
+    {
+      "id": "grade/hbo/accented-answer",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "ויאמר אלהים",
+        "answer": "וַיֹּ\u05A5אמֶר אֱלֹהִ\u0596ים׃"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "So are accents and sof pasuq."
+    },
+    {
+      "id": "grade/hbo/maqaf",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "את האור",
+        "answer": "את־האור"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Maqaf or space."
+    },
+    {
+      "id": "grade/hbo/hyphen",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "את האור",
+        "answer": "את-האור"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Hyphen or space."
+    },
+    {
+      "id": "grade/hbo/he-she",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "הוא בגן",
+        "answer": "היא בגן"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun"
+        ]
+      },
+      "note": "הוא / היא a letter apart: a pronoun contrast, not a typo (ADR 0066)."
+    },
+    {
+      "id": "grade/hbo/my-his",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמי",
+        "answer": "שמו"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-possessive"
+        ]
+      },
+      "note": "-î my / -ô his: a suffix contrast."
+    },
+    {
+      "id": "grade/hbo/perfect-person",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "שמרתי",
+        "answer": "שמרנו"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "-tî / -nû, two letters apart: wrong."
+    },
+    {
+      "id": "grade/hbo/you-m-f",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "אתה בגן",
+        "answer": "את בגן"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "ʾattâ for a man, ʾatt for a woman."
+    },
+    {
+      "id": "grade/hbo/final-mem-typo",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "בראשית ברא אלהים",
+        "answer": "בראשית ברא אלהימ"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "A medial mem at the end of a long sentence is a typo."
+    },
+    {
+      "id": "grade/hbo/plene",
+      "op": "grade",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "accept": "(קל|קול)",
+        "answer": "קול"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT",
+        "notes": []
+      },
+      "note": "The plene spelling is accepted beside the defective one."
     }
   ]
 }
