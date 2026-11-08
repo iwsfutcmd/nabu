@@ -63,7 +63,8 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
   gadol from meteg (ga'ya) and the morphology (the qal perfect qāṭəlâ, qāṭəlû), matres, dagesh
   lene and forte from context. A constructed sentence's word takes the reading of the same
   pointed form in the WLC (a lexicon of all 54,664 pointed forms of the Bible); a form the Bible
-  does not have is reported for review. The readings are content: pinned and reviewed like
+  does not have is reported for review. The rules are `nabu.audio.pointing`: `nabu tiberian <word>` reads a word copied with its
+  accents from the WLC, as the drafts did (they agree on all 305,517 words of the WLC). The readings are content: pinned and reviewed like
   sentences, never derived at runtime.
 - Token analyses come from the same source: the WLC's morphology (openscriptures/morphhb, CC BY
   4.0) gives each word's morph boundaries (prefixes, suffixes), lemma and form, which the drafts
@@ -139,5 +140,6 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
   - showing the transliteration as a reading layer (ruby) on request, as lzh shows its readings;
     the readings are there;
   - cantillation (te'amim) as a display layer;
-  - a lint that re-derives a pinned reading from the WLC and warns where it differs.
+  - a lint that re-derives a pinned reading from the WLC and warns where it differs (`nabu tiberian`
+    gives the reading for one word; checking every token needs the WLC's accented text in the repo).
 - Open questions for a reviewer are in courses/REVIEW.md.

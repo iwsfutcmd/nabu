@@ -337,7 +337,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
 - Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
-  Codex (stress from its accent): never guess one. The divine name is ʾăḏōnāy (its qere).
+  Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
+  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py). The divine name is ʾăḏōnāy (its qere).
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 
