@@ -210,6 +210,9 @@ points below land, and its chapter is cited where it does.
   came back (was rje3).
 - **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
 - **Spelled as the book spells it:** the -o / -a endings, now ـه / ـها (item 4).
+- **Grammar slips are wrong, not typos** ([ADR 0081](../docs/adr/0081-affixes-on-inflected-words.md), REVIEW):
+  the profiles' verb-prefix sets (b-, bt-, bi-, mn-, the imperfect's t-, y-, n-) and agreement endings (feminine,
+  -i, -o). Check the members, above all Arabizi's vowel spellings (b / bi / be) and the 1pl بن beside من.
 - **Gender left open by the English** ("it", a bare "this", an untagged "you"): both forms are accepted
   (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
   s.work.29). "Shall we…?" (s.like.22) takes the bare imperfect نشوف as well as منشوف. The two untagged "you"

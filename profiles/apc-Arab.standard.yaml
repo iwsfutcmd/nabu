@@ -33,6 +33,14 @@ match:
     contrasts:
       - { id: pronoun, note: contrast-pronoun, members: [أنا, إنت, إنتي, هو, هي, [نحنا, نحن], [إنتو, إنتوا], هني] }
       - { id: possessive, note: contrast-possessive, members: [ي, ك, ه, ها, نا, [كن, كم], [هن, هم]] }
+      # REVIEW (ADR 0081): on words the course inflects (a noun's first letter stays a typo). A verb's prefix says who
+      # and whether it is a plain statement (Kline ch. 13, 22): b- I, bt- you/she, bi- he, mn- we; without b- (the
+      # imperfect) a- or nothing, t-, y-, n-. Trading one for another, or dropping b-, changes the sentence. After و.
+      - { id: verb-prefix, note: contrast-prefix, at: start, after: [و], inflected: true,
+          members: [ب, بت, بي, [من, بن], ت, ي, ن, [ا, ""]] }
+      # REVIEW (ADR 0081): endings that agree, on inflected words: the feminine ة (بعيدة for بعيد), -i to a woman
+      # (بتشتغلي), -o to several people (بتشتغلوا). No ending is a member: the masculine, the man addressed.
+      - { id: agreement, note: contrast-ending, inflected: true, members: ["", ة, ي, [وا, و]] }
 annotations:
   - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true. Shadda and harakat where content has them (بدّي)
 input:

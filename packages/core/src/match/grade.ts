@@ -62,6 +62,11 @@ export interface GradeOptions {
    * WRONG_WORD. The profile's contrasts (meaningful endings) apply without it.
    */
   readonly lexicon?: ReadonlySet<string>;
+  /**
+   * The words the course inflects, each keyed by `lexiconKey`: the profile's contrasts marked
+   * `inflected` (Lebanese verb prefixes, a feminine ending) apply to them alone.
+   */
+  readonly inflected?: ReadonlySet<string>;
 }
 
 /**
@@ -245,7 +250,7 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     else if (c.kind === "typo") {
       // A typo that makes another word, or trades a meaningful ending for another (erratum 46),
       // changes what the answer says.
-      const contrast = contrastOf(profile, op.expected, op.actual);
+      const contrast = contrastOf(profile, op.expected, op.actual, options.inflected?.has(lexiconKey(profile, op.expected)) === true);
       if (contrast !== undefined) note(contrast.note);
       raise(contrast !== undefined || options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
     }

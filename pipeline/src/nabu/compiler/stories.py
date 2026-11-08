@@ -51,7 +51,7 @@ def line_item(story: str, step: int) -> str:
 
 def token_kcs(token: dict[str, Any]) -> list[str]:
     refs = [f"sense:{token['sense']}"] if "sense" in token else []
-    refs += [token["_form"]] if "_form" in token else []
+    refs += [token["form"]] if "form" in token else []
     refs += [m["kc"] for m in token.get("morphs", [])]
     return list(dict.fromkeys(refs))
 

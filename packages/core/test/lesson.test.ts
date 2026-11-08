@@ -548,3 +548,27 @@ describe("a typo that spells another word of the course (erratum 46)", () => {
     expect(grader.grade(orthography, "بعدين منروح عالشغل", "بعدين منرح عالشغل").verdict).toBe("CORRECT_WITH_TYPO");
   });
 });
+
+describe("affixes that carry meaning on the words a course inflects (ADR 0081)", () => {
+  it("makes a verb's prefix or an agreeing ending WRONG_WORD, even where the slip spells no word of the course", () => {
+    const arabic = "apc-Arab/standard";
+    const grader = createGrader(loadCourse("apc", arabic));
+    const graded = (accept: string, answer: string): [string, readonly string[]] => {
+      const g = grader.grade(arabic, accept, answer);
+      return [g.verdict, g.notes];
+    };
+    // b- dropped (شتغل is no word of the course) and b- for bt-; the school is feminine.
+    expect(graded("(بشتغل|أنا بشتغل) ببيروت", "شتغل ببيروت")).toEqual(["WRONG_WORD", ["contrast-prefix"]]);
+    expect(graded("المدرسة بعيدة", "المدرسة بعيد")).toEqual(["WRONG_WORD", ["contrast-ending"]]);
+    // A noun's first letter is no prefix: still a typo (يروت is no word; بيروت is not inflected).
+    expect(graded("(بحبّ|أنا بحبّ) بيروت (لأنّه|لأنّو) حلوة", "بحبّ يروت لأنّه حلوة")).toEqual(["CORRECT_WITH_TYPO", []]);
+  });
+
+  it("knows a verb by the spellings its accept sets give it (Arabizi be2ra beside b2ra)", () => {
+    const arabizi = "apc-Latn/arabizi";
+    const grader = createGrader(loadCourse("apc", arabizi));
+    expect(grader.grade(arabizi, "(el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)", "el masa bt2ra").verdict).toBe("WRONG_WORD");
+    // Another vowel after the same prefix is a typo.
+    expect(grader.grade(arabizi, "(el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)", "el masa bu2ra").verdict).toBe("CORRECT_WITH_TYPO");
+  });
+});
