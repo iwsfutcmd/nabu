@@ -424,10 +424,10 @@ reference library, notes/hbo): what they showed wrong is fixed, and what they le
 5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
    nothing. Accept sets are generous with English word order; Hebrew accept sets accept the plene spelling of
    ō and u (קול for קֹל), a space, hyphen or maqaf between bound words, and the other order of subject and
-   predicate where Biblical Hebrew has both (70 sentences, ADR 0084: nominal and participle clauses, plain
-   qatal/yiqtol/jussive; never a subject before wayyiqtol). Are any of those orders ones you would mark wrong
-   (יְהִי אוֹר as אוֹר יְהִי; the formula אֲנִי יְהוָה as יְהוָה אֲנִי)? Should a subject first also be accepted
-   with the X-qatal form (הָאָדָם הִתְחַבֵּא for "the man hid")?
+   predicate where Biblical Hebrew has both and the English would be the same (52 sentences, ADR 0084; not
+   identity clauses, the blessing formula, a wish in a plain yiqtol, or what reads unpointed as a construct
+   chain). Check the 52 against that criterion. Should a subject first also be accepted with the X-qatal form
+   (הָאָדָם הִתְחַבֵּא for "the man hid")?
 6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
    שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
    מְבַקֶּשֶׁת).

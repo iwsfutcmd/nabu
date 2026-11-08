@@ -607,7 +607,7 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     expect(graded("בהיותם", "בהיוותם")).toEqual(["CORRECT_WITH_TYPO", []]);
   });
 
-  it("accepts both orders of subject and predicate where Biblical Hebrew allows them, never a subject before wayyiqtol", () => {
+  it("accepts the other order of subject and predicate where Biblical Hebrew has it and the English is the same", () => {
     const hebrew = "hbo-Hebr/tiberian";
     const course = loadCourse("hbo", hebrew);
     const grader = createGrader(course);
@@ -620,10 +620,18 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     // Another order is a correct alternative. A nominal clause (Joüon-Muraoka § 154f): הָאוֹר טוֹב,
     // and טוֹב הָאוֹר as Gen 1:4 has it.
     expect(grader.grade(hebrew, reverse("s.01.9"), "טוב האור").verdict).toBe("CORRECT_ALT");
-    // A participle clause and a jussive (§ 154f, § 155k): either side of the subject.
+    // A participle clause and a yiqtol (§ 154f, § 155k): either side of the subject.
     expect(grader.grade(hebrew, reverse("s.03.20"), "מתהלך האדם בתוך הגן").verdict).toBe("CORRECT_ALT");
-    expect(grader.grade(hebrew, reverse("s.20.25"), "יהוה יברכך").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.15.18"), "יהוה יסגרך בידי").verdict).toBe("CORRECT_ALT");
+    const wrong = (id: string, answer: string): void =>
+      expect(grader.grade(hebrew, reverse(id), answer).verdict, `${id} ${answer}`).not.toMatch(/^CORRECT/u);
     // wayyiqtol's vav never leaves its verb: a subject first would need another form (X-qatal).
-    expect(grader.grade(hebrew, reverse("s.03.22"), "האדם ויתחבא").verdict).not.toMatch(/^CORRECT/u);
+    wrong("s.03.22", "האדם ויתחבא");
+    // Not where the English would change: identity ("my brother is Cain"), a wish in a plain
+    // yiqtol ("the LORD will bless you"), and what reads unpointed as a construct chain ("in the
+    // man's garden" for בגן האדם).
+    wrong("s.05.7", "אחי קין");
+    wrong("s.20.25", "יהוה יברכך");
+    wrong("s.03.2", "בגן האדם");
   });
 });

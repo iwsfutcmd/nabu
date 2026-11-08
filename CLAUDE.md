@@ -352,8 +352,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
 - A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
-  both (ADR 0084: nominal and participle clauses, plain qatal/yiqtol/jussive). Never a subject before wayyiqtol or
-  weqatal, and nothing moved after a particle, a relative, a vav or out of a construct chain. Keep it so when editing.
+  both and the English translation would be the same (ADR 0084): nominal and participle clauses, plain qatal/yiqtol,
+  a distinct jussive. Never a subject before wayyiqtol or weqatal; not identity clauses (קין אחי), the blessing
+  formula, a wish in a plain yiqtol, or an order that reads unpointed as a construct chain (בגן האדם). Keep it so.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
