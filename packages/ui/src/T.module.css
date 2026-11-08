@@ -20,6 +20,13 @@
   font-size: calc(var(--nabu-text-scale, 1) * var(--nabu-target-scale, 1) * 1em);
 }
 
+/* sitelen pona (ADR 0086) runs the words of a sentence together, and its UCSUR code points (private
+   use) have no line-breaking class of their own. Each word is a box, so a line breaks between words,
+   as the UCS proposal has it (the line breaking of ideographs), and never inside a cartouche. */
+.text[data-script="Qaap"] > .token {
+  display: inline-block;
+}
+
 /* `over` is above in horizontal text and to the right in vertical-rl */
 .ruby {
   ruby-position: over;

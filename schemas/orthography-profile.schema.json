@@ -158,6 +158,9 @@
         },
         {
           "$ref": "#/$defs/DetachStep"
+        },
+        {
+          "$ref": "#/$defs/LogographsStep"
         }
       ]
     },
@@ -360,6 +363,54 @@
         }
       }
     },
+    "LogographsStep": {
+      "title": "LogographsStep",
+      "description": "Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.",
+      "type": "object",
+      "required": [
+        "logographs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "logographs": {
+          "type": "object",
+          "required": [
+            "words"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "words": {
+              "description": "Each word, as it is typed, and the logograph that writes it.",
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "cartouche": {
+              "description": "The marks that open and close a name written with the logographs' first letters.",
+              "type": "object",
+              "required": [
+                "open",
+                "close"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "open": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "close": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "MatchPolicy": {
       "title": "MatchPolicy",
       "type": "object",
@@ -387,7 +438,7 @@
               "description": "Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
             },
             "distinguishes": {
-              "description": "Marks that tell words apart (ADR 0076): the Spanish tilde in est\u00e1/esta, s\u00ed/si, habl\u00f3/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.",
+              "description": "Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.",
               "type": "boolean"
             },
             "wordNote": {
@@ -876,7 +927,10 @@
         "forms": {
           "description": "Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
           "type": "array",
-          "items": { "type": "string", "pattern": "^form:[a-z0-9-]+$" },
+          "items": {
+            "type": "string",
+            "pattern": "^form:[a-z0-9-]+$"
+          },
           "minItems": 1,
           "uniqueItems": true
         },

@@ -20,7 +20,7 @@ from nabu.compiler import compile_course
 from .conftest import ROOT, CoreCli
 from .fixtures.make_lint_fixtures import CLEAN, with_story
 
-COURSES = ("fa", "yue", "uz", "apc", "lzh", "hbo")
+COURSES = ("fa", "yue", "uz", "apc", "lzh", "hbo", "tok")
 # Harakat (fathatan … sukun) and the superscript alef.
 HARAKAT = {chr(c) for c in range(0x064B, 0x0653)} | {chr(0x0670)}
 

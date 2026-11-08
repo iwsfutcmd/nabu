@@ -2506,6 +2506,146 @@
         "notes": []
       },
       "note": "without the course's forms, the same slip is a typo"
+    },
+    {
+      "id": "grade/tok-sitelen-pona/typed-latin",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤴󱤶",
+        "answer": "mi moku"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Typed sitelen Lasina is right in sitelen pona."
+    },
+    {
+      "id": "grade/tok-sitelen-pona/spaced-logographs",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤴󱤶",
+        "answer": "󱤴 󱤶"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Spaces between logographs carry nothing."
+    },
+    {
+      "id": "grade/tok-sitelen-pona/typed-name",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥔",
+        "answer": "jan Sonja li pona"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "A name typed in Latin letters matches its cartouche."
+    },
+    {
+      "id": "grade/tok-sitelen-pona/wrong-name",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥔",
+        "answer": "jan Sonia li pona"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "A name spelled otherwise is wrong: a cartouche is no word for the typo model."
+    },
+    {
+      "id": "grade/tok-sitelen-pona/wrong-word",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤴󱤶",
+        "answer": "mi moli"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "Another word is another logograph: wrong."
+    },
+    {
+      "id": "grade/tok-sitelen-pona/no-typo",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "accept": "󱤴󱤶",
+        "answer": "mi moki"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "A Latin slip that is no word is no logograph: wrong, as there is no typo tolerance for logographs."
+    },
+    {
+      "id": "grade/tok-latn/typo-in-long-word",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "jan li kepeken ilo",
+        "answer": "jan li kepekem ilo"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "A slip inside a long word is a typo."
+    },
+    {
+      "id": "grade/tok-latn/short-word-no-typo",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "mi moku",
+        "answer": "mi moli"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": []
+      },
+      "note": "Four letters get no typo tolerance: moli is another word."
+    },
+    {
+      "id": "grade/tok-latn/case",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "jan Sonja li pona",
+        "answer": "Jan sonja li pona."
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Case and punctuation carry nothing in an answer."
+    },
+    {
+      "id": "grade/tok-latn/accept-set",
+      "op": "grade",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "accept": "(mi|mi mute) moku",
+        "answer": "mi mute moku"
+      },
+      "expected": {
+        "verdict": "CORRECT_ALT",
+        "notes": []
+      },
+      "note": "mi is I or we: accept sets list both."
     }
   ]
 }

@@ -92,7 +92,8 @@ _LINTS = [
         "enrich.transliteration-mismatch",
         "info",
         3,
-        "A pinned form differs from the CLDR transform of the default orthography.",
+        "A pinned form differs from the CLDR transform (tok: the sitelen pona spelling) of the "
+        "default orthography.",
     ),
     # 4 · drills
     Lint(
