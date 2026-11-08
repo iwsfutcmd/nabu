@@ -36,7 +36,10 @@ const ALL_DRIVES = "supportsAllDrives=true";
 export const DRIVE_ID = /^[A-Za-z0-9_-]+$/u;
 
 export type Entry = {
+  /** The name as the relay compares it (nameKey): NFC, without control characters. */
   readonly name: string;
+  /** The name as Drive holds it, only where it differs from `name` (NFD, MARC's marks), so a caller can see and fix it. */
+  readonly rawName?: string;
   /** native: a Google Doc, Sheet or Slides file (downloads as an export). A shortcut is never followed. */
   readonly kind: "folder" | "file" | "native" | "shortcut";
   readonly mimeType: string;
@@ -56,6 +59,7 @@ export const kindOf = (file: DriveFile): Entry["kind"] =>
 
 export const entryOf = (file: DriveFile): Entry => ({
   name: nameKey(file.name),
+  ...(nameKey(file.name) === file.name ? {} : { rawName: file.name }),
   kind: kindOf(file),
   mimeType: file.mimeType,
   ...(file.size === undefined ? {} : { size: Number(file.size) }),

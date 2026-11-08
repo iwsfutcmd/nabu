@@ -146,6 +146,23 @@ describe("reading", () => {
     expect((await call("GET", `/v1/stat?path=${q("grammars/\u0098")}`)).status).toBe(400);
   });
 
+  it("gives the name Drive holds as rawName, only where it differs", async () => {
+    const { call, google, ids } = setup();
+    google.file(ids.grammars, "\u0098The\u009c fundamentals of Lebanese grammar.pdf", "%PDF-fundamentals");
+    google.file(ids.grammars, "Cafe\u0301.pdf", "x");
+    const listed = (await (await call("GET", "/v1/list?path=grammars")).json()) as {
+      entries: { name: string; rawName?: string }[];
+    };
+    const rawNames = new Map(listed.entries.map((e) => [e.name, e]));
+    expect(rawNames.get("kline-2022.pdf")).not.toHaveProperty("rawName");
+    expect(rawNames.get("The fundamentals of Lebanese grammar.pdf")).toMatchObject({
+      rawName: "\u0098The\u009c fundamentals of Lebanese grammar.pdf",
+    });
+    expect(rawNames.get("Caf\u00e9.pdf")).toMatchObject({ rawName: "Cafe\u0301.pdf" });
+    const found = await call("GET", `/v1/stat?path=${q("grammars/Caf\u00e9.pdf")}`);
+    expect(await found.json()).toMatchObject({ name: "Caf\u00e9.pdf", rawName: "Cafe\u0301.pdf" });
+  });
+
   it("exports Google-native files", async () => {
     const { call, google, ids } = setup();
     google.add(ids.root, "notes", "application/vnd.google-apps.document");
@@ -236,6 +253,20 @@ describe("writing", () => {
     const apcGrammars = google.nodes.get(ids.kline)?.parent ?? "";
     expect(google.nodes.get(apcGrammars)?.name).toBe("grammars");
     expect(apcGrammars).not.toBe(ids.grammars);
+  });
+
+  it("cleans a name in place: a file may take its own cleaned name", async () => {
+    const { call, google, ids } = setup();
+    const marked = google.file(ids.grammars, "\u0098The\u009c fundamentals of Lebanese grammar.pdf", "%PDF-fundamentals");
+    const decomposed = google.file(ids.grammars, "Cafe\u0301.pdf", "x");
+    const clean = q("grammars/The fundamentals of Lebanese grammar.pdf");
+    const cleaned = await call("POST", `/v1/move?from=${clean}&to=${clean}`);
+    expect(cleaned.status).toBe(200);
+    expect(await cleaned.json()).not.toHaveProperty("rawName");
+    expect(google.nodes.get(marked)?.name).toBe("The fundamentals of Lebanese grammar.pdf");
+    const composed = await call("POST", `/v1/move?from=${q("grammars/Cafe\u0301.pdf")}&to=${q("grammars/Caf\u00e9.pdf")}`);
+    expect(composed.status).toBe(200);
+    expect(google.nodes.get(decomposed)?.name).toBe("Caf\u00e9.pdf");
   });
 
   it("will not move onto something, into itself, or move the folder itself", async () => {
