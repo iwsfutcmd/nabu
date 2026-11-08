@@ -621,3 +621,49 @@ By unit, what the drafts were least sure of:
 - Spelling: *espanglish* (RAE) canonical, *spanglish* accepted; *cubanoamericano* as one word.
 - Accept sets: reported-speech tenses (*me preguntó de dónde era/soy*, *le dije que era/soy cubano*); *Cuando era niña / De niña*; the English of the toasts (*Many happy returns*, *Here's to many more*).
 - The u30 scenario: Abuelo Pepe as master of ceremonies, teasing Daniel when he slips into Spanglish.
+
+## tok (Toki Pona)
+
+Drafted after the passes above ([ADR 0085](../docs/adr/0085-toki-pona-and-sitelen-pona.md)), checked against the
+references in the reference library (`toki-pona/`, notes in notes/tok). A fluent speaker should check:
+
+1. **Idioms the drafts were unsure of.**
+   - pu and community usage:
+     - kama pona (welcome), tawa pona (bye, to the one leaving), lape pona, moku pona;
+     - jan pi toki pona (a Toki Pona speaker), jan sama (sibling: "brother" in the u05 story);
+     - mama (creator: jan Sonja li mama pi toki pona).
+   - Compounds:
+     - ilo toki (phone), ilo suno (flashlight), tomo moku (restaurant, kitchen), tomo tawa (car), ma tomo (town);
+     - ma kasi (garden in u06, forest in u07), kasi kule (flowers);
+     - ko (dough, sand, mud), kon li tawa e linja lawa mi.
+   - u04: "pilin sina li pona ala pona?" rather than "sina pilin ala pilin pona?". "seme li moku e kili?" is
+     translated *who*; "jan seme li …" is accepted.
+   - u08:
+     - alasa as a preverb, *try* (ku usage): mi alasa toki pona. lukin pali is used for *try* too.
+     - Prices: "len ni li wile e mani mute" (costs a lot) and "mani lili taso".
+     - "esun pona!" (happy shopping) and "o kama sin!" (come again).
+   - u10: pu as a verb (mi pu, jan Mila li pu lon tomo); kin after the word it stresses (mi kin).
+   - "mi tawa tomo" (going home, tawa as a verb with a place) beside "mi tawa ma Kanata".
+   - "nimi mi li Lina" (the name with no jan); "nimi mi li jan Lina" is accepted too.
+2. **Night and stars.** u07 avoids tenpo mun, often read as *month*: mun is the moon and the stars (mun mute li
+   suno), and nightfall is "suno li weka la". tenpo pimeja (night) comes in u09, with pimeja.
+3. **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
+   for ona, and the present, progressive and past where natural. Check that none is too lenient:
+   - kala li moku also takes *fish is food*; akesi takes lizard, frog, snake or reptile;
+   - soweli is sometimes *cat* or *dog* in a story;
+   - u05 accepts either order of subjects joined by en.
+4. **sitelen pona.** The text follows Common Sitelen Pona (2026): no spaces between words, an ideographic space
+   between sentences, no ! ? or commas, a colon after ni.
+   - Is a sentence's lost question mark acceptable to readers, given seme and "X ala X"? Should the sitelen
+     pona middle dot end sentences instead?
+   - The cartouches: Lina linja ilo nasin a; Pita pipi ilo tomo a; Mila mama ilo lipu a; Tomasi tomo olin mani
+     awen sona ilo; Sonja sona olin nasin jan a; Kanata kasi alasa nasin awen telo a (the UCS proposal's example).
+     Would a writer choose others (sona for So-, as nasin sitelen kalama does)?
+5. **Typing sitelen pona.** Latin words typed into a sitelen pona answer become logographs, and a name typed in
+   Latin letters matches its cartouche (profiles/tok-Qaap.sitelen-pona.yaml, REVIEW). Combined glyphs and long
+   pi compare as their words; nasin sitelen kalama (dots and colons in a cartouche) is not read.
+6. **The voice.** eSpeak NG's Esperanto phonemes, stressed on the first syllable, one word at a time, so particles
+   (li, e, pi) are stressed too. Is it intelligible enough for listening exercises, or should the course leave out
+   the listen facet until human recordings exist? Linku has recordings of every word, licence unknown.
+7. **Content about a real person.** u10 says that jan Sonja made Toki Pona and wrote pu (facts), and quotes her
+   nowhere. Its sentences about what Toki Pona can do are said by the course's characters.

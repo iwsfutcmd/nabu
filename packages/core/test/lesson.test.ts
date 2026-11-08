@@ -627,3 +627,36 @@ describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => 
     expect(grader.grade(hebrew, reverse("s.03.22"), "האדם ויתחבא").verdict).not.toMatch(/^CORRECT/u);
   });
 });
+
+describe("Toki Pona in sitelen pona (ADR 0085)", () => {
+  const SITELEN_PONA = "tok-Qaap/sitelen-pona";
+
+  it("grades sitelen Lasina typed into a sitelen pona answer, names against their cartouches", () => {
+    const course = loadCourse("tok", SITELEN_PONA);
+    const grader = createGrader(course);
+    const sentence = allSentences(course).find((s) => s.id === "s.u01.12");
+    const accept = sentence?.forms[SITELEN_PONA]?.reverse;
+    if (accept === undefined) throw new Error("no sitelen pona accept set for s.u01.12");
+    // sina jan Pita: the logographs, or the Latin words, name included.
+    expect(grader.grade(SITELEN_PONA, accept, "sina jan Pita").verdict).toBe("CORRECT");
+    expect(grader.grade(SITELEN_PONA, accept, surfaceOf(sentence?.forms[SITELEN_PONA]?.text as TaggedText)).verdict).toBe("CORRECT");
+    // Another word is another logograph: wrong, with no typo tolerance.
+    expect(isCorrect(grader.grade(SITELEN_PONA, accept, "sina jan Lina").verdict)).toBe(false);
+  });
+
+  it("asks a logograph's word among words in Latin letters, and never splits a cartouche", () => {
+    const course = loadCourse("tok", SITELEN_PONA);
+    const reads = lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, { seed: 3 })).filter((ex) => ex.template === "char-read");
+    expect(reads.length).toBeGreaterThan(0);
+    for (const ex of reads) {
+      if (ex.template !== "char-read") continue;
+      expect(ex.options.every((o) => o.orthography === "tok-Latn/standard")).toBe(true);
+      expect(ex.prompt.tokens).toHaveLength(1);
+    }
+    for (const s of allSentences(course)) {
+      for (const t of s.forms[SITELEN_PONA]?.text.tokens ?? []) {
+        if (t.kind === "word" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
+      }
+    }
+  });
+});
