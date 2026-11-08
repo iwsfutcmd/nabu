@@ -222,7 +222,7 @@ def tiberian_reading(
         ),
     ],
 ) -> None:
-    """The Tiberian reading of pointed words, as the hbo course pins them (ADR 0081): the reading,
+    """The Tiberian reading of pointed words, as the hbo course pins them (ADR 0082): the reading,
     its IPA, and where its stress came from."""
     from nabu.audio import tiberian
     from nabu.audio.pointing import reading, strip_accents

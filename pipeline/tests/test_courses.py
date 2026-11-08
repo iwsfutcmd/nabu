@@ -354,7 +354,7 @@ HEBREW_LETTER = regex.compile(r"\p{Script=Hebrew}")
 
 
 def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> None:
-    """hbo (ADR 0081): every voice says the pinned Tiberian reading as eSpeak NG phonemes, never
+    """hbo (ADR 0082): every voice says the pinned Tiberian reading as eSpeak NG phonemes, never
     Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's input is phonemes."""
     from nabu.audio import tiberian
     from nabu.audio.course import PHONEME_SCHEMES, read_index
@@ -381,7 +381,7 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
 
 def test_biblical_hebrew_pins_a_tiberian_reading_on_every_word(core_cli: CoreCli) -> None:
     """Every word of every sentence and story line carries its Tiberian reading, which the audio
-    module can say (ADR 0081); the divine name is read with its qere, ʾăḏōnāy."""
+    module can say (ADR 0082); the divine name is read with its qere, ʾăḏōnāy."""
     from nabu.audio import tiberian
 
     _, compiled = build(core_cli, "hbo")

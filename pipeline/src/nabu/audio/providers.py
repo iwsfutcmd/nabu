@@ -125,7 +125,7 @@ class EspeakProvider:
         jobs = [espeak.Job(r.input, r.voice, round(espeak.RATE_NORMAL * r.rate)) for r in requests]
         out: list[Clip] = []
         for request, s in zip(requests, espeak.synthesize_all(jobs), strict=True):
-            # Phoneme input ([[...]], ADR 0081) is what was said; eSpeak's text-to-phonemes call
+            # Phoneme input ([[...]], ADR 0082) is what was said; eSpeak's text-to-phonemes call
             # would read the brackets' mnemonics as letters.
             trace = (
                 request.input

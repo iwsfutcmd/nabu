@@ -1,4 +1,4 @@
-"""A pointed Biblical Hebrew word → its reading in the `tiberian` scheme (ADR 0081).
+"""A pointed Biblical Hebrew word → its reading in the `tiberian` scheme (ADR 0082).
 
 The course pins a reading on every word (`readings: {tiberian: …}`). This is how the drafts
 derived them, and how a maintainer derives one for a new or corrected word: copy the word with

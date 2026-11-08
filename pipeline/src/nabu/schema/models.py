@@ -1770,20 +1770,17 @@ type TableRef = Annotated[
 ]
 
 
-type Members = Annotated[str, Field(min_length=1)]
-
-
-type Members1Item = Annotated[str, Field(min_length=1)]
-
-
-type Members1 = Annotated[
-    list[Members1Item], Field(description="Spellings of one member (allomorphs).", min_length=1)
+type Members = Annotated[
+    list[str], Field(description="Spellings of one member (allomorphs).", min_length=1)
 ]
+
+
+type AfterItem = Annotated[str, Field(min_length=1)]
 
 
 class Contrast(BaseModel):
     """
-    A set of endings (or whole words) one letter or two apart that mean different things.
+    A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
     """
 
     model_config = ConfigDict(
@@ -1791,7 +1788,31 @@ class Contrast(BaseModel):
         frozen=True,
     )
     id: Annotated[str, Field(pattern="^[a-z][a-z0-9-]*$")]
-    members: Annotated[list[Members | Members1], Field(min_length=2)]
+    members: Annotated[
+        list[str | Members],
+        Field(
+            description="The members, each a meaning. An empty spelling is the word with no such affix: the bare Lebanese imperfect (shteghel) beside b-shteghel, a masculine adjective beside its feminine.",
+            min_length=2,
+        ),
+    ]
+    at: Annotated[
+        Literal["end", "start"] | None,
+        Field(
+            description="Where the members stand: at the end of the word (endings, stacking like suffixes) or at its start (prefixes: Lebanese b-, bt-, mn- on verbs). Default end."
+        ),
+    ] = None
+    after: Annotated[
+        list[AfterItem] | None,
+        Field(
+            description="For prefixes: what may come before the member, a proclitic written onto the word (Arabic و 'and': وبشتغل)."
+        ),
+    ] = None
+    inflected: Annotated[
+        bool | None,
+        Field(
+            description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
+        ),
+    ] = None
     note: Annotated[
         str | None,
         Field(
@@ -2916,6 +2937,12 @@ class TokenModel(BaseModel):
     kind: TokenKind
     sense: Annotated[
         SenseId | None, Field(description="Link to the lexicon (a knowledge component).")
+    ] = None
+    form: Annotated[
+        KcId | None,
+        Field(
+            description="The form KC (form:<id>) of an inflected word, as the source pins it: the grader keeps its affixes apart (a profile's contrasts marked inflected, ADR 0081)."
+        ),
     ] = None
     readings: Annotated[
         dict[SchemeId, ReadingsAdditionalProperty2] | None,

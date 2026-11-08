@@ -1,4 +1,4 @@
-"""The Tiberian reading of Biblical Hebrew as IPA and as eSpeak NG phonemes (ADR 0081)."""
+"""The Tiberian reading of Biblical Hebrew as IPA and as eSpeak NG phonemes (ADR 0082)."""
 
 from __future__ import annotations
 

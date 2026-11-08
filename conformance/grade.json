@@ -1094,6 +1094,157 @@
       "note": "bt- (you, she) for b- (I): another word of the course"
     },
     {
+      "id": "grade/apc-arab/prefix-person",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "بتشتغل ببيروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "bt- (you, she) for b- (I) on a verb the course inflects, not a word it writes"
+    },
+    {
+      "id": "grade/apc-arab/prefix-b-dropped",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بشتغل ببيروت",
+        "answer": "شتغل ببيروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "the imperfect without b- for the present: a statement needs b-"
+    },
+    {
+      "id": "grade/apc-arab/prefix-after-wa",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "وبشتغل ببيروت",
+        "answer": "وبتشتغل ببيروت",
+        "inflected": [
+          "وبشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "the prefix after the proclitic و (and)"
+    },
+    {
+      "id": "grade/apc-arab/prefix-noun-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "بيروت",
+        "answer": "يروت",
+        "inflected": [
+          "بشتغل"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "a noun's first letter is no prefix: the course does not inflect بيروت"
+    },
+    {
+      "id": "grade/apc-arab/agreement-feminine",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Arab/standard",
+        "accept": "المدرسة بعيدة",
+        "answer": "المدرسة بعيد",
+        "inflected": [
+          "بعيدة",
+          "بعيد"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "the school is feminine: بعيد does not agree"
+    },
+    {
+      "id": "grade/apc-latn/prefix-vowel-spelling",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "(b2ra|be2ra)",
+        "answer": "bt2ra",
+        "inflected": [
+          "b2ra",
+          "be2ra"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-prefix"
+        ]
+      },
+      "note": "bt- (you) for be- (I), a prefix spelled with its vowel"
+    },
+    {
+      "id": "grade/apc-latn/prefix-same-member-stays-typo",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "ba3mel",
+        "answer": "bi3mel",
+        "inflected": [
+          "ba3mel"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "another vowel after b- is the same prefix: a typo"
+    },
+    {
+      "id": "grade/apc-latn/agreement-feminine",
+      "op": "grade",
+      "args": {
+        "profile": "apc-Latn/arabizi",
+        "accept": "el madrase b3ide",
+        "answer": "el madrase b3id",
+        "inflected": [
+          "b3ide",
+          "b3id"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "the feminine ending dropped where the noun is feminine"
+    },
+    {
       "id": "grade/apc-latn/exact",
       "op": "grade",
       "args": {

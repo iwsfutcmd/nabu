@@ -34,7 +34,7 @@ describe("planner: 30 simulated days", () => {
     // Cuban Spanish (ADR 0076): thirty units; a month covers the first ten or so.
     ["es", undefined, 12, 1.0],
     ["es", undefined, 13, 2.0],
-    // Biblical Hebrew (ADR 0081): Tiberian-pointed text, every word with a pinned reading.
+    // Biblical Hebrew (ADR 0082): Tiberian-pointed text, every word with a pinned reading.
     ["hbo", undefined, 14, 1.0],
     ["hbo", undefined, 15, 2.0],
   ];

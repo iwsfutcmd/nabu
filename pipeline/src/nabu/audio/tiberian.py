@@ -1,4 +1,4 @@
-"""The Tiberian reading of Biblical Hebrew (ADR 0081) → eSpeak NG phonemes, and IPA.
+"""The Tiberian reading of Biblical Hebrew (ADR 0082) → eSpeak NG phonemes, and IPA.
 
 A word's pinned reading in the `tiberian` scheme is an SBL academic transliteration:
 - consonants ʾ b ḇ g ḡ d ḏ h w z ḥ ṭ y k ḵ l m n s ʿ p p̄ ṣ q r ś š t ṯ, a doubled letter for a

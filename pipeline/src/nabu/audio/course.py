@@ -4,7 +4,7 @@
 "<story>#<step>") reads the course voice's orthography:
 - the voice reads the **pinned reading** when it has one (Jyutping for Cantonese), never raw
   characters, so polyphones are said as the content says. A reading in a phoneme scheme (the
-  Tiberian reading of Biblical Hebrew, ADR 0081) is said as eSpeak NG phonemes, never as
+  Tiberian reading of Biblical Hebrew, ADR 0082) is said as eSpeak NG phonemes, never as
   text, ending with the sentence's question mark or a full stop for its intonation. Otherwise
   the form's text, punctuation included (it carries the intonation of questions and
   exclamations). A voice that reads text but takes inline IPA (`pronounce`) gets IPA for
@@ -71,7 +71,7 @@ BATCH = 16
 #: Reading schemes `pronounce` can turn into IPA.
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
-#: Tiberian reading of Biblical Hebrew (ADR 0081), which no voice may read as Modern Hebrew text.
+#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text.
 PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {"tiberian": tiberian.espeak}
 WORD_KINDS = {"word", "number"}
 

@@ -323,7 +323,7 @@ def compile_form(
             if t.tile is not None:
                 d["tileGroup"] = t.tile
             if t.form is not None:
-                d["_form"] = t.form
+                d["form"] = t.form
             if t.vocalized is not None:
                 d["_vocalized"] = t.vocalized
             authored.append(d)
@@ -1031,7 +1031,7 @@ def _curriculum(
             for orth in course.orthographies:
                 for t in forms.get((ui, si), {}).get(orth, {}).get("tokens", []):
                     refs = [f"sense:{t['sense']}"] if "sense" in t else []
-                    refs += [t["_form"]] if "_form" in t else []
+                    refs += [t["form"]] if "form" in t else []
                     refs += [m["kc"] for m in t.get("morphs", [])]
                     kcs += [r for r in dict.fromkeys(refs) if r not in kcs]
             kcs += [c for c in dict.fromkeys(s.constructions or []) if c not in kcs]

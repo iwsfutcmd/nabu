@@ -1,4 +1,4 @@
-"""Pointed Biblical Hebrew → its Tiberian reading (ADR 0081), as the hbo course pins them."""
+"""Pointed Biblical Hebrew → its Tiberian reading (ADR 0082), as the hbo course pins them."""
 
 from __future__ import annotations
 

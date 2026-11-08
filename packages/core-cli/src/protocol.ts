@@ -97,8 +97,11 @@ const OPS: Readonly<Record<string, (args: Args) => unknown>> = {
   },
   grade: (a) => {
     const set = acceptSet(a);
-    const lexicon = Array.isArray(a["lexicon"]) ? new Set((a["lexicon"] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
-    return grade(set, text(a, "answer"), lexicon === undefined ? {} : { lexicon });
+    const keyed = (name: string): ReadonlySet<string> | undefined =>
+      Array.isArray(a[name]) ? new Set((a[name] as unknown[]).map((w) => lexiconKey(set.profile, String(w)))) : undefined;
+    const lexicon = keyed("lexicon");
+    const inflected = keyed("inflected");
+    return grade(set, text(a, "answer"), { ...(lexicon && { lexicon }), ...(inflected && { inflected }) });
   },
   /** A word's vowel marks as the learner wrote them, against its vocalized form (ADR 0054). */
   "grade-vowels": (a) => gradeVowels(profile(a).marks, text(a, "expected"), text(a, "answer")),

@@ -57,6 +57,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   REVIEW). A slip trading one member for another is WRONG_WORD, not a typo. Group allomorphs (ga, ka, qa) in one member.
 - A typo that spells another word of the course is WRONG_WORD (the lexicon). Key lexicon words and lookups with
   `lexiconKey` (marks the profile ignores stripped), or a vocalized course's marked words never match typed answers.
+- Contrast sets can be prefixes (`at: start`, `after` proclitics) and can apply only to inflected words (`inflected`,
+  ADR 0081): bundled tokens carry their `form`, and createGrader passes the words whose sense has one. A slip that makes
+  a word ungrammatical is WRONG_WORD even when it looks like a typo; a noun's first letter stays a typo.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)
@@ -328,7 +331,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
-## Biblical Hebrew notes (see docs/adr/0081)
+## Biblical Hebrew notes (see docs/adr/0082)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
   nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
@@ -348,7 +351,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0081 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0082 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)
