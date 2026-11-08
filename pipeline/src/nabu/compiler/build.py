@@ -191,9 +191,11 @@ def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set
         for item in data.get(kind, []):
             chars.update(item)
             chars.update(item.lower())
-    for extra in profile.exemplarsExtra or []:
-        chars.update(extra)
     punct: set[str] = {c for item in data.get("punctuation", []) for c in item}
+    for extra in profile.exemplarsExtra or []:
+        # An extra that is punctuation (Hebrew sof pasuq) joins the punctuation set.
+        for c in extra:
+            (punct if unicodedata.category(c)[0] == "P" else chars).add(c)
     return chars, punct
 
 

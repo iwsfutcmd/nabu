@@ -2637,7 +2637,7 @@ export interface OrthographyProfile {
    */
   readonly exemplars?: string;
   /**
-   * Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.
+   * Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars, and punctuation among them (the Hebrew sof pasuq ׃, missing from cldr:he) as exemplar punctuation. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.
    *
    * @minItems 1
    */
