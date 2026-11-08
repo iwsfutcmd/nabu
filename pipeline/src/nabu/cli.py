@@ -251,7 +251,7 @@ def sitelen_pona_command(
         bool, typer.Option("--escaped", help="Print \\U escapes, as course YAML keeps them.")
     ] = False,
 ) -> None:
-    """Sitelen Lasina in sitelen pona, as the tok course pins it (ADR 0085): UCSUR logographs,
+    """Sitelen Lasina in sitelen pona, as the tok course pins it (ADR 0086): UCSUR logographs,
     words run together, sentences a space apart, names in cartouches."""
     from nabu import sitelen_pona
 

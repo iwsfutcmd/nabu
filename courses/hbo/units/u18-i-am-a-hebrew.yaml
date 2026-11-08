@@ -189,7 +189,11 @@ sentences:
       text: וַיֹּאמְרוּ אִישׁ אֶל־רֵעֵהוּ׃
       tokens: [{surface: וַיֹּאמְרוּ, sense: amar, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyōʾmərû}}, {surface: אִישׁ, sense: ish, readings: {tiberian: ʾîš}}, {surface: אֶל, sense: el, readings: {
             tiberian: ʾel-}}, {surface: רֵעֵהוּ, sense: rea, morphs: [{surface: רֵעֵ, kc: 'sense:rea'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: rēʿḗhû}}]
-      reverse: (ויאמרו|ויואמרו) איש אל רעהו
+      reverse: |-
+        (ויאמרו|ויואמרו) איש אל רעהו
+        אמרו איש אל רעהו
+        (הם|המה) אמרו איש אל רעהו
+        (והם|והמה) אמרו איש אל רעהו
   translations:
     en: |-
       [(And|Then)] they said to one another.
@@ -225,7 +229,11 @@ sentences:
       text: וַיִּפֹּל הַגּוֹרָל עַל־יוֹנָה׃
       tokens: [{surface: וַיִּפֹּל, sense: nafal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyippōl}}, {surface: הַגּוֹרָל, sense: goral, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גּוֹרָל,
               kc: 'sense:goral'}], readings: {tiberian: haggôrāl}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}]
-      reverse: (ויפל|ויפול) הגורל על יונה
+      reverse: |-
+        (ויפל|ויפול) הגורל על יונה
+        הגורל נפל על יונה
+        והגורל נפל על יונה
+        נפל הגורל על יונה
   translations:
     en: '[(And|Then)] the lot fell on Jonah.'
 - id: s.18.14
@@ -235,7 +243,11 @@ sentences:
       text: וַיִּפֹּל עַל־פָּנָיו׃
       tokens: [{surface: וַיִּפֹּל, sense: nafal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyippōl}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: פָּנָיו, sense: panim, morphs: [
             {surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}]
-      reverse: (ויפל|ויפול) על פניו
+      reverse: |-
+        (ויפל|ויפול) על פניו
+        נפל על פניו
+        הוא נפל על פניו
+        והוא נפל על פניו
   translations:
     en: |-
       [(And|Then)] he fell on his face.

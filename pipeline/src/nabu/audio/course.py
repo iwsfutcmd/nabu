@@ -72,7 +72,7 @@ BATCH = 16
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
 #: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
-#: and Toki Pona's words in sitelen Lasina (ADR 0085), which no synthesizer has a voice for.
+#: and Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for.
 PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
     "tiberian": tiberian.espeak,
     "lasina": toki_pona.espeak,

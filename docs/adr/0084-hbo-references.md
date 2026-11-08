@@ -80,9 +80,11 @@ nothing, and a reading shown to learners later is still the convention.
 
 The 52 other stem labels agree with Joüon–Muraoka.
 
-**Word order: the Hebrew accept sets take both orders where Biblical Hebrew has both.** Each
-sentence is shown in one order, but its `reverse` set had only that order. So "טוב האור" for "the
-light is good" was wrong, in tiles and typed. Each set now lists the text's own order first, then:
+**Word order: the Hebrew accept sets take the other order where Biblical Hebrew has it and the
+English is the same.** Each sentence is shown in one order, but its `reverse` set had only that
+order. So "טוב האור" for "the light is good" was wrong, in tiles and typed. The criterion (Ben's)
+is that the other order is accepted only if its English translation would be the same. Each set
+now lists the text's own order first, then:
 
 | Clause | Other order accepted | Joüon–Muraoka |
 |---|---|---|
@@ -98,10 +100,24 @@ light is good" was wrong, in tiles and typed. Each set now lists the text's own 
     after אֲשֶׁר, a pronoun comes before its participle (§ 154f, p. 533).
   - Sentences of more than one clause.
   - A subject inside a construct chain.
-- **Which sentences.** 70 of the course's 696. The drafting script finds the subject from the
+- **Not where the English would change.**
+  - Identity between two definite terms. קַיִן אָחִי is "Cain is my brother", but אָחִי קַיִן is
+    "my brother is Cain" or "my brother Cain". The same goes for יְהוָה רֹעִי and הִיא אִמּוֹ. A
+    first or second person pronoun stays the subject in English either way: אֲנִי יְהוָה and
+    יְהוָה אֲנִי are both "I am the LORD".
+  - The blessing formula. בָּרוּךְ אַתָּה is a wish, "Blessed are you!"; אַתָּה בָּרוּךְ is a
+    statement.
+  - A wish whose verb is a plain yiqtol. With its subject first, יְהוָה יְבָרֶכְךָ reads "the
+    LORD will bless you". A distinct jussive keeps its wish in either order (יְהִי אוֹר, יָאֵר
+    יְהוָה).
+  - What reads unpointed as a construct chain. Behind ב, כ and ל the article is a vowel, so
+    בגן האדם reads "in the man's garden" and בבית אבי "in my father's house". Kept where the
+    next word cannot be a genitive (בגן הוא), or the first is visibly absolute (על הארץ, with its
+    article written; באדמה, whose construct would end in ת).
+- **Which sentences.** 52 of the course's 696. The drafting script finds the subject from the
   Codex's morphology: a noun, a name or a pronoun that agrees with the verb, next to it, at the
-  start of the clause. Every result was read. Dictation (listen-type) shares the set, as it
-  does in es, which has word-order alternatives too.
+  start of the clause. Every result was read against its English. Dictation (listen-type) is now
+  gone from hbo (its facets leave out listen).
 
 **Glosses: 305 of 312 agree with Holladay.** The others are fixed:
 
@@ -175,7 +191,8 @@ shinnen, tsalmawet (pp. 172, 337, 273, 349, 379, 306).
   - the agreement slip without forms, which is a typo.
 - **Other courses** grade as before. Only hbo's profile has `forms`.
 - **Word order.** A reordered answer is CORRECT_ALT, in tiles, typing and fill-the-blank. A subject
-  before a wayyiqtol is still wrong (a createGrader test).
+  before a wayyiqtol is still wrong, and so are the orders whose English would change (a
+  createGrader test).
 - **The course.** 696 sentences and 358 KCs: one KC (hitchabbe) and one sentence (וָאֵחָבֵא).
   Lessons from unit 2 on change where form:pl-cstr, form:coh and hitchabbe are now taught.
 - **Left for a reviewer** (courses/REVIEW.md, hbo):

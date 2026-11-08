@@ -102,7 +102,7 @@ const detach = (prefixes: readonly string[], minRest: number): StepFn => {
 const WORD = /[\p{L}\p{M}]+/gu;
 
 /**
- * Words typed in the script that spells them, written as logographs (ADR 0085): sitelen Lasina
+ * Words typed in the script that spells them, written as logographs (ADR 0086): sitelen Lasina
  * typed into a sitelen pona answer (toki → U+F196C). A whole word that is a key, ignoring case
  * as the collator does, becomes its logograph; anything else is left as it is. Inside a
  * cartouche (its marks a grapheme each) every logograph reads as its word's first letter and the

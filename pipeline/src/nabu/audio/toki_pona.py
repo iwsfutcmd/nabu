@@ -1,4 +1,4 @@
-"""Toki Pona as eSpeak NG phonemes (ADR 0085).
+"""Toki Pona as eSpeak NG phonemes (ADR 0086).
 
 No synthesizer has a Toki Pona voice, but its sounds are few and every voice has them: the
 consonants p t k s m n l j w and the vowels a e i o u, in syllables (C)V(n), the stress on the first

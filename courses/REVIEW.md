@@ -424,10 +424,12 @@ reference library, notes/hbo): what they showed wrong is fixed, and what they le
 5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
    nothing. Accept sets are generous with English word order; Hebrew accept sets accept the plene spelling of
    ō and u (קול for קֹל), a space, hyphen or maqaf between bound words, and the other order of subject and
-   predicate where Biblical Hebrew has both (70 sentences, ADR 0084: nominal and participle clauses, plain
-   qatal/yiqtol/jussive; never a subject before wayyiqtol). Are any of those orders ones you would mark wrong
-   (יְהִי אוֹר as אוֹר יְהִי; the formula אֲנִי יְהוָה as יְהוָה אֲנִי)? Should a subject first also be accepted
-   with the X-qatal form (הָאָדָם הִתְחַבֵּא for "the man hid")?
+   predicate where Biblical Hebrew has both and the English would be the same (52 sentences, ADR 0084; not
+   identity clauses, the blessing formula, a wish in a plain yiqtol, or what reads unpointed as a construct
+   chain). Check the 52 against that criterion. And, by ADR 0085 (what the English does not decide, either is right),
+   the plain forms beside wayyiqtol and weqatal: X-qatal (הָאִשָּׁה אָמְרָה, וְהָאִשָּׁה אָמְרָה), a bare qatal with
+   or without its pronoun (בָּרַח, הוּא בָרַח), a weqatal's yiqtol (תֹּאהַב), and a pronoun before a plain verb
+   (אֲנִי אֶשְׁאָב): 86 sentences. Is any of them one you would mark wrong for its English?
 6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
    שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
    מְבַקֶּשֶׁת).
@@ -624,7 +626,7 @@ By unit, what the drafts were least sure of:
 
 ## tok (Toki Pona)
 
-Drafted after the passes above ([ADR 0085](../docs/adr/0085-toki-pona-and-sitelen-pona.md)), checked against the
+Drafted after the passes above ([ADR 0086](../docs/adr/0086-toki-pona-and-sitelen-pona.md)), checked against the
 references in the reference library (`toki-pona/`, notes in notes/tok). A fluent speaker should check:
 
 1. **Idioms the drafts were unsure of.**
@@ -647,7 +649,10 @@ references in the reference library (`toki-pona/`, notes in notes/tok). A fluent
    - "nimi mi li Lina" (the name with no jan); "nimi mi li jan Lina" is accepted too.
 2. **Night and stars.** u07 avoids tenpo mun, often read as *month*: mun is the moon and the stars (mun mute li
    suno), and nightfall is "suno li weka la". tenpo pimeja (night) comes in u09, with pimeja.
-3. **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
+3. **Accept sets, by ADR 0085** (what the prompt does not decide, the learner may choose). They were drafted before
+   that rule: check the Toki Pona sets for every answer the English leaves open (a near-synonym, an optional
+   modifier, jan mije or mije, mama or mama meli), and the English sets for what the Toki Pona leaves open.
+   **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
    for ona, and the present, progressive and past where natural. Check that none is too lenient:
    - kala li moku also takes *fish is food*; akesi takes lizard, frog, snake or reptile;
    - soweli is sometimes *cat* or *dog* in a story;

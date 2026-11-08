@@ -111,9 +111,7 @@ sentences:
       text: הַמֶּלֶךְ בַּבַּיִת׃
       tokens: [{surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: |-
-        המלך בבית
-        בבית המלך
+      reverse: המלך בבית
   translations:
     en: |-
       The king is in the house.
@@ -227,7 +225,11 @@ sentences:
       tokens: [{surface: וַתְּדַבֵּרְנָה, sense: dibber, form: 'form:wayyiqtol-3fp', readings: {tiberian: wattəḏabbḗrnâ}}, {surface: לִפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: לִ, kc: 'sense:le'},
             {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {
             tiberian: hamméleḵ}}]
-      reverse: ותדברנה לפני המלך
+      reverse: |-
+        ותדברנה לפני המלך
+        דברו לפני המלך
+        (הן|הנה) דברו לפני המלך
+        (והן|והנה) דברו לפני המלך
   translations:
     en: |-
       [(And|Thus|So)] they spoke before the king.
@@ -264,7 +266,11 @@ sentences:
       tokens: [{surface: וַיָּבִאוּ, sense: hevi, form: 'form:wayyiqtol-3mp', readings: {tiberian: wayyāḇíʾû}}, {surface: הַחֶרֶב, sense: herev, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֶרֶב,
               kc: 'sense:herev'}], readings: {tiberian: haḥéreḇ}}, {surface: לִפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {
             tiberian: lip̄nê}}, {surface: הַמֶּלֶךְ, sense: melekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: מֶּלֶךְ, kc: 'sense:melekh'}], readings: {tiberian: hamméleḵ}}]
-      reverse: ויבאו החרב לפני המלך
+      reverse: |-
+        ויבאו החרב לפני המלך
+        הביאו החרב לפני המלך
+        (הם|המה) הביאו החרב לפני המלך
+        (והם|והמה) הביאו החרב לפני המלך
   translations:
     en: |-
       [(And|So)] they brought the sword before the king.
@@ -343,7 +349,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַתֵּלֶד בֵּן׃
       tokens: [{surface: וַתֵּלֶד, sense: yalad, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattḗleḏ}}, {surface: בֵּן, sense: ben, readings: {tiberian: bēn}}]
-      reverse: ותלד בן
+      reverse: |-
+        ותלד בן
+        ילדה בן
+        היא ילדה בן
+        והיא ילדה בן
   translations:
     en: |-
       [(And|Then)] she (bore|gave birth to) a son.
@@ -404,9 +414,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: הִיא אִמּוֹ׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: אִמּוֹ, sense: em, morphs: [{surface: אִמּ, kc: 'sense:em'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾimmô}}]
-      reverse: |-
-        היא אמו
-        אמו היא
+      reverse: היא אמו
   translations:
     en: (She is|She's) his mother.
 - id: s.16.30

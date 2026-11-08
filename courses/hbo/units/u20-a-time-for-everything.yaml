@@ -210,7 +210,11 @@ sentences:
       text: וַיִּטַּע יְהוָה אֱלֹהִים גַּן׃
       tokens: [{surface: וַיִּטַּע, sense: nata, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṭṭaʿ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
           readings: {tiberian: ʾĕlōhîm}}, {surface: גַּן, sense: gan, readings: {tiberian: gan}}]
-      reverse: ויטע יהוה (אלהים|אלוהים) גן
+      reverse: |-
+        ויטע יהוה (אלהים|אלוהים) גן
+        יהוה (אלהים|אלוהים) נטע גן
+        ויהוה (אלהים|אלוהים) נטע גן
+        נטע יהוה (אלהים|אלוהים) גן
   translations:
     en: '[(And|Then)] the LORD God planted a garden.'
 - id: s.20.10
@@ -269,7 +273,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיִּבֶן בַּיִת׃
       tokens: [{surface: וַיִּבֶן, sense: banah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyíḇen}}, {surface: בַּיִת, sense: bayit, readings: {tiberian: báyiṯ}}]
-      reverse: ויבן בית
+      reverse: |-
+        ויבן בית
+        בנה בית
+        הוא בנה בית
+        והוא בנה בית
   translations:
     en: '[(And|Then)] he built a house.'
 - id: s.20.16
@@ -313,7 +321,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיֵּבְךְּ׃
       tokens: [{surface: וַיֵּבְךְּ, sense: bakhah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyēḇk}}]
-      reverse: ויבך
+      reverse: |-
+        ויבך
+        בכה
+        הוא בכה
+        והוא בכה
   translations:
     en: |-
       [(And|Then)] he wept.
@@ -360,9 +372,7 @@ sentences:
       text: בָּרוּךְ אַתָּה לַיהוָה׃
       tokens: [{surface: בָּרוּךְ, sense: barukh, form: 'form:ptc-pass', readings: {tiberian: bārûḵ}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: לַיהוָה, sense: yhwh, morphs: [
             {surface: לַ, kc: 'sense:le'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: laʾḏōnāy}}]
-      reverse: |-
-        ברוך אתה ליהוה
-        אתה ברוך ליהוה
+      reverse: ברוך אתה ליהוה
   translations:
     en: |-
       Blessed are you by the LORD!
@@ -376,9 +386,7 @@ sentences:
       text: בְּרוּכָה אַתְּ לַיהוָה׃
       tokens: [{surface: בְּרוּכָה, sense: barukh, form: 'form:ptc-pass', readings: {tiberian: bərûḵâ}}, {surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: לַיהוָה, sense: yhwh, morphs: [
             {surface: לַ, kc: 'sense:le'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: laʾḏōnāy}}]
-      reverse: |-
-        ברוכה את ליהוה
-        את ברוכה ליהוה
+      reverse: ברוכה את ליהוה
   translations:
     en: |-
       Blessed are you by the LORD!
@@ -392,9 +400,7 @@ sentences:
       text: יְבָרֶכְךָ יְהוָה׃
       tokens: [{surface: יְבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-3ms', morphs: [{surface: יְבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḇāreḵḵā}}, {surface: יְהוָה,
           sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
-      reverse: |-
-        יברכך יהוה
-        יהוה יברכך
+      reverse: יברכך יהוה
   translations:
     en: |-
       May the LORD bless you!
@@ -457,7 +463,11 @@ sentences:
       text: וַיִּשָּׂא אֶת־עֵינָיו׃
       tokens: [{surface: וַיִּשָּׂא, sense: nasa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiśśāʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: עֵינָיו, sense: ayin.eye,
           form: 'form:du', morphs: [{surface: עֵינָי, kc: 'sense:ayin.eye'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿênāyw}}]
-      reverse: וישא את עיניו
+      reverse: |-
+        וישא את עיניו
+        נשא את עיניו
+        הוא נשא את עיניו
+        והוא נשא את עיניו
   translations:
     en: |-
       [(And|Then)] he lifted up his eyes.

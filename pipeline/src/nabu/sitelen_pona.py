@@ -1,4 +1,4 @@
-"""Toki Pona in sitelen pona, as the UCSUR encodes it (ADR 0085).
+"""Toki Pona in sitelen pona, as the UCSUR encodes it (ADR 0086).
 
 sitelen pona writes each word with one logograph. It is not in Unicode yet (a proposal, L2/24-275,
 is with the UTC); fonts and input methods use the Under-ConScript Unicode Registry's block,

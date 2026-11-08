@@ -135,9 +135,7 @@ sentences:
       text: אָבִינוּ בַּשָּׂדֶה׃
       tokens: [{surface: אָבִינוּ, sense: av, morphs: [{surface: אָבִי, kc: 'sense:av'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: ʾāḇî́nû}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [
             {surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
-      reverse: |-
-        אבינו בשדה
-        בשדה אבינו
+      reverse: אבינו בשדה
   translations:
     en: Our father is in the field.
 - id: s.12.9
@@ -249,7 +247,11 @@ sentences:
             tiberian: ʾăḏōnāy}}, {surface: אֱלֹהֶיךָ, sense: elohim, morphs: [{surface: אֱלֹהֶי, kc: 'sense:elohim'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾĕlōhếḵā}}, {surface: בְּכָל,
           sense: kol, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: bəḵol-}}, {surface: לְבָבְךָ, sense: levav, morphs: [{surface: לְבָבְ,
               kc: 'sense:levav'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḇāḇəḵā}}]
-      reverse: ואהבת את יהוה (אלהיך|אלוהיך) בכל לבבך
+      reverse: |-
+        ואהבת את יהוה (אלהיך|אלוהיך) בכל לבבך
+        תאהב את יהוה (אלהיך|אלוהיך) בכל לבבך
+        אתה תאהב את יהוה (אלהיך|אלוהיך) בכל לבבך
+        ואתה תאהב את יהוה (אלהיך|אלוהיך) בכל לבבך
   translations:
     en: |-
       And you shall love the LORD your God with all your heart.
@@ -337,7 +339,11 @@ sentences:
       text: וְדִבַּרְתָּ בָּם׃
       tokens: [{surface: וְדִבַּרְתָּ, sense: dibber, form: 'form:weqatal-2ms', readings: {tiberian: wəḏibbartā}}, {surface: בָּם, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'}, {surface: ם, kc: 'form:sfx-3mp'}],
           readings: {tiberian: bām}}]
-      reverse: ודברת בם
+      reverse: |-
+        ודברת בם
+        תדבר בם
+        אתה תדבר בם
+        ואתה תדבר בם
   translations:
     en: |-
       And you shall (talk|speak) (of|about) them.
@@ -368,7 +374,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיֵּשֶׁב׃
       tokens: [{surface: וַיֵּשֶׁב, sense: yashav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗšeḇ}}]
-      reverse: וישב
+      reverse: |-
+        וישב
+        ישב
+        הוא ישב
+        והוא ישב
   translations:
     en: |-
       [(And|Then)] he sat [down].
@@ -417,7 +427,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיִּשְׁכַּב׃
       tokens: [{surface: וַיִּשְׁכַּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}]
-      reverse: וישכב
+      reverse: |-
+        וישכב
+        שכב
+        הוא שכב
+        והוא שכב
   translations:
     en: '[(And|Then)] he lay down.'
 - id: s.12.33

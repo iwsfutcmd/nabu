@@ -82,7 +82,11 @@ sentences:
       text: וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל׃
       tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {
             tiberian: ʾel-}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
-      reverse: ויקרא יהוה אל שמואל
+      reverse: |-
+        ויקרא יהוה אל שמואל
+        יהוה קרא אל שמואל
+        ויהוה קרא אל שמואל
+        קרא יהוה אל שמואל
   translations:
     en: |-
       [(And|Then)] the LORD called Samuel.
@@ -103,7 +107,11 @@ sentences:
       text: וַיָּרָץ אֶל־עֵלִי׃
       tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עֵלִי, sense: eli, readings: {
             tiberian: ʿēlî}}]
-      reverse: וירץ אל עלי
+      reverse: |-
+        וירץ אל עלי
+        רץ אל עלי
+        הוא רץ אל עלי
+        והוא רץ אל עלי
   translations:
     en: '[(And|Then|So)] he ran to Eli.'
 - id: s.14.7
@@ -129,7 +137,9 @@ sentences:
       text: קָרָאתָ לִּי׃
       tokens: [{surface: קָרָאתָ, sense: qara, form: 'form:qatal-2ms', readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
           readings: {tiberian: lî}}]
-      reverse: קראת לי
+      reverse: |-
+        קראת לי
+        אתה קראת לי
   translations:
     en: |-
       You called me.
@@ -142,7 +152,9 @@ sentences:
       text: קָרָאת לִי׃
       tokens: [{surface: קָרָאת, sense: qara, form: 'form:qatal-2fs', readings: {tiberian: qārāʾṯ}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
           readings: {tiberian: lî}}]
-      reverse: קראת לי
+      reverse: |-
+        קראת לי
+        את קראת לי
   translations:
     en: |-
       You called me.
@@ -210,7 +222,11 @@ sentences:
       text: וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
       tokens: [{surface: וַיִּשְׁכַּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, sense: maqom, morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: מְקוֹמ,
               kc: 'sense:maqom'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: bimqômô}}]
-      reverse: וישכב במקומו
+      reverse: |-
+        וישכב במקומו
+        שכב במקומו
+        הוא שכב במקומו
+        והוא שכב במקומו
   translations:
     en: '[(And|Then|So)] he lay down in his place.'
 - id: s.14.16
@@ -244,7 +260,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: וְאָמַרְתָּ
       tokens: [{surface: וְאָמַרְתָּ, sense: amar, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāmartā}}]
-      reverse: ואמרת
+      reverse: |-
+        ואמרת
+        ואתה (תאמר|תואמר)
   translations:
     en: |-
       and you shall say

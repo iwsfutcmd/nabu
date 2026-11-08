@@ -1,6 +1,6 @@
 # sitelen seli kiwen juniko
 
-The face for Toki Pona in sitelen pona (`tok-Qaap/sitelen-pona`, ADR 0085). sitelen pona is not on
+The face for Toki Pona in sitelen pona (`tok-Qaap/sitelen-pona`, ADR 0086). sitelen pona is not on
 @fontsource, so the font is kept here.
 
 - **Font:** sitelen seli kiwen juniko, version 2.3, by Rebecca Bettencourt (jan Lepeka), Kreative

@@ -181,7 +181,7 @@ def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
 
 def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
     """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars.
-    A script CLDR has no locale for (sitelen pona, ADR 0085) lists its whole repertoire in
+    A script CLDR has no locale for (sitelen pona, ADR 0086) lists its whole repertoire in
     `exemplarsExtra`, with no `exemplars`: the audit then checks against that alone."""
     if profile.exemplars is None:
         if not profile.exemplarsExtra:
@@ -894,7 +894,7 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
 
 
 def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm) -> None:
-    """A tok sentence's pinned sitelen pona against its sitelen Lasina (ADR 0085): the words as
+    """A tok sentence's pinned sitelen pona against its sitelen Lasina (ADR 0086): the words as
     their logographs, each name as the cartouche its sitelen pona token pins."""
     by_sense = {t.sense: t.surface for t in pinned.tokens or [] if t.sense is not None}
     names = {

@@ -1,4 +1,4 @@
-"""sitelen pona as the UCSUR encodes it, and Toki Pona's words as eSpeak NG phonemes (ADR 0085)."""
+"""sitelen pona as the UCSUR encodes it, and Toki Pona's words as eSpeak NG phonemes (ADR 0086)."""
 
 from __future__ import annotations
 

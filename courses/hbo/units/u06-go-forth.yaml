@@ -243,9 +243,7 @@ sentences:
     hbo-Hebr/tiberian:
       text: אָבִי בַּבַּיִת׃
       tokens: [{surface: אָבִי, sense: av, readings: {tiberian: ʾāḇî}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
-      reverse: |-
-        אבי בבית
-        בבית אבי
+      reverse: אבי בבית
   translations:
     en: |-
       My father is in the house.
@@ -334,7 +332,9 @@ sentences:
       text: אֵלֵךְ אֶל־הַשָּׂדֶה׃
       tokens: [{surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַשָּׂדֶה, sense: sadeh, morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
-      reverse: אלך אל השדה
+      reverse: |-
+        אלך אל השדה
+        (אני|אנכי) אלך אל השדה
   translations:
     en: |-
       I will go to the field.
@@ -356,7 +356,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אֶשְׁמַע׃
       tokens: [{surface: אֶשְׁמַע, sense: shama, form: 'form:yiqtol-1cs', readings: {tiberian: ʾešmaʿ}}]
-      reverse: אשמע
+      reverse: |-
+        אשמע
+        (אני|אנכי) אשמע
   translations:
     en: |-
       I will (listen|hear).
@@ -508,9 +510,7 @@ sentences:
       text: הַלַּיְלָה כַּיּוֹם׃
       tokens: [{surface: הַלַּיְלָה, sense: layla, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: לַּיְלָה, kc: 'sense:layla'}], readings: {tiberian: halláylâ}}, {surface: כַּיּוֹם, sense: yom, morphs: [
             {surface: כַּ, kc: 'sense:ke'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: kayyôm}}]
-      reverse: |-
-        הלילה כיום
-        כיום הלילה
+      reverse: הלילה כיום
   translations:
     en: |-
       The night is like the day.
@@ -532,7 +532,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: דִּבֶּר
       tokens: [{surface: דִּבֶּר, sense: dibber, form: 'form:qatal-3ms', readings: {tiberian: dibber}}]
-      reverse: דבר
+      reverse: |-
+        דבר
+        הוא דבר
   translations:
     en: |-
       he spoke
@@ -544,7 +546,11 @@ sentences:
       text: וַיְדַבֵּר יְהוָה אֶל־אַבְרָם׃
       tokens: [{surface: וַיְדַבֵּר, sense: dibber, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayḏabbēr}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
           readings: {tiberian: ʾel-}}, {surface: אַבְרָם, sense: avram, readings: {tiberian: ʾaḇrām}}]
-      reverse: וידבר יהוה אל אברם
+      reverse: |-
+        וידבר יהוה אל אברם
+        יהוה דבר אל אברם
+        ויהוה דבר אל אברם
+        דבר יהוה אל אברם
   translations:
     en: '[(And|Then)] the LORD (spoke|said) to Abram.'
 - id: s.06.39

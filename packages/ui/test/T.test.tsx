@@ -99,7 +99,7 @@ describe("<T>", () => {
     expect(render(<T text={lzh} />)).not.toContain("data-target");
   });
 
-  it("sets sitelen pona in its own face, a word a box, with each logograph's word as ruby (ADR 0085)", () => {
+  it("sets sitelen pona in its own face, a word a box, with each logograph's word as ruby (ADR 0086)", () => {
     const sp = {
       lang: "tok-Qaap",
       orthography: "tok-Qaap/sitelen-pona",

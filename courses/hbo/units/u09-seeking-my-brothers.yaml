@@ -362,7 +362,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיָּבֹא׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}]
-      reverse: (ויבא|ויבוא)
+      reverse: |-
+        (ויבא|ויבוא)
+        בא
+        הוא בא
+        והוא בא
   translations:
     en: |-
       [(And|Then)] he came.
@@ -374,7 +378,11 @@ sentences:
       text: וַיָּבֹא אֶל־הַבַּיִת׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַבַּיִת, sense: bayit, morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: habbáyiṯ}}]
-      reverse: (ויבא|ויבוא) אל הבית
+      reverse: |-
+        (ויבא|ויבוא) אל הבית
+        בא אל הבית
+        הוא בא אל הבית
+        והוא בא אל הבית
   translations:
     en: |-
       [(And|Then)] he came to the house.
@@ -418,7 +426,11 @@ sentences:
       text: וַיָּבֹא שְׁכֶמָה׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה,
               kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
-      reverse: (ויבא|ויבוא) שכמה
+      reverse: |-
+        (ויבא|ויבוא) שכמה
+        בא שכמה
+        הוא בא שכמה
+        והוא בא שכמה
   translations:
     en: |-
       [(And|Then)] he came to Shechem.
@@ -476,7 +488,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: מָצָאתִי׃
       tokens: [{surface: מָצָאתִי, sense: matsa, form: 'form:qatal-1cs', readings: {tiberian: māṣā́ʾṯî}}]
-      reverse: מצאתי
+      reverse: |-
+        מצאתי
+        (אני|אנכי) מצאתי
   translations:
     en: |-
       I found (it|him).
@@ -498,7 +512,11 @@ sentences:
       text: וַיִּשְׁאַל אֶת־הָאִישׁ׃
       tokens: [{surface: וַיִּשְׁאַל, sense: shaal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišʾal}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הָאִישׁ, sense: ish, morphs: [
             {surface: הָ, kc: 'sense:ha'}, {surface: אִישׁ, kc: 'sense:ish'}], readings: {tiberian: hāʾîš}}]
-      reverse: וישאל את האיש
+      reverse: |-
+        וישאל את האיש
+        שאל את האיש
+        הוא שאל את האיש
+        והוא שאל את האיש
   translations:
     en: '[(And|Then)] he asked the man.'
 - id: s.09.35

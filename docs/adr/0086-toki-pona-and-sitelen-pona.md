@@ -1,4 +1,4 @@
-# 0085. Toki Pona in sitelen Lasina and sitelen pona: a private-use script subtag, UCSUR text, typed Latin graded as logographs
+# 0086. Toki Pona in sitelen Lasina and sitelen pona: a private-use script subtag, UCSUR text, typed Latin graded as logographs
 
 - Status: Proposed
 - Date: 2026-11-08
@@ -110,6 +110,10 @@ review it.
   in one place when ISO 15924 assigns a code.
 - The UCSUR text needs the font; without it the logographs are tofu. The font is self-hosted with
   the app, so the app always has it.
+- The tok accept sets were drafted before [ADR 0085](0085-what-the-prompt-leaves-open.md): the English sets give
+  every person, number and tense Toki Pona leaves open, and the Toki Pona sets some equivalent answers (mi mute for
+  we, jan mije for mije), but nothing has looked for all that the English prompts leave open (word choice among
+  near-synonyms, optional modifiers, pi or no pi). They are to be checked against that rule, as the other courses are.
 - Not done:
   - nasin sitelen kalama in cartouches (a dot or colon after a logograph reads its first mora or the
     whole word): such a name is read by first letters only;

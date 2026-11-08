@@ -431,7 +431,7 @@ TOK_SP = "tok-Qaap/sitelen-pona"
 def test_toki_pona_pins_every_sentence_in_sitelen_lasina_and_sitelen_pona(
     core_cli: CoreCli,
 ) -> None:
-    """tok (ADR 0085): every sentence and story line is pinned in both orthographies, and the
+    """tok (ADR 0086): every sentence and story line is pinned in both orthographies, and the
     sitelen pona is the Latin's words as logographs (the compiler would say so otherwise): one
     logograph a word, with its word as ruby, a name a cartouche, sentences an ideographic space
     apart and no spaces between words."""

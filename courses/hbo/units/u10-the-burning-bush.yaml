@@ -166,7 +166,9 @@ sentences:
       text: וַיֵּרָא אֵלָיו מַלְאַךְ יְהוָה׃
       tokens: [{surface: וַיֵּרָא, sense: nirah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyērāʾ}}, {surface: אֵלָיו, sense: el, morphs: [{surface: אֵלָי, kc: 'sense:el'}, {surface: ו, kc: 'form:sfx-3ms'}],
           readings: {tiberian: ʾēlāyw}}, {surface: מַלְאַךְ, sense: malakh, form: 'form:cstr', readings: {tiberian: malʾaḵ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
-      reverse: וירא אליו מלאך יהוה
+      reverse: |-
+        וירא אליו מלאך יהוה
+        נראה אליו מלאך יהוה
   translations:
     en: '[(And|Then)] the angel of the LORD appeared to him.'
 - id: s.10.4
@@ -278,7 +280,11 @@ sentences:
       text: וַיַּרְא מֹשֶׁה אֶת־הָאֵשׁ׃
       tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: אֶת, sense: et, readings: {
             tiberian: ʾeṯ-}}, {surface: הָאֵשׁ, sense: esh, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֵשׁ, kc: 'sense:esh'}], readings: {tiberian: hāʾēš}}]
-      reverse: וירא (משה|מושה) את האש
+      reverse: |-
+        וירא (משה|מושה) את האש
+        (משה|מושה) ראה את האש
+        (ומשה|ומושה) ראה את האש
+        ראה (משה|מושה) את האש
   translations:
     en: '[(And|Then)] Moses saw the fire.'
 - id: s.10.14
@@ -581,7 +587,11 @@ sentences:
       text: וַיַּסְתֵּר מֹשֶׁה פָּנָיו׃
       tokens: [{surface: וַיַּסְתֵּר, sense: histir, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyastēr}}, {surface: מֹשֶׁה, sense: moshe, readings: {tiberian: mōšeh}}, {surface: פָּנָיו, sense: panim,
           morphs: [{surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}]
-      reverse: ויסתר (משה|מושה) פניו
+      reverse: |-
+        ויסתר (משה|מושה) פניו
+        (משה|מושה) הסתיר פניו
+        (ומשה|ומושה) הסתיר פניו
+        הסתיר (משה|מושה) פניו
   translations:
     en: '[(And|Then)] Moses hid his face.'
 - id: s.10.41
