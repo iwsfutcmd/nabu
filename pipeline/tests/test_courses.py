@@ -347,3 +347,77 @@ def test_cuban_spanish_runs_thirty_units_each_ending_in_a_story(
     manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
     assert manifest["placement"] == {"production": "typed"}
     assert manifest["target"] == "es-Latn-CU"
+
+
+HBO = "hbo-Hebr/tiberian"
+HEBREW_LETTER = regex.compile(r"\p{Script=Hebrew}")
+
+
+def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> None:
+    """hbo (ADR 0081): every voice says the pinned Tiberian reading as eSpeak NG phonemes, never
+    Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's input is phonemes."""
+    from nabu.audio import tiberian
+    from nabu.audio.course import PHONEME_SCHEMES, read_index
+
+    _, compiled = build(core_cli, "hbo")
+    audio = compiled.course.audio
+    assert audio is not None and audio.voices
+    for voice in audio.voices:
+        assert voice.reading == "tiberian" and voice.reading in PHONEME_SCHEMES
+        assert voice.provider == "espeak-ng" and not voice.voice.startswith("he")
+    index = read_index(COURSES / "hbo" / "audio")
+    assert len(index.clips) > 300
+    for clip in index.clips:
+        assert clip.synthesis is not None
+        assert not HEBREW_LETTER.search(clip.synthesis.input), clip.item
+        words = regex.findall(r"\[\[[^\]]*\]\]", clip.synthesis.input)
+        assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
+            clip.item
+        )
+    assert tiberian.espeak("wayyṓʾmer") in {
+        c.synthesis.input.split(" ")[0] for c in index.clips if c.synthesis
+    }
+
+
+def test_biblical_hebrew_pins_a_tiberian_reading_on_every_word(core_cli: CoreCli) -> None:
+    """Every word of every sentence and story line carries its Tiberian reading, which the audio
+    module can say (ADR 0081); the divine name is read with its qere, ʾăḏōnāy."""
+    from nabu.audio import tiberian
+
+    _, compiled = build(core_cli, "hbo")
+    words = 0
+    for unit in compiled.units:
+        lines = [s["forms"][HBO] for s in unit["sentences"]] + [
+            step["line"]["forms"][HBO]
+            for story in unit.get("stories", [])
+            for step in story["steps"]
+            if "line" in step
+        ]
+        for form in lines:
+            tokens = form["text"]["tokens"] if "text" in form else form["tokens"]
+            for t in tokens:
+                if t["kind"] != "word":
+                    continue
+                words += 1
+                reading = t["readings"]["tiberian"]
+                assert tiberian.ipa(reading), (unit["id"], t["surface"])
+                if regex.sub(r"\p{M}", "", t["surface"]) == "יהוה":
+                    assert reading == "ʾăḏōnāy"
+    assert words > 1000
+
+
+def test_biblical_hebrew_is_pointed_and_shows_its_points_by_default(core_cli: CoreCli) -> None:
+    """The text is written with the Tiberian pointing, which the player shows by default and
+    hides on request; answers are typed and graded without points."""
+    _, compiled = build(core_cli, "hbo")
+    profile = PROFILES[HBO]
+    layers = [a for a in profile.annotations or [] if a.kind == "vocalization"]
+    assert [(a.toggle, a.default) for a in layers] == [(True, "on")]
+    assert profile.match and profile.match.marks and profile.match.marks.policy == "ignore"
+    marks = regex.compile(profile.match.marks.set)
+    for s in sentences(compiled):
+        form = s["forms"][HBO]
+        text = "".join(t["surface"] for t in form["text"]["tokens"])
+        assert marks.search(text), s["id"]
+        accept = form.get("reverse") or ""
+        assert not marks.search(str(accept)), s["id"]
