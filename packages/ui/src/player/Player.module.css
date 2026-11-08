@@ -249,6 +249,9 @@
 .pictureImage {
   inline-size: 5rem;
   block-size: 5rem;
+  /* Pictures are drawn for a light page (with margins of their own): a dark theme sets them on a light plate. */
+  background-color: var(--nabu-color-picture);
+  border-radius: var(--nabu-radius-tile);
 }
 
 /* Gap sentences: before ▢ after, in the target direction. */
@@ -541,7 +544,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--nabu-space-4);
-  background-color: rgb(0 0 0 / 40%);
+  background-color: var(--nabu-color-backdrop);
 }
 
 .dialog {
