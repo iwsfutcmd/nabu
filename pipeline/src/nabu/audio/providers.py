@@ -39,6 +39,7 @@ import base64
 import hashlib
 import importlib
 import json
+import math
 import os
 import sys
 import time
@@ -747,6 +748,41 @@ def to_pcm(samples: Any) -> bytes:
     return bytes((data * 32767.0).round().astype("<i2").tobytes())
 
 
+#: OmniVoice sometimes leaves near-silence around the speech, up to a second before it. A clip keeps
+#: LEAD_S before its first and TAIL_S after its last 20 ms within EDGE_DB of its loudest; the tail
+#: is the longer, so a soft last sound (an aspirated -s) stays.
+EDGE_DB = 40.0
+LEAD_S = 0.08
+TAIL_S = 0.15
+
+
+def trim_edges(samples: Any, sampling_rate: int) -> Any:
+    """The samples without the near-silence before and after the speech, short margins kept.
+    Samples that are all as loud as each other (silence, a level) come back as they are. numpy's
+    when it is there (the model's arrays), plain Python otherwise (without the speech groups)."""
+    step = max(1, sampling_rate // 50)
+    try:
+        np: Any = importlib.import_module("numpy")
+    except ImportError:
+        y: Any = [float(x) for x in samples]
+        n = len(y) // step
+        rms = [math.sqrt(sum(v * v for v in y[i * step : (i + 1) * step]) / step) for i in range(n)]
+    else:
+        y = np.asarray(samples, dtype=np.float32)
+        n = len(y) // step
+        frames = y[: n * step].astype(np.float64).reshape(n, step)
+        rms = np.sqrt(np.mean(frames**2, axis=1)).tolist()
+    if n < 2 or max(rms) <= 0.0:
+        return samples
+    floor = max(rms) * 10 ** (-EDGE_DB / 20)
+    loud = [i for i, r in enumerate(rms) if r >= floor]
+    if loud[0] == 0 and loud[-1] == n - 1:
+        return samples
+    start = max(0, loud[0] * step - round(LEAD_S * sampling_rate))
+    end = min(len(y), (loud[-1] + 1) * step + round(TAIL_S * sampling_rate))
+    return y[start:end]
+
+
 class OmniVoiceProvider:
     """An OmniVoice checkpoint (`model`: owner/name@commit) speaking `language` in the voice of a
     reference recording. Diffusion sampling is seeded per clip (`seed_of`), so the same input,
@@ -803,7 +839,9 @@ class OmniVoiceProvider:
             samples = engine.speak(
                 text, self.language, seed + attempt, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
             )
-            clip = Clip(to_pcm(samples), engine.sampling_rate, None, None)
+            clip = Clip(
+                to_pcm(trim_edges(samples, engine.sampling_rate)), engine.sampling_rate, None, None
+            )
             if len(clip.pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
                 break
         return clip
