@@ -66,7 +66,7 @@ sentences:
     fa-Arab/standard:
       text: ممنون!
       tokens: [{surface: ممنون, sense: mamnun}]
-      reverse: "(ممنون|ممنونم|مرسی|متشکرم|سپاس\u200cگزارم)"
+      reverse: "(ممنون|ممنونم|مرسی|متشکرم|سپاس\u200Cگزارم)\nتشکر می\u200Cکنم"
   translations:
     en: |-
       Thank you!
@@ -86,7 +86,7 @@ sentences:
     fa-Arab/standard:
       text: نه، ممنون.
       tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: ممنون, sense: mamnun}]
-      reverse: نه (ممنون|ممنونم|مرسی|متشکرم)
+      reverse: "نه (ممنون|ممنونم|مرسی|متشکرم)\nخیر ممنون\nنه سپاس\u200Cگزارم"
   translations:
     en: |-
       No, thank you.
@@ -142,7 +142,9 @@ sentences:
     fa-Arab/standard:
       text: این علی است.
       tokens: [{surface: این, sense: in}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
-      reverse: این علی است
+      reverse: |-
+        این علی است
+        این علیه
   translations:
     en: This is Ali.
 - id: s.12
@@ -151,7 +153,7 @@ sentences:
     fa-Arab/standard:
       text: مریم هستم.
       tokens: [{surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] (مریم هستم|مریمم)'
+      reverse: "[من] (مریم هستم|مریمم)\nمریم\u200Cام"
   translations:
     en: I('m| am) Maryam.
 - id: s.13
@@ -160,7 +162,7 @@ sentences:
     fa-Arab/standard:
       text: من مریم هستم.
       tokens: [{surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] (مریم هستم|مریمم)'
+      reverse: "[من] (مریم هستم|مریمم)\nمن مریم\u200Cام"
   translations:
     en: I('m| am) Maryam.
 - id: s.14
@@ -172,6 +174,8 @@ sentences:
       reverse: |-
         [تو] علی هستی
         [شما] علی هستید
+        آیا تو علی هستی
+        آیا شما علی هستید
   translations:
     en: Are you Ali?
 - id: s.15
@@ -183,6 +187,8 @@ sentences:
       reverse: |-
         [تو] علی هستی
         [شما] علی هستید
+        آیا تو علی هستی
+        آیا شما علی هستید
   translations:
     en: Are you Ali?
 - id: s.16
@@ -200,7 +206,9 @@ sentences:
     fa-Arab/standard:
       text: نه، من مریم هستم.
       tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: نه [من] (مریم هستم|مریمم)
+      reverse: |-
+        نه [من] (مریم هستم|مریمم)
+        خیر من مریم هستم
   translations:
     en: No, I('m| am) Maryam.
 - id: s.18
@@ -231,7 +239,9 @@ sentences:
       tokens: [{surface: اسمِ, sense: esm}, {surface: من, sense: man}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
       reverse: (اسم من|اسمم) (مریم است|مریمه)
   translations:
-    en: My name('s| is) Maryam.
+    en: |-
+      My name('s| is) Maryam.
+      I'm called Maryam.
 - id: s.21
   node: fa.book
   constructions: ['construction:ezafe']
@@ -260,7 +270,9 @@ sentences:
     fa-Arab/standard:
       text: کتابِ من خیلی خوب است.
       tokens: [{surface: کتابِ, sense: ketab}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: (کتاب من|کتابم) خیلی (خوب است|خوبه)
+      reverse: |-
+        (کتاب من|کتابم) خیلی (خوب است|خوبه)
+        کتاب من بسیار خوب است
   translations:
     en: My book is (very|really) good.
 - id: s.24
@@ -274,8 +286,11 @@ sentences:
         [شما] (خوب هستید|خوبید)
         [تو] (خوب هستی|خوبی)
         (حال شما|حالتان|حال تو|حالت) (خوب است|خوبه)
+        آیا شما خوب هستید
   translations:
-    en: Are you (well|OK|okay|all right|alright|fine|good)?
+    en: |-
+      Are you (well|OK|okay|all right|alright|fine|good)?
+      Are you doing well?
 - id: s.25
   node: fa.polite
   register: formal
@@ -287,8 +302,11 @@ sentences:
         [شما] (خوب هستید|خوبید)
         [تو] (خوب هستی|خوبی)
         (حال شما|حالتان|حال تو|حالت) (خوب است|خوبه)
+        آیا شما خوب هستید
   translations:
-    en: Are you (well|OK|okay|all right|alright|fine|good)?
+    en: |-
+      Are you (well|OK|okay|all right|alright|fine|good)?
+      Are you doing well?
 - id: s.26
   node: fa.polite
   forms:
@@ -298,6 +316,8 @@ sentences:
       reverse: |-
         (ممنون|ممنونم|مرسی|متشکرم) [من] (خوب هستم|خوبم)
         [من] (خوب هستم|خوبم) (ممنون|ممنونم|مرسی|متشکرم)
+        ممنون حالم خوب است
+        ممنون حال من خوب است
   translations:
     en: |-
       (Thanks|Thank you), I('m| am) (well|fine|good|OK|okay|all right).
@@ -308,7 +328,9 @@ sentences:
     fa-Arab/standard:
       text: مریم و علی خوب هستند.
       tokens: [{surface: مریم, sense: maryam}, {surface: و, sense: va}, {surface: علی, sense: ali}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: مریم و علی (خوب هستند|خوبند)
+      reverse: |-
+        مریم و علی (خوب هستند|خوبند)
+        حال مریم و علی خوب است
   translations:
     en: Maryam and Ali are (well|fine|good|OK|okay|all right).
 - id: s.28
@@ -328,7 +350,7 @@ sentences:
     fa-Arab/standard:
       text: "کتاب\u200cهای من خیلی خوب هستند."
       tokens: [{surface: "کتاب\u200cهای", sense: ketab, morphs: [{surface: "کتاب\u200c", kc: 'sense:ketab'}, {surface: ها, kc: 'form:plural-ha'}, {surface: ی, kc: 'construction:ezafe'}]}, {surface: من, sense: man}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "کتاب\u200cهای من خیلی (خوب هستند|خوبند|خوب است|خوبه)"
+      reverse: "کتاب\u200Cهای من خیلی (خوب هستند|خوبند|خوب است|خوبه)\nکتاب\u200Cهایم خیلی خوب هستند\nکتاب\u200Cهای من بسیار خوب هستند"
   translations:
     en: My books are (very|really) good.
 stories:

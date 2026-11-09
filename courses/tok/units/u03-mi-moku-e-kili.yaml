@@ -48,6 +48,7 @@ sentences:
     en: |-
       (I'm|I am|We're|We are) eating (fruit|the fruit|vegetables).
       (I|We) (eat|ate) (fruit|the fruit|vegetables)
+      I'm eating the vegetables.
 - id: s.u03.2
   node: tok.u03.eat-fruit
   forms:
@@ -55,12 +56,16 @@ sentences:
       text: sina moku e kili.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili,
           readings: {lasina: kili}}]
-      reverse: sina moku e kili
+      reverse: |-
+        sina moku e kili
+        sina mute li moku e kili
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤶󱤉󱤚
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
             lasina: kili}}]
-      reverse: 󱥞󱤶󱤉󱤚
+      reverse: |-
+        󱥞󱤶󱤉󱤚
+        󱥞󱤼󱤧󱤶󱤉󱤚
   translations:
     en: |-
       (You're|You are) eating (fruit|the fruit|vegetables).
@@ -83,6 +88,9 @@ sentences:
       The animal is eating (fruit|the fruit|vegetables).
       The animal (eats|ate) (fruit|the fruit|vegetables)
       [The] animals are eating (fruit|the fruit|vegetables)
+      The animals eat fruit.
+      Animals eat fruit.
+      An animal is eating fruit.
 - id: s.u03.4
   node: tok.u03.eat-fruit
   forms:
@@ -117,6 +125,8 @@ sentences:
     en: |-
       The bird is eating (a bug|bugs|an insect|insects|the bug).
       The bird (eats|ate) (a bug|bugs|an insect|insects|the bug)
+      A bird is eating a bug.
+      Birds eat bugs.
 - id: s.u03.6
   node: tok.u03.eat-fruit
   forms:
@@ -136,6 +146,8 @@ sentences:
       (She's|She is|He's|He is|They're|They are) eating fruit and drinking water
       (She|He) (has|had) fruit and water
       They (have|had) fruit and water
+      She ate fruit and drank water.
+      She eats fruit and drinks water.
 - id: s.u03.7
   node: tok.u03.want
   forms:
@@ -152,6 +164,8 @@ sentences:
     en: |-
       (I'm|I am|We're|We are) eating bread.
       (I|We) (eat|ate) bread
+      I'm eating the bread.
+      I ate the bread.
 - id: s.u03.8
   node: tok.u03.want
   forms:
@@ -165,7 +179,10 @@ sentences:
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
       reverse: 󱤴󱥷󱤉󱥋
   translations:
-    en: (I|We) want (bread|some bread).
+    en: |-
+      (I|We) want (bread|some bread).
+      I wanted bread.
+      I want the bread.
 - id: s.u03.9
   node: tok.u03.want
   forms:
@@ -180,7 +197,9 @@ sentences:
           surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥪, sense: telo, readings: {lasina: telo}}]
       reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥷󱤉󱥪
   translations:
-    en: Mila wants (water|some water|a drink).
+    en: |-
+      Mila wants (water|some water|a drink).
+      Mila wanted water.
 - id: s.u03.10
   node: tok.u03.want
   forms:
@@ -212,6 +231,8 @@ sentences:
     en: |-
       (I|We) want to eat.
       (I'm|I am|We're|We are) hungry
+      I wanted to eat.
+      I was hungry.
 - id: s.u03.12
   node: tok.u03.want
   forms:
@@ -243,7 +264,9 @@ sentences:
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}]
       reverse: 󱤴󱤓󱤉󱥢
   translations:
-    en: (I|We) have (a pet|an animal|pets|animals).
+    en: |-
+      (I|We) have (a pet|an animal|pets|animals).
+      I had a pet.
 - id: s.u03.14
   node: tok.u03.have
   forms:
@@ -293,6 +316,7 @@ sentences:
     en: |-
       (This|That) thing is (big|large).
       (These|Those) things are (big|large)
+      This thing is important.
 - id: s.u03.17
   node: tok.u03.have
   forms:
@@ -300,16 +324,21 @@ sentences:
       text: sina jo e ijo suwi.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: ijo, sense: ijo, readings: {
             lasina: ijo}}, {surface: suwi, sense: suwi, readings: {lasina: suwi}}]
-      reverse: sina jo e ijo suwi
+      reverse: |-
+        sina jo e ijo suwi
+        sina mute li jo e ijo suwi
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤓󱤉󱤌󱥦
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤌, sense: ijo, readings: {lasina: ijo}},
         {surface: 󱥦, sense: suwi, readings: {lasina: suwi}}]
-      reverse: 󱥞󱤓󱤉󱤌󱥦
+      reverse: |-
+        󱥞󱤓󱤉󱤌󱥦
+        󱥞󱤼󱤧󱤓󱤉󱤌󱥦
   translations:
     en: |-
       You have something (sweet|cute).
       You have a (sweet|cute) thing
+      You had something sweet.
 - id: s.u03.18
   node: tok.u03.have
   forms:
@@ -343,7 +372,10 @@ sentences:
         {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
       reverse: 󱤴󱥷󱤓󱤉󱥭󱥣
   translations:
-    en: (I|We) want to (have|own) a (big|large) house.
+    en: |-
+      (I|We) want to (have|own) a (big|large) house.
+      I wanted to have a big house.
+      I want to have a big home.
 - id: s.u03.20
   node: tok.u03.see
   forms:
@@ -361,6 +393,7 @@ sentences:
     en: |-
       (I|We) (see|saw) (an animal|the animal|animals).
       (I'm|I am|We're|We are) (looking at|watching) the animal
+      I'm looking at an animal.
 - id: s.u03.21
   node: tok.u03.see
   forms:
@@ -368,12 +401,16 @@ sentences:
       text: sina lukin e mi.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: mi, sense: mi,
           readings: {lasina: mi}}]
-      reverse: sina lukin e mi
+      reverse: |-
+        sina lukin e mi
+        sina mute li lukin e mi
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤮󱤉󱤴
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}]
-      reverse: 󱥞󱤮󱤉󱤴
+      reverse: |-
+        󱥞󱤮󱤉󱤴
+        󱥞󱤼󱤧󱤮󱤉󱤴
   translations:
     en: |-
       You (see|saw) (me|us).
@@ -431,6 +468,7 @@ sentences:
     en: |-
       (I|We) want to read (a book|the book).
       (I|We) want to see the book
+      I wanted to read the book.
 - id: s.u03.25
   node: tok.u03.see
   forms:
@@ -502,12 +540,16 @@ sentences:
       text: sina pali e ilo.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: ilo, sense: ilo, readings: {
             lasina: ilo}}]
-      reverse: sina pali e ilo
+      reverse: |-
+        sina pali e ilo
+        sina mute li pali e ilo
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥉󱤉󱤎
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤎, sense: ilo, readings: {
             lasina: ilo}}]
-      reverse: 󱥞󱥉󱤉󱤎
+      reverse: |-
+        󱥞󱥉󱤉󱤎
+        󱥞󱤼󱤧󱥉󱤉󱤎
   translations:
     en: |-
       (You're|You are) making (a tool|tools).
@@ -553,6 +595,8 @@ sentences:
       (He has a tool and is|She has a tool and is|They have a tool and are) making something.
       (He|She) has a tool and makes something
       They have a tool and make something
+      He had a tool and made something.
+      They had a tool and made something.
 - id: s.u03.32
   node: tok.u03.love
   forms:
@@ -567,7 +611,9 @@ sentences:
             lasina: sina}}]
       reverse: 󱤴󱥅󱤉󱥞
   translations:
-    en: (I|We) love you.
+    en: |-
+      (I|We) love you.
+      I loved you.
 - id: s.u03.33
   node: tok.u03.love
   forms:
@@ -612,7 +658,9 @@ sentences:
           surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
       reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥅󱤉󱤗
   translations:
-    en: Mila loves (plants|the plant|the plants|trees).
+    en: |-
+      Mila loves (plants|the plant|the plants|trees).
+      Mila loves the trees.
 - id: s.u03.36
   node: tok.u03.love
   forms:
@@ -630,6 +678,7 @@ sentences:
     en: |-
       The animal is eating (the plant|a plant|plants|grass|the grass).
       The animal (eats|ate) (the plant|a plant|plants|grass|the grass)
+      The animals are eating grass.
 - id: s.u03.37
   node: tok.u03.love
   forms:
@@ -644,7 +693,9 @@ sentences:
             lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
       reverse: 󱤴󱥅󱤉󱥢󱤴
   translations:
-    en: (I|We) love (my|our) (pet|pets|animal|animals).
+    en: |-
+      (I|We) love (my|our) (pet|pets|animal|animals).
+      I loved my pet.
 - id: s.u03.38
   node: tok.u03.love
   forms:

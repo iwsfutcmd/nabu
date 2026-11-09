@@ -123,7 +123,12 @@ sentences:
       tokens: [{surface: 莊子, sense: 莊子, readings: {pinyin: zhuāng zǐ, jyutping: zong1 zi2, baxter: tsrjang tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 莊子曰善[哉]
   translations:
-    en: Zhuangzi said, “(Good|Excellent|Well said|Very good).”
+    en: |-
+      Zhuangzi said, “(Good|Excellent|Well said|Very good).”
+      Zhuangzi says, “Good.”
+      Chuang Tzu said, “Good.”
+      Zhuangzi said, “Fine.”
+      Zhuangzi said, “That is good.”
 - id: s.05.2
   node: lzh.u05.zhuangzi
   forms:
@@ -132,7 +137,11 @@ sentences:
       tokens: [{surface: 惠子, sense: 惠子, readings: {pinyin: huì zǐ, jyutping: wai6 zi2, baxter: hwejH tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 然, sense: 然, readings: {pinyin: rán, jyutping: jin4, baxter: nyen}}]
       reverse: 惠子曰然[也]
   translations:
-    en: Huizi said, “(It is so|That is so|So it is|Yes|Indeed|That's right).”
+    en: |-
+      Huizi said, “(It is so|That is so|So it is|Yes|Indeed|That's right).”
+      Huizi says, “Yes.”
+      Huizi said, “That is right.”
+      Huizi said, “That's so.”
 - id: s.05.3
   node: lzh.u05.zhuangzi
   forms:
@@ -145,6 +154,7 @@ sentences:
       Huizi was Zhuangzi's friend.
       Huizi (is|was) (a friend of Zhuangzi|a friend of Zhuangzi's|Zhuangzi's companion).
       Huizi is Zhuangzi's friend.
+      Huizi was one of Zhuangzi's friends.
 - id: s.05.4
   node: lzh.u05.zhuangzi
   forms:
@@ -153,7 +163,9 @@ sentences:
       tokens: [{surface: 莊子, sense: 莊子, readings: {pinyin: zhuāng zǐ, jyutping: zong1 zi2, baxter: tsrjang tsiX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 惠子, sense: 惠子, readings: {pinyin: huì zǐ, jyutping: wai6 zi2, baxter: hwejH tsiX}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
       reverse: 莊子與惠子來
   translations:
-    en: Zhuangzi and Huizi (come|came|are coming|have come).
+    en: |-
+      Zhuangzi and Huizi (come|came|are coming|have come).
+      Zhuangzi came with Huizi.
 - id: s.05.5
   node: lzh.u05.zhuangzi
   forms:
@@ -168,6 +180,7 @@ sentences:
       Zilu and I are companions.
       Zilu and I were (friends|companions).
       I am Zilu's friend.
+      I am friends with Zilu.
 - id: s.05.6
   node: lzh.u05.zhuangzi
   forms:
@@ -180,6 +193,8 @@ sentences:
       Zhuangzi (strolled|roamed|wandered) with Huizi.
       Zhuangzi (strolls|roams|wanders|is strolling|is roaming|was strolling|was roaming) with Huizi.
       Zhuangzi and Huizi (strolled|roamed|wandered|stroll|roam|wander|were strolling|were roaming) (|together).
+      Zhuangzi and Huizi were wandering.
+      Zhuangzi was wandering with Huizi.
 - id: s.05.7
   node: lzh.u05.zhuangzi
   forms:
@@ -193,19 +208,25 @@ sentences:
       I('ll| will) (roam|wander) with you.
       I (stroll|roam|wander|am strolling|am roaming) with you.
       Let me (stroll|roam|wander) with you.
+      I'll stroll with you.
+      I strolled with you.
+      I am wandering with you.
 - id: s.05.8
   node: lzh.u05.zhuangzi
   forms:
     lzh-Hant/standard:
       text: 孔子遊於魯。
       tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}]
-      reverse: 孔子遊於魯
+      reverse: |-
+        孔子遊於魯
+        孔子遊于魯
   translations:
     en: |-
       Confucius travelled in Lu.
       Confucius (traveled|roamed|wandered) (in|through|about) Lu.
       Confucius travelled (through|about) Lu.
       Confucius (travels|roams|wanders) (in|through|about) Lu.
+      Kongzi travelled in Lu.
 - id: s.05.9
   node: lzh.u05.landscape
   forms:
@@ -217,6 +238,8 @@ sentences:
     en: |-
       There is water.
       There is a river.
+      There was water.
+      There is a stream.
 - id: s.05.10
   node: lzh.u05.landscape
   forms:
@@ -231,6 +254,7 @@ sentences:
       There are mountains and waters.
       There are mountains and streams.
       There were (hills|mountains) and (waters|rivers|streams).
+      There is a mountain and a river.
 - id: s.05.11
   node: lzh.u05.landscape
   forms:
@@ -246,6 +270,7 @@ sentences:
       There is a stream (on|up) the (mountain|hill).
       There is a river (on|up) the (mountain|hill).
       On the (mountain|hill) there is (water|a stream|a river).
+      There was water on the mountain.
 - id: s.05.12
   node: lzh.u05.landscape
   forms:
@@ -262,6 +287,8 @@ sentences:
       There are people below the (mountain|hill).
       There are people under the (mountain|hill).
       There are people beneath the (mountain|hill).
+      There was someone at the foot of the mountain.
+      At the foot of the mountain there are people.
 - id: s.05.13
   node: lzh.u05.landscape
   forms:
@@ -275,6 +302,9 @@ sentences:
       In the sky there is the sun.
       There is a sun in the (sky|heavens).
       There is the sun (up |)in the (sky|heavens).
+      The sun is in the heavens.
+      In the sky there is a sun.
+      The sun was in the sky.
 - id: s.05.14
   node: lzh.u05.landscape
   forms:
@@ -286,6 +316,9 @@ sentences:
     en: |-
       The sun rises.
       The sun (comes out|has risen|rose|is rising|came out).
+      The sun comes up.
+      The sun came up.
+      The sun has come out.
 - id: s.05.15
   node: lzh.u05.landscape
   forms:
@@ -303,7 +336,9 @@ sentences:
     lzh-Hant/standard:
       text: 水自山上來。
       tokens: [{surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 山, sense: 山, readings: {pinyin: shān, jyutping: saan1, baxter: srean}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
-      reverse: 水自山上來
+      reverse: |-
+        水自山上來
+        水從山上來
   translations:
     en: |-
       The water comes from the mountain.
@@ -314,6 +349,7 @@ sentences:
       The water flows (down from|from|off) the (mountain|hill).
       The river (comes|came|flows) (down from|from|off) the (mountain|hill).
       The stream (comes|came|flows) (down from|from|off) the (mountain|hill).
+      Water comes from the mountain.
 - id: s.05.17
   node: lzh.u05.fish
   forms:
@@ -326,6 +362,8 @@ sentences:
       I see it.
       I (see|saw) (him|her|them).
       I saw it.
+      I have seen it.
+      I can see it.
 - id: s.05.18
   node: lzh.u05.fish
   forms:
@@ -337,6 +375,8 @@ sentences:
     en: |-
       There are fish.
       There is a fish.
+      There were fish.
+      There was a fish.
 - id: s.05.19
   node: lzh.u05.fish
   forms:
@@ -350,6 +390,8 @@ sentences:
       I see a fish.
       I saw (a|the) fish.
       I can see (a|the) fish.
+      I see fish.
+      I have seen a fish.
 - id: s.05.20
   node: lzh.u05.fish
   forms:
@@ -364,6 +406,8 @@ sentences:
       The fish come out and swim around.
       The fish come out to swim (about|around).
       The fish came out and swam (about|around).
+      A fish comes out and swims about.
+      The fish come out and swim.
 - id: s.05.21
   node: lzh.u05.fish
   forms:
@@ -376,6 +420,9 @@ sentences:
       Are the fish happy?
       (Are|Were) the fish (joyful|enjoying themselves)?
       Were the fish happy?
+      Are fish happy?
+      Is the fish happy?
+      Do the fish enjoy themselves?
 - id: s.05.22
   node: lzh.u05.fish
   forms:
@@ -388,6 +435,7 @@ sentences:
       The Hao is a river.
       The Hao river is a (stream|river).
       The Hao is a stream.
+      The Hao was a river.
 - id: s.05.23
   node: lzh.u05.fish
   forms:
@@ -402,19 +450,27 @@ sentences:
       There is a bridge on the Hao.
       There is a dam (over|across|on) the Hao.
       (Over|Across) the Hao there is a (bridge|dam).
+      There was a bridge over the Hao.
+      There is a bridge over the Hao River.
 - id: s.05.24
   node: lzh.u05.fish
   forms:
     lzh-Hant/standard:
       text: 莊子與惠子遊於濠梁之上。
       tokens: [{surface: 莊子, sense: 莊子, readings: {pinyin: zhuāng zǐ, jyutping: zong1 zi2, baxter: tsrjang tsiX}}, {surface: 與, sense: 與, readings: {pinyin: yǔ, jyutping: jyu5, baxter: yoX}}, {surface: 惠子, sense: 惠子, readings: {pinyin: huì zǐ, jyutping: wai6 zi2, baxter: hwejH tsiX}}, {surface: 遊, sense: 遊, readings: {pinyin: yóu, jyutping: jau4, baxter: yuw}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 濠, sense: 濠, readings: {pinyin: háo, jyutping: hou4, baxter: haw}}, {surface: 梁, sense: 梁, readings: {pinyin: liáng, jyutping: loeng4, baxter: ljang}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}]
-      reverse: 莊子與惠子遊於濠梁之上
+      reverse: |-
+        莊子與惠子遊於濠梁之上
+        莊子與惠子遊于濠梁之上
   translations:
     en: |-
       Zhuangzi and Huizi were strolling on the bridge over the Hao.
       Zhuangzi and Huizi (strolled|roamed|wandered) on the (bridge|dam) (over|across) the Hao.
       Zhuangzi and Huizi were (strolling|roaming|wandering) on the dam (over|across) the Hao.
       Zhuangzi (strolled|was strolling|roamed|wandered) with Huizi on the (bridge|dam) (over|across) the Hao.
+      Zhuangzi and Huizi were wandering on the bridge over the Hao.
+      Zhuangzi and Huizi were strolling along the dam of the Hao River.
+      Zhuangzi and Huizi were strolling on the bridge over the Hao River.
+      Zhuangzi and Huizi stroll on the bridge over the Hao.
 - id: s.05.25
   node: lzh.u05.fish
   forms:
@@ -429,6 +485,7 @@ sentences:
       The minnows come out and swim around.
       The minnows come out to swim (around|about).
       The minnows came out and swam (about|around).
+      The minnows come out and swim.
 - id: s.05.26
   node: lzh.u05.fish
   forms:
@@ -442,6 +499,8 @@ sentences:
       The minnows (come|came) out and swim (about|around) (at their ease|at leisure|unhurried|leisurely).
       The minnows swim (around|about) (at leisure|unhurried|leisurely).
       The minnows swim around at their ease.
+      The minnows swim about at ease.
+      The minnows swim about calmly.
 - id: s.05.27
   node: lzh.u05.fish
   forms:
@@ -458,6 +517,9 @@ sentences:
       A noble person is (unhurried|calm|at ease|composed).
       A superior man is (unhurried|calm|at ease|composed).
       The (gentleman|noble person|superior man) is (unhurried|calm|at ease|composed).
+      Gentlemen are at ease.
+      A noble man is at ease.
+      A superior person is at ease.
 - id: s.05.28
   node: lzh.u05.fish
   forms:
@@ -470,6 +532,8 @@ sentences:
       This is the joy of fish.
       (This|That) is (what fish enjoy|how fish enjoy themselves|the happiness of fish|fish happiness).
       That is the joy of fish.
+      This is the joy of the fish.
+      Such is the joy of fish.
 - id: s.05.29
   node: lzh.u05.fish
   forms:
@@ -484,6 +548,7 @@ sentences:
       The minnows swim (around|about) (at leisure|unhurried|leisurely): (this|that) is (the joy of fish|what fish enjoy|the happiness of fish).
       The minnows swim about at their ease: (that is the joy of fish|this is what fish enjoy|that is what fish enjoy|this is the happiness of fish|that is the happiness of fish).
       The minnows swim around at their ease: (this|that) is (the joy of fish|what fish enjoy|the happiness of fish).
+      The minnows come out and swim about at their ease: this is the joy of the fish.
 - id: s.05.30
   node: lzh.u05.you
   forms:
@@ -496,6 +561,8 @@ sentences:
       Do you know it?
       Do you know (this|that|him|her)?
       Did you know (it|this|that)?
+      Do you know them?
+      Did you know him?
 - id: s.05.31
   node: lzh.u05.you
   forms:
@@ -523,6 +590,7 @@ sentences:
       How would you know (it|this|that)?
       How could you know (it|this|that)?
       How can you know (it|this|that)?
+      How did you know it?
 - id: s.05.33
   node: lzh.u05.you
   forms:
@@ -538,6 +606,7 @@ sentences:
       How could I know (it|this|that)?
       How can I know (it|this|that)?
       How do I know (it|this|that)?
+      How did I know it?
 - id: s.05.34
   node: lzh.u05.you
   forms:
@@ -551,6 +620,8 @@ sentences:
       Are (the fish|fish) also (happy|joyful)?
       (Are|Do) (the fish|fish) (enjoy themselves|feel joy) too?
       Are fish joyful too?
+      Are the fish happy too?
+      Is the fish happy too?
 - id: s.05.35
   node: lzh.u05.you
   forms:
@@ -569,6 +640,9 @@ sentences:
       You are not a fish: how could you know (the joy of fish|what fish enjoy|that the fish are happy|the happiness of fish)?
       You are not a fish: how can you know (the joy of fish|what fish enjoy|that the fish are happy|the happiness of fish)?
       You aren't a fish: how (do|would|could|can) you know (the joy of fish|what fish enjoy|that the fish are happy|the happiness of fish)?
+      You are not a fish, so how do you know the joy of fish?
+      You are not a fish: how do you know that fish are happy?
+      You are not a fish: how do you know the joy of the fish?
 - id: s.05.36
   node: lzh.u05.you
   forms:
@@ -589,6 +663,8 @@ sentences:
       You are not me: how can you know (that |)I (don't|do not) know (the joy of fish|what fish enjoy|the happiness of fish)?
       You are not I: how (do|would|could|can) you know (that |)I (don't|do not) know (the joy of fish|what fish enjoy|the happiness of fish)?
       You aren't (me|I): how (do|would|could|can) you know (that |)I (don't|do not) know (the joy of fish|what fish enjoy|the happiness of fish)?
+      You are not me, so how do you know that I do not know the joy of fish?
+      You are not me: how do you know that I do not know the joy of the fish?
 - id: s.05.37
   node: lzh.u05.you
   forms:
@@ -601,6 +677,8 @@ sentences:
       Huizi was not happy.
       Huizi (is not|isn't|wasn't) (happy|pleased|joyful).
       Huizi was not (pleased|joyful).
+      Huizi was unhappy.
+      Huizi was displeased.
 stories:
 - id: lzh.story.zhuangzi-fish
   node: lzh.u05.story

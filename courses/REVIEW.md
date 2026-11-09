@@ -70,6 +70,15 @@ Policies the pass adopted, to confirm or reverse:
     - Plural "you" is taught in four new lessons (ADR 0075); see apc point 12 below.
   - The judge's golden items keep ميرسي, تمام, باي and شكرا as rejects.
 
+## Accept sets checked against ADR 0085 (November 2026)
+
+Every course's accept sets were then read against
+[ADR 0085](../docs/adr/0085-what-the-prompt-leaves-open.md): an answer is right if its own
+translation would be the prompt. The answers a model was sure of were added, about 3,400 across
+the courses. [accept-doubts.md](accept-doubts.md) lists the 435 it was not sure of, sentence by
+sentence, and eight questions of policy (English contractions, register, yue spellings, digits).
+Answering a policy question settles many rows at once.
+
 ## Marking what is wrong
 
 You can mark mistakes in the app ([ADR 0051](../docs/adr/0051-corrections.md)), with no setup.
@@ -650,8 +659,13 @@ references in the reference library (`toki-pona/`, notes in notes/tok). A fluent
 2. **Night and stars.** u07 avoids tenpo mun, often read as *month*: mun is the moon and the stars (mun mute li
    suno), and nightfall is "suno li weka la". tenpo pimeja (night) comes in u09, with pimeja.
 3. **Accept sets, by ADR 0085** (what the prompt does not decide, the learner may choose). They were drafted before
-   that rule: check the Toki Pona sets for every answer the English leaves open (a near-synonym, an optional
-   modifier, jan mije or mije, mama or mama meli), and the English sets for what the Toki Pona leaves open.
+   that rule, then checked against it: 300 answers were added in both orthographies and English. The additions:
+   - *sina mute* where "you" may be plural, *ona mute* for "they";
+   - *our* for mi; the past tense in English;
+   - anu seme beside "X ala X";
+   - a time as a la phrase or a final lon phrase.
+
+   The doubts (joined objects in the other order, soweli as *cat* or *dog*) are in [accept-doubts.md](accept-doubts.md).
    **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
    for ona, and the present, progressive and past where natural. Check that none is too lenient:
    - kala li moku also takes *fish is food*; akesi takes lizard, frog, snake or reptile;

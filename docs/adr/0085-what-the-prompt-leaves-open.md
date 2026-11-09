@@ -70,8 +70,14 @@ now adds:
 
 - **Grading is unchanged.** Only the accept sets change. Another order or form is CORRECT_ALT,
   and a createGrader test pins both sides for hbo.
-- **The other courses** (fa, yue, uz, apc, lzh, es) are to be checked against the rule. Their
-  accept sets have pro-drop and some orders already, but nothing has looked for what they leave
-  out. Until they are checked, a learner's report is how a missing answer comes in.
+- **The other courses were checked against the rule** (November 2026). A model read every
+  sentence in both directions and proposed what each set left out.
+  - The answers it was sure of are in the sets: yue 184, uz 193, fa 344, es 616, apc 996,
+    lzh 734, tok 300. Each was graded before and after.
+  - The 435 it was not sure of, and eight questions of policy, are in
+    [courses/accept-doubts.md](../../courses/accept-doubts.md) for reviewers.
+  - The check also found answers the sets wrongly accepted (*de el autobús*, أنا with a "you"
+    verb, *He did not came*). Those were fixed.
+  - Golden judge items the sets now accept were given new answers or removed (apc, uz, yue).
 - **New courses** draft their accept sets this way from the start. A drafting script that adds
   alternatives shows its additions, and someone reads each against the prompt.

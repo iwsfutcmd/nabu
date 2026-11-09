@@ -63,6 +63,7 @@ sentences:
       Great!
       Fine!
       Nice!
+      Okay!
 - id: s.u01.3
   node: tok.u01.hello
   forms:
@@ -75,20 +76,29 @@ sentences:
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
       reverse: 󱤴󱥔
   translations:
-    en: (I'm|I am|We're|We are) (good|fine|well|okay|ok).
+    en: |-
+      (I'm|I am|We're|We are) (good|fine|well|okay|ok).
+      I'm all right.
+      I'm alright.
 - id: s.u01.4
   node: tok.u01.hello
   forms:
     tok-Latn/standard:
       text: sina pona.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: sina pona
+      reverse: |-
+        sina pona
+        sina mute li pona
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥔
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
-      reverse: 󱥞󱥔
+      reverse: |-
+        󱥞󱥔
+        󱥞󱤼󱤧󱥔
   translations:
-    en: (You're|You are) (good|nice|kind|fine|well).
+    en: |-
+      (You're|You are) (good|nice|kind|fine|well).
+      You're okay.
 - id: s.u01.5
   node: tok.u01.hello
   forms:
@@ -104,52 +114,72 @@ sentences:
     en: |-
       (I'm|I am|We're|We are) (talking|speaking).
       (I|We) (talk|speak)
+      I talked.
+      I spoke.
 - id: s.u01.6
   node: tok.u01.hello
   forms:
     tok-Latn/standard:
       text: sina toki.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: toki, sense: toki, readings: {lasina: toki}}]
-      reverse: sina toki
+      reverse: |-
+        sina toki
+        sina mute li toki
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥬
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}]
-      reverse: 󱥞󱥬
+      reverse: |-
+        󱥞󱥬
+        󱥞󱤼󱤧󱥬
   translations:
     en: |-
       (You're|You are) (talking|speaking).
       You (talk|speak)
+      You talked.
+      You spoke.
 - id: s.u01.7
   node: tok.u01.hello
   forms:
     tok-Latn/standard:
       text: mi toki pona.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: mi toki pona
+      reverse: |-
+        mi toki pona
+        mi toki e toki pona
     tok-Qaap/sitelen-pona:
       text: 󱤴󱥬󱥔
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
-      reverse: 󱤴󱥬󱥔
+      reverse: |-
+        󱤴󱥬󱥔
+        󱤴󱥬󱤉󱥬󱥔
   translations:
     en: |-
       (I|We) speak (Toki Pona|well).
       (I|We) talk (well|nicely)
       (I'm|I am|We're|We are) speaking Toki Pona
+      I spoke Toki Pona.
 - id: s.u01.8
   node: tok.u01.hello
   forms:
     tok-Latn/standard:
       text: sina toki pona.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: sina toki pona
+      reverse: |-
+        sina toki pona
+        sina toki e toki pona
+        sina mute li toki pona
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥬󱥔
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
-      reverse: 󱥞󱥬󱥔
+      reverse: |-
+        󱥞󱥬󱥔
+        󱥞󱥬󱤉󱥬󱥔
+        󱥞󱤼󱤧󱥬󱥔
   translations:
     en: |-
       You speak (Toki Pona|well).
       (You're|You are) speaking Toki Pona
+      You spoke Toki Pona.
 - id: s.u01.9
   node: tok.u01.person
   forms:
@@ -165,6 +195,9 @@ sentences:
     en: |-
       (I'm|I am) a person.
       (We're|We are) people
+      I'm human.
+      I'm a human.
+      We're human.
 - id: s.u01.10
   node: tok.u01.person
   forms:
@@ -177,7 +210,10 @@ sentences:
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
       reverse: 󱥞󱤑󱥔
   translations:
-    en: (You're|You are) (a friend|a good person|friends|good people).
+    en: |-
+      (You're|You are) (a friend|a good person|friends|good people).
+      You're a nice person.
+      You're a kind person.
 - id: s.u01.11
   node: tok.u01.person
   forms:
@@ -240,11 +276,15 @@ sentences:
     tok-Latn/standard:
       text: jan Lina!
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}]
-      reverse: jan Lina
+      reverse: |-
+        jan Lina
+        jan Lina o
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}]
-      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥄
   translations:
     en: Lina!
 - id: s.u01.16
@@ -268,11 +308,15 @@ sentences:
     tok-Latn/standard:
       text: sina moku.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
-      reverse: sina moku
+      reverse: |-
+        sina moku
+        sina mute li moku
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤶
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
-      reverse: 󱥞󱤶
+      reverse: |-
+        󱥞󱤶
+        󱥞󱤼󱤧󱤶
   translations:
     en: |-
       (You're|You are) eating.
@@ -298,11 +342,15 @@ sentences:
     tok-Latn/standard:
       text: sina lape.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
-      reverse: sina lape
+      reverse: |-
+        sina lape
+        sina mute li lape
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤢
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
-      reverse: 󱥞󱤢
+      reverse: |-
+        󱥞󱤢
+        󱥞󱤼󱤧󱤢
   translations:
     en: |-
       (You're|You are) (sleeping|asleep).
@@ -323,6 +371,7 @@ sentences:
       Enjoy your meal!
       Bon appetit!
       Good food!
+      Enjoy your food!
 - id: s.u01.21
   node: tok.u01.eat-sleep
   forms:
@@ -353,6 +402,7 @@ sentences:
     en: |-
       (I|We) eat well.
       (I'm|I am|We're|We are) eating well
+      I ate well.
 - id: s.u01.23
   node: tok.u01.eat-sleep
   forms:
@@ -360,15 +410,20 @@ sentences:
       text: jan Pita, sina moku.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku,
           readings: {lasina: moku}}]
-      reverse: jan Pita sina moku
+      reverse: |-
+        jan Pita sina moku
+        jan Pita o sina moku
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱥞󱤶
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
-      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱥞󱤶
+      reverse: |-
+        󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱥞󱤶
+        󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱥄󱥞󱤶
   translations:
     en: |-
       Pita, (you're|you are) eating.
       Pita, you eat
+      Pita, you ate.
 - id: s.u01.24
   node: tok.u01.big-small
   forms:
@@ -384,19 +439,27 @@ sentences:
     en: |-
       (I'm|I am|We're|We are) (big|tall|important).
       (I'm|I am) (grown up|an adult)
+      We're grown up.
+      We're adults.
 - id: s.u01.25
   node: tok.u01.big-small
   forms:
     tok-Latn/standard:
       text: sina lili.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
-      reverse: sina lili
+      reverse: |-
+        sina lili
+        sina mute li lili
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤨
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
-      reverse: 󱥞󱤨
+      reverse: |-
+        󱥞󱤨
+        󱥞󱤼󱤧󱤨
   translations:
-    en: (You're|You are) (small|little|young).
+    en: |-
+      (You're|You are) (small|little|young).
+      You're short.
 - id: s.u01.26
   node: tok.u01.big-small
   forms:
@@ -416,11 +479,15 @@ sentences:
     tok-Latn/standard:
       text: sina wawa.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
-      reverse: sina wawa
+      reverse: |-
+        sina wawa
+        sina mute li wawa
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥵
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
-      reverse: 󱥞󱥵
+      reverse: |-
+        󱥞󱥵
+        󱥞󱤼󱤧󱥵
   translations:
     en: (You're|You are) (strong|powerful).
 - id: s.u01.28
@@ -450,7 +517,9 @@ sentences:
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
       reverse: 󱥞󱤑󱥣
   translations:
-    en: (You're|You are) (an adult|an important person|a grown-up|a big person).
+    en: |-
+      (You're|You are) (an adult|an important person|a grown-up|a big person).
+      You're a tall person.
 - id: s.u01.30
   node: tok.u01.big-small
   forms:
@@ -467,6 +536,10 @@ sentences:
       (I'm|I am|We're|We are) napping.
       (I|We) sleep a (little|bit)
       (I|We) take a nap
+      I took a nap.
+      I napped.
+      I slept a little.
+      I'm taking a nap.
 - id: s.u01.31
   node: tok.u01.big-small
   forms:
@@ -474,12 +547,16 @@ sentences:
       text: jan Lina, sina jan wawa.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: jan, sense: jan,
           readings: {lasina: jan}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
-      reverse: jan Lina sina jan wawa
+      reverse: |-
+        jan Lina sina jan wawa
+        jan Lina o sina jan wawa
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥞󱤑󱥵
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}},
         {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
-      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥞󱤑󱥵
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥞󱤑󱥵
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥄󱥞󱤑󱥵
   translations:
     en: Lina, (you're|you are) a strong person.
 - id: s.u01.32
@@ -497,6 +574,7 @@ sentences:
     en: |-
       Oh!
       Ah!
+      Wow!
 - id: s.u01.33
   node: tok.u01.oh
   forms:
@@ -512,46 +590,68 @@ sentences:
     en: |-
       Ha ha ha!
       Hahaha!
+      Haha!
 - id: s.u01.34
   node: tok.u01.oh
   forms:
     tok-Latn/standard:
       text: a, sina suli!
       tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
-      reverse: a sina suli
+      reverse: |-
+        a sina suli
+        a sina mute li suli
     tok-Qaap/sitelen-pona:
       text: 󱤀󱥞󱥣
       tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
-      reverse: 󱤀󱥞󱥣
+      reverse: |-
+        󱤀󱥞󱥣
+        󱤀󱥞󱤼󱤧󱥣
   translations:
-    en: (Oh|Ah), (you're|you are) (big|tall)!
+    en: |-
+      (Oh|Ah), (you're|you are) (big|tall)!
+      Wow, you're big!
+      Wow, you're tall!
 - id: s.u01.35
   node: tok.u01.oh
   forms:
     tok-Latn/standard:
       text: pona a!
       tokens: [{surface: pona, sense: pona, readings: {lasina: pona}}, {surface: a, sense: a, readings: {lasina: a}}]
-      reverse: pona a
+      reverse: |-
+        pona a
+        pona
+        pona mute
     tok-Qaap/sitelen-pona:
       text: 󱥔󱤀
       tokens: [{surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
-      reverse: 󱥔󱤀
+      reverse: |-
+        󱥔󱤀
+        󱥔
+        󱥔󱤼
   translations:
     en: |-
       Great!
       Very good!
       Wonderful!
+      So good!
+      Really good!
 - id: s.u01.36
   node: tok.u01.oh
   forms:
     tok-Latn/standard:
       text: sina wawa a!
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}, {surface: a, sense: a, readings: {lasina: a}}]
-      reverse: sina wawa a
+      reverse: |-
+        sina wawa a
+        sina wawa mute
+        sina mute li wawa a
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥵󱤀
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
-      reverse: 󱥞󱥵󱤀
+      reverse: |-
+        󱥞󱥵󱤀
+        󱥞󱥵󱤼
+        󱥞󱤼󱤧󱥵󱤀
   translations:
     en: (You're|You are) (so|really|very) strong!
 - id: s.u01.37
@@ -569,6 +669,7 @@ sentences:
     en: |-
       (Oh|Ah), (I'm|I am) bad!
       (Oh|Ah) my bad
+      Oh, we're bad!
 - id: s.u01.38
   node: tok.u01.oh
   forms:
@@ -581,7 +682,9 @@ sentences:
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
       reverse: 󱤴󱤶󱤀
   translations:
-    en: (I'm|I am) eating!
+    en: |-
+      (I'm|I am) eating!
+      We're eating!
 stories:
 - id: tok.story.hello
   node: tok.u01.story

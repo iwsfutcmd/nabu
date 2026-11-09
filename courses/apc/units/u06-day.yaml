@@ -89,12 +89,14 @@ sentences:
       reverse: |-
         (الصبح|عالصبح|ع الصبح) بشرب قهوة
         بشرب قهوة (الصبح|عالصبح|ع الصبح)
+        أنا بشرب قهوة الصبح
     apc-Latn/arabizi:
       text: el sob7 bishrab ahwe.
       tokens: [{surface: el, sense: el}, {surface: sob7, sense: sob7}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
       reverse: |-
         (el|l|il|3al) (sob7|sobe7|sub7) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
         (bishrab|beshrab|bshrab) (ahwe|2ahwe) (el|l|il|3al) (sob7|sobe7|sub7)
+        ana bishrab ahwe el sob7
   translations:
     en: |-
       In the morning I drink coffee.
@@ -106,11 +108,15 @@ sentences:
     apc-Arab/standard:
       text: بفيق الصبح.
       tokens: [{surface: بفيق, sense: fi2, form: 'form:impf-1sg'}, {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'}, {surface: صبح, kc: 'sense:sob7'}]}]
-      reverse: (بفيق|أنا بفيق) (الصبح|عالصبح|ع الصبح)
+      reverse: |-
+        (بفيق|أنا بفيق) (الصبح|عالصبح|ع الصبح)
+        الصبح بفيق
     apc-Latn/arabizi:
       text: bfi2 el sob7.
       tokens: [{surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
-      reverse: ((bfi2|bfe2)|ana (bfi2|bfe2)) (el|l|il|3al) (sob7|sobe7|sub7)
+      reverse: |-
+        ((bfi2|bfe2)|ana (bfi2|bfe2)) (el|l|il|3al) (sob7|sobe7|sub7)
+        el sob7 bfi2
   translations:
     en: |-
       I wake up in the morning.
@@ -142,7 +148,9 @@ sentences:
     apc-Latn/arabizi:
       text: bru7 3al shoghl.
       tokens: [{surface: bru7, sense: ra7, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
-      reverse: ((bru7|brou7|bro7|bruh)|ana (bru7|brou7|bro7)) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+      reverse: |-
+        ((bru7|brou7|bro7|bruh)|ana (bru7|brou7|bro7)) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+        ana bruh 3al shoghl
   translations:
     en: |-
       I go to work.
@@ -185,6 +193,8 @@ sentences:
       What do you do?
       What are you doing?
       What are you up to?
+      What is she doing?
+      What does she do?
 - id: s.day.9
   node: apc.day.you
   register: colloquial
@@ -217,7 +227,9 @@ sentences:
         (wen|wein|wayn) (btishteghel|bteshteghel)
         (enta|inta) (wen|wein|wayn) (btishteghel|bteshteghel)
   translations:
-    en: Where do you work?
+    en: |-
+      Where do you work?
+      Where does she work?
 - id: s.day.11
   node: apc.day.you
   register: colloquial
@@ -239,6 +251,8 @@ sentences:
     en: |-
       What do you read?
       What are you reading [(these days|at the moment)]?
+      What is she reading?
+      What does she read?
 - id: s.day.12
   node: apc.day.he-she
   register: colloquial
@@ -273,6 +287,8 @@ sentences:
     en: |-
       Maya works at the school.
       Maya works at a school.
+      Maya works in a school.
+      Maya works in the school.
 - id: s.day.14
   node: apc.day.he-she
   register: colloquial
@@ -286,7 +302,9 @@ sentences:
       tokens: [{surface: teta, sense: teta}, {surface: btnem, sense: nem, form: 'form:impf-3fs'}, {surface: bakkir, sense: bakkir}]
       reverse: (teta|tayta) (btnem|btnam) (bakkir|bakir|bakkeer)
   translations:
-    en: (Grandma|Granny) (goes to bed|goes to sleep|sleeps) early.
+    en: |-
+      (Grandma|Granny) (goes to bed|goes to sleep|sleeps) early.
+      My grandma goes to bed early.
 - id: s.day.15
   node: apc.day.he-she
   register: colloquial
@@ -320,7 +338,10 @@ sentences:
       tokens: [{surface: jeddo, sense: jeddo}, {surface: byi2ra, sense: 2ara, form: 'form:impf-3ms'}, {surface: ktir, sense: ktir}]
       reverse: (jeddo|jiddo|jeddu) (byi2ra|bye2ra) (ktir|kteer|kter|ktiir)
   translations:
-    en: (Grandpa|Grandad) reads a lot.
+    en: |-
+      (Grandpa|Grandad) reads a lot.
+      My grandpa reads a lot.
+      My grandfather reads a lot.
 - id: s.day.17
   node: apc.day.we
   register: colloquial
@@ -349,16 +370,19 @@ sentences:
       reverse: |-
         شو بتعمل اليوم
         اليوم شو بتعمل
+        إنت شو بتعمل اليوم
     apc-Latn/arabizi:
       text: shu bta3mel el yom?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
       reverse: |-
         (shu|sho) (bta3mel|bte3mel|bta3mil) (el|l|il) (yom|yawm|youm)
         (el|l|il) (yom|yawm|youm) (shu|sho) (bta3mel|bte3mel|bta3mil)
+        enta shu bta3mel el yom
   translations:
     en: |-
       What are you doing today?
       What are you up to today?
+      What is she doing today?
 - id: s.day.19
   node: apc.day.we
   register: colloquial
@@ -369,12 +393,14 @@ sentences:
       reverse: |-
         كلّ يوم بفيق بكّير
         بفيق بكّير كلّ يوم
+        أنا بفيق بكّير كلّ يوم
     apc-Latn/arabizi:
       text: kell yom bfi2 bakkir.
       tokens: [{surface: kell, sense: kell}, {surface: yom, sense: yom}, {surface: bfi2, sense: fi2, form: 'form:impf-1sg'}, {surface: bakkir, sense: bakkir}]
       reverse: |-
         (kell|kil|kel|kull) (yom|yawm|youm) (bfi2|bfe2) (bakkir|bakir|bakkeer)
         (bfi2|bfe2) (bakkir|bakir|bakkeer) (kell|kil|kel|kull) (yom|yawm|youm)
+        ana bfi2 bakkir kell yom
   translations:
     en: |-
       Every day I (wake|get) up early.
@@ -387,11 +413,20 @@ sentences:
       text: دايما منشرب قهوة الصبح.
       tokens: [{surface: دايما, sense: dayman}, {surface: منشرب, sense: shereb, form: 'form:impf-1pl'}, {surface: قهوة, sense: ahwe}, {surface: الصبح, sense: sob7, morphs: [{surface: ال, kc: 'sense:el'},
             {surface: صبح, kc: 'sense:sob7'}]}]
-      reverse: (دايما|دايماً|دائماً) منشرب قهوة الصبح
+      reverse: |-
+        (دايما|دايماً|دائماً) منشرب قهوة الصبح
+        نحنا دايما منشرب قهوة الصبح
+        الصبح دايما منشرب قهوة
+        دايما الصبح منشرب قهوة
     apc-Latn/arabizi:
       text: dayman mnishrab ahwe el sob7.
       tokens: [{surface: dayman, sense: dayman}, {surface: mnishrab, sense: shereb, form: 'form:impf-1pl'}, {surface: ahwe, sense: ahwe}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
-      reverse: (dayman|daymen|daiman) (mnishrab|mneshrab|mnshrab) (ahwe|2ahwe) (el|l|il) (sob7|sobe7|sub7)
+      reverse: |-
+        (dayman|daymen|daiman) (mnishrab|mneshrab|mnshrab) (ahwe|2ahwe) (el|l|il) (sob7|sobe7|sub7)
+        ne7na dayman mnishrab ahwe el sob7
+        el sob7 dayman mnishrab ahwe
+        dayman el sob7 mnishrab ahwe
+        dayman mnishrab ahwe 3al sob7
   translations:
     en: |-
       We always drink coffee in the morning.
@@ -426,16 +461,23 @@ sentences:
       reverse: |-
         شو بتعمل (هلّق|هلق|هلأ)
         شو عم (تعمل|بتعمل) (هلّق|هلق|هلأ)
+        إنت شو بتعمل هلّق
+        هلّق شو بتعمل
+        هلّق شو عم تعمل
     apc-Latn/arabizi:
       text: shu bta3mel hala2?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: hala2, sense: hala2}]
       reverse: |-
         (shu|sho) (bta3mel|bte3mel|bta3mil) (hala2|halla2|hal2|hala)
         (shu|sho) (3am|3m) (ta3mel|te3mel|bta3mel) (hala2|halla2|hal2|hala)
+        enta shu bta3mel hala2
+        hala2 shu bta3mel
+        hala2 shu 3am ta3mel
   translations:
     en: |-
       What are you doing now?
       What are you going to do now?
+      What is she doing now?
 - id: s.day.23
   node: apc.day.talk
   register: colloquial
@@ -452,6 +494,7 @@ sentences:
     en: |-
       I talk (to|with) (grandma|granny).
       I('ll| will) talk (to|with) (grandma|granny).
+      I talk to my grandma.
 - id: s.day.24
   node: apc.day.talk
   register: colloquial
@@ -469,6 +512,7 @@ sentences:
     en: |-
       Do you speak Arabic?
       Can you speak Arabic?
+      Does she speak Arabic?
 - id: s.day.25
   node: apc.day.talk
   register: colloquial
@@ -476,7 +520,9 @@ sentences:
     apc-Arab/standard:
       text: إيه، بسّ شوي.
       tokens: [{surface: إيه, sense: eh}, {surface: بسّ, sense: bas}, {surface: شوي, sense: shway}]
-      reverse: إيه بسّ (شوي|شوية)
+      reverse: |-
+        إيه بسّ (شوي|شوية)
+        إي بسّ شوي
     apc-Latn/arabizi:
       text: eh, bas shway.
       tokens: [{surface: eh, sense: eh}, {surface: bas, sense: bas}, {surface: shway, sense: shway}]
@@ -509,16 +555,21 @@ sentences:
     apc-Arab/standard:
       text: مايا، شو بتعملي؟
       tokens: [{surface: مايا, sense: maya}, {surface: شو, sense: shu}, {surface: بتعملي, sense: 3emel, form: 'form:impf-2fs'}]
-      reverse: مايا شو بتعملي
+      reverse: |-
+        مايا شو بتعملي
+        شو بتعملي مايا
     apc-Latn/arabizi:
       text: Maya, shu bta3mli?
       tokens: [{surface: Maya, sense: maya}, {surface: shu, sense: shu}, {surface: bta3mli, sense: 3emel, form: 'form:impf-2fs'}]
-      reverse: Maya (shu|sho) (bta3mli|bte3mle|bta3mile)
+      reverse: |-
+        Maya (shu|sho) (bta3mli|bte3mle|bta3mile)
+        shu bta3mli Maya
   translations:
     en: |-
       Maya, what are you doing?
       Maya, what do you do?
       Maya, what are you up to?
+      What are you doing, Maya?
 - id: s.day.28
   node: apc.day.you-f
   register: colloquial
@@ -567,12 +618,15 @@ sentences:
         مايا (مأخّرة|متأخّرة) كلّ يوم
         مايا كلّ يوم (مأخّرة|متأخّرة)
         مايا كلّ يوم (بتتأخّر|بتأخّر)
+        مايا بتتأخّر كلّ يوم
     apc-Latn/arabizi:
       text: Maya m2akhkhra kell yom!
       tokens: [{surface: Maya, sense: maya}, {surface: m2akhkhra, sense: m2akhkhar, form: 'form:fem'}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       reverse: |-
         Maya (m2akhkhra|m2akhra|m2a5ra|met2akhkhra) (kell|kil|kel|kull) (yom|yawm|youm)
         Maya (kell|kil|kel|kull) (yom|yawm|youm) (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)
+        Maya kell yom btit2akhkhar
+        Maya btit2akhkhar kell yom
   translations:
     en: |-
       Maya is late every day!
@@ -585,11 +639,15 @@ sentences:
     apc-Arab/standard:
       text: بتروحي عالمدرسة؟
       tokens: [{surface: بتروحي, sense: ra7, form: 'form:impf-2fs'}, {surface: عالمدرسة, sense: madrase, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
-      reverse: بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
+      reverse: |-
+        بتروحي (عالمدرسة|ع المدرسة|على المدرسة)
+        إنتي بتروحي عالمدرسة
     apc-Latn/arabizi:
       text: btru7i 3al madrase?
       tokens: [{surface: btru7i, sense: ra7, form: 'form:impf-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
-      reverse: (btru7i|btrou7e|btro7i) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+      reverse: |-
+        (btru7i|btrou7e|btro7i) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+        enti btru7i 3al madrase
   translations:
     en: |-
       Do you go to school?
@@ -602,11 +660,16 @@ sentences:
     apc-Arab/standard:
       text: أنا مأخّرة!
       tokens: [{surface: أنا, sense: ana}, {surface: مأخّرة, sense: m2akhkhar, form: 'form:fem'}]
-      reverse: '[أنا] (مأخّرة|متأخّرة)'
+      reverse: |-
+        [أنا] (مأخّرة|متأخّرة)
+        تأخّرت
+        أنا تأخّرت
     apc-Latn/arabizi:
       text: ana m2akhkhra!
       tokens: [{surface: ana, sense: ana}, {surface: m2akhkhra, sense: m2akhkhar, form: 'form:fem'}]
-      reverse: '[ana] (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)'
+      reverse: |-
+        [ana] (m2akhkhra|m2akhra|m2a5ra|met2akhkhra)
+        t2akhkhart
   translations:
     en: I('m| am) late!
 - id: s.day.33
@@ -636,16 +699,21 @@ sentences:
     apc-Arab/standard:
       text: شو بتعملوا؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}]
-      reverse: شو (بتعملوا|بتعملو)
+      reverse: |-
+        شو (بتعملوا|بتعملو)
+        إنتو شو بتعملوا
     apc-Latn/arabizi:
       text: shu bta3mlo?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}]
-      reverse: (shu|sho) (bta3mlo|bte3mlo|bta3mlu|bta3mlou)
+      reverse: |-
+        (shu|sho) (bta3mlo|bte3mlo|bta3mlu|bta3mlou)
+        ento shu bta3mlo
   translations:
     en: |-
       What are you doing?
       What do you do?
       What are you up to?
+      What are you all doing?
 - id: s.day.35
   node: apc.day.you-pl
   register: colloquial
@@ -675,12 +743,14 @@ sentences:
       reverse: |-
         وين (بتروحوا|بتروحو) الصبح
         الصبح وين (بتروحوا|بتروحو)
+        إنتو وين بتروحوا الصبح
     apc-Latn/arabizi:
       text: wen btru7o el sob7?
       tokens: [{surface: wen, sense: wen}, {surface: btru7o, sense: ra7, form: 'form:impf-2pl'}, {surface: el, sense: el}, {surface: sob7, sense: sob7}]
       reverse: |-
         (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u) (el|l|il) (sob7|sobo7|sobh)
         (el|l|il) (sob7|sobo7|sobh) (wen|wein|wayn) (btru7o|btrou7o|btro7o|btru7u)
+        ento wen btru7o el sob7
   translations:
     en: Where do you go in the morning?
 - id: s.day.37
@@ -706,13 +776,20 @@ sentences:
     apc-Arab/standard:
       text: إنتو مأخّرين!
       tokens: [{surface: إنتو, sense: ento}, {surface: مأخّرين, sense: m2akhkhar, form: 'form:pl'}]
-      reverse: '[إنتو] (مأخّرين|متأخّرين)'
+      reverse: |-
+        [إنتو] (مأخّرين|متأخّرين)
+        تأخّرتوا
+        إنتو تأخّرتوا
     apc-Latn/arabizi:
       text: ento m2akhkhrin!
       tokens: [{surface: ento, sense: ento}, {surface: m2akhkhrin, sense: m2akhkhar, form: 'form:pl'}]
-      reverse: '[(ento|into|entu)] (m2akhkhrin|m2akhrin|m2a5rin|met2akhkhrin)'
+      reverse: |-
+        [(ento|into|entu)] (m2akhkhrin|m2akhrin|m2a5rin|met2akhkhrin)
+        t2akhkharto
   translations:
-    en: You('re| are) late!
+    en: |-
+      You('re| are) late!
+      You're all late!
 stories:
 - id: apc.story.my-day
   node: apc.day.story

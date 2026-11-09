@@ -186,6 +186,7 @@ sentences:
     en: |-
       My hands and (feet|legs) are cold.
       My hands and my (feet|legs) are cold
+      Our hands and feet are cold.
 - id: s.u09.9
   node: tok.u09.hands-feet
   forms:
@@ -213,12 +214,16 @@ sentences:
       text: mi mute li tawa kepeken noka.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: mute, sense: mute, readings: {lasina: mute}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa, readings: {
             lasina: tawa}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: noka, sense: noka, readings: {lasina: noka}}]
-      reverse: mi mute li tawa kepeken noka
+      reverse: |-
+        mi mute li tawa kepeken noka
+        mi tawa kepeken noka
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤼󱤧󱥩󱤙󱥃
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤼, sense: mute, readings: {lasina: mute}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {
             lasina: tawa}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱥃, sense: noka, readings: {lasina: noka}}]
-      reverse: 󱤴󱤼󱤧󱥩󱤙󱥃
+      reverse: |-
+        󱤴󱤼󱤧󱥩󱤙󱥃
+        󱤴󱥩󱤙󱥃
   translations:
     en: |-
       We (go|went) on foot.
@@ -241,6 +246,7 @@ sentences:
     en: |-
       My skin is hot from the sun.
       The sun (burned|is burning) my skin
+      Our skin is hot from the sun.
 - id: s.u09.12
   node: tok.u09.hands-feet
   forms:
@@ -330,6 +336,7 @@ sentences:
     en: |-
       My clothes are red.
       My (shirt|dress) is red
+      Our clothes are red.
 - id: s.u09.17
   node: tok.u09.colour
   forms:
@@ -444,7 +451,9 @@ sentences:
           readings: {lasina: laso}}]
       reverse: 󱤴󱤮󱤉󱤔󱤒󱤬󱥪󱤣
   translations:
-    en: (I|We) (see|saw) (a yellow fish|yellow fish) in the (blue|green) water.
+    en: |-
+      (I|We) (see|saw) (a yellow fish|yellow fish) in the (blue|green) water.
+      I'm looking at a yellow fish in the blue water.
 - id: s.u09.24
   node: tok.u09.yellow-blue
   forms:
@@ -512,6 +521,7 @@ sentences:
       White clothes get dirty.
       The white clothes are getting dirty
       The white (shirt|dress) is getting dirty
+      The white clothes got dirty.
 - id: s.u09.28
   node: tok.u09.light-dark
   forms:
@@ -567,6 +577,7 @@ sentences:
     en: |-
       The black (cat|dog) is sleeping on the (bed|table|couch|sofa).
       The black (cat|dog) sleeps on the (bed|table|couch|sofa)
+      The black cat slept on the bed.
 - id: s.u09.31
   node: tok.u09.light-dark
   forms:
@@ -614,6 +625,7 @@ sentences:
     en: |-
       Two people are coming.
       Two people (come|came)
+      Two people are arriving.
 - id: s.u09.34
   node: tok.u09.numbers
   forms:
@@ -696,7 +708,9 @@ sentences:
             lasina: nanpa}}, {surface: 󱥮, sense: tu, readings: {lasina: tu}}]
       reverse: 󱥁󱤧󱤪󱤽󱥮
   translations:
-    en: (This|That) is (the second (page|book)|page two|book two).
+    en: |-
+      (This|That) is (the second (page|book)|page two|book two).
+      It's page two.
 stories:
 - id: tok.story.lost-cat
   node: tok.u09.story

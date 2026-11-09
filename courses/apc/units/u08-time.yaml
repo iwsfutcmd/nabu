@@ -44,12 +44,18 @@ sentences:
       text: بكرا منروح عالبحر.
       tokens: [{surface: بكرا, sense: bukra}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
               surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (بكرا|بكرة) منروح (عالبحر|ع البحر|على البحر)
+      reverse: |-
+        (بكرا|بكرة) منروح (عالبحر|ع البحر|على البحر)
+        منروح عالبحر بكرا
+        بكرا رح نروح عالبحر
     apc-Latn/arabizi:
       text: bukra mnru7 3al ba7r.
       tokens: [{surface: bukra, sense: bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
           sense: ba7r}]
-      reverse: (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: |-
+        (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        mnru7 3al ba7r bukra
+        bukra ra7 nru7 3al ba7r
   translations:
     en: |-
       Tomorrow we('re| are) going to the (beach|sea).
@@ -71,11 +77,14 @@ sentences:
       text: emta btru7 3al shoghl?
       tokens: [{surface: emta, sense: emta}, {surface: btru7, sense: ra7, form: 'form:impf-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
           sense: shoghl}]
-      reverse: (emta|imta|emtah) (btru7|btrou7|btro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+      reverse: |-
+        (emta|imta|emtah) (btru7|btrou7|btro7) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
+        enta emta btru7 3al shoghl
   translations:
     en: |-
       When do you go to work?
       When are you going to work?
+      When does she go to work?
 - id: s.time.3
   node: apc.time.when
   register: colloquial
@@ -101,11 +110,17 @@ sentences:
     apc-Arab/standard:
       text: إنت فاضي بكرا؟
       tokens: [{surface: إنت, sense: enta}, {surface: فاضي, sense: fadi}, {surface: بكرا, sense: bukra}]
-      reverse: '[إنت] فاضي (بكرا|بكرة)'
+      reverse: |-
+        [إنت] فاضي (بكرا|بكرة)
+        بكرا إنت فاضي
+        بكرا فاضي
     apc-Latn/arabizi:
       text: enta fadi bukra?
       tokens: [{surface: enta, sense: enta}, {surface: fadi, sense: fadi}, {surface: bukra, sense: bukra}]
-      reverse: '[(enta|inta)] (fadi|fade) (bukra|bokra|bukrah)'
+      reverse: |-
+        [(enta|inta)] (fadi|fade) (bukra|bokra|bukrah)
+        bukra enta fadi
+        bukra fadi
   translations:
     en: Are you free tomorrow?
 - id: s.time.5
@@ -116,11 +131,17 @@ sentences:
     apc-Arab/standard:
       text: لأ، أنا مشغول بكرا.
       tokens: [{surface: لأ, sense: la2}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}, {surface: بكرا, sense: bukra}]
-      reverse: (لأ|لا) [أنا] مشغول (بكرا|بكرة)
+      reverse: |-
+        (لأ|لا) [أنا] مشغول (بكرا|بكرة)
+        لأ بكرا أنا مشغول
+        لأ بكرا مشغول
     apc-Latn/arabizi:
       text: la2, ana mashghoul bukra.
       tokens: [{surface: la2, sense: la2}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}, {surface: bukra, sense: bukra}]
-      reverse: (la2|la) [ana] (mashghoul|mash8oul|mashghol) (bukra|bokra|bukrah)
+      reverse: |-
+        (la2|la) [ana] (mashghoul|mash8oul|mashghol) (bukra|bokra|bukrah)
+        la2 bukra ana mashghoul
+        la2 bukra mashghoul
   translations:
     en: No, I('m| am) busy tomorrow.
 - id: s.time.6
@@ -133,6 +154,7 @@ sentences:
       reverse: |-
         كلّ (نهار|يوم) بشرب قهوة مع تيتا
         بشرب قهوة مع تيتا كلّ (نهار|يوم)
+        أنا بشرب قهوة مع تيتا كلّ يوم
     apc-Latn/arabizi:
       text: kell nhar bishrab ahwe ma3 teta.
       tokens: [{surface: kell, sense: kell}, {surface: nhar, sense: nhar}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}, {surface: ma3, sense: ma3}, {surface: teta,
@@ -140,10 +162,12 @@ sentences:
       reverse: |-
         (kell|kil|kel|kull) (nhar|nehar|yom) (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta)
         (bishrab|beshrab|bshrab) (ahwe|2ahwe) (ma3|ma3a) (teta|tayta) (kell|kil|kel|kull) (nhar|nehar|yom)
+        ana bishrab ahwe ma3 teta kell yom
   translations:
     en: |-
       Every day I (drink|have) coffee with (grandma|granny).
       I (drink|have) coffee with (grandma|granny) every day.
+      Every day I drink coffee with my grandma.
 - id: s.time.7
   node: apc.time.days
   register: colloquial
@@ -152,11 +176,17 @@ sentences:
     apc-Arab/standard:
       text: أنا فاضي نهار السبت.
       tokens: [{surface: أنا, sense: ana}, {surface: فاضي, sense: fadi}, {surface: نهار, sense: nhar}, {surface: السبت, sense: sabt, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سبت, kc: 'sense:sabt'}]}]
-      reverse: '[أنا] فاضي نهار السبت'
+      reverse: |-
+        [أنا] فاضي نهار السبت
+        أنا فاضي السبت
+        نهار السبت أنا فاضي
     apc-Latn/arabizi:
       text: ana fadi nhar el sabt.
       tokens: [{surface: ana, sense: ana}, {surface: fadi, sense: fadi}, {surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: sabt, sense: sabt}]
-      reverse: '[ana] (fadi|fade) (nhar|nehar) (el|l|il) (sabt|sabet)'
+      reverse: |-
+        [ana] (fadi|fade) (nhar|nehar) (el|l|il) (sabt|sabet)
+        ana fadi el sabt
+        nhar el sabt ana fadi
   translations:
     en: I('m| am) free on Saturday.
 - id: s.time.8
@@ -167,16 +197,23 @@ sentences:
       text: نهار الأحد مناكل عند تيتا.
       tokens: [{surface: نهار, sense: nhar}, {surface: الأحد, sense: a7ad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحد, kc: 'sense:a7ad'}]}, {surface: مناكل, sense: akal, form: 'form:impf-1pl'},
         {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
-      reverse: نهار (الأحد|الاحد) مناكل عند تيتا
+      reverse: |-
+        نهار (الأحد|الاحد) مناكل عند تيتا
+        الأحد مناكل عند تيتا
+        مناكل عند تيتا نهار الأحد
     apc-Latn/arabizi:
       text: nhar el a7ad mnekol 3end teta.
       tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: a7ad, sense: a7ad}, {surface: mnekol, sense: akal, form: 'form:impf-1pl'}, {surface: 3end, sense: 3end}, {surface: teta,
           sense: teta}]
-      reverse: (nhar|nehar) (el|l|il) (a7ad|ahad|2a7ad) (mnekol|mnakol) (3end|3and|3ind) (teta|tayta)
+      reverse: |-
+        (nhar|nehar) (el|l|il) (a7ad|ahad|2a7ad) (mnekol|mnakol) (3end|3and|3ind) (teta|tayta)
+        el a7ad mnekol 3end teta
+        mnekol 3end teta nhar el a7ad
   translations:
     en: |-
       On (Sunday|Sundays) we eat at (grandma's|granny's).
       We eat at (grandma's|granny's) on (Sunday|Sundays).
+      On Sunday we eat at my grandma's.
 - id: s.time.9
   node: apc.time.days
   register: colloquial
@@ -184,11 +221,17 @@ sentences:
     apc-Arab/standard:
       text: نهار الجمعة بشتغل.
       tokens: [{surface: نهار, sense: nhar}, {surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: بشتغل, sense: eshteghel, form: 'form:impf-1sg'}]
-      reverse: نهار الجمعة بشتغل
+      reverse: |-
+        نهار الجمعة بشتغل
+        بشتغل نهار الجمعة
+        نهار الجمعة أنا بشتغل
     apc-Latn/arabizi:
       text: nhar el jem3a bishteghel.
       tokens: [{surface: nhar, sense: nhar}, {surface: el, sense: el}, {surface: jem3a, sense: jem3a}, {surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}]
-      reverse: (nhar|nehar) (el|l|il) (jem3a|jum3a|jim3a) (bishteghel|beshteghel|bishtighil)
+      reverse: |-
+        (nhar|nehar) (el|l|il) (jem3a|jum3a|jim3a) (bishteghel|beshteghel|bishtighil)
+        bishteghel nhar el jem3a
+        nhar el jem3a ana bishteghel
   translations:
     en: |-
       On (Friday|Fridays) I work.
@@ -201,11 +244,17 @@ sentences:
     apc-Arab/standard:
       text: هالجمعة أنا مشغول.
       tokens: [{surface: هالجمعة, sense: jem3a, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: أنا, sense: ana}, {surface: مشغول, sense: mashghoul}]
-      reverse: هالجمعة [أنا] مشغول
+      reverse: |-
+        هالجمعة [أنا] مشغول
+        أنا مشغول هالجمعة
+        مشغول هالجمعة
     apc-Latn/arabizi:
       text: hal jem3a ana mashghoul.
       tokens: [{surface: hal, sense: hal}, {surface: jem3a, sense: jem3a}, {surface: ana, sense: ana}, {surface: mashghoul, sense: mashghoul}]
-      reverse: (hal|hel) (jem3a|jum3a|jim3a) [ana] (mashghoul|mash8oul|mashghol)
+      reverse: |-
+        (hal|hel) (jem3a|jum3a|jim3a) [ana] (mashghoul|mash8oul|mashghol)
+        ana mashghoul hal jem3a
+        mashghoul hal jem3a
   translations:
     en: |-
       This week I('m| am) busy.
@@ -217,11 +266,17 @@ sentences:
     apc-Arab/standard:
       text: الخميس منشوف فيلم.
       tokens: [{surface: الخميس, sense: khamis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: خميس, kc: 'sense:khamis'}]}, {surface: منشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلم, sense: film}]
-      reverse: (الخميس|نهار الخميس) منشوف (فيلم|فلم)
+      reverse: |-
+        (الخميس|نهار الخميس) منشوف (فيلم|فلم)
+        منشوف فيلم الخميس
+        منشوف فيلم نهار الخميس
     apc-Latn/arabizi:
       text: el khamis mnshuf film.
       tokens: [{surface: el, sense: el}, {surface: khamis, sense: khamis}, {surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}]
-      reverse: ((el|l|il)|nhar (el|l|il)) (khamis|5amis|khamees) (mnshuf|mnshouf) (film|filem)
+      reverse: |-
+        ((el|l|il)|nhar (el|l|il)) (khamis|5amis|khamees) (mnshuf|mnshouf) (film|filem)
+        mnshuf film el khamis
+        mnshuf film nhar el khamis
   translations:
     en: |-
       On Thursday we('re| are) (watching|seeing) a (film|movie).
@@ -259,6 +314,7 @@ sentences:
       It's three o'clock.
       It is three o'clock.
       It's three.
+      It's 3 o'clock.
 - id: s.time.14
   node: apc.time.clock
   register: colloquial
@@ -277,6 +333,8 @@ sentences:
       It's half past five.
       It is half past five.
       It's five thirty.
+      It's 5:30.
+      It's five-thirty.
 - id: s.time.15
   node: apc.time.clock
   register: colloquial
@@ -295,6 +353,7 @@ sentences:
       It's [a] quarter past seven.
       It is [a] quarter past seven.
       It's seven fifteen.
+      It's 7:15.
 - id: s.time.16
   node: apc.time.clock
   register: colloquial
@@ -337,11 +396,17 @@ sentences:
       text: قبل الشغل بشرب قهوة.
       tokens: [{surface: قبل, sense: 2abel}, {surface: الشغل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}, {surface: بشرب, sense: shereb, form: 'form:impf-1sg'},
         {surface: قهوة, sense: ahwe}]
-      reverse: قبل الشغل بشرب قهوة
+      reverse: |-
+        قبل الشغل بشرب قهوة
+        بشرب قهوة قبل الشغل
+        قبل الشغل أنا بشرب قهوة
     apc-Latn/arabizi:
       text: 2abel el shoghl bishrab ahwe.
       tokens: [{surface: 2abel, sense: 2abel}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: bishrab, sense: shereb, form: 'form:impf-1sg'}, {surface: ahwe, sense: ahwe}]
-      reverse: (2abel|abel|2abl) (el|l|il) (shoghl|shoghol|sho8l|shughl) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
+      reverse: |-
+        (2abel|abel|2abl) (el|l|il) (shoghl|shoghol|sho8l|shughl) (bishrab|beshrab|bshrab) (ahwe|2ahwe)
+        bishrab ahwe 2abel el shoghl
+        2abel el shoghl ana bishrab ahwe
   translations:
     en: |-
       Before work I drink coffee.
@@ -354,12 +419,16 @@ sentences:
       text: عالضهر باكل مع بيّي.
       tokens: [{surface: عالضهر, sense: dohr, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضهر, kc: 'sense:dohr'}]}, {surface: باكل, sense: akal, form: 'form:impf-1sg'},
         {surface: مع, sense: ma3}, {surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: (عالضهر|عالظهر|ع الضهر|ع الظهر|على الضهر|على الظهر) باكل مع بيّي
+      reverse: |-
+        (عالضهر|عالظهر|ع الضهر|ع الظهر|على الضهر|على الظهر) باكل مع بيّي
+        باكل مع بيّي عالضهر
     apc-Latn/arabizi:
       text: 3al dohr bekol ma3 bayyi.
       tokens: [{surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: dohr, sense: dohr}, {surface: bekol, sense: akal, form: 'form:impf-1sg'}, {surface: ma3,
           sense: ma3}, {surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}]
-      reverse: (3al|3a l|3a el) (dohr|duhr|do7or|dehr|dihr) (bekol|bakol|b2akol) (ma3|ma3a) (bayyi|bayye|bayi|baye|beyyi|beyye)
+      reverse: |-
+        (3al|3a l|3a el) (dohr|duhr|do7or|dehr|dihr) (bekol|bakol|b2akol) (ma3|ma3a) (bayyi|bayye|bayi|baye|beyyi|beyye)
+        bekol ma3 bayyi 3al dohr
   translations:
     en: |-
       At noon I eat with my (dad|father).
@@ -372,15 +441,21 @@ sentences:
       text: بعد الضهر بنام شوي.
       tokens: [{surface: بعد, sense: ba3d}, {surface: الضهر, sense: dohr, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضهر, kc: 'sense:dohr'}]}, {surface: بنام, sense: nem, form: 'form:impf-1sg'},
         {surface: شوي, sense: shway}]
-      reverse: بعد (الضهر|الظهر) بنام (شوي|شوية)
+      reverse: |-
+        بعد (الضهر|الظهر) بنام (شوي|شوية)
+        بنام شوي بعد الضهر
     apc-Latn/arabizi:
       text: ba3d el dohr bnem shway.
       tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: dohr, sense: dohr}, {surface: bnem, sense: nem, form: 'form:impf-1sg'}, {surface: shway, sense: shway}]
-      reverse: (ba3d|ba3ed) (el|l|il) (dohr|duhr|do7or|dehr|dihr) (bnem|bnam) (shway|shwayy|shwei|shwai)
+      reverse: |-
+        (ba3d|ba3ed) (el|l|il) (dohr|duhr|do7or|dehr|dihr) (bnem|bnam) (shway|shwayy|shwei|shwai)
+        bnem shway ba3d el dohr
   translations:
     en: |-
       In the afternoon I sleep a (little|bit).
       In the afternoon I (have|take) a nap.
+      I sleep a little in the afternoon.
+      I take a nap in the afternoon.
 - id: s.time.21
   node: apc.time.day-parts
   register: colloquial
@@ -389,12 +464,16 @@ sentences:
       text: بالليل بقرا كتاب.
       tokens: [{surface: بالليل, sense: lel, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: ليل, kc: 'sense:lel'}]}, {surface: بقرا, sense: 2ara, form: 'form:impf-1sg'},
         {surface: كتاب, sense: ktab}]
-      reverse: بالليل بقرا كتاب
+      reverse: |-
+        بالليل بقرا كتاب
+        بقرا كتاب بالليل
     apc-Latn/arabizi:
       text: bel lel b2ra ktab.
       tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: lel, sense: lel}, {surface: b2ra, sense: 2ara, form: 'form:impf-1sg'}, {surface: ktab,
           sense: ktab}]
-      reverse: (bel|bil|b el) (lel|leil|layl) (b2ra|be2ra|bi2ra|b2ara) (ktab|kteb|kitab)
+      reverse: |-
+        (bel|bil|b el) (lel|leil|layl) (b2ra|be2ra|bi2ra|b2ara) (ktab|kteb|kitab)
+        b2ra ktab bel lel
   translations:
     en: |-
       At night I read a book.
@@ -407,11 +486,15 @@ sentences:
       text: بعد الشغل منروح سوا؟
       tokens: [{surface: بعد, sense: ba3d}, {surface: الشغل, sense: shoghl, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'},
         {surface: سوا, sense: sawa}]
-      reverse: بعد الشغل منروح سوا
+      reverse: |-
+        بعد الشغل منروح سوا
+        منروح سوا بعد الشغل
     apc-Latn/arabizi:
       text: ba3d el shoghl mnru7 sawa?
       tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: shoghl, sense: shoghl}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}]
-      reverse: (ba3d|ba3ed) (el|l|il) (shoghl|shoghol|sho8l|shughl) (mnru7|mnrou7|mnro7) (sawa|sawe)
+      reverse: |-
+        (ba3d|ba3ed) (el|l|il) (shoghl|shoghol|sho8l|shughl) (mnru7|mnrou7|mnro7) (sawa|sawe)
+        mnru7 sawa ba3d el shoghl
   translations:
     en: |-
       After work shall we go together?
@@ -476,16 +559,21 @@ sentences:
       text: شو بتعمل بالعطلة؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعمل, sense: 3emel, form: 'form:impf-2ms'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: عطلة,
               kc: 'sense:3otle'}]}]
-      reverse: شو بتعمل بالعطلة
+      reverse: |-
+        شو بتعمل بالعطلة
+        إنت شو بتعمل بالعطلة
     apc-Latn/arabizi:
       text: shu bta3mel bel 3otle?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mel, sense: 3emel, form: 'form:impf-2ms'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
           sense: 3otle}]
-      reverse: (shu|sho) (bta3mel|bte3mel|bta3mil) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+      reverse: |-
+        (shu|sho) (bta3mel|bte3mel|bta3mil) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+        enta shu bta3mel bel 3otle
   translations:
     en: |-
       What do you do on (holiday|vacation)?
       What are you doing (on|for) the holiday?
+      What does she do on holiday?
 - id: s.time.27
   node: apc.time.day-parts
   register: colloquial
@@ -508,11 +596,15 @@ sentences:
     apc-Arab/standard:
       text: إنتي فاضية بكرا؟
       tokens: [{surface: إنتي, sense: enti}, {surface: فاضية, sense: fadi, form: 'form:fem'}, {surface: بكرا, sense: bukra}]
-      reverse: '[إنتي] فاضية (بكرا|بكرة)'
+      reverse: |-
+        [إنتي] فاضية (بكرا|بكرة)
+        بكرا فاضية
     apc-Latn/arabizi:
       text: enti fadye bukra?
       tokens: [{surface: enti, sense: enti}, {surface: fadye, sense: fadi, form: 'form:fem'}, {surface: bukra, sense: bukra}]
-      reverse: '[(enti|inti)] (fadye|fadie|fadyi|fadya) (bukra|bokra|bukrah)'
+      reverse: |-
+        [(enti|inti)] (fadye|fadie|fadyi|fadya) (bukra|bokra|bukrah)
+        bukra fadye
   translations:
     en: Are you free tomorrow?
 - id: s.time.29
@@ -529,7 +621,9 @@ sentences:
       tokens: [{surface: ento, sense: ento}, {surface: fadyin, sense: fadi, form: 'form:pl'}, {surface: bukra, sense: bukra}]
       reverse: '[(ento|into|entu)] (fadyin|fadyeen|fadiyin|fadiyeen) (bukra|bokra|bukrah)'
   translations:
-    en: Are you free tomorrow?
+    en: |-
+      Are you free tomorrow?
+      Are you all free tomorrow?
 - id: s.time.30
   node: apc.time.when
   register: colloquial
@@ -596,12 +690,16 @@ sentences:
       text: شو بتعملوا بالعطلة؟
       tokens: [{surface: شو, sense: shu}, {surface: بتعملوا, sense: 3emel, form: 'form:impf-2pl'}, {surface: بالعطلة, sense: 3otle, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {
               surface: عطلة, kc: 'sense:3otle'}]}]
-      reverse: شو (بتعملوا|بتعملو) بالعطلة
+      reverse: |-
+        شو (بتعملوا|بتعملو) بالعطلة
+        إنتو شو بتعملوا بالعطلة
     apc-Latn/arabizi:
       text: shu bta3mlo bel 3otle?
       tokens: [{surface: shu, sense: shu}, {surface: bta3mlo, sense: 3emel, form: 'form:impf-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: 3otle,
           sense: 3otle}]
-      reverse: (shu|sho) (bta3mlo|bte3mlo|bta3mlu) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+      reverse: |-
+        (shu|sho) (bta3mlo|bte3mlo|bta3mlu) (bel|bil|b el) (3otle|3otli|3otla|3etle)
+        ento shu bta3mlo bel 3otle
   translations:
     en: |-
       What do you do on (holiday|vacation)?

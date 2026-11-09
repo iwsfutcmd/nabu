@@ -74,17 +74,22 @@ sentences:
     es-Latn/standard:
       text: Mi casa era chiquita, pero tenía un patio grande.
       tokens: [{surface: Mi, sense: mi}, {surface: casa, sense: casa}, {surface: era, sense: ser, form: 'form:impf'}, {surface: chiquita, sense: chiquito}, {surface: pero, sense: pero}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: un, sense: un}, {surface: patio, sense: patio}, {surface: grande, sense: grande}]
-      reverse: Mi casa era (chiquita|pequeña) pero tenía un patio grande
+      reverse: |-
+        Mi casa era (chiquita|pequeña) pero tenía un patio grande
+        Mi casa era chiquitica, pero tenía un patio grande.
   translations:
     en: |-
       My (house|home) was (small|little|tiny), but it had a (big|large) (yard|backyard).
+      My house was small, but it had a big garden.
 - id: s.u12.3
   node: es.u12.cuando-era-nino
   forms:
     es-Latn/standard:
       text: Mis abuelos vivían cerca y yo comía en su casa.
       tokens: [{surface: Mis, sense: mi}, {surface: abuelos, sense: abuelo}, {surface: vivían, sense: vivir, form: 'form:impf'}, {surface: cerca, sense: cerca}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: comía, sense: comer, form: 'form:impf'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: casa, sense: casa}]
-      reverse: Mis abuelos vivían cerca y [yo] comía en su casa
+      reverse: |-
+        Mis abuelos vivían cerca y [yo] comía en su casa
+        Mis abuelos vivían cerca y yo comía en casa de ellos.
   translations:
     en: |-
       My grandparents lived (close by|nearby|near us|close), and I (ate|used to eat|would eat) at their (house|place).
@@ -140,6 +145,7 @@ sentences:
       reverse: |-
         (Dónde tú vivías|Dónde vivías [tú]) cuando (eras|tú eras) (niño|chiquito|pequeño)
         (Dónde usted vivía|Dónde vivía [usted]) cuando (era|usted era) (niño|chiquito|pequeño)
+        ¿Tú dónde vivías cuando eras niño?
   translations:
     en: |-
       Where did you (live|use to live) when you were (a child|a kid|a boy|little|young|small)?
@@ -172,7 +178,9 @@ sentences:
     es-Latn/standard:
       text: Los sábados íbamos a casa de Abuela Cachita.
       tokens: [{surface: Los, sense: el}, {surface: sábados, sense: sábado}, {surface: íbamos, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: casa, sense: casa}, {surface: de, sense: de}, {surface: Abuela, sense: abuela}, {surface: Cachita, sense: cachita}]
-      reverse: Los sábados [nosotros] íbamos a [la] casa de (Abuela|la abuela|mi abuela) Cachita
+      reverse: |-
+        Los sábados [nosotros] íbamos a [la] casa de (Abuela|la abuela|mi abuela) Cachita
+        Los sábados nosotras íbamos a casa de Abuela Cachita.
   translations:
     en: |-
       On Saturdays we (went|used to go|would go) to (Grandma|Abuela|Granny) Cachita's [house].
@@ -183,10 +191,13 @@ sentences:
     es-Latn/standard:
       text: Abuela siempre hacía arroz con pollo los domingos.
       tokens: [{surface: Abuela, sense: abuela}, {surface: siempre, sense: siempre}, {surface: hacía, sense: hacer, form: 'form:impf'}, {surface: arroz, sense: arroz}, {surface: con, sense: con}, {surface: pollo, sense: pollo}, {surface: los, sense: el}, {surface: domingos, sense: domingo}]
-      reverse: (Abuela|La abuela|Mi abuela) siempre hacía arroz con pollo los domingos
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) siempre hacía arroz con pollo los domingos
+        Los domingos abuela siempre hacía arroz con pollo.
   translations:
     en: |-
       (Grandma|Abuela|Granny) always (made|used to make|cooked) (chicken and rice|arroz con pollo|rice with chicken) on Sundays.
+      My grandmother always made chicken and rice on Sundays.
 - id: s.u12.11
   node: es.u12.en-hialeah
   forms:
@@ -196,6 +207,9 @@ sentences:
       reverse: |-
         Por la noche [nosotros] veíamos la novela con ella
         [Nosotros] veíamos la novela con ella por la noche
+        Por la noche nosotras veíamos la novela con ella.
+        En la noche veíamos la novela con ella.
+        Por la noche mirábamos la novela con ella.
   translations:
     en: |-
       (At night|In the evening|In the evenings), we (watched|used to watch|would watch) the (soap opera|telenovela|novela) with her.
@@ -206,7 +220,9 @@ sentences:
     es-Latn/standard:
       text: En el verano hacía mucho calor y no había escuela.
       tokens: [{surface: En, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}, {surface: hacía, sense: hacer, form: 'form:impf'}, {surface: mucho, sense: mucho}, {surface: calor, sense: calor}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: había, sense: hay, form: 'form:impf'}, {surface: escuela, sense: escuela}]
-      reverse: En el verano hacía mucho calor y no había (escuela|clases)
+      reverse: |-
+        En el verano hacía mucho calor y no había (escuela|clases)
+        En verano hacía mucho calor y no había escuela.
   translations:
     en: |-
       In [the] summer it was (very hot|really hot|so hot) and there was no school.
@@ -225,6 +241,7 @@ sentences:
     en: |-
       As a (child|girl), (Grandma|Abuela|Granny) Cachita (lived|used to live) in the (countryside|country), in Matanzas.
       When she was (a child|a girl|little|young), (Grandma|Abuela|Granny) Cachita (lived|used to live) in the (countryside|country), in Matanzas.
+      As a child, my grandma Cachita lived in the countryside, in Matanzas.
 - id: s.u12.14
   node: es.u12.en-matanzas
   forms:
@@ -241,7 +258,9 @@ sentences:
     es-Latn/standard:
       text: Vivían en un bohío cerca de un pueblo.
       tokens: [{surface: Vivían, sense: vivir, form: 'form:impf'}, {surface: en, sense: en}, {surface: un, sense: un}, {surface: bohío, sense: bohío}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: un, sense: un}, {surface: pueblo, sense: pueblo}]
-      reverse: '[Ellos] vivían en un bohío cerca de un pueblo'
+      reverse: |-
+        [Ellos] vivían en un bohío cerca de un pueblo
+        Ellas vivían en un bohío cerca de un pueblo.
   translations:
     en: |-
       They (lived|used to live) in a (bohío|hut|thatched hut|palm hut) near a (town|village|small town).
@@ -279,6 +298,7 @@ sentences:
     en: |-
       (Grandma|Abuela|Granny) (went|used to go|would go) to school on horseback.
       (Grandma|Abuela|Granny) (rode|used to ride) a horse to school.
+      My grandmother went to school on horseback.
 - id: s.u12.19
   node: es.u12.en-matanzas
   forms:
@@ -310,17 +330,22 @@ sentences:
     es-Latn/standard:
       text: Abuela empinaba papalotes con sus hermanos.
       tokens: [{surface: Abuela, sense: abuela}, {surface: empinaba, sense: empinar, form: 'form:impf'}, {surface: papalotes, sense: papalote}, {surface: con, sense: con}, {surface: sus, sense: su}, {surface: hermanos, sense: hermano}]
-      reverse: (Abuela|La abuela|Mi abuela) (empinaba|volaba) papalotes con sus hermanos
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) (empinaba|volaba) papalotes con sus hermanos
+        Abuela volaba cometas con sus hermanos.
   translations:
     en: |-
       (Grandma|Abuela|Granny) (flew|used to fly|would fly) kites with her (brothers|siblings|brothers and sisters).
+      My grandmother flew kites with her brothers.
 - id: s.u12.22
   node: es.u12.los-juegos
   forms:
     es-Latn/standard:
       text: Mis hermanos y yo nos bañábamos en el río.
       tokens: [{surface: Mis, sense: mi}, {surface: hermanos, sense: hermano}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: nos, sense: nos}, {surface: bañábamos, sense: bañarse, form: 'form:impf'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: río, sense: río}]
-      reverse: Mis hermanos y yo nos bañábamos en el río
+      reverse: |-
+        Mis hermanos y yo nos bañábamos en el río
+        Mis hermanos y yo nadábamos en el río.
   translations:
     en: |-
       My (brothers|siblings|brothers and sisters) and I (swam|used to swim|would swim|bathed|used to bathe|went swimming|used to go swimming) in the river.
@@ -334,6 +359,8 @@ sentences:
       reverse: |-
         (Tú empinabas|Empinabas [tú]) (papalote|papalotes) cuando (eras|tú eras) (niño|chiquito|pequeño)
         (Usted empinaba|Empinaba [usted]) (papalote|papalotes) cuando (era|usted era) (niño|chiquito|pequeño)
+        ¿Tú volabas papalotes cuando eras niño?
+        ¿Tú volabas papalote cuando eras niño?
   translations:
     en: |-
       Did you (fly|use to fly) kites when you were (a kid|a child|a boy|little|young|small)?
@@ -343,10 +370,14 @@ sentences:
     es-Latn/standard:
       text: Abuelo Pepe nos hacía papalotes en el patio.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: nos, sense: nos}, {surface: hacía, sense: hacer, form: 'form:impf'}, {surface: papalotes, sense: papalote}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
-      reverse: (Abuelo|El abuelo|Mi abuelo) Pepe nos hacía papalotes en el patio
+      reverse: |-
+        (Abuelo|El abuelo|Mi abuelo) Pepe nos hacía papalotes en el patio
+        Abuelo Pepe nos hacía cometas en el patio.
   translations:
     en: |-
       (Grandpa|Abuelo|Granddad) Pepe (made|used to make|would make) (us kites|kites for us) in the (yard|backyard).
+      Grandpa Pepe used to make us kites in the garden.
+      My grandfather Pepe used to make us kites in the yard.
 - id: s.u12.25
   node: es.u12.antes
   forms:
@@ -367,6 +398,7 @@ sentences:
   translations:
     en: |-
       (Before|Back then|In the old days), (Grandma|Abuela|Granny) (didn't have a phone|did not have a phone|had no phone)[, but] now she has WhatsApp.
+      Back then, my grandmother didn't have a phone, but now she has WhatsApp.
 - id: s.u12.27
   node: es.u12.antes
   persons: {speaker: m}
@@ -380,6 +412,7 @@ sentences:
   translations:
     en: |-
       When I was (a kid|a child|a boy|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
+      When I was a kid, my grandmother spoke to me in Spanish.
 - id: s.u12.34
   node: es.u12.antes
   persons: {speaker: f}
@@ -393,13 +426,16 @@ sentences:
   translations:
     en: |-
       When I was (a kid|a child|a girl|little|young|small), (Grandma|Abuela|Granny) (spoke|talked|used to speak|used to talk|would speak|would talk) to me in Spanish.
+      When I was a kid, my grandmother spoke to me in Spanish.
 - id: s.u12.28
   node: es.u12.antes
   forms:
     es-Latn/standard:
       text: Yo siempre le contestaba en inglés.
       tokens: [{surface: Yo, sense: yo}, {surface: siempre, sense: siempre}, {surface: le, sense: le}, {surface: contestaba, sense: contestar, form: 'form:impf'}, {surface: en, sense: en}, {surface: inglés, sense: inglés}]
-      reverse: '[Yo] siempre le (contestaba|respondía) en inglés'
+      reverse: |-
+        [Yo] siempre le (contestaba|respondía) en inglés
+        Yo le contestaba siempre en inglés.
   translations:
     en: |-
       I always (answered her|used to answer her|answered|replied|used to reply|would answer|would reply) in English.
@@ -419,7 +455,9 @@ sentences:
     es-Latn/standard:
       text: ¿Qué hacían ustedes cuando no había luz?
       tokens: [{surface: Qué, sense: qué}, {surface: hacían, sense: hacer, form: 'form:impf'}, {surface: ustedes, sense: ustedes}, {surface: cuando, sense: cuando}, {surface: 'no', sense: 'no'}, {surface: había, sense: hay, form: 'form:impf'}, {surface: luz, sense: luz}]
-      reverse: (Qué hacían [ustedes]|Qué ustedes hacían|Qué hacías [tú]|Qué tú hacías|Qué hacía [usted]|Qué usted hacía) cuando no había (luz|electricidad|corriente)
+      reverse: |-
+        (Qué hacían [ustedes]|Qué ustedes hacían|Qué hacías [tú]|Qué tú hacías|Qué hacía [usted]|Qué usted hacía) cuando no había (luz|electricidad|corriente)
+        ¿Ustedes qué hacían cuando no había luz?
   translations:
     en: |-
       What did you (do|use to do) when there was no (electricity|power|light)?
@@ -432,6 +470,7 @@ sentences:
       reverse: |-
         [Nosotros] nos acostábamos con las gallinas [muy temprano]
         [Nosotros] nos acostábamos muy temprano [con las gallinas]
+        Nosotras nos acostábamos con las gallinas, muy temprano.
   translations:
     en: |-
       We (went|used to go|would go) to bed with the (chickens|hens)[, very early].

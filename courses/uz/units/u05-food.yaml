@@ -164,12 +164,14 @@ sentences:
       reverse: |-
         [Siz] qahva ichasizmi
         [Sen] qahva ichasanmi
+        Siz kofe ichasizmi
     uz-Cyrl/standard:
       text: Сиз қаҳва ичасизми?
       tokens: [{surface: Сиз, sense: siz}, {surface: қаҳва, sense: qahva}, {surface: ичасизми, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: ми, kc: 'form:q-mi'}]}]
       reverse: |-
         [Сиз] қаҳва ичасизми
         [Сен] қаҳва ичасанми
+        Сиз кофе ичасизми
   translations:
     en: |-
       Do you drink coffee?
@@ -239,11 +241,15 @@ sentences:
     uz-Latn/standard:
       text: Mana osh!
       tokens: [{surface: Mana, sense: mana}, {surface: osh, sense: osh}]
-      reverse: Mana osh
+      reverse: |-
+        Mana osh
+        Mana palov
     uz-Cyrl/standard:
       text: Мана ош!
       tokens: [{surface: Мана, sense: mana}, {surface: ош, sense: osh}]
-      reverse: Мана ош
+      reverse: |-
+        Мана ош
+        Мана палов
   translations:
     en: Here('s| is) the (plov|pilaf|palov|food)!
 - id: s.food.15
@@ -252,11 +258,15 @@ sentences:
     uz-Latn/standard:
       text: Osh tayyor.
       tokens: [{surface: Osh, sense: osh}, {surface: tayyor, sense: tayyor}]
-      reverse: Osh tayyor
+      reverse: |-
+        Osh tayyor
+        Palov tayyor
     uz-Cyrl/standard:
       text: Ош тайёр.
       tokens: [{surface: Ош, sense: osh}, {surface: тайёр, sense: tayyor}]
-      reverse: Ош тайёр
+      reverse: |-
+        Ош тайёр
+        Палов тайёр
   translations:
     en: The (plov|pilaf|palov|food) is ready.
 - id: s.food.16
@@ -265,11 +275,15 @@ sentences:
     uz-Latn/standard:
       text: Osh juda mazali!
       tokens: [{surface: Osh, sense: osh}, {surface: juda, sense: juda}, {surface: mazali, sense: mazali}]
-      reverse: Osh juda mazali
+      reverse: |-
+        Osh juda mazali
+        Palov juda mazali
     uz-Cyrl/standard:
       text: Ош жуда мазали!
       tokens: [{surface: Ош, sense: osh}, {surface: жуда, sense: juda}, {surface: мазали, sense: mazali}]
-      reverse: Ош жуда мазали
+      reverse: |-
+        Ош жуда мазали
+        Палов жуда мазали
   translations:
     en: The (plov|pilaf|palov|food) is (very tasty|delicious|very delicious|very good)!
 - id: s.food.17
@@ -278,11 +292,15 @@ sentences:
     uz-Latn/standard:
       text: Onam osh pishiradi.
       tokens: [{surface: Onam, sense: ona, morphs: [{surface: Ona, kc: 'sense:ona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: osh, sense: osh}, {surface: pishiradi, sense: pishirmoq, morphs: [{surface: pishir, kc: 'sense:pishirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Mening] (onam|oyim) osh (pishiradi|damlaydi|qiladi)(|lar)'
+      reverse: |-
+        [Mening] (onam|oyim) osh (pishiradi|damlaydi|qiladi)(|lar)
+        Onam palov pishiradi
     uz-Cyrl/standard:
       text: Онам ош пиширади.
       tokens: [{surface: Онам, sense: ona, morphs: [{surface: Она, kc: 'sense:ona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ош, sense: osh}, {surface: пиширади, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Менинг] (онам|ойим) ош (пиширади|дамлайди|қилади)(|лар)'
+      reverse: |-
+        [Менинг] (онам|ойим) ош (пиширади|дамлайди|қилади)(|лар)
+        Онам палов пиширади
   translations:
     en: |-
       My (mother|mom|mum) (cooks|makes) (plov|pilaf|palov).
@@ -293,11 +311,15 @@ sentences:
     uz-Latn/standard:
       text: Biz osh yeymiz.
       tokens: [{surface: Biz, sense: biz}, {surface: osh, sense: osh}, {surface: yeymiz, sense: yemoq, morphs: [{surface: ye, kc: 'sense:yemoq'}, {surface: y, kc: 'form:pres-a'}, {surface: miz, kc: 'form:cop-1pl-miz'}]}]
-      reverse: '[Biz] osh yeymiz'
+      reverse: |-
+        [Biz] osh yeymiz
+        Biz palov yeymiz
     uz-Cyrl/standard:
       text: Биз ош еймиз.
       tokens: [{surface: Биз, sense: biz}, {surface: ош, sense: osh}, {surface: еймиз, sense: yemoq, morphs: [{surface: е, kc: 'sense:yemoq'}, {surface: й, kc: 'form:pres-a'}, {surface: миз, kc: 'form:cop-1pl-miz'}]}]
-      reverse: '[Биз] ош еймиз'
+      reverse: |-
+        [Биз] ош еймиз
+        Биз палов еймиз
   translations:
     en: |-
       We eat (plov|pilaf|palov).
@@ -311,12 +333,16 @@ sentences:
       reverse: |-
         [Sizning] choyingizni iching
         [Sening] choyingni ich
+        Iltimos, choyingizni iching
+        Marhamat, choyingizni iching
     uz-Cyrl/standard:
       text: Чойингизни ичинг.
       tokens: [{surface: Чойингизни, sense: choy, morphs: [{surface: Чой, kc: 'sense:choy'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}, {surface: ни, kc: 'form:acc-ni'}]}, {surface: ичинг, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
       reverse: |-
         [Сизнинг] чойингизни ичинг
         [Сенинг] чойингни ич
+        Илтимос, чойингизни ичинг
+        Марҳамат, чойингизни ичинг
   translations:
     en: '[Please] (drink|have) your tea.'
 - id: s.food.20
@@ -325,11 +351,17 @@ sentences:
     uz-Latn/standard:
       text: Non oling.
       tokens: [{surface: Non, sense: non}, {surface: oling, sense: olmoq, morphs: [{surface: ol, kc: 'sense:olmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
-      reverse: (Non|Nondan) (oling|ol)
+      reverse: |-
+        (Non|Nondan) (oling|ol)
+        Iltimos, non oling
+        Marhamat, non oling
     uz-Cyrl/standard:
       text: Нон олинг.
       tokens: [{surface: Нон, sense: non}, {surface: олинг, sense: olmoq, morphs: [{surface: ол, kc: 'sense:olmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      reverse: (Нон|Нондан) (олинг|ол)
+      reverse: |-
+        (Нон|Нондан) (олинг|ол)
+        Илтимос, нон олинг
+        Марҳамат, нон олинг
   translations:
     en: |-
       [Please] (take|have) [some] bread.
@@ -368,11 +400,15 @@ sentences:
     uz-Latn/standard:
       text: Oshda goʻsht bor.
       tokens: [{surface: Oshda, sense: osh, morphs: [{surface: Osh, kc: 'sense:osh'}, {surface: da, kc: 'form:loc-da'}]}, {surface: goʻsht, sense: gosht}, {surface: bor, sense: bor}]
-      reverse: Oshda goʻsht bor
+      reverse: |-
+        Oshda goʻsht bor
+        Palovda goʻsht bor
     uz-Cyrl/standard:
       text: Ошда гўшт бор.
       tokens: [{surface: Ошда, sense: osh, morphs: [{surface: Ош, kc: 'sense:osh'}, {surface: да, kc: 'form:loc-da'}]}, {surface: гўшт, sense: gosht}, {surface: бор, sense: bor}]
-      reverse: Ошда гўшт бор
+      reverse: |-
+        Ошда гўшт бор
+        Паловда гўшт бор
   translations:
     en: |-
       There('s| is) meat in the (plov|pilaf|palov).
@@ -396,11 +432,15 @@ sentences:
     uz-Latn/standard:
       text: Men qahva ichmayman.
       tokens: [{surface: Men, sense: men}, {surface: qahva, sense: qahva}, {surface: ichmayman, sense: ichmoq, morphs: [{surface: ich, kc: 'sense:ichmoq'}, {surface: ma, kc: 'form:neg-ma'}, {surface: y, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] qahva ichmayman'
+      reverse: |-
+        [Men] qahva ichmayman
+        Men kofe ichmayman
     uz-Cyrl/standard:
       text: Мен қаҳва ичмайман.
       tokens: [{surface: Мен, sense: men}, {surface: қаҳва, sense: qahva}, {surface: ичмайман, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: ма, kc: 'form:neg-ma'}, {surface: й, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Мен] қаҳва ичмайман'
+      reverse: |-
+        [Мен] қаҳва ичмайман
+        Мен кофе ичмайман
   translations:
     en: I (don't|do not) drink coffee.
 - id: s.food.26
@@ -418,6 +458,7 @@ sentences:
     en: |-
       Is there [any] sugar?
       Do you have [any] sugar?
+      Have you got any sugar?
 - id: s.food.27
   node: uz.food.not
   forms:
@@ -446,6 +487,7 @@ sentences:
     en: |-
       Is there [any] water?
       Do you have [any] water?
+      Have you got any water?
 - id: s.food.29
   node: uz.food.please
   forms:
@@ -505,17 +547,24 @@ sentences:
     en: |-
       Is there [any] cold water?
       Do you have [any] cold water?
+      Have you got any cold water?
 - id: s.food.32
   node: uz.food.please
   forms:
     uz-Latn/standard:
       text: Yana choy iching!
       tokens: [{surface: Yana, sense: yana}, {surface: choy, sense: choy}, {surface: iching, sense: ichmoq, morphs: [{surface: ich, kc: 'sense:ichmoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
-      reverse: Yana (choy|choydan) (iching|ich)
+      reverse: |-
+        Yana (choy|choydan) (iching|ich)
+        Iltimos, yana choy iching
+        Marhamat, yana choy iching
     uz-Cyrl/standard:
       text: Яна чой ичинг!
       tokens: [{surface: Яна, sense: yana}, {surface: чой, sense: choy}, {surface: ичинг, sense: ichmoq, morphs: [{surface: ич, kc: 'sense:ichmoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      reverse: Яна (чой|чойдан) (ичинг|ич)
+      reverse: |-
+        Яна (чой|чойдан) (ичинг|ич)
+        Илтимос, яна чой ичинг
+        Марҳамат, яна чой ичинг
   translations:
     en: '[Please] (have|drink) (some more|more) tea!'
 - id: s.food.33
@@ -539,17 +588,22 @@ sentences:
       text: Sizlar qahva ichasizlarmi?
       tokens: [{surface: Sizlar, sense: siz, morphs: [{surface: Siz, kc: 'sense:siz'}, {surface: lar, kc: 'form:plural-lar'}]}, {surface: qahva, sense: qahva}, {surface: ichasizlarmi, sense: ichmoq, morphs: [
             {surface: ich, kc: 'sense:ichmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}, {surface: lar, kc: 'form:plural-lar'}, {surface: mi, kc: 'form:q-mi'}]}]
-      reverse: '[(Sizlar|Siz)] qahva (ichasizlarmi|ichasizmi)'
+      reverse: |-
+        [(Sizlar|Siz)] qahva (ichasizlarmi|ichasizmi)
+        Sizlar kofe ichasizlarmi
     uz-Cyrl/standard:
       text: Сизлар қаҳва ичасизларми?
       tokens: [{surface: Сизлар, sense: siz, morphs: [{surface: Сиз, kc: 'sense:siz'}, {surface: лар, kc: 'form:plural-lar'}]}, {surface: қаҳва, sense: qahva}, {surface: ичасизларми, sense: ichmoq, morphs: [
             {surface: ич, kc: 'sense:ichmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}, {surface: лар, kc: 'form:plural-lar'}, {surface: ми, kc: 'form:q-mi'}]}]
-      reverse: '[(Сизлар|Сиз)] қаҳва (ичасизларми|ичасизми)'
+      reverse: |-
+        [(Сизлар|Сиз)] қаҳва (ичасизларми|ичасизми)
+        Сизлар кофе ичасизларми
   translations:
     en: |-
       Do you drink coffee?
       Will you have [some] coffee?
       Would you like [some] coffee?
+      Do you all drink coffee?
 stories:
 - id: uz.story.food
   node: uz.food.story

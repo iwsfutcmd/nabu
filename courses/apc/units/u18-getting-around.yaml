@@ -36,11 +36,14 @@ sentences:
     apc-Latn/arabizi:
       text: baddi servees.
       tokens: [{surface: baddi, sense: baddi}, {surface: servees, sense: servees}]
-      reverse: (baddi|badde|badi) (servees|service|servis|srvis)
+      reverse: |-
+        (baddi|badde|badi) (servees|service|servis|srvis)
+        ana baddi servees
   translations:
     en: |-
       I want a (service|shared taxi).
       I need a (service|shared taxi).
+      I'd like a service.
 - id: s.road.2
   node: apc.road.transport
   register: colloquial
@@ -48,7 +51,9 @@ sentences:
     apc-Arab/standard:
       text: سرفيس؟ ع بيروت؟
       tokens: [{surface: سرفيس, sense: servees}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
-      reverse: (سرفيس|سيرفيس|سرڤيس) ع بيروت
+      reverse: |-
+        (سرفيس|سيرفيس|سرڤيس) ع بيروت
+        سرفيس على بيروت
     apc-Latn/arabizi:
       text: servees? 3a Beirut?
       tokens: [{surface: servees, sense: servees}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
@@ -62,11 +67,16 @@ sentences:
     apc-Arab/standard:
       text: منروح بالتاكسي.
       tokens: [{surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: بالتاكسي, sense: taxi, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: تاكسي, kc: 'sense:taxi'}]}]
-      reverse: (منروح|نحنا منروح) بالتاكسي
+      reverse: |-
+        (منروح|نحنا منروح) بالتاكسي
+        رح نروح بالتاكسي
     apc-Latn/arabizi:
       text: mnru7 bel taxi.
       tokens: [{surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: taxi, sense: taxi}]
-      reverse: (mnru7|mnro7) (bel|bil|b el) (taxi|taksi|taxe)
+      reverse: |-
+        (mnru7|mnro7) (bel|bil|b el) (taxi|taksi|taxe)
+        ne7na mnru7 bel taxi
+        ra7 nru7 bel taxi
   translations:
     en: |-
       We('ll| will) go by taxi.
@@ -140,11 +150,15 @@ sentences:
     apc-Arab/standard:
       text: في عجقة كتير.
       tokens: [{surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: كتير, sense: ktir}]
-      reverse: في عجقة كتير
+      reverse: |-
+        في عجقة كتير
+        في كتير عجقة
     apc-Latn/arabizi:
       text: fi 3aj2a ktir.
       tokens: [{surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: ktir, sense: ktir}]
-      reverse: fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
+      reverse: |-
+        fi (3aj2a|3aj2e|3aj2ah|3aja) (ktir|kteer)
+        fi ktir 3aj2a
   translations:
     en: |-
       There('s| is) a lot of traffic.
@@ -157,11 +171,15 @@ sentences:
     apc-Arab/standard:
       text: ما في عجقة اليوم.
       tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: عجقة, sense: 3aj2a}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
-      reverse: ما في عجقة اليوم
+      reverse: |-
+        ما في عجقة اليوم
+        اليوم ما في عجقة
     apc-Latn/arabizi:
       text: ma fi 3aj2a el yom.
       tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: 3aj2a, sense: 3aj2a}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
+      reverse: |-
+        ma fi (3aj2a|3aj2e|3aj2ah|3aja) (el|l|il) (yom|youm)
+        el yom ma fi 3aj2a
   translations:
     en: |-
       There('s| is) no traffic today.
@@ -174,11 +192,15 @@ sentences:
     apc-Arab/standard:
       text: وينك؟
       tokens: [{surface: وينك, sense: wen, morphs: [{surface: وين, kc: 'sense:wen'}, {surface: ك, kc: 'form:poss-2ms'}]}]
-      reverse: وينك
+      reverse: |-
+        وينك
+        وين إنت
     apc-Latn/arabizi:
       text: wenak?
       tokens: [{surface: wenak, sense: wen, morphs: [{surface: wen, kc: 'sense:wen'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (wenak|weinak|wenek)
+      reverse: |-
+        (wenak|weinak|wenek)
+        wen enta
   translations:
     en: Where are you?
 - id: s.road.11
@@ -189,11 +211,15 @@ sentences:
     apc-Arab/standard:
       text: وينك؟
       tokens: [{surface: وينك, sense: wen, vocalized: وينِك, morphs: [{surface: وين, kc: 'sense:wen'}, {surface: ك, kc: 'form:poss-2fs'}]}]
-      reverse: وينك
+      reverse: |-
+        وينك
+        وين إنتي
     apc-Latn/arabizi:
       text: wenik?
       tokens: [{surface: wenik, sense: wen, morphs: [{surface: wen, kc: 'sense:wen'}, {surface: ik, kc: 'form:poss-2fs'}]}]
-      reverse: (wenik|weinik|wenek|wenke)
+      reverse: |-
+        (wenik|weinik|wenek|wenke)
+        wen enti
   translations:
     en: Where are you?
 - id: s.road.12
@@ -255,11 +281,15 @@ sentences:
     apc-Arab/standard:
       text: وين قاعدين؟
       tokens: [{surface: وين, sense: wen}, {surface: قاعدين, sense: 2a3ed, form: 'form:pl'}]
-      reverse: '[إنتو] وين قاعدين'
+      reverse: |-
+        [إنتو] وين قاعدين
+        وين إنتو قاعدين
     apc-Latn/arabizi:
       text: wen 2a3din?
       tokens: [{surface: wen, sense: wen}, {surface: 2a3din, sense: 2a3ed, form: 'form:pl'}]
-      reverse: '[(ento|into)] (wen|wein) (2a3din|a3din|2a3deen|2a3dein)'
+      reverse: |-
+        [(ento|into)] (wen|wein) (2a3din|a3din|2a3deen|2a3dein)
+        wen ento 2a3din
   translations:
     en: |-
       Where are you (sitting|staying)?
@@ -324,13 +354,20 @@ sentences:
     apc-Arab/standard:
       text: نازل ع بيروت؟
       tokens: [{surface: نازل, sense: nezel}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
-      reverse: نازل ع بيروت
+      reverse: |-
+        نازل ع بيروت
+        إنت نازل ع بيروت
+        نازل على بيروت
     apc-Latn/arabizi:
       text: nezel 3a Beirut?
       tokens: [{surface: nezel, sense: nezel}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
-      reverse: (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+      reverse: |-
+        (nezel|nazel|nezil|nazil) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+        enta nezel 3a Beirut
   translations:
-    en: Are you going (down|) to Beirut?
+    en: |-
+      Are you going (down|) to Beirut?
+      Are you heading down to Beirut?
 - id: s.road.20
   node: apc.road.where
   register: colloquial
@@ -339,15 +376,20 @@ sentences:
     apc-Arab/standard:
       text: رايحة عالشغل؟
       tokens: [{surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
-      reverse: رايحة (عالشغل|ع الشغل|على الشغل)
+      reverse: |-
+        رايحة (عالشغل|ع الشغل|على الشغل)
+        إنتي رايحة عالشغل
     apc-Latn/arabizi:
       text: ray7a 3al shoghl?
       tokens: [{surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
-      reverse: (ray7a|rayi7a|ray7e|rey7a|raye7a|rayha) (3al|3a l|3a el) (shoghl|shoghol|shughl)
+      reverse: |-
+        (ray7a|rayi7a|ray7e|rey7a|raye7a|rayha) (3al|3a l|3a el) (shoghl|shoghol|shughl)
+        enti ray7a 3al shoghl
   translations:
     en: |-
       Are you going to work?
       Are you on your way to work?
+      Are you heading to work?
 - id: s.road.21
   node: apc.road.directions
   register: colloquial
@@ -409,12 +451,16 @@ sentences:
       text: بعد الإشارة، لفّ عاليمين.
       tokens: [{surface: بعد, sense: ba3d}, {surface: الإشارة, sense: ishara, morphs: [{surface: ال, kc: 'sense:el'}, {surface: إشارة, kc: 'sense:ishara'}]}, {surface: لفّ, sense: laff}, {surface: عاليمين,
           sense: yamin, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: يمين, kc: 'sense:yamin'}]}]
-      reverse: بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
+      reverse: |-
+        بعد الإشارة لفّ (عاليمين|ع اليمين|على اليمين)
+        لفّ عاليمين بعد الإشارة
     apc-Latn/arabizi:
       text: ba3d el ishara, liff 3al yamin.
       tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: ishara, sense: ishara}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {
               surface: l, kc: 'sense:el'}]}, {surface: yamin, sense: yamin}]
-      reverse: (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+      reverse: |-
+        (ba3d|ba3ed) (el|l|il) (ishara|ishare|2ishara) (liff|leff|lef|lif) (3al|3a l|3a el) (yamin|yamine|ymin)
+        liff 3al yamin ba3d el ishara
   translations:
     en: |-
       After the (traffic light|traffic lights|lights), turn right.
@@ -427,11 +473,15 @@ sentences:
     apc-Arab/standard:
       text: وقّف هون، عمول معروف.
       tokens: [{surface: وقّف, sense: wa22ef}, {surface: هون, sense: hon}, {surface: عمول, sense: 3mol-ma3rouf}, {surface: معروف, sense: 3mol-ma3rouf}]
-      reverse: وقّف هون (عمول|اعمول|عمل) معروف
+      reverse: |-
+        وقّف هون (عمول|اعمول|عمل) معروف
+        عمول معروف وقّف هون
     apc-Latn/arabizi:
       text: wa22ef hon, 3mol ma3rouf.
       tokens: [{surface: wa22ef, sense: wa22ef}, {surface: hon, sense: hon}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
-      reverse: (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
+      reverse: |-
+        (wa22ef|wa2af|wa22if|wa22af) (hon|hone|houn) (3mol|3mul|e3mol) (ma3rouf|ma3roof)
+        3mol ma3rouf wa22ef hon
   translations:
     en: |-
       Stop here, please.
@@ -444,11 +494,15 @@ sentences:
     apc-Arab/standard:
       text: وقّفي هون، عملي معروف.
       tokens: [{surface: وقّفي, sense: wa22ef, form: 'form:imp-2fs'}, {surface: هون, sense: hon}, {surface: عملي, sense: 3mol-ma3rouf, form: 'form:imp-2fs'}, {surface: معروف, sense: 3mol-ma3rouf}]
-      reverse: وقّفي هون عملي معروف
+      reverse: |-
+        وقّفي هون عملي معروف
+        عملي معروف وقّفي هون
     apc-Latn/arabizi:
       text: wa22fi hon, 3emli ma3rouf.
       tokens: [{surface: wa22fi, sense: wa22ef, form: 'form:imp-2fs'}, {surface: hon, sense: hon}, {surface: 3emli, sense: 3mol-ma3rouf, form: 'form:imp-2fs'}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
-      reverse: (wa22fi|wa22efi|wa22ife|wa2fi) (hon|hone|houn) (3emli|3emle|3imli|a3mli) (ma3rouf|ma3roof)
+      reverse: |-
+        (wa22fi|wa22efi|wa22ife|wa2fi) (hon|hone|houn) (3emli|3emle|3imli|a3mli) (ma3rouf|ma3roof)
+        3emli ma3rouf wa22fi hon
   translations:
     en: |-
       Stop here, please.
@@ -467,11 +521,15 @@ sentences:
       text: dighri, w ba3dein liff 3al shmel.
       tokens: [{surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: ba3dein, sense: ba3dein}, {surface: liff, sense: laff}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'},
             {surface: l, kc: 'sense:el'}]}, {surface: shmel, sense: shmel}]
-      reverse: (dighri|deghri|doghri|dughri) (w|wa) (ba3dein|ba3dain|ba3den) (liff|leff|lef|lif) (3al|3a l|3a el) shmel
+      reverse: |-
+        (dighri|deghri|doghri|dughri) (w|wa) (ba3dein|ba3dain|ba3den) (liff|leff|lef|lif) (3al|3a l|3a el) shmel
+        dighri ba3dein liff 3al shmel
   translations:
     en: |-
       Straight (on|ahead), and then turn left.
       Go straight, then turn left.
+      Go straight, and then turn left.
+      Go straight ahead, then turn left.
 - id: s.road.28
   node: apc.road.directions
   register: colloquial

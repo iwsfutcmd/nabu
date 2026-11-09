@@ -44,12 +44,16 @@ sentences:
       text: tenpo ni la mi moku.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: mi, sense: mi, readings: {
             lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
-      reverse: tenpo ni la mi moku
+      reverse: |-
+        tenpo ni la mi moku
+        mi moku lon tenpo ni
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥁󱤡󱤴󱤶
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
-      reverse: 󱥫󱥁󱤡󱤴󱤶
+      reverse: |-
+        󱥫󱥁󱤡󱤴󱤶
+        󱤴󱤶󱤬󱥫󱥁
   translations:
     en: |-
       (I'm|I am|We're|We are) eating (now|right now).
@@ -61,12 +65,18 @@ sentences:
       text: tenpo ni la sina lape.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: sina, sense: sina,
           readings: {lasina: sina}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
-      reverse: tenpo ni la sina lape
+      reverse: |-
+        tenpo ni la sina lape
+        sina lape lon tenpo ni
+        tenpo ni la sina mute li lape
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥁󱤡󱥞󱤢
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱥞, sense: sina, readings: {
             lasina: sina}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
-      reverse: 󱥫󱥁󱤡󱥞󱤢
+      reverse: |-
+        󱥫󱥁󱤡󱥞󱤢
+        󱥞󱤢󱤬󱥫󱥁
+        󱥫󱥁󱤡󱥞󱤼󱤧󱤢
   translations:
     en: |-
       (You're|You are) (sleeping|asleep) (now|right now).
@@ -78,12 +88,16 @@ sentences:
       text: tenpo kama la mi tawa ma Kanata.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: mi, sense: mi,
           readings: {lasina: mi}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}]
-      reverse: tenpo kama la mi tawa ma Kanata
+      reverse: |-
+        tenpo kama la mi tawa ma Kanata
+        mi tawa ma Kanata lon tenpo kama
     tok-Qaap/sitelen-pona:
       text: 󱥫󱤖󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
-      reverse: 󱥫󱤖󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      reverse: |-
+        󱥫󱤖󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+        󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤬󱥫󱤖
   translations:
     en: |-
       (I'll|I will|We'll|We will) go to Canada (one day|someday|in the future|later).
@@ -95,12 +109,16 @@ sentences:
       text: tenpo kama la jan Lina li kama.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: jan, sense: jan,
           readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: kama, sense: kama, readings: {lasina: kama}}]
-      reverse: tenpo kama la jan Lina li kama
+      reverse: |-
+        tenpo kama la jan Lina li kama
+        jan Lina li kama lon tenpo kama
     tok-Qaap/sitelen-pona:
       text: 󱥫󱤖󱤡󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤖
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤑, sense: jan, readings: {
             lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
-      reverse: 󱥫󱤖󱤡󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤖
+      reverse: |-
+        󱥫󱤖󱤡󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤖
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤖󱤬󱥫󱤖
   translations:
     en: |-
       Lina will come (later|in the future|someday|one day).
@@ -130,12 +148,16 @@ sentences:
       text: mi jo ala e tenpo.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: e, sense: e, readings: {
             lasina: e}}, {surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}]
-      reverse: mi jo ala e tenpo
+      reverse: |-
+        mi jo ala e tenpo
+        mi jo e tenpo ala
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤓󱤂󱤉󱥫
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
         {surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}]
-      reverse: 󱤴󱤓󱤂󱤉󱥫
+      reverse: |-
+        󱤴󱤓󱤂󱤉󱥫
+        󱤴󱤓󱤉󱥫󱤂
   translations:
     en: |-
       (I|We) (don't|do not) have (time|any time).
@@ -147,12 +169,18 @@ sentences:
       text: tenpo seme la sina kama?
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: seme, sense: seme, readings: {lasina: seme}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: sina, sense: sina,
           readings: {lasina: sina}}, {surface: kama, sense: kama, readings: {lasina: kama}}]
-      reverse: tenpo seme la sina kama
+      reverse: |-
+        tenpo seme la sina kama
+        sina kama lon tenpo seme
+        tenpo seme la sina mute li kama
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥙󱤡󱥞󱤖
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱥞, sense: sina, readings: {
             lasina: sina}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
-      reverse: 󱥫󱥙󱤡󱥞󱤖
+      reverse: |-
+        󱥫󱥙󱤡󱥞󱤖
+        󱥞󱤖󱤬󱥫󱥙
+        󱥫󱥙󱤡󱥞󱤼󱤧󱤖
   translations:
     en: |-
       When are you coming?
@@ -179,12 +207,16 @@ sentences:
       text: tenpo suno ni la mi pali.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: suno, sense: suno, readings: {lasina: suno}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: la, sense: la,
           readings: {lasina: la}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: pali, sense: pali, readings: {lasina: pali}}]
-      reverse: tenpo suno ni la mi pali
+      reverse: |-
+        tenpo suno ni la mi pali
+        mi pali lon tenpo suno ni
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥤󱥁󱤡󱤴󱥉
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥤, sense: suno, readings: {lasina: suno}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤡, sense: la, readings: {
             lasina: la}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}]
-      reverse: 󱥫󱥤󱥁󱤡󱤴󱥉
+      reverse: |-
+        󱥫󱥤󱥁󱤡󱤴󱥉
+        󱤴󱥉󱤬󱥫󱥤󱥁
   translations:
     en: |-
       (I'm|I am|We're|We are) working today.
@@ -199,13 +231,19 @@ sentences:
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: suno, sense: suno, readings: {lasina: suno}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: la, sense: la,
           readings: {lasina: la}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: mute, sense: mute, readings: {lasina: mute}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: musi,
           sense: musi, readings: {lasina: musi}}]
-      reverse: tenpo suno kama la mi mute li musi
+      reverse: |-
+        tenpo suno kama la mi mute li musi
+        tenpo suno kama la mi musi
+        mi mute li musi lon tenpo suno kama
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥤󱤖󱤡󱤴󱤼󱤧󱤻
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥤, sense: suno, readings: {lasina: suno}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤡, sense: la, readings: {
             lasina: la}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤼, sense: mute, readings: {lasina: mute}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤻, sense: musi,
           readings: {lasina: musi}}]
-      reverse: 󱥫󱥤󱤖󱤡󱤴󱤼󱤧󱤻
+      reverse: |-
+        󱥫󱥤󱤖󱤡󱤴󱤼󱤧󱤻
+        󱥫󱥤󱤖󱤡󱤴󱤻
+        󱤴󱤼󱤧󱤻󱤬󱥫󱥤󱤖
   translations:
     en: |-
       (We'll|We will) (have fun|play) tomorrow.
@@ -255,12 +293,16 @@ sentences:
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: sike, sense: sike, readings: {lasina: sike}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: la, sense: la,
           readings: {lasina: la}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata,
           sense: kanata, readings: {lasina: Kanata}}]
-      reverse: tenpo sike ni la mi tawa ma Kanata
+      reverse: |-
+        tenpo sike ni la mi tawa ma Kanata
+        mi tawa ma Kanata lon tenpo sike ni
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥜󱥁󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥜, sense: sike, readings: {lasina: sike}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤡, sense: la, readings: {
             lasina: la}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
-      reverse: 󱥫󱥜󱥁󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      reverse: |-
+        󱥫󱥜󱥁󱤡󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+        󱤴󱥩󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑󱤬󱥫󱥜󱥁
   translations:
     en: |-
       (I'm|I am|We're|We are) going to Canada this year.
@@ -320,12 +362,16 @@ sentences:
       text: tenpo pini la mi lili.
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: pini, sense: pini, readings: {lasina: pini}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: mi, sense: mi,
           readings: {lasina: mi}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
-      reverse: tenpo pini la mi lili
+      reverse: |-
+        tenpo pini la mi lili
+        mi lili lon tenpo pini
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥐󱤡󱤴󱤨
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥐, sense: pini, readings: {lasina: pini}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
-      reverse: 󱥫󱥐󱤡󱤴󱤨
+      reverse: |-
+        󱥫󱥐󱤡󱤴󱤨
+        󱤴󱤨󱤬󱥫󱥐
   translations:
     en: |-
       (I|We) used to be (little|small|young).
@@ -388,13 +434,17 @@ sentences:
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: suno, sense: suno, readings: {lasina: suno}}, {surface: pini, sense: pini, readings: {lasina: pini}}, {surface: la, sense: la,
           readings: {lasina: la}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: open, sense: open, readings: {lasina: open}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {
           surface: e, sense: e, readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: ni, sense: ni, readings: {lasina: ni}}]
-      reverse: tenpo suno pini la mi open lukin e lipu ni
+      reverse: |-
+        tenpo suno pini la mi open lukin e lipu ni
+        mi open lukin e lipu ni lon tenpo suno pini
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥤󱥐󱤡󱤴󱥇󱤮󱤉󱤪󱥁
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥤, sense: suno, readings: {lasina: suno}}, {surface: 󱥐, sense: pini, readings: {lasina: pini}}, {surface: 󱤡, sense: la, readings: {
             lasina: la}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥇, sense: open, readings: {lasina: open}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱤉, sense: e,
           readings: {lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}]
-      reverse: 󱥫󱥤󱥐󱤡󱤴󱥇󱤮󱤉󱤪󱥁
+      reverse: |-
+        󱥫󱥤󱥐󱤡󱤴󱥇󱤮󱤉󱤪󱥁
+        󱤴󱥇󱤮󱤉󱤪󱥁󱤬󱥫󱥤󱥐
   translations:
     en: |-
       Yesterday (I|we) (started|began) (reading|to read) (this|that) book.
@@ -487,6 +537,7 @@ sentences:
       (He's|He is|She's|She is|They're|They are) still (sleeping|asleep).
       (He|She) (keeps|kept) sleeping
       They (keep|kept) sleeping
+      It's still sleeping.
 - id: s.u07.27
   node: tok.u07.again
   forms:
@@ -510,13 +561,17 @@ sentences:
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: mi, sense: mi,
           readings: {lasina: mi}}, {surface: awen, sense: awen, readings: {lasina: awen}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: sina,
           sense: sina, readings: {lasina: sina}}]
-      reverse: tenpo kama la mi awen olin e sina
+      reverse: |-
+        tenpo kama la mi awen olin e sina
+        mi awen olin e sina lon tenpo kama
     tok-Qaap/sitelen-pona:
       text: 󱥫󱤖󱤡󱤴󱤈󱥅󱤉󱥞
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}, {surface: 󱤈, sense: awen, readings: {lasina: awen}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥞, sense: sina,
           readings: {lasina: sina}}]
-      reverse: 󱥫󱤖󱤡󱤴󱤈󱥅󱤉󱥞
+      reverse: |-
+        󱥫󱤖󱤡󱤴󱤈󱥅󱤉󱥞
+        󱤴󱤈󱥅󱤉󱥞󱤬󱥫󱤖
   translations:
     en: |-
       (I'll|I will|We'll|We will) (always|still) love you.
@@ -536,7 +591,9 @@ sentences:
       reverse: 󱤪󱥝󱤧󱥔󱥩󱤴
   constructions: ['construction:pona-tawa']
   translations:
-    en: (I|We) like the new (book|document|paper).
+    en: |-
+      (I|We) like the new (book|document|paper).
+      I liked the new book.
 - id: s.u07.30
   node: tok.u07.but
   forms:
@@ -577,6 +634,8 @@ sentences:
       Only I am (at home|home)
       (I'm|I am) (at home|home) alone
       (I'm|I am) alone (at home|in the house)
+      We're the only ones at home.
+      We're home alone.
 - id: s.u07.32
   node: tok.u07.but
   forms:
@@ -637,12 +696,16 @@ sentences:
       text: sina wile la mi kama.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: mi, sense: mi,
           readings: {lasina: mi}}, {surface: kama, sense: kama, readings: {lasina: kama}}]
-      reverse: sina wile la mi kama
+      reverse: |-
+        sina wile la mi kama
+        sina mute li wile la mi kama
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥷󱤡󱤴󱤖
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱤴, sense: mi, readings: {
             lasina: mi}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
-      reverse: 󱥞󱥷󱤡󱤴󱤖
+      reverse: |-
+        󱥞󱥷󱤡󱤴󱤖
+        󱥞󱤼󱤧󱥷󱤡󱤴󱤖
   constructions: ['construction:la-if']
   translations:
     en: |-

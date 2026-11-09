@@ -90,7 +90,9 @@ sentences:
     uz-Latn/standard:
       text: Men bozorga boraman.
       tokens: [{surface: Men, sense: men}, {surface: bozorga, sense: bozor, morphs: [{surface: bozor, kc: 'sense:bozor'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] bozorga (boraman|boryapman|ketyapman)'
+      reverse: |-
+        [Men] bozorga (boraman|boryapman|ketyapman)
+        Men bozorga ketaman
     uz-Cyrl/standard:
       text: Мен бозорга бораман.
       tokens: [{surface: Мен, sense: men}, {surface: бозорга, sense: bozor, morphs: [{surface: бозор, kc: 'sense:bozor'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
@@ -232,15 +234,22 @@ sentences:
     uz-Latn/standard:
       text: Akam ishdan keladi.
       tokens: [{surface: Akam, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ishdan, sense: ish, morphs: [{surface: ish, kc: 'sense:ish'}, {surface: dan, kc: 'form:abl-dan'}]}, {surface: keladi, sense: kelmoq, morphs: [{surface: kel, kc: 'sense:kelmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Mening] akam ishdan keladi'
+      reverse: |-
+        [Mening] akam ishdan keladi
+        Akam ishdan uyga keladi
+        Akam ishdan qaytadi
     uz-Cyrl/standard:
       text: Акам ишдан келади.
       tokens: [{surface: Акам, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ишдан, sense: ish, morphs: [{surface: иш, kc: 'sense:ish'}, {surface: дан, kc: 'form:abl-dan'}]}, {surface: келади, sense: kelmoq, morphs: [{surface: кел, kc: 'sense:kelmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
-      reverse: '[Менинг] акам ишдан келади'
+      reverse: |-
+        [Менинг] акам ишдан келади
+        Акам ишдан уйга келади
+        Акам ишдан қайтади
   translations:
     en: |-
       My (older|elder|big) brother (comes|is coming) (home|back) from work.
       My (older|elder|big) brother comes from work.
+      My older brother will come home from work.
 - id: s.city.14
   node: uz.city.transport
   forms:
@@ -332,11 +341,15 @@ sentences:
     uz-Latn/standard:
       text: Kechirasiz, bozor qayerda?
       tokens: [{surface: Kechirasiz, sense: kechirmoq, morphs: [{surface: Kechir, kc: 'sense:kechirmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: siz, kc: 'form:cop-2-siz'}]}, {surface: bozor, sense: bozor}, {surface: qayerda, sense: qayer, morphs: [{surface: qayer, kc: 'sense:qayer'}, {surface: da, kc: 'form:loc-da'}]}]
-      reverse: Kechirasiz bozor qayerda
+      reverse: |-
+        Kechirasiz bozor qayerda
+        Uzr, bozor qayerda
     uz-Cyrl/standard:
       text: Кечирасиз, бозор қаерда?
       tokens: [{surface: Кечирасиз, sense: kechirmoq, morphs: [{surface: Кечир, kc: 'sense:kechirmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: сиз, kc: 'form:cop-2-siz'}]}, {surface: бозор, sense: bozor}, {surface: қаерда, sense: qayer, morphs: [{surface: қаер, kc: 'sense:qayer'}, {surface: да, kc: 'form:loc-da'}]}]
-      reverse: Кечирасиз бозор қаерда
+      reverse: |-
+        Кечирасиз бозор қаерда
+        Узр, бозор қаерда
   translations:
     en: (Excuse me|Sorry), where('s| is) the (bazaar|market)?
 - id: s.city.20
@@ -462,11 +475,17 @@ sentences:
     uz-Latn/standard:
       text: Men shahar markaziga boraman.
       tokens: [{surface: Men, sense: men}, {surface: shahar, sense: shahar}, {surface: markaziga, sense: markaz, morphs: [{surface: markaz, kc: 'sense:markaz'}, {surface: i, kc: 'form:poss-3-si'}, {surface: ga, kc: 'form:dat-ga'}]}, {surface: boraman, sense: bormoq, morphs: [{surface: bor, kc: 'sense:bormoq'}, {surface: a, kc: 'form:pres-a'}, {surface: man, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Men] shahar markaziga boraman'
+      reverse: |-
+        [Men] shahar markaziga boraman
+        Men shahar markaziga boryapman
+        Men shahar markaziga ketyapman
     uz-Cyrl/standard:
       text: Мен шаҳар марказига бораман.
       tokens: [{surface: Мен, sense: men}, {surface: шаҳар, sense: shahar}, {surface: марказига, sense: markaz, morphs: [{surface: марказ, kc: 'sense:markaz'}, {surface: и, kc: 'form:poss-3-si'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бораман, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ман, kc: 'form:cop-1sg-man'}]}]
-      reverse: '[Мен] шаҳар марказига бораман'
+      reverse: |-
+        [Мен] шаҳар марказига бораман
+        Мен шаҳар марказига боряпман
+        Мен шаҳар марказига кетяпман
   translations:
     en: |-
       I('m| am) going to the (city|town) (centre|center).
@@ -519,6 +538,7 @@ sentences:
       Where are you going?
       Where will you go?
       Where do you go?
+      Where are you all going?
 stories:
 - id: uz.story.city
   node: uz.city.story

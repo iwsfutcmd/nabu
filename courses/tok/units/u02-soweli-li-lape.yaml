@@ -85,6 +85,7 @@ sentences:
       People are (talking|speaking)
       (Someone|A person|The person) (talks|speaks|talked|spoke)
       People (talk|speak|talked|spoke)
+      The people are talking.
 - id: s.u02.4
   node: tok.u02.ona-li
   forms:
@@ -98,7 +99,9 @@ sentences:
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
       reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥔
   translations:
-    en: Lina is (nice|kind|good|fine|well|okay).
+    en: |-
+      Lina is (nice|kind|good|fine|well|okay).
+      Lina is all right.
 - id: s.u02.5
   node: tok.u02.ona-li
   forms:
@@ -113,7 +116,9 @@ sentences:
             lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
       reverse: 󱤴󱤶󱥆󱤧󱤢
   translations:
-    en: (I'm|I am|We're|We are) eating. (He's|He is|She's|She is|They're|They are) (sleeping|asleep).
+    en: |-
+      (I'm|I am|We're|We are) eating. (He's|He is|She's|She is|They're|They are) (sleeping|asleep).
+      I'm eating. It's sleeping.
 - id: s.u02.6
   node: tok.u02.ona-li
   forms:
@@ -121,12 +126,16 @@ sentences:
       text: ona li suli li wawa.
       tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {
             lasina: li}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
-      reverse: ona li suli li wawa
+      reverse: |-
+        ona li suli li wawa
+        ona mute li suli li wawa
     tok-Qaap/sitelen-pona:
       text: 󱥆󱤧󱥣󱤧󱥵
       tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
-      reverse: 󱥆󱤧󱥣󱤧󱥵
+      reverse: |-
+        󱥆󱤧󱥣󱤧󱥵
+        󱥆󱤼󱤧󱥣󱤧󱥵
   translations:
     en: (They're|They are|He's|He is|She's|She is|It's|It is) (big|tall) and strong.
 - id: s.u02.7
@@ -143,7 +152,10 @@ sentences:
           sense: pona, readings: {lasina: pona}}]
       reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤑󱥔
   translations:
-    en: Pita is (a friend|a good person).
+    en: |-
+      Pita is (a friend|a good person).
+      Pita is a nice person.
+      Pita is a kind person.
 - id: s.u02.8
   node: tok.u02.animals
   forms:
@@ -161,6 +173,7 @@ sentences:
       (An|The) animal (sleeps|slept)
       [The] animals are (sleeping|asleep)
       [The] animals (sleep|slept)
+      An animal is sleeping.
 - id: s.u02.9
   node: tok.u02.animals
   forms:
@@ -179,6 +192,9 @@ sentences:
       The (little|small) animal is eating.
       [The] (little|small) animals are eating
       (The|A) (little|small) animal (eats|ate)
+      The little animals eat.
+      Little animals eat.
+      A little animal is eating.
 - id: s.u02.10
   node: tok.u02.animals
   forms:
@@ -195,6 +211,9 @@ sentences:
       The bird is (talking|singing|chirping).
       [The] birds are (talking|singing|chirping)
       The bird (talks|sings|chirps|talked|sang|chirped)
+      A bird is singing.
+      The birds sing.
+      Birds sing.
 - id: s.u02.11
   node: tok.u02.animals
   forms:
@@ -230,6 +249,7 @@ sentences:
       (The|A) fish (eats|ate)
       [The] fish eat
       [The] fish is food
+      A fish is eating.
 - id: s.u02.13
   node: tok.u02.animals
   forms:
@@ -247,6 +267,7 @@ sentences:
     en: |-
       Ha ha ha! (I'm|I am) a fish!
       Hahaha! (I'm|I am) a fish
+      Ha ha ha! We're fish!
 - id: s.u02.14
   node: tok.u02.animals
   forms:
@@ -279,7 +300,10 @@ sentences:
             lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
       reverse: 󱥴󱤧󱤨󱥢󱤧󱥣
   translations:
-    en: The bird is (small|little). The animal is (big|large).
+    en: |-
+      The bird is (small|little). The animal is (big|large).
+      The birds are small. The animals are big.
+      Birds are small. Animals are big.
 - id: s.u02.16
   node: tok.u02.mila
   forms:
@@ -356,6 +380,8 @@ sentences:
       The (lizard|frog|snake|reptile) is (sleeping|asleep).
       (A|The) (lizard|frog|snake|reptile) (sleeps|slept)
       [The] (lizards|frogs|snakes|reptiles) are (sleeping|asleep)
+      Lizards sleep.
+      A lizard is sleeping.
 - id: s.u02.21
   node: tok.u02.mila
   forms:
@@ -373,6 +399,7 @@ sentences:
     en: |-
       The big (lizard|frog|snake|reptile) is strong.
       [The] big (lizards|frogs|snakes|reptiles) are strong
+      A big lizard is strong.
 - id: s.u02.22
   node: tok.u02.mila
   forms:
@@ -402,7 +429,10 @@ sentences:
             lasina: akesi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
       reverse: 󱥑󱤧󱤶󱤁󱤧󱤢
   translations:
-    en: The (bug|insect) is eating. The (lizard|frog|snake|reptile) is (sleeping|asleep).
+    en: |-
+      The (bug|insect) is eating. The (lizard|frog|snake|reptile) is (sleeping|asleep).
+      The bug eats. The lizard sleeps.
+      The bugs are eating. The lizards are sleeping.
 - id: s.u02.24
   node: tok.u02.this
   forms:
@@ -418,6 +448,7 @@ sentences:
     en: |-
       (This|That) is a (house|home|building).
       (These|Those) are (houses|homes|buildings)
+      It's a house.
 - id: s.u02.25
   node: tok.u02.this
   forms:
@@ -431,7 +462,9 @@ sentences:
       tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}]
       reverse: 󱥁󱤧󱤑󱦐󱤩󱤎󱤿󱤀󱦑
   translations:
-    en: (This is|That's|That is) Lina.
+    en: |-
+      (This is|That's|That is) Lina.
+      It's Lina.
 - id: s.u02.26
   node: tok.u02.this
   forms:
@@ -483,6 +516,7 @@ sentences:
     en: |-
       (These|Those) are (sweets|candies|treats).
       (This|That) is (candy|dessert|a sweet|a treat)
+      It's candy.
 - id: s.u02.29
   node: tok.u02.this
   forms:
@@ -526,7 +560,9 @@ sentences:
       tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
       reverse: 󱥪󱤧󱥔
   translations:
-    en: '[The] water is (good|nice).'
+    en: |-
+      [The] water is (good|nice).
+      The water is fine.
 - id: s.u02.32
   node: tok.u02.hot-cold
   forms:

@@ -124,6 +124,8 @@ sentences:
       reverse: |-
         ale li pona
         ijo ale li pona
+        ali li pona
+        ijo ali li pona
     tok-Qaap/sitelen-pona:
       text: 󱤄󱤧󱥔
       tokens: [{surface: 󱤄, sense: ale, readings: {lasina: ale}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
@@ -144,6 +146,8 @@ sentences:
       reverse: |-
         mi olin e ijo ale
         mi olin e ale
+        mi olin e ijo ali
+        mi olin e ali
     tok-Qaap/sitelen-pona:
       text: 󱤴󱥅󱤉󱤌󱤄
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤌, sense: ijo, readings: {lasina: ijo}},
@@ -162,7 +166,9 @@ sentences:
       text: jan ale li wile moku.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: ale, sense: ale, readings: {lasina: ale}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile, sense: wile, readings: {
             lasina: wile}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
-      reverse: jan ale li wile moku
+      reverse: |-
+        jan ale li wile moku
+        jan ali li wile moku
     tok-Qaap/sitelen-pona:
       text: 󱤑󱤄󱤧󱥷󱤶
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱤄, sense: ale, readings: {lasina: ale}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile, readings: {
@@ -173,6 +179,7 @@ sentences:
       (Everyone|Everybody) wants (to eat|food).
       All [the] people want (to eat|food)
       (Everyone|Everybody) is hungry
+      Everyone wanted to eat.
 - id: s.u05.8
   node: tok.u05.family
   forms:
@@ -190,6 +197,7 @@ sentences:
     en: |-
       My parents (love|loved) me.
       My (parent|mother|mom|mum|father|dad) (loves|loved) me
+      Our parents love us.
 - id: s.u05.9
   node: tok.u05.family
   forms:
@@ -197,16 +205,23 @@ sentences:
       text: mama meli mi li toki pona.
       tokens: [{surface: mama, sense: mama, readings: {lasina: mama}}, {surface: meli, sense: meli, readings: {lasina: meli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: mama meli mi li toki pona
+      reverse: |-
+        mama meli mi li toki pona
+        mama mi li toki pona
+        mama meli mi li toki e toki pona
     tok-Qaap/sitelen-pona:
       text: 󱤱󱤳󱤴󱤧󱥬󱥔
       tokens: [{surface: 󱤱, sense: mama, readings: {lasina: mama}}, {surface: 󱤳, sense: meli, readings: {lasina: meli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
-      reverse: 󱤱󱤳󱤴󱤧󱥬󱥔
+      reverse: |-
+        󱤱󱤳󱤴󱤧󱥬󱥔
+        󱤱󱤴󱤧󱥬󱥔
+        󱤱󱤳󱤴󱤧󱥬󱤉󱥬󱥔
   translations:
     en: |-
       My (mother|mom|mum) (speaks|is speaking|spoke) Toki Pona.
       My (mother|mom|mum) (speaks|talks) (well|nicely)
+      Our mother speaks Toki Pona.
 - id: s.u05.10
   node: tok.u05.family
   forms:
@@ -214,16 +229,21 @@ sentences:
       text: mama mije mi li jo e soweli.
       tokens: [{surface: mama, sense: mama, readings: {lasina: mama}}, {surface: mije, sense: mije, readings: {lasina: mije}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}]
-      reverse: mama mije mi li jo e soweli
+      reverse: |-
+        mama mije mi li jo e soweli
+        mama mi li jo e soweli
     tok-Qaap/sitelen-pona:
       text: 󱤱󱤵󱤴󱤧󱤓󱤉󱥢
       tokens: [{surface: 󱤱, sense: mama, readings: {lasina: mama}}, {surface: 󱤵, sense: mije, readings: {lasina: mije}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}]
-      reverse: 󱤱󱤵󱤴󱤧󱤓󱤉󱥢
+      reverse: |-
+        󱤱󱤵󱤴󱤧󱤓󱤉󱥢
+        󱤱󱤴󱤧󱤓󱤉󱥢
   translations:
     en: |-
       My (father|dad) (has|had) a pet.
       My (father|dad) (has|had) (pets|an animal|animals|a dog|a cat)
+      Our father has a pet.
 - id: s.u05.11
   node: tok.u05.family
   forms:
@@ -291,6 +311,7 @@ sentences:
       (This|That) man is my (father|dad).
       (This|That) man's my (father|dad)
       (This is|That's|That is) my (father|dad)
+      This man is our father.
 - id: s.u05.14
   node: tok.u05.family
   forms:
@@ -299,17 +320,22 @@ sentences:
       tokens: [{surface: mama, sense: mama, readings: {lasina: mama}}, {surface: meli, sense: meli, readings: {lasina: meli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: suwi,
           sense: suwi, readings: {lasina: suwi}}]
-      reverse: mama meli mi li pali e moku suwi
+      reverse: |-
+        mama meli mi li pali e moku suwi
+        mama mi li pali e moku suwi
     tok-Qaap/sitelen-pona:
       text: 󱤱󱤳󱤴󱤧󱥉󱤉󱤶󱥦
       tokens: [{surface: 󱤱, sense: mama, readings: {lasina: mama}}, {surface: 󱤳, sense: meli, readings: {lasina: meli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥦, sense: suwi,
           readings: {lasina: suwi}}]
-      reverse: 󱤱󱤳󱤴󱤧󱥉󱤉󱤶󱥦
+      reverse: |-
+        󱤱󱤳󱤴󱤧󱥉󱤉󱤶󱥦
+        󱤱󱤴󱤧󱥉󱤉󱤶󱥦
   translations:
     en: |-
       My (mother|mom|mum) (is making|makes|made) (sweets|dessert|candy|something sweet).
       My (mother|mom|mum) (is cooking|cooks|cooked) (sweets|dessert|something sweet)
+      Our mother is making sweets.
 - id: s.u05.15
   node: tok.u05.names
   forms:
@@ -385,6 +411,7 @@ sentences:
       Tomasi is my friend.
       Tomasi's my friend
       Tomasi is a friend of mine
+      Tomasi is our friend.
 - id: s.u05.19
   node: tok.u05.names
   forms:
@@ -403,7 +430,9 @@ sentences:
         󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤊󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤶
         󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤊󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤶
   translations:
-    en: Lina and Pita (are eating|eat|ate).
+    en: |-
+      Lina and Pita (are eating|eat|ate).
+      Pita and Lina are eating.
 - id: s.u05.20
   node: tok.u05.names
   forms:
@@ -436,6 +465,7 @@ sentences:
       reverse: |-
         jan Mila en jan Tomasi li toki pona
         jan Tomasi en jan Mila li toki pona
+        jan Mila en jan Tomasi li toki e toki pona
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤊󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥬󱥔
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤊, sense: en, readings: {lasina: en}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑,
@@ -443,10 +473,12 @@ sentences:
       reverse: |-
         󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤊󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥬󱥔
         󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤊󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥬󱥔
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤊󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥬󱤉󱥬󱥔
   translations:
     en: |-
       Mila and Tomasi (speak|are speaking|spoke) Toki Pona.
       Mila and Tomasi (speak|talk) (well|nicely)
+      Tomasi and Mila speak Toki Pona.
 - id: s.u05.22
   node: tok.u05.names
   forms:
@@ -602,6 +634,7 @@ sentences:
     en: |-
       Pita is my (sibling|brother|sister).
       Pita's my (sibling|brother|sister)
+      Pita is our brother.
 - id: s.u05.31
   node: tok.u05.same-other
   forms:
@@ -664,7 +697,9 @@ sentences:
             lasina: e}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
       reverse: 󱤴󱥷󱤆󱤉󱥭󱤴
   translations:
-    en: (I|We) want to change (my|our) (house|home).
+    en: |-
+      (I|We) want to change (my|our) (house|home).
+      I wanted to change my house.
 - id: s.u05.35
   node: tok.u05.same-other
   forms:

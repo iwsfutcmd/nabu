@@ -111,7 +111,12 @@ sentences:
       tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 孟子曰善[哉]
   translations:
-    en: Mencius said, “(Good|Excellent|Well said|Very good).”
+    en: |-
+      Mencius said, “(Good|Excellent|Well said|Very good).”
+      Mencius says, “Good.”
+      Mengzi said, “Good.”
+      Mencius said, “Fine.”
+      Mencius said, “That is good.”
 - id: s.09.2
   node: lzh.u09.mencius
   forms:
@@ -124,6 +129,8 @@ sentences:
       Mencius was a gentleman.
       Mencius (is|was) a (noble person|noble man|superior man).
       Mencius is a gentleman.
+      Mengzi was a gentleman.
+      Mencius was a superior person.
 - id: s.09.3
   node: lzh.u09.mencius
   forms:
@@ -136,6 +143,9 @@ sentences:
       Mencius had an audience with the king.
       Mencius (met|visited|went to see|called on) the king.
       Mencius has an audience with the king.
+      Mencius saw the king.
+      Mencius meets the king.
+      Mengzi had an audience with the king.
 - id: s.09.4
   node: lzh.u09.mencius
   forms:
@@ -148,6 +158,8 @@ sentences:
       Mencius had an audience with King Hui of Liang.
       Mencius (met|visited|went to see|called on) King Hui of Liang.
       Mencius has an audience with King Hui of Liang.
+      Mencius saw King Hui of Liang.
+      Mengzi had an audience with King Hui of Liang.
 - id: s.09.5
   node: lzh.u09.mencius
   forms:
@@ -159,19 +171,26 @@ sentences:
     en: |-
       King Hui of Liang (asked|questioned) Mencius.
       The king of Liang (asked|questioned) Mencius.
+      King Hui of Liang asks Mencius.
+      King Hui of Liang asked Mengzi.
 - id: s.09.6
   node: lzh.u09.mencius
   forms:
     lzh-Hant/standard:
       text: 叟自遠方來。
       tokens: [{surface: 叟, sense: 叟, readings: {pinyin: sǒu, jyutping: sau2, baxter: suwX}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
-      reverse: 叟自遠方來
+      reverse: |-
+        叟自遠方來
+        叟從遠方來
   translations:
     en: |-
       The old man has come from afar.
       The old man (comes|came) from (afar|far away|a distant place).
       The old man has come from (far away|a distant place).
       (Venerable sir|Sir), you have come from (afar|far away|a distant place).
+      Old man, you have come from afar.
+      An old man came from afar.
+      Sir, you came from afar.
 - id: s.09.7
   node: lzh.u09.distance
   forms:
@@ -195,6 +214,7 @@ sentences:
       He (travelled|traveled|walked|went) a hundred li.
       (She|They) (travelled|traveled|walked|went) a hundred li.
       (Travel|Walk|Go) a hundred li.
+      He walked one hundred li.
 - id: s.09.9
   node: lzh.u09.distance
   forms:
@@ -208,6 +228,8 @@ sentences:
       (Sir|Venerable sir), you (have come|came) a thousand li.
       Venerable sir, you did not think a thousand li too far, and came.
       (Sir|Venerable sir), you (did not think|didn't think) a thousand li too far to come.
+      Sir, you did not consider a thousand li too far to come.
+      Old man, you came a thousand li.
 - id: s.09.10
   node: lzh.u09.distance
   forms:
@@ -219,6 +241,7 @@ sentences:
     en: |-
       The king will come.
       The king (is about to come|is going to come|is coming).
+      The king will arrive.
 - id: s.09.11
   node: lzh.u09.distance
   forms:
@@ -232,6 +255,8 @@ sentences:
       I'm going to (study|learn) it.
       I will (study|learn) it.
       I'll (study|learn) it.
+      I shall study it.
+      I am about to study it.
 - id: s.09.12
   node: lzh.u09.distance
   forms:
@@ -244,6 +269,7 @@ sentences:
       How (can|shall|will) I (profit|benefit) my (state|country)?
       What (can|will) (profit|benefit) my (state|country)?
       With what can I (profit|benefit) my (state|country)?
+      How can I benefit my kingdom?
 - id: s.09.13
   node: lzh.u09.distance
   forms:
@@ -256,6 +282,9 @@ sentences:
       Will you also have something with which to (profit|benefit) my (state|country)?
       Surely you (also |)have something (with which |)to (profit|benefit) my (state|country)?
       Do you also have (a way|something) to (profit|benefit) my (state|country)?
+      Will you also have something to benefit my state?
+      Do you also have a way to profit my kingdom?
+      You must have some way of profiting my state?
 - id: s.09.14
   node: lzh.u09.distance
   forms:
@@ -267,18 +296,24 @@ sentences:
     en: |-
       Sir, you did not think a thousand li too far to come: will you also have something with which to (profit|benefit) my (state|country)?
       (Sir|Venerable sir), you have come a thousand li: (surely you|will you) (also |)have something (with which |)to (profit|benefit) my (state|country)?
+      Venerable sir, you did not think a thousand li too far to come: will you also have something with which to profit my state?
 - id: s.09.15
   node: lzh.u09.why-profit
   forms:
     lzh-Hant/standard:
       text: 何必問？
       tokens: [{surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}]
-      reverse: 何必問
+      reverse: |-
+        何必問
+        子何必問
+        汝何必問
   translations:
     en: |-
       Why must you ask?
       Why (ask|do you have to ask|must you ask that)?
       What need is there to ask?
+      Why is it necessary to ask?
+      Why should you ask?
 - id: s.09.16
   node: lzh.u09.why-profit
   forms:
@@ -292,6 +327,8 @@ sentences:
       Why must (the king|Your Majesty) (talk about|mention|say) profit?
       Why must the king speak of profit?
       Why does (the king|Your Majesty) have to (speak of|talk about|mention) profit?
+      Why must Your Majesty use the word “profit”?
+      Why must Your Majesty talk of profit?
 - id: s.09.17
   node: lzh.u09.why-profit
   forms:
@@ -305,19 +342,25 @@ sentences:
       Humaneness is (being human|humanity|what makes us human).
       Benevolence is (being human|humanity|what makes us human).
       The humane (person |)is (human|a true person).
+      Being humane is being human.
 - id: s.09.18
   node: lzh.u09.why-profit
   forms:
     lzh-Hant/standard:
       text: 此非義也。
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此非義也
+      reverse: |-
+        此非義也
+        此非義
   translations:
     en: |-
       This is not right.
       This is not (righteous|just|rightness).
       That is not (right|righteous|just).
       This isn't (right|righteous|just).
+      This is not righteousness.
+      That isn't right.
+      This was not right.
 - id: s.09.19
   node: lzh.u09.why-profit
   forms:
@@ -329,6 +372,8 @@ sentences:
     en: |-
       Mencius (spoke of|talked about|spoke about) (humaneness|benevolence) and (rightness|righteousness).
       Mencius (speaks of|talks about) (humaneness|benevolence) and (rightness|righteousness).
+      Mencius spoke of humanity and righteousness.
+      Mengzi spoke of humaneness and rightness.
 - id: s.09.20
   node: lzh.u09.why-profit
   forms:
@@ -340,6 +385,8 @@ sentences:
     en: |-
       (Only|Just) (humaneness|benevolence) and (rightness|righteousness).
       (Humaneness|Benevolence) and (rightness|righteousness), (that is all|and nothing else|nothing more).
+      Nothing but humaneness and rightness.
+      Humaneness and rightness, and that is all.
 - id: s.09.21
   node: lzh.u09.why-profit
   forms:
@@ -351,6 +398,7 @@ sentences:
     en: |-
       There (is|are) (also |)(humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
       (I|We) (also |)have (humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+      I have only humaneness and rightness.
 - id: s.09.22
   node: lzh.u09.why-profit
   forms:
@@ -359,7 +407,9 @@ sentences:
       tokens: [{surface: 孟子, sense: 孟子, readings: {pinyin: mèng zǐ, jyutping: maang6 zi2, baxter: maengH tsiX}}, {surface: 對, sense: 對, readings: {pinyin: duì, jyutping: deoi3, baxter: twojH}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}]
       reverse: 孟子對曰王何必曰利
   translations:
-    en: Mencius (replied|answered), “Why must (Your Majesty|the king) (speak of|talk about|mention) profit?”
+    en: |-
+      Mencius (replied|answered), “Why must (Your Majesty|the king) (speak of|talk about|mention) profit?”
+      Mengzi replied, “Why must Your Majesty speak of profit?”
 - id: s.09.23
   node: lzh.u09.why-profit
   forms:
@@ -368,7 +418,9 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 何必, sense: 何必, readings: {pinyin: hé bì, jyutping: ho4 bit1, baxter: ha pjit}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 利, sense: 利.profit, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 仁, sense: 仁, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 而已, sense: 而已, readings: {pinyin: ér yǐ, jyutping: ji4 ji5, baxter: nyi yiX}}, {surface: 矣, sense: 矣, readings: {pinyin: yǐ, jyutping: ji5, baxter: hiX}}]
       reverse: 王何必曰利亦有仁義而已矣
   translations:
-    en: Why must (Your Majesty|the king) (speak of|talk about|mention) profit? There (is|are) (also |)(humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+    en: |-
+      Why must (Your Majesty|the king) (speak of|talk about|mention) profit? There (is|are) (also |)(humaneness|benevolence) and (rightness|righteousness), (and that is all|nothing more|and nothing else).
+      Why must Your Majesty speak of profit? I have humaneness and rightness, and that is all.
 - id: s.09.24
   node: lzh.u09.desire
   forms:
@@ -393,6 +445,8 @@ sentences:
       I also (want|desire) bear's paw.
       I (want|desire) bear's paw too.
       Bear's paw, too, is (what|something) I (want|desire).
+      I also like bear's paw.
+      Bear's paws are also what I want.
 - id: s.09.26
   node: lzh.u09.desire
   forms:
@@ -407,6 +461,8 @@ sentences:
       (One|You) cannot have both.
       I (can't|can not) have both.
       (One|You) can't have both.
+      The two cannot be had together.
+      I cannot have the two together.
 - id: s.09.27
   node: lzh.u09.desire
   forms:
@@ -418,6 +474,7 @@ sentences:
     en: |-
       I (give up|let go of|forgo|forego) the fish.
       I (give up|let go of|forgo|forego) fish.
+      I gave up the fish.
 - id: s.09.28
   node: lzh.u09.desire
   forms:
@@ -429,17 +486,22 @@ sentences:
     en: |-
       I (take|choose|pick) the bear's paw.
       I (take|choose|pick) bear's paw.
+      I took the bear's paw.
 - id: s.09.29
   node: lzh.u09.desire
   forms:
     lzh-Hant/standard:
       text: 舍魚而取熊掌者也。
       tokens: [{surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 熊掌, sense: 熊掌, readings: {pinyin: xióng zhǎng, jyutping: hung4 zoeng2, baxter: hjuwng tsyangX}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (舍|捨)魚而取熊掌[者也]
+      reverse: |-
+        (舍|捨)魚而取熊掌[者也]
+        吾舍魚而取熊掌
   translations:
     en: |-
       I (would|will) (give up|let go of|forgo) the fish and (take|choose) the bear's paw.
       (Give up|Forgo) the fish and (take|choose) the bear's paw.
+      I would give up the fish and choose bear's paw.
+      I would rather give up the fish and take the bear's paw.
 - id: s.09.30
   node: lzh.u09.desire
   forms:
@@ -453,6 +515,7 @@ sentences:
       I also (want|desire) life.
       I (want|desire) life too.
       Life, too, is (what|something) I (want|desire).
+      Living is also something I want.
 - id: s.09.31
   node: lzh.u09.desire
   forms:
@@ -472,11 +535,14 @@ sentences:
     lzh-Hant/standard:
       text: 舍生而取義者也。
       tokens: [{surface: 舍, sense: 舍, readings: {pinyin: shě, jyutping: se2, baxter: syaeX}}, {surface: 生, sense: 生, readings: {pinyin: shēng, jyutping: sang1, baxter: sraeng}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 取, sense: 取, readings: {pinyin: qǔ, jyutping: ceoi2, baxter: tshjuX}}, {surface: 義, sense: 義, readings: {pinyin: yì, jyutping: ji6, baxter: ngjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (舍|捨)生而取義[者也]
+      reverse: |-
+        (舍|捨)生而取義[者也]
+        吾舍生而取義
   translations:
     en: |-
       I (would|will) (give up|sacrifice|forgo) (my |)life and (choose|take) (rightness|righteousness).
       (Give up|Sacrifice) (my |)life and (choose|take) (rightness|righteousness).
+      I would rather give up my life and choose rightness.
 - id: s.09.33
   node: lzh.u09.desire
   forms:
@@ -488,6 +554,9 @@ sentences:
     en: |-
       If I (cannot|can't) have both, I (would|will) (give up|sacrifice) my life and (choose|take) (rightness|righteousness).
       (One|You) cannot have both: (give up|sacrifice) life and (choose|take) (rightness|righteousness).
+      If I cannot keep the two together, I will let life go and choose righteousness.
+      If I cannot have both, I would forgo my life and choose rightness.
+      Since I cannot have both, I would give up life and choose rightness.
 stories:
 - id: lzh.story.fish-and-bears-paw
   node: lzh.u09.story

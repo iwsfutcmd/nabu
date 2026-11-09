@@ -67,6 +67,8 @@ sentences:
       They (aren't|weren't) (sleeping|asleep)
       (She|He) (doesn't|does not|didn't|did not) sleep
       They (don't|do not|didn't|did not) sleep
+      It's not sleeping.
+      It isn't asleep.
 - id: s.u04.3
   node: tok.u04.not
   forms:
@@ -102,6 +104,9 @@ sentences:
     en: |-
       (That's|That is|This is) not good.
       (This|That) isn't good
+      It's not good.
+      That's not okay.
+      That's not nice.
 - id: s.u04.5
   node: tok.u04.not
   forms:
@@ -117,6 +122,7 @@ sentences:
     en: |-
       (That's|That is|This is) (gross|disgusting|dirty)!
       (Yuck|Ew|Gross)
+      It's gross!
 - id: s.u04.6
   node: tok.u04.not
   forms:
@@ -149,6 +155,7 @@ sentences:
     en: |-
       (I|We) (don't|do not) eat (dirty|gross) fruit.
       (I'm|I am|We're|We are) not eating [the] (dirty|gross) fruit
+      I didn't eat the dirty fruit.
 - id: s.u04.8
   node: tok.u04.yes-no
   forms:
@@ -156,12 +163,18 @@ sentences:
       text: sina pona ala pona?
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: pona, sense: pona,
           readings: {lasina: pona}}]
-      reverse: sina pona ala pona
+      reverse: |-
+        sina pona ala pona
+        sina pona anu seme
+        sina mute li pona ala pona
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥔󱤂󱥔
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥔, sense: pona, readings: {
             lasina: pona}}]
-      reverse: 󱥞󱥔󱤂󱥔
+      reverse: |-
+        󱥞󱥔󱤂󱥔
+        󱥞󱥔󱤇󱥙
+        󱥞󱤼󱤧󱥔󱤂󱥔
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -174,17 +187,22 @@ sentences:
       text: sina moku ala moku? moku.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: moku, sense: moku,
           readings: {lasina: moku}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
-      reverse: sina moku ala moku moku
+      reverse: |-
+        sina moku ala moku moku
+        sina moku anu seme moku
     tok-Qaap/sitelen-pona:
       text: "\U000F195E\U000F1936\U000F1902\U000F1936\u3000\U000F1936"
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤶, sense: moku, readings: {
             lasina: moku}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
-      reverse: 󱥞󱤶󱤂󱤶󱤶
+      reverse: |-
+        󱥞󱤶󱤂󱤶󱤶
+        󱥞󱤶󱤇󱥙󱤶
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
       Are you eating? Yes[, I am].
       Do you eat? Yes[, I do]
+      Did you eat? Yes, I did.
 - id: s.u04.10
   node: tok.u04.yes-no
   forms:
@@ -195,6 +213,7 @@ sentences:
       reverse: |-
         ona li lape ala lape lape ala
         ona li lape ala lape ala
+        ona li lape anu seme lape ala
     tok-Qaap/sitelen-pona:
       text: "\U000F1946\U000F1927\U000F1922\U000F1902\U000F1922\u3000\U000F1922\U000F1902"
       tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤂, sense: ala, readings: {
@@ -202,12 +221,14 @@ sentences:
       reverse: |-
         󱥆󱤧󱤢󱤂󱤢󱤢󱤂
         󱥆󱤧󱤢󱤂󱤢󱤂
+        󱥆󱤧󱤢󱤇󱥙󱤢󱤂
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
       Is she (sleeping|asleep)? No[, she (isn't|is not)].
       Is he (sleeping|asleep)? No[, he (isn't|is not)]
       Are they (sleeping|asleep)? No[, they (aren't|are not)]
+      Is it sleeping? No, it isn't.
 - id: s.u04.11
   node: tok.u04.yes-no
   forms:
@@ -215,17 +236,22 @@ sentences:
       text: sina sona ala sona? mi sona ala.
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: sona, sense: sona, readings: {lasina: sona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: sona, sense: sona,
           readings: {lasina: sona}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: sona, sense: sona, readings: {lasina: sona}}, {surface: ala, sense: ala, readings: {lasina: ala}}]
-      reverse: sina sona ala sona mi sona ala
+      reverse: |-
+        sina sona ala sona mi sona ala
+        sina sona anu seme mi sona ala
     tok-Qaap/sitelen-pona:
       text: "\U000F195E\U000F1961\U000F1902\U000F1961\u3000\U000F1934\U000F1961\U000F1902"
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥡, sense: sona, readings: {
             lasina: sona}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}]
-      reverse: 󱥞󱥡󱤂󱥡󱤴󱥡󱤂
+      reverse: |-
+        󱥞󱥡󱤂󱥡󱤴󱥡󱤂
+        󱥞󱥡󱤇󱥙󱤴󱥡󱤂
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
       Do you know? (I don't|I do not) know.
       Do you know? No[, I (don't|do not)]
+      Did you know? I didn't know.
 - id: s.u04.12
   node: tok.u04.yes-no
   forms:
@@ -240,7 +266,9 @@ sentences:
           surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
       reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥡󱤉󱥬󱥔
   translations:
-    en: Mila knows Toki Pona.
+    en: |-
+      Mila knows Toki Pona.
+      Mila knew Toki Pona.
 - id: s.u04.13
   node: tok.u04.yes-no
   forms:
@@ -256,6 +284,8 @@ sentences:
     en: |-
       (I|We) feel (good|happy|great).
       (I'm|I am|We're|We are) (happy|feeling good)
+      I felt good.
+      I felt happy.
 - id: s.u04.14
   node: tok.u04.yes-no
   forms:
@@ -275,6 +305,7 @@ sentences:
     en: |-
       Pita (doesn't|does not) know. He feels bad.
       Pita (doesn't|does not|didn't|did not) know. (He's|He is) (sad|upset|unhappy)
+      Pita didn't know. He felt bad.
 - id: s.u04.15
   node: tok.u04.yes-no
   forms:
@@ -282,12 +313,16 @@ sentences:
       text: pilin sina li pona ala pona?
       tokens: [{surface: pilin, sense: pilin, readings: {lasina: pilin}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
           readings: {lasina: pona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: pilin sina li pona ala pona
+      reverse: |-
+        pilin sina li pona ala pona
+        pilin sina li pona anu seme
     tok-Qaap/sitelen-pona:
       text: 󱥎󱥞󱤧󱥔󱤂󱥔
       tokens: [{surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
             lasina: pona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
-      reverse: 󱥎󱥞󱤧󱥔󱤂󱥔
+      reverse: |-
+        󱥎󱥞󱤧󱥔󱤂󱥔
+        󱥎󱥞󱤧󱥔󱤇󱥙
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -310,6 +345,7 @@ sentences:
     en: |-
       (What's|What is) (this|that)?
       What are (these|those)
+      What is it?
 - id: s.u04.17
   node: tok.u04.what
   forms:
@@ -338,16 +374,21 @@ sentences:
       text: sina wile e seme?
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: seme, sense: seme,
           readings: {lasina: seme}}]
-      reverse: sina wile e seme
+      reverse: |-
+        sina wile e seme
+        sina mute li wile e seme
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥷󱤉󱥙
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥙, sense: seme, readings: {
             lasina: seme}}]
-      reverse: 󱥞󱥷󱤉󱥙
+      reverse: |-
+        󱥞󱥷󱤉󱥙
+        󱥞󱤼󱤧󱥷󱤉󱥙
   translations:
     en: |-
       What do you want?
       What would you like
+      What did you want?
 - id: s.u04.19
   node: tok.u04.what
   forms:
@@ -355,12 +396,16 @@ sentences:
       text: sina wile e kili anu pan?
       tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili,
           readings: {lasina: kili}}, {surface: anu, sense: anu, readings: {lasina: anu}}, {surface: pan, sense: pan, readings: {lasina: pan}}]
-      reverse: sina wile e kili anu pan
+      reverse: |-
+        sina wile e kili anu pan
+        sina mute li wile e kili anu pan
     tok-Qaap/sitelen-pona:
       text: 󱥞󱥷󱤉󱤚󱤇󱥋
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
             lasina: kili}}, {surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
-      reverse: 󱥞󱥷󱤉󱤚󱤇󱥋
+      reverse: |-
+        󱥞󱥷󱤉󱤚󱤇󱥋
+        󱥞󱤼󱤧󱥷󱤉󱤚󱤇󱥋
   translations:
     en: |-
       Do you want fruit or bread?
@@ -485,12 +530,16 @@ sentences:
       text: ona li tawa tomo.
       tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: tomo, sense: tomo,
           readings: {lasina: tomo}}]
-      reverse: ona li tawa tomo
+      reverse: |-
+        ona li tawa tomo
+        ona mute li tawa tomo
     tok-Qaap/sitelen-pona:
       text: 󱥆󱤧󱥩󱥭
       tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥭, sense: tomo, readings: {
             lasina: tomo}}]
-      reverse: 󱥆󱤧󱥩󱥭
+      reverse: |-
+        󱥆󱤧󱥩󱥭
+        󱥆󱤼󱤧󱥩󱥭
   translations:
     en: |-
       (They're|They are|She's|She is|He's|He is) going home.
@@ -506,6 +555,7 @@ sentences:
       reverse: |-
         sina kama ala kama
         sina kama, anu seme
+        sina mute li kama ala kama
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤖󱤂󱤖
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤖, sense: kama, readings: {
@@ -513,6 +563,7 @@ sentences:
       reverse: |-
         󱥞󱤖󱤂󱤖
         󱥞󱤖󱤇󱥙
+        󱥞󱤼󱤧󱤖󱤂󱤖
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -534,6 +585,7 @@ sentences:
     en: |-
       (Bye|Goodbye), Pita!
       (Have a good trip|Safe travels|Take care), Pita
+      Have a safe trip, Pita!
 - id: s.u04.30
   node: tok.u04.come-go
   forms:
@@ -567,6 +619,7 @@ sentences:
     en: |-
       (I'm|I am|We're|We are) (playing|having fun).
       (I|We) (play|played)
+      I had fun.
 - id: s.u04.32
   node: tok.u04.fun
   forms:
@@ -579,7 +632,9 @@ sentences:
       tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
       reverse: 󱥁󱤧󱤻
   translations:
-    en: (This is|That's|That is) fun!
+    en: |-
+      (This is|That's|That is) fun!
+      It's fun!
 - id: s.u04.33
   node: tok.u04.fun
   forms:
@@ -590,6 +645,7 @@ sentences:
       reverse: |-
         sina musi ala musi
         sina musi, anu seme
+        sina mute li musi ala musi
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤻󱤂󱤻
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤻, sense: musi, readings: {
@@ -597,6 +653,7 @@ sentences:
       reverse: |-
         󱥞󱤻󱤂󱤻
         󱥞󱤻󱤇󱥙
+        󱥞󱤼󱤧󱤻󱤂󱤻
   constructions: ['construction:x-ala-x']
   translations:
     en: Are you (having fun|playing)?
@@ -621,12 +678,16 @@ sentences:
       text: waso ni li nasa a!
       tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: nasa, sense: nasa, readings: {
             lasina: nasa}}, {surface: a, sense: a, readings: {lasina: a}}]
-      reverse: waso ni li nasa a
+      reverse: |-
+        waso ni li nasa a
+        waso ni li nasa mute
     tok-Qaap/sitelen-pona:
       text: 󱥴󱥁󱤧󱤾󱤀
       tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤾, sense: nasa, readings: {
             lasina: nasa}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
-      reverse: 󱥴󱥁󱤧󱤾󱤀
+      reverse: |-
+        󱥴󱥁󱤧󱤾󱤀
+        󱥴󱥁󱤧󱤾󱤼
   translations:
     en: (This|That) bird is (so|really|very) (weird|strange|silly)!
 - id: s.u04.36
@@ -662,6 +723,7 @@ sentences:
     en: |-
       The bird isn't (chirping|singing). (It's|It is) talking!
       The bird (doesn't|does not) (chirp|sing). It talks
+      The bird didn't sing. It talked!
 - id: s.u04.38
   node: tok.u04.fun
   forms:

@@ -96,11 +96,15 @@ sentences:
     uz-Latn/standard:
       text: U yaxshi kishi.
       tokens: [{surface: U, sense: u}, {surface: yaxshi, sense: yaxshi}, {surface: kishi, sense: kishi}]
-      reverse: U yaxshi (kishi|odam)
+      reverse: |-
+        U yaxshi (kishi|odam)
+        U yaxshi inson
     uz-Cyrl/standard:
       text: У яхши киши.
       tokens: [{surface: У, sense: u}, {surface: яхши, sense: yaxshi}, {surface: киши, sense: kishi}]
-      reverse: У яхши (киши|одам)
+      reverse: |-
+        У яхши (киши|одам)
+        У яхши инсон
   translations:
     en: (He|She)('s| is) a (good|nice) person.
 - id: s.numbers.5
@@ -124,6 +128,7 @@ sentences:
     en: |-
       There are four (people|of us) in our family.
       Our family has four (people|members).
+      We're a family of four.
 - id: s.numbers.6
   node: uz.numbers.one-to-five
   forms:
@@ -219,11 +224,17 @@ sentences:
     uz-Latn/standard:
       text: Akamning yetti kitobi bor.
       tokens: [{surface: Akamning, sense: aka, morphs: [{surface: Aka, kc: 'sense:aka'}, {surface: m, kc: 'form:poss-1sg-im'}, {surface: ning, kc: 'form:gen-ning'}]}, {surface: yetti, sense: yetti}, {surface: kitobi, sense: kitob, morphs: [{surface: kitob, kc: 'sense:kitob'}, {surface: i, kc: 'form:poss-3-si'}]}, {surface: bor, sense: bor}]
-      reverse: '[Mening] akamning yetti(ta|) kitobi bor'
+      reverse: |-
+        [Mening] akamning yetti(ta|) kitobi bor
+        Akamda yettita kitob bor
+        Akamda yetti kitob bor
     uz-Cyrl/standard:
       text: Акамнинг етти китоби бор.
       tokens: [{surface: Акамнинг, sense: aka, morphs: [{surface: Ака, kc: 'sense:aka'}, {surface: м, kc: 'form:poss-1sg-im'}, {surface: нинг, kc: 'form:gen-ning'}]}, {surface: етти, sense: yetti}, {surface: китоби, sense: kitob, morphs: [{surface: китоб, kc: 'sense:kitob'}, {surface: и, kc: 'form:poss-3-si'}]}, {surface: бор, sense: bor}]
-      reverse: '[Менинг] акамнинг етти(та|) китоби бор'
+      reverse: |-
+        [Менинг] акамнинг етти(та|) китоби бор
+        Акамда еттита китоб бор
+        Акамда етти китоб бор
   translations:
     en: |-
       My (older|elder|big) brother has seven books.
@@ -265,6 +276,8 @@ sentences:
         Yoshingiz nechada
         [Sen] necha yoshdasan
         Yoshing nechada
+        Sizning yoshingiz nechada
+        Sening yoshing nechada
     uz-Cyrl/standard:
       text: Сиз неча ёшдасиз?
       tokens: [{surface: Сиз, sense: siz}, {surface: неча, sense: necha}, {surface: ёшдасиз, sense: yosh, morphs: [{surface: ёш, kc: 'sense:yosh'}, {surface: да, kc: 'form:loc-da'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
@@ -273,6 +286,8 @@ sentences:
         Ёшингиз нечада
         [Сен] неча ёшдасан
         Ёшинг нечада
+        Сизнинг ёшингиз нечада
+        Сенинг ёшинг нечада
   translations:
     en: How old are you?
 - id: s.numbers.15
@@ -398,6 +413,7 @@ sentences:
     en: |-
       I (don't|do not) have [any] money.
       I have no money.
+      I haven't got any money.
 - id: s.numbers.24
   node: uz.numbers.money
   forms:

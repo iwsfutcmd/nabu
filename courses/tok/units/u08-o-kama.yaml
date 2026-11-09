@@ -83,12 +83,16 @@ sentences:
       text: jan Lina o, sina pona.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: o, sense: o, readings: {lasina: o}}, {surface: sina, sense: sina, readings: {
             lasina: sina}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
-      reverse: jan Lina o sina pona
+      reverse: |-
+        jan Lina o sina pona
+        jan Lina sina pona
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥄󱥞󱥔
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱥄, sense: o, readings: {lasina: o}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥔,
           sense: pona, readings: {lasina: pona}}]
-      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥄󱥞󱥔
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥄󱥞󱥔
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱥞󱥔
   translations:
     en: Lina, (you're|you are) (nice|kind|good).
 - id: s.u08.5
@@ -139,7 +143,9 @@ sentences:
             lasina: moku}}]
       reverse: 󱤴󱤼󱥄󱤶
   translations:
-    en: (Let's|Let us) eat!
+    en: |-
+      (Let's|Let us) eat!
+      We should eat!
 - id: s.u08.8
   node: tok.u08.commands
   forms:
@@ -183,6 +189,7 @@ sentences:
       reverse: |-
         sina ken ala ken kama
         sina ken kama, anu seme
+        sina mute li ken ala ken kama
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤘󱤂󱤘󱤖
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤘, sense: ken, readings: {lasina: ken}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤘, sense: ken, readings: {
@@ -190,6 +197,7 @@ sentences:
       reverse: |-
         󱥞󱤘󱤂󱤘󱤖
         󱥞󱤘󱤖󱤇󱥙
+        󱥞󱤼󱤧󱤘󱤂󱤘󱤖
   constructions: ['construction:preverb', 'construction:x-ala-x']
   translations:
     en: |-
@@ -263,7 +271,10 @@ sentences:
         {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
       reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤃󱤉󱤚󱤬󱤰󱤗
   translations:
-    en: Mila (is gathering|is picking|gathers|picks) fruit in the (forest|woods).
+    en: |-
+      Mila (is gathering|is picking|gathers|picks) fruit in the (forest|woods).
+      Mila picked fruit in the forest.
+      Mila gathered fruit in the forest.
 - id: s.u08.15
   node: tok.u08.can
   forms:
@@ -271,12 +282,16 @@ sentences:
       text: mi alasa toki pona.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: alasa, sense: alasa, readings: {lasina: alasa}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona,
           readings: {lasina: pona}}]
-      reverse: mi alasa toki pona
+      reverse: |-
+        mi alasa toki pona
+        mi lukin toki pona
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤃󱥬󱥔
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤃, sense: alasa, readings: {lasina: alasa}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {
             lasina: pona}}]
-      reverse: 󱤴󱤃󱥬󱥔
+      reverse: |-
+        󱤴󱤃󱥬󱥔
+        󱤴󱤮󱥬󱥔
   constructions: ['construction:preverb']
   translations:
     en: |-
@@ -328,12 +343,16 @@ sentences:
       text: mi jo ala e mani.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: e, sense: e, readings: {
             lasina: e}}, {surface: mani, sense: mani, readings: {lasina: mani}}]
-      reverse: mi jo ala e mani
+      reverse: |-
+        mi jo ala e mani
+        mi jo e mani ala
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤓󱤂󱤉󱤲
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
         {surface: 󱤲, sense: mani, readings: {lasina: mani}}]
-      reverse: 󱤴󱤓󱤂󱤉󱤲
+      reverse: |-
+        󱤴󱤓󱤂󱤉󱤲
+        󱤴󱤓󱤉󱤲󱤂
   translations:
     en: |-
       (I|We) (don't|do not) have any money.
@@ -408,7 +427,9 @@ sentences:
         {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤥, sense: len, readings: {lasina: len}}, {surface: 󱤐, sense: jaki, readings: {lasina: jaki}}]
       reverse: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱥄󱤋󱤂󱤉󱤥󱤐
   translations:
-    en: Tomasi, (don't|do not) buy dirty clothes!
+    en: |-
+      Tomasi, (don't|do not) buy dirty clothes!
+      Tomasi, don't sell dirty clothes!
 - id: s.u08.23
   node: tok.u08.market
   forms:
@@ -456,6 +477,7 @@ sentences:
       The wind is blowing.
       The wind blows
       (It's|It is) windy
+      The wind blew.
 - id: s.u08.26
   node: tok.u08.air
   forms:
@@ -493,6 +515,7 @@ sentences:
     en: |-
       (There's|There is) (mud|dirt) on my clothes.
       My clothes have (mud|dirt) on them
+      There's mud on our clothes.
 - id: s.u08.28
   node: tok.u08.air
   forms:
@@ -510,6 +533,8 @@ sentences:
     en: |-
       The (child|kid) (is playing|plays) in the sand.
       The (children|kids) (are playing|play) in the sand
+      The child played in the sand.
+      A child is playing in the sand.
 - id: s.u08.29
   node: tok.u08.air
   forms:
@@ -517,12 +542,16 @@ sentences:
       text: mi lukin pali e pan kepeken ko.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lukin, sense: lukin, readings: {lasina: lukin}}, {surface: pali, sense: pali, readings: {lasina: pali}}, {surface: e, sense: e,
           readings: {lasina: e}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: ko, sense: ko, readings: {lasina: ko}}]
-      reverse: mi lukin pali e pan kepeken ko
+      reverse: |-
+        mi lukin pali e pan kepeken ko
+        mi alasa pali e pan kepeken ko
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤮󱥉󱤉󱥋󱤙󱤜
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤮, sense: lukin, readings: {lasina: lukin}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}}, {surface: 󱤉, sense: e, readings: {
             lasina: e}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱤜, sense: ko, readings: {lasina: ko}}]
-      reverse: 󱤴󱤮󱥉󱤉󱥋󱤙󱤜
+      reverse: |-
+        󱤴󱤮󱥉󱤉󱥋󱤙󱤜
+        󱤴󱤃󱥉󱤉󱥋󱤙󱤜
   constructions: ['construction:preverb']
   translations:
     en: |-
@@ -545,7 +574,9 @@ sentences:
       reverse: 󱤝󱤧󱥗󱥢󱤴󱤧󱤈󱤢
   constructions: ['construction:preverb']
   translations:
-    en: The air is (hot|warm). My (cat|dog) is still (sleeping|asleep).
+    en: |-
+      The air is (hot|warm). My (cat|dog) is still (sleeping|asleep).
+      The air is hot. Our cat is still sleeping.
 - id: s.u08.31
   node: tok.u08.fight
   forms:
@@ -564,6 +595,7 @@ sentences:
       My (plant|flower) is (dying|dead).
       My (plants|flowers) are (dying|dead)
       My (plant|flower|plants|flowers) died
+      Our plant is dying.
 - id: s.u08.32
   node: tok.u08.fight
   forms:
@@ -627,17 +659,22 @@ sentences:
       text: mije en meli li utala kepeken toki.
       tokens: [{surface: mije, sense: mije, readings: {lasina: mije}}, {surface: en, sense: en, readings: {lasina: en}}, {surface: meli, sense: meli, readings: {lasina: meli}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: utala, sense: utala, readings: {lasina: utala}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: toki, sense: toki, readings: {lasina: toki}}]
-      reverse: mije en meli li utala kepeken toki
+      reverse: |-
+        mije en meli li utala kepeken toki
+        jan mije en jan meli li utala kepeken toki
     tok-Qaap/sitelen-pona:
       text: 󱤵󱤊󱤳󱤧󱥱󱤙󱥬
       tokens: [{surface: 󱤵, sense: mije, readings: {lasina: mije}}, {surface: 󱤊, sense: en, readings: {lasina: en}}, {surface: 󱤳, sense: meli, readings: {lasina: meli}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱥱, sense: utala, readings: {lasina: utala}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}]
-      reverse: 󱤵󱤊󱤳󱤧󱥱󱤙󱥬
+      reverse: |-
+        󱤵󱤊󱤳󱤧󱥱󱤙󱥬
+        󱤑󱤵󱤊󱤑󱤳󱤧󱥱󱤙󱥬
   translations:
     en: |-
       The man and the woman are arguing.
       The man and the woman (argue|argued|are fighting with words|fight with words)
       The man and woman (are arguing|argue|argued)
+      A man and a woman are arguing.
 - id: s.u08.36
   node: tok.u08.fight
   forms:

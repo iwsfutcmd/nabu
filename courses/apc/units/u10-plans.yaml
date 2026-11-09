@@ -50,16 +50,19 @@ sentences:
       reverse: |-
         وين رايح
         إنت وين رايح
+        لوين رايح
     apc-Latn/arabizi:
       text: wen raye7?
       tokens: [{surface: wen, sense: wen}, {surface: raye7, sense: raye7}]
       reverse: |-
         (wen|wein|wayn) (raye7|rayi7|rayeh)
         (enta|inta) (wen|wein|wayn) (raye7|rayi7|rayeh)
+        la wen raye7
   translations:
     en: |-
       Where are you going?
       Where are you off to?
+      Where is he going?
 - id: s.plans.2
   node: apc.plans.going
   register: colloquial
@@ -86,11 +89,17 @@ sentences:
     apc-Arab/standard:
       text: وين رايحة، مايا؟
       tokens: [{surface: وين, sense: wen}, {surface: رايحة, sense: raye7, form: 'form:fem'}, {surface: مايا, sense: maya}]
-      reverse: وين رايحة مايا
+      reverse: |-
+        وين رايحة مايا
+        مايا وين رايحة
+        لوين رايحة مايا
     apc-Latn/arabizi:
       text: wen ray7a, Maya?
       tokens: [{surface: wen, sense: wen}, {surface: ray7a, sense: raye7, form: 'form:fem'}, {surface: Maya, sense: maya}]
-      reverse: (wen|wein|wayn) (ray7a|rayha|raye7a) Maya
+      reverse: |-
+        (wen|wein|wayn) (ray7a|rayha|raye7a) Maya
+        Maya wen ray7a
+        la wen ray7a Maya
   translations:
     en: |-
       Where are you going, Maya?
@@ -108,7 +117,9 @@ sentences:
     apc-Latn/arabizi:
       text: yalla ta nru7!
       tokens: [{surface: yalla, sense: yalla}, {surface: ta, sense: ta}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}]
-      reverse: (yalla|yala|yallah) [(ta|tta)] (nru7|nrou7|nro7)
+      reverse: |-
+        (yalla|yala|yallah) [(ta|tta)] (nru7|nrou7|nro7)
+        yalla mnru7
   translations:
     en: |-
       Come on, let's go!
@@ -121,11 +132,17 @@ sentences:
     apc-Arab/standard:
       text: الليلة أنا فاضي.
       tokens: [{surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}, {surface: أنا, sense: ana}, {surface: فاضي, sense: fadi}]
-      reverse: الليلة [أنا] فاضي
+      reverse: |-
+        الليلة [أنا] فاضي
+        أنا فاضي الليلة
+        فاضي الليلة
     apc-Latn/arabizi:
       text: el lele ana fadi.
       tokens: [{surface: el, sense: el}, {surface: lele, sense: lele}, {surface: ana, sense: ana}, {surface: fadi, sense: fadi}]
-      reverse: (el|l|il) (lele|leile|layle|leyle) [ana] (fadi|fade)
+      reverse: |-
+        (el|l|il) (lele|leile|layle|leyle) [ana] (fadi|fade)
+        ana fadi el lele
+        fadi el lele
   translations:
     en: |-
       Tonight I('m| am) free.
@@ -158,11 +175,15 @@ sentences:
     apc-Arab/standard:
       text: كيف الطقس؟
       tokens: [{surface: كيف, sense: kif}, {surface: الطقس, sense: ta2s, morphs: [{surface: ال, kc: 'sense:el'}, {surface: طقس, kc: 'sense:ta2s'}]}]
-      reverse: كيف الطقس
+      reverse: |-
+        كيف الطقس
+        كيفه الطقس
     apc-Latn/arabizi:
       text: kif el ta2s?
       tokens: [{surface: kif, sense: kif}, {surface: el, sense: el}, {surface: ta2s, sense: ta2s}]
-      reverse: (kif|keef) (el|l|il) (ta2s|ta2es|tas)
+      reverse: |-
+        (kif|keef) (el|l|il) (ta2s|ta2es|tas)
+        kifo el ta2s
   translations:
     en: |-
       How is the weather?
@@ -175,11 +196,15 @@ sentences:
     apc-Arab/standard:
       text: شوب كتير!
       tokens: [{surface: شوب, sense: shob}, {surface: كتير, sense: ktir}]
-      reverse: شوب كتير
+      reverse: |-
+        شوب كتير
+        كتير شوب
     apc-Latn/arabizi:
       text: shob ktir!
       tokens: [{surface: shob, sense: shob}, {surface: ktir, sense: ktir}]
-      reverse: (shob|shoob) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        (shob|shoob) (ktir|kteer|kter|ktiir)
+        ktir shob
   translations:
     en: (It's|It is) (very|really|so) hot!
 - id: s.plans.9
@@ -189,11 +214,15 @@ sentences:
     apc-Arab/standard:
       text: اليوم برد.
       tokens: [{surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}, {surface: برد, sense: bard}]
-      reverse: اليوم برد
+      reverse: |-
+        اليوم برد
+        برد اليوم
     apc-Latn/arabizi:
       text: el yom bard.
       tokens: [{surface: el, sense: el}, {surface: yom, sense: yom}, {surface: bard, sense: bard}]
-      reverse: (el|l|il) (yom|yawm|youm) (bard|berd)
+      reverse: |-
+        (el|l|il) (yom|yawm|youm) (bard|berd)
+        bard el yom
   translations:
     en: |-
       (It's|It is) cold today.
@@ -205,15 +234,20 @@ sentences:
     apc-Arab/standard:
       text: في شمس اليوم.
       tokens: [{surface: في, sense: fi}, {surface: شمس, sense: shams}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
-      reverse: في شمس اليوم
+      reverse: |-
+        في شمس اليوم
+        اليوم في شمس
     apc-Latn/arabizi:
       text: fi shams el yom.
       tokens: [{surface: fi, sense: fi}, {surface: shams, sense: shams}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: (fi|fe) (shams|shames) (el|l|il) (yom|yawm|youm)
+      reverse: |-
+        (fi|fe) (shams|shames) (el|l|il) (yom|yawm|youm)
+        el yom fi shams
   translations:
     en: |-
       (It's|It is) sunny today.
       There's sun today.
+      Today it's sunny.
 - id: s.plans.11
   node: apc.plans.weather
   register: colloquial
@@ -221,11 +255,17 @@ sentences:
     apc-Arab/standard:
       text: في مطر بكرا؟
       tokens: [{surface: في, sense: fi}, {surface: مطر, sense: matar}, {surface: بكرا, sense: bukra}]
-      reverse: في مطر (بكرا|بكرة)
+      reverse: |-
+        في مطر (بكرا|بكرة)
+        بكرا في مطر
+        رح تشتي بكرا
     apc-Latn/arabizi:
       text: fi matar bukra?
       tokens: [{surface: fi, sense: fi}, {surface: matar, sense: matar}, {surface: bukra, sense: bukra}]
-      reverse: (fi|fe) (matar|mater) (bukra|bokra|bukrah)
+      reverse: |-
+        (fi|fe) (matar|mater) (bukra|bokra|bukrah)
+        bukra fi matar
+        ra7 tishte bukra
   translations:
     en: |-
       Is it going to rain tomorrow?
@@ -238,11 +278,15 @@ sentences:
     apc-Arab/standard:
       text: في تلج عالجبل!
       tokens: [{surface: في, sense: fi}, {surface: تلج, sense: talj}, {surface: عالجبل, sense: jabal, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
-      reverse: في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+      reverse: |-
+        في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+        عالجبل في تلج
     apc-Latn/arabizi:
       text: fi talj 3al jabal!
       tokens: [{surface: fi, sense: fi}, {surface: talj, sense: talj}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
-      reverse: (fi|fe) (talj|telj|talej) (3al|3a l|3a el) (jabal|jabel|jbal)
+      reverse: |-
+        (fi|fe) (talj|telj|talej) (3al|3a l|3a el) (jabal|jabel|jbal)
+        3al jabal fi talj
   translations:
     en: |-
       There's snow (on|in) the mountains!
@@ -323,11 +367,15 @@ sentences:
       text: السهرة كانت حلوة كتير.
       tokens: [{surface: السهرة, sense: sahra, morphs: [{surface: ال, kc: 'sense:el'}, {surface: سهرة, kc: 'sense:sahra'}]}, {surface: كانت, sense: kan, form: 'form:past-3fs'}, {surface: حلوة, sense: 7elo,
           form: 'form:fem'}, {surface: كتير, sense: ktir}]
-      reverse: السهرة كانت حلوة كتير
+      reverse: |-
+        السهرة كانت حلوة كتير
+        السهرة كانت كتير حلوة
     apc-Latn/arabizi:
       text: el sahra kenet 7elwe ktir.
       tokens: [{surface: el, sense: el}, {surface: sahra, sense: sahra}, {surface: kenet, sense: kan, form: 'form:past-3fs'}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
-      reverse: (el|l|il) (sahra|sahre|sahrah) (kenet|kanet|kenit) (7elwe|7ilwe|helwe|7elwi) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        (el|l|il) (sahra|sahre|sahrah) (kenet|kanet|kenit) (7elwe|7ilwe|helwe|7elwi) (ktir|kteer|kter|ktiir)
+        el sahra kenet ktir 7elwe
   translations:
     en: The (party|evening) was (really|very) (nice|good|fun).
 - id: s.plans.18
@@ -340,14 +388,22 @@ sentences:
       reverse: |-
         (بكرا|بكرة) منروح (إن|ان) شاء الله
         (بكرا|بكرة) منروح (إنشالله|انشالله|نشالله)
+        إن شاء الله منروح بكرا
+        منروح بكرا إن شاء الله
     apc-Latn/arabizi:
       text: bukra mnru7, inshalla.
       tokens: [{surface: bukra, sense: bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: inshalla, sense: inshalla}]
-      reverse: (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (inshalla|inshallah|nshalla)
+      reverse: |-
+        (bukra|bokra|bukrah) (mnru7|mnrou7|mnro7) (inshalla|inshallah|nshalla)
+        inshalla mnru7 bukra
+        mnru7 bukra inshalla
+        bukra mnru7 in sha2 alla
   translations:
     en: |-
       Tomorrow we('ll| will) go, (God willing|hopefully).
       (Hopefully|God willing) we('ll| will) go tomorrow.
+      We'll go tomorrow, God willing.
+      We'll go tomorrow, hopefully.
 - id: s.plans.19
   node: apc.plans.maybe
   register: colloquial
@@ -355,15 +411,20 @@ sentences:
     apc-Arab/standard:
       text: ممكن بكرا.
       tokens: [{surface: ممكن, sense: mumken}, {surface: بكرا, sense: bukra}]
-      reverse: ممكن (بكرا|بكرة)
+      reverse: |-
+        ممكن (بكرا|بكرة)
+        يمكن بكرا
     apc-Latn/arabizi:
       text: mumken bukra.
       tokens: [{surface: mumken, sense: mumken}, {surface: bukra, sense: bukra}]
-      reverse: (mumken|mumkin|momken) (bukra|bokra|bukrah)
+      reverse: |-
+        (mumken|mumkin|momken) (bukra|bokra|bukrah)
+        yimken bukra
   translations:
     en: |-
       Maybe tomorrow.
       Perhaps tomorrow.
+      Possibly tomorrow.
 - id: s.plans.20
   node: apc.plans.maybe
   register: colloquial
@@ -417,11 +478,15 @@ sentences:
     apc-Arab/standard:
       text: خلص، منروح بكرا.
       tokens: [{surface: خلص, sense: khalas}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: بكرا, sense: bukra}]
-      reverse: خلص منروح (بكرا|بكرة)
+      reverse: |-
+        خلص منروح (بكرا|بكرة)
+        خلص بكرا منروح
     apc-Latn/arabizi:
       text: khalas, mnru7 bukra.
       tokens: [{surface: khalas, sense: khalas}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: bukra, sense: bukra}]
-      reverse: (khalas|5alas|khalass) (mnru7|mnrou7|mnro7) (bukra|bokra|bukrah)
+      reverse: |-
+        (khalas|5alas|khalass) (mnru7|mnrou7|mnro7) (bukra|bokra|bukrah)
+        khalas bukra mnru7
   translations:
     en: |-
       (OK|Fine|Right) then, we('ll| will) go tomorrow.
@@ -450,11 +515,16 @@ sentences:
     apc-Arab/standard:
       text: والله؟
       tokens: [{surface: والله, sense: walla}]
-      reverse: والله
+      reverse: |-
+        والله
+        عن جدّ
     apc-Latn/arabizi:
       text: walla?
       tokens: [{surface: walla, sense: walla}]
-      reverse: (walla|wallah|wala)
+      reverse: |-
+        (walla|wallah|wala)
+        3an jad
+        3an jadd
   translations:
     en: |-
       Really?
@@ -466,11 +536,15 @@ sentences:
     apc-Arab/standard:
       text: يا ريت!
       tokens: [{surface: يا, sense: ya-reit}, {surface: ريت, sense: ya-reit}]
-      reverse: يا ريت
+      reverse: |-
+        يا ريت
+        ياريت
     apc-Latn/arabizi:
       text: ya reit!
       tokens: [{surface: ya, sense: ya-reit}, {surface: reit, sense: ya-reit}]
-      reverse: ya (reit|rayt|ret)
+      reverse: |-
+        ya (reit|rayt|ret)
+        yareit
   translations:
     en: |-
       I wish!
@@ -533,11 +607,15 @@ sentences:
     apc-Arab/standard:
       text: الليلة أنا فاضية.
       tokens: [{surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}, {surface: أنا, sense: ana}, {surface: فاضية, sense: fadi, form: 'form:fem'}]
-      reverse: الليلة [أنا] فاضية
+      reverse: |-
+        الليلة [أنا] فاضية
+        أنا فاضية الليلة
     apc-Latn/arabizi:
       text: el lele ana fadye.
       tokens: [{surface: el, sense: el}, {surface: lele, sense: lele}, {surface: ana, sense: ana}, {surface: fadye, sense: fadi, form: 'form:fem'}]
-      reverse: (el|l|il) (lele|leile|layle|leyle) [ana] (fadye|fadie|fadyi|fadya)
+      reverse: |-
+        (el|l|il) (lele|leile|layle|leyle) [ana] (fadye|fadie|fadyi|fadya)
+        ana fadye el lele
   translations:
     en: |-
       Tonight I('m| am) free.
@@ -553,16 +631,21 @@ sentences:
       reverse: |-
         وين رايحين
         إنتو وين رايحين
+        لوين رايحين
     apc-Latn/arabizi:
       text: wen ray7in?
       tokens: [{surface: wen, sense: wen}, {surface: ray7in, sense: raye7, form: 'form:pl'}]
       reverse: |-
         (wen|wein|wayn) (ray7in|rayhin|raye7in|ray7een)
         (ento|into) (wen|wein|wayn) (ray7in|rayhin|raye7in|ray7een)
+        la wen ray7in
   translations:
     en: |-
       Where are you going?
       Where are you off to?
+      Where are you all going?
+      Where are they going?
+      Where are we going?
 - id: s.plans.32
   node: apc.plans.friends
   register: colloquial

@@ -74,6 +74,7 @@ sentences:
       reverse: |-
         sina kute ala kute e mi
         sina kute e mi, anu seme
+        sina mute li kute ala kute e mi
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤠󱤂󱤠󱤉󱤴
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤠, sense: kute, readings: {lasina: kute}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤠, sense: kute, readings: {
@@ -81,6 +82,7 @@ sentences:
       reverse: |-
         󱥞󱤠󱤂󱤠󱤉󱤴
         󱥞󱤠󱤉󱤴󱤇󱥙
+        󱥞󱤼󱤧󱤠󱤂󱤠󱤉󱤴
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -135,7 +137,9 @@ sentences:
           readings: {lasina: suli}}]
       reverse: 󱤠󱤴󱤧󱥎󱤍󱥧󱤕󱥣
   translations:
-    en: My ears hurt (from|because of) the loud (noise|sound).
+    en: |-
+      My ears hurt (from|because of) the loud (noise|sound).
+      Our ears hurt from the loud noise.
 - id: s.u10.7
   node: tok.u10.sound
   forms:
@@ -143,12 +147,16 @@ sentences:
       text: tenpo pimeja la o kalama ala!
       tokens: [{surface: tenpo, sense: tenpo, readings: {lasina: tenpo}}, {surface: pimeja, sense: pimeja, readings: {lasina: pimeja}}, {surface: la, sense: la, readings: {lasina: la}}, {surface: o, sense: o,
           readings: {lasina: o}}, {surface: kalama, sense: kalama, readings: {lasina: kalama}}, {surface: ala, sense: ala, readings: {lasina: ala}}]
-      reverse: tenpo pimeja la o kalama ala
+      reverse: |-
+        tenpo pimeja la o kalama ala
+        o kalama ala lon tenpo pimeja
     tok-Qaap/sitelen-pona:
       text: 󱥫󱥏󱤡󱥄󱤕󱤂
       tokens: [{surface: 󱥫, sense: tenpo, readings: {lasina: tenpo}}, {surface: 󱥏, sense: pimeja, readings: {lasina: pimeja}}, {surface: 󱤡, sense: la, readings: {lasina: la}}, {surface: 󱥄, sense: o, readings: {
             lasina: o}}, {surface: 󱤕, sense: kalama, readings: {lasina: kalama}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}]
-      reverse: 󱥫󱥏󱤡󱥄󱤕󱤂
+      reverse: |-
+        󱥫󱥏󱤡󱥄󱤕󱤂
+        󱥄󱤕󱤂󱤬󱥫󱥏
   translations:
     en: |-
       (Don't|Do not) make noise at night!
@@ -179,13 +187,17 @@ sentences:
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: sitelen, sense: sitelen,
           readings: {lasina: sitelen}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: mama,
           sense: mama, readings: {lasina: mama}}, {surface: ona, sense: ona, readings: {lasina: ona}}]
-      reverse: jan Lina li sitelen e lipu tawa mama ona
+      reverse: |-
+        jan Lina li sitelen e lipu tawa mama ona
+        jan Lina li sitelen e lipu tawa mama meli ona
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥠󱤉󱤪󱥩󱤱󱥆
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥠, sense: sitelen, readings: {lasina: sitelen}},
         {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤱, sense: mama, readings: {lasina: mama}},
         {surface: 󱥆, sense: ona, readings: {lasina: ona}}]
-      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥠󱤉󱤪󱥩󱤱󱥆
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥠󱤉󱤪󱥩󱤱󱥆
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥠󱤉󱤪󱥩󱤱󱤳󱥆
   translations:
     en: |-
       Lina is writing a letter to her (mother|mom|mum|parents).
@@ -229,12 +241,16 @@ sentences:
       text: toki pona li tan jan Sonja.
       tokens: [{surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tan, sense: tan,
           readings: {lasina: tan}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Sonja, sense: sonja, readings: {lasina: Sonja}}]
-      reverse: toki pona li tan jan Sonja
+      reverse: |-
+        toki pona li tan jan Sonja
+        toki pona li kama tan jan Sonja
     tok-Qaap/sitelen-pona:
       text: 󱥬󱥔󱤧󱥧󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑
       tokens: [{surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥧, sense: tan, readings: {
             lasina: tan}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥡󱥅󱤿󱤑󱤀󱦑, sense: sonja}]
-      reverse: 󱥬󱥔󱤧󱥧󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑
+      reverse: |-
+        󱥬󱥔󱤧󱥧󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑
+        󱥬󱥔󱤧󱤖󱥧󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑
   translations:
     en: |-
       Toki Pona comes from (Sonja|Sonja Lang).
@@ -246,12 +262,16 @@ sentences:
       text: jan Sonja li pali e lipu pu.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Sonja, sense: sonja, readings: {lasina: Sonja}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pali, sense: pali,
           readings: {lasina: pali}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: lipu, sense: lipu, readings: {lasina: lipu}}, {surface: pu, sense: pu, readings: {lasina: pu}}]
-      reverse: jan Sonja li pali e lipu pu
+      reverse: |-
+        jan Sonja li pali e lipu pu
+        jan Sonja li sitelen e lipu pu
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥉󱤉󱤪󱥕
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥡󱥅󱤿󱤑󱤀󱦑, sense: sonja}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥉, sense: pali, readings: {lasina: pali}},
         {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤪, sense: lipu, readings: {lasina: lipu}}, {surface: 󱥕, sense: pu, readings: {lasina: pu}}]
-      reverse: 󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥉󱤉󱤪󱥕
+      reverse: |-
+        󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥉󱤉󱤪󱥕
+        󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑󱤧󱥠󱤉󱤪󱥕
   translations:
     en: |-
       (Sonja|Sonja Lang) (wrote|made) the book pu.
@@ -283,12 +303,16 @@ sentences:
       text: jan Mila li pu lon tomo.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pu, sense: pu, readings: {
             lasina: pu}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
-      reverse: jan Mila li pu lon tomo
+      reverse: |-
+        jan Mila li pu lon tomo
+        jan Mila li lukin e lipu pu lon tomo
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥕󱤬󱥭
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥕, sense: pu, readings: {lasina: pu}}, {surface: 󱤬,
           sense: lon, readings: {lasina: lon}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
-      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥕󱤬󱥭
+      reverse: |-
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥕󱤬󱥭
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤮󱤉󱤪󱥕󱤬󱥭
   translations:
     en: |-
       Mila is reading pu at home.
@@ -339,7 +363,9 @@ sentences:
             lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤛, sense: kiwen, readings: {lasina: kiwen}}]
       reverse: 󱤱󱤴󱤧󱤓󱤉󱥭󱤛
   translations:
-    en: My (parents have|mother has|father has|mom has|dad has) a stone house.
+    en: |-
+      My (parents have|mother has|father has|mom has|dad has) a stone house.
+      Our parents have a stone house.
 - id: s.u10.19
   node: tok.u10.hard
   forms:
@@ -492,6 +518,7 @@ sentences:
     en: |-
       My nose is red from the cold.
       My nose is red because (of the cold|it's cold|it is cold)
+      Our noses are red from the cold.
 - id: s.u10.28
   node: tok.u10.lines
   forms:
@@ -515,18 +542,23 @@ sentences:
       tokens: [{surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sewi, sense: sewi, readings: {lasina: sewi}}, {surface: nena, sense: nena, readings: {lasina: nena}}, {surface: la, sense: la,
           readings: {lasina: la}}, {surface: kon, sense: kon, readings: {lasina: kon}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: e,
           sense: e, readings: {lasina: e}}, {surface: linja, sense: linja, readings: {lasina: linja}}, {surface: lawa, sense: lawa, readings: {lasina: lawa}}, {surface: mi, sense: mi, readings: {lasina: mi}}]
-      reverse: lon sewi nena la kon li tawa e linja lawa mi
+      reverse: |-
+        lon sewi nena la kon li tawa e linja lawa mi
+        kon li tawa e linja lawa mi lon sewi nena
     tok-Qaap/sitelen-pona:
       text: 󱤬󱥚󱥀󱤡󱤝󱤧󱥩󱤉󱤩󱤤󱤴
       tokens: [{surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥚, sense: sewi, readings: {lasina: sewi}}, {surface: 󱥀, sense: nena, readings: {lasina: nena}}, {surface: 󱤡, sense: la, readings: {
             lasina: la}}, {surface: 󱤝, sense: kon, readings: {lasina: kon}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱤉, sense: e,
           readings: {lasina: e}}, {surface: 󱤩, sense: linja, readings: {lasina: linja}}, {surface: 󱤤, sense: lawa, readings: {lasina: lawa}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}]
-      reverse: 󱤬󱥚󱥀󱤡󱤝󱤧󱥩󱤉󱤩󱤤󱤴
+      reverse: |-
+        󱤬󱥚󱥀󱤡󱤝󱤧󱥩󱤉󱤩󱤤󱤴
+        󱤝󱤧󱥩󱤉󱤩󱤤󱤴󱤬󱥚󱥀
   translations:
     en: |-
       On top of the (hill|mountain), the wind (moves|blows) my hair.
       At the top of the (hill|mountain), the wind (moves|blows) my hair
       The wind (moves|blows) my hair on top of the (hill|mountain)
+      On top of the hill, the wind blows our hair.
 - id: s.u10.30
   node: tok.u10.oops
   forms:
@@ -639,13 +671,17 @@ sentences:
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki,
           readings: {lasina: toki}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: wile, sense: wile,
           readings: {lasina: wile}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: kin, sense: kin, readings: {lasina: kin}}]
-      reverse: jan Mila li toki e ni mi wile kama kin
+      reverse: |-
+        jan Mila li toki e ni mi wile kama kin
+        jan Mila li toki e ni ona li wile kama kin
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥬󱤉󱥁:󱤴󱥷󱤖󱥹
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {
           surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}},
         {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥹, sense: kin, readings: {lasina: kin}}]
-      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥬󱤉󱥁󱤴󱥷󱤖󱥹
+      reverse: |-
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥬󱤉󱥁󱤴󱥷󱤖󱥹
+        󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥬󱤉󱥁󱥆󱤧󱥷󱤖󱥹
   constructions: ['construction:ni-colon']
   translations:
     en: |-

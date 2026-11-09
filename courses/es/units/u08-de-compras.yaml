@@ -80,6 +80,7 @@ sentences:
     en: |-
       I'll buy the (bottle|jar).
       (I will buy|I'm buying|I am buying|I buy|I'll get|I will get) the (bottle|jar).
+      I'm going to buy the bottle.
 - id: s.u08.6
   node: es.u08.la-jaba
   forms:
@@ -119,7 +120,9 @@ sentences:
     es-Latn/standard:
       text: ¿Cuánto cuesta el pomo?
       tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
-      reverse: Cuánto (cuesta|vale) (el (pomo|frasco)|la botella)
+      reverse: |-
+        Cuánto (cuesta|vale) (el (pomo|frasco)|la botella)
+        ¿Cuánto es el pomo?
   translations:
     en: |-
       How much is the (bottle|jar)?
@@ -141,7 +144,10 @@ sentences:
     es-Latn/standard:
       text: ¡Qué caro!
       tokens: [{surface: Qué, sense: qué}, {surface: caro, sense: caro}]
-      reverse: (Qué caro|Está muy caro|Muy caro)
+      reverse: |-
+        (Qué caro|Está muy caro|Muy caro)
+        ¡Es muy caro!
+        ¡Qué caro está!
   translations:
     en: |-
       So expensive!
@@ -173,7 +179,9 @@ sentences:
     es-Latn/standard:
       text: ¿Qué tú necesitas?
       tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: necesitas, sense: necesitar, form: 'form:pres-2s'}]
-      reverse: (Qué tú necesitas|Qué necesitas [tú]|Qué usted necesita|Qué necesita [usted]|Qué ustedes necesitan|Qué necesitan [ustedes])
+      reverse: |-
+        (Qué tú necesitas|Qué necesitas [tú]|Qué usted necesita|Qué necesita [usted]|Qué ustedes necesitan|Qué necesitan [ustedes])
+        ¿Tú qué necesitas?
   translations:
     en: What do you need?
 - id: s.u08.15
@@ -194,14 +202,19 @@ sentences:
       tokens: [{surface: Necesito, sense: necesitar, form: 'form:pres-1s'}, {surface: un, sense: un}, {surface: pulóver, sense: pulóver}]
       reverse: '[Yo] necesito (un pulóver|una camiseta|una playera)'
   translations:
-    en: I need a (T-shirt|tee).
+    en: |-
+      I need a (T-shirt|tee).
+      I need a tee shirt.
 - id: s.u08.17
   node: es.u08.los-colores
   forms:
     es-Latn/standard:
       text: ¿Cuánto cuesta ese pulóver?
       tokens: [{surface: Cuánto, sense: cuánto}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: ese, sense: ese}, {surface: pulóver, sense: pulóver}]
-      reverse: Cuánto (cuesta|vale) (ese pulóver|esa camiseta|esa playera)
+      reverse: |-
+        Cuánto (cuesta|vale) (ese pulóver|esa camiseta|esa playera)
+        ¿Cuánto es ese pulóver?
+        ¿Cuánto cuesta aquel pulóver?
   translations:
     en: |-
       How much is that T-shirt?
@@ -212,7 +225,9 @@ sentences:
     es-Latn/standard:
       text: Ese pulóver rojo cuesta diez dólares.
       tokens: [{surface: Ese, sense: ese}, {surface: pulóver, sense: pulóver}, {surface: rojo, sense: rojo}, {surface: cuesta, sense: costar, form: 'form:pres-3s'}, {surface: diez, sense: diez}, {surface: dólares, sense: dólar}]
-      reverse: (Ese pulóver rojo|Esa camiseta roja|Esa playera roja) (cuesta|vale|es) diez dólares
+      reverse: |-
+        (Ese pulóver rojo|Esa camiseta roja|Esa playera roja) (cuesta|vale|es) diez dólares
+        Aquel pulóver rojo cuesta diez dólares.
   translations:
     en: That red T-shirt (costs|is) ten dollars.
 - id: s.u08.19
@@ -239,7 +254,9 @@ sentences:
     es-Latn/standard:
       text: ¿Tú compras esa jaba roja?
       tokens: [{surface: Tú, sense: tú}, {surface: compras, sense: comprar, form: 'form:pres-2s'}, {surface: esa, sense: ese}, {surface: jaba, sense: jaba}, {surface: roja, sense: rojo}]
-      reverse: (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) esa (jaba|bolsa) roja
+      reverse: |-
+        (Tú compras|Compras [tú]|Usted compra|Compra [usted]|Ustedes compran|Compran [ustedes]) esa (jaba|bolsa) roja
+        ¿Tú compras aquella jaba roja?
   translations:
     en: |-
       Are you buying that red bag?
@@ -257,6 +274,7 @@ sentences:
     en: |-
       I'll buy the white T-shirt and the blue one.
       (I will buy|I'm buying|I am buying|I buy|I'll get|I will get) the white T-shirt and the blue one.
+      I'm going to buy the white T-shirt and the blue one.
 - id: s.u08.23
   node: es.u08.nosotros
   forms:
@@ -277,13 +295,16 @@ sentences:
     en: |-
       We'll buy the blue T-shirt.
       (We will buy|We're buying|We are buying|We buy|We'll get|We will get) the blue T-shirt.
+      We're going to buy the blue T-shirt.
 - id: s.u08.25
   node: es.u08.nosotros
   forms:
     es-Latn/standard:
       text: ¡No, no! Yo pago.
       tokens: [{surface: 'No', sense: 'no'}, {surface: 'no', sense: 'no'}, {surface: Yo, sense: yo}, {surface: pago, sense: pagar, form: 'form:pres-1s'}]
-      reverse: No [no] [yo] pago
+      reverse: |-
+        No [no] [yo] pago
+        ¡No, no! Pago yo.
   translations:
     en: |-
       No, no! I'll pay.
@@ -330,6 +351,7 @@ sentences:
     en: |-
       We don't need bags.
       We do not need (bags|any bags).
+      We don't need any bags.
 - id: s.u08.30
   node: es.u08.el-agro
   forms:
@@ -349,6 +371,8 @@ sentences:
       reverse: |-
         En el (agro|agromercado|mercado) venden mangos
         Venden mangos en el (agro|agromercado|mercado)
+        Se venden mangos en el agro.
+        En el agro se venden mangos.
   translations:
     en: |-
       They sell (mangoes|mangos) at the (farmers' market|market).

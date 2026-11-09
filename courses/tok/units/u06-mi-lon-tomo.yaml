@@ -114,13 +114,17 @@ sentences:
       tokens: [{surface: ilo, sense: ilo, readings: {lasina: ilo}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: supa,
           sense: supa, readings: {lasina: supa}}]
-      reverse: ilo toki sina li lon ala lon supa
+      reverse: |-
+        ilo toki sina li lon ala lon supa
+        ilo toki sina li lon supa anu seme
     tok-Qaap/sitelen-pona:
       text: 󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
       tokens: [{surface: 󱤎, sense: ilo, readings: {lasina: ilo}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥥, sense: supa,
           readings: {lasina: supa}}]
-      reverse: 󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
+      reverse: |-
+        󱤎󱥬󱥞󱤧󱤬󱤂󱤬󱥥
+        󱤎󱥬󱥞󱤧󱤬󱥥󱤇󱥙
   constructions: ['construction:x-ala-x']
   translations:
     en: Is your phone on the table?
@@ -156,6 +160,7 @@ sentences:
     en: |-
       My phone is in the (bag|box|container).
       My phone's in the (bag|box|container)
+      Our phone is in the bag.
 - id: s.u06.8
   node: tok.u06.in-on
   forms:
@@ -271,6 +276,7 @@ sentences:
       (She's|She is|He's|He is|They're|They are) sleeping on the (floor|ground).
       (She|He) (sleeps|slept) on the (floor|ground)
       They (sleep|slept) on the (floor|ground)
+      It's sleeping on the floor.
 - id: s.u06.14
   node: tok.u06.in-on
   forms:
@@ -289,6 +295,7 @@ sentences:
       (I|We) (see|saw|watch) (a bird|the bird|birds) in the sky.
       (I|We) (see|saw|watch) (a bird|the bird|birds) (up there|above)
       (I'm|I am|We're|We are) watching (a bird|the bird|birds) in the sky
+      I'm looking at a bird in the sky.
 - id: s.u06.15
   node: tok.u06.in-on
   forms:
@@ -481,12 +488,16 @@ sentences:
       text: jan Tomasi li kama tan ma Kanata.
       tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Tomasi, sense: tomasi, readings: {lasina: Tomasi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: kama, sense: kama,
           readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: ma, sense: ma, readings: {lasina: ma}}, {surface: Kanata, sense: kanata, readings: {lasina: Kanata}}]
-      reverse: jan Tomasi li kama tan ma Kanata
+      reverse: |-
+        jan Tomasi li kama tan ma Kanata
+        jan Tomasi li tan ma Kanata
     tok-Qaap/sitelen-pona:
       text: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
       tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑, sense: tomasi}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}},
         {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱤰, sense: ma, readings: {lasina: ma}}, {surface: 󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑, sense: kanata}]
-      reverse: 󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+      reverse: |-
+        󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱤖󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
+        󱤑󱦐󱥭󱥅󱤲󱤈󱥡󱤎󱦑󱤧󱥧󱤰󱦐󱤗󱤃󱤿󱤈󱥪󱤀󱦑
   translations:
     en: |-
       Tomasi (comes|is coming|came) from Canada.
@@ -571,6 +582,7 @@ sentences:
       reverse: |-
         sina kama tan ma seme
         sina jan pi ma seme
+        sina tan ma seme
     tok-Qaap/sitelen-pona:
       text: 󱥞󱤖󱥧󱤰󱥙
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱤰, sense: ma, readings: {
@@ -578,6 +590,7 @@ sentences:
       reverse: |-
         󱥞󱤖󱥧󱤰󱥙
         󱥞󱤑󱥍󱤰󱥙
+        󱥞󱥧󱤰󱥙
   translations:
     en: |-
       (What|Which) country (are you from|do you come from)?
@@ -648,7 +661,9 @@ sentences:
       reverse: 󱤚󱤧󱥔󱥩󱤴
   constructions: ['construction:pona-tawa']
   translations:
-    en: (I|We) like (fruit|the fruit).
+    en: |-
+      (I|We) like (fruit|the fruit).
+      I liked the fruit.
 - id: s.u06.35
   node: tok.u06.way
   forms:

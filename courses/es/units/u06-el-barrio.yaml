@@ -52,16 +52,22 @@ sentences:
         [Yo] me voy a casa
         [Yo] [me] voy (a|para|pa') la casa
   translations:
-    en: (I'm going|I'm heading|I go) home.
+    en: |-
+      (I'm going|I'm heading|I go) home.
+      I am going home.
 - id: s.u06.3
   node: es.u06.voy
   forms:
     es-Latn/standard:
       text: Voy a la bodega.
       tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
-      reverse: '[Yo] voy (a|para|pa'') la bodega'
+      reverse: |-
+        [Yo] voy (a|para|pa') la bodega
+        Me voy a la bodega.
   translations:
-    en: (I'm going|I go) to the (bodega|corner store|store|grocery store).
+    en: |-
+      (I'm going|I go) to the (bodega|corner store|store|grocery store).
+      I am going to the bodega.
 - id: s.u06.4
   node: es.u06.voy
   forms:
@@ -77,7 +83,10 @@ sentences:
     es-Latn/standard:
       text: Mami va a la tienda.
       tokens: [{surface: Mami, sense: mami}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: tienda, sense: tienda}]
-      reverse: (Mami|Mamá) va a la tienda
+      reverse: |-
+        (Mami|Mamá) va a la tienda
+        Mami va para la tienda.
+        Mami va pa' la tienda.
   translations:
     en: |-
       (Mom|Mommy|Mum|Ma) (is going|goes) to the (store|shop).
@@ -88,7 +97,9 @@ sentences:
     es-Latn/standard:
       text: Vamos a la bodega.
       tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
-      reverse: '[Nosotros] vamos (a|para|pa'') la bodega'
+      reverse: |-
+        [Nosotros] vamos (a|para|pa') la bodega
+        Nosotras vamos a la bodega.
   translations:
     en: (We're going|We are going|We go|Let's go) to the (bodega|corner store|store|grocery store).
 - id: s.u06.7
@@ -97,7 +108,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde está la bodega?
       tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: bodega, sense: bodega}]
-      reverse: Dónde (está|queda) la bodega
+      reverse: |-
+        Dónde (está|queda) la bodega
+        ¿La bodega dónde está?
   translations:
     en: (Where is|Where's) the (bodega|corner store|store|grocery store)?
 - id: s.u06.8
@@ -106,18 +119,24 @@ sentences:
     es-Latn/standard:
       text: La bodega está aquí.
       tokens: [{surface: La, sense: el}, {surface: bodega, sense: bodega}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
-      reverse: La bodega (está|queda) (aquí|acá)
+      reverse: |-
+        La bodega (está|queda) (aquí|acá)
+        Aquí está la bodega.
   translations:
     en: |-
       The (bodega|corner store|store|grocery store) is here.
       Here's the (bodega|corner store|store|grocery store).
+      Here is the bodega.
 - id: s.u06.9
   node: es.u06.donde
   forms:
     es-Latn/standard:
       text: ¡La guagua está aquí!
       tokens: [{surface: La, sense: el}, {surface: guagua, sense: guagua}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: aquí, sense: aquí}]
-      reverse: (La guagua|El autobús|El bus) está (aquí|acá)
+      reverse: |-
+        (La guagua|El autobús|El bus) está (aquí|acá)
+        ¡Aquí está la guagua!
+        ¡Aquí está el autobús!
   translations:
     en: |-
       The bus is here!
@@ -186,7 +205,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde tú vives?
       tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}]
-      reverse: (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+      reverse: |-
+        (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+        ¿Tú dónde vives?
   translations:
     en: Where do you live?
 - id: s.u06.17
@@ -224,7 +245,9 @@ sentences:
       tokens: [{surface: Cojo, sense: coger, form: 'form:pres-1s'}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
       reverse: '[Yo] (cojo|tomo) (la guagua|el autobús|el bus)'
   translations:
-    en: (I take|I'm taking|I catch|I'm catching|I get) the bus.
+    en: |-
+      (I take|I'm taking|I catch|I'm catching|I get) the bus.
+      I ride the bus.
 - id: s.u06.21
   node: es.u06.la-guagua
   forms:
@@ -245,6 +268,8 @@ sentences:
       reverse: |-
         La parada (está|queda) en la esquina
         La parada de (la guagua|las guaguas) (está|queda) en la esquina
+        La parada del autobús está en la esquina.
+        La parada de guagua está en la esquina.
   translations:
     en: The [bus] stop is (on|at) the corner.
 - id: s.u06.23
@@ -264,7 +289,12 @@ sentences:
     es-Latn/standard:
       text: Vamos a la parada de la guagua.
       tokens: [{surface: Vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: parada, sense: parada}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: guagua, sense: guagua}]
-      reverse: '[Nosotros] vamos (a|para|pa'') la parada [de (la guagua|las guaguas|el autobús)]'
+      reverse: |-
+        [Nosotros] vamos (a|para|pa') la parada [(de la guagua|de las guaguas|del autobús)]
+        Nosotras vamos a la parada de la guagua.
+        Vamos a la parada del autobús.
+        Vamos a la parada de guagua.
+        Vamos a la parada de autobús.
   translations:
     en: (We're going|We are going|We go|Let's go) to the bus stop.
 - id: s.u06.25
@@ -276,6 +306,8 @@ sentences:
       reverse: |-
         Hay una parada (cerca de aquí|cerca de acá|cerca|por aquí)
         Hay una parada de guagua (cerca de aquí|cerca de acá|cerca|por aquí)
+        ¿Hay una parada de autobús cerca de aquí?
+        ¿Hay una parada de la guagua cerca de aquí?
   translations:
     en: Is there a [bus] stop (near here|nearby|close by|around here)?
 - id: s.u06.26
@@ -296,6 +328,8 @@ sentences:
       reverse: |-
         La parada (está|queda) a la izquierda
         La parada de la guagua (está|queda) a la izquierda
+        La parada del autobús está a la izquierda.
+        La parada de guagua está a la izquierda.
   translations:
     en: The [bus] stop is (on|to) the left.
 - id: s.u06.28
@@ -353,7 +387,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde tú trabajas?
       tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: trabajas, sense: trabajar, form: 'form:pres-2s'}]
-      reverse: (Dónde tú trabajas|Dónde trabajas [tú]|Dónde usted trabaja|Dónde trabaja [usted]|Dónde ustedes trabajan|Dónde trabajan [ustedes])
+      reverse: |-
+        (Dónde tú trabajas|Dónde trabajas [tú]|Dónde usted trabaja|Dónde trabaja [usted]|Dónde ustedes trabajan|Dónde trabajan [ustedes])
+        ¿Tú dónde trabajas?
   translations:
     en: Where do you work?
 - id: s.u06.34

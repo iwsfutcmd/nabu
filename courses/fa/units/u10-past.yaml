@@ -96,7 +96,9 @@ sentences:
     fa-Arab/standard:
       text: علی دیروز آمد.
       tokens: [{surface: علی, sense: ali}, {surface: دیروز, sense: dirooz}, {surface: آمد, sense: amadan}]
-      reverse: علی دیروز آمد
+      reverse: |-
+        علی دیروز آمد
+        دیروز علی آمد
   translations:
     en: |-
       Ali came yesterday.
@@ -108,7 +110,9 @@ sentences:
     fa-Arab/standard:
       text: ما دیروز کباب خوردیم.
       tokens: [{surface: ما, sense: ma}, {surface: دیروز, sense: dirooz}, {surface: کباب, sense: kabab}, {surface: خوردیم, sense: khordan, morphs: [{surface: خورد, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] دیروز کباب خوردیم'
+      reverse: |-
+        [ما] دیروز کباب خوردیم
+        دیروز ما کباب خوردیم
   translations:
     en: |-
       We (ate|had) (kebab|kebabs) yesterday.
@@ -119,7 +123,9 @@ sentences:
     fa-Arab/standard:
       text: این فیلم خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: فیلم, sense: film}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این فیلم خیلی (خوب است|خوبه)
+      reverse: |-
+        این فیلم خیلی (خوب است|خوبه)
+        این فیلم بسیار خوب است
   translations:
     en: This (film|movie) is (very|really) good.
 - id: s.past.8
@@ -129,7 +135,11 @@ sentences:
     fa-Arab/standard:
       text: دیشب یک فیلمِ ایرانی دیدم.
       tokens: [{surface: دیشب, sense: dishab}, {surface: یک, sense: yek}, {surface: فیلمِ, sense: film}, {surface: ایرانی, sense: irani}, {surface: دیدم, sense: didan, morphs: [{surface: دید, kc: 'sense:didan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] دیشب یک فیلم ایرانی دیدم'
+      reverse: |-
+        [من] دیشب یک فیلم ایرانی دیدم
+        دیشب یک فیلم ایرانی تماشا کردم
+        دیشب من یک فیلم ایرانی دیدم
+        دیشب فیلم ایرانی دیدم
   translations:
     en: |-
       I (watched|saw) an Iranian (film|movie) last night.
@@ -141,7 +151,9 @@ sentences:
     fa-Arab/standard:
       text: دیروز کار نکردم.
       tokens: [{surface: دیروز, sense: dirooz}, {surface: کار, sense: kar}, {surface: نکردم, sense: kardan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: کرد, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] دیروز کار نکردم'
+      reverse: |-
+        [من] دیروز کار نکردم
+        دیروز من کار نکردم
   translations:
     en: |-
       I (didn't|did not) work yesterday.
@@ -156,6 +168,7 @@ sentences:
       reverse: |-
         [تو] (چه|چی) خریدی
         [شما] (چه|چی) خریدید
+        چه چیزی خریدی
   translations:
     en: What did you buy?
 - id: s.past.11
@@ -165,7 +178,9 @@ sentences:
     fa-Arab/standard:
       text: یک کتاب خریدم.
       tokens: [{surface: یک, sense: yek}, {surface: کتاب, sense: ketab}, {surface: خریدم, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] یک کتاب خریدم'
+      reverse: |-
+        [من] یک کتاب خریدم
+        کتاب خریدم
   translations:
     en: I bought a book.
 - id: s.past.12
@@ -175,7 +190,9 @@ sentences:
     fa-Arab/standard:
       text: دیشب زود خوابیدم.
       tokens: [{surface: دیشب, sense: dishab}, {surface: زود, sense: zud}, {surface: خوابیدم, sense: khabidan, morphs: [{surface: خوابید, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] دیشب زود خوابیدم'
+      reverse: |-
+        [من] دیشب زود خوابیدم
+        دیشب من زود خوابیدم
   translations:
     en: |-
       I went to bed early last night.
@@ -188,7 +205,7 @@ sentences:
     fa-Arab/standard:
       text: هفتهٔ گذشته به اصفهان رفتیم.
       tokens: [{surface: هفتهٔ, sense: hafte}, {surface: گذشته, sense: gozashte}, {surface: به, sense: be}, {surface: اصفهان, sense: esfahan}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] هفت(هٔ|ه\u200cی|ه) گذشته به اصفهان رفتیم"
+      reverse: "[ما] هفت(هٔ|ه\u200Cی|ه) گذشته به اصفهان رفتیم\nهفته پیش به اصفهان رفتیم\nهفته قبل به اصفهان رفتیم\nهفته گذشته ما به اصفهان رفتیم\nهفته گذشته اصفهان رفتیم"
   translations:
     en: |-
       Last week we went to (Isfahan|Esfahan).
@@ -240,6 +257,7 @@ sentences:
       reverse: |-
         امروز هوا آفتابی است
         هوا امروز آفتابی است
+        امروز هوا آفتابیه
   translations:
     en: |-
       It('s| is) sunny today.
@@ -251,7 +269,7 @@ sentences:
     fa-Arab/standard:
       text: "باران می\u200cآید."
       tokens: [{surface: باران, sense: baran}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "باران می\u200cآید"
+      reverse: "باران می\u200Cآید\nباران می\u200Cبارد\nدارد باران می\u200Cآید\nباران دارد می\u200Cآید"
   translations:
     en: It('s| is) raining.
 - id: s.past.19
@@ -261,7 +279,9 @@ sentences:
     fa-Arab/standard:
       text: دیروز برف آمد.
       tokens: [{surface: دیروز, sense: dirooz}, {surface: برف, sense: barf}, {surface: آمد, sense: amadan}]
-      reverse: دیروز برف آمد
+      reverse: |-
+        دیروز برف آمد
+        دیروز برف بارید
   translations:
     en: |-
       It snowed yesterday.
@@ -272,7 +292,9 @@ sentences:
     fa-Arab/standard:
       text: هوا ابری است.
       tokens: [{surface: هوا, sense: hava}, {surface: ابری, sense: abri}, {surface: است, sense: budan}]
-      reverse: هوا ابری است
+      reverse: |-
+        هوا ابری است
+        هوا ابریه
   translations:
     en: |-
       It('s| is) cloudy.
@@ -283,9 +305,15 @@ sentences:
     fa-Arab/standard:
       text: بهار خیلی قشنگ است.
       tokens: [{surface: بهار, sense: bahar}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: بهار خیلی قشنگ است
+      reverse: |-
+        بهار خیلی قشنگ است
+        بهار بسیار قشنگ است
+        بهار خیلی زیبا است
+        بهار خیلی قشنگه
   translations:
-    en: Spring is very (beautiful|pretty|lovely).
+    en: |-
+      Spring is very (beautiful|pretty|lovely).
+      Spring is really beautiful.
 - id: s.past.22
   node: fa.past.seasons
   constructions: ['construction:doost-dashtan']
@@ -302,18 +330,23 @@ sentences:
     fa-Arab/standard:
       text: تابستان هوا خیلی گرم است.
       tokens: [{surface: تابستان, sense: tabestan}, {surface: هوا, sense: hava}, {surface: خیلی, sense: kheyli}, {surface: گرم, sense: garm}, {surface: است, sense: budan}]
-      reverse: '[در] تابستان هوا خیلی گرم است'
+      reverse: |-
+        [در] تابستان هوا خیلی گرم است
+        هوا در تابستان خیلی گرم است
+        تابستان هوا بسیار گرم است
+        تابستان هوا خیلی گرمه
   translations:
     en: |-
       In [the] summer (it|the weather) is very hot.
       (It|The weather) is very hot in [the] summer.
+      In summer it's really hot.
 - id: s.past.24
   node: fa.past.seasons
   forms:
     fa-Arab/standard:
       text: "در زمستان برف می\u200cآید."
       tokens: [{surface: در, sense: dar}, {surface: زمستان, sense: zemestan}, {surface: برف, sense: barf}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "[در] زمستان برف می\u200cآید"
+      reverse: "[در] زمستان برف می\u200Cآید\nدر زمستان برف می\u200Cبارد"
   translations:
     en: |-
       It snows in [the] winter.
@@ -324,16 +357,25 @@ sentences:
     fa-Arab/standard:
       text: پاییز در تهران خیلی قشنگ است.
       tokens: [{surface: پاییز, sense: paeez}, {surface: در, sense: dar}, {surface: تهران, sense: tehran}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: (پاییز|پائیز) (در|توی) تهران خیلی قشنگ است
+      reverse: |-
+        (پاییز|پائیز) (در|توی) تهران خیلی قشنگ است
+        در تهران پاییز خیلی قشنگ است
+        پاییز در تهران بسیار قشنگ است
+        پاییز در تهران خیلی زیبا است
+        پاییز در تهران خیلی قشنگه
   translations:
-    en: (Autumn|Fall) in Tehran is very (beautiful|pretty|lovely).
+    en: |-
+      (Autumn|Fall) in Tehran is very (beautiful|pretty|lovely).
+      Autumn in Tehran is really beautiful.
 - id: s.past.26
   node: fa.past.seasons
   forms:
     fa-Arab/standard:
       text: نوروز در بهار است.
       tokens: [{surface: نوروز, sense: nowruz}, {surface: در, sense: dar}, {surface: بهار, sense: bahar}, {surface: است, sense: budan}]
-      reverse: نوروز در بهار است
+      reverse: |-
+        نوروز در بهار است
+        نوروز در بهاره
   translations:
     en: |-
       (Nowruz|Norouz|Norooz|Nowrooz) is in [the] spring.
@@ -347,7 +389,9 @@ sentences:
       tokens: [{surface: ما, sense: ma}, {surface: به, sense: be}, {surface: شمال, sense: shomal}, {surface: رفتیم, sense: raftan, morphs: [{surface: رفت, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
       reverse: '[ما] [به] شمال رفتیم'
   translations:
-    en: We went (to the north|north).
+    en: |-
+      We went (to the north|north).
+      We went up north.
 - id: s.past.28
   node: fa.past.trip
   constructions: ['construction:ezafe']
@@ -355,7 +399,9 @@ sentences:
     fa-Arab/standard:
       text: کنارِ دریا بودیم.
       tokens: [{surface: کنارِ, sense: kenar}, {surface: دریا, sense: darya}, {surface: بودیم, sense: bud, morphs: [{surface: بود, kc: 'sense:bud'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] کنار دریا بودیم'
+      reverse: |-
+        [ما] کنار دریا بودیم
+        ما لب دریا بودیم
   translations:
     en: We were (by|at) the (sea|seaside).
 - id: s.past.29
@@ -365,7 +411,7 @@ sentences:
     fa-Arab/standard:
       text: این عکسِ خانوادهٔ من است.
       tokens: [{surface: این, sense: in}, {surface: عکسِ, sense: aks}, {surface: خانوادهٔ, sense: khanevade}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: "این عکس خانواد(هٔ|ه\u200cی|ه) من است"
+      reverse: "این عکس خانواد(هٔ|ه\u200Cی|ه) من است\nاین عکس خانواده\u200Cام است\nاین عکس خانواده\u200Cی منه"
   translations:
     en: |-
       This is a (photo|picture) of my family.
@@ -377,7 +423,7 @@ sentences:
     fa-Arab/standard:
       text: آنجا خیلی عکس گرفتیم.
       tokens: [{surface: آنجا, sense: anja}, {surface: خیلی, sense: kheyli}, {surface: عکس, sense: aks}, {surface: گرفتیم, sense: gereftan, morphs: [{surface: گرفت, kc: 'sense:gereftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] آنجا خیلی عکس گرفتیم'
+      reverse: "[ما] آنجا خیلی عکس گرفتیم\nما آنجا عکس\u200Cهای زیادی گرفتیم\nآنجا ما خیلی عکس گرفتیم"
   translations:
     en: |-
       We took (a lot of|lots of|many) (photos|pictures) there.
@@ -388,12 +434,17 @@ sentences:
     fa-Arab/standard:
       text: سفر خوب بود؟
       tokens: [{surface: سفر, sense: safar}, {surface: خوب, sense: khub}, {surface: بود, sense: bud}]
-      reverse: (سفر|سفرت|سفرتان) خوب بود
+      reverse: |-
+        (سفر|سفرت|سفرتان) خوب بود
+        مسافرت خوب بود
+        آیا سفر خوب بود
   translations:
     en: |-
       Was the trip good?
       Was it a good trip?
       Did you have a good trip?
+      Was the journey good?
+      Did you have a good journey?
 - id: s.past.32
   node: fa.past.fun
   constructions: ['construction:past']
@@ -414,7 +465,9 @@ sentences:
     fa-Arab/standard:
       text: به شما خوش گذشت؟
       tokens: [{surface: به, sense: be}, {surface: شما, sense: shoma}, {surface: خوش, sense: khosh}, {surface: گذشت, sense: gozashtan}]
-      reverse: '[به (شما|تو)] خوش گذشت'
+      reverse: |-
+        [به (شما|تو)] خوش گذشت
+        آیا به شما خوش گذشت
   translations:
     en: |-
       Did you have a (good|nice|great) time?
@@ -452,7 +505,9 @@ sentences:
     fa-Arab/standard:
       text: چه خریدید؟
       tokens: [{surface: چه, sense: che}, {surface: خریدید, sense: kharidan, morphs: [{surface: خرید, kc: 'sense:kharidan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] (چه|چی) خریدید'
+      reverse: |-
+        [شما] (چه|چی) خریدید
+        شما چه چیزی خریدید
   translations:
     en: What did you buy?
 stories:

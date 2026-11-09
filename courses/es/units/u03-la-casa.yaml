@@ -136,7 +136,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde tú vives?
       tokens: [{surface: Dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: vives, sense: vivir, form: 'form:pres-2s'}]
-      reverse: (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+      reverse: |-
+        (Dónde tú vives|Dónde vives [tú]|Dónde usted vive|Dónde vive [usted]|Dónde ustedes viven|Dónde viven [ustedes])
+        ¿Tú dónde vives?
   translations:
     en: Where do you live?
 - id: s.u03.11
@@ -165,7 +167,11 @@ sentences:
     es-Latn/standard:
       text: ¡Qué calor!
       tokens: [{surface: Qué, sense: qué}, {surface: calor, sense: calor}]
-      reverse: Qué calor
+      reverse: |-
+        Qué calor
+        ¡Hace tanto calor!
+        ¡Hace mucho calor!
+        ¡Qué calor hace!
   translations:
     en: |-
       (It's|It is) so hot!
@@ -178,12 +184,15 @@ sentences:
     es-Latn/standard:
       text: Abuela tiene calor.
       tokens: [{surface: Abuela, sense: abuela}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: calor, sense: calor}]
-      reverse: '[La] abuela tiene calor'
+      reverse: |-
+        [La] abuela tiene calor
+        Mi abuela tiene calor.
   translations:
     en: |-
       (Grandma|Grandmother|Granny) is hot.
       (Grandma's|Grandmother's|Granny's) hot.
       (Grandma|Grandmother|Granny) feels hot.
+      My grandma is hot.
 - id: s.u03.15
   node: es.u03.la-sala
   forms:
@@ -210,7 +219,10 @@ sentences:
     es-Latn/standard:
       text: ¿Hay un ventilador aquí?
       tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: ventilador, sense: ventilador}, {surface: aquí, sense: aquí}]
-      reverse: (Hay un ventilador aquí|Aquí hay un ventilador)
+      reverse: |-
+        (Hay un ventilador aquí|Aquí hay un ventilador)
+        ¿Hay ventilador aquí?
+        ¿Aquí hay ventilador?
   translations:
     en: Is there a fan (here|in here)?
 - id: s.u03.18
@@ -227,6 +239,7 @@ sentences:
       No, there (isn't|is not) a fan here.
       No, there (isn't|is not) a fan in here.
       No, there's no fan in here.
+      No, there is no fan in here.
 - id: s.u03.19
   node: es.u03.la-cocina
   forms:
@@ -294,7 +307,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde está el baño?
       tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: baño, sense: baño}]
-      reverse: Dónde está el baño
+      reverse: |-
+        Dónde está el baño
+        ¿El baño dónde está?
   translations:
     en: |-
       Where is the (bathroom|restroom|toilet|washroom|loo)?
@@ -338,7 +353,9 @@ sentences:
     es-Latn/standard:
       text: Hay un baño al lado del cuarto.
       tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: baño, sense: baño}, {surface: al, sense: al}, {surface: lado, sense: lado}, {surface: del, sense: del}, {surface: cuarto, sense: cuarto}]
-      reverse: Hay un baño al lado (del (cuarto|dormitorio)|de la habitación)
+      reverse: |-
+        Hay un baño al lado (del (cuarto|dormitorio)|de la habitación)
+        Al lado del cuarto hay un baño.
   translations:
     en: (There's|There is) a bathroom (next to|beside) the (bedroom|room).
 - id: s.u03.30
@@ -347,18 +364,24 @@ sentences:
     es-Latn/standard:
       text: Abuela está en el portal.
       tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
-      reverse: '[La] abuela está en el portal'
+      reverse: |-
+        [La] abuela está en el portal
+        Mi abuela está en el portal.
+        Abuela está en el porche.
   translations:
     en: |-
       (Grandma|Grandmother|Granny) is (on|out on) the (porch|front porch).
       (Grandma's|Grandmother's|Granny's) (on|out on) the (porch|front porch).
+      My grandma is on the porch.
 - id: s.u03.31
   node: es.u03.el-portal
   forms:
     es-Latn/standard:
       text: Hay un sillón en el portal.
       tokens: [{surface: Hay, sense: hay}, {surface: un, sense: un}, {surface: sillón, sense: sillón}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
-      reverse: (Hay (un sillón|una mecedora) en el portal|En el portal hay (un sillón|una mecedora))
+      reverse: |-
+        (Hay (un sillón|una mecedora) en el portal|En el portal hay (un sillón|una mecedora))
+        Hay un sillón en el porche.
   translations:
     en: (There's|There is) a rocking chair on the (porch|front porch).
 - id: s.u03.32
@@ -367,22 +390,28 @@ sentences:
     es-Latn/standard:
       text: Abuela está en su sillón.
       tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: sillón, sense: sillón}]
-      reverse: '[La] abuela está en su (sillón|mecedora)'
+      reverse: |-
+        [La] abuela está en su (sillón|mecedora)
+        Mi abuela está en su sillón.
   translations:
     en: |-
       (Grandma|Grandmother|Granny) is in her rocking chair.
       (Grandma's|Grandmother's|Granny's) in her rocking chair.
+      My grandma is in her rocking chair.
 - id: s.u03.33
   node: es.u03.el-portal
   forms:
     es-Latn/standard:
       text: Abuelo Pepe está en el patio.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
-      reverse: '[El] abuelo Pepe está en el patio'
+      reverse: |-
+        [El] abuelo Pepe está en el patio
+        Mi abuelo Pepe está en el patio.
   translations:
     en: |-
       (Grandpa|Grandfather|Granddad|Grandad) Pepe is (in|out in) the (yard|backyard|back yard|patio).
       (Grandpa|Grandfather|Granddad|Grandad) Pepe's (in|out in) the (yard|backyard|back yard|patio).
+      My grandpa Pepe is in the yard.
 - id: s.u03.34
   node: es.u03.el-portal
   forms:
@@ -391,7 +420,9 @@ sentences:
       tokens: [{surface: Hay, sense: hay}, {surface: una, sense: un}, {surface: mata, sense: mata}, {surface: de, sense: de}, {surface: mango, sense: mango}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
       reverse: (Hay (una mata de mango|un árbol de mango|un mango) en el patio|En el patio hay (una mata de mango|un árbol de mango|un mango))
   translations:
-    en: (There's|There is) a mango tree in the (yard|backyard|back yard|patio).
+    en: |-
+      (There's|There is) a mango tree in the (yard|backyard|back yard|patio).
+      There's a mango tree in the garden.
 - id: s.u03.35
   node: es.u03.el-portal
   forms:

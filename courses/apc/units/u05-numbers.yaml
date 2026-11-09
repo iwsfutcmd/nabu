@@ -48,11 +48,15 @@ sentences:
     apc-Arab/standard:
       text: واحد شاي.
       tokens: [{surface: واحد, sense: wa7ad}, {surface: شاي, sense: shay}]
-      reverse: واحد شاي
+      reverse: |-
+        واحد شاي
+        شاي واحد
     apc-Latn/arabizi:
       text: wa7ad shay.
       tokens: [{surface: wa7ad, sense: wa7ad}, {surface: shay, sense: shay}]
-      reverse: (wa7ad|wa7ed|wahad|wa7id) shay
+      reverse: |-
+        (wa7ad|wa7ed|wahad|wa7id) shay
+        shay wa7ad
   translations:
     en: |-
       One tea.
@@ -64,11 +68,15 @@ sentences:
     apc-Arab/standard:
       text: تنين قهوة.
       tokens: [{surface: تنين, sense: tnen}, {surface: قهوة, sense: ahwe}]
-      reverse: تنين قهوة
+      reverse: |-
+        تنين قهوة
+        قهوتين
     apc-Latn/arabizi:
       text: tnen ahwe.
       tokens: [{surface: tnen, sense: tnen}, {surface: ahwe, sense: ahwe}]
-      reverse: (tnen|tnein|tnayn|itnen|tnin) (ahwe|2ahwe|ahwi|2ahwi)
+      reverse: |-
+        (tnen|tnein|tnayn|itnen|tnin) (ahwe|2ahwe|ahwi|2ahwi)
+        ahwtein
   translations:
     en: |-
       Two coffees.
@@ -374,15 +382,24 @@ sentences:
     apc-Arab/standard:
       text: غالي!
       tokens: [{surface: غالي, sense: ghali}]
-      reverse: غالي
+      reverse: |-
+        غالي
+        غالية
+        هيدا غالي
+        هيدي غالية
     apc-Latn/arabizi:
       text: ghali!
       tokens: [{surface: ghali, sense: ghali}]
-      reverse: (ghali|8ali|ghale)
+      reverse: |-
+        (ghali|8ali|ghale)
+        hayda ghali
+        hayde ghalye
   translations:
     en: |-
       (That's|It's) expensive!
       Expensive!
+      It is expensive!
+      That is expensive!
 - id: s.num.22
   node: apc.num.prices
   register: colloquial
@@ -431,6 +448,8 @@ sentences:
         قهوة (عمول|اعمول|عمل) معروف
         قهوة لو سمحت
         قهوة (إذا|اذا) بتريد
+        لو سمحت قهوة
+        عمول معروف قهوة
     apc-Latn/arabizi:
       text: ahwe, 3mol ma3rouf.
       tokens: [{surface: ahwe, sense: ahwe}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
@@ -438,6 +457,8 @@ sentences:
         (ahwe|2ahwe) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
         (ahwe|2ahwe) (law|lau|low) (sama7t|samaht|sma7t)
         (ahwe|2ahwe) (iza|eza|eiza) (btrid|betrid|bitrid)
+        law sama7t ahwe
+        3mol ma3rouf ahwe
   translations:
     en: (A coffee|Coffee), please.
 - id: s.num.25
@@ -452,6 +473,8 @@ sentences:
         الحساب (عمول|اعمول|عمل) معروف
         الحساب لو سمحت
         الحساب (إذا|اذا) بتريد
+        لو سمحت الحساب
+        عمول معروف الحساب
     apc-Latn/arabizi:
       text: el 7sab, 3mol ma3rouf.
       tokens: [{surface: el, sense: el}, {surface: 7sab, sense: 7sab}, {surface: 3mol, sense: 3mol-ma3rouf}, {surface: ma3rouf, sense: 3mol-ma3rouf}]
@@ -459,6 +482,8 @@ sentences:
         (el|l|il) (7sab|hsab|7isab) (3mol|3mul|e3mol) (ma3rouf|ma3ruf|ma3roof)
         (el|l|il) (7sab|hsab|7isab) (law|lau|low) (sama7t|samaht|sma7t)
         (el|l|il) (7sab|hsab|7isab) (iza|eza|eiza) (btrid|betrid|bitrid)
+        law sama7t el 7sab
+        3mol ma3rouf el 7sab
   translations:
     en: The (bill|check), please.
 - id: s.num.26
@@ -469,11 +494,15 @@ sentences:
     apc-Arab/standard:
       text: لو سمحت، قدّيش هيدا؟
       tokens: [{surface: لو, sense: law-sama7t}, {surface: سمحت, sense: law-sama7t}, {surface: قدّيش, sense: 2addesh}, {surface: هيدا, sense: hayda}]
-      reverse: لو سمحت (قدّيش|أدّيش) (هيدا|هيدي)
+      reverse: |-
+        لو سمحت (قدّيش|أدّيش) (هيدا|هيدي)
+        قدّيش هيدا لو سمحت
     apc-Latn/arabizi:
       text: law sama7t, 2addesh hayda?
       tokens: [{surface: law, sense: law-sama7t}, {surface: sama7t, sense: law-sama7t}, {surface: 2addesh, sense: 2addesh}, {surface: hayda, sense: hayda}]
-      reverse: (law|lau|low) (sama7t|samaht|sma7t) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda|hayde)
+      reverse: |-
+        (law|lau|low) (sama7t|samaht|sma7t) (2addesh|addesh|2adesh|2addeish) (hayda|haida|hyda|hayde)
+        2addesh hayda law sama7t
   translations:
     en: |-
       Excuse me, how much is this?
@@ -486,11 +515,15 @@ sentences:
     apc-Arab/standard:
       text: قدّيش عمرك؟
       tokens: [{surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2ms'}]}]
-      reverse: (قدّيش|أدّيش) عمرك
+      reverse: |-
+        (قدّيش|أدّيش) عمرك
+        إنت قدّيش عمرك
     apc-Latn/arabizi:
       text: 2addesh 3omrak?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 3omrak, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak)
+      reverse: |-
+        (2addesh|addesh|2adesh|2addeish) (3omrak|3umrak|3omorak)
+        enta 2addesh 3omrak
   translations:
     en: How old are you?
 - id: s.num.28
@@ -500,11 +533,15 @@ sentences:
     apc-Arab/standard:
       text: عمري عشرين سنة.
       tokens: [{surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: عشرين, sense: 3eshrin}, {surface: سنة, sense: sene}]
-      reverse: (عمري|أنا عمري) عشرين سنة
+      reverse: |-
+        (عمري|أنا عمري) عشرين سنة
+        عمري عشرين
     apc-Latn/arabizi:
       text: 3omri 3eshrin sene.
       tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3eshrin, sense: 3eshrin}, {surface: sene, sense: sene}]
-      reverse: ((3omri|3omre|3umri|3umre|3omori|3omore)|ana (3omri|3omre|3umri|3umre)) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
+      reverse: |-
+        ((3omri|3omre|3umri|3umre|3omori|3omore)|ana (3omri|3omre|3umri|3umre)) (3eshrin|3ishrin|3eshreen) (sene|seni|sana)
+        3omri 3eshrin
   translations:
     en: |-
       I('m| am) twenty [years old].
@@ -517,16 +554,21 @@ sentences:
       text: تيتا عمرها مية سنة!
       tokens: [{surface: تيتا, sense: teta}, {surface: عمرها, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: مية, sense: miyye, vocalized: مِية}, {surface: سنة,
           sense: sene}]
-      reverse: تيتا (عمرها|عمرا) (مية|مئة|ميت) سنة
+      reverse: |-
+        تيتا (عمرها|عمرا) (مية|مئة|ميت) سنة
+        تيتا عمرها مية
     apc-Latn/arabizi:
       text: teta 3omra mit sene!
       tokens: [{surface: teta, sense: teta}, {surface: 3omra, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: mit, sense: miyye}, {surface: sene,
           sense: sene}]
-      reverse: (teta|tayta) (3omra|3umra|3omora) (mit|miit|meet|miyyet|miyye|mie|miye) (sene|seni|sana)
+      reverse: |-
+        (teta|tayta) (3omra|3umra|3omora) (mit|miit|meet|miyyet|miyye|mie|miye) (sene|seni|sana)
+        teta 3omra miyye
   translations:
     en: |-
       (Grandma|Granny) is (a hundred|one hundred|100) [years old]!
       (Grandma|Granny)'s (a hundred|one hundred|100) [years old]!
+      My grandma is a hundred years old!
 - id: s.num.30
   node: apc.num.age
   register: colloquial
@@ -567,13 +609,19 @@ sentences:
     apc-Arab/standard:
       text: مايا، قدّيش عمرك؟
       tokens: [{surface: مايا, sense: maya}, {surface: قدّيش, sense: 2addesh}, {surface: عمرك, sense: 3omr, vocalized: عُمْرِك, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ك, kc: 'form:poss-2fs'}]}]
-      reverse: مايا (قدّيش|أدّيش) عمرك
+      reverse: |-
+        مايا (قدّيش|أدّيش) عمرك
+        قدّيش عمرك مايا
     apc-Latn/arabizi:
       text: Maya, 2addesh 3omrik?
       tokens: [{surface: Maya, sense: maya}, {surface: 2addesh, sense: 2addesh}, {surface: 3omrik, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: ik, kc: 'form:poss-2fs'}]}]
-      reverse: Maya (2addesh|addesh|2adesh|2addeish) (3omrik|3umrik|3omorik|3omrek)
+      reverse: |-
+        Maya (2addesh|addesh|2adesh|2addeish) (3omrik|3umrik|3omorik|3omrek)
+        2addesh 3omrik Maya
   translations:
-    en: Maya, how old are you?
+    en: |-
+      Maya, how old are you?
+      How old are you, Maya?
 stories:
 - id: apc.story.dekkene
   node: apc.num.story

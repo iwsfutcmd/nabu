@@ -52,6 +52,7 @@ sentences:
     en: |-
       I('m| am) busy.
       I have (work|things to do).
+      I've got things to do.
 - id: s.day.2
   node: fa.day.work
   forms:
@@ -86,6 +87,7 @@ sentences:
     en: |-
       My (father|dad) (works|is working) too.
       My (father|dad) also works.
+      My father is also working.
 - id: s.day.5
   node: fa.day.work
   register: formal
@@ -95,7 +97,9 @@ sentences:
       tokens: [{surface: شما, sense: shoma}, {surface: کجا, sense: koja}, {surface: کار, sense: kar}, {surface: "می\u200cکنید", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: ید, kc: 'form:2pl-id'}]}]
       reverse: "[شما] کجا کار می\u200cکنید\n[تو] کجا کار می\u200cکنی"
   translations:
-    en: Where do you work?
+    en: |-
+      Where do you work?
+      Where are you working?
 - id: s.day.6
   node: fa.day.work
   forms:
@@ -104,7 +108,9 @@ sentences:
       tokens: [{surface: من, sense: man}, {surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] (در|توی) دانشگاه کار می\u200cکنم"
   translations:
-    en: I work (at|in) (the|a) university.
+    en: |-
+      I work (at|in) (the|a) university.
+      I'm working at the university.
 - id: s.day.7
   node: fa.day.work
   forms:
@@ -113,23 +119,27 @@ sentences:
       tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: در, sense: dar}, {surface: یک, sense: yek}, {surface: شرکت, sense: sherkat}, {surface: کار, sense: kar}, {surface: "می\u200cکند", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: د, kc: 'form:3sg-ad'}]}]
       reverse: "(مادرم|مادر من) (در|توی) یک شرکت کار می\u200cکند"
   translations:
-    en: My (mother|mom|mum) works (at|in|for) a company.
+    en: |-
+      My (mother|mom|mum) works (at|in|for) a company.
+      My mother is working at a company.
 - id: s.day.8
   node: fa.day.go
   forms:
     fa-Arab/standard:
       text: "من می\u200cروم. خداحافظ!"
       tokens: [{surface: من, sense: man}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: خداحافظ, sense: khodahafez}]
-      reverse: "[من] می\u200cروم (خداحافظ|خدا حافظ|خدانگهدار)"
+      reverse: "[من] می\u200Cروم (خداحافظ|خدا حافظ|خدانگهدار)\nمن دارم می\u200Cروم خداحافظ"
   translations:
-    en: I('m| am) (going|leaving). (Goodbye|Bye)!
+    en: |-
+      I('m| am) (going|leaving). (Goodbye|Bye)!
+      I'm off. Bye!
 - id: s.day.9
   node: fa.day.go
   forms:
     fa-Arab/standard:
       text: "من به دانشگاه می\u200cروم."
       tokens: [{surface: من, sense: man}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] [به] دانشگاه می\u200cروم"
+      reverse: "[من] [به] دانشگاه می\u200Cروم\nمن دارم به دانشگاه می\u200Cروم"
   translations:
     en: I('m going| am going| go) to [the] university.
 - id: s.day.10
@@ -138,7 +148,7 @@ sentences:
     fa-Arab/standard:
       text: "تو کجا می\u200cروی؟"
       tokens: [{surface: تو, sense: to}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: "[تو] کجا می\u200cروی\n[شما] کجا می\u200cروید"
+      reverse: "[تو] کجا می\u200Cروی\n[شما] کجا می\u200Cروید\nکجا داری می\u200Cروی\nداری کجا می\u200Cروی\nشما کجا دارید می\u200Cروید"
   translations:
     en: |-
       Where are you going?
@@ -149,9 +159,11 @@ sentences:
     fa-Arab/standard:
       text: "علی به خانه می\u200cآید."
       tokens: [{surface: علی, sense: ali}, {surface: به, sense: be}, {surface: خانه, sense: khane}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "علی [به] خانه می\u200cآید"
+      reverse: "علی [به] خانه می\u200Cآید\nعلی دارد به خانه می\u200Cآید"
   translations:
-    en: Ali('s coming| is coming| comes) home.
+    en: |-
+      Ali('s coming| is coming| comes) home.
+      Ali will come home.
 - id: s.day.12
   node: fa.day.go
   register: formal
@@ -159,11 +171,13 @@ sentences:
     fa-Arab/standard:
       text: "شما هم می\u200cآیید؟"
       tokens: [{surface: شما, sense: shoma}, {surface: هم, sense: ham}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] هم می\u200cآیید\n[تو] هم می\u200cآیی"
+      reverse: "[شما] هم می\u200Cآیید\n[تو] هم می\u200Cآیی\nآیا شما هم می\u200Cآیید\nتو هم داری می\u200Cآیی"
   translations:
     en: |-
       Are you coming too?
       Are you also coming?
+      Will you come too?
+      Are you coming as well?
 - id: s.day.13
   node: fa.day.go
   forms:
@@ -192,23 +206,27 @@ sentences:
       tokens: [{surface: ما, sense: ma}, {surface: در, sense: dar}, {surface: دانشگاه, sense: daneshgah}, {surface: ناهار, sense: nahar}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
       reverse: "[ما] (در|توی) دانشگاه (ناهار|نهار) می\u200cخوریم"
   translations:
-    en: We (have|eat) lunch (at|in) [the] university.
+    en: |-
+      We (have|eat) lunch (at|in) [the] university.
+      We're having lunch at the university.
 - id: s.day.16
   node: fa.day.meals
   forms:
     fa-Arab/standard:
       text: "ما با خانواده شام می\u200cخوریم."
       tokens: [{surface: ما, sense: ma}, {surface: با, sense: ba}, {surface: خانواده, sense: khanevade}, {surface: شام, sense: sham}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] با خانواده شام می\u200cخوریم"
+      reverse: "[ما] با خانواده شام می\u200Cخوریم\nما با خانواده\u200Cمان شام می\u200Cخوریم"
   translations:
-    en: We (have|eat) dinner with [the|our] family.
+    en: |-
+      We (have|eat) dinner with [the|our] family.
+      We're having dinner with the family.
 - id: s.day.17
   node: fa.day.meals
   forms:
     fa-Arab/standard:
       text: "تو چای می\u200cخوری؟"
       tokens: [{surface: تو, sense: to}, {surface: چای, sense: chay}, {surface: "می\u200cخوری", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: "[تو] چای می\u200cخوری\n[شما] چای می\u200cخورید"
+      reverse: "[تو] چای می\u200Cخوری\n[شما] چای می\u200Cخورید\nآیا تو چای می\u200Cخوری\nتو چای می\u200Cنوشی"
   translations:
     en: (Do you drink|Will you have|Would you like) [some] tea?
 - id: s.day.18
@@ -217,7 +235,7 @@ sentences:
     fa-Arab/standard:
       text: "من قهوه نمی\u200cخورم."
       tokens: [{surface: من, sense: man}, {surface: قهوه, sense: ghahve}, {surface: "نمی\u200cخورم", sense: khordan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] قهوه نمی\u200cخورم"
+      reverse: "[من] قهوه نمی\u200Cخورم\nمن قهوه نمی\u200Cنوشم"
   translations:
     en: I (don't|do not) drink coffee.
 - id: s.day.19
@@ -226,7 +244,7 @@ sentences:
     fa-Arab/standard:
       text: "من صبح چای می\u200cخورم."
       tokens: [{surface: من, sense: man}, {surface: صبح, sense: sobh}, {surface: چای, sense: chay}, {surface: "می\u200cخورم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (صبح|صبح\u200cها) چای می\u200cخورم"
+      reverse: "[من] (صبح|صبح\u200Cها) چای می\u200Cخورم\nمن صبح چای می\u200Cنوشم\nصبح\u200Cها من چای می\u200Cخورم"
   translations:
     en: |-
       I (drink|have) tea in the morning.
@@ -237,7 +255,7 @@ sentences:
     fa-Arab/standard:
       text: "من کتاب می\u200cخوانم."
       tokens: [{surface: من, sense: man}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] کتاب می\u200cخوانم"
+      reverse: "[من] کتاب می\u200Cخوانم\nمن دارم کتاب می\u200Cخوانم"
   translations:
     en: |-
       I('m| am) reading a book.
@@ -248,7 +266,7 @@ sentences:
     fa-Arab/standard:
       text: "من شب کتاب می\u200cخوانم."
       tokens: [{surface: من, sense: man}, {surface: شب, sense: shab}, {surface: کتاب, sense: ketab}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (شب|شب\u200cها) کتاب می\u200cخوانم"
+      reverse: "[من] (شب|شب\u200Cها) کتاب می\u200Cخوانم\nشب\u200Cها من کتاب می\u200Cخوانم"
   translations:
     en: |-
       I read [books] (at night|in the evening).
@@ -272,7 +290,9 @@ sentences:
       tokens: [{surface: من, sense: man}, {surface: زود, sense: zud}, {surface: "می\u200cخوابم", sense: khabidan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خواب, kc: 'sense:khabidan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: "[من] زود می\u200cخوابم"
   translations:
-    en: I (go to bed|sleep) early.
+    en: |-
+      I (go to bed|sleep) early.
+      I go to sleep early.
 - id: s.day.24
   node: fa.day.night
   forms:
@@ -297,7 +317,7 @@ sentences:
     fa-Arab/standard:
       text: "من هر روز کار می\u200cکنم."
       tokens: [{surface: من, sense: man}, {surface: هر, sense: har}, {surface: روز, sense: ruz}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] هر روز کار می\u200cکنم"
+      reverse: "[من] هر روز کار می\u200Cکنم\nهر روز من کار می\u200Cکنم"
   translations:
     en: I work every day.
 - id: s.day.27
@@ -306,7 +326,7 @@ sentences:
     fa-Arab/standard:
       text: "او همیشه دیر می\u200cآید!"
       tokens: [{surface: او, sense: u}, {surface: همیشه, sense: hamishe}, {surface: دیر, sense: dir}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "[او] همیشه دیر می\u200cآید"
+      reverse: "[او] همیشه دیر می\u200Cآید\nاو همیشه دیر می\u200Cکند\nاو همیشه دیر می\u200Cرسد"
   translations:
     en: (He|She)('s always| is always| always comes) late!
 - id: s.day.28
@@ -315,7 +335,7 @@ sentences:
     fa-Arab/standard:
       text: "ما معمولاً در خانه شام می\u200cخوریم."
       tokens: [{surface: ما, sense: ma}, {surface: معمولاً, sense: mamulan}, {surface: در, sense: dar}, {surface: خانه, sense: khane}, {surface: شام, sense: sham}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] معمولاً (در|توی) خانه شام می\u200cخوریم"
+      reverse: "[ما] معمولاً (در|توی) خانه شام می\u200Cخوریم\nمعمولا ما در خانه شام می\u200Cخوریم"
   translations:
     en: We usually (have|eat) dinner at home.
 - id: s.day.29
@@ -324,7 +344,7 @@ sentences:
     fa-Arab/standard:
       text: "من این کتاب را می\u200cخوانم."
       tokens: [{surface: من, sense: man}, {surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: را, sense: ra}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] این کتاب را می\u200cخوانم"
+      reverse: "[من] این کتاب را می\u200Cخوانم\nمن دارم این کتاب را می\u200Cخوانم"
   translations:
     en: |-
       I('m| am) reading this book.
@@ -335,7 +355,7 @@ sentences:
     fa-Arab/standard:
       text: "ما درس می\u200cخوانیم."
       tokens: [{surface: ما, sense: ma}, {surface: درس, sense: dars}, {surface: "می\u200cخوانیم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] درس می\u200cخوانیم"
+      reverse: "[ما] درس می\u200Cخوانیم\nما داریم درس می\u200Cخوانیم"
   translations:
     en: |-
       We('re| are) studying.
@@ -346,7 +366,7 @@ sentences:
     fa-Arab/standard:
       text: "من فارسی می\u200cخوانم."
       tokens: [{surface: من, sense: man}, {surface: فارسی, sense: farsi}, {surface: "می\u200cخوانم", sense: khandan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خوان, kc: 'sense:khandan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] فارسی می\u200cخوانم\n[من] فارسی یاد می\u200cگیرم"
+      reverse: "[من] فارسی می\u200Cخوانم\n[من] فارسی یاد می\u200Cگیرم\nمن دارم فارسی می\u200Cخوانم\nدارم فارسی یاد می\u200Cگیرم"
   translations:
     en: |-
       I('m| am) (studying|learning) (Persian|Farsi).
@@ -358,7 +378,7 @@ sentences:
     fa-Arab/standard:
       text: "شما فارسی صحبت می\u200cکنید؟"
       tokens: [{surface: شما, sense: shoma}, {surface: فارسی, sense: farsi}, {surface: صحبت, sense: sohbat}, {surface: "می\u200cکنید", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] فارسی (صحبت می\u200cکنید|حرف می\u200cزنید)\n[تو] فارسی (صحبت می\u200cکنی|حرف می\u200cزنی)"
+      reverse: "[شما] فارسی (صحبت می\u200Cکنید|حرف می\u200Cزنید)\n[تو] فارسی (صحبت می\u200Cکنی|حرف می\u200Cزنی)\nآیا شما فارسی صحبت می\u200Cکنید"
   translations:
     en: Do you speak (Persian|Farsi)?
 - id: s.day.33
@@ -367,9 +387,12 @@ sentences:
     fa-Arab/standard:
       text: "بله، کمی فارسی صحبت می\u200cکنم."
       tokens: [{surface: بله, sense: bale}, {surface: کمی, sense: kami}, {surface: فارسی, sense: farsi}, {surface: صحبت, sense: sohbat}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "(بله|آره) [من] (کمی|یک کمی) فارسی (صحبت می\u200cکنم|حرف می\u200cزنم)"
+      reverse: "(بله|آره) [من] (کمی|یک کمی) فارسی (صحبت می\u200Cکنم|حرف می\u200Cزنم)\nبله یک کم فارسی صحبت می\u200Cکنم"
   translations:
-    en: Yes, I speak a little (Persian|Farsi).
+    en: |-
+      Yes, I speak a little (Persian|Farsi).
+      Yes, I speak Persian a little.
+      Yes, I speak a bit of Persian.
 - id: s.day.34
   node: fa.day.go
   persons: {addressee: pl}
@@ -378,7 +401,7 @@ sentences:
       text: "شما کجا می\u200cروید؟"
       tokens: [{surface: شما, sense: shoma}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ید,
               kc: 'form:2pl-id'}]}]
-      reverse: "[شما] کجا می\u200cروید"
+      reverse: "[شما] کجا می\u200Cروید\nشما کجا دارید می\u200Cروید"
   translations:
     en: |-
       Where are you going?
@@ -391,7 +414,7 @@ sentences:
       text: "شما چای می\u200cخورید؟"
       tokens: [{surface: شما, sense: shoma}, {surface: چای, sense: chay}, {surface: "می\u200cخورید", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: ید,
               kc: 'form:2pl-id'}]}]
-      reverse: "[شما] چای می\u200cخورید"
+      reverse: "[شما] چای می\u200Cخورید\nآیا شما چای می\u200Cخورید\nشما چای می\u200Cنوشید"
   translations:
     en: (Do you drink|Will you have|Would you like) [some] tea?
 stories:

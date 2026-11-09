@@ -57,7 +57,9 @@ sentences:
       tokens: [{surface: 7da3sh, sense: 7da3sh}]
       reverse: (7da3sh|7di3sh|hda3sh|7da3esh|7da3shar)
   translations:
-    en: Eleven!
+    en: |-
+      Eleven!
+      11!
 - id: s.date.2
   node: apc.date.teens
   register: colloquial
@@ -69,7 +71,9 @@ sentences:
     apc-Latn/arabizi:
       text: 3omri 7da3shar sene.
       tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 7da3shar, sense: 7da3sh}, {surface: sene, sense: sene}]
-      reverse: (3omri|3omore|3omori|3omre|3umre|3umri) (7da3shar|7di3shar|hda3shar|7da3sh) (sene|seni)
+      reverse: |-
+        (3omri|3omore|3omori|3omre|3umre|3umri) (7da3shar|7di3shar|hda3shar|7da3sh) (sene|seni)
+        ana 3omri 7da3shar sene
   translations:
     en: |-
       I('m| am) eleven [years old].
@@ -107,6 +111,7 @@ sentences:
       It's twelve o'clock.
       It is twelve o'clock.
       It's twelve.
+      It's 12 o'clock.
 - id: s.date.5
   node: apc.date.teens
   register: colloquial
@@ -236,7 +241,9 @@ sentences:
     apc-Latn/arabizi:
       text: 3omri tleten sene.
       tokens: [{surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: tleten, sense: tleten}, {surface: sene, sense: sene}]
-      reverse: (3omri|3omore|3omori|3omre|3umre|3umri) (tleten|tletin|tlateen|tlatin) (sene|seni)
+      reverse: |-
+        (3omri|3omore|3omori|3omre|3umre|3umri) (tleten|tletin|tlateen|tlatin) (sene|seni)
+        ana 3omri tleten sene
   translations:
     en: |-
       I('m| am) thirty [years old].
@@ -264,15 +271,20 @@ sentences:
     apc-Arab/standard:
       text: بشباط في برد كتير.
       tokens: [{surface: بشباط, sense: shbat, morphs: [{surface: ب, kc: 'sense:b'}, {surface: شباط, kc: 'sense:shbat'}]}, {surface: في, sense: fi}, {surface: برد, sense: bard}, {surface: كتير, sense: ktir}]
-      reverse: بشباط في برد كتير
+      reverse: |-
+        بشباط في برد كتير
+        في برد كتير بشباط
     apc-Latn/arabizi:
       text: b shbat fi bard ktir.
       tokens: [{surface: b, sense: b}, {surface: shbat, sense: shbat}, {surface: fi, sense: fi}, {surface: bard, sense: bard}, {surface: ktir, sense: ktir}]
-      reverse: (b|bi) (shbat|shubat) fi (bard|berd) (ktir|kteer)
+      reverse: |-
+        (b|bi) (shbat|shubat) fi (bard|berd) (ktir|kteer)
+        fi bard ktir b shbat
   translations:
     en: |-
       In February it's very cold.
       It's very cold in February.
+      In February it's really cold.
 - id: s.date.15
   node: apc.date.spring
   register: colloquial
@@ -280,11 +292,15 @@ sentences:
     apc-Arab/standard:
       text: بآذار في مطر.
       tokens: [{surface: بآذار, sense: adar, morphs: [{surface: ب, kc: 'sense:b'}, {surface: آذار, kc: 'sense:adar'}]}, {surface: في, sense: fi}, {surface: مطر, sense: matar}]
-      reverse: بآذار في مطر
+      reverse: |-
+        بآذار في مطر
+        في مطر بآذار
     apc-Latn/arabizi:
       text: b adar fi matar.
       tokens: [{surface: b, sense: b}, {surface: adar, sense: adar}, {surface: fi, sense: fi}, {surface: matar, sense: matar}]
-      reverse: (b|bi) (adar|2adar|azar) fi (matar|mater)
+      reverse: |-
+        (b|bi) (adar|2adar|azar) fi (matar|mater)
+        fi matar b adar
   translations:
     en: |-
       In March it rains.
@@ -298,12 +314,18 @@ sentences:
       text: بنيسان منطلع عالضيعة.
       tokens: [{surface: بنيسان, sense: nisan, morphs: [{surface: ب, kc: 'sense:b'}, {surface: نيسان, kc: 'sense:nisan'}]}, {surface: منطلع, sense: tele3, form: 'form:impf-1pl'}, {surface: عالضيعة, sense: day3a,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
-      reverse: بنيسان منطلع (عالضيعة|ع الضيعة|على الضيعة)
+      reverse: |-
+        بنيسان منطلع (عالضيعة|ع الضيعة|على الضيعة)
+        منطلع عالضيعة بنيسان
+        بنيسان نحنا منطلع عالضيعة
     apc-Latn/arabizi:
       text: b nisan mnitla3 3al day3a.
       tokens: [{surface: b, sense: b}, {surface: nisan, sense: nisan}, {surface: mnitla3, sense: tele3, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
               kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
-      reverse: (b|bi) (nisan|neesan|nissan) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+      reverse: |-
+        (b|bi) (nisan|neesan|nissan) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+        mnitla3 3al day3a b nisan
+        b nisan ne7na mnitla3 3al day3a
   translations:
     en: |-
       In April we go (up|) to the village.
@@ -315,11 +337,17 @@ sentences:
     apc-Arab/standard:
       text: أيّار حلو كتير.
       tokens: [{surface: أيّار, sense: ayyar}, {surface: حلو, sense: 7elo}, {surface: كتير, sense: ktir}]
-      reverse: أيّار حلو كتير
+      reverse: |-
+        أيّار حلو كتير
+        أيّار كتير حلو
+        شهر أيّار حلو كتير
     apc-Latn/arabizi:
       text: ayyar 7elo ktir.
       tokens: [{surface: ayyar, sense: ayyar}, {surface: 7elo, sense: 7elo}, {surface: ktir, sense: ktir}]
-      reverse: (ayyar|ayar|2ayyar) (7elo|7elu|7ilo|helo) (ktir|kteer)
+      reverse: |-
+        (ayyar|ayar|2ayyar) (7elo|7elu|7ilo|helo) (ktir|kteer)
+        ayyar ktir 7elo
+        shahr ayyar 7elo ktir
   translations:
     en: |-
       May is (really|very|so) (nice|lovely|beautiful).
@@ -332,12 +360,17 @@ sentences:
       text: بحزيران منروح عالبحر.
       tokens: [{surface: بحزيران, sense: 7zeiran, morphs: [{surface: ب, kc: 'sense:b'}, {surface: حزيران, kc: 'sense:7zeiran'}]}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: عالبحر, sense: ba7r,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: بحزيران (منروح|نحنا منروح) (عالبحر|ع البحر|على البحر)
+      reverse: |-
+        بحزيران (منروح|نحنا منروح) (عالبحر|ع البحر|على البحر)
+        منروح عالبحر بحزيران
     apc-Latn/arabizi:
       text: b 7zeiran mnru7 3al ba7r.
       tokens: [{surface: b, sense: b}, {surface: 7zeiran, sense: 7zeiran}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
               kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: (b|bi) (7zeiran|7zayran|hzeiran|7zeran|7ziran) (mnru7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: |-
+        (b|bi) (7zeiran|7zayran|hzeiran|7zeran|7ziran) (mnru7|mnro7) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        b 7zeiran ne7na mnru7 3al ba7r
+        mnru7 3al ba7r b 7zeiran
   translations:
     en: |-
       In June we go to the (beach|sea).
@@ -349,15 +382,20 @@ sentences:
     apc-Arab/standard:
       text: بتمّوز في شوب كتير.
       tokens: [{surface: بتمّوز, sense: tammouz, morphs: [{surface: ب, kc: 'sense:b'}, {surface: تمّوز, kc: 'sense:tammouz'}]}, {surface: في, sense: fi}, {surface: شوب, sense: shob}, {surface: كتير, sense: ktir}]
-      reverse: بتمّوز في شوب كتير
+      reverse: |-
+        بتمّوز في شوب كتير
+        في شوب كتير بتمّوز
     apc-Latn/arabizi:
       text: b tammouz fi shob ktir.
       tokens: [{surface: b, sense: b}, {surface: tammouz, sense: tammouz}, {surface: fi, sense: fi}, {surface: shob, sense: shob}, {surface: ktir, sense: ktir}]
-      reverse: (b|bi) (tammouz|tamouz) fi shob (ktir|kteer)
+      reverse: |-
+        (b|bi) (tammouz|tamouz) fi shob (ktir|kteer)
+        fi shob ktir b tammouz
   translations:
     en: |-
       In July it's very hot.
       It's very hot in July.
+      In July it's really hot.
 - id: s.date.20
   node: apc.date.autumn
   register: colloquial
@@ -366,16 +404,22 @@ sentences:
       text: بآب عندي عطلة.
       tokens: [{surface: بآب, sense: ab, morphs: [{surface: ب, kc: 'sense:b'}, {surface: آب, kc: 'sense:ab'}]}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]},
         {surface: عطلة, sense: 3otle}]
-      reverse: بآب (عندي|أنا عندي) عطلة
+      reverse: |-
+        بآب (عندي|أنا عندي) عطلة
+        عندي عطلة بآب
     apc-Latn/arabizi:
       text: b ab 3endi 3otle.
       tokens: [{surface: b, sense: b}, {surface: ab, sense: ab}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: 3otle, sense: 3otle}]
-      reverse: (b|bi) (ab|2ab) (3endi|3andi|3ende|3indi) (3otle|3etle|3otla|3otli)
+      reverse: |-
+        (b|bi) (ab|2ab) (3endi|3andi|3ende|3indi) (3otle|3etle|3otla|3otli)
+        b ab ana 3endi 3otle
+        3endi 3otle b ab
   translations:
     en: |-
       In August I have a holiday.
       I have (a holiday|time off) in August.
       In August I('m| am) on holiday.
+      In August I have a vacation.
 - id: s.date.21
   node: apc.date.autumn
   register: colloquial
@@ -384,16 +428,23 @@ sentences:
       text: بأيلول برجع عالمدرسة.
       tokens: [{surface: بأيلول, sense: aylul, morphs: [{surface: ب, kc: 'sense:b'}, {surface: أيلول, kc: 'sense:aylul'}]}, {surface: برجع, sense: rje3, form: 'form:impf-1sg'}, {surface: عالمدرسة, sense: madrase,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: مدرسة, kc: 'sense:madrase'}]}]
-      reverse: بأيلول برجع (عالمدرسة|ع المدرسة|على المدرسة)
+      reverse: |-
+        بأيلول برجع (عالمدرسة|ع المدرسة|على المدرسة)
+        برجع عالمدرسة بأيلول
+        بأيلول أنا برجع عالمدرسة
     apc-Latn/arabizi:
       text: b aylul berja3 3al madrase.
       tokens: [{surface: b, sense: b}, {surface: aylul, sense: aylul}, {surface: berja3, sense: rje3, form: 'form:impf-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
               kc: 'sense:el'}]}, {surface: madrase, sense: madrase}]
-      reverse: (b|bi) (aylul|2aylul|eilul) (berja3|birja3|berje3) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+      reverse: |-
+        (b|bi) (aylul|2aylul|eilul) (berja3|birja3|berje3) (3al|3a l|3a el) (madrase|madrasi|madrasse)
+        berja3 3al madrase b aylul
+        b aylul ana berja3 3al madrase
   translations:
     en: |-
       In September I go back to school.
       I go back to school in September.
+      In September I return to school.
 - id: s.date.22
   node: apc.date.autumn
   register: colloquial
@@ -407,7 +458,9 @@ sentences:
       text: tishrin el awwal 7elo bel jabal.
       tokens: [{surface: tishrin, sense: tishrin-awwal}, {surface: el, sense: tishrin-awwal}, {surface: awwal, sense: tishrin-awwal}, {surface: 7elo, sense: 7elo}, {surface: bel, sense: b, morphs: [{surface: b,
               kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
-      reverse: (tishrin|teshrin|tishreen) (el|l|il) (awwal|awal|2awwal) (7elo|7elu|7ilo) (bel|bil|b el) (jabal|jabel|jbal)
+      reverse: |-
+        (tishrin|teshrin|tishreen) (el|l|il) (awwal|awal|2awwal) (7elo|7elu|7ilo) (bel|bil|b el) (jabal|jabel|jbal)
+        tishrin el awwal helo bel jabal
   translations:
     en: |-
       October is (lovely|nice|beautiful) in the mountains.
@@ -420,12 +473,16 @@ sentences:
       text: بتشرين التاني في مطر كتير.
       tokens: [{surface: بتشرين, sense: tishrin-tene, morphs: [{surface: ب, kc: 'sense:b'}, {surface: تشرين, kc: 'sense:tishrin-tene'}]}, {surface: التاني, sense: tishrin-tene}, {surface: في, sense: fi},
         {surface: مطر, sense: matar}, {surface: كتير, sense: ktir}]
-      reverse: بتشرين التاني في مطر كتير
+      reverse: |-
+        بتشرين التاني في مطر كتير
+        في مطر كتير بتشرين التاني
     apc-Latn/arabizi:
       text: b tishrin el tene fi matar ktir.
       tokens: [{surface: b, sense: b}, {surface: tishrin, sense: tishrin-tene}, {surface: el, sense: tishrin-tene}, {surface: tene, sense: tishrin-tene}, {surface: fi, sense: fi}, {surface: matar, sense: matar},
         {surface: ktir, sense: ktir}]
-      reverse: (b|bi) (tishrin|teshrin|tishreen) (el|l|il) (tene|teni|tani) fi (matar|mater) (ktir|kteer)
+      reverse: |-
+        (b|bi) (tishrin|teshrin|tishreen) (el|l|il) (tene|teni|tani) fi (matar|mater) (ktir|kteer)
+        fi matar ktir b tishrin el tene
   translations:
     en: |-
       In November it rains a lot.
@@ -439,12 +496,17 @@ sentences:
       text: بكانون الأوّل في تلج عالجبل.
       tokens: [{surface: بكانون, sense: kanoun-awwal, morphs: [{surface: ب, kc: 'sense:b'}, {surface: كانون, kc: 'sense:kanoun-awwal'}]}, {surface: الأوّل, sense: kanoun-awwal}, {surface: في, sense: fi},
         {surface: تلج, sense: talj}, {surface: عالجبل, sense: jabal, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جبل, kc: 'sense:jabal'}]}]
-      reverse: بكانون الأوّل في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+      reverse: |-
+        بكانون الأوّل في (تلج|ثلج) (عالجبل|ع الجبل|على الجبل)
+        في تلج عالجبل بكانون الأوّل
     apc-Latn/arabizi:
       text: b kanoun el awwal fi talj 3al jabal.
       tokens: [{surface: b, sense: b}, {surface: kanoun, sense: kanoun-awwal}, {surface: el, sense: kanoun-awwal}, {surface: awwal, sense: kanoun-awwal}, {surface: fi, sense: fi}, {surface: talj, sense: talj},
         {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jabal, sense: jabal}]
-      reverse: (b|bi) (kanoun|kanoon) (el|l) (awwal|awal|2awwal) fi (talj|talej|telj) (3al|3a l|3a el) (jabal|jabel|jbal)
+      reverse: |-
+        (b|bi) (kanoun|kanoon) (el|l) (awwal|awal|2awwal) fi (talj|talej|telj) (3al|3a l|3a el) (jabal|jabel|jbal)
+        fi talj 3al jabal b kanoun el awwal
+        b kanoun el awwal fi talj bel jabal
   translations:
     en: |-
       In December there's snow (on|in) the mountains.
@@ -457,11 +519,15 @@ sentences:
     apc-Arab/standard:
       text: إمتى عيد ميلادك؟
       tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادك, sense: 3id-milad, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: ك, kc: 'form:poss-2ms'}]}]
-      reverse: إمتى عيد ميلادك
+      reverse: |-
+        إمتى عيد ميلادك
+        عيد ميلادك إمتى
     apc-Latn/arabizi:
       text: emta 3id miladak?
       tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladak, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladak|miledak|meeladak)
+      reverse: |-
+        (emta|emtah|imta) (3id|3eed|eid) (miladak|miledak|meeladak)
+        3id miladak emta
   translations:
     en: When('s| is) your birthday?
 - id: s.date.26
@@ -488,11 +554,15 @@ sentences:
     apc-Arab/standard:
       text: إمتى عيد ميلادك؟
       tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادك, sense: 3id-milad, vocalized: ميلادِك, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: ك, kc: 'form:poss-2fs'}]}]
-      reverse: إمتى عيد ميلادك
+      reverse: |-
+        إمتى عيد ميلادك
+        عيد ميلادك إمتى
     apc-Latn/arabizi:
       text: emta 3id miladik?
       tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladik, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: ik, kc: 'form:poss-2fs'}]}]
-      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladik|miledik|meeladik|miladek)
+      reverse: |-
+        (emta|emtah|imta) (3id|3eed|eid) (miladik|miledik|meeladik|miladek)
+        3id miladik emta
   translations:
     en: When('s| is) your birthday?
 - id: s.date.28
@@ -503,11 +573,15 @@ sentences:
     apc-Arab/standard:
       text: إمتى عيد ميلادكن؟
       tokens: [{surface: إمتى, sense: emta}, {surface: عيد, sense: 3id-milad}, {surface: ميلادكن, sense: 3id-milad, morphs: [{surface: ميلاد, kc: 'sense:3id-milad'}, {surface: كن, kc: 'form:poss-2pl'}]}]
-      reverse: إمتى عيد ميلادكن
+      reverse: |-
+        إمتى عيد ميلادكن
+        عيد ميلادكن إمتى
     apc-Latn/arabizi:
       text: emta 3id miladkon?
       tokens: [{surface: emta, sense: emta}, {surface: 3id, sense: 3id-milad}, {surface: miladkon, sense: 3id-milad, morphs: [{surface: milad, kc: 'sense:3id-milad'}, {surface: kon, kc: 'form:poss-2pl'}]}]
-      reverse: (emta|emtah|imta) (3id|3eed|eid) (miladkon|miledkon|miladkun)
+      reverse: |-
+        (emta|emtah|imta) (3id|3eed|eid) (miladkon|miledkon|miladkun)
+        3id miladkon emta
   translations:
     en: |-
       When('s| is) your birthday?
@@ -609,7 +683,9 @@ sentences:
       tokens: [{surface: awwal, sense: awwal}, {surface: marra, sense: marra}, {surface: b, sense: b}, {surface: Lebnen, sense: lebnen}]
       reverse: (awwal|awal|2awwal) (marra|mara|marrah) (b|bi) (Lebnen|Lebnan|Libnan)
   translations:
-    en: (It's my|My|The) first time in Lebanon.
+    en: |-
+      (It's my|My|The) first time in Lebanon.
+      First time in Lebanon.
 - id: s.date.35
   node: apc.date.birthday
   register: colloquial

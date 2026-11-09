@@ -80,13 +80,16 @@ sentences:
     en: |-
       I (take a shower|shower|have a shower|take a bath|have a bath|bathe).
       I'm (taking a shower|showering|having a shower|taking a bath).
+      I am taking a shower.
 - id: s.u07.5
   node: es.u07.me-levanto
   forms:
     es-Latn/standard:
       text: Después, desayuno.
       tokens: [{surface: Después, sense: después}, {surface: desayuno, sense: desayunar, form: 'form:pres-1s'}]
-      reverse: (Después|Luego) [yo] desayuno
+      reverse: |-
+        (Después|Luego) [yo] desayuno
+        Desayuno después.
   translations:
     en: (Then|After that|Afterwards|Later) I (have|eat) breakfast.
 - id: s.u07.6
@@ -183,13 +186,16 @@ sentences:
     en: |-
       (Today is|Today's) Monday.
       It's Monday [today].
+      It is Monday today.
 - id: s.u07.14
   node: es.u07.los-dias
   forms:
     es-Latn/standard:
       text: ¿Qué día es hoy?
       tokens: [{surface: Qué, sense: qué}, {surface: día, sense: día}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: hoy, sense: hoy}]
-      reverse: Qué día es hoy
+      reverse: |-
+        Qué día es hoy
+        ¿Hoy qué día es?
   translations:
     en: What day is (it today|it|today)?
 - id: s.u07.15
@@ -203,6 +209,7 @@ sentences:
     en: |-
       (Tomorrow is|Tomorrow's) Tuesday.
       It's Tuesday tomorrow.
+      It is Tuesday tomorrow.
 - id: s.u07.16
   node: es.u07.los-dias
   forms:
@@ -225,6 +232,7 @@ sentences:
       reverse: |-
         (Qué tú haces|Qué haces [tú]|Qué usted hace|Qué hace [usted]|Qué ustedes hacen|Qué hacen [ustedes]) los lunes
         Los lunes (qué tú haces|qué haces [tú]|qué usted hace|qué hace [usted]|qué ustedes hacen|qué hacen [ustedes])
+        ¿Tú qué haces los lunes?
   translations:
     en: |-
       What do you do on Mondays?
@@ -280,6 +288,7 @@ sentences:
       reverse: |-
         Los domingos [nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela)
         [Nosotros] vamos a (casa|la casa) de (Abuela|la abuela|mi abuela) los domingos
+        Los domingos nosotras vamos a casa de Abuela.
   translations:
     en: |-
       On Sundays, we go to (Grandma's|Grandma's house|Grandmother's|Grandmother's house|Granny's|Granny's house).
@@ -300,7 +309,9 @@ sentences:
     es-Latn/standard:
       text: Abuela ve la novela.
       tokens: [{surface: Abuela, sense: abuela}, {surface: ve, sense: ver, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
-      reverse: (Abuela|Mi abuela|La abuela) ve la (novela|telenovela)
+      reverse: |-
+        (Abuela|Mi abuela|La abuela) ve la (novela|telenovela)
+        Abuela mira la novela.
   translations:
     en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) (watches|is watching) the (soap opera|soap|novela|telenovela).
 - id: s.u07.24
@@ -309,7 +320,9 @@ sentences:
     es-Latn/standard:
       text: ¿Tú ves la novela?
       tokens: [{surface: Tú, sense: tú}, {surface: ves, sense: ver, form: 'form:pres-2s'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
-      reverse: (Tú ves|Ves [tú]|Usted ve|Ve [usted]|Ustedes ven|Ven [ustedes]) la (novela|telenovela)
+      reverse: |-
+        (Tú ves|Ves [tú]|Usted ve|Ve [usted]|Ustedes ven|Ven [ustedes]) la (novela|telenovela)
+        ¿Tú miras la novela?
   translations:
     en: (Do you watch|Are you watching) the (soap opera|soap|novela|telenovela)?
 - id: s.u07.25
@@ -321,6 +334,7 @@ sentences:
       reverse: |-
         (Abuela|Mi abuela|La abuela) siempre ve la (novela|telenovela) (por|en) la noche
         (Por|En) la noche (abuela|mi abuela|la abuela) siempre ve la (novela|telenovela)
+        Abuela siempre mira la novela por la noche.
   translations:
     en: |-
       (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) always watches the (soap opera|soap|novela|telenovela) (at night|in the evening).
@@ -382,13 +396,16 @@ sentences:
     en: |-
       Not now, (I'm|I am) working.
       (I'm|I am) working, not now.
+      Not right now, I'm working.
 - id: s.u07.31
   node: es.u07.estoy-trabajando
   forms:
     es-Latn/standard:
       text: ¿Qué tú estás haciendo?
       tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}]
-      reverse: (Qué tú estás haciendo|Qué estás haciendo [tú]|Qué usted está haciendo|Qué está haciendo [usted]|Qué ustedes están haciendo|Qué están haciendo [ustedes]|Qué tú haces|Qué haces [tú])
+      reverse: |-
+        (Qué tú estás haciendo|Qué estás haciendo [tú]|Qué usted está haciendo|Qué está haciendo [usted]|Qué ustedes están haciendo|Qué están haciendo [ustedes]|Qué tú haces|Qué haces [tú])
+        ¿Tú qué estás haciendo?
   translations:
     en: What are you doing?
 - id: s.u07.32
@@ -397,9 +414,13 @@ sentences:
     es-Latn/standard:
       text: Abuela está viendo la novela.
       tokens: [{surface: Abuela, sense: abuela}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: viendo, sense: ver, form: 'form:ger'}, {surface: la, sense: el}, {surface: novela, sense: novela}]
-      reverse: (Abuela|Mi abuela|La abuela) está viendo la (novela|telenovela)
+      reverse: |-
+        (Abuela|Mi abuela|La abuela) está viendo la (novela|telenovela)
+        Abuela está mirando la novela.
   translations:
-    en: (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) is watching the (soap opera|soap|novela|telenovela).
+    en: |-
+      (Grandma|Grandmother|Granny|My grandma|My grandmother|My granny) is watching the (soap opera|soap|novela|telenovela).
+      Grandma's watching the soap opera.
 - id: s.u07.33
   node: es.u07.estoy-trabajando
   forms:
@@ -408,7 +429,9 @@ sentences:
       tokens: [{surface: Lili, sense: lili}, {surface: se, sense: se}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bañando, sense: bañarse, form: 'form:ger'}]
       reverse: Lili (se está bañando|está bañándose|se está duchando|está duchándose)
   translations:
-    en: Lili is (taking a shower|showering|in the shower|having a shower|taking a bath).
+    en: |-
+      Lili is (taking a shower|showering|in the shower|having a shower|taking a bath).
+      Lili's taking a shower.
 - id: s.u07.34
   node: es.u07.estoy-trabajando
   forms:
@@ -417,7 +440,9 @@ sentences:
       tokens: [{surface: Lili, sense: lili}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: durmiendo, sense: dormir, form: 'form:ger'}]
       reverse: Lili está durmiendo
   translations:
-    en: Lili is (sleeping|asleep).
+    en: |-
+      Lili is (sleeping|asleep).
+      Lili's sleeping.
 - id: s.u07.35
   node: es.u07.estoy-trabajando
   forms:
@@ -426,7 +451,9 @@ sentences:
       tokens: [{surface: Mami, sense: mami}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: haciendo, sense: hacer, form: 'form:ger'}, {surface: café, sense: café}]
       reverse: (Mami|Mamá) está (haciendo|colando) (café|el café)
   translations:
-    en: (Mom|Mommy|Mum|Ma) is making (coffee|the coffee).
+    en: |-
+      (Mom|Mommy|Mum|Ma) is making (coffee|the coffee).
+      Mom's making coffee.
 stories:
 - id: es.story.u07
   node: es.u07.story
