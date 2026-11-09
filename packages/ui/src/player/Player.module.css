@@ -497,6 +497,8 @@
   justify-content: space-between;
   gap: var(--nabu-space-3);
   margin-block-start: auto;
+  /* Brought into view clear of a browser's toolbar at the bottom of the screen (focusInReach). */
+  scroll-margin-block-end: var(--nabu-space-reach);
 }
 
 .primary,

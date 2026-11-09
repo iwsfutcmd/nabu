@@ -36,6 +36,12 @@
   --nabu-space-3: 0.75rem;
   --nabu-space-4: 1rem;
   --nabu-space-5: 1.5rem;
+  /*
+   * Room kept below an action brought into view (Check, Continue), and below the player page:
+   * a browser's toolbar at the bottom of a phone's screen (Chrome's bottom address bar, about
+   * 56px) covers the last strip of the viewport.
+   */
+  --nabu-space-reach: 5rem;
 }
 
 @media (prefers-color-scheme: dark) {
