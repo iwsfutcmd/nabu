@@ -1,0 +1,21 @@
+# Ancient Greek in Latin letters (ADR 0088): the Latin spellings of the alphabet track's letters and words, written by
+# the compiler (nabu.greek_translit, the profile grc-Grek/polytonic's `romanize`): η ē, ω ō, υ y (u in diphthongs),
+# θ φ χ th ph ch, the rough breathing h, the iota subscript written out, accents left out. Not an orthography a
+# learner can pick: it tags and sets the Latin side of letter and word cards.
+id: grc-Latn/romanized
+lang: grc-Latn
+exemplars: cldr:en
+# The macrons of ē and ō, and the elision mark.
+exemplarsExtra: ["ē", "ō", "\u2019"]
+segmentation: { content: whitespace, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "\u2019": "'", "\u2018": "'" }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: en }
+  # REVIEW: a macron typed or not (e for ē) is noted, not failed.
+  marks: { set: "[\u0304]", policy: accept-with-note, note: greek-marks }
+  typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+layout: { vertical: none }

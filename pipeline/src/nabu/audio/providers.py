@@ -160,6 +160,14 @@ def _piper_files(voice: str, model: str | None) -> tuple[Path, Path]:
     return Path(onnx), Path(config)
 
 
+#: Phoneme input for Piper: IPA words in [[ ]], space-separated, an optional final . or ?
+PIPER_WORD = regex.compile(r"\[\[([^\]]*)\]\]")
+PIPER_PHONEMES = regex.compile(r"(?:\[\[[^\]]*\]\] ?)+[.?]?")
+#: What a voice that lacks an IPA symbol says instead: eSpeak NG's tables write g as IPA ɡ, and a
+#: voice of a language without aspiration says it as a following h.
+PIPER_FALLBACKS = {"g": "\u0261", "\u02b0": "h"}
+
+
 class PiperProvider:
     """Piper voices (VITS, ONNX): from rhasspy/piper-voices by id, or a voice pinned elsewhere on
     Hugging Face (`model`: owner/name@commit, `voice`: the file stem). Sampling is seeded per clip
@@ -382,10 +390,39 @@ class PiperProvider:
         trace = "".join(inv[i] for i in ids[plan.first : plan.last + 1])
         return Clip(to_pcm(cut / peak), rate, None, trace)
 
+    def _phonemes(self, engine: Any, raw: bytes, r: Request) -> Clip:
+        """IPA given as phonemes, one [[word]] at a time (ADR 0087): no phonemizer, so a voice of
+        another language says what a pinned reading says. Words are joined by a space; a final
+        . or ? is the intonation."""
+        piper = optional("piper")
+        np: Any = importlib.import_module("numpy")
+        known = engine.config.phoneme_id_map
+        phonemes: list[str] = []
+        for i, w in enumerate(PIPER_WORD.findall(r.input)):
+            if i:
+                phonemes.append(" ")
+            said = [c if c in known else PIPER_FALLBACKS.get(c, c) for c in w]
+            unknown = [c for c in said if c not in known]
+            if unknown:
+                raise ProviderError(f"piper: {r.voice} has no phoneme {' '.join(unknown)!r}")
+            phonemes.extend(said)
+        end = r.input.rstrip()[-1:]
+        if end in known and end not in "]":
+            phonemes.append(end)
+        ids = list(engine.phonemes_to_ids(phonemes))
+        engine.session = self._session(raw, seed_of(r))
+        config = piper.SynthesisConfig(length_scale=1 / r.rate, noise_scale=self.NOISE_SCALE)
+        audio = np.asarray(engine.phoneme_ids_to_audio(ids, syn_config=config), dtype=np.float32)
+        pcm = (np.clip(audio, -1.0, 1.0) * 32767).astype(np.int16).tobytes()
+        return Clip(pcm, int(engine.config.sample_rate), None, "".join(phonemes))
+
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         out: list[Clip] = []
         for r in requests:
             engine, raw = self._engine(r.voice, self.model)
+            if PIPER_PHONEMES.fullmatch(r.input):
+                out.append(self._phonemes(engine, raw, r))
+                continue
             short = self.carrier is not None and len(r.input.split()) <= self.max_words
             if short:
                 out.append(self._carried(engine, r))

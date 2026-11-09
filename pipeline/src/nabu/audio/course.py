@@ -79,6 +79,10 @@ PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
     "lasina": toki_pona.espeak,
     "attic": attic.espeak,
 }
+#: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
+PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "attic": attic.piper,
+}
 WORD_KINDS = {"word", "number"}
 
 
@@ -141,9 +145,10 @@ def pronounced(surface: str, reading: str, scheme: str) -> str:
     return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
 
 
-def said(reading: str, scheme: str) -> str:
-    """A pinned reading as the voice takes it: phonemes for a phoneme scheme, else as written."""
-    convert = PHONEME_SCHEMES.get(scheme)
+def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
+    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (IPA for a Piper
+    voice, eSpeak NG's mnemonics otherwise), else as written."""
+    convert = (PIPER_PHONEME_SCHEMES if provider == "piper" else PHONEME_SCHEMES).get(scheme)
     return reading if convert is None else convert(reading)
 
 
@@ -183,7 +188,7 @@ def _input_of(
             piece = token.get("readings", {}).get(voice.reading)
             if piece is None:
                 return None
-            piece = said(piece, voice.reading)
+            piece = said(piece, voice.reading, voice.provider)
             if parts:
                 offset += 1
             spans.append(Span(i, offset, offset + len(piece)))
@@ -420,7 +425,7 @@ def plan(
                 skipped.append(kc["id"])
                 continue
             if voice.reading != "text":
-                piece = None if reading is None else said(reading, voice.reading)
+                piece = None if reading is None else said(reading, voice.reading, voice.provider)
             elif voice.pronounce is not None and reading is not None:
                 piece = pronounced(surface, reading, voice.pronounce)
             else:

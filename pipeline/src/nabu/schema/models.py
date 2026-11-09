@@ -665,6 +665,19 @@ type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Fiel
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+class Alphabet1(BaseModel):
+    """
+    script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: OrthographyId
+    words: Annotated[list[KcId], Field(min_length=1)]
+
+
 class Convert1(BaseModel):
     """
     script nodes: convert sentences between two orthographies (script-convert, §6.3).
@@ -688,6 +701,12 @@ class PathNodeSource(BaseModel):
     kind: Literal["lesson", "practice", "story", "review", "challenge", "script"]
     introduces: list[KcId] | None = None
     reinforces: list[KcId] | None = None
+    alphabet: Annotated[
+        Alphabet1 | None,
+        Field(
+            description="script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell."
+        ),
+    ] = None
     convert: Annotated[
         Convert1 | None,
         Field(
@@ -2354,19 +2373,6 @@ class BundleManifest(BaseModel):
     ] = None
 
 
-class BundleNode(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: str
-    kind: str
-    introduces: list[KcId]
-    reinforces: list[KcId]
-    sentences: list[str]
-    convert: Convert | None = None
-
-
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2541,6 +2547,10 @@ class ExerciseRef(BaseModel):
         "story-choose",
         "story-complete",
         "story-arrange",
+        "letter-read",
+        "letter-pairs",
+        "word-read",
+        "word-write",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -3307,6 +3317,59 @@ class BundleKc(BaseModel):
     ] = None
 
 
+class ScriptItem(BaseModel):
+    """
+    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kc: KcId
+    letters: Annotated[
+        list[KcId],
+        Field(
+            description="The grapheme KCs it is written with, of those its track teaches (a letter: its own)."
+        ),
+    ]
+    text: TaggedText
+    latin: TaggedText
+
+
+class Alphabet(BaseModel):
+    """
+    An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: str
+    letters: list[ScriptItem]
+    words: list[ScriptItem]
+
+
+class BundleNode(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    kind: str
+    introduces: list[KcId]
+    reinforces: list[KcId]
+    sentences: list[str]
+    alphabet: Annotated[
+        Alphabet | None,
+        Field(
+            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088)."
+        ),
+    ] = None
+    convert: Convert | None = None
+
+
 class Forms1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3434,6 +3497,12 @@ class OrthographyProfile(BaseModel):
     layout: Layout | None = None
     strokeOrder: StrokeOrder | None = None
     fonts: Fonts | None = None
+    romanize: Annotated[
+        Literal["greek"] | None,
+        Field(
+            description="How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline."
+        ),
+    ] = None
     transliterate: Transliteration | None = None
 
 

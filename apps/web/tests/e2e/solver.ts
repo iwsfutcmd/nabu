@@ -182,12 +182,15 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "story-choose":
     case "story-complete":
     case "tone-identify":
+    case "letter-read":
+    case "word-read":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
-    case "story-arrange": {
+    case "story-arrange":
+    case "word-write": {
       const placed: number[] = [];
       for (const tile of ex.solution) {
         const remaining = ex.tiles.map((_, i) => i).filter((i) => !placed.includes(i));
@@ -226,6 +229,7 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       return;
     }
     case "match-pairs":
+    case "letter-pairs":
       for (const [left, right] of ex.pairs.entries()) {
         await press(page, mode, `[data-pair="left-${left}"]`);
         await press(page, mode, `[data-pair="right-${right}"]`);

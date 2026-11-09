@@ -267,3 +267,20 @@ def ipa(reading: str) -> str:
                 )
             )
     return "".join(out)
+
+
+def piper(reading: str) -> str:
+    """The word as IPA phonemes for a Piper voice, in [[ ]] (ADR 0087): one symbol per code
+    point (aspiration and length as their own marks, tʰ, aː), the stress marks before the vowel
+    as `espeak` places them. Piper's voices share eSpeak NG's IPA symbol table, so a voice of
+    another language says them without reading Greek text."""
+    body: list[str] = []
+    primary = False
+    for p in phones(reading):
+        if p.accent in (ACUTE, CIRCUMFLEX) and not primary:
+            body.append("\u02c8")
+            primary = True
+        elif p.accent is not None:
+            body.append("\u02cc")
+        body.append(unicodedata.normalize("NFD", p.ipa))
+    return f"[[{''.join(body)}]]"

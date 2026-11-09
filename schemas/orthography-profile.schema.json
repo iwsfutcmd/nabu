@@ -76,6 +76,11 @@
     "fonts": {
       "$ref": "#/$defs/Fonts"
     },
+    "romanize": {
+      "description": "How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.",
+      "type": "string",
+      "enum": ["greek"]
+    },
     "transliterate": {
       "$ref": "#/$defs/Transliteration"
     }

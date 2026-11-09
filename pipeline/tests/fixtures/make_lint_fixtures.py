@@ -196,6 +196,19 @@ def _iplus(c: Course) -> None:
     del unit(c)["sentences"][2]
 
 
+def _script_untaught(c: Course) -> None:
+    """An alphabet node (ADR 0088) in an orthography with no romanization."""
+    unit(c)["kcs"].append({"id": "grapheme:s", "forms": {"uz-Latn/standard": ["s"]}})
+    unit(c)["nodes"].append(
+        {
+            "id": "basics.abc",
+            "kind": "script",
+            "introduces": ["grapheme:s"],
+            "alphabet": {"orthography": "uz-Latn/standard", "words": ["sense:salom"]},
+        }
+    )
+
+
 def _script_missing(c: Course) -> None:
     with_cyrl(c)
     unit(c)["sentences"].append(
@@ -598,6 +611,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
                 ]
             )
         ),
+    ),
+    "script.untaught-letter": (
+        "An alphabet node in an orthography whose profile names no romanization.",
+        m(_script_untaught),
     ),
     "script.missing-form": (
         "A script-convert track uses a sentence with no Cyrillic form.",

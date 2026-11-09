@@ -37,17 +37,22 @@ support language's script, with `alphabet` in place of `convert`:
 ```
 
 - **A grapheme KC** gives the letter and its capital as its forms (`grc-Grek/polytonic: [α, Α]`) and its
-  name as its gloss ("alpha"). A diphthong, a breathing or an accent is a grapheme KC too.
+  name and value as its gloss ("alpha: a"). A diphthong (αι) is a grapheme KC too, and so is a mark (the
+  rough breathing: ἁ, ὁ, ῥ; the iota subscript: ᾳ, ῃ, ῳ): the compiler tells them apart by their forms
+  (nabu/compiler/script.py), and a word has a mark where any of its letters carries it.
+- **Letters are not words.** Grapheme KCs are no glossary entries: a tap on a word never shows "alpha".
 - **Every grapheme and word has a Latin spelling.** The compiler writes it with the orthography's
   romanization. A profile names it as `romanize: <scheme>`, and the scheme is code: `greek` is
   nabu.greek_translit, the scholarly scheme set to Attic sounds (η ē, ω ō, υ y, θ φ χ th ph ch, h for the
   rough breathing, accents left out). Latin text is tagged `<lang>-Latn` (`grc-Latn`) and set in the
   support language's font. It is not an orthography a learner can pick.
-- **Lint `script.untaught-letter`** (error): a word whose base letters the track has not taught by then.
-  Marks (accents, breathings) are not checked: the words are shown as the course writes them, and the
-  track's last lessons teach the marks.
-- **Bundled:** the node carries `alphabet: {orthography, letters: [{kc, text, latin}], words: [{kc, text,
-  latin}]}`. `text` and `latin` are TaggedText.
+- **Lint `script.untaught-letter`** (error): a word whose base letters the track has not taught by then,
+  or an orthography whose profile names no romanization. Marks are not checked: the words are shown as
+  the course writes them.
+- **Bundled:** the node carries `alphabet: {orthography, letters: [{kc, letters, text, latin}], words: [{kc,
+  letters, text, latin}]}`. `text` and `latin` are TaggedText; `letters` lists the grapheme KCs taught by
+  then that the item is written with, which its exercises credit. The romanized orthography's profile
+  (profiles/grc-Latn.romanized.yaml) ships in the bundle beside the course's own.
 
 **Four templates** (`SCRIPT_TEMPLATES`, a record apart from the sentence and KC templates, so no lesson,
 review or golden file of any other course changes):
@@ -84,20 +89,23 @@ script templates only. Every new letter is presented (the ADR 0050 constraint). 
 - **Script cards in review.** Review rebuilds exercises from the sentence and KC templates.
 - **Letter clips.** Grapheme KCs have no reading to say.
 
-**grc's track** (courses/grc/units/abc.yaml): nine nodes, ordered so that each node's words are words of the
-course.
+**grc's track** (courses/grc/units/abc.yaml, a unit with no lessons of its own): eight nodes, ordered so
+that each drills up to eight words of the course spelled with the letters taught by then. Words with a rough
+breathing or an iota subscript wait for the node that teaches it.
 
 | Node | Teaches |
 |---|---|
 | 1 | α ε ι ο τ ν |
-| 2 | κ σ ς λ ρ μ |
+| 2 | κ σ (ς) λ ρ μ |
 | 3 | η ω π δ |
 | 4 | υ γ β |
 | 5 | φ θ χ (the aspirates) |
-| 6 | ζ ξ ψ, and double consonants |
-| 7 | the diphthongs |
-| 8 | the breathings, ῥ and the iota subscript |
-| 9 | the accents, punctuation and capitals |
+| 6 | ζ ξ ψ |
+| 7 | the diphthongs αι ει οι αυ ευ ου υι |
+| 8 | the breathings (ῥ with the rough one) and the iota subscript |
+
+The accents and capitals are shown, not drilled: an accent changes no Latin spelling, so no "how is this
+said?" card can ask about it. They are explained in the letters' notes and the grc profile's marks note.
 
 ## Consequences
 
@@ -112,8 +120,8 @@ course.
 - **The exhaustive tables gain the four templates:** instructions, the e2e solver, the true-template and
   prior tables, and the card gallery.
 - **Tests:**
-  - core: alphabet sessions present every new letter, accept their own solutions, and draw distractors
-    from earlier letters only;
-  - pipeline: grc's track spells each word with taught letters;
-  - e2e: the first alphabet node, by keyboard and by touch;
-  - the visual matrix covers the new row and views.
+  - core (test/script.test.ts): alphabet sessions present every new letter, accept their own solutions,
+    and offer only letters and words taught by then; the row opens in order and never gates the path;
+  - pipeline: grc's track spells each word with taught letters; a lint fixture for script.untaught-letter;
+  - the e2e solver answers the four templates. An e2e run of the first alphabet node and visual
+    baselines for the row are left for a run with the app and the pinned container.

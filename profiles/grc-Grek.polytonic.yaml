@@ -49,6 +49,8 @@ match:
 input:
   keyboard: cldr-kbd:el
 layout: { vertical: none }
+# The alphabet track's Latin spellings (ADR 0088): nabu.greek_translit, tagged grc-Latn/romanized.
+romanize: greek
 # Polytonic text is set in a serif face (Noto Serif, OFL-1.1) a little larger than the text around it: the
 # breathings and accents stack over the letters and need the size and the line height.
 fonts: { stack: [Noto Serif], lineHeight: 1.9, scale: 1.15 }

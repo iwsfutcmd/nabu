@@ -414,9 +414,17 @@
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{Letters {$number}}}",
+      "description": "Name of a node of a script track (the lessons that teach a writing system's letters, beside the units; ADR 0088). $number is its position in the track."
+    },
     "app.path.locked": {
       "message": "Locked",
       "description": "Status of a lesson that opens once the lesson before it is done."
+    },
+    "app.path.new-letters": {
+      "message": "New letters",
+      "description": "Accessible label of the preview of the letters a script-track node teaches."
     },
     "app.path.start": {
       "message": "Start",
@@ -1462,6 +1470,14 @@
       "message": "Fill in the blank",
       "description": "Instruction: choose the word that completes the sentence."
     },
+    "player.instruction.letter-pairs": {
+      "message": "Match each letter with its sound",
+      "description": "Instruction on a script track: match each letter with its Latin spelling."
+    },
+    "player.instruction.letter-read": {
+      "message": "How is this letter said?",
+      "description": "Instruction on a script track: choose the Latin spelling (the sound) of the letter shown."
+    },
     "player.instruction.listen-select": {
       "message": "Which word do you hear?",
       "description": "Instruction: hear a word and choose how it is written."
@@ -1529,6 +1545,14 @@
     "player.instruction.vocalize": {
       "message": "Add the vowel marks",
       "description": "Instruction: write the short-vowel marks (harakat) into an Arabic-script word."
+    },
+    "player.instruction.word-read": {
+      "message": "How is this word written in Latin letters?",
+      "description": "Instruction on a script track: choose the Latin spelling of the word shown."
+    },
+    "player.instruction.word-write": {
+      "message": "Build the word from its letters",
+      "description": "Instruction on a script track: given a word in Latin letters, build it from tiles of the script's letters."
     },
     "player.key.mark.064b": {
       "message": "Fathatan",

@@ -353,6 +353,7 @@ export interface NabuSchemaIndex {
   readonly BundleStoryStep: BundleStoryStep;
   readonly BundleStoryLine: BundleStoryLine;
   readonly BundleKc: BundleKc;
+  readonly ScriptItem: ScriptItem;
   readonly BundleNode: BundleNode;
   readonly BundleSentence: BundleSentence;
   readonly BundleAudio: BundleAudio;
@@ -1162,10 +1163,33 @@ export interface BundleNode {
   readonly introduces: readonly KcId1[];
   readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
+  /**
+   * An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+   */
+  readonly alphabet?: {
+    readonly orthography: string;
+    readonly letters: readonly ScriptItem[];
+    readonly words: readonly ScriptItem[];
+  };
   readonly convert?: {
     readonly from: string;
     readonly to: string;
   };
+}
+/**
+ * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ScriptItem".
+ */
+export interface ScriptItem {
+  readonly kc: KcId1;
+  /**
+   * The grapheme KCs it is written with, of those its track teaches (a letter: its own).
+   */
+  readonly letters: readonly KcId1[];
+  readonly text: TaggedText;
+  readonly latin: TaggedText;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1582,6 +1606,16 @@ export interface PathNodeSource {
   readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
   readonly introduces?: readonly KcId1[];
   readonly reinforces?: readonly KcId1[];
+  /**
+   * script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
+   */
+  readonly alphabet?: {
+    readonly orthography: OrthographyId;
+    /**
+     * @minItems 1
+     */
+    readonly words: readonly KcId1[];
+  };
   /**
    * script nodes: convert sentences between two orthographies (script-convert, §6.3).
    */
@@ -2134,7 +2168,11 @@ export interface ExerciseRef {
     | "minimal-pair"
     | "story-choose"
     | "story-complete"
-    | "story-arrange";
+    | "story-arrange"
+    | "letter-read"
+    | "letter-pairs"
+    | "word-read"
+    | "word-write";
   /**
    * The sentence or KC the exercise was built from.
    */
@@ -2668,6 +2706,10 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
+  /**
+   * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.
+   */
+  readonly romanize?: "greek";
   readonly transliterate?: Transliteration;
 }
 /**

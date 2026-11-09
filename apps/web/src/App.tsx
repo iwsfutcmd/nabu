@@ -9,7 +9,7 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, dueFacets, pathNodes, pathOf, plan, practicableMistakes, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { applyEvents, dueFacets, pathNodes, pathOf, plan, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
@@ -226,6 +226,8 @@ const CoursePath = ({
   const orthography = course.orthography;
   const now = new Date();
   const status = new Map(pathOf(course, state).map((n) => [n.node, n.status]));
+  // A script track (ADR 0088): the alphabet, a row of its own that never gates the units.
+  const scriptRow = scriptPathOf(course, state);
   const due = dueFacets(state, orthography, now.toISOString()).length;
   const studied = Object.keys(state.cards).length > 0;
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
@@ -337,6 +339,52 @@ const CoursePath = ({
       </div>
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
+      {scriptRow.length > 0 && (
+        <section className={styles.unit} data-script-track="">
+          {(() => {
+            const first = course.units.find((u) => u.id === scriptRow[0]?.unit);
+            const title = first?.title?.[course.supportKey];
+            return title === undefined ? null : (
+              <h3 className={styles.unitTitle}>
+                <T text={title} />
+              </h3>
+            );
+          })()}
+          <ol className={styles.list}>
+            {scriptRow.map((entry, k) => {
+              const unit = course.units.find((u) => u.id === entry.unit);
+              const node = unit?.nodes.find((n) => n.id === entry.node);
+              const letters = node?.alphabet?.letters.map((l) => l.text) ?? [];
+              const body = (
+                <>
+                  <span className={styles.lessonHead}>
+                    <span className={styles.lessonName}>{t.format("app.path.letters", { number: k + 1 })}</span>
+                    <Status status={entry.status} />
+                  </span>
+                  <span className={styles.preview} role="group" aria-label={t.format("app.path.new-letters")} dir={letters[0] === undefined ? undefined : directionOf(letters[0].lang)}>
+                    {letters.map((l, i) => (
+                      <T key={i} text={l} />
+                    ))}
+                  </span>
+                </>
+              );
+              return (
+                <li key={entry.node}>
+                  {entry.status === "locked" ? (
+                    <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" data-script-node={entry.node} data-status={entry.status}>
+                      {body}
+                    </div>
+                  ) : (
+                    <a className={`${styles.lesson} ${entry.status === "available" ? styles.next : ""}`} href={to({ mode: "lesson", node: entry.node })} data-script-node={entry.node} data-status={entry.status}>
+                      {body}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      )}
       {units.map(({ unit, entries }) => {
         const title = unit.title?.[course.supportKey];
         return (

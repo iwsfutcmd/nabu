@@ -77,6 +77,11 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  // Script tracks (ADR 0088): built only for script nodes (lesson/script.ts), never for sentences.
+  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" } },
+  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" } },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -854,6 +859,8 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
     case "tone-identify":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
@@ -882,10 +889,12 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return { verdict: read(response.order) === read(ex.solution) ? "CORRECT" : "WRONG", notes: [], solution: ex.canonical };
     }
     case "match-pairs":
+    case "letter-pairs":
       return response.tag === "pairs" ? { verdict: "CORRECT", notes: response.mistakes > 0 ? ["pairs-mistakes"] : [] } : mismatch(ex, response);
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
+    case "word-write":
       if (response.tag !== "tiles") return mismatch(ex, response);
       return graded(grader, ex, tilesText(ex, response.order), ex.canonical);
     case "translate-type.l1-l2":
@@ -914,6 +923,8 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return ex.options[ex.answer];
     case "story-arrange":
       return ex.canonical;
@@ -923,6 +934,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "complete-translation":
     case "listen-tap":
     case "listen-type":
+    case "word-write":
       return ex.canonical;
     case "speak.tier-0":
     case "speak":
@@ -935,6 +947,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "transcribe":
       return ex.reading;
     case "match-pairs":
+    case "letter-pairs":
       return undefined;
   }
 };

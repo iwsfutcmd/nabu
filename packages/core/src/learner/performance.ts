@@ -58,6 +58,12 @@ export const TEMPLATE_PRIORS: Readonly<Record<TemplateId, number>> = {
   "story-choose": -1.0,
   "story-complete": -0.6,
   "story-arrange": -0.2,
+  // Script tracks (ADR 0088): a letter among four is easy, a word among four a little less;
+  // building a word from its letters is like building a sentence from tiles.
+  "letter-read": -1.4,
+  "letter-pairs": -1.4,
+  "word-read": -0.8,
+  "word-write": -0.2,
 };
 
 export const initialPerformance = (): Performance => ({ theta: 1.5, facet: {}, template: {}, kc: {}, item: {}, w: 2 });

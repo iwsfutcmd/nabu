@@ -484,16 +484,16 @@ GREEK_LETTER = regex.compile(r"\p{Script=Greek}")
 
 
 def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
-    """grc (ADR 0087): every voice says the pinned Attic reading as eSpeak NG phonemes through
-    its Ancient Greek table, never Greek text (a Greek voice would read it as Modern Greek)."""
-    from nabu.audio.course import PHONEME_SCHEMES, read_index
+    """grc (ADR 0087): every voice says the pinned Attic reading as phonemes (IPA for its Piper
+    voice), never Greek text, which a Greek voice would read as Modern Greek."""
+    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
 
     _, compiled = build(core_cli, "grc")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
         assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
-        assert voice.provider == "espeak-ng" and voice.voice.split("+")[0] == "grc"
+        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
     index = read_index(COURSES / "grc" / "audio")
     assert len(index.clips) > 400
     for clip in index.clips:
@@ -529,3 +529,25 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
                 assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
                 assert attic.unmarked(reading) == [], (unit["id"], reading)
     assert words > 1000
+
+
+def test_greek_alphabet_track(core_cli: CoreCli) -> None:
+    """grc's script track (ADR 0088): eight alphabet nodes, each word spelled with the letters
+    taught by then, every letter and word with its Latin spelling, tagged grc-Latn/romanized."""
+    from nabu.compiler.script import letters_of
+
+    _, compiled = build(core_cli, "grc")
+    nodes = [n for u in compiled.units for n in u["nodes"] if n["kind"] == "script"]
+    assert len(nodes) == 8
+    taught: set[str] = set()
+    for n in nodes:
+        alphabet = n["alphabet"]
+        assert alphabet["orthography"] == GRC and n["sentences"] == []
+        for letter in alphabet["letters"]:
+            assert letter["latin"]["orthography"] == "grc-Latn/romanized"
+            taught |= set(letters_of(letter["text"]["tokens"][0]["surface"]))
+        assert alphabet["words"], n["id"]
+        for word in alphabet["words"]:
+            surface = "".join(t["surface"] for t in word["text"]["tokens"])
+            assert set(letters_of(surface)) <= taught, (n["id"], surface)
+            assert word["letters"], surface

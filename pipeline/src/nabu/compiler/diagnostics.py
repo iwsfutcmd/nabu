@@ -234,6 +234,13 @@ _LINTS = [
         "glossary.tile-split", "error", 7, "A word-bank tile boundary falls inside a runtime unit."
     ),
     Lint(
+        "script.untaught-letter",
+        "error",
+        7,
+        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088), or the "
+        "orthography has no romanization.",
+    ),
+    Lint(
         "script.missing-form",
         "error",
         7,

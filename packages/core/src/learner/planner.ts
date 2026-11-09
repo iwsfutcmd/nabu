@@ -17,6 +17,7 @@ import { facetExclusions, lessonNodes, sentencesOf, speechExclusions, type Speec
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
+import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
 import { facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
@@ -84,9 +85,12 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
   "listen-type": 2,
   "listen-select": 2,
   "minimal-pair": 1,
+  "letter-pairs": 1,
+  "letter-read": 4,
 };
 
-const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2"]);
+// On a script track (ADR 0088), a new letter is read before it is written.
+const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "letter-read", "letter-pairs", "word-read"]);
 
 /** p̂ for an exercise in this state, in the course's orthography, at `now`. */
 export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
@@ -184,7 +188,13 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   let introduced: readonly KcId[] = [];
   let pool: Exercise[];
   let size: number;
-  if (request.mode === "lesson") {
+  const script = request.mode === "lesson" ? scriptNodes(course).find((n) => n.node.id === request.node) : undefined;
+  if (script !== undefined) {
+    // A script track's node (ADR 0088): its letters and words, nothing else.
+    introduced = script.node.introduces;
+    pool = [...scriptCandidates({ course, rng, introduced }, script, exclude)];
+    size = options.size ?? 10;
+  } else if (request.mode === "lesson") {
     const found = lessonNodes(course).find((n) => n.node.id === request.node);
     if (found === undefined) throw new Error(`no lesson node ${request.node} in ${course.id}`);
     const { unit, node } = found;

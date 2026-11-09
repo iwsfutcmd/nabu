@@ -30,7 +30,12 @@ export type TemplateId =
   | "minimal-pair"
   | "story-choose"
   | "story-complete"
-  | "story-arrange";
+  | "story-arrange"
+  // Script tracks (ADR 0088): reading and writing an alphabet.
+  | "letter-read"
+  | "letter-pairs"
+  | "word-read"
+  | "word-write";
 
 /** Facets of a knowledge component (§9.1): each (KC, facet) pair is its own memory. */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
@@ -60,9 +65,9 @@ export interface SelectImage extends Common {
   readonly answer: number;
 }
 
-/** Match each target word with its gloss (or a word with its reading). */
+/** Match each target word with its gloss (or, on a script track, each letter with its Latin value). */
 export interface MatchPairs extends Common {
-  readonly template: "match-pairs";
+  readonly template: "match-pairs" | "letter-pairs";
   /** The words: left[i] is the form of kcs[i], so its clip is the course's audio of kcs[i]. */
   readonly left: readonly TaggedText[];
   readonly right: readonly TaggedText[];
@@ -78,9 +83,12 @@ export interface ChooseTranslation extends Common {
   readonly answer: number;
 }
 
-/** Build the translation from word-bank tiles (§11.6), in either direction. */
+/**
+ * Build the translation from word-bank tiles (§11.6), in either direction; or, on a script track
+ * (word-write, ADR 0088), a word from its letters, given its Latin spelling.
+ */
 export interface TranslateTap extends Common {
-  readonly template: "translate-tap.l2-l1" | "translate-tap.l1-l2";
+  readonly template: "translate-tap.l2-l1" | "translate-tap.l1-l2" | "word-write";
   readonly prompt: TaggedText;
   /** Answer tiles and distractors, shuffled. */
   readonly tiles: readonly TaggedText[];
@@ -130,9 +138,12 @@ export interface GapFill extends Common {
   readonly answer: number;
 }
 
-/** A word without its reading; choose the reading (Jyutping). */
+/**
+ * A word without its reading; choose the reading (Jyutping). On a script track (ADR 0088): a letter
+ * or a word, and its Latin spelling to choose.
+ */
 export interface CharRead extends Common {
-  readonly template: "char-read";
+  readonly template: "char-read" | "letter-read" | "word-read";
   readonly prompt: TaggedText;
   readonly options: readonly TaggedText[];
   readonly answer: number;

@@ -70,13 +70,17 @@ const rightAnswer = (ex: Exercise): Response => {
     case "story-choose":
     case "story-complete":
     case "tone-identify":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: ex.answer };
     case "match-pairs":
+    case "letter-pairs":
       return { tag: "pairs", mistakes: 0 };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -106,6 +110,8 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "tone-identify":
       return { tag: "choice", index: (ex.answer + 1) % ex.tones.length };
@@ -116,6 +122,7 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: [...ex.solution].reverse().length > 1 ? [...ex.solution].reverse() : ex.tiles.map((_, i) => i).filter((i) => !ex.solution.includes(i)) };
     case "translate-type.l1-l2":
     case "complete-translation":
@@ -128,6 +135,7 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "speak.tier-0":
       return { tag: "self-rating", rating: "again" };
     case "match-pairs":
+    case "letter-pairs":
       return undefined;
   }
 };
@@ -199,7 +207,8 @@ describe("template coverage", () => {
     }
     // Listening templates need audio and come from the planner (test/listening.test.ts); story
     // questions come from stories (test/story.test.ts); scored speaking and tones are opt-in (below).
-    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify"]);
+    // Script templates come from script nodes alone (test/script.test.ts).
+    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "letter-read", "letter-pairs", "word-read", "word-write"]);
     expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
   });
 

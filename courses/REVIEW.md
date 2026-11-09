@@ -696,4 +696,7 @@ references in the reference library (`toki-pona/`, notes in notes/tok). A fluent
 - The grading policies marked REVIEW in profiles/grc-Grek.polytonic.yaml: marks noted, grave silent, adscript,
   the contrast sets.
 - The audio: stress for the pitch accent, ου as [oː] (CGCG 1.21), ῃ as [ɛːi].
+- The alphabet track (units/abc.yaml): the letter order, the notes on each letter's sound, the Latin spellings
+  (nabu/greek_translit.py), and which words each node drills.
+- The voice: Piper's Modern Greek voice saying IPA (a stopgap); aspiration said as a following h.
 

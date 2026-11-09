@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-09
+- Amended by: [0088](0088-script-tracks.md) (the Greek alphabet track); the voice, below
 
 ## Context
 
@@ -62,3 +63,18 @@ Nothing in the app said how polytonic Greek is written, graded or voiced.
 - Not done: checking vowel lengths and glosses against the Cambridge Greek Lexicon (OCR of its scan);
   the glossary's folded pass does not fold grave to acute, so a KC variant seen only with a grave
   (τὸ) is a dead entry: KCs list lemmas only.
+
+## Amendment: a Piper voice (2026-11-09)
+
+eSpeak NG's grc table was too rough to listen to (Ben). Until a better voice exists, the course is voiced by Piper's
+Greek `el_GR-rapunzelina-low`, given the same pinned readings as IPA phonemes (`attic.piper`, `PIPER_PHONEME_SCHEMES`
+in nabu/audio/course.py), not Greek text: a Piper voice's symbol table is eSpeak NG's IPA, so it says sounds it was
+never trained on without reading Modern Greek.
+- **What the voice lacks.** It has no ʰ: aspiration is said as a following h (`PIPER_FALLBACKS`, nabu/audio/providers.py),
+  and its g is IPA ɡ. Its [y], long vowels and doubled consonants come from the IPA, as well as a neural voice of
+  another language can say them.
+- **Licence.** Its dataset is CC0, but the model was fine-tuned from Piper's English ryan voice, whose dataset is
+  CC BY-NC-SA 4.0: the clips are CC-BY-NC-SA-4.0. One voice (a woman's) reads everything.
+- **Better options** (in order of cost): another phoneme-input model (Kokoro); a Piper voice fine-tuned on a reader of
+  restored Attic; recorded readings (`nabu audio ingest`).
+

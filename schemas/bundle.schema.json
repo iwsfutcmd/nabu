@@ -181,6 +181,31 @@
         "image": { "description": "Bundle path of the KC's picture (a file with role image).", "type": "string" }
       }
     },
+    "ScriptItem": {
+      "title": "ScriptItem",
+      "description": "A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.",
+      "type": "object",
+      "required": ["kc", "text", "latin", "letters"],
+      "additionalProperties": false,
+      "properties": {
+        "kc": {
+          "$ref": "common.schema.json#/$defs/KcId"
+        },
+        "letters": {
+          "description": "The grapheme KCs it is written with, of those its track teaches (a letter: its own).",
+          "type": "array",
+          "items": {
+            "$ref": "common.schema.json#/$defs/KcId"
+          }
+        },
+        "text": {
+          "$ref": "tagged-text.schema.json"
+        },
+        "latin": {
+          "$ref": "tagged-text.schema.json"
+        }
+      }
+    },
     "BundleNode": {
       "title": "BundleNode",
       "type": "object",
@@ -192,6 +217,29 @@
         "introduces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "reinforces": { "type": "array", "items": { "$ref": "common.schema.json#/$defs/KcId" } },
         "sentences": { "type": "array", "items": { "type": "string" } },
+        "alphabet": {
+          "description": "An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).",
+          "type": "object",
+          "required": ["orthography", "letters", "words"],
+          "additionalProperties": false,
+          "properties": {
+            "orthography": {
+              "type": "string"
+            },
+            "letters": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ScriptItem"
+              }
+            },
+            "words": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/ScriptItem"
+              }
+            }
+          }
+        },
         "convert": {
           "type": "object",
           "required": ["from", "to"],

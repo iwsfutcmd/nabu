@@ -377,10 +377,21 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Attic Greek notes (see docs/adr/0087)
 - courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,
   its spelling with each α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or subscript
-  settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`.
+  settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`
+  (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap;
+  its clips are CC-BY-NC-SA-4.0.
 - Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
   enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
   is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+
+## Script tracks notes (see docs/adr/0088)
+- A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
+  letters, diphthongs, marks); the compiler adds each letter's and word's Latin spelling (the profile's `romanize`, e.g.
+  nabu/greek_translit.py) and the graphemes it credits. `script.untaught-letter` stops a word with untaught letters.
+- Its four templates (letter-read, letter-pairs, word-read, word-write; @nabu/core/lesson/script.ts) are built only
+  for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
+- The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
+  Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match

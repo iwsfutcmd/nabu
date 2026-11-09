@@ -80,6 +80,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: bad ? [...ex.solution].reverse() : ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -91,6 +92,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "transcribe":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":
+    case "letter-pairs":
       return { tag: "pairs", matched: ex.left.map((_, i) => i), mistakes: 0 };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "good" };
@@ -108,6 +110,8 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
   }
 };
