@@ -378,6 +378,8 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
         assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
             clip.item
         )
+        # Word cards too end like a sentence (finalStop, ADR 0089).
+        assert clip.synthesis.input.endswith((".", "?")), clip.item
     assert tiberian.piper("wayyṓʾmer") in {
         c.synthesis.input.split(" ")[0] for c in index.clips if c.synthesis
     }

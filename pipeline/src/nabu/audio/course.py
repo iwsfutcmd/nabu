@@ -13,7 +13,7 @@
 - a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
   gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
 - a voice with `finalStop` gets text with no final punctuation (word cards) ended with its
-  script's full stop (ADR 0063: punctuation.py);
+  script's full stop (ADR 0063: punctuation.py), and phonemes with a "." (ADR 0089);
 - each item gets one clip, at normal speed: the player slows it down itself (ADR 0062), so a
   slow clip is never another take with its own mistakes;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
@@ -464,6 +464,12 @@ def plan(
         # the stop comes after the last word.
         tag = orth.split("/")[0]
         items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
+    elif voice.finalStop and voice.reading in PHONEME_SCHEMES:
+        # Phonemes: a word card ends with the "." a sentence ends with (ADR 0089).
+        items = [
+            i if i.input.rstrip().endswith((".", "?")) else replace(i, input=i.input + ".")
+            for i in items
+        ]
     return items, skipped
 
 

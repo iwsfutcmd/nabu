@@ -48,6 +48,11 @@ Hebrew text.
 - **`tiberian.ipa` and `tiberian.espeak` are unchanged.** Khan's IPA stays the reference, and an
   eSpeak voice can still be cast.
 
+**A word card ends with a full stop**, as a sentence does. `finalStop`, which already did this
+for text (ADR 0063), now also ends a phoneme input with ".". Without it, the voice says a lone
+word quicker and without its falling end. grc's voice does not set it, so its clips are
+unchanged.
+
 **One voice reads everything.**
 - kareem is a man's voice, and the only Arabic Piper voice. A line a woman says is read by him
   (ADR 0078 allows a one-voice cast).

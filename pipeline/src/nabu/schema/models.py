@@ -2480,7 +2480,7 @@ class AudioVoice(BaseModel):
     finalStop: Annotated[
         bool | None,
         Field(
-            description='With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
+            description='End text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063); with a phoneme reading (tiberian, attic), end the phonemes with "." (ADR 0089). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
         ),
     ] = None
     pronounce: Annotated[
