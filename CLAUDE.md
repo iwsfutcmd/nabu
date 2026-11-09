@@ -86,6 +86,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
 - Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
+- Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom
+  toolbar covers the viewport's last strip. Pages hosting the player keep `--nabu-space-reach` below the card.
 
 ## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
