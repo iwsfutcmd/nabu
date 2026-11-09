@@ -398,10 +398,11 @@ class PiperProvider:
         np: Any = importlib.import_module("numpy")
         known = engine.config.phoneme_id_map
         phonemes: list[str] = []
-        for i, w in enumerate(PIPER_WORD.findall(r.input)):
+        words: list[str] = [str(w) for w in PIPER_WORD.findall(r.input)]
+        for i, w in enumerate(words):
             if i:
                 phonemes.append(" ")
-            said = [c if c in known else PIPER_FALLBACKS.get(c, c) for c in w]
+            said: list[str] = [c if c in known else PIPER_FALLBACKS.get(c, c) for c in w]
             unknown = [c for c in said if c not in known]
             if unknown:
                 raise ProviderError(f"piper: {r.voice} has no phoneme {' '.join(unknown)!r}")
