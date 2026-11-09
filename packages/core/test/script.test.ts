@@ -8,6 +8,7 @@ import { emptyLearnerState, pathOf, plan, replay, scriptPathOf } from "../src/le
 import { createGrader } from "../src/lesson/course.ts";
 import type { Exercise, Response } from "../src/lesson/exercise.ts";
 import { lessonNodes } from "../src/lesson/build.ts";
+import { responseOf } from "../src/lesson/player.ts";
 import { SCRIPT_TEMPLATES, scriptNodes } from "../src/lesson/script.ts";
 import { gradeExercise, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { courseGlossary } from "../src/story/story.ts";
@@ -107,6 +108,19 @@ describe("script track: the Greek alphabet (grc)", () => {
     expect(row[0]?.status).toBe("available");
     expect(row.slice(1).every((n) => n.status === "locked")).toBe(true);
     expect(pathOf(grc, emptyLearnerState())[0]?.status).toBe("available");
+  });
+
+  it("submits a letter-pairs card once every pair is matched, as a match-pairs card", () => {
+    const grader = createGrader(grc);
+    const node = track[0];
+    if (node === undefined) throw new Error("no alphabet node");
+    const pairs = plan(grc, emptyLearnerState(), { mode: "lesson", node: node.node.id }, { now: NOW, seed: 5 }).exercises.find((ex) => ex.template === "letter-pairs");
+    if (pairs?.template !== "letter-pairs") throw new Error("no letter-pairs card");
+    const all = pairs.left.map((_, i) => i);
+    expect(responseOf(pairs, { tag: "pairs", matched: all.slice(1), mistakes: 0 })).toBeUndefined();
+    const response = responseOf(pairs, { tag: "pairs", matched: all, mistakes: 0 });
+    expect(response).toEqual({ tag: "pairs", mistakes: 0 });
+    expect(gradeExercise(pairs, response as Response, grader).verdict).toBe("CORRECT");
   });
 
   it("keeps letters out of the glossary and the sentence templates", () => {

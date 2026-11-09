@@ -141,7 +141,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
   const speaking = SPEAKING.has(ex.template);
   const listening = LISTENING.has(ex.template);
-  const pairs = ex.template === "match-pairs";
+  const pairs = ex.template === "match-pairs" || ex.template === "letter-pairs";
 
   keys.current = (e) => {
     // Never act during IME composition (§6.7), inside text fields (they handle Enter), or in the dialog.
