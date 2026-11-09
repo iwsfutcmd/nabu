@@ -1,4 +1,4 @@
-"""The Tiberian reading of Biblical Hebrew (ADR 0082, 0084) → eSpeak NG phonemes, and IPA.
+"""The Tiberian reading of Biblical Hebrew (ADR 0082, 0084, 0089): IPA, Piper and eSpeak phonemes.
 
 A word's pinned reading in the `tiberian` scheme is an SBL academic transliteration:
 - consonants ʾ b ḇ g ḡ d ḏ h w z ḥ ṭ y k ḵ l m n s ʿ p p̄ ṣ q r ś š t ṯ, a doubled letter for a
@@ -40,11 +40,16 @@ readers said them. Not modelled: gaʿya and its effects (§I.2.5.8), the half-lo
 deḥiq and secondary stress (sentence-level), segol-yod [ɛː] (SBL writes it ê, like ṣere-yod),
 the backed pataḥ [ɑ] Khan writes beside ṭ ṣ rˁ (inconsistently), and coda ʾalef [ʔ].
 
-What eSpeak NG's phoneme tables cannot say is approximated. The voice is eSpeak's Arabic
-table, the one with [ħ ʕ q], the emphatics, [ɟ], [χ] and the trill: it has no [ɛ] or [ɔ], so
-segol is said [e] and qamets as the backed [ɑ] of its emphatic context; no uvular [ʀ] or [ʁ], so
-resh is its trill [r] and ḡ its [ɣ]; and an echo vowel is said as one long vowel (Khan: it was
-barely heard); and its aspiration modifier cuts a word short, so k p t are said unaspirated.
+The course's voice (ADR 0089) is Piper's Arabic voice, given `piper`: the same vowels, shewas and
+stress, with Arabic-bent consonants (vav [w], an alveolar [r], ṭ ṣ as the Arabic emphatics, ḡ as
+ghayn, a doubled yod [jj], no aspiration), as Ben chose, not as Khan describes.
+
+`espeak` is the earlier voice. What eSpeak NG's phoneme tables cannot say is approximated. The
+voice is eSpeak's Arabic table, the one with [ħ ʕ q], the emphatics, [ɟ], [χ] and the trill: it
+has no [ɛ] or [ɔ], so segol is said [e] and qamets as the backed [ɑ] of its emphatic context; no
+uvular [ʀ] or [ʁ], so resh is its trill [r] and ḡ its [ɣ]; an echo vowel is said as one long vowel
+(Khan: it was barely heard); and its aspiration modifier cuts a word short, so k p t are said
+unaspirated.
 No Modern Hebrew voice is used.
 """
 
@@ -132,6 +137,20 @@ LONG = {
 }  # fmt: skip
 #: Tiberian quality → eSpeak mnemonic (the ar table has no ɛ or ɔ; see the module docstring).
 ESPEAK_VOWELS = {"a": "a", "ɔ": "a.", "e": "e", "ɛ": "e", "i": "i", "o": "o", "u": "u"}
+
+#: The Arabic-bent consonants the Piper voice says (ADR 0089), where they differ from Khan's:
+#: vav [w], resh an alveolar [r] everywhere, ḡ Arabic ghayn [ɣ], and ṭ ṣ the Arabic emphatics,
+#: written as eSpeak NG writes ط ص in IPA (the voice's training transcripts): t̪ s̪, with the
+#: vowel after them coloured by a following "." (t̪ˈa.ːlib).
+ARABIC_CONSONANTS: dict[str, str] = {
+    "w": "w",
+    "r": "r",
+    "g" + MACRON: "ɣ",
+    "t" + DOT_BELOW: "t̪",
+    "s" + DOT_BELOW: "s̪",
+}
+#: The consonants that colour the vowel after them.
+EMPHATICS = {"t" + DOT_BELOW, "s" + DOT_BELOW}
 #: Vowels after which a final h is a silent mater lectionis.
 MATER_H = {"e", "e" + MACRON, "o", "o" + MACRON}
 
@@ -176,6 +195,8 @@ class Phone:
     doubled: bool = False
     #: Aspiration, after the consonant (and after both halves' first, if doubled: [ttʰ]).
     aspirated: bool = False
+    #: A vowel right after an emphatic (ṭ ṣ), which the Arabic-bent reading colours.
+    coloured: bool = False
 
 
 def _shewa(following: list[Segment]) -> str:
@@ -235,8 +256,10 @@ def _resh(kept: list[Segment], k: int) -> str:
     return UVULAR_R
 
 
-def phones(reading: str) -> list[Phone]:
-    """A word's phones in order.
+def phones(reading: str, arabic: bool = False) -> list[Phone]:
+    """A word's phones in order: Khan's, or with `arabic` the Arabic-bent reading of the Piper
+    voice (ADR 0089: ARABIC_CONSONANTS, a doubled yod [jj], no aspiration, the vowel after an
+    emphatic coloured). The vowels, the shewas and the stress are the same in both.
 
     Stress falls on the vowel the reading marks, else on the last full vowel (a furtive pataḥ
     never takes it); a word ending in a hyphen (joined by maqaf) has none."""
@@ -293,29 +316,39 @@ def phones(reading: str) -> list[Phone]:
     for k, s in enumerate(kept):
         if s.kind == "C":
             ipa_, mnemonic = CONSONANTS[s.spelling]
-            if s.spelling == "r":
+            if arabic:
+                ipa_ = ARABIC_CONSONANTS.get(s.spelling, ipa_)
+            elif s.spelling == "r":
                 ipa_ = _resh(kept, k)
             prev = kept[k - 1] if k > 0 else None
             if prev is not None and prev.kind == "C" and prev.spelling == s.spelling:
                 if k + 1 == len(kept):
                     continue  # no doubling at the end of a word: ʾatt [ˈʔaːatʰ]
                 doubled = replace(out[-1], doubled=True)
-                if s.spelling == "y":
+                if s.spelling == "y" and not arabic:
                     doubled = replace(doubled, ipa="ɟ", espeak="J")  # [ɟɟ], §I.1.10
                 out[-1] = doubled
             else:
-                out.append(Phone(ipa_, mnemonic, aspirated=s.spelling in ASPIRATED))
+                out.append(Phone(ipa_, mnemonic, aspirated=s.spelling in ASPIRATED and not arabic))
             continue
+        # The vowel right after ṭ or ṣ (a doubled one too).
+        coloured = (
+            arabic and k > 0 and kept[k - 1].kind == "C" and kept[k - 1].spelling in EMPHATICS
+        )
         if conjunction and k == 0:
             out.extend([Phone("w", "w"), Phone("u", "u", vowel=True)])  # [wu], pp. 176–178
             continue
         if s.spelling == "ə":
             quality = _shewa(kept[k + 1 :])
-            out.append(Phone(quality + BREVE, ESPEAK_VOWELS[quality], vowel=True))
+            out.append(
+                Phone(quality + BREVE, ESPEAK_VOWELS[quality], vowel=True, coloured=coloured)
+            )
             continue
         quality = VOWELS[s.spelling]
         if s.spelling in REDUCED:
-            out.append(Phone(quality + BREVE, ESPEAK_VOWELS[quality], vowel=True))
+            out.append(
+                Phone(quality + BREVE, ESPEAK_VOWELS[quality], vowel=True, coloured=coloured)
+            )
             continue
         if k in furtive:
             before = VOWELS[kept[k - 1].spelling]
@@ -335,6 +368,7 @@ def phones(reading: str) -> list[Phone]:
                 ESPEAK_VOWELS[quality] + (":" if long_ else ""),
                 vowel=True,
                 stressed=k == stress,
+                coloured=coloured,
             )
         )
     return out
@@ -365,3 +399,22 @@ def espeak(reading: str) -> str:
         ("'" if p.stressed else "") + p.espeak + (":" if p.doubled else "") for p in phones(reading)
     )
     return f"[[{body}]]"
+
+
+def piper(reading: str) -> str:
+    """The word as IPA for Piper's Arabic voice, in [[ ]] (ADR 0089): the Arabic-bent reading
+    (`phones(arabic=True)`) in the symbols of the voice's training transcripts, eSpeak NG's
+    Arabic IPA. The stress mark goes before the vowel and "." after a vowel an emphatic colours
+    (t̪ˈa.ːlib); a doubled letter is written twice (ʃʃ); a reduced vowel is a plain short one,
+    and a long vowel in a closed syllable has no echo. The vowels keep their seven qualities:
+    the voice was fine-tuned from an English one, so it has [ɛ ɔ e o] as well as [ħ ʕ q]."""
+    body: list[str] = []
+    for p in phones(reading, arabic=True):
+        if not p.vowel:
+            body.append(p.ipa * 2 if p.doubled else p.ipa)
+            continue
+        quality, long_ = p.ipa[0], "ː" in p.ipa
+        if p.stressed:
+            body.append("\u02c8")
+        body.append(quality + ("." if p.coloured else "") + ("ː" if long_ else ""))
+    return f"[[{unicodedata.normalize('NFC', ''.join(body))}]]"

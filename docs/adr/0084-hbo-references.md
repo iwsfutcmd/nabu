@@ -4,6 +4,7 @@
 - Date: 2026-11-08
 - Amends: [0081](0081-affixes-on-inflected-words.md) (contrast sets get `forms`),
   [0082](0082-biblical-hebrew.md) (the phonology, the typo contrasts)
+- Amended by: [0089](0089-hbo-piper-voice.md) (the voice says Arabic-bent consonants)
 
 ## Context
 

@@ -1,4 +1,5 @@
-"""The Tiberian reading of Biblical Hebrew as IPA and as eSpeak NG phonemes (ADR 0082, 0084)."""
+"""The Tiberian reading of Biblical Hebrew as IPA, as eSpeak NG phonemes (ADR 0082, 0084) and
+as the Arabic-bent IPA of the Piper voice (ADR 0089)."""
 
 from __future__ import annotations
 
@@ -69,6 +70,53 @@ def test_espeak_phonemes_use_the_arabic_table() -> None:
     # Aspiration is IPA only: eSpeak's # modifier cuts the word short.
     assert tiberian.espeak("kol-") == "[[ka.l]]"
     assert tiberian.espeak("mittáḥaṯ") == "[[mit:'a:HaT]]"
+
+
+@pytest.mark.parametrize(
+    ("reading", "said"),
+    [
+        # The Arabic-bent reading of the Piper voice (ADR 0089): Khan's vowels and stress (shewa
+        # [a], a long vowel in a closed syllable without its echo), the stress mark before the
+        # vowel as in the voice's training transcripts, resh an alveolar [r].
+        ("bərēʾšîṯ", "[[bareːʃˈiːθ]]"),
+        ("hāʾā́reṣ", "[[hɔːʔˈɔːrɛs̪]]"),
+        # Vav is [w] (ḇ stays [v]); a doubled yod is [jj]; a doubled letter is written twice.
+        ("wayyṓʾmer", "[[wajjˈoːmɛr]]"),
+        ("ûḇên", "[[wuvˈeːn]]"),
+        ("haššāmáyim", "[[haʃʃɔːmˈaːjim]]"),
+        # ṭ and ṣ are the Arabic emphatics t̪ s̪ and colour the vowel after them ("."); qof is [q].
+        ("ṭôḇ", "[[t̪ˈo.ːv]]"),
+        ("yiṣḥāq", "[[jis̪ħˈɔːq]]"),
+        ("qôl", "[[qˈoːl]]"),
+        # All six spirants, ḡ as ghayn; stops unaspirated.
+        ("ḡam", "[[ɣˈaːm]]"),
+        ("ḥoḵmâ", "[[ħɔχmˈɔː]]"),
+        ("mittáḥaṯ", "[[mittˈaːħaθ]]"),
+        ("ʾăḏōnāy", "[[ʔaðoːnˈɔːj]]"),
+        # A furtive pataḥ keeps its glide.
+        ("rûaḥ", "[[rˈuːwaħ]]"),
+    ],
+)
+def test_piper_phonemes_are_arabic_bent(reading: str, said: str) -> None:
+    assert tiberian.piper(reading) == said
+
+
+def test_piper_phonemes_split_for_the_aligner() -> None:
+    """Forced alignment (nabu audio align) reads a Piper word's IPA itself, not through eSpeak."""
+    from nabu.audio.course import ipa_phones
+
+    assert ipa_phones(tiberian.piper("haššāmáyim")) == [
+        "h",
+        "a",
+        "ʃ",
+        "ɔː",
+        "m",
+        "aː",
+        "j",
+        "i",
+        "m",
+    ]
+    assert ipa_phones(tiberian.piper("ṭôḇ")) == ["t̪", "o.ː", "v"]
 
 
 def test_a_letter_outside_the_scheme_is_refused() -> None:

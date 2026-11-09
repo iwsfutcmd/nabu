@@ -45,6 +45,7 @@ import yaml
 from nabu import yamlio
 from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
+    PIPER_PHONEMES,
     Clip,
     NavoiyProvider,
     OmniVoiceProvider,
@@ -80,8 +81,10 @@ PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
     "attic": attic.espeak,
 }
 #: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
+#: Tiberian for Piper is Arabic-bent (ADR 0089).
 PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
     "attic": attic.piper,
+    "tiberian": tiberian.piper,
 }
 WORD_KINDS = {"word", "number"}
 
@@ -717,6 +720,21 @@ def decode_clip(path: Path) -> bytes:
     return out.stdout
 
 
+def ipa_phones(word: str) -> list[str]:
+    """A Piper input word ([[IPA]], ADR 0087) as the aligner's phones: each symbol with the marks
+    after it (t̪, aː, a.ː), stress marks dropped, a doubled consonant once (the aligner's
+    phones are eSpeak NG's, which write one long consonant)."""
+    out: list[str] = []
+    for ch in unicodedata.normalize("NFD", word.strip().removeprefix("[[").removesuffix("]]")):
+        if ch in "\u02c8\u02cc":
+            continue
+        if out and (unicodedata.combining(ch) or ch in "\u02d0\u02d1\u02e4\u02b0."):
+            out[-1] += ch
+        else:
+            out.append(ch)
+    return [p for k, p in enumerate(out) if k == 0 or p != out[k - 1]]
+
+
 def align_course(
     course_dir: Path,
     units: list[dict[str, Any]],
@@ -752,8 +770,11 @@ def align_course(
             or not item.spans
         ):
             continue
+        ipa = voice.provider == "piper" and PIPER_PHONEMES.fullmatch(item.input) is not None
         words = [
-            [p for w in espeak.phonemes(item.input[s.start : s.end], phonemes) for p in w]
+            ipa_phones(item.input[s.start : s.end])
+            if ipa
+            else [p for w in espeak.phonemes(item.input[s.start : s.end], phonemes) for p in w]
             for s in item.spans
         ]
         found = aligner(decode_clip(adir / clip.file), ALIGN_RATE, words)

@@ -334,12 +334,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
-## Biblical Hebrew notes (see docs/adr/0082–0084)
+## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
-  nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
-  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`. It is read, not heard:
-  its `facets` leave out listen (no listening exercises; clips still play once a card is answered).
+  nabu/audio/tiberian.py turns into phonemes. The voice is Piper's Arabic `ar_JO-kareem-medium` (ADR 0089), given
+  IPA (`tiberian.piper`, `PIPER_PHONEME_SCHEMES` in nabu/audio/course.py): Khan's vowels and stress, Arabic-bent
+  consonants (vav [w], alveolar [r], ṭ ṣ as the voice's t̪ s̪, [jj], no aspiration). After a reading changes,
+  `nabu audio generate ../courses/hbo` (speech group; minutes; MIT), `nabu audio align ../courses/hbo` (word
+  timings), then `pnpm bundles`. It is read, not heard: its `facets` leave out listen (no listening exercises;
+  clips still play once a card is answered).
 - Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
@@ -347,8 +350,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
   `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
   meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
-- Readings stay SBL's (šāmərû); tiberian.py says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
+- Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
   vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
+  The voice's Arabic consonants (ADR 0089) are Ben's choice, not Khan's: keep them apart (`arabic=True`).
 - References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
   Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
   prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
@@ -407,7 +411,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0088 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0089 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

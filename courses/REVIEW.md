@@ -412,13 +412,16 @@ reference library, notes/hbo): what they showed wrong is fixed, and what they le
    - stress retraction kept from the text where the Bible has it (qā́rāʾ láylâ in Gen 1:5);
    - the divine name read with its qere, ʾăḏōnāy (laʾḏōnāy after a preposition), and the Pentateuch's הִוא read
      hîʾ.
-2. **The audio** says those readings in eSpeak NG's Arabic phoneme table, as Khan's vol. I describes the
-   Tiberian tradition (checked page by page, ADR 0084). Approximations to listen for: segol said [e] like ṣere;
-   qamets as a backed [ɑ] (Khan: [ɔ]); resh as a trill (Khan: uvular [ʀ̟], [rˤ] beside alveolars); ḡ as [ɣ]
-   (Khan: [ʁ]); k p t unaspirated (Khan: [kʰ pʰ tʰ]); a long vowel's echo in a closed syllable said as one long
-   vowel. Not modelled at all: gaʿya and what it does to a shewa, half-long vowels, deḥiq, segol-yod [ɛː], the
-   backed pataḥ, coda ʾalef. The voice is rule-based and sounds it. A recorded reader of the Tiberian
-   tradition (`nabu audio ingest`) would replace it.
+2. **The audio** (ADR 0089) says those readings through Piper's Arabic voice ar_JO-kareem, given IPA.
+   - Arabic-bent consonants, as Ben asked: vav [w], resh an alveolar [r], ṭ ṣ as the Arabic emphatics, ḡ as
+     ghayn [ɣ], k p t unaspirated, a doubled yod [jj].
+   - Khan's vowels and stress (ADR 0084).
+   - Listen for the vowels: the voice learned [ɛ ɔ] from its English base, and [e o] only inside English
+     diphthongs, so segol and ṣere, qamets and ḥolem may blur.
+   - One man's voice reads everything, women's lines too.
+   - Not modelled at all: gaʿya and what it does to a shewa, half-long vowels, deḥiq, segol-yod [ɛː], the
+     backed pataḥ, coda ʾalef.
+   - A recorded reader of the Tiberian tradition (`nabu audio ingest`) would replace it.
 3. **Pointing of constructed sentences.** Every word was checked against the forms the Bible attests; a few
    are unattested but regular (מְבַקֶּשֶׁת). Contextual forms are used, not pausal ones, except in quotations.
    Begadkefat after a vowel-final word joined by maqaf are spirantized as in the text (וַיְהִי־בֹקֶר).

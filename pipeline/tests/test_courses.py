@@ -356,17 +356,19 @@ HEBREW_LETTER = regex.compile(r"\p{Script=Hebrew}")
 
 
 def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> None:
-    """hbo (ADR 0082): every voice says the pinned Tiberian reading as eSpeak NG phonemes, never
-    Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's input is phonemes."""
+    """hbo (ADR 0082, 0089): every voice says the pinned Tiberian reading as phonemes (IPA for its
+    Piper voice), never Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's
+    input is phonemes."""
     from nabu.audio import tiberian
-    from nabu.audio.course import PHONEME_SCHEMES, read_index
+    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
 
     _, compiled = build(core_cli, "hbo")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
         assert voice.reading == "tiberian" and voice.reading in PHONEME_SCHEMES
-        assert voice.provider == "espeak-ng" and not voice.voice.startswith("he")
+        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert not voice.voice.startswith("he")
     index = read_index(COURSES / "hbo" / "audio")
     assert len(index.clips) > 300
     for clip in index.clips:
@@ -376,7 +378,7 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
         assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
             clip.item
         )
-    assert tiberian.espeak("wayyṓʾmer") in {
+    assert tiberian.piper("wayyṓʾmer") in {
         c.synthesis.input.split(" ")[0] for c in index.clips if c.synthesis
     }
 

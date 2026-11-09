@@ -2,7 +2,8 @@
 
 - Status: Proposed
 - Date: 2026-11-08
-- Amended by: [0084](0084-hbo-references.md) (the phonology checked against Khan; typo contrasts by form)
+- Amended by: [0084](0084-hbo-references.md) (the phonology checked against Khan; typo contrasts by form),
+  [0089](0089-hbo-piper-voice.md) (the voice: Piper's Arabic voice, Arabic-bent consonants)
 
 ## Context
 
