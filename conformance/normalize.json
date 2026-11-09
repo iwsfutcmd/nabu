@@ -1054,6 +1054,76 @@
       },
       "expected": "󱤴󱤶󱥁",
       "note": "A directional ni (U+F1989..U+F198B) is ni; the other sewi (U+F198C) is sewi."
+    },
+    {
+      "id": "normalize/grc/elision-marks",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ἀλλʼ οὐδ᾽ ἐμοῦ"
+      },
+      "expected": "ἀλλ οὐδ ἐμοῦ",
+      "note": "The elision mark as the modifier apostrophe or the koronis is punctuation, and goes."
+    },
+    {
+      "id": "normalize/grc/elision-typed",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ἀλλ' ἐγώ"
+      },
+      "expected": "ἀλλ ἐγώ",
+      "note": "A typewriter apostrophe is the elision mark too."
+    },
+    {
+      "id": "normalize/grc/ano-teleia",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ὄρθρος βαθύς· ἔτι νύξ"
+      },
+      "expected": "ὄρθρος βαθύς ἔτι νύξ",
+      "note": "The ano teleia (U+0387, NFC U+00B7) is punctuation."
+    },
+    {
+      "id": "normalize/grc/question-mark",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "τί λέγεις\u037E"
+      },
+      "expected": "τί λέγεις",
+      "note": "The Greek question mark U+037E is NFC U+003B, a semicolon: punctuation."
+    },
+    {
+      "id": "normalize/grc/lunate-sigma",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ὁ ἄνθρωποϲ"
+      },
+      "expected": "ὁ ἄνθρωποσ",
+      "note": "Lunate sigma, as some editions print it, is σ (case folding then makes final ς and σ one)."
+    },
+    {
+      "id": "normalize/grc/oxia",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "\u1F71νθρωπος"
+      },
+      "expected": "\u03ACνθρωπος",
+      "note": "Oxia (U+1F71) is tonos (U+03AC) under NFC: a polytonic and a monotonic keyboard type one acute."
+    },
+    {
+      "id": "normalize/grc/accents-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "τὸν ἄνθρωπον ὁρῶ"
+      },
+      "expected": "τὸν ἄνθρωπον ὁρῶ",
+      "note": "Accents and breathings stay: the marks policy grades them."
     }
   ]
 }

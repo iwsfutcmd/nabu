@@ -43,7 +43,7 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import espeak, jyutping, tiberian, toki_pona
+from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
     Clip,
     NavoiyProvider,
@@ -72,10 +72,12 @@ BATCH = 16
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
 #: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
-#: and Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for.
+#: Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for, and Attic
+#: Greek with its vowel lengths marked (ADR 0087), said as reconstructed, never as Modern Greek.
 PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
     "tiberian": tiberian.espeak,
     "lasina": toki_pona.espeak,
+    "attic": attic.espeak,
 }
 WORD_KINDS = {"word", "number"}
 
@@ -407,6 +409,13 @@ def plan(
             marked = "".join(t["surface"] for t in word) if word else str(forms[0])
             surface = "".join(kc_written) if kc_written is not None else marked
             reading = readings.get(surface, in_words.get(surface))
+            if reading is None and scheme == "attic":
+                # A Greek word card shows the word as cited, with an acute; in a sentence its
+                # last syllable's acute is a grave before the next word (καί, καὶ σύ): the same
+                # word, with the same reading.
+                reading = next(
+                    (attic.cited(r) for w, r in readings.items() if attic.cited(w) == surface), None
+                )
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue

@@ -946,6 +946,10 @@
       "message": "Persian",
       "description": "Name of the Persian (fa) course, used inside other messages as $language."
     },
+    "course.name.grc": {
+      "message": "Ancient Greek",
+      "description": "Name of the Ancient Greek (grc) course, used inside other messages as $language. The course teaches Attic, the Greek of Athens in the fifth and fourth centuries BCE (Plato, Xenophon, Lysias)."
+    },
     "course.name.hbo": {
       "message": "Biblical Hebrew",
       "description": "Name of the Biblical Hebrew (hbo) course, used inside other messages as $language. The Hebrew of the Bible, read in the Tiberian pointing; not Modern Hebrew."
@@ -1085,6 +1089,14 @@
     "feedback.note.contrast-pronoun": {
       "message": "That is a different pronoun, not a typo.",
       "description": "Feedback note: the answer has another pronoun one letter or two from the expected one (for example Сен for Мен)."
+    },
+    "feedback.note.greek-marks": {
+      "message": "Mind the accents, breathings and iota subscripts: they are part of the spelling.",
+      "description": "Feedback note for Ancient Greek: the answer left out an accent, a breathing or an iota subscript, or put one in the wrong place (λογος or λόγος for λόγος). The answer still counts."
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "With those marks it is another word (ἡ “the”, ἤ “or”).",
+      "description": "Feedback note for Ancient Greek: with an accent or breathing left out, added or changed, the answer spells a different word (ἡ for ἤ, τις for τίς), so it does not count. The examples are Greek words and stay as they are."
     },
     "feedback.note.hamza": {
       "message": "Watch the hamza (أ, إ, آ).",
@@ -1337,6 +1349,10 @@
     "orthography.fa-Arab.standard": {
       "message": "Persian script",
       "description": "Name of the Persian orthography (Arabic script as used for Persian)."
+    },
+    "orthography.grc-Grek.polytonic": {
+      "message": "Polytonic Greek",
+      "description": "Name of the Ancient Greek orthography: the Greek alphabet written with its accents, breathings and iota subscript, as editions of ancient texts print it."
     },
     "orthography.hbo-Hebr.tiberian": {
       "message": "Hebrew script, Tiberian pointing",

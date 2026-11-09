@@ -1,0 +1,29 @@
+# Ancient Greek (grc): Attic, the Greek of Athens in the fifth and fourth centuries BCE, as Plato, Xenophon,
+# Lysias and Aristophanes wrote it (ADR 0087). Polytonic text, as editions print it; accents and breathings
+# left out of an answer are noted, not failed, unless they make another word.
+# Each unit's lessons teach the words of an Attic passage, and its story reads it: the text of public-domain
+# editions (Burnet's Plato, Marchant's Xenophon, Hude's Lysias, Hall and Geldart's Aristophanes), as the
+# Perseus Digital Library has them. Checked against the Cambridge Grammar of Classical Greek (2019) and the
+# Cambridge Greek Lexicon (2021) in the reference library.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a reviewer.
+id: grc
+target: grc-Grek
+orthographies: [grc-Grek/polytonic]
+support: [en-Latn/standard]
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@grc-draft-v1', status: draft}
+# A Greek word is a stem and an ending: a new verb in a new form, or a new noun in a new case, is two KCs.
+iPlusOne: 2
+# Every facet but listen (as hbo, ADR 0082): Attic is read, not heard, and a reconstructed synthetic voice is no
+# ear-training. The clips still say each card once it is answered, and speaking cards stay (reading aloud).
+facets: [recognize, produce, speak, read-script, write-script]
+# Audio (ADR 0087): the reconstructed pronunciation of classical Attic (CGCG §§1.14–33), never Modern Greek. Each
+# word's pinned `attic` reading (its spelling with every α, ι, υ marked long or short) is said as eSpeak NG
+# phonemes (nabu.audio.attic) through its Ancient Greek table: aspirated φ θ χ, [y] for υ, long and short vowels,
+# the accent as a stress. A man's voice and a woman's: each item gets one at random (seeded by its id), and a line
+# whose grammar says who speaks gets that one (ADR 0078). Rule-based synthesis: the clips are CC0.
+audio:
+  voices:
+  - {id: attic-m, provider: espeak-ng, voice: grc, speaker: m, orthography: grc-Grek/polytonic, reading: attic, license: CC0-1.0}
+  - {id: attic-f, provider: espeak-ng, voice: grc+f2, speaker: f, orthography: grc-Grek/polytonic, reading: attic, license: CC0-1.0}
+units: [units/u01-is-it-early.yaml, units/u02-two-sons.yaml, units/u03-where-to.yaml, units/u04-does-he-speak-greek.yaml]

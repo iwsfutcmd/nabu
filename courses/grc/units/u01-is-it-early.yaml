@@ -1,0 +1,1706 @@
+# Ancient Greek (grc), unit 1: Why so early? (Plato, Crito 43a).
+# Greetings, and names called in the vocative; εἰμί (I am, you are, it is); questions and "not"; night, day and dawn.
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u01-is-it-early
+title:
+  en: Why so early?
+cefr: A1
+kcs:
+- id: sense:chairo
+  gloss:
+    en: 'to be glad; χαῖρε, χαίρετε: hello! (also goodbye)'
+  forms:
+    grc-Grek/polytonic:
+    - χαίρω
+  notes:
+    en: 'Its imperative is the everyday greeting, on meeting and on parting: χαῖρε to one person, χαίρετε to several.'
+- id: form:impv-2s
+  gloss:
+    en: 'the imperative, to one person: do!'
+- id: form:impv-2p
+  gloss:
+    en: 'the imperative, to several people: do!'
+- id: sense:o
+  gloss:
+    en: O (before the name of someone you call; not translated)
+  forms:
+    grc-Grek/polytonic:
+    - ὦ
+  notes:
+    en: 'Greek calls a person with ὦ and the vocative: ὦ Σώκρατες. English leaves the ὦ out.'
+- id: form:voc
+  gloss:
+    en: 'the vocative: the form for calling someone (Σώκρατες, from Σωκράτης)'
+- id: sense:sokrates
+  gloss:
+    en: Socrates (the Athenian philosopher, 469–399 BCE)
+  forms:
+    grc-Grek/polytonic:
+    - Σωκράτης
+- id: sense:kriton
+  gloss:
+    en: Crito (Socrates' friend, of his age)
+  forms:
+    grc-Grek/polytonic:
+    - Κρίτων
+- id: sense:xanthippe
+  gloss:
+    en: Xanthippe (Socrates' wife)
+  forms:
+    grc-Grek/polytonic:
+    - Ξανθίππη
+- id: sense:kai
+  gloss:
+    en: and; also, too
+  forms:
+    grc-Grek/polytonic:
+    - καί
+- id: sense:eimi
+  gloss:
+    en: to be
+  forms:
+    grc-Grek/polytonic:
+    - εἰμί
+  notes:
+    en: 'εἰμί I am, εἶ you are, ἐστί(ν) he, she, it is. εἰμί and ἐστί lean on the word before them (they are enclitics) and lose their own accent after many words: νύξ ἐστιν; after οὐκ it is ἔστιν.'
+- id: form:pres-1s
+  gloss:
+    en: 'the present, I: I do, I am doing'
+- id: form:pres-2s
+  gloss:
+    en: 'the present, you (one person): you do, you are doing'
+- id: form:pres-3s
+  gloss:
+    en: 'the present, he, she, it: does, is doing'
+- id: sense:tis
+  gloss:
+    en: who? which?
+  forms:
+    grc-Grek/polytonic:
+    - τίς
+- id: sense:sy
+  gloss:
+    en: you (one person)
+  forms:
+    grc-Grek/polytonic:
+    - σύ
+- id: sense:ego
+  gloss:
+    en: I
+  forms:
+    grc-Grek/polytonic:
+    - ἐγώ
+- id: sense:nai
+  gloss:
+    en: 'yes'
+  forms:
+    grc-Grek/polytonic:
+    - ναί
+- id: sense:ou
+  gloss:
+    en: not; (alone) no
+  forms:
+    grc-Grek/polytonic:
+    - οὐ
+    - οὐκ
+    - οὐχ
+    - οὔ
+  notes:
+    en: 'οὐ before a consonant, οὐκ before a smooth breathing, οὐχ before a rough one: οὐ πρῴ, οὐκ ἔστιν, οὐχ ἡμέρα. Alone, "no", it is οὔ.'
+- id: sense:nyx
+  gloss:
+    en: night
+  forms:
+    grc-Grek/polytonic:
+    - νύξ
+  image:
+    file: ../images/moon.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:hemera
+  gloss:
+    en: day
+  forms:
+    grc-Grek/polytonic:
+    - ἡμέρα
+  image:
+    file: ../images/sun.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:nyn
+  gloss:
+    en: now
+  forms:
+    grc-Grek/polytonic:
+    - νῦν
+- id: sense:ede
+  gloss:
+    en: already; by now
+  forms:
+    grc-Grek/polytonic:
+    - ἤδη
+- id: sense:eti
+  gloss:
+    en: still, yet
+  forms:
+    grc-Grek/polytonic:
+    - ἔτι
+- id: sense:proi
+  gloss:
+    en: early (in the day)
+  forms:
+    grc-Grek/polytonic:
+    - πρῴ
+- id: sense:pany
+  gloss:
+    en: very, quite
+  forms:
+    grc-Grek/polytonic:
+    - πάνυ
+- id: sense:e
+  gloss:
+    en: or
+  forms:
+    grc-Grek/polytonic:
+    - ἤ
+- id: sense:penika
+  gloss:
+    en: at what time?
+  forms:
+    grc-Grek/polytonic:
+    - πηνίκα
+- id: sense:malista
+  gloss:
+    en: most, especially; (with a time or a number) about, just
+  forms:
+    grc-Grek/polytonic:
+    - μάλιστα
+- id: sense:orthros
+  gloss:
+    en: dawn, the hour before daybreak
+  forms:
+    grc-Grek/polytonic:
+    - ὄρθρος
+  image:
+    file: ../images/sunrise.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:bathys
+  gloss:
+    en: deep
+  forms:
+    grc-Grek/polytonic:
+    - βαθύς
+  notes:
+    en: 'ὄρθρος βαθύς, "deep dawn": the first grey light, long before the sun is up.'
+- id: sense:ti
+  gloss:
+    en: what? why?
+  forms:
+    grc-Grek/polytonic:
+    - τί
+- id: sense:tenikade
+  gloss:
+    en: at this hour (so early, or so late)
+  forms:
+    grc-Grek/polytonic:
+    - τηνικάδε
+- id: sense:aphikneomai
+  gloss:
+    en: to arrive, come
+  forms:
+    grc-Grek/polytonic:
+    - ἀφικνέομαι
+  notes:
+    en: 'ἀφῖξαι, "you have come" (you are here), is its perfect: a deed done and its result now.'
+- id: form:perf-2s
+  gloss:
+    en: 'the perfect, you (one person): you have done (and so it stands)'
+- id: sense:men
+  gloss:
+    en: (marks a first point; δέ answers it)
+  forms:
+    grc-Grek/polytonic:
+    - μέν
+  notes:
+    en: 'μέν and οὖν together say "indeed": πάνυ μὲν οὖν, "yes, very much so", is the strongest yes of Plato''s dialogues.'
+- id: sense:oun
+  gloss:
+    en: so, then, therefore
+  forms:
+    grc-Grek/polytonic:
+    - οὖν
+  notes:
+    en: 'οὖν never comes first: it stands second in its clause (τί οὖν ἀφῖξαι;).'
+nodes:
+- id: grc.u01.hello
+  kind: lesson
+  introduces:
+  - sense:chairo
+  - form:impv-2s
+  - form:impv-2p
+  - sense:o
+  - form:voc
+  - sense:sokrates
+  - sense:kriton
+  - sense:xanthippe
+  - sense:kai
+- id: grc.u01.who-are-you
+  kind: lesson
+  introduces:
+  - sense:eimi
+  - form:pres-1s
+  - form:pres-2s
+  - sense:tis
+  - sense:sy
+  - form:pres-3s
+  - sense:ego
+- id: grc.u01.night-and-day
+  kind: lesson
+  introduces:
+  - sense:nai
+  - sense:ou
+  - sense:nyx
+  - sense:hemera
+  - sense:nyn
+  - sense:ede
+  - sense:eti
+- id: grc.u01.what-time
+  kind: lesson
+  introduces:
+  - sense:proi
+  - sense:pany
+  - sense:e
+  - sense:penika
+  - sense:malista
+  - sense:orthros
+  - sense:bathys
+- id: grc.u01.why-so-early
+  kind: lesson
+  introduces:
+  - sense:ti
+  - sense:aphikneomai
+  - form:perf-2s
+  - sense:tenikade
+  - sense:men
+  - sense:oun
+- id: grc.u01.story
+  kind: story
+sentences:
+- id: s.01.1
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      reverse: χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell)!
+  persons:
+    addressee: sg
+- id: s.01.2
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαίρετε.
+      tokens:
+      - surface: χαίρετε
+        sense: chairo
+        form: form:impv-2p
+        readings:
+          attic: χαίρετε
+      reverse: χαίρετε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell)!
+  persons:
+    addressee: pl
+- id: s.01.3
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: Σωκράτης.
+      tokens:
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      reverse: Σωκράτης
+  translations:
+    en: Socrates.
+- id: s.01.4
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: Σωκράτης καὶ Κρίτων.
+      tokens:
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      reverse: Σωκράτης καὶ Κρίτων
+  translations:
+    en: Socrates and Crito.
+- id: s.01.5
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ Σώκρατες.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Σώκρατες
+        sense: sokrates
+        form: form:voc
+        readings:
+          attic: Σώκρᾰτες
+      reverse: |-
+        χαῖρε ὦ Σώκρατες
+        χαῖρε Σώκρατες
+        [ὦ] Σώκρατες χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Socrates!
+- id: s.01.6
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ Κρίτων.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Κρίτων
+        sense: kriton
+        form: form:voc
+        readings:
+          attic: Κρῐ́των
+      reverse: |-
+        χαῖρε ὦ Κρίτων
+        χαῖρε Κρίτων
+        [ὦ] Κρίτων χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Crito!
+- id: s.01.7
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ Ξανθίππη.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        χαῖρε ὦ Ξανθίππη
+        χαῖρε Ξανθίππη
+        [ὦ] Ξανθίππη χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Xanthippe!
+- id: s.01.8
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: Ξανθίππη καὶ Κρίτων.
+      tokens:
+      - surface: Ξανθίππη
+        sense: xanthippe
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      reverse: Ξανθίππη καὶ Κρίτων
+  translations:
+    en: Xanthippe and Crito.
+- id: s.01.9
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: Σωκράτης καὶ Ξανθίππη.
+      tokens:
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: Σωκράτης καὶ Ξανθίππη
+  translations:
+    en: Socrates and Xanthippe.
+- id: s.01.10
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαίρετε, ὦ Σώκρατες καὶ Κρίτων.
+      tokens:
+      - surface: χαίρετε
+        sense: chairo
+        form: form:impv-2p
+        readings:
+          attic: χαίρετε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Σώκρατες
+        sense: sokrates
+        form: form:voc
+        readings:
+          attic: Σώκρᾰτες
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: Κρίτων
+        sense: kriton
+        form: form:voc
+        readings:
+          attic: Κρῐ́των
+      reverse: |-
+        χαίρετε ὦ Σώκρατες καὶ Κρίτων
+        χαίρετε Σώκρατες καὶ Κρίτων
+        [ὦ] Σώκρατες καὶ Κρίτων χαίρετε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Socrates and Crito!
+- id: s.01.11
+  node: grc.u01.hello
+  forms:
+    grc-Grek/polytonic:
+      text: χαίρετε, ὦ Κρίτων καὶ Ξανθίππη.
+      tokens:
+      - surface: χαίρετε
+        sense: chairo
+        form: form:impv-2p
+        readings:
+          attic: χαίρετε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Κρίτων
+        sense: kriton
+        form: form:voc
+        readings:
+          attic: Κρῐ́των
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        χαίρετε ὦ Κρίτων καὶ Ξανθίππη
+        χαίρετε Κρίτων καὶ Ξανθίππη
+        [ὦ] Κρίτων καὶ Ξανθίππη χαίρετε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Crito and Xanthippe!
+- id: s.01.12
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: Σωκράτης εἰμί.
+      tokens:
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Σωκράτης εἰμί
+        εἰμὶ Σωκράτης
+        ἐγὼ Σωκράτης εἰμί
+        Σωκράτης ἐγώ εἰμι
+        ἐγώ εἰμι Σωκράτης
+  translations:
+    en: (I am|I'm) Socrates.
+- id: s.01.13
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: Κρίτων εἰμί.
+      tokens:
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Κρίτων εἰμί
+        εἰμὶ Κρίτων
+        ἐγὼ Κρίτων εἰμί
+        Κρίτων ἐγώ εἰμι
+        ἐγώ εἰμι Κρίτων
+  translations:
+    en: (I am|I'm) Crito.
+- id: s.01.14
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: Ξανθίππη εἰμί.
+      tokens:
+      - surface: Ξανθίππη
+        sense: xanthippe
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Ξανθίππη εἰμί
+        εἰμὶ Ξανθίππη
+        ἐγὼ Ξανθίππη εἰμί
+        Ξανθίππη ἐγώ εἰμι
+        ἐγώ εἰμι Ξανθίππη
+  translations:
+    en: (I am|I'm) Xanthippe.
+- id: s.01.15
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: τίς εἶ;
+      tokens:
+      - surface: τίς
+        sense: tis
+        readings:
+          attic: τῐ́ς
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        τίς εἶ
+        τίς εἶ σύ
+        σὺ τίς εἶ
+        τίς σὺ εἶ
+  translations:
+    en: Who are you?
+  persons:
+    addressee: sg
+- id: s.01.16
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: τίς εἶ σύ;
+      tokens:
+      - surface: τίς
+        sense: tis
+        readings:
+          attic: τῐ́ς
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      - surface: σύ
+        sense: sy
+        readings:
+          attic: σῠ́
+      reverse: |-
+        τίς εἶ σύ
+        τίς εἶ
+        σὺ τίς εἶ
+        τίς σὺ εἶ
+  translations:
+    en: Who are you?
+  persons:
+    addressee: sg
+- id: s.01.17
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: σὺ Κρίτων εἶ.
+      tokens:
+      - surface: σὺ
+        sense: sy
+        readings:
+          attic: σῠ̀
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        σὺ Κρίτων εἶ
+        Κρίτων εἶ
+        εἶ Κρίτων
+        σὺ εἶ Κρίτων
+        Κρίτων εἶ σύ
+        Κρίτων σὺ εἶ
+  translations:
+    en: (You are|You're) Crito.
+  persons:
+    addressee: sg
+- id: s.01.18
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: σὺ Σωκράτης εἶ;
+      tokens:
+      - surface: σὺ
+        sense: sy
+        readings:
+          attic: σῠ̀
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        σὺ Σωκράτης εἶ
+        Σωκράτης εἶ
+        Σωκράτης εἶ σύ
+        σὺ εἶ Σωκράτης
+        εἶ σὺ Σωκράτης
+  translations:
+    en: Are you Socrates?
+  persons:
+    addressee: sg
+- id: s.01.19
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: τίς ἐστιν;
+      tokens:
+      - surface: τίς
+        sense: tis
+        readings:
+          attic: τῐ́ς
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        τίς ἐστιν
+        τίς ἐστι
+  translations:
+    en: |-
+      Who is it?
+      Who is (he|she|that|this)
+      Who's (it|he|she|that|this)
+- id: s.01.20
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: Κρίτων ἐστίν.
+      tokens:
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        Κρίτων ἐστίν
+        Κρίτων ἐστί
+  translations:
+    en: (It is|It's|That is|That's|This is|He is|He's) Crito.
+- id: s.01.21
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: Ξανθίππη ἐστίν.
+      tokens:
+      - surface: Ξανθίππη
+        sense: xanthippe
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        Ξανθίππη ἐστίν
+        Ξανθίππη ἐστί
+  translations:
+    en: (It is|It's|That is|That's|This is|She is|She's) Xanthippe.
+- id: s.01.22
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ Σωκράτης εἰμί.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        ἐγὼ Σωκράτης εἰμί
+        Σωκράτης εἰμί
+        εἰμὶ Σωκράτης
+        Σωκράτης ἐγώ εἰμι
+        ἐγώ εἰμι Σωκράτης
+  translations:
+    en: |-
+      (I am|I'm) Socrates.
+      It is I, Socrates
+- id: s.01.23
+  node: grc.u01.who-are-you
+  forms:
+    grc-Grek/polytonic:
+      text: καὶ σύ.
+      tokens:
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: σύ
+        sense: sy
+        readings:
+          attic: σῠ́
+      reverse: καὶ σύ
+  translations:
+    en: (You too|And you|Same to you|And to you).
+  persons:
+    addressee: sg
+- id: s.01.24
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: ναί.
+      tokens:
+      - surface: ναί
+        sense: nai
+        readings:
+          attic: ναί
+      reverse: ναί
+  translations:
+    en: Yes.
+- id: s.01.25
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: οὔ.
+      tokens:
+      - surface: οὔ
+        sense: ou
+        readings:
+          attic: οὔ
+      reverse: οὔ
+  translations:
+    en: No.
+- id: s.01.26
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: νύξ ἐστιν.
+      tokens:
+      - surface: νύξ
+        sense: nyx
+        readings:
+          attic: νῠ́ξ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        νύξ ἐστιν
+        νύξ ἐστι
+  translations:
+    en: (It is|It's) night[time].
+- id: s.01.27
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: ἡμέρα ἐστίν.
+      tokens:
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ἡμέρα ἐστίν
+        ἡμέρα ἐστί
+  translations:
+    en: (It is|It's) (day|daytime).
+- id: s.01.28
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: νὺξ οὐκ ἔστιν.
+      tokens:
+      - surface: νὺξ
+        sense: nyx
+        readings:
+          attic: νῠ̀ξ
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: ἔστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἔστῐν
+      reverse: |-
+        νὺξ οὐκ ἔστιν
+        οὐκ ἔστι[ν] νύξ
+        νὺξ οὐκ ἔστι
+  translations:
+    en: (It is not|It isn't|It's not) night[time].
+- id: s.01.29
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: οὐχ ἡμέρα ἐστίν.
+      tokens:
+      - surface: οὐχ
+        sense: ou
+        readings:
+          attic: οὐχ
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        οὐχ ἡμέρα ἐστίν
+        ἡμέρα οὐκ ἔστι[ν]
+        οὐχ ἡμέρα ἐστί
+  translations:
+    en: (It is not|It isn't|It's not) (day|daytime).
+- id: s.01.30
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: νῦν νύξ ἐστιν.
+      tokens:
+      - surface: νῦν
+        sense: nyn
+        readings:
+          attic: νῦν
+      - surface: νύξ
+        sense: nyx
+        readings:
+          attic: νῠ́ξ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        νῦν νύξ ἐστιν
+        νύξ ἐστι[ν] νῦν
+        νὺξ νῦν ἐστι[ν]
+        νῦν νύξ ἐστι
+  translations:
+    en: |-
+      (It is|It's) night[time] now.
+      Now (it is|it's) night[time]
+- id: s.01.31
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: ἤδη ἡμέρα ἐστίν.
+      tokens:
+      - surface: ἤδη
+        sense: ede
+        readings:
+          attic: ἤδη
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ἤδη ἡμέρα ἐστίν
+        ἡμέρα ἤδη ἐστί[ν]
+        ἡμέρα ἐστὶ[ν] ἤδη
+        ἤδη ἡμέρα ἐστί
+  translations:
+    en: (It is|It's) already (day|daytime).
+- id: s.01.32
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: ἔτι νύξ ἐστιν.
+      tokens:
+      - surface: ἔτι
+        sense: eti
+        readings:
+          attic: ἔτῐ
+      - surface: νύξ
+        sense: nyx
+        readings:
+          attic: νῠ́ξ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ἔτι νύξ ἐστιν
+        νὺξ ἔτι ἐστί[ν]
+        νύξ ἐστι[ν] ἔτι
+        ἔτι νύξ ἐστι
+  translations:
+    en: (It is|It's) still night[time].
+- id: s.01.33
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: ναί, νῦν ἡμέρα ἐστίν.
+      tokens:
+      - surface: ναί
+        sense: nai
+        readings:
+          attic: ναί
+      - surface: νῦν
+        sense: nyn
+        readings:
+          attic: νῦν
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ναί νῦν ἡμέρα ἐστίν
+        ναί ἡμέρα ἐστὶ[ν] νῦν
+        ναί ἡμέρα νῦν ἐστι[ν]
+        ναί νῦν ἡμέρα ἐστί
+  translations:
+    en: |-
+      Yes, (it is|it's) (day|daytime) now.
+      Yes, now (it is|it's) (day|daytime)
+- id: s.01.34
+  node: grc.u01.night-and-day
+  forms:
+    grc-Grek/polytonic:
+      text: οὔ· ἔτι νύξ ἐστιν.
+      tokens:
+      - surface: οὔ
+        sense: ou
+        readings:
+          attic: οὔ
+      - surface: ἔτι
+        sense: eti
+        readings:
+          attic: ἔτῐ
+      - surface: νύξ
+        sense: nyx
+        readings:
+          attic: νῠ́ξ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        οὔ ἔτι νύξ ἐστιν
+        οὔ νὺξ ἔτι ἐστί[ν]
+        οὔ νύξ ἐστι[ν] ἔτι
+        οὔ ἔτι νύξ ἐστι
+  translations:
+    en: No, (it is|it's) still night[time].
+- id: s.01.35
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: πρῴ ἐστιν.
+      tokens:
+      - surface: πρῴ
+        sense: proi
+        readings:
+          attic: πρῴ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        πρῴ ἐστιν
+        πρῴ ἐστι
+  translations:
+    en: (It is|It's) early.
+- id: s.01.36
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: πάνυ πρῴ ἐστιν.
+      tokens:
+      - surface: πάνυ
+        sense: pany
+        readings:
+          attic: πᾰ́νῠ
+      - surface: πρῴ
+        sense: proi
+        readings:
+          attic: πρῴ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        πάνυ πρῴ ἐστιν
+        πάνυ πρῴ ἐστι
+  translations:
+    en: (It is|It's) (very|quite) early.
+- id: s.01.37
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: ἔτι πρῴ ἐστιν.
+      tokens:
+      - surface: ἔτι
+        sense: eti
+        readings:
+          attic: ἔτῐ
+      - surface: πρῴ
+        sense: proi
+        readings:
+          attic: πρῴ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ἔτι πρῴ ἐστιν
+        πρῴ ἐστι[ν] ἔτι
+        πρῲ ἔτι ἐστί[ν]
+        ἔτι πρῴ ἐστι
+  translations:
+    en: (It is|It's) still early.
+- id: s.01.38
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: οὐ πρῴ ἐστιν.
+      tokens:
+      - surface: οὐ
+        sense: ou
+        readings:
+          attic: οὐ
+      - surface: πρῴ
+        sense: proi
+        readings:
+          attic: πρῴ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        οὐ πρῴ ἐστιν
+        οὐκ ἔστι[ν] πρῴ
+        οὐ πρῴ ἐστι
+  translations:
+    en: (It is not|It isn't|It's not) early.
+- id: s.01.39
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: πηνίκα ἐστίν;
+      tokens:
+      - surface: πηνίκα
+        sense: penika
+        readings:
+          attic: πηνῐ́κᾰ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        πηνίκα ἐστίν
+        πηνίκα ἐστί
+  translations:
+    en: |-
+      What time is it?
+      (What's|What is) the time
+      What hour is it
+- id: s.01.40
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: πηνίκα μάλιστα;
+      tokens:
+      - surface: πηνίκα
+        sense: penika
+        readings:
+          attic: πηνῐ́κᾰ
+      - surface: μάλιστα
+        sense: malista
+        readings:
+          attic: μᾰ́λῐστᾰ
+      reverse: πηνίκα μάλιστα
+  translations:
+    en: |-
+      About what time is it?
+      About what time
+      What time[ is it], exactly
+      What time exactly is it
+- id: s.01.41
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: ὄρθρος ἐστίν.
+      tokens:
+      - surface: ὄρθρος
+        sense: orthros
+        readings:
+          attic: ὄρθρος
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ὄρθρος ἐστίν
+        ὄρθρος ἐστί
+  translations:
+    en: (It is|It's) (dawn|daybreak).
+- id: s.01.42
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: ὄρθρος βαθύς.
+      tokens:
+      - surface: ὄρθρος
+        sense: orthros
+        readings:
+          attic: ὄρθρος
+      - surface: βαθύς
+        sense: bathys
+        readings:
+          attic: βᾰθῠ́ς
+      reverse: ὄρθρος βαθύς
+  translations:
+    en: |-
+      Very early dawn.
+      (It is|It's) (very early dawn|deep dawn|the crack of dawn|just before dawn|just before daybreak|early dawn)
+      (Deep|Early) dawn
+      (The crack of dawn|Just before dawn|Just before daybreak)
+- id: s.01.43
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: νὺξ ἢ ἡμέρα;
+      tokens:
+      - surface: νὺξ
+        sense: nyx
+        readings:
+          attic: νῠ̀ξ
+      - surface: ἢ
+        sense: e
+        readings:
+          attic: ἢ
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      reverse: νὺξ ἢ ἡμέρα
+  translations:
+    en: Night or day?
+- id: s.01.44
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: ἡμέρα ἐστὶν ἢ νύξ;
+      tokens:
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      - surface: ἐστὶν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ̀ν
+      - surface: ἢ
+        sense: e
+        readings:
+          attic: ἢ
+      - surface: νύξ
+        sense: nyx
+        readings:
+          attic: νῠ́ξ
+      reverse: |-
+        ἡμέρα ἐστὶν ἢ νύξ
+        ἡμέρα ἢ νύξ ἐστι[ν]
+  translations:
+    en: Is it (day|daytime) or night[time]?
+- id: s.01.45
+  node: grc.u01.what-time
+  forms:
+    grc-Grek/polytonic:
+      text: ἢ οὐ πρῴ ἐστιν;
+      tokens:
+      - surface: ἢ
+        sense: e
+        readings:
+          attic: ἢ
+      - surface: οὐ
+        sense: ou
+        readings:
+          attic: οὐ
+      - surface: πρῴ
+        sense: proi
+        readings:
+          attic: πρῴ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ἢ οὐ πρῴ ἐστιν
+        ἢ οὐ πρῴ ἐστι
+  translations:
+    en: Or (isn't it|is it not) early?
+- id: s.01.46
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: τί;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      reverse: τί
+  translations:
+    en: (What|Why)?
+- id: s.01.47
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: τί ἀφῖξαι;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      reverse: τί ἀφῖξαι
+  translations:
+    en: (Why have you come|Why are you here|What have you come for|What are you here for)?
+  persons:
+    addressee: sg
+- id: s.01.48
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: τί τηνικάδε ἀφῖξαι;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: τηνικάδε
+        sense: tenikade
+        readings:
+          attic: τηνῐκᾰ́δε
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      reverse: |-
+        τί τηνικάδε ἀφῖξαι
+        τί ἀφῖξαι τηνικάδε
+  translations:
+    en: Why (have you come|are you here) (at this hour|at this time|so early)?
+  persons:
+    addressee: sg
+- id: s.01.49
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: ἀφῖξαι, ὦ Κρίτων;
+      tokens:
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Κρίτων
+        sense: kriton
+        form: form:voc
+        readings:
+          attic: Κρῐ́των
+      reverse: |-
+        ἀφῖξαι ὦ Κρίτων
+        ἀφῖξαι Κρίτων
+        [ὦ] Κρίτων ἀφῖξαι
+  translations:
+    en: (Have you come|Are you here), Crito?
+- id: s.01.50
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: τί ἀφῖξαι, ὦ Ξανθίππη;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        τί ἀφῖξαι ὦ Ξανθίππη
+        τί ἀφῖξαι Ξανθίππη
+        [ὦ] Ξανθίππη τί ἀφῖξαι
+  translations:
+    en: (Why have you come|Why are you here|What have you come for), Xanthippe?
+- id: s.01.51
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: πάνυ μὲν οὖν.
+      tokens:
+      - surface: πάνυ
+        sense: pany
+        readings:
+          attic: πᾰ́νῠ
+      - surface: μὲν
+        sense: men
+        readings:
+          attic: μὲν
+      - surface: οὖν
+        sense: oun
+        readings:
+          attic: οὖν
+      reverse: πάνυ μὲν οὖν
+  translations:
+    en: (Certainly|Yes, certainly|Very much so|Yes, indeed|Of course|Absolutely|Quite so).
+- id: s.01.52
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: τί οὖν ἀφῖξαι;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: οὖν
+        sense: oun
+        readings:
+          attic: οὖν
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      reverse: τί οὖν ἀφῖξαι
+  translations:
+    en: |-
+      So why have you come?
+      So why are you here
+      Why (have you come|are you here), then
+  persons:
+    addressee: sg
+- id: s.01.53
+  node: grc.u01.why-so-early
+  forms:
+    grc-Grek/polytonic:
+      text: ναί, πάνυ μὲν οὖν.
+      tokens:
+      - surface: ναί
+        sense: nai
+        readings:
+          attic: ναί
+      - surface: πάνυ
+        sense: pany
+        readings:
+          attic: πᾰ́νῠ
+      - surface: μὲν
+        sense: men
+        readings:
+          attic: μὲν
+      - surface: οὖν
+        sense: oun
+        readings:
+          attic: οὖν
+      reverse: ναί πάνυ μὲν οὖν
+  translations:
+    en: Yes, (certainly|very much so|indeed|of course|absolutely|quite so).
+stories:
+- id: grc.story.why-so-early
+  node: grc.u01.story
+  title:
+    en: Why so early? (Plato, Crito 43a)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: kriton
+    name:
+      grc-Grek/polytonic: Κρίτων
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:tenikade
+      distractors:
+      - sense:nyx
+      - sense:hemera
+      forms:
+        grc-Grek/polytonic:
+          text: τί τηνικάδε ἀφῖξαι, ὦ Κρίτων;
+          tokens:
+          - surface: τί
+            sense: ti
+            readings:
+              attic: τῐ́
+          - surface: τηνικάδε
+            sense: tenikade
+            readings:
+              attic: τηνῐκᾰ́δε
+          - surface: ἀφῖξαι
+            sense: aphikneomai
+            form: form:perf-2s
+            readings:
+              attic: ᾰ̓φῖξαι
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: Κρίτων
+            sense: kriton
+            form: form:voc
+            readings:
+              attic: Κρῐ́των
+      translations:
+        en: “Why have you come at this hour, Crito?
+  - line:
+      speaker: socrates
+      forms:
+        grc-Grek/polytonic:
+          text: ἢ οὐ πρῲ ἔτι ἐστίν;
+          tokens:
+          - surface: ἢ
+            sense: e
+            readings:
+              attic: ἢ
+          - surface: οὐ
+            sense: ou
+            readings:
+              attic: οὐ
+          - surface: πρῲ
+            sense: proi
+            readings:
+              attic: πρῲ
+          - surface: ἔτι
+            sense: eti
+            readings:
+              attic: ἔτῐ
+          - surface: ἐστίν
+            sense: eimi
+            form: form:pres-3s
+            readings:
+              attic: ἐστῐ́ν
+      translations:
+        en: Or isn't it still early?”
+  - line:
+      speaker: kriton
+      forms:
+        grc-Grek/polytonic:
+          text: πάνυ μὲν οὖν.
+          tokens:
+          - surface: πάνυ
+            sense: pany
+            readings:
+              attic: πᾰ́νῠ
+          - surface: μὲν
+            sense: men
+            readings:
+              attic: μὲν
+          - surface: οὖν
+            sense: oun
+            readings:
+              attic: οὖν
+      translations:
+        en: “It certainly is.”
+  - choose:
+      prompt:
+        en: Is it early?
+      options:
+      - en: 'Yes: Crito says it is very early.'
+      - en: 'No: it is evening.'
+      - en: 'No: it is the middle of the day.'
+      answer: 0
+  - line:
+      speaker: socrates
+      forms:
+        grc-Grek/polytonic:
+          text: πηνίκα μάλιστα;
+          tokens:
+          - surface: πηνίκα
+            sense: penika
+            readings:
+              attic: πηνῐ́κᾰ
+          - surface: μάλιστα
+            sense: malista
+            readings:
+              attic: μᾰ́λῐστᾰ
+      translations:
+        en: “About what time is it?”
+  - line:
+      speaker: kriton
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: ὄρθρος βαθύς.
+          tokens:
+          - surface: ὄρθρος
+            sense: orthros
+            readings:
+              attic: ὄρθρος
+          - surface: βαθύς
+            sense: bathys
+            readings:
+              attic: βᾰθῠ́ς
+      translations:
+        en: “First light, before dawn.”
+  - choose:
+      prompt:
+        en: What time is it?
+      options:
+      - en: The first grey light, before the sun is up
+      - en: Midnight
+      - en: Evening
+      answer: 0
+scenarios:
+- id: grc.at-the-prison-door
+  after: grc.u01.why-so-early
+  title:
+    en: At the prison door
+  setting:
+    en: Athens, 399 BCE, before dawn. You have come to the prison to see Socrates, and a guard stands at the door.
+  character:
+    en: The prison guard, sleepy and gruff, who speaks only Attic Greek.
+  goal:
+    en: Greet the guard, tell him who you are, and ask him what time it is.

@@ -236,6 +236,32 @@ def tiberian_reading(
             typer.echo(f"{shown}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
 
 
+@app.command("attic")
+def attic_reading(
+    readings: Annotated[
+        list[str],
+        typer.Argument(
+            help="Attic Greek words as the grc course pins their readings: polytonic, every α, ι "
+            "and υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or an iota "
+            "subscript makes it long."
+        ),
+    ],
+) -> None:
+    """How the grc voices say a reading (ADR 0087): its written form, its IPA (CGCG §1.15) and the
+    eSpeak NG phonemes, or why it cannot be said (an unmarked length)."""
+    from nabu.audio import attic
+
+    failed = False
+    for reading in readings:
+        try:
+            typer.echo(f"{attic.surface(reading)}\t{attic.ipa(reading)}\t{attic.espeak(reading)}")
+        except attic.AtticReadingError as e:
+            typer.echo(f"{reading}\t{e}", err=True)
+            failed = True
+    if failed:
+        raise typer.Exit(1)
+
+
 @app.command("sitelen-pona")
 def sitelen_pona_command(
     sentences: Annotated[list[str], typer.Argument(help="Toki Pona in sitelen Lasina.")],

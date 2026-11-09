@@ -61,6 +61,7 @@ TOOLS = {
     "hbo": [],
     "es": [],
     "tok": [],
+    "grc": [],
 }
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}
@@ -476,3 +477,55 @@ def test_toki_pona_is_said_as_phonemes(core_cli: CoreCli) -> None:
         words = regex.findall(r"\[\[[^\]]*\]\]", clip.synthesis.input)
         assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?")
         assert all(regex.fullmatch(r"\[\[[ptksmnljwaeiou']+\]\]", w) for w in words), clip.item
+
+
+GRC = "grc-Grek/polytonic"
+GREEK_LETTER = regex.compile(r"\p{Script=Greek}")
+
+
+def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
+    """grc (ADR 0087): every voice says the pinned Attic reading as eSpeak NG phonemes through
+    its Ancient Greek table, never Greek text (a Greek voice would read it as Modern Greek)."""
+    from nabu.audio.course import PHONEME_SCHEMES, read_index
+
+    _, compiled = build(core_cli, "grc")
+    audio = compiled.course.audio
+    assert audio is not None and audio.voices
+    for voice in audio.voices:
+        assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
+        assert voice.provider == "espeak-ng" and voice.voice.split("+")[0] == "grc"
+    index = read_index(COURSES / "grc" / "audio")
+    assert len(index.clips) > 60
+    for clip in index.clips:
+        assert clip.synthesis is not None
+        assert not GREEK_LETTER.search(clip.synthesis.input), clip.item
+        words = regex.findall(r"\[\[[^\]]*\]\]", clip.synthesis.input)
+        assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
+            clip.item
+        )
+
+
+def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
+    """Every word of every sentence and story line pins its `attic` reading: its own spelling with
+    every α, ι, υ outside a diphthong marked long or short, so the audio can say it (ADR 0087)."""
+    from nabu.audio import attic
+
+    _, compiled = build(core_cli, "grc")
+    words = 0
+    for unit in compiled.units:
+        lines = [s["forms"][GRC] for s in unit["sentences"]] + [
+            step["line"]["forms"][GRC]
+            for story in unit.get("stories", [])
+            for step in story["steps"]
+            if "line" in step
+        ]
+        for form in lines:
+            tokens = form["text"]["tokens"] if "text" in form else form["tokens"]
+            for t in tokens:
+                if t["kind"] != "word":
+                    continue
+                words += 1
+                reading = t["readings"]["attic"]
+                assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
+                assert attic.unmarked(reading) == [], (unit["id"], reading)
+    assert words > 100

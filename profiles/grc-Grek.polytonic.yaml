@@ -1,0 +1,54 @@
+# Ancient Greek in the Greek alphabet, written polytonic as modern editions of Attic prose print it (ADR 0087):
+# lowercase with capitals for names, the acute, grave and circumflex accents, the smooth and rough breathings,
+# the iota subscript and the diaeresis; the punctuation . , · ; and ’ for elision.
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+#  - Accents, breathings and the iota subscript left out or misplaced are accepted with a note (CORRECT_MARKS):
+#    learners on phones may have no polytonic keyboard. Marks that make another word of the course (ἡ the, ἤ or;
+#    τις someone, τίς who?; ἐν in, ἕν one; οὐ not, οὗ where) are WRONG_WORD.
+#  - A grave is an acute that stands before another word (Cambridge Grammar of Classical Greek, ch. 24): either is
+#    right, silently.
+id: grc-Grek/polytonic
+lang: grc-Grek
+exemplars: cldr:el
+# REVIEW: what CLDR 49's Modern Greek exemplars (polytonic letters are its auxiliary set) lack for Attic prose:
+# the ano teleia (U+0387, NFC U+00B7) and the elision apostrophe, and the letters filled in by the course build.
+exemplarsExtra: ["\u00b7", "\u2019", "ὁ", "ᾳ", "ᾷ", "ῃ", "ῇ", "ῲ", "ῴ", "ῷ"]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  # The elision mark (ἀλλ’, δ’) as editions and keyboards have it: modifier apostrophe, koronis, psili, the
+  # typewriter apostrophe. Then it is punctuation, and goes.
+  - map: { "\u02bc": "\u2019", "\u1fbd": "\u2019", "\u1fbf": "\u2019", "\u0027": "\u2019", "\u2018": "\u2019", "\u03f2": "σ", "\u03f9": "Σ" }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: { locale: grc }
+  # REVIEW: the accents (acute, grave, circumflex), the breathings, the iota subscript, the diaeresis, and a
+  # macron or breve a learner copied from a grammar.
+  marks: { set: "[\u0300\u0301\u0342\u0313\u0314\u0345\u0308\u0304\u0306]", policy: accept-with-note, note: greek-marks, distinguishes: true, wordNote: greek-marks-word }
+  # REVIEW: grave and acute are one accent (CGCG 24.2): a word typed alone takes the acute.
+  equivalences:
+    - { id: grave, policy: accept, map: { "ἂ": "ἄ", "ἃ": "ἅ", "Ἂ": "Ἄ", "Ἃ": "Ἅ", "ἒ": "ἔ", "ἓ": "ἕ", "Ἒ": "Ἔ", "Ἓ": "Ἕ", "ἢ": "ἤ", "ἣ": "ἥ", "Ἢ": "Ἤ", "Ἣ": "Ἥ", "ἲ": "ἴ", "ἳ": "ἵ", "Ἲ": "Ἴ", "Ἳ": "Ἵ", "ὂ": "ὄ", "ὃ": "ὅ", "Ὂ": "Ὄ", "Ὃ": "Ὅ", "ὒ": "ὔ", "ὓ": "ὕ", "Ὓ": "Ὕ", "ὢ": "ὤ", "ὣ": "ὥ", "Ὢ": "Ὤ", "Ὣ": "Ὥ", "ὰ": "ά", "ὲ": "έ", "ὴ": "ή", "ὶ": "ί", "ὸ": "ό", "ὺ": "ύ", "ὼ": "ώ", "ᾂ": "ᾄ", "ᾃ": "ᾅ", "ᾊ": "ᾌ", "ᾋ": "ᾍ", "ᾒ": "ᾔ", "ᾓ": "ᾕ", "ᾚ": "ᾜ", "ᾛ": "ᾝ", "ᾢ": "ᾤ", "ᾣ": "ᾥ", "ᾪ": "ᾬ", "ᾫ": "ᾭ", "ᾲ": "ᾴ", "Ὰ": "Ά", "ῂ": "ῄ", "Ὲ": "Έ", "Ὴ": "Ή", "ῒ": "ΐ", "Ὶ": "Ί", "ῢ": "ΰ", "Ὺ": "Ύ", "ῲ": "ῴ", "Ὸ": "Ό", "Ὼ": "Ώ" } }
+    # REVIEW: the long diphthongs ῳ and ῃ typed with the iota beside the vowel (adscript), as some editions print
+    # them (CGCG 1.22): ωι and ηι are no other diphthong. ᾳ cannot be: αι is the short diphthong.
+    - { id: adscript, policy: accept, map: { "ἠι": "ᾐ", "ἡι": "ᾑ", "ἤι": "ᾔ", "ἥι": "ᾕ", "ἦι": "ᾖ", "ἧι": "ᾗ", "ὠι": "ᾠ", "ὡι": "ᾡ", "ὤι": "ᾤ", "ὥι": "ᾥ", "ὦι": "ᾦ", "ὧι": "ᾧ", "ηι": "ῃ", "ήι": "ῄ", "ῆι": "ῇ", "ωι": "ῳ", "ώι": "ῴ", "ῶι": "ῷ" } }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:el
+    maxRatio: 0.2
+    # REVIEW (ADR 0066): endings a letter or two apart that change the meaning, compared without marks and with
+    # ς as σ. Person and number on verbs (λέγω, λέγει, λέγεις; λέγομεν, λέγετε, λέγουσι), on words the course
+    # pins as a verb form; case and number on nouns, adjectives, pronouns and the article (λόγος, λόγον, λόγου,
+    # λόγοι), on words it inflects. Pronouns a letter apart (ἡμεῖς, ὑμεῖς) are another word.
+    contrasts:
+      - { id: person, note: contrast-person, forms: [form:pres, form:impf, form:aor, form:fut, form:impv],
+          members: [ω, εις, ει, ομεν, ετε, [ουσι, ουσιν], ον, ες, [ε, εν], α, ας, αμεν, ατε, αν, ομαι, εται, ομεθα, εσθε, ονται, ομην, ου, ετο, οντο, σο] }
+      - { id: pronoun, note: contrast-pronoun, members: [ἡμεῖς, ὑμεῖς, ἡμῶν, ὑμῶν, ἡμῖν, ὑμῖν, ἡμᾶς, ὑμᾶς, [μου, ἐμοῦ], [σου, σοῦ], [μοι, ἐμοί], [σοι, σοί], [με, ἐμέ], [σε, σέ]] }
+      - { id: case, note: contrast-ending, inflected: true,
+          members: [ος, ον, ου, ε, οι, ων, οις, ους, α, ας, αι, αις, αν, η, ης, ην, ι, ες, εις, εως, ει, [σι, σιν], εσι, εσιν, ευς, εα] }
+input:
+  keyboard: cldr-kbd:el
+layout: { vertical: none }
+# Polytonic text is set in a serif face (Noto Serif, OFL-1.1) a little larger than the text around it: the
+# breathings and accents stack over the letters and need the size and the line height.
+fonts: { stack: [Noto Serif], lineHeight: 1.9, scale: 1.15 }

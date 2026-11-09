@@ -1,0 +1,1361 @@
+# Ancient Greek (grc), unit 3: Where to, and where from? (Plato, Phaedrus 227a).
+# Going and coming: ποῖ, πόθεν, ποῦ; prepositions and their cases (εἰς and the accusative, ἐκ and παρά with the
+# genitive, ἐν and the dative); a middle verb, πορεύομαι; the agora, the house, the town.
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u03-where-to
+title:
+  en: Where to, and where from?
+cefr: A1
+kcs:
+- id: sense:philos
+  gloss:
+    en: friend; (as an adjective) dear
+  forms:
+    grc-Grek/polytonic:
+    - φίλος
+  notes:
+    en: 'ὦ φίλε, "my friend", is how Socrates greets a friend: ὦ φίλε Φαῖδρε.'
+- id: sense:phaidros
+  gloss:
+    en: Phaedrus (a young Athenian, Socrates' friend)
+  forms:
+    grc-Grek/polytonic:
+    - Φαῖδρος
+- id: sense:poi
+  gloss:
+    en: where to? (to what place)
+  forms:
+    grc-Grek/polytonic:
+    - ποῖ
+- id: sense:pothen
+  gloss:
+    en: where from? (from what place)
+  forms:
+    grc-Grek/polytonic:
+    - πόθεν
+- id: sense:de-indeed
+  gloss:
+    en: indeed, now (gives weight to the word before it)
+  forms:
+    grc-Grek/polytonic:
+    - δή
+  notes:
+    en: 'δή leans on the word before it: ποῖ δή, "where, then?". It is not δέ, "and, but".'
+- id: sense:poreuomai
+  gloss:
+    en: to go, travel, walk
+  forms:
+    grc-Grek/polytonic:
+    - πορεύομαι
+  notes:
+    en: 'A middle verb: its endings are -ομαι, -ῃ (or -ει), -εται, but it means a plain "I go".'
+- id: sense:pros
+  gloss:
+    en: (with the accusative) to, towards
+  forms:
+    grc-Grek/polytonic:
+    - πρός
+- id: sense:peripatos
+  gloss:
+    en: a walk; a stroll
+  forms:
+    grc-Grek/polytonic:
+    - περίπατος
+- id: sense:exo
+  gloss:
+    en: (with the genitive) outside
+  forms:
+    grc-Grek/polytonic:
+    - ἔξω
+- id: sense:teichos
+  gloss:
+    en: wall; the city walls
+  forms:
+    grc-Grek/polytonic:
+    - τεῖχος
+  notes:
+    en: 'A neuter noun of the third declension: τὸ τεῖχος, of the wall τοῦ τείχους.'
+- id: sense:eis
+  gloss:
+    en: (with the accusative) into, to
+  forms:
+    grc-Grek/polytonic:
+    - εἰς
+- id: sense:agora
+  gloss:
+    en: the agora, the market place
+  forms:
+    grc-Grek/polytonic:
+    - ἀγορά
+  notes:
+    en: 'The open square at the heart of Athens: market, law courts and meeting place.'
+- id: sense:oikia
+  gloss:
+    en: house; household
+  forms:
+    grc-Grek/polytonic:
+    - οἰκία
+  image:
+    file: ../images/house.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:badizo
+  gloss:
+    en: to walk, go
+  forms:
+    grc-Grek/polytonic:
+    - βαδίζω
+- id: sense:ek
+  gloss:
+    en: (with the genitive) out of, from
+  forms:
+    grc-Grek/polytonic:
+    - ἐκ
+    - ἐξ
+  notes:
+    en: 'ἐξ before a vowel: ἐξ ἀγορᾶς.'
+- id: sense:pou
+  gloss:
+    en: where? (at what place)
+  forms:
+    grc-Grek/polytonic:
+    - ποῦ
+- id: sense:en
+  gloss:
+    en: (with the dative) in, at, on
+  forms:
+    grc-Grek/polytonic:
+    - ἐν
+- id: form:dat
+  gloss:
+    en: 'the dative: to, for; after ἐν, in (ἐν τῇ ἀγορᾷ)'
+- id: sense:oikoi
+  gloss:
+    en: at home
+  forms:
+    grc-Grek/polytonic:
+    - οἴκοι
+- id: sense:oikade
+  gloss:
+    en: home, homewards
+  forms:
+    grc-Grek/polytonic:
+    - οἴκαδε
+- id: sense:hodos
+  gloss:
+    en: road, way, street
+  forms:
+    grc-Grek/polytonic:
+    - ὁδός
+  notes:
+    en: 'Feminine, though it ends in -ος: ἡ ὁδός.'
+- id: sense:para
+  gloss:
+    en: (with the genitive) from (a person); (with the accusative) to (a person)
+  forms:
+    grc-Grek/polytonic:
+    - παρά
+- id: sense:lysias
+  gloss:
+    en: Lysias (the Athenian speechwriter, son of Cephalus)
+  forms:
+    grc-Grek/polytonic:
+    - Λυσίας
+- id: sense:kephalos
+  gloss:
+    en: Cephalus (Lysias' father)
+  forms:
+    grc-Grek/polytonic:
+    - Κέφαλος
+- id: sense:astu
+  gloss:
+    en: the town, the city (Athens itself, within the walls)
+  forms:
+    grc-Grek/polytonic:
+    - ἄστυ
+  notes:
+    en: 'A neuter noun: τὸ ἄστυ, in the town ἐν τῷ ἄστει.'
+nodes:
+- id: grc.u03.my-friend
+  kind: lesson
+  introduces:
+  - sense:philos
+  - sense:phaidros
+  - sense:poi
+  - sense:pothen
+  - sense:de-indeed
+- id: grc.u03.i-am-going
+  kind: lesson
+  introduces:
+  - sense:poreuomai
+  - sense:pros
+  - sense:peripatos
+  - sense:exo
+  - sense:teichos
+- id: grc.u03.to-the-agora
+  kind: lesson
+  introduces:
+  - sense:eis
+  - sense:agora
+  - sense:oikia
+  - sense:badizo
+  - sense:ek
+- id: grc.u03.at-home
+  kind: lesson
+  introduces:
+  - sense:pou
+  - sense:en
+  - form:dat
+  - sense:oikoi
+  - sense:oikade
+  - sense:hodos
+- id: grc.u03.from-lysias
+  kind: lesson
+  introduces:
+  - sense:para
+  - sense:lysias
+  - sense:kephalos
+  - sense:astu
+- id: grc.u03.story
+  kind: story
+sentences:
+- id: s.03.1
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: ὦ φίλε.
+      tokens:
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: φίλε
+        sense: philos
+        form: form:voc
+        readings:
+          attic: φῐ́λε
+      reverse: ὦ φίλε
+  translations:
+    en: (My|Dear) friend!
+- id: s.03.2
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: ὦ φίλε Φαῖδρε.
+      tokens:
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: φίλε
+        sense: philos
+        form: form:voc
+        readings:
+          attic: φῐ́λε
+      - surface: Φαῖδρε
+        sense: phaidros
+        form: form:voc
+        readings:
+          attic: Φαῖδρε
+      reverse: |-
+        ὦ φίλε Φαῖδρε
+        φίλε Φαῖδρε
+  translations:
+    en: |-
+      (My dear|Dear) Phaedrus!
+      Phaedrus, my friend
+- id: s.03.3
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: ποῖ;
+      tokens:
+      - surface: ποῖ
+        sense: poi
+        readings:
+          attic: ποῖ
+      reverse: ποῖ
+  translations:
+    en: (Where to|Where are you going|Where are you off to)?
+- id: s.03.4
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: πόθεν;
+      tokens:
+      - surface: πόθεν
+        sense: pothen
+        readings:
+          attic: πόθεν
+      reverse: πόθεν
+  translations:
+    en: (Where from|Where have you come from|Where are you coming from)?
+- id: s.03.5
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: ποῖ δὴ καὶ πόθεν;
+      tokens:
+      - surface: ποῖ
+        sense: poi
+        readings:
+          attic: ποῖ
+      - surface: δὴ
+        sense: de-indeed
+        readings:
+          attic: δὴ
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: πόθεν
+        sense: pothen
+        readings:
+          attic: πόθεν
+      reverse: ποῖ δὴ καὶ πόθεν
+  translations:
+    en: Where (to|are you going), and where (from|have you come from|are you coming from)?
+- id: s.03.6
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: πόθεν ἀφῖξαι;
+      tokens:
+      - surface: πόθεν
+        sense: pothen
+        readings:
+          attic: πόθεν
+      - surface: ἀφῖξαι
+        sense: aphikneomai
+        form: form:perf-2s
+        readings:
+          attic: ᾰ̓φῖξαι
+      reverse: πόθεν ἀφῖξαι
+  translations:
+    en: Where have you come from?
+  persons:
+    addressee: sg
+- id: s.03.7
+  node: grc.u03.my-friend
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ φίλε.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: φίλε
+        sense: philos
+        form: form:voc
+        readings:
+          attic: φῐ́λε
+      reverse: |-
+        χαῖρε ὦ φίλε
+        χαῖρε φίλε
+        [ὦ] φίλε χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), (my|dear) friend!
+  persons:
+    addressee: sg
+- id: s.03.8
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: πορεύομαι.
+      tokens:
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: πορεύομαι
+  translations:
+    en: (I am|I'm) (going|walking|on my way).
+- id: s.03.9
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: ποῖ πορεύῃ;
+      tokens:
+      - surface: ποῖ
+        sense: poi
+        readings:
+          attic: ποῖ
+      - surface: πορεύῃ
+        sense: poreuomai
+        form: form:pres-2s
+        readings:
+          attic: πορεύῃ
+      reverse: |-
+        ποῖ πορεύῃ
+        ποῖ πορεύει
+        ποῖ δὴ πορεύ(ῃ|ει)
+  translations:
+    en: Where are you (going|walking|off to)?
+  persons:
+    addressee: sg
+- id: s.03.10
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: πρὸς περίπατον πορεύομαι.
+      tokens:
+      - surface: πρὸς
+        sense: pros
+        readings:
+          attic: πρὸς
+      - surface: περίπατον
+        sense: peripatos
+        form: form:acc
+        readings:
+          attic: περῐ́πᾰτον
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        πρὸς περίπατον πορεύομαι
+        πορεύομαι πρὸς περίπατον
+  translations:
+    en: (I am|I'm) going (for|on) a walk.
+- id: s.03.11
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ τεῖχος.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: τεῖχος
+        sense: teichos
+        readings:
+          attic: τεῖχος
+      reverse: τὸ τεῖχος
+  translations:
+    en: The (wall|walls|city wall|city walls).
+- id: s.03.12
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: ἔξω τείχους.
+      tokens:
+      - surface: ἔξω
+        sense: exo
+        readings:
+          attic: ἔξω
+      - surface: τείχους
+        sense: teichos
+        form: form:gen
+        readings:
+          attic: τείχους
+      reverse: ἔξω τείχους
+  translations:
+    en: Outside the (wall|walls|city walls).
+- id: s.03.13
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: πορεύομαι ἔξω τείχους.
+      tokens:
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      - surface: ἔξω
+        sense: exo
+        readings:
+          attic: ἔξω
+      - surface: τείχους
+        sense: teichos
+        form: form:gen
+        readings:
+          attic: τείχους
+      reverse: |-
+        πορεύομαι ἔξω τείχους
+        ἔξω τείχους πορεύομαι
+  translations:
+    en: (I am|I'm) going outside the (wall|walls|city walls).
+- id: s.03.14
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Φαῖδρος πορεύεται.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Φαῖδρος
+        sense: phaidros
+        readings:
+          attic: Φαῖδρος
+      - surface: πορεύεται
+        sense: poreuomai
+        form: form:pres-3s
+        readings:
+          attic: πορεύεται
+      reverse: |-
+        ὁ Φαῖδρος πορεύεται
+        πορεύεται [ὁ] Φαῖδρος
+        Φαῖδρος πορεύεται
+  translations:
+    en: Phaedrus is (going|walking|on his way).
+- id: s.03.15
+  node: grc.u03.i-am-going
+  forms:
+    grc-Grek/polytonic:
+      text: πρὸς περίπατον ἔξω τείχους πορεύομαι.
+      tokens:
+      - surface: πρὸς
+        sense: pros
+        readings:
+          attic: πρὸς
+      - surface: περίπατον
+        sense: peripatos
+        form: form:acc
+        readings:
+          attic: περῐ́πᾰτον
+      - surface: ἔξω
+        sense: exo
+        readings:
+          attic: ἔξω
+      - surface: τείχους
+        sense: teichos
+        form: form:gen
+        readings:
+          attic: τείχους
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        πρὸς περίπατον ἔξω τείχους πορεύομαι
+        πορεύομαι πρὸς περίπατον ἔξω τείχους
+  translations:
+    en: (I am|I'm) going (for|on) a walk outside the (wall|walls|city walls).
+- id: s.03.16
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: εἰς τὴν ἀγορὰν πορεύομαι.
+      tokens:
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: ἀγορὰν
+        sense: agora
+        form: form:acc
+        readings:
+          attic: ᾰ̓γορᾱ̀ν
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        εἰς τὴν ἀγορὰν πορεύομαι
+        πορεύομαι εἰς τὴν ἀγοράν
+  translations:
+    en: (I am|I'm) going to the (agora|market|marketplace).
+- id: s.03.17
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: εἰς τὴν οἰκίαν βαδίζω.
+      tokens:
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: οἰκίαν
+        sense: oikia
+        form: form:acc
+        readings:
+          attic: οἰκῐ́ᾱν
+      - surface: βαδίζω
+        sense: badizo
+        form: form:pres-1s
+        readings:
+          attic: βᾰδῐ́ζω
+      reverse: |-
+        εἰς τὴν οἰκίαν βαδίζω
+        βαδίζω εἰς τὴν οἰκίαν
+  translations:
+    en: (I am|I'm) (walking|going) (into|to) the house.
+- id: s.03.18
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: ἐκ τῆς οἰκίας βαδίζει.
+      tokens:
+      - surface: ἐκ
+        sense: ek
+        readings:
+          attic: ἐκ
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: οἰκίας
+        sense: oikia
+        form: form:gen
+        readings:
+          attic: οἰκῐ́ᾱς
+      - surface: βαδίζει
+        sense: badizo
+        form: form:pres-3s
+        readings:
+          attic: βᾰδῐ́ζει
+      reverse: |-
+        ἐκ τῆς οἰκίας βαδίζει
+        βαδίζει ἐκ τῆς οἰκίας
+  translations:
+    en: (He|She) is (walking|going|coming) out of the house.
+- id: s.03.19
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: ἐκ τῆς ἀγορᾶς πορεύομαι.
+      tokens:
+      - surface: ἐκ
+        sense: ek
+        readings:
+          attic: ἐκ
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: ἀγορᾶς
+        sense: agora
+        form: form:gen
+        readings:
+          attic: ᾰ̓γορᾶς
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        ἐκ τῆς ἀγορᾶς πορεύομαι
+        πορεύομαι ἐκ τῆς ἀγορᾶς
+        ἐξ ἀγορᾶς πορεύομαι
+        πορεύομαι ἐξ ἀγορᾶς
+  translations:
+    en: (I am|I'm) (coming|going) from the (agora|market|marketplace).
+- id: s.03.20
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: ἐξ ἀγορᾶς.
+      tokens:
+      - surface: ἐξ
+        sense: ek
+        readings:
+          attic: ἐξ
+      - surface: ἀγορᾶς
+        sense: agora
+        form: form:gen
+        readings:
+          attic: ᾰ̓γορᾶς
+      reverse: |-
+        ἐξ ἀγορᾶς
+        ἐκ τῆς ἀγορᾶς
+  translations:
+    en: (From|Out of) the (agora|market|marketplace).
+- id: s.03.21
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Κρίτων εἰς τὴν ἀγορὰν βαδίζει.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: ἀγορὰν
+        sense: agora
+        form: form:acc
+        readings:
+          attic: ᾰ̓γορᾱ̀ν
+      - surface: βαδίζει
+        sense: badizo
+        form: form:pres-3s
+        readings:
+          attic: βᾰδῐ́ζει
+      reverse: |-
+        ὁ Κρίτων εἰς τὴν ἀγορὰν βαδίζει
+        [ὁ] Κρίτων βαδίζει εἰς τὴν ἀγοράν
+        εἰς τὴν ἀγορὰν βαδίζει [ὁ] Κρίτων
+        βαδίζει [ὁ] Κρίτων εἰς τὴν ἀγοράν
+        βαδίζει εἰς τὴν ἀγορὰν [ὁ] Κρίτων
+        Κρίτων εἰς τὴν ἀγορὰν βαδίζει
+        εἰς τὴν ἀγορὰν [ὁ] Κρίτων βαδίζει
+  translations:
+    en: Crito is (walking|going) to the (agora|market|marketplace).
+- id: s.03.22
+  node: grc.u03.to-the-agora
+  forms:
+    grc-Grek/polytonic:
+      text: ποῖ πορεύῃ, ὦ Ξανθίππη;
+      tokens:
+      - surface: ποῖ
+        sense: poi
+        readings:
+          attic: ποῖ
+      - surface: πορεύῃ
+        sense: poreuomai
+        form: form:pres-2s
+        readings:
+          attic: πορεύῃ
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        ποῖ πορεύῃ ὦ Ξανθίππη
+        ποῖ πορεύει ὦ Ξανθίππη
+        ποῖ πορεύ(ῃ|ει) Ξανθίππη
+        [ὦ] Ξανθίππη ποῖ πορεύ(ῃ|ει)
+  translations:
+    en: Where are you (going|walking|off to), Xanthippe?
+- id: s.03.23
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ποῦ εἶ;
+      tokens:
+      - surface: ποῦ
+        sense: pou
+        readings:
+          attic: ποῦ
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ποῦ εἶ
+        ποῦ εἶ σύ
+        σὺ ποῦ εἶ
+  translations:
+    en: Where are you?
+  persons:
+    addressee: sg
+- id: s.03.24
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ἐν τῇ ἀγορᾷ εἰμι.
+      tokens:
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: ἀγορᾷ
+        sense: agora
+        form: form:dat
+        readings:
+          attic: ᾰ̓γορᾷ
+      - surface: εἰμι
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ
+      reverse: |-
+        ἐν τῇ ἀγορᾷ εἰμι
+        εἰμὶ ἐν τῇ ἀγορᾷ
+  translations:
+    en: (I am|I'm) in the (agora|market|marketplace).
+- id: s.03.25
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ποῦ ἐστιν ὁ Σωκράτης;
+      tokens:
+      - surface: ποῦ
+        sense: pou
+        readings:
+          attic: ποῦ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      reverse: |-
+        ποῦ ἐστιν ὁ Σωκράτης
+        ποῦ ἐστι[ν] Σωκράτης
+        ποῦ [ὁ] Σωκράτης ἐστί[ν]
+  translations:
+    en: Where is Socrates?
+- id: s.03.26
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Σωκράτης ἐν τῇ οἰκίᾳ ἐστίν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: οἰκίᾳ
+        sense: oikia
+        form: form:dat
+        readings:
+          attic: οἰκῐ́ᾳ
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ὁ Σωκράτης ἐν τῇ οἰκίᾳ ἐστίν
+        [ὁ] Σωκράτης ἐστὶ[ν] ἐν τῇ οἰκίᾳ
+        ἐν τῇ οἰκίᾳ ἐστὶ[ν] [ὁ] Σωκράτης
+        Σωκράτης ἐν τῇ οἰκίᾳ ἐστί[ν]
+        ὁ Σωκράτης ἐν τῇ οἰκίᾳ ἐστί
+  translations:
+    en: Socrates is in the house.
+- id: s.03.27
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: οἴκοι εἰμί.
+      tokens:
+      - surface: οἴκοι
+        sense: oikoi
+        readings:
+          attic: οἴκοι
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        οἴκοι εἰμί
+        εἰμὶ οἴκοι
+  translations:
+    en: (I am|I'm) at home.
+- id: s.03.28
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: οἴκαδε βαδίζω.
+      tokens:
+      - surface: οἴκαδε
+        sense: oikade
+        readings:
+          attic: οἴκᾰδε
+      - surface: βαδίζω
+        sense: badizo
+        form: form:pres-1s
+        readings:
+          attic: βᾰδῐ́ζω
+      reverse: |-
+        οἴκαδε βαδίζω
+        βαδίζω οἴκαδε
+  translations:
+    en: (I am|I'm) (walking|going) home.
+- id: s.03.29
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ἐν τῇ ὁδῷ.
+      tokens:
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: ὁδῷ
+        sense: hodos
+        form: form:dat
+        readings:
+          attic: ὁδῷ
+      reverse: ἐν τῇ ὁδῷ
+  translations:
+    en: (On|In) the (road|street|way).
+- id: s.03.30
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ ὁδὸς πρὸς τὸ τεῖχος.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: ὁδὸς
+        sense: hodos
+        readings:
+          attic: ὁδὸς
+      - surface: πρὸς
+        sense: pros
+        readings:
+          attic: πρὸς
+      - surface: τὸ
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸ
+      - surface: τεῖχος
+        sense: teichos
+        form: form:acc
+        readings:
+          attic: τεῖχος
+      reverse: ἡ ὁδὸς πρὸς τὸ τεῖχος
+  translations:
+    en: The (road|way) (to|towards) the (wall|walls|city wall|city walls).
+- id: s.03.31
+  node: grc.u03.at-home
+  forms:
+    grc-Grek/polytonic:
+      text: ποῦ ἐστιν ἡ οἰκία;
+      tokens:
+      - surface: ποῦ
+        sense: pou
+        readings:
+          attic: ποῦ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: οἰκία
+        sense: oikia
+        readings:
+          attic: οἰκῐ́ᾱ
+      reverse: |-
+        ποῦ ἐστιν ἡ οἰκία
+        ποῦ ἐστι ἡ οἰκία
+        ποῦ ἡ οἰκία ἐστί[ν]
+  translations:
+    en: Where is the house?
+- id: s.03.32
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: παρὰ Λυσίου.
+      tokens:
+      - surface: παρὰ
+        sense: para
+        readings:
+          attic: πᾰρᾰ̀
+      - surface: Λυσίου
+        sense: lysias
+        form: form:gen
+        readings:
+          attic: Λῡσῐ́ου
+      reverse: παρὰ Λυσίου
+  translations:
+    en: From Lysias['s].
+- id: s.03.33
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: παρὰ Λυσίου πορεύομαι.
+      tokens:
+      - surface: παρὰ
+        sense: para
+        readings:
+          attic: πᾰρᾰ̀
+      - surface: Λυσίου
+        sense: lysias
+        form: form:gen
+        readings:
+          attic: Λῡσῐ́ου
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        παρὰ Λυσίου πορεύομαι
+        πορεύομαι παρὰ Λυσίου
+  translations:
+    en: (I am|I'm) coming from Lysias['s].
+- id: s.03.34
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: Λυσίας ὁ Κεφάλου.
+      tokens:
+      - surface: Λυσίας
+        sense: lysias
+        readings:
+          attic: Λῡσῐ́ᾱς
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Κεφάλου
+        sense: kephalos
+        form: form:gen
+        readings:
+          attic: Κεφᾰ́λου
+      reverse: Λυσίας ὁ Κεφάλου
+  translations:
+    en: Lysias, (son of Cephalus|Cephalus's son|the son of Cephalus).
+- id: s.03.35
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: παρὰ Λυσίου τοῦ Κεφάλου.
+      tokens:
+      - surface: παρὰ
+        sense: para
+        readings:
+          attic: πᾰρᾰ̀
+      - surface: Λυσίου
+        sense: lysias
+        form: form:gen
+        readings:
+          attic: Λῡσῐ́ου
+      - surface: τοῦ
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τοῦ
+      - surface: Κεφάλου
+        sense: kephalos
+        form: form:gen
+        readings:
+          attic: Κεφᾰ́λου
+      reverse: παρὰ Λυσίου τοῦ Κεφάλου
+  translations:
+    en: From Lysias['s], (the son of Cephalus|Cephalus's son|son of Cephalus).
+- id: s.03.36
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: εἰς τὸ ἄστυ πορεύομαι.
+      tokens:
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: τὸ
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸ
+      - surface: ἄστυ
+        sense: astu
+        form: form:acc
+        readings:
+          attic: ᾰ̓́στῠ
+      - surface: πορεύομαι
+        sense: poreuomai
+        form: form:pres-1s
+        readings:
+          attic: πορεύομαι
+      reverse: |-
+        εἰς τὸ ἄστυ πορεύομαι
+        πορεύομαι εἰς τὸ ἄστυ
+  translations:
+    en: (I am|I'm) going (to town|into town|into the city|to the city).
+- id: s.03.37
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Λυσίας ἐν τῷ ἄστει ἐστίν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Λυσίας
+        sense: lysias
+        readings:
+          attic: Λῡσῐ́ᾱς
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: ἄστει
+        sense: astu
+        form: form:dat
+        readings:
+          attic: ᾰ̓́στει
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ὁ Λυσίας ἐν τῷ ἄστει ἐστίν
+        [ὁ] Λυσίας ἐστὶ[ν] ἐν τῷ ἄστει
+        ἐν τῷ ἄστει ἐστὶ[ν] [ὁ] Λυσίας
+        Λυσίας ἐν τῷ ἄστει ἐστί[ν]
+        ὁ Λυσίας ἐν τῷ ἄστει ἐστί
+  translations:
+    en: Lysias is in (town|the town|the city).
+- id: s.03.38
+  node: grc.u03.from-lysias
+  forms:
+    grc-Grek/polytonic:
+      text: παρὰ τὸν φίλον βαδίζω.
+      tokens:
+      - surface: παρὰ
+        sense: para
+        readings:
+          attic: πᾰρᾰ̀
+      - surface: τὸν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸν
+      - surface: φίλον
+        sense: philos
+        form: form:acc
+        readings:
+          attic: φῐ́λον
+      - surface: βαδίζω
+        sense: badizo
+        form: form:pres-1s
+        readings:
+          attic: βᾰδῐ́ζω
+      reverse: |-
+        παρὰ τὸν φίλον βαδίζω
+        βαδίζω παρὰ τὸν φίλον
+  translations:
+    en: (I am|I'm) (going|walking) to (my|the|a) friend['s].
+stories:
+- id: grc.story.where-to
+  node: grc.u03.story
+  title:
+    en: Where to, and where from? (Plato, Phaedrus 227a)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: phaidros
+    name:
+      grc-Grek/polytonic: Φαῖδρος
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:pothen
+      distractors:
+      - sense:hemera
+      - sense:oikia
+      forms:
+        grc-Grek/polytonic:
+          text: ὦ φίλε Φαῖδρε, ποῖ δὴ καὶ πόθεν;
+          tokens:
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: φίλε
+            sense: philos
+            form: form:voc
+            readings:
+              attic: φῐ́λε
+          - surface: Φαῖδρε
+            sense: phaidros
+            form: form:voc
+            readings:
+              attic: Φαῖδρε
+          - surface: ποῖ
+            sense: poi
+            readings:
+              attic: ποῖ
+          - surface: δὴ
+            sense: de-indeed
+            readings:
+              attic: δὴ
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: πόθεν
+            sense: pothen
+            readings:
+              attic: πόθεν
+      translations:
+        en: “Phaedrus, my friend, where are you going, and where have you come from?”
+  - line:
+      speaker: phaidros
+      forms:
+        grc-Grek/polytonic:
+          text: παρὰ Λυσίου, ὦ Σώκρατες, τοῦ Κεφάλου,
+          tokens:
+          - surface: παρὰ
+            sense: para
+            readings:
+              attic: πᾰρᾰ̀
+          - surface: Λυσίου
+            sense: lysias
+            form: form:gen
+            readings:
+              attic: Λῡσῐ́ου
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: Σώκρατες
+            sense: sokrates
+            form: form:voc
+            readings:
+              attic: Σώκρᾰτες
+          - surface: τοῦ
+            sense: ho
+            form: form:gen
+            readings:
+              attic: τοῦ
+          - surface: Κεφάλου
+            sense: kephalos
+            form: form:gen
+            readings:
+              attic: Κεφᾰ́λου
+      translations:
+        en: “From Lysias, Socrates, the son of Cephalus,
+  - line:
+      speaker: phaidros
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: πορεύομαι δὲ πρὸς περίπατον ἔξω τείχους.
+          tokens:
+          - surface: πορεύομαι
+            sense: poreuomai
+            form: form:pres-1s
+            readings:
+              attic: πορεύομαι
+          - surface: δὲ
+            sense: de
+            readings:
+              attic: δὲ
+          - surface: πρὸς
+            sense: pros
+            readings:
+              attic: πρὸς
+          - surface: περίπατον
+            sense: peripatos
+            form: form:acc
+            readings:
+              attic: περῐ́πᾰτον
+          - surface: ἔξω
+            sense: exo
+            readings:
+              attic: ἔξω
+          - surface: τείχους
+            sense: teichos
+            form: form:gen
+            readings:
+              attic: τείχους
+      translations:
+        en: and I am going for a walk outside the walls.”
+  - choose:
+      prompt:
+        en: Where has Phaedrus come from?
+      options:
+      - en: From the house of Lysias
+      - en: From the agora
+      - en: From the prison
+      answer: 0
+  - choose:
+      prompt:
+        en: Where is he going?
+      options:
+      - en: For a walk outside the city walls
+      - en: Home
+      - en: To the agora
+      answer: 0
+scenarios:
+- id: grc.outside-the-walls
+  after: grc.u03.from-lysias
+  title:
+    en: Outside the walls
+  setting:
+    en: Athens on a summer morning, just outside the city walls, where the road runs down to the river Ilissus.
+  character:
+    en: Phaedrus, a cheerful young Athenian who loves a clever speech, who speaks only Attic Greek.
+  goal:
+    en: Greet him, ask him where he is going and where he has come from, and tell him where you are going.

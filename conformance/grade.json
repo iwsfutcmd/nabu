@@ -2646,6 +2646,268 @@
         "notes": []
       },
       "note": "mi is I or we: accept sets list both."
+    },
+    {
+      "id": "grade/grc/exact",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ὁ ἄνθρωπος λέγει"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/grc/marks-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ο ανθρωπος λεγει"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "greek-marks"
+        ]
+      },
+      "note": "No accents, no breathings: noted, and the answer counts."
+    },
+    {
+      "id": "grade/grc/monotonic",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ο \u03ACνθρωπος λέγει"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "greek-marks"
+        ]
+      },
+      "note": "A monotonic keyboard: the acutes are right, the breathing is missing."
+    },
+    {
+      "id": "grade/grc/grave-for-acute",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "τὸν φίλον ὁρῶ",
+        "answer": "τόν φίλον ὁρῶ"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "A grave is an acute before another word (CGCG 24.2): either, silently."
+    },
+    {
+      "id": "grade/grc/final-sigma",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ὁ ἄνθρωποσ λέγει"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "σ typed for final ς: one letter."
+    },
+    {
+      "id": "grade/grc/subscript-left-out",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ἐν τῷ οἴκῳ",
+        "answer": "ἐν τῶ οἴκω"
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "greek-marks"
+        ]
+      },
+      "note": "The iota subscript is a mark: left out, it is noted."
+    },
+    {
+      "id": "grade/grc/subscript-makes-word",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ἐν τῇ χώρᾳ",
+        "answer": "ἐν τῇ χώρα",
+        "lexicon": [
+          "χώρα",
+          "ἐν",
+          "τῇ"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "greek-marks-word"
+        ]
+      },
+      "note": "Without its subscript the dative is the nominative, a word of the course."
+    },
+    {
+      "id": "grade/grc/adscript",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ἐν τῷ οἴκῳ",
+        "answer": "ἐν τῶι οἴκωι"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "The iota written beside ω (adscript, CGCG 1.22) is the subscript."
+    },
+    {
+      "id": "grade/grc/breathing-makes-word",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ἤ",
+        "answer": "ἡ",
+        "lexicon": [
+          "ἡ",
+          "ἤ"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "greek-marks-word"
+        ]
+      },
+      "note": "ἡ the for ἤ or."
+    },
+    {
+      "id": "grade/grc/accent-makes-word",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "τίς λέγει",
+        "answer": "τις λέγει",
+        "lexicon": [
+          "τις",
+          "τίς",
+          "λέγει"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "greek-marks-word"
+        ]
+      },
+      "note": "Enclitic τις someone for interrogative τίς who?"
+    },
+    {
+      "id": "grade/grc/case-ending",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁρῶ τὸν ἄνθρωπον",
+        "answer": "ὁρῶ τὸν ἄνθρωπος",
+        "inflected": [
+          "ἄνθρωπον"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ]
+      },
+      "note": "The nominative for the accusative: a case ending traded."
+    },
+    {
+      "id": "grade/grc/case-ending-uninflected",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁρῶ τὸν ἄνθρωπον",
+        "answer": "ὁρῶ τὸν ἄνθρωπος"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      },
+      "note": "Without inflection data the case set does not apply."
+    },
+    {
+      "id": "grade/grc/person-ending",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ παῖς γρ\u03ACφει",
+        "answer": "ὁ παῖς γρ\u03ACφεις",
+        "forms": {
+          "γρ\u03ACφει": [
+            "form:pres-3s"
+          ]
+        }
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-person"
+        ]
+      },
+      "note": "you write for he writes, on a word pinned as a present."
+    },
+    {
+      "id": "grade/grc/pronoun",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὑμεῖς",
+        "answer": "ἡμεῖς"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-pronoun"
+        ]
+      },
+      "note": "we for you (pl.)."
+    },
+    {
+      "id": "grade/grc/typo",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ὁ ἄνθρωπος λέγει",
+        "answer": "ὁ ἄνθρωπος λέγρι"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/grc/elision",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "ἀλλ’ οὐκ ἔστιν",
+        "answer": "ἀλλʼ οὐκ ἔστιν"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      },
+      "note": "Any elision mark."
     }
   ]
 }
