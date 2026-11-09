@@ -20,7 +20,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
   optional word and form whose translation would be the prompt, in both directions; never one that would translate
   otherwise. The grader stays literal: the answers are listed in the accept set.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -374,6 +374,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
 - Toki Pona marks no person: no `persons` tags. English accept sets give I/we, she/he/they/it and the tenses.
 
+## Attic Greek notes (see docs/adr/0087)
+- courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,
+  its spelling with each α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or subscript
+  settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`.
+- Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
+  enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
+  is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
   (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in
@@ -388,7 +396,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0086 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0087 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

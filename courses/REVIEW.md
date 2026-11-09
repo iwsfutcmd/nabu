@@ -686,3 +686,14 @@ references in the reference library (`toki-pona/`, notes in notes/tok). A fluent
    the listen facet until human recordings exist? Linku has recordings of every word, licence unknown.
 7. **Content about a real person.** u10 says that jan Sonja made Toki Pona and wrote pu (facts), and quotes her
    nowhere. Its sentences about what Toki Pona can do are said by the course's characters.
+
+## grc (Attic Greek)
+
+- Every sentence, translation and accept set (word orders were drafted by hand: Greek order is free, but
+  postpositives, enclitic accents and movable ν were kept right in each alternative).
+- The vowel lengths pinned in the `attic` readings: from memory, not yet checked against the Cambridge Greek
+  Lexicon (Λυσίας as Λῡσίᾱς, Δαρεῖος as Δᾱρεῖος, ὑμεῖς as ῡ̔μεῖς).
+- The grading policies marked REVIEW in profiles/grc-Grek.polytonic.yaml: marks noted, grave silent, adscript,
+  the contrast sets.
+- The audio: stress for the pitch accent, ου as [oː] (CGCG 1.21), ῃ as [ɛːi].
+
