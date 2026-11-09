@@ -136,12 +136,16 @@ sentences:
       text: mi mute o moku!
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: mute, sense: mute, readings: {lasina: mute}}, {surface: o, sense: o, readings: {lasina: o}}, {surface: moku, sense: moku, readings: {
             lasina: moku}}]
-      reverse: mi mute o moku
+      reverse: |-
+        mi mute o moku
+        mi o moku
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤼󱥄󱤶
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤼, sense: mute, readings: {lasina: mute}}, {surface: 󱥄, sense: o, readings: {lasina: o}}, {surface: 󱤶, sense: moku, readings: {
             lasina: moku}}]
-      reverse: 󱤴󱤼󱥄󱤶
+      reverse: |-
+        󱤴󱤼󱥄󱤶
+        󱤴󱥄󱤶
   translations:
     en: |-
       (Let's|Let us) eat!
@@ -662,6 +666,8 @@ sentences:
       reverse: |-
         mije en meli li utala kepeken toki
         jan mije en jan meli li utala kepeken toki
+        jan mije en meli li utala kepeken toki
+        mije en jan meli li utala kepeken toki
     tok-Qaap/sitelen-pona:
       text: 󱤵󱤊󱤳󱤧󱥱󱤙󱥬
       tokens: [{surface: 󱤵, sense: mije, readings: {lasina: mije}}, {surface: 󱤊, sense: en, readings: {lasina: en}}, {surface: 󱤳, sense: meli, readings: {lasina: meli}}, {surface: 󱤧, sense: li, readings: {
@@ -669,6 +675,8 @@ sentences:
       reverse: |-
         󱤵󱤊󱤳󱤧󱥱󱤙󱥬
         󱤑󱤵󱤊󱤑󱤳󱤧󱥱󱤙󱥬
+        󱤑󱤵󱤊󱤳󱤧󱥱󱤙󱥬
+        󱤵󱤊󱤑󱤳󱤧󱥱󱤙󱥬
   translations:
     en: |-
       The man and the woman are arguing.

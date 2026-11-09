@@ -75,7 +75,7 @@ Policies the pass adopted, to confirm or reverse:
 Every course's accept sets were then read against
 [ADR 0085](../docs/adr/0085-what-the-prompt-leaves-open.md): an answer is right if its own
 translation would be the prompt. The answers a model was sure of were added, about 3,400 across
-the courses. [accept-doubts.md](accept-doubts.md) lists the 435 it was not sure of, sentence by
+the courses. [accept-doubts.md](accept-doubts.md) lists the 434 it was not sure of, sentence by
 sentence, and eight questions of policy (English contractions, register, yue spellings, digits).
 Answering a policy question settles many rows at once.
 
@@ -488,8 +488,9 @@ Across the course, check first:
    of Daniel's gendered sentences have a woman's version beside them (*soy cubana*, *encantada*,
    *la última*, *cuando era niña*, *mecánica*, *Lili y yo somos cubanas*); u27–u30 add Abuela,
    Lili and Mami.
-7. **The voice.** The clips clone a newsreader of Radio La Voz de la Victoria (Ciénaga de
-   Zapata, Matanzas; CC0). Held-back clips (`nabu audio report`) are mostly slang Whisper does not
+7. **The voices.** The clips clone two speakers from Radio La Voz de la Victoria (Ciénaga de
+   Zapata, Matanzas): a man, an actor in its radio drama *Tras el rastro de Coral* (CC BY 4.0), and
+   a woman interviewed for Women's Day (CC0). Check that both sound Cuban to a Cuban ear. Held-back clips (`nabu audio report`) are mostly slang Whisper does not
    know (*¿Qué bolá?*), so a listener should decide them in the audio check.
 
 By unit, what the drafts were least sure of:
@@ -661,14 +662,13 @@ references in the reference library (`toki-pona/`, notes in notes/tok). A fluent
    - "nimi mi li Lina" (the name with no jan); "nimi mi li jan Lina" is accepted too.
 2. **Night and stars.** u07 avoids tenpo mun, often read as *month*: mun is the moon and the stars (mun mute li
    suno), and nightfall is "suno li weka la". tenpo pimeja (night) comes in u09, with pimeja.
-3. **Accept sets, by ADR 0085** (what the prompt does not decide, the learner may choose). They were drafted before
-   that rule, then checked against it: 300 answers were added in both orthographies and English. The additions:
-   - *sina mute* where "you" may be plural, *ona mute* for "they";
-   - *our* for mi; the past tense in English;
-   - anu seme beside "X ala X";
-   - a time as a la phrase or a final lon phrase.
+3. **Accept sets, by ADR 0085** (what the prompt does not decide, the learner may choose). The course-wide pass added
+   300 answers, and a second read 33 more (ADR 0086 lists the kinds). Check that none translates otherwise:
+   - mama for mother;
+   - lawa mi li ike for "I have a headache";
+   - mi o moku for "Let's eat!".
 
-   The doubts (joined objects in the other order, soweli as *cat* or *dog*) are in [accept-doubts.md](accept-doubts.md).
+   The doubts are in [accept-doubts.md](accept-doubts.md) (tok).
    **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
    for ona, and the present, progressive and past where natural. Check that none is too lenient:
    - kala li moku also takes *fish is food*; akesi takes lizard, frog, snake or reptile;

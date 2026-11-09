@@ -110,10 +110,18 @@ review it.
   in one place when ISO 15924 assigns a code.
 - The UCSUR text needs the font; without it the logographs are tofu. The font is self-hosted with
   the app, so the app always has it.
-- The tok accept sets were drafted before [ADR 0085](0085-what-the-prompt-leaves-open.md): the English sets give
-  every person, number and tense Toki Pona leaves open, and the Toki Pona sets some equivalent answers (mi mute for
-  we, jan mije for mije), but nothing has looked for all that the English prompts leave open (word choice among
-  near-synonyms, optional modifiers, pi or no pi). They are to be checked against that rule, as the other courses are.
+- The accept sets follow [ADR 0085](0085-what-the-prompt-leaves-open.md). The course-wide pass added 300 answers.
+  A second read on 2026-11-09, every sentence against its prompt, added 32 Toki Pona answers and one English
+  reading:
+  - kule before a colour (sewi li kule laso);
+  - mi alone for we, ona mute for they;
+  - X ala X for a plain yes/no question;
+  - tenpo pini/kama la, or none, for a past or "will" prompt;
+  - at home with or without mi;
+  - a yes/no answer as a whole sentence.
+
+  It left out answers with words not taught by then, and two it doubted: mi jan Kanata, which reads first as "I'm
+  Kanata", and a vocative followed by a second o. Doubts on the rest are in courses/accept-doubts.md.
 - Not done:
   - nasin sitelen kalama in cartouches (a dot or colon after a logograph reads its first mora or the
     whole word): such a name is read by first letters only;

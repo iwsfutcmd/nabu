@@ -346,6 +346,9 @@ def test_cuban_spanish_runs_thirty_units_each_ending_in_a_story(
         assert u["nodes"][-1]["kind"] == "story", u["id"]
     used = {kc for s in sentences(compiled) for kc in s["kcs"]}
     assert [f for f in ES_FORMS if f"form:{f}" not in used] == []
+    # The voices clone people's recordings: every clip's credit names the recording (CC BY asks it).
+    credits = {clip["credit"] for entry in compiled.audio_items.values() for clip in entry.values()}
+    assert credits and all("cloning" in c and "archive.org/details/" in c for c in credits)
     manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
     assert manifest["placement"] == {"production": "typed"}
     assert manifest["target"] == "es-Latn-CU"
