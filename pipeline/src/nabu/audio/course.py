@@ -90,6 +90,8 @@ class Report:
     synthesized: int = 0
     kept: int = 0
     removed: int = 0
+    #: Stale clips let go of without a new one (`prune`).
+    dropped: int = 0
     skipped: list[str] = field(default_factory=lambda: [])
     #: Items the voice said nothing for (left without a clip, so the index stays valid).
     silent: list[str] = field(default_factory=lambda: [])
@@ -547,10 +549,16 @@ def synthesize_course(
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
     only: str | None = None,
+    prune: bool = False,
 ) -> Report:
     """(Re)synthesizes the course's clips; unchanged inputs keep their files. Each item is read by
     the voice of the cast the assignment gives it (ADR 0078). `only`: run that voice alone; the
-    clips of the others stay as they are until they run."""
+    clips of the others stay as they are until they run.
+
+    A stale clip (its voice left the cast or no longer reads the item, its reference or input
+    changed) is kept until its new one is made, so learners keep hearing something. `prune`
+    makes nothing and lets the stale clips go instead: the course builds clean at once, and those
+    items have no audio until the next run makes it."""
     cast_ = [voices] if isinstance(voices, AudioVoice) else list(voices)
     adir = audio_dir(course_dir)
     index = read_index(adir)
@@ -617,14 +625,17 @@ def synthesize_course(
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
         waiting = [
-            previous[(w[3].item, w[4])] for w in wanted[done:] if (w[3].item, w[4]) in previous
+            previous[(w[3].item, w[4])]
+            for w in wanted[done:]
+            if (w[3].item, w[4]) in previous and not prune
         ]
         clips = [*dump([*human, *kept, *others, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
     # In batches of one voice, saving the index after each: a provider failing midway (a rate
     # limit, an outage) keeps every clip already made, and the next run picks up from there.
-    done = 0
+    done = len(wanted) if prune else 0
+    report.dropped = sum((w[3].item, w[4]) in previous for w in wanted) if prune else 0
     while done < len(wanted):
         voice, tts = wanted[done][0], wanted[done][1]
         batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]

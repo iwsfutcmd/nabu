@@ -209,6 +209,32 @@ def test_clips_of_a_voice_that_left_the_cast_are_stale(core_cli: CoreCli, yue_co
     assert recompiled.audio_items == {}
 
 
+@needs_espeak
+def test_prune_lets_the_stale_clips_go_and_keeps_the_rest(
+    core_cli: CoreCli, yue_copy: Path
+) -> None:
+    """generate keeps a stale clip until its new one is made; prune makes none and drops it, so the
+    course builds clean at once."""
+    _, compiled = _compiled(core_cli, yue_copy)
+    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    before = read_index(audio_dir(yue_copy)).clips
+    unit = yue_copy / "units" / "intro.yaml"
+    unit.write_text(
+        unit.read_text(encoding="utf-8").replace("zou2 san4", "zou2 san1"), encoding="utf-8"
+    )
+    diags, compiled = _compiled(core_cli, yue_copy)
+    stale = [d for d in diags.items if d.lint == "audio.stale"]
+    assert stale
+    report = synthesize_course(yue_copy, compiled.units, YUE_VOICE, prune=True)
+    assert report.dropped == len(stale) and report.synthesized == 0
+    after = read_index(audio_dir(yue_copy)).clips
+    assert len(after) == len(before) - len(stale)
+    files = {p.name for p in (audio_dir(yue_copy) / "clips").glob("*.mp3")}
+    assert files == {c.file.removeprefix("clips/") for c in after}
+    diags, _ = compile_course(yue_copy, core_cli)
+    assert not any(d.lint == "audio.stale" for d in diags.items)
+
+
 def _voices(course: Path) -> dict[str, str]:
     """Each item's clip, by the voice that made it."""
     return {c.item: c.synthesis.voice for c in read_index(audio_dir(course)).clips if c.synthesis}
