@@ -72,11 +72,15 @@ sentences:
     uz-Latn/standard:
       text: Mening otam oʻqituvchi.
       tokens: [{surface: Mening, sense: men, morphs: [{surface: Men, kc: 'sense:men'}, {surface: ing, kc: 'form:gen-ning'}]}, {surface: otam, sense: ota, morphs: [{surface: ota, kc: 'sense:ota'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: oʻqituvchi, sense: oqituvchi}]
-      reverse: '[Mening] (otam|dadam) oʻqituvchi'
+      reverse: |-
+        [Mening] (otam|dadam) oʻqituvchi
+        Otam oʻqituvchilar
     uz-Cyrl/standard:
       text: Менинг отам ўқитувчи.
       tokens: [{surface: Менинг, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: инг, kc: 'form:gen-ning'}]}, {surface: отам, sense: ota, morphs: [{surface: ота, kc: 'sense:ota'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ўқитувчи, sense: oqituvchi}]
-      reverse: '[Менинг] (отам|дадам) ўқитувчи'
+      reverse: |-
+        [Менинг] (отам|дадам) ўқитувчи
+        Отам ўқитувчилар
   translations:
     en: My (father|dad) is a teacher.
 - id: s.family.4
@@ -85,11 +89,15 @@ sentences:
     uz-Latn/standard:
       text: Onam ham oʻqituvchi.
       tokens: [{surface: Onam, sense: ona, morphs: [{surface: Ona, kc: 'sense:ona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: ham, sense: ham}, {surface: oʻqituvchi, sense: oqituvchi}]
-      reverse: '[Mening] (onam|oyim) ham oʻqituvchi'
+      reverse: |-
+        [Mening] (onam|oyim) ham oʻqituvchi
+        Onam ham oʻqituvchilar
     uz-Cyrl/standard:
       text: Онам ҳам ўқитувчи.
       tokens: [{surface: Онам, sense: ona, morphs: [{surface: Она, kc: 'sense:ona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: ҳам, sense: ham}, {surface: ўқитувчи, sense: oqituvchi}]
-      reverse: '[Менинг] (онам|ойим) ҳам ўқитувчи'
+      reverse: |-
+        [Менинг] (онам|ойим) ҳам ўқитувчи
+        Онам ҳам ўқитувчилар
   translations:
     en: My (mother|mom|mum) is (also a teacher|a teacher too|a teacher as well).
 - id: s.family.5
@@ -273,6 +281,7 @@ sentences:
     en: |-
       I (don't|do not) have a (younger|little) brother.
       I have no (younger|little) (brother|brothers).
+      I haven't got a younger brother.
 - id: s.family.18
   node: uz.family.siblings
   forms:
@@ -316,12 +325,18 @@ sentences:
       reverse: |-
         [Siz] (yaxshimisiz|qalaysiz|qandaysiz)
         [Sen] (yaxshimisan|qalaysan|qandaysan)
+        Ahvolingiz qanday
+        Ahvolingiz qalay
+        Ahvoling qalay
     uz-Cyrl/standard:
       text: Яхшимисиз?
       tokens: [{surface: Яхшимисиз, sense: yaxshi, morphs: [{surface: Яхши, kc: 'sense:yaxshi'}, {surface: ми, kc: 'form:q-mi'}, {surface: сиз, kc: 'form:cop-2-siz'}]}]
       reverse: |-
         [Сиз] (яхшимисиз|қалайсиз|қандайсиз)
         [Сен] (яхшимисан|қалайсан|қандайсан)
+        Аҳволингиз қандай
+        Аҳволингиз қалай
+        Аҳволинг қалай
   translations:
     en: |-
       How are you?
@@ -405,11 +420,15 @@ sentences:
     uz-Latn/standard:
       text: Ukam kichik.
       tokens: [{surface: Ukam, sense: uka, morphs: [{surface: Uka, kc: 'sense:uka'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: kichik, sense: kichik}]
-      reverse: '[Mening] ukam kichik'
+      reverse: |-
+        [Mening] ukam kichik
+        Ukam kichkina
     uz-Cyrl/standard:
       text: Укам кичик.
       tokens: [{surface: Укам, sense: uka, morphs: [{surface: Ука, kc: 'sense:uka'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: кичик, sense: kichik}]
-      reverse: '[Менинг] укам кичик'
+      reverse: |-
+        [Менинг] укам кичик
+        Укам кичкина
   translations:
     en: My (younger|little) brother is (small|little|young).
 - id: s.family.27
@@ -418,11 +437,15 @@ sentences:
     uz-Latn/standard:
       text: Opam juda chiroyli.
       tokens: [{surface: Opam, sense: opa, morphs: [{surface: Opa, kc: 'sense:opa'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: juda, sense: juda}, {surface: chiroyli, sense: chiroyli}]
-      reverse: '[Mening] opam juda chiroyli'
+      reverse: |-
+        [Mening] opam juda chiroyli
+        Opam juda goʻzal
     uz-Cyrl/standard:
       text: Опам жуда чиройли.
       tokens: [{surface: Опам, sense: opa, morphs: [{surface: Опа, kc: 'sense:opa'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: жуда, sense: juda}, {surface: чиройли, sense: chiroyli}]
-      reverse: '[Менинг] опам жуда чиройли'
+      reverse: |-
+        [Менинг] опам жуда чиройли
+        Опам жуда гўзал
   translations:
     en: My (older|elder|big) sister is very (beautiful|pretty).
 - id: s.family.28
@@ -483,12 +506,16 @@ sentences:
       reverse: |-
         [Sizning] oilangiz yaxshimi
         [Sening] oilang yaxshimi
+        Oilangiz qalay
+        Oilang qalay
     uz-Cyrl/standard:
       text: Оилангиз яхшими?
       tokens: [{surface: Оилангиз, sense: oila, morphs: [{surface: Оила, kc: 'sense:oila'}, {surface: нгиз, kc: 'form:poss-2-ingiz'}]}, {surface: яхшими, sense: yaxshi, morphs: [{surface: яхши, kc: 'sense:yaxshi'}, {surface: ми, kc: 'form:q-mi'}]}]
       reverse: |-
         [Сизнинг] оилангиз яхшими
         [Сенинг] оиланг яхшими
+        Оилангиз қалай
+        Оиланг қалай
   translations:
     en: |-
       How('s| is) your family?

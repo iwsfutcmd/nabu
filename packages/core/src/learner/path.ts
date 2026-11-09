@@ -6,6 +6,7 @@
  */
 import type { BundleNode, BundleUnit } from "@nabu/schema";
 import { lessonNodes } from "../lesson/build.ts";
+import { scriptNodes } from "../lesson/script.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { LearnerState } from "./state.ts";
 
@@ -14,7 +15,7 @@ export type NodeStatus = "done" | "available" | "locked";
 export interface PathNode {
   readonly node: string;
   readonly unit: string;
-  readonly kind: "lesson" | "story";
+  readonly kind: "lesson" | "story" | "script";
   readonly status: NodeStatus;
 }
 
@@ -42,5 +43,19 @@ export const pathOf = (course: CourseView, state: LearnerState): readonly PathNo
     const previous = all[i - 1];
     const status: NodeStatus = done.has(node.id) ? "done" : previous === undefined || done.has(previous.node.id) ? "available" : "locked";
     return { node: node.id, unit: unit.id, kind, status };
+  });
+};
+
+/**
+ * A script track's nodes (ADR 0088), each done, available or locked: a row of its own beside the
+ * path. A node opens when the one before it in the row is done; the row and the path never wait
+ * for each other.
+ */
+export const scriptPathOf = (course: CourseView, state: LearnerState): readonly PathNode[] => {
+  const done = new Set(state.completedNodes);
+  return scriptNodes(course).map(({ node, unit }, i, all) => {
+    const previous = all[i - 1];
+    const status: NodeStatus = done.has(node.id) ? "done" : previous === undefined || done.has(previous.node.id) ? "available" : "locked";
+    return { node: node.id, unit: unit.id, kind: "script", status };
   });
 };

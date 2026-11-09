@@ -88,7 +88,8 @@ export interface AnswerHelpProps {
  * been wrong"; either counts that way for the learner at once and joins the review queue.
  * Speaking is graded by the voice, and pairs have no single answer: neither is reported.
  */
-const reportable = (template: string): boolean => (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && template !== "match-pairs";
+const reportable = (template: string): boolean =>
+  (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && template !== "match-pairs" && template !== "letter-pairs";
 
 /**
  * Speaking cards the device scores (tones, sounds): the scoring can be wrong, so the learner can

@@ -53,7 +53,10 @@ sentences:
     es-Latn/standard:
       text: Tía, ¿tú me oyes? Yo no te oigo bien.
       tokens: [{surface: Tía, sense: tío}, {surface: tú, sense: tú}, {surface: me, sense: me}, {surface: oyes, sense: oír, form: 'form:pres-2s'}, {surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: te, sense: te}, {surface: oigo, sense: oír, form: 'form:pres-1s'}, {surface: bien, sense: bien}]
-      reverse: (Tía|Tía Marisol) (tú me oyes|me oyes [tú]) [yo] no te oigo bien
+      reverse: |-
+        (Tía|Tía Marisol) (tú me oyes|me oyes [tú]) [yo] no te oigo bien
+        Tía, ¿me puedes oír? No te oigo bien.
+        Tía, ¿tú me escuchas? Yo no te escucho bien.
   translations:
     en: (Auntie|Tía|Aunt Marisol), can you hear me? I (can't|cannot) hear you (well|very well).
 - id: s.u22.3
@@ -78,6 +81,7 @@ sentences:
       reverse: |-
         (Tú tienes|Tienes [tú]) wifi en [la] casa o (tú estás|estás [tú]) en el parque
         (Usted tiene|Tiene [usted]) wifi en [la] casa o (usted está|está [usted]) en el parque
+        ¿Ustedes tienen wifi en la casa, o están en el parque?
   translations:
     en: (Do you have|Have you got) wifi at home, or are you (in|at) the park?
 - id: s.u22.5
@@ -131,7 +135,10 @@ sentences:
     es-Latn/standard:
       text: Tía, te congelaste. No te veo.
       tokens: [{surface: Tía, sense: tío}, {surface: te, sense: te}, {surface: congelaste, sense: congelarse, form: 'form:pret-2s'}, {surface: 'No', sense: 'no'}, {surface: te, sense: te}, {surface: veo, sense: ver, form: 'form:pres-1s'}]
-      reverse: (Tía|Tía Marisol) te congelaste [yo] no te veo
+      reverse: |-
+        (Tía|Tía Marisol) te congelaste [yo] no te veo
+        Tía, te quedaste congelada. No te veo.
+        Tía, te congelaste. No te puedo ver.
   translations:
     en: (Auntie|Tía|Aunt Marisol), (you froze|you're frozen|you've frozen). I (can't|cannot|don't) see you.
 - id: s.u22.10
@@ -171,7 +178,9 @@ sentences:
     es-Latn/standard:
       text: No cuelgues todavía, Yunior. Abuela quiere hablar con Marisol.
       tokens: [{surface: 'No', sense: 'no'}, {surface: cuelgues, sense: colgar, form: 'form:imp-neg'}, {surface: todavía, sense: todavía}, {surface: Yunior, sense: yunior}, {surface: Abuela, sense: abuela}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: hablar, sense: hablar}, {surface: con, sense: con}, {surface: Marisol, sense: marisol}]
-      reverse: No cuelgues todavía Yunior (Abuela|la abuela|mi abuela) quiere hablar con (Marisol|tía Marisol|tu mamá|tu mami)
+      reverse: |-
+        No cuelgues todavía Yunior (Abuela|la abuela|mi abuela) quiere hablar con (Marisol|tía Marisol|tu mamá|tu mami)
+        No cuelgues aún, Yunior. Abuela quiere hablar con Marisol.
   translations:
     en: Don't hang up yet, Yunior. (Grandma|Grandmother|Abuela|My grandma|My grandmother) wants to (talk|speak) (to|with) (Marisol|Aunt Marisol|your mom).
 - id: s.u22.14
@@ -182,7 +191,9 @@ sentences:
       tokens: [{surface: Con, sense: con}, {surface: los, sense: el}, {surface: apagones, sense: apagón}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: dormir, sense: dormir}, {surface: por, sense: por}, {surface: el, sense: el}, {surface: calor, sense: calor}]
       reverse: Con los apagones (Marisol|tía Marisol) no puede dormir por el calor
   translations:
-    en: With the (blackouts|power cuts|power outages), (Marisol|Aunt Marisol) can't sleep because of the heat.
+    en: |-
+      With the (blackouts|power cuts|power outages), (Marisol|Aunt Marisol) can't sleep because of the heat.
+      With the blackouts, Marisol cannot sleep because of the heat.
 - id: s.u22.15
   node: es.u22.me-alegra
   forms:
@@ -191,18 +202,26 @@ sentences:
       tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: estés, sense: estar, form: 'form:subj'}, {surface: bien, sense: bien}, {surface: tía, sense: tío}]
       reverse: (Me alegra|Me alegro de|Me alegro) que estés bien (tía|tía Marisol)
   translations:
-    en: I'm (glad|happy|so glad) [that] (you're|you are) (well|okay|OK|all right|alright), (Auntie|Tía|Aunt Marisol).
+    en: |-
+      I'm (glad|happy|so glad) [that] (you're|you are) (well|okay|OK|all right|alright), (Auntie|Tía|Aunt Marisol).
+      I am glad that you're well, Auntie.
 - id: s.u22.16
   node: es.u22.me-alegra
   forms:
     es-Latn/standard:
       text: ¡Qué bueno que vengas a vernos en el verano!
       tokens: [{surface: Qué, sense: qué}, {surface: bueno, sense: bueno}, {surface: que, sense: que}, {surface: vengas, sense: venir, form: 'form:subj'}, {surface: a, sense: a}, {surface: vernos, sense: ver}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}]
-      reverse: (Qué bueno|Qué bien|Qué alegría) que vengas a vernos (en el verano|este verano)
+      reverse: |-
+        (Qué bueno|Qué bien|Qué alegría) que vengas a vernos (en el verano|este verano)
+        ¡Qué bueno que venga a vernos en el verano!
+        ¡Qué bueno que vengan a vernos en el verano!
+        ¡Qué bueno que nos vengas a ver en el verano!
   translations:
     en: |-
       (How great|How wonderful|How nice|It's great|It's so good|That's great) [that] you're coming to see us (in the summer|this summer)!
       (I'm so glad|I'm glad|So glad) [that] you're coming to see us (in the summer|this summer)!
+      How great that you are coming to see us in the summer!
+      I am so glad that you're coming to see us in the summer!
 - id: s.u22.17
   node: es.u22.me-alegra
   forms:
@@ -211,14 +230,20 @@ sentences:
       tokens: [{surface: Siento, sense: sentir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: venir, sense: venir}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: Nochebuena, sense: nochebuena}, {surface: tía, sense: tío}]
       reverse: (Siento|Siento mucho|Lamento) que no puedas venir (a|para|en) la Nochebuena (tía|tía Marisol)
   translations:
-    en: I'm (sorry|so sorry) [that] you can't come (to|for) Christmas Eve, (Auntie|Tía|Aunt Marisol).
+    en: |-
+      I'm (sorry|so sorry) [that] you can't come (to|for) Christmas Eve, (Auntie|Tía|Aunt Marisol).
+      I am sorry that you cannot come to Christmas Eve, Auntie.
 - id: s.u22.18
   node: es.u22.me-alegra
   forms:
     es-Latn/standard:
       text: A Abuela le alegra mucho que la llames.
       tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela}, {surface: le, sense: le}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: que, sense: que}, {surface: la, sense: lo}, {surface: llames, sense: llamar, form: 'form:subj'}]
-      reverse: A (Abuela|la abuela|mi abuela) le alegra mucho que la llames
+      reverse: |-
+        A (Abuela|la abuela|mi abuela) le alegra mucho que la llames
+        Abuela se alegra mucho de que la llames
+        A Abuela le alegra mucho que la llame
+        A Abuela le alegra mucho que la llamen
   translations:
     en: |-
       (Grandma|Grandmother|Abuela|My grandma|My grandmother) is (very|really|so) (glad|happy) [that] you call her.
@@ -238,18 +263,28 @@ sentences:
     es-Latn/standard:
       text: Yo también te extraño, y siento que estemos tan lejos.
       tokens: [{surface: Yo, sense: yo}, {surface: también, sense: también}, {surface: te, sense: te}, {surface: extraño, sense: extrañar, form: 'form:pres-1s'}, {surface: 'y', sense: 'y'}, {surface: siento, sense: sentir, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: estemos, sense: estar, form: 'form:subj'}, {surface: tan, sense: tan}, {surface: lejos, sense: lejos}]
-      reverse: '[Yo] también te extraño y siento que estemos tan lejos'
+      reverse: |-
+        [Yo] también te extraño y siento que estemos tan lejos
+        Yo también los extraño, y siento que estemos tan lejos
+        Yo también te extraño, y lamento que estemos tan lejos
+        Yo también te echo de menos, y siento que estemos tan lejos
   translations:
-    en: I miss you (too|as well), and I'm sorry [that] (we're|we are) so far (apart|away).
+    en: |-
+      I miss you (too|as well), and I'm sorry [that] (we're|we are) so far (apart|away).
+      I miss you too, and I am sorry that we're so far apart.
 - id: s.u22.21
   node: es.u22.me-alegra
   forms:
     es-Latn/standard:
       text: Me alegra que podamos hablar todos juntos por videollamada.
       tokens: [{surface: Me, sense: me}, {surface: alegra, sense: alegrar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: podamos, sense: poder, form: 'form:subj'}, {surface: hablar, sense: hablar}, {surface: todos, sense: todo}, {surface: juntos, sense: junto}, {surface: por, sense: por}, {surface: videollamada, sense: videollamada}]
-      reverse: (Me alegra|Me alegro de|Me alegro) que podamos hablar todos juntos por videollamada
+      reverse: |-
+        (Me alegra|Me alegro de|Me alegro) que podamos hablar todos juntos por videollamada
+        Me alegra que todos podamos hablar juntos por videollamada
   translations:
-    en: I'm (glad|happy) [that] we can all talk together (on|over) [a] video call.
+    en: |-
+      I'm (glad|happy) [that] we can all talk together (on|over) [a] video call.
+      I am glad that we can all talk together on a video call.
 - id: s.u22.22
   node: es.u22.me-preocupa
   persons: {addressee: pl}
@@ -262,13 +297,16 @@ sentences:
     en: |-
       I'm worried [that] (you|you all|you guys) (don't|won't) have (power|electricity) in the summer.
       It worries me that (you|you all|you guys) (don't|won't) have (power|electricity) in the summer.
+      I am worried that you do not have power in the summer.
 - id: s.u22.23
   node: es.u22.me-preocupa
   forms:
     es-Latn/standard:
       text: ¿Cómo está la cosa por allá?
       tokens: [{surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: cosa, sense: cosa}, {surface: por, sense: por}, {surface: allá, sense: allá}]
-      reverse: (Cómo está la cosa|Cómo anda la cosa|Cómo están las cosas) por allá
+      reverse: |-
+        (Cómo está la cosa|Cómo anda la cosa|Cómo están las cosas) por allá
+        ¿Cómo están las cosas allá?
   translations:
     en: (How are things|How's everything|How is everything) [over] there?
 - id: s.u22.24
@@ -282,6 +320,7 @@ sentences:
     en: |-
       Yunior (stood|waited) in line for (three|3) hours to buy chicken.
       Yunior spent (three|3) hours in line to buy chicken.
+      Yunior waited in line three hours to buy chicken.
 - id: s.u22.25
   node: es.u22.me-preocupa
   forms:
@@ -293,13 +332,18 @@ sentences:
     en: |-
       I'm worried [that] the (package|parcel) (won't|will not|might not|may not) (arrive|get there|come) before Christmas.
       It worries me that the (package|parcel) (won't|will not|might not|may not) (arrive|get there|come) before Christmas.
+      I am worried that the package won't arrive before Christmas.
 - id: s.u22.26
   node: es.u22.me-preocupa
   forms:
     es-Latn/standard:
       text: Te mandé una recarga para que puedas llamarnos.
       tokens: [{surface: Te, sense: te}, {surface: mandé, sense: mandar, form: 'form:pret-1s'}, {surface: una, sense: un}, {surface: recarga, sense: recarga}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: puedas, sense: poder, form: 'form:subj'}, {surface: llamarnos, sense: llamar}]
-      reverse: '[Yo] te mandé una recarga para que (puedas llamarnos|nos puedas llamar)'
+      reverse: |-
+        [Yo] te mandé una recarga para que (puedas llamarnos|nos puedas llamar)
+        Le mandé una recarga para que pueda llamarnos
+        Les mandé una recarga para que puedan llamarnos
+        Te envié una recarga para que puedas llamarnos
   translations:
     en: I sent you (a top-up|a recharge|some phone credit|phone credit) (so|so that) you can call us.
 - id: s.u22.27
@@ -310,7 +354,9 @@ sentences:
       tokens: [{surface: A, sense: a}, {surface: Abuela, sense: abuela}, {surface: le, sense: le}, {surface: preocupa, sense: preocupar, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: tenga, sense: tener, form: 'form:subj'}, {surface: medicinas, sense: medicina}, {surface: para, sense: para}, {surface: la, sense: el}, {surface: presión, sense: presión}]
       reverse: A (Abuela|la abuela|mi abuela) le preocupa que (Marisol|tía Marisol) no tenga (medicinas|medicina|pastillas) para la presión
   translations:
-    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) is worried [that] (Marisol|Aunt Marisol) (doesn't have|won't have|might not have) (medicine|medicines|pills) for her (blood pressure|pressure).
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) is worried [that] (Marisol|Aunt Marisol) (doesn't have|won't have|might not have) (medicine|medicines|pills) for her (blood pressure|pressure).
+      Grandma is worried that Marisol does not have medicine for her blood pressure.
 - id: s.u22.28
   node: es.u22.me-preocupa
   forms:
@@ -328,7 +374,9 @@ sentences:
       tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: la, sense: el}, {surface: corriente, sense: corriente}, {surface: vuelva, sense: volver, form: 'form:subj'}, {surface: hoy, sense: hoy}]
       reverse: '[Yo] no creo que (la corriente|la luz) (vuelva|venga|regrese) hoy'
   translations:
-    en: I don't think the (power|electricity) (will come back|is coming back|will be back|comes back) today.
+    en: |-
+      I don't think the (power|electricity) (will come back|is coming back|will be back|comes back) today.
+      I do not think the power will come back today.
 - id: s.u22.30
   node: es.u22.no-creo
   forms:
@@ -366,7 +414,9 @@ sentences:
       tokens: [{surface: 'No', sense: 'no'}, {surface: creo, sense: creer, form: 'form:pres-1s'}, {surface: que, sense: que}, {surface: Abuela, sense: abuela}, {surface: sepa, sense: saber, form: 'form:subj'}, {surface: hacer, sense: hacer}, {surface: una, sense: un}, {surface: videollamada, sense: videollamada}]
       reverse: '[Yo] no creo que (Abuela|la abuela|mi abuela) sepa hacer una videollamada'
   translations:
-    en: I don't think (Grandma|Grandmother|Abuela|my grandma|my grandmother) knows how to (make|do) a video call.
+    en: |-
+      I don't think (Grandma|Grandmother|Abuela|my grandma|my grandmother) knows how to (make|do) a video call.
+      I do not think Grandma knows how to make a video call.
 - id: s.u22.34
   node: es.u22.no-creo
   forms:
@@ -383,10 +433,10 @@ stories:
   node: es.u22.story
   title: {en: 'The video call'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: marisol, name: {es-Latn/standard: Tía Marisol}}
-  - {id: yunior, name: {es-Latn/standard: Yunior}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: marisol, speaker: f, name: {es-Latn/standard: Tía Marisol}}
+  - {id: yunior, speaker: m, name: {es-Latn/standard: Yunior}}
   steps:
   - line:
       forms:

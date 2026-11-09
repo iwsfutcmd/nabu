@@ -665,6 +665,19 @@ type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Fiel
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+class Alphabet1(BaseModel):
+    """
+    script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: OrthographyId
+    words: Annotated[list[KcId], Field(min_length=1)]
+
+
 class Convert1(BaseModel):
     """
     script nodes: convert sentences between two orthographies (script-convert, §6.3).
@@ -688,6 +701,12 @@ class PathNodeSource(BaseModel):
     kind: Literal["lesson", "practice", "story", "review", "challenge", "script"]
     introduces: list[KcId] | None = None
     reinforces: list[KcId] | None = None
+    alphabet: Annotated[
+        Alphabet1 | None,
+        Field(
+            description="script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell."
+        ),
+    ] = None
     convert: Annotated[
         Convert1 | None,
         Field(
@@ -1609,6 +1628,50 @@ class DetachStep(BaseModel):
     detach: Detach
 
 
+class Cartouche(BaseModel):
+    """
+    The marks that open and close a name written with the logographs' first letters.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    open: Annotated[str, Field(min_length=1)]
+    close: Annotated[str, Field(min_length=1)]
+
+
+class Logographs(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    words: Annotated[
+        dict[str, WordsAdditionalProperty],
+        Field(
+            description="Each word, as it is typed, and the logograph that writes it.", min_length=1
+        ),
+    ]
+    cartouche: Annotated[
+        Cartouche | None,
+        Field(
+            description="The marks that open and close a name written with the logographs' first letters."
+        ),
+    ] = None
+
+
+class LogographsStep(BaseModel):
+    """
+    Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    logographs: Logographs
+
+
 class Case(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -1778,6 +1841,9 @@ type Members = Annotated[
 type AfterItem = Annotated[str, Field(min_length=1)]
 
 
+type Form = Annotated[str, Field(pattern="^form:[a-z0-9-]+$")]
+
+
 class Contrast(BaseModel):
     """
     A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
@@ -1811,6 +1877,13 @@ class Contrast(BaseModel):
         bool | None,
         Field(
             description="Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not."
+        ),
+    ] = None
+    forms: Annotated[
+        list[Form] | None,
+        Field(
+            description="Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
+            min_length=1,
         ),
     ] = None
     note: Annotated[
@@ -2300,19 +2373,6 @@ class BundleManifest(BaseModel):
     ] = None
 
 
-class BundleNode(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    id: str
-    kind: str
-    introduces: list[KcId]
-    reinforces: list[KcId]
-    sentences: list[str]
-    convert: Convert | None = None
-
-
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2420,7 +2480,7 @@ class AudioVoice(BaseModel):
     finalStop: Annotated[
         bool | None,
         Field(
-            description='With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
+            description='End text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063); with a phoneme reading (tiberian, attic), end the phonemes with "." (ADR 0089). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.'
         ),
     ] = None
     pronounce: Annotated[
@@ -2487,6 +2547,10 @@ class ExerciseRef(BaseModel):
         "story-choose",
         "story-complete",
         "story-arrange",
+        "letter-read",
+        "letter-pairs",
+        "word-read",
+        "word-write",
     ]
     item: Annotated[
         str, Field(description="The sentence or KC the exercise was built from.", min_length=1)
@@ -3115,7 +3179,8 @@ type NormalizeStep = Annotated[
     | DigitsStep
     | PunctuationStep
     | WhitespaceStep
-    | DetachStep,
+    | DetachStep
+    | LogographsStep,
     Field(title="NormalizeStep"),
 ]
 
@@ -3252,6 +3317,59 @@ class BundleKc(BaseModel):
     ] = None
 
 
+class ScriptItem(BaseModel):
+    """
+    A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    kc: KcId
+    letters: Annotated[
+        list[KcId],
+        Field(
+            description="The grapheme KCs it is written with, of those its track teaches (a letter: its own)."
+        ),
+    ]
+    text: TaggedText
+    latin: TaggedText
+
+
+class Alphabet(BaseModel):
+    """
+    An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    orthography: str
+    letters: list[ScriptItem]
+    words: list[ScriptItem]
+
+
+class BundleNode(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    id: str
+    kind: str
+    introduces: list[KcId]
+    reinforces: list[KcId]
+    sentences: list[str]
+    alphabet: Annotated[
+        Alphabet | None,
+        Field(
+            description="An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088)."
+        ),
+    ] = None
+    convert: Convert | None = None
+
+
 class Forms1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3379,6 +3497,12 @@ class OrthographyProfile(BaseModel):
     layout: Layout | None = None
     strokeOrder: StrokeOrder | None = None
     fonts: Fonts | None = None
+    romanize: Annotated[
+        Literal["greek"] | None,
+        Field(
+            description="How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline."
+        ),
+    ] = None
     transliterate: Transliteration | None = None
 
 

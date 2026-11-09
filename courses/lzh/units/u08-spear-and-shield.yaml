@@ -112,7 +112,9 @@ sentences:
     lzh-Hant/standard:
       text: 此，矛也。
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此矛也
+      reverse: |-
+        此矛也
+        是矛也
   translations:
     en: |-
       This is a spear.
@@ -124,7 +126,9 @@ sentences:
     lzh-Hant/standard:
       text: 此，盾也。
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此盾也
+      reverse: |-
+        此盾也
+        是盾也
   translations:
     en: |-
       This is a shield.
@@ -141,6 +145,8 @@ sentences:
     en: |-
       I have a spear and a shield.
       I have (spears and shields|a shield and a spear|shields and spears).
+      I had a spear and a shield.
+      I have a spear and shield.
 - id: s.08.4
   node: lzh.u08.weapons
   forms:
@@ -152,6 +158,7 @@ sentences:
     en: |-
       This spear is sharp.
       That spear is sharp.
+      This spear was sharp.
 - id: s.08.5
   node: lzh.u08.weapons
   forms:
@@ -163,6 +170,8 @@ sentences:
     en: |-
       My shield is (strong|hard|solid|sturdy).
       My shields are (strong|hard|solid|sturdy).
+      My shield was strong.
+      My shield is firm.
 - id: s.08.6
   node: lzh.u08.weapons
   forms:
@@ -175,6 +184,8 @@ sentences:
       A man of Chu (sells|sold|was selling) spears.
       The man of Chu (sells|sold|was selling) spears.
       (A|The) (man|person) from Chu (sells|sold|was selling) spears.
+      A man of Chu sold a spear.
+      The people of Chu sell spears.
 - id: s.08.7
   node: lzh.u08.weapons
   forms:
@@ -187,6 +198,9 @@ sentences:
       There was a man (of|from) Chu who sold (shields and spears|spears and shields).
       A man (of|from) Chu sold (shields and spears|spears and shields).
       Among the people of Chu there was one who sold (shields and spears|spears and shields).
+      There was a man of Chu selling shields and spears.
+      There was a man of Chu who was selling shields and spears.
+      There was a man of Chu who sold a shield and a spear.
 - id: s.08.8
   node: lzh.u08.weapons
   forms:
@@ -198,6 +212,7 @@ sentences:
     en: |-
       His spear is sharp( and|,) his shield is (strong|hard|solid|sturdy).
       Their spears are sharp( and|,) their shields are (strong|hard|solid|sturdy).
+      His spear was sharp and his shield was strong.
 - id: s.08.9
   node: lzh.u08.praise
   forms:
@@ -210,18 +225,22 @@ sentences:
       The man of Chu (praised|praises|boasted about) his (shield|shields).
       (A man|The man|A person) from Chu (praised|praises|boasted about) his (shield|shields).
       A man of Chu (praised|praises|boasted about) his (shield|shields).
+      The man of Chu boasted of his shield.
 - id: s.08.10
   node: lzh.u08.praise
   forms:
     lzh-Hant/standard:
       text: 此何物也？
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此何物[也]
+      reverse: |-
+        此何物[也]
+        是何物也
   translations:
     en: |-
       What is this thing?
       What (thing|kind of thing) is this?
       What is this?
+      What is that?
 - id: s.08.11
   node: lzh.u08.praise
   forms:
@@ -233,6 +252,7 @@ sentences:
     en: |-
       I can (learn|study) it.
       I('m| am) able to (learn|study) it.
+      I could learn it.
 - id: s.08.12
   node: lzh.u08.praise
   forms:
@@ -244,6 +264,8 @@ sentences:
     en: |-
       I (cannot|can't)[ do it].
       I('m| am) not able to[ do it].
+      I could not.
+      I am unable to do it.
 - id: s.08.13
   node: lzh.u08.praise
   forms:
@@ -257,6 +279,8 @@ sentences:
     en: |-
       No one (can|is able to) (know|understand) it.
       Nobody (can|is able to) (know|understand) it.
+      No one could know it.
+      No one can know this.
 - id: s.08.14
   node: lzh.u08.none
   forms:
@@ -268,6 +292,7 @@ sentences:
     en: |-
       I have no spear.
       I (don't|do not) have a spear.
+      I had no spear.
 - id: s.08.15
   node: lzh.u08.none
   forms:
@@ -282,6 +307,7 @@ sentences:
       No one knows it.
       Nobody knows (it|this|him).
       No one knows (this|him).
+      No one knew it.
 - id: s.08.16
   node: lzh.u08.none
   forms:
@@ -295,6 +321,8 @@ sentences:
       Everybody knows (it|this).
       Everyone knows this.
       (People|They) all know (it|this).
+      Everyone knew it.
+      Everybody knows that.
 - id: s.08.17
   node: lzh.u08.none
   forms:
@@ -307,19 +335,24 @@ sentences:
       Everyone praises (him|it|them).
       Everybody praises (him|it|them).
       (People|They) all praise (him|it|them).
+      Everyone praises her.
 - id: s.08.18
   node: lzh.u08.none
   forms:
     lzh-Hant/standard:
       text: 楚人又譽其矛。
       tokens: [{surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 又, sense: 又, readings: {pinyin: yòu, jyutping: jau6, baxter: hjuwH}}, {surface: 譽, sense: 譽, readings: {pinyin: yù, jyutping: jyu6, baxter: yoH}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}]
-      reverse: 楚人又譽其矛
+      reverse: |-
+        楚人又譽其矛
+        楚人亦譽其矛
   translations:
     en: |-
       The man of Chu also praised his spear.
       The man of Chu (then|again) praised his (spear|spears).
       The man of Chu also praised his spears.
       Then the man of Chu praised his (spear|spears).
+      A man of Chu also praised his spear.
+      The man of Chu praised his spear as well.
 - id: s.08.19
   node: lzh.u08.none
   forms:
@@ -331,6 +364,10 @@ sentences:
     en: |-
       Someone said, “(Good|Excellent|Well said|Very good).”
       Somebody said, “(Good|Excellent|Well said|Very good).”
+      Someone says, “Good.”
+      Someone said, “Fine.”
+      Someone said, “That is good.”
+      Some said, “Good.”
 - id: s.08.20
   node: lzh.u08.none
   forms:
@@ -343,19 +380,26 @@ sentences:
       Someone asked him.
       Somebody asked (him|her|them).
       Someone asked (her|them).
+      Someone asks him.
+      Someone asked about it.
 - id: s.08.21
   node: lzh.u08.none
   forms:
     lzh-Hant/standard:
       text: 知者無不知也。
       tokens: [{surface: 知, sense: 知.zhi, readings: {pinyin: zhì, jyutping: zi3, baxter: trjeH}}, {surface: 者, sense: 者, readings: {pinyin: zhě, jyutping: ze2, baxter: tsyaeX}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (知|智)者無不知也
+      reverse: |-
+        (知|智)者無不知也
+        知者無不知
   translations:
     en: |-
       The wise know everything.
       There is nothing the wise do not know.
       The wise (man|person) knows everything.
       There is nothing (that |)the wise (man|person) does not know.
+      The wise know all things.
+      Those who are wise know everything.
+      There is nothing that the wise do not know.
 - id: s.08.22
   node: lzh.u08.using
   forms:
@@ -369,6 +413,10 @@ sentences:
       (She|They) carved the boat with (her|their|a|the) sword.
       (He|She|They) carved a boat with (a|the|his|her|their) sword.
       (Use|Using) (a|the) sword to (carve|cut) the boat.
+      He cut the boat with his sword.
+      He used his sword to carve the boat.
+      He marked the boat with his sword.
+      With his sword he carved the boat.
 - id: s.08.23
   node: lzh.u08.using
   forms:
@@ -382,31 +430,41 @@ sentences:
       The spear (pierced|penetrates|penetrated|goes through|went through) the shield.
       (A|The) spear (pierces|pierced|penetrates|penetrated|goes through|went through) a shield.
       A spear (pierces|pierced|penetrates|penetrated|goes through|went through) the shield.
+      Spears pierce shields.
 - id: s.08.24
   node: lzh.u08.using
   forms:
     lzh-Hant/standard:
       text: 吾盾之堅，物莫能陷也。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 盾, sense: 盾, readings: {pinyin: dùn, jyutping: teon5, baxter: zywinX}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 堅, sense: 堅, readings: {pinyin: jiān, jyutping: gin1, baxter: ken}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 莫, sense: 莫, readings: {pinyin: mò, jyutping: mok6, baxter: mak}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (吾|我)盾之堅物莫能陷也
+      reverse: |-
+        (吾|我)盾之堅物莫能陷也
+        吾盾之堅物莫能陷
   translations:
     en: |-
       My shield is so (strong|hard|solid|sturdy) that nothing can (pierce|penetrate) it.
       My shields are so (strong|hard|solid|sturdy) that nothing can (pierce|penetrate) them.
       (Such is the|So great is the) (strength|hardness) of my (shield|shields) that nothing can (pierce|penetrate) (it|them).
+      So strong is my shield that nothing can pierce it.
+      My shield is so strong that nothing can go through it.
 - id: s.08.25
   node: lzh.u08.using
   forms:
     lzh-Hant/standard:
       text: 吾矛之利，於物無不陷也。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 矛, sense: 矛, readings: {pinyin: máo, jyutping: maau4, baxter: mjuw}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 利, sense: 利, readings: {pinyin: lì, jyutping: lei6, baxter: lijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 物, sense: 物, readings: {pinyin: wù, jyutping: mat6, baxter: mjut}}, {surface: 無, sense: 無, readings: {pinyin: wú, jyutping: mou4, baxter: mju}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 陷, sense: 陷, readings: {pinyin: xiàn, jyutping: haam6, baxter: heamH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (吾|我)矛之利[於]物無不陷也
+      reverse: |-
+        (吾|我)矛之利[於]物無不陷也
+        吾矛之利於物無不陷
   translations:
     en: |-
       My spear is so sharp that there is nothing it (cannot|can't) (pierce|penetrate).
       My spears are so sharp that there is nothing they (cannot|can't) (pierce|penetrate).
       My spear is so sharp that it can (pierce|penetrate) anything.
       My spears are so sharp that they can (pierce|penetrate) anything.
+      My spear is so sharp that it pierces everything.
+      So sharp is my spear that there is nothing it cannot pierce.
+      My spear is so sharp that there's nothing it can't pierce.
 - id: s.08.26
   node: lzh.u08.using
   forms:
@@ -420,6 +478,8 @@ sentences:
       What about this spear?
       What do you think of this spear?
       How good is this spear?
+      How about this spear?
+      What is this spear like?
 - id: s.08.27
   node: lzh.u08.using
   forms:
@@ -433,18 +493,25 @@ sentences:
       What would happen if you pierced your shield with your spear?
       What (if|would happen if) you (used|took) your spear to pierce your shield?
       How about piercing your shield with your spear?
+      How would it be if you pierced your shield with your spear?
+      What about piercing your shield with your spear?
+      How about using your spear to pierce your shield?
 - id: s.08.28
   node: lzh.u08.using
   forms:
     lzh-Hant/standard:
       text: 其人弗知也。
       tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 其人弗知[也]
+      reverse: |-
+        其人弗知[也]
+        其人不知也
   translations:
     en: |-
       The man did not know.
       The man (didn't know|did not know it|didn't know it).
       That man (did not|didn't) know[ it].
+      He did not know.
+      The man does not know.
 - id: s.08.29
   node: lzh.u08.using
   forms:
@@ -457,18 +524,24 @@ sentences:
       Someone asked him, (but|and) he (did not|didn't) (answer|respond|reply).
       Somebody asked him, (but|and) he (did not|didn't) (answer|respond|reply).
       He was asked, (but|and) he (did not|didn't) (answer|respond|reply).
+      Someone asked him, but he gave no answer.
+      Someone asks him, but he does not answer.
 - id: s.08.30
   node: lzh.u08.using
   forms:
     lzh-Hant/standard:
       text: 其人弗能應也。
       tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 弗, sense: 弗, readings: {pinyin: fú, jyutping: fat1, baxter: pjut}}, {surface: 能, sense: 能, readings: {pinyin: néng, jyutping: nang4, baxter: nong}}, {surface: 應, sense: 應, readings: {pinyin: yìng, jyutping: jing3, baxter: '''ingH'}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 其人弗能應[也]
+      reverse: |-
+        其人弗能應[也]
+        其人不能應也
   translations:
     en: |-
       The man (could not|couldn't|was unable to) (answer|reply|respond).
       That man (could not|couldn't|was unable to) (answer|reply|respond).
       He (could not|couldn't|was unable to) (answer|reply|respond).
+      The man was not able to answer.
+      The man could make no reply.
 stories:
 - id: lzh.story.spear-and-shield
   node: lzh.u08.story

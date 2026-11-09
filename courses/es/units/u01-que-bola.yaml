@@ -74,7 +74,9 @@ sentences:
       tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}]
       reverse: (Buenos días|Buen día|Buenas)
   translations:
-    en: Good morning!
+    en: |-
+      Good morning!
+      Morning!
 - id: s.u01.3
   node: es.u01.hola
   forms:
@@ -126,6 +128,7 @@ sentences:
     en: |-
       Goodbye!
       Bye!
+      Bye-bye!
 - id: s.u01.8
   node: es.u01.hola
   forms:
@@ -157,7 +160,9 @@ sentences:
     es-Latn/standard:
       text: ¿Qué bolá, asere?
       tokens: [{surface: Qué, sense: qué-bolá}, {surface: bolá, sense: qué-bolá}, {surface: asere, sense: asere}]
-      reverse: (Qué bolá|Qué volá|Qué bola|Qué tal) (asere|acere|socio|mi hermano)
+      reverse: |-
+        (Qué bolá|Qué volá|Qué bola|Qué tal) (asere|acere|socio|mi hermano)
+        ¿Qué hubo, asere?
   translations:
     en: |-
       What's up, man?
@@ -176,6 +181,7 @@ sentences:
       Good.
       Well.
       (I'm|I am) (fine|good|well).
+      I'm okay.
 - id: s.u01.12
   node: es.u01.que-bola
   forms:
@@ -195,7 +201,9 @@ sentences:
     es-Latn/standard:
       text: Bien, ¿y tú?
       tokens: [{surface: Bien, sense: bien}, {surface: 'y', sense: 'y'}, {surface: tú, sense: tú}]
-      reverse: Bien [y] (tú|usted)
+      reverse: |-
+        Bien [y] (tú|usted)
+        Bien, ¿y ustedes?
   translations:
     en: |-
       Fine, and you?
@@ -207,7 +215,9 @@ sentences:
     es-Latn/standard:
       text: Muy bien, gracias. ¿Y tú?
       tokens: [{surface: Muy, sense: muy}, {surface: bien, sense: bien}, {surface: gracias, sense: gracias}, {surface: 'Y', sense: 'y'}, {surface: tú, sense: tú}]
-      reverse: Muy bien [muchas] gracias [y] (tú|usted)
+      reverse: |-
+        Muy bien [muchas] gracias [y] (tú|usted)
+        Muy bien, gracias. ¿Y ustedes?
   translations:
     en: |-
       (Very well|Very good|Really good), (thank you|thanks). (And you|How about you)?
@@ -222,13 +232,22 @@ sentences:
   translations:
     en: |-
       (I'm|I am) (fine|good|well|okay|OK).
+      I'm doing well.
+      I'm doing fine.
+      I'm all right.
 - id: s.u01.16
   node: es.u01.como-estas
   forms:
     es-Latn/standard:
       text: ¿Cómo estás?
       tokens: [{surface: Cómo, sense: cómo}, {surface: estás, sense: estar, form: 'form:pres-2s'}]
-      reverse: (Cómo estás [tú]|Cómo tú estás|Cómo está [usted]|Cómo usted está|Qué tal)
+      reverse: |-
+        (Cómo estás [tú]|Cómo tú estás|Cómo está [usted]|Cómo usted está|Qué tal)
+        ¿Cómo están ustedes?
+        ¿Cómo están?
+        ¿Cómo ustedes están?
+        ¿Tú cómo estás?
+        ¿Usted cómo está?
   translations:
     en: |-
       How are you?
@@ -243,6 +262,8 @@ sentences:
   translations:
     en: |-
       (I'm|I am) (very well|very good|really good|really well), (thank you|thanks).
+      I'm doing very well, thank you.
+      I'm doing very well, thanks.
 - id: s.u01.18
   node: es.u01.como-estas
   register: formal
@@ -250,7 +271,9 @@ sentences:
     es-Latn/standard:
       text: ¿Cómo está usted?
       tokens: [{surface: Cómo, sense: cómo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
-      reverse: (Cómo está [usted]|Cómo usted está)
+      reverse: |-
+        (Cómo está [usted]|Cómo usted está)
+        ¿Usted cómo está?
   translations:
     en: |-
       How are you?
@@ -272,11 +295,15 @@ sentences:
     es-Latn/standard:
       text: ¿Tú estás bien?
       tokens: [{surface: Tú, sense: tú}, {surface: estás, sense: estar, form: 'form:pres-2s'}, {surface: bien, sense: bien}]
-      reverse: (Tú estás bien|Estás [tú] bien|Usted está bien|Está [usted] bien)
+      reverse: |-
+        (Tú estás bien|Estás [tú] bien|Usted está bien|Está [usted] bien)
+        ¿Ustedes están bien?
+        ¿Están bien?
   translations:
     en: |-
       Are you okay?
       Are you (OK|alright|all right|well|fine|good)?
+      Are you doing okay?
 - id: s.u01.21
   node: es.u01.soy
   forms:
@@ -308,6 +335,7 @@ sentences:
     en: |-
       I'm from Miami.
       I am from Miami.
+      I come from Miami.
 - id: s.u01.24
   node: es.u01.soy
   forms:
@@ -316,7 +344,9 @@ sentences:
       tokens: [{surface: Tú, sense: tú}, {surface: eres, sense: ser, form: 'form:pres-2s'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
       reverse: (Tú eres de Cuba|Eres [tú] de Cuba|Usted es de Cuba|Es [usted] de Cuba|Ustedes son de Cuba|Son [ustedes] de Cuba)
   translations:
-    en: Are you from Cuba?
+    en: |-
+      Are you from Cuba?
+      Do you come from Cuba?
 - id: s.u01.25
   node: es.u01.soy
   persons: {speaker: m}
@@ -352,6 +382,7 @@ sentences:
     en: |-
       Daniel is from Miami.
       Daniel's from Miami.
+      Daniel comes from Miami.
 - id: s.u01.27
   node: es.u01.soy
   register: formal
@@ -369,19 +400,26 @@ sentences:
     es-Latn/standard:
       text: Me llamo Daniel.
       tokens: [{surface: Me, sense: me}, {surface: llamo, sense: llamarse, form: 'form:pres-1s'}, {surface: Daniel, sense: daniel}]
-      reverse: '[Yo] me llamo Daniel'
+      reverse: |-
+        [Yo] me llamo Daniel
+        Mi nombre es Daniel.
   translations:
     en: |-
       My name is Daniel.
       My name's Daniel.
       I'm called Daniel.
+      I am called Daniel.
 - id: s.u01.29
   node: es.u01.me-llamo
   forms:
     es-Latn/standard:
       text: ¿Cómo te llamas?
       tokens: [{surface: Cómo, sense: cómo}, {surface: te, sense: te}, {surface: llamas, sense: llamarse, form: 'form:pres-2s'}]
-      reverse: (Cómo te llamas [tú]|Cómo tú te llamas|Cómo se llama [usted]|Cómo usted se llama|Cuál es tu nombre)
+      reverse: |-
+        (Cómo te llamas [tú]|Cómo tú te llamas|Cómo se llama [usted]|Cómo usted se llama|Cuál es tu nombre)
+        ¿Cuál es su nombre?
+        ¿Tú cómo te llamas?
+        ¿Usted cómo se llama?
   translations:
     en: |-
       What's your name?
@@ -393,12 +431,15 @@ sentences:
     es-Latn/standard:
       text: Me llamo Yasiel.
       tokens: [{surface: Me, sense: me}, {surface: llamo, sense: llamarse, form: 'form:pres-1s'}, {surface: Yasiel, sense: yasiel}]
-      reverse: '[Yo] me llamo Yasiel'
+      reverse: |-
+        [Yo] me llamo Yasiel
+        Mi nombre es Yasiel.
   translations:
     en: |-
       My name is Yasiel.
       My name's Yasiel.
       I'm called Yasiel.
+      I am called Yasiel.
 - id: s.u01.31
   node: es.u01.me-llamo
   register: formal
@@ -406,23 +447,30 @@ sentences:
     es-Latn/standard:
       text: ¿Cómo se llama usted?
       tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: usted, sense: usted}]
-      reverse: (Cómo se llama [usted]|Cómo usted se llama)
+      reverse: |-
+        (Cómo se llama [usted]|Cómo usted se llama)
+        ¿Cuál es su nombre?
+        ¿Usted cómo se llama?
   translations:
     en: |-
       What's your name?
       What is your name?
+      What are you called?
 - id: s.u01.32
   node: es.u01.me-llamo
   forms:
     es-Latn/standard:
       text: Él se llama Yasiel.
       tokens: [{surface: Él, sense: él}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: Yasiel, sense: yasiel}]
-      reverse: '[Él] se llama Yasiel'
+      reverse: |-
+        [Él] se llama Yasiel
+        Su nombre es Yasiel.
   translations:
     en: |-
       His name is Yasiel.
       His name's Yasiel.
       He's called Yasiel.
+      He is called Yasiel.
 - id: s.u01.33
   node: es.u01.me-llamo
   forms:
@@ -434,6 +482,7 @@ sentences:
     en: |-
       He's from Cuba.
       He is from Cuba.
+      He comes from Cuba.
 - id: s.u01.34
   node: es.u01.mi-abuela
   forms:
@@ -457,6 +506,7 @@ sentences:
     en: |-
       Cachita is my grandmother.
       Cachita is my (grandma|granny).
+      Cachita's my grandmother.
 - id: s.u01.36
   node: es.u01.mi-abuela
   forms:
@@ -468,6 +518,7 @@ sentences:
     en: |-
       My (grandmother|grandma|granny) is from Cuba.
       My (grandmother|grandma|granny)'s from Cuba.
+      My grandmother comes from Cuba.
 - id: s.u01.37
   node: es.u01.mi-abuela
   forms:
@@ -478,19 +529,27 @@ sentences:
   translations:
     en: |-
       (Hi|Hello), (darling|sweetheart|honey|my love|my dear|dear|sweetie).
+      Hello, my darling.
 - id: s.u01.38
   node: es.u01.mi-abuela
   forms:
     es-Latn/standard:
       text: Mucho gusto.
       tokens: [{surface: Mucho, sense: mucho-gusto}, {surface: gusto, sense: mucho-gusto}]
-      reverse: (Mucho gusto|Encantado|Encantada)
+      reverse: |-
+        (Mucho gusto|Encantado|Encantada)
+        Mucho gusto en conocerte.
+        Gusto en conocerte.
+        Encantado de conocerte.
+        Encantada de conocerte.
   translations:
     en: |-
       Nice to meet you.
       (Pleased|Good|Glad) to meet you.
       It's (nice|good) to meet you.
       A pleasure.
+      It's a pleasure.
+      It is nice to meet you.
 - id: s.u01.39
   node: es.u01.mi-abuela
   register: formal
@@ -499,11 +558,15 @@ sentences:
     es-Latn/standard:
       text: Encantado, señora.
       tokens: [{surface: Encantado, sense: encantado}, {surface: señora, sense: señora}]
-      reverse: (Encantado|Mucho gusto) señora
+      reverse: |-
+        (Encantado|Mucho gusto) señora
+        Encantado de conocerla, señora.
+        Mucho gusto en conocerla, señora.
   translations:
     en: |-
       (Nice|Pleased|Glad) to meet you, (ma'am|madam).
       Delighted, (ma'am|madam).
+      It's nice to meet you, ma'am.
 - id: s.u01.44
   node: es.u01.mi-abuela
   register: formal
@@ -512,7 +575,9 @@ sentences:
     es-Latn/standard:
       text: Encantada, señora.
       tokens: [{surface: Encantada, sense: encantado}, {surface: señora, sense: señora}]
-      reverse: (Encantada|Mucho gusto) señora
+      reverse: |-
+        (Encantada|Mucho gusto) señora
+        Encantada de conocerla, señora.
   translations:
     en: |-
       (Nice|Pleased|Glad) to meet you, (ma'am|madam).
@@ -533,10 +598,15 @@ sentences:
     es-Latn/standard:
       text: Mucho gusto, Yasiel.
       tokens: [{surface: Mucho, sense: mucho-gusto}, {surface: gusto, sense: mucho-gusto}, {surface: Yasiel, sense: yasiel}]
-      reverse: (Mucho gusto|Encantado|Encantada) Yasiel
+      reverse: |-
+        (Mucho gusto|Encantado|Encantada) Yasiel
+        Mucho gusto en conocerte, Yasiel.
+        Encantado de conocerte, Yasiel.
   translations:
     en: |-
       (Nice|Pleased|Good|Glad) to meet you, Yasiel.
+      It's nice to meet you, Yasiel.
+      A pleasure, Yasiel.
 - id: s.u01.42
   node: es.u01.mi-abuela
   persons: {speaker: m}
@@ -544,19 +614,24 @@ sentences:
     es-Latn/standard:
       text: Yasiel es cubano. Yo también.
       tokens: [{surface: Yasiel, sense: yasiel}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: cubano, sense: cubano}, {surface: Yo, sense: yo}, {surface: también, sense: también}]
-      reverse: Yasiel es cubano [y] yo también
+      reverse: |-
+        Yasiel es cubano [y] yo también
+        Yasiel es cubano. Yo también soy cubano.
+        Yasiel es cubano y yo también soy cubano.
+        Yasiel es cubano. Yo soy cubano también.
   translations:
     en: |-
       Yasiel is Cuban. (Me too|So am I|I am too|I'm Cuban too|I'm also Cuban).
       Yasiel is Cuban and (so am I|I am too|I'm Cuban too|I'm also Cuban).
+      Yasiel's Cuban. Me too.
 stories:
 - id: es.story.u01
   node: es.u01.story
   title: {en: Meet Abuela}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: yasiel, name: {es-Latn/standard: Yasiel}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: yasiel, speaker: m, name: {es-Latn/standard: Yasiel}}
   steps:
   - line:
       speaker: cachita

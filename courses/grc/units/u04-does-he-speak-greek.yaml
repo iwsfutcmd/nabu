@@ -1,0 +1,1247 @@
+# Ancient Greek (grc), unit 4: Does he speak Greek? (Plato, Meno 82b).
+# Greeks and foreigners; speaking, hearing, learning; the present plural (we, you, they) and ἡμεῖς, ὑμεῖς; yes-or-no
+# questions with ἆρα; πάνυ γε; a command, πρόσελθε.
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u04-does-he-speak-greek
+title:
+  en: Does he speak Greek?
+cefr: A1
+kcs:
+- id: sense:ge
+  gloss:
+    en: at least, indeed (stresses the word before it)
+  forms:
+    grc-Grek/polytonic:
+    - γε
+  notes:
+    en: γε leans on the word before it. πάνυ γε, "yes, certainly", is a common answer.
+- id: sense:deuro
+  gloss:
+    en: here, over here (to this place)
+  forms:
+    grc-Grek/polytonic:
+    - δεῦρο
+- id: sense:proserchomai
+  gloss:
+    en: to come up to, come near
+  forms:
+    grc-Grek/polytonic:
+    - προσέρχομαι
+  notes:
+    en: 'πρόσελθε, "come here!", is its aorist imperative: one act of coming, not a habit.'
+- id: sense:menon
+  gloss:
+    en: Meno (a young nobleman from Thessaly)
+  forms:
+    grc-Grek/polytonic:
+    - Μένων
+- id: sense:hellen
+  gloss:
+    en: a Greek
+  forms:
+    grc-Grek/polytonic:
+    - Ἕλλην
+  notes:
+    en: 'Of the Greeks: τῶν Ἑλλήνων. A Greek woman is an Ἑλληνίς.'
+- id: sense:hellenizo
+  gloss:
+    en: to speak Greek
+  forms:
+    grc-Grek/polytonic:
+    - ἑλληνίζω
+- id: sense:athenaios
+  gloss:
+    en: Athenian; an Athenian
+  forms:
+    grc-Grek/polytonic:
+    - Ἀθηναῖος
+- id: sense:barbaros
+  gloss:
+    en: foreign, not Greek; a foreigner
+  forms:
+    grc-Grek/polytonic:
+    - βάρβαρος
+  notes:
+    en: To a Greek a βάρβαρος was anyone whose speech was not Greek ("bar-bar"), Persians and Egyptians included; not yet "savage".
+- id: sense:ara
+  gloss:
+    en: (asks a question that is answered yes or no)
+  forms:
+    grc-Grek/polytonic:
+    - ἆρα
+- id: sense:hemeis
+  gloss:
+    en: we
+  forms:
+    grc-Grek/polytonic:
+    - ἡμεῖς
+- id: form:pres-1p
+  gloss:
+    en: 'the present, we: we do, we are doing'
+- id: sense:hymeis
+  gloss:
+    en: you (several people)
+  forms:
+    grc-Grek/polytonic:
+    - ὑμεῖς
+- id: form:pres-2p
+  gloss:
+    en: 'the present, you (several people): you do, you are doing'
+- id: sense:lego
+  gloss:
+    en: to say, speak, tell; to mean
+  forms:
+    grc-Grek/polytonic:
+    - λέγω
+- id: sense:glotta
+  gloss:
+    en: tongue; language
+  forms:
+    grc-Grek/polytonic:
+    - γλῶττα
+- id: sense:akouo
+  gloss:
+    en: to hear, listen
+  forms:
+    grc-Grek/polytonic:
+    - ἀκούω
+- id: sense:manthano
+  gloss:
+    en: to learn; to understand
+  forms:
+    grc-Grek/polytonic:
+    - μανθάνω
+- id: sense:grapho
+  gloss:
+    en: to write
+  forms:
+    grc-Grek/polytonic:
+    - γράφω
+- id: sense:sphodra
+  gloss:
+    en: very much, very
+  forms:
+    grc-Grek/polytonic:
+    - σφόδρα
+- id: sense:oikogenes
+  gloss:
+    en: born in the household (of a slave)
+  forms:
+    grc-Grek/polytonic:
+    - οἰκογενής
+  notes:
+    en: 'Meno''s boy is a slave, born in Meno''s house: he has spoken Greek since he could speak.'
+nodes:
+- id: grc.u04.come-here
+  kind: lesson
+  introduces:
+  - sense:ge
+  - sense:deuro
+  - sense:proserchomai
+  - sense:menon
+- id: grc.u04.a-greek
+  kind: lesson
+  introduces:
+  - sense:hellen
+  - sense:hellenizo
+  - sense:athenaios
+  - sense:barbaros
+  - sense:ara
+- id: grc.u04.we-speak-greek
+  kind: lesson
+  introduces:
+  - sense:hemeis
+  - form:pres-1p
+  - sense:hymeis
+  - form:pres-2p
+  - sense:lego
+  - sense:glotta
+- id: grc.u04.hear-and-learn
+  kind: lesson
+  introduces:
+  - sense:akouo
+  - sense:manthano
+  - sense:grapho
+  - sense:sphodra
+- id: grc.u04.born-in-the-house
+  kind: lesson
+  introduces:
+  - sense:oikogenes
+- id: grc.u04.story
+  kind: story
+sentences:
+- id: s.04.1
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: πάνυ γε.
+      tokens:
+      - surface: πάνυ
+        sense: pany
+        readings:
+          attic: πᾰ́νῠ
+      - surface: γε
+        sense: ge
+        readings:
+          attic: γε
+      reverse: πάνυ γε
+  translations:
+    en: (Certainly|Yes, certainly|Of course|Yes, indeed|Very much so).
+- id: s.04.2
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: δεῦρο.
+      tokens:
+      - surface: δεῦρο
+        sense: deuro
+        readings:
+          attic: δεῦρο
+      reverse: δεῦρο
+  translations:
+    en: (Over here|This way|Here|Come here)!
+- id: s.04.3
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: δεῦρο πρόσελθε.
+      tokens:
+      - surface: δεῦρο
+        sense: deuro
+        readings:
+          attic: δεῦρο
+      - surface: πρόσελθε
+        sense: proserchomai
+        form: form:impv-2s
+        readings:
+          attic: πρόσελθε
+      reverse: |-
+        δεῦρο πρόσελθε
+        πρόσελθε δεῦρο
+  translations:
+    en: (come here|come over here|come this way)!
+  persons:
+    addressee: sg
+- id: s.04.4
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: πρόσελθε, ὦ παῖ.
+      tokens:
+      - surface: πρόσελθε
+        sense: proserchomai
+        form: form:impv-2s
+        readings:
+          attic: πρόσελθε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: παῖ
+        sense: pais
+        form: form:voc
+        readings:
+          attic: παῖ
+      reverse: |-
+        πρόσελθε ὦ παῖ
+        [ὦ] παῖ πρόσελθε
+        πρόσελθε παῖ
+  translations:
+    en: (Come here|Come over here|Come closer), (boy|child|my boy)!
+- id: s.04.5
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: ὦ Μένων, δεῦρο πρόσελθε.
+      tokens:
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Μένων
+        sense: menon
+        form: form:voc
+        readings:
+          attic: Μένων
+      - surface: δεῦρο
+        sense: deuro
+        readings:
+          attic: δεῦρο
+      - surface: πρόσελθε
+        sense: proserchomai
+        form: form:impv-2s
+        readings:
+          attic: πρόσελθε
+      reverse: |-
+        ὦ Μένων δεῦρο πρόσελθε
+        δεῦρο πρόσελθε [ὦ] Μένων
+        Μένων δεῦρο πρόσελθε
+        [ὦ] Μένων πρόσελθε δεῦρο
+        πρόσελθε δεῦρο [ὦ] Μένων
+  translations:
+    en: Meno, (come here|come over here|come this way)!
+- id: s.04.6
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: δεῦρο πρόσελθε, ὦ Ξανθίππη.
+      tokens:
+      - surface: δεῦρο
+        sense: deuro
+        readings:
+          attic: δεῦρο
+      - surface: πρόσελθε
+        sense: proserchomai
+        form: form:impv-2s
+        readings:
+          attic: πρόσελθε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        δεῦρο πρόσελθε ὦ Ξανθίππη
+        [ὦ] Ξανθίππη δεῦρο πρόσελθε
+        δεῦρο πρόσελθε Ξανθίππη
+        πρόσελθε δεῦρο [ὦ] Ξανθίππη
+  translations:
+    en: (Come here|come over here|come this way), Xanthippe!
+- id: s.04.7
+  node: grc.u04.come-here
+  forms:
+    grc-Grek/polytonic:
+      text: χαίρετε, ὦ παῖδες.
+      tokens:
+      - surface: χαίρετε
+        sense: chairo
+        form: form:impv-2p
+        readings:
+          attic: χαίρετε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: παῖδες
+        sense: pais
+        form: form:voc
+        readings:
+          attic: παῖδες
+      reverse: |-
+        χαίρετε ὦ παῖδες
+        χαίρετε παῖδες
+        [ὦ] παῖδες χαίρετε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), (children|boys)!
+- id: s.04.8
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Ἕλλην εἰμί.
+      tokens:
+      - surface: Ἕλλην
+        sense: hellen
+        readings:
+          attic: Ἕλλην
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Ἕλλην εἰμί
+        εἰμὶ Ἕλλην
+        ἐγὼ Ἕλλην εἰμί
+        Ἕλλην ἐγώ εἰμι
+  translations:
+    en: (I am|I'm) (a Greek|Greek).
+- id: s.04.9
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Ἕλλην εἶ;
+      tokens:
+      - surface: Ἕλλην
+        sense: hellen
+        readings:
+          attic: Ἕλλην
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        Ἕλλην εἶ
+        σὺ Ἕλλην εἶ
+        Ἕλλην εἶ σύ
+        ἆρα Ἕλλην εἶ
+  translations:
+    en: Are you (a Greek|Greek)?
+  persons:
+    addressee: m
+- id: s.04.10
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἑλληνίζω.
+      tokens:
+      - surface: ἑλληνίζω
+        sense: hellenizo
+        form: form:pres-1s
+        readings:
+          attic: ἑλληνῐ́ζω
+      reverse: ἑλληνίζω
+  translations:
+    en: I (speak|can speak) Greek.
+- id: s.04.11
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἑλληνίζεις;
+      tokens:
+      - surface: ἑλληνίζεις
+        sense: hellenizo
+        form: form:pres-2s
+        readings:
+          attic: ἑλληνῐ́ζεις
+      reverse: |-
+        ἑλληνίζεις
+        ἆρα ἑλληνίζεις
+        σὺ ἑλληνίζεις
+        ἑλληνίζεις σύ
+  translations:
+    en: (Do you speak|Can you speak) Greek?
+  persons:
+    addressee: sg
+- id: s.04.12
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Ἕλλην μέν ἐστι καὶ ἑλληνίζει;
+      tokens:
+      - surface: Ἕλλην
+        sense: hellen
+        readings:
+          attic: Ἕλλην
+      - surface: μέν
+        sense: men
+        readings:
+          attic: μέν
+      - surface: ἐστι
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: ἑλληνίζει
+        sense: hellenizo
+        form: form:pres-3s
+        readings:
+          attic: ἑλληνῐ́ζει
+      reverse: |-
+        Ἕλλην μέν ἐστι καὶ ἑλληνίζει
+        Ἕλλην ἐστὶ[ν] καὶ ἑλληνίζει
+        ἆρα Ἕλλην ἐστὶ[ν] καὶ ἑλληνίζει
+  translations:
+    en: Is he (a Greek|Greek), and does he speak Greek?
+- id: s.04.13
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Ἀθηναῖος εἰμί.
+      tokens:
+      - surface: Ἀθηναῖος
+        sense: athenaios
+        readings:
+          attic: Ᾰ̓θηναῖος
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Ἀθηναῖος εἰμί
+        εἰμὶ Ἀθηναῖος
+        ἐγὼ Ἀθηναῖός εἰμι
+        Ἀθηναῖος ἐγώ εἰμι
+  translations:
+    en: (I am|I'm) (an Athenian|Athenian|from Athens).
+  persons:
+    speaker: m
+- id: s.04.14
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Ἀθηναία εἰμί.
+      tokens:
+      - surface: Ἀθηναία
+        sense: athenaios
+        form: form:f
+        readings:
+          attic: Ᾰ̓θηναίᾱ
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        Ἀθηναία εἰμί
+        εἰμὶ Ἀθηναία
+        ἐγὼ Ἀθηναία εἰμί
+        Ἀθηναία ἐγώ εἰμι
+  translations:
+    en: (I am|I'm) (an Athenian|Athenian|from Athens).
+  persons:
+    speaker: f
+- id: s.04.15
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἆρα βάρβαρος εἶ;
+      tokens:
+      - surface: ἆρα
+        sense: ara
+        readings:
+          attic: ἆρᾰ
+      - surface: βάρβαρος
+        sense: barbaros
+        readings:
+          attic: βᾰ́ρβᾰρος
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ἆρα βάρβαρος εἶ
+        βάρβαρος εἶ
+        ἆρα σὺ βάρβαρος εἶ
+        σὺ βάρβαρος εἶ
+        ἆρα βάρβαρος εἶ σύ
+  translations:
+    en: Are you (a foreigner|a barbarian|not Greek|a non-Greek)?
+  persons:
+    addressee: m
+- id: s.04.16
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: οὐκ εἰμὶ βάρβαρος.
+      tokens:
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: εἰμὶ
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ̀
+      - surface: βάρβαρος
+        sense: barbaros
+        readings:
+          attic: βᾰ́ρβᾰρος
+      reverse: |-
+        οὐκ εἰμὶ βάρβαρος
+        βάρβαρος οὐκ εἰμί
+        ἐγὼ οὐκ εἰμὶ βάρβαρος
+  translations:
+    en: (I am not|I'm not) (a foreigner|a barbarian|a non-Greek).
+  persons:
+    speaker: m
+- id: s.04.17
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἆρα Ἀθηναῖος εἶ;
+      tokens:
+      - surface: ἆρα
+        sense: ara
+        readings:
+          attic: ἆρᾰ
+      - surface: Ἀθηναῖος
+        sense: athenaios
+        readings:
+          attic: Ᾰ̓θηναῖος
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ἆρα Ἀθηναῖος εἶ
+        Ἀθηναῖος εἶ
+        σὺ Ἀθηναῖος εἶ
+        ἆρα σὺ Ἀθηναῖος εἶ
+  translations:
+    en: Are you (an Athenian|Athenian|from Athens)?
+  persons:
+    addressee: m
+- id: s.04.18
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἆρα Ἀθηναία εἶ;
+      tokens:
+      - surface: ἆρα
+        sense: ara
+        readings:
+          attic: ἆρᾰ
+      - surface: Ἀθηναία
+        sense: athenaios
+        form: form:f
+        readings:
+          attic: Ᾰ̓θηναίᾱ
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ἆρα Ἀθηναία εἶ
+        Ἀθηναία εἶ
+        σὺ Ἀθηναία εἶ
+        ἆρα σὺ Ἀθηναία εἶ
+  translations:
+    en: Are you (an Athenian|Athenian|from Athens)?
+  persons:
+    addressee: f
+- id: s.04.19
+  node: grc.u04.a-greek
+  forms:
+    grc-Grek/polytonic:
+      text: Κρίτων Ἀθηναῖός ἐστιν.
+      tokens:
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      - surface: Ἀθηναῖός
+        sense: athenaios
+        readings:
+          attic: Ᾰ̓θηναῖός
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        Κρίτων Ἀθηναῖός ἐστιν
+        ὁ Κρίτων Ἀθηναῖός ἐστι[ν]
+        Ἀθηναῖός ἐστι[ν] [ὁ] Κρίτων
+        Κρίτων Ἀθηναῖός ἐστι
+  translations:
+    en: Crito is (an Athenian|Athenian|from Athens).
+- id: s.04.20
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἡμεῖς ἑλληνίζομεν.
+      tokens:
+      - surface: ἡμεῖς
+        sense: hemeis
+        readings:
+          attic: ἡμεῖς
+      - surface: ἑλληνίζομεν
+        sense: hellenizo
+        form: form:pres-1p
+        readings:
+          attic: ἑλληνῐ́ζομεν
+      reverse: |-
+        ἡμεῖς ἑλληνίζομεν
+        ἑλληνίζομεν
+        ἑλληνίζομεν ἡμεῖς
+  translations:
+    en: We speak Greek.
+- id: s.04.21
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ὑμεῖς ἑλληνίζετε;
+      tokens:
+      - surface: ὑμεῖς
+        sense: hymeis
+        readings:
+          attic: ῡ̔μεῖς
+      - surface: ἑλληνίζετε
+        sense: hellenizo
+        form: form:pres-2p
+        readings:
+          attic: ἑλληνῐ́ζετε
+      reverse: |-
+        ὑμεῖς ἑλληνίζετε
+        ἑλληνίζετε
+        ἑλληνίζετε ὑμεῖς
+        ἆρα ἑλληνίζετε
+        ἆρα ὑμεῖς ἑλληνίζετε
+  translations:
+    en: (Do you speak|Can you speak) Greek?
+  persons:
+    addressee: pl
+- id: s.04.22
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: τί λέγεις;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: λέγεις
+        sense: lego
+        form: form:pres-2s
+        readings:
+          attic: λέγεις
+      reverse: |-
+        τί λέγεις
+        τί σὺ λέγεις
+        τί λέγεις σύ
+  translations:
+    en: (What are you saying|What do you mean|What do you say)?
+  persons:
+    addressee: sg
+- id: s.04.23
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: τί λέγετε;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: λέγετε
+        sense: lego
+        form: form:pres-2p
+        readings:
+          attic: λέγετε
+      reverse: |-
+        τί λέγετε
+        τί ὑμεῖς λέγετε
+        τί λέγετε ὑμεῖς
+  translations:
+    en: (What are you saying|What do you mean|What do you say)?
+  persons:
+    addressee: pl
+- id: s.04.24
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: οἱ Ἀθηναῖοι ἑλληνίζουσιν.
+      tokens:
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: Ἀθηναῖοι
+        sense: athenaios
+        form: form:pl
+        readings:
+          attic: Ᾰ̓θηναῖοι
+      - surface: ἑλληνίζουσιν
+        sense: hellenizo
+        form: form:pres-3p
+        readings:
+          attic: ἑλληνῐ́ζουσῐν
+      reverse: |-
+        οἱ Ἀθηναῖοι ἑλληνίζουσιν
+        ἑλληνίζουσι[ν] οἱ Ἀθηναῖοι
+        οἱ Ἀθηναῖοι ἑλληνίζουσι
+  translations:
+    en: The Athenians speak Greek.
+- id: s.04.25
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἡμεῖς Ἀθηναῖοί ἐσμεν.
+      tokens:
+      - surface: ἡμεῖς
+        sense: hemeis
+        readings:
+          attic: ἡμεῖς
+      - surface: Ἀθηναῖοί
+        sense: athenaios
+        form: form:pl
+        readings:
+          attic: Ᾰ̓θηναῖοί
+      - surface: ἐσμεν
+        sense: eimi
+        form: form:pres-1p
+        readings:
+          attic: ἐσμεν
+      reverse: |-
+        ἡμεῖς Ἀθηναῖοί ἐσμεν
+        Ἀθηναῖοί ἐσμεν
+        ἐσμὲν Ἀθηναῖοι
+        ἡμεῖς ἐσμεν Ἀθηναῖοι
+  translations:
+    en: We are (Athenians|from Athens).
+- id: s.04.26
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ὑμεῖς Ἕλληνές ἐστε.
+      tokens:
+      - surface: ὑμεῖς
+        sense: hymeis
+        readings:
+          attic: ῡ̔μεῖς
+      - surface: Ἕλληνές
+        sense: hellen
+        form: form:pl
+        readings:
+          attic: Ἕλληνές
+      - surface: ἐστε
+        sense: eimi
+        form: form:pres-2p
+        readings:
+          attic: ἐστε
+      reverse: |-
+        ὑμεῖς Ἕλληνές ἐστε
+        Ἕλληνές ἐστε
+        ἐστὲ Ἕλληνες
+        ὑμεῖς ἐστε Ἕλληνες
+  translations:
+    en: You are (Greeks|Greek).
+  persons:
+    addressee: pl
+- id: s.04.27
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ γλῶττα.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γλῶττα
+        sense: glotta
+        readings:
+          attic: γλῶττᾰ
+      reverse: ἡ γλῶττα
+  translations:
+    en: The (tongue|language).
+- id: s.04.28
+  node: grc.u04.we-speak-greek
+  forms:
+    grc-Grek/polytonic:
+      text: τί λέγει ὁ παῖς;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: λέγει
+        sense: lego
+        form: form:pres-3s
+        readings:
+          attic: λέγει
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      reverse: |-
+        τί λέγει ὁ παῖς
+        τί ὁ παῖς λέγει
+  translations:
+    en: What is the (boy|child) saying?
+- id: s.04.29
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: ἀκούω.
+      tokens:
+      - surface: ἀκούω
+        sense: akouo
+        form: form:pres-1s
+        readings:
+          attic: ᾰ̓κούω
+      reverse: ἀκούω
+  translations:
+    en: I (hear|am listening|'m listening).
+- id: s.04.30
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: ἀκούεις;
+      tokens:
+      - surface: ἀκούεις
+        sense: akouo
+        form: form:pres-2s
+        readings:
+          attic: ᾰ̓κούεις
+      reverse: ἀκούεις
+  translations:
+    en: (Do you hear|Can you hear|Are you listening)?
+  persons:
+    addressee: sg
+- id: s.04.31
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: ἀκούετε, ὦ παῖδες;
+      tokens:
+      - surface: ἀκούετε
+        sense: akouo
+        form: form:pres-2p
+        readings:
+          attic: ᾰ̓κούετε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: παῖδες
+        sense: pais
+        form: form:voc
+        readings:
+          attic: παῖδες
+      reverse: |-
+        ἀκούετε ὦ παῖδες
+        ἀκούετε παῖδες
+        [ὦ] παῖδες ἀκούετε
+  translations:
+    en: (Do you hear|Can you hear|Are you listening), (children|boys)?
+- id: s.04.32
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: μανθάνω.
+      tokens:
+      - surface: μανθάνω
+        sense: manthano
+        form: form:pres-1s
+        readings:
+          attic: μᾰνθᾰ́νω
+      reverse: μανθάνω
+  translations:
+    en: I (understand|see|am learning).
+- id: s.04.33
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: μανθάνεις;
+      tokens:
+      - surface: μανθάνεις
+        sense: manthano
+        form: form:pres-2s
+        readings:
+          attic: μᾰνθᾰ́νεις
+      reverse: μανθάνεις
+  translations:
+    en: (Do you understand|Do you see|Are you learning)?
+  persons:
+    addressee: sg
+- id: s.04.34
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: οὐ μανθάνω.
+      tokens:
+      - surface: οὐ
+        sense: ou
+        readings:
+          attic: οὐ
+      - surface: μανθάνω
+        sense: manthano
+        form: form:pres-1s
+        readings:
+          attic: μᾰνθᾰ́νω
+      reverse: οὐ μανθάνω
+  translations:
+    en: (I do not|I don't) understand.
+- id: s.04.35
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: τὴν γλῶτταν μανθάνομεν.
+      tokens:
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: γλῶτταν
+        sense: glotta
+        form: form:acc
+        readings:
+          attic: γλῶττᾰν
+      - surface: μανθάνομεν
+        sense: manthano
+        form: form:pres-1p
+        readings:
+          attic: μᾰνθᾰ́νομεν
+      reverse: |-
+        τὴν γλῶτταν μανθάνομεν
+        μανθάνομεν τὴν γλῶτταν
+  translations:
+    en: We are learning the language.
+- id: s.04.36
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: γράφω.
+      tokens:
+      - surface: γράφω
+        sense: grapho
+        form: form:pres-1s
+        readings:
+          attic: γρᾰ́φω
+      reverse: γράφω
+  translations:
+    en: I (am writing|'m writing|write).
+- id: s.04.37
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ παῖς γράφει.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      - surface: γράφει
+        sense: grapho
+        form: form:pres-3s
+        readings:
+          attic: γρᾰ́φει
+      reverse: |-
+        ὁ παῖς γράφει
+        γράφει ὁ παῖς
+  translations:
+    en: The (boy|child) (is writing|writes).
+- id: s.04.38
+  node: grc.u04.hear-and-learn
+  forms:
+    grc-Grek/polytonic:
+      text: σφόδρα γε.
+      tokens:
+      - surface: σφόδρα
+        sense: sphodra
+        readings:
+          attic: σφόδρᾰ
+      - surface: γε
+        sense: ge
+        readings:
+          attic: γε
+      reverse: σφόδρα γε
+  translations:
+    en: (Very much so|Yes, very much|Very much indeed).
+- id: s.04.39
+  node: grc.u04.born-in-the-house
+  forms:
+    grc-Grek/polytonic:
+      text: οἰκογενής ἐστιν.
+      tokens:
+      - surface: οἰκογενής
+        sense: oikogenes
+        readings:
+          attic: οἰκογενής
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        οἰκογενής ἐστιν
+        οἰκογενής ἐστι
+        ἐστὶν οἰκογενής
+  translations:
+    en: He (was born in the house|was born in the household|is house-born).
+- id: s.04.40
+  node: grc.u04.born-in-the-house
+  forms:
+    grc-Grek/polytonic:
+      text: πάνυ γε σφόδρα.
+      tokens:
+      - surface: πάνυ
+        sense: pany
+        readings:
+          attic: πᾰ́νῠ
+      - surface: γε
+        sense: ge
+        readings:
+          attic: γε
+      - surface: σφόδρα
+        sense: sphodra
+        readings:
+          attic: σφόδρᾰ
+      reverse: πάνυ γε σφόδρα
+  translations:
+    en: (Yes, very much so|Very much so|Very much indeed|Absolutely).
+- id: s.04.41
+  node: grc.u04.born-in-the-house
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ παῖς Ἕλλην ἐστίν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      - surface: Ἕλλην
+        sense: hellen
+        readings:
+          attic: Ἕλλην
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ὁ παῖς Ἕλλην ἐστίν
+        Ἕλλην ἐστὶ[ν] ὁ παῖς
+        ὁ παῖς Ἕλλην ἐστί
+  translations:
+    en: The (boy|child) is (a Greek|Greek).
+stories:
+- id: grc.story.a-greek-boy
+  node: grc.u04.story
+  title:
+    en: Does he speak Greek? (Plato, Meno 82b)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: menon
+    name:
+      grc-Grek/polytonic: Μένων
+  steps:
+  - line:
+      speaker: menon
+      forms:
+        grc-Grek/polytonic:
+          text: πάνυ γε. δεῦρο πρόσελθε.
+          tokens:
+          - surface: πάνυ
+            sense: pany
+            readings:
+              attic: πᾰ́νῠ
+          - surface: γε
+            sense: ge
+            readings:
+              attic: γε
+          - surface: δεῦρο
+            sense: deuro
+            readings:
+              attic: δεῦρο
+          - surface: πρόσελθε
+            sense: proserchomai
+            form: form:impv-2s
+            readings:
+              attic: πρόσελθε
+      translations:
+        en: “Certainly. Come here, you.”
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:hellenizo
+      distractors:
+      - sense:echo
+      - sense:akouo
+      forms:
+        grc-Grek/polytonic:
+          text: Ἕλλην μέν ἐστι καὶ ἑλληνίζει;
+          tokens:
+          - surface: Ἕλλην
+            sense: hellen
+            readings:
+              attic: Ἕλλην
+          - surface: μέν
+            sense: men
+            readings:
+              attic: μέν
+          - surface: ἐστι
+            sense: eimi
+            form: form:pres-3s
+            readings:
+              attic: ἐστῐ
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: ἑλληνίζει
+            sense: hellenizo
+            form: form:pres-3s
+            readings:
+              attic: ἑλληνῐ́ζει
+      translations:
+        en: “He is Greek, and speaks Greek?”
+  - line:
+      speaker: menon
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: πάνυ γε σφόδρα, οἰκογενής γε.
+          tokens:
+          - surface: πάνυ
+            sense: pany
+            readings:
+              attic: πᾰ́νῠ
+          - surface: γε
+            sense: ge
+            readings:
+              attic: γε
+          - surface: σφόδρα
+            sense: sphodra
+            readings:
+              attic: σφόδρᾰ
+          - surface: οἰκογενής
+            sense: oikogenes
+            readings:
+              attic: οἰκογενής
+          - surface: γε
+            sense: ge
+            readings:
+              attic: γε
+      translations:
+        en: '“Very much so: he was born in my house.”'
+  - choose:
+      prompt:
+        en: What does Socrates want to know about the boy?
+      options:
+      - en: Whether he speaks Greek
+      - en: Whether he can write
+      - en: Where his father is
+      answer: 0
+  - choose:
+      prompt:
+        en: Why does the boy speak Greek well?
+      options:
+      - en: He was born in Meno's household
+      - en: He is an Athenian
+      - en: He learned it in the agora
+      answer: 0
+scenarios:
+- id: grc.in-the-agora
+  after: grc.u04.hear-and-learn
+  title:
+    en: In the agora
+  setting:
+    en: The agora at midday, crowded and loud; a traveller who has just arrived in Athens is looking about him.
+  character:
+    en: A young traveller from Thessaly, friendly and talkative, who speaks only Attic Greek.
+  goal:
+    en: Ask him where he comes from and whether he speaks Greek, tell him that you are learning Greek, and ask whether he understands you.

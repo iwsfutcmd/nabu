@@ -1,0 +1,938 @@
+# Ancient Greek (grc), unit 8: We owe a rooster (Plato, Phaedo 118a).
+# Owing and paying: the dative of the one you owe; "pay!" to several people, and "don't forget!" (μή and the
+# subjunctive); ταῦτα, "these things"; the future ἔσται; seeing (ὁράω); something else (τι, ἄλλος).
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u08-a-rooster
+title:
+  en: We owe a rooster
+cefr: A2
+kcs:
+- id: sense:asklepios
+  gloss:
+    en: Asclepius (the god of healing)
+  forms:
+    grc-Grek/polytonic:
+    - Ἀσκληπιός
+  notes:
+    en: A sick man who got well gave Asclepius a rooster. Socrates' last words are a debt to him.
+- id: sense:alektryon
+  gloss:
+    en: rooster, cock
+  forms:
+    grc-Grek/polytonic:
+    - ἀλεκτρυών
+  image:
+    file: ../images/bird.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: sense:opheilo
+  gloss:
+    en: to owe
+  forms:
+    grc-Grek/polytonic:
+    - ὀφείλω
+- id: sense:apodidomi
+  gloss:
+    en: to give back, pay (what is owed)
+  forms:
+    grc-Grek/polytonic:
+    - ἀποδίδωμι
+  notes:
+    en: ἀπόδοτε, "pay (it)!" to several people, is its aorist imperative.
+- id: sense:ameleo
+  gloss:
+    en: to neglect, forget about
+  forms:
+    grc-Grek/polytonic:
+    - ἀμελέω
+- id: form:aor-subj-2p
+  gloss:
+    en: 'the aorist subjunctive, you (several): after μή, "don''t (do it)!"'
+- id: form:fut-3s
+  gloss:
+    en: 'the future, he, she, it: will do, will be'
+- id: sense:horao
+  gloss:
+    en: to see, look
+  forms:
+    grc-Grek/polytonic:
+    - ὁράω
+  notes:
+    en: ὅρα, "look!, see!", is its imperative.
+- id: sense:ei
+  gloss:
+    en: if; (after see, ask) whether
+  forms:
+    grc-Grek/polytonic:
+    - εἰ
+- id: sense:tis.indef
+  gloss:
+    en: someone, something; a, some (never first; it leans on the word before)
+  forms:
+    grc-Grek/polytonic:
+    - τις
+  notes:
+    en: 'τις, τι is τίς, τί without its accent: εἴ τι, "if anything".'
+- id: sense:allos
+  gloss:
+    en: other, another; (ἄλλο) something else
+  forms:
+    grc-Grek/polytonic:
+    - ἄλλος
+- id: sense:theos
+  gloss:
+    en: god
+  forms:
+    grc-Grek/polytonic:
+    - θεός
+nodes:
+- id: grc.u08.we-owe
+  kind: lesson
+  introduces:
+  - sense:asklepios
+  - sense:alektryon
+  - sense:opheilo
+- id: grc.u08.pay-it
+  kind: lesson
+  introduces:
+  - sense:apodidomi
+  - sense:ameleo
+  - form:aor-subj-2p
+- id: grc.u08.it-shall-be-done
+  kind: lesson
+  introduces:
+  - form:fut-3s
+- id: grc.u08.see-whether
+  kind: lesson
+  introduces:
+  - sense:horao
+  - sense:ei
+  - sense:tis.indef
+  - sense:allos
+  - sense:theos
+- id: grc.u08.story
+  kind: story
+sentences:
+- id: s.08.1
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Ἀσκληπιός.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Ἀσκληπιός
+        sense: asklepios
+        readings:
+          attic: Ᾰ̓σκληπῐός
+      reverse: ὁ Ἀσκληπιός
+  translations:
+    en: Asclepius.
+- id: s.08.2
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ ἀλεκτρυών.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: ἀλεκτρυών
+        sense: alektryon
+        readings:
+          attic: ᾰ̓λεκτρῠών
+      reverse: ὁ ἀλεκτρυών
+  translations:
+    en: The (rooster|cock).
+- id: s.08.3
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλεκτρυόνα ἔχω.
+      tokens:
+      - surface: ἀλεκτρυόνα
+        sense: alektryon
+        form: form:acc
+        readings:
+          attic: ᾰ̓λεκτρῠόνᾰ
+      - surface: ἔχω
+        sense: echo
+        form: form:pres-1s
+        readings:
+          attic: ἔχω
+      reverse: |-
+        ἀλεκτρυόνα ἔχω
+        ἔχω ἀλεκτρυόνα
+  translations:
+    en: I have (a rooster|a cock).
+- id: s.08.4
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὀφείλω.
+      tokens:
+      - surface: ὀφείλω
+        sense: opheilo
+        form: form:pres-1s
+        readings:
+          attic: ὀφείλω
+      reverse: ὀφείλω
+  translations:
+    en: I owe (it|).
+- id: s.08.5
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: ὀφείλομεν ἀλεκτρυόνα.
+      tokens:
+      - surface: ὀφείλομεν
+        sense: opheilo
+        form: form:pres-1p
+        readings:
+          attic: ὀφείλομεν
+      - surface: ἀλεκτρυόνα
+        sense: alektryon
+        form: form:acc
+        readings:
+          attic: ᾰ̓λεκτρῠόνᾰ
+      reverse: |-
+        ὀφείλομεν ἀλεκτρυόνα
+        ἀλεκτρυόνα ὀφείλομεν
+  translations:
+    en: We owe (a rooster|a cock).
+- id: s.08.6
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα.
+      tokens:
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: Ἀσκληπιῷ
+        sense: asklepios
+        form: form:dat
+        readings:
+          attic: Ᾰ̓σκληπῐῷ
+      - surface: ὀφείλομεν
+        sense: opheilo
+        form: form:pres-1p
+        readings:
+          attic: ὀφείλομεν
+      - surface: ἀλεκτρυόνα
+        sense: alektryon
+        form: form:acc
+        readings:
+          attic: ᾰ̓λεκτρῠόνᾰ
+      reverse: |-
+        τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα
+        ὀφείλομεν τῷ Ἀσκληπιῷ ἀλεκτρυόνα
+        ἀλεκτρυόνα ὀφείλομεν τῷ Ἀσκληπιῷ
+        τῷ Ἀσκληπιῷ ἀλεκτρυόνα ὀφείλομεν
+        ὀφείλομεν ἀλεκτρυόνα τῷ Ἀσκληπιῷ
+        ἀλεκτρυόνα τῷ Ἀσκληπιῷ ὀφείλομεν
+  translations:
+    en: |-
+      We owe (a rooster|a cock) to Asclepius.
+      We owe Asclepius (a rooster|a cock)
+- id: s.08.7
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: τί ὀφείλεις;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: ὀφείλεις
+        sense: opheilo
+        form: form:pres-2s
+        readings:
+          attic: ὀφείλεις
+      reverse: τί ὀφείλεις
+  translations:
+    en: What do you owe?
+  persons:
+    addressee: sg
+- id: s.08.8
+  node: grc.u08.we-owe
+  forms:
+    grc-Grek/polytonic:
+      text: τῷ Κρίτωνι ὀφείλω.
+      tokens:
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: Κρίτωνι
+        sense: kriton
+        form: form:dat
+        readings:
+          attic: Κρῐ́τωνῐ
+      - surface: ὀφείλω
+        sense: opheilo
+        form: form:pres-1s
+        readings:
+          attic: ὀφείλω
+      reverse: |-
+        τῷ Κρίτωνι ὀφείλω
+        ὀφείλω τῷ Κρίτωνι
+  translations:
+    en: I owe (Crito|it to Crito).
+- id: s.08.9
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: ἀπόδοτε.
+      tokens:
+      - surface: ἀπόδοτε
+        sense: apodidomi
+        form: form:impv-2p
+        readings:
+          attic: ᾰ̓πόδοτε
+      reverse: ἀπόδοτε
+  translations:
+    en: (Pay it|Pay it back|Give it back)!
+  persons:
+    addressee: pl
+- id: s.08.10
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: ἀπόδος.
+      tokens:
+      - surface: ἀπόδος
+        sense: apodidomi
+        form: form:impv-2s
+        readings:
+          attic: ᾰ̓πόδος
+      reverse: ἀπόδος
+  translations:
+    en: (Pay it|Pay it back|Give it back)!
+  persons:
+    addressee: sg
+- id: s.08.11
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ ἀμελήσητε.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: ἀμελήσητε
+        sense: ameleo
+        form: form:aor-subj-2p
+        readings:
+          attic: ᾰ̓μελήσητε
+      reverse: μὴ ἀμελήσητε
+  translations:
+    en: (Don't|Do not) (forget|forget it|neglect it)!
+  persons:
+    addressee: pl
+- id: s.08.12
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε.
+      tokens:
+      - surface: ἀλλὰ
+        sense: alla
+        readings:
+          attic: ᾰ̓λλᾰ̀
+      - surface: ἀπόδοτε
+        sense: apodidomi
+        form: form:impv-2p
+        readings:
+          attic: ᾰ̓πόδοτε
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: ἀμελήσητε
+        sense: ameleo
+        form: form:aor-subj-2p
+        readings:
+          attic: ᾰ̓μελήσητε
+      reverse: |-
+        ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε
+        ἀπόδοτε καὶ μὴ ἀμελήσητε
+        ἀλλ’ ἀπόδοτε καὶ μὴ ἀμελήσητε
+  translations:
+    en: |-
+      (Pay it|Pay it back|Give it back), and (don't|do not) (forget|forget it|neglect it)!
+      (Well|Now), (pay it|pay it back|give it back), and (don't|do not) (forget|forget it|neglect it)
+  persons:
+    addressee: pl
+- id: s.08.13
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: τὸν ἀλεκτρυόνα ἀπόδοτε τῷ Ἀσκληπιῷ.
+      tokens:
+      - surface: τὸν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸν
+      - surface: ἀλεκτρυόνα
+        sense: alektryon
+        form: form:acc
+        readings:
+          attic: ᾰ̓λεκτρῠόνᾰ
+      - surface: ἀπόδοτε
+        sense: apodidomi
+        form: form:impv-2p
+        readings:
+          attic: ᾰ̓πόδοτε
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: Ἀσκληπιῷ
+        sense: asklepios
+        form: form:dat
+        readings:
+          attic: Ᾰ̓σκληπῐῷ
+      reverse: |-
+        τὸν ἀλεκτρυόνα ἀπόδοτε τῷ Ἀσκληπιῷ
+        ἀπόδοτε τῷ Ἀσκληπιῷ τὸν ἀλεκτρυόνα
+        τῷ Ἀσκληπιῷ ἀπόδοτε τὸν ἀλεκτρυόνα
+        ἀπόδοτε τὸν ἀλεκτρυόνα τῷ Ἀσκληπιῷ
+        τὸν ἀλεκτρυόνα τῷ Ἀσκληπιῷ ἀπόδοτε
+        τῷ Ἀσκληπιῷ τὸν ἀλεκτρυόνα ἀπόδοτε
+  translations:
+    en: |-
+      Give the (rooster|cock) to Asclepius!
+      (Give|Pay) Asclepius the (rooster|cock)
+      Pay the (rooster|cock) to Asclepius
+  persons:
+    addressee: pl
+- id: s.08.14
+  node: grc.u08.pay-it
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ ἀμελήσητε, ὦ παῖδες.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: ἀμελήσητε
+        sense: ameleo
+        form: form:aor-subj-2p
+        readings:
+          attic: ᾰ̓μελήσητε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: παῖδες
+        sense: pais
+        form: form:voc
+        readings:
+          attic: παῖδες
+      reverse: |-
+        μὴ ἀμελήσητε ὦ παῖδες
+        [ὦ] παῖδες μὴ ἀμελήσητε
+        μὴ ἀμελήσητε παῖδες
+  translations:
+    en: (Don't|Do not) (forget|forget it|neglect it), (children|boys)!
+- id: s.08.15
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα.
+      tokens:
+      - surface: ταῦτα
+        sense: houtos
+        form: form:pl
+        readings:
+          attic: ταῦτᾰ
+      reverse: ταῦτα
+  translations:
+    en: (These things|This|That).
+- id: s.08.16
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἔσται.
+      tokens:
+      - surface: ἔσται
+        sense: eimi
+        form: form:fut-3s
+        readings:
+          attic: ἔσται
+      reverse: ἔσται
+  translations:
+    en: (It will be|It shall be|It will be done|It shall be done).
+- id: s.08.17
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα ἔσται.
+      tokens:
+      - surface: ταῦτα
+        sense: houtos
+        form: form:pl
+        readings:
+          attic: ταῦτᾰ
+      - surface: ἔσται
+        sense: eimi
+        form: form:fut-3s
+        readings:
+          attic: ἔσται
+      reverse: |-
+        ταῦτα ἔσται
+        ἔσται ταῦτα
+  translations:
+    en: (It shall be done|It will be done|So it shall be|So it will be).
+- id: s.08.18
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ ταῦτα ἔσται.
+      tokens:
+      - surface: ἀλλὰ
+        sense: alla
+        readings:
+          attic: ᾰ̓λλᾰ̀
+      - surface: ταῦτα
+        sense: houtos
+        form: form:pl
+        readings:
+          attic: ταῦτᾰ
+      - surface: ἔσται
+        sense: eimi
+        form: form:fut-3s
+        readings:
+          attic: ἔσται
+      reverse: ἀλλὰ ταῦτα ἔσται
+  translations:
+    en: (Well|Yes|All right), (it shall be done|it will be done|so it shall be).
+- id: s.08.19
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ταῦτα λέγει.
+      tokens:
+      - surface: ταῦτα
+        sense: houtos
+        form: form:pl
+        readings:
+          attic: ταῦτᾰ
+      - surface: λέγει
+        sense: lego
+        form: form:pres-3s
+        readings:
+          attic: λέγει
+      reverse: |-
+        ταῦτα λέγει
+        λέγει ταῦτα
+  translations:
+    en: (He|She) (says|is saying) (this|these things|that).
+- id: s.08.20
+  node: grc.u08.it-shall-be-done
+  forms:
+    grc-Grek/polytonic:
+      text: ἔσται ἡμέρα.
+      tokens:
+      - surface: ἔσται
+        sense: eimi
+        form: form:fut-3s
+        readings:
+          attic: ἔσται
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      reverse: |-
+        ἔσται ἡμέρα
+        ἡμέρα ἔσται
+  translations:
+    en: (It will be|It'll be) (day|daytime).
+- id: s.08.21
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὅρα.
+      tokens:
+      - surface: ὅρα
+        sense: horao
+        form: form:impv-2s
+        readings:
+          attic: ὅρᾱ
+      reverse: ὅρα
+  translations:
+    en: (Look|See|Mind)!
+  persons:
+    addressee: sg
+- id: s.08.22
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁρῶ.
+      tokens:
+      - surface: ὁρῶ
+        sense: horao
+        form: form:pres-1s
+        readings:
+          attic: ὁρῶ
+      reverse: ὁρῶ
+  translations:
+    en: I (see|can see).
+- id: s.08.23
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: τὴν θάλατταν ὁρῶ.
+      tokens:
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: θάλατταν
+        sense: thalatta
+        form: form:acc
+        readings:
+          attic: θᾰ́λᾰττᾰν
+      - surface: ὁρῶ
+        sense: horao
+        form: form:pres-1s
+        readings:
+          attic: ὁρῶ
+      reverse: |-
+        τὴν θάλατταν ὁρῶ
+        ὁρῶ τὴν θάλατταν
+  translations:
+    en: I (see|can see) the sea.
+- id: s.08.24
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἄλλο τι.
+      tokens:
+      - surface: ἄλλο
+        sense: allos
+        readings:
+          attic: ᾰ̓́λλο
+      - surface: τι
+        sense: tis.indef
+        readings:
+          attic: τῐ
+      reverse: ἄλλο τι
+  translations:
+    en: (Something|Anything) else.
+- id: s.08.25
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὅρα εἴ τι ἄλλο λέγεις.
+      tokens:
+      - surface: ὅρα
+        sense: horao
+        form: form:impv-2s
+        readings:
+          attic: ὅρᾱ
+      - surface: εἴ
+        sense: ei
+        readings:
+          attic: εἴ
+      - surface: τι
+        sense: tis.indef
+        readings:
+          attic: τῐ
+      - surface: ἄλλο
+        sense: allos
+        readings:
+          attic: ᾰ̓́λλο
+      - surface: λέγεις
+        sense: lego
+        form: form:pres-2s
+        readings:
+          attic: λέγεις
+      reverse: ὅρα εἴ τι ἄλλο λέγεις
+  translations:
+    en: (See|Look|Consider) (if|whether) you (say|are saying|have to say|want to say) anything else.
+  persons:
+    addressee: sg
+- id: s.08.26
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἄλλος στρατιώτης.
+      tokens:
+      - surface: ἄλλος
+        sense: allos
+        readings:
+          attic: ᾰ̓́λλος
+      - surface: στρατιώτης
+        sense: stratiotes
+        readings:
+          attic: στρᾰτῐώτης
+      reverse: ἄλλος στρατιώτης
+  translations:
+    en: Another soldier.
+- id: s.08.27
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ θεός.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: θεός
+        sense: theos
+        readings:
+          attic: θεός
+      reverse: ὁ θεός
+  translations:
+    en: The god.
+- id: s.08.28
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Ἀσκληπιὸς θεός ἐστιν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Ἀσκληπιὸς
+        sense: asklepios
+        readings:
+          attic: Ᾰ̓σκληπῐὸς
+      - surface: θεός
+        sense: theos
+        readings:
+          attic: θεός
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ὁ Ἀσκληπιὸς θεός ἐστιν
+        θεός ἐστι[ν] [ὁ] Ἀσκληπιός
+        [ὁ] Ἀσκληπιὸς θεός ἐστι
+        Ἀσκληπιὸς θεός ἐστιν
+  translations:
+    en: Asclepius is a god.
+- id: s.08.29
+  node: grc.u08.see-whether
+  forms:
+    grc-Grek/polytonic:
+      text: ἔστιν ἄλλο τι;
+      tokens:
+      - surface: ἔστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἔστῐν
+      - surface: ἄλλο
+        sense: allos
+        readings:
+          attic: ᾰ̓́λλο
+      - surface: τι
+        sense: tis.indef
+        readings:
+          attic: τῐ
+      reverse: ἔστιν ἄλλο τι
+  translations:
+    en: Is there anything else?
+stories:
+- id: grc.story.a-rooster
+  node: grc.u08.story
+  title:
+    en: We owe a rooster (Plato, Phaedo 118a)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: kriton
+    name:
+      grc-Grek/polytonic: Κρίτων
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:alektryon
+      distractors:
+      - sense:oros
+      - sense:thalatta
+      forms:
+        grc-Grek/polytonic:
+          text: ὦ Κρίτων, ἔφη, τῷ Ἀσκληπιῷ ὀφείλομεν ἀλεκτρυόνα·
+          tokens:
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: Κρίτων
+            sense: kriton
+            form: form:voc
+            readings:
+              attic: Κρῐ́των
+          - surface: ἔφη
+            sense: phemi
+            form: form:impf-3s
+            readings:
+              attic: ἔφη
+          - surface: τῷ
+            sense: ho
+            form: form:dat
+            readings:
+              attic: τῷ
+          - surface: Ἀσκληπιῷ
+            sense: asklepios
+            form: form:dat
+            readings:
+              attic: Ᾰ̓σκληπῐῷ
+          - surface: ὀφείλομεν
+            sense: opheilo
+            form: form:pres-1p
+            readings:
+              attic: ὀφείλομεν
+          - surface: ἀλεκτρυόνα
+            sense: alektryon
+            form: form:acc
+            readings:
+              attic: ᾰ̓λεκτρῠόνᾰ
+      translations:
+        en: “Crito,” he said, “we owe a rooster to Asclepius.
+  - line:
+      speaker: socrates
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλὰ ἀπόδοτε καὶ μὴ ἀμελήσητε.
+          tokens:
+          - surface: ἀλλὰ
+            sense: alla
+            readings:
+              attic: ᾰ̓λλᾰ̀
+          - surface: ἀπόδοτε
+            sense: apodidomi
+            form: form:impv-2p
+            readings:
+              attic: ᾰ̓πόδοτε
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: μὴ
+            sense: me
+            readings:
+              attic: μὴ
+          - surface: ἀμελήσητε
+            sense: ameleo
+            form: form:aor-subj-2p
+            readings:
+              attic: ᾰ̓μελήσητε
+      translations:
+        en: Pay it, and don't forget.”
+  - choose:
+      prompt:
+        en: What does Socrates ask his friends to do?
+      options:
+      - en: Give Asclepius the rooster they owe him
+      - en: Buy a rooster in the agora
+      - en: Go home
+      answer: 0
+  - line:
+      speaker: kriton
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλὰ ταῦτα, ἔφη, ἔσται, ὁ Κρίτων·
+          tokens:
+          - surface: ἀλλὰ
+            sense: alla
+            readings:
+              attic: ᾰ̓λλᾰ̀
+          - surface: ταῦτα
+            sense: houtos
+            form: form:pl
+            readings:
+              attic: ταῦτᾰ
+          - surface: ἔφη
+            sense: phemi
+            form: form:impf-3s
+            readings:
+              attic: ἔφη
+          - surface: ἔσται
+            sense: eimi
+            form: form:fut-3s
+            readings:
+              attic: ἔσται
+          - surface: ὁ
+            sense: ho
+            readings:
+              attic: ὁ
+          - surface: Κρίτων
+            sense: kriton
+            readings:
+              attic: Κρῐ́των
+      translations:
+        en: “It shall be done,” said Crito,
+  - line:
+      speaker: kriton
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλ’ ὅρα εἴ τι ἄλλο λέγεις.
+          tokens:
+          - surface: ἀλλ’
+            sense: alla
+            readings:
+              attic: ᾰ̓λλ’
+          - surface: ὅρα
+            sense: horao
+            form: form:impv-2s
+            readings:
+              attic: ὅρᾱ
+          - surface: εἴ
+            sense: ei
+            readings:
+              attic: εἴ
+          - surface: τι
+            sense: tis.indef
+            readings:
+              attic: τῐ
+          - surface: ἄλλο
+            sense: allos
+            readings:
+              attic: ᾰ̓́λλο
+          - surface: λέγεις
+            sense: lego
+            form: form:pres-2s
+            readings:
+              attic: λέγεις
+      translations:
+        en: “but see whether there is anything else you want to say.”
+  - choose:
+      prompt:
+        en: What does Crito answer?
+      options:
+      - en: That it will be done, and is there anything else
+      - en: That they have no rooster
+      - en: That Asclepius is not a god
+      answer: 0

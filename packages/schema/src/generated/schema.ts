@@ -229,7 +229,8 @@ export type NormalizeStep =
   | DigitsStep
   | PunctuationStep
   | WhitespaceStep
-  | DetachStep;
+  | DetachStep
+  | LogographsStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -352,6 +353,7 @@ export interface NabuSchemaIndex {
   readonly BundleStoryStep: BundleStoryStep;
   readonly BundleStoryLine: BundleStoryLine;
   readonly BundleKc: BundleKc;
+  readonly ScriptItem: ScriptItem;
   readonly BundleNode: BundleNode;
   readonly BundleSentence: BundleSentence;
   readonly BundleAudio: BundleAudio;
@@ -433,6 +435,7 @@ export interface NabuSchemaIndex {
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
+  readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
   readonly KeyboardRef: KeyboardRef;
@@ -1160,10 +1163,33 @@ export interface BundleNode {
   readonly introduces: readonly KcId1[];
   readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
+  /**
+   * An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+   */
+  readonly alphabet?: {
+    readonly orthography: string;
+    readonly letters: readonly ScriptItem[];
+    readonly words: readonly ScriptItem[];
+  };
   readonly convert?: {
     readonly from: string;
     readonly to: string;
   };
+}
+/**
+ * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ScriptItem".
+ */
+export interface ScriptItem {
+  readonly kc: KcId1;
+  /**
+   * The grapheme KCs it is written with, of those its track teaches (a letter: its own).
+   */
+  readonly letters: readonly KcId1[];
+  readonly text: TaggedText;
+  readonly latin: TaggedText;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1581,6 +1607,16 @@ export interface PathNodeSource {
   readonly introduces?: readonly KcId1[];
   readonly reinforces?: readonly KcId1[];
   /**
+   * script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
+   */
+  readonly alphabet?: {
+    readonly orthography: OrthographyId;
+    /**
+     * @minItems 1
+     */
+    readonly words: readonly KcId1[];
+  };
+  /**
    * script nodes: convert sentences between two orthographies (script-convert, §6.3).
    */
   readonly convert?: {
@@ -1869,7 +1905,7 @@ export interface AudioVoice {
    */
   readonly vowelMarks?: boolean;
   /**
-   * With reading "text": end text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.
+   * End text that has no final punctuation (word cards, mostly) with the full stop of its script ("." in Latin, Cyrillic and Arabic script, "。" in Han, "।" in Devanagari; ADR 0063); with a phoneme reading (tiberian, attic), end the phonemes with "." (ADR 0089). Voices say a lone word more naturally as a sentence. Turning it on makes the clips it touches stale.
    */
   readonly finalStop?: boolean;
   /**
@@ -2132,7 +2168,11 @@ export interface ExerciseRef {
     | "minimal-pair"
     | "story-choose"
     | "story-complete"
-    | "story-arrange";
+    | "story-arrange"
+    | "letter-read"
+    | "letter-pairs"
+    | "word-read"
+    | "word-write";
   /**
    * The sentence or KC the exercise was built from.
    */
@@ -2666,6 +2706,10 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
+  /**
+   * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.
+   */
+  readonly romanize?: "greek";
   readonly transliterate?: Transliteration;
 }
 /**
@@ -2766,6 +2810,29 @@ export interface DetachStep {
   };
 }
 /**
+ * Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LogographsStep".
+ */
+export interface LogographsStep {
+  readonly logographs: {
+    /**
+     * Each word, as it is typed, and the logograph that writes it.
+     */
+    readonly words: {
+      readonly [k: string]: string;
+    };
+    /**
+     * The marks that open and close a name written with the logographs' first letters.
+     */
+    readonly cartouche?: {
+      readonly open: string;
+      readonly close: string;
+    };
+  };
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "MatchPolicy".
  */
@@ -2859,6 +2926,12 @@ export interface Contrast {
    * Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not.
    */
   readonly inflected?: boolean;
+  /**
+   * Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).
+   *
+   * @minItems 1
+   */
+  readonly forms?: readonly string[];
   /**
    * The feedback note shown with the verdict (MF2 message feedback.note.<note>).
    */

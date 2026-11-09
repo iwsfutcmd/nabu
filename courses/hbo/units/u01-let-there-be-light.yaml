@@ -87,7 +87,7 @@ kcs:
     hbo-Hebr/tiberian: [הָיָה]
 - id: form:juss
   gloss:
-    en: 'let him (it) do: the jussive'
+    en: 'let him (it) do: the jussive; with אַל, ''do not …!'''
 - id: sense:raah
   gloss:
     en: to see
@@ -226,7 +226,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הָאוֹר טוֹב׃
       tokens: [{surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: האור טוב
+      reverse: |-
+        האור טוב
+        טוב האור
   translations:
     en: The light is good.
 - id: s.01.10
@@ -236,7 +238,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַיּוֹם טוֹב׃
       tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: היום טוב
+      reverse: |-
+        היום טוב
+        טוב היום
   translations:
     en: |-
       The day is good.
@@ -258,7 +262,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַבֹּקֶר טוֹב׃
       tokens: [{surface: הַבֹּקֶר, sense: boqer, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בֹּקֶר, kc: 'sense:boqer'}], readings: {tiberian: habbṓqer}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: (הבקר|הבוקר) טוב
+      reverse: |-
+        (הבקר|הבוקר) טוב
+        טוב (הבקר|הבוקר)
   translations:
     en: The morning is good.
 - id: s.01.13
@@ -278,7 +284,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: טוֹב הָאוֹר׃
       tokens: [{surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
-      reverse: טוב האור
+      reverse: |-
+        טוב האור
+        האור טוב
   translations:
     en: |-
       The light is good.
@@ -308,7 +316,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יְהִי אוֹר׃
       tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
-      reverse: יהי אור
+      reverse: |-
+        יהי אור
+        אור יהי
   translations:
     en: Let there be light!
 - id: s.01.18
@@ -317,7 +327,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: יְהִי חֹשֶׁךְ׃
       tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: חֹשֶׁךְ, sense: hoshekh, readings: {tiberian: ḥṓšeḵ}}]
-      reverse: יהי (חשך|חושך)
+      reverse: |-
+        יהי (חשך|חושך)
+        (חשך|חושך) יהי
   translations:
     en: Let there be darkness!
 - id: s.01.19
@@ -368,7 +380,11 @@ sentences:
       text: וַיַּרְא אֱלֹהִים אֶת־הָאוֹר׃
       tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
             tiberian: ʾeṯ-}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
-      reverse: וירא (אלהים|אלוהים) את האור
+      reverse: |-
+        וירא (אלהים|אלוהים) את האור
+        (אלהים|אלוהים) ראה את האור
+        (ואלהים|ואלוהים) ראה את האור
+        ראה (אלהים|אלוהים) את האור
   translations:
     en: '[(And|Then)] God saw the light.'
 - id: s.01.24
@@ -388,7 +404,11 @@ sentences:
       text: וַיַּרְא אֶת־הַחֹשֶׁךְ׃
       tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}]
-      reverse: וירא את (החשך|החושך)
+      reverse: |-
+        וירא את (החשך|החושך)
+        ראה את (החשך|החושך)
+        הוא ראה את (החשך|החושך)
+        והוא ראה את (החשך|החושך)
   translations:
     en: '[(And|Then)] he saw the darkness.'
 - id: s.01.26
@@ -424,7 +444,11 @@ sentences:
       text: וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם׃
       tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: לָאוֹר, sense: or,
           morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: lāʾôr}}, {surface: יוֹם, sense: yom, readings: {tiberian: yôm}}]
-      reverse: ויקרא (אלהים|אלוהים) לאור יום
+      reverse: |-
+        ויקרא (אלהים|אלוהים) לאור יום
+        (אלהים|אלוהים) קרא לאור יום
+        (ואלהים|ואלוהים) קרא לאור יום
+        קרא (אלהים|אלוהים) לאור יום
   translations:
     en: '[(And|Then)] God (called|named) the light Day.'
 - id: s.01.29
@@ -467,7 +491,11 @@ sentences:
       text: וַיִּקְרָא לַיּוֹם טוֹב׃
       tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: לַיּוֹם, sense: yom, morphs: [{surface: לַ, kc: 'sense:le'}, {surface: יּוֹם, kc: 'sense:yom'}],
           readings: {tiberian: layyôm}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: ויקרא ליום טוב
+      reverse: |-
+        ויקרא ליום טוב
+        קרא ליום טוב
+        הוא קרא ליום טוב
+        והוא קרא ליום טוב
   translations:
     en: '[(And|Then)] he called the day good.'
 - id: s.01.33
@@ -479,7 +507,11 @@ sentences:
           readings: {tiberian: bên}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: וּבֵין, sense: beyn,
           morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ,
               kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}]
-      reverse: ויבדל (אלהים|אלוהים) בין האור ובין (החשך|החושך)
+      reverse: |-
+        ויבדל (אלהים|אלוהים) בין האור ובין (החשך|החושך)
+        (אלהים|אלוהים) הבדיל בין האור ובין (החשך|החושך)
+        (ואלהים|ואלוהים) הבדיל בין האור ובין (החשך|החושך)
+        הבדיל (אלהים|אלוהים) בין האור ובין (החשך|החושך)
   translations:
     en: |-
       [(And|Then)] God separated the light from the darkness.

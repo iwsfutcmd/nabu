@@ -3,7 +3,7 @@ export { initialPerformance, PERFORMANCE_MODEL, predict, TEMPLATE_PRIORS, update
 export { attemptOf, learnerEventOf, progressResetOf, type EventMeta, type SessionMeta } from "./events.ts";
 export { dueFacets, plan, PLANNER, practicableMistakes, predictExercise, type PlanOptions, type SessionPlan, type SessionRequest } from "./planner.ts";
 export { revised, revisionsOf, withRevisions } from "./revisions.ts";
-export { pathNodes, pathOf, type NodeStatus, type PathEntry, type PathNode } from "./path.ts";
+export { pathNodes, pathOf, scriptPathOf, type NodeStatus, type PathEntry, type PathNode } from "./path.ts";
 export { BLOCK_SIZE, PASS_SHARE, placementOf, placementTest, type PlacementTest } from "./placement.ts";
 export {
   applyEvents,

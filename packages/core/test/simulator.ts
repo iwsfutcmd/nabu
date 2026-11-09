@@ -46,6 +46,10 @@ const TRUE_TEMPLATE: Readonly<Record<TemplateId, number>> = {
   "story-choose": -0.6,
   "story-complete": -0.2,
   "story-arrange": 0.2,
+  "letter-read": -1.0,
+  "letter-pairs": -1.0,
+  "word-read": -0.4,
+  "word-write": 0.2,
 };
 
 const gauss = (rng: Rng): number => Math.sqrt(-2 * Math.log(1 - rng.next())) * Math.cos(2 * Math.PI * rng.next());

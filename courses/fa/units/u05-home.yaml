@@ -46,7 +46,7 @@ sentences:
     fa-Arab/standard:
       text: این خانهٔ من است.
       tokens: [{surface: این, sense: in}, {surface: خانهٔ, sense: khane}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: "این خان(هٔ|ه\u200cی|ه) من است\nاین خانه\u200cام است"
+      reverse: "این خان(هٔ|ه\u200Cی|ه) من است\nاین خانه\u200Cام است\nاین خانه\u200Cی منه"
   translations:
     en: This is my (house|home).
 - id: s.home.2
@@ -56,7 +56,7 @@ sentences:
     fa-Arab/standard:
       text: خانهٔ ما بزرگ است.
       tokens: [{surface: خانهٔ, sense: khane}, {surface: ما, sense: ma}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
-      reverse: "خان(هٔ|ه\u200cی|ه) ما (بزرگ است|بزرگه)"
+      reverse: "خان(هٔ|ه\u200Cی|ه) ما (بزرگ است|بزرگه)\nخانه\u200Cمان بزرگ است"
   translations:
     en: Our (house|home) is (big|large).
 - id: s.home.3
@@ -76,7 +76,9 @@ sentences:
     fa-Arab/standard:
       text: آپارتمانِ ما کوچک است.
       tokens: [{surface: آپارتمانِ, sense: aparteman}, {surface: ما, sense: ma}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}]
-      reverse: آپارتمان ما کوچک است
+      reverse: |-
+        آپارتمان ما کوچک است
+        آپارتمانمان کوچک است
   translations:
     en: Our (apartment|flat) is (small|little).
 - id: s.home.5
@@ -87,16 +89,20 @@ sentences:
     fa-Arab/standard:
       text: خانهٔ شما خیلی قشنگ است!
       tokens: [{surface: خانهٔ, sense: khane}, {surface: شما, sense: shoma}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: "خان(هٔ|ه\u200cی|ه) (شما|تو) خیلی (قشنگ است|قشنگه)\n(خانه\u200cتان|خانه\u200cات) خیلی (قشنگ است|قشنگه)"
+      reverse: "خان(هٔ|ه\u200Cی|ه) (شما|تو) خیلی (قشنگ است|قشنگه)\n(خانه\u200Cتان|خانه\u200Cات) خیلی (قشنگ است|قشنگه)\nخانه شما بسیار قشنگ است\nخانه شما خیلی زیبا است"
   translations:
-    en: Your (house|home) is (very|really) (beautiful|pretty|lovely|nice)!
+    en: |-
+      Your (house|home) is (very|really) (beautiful|pretty|lovely|nice)!
+      Your house is so beautiful!
 - id: s.home.6
   node: fa.home.house
   forms:
     fa-Arab/standard:
       text: این خانه جدید است.
       tokens: [{surface: این, sense: in}, {surface: خانه, sense: khane}, {surface: جدید, sense: jadid}, {surface: است, sense: budan}]
-      reverse: این خانه جدید است
+      reverse: |-
+        این خانه جدید است
+        این خانه جدیده
   translations:
     en: This (house|home) is new.
 - id: s.home.7
@@ -105,9 +111,14 @@ sentences:
     fa-Arab/standard:
       text: آن خانه خیلی قدیمی است.
       tokens: [{surface: آن, sense: an}, {surface: خانه, sense: khane}, {surface: خیلی, sense: kheyli}, {surface: قدیمی, sense: ghadimi}, {surface: است, sense: budan}]
-      reverse: آن خانه خیلی قدیمی است
+      reverse: |-
+        آن خانه خیلی قدیمی است
+        آن خانه بسیار قدیمی است
+        آن خانه خیلی قدیمیه
   translations:
-    en: That (house|home) is very old.
+    en: |-
+      That (house|home) is very old.
+      That house is really old.
 - id: s.home.8
   node: fa.home.rooms
   constructions: ['construction:ezafe']
@@ -125,7 +136,11 @@ sentences:
     fa-Arab/standard:
       text: اتاقِ من کوچک است، اما قشنگ است.
       tokens: [{surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: کوچک, sense: kuchak}, {surface: است, sense: budan}, {surface: اما, sense: amma}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: (اتاق من|اتاقم) کوچک است (اما|ولی) (قشنگ است|قشنگه)
+      reverse: |-
+        (اتاق من|اتاقم) کوچک است (اما|ولی) (قشنگ است|قشنگه)
+        اتاق من کوچک است ولی زیبا است
+        اتاق من کوچک ولی قشنگ است
+        اتاقم کوچک اما قشنگ است
   translations:
     en: My room is (small|little), but it('s| is) (pretty|nice|beautiful|lovely).
 - id: s.home.10
@@ -134,9 +149,14 @@ sentences:
     fa-Arab/standard:
       text: اتاقت خیلی قشنگ است!
       tokens: [{surface: اتاقت, sense: otagh, morphs: [{surface: اتاق, kc: 'sense:otagh'}, {surface: ت, kc: 'form:poss-2sg'}]}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: (اتاقت|اتاق تو|اتاقتان|اتاق شما) خیلی (قشنگ است|قشنگه)
+      reverse: |-
+        (اتاقت|اتاق تو|اتاقتان|اتاق شما) خیلی (قشنگ است|قشنگه)
+        اتاقت بسیار قشنگ است
+        اتاقت خیلی زیبا است
   translations:
-    en: Your room is (very|really) (pretty|nice|beautiful|lovely)!
+    en: |-
+      Your room is (very|really) (pretty|nice|beautiful|lovely)!
+      Your room is so pretty!
 - id: s.home.11
   node: fa.home.rooms
   forms:
@@ -153,7 +173,9 @@ sentences:
     fa-Arab/standard:
       text: اتاقِ من دو پنجره دارد.
       tokens: [{surface: اتاقِ, sense: otagh}, {surface: من, sense: man}, {surface: دو, sense: do}, {surface: پنجره, sense: panjere}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: (اتاق من|اتاقم) دو پنجره دارد
+      reverse: |-
+        (اتاق من|اتاقم) دو پنجره دارد
+        اتاق من دو تا پنجره دارد
   translations:
     en: My room has (two|2) windows.
 - id: s.home.13
@@ -189,7 +211,9 @@ sentences:
     fa-Arab/standard:
       text: دستشویی کجاست؟
       tokens: [{surface: دستشویی, sense: dastshui}, {surface: کجاست, sense: koja, morphs: [{surface: کجا, kc: 'sense:koja'}, {surface: ست, kc: 'sense:budan'}]}]
-      reverse: دستشویی (کجاست|کجا است)
+      reverse: |-
+        دستشویی (کجاست|کجا است)
+        توالت کجاست
   translations:
     en: Where('s| is) the (toilet|bathroom|restroom|loo)?
 - id: s.home.17
@@ -226,16 +250,22 @@ sentences:
     fa-Arab/standard:
       text: این میز خیلی بزرگ است.
       tokens: [{surface: این, sense: in}, {surface: میز, sense: miz}, {surface: خیلی, sense: kheyli}, {surface: بزرگ, sense: bozorg}, {surface: است, sense: budan}]
-      reverse: این میز خیلی (بزرگ است|بزرگه)
+      reverse: |-
+        این میز خیلی (بزرگ است|بزرگه)
+        این میز بسیار بزرگ است
   translations:
-    en: This (table|desk) is very (big|large).
+    en: |-
+      This (table|desk) is very (big|large).
+      This table is really big.
 - id: s.home.21
   node: fa.home.in
   forms:
     fa-Arab/standard:
       text: کتاب روی میز است.
       tokens: [{surface: کتاب, sense: ketab}, {surface: روی, sense: ruye}, {surface: میز, sense: miz}, {surface: است, sense: budan}]
-      reverse: کتاب روی میز است
+      reverse: |-
+        کتاب روی میز است
+        کتاب روی میزه
   translations:
     en: The book is on the (table|desk).
 - id: s.home.22
@@ -245,7 +275,9 @@ sentences:
     fa-Arab/standard:
       text: کتاب زیرِ میز است.
       tokens: [{surface: کتاب, sense: ketab}, {surface: زیرِ, sense: zir}, {surface: میز, sense: miz}, {surface: است, sense: budan}]
-      reverse: کتاب زیر میز است
+      reverse: |-
+        کتاب زیر میز است
+        کتاب زیر میزه
   translations:
     en: The book is under the (table|desk).
 - id: s.home.23
@@ -263,7 +295,10 @@ sentences:
     fa-Arab/standard:
       text: این تخت جدید است.
       tokens: [{surface: این, sense: in}, {surface: تخت, sense: takht}, {surface: جدید, sense: jadid}, {surface: است, sense: budan}]
-      reverse: این تخت جدید است
+      reverse: |-
+        این تخت جدید است
+        این تختخواب جدید است
+        این تخت جدیده
   translations:
     en: This bed is new.
 - id: s.home.25
@@ -282,7 +317,9 @@ sentences:
     fa-Arab/standard:
       text: شیر در یخچال است.
       tokens: [{surface: شیر, sense: shir}, {surface: در, sense: dar}, {surface: یخچال, sense: yakhchal}, {surface: است, sense: budan}]
-      reverse: شیر (در|توی) یخچال است
+      reverse: |-
+        شیر (در|توی) یخچال است
+        شیر توی یخچاله
   translations:
     en: The milk is in the (fridge|refrigerator).
 - id: s.home.27
@@ -306,7 +343,9 @@ sentences:
     fa-Arab/standard:
       text: در خانه نان هست؟
       tokens: [{surface: در, sense: dar}, {surface: خانه, sense: khane}, {surface: نان, sense: nan}, {surface: هست, sense: budan}]
-      reverse: (در|توی) خانه نان هست
+      reverse: |-
+        (در|توی) خانه نان هست
+        آیا در خانه نان هست
   translations:
     en: Is there [any] bread (at home|in the house)?
 - id: s.home.29
@@ -319,6 +358,7 @@ sentences:
       reverse: |-
         نه نان نیست
         نه نان نداریم
+        خیر نان نیست
   translations:
     en: |-
       No, there('s| is) no bread.

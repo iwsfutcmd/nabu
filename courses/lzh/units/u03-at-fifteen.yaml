@@ -169,6 +169,9 @@ sentences:
     en: |-
       There is one (person|man).
       There's one (person|man).
+      There was one man.
+      There was a man.
+      There is a person.
 - id: s.03.2
   node: lzh.u03.one-to-five
   forms:
@@ -177,7 +180,9 @@ sentences:
       tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
       reverse: 有二人
   translations:
-    en: There are two (people|persons|men).
+    en: |-
+      There are two (people|persons|men).
+      There were two people.
 - id: s.03.3
   node: lzh.u03.one-to-five
   forms:
@@ -186,7 +191,9 @@ sentences:
       tokens: [{surface: 三, sense: 三, readings: {pinyin: sān, jyutping: saam1, baxter: sam}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
       reverse: 三人來
   translations:
-    en: Three (people|men) (come|are coming|came|have come).
+    en: |-
+      Three (people|men) (come|are coming|came|have come).
+      Three persons came.
 - id: s.03.4
   node: lzh.u03.one-to-five
   forms:
@@ -195,7 +202,10 @@ sentences:
       tokens: [{surface: 四, sense: 四, readings: {pinyin: sì, jyutping: sei3, baxter: sijH}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 四人學之
   translations:
-    en: Four (people|men) (study|learn|are studying|are learning) it.
+    en: |-
+      Four (people|men) (study|learn|are studying|are learning) it.
+      Four people studied it.
+      Four people learned it.
 - id: s.03.5
   node: lzh.u03.one-to-five
   forms:
@@ -204,7 +214,9 @@ sentences:
       tokens: [{surface: 五, sense: 五, readings: {pinyin: wǔ, jyutping: ng5, baxter: nguX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 五人問之
   translations:
-    en: Five (people|men) (ask|asked|are asking) (him|her|about it).
+    en: |-
+      Five (people|men) (ask|asked|are asking) (him|her|about it).
+      Five people asked them.
 - id: s.03.6
   node: lzh.u03.to-a-hundred
   forms:
@@ -213,7 +225,9 @@ sentences:
       tokens: [{surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 六, sense: 六, readings: {pinyin: liù, jyutping: luk6, baxter: ljuwk}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
       reverse: 有六人
   translations:
-    en: There are six (people|men).
+    en: |-
+      There are six (people|men).
+      There were six people.
 - id: s.03.7
   node: lzh.u03.to-a-hundred
   forms:
@@ -222,7 +236,10 @@ sentences:
       tokens: [{surface: 七, sense: 七, readings: {pinyin: qī, jyutping: cat1, baxter: tshit}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
       reverse: 七人不知
   translations:
-    en: Seven (people|men) (do not|don't) know.
+    en: |-
+      Seven (people|men) (do not|don't) know.
+      Seven people did not know.
+      Seven people didn't know.
 - id: s.03.8
   node: lzh.u03.to-a-hundred
   forms:
@@ -240,7 +257,9 @@ sentences:
       tokens: [{surface: 九, sense: 九, readings: {pinyin: jiǔ, jyutping: gau2, baxter: kjuwX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 九人學之
   translations:
-    en: Nine (people|men) (study|learn|are studying|are learning) it.
+    en: |-
+      Nine (people|men) (study|learn|are studying|are learning) it.
+      Nine people studied it.
 - id: s.03.10
   node: lzh.u03.to-a-hundred
   forms:
@@ -297,6 +316,7 @@ sentences:
       I am fifteen[ years old].
       I'm fifteen[ years old].
       My age is fifteen.
+      I was fifteen.
 - id: s.03.15
   node: lzh.u03.years
   forms:
@@ -308,6 +328,7 @@ sentences:
     en: |-
       Confucius was seventy[ years old].
       Confucius is seventy[ years old].
+      Kongzi was seventy.
 - id: s.03.16
   node: lzh.u03.years
   forms:
@@ -319,6 +340,7 @@ sentences:
     en: |-
       I am thirty[ years old].
       I'm thirty[ years old].
+      I was thirty.
 - id: s.03.17
   node: lzh.u03.years
   forms:
@@ -327,7 +349,9 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 朋, sense: 朋, readings: {pinyin: péng, jyutping: pang4, baxter: bong}}, {surface: 年, sense: 年, readings: {pinyin: nián, jyutping: nin4, baxter: nen}}, {surface: 二, sense: 二, readings: {pinyin: èr, jyutping: ji6, baxter: nyijH}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}]
       reverse: (吾|我)朋年二十
   translations:
-    en: My friend is twenty[ years old].
+    en: |-
+      My friend is twenty[ years old].
+      My friend was twenty.
 - id: s.03.18
   node: lzh.u03.my-aim
   forms:
@@ -336,7 +360,11 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}]
       reverse: (吾|我)有志
   translations:
-    en: I have (an aim|a goal|an ambition|a purpose|a will).
+    en: |-
+      I have (an aim|a goal|an ambition|a purpose|a will).
+      I have ambitions.
+      I had an aim.
+      I have an aspiration.
 - id: s.03.19
   node: lzh.u03.my-aim
   forms:
@@ -349,6 +377,8 @@ sentences:
       I set my heart on learning.
       (Set|Setting) (one's|your|my) heart on (learning|study).
       I (am|was) (intent|bent) on (learning|study).
+      I set my heart on study.
+      I set my mind on learning.
 - id: s.03.20
   node: lzh.u03.my-aim
   forms:
@@ -361,17 +391,26 @@ sentences:
       At fifteen I set my heart on (learning|study).
       At fifteen I (was|became) (intent|bent) on (learning|study).
       When I was fifteen, I set my heart on (learning|study).
+      At fifteen I had my mind bent on learning.
+      At fifteen I set my mind on learning.
+      At the age of fifteen I set my heart on learning.
+      At fifteen I set my heart upon learning.
 - id: s.03.21
   node: lzh.u03.my-aim
   forms:
     lzh-Hant/standard:
       text: 三十而立。
       tokens: [{surface: 三, sense: 三, readings: {pinyin: sān, jyutping: saam1, baxter: sam}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 立, sense: 立, readings: {pinyin: lì, jyutping: lap6, baxter: lip}}]
-      reverse: 三十而立
+      reverse: |-
+        三十而立
+        吾三十而立
+        我三十而立
   translations:
     en: |-
       At thirty I (stood firm|took my stand|was established|stood on my own feet).
       At thirty, (stand firm|take your stand).
+      At the age of thirty I stood firm.
+      At thirty I established myself.
 - id: s.03.22
   node: lzh.u03.my-aim
   forms:
@@ -384,17 +423,23 @@ sentences:
       I am not (in doubt|confused|perplexed).
       I('m| was) not (in doubt|confused|perplexed).
       I (have|had) no doubts.
+      I am free from doubts.
 - id: s.03.23
   node: lzh.u03.my-aim
   forms:
     lzh-Hant/standard:
       text: 四十而不惑。
       tokens: [{surface: 四, sense: 四, readings: {pinyin: sì, jyutping: sei3, baxter: sijH}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 惑, sense: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}]
-      reverse: 四十而不惑
+      reverse: |-
+        四十而不惑
+        吾四十而不惑
   translations:
     en: |-
       At forty I (had no doubts|was free from doubts|was no longer perplexed|was no longer confused).
       At forty, (have|having) no doubts.
+      At forty I was not perplexed.
+      At forty I no longer had doubts.
+      At the age of forty I had no doubts.
 - id: s.03.24
   node: lzh.u03.heaven
   forms:
@@ -403,7 +448,9 @@ sentences:
       tokens: [{surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 言, sense: 言, readings: {pinyin: yán, jyutping: jin4, baxter: ngjon}}]
       reverse: 天不言
   translations:
-    en: Heaven (does not|doesn't) (speak|say anything|talk).
+    en: |-
+      Heaven (does not|doesn't) (speak|say anything|talk).
+      Heaven says nothing.
 - id: s.03.25
   node: lzh.u03.heaven
   forms:
@@ -437,17 +484,21 @@ sentences:
     en: |-
       I (know|understand) (the mandate|the will|the decree) of Heaven.
       I (know|understand) Heaven's (mandate|will|decree).
+      I knew the mandate of Heaven.
 - id: s.03.28
   node: lzh.u03.heaven
   forms:
     lzh-Hant/standard:
       text: 五十而知天命。
       tokens: [{surface: 五, sense: 五, readings: {pinyin: wǔ, jyutping: ng5, baxter: nguX}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 天命, sense: 天命, readings: {pinyin: tiān mìng, jyutping: tin1 ming6, baxter: then mjaengH}}]
-      reverse: 五十而知天命
+      reverse: |-
+        五十而知天命
+        吾五十而知天命
   translations:
     en: |-
       At fifty I (knew|understood) (the mandate|the will|the decree) of Heaven.
       At fifty I (knew|understood) Heaven's (mandate|will|decree).
+      At fifty I came to know the mandate of Heaven.
 - id: s.03.29
   node: lzh.u03.heart
   forms:
@@ -459,17 +510,22 @@ sentences:
     en: |-
       (People|Humans|Men) have ears.
       A person has ears.
+      Man has ears.
+      A man has ears.
 - id: s.03.30
   node: lzh.u03.heart
   forms:
     lzh-Hant/standard:
       text: 六十而耳順。
       tokens: [{surface: 六, sense: 六, readings: {pinyin: liù, jyutping: luk6, baxter: ljuwk}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 耳, sense: 耳, readings: {pinyin: ěr, jyutping: ji5, baxter: nyiX}}, {surface: 順, sense: 順, readings: {pinyin: shùn, jyutping: seon6, baxter: zywinH}}]
-      reverse: 六十而耳順
+      reverse: |-
+        六十而耳順
+        吾六十而耳順
   translations:
     en: |-
       At sixty my (ear was|ears were) (attuned|obedient|in tune).
       At sixty I (listened|heard) with (an attuned|an obedient|a docile) ear.
+      At the age of sixty my ear was attuned.
 - id: s.03.31
   node: lzh.u03.heart
   forms:
@@ -481,6 +537,8 @@ sentences:
     en: |-
       I( will|) follow (him|her|them|it).
       I followed (him|her|them|it).
+      I'll follow him.
+      I am following him.
 - id: s.03.32
   node: lzh.u03.heart
   forms:
@@ -489,7 +547,10 @@ sentences:
       tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 心, sense: 心, readings: {pinyin: xīn, jyutping: sam1, baxter: sim}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 其心善
   translations:
-    en: (His|Her|Their) (heart|mind) is good.
+    en: |-
+      (His|Her|Their) (heart|mind) is good.
+      Their hearts are good.
+      His heart was good.
 - id: s.03.33
   node: lzh.u03.heart
   forms:
@@ -498,7 +559,10 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}]
       reverse: (吾|我)欲學
   translations:
-    en: I (want|wish|would like|desire) to (learn|study).
+    en: |-
+      I (want|wish|would like|desire) to (learn|study).
+      I wanted to learn.
+      I'd like to learn.
 - id: s.03.34
   node: lzh.u03.heart
   forms:
@@ -507,7 +571,10 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 從, sense: 從, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: (吾|我)欲從之
   translations:
-    en: I (want|wish|would like|desire) to follow (him|her|them).
+    en: |-
+      I (want|wish|would like|desire) to follow (him|her|them).
+      I wanted to follow him.
+      I want to follow it.
 - id: s.03.35
   node: lzh.u03.heart
   forms:
@@ -516,7 +583,10 @@ sentences:
       tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: (是|此)(吾|我)所欲也
   translations:
-    en: (This|That) is what I (want|desire|wish for).
+    en: |-
+      (This|That) is what I (want|desire|wish for).
+      This is what I wanted.
+      It is what I want.
 - id: s.03.36
   node: lzh.u03.heart
   forms:
@@ -528,6 +598,9 @@ sentences:
     en: |-
       Follow what (your|the|my|one's) heart desires.
       Follow (your|my|one's) heart's (desires|wishes).
+      I followed what my heart desired.
+      Following what the heart desires.
+      Follow what your heart wants.
 - id: s.03.37
   node: lzh.u03.heart
   forms:
@@ -536,7 +609,9 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 踰, sense: 踰, readings: {pinyin: yú, jyutping: jyu4, baxter: yu}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: (吾|我)不踰之
   translations:
-    en: I (do not|don't|will not|won't) (overstep|cross|go beyond|transgress) it.
+    en: |-
+      I (do not|don't|will not|won't) (overstep|cross|go beyond|transgress) it.
+      I did not overstep it.
 - id: s.03.38
   node: lzh.u03.heart
   forms:
@@ -548,17 +623,24 @@ sentences:
     en: |-
       (Do not|Don't) (overstep|cross|go beyond|transgress) (the bounds|the rules|what is right).
       (Not|Without) (overstepping|crossing|going beyond|transgressing) (the bounds|the rules|what is right|the carpenter's square).
+      Without transgressing what was right.
+      I did not overstep the bounds.
 - id: s.03.39
   node: lzh.u03.heart
   forms:
     lzh-Hant/standard:
       text: 七十而從心所欲，不踰矩。
       tokens: [{surface: 七, sense: 七, readings: {pinyin: qī, jyutping: cat1, baxter: tshit}}, {surface: 十, sense: 十, readings: {pinyin: shí, jyutping: sap6, baxter: dzyip}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 從, sense: 從, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 心, sense: 心, readings: {pinyin: xīn, jyutping: sam1, baxter: sim}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 踰, sense: 踰, readings: {pinyin: yú, jyutping: jyu4, baxter: yu}}, {surface: 矩, sense: 矩, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjuX}}]
-      reverse: 七十而從心所欲不踰矩
+      reverse: |-
+        七十而從心所欲不踰矩
+        吾七十而從心所欲不踰矩
   translations:
     en: |-
       At seventy I (followed|could follow) (my heart's desires|what my heart desired) without (overstepping|crossing|transgressing) the (bounds|rules).
       At seventy I followed what my heart desired, (and did not|but did not|yet did not) (overstep|cross|transgress) the (bounds|rules).
+      At seventy I could follow what my heart desired, without transgressing what was right.
+      At seventy I followed what my heart desired without going beyond the bounds.
+      At the age of seventy I followed what my heart desired without overstepping the bounds.
 stories:
 - id: lzh.story.analects-2-4
   node: lzh.u03.story

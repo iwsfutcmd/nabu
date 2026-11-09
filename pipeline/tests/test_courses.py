@@ -60,6 +60,8 @@ TOOLS = {
     "lzh": [],
     "hbo": [],
     "es": [],
+    "tok": [],
+    "grc": [],
 }
 
 _cache: dict[str, tuple[Diagnostics, Compiled | None]] = {}
@@ -344,6 +346,9 @@ def test_cuban_spanish_runs_thirty_units_each_ending_in_a_story(
         assert u["nodes"][-1]["kind"] == "story", u["id"]
     used = {kc for s in sentences(compiled) for kc in s["kcs"]}
     assert [f for f in ES_FORMS if f"form:{f}" not in used] == []
+    # The voices clone people's recordings: every clip's credit names the recording (CC BY asks it).
+    credits = {clip["credit"] for entry in compiled.audio_items.values() for clip in entry.values()}
+    assert credits and all("cloning" in c and "archive.org/details/" in c for c in credits)
     manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
     assert manifest["placement"] == {"production": "typed"}
     assert manifest["target"] == "es-Latn-CU"
@@ -354,17 +359,19 @@ HEBREW_LETTER = regex.compile(r"\p{Script=Hebrew}")
 
 
 def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> None:
-    """hbo (ADR 0082): every voice says the pinned Tiberian reading as eSpeak NG phonemes, never
-    Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's input is phonemes."""
+    """hbo (ADR 0082, 0089): every voice says the pinned Tiberian reading as phonemes (IPA for its
+    Piper voice), never Hebrew text, and no voice is a Hebrew (Modern Hebrew) one; every clip's
+    input is phonemes."""
     from nabu.audio import tiberian
-    from nabu.audio.course import PHONEME_SCHEMES, read_index
+    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
 
     _, compiled = build(core_cli, "hbo")
     audio = compiled.course.audio
     assert audio is not None and audio.voices
     for voice in audio.voices:
         assert voice.reading == "tiberian" and voice.reading in PHONEME_SCHEMES
-        assert voice.provider == "espeak-ng" and not voice.voice.startswith("he")
+        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+        assert not voice.voice.startswith("he")
     index = read_index(COURSES / "hbo" / "audio")
     assert len(index.clips) > 300
     for clip in index.clips:
@@ -374,7 +381,9 @@ def test_biblical_hebrew_is_never_read_as_modern_hebrew(core_cli: CoreCli) -> No
         assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
             clip.item
         )
-    assert tiberian.espeak("wayyṓʾmer") in {
+        # Word cards too end like a sentence (finalStop, ADR 0089).
+        assert clip.synthesis.input.endswith((".", "?")), clip.item
+    assert tiberian.piper("wayyṓʾmer") in {
         c.synthesis.input.split(" ")[0] for c in index.clips if c.synthesis
     }
 
@@ -421,3 +430,131 @@ def test_biblical_hebrew_is_pointed_and_shows_its_points_by_default(core_cli: Co
         assert marks.search(text), s["id"]
         accept = form.get("reverse") or ""
         assert not marks.search(str(accept)), s["id"]
+
+
+TOK_LATN = "tok-Latn/standard"
+TOK_SP = "tok-Qaap/sitelen-pona"
+
+
+def test_toki_pona_pins_every_sentence_in_sitelen_lasina_and_sitelen_pona(
+    core_cli: CoreCli,
+) -> None:
+    """tok (ADR 0086): every sentence and story line is pinned in both orthographies, and the
+    sitelen pona is the Latin's words as logographs (the compiler would say so otherwise): one
+    logograph a word, with its word as ruby, a name a cartouche, sentences an ideographic space
+    apart and no spaces between words."""
+    from nabu import sitelen_pona as sp
+
+    diags, compiled = build(core_cli, "tok")
+    assert compiled.orthographies == [TOK_LATN, TOK_SP]
+    assert not [d.format() for d in diags.items if d.lint == "enrich.transliteration-mismatch"]
+    words = 0
+    for s in sentences(compiled):
+        assert sorted(s["forms"]) == sorted([TOK_LATN, TOK_SP]), s["id"]
+        latin = [t for t in s["forms"][TOK_LATN]["text"]["tokens"] if t["kind"] == "word"]
+        glyphs = [t for t in s["forms"][TOK_SP]["text"]["tokens"] if t["kind"] == "word"]
+        assert [t["sense"] for t in latin] == [t["sense"] for t in glyphs], s["id"]
+        for la, g in zip(latin, glyphs, strict=True):
+            words += 1
+            if la["surface"][0].isupper():
+                assert sp.spelled(g["surface"]) == la["surface"].lower(), s["id"]
+            else:
+                assert g["surface"] == sp.WORDS[la["surface"]], s["id"]
+                assert g["ruby"]["lasina"] == [{"base": g["surface"], "text": la["surface"]}]
+        text = "".join(t["surface"] for t in s["forms"][TOK_SP]["text"]["tokens"])
+        assert " " not in text and not regex.search(r"[a-zA-Z!?.,]", text), s["id"]
+    assert words > 1000
+
+
+def test_toki_pona_is_said_as_phonemes(core_cli: CoreCli) -> None:
+    """No synthesizer speaks Toki Pona: every voice says the pinned sitelen Lasina as eSpeak NG
+    phonemes (nabu.audio.toki_pona), and every clip's input is phonemes of Toki Pona's sounds."""
+    from nabu.audio.course import PHONEME_SCHEMES, read_index
+
+    _, compiled = build(core_cli, "tok")
+    audio = compiled.course.audio
+    assert audio is not None and audio.voices
+    for voice in audio.voices:
+        assert voice.provider == "espeak-ng" and voice.reading == "lasina"
+        assert voice.reading in PHONEME_SCHEMES
+    index = read_index(COURSES / "tok" / "audio")
+    assert len(index.clips) > 300
+    for clip in index.clips:
+        assert clip.synthesis is not None
+        words = regex.findall(r"\[\[[^\]]*\]\]", clip.synthesis.input)
+        assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?")
+        assert all(regex.fullmatch(r"\[\[[ptksmnljwaeiou']+\]\]", w) for w in words), clip.item
+
+
+GRC = "grc-Grek/polytonic"
+GREEK_LETTER = regex.compile(r"\p{Script=Greek}")
+
+
+def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
+    """grc (ADR 0087): every voice says the pinned Attic reading as phonemes (IPA for its Piper
+    voice), never Greek text, which a Greek voice would read as Modern Greek."""
+    from nabu.audio.course import PHONEME_SCHEMES, PIPER_PHONEME_SCHEMES, read_index
+
+    _, compiled = build(core_cli, "grc")
+    audio = compiled.course.audio
+    assert audio is not None and audio.voices
+    for voice in audio.voices:
+        assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
+        assert voice.reading in PIPER_PHONEME_SCHEMES or voice.provider != "piper"
+    index = read_index(COURSES / "grc" / "audio")
+    assert len(index.clips) > 400
+    for clip in index.clips:
+        assert clip.synthesis is not None
+        assert not GREEK_LETTER.search(clip.synthesis.input), clip.item
+        words = regex.findall(r"\[\[[^\]]*\]\]", clip.synthesis.input)
+        assert words and "".join(words) == clip.synthesis.input.replace(" ", "").rstrip(".?"), (
+            clip.item
+        )
+
+
+def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
+    """Every word of every sentence and story line pins its `attic` reading: its own spelling with
+    every α, ι, υ outside a diphthong marked long or short, so the audio can say it (ADR 0087)."""
+    from nabu.audio import attic
+
+    _, compiled = build(core_cli, "grc")
+    words = 0
+    for unit in compiled.units:
+        lines = [s["forms"][GRC] for s in unit["sentences"]] + [
+            step["line"]["forms"][GRC]
+            for story in unit.get("stories", [])
+            for step in story["steps"]
+            if "line" in step
+        ]
+        for form in lines:
+            tokens = form["text"]["tokens"] if "text" in form else form["tokens"]
+            for t in tokens:
+                if t["kind"] != "word":
+                    continue
+                words += 1
+                reading = t["readings"]["attic"]
+                assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
+                assert attic.unmarked(reading) == [], (unit["id"], reading)
+    assert words > 1000
+
+
+def test_greek_alphabet_track(core_cli: CoreCli) -> None:
+    """grc's script track (ADR 0088): eight alphabet nodes, each word spelled with the letters
+    taught by then, every letter and word with its Latin spelling, tagged grc-Latn/romanized."""
+    from nabu.compiler.script import letters_of
+
+    _, compiled = build(core_cli, "grc")
+    nodes = [n for u in compiled.units for n in u["nodes"] if n["kind"] == "script"]
+    assert len(nodes) == 8
+    taught: set[str] = set()
+    for n in nodes:
+        alphabet = n["alphabet"]
+        assert alphabet["orthography"] == GRC and n["sentences"] == []
+        for letter in alphabet["letters"]:
+            assert letter["latin"]["orthography"] == "grc-Latn/romanized"
+            taught |= set(letters_of(letter["text"]["tokens"][0]["surface"]))
+        assert alphabet["words"], n["id"]
+        for word in alphabet["words"]:
+            surface = "".join(t["surface"] for t in word["text"]["tokens"])
+            assert set(letters_of(surface)) <= taught, (n["id"], surface)
+            assert word["letters"], surface

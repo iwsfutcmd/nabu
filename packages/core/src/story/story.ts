@@ -150,9 +150,11 @@ export interface StoryGlossary {
   readonly forms: readonly TaggedText[];
 }
 
-/** The course glossary for tap-for-gloss in one orthography: every KC form (§7.5 stage 7). */
+/** The course glossary for tap-for-gloss in one orthography: every KC form but a letter's (§7.5 stage 7, ADR 0088). */
 export const courseGlossary = (course: CourseView, orthography: string = course.orthography): StoryGlossary => {
-  const entries = allKcs(course).flatMap((kc) => (kc.forms?.[orthography] ?? []).map((form) => ({ kc: kc.id, form })));
+  const entries = allKcs(course)
+    .filter((kc) => kc.kind !== "grapheme")
+    .flatMap((kc) => (kc.forms?.[orthography] ?? []).map((form) => ({ kc: kc.id, form })));
   return {
     compiled: compileGlossary(
       profileOf(course, orthography),

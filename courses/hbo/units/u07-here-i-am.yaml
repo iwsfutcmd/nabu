@@ -85,7 +85,7 @@ kcs:
     hbo-Hebr/tiberian: [שָׁם]
 - id: sense:olah
   gloss:
-    en: burnt offering (an offering wholly burnt)
+    en: burnt offering
   forms:
     hbo-Hebr/tiberian: [עֹלָה]
 - id: sense:heelah
@@ -106,7 +106,7 @@ kcs:
   image: {file: ../images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0', status: draft}, source: Drawn for Nabu (courses/images)}
 - id: sense:seh
   gloss:
-    en: lamb; a sheep or goat
+    en: lamb, kid; one of the flock
   forms:
     hbo-Hebr/tiberian: [שֶׂה]
   image: {file: ../images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265', status: draft}, source: Drawn for Nabu (courses/images)}
@@ -205,7 +205,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הַדָּבָר טוֹב׃
       tokens: [{surface: הַדָּבָר, sense: davar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּבָר, kc: 'sense:davar'}], readings: {tiberian: haddāḇār}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
-      reverse: הדבר טוב
+      reverse: |-
+        הדבר טוב
+        טוב הדבר
   translations:
     en: |-
       The (word|thing|matter) is good.
@@ -382,7 +384,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: אָהַבְתִּי אֶת־אָבִי׃
       tokens: [{surface: אָהַבְתִּי, sense: ahav, form: 'form:qatal-1cs', readings: {tiberian: ʾāháḇtî}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אָבִי, sense: av, readings: {tiberian: ʾāḇî}}]
-      reverse: אהבתי את אבי
+      reverse: |-
+        אהבתי את אבי
+        (אני|אנכי) אהבתי את אבי
   translations:
     en: |-
       I love my father.
@@ -679,7 +683,7 @@ stories:
               readings: {tiberian: ləʿōlâ}}, {surface: עַל, sense: al, readings: {tiberian: ʿal}}, {surface: אַחַד, sense: ehad, readings: {tiberian: ʾaḥaḏ}}, {surface: הֶהָרִים, sense: har, form: 'form:pl',
               morphs: [{surface: הֶ, kc: 'sense:ha'}, {surface: הָרִים, kc: 'sense:har'}], readings: {tiberian: hehārîm}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: אֹמַר,
               sense: amar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾōmar}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
-                tiberian: ʾēlêḵā}}]
+                tiberian: ʾēlếḵā}}]
       translations:
         en: and offer him there as a burnt offering on one of the mountains that I will tell you of.”
   - choose:

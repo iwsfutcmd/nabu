@@ -77,6 +77,11 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
+  // Script tracks (ADR 0088): built only for script nodes (lesson/script.ts), never for sentences.
+  "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  "letter-pairs": { facet: "read-script", modality: { audioOut: false, mic: false, input: "pairs" } },
+  "word-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
+  "word-write": { facet: "write-script", modality: { audioOut: false, mic: false, input: "tiles" } },
 };
 
 /** Templates that play audio: "can't listen now" leaves them out (§10, §11.5). */
@@ -104,8 +109,52 @@ const id = (template: TemplateId, item: string): string => `${template}:${item}`
 const words = (text: TaggedText): readonly number[] =>
   text.tokens.flatMap((t, i) => (t.kind === "word" || t.kind === "number" ? [i] : []));
 
-/** " " where the text spaces its words, "" where it does not (Han). */
-const joinerOf = (text: TaggedText): string => (text.tokens.some((t) => t.kind === "space") ? " " : "");
+/**
+ * " " where the orthography spaces its words, "" where it does not (Han): by the profile, not by
+ * the text, whose words may be joined by a hyphen or a maqaf alone (מִן־הַגָּן), which answers
+ * may write as a space.
+ */
+const joinerOf = (course: CourseView, text: TaggedText): string =>
+  profileOf(course, text.orthography).unitKind === "token" || text.tokens.some((t) => t.kind === "space") ? " " : "";
+
+/** What separates each tile of a text from the next in it (a space, a hyphen, a maqaf): the tokens no tile holds. */
+const separatorsOf = (text: TaggedText): readonly string[] => {
+  const separators: string[] = [];
+  let current: number | undefined;
+  let between = "";
+  for (const t of text.tokens) {
+    if (t.tileGroup === undefined) {
+      between += t.surface;
+      continue;
+    }
+    if (current !== undefined && t.tileGroup !== current) separators.push(between);
+    current = t.tileGroup;
+    between = "";
+  }
+  return separators;
+};
+
+/**
+ * Placed tiles as text. Two tiles that follow each other as they do in the answer keep what
+ * separates them there (מִן־הַגָּן, Bye-bye), so the answer's own order is its own text; tiles in
+ * another order take the joiner.
+ */
+export const tilesText = (
+  ex: { readonly tiles: readonly TaggedText[]; readonly solution: readonly number[]; readonly joiner: string; readonly canonical: TaggedText },
+  order: readonly number[],
+): string => {
+  const separators = separatorsOf(ex.canonical);
+  const rank = new Map(ex.solution.map((tile, k) => [tile, k]));
+  return order
+    .map((tile, i) => {
+      const text = surfaceOf(ex.tiles[tile] as TaggedText);
+      if (i === 0) return text;
+      const before = rank.get(order[i - 1] as number);
+      const here = rank.get(tile);
+      return (before !== undefined && here === before + 1 ? (separators[before] ?? ex.joiner) : ex.joiner) + text;
+    })
+    .join("");
+};
 
 const slice = (text: TaggedText, from: number, to: number): TaggedText => ({ ...text, tokens: text.tokens.slice(from, to) });
 
@@ -289,7 +338,7 @@ const makeTap = (
     prompt,
     tiles: order.map((i) => all[i] as TaggedText),
     solution: tiles.map((_, i) => order.indexOf(i)),
-    joiner: joinerOf(answer),
+    joiner: joinerOf(ctx.course, answer),
     accept,
     canonical: answer,
     // Writing into the target: who speaks and who is spoken to, where the prompt cannot say.
@@ -405,6 +454,8 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
 /** How a reading scheme is tagged when its readings are shown as options (Jyutping: yue-Latn-HK-jyutping). */
 export const READING_TAGS: Readonly<Record<string, { readonly lang: string; readonly orthography: string }>> = {
   jyutping: { lang: "yue-Latn-HK-jyutping", orthography: "yue-Latn/jyutping" },
+  // A sitelen pona logograph's word in sitelen Lasina (ADR 0086): options are the course's own Latin orthography.
+  lasina: { lang: "tok-Latn", orthography: "tok-Latn/standard" },
 };
 
 /** The profile's ruby reading scheme (Jyutping for yue), if it is one we can show as options. */
@@ -788,7 +839,7 @@ const mismatch = (ex: Exercise, response: Response): never => {
  */
 export const answerTextOf = (ex: Exercise, response: Response): string | undefined => {
   if (response.tag === "text") return response.text;
-  if (response.tag === "tiles" && "tiles" in ex && "joiner" in ex) return response.order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)).join(ex.joiner);
+  if (response.tag === "tiles" && "tiles" in ex && "joiner" in ex) return tilesText(ex, response.order);
   if (response.tag !== "choice" || !("options" in ex)) return undefined;
   const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
   if (option === undefined) return undefined;
@@ -808,6 +859,8 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.options[ex.answer]) : mismatch(ex, response);
     case "tone-identify":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
@@ -836,12 +889,14 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return { verdict: read(response.order) === read(ex.solution) ? "CORRECT" : "WRONG", notes: [], solution: ex.canonical };
     }
     case "match-pairs":
+    case "letter-pairs":
       return response.tag === "pairs" ? { verdict: "CORRECT", notes: response.mistakes > 0 ? ["pairs-mistakes"] : [] } : mismatch(ex, response);
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
+    case "word-write":
       if (response.tag !== "tiles") return mismatch(ex, response);
-      return graded(grader, ex, response.order.map((i) => surfaceOf(ex.tiles[i] as TaggedText)).join(ex.joiner), ex.canonical);
+      return graded(grader, ex, tilesText(ex, response.order), ex.canonical);
     case "translate-type.l1-l2":
     case "listen-type":
       return response.tag === "text" ? graded(grader, ex, response.text, ex.canonical) : mismatch(ex, response);
@@ -868,6 +923,8 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return ex.options[ex.answer];
     case "story-arrange":
       return ex.canonical;
@@ -877,6 +934,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "complete-translation":
     case "listen-tap":
     case "listen-type":
+    case "word-write":
       return ex.canonical;
     case "speak.tier-0":
     case "speak":
@@ -889,6 +947,7 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
     case "transcribe":
       return ex.reading;
     case "match-pairs":
+    case "letter-pairs":
       return undefined;
   }
 };

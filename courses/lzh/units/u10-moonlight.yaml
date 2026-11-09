@@ -167,6 +167,7 @@ sentences:
     en: |-
       The moon is bright.
       The moon (shines|is shining|is clear).
+      The moon was bright.
 - id: s.10.2
   node: lzh.u10.night
   forms:
@@ -179,6 +180,8 @@ sentences:
       The moonlight is bright.
       The moon's light is bright.
       The moonlight is (clear|shining).
+      The moonlight was bright.
+      The light of the moon is bright.
 - id: s.10.3
   node: lzh.u10.night
   forms:
@@ -190,6 +193,8 @@ sentences:
     en: |-
       The moon rises.
       The moon (comes out|has risen|is rising|came out|rose).
+      The moon comes up.
+      The moon came up.
 - id: s.10.4
   node: lzh.u10.night
   forms:
@@ -202,6 +207,8 @@ sentences:
       (At night|In the night|Tonight), the moon (is bright|shines|is shining).
       The moon is bright (at night|in the night|tonight).
       The night is moonlit.
+      At night the moon was bright.
+      The moon shines at night.
 - id: s.10.5
   node: lzh.u10.night
   forms:
@@ -213,6 +220,10 @@ sentences:
     en: |-
       The Way is great, Heaven is great, Earth is great, and the king (is also|too is|is) great.
       The Dao is great, Heaven is great, Earth is great, and the king (is also|too is|is) great.
+      The Way is great, Heaven is great, Earth is great, and the king is great too.
+      The Way is great, Heaven is great, the earth is great, and the king is also great.
+      The Tao is great, Heaven is great, Earth is great, and the king is also great.
+      The Way is great, Heaven is great, Earth is great, the king is also great.
 - id: s.10.6
   node: lzh.u10.night
   forms:
@@ -225,13 +236,16 @@ sentences:
       There is frost on the ground.
       The ground is (covered with|white with) frost.
       On the ground there is frost.
+      There was frost on the ground.
 - id: s.10.7
   node: lzh.u10.bed
   forms:
     lzh-Hant/standard:
       text: 此，吾床也。
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 床, sense: 床, readings: {pinyin: chuáng, jyutping: cong4, baxter: dzrjang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此(吾|我)床也
+      reverse: |-
+        此(吾|我)床也
+        是吾床也
   translations:
     en: |-
       This is my bed.
@@ -249,6 +263,8 @@ sentences:
       There is moonlight in front of the bed.
       (In front of|Before) the bed (there is|is) moonlight.
       Moonlight (lies|falls) (in front of|before) the bed.
+      There was moonlight in front of the bed.
+      There is moonlight before the bed.
 - id: s.10.9
   node: lzh.u10.bed
   forms:
@@ -258,6 +274,7 @@ sentences:
       reverse: |-
         此是霜
         此霜也
+        是霜也
   translations:
     en: |-
       This is frost.
@@ -276,19 +293,27 @@ sentences:
       I doubt it.
       I (suspect|wonder about|have doubts about) it.
       I am doubtful.
+      I doubted it.
+      I suspected it.
 - id: s.10.11
   node: lzh.u10.bed
   forms:
     lzh-Hant/standard:
       text: 疑是地上霜。
       tokens: [{surface: 疑, sense: 疑, readings: {pinyin: yí, jyutping: ji4, baxter: ngi}}, {surface: 是, sense: 是.cop, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 地, sense: 地, readings: {pinyin: dì, jyutping: dei6, baxter: dijH}}, {surface: 上, sense: 上, readings: {pinyin: shàng, jyutping: soeng6, baxter: dzyangH}}, {surface: 霜, sense: 霜, readings: {pinyin: shuāng, jyutping: soeng1, baxter: srjang}}]
-      reverse: 疑是地上霜
+      reverse: |-
+        疑是地上霜
+        吾疑是地上霜
   translations:
     en: |-
       I took it for frost on the ground.
       I (thought|wondered if) it was frost on the ground.
       It (looked|seemed) like frost on the ground.
       I took it for frost upon the ground.
+      I suspected it was frost on the ground.
+      I took it to be frost on the ground.
+      I wondered whether it was frost on the ground.
+      I mistook it for frost on the ground.
 - id: s.10.12
   node: lzh.u10.bed
   forms:
@@ -301,6 +326,9 @@ sentences:
       Before my bed, the bright moonlight.
       (Before|In front of) (my|the) bed is (bright moonlight|the light of the bright moon).
       (In front of my bed|Before the bed|In front of the bed), the bright moonlight.
+      Before my bed, bright moonlight.
+      Bright moonlight before my bed.
+      Before my bed, the light of the bright moon.
 - id: s.10.13
   node: lzh.u10.bed
   forms:
@@ -313,6 +341,9 @@ sentences:
       Before my bed, the bright moonlight: I took it for frost on the ground.
       (Before|In front of) (my|the) bed (is|was) bright moonlight; I (thought|wondered if) it was frost on the ground.
       The moonlight before my bed (looked|seemed) like frost on the ground.
+      Before my bed, the bright moonlight: I thought it was frost on the ground.
+      Before my bed, bright moonlight: I took it for frost on the ground.
+      Bright moonlight before my bed: I took it for frost on the ground.
 - id: s.10.14
   node: lzh.u10.looking
   forms:
@@ -325,6 +356,9 @@ sentences:
       (Lift|Raise) it.
       Lift it up.
       (He|She) (lifted|raised) it.
+      He lifts it.
+      They lifted it.
+      Raise it up.
 - id: s.10.15
   node: lzh.u10.looking
   forms:
@@ -337,6 +371,7 @@ sentences:
       (He|She) (raised|raises|lifted|lifts) (his|her) head.
       I (raise|raised|lift|lifted) my head.
       (Raise|Lift) your head.
+      They raised their heads.
 - id: s.10.16
   node: lzh.u10.looking
   forms:
@@ -348,18 +383,26 @@ sentences:
     en: |-
       (Gaze|Look) (at|toward|towards) the (mountains|mountain).
       (He|She) (gazed|gazes|looked|looks) (at|toward|towards) the (mountains|mountain).
+      I gaze at the mountains.
+      They gazed at the mountains.
+      He looked toward the hills.
 - id: s.10.17
   node: lzh.u10.looking
   forms:
     lzh-Hant/standard:
       text: 舉頭望明月。
       tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}]
-      reverse: 舉頭望明月
+      reverse: |-
+        舉頭望明月
+        吾舉頭望明月
   translations:
     en: |-
       I (raise|raised|lift|lifted) my head and (gaze|gazed|look|looked) at the bright moon.
       (He|She) (raises|raised|lifts|lifted) (his|her) head and (gazes|gazed|looks|looked) at the bright moon.
       Raising my head, I (gaze|look) at the bright moon.
+      I raise my head and look up at the bright moon.
+      Raising my head, I looked at the bright moon.
+      They raised their heads and gazed at the bright moon.
 - id: s.10.18
   node: lzh.u10.looking
   forms:
@@ -372,30 +415,40 @@ sentences:
       (He|She) (lowered|lowers|bowed|bows) (his|her) head.
       I (lower|lowered|bow|bowed) my head.
       (Lower|Bow) your head.
+      They lowered their heads.
 - id: s.10.19
   node: lzh.u10.looking
   forms:
     lzh-Hant/standard:
       text: 思故鄉。
       tokens: [{surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
-      reverse: 思故鄉
+      reverse: |-
+        思故鄉
+        吾思故鄉
+        我思故鄉
   translations:
     en: |-
       I think of (home|my home town|my hometown|my old home|my home village).
       I (miss|long for) (home|my home town|my hometown|my old home|my home village).
       (He|She) (thinks of|misses|longs for) (home|his home town|her home town|his hometown|her hometown).
+      I thought of home.
+      I think of my native village.
 - id: s.10.20
   node: lzh.u10.looking
   forms:
     lzh-Hant/standard:
       text: 低頭思故鄉。
       tokens: [{surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
-      reverse: 低頭思故鄉
+      reverse: |-
+        低頭思故鄉
+        吾低頭思故鄉
   translations:
     en: |-
       I (lower|lowered|bow|bowed) my head and (think|thought) of (home|my home town|my hometown|my old home).
       Lowering my head, I (think|thought) of (home|my home town|my hometown|my old home).
       (He|She) (lowers|lowered|bows|bowed) (his|her) head and (thinks|thought) of home.
+      Bowing my head, I think of home.
+      I lower my head and think of my home village.
 - id: s.10.21
   node: lzh.u10.looking
   forms:
@@ -408,17 +461,23 @@ sentences:
       My (home town|hometown|home|old home) is far away.
       My (home town|hometown|home|old home) is (so|very) far( away|).
       My (home town|hometown|home|old home) is far away now.
+      My home is now far away.
+      My hometown is distant.
 - id: s.10.22
   node: lzh.u10.looking
   forms:
     lzh-Hant/standard:
       text: 舉頭望明月，低頭思故鄉。
       tokens: [{surface: 舉, sense: 舉, readings: {pinyin: jǔ, jyutping: geoi2, baxter: kjoX}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 望, sense: 望, readings: {pinyin: wàng, jyutping: mong6, baxter: mjangH}}, {surface: 明, sense: 明, readings: {pinyin: míng, jyutping: ming4, baxter: mjaeng}}, {surface: 月, sense: 月, readings: {pinyin: yuè, jyutping: jyut6, baxter: ngjwot}}, {surface: 低, sense: 低, readings: {pinyin: dī, jyutping: dai1, baxter: tej}}, {surface: 頭, sense: 頭, readings: {pinyin: tóu, jyutping: tau4, baxter: duw}}, {surface: 思, sense: 思, readings: {pinyin: sī, jyutping: si1, baxter: si}}, {surface: 故鄉, sense: 故鄉, readings: {pinyin: gù xiāng, jyutping: gu3 hoeng1, baxter: kuH xjang}}]
-      reverse: 舉頭望明月低頭思故鄉
+      reverse: |-
+        舉頭望明月低頭思故鄉
+        吾舉頭望明月低頭思故鄉
   translations:
     en: |-
       I (raise|lift) my head and (gaze|look) at the bright moon(;| and) I (lower|bow) my head and think of (home|my home town|my hometown).
       Raising my head, I (gaze|look) at the bright moon(;| and) lowering my head, I think of (home|my home town|my hometown).
+      Raising my head, I gaze at the bright moon; bowing my head, I think of home.
+      I raised my head and gazed at the bright moon; I lowered my head and thought of home.
 - id: s.10.23
   node: lzh.u10.spring
   forms:
@@ -430,6 +489,7 @@ sentences:
     en: |-
       Spring comes.
       Spring (is coming|has come|came|is here).
+      Spring has arrived.
 - id: s.10.24
   node: lzh.u10.spring
   forms:
@@ -442,6 +502,8 @@ sentences:
       Spring has flowers.
       In spring there are flowers.
       There are flowers in spring.
+      Spring has blossoms.
+      In spring there are blossoms.
 - id: s.10.25
   node: lzh.u10.spring
   forms:
@@ -453,6 +515,8 @@ sentences:
     en: |-
       There (are birds|is a bird) (in the mountains|in the mountain|on the mountain).
       In the mountains there (are birds|is a bird).
+      There are birds in the hills.
+      There were birds in the mountains.
 - id: s.10.26
   node: lzh.u10.spring
   forms:
@@ -465,6 +529,8 @@ sentences:
       There is wind on the mountain.
       It is windy (on the mountain|in the mountains|on top of the mountain).
       The wind blows on the mountain.
+      There was wind on the mountain.
+      The wind is blowing on the mountain.
 - id: s.10.27
   node: lzh.u10.spring
   forms:
@@ -477,19 +543,24 @@ sentences:
       Wind and rain are coming.
       (Wind and rain|The wind and the rain) (come|came|have come).
       (A|The) storm (is coming|comes|came|has come).
+      The wind and rain are coming.
 - id: s.10.28
   node: lzh.u10.spring
   forms:
     lzh-Hant/standard:
       text: 此何聲也？
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 何, sense: 何, readings: {pinyin: hé, jyutping: ho4, baxter: ha}}, {surface: 聲, sense: 聲, readings: {pinyin: shēng, jyutping: sing1, baxter: syeng}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此何聲[也]
+      reverse: |-
+        此何聲[也]
+        是何聲也
   translations:
     en: |-
       What sound is this?
       What is (this|that) sound?
       What sound is that?
       What's (this|that) sound?
+      What was that sound?
+      What noise is this?
 - id: s.10.29
   node: lzh.u10.waking
   forms:
@@ -503,6 +574,7 @@ sentences:
       I (don't|cannot|can't) sleep at night.
       At night I (do not|don't|cannot|can't) sleep.
       I (did not|didn't) sleep (at night|that night|last night).
+      I could not sleep at night.
 - id: s.10.30
   node: lzh.u10.waking
   forms:
@@ -515,6 +587,8 @@ sentences:
       I did not notice.
       I (didn't|did not) (realize|realise|notice it|wake up|wake).
       I was not aware( of it|).
+      I do not notice.
+      I was unaware.
 - id: s.10.31
   node: lzh.u10.waking
   forms:
@@ -527,6 +601,9 @@ sentences:
       Sleeping in spring, I (did not|didn't) notice the (dawn|daybreak).
       In spring I (sleep|slept) (and|but) (did not|didn't) (notice|know) (the dawn|the daybreak|it was dawn).
       In spring sleep I (did not|didn't) (notice|know) (the dawn|the daybreak|it was dawn).
+      Sleeping in spring, I did not notice daybreak.
+      In spring I sleep and do not notice the dawn.
+      Sleeping in spring, I did not know it was dawn.
 - id: s.10.32
   node: lzh.u10.waking
   forms:
@@ -539,6 +616,7 @@ sentences:
       There are birds everywhere.
       Everywhere there are birds.
       Birds are everywhere.
+      There were birds everywhere.
 - id: s.10.33
   node: lzh.u10.listening
   forms:
@@ -551,6 +629,7 @@ sentences:
       I have heard it.
       I (heard|hear) (it|this|of it|about it).
       I have heard (this|of it|about it|so).
+      I've heard it.
 - id: s.10.34
   node: lzh.u10.listening
   forms:
@@ -564,6 +643,7 @@ sentences:
       (The |)birds (are singing|sang|cry|are crying|call|are calling).
       A bird (sings|sang|cries|calls).
       The birds sing.
+      A bird is singing.
 - id: s.10.35
   node: lzh.u10.listening
   forms:
@@ -577,6 +657,8 @@ sentences:
       Everywhere I hear (birds singing|singing birds|the birds sing|the singing of birds|the birds crying).
       I hear birds singing everywhere.
       I hear the birds singing everywhere.
+      Everywhere I heard the birds singing.
+      Everywhere I hear the birds calling.
 - id: s.10.36
   node: lzh.u10.listening
   forms:
@@ -588,6 +670,10 @@ sentences:
     en: |-
       (In the night came|During the night came|In the night there was|Last night there was|At night came) the sound of (wind and rain|the wind and the rain).
       (The sound of wind and rain|Wind and rain) (came|were heard) in the night.
+      Last night came the sound of wind and rain.
+      At night there was the sound of wind and rain.
+      Through the night came the sound of wind and rain.
+      In the night, the sound of wind and rain.
 - id: s.10.37
   node: lzh.u10.listening
   forms:
@@ -599,6 +685,7 @@ sentences:
     en: |-
       The (flowers|blossoms) (fall|are falling|fell|have fallen).
       (Flowers|Blossoms) (fall|are falling|fell|have fallen).
+      A flower falls.
 - id: s.10.38
   node: lzh.u10.listening
   forms:
@@ -611,6 +698,7 @@ sentences:
       Who knows how many (blossoms|flowers) (fell|have fallen)?
       How many (blossoms|flowers) (fell|have fallen), who knows?
       (I wonder|And who can tell) how many (blossoms|flowers) (fell|have fallen).
+      Who can tell how many flowers have fallen?
 - id: s.10.39
   node: lzh.u10.listening
   forms:
@@ -622,6 +710,7 @@ sentences:
     en: |-
       The moon sets.
       The moon (has set|set|is setting|goes down|went down).
+      The moon sinks.
 stories:
 - id: lzh.story.moonlight
   node: lzh.u10.story

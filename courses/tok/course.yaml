@@ -1,0 +1,24 @@
+# Toki Pona (tok), the small language of Sonja Lang (2001), in its two writing systems (ADR 0086): sitelen
+# Lasina, the Latin alphabet, and sitelen pona, its own logographs, with every sentence pinned in both. Learners
+# pick one; in sitelen pona each logograph's word can be shown above it, and answers may be typed in either.
+# Ten units, A1 to A2, teach the 120 words of pu (all but unpa) and kin, checked against Linku and the
+# references in the reference library (notes/tok). Names are written in cartouches.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a fluent speaker.
+id: tok
+target: tok-Latn
+orthographies: [tok-Latn/standard, tok-Qaap/sitelen-pona]
+support: [en-Latn/standard]
+license: CC-BY-SA-4.0
+provenance: {author: 'llm:claude@tok-draft-v1', status: draft}
+# A Toki Pona sentence is short and every word is a KC: a sentence may bring in two new words.
+iPlusOne: 2
+# Audio (ADR 0086): no synthesizer has a Toki Pona voice, but its sounds are few and plain. Each word's pinned
+# sitelen Lasina reading is said as eSpeak NG phonemes (nabu.audio.toki_pona) through its Esperanto table, which
+# names them as Toki Pona spells them, stressed on the first syllable. A man's voice and a woman's share the
+# items at random (seeded by their ids, ADR 0078); Toki Pona never says who speaks. The sitelen pona orthography
+# plays the same clips. Rule-based synthesis: the clips are CC0.
+audio:
+  voices:
+  - {id: lasina-m, provider: espeak-ng, voice: eo, speaker: m, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}
+  - {id: lasina-f, provider: espeak-ng, voice: eo+f2, speaker: f, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}
+units: [units/u01-toki.yaml, units/u02-soweli-li-lape.yaml, units/u03-mi-moku-e-kili.yaml, units/u04-pona-ala-pona.yaml, units/u05-jan-pi-toki-pona.yaml, units/u06-mi-lon-tomo.yaml, units/u07-tenpo-ni-la.yaml, units/u08-o-kama.yaml, units/u09-sijelo-en-kule.yaml, units/u10-toki-pona-li-pona.yaml]

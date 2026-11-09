@@ -59,11 +59,15 @@ sentences:
     apc-Arab/standard:
       text: شكرا!
       tokens: [{surface: شكرا, sense: shukran}]
-      reverse: شكرا
+      reverse: |-
+        شكرا
+        ميرسي
     apc-Latn/arabizi:
       text: shukran!
       tokens: [{surface: shukran, sense: shukran}]
-      reverse: (shukran|shokran)
+      reverse: |-
+        (shukran|shokran)
+        merci
   translations:
     en: |-
       Thank you!
@@ -75,11 +79,15 @@ sentences:
     apc-Arab/standard:
       text: ميرسي!
       tokens: [{surface: ميرسي, sense: merci}]
-      reverse: (ميرسي|مرسي)
+      reverse: |-
+        (ميرسي|مرسي)
+        شكرا
     apc-Latn/arabizi:
       text: merci!
       tokens: [{surface: merci, sense: merci}]
-      reverse: (merci|mersi)
+      reverse: |-
+        (merci|mersi)
+        shukran
   translations:
     en: |-
       Thanks!
@@ -125,11 +133,15 @@ sentences:
     apc-Arab/standard:
       text: كيفك؟
       tokens: [{surface: كيفك, sense: kifak, vocalized: كيفَك}]
-      reverse: كيفك
+      reverse: |-
+        كيفك
+        كيف حالك
     apc-Latn/arabizi:
       text: kifak?
       tokens: [{surface: kifak, sense: kifak}]
-      reverse: (kifak|keefak)
+      reverse: |-
+        (kifak|keefak)
+        kif 7alak
   translations:
     en: |-
       How are you?
@@ -161,11 +173,15 @@ sentences:
     apc-Arab/standard:
       text: منيح، الحمدلله.
       tokens: [{surface: منيح, sense: mni7}, {surface: الحمدلله, sense: el7amdella}]
-      reverse: منيح (الحمدلله|الحمد لله)
+      reverse: |-
+        منيح (الحمدلله|الحمد لله)
+        الحمدلله منيح
     apc-Latn/arabizi:
       text: mni7, el7amdella.
       tokens: [{surface: mni7, sense: mni7}, {surface: el7amdella, sense: el7amdella}]
-      reverse: (mni7|mnih|mnee7) (el7amdella|l7amdella|el7amdellah|7amdella|el7amdulillah|al7amdulillah|alhamdulillah|elhamdella)
+      reverse: |-
+        (mni7|mnih|mnee7) (el7amdella|l7amdella|el7amdellah|7amdella|el7amdulillah|al7amdulillah|alhamdulillah|elhamdella)
+        el7amdella mni7
   translations:
     en: |-
       (Fine|Good|Well), thank (God|goodness).
@@ -260,11 +276,15 @@ sentences:
     apc-Arab/standard:
       text: شو اسمك؟
       tokens: [{surface: شو, sense: shu}, {surface: اسمك, sense: esmak}]
-      reverse: شو اسمك
+      reverse: |-
+        شو اسمك
+        إنت شو اسمك
     apc-Latn/arabizi:
       text: shu esmak?
       tokens: [{surface: shu, sense: shu}, {surface: esmak, sense: esmak}]
-      reverse: (shu|sho) (esmak|ismak)
+      reverse: |-
+        (shu|sho) (esmak|ismak)
+        enta shu esmak
   translations:
     en: What('s| is) your name?
 - id: s.15
@@ -274,11 +294,15 @@ sentences:
     apc-Arab/standard:
       text: اسمي سامي.
       tokens: [{surface: اسمي, sense: esmi}, {surface: سامي, sense: sami}]
-      reverse: اسمي سامي
+      reverse: |-
+        اسمي سامي
+        أنا اسمي سامي
     apc-Latn/arabizi:
       text: esmi Sami.
       tokens: [{surface: esmi, sense: esmi}, {surface: Sami, sense: sami}]
-      reverse: (esmi|ismi|esme|isme) Sami
+      reverse: |-
+        (esmi|ismi|esme|isme) Sami
+        ana esmi Sami
   translations:
     en: |-
       My name('s| is) Sami.
@@ -370,11 +394,15 @@ sentences:
     apc-Arab/standard:
       text: لأ، ميرسي.
       tokens: [{surface: لأ, sense: la2}, {surface: ميرسي, sense: merci}]
-      reverse: لأ (ميرسي|مرسي)
+      reverse: |-
+        لأ (ميرسي|مرسي)
+        لأ شكرا
     apc-Latn/arabizi:
       text: la2, merci.
       tokens: [{surface: la2, sense: la2}, {surface: merci, sense: merci}]
-      reverse: (la2|la) (merci|mersi)
+      reverse: |-
+        (la2|la) (merci|mersi)
+        la2 shukran
   translations:
     en: No, (thanks|thank you).
 - id: s.22
@@ -384,7 +412,9 @@ sentences:
     apc-Arab/standard:
       text: إيه، بدّي شاي.
       tokens: [{surface: إيه, sense: eh}, {surface: بدّي, sense: baddi}, {surface: شاي, sense: shay}]
-      reverse: إيه (بدّي|أنا بدّي) شاي
+      reverse: |-
+        إيه (بدّي|أنا بدّي) شاي
+        إي بدّي شاي
     apc-Latn/arabizi:
       text: eh, baddi shay.
       tokens: [{surface: eh, sense: eh}, {surface: baddi, sense: baddi}, {surface: shay, sense: shay}]

@@ -104,7 +104,7 @@ kcs:
     hbo-Hebr/tiberian: [בִּקֵּשׁ]
 - id: form:yiqtol-2ms
   gloss:
-    en: 'you will do: the imperfect (yiqtol), you (to a man)'
+    en: 'you will do: the imperfect (yiqtol), you (to a man); with לֹא, ''you shall not'''
 - id: form:yiqtol-2fs
   gloss:
     en: 'you will do: the imperfect (yiqtol), you (to a woman)'
@@ -174,7 +174,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הֵם בַּשָּׂדֶה׃
       tokens: [{surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
-      reverse: הם בשדה
+      reverse: |-
+        הם בשדה
+        בשדה הם
   translations:
     en: |-
       They are in the field.
@@ -224,7 +226,9 @@ sentences:
       tokens: [{surface: אַחֶיךָ, sense: ah, form: 'form:pl', morphs: [{surface: אַחֶי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾaḥếḵā}}, {surface: רֹעִים, sense: raah.graze,
           form: 'form:ptc-mp', readings: {tiberian: rōʿîm}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַצֹּאן, sense: tson, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: צֹּאן,
               kc: 'sense:tson'}], readings: {tiberian: haṣṣōʾn}}]
-      reverse: אחיך (רעים|רועים) את (הצאן|הצואן)
+      reverse: |-
+        אחיך (רעים|רועים) את (הצאן|הצואן)
+        (רעים|רועים) אחיך את (הצאן|הצואן)
   translations:
     en: Your brothers are (pasturing|tending|grazing) the (flock|sheep).
 - id: s.09.11
@@ -358,7 +362,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיָּבֹא׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}]
-      reverse: (ויבא|ויבוא)
+      reverse: |-
+        (ויבא|ויבוא)
+        בא
+        הוא בא
+        והוא בא
   translations:
     en: |-
       [(And|Then)] he came.
@@ -370,7 +378,11 @@ sentences:
       text: וַיָּבֹא אֶל־הַבַּיִת׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הַבַּיִת, sense: bayit, morphs: [
             {surface: הַ, kc: 'sense:ha'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: habbáyiṯ}}]
-      reverse: (ויבא|ויבוא) אל הבית
+      reverse: |-
+        (ויבא|ויבוא) אל הבית
+        בא אל הבית
+        הוא בא אל הבית
+        והוא בא אל הבית
   translations:
     en: |-
       [(And|Then)] he came to the house.
@@ -414,7 +426,11 @@ sentences:
       text: וַיָּבֹא שְׁכֶמָה׃
       tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'}, {surface: ה,
               kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
-      reverse: (ויבא|ויבוא) שכמה
+      reverse: |-
+        (ויבא|ויבוא) שכמה
+        בא שכמה
+        הוא בא שכמה
+        והוא בא שכמה
   translations:
     en: |-
       [(And|Then)] he came to Shechem.
@@ -472,7 +488,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: מָצָאתִי׃
       tokens: [{surface: מָצָאתִי, sense: matsa, form: 'form:qatal-1cs', readings: {tiberian: māṣā́ʾṯî}}]
-      reverse: מצאתי
+      reverse: |-
+        מצאתי
+        (אני|אנכי) מצאתי
   translations:
     en: |-
       I found (it|him).
@@ -494,7 +512,11 @@ sentences:
       text: וַיִּשְׁאַל אֶת־הָאִישׁ׃
       tokens: [{surface: וַיִּשְׁאַל, sense: shaal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyišʾal}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הָאִישׁ, sense: ish, morphs: [
             {surface: הָ, kc: 'sense:ha'}, {surface: אִישׁ, kc: 'sense:ish'}], readings: {tiberian: hāʾîš}}]
-      reverse: וישאל את האיש
+      reverse: |-
+        וישאל את האיש
+        שאל את האיש
+        הוא שאל את האיש
+        והוא שאל את האיש
   translations:
     en: '[(And|Then)] he asked the man.'
 - id: s.09.35
@@ -542,7 +564,9 @@ sentences:
       text: אֶת־אַחַי אָנֹכִי מְבַקֵּשׁ׃
       tokens: [{surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: אַחַי, sense: ah, form: 'form:pl', morphs: [{surface: אַחַ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {
             tiberian: ʾaḥay}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מְבַקֵּשׁ, sense: biqqesh, form: 'form:ptc-ms', readings: {tiberian: məḇaqqēš}}]
-      reverse: את אחי (אנכי|אנוכי) מבקש
+      reverse: |-
+        את אחי (אנכי|אנוכי) מבקש
+        את אחי מבקש (אנכי|אנוכי)
   translations:
     en: |-
       I am looking for my brothers.
@@ -670,7 +694,7 @@ stories:
           tokens: [{surface: וַיִּשְׁלָחֵהוּ, sense: shalach, form: 'form:wayyiqtol-3ms', morphs: [{surface: וַיִּשְׁלָחֵ, kc: 'sense:shalach'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wayyišlāḥḗhû}},
             {surface: מֵעֵמֶק, sense: emeq, form: 'form:cstr', morphs: [{surface: מֵ, kc: 'sense:min'}, {surface: עֵמֶק, kc: 'sense:emeq'}], readings: {tiberian: mēʿḗmeq}}, {surface: חֶבְרוֹן, sense: hevron,
               readings: {tiberian: ḥeḇrôn}}, {surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: שְׁכֶמָה, sense: shekhem, morphs: [{surface: שְׁכֶמָ, kc: 'sense:shekhem'},
-                {surface: ה, kc: 'form:dir'}], readings: {tiberian: šəḵemâ}}]
+                {surface: ה, kc: 'form:dir'}], readings: {tiberian: šəḵémâ}}]
       translations:
         en: So he sent him from the valley of Hebron, and he came to Shechem.
   - choose:

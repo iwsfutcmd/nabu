@@ -144,7 +144,9 @@ sentences:
     es-Latn/standard:
       text: A abuelo le duelen las rodillas y no puede caminar mucho.
       tokens: [{surface: A, sense: a}, {surface: abuelo, sense: abuelo}, {surface: le, sense: le}, {surface: duelen, sense: doler, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: rodillas, sense: rodilla}, {surface: 'y', sense: 'y'}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: caminar, sense: caminar}, {surface: mucho, sense: mucho}]
-      reverse: (A abuelo|A mi abuelo|Al abuelo) le duelen las rodillas y no puede caminar mucho
+      reverse: |-
+        (A abuelo|A mi abuelo|Al abuelo) le duelen las rodillas y no puede caminar mucho
+        A abuelo le duelen las rodillas y él no puede caminar mucho
   translations:
     en: (Grandpa's|Abuelo's|Grandfather's|My grandpa's|My grandfather's) knees hurt and he (can't|cannot) walk (much|very much|a lot|very far|far).
 - id: s.u18.10
@@ -187,8 +189,12 @@ sentences:
       reverse: |-
         Daniel va a ir (con él al (médico|doctor)|al (médico|doctor) con él)
         Daniel va (con él al (médico|doctor)|al (médico|doctor) con él)
+        Daniel irá con él al médico
   translations:
-    en: Daniel is going to go (with him to the doctor|with him to the doctor's|to the doctor with him|to the doctor's with him).
+    en: |-
+      Daniel is going to go (with him to the doctor|with him to the doctor's|to the doctor with him|to the doctor's with him).
+      Daniel's going to go with him to the doctor.
+      Daniel will go to the doctor with him.
 - id: s.u18.14
   node: es.u18.el-medico
   forms:
@@ -355,6 +361,7 @@ sentences:
       reverse: |-
         Vaya a la farmacia hoy y compre las pastillas
         Hoy vaya a la farmacia y compre las pastillas
+        Vaya hoy a la farmacia y compre las pastillas
   translations:
     en: |-
       Go to the (pharmacy|drugstore) today and (buy|get|pick up) the pills.
@@ -431,16 +438,18 @@ sentences:
       tokens: [{surface: El, sense: el}, {surface: tilo, sense: tilo}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: usted, sense: usted}, {surface: tiene, sense: tener-que, form: 'form:pres-3s'}, {surface: que, sense: tener-que}, {surface: tomar, sense: tomar}, {surface: sus, sense: su}, {surface: pastillas, sense: pastilla}]
       reverse: El tilo está bien pero [usted] tiene que tomar (sus|las) pastillas
   translations:
-    en: (The|Your) linden tea is (fine|okay|OK|good), but you (have to|need to|must) take your pills.
+    en: |-
+      (The|Your) linden tea is (fine|okay|OK|good), but you (have to|need to|must) take your pills.
+      Linden tea is fine, but you have to take your pills
 stories:
 - id: es.story.u18
   node: es.u18.story
   title: {en: 'Abuelo''s check-up'}
   characters:
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: doctora, name: {es-Latn/standard: La doctora}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: doctora, speaker: f, name: {es-Latn/standard: La doctora}}
   steps:
   - line:
       speaker: cachita

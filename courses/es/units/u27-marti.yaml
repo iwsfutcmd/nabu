@@ -172,6 +172,7 @@ sentences:
       reverse: |-
         Cuando [yo] era (niña|chiquita) leía a Martí con mi (padre|papá)
         [Yo] leía a Martí con mi (padre|papá) cuando era (niña|chiquita)
+        Leía a Martí con mi padre cuando yo era niña
   translations:
     en: |-
       When I was (a girl|a little girl|a child|little), I (used to read|read|would read) Martí with my (father|dad).
@@ -203,7 +204,9 @@ sentences:
     es-Latn/standard:
       text: Martí escribe como si hablara con un amigo.
       tokens: [{surface: Martí, sense: martí}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: como, sense: como.like}, {surface: si, sense: si}, {surface: hablara, sense: hablar, form: 'form:subj-past'}, {surface: con, sense: con}, {surface: un, sense: un}, {surface: amigo, sense: amigo}]
-      reverse: Martí escribe como si (hablara|hablase|estuviera hablando) con un amigo
+      reverse: |-
+        Martí escribe como si (hablara|hablase|estuviera hablando) con un amigo
+        Martí escribe como si estuviese hablando con un amigo
   translations:
     en: |-
       Martí writes (as if|as though|like) he (were|was) (talking|speaking) (to|with) a friend.
@@ -242,6 +245,7 @@ sentences:
     en: |-
       In Cuba, (palm trees|palms|the palm trees|the palms) grow all over the countryside.
       In Cuba, (palm trees|palms|the palm trees|the palms) grow (everywhere in|throughout|across) the countryside.
+      Palm trees grow all over the countryside in Cuba.
 - id: s.u27.19
   node: es.u27.hombre-sincero
   forms:
@@ -273,6 +277,7 @@ sentences:
   translations:
     en: |-
       That poem (touched my soul|moved me deeply|really touched me|went straight to my heart), (Grandma|Abuela).
+      That poem touched my heart, Grandma.
 - id: s.u27.22
   node: es.u27.guantanamera
   forms:
@@ -300,7 +305,9 @@ sentences:
     es-Latn/standard:
       text: Daniel canta la Guantanamera, pero nunca ha leído a Martí.
       tokens: [{surface: Daniel, sense: daniel}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: Guantanamera, sense: guantanamera}, {surface: pero, sense: pero}, {surface: nunca, sense: nunca}, {surface: ha, sense: haber, form: 'form:pres-3s'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
-      reverse: Daniel canta la Guantanamera pero nunca ha leído a Martí
+      reverse: |-
+        Daniel canta la Guantanamera pero nunca ha leído a Martí
+        Daniel canta la Guantanamera, pero no ha leído nunca a Martí
   translations:
     en: |-
       Daniel sings (Guantanamera|the Guantanamera), but (he's never|he has never|has never) read Martí.
@@ -396,7 +403,10 @@ sentences:
     es-Latn/standard:
       text: Para serte franco, abuela, yo nunca había leído a Martí.
       tokens: [{surface: Para, sense: para}, {surface: serte, sense: ser}, {surface: franco, sense: franco}, {surface: abuela, sense: abuela}, {surface: yo, sense: yo}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: leído, sense: leer, form: 'form:part'}, {surface: a, sense: a}, {surface: Martí, sense: martí}]
-      reverse: Para serte (franco|sincero) [abuela] [yo] nunca había leído a Martí
+      reverse: |-
+        Para serte (franco|sincero) [abuela] [yo] nunca había leído a Martí
+        Para serte franco, abuela, yo no había leído nunca a Martí
+        Para ser franco, abuela, yo nunca había leído a Martí
   translations:
     en: |-
       To be (honest|frank) [with you], (Grandma|Abuela), (I had never|I'd never|I never) read Martí.
@@ -407,7 +417,9 @@ sentences:
     es-Latn/standard:
       text: Para serte franca, mi'jo, yo lloro cuando leo ese poema.
       tokens: [{surface: Para, sense: para}, {surface: serte, sense: ser}, {surface: franca, sense: franco}, {surface: "mi'jo", sense: mijo}, {surface: yo, sense: yo}, {surface: lloro, sense: llorar, form: 'form:pres-1s'}, {surface: cuando, sense: cuando}, {surface: leo, sense: leer, form: 'form:pres-1s'}, {surface: ese, sense: ese}, {surface: poema, sense: poema}]
-      reverse: Para serte (franca|sincera) (mi'jo|mi hijo) [yo] lloro (cuando leo|cada vez que leo) (ese|este) poema
+      reverse: |-
+        Para serte (franca|sincera) (mi'jo|mi hijo) [yo] lloro (cuando leo|cada vez que leo) (ese|este) poema
+        Para ser franca, mi'jo, yo lloro cuando leo ese poema
   translations:
     en: |-
       To be (honest|frank) [with you], (sweetheart|son|honey), I cry (when|whenever|every time) I read (that|this) poem.
@@ -438,9 +450,9 @@ stories:
   node: es.u27.story
   title: {en: 'A sincere man (José Martí, Versos sencillos, 1891)'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
   steps:
   - line:
       speaker: cachita

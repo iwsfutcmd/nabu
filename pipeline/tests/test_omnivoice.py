@@ -9,6 +9,7 @@ checkpoint, and runs only with NABU_OMNIVOICE=1 (`test_live_*`).
 from __future__ import annotations
 
 import hashlib
+import importlib
 import os
 import shutil
 import subprocess
@@ -28,7 +29,16 @@ from nabu.audio.course import (
     reference_of,
     synthesize_course,
 )
-from nabu.audio.providers import OmniVoiceProvider, Reference, Request, checkpoint, seed_of
+from nabu.audio.providers import (
+    LEAD_S,
+    TAIL_S,
+    OmniVoiceProvider,
+    Reference,
+    Request,
+    checkpoint,
+    seed_of,
+    trim_edges,
+)
 from nabu.compiler import compile_course
 from nabu.schema.models import AudioVoice, Provenance
 
@@ -376,3 +386,29 @@ def test_a_rejected_clip_is_made_again_as_its_next_take(
     # A first take keeps its seed; the new take keeps its place on the next run.
     assert seed_of(Request("x", "v", 1.0)) == seed_of(Request("x", "v", 1.0, 0))
     assert synthesize_course(course, intro, v, None, apc.written).synthesized == 0
+
+
+def test_a_clip_loses_the_silence_around_its_speech_but_keeps_short_margins() -> None:
+    """OmniVoice can leave up to a second of near-silence before the speech: it is cut, down to
+    LEAD_S before and TAIL_S after (the longer tail keeps a soft last sound)."""
+    rate = 1000  # 20-sample frames
+    speech = [0.0] * 500 + [0.5, -0.5] * 150 + [0.001] * 700
+    trimmed = list(trim_edges(speech, rate))
+    assert len(trimmed) == round(LEAD_S * rate) + 300 + round(TAIL_S * rate)
+    assert trimmed[round(LEAD_S * rate)] == pytest.approx(0.5)
+    # Nothing louder than the rest: silence and a level stay as they are.
+    assert list(trim_edges([0.0] * 2400, 24000)) == [0.0] * 2400
+    assert len(trim_edges([0.03] * 2400, 24000)) == 2400
+
+
+def test_trimming_needs_no_numpy(monkeypatch: pytest.MonkeyPatch) -> None:
+    real = importlib.import_module
+
+    def without_numpy(name: str, *args: Any) -> Any:
+        if name == "numpy":
+            raise ImportError(name)
+        return real(name, *args)
+
+    monkeypatch.setattr(providers.importlib, "import_module", without_numpy)
+    speech = [0.0] * 500 + [0.5, -0.5] * 150 + [0.0] * 700
+    assert len(trim_edges(speech, 1000)) == round(LEAD_S * 1000) + 300 + round(TAIL_S * 1000)

@@ -175,7 +175,8 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
-  if (template !== "speak.tier-0" && template !== "match-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1)) noteMistake(d, item, template, e.clientTime, !correct);
+  if (template !== "speak.tier-0" && template !== "match-pairs" && template !== "letter-pairs" && !STORY_TEMPLATES.has(template) && (!correct || e.attempt === 1))
+    noteMistake(d, item, template, e.clientTime, !correct);
 };
 
 const skipped = (d: Draft, e: ExerciseSkipped): void => {

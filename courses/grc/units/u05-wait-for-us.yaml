@@ -1,0 +1,1159 @@
+# Ancient Greek (grc), unit 5: Wait for us! (Plato, Republic 327a-b).
+# Yesterday and the aorist (κατέβην); μετά with the genitive; telling someone to do something (κελεύω and the
+# infinitive); "wait!" to one person and to several; me, you, us (με, σε, ἡμᾶς, ὑμᾶς); ἔφη; a first future.
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u05-wait-for-us
+title:
+  en: Wait for us!
+cefr: A1
+kcs:
+- id: sense:katabaino
+  gloss:
+    en: to go down (from Athens to the sea, from the hills to the plain)
+  forms:
+    grc-Grek/polytonic:
+    - καταβαίνω
+  notes:
+    en: 'κατέβην, "I went down", is its aorist: one journey, told as done.'
+- id: form:aor-1s
+  gloss:
+    en: 'the aorist, I: I did (once, in the past)'
+- id: sense:chthes
+  gloss:
+    en: yesterday
+  forms:
+    grc-Grek/polytonic:
+    - χθές
+- id: sense:peiraieus
+  gloss:
+    en: the Piraeus (the harbour town of Athens)
+  forms:
+    grc-Grek/polytonic:
+    - Πειραιεύς
+  notes:
+    en: 'To the Piraeus: εἰς Πειραιᾶ, usually without the article.'
+- id: sense:meta
+  gloss:
+    en: (with the genitive) with, together with
+  forms:
+    grc-Grek/polytonic:
+    - μετά
+- id: sense:glaukon
+  gloss:
+    en: Glaucon (Plato's elder brother)
+  forms:
+    grc-Grek/polytonic:
+    - Γλαύκων
+- id: sense:ariston
+  gloss:
+    en: Ariston (the father of Plato and Glaucon)
+  forms:
+    grc-Grek/polytonic:
+    - Ἀρίστων
+- id: sense:phemi
+  gloss:
+    en: to say
+  forms:
+    grc-Grek/polytonic:
+    - φημί
+  notes:
+    en: 'ἔφη, "he said" or "she said", often stands inside the words it reports: οὗτος, ἔφη, ὄπισθεν προσέρχεται.'
+- id: form:impf-3s
+  gloss:
+    en: 'the imperfect, he, she, it: was doing, did'
+- id: sense:polemarchos
+  gloss:
+    en: Polemarchus (Cephalus' son, Lysias' brother)
+  forms:
+    grc-Grek/polytonic:
+    - Πολέμαρχος
+- id: sense:keleuo
+  gloss:
+    en: to order, tell (someone to do something)
+  forms:
+    grc-Grek/polytonic:
+    - κελεύω
+- id: form:inf
+  gloss:
+    en: 'the infinitive: to do (κελεύει περιμεῖναι, he tells (you) to wait)'
+- id: sense:perimeno
+  gloss:
+    en: to wait (for)
+  forms:
+    grc-Grek/polytonic:
+    - περιμένω
+- id: sense:alla
+  gloss:
+    en: but; (opening a reply or a command) well, then
+  forms:
+    grc-Grek/polytonic:
+    - ἀλλά
+- id: sense:houtos
+  gloss:
+    en: this, this one; he (here)
+  forms:
+    grc-Grek/polytonic:
+    - οὗτος
+  notes:
+    en: 'οὗτος points: "this man here". Called out, it is "there he is!". Its feminine is αὕτη.'
+- id: sense:opisthen
+  gloss:
+    en: behind
+  forms:
+    grc-Grek/polytonic:
+    - ὄπισθεν
+- id: form:fut-1p
+  gloss:
+    en: 'the future, we: we will do'
+- id: sense:emi
+  gloss:
+    en: said (only in ἦ δ’ ὅς, "said he")
+  forms:
+    grc-Grek/polytonic:
+    - ἦ
+- id: sense:hos
+  gloss:
+    en: he (only in ἦ δ’ ὅς, "said he")
+  forms:
+    grc-Grek/polytonic:
+    - ὅς
+  notes:
+    en: 'ἦ δ’ ὅς, "said he", is how Plato''s narrators report a speaker: ἀλλὰ περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.'
+nodes:
+- id: grc.u05.yesterday
+  kind: lesson
+  introduces:
+  - sense:chthes
+  - sense:katabaino
+  - form:aor-1s
+  - sense:peiraieus
+  - sense:meta
+  - sense:glaukon
+  - sense:ariston
+- id: grc.u05.he-said
+  kind: lesson
+  introduces:
+  - sense:phemi
+  - form:impf-3s
+  - sense:polemarchos
+  - sense:perimeno
+  - sense:keleuo
+  - form:inf
+- id: grc.u05.wait
+  kind: lesson
+  introduces:
+  - sense:alla
+- id: grc.u05.here-he-is
+  kind: lesson
+  introduces:
+  - sense:houtos
+  - sense:opisthen
+- id: grc.u05.we-will-wait
+  kind: lesson
+  introduces:
+  - form:fut-1p
+  - sense:emi
+  - sense:hos
+- id: grc.u05.story
+  kind: story
+sentences:
+- id: s.05.1
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: χθές.
+      tokens:
+      - surface: χθές
+        sense: chthes
+        readings:
+          attic: χθές
+      reverse: χθές
+  translations:
+    en: Yesterday.
+- id: s.05.2
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: κατέβην.
+      tokens:
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      reverse: κατέβην
+  translations:
+    en: I went down.
+- id: s.05.3
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: χθὲς κατέβην.
+      tokens:
+      - surface: χθὲς
+        sense: chthes
+        readings:
+          attic: χθὲς
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      reverse: |-
+        χθὲς κατέβην
+        κατέβην χθές
+  translations:
+    en: I went down yesterday.
+- id: s.05.4
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: εἰς Πειραιᾶ κατέβην.
+      tokens:
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: Πειραιᾶ
+        sense: peiraieus
+        form: form:acc
+        readings:
+          attic: Πειραιᾶ
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      reverse: |-
+        εἰς Πειραιᾶ κατέβην
+        κατέβην εἰς Πειραιᾶ
+        εἰς τὸν Πειραιᾶ κατέβην
+        κατέβην εἰς τὸν Πειραιᾶ
+  translations:
+    en: I went down to the Piraeus.
+- id: s.05.5
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: κατέβην χθὲς εἰς Πειραιᾶ.
+      tokens:
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      - surface: χθὲς
+        sense: chthes
+        readings:
+          attic: χθὲς
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: Πειραιᾶ
+        sense: peiraieus
+        form: form:acc
+        readings:
+          attic: Πειραιᾶ
+      reverse: |-
+        κατέβην χθὲς εἰς Πειραιᾶ
+        χθὲς κατέβην εἰς Πειραιᾶ
+        χθὲς εἰς Πειραιᾶ κατέβην
+        εἰς Πειραιᾶ κατέβην χθές
+        εἰς Πειραιᾶ χθὲς κατέβην
+        κατέβην εἰς Πειραιᾶ χθές
+  translations:
+    en: |-
+      I went down to the Piraeus yesterday.
+      Yesterday I went down to the Piraeus
+- id: s.05.6
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: μετὰ Γλαύκωνος.
+      tokens:
+      - surface: μετὰ
+        sense: meta
+        readings:
+          attic: μετᾰ̀
+      - surface: Γλαύκωνος
+        sense: glaukon
+        form: form:gen
+        readings:
+          attic: Γλαύκωνος
+      reverse: μετὰ Γλαύκωνος
+  translations:
+    en: With Glaucon.
+- id: s.05.7
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: Γλαύκων ὁ Ἀρίστωνος.
+      tokens:
+      - surface: Γλαύκων
+        sense: glaukon
+        readings:
+          attic: Γλαύκων
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Ἀρίστωνος
+        sense: ariston
+        form: form:gen
+        readings:
+          attic: Ᾰ̓ρῐ́στωνος
+      reverse: Γλαύκων ὁ Ἀρίστωνος
+  translations:
+    en: Glaucon, (son of Ariston|Ariston's son|the son of Ariston).
+- id: s.05.8
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: μετὰ Γλαύκωνος κατέβην.
+      tokens:
+      - surface: μετὰ
+        sense: meta
+        readings:
+          attic: μετᾰ̀
+      - surface: Γλαύκωνος
+        sense: glaukon
+        form: form:gen
+        readings:
+          attic: Γλαύκωνος
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      reverse: |-
+        μετὰ Γλαύκωνος κατέβην
+        κατέβην μετὰ Γλαύκωνος
+  translations:
+    en: I went down with Glaucon.
+- id: s.05.9
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην.
+      tokens:
+      - surface: μετὰ
+        sense: meta
+        readings:
+          attic: μετᾰ̀
+      - surface: τοῦ
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τοῦ
+      - surface: ἀδελφοῦ
+        sense: adelphos
+        form: form:gen
+        readings:
+          attic: ᾰ̓δελφοῦ
+      - surface: εἰς
+        sense: eis
+        readings:
+          attic: εἰς
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: ἀγορὰν
+        sense: agora
+        form: form:acc
+        readings:
+          attic: ᾰ̓γορᾱ̀ν
+      - surface: κατέβην
+        sense: katabaino
+        form: form:aor-1s
+        readings:
+          attic: κᾰτέβην
+      reverse: |-
+        μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγορὰν κατέβην
+        κατέβην εἰς τὴν ἀγορὰν μετὰ τοῦ ἀδελφοῦ
+        εἰς τὴν ἀγορὰν κατέβην μετὰ τοῦ ἀδελφοῦ
+        κατέβην μετὰ τοῦ ἀδελφοῦ εἰς τὴν ἀγοράν
+        εἰς τὴν ἀγορὰν μετὰ τοῦ ἀδελφοῦ κατέβην
+        μετὰ τοῦ ἀδελφοῦ κατέβην εἰς τὴν ἀγοράν
+  translations:
+    en: I went down to the (agora|market|marketplace) with (my|the) brother.
+- id: s.05.10
+  node: grc.u05.yesterday
+  forms:
+    grc-Grek/polytonic:
+      text: μετὰ τῆς μητρός.
+      tokens:
+      - surface: μετὰ
+        sense: meta
+        readings:
+          attic: μετᾰ̀
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: μητρός
+        sense: meter
+        form: form:gen
+        readings:
+          attic: μητρός
+      reverse: μετὰ τῆς μητρός
+  translations:
+    en: With (my|the) mother.
+- id: s.05.11
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: ἔφη.
+      tokens:
+      - surface: ἔφη
+        sense: phemi
+        form: form:impf-3s
+        readings:
+          attic: ἔφη
+      reverse: ἔφη
+  translations:
+    en: (He|She) said.
+- id: s.05.12
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: ἔφη ὁ παῖς.
+      tokens:
+      - surface: ἔφη
+        sense: phemi
+        form: form:impf-3s
+        readings:
+          attic: ἔφη
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      reverse: |-
+        ἔφη ὁ παῖς
+        ὁ παῖς ἔφη
+  translations:
+    en: The (boy|slave) said.
+- id: s.05.13
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: Πολέμαρχος.
+      tokens:
+      - surface: Πολέμαρχος
+        sense: polemarchos
+        readings:
+          attic: Πολέμᾰρχος
+      reverse: Πολέμαρχος
+  translations:
+    en: Polemarchus.
+- id: s.05.14
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: περιμένω.
+      tokens:
+      - surface: περιμένω
+        sense: perimeno
+        form: form:pres-1s
+        readings:
+          attic: περῐμένω
+      reverse: περιμένω
+  translations:
+    en: (I am|I'm) waiting.
+- id: s.05.15
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: περιμένω, ἔφη.
+      tokens:
+      - surface: περιμένω
+        sense: perimeno
+        form: form:pres-1s
+        readings:
+          attic: περῐμένω
+      - surface: ἔφη
+        sense: phemi
+        form: form:impf-3s
+        readings:
+          attic: ἔφη
+      reverse: περιμένω ἔφη
+  translations:
+    en: “(I am|I'm) waiting,” (he|she) said.
+- id: s.05.16
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: Πολέμαρχος κελεύει ὑμᾶς περιμεῖναι.
+      tokens:
+      - surface: Πολέμαρχος
+        sense: polemarchos
+        readings:
+          attic: Πολέμᾰρχος
+      - surface: κελεύει
+        sense: keleuo
+        form: form:pres-3s
+        readings:
+          attic: κελεύει
+      - surface: ὑμᾶς
+        sense: hymeis
+        form: form:acc-pl
+        readings:
+          attic: ῡ̔μᾶς
+      - surface: περιμεῖναι
+        sense: perimeno
+        form: form:inf
+        readings:
+          attic: περῐμεῖναι
+      reverse: |-
+        Πολέμαρχος κελεύει ὑμᾶς περιμεῖναι
+        κελεύει ὑμᾶς [ὁ] Πολέμαρχος περιμεῖναι
+        ὁ Πολέμαρχος κελεύει ὑμᾶς περιμεῖναι
+        κελεύει [ὁ] Πολέμαρχος ὑμᾶς περιμεῖναι
+        [ὁ] Πολέμαρχος ὑμᾶς κελεύει περιμεῖναι
+        ὑμᾶς κελεύει [ὁ] Πολέμαρχος περιμεῖναι
+        [ὁ] Πολέμαρχος κελεύει περιμεῖναι ὑμᾶς
+  translations:
+    en: Polemarchus (tells|is telling|orders) you to wait.
+  persons:
+    addressee: pl
+- id: s.05.17
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: κελεύει σε περιμεῖναι.
+      tokens:
+      - surface: κελεύει
+        sense: keleuo
+        form: form:pres-3s
+        readings:
+          attic: κελεύει
+      - surface: σε
+        sense: sy
+        form: form:acc
+        readings:
+          attic: σε
+      - surface: περιμεῖναι
+        sense: perimeno
+        form: form:inf
+        readings:
+          attic: περῐμεῖναι
+      reverse: |-
+        κελεύει σε περιμεῖναι
+        σε κελεύει περιμεῖναι
+  translations:
+    en: (He|She) (tells|is telling|orders) you to wait.
+  persons:
+    addressee: sg
+- id: s.05.18
+  node: grc.u05.he-said
+  forms:
+    grc-Grek/polytonic:
+      text: κελεύω σε περιμεῖναι.
+      tokens:
+      - surface: κελεύω
+        sense: keleuo
+        form: form:pres-1s
+        readings:
+          attic: κελεύω
+      - surface: σε
+        sense: sy
+        form: form:acc
+        readings:
+          attic: σε
+      - surface: περιμεῖναι
+        sense: perimeno
+        form: form:inf
+        readings:
+          attic: περῐμεῖναι
+      reverse: |-
+        κελεύω σε περιμεῖναι
+        σε κελεύω περιμεῖναι
+        ἐγώ σε κελεύω περιμεῖναι
+  translations:
+    en: I (tell|am telling|order) you to wait.
+  persons:
+    addressee: sg
+- id: s.05.19
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: περιμένετε.
+      tokens:
+      - surface: περιμένετε
+        sense: perimeno
+        form: form:impv-2p
+        readings:
+          attic: περῐμένετε
+      reverse: περιμένετε
+  translations:
+    en: (Wait|Hold on|Wait a moment)!
+  persons:
+    addressee: pl
+- id: s.05.20
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: περίμενε.
+      tokens:
+      - surface: περίμενε
+        sense: perimeno
+        form: form:impv-2s
+        readings:
+          attic: περῐ́μενε
+      reverse: περίμενε
+  translations:
+    en: (Wait|Hold on|Wait a moment)!
+  persons:
+    addressee: sg
+- id: s.05.21
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ περιμένετε.
+      tokens:
+      - surface: ἀλλὰ
+        sense: alla
+        readings:
+          attic: ᾰ̓λλᾰ̀
+      - surface: περιμένετε
+        sense: perimeno
+        form: form:impv-2p
+        readings:
+          attic: περῐμένετε
+      reverse: ἀλλὰ περιμένετε
+  translations:
+    en: (Well, wait|Just wait|But wait|Wait, then)!
+  persons:
+    addressee: pl
+- id: s.05.22
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: περιμένετε ἡμᾶς.
+      tokens:
+      - surface: περιμένετε
+        sense: perimeno
+        form: form:impv-2p
+        readings:
+          attic: περῐμένετε
+      - surface: ἡμᾶς
+        sense: hemeis
+        form: form:acc-pl
+        readings:
+          attic: ἡμᾶς
+      reverse: |-
+        περιμένετε ἡμᾶς
+        ἡμᾶς περιμένετε
+  translations:
+    en: Wait for us!
+  persons:
+    addressee: pl
+- id: s.05.23
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: περίμενέ με.
+      tokens:
+      - surface: περίμενέ
+        sense: perimeno
+        form: form:impv-2s
+        readings:
+          attic: περῐ́μενέ
+      - surface: με
+        sense: ego
+        form: form:acc
+        readings:
+          attic: με
+      reverse: |-
+        περίμενέ με
+        ἐμὲ περίμενε
+  translations:
+    en: Wait for me!
+  persons:
+    addressee: sg
+- id: s.05.24
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: οὐ περιμένω, ἀλλὰ βαδίζω.
+      tokens:
+      - surface: οὐ
+        sense: ou
+        readings:
+          attic: οὐ
+      - surface: περιμένω
+        sense: perimeno
+        form: form:pres-1s
+        readings:
+          attic: περῐμένω
+      - surface: ἀλλὰ
+        sense: alla
+        readings:
+          attic: ᾰ̓λλᾰ̀
+      - surface: βαδίζω
+        sense: badizo
+        form: form:pres-1s
+        readings:
+          attic: βᾰδῐ́ζω
+      reverse: οὐ περιμένω ἀλλὰ βαδίζω
+  translations:
+    en: |-
+      (I am not|I'm not) waiting, (I am|I'm) walking (on|).
+      (I am not|I'm not) waiting but walking (on|)
+- id: s.05.25
+  node: grc.u05.wait
+  forms:
+    grc-Grek/polytonic:
+      text: ὦ Ξανθίππη, περίμενε.
+      tokens:
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      - surface: περίμενε
+        sense: perimeno
+        form: form:impv-2s
+        readings:
+          attic: περῐ́μενε
+      reverse: |-
+        ὦ Ξανθίππη περίμενε
+        Ξανθίππη περίμενε
+        περίμενε [ὦ] Ξανθίππη
+  translations:
+    en: Xanthippe, (wait|hold on|wait a moment)!
+- id: s.05.26
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: οὗτος.
+      tokens:
+      - surface: οὗτος
+        sense: houtos
+        readings:
+          attic: οὗτος
+      reverse: οὗτος
+  translations:
+    en: (Here he is|There he is|This man|This one)!
+- id: s.05.27
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: ὄπισθεν.
+      tokens:
+      - surface: ὄπισθεν
+        sense: opisthen
+        readings:
+          attic: ὄπῐσθεν
+      reverse: ὄπισθεν
+  translations:
+    en: (Behind|From behind).
+- id: s.05.28
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: οὗτος ὄπισθεν προσέρχεται.
+      tokens:
+      - surface: οὗτος
+        sense: houtos
+        readings:
+          attic: οὗτος
+      - surface: ὄπισθεν
+        sense: opisthen
+        readings:
+          attic: ὄπῐσθεν
+      - surface: προσέρχεται
+        sense: proserchomai
+        form: form:pres-3s
+        readings:
+          attic: προσέρχεται
+      reverse: |-
+        οὗτος ὄπισθεν προσέρχεται
+        οὗτος προσέρχεται ὄπισθεν
+        ὄπισθεν προσέρχεται οὗτος
+  translations:
+    en: |-
+      (Here|There) he is, coming (up |)behind.
+      He is coming (up |)behind
+- id: s.05.29
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Πολέμαρχος ὄπισθεν προσέρχεται.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Πολέμαρχος
+        sense: polemarchos
+        readings:
+          attic: Πολέμᾰρχος
+      - surface: ὄπισθεν
+        sense: opisthen
+        readings:
+          attic: ὄπῐσθεν
+      - surface: προσέρχεται
+        sense: proserchomai
+        form: form:pres-3s
+        readings:
+          attic: προσέρχεται
+      reverse: |-
+        ὁ Πολέμαρχος ὄπισθεν προσέρχεται
+        [ὁ] Πολέμαρχος προσέρχεται ὄπισθεν
+        ὄπισθεν προσέρχεται [ὁ] Πολέμαρχος
+        προσέρχεται ὄπισθεν [ὁ] Πολέμαρχος
+        Πολέμαρχος ὄπισθεν προσέρχεται
+  translations:
+    en: Polemarchus is coming (up |)(behind|from behind).
+- id: s.05.30
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: αὕτη ὄπισθεν προσέρχεται.
+      tokens:
+      - surface: αὕτη
+        sense: houtos
+        form: form:f
+        readings:
+          attic: αὕτη
+      - surface: ὄπισθεν
+        sense: opisthen
+        readings:
+          attic: ὄπῐσθεν
+      - surface: προσέρχεται
+        sense: proserchomai
+        form: form:pres-3s
+        readings:
+          attic: προσέρχεται
+      reverse: |-
+        αὕτη ὄπισθεν προσέρχεται
+        αὕτη προσέρχεται ὄπισθεν
+        ὄπισθεν προσέρχεται αὕτη
+  translations:
+    en: |-
+      (Here|There) she is, coming (up |)behind.
+      She is coming (up |)behind
+- id: s.05.31
+  node: grc.u05.here-he-is
+  forms:
+    grc-Grek/polytonic:
+      text: ποῦ ἐστιν ὁ Πολέμαρχος;
+      tokens:
+      - surface: ποῦ
+        sense: pou
+        readings:
+          attic: ποῦ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Πολέμαρχος
+        sense: polemarchos
+        readings:
+          attic: Πολέμᾰρχος
+      reverse: |-
+        ποῦ ἐστιν ὁ Πολέμαρχος
+        ποῦ ἐστι[ν] Πολέμαρχος
+        ποῦ [ὁ] Πολέμαρχός ἐστι[ν]
+  translations:
+    en: Where is Polemarchus?
+- id: s.05.32
+  node: grc.u05.we-will-wait
+  forms:
+    grc-Grek/polytonic:
+      text: περιμενοῦμεν.
+      tokens:
+      - surface: περιμενοῦμεν
+        sense: perimeno
+        form: form:fut-1p
+        readings:
+          attic: περῐμενοῦμεν
+      reverse: περιμενοῦμεν
+  translations:
+    en: (We will|We'll) wait.
+- id: s.05.33
+  node: grc.u05.we-will-wait
+  forms:
+    grc-Grek/polytonic:
+      text: ἀλλὰ περιμενοῦμεν.
+      tokens:
+      - surface: ἀλλὰ
+        sense: alla
+        readings:
+          attic: ᾰ̓λλᾰ̀
+      - surface: περιμενοῦμεν
+        sense: perimeno
+        form: form:fut-1p
+        readings:
+          attic: περῐμενοῦμεν
+      reverse: ἀλλὰ περιμενοῦμεν
+  translations:
+    en: (Well|All right|Very well), (we will|we'll) wait.
+- id: s.05.34
+  node: grc.u05.we-will-wait
+  forms:
+    grc-Grek/polytonic:
+      text: ἦ δ’ ὅς.
+      tokens:
+      - surface: ἦ
+        sense: emi
+        readings:
+          attic: ἦ
+      - surface: δ’
+        sense: de
+        readings:
+          attic: δ’
+      - surface: ὅς
+        sense: hos
+        readings:
+          attic: ὅς
+      reverse: ἦ δ’ ὅς
+  translations:
+    en: (Said he|He said).
+- id: s.05.35
+  node: grc.u05.we-will-wait
+  forms:
+    grc-Grek/polytonic:
+      text: περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
+      tokens:
+      - surface: περιμενοῦμεν
+        sense: perimeno
+        form: form:fut-1p
+        readings:
+          attic: περῐμενοῦμεν
+      - surface: ἦ
+        sense: emi
+        readings:
+          attic: ἦ
+      - surface: δ’
+        sense: de
+        readings:
+          attic: δ’
+      - surface: ὃς
+        sense: hos
+        readings:
+          attic: ὃς
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Γλαύκων
+        sense: glaukon
+        readings:
+          attic: Γλαύκων
+      reverse: περιμενοῦμεν ἦ δ’ ὃς ὁ Γλαύκων
+  translations:
+    en: “(We will|We'll) wait,” (said Glaucon|Glaucon said).
+stories:
+- id: grc.story.wait-for-us
+  node: grc.u05.story
+  title:
+    en: Wait for us! (Plato, Republic 327a-b)
+  characters:
+  - id: socrates
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  - id: pais
+    name:
+      grc-Grek/polytonic: ὁ παῖς
+  - id: glaukon
+    name:
+      grc-Grek/polytonic: Γλαύκων
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:chthes
+      distractors:
+      - sense:nyx
+      - sense:hemera
+      forms:
+        grc-Grek/polytonic:
+          text: κατέβην χθὲς εἰς Πειραιᾶ μετὰ Γλαύκωνος τοῦ Ἀρίστωνος,
+          tokens:
+          - surface: κατέβην
+            sense: katabaino
+            form: form:aor-1s
+            readings:
+              attic: κᾰτέβην
+          - surface: χθὲς
+            sense: chthes
+            readings:
+              attic: χθὲς
+          - surface: εἰς
+            sense: eis
+            readings:
+              attic: εἰς
+          - surface: Πειραιᾶ
+            sense: peiraieus
+            form: form:acc
+            readings:
+              attic: Πειραιᾶ
+          - surface: μετὰ
+            sense: meta
+            readings:
+              attic: μετᾰ̀
+          - surface: Γλαύκωνος
+            sense: glaukon
+            form: form:gen
+            readings:
+              attic: Γλαύκωνος
+          - surface: τοῦ
+            sense: ho
+            form: form:gen
+            readings:
+              attic: τοῦ
+          - surface: Ἀρίστωνος
+            sense: ariston
+            form: form:gen
+            readings:
+              attic: Ᾰ̓ρῐ́στωνος
+      translations:
+        en: I went down to the Piraeus yesterday with Glaucon, the son of Ariston,
+  - choose:
+      prompt:
+        en: Where did Socrates go yesterday?
+      options:
+      - en: Down to the Piraeus, with Glaucon
+      - en: Up to the Acropolis
+      - en: To Lysias' house
+      answer: 0
+  - line:
+      speaker: pais
+      forms:
+        grc-Grek/polytonic:
+          text: κελεύει ὑμᾶς, ἔφη, Πολέμαρχος περιμεῖναι.
+          tokens:
+          - surface: κελεύει
+            sense: keleuo
+            form: form:pres-3s
+            readings:
+              attic: κελεύει
+          - surface: ὑμᾶς
+            sense: hymeis
+            form: form:acc-pl
+            readings:
+              attic: ῡ̔μᾶς
+          - surface: ἔφη
+            sense: phemi
+            form: form:impf-3s
+            readings:
+              attic: ἔφη
+          - surface: Πολέμαρχος
+            sense: polemarchos
+            readings:
+              attic: Πολέμᾰρχος
+          - surface: περιμεῖναι
+            sense: perimeno
+            form: form:inf
+            readings:
+              attic: περῐμεῖναι
+      translations:
+        en: “Polemarchus tells you to wait,” he said.
+  - line:
+      speaker: pais
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: οὗτος, ἔφη, ὄπισθεν προσέρχεται· ἀλλὰ περιμένετε.
+          tokens:
+          - surface: οὗτος
+            sense: houtos
+            readings:
+              attic: οὗτος
+          - surface: ἔφη
+            sense: phemi
+            form: form:impf-3s
+            readings:
+              attic: ἔφη
+          - surface: ὄπισθεν
+            sense: opisthen
+            readings:
+              attic: ὄπῐσθεν
+          - surface: προσέρχεται
+            sense: proserchomai
+            form: form:pres-3s
+            readings:
+              attic: προσέρχεται
+          - surface: ἀλλὰ
+            sense: alla
+            readings:
+              attic: ᾰ̓λλᾰ̀
+          - surface: περιμένετε
+            sense: perimeno
+            form: form:impv-2p
+            readings:
+              attic: περῐμένετε
+      translations:
+        en: “There he is,” he said, “coming up behind. Just wait.”
+  - choose:
+      prompt:
+        en: What does the boy ask them to do?
+      options:
+      - en: Wait for Polemarchus
+      - en: Go home
+      - en: Walk faster
+      answer: 0
+  - line:
+      speaker: glaukon
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλὰ περιμενοῦμεν, ἦ δ’ ὃς ὁ Γλαύκων.
+          tokens:
+          - surface: ἀλλὰ
+            sense: alla
+            readings:
+              attic: ᾰ̓λλᾰ̀
+          - surface: περιμενοῦμεν
+            sense: perimeno
+            form: form:fut-1p
+            readings:
+              attic: περῐμενοῦμεν
+          - surface: ἦ
+            sense: emi
+            readings:
+              attic: ἦ
+          - surface: δ’
+            sense: de
+            readings:
+              attic: δ’
+          - surface: ὃς
+            sense: hos
+            readings:
+              attic: ὃς
+          - surface: ὁ
+            sense: ho
+            readings:
+              attic: ὁ
+          - surface: Γλαύκων
+            sense: glaukon
+            readings:
+              attic: Γλαύκων
+      translations:
+        en: “Well, we'll wait,” said Glaucon.
+  - choose:
+      prompt:
+        en: What does Glaucon say?
+      options:
+      - en: That they will wait
+      - en: That they are going home
+      - en: That Polemarchus is late
+      answer: 0

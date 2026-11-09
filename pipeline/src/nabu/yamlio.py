@@ -9,8 +9,9 @@ from typing import Any
 
 import yaml
 
+# Also the ideographic space (U+3000), between sitelen pona sentences: it reads as two spaces.
 INVISIBLE = re.compile(
-    "[\u00ad\u061c\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]"
+    "[\u00ad\u061c\u180e\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\u3000\ufeff]"
 )
 
 

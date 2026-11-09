@@ -17,7 +17,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
+  optional word and form whose translation would be the prompt, in both directions; never one that would translate
+  otherwise. The grader stays literal: the answers are listed in the accept set.
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -121,6 +124,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
+- OmniVoice clips are trimmed to their speech (`trim_edges`: 80 ms before, 150 ms after); a clip cloned from a recorded
+  reference credits it (speaker, license, source).
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
   `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.
@@ -310,7 +315,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
   typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
-- The voice clones a CC0 Cuban recording (`nabu audio cast --recording`); clips are CC-BY-NC-4.0 (OmniVoice weights).
+- Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
+  (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
 
 ## Reference library notes (see docs/adr/0079)
 - Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay
@@ -331,19 +337,70 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
   and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
 
-## Biblical Hebrew notes (see docs/adr/0082)
+## Biblical Hebrew notes (see docs/adr/0082–0084, 0089)
 - courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
   reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
-  nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
-  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`.
+  nabu/audio/tiberian.py turns into phonemes. The voice is Piper's Arabic `ar_JO-kareem-medium` (ADR 0089), given
+  IPA (`tiberian.piper`, `PIPER_PHONEME_SCHEMES` in nabu/audio/course.py): Khan's vowels and stress, Arabic-bent
+  consonants (vav [w], alveolar [r], ṭ ṣ as the voice's t̪ s̪, [jj], no aspiration). After a reading changes,
+  `nabu audio generate ../courses/hbo` (speech group; minutes; MIT), `nabu audio align ../courses/hbo` (word
+  timings), then `pnpm bundles`. It is read, not heard: its `facets` leave out listen (no listening exercises;
+  clips still play once a card is answered).
 - Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
 - Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
   Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
-  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py). The divine name is ʾăḏōnāy (its qere).
+  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
+  meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
+- Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
+  vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
+  The voice's Arabic consonants (ADR 0089) are Ben's choice, not Khan's: keep them apart (`arabic=True`).
+- References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
+  Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
+  prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
   stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
+- A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
+  both and the English translation would be the same (ADR 0084): nominal and participle clauses, plain qatal/yiqtol,
+  a distinct jussive. Never a subject before wayyiqtol or weqatal; not identity clauses (קין אחי), the blessing
+  formula, a wish in a plain yiqtol, or an order that reads unpointed as a construct chain (בגן האדם). Keep it so.
+- Then the forms the English cannot tell apart (ADR 0085): a wayyiqtol's X-qatal (האשה אמרה, והאשה אמרה) or bare
+  qatal with or without its pronoun (ברח, הוא ברח, והוא ברח; never וברח), a weqatal's yiqtol, a pronoun before a plain
+  qatal/yiqtol; only Codex-attested forms; vav forms only where every English line has its "and".
+
+## Toki Pona notes (see docs/adr/0086)
+- courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
+  tok-Qaap/sitelen-pona. Qaap is a private-use ISO 15924 code until one is assigned (the proposal asks for Stpn).
+- sitelen pona text is UCSUR code points (U+F1900..U+F19FF): words run together, U+3000 between sentences, no ! ? or
+  commas, a name as a cartouche whose logographs begin with its letters. Never write it by hand: `cd pipeline &&
+  uv run nabu sitelen-pona "mi moku." --name "Sonja=sona olin nasin jan a"`. The compiler checks it against the Latin.
+- Typed Latin is graded as logographs in sitelen pona (the `logographs` step), names against their cartouches. Every
+  logograph token pins `readings: {lasina: word}` (ruby, char-read); Latin tokens pin it too: it is what the voices say,
+  as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
+- The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
+- Toki Pona marks no person: no `persons` tags. English accept sets give I/we, she/he/they/it and the tenses.
+- Toki Pona accept sets (ADR 0085; kinds in ADR 0086): mi or mi mute li for we, ona (mute) li for they, jan mije or
+  mije, mama or mama meli/mije, X ala X or anu seme, tenpo pini/kama la or none, kule + colour, ali for ale.
+
+## Attic Greek notes (see docs/adr/0087)
+- courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,
+  its spelling with each α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or subscript
+  settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`
+  (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap;
+  its clips are CC-BY-NC-SA-4.0.
+- Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
+  enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
+  is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+
+## Script tracks notes (see docs/adr/0088)
+- A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
+  letters, diphthongs, marks); the compiler adds each letter's and word's Latin spelling (the profile's `romanize`, e.g.
+  nabu/greek_translit.py) and the graphemes it credits. `script.untaught-letter` stops a word with untaught letters.
+- Its four templates (letter-read, letter-pairs, word-read, word-write; @nabu/core/lesson/script.ts) are built only
+  for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
+- The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
+  Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
 
 ## Themes notes (see docs/adr/0083)
 - Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
@@ -359,7 +416,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0083 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0089 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

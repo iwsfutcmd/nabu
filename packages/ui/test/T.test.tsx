@@ -99,6 +99,28 @@ describe("<T>", () => {
     expect(render(<T text={lzh} />)).not.toContain("data-target");
   });
 
+  it("sets sitelen pona in its own face, a word a box, with each logograph's word as ruby (ADR 0086)", () => {
+    const sp = {
+      lang: "tok-Qaap",
+      orthography: "tok-Qaap/sitelen-pona",
+      tokens: [
+        { surface: "\u{F1934}", kind: "word", sense: "mi", ruby: { lasina: [{ base: "\u{F1934}", text: "mi" }] } },
+        { surface: "\u{F1936}", kind: "word", sense: "moku", ruby: { lasina: [{ base: "\u{F1936}", text: "moku" }] } },
+      ],
+    } as unknown as TaggedText;
+    const html = render(
+      <NabuUiProvider translator={translator()} orthographies={DEMO_ORTHOGRAPHIES}>
+        <T text={sp} ruby={"lasina" as SchemeId} />
+      </NabuUiProvider>,
+    );
+    expect(attr(html, "lang")).toBe("tok-Qaap");
+    expect(attr(html, "dir")).toBe("ltr");
+    expect(attr(html, "data-script")).toBe("Qaap");
+    expect(html).toContain("--nabu-text-font:&quot;sitelen seli kiwen juniko&quot;, sans-serif");
+    expect(html).toContain("<rt");
+    expect(html).toContain(">moku</rt>");
+  });
+
   it("marks short numbers for tate-chū-yoko", () => {
     const text = {
       lang: "yue-Hant-HK",

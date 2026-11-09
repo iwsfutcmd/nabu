@@ -31,7 +31,7 @@ kcs:
     hbo-Hebr/tiberian: [חֲנִית]
 - id: sense:kidon
   gloss:
-    en: javelin
+    en: javelin; or a curved sword
   forms:
     hbo-Hebr/tiberian: [כִּידוֹן]
 - id: sense:tsava
@@ -168,7 +168,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הִיא בָּאָה׃
       tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: בָּאָה, sense: bo, form: 'form:ptc-fs', readings: {tiberian: bāʾâ}}]
-      reverse: היא באה
+      reverse: |-
+        היא באה
+        באה היא
   translations:
     en: She( is|'s) (coming|on her way).
 - id: s.15.10
@@ -177,7 +179,9 @@ sentences:
     hbo-Hebr/tiberian:
       text: הֵם בָּאִים׃
       tokens: [{surface: הֵם, sense: hem, readings: {tiberian: hēm}}, {surface: בָּאִים, sense: bo, form: 'form:ptc-mp', readings: {tiberian: bāʾîm}}]
-      reverse: הם באים
+      reverse: |-
+        הם באים
+        באים הם
   translations:
     en: They( are|'re) (coming|on their way).
 - id: s.15.11
@@ -226,7 +230,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: אֱלֹהֵי מַעַרְכוֹת יִשְׂרָאֵל
-      tokens: [{surface: אֱלֹהֵי, sense: elohim, form: 'form:cstr', readings: {tiberian: ʾĕlōhê}}, {surface: מַעַרְכוֹת, sense: maarakhah, form: 'form:pl-cstr', readings: {tiberian: maʿarḵôṯ}}, {surface: יִשְׂרָאֵל,
+      tokens: [{surface: אֱלֹהֵי, sense: elohim, form: 'form:pl-cstr', readings: {tiberian: ʾĕlōhê}}, {surface: מַעַרְכוֹת, sense: maarakhah, form: 'form:pl-cstr', readings: {tiberian: maʿarḵôṯ}}, {surface: יִשְׂרָאֵל,
           sense: yisrael, readings: {tiberian: yiśrāʾēl}}]
       reverse: (אלהי|אלוהי) מערכות ישראל
   translations:
@@ -264,7 +268,9 @@ sentences:
       tokens: [{surface: יְסַגֶּרְךָ, sense: siggar, form: 'form:yiqtol-3ms', morphs: [{surface: יְסַגֶּרְ, kc: 'sense:siggar'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəsaggerḵā}}, {
           surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: בְּיָדִי, sense: yad, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: יָדִ, kc: 'sense:yad'}, {surface: י, kc: 'form:sfx-1cs'}],
           readings: {tiberian: bəyāḏî}}]
-      reverse: יסגרך יהוה בידי
+      reverse: |-
+        יסגרך יהוה בידי
+        יהוה יסגרך בידי
   translations:
     en: |-
       The LORD will (deliver|hand) you (into|over to) my hand.
@@ -411,7 +417,9 @@ sentences:
       text: וְנָתַן אֶתְכֶם בְּיָדֵנוּ׃
       tokens: [{surface: וְנָתַן, sense: natan, form: 'form:weqatal-3ms', readings: {tiberian: wənāṯan}}, {surface: אֶתְכֶם, sense: et, morphs: [{surface: אֶתְ, kc: 'sense:et'}, {surface: כֶם, kc: 'form:sfx-2mp'}],
           readings: {tiberian: ʾeṯḵem}}, {surface: בְּיָדֵנוּ, sense: yad, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: יָדֵ, kc: 'sense:yad'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {tiberian: bəyāḏḗnû}}]
-      reverse: ונתן אתכם בידנו
+      reverse: |-
+        ונתן אתכם בידנו
+        והוא יתן אתכם בידנו
   translations:
     en: |-
       And he will give you into our hand.
@@ -454,7 +462,7 @@ stories:
           text: בָא־אֵלֶיךָ בְּשֵׁם יְהוָה צְבָאוֹת אֱלֹהֵי מַעַרְכוֹת יִשְׂרָאֵל אֲשֶׁר חֵרַפְתָּ׃
           tokens: [{surface: בָא, sense: bo, form: 'form:ptc-ms', readings: {tiberian: ḇāʾ-}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
               readings: {tiberian: ʾēlếḵā}}, {surface: בְּשֵׁם, sense: shem, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: שֵׁם, kc: 'sense:shem'}], readings: {tiberian: bəšēm}},
-            {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: צְבָאוֹת, sense: tsava, form: 'form:pl', readings: {tiberian: ṣəḇāʾôṯ}}, {surface: אֱלֹהֵי, sense: elohim, form: 'form:cstr',
+            {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: צְבָאוֹת, sense: tsava, form: 'form:pl', readings: {tiberian: ṣəḇāʾôṯ}}, {surface: אֱלֹהֵי, sense: elohim, form: 'form:pl-cstr',
               readings: {tiberian: ʾĕlōhê}}, {surface: מַעַרְכוֹת, sense: maarakhah, form: 'form:pl-cstr', readings: {tiberian: maʿarḵôṯ}}, {surface: יִשְׂרָאֵל, sense: yisrael, readings: {tiberian: yiśrāʾēl}},
             {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: חֵרַפְתָּ, sense: heref, form: 'form:qatal-2ms', readings: {tiberian: ḥēráp̄tā}}]
       translations:
@@ -491,7 +499,7 @@ stories:
             {surface: וּבַחֲנִית, sense: hanit, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בַ, kc: 'sense:be'}, {surface: חֲנִית, kc: 'sense:hanit'}], readings: {tiberian: ûḇaḥănîṯ}}, {surface: יְהוֹשִׁיעַ,
               sense: hoshia, form: 'form:yiqtol-3ms', readings: {tiberian: yəhôšîaʿ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}},
             {surface: לַיהוָה, sense: yhwh, morphs: [{surface: לַ, kc: 'sense:le'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: laʾḏōnāy}}, {surface: הַמִּלְחָמָה, sense: milhamah, morphs: [
-                {surface: הַ, kc: 'sense:ha'}, {surface: מִּלְחָמָה, kc: 'sense:milhamah'}], readings: {tiberian: hammilḥāmâ}}, {surface: וְנָתַן, sense: natan, form: 'form:qatal-3ms', morphs: [{surface: וְ,
+                {surface: הַ, kc: 'sense:ha'}, {surface: מִּלְחָמָה, kc: 'sense:milhamah'}], readings: {tiberian: hammilḥāmâ}}, {surface: וְנָתַן, sense: natan, form: 'form:weqatal-3ms', morphs: [{surface: וְ,
                   kc: 'sense:we'}, {surface: נָתַן, kc: 'sense:natan'}], readings: {tiberian: wənāṯan}}, {surface: אֶתְכֶם, sense: et, morphs: [{surface: אֶתְ, kc: 'sense:et'}, {surface: כֶם, kc: 'form:sfx-2mp'}],
               readings: {tiberian: ʾeṯḵem}}, {surface: בְּיָדֵנוּ, sense: yad, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: יָדֵ, kc: 'sense:yad'}, {surface: נוּ, kc: 'form:sfx-1cp'}], readings: {
                 tiberian: bəyāḏḗnû}}]

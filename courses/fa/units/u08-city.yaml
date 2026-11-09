@@ -71,6 +71,7 @@ sentences:
       reverse: |-
         تهران [یک] شهر بزرگ است
         تهران شهر بزرگی است
+        تهران یک شهر بزرگه
   translations:
     en: Tehran is a (big|large) city.
 - id: s.city.4
@@ -79,7 +80,11 @@ sentences:
     fa-Arab/standard:
       text: اصفهان خیلی قشنگ است.
       tokens: [{surface: اصفهان, sense: esfahan}, {surface: خیلی, sense: kheyli}, {surface: قشنگ, sense: ghashang}, {surface: است, sense: budan}]
-      reverse: اصفهان خیلی قشنگ است
+      reverse: |-
+        اصفهان خیلی قشنگ است
+        اصفهان بسیار قشنگ است
+        اصفهان خیلی زیبا است
+        اصفهان خیلی قشنگه
   translations:
     en: (Isfahan|Esfahan) is (very|really) (beautiful|pretty|lovely).
 - id: s.city.5
@@ -94,6 +99,7 @@ sentences:
         [شما] اهل کجا هستید
         [شما] اهل کجایید
         [تو] اهل (کجا هستی|کجایی)
+        شما کجایی هستید
   translations:
     en: |-
       Where are you from?
@@ -117,7 +123,7 @@ sentences:
     fa-Arab/standard:
       text: خانهٔ ما در این خیابان است.
       tokens: [{surface: خانهٔ, sense: khane}, {surface: ما, sense: ma}, {surface: در, sense: dar}, {surface: این, sense: in}, {surface: خیابان, sense: khiyaban}, {surface: است, sense: budan}]
-      reverse: "خان(هٔ|ه\u200cی|ه) ما (در|توی) این خیابان است"
+      reverse: "خان(هٔ|ه\u200Cی|ه) ما (در|توی) این خیابان است\nخانه\u200Cمان در این خیابان است"
   translations:
     en: Our (house|home) is (on|in) this street.
 - id: s.city.8
@@ -135,7 +141,9 @@ sentences:
     fa-Arab/standard:
       text: این رستوران خیلی خوب است.
       tokens: [{surface: این, sense: in}, {surface: رستوران, sense: restoran}, {surface: خیلی, sense: kheyli}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: این رستوران خیلی (خوب است|خوبه)
+      reverse: |-
+        این رستوران خیلی (خوب است|خوبه)
+        این رستوران بسیار خوب است
   translations:
     en: This restaurant is (very|really) good.
 - id: s.city.10
@@ -162,9 +170,13 @@ sentences:
     fa-Arab/standard:
       text: دانشگاه خیلی دور است.
       tokens: [{surface: دانشگاه, sense: daneshgah}, {surface: خیلی, sense: kheyli}, {surface: دور, sense: dur}, {surface: است, sense: budan}]
-      reverse: دانشگاه خیلی (دور است|دوره)
+      reverse: |-
+        دانشگاه خیلی (دور است|دوره)
+        دانشگاه بسیار دور است
   translations:
-    en: The university is very far [away].
+    en: |-
+      The university is very far [away].
+      The university is really far away.
 - id: s.city.13
   node: fa.city.asking
   forms:
@@ -195,7 +207,9 @@ sentences:
     fa-Arab/standard:
       text: داروخانه نزدیکِ بانک است.
       tokens: [{surface: داروخانه, sense: darukhane}, {surface: نزدیکِ, sense: nazdik}, {surface: بانک, sense: bank}, {surface: است, sense: budan}]
-      reverse: داروخانه نزدیک بانک است
+      reverse: |-
+        داروخانه نزدیک بانک است
+        داروخانه نزدیک بانکه
   translations:
     en: The (pharmacy|chemist's|chemist|drugstore) is (near|close to) the bank.
 - id: s.city.16
@@ -204,18 +218,23 @@ sentences:
     fa-Arab/standard:
       text: "من با مترو به دانشگاه می\u200cروم."
       tokens: [{surface: من, sense: man}, {surface: با, sense: ba}, {surface: مترو, sense: metro}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] با مترو [به] دانشگاه می\u200cروم"
+      reverse: "[من] با مترو [به] دانشگاه می\u200Cروم\nمن دارم با مترو به دانشگاه می\u200Cروم"
   translations:
-    en: I('m going| am going| go) to [the] university by (metro|subway|underground).
+    en: |-
+      I('m going| am going| go) to [the] university by (metro|subway|underground).
+      I take the metro to university.
 - id: s.city.17
   node: fa.city.transport
   forms:
     fa-Arab/standard:
       text: "ما با اتوبوس می\u200cرویم."
       tokens: [{surface: ما, sense: ma}, {surface: با, sense: ba}, {surface: اتوبوس, sense: otobus}, {surface: "می\u200cرویم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] با اتوبوس می\u200cرویم"
+      reverse: "[ما] با اتوبوس می\u200Cرویم\nما داریم با اتوبوس می\u200Cرویم"
   translations:
-    en: We('re going| are going| go) by bus.
+    en: |-
+      We('re going| are going| go) by bus.
+      We're taking the bus.
+      We take the bus.
 - id: s.city.18
   node: fa.city.transport
   register: formal
@@ -223,7 +242,7 @@ sentences:
     fa-Arab/standard:
       text: "با تاکسی می\u200cآیید؟"
       tokens: [{surface: با, sense: ba}, {surface: تاکسی, sense: taksi}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] با تاکسی می\u200cآیید\n[تو] با تاکسی می\u200cآیی"
+      reverse: "[شما] با تاکسی می\u200Cآیید\n[تو] با تاکسی می\u200Cآیی\nآیا با تاکسی می\u200Cآیید"
   translations:
     en: |-
       Are you coming by taxi?
@@ -254,12 +273,14 @@ sentences:
     fa-Arab/standard:
       text: "من پیاده می\u200cروم."
       tokens: [{surface: من, sense: man}, {surface: پیاده, sense: piyade}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] پیاده می\u200cروم"
+      reverse: "[من] پیاده می\u200Cروم\nمن دارم پیاده می\u200Cروم"
   translations:
     en: |-
       I('m going| am going| go) on foot.
       I('m| am) walking.
       I walk.
+      I'll walk.
+      I'll go on foot.
 - id: s.city.22
   node: fa.city.turns
   forms:
@@ -295,7 +316,9 @@ sentences:
     fa-Arab/standard:
       text: به راست بپیچید.
       tokens: [{surface: به, sense: be}, {surface: راست, sense: rast}, {surface: بپیچید, sense: pichidan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: پیچ, kc: 'sense:pichidan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: (به راست|به سمت راست|راست) (بپیچید|بپیچ)
+      reverse: |-
+        (به راست|به سمت راست|راست) (بپیچید|بپیچ)
+        سمت راست بپیچید
   translations:
     en: Turn (right|to the right).
 - id: s.city.26
@@ -304,7 +327,9 @@ sentences:
     fa-Arab/standard:
       text: به چپ بپیچید.
       tokens: [{surface: به, sense: be}, {surface: چپ, sense: chap}, {surface: بپیچید, sense: pichidan, morphs: [{surface: ب, kc: 'form:subj-be'}, {surface: پیچ, kc: 'sense:pichidan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: (به چپ|به سمت چپ|چپ) (بپیچید|بپیچ)
+      reverse: |-
+        (به چپ|به سمت چپ|چپ) (بپیچید|بپیچ)
+        سمت چپ بپیچید
   translations:
     en: Turn (left|to the left).
 - id: s.city.27
@@ -314,7 +339,10 @@ sentences:
     fa-Arab/standard:
       text: بانک سمتِ چپ است.
       tokens: [{surface: بانک, sense: bank}, {surface: سمتِ, sense: samt}, {surface: چپ, sense: chap}, {surface: است, sense: budan}]
-      reverse: بانک (سمت چپ|دست چپ) است
+      reverse: |-
+        بانک (سمت چپ|دست چپ) است
+        بانک در سمت چپ است
+        بانک سمت چپه
   translations:
     en: |-
       The bank is on (the|your) left[ side].
@@ -328,6 +356,8 @@ sentences:
       reverse: |-
         مستقیم بروید (بعد|بعدش) (به راست|به سمت راست|راست) بپیچید
         مستقیم برو (بعد|بعدش) (به راست|به سمت راست|راست) بپیچ
+        مستقیم بروید سپس به راست بپیچید
+        مستقیم بروید بعد سمت راست بپیچید
   translations:
     en: Go straight [ahead|on], then turn (right|to the right).
 - id: s.city.29
@@ -337,7 +367,9 @@ sentences:
     fa-Arab/standard:
       text: ببخشید، ایستگاهِ مترو دور است؟
       tokens: [{surface: ببخشید, sense: bebakhshid}, {surface: ایستگاهِ, sense: istgah}, {surface: مترو, sense: metro}, {surface: دور, sense: dur}, {surface: است, sense: budan}]
-      reverse: (ببخشید|ببخشین) ایستگاه مترو (دور است|دوره)
+      reverse: |-
+        (ببخشید|ببخشین) ایستگاه مترو (دور است|دوره)
+        ببخشید آیا ایستگاه مترو دور است
   translations:
     en: Excuse me, is the (metro|subway|underground) station far [away|from here]?
 - id: s.city.30
@@ -346,7 +378,9 @@ sentences:
     fa-Arab/standard:
       text: نه، نزدیک است. ده دقیقه پیاده است.
       tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: نزدیک, sense: nazdik}, {surface: است, sense: budan}, {surface: ده, sense: dah}, {surface: دقیقه, sense: daghighe}, {surface: پیاده, sense: piyade}, {surface: است, sense: budan}]
-      reverse: نه (نزدیک است|نزدیکه) (ده دقیقه پیاده است|پیاده ده دقیقه است)
+      reverse: |-
+        نه (نزدیک است|نزدیکه) (ده دقیقه پیاده است|پیاده ده دقیقه است)
+        خیر نزدیک است ده دقیقه پیاده است
   translations:
     en: |-
       No, it('s| is) (close|near|nearby). [It's|It is] (ten|10) minutes on foot.

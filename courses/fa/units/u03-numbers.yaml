@@ -92,6 +92,7 @@ sentences:
       reverse: |-
         [تو] [یک] کتاب داری
         [شما] [یک] کتاب دارید
+        آیا تو کتاب داری
   translations:
     en: |-
       Do you have (a book|books|any books)?
@@ -102,7 +103,9 @@ sentences:
     fa-Arab/standard:
       text: من دو برادر دارم.
       tokens: [{surface: من, sense: man}, {surface: دو, sense: do}, {surface: برادر, sense: baradar}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: '[من] دو برادر دارم'
+      reverse: |-
+        [من] دو برادر دارم
+        من دو تا برادر دارم
   translations:
     en: |-
       I have (two|2) brothers.
@@ -113,7 +116,9 @@ sentences:
     fa-Arab/standard:
       text: سارا سه خواهر دارد.
       tokens: [{surface: سارا, sense: sara}, {surface: سه, sense: se}, {surface: خواهر, sense: khahar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: سارا سه خواهر دارد
+      reverse: |-
+        سارا سه خواهر دارد
+        سارا سه تا خواهر دارد
   translations:
     en: |-
       Sara has (three|3) sisters.
@@ -124,7 +129,9 @@ sentences:
     fa-Arab/standard:
       text: ما چهار کتاب داریم.
       tokens: [{surface: ما, sense: ma}, {surface: چهار, sense: chahar}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] چهار کتاب داریم'
+      reverse: |-
+        [ما] چهار کتاب داریم
+        ما چهار تا کتاب داریم
   translations:
     en: |-
       We have (four|4) books.
@@ -135,7 +142,9 @@ sentences:
     fa-Arab/standard:
       text: علی پنج دوست دارد.
       tokens: [{surface: علی, sense: ali}, {surface: پنج, sense: panj}, {surface: دوست, sense: doost}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: علی پنج دوست دارد
+      reverse: |-
+        علی پنج دوست دارد
+        علی پنج تا دوست دارد
   translations:
     en: |-
       Ali has (five|5) friends.
@@ -146,7 +155,7 @@ sentences:
     fa-Arab/standard:
       text: "آن\u200cها شش بچه دارند."
       tokens: [{surface: "آن\u200cها", sense: an, morphs: [{surface: "آن\u200c", kc: 'sense:an'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: شش, sense: shesh}, {surface: بچه, sense: bachche}, {surface: دارند, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "[آن\u200cها] شش (بچه|فرزند) دارند"
+      reverse: "[آن\u200Cها] شش (بچه|فرزند) دارند\nآن\u200Cها شش تا بچه دارند"
   translations:
     en: |-
       They have (six|6) (children|kids).
@@ -157,7 +166,9 @@ sentences:
     fa-Arab/standard:
       text: مادرم هفت خواهر دارد.
       tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: هفت, sense: haft}, {surface: خواهر, sense: khahar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: (مادرم|مادر من) هفت خواهر دارد
+      reverse: |-
+        (مادرم|مادر من) هفت خواهر دارد
+        مادرم هفت تا خواهر دارد
   translations:
     en: My (mother|mom|mum) has (seven|7) sisters.
 - id: s.numbers.12
@@ -176,7 +187,9 @@ sentences:
     fa-Arab/standard:
       text: مریم هشت دفتر دارد.
       tokens: [{surface: مریم, sense: maryam}, {surface: هشت, sense: hasht}, {surface: دفتر, sense: daftar}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: مریم هشت دفتر دارد
+      reverse: |-
+        مریم هشت دفتر دارد
+        مریم هشت تا دفتر دارد
   translations:
     en: |-
       Maryam has (eight|8) notebooks.
@@ -187,7 +200,9 @@ sentences:
     fa-Arab/standard:
       text: ما ده دفتر داریم.
       tokens: [{surface: ما, sense: ma}, {surface: ده, sense: dah}, {surface: دفتر, sense: daftar}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] ده دفتر داریم'
+      reverse: |-
+        [ما] ده دفتر داریم
+        ما ده تا دفتر داریم
   translations:
     en: |-
       We have (ten|10) notebooks.
@@ -215,6 +230,8 @@ sentences:
     en: |-
       (She|He) (doesn't|does not) have (a sister|any sisters).
       (She|He) has no (sister|sisters).
+      She hasn't got a sister.
+      He hasn't got any sisters.
 - id: s.numbers.17
   node: fa.numbers.none
   forms:
@@ -224,6 +241,8 @@ sentences:
       reverse: |-
         [تو] [یک] خودکار داری
         [شما] [یک] خودکار دارید
+        آیا تو خودکار داری
+        تو قلم داری
   translations:
     en: |-
       Do you have a pen?
@@ -234,7 +253,10 @@ sentences:
     fa-Arab/standard:
       text: نه، خودکار ندارم.
       tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: خودکار, sense: khodkar}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: نه [من] خودکار ندارم
+      reverse: |-
+        نه [من] خودکار ندارم
+        خیر خودکار ندارم
+        نه قلم ندارم
   translations:
     en: |-
       No, I (don't|do not) have a pen.
@@ -245,7 +267,9 @@ sentences:
     fa-Arab/standard:
       text: ما بیست کتاب داریم.
       tokens: [{surface: ما, sense: ma}, {surface: بیست, sense: bist}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] بیست کتاب داریم'
+      reverse: |-
+        [ما] بیست کتاب داریم
+        ما بیست تا کتاب داریم
   translations:
     en: |-
       We have (twenty|20) books.
@@ -270,6 +294,8 @@ sentences:
         [شما] چند سال دارید
         (چند سالتان است|چند سالت است|چند سالته)
         [تو] چند سال داری
+        شما چند ساله هستید
+        تو چند ساله هستی
   translations:
     en: How old are you?
 - id: s.numbers.22
@@ -278,7 +304,9 @@ sentences:
     fa-Arab/standard:
       text: برادرم سی سال دارد.
       tokens: [{surface: برادرم, sense: baradar, morphs: [{surface: برادر, kc: 'sense:baradar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: سی, sense: si}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: (برادرم|برادر من) سی سال دارد
+      reverse: |-
+        (برادرم|برادر من) سی سال دارد
+        برادرم سی ساله است
   translations:
     en: My brother( is|'s) (thirty|30) [years old].
 - id: s.numbers.23
@@ -287,7 +315,9 @@ sentences:
     fa-Arab/standard:
       text: سارا بیست و پنج سال دارد.
       tokens: [{surface: سارا, sense: sara}, {surface: بیست, sense: bist}, {surface: و, sense: va}, {surface: پنج, sense: panj}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: سارا بیست و پنج سال دارد
+      reverse: |-
+        سارا بیست و پنج سال دارد
+        سارا بیست و پنج ساله است
   translations:
     en: Sara( is|'s) (twenty five|twentyfive|25) [years old].
 - id: s.numbers.24
@@ -296,7 +326,9 @@ sentences:
     fa-Arab/standard:
       text: مادرم پنجاه سال دارد.
       tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: پنجاه, sense: panjah}, {surface: سال, sense: sal}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: (مادرم|مادر من) پنجاه سال دارد
+      reverse: |-
+        (مادرم|مادر من) پنجاه سال دارد
+        مادرم پنجاه ساله است
   translations:
     en: My (mother|mom|mum) is (fifty|50) [years old].
 - id: s.numbers.25
@@ -318,7 +350,9 @@ sentences:
     fa-Arab/standard:
       text: علی صد کتاب دارد.
       tokens: [{surface: علی, sense: ali}, {surface: صد, sense: sad}, {surface: کتاب, sense: ketab}, {surface: دارد, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: علی صد کتاب دارد
+      reverse: |-
+        علی صد کتاب دارد
+        علی صد تا کتاب دارد
   translations:
     en: |-
       Ali has (a|one) hundred books.
@@ -329,7 +363,9 @@ sentences:
     fa-Arab/standard:
       text: ما هزار کتاب داریم!
       tokens: [{surface: ما, sense: ma}, {surface: هزار, sense: hezar}, {surface: کتاب, sense: ketab}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] هزار کتاب داریم'
+      reverse: |-
+        [ما] هزار کتاب داریم
+        ما هزار تا کتاب داریم
   translations:
     en: |-
       We have (a|one) thousand books!
@@ -360,6 +396,7 @@ sentences:
     en: |-
       How much is this notebook?
       What('s| is) the price of this notebook?
+      How much does this notebook cost?
 - id: s.numbers.30
   node: fa.numbers.money
   constructions: ['construction:ezafe']
@@ -388,15 +425,20 @@ sentences:
     en: |-
       How much is that book?
       What('s| is) the price of that book?
+      How much does that book cost?
 - id: s.numbers.32
   node: fa.numbers.prices
   forms:
     fa-Arab/standard:
       text: این کتاب خیلی گران است!
       tokens: [{surface: این, sense: in}, {surface: کتاب, sense: ketab}, {surface: خیلی, sense: kheyli}, {surface: گران, sense: geran}, {surface: است, sense: budan}]
-      reverse: این کتاب خیلی گران است
+      reverse: |-
+        این کتاب خیلی گران است
+        این کتاب بسیار گران است
   translations:
-    en: This book is (very|really|too) expensive!
+    en: |-
+      This book is (very|really|too) expensive!
+      This book is so expensive!
 - id: s.numbers.33
   node: fa.numbers.prices
   forms:
@@ -427,7 +469,9 @@ sentences:
     fa-Arab/standard:
       text: شما کتاب دارید؟
       tokens: [{surface: شما, sense: shoma}, {surface: کتاب, sense: ketab}, {surface: دارید, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: '[شما] [یک] کتاب دارید'
+      reverse: |-
+        [شما] [یک] کتاب دارید
+        آیا شما کتاب دارید
   translations:
     en: |-
       Do you have (a book|books|any books)?

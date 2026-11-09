@@ -50,6 +50,10 @@ export const INSTRUCTIONS: Readonly<Record<Exercise["template"], MessageId>> = {
   "story-choose": "player.instruction.story-choose",
   "story-complete": "player.instruction.story-complete",
   "story-arrange": "player.instruction.story-arrange",
+  "letter-read": "player.instruction.letter-read",
+  "letter-pairs": "player.instruction.letter-pairs",
+  "word-read": "player.instruction.word-read",
+  "word-write": "player.instruction.word-write",
 };
 
 export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
@@ -58,11 +62,13 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
     case "select-image":
       return <SelectImageView {...props} ex={ex} />;
     case "match-pairs":
+    case "letter-pairs":
       return <MatchPairsView {...props} ex={ex} />;
     case "choose-translation":
       return <ChooseTranslationView {...props} ex={ex} />;
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
+    case "word-write":
       return <TilesView {...props} ex={ex} />;
     case "translate-type.l1-l2":
       return <TranslateTypeView {...props} ex={ex} />;
@@ -72,6 +78,8 @@ export const ExerciseView = (props: ViewProps & ViewExtras): JSX.Element => {
       return <GapFillView {...props} ex={ex} />;
     case "char-read":
     case "reading-disambiguation":
+    case "letter-read":
+    case "word-read":
       return <CharReadView {...props} ex={ex} />;
     case "vocalize":
       return <VocalizeView {...props} ex={ex} />;

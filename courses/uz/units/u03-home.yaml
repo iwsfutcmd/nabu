@@ -308,11 +308,15 @@ sentences:
     uz-Latn/standard:
       text: Xonam kichik, lekin chiroyli.
       tokens: [{surface: Xonam, sense: xona, morphs: [{surface: Xona, kc: 'sense:xona'}, {surface: m, kc: 'form:poss-1sg-im'}]}, {surface: kichik, sense: kichik}, {surface: lekin, sense: lekin}, {surface: chiroyli, sense: chiroyli}]
-      reverse: '[Mening] xonam kichik (lekin|ammo|biroq) chiroyli'
+      reverse: |-
+        [Mening] xonam kichik (lekin|ammo|biroq) chiroyli
+        Xonam kichkina, lekin chiroyli
     uz-Cyrl/standard:
       text: Хонам кичик, лекин чиройли.
       tokens: [{surface: Хонам, sense: xona, morphs: [{surface: Хона, kc: 'sense:xona'}, {surface: м, kc: 'form:poss-1sg-im'}]}, {surface: кичик, sense: kichik}, {surface: лекин, sense: lekin}, {surface: чиройли, sense: chiroyli}]
-      reverse: '[Менинг] хонам кичик (лекин|аммо|бироқ) чиройли'
+      reverse: |-
+        [Менинг] хонам кичик (лекин|аммо|бироқ) чиройли
+        Хонам кичкина, лекин чиройли
   translations:
     en: My room is (small|little), but [it('s| is)] (nice|beautiful|pretty).
 - id: s.home.21
@@ -483,6 +487,8 @@ sentences:
       I (don't|do not) have my key.
       I (don't|do not) have a key.
       I have no key.
+      I haven't got a key.
+      I haven't got my key.
 - id: s.home.32
   node: uz.home.cat
   forms:

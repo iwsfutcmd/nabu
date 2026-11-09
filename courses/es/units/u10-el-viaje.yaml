@@ -43,7 +43,9 @@ sentences:
     es-Latn/standard:
       text: Voy a Cuba.
       tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: Cuba, sense: cuba}]
-      reverse: "[Yo] voy (a|para|pa') Cuba"
+      reverse: |-
+        [Yo] voy (a|para|pa') Cuba
+        Me voy a Cuba.
   translations:
     en: |-
       (I'm|I am) going to Cuba.
@@ -100,10 +102,12 @@ sentences:
       reverse: |-
         [La] abuela y (mami|mamá) van (a|para|pa') Cuba
         (Mami|Mamá) y [la] abuela van (a|para|pa') Cuba
+        Mi abuela y mi mamá van a Cuba.
   translations:
     en: |-
       (Grandma|Grandmother|Granny) and (Mom|Mommy|Mum) are going to Cuba.
       (Grandma|Grandmother|Granny) and (Mom|Mommy|Mum) go to Cuba.
+      My grandma and my mom are going to Cuba.
 - id: s.u10.7
   node: es.u10.vamos-a-viajar
   forms:
@@ -163,13 +167,16 @@ sentences:
       Are you coming with us?
       Will you come with us?
       You're coming with us?
+      You are coming with us?
 - id: s.u10.12
   node: es.u10.vamos-a-viajar
   forms:
     es-Latn/standard:
       text: ¿Cuándo es el viaje?
       tokens: [{surface: Cuándo, sense: cuándo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: viaje, sense: viaje}]
-      reverse: Cuándo es el viaje
+      reverse: |-
+        Cuándo es el viaje
+        ¿El viaje cuándo es?
   translations:
     en: |-
       When is the trip?
@@ -180,7 +187,9 @@ sentences:
     es-Latn/standard:
       text: El viaje es la semana que viene.
       tokens: [{surface: El, sense: el}, {surface: viaje, sense: viaje}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: semana, sense: semana}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
-      reverse: El viaje es (la semana que viene|la próxima semana)
+      reverse: |-
+        El viaje es (la semana que viene|la próxima semana)
+        El viaje es la semana próxima.
   translations:
     en: |-
       The trip is next week.
@@ -216,7 +225,9 @@ sentences:
     es-Latn/standard:
       text: Papi va al aeropuerto con nosotros.
       tokens: [{surface: Papi, sense: papi}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: al, sense: al}, {surface: aeropuerto, sense: aeropuerto}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
-      reverse: "(Papi|Papá) va (al|para el|pa'l) aeropuerto con nosotros"
+      reverse: |-
+        (Papi|Papá) va (al|para el|pa'l) aeropuerto con nosotros
+        Papi va con nosotros al aeropuerto.
   translations:
     en: |-
       (Dad|Daddy) is going to the airport with us.
@@ -240,7 +251,9 @@ sentences:
     es-Latn/standard:
       text: ¿Dónde está tu pasaporte?
       tokens: [{surface: Dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: pasaporte, sense: pasaporte}]
-      reverse: Dónde está (tu|su) pasaporte
+      reverse: |-
+        Dónde está (tu|su) pasaporte
+        ¿Tu pasaporte dónde está?
   translations:
     en: |-
       Where is your passport?
@@ -285,9 +298,13 @@ sentences:
     es-Latn/standard:
       text: Abuela quiere visitar Matanzas.
       tokens: [{surface: Abuela, sense: abuela}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: visitar, sense: visitar}, {surface: Matanzas, sense: matanzas}]
-      reverse: "[La] abuela quiere visitar Matanzas"
+      reverse: |-
+        [La] abuela quiere visitar Matanzas
+        Mi abuela quiere visitar Matanzas.
   translations:
-    en: (Grandma|Grandmother|Granny) wants to visit Matanzas.
+    en: |-
+      (Grandma|Grandmother|Granny) wants to visit Matanzas.
+      My grandma wants to visit Matanzas.
 - id: s.u10.23
   node: es.u10.quiero-ir
   forms:
@@ -305,7 +322,9 @@ sentences:
     es-Latn/standard:
       text: Lili no puede viajar este verano.
       tokens: [{surface: Lili, sense: lili}, {surface: 'no', sense: 'no'}, {surface: puede, sense: poder, form: 'form:pres-3s'}, {surface: viajar, sense: viajar}, {surface: este, sense: este}, {surface: verano, sense: verano}]
-      reverse: Lili no puede viajar este verano
+      reverse: |-
+        Lili no puede viajar este verano
+        Este verano Lili no puede viajar.
   translations:
     en: Lili (can't|cannot) (travel|go|take a trip) this summer.
 - id: s.u10.25
@@ -314,11 +333,14 @@ sentences:
     es-Latn/standard:
       text: Abuelo no quiere ir en avión.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: 'no', sense: 'no'}, {surface: quiere, sense: querer, form: 'form:pres-3s'}, {surface: ir, sense: ir}, {surface: en, sense: en}, {surface: avión, sense: avión}]
-      reverse: "[El] abuelo no quiere (ir|viajar) en avión"
+      reverse: |-
+        [El] abuelo no quiere (ir|viajar) en avión
+        Mi abuelo no quiere ir en avión.
   translations:
     en: |-
       (Grandpa|Grandfather|Granddad) (doesn't|does not) want to (go|travel) by (plane|air).
       (Grandpa|Grandfather|Granddad) (doesn't|does not) want to fly.
+      My grandpa doesn't want to go by plane.
 - id: s.u10.26
   node: es.u10.el-tiempo
   forms:
@@ -344,6 +366,7 @@ sentences:
       (It's|It is) (very|really) hot in Cuba.
       In Cuba (it's|it is) (very|really) hot.
       Cuba is (very|really) hot.
+      Cuba's very hot.
 - id: s.u10.28
   node: es.u10.el-tiempo
   forms:
@@ -366,6 +389,8 @@ sentences:
       reverse: |-
         En el verano llueve mucho
         Llueve mucho en el verano
+        En verano llueve mucho.
+        Llueve mucho en verano.
   translations:
     en: |-
       In [the] summer it rains a lot.
@@ -442,6 +467,8 @@ sentences:
       reverse: |-
         (Qué tú vas|Qué vas [tú]|Qué usted va|Qué va [usted]|Qué ustedes van|Qué van [ustedes]) a llevar (para|pa') Yunior
         (Qué tú le vas|Qué le vas [tú]|Qué usted le va|Qué le va [usted]|Qué ustedes le van|Qué le van [ustedes]) a llevar a Yunior
+        ¿Tú qué vas a llevar para Yunior?
+        ¿Qué tú vas a llevarle a Yunior?
   translations:
     en: |-
       What are you going to (take|bring) for Yunior?
@@ -452,22 +479,25 @@ sentences:
     es-Latn/standard:
       text: Abuela va a llevar ropa y medicinas.
       tokens: [{surface: Abuela, sense: abuela}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: llevar, sense: llevar}, {surface: ropa, sense: ropa}, {surface: 'y', sense: 'y'}, {surface: medicinas, sense: medicina}]
-      reverse: "[La] abuela va a llevar ropa y (medicinas|medicamentos)"
+      reverse: |-
+        [La] abuela va a llevar ropa y (medicinas|medicamentos)
+        Mi abuela va a llevar ropa y medicinas.
   translations:
     en: |-
       (Grandma|Grandmother|Granny) is going to (take|bring) clothes and (medicine|medicines).
       (Grandma's|Grandmother's|Granny's) going to (take|bring) clothes and (medicine|medicines).
+      My grandma is going to take clothes and medicine.
 stories:
 - id: es.story.u10
   node: es.u10.story
   title: {en: 'Who''s going to Cuba?'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: mami, name: {es-Latn/standard: Mami}}
-  - {id: papi, name: {es-Latn/standard: Papi}}
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: mami, speaker: f, name: {es-Latn/standard: Mami}}
+  - {id: papi, speaker: m, name: {es-Latn/standard: Papi}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
   steps:
   - line:
       speaker: mami

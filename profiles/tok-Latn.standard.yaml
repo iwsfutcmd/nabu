@@ -1,0 +1,28 @@
+# profiles/tok-Latn.standard.yaml
+# Toki Pona in sitelen Lasina, the Latin alphabet (ADR 0086): fourteen letters, words always in lowercase,
+# names (proper adjectives) capitalized: jan Sonja, ma Kanata. The tok course's default orthography; every
+# sentence is also pinned in sitelen pona (tok-Qaap/sitelen-pona), which the compiler checks against this one.
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+id: tok-Latn/standard
+lang: tok-Latn
+exemplars: cldr:tok
+letters: [a, e, i, j, k, l, m, n, o, p, s, t, u, w]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  - map: { "’": "'", "‘": "'" }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  # Names are capitalized and words are not, but a capital typed at the start of a sentence (Mi moku) is
+  # no mistake.
+  case: { locale: tok }
+  # REVIEW: Toki Pona's words are short and many lie a letter apart (pona, pana, poka, poki; lili, lipu; mi,
+  # ni, li, pi). A slip that spells another word of the course is WRONG_WORD through the lexicon, so no
+  # contrast sets are needed; what is left is a slip inside a longer word (kepeken, kijetesantakalu).
+  typo: { model: keyboard, layout: cldr-kbd:en, maxRatio: 0.2 }
+input:
+  keyboard: cldr-kbd:en
+layout: { vertical: none }
+# The pinned sitelen pona of every sentence must be this text's words as logographs (nabu.sitelen_pona).
+transliterate: { to: tok-Qaap/sitelen-pona, via: sitelen-pona }

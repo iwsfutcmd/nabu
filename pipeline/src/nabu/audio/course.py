@@ -13,7 +13,7 @@
 - a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
   gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
 - a voice with `finalStop` gets text with no final punctuation (word cards) ended with its
-  script's full stop (ADR 0063: punctuation.py);
+  script's full stop (ADR 0063: punctuation.py), and phonemes with a "." (ADR 0089);
 - each item gets one clip, at normal speed: the player slows it down itself (ADR 0062), so a
   slow clip is never another take with its own mistakes;
 - word onsets reported by the synthesizer are mapped back to the sentence's tokens, the same
@@ -43,8 +43,9 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import espeak, jyutping, tiberian
+from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
+    PIPER_PHONEMES,
     Clip,
     NavoiyProvider,
     OmniVoiceProvider,
@@ -71,8 +72,20 @@ BATCH = 16
 #: Reading schemes `pronounce` can turn into IPA.
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
-#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text.
-PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {"tiberian": tiberian.espeak}
+#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
+#: Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for, and Attic
+#: Greek with its vowel lengths marked (ADR 0087), said as reconstructed, never as Modern Greek.
+PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "tiberian": tiberian.espeak,
+    "lasina": toki_pona.espeak,
+    "attic": attic.espeak,
+}
+#: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
+#: Tiberian for Piper is Arabic-bent (ADR 0089).
+PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "attic": attic.piper,
+    "tiberian": tiberian.piper,
+}
 WORD_KINDS = {"word", "number"}
 
 
@@ -96,6 +109,8 @@ class Report:
     synthesized: int = 0
     kept: int = 0
     removed: int = 0
+    #: Stale clips let go of without a new one (`prune`).
+    dropped: int = 0
     skipped: list[str] = field(default_factory=lambda: [])
     #: Items the voice said nothing for (left without a clip, so the index stays valid).
     silent: list[str] = field(default_factory=lambda: [])
@@ -135,9 +150,10 @@ def pronounced(surface: str, reading: str, scheme: str) -> str:
     return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
 
 
-def said(reading: str, scheme: str) -> str:
-    """A pinned reading as the voice takes it: phonemes for a phoneme scheme, else as written."""
-    convert = PHONEME_SCHEMES.get(scheme)
+def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
+    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (IPA for a Piper
+    voice, eSpeak NG's mnemonics otherwise), else as written."""
+    convert = (PIPER_PHONEME_SCHEMES if provider == "piper" else PHONEME_SCHEMES).get(scheme)
     return reading if convert is None else convert(reading)
 
 
@@ -177,7 +193,7 @@ def _input_of(
             piece = token.get("readings", {}).get(voice.reading)
             if piece is None:
                 return None
-            piece = said(piece, voice.reading)
+            piece = said(piece, voice.reading, voice.provider)
             if parts:
                 offset += 1
             spans.append(Span(i, offset, offset + len(piece)))
@@ -403,11 +419,18 @@ def plan(
             marked = "".join(t["surface"] for t in word) if word else str(forms[0])
             surface = "".join(kc_written) if kc_written is not None else marked
             reading = readings.get(surface, in_words.get(surface))
+            if reading is None and scheme == "attic":
+                # A Greek word card shows the word as cited, with an acute; in a sentence its
+                # last syllable's acute is a grave before the next word (καί, καὶ σύ): the same
+                # word, with the same reading.
+                reading = next(
+                    (attic.cited(r) for w, r in readings.items() if attic.cited(w) == surface), None
+                )
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue
             if voice.reading != "text":
-                piece = None if reading is None else said(reading, voice.reading)
+                piece = None if reading is None else said(reading, voice.reading, voice.provider)
             elif voice.pronounce is not None and reading is not None:
                 piece = pronounced(surface, reading, voice.pronounce)
             else:
@@ -443,6 +466,12 @@ def plan(
         # the stop comes after the last word.
         tag = orth.split("/")[0]
         items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
+    elif voice.finalStop and voice.reading in PHONEME_SCHEMES:
+        # Phonemes: a word card ends with the "." a sentence ends with (ADR 0089).
+        items = [
+            i if i.input.rstrip().endswith((".", "?")) else replace(i, input=i.input + ".")
+            for i in items
+        ]
     return items, skipped
 
 
@@ -582,10 +611,16 @@ def synthesize_course(
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
     only: str | None = None,
+    prune: bool = False,
 ) -> Report:
     """(Re)synthesizes the course's clips; unchanged inputs keep their files. Each item is read by
     the voice of the cast the assignment gives it (ADR 0078). `only`: run that voice alone; the
-    clips of the others stay as they are until they run."""
+    clips of the others stay as they are until they run.
+
+    A stale clip (its voice left the cast or no longer reads the item, its reference or input
+    changed) is kept until its new one is made, so learners keep hearing something. `prune`
+    makes nothing and lets the stale clips go instead: the course builds clean at once, and those
+    items have no audio until the next run makes it."""
     cast_ = [voices] if isinstance(voices, AudioVoice) else list(voices)
     adir = audio_dir(course_dir)
     index = read_index(adir)
@@ -652,14 +687,17 @@ def synthesize_course(
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
         waiting = [
-            previous[(w[3].item, w[4])] for w in wanted[done:] if (w[3].item, w[4]) in previous
+            previous[(w[3].item, w[4])]
+            for w in wanted[done:]
+            if (w[3].item, w[4]) in previous and not prune
         ]
         clips = [*dump([*human, *kept, *others, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
     # In batches of one voice, saving the index after each: a provider failing midway (a rate
     # limit, an outage) keeps every clip already made, and the next run picks up from there.
-    done = 0
+    done = len(wanted) if prune else 0
+    report.dropped = sum((w[3].item, w[4]) in previous for w in wanted) if prune else 0
     while done < len(wanted):
         voice, tts = wanted[done][0], wanted[done][1]
         batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]
@@ -699,6 +737,21 @@ def decode_clip(path: Path) -> bytes:
     return out.stdout
 
 
+def ipa_phones(word: str) -> list[str]:
+    """A Piper input word ([[IPA]], ADR 0087) as the aligner's phones: each symbol with the marks
+    after it (t̪, aː, a.ː), stress marks dropped, a doubled consonant once (the aligner's
+    phones are eSpeak NG's, which write one long consonant)."""
+    out: list[str] = []
+    for ch in unicodedata.normalize("NFD", word.strip().removeprefix("[[").removesuffix("]]")):
+        if ch in "\u02c8\u02cc":
+            continue
+        if out and (unicodedata.combining(ch) or ch in "\u02d0\u02d1\u02e4\u02b0."):
+            out[-1] += ch
+        else:
+            out.append(ch)
+    return [p for k, p in enumerate(out) if k == 0 or p != out[k - 1]]
+
+
 def align_course(
     course_dir: Path,
     units: list[dict[str, Any]],
@@ -734,8 +787,11 @@ def align_course(
             or not item.spans
         ):
             continue
+        ipa = voice.provider == "piper" and PIPER_PHONEMES.fullmatch(item.input) is not None
         words = [
-            [p for w in espeak.phonemes(item.input[s.start : s.end], phonemes) for p in w]
+            ipa_phones(item.input[s.start : s.end])
+            if ipa
+            else [p for w in espeak.phonemes(item.input[s.start : s.end], phonemes) for p in w]
             for s in item.spans
         ]
         found = aligner(decode_clip(adir / clip.file), ALIGN_RATE, words)

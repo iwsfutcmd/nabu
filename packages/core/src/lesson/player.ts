@@ -156,7 +156,11 @@ export const draftOf = (state: PlayerState): Draft | undefined => {
         case "text":
           return { tag: "text", text: response.text };
         case "pairs":
-          return { tag: "pairs", matched: active.ex.template === "match-pairs" ? active.ex.left.map((_, i) => i) : [], mistakes: response.mistakes };
+          return {
+            tag: "pairs",
+            matched: active.ex.template === "match-pairs" || active.ex.template === "letter-pairs" ? active.ex.left.map((_, i) => i) : [],
+            mistakes: response.mistakes,
+          };
         case "self-rating":
           return { tag: "self-rating", rating: response.rating };
         case "speech":
@@ -176,7 +180,10 @@ export const responseOf = (ex: Exercise, draft: Draft): Response | undefined => 
     case "text":
       return draft.text.trim() === "" ? undefined : { tag: "text", text: draft.text };
     case "pairs":
-      return ex.template === "match-pairs" && draft.matched.length === ex.left.length ? { tag: "pairs", mistakes: draft.mistakes } : undefined;
+      // Every pairs card (word and gloss, letter and sound: ADR 0088) is done once each pair is matched.
+      return (ex.template === "match-pairs" || ex.template === "letter-pairs") && draft.matched.length === ex.left.length
+        ? { tag: "pairs", mistakes: draft.mistakes }
+        : undefined;
     case "self-rating":
       return draft.rating === null ? undefined : { tag: "self-rating", rating: draft.rating };
     case "speech":
@@ -215,7 +222,7 @@ export const start = (lesson: string, exercises: readonly Exercise[], options: S
 
 /** Exercises that come back after a mistake: not speaking (self-rated) and not pairs (always completed). */
 /** Speaking is not brought back (a recording is feedback, not a test), nor are pairs. */
-const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mic && ex.template !== "match-pairs";
+const retryable = (ex: Exercise): boolean => !TEMPLATES[ex.template].modality.mic && TEMPLATES[ex.template].modality.input !== "pairs";
 
 /** First tries so far: exercise id → right. A skip counts as a miss. */
 const firstTries = (session: Session): ReadonlyMap<string, boolean> => new Map(session.results.filter((r) => !r.retry).map((r) => [r.exercise, isCorrect(r.verdict)]));

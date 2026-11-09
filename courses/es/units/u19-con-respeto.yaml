@@ -180,7 +180,9 @@ sentences:
     es-Latn/standard:
       text: Con permiso, señora, ¿puedo pasar?
       tokens: [{surface: Con, sense: con}, {surface: permiso, sense: permiso}, {surface: señora, sense: señora}, {surface: puedo, sense: poder, form: 'form:pres-1s'}, {surface: pasar, sense: pasar}]
-      reverse: Con permiso señora (puedo pasar|se puede pasar|se puede)
+      reverse: |-
+        Con permiso señora (puedo pasar|se puede pasar|se puede)
+        Con permiso, señora, ¿puedo entrar?
   translations:
     en: (Excuse me|Pardon me), (ma'am|madam), (may|can) I come in?
 - id: s.u19.14
@@ -318,7 +320,9 @@ sentences:
     es-Latn/standard:
       text: ¿Les gustaría comer con nosotros?
       tokens: [{surface: Les, sense: le}, {surface: gustaría, sense: gustar, form: 'form:cond'}, {surface: comer, sense: comer}, {surface: con, sense: con}, {surface: nosotros, sense: nosotros}]
-      reverse: (Les gustaría|A ustedes les gustaría|Ustedes quisieran) comer con (nosotros|nosotras)
+      reverse: |-
+        (Les gustaría|A ustedes les gustaría|Ustedes quisieran) comer con (nosotros|nosotras)
+        ¿Quisieran comer con nosotros?
   translations:
     en: Would (you|you all|you guys|y'all) like to (eat|have dinner|have lunch) with us?
 - id: s.u19.27
@@ -351,7 +355,9 @@ sentences:
         [Yo] iría con ustedes pero hoy (trabajo|tengo que trabajar|estoy trabajando)
         [Yo] iría con ustedes pero (trabajo|tengo que trabajar|estoy trabajando) hoy
   translations:
-    en: (I'd|I would) go with (you|you all|you guys|y'all), but (I'm working|I work|I have to work) today.
+    en: |-
+      (I'd|I would) go with (you|you all|you guys|y'all), but (I'm working|I work|I have to work) today.
+      I'd go with you, but I am working today.
 - id: s.u19.30
   node: es.u19.ustedes
   forms:
@@ -360,25 +366,37 @@ sentences:
       tokens: [{surface: Mis, sense: mi}, {surface: primos, sense: primo}, {surface: vendrían, sense: venir, form: 'form:cond'}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: pasaporte, sense: pasaporte}]
       reverse: Mis (primos|primas) vendrían pero no tienen (pasaporte|pasaportes)
   translations:
-    en: My cousins would come, but they (don't have (passports|a passport)|have no passports).
+    en: |-
+      My cousins would come, but they (don't have (passports|a passport)|have no passports).
+      My cousins would come, but they do not have passports.
 - id: s.u19.31
   node: es.u19.por-telefono
   forms:
     es-Latn/standard:
       text: Voy a llamar al médico de abuelo.
       tokens: [{surface: Voy, sense: ir, form: 'form:pres-1s'}, {surface: a, sense: a}, {surface: llamar, sense: llamar}, {surface: al, sense: al}, {surface: médico, sense: médico}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}]
-      reverse: '[Yo] voy a llamar al (médico|doctor) (de abuelo|de mi abuelo|del abuelo)'
+      reverse: |-
+        [Yo] voy a llamar al (médico|doctor) (de abuelo|de mi abuelo|del abuelo)
+        Llamaré al médico de abuelo
   translations:
-    en: (I'm|I am) going to call (Grandpa's|my grandpa's|my grandfather's|Abuelo's) doctor.
+    en: |-
+      (I'm|I am) going to call (Grandpa's|my grandpa's|my grandfather's|Abuelo's) doctor.
+      I'm going to call Grandfather's doctor.
+      I'll call Grandpa's doctor.
 - id: s.u19.32
   node: es.u19.por-telefono
   forms:
     es-Latn/standard:
       text: Mami llama por teléfono al consultorio.
       tokens: [{surface: Mami, sense: mami}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: por, sense: por}, {surface: teléfono, sense: teléfono}, {surface: al, sense: al}, {surface: consultorio, sense: consultorio}]
-      reverse: (Mami|Mamá) (llama|está llamando) [por teléfono] al consultorio
+      reverse: |-
+        (Mami|Mamá) (llama|está llamando) [por teléfono] al consultorio
+        Mi mamá llama al consultorio
   translations:
-    en: (Mom|Mommy|Mum) (is calling|calls|is phoning|phones) the (doctor's office|doctor's|clinic).
+    en: |-
+      (Mom|Mommy|Mum) (is calling|calls|is phoning|phones) the (doctor's office|doctor's|clinic).
+      My mom is calling the doctor's office.
+      Mom's calling the doctor's office.
 - id: s.u19.33
   node: es.u19.por-telefono
   register: formal
@@ -397,9 +415,14 @@ sentences:
     es-Latn/standard:
       text: Buenos días, quisiera hacer una cita para mi abuelo.
       tokens: [{surface: Buenos, sense: buenos-días}, {surface: días, sense: buenos-días}, {surface: quisiera, sense: querer, form: 'form:subj-past'}, {surface: hacer, sense: hacer}, {surface: una, sense: un}, {surface: cita, sense: cita}, {surface: para, sense: para}, {surface: mi, sense: mi}, {surface: abuelo, sense: abuelo}]
-      reverse: (Buenos días|Buen día|Buenas) (quisiera|me gustaría) (hacer|pedir|sacar) una cita para (mi abuelo|el abuelo)
+      reverse: |-
+        (Buenos días|Buen día|Buenas) (quisiera|me gustaría) (hacer|pedir|sacar) una cita para (mi abuelo|el abuelo)
+        Buenos días, yo quisiera hacer una cita para mi abuelo
   translations:
-    en: Good morning, (I'd|I would) like to make an appointment for my (grandfather|grandpa).
+    en: |-
+      Good morning, (I'd|I would) like to make an appointment for my (grandfather|grandpa).
+      Good morning, I'd like to schedule an appointment for my grandfather.
+      Good morning, I'd like to book an appointment for my grandfather.
 - id: s.u19.35
   node: es.u19.por-telefono
   forms:
@@ -418,16 +441,19 @@ sentences:
       tokens: [{surface: Muchas, sense: mucho}, {surface: gracias, sense: gracias}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: muy, sense: muy}, {surface: amable, sense: amable}]
       reverse: '[Muchas] gracias (es usted muy amable|usted es muy amable|muy amable)'
   translations:
-    en: Thank you (very much|so much), (you're very kind|that's very kind of you|very kind of you).
+    en: |-
+      Thank you (very much|so much), (you're very kind|that's very kind of you|very kind of you).
+      Thanks a lot, you're very kind.
+      Thank you very much, you are very kind.
 stories:
 - id: es.story.u19
   node: es.u19.story
   title: {en: 'A plate for Doña Ofelia'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: ofelia, name: {es-Latn/standard: Doña Ofelia}}
-  - {id: recepcionista, name: {es-Latn/standard: La recepcionista}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: ofelia, speaker: f, name: {es-Latn/standard: Doña Ofelia}}
+  - {id: recepcionista, speaker: f, name: {es-Latn/standard: La recepcionista}}
   steps:
   - line:
       speaker: cachita

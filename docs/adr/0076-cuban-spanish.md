@@ -69,13 +69,24 @@ harnesses.
   --source` keeps a real speaker's recording as the voice's reference: normalized and trimmed
   like an ingested recording, with its license, speaker and source (`ReferenceVoice.source`,
   `synthetic: false`).
-- The es reference is 7.5 s of a newscast by Radio La Voz de la Victoria, the municipal station
-  of Ciénaga de Zapata, Matanzas (archive.org `compendio-30-7`, CC0 1.0). The newsreader is not
-  named, so the evidence that he is Cuban is the station. It is formal read speech, so it may
-  carry fewer Cuban features (aspirated *s*) than conversation would.
-- A man's voice, like the learner: sentences with `persons.speaker` are a man speaking.
-- Like apc's, the clips are CC-BY-NC-4.0, because OmniVoice's weights are. A CC0 reference adds
-  no condition of its own; a ShareAlike one would have conflicted with NC.
+- Two voices, a man's and a woman's (ADR 0078 shares the items between them; a sentence or story
+  character that says who speaks gets that voice). Both come from the openly licensed archive of
+  Radio La Voz de la Victoria, the municipal station of Ciénaga de Zapata, Matanzas, on
+  archive.org; neither speaker is named, so the evidence that they are Cuban is the station.
+  - **The man (`coral-m`):** an actor in the station's radio drama *Tras el rastro de Coral*
+    (ARV producciones, `tras-el-rastro-de-cora-l`, CC BY 4.0), chapter 3, 8.2 s of fast, colloquial
+    acted speech, its long pauses shortened to 0.3 s. Acted and unscripted speech carry more of
+    the Cuban features (aspirated *s*) than read news: the first voice, a newsreader of the same
+    station (`compendio-30-7`, CC0), sounded too standard and was replaced.
+  - **The woman (`zapata-f`):** a member of the FMC interviewed for Women's Day
+    (`fmcdiainternacionalmujer`, CC0), 8.8 s of unscripted speech.
+  - **Cutting a reference:** it starts and ends on speech, whole words, no breath. A reference
+    that ended on an in-breath put one at the end of every clip; one that began inside a word
+    began clips with a stray sound. OmniVoice clips are trimmed to their speech too (80 ms
+    before, 150 ms after), since the model can leave up to a second of silence before it.
+- Like apc's, the clips are CC-BY-NC-4.0, because OmniVoice's weights are. A CC0 or CC BY
+  reference adds no condition of its own beyond attribution: every clip cloned from a recording
+  names it in its credit (speaker, license, source). A ShareAlike one would have conflicted with NC.
 - On a CPU, cloning takes about 15–25 s a clip (the reference is part of every sequence), so the
   course's clips take many hours; generation resumes where it stopped. A recording by a Cuban
   family member, cast the same way, would replace the voice and make every clip stale.
@@ -90,8 +101,9 @@ harnesses.
 - Every item is an LLM draft. Cuban usage, register and the accept sets need a native speaker's
   review (`courses/REVIEW.md`).
 - `form:` KCs give the planner per-tense knowledge. Other fusional languages can do the same.
-- The course sounds Cuban, from a newsreader's voice. A conversational recording would sound more
-  like home; the course can be recast at any time.
+- The course sounds Cuban, in an actor's and a local woman's voices from Ciénaga de Zapata. A
+  recording by a Cuban family member would sound more like home; the course can be recast at any
+  time (every clip of the recast voice is made again).
 - Persons coverage ([ADR 0075](0075-persons-coverage.md)) applies here too: the learner is a man, but
   the course also has women speaking: a woman's version beside most of Daniel's gendered sentences
   (*soy cubana*, *cuando era niña*), and Abuela, Lili and Mami in units 27–30. The man's voice reads

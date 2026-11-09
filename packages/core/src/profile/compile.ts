@@ -82,6 +82,11 @@ export interface CompiledContrast {
   readonly after: readonly (readonly string[])[];
   /** Only on words the grader is told are inflected (GradeOptions.inflected). */
   readonly inflected: boolean;
+  /**
+   * Only on words the course pins as one of these forms, or a form that begins so
+   * (GradeOptions.forms): narrower than `inflected` (ADR 0084).
+   */
+  readonly forms?: readonly string[] | undefined;
 }
 
 export type ProfileError =
@@ -219,6 +224,7 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         at: c.at ?? "end",
         after: (c.after ?? []).map((spelling) => graphemes(key(normalize(spelling)))),
         inflected: c.inflected === true,
+        forms: c.forms,
       })),
     };
   }

@@ -49,6 +49,8 @@ sentences:
       Today (I'm|I am) writing a letter (to|for) (Aunt|my aunt) Marisol.
       (I'm|I am) writing a letter (to|for) (Aunt|my aunt) Marisol today.
       Today I write a letter (to|for) (Aunt|my aunt) Marisol.
+      Today I'm writing a letter to Auntie Marisol.
+      Today I'm writing a letter to Tía Marisol.
 - id: s.u15.2
   node: es.u15.querida-tia
   forms:
@@ -60,6 +62,7 @@ sentences:
     en: |-
       Daniel (is writing|writes) a letter to his aunt in Cuba.
       Daniel (is writing|writes) his aunt in Cuba a letter.
+      Daniel's writing a letter to his aunt in Cuba.
 - id: s.u15.3
   node: es.u15.querida-tia
   forms:
@@ -71,7 +74,9 @@ sentences:
         Querida tía (cómo está [usted]|cómo usted está) [yo] la extraño mucho
         Querida tía (cómo estás [tú]|cómo tú estás|qué tal) [yo] te echo mucho de menos
   translations:
-    en: Dear (Aunt|Auntie), how are you? I miss you (so much|a lot|very much).
+    en: |-
+      Dear (Aunt|Auntie), how are you? I miss you (so much|a lot|very much).
+      Dear Tía, how are you? I miss you so much.
 - id: s.u15.4
   node: es.u15.querida-tia
   forms:
@@ -117,6 +122,8 @@ sentences:
     en: |-
       (Mom|Mommy|Mum) (is sending|sends) (a package|a parcel) to (Aunt|my aunt) Marisol.
       (Mom|Mommy|Mum) (is sending|sends) (Aunt|my aunt) Marisol (a package|a parcel).
+      Mom is sending a package to Auntie Marisol.
+      Mom's sending a package to Aunt Marisol.
 - id: s.u15.8
   node: es.u15.el-paquete
   forms:
@@ -146,6 +153,7 @@ sentences:
       (Mom|Mommy|Mum) (is also sending|also sends) Yunior (shoes|some shoes).
       (Mom|Mommy|Mum) (is sending|sends) (shoes|some shoes) to Yunior (too|as well).
       (Mom|Mommy|Mum) (is sending|sends) Yunior (shoes|some shoes) (too|as well).
+      Mom's also sending shoes to Yunior.
 - id: s.u15.10
   node: es.u15.el-paquete
   forms:
@@ -172,6 +180,7 @@ sentences:
     en: |-
       Yes, (Aunt|my aunt) Marisol (got|received) the (package|parcel) yesterday.
       Yes, yesterday (Aunt|my aunt) Marisol (got|received) the (package|parcel).
+      Yes, Auntie Marisol got the package yesterday.
 - id: s.u15.12
   node: es.u15.el-paquete
   forms:
@@ -187,7 +196,9 @@ sentences:
     es-Latn/standard:
       text: A ver, ¿qué tú le mandas a Yunior?
       tokens: [{surface: A, sense: a}, {surface: ver, sense: ver}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: le, sense: le}, {surface: mandas, sense: mandar, form: 'form:pres-2s'}, {surface: a, sense: a}, {surface: Yunior, sense: yunior}]
-      reverse: (A ver|Vamos a ver) (qué tú le mandas|qué le mandas [tú]|qué usted le manda|qué le manda [usted]|qué ustedes le mandan|qué le mandan [ustedes]) a Yunior
+      reverse: |-
+        (A ver|Vamos a ver) (qué tú le mandas|qué le mandas [tú]|qué usted le manda|qué le manda [usted]|qué ustedes le mandan|qué le mandan [ustedes]) a Yunior
+        A ver, ¿tú qué le mandas a Yunior?
   translations:
     en: Let's see, what are you sending (Yunior|to Yunior)?
 - id: s.u15.14
@@ -286,21 +297,28 @@ sentences:
       reverse: |-
         En la foto [el] abuelo está (bebiendo|tomando) café
         [El] abuelo está (bebiendo|tomando) café en la foto
+        En la foto, mi abuelo está bebiendo café.
   translations:
     en: |-
       In the (photo|picture), (Grandpa|Grandfather|Granddad) is drinking coffee.
       (Grandpa|Grandfather|Granddad) is drinking coffee in the (photo|picture).
+      In the photo, my grandpa is drinking coffee.
+      In the photo, Grandpa's drinking coffee.
 - id: s.u15.23
   node: es.u15.b-y-v
   forms:
     es-Latn/standard:
       text: Abuelo ya está viejo, pero está muy bien.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: ya, sense: 'ya'}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: viejo, sense: viejo}, {surface: pero, sense: pero}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: muy, sense: muy}, {surface: bien, sense: bien}]
-      reverse: '[El] abuelo ya está (viejo|viejito|mayor) pero está muy bien'
+      reverse: |-
+        [El] abuelo ya está (viejo|viejito|mayor) pero está muy bien
+        Mi abuelo ya está viejo, pero está muy bien.
   translations:
     en: |-
       (Grandpa|Grandfather|Granddad) is getting old, but (he's|he is) (very well|doing very well|doing great).
       (Grandpa|Grandfather|Granddad) is old now, but (he's|he is) (very well|doing very well|doing great).
+      My grandpa is getting old, but he's doing very well.
+      Grandpa's getting old, but he's very well.
 - id: s.u15.24
   node: es.u15.b-y-v
   forms:
@@ -323,6 +341,8 @@ sentences:
         (Ayer te llamé|Te llamé ayer) pero no (cogiste el (tubo|teléfono)|contestaste|me contestaste)
         (Ayer (lo|la) llamé|(Lo|La) llamé ayer) pero no (cogió el (tubo|teléfono)|contestó|me contestó)
         (Ayer (los|las) llamé|(Los|Las) llamé ayer) pero no (cogieron el (tubo|teléfono)|contestaron|me contestaron)
+        Yo te llamé ayer, pero no cogiste el tubo.
+        Ayer te llamé, pero tú no cogiste el tubo.
   translations:
     en: |-
       I called you yesterday, but you (didn't|did not) (pick up|answer) [the phone].
@@ -338,6 +358,7 @@ sentences:
     en: |-
       (Aunt|My aunt) Marisol (didn't|did not) have time to (talk|speak).
       (Aunt|My aunt) Marisol had no time to (talk|speak).
+      Auntie Marisol didn't have time to talk.
 - id: s.u15.27
   node: es.u15.ll-y-y
   forms:
@@ -355,6 +376,7 @@ sentences:
       (I'm sending|I am sending|I'll send|I will send) a (message|text) to Yunior tonight.
       Tonight (I'm texting|I'll text) Yunior.
       (I'm texting|I'll text) Yunior tonight.
+      Tonight I am texting Yunior.
 - id: s.u15.28
   node: es.u15.ll-y-y
   forms:
@@ -370,7 +392,9 @@ sentences:
     es-Latn/standard:
       text: Yunior dice que hay mucha gente en la cola.
       tokens: [{surface: Yunior, sense: yunior}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: hay, sense: hay}, {surface: mucha, sense: mucho}, {surface: gente, sense: gente}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: cola, sense: cola}]
-      reverse: Yunior dice que (hay mucha gente en la cola|en la cola hay mucha gente)
+      reverse: |-
+        Yunior dice que (hay mucha gente en la cola|en la cola hay mucha gente)
+        Yunior dice que hay mucha gente en la fila.
   translations:
     en: Yunior says [that] (there are|there's) (a lot of|lots of|many) people in (the line|line|the queue).
 - id: s.u15.30
@@ -381,7 +405,9 @@ sentences:
       tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: el, sense: el}, {surface: paquete, sense: paquete}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: bien, sense: bien}]
       reverse: '[Mi|La] tía Marisol dijo que el paquete llegó bien'
   translations:
-    en: (Aunt|My aunt) Marisol said [that] the (package|parcel) (arrived|got there|came) (safely|fine|okay|OK|in good shape|all right).
+    en: |-
+      (Aunt|My aunt) Marisol said [that] the (package|parcel) (arrived|got there|came) (safely|fine|okay|OK|in good shape|all right).
+      Auntie Marisol said the package arrived safely.
 - id: s.u15.31
   node: es.u15.suena-igual
   forms:
@@ -413,6 +439,7 @@ sentences:
     en: |-
       (I'm putting|I put|I'll put) the shoes in the (package|parcel).
       (I'm throwing|I throw|I'll throw) the shoes in the (package|parcel).
+      I am putting the shoes in the package.
 - id: s.u15.34
   node: es.u15.suena-igual
   forms:
@@ -440,11 +467,11 @@ stories:
   node: es.u15.story
   title: {en: A letter for Tía Marisol}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: mami, name: {es-Latn/standard: Mami}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: marisol, name: {es-Latn/standard: Tía Marisol}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: mami, speaker: f, name: {es-Latn/standard: Mami}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: marisol, speaker: f, name: {es-Latn/standard: Tía Marisol}}
   steps:
   - line:
       speaker: mami

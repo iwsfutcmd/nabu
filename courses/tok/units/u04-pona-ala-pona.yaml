@@ -1,0 +1,946 @@
+# Unit 4 (tok): ala after the word it negates, yes/no questions (sina moku ala moku?, …, anu seme?) answered with the verb or with ala, seme questions, anu (or), kama and tawa (come, go), sona, pilin, musi, nasa, jaki and mu.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a fluent speaker.
+id: u04
+title:
+  en: sina pona ala pona? Are you okay?
+cefr: A1
+kcs:
+- {id: 'sense:ala', gloss: {en: 'not, no; nothing, none'}, forms: {tok-Latn/standard: [ala], tok-Qaap/sitelen-pona: [󱤂]}, notes: {en: 'ala follows the word it negates: mi moku ala, I''m not eating. Alone,
+      ala! means No!'}}
+- {id: 'sense:jaki', gloss: {en: 'gross, dirty, disgusting; trash'}, forms: {tok-Latn/standard: [jaki], tok-Qaap/sitelen-pona: [󱤐]}, notes: {en: ni li jaki! is That's gross!}}
+- {id: 'sense:sona', gloss: {en: know; knowledge; know how to}, forms: {tok-Latn/standard: [sona], tok-Qaap/sitelen-pona: [󱥡]}, notes: {en: 'sona e is knowing something: mi sona e toki pona.'}}
+- {id: 'sense:pilin', gloss: {en: feel; feeling; heart}, forms: {tok-Latn/standard: [pilin], tok-Qaap/sitelen-pona: [󱥎]}, notes: {en: 'mi pilin pona: I feel good. mi pilin ike: I feel bad.'}}
+- {id: 'sense:seme', gloss: {en: 'what? which? who?'}, forms: {tok-Latn/standard: [seme], tok-Qaap/sitelen-pona: [󱥙]}, notes: {en: 'seme stands where the answer goes: ni li seme? What is this? soweli seme?
+      Which animal?'}}
+- {id: 'sense:anu', gloss: {en: or}, forms: {tok-Latn/standard: [anu], tok-Qaap/sitelen-pona: [󱤇]}, notes: {en: 'anu joins choices: kili anu pan? Ending with , anu seme? makes a yes/no question: sina moku,
+      anu seme?'}}
+- {id: 'sense:kama', gloss: {en: 'come, arrive; become'}, forms: {tok-Latn/standard: [kama], tok-Qaap/sitelen-pona: [󱤖]}, notes: {en: kama pona! is Welcome!}}
+- {id: 'sense:tawa', gloss: {en: 'go, move; to, toward'}, forms: {tok-Latn/standard: [tawa], tok-Qaap/sitelen-pona: [󱥩]}, notes: {en: 'mi tawa tomo: I''m going home. tawa pona! is Goodbye! to someone who
+      is leaving.'}}
+- {id: 'sense:musi', gloss: {en: 'fun, play; game, art'}, forms: {tok-Latn/standard: [musi], tok-Qaap/sitelen-pona: [󱤻]}}
+- {id: 'sense:nasa', gloss: {en: 'strange, weird, silly, crazy'}, forms: {tok-Latn/standard: [nasa], tok-Qaap/sitelen-pona: [󱤾]}}
+- {id: 'sense:mu', gloss: {en: '(an animal''s sound: moo, woof, meow, tweet)'}, forms: {tok-Latn/standard: [mu], tok-Qaap/sitelen-pona: [󱤹]}, notes: {en: 'mu is any animal noise, and making it: soweli li
+      mu.'}}
+- {id: 'construction:x-ala-x', gloss: {en: 'X ala X?: a yes/no question'}, notes: {en: 'Say the first word of the predicate, ala, then the word again: sina moku ala moku? Are you eating? Answer with the
+      word (moku: yes) or with ala (moku ala, or just ala: no).'}}
+nodes:
+- {id: tok.u04.not, kind: lesson, introduces: ['sense:ala', 'sense:jaki']}
+- {id: tok.u04.yes-no, kind: lesson, introduces: ['construction:x-ala-x', 'sense:sona', 'sense:pilin']}
+- {id: tok.u04.what, kind: lesson, introduces: ['sense:seme', 'sense:anu']}
+- {id: tok.u04.come-go, kind: lesson, introduces: ['sense:kama', 'sense:tawa']}
+- {id: tok.u04.fun, kind: lesson, introduces: ['sense:musi', 'sense:nasa', 'sense:mu']}
+- {id: tok.u04.story, kind: story}
+sentences:
+- id: s.u04.1
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: mi moku ala.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: ala, sense: ala, readings: {lasina: ala}}]
+      reverse: mi moku ala
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤶󱤂
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}]
+      reverse: 󱤴󱤶󱤂
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) not eating.
+      (I|We) (don't|do not|didn't|did not) eat
+      We aren't eating
+- id: s.u04.2
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: ona li lape ala.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: ala, sense: ala, readings: {
+            lasina: ala}}]
+      reverse: ona li lape ala
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤢󱤂
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤂, sense: ala, readings: {
+            lasina: ala}}]
+      reverse: 󱥆󱤧󱤢󱤂
+  translations:
+    en: |-
+      (She's|She is|He's|He is|They're|They are) not (sleeping|asleep).
+      (She|He) (isn't|wasn't) (sleeping|asleep)
+      They (aren't|weren't) (sleeping|asleep)
+      (She|He) (doesn't|does not|didn't|did not) sleep
+      They (don't|do not|didn't|did not) sleep
+      It's not sleeping.
+      It isn't asleep.
+- id: s.u04.3
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li suli ala. ona li lili.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli,
+          readings: {lasina: suli}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili,
+          sense: lili, readings: {lasina: lili}}]
+      reverse: jan Pita li suli ala ona li lili
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1911\U000F1990\U000F1951\U000F190E\U000F196D\U000F1900\U000F1991\U000F1927\U000F1963\U000F1902\u3000\U000F1946\U000F1927\U000F1928"
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {
+          surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥣󱤂󱥆󱤧󱤨
+  translations:
+    en: |-
+      Pita (isn't|is not) (tall|big). (He's|He is) (short|small|little).
+      Pita's not (tall|big). (He's|He is) (short|small|little)
+- id: s.u04.4
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: ni li pona ala.
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: ala, sense: ala, readings: {
+            lasina: ala}}]
+      reverse: ni li pona ala
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱥔󱤂
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤂, sense: ala, readings: {
+            lasina: ala}}]
+      reverse: 󱥁󱤧󱥔󱤂
+  translations:
+    en: |-
+      (That's|That is|This is) not good.
+      (This|That) isn't good
+      It's not good.
+      That's not okay.
+      That's not nice.
+- id: s.u04.5
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: ni li jaki!
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jaki, sense: jaki, readings: {lasina: jaki}}]
+      reverse: ni li jaki
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱤐
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤐, sense: jaki, readings: {lasina: jaki}}]
+      reverse: 󱥁󱤧󱤐
+  translations:
+    en: |-
+      (That's|That is|This is) (gross|disgusting|dirty)!
+      (Yuck|Ew|Gross)
+      It's gross!
+- id: s.u04.6
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: telo ni li jaki.
+      tokens: [{surface: telo, sense: telo, readings: {lasina: telo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jaki, sense: jaki, readings: {
+            lasina: jaki}}]
+      reverse: telo ni li jaki
+    tok-Qaap/sitelen-pona:
+      text: 󱥪󱥁󱤧󱤐
+      tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤐, sense: jaki, readings: {
+            lasina: jaki}}]
+      reverse: 󱥪󱥁󱤧󱤐
+  translations:
+    en: (This|That) water is (dirty|gross|disgusting).
+- id: s.u04.7
+  node: tok.u04.not
+  forms:
+    tok-Latn/standard:
+      text: mi moku ala e kili jaki.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}, {surface: jaki, sense: jaki, readings: {lasina: jaki}}]
+      reverse: mi moku ala e kili jaki
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤶󱤂󱤉󱤚󱤐
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤐, sense: jaki, readings: {lasina: jaki}}]
+      reverse: 󱤴󱤶󱤂󱤉󱤚󱤐
+  translations:
+    en: |-
+      (I|We) (don't|do not) eat (dirty|gross) fruit.
+      (I'm|I am|We're|We are) not eating [the] (dirty|gross) fruit
+      I didn't eat the dirty fruit.
+- id: s.u04.8
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: sina pona ala pona?
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: pona, sense: pona,
+          readings: {lasina: pona}}]
+      reverse: |-
+        sina pona ala pona
+        sina pona anu seme
+        sina mute li pona ala pona
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱥔󱤂󱥔
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: |-
+        󱥞󱥔󱤂󱥔
+        󱥞󱥔󱤇󱥙
+        󱥞󱤼󱤧󱥔󱤂󱥔
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Are you (okay|ok|good|well|fine|all right|alright)?
+      How are you
+- id: s.u04.9
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: sina moku ala moku? moku.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: moku, sense: moku,
+          readings: {lasina: moku}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
+      reverse: |-
+        sina moku ala moku moku
+        sina moku anu seme moku
+        sina moku ala moku mi moku
+    tok-Qaap/sitelen-pona:
+      text: "\U000F195E\U000F1936\U000F1902\U000F1936\u3000\U000F1936"
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤶, sense: moku, readings: {
+            lasina: moku}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      reverse: |-
+        󱥞󱤶󱤂󱤶󱤶
+        󱥞󱤶󱤇󱥙󱤶
+        󱥞󱤶󱤂󱤶󱤴󱤶
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Are you eating? Yes[, I am].
+      Do you eat? Yes[, I do]
+      Did you eat? Yes, I did.
+- id: s.u04.10
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: ona li lape ala lape? lape ala.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: ala, sense: ala, readings: {
+            lasina: ala}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: lape, sense: lape, readings: {lasina: lape}}, {surface: ala, sense: ala, readings: {lasina: ala}}]
+      reverse: |-
+        ona li lape ala lape lape ala
+        ona li lape ala lape ala
+        ona li lape anu seme lape ala
+        ona li lape ala lape ona li lape ala
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1946\U000F1927\U000F1922\U000F1902\U000F1922\u3000\U000F1922\U000F1902"
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤂, sense: ala, readings: {
+            lasina: ala}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}]
+      reverse: |-
+        󱥆󱤧󱤢󱤂󱤢󱤢󱤂
+        󱥆󱤧󱤢󱤂󱤢󱤂
+        󱥆󱤧󱤢󱤇󱥙󱤢󱤂
+        󱥆󱤧󱤢󱤂󱤢󱥆󱤧󱤢󱤂
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Is she (sleeping|asleep)? No[, she (isn't|is not)].
+      Is he (sleeping|asleep)? No[, he (isn't|is not)]
+      Are they (sleeping|asleep)? No[, they (aren't|are not)]
+      Is it sleeping? No, it isn't.
+- id: s.u04.11
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: sina sona ala sona? mi sona ala.
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: sona, sense: sona, readings: {lasina: sona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: sona, sense: sona,
+          readings: {lasina: sona}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: sona, sense: sona, readings: {lasina: sona}}, {surface: ala, sense: ala, readings: {lasina: ala}}]
+      reverse: |-
+        sina sona ala sona mi sona ala
+        sina sona anu seme mi sona ala
+    tok-Qaap/sitelen-pona:
+      text: "\U000F195E\U000F1961\U000F1902\U000F1961\u3000\U000F1934\U000F1961\U000F1902"
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥡, sense: sona, readings: {
+            lasina: sona}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}]
+      reverse: |-
+        󱥞󱥡󱤂󱥡󱤴󱥡󱤂
+        󱥞󱥡󱤇󱥙󱤴󱥡󱤂
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Do you know? (I don't|I do not) know.
+      Do you know? No[, I (don't|do not)]
+      Did you know? I didn't know.
+- id: s.u04.12
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li sona e toki pona.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: sona, sense: sona,
+          readings: {lasina: sona}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: toki, sense: toki, readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+      reverse: jan Mila li sona e toki pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥡󱤉󱥬󱥔
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {
+          surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥡󱤉󱥬󱥔
+  translations:
+    en: |-
+      Mila knows Toki Pona.
+      Mila knew Toki Pona.
+- id: s.u04.13
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: mi pilin pona.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: pilin, sense: pilin, readings: {lasina: pilin}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+      reverse: mi pilin pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥎󱥔
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      reverse: 󱤴󱥎󱥔
+  translations:
+    en: |-
+      (I|We) feel (good|happy|great).
+      (I'm|I am|We're|We are) (happy|feeling good)
+      I felt good.
+      I felt happy.
+- id: s.u04.14
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li sona ala. ona li pilin ike.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: sona, sense: sona,
+          readings: {lasina: sona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pilin,
+          sense: pilin, readings: {lasina: pilin}}, {surface: ike, sense: ike, readings: {lasina: ike}}]
+      reverse: jan Pita li sona ala ona li pilin ike
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1911\U000F1990\U000F1951\U000F190E\U000F196D\U000F1900\U000F1991\U000F1927\U000F1961\U000F1902\u3000\U000F1946\U000F1927\U000F194E\U000F190D"
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥡, sense: sona, readings: {lasina: sona}}, {
+          surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥎, sense: pilin, readings: {lasina: pilin}},
+        {surface: 󱤍, sense: ike, readings: {lasina: ike}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱥡󱤂󱥆󱤧󱥎󱤍
+  translations:
+    en: |-
+      Pita (doesn't|does not) know. He feels bad.
+      Pita (doesn't|does not|didn't|did not) know. (He's|He is) (sad|upset|unhappy)
+      Pita didn't know. He felt bad.
+- id: s.u04.15
+  node: tok.u04.yes-no
+  forms:
+    tok-Latn/standard:
+      text: pilin sina li pona ala pona?
+      tokens: [{surface: pilin, sense: pilin, readings: {lasina: pilin}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
+          readings: {lasina: pona}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+      reverse: |-
+        pilin sina li pona ala pona
+        pilin sina li pona anu seme
+        sina pilin ala pilin pona
+    tok-Qaap/sitelen-pona:
+      text: 󱥎󱥞󱤧󱥔󱤂󱥔
+      tokens: [{surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      reverse: |-
+        󱥎󱥞󱤧󱥔󱤂󱥔
+        󱥎󱥞󱤧󱥔󱤇󱥙
+        󱥞󱥎󱤂󱥎󱥔
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Are you feeling okay?
+      Are you feeling (good|well|alright|all right)
+      Do you feel (okay|ok|good|well|alright|all right)
+      How are you feeling
+- id: s.u04.16
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: ni li seme?
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+      reverse: ni li seme
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱥙
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}]
+      reverse: 󱥁󱤧󱥙
+  translations:
+    en: |-
+      (What's|What is) (this|that)?
+      What are (these|those)
+      What is it?
+- id: s.u04.17
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: seme li moku e kili?
+      tokens: [{surface: seme, sense: seme, readings: {lasina: seme}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: e, sense: e, readings: {
+            lasina: e}}, {surface: kili, sense: kili, readings: {lasina: kili}}]
+      reverse: |-
+        seme li moku e kili
+        jan seme li moku e kili
+    tok-Qaap/sitelen-pona:
+      text: 󱥙󱤧󱤶󱤉󱤚
+      tokens: [{surface: 󱥙, sense: seme, readings: {lasina: seme}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤉, sense: e, readings: {
+            lasina: e}}, {surface: 󱤚, sense: kili, readings: {lasina: kili}}]
+      reverse: |-
+        󱥙󱤧󱤶󱤉󱤚
+        󱤑󱥙󱤧󱤶󱤉󱤚
+  translations:
+    en: |-
+      (Who's|Who is|What's|What is) eating the fruit?
+      (Who|What) (eats|ate) the fruit
+- id: s.u04.18
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: sina wile e seme?
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: seme, sense: seme,
+          readings: {lasina: seme}}]
+      reverse: |-
+        sina wile e seme
+        sina mute li wile e seme
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱥷󱤉󱥙
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥙, sense: seme, readings: {
+            lasina: seme}}]
+      reverse: |-
+        󱥞󱥷󱤉󱥙
+        󱥞󱤼󱤧󱥷󱤉󱥙
+  translations:
+    en: |-
+      What do you want?
+      What would you like
+      What did you want?
+- id: s.u04.19
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: sina wile e kili anu pan?
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: kili, sense: kili,
+          readings: {lasina: kili}}, {surface: anu, sense: anu, readings: {lasina: anu}}, {surface: pan, sense: pan, readings: {lasina: pan}}]
+      reverse: |-
+        sina wile e kili anu pan
+        sina mute li wile e kili anu pan
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱥷󱤉󱤚󱤇󱥋
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤚, sense: kili, readings: {
+            lasina: kili}}, {surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}]
+      reverse: |-
+        󱥞󱥷󱤉󱤚󱤇󱥋
+        󱥞󱤼󱤧󱥷󱤉󱤚󱤇󱥋
+  translations:
+    en: |-
+      Do you want fruit or bread?
+      Would you like fruit or bread
+- id: s.u04.20
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: ona li soweli anu waso?
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: anu, sense: anu,
+          readings: {lasina: anu}}, {surface: waso, sense: waso, readings: {lasina: waso}}]
+      reverse: |-
+        ona li soweli anu waso
+        ni li soweli anu waso
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥢󱤇󱥴
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤇, sense: anu, readings: {
+            lasina: anu}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}]
+      reverse: |-
+        󱥆󱤧󱥢󱤇󱥴
+        󱥁󱤧󱥢󱤇󱥴
+  translations:
+    en: |-
+      Is (it|she|he) an animal or a bird?
+      Are they animals or birds
+- id: s.u04.21
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li lape, anu seme?
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape,
+          readings: {lasina: lape}}, {surface: anu, sense: anu, readings: {lasina: anu}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+      reverse: |-
+        jan Lina li lape anu seme
+        jan Lina li lape ala lape
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤢󱤇󱥙
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {
+          surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}]
+      reverse: |-
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤢󱤇󱥙
+        󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱤢󱤂󱤢
+  translations:
+    en: |-
+      Is Lina (sleeping|asleep)?
+      Lina is (sleeping|asleep), (right|isn't she)
+- id: s.u04.22
+  node: tok.u04.what
+  forms:
+    tok-Latn/standard:
+      text: kili anu pan? kili!
+      tokens: [{surface: kili, sense: kili, readings: {lasina: kili}}, {surface: anu, sense: anu, readings: {lasina: anu}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: kili, sense: kili,
+          readings: {lasina: kili}}]
+      reverse: kili anu pan kili
+    tok-Qaap/sitelen-pona:
+      text: "\U000F191A\U000F1907\U000F194B\u3000\U000F191A"
+      tokens: [{surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤇, sense: anu, readings: {lasina: anu}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱤚, sense: kili, readings: {
+            lasina: kili}}]
+      reverse: 󱤚󱤇󱥋󱤚
+  translations:
+    en: Fruit or bread? Fruit!
+- id: s.u04.23
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: mi kama.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: kama, sense: kama, readings: {lasina: kama}}]
+      reverse: mi kama
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤖
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
+      reverse: 󱤴󱤖
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) coming.
+      (I|We) (come|came)
+- id: s.u04.24
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li kama.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: kama, sense: kama,
+          readings: {lasina: kama}}]
+      reverse: jan Mila li kama
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤖
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤖
+  translations:
+    en: |-
+      Mila is (coming|arriving).
+      Mila (comes|came|arrives|arrived)
+- id: s.u04.25
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: kama pona, jan Lina!
+      tokens: [{surface: kama, sense: kama, readings: {lasina: kama}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina,
+          readings: {lasina: Lina}}]
+      reverse: kama pona jan Lina
+    tok-Qaap/sitelen-pona:
+      text: 󱤖󱥔󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+      tokens: [{surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}]
+      reverse: 󱤖󱥔󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+  translations:
+    en: Welcome, Lina!
+- id: s.u04.26
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: mi tawa.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}]
+      reverse: mi tawa
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱥩
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}]
+      reverse: 󱤴󱥩
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) (going|leaving).
+      (I|We) (go|went|leave|left)
+- id: s.u04.27
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: ona li tawa tomo.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: tomo, sense: tomo,
+          readings: {lasina: tomo}}]
+      reverse: |-
+        ona li tawa tomo
+        ona mute li tawa tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥩󱥭
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥭, sense: tomo, readings: {
+            lasina: tomo}}]
+      reverse: |-
+        󱥆󱤧󱥩󱥭
+        󱥆󱤼󱤧󱥩󱥭
+  translations:
+    en: |-
+      (They're|They are|She's|She is|He's|He is) going home.
+      (She|He) (goes|went) home
+      They (go|went) home
+- id: s.u04.28
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: sina kama ala kama?
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: kama, sense: kama,
+          readings: {lasina: kama}}]
+      reverse: |-
+        sina kama ala kama
+        sina kama, anu seme
+        sina mute li kama ala kama
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤖󱤂󱤖
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤖, sense: kama, readings: {
+            lasina: kama}}]
+      reverse: |-
+        󱥞󱤖󱤂󱤖
+        󱥞󱤖󱤇󱥙
+        󱥞󱤼󱤧󱤖󱤂󱤖
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: |-
+      Are you coming?
+      Will you come
+- id: s.u04.29
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: tawa pona, jan Pita!
+      tokens: [{surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita,
+          readings: {lasina: Pita}}]
+      reverse: tawa pona jan Pita
+    tok-Qaap/sitelen-pona:
+      text: 󱥩󱥔󱤑󱦐󱥑󱤎󱥭󱤀󱦑
+      tokens: [{surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}]
+      reverse: 󱥩󱥔󱤑󱦐󱥑󱤎󱥭󱤀󱦑
+  translations:
+    en: |-
+      (Bye|Goodbye), Pita!
+      (Have a good trip|Safe travels|Take care), Pita
+      Have a safe trip, Pita!
+- id: s.u04.30
+  node: tok.u04.come-go
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li tawa. jan Pita li kama.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tawa, sense: tawa,
+          readings: {lasina: tawa}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: kama,
+          sense: kama, readings: {lasina: kama}}]
+      reverse: jan Lina li tawa jan Pita li kama
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1911\U000F1990\U000F1929\U000F190E\U000F193F\U000F1900\U000F1991\U000F1927\U000F1969\u3000\U000F1911\U000F1990\U000F1951\U000F190E\U000F196D\U000F1900\U000F1991\U000F1927\U000F1916"
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {
+          surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥩󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤖
+  translations:
+    en: |-
+      Lina is leaving. Pita is coming.
+      Lina (leaves|left|goes|went). Pita (comes|came)
+- id: s.u04.31
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: mi musi.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: musi, sense: musi, readings: {lasina: musi}}]
+      reverse: mi musi
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤻
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
+      reverse: 󱤴󱤻
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) (playing|having fun).
+      (I|We) (play|played)
+      I had fun.
+- id: s.u04.32
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: ni li musi!
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: musi, sense: musi, readings: {lasina: musi}}]
+      reverse: ni li musi
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱤻
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
+      reverse: 󱥁󱤧󱤻
+  translations:
+    en: |-
+      (This is|That's|That is) fun!
+      It's fun!
+- id: s.u04.33
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: sina musi ala musi?
+      tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: musi, sense: musi, readings: {lasina: musi}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: musi, sense: musi,
+          readings: {lasina: musi}}]
+      reverse: |-
+        sina musi ala musi
+        sina musi, anu seme
+        sina mute li musi ala musi
+    tok-Qaap/sitelen-pona:
+      text: 󱥞󱤻󱤂󱤻
+      tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤻, sense: musi, readings: {
+            lasina: musi}}]
+      reverse: |-
+        󱥞󱤻󱤂󱤻
+        󱥞󱤻󱤇󱥙
+        󱥞󱤼󱤧󱤻󱤂󱤻
+  constructions: ['construction:x-ala-x']
+  translations:
+    en: Are you (having fun|playing)?
+- id: s.u04.34
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li nasa.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: nasa, sense: nasa,
+          readings: {lasina: nasa}}]
+      reverse: jan Pita li nasa
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤾
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤾, sense: nasa, readings: {lasina: nasa}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤾
+  translations:
+    en: Pita is (silly|weird|strange|crazy).
+- id: s.u04.35
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: waso ni li nasa a!
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: nasa, sense: nasa, readings: {
+            lasina: nasa}}, {surface: a, sense: a, readings: {lasina: a}}]
+      reverse: |-
+        waso ni li nasa a
+        waso ni li nasa mute
+    tok-Qaap/sitelen-pona:
+      text: 󱥴󱥁󱤧󱤾󱤀
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤾, sense: nasa, readings: {
+            lasina: nasa}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
+      reverse: |-
+        󱥴󱥁󱤧󱤾󱤀
+        󱥴󱥁󱤧󱤾󱤼
+  translations:
+    en: (This|That) bird is (so|really|very) (weird|strange|silly)!
+- id: s.u04.36
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: soweli li mu.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: mu, sense: mu, readings: {lasina: mu}}]
+      reverse: soweli li mu
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤹
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤹, sense: mu, readings: {lasina: mu}}]
+      reverse: 󱥢󱤧󱤹
+  translations:
+    en: |-
+      The animal is making (noise|a noise|a sound).
+      The animal (goes|says) (moo|woof|meow)
+      The animal (makes|made) (noise|a noise|a sound)
+- id: s.u04.37
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: waso li mu ala. ona li toki!
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: mu, sense: mu, readings: {lasina: mu}}, {surface: ala, sense: ala, readings: {
+            lasina: ala}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki, readings: {lasina: toki}}]
+      reverse: waso li mu ala ona li toki
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1974\U000F1927\U000F1939\U000F1902\u3000\U000F1946\U000F1927\U000F196C"
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤹, sense: mu, readings: {lasina: mu}}, {surface: 󱤂, sense: ala, readings: {
+            lasina: ala}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}]
+      reverse: 󱥴󱤧󱤹󱤂󱥆󱤧󱥬
+  translations:
+    en: |-
+      The bird isn't (chirping|singing). (It's|It is) talking!
+      The bird (doesn't|does not) (chirp|sing). It talks
+      The bird didn't sing. It talked!
+- id: s.u04.38
+  node: tok.u04.fun
+  forms:
+    tok-Latn/standard:
+      text: mu! soweli nasa li musi.
+      tokens: [{surface: mu, sense: mu, readings: {lasina: mu}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: nasa, sense: nasa, readings: {lasina: nasa}}, {surface: li, sense: li,
+          readings: {lasina: li}}, {surface: musi, sense: musi, readings: {lasina: musi}}]
+      reverse: mu soweli nasa li musi
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1939\u3000\U000F1962\U000F193E\U000F1927\U000F193B"
+      tokens: [{surface: 󱤹, sense: mu, readings: {lasina: mu}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤾, sense: nasa, readings: {lasina: nasa}}, {surface: 󱤧, sense: li, readings: {
+            lasina: li}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
+      reverse: 󱤹󱥢󱤾󱤧󱤻
+  translations:
+    en: (Moo|Woof|Meow)! The (silly|crazy|strange) animal is playing.
+stories:
+- id: tok.story.animal-game
+  node: tok.u04.story
+  title:
+    en: 'musi soweli: The animal game'
+  characters:
+  - {id: lina, name: {tok-Latn/standard: jan Lina, tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑}}
+  - {id: pita, name: {tok-Latn/standard: jan Pita, tok-Qaap/sitelen-pona: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑}}
+  - {id: mila, name: {tok-Latn/standard: jan Mila, tok-Qaap/sitelen-pona: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑}}
+  steps:
+  - line:
+      speaker: pita
+      ask: arrange
+      forms:
+        tok-Latn/standard:
+          text: jan Mila, sina wile ala wile musi?
+          tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: wile, sense: wile,
+              readings: {lasina: wile}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: musi, sense: musi, readings: {lasina: musi}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱥞󱥷󱤂󱥷󱤻
+          tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}},
+            {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
+      translations:
+        en: Mila, do you want to play?
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: wile! musi li pona a!
+          tokens: [{surface: wile, sense: wile, readings: {lasina: wile}}, {surface: musi, sense: musi, readings: {lasina: musi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
+              readings: {lasina: pona}}, {surface: a, sense: a, readings: {lasina: a}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1977\u3000\U000F193B\U000F1927\U000F1954\U000F1900"
+          tokens: [{surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+                lasina: pona}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
+      translations:
+        en: Yes! Games are great!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: mi soweli seme? mu! mu!
+          tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: seme, sense: seme, readings: {lasina: seme}}, {surface: mu, sense: mu,
+              readings: {lasina: mu}}, {surface: mu, sense: mu, readings: {lasina: mu}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1934\U000F1962\U000F1959\u3000\U000F1939\u3000\U000F1939"
+          tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}, {surface: 󱤹, sense: mu,
+              readings: {lasina: mu}}, {surface: 󱤹, sense: mu, readings: {lasina: mu}}]
+      translations:
+        en: What animal am I? Moo! Moo!
+  - line:
+      speaker: pita
+      ask: complete
+      gap: sense:nasa
+      distractors: ['sense:jaki', 'sense:lete']
+      forms:
+        tok-Latn/standard:
+          text: a a a! sina nasa a!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: sina, sense: sina, readings: {lasina: sina}},
+            {surface: nasa, sense: nasa, readings: {lasina: nasa}}, {surface: a, sense: a, readings: {lasina: a}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\U000F1900\U000F1900\u3000\U000F195E\U000F193E\U000F1900"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}},
+            {surface: 󱤾, sense: nasa, readings: {lasina: nasa}}, {surface: 󱤀, sense: a, readings: {lasina: a}}]
+      translations:
+        en: Ha ha ha! You're so silly!
+  - choose:
+      prompt:
+        en: What sound does Mila make?
+      options: [{en: Moo!}, {en: Hello!}, {en: Ha ha ha!}]
+      answer: 0
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: sina soweli suli, anu seme?
+          tokens: [{surface: sina, sense: sina, readings: {lasina: sina}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: anu,
+              sense: anu, readings: {lasina: anu}}, {surface: seme, sense: seme, readings: {lasina: seme}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥞󱥢󱥣󱤇󱥙
+          tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤇, sense: anu,
+              readings: {lasina: anu}}, {surface: 󱥙, sense: seme, readings: {lasina: seme}}]
+      translations:
+        en: You're a big animal, right?
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: ala! mi soweli lili!
+          tokens: [{surface: ala, sense: ala, readings: {lasina: ala}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: lili, sense: lili,
+              readings: {lasina: lili}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1902\u3000\U000F1934\U000F1962\U000F1928"
+          tokens: [{surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤨, sense: lili,
+              readings: {lasina: lili}}]
+      translations:
+        en: No! I'm a little animal!
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: a! soweli sina li kama!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li,
+              readings: {lasina: li}}, {surface: kama, sense: kama, readings: {lasina: kama}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\u3000\U000F1962\U000F195E\U000F1927\U000F1916"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {
+                lasina: li}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}]
+      translations:
+        en: Oh! Your pet is coming!
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: soweli sina li wile ala wile moku?
+          tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wile,
+              sense: wile, readings: {lasina: wile}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: moku, sense: moku, readings: {
+                lasina: moku}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥢󱥞󱤧󱥷󱤂󱥷󱤶
+          tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥷, sense: wile,
+              readings: {lasina: wile}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      translations:
+        en: Does your pet want to eat?
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: wile ala. ona li wile musi!
+          tokens: [{surface: wile, sense: wile, readings: {lasina: wile}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li,
+              readings: {lasina: li}}, {surface: wile, sense: wile, readings: {lasina: wile}}, {surface: musi, sense: musi, readings: {lasina: musi}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1977\U000F1902\u3000\U000F1946\U000F1927\U000F1977\U000F193B"
+          tokens: [{surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {
+                lasina: li}}, {surface: 󱥷, sense: wile, readings: {lasina: wile}}, {surface: 󱤻, sense: musi, readings: {lasina: musi}}]
+      translations:
+        en: No. She wants to play!
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: a! ni li seme? ni li jaki!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: seme, sense: seme, readings: {
+                lasina: seme}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jaki, sense: jaki, readings: {lasina: jaki}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\u3000\U000F1941\U000F1927\U000F1959\u3000\U000F1941\U000F1927\U000F1910"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥙, sense: seme, readings: {
+                lasina: seme}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤐, sense: jaki, readings: {lasina: jaki}}]
+      translations:
+        en: Oh! What's this? It's gross!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: ni li pan. soweli mi li olin e ona.
+          tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pan, sense: pan, readings: {lasina: pan}}, {surface: soweli, sense: soweli,
+              readings: {lasina: soweli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: olin, sense: olin, readings: {lasina: olin}}, {surface: e,
+              sense: e, readings: {lasina: e}}, {surface: ona, sense: ona, readings: {lasina: ona}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1941\U000F1927\U000F194B\u3000\U000F1962\U000F1934\U000F1927\U000F1945\U000F1909\U000F1946"
+          tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥋, sense: pan, readings: {lasina: pan}}, {surface: 󱥢, sense: soweli, readings: {
+                lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥅, sense: olin, readings: {lasina: olin}}, {surface: 󱤉, sense: e,
+              readings: {lasina: e}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}]
+      translations:
+        en: It's bread. My pet loves it.
+  - choose:
+      prompt:
+        en: What is the gross thing?
+      options: [{en: bread}, {en: a bug}, {en: dirty water}]
+      answer: 0
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: tawa pona, jan Lina! tawa pona, jan Pita!
+          tokens: [{surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina,
+              readings: {lasina: Lina}}, {surface: tawa, sense: tawa, readings: {lasina: tawa}}, {surface: pona, sense: pona, readings: {lasina: pona}}, {surface: jan, sense: jan, readings: {lasina: jan}},
+            {surface: Pita, sense: pita, readings: {lasina: Pita}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1969\U000F1954\U000F1911\U000F1990\U000F1929\U000F190E\U000F193F\U000F1900\U000F1991\u3000\U000F1969\U000F1954\U000F1911\U000F1990\U000F1951\U000F190E\U000F196D\U000F1900\U000F1991"
+          tokens: [{surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina},
+            {surface: 󱥩, sense: tawa, readings: {lasina: tawa}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}]
+      translations:
+        en: Bye, Lina! Bye, Pita!
+scenarios:
+- id: tok.guess-the-animal
+  after: tok.u04.fun
+  title:
+    en: Guess the animal
+  setting:
+    en: A rainy afternoon at Mila's home. Mila thinks of an animal and you guess it with questions; then you swap.
+  character:
+    en: jan Mila, playful and a bit silly, who answers yes/no questions only with the verb or with ala.
+  goal:
+    en: Ask yes/no questions with … ala …? and …, anu seme? (ona li suli ala suli? ona li mu, anu seme?) and seme questions to guess the animal, and answer Mila's questions the same way.

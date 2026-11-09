@@ -49,16 +49,22 @@ sentences:
     es-Latn/standard:
       text: Daniel, ven a la cocina con tu hermana.
       tokens: [{surface: Daniel, sense: daniel}, {surface: ven, sense: venir, form: 'form:imp-tu'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: cocina, sense: cocina}, {surface: con, sense: con}, {surface: tu, sense: tu}, {surface: hermana, sense: hermano}]
-      reverse: Daniel (ven a la cocina con tu hermana|venga a la cocina con su hermana)
+      reverse: |-
+        Daniel (ven a la cocina con tu hermana|venga a la cocina con su hermana)
+        Ven a la cocina con tu hermana, Daniel.
   translations:
-    en: Daniel, come (to|into) the kitchen with your sister.
+    en: |-
+      Daniel, come (to|into) the kitchen with your sister.
+      Come to the kitchen with your sister, Daniel.
 - id: s.u14.2
   node: es.u14.ven-a-la-cocina
   forms:
     es-Latn/standard:
       text: Hoy vamos a cocinar picadillo, mi vida.
       tokens: [{surface: Hoy, sense: hoy}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: cocinar, sense: cocinar}, {surface: picadillo, sense: picadillo}, {surface: mi, sense: mi}, {surface: vida, sense: vida}]
-      reverse: Hoy vamos a (cocinar|hacer|preparar) picadillo [mi (vida|amor|cielo)]
+      reverse: |-
+        Hoy vamos a (cocinar|hacer|preparar) picadillo [mi (vida|amor|cielo)]
+        Hoy nosotros vamos a cocinar picadillo, mi vida.
   translations:
     en: |-
       Today (we're|we are) going to (cook|make) picadillo, (darling|honey|sweetheart|my love|dear).
@@ -104,6 +110,7 @@ sentences:
     en: |-
       Picadillo (has|takes|contains) (meat|beef|ground beef), (onion|onions) and garlic [in it].
       Picadillo is made with (meat|beef|ground beef), (onion|onions) and garlic.
+      Picadillo's made with meat, onion and garlic.
 - id: s.u14.7
   node: es.u14.ven-a-la-cocina
   forms:
@@ -124,13 +131,16 @@ sentences:
     en: |-
       How do you make picadillo, (Grandma|Grandmother|Abuela)?
       How is picadillo made, (Grandma|Grandmother|Abuela)?
+      How's picadillo made, Grandma?
 - id: s.u14.9
   node: es.u14.asi-se-hace
   forms:
     es-Latn/standard:
       text: Primero se pican la cebolla y el ají.
       tokens: [{surface: Primero, sense: primero}, {surface: se, sense: se.impersonal}, {surface: pican, sense: picar, form: 'form:pres-3p'}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: ají, sense: ají}]
-      reverse: Primero se (pican|pica) la cebolla y el (ají|pimiento)
+      reverse: |-
+        Primero se (pican|pica) la cebolla y el (ají|pimiento)
+        Primero picas la cebolla y el ají.
   translations:
     en: |-
       First you (chop|dice) the onion and the (pepper|bell pepper|green pepper).
@@ -144,6 +154,7 @@ sentences:
       reverse: |-
         Después todo se fríe en aceite
         Después se fríe todo en aceite
+        Después fríes todo en aceite.
   translations:
     en: (Then|Next|After that|Afterwards) (you fry everything|everything is fried|everything gets fried) in oil.
 - id: s.u14.11
@@ -163,7 +174,10 @@ sentences:
     es-Latn/standard:
       text: Ahora échale la carne al sofrito.
       tokens: [{surface: Ahora, sense: ahora}, {surface: échale, sense: echar, form: 'form:imp-tu'}, {surface: la, sense: el}, {surface: carne, sense: carne}, {surface: al, sense: al}, {surface: sofrito, sense: sofrito}]
-      reverse: Ahora (échale|echa|échele|eche|agrégale|agrega|ponle|pon) la carne al sofrito
+      reverse: |-
+        Ahora (échale|echa|échele|eche|agrégale|agrega|ponle|pon) la carne al sofrito
+        Ahora agréguele la carne al sofrito.
+        Ahora añádele la carne al sofrito.
   translations:
     en: Now (add|put) the (meat|beef) (to|into|in) the sofrito.
 - id: s.u14.13
@@ -172,7 +186,11 @@ sentences:
     es-Latn/standard:
       text: Después se echa un poco de sal.
       tokens: [{surface: Después, sense: después}, {surface: se, sense: se.impersonal}, {surface: echa, sense: echar, form: 'form:pres-3s'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: sal, sense: sal}]
-      reverse: Después se (echa|pone|le echa|le pone) (un poco|un poquito|un chin) de sal
+      reverse: |-
+        Después se (echa|pone|le echa|le pone) (un poco|un poquito|un chin) de sal
+        Después le echas un poco de sal.
+        Después se agrega un poco de sal.
+        Después se añade un poco de sal.
   translations:
     en: |-
       (Then|Next|After that|Afterwards) you (add|put in) (a little|a bit of|some) salt.
@@ -183,7 +201,11 @@ sentences:
     es-Latn/standard:
       text: Échale comino también, pero no mucho.
       tokens: [{surface: Échale, sense: echar, form: 'form:imp-tu'}, {surface: comino, sense: comino}, {surface: también, sense: también}, {surface: pero, sense: pero}, {surface: 'no', sense: 'no'}, {surface: mucho, sense: mucho}]
-      reverse: (Échale|Echa|Échele|Eche|Ponle|Pon) comino también pero no (mucho|demasiado)
+      reverse: |-
+        (Échale|Echa|Échele|Eche|Ponle|Pon) comino también pero no (mucho|demasiado)
+        Agrega comino también, pero no mucho.
+        Agrégale comino también, pero no mucho.
+        Añádele comino también, pero no mucho.
   translations:
     en: (Add|Put in) [some] cumin (too|as well), but not (much|too much|a lot).
 - id: s.u14.15
@@ -195,6 +217,7 @@ sentences:
       reverse: |-
         Me gusta mucho la yuca con mojo
         Me encanta la yuca con mojo
+        La yuca con mojo me gusta mucho.
   translations:
     en: |-
       I (really like|love) (yuca|cassava) (with|con) mojo.
@@ -210,6 +233,7 @@ sentences:
     en: |-
       Mojo is made with garlic and (sour orange|bitter orange|Seville orange) [juice].
       You make mojo with garlic and (sour orange|bitter orange|Seville orange) [juice].
+      Mojo's made with garlic and sour orange juice.
 - id: s.u14.17
   node: es.u14.yuca-con-mojo
   forms:
@@ -225,7 +249,10 @@ sentences:
     es-Latn/standard:
       text: Pica el ajo y échalo en la naranja agria.
       tokens: [{surface: Pica, sense: picar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: ajo, sense: ajo}, {surface: 'y', sense: 'y'}, {surface: échalo, sense: echar, form: 'form:imp-tu'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: naranja, sense: naranja-agria}, {surface: agria, sense: naranja-agria}]
-      reverse: (Pica el ajo y échalo|Pique el ajo y échelo|Piquen el ajo y échenlo) en la naranja agria
+      reverse: |-
+        (Pica el ajo y échalo|Pique el ajo y échelo|Piquen el ajo y échenlo) en la naranja agria
+        Pica el ajo y ponlo en la naranja agria.
+        Pica el ajo y agrégalo a la naranja agria.
   translations:
     en: (Chop|Dice) the garlic and (put|add) it (to|into|in) the (sour orange|bitter orange|Seville orange) [juice].
 - id: s.u14.19
@@ -266,7 +293,9 @@ sentences:
     es-Latn/standard:
       text: Lili y Daniel, vengan a comer.
       tokens: [{surface: Lili, sense: lili}, {surface: 'y', sense: 'y'}, {surface: Daniel, sense: daniel}, {surface: vengan, sense: venir, form: 'form:imp-ud'}, {surface: a, sense: a}, {surface: comer, sense: comer}]
-      reverse: (Lili y Daniel|Daniel y Lili) vengan a comer
+      reverse: |-
+        (Lili y Daniel|Daniel y Lili) vengan a comer
+        Vengan a comer, Lili y Daniel.
   translations:
     en: (Lili and Daniel|Daniel and Lili), come (and eat|to eat|eat).
 - id: s.u14.23
@@ -302,7 +331,9 @@ sentences:
     es-Latn/standard:
       text: Doña Ofelia, coma un poco de ropa vieja.
       tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: coma, sense: comer, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: ropa, sense: ropa-vieja}, {surface: vieja, sense: ropa-vieja}]
-      reverse: Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
+      reverse: |-
+        Doña Ofelia (coma|pruebe|sírvase) un (poco|poquito) de ropa vieja
+        Coma un poco de ropa vieja, doña Ofelia.
   translations:
     en: (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), (have|eat|try) (some|a little) ropa vieja.
 - id: s.u14.26
@@ -335,7 +366,9 @@ sentences:
     es-Latn/standard:
       text: Doña Ofelia, lleve un poco de picadillo para su casa.
       tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: lleve, sense: llevar, form: 'form:imp-ud'}, {surface: un, sense: un}, {surface: poco, sense: poco}, {surface: de, sense: de}, {surface: picadillo, sense: picadillo}, {surface: para, sense: para}, {surface: su, sense: su}, {surface: casa, sense: casa}]
-      reverse: Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
+      reverse: |-
+        Doña Ofelia (lleve|llévese) un (poco|poquito) de picadillo (para su casa|para la casa|a su casa)
+        Lleve un poco de picadillo para su casa, doña Ofelia.
   translations:
     en: (Doña Ofelia|Mrs. Ofelia|Miss Ofelia|Ms. Ofelia), take (some|a little) picadillo home [with you].
 - id: s.u14.29
@@ -344,7 +377,9 @@ sentences:
     es-Latn/standard:
       text: No eches mucha sal al picadillo.
       tokens: [{surface: 'No', sense: 'no'}, {surface: eches, sense: echar, form: 'form:imp-neg'}, {surface: mucha, sense: mucho}, {surface: sal, sense: sal}, {surface: al, sense: al}, {surface: picadillo, sense: picadillo}]
-      reverse: No (le eches|eches|le eche|eche|le echen|echen|le pongas|pongas) (mucha|tanta|demasiada) sal al picadillo
+      reverse: |-
+        No (le eches|eches|le eche|eche|le echen|echen|le pongas|pongas) (mucha|tanta|demasiada) sal al picadillo
+        No eches mucha sal en el picadillo.
   translations:
     en: (Don't|Do not) (put|add) (too much|a lot of|much|so much) salt (in|to|into|on) the picadillo.
 - id: s.u14.30
@@ -417,10 +452,10 @@ stories:
   node: es.u14.story
   title: {en: Frijoles dormidos}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
   steps:
   - line:
       speaker: daniel

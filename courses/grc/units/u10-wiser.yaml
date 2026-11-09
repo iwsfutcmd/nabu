@@ -1,0 +1,865 @@
+# Ancient Greek (grc), unit 10: Wiser than this man (Plato, Apology 21d).
+# Knowing and thinking: οἶδα (I know) and its infinitive and participle; οἴομαι (I think); wiser (the comparative,
+# with the genitive of the one compared); "men of Athens"; nor (οὐδέ), just as (ὥσπερ).
+# The passage is Burnet's text of Plato (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u10-wiser
+title:
+  en: Wiser than this man
+cefr: A2
+kcs:
+- id: sense:anthropos
+  gloss:
+    en: human being, person; man
+  forms:
+    grc-Grek/polytonic:
+    - ἄνθρωπος
+- id: sense:sophos
+  gloss:
+    en: wise, clever
+  forms:
+    grc-Grek/polytonic:
+    - σοφός
+- id: form:comp
+  gloss:
+    en: 'the comparative: more …, -er (σοφώτερος, wiser); the one compared in the genitive (than)'
+- id: sense:aner
+  gloss:
+    en: man; husband
+  forms:
+    grc-Grek/polytonic:
+    - ἀνήρ
+  notes:
+    en: ὦ ἄνδρες Ἀθηναῖοι, "men of Athens", is how a speaker addressed the Athenian assembly and courts.
+- id: sense:oida
+  gloss:
+    en: to know
+  forms:
+    grc-Grek/polytonic:
+    - οἶδα
+  notes:
+    en: 'οἶδα is a perfect ("I have seen, and so know") used as a present: οἶδα I know, οἶσθα you know; to know εἰδέναι, knowing εἰδώς.'
+- id: sense:oude
+  gloss:
+    en: and not, nor; not even
+  forms:
+    grc-Grek/polytonic:
+    - οὐδέ
+- id: sense:oiomai
+  gloss:
+    en: to think, suppose, believe
+  forms:
+    grc-Grek/polytonic:
+    - οἴομαι
+- id: sense:hosper
+  gloss:
+    en: just as, as
+  forms:
+    grc-Grek/polytonic:
+    - ὥσπερ
+nodes:
+- id: grc.u10.this-man
+  kind: lesson
+  introduces:
+  - sense:anthropos
+  - sense:sophos
+  - form:comp
+  - sense:aner
+- id: grc.u10.i-know
+  kind: lesson
+  introduces:
+  - sense:oida
+  - sense:oude
+- id: grc.u10.i-think
+  kind: lesson
+  introduces:
+  - sense:oiomai
+- id: grc.u10.just-as
+  kind: lesson
+  introduces:
+  - sense:hosper
+- id: grc.u10.story
+  kind: story
+sentences:
+- id: s.10.1
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ ἄνθρωπος.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: ἄνθρωπος
+        sense: anthropos
+        readings:
+          attic: ᾰ̓́νθρωπος
+      reverse: ὁ ἄνθρωπος
+  translations:
+    en: The (man|person|human being).
+- id: s.10.2
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: οὗτος ὁ ἄνθρωπος.
+      tokens:
+      - surface: οὗτος
+        sense: houtos
+        readings:
+          attic: οὗτος
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: ἄνθρωπος
+        sense: anthropos
+        readings:
+          attic: ᾰ̓́νθρωπος
+      reverse: |-
+        οὗτος ὁ ἄνθρωπος
+        ὁ ἄνθρωπος οὗτος
+  translations:
+    en: This (man|person).
+- id: s.10.3
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: σοφός.
+      tokens:
+      - surface: σοφός
+        sense: sophos
+        readings:
+          attic: σοφός
+      reverse: σοφός
+  translations:
+    en: (Wise|Clever).
+- id: s.10.4
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ Σωκράτης σοφός ἐστιν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: Σωκράτης
+        sense: sokrates
+        readings:
+          attic: Σωκρᾰ́της
+      - surface: σοφός
+        sense: sophos
+        readings:
+          attic: σοφός
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ὁ Σωκράτης σοφός ἐστιν
+        σοφός ἐστι[ν] [ὁ] Σωκράτης
+        Σωκράτης σοφός ἐστι[ν]
+        [ὁ] Σωκράτης ἐστὶ[ν] σοφός
+        ὁ Σωκράτης σοφός ἐστι
+  translations:
+    en: Socrates is (wise|clever).
+- id: s.10.5
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: σοφώτερος.
+      tokens:
+      - surface: σοφώτερος
+        sense: sophos
+        form: form:comp
+        readings:
+          attic: σοφώτερος
+      reverse: σοφώτερος
+  translations:
+    en: (Wiser|Cleverer).
+- id: s.10.6
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ σοφώτερός εἰμι.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: σοφώτερός
+        sense: sophos
+        form: form:comp
+        readings:
+          attic: σοφώτερός
+      - surface: εἰμι
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ
+      reverse: |-
+        ἐγὼ σοφώτερός εἰμι
+        σοφώτερός εἰμι
+        εἰμὶ σοφώτερος
+        σοφώτερος ἐγώ εἰμι
+  translations:
+    en: (I am|I'm) (wiser|cleverer).
+  persons:
+    speaker: m
+- id: s.10.7
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ σοφωτέρα εἰμί.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: σοφωτέρα
+        sense: sophos
+        form: form:comp
+        readings:
+          attic: σοφωτέρᾱ
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        ἐγὼ σοφωτέρα εἰμί
+        σοφωτέρα εἰμί
+        εἰμὶ σοφωτέρα
+        σοφωτέρα ἐγώ εἰμι
+  translations:
+    en: (I am|I'm) (wiser|cleverer).
+  persons:
+    speaker: f
+- id: s.10.8
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι.
+      tokens:
+      - surface: τούτου
+        sense: houtos
+        form: form:gen
+        readings:
+          attic: τούτου
+      - surface: τοῦ
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τοῦ
+      - surface: ἀνθρώπου
+        sense: anthropos
+        form: form:gen
+        readings:
+          attic: ᾰ̓νθρώπου
+      - surface: σοφώτερός
+        sense: sophos
+        form: form:comp
+        readings:
+          attic: σοφώτερός
+      - surface: εἰμι
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ
+      reverse: |-
+        τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι
+        σοφώτερός εἰμι τούτου τοῦ ἀνθρώπου
+        ἐγὼ τούτου τοῦ ἀνθρώπου σοφώτερός εἰμι
+        τούτου τοῦ ἀνθρώπου ἐγὼ σοφώτερός εἰμι
+  translations:
+    en: (I am|I'm) (wiser|cleverer) than this (man|person).
+  persons:
+    speaker: m
+- id: s.10.9
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ ἀνήρ.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: ἀνήρ
+        sense: aner
+        readings:
+          attic: ᾰ̓νήρ
+      reverse: ὁ ἀνήρ
+  translations:
+    en: The (man|husband).
+- id: s.10.10
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ὦ ἄνδρες Ἀθηναῖοι.
+      tokens:
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: ἄνδρες
+        sense: aner
+        form: form:voc
+        readings:
+          attic: ᾰ̓́νδρες
+      - surface: Ἀθηναῖοι
+        sense: athenaios
+        form: form:voc
+        readings:
+          attic: Ᾰ̓θηναῖοι
+      reverse: |-
+        ὦ ἄνδρες Ἀθηναῖοι
+        ἄνδρες Ἀθηναῖοι
+  translations:
+    en: (Men of Athens|Athenians|Gentlemen of Athens)!
+- id: s.10.11
+  node: grc.u10.this-man
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ παῖς σοφώτερός ἐστι τοῦ πατρός.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      - surface: σοφώτερός
+        sense: sophos
+        form: form:comp
+        readings:
+          attic: σοφώτερός
+      - surface: ἐστι
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ
+      - surface: τοῦ
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τοῦ
+      - surface: πατρός
+        sense: pater
+        form: form:gen
+        readings:
+          attic: πᾰτρός
+      reverse: |-
+        ὁ παῖς σοφώτερός ἐστι τοῦ πατρός
+        ὁ παῖς τοῦ πατρὸς σοφώτερός ἐστι[ν]
+        σοφώτερός ἐστιν ὁ παῖς τοῦ πατρός
+        ὁ παῖς σοφώτερός ἐστιν τοῦ πατρός
+  translations:
+    en: The (child|boy|son) is (wiser|cleverer) than (his|the) father.
+- id: s.10.12
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: οἶδα.
+      tokens:
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      reverse: οἶδα
+  translations:
+    en: I know.
+- id: s.10.13
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: οὐκ οἶδα.
+      tokens:
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      reverse: οὐκ οἶδα
+  translations:
+    en: (I do not|I don't) know.
+- id: s.10.14
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: οἶσθα;
+      tokens:
+      - surface: οἶσθα
+        sense: oida
+        form: form:perf-2s
+        readings:
+          attic: οἶσθᾰ
+      reverse: οἶσθα
+  translations:
+    en: Do you know?
+  persons:
+    addressee: sg
+- id: s.10.15
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: οὐδὲ οἶδα.
+      tokens:
+      - surface: οὐδὲ
+        sense: oude
+        readings:
+          attic: οὐδὲ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      reverse: οὐδὲ οἶδα
+  translations:
+    en: (Nor do I know|(I do not|I don't) know either|Neither do I know).
+- id: s.10.16
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: τοῦτο οὐκ οἶδα.
+      tokens:
+      - surface: τοῦτο
+        sense: houtos
+        form: form:acc
+        readings:
+          attic: τοῦτο
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      reverse: |-
+        τοῦτο οὐκ οἶδα
+        οὐκ οἶδα τοῦτο
+  translations:
+    en: (I do not|I don't) know (this|that).
+- id: s.10.17
+  node: grc.u10.i-know
+  forms:
+    grc-Grek/polytonic:
+      text: οὐκ οἶδα, ὦ Σώκρατες.
+      tokens:
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Σώκρατες
+        sense: sokrates
+        form: form:voc
+        readings:
+          attic: Σώκρᾰτες
+      reverse: |-
+        οὐκ οἶδα ὦ Σώκρατες
+        οὐκ οἶδα Σώκρατες
+        [ὦ] Σώκρατες οὐκ οἶδα
+  translations:
+    en: (I do not|I don't) know, Socrates.
+- id: s.10.18
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: οἴομαι.
+      tokens:
+      - surface: οἴομαι
+        sense: oiomai
+        form: form:pres-1s
+        readings:
+          attic: οἴομαι
+      reverse: οἴομαι
+  translations:
+    en: I (think|suppose|believe) (so|).
+- id: s.10.19
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: οὐκ οἴομαι.
+      tokens:
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἴομαι
+        sense: oiomai
+        form: form:pres-1s
+        readings:
+          attic: οἴομαι
+      reverse: οὐκ οἴομαι
+  translations:
+    en: (I do not|I don't) (think|suppose|believe) so.
+- id: s.10.20
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: εἰδέναι.
+      tokens:
+      - surface: εἰδέναι
+        sense: oida
+        form: form:inf
+        readings:
+          attic: εἰδέναι
+      reverse: εἰδέναι
+  translations:
+    en: To know.
+- id: s.10.21
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: οὗτος οἴεταί τι εἰδέναι.
+      tokens:
+      - surface: οὗτος
+        sense: houtos
+        readings:
+          attic: οὗτος
+      - surface: οἴεταί
+        sense: oiomai
+        form: form:pres-3s
+        readings:
+          attic: οἴεταί
+      - surface: τι
+        sense: tis.indef
+        readings:
+          attic: τῐ
+      - surface: εἰδέναι
+        sense: oida
+        form: form:inf
+        readings:
+          attic: εἰδέναι
+      reverse: |-
+        οὗτος οἴεταί τι εἰδέναι
+        οὗτος οἴεται εἰδέναι τι
+  translations:
+    en: (This man|He) thinks (that |)he knows something.
+- id: s.10.22
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: οὐκ εἰδώς.
+      tokens:
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: εἰδώς
+        sense: oida
+        form: form:ptc
+        readings:
+          attic: εἰδώς
+      reverse: οὐκ εἰδώς
+  translations:
+    en: (Not knowing|Without knowing).
+- id: s.10.23
+  node: grc.u10.i-think
+  forms:
+    grc-Grek/polytonic:
+      text: οἴεταί τι εἰδέναι οὐκ εἰδώς.
+      tokens:
+      - surface: οἴεταί
+        sense: oiomai
+        form: form:pres-3s
+        readings:
+          attic: οἴεταί
+      - surface: τι
+        sense: tis.indef
+        readings:
+          attic: τῐ
+      - surface: εἰδέναι
+        sense: oida
+        form: form:inf
+        readings:
+          attic: εἰδέναι
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: εἰδώς
+        sense: oida
+        form: form:ptc
+        readings:
+          attic: εἰδώς
+      reverse: οἴεταί τι εἰδέναι οὐκ εἰδώς
+  translations:
+    en: |-
+      He thinks he knows something when he does not.
+      He thinks (that |)he knows something (though|although) he (does not|doesn't)
+      He thinks (that |)he knows something when he doesn't
+      He thinks that he knows something when he does not
+      He thinks (that |)he knows something without knowing (it|anything)
+- id: s.10.24
+  node: grc.u10.just-as
+  forms:
+    grc-Grek/polytonic:
+      text: ὥσπερ.
+      tokens:
+      - surface: ὥσπερ
+        sense: hosper
+        readings:
+          attic: ὥσπερ
+      reverse: ὥσπερ
+  translations:
+    en: (Just as|As|Just like).
+- id: s.10.25
+  node: grc.u10.just-as
+  forms:
+    grc-Grek/polytonic:
+      text: ὥσπερ ὁ πατήρ.
+      tokens:
+      - surface: ὥσπερ
+        sense: hosper
+        readings:
+          attic: ὥσπερ
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: πατήρ
+        sense: pater
+        readings:
+          attic: πᾰτήρ
+      reverse: ὥσπερ ὁ πατήρ
+  translations:
+    en: (Just like|Like|Just as) (the|my|his|her) father.
+- id: s.10.26
+  node: grc.u10.just-as
+  forms:
+    grc-Grek/polytonic:
+      text: ὥσπερ οὐκ οἶδα.
+      tokens:
+      - surface: ὥσπερ
+        sense: hosper
+        readings:
+          attic: ὥσπερ
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      reverse: ὥσπερ οὐκ οἶδα
+  translations:
+    en: (Just as|As) (I do not|I don't) know.
+- id: s.10.27
+  node: grc.u10.just-as
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ δέ, ὥσπερ οὖν οὐκ οἶδα, οὐδὲ οἴομαι.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: δέ
+        sense: de
+        readings:
+          attic: δέ
+      - surface: ὥσπερ
+        sense: hosper
+        readings:
+          attic: ὥσπερ
+      - surface: οὖν
+        sense: oun
+        readings:
+          attic: οὖν
+      - surface: οὐκ
+        sense: ou
+        readings:
+          attic: οὐκ
+      - surface: οἶδα
+        sense: oida
+        readings:
+          attic: οἶδᾰ
+      - surface: οὐδὲ
+        sense: oude
+        readings:
+          attic: οὐδὲ
+      - surface: οἴομαι
+        sense: oiomai
+        form: form:pres-1s
+        readings:
+          attic: οἴομαι
+      reverse: |-
+        ἐγὼ δέ ὥσπερ οὖν οὐκ οἶδα οὐδὲ οἴομαι
+        ἐγὼ δέ ὥσπερ οὐκ οἶδα οὐδὲ οἴομαι
+  translations:
+    en: (But|And) I, (as|just as|since) (I do not|I don't) know, (do not|don't) think (I do|I know|that I know) either.
+stories:
+- id: grc.story.wiser
+  node: grc.u10.story
+  title:
+    en: Wiser than this man (Plato, Apology 21d)
+  characters:
+  - id: socrates
+    speaker: m
+    name:
+      grc-Grek/polytonic: Σωκράτης
+  steps:
+  - line:
+      speaker: socrates
+      ask: complete
+      gap: sense:sophos
+      distractors:
+      - sense:hetoimos
+      - sense:philos
+      forms:
+        grc-Grek/polytonic:
+          text: τούτου μὲν τοῦ ἀνθρώπου ἐγὼ σοφώτερός εἰμι·
+          tokens:
+          - surface: τούτου
+            sense: houtos
+            form: form:gen
+            readings:
+              attic: τούτου
+          - surface: μὲν
+            sense: men
+            readings:
+              attic: μὲν
+          - surface: τοῦ
+            sense: ho
+            form: form:gen
+            readings:
+              attic: τοῦ
+          - surface: ἀνθρώπου
+            sense: anthropos
+            form: form:gen
+            readings:
+              attic: ᾰ̓νθρώπου
+          - surface: ἐγὼ
+            sense: ego
+            readings:
+              attic: ἐγὼ
+          - surface: σοφώτερός
+            sense: sophos
+            form: form:comp
+            readings:
+              attic: σοφώτερός
+          - surface: εἰμι
+            sense: eimi
+            form: form:pres-1s
+            readings:
+              attic: εἰμῐ
+      translations:
+        en: '“I am wiser than this man:'
+  - line:
+      speaker: socrates
+      forms:
+        grc-Grek/polytonic:
+          text: ἀλλ’ οὗτος μὲν οἴεταί τι εἰδέναι οὐκ εἰδώς,
+          tokens:
+          - surface: ἀλλ’
+            sense: alla
+            readings:
+              attic: ᾰ̓λλ’
+          - surface: οὗτος
+            sense: houtos
+            readings:
+              attic: οὗτος
+          - surface: μὲν
+            sense: men
+            readings:
+              attic: μὲν
+          - surface: οἴεταί
+            sense: oiomai
+            form: form:pres-3s
+            readings:
+              attic: οἴεταί
+          - surface: τι
+            sense: tis.indef
+            readings:
+              attic: τῐ
+          - surface: εἰδέναι
+            sense: oida
+            form: form:inf
+            readings:
+              attic: εἰδέναι
+          - surface: οὐκ
+            sense: ou
+            readings:
+              attic: οὐκ
+          - surface: εἰδώς
+            sense: oida
+            form: form:ptc
+            readings:
+              attic: εἰδώς
+      translations:
+        en: he thinks he knows something when he does not,
+  - line:
+      speaker: socrates
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: ἐγὼ δέ, ὥσπερ οὖν οὐκ οἶδα, οὐδὲ οἴομαι.
+          tokens:
+          - surface: ἐγὼ
+            sense: ego
+            readings:
+              attic: ἐγὼ
+          - surface: δέ
+            sense: de
+            readings:
+              attic: δέ
+          - surface: ὥσπερ
+            sense: hosper
+            readings:
+              attic: ὥσπερ
+          - surface: οὖν
+            sense: oun
+            readings:
+              attic: οὖν
+          - surface: οὐκ
+            sense: ou
+            readings:
+              attic: οὐκ
+          - surface: οἶδα
+            sense: oida
+            readings:
+              attic: οἶδᾰ
+          - surface: οὐδὲ
+            sense: oude
+            readings:
+              attic: οὐδὲ
+          - surface: οἴομαι
+            sense: oiomai
+            form: form:pres-1s
+            readings:
+              attic: οἴομαι
+      translations:
+        en: but I, as I do not know, do not think I know either.”
+  - choose:
+      prompt:
+        en: What does the other man think?
+      options:
+      - en: That he knows something
+      - en: That he knows nothing
+      - en: That Socrates is wise
+      answer: 0
+  - choose:
+      prompt:
+        en: Why is Socrates the wiser?
+      options:
+      - en: He does not think he knows what he does not know
+      - en: He knows everything
+      - en: He is older
+      answer: 0

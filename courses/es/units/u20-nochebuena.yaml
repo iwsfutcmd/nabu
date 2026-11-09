@@ -62,6 +62,7 @@ sentences:
     en: |-
       This year, Christmas Eve will be at (Grandma's|Grandmother's|Granny's|Abuela's|my grandma's|my grandmother's) [house].
       Christmas Eve will be at (Grandma's|Grandmother's|Granny's|Abuela's|my grandma's|my grandmother's) [house] this year.
+      This year, Christmas Eve is going to be at Grandma's.
 - id: s.u20.3
   node: es.u20.nochebuena
   forms:
@@ -75,6 +76,7 @@ sentences:
     en: |-
       (The whole family|All the family|Everyone in the family) (will come|is coming) for Christmas Eve.
       For Christmas Eve, (the whole family|all the family) (will come|is coming).
+      The whole family is going to come for Christmas Eve.
 - id: s.u20.4
   node: es.u20.nochebuena
   forms:
@@ -83,7 +85,9 @@ sentences:
       tokens: [{surface: La, sense: el}, {surface: familia, sense: familia}, {surface: entera, sense: entero}, {surface: estará, sense: estar, form: 'form:fut'}, {surface: en, sense: en}, {surface: Hialeah, sense: hialeah}]
       reverse: (La familia entera|Toda la familia) (estará|va a estar) en Hialeah
   translations:
-    en: (The whole family|The entire family|All the family) will be in Hialeah.
+    en: |-
+      (The whole family|The entire family|All the family) will be in Hialeah.
+      The whole family is going to be in Hialeah.
 - id: s.u20.5
   node: es.u20.nochebuena
   forms:
@@ -92,7 +96,9 @@ sentences:
       tokens: [{surface: Será, sense: ser, form: 'form:fut'}, {surface: una, sense: un}, {surface: fiesta, sense: fiesta}, {surface: muy, sense: muy}, {surface: grande, sense: grande}]
       reverse: (Será|Va a ser) una (fiesta muy grande|fiesta grandísima)
   translations:
-    en: (It'll|It will) be a (very big|really big|huge) party.
+    en: |-
+      (It'll|It will) be a (very big|really big|huge) party.
+      It's going to be a really big party.
 - id: s.u20.6
   node: es.u20.nochebuena
   forms:
@@ -112,9 +118,13 @@ sentences:
     es-Latn/standard:
       text: Papi asará el lechón en el patio.
       tokens: [{surface: Papi, sense: papi}, {surface: asará, sense: asar, form: 'form:fut'}, {surface: el, sense: el}, {surface: lechón, sense: lechón}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
-      reverse: (Papi|Papá) (asará|va a asar) el lechón en el patio
+      reverse: |-
+        (Papi|Papá) (asará|va a asar) el lechón en el patio
+        Mi papá asará el lechón en el patio
   translations:
-    en: (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (yard|backyard).
+    en: |-
+      (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (yard|backyard).
+      Dad is going to roast the pig in the backyard.
 - id: s.u20.8
   node: es.u20.el-lechon
   forms:
@@ -139,7 +149,9 @@ sentences:
         (Abuelo|El abuelo) y (papi|papá) (asarán|van a asar) el lechón en la caja china
         (Papi|Papá) y (abuelo|el abuelo) (asarán|van a asar) el lechón en la caja china
   translations:
-    en: (Grandpa|Grandfather|Abuelo) and (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (caja china|roasting box|China box).
+    en: |-
+      (Grandpa|Grandfather|Abuelo) and (Dad|Daddy|Papi) will roast the (pig|suckling pig|lechón) in the (caja china|roasting box|China box).
+      Grandpa and Dad are going to roast the pig in the caja china.
 - id: s.u20.10
   node: es.u20.el-lechon
   forms:
@@ -149,8 +161,11 @@ sentences:
       reverse: |-
         (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) la yuca y los frijoles negros
         (Mami|Mamá) (preparará|va a preparar|hará|va a hacer) los frijoles negros y la yuca
+        Mi mamá preparará la yuca y los frijoles negros
   translations:
-    en: (Mom|Mommy|Mum) will (make|prepare|cook) the (yuca|cassava) and the black beans.
+    en: |-
+      (Mom|Mommy|Mum) will (make|prepare|cook) the (yuca|cassava) and the black beans.
+      Mom is going to make the yuca and the black beans.
 - id: s.u20.11
   node: es.u20.el-lechon
   forms:
@@ -159,7 +174,9 @@ sentences:
       tokens: [{surface: Yo, sense: yo}, {surface: prepararé, sense: preparar, form: 'form:fut'}, {surface: los, sense: el}, {surface: tostones, sense: tostón}, {surface: con, sense: con}, {surface: Lili, sense: lili}]
       reverse: '[Yo] (prepararé|voy a preparar|haré|voy a hacer) los tostones con Lili'
   translations:
-    en: (I'll|I will) (make|prepare|cook) the (tostones|fried plantains|fried green plantains) with Lili.
+    en: |-
+      (I'll|I will) (make|prepare|cook) the (tostones|fried plantains|fried green plantains) with Lili.
+      I'm going to make the tostones with Lili.
 - id: s.u20.12
   node: es.u20.el-lechon
   forms:
@@ -170,7 +187,9 @@ sentences:
         [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón temprano (por|en) la mañana
         [(Nosotros|Nosotras)] (asaremos|vamos a asar) el lechón (por|en) la mañana temprano
   translations:
-    en: (We'll|We will) roast the (pig|suckling pig|lechón) early in the morning.
+    en: |-
+      (We'll|We will) roast the (pig|suckling pig|lechón) early in the morning.
+      We're going to roast the pig early in the morning.
 - id: s.u20.13
   node: es.u20.la-mesa
   forms:
@@ -179,7 +198,9 @@ sentences:
       tokens: [{surface: Comeremos, sense: comer, form: 'form:fut'}, {surface: lechón, sense: lechón}, {surface: congrí, sense: congrí}, {surface: 'y', sense: 'y'}, {surface: yuca, sense: yuca}]
       reverse: '[(Nosotros|Nosotras)] (comeremos|vamos a comer) lechón congrí y yuca'
   translations:
-    en: (We'll|We will) (eat|have) (roast pork|roast pig|lechón), (congrí|rice and beans) and (yuca|cassava).
+    en: |-
+      (We'll|We will) (eat|have) (roast pork|roast pig|lechón), (congrí|rice and beans) and (yuca|cassava).
+      We're going to eat lechón, congrí and yuca.
 - id: s.u20.14
   node: es.u20.la-mesa
   forms:
@@ -188,7 +209,9 @@ sentences:
       tokens: [{surface: Abuela, sense: abuela}, {surface: invitará, sense: invitar, form: 'form:fut'}, {surface: a, sense: a}, {surface: doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: 'y', sense: 'y'}, {surface: a, sense: a}, {surface: su, sense: su}, {surface: hija, sense: hijo}]
       reverse: (Abuela|La abuela|Mi abuela) (invitará|va a invitar) a doña Ofelia y a su hija
   translations:
-    en: (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) will invite (Doña|Miss|Mrs.) Ofelia and her daughter.
+    en: |-
+      (Grandma|Grandmother|Granny|Abuela|My grandma|My grandmother) will invite (Doña|Miss|Mrs.) Ofelia and her daughter.
+      Grandma is going to invite Doña Ofelia and her daughter.
 - id: s.u20.15
   node: es.u20.la-mesa
   forms:
@@ -197,7 +220,9 @@ sentences:
       tokens: [{surface: Habrá, sense: hay, form: 'form:fut'}, {surface: mucha, sense: mucho}, {surface: gente, sense: gente}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: casa, sense: casa}]
       reverse: (Habrá|Va a haber) mucha gente en (la casa|casa)
   translations:
-    en: (There'll|There will) be (a lot of|lots of|many) people (in the house|at the house|at home).
+    en: |-
+      (There'll|There will) be (a lot of|lots of|many) people (in the house|at the house|at home).
+      There are going to be a lot of people at the house.
 - id: s.u20.16
   node: es.u20.la-mesa
   forms:
@@ -216,19 +241,26 @@ sentences:
       reverse: |-
         (Papi|Papá) (comprará|va a comprar) el vino y la cerveza
         (Papi|Papá) (comprará|va a comprar) la cerveza y el vino
+        Mi papá comprará el vino y la cerveza
   translations:
-    en: (Dad|Daddy|Papi) will buy the wine and the beer.
+    en: |-
+      (Dad|Daddy|Papi) will buy the wine and the beer.
+      Dad is going to buy the wine and the beer.
 - id: s.u20.18
   node: es.u20.la-mesa
   forms:
     es-Latn/standard:
       text: ¿Tú vendrás con Yasiel?
       tokens: [{surface: Tú, sense: tú}, {surface: vendrás, sense: venir, form: 'form:fut'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
-      reverse: (Tú vendrás|Vendrás [tú]|Tú vas a venir|Vas [tú] a venir|Usted vendrá|Vendrá [usted]|Ustedes vendrán|Vendrán [ustedes]) con Yasiel
+      reverse: |-
+        (Tú vendrás|Vendrás [tú]|Tú vas a venir|Vas [tú] a venir|Usted vendrá|Vendrá [usted]|Ustedes vendrán|Vendrán [ustedes]) con Yasiel
+        ¿Usted va a venir con Yasiel?
+        ¿Ustedes van a venir con Yasiel?
   translations:
     en: |-
       Will you come with Yasiel?
       Are you coming with Yasiel?
+      Are you going to come with Yasiel?
 - id: s.u20.19
   node: es.u20.la-mesa
   forms:
@@ -240,6 +272,7 @@ sentences:
     en: |-
       (We'll|We will) invite Yasiel. His family is in Cuba.
       (We'll|We will) invite Yasiel (because|since) his family is in Cuba.
+      We're going to invite Yasiel. His family is in Cuba.
 - id: s.u20.20
   node: es.u20.fin-de-ano
   forms:
@@ -248,7 +281,9 @@ sentences:
       tokens: [{surface: Celebraremos, sense: celebrar, form: 'form:fut'}, {surface: el, sense: el}, {surface: Año, sense: año}, {surface: Nuevo, sense: nuevo}, {surface: en, sense: en}, {surface: casa, sense: casa}]
       reverse: '[(Nosotros|Nosotras)] (celebraremos|vamos a celebrar) el Año Nuevo en (casa|la casa)'
   translations:
-    en: (We'll|We will) celebrate (the New Year|New Year's|New Year) (at home|at the house).
+    en: |-
+      (We'll|We will) celebrate (the New Year|New Year's|New Year) (at home|at the house).
+      We're going to celebrate New Year's at home.
 - id: s.u20.21
   node: es.u20.fin-de-ano
   forms:
@@ -262,6 +297,7 @@ sentences:
     en: |-
       At (twelve|twelve o'clock|midnight), (we'll all|we will all|all of us will|everyone will) eat grapes.
       (We'll all|We will all|All of us will|Everyone will) eat grapes at (twelve|twelve o'clock|midnight).
+      At midnight, we're all going to eat grapes.
 - id: s.u20.22
   node: es.u20.fin-de-ano
   forms:
@@ -275,6 +311,7 @@ sentences:
     en: |-
       (We'll|We will) eat the twelve grapes at midnight.
       At midnight, (we'll|we will) eat the twelve grapes.
+      We're going to eat the twelve grapes at midnight.
 - id: s.u20.23
   node: es.u20.fin-de-ano
   forms:
@@ -284,10 +321,12 @@ sentences:
       reverse: |-
         A (medianoche|la medianoche) (abuela|la abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle
         (Abuela|La abuela) (tirará|va a tirar) (agua|un cubo de agua|un balde de agua) a la calle a (medianoche|la medianoche)
+        A medianoche mi abuela tirará agua a la calle
   translations:
     en: |-
       At midnight, (Grandma|Grandmother|Granny|Abuela) will throw water (into|out into|onto) the street.
       (Grandma|Grandmother|Granny|Abuela) will throw water (into|out into|onto) the street at midnight.
+      At midnight, Grandma is going to throw water into the street.
 - id: s.u20.24
   node: es.u20.fin-de-ano
   forms:
@@ -301,6 +340,7 @@ sentences:
     en: |-
       Lili will walk (down|along|around|up and down) the street with a suitcase.
       Lili will walk with a suitcase (down|along|around|up and down) the street.
+      Lili is going to walk down the street with a suitcase.
 - id: s.u20.25
   node: es.u20.fin-de-ano
   forms:
@@ -314,6 +354,7 @@ sentences:
     en: |-
       Next year (we'll|we will) (travel|go) to Cuba.
       (We'll|We will) (travel|go) to Cuba next year.
+      Next year we're going to go to Cuba.
 - id: s.u20.26
   node: es.u20.los-reyes
   forms:
@@ -336,30 +377,42 @@ sentences:
       reverse: |-
         El Día de [los] Reyes (abuela|la abuela) (tendrá|va a tener) regalos para todos
         (Abuela|La abuela) (tendrá|va a tener) regalos para todos el Día de [los] Reyes
+        El Día de Reyes mi abuela tendrá regalos para todos
   translations:
     en: |-
       On Three Kings Day, (Grandma|Grandmother|Granny|Abuela) will have (presents|gifts) for everyone.
       (Grandma|Grandmother|Granny|Abuela) will have (presents|gifts) for everyone on Three Kings Day.
+      On Three Kings Day, Grandma is going to have presents for everyone.
 - id: s.u20.28
   node: es.u20.los-reyes
   forms:
     es-Latn/standard:
       text: ¿Qué regalo le comprarás a Lili?
       tokens: [{surface: Qué, sense: qué}, {surface: regalo, sense: regalo}, {surface: le, sense: le}, {surface: comprarás, sense: comprar, form: 'form:fut'}, {surface: a, sense: a}, {surface: Lili, sense: lili}]
-      reverse: Qué regalo (le comprarás [tú]|tú le comprarás|le vas a comprar|tú le vas a comprar|le comprará [usted]|usted le comprará) a Lili
+      reverse: |-
+        Qué regalo (le comprarás [tú]|tú le comprarás|le vas a comprar|tú le vas a comprar|le comprará [usted]|usted le comprará) a Lili
+        ¿Qué regalo le comprarán a Lili?
+        ¿Qué regalo le van a comprar a Lili?
+        ¿Qué regalo usted le va a comprar a Lili?
+        ¿Qué regalo vas a comprarle a Lili?
   translations:
-    en: What (present|gift) will you (buy|get) (Lili|for Lili)?
+    en: |-
+      What (present|gift) will you (buy|get) (Lili|for Lili)?
+      What present are you going to buy Lili?
 - id: s.u20.29
   node: es.u20.los-reyes
   forms:
     es-Latn/standard:
       text: Le compraré un pulóver azul.
       tokens: [{surface: Le, sense: le}, {surface: compraré, sense: comprar, form: 'form:fut'}, {surface: un, sense: un}, {surface: pulóver, sense: pulóver}, {surface: azul, sense: azul}]
-      reverse: '[Yo] le (compraré|voy a comprar) (un pulóver|una camiseta|una playera) azul'
+      reverse: |-
+        [Yo] le (compraré|voy a comprar) (un pulóver|una camiseta|una playera) azul
+        Voy a comprarle un pulóver azul
   translations:
     en: |-
       (I'll|I will) (buy|get) (her|him) a blue (T-shirt|tee shirt|shirt).
       (I'll|I will) (buy|get) a blue (T-shirt|tee shirt|shirt) for (her|him).
+      I'm going to buy her a blue T-shirt.
 - id: s.u20.30
   node: es.u20.los-reyes
   forms:
@@ -373,6 +426,7 @@ sentences:
     en: |-
       (We'll|We will) take (presents|gifts) for Yunior to Havana.
       (We'll|We will) take (presents|gifts) to Havana for Yunior.
+      We're going to take presents for Yunior to Havana.
 - id: s.u20.31
   node: es.u20.los-quince
   forms:
@@ -386,6 +440,7 @@ sentences:
     en: |-
       At my cousin's (quince|quinceañera|fifteenth birthday party), everyone will dance.
       Everyone will dance at my cousin's (quince|quinceañera|fifteenth birthday party).
+      At my cousin's quince, everyone is going to dance.
 - id: s.u20.32
   node: es.u20.los-quince
   forms:
@@ -394,7 +449,9 @@ sentences:
       tokens: [{surface: La, sense: el}, {surface: quinceañera, sense: quinceañera}, {surface: bailará, sense: bailar, form: 'form:fut'}, {surface: el, sense: el}, {surface: vals, sense: vals}, {surface: con, sense: con}, {surface: su, sense: su}, {surface: padre, sense: padre}]
       reverse: La quinceañera (bailará|va a bailar) el vals con su (padre|papá|papi)
   translations:
-    en: The (quinceañera|birthday girl) will dance the waltz with her (father|dad).
+    en: |-
+      The (quinceañera|birthday girl) will dance the waltz with her (father|dad).
+      The quinceañera is going to dance the waltz with her father.
 - id: s.u20.33
   node: es.u20.los-quince
   forms:
@@ -408,6 +465,7 @@ sentences:
     en: |-
       My cousin (in|from) Havana will (be|turn) fifteen in January.
       In January, my cousin (in|from) Havana will (be|turn) fifteen.
+      My cousin from Havana is going to turn fifteen in January.
 - id: s.u20.34
   node: es.u20.los-quince
   forms:
@@ -416,7 +474,10 @@ sentences:
       tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: bailo, sense: bailar, form: 'form:pres-1s'}, {surface: bien, sense: bien}, {surface: pero, sense: pero}, {surface: bailaré, sense: bailar, form: 'form:fut'}, {surface: en, sense: en}, {surface: los, sense: el}, {surface: quince, sense: quince}]
       reverse: '[Yo] no bailo bien pero (bailaré|voy a bailar) en los quince'
   translations:
-    en: I don't dance well, but (I'll|I will) dance at the (quince|quinceañera|fifteenth birthday party).
+    en: |-
+      I don't dance well, but (I'll|I will) dance at the (quince|quinceañera|fifteenth birthday party).
+      I don't dance well, but I'm going to dance at the quince.
+      I do not dance well, but I'll dance at the quince.
 - id: s.u20.35
   node: es.u20.los-quince
   forms:
@@ -425,19 +486,21 @@ sentences:
       tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: preparará, sense: preparar, form: 'form:fut'}, {surface: una, sense: un}, {surface: fiesta, sense: fiesta}, {surface: grande, sense: grande}, {surface: en, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
       reverse: (Tía Marisol|Mi tía Marisol|La tía Marisol) (preparará|va a preparar|hará|va a hacer|dará|va a dar) una (fiesta grande|gran fiesta) en La Habana
   translations:
-    en: (Aunt|Auntie|Tía) Marisol will (throw|have|prepare|organize|plan) a big party in Havana.
+    en: |-
+      (Aunt|Auntie|Tía) Marisol will (throw|have|prepare|organize|plan) a big party in Havana.
+      Aunt Marisol is going to throw a big party in Havana.
 stories:
 - id: es.story.u20
   node: es.u20.story
   title: {en: 'Nochebuena at Abuela''s'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: mami, name: {es-Latn/standard: Mami}}
-  - {id: papi, name: {es-Latn/standard: Papi}}
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
-  - {id: yasiel, name: {es-Latn/standard: Yasiel}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: mami, speaker: f, name: {es-Latn/standard: Mami}}
+  - {id: papi, speaker: m, name: {es-Latn/standard: Papi}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: yasiel, speaker: m, name: {es-Latn/standard: Yasiel}}
   steps:
   - line:
       forms:

@@ -218,7 +218,8 @@ def tiberian_reading(
         list[str],
         typer.Argument(
             help="Pointed Biblical Hebrew, with the cantillation accents where you have them "
-            "(WLC); words joined by maqaf are read as one stress unit."
+            "(WLC); words joined by maqaf are read as one stress unit. Keep a verse's sof pasuq "
+            "(׃) on its last word: that word's meteg sign is then silluq."
         ),
     ],
 ) -> None:
@@ -228,10 +229,65 @@ def tiberian_reading(
     from nabu.audio.pointing import reading, strip_accents
 
     for argument in words:
-        parts = argument.split("\u05be")
+        parts = argument.strip().split("\u05be")
         for k, word in enumerate(parts):
-            r = reading(word, bound=k < len(parts) - 1)
-            typer.echo(f"{strip_accents(word)}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
+            r = reading(word, bound=k < len(parts) - 1)  # a final ׃ makes it verse-final
+            shown = strip_accents(word.strip().removesuffix("\u05c3"))
+            typer.echo(f"{shown}\t{r.text}\t{tiberian.ipa(r.text)}\t{r.stress}")
+
+
+@app.command("attic")
+def attic_reading(
+    readings: Annotated[
+        list[str],
+        typer.Argument(
+            help="Attic Greek words as the grc course pins their readings: polytonic, every α, ι "
+            "and υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or an iota "
+            "subscript makes it long."
+        ),
+    ],
+) -> None:
+    """How the grc voices say a reading (ADR 0087): its written form, its IPA (CGCG §1.15) and the
+    eSpeak NG phonemes, or why it cannot be said (an unmarked length)."""
+    from nabu.audio import attic
+
+    failed = False
+    for reading in readings:
+        try:
+            typer.echo(f"{attic.surface(reading)}\t{attic.ipa(reading)}\t{attic.espeak(reading)}")
+        except attic.AtticReadingError as e:
+            typer.echo(f"{reading}\t{e}", err=True)
+            failed = True
+    if failed:
+        raise typer.Exit(1)
+
+
+@app.command("sitelen-pona")
+def sitelen_pona_command(
+    sentences: Annotated[list[str], typer.Argument(help="Toki Pona in sitelen Lasina.")],
+    name: Annotated[
+        list[str] | None,
+        typer.Option(
+            "--name",
+            help="A name and the words whose first letters spell it in a cartouche: "
+            "'Sonja=sona olin nasin jan a'. Repeat for several.",
+        ),
+    ] = None,
+    escaped: Annotated[
+        bool, typer.Option("--escaped", help="Print \\U escapes, as course YAML keeps them.")
+    ] = False,
+) -> None:
+    """Sitelen Lasina in sitelen pona, as the tok course pins it (ADR 0086): UCSUR logographs,
+    words run together, sentences a space apart, names in cartouches."""
+    from nabu import sitelen_pona
+
+    names = dict(n.split("=", 1) for n in name or [])
+    for sentence in sentences:
+        try:
+            out = sitelen_pona.to_sitelen_pona(sentence, names)
+        except sitelen_pona.SitelenPonaError as e:
+            raise typer.BadParameter(str(e)) from e
+        typer.echo(out.encode("unicode_escape").decode("ascii") if escaped else out)
 
 
 @app.command("calibration")

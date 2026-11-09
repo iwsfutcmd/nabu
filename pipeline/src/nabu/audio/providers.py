@@ -39,6 +39,7 @@ import base64
 import hashlib
 import importlib
 import json
+import math
 import os
 import sys
 import time
@@ -158,6 +159,14 @@ def _piper_files(voice: str, model: str | None) -> tuple[Path, Path]:
     onnx = hub.hf_hub_download(repo, f"{stem}.onnx", revision=revision)
     config = hub.hf_hub_download(repo, f"{stem}.onnx.json", revision=revision)
     return Path(onnx), Path(config)
+
+
+#: Phoneme input for Piper: IPA words in [[ ]], space-separated, an optional final . or ?
+PIPER_WORD = regex.compile(r"\[\[([^\]]*)\]\]")
+PIPER_PHONEMES = regex.compile(r"(?:\[\[[^\]]*\]\] ?)+[.?]?")
+#: What a voice that lacks an IPA symbol says instead: eSpeak NG's tables write g as IPA ɡ, and a
+#: voice of a language without aspiration says it as a following h.
+PIPER_FALLBACKS = {"g": "\u0261", "\u02b0": "h"}
 
 
 class PiperProvider:
@@ -382,10 +391,40 @@ class PiperProvider:
         trace = "".join(inv[i] for i in ids[plan.first : plan.last + 1])
         return Clip(to_pcm(cut / peak), rate, None, trace)
 
+    def _phonemes(self, engine: Any, raw: bytes, r: Request) -> Clip:
+        """IPA given as phonemes, one [[word]] at a time (ADR 0087): no phonemizer, so a voice of
+        another language says what a pinned reading says. Words are joined by a space; a final
+        . or ? is the intonation."""
+        piper = optional("piper")
+        np: Any = importlib.import_module("numpy")
+        known = engine.config.phoneme_id_map
+        phonemes: list[str] = []
+        words: list[str] = [str(w) for w in PIPER_WORD.findall(r.input)]
+        for i, w in enumerate(words):
+            if i:
+                phonemes.append(" ")
+            said: list[str] = [c if c in known else PIPER_FALLBACKS.get(c, c) for c in w]
+            unknown = [c for c in said if c not in known]
+            if unknown:
+                raise ProviderError(f"piper: {r.voice} has no phoneme {' '.join(unknown)!r}")
+            phonemes.extend(said)
+        end = r.input.rstrip()[-1:]
+        if end in known and end not in "]":
+            phonemes.append(end)
+        ids = list(engine.phonemes_to_ids(phonemes))
+        engine.session = self._session(raw, seed_of(r))
+        config = piper.SynthesisConfig(length_scale=1 / r.rate, noise_scale=self.NOISE_SCALE)
+        audio = np.asarray(engine.phoneme_ids_to_audio(ids, syn_config=config), dtype=np.float32)
+        pcm = (np.clip(audio, -1.0, 1.0) * 32767).astype(np.int16).tobytes()
+        return Clip(pcm, int(engine.config.sample_rate), None, "".join(phonemes))
+
     def synthesize(self, requests: list[Request]) -> list[Clip]:
         out: list[Clip] = []
         for r in requests:
             engine, raw = self._engine(r.voice, self.model)
+            if PIPER_PHONEMES.fullmatch(r.input):
+                out.append(self._phonemes(engine, raw, r))
+                continue
             short = self.carrier is not None and len(r.input.split()) <= self.max_words
             if short:
                 out.append(self._carried(engine, r))
@@ -753,6 +792,41 @@ def to_pcm(samples: Any) -> bytes:
     return bytes((data * 32767.0).round().astype("<i2").tobytes())
 
 
+#: OmniVoice sometimes leaves near-silence around the speech, up to a second before it. A clip keeps
+#: LEAD_S before its first and TAIL_S after its last 20 ms within EDGE_DB of its loudest; the tail
+#: is the longer, so a soft last sound (an aspirated -s) stays.
+EDGE_DB = 40.0
+LEAD_S = 0.08
+TAIL_S = 0.15
+
+
+def trim_edges(samples: Any, sampling_rate: int) -> Any:
+    """The samples without the near-silence before and after the speech, short margins kept.
+    Samples that are all as loud as each other (silence, a level) come back as they are. numpy's
+    when it is there (the model's arrays), plain Python otherwise (without the speech groups)."""
+    step = max(1, sampling_rate // 50)
+    try:
+        np: Any = importlib.import_module("numpy")
+    except ImportError:
+        y: Any = [float(x) for x in samples]
+        n = len(y) // step
+        rms = [math.sqrt(sum(v * v for v in y[i * step : (i + 1) * step]) / step) for i in range(n)]
+    else:
+        y = np.asarray(samples, dtype=np.float32)
+        n = len(y) // step
+        frames = y[: n * step].astype(np.float64).reshape(n, step)
+        rms = np.sqrt(np.mean(frames**2, axis=1)).tolist()
+    if n < 2 or max(rms) <= 0.0:
+        return samples
+    floor = max(rms) * 10 ** (-EDGE_DB / 20)
+    loud = [i for i, r in enumerate(rms) if r >= floor]
+    if loud[0] == 0 and loud[-1] == n - 1:
+        return samples
+    start = max(0, loud[0] * step - round(LEAD_S * sampling_rate))
+    end = min(len(y), (loud[-1] + 1) * step + round(TAIL_S * sampling_rate))
+    return y[start:end]
+
+
 class OmniVoiceProvider:
     """An OmniVoice checkpoint (`model`: owner/name@commit) speaking `language` in the voice of a
     reference recording. Diffusion sampling is seeded per clip (`seed_of`), so the same input,
@@ -809,7 +883,9 @@ class OmniVoiceProvider:
             samples = engine.speak(
                 text, self.language, seed + attempt, self.NUM_STEP, self.GUIDANCE_SCALE, **extra
             )
-            clip = Clip(to_pcm(samples), engine.sampling_rate, None, None)
+            clip = Clip(
+                to_pcm(trim_edges(samples, engine.sampling_rate)), engine.sampling_rate, None, None
+            )
             if len(clip.pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
                 break
         return clip

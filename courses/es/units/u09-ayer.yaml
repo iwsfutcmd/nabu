@@ -67,6 +67,7 @@ sentences:
     en: |-
       Grandma bought (mangoes|mangos).
       (Grandmother|Granny|Abuela|My grandma|My grandmother|My granny) bought (mangoes|mangos).
+      Grandma bought some mangoes.
 - id: s.u09.4
   node: es.u09.ayer
   forms:
@@ -75,7 +76,9 @@ sentences:
       tokens: [{surface: Tú, sense: tú}, {surface: compraste, sense: comprar, form: 'form:pret-2s'}, {surface: el, sense: el}, {surface: pomo, sense: pomo}]
       reverse: (Tú compraste|Compraste [tú]|Usted compró|Compró [usted]|Ustedes compraron|Compraron [ustedes]) (el (pomo|frasco)|la botella)
   translations:
-    en: Did you buy the (bottle|jar)?
+    en: |-
+      Did you buy the (bottle|jar)?
+      Have you bought the bottle?
 - id: s.u09.5
   node: es.u09.ayer
   forms:
@@ -179,7 +182,9 @@ sentences:
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: habló, sense: hablar, form: 'form:pret-3s'}, {surface: con, sense: con}, {surface: Yasiel, sense: yasiel}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) habló con Yasiel
   translations:
-    en: (Grandpa|Grandfather|Abuelo) Pepe (talked|spoke) (to|with) Yasiel.
+    en: |-
+      (Grandpa|Grandfather|Abuelo) Pepe (talked|spoke) (to|with) Yasiel.
+      My grandpa Pepe talked to Yasiel.
 - id: s.u09.15
   node: es.u09.domino
   forms:
@@ -206,7 +211,9 @@ sentences:
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: ganó, sense: ganar, form: 'form:pret-3s'}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) ganó
   translations:
-    en: (Grandpa|Grandfather|Abuelo) Pepe won.
+    en: |-
+      (Grandpa|Grandfather|Abuelo) Pepe won.
+      My grandpa Pepe won.
 - id: s.u09.18
   node: es.u09.domino
   forms:
@@ -224,7 +231,10 @@ sentences:
       tokens: [{surface: Tú, sense: tú}, {surface: jugaste, sense: jugar, form: 'form:pret-2s'}, {surface: dominó, sense: dominó}, {surface: el, sense: el}, {surface: fin, sense: fin-de-semana}, {surface: de, sense: fin-de-semana}, {surface: semana, sense: fin-de-semana}]
       reverse: (Tú jugaste|Jugaste [tú]|Usted jugó|Jugó [usted]|Ustedes jugaron|Jugaron [ustedes]) [al] dominó el fin de semana
   translations:
-    en: Did you play (dominoes|domino) (on the|over the|last) weekend?
+    en: |-
+      Did you play (dominoes|domino) (on the|over the|last) weekend?
+      Did you play dominoes this weekend?
+      Did you play dominoes at the weekend?
 - id: s.u09.20
   node: es.u09.la-pelota
   forms:
@@ -277,7 +287,9 @@ sentences:
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: 'y', sense: 'y'}, {surface: Yasiel, sense: yasiel}, {surface: vieron, sense: ver, form: 'form:pret-3p'}, {surface: la, sense: el}, {surface: pelota, sense: pelota}]
       reverse: (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) y Yasiel vieron (la pelota|el béisbol|el juego)
   translations:
-    en: (Grandpa|Grandfather|Abuelo) Pepe and Yasiel (watched|saw) (the baseball game|the game|baseball).
+    en: |-
+      (Grandpa|Grandfather|Abuelo) Pepe and Yasiel (watched|saw) (the baseball game|the game|baseball).
+      My grandpa Pepe and Yasiel watched the baseball game.
 - id: s.u09.25
   node: es.u09.la-pelota
   persons: {addressee: pl}
@@ -311,7 +323,10 @@ sentences:
     es-Latn/standard:
       text: ¿Qué tú hiciste ayer?
       tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: hiciste, sense: hacer, form: 'form:pret-2s'}, {surface: ayer, sense: ayer}]
-      reverse: (Qué tú hiciste|Qué hiciste [tú]|Qué usted hizo|Qué hizo [usted]|Qué ustedes hicieron|Qué hicieron [ustedes]) ayer
+      reverse: |-
+        (Qué tú hiciste|Qué hiciste [tú]|Qué usted hizo|Qué hizo [usted]|Qué ustedes hicieron|Qué hicieron [ustedes]) ayer
+        ¿Ayer qué tú hiciste?
+        ¿Tú qué hiciste ayer?
   translations:
     en: What did you do yesterday?
 - id: s.u09.28
@@ -353,6 +368,7 @@ sentences:
     en: |-
       (Grandpa|Grandfather|Abuelo) Pepe was lucky.
       (Grandpa|Grandfather|Abuelo) Pepe (got lucky|had luck|had good luck).
+      My grandpa Pepe was lucky.
 - id: s.u09.32
   node: es.u09.que-hiciste
   forms:
@@ -371,7 +387,10 @@ sentences:
     es-Latn/standard:
       text: ¿Qué hicieron ellos el domingo?
       tokens: [{surface: Qué, sense: qué}, {surface: hicieron, sense: hacer, form: 'form:pret-3p'}, {surface: ellos, sense: ellos}, {surface: el, sense: el}, {surface: domingo, sense: domingo}]
-      reverse: (Qué hicieron [(ellos|ellas)]|Qué (ellos|ellas) hicieron) el domingo
+      reverse: |-
+        (Qué hicieron [(ellos|ellas)]|Qué (ellos|ellas) hicieron) el domingo
+        ¿El domingo qué hicieron ellos?
+        ¿Ellos qué hicieron el domingo?
   translations:
     en: What did they do on Sunday?
 - id: s.u09.34
@@ -388,8 +407,8 @@ stories:
   node: es.u09.story
   title: {en: Sunday at Abuela's}
   characters:
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
   steps:
   - line:
       speaker: lili

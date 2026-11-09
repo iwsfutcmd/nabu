@@ -54,7 +54,9 @@ sentences:
       tokens: [{surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
       reverse: ((ru7t|re7et|re7t|ri7t|ro7t)|ana (ru7t|re7et|re7t|ri7t|ro7t)) (3al|3a l|3a el) (ba7r|ba7er|bahr)
   translations:
-    en: I went to the (beach|sea).
+    en: |-
+      I went to the (beach|sea).
+      You went to the beach.
 - id: s.past.2
   node: apc.past.i-went
   register: colloquial
@@ -63,16 +65,23 @@ sentences:
       text: مبارح رحت عالبحر.
       tokens: [{surface: مبارح, sense: mbere7}, {surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
               surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (مبارح|مبارحة) رحت (عالبحر|ع البحر|على البحر)
+      reverse: |-
+        (مبارح|مبارحة) رحت (عالبحر|ع البحر|على البحر)
+        رحت عالبحر مبارح
+        أنا رحت عالبحر مبارح
     apc-Latn/arabizi:
       text: mbere7 ru7t 3al ba7r.
       tokens: [{surface: mbere7, sense: mbere7}, {surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
           sense: ba7r}]
-      reverse: (mbere7|mbare7|embere7|mberi7) (ru7t|re7et|re7t|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: |-
+        (mbere7|mbare7|embere7|mberi7) (ru7t|re7et|re7t|ri7t|ro7t) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        ru7t 3al ba7r mbere7
+        ana ru7t 3al ba7r mbere7
   translations:
     en: |-
       Yesterday I went to the (beach|sea).
       I went to the (beach|sea) yesterday.
+      Yesterday you went to the beach.
 - id: s.past.3
   node: apc.past.i-went
   register: colloquial
@@ -86,7 +95,11 @@ sentences:
       tokens: [{surface: akalt, sense: akal, form: 'form:past-1sg'}, {surface: man2oushe, sense: man2oushe}]
       reverse: ((akalt|2akalt)|ana (akalt|2akalt)) (man2oushe|manoushe|man2ushi|mankoushe)
   translations:
-    en: I (ate|had) a (man'oushe|manakish).
+    en: |-
+      I (ate|had) a (man'oushe|manakish).
+      I've had a man'oushe.
+      I have eaten a man'oushe.
+      You ate a man'oushe.
 - id: s.past.4
   node: apc.past.i-went
   register: colloquial
@@ -103,6 +116,7 @@ sentences:
     en: |-
       I went to the restaurant.
       I went to a restaurant.
+      You went to the restaurant.
 - id: s.past.5
   node: apc.past.i-went
   register: colloquial
@@ -126,6 +140,7 @@ sentences:
       I went to the market in the morning.
       In the morning I went to the market.
       I went to the market this morning.
+      You went to the market in the morning.
 - id: s.past.6
   node: apc.past.i-went
   register: colloquial
@@ -133,15 +148,22 @@ sentences:
     apc-Arab/standard:
       text: شربت قهوة كتير.
       tokens: [{surface: شربت, sense: shereb, form: 'form:past-1sg'}, {surface: قهوة, sense: ahwe}, {surface: كتير, sense: ktir}]
-      reverse: (شربت|أنا شربت) قهوة كتير
+      reverse: |-
+        (شربت|أنا شربت) قهوة كتير
+        شربت كتير قهوة
     apc-Latn/arabizi:
       text: shrebt ahwe ktir.
       tokens: [{surface: shrebt, sense: shereb, form: 'form:past-1sg'}, {surface: ahwe, sense: ahwe}, {surface: ktir, sense: ktir}]
-      reverse: ((shrebt|sherebt|shribt)|ana (shrebt|sherebt|shribt)) (ahwe|2ahwe) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        ((shrebt|sherebt|shribt)|ana (shrebt|sherebt|shribt)) (ahwe|2ahwe) (ktir|kteer|kter|ktiir)
+        shrebt ktir ahwe
   translations:
     en: |-
       I drank a lot of coffee.
       I had a lot of coffee.
+      I've had a lot of coffee.
+      I have drunk a lot of coffee.
+      You drank a lot of coffee.
 - id: s.past.7
   node: apc.past.you-did
   register: colloquial
@@ -153,12 +175,14 @@ sentences:
       reverse: |-
         شو عملت (مبارح|مبارحة)
         (مبارح|مبارحة) شو عملت
+        إنت شو عملت مبارح
     apc-Latn/arabizi:
       text: shu 3melt mbere7?
       tokens: [{surface: shu, sense: shu}, {surface: 3melt, sense: 3emel, form: 'form:past-2ms'}, {surface: mbere7, sense: mbere7}]
       reverse: |-
         (shu|sho) (3melt|3malt|3amalt) (mbere7|mbare7|embere7|mberi7)
         (mbere7|mbare7|embere7|mberi7) (shu|sho) (3melt|3malt|3amalt)
+        enta shu 3melt mbere7
   translations:
     en: What did you do yesterday?
 - id: s.past.8
@@ -169,13 +193,19 @@ sentences:
     apc-Arab/standard:
       text: شو اشتريت؟
       tokens: [{surface: شو, sense: shu}, {surface: اشتريت, sense: eshtara, form: 'form:past-2ms'}]
-      reverse: شو اشتريت
+      reverse: |-
+        شو اشتريت
+        إنت شو اشتريت
     apc-Latn/arabizi:
       text: shu eshtarit?
       tokens: [{surface: shu, sense: shu}, {surface: eshtarit, sense: eshtara, form: 'form:past-2ms'}]
-      reverse: (shu|sho) (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)
+      reverse: |-
+        (shu|sho) (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)
+        enta shu eshtarit
   translations:
-    en: What did you buy?
+    en: |-
+      What did you buy?
+      What have you bought?
 - id: s.past.9
   node: apc.past.you-did
   register: colloquial
@@ -189,7 +219,10 @@ sentences:
       tokens: [{surface: eshtarit, sense: eshtara, form: 'form:past-1sg'}, {surface: khebz, sense: khebz}, {surface: w, sense: w}, {surface: jebne, sense: jebne}]
       reverse: ((eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)|ana (eshtarit|shtarit|ishtarit|eshtarayt|shtarayt|eshtaret|shtaret)) (khebz|5ebz|khibz|khebez) (w|wa) (jebne|jibne|jebni)
   translations:
-    en: I bought bread and cheese.
+    en: |-
+      I bought bread and cheese.
+      I've bought bread and cheese.
+      You bought bread and cheese.
 - id: s.past.10
   node: apc.past.you-did
   register: colloquial
@@ -207,6 +240,7 @@ sentences:
     en: |-
       Did you visit (grandma|granny)?
       Did you go and see (grandma|granny)?
+      Have you visited grandma?
 - id: s.past.11
   node: apc.past.you-did
   register: colloquial
@@ -215,7 +249,9 @@ sentences:
       text: إيه، زرت تيتا مع صاحبي.
       tokens: [{surface: إيه, sense: eh}, {surface: زرت, sense: zar, form: 'form:past-1sg'}, {surface: تيتا, sense: teta}, {surface: مع, sense: ma3}, {surface: صاحبي, sense: sa7eb, morphs: [{surface: صاحب,
               kc: 'sense:sa7eb'}, {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: إيه (زرت|أنا زرت) تيتا مع (صاحبي|رفيقي|صاحبتي|رفيقتي)
+      reverse: |-
+        إيه (زرت|أنا زرت) تيتا مع (صاحبي|رفيقي|صاحبتي|رفيقتي)
+        إي زرت تيتا مع صاحبي
     apc-Latn/arabizi:
       text: eh, zert teta ma3 sa7bi.
       tokens: [{surface: eh, sense: eh}, {surface: zert, sense: zar, form: 'form:past-1sg'}, {surface: teta, sense: teta}, {surface: ma3, sense: ma3}, {surface: sa7bi, sense: sa7eb, morphs: [{surface: sa7b,
@@ -240,7 +276,9 @@ sentences:
           sense: shoghl}]
       reverse: Sami (ra7|rah) (3al|3a l|3a el) (shoghl|shoghol|sho8l|shughl)
   translations:
-    en: Sami went to work.
+    en: |-
+      Sami went to work.
+      Sami has gone to work.
 - id: s.past.13
   node: apc.past.he-she
   register: colloquial
@@ -256,7 +294,9 @@ sentences:
           sense: sou2}]
       reverse: Maya (ra7et|ra7at|rahet) (3al|3a l|3a el) (sou2|souk|souq)
   translations:
-    en: Maya went to the market.
+    en: |-
+      Maya went to the market.
+      Maya has gone to the market.
 - id: s.past.14
   node: apc.past.he-she
   register: colloquial
@@ -275,6 +315,8 @@ sentences:
     en: |-
       My (dad|father) came [back] home.
       My (dad|father) went back home.
+      My dad has come home.
+      My father has come back home.
 - id: s.past.15
   node: apc.past.he-she
   register: colloquial
@@ -304,7 +346,9 @@ sentences:
       tokens: [{surface: Sami, sense: sami}, {surface: akal, sense: akal, form: 'form:past-3ms'}, {surface: ktir, sense: ktir}]
       reverse: Sami (akal|2akal) (ktir|kteer|kter|ktiir)
   translations:
-    en: Sami ate a lot!
+    en: |-
+      Sami ate a lot!
+      Sami has eaten a lot!
 - id: s.past.17
   node: apc.past.we-ate
   register: colloquial
@@ -355,7 +399,9 @@ sentences:
         ((akalna|2akalna)|(ne7na|na7na) (akalna|2akalna)) [(el|l|il)] (ghada|8ada|ghade) (3end|3and|3ind) (teta|tayta)
         (tghaddena|tghadena|tghaddayna|t8adena) (3end|3and|3ind) (teta|tayta)
   translations:
-    en: We (had|ate) lunch at (grandma's|granny's).
+    en: |-
+      We (had|ate) lunch at (grandma's|granny's).
+      We had lunch at my grandma's.
 - id: s.past.20
   node: apc.past.we-ate
   register: colloquial
@@ -364,12 +410,16 @@ sentences:
       text: بعد العشا رحنا عالبيت.
       tokens: [{surface: بعد, sense: ba3d}, {surface: العشا, sense: 3asha, morphs: [{surface: ال, kc: 'sense:el'}, {surface: عشا, kc: 'sense:3asha'}]}, {surface: رحنا, sense: ra7, form: 'form:past-1pl'},
         {surface: عالبيت, sense: bet, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
-      reverse: بعد (العشا|العشاء) رحنا (عالبيت|ع البيت|على البيت)
+      reverse: |-
+        بعد (العشا|العشاء) رحنا (عالبيت|ع البيت|على البيت)
+        رحنا عالبيت بعد العشا
     apc-Latn/arabizi:
       text: ba3d el 3asha ru7na 3al bet.
       tokens: [{surface: ba3d, sense: ba3d}, {surface: el, sense: el}, {surface: 3asha, sense: 3asha}, {surface: ru7na, sense: ra7, form: 'form:past-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a,
               kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
-      reverse: (ba3d|ba3ed) (el|l|il) (3asha|3ashe) (ru7na|re7na|ro7na) (3al|3a l|3a el) (bet|beit|bayt)
+      reverse: |-
+        (ba3d|ba3ed) (el|l|il) (3asha|3ashe) (ru7na|re7na|ro7na) (3al|3a l|3a el) (bet|beit|bayt)
+        ru7na 3al bet ba3d el 3asha
   translations:
     en: |-
       After dinner we went home.
@@ -413,7 +463,9 @@ sentences:
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: bet, sense: bet}]
       reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (bel|bil|b el) (bet|beit|bayt)
   translations:
-    en: I was (at home|home).
+    en: |-
+      I was (at home|home).
+      You were at home.
 - id: s.past.23
   node: apc.past.it-was
   register: colloquial
@@ -437,13 +489,19 @@ sentences:
     apc-Arab/standard:
       text: كنت تعبان كتير.
       tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: تعبان, sense: ta3ban}, {surface: كتير, sense: ktir}]
-      reverse: (كنت|أنا كنت) تعبان كتير
+      reverse: |-
+        (كنت|أنا كنت) تعبان كتير
+        كنت كتير تعبان
     apc-Latn/arabizi:
       text: kent ta3ban ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3ban, sense: ta3ban}, {surface: ktir, sense: ktir}]
-      reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3ban|ta3ben|t3ban) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3ban|ta3ben|t3ban) (ktir|kteer|kter|ktiir)
+        kent ktir ta3ban
   translations:
-    en: I was (very|really) tired.
+    en: |-
+      I was (very|really) tired.
+      You were very tired.
 - id: s.past.25
   node: apc.past.it-was
   register: colloquial
@@ -455,17 +513,20 @@ sentences:
       reverse: |-
         (كنت|أنا كنت) مبسوط كتير
         (انبسطت|أنا انبسطت) كتير
+        كنت كتير مبسوط
     apc-Latn/arabizi:
       text: kent mabsout ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mabsout, sense: mabsout}, {surface: ktir, sense: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsout|mabsoot|mabsot) (ktir|kteer|kter|ktiir)
         [ana] (enbasatt|enbasat|inbasatt|inbasat|nbasatt) (ktir|kteer|kter|ktiir)
+        kent ktir mabsout
   translations:
     en: |-
       I was very happy.
       I had a (great|really good) time.
       I really enjoyed (it|myself).
+      You were very happy.
 - id: s.past.26
   node: apc.past.it-was
   register: colloquial
@@ -477,12 +538,16 @@ sentences:
       reverse: |-
         (مبارح|مبارحة) كنت مشغول (صحّ|صح)
         كنت مشغول (مبارح|مبارحة) (صحّ|صح)
+        إنت كنت مشغول مبارح صحّ
+        مبارح كنت مشغول مش هيك
     apc-Latn/arabizi:
       text: mbere7 kent mashghoul, sa77?
       tokens: [{surface: mbere7, sense: mbere7}, {surface: kent, sense: kan, form: 'form:past-2ms'}, {surface: mashghoul, sense: mashghoul}, {surface: sa77, sense: sa77}]
       reverse: |-
         (mbere7|mbare7|embere7|mberi7) (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (sa77|sa7|sah)
         (kent|kint|kunt) (mashghoul|mash8oul|mashghol) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
+        enta kent mashghoul mbere7 sa77
+        mbere7 kent mashghoul mish heik
   translations:
     en: |-
       Yesterday you were busy, right?
@@ -496,13 +561,21 @@ sentences:
     apc-Arab/standard:
       text: مايا، وين رحتي مبارح؟
       tokens: [{surface: مايا, sense: maya}, {surface: وين, sense: wen}, {surface: رحتي, sense: ra7, form: 'form:past-2fs'}, {surface: مبارح, sense: mbere7}]
-      reverse: مايا وين رحتي (مبارح|مبارحة)
+      reverse: |-
+        مايا وين رحتي (مبارح|مبارحة)
+        وين رحتي مبارح مايا
+        مايا مبارح وين رحتي
     apc-Latn/arabizi:
       text: Maya, wen ru7ti mbere7?
       tokens: [{surface: Maya, sense: maya}, {surface: wen, sense: wen}, {surface: ru7ti, sense: ra7, form: 'form:past-2fs'}, {surface: mbere7, sense: mbere7}]
-      reverse: Maya (wen|wein|wayn) (ru7ti|ru7te|ro7ti) (mbere7|mbare7|embere7|mberi7)
+      reverse: |-
+        Maya (wen|wein|wayn) (ru7ti|ru7te|ro7ti) (mbere7|mbare7|embere7|mberi7)
+        wen ru7ti mbere7 Maya
+        Maya mbere7 wen ru7ti
   translations:
-    en: Maya, where did you go yesterday?
+    en: |-
+      Maya, where did you go yesterday?
+      Where did you go yesterday, Maya?
 - id: s.past.28
   node: apc.past.you-f
   register: colloquial
@@ -543,6 +616,7 @@ sentences:
     en: |-
       I (travelled|traveled) yesterday.
       I went (away|on a trip) yesterday.
+      You travelled yesterday.
 - id: s.past.30
   node: apc.past.i-went
   register: colloquial
@@ -579,11 +653,15 @@ sentences:
     apc-Arab/standard:
       text: كنت تعبانة كتير.
       tokens: [{surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: تعبانة, sense: ta3ban, form: 'form:fem'}, {surface: كتير, sense: ktir}]
-      reverse: (كنت|أنا كنت) تعبانة كتير
+      reverse: |-
+        (كنت|أنا كنت) تعبانة كتير
+        كنت كتير تعبانة
     apc-Latn/arabizi:
       text: kent ta3bane ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: ta3bane, sense: ta3ban, form: 'form:fem'}, {surface: ktir, sense: ktir}]
-      reverse: ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3bane|ta3bena|t3bane|ta3bana) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        ((kent|kint|kunt)|ana (kent|kint|kunt)) (ta3bane|ta3bena|t3bane|ta3bana) (ktir|kteer|kter|ktiir)
+        kent ktir ta3bane
   translations:
     en: I was (very|really) tired.
 - id: s.past.33
@@ -597,12 +675,14 @@ sentences:
       reverse: |-
         (كنت|أنا كنت) مبسوطة كتير
         (انبسطت|أنا انبسطت) كتير
+        كنت كتير مبسوطة
     apc-Latn/arabizi:
       text: kent mabsouta ktir.
       tokens: [{surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mabsouta, sense: mabsout, form: 'form:fem'}, {surface: ktir, sense: ktir}]
       reverse: |-
         ((kent|kint|kunt)|ana (kent|kint|kunt)) (mabsouta|mabsoota|mabsota) (ktir|kteer|kter|ktiir)
         ((enbasatt|inbasatt|nbasatt)|ana (enbasatt|inbasatt|nbasatt)) (ktir|kteer|kter|ktiir)
+        kent ktir mabsouta
   translations:
     en: |-
       I was very happy.
@@ -615,13 +695,19 @@ sentences:
     apc-Arab/standard:
       text: شو اشتريتي؟
       tokens: [{surface: شو, sense: shu}, {surface: اشتريتي, sense: eshtara, form: 'form:past-2fs'}]
-      reverse: شو اشتريتي
+      reverse: |-
+        شو اشتريتي
+        إنتي شو اشتريتي
     apc-Latn/arabizi:
       text: shu eshtarayti?
       tokens: [{surface: shu, sense: shu}, {surface: eshtarayti, sense: eshtara, form: 'form:past-2fs'}]
-      reverse: (shu|sho) (eshtarayti|shtarayti|ishtarayti|eshtarayte)
+      reverse: |-
+        (shu|sho) (eshtarayti|shtarayti|ishtarayti|eshtarayte)
+        enti shu eshtarayti
   translations:
-    en: What did you buy?
+    en: |-
+      What did you buy?
+      What have you bought?
 - id: s.past.35
   node: apc.past.you-f
   register: colloquial
@@ -633,12 +719,16 @@ sentences:
       reverse: |-
         (مبارح|مبارحة) كنتي مشغولة (صحّ|صح)
         كنتي مشغولة (مبارح|مبارحة) (صحّ|صح)
+        إنتي كنتي مشغولة مبارح صحّ
+        مبارح كنتي مشغولة مش هيك
     apc-Latn/arabizi:
       text: mbere7 kenti mashghoule, sa77?
       tokens: [{surface: mbere7, sense: mbere7}, {surface: kenti, sense: kan, form: 'form:past-2fs'}, {surface: mashghoule, sense: mashghoul, form: 'form:fem'}, {surface: sa77, sense: sa77}]
       reverse: |-
         (mbere7|mbare7|embere7|mberi7) (kenti|kinti|kente) (mashghoule|mashghoula|mash8oule) (sa77|sa7|sah)
         (kenti|kinti|kente) (mashghoule|mashghoula|mash8oule) (mbere7|mbare7|embere7|mberi7) (sa77|sa7|sah)
+        enti kenti mashghoule mbere7 sa77
+        mbere7 kenti mashghoule mish heik
   translations:
     en: |-
       Yesterday you were busy, right?
@@ -652,11 +742,15 @@ sentences:
     apc-Arab/standard:
       text: وين رحتوا مبارح؟
       tokens: [{surface: وين, sense: wen}, {surface: رحتوا, sense: ra7, form: 'form:past-2pl'}, {surface: مبارح, sense: mbere7}]
-      reverse: وين (رحتوا|رحتو) (مبارح|مبارحة)
+      reverse: |-
+        وين (رحتوا|رحتو) (مبارح|مبارحة)
+        مبارح وين رحتوا
     apc-Latn/arabizi:
       text: wen ru7to mbere7?
       tokens: [{surface: wen, sense: wen}, {surface: ru7to, sense: ra7, form: 'form:past-2pl'}, {surface: mbere7, sense: mbere7}]
-      reverse: (wen|wein|wayn) (ru7to|ru7tu|ro7to|ro7tu) (mbere7|mbare7|embere7|mberi7)
+      reverse: |-
+        (wen|wein|wayn) (ru7to|ru7tu|ro7to|ro7tu) (mbere7|mbare7|embere7|mberi7)
+        mbere7 wen ru7to
   translations:
     en: Where did you go yesterday?
 - id: s.past.37
@@ -667,15 +761,20 @@ sentences:
     apc-Arab/standard:
       text: شو أكلتوا؟
       tokens: [{surface: شو, sense: shu}, {surface: أكلتوا, sense: akal, form: 'form:past-2pl'}]
-      reverse: شو (أكلتوا|أكلتو|اكلتوا|اكلتو)
+      reverse: |-
+        شو (أكلتوا|أكلتو|اكلتوا|اكلتو)
+        إنتو شو أكلتوا
     apc-Latn/arabizi:
       text: shu akalto?
       tokens: [{surface: shu, sense: shu}, {surface: akalto, sense: akal, form: 'form:past-2pl'}]
-      reverse: (shu|sho) (akalto|akaltu|2akalto|2akaltu)
+      reverse: |-
+        (shu|sho) (akalto|akaltu|2akalto|2akaltu)
+        ento shu akalto
   translations:
     en: |-
       What did you eat?
       What did you have to eat?
+      What have you eaten?
 - id: s.past.38
   node: apc.past.you-pl
   register: colloquial
@@ -705,13 +804,19 @@ sentences:
     apc-Arab/standard:
       text: شو اشتريتوا؟
       tokens: [{surface: شو, sense: shu}, {surface: اشتريتوا, sense: eshtara, form: 'form:past-2pl'}]
-      reverse: شو (اشتريتوا|اشتريتو)
+      reverse: |-
+        شو (اشتريتوا|اشتريتو)
+        إنتو شو اشتريتوا
     apc-Latn/arabizi:
       text: shu eshtarayto?
       tokens: [{surface: shu, sense: shu}, {surface: eshtarayto, sense: eshtara, form: 'form:past-2pl'}]
-      reverse: (shu|sho) (eshtarayto|shtarayto|ishtarayto|eshtaraytu)
+      reverse: |-
+        (shu|sho) (eshtarayto|shtarayto|ishtarayto|eshtaraytu)
+        ento shu eshtarayto
   translations:
-    en: What did you buy?
+    en: |-
+      What did you buy?
+      What have you bought?
 stories:
 - id: apc.story.weekend
   node: apc.past.story

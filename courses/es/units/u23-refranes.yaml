@@ -151,6 +151,7 @@ sentences:
       reverse: |-
         [Yo] compré este (pulóver|pullover) por diez dólares para Yunior
         [Yo] compré este (pulóver|pullover) para Yunior por diez dólares
+        Compré esta camiseta por diez dólares para Yunior
   translations:
     en: |-
       I bought this (T-shirt|tee shirt|shirt) for ten dollars for Yunior.
@@ -199,7 +200,9 @@ sentences:
         [Yo] se lo digo por su bien para que [usted] aprenda
         [Yo] se lo digo por su bien para que [ustedes] aprendan
   translations:
-    en: (I'm telling you|I tell you) [this] for your own good, so [that] you (learn|will learn|can learn).
+    en: |-
+      (I'm telling you|I tell you) [this] for your own good, so [that] you (learn|will learn|can learn).
+      I am telling you this for your own good, so that you learn.
 - id: s.u23.15
   node: es.u23.para-que
   forms:
@@ -208,7 +211,9 @@ sentences:
       tokens: [{surface: Mami, sense: mami}, {surface: 'y', sense: 'y'}, {surface: Papi, sense: papi}, {surface: trabajan, sense: trabajar, form: 'form:pres-3p'}, {surface: mucho, sense: mucho}, {surface: para, sense: para}, {surface: que, sense: que}, {surface: Lili, sense: lili}, {surface: pueda, sense: poder, form: 'form:subj'}, {surface: estudiar, sense: estudiar}]
       reverse: (Mami|Mamá|Mi mamá) y (Papi|Papá|mi papá) trabajan mucho para que Lili pueda estudiar
   translations:
-    en: (Mom|Mommy|Mum) and (Dad|Daddy) work (hard|a lot|so hard) so [that] Lili can study.
+    en: |-
+      (Mom|Mommy|Mum) and (Dad|Daddy) work (hard|a lot|so hard) so [that] Lili can study.
+      My mom and dad work hard so that Lili can study.
 - id: s.u23.16
   node: es.u23.para-que
   forms:
@@ -231,6 +236,8 @@ sentences:
       There is no (bad thing|harm|misfortune) that does not (bring|come with) some good.
       Every cloud has a silver lining.
       It's a blessing in disguise.
+      There is no bad thing that doesn't bring some good.
+      It is a blessing in disguise.
 - id: s.u23.18
   node: es.u23.al-que-madruga
   forms:
@@ -265,6 +272,7 @@ sentences:
       Getting up (early|very early) doesn't make the (sun rise|sun come up|day dawn) [any] (sooner|earlier).
       Getting up (early|very early) does not make the (sun rise|sun come up|day dawn) [any] (sooner|earlier).
       You can't rush things.
+      You cannot rush things.
 - id: s.u23.21
   node: es.u23.al-que-madruga
   forms:
@@ -276,6 +284,7 @@ sentences:
     en: |-
       Better late than never.
       It's better late than never.
+      It is better late than never.
 - id: s.u23.22
   node: es.u23.al-que-madruga
   forms:
@@ -284,7 +293,9 @@ sentences:
       tokens: [{surface: Yunior, sense: yunior}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: tarde, sense: tarde}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: fiesta, sense: fiesta}, {surface: pero, sense: pero}, {surface: más, sense: más}, {surface: vale, sense: valer, form: 'form:pres-3s'}, {surface: tarde, sense: tarde}, {surface: que, sense: que.than}, {surface: nunca, sense: nunca}]
       reverse: Yunior llegó tarde a la fiesta pero más vale tarde que nunca
   translations:
-    en: Yunior (got to the party late|arrived late (at|to) the party|was late (to|for) the party|came late to the party), but [it's] better late than never.
+    en: |-
+      Yunior (got to the party late|arrived late (at|to) the party|was late (to|for) the party|came late to the party), but [it's] better late than never.
+      Yunior got to the party late, but it is better late than never.
 - id: s.u23.23
   node: es.u23.al-que-madruga
   forms:
@@ -323,6 +334,7 @@ sentences:
       A man is known by the company he keeps.
       You are known by the company you keep.
       Birds of a feather flock together.
+      You're known by the company you keep.
 - id: s.u23.26
   node: es.u23.dime-con-quien
   forms:
@@ -344,13 +356,16 @@ sentences:
       The (baby|one) who (doesn't|does not) cry (doesn't|does not) (get fed|get milk|nurse).
       The squeaky wheel gets the grease.
       If you don't ask, you don't get.
+      If you do not ask, you do not get.
 - id: s.u23.28
   node: es.u23.dime-con-quien
   forms:
     es-Latn/standard:
       text: Pásame el cuchillo para picar la cebolla.
       tokens: [{surface: Pásame, sense: pasar, form: 'form:imp-tu'}, {surface: el, sense: el}, {surface: cuchillo, sense: cuchillo}, {surface: para, sense: para}, {surface: picar, sense: picar}, {surface: la, sense: el}, {surface: cebolla, sense: cebolla}]
-      reverse: (Pásame|Dame|Alcánzame) el cuchillo para picar la cebolla
+      reverse: |-
+        (Pásame|Dame|Alcánzame) el cuchillo para picar la cebolla
+        Pásenme el cuchillo para picar la cebolla
   translations:
     en: |-
       (Pass|Hand|Give) me the knife to (chop|cut|dice) the onion.
@@ -386,6 +401,7 @@ sentences:
       reverse: |-
         Con ese (pulóver|pullover) nuevo Yunior está en talla
         Yunior está en talla con ese (pulóver|pullover) nuevo
+        Con esa camiseta nueva, Yunior está en talla
   translations:
     en: |-
       In that new (T-shirt|tee shirt|shirt), Yunior (looks sharp|is looking sharp|looks cool|looks good|is in style).
@@ -408,9 +424,13 @@ sentences:
     es-Latn/standard:
       text: 'No cojas lucha, mi''jo: todo va a salir bien.'
       tokens: [{surface: 'No', sense: 'no'}, {surface: cojas, sense: coger, form: 'form:imp-neg'}, {surface: lucha, sense: lucha}, {surface: mi'jo, sense: mijo}, {surface: todo, sense: todo}, {surface: va, sense: ir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: salir, sense: salir}, {surface: bien, sense: bien}]
-      reverse: No (cojas lucha|te preocupes) (mi'jo|mi hijo|mijito) todo va a salir bien
+      reverse: |-
+        No (cojas lucha|te preocupes) (mi'jo|mi hijo|mijito) todo va a salir bien
+        No cojas lucha, mi'jo: todo saldrá bien
   translations:
-    en: '(Don''t|Do not) (stress|worry|sweat it), (son|honey|sweetie|kiddo): (everything''s|everything is) going to (turn out|be|work out) (fine|all right|okay|OK).'
+    en: |-
+      (Don't|Do not) (stress|worry|sweat it), (son|honey|sweetie|kiddo): (everything's|everything is) going to (turn out|be|work out) (fine|all right|okay|OK).
+      Don't worry, son: everything will turn out fine.
 - id: s.u23.34
   node: es.u23.en-talla
   register: colloquial
@@ -453,10 +473,10 @@ stories:
   node: es.u23.story
   title: {en: Abuela's sayings}
   characters:
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: pepe, name: {es-Latn/standard: Abuelo Pepe}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: pepe, speaker: m, name: {es-Latn/standard: Abuelo Pepe}}
   steps:
   - line:
       forms:

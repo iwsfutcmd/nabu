@@ -5,6 +5,7 @@
  * encrypted by Web Push in the learner's UI locale.
  */
 import { createDecipheriv, createECDH, createHmac } from "node:crypto";
+import { DEFAULT_LEAGUE, leagueWeek } from "@nabu/core/game";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
@@ -150,7 +151,9 @@ test("with an account: a username, the league, and a reminder by Web Push", asyn
     { endpoint, p256dh: ua.getPublicKey("base64url"), auth: auth.toString("base64url") },
   );
 
-  await seedLog(page, [...practice(now - 2 * DAY, 8), ...practice(now - DAY, 8), ...practice(now - 3_600_000, 8)]);
+  // The last practice is in this league week, also in the first hour after it starts (Monday 00:00 UTC).
+  const recent = Math.max(now - 3_600_000, leagueWeek(now, DEFAULT_LEAGUE).start);
+  await seedLog(page, [...practice(now - 2 * DAY, 8), ...practice(now - DAY, 8), ...practice(recent, 8)]);
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   await page.goto(app);

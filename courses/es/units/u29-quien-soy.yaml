@@ -113,7 +113,9 @@ sentences:
     es-Latn/standard:
       text: Abuela dijo que yo era más americano que cubano.
       tokens: [{surface: Abuela, sense: abuela}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: yo, sense: yo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: más, sense: más}, {surface: americano, sense: americano}, {surface: que, sense: que.than}, {surface: cubano, sense: cubano}]
-      reverse: (Abuela|La abuela|Mi abuela) dijo que [yo] era más americano que cubano
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) dijo que [yo] era más americano que cubano
+        Abuela dijo que yo soy más americano que cubano
   translations:
     en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) said [that] I was more American than Cuban.
 - id: s.u29.8
@@ -124,7 +126,9 @@ sentences:
       tokens: [{surface: En, sense: en}, {surface: casa, sense: casa}, {surface: hablamos, sense: hablar, form: 'form:pres-1p'}, {surface: espanglish, sense: espanglish}, {surface: 'y', sense: 'y'}, {surface: eso, sense: ese}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: bien, sense: bien}]
       reverse: En (casa|la casa) [nosotros] hablamos (espanglish|spanglish) y eso está bien
   translations:
-    en: At home we speak Spanglish, and (that's|that is) (fine|okay|OK|all right|alright).
+    en: |-
+      At home we speak Spanglish, and (that's|that is) (fine|okay|OK|all right|alright).
+      We speak Spanglish at home, and that's fine.
 - id: s.u29.9
   node: es.u29.espanglish
   persons: {speaker: f}
@@ -171,7 +175,9 @@ sentences:
     es-Latn/standard:
       text: Yunior dijo que no entendía ni una palabra de mi espanglish.
       tokens: [{surface: Yunior, sense: yunior}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: entendía, sense: entender, form: 'form:impf'}, {surface: ni, sense: ni}, {surface: una, sense: un}, {surface: palabra, sense: palabra}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: espanglish, sense: espanglish}]
-      reverse: Yunior dijo que no entendía ni una palabra de mi (espanglish|spanglish)
+      reverse: |-
+        Yunior dijo que no entendía ni una palabra de mi (espanglish|spanglish)
+        Yunior dijo que no entiende ni una palabra de mi espanglish
   translations:
     en: Yunior said [that] he (didn't|did not|couldn't|could not) understand (a single|one single|one|a) word of my Spanglish.
 - id: s.u29.14
@@ -295,7 +301,9 @@ sentences:
       tokens: [{surface: Del, sense: del}, {surface: banco, sense: banco}, {surface: me, sense: me}, {surface: llamaron, sense: llamar, form: 'form:pret-3p'}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: les, sense: le}, {surface: devolví, sense: devolver, form: 'form:pret-1s'}, {surface: la, sense: el}, {surface: llamada, sense: llamada}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: tarde, sense: tarde}]
       reverse: (Del banco me llamaron|Me llamaron del banco) y [yo] les devolví la llamada (por la tarde|en la tarde)
   translations:
-    en: (They called me from the bank|The bank called me), and I called them back in the afternoon.
+    en: |-
+      (They called me from the bank|The bank called me), and I called them back in the afternoon.
+      The bank called me, and I returned their call in the afternoon.
 - id: s.u29.26
   node: es.u29.te-devuelvo
   forms:
@@ -369,14 +377,18 @@ sentences:
       tokens: [{surface: Le, sense: le}, {surface: dije, sense: decir, form: 'form:pret-1s'}, {surface: que, sense: que}, {surface: era, sense: ser, form: 'form:impf'}, {surface: cubano, sense: cubano}, {surface: pero, sense: pero}, {surface: que, sense: que}, {surface: había, sense: haber, form: 'form:impf'}, {surface: nacido, sense: nacer, form: 'form:part'}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
       reverse: '[Yo] le dije que (era|soy) cubano pero (que había nacido|que nací) en Miami'
   translations:
-    en: I told (her|him|you) [that] I was Cuban, but [that] I (had been|was) born in Miami.
+    en: |-
+      I told (her|him|you) [that] I was Cuban, but [that] I (had been|was) born in Miami.
+      I told her that I was Cuban, but that I'd been born in Miami.
 - id: s.u29.34
   node: es.u29.me-dijo
   forms:
     es-Latn/standard:
       text: Después me preguntó si podía trabajar los sábados.
       tokens: [{surface: Después, sense: después}, {surface: me, sense: me}, {surface: preguntó, sense: preguntar, form: 'form:pret-3s'}, {surface: si, sense: si}, {surface: podía, sense: poder, form: 'form:impf'}, {surface: trabajar, sense: trabajar}, {surface: los, sense: el}, {surface: sábados, sense: sábado}]
-      reverse: (Después|Luego) me preguntó si [yo] podía trabajar los sábados
+      reverse: |-
+        (Después|Luego) me preguntó si [yo] podía trabajar los sábados
+        Después me preguntó si puedo trabajar los sábados
   translations:
     en: (Then|After that|Afterwards|Later) (she|he) asked me (if|whether) I could work [on] Saturdays.
 - id: s.u29.35
@@ -385,7 +397,9 @@ sentences:
     es-Latn/standard:
       text: Me dijo que me llamarían la semana que viene.
       tokens: [{surface: Me, sense: me}, {surface: dijo, sense: decir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: me, sense: me}, {surface: llamarían, sense: llamar, form: 'form:cond'}, {surface: la, sense: el}, {surface: semana, sense: semana}, {surface: que, sense: que}, {surface: viene, sense: venir, form: 'form:pres-3s'}]
-      reverse: '[(Ella|Él)] me dijo que me llamarían la (semana que viene|próxima semana)'
+      reverse: |-
+        [(Ella|Él)] me dijo que me llamarían la (semana que viene|próxima semana)
+        Me dijo que me iban a llamar la semana que viene
   translations:
     en: (She|He) (told me|said) [that] (they would|they'd) call me next week.
 - id: s.u29.36
@@ -394,7 +408,9 @@ sentences:
     es-Latn/standard:
       text: Mami me pidió que le contara todo de la entrevista.
       tokens: [{surface: Mami, sense: mami}, {surface: me, sense: me}, {surface: pidió, sense: pedir, form: 'form:pret-3s'}, {surface: que, sense: que}, {surface: le, sense: le}, {surface: contara, sense: contar, form: 'form:subj-past'}, {surface: todo, sense: todo}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: entrevista, sense: entrevista}]
-      reverse: (Mami|Mamá|Mi mamá|Mi mami) me pidió que le contara todo (de|sobre) la entrevista
+      reverse: |-
+        (Mami|Mamá|Mi mamá|Mi mami) me pidió que le contara todo (de|sobre) la entrevista
+        Mami me pidió que le contase todo de la entrevista
   translations:
     en: (Mom|Mommy|Mum|My mom) asked me to tell her (everything|all) about the interview.
 stories:
@@ -402,8 +418,8 @@ stories:
   node: es.u29.story
   title: {en: 'I''ll call you back'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: yunior, name: {es-Latn/standard: Yunior}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: yunior, speaker: m, name: {es-Latn/standard: Yunior}}
   steps:
   - line:
       forms:

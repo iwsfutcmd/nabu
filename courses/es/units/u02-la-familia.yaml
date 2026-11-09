@@ -50,7 +50,9 @@ sentences:
     es-Latn/standard:
       text: Esta es mi mami.
       tokens: [{surface: Esta, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: mami, sense: mami}]
-      reverse: Esta es mi (mami|mamá)
+      reverse: |-
+        Esta es mi (mami|mamá)
+        Ella es mi mami.
   translations:
     en: This is my (mom|mommy|mother|mum|mama).
 - id: s.u02.2
@@ -68,7 +70,9 @@ sentences:
     es-Latn/standard:
       text: Mami, este es Yasiel.
       tokens: [{surface: Mami, sense: mami}, {surface: este, sense: este}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Yasiel, sense: yasiel}]
-      reverse: (Mami|Mamá) este es Yasiel
+      reverse: |-
+        (Mami|Mamá) este es Yasiel
+        Mami, él es Yasiel.
   translations:
     en: (Mom|Mommy|Mother|Mum|Mama), this is Yasiel.
 - id: s.u02.4
@@ -91,13 +95,16 @@ sentences:
     en: |-
       My (dad|daddy|father) is Cuban and my (mom|mommy|mother|mum) is from Miami.
       My (dad's|daddy's|father's) Cuban and my (mom's|mommy's|mother's|mum's) from Miami.
+      My dad is Cuban and my mom comes from Miami.
 - id: s.u02.6
   node: es.u02.mami-y-papi
   forms:
     es-Latn/standard:
       text: ¿Quién es ella?
       tokens: [{surface: Quién, sense: quién}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: ella, sense: ella}]
-      reverse: (Quién es ella|Y ella quién es)
+      reverse: |-
+        (Quién es ella|Y ella quién es)
+        ¿Ella quién es?
   translations:
     en: |-
       Who is she?
@@ -145,7 +152,9 @@ sentences:
     es-Latn/standard:
       text: Mi hermana se llama Lili.
       tokens: [{surface: Mi, sense: mi}, {surface: hermana, sense: hermano}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: Lili, sense: lili}]
-      reverse: Mi hermana se llama Lili
+      reverse: |-
+        Mi hermana se llama Lili
+        El nombre de mi hermana es Lili.
   translations:
     en: |-
       My sister's name is Lili.
@@ -162,6 +171,8 @@ sentences:
     en: |-
       Do you have (siblings|brothers and sisters|any siblings|any brothers and sisters|brothers|any brothers)?
       Have you got (siblings|brothers and sisters|any siblings|any brothers and sisters|brothers|any brothers)?
+      Do you have any brothers or sisters?
+      Do you have brothers or sisters?
 - id: s.u02.12
   node: es.u02.tengo
   forms:
@@ -180,13 +191,18 @@ sentences:
     es-Latn/standard:
       text: ¿Cómo se llama tu hermano?
       tokens: [{surface: Cómo, sense: cómo}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: hermano, sense: hermano}]
-      reverse: (Cómo se llama (tu|su) hermano|Cuál es el nombre de (tu|su) hermano)
+      reverse: |-
+        (Cómo se llama (tu|su) hermano|Cuál es el nombre de (tu|su) hermano)
+        ¿Tu hermano cómo se llama?
+        ¿Su hermano cómo se llama?
   translations:
     en: |-
       What's your brother's name?
       What is your brother's name?
       What's your brother called?
       What is your brother called?
+      What is your brother named?
+      What's your brother named?
 - id: s.u02.14
   node: es.u02.abuelo-pepe
   forms:
@@ -209,6 +225,7 @@ sentences:
     en: |-
       Lili's (grandfather|grandpa|granddad|grandad) is from Cuba.
       Lili's (grandfather's|grandpa's|granddad's|grandad's) from Cuba.
+      Lili's grandfather comes from Cuba.
 - id: s.u02.16
   node: es.u02.abuelo-pepe
   forms:
@@ -237,9 +254,14 @@ sentences:
     es-Latn/standard:
       text: ¿Tu abuelo es de Cuba?
       tokens: [{surface: Tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
-      reverse: ((Tu|Su) abuelo es de Cuba|Es (tu|su) abuelo de Cuba)
+      reverse: |-
+        ((Tu|Su) abuelo es de Cuba|Es (tu|su) abuelo de Cuba)
+        ¿Es de Cuba tu abuelo?
+        ¿Es de Cuba su abuelo?
   translations:
-    en: Is your (grandfather|grandpa|granddad|grandad) from Cuba?
+    en: |-
+      Is your (grandfather|grandpa|granddad|grandad) from Cuba?
+      Does your grandfather come from Cuba?
 - id: s.u02.19
   node: es.u02.tia-marisol
   forms:
@@ -262,6 +284,7 @@ sentences:
     en: |-
       My aunt Marisol is from Havana.
       My aunt Marisol's from Havana.
+      My aunt Marisol comes from Havana.
 - id: s.u02.21
   node: es.u02.tia-marisol
   forms:
@@ -279,7 +302,9 @@ sentences:
     es-Latn/standard:
       text: Yunior es el hijo de Marisol.
       tokens: [{surface: Yunior, sense: yunior}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: hijo, sense: hijo}, {surface: de, sense: de}, {surface: Marisol, sense: marisol}]
-      reverse: Yunior es el hijo de Marisol
+      reverse: |-
+        Yunior es el hijo de Marisol
+        Yunior es hijo de Marisol.
   translations:
     en: |-
       Yunior is Marisol's son.
@@ -290,7 +315,10 @@ sentences:
     es-Latn/standard:
       text: Su hijo se llama Yunior.
       tokens: [{surface: Su, sense: su}, {surface: hijo, sense: hijo}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: Yunior, sense: yunior}]
-      reverse: Su hijo se llama Yunior
+      reverse: |-
+        Su hijo se llama Yunior
+        El nombre de su hijo es Yunior.
+        El hijo de ella se llama Yunior.
   translations:
     en: |-
       (Her|His|Their|Your) son's name is Yunior.
@@ -308,6 +336,7 @@ sentences:
       My cousin Yunior is very Cuban.
       My cousin Yunior's very Cuban.
       My cousin Yunior is really Cuban.
+      My cousin Yunior's really Cuban.
 - id: s.u02.25
   node: es.u02.nosotros
   persons: {speaker: m}
@@ -354,7 +383,9 @@ sentences:
       tokens: [{surface: Mis, sense: mi}, {surface: abuelos, sense: abuelo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
       reverse: Mis abuelos son de Cuba
   translations:
-    en: My (grandparents|grandma and grandpa|grandpa and grandma) are from Cuba.
+    en: |-
+      My (grandparents|grandma and grandpa|grandpa and grandma) are from Cuba.
+      My grandparents come from Cuba.
 - id: s.u02.29
   node: es.u02.nosotros
   forms:
@@ -363,7 +394,9 @@ sentences:
       tokens: [{surface: Mi, sense: mi}, {surface: tía, sense: tío}, {surface: 'y', sense: 'y'}, {surface: su, sense: su}, {surface: hijo, sense: hijo}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: La, sense: el}, {surface: Habana, sense: habana}]
       reverse: Mi tía y su hijo son de La Habana
   translations:
-    en: My aunt and her son are from Havana.
+    en: |-
+      My aunt and her son are from Havana.
+      My aunt and her son come from Havana.
 - id: s.u02.30
   node: es.u02.nosotros
   persons: {addressee: pl}
@@ -371,11 +404,14 @@ sentences:
     es-Latn/standard:
       text: ¿Ustedes son de Miami?
       tokens: [{surface: Ustedes, sense: ustedes}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Miami, sense: miami}]
-      reverse: (Ustedes son de Miami|Son [ustedes] de Miami)
+      reverse: |-
+        (Ustedes son de Miami|Son [ustedes] de Miami)
+        ¿Son de Miami ustedes?
   translations:
     en: |-
       Are you from Miami?
       Are (you all|you guys|y'all) from Miami?
+      Do you come from Miami?
 - id: s.u02.31
   node: es.u02.nosotros
   persons: {addressee: pl}
@@ -383,7 +419,9 @@ sentences:
     es-Latn/standard:
       text: ¿Ustedes tienen hijos?
       tokens: [{surface: Ustedes, sense: ustedes}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: hijos, sense: hijo}]
-      reverse: (Ustedes tienen hijos|Tienen [ustedes] hijos)
+      reverse: |-
+        (Ustedes tienen hijos|Tienen [ustedes] hijos)
+        ¿Tienen hijos ustedes?
   translations:
     en: |-
       Do you have (children|kids|any children|any kids)?
@@ -395,9 +433,15 @@ sentences:
     es-Latn/standard:
       text: ¿Tus padres son de Cuba?
       tokens: [{surface: Tus, sense: tu}, {surface: padres, sense: padre}, {surface: son, sense: ser, form: 'form:pres-3p'}, {surface: de, sense: de}, {surface: Cuba, sense: cuba}]
-      reverse: ((Tus|Sus) (padres|papás) son de Cuba|Son (tus|sus) (padres|papás) de Cuba)
+      reverse: |-
+        ((Tus|Sus) (padres|papás) son de Cuba|Son (tus|sus) (padres|papás) de Cuba)
+        ¿Son de Cuba tus padres?
+        ¿Son de Cuba sus padres?
+        ¿Son de Cuba tus papás?
   translations:
-    en: Are your parents from Cuba?
+    en: |-
+      Are your parents from Cuba?
+      Do your parents come from Cuba?
 - id: s.u02.33
   node: es.u02.los-puros
   forms:
@@ -414,7 +458,12 @@ sentences:
     es-Latn/standard:
       text: ¿Cómo están los puros?
       tokens: [{surface: Cómo, sense: cómo}, {surface: están, sense: estar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: puros, sense: puro}]
-      reverse: Cómo están (los puros|tus puros|tus padres|tus papás|sus padres|sus papás)
+      reverse: |-
+        Cómo están (los puros|tus puros|tus padres|tus papás|sus padres|sus papás)
+        ¿Cómo están tus viejos?
+        ¿Cómo están los viejos?
+        ¿Los puros cómo están?
+        ¿Tus padres cómo están?
   translations:
     en: |-
       How are (your folks|the folks|your parents|your mom and dad|your old folks)?
@@ -444,12 +493,12 @@ stories:
   node: es.u02.story
   title: {en: Meet the family}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: yasiel, name: {es-Latn/standard: Yasiel}}
-  - {id: papi, name: {es-Latn/standard: Papi}}
-  - {id: mami, name: {es-Latn/standard: Mami}}
-  - {id: lili, name: {es-Latn/standard: Lili}}
-  - {id: cachita, name: {es-Latn/standard: Abuela Cachita}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: yasiel, speaker: m, name: {es-Latn/standard: Yasiel}}
+  - {id: papi, speaker: m, name: {es-Latn/standard: Papi}}
+  - {id: mami, speaker: f, name: {es-Latn/standard: Mami}}
+  - {id: lili, speaker: f, name: {es-Latn/standard: Lili}}
+  - {id: cachita, speaker: f, name: {es-Latn/standard: Abuela Cachita}}
   steps:
   - line:
       speaker: yasiel

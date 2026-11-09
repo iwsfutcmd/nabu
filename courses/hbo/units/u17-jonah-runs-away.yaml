@@ -210,7 +210,11 @@ sentences:
       text: וַיַּעַל אֶל־הָהָר׃
       tokens: [{surface: וַיַּעַל, sense: alah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyáʿal}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, sense: har, morphs: [
             {surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
-      reverse: ויעל אל ההר
+      reverse: |-
+        ויעל אל ההר
+        עלה אל ההר
+        הוא עלה אל ההר
+        והוא עלה אל ההר
   translations:
     en: '[(And|Then)] he went up (to|onto) the (mountain|hill).'
 - id: s.17.13
@@ -243,7 +247,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיִּבְרַח׃
       tokens: [{surface: וַיִּבְרַח, sense: barach, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiḇraḥ}}]
-      reverse: ויברח
+      reverse: |-
+        ויברח
+        ברח
+        הוא ברח
+        והוא ברח
   translations:
     en: |-
       [(And|Then|So)] he fled.
@@ -274,7 +282,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיֵּרֶד יָפוֹ׃
       tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: יָפוֹ, sense: yafo, readings: {tiberian: yāp̄ô}}]
-      reverse: וירד יפו
+      reverse: |-
+        וירד יפו
+        ירד יפו
+        הוא ירד יפו
+        והוא ירד יפו
   translations:
     en: |-
       [(And|Then)] he went down to Joppa.
@@ -286,7 +298,11 @@ sentences:
       text: וַיֵּרֶד מִן־הָהָר׃
       tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָהָר, sense: har, morphs: [
             {surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
-      reverse: וירד מן ההר
+      reverse: |-
+        וירד מן ההר
+        ירד מן ההר
+        הוא ירד מן ההר
+        והוא ירד מן ההר
   translations:
     en: '[(And|Then)] he came down from the (mountain|hill).'
 - id: s.17.20
@@ -297,7 +313,9 @@ sentences:
       tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
           form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
               kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
-      reverse: ויקם יונה (לברח|לברוח) תרשישה
+      reverse: |-
+        ויקם יונה (לברח|לברוח) תרשישה
+        ויונה קם (לברח|לברוח) תרשישה
   translations:
     en: |-
       But Jonah got up to flee to Tarshish.
@@ -319,7 +337,11 @@ sentences:
     hbo-Hebr/tiberian:
       text: וַיִּמְצָא אֳנִיָּה׃
       tokens: [{surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אֳנִיָּה, sense: oniyyah, readings: {tiberian: ʾŏniyyâ}}]
-      reverse: וימצא אניה
+      reverse: |-
+        וימצא אניה
+        מצא אניה
+        הוא מצא אניה
+        והוא מצא אניה
   translations:
     en: '[(And|Then)] he found a ship.'
 - id: s.17.23
@@ -340,7 +362,11 @@ sentences:
       text: וַיִּתֵּן שְׂכָרָהּ׃
       tokens: [{surface: וַיִּתֵּן, sense: natan, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, sense: sakhar, morphs: [{surface: שְׂכָרָ, kc: 'sense:sakhar'}, {surface: הּ,
               kc: 'form:sfx-3fs'}], readings: {tiberian: śəḵārāh}}]
-      reverse: ויתן שכרה
+      reverse: |-
+        ויתן שכרה
+        נתן שכרה
+        הוא נתן שכרה
+        והוא נתן שכרה
   translations:
     en: |-
       [(And|Then)] he paid (its|the) fare.
@@ -456,8 +482,8 @@ stories:
           text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה וַיֵּרֶד׃
           tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
               form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
-                  kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:cstr', morphs: [{surface: מִ, kc: 'sense:min'}, {
-                  surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד,
+                  kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'},
+                {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד,
               sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}]
       translations:
         en: But Jonah got up to flee to Tarshish, away from the LORD.
@@ -474,7 +500,7 @@ stories:
               readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'},
                 {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bāh}}, {surface: לָבוֹא, sense: bo, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: בוֹא, kc: 'sense:bo'}], readings: {
                 tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה,
-              sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:cstr',
+              sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr',
               morphs: [{surface: מִ, kc: 'sense:min'}, {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {
                 tiberian: ʾăḏōnāy}}]
       translations:

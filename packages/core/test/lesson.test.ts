@@ -31,7 +31,7 @@ import {
 } from "../src/lesson/index.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
-import { makeMatchPairs, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { makeMatchPairs, makeTapL1L2, makeTapL2L1, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -70,13 +70,17 @@ const rightAnswer = (ex: Exercise): Response => {
     case "story-choose":
     case "story-complete":
     case "tone-identify":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: ex.answer };
     case "match-pairs":
+    case "letter-pairs":
       return { tag: "pairs", mistakes: 0 };
     case "translate-tap.l2-l1":
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -106,6 +110,8 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "tone-identify":
       return { tag: "choice", index: (ex.answer + 1) % ex.tones.length };
@@ -116,6 +122,7 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: [...ex.solution].reverse().length > 1 ? [...ex.solution].reverse() : ex.tiles.map((_, i) => i).filter((i) => !ex.solution.includes(i)) };
     case "translate-type.l1-l2":
     case "complete-translation":
@@ -128,9 +135,27 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "speak.tier-0":
       return { tag: "self-rating", rating: "again" };
     case "match-pairs":
+    case "letter-pairs":
       return undefined;
   }
 };
+
+describe.each(VARIANTS)("tiles: %s %s", (id, orthography) => {
+  const course = loadCourse(id, orthography);
+  const grader = createGrader(course);
+  // Every sentence, not a lesson's sample: tiles in their order are right in both directions,
+  // also where the words are joined by a hyphen or a maqaf alone (מִן־הַגָּן).
+  it("grades every sentence's tiles, put in order, as right", () => {
+    const ctx = { course, rng: seededRng(3), introduced: [] };
+    for (const s of course.units.flatMap((u) => u.sentences)) {
+      for (const ex of [makeTapL1L2(ctx, s), makeTapL2L1(ctx, s)]) {
+        if (ex === undefined) continue;
+        const right = gradeExercise(ex, { tag: "tiles", order: ex.solution }, grader);
+        expect(isCorrect(right.verdict), `${ex.id}: ${right.verdict} ${JSON.stringify(right.notes)}`).toBe(true);
+      }
+    }
+  }, 60_000);
+});
 
 describe.each(VARIANTS)("lessons: %s %s", (id, orthography) => {
   const course = loadCourse(id, orthography);
@@ -182,7 +207,8 @@ describe("template coverage", () => {
     }
     // Listening templates need audio and come from the planner (test/listening.test.ts); story
     // questions come from stories (test/story.test.ts); scored speaking and tones are opt-in (below).
-    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify"]);
+    // Script templates come from script nodes alone (test/script.test.ts).
+    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "letter-read", "letter-pairs", "word-read", "word-write"]);
     expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
   });
 
@@ -570,5 +596,113 @@ describe("affixes that carry meaning on the words a course inflects (ADR 0081)",
     expect(grader.grade(arabizi, "(el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)", "el masa bt2ra").verdict).toBe("WRONG_WORD");
     // Another vowel after the same prefix is a typo.
     expect(grader.grade(arabizi, "(el|l|il|bel|bil) (masa|masa2) (b2ra|be2ra|bi2ra|b2ara)", "el masa bu2ra").verdict).toBe("CORRECT_WITH_TYPO");
+  });
+});
+
+describe("contrasts limited to the forms a word is pinned as (ADR 0084)", () => {
+  it("makes a Biblical Hebrew verb's person prefix wrong, and leaves nouns and other typos alone", () => {
+    const hebrew = "hbo-Hebr/tiberian";
+    const grader = createGrader(loadCourse("hbo", hebrew));
+    const graded = (accept: string, answer: string): [string, readonly string[]] => {
+      const g = grader.grade(hebrew, accept, answer);
+      return [g.verdict, g.notes];
+    };
+    // "and she fled" for "and he fled" (wayyiqtol, Jonah 1:3), though it spells no word of the course.
+    expect(graded("ויברח", "ותברח")).toEqual(["WRONG_WORD", ["contrast-prefix"]]);
+    // A slip inside the verb is a typo; so is a noun's first letter (the article is no person prefix).
+    expect(graded("ויברח", "ויבברח")).toEqual(["CORRECT_WITH_TYPO", []]);
+    expect(graded("השמים", "ישמים")).toEqual(["CORRECT_WITH_TYPO", []]);
+    // An infinitive's -ôṯ is no perfect ending, though its verb has perfects in the course.
+    expect(graded("בהיותם", "בהיוותם")).toEqual(["CORRECT_WITH_TYPO", []]);
+  });
+
+  it("accepts the other order of subject and predicate where Biblical Hebrew has it and the English is the same", () => {
+    const hebrew = "hbo-Hebr/tiberian";
+    const course = loadCourse("hbo", hebrew);
+    const grader = createGrader(course);
+    const reverse = (id: string): string => {
+      const s = course.units.flatMap((u) => u.sentences).find((x) => x.id === id);
+      const accept = s?.forms[hebrew]?.reverse;
+      if (accept === undefined) throw new Error(`no reverse set for ${id}`);
+      return accept;
+    };
+    // Another order is a correct alternative. A nominal clause (Joüon-Muraoka § 154f): הָאוֹר טוֹב,
+    // and טוֹב הָאוֹר as Gen 1:4 has it.
+    expect(grader.grade(hebrew, reverse("s.01.9"), "טוב האור").verdict).toBe("CORRECT_ALT");
+    // A participle clause and a yiqtol (§ 154f, § 155k): either side of the subject.
+    expect(grader.grade(hebrew, reverse("s.03.20"), "מתהלך האדם בתוך הגן").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.15.18"), "יהוה יסגרך בידי").verdict).toBe("CORRECT_ALT");
+    // What the English does not decide (ADR 0085): "the woman said" is also X-qatal, "he fled" a
+    // bare qatal with or without its pronoun.
+    expect(grader.grade(hebrew, reverse("s.04.29"), "האשה אמרה").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.17.15"), "ברח").verdict).toBe("CORRECT_ALT");
+    expect(grader.grade(hebrew, reverse("s.17.15"), "והוא ברח").verdict).toBe("CORRECT_ALT");
+    const wrong = (id: string, answer: string): void =>
+      expect(grader.grade(hebrew, reverse(id), answer).verdict, `${id} ${answer}`).not.toMatch(/^CORRECT/u);
+    // wayyiqtol's vav never leaves its verb: a subject first would need another form (X-qatal).
+    wrong("s.03.22", "האדם ויתחבא");
+    // Not where the English would change: identity ("my brother is Cain"), a wish in a plain
+    // yiqtol ("the LORD will bless you"), and what reads unpointed as a construct chain ("in the
+    // man's garden" for בגן האדם).
+    wrong("s.05.7", "אחי קין");
+    wrong("s.20.25", "יהוה יברכך");
+    wrong("s.03.2", "בגן האדם");
+    // A vav on a qatal makes it a weqatal, "and he will flee".
+    wrong("s.17.15", "וברח");
+  });
+});
+
+describe("Toki Pona in sitelen pona (ADR 0086)", () => {
+  const SITELEN_PONA = "tok-Qaap/sitelen-pona";
+
+  it("grades sitelen Lasina typed into a sitelen pona answer, names against their cartouches", () => {
+    const course = loadCourse("tok", SITELEN_PONA);
+    const grader = createGrader(course);
+    const sentence = allSentences(course).find((s) => s.id === "s.u01.12");
+    const accept = sentence?.forms[SITELEN_PONA]?.reverse;
+    if (accept === undefined) throw new Error("no sitelen pona accept set for s.u01.12");
+    // sina jan Pita: the logographs, or the Latin words, name included.
+    expect(grader.grade(SITELEN_PONA, accept, "sina jan Pita").verdict).toBe("CORRECT");
+    expect(grader.grade(SITELEN_PONA, accept, surfaceOf(sentence?.forms[SITELEN_PONA]?.text as TaggedText)).verdict).toBe("CORRECT");
+    // Another word is another logograph: wrong, with no typo tolerance.
+    expect(isCorrect(grader.grade(SITELEN_PONA, accept, "sina jan Lina").verdict)).toBe(false);
+  });
+
+  it("accepts the Toki Pona answers an English prompt leaves open, and no other (ADR 0085)", () => {
+    const LATIN = "tok-Latn/standard";
+    const course = loadCourse("tok", LATIN);
+    const grader = createGrader(course);
+    const reverse = (text: string): string => {
+      const s = allSentences(course).find((x) => surfaceOf(x.forms[LATIN]?.text as TaggedText) === text);
+      const accept = s?.forms[LATIN]?.reverse;
+      if (accept === undefined) throw new Error(`no sentence ${text}`);
+      return accept;
+    };
+    const right = (text: string, answer: string): boolean => isCorrect(grader.grade(LATIN, reverse(text), answer).verdict);
+    // "My mother speaks Toki Pona": mama alone is a mother too; "We're going up the hill": mi alone is we.
+    expect(right("mama meli mi li toki pona.", "mama mi li toki pona")).toBe(true);
+    expect(right("mi mute li tawa sewi nena.", "mi tawa sewi nena")).toBe(true);
+    // A plain yes/no question either way; kule before a colour; ali, pu's other spelling of ale.
+    expect(right("pilin sina li pona ala pona?", "sina pilin ala pilin pona")).toBe(true);
+    expect(right("sewi li laso.", "sewi li kule laso")).toBe(true);
+    expect(right("ale li pona.", "ali li pona")).toBe(true);
+    // "I'm eating" decides one person: mi mute is we.
+    expect(right("mi moku.", "mi mute li moku")).toBe(false);
+  });
+
+  it("asks a logograph's word among words in Latin letters, and never splits a cartouche", () => {
+    const course = loadCourse("tok", SITELEN_PONA);
+    const reads = lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, { seed: 3 })).filter((ex) => ex.template === "char-read");
+    expect(reads.length).toBeGreaterThan(0);
+    for (const ex of reads) {
+      if (ex.template !== "char-read") continue;
+      expect(ex.options.every((o) => o.orthography === "tok-Latn/standard")).toBe(true);
+      expect(ex.prompt.tokens).toHaveLength(1);
+    }
+    for (const s of allSentences(course)) {
+      for (const t of s.forms[SITELEN_PONA]?.text.tokens ?? []) {
+        if (t.kind === "word" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
+      }
+    }
   });
 });

@@ -2,6 +2,8 @@
 
 - Status: Proposed
 - Date: 2026-11-08
+- Amended by: [0084](0084-hbo-references.md) (the phonology checked against Khan; typo contrasts by form),
+  [0089](0089-hbo-piper-voice.md) (the voice: Piper's Arabic voice, Arabic-bent consonants)
 
 ## Context
 
@@ -42,8 +44,9 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
   marks set and shows the consonantal text, as a scroll has it.
 - Maqaf normalizes to a space, so ʾeṯ-hāʾôr can be typed with a hyphen, a maqaf or a space.
 - Typo contrasts (ADR 0066, REVIEW): pronoun suffixes (סוסי / סוסו), perfect endings (‑תי / ‑נו /
-  ‑תם) and the pronouns (הוא / היא, אתה / את) are WRONG_WORD a letter apart. The imperfect's
-  person prefixes (אשמר / ישמר) are not endings; the course's lexicon catches those it knows.
+  ‑תם) and the pronouns (הוא / היא) are WRONG_WORD a letter apart (אתה / את are one member: apart,
+  a plene 2ms perfect would read as the pronoun). The person prefixes (אשמר / ישמר), the
+  imperfect's endings and agreement are sets limited by form ([ADR 0084](0084-hbo-references.md)).
 - Keyboard: the SI 1452 layout for the typo model (profiles/keyboards/he.yaml).
 - Exemplars: CLDR `he`, plus sof pasuq. An `exemplarsExtra` entry that is punctuation now joins
   the punctuation set (the audit treated every extra as a letter).
@@ -77,7 +80,8 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
   `nabu.audio.course`), ending with a question mark or a full stop for the intonation. The text
   is never given to a synthesizer, so nothing can read it as Modern Hebrew.
 - The phonology follows Geoffrey Khan, *The Tiberian Pronunciation Tradition of Biblical Hebrew*
-  (2020):
+  (2020), as it was remembered here; [ADR 0084](0084-hbo-references.md) checks it against the book
+  and corrects it (silent shewa after a long vowel, the echo vowel, uvular resh, [ɟɟ], [χ], …):
   - qamets (gadol and qatan) [ɔ], pataḥ [a], segol [ɛ], ṣere [e], ḥireq [i], ḥolem [o], qibbuṣ
     and shureq [u];
   - vowel length from stress and syllable: long when stressed or in an open syllable, short in
@@ -89,15 +93,18 @@ Nothing in the app said how a Hebrew-script course is written, graded or voiced:
 - eSpeak NG's Arabic phoneme table is the one with the gutturals, the emphatics and the spirants.
   What it lacks is approximated: segol is said [e], qamets as the backed [ɑ] of its emphatic
   context (measured: F1≈750 Hz, F2≈1110 Hz, apart from pataḥ and ḥolem), and resh as the
-  alveolar [r] Khan describes beside alveolars, everywhere (the table has no uvular trill).
+  table's trill (it has no uvular one; ADR 0084 found its `r` an approximant).
 - Two voices (`ar` and its `+f2` variant) share the items (ADR 0078); a line whose grammar says
   who speaks gets that voice. The clips are rule-based synthesis, CC0, labelled synthetic.
 - The QA trace of a phoneme clip is the phonemes it was given; there is no round-trip check
   (no recognizer knows Tiberian Hebrew).
+- The clips say each card once it is answered; there are no listening exercises. The course's
+  `facets` (ADR 0071) are every facet but listen: Biblical Hebrew is read, not heard, and a
+  synthetic voice is no ear-training (Ben, after the first draft).
 
 **The course** (`courses/hbo`):
 
-- Twenty units, A1 to A2: 695 sentences, 357 KCs, 90 lessons, twenty stories and nine roleplay
+- Twenty units, A1 to A2: 696 sentences, 358 KCs (after ADR 0084), 90 lessons, twenty stories and nine roleplay
   scenarios. Each unit's lessons teach the words of a passage of the Hebrew Bible, and its story
   reads the passage (as lzh does, ADR 0071). Lessons mix constructed sentences with quotations
   once their words are known.

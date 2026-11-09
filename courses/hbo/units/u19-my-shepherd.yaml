@@ -71,7 +71,7 @@ kcs:
     hbo-Hebr/tiberian: [גַּיְא]
 - id: sense:tsalmawet
   gloss:
-    en: deep darkness, the shadow of death
+    en: deep darkness (traditionally 'the shadow of death')
   forms:
     hbo-Hebr/tiberian: [צַלְמָוֶת]
 - id: sense:shevet
@@ -213,7 +213,7 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: מֵי מְנֻחוֹת
-      tokens: [{surface: מֵי, sense: mayim, form: 'form:cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl', readings: {tiberian: mənuḥôṯ}}]
+      tokens: [{surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl', readings: {tiberian: mənuḥôṯ}}]
       reverse: מי (מנחות|מנוחות)
   translations:
     en: |-
@@ -236,8 +236,9 @@ sentences:
   forms:
     hbo-Hebr/tiberian:
       text: עַל־מֵי מְנֻחוֹת יְנַהֲלֵנִי׃
-      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl', readings: {
-            tiberian: mənuḥôṯ}}, {surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yənahălḗnî}}]
+      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl',
+          readings: {tiberian: mənuḥôṯ}}, {surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: yənahălḗnî}}]
       reverse: על מי (מנחות|מנוחות) ינהלני
   translations:
     en: He (leads|guides) me (beside|to) (still|quiet|restful) waters.
@@ -259,7 +260,9 @@ sentences:
       text: נַפְשִׁי יְשׁוֹבֵב׃
       tokens: [{surface: נַפְשִׁי, sense: nefesh, morphs: [{surface: נַפְשִׁ, kc: 'sense:nefesh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: nap̄šî}}, {surface: יְשׁוֹבֵב, sense: shovev, form: 'form:yiqtol-3ms',
           readings: {tiberian: yəšôḇēḇ}}]
-      reverse: נפשי ישובב
+      reverse: |-
+        נפשי ישובב
+        ישובב נפשי
   translations:
     en: |-
       He restores my soul.
@@ -399,8 +402,10 @@ sentences:
     hbo-Hebr/tiberian:
       text: הֵמָּה יְנַחֲמֻנִי׃
       tokens: [{surface: הֵמָּה, sense: hem, readings: {tiberian: hḗmmâ}}, {surface: יְנַחֲמֻנִי, sense: nicham, form: 'form:yiqtol-3mp', morphs: [{surface: יְנַחֲמֻ, kc: 'sense:nicham'}, {surface: נִי,
-              kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămunî}}]
-      reverse: המה (ינחמני|ינחמוני)
+              kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămúnî}}]
+      reverse: |-
+        המה (ינחמני|ינחמוני)
+        (ינחמני|ינחמוני) המה
   translations:
     en: |-
       They comfort me.
@@ -454,7 +459,7 @@ stories:
           text: בִּנְאוֹת דֶּשֶׁא יַרְבִּיצֵנִי עַל־מֵי מְנֻחוֹת יְנַהֲלֵנִי׃
           tokens: [{surface: בִּנְאוֹת, sense: naah, form: 'form:pl-cstr', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: נְאוֹת, kc: 'sense:naah'}], readings: {tiberian: binʾôṯ}}, {surface: דֶּשֶׁא,
               sense: deshe, readings: {tiberian: déšeʾ}}, {surface: יַרְבִּיצֵנִי, sense: hirbits, form: 'form:yiqtol-3ms', morphs: [{surface: יַרְבִּיצֵ, kc: 'sense:hirbits'}, {surface: נִי, kc: 'form:sfx-1cs'}],
-              readings: {tiberian: yarbîṣḗnî}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah,
+              readings: {tiberian: yarbîṣḗnî}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah,
               form: 'form:pl', readings: {tiberian: mənuḥôṯ}}, {surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}],
               readings: {tiberian: yənahălḗnî}}]
       translations:
@@ -491,7 +496,7 @@ stories:
               morphs: [{surface: עִמָּדִ, kc: 'sense:immad'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}, {surface: שִׁבְטְךָ, sense: shevet, morphs: [{surface: שִׁבְטְ, kc: 'sense:shevet'},
                 {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šiḇṭəḵā}}, {surface: וּמִשְׁעַנְתֶּךָ, sense: mishenet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִשְׁעַנְתֶּ, kc: 'sense:mishenet'},
                 {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûmišʿantéḵā}}, {surface: הֵמָּה, sense: hem, readings: {tiberian: hḗmmâ}}, {surface: יְנַחֲמֻנִי, sense: nicham, form: 'form:yiqtol-3mp',
-              morphs: [{surface: יְנַחֲמֻ, kc: 'sense:nicham'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămunî}}]
+              morphs: [{surface: יְנַחֲמֻ, kc: 'sense:nicham'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămúnî}}]
       translations:
         en: Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.
   - choose:

@@ -150,12 +150,14 @@ sentences:
       reverse: |-
         Yozda [havo] juda issiq
         Yozda [havo] juda issiq boʻladi
+        Havo yozda juda issiq
     uz-Cyrl/standard:
       text: Ёзда ҳаво жуда иссиқ.
       tokens: [{surface: Ёзда, sense: yoz, morphs: [{surface: Ёз, kc: 'sense:yoz'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: жуда, sense: juda}, {surface: иссиқ, sense: issiq}]
       reverse: |-
         Ёзда [ҳаво] жуда иссиқ
         Ёзда [ҳаво] жуда иссиқ бўлади
+        Ҳаво ёзда жуда иссиқ
   translations:
     en: |-
       It('s| is) very hot in (summer|the summer).
@@ -185,12 +187,14 @@ sentences:
       reverse: |-
         Bahorda havo yaxshi
         Bahorda havo yaxshi boʻladi
+        Havo bahorda yaxshi
     uz-Cyrl/standard:
       text: Баҳорда ҳаво яхши.
       tokens: [{surface: Баҳорда, sense: bahor, morphs: [{surface: Баҳор, kc: 'sense:bahor'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: яхши, sense: yaxshi}]
       reverse: |-
         Баҳорда ҳаво яхши
         Баҳорда ҳаво яхши бўлади
+        Ҳаво баҳорда яхши
   translations:
     en: |-
       The weather is (good|nice) in (spring|the spring).
@@ -211,18 +215,24 @@ sentences:
         Кузда узум кўп
         Кузда узум кўп бўлади
   translations:
-    en: There are (a lot of|lots of|plenty of) grapes in (autumn|the autumn|fall|the fall).
+    en: |-
+      There are (a lot of|lots of|plenty of) grapes in (autumn|the autumn|fall|the fall).
+      In autumn there are a lot of grapes.
 - id: s.travel.11
   node: uz.weather.seasons
   forms:
     uz-Latn/standard:
       text: Bahor chiroyli fasl.
       tokens: [{surface: Bahor, sense: bahor}, {surface: chiroyli, sense: chiroyli}, {surface: fasl, sense: fasl}]
-      reverse: Bahor chiroyli fasl
+      reverse: |-
+        Bahor chiroyli fasl
+        Bahor goʻzal fasl
     uz-Cyrl/standard:
       text: Баҳор чиройли фасл.
       tokens: [{surface: Баҳор, sense: bahor}, {surface: чиройли, sense: chiroyli}, {surface: фасл, sense: fasl}]
-      reverse: Баҳор чиройли фасл
+      reverse: |-
+        Баҳор чиройли фасл
+        Баҳор гўзал фасл
   translations:
     en: Spring is a (beautiful|lovely|nice|pretty) season.
 - id: s.travel.12
@@ -254,7 +264,9 @@ sentences:
       tokens: [{surface: Менга, sense: men, morphs: [{surface: Мен, kc: 'sense:men'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: ёз, sense: yoz}, {surface: ёқади, sense: yoqmoq, morphs: [{surface: ёқ, kc: 'sense:yoqmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
       reverse: Менга ёз ёқади
   translations:
-    en: I like summer.
+    en: |-
+      I like summer.
+      I like the summer.
 - id: s.travel.14
   node: uz.travel.plans
   forms:
@@ -368,6 +380,9 @@ sentences:
         [Sizning] biletingiz bormi
         [Sening] bileting bormi
         (Sizda|Senda) bilet bormi
+        Chiptangiz bormi
+        Sizda chipta bormi
+        Chiptang bormi
     uz-Cyrl/standard:
       text: Билетингиз борми?
       tokens: [{surface: Билетингиз, sense: bilet, morphs: [{surface: Билет, kc: 'sense:bilet'}, {surface: ингиз, kc: 'form:poss-2-ingiz'}]}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
@@ -375,6 +390,9 @@ sentences:
         [Сизнинг] билетингиз борми
         [Сенинг] билетинг борми
         (Сизда|Сенда) билет борми
+        Чиптангиз борми
+        Сизда чипта борми
+        Чиптанг борми
   translations:
     en: |-
       Do you have a ticket?
@@ -386,11 +404,19 @@ sentences:
     uz-Latn/standard:
       text: Ikkita bilet bering.
       tokens: [{surface: Ikkita, sense: ikki, morphs: [{surface: Ikki, kc: 'sense:ikki'}, {surface: ta, kc: 'form:count-ta'}]}, {surface: bilet, sense: bilet}, {surface: bering, sense: bermoq, morphs: [{surface: ber, kc: 'sense:bermoq'}, {surface: ing, kc: 'form:imp-ing'}]}]
-      reverse: '[Menga] ikki(ta|) bilet (bering|ber)'
+      reverse: |-
+        [Menga] ikki(ta|) bilet (bering|ber)
+        Ikkita chipta bering
+        Iltimos, ikkita bilet bering
+        Ikkita bilet bering, iltimos
     uz-Cyrl/standard:
       text: Иккита билет беринг.
       tokens: [{surface: Иккита, sense: ikki, morphs: [{surface: Икки, kc: 'sense:ikki'}, {surface: та, kc: 'form:count-ta'}]}, {surface: билет, sense: bilet}, {surface: беринг, sense: bermoq, morphs: [{surface: бер, kc: 'sense:bermoq'}, {surface: инг, kc: 'form:imp-ing'}]}]
-      reverse: '[Менга] икки(та|) билет (беринг|бер)'
+      reverse: |-
+        [Менга] икки(та|) билет (беринг|бер)
+        Иккита чипта беринг
+        Илтимос, иккита билет беринг
+        Иккита билет беринг, илтимос
   translations:
     en: |-
       [Please] give me two tickets.
@@ -401,11 +427,15 @@ sentences:
     uz-Latn/standard:
       text: Poyezd soat nechada ketadi?
       tokens: [{surface: Poyezd, sense: poyezd}, {surface: soat, sense: soat}, {surface: nechada, sense: necha, morphs: [{surface: necha, kc: 'sense:necha'}, {surface: da, kc: 'form:loc-da'}]}, {surface: ketadi, sense: ketmoq, morphs: [{surface: ket, kc: 'sense:ketmoq'}, {surface: a, kc: 'form:pres-a'}, {surface: di, kc: 'form:pres-3sg-di'}]}]
-      reverse: Poyezd soat nechada ketadi
+      reverse: |-
+        Poyezd soat nechada ketadi
+        Poyezd soat nechada joʻnaydi
     uz-Cyrl/standard:
       text: Поезд соат нечада кетади?
       tokens: [{surface: Поезд, sense: poyezd}, {surface: соат, sense: soat}, {surface: нечада, sense: necha, morphs: [{surface: неча, kc: 'sense:necha'}, {surface: да, kc: 'form:loc-da'}]}, {surface: кетади, sense: ketmoq, morphs: [{surface: кет, kc: 'sense:ketmoq'}, {surface: а, kc: 'form:pres-a'}, {surface: ди, kc: 'form:pres-3sg-di'}]}]
-      reverse: Поезд соат нечада кетади
+      reverse: |-
+        Поезд соат нечада кетади
+        Поезд соат нечада жўнайди
   translations:
     en: |-
       What time does the train leave?
@@ -461,6 +491,8 @@ sentences:
         Xona bormi
         Boʻsh xona bormi
         (Sizda|Sizlarda) [boʻsh] xona bormi
+        Senda xona bormi
+        Senda boʻsh xona bormi
     uz-Cyrl/standard:
       text: Хона борми?
       tokens: [{surface: Хона, sense: xona}, {surface: борми, sense: bor, morphs: [{surface: бор, kc: 'sense:bor'}, {surface: ми, kc: 'form:q-mi'}]}]
@@ -468,6 +500,8 @@ sentences:
         Хона борми
         Бўш хона борми
         (Сизда|Сизларда) [бўш] хона борми
+        Сенда хона борми
+        Сенда бўш хона борми
   translations:
     en: |-
       Do you have a room?
@@ -500,11 +534,15 @@ sentences:
     uz-Latn/standard:
       text: Buxoroda havo qanday edi?
       tokens: [{surface: Buxoroda, sense: buxoro, morphs: [{surface: Buxoro, kc: 'sense:buxoro'}, {surface: da, kc: 'form:loc-da'}]}, {surface: havo, sense: havo}, {surface: qanday, sense: qanday}, {surface: edi, sense: edi, morphs: [{surface: e, kc: 'sense:edi'}, {surface: di, kc: 'form:past-di'}]}]
-      reverse: Buxoroda havo qanday edi
+      reverse: |-
+        Buxoroda havo qanday edi
+        Havo Buxoroda qanday edi
     uz-Cyrl/standard:
       text: Бухорода ҳаво қандай эди?
       tokens: [{surface: Бухорода, sense: buxoro, morphs: [{surface: Бухоро, kc: 'sense:buxoro'}, {surface: да, kc: 'form:loc-da'}]}, {surface: ҳаво, sense: havo}, {surface: қандай, sense: qanday}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
-      reverse: Бухорода ҳаво қандай эди
+      reverse: |-
+        Бухорода ҳаво қандай эди
+        Ҳаво Бухорода қандай эди
   translations:
     en: |-
       What was the weather like in Bukhara?
@@ -592,11 +630,17 @@ sentences:
     uz-Latn/standard:
       text: Oq yoʻl!
       tokens: [{surface: Oq, sense: oq}, {surface: yoʻl, sense: yol}]
-      reverse: Oq yoʻl
+      reverse: |-
+        Oq yoʻl
+        Yoʻlingiz boʻlsin
+        Yoʻlingiz oq boʻlsin
     uz-Cyrl/standard:
       text: Оқ йўл!
       tokens: [{surface: Оқ, sense: oq}, {surface: йўл, sense: yol}]
-      reverse: Оқ йўл
+      reverse: |-
+        Оқ йўл
+        Йўлингиз бўлсин
+        Йўлингиз оқ бўлсин
   translations:
     en: (Have a good trip|Have a nice trip|Bon voyage|Safe travels|Have a safe trip)!
 stories:

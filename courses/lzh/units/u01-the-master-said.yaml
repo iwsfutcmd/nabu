@@ -197,6 +197,8 @@ sentences:
       Well said!
       Very good!
       Fine!
+      That is good!
+      That's good!
 - id: s.01.2
   node: lzh.u01.well-said
   forms:
@@ -211,6 +213,8 @@ sentences:
       Excellent indeed!
       Splendid!
       Good!
+      Well said!
+      Very good!
 - id: s.01.3
   node: lzh.u01.well-said
   forms:
@@ -219,7 +223,12 @@ sentences:
       tokens: [{surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 曰善[哉]
   translations:
-    en: (He|She) said, “(Good|Excellent|Well said|Very good).”
+    en: |-
+      (He|She) said, “(Good|Excellent|Well said|Very good).”
+      He says, “Good.”
+      They said, “Good.”
+      He said, “Fine.”
+      He said, “That is good.”
 - id: s.01.4
   node: lzh.u01.well-said
   forms:
@@ -228,7 +237,11 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
       reverse: 王曰善[哉]
   translations:
-    en: The king said, “(Good|Excellent|Well said|Very good).”
+    en: |-
+      The king said, “(Good|Excellent|Well said|Very good).”
+      The king says, “Good.”
+      The king said, “Fine.”
+      The king said, “That is good.”
 - id: s.01.5
   node: lzh.u01.well-said
   forms:
@@ -237,7 +250,12 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}, {surface: 哉, sense: 哉, readings: {pinyin: zāi, jyutping: zoi1, baxter: tsoj}}]
       reverse: 王曰善哉
   translations:
-    en: The king said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+    en: |-
+      The king said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+      The king says, “Excellent!”
+      The king said, “Good!”
+      The king said, “Well said!”
+      The king said, “Very good!”
 - id: s.01.6
   node: lzh.u01.well-said
   forms:
@@ -253,6 +271,9 @@ sentences:
       Yes.
       Indeed.
       (That's|It's) (so|right).
+      That is right.
+      Right.
+      That is true.
 - id: s.01.7
   node: lzh.u01.well-said
   forms:
@@ -261,7 +282,12 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 然, sense: 然, readings: {pinyin: rán, jyutping: jin4, baxter: nyen}}]
       reverse: 王曰然[也]
   translations:
-    en: The king said, “(It is so|That is so|So it is|Yes|Indeed|That's right).”
+    en: |-
+      The king said, “(It is so|That is so|So it is|Yes|Indeed|That's right).”
+      The king says, “Yes.”
+      The king said, “That is right.”
+      The king said, “That's so.”
+      The king said, “It's so.”
 - id: s.01.8
   node: lzh.u01.it-is
   forms:
@@ -275,6 +301,7 @@ sentences:
       It's the king.
       (He|This|That) is the king.
       (He's|That's) the king.
+      It was the king.
 - id: s.01.9
   node: lzh.u01.it-is
   forms:
@@ -287,6 +314,8 @@ sentences:
       It is I.
       It's me.
       It is me.
+      It was me.
+      It was I.
 - id: s.01.10
   node: lzh.u01.it-is
   constructions: ['construction:ye']
@@ -299,6 +328,7 @@ sentences:
     en: |-
       I am the king.
       I'm the king.
+      I am a king.
 - id: s.01.11
   node: lzh.u01.it-is
   forms:
@@ -310,6 +340,7 @@ sentences:
     en: |-
       The king is a person.
       The king is (human|a man|a human being).
+      The king is a human.
 - id: s.01.12
   node: lzh.u01.it-is
   forms:
@@ -321,24 +352,31 @@ sentences:
     en: |-
       I am a person.
       I('m| am) (human|a human being).
+      I'm a person.
+      I am a man.
 - id: s.01.13
   node: lzh.u01.it-is
   forms:
     lzh-Hant/standard:
       text: 我非王也。
       tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (我|吾)非王也
+      reverse: |-
+        (我|吾)非王也
+        我非王
   translations:
     en: |-
       I am not the king.
       I'm not the king.
+      I am not a king.
 - id: s.01.14
   node: lzh.u01.it-is
   forms:
     lzh-Hant/standard:
       text: 非我也。
       tokens: [{surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 非(我|吾)也
+      reverse: |-
+        非(我|吾)也
+        非我
   translations:
     en: |-
       It is not me.
@@ -346,6 +384,7 @@ sentences:
       It isn't me.
       It wasn't me.
       It was not me.
+      It is not I.
 - id: s.01.15
   node: lzh.u01.it-is
   forms:
@@ -354,7 +393,10 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
       reverse: 王曰(我|吾)人也
   translations:
-    en: The king said, “I( am|'m) (a person|human|a human being).”
+    en: |-
+      The king said, “I( am|'m) (a person|human|a human being).”
+      The king says, “I am a person.”
+      The king said, “I am a man.”
 - id: s.01.16
   node: lzh.u01.the-master
   forms:
@@ -366,6 +408,10 @@ sentences:
     en: |-
       The Master said, “(Good|Excellent|Well said|Very good).”
       Confucius said, “(Good|Excellent|Well said|Very good).”
+      The Master says, “Good.”
+      Kongzi said, “Good.”
+      The Master said, “Fine.”
+      The Master said, “That is good.”
 - id: s.01.17
   node: lzh.u01.the-master
   forms:
@@ -377,6 +423,11 @@ sentences:
     en: |-
       Confucius said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
       The Master said, “(Excellent|How (good|excellent)|Excellent indeed|Splendid)!”
+      Confucius says, “Excellent!”
+      Kongzi said, “Excellent!”
+      Confucius said, “Good!”
+      Confucius said, “Well said!”
+      Confucius said, “Very good!”
 - id: s.01.18
   node: lzh.u01.the-master
   forms:
@@ -390,6 +441,9 @@ sentences:
       The Master said, “It's not me.”
       Confucius said, “It (is not|isn't|was not|wasn't) me.”
       Confucius said, “It's not me.”
+      The Master says, “It is not me.”
+      Kongzi said, “It is not me.”
+      The Master said, “It is not I.”
 - id: s.01.19
   node: lzh.u01.the-master
   forms:
@@ -402,6 +456,8 @@ sentences:
       Confucius was (a man|a person|someone) (of|from) Lu.
       Confucius is (a man|a person|someone) (of|from) Lu.
       Confucius (was|is) from Lu.
+      Kongzi was a man of Lu.
+      Confucius was a native of Lu.
 - id: s.01.20
   node: lzh.u01.the-master
   forms:
@@ -414,6 +470,7 @@ sentences:
       I am (a man|a person|someone) (of|from) Lu.
       I'm (a man|a person|someone) (of|from) Lu.
       I( am|'m) from Lu.
+      I am a native of Lu.
 - id: s.01.21
   node: lzh.u01.the-master
   forms:
@@ -425,24 +482,31 @@ sentences:
     en: |-
       Confucius is a (gentleman|noble person|noble man|superior man).
       Confucius was a (gentleman|noble person|noble man|superior man).
+      Confucius is a superior person.
+      Kongzi is a gentleman.
 - id: s.01.22
   node: lzh.u01.the-master
   forms:
     lzh-Hant/standard:
       text: 我非君子也。
       tokens: [{surface: 我, sense: 我, readings: {pinyin: wǒ, jyutping: ngo5, baxter: ngaX}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: (我|吾)非君子也
+      reverse: |-
+        (我|吾)非君子也
+        我非君子
   translations:
     en: |-
       I am not a (gentleman|noble person|noble man|superior man).
       I'm not a (gentleman|noble person|noble man|superior man).
+      I am not a superior person.
 - id: s.01.23
   node: lzh.u01.the-master
   forms:
     lzh-Hant/standard:
       text: 王非魯人也。
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 非, sense: 非, readings: {pinyin: fēi, jyutping: fei1, baxter: pj+j}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 王非魯人也
+      reverse: |-
+        王非魯人也
+        王非魯人
   translations:
     en: |-
       The king is not (a man|a person|someone) (of|from) Lu.
@@ -459,6 +523,7 @@ sentences:
     en: |-
       Not good.
       (It is|It's|That is|That's) not good.
+      It was not good.
 - id: s.01.25
   node: lzh.u01.knowing
   forms:
@@ -470,6 +535,7 @@ sentences:
     en: |-
       I know.
       I understand.
+      I knew.
 - id: s.01.26
   node: lzh.u01.knowing
   forms:
@@ -481,6 +547,10 @@ sentences:
     en: |-
       I do not know.
       I don't know.
+      I did not know.
+      I didn't know.
+      I do not understand.
+      I don't understand.
 - id: s.01.27
   node: lzh.u01.knowing
   forms:
@@ -492,6 +562,7 @@ sentences:
     en: |-
       Does the king know?
       Does the king understand?
+      Did the king know?
 - id: s.01.28
   node: lzh.u01.knowing
   forms:
@@ -504,6 +575,9 @@ sentences:
       I know it.
       I know (this|that).
       I know (him|her).
+      I knew it.
+      I know them.
+      I understand it.
 - id: s.01.29
   node: lzh.u01.knowing
   forms:
@@ -515,6 +589,9 @@ sentences:
     en: |-
       Does the king know it?
       Does the king know (this|that|him|her)?
+      Did the king know it?
+      Does the king know them?
+      Does the king understand it?
 - id: s.01.30
   node: lzh.u01.knowing
   forms:
@@ -527,18 +604,25 @@ sentences:
       The king does not know me.
       The king doesn't (know|recognize|understand) me.
       The king does not (recognize|understand) me.
+      The king did not know me.
+      The king didn't know me.
 - id: s.01.31
   node: lzh.u01.knowing
   forms:
     lzh-Hant/standard:
       text: 子曰：「不知也。」
       tokens: [{surface: 子, sense: 子, readings: {pinyin: zǐ, jyutping: zi2, baxter: tsiX}}, {surface: 曰, sense: 曰, readings: {pinyin: yuē, jyutping: joek6, baxter: hjwot}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 子曰不知[也]
+      reverse: |-
+        子曰不知[也]
+        子曰吾不知也
+        子曰我不知也
   translations:
     en: |-
       The Master said, “I do not know.”
       The Master said, “I don't know.”
       Confucius said, “I (do not|don't) know.”
+      The Master says, “I do not know.”
+      Kongzi said, “I do not know.”
 - id: s.01.32
   node: lzh.u01.learning
   forms:
@@ -550,6 +634,8 @@ sentences:
     en: |-
       I learn it.
       I (study|am learning|am studying) it.
+      I learned it.
+      I studied it.
 - id: s.01.33
   node: lzh.u01.learning
   forms:
@@ -562,6 +648,7 @@ sentences:
       Learn it and know it.
       (Learn|Study) it and (come to know|understand) it.
       Know it by (learning|studying) it.
+      Study it and know it.
 - id: s.01.34
   node: lzh.u01.learning
   forms:
@@ -574,6 +661,9 @@ sentences:
       It is not the time.
       It('s| is) not the (right|proper) time.
       Now is not the time.
+      It's not the time.
+      This is not the time.
+      It was not the right time.
 - id: s.01.35
   node: lzh.u01.learning
   forms:
@@ -585,6 +675,7 @@ sentences:
     en: |-
       I practise it.
       I (practice|rehearse|review) it.
+      I am practising it.
 - id: s.01.36
   node: lzh.u01.learning
   forms:
@@ -597,6 +688,9 @@ sentences:
       Learn it and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
       Study it and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
       (Learn|Study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly).
+      Learn it and rehearse it at the right times.
+      Learning it and practising it at the right times.
+      To learn and practise it at the right times.
 - id: s.01.37
   node: lzh.u01.learning
   forms:
@@ -609,7 +703,10 @@ sentences:
       I also know it.
       I know it too.
       I too know it.
-      I (also know|know) (this|that) too.
+      I know (this|that) too.
+      I also know (this|that).
+      I also knew it.
+      I also know him.
 - id: s.01.38
   node: lzh.u01.learning
   forms:
@@ -621,6 +718,7 @@ sentences:
     en: |-
       The king was (pleased|delighted|happy).
       The king is (pleased|delighted|happy).
+      The king was glad.
 - id: s.01.39
   node: lzh.u01.learning
   constructions: ['construction:buyi-hu']
@@ -634,6 +732,7 @@ sentences:
       Is it not (a pleasure|a delight|delightful|pleasing)?
       Is that not (a pleasure|a delight|delightful|pleasing)?
       Isn't (it|that) (a pleasure|a delight|delightful|pleasing)?
+      Is this not a pleasure?
 - id: s.01.40
   node: lzh.u01.learning
   forms:
@@ -645,6 +744,10 @@ sentences:
     en: |-
       Is it not (a pleasure|a delight|delightful) to (learn|study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly)?
       Isn't it (a pleasure|a delight|delightful) to (learn|study) and (practise|practice|review) it (at the right times|at the proper times|at due times|regularly|often|constantly)?
+      Is it not pleasant to learn and practise it at the right times?
+      Is it not a pleasure to learn and to practise it at the right times?
+      To learn and practise it at the right times, is it not a pleasure?
+      Is it not a pleasure to learn and rehearse it at the right times?
 - id: s.01.41
   node: lzh.u01.friends
   forms:
@@ -657,6 +760,9 @@ sentences:
       There is someone.
       There is a (person|man).
       Someone is (here|there).
+      There was someone.
+      There's someone.
+      There are people.
 - id: s.01.42
   node: lzh.u01.friends
   forms:
@@ -668,6 +774,7 @@ sentences:
     en: |-
       The king comes.
       The king (is coming|has come|came).
+      The king arrived.
 - id: s.01.43
   node: lzh.u01.friends
   forms:
@@ -680,13 +787,16 @@ sentences:
       A friend comes.
       A friend (is coming|has come|came).
       (Friends come|Friends are coming|Friends have come).
+      Friends came.
 - id: s.01.44
   node: lzh.u01.friends
   forms:
     lzh-Hant/standard:
       text: 自魯來。
       tokens: [{surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
-      reverse: 自魯來
+      reverse: |-
+        自魯來
+        從魯來
   translations:
     en: |-
       (He|She) (comes|came|has come) from Lu.
@@ -709,11 +819,14 @@ sentences:
     lzh-Hant/standard:
       text: 自遠方來。
       tokens: [{surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 遠, sense: 遠, readings: {pinyin: yuǎn, jyutping: jyun5, baxter: hjwonX}}, {surface: 方, sense: 方, readings: {pinyin: fāng, jyutping: fong1, baxter: pjang}}, {surface: 來, sense: 來, readings: {pinyin: lái, jyutping: loi4, baxter: loj}}]
-      reverse: 自遠方來
+      reverse: |-
+        自遠方來
+        從遠方來
   translations:
     en: |-
       (He|She) (comes|came|has come) from (afar|far away|a distant place|distant parts).
       They (come|came|have come) from (afar|far away|a distant place|distant parts).
+      He comes from distant places.
 - id: s.01.47
   node: lzh.u01.friends
   forms:
@@ -725,6 +838,9 @@ sentences:
     en: |-
       A friend (comes|has come|came) from (afar|far away|a distant place|distant parts).
       Friends (come|have come|came) from (afar|far away|a distant place|distant parts).
+      A friend is coming from afar.
+      Friends are coming from afar.
+      Friends come from distant places.
 - id: s.01.48
   node: lzh.u01.friends
   forms:
@@ -737,6 +853,8 @@ sentences:
       I am happy too.
       I'm happy too.
       I('m| am) (also happy|joyful too|also joyful|glad too|also glad).
+      I too am happy.
+      I was happy too.
 - id: s.01.49
   node: lzh.u01.friends
   forms:
@@ -750,6 +868,8 @@ sentences:
       Is it not (joyful|delightful|a delight) to have friends come from (afar|far away|a distant place|distant parts)?
       Is it not (a joy|joyful|delightful|a delight) (when friends come|when a friend comes|to have a friend come) from (afar|far away|a distant place|distant parts)?
       Isn't it (a joy|joyful|delightful|a delight) (to have friends come|when friends come|when a friend comes|to have a friend come) from (afar|far away|a distant place|distant parts)?
+      Is it not a joy to have friends coming from afar?
+      When friends come from afar, is it not a joy?
 - id: s.01.50
   node: lzh.u01.friends
   forms:
@@ -761,6 +881,7 @@ sentences:
     en: |-
       The king was (resentful|indignant|annoyed|angry|upset).
       The king is (resentful|indignant|annoyed|angry|upset).
+      The king became angry.
 - id: s.01.51
   node: lzh.u01.friends
   forms:
@@ -774,6 +895,10 @@ sentences:
       Others (do not|don't) (know|recognize|understand) (him|you|one), and (he|you|one) (is|are) not (resentful|indignant|annoyed).
       (Unrecognized|Unknown) by others (and|yet) not (resentful|indignant|annoyed).
       Not (to be|being) resentful when others do not (know|recognize|understand) (you|one|him).
+      People do not know him, and he does not resent it.
+      Others do not know him, but he does not resent it.
+      Others don't know him, and he doesn't resent it.
+      Others do not know you, and you do not resent it.
 - id: s.01.52
   node: lzh.u01.friends
   forms:
@@ -786,6 +911,9 @@ sentences:
       A gentleman (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
       The (gentleman|noble person|superior man) (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
       A (noble person|superior man) (is not|isn't|does not get|doesn't get) (resentful|indignant|annoyed|angry).
+      A noble man is not resentful.
+      A superior person is not resentful.
+      Gentlemen are not resentful.
 stories:
 - id: lzh.story.analects-1-1
   node: lzh.u01.story

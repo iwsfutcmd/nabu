@@ -51,10 +51,13 @@ sentences:
       reverse: |-
         (Tú tienes|Tienes [tú]) tu (teléfono|celular) aquí
         (Usted tiene|Tiene [usted]|Ustedes tienen|Tienen [ustedes]) su (teléfono|celular) aquí
+        ¿Tú tienes aquí tu teléfono?
+        ¿Tú tienes tu móvil aquí?
   translations:
     en: |-
       Do you have your phone (here|with you)?
       Have you got your phone (here|with you)?
+      Do you have your phone on you?
 - id: s.u11.2
   node: es.u11.el-mensaje
   forms:
@@ -64,6 +67,9 @@ sentences:
       reverse: |-
         Sí aquí [yo] tengo mi (teléfono|celular) nuevo
         Sí [yo] tengo mi (teléfono|celular) nuevo aquí
+        Sí, tengo aquí mi teléfono nuevo.
+        Sí, aquí tengo mi nuevo teléfono.
+        Sí, aquí tengo mi móvil nuevo.
   translations:
     en: |-
       Yes, (I have|I've got) my new phone (here|with me).
@@ -74,7 +80,9 @@ sentences:
     es-Latn/standard:
       text: Tía Marisol también tiene WhatsApp.
       tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: también, sense: también}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: WhatsApp, sense: whatsapp}]
-      reverse: (Tía|La tía|Mi tía) Marisol también tiene WhatsApp
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol también tiene WhatsApp
+        Tía Marisol tiene WhatsApp también.
   translations:
     en: |-
       (Aunt|Auntie|Tía) Marisol has WhatsApp too.
@@ -123,17 +131,23 @@ sentences:
     es-Latn/standard:
       text: Tía Marisol me llama los domingos por la noche.
       tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: me, sense: me}, {surface: llama, sense: llamar, form: 'form:pres-3s'}, {surface: los, sense: el}, {surface: domingos, sense: domingo}, {surface: por, sense: por}, {surface: la, sense: el}, {surface: noche, sense: noche}]
-      reverse: (Tía|La tía|Mi tía) Marisol me llama los domingos por la noche
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol me llama los domingos por la noche
+        Tía Marisol me llama los domingos en la noche.
   translations:
     en: |-
       (Aunt|Auntie|Tía) Marisol calls me (on Sunday nights|on Sunday evenings|every Sunday night|every Sunday evening).
+      Aunt Marisol calls me Sunday nights.
 - id: s.u11.8
   node: es.u11.si-tu-quieres
   forms:
     es-Latn/standard:
       text: Sí, vamos a Varadero si tú quieres.
       tokens: [{surface: Sí, sense: sí}, {surface: vamos, sense: ir, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: Varadero, sense: varadero}, {surface: si, sense: si}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}]
-      reverse: Sí [nosotros] vamos a Varadero si (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
+      reverse: |-
+        Sí [nosotros] vamos a Varadero si (tú quieres|quieres [tú]|usted quiere|quiere [usted]|ustedes quieren|quieren [ustedes])
+        Sí, nosotras vamos a Varadero si tú quieres.
+        Sí, si tú quieres vamos a Varadero.
   translations:
     en: |-
       Yes, (let's go|we'll go|we can go|we're going) to Varadero if (you want|you want to|you like|you'd like).
@@ -146,6 +160,8 @@ sentences:
       reverse: |-
         Si llueve mañana [nosotros] no vamos (a la|para la|pa' la) playa
         [Nosotros] no vamos (a la|para la|pa' la) playa si llueve mañana
+        Si llueve mañana, nosotras no vamos a la playa.
+        Si mañana llueve, no vamos a la playa.
   translations:
     en: |-
       If it rains tomorrow, (we won't go|we will not go|we're not going|we aren't going|we are not going|we don't go) to the beach.
@@ -156,7 +172,9 @@ sentences:
     es-Latn/standard:
       text: Él tiene el teléfono de Yunior, pero yo no.
       tokens: [{surface: Él, sense: él}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: teléfono, sense: teléfono}, {surface: de, sense: de}, {surface: Yunior, sense: yunior}, {surface: pero, sense: pero}, {surface: yo, sense: yo}, {surface: 'no', sense: 'no'}]
-      reverse: '[Él] tiene el (teléfono|número|celular) de Yunior pero yo no'
+      reverse: |-
+        [Él] tiene el (teléfono|número|celular) de Yunior pero yo no
+        Él tiene el móvil de Yunior, pero yo no.
   translations:
     en: |-
       He has Yunior's (phone number|number|phone), but I (don't|do not).
@@ -171,13 +189,17 @@ sentences:
   translations:
     en: |-
       (Mom|Mum|Mommy) sent me a (photo|picture|pic) of (Aunt|Auntie|Tía) Marisol.
+      Mom has sent me a photo of Aunt Marisol.
 - id: s.u11.12
   node: es.u11.si-tu-quieres
   forms:
     es-Latn/standard:
       text: Tía Marisol no escribe mucho, manda audios.
       tokens: [{surface: Tía, sense: tío}, {surface: Marisol, sense: marisol}, {surface: 'no', sense: 'no'}, {surface: escribe, sense: escribir, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: manda, sense: mandar, form: 'form:pres-3s'}, {surface: audios, sense: audio}]
-      reverse: (Tía|La tía|Mi tía) Marisol no escribe mucho [ella] manda audios
+      reverse: |-
+        (Tía|La tía|Mi tía) Marisol no escribe mucho [ella] manda audios
+        Tía Marisol no escribe mucho, manda mensajes de voz.
+        Tía Marisol no escribe mucho, manda notas de voz.
   translations:
     en: |-
       (Aunt|Auntie|Tía) Marisol (doesn't|does not) (write|text) much, she sends (voice messages|voice notes|audio messages|audios).
@@ -197,7 +219,9 @@ sentences:
     es-Latn/standard:
       text: Para mí, el café de mi abuela es el más rico.
       tokens: [{surface: Para, sense: para}, {surface: mí, sense: mí}, {surface: el, sense: el}, {surface: café, sense: café}, {surface: de, sense: de}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: más, sense: más}, {surface: rico, sense: rico}]
-      reverse: Para mí el café de mi abuela es el (más rico|mejor)
+      reverse: |-
+        Para mí el café de mi abuela es el (más rico|mejor)
+        El café de mi abuela es el más rico para mí.
   translations:
     en: |-
       (For me|To me|In my opinion), my (grandmother's|grandma's) coffee is the (best|tastiest|most delicious).
@@ -241,7 +265,9 @@ sentences:
     es-Latn/standard:
       text: ¿Tú quieres el café con leche o sin leche?
       tokens: [{surface: Tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}, {surface: el, sense: el}, {surface: café, sense: café}, {surface: con, sense: con}, {surface: leche, sense: leche}, {surface: o, sense: o}, {surface: sin, sense: sin}, {surface: leche, sense: leche}]
-      reverse: (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) [el] café con leche o sin leche
+      reverse: |-
+        (Tú quieres|Quieres [tú]|Usted quiere|Quiere [usted]|Ustedes quieren|Quieren [ustedes]) [el] café con leche o sin leche
+        ¿Tú quieres el café con o sin leche?
   translations:
     en: |-
       (Do you want|Would you like) (your|the) coffee with or without milk?
@@ -252,7 +278,9 @@ sentences:
     es-Latn/standard:
       text: Yo no sé cómo se llama el hermano de Yasiel.
       tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: sé, sense: saber, form: 'form:pres-1s'}, {surface: cómo, sense: cómo}, {surface: se, sense: se}, {surface: llama, sense: llamarse, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: hermano, sense: hermano}, {surface: de, sense: de}, {surface: Yasiel, sense: yasiel}]
-      reverse: '[Yo] no sé cómo se llama el hermano de Yasiel'
+      reverse: |-
+        [Yo] no sé cómo se llama el hermano de Yasiel
+        No sé cuál es el nombre del hermano de Yasiel.
   translations:
     en: |-
       I (don't|do not) know what Yasiel's brother's name is.
@@ -263,7 +291,9 @@ sentences:
     es-Latn/standard:
       text: ¿Tú sabes dónde está mi teléfono?
       tokens: [{surface: Tú, sense: tú}, {surface: sabes, sense: saber, form: 'form:pres-2s'}, {surface: dónde, sense: dónde}, {surface: está, sense: estar, form: 'form:pres-3s'}, {surface: mi, sense: mi}, {surface: teléfono, sense: teléfono}]
-      reverse: (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde está mi (teléfono|celular)
+      reverse: |-
+        (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde está mi (teléfono|celular)
+        ¿Tú sabes dónde está mi móvil?
   translations:
     en: |-
       Do you know where my phone is?
@@ -273,7 +303,11 @@ sentences:
     es-Latn/standard:
       text: Tía, ¿cuál es tu teléfono nuevo?
       tokens: [{surface: Tía, sense: tío}, {surface: cuál, sense: cuál}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: tu, sense: tu}, {surface: teléfono, sense: teléfono}, {surface: nuevo, sense: nuevo}]
-      reverse: (Tía|Tía Marisol) cuál es (tu|su) (teléfono|número) nuevo
+      reverse: |-
+        (Tía|Tía Marisol) cuál es (tu|su) (teléfono|número) nuevo
+        Tía, ¿cuál es tu nuevo número?
+        Tía, ¿cuál es tu número de teléfono nuevo?
+        Tía, ¿cuál es tu nuevo teléfono?
   translations:
     en: |-
       (Aunt|Auntie|Tía), (what's|what is) your new (phone number|number)?
@@ -283,7 +317,9 @@ sentences:
     es-Latn/standard:
       text: ¿Por qué tú no me llamas por WhatsApp?
       tokens: [{surface: Por, sense: por}, {surface: qué, sense: qué}, {surface: tú, sense: tú}, {surface: 'no', sense: 'no'}, {surface: me, sense: me}, {surface: llamas, sense: llamar, form: 'form:pres-2s'}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
-      reverse: (Por qué tú no me llamas|Por qué no me llamas [tú]|Por qué usted no me llama|Por qué no me llama [usted]|Por qué ustedes no me llaman|Por qué no me llaman [ustedes]) por WhatsApp
+      reverse: |-
+        (Por qué tú no me llamas|Por qué no me llamas [tú]|Por qué usted no me llama|Por qué no me llama [usted]|Por qué ustedes no me llaman|Por qué no me llaman [ustedes]) por WhatsApp
+        ¿Tú por qué no me llamas por WhatsApp?
   translations:
     en: |-
       Why (don't you|do you not) call me (on|over|via) WhatsApp?
@@ -293,7 +329,10 @@ sentences:
     es-Latn/standard:
       text: Porque no tengo tu teléfono nuevo, tía.
       tokens: [{surface: Porque, sense: porque}, {surface: 'no', sense: 'no'}, {surface: tengo, sense: tener, form: 'form:pres-1s'}, {surface: tu, sense: tu}, {surface: teléfono, sense: teléfono}, {surface: nuevo, sense: nuevo}, {surface: tía, sense: tío}]
-      reverse: Porque [yo] no tengo (tu|su) (teléfono|número) nuevo (tía|tía Marisol)
+      reverse: |-
+        Porque [yo] no tengo (tu|su) (teléfono|número) nuevo (tía|tía Marisol)
+        Porque no tengo tu nuevo número, tía.
+        Porque no tengo tu número de teléfono nuevo, tía.
   translations:
     en: |-
       Because I (don't have|do not have|haven't got) your new (phone number|number), (Aunt|Auntie|Tía).
@@ -383,11 +422,14 @@ sentences:
     es-Latn/standard:
       text: ¿Tú sabes dónde vive Yunior ahora?
       tokens: [{surface: Tú, sense: tú}, {surface: sabes, sense: saber, form: 'form:pres-2s'}, {surface: dónde, sense: dónde}, {surface: vive, sense: vivir, form: 'form:pres-3s'}, {surface: Yunior, sense: yunior}, {surface: ahora, sense: ahora}]
-      reverse: (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde (vive Yunior|Yunior vive) ahora
+      reverse: |-
+        (Tú sabes|Sabes [tú]|Usted sabe|Sabe [usted]|Ustedes saben|Saben [ustedes]) dónde (vive Yunior|Yunior vive) ahora
+        ¿Tú sabes dónde vive ahora Yunior?
   translations:
     en: |-
       Do you know where Yunior lives now?
       Do you know where Yunior is living now?
+      Do you know where Yunior's living now?
 - id: s.u11.32
   node: es.u11.hablo-hablo
   forms:
@@ -435,19 +477,23 @@ sentences:
     es-Latn/standard:
       text: Tía, ¿te llegó mi mensaje? Te mandé una foto.
       tokens: [{surface: Tía, sense: tío}, {surface: te, sense: te}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: mi, sense: mi}, {surface: mensaje, sense: mensaje}, {surface: Te, sense: te}, {surface: mandé, sense: mandar, form: 'form:pret-1s'}, {surface: una, sense: un}, {surface: foto, sense: foto}]
-      reverse: (Tía|Tía Marisol) (te|le) llegó mi mensaje [yo] (te|le) (mandé|envié) una foto
+      reverse: |-
+        (Tía|Tía Marisol) (te|le) llegó mi mensaje [yo] (te|le) (mandé|envié) una foto
+        Tía, ¿recibiste mi mensaje? Te mandé una foto.
+        Tía, ¿recibió mi mensaje? Le mandé una foto.
   translations:
     en: |-
       (Aunt|Auntie|Tía), did you get my (message|text)? I sent you a (photo|picture|pic).
       (Aunt|Auntie|Tía), did my (message|text) (reach you|get to you|arrive)? I sent you a (photo|picture|pic).
+      Aunt, did you get my message? I've sent you a photo.
 stories:
 - id: es.story.u11
   node: es.u11.story
   title: {en: 'With accents'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: marisol, name: {es-Latn/standard: Tía Marisol}}
-  - {id: yunior, name: {es-Latn/standard: Yunior}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: marisol, speaker: f, name: {es-Latn/standard: Tía Marisol}}
+  - {id: yunior, speaker: m, name: {es-Latn/standard: Yunior}}
   steps:
   - line:
       forms:

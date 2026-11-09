@@ -58,6 +58,7 @@ sentences:
       In Havana, (I'm staying|I stay) with (my aunt Marisol|Aunt Marisol).
       (I'm staying|I stay) at (my aunt Marisol's|Aunt Marisol's) [(house|place)] in Havana.
       (I'm staying|I stay) with (my aunt Marisol|Aunt Marisol) in Havana.
+      In Havana, I am staying at my aunt Marisol's house.
 - id: s.u25.2
   node: es.u25.centro-habana
   forms:
@@ -157,7 +158,9 @@ sentences:
       tokens: [{surface: La, sense: el}, {surface: gente, sense: gente}, {surface: se, sense: se}, {surface: sienta, sense: sentarse, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: Malecón, sense: malecón}, {surface: a, sense: a}, {surface: mirar, sense: mirar}, {surface: el, sense: el}, {surface: mar, sense: mar}]
       reverse: La gente se sienta en el Malecón a (mirar|ver) el mar
   translations:
-    en: People sit [down] on the Malecón to (look at|watch|gaze at|see) the sea.
+    en: |-
+      People sit [down] on the Malecón to (look at|watch|gaze at|see) the sea.
+      People sit on the Malecón to look at the ocean.
 - id: s.u25.11
   node: es.u25.el-malecon
   forms:
@@ -193,6 +196,7 @@ sentences:
       (Aunt Marisol|My aunt Marisol), (whom|who) I had never met, picked me up at the airport.
       (Aunt Marisol|My aunt Marisol), (whom|who) I had never met in person, (met|welcomed|greeted) me at the airport.
       (Aunt Marisol|My aunt Marisol), (whom|who) I had never met in person, picked me up at the airport.
+      Aunt Marisol, whom I'd never met, met me at the airport.
 - id: s.u25.14
   node: es.u25.el-malecon
   forms:
@@ -210,7 +214,9 @@ sentences:
     es-Latn/standard:
       text: Yunior siempre sabe lo que pasa en el barrio.
       tokens: [{surface: Yunior, sense: yunior}, {surface: siempre, sense: siempre}, {surface: sabe, sense: saber, form: 'form:pres-3s'}, {surface: lo, sense: lo-que}, {surface: que, sense: lo-que}, {surface: pasa, sense: pasar, form: 'form:pres-3s'}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: barrio, sense: barrio}]
-      reverse: Yunior siempre sabe (lo que|qué) pasa en el barrio
+      reverse: |-
+        Yunior siempre sabe (lo que|qué) pasa en el barrio
+        Yunior siempre sabe lo que está pasando en el barrio
   translations:
     en: Yunior always knows (what's|what is) (going on|happening) in the (neighborhood|neighbourhood).
 - id: s.u25.16
@@ -265,7 +271,9 @@ sentences:
     es-Latn/standard:
       text: El mojito que tomé en la Bodeguita del Medio estaba muy rico.
       tokens: [{surface: El, sense: el}, {surface: mojito, sense: mojito}, {surface: que, sense: que}, {surface: tomé, sense: tomar, form: 'form:pret-1s'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Bodeguita, sense: bodeguita-del-medio}, {surface: del, sense: bodeguita-del-medio}, {surface: Medio, sense: bodeguita-del-medio}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: rico, sense: rico}]
-      reverse: El mojito que [me] tomé en la Bodeguita del Medio estaba muy (rico|bueno)
+      reverse: |-
+        El mojito que [me] tomé en la Bodeguita del Medio estaba muy (rico|bueno)
+        El mojito que yo tomé en la Bodeguita del Medio estaba muy rico
   translations:
     en: The mojito [that|which] I (had|drank) (at|in) (La|the) Bodeguita del Medio was (really|very) (good|delicious|tasty).
 - id: s.u25.21
@@ -411,10 +419,10 @@ stories:
   node: es.u25.story
   title: {en: 'By almendrón to the Capitolio'}
   characters:
-  - {id: daniel, name: {es-Latn/standard: Daniel}}
-  - {id: yunior, name: {es-Latn/standard: Yunior}}
-  - {id: marisol, name: {es-Latn/standard: Tía Marisol}}
-  - {id: botero, name: {es-Latn/standard: El botero}}
+  - {id: daniel, speaker: m, name: {es-Latn/standard: Daniel}}
+  - {id: yunior, speaker: m, name: {es-Latn/standard: Yunior}}
+  - {id: marisol, speaker: f, name: {es-Latn/standard: Tía Marisol}}
+  - {id: botero, speaker: m, name: {es-Latn/standard: El botero}}
   steps:
   - line:
       speaker: marisol

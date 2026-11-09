@@ -35,6 +35,7 @@ import {
   type DriveFile,
   type Fetch,
 } from "./drive.ts";
+import { moveBatch } from "./batch.ts";
 import { finishSignIn, refreshingTokens, sameSecret, startSignIn, type Clock, type Secrets, type TokenCell } from "./oauth.ts";
 import { fail, failure, json, ok, type Outcome } from "./outcome.ts";
 import { pageFor } from "./pages.ts";
@@ -208,6 +209,7 @@ const ROUTES: Readonly<Record<string, Readonly<Record<string, Route>>>> = {
   "/v1/file": { GET: read, PUT: write },
   "/v1/mkdir": { POST: mkdir },
   "/v1/move": { POST: relocate },
+  "/v1/moves": { POST: moveBatch },
   "/v1/trash": { POST: discard },
 };
 
