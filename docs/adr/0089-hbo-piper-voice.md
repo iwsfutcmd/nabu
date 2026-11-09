@@ -76,6 +76,14 @@ eSpeak NG's IPA, so it reads a Piper word's IPA directly (`ipa_phones`), not thr
   - Its [e] and [o] are learned only as the first part of English diphthongs.
   - A coloured [ɔ ɛ e o] after ṭ or ṣ is a combination it never heard.
   - The vowels may come out muddled. Ben accepted that.
+- **A machine check of the clips** (the phone recognizer of the round-trip check,
+  wav2vec2-xlsr-53-espeak-cv-ft):
+  - Sentences of seven or more words came out at a median phone error rate of 0.43. The same
+    voice reading Arabic text scored 0.23–0.34 on sentences.
+  - Most of the gap is the vowels: the recognizer hears [ɔ ɛ e o] as Arabic a, i, u. The words
+    come through: šəmaʿ yiśrāʾēl ʾăḏōnāy ʾĕlōhênû is heard as "ʃemaʕ israel aðanaː elhenu".
+  - Single words cannot be judged this way: the recognizer misses them even in the voice's own
+    Arabic (median 0.875). No clip is held back for review.
 - **Listening stays off** (ADR 0082: hbo's facets leave out listen). Clips still play once a card
   is answered.
 - **Better options, in order of cost:**
