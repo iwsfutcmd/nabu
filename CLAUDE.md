@@ -111,6 +111,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
   (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
+- OmniVoice clips are trimmed to their speech (`trim_edges`: 80 ms before, 150 ms after); a clip cloned from a recorded
+  reference credits it (speaker, license, source).
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
   `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.
@@ -299,7 +301,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (`marks.distinguishes`, the grader's lexicon). ñ is a letter, not a mark.
 - Placement is adaptive (ADR 0077: a block per unit, gallop then bisect, then node steps); `placement: {production:
   typed}` makes its production typed. The test is data and `runTest` a pure function: never make it stateful.
-- The voice clones a CC0 Cuban recording (`nabu audio cast --recording`); clips are CC-BY-NC-4.0 (OmniVoice weights).
+- Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
+  (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
 
 ## Reference library notes (see docs/adr/0079)
 - Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay

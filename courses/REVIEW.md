@@ -399,8 +399,9 @@ Across the course, check first:
    of Daniel's gendered sentences have a woman's version beside them (*soy cubana*, *encantada*,
    *la última*, *cuando era niña*, *mecánica*, *Lili y yo somos cubanas*); u27–u30 add Abuela,
    Lili and Mami.
-7. **The voice.** The clips clone a newsreader of Radio La Voz de la Victoria (Ciénaga de
-   Zapata, Matanzas; CC0). Held-back clips (`nabu audio report`) are mostly slang Whisper does not
+7. **The voices.** The clips clone two speakers from Radio La Voz de la Victoria (Ciénaga de
+   Zapata, Matanzas): a man, an actor in its radio drama *Tras el rastro de Coral* (CC BY 4.0), and
+   a woman interviewed for Women's Day (CC0). Check that both sound Cuban to a Cuban ear. Held-back clips (`nabu audio report`) are mostly slang Whisper does not
    know (*¿Qué bolá?*), so a listener should decide them in the audio check.
 
 By unit, what the drafts were least sure of:
