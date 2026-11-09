@@ -47,6 +47,13 @@ def test_phonemes(reading: str, ipa: str, espeak: str) -> None:
     assert attic.espeak(reading) == espeak
 
 
+def test_elided_monosyllable() -> None:
+    # δ’ (δέ before a vowel) keeps only its consonant (CGCG 1.36).
+    assert attic.espeak("δ\u2019") == "[[d]]"
+    with pytest.raises(attic.AtticReadingError):
+        attic.espeak("δ")
+
+
 def test_surface_strips_quantities() -> None:
     assert attic.surface(nfc("θᾰ́λᾰττᾰ")) == nfc("θάλαττα")
     assert attic.surface(nfc("Σωκρᾰ́της")) == nfc("Σωκράτης")

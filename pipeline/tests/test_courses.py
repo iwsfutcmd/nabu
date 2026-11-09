@@ -495,7 +495,7 @@ def test_attic_greek_is_never_read_as_modern_greek(core_cli: CoreCli) -> None:
         assert voice.reading == "attic" and voice.reading in PHONEME_SCHEMES
         assert voice.provider == "espeak-ng" and voice.voice.split("+")[0] == "grc"
     index = read_index(COURSES / "grc" / "audio")
-    assert len(index.clips) > 60
+    assert len(index.clips) > 400
     for clip in index.clips:
         assert clip.synthesis is not None
         assert not GREEK_LETTER.search(clip.synthesis.input), clip.item
@@ -528,4 +528,4 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
                 reading = t["readings"]["attic"]
                 assert attic.surface(reading) == t["surface"], (unit["id"], t["surface"], reading)
                 assert attic.unmarked(reading) == [], (unit["id"], reading)
-    assert words > 100
+    assert words > 1000

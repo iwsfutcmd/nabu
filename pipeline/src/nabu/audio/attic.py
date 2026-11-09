@@ -221,7 +221,8 @@ def phones(reading: str) -> list[Phone]:
             long = letter.base in "ηω"
         out.append(Phone(*MONOPHTHONGS[(letter.base, long)], vowel=True, accent=accent))
         i += 1
-    if not any(p.vowel for p in out):
+    # An elided monosyllable (δ’, γ’, τ’) is its consonant alone, said with the next word.
+    if not any(p.vowel for p in out) and not any(c in SILENT - {"-"} for c in reading):
         raise AtticReadingError(f"{reading!r} has no vowel")
     return out
 

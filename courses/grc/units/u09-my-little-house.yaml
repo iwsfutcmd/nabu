@@ -1,0 +1,1215 @@
+# Ancient Greek (grc), unit 9: My little house (Lysias 1.9).
+# A house and its rooms; "I have" as ἔστι μοι; upstairs and downstairs; the dative plural; a baby is born (the
+# aorist ἐγένετο); αὐτός for him, her, it; "I lived" (the imperfect of a middle verb).
+# The passage is Hude's text of Lysias (public domain), as the Perseus Digital Library has it; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u09-my-little-house
+title:
+  en: My little house
+cefr: A2
+kcs:
+- id: sense:oikidion
+  gloss:
+    en: a little house
+  forms:
+    grc-Grek/polytonic:
+    - οἰκίδιον
+  image:
+    file: ../images/house.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+- id: construction:esti-moi
+  gloss:
+    en: 'ἔστι μοι + a noun: I have (word for word, there is to me)'
+- id: sense:diplous
+  gloss:
+    en: double; (of a house) on two floors
+  forms:
+    grc-Grek/polytonic:
+    - διπλοῦς
+- id: sense:ano
+  gloss:
+    en: up; upstairs
+  forms:
+    grc-Grek/polytonic:
+    - ἄνω
+- id: sense:kato
+  gloss:
+    en: down; downstairs
+  forms:
+    grc-Grek/polytonic:
+    - κάτω
+- id: sense:isos
+  gloss:
+    en: 'equal, the same (as: with the dative)'
+  forms:
+    grc-Grek/polytonic:
+    - ἴσος
+- id: form:dat-pl
+  gloss:
+    en: 'the dative plural: to, for (the) …; after ἐν, in (τοῖς κάτω, to the downstairs rooms)'
+- id: sense:gynaikonitis
+  gloss:
+    en: the women's rooms of a house
+  forms:
+    grc-Grek/polytonic:
+    - γυναικωνῖτις
+- id: sense:andronitis
+  gloss:
+    en: the men's rooms of a house
+  forms:
+    grc-Grek/polytonic:
+    - ἀνδρωνῖτις
+- id: sense:kata
+  gloss:
+    en: (with the accusative) by, for, in
+  forms:
+    grc-Grek/polytonic:
+    - κατά
+- id: sense:paidion
+  gloss:
+    en: little child, baby
+  forms:
+    grc-Grek/polytonic:
+    - παιδίον
+  notes:
+    en: 'Neuter, like τέκνον: τὸ παιδίον, and so αὐτό, "it".'
+- id: form:aor-3s
+  gloss:
+    en: 'the aorist, he, she, it: did (once, in the past)'
+- id: sense:epeide
+  gloss:
+    en: when, after; since
+  forms:
+    grc-Grek/polytonic:
+    - ἐπειδή
+- id: sense:autos
+  gloss:
+    en: him, her, it (never first in its clause); self
+  forms:
+    grc-Grek/polytonic:
+    - αὐτός
+- id: sense:thelazo
+  gloss:
+    en: to nurse, breastfeed
+  forms:
+    grc-Grek/polytonic:
+    - θηλάζω
+- id: sense:diaitaomai
+  gloss:
+    en: to live, spend one's days
+  forms:
+    grc-Grek/polytonic:
+    - διαιτάομαι
+  notes:
+    en: διῃτώμην, "I was living", is its imperfect.
+- id: form:impf-1s
+  gloss:
+    en: 'the imperfect, I: I was doing, I used to do'
+nodes:
+- id: grc.u09.my-house
+  kind: lesson
+  introduces:
+  - sense:oikidion
+  - construction:esti-moi
+  - sense:diplous
+- id: grc.u09.upstairs
+  kind: lesson
+  introduces:
+  - sense:ano
+  - sense:kato
+  - sense:isos
+  - form:dat-pl
+- id: grc.u09.the-rooms
+  kind: lesson
+  introduces:
+  - sense:gynaikonitis
+  - sense:andronitis
+  - sense:kata
+- id: grc.u09.the-baby
+  kind: lesson
+  introduces:
+  - sense:paidion
+  - form:aor-3s
+  - sense:epeide
+  - sense:autos
+  - sense:thelazo
+- id: grc.u09.i-lived
+  kind: lesson
+  introduces:
+  - sense:diaitaomai
+  - form:impf-1s
+- id: grc.u09.story
+  kind: story
+sentences:
+- id: s.09.1
+  node: grc.u09.my-house
+  forms:
+    grc-Grek/polytonic:
+      text: οἰκίδιον.
+      tokens:
+      - surface: οἰκίδιον
+        sense: oikidion
+        readings:
+          attic: οἰκῐ́δῐον
+      reverse: οἰκίδιον
+  translations:
+    en: A (little|small) house.
+- id: s.09.2
+  node: grc.u09.my-house
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ οἰκίδιον.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: οἰκίδιον
+        sense: oikidion
+        readings:
+          attic: οἰκῐ́δῐον
+      reverse: τὸ οἰκίδιον
+  translations:
+    en: The (little|small) house.
+- id: s.09.3
+  node: grc.u09.my-house
+  constructions:
+  - construction:esti-moi
+  forms:
+    grc-Grek/polytonic:
+      text: οἰκίδιον ἔστι μοι.
+      tokens:
+      - surface: οἰκίδιον
+        sense: oikidion
+        readings:
+          attic: οἰκῐ́δῐον
+      - surface: ἔστι
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἔστῐ
+      - surface: μοι
+        sense: ego
+        form: form:dat
+        readings:
+          attic: μοι
+      reverse: |-
+        οἰκίδιον ἔστι μοι
+        ἔστι μοι οἰκίδιον
+        οἰκίδιον ἔχω
+        ἔχω οἰκίδιον
+  translations:
+    en: I have a (little|small) house.
+- id: s.09.4
+  node: grc.u09.my-house
+  constructions:
+  - construction:esti-moi
+  forms:
+    grc-Grek/polytonic:
+      text: ἀδελφὸς ἔστι μοι.
+      tokens:
+      - surface: ἀδελφὸς
+        sense: adelphos
+        readings:
+          attic: ᾰ̓δελφὸς
+      - surface: ἔστι
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἔστῐ
+      - surface: μοι
+        sense: ego
+        form: form:dat
+        readings:
+          attic: μοι
+      reverse: |-
+        ἀδελφὸς ἔστι μοι
+        ἔστι μοι ἀδελφός
+        ἀδελφὸν ἔχω
+        ἔχω ἀδελφόν
+  translations:
+    en: I have a brother.
+- id: s.09.5
+  node: grc.u09.my-house
+  constructions:
+  - construction:esti-moi
+  forms:
+    grc-Grek/polytonic:
+      text: ἔστι σοι ἀδελφή;
+      tokens:
+      - surface: ἔστι
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἔστῐ
+      - surface: σοι
+        sense: sy
+        form: form:dat
+        readings:
+          attic: σοι
+      - surface: ἀδελφή
+        sense: adelphe
+        readings:
+          attic: ᾰ̓δελφή
+      reverse: |-
+        ἔστι σοι ἀδελφή
+        ἀδελφὴν ἔχεις
+        ἔχεις ἀδελφήν
+  translations:
+    en: (Do you have|Have you got|Have you) a sister?
+  persons:
+    addressee: sg
+- id: s.09.6
+  node: grc.u09.my-house
+  forms:
+    grc-Grek/polytonic:
+      text: οἰκίδιον διπλοῦν.
+      tokens:
+      - surface: οἰκίδιον
+        sense: oikidion
+        readings:
+          attic: οἰκῐ́δῐον
+      - surface: διπλοῦν
+        sense: diplous
+        readings:
+          attic: δῐπλοῦν
+      reverse: οἰκίδιον διπλοῦν
+  translations:
+    en: A (little|small) (two-storey|two-story|two-floored) house.
+- id: s.09.7
+  node: grc.u09.my-house
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ οἰκία διπλῆ ἐστιν.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: οἰκία
+        sense: oikia
+        readings:
+          attic: οἰκῐ́ᾱ
+      - surface: διπλῆ
+        sense: diplous
+        form: form:f
+        readings:
+          attic: δῐπλῆ
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ἡ οἰκία διπλῆ ἐστιν
+        διπλῆ ἐστιν ἡ οἰκία
+        ἡ οἰκία διπλῆ ἐστι
+  translations:
+    en: The house (has two (floors|storeys|stories)|is on two floors|is (two-storey|two-story|two-floored)).
+- id: s.09.8
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: ἄνω.
+      tokens:
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      reverse: ἄνω
+  translations:
+    en: (Upstairs|Up).
+- id: s.09.9
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: κάτω.
+      tokens:
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      reverse: κάτω
+  translations:
+    en: (Downstairs|Down).
+- id: s.09.10
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ πατὴρ ἄνω ἐστίν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: πατὴρ
+        sense: pater
+        readings:
+          attic: πᾰτὴρ
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: ἐστίν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ́ν
+      reverse: |-
+        ὁ πατὴρ ἄνω ἐστίν
+        ἄνω ἐστὶ[ν] ὁ πατήρ
+        ὁ πατὴρ ἄνω ἐστί
+  translations:
+    en: (The|My) father is upstairs.
+- id: s.09.11
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: αἱ γυναῖκες κάτω εἰσίν.
+      tokens:
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      - surface: εἰσίν
+        sense: eimi
+        form: form:pres-3p
+        readings:
+          attic: εἰσῐ́ν
+      reverse: |-
+        αἱ γυναῖκες κάτω εἰσίν
+        κάτω εἰσὶ[ν] αἱ γυναῖκες
+        αἱ γυναῖκες κάτω εἰσί
+  translations:
+    en: The women are downstairs.
+- id: s.09.12
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ μὲν ἄνω εἰμί, σὺ δὲ κάτω.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: μὲν
+        sense: men
+        readings:
+          attic: μὲν
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      - surface: σὺ
+        sense: sy
+        readings:
+          attic: σῠ̀
+      - surface: δὲ
+        sense: de
+        readings:
+          attic: δὲ
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      reverse: |-
+        ἐγὼ μὲν ἄνω εἰμί σὺ δὲ κάτω
+        ἐγὼ μὲν ἄνω εἰμί σὺ δὲ κάτω εἶ
+        ἄνω μὲν ἐγώ εἰμι σὺ δὲ κάτω
+  translations:
+    en: (I am|I'm) upstairs, (and|but) you (are |)downstairs.
+  persons:
+    addressee: sg
+- id: s.09.13
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: τὰ ἄνω καὶ τὰ κάτω.
+      tokens:
+      - surface: τὰ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: τᾰ̀
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: τὰ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: τᾰ̀
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      reverse: τὰ ἄνω καὶ τὰ κάτω
+  translations:
+    en: (The upstairs|Upstairs) and (the downstairs|downstairs).
+- id: s.09.14
+  node: grc.u09.upstairs
+  forms:
+    grc-Grek/polytonic:
+      text: τὰ ἄνω ἴσα ἐστὶ τοῖς κάτω.
+      tokens:
+      - surface: τὰ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: τᾰ̀
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: ἴσα
+        sense: isos
+        form: form:pl
+        readings:
+          attic: ῐ̓́σᾰ
+      - surface: ἐστὶ
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐ̀
+      - surface: τοῖς
+        sense: ho
+        form: form:dat-pl
+        readings:
+          attic: τοῖς
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      reverse: |-
+        τὰ ἄνω ἴσα ἐστὶ τοῖς κάτω
+        τὰ ἄνω τοῖς κάτω ἴσα ἐστί[ν]
+        ἴσα ἐστὶ τὰ ἄνω τοῖς κάτω
+  translations:
+    en: The upstairs (is|are) (the same as|equal to|like) the downstairs.
+- id: s.09.15
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ γυναικωνῖτις.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γυναικωνῖτις
+        sense: gynaikonitis
+        readings:
+          attic: γῠναικωνῖτῐς
+      reverse: ἡ γυναικωνῖτις
+  translations:
+    en: The women's (rooms|quarters).
+- id: s.09.16
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ ἀνδρωνῖτις.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: ἀνδρωνῖτις
+        sense: andronitis
+        readings:
+          attic: ᾰ̓νδρωνῖτῐς
+      reverse: ἡ ἀνδρωνῖτις
+  translations:
+    en: The men's (rooms|quarters).
+- id: s.09.17
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: ἐν τῇ γυναικωνίτιδι.
+      tokens:
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: γυναικωνίτιδι
+        sense: gynaikonitis
+        form: form:dat
+        readings:
+          attic: γῠναικωνῑ́τῐδῐ
+      reverse: ἐν τῇ γυναικωνίτιδι
+  translations:
+    en: In the women's (rooms|quarters).
+- id: s.09.18
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: κατὰ τὴν γυναικωνῖτιν.
+      tokens:
+      - surface: κατὰ
+        sense: kata
+        readings:
+          attic: κᾰτᾰ̀
+      - surface: τὴν
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὴν
+      - surface: γυναικωνῖτιν
+        sense: gynaikonitis
+        form: form:acc
+        readings:
+          attic: γῠναικωνῖτῐν
+      reverse: κατὰ τὴν γυναικωνῖτιν
+  translations:
+    en: (In|For) the women's (rooms|quarters).
+- id: s.09.19
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ γυνὴ ἐν τῇ γυναικωνίτιδί ἐστιν.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γυνὴ
+        sense: gyne
+        readings:
+          attic: γῠνὴ
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: γυναικωνίτιδί
+        sense: gynaikonitis
+        form: form:dat
+        readings:
+          attic: γῠναικωνῑ́τῐδῐ́
+      - surface: ἐστιν
+        sense: eimi
+        form: form:pres-3s
+        readings:
+          attic: ἐστῐν
+      reverse: |-
+        ἡ γυνὴ ἐν τῇ γυναικωνίτιδί ἐστιν
+        ἡ γυνή ἐστιν ἐν τῇ γυναικωνίτιδι
+        ἐν τῇ γυναικωνίτιδί ἐστιν ἡ γυνή
+        ἡ γυνὴ ἐν τῇ γυναικωνίτιδί ἐστι
+  translations:
+    en: The (woman|wife) is in the women's (rooms|quarters).
+- id: s.09.20
+  node: grc.u09.the-rooms
+  forms:
+    grc-Grek/polytonic:
+      text: οἱ φίλοι ἐν τῇ ἀνδρωνίτιδί εἰσιν.
+      tokens:
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: φίλοι
+        sense: philos
+        form: form:pl
+        readings:
+          attic: φῐ́λοι
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: ἀνδρωνίτιδί
+        sense: andronitis
+        form: form:dat
+        readings:
+          attic: ᾰ̓νδρωνῑ́τῐδῐ́
+      - surface: εἰσιν
+        sense: eimi
+        form: form:pres-3p
+        readings:
+          attic: εἰσῐν
+      reverse: |-
+        οἱ φίλοι ἐν τῇ ἀνδρωνίτιδί εἰσιν
+        οἱ φίλοι εἰσὶν ἐν τῇ ἀνδρωνίτιδι
+        ἐν τῇ ἀνδρωνίτιδί εἰσιν οἱ φίλοι
+        οἱ φίλοι ἐν τῇ ἀνδρωνίτιδί εἰσι
+  translations:
+    en: The friends are in the men's (rooms|quarters).
+- id: s.09.21
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ παιδίον.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: παιδίον
+        sense: paidion
+        readings:
+          attic: παιδῐ́ον
+      reverse: τὸ παιδίον
+  translations:
+    en: The (baby|little child).
+- id: s.09.22
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγένετο.
+      tokens:
+      - surface: ἐγένετο
+        sense: gignomai
+        form: form:aor-3s
+        readings:
+          attic: ἐγένετο
+      reverse: ἐγένετο
+  translations:
+    en: |-
+      (He|She|It) was born.
+      It happened
+- id: s.09.23
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ παιδίον ἐγένετο.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: παιδίον
+        sense: paidion
+        readings:
+          attic: παιδῐ́ον
+      - surface: ἐγένετο
+        sense: gignomai
+        form: form:aor-3s
+        readings:
+          attic: ἐγένετο
+      reverse: |-
+        τὸ παιδίον ἐγένετο
+        ἐγένετο τὸ παιδίον
+  translations:
+    en: The baby was born.
+- id: s.09.24
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: ἐπειδὴ τὸ παιδίον ἐγένετο ἡμῖν.
+      tokens:
+      - surface: ἐπειδὴ
+        sense: epeide
+        readings:
+          attic: ἐπειδὴ
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: παιδίον
+        sense: paidion
+        readings:
+          attic: παιδῐ́ον
+      - surface: ἐγένετο
+        sense: gignomai
+        form: form:aor-3s
+        readings:
+          attic: ἐγένετο
+      - surface: ἡμῖν
+        sense: hemeis
+        form: form:dat
+        readings:
+          attic: ἡμῖν
+      reverse: ἐπειδὴ τὸ παιδίον ἐγένετο ἡμῖν
+  translations:
+    en: When (the|our) baby was born (to us|).
+- id: s.09.25
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ μήτηρ αὐτὸ θηλάζει.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: μήτηρ
+        sense: meter
+        readings:
+          attic: μήτηρ
+      - surface: αὐτὸ
+        sense: autos
+        form: form:acc
+        readings:
+          attic: αὐτὸ
+      - surface: θηλάζει
+        sense: thelazo
+        form: form:pres-3s
+        readings:
+          attic: θηλᾰ́ζει
+      reverse: |-
+        ἡ μήτηρ αὐτὸ θηλάζει
+        ἡ μήτηρ θηλάζει αὐτό
+        θηλάζει αὐτὸ ἡ μήτηρ
+  translations:
+    en: The mother (is nursing|nurses|feeds) (it|the baby|him|her).
+- id: s.09.26
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ μήτηρ αὐτὸ ἐθήλαζεν.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: μήτηρ
+        sense: meter
+        readings:
+          attic: μήτηρ
+      - surface: αὐτὸ
+        sense: autos
+        form: form:acc
+        readings:
+          attic: αὐτὸ
+      - surface: ἐθήλαζεν
+        sense: thelazo
+        form: form:impf-3s
+        readings:
+          attic: ἐθήλᾰζεν
+      reverse: |-
+        ἡ μήτηρ αὐτὸ ἐθήλαζεν
+        ἡ μήτηρ ἐθήλαζεν αὐτό
+        ἐθήλαζεν αὐτὸ ἡ μήτηρ
+        ἡ μήτηρ αὐτὸ ἐθήλαζε
+  translations:
+    en: (The|Its|Her|His) mother (nursed|was nursing|used to nurse|fed) (it|the baby|him|her).
+- id: s.09.27
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: αὐτὸν ὁρῶ.
+      tokens:
+      - surface: αὐτὸν
+        sense: autos
+        form: form:acc
+        readings:
+          attic: αὐτὸν
+      - surface: ὁρῶ
+        sense: horao
+        form: form:pres-1s
+        readings:
+          attic: ὁρῶ
+      reverse: |-
+        αὐτὸν ὁρῶ
+        ὁρῶ αὐτόν
+  translations:
+    en: I (see|can see) him.
+- id: s.09.28
+  node: grc.u09.the-baby
+  forms:
+    grc-Grek/polytonic:
+      text: αὐτὴν ὁρῶ.
+      tokens:
+      - surface: αὐτὴν
+        sense: autos
+        form: form:acc
+        readings:
+          attic: αὐτὴν
+      - surface: ὁρῶ
+        sense: horao
+        form: form:pres-1s
+        readings:
+          attic: ὁρῶ
+      reverse: |-
+        αὐτὴν ὁρῶ
+        ὁρῶ αὐτήν
+  translations:
+    en: I (see|can see) her.
+- id: s.09.29
+  node: grc.u09.i-lived
+  forms:
+    grc-Grek/polytonic:
+      text: διῃτώμην.
+      tokens:
+      - surface: διῃτώμην
+        sense: diaitaomai
+        form: form:impf-1s
+        readings:
+          attic: δῐῃτώμην
+      reverse: διῃτώμην
+  translations:
+    en: I (lived|was living|used to live).
+- id: s.09.30
+  node: grc.u09.i-lived
+  forms:
+    grc-Grek/polytonic:
+      text: ἄνω διῃτώμην.
+      tokens:
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: διῃτώμην
+        sense: diaitaomai
+        form: form:impf-1s
+        readings:
+          attic: δῐῃτώμην
+      reverse: |-
+        ἄνω διῃτώμην
+        διῃτώμην ἄνω
+  translations:
+    en: I (lived|was living|used to live) upstairs.
+- id: s.09.31
+  node: grc.u09.i-lived
+  forms:
+    grc-Grek/polytonic:
+      text: ἐγὼ μὲν ἄνω διῃτώμην, αἱ δὲ γυναῖκες κάτω.
+      tokens:
+      - surface: ἐγὼ
+        sense: ego
+        readings:
+          attic: ἐγὼ
+      - surface: μὲν
+        sense: men
+        readings:
+          attic: μὲν
+      - surface: ἄνω
+        sense: ano
+        readings:
+          attic: ᾰ̓́νω
+      - surface: διῃτώμην
+        sense: diaitaomai
+        form: form:impf-1s
+        readings:
+          attic: δῐῃτώμην
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: δὲ
+        sense: de
+        readings:
+          attic: δὲ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      - surface: κάτω
+        sense: kato
+        readings:
+          attic: κᾰ́τω
+      reverse: |-
+        ἐγὼ μὲν ἄνω διῃτώμην αἱ δὲ γυναῖκες κάτω
+        ἄνω μὲν ἐγὼ διῃτώμην αἱ δὲ γυναῖκες κάτω
+  translations:
+    en: I (lived|was living) upstairs, (and|but|while) the women (lived |)downstairs.
+- id: s.09.32
+  node: grc.u09.i-lived
+  forms:
+    grc-Grek/polytonic:
+      text: ἐν τῷ ἄστει διῃτώμην.
+      tokens:
+      - surface: ἐν
+        sense: en
+        readings:
+          attic: ἐν
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: ἄστει
+        sense: astu
+        form: form:dat
+        readings:
+          attic: ᾰ̓́στει
+      - surface: διῃτώμην
+        sense: diaitaomai
+        form: form:impf-1s
+        readings:
+          attic: δῐῃτώμην
+      reverse: |-
+        ἐν τῷ ἄστει διῃτώμην
+        διῃτώμην ἐν τῷ ἄστει
+  translations:
+    en: I (lived|was living|used to live) in (the city|the town|town).
+stories:
+- id: grc.story.my-little-house
+  node: grc.u09.story
+  title:
+    en: My little house (Lysias 1.9)
+  characters:
+  - id: euphiletos
+    name:
+      grc-Grek/polytonic: Εὐφίλητος
+  steps:
+  - line:
+      speaker: euphiletos
+      ask: complete
+      gap: sense:oikidion
+      distractors:
+      - sense:oros
+      - sense:thalatta
+      forms:
+        grc-Grek/polytonic:
+          text: οἰκίδιον ἔστι μοι διπλοῦν,
+          tokens:
+          - surface: οἰκίδιον
+            sense: oikidion
+            readings:
+              attic: οἰκῐ́δῐον
+          - surface: ἔστι
+            sense: eimi
+            form: form:pres-3s
+            readings:
+              attic: ἔστῐ
+          - surface: μοι
+            sense: ego
+            form: form:dat
+            readings:
+              attic: μοι
+          - surface: διπλοῦν
+            sense: diplous
+            readings:
+              attic: δῐπλοῦν
+      translations:
+        en: I have a little house on two floors,
+  - line:
+      speaker: euphiletos
+      forms:
+        grc-Grek/polytonic:
+          text: ἴσα ἔχον τὰ ἄνω τοῖς κάτω κατὰ τὴν γυναικωνῖτιν καὶ κατὰ τὴν ἀνδρωνῖτιν.
+          tokens:
+          - surface: ἴσα
+            sense: isos
+            form: form:pl
+            readings:
+              attic: ῐ̓́σᾰ
+          - surface: ἔχον
+            sense: echo
+            form: form:ptc
+            readings:
+              attic: ἔχον
+          - surface: τὰ
+            sense: ho
+            form: form:pl
+            readings:
+              attic: τᾰ̀
+          - surface: ἄνω
+            sense: ano
+            readings:
+              attic: ᾰ̓́νω
+          - surface: τοῖς
+            sense: ho
+            form: form:dat-pl
+            readings:
+              attic: τοῖς
+          - surface: κάτω
+            sense: kato
+            readings:
+              attic: κᾰ́τω
+          - surface: κατὰ
+            sense: kata
+            readings:
+              attic: κᾰτᾰ̀
+          - surface: τὴν
+            sense: ho
+            form: form:acc
+            readings:
+              attic: τὴν
+          - surface: γυναικωνῖτιν
+            sense: gynaikonitis
+            form: form:acc
+            readings:
+              attic: γῠναικωνῖτῐν
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: κατὰ
+            sense: kata
+            readings:
+              attic: κᾰτᾰ̀
+          - surface: τὴν
+            sense: ho
+            form: form:acc
+            readings:
+              attic: τὴν
+          - surface: ἀνδρωνῖτιν
+            sense: andronitis
+            form: form:acc
+            readings:
+              attic: ᾰ̓νδρωνῖτῐν
+      translations:
+        en: the upstairs the same as the downstairs, for the women's rooms and for the men's.
+  - choose:
+      prompt:
+        en: What is the speaker's house like?
+      options:
+      - en: Small, on two floors
+      - en: A large farm
+      - en: A tent
+      answer: 0
+  - line:
+      speaker: euphiletos
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: ἐπειδὴ δὲ τὸ παιδίον ἐγένετο ἡμῖν,
+          tokens:
+          - surface: ἐπειδὴ
+            sense: epeide
+            readings:
+              attic: ἐπειδὴ
+          - surface: δὲ
+            sense: de
+            readings:
+              attic: δὲ
+          - surface: τὸ
+            sense: ho
+            readings:
+              attic: τὸ
+          - surface: παιδίον
+            sense: paidion
+            readings:
+              attic: παιδῐ́ον
+          - surface: ἐγένετο
+            sense: gignomai
+            form: form:aor-3s
+            readings:
+              attic: ἐγένετο
+          - surface: ἡμῖν
+            sense: hemeis
+            form: form:dat
+            readings:
+              attic: ἡμῖν
+      translations:
+        en: When our baby was born,
+  - line:
+      speaker: euphiletos
+      forms:
+        grc-Grek/polytonic:
+          text: ἡ μήτηρ αὐτὸ ἐθήλαζεν·
+          tokens:
+          - surface: ἡ
+            sense: ho
+            readings:
+              attic: ἡ
+          - surface: μήτηρ
+            sense: meter
+            readings:
+              attic: μήτηρ
+          - surface: αὐτὸ
+            sense: autos
+            form: form:acc
+            readings:
+              attic: αὐτὸ
+          - surface: ἐθήλαζεν
+            sense: thelazo
+            form: form:impf-3s
+            readings:
+              attic: ἐθήλᾰζεν
+      translations:
+        en: its mother nursed it;
+  - line:
+      speaker: euphiletos
+      forms:
+        grc-Grek/polytonic:
+          text: ἐγὼ μὲν ἄνω διῃτώμην, αἱ δὲ γυναῖκες κάτω.
+          tokens:
+          - surface: ἐγὼ
+            sense: ego
+            readings:
+              attic: ἐγὼ
+          - surface: μὲν
+            sense: men
+            readings:
+              attic: μὲν
+          - surface: ἄνω
+            sense: ano
+            readings:
+              attic: ᾰ̓́νω
+          - surface: διῃτώμην
+            sense: diaitaomai
+            form: form:impf-1s
+            readings:
+              attic: δῐῃτώμην
+          - surface: αἱ
+            sense: ho
+            form: form:pl
+            readings:
+              attic: αἱ
+          - surface: δὲ
+            sense: de
+            readings:
+              attic: δὲ
+          - surface: γυναῖκες
+            sense: gyne
+            form: form:pl
+            readings:
+              attic: γῠναῖκες
+          - surface: κάτω
+            sense: kato
+            readings:
+              attic: κᾰ́τω
+      translations:
+        en: I lived upstairs, and the women downstairs.
+  - choose:
+      prompt:
+        en: Where did the women live after the baby was born?
+      options:
+      - en: Downstairs
+      - en: Upstairs
+      - en: In another house
+      answer: 0
+scenarios:
+- id: grc.a-new-house
+  after: grc.u09.i-lived
+  title:
+    en: A house to rent
+  setting:
+    en: 'An Athenian street, about 400 BCE: you are looking for a house to rent, and a man is standing at the door of a small two-storey house.'
+  character:
+    en: The owner of the house, a polite, careful Athenian, who speaks only Attic Greek.
+  goal:
+    en: Ask him whether the house has two floors, where the women's rooms are, and tell him who lives with you.

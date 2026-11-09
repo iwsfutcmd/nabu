@@ -37,7 +37,7 @@ Nothing in the app said how polytonic Greek is written, graded or voiced.
 - Like hbo, the facets leave out listen: read, not heard.
 
 **The course** (`courses/grc`): each unit's lessons teach the words of a public-domain Attic passage
-(Perseus texts: Burnet, Marchant), and its story reads it. Verb forms and cases are `form:` KCs;
+(Perseus texts: Burnet, Marchant, Hude, Hall and Geldart), and its story reads it. Verb forms and cases are `form:` KCs;
 `iPlusOne: 2`. LLM drafts (`llm:`, status draft), CC-BY-SA-4.0.
 
 | Unit | Passage |
@@ -46,12 +46,19 @@ Nothing in the app said how polytonic Greek is written, graded or voiced.
 | 2 | Xenophon, Anabasis 1.1.1: Two sons |
 | 3 | Plato, Phaedrus 227a: Where to, and where from? |
 | 4 | Plato, Meno 82b: Does he speak Greek? |
+| 5 | Plato, Republic 327a–b: Wait for us! |
+| 6 | Aristophanes, Lysistrata 5–8: Not one woman is here (Hall and Geldart) |
+| 7 | Xenophon, Anabasis 4.7.21, 24: The sea! The sea! |
+| 8 | Plato, Phaedo 118a: We owe a rooster |
+| 9 | Lysias 1.9: My little house (Hude) |
+| 10 | Plato, Apology 21d: Wiser than this man |
 
 ## Consequences
 
-- Four units so far: 178 sentences. Planned next: Republic 327a–b, Lysistrata 5–8 (women speaking to
-  women), Anabasis 4.7, Phaedo 118a, Lysias 1.9, Apology 21d.
-- Elided monosyllables (δ’, γ’) have no vowel: `attic.phones` must accept them before unit 5.
+- Ten units, A1 to A2: 376 sentences, 201 KCs, 48 lessons, ten stories and six roleplay scenarios.
+- Women speak and are spoken to (Lysistrata and Calonice; ἑτοίμη εἰμί; Xanthippe), and "you" is tagged one
+  person or several (ADR 0075).
+- Elided words keep their apostrophe in the token (ἀλλ’, δ’); an elided monosyllable is its consonant alone.
 - Not done: checking vowel lengths and glosses against the Cambridge Greek Lexicon (OCR of its scan);
   the glossary's folded pass does not fold grave to acute, so a KC variant seen only with a grave
   (τὸ) is a dead entry: KCs list lemmas only.
