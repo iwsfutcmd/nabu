@@ -46,9 +46,13 @@ def _items(units: list[dict[str, Any]]) -> tuple[dict[str, list[list[dict[str, A
     return sentences, kcs
 
 
-def _credit(clip: AudioClip) -> str:
+def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
+    """Who made a clip; a voice cloned from a person's recording also names that recording, which
+    its license may ask for (CC BY: ADR 0076)."""
     if clip.synthesis is not None:
-        return f"{clip.synthesis.provider} {clip.synthesis.version} ({clip.synthesis.voice})"
+        made = f"{clip.synthesis.provider} {clip.synthesis.version} ({clip.synthesis.voice})"
+        recording = recordings.get(clip.synthesis.voice)
+        return made if recording is None else f"{made}, cloning {recording}"
     speaker = clip.provenance.author.removeprefix("human:")
     return speaker if clip.source is None else f"{speaker}: {clip.source}"
 
@@ -108,6 +112,7 @@ def check_audio(
     } | {c.item for c in index.clips if c.rejected is not None}
     # Reference voices a cloning provider imitates: each must be its recorded file.
     references: dict[str, str] = {}
+    recordings: dict[str, str] = {}  # a recorded reference's speaker, license and source
     for i, ref in enumerate(index.references or []):
         file = adir / ref.file
         if not file.exists() or hashlib.sha256(file.read_bytes()).hexdigest() != ref.sha256:
@@ -118,6 +123,9 @@ def check_audio(
             )
             continue
         references[ref.id] = ref.sha256
+        if not ref.synthetic and ref.source is not None:
+            speaker = ref.provenance.author.removeprefix("human:")
+            recordings[ref.id] = f"{speaker} ({ref.license}): {ref.source}"
     held = 0
     items: dict[str, dict[str, Any]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
@@ -210,13 +218,13 @@ def check_audio(
             held += clip.speed == "normal"
             continue
         rel = f"audio/{clip.sha256[:16]}.mp3"
-        files.setdefault(clip.item, {})[rel] = (data, clip.license, _credit(clip))
+        files.setdefault(clip.item, {})[rel] = (data, clip.license, _credit(clip, recordings))
         entry: dict[str, Any] = {
             "path": rel,
             "durationMs": clip.durationMs,
             "synthetic": clip.synthetic,
             "license": clip.license,
-            "credit": _credit(clip),
+            "credit": _credit(clip, recordings),
         }
         if clip.timings is not None:
             entry["timings"] = [t.model_dump(mode="json") for t in clip.timings]
