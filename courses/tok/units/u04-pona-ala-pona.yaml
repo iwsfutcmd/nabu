@@ -190,6 +190,7 @@ sentences:
       reverse: |-
         sina moku ala moku moku
         sina moku anu seme moku
+        sina moku ala moku mi moku
     tok-Qaap/sitelen-pona:
       text: "\U000F195E\U000F1936\U000F1902\U000F1936\u3000\U000F1936"
       tokens: [{surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤶, sense: moku, readings: {
@@ -197,6 +198,7 @@ sentences:
       reverse: |-
         󱥞󱤶󱤂󱤶󱤶
         󱥞󱤶󱤇󱥙󱤶
+        󱥞󱤶󱤂󱤶󱤴󱤶
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -214,6 +216,7 @@ sentences:
         ona li lape ala lape lape ala
         ona li lape ala lape ala
         ona li lape anu seme lape ala
+        ona li lape ala lape ona li lape ala
     tok-Qaap/sitelen-pona:
       text: "\U000F1946\U000F1927\U000F1922\U000F1902\U000F1922\u3000\U000F1922\U000F1902"
       tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}, {surface: 󱤂, sense: ala, readings: {
@@ -222,6 +225,7 @@ sentences:
         󱥆󱤧󱤢󱤂󱤢󱤢󱤂
         󱥆󱤧󱤢󱤂󱤢󱤂
         󱥆󱤧󱤢󱤇󱥙󱤢󱤂
+        󱥆󱤧󱤢󱤂󱤢󱥆󱤧󱤢󱤂
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -316,6 +320,7 @@ sentences:
       reverse: |-
         pilin sina li pona ala pona
         pilin sina li pona anu seme
+        sina pilin ala pilin pona
     tok-Qaap/sitelen-pona:
       text: 󱥎󱥞󱤧󱥔󱤂󱥔
       tokens: [{surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
@@ -323,6 +328,7 @@ sentences:
       reverse: |-
         󱥎󱥞󱤧󱥔󱤂󱥔
         󱥎󱥞󱤧󱥔󱤇󱥙
+        󱥞󱥎󱤂󱥎󱥔
   constructions: ['construction:x-ala-x']
   translations:
     en: |-
@@ -417,12 +423,16 @@ sentences:
       text: ona li soweli anu waso?
       tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: anu, sense: anu,
           readings: {lasina: anu}}, {surface: waso, sense: waso, readings: {lasina: waso}}]
-      reverse: ona li soweli anu waso
+      reverse: |-
+        ona li soweli anu waso
+        ni li soweli anu waso
     tok-Qaap/sitelen-pona:
       text: 󱥆󱤧󱥢󱤇󱥴
       tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤇, sense: anu, readings: {
             lasina: anu}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}]
-      reverse: 󱥆󱤧󱥢󱤇󱥴
+      reverse: |-
+        󱥆󱤧󱥢󱤇󱥴
+        󱥁󱤧󱥢󱤇󱥴
   translations:
     en: |-
       Is (it|she|he) an animal or a bird?

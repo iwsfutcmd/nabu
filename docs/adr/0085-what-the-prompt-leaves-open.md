@@ -73,8 +73,9 @@ now adds:
 - **The other courses were checked against the rule** (November 2026). A model read every
   sentence in both directions and proposed what each set left out.
   - The answers it was sure of are in the sets: yue 184, uz 193, fa 344, es 616, apc 996,
-    lzh 734, tok 300. Each was graded before and after.
-  - The 435 it was not sure of, and eight questions of policy, are in
+    lzh 734, tok 300 (and 33 more on a second read, sentence by sentence: ADR 0086). Each was graded
+    before and after.
+  - The 435 it was not sure of (434 now: tok's sina pilin ala pilin pona is accepted), and eight questions of policy, are in
     [courses/accept-doubts.md](../../courses/accept-doubts.md) for reviewers.
   - The check also found answers the sets wrongly accepted (*de el autobús*, أنا with a "you"
     verb, *He did not came*). Those were fixed.

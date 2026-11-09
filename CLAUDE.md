@@ -373,6 +373,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
 - The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
 - Toki Pona marks no person: no `persons` tags. English accept sets give I/we, she/he/they/it and the tenses.
+- Toki Pona accept sets (ADR 0085; kinds in ADR 0086): mi or mi mute li for we, ona (mute) li for they, jan mije or
+  mije, mama or mama meli/mije, X ala X or anu seme, tenpo pini/kama la or none, kule + colour, ali for ale.
 
 ## Attic Greek notes (see docs/adr/0087)
 - courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,

@@ -64,6 +64,7 @@ sentences:
         sijelo sina li pilin ike anu seme
         sijelo sina li pilin ala pilin ike
         sina pilin ike, anu seme
+        sina pilin ala pilin ike
     tok-Qaap/sitelen-pona:
       text: 󱥛󱥞󱤧󱥎󱤍󱤇󱥙
       tokens: [{surface: 󱥛, sense: sijelo, readings: {lasina: sijelo}}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥎, sense: pilin, readings: {
@@ -72,6 +73,7 @@ sentences:
         󱥛󱥞󱤧󱥎󱤍󱤇󱥙
         󱥛󱥞󱤧󱥎󱤂󱥎󱤍
         󱥞󱥎󱤍󱤇󱥙
+        󱥞󱥎󱤂󱥎󱤍
   translations:
     en: |-
       Do you feel (sick|ill|unwell)?
@@ -84,12 +86,16 @@ sentences:
       text: lawa mi li pilin ike.
       tokens: [{surface: lawa, sense: lawa, readings: {lasina: lawa}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pilin, sense: pilin,
           readings: {lasina: pilin}}, {surface: ike, sense: ike, readings: {lasina: ike}}]
-      reverse: lawa mi li pilin ike
+      reverse: |-
+        lawa mi li pilin ike
+        lawa mi li ike
     tok-Qaap/sitelen-pona:
       text: 󱤤󱤴󱤧󱥎󱤍
       tokens: [{surface: 󱤤, sense: lawa, readings: {lasina: lawa}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥎, sense: pilin, readings: {
             lasina: pilin}}, {surface: 󱤍, sense: ike, readings: {lasina: ike}}]
-      reverse: 󱤤󱤴󱤧󱥎󱤍
+      reverse: |-
+        󱤤󱤴󱤧󱥎󱤍
+        󱤤󱤴󱤧󱤍
   translations:
     en: |-
       (I have|I've got) a headache.
@@ -196,13 +202,17 @@ sentences:
             lasina: e}}, {surface: noka, sense: noka, readings: {lasina: noka}}, {surface: mute, sense: mute, readings: {lasina: mute}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li,
           sense: li, readings: {lasina: li}}, {surface: jo, sense: jo, readings: {lasina: jo}}, {surface: ala, sense: ala, readings: {lasina: ala}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: luka,
           sense: luka, readings: {lasina: luka}}]
-      reverse: pipi li jo e noka mute ona li jo ala e luka
+      reverse: |-
+        pipi li jo e noka mute ona li jo ala e luka
+        pipi li jo e noka mute ona mute li jo ala e luka
     tok-Qaap/sitelen-pona:
       text: "\U000F1951\U000F1927\U000F1913\U000F1909\U000F1943\U000F193C\u3000\U000F1946\U000F1927\U000F1913\U000F1902\U000F1909\U000F192D"
       tokens: [{surface: 󱥑, sense: pipi, readings: {lasina: pipi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤉, sense: e, readings: {lasina: e}},
         {surface: 󱥃, sense: noka, readings: {lasina: noka}}, {surface: 󱤼, sense: mute, readings: {lasina: mute}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}},
         {surface: 󱤓, sense: jo, readings: {lasina: jo}}, {surface: 󱤂, sense: ala, readings: {lasina: ala}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱤭, sense: luka, readings: {lasina: luka}}]
-      reverse: 󱥑󱤧󱤓󱤉󱥃󱤼󱥆󱤧󱤓󱤂󱤉󱤭
+      reverse: |-
+        󱥑󱤧󱤓󱤉󱥃󱤼󱥆󱤧󱤓󱤂󱤉󱤭
+        󱥑󱤧󱤓󱤉󱥃󱤼󱥆󱤼󱤧󱤓󱤂󱤉󱤭
   translations:
     en: |-
       (Insects|Bugs) have (many|a lot of|lots of) legs. They (don't|do not) have hands.
@@ -254,12 +264,16 @@ sentences:
       text: o pilin e selo soweli kepeken luka!
       tokens: [{surface: o, sense: o, readings: {lasina: o}}, {surface: pilin, sense: pilin, readings: {lasina: pilin}}, {surface: e, sense: e, readings: {lasina: e}}, {surface: selo, sense: selo, readings: {
             lasina: selo}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: kepeken, sense: kepeken, readings: {lasina: kepeken}}, {surface: luka, sense: luka, readings: {lasina: luka}}]
-      reverse: o pilin e selo soweli kepeken luka
+      reverse: |-
+        o pilin e selo soweli kepeken luka
+        o pilin e selo soweli kepeken luka sina
     tok-Qaap/sitelen-pona:
       text: 󱥄󱥎󱤉󱥘󱥢󱤙󱤭
       tokens: [{surface: 󱥄, sense: o, readings: {lasina: o}}, {surface: 󱥎, sense: pilin, readings: {lasina: pilin}}, {surface: 󱤉, sense: e, readings: {lasina: e}}, {surface: 󱥘, sense: selo, readings: {
             lasina: selo}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤙, sense: kepeken, readings: {lasina: kepeken}}, {surface: 󱤭, sense: luka, readings: {lasina: luka}}]
-      reverse: 󱥄󱥎󱤉󱥘󱥢󱤙󱤭
+      reverse: |-
+        󱥄󱥎󱤉󱥘󱥢󱤙󱤭
+        󱥄󱥎󱤉󱥘󱥢󱤙󱤭󱥞
   translations:
     en: (Feel|Touch) the (animal's|dog's|cat's) (fur|skin) with your hand!
 - id: s.u09.13
@@ -326,12 +340,16 @@ sentences:
       text: len mi li loje.
       tokens: [{surface: len, sense: len, readings: {lasina: len}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: loje, sense: loje, readings: {
             lasina: loje}}]
-      reverse: len mi li loje
+      reverse: |-
+        len mi li loje
+        len mi li kule loje
     tok-Qaap/sitelen-pona:
       text: 󱤥󱤴󱤧󱤫
       tokens: [{surface: 󱤥, sense: len, readings: {lasina: len}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤫, sense: loje, readings: {
             lasina: loje}}]
-      reverse: 󱤥󱤴󱤧󱤫
+      reverse: |-
+        󱤥󱤴󱤧󱤫
+        󱤥󱤴󱤧󱤞󱤫
   translations:
     en: |-
       My clothes are red.
@@ -400,11 +418,15 @@ sentences:
     tok-Latn/standard:
       text: suno li jelo.
       tokens: [{surface: suno, sense: suno, readings: {lasina: suno}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jelo, sense: jelo, readings: {lasina: jelo}}]
-      reverse: suno li jelo
+      reverse: |-
+        suno li jelo
+        suno li kule jelo
     tok-Qaap/sitelen-pona:
       text: 󱥤󱤧󱤒
       tokens: [{surface: 󱥤, sense: suno, readings: {lasina: suno}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤒, sense: jelo, readings: {lasina: jelo}}]
-      reverse: 󱥤󱤧󱤒
+      reverse: |-
+        󱥤󱤧󱤒
+        󱥤󱤧󱤞󱤒
   translations:
     en: The sun is yellow.
 - id: s.u09.21
@@ -413,11 +435,15 @@ sentences:
     tok-Latn/standard:
       text: sewi li laso.
       tokens: [{surface: sewi, sense: sewi, readings: {lasina: sewi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: laso, sense: laso, readings: {lasina: laso}}]
-      reverse: sewi li laso
+      reverse: |-
+        sewi li laso
+        sewi li kule laso
     tok-Qaap/sitelen-pona:
       text: 󱥚󱤧󱤣
       tokens: [{surface: 󱥚, sense: sewi, readings: {lasina: sewi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤣, sense: laso, readings: {lasina: laso}}]
-      reverse: 󱥚󱤧󱤣
+      reverse: |-
+        󱥚󱤧󱤣
+        󱥚󱤧󱤞󱤣
   translations:
     en: The sky is blue.
 - id: s.u09.22
@@ -426,11 +452,15 @@ sentences:
     tok-Latn/standard:
       text: kasi li laso.
       tokens: [{surface: kasi, sense: kasi, readings: {lasina: kasi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: laso, sense: laso, readings: {lasina: laso}}]
-      reverse: kasi li laso
+      reverse: |-
+        kasi li laso
+        kasi li kule laso
     tok-Qaap/sitelen-pona:
       text: 󱤗󱤧󱤣
       tokens: [{surface: 󱤗, sense: kasi, readings: {lasina: kasi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤣, sense: laso, readings: {lasina: laso}}]
-      reverse: 󱤗󱤧󱤣
+      reverse: |-
+        󱤗󱤧󱤣
+        󱤗󱤧󱤞󱤣
   translations:
     en: |-
       The (plants are|grass is|leaves are) green.
@@ -479,12 +509,20 @@ sentences:
       text: waso lili jelo li lon sewi kasi.
       tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: lili, sense: lili, readings: {lasina: lili}}, {surface: jelo, sense: jelo, readings: {lasina: jelo}}, {surface: li, sense: li,
           readings: {lasina: li}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: sewi, sense: sewi, readings: {lasina: sewi}}, {surface: kasi, sense: kasi, readings: {lasina: kasi}}]
-      reverse: waso lili jelo li lon sewi kasi
+      reverse: |-
+        waso lili jelo li lon sewi kasi
+        waso jelo lili li lon sewi kasi
+        waso lili jelo li lon kasi
+        waso jelo lili li lon kasi
     tok-Qaap/sitelen-pona:
       text: 󱥴󱤨󱤒󱤧󱤬󱥚󱤗
       tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {surface: 󱤒, sense: jelo, readings: {lasina: jelo}}, {surface: 󱤧, sense: li, readings: {
             lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥚, sense: sewi, readings: {lasina: sewi}}, {surface: 󱤗, sense: kasi, readings: {lasina: kasi}}]
-      reverse: 󱥴󱤨󱤒󱤧󱤬󱥚󱤗
+      reverse: |-
+        󱥴󱤨󱤒󱤧󱤬󱥚󱤗
+        󱥴󱤒󱤨󱤧󱤬󱥚󱤗
+        󱥴󱤨󱤒󱤧󱤬󱤗
+        󱥴󱤒󱤨󱤧󱤬󱤗
   translations:
     en: |-
       A (little|small) yellow bird is (in|on top of) the tree.
@@ -496,11 +534,15 @@ sentences:
     tok-Latn/standard:
       text: mun li walo.
       tokens: [{surface: mun, sense: mun, readings: {lasina: mun}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: walo, sense: walo, readings: {lasina: walo}}]
-      reverse: mun li walo
+      reverse: |-
+        mun li walo
+        mun li kule walo
     tok-Qaap/sitelen-pona:
       text: 󱤺󱤧󱥲
       tokens: [{surface: 󱤺, sense: mun, readings: {lasina: mun}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥲, sense: walo, readings: {lasina: walo}}]
-      reverse: 󱤺󱤧󱥲
+      reverse: |-
+        󱤺󱤧󱥲
+        󱤺󱤧󱤞󱥲
   translations:
     en: The moon is white.
 - id: s.u09.27

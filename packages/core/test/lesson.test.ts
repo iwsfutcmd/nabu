@@ -668,6 +668,28 @@ describe("Toki Pona in sitelen pona (ADR 0086)", () => {
     expect(isCorrect(grader.grade(SITELEN_PONA, accept, "sina jan Lina").verdict)).toBe(false);
   });
 
+  it("accepts the Toki Pona answers an English prompt leaves open, and no other (ADR 0085)", () => {
+    const LATIN = "tok-Latn/standard";
+    const course = loadCourse("tok", LATIN);
+    const grader = createGrader(course);
+    const reverse = (text: string): string => {
+      const s = allSentences(course).find((x) => surfaceOf(x.forms[LATIN]?.text as TaggedText) === text);
+      const accept = s?.forms[LATIN]?.reverse;
+      if (accept === undefined) throw new Error(`no sentence ${text}`);
+      return accept;
+    };
+    const right = (text: string, answer: string): boolean => isCorrect(grader.grade(LATIN, reverse(text), answer).verdict);
+    // "My mother speaks Toki Pona": mama alone is a mother too; "We're going up the hill": mi alone is we.
+    expect(right("mama meli mi li toki pona.", "mama mi li toki pona")).toBe(true);
+    expect(right("mi mute li tawa sewi nena.", "mi tawa sewi nena")).toBe(true);
+    // A plain yes/no question either way; kule before a colour; ali, pu's other spelling of ale.
+    expect(right("pilin sina li pona ala pona?", "sina pilin ala pilin pona")).toBe(true);
+    expect(right("sewi li laso.", "sewi li kule laso")).toBe(true);
+    expect(right("ale li pona.", "ali li pona")).toBe(true);
+    // "I'm eating" decides one person: mi mute is we.
+    expect(right("mi moku.", "mi mute li moku")).toBe(false);
+  });
+
   it("asks a logograph's word among words in Latin letters, and never splits a cartouche", () => {
     const course = loadCourse("tok", SITELEN_PONA);
     const reads = lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, { seed: 3 })).filter((ex) => ex.template === "char-read");

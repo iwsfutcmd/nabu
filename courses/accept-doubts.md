@@ -493,9 +493,9 @@ settled in a profile or the grader than in the sets.
 | `s.01.40` (u01-the-master-said.yaml) | 學而時習之，不亦說乎？ | `Is it not pleasing to learn and practise it at the right times?` | s.01.39 takes 'pleasing' |
 | `s.06.31` (u06-the-sword-and-the-boat.yaml) | 劍不行。 | `The sword has not moved.` | the Chinese marks no tense |
 
-## tok (40)
+## tok (39)
 
-### Word order (11)
+### Word order (10)
 
 | Sentence | Shown | Answer | Why |
 | --- | --- | --- | --- |
@@ -503,7 +503,6 @@ settled in a profile or the grader than in the sets.
 | `s.u03.10` (u03-mi-moku-e-kili.yaml) | jan Pita li wile e kili e pan. | `Pita wants bread and fruit.` | order of objects joined by e (u05.19 English set treats such orders as one sentence?) |
 | `s.u03.38` (u03-mi-moku-e-kili.yaml) | Lina loves books and plants. | `jan Lina li olin e kasi e lipu` | order of coordinated objects; the course swaps en-subjects in u05.19-21 reverse sets |
 | `s.u03.6` (u03-mi-moku-e-kili.yaml) | She's having fruit and water. | `ona li moku e telo e kili` | order of coordinated objects; the course swaps en-subjects in u05.19-21 reverse sets |
-| `s.u04.15` (u04-pona-ala-pona.yaml) | Are you feeling okay? | `sina pilin ala pilin pona` | REVIEW item 1: the draft weighed sina pilin ala pilin pona as the alternative |
 | `s.u07.5` (u07-tenpo-ni-la.yaml) | She's at home now. | `ona li lon tomo lon tenpo ni` | time as a final lon phrase instead of a la-phrase, as u09.29 accepts (mi lape lon tenpo pimeja) |
 | `s.u08.17` (u08-o-kama.yaml) | She's buying fruit and bread. | `ona li esun e pan e kili` | order of coordinated words; the course swaps en-subjects in u05.19-21 reverse sets |
 | `s.u08.35` (u08-o-kama.yaml) | The man and the woman are arguing. | `meli en mije li utala kepeken toki` | order of coordinated words; the course swaps en-subjects in u05.19-21 reverse sets |

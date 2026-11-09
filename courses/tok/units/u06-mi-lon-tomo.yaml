@@ -45,11 +45,15 @@ sentences:
     tok-Latn/standard:
       text: mi lon tomo.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lon, sense: lon, readings: {lasina: lon}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
-      reverse: mi lon tomo
+      reverse: |-
+        mi lon tomo
+        mi lon tomo mi
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤬󱥭
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
-      reverse: 󱤴󱤬󱥭
+      reverse: |-
+        󱤴󱤬󱥭
+        󱤴󱤬󱥭󱤴
   translations:
     en: |-
       (I'm|I am|We're|We are) (at home|home|in the house).
@@ -308,6 +312,7 @@ sentences:
         kili li lon insa poki lon sewi supa
         kili li lon poki lon sewi supa
         kili li lon insa poki lon supa
+        kili li lon poki lon supa
     tok-Qaap/sitelen-pona:
       text: 󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
       tokens: [{surface: 󱤚, sense: kili, readings: {lasina: kili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤬, sense: lon, readings: {lasina: lon}}, {surface: 󱤏, sense: insa, readings: {
@@ -317,6 +322,7 @@ sentences:
         󱤚󱤧󱤬󱤏󱥓󱤬󱥚󱥥
         󱤚󱤧󱤬󱥓󱤬󱥚󱥥
         󱤚󱤧󱤬󱤏󱥓󱤬󱥥
+        󱤚󱤧󱤬󱥓󱤬󱥥
   translations:
     en: |-
       The fruit is (in|inside) the (box|bag|basket) (on|on top of) the table.
@@ -471,12 +477,16 @@ sentences:
       text: mi kama tan tomo.
       tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: kama, sense: kama, readings: {lasina: kama}}, {surface: tan, sense: tan, readings: {lasina: tan}}, {surface: tomo, sense: tomo,
           readings: {lasina: tomo}}]
-      reverse: mi kama tan tomo
+      reverse: |-
+        mi kama tan tomo
+        mi kama tan tomo mi
     tok-Qaap/sitelen-pona:
       text: 󱤴󱤖󱥧󱥭
       tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤖, sense: kama, readings: {lasina: kama}}, {surface: 󱥧, sense: tan, readings: {lasina: tan}}, {surface: 󱥭, sense: tomo, readings: {
             lasina: tomo}}]
-      reverse: 󱤴󱤖󱥧󱥭
+      reverse: |-
+        󱤴󱤖󱥧󱥭
+        󱤴󱤖󱥧󱥭󱤴
   translations:
     en: |-
       (I'm|I am|We're|We are) coming from (home|the house).
