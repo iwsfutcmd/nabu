@@ -1,5 +1,5 @@
 # Fixture course (apc), unit 7: likes and wants. b7ebb (I like), ma b7ebb, aktar, abadan; the verb after
-# baddi / b7ebb / 3am drops its b- (the subjunctive: baddi ekol, baddak tishrab, badna nru7);
+# baddi / b7ebb / 3am drops its b- (the imperfect, Kline ch. 22: baddi ekol, baddak tishrab, badna nru7);
 # badd- takes the possessive endings (baddo, badda, badna: the dd of badd- is single before -na and -kon); 3am + verb: right now.
 # Drafted by an LLM (provenance llm:…, status draft): every sentence awaits a native speaker's review.
 id: u07-likes
@@ -67,7 +67,9 @@ sentences:
       tokens: [{surface: bt7ebb, sense: 7abb, form: 'form:impf-2ms'}, {surface: el, sense: el}, {surface: shay, sense: shay}]
       reverse: ((bt7ebb|bt7eb|bthebb)|(enta|inta) (bt7ebb|bt7eb)) (el|l|il) (shay|shai)
   translations:
-    en: Do you (like|love) tea?
+    en: |-
+      Do you (like|love) tea?
+      Does she like tea?
 - id: s.like.3
   node: apc.like.like
   register: colloquial
@@ -182,12 +184,14 @@ sentences:
       reverse: |-
         بسمع (موسيقى|موسيقا) كلّ يوم
         كلّ يوم بسمع (موسيقى|موسيقا)
+        أنا بسمع موسيقى كلّ يوم
     apc-Latn/arabizi:
       text: bisma3 musi2a kell yom.
       tokens: [{surface: bisma3, sense: sama3, form: 'form:impf-1sg'}, {surface: musi2a, sense: musi2a}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
       reverse: |-
         (bisma3|besma3|bsma3) (musi2a|musika|mousika) (kell|kil|kel|kull) (yom|yawm|youm)
         (kell|kil|kel|kull) (yom|yawm|youm) (bisma3|besma3|bsma3) (musi2a|musika|mousika)
+        ana bisma3 musi2a kell yom
   translations:
     en: |-
       I listen to music every day.
@@ -265,11 +269,15 @@ sentences:
     apc-Arab/standard:
       text: بدّك تشرب شي؟
       tokens: [{surface: بدّك, sense: baddak}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: شي, sense: shi}]
-      reverse: بدّك تشرب شي
+      reverse: |-
+        بدّك تشرب شي
+        إنت بدّك تشرب شي
     apc-Latn/arabizi:
       text: baddak tishrab shi?
       tokens: [{surface: baddak, sense: baddak}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: shi, sense: shi}]
-      reverse: (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
+      reverse: |-
+        (baddak|badak) (tishrab|teshrab|tshrab) (shi|she)
+        enta baddak tishrab shi
   translations:
     en: |-
       Do you want something to drink?
@@ -302,7 +310,9 @@ sentences:
     apc-Latn/arabizi:
       text: Maya badda shay.
       tokens: [{surface: Maya, sense: maya}, {surface: badda, sense: badd, morphs: [{surface: badd, kc: 'sense:badd'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: shay, sense: shay}]
-      reverse: Maya (badda|bada) shay
+      reverse: |-
+        Maya (badda|bada) shay
+        Maya badda shai
   translations:
     en: |-
       Maya wants (tea|a tea|some tea).
@@ -337,12 +347,14 @@ sentences:
       reverse: |-
         شو بدّك تعمل اليوم
         اليوم شو بدّك تعمل
+        إنت شو بدّك تعمل اليوم
     apc-Latn/arabizi:
       text: shu baddak ta3mel el yom?
       tokens: [{surface: shu, sense: shu}, {surface: baddak, sense: baddak}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
       reverse: |-
         (shu|sho) (baddak|badak) (ta3mel|te3mel) (el|l|il) (yom|yawm|youm)
         (el|l|il) (yom|yawm|youm) (shu|sho) (baddak|badak) (ta3mel|te3mel)
+        enta shu baddak ta3mel el yom
   translations:
     en: |-
       What do you want to do today?
@@ -360,7 +372,10 @@ sentences:
       tokens: [{surface: film, sense: film}, {surface: 7elo, sense: 7elo}]
       reverse: (film|filem) (7elo|7ilo|helo|7elu)
   translations:
-    en: (A|What a) (good|nice|great) (film|movie)!
+    en: |-
+      (A|What a) (good|nice|great) (film|movie)!
+      Nice film!
+      Good movie!
 - id: s.like.21
   node: apc.like.watch-play
   register: colloquial
@@ -384,11 +399,17 @@ sentences:
     apc-Arab/standard:
       text: منشوف فيلم المسا؟
       tokens: [{surface: منشوف, sense: shef, form: 'form:impf-1pl'}, {surface: فيلم, sense: film}, {surface: المسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مسا, kc: 'sense:masa'}]}]
-      reverse: منشوف (فيلم|فلم) المسا
+      reverse: |-
+        (منشوف|نشوف) (فيلم|فلم) المسا
+        المسا منشوف فيلم
+        منشوف شي فيلم المسا
     apc-Latn/arabizi:
       text: mnshuf film el masa?
       tokens: [{surface: mnshuf, sense: shef, form: 'form:impf-1pl'}, {surface: film, sense: film}, {surface: el, sense: el}, {surface: masa, sense: masa}]
-      reverse: (mnshuf|mnshouf) (film|filem) (el|l|il) (masa|masa2)
+      reverse: |-
+        (mnshuf|mnshouf|nshuf|nshouf) (film|filem) (el|l|il) (masa|masa2)
+        el masa mnshuf film
+        mnshuf shi film el masa
   translations:
     en: |-
       Shall we (watch|see) a (film|movie) (this|in the) evening?
@@ -421,7 +442,9 @@ sentences:
       tokens: [{surface: btil3ab, sense: le3eb, form: 'form:impf-2ms'}, {surface: football, sense: football}]
       reverse: ((btil3ab|btel3ab)|(enta|inta) (btil3ab|btel3ab)) (football|futbol|foot)
   translations:
-    en: Do you play (football|soccer)?
+    en: |-
+      Do you play (football|soccer)?
+      Does she play football?
 - id: s.like.25
   node: apc.like.right-now
   register: colloquial
@@ -430,15 +453,22 @@ sentences:
     apc-Arab/standard:
       text: شو عم تعمل؟
       tokens: [{surface: شو, sense: shu}, {surface: عم, sense: 3am}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: شو عم (تعمل|بتعمل)
+      reverse: |-
+        شو عم (تعمل|بتعمل)
+        إنت شو عم تعمل
+        شو بتعمل
     apc-Latn/arabizi:
       text: shu 3am ta3mel?
       tokens: [{surface: shu, sense: shu}, {surface: 3am, sense: 3am}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}]
-      reverse: (shu|sho) (3am|3m|3a) (ta3mel|te3mel|bta3mel)
+      reverse: |-
+        (shu|sho) (3am|3m|3a) (ta3mel|te3mel|bta3mel)
+        enta shu 3am ta3mel
+        shu bta3mel
   translations:
     en: |-
       What are you doing?
       What are you up to?
+      What is she doing?
 - id: s.like.26
   node: apc.like.right-now
   register: colloquial
@@ -505,6 +535,8 @@ sentences:
     en: |-
       The (sea|beach) is (nicer|better|more beautiful)!
       The (sea|beach)'s (nicer|better|more beautiful)!
+      The sea is prettier!
+      The beach is prettier!
 - id: s.like.30
   node: apc.like.like
   register: colloquial

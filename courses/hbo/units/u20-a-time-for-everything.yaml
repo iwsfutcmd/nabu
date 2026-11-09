@@ -1,0 +1,597 @@
+# Biblical Hebrew (hbo), unit 20: A time for everything (Ecclesiastes 3:1-4; Numbers 6:24-26).
+# Infinitives in pairs (a time to be born and a time to die), "under", the jussive of blessing
+# (may the LORD bless you), the passive participle "blessed", and the lifted face and eyes.
+# The passages are the Westminster Leningrad Codex (public domain), without accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u20-a-time-for-everything
+title:
+  en: A time for everything
+cefr: A2
+kcs:
+- id: sense:et.time
+  gloss:
+    en: time; season, moment
+  forms:
+    hbo-Hebr/tiberian: [עֵת]
+- id: sense:zeman
+  gloss:
+    en: appointed time, season
+  forms:
+    hbo-Hebr/tiberian: [זְמָן]
+- id: sense:hefets
+  gloss:
+    en: matter; delight, desire
+  forms:
+    hbo-Hebr/tiberian: [חֵפֶץ]
+- id: sense:tahat
+  gloss:
+    en: under, beneath; instead of
+  forms:
+    hbo-Hebr/tiberian: [תַּחַת]
+- id: sense:nata
+  gloss:
+    en: to plant
+  forms:
+    hbo-Hebr/tiberian: [נָטַע]
+- id: sense:aqar
+  gloss:
+    en: to uproot, pluck up
+  forms:
+    hbo-Hebr/tiberian: [עָקַר]
+- id: sense:rafa
+  gloss:
+    en: to heal
+  forms:
+    hbo-Hebr/tiberian: [רָפָא]
+- id: sense:parats
+  gloss:
+    en: to break down, break through
+  forms:
+    hbo-Hebr/tiberian: [פָּרַץ]
+- id: sense:banah
+  gloss:
+    en: to build
+  forms:
+    hbo-Hebr/tiberian: [בָּנָה]
+- id: sense:bakhah
+  gloss:
+    en: to weep, cry
+  forms:
+    hbo-Hebr/tiberian: [בָּכָה]
+- id: sense:sachaq
+  gloss:
+    en: to laugh; to play
+  forms:
+    hbo-Hebr/tiberian: [שָׂחַק]
+- id: sense:safad
+  gloss:
+    en: to mourn, lament
+  forms:
+    hbo-Hebr/tiberian: [סָפַד]
+- id: sense:raqad
+  gloss:
+    en: to dance, skip
+  forms:
+    hbo-Hebr/tiberian: [רָקַד]
+- id: sense:barukh
+  gloss:
+    en: blessed (a qal passive participle; the verb is piel בֵּרַךְ)
+  forms:
+    hbo-Hebr/tiberian: [בָּרוּךְ]
+- id: sense:heir
+  gloss:
+    en: to make shine, give light (hiphil of אוֹר)
+  forms:
+    hbo-Hebr/tiberian: [הֵאִיר]
+- id: sense:hanan
+  gloss:
+    en: to be gracious, show favour
+  forms:
+    hbo-Hebr/tiberian: [חָנַן]
+- id: sense:nasa
+  gloss:
+    en: to lift, raise; to carry
+  forms:
+    hbo-Hebr/tiberian: [נָשָׂא]
+- id: sense:sim
+  gloss:
+    en: to put, set, place
+  forms:
+    hbo-Hebr/tiberian: [שׂוּם]
+- id: sense:ayin.eye
+  gloss:
+    en: eye; spring (of water)
+  forms:
+    hbo-Hebr/tiberian: [עַיִן]
+  image: {file: ../images/eye.svg, license: CC0-1.0, provenance: {author: 'llm:claude@778ae7bbd2f2', status: draft}, source: Drawn for Nabu (courses/images)}
+nodes:
+- {id: hbo.u20.a-time, kind: lesson, introduces: ['sense:et.time', 'sense:zeman', 'sense:hefets', 'sense:tahat']}
+- {id: hbo.u20.to-plant-and-to-uproot, kind: lesson, introduces: ['sense:nata', 'sense:aqar']}
+- {id: hbo.u20.to-heal-and-to-build, kind: lesson, introduces: ['sense:rafa', 'sense:parats', 'sense:banah']}
+- {id: hbo.u20.to-weep-and-to-laugh, kind: lesson, introduces: ['sense:bakhah', 'sense:sachaq', 'sense:safad', 'sense:raqad']}
+- {id: hbo.u20.the-blessing, kind: lesson, introduces: ['sense:barukh', 'sense:heir', 'sense:hanan', 'sense:nasa', 'sense:sim', 'sense:ayin.eye']}
+- {id: hbo.u20.story, kind: story}
+sentences:
+- id: s.20.1
+  node: hbo.u20.a-time
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}]
+      reverse: עת
+  translations:
+    en: |-
+      a time
+      a (season|moment)
+- id: s.20.2
+  node: hbo.u20.a-time
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: לַכֹּל זְמָן׃
+      tokens: [{surface: לַכֹּל, sense: kol, morphs: [{surface: לַ, kc: 'sense:le'}, {surface: כֹּל, kc: 'sense:kol'}], readings: {tiberian: lakkōl}}, {surface: זְמָן, sense: zeman, readings: {tiberian: zəmān}}]
+      reverse: (לכל|לכול) זמן
+  translations:
+    en: |-
+      For everything there is a season.
+      There is a (season|time) for everything.
+- id: s.20.3
+  node: hbo.u20.a-time
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת לְכָל־חֵפֶץ
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לְכָל, sense: kol, form: 'form:cstr', morphs: [{surface: לְ, kc: 'sense:le'}, {surface: כָל, kc: 'sense:kol'}], readings: {
+            tiberian: ləḵol-}}, {surface: חֵפֶץ, sense: hefets, readings: {tiberian: ḥḗp̄eṣ}}]
+      reverse: עת לכל חפץ
+  translations:
+    en: |-
+      a time for every matter
+      a time for every (purpose|activity)
+- id: s.20.4
+  node: hbo.u20.a-time
+  forms:
+    hbo-Hebr/tiberian:
+      text: תַּחַת הַשָּׁמַיִם
+      tokens: [{surface: תַּחַת, sense: tahat, readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמַיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמַיִם, kc: 'sense:shamayim'}],
+          readings: {tiberian: haššāmáyim}}]
+      reverse: תחת השמים
+  translations:
+    en: |-
+      under heaven
+      under the (sky|heavens)
+- id: s.20.5
+  node: hbo.u20.a-time
+  forms:
+    hbo-Hebr/tiberian:
+      text: תַּחַת הָעֵץ
+      tokens: [{surface: תַּחַת, sense: tahat, readings: {tiberian: táḥaṯ}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}]
+      reverse: תחת העץ
+  translations:
+    en: under the tree
+- id: s.20.6
+  node: hbo.u20.a-time
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְעֵת לְכָל־חֵפֶץ תַּחַת הַשָּׁמָיִם׃
+      tokens: [{surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, sense: kol, form: 'form:cstr',
+          morphs: [{surface: לְ, kc: 'sense:le'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, sense: hefets, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, sense: tahat,
+          readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמָיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmā́yim}}]
+      reverse: ועת לכל חפץ תחת השמים
+  translations:
+    en: |-
+      And a time for every matter under heaven.
+      And a time for every (purpose|activity) under (heaven|the sky).
+- id: s.20.7
+  node: hbo.u20.to-plant-and-to-uproot
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת לָלֶדֶת וְעֵת לָמוּת׃
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לָלֶדֶת, sense: yalad, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: לֶדֶת, kc: 'sense:yalad'}],
+          readings: {tiberian: lāléḏeṯ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לָמוּת, sense: mut,
+          form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: מוּת, kc: 'sense:mut'}], readings: {tiberian: lāmûṯ}}]
+      reverse: עת ללדת ועת למות
+  translations:
+    en: |-
+      A time to be born and a time to die.
+      A time (to give birth|for birth) and a time (to die|for death).
+- id: s.20.8
+  node: hbo.u20.to-plant-and-to-uproot
+  forms:
+    hbo-Hebr/tiberian:
+      text: לָטַעַת
+      tokens: [{surface: לָטַעַת, sense: nata, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: טַעַת, kc: 'sense:nata'}], readings: {tiberian: lāṭáʿaṯ}}]
+      reverse: לטעת
+  translations:
+    en: to plant
+- id: s.20.9
+  node: hbo.u20.to-plant-and-to-uproot
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּטַּע יְהוָה אֱלֹהִים גַּן׃
+      tokens: [{surface: וַיִּטַּע, sense: nata, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṭṭaʿ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
+          readings: {tiberian: ʾĕlōhîm}}, {surface: גַּן, sense: gan, readings: {tiberian: gan}}]
+      reverse: |-
+        ויטע יהוה (אלהים|אלוהים) גן
+        יהוה (אלהים|אלוהים) נטע גן
+        ויהוה (אלהים|אלוהים) נטע גן
+        נטע יהוה (אלהים|אלוהים) גן
+  translations:
+    en: '[(And|Then)] the LORD God planted a garden.'
+- id: s.20.10
+  node: hbo.u20.to-plant-and-to-uproot
+  forms:
+    hbo-Hebr/tiberian:
+      text: לַעֲקוֹר
+      tokens: [{surface: לַעֲקוֹר, sense: aqar, form: 'form:inf', morphs: [{surface: לַ, kc: 'sense:le'}, {surface: עֲקוֹר, kc: 'sense:aqar'}], readings: {tiberian: laʿăqôr}}]
+      reverse: לעקור
+  translations:
+    en: |-
+      to uproot
+      to pluck up
+- id: s.20.11
+  node: hbo.u20.to-plant-and-to-uproot
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת לָטַעַת וְעֵת לַעֲקוֹר
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לָטַעַת, sense: nata, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: טַעַת, kc: 'sense:nata'}], readings: {
+            tiberian: lāṭáʿaṯ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לַעֲקוֹר, sense: aqar,
+          form: 'form:inf', morphs: [{surface: לַ, kc: 'sense:le'}, {surface: עֲקוֹר, kc: 'sense:aqar'}], readings: {tiberian: laʿăqôr}}]
+      reverse: עת לטעת ועת לעקור
+  translations:
+    en: a time to plant and a time to (uproot|pluck up)
+- id: s.20.12
+  node: hbo.u20.to-heal-and-to-build
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִרְפּוֹא
+      tokens: [{surface: לִרְפּוֹא, sense: rafa, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: רְפּוֹא, kc: 'sense:rafa'}], readings: {tiberian: lirpôʾ}}]
+      reverse: לרפוא
+  translations:
+    en: to heal
+- id: s.20.13
+  node: hbo.u20.to-heal-and-to-build
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: רְפָאֵנִי׃
+      tokens: [{surface: רְפָאֵנִי, sense: rafa, form: 'form:impv-ms', morphs: [{surface: רְפָאֵ, kc: 'sense:rafa'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: rəp̄āʾḗnî}}]
+      reverse: רפאני
+  translations:
+    en: Heal me!
+- id: s.20.14
+  node: hbo.u20.to-heal-and-to-build
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִבְנוֹת
+      tokens: [{surface: לִבְנוֹת, sense: banah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְנוֹת, kc: 'sense:banah'}], readings: {tiberian: liḇnôṯ}}]
+      reverse: לבנות
+  translations:
+    en: to build
+- id: s.20.15
+  node: hbo.u20.to-heal-and-to-build
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּבֶן בַּיִת׃
+      tokens: [{surface: וַיִּבֶן, sense: banah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyíḇen}}, {surface: בַּיִת, sense: bayit, readings: {tiberian: báyiṯ}}]
+      reverse: |-
+        ויבן בית
+        בנה בית
+        הוא בנה בית
+        והוא בנה בית
+  translations:
+    en: '[(And|Then)] he built a house.'
+- id: s.20.16
+  node: hbo.u20.to-heal-and-to-build
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִפְרוֹץ
+      tokens: [{surface: לִפְרוֹץ, sense: parats, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְרוֹץ, kc: 'sense:parats'}], readings: {tiberian: lip̄rôṣ}}]
+      reverse: לפרוץ
+  translations:
+    en: |-
+      to break down
+      to break through
+- id: s.20.17
+  node: hbo.u20.to-heal-and-to-build
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת לִפְרוֹץ וְעֵת לִבְנוֹת׃
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לִפְרוֹץ, sense: parats, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְרוֹץ, kc: 'sense:parats'}],
+          readings: {tiberian: lip̄rôṣ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לִבְנוֹת,
+          sense: banah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְנוֹת, kc: 'sense:banah'}], readings: {tiberian: liḇnôṯ}}]
+      reverse: עת לפרוץ ועת לבנות
+  translations:
+    en: |-
+      A time to break down and a time to build [up].
+      A time to tear down and a time to build [up].
+- id: s.20.18
+  node: hbo.u20.to-weep-and-to-laugh
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִבְכּוֹת
+      tokens: [{surface: לִבְכּוֹת, sense: bakhah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְכּוֹת, kc: 'sense:bakhah'}], readings: {tiberian: liḇkôṯ}}]
+      reverse: לבכות
+  translations:
+    en: |-
+      to weep
+      to cry
+- id: s.20.19
+  node: hbo.u20.to-weep-and-to-laugh
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּבְךְּ׃
+      tokens: [{surface: וַיֵּבְךְּ, sense: bakhah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyēḇk}}]
+      reverse: |-
+        ויבך
+        בכה
+        הוא בכה
+        והוא בכה
+  translations:
+    en: |-
+      [(And|Then)] he wept.
+      [(And|Then)] he cried.
+- id: s.20.20
+  node: hbo.u20.to-weep-and-to-laugh
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֵּבְךְּ׃
+      tokens: [{surface: וַתֵּבְךְּ, sense: bakhah, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattēḇk}}]
+      reverse: ותבך
+  translations:
+    en: |-
+      [(And|Then)] she wept.
+      [(And|Then)] she cried.
+- id: s.20.21
+  node: hbo.u20.to-weep-and-to-laugh
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת לִבְכּוֹת וְעֵת לִשְׂחוֹק׃
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לִבְכּוֹת, sense: bakhah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְכּוֹת, kc: 'sense:bakhah'}],
+          readings: {tiberian: liḇkôṯ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לִשְׂחוֹק,
+          sense: sachaq, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׂחוֹק, kc: 'sense:sachaq'}], readings: {tiberian: liśḥôq}}]
+      reverse: עת לבכות ועת לשחוק
+  translations:
+    en: |-
+      A time to weep and a time to laugh.
+      A time to cry and a time to laugh.
+- id: s.20.22
+  node: hbo.u20.to-weep-and-to-laugh
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵת סְפוֹד וְעֵת רְקוֹד׃
+      tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: סְפוֹד, sense: safad, form: 'form:inf', readings: {tiberian: səp̄ôḏ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ,
+              kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: רְקוֹד, sense: raqad, form: 'form:inf', readings: {tiberian: rəqôḏ}}]
+      reverse: עת ספוד ועת רקוד
+  translations:
+    en: A time to mourn and a time to dance.
+- id: s.20.23
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בָּרוּךְ אַתָּה לַיהוָה׃
+      tokens: [{surface: בָּרוּךְ, sense: barukh, form: 'form:ptc-pass', readings: {tiberian: bārûḵ}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: לַיהוָה, sense: yhwh, morphs: [
+            {surface: לַ, kc: 'sense:le'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: laʾḏōnāy}}]
+      reverse: ברוך אתה ליהוה
+  translations:
+    en: |-
+      Blessed are you by the LORD!
+      May you be blessed by the LORD!
+      The LORD bless you!
+- id: s.20.24
+  node: hbo.u20.the-blessing
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּרוּכָה אַתְּ לַיהוָה׃
+      tokens: [{surface: בְּרוּכָה, sense: barukh, form: 'form:ptc-pass', readings: {tiberian: bərûḵâ}}, {surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: לַיהוָה, sense: yhwh, morphs: [
+            {surface: לַ, kc: 'sense:le'}, {surface: יהוָה, kc: 'sense:yhwh'}], readings: {tiberian: laʾḏōnāy}}]
+      reverse: ברוכה את ליהוה
+  translations:
+    en: |-
+      Blessed are you by the LORD!
+      May you be blessed by the LORD!
+      The LORD bless you!
+- id: s.20.25
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְבָרֶכְךָ יְהוָה׃
+      tokens: [{surface: יְבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-3ms', morphs: [{surface: יְבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḇāreḵḵā}}, {surface: יְהוָה,
+          sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: יברכך יהוה
+  translations:
+    en: |-
+      May the LORD bless you!
+      The LORD bless you!
+- id: s.20.26
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְבָרֶכְךָ יְהוָה וְיִשְׁמְרֶךָ׃
+      tokens: [{surface: יְבָרֶכְךָ, sense: barakh, form: 'form:yiqtol-3ms', morphs: [{surface: יְבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḇāreḵḵā}}, {surface: יְהוָה,
+          sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וְיִשְׁמְרֶךָ, sense: shamar, form: 'form:juss', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: יִשְׁמְרֶ, kc: 'sense:shamar'}, {surface: ךָ,
+              kc: 'form:sfx-2ms'}], readings: {tiberian: wəyišməréḵā}}]
+      reverse: יברכך יהוה וישמרך
+  translations:
+    en: |-
+      May the LORD bless you and keep you!
+      The LORD bless you and keep you!
+- id: s.20.27
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָאֵר יְהוָה פָּנָיו אֵלֶיךָ׃
+      tokens: [{surface: יָאֵר, sense: heir, form: 'form:juss', readings: {tiberian: yāʾēr}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: פָּנָיו, sense: panim, morphs: [{surface: פָּנָי,
+              kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: ʾēlếḵā}}]
+      reverse: |-
+        יאר יהוה פניו אליך
+        יהוה יאר פניו אליך
+  translations:
+    en: |-
+      May the LORD make his face shine (on|upon) you!
+      The LORD make his face shine (on|upon) you!
+- id: s.20.28
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וִיחֻנֶּךָּ׃
+      tokens: [{surface: וִיחֻנֶּךָּ, sense: hanan, form: 'form:juss', morphs: [{surface: וִ, kc: 'sense:we'}, {surface: יחֻנֶּ, kc: 'sense:hanan'}, {surface: ךָּ, kc: 'form:sfx-2ms'}], readings: {tiberian: wîḥunnékkā}}]
+      reverse: (ויחנך|ויחונך)
+  translations:
+    en: |-
+      And may he be gracious to you!
+      And be gracious to you!
+- id: s.20.29
+  node: hbo.u20.the-blessing
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵינַי
+      tokens: [{surface: עֵינַי, sense: ayin.eye, form: 'form:du', morphs: [{surface: עֵינַ, kc: 'sense:ayin.eye'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿênay}}]
+      reverse: עיני
+  translations:
+    en: my eyes
+- id: s.20.30
+  node: hbo.u20.the-blessing
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשָּׂא אֶת־עֵינָיו׃
+      tokens: [{surface: וַיִּשָּׂא, sense: nasa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiśśāʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: עֵינָיו, sense: ayin.eye,
+          form: 'form:du', morphs: [{surface: עֵינָי, kc: 'sense:ayin.eye'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʿênāyw}}]
+      reverse: |-
+        וישא את עיניו
+        נשא את עיניו
+        הוא נשא את עיניו
+        והוא נשא את עיניו
+  translations:
+    en: |-
+      [(And|Then)] he lifted up his eyes.
+      [(And|Then)] he looked up.
+- id: s.20.31
+  node: hbo.u20.the-blessing
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְיָשֵׂם לְךָ שָׁלוֹם׃
+      tokens: [{surface: וְיָשֵׂם, sense: sim, form: 'form:juss', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: יָשֵׂם, kc: 'sense:sim'}], readings: {tiberian: wəyāśēm}}, {surface: לְךָ, sense: le,
+          morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: שָׁלוֹם, sense: shalom, readings: {tiberian: šālôm}}]
+      reverse: וישם לך שלום
+  translations:
+    en: |-
+      And may he give you peace!
+      And give you peace!
+stories:
+- id: hbo.story.a-time-for-everything
+  node: hbo.u20.story
+  title:
+    en: A time for everything (Ecclesiastes 3:1–4) and the blessing (Numbers 6:24–26)
+  steps:
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: לַכֹּל זְמָן וְעֵת לְכָל־חֵפֶץ תַּחַת הַשָּׁמָיִם׃
+          tokens: [{surface: לַכֹּל, sense: kol, morphs: [{surface: לַ, kc: 'sense:le'}, {surface: כֹּל, kc: 'sense:kol'}], readings: {tiberian: lakkōl}}, {surface: זְמָן, sense: zeman, readings: {tiberian: zəmān}},
+            {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לְכָל, sense: kol, form: 'form:cstr', morphs: [
+                {surface: לְ, kc: 'sense:le'}, {surface: כָל, kc: 'sense:kol'}], readings: {tiberian: ləḵol-}}, {surface: חֵפֶץ, sense: hefets, readings: {tiberian: ḥḗp̄eṣ}}, {surface: תַּחַת, sense: tahat,
+              readings: {tiberian: táḥaṯ}}, {surface: הַשָּׁמָיִם, sense: shamayim, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׁמָיִם, kc: 'sense:shamayim'}], readings: {tiberian: haššāmā́yim}}]
+      translations:
+        en: 'For everything there is a season, and a time for every matter under heaven:'
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: עֵת לָלֶדֶת וְעֵת לָמוּת עֵת לָטַעַת וְעֵת לַעֲקוֹר נָטוּעַ׃
+          tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לָלֶדֶת, sense: yalad, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: לֶדֶת, kc: 'sense:yalad'}],
+              readings: {tiberian: lāléḏeṯ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לָמוּת,
+              sense: mut, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: מוּת, kc: 'sense:mut'}], readings: {tiberian: lāmûṯ}}, {surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}},
+            {surface: לָטַעַת, sense: nata, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: טַעַת, kc: 'sense:nata'}], readings: {tiberian: lāṭáʿaṯ}}, {surface: וְעֵת, sense: et.time,
+              morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לַעֲקוֹר, sense: aqar, form: 'form:inf', morphs: [{surface: לַ, kc: 'sense:le'},
+                {surface: עֲקוֹר, kc: 'sense:aqar'}], readings: {tiberian: laʿăqôr}}, {surface: נָטוּעַ, sense: nata, form: 'form:ptc-pass', readings: {tiberian: nāṭûaʿ}}]
+      translations:
+        en: a time to be born and a time to die, a time to plant and a time to uproot what is planted;
+  - line:
+      ask: complete
+      gap: sense:rafa
+      distractors: ['sense:banah', 'sense:harag']
+      forms:
+        hbo-Hebr/tiberian:
+          text: עֵת לַהֲרוֹג וְעֵת לִרְפּוֹא עֵת לִפְרוֹץ וְעֵת לִבְנוֹת׃
+          tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לַהֲרוֹג, sense: harag, form: 'form:inf', morphs: [{surface: לַ, kc: 'sense:le'}, {surface: הֲרוֹג, kc: 'sense:harag'}],
+              readings: {tiberian: lahărôḡ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לִרְפּוֹא,
+              sense: rafa, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: רְפּוֹא, kc: 'sense:rafa'}], readings: {tiberian: lirpôʾ}}, {surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}},
+            {surface: לִפְרוֹץ, sense: parats, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: פְרוֹץ, kc: 'sense:parats'}], readings: {tiberian: lip̄rôṣ}}, {surface: וְעֵת, sense: et.time,
+              morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לִבְנוֹת, sense: banah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'},
+                {surface: בְנוֹת, kc: 'sense:banah'}], readings: {tiberian: liḇnôṯ}}]
+      translations:
+        en: a time to kill and a time to heal, a time to break down and a time to build up;
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: עֵת לִבְכּוֹת וְעֵת לִשְׂחוֹק עֵת סְפוֹד וְעֵת רְקוֹד׃
+          tokens: [{surface: עֵת, sense: et.time, readings: {tiberian: ʿēṯ}}, {surface: לִבְכּוֹת, sense: bakhah, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְכּוֹת, kc: 'sense:bakhah'}],
+              readings: {tiberian: liḇkôṯ}}, {surface: וְעֵת, sense: et.time, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: לִשְׂחוֹק,
+              sense: sachaq, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׂחוֹק, kc: 'sense:sachaq'}], readings: {tiberian: liśḥôq}}, {surface: עֵת, sense: et.time, form: 'form:cstr',
+              readings: {tiberian: ʿēṯ}}, {surface: סְפוֹד, sense: safad, form: 'form:inf', readings: {tiberian: səp̄ôḏ}}, {surface: וְעֵת, sense: et.time, form: 'form:cstr', morphs: [{surface: וְ, kc: 'sense:we'},
+                {surface: עֵת, kc: 'sense:et.time'}], readings: {tiberian: wəʿēṯ}}, {surface: רְקוֹד, sense: raqad, form: 'form:inf', readings: {tiberian: rəqôḏ}}]
+      translations:
+        en: a time to weep and a time to laugh, a time to mourn and a time to dance.
+  - choose:
+      prompt:
+        en: What does the Teacher say there is for every matter?
+      options: [{en: a time}, {en: a king}, {en: a reward}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: יְבָרֶכְךָ יְהוָה וְיִשְׁמְרֶךָ׃
+          tokens: [{surface: יְבָרֶכְךָ, sense: barakh, form: 'form:juss', morphs: [{surface: יְבָרֶכְ, kc: 'sense:barakh'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: yəḇāreḵḵā}}, {surface: יְהוָה,
+              sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וְיִשְׁמְרֶךָ, sense: shamar, form: 'form:juss', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: יִשְׁמְרֶ, kc: 'sense:shamar'}, {
+                  surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: wəyišməréḵā}}]
+      translations:
+        en: May the LORD bless you and keep you;
+  - line:
+      ask: complete
+      gap: sense:panim
+      distractors: ['sense:yad', 'sense:ayin.eye']
+      forms:
+        hbo-Hebr/tiberian:
+          text: יָאֵר יְהוָה פָּנָיו אֵלֶיךָ וִיחֻנֶּךָּ׃
+          tokens: [{surface: יָאֵר, sense: heir, form: 'form:juss', readings: {tiberian: yāʾēr}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: פָּנָיו, sense: panim, morphs: [
+                {surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ,
+                  kc: 'form:sfx-2ms'}], readings: {tiberian: ʾēlếḵā}}, {surface: וִיחֻנֶּךָּ, sense: hanan, form: 'form:juss', morphs: [{surface: וִ, kc: 'sense:we'}, {surface: יחֻנֶּ, kc: 'sense:hanan'},
+                {surface: ךָּ, kc: 'form:sfx-2ms'}], readings: {tiberian: wîḥunnékkā}}]
+      translations:
+        en: may the LORD make his face shine upon you and be gracious to you;
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: יִשָּׂא יְהוָה פָּנָיו אֵלֶיךָ וְיָשֵׂם לְךָ שָׁלוֹם׃
+          tokens: [{surface: יִשָּׂא, sense: nasa, form: 'form:juss', readings: {tiberian: yiśśāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: פָּנָיו, sense: panim, morphs: [
+                {surface: פָּנָי, kc: 'sense:panim'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: pānāyw}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ,
+                  kc: 'form:sfx-2ms'}], readings: {tiberian: ʾēlếḵā}}, {surface: וְיָשֵׂם, sense: sim, form: 'form:juss', morphs: [{surface: וְ, kc: 'sense:we'}, {surface: יָשֵׂם, kc: 'sense:sim'}], readings: {
+                tiberian: wəyāśēm}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: שָׁלוֹם, sense: shalom,
+              readings: {tiberian: šālôm}}]
+      translations:
+        en: may the LORD lift up his face upon you and give you peace.
+  - choose:
+      prompt:
+        en: What does the blessing ask the LORD to give last?
+      options: [{en: peace}, {en: rain}, {en: a son}]
+      answer: 0
+scenarios:
+- id: hbo.a-blessing-for-the-road
+  after: hbo.u20.the-blessing
+  title:
+    en: A blessing for the road
+  setting:
+    en: 'The gate of Jerusalem at dawn: a friend is setting out on a long journey.'
+  character:
+    en: An old priest at the gate, warm and unhurried, who speaks only Biblical Hebrew.
+  goal:
+    en: Tell him where you are going, ask him to bless you, and bless him in return.

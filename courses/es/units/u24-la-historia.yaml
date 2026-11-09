@@ -73,6 +73,7 @@ sentences:
       reverse: |-
         (Antes del ochenta|Antes de mil novecientos ochenta|Antes de 1980) (abuelo Pepe|el abuelo Pepe|mi abuelo Pepe) nunca había salido de Matanzas
         (Abuelo Pepe|El abuelo Pepe|Mi abuelo Pepe) nunca había salido de Matanzas (antes del ochenta|antes de mil novecientos ochenta|antes de 1980)
+        Antes del ochenta, abuelo Pepe no había salido nunca de Matanzas
   translations:
     en: |-
       Before (1980|'80), (Grandpa|Grandfather|Abuelo|my grandpa|my grandfather) Pepe had never (left|been out of|been outside) Matanzas.
@@ -105,7 +106,9 @@ sentences:
     es-Latn/standard:
       text: Doña Ofelia había llegado a Miami antes que abuela.
       tokens: [{surface: Doña, sense: don}, {surface: Ofelia, sense: ofelia}, {surface: había, sense: haber, form: 'form:impf'}, {surface: llegado, sense: llegar, form: 'form:part'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: antes, sense: antes}, {surface: que, sense: que}, {surface: abuela, sense: abuela}]
-      reverse: Doña Ofelia había llegado a Miami antes que (abuela|la abuela|mi abuela)
+      reverse: |-
+        Doña Ofelia había llegado a Miami antes que (abuela|la abuela|mi abuela)
+        Doña Ofelia había llegado a Miami antes de la abuela
   translations:
     en: (Doña Ofelia|Ofelia) had (arrived in|come to|gotten to|got to) Miami before (Grandma|Grandmother|Abuela|my grandma|my grandmother) [did].
 - id: s.u24.7
@@ -125,7 +128,9 @@ sentences:
     es-Latn/standard:
       text: Un primo de abuelo vino a buscarlos en una lancha.
       tokens: [{surface: Un, sense: un}, {surface: primo, sense: primo}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}, {surface: vino, sense: venir, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: buscarlos, sense: buscar}, {surface: en, sense: en}, {surface: una, sense: un}, {surface: lancha, sense: lancha}]
-      reverse: Un primo (de abuelo|del abuelo|de mi abuelo) vino a (buscarlos|recogerlos) en (una lancha|un barco|un bote)
+      reverse: |-
+        Un primo (de abuelo|del abuelo|de mi abuelo) vino a (buscarlos|recogerlos) en (una lancha|un barco|un bote)
+        Un primo de abuelo los vino a buscar en una lancha
   translations:
     en: |-
       A cousin of (Grandpa's|Grandfather's|Abuelo's|my grandpa's|my grandfather's) came to (pick them up|get them|fetch them) in a (motorboat|boat|launch).
@@ -147,9 +152,13 @@ sentences:
     es-Latn/standard:
       text: Abuela nunca había visto el mar de noche.
       tokens: [{surface: Abuela, sense: abuela}, {surface: nunca, sense: nunca}, {surface: había, sense: haber, form: 'form:impf'}, {surface: visto, sense: ver, form: 'form:part'}, {surface: el, sense: el}, {surface: mar, sense: mar}, {surface: de, sense: de}, {surface: noche, sense: noche}]
-      reverse: (Abuela|La abuela|Mi abuela) nunca había visto el mar de noche
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) nunca había visto el mar de noche
+        Abuela no había visto nunca el mar de noche
   translations:
-    en: (Grandma|Grandmother|Abuela|My grandma|My grandmother) had never seen the sea at night.
+    en: |-
+      (Grandma|Grandmother|Abuela|My grandma|My grandmother) had never seen the sea at night.
+      Grandma had never seen the ocean at night.
 - id: s.u24.11
   node: es.u24.el-mariel
   forms:
@@ -159,6 +168,7 @@ sentences:
       reverse: |-
         Después de un día en el mar llegaron a Cayo Hueso
         Llegaron a Cayo Hueso después de un día en el mar
+        Después de un día en el mar, ellos llegaron a Cayo Hueso
   translations:
     en: |-
       After a day at sea, they (arrived in|got to|reached|made it to|landed in) Key West.
@@ -259,7 +269,9 @@ sentences:
       tokens: [{surface: Papi, sense: papi}, {surface: era, sense: ser, form: 'form:impf'}, {surface: muy, sense: muy}, {surface: joven, sense: joven}, {surface: 'y', sense: 'y'}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: mucho, sense: mucho}, {surface: miedo, sense: miedo}]
       reverse: (Papi|Papá|Mi papá|Mi papi) era muy joven y tenía mucho miedo
   translations:
-    en: (Dad|Daddy|My dad) was (very|really) young and (was very scared|was very afraid|was really scared|was really afraid|was so scared).
+    en: |-
+      (Dad|Daddy|My dad) was (very|really) young and (was very scared|was very afraid|was really scared|was really afraid|was so scared).
+      Dad was very young and very scared.
 - id: s.u24.21
   node: es.u24.los-balseros
   forms:
@@ -287,17 +299,21 @@ sentences:
       reverse: |-
         Cuando llegaron a Miami [ya] habían pasado mucho tiempo en Guantánamo
         [Ya] habían pasado mucho tiempo en Guantánamo cuando llegaron a Miami
+        Cuando ellos llegaron a Miami, habían pasado mucho tiempo en Guantánamo
   translations:
     en: |-
       When they (arrived in|got to|reached|made it to) Miami, they had (spent|been) a long time (in|at) Guantánamo.
       They had (spent|been) a long time (in|at) Guantánamo when they (arrived in|got to|reached|made it to) Miami.
+      When they arrived in Miami, they'd spent a long time in Guantánamo.
 - id: s.u24.24
   node: es.u24.los-balseros
   forms:
     es-Latn/standard:
       text: 'Muchos balseros nunca llegaron: el mar se los llevó.'
       tokens: [{surface: Muchos, sense: mucho}, {surface: balseros, sense: balsero}, {surface: nunca, sense: nunca}, {surface: llegaron, sense: llegar, form: 'form:pret-3p'}, {surface: el, sense: el}, {surface: mar, sense: mar}, {surface: se, sense: se}, {surface: los, sense: lo}, {surface: llevó, sense: llevarse, form: 'form:pret-3s'}]
-      reverse: Muchos balseros nunca llegaron [porque] el mar se los llevó
+      reverse: |-
+        Muchos balseros nunca llegaron [porque] el mar se los llevó
+        Muchos balseros no llegaron nunca: el mar se los llevó
   translations:
     en: 'Many (rafters|balseros) never (arrived|made it): the sea (took them|swept them away|carried them off).'
 - id: s.u24.25
@@ -306,7 +322,9 @@ sentences:
     es-Latn/standard:
       text: Primero vivieron en la Pequeña Habana, cerca de la Calle Ocho.
       tokens: [{surface: Primero, sense: primero}, {surface: vivieron, sense: vivir, form: 'form:pret-3p'}, {surface: en, sense: en}, {surface: la, sense: el}, {surface: Pequeña, sense: pequeña-habana}, {surface: Habana, sense: pequeña-habana}, {surface: cerca, sense: cerca}, {surface: de, sense: de}, {surface: la, sense: el}, {surface: Calle, sense: calle-ocho}, {surface: Ocho, sense: calle-ocho}]
-      reverse: (Primero|Al principio) vivieron en la Pequeña Habana cerca de [la] Calle Ocho
+      reverse: |-
+        (Primero|Al principio) vivieron en la Pequeña Habana cerca de [la] Calle Ocho
+        Primero ellos vivieron en la Pequeña Habana, cerca de la Calle Ocho
   translations:
     en: (At first|First), they lived in Little Havana, (near|close to) Calle Ocho.
 - id: s.u24.26
@@ -388,6 +406,7 @@ sentences:
       reverse: |-
         Antes de ese viaje Marisol nunca había conocido a su hermana
         Marisol nunca había conocido a su hermana antes de ese viaje
+        Antes de ese viaje, Marisol no había conocido nunca a su hermana
   translations:
     en: |-
       Before that trip, Marisol had never met her sister.
@@ -420,9 +439,13 @@ sentences:
     es-Latn/standard:
       text: Antes, Daniel no sabía cómo su familia había llegado a Miami.
       tokens: [{surface: Antes, sense: antes}, {surface: Daniel, sense: daniel}, {surface: 'no', sense: 'no'}, {surface: sabía, sense: saber, form: 'form:impf'}, {surface: cómo, sense: cómo}, {surface: su, sense: su}, {surface: familia, sense: familia}, {surface: había, sense: haber, form: 'form:impf'}, {surface: llegado, sense: llegar, form: 'form:part'}, {surface: a, sense: a}, {surface: Miami, sense: miami}]
-      reverse: Antes Daniel no sabía cómo su familia había llegado a Miami
+      reverse: |-
+        Antes Daniel no sabía cómo su familia había llegado a Miami
+        Antes, Daniel no sabía cómo había llegado su familia a Miami
   translations:
-    en: (Before|Until now), Daniel (didn't know|did not know) how his family had (come|gotten|got) to Miami.
+    en: |-
+      (Before|Until now), Daniel (didn't know|did not know) how his family had (come|gotten|got) to Miami.
+      Before, Daniel didn't know how his family had arrived in Miami.
 stories:
 - id: es.story.u24
   node: es.u24.story

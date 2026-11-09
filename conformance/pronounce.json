@@ -437,6 +437,79 @@
       },
       "error": "no syllable shape",
       "note": "Only Jyutping can be typed so far."
+    },
+    {
+      "id": "vowels/hbo/right",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "expected": "אוֹר",
+        "answer": "אוֹר"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": [],
+        "off": []
+      },
+      "note": "The points as the course writes them."
+    },
+    {
+      "id": "vowels/hbo/dagesh",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "expected": "הַיּוֹם",
+        "answer": "הַיוֹם"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          1
+        ]
+      },
+      "note": "The article's dagesh forte is part of the pointing."
+    },
+    {
+      "id": "vowels/hbo/shin-sin",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "expected": "שָׁלוֹם",
+        "answer": "שָׂלוֹם"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0
+        ]
+      },
+      "note": "The shin dot and the sin dot tell two letters apart."
+    },
+    {
+      "id": "vowels/hbo/no-points",
+      "op": "grade-vowels",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "expected": "שָׁלוֹם",
+        "answer": "שלום"
+      },
+      "expected": {
+        "verdict": "WRONG",
+        "notes": [
+          "vocalize-marks"
+        ],
+        "off": [
+          0,
+          2
+        ]
+      },
+      "note": "No points at all: every pointed letter is off."
     }
   ]
 }

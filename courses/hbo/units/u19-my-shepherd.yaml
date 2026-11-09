@@ -1,0 +1,506 @@
+# Biblical Hebrew (hbo), unit 19: The LORD is my shepherd (Psalm 23:1-4).
+# Poetry: the imperfect for what the LORD does again and again (he makes me lie down, he leads me), object
+# suffixes "me" on verbs, the construct chain in images (green pastures, still waters, paths of righteousness),
+# the polel (restore) and the hiphil (lead, make lie down).
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u19-my-shepherd
+title:
+  en: The LORD is my shepherd
+cefr: A2
+kcs:
+- id: sense:mizmor
+  gloss:
+    en: psalm, song
+  forms:
+    hbo-Hebr/tiberian: [מִזְמוֹר]
+- id: sense:hasar
+  gloss:
+    en: to lack, be in want
+  forms:
+    hbo-Hebr/tiberian: [חָסֵר]
+- id: sense:naah
+  gloss:
+    en: 'pasture, meadow (only plural: נְאוֹת)'
+  forms:
+    hbo-Hebr/tiberian: [נָאָה]
+- id: sense:deshe
+  gloss:
+    en: fresh grass, green growth
+  forms:
+    hbo-Hebr/tiberian: [דֶּשֶׁא]
+- id: sense:hirbits
+  gloss:
+    en: to make lie down (hiphil of רָבַץ)
+  forms:
+    hbo-Hebr/tiberian: [הִרְבִּיץ]
+- id: sense:menuchah
+  gloss:
+    en: 'rest, resting place (מֵי מְנֻחוֹת: still waters)'
+  forms:
+    hbo-Hebr/tiberian: [מְנוּחָה]
+- id: sense:nihel
+  gloss:
+    en: to lead, guide (to water) (piel)
+  forms:
+    hbo-Hebr/tiberian: [נִהֵל]
+- id: sense:shovev
+  gloss:
+    en: to restore, bring back (polel of שׁוּב)
+  forms:
+    hbo-Hebr/tiberian: [שׁוֹבֵב]
+- id: sense:hinchah
+  gloss:
+    en: to lead, guide (hiphil of נָחָה)
+  forms:
+    hbo-Hebr/tiberian: [הִנְחָה]
+- id: sense:magal
+  gloss:
+    en: track, path
+  forms:
+    hbo-Hebr/tiberian: [מַעְגָּל]
+- id: sense:tsedeq
+  gloss:
+    en: righteousness; what is right, justice
+  forms:
+    hbo-Hebr/tiberian: [צֶדֶק]
+- id: sense:gay
+  gloss:
+    en: valley
+  forms:
+    hbo-Hebr/tiberian: [גַּיְא]
+- id: sense:tsalmawet
+  gloss:
+    en: deep darkness (traditionally 'the shadow of death')
+  forms:
+    hbo-Hebr/tiberian: [צַלְמָוֶת]
+- id: sense:shevet
+  gloss:
+    en: rod; staff; tribe
+  forms:
+    hbo-Hebr/tiberian: [שֵׁבֶט]
+- id: sense:mishenet
+  gloss:
+    en: staff (to lean on)
+  forms:
+    hbo-Hebr/tiberian: [מִשְׁעֶנֶת]
+- id: sense:nicham
+  gloss:
+    en: to comfort (piel)
+  forms:
+    hbo-Hebr/tiberian: [נִחַם]
+nodes:
+- {id: hbo.u19.my-shepherd, kind: lesson, introduces: ['sense:mizmor', 'sense:hasar']}
+- {id: hbo.u19.green-pastures, kind: lesson, introduces: ['sense:naah', 'sense:deshe', 'sense:hirbits', 'sense:menuchah', 'sense:nihel']}
+- {id: hbo.u19.paths-of-righteousness, kind: lesson, introduces: ['sense:shovev', 'sense:hinchah', 'sense:magal', 'sense:tsedeq']}
+- {id: hbo.u19.the-valley, kind: lesson, introduces: ['sense:gay', 'sense:tsalmawet', 'sense:shevet', 'sense:mishenet', 'sense:nicham']}
+- {id: hbo.u19.story, kind: story}
+sentences:
+- id: s.19.1
+  node: hbo.u19.my-shepherd
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִזְמוֹר
+      tokens: [{surface: מִזְמוֹר, sense: mizmor, readings: {tiberian: mizmôr}}]
+      reverse: מזמור
+  translations:
+    en: |-
+      a psalm
+      a song
+- id: s.19.2
+  node: hbo.u19.my-shepherd
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִזְמוֹר לְדָוִד
+      tokens: [{surface: מִזְמוֹר, sense: mizmor, readings: {tiberian: mizmôr}}, {surface: לְדָוִד, sense: david, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: דָוִד, kc: 'sense:david'}], readings: {
+            tiberian: ləḏāwiḏ}}]
+      reverse: מזמור לדוד
+  translations:
+    en: |-
+      a psalm of David
+      a psalm (for|by) David
+- id: s.19.3
+  node: hbo.u19.my-shepherd
+  forms:
+    hbo-Hebr/tiberian:
+      text: רֹעִי
+      tokens: [{surface: רֹעִי, sense: raah.graze, form: 'form:ptc-ms', morphs: [{surface: רֹעִ, kc: 'sense:raah.graze'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: rōʿî}}]
+      reverse: (רעי|רועי)
+  translations:
+    en: my shepherd
+- id: s.19.4
+  node: hbo.u19.my-shepherd
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה רֹעִי׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: רֹעִי, sense: raah.graze, form: 'form:ptc-ms', morphs: [{surface: רֹעִ, kc: 'sense:raah.graze'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: rōʿî}}]
+      reverse: יהוה (רעי|רועי)
+  translations:
+    en: The LORD is my shepherd.
+- id: s.19.5
+  node: hbo.u19.my-shepherd
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אֶחְסָר׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אֶחְסָר, sense: hasar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾeḥsār}}]
+      reverse: (לא|לוא) אחסר
+  translations:
+    en: |-
+      I shall not want.
+      I (lack|shall lack|will lack) nothing.
+      I have all I need.
+- id: s.19.6
+  node: hbo.u19.my-shepherd
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה רֹעִי לֹא אֶחְסָר׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: רֹעִי, sense: raah.graze, form: 'form:ptc-ms', morphs: [{surface: רֹעִ, kc: 'sense:raah.graze'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: rōʿî}}, {surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אֶחְסָר, sense: hasar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾeḥsār}}]
+      reverse: יהוה (רעי|רועי) (לא|לוא) אחסר
+  translations:
+    en: |-
+      The LORD is my shepherd; I shall not want.
+      The LORD is my shepherd; I (lack|shall lack) nothing.
+- id: s.19.7
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: דֶּשֶׁא
+      tokens: [{surface: דֶּשֶׁא, sense: deshe, readings: {tiberian: déšeʾ}}]
+      reverse: דשא
+  translations:
+    en: |-
+      grass
+      fresh (grass|growth)
+- id: s.19.8
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: בִּנְאוֹת דֶּשֶׁא
+      tokens: [{surface: בִּנְאוֹת, sense: naah, form: 'form:pl-cstr', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: נְאוֹת, kc: 'sense:naah'}], readings: {tiberian: binʾôṯ}}, {surface: דֶּשֶׁא, sense: deshe,
+          readings: {tiberian: déšeʾ}}]
+      reverse: בנאות דשא
+  translations:
+    en: in (green|grassy) (pastures|meadows)
+- id: s.19.9
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: יַרְבִּיצֵנִי
+      tokens: [{surface: יַרְבִּיצֵנִי, sense: hirbits, form: 'form:yiqtol-3ms', morphs: [{surface: יַרְבִּיצֵ, kc: 'sense:hirbits'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yarbîṣḗnî}}]
+      reverse: ירביצני
+  translations:
+    en: |-
+      he makes me lie down
+      he lets me (lie down|rest)
+- id: s.19.10
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: בִּנְאוֹת דֶּשֶׁא יַרְבִּיצֵנִי׃
+      tokens: [{surface: בִּנְאוֹת, sense: naah, form: 'form:pl-cstr', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: נְאוֹת, kc: 'sense:naah'}], readings: {tiberian: binʾôṯ}}, {surface: דֶּשֶׁא, sense: deshe,
+          readings: {tiberian: déšeʾ}}, {surface: יַרְבִּיצֵנִי, sense: hirbits, form: 'form:yiqtol-3ms', morphs: [{surface: יַרְבִּיצֵ, kc: 'sense:hirbits'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: yarbîṣḗnî}}]
+      reverse: בנאות דשא ירביצני
+  translations:
+    en: |-
+      He makes me lie down in green pastures.
+      In (green|grassy) (pastures|meadows) he (makes me lie down|lets me rest).
+- id: s.19.11
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֵי מְנֻחוֹת
+      tokens: [{surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl', readings: {tiberian: mənuḥôṯ}}]
+      reverse: מי (מנחות|מנוחות)
+  translations:
+    en: |-
+      still waters
+      quiet waters
+      waters of rest
+- id: s.19.12
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְנַהֲלֵנִי
+      tokens: [{surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yənahălḗnî}}]
+      reverse: ינהלני
+  translations:
+    en: |-
+      he leads me
+      he guides me
+- id: s.19.13
+  node: hbo.u19.green-pastures
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַל־מֵי מְנֻחוֹת יְנַהֲלֵנִי׃
+      tokens: [{surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah, form: 'form:pl',
+          readings: {tiberian: mənuḥôṯ}}, {surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {
+            tiberian: yənahălḗnî}}]
+      reverse: על מי (מנחות|מנוחות) ינהלני
+  translations:
+    en: He (leads|guides) me (beside|to) (still|quiet|restful) waters.
+- id: s.19.14
+  node: hbo.u19.paths-of-righteousness
+  forms:
+    hbo-Hebr/tiberian:
+      text: צֶדֶק
+      tokens: [{surface: צֶדֶק, sense: tsedeq, readings: {tiberian: ṣéḏeq}}]
+      reverse: צדק
+  translations:
+    en: |-
+      righteousness
+      (justice|what is right)
+- id: s.19.15
+  node: hbo.u19.paths-of-righteousness
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַפְשִׁי יְשׁוֹבֵב׃
+      tokens: [{surface: נַפְשִׁי, sense: nefesh, morphs: [{surface: נַפְשִׁ, kc: 'sense:nefesh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: nap̄šî}}, {surface: יְשׁוֹבֵב, sense: shovev, form: 'form:yiqtol-3ms',
+          readings: {tiberian: yəšôḇēḇ}}]
+      reverse: |-
+        נפשי ישובב
+        ישובב נפשי
+  translations:
+    en: |-
+      He restores my soul.
+      He (refreshes|revives|renews) my (soul|life).
+- id: s.19.16
+  node: hbo.u19.paths-of-righteousness
+  forms:
+    hbo-Hebr/tiberian:
+      text: יַנְחֵנִי
+      tokens: [{surface: יַנְחֵנִי, sense: hinchah, form: 'form:yiqtol-3ms', morphs: [{surface: יַנְחֵ, kc: 'sense:hinchah'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yanḥḗnî}}]
+      reverse: ינחני
+  translations:
+    en: |-
+      he leads me
+      he guides me
+- id: s.19.17
+  node: hbo.u19.paths-of-righteousness
+  forms:
+    hbo-Hebr/tiberian:
+      text: יַנְחֵנִי בְמַעְגְּלֵי־צֶדֶק׃
+      tokens: [{surface: יַנְחֵנִי, sense: hinchah, form: 'form:yiqtol-3ms', morphs: [{surface: יַנְחֵ, kc: 'sense:hinchah'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yanḥḗnî}}, {surface: בְמַעְגְּלֵי,
+          sense: magal, form: 'form:pl-cstr', morphs: [{surface: בְ, kc: 'sense:be'}, {surface: מַעְגְּלֵי, kc: 'sense:magal'}], readings: {tiberian: ḇəmaʿgəlê-}}, {surface: צֶדֶק, sense: tsedeq, readings: {
+            tiberian: ṣéḏeq}}]
+      reverse: ינחני במעגלי צדק
+  translations:
+    en: |-
+      He leads me in paths of righteousness.
+      He (leads|guides) me (in|along) (right|righteous) paths.
+- id: s.19.18
+  node: hbo.u19.paths-of-righteousness
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְמַעַן שְׁמוֹ
+      tokens: [{surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}, {surface: שְׁמוֹ, sense: shem, morphs: [{surface: שְׁמ, kc: 'sense:shem'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {
+            tiberian: šəmô}}]
+      reverse: למען שמו
+  translations:
+    en: |-
+      for his name's sake
+      for the sake of his name
+- id: s.19.19
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: בְּגֵיא צַלְמָוֶת
+      tokens: [{surface: בְּגֵיא, sense: gay, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: גֵיא, kc: 'sense:gay'}], readings: {tiberian: bəḡêʾ}}, {surface: צַלְמָוֶת, sense: tsalmawet, readings: {
+            tiberian: ṣalmā́weṯ}}]
+      reverse: בגיא צלמות
+  translations:
+    en: |-
+      in the valley of the shadow of death
+      in the (darkest|dark) valley
+      in a valley of deep darkness
+- id: s.19.20
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: גַּם כִּי־אֵלֵךְ בְּגֵיא צַלְמָוֶת
+      tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}},
+        {surface: בְּגֵיא, sense: gay, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: גֵיא, kc: 'sense:gay'}], readings: {tiberian: bəḡêʾ}}, {surface: צַלְמָוֶת, sense: tsalmawet, readings: {tiberian: ṣalmā́weṯ}}]
+      reverse: גם כי אלך בגיא צלמות
+  translations:
+    en: |-
+      even (though|if) I walk (through|in) the valley of the shadow of death
+      even (though|if) I walk (through|in) the (darkest|dark) valley
+- id: s.19.21
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אִירָא׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אִירָא, sense: yare, form: 'form:yiqtol-1cs', readings: {tiberian: ʾîrāʾ}}]
+      reverse: (לא|לוא) אירא
+  translations:
+    en: |-
+      I will not be afraid.
+      I (will|shall) not fear.
+- id: s.19.22
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אִירָא רָע׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אִירָא, sense: yare, form: 'form:yiqtol-1cs', readings: {tiberian: ʾîrāʾ}}, {surface: רָע, sense: raah.evil, readings: {tiberian: rāʿ}}]
+      reverse: (לא|לוא) אירא רע
+  translations:
+    en: I (will|shall) (fear no|not fear any) (evil|harm).
+- id: s.19.23
+  node: hbo.u19.the-valley
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי־אַתָּה עִמָּדִי׃
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
+            {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: כי אתה עמדי
+  translations:
+    en: |-
+      for you are with me
+      because you are with me
+- id: s.19.24
+  node: hbo.u19.the-valley
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי־אַתְּ עִמָּדִי׃
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
+            {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: כי את עמדי
+  translations:
+    en: |-
+      for you are with me
+      because you are with me
+- id: s.19.25
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: שֵׁבֶט
+      tokens: [{surface: שֵׁבֶט, sense: shevet, readings: {tiberian: šḗḇeṭ}}]
+      reverse: שבט
+  translations:
+    en: |-
+      a rod
+      a (staff|tribe)
+- id: s.19.26
+  node: hbo.u19.the-valley
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שִׁבְטְךָ וּמִשְׁעַנְתֶּךָ
+      tokens: [{surface: שִׁבְטְךָ, sense: shevet, morphs: [{surface: שִׁבְטְ, kc: 'sense:shevet'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šiḇṭəḵā}}, {surface: וּמִשְׁעַנְתֶּךָ, sense: mishenet,
+          morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִשְׁעַנְתֶּ, kc: 'sense:mishenet'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûmišʿantéḵā}}]
+      reverse: שבטך ומשענתך
+  translations:
+    en: your rod and your staff
+- id: s.19.27
+  node: hbo.u19.the-valley
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֵמָּה יְנַחֲמֻנִי׃
+      tokens: [{surface: הֵמָּה, sense: hem, readings: {tiberian: hḗmmâ}}, {surface: יְנַחֲמֻנִי, sense: nicham, form: 'form:yiqtol-3mp', morphs: [{surface: יְנַחֲמֻ, kc: 'sense:nicham'}, {surface: נִי,
+              kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămúnî}}]
+      reverse: |-
+        המה (ינחמני|ינחמוני)
+        (ינחמני|ינחמוני) המה
+  translations:
+    en: |-
+      They comfort me.
+      They (console|reassure) me.
+- id: s.19.28
+  node: hbo.u19.the-valley
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַחֲמוּ נַחֲמוּ עַמִּי׃
+      tokens: [{surface: נַחֲמוּ, sense: nicham, form: 'form:impv-mp', readings: {tiberian: naḥămû}}, {surface: נַחֲמוּ, sense: nicham, form: 'form:impv-mp', readings: {tiberian: naḥămû}}, {surface: עַמִּי,
+          sense: am, readings: {tiberian: ʿammî}}]
+      reverse: נחמו נחמו עמי
+  translations:
+    en: |-
+      Comfort, comfort my people!
+      Comfort my people, comfort them!
+stories:
+- id: hbo.story.my-shepherd
+  node: hbo.u19.story
+  title:
+    en: The LORD is my shepherd (Psalm 23:1–4)
+  characters:
+  - {id: david, speaker: m, name: {hbo-Hebr/tiberian: דָּוִד}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: מִזְמוֹר לְדָוִד
+          tokens: [{surface: מִזְמוֹר, sense: mizmor, readings: {tiberian: mizmôr}}, {surface: לְדָוִד, sense: david, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: דָוִד, kc: 'sense:david'}], readings: {
+                tiberian: ləḏāwiḏ}}]
+      translations:
+        en: A psalm of David.
+  - line:
+      speaker: david
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: יְהוָה רֹעִי לֹא אֶחְסָר׃
+          tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: רֹעִי, sense: raah.graze, form: 'form:ptc-ms', morphs: [{surface: רֹעִ, kc: 'sense:raah.graze'}, {surface: י,
+                  kc: 'form:sfx-1cs'}], readings: {tiberian: rōʿî}}, {surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אֶחְסָר, sense: hasar, form: 'form:yiqtol-1cs', readings: {tiberian: ʾeḥsār}}]
+      translations:
+        en: The LORD is my shepherd; I shall not want.
+  - line:
+      speaker: david
+      ask: complete
+      gap: sense:deshe
+      distractors: ['sense:sadeh', 'sense:yam']
+      forms:
+        hbo-Hebr/tiberian:
+          text: בִּנְאוֹת דֶּשֶׁא יַרְבִּיצֵנִי עַל־מֵי מְנֻחוֹת יְנַהֲלֵנִי׃
+          tokens: [{surface: בִּנְאוֹת, sense: naah, form: 'form:pl-cstr', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: נְאוֹת, kc: 'sense:naah'}], readings: {tiberian: binʾôṯ}}, {surface: דֶּשֶׁא,
+              sense: deshe, readings: {tiberian: déšeʾ}}, {surface: יַרְבִּיצֵנִי, sense: hirbits, form: 'form:yiqtol-3ms', morphs: [{surface: יַרְבִּיצֵ, kc: 'sense:hirbits'}, {surface: נִי, kc: 'form:sfx-1cs'}],
+              readings: {tiberian: yarbîṣḗnî}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: מֵי, sense: mayim, form: 'form:pl-cstr', readings: {tiberian: mê}}, {surface: מְנֻחוֹת, sense: menuchah,
+              form: 'form:pl', readings: {tiberian: mənuḥôṯ}}, {surface: יְנַהֲלֵנִי, sense: nihel, form: 'form:yiqtol-3ms', morphs: [{surface: יְנַהֲלֵ, kc: 'sense:nihel'}, {surface: נִי, kc: 'form:sfx-1cs'}],
+              readings: {tiberian: yənahălḗnî}}]
+      translations:
+        en: He makes me lie down in green pastures; he leads me beside still waters.
+  - line:
+      speaker: david
+      forms:
+        hbo-Hebr/tiberian:
+          text: נַפְשִׁי יְשׁוֹבֵב יַנְחֵנִי בְמַעְגְּלֵי־צֶדֶק לְמַעַן שְׁמוֹ׃
+          tokens: [{surface: נַפְשִׁי, sense: nefesh, morphs: [{surface: נַפְשִׁ, kc: 'sense:nefesh'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: nap̄šî}}, {surface: יְשׁוֹבֵב, sense: shovev,
+              form: 'form:yiqtol-3ms', readings: {tiberian: yəšôḇēḇ}}, {surface: יַנְחֵנִי, sense: hinchah, form: 'form:yiqtol-3ms', morphs: [{surface: יַנְחֵ, kc: 'sense:hinchah'}, {surface: נִי, kc: 'form:sfx-1cs'}],
+              readings: {tiberian: yanḥḗnî}}, {surface: בְמַעְגְּלֵי, sense: magal, form: 'form:pl-cstr', morphs: [{surface: בְ, kc: 'sense:be'}, {surface: מַעְגְּלֵי, kc: 'sense:magal'}], readings: {tiberian: ḇəmaʿgəlê-}},
+            {surface: צֶדֶק, sense: tsedeq, readings: {tiberian: ṣéḏeq}}, {surface: לְמַעַן, sense: lemaan, readings: {tiberian: ləmáʿan}}, {surface: שְׁמוֹ, sense: shem, morphs: [{surface: שְׁמ, kc: 'sense:shem'},
+                {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: šəmô}}]
+      translations:
+        en: He restores my soul. He leads me in paths of righteousness for his name's sake.
+  - choose:
+      prompt:
+        en: What does the shepherd do for the psalmist's soul?
+      options: [{en: He restores it.}, {en: He tests it.}, {en: He forgets it.}]
+      answer: 0
+  - line:
+      speaker: david
+      ask: complete
+      gap: sense:shevet
+      distractors: ['sense:herev', 'sense:yad']
+      forms:
+        hbo-Hebr/tiberian:
+          text: גַּם כִּי־אֵלֵךְ בְּגֵיא צַלְמָוֶת לֹא־אִירָא רָע כִּי־אַתָּה עִמָּדִי שִׁבְטְךָ וּמִשְׁעַנְתֶּךָ הֵמָּה יְנַחֲמֻנִי׃
+          tokens: [{surface: גַּם, sense: gam, readings: {tiberian: gam}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: אֵלֵךְ, sense: halakh, form: 'form:yiqtol-1cs', readings: {tiberian: ʾēlēḵ}},
+            {surface: בְּגֵיא, sense: gay, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: גֵיא, kc: 'sense:gay'}], readings: {tiberian: bəḡêʾ}}, {surface: צַלְמָוֶת, sense: tsalmawet,
+              readings: {tiberian: ṣalmā́weṯ}}, {surface: לֹא, sense: lo, readings: {tiberian: lōʾ-}}, {surface: אִירָא, sense: yare, form: 'form:yiqtol-1cs', readings: {tiberian: ʾîrāʾ}}, {surface: רָע,
+              sense: raah.evil, readings: {tiberian: rāʿ}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: עִמָּדִי, sense: immad,
+              morphs: [{surface: עִמָּדִ, kc: 'sense:immad'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}, {surface: שִׁבְטְךָ, sense: shevet, morphs: [{surface: שִׁבְטְ, kc: 'sense:shevet'},
+                {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: šiḇṭəḵā}}, {surface: וּמִשְׁעַנְתֶּךָ, sense: mishenet, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: מִשְׁעַנְתֶּ, kc: 'sense:mishenet'},
+                {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ûmišʿantéḵā}}, {surface: הֵמָּה, sense: hem, readings: {tiberian: hḗmmâ}}, {surface: יְנַחֲמֻנִי, sense: nicham, form: 'form:yiqtol-3mp',
+              morphs: [{surface: יְנַחֲמֻ, kc: 'sense:nicham'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: yənaḥămúnî}}]
+      translations:
+        en: Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.
+  - choose:
+      prompt:
+        en: Why will the psalmist fear no evil?
+      options: [{en: because the LORD is with him}, {en: because the valley is bright}, {en: because he has a sword}]
+      answer: 0

@@ -418,9 +418,17 @@
       "message": "Бажарилди",
       "source": "00609f822e0571"
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{Ҳарфлар {$number}}}",
+      "source": "0a4a75ab67b7e7"
+    },
     "app.path.locked": {
       "message": "Ёпиқ",
       "source": "0e259fa0babc2d"
+    },
+    "app.path.new-letters": {
+      "message": "Янги ҳарфлар",
+      "source": "04c7f4702df641"
     },
     "app.path.start": {
       "message": "Бошланг",
@@ -950,9 +958,21 @@
       "message": "Форс тили",
       "source": "0814f27aca872d"
     },
+    "course.name.grc": {
+      "message": "Қадимги юнон тили",
+      "source": "1e44e3a3ed8730"
+    },
+    "course.name.hbo": {
+      "message": "Библия иброний тили",
+      "source": "0ddad88d960e7d"
+    },
     "course.name.lzh": {
       "message": "Классик хитой тили",
       "source": "169053e6ceef8d"
+    },
+    "course.name.tok": {
+      "message": "Токи Пона",
+      "source": "07288edbd3337d"
     },
     "course.name.uz": {
       "message": "Ўзбек тили",
@@ -1074,9 +1094,21 @@
       "message": "Қўшимча нарса кимники эканини ўзгартиради (меники, сеники, уники…), фақат имлосини эмас.",
       "source": "0f198186f5f77b"
     },
+    "feedback.note.contrast-prefix": {
+      "message": "Олд қўшимча маънони ўзгартиради (ишни ким қилади ёки бу оддий хабарми), фақат имлосини эмас.",
+      "source": "023d64d0a4d939"
+    },
     "feedback.note.contrast-pronoun": {
       "message": "Бу бошқа олмош, териш хатоси эмас.",
       "source": "113842c4f5afa3"
+    },
+    "feedback.note.greek-marks": {
+      "message": "Урғу, нафас белгилари ва остки йотага эътибор беринг: улар имлонинг бир қисми.",
+      "source": "143c6d40f020e1"
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "Бу белгилар билан у бошқа сўз бўлади (ἡ — артикл, ἤ “ёки”).",
+      "source": "070d94b932dfee"
     },
     "feedback.note.hamza": {
       "message": "Ҳамзага (أ, إ, آ) эътибор беринг.",
@@ -1330,9 +1362,25 @@
       "message": "Форс ёзуви",
       "source": "1a96004e1beccf"
     },
+    "orthography.grc-Grek.polytonic": {
+      "message": "Политоник юнон ёзуви",
+      "source": "0b1395732f8b7d"
+    },
+    "orthography.hbo-Hebr.tiberian": {
+      "message": "Иброний ёзуви, Тиберия ҳаракатлари",
+      "source": "0056996ec949db"
+    },
     "orthography.lzh-Hant.standard": {
       "message": "Анъанавий иероглифлар",
       "source": "0768e08b58f7c1"
+    },
+    "orthography.tok-Latn.standard": {
+      "message": "Лотин ҳарфлари (sitelen Lasina)",
+      "source": "1dfd55beb895ac"
+    },
+    "orthography.tok-Qaap.sitelen-pona": {
+      "message": "sitelen pona (логографик ёзув)",
+      "source": "09967254be9d0c"
     },
     "orthography.uz-Cyrl.standard": {
       "message": "Кирилл",
@@ -1426,6 +1474,14 @@
       "message": "Бўш жойни тўлдиринг",
       "source": "0fecadc0573056"
     },
+    "player.instruction.letter-pairs": {
+      "message": "Ҳар бир ҳарфни товуши билан жуфтланг",
+      "source": "1c83c6c236dd6c"
+    },
+    "player.instruction.letter-read": {
+      "message": "Бу ҳарф қандай ўқилади?",
+      "source": "17f0bb60fdee12"
+    },
     "player.instruction.listen-select": {
       "message": "Қайси сўзни эшитяпсиз?",
       "source": "046edf8832a029"
@@ -1493,6 +1549,14 @@
     "player.instruction.vocalize": {
       "message": "Унли белгиларни қўйинг",
       "source": "041a63b98f57c1"
+    },
+    "player.instruction.word-read": {
+      "message": "Бу сўз лотин ҳарфларида қандай ёзилади?",
+      "source": "0b84c0f1f9021f"
+    },
+    "player.instruction.word-write": {
+      "message": "Сўзни ҳарфларидан тузинг",
+      "source": "0795fd6dee9554"
     },
     "player.key.mark.064b": {
       "message": "Икки забар",
@@ -1794,6 +1858,26 @@
       "message": "Кичикроқ",
       "source": "11d42294548513"
     },
+    "preferences.theme.dark": {
+      "message": "Қоронғи",
+      "source": "021eb881b194d5"
+    },
+    "preferences.theme.hint": {
+      "message": "«Браузердагидек» браузерингиз ёки қурилмангиздаги ёруғ ёки қоронғи созламага амал қилади.",
+      "source": "06d04086bf7532"
+    },
+    "preferences.theme.label": {
+      "message": "Кўриниш",
+      "source": "1ea2057b0ceddc"
+    },
+    "preferences.theme.light": {
+      "message": "Ёруғ",
+      "source": "1bd79ce045f09a"
+    },
+    "preferences.theme.system": {
+      "message": "Браузердагидек",
+      "source": "063a3544fdda5c"
+    },
     "preferences.title": {
       "message": "Созламалар",
       "source": "1d9d2be97a052d"
@@ -1861,6 +1945,10 @@
     "reading.scheme.jyutping": {
       "message": "Жютпинг",
       "source": "060334df66e05a"
+    },
+    "reading.scheme.lasina": {
+      "message": "sitelen Lasina",
+      "source": "1301a482fe38d5"
     },
     "reading.scheme.pinyin": {
       "message": "Пиньинь",
@@ -2053,6 +2141,54 @@
     "story.translation.show": {
       "message": "Таржимани кўринг",
       "source": "02b713e9854aff"
+    },
+    "words.count": {
+      "message": ".input {$count :number}\n{{{$count} та сўз}}",
+      "source": "006540a168fe3e"
+    },
+    "words.empty": {
+      "message": "Ҳали сўз йўқ. Сўзлар дарсда машқ қилганингиздан кейин шу ерда чиқади.",
+      "source": "0f528d8ac2da08"
+    },
+    "words.none-found": {
+      "message": "Ўрганган сўзларингиздан бунга моси йўқ.",
+      "source": "0e5f9639794378"
+    },
+    "words.order.alphabetical": {
+      "message": "Алифбо бўйича",
+      "source": "05903207c8a59d"
+    },
+    "words.order.course": {
+      "message": "Курсдагидек",
+      "source": "0f77e2c3bb1c8e"
+    },
+    "words.order.label": {
+      "message": "Тартиб",
+      "source": "126e942baf656b"
+    },
+    "words.order.weakest": {
+      "message": "Аввал энг заифлари",
+      "source": "1913af63c531b2"
+    },
+    "words.search": {
+      "message": "Сўз қидириш",
+      "source": "11ed730c010d98"
+    },
+    "words.strength.due": {
+      "message": "Такрорлаш вақти",
+      "source": "0e71bfae4eb57e"
+    },
+    "words.strength.fading": {
+      "message": "Унутилмоқда",
+      "source": "01548a7b07b0cf"
+    },
+    "words.strength.strong": {
+      "message": "Яхши эсда",
+      "source": "112b40f86aab85"
+    },
+    "words.title": {
+      "message": "Сиз ўрганган сўзлар",
+      "source": "048579200c802a"
     }
   }
 }

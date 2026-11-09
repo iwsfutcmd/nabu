@@ -14,6 +14,13 @@ Both halves are free: Cloudflare's free Workers plan and a Google Cloud project 
 - **Write**: notes and small files up to 25 MB (`put`), folders (`mkdir`), renaming and moving
   (`mv`). Large scans go into Drive the usual way (Drive for desktop or the website).
 - **Trash** (`trash`): into Drive's trash, where you can restore it for 30 days. It never deletes.
+- **Batch moves** (`POST /v1/moves`): up to 100 moves in one request, each listing a folder once.
+  It stays within the free plan's 50 subrequests, stops at the first failure, and marks the
+  moves it didn't reach `not-attempted`, to be sent again.
+- **Names** are listed and matched in NFC without control characters, as anyone would type them.
+  Where the name Drive holds differs (NFD, as macOS writes it, or a catalogue's MARC non-sorting
+  marks), the entry also gives it as `rawName`. Moving a file to its own cleaned name cleans it in
+  Drive.
 - **Only that folder.** Everything is addressed by path from the folder down. The relay never takes
   a file id from a caller, never searches your Drive and never follows a shortcut.
 

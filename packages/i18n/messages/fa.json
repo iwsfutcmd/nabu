@@ -418,9 +418,17 @@
       "message": "انجام شد",
       "source": "00609f822e0571"
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{حروف {$number}}}",
+      "source": "0a4a75ab67b7e7"
+    },
     "app.path.locked": {
       "message": "قفل",
       "source": "0e259fa0babc2d"
+    },
+    "app.path.new-letters": {
+      "message": "حروف تازه",
+      "source": "04c7f4702df641"
     },
     "app.path.start": {
       "message": "شروع",
@@ -950,9 +958,21 @@
       "message": "فارسی",
       "source": "0814f27aca872d"
     },
+    "course.name.grc": {
+      "message": "یونانی باستان",
+      "source": "1e44e3a3ed8730"
+    },
+    "course.name.hbo": {
+      "message": "عبری کتاب مقدس",
+      "source": "0ddad88d960e7d"
+    },
     "course.name.lzh": {
       "message": "چینی کلاسیک",
       "source": "169053e6ceef8d"
+    },
+    "course.name.tok": {
+      "message": "توکی پونا",
+      "source": "07288edbd3337d"
     },
     "course.name.uz": {
       "message": "ازبکی",
@@ -1074,9 +1094,21 @@
       "message": "این پسوند تعیین می\u200cکند چیزی مال چه کسی است (مال من، مال تو، مال او…)، و فقط املای کلمه را عوض نمی\u200cکند.",
       "source": "0f198186f5f77b"
     },
+    "feedback.note.contrast-prefix": {
+      "message": "این پیشوند معنا را عوض می\u200cکند (چه کسی کار را می\u200cکند، یا خبری بودن جمله)، نه فقط املا را.",
+      "source": "023d64d0a4d939"
+    },
     "feedback.note.contrast-pronoun": {
       "message": "این ضمیر دیگری است، نه غلط تایپی.",
       "source": "113842c4f5afa3"
+    },
+    "feedback.note.greek-marks": {
+      "message": "به نشانه\u200cهای تکیه، دَمِش و یوتای زیرنویس دقت کنید: بخشی از املا هستند.",
+      "source": "143c6d40f020e1"
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "با این نشانه\u200cها کلمهٔ دیگری می\u200cشود (ἡ حرف تعریف، ἤ «یا»).",
+      "source": "070d94b932dfee"
     },
     "feedback.note.hamza": {
       "message": "به همزه (أ، إ، آ) دقت کنید.",
@@ -1330,9 +1362,25 @@
       "message": "خط فارسی",
       "source": "1a96004e1beccf"
     },
+    "orthography.grc-Grek.polytonic": {
+      "message": "یونانی با نشانه\u200cهای تکیه",
+      "source": "0b1395732f8b7d"
+    },
+    "orthography.hbo-Hebr.tiberian": {
+      "message": "خط عبری با اعراب طبری",
+      "source": "0056996ec949db"
+    },
     "orthography.lzh-Hant.standard": {
       "message": "نویسه\u200cهای سنتی",
       "source": "0768e08b58f7c1"
+    },
+    "orthography.tok-Latn.standard": {
+      "message": "حروف لاتین (sitelen Lasina)",
+      "source": "1dfd55beb895ac"
+    },
+    "orthography.tok-Qaap.sitelen-pona": {
+      "message": "sitelen pona (نشانه\u200cنگاری)",
+      "source": "09967254be9d0c"
     },
     "orthography.uz-Cyrl.standard": {
       "message": "سیریلیک",
@@ -1426,6 +1474,14 @@
       "message": "جای خالی را پر کنید",
       "source": "0fecadc0573056"
     },
+    "player.instruction.letter-pairs": {
+      "message": "هر حرف را با صدایش جفت کنید",
+      "source": "1c83c6c236dd6c"
+    },
+    "player.instruction.letter-read": {
+      "message": "این حرف چطور خوانده می\u200cشود؟",
+      "source": "17f0bb60fdee12"
+    },
     "player.instruction.listen-select": {
       "message": "کدام کلمه را می\u200cشنوید؟",
       "source": "046edf8832a029"
@@ -1493,6 +1549,14 @@
     "player.instruction.vocalize": {
       "message": "اعراب را بگذارید",
       "source": "041a63b98f57c1"
+    },
+    "player.instruction.word-read": {
+      "message": "این کلمه با حروف لاتین چطور نوشته می\u200cشود؟",
+      "source": "0b84c0f1f9021f"
+    },
+    "player.instruction.word-write": {
+      "message": "کلمه را از حروفش بسازید",
+      "source": "0795fd6dee9554"
     },
     "player.key.mark.064b": {
       "message": "تنوین نصب",
@@ -1794,6 +1858,26 @@
       "message": "کوچک\u200cتر",
       "source": "11d42294548513"
     },
+    "preferences.theme.dark": {
+      "message": "تیره",
+      "source": "021eb881b194d5"
+    },
+    "preferences.theme.hint": {
+      "message": "«مطابق مرورگر» از تنظیم روشن یا تیرهٔ مرورگر یا دستگاه شما پیروی می\u200cکند.",
+      "source": "06d04086bf7532"
+    },
+    "preferences.theme.label": {
+      "message": "ظاهر",
+      "source": "1ea2057b0ceddc"
+    },
+    "preferences.theme.light": {
+      "message": "روشن",
+      "source": "1bd79ce045f09a"
+    },
+    "preferences.theme.system": {
+      "message": "مطابق مرورگر",
+      "source": "063a3544fdda5c"
+    },
     "preferences.title": {
       "message": "تنظیمات",
       "source": "1d9d2be97a052d"
@@ -1861,6 +1945,10 @@
     "reading.scheme.jyutping": {
       "message": "جیوت\u200cپینگ",
       "source": "060334df66e05a"
+    },
+    "reading.scheme.lasina": {
+      "message": "sitelen Lasina",
+      "source": "1301a482fe38d5"
     },
     "reading.scheme.pinyin": {
       "message": "پین\u200cیین",
@@ -2053,6 +2141,54 @@
     "story.translation.show": {
       "message": "ترجمه را نشان دهید",
       "source": "02b713e9854aff"
+    },
+    "words.count": {
+      "message": ".input {$count :number}\n{{{$count} واژه}}",
+      "source": "006540a168fe3e"
+    },
+    "words.empty": {
+      "message": "هنوز واژه\u200cای نیست. واژه\u200cها پس از تمرین در درس اینجا می\u200cآیند.",
+      "source": "0f528d8ac2da08"
+    },
+    "words.none-found": {
+      "message": "هیچ واژه\u200cای از آموخته\u200cهایتان با این جور نیست.",
+      "source": "0e5f9639794378"
+    },
+    "words.order.alphabetical": {
+      "message": "الفبایی",
+      "source": "05903207c8a59d"
+    },
+    "words.order.course": {
+      "message": "به ترتیب دوره",
+      "source": "0f77e2c3bb1c8e"
+    },
+    "words.order.label": {
+      "message": "ترتیب",
+      "source": "126e942baf656b"
+    },
+    "words.order.weakest": {
+      "message": "ضعیف\u200cترها اول",
+      "source": "1913af63c531b2"
+    },
+    "words.search": {
+      "message": "پیدا کردن واژه",
+      "source": "11ed730c010d98"
+    },
+    "words.strength.due": {
+      "message": "وقت مرور",
+      "source": "0e71bfae4eb57e"
+    },
+    "words.strength.fading": {
+      "message": "در حال فراموشی",
+      "source": "01548a7b07b0cf"
+    },
+    "words.strength.strong": {
+      "message": "خوب به یاد مانده",
+      "source": "112b40f86aab85"
+    },
+    "words.title": {
+      "message": "واژه\u200cهایی که یاد گرفته\u200cاید",
+      "source": "048579200c802a"
     }
   }
 }

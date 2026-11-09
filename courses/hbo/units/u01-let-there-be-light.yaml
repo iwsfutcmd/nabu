@@ -1,0 +1,639 @@
+# Biblical Hebrew (hbo), unit 1: Let there be light (Genesis 1:3-5).
+# Nouns, the article, "and", noun sentences, and the narrative past (wayyiqtol) of say, see and call.
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u01-let-there-be-light
+title:
+  en: Let there be light
+cefr: A1
+kcs:
+- id: sense:or
+  gloss:
+    en: light
+  forms:
+    hbo-Hebr/tiberian: [אוֹר]
+  image: {file: ../images/sun.svg, license: CC0-1.0, provenance: {author: 'llm:claude@bc6746e0390b', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:hoshekh
+  gloss:
+    en: darkness
+  forms:
+    hbo-Hebr/tiberian: [חֹשֶׁךְ]
+- id: sense:we
+  gloss:
+    en: and (written joined to the next word)
+  forms:
+    hbo-Hebr/tiberian: [וְ]
+  notes:
+    en: 'וְ wə- is written on the word it joins: וְחֹשֶׁךְ ''and darkness''. Before a stressed first syllable it is often וָ wā- (יוֹם וָלַיְלָה), before b, m, p and a shewa וּ û-.'
+- id: sense:yom
+  gloss:
+    en: day; daytime
+  forms:
+    hbo-Hebr/tiberian: [יוֹם]
+- id: sense:layla
+  gloss:
+    en: night
+  forms:
+    hbo-Hebr/tiberian: [לַיְלָה]
+  image: {file: ../images/moon.svg, license: CC0-1.0, provenance: {author: 'llm:claude@2c94300bb951', status: draft}, source: Drawn for Nabu (courses/images)}
+  notes:
+    en: 'At a pause in the verse it is לָיְלָה lā́ylâ. The stress is on the first syllable: láylâ.'
+- id: sense:ha
+  gloss:
+    en: the (written joined to the next word)
+  forms:
+    hbo-Hebr/tiberian: [הַ]
+  notes:
+    en: 'The article הַ ha- doubles the next letter (a dagesh): הַיּוֹם hayyôm ''the day''. Before א ע ר, which do not double, it is הָ hā-: הָאוֹר.'
+- id: sense:tov
+  gloss:
+    en: good; well
+  forms:
+    hbo-Hebr/tiberian: [טוֹב]
+  image: {file: ../images/smile.svg, license: CC0-1.0, provenance: {author: 'llm:claude@d6c9379209cc', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: construction:nominal
+  gloss:
+    en: 'a noun sentence: no verb ''to be'' (הָאוֹר טוֹב ''the light is good'')'
+- id: sense:erev
+  gloss:
+    en: evening
+  forms:
+    hbo-Hebr/tiberian: [עֶרֶב]
+- id: sense:boqer
+  gloss:
+    en: morning
+  forms:
+    hbo-Hebr/tiberian: [בֹּקֶר]
+  image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:elohim
+  gloss:
+    en: God; gods
+  forms:
+    hbo-Hebr/tiberian: [אֱלֹהִים]
+  notes:
+    en: 'Plural in form (-îm), but as the name of Israel''s God it takes singular verbs: וַיֹּאמֶר אֱלֹהִים ''and God said''.'
+- id: sense:amar
+  gloss:
+    en: to say
+  forms:
+    hbo-Hebr/tiberian: [אָמַר]
+- id: form:wayyiqtol-3ms
+  gloss:
+    en: 'and he did: the narrative past (wayyiqtol), he or it'
+- id: sense:hayah
+  gloss:
+    en: to be; to become, happen
+  forms:
+    hbo-Hebr/tiberian: [הָיָה]
+- id: form:juss
+  gloss:
+    en: 'let him (it) do: the jussive; with אַל, ''do not …!'''
+- id: sense:raah
+  gloss:
+    en: to see
+  forms:
+    hbo-Hebr/tiberian: [רָאָה]
+- id: sense:et
+  gloss:
+    en: the mark of a definite direct object (not translated)
+  forms:
+    hbo-Hebr/tiberian: [אֵת]
+  notes:
+    en: 'אֵת ʾēṯ, joined by maqaf אֶת־ ʾeṯ-, stands before a definite object: וַיַּרְא אֶת־הָאוֹר ''he saw the light''.'
+- id: sense:ki
+  gloss:
+    en: that; because, for
+  forms:
+    hbo-Hebr/tiberian: [כִּי]
+- id: sense:qara
+  gloss:
+    en: 'to call; to name (call X Y: קָרָא לְX Y)'
+  forms:
+    hbo-Hebr/tiberian: [קָרָא]
+- id: form:qatal-3ms
+  gloss:
+    en: 'he did: the perfect (qatal), he or it'
+- id: sense:le
+  gloss:
+    en: to, for (written joined to the next word)
+  forms:
+    hbo-Hebr/tiberian: [לְ]
+  notes:
+    en: 'לְ lə- is written on its noun; with the article it takes the article''s vowel: לָאוֹר lāʾôr ''to the light''.'
+- id: sense:ehad
+  gloss:
+    en: one
+  forms:
+    hbo-Hebr/tiberian: [אֶחָד]
+- id: sense:beyn
+  gloss:
+    en: 'between (בֵּין X וּבֵין Y: between X and Y)'
+  forms:
+    hbo-Hebr/tiberian: [בֵּין]
+- id: sense:badal
+  gloss:
+    en: to separate, divide (hiphil)
+  forms:
+    hbo-Hebr/tiberian: [הִבְדִּיל]
+nodes:
+- {id: hbo.u01.light, kind: lesson, introduces: ['sense:or', 'sense:hoshekh', 'sense:we', 'sense:yom', 'sense:layla']}
+- {id: hbo.u01.the-day, kind: lesson, introduces: ['sense:ha', 'sense:tov', 'construction:nominal', 'sense:erev', 'sense:boqer']}
+- {id: hbo.u01.god-said, kind: lesson, introduces: ['sense:elohim', 'sense:amar', 'form:wayyiqtol-3ms', 'sense:hayah', 'form:juss']}
+- {id: hbo.u01.god-saw, kind: lesson, introduces: ['sense:raah', 'sense:et', 'sense:ki']}
+- {id: hbo.u01.god-called, kind: lesson, introduces: ['sense:qara', 'sense:le', 'form:qatal-3ms', 'sense:ehad', 'sense:beyn', 'sense:badal']}
+- {id: hbo.u01.story, kind: story}
+sentences:
+- id: s.01.1
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: אוֹר
+      tokens: [{surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      reverse: אור
+  translations:
+    en: light
+- id: s.01.2
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: חֹשֶׁךְ
+      tokens: [{surface: חֹשֶׁךְ, sense: hoshekh, readings: {tiberian: ḥṓšeḵ}}]
+      reverse: (חשך|חושך)
+  translations:
+    en: |-
+      darkness
+      (dark|the dark)
+- id: s.01.3
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְחֹשֶׁךְ
+      tokens: [{surface: וְחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəḥṓšeḵ}}]
+      reverse: (וחשך|וחושך)
+  translations:
+    en: and darkness
+- id: s.01.4
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹם וָלַיְלָה
+      tokens: [{surface: יוֹם, sense: yom, readings: {tiberian: yôm}}, {surface: וָלַיְלָה, sense: layla, morphs: [{surface: וָ, kc: 'sense:we'}, {surface: לַיְלָה, kc: 'sense:layla'}], readings: {tiberian: wāláylâ}}]
+      reverse: יום ולילה
+  translations:
+    en: day and night
+- id: s.01.5
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: לַיְלָה וָיוֹם
+      tokens: [{surface: לַיְלָה, sense: layla, readings: {tiberian: láylâ}}, {surface: וָיוֹם, sense: yom, morphs: [{surface: וָ, kc: 'sense:we'}, {surface: יוֹם, kc: 'sense:yom'}], readings: {tiberian: wāyôm}}]
+      reverse: לילה ויום
+  translations:
+    en: night and day
+- id: s.01.6
+  node: hbo.u01.light
+  forms:
+    hbo-Hebr/tiberian:
+      text: אוֹר וְחֹשֶׁךְ
+      tokens: [{surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}, {surface: וְחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəḥṓšeḵ}}]
+      reverse: אור (וחשך|וחושך)
+  translations:
+    en: light and darkness
+- id: s.01.7
+  node: hbo.u01.the-day
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאוֹר
+      tokens: [{surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
+      reverse: האור
+  translations:
+    en: the light
+- id: s.01.8
+  node: hbo.u01.the-day
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיּוֹם
+      tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}]
+      reverse: היום
+  translations:
+    en: |-
+      the day
+      today
+- id: s.01.9
+  node: hbo.u01.the-day
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאוֹר טוֹב׃
+      tokens: [{surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: |-
+        האור טוב
+        טוב האור
+  translations:
+    en: The light is good.
+- id: s.01.10
+  node: hbo.u01.the-day
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַיּוֹם טוֹב׃
+      tokens: [{surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: |-
+        היום טוב
+        טוב היום
+  translations:
+    en: |-
+      The day is good.
+      Today is good.
+      It is a good day today.
+- id: s.01.11
+  node: hbo.u01.the-day
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֶרֶב וָבֹקֶר
+      tokens: [{surface: עֶרֶב, sense: erev, readings: {tiberian: ʿéreḇ}}, {surface: וָבֹקֶר, sense: boqer, morphs: [{surface: וָ, kc: 'sense:we'}, {surface: בֹקֶר, kc: 'sense:boqer'}], readings: {tiberian: wāḇṓqer}}]
+      reverse: ערב (ובקר|ובוקר)
+  translations:
+    en: evening and morning
+- id: s.01.12
+  node: hbo.u01.the-day
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַבֹּקֶר טוֹב׃
+      tokens: [{surface: הַבֹּקֶר, sense: boqer, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: בֹּקֶר, kc: 'sense:boqer'}], readings: {tiberian: habbṓqer}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: |-
+        (הבקר|הבוקר) טוב
+        טוב (הבקר|הבוקר)
+  translations:
+    en: The morning is good.
+- id: s.01.13
+  node: hbo.u01.the-day
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַלַּיְלָה וְהַיּוֹם
+      tokens: [{surface: הַלַּיְלָה, sense: layla, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: לַּיְלָה, kc: 'sense:layla'}], readings: {tiberian: halláylâ}}, {surface: וְהַיּוֹם, sense: yom, morphs: [
+            {surface: וְ, kc: 'sense:we'}, {surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: wəhayyôm}}]
+      reverse: הלילה והיום
+  translations:
+    en: the night and the day
+- id: s.01.14
+  node: hbo.u01.the-day
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: טוֹב הָאוֹר׃
+      tokens: [{surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
+      reverse: |-
+        טוב האור
+        האור טוב
+  translations:
+    en: |-
+      The light is good.
+      Good is the light.
+      How good the light is!
+- id: s.01.15
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֱלֹהִים
+      tokens: [{surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      reverse: (אלהים|אלוהים)
+  translations:
+    en: God
+- id: s.01.16
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר אֱלֹהִים׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      reverse: ויאמר אלהים
+  translations:
+    en: '[(And|Then)] God said.'
+- id: s.01.17
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהִי אוֹר׃
+      tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      reverse: |-
+        יהי אור
+        אור יהי
+  translations:
+    en: Let there be light!
+- id: s.01.18
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהִי חֹשֶׁךְ׃
+      tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: חֹשֶׁךְ, sense: hoshekh, readings: {tiberian: ḥṓšeḵ}}]
+      reverse: |-
+        יהי (חשך|חושך)
+        (חשך|חושך) יהי
+  translations:
+    en: Let there be darkness!
+- id: s.01.19
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי־אוֹר׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      reverse: ויהי אור
+  translations:
+    en: '[(And|Then|So)] there was light.'
+- id: s.01.20
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר אֱלֹהִים יְהִי אוֹר׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: יְהִי, sense: hayah,
+          form: 'form:juss', readings: {tiberian: yəhî}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      reverse: (ויאמר|ויואמר) (אלהים|אלוהים) יהי אור
+  translations:
+    en: '[(And|Then)] God said, “Let there be light!”'
+- id: s.01.21
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי־עֶרֶב׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: עֶרֶב, sense: erev, readings: {tiberian: ʿéreḇ}}]
+      reverse: ויהי ערב
+  translations:
+    en: |-
+      [(And|Then|So)] there was evening.
+      [(And|Then|So)] evening came.
+- id: s.01.22
+  node: hbo.u01.god-said
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי־בֹקֶר׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: בֹקֶר, sense: boqer, readings: {tiberian: ḇṓqer}}]
+      reverse: ויהי (בקר|בוקר)
+  translations:
+    en: |-
+      [(And|Then|So)] there was morning.
+      [(And|Then|So)] morning came.
+- id: s.01.23
+  node: hbo.u01.god-saw
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּרְא אֱלֹהִים אֶת־הָאוֹר׃
+      tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
+            tiberian: ʾeṯ-}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}]
+      reverse: |-
+        וירא (אלהים|אלוהים) את האור
+        (אלהים|אלוהים) ראה את האור
+        (ואלהים|ואלוהים) ראה את האור
+        ראה (אלהים|אלוהים) את האור
+  translations:
+    en: '[(And|Then)] God saw the light.'
+- id: s.01.24
+  node: hbo.u01.god-saw
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּרְא אֱלֹהִים כִּי־טוֹב׃
+      tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: כִּי, sense: ki,
+          readings: {tiberian: kî-}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: וירא (אלהים|אלוהים) כי טוב
+  translations:
+    en: '[(And|Then)] God saw that it (was|is) good.'
+- id: s.01.25
+  node: hbo.u01.god-saw
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּרְא אֶת־הַחֹשֶׁךְ׃
+      tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֶת, sense: et, readings: {tiberian: ʾeṯ-}}, {surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}]
+      reverse: |-
+        וירא את (החשך|החושך)
+        ראה את (החשך|החושך)
+        הוא ראה את (החשך|החושך)
+        והוא ראה את (החשך|החושך)
+  translations:
+    en: '[(And|Then)] he saw the darkness.'
+- id: s.01.26
+  node: hbo.u01.god-saw
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּרְא אֱלֹהִים אֶת־הָאוֹר כִּי־טוֹב׃
+      tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et, readings: {
+            tiberian: ʾeṯ-}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: כִּי, sense: ki, readings: {
+            tiberian: kî-}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: וירא (אלהים|אלוהים) את האור כי טוב
+  translations:
+    en: |-
+      [(And|Then)] God saw (that the light was good|the light, that it was good).
+      [(And|Then)] God saw the light, (that|how) good it was.
+- id: s.01.27
+  node: hbo.u01.god-saw
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר כִּי־טוֹב הַיּוֹם׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: טוֹב, sense: tov, readings: {
+            tiberian: ṭôḇ}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}}]
+      reverse: (ויאמר|ויואמר) כי טוב היום
+  translations:
+    en: |-
+      [(And|Then)] he said that the day was good.
+      [(And|Then)] he said that (today|it) was good.
+      [(And|Then)] he said, “The day is good.”
+- id: s.01.28
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם׃
+      tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: לָאוֹר, sense: or,
+          morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: lāʾôr}}, {surface: יוֹם, sense: yom, readings: {tiberian: yôm}}]
+      reverse: |-
+        ויקרא (אלהים|אלוהים) לאור יום
+        (אלהים|אלוהים) קרא לאור יום
+        (ואלהים|ואלוהים) קרא לאור יום
+        קרא (אלהים|אלוהים) לאור יום
+  translations:
+    en: '[(And|Then)] God (called|named) the light Day.'
+- id: s.01.29
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְלַחֹשֶׁךְ קָרָא לָיְלָה׃
+      tokens: [{surface: וְלַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: לַ, kc: 'sense:le'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəlaḥṓšeḵ}}, {
+          surface: קָרָא, sense: qara, form: 'form:qatal-3ms', readings: {tiberian: qārāʾ}}, {surface: לָיְלָה, sense: layla, readings: {tiberian: lā́ylâ}}]
+      reverse: (ולחשך|ולחושך) קרא לילה
+  translations:
+    en: |-
+      [And] (the darkness he called|he called the darkness) Night.
+      [And] he named the darkness Night.
+- id: s.01.30
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹם אֶחָד׃
+      tokens: [{surface: יוֹם, sense: yom, readings: {tiberian: yôm}}, {surface: אֶחָד, sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      reverse: יום אחד
+  translations:
+    en: |-
+      one day
+      day one
+      the first day
+- id: s.01.31
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: לַיְלָה אֶחָד׃
+      tokens: [{surface: לַיְלָה, sense: layla, readings: {tiberian: láylâ}}, {surface: אֶחָד, sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      reverse: לילה אחד
+  translations:
+    en: one night
+- id: s.01.32
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּקְרָא לַיּוֹם טוֹב׃
+      tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: לַיּוֹם, sense: yom, morphs: [{surface: לַ, kc: 'sense:le'}, {surface: יּוֹם, kc: 'sense:yom'}],
+          readings: {tiberian: layyôm}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      reverse: |-
+        ויקרא ליום טוב
+        קרא ליום טוב
+        הוא קרא ליום טוב
+        והוא קרא ליום טוב
+  translations:
+    en: '[(And|Then)] he called the day good.'
+- id: s.01.33
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּבְדֵּל אֱלֹהִים בֵּין הָאוֹר וּבֵין הַחֹשֶׁךְ׃
+      tokens: [{surface: וַיַּבְדֵּל, sense: badal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyaḇdēl}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בֵּין, sense: beyn,
+          readings: {tiberian: bên}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: וּבֵין, sense: beyn,
+          morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: חֹשֶׁךְ,
+              kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}]
+      reverse: |-
+        ויבדל (אלהים|אלוהים) בין האור ובין (החשך|החושך)
+        (אלהים|אלוהים) הבדיל בין האור ובין (החשך|החושך)
+        (ואלהים|ואלוהים) הבדיל בין האור ובין (החשך|החושך)
+        הבדיל (אלהים|אלוהים) בין האור ובין (החשך|החושך)
+  translations:
+    en: |-
+      [(And|Then)] God separated the light from the darkness.
+      [(And|Then)] God (separated|divided|made a division) between the light and the darkness.
+- id: s.01.34
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: בֵּין הַיּוֹם וּבֵין הַלַּיְלָה
+      tokens: [{surface: בֵּין, sense: beyn, readings: {tiberian: bên}}, {surface: הַיּוֹם, sense: yom, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: יּוֹם, kc: 'sense:yom'}], readings: {tiberian: hayyôm}},
+        {surface: וּבֵין, sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הַלַּיְלָה, sense: layla, morphs: [{surface: הַ,
+              kc: 'sense:ha'}, {surface: לַּיְלָה, kc: 'sense:layla'}], readings: {tiberian: halláylâ}}]
+      reverse: בין היום ובין הלילה
+  translations:
+    en: between the day and the night
+- id: s.01.35
+  node: hbo.u01.god-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי־עֶרֶב וַיְהִי־בֹקֶר יוֹם אֶחָד׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: עֶרֶב, sense: erev, readings: {tiberian: ʿéreḇ}}, {surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms',
+          readings: {tiberian: wayhî-}}, {surface: בֹקֶר, sense: boqer, readings: {tiberian: ḇṓqer}}, {surface: יוֹם, sense: yom, readings: {tiberian: yôm}}, {surface: אֶחָד, sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      reverse: ויהי ערב ויהי (בקר|בוקר) יום אחד
+  translations:
+    en: |-
+      [(And|So)] there was evening and there was morning, one day.
+      [(And|So)] there was evening and there was morning, (day one|the first day).
+      [(And|So)] evening came and morning came, (one day|day one|the first day).
+stories:
+- id: hbo.story.let-there-be-light
+  node: hbo.u01.story
+  title:
+    en: Let there be light (Genesis 1:3–5)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: אֱלֹהִים}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר אֱלֹהִים
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}]
+      translations:
+        en: And God said,
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: יְהִי אוֹר
+          tokens: [{surface: יְהִי, sense: hayah, form: 'form:juss', readings: {tiberian: yəhî}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      translations:
+        en: “Let there be light,”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי־אוֹר׃
+          tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: אוֹר, sense: or, readings: {tiberian: ʾôr}}]
+      translations:
+        en: and there was light.
+  - choose:
+      prompt:
+        en: What did God say first?
+      options: [{en: “Let there be light”}, {en: “Let there be night”}, {en: “It is good”}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיַּרְא אֱלֹהִים אֶת־הָאוֹר כִּי־טוֹב
+          tokens: [{surface: וַיַּרְא, sense: raah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyarʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: אֶת, sense: et,
+              readings: {tiberian: ʾeṯ-}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: כִּי, sense: ki,
+              readings: {tiberian: kî-}}, {surface: טוֹב, sense: tov, readings: {tiberian: ṭôḇ}}]
+      translations:
+        en: And God saw the light, that it was good,
+  - line:
+      ask: complete
+      gap: sense:hoshekh
+      distractors: ['sense:boqer', 'sense:erev']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיַּבְדֵּל אֱלֹהִים בֵּין הָאוֹר וּבֵין הַחֹשֶׁךְ׃
+          tokens: [{surface: וַיַּבְדֵּל, sense: badal, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyaḇdēl}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: בֵּין,
+              sense: beyn, readings: {tiberian: bên}}, {surface: הָאוֹר, sense: or, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: hāʾôr}}, {surface: וּבֵין,
+              sense: beyn, morphs: [{surface: וּ, kc: 'sense:we'}, {surface: בֵין, kc: 'sense:beyn'}], readings: {tiberian: ûḇên}}, {surface: הַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: הַ, kc: 'sense:ha'},
+                {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: haḥṓšeḵ}}]
+      translations:
+        en: and God separated the light from the darkness.
+  - choose:
+      prompt:
+        en: What did God see about the light?
+      options: [{en: that it was good}, {en: that it was night}, {en: that it was one}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיִּקְרָא אֱלֹהִים לָאוֹר יוֹם
+          tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: אֱלֹהִים, sense: elohim, readings: {tiberian: ʾĕlōhîm}}, {surface: לָאוֹר, sense: or,
+              morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אוֹר, kc: 'sense:or'}], readings: {tiberian: lāʾôr}}, {surface: יוֹם, sense: yom, readings: {tiberian: yôm}}]
+      translations:
+        en: And God called the light Day,
+  - line:
+      ask: complete
+      gap: sense:layla
+      distractors: ['sense:yom', 'sense:erev']
+      forms:
+        hbo-Hebr/tiberian:
+          text: וְלַחֹשֶׁךְ קָרָא לָיְלָה
+          tokens: [{surface: וְלַחֹשֶׁךְ, sense: hoshekh, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: לַ, kc: 'sense:le'}, {surface: חֹשֶׁךְ, kc: 'sense:hoshekh'}], readings: {tiberian: wəlaḥṓšeḵ}},
+            {surface: קָרָא, sense: qara, form: 'form:qatal-3ms', readings: {tiberian: qā́rāʾ}}, {surface: לָיְלָה, sense: layla, readings: {tiberian: lā́ylâ}}]
+      translations:
+        en: and the darkness he called Night.
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי־עֶרֶב וַיְהִי־בֹקֶר יוֹם אֶחָד׃
+          tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: עֶרֶב, sense: erev, readings: {tiberian: ʿéreḇ}}, {surface: וַיְהִי, sense: hayah,
+              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî-}}, {surface: בֹקֶר, sense: boqer, readings: {tiberian: ḇṓqer}}, {surface: יוֹם, sense: yom, readings: {tiberian: yôm}}, {surface: אֶחָד,
+              sense: ehad, readings: {tiberian: ʾeḥāḏ}}]
+      translations:
+        en: And there was evening and there was morning, one day.
+  - choose:
+      prompt:
+        en: What did God call the darkness?
+      options: [{en: Night}, {en: Day}, {en: Morning}]
+      answer: 0

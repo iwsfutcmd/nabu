@@ -57,7 +57,10 @@ sentences:
       tokens: [{surface: alo, sense: alo}, {surface: meen, sense: meen}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}]
       reverse: (alo|allo|2alo) (meen|mien|min) (ma3i|m3i|ma3e)
   translations:
-    en: Hello, who('s| is) (this|speaking|calling)?
+    en: |-
+      Hello, who('s| is) (this|speaking|calling)?
+      Hello, who am I speaking to?
+      Hello, who am I talking to?
 - id: s.phone.3
   node: apc.phone.call
   register: colloquial
@@ -79,11 +82,15 @@ sentences:
     apc-Arab/standard:
       text: ما معي تلفون.
       tokens: [{surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: تلفون, sense: telefon}]
-      reverse: ما معي (تلفون|تليفون)
+      reverse: |-
+        ما معي (تلفون|تليفون)
+        أنا ما معي تلفون
     apc-Latn/arabizi:
       text: ma ma3i telefon.
       tokens: [{surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: telefon, sense: telefon}]
-      reverse: ma (ma3i|m3i|ma3e) (telefon|talifon|tilifon|telephone)
+      reverse: |-
+        ma (ma3i|m3i|ma3e) (telefon|talifon|tilifon|telephone)
+        ana ma ma3i telefon
   translations:
     en: |-
       I (don't|do not) have a phone (on me|with me|).
@@ -95,15 +102,25 @@ sentences:
     apc-Arab/standard:
       text: رح دقّ بكرا.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: دقّ, sense: de22, form: 'form:subj-1sg'}, {surface: بكرا, sense: bukra}]
-      reverse: (رح|لح) دقّ (بكرا|بكرة)
+      reverse: |-
+        (رح|لح) دقّ (بكرا|بكرة)
+        أنا رح دقّ بكرا
+        بكرا رح دقّ
+        بدقّ بكرا
     apc-Latn/arabizi:
       text: ra7 de22 bukra.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: de22, sense: de22, form: 'form:subj-1sg'}, {surface: bukra, sense: bukra}]
-      reverse: (ra7|la7|rah) (de22|da22|de22a) (bukra|bokra|bukrah)
+      reverse: |-
+        (ra7|la7|rah) (de22|da22|de22a) (bukra|bokra|bukrah)
+        ana ra7 de22 bukra
+        bukra ra7 de22
+        bde22 bukra
   translations:
     en: |-
       I('ll| will) call tomorrow.
       I('m| am) going to call tomorrow.
+      I'll phone tomorrow.
+      I'll ring tomorrow.
 - id: s.phone.6
   node: apc.phone.call
   register: colloquial
@@ -112,11 +129,15 @@ sentences:
     apc-Arab/standard:
       text: دقّلي بكرا!
       tokens: [{surface: دقّلي, sense: de22, morphs: [{surface: دقّ, kc: 'sense:de22'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: بكرا, sense: bukra}]
-      reverse: دقّلي (بكرا|بكرة)
+      reverse: |-
+        دقّلي (بكرا|بكرة)
+        بكرا دقّلي
     apc-Latn/arabizi:
       text: de22elli bukra!
       tokens: [{surface: de22elli, sense: de22, morphs: [{surface: de22, kc: 'sense:de22'}, {surface: elli, kc: 'form:la-1sg'}]}, {surface: bukra, sense: bukra}]
-      reverse: (de22elli|da22elli|de22li|de22ele) (bukra|bokra|bukrah)
+      reverse: |-
+        (de22elli|da22elli|de22li|de22ele) (bukra|bokra|bukrah)
+        bukra de22elli
   translations:
     en: |-
       Call me tomorrow!
@@ -131,15 +152,22 @@ sentences:
       text: دقّيلي المسا.
       tokens: [{surface: دقّيلي, sense: de22, form: 'form:imp-2fs', morphs: [{surface: دقّي, kc: 'sense:de22'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: المسا, sense: masa, morphs: [{surface: ال, kc: 'sense:el'},
             {surface: مسا, kc: 'sense:masa'}]}]
-      reverse: دقّيلي (المسا|بالمسا)
+      reverse: |-
+        دقّيلي (المسا|بالمسا)
+        المسا دقّيلي
     apc-Latn/arabizi:
       text: de22ili el masa.
       tokens: [{surface: de22ili, sense: de22, form: 'form:imp-2fs', morphs: [{surface: de22i, kc: 'sense:de22'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: el, sense: el}, {surface: masa, sense: masa}]
-      reverse: (de22ili|de22ele|da22ili|de22eli) (el|l|il) (masa|masa2)
+      reverse: |-
+        (de22ili|de22ele|da22ili|de22eli) (el|l|il) (masa|masa2)
+        de22ili bel masa
+        el masa de22ili
   translations:
     en: |-
       Call me (this|in the) evening.
       Give me a call (this|in the) evening.
+      Phone me this evening!
+      Ring me this evening!
 - id: s.phone.8
   node: apc.phone.call
   register: colloquial
@@ -148,15 +176,21 @@ sentences:
     apc-Arab/standard:
       text: دقّولي بكرا!
       tokens: [{surface: دقّولي, sense: de22, form: 'form:imp-2pl', morphs: [{surface: دقّو, kc: 'sense:de22'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: بكرا, sense: bukra}]
-      reverse: دقّولي (بكرا|بكرة)
+      reverse: |-
+        دقّولي (بكرا|بكرة)
+        بكرا دقّولي
     apc-Latn/arabizi:
       text: de22uli bukra!
       tokens: [{surface: de22uli, sense: de22, form: 'form:imp-2pl', morphs: [{surface: de22u, kc: 'sense:de22'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: bukra, sense: bukra}]
-      reverse: (de22uli|de22oli|da22uli) (bukra|bokra|bukrah)
+      reverse: |-
+        (de22uli|de22oli|da22uli) (bukra|bokra|bukrah)
+        bukra de22uli
   translations:
     en: |-
       Call me tomorrow!
       Give me a call tomorrow!
+      Phone me tomorrow!
+      Ring me tomorrow!
 - id: s.phone.9
   node: apc.phone.call
   register: colloquial
@@ -180,11 +214,15 @@ sentences:
     apc-Arab/standard:
       text: ما في حدا هون.
       tokens: [{surface: ما, sense: ma}, {surface: في, sense: fi}, {surface: حدا, sense: 7ada}, {surface: هون, sense: hon}]
-      reverse: ما في حدا هون
+      reverse: |-
+        ما في حدا هون
+        هون ما في حدا
     apc-Latn/arabizi:
       text: ma fi 7ada hon.
       tokens: [{surface: ma, sense: ma}, {surface: fi, sense: fi}, {surface: 7ada, sense: 7ada}, {surface: hon, sense: hon}]
-      reverse: ma fi (7ada|hada|7add|7ade) (hon|hone|houn)
+      reverse: |-
+        ma fi (7ada|hada|7add|7ade) (hon|hone|houn)
+        hon ma fi 7ada
   translations:
     en: |-
       There('s| is) no one here.
@@ -198,11 +236,15 @@ sentences:
     apc-Arab/standard:
       text: سمعتني؟
       tokens: [{surface: سمعتني, sense: sama3, form: 'form:past-2ms', morphs: [{surface: سمعت, kc: 'sense:sama3'}, {surface: ني, kc: 'form:obj-1sg'}]}]
-      reverse: سمعتني
+      reverse: |-
+        سمعتني
+        إنت سمعتني
     apc-Latn/arabizi:
       text: sme3tni?
       tokens: [{surface: sme3tni, sense: sama3, form: 'form:past-2ms', morphs: [{surface: sme3t, kc: 'sense:sama3'}, {surface: ni, kc: 'form:obj-1sg'}]}]
-      reverse: (sme3tni|sme3teni|smi3tni|sm3tni)
+      reverse: |-
+        (sme3tni|sme3teni|smi3tni|sm3tni)
+        enta sme3tni
   translations:
     en: |-
       Did you hear me?
@@ -215,11 +257,15 @@ sentences:
     apc-Arab/standard:
       text: سمعتيني؟
       tokens: [{surface: سمعتيني, sense: sama3, form: 'form:past-2fs', morphs: [{surface: سمعتي, kc: 'sense:sama3'}, {surface: ني, kc: 'form:obj-1sg'}]}]
-      reverse: سمعتيني
+      reverse: |-
+        سمعتيني
+        إنتي سمعتيني
     apc-Latn/arabizi:
       text: sme3tini?
       tokens: [{surface: sme3tini, sense: sama3, form: 'form:past-2fs', morphs: [{surface: sme3ti, kc: 'sense:sama3'}, {surface: ni, kc: 'form:obj-1sg'}]}]
-      reverse: (sme3tini|smi3tini|sme3teene)
+      reverse: |-
+        (sme3tini|smi3tini|sme3teene)
+        enti sme3tini
   translations:
     en: |-
       Did you hear me?
@@ -231,11 +277,15 @@ sentences:
     apc-Arab/standard:
       text: لأ، ما فهمت.
       tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: فهمت, sense: fehem, form: 'form:past-1sg'}]
-      reverse: لأ ما فهمت
+      reverse: |-
+        لأ ما فهمت
+        لأ أنا ما فهمت
     apc-Latn/arabizi:
       text: la2, ma fhemt.
       tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: fhemt, sense: fehem, form: 'form:past-1sg'}]
-      reverse: (la2|la) ma (fhemt|fhimt|fhemet|fhemit)
+      reverse: |-
+        (la2|la) ma (fhemt|fhimt|fhemet|fhemit)
+        la2 ana ma fhemt
   translations:
     en: |-
       No, I (didn't|did not) understand.
@@ -249,11 +299,15 @@ sentences:
     apc-Arab/standard:
       text: فهمتني؟
       tokens: [{surface: فهمتني, sense: fehem, form: 'form:past-2ms', morphs: [{surface: فهمت, kc: 'sense:fehem'}, {surface: ني, kc: 'form:obj-1sg'}]}]
-      reverse: فهمتني
+      reverse: |-
+        فهمتني
+        إنت فهمتني
     apc-Latn/arabizi:
       text: fhemtni?
       tokens: [{surface: fhemtni, sense: fehem, form: 'form:past-2ms', morphs: [{surface: fhemt, kc: 'sense:fehem'}, {surface: ni, kc: 'form:obj-1sg'}]}]
-      reverse: (fhemtni|fhemteni|fhimtni|fhemtne)
+      reverse: |-
+        (fhemtni|fhemteni|fhimtni|fhemtne)
+        enta fhemtni
   translations:
     en: |-
       Did you understand me?
@@ -267,11 +321,15 @@ sentences:
     apc-Arab/standard:
       text: ما فهمتك.
       tokens: [{surface: ما, sense: ma}, {surface: فهمتك, sense: fehem, form: 'form:past-1sg', morphs: [{surface: فهمت, kc: 'sense:fehem'}, {surface: ك, kc: 'form:obj-2ms'}]}]
-      reverse: ما فهمتك
+      reverse: |-
+        ما فهمتك
+        أنا ما فهمتك
     apc-Latn/arabizi:
       text: ma fhemtak.
       tokens: [{surface: ma, sense: ma}, {surface: fhemtak, sense: fehem, form: 'form:past-1sg', morphs: [{surface: fhemt, kc: 'sense:fehem'}, {surface: ak, kc: 'form:obj-2ms'}]}]
-      reverse: ma (fhemtak|fhimtak|fhemtek)
+      reverse: |-
+        ma (fhemtak|fhimtak|fhemtek)
+        ana ma fhemtak
   translations:
     en: |-
       I (didn't|did not) understand you.
@@ -284,11 +342,15 @@ sentences:
     apc-Arab/standard:
       text: فهمتوني؟
       tokens: [{surface: فهمتوني, sense: fehem, form: 'form:past-2pl', morphs: [{surface: فهمتو, kc: 'sense:fehem'}, {surface: ني, kc: 'form:obj-1sg'}]}]
-      reverse: (فهمتوني|فهمتني)
+      reverse: |-
+        (فهمتوني|فهمتني)
+        إنتو فهمتوني
     apc-Latn/arabizi:
       text: fhemtuni?
       tokens: [{surface: fhemtuni, sense: fehem, form: 'form:past-2pl', morphs: [{surface: fhemtu, kc: 'sense:fehem'}, {surface: ni, kc: 'form:obj-1sg'}]}]
-      reverse: (fhemtuni|fhemtoni|fhimtuni)
+      reverse: |-
+        (fhemtuni|fhemtoni|fhimtuni)
+        ento fhemtuni
   translations:
     en: |-
       Did you understand me?
@@ -301,11 +363,15 @@ sentences:
     apc-Arab/standard:
       text: بحبّك.
       tokens: [{surface: بحبّك, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: بحبّ, kc: 'sense:7abb'}, {surface: ك, kc: 'form:obj-2ms'}]}]
-      reverse: بحبّك
+      reverse: |-
+        بحبّك
+        أنا بحبّك
     apc-Latn/arabizi:
       text: b7ebbak.
       tokens: [{surface: b7ebbak, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: b7ebb, kc: 'sense:7abb'}, {surface: ak, kc: 'form:obj-2ms'}]}]
-      reverse: (b7ebbak|b7ebak|bhebbak|b7ibbak)
+      reverse: |-
+        (b7ebbak|b7ebak|bhebbak|b7ibbak)
+        ana b7ebbak
   translations:
     en: I love you.
 - id: s.phone.18
@@ -316,11 +382,15 @@ sentences:
     apc-Arab/standard:
       text: بحبّك كتير.
       tokens: [{surface: بحبّك, sense: 7abb, form: 'form:impf-1sg', vocalized: بْحِبِّك, morphs: [{surface: بحبّ, kc: 'sense:7abb'}, {surface: ك, kc: 'form:obj-2fs'}]}, {surface: كتير, sense: ktir}]
-      reverse: بحبّك كتير
+      reverse: |-
+        بحبّك كتير
+        أنا بحبّك كتير
     apc-Latn/arabizi:
       text: b7ebbik ktir.
       tokens: [{surface: b7ebbik, sense: 7abb, form: 'form:impf-1sg', morphs: [{surface: b7ebb, kc: 'sense:7abb'}, {surface: ik, kc: 'form:obj-2fs'}]}, {surface: ktir, sense: ktir}]
-      reverse: (b7ebbik|b7ebik|bhebbik|b7ibbik|b7ebbek) (ktir|kteer)
+      reverse: |-
+        (b7ebbik|b7ebik|bhebbik|b7ibbik|b7ebbek) (ktir|kteer)
+        ana b7ebbik ktir
   translations:
     en: I love you (so much|very much|a lot).
 - id: s.phone.19
@@ -330,11 +400,17 @@ sentences:
     apc-Arab/standard:
       text: شفته مبارح.
       tokens: [{surface: شفته, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: ه, kc: 'form:obj-3ms'}]}, {surface: مبارح, sense: mbere7}]
-      reverse: (شفته|شفتو) (مبارح|مبارحة)
+      reverse: |-
+        (شفته|شفتو) (مبارح|مبارحة)
+        مبارح شفته
+        أنا شفته مبارح
     apc-Latn/arabizi:
       text: shefto mbere7.
       tokens: [{surface: shefto, sense: shef, form: 'form:past-1sg', morphs: [{surface: sheft, kc: 'sense:shef'}, {surface: o, kc: 'form:obj-3ms'}]}, {surface: mbere7, sense: mbere7}]
-      reverse: (shefto|shifto|shefetto) (mbere7|embere7|mbare7|mberi7)
+      reverse: |-
+        (shefto|shifto|shefetto) (mbere7|embere7|mbare7|mberi7)
+        mbere7 shefto
+        ana shefto mbere7
   translations:
     en: |-
       I saw him yesterday.
@@ -346,11 +422,15 @@ sentences:
     apc-Arab/standard:
       text: ما شفتها.
       tokens: [{surface: ما, sense: ma}, {surface: شفتها, sense: shef, form: 'form:past-1sg', morphs: [{surface: شفت, kc: 'sense:shef'}, {surface: ها, kc: 'form:obj-3fs'}]}]
-      reverse: ما (شفتها|شفتا)
+      reverse: |-
+        ما (شفتها|شفتا)
+        أنا ما شفتها
     apc-Latn/arabizi:
       text: ma shefta.
       tokens: [{surface: ma, sense: ma}, {surface: shefta, sense: shef, form: 'form:past-1sg', morphs: [{surface: sheft, kc: 'sense:shef'}, {surface: a, kc: 'form:obj-3fs'}]}]
-      reverse: ma (shefta|shifta|shefeta)
+      reverse: |-
+        ma (shefta|shifta|shefeta)
+        ana ma shefta
   translations:
     en: |-
       I (didn't|did not) see her.
@@ -363,11 +443,15 @@ sentences:
     apc-Arab/standard:
       text: بتعرفه؟
       tokens: [{surface: بتعرفه, sense: 3eref, form: 'form:impf-2ms', morphs: [{surface: بتعرف, kc: 'sense:3eref'}, {surface: ه, kc: 'form:obj-3ms'}]}]
-      reverse: (بتعرفه|بتعرفو)
+      reverse: |-
+        (بتعرفه|بتعرفو)
+        إنت بتعرفه
     apc-Latn/arabizi:
       text: bta3rfo?
       tokens: [{surface: bta3rfo, sense: 3eref, form: 'form:impf-2ms', morphs: [{surface: bta3rf, kc: 'sense:3eref'}, {surface: o, kc: 'form:obj-3ms'}]}]
-      reverse: (bta3rfo|bta3refo|bta3rfu)
+      reverse: |-
+        (bta3rfo|bta3refo|bta3rfu)
+        enta bta3rfo
   translations:
     en: Do you know him?
 - id: s.phone.22
@@ -377,13 +461,19 @@ sentences:
     apc-Arab/standard:
       text: إيه، بعرفها منيح.
       tokens: [{surface: إيه, sense: eh}, {surface: بعرفها, sense: 3eref, form: 'form:impf-1sg', morphs: [{surface: بعرف, kc: 'sense:3eref'}, {surface: ها, kc: 'form:obj-3fs'}]}, {surface: منيح, sense: mni7}]
-      reverse: إيه (بعرفها|بعرفا) (منيح|منيحة)
+      reverse: |-
+        إيه (بعرفها|بعرفا) (منيح|منيحة)
+        إيه أنا بعرفها منيح
     apc-Latn/arabizi:
       text: eh, ba3rfa mni7.
       tokens: [{surface: eh, sense: eh}, {surface: ba3rfa, sense: 3eref, form: 'form:impf-1sg', morphs: [{surface: ba3rf, kc: 'sense:3eref'}, {surface: a, kc: 'form:obj-3fs'}]}, {surface: mni7, sense: mni7}]
-      reverse: (eh|e) (ba3rfa|ba3refa|ba3rifa) (mni7|mnee7|mnih)
+      reverse: |-
+        (eh|e) (ba3rfa|ba3refa|ba3rifa) (mni7|mnee7|mnih)
+        eh ana ba3rfa mni7
   translations:
-    en: Yes, I know her well.
+    en: |-
+      Yes, I know her well.
+      Yeah, I know her well.
 - id: s.phone.23
   node: apc.phone.him-her
   register: colloquial
@@ -391,11 +481,15 @@ sentences:
     apc-Arab/standard:
       text: شو قال؟
       tokens: [{surface: شو, sense: shu}, {surface: قال, sense: 2al, form: 'form:past-3ms'}]
-      reverse: شو قال
+      reverse: |-
+        شو قال
+        هو شو قال
     apc-Latn/arabizi:
       text: shu 2al?
       tokens: [{surface: shu, sense: shu}, {surface: 2al, sense: 2al, form: 'form:past-3ms'}]
-      reverse: (shu|sho) (2al|al)
+      reverse: |-
+        (shu|sho) (2al|al)
+        huwwe shu 2al
   translations:
     en: What did he say?
 - id: s.phone.24
@@ -406,11 +500,15 @@ sentences:
     apc-Arab/standard:
       text: قلّي!
       tokens: [{surface: قلّي, sense: 2al, morphs: [{surface: ق, kc: 'sense:2al'}, {surface: لّي, kc: 'form:la-1sg'}]}]
-      reverse: قلّي
+      reverse: |-
+        قلّي
+        خبّرني
     apc-Latn/arabizi:
       text: 2elli!
       tokens: [{surface: 2elli, sense: 2al, morphs: [{surface: '2', kc: 'sense:2al'}, {surface: elli, kc: 'form:la-1sg'}]}]
-      reverse: (2elli|2olli|2illi|elli|2ele)
+      reverse: |-
+        (2elli|2olli|2illi|elli|2ele)
+        khabberni
   translations:
     en: Tell me!
 - id: s.phone.25
@@ -421,11 +519,15 @@ sentences:
     apc-Arab/standard:
       text: قوليلي!
       tokens: [{surface: قوليلي, sense: 2al, form: 'form:imp-2fs', morphs: [{surface: قولي, kc: 'sense:2al'}, {surface: لي, kc: 'form:la-1sg'}]}]
-      reverse: قوليلي
+      reverse: |-
+        قوليلي
+        خبّريني
     apc-Latn/arabizi:
       text: 2ulili!
       tokens: [{surface: 2ulili, sense: 2al, form: 'form:imp-2fs', morphs: [{surface: 2uli, kc: 'sense:2al'}, {surface: li, kc: 'form:la-1sg'}]}]
-      reverse: (2ulili|2oolili|ulili|2ulile)
+      reverse: |-
+        (2ulili|2oolili|ulili|2ulile)
+        khabbrini
   translations:
     en: Tell me!
 - id: s.phone.26
@@ -435,11 +537,15 @@ sentences:
     apc-Arab/standard:
       text: ما عندي وقت.
       tokens: [{surface: ما, sense: ma}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وقت, sense: wa2t}]
-      reverse: ما (عندي|أنا عندي) وقت
+      reverse: |-
+        ما (عندي|أنا عندي) وقت
+        أنا ما عندي وقت
     apc-Latn/arabizi:
       text: ma 3endi wa2t.
       tokens: [{surface: ma, sense: ma}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wa2t, sense: wa2t}]
-      reverse: ma (3endi|3andi|3ende|3indi) (wa2t|wa2et|wa2ed|wa2it|wa2at)
+      reverse: |-
+        ma (3endi|3andi|3ende|3indi) (wa2t|wa2et|wa2ed|wa2it|wa2at)
+        ana ma 3endi wa2t
   translations:
     en: |-
       I (don't|do not) have time.
@@ -453,11 +559,16 @@ sentences:
     apc-Arab/standard:
       text: عندك وقت بكرا؟
       tokens: [{surface: عندك, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: وقت, sense: wa2t}, {surface: بكرا, sense: bukra}]
-      reverse: (عندك|إنت عندك) وقت (بكرا|بكرة)
+      reverse: |-
+        (عندك|إنت عندك) وقت (بكرا|بكرة)
+        بكرا عندك وقت
     apc-Latn/arabizi:
       text: 3endak wa2t bukra?
       tokens: [{surface: 3endak, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: wa2t, sense: wa2t}, {surface: bukra, sense: bukra}]
-      reverse: (3endak|3andak|3indak) (wa2t|wa2et|wa2ed|wa2it|wa2at) (bukra|bokra|bukrah)
+      reverse: |-
+        (3endak|3andak|3indak) (wa2t|wa2et|wa2ed|wa2it|wa2at) (bukra|bokra|bukrah)
+        enta 3endak wa2t bukra
+        bukra 3endak wa2t
   translations:
     en: |-
       Do you have time tomorrow?
@@ -474,7 +585,9 @@ sentences:
     apc-Latn/arabizi:
       text: 3endi resele.
       tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: resele, sense: resele}]
-      reverse: (3endi|3andi|3ende|3indi) (resele|risele|risale|rsele|resale)
+      reverse: |-
+        (3endi|3andi|3ende|3indi) (resele|risele|risale|rsele|resale)
+        ana 3endi resele
   translations:
     en: |-
       I have a message.
@@ -496,6 +609,7 @@ sentences:
     en: |-
       Send me a message!
       (Text|Message) me!
+      Send me a text!
 - id: s.phone.30
   node: apc.phone.send
   register: colloquial
@@ -504,16 +618,22 @@ sentences:
       text: سامي بعتلي رسالة مبارح.
       tokens: [{surface: سامي, sense: sami}, {surface: بعتلي, sense: b3at, form: 'form:past-3ms', morphs: [{surface: بعت, kc: 'sense:b3at'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: رسالة, sense: resele},
         {surface: مبارح, sense: mbere7}]
-      reverse: سامي بعتلي (رسالة|مسج) (مبارح|مبارحة)
+      reverse: |-
+        سامي بعتلي (رسالة|مسج) (مبارح|مبارحة)
+        مبارح سامي بعتلي رسالة
     apc-Latn/arabizi:
       text: Sami ba3atli resele mbere7.
       tokens: [{surface: Sami, sense: sami}, {surface: ba3atli, sense: b3at, form: 'form:past-3ms', morphs: [{surface: ba3at, kc: 'sense:b3at'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: resele, sense: resele},
         {surface: mbere7, sense: mbere7}]
-      reverse: Sami (ba3atli|b3atli|ba3atle) (resele|risele|risale|rsele|resale) (mbere7|embere7|mbare7|mberi7)
+      reverse: |-
+        Sami (ba3atli|b3atli|ba3atle) (resele|risele|risale|rsele|resale) (mbere7|embere7|mbare7|mberi7)
+        mbere7 Sami ba3atli resele
   translations:
     en: |-
       Sami sent me a message yesterday.
       Yesterday Sami sent me a message.
+      Sami texted me yesterday.
+      Sami sent me a text yesterday.
 - id: s.phone.31
   node: apc.phone.send
   register: colloquial
@@ -523,15 +643,23 @@ sentences:
       tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: دقّ, sense: de22, form: 'form:subj-1sg'},
         {surface: ما, sense: ma}, {surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: تلفوني, sense: telefon, morphs: [{surface: تلفون, kc: 'sense:telefon'},
             {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: ما (فيّي|فيني) دقّ ما معي (تلفوني|تليفوني)
+      reverse: |-
+        ما (فيّي|فيني) دقّ ما معي (تلفوني|تليفوني)
+        أنا ما فيّي دقّ ما معي تلفوني
     apc-Latn/arabizi:
       text: ma fiyyi de22, ma ma3i telefoni.
       tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: de22, sense: de22, form: 'form:subj-1sg'},
         {surface: ma, sense: ma}, {surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: telefoni, sense: telefon, morphs: [{surface: telefon,
               kc: 'sense:telefon'}, {surface: i, kc: 'form:poss-1sg'}]}]
-      reverse: ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (de22|da22|de22a) ma (ma3i|m3i|ma3e) (telefoni|telefone|talifoni|tilifoni)
+      reverse: |-
+        ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (de22|da22|de22a) ma (ma3i|m3i|ma3e) (telefoni|telefone|talifoni|tilifoni)
+        ana ma fiyyi de22 ma ma3i telefoni
   translations:
-    en: I can't call, I (don't|do not) have my phone (on me|with me).
+    en: |-
+      I can't call, I (don't|do not) have my phone (on me|with me).
+      I can't call, I don't have my phone.
+      I can't call, I haven't got my phone on me.
+      I cannot call, I don't have my phone on me.
 - id: s.phone.32
   node: apc.phone.send
   register: colloquial

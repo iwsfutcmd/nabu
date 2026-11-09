@@ -1,0 +1,523 @@
+# Biblical Hebrew (hbo), unit 17: Jonah runs away (Jonah 1:1-3).
+# Narrative: "the word of the LORD came to …", commands in a row (get up, go, call out), going up and going
+# down, fleeing, "with" and its suffixes, the directional -â (to Tarshish).
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u17-jonah-runs-away
+title:
+  en: Jonah runs away
+cefr: A2
+kcs:
+- id: sense:yonah
+  gloss:
+    en: Jonah
+  forms:
+    hbo-Hebr/tiberian: [יוֹנָה]
+- id: sense:amittai
+  gloss:
+    en: Amittai
+  forms:
+    hbo-Hebr/tiberian: [אֲמִתַּי]
+- id: sense:ninveh
+  gloss:
+    en: Nineveh
+  forms:
+    hbo-Hebr/tiberian: [נִינְוֵה]
+- id: sense:ir
+  gloss:
+    en: city, town
+  forms:
+    hbo-Hebr/tiberian: [עִיר]
+- id: sense:alah
+  gloss:
+    en: to go up, come up
+  forms:
+    hbo-Hebr/tiberian: [עָלָה]
+- id: sense:raah.evil
+  gloss:
+    en: evil, wickedness; harm, disaster
+  forms:
+    hbo-Hebr/tiberian: [רָעָה]
+- id: sense:barach
+  gloss:
+    en: to flee, run away
+  forms:
+    hbo-Hebr/tiberian: [בָּרַח]
+- id: sense:tarshish
+  gloss:
+    en: Tarshish (a far port to the west)
+  forms:
+    hbo-Hebr/tiberian: [תַּרְשִׁישׁ]
+- id: sense:yarad
+  gloss:
+    en: to go down, come down
+  forms:
+    hbo-Hebr/tiberian: [יָרַד]
+- id: sense:yafo
+  gloss:
+    en: Joppa (Jaffa)
+  forms:
+    hbo-Hebr/tiberian: [יָפוֹ]
+- id: sense:oniyyah
+  gloss:
+    en: ship
+  forms:
+    hbo-Hebr/tiberian: [אֳנִיָּה]
+  image: {file: ../images/ship.svg, license: CC0-1.0, provenance: {author: 'llm:claude@f57499d70e8f', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: sense:sakhar
+  gloss:
+    en: wages; fare
+  forms:
+    hbo-Hebr/tiberian: [שָׂכָר]
+- id: sense:im.with
+  gloss:
+    en: with (with suffixes עִמִּי 'with me', עִמְּךָ 'with you')
+  forms:
+    hbo-Hebr/tiberian: [עִם]
+nodes:
+- {id: hbo.u17.the-word-came, kind: lesson, introduces: ['sense:yonah', 'sense:amittai']}
+- {id: hbo.u17.go-to-nineveh, kind: lesson, introduces: ['sense:ninveh', 'sense:ir', 'sense:alah', 'sense:raah.evil']}
+- {id: hbo.u17.to-flee, kind: lesson, introduces: ['sense:barach', 'sense:tarshish', 'sense:yarad', 'sense:yafo']}
+- {id: hbo.u17.a-ship, kind: lesson, introduces: ['sense:oniyyah', 'sense:sakhar', 'sense:im.with']}
+- {id: hbo.u17.story, kind: story}
+sentences:
+- id: s.17.1
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹנָה
+      tokens: [{surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}]
+      reverse: יונה
+  translations:
+    en: Jonah
+- id: s.17.2
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: יוֹנָה בֶן־אֲמִתַּי
+      tokens: [{surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: בֶן, sense: ben, form: 'form:cstr', readings: {tiberian: ḇen-}}, {surface: אֲמִתַּי, sense: amittai, readings: {tiberian: ʾămittay}}]
+      reverse: יונה בן אמתי
+  translations:
+    en: |-
+      Jonah son of Amittai
+      Jonah, the son of Amittai
+- id: s.17.3
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: דְּבַר יְהוָה
+      tokens: [{surface: דְּבַר, sense: davar, form: 'form:cstr', readings: {tiberian: dəḇar}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}]
+      reverse: דבר יהוה
+  translations:
+    en: the word of the LORD
+- id: s.17.4
+  node: hbo.u17.the-word-came
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי דְּבַר־יְהוָה אֶל־יוֹנָה׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: דְּבַר, sense: davar, form: 'form:cstr', readings: {tiberian: dəḇar-}}, {surface: יְהוָה,
+          sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}]
+      reverse: ויהי דבר יהוה אל יונה
+  translations:
+    en: '[And] the word of the LORD came to Jonah.'
+- id: s.17.5
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִיר
+      tokens: [{surface: עִיר, sense: ir, readings: {tiberian: ʿîr}}]
+      reverse: עיר
+  translations:
+    en: |-
+      a city
+      a town
+- id: s.17.6
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעִיר
+      tokens: [{surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}]
+      reverse: העיר
+  translations:
+    en: |-
+      the city
+      the town
+- id: s.17.7
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעִיר הַגְּדוֹלָה
+      tokens: [{surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
+      reverse: העיר הגדולה
+  translations:
+    en: |-
+      the great city
+      the (big|large) city
+- id: s.17.8
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: נִינְוֵה הָעִיר הַגְּדוֹלָה
+      tokens: [{surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}], readings: {tiberian: hāʿîr}},
+        {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
+      reverse: נינוה העיר הגדולה
+  translations:
+    en: |-
+      Nineveh, the great city
+      Nineveh the (big|large) city
+- id: s.17.9
+  node: hbo.u17.go-to-nineveh
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּם לֵךְ אֶל־נִינְוֵה׃
+      tokens: [{surface: קוּם, sense: qum, form: 'form:impv-ms', readings: {tiberian: qûm}}, {surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}]
+      reverse: קום לך אל נינוה
+  translations:
+    en: |-
+      Get up, go to Nineveh!
+      (Arise|Rise up|Up), go to Nineveh!
+- id: s.17.10
+  node: hbo.u17.go-to-nineveh
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּמִי׃
+      tokens: [{surface: קוּמִי, sense: qum, form: 'form:impv-fs', readings: {tiberian: qû́mî}}]
+      reverse: קומי
+  translations:
+    en: |-
+      Get up!
+      (Arise|Rise up|Stand up)!
+- id: s.17.11
+  node: hbo.u17.go-to-nineveh
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוּמוּ׃
+      tokens: [{surface: קוּמוּ, sense: qum, form: 'form:impv-mp', readings: {tiberian: qû́mû}}]
+      reverse: קומו
+  translations:
+    en: |-
+      Get up!
+      (Arise|Rise up|Stand up)!
+- id: s.17.12
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּעַל אֶל־הָהָר׃
+      tokens: [{surface: וַיַּעַל, sense: alah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyáʿal}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָהָר, sense: har, morphs: [
+            {surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
+      reverse: |-
+        ויעל אל ההר
+        עלה אל ההר
+        הוא עלה אל ההר
+        והוא עלה אל ההר
+  translations:
+    en: '[(And|Then)] he went up (to|onto) the (mountain|hill).'
+- id: s.17.13
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: רָעָה
+      tokens: [{surface: רָעָה, sense: raah.evil, readings: {tiberian: rāʿâ}}]
+      reverse: רעה
+  translations:
+    en: |-
+      evil
+      (wickedness|harm|disaster)
+- id: s.17.14
+  node: hbo.u17.go-to-nineveh
+  forms:
+    hbo-Hebr/tiberian:
+      text: כִּי־עָלְתָה רָעָתָם לְפָנָי׃
+      tokens: [{surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, sense: alah, form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, morphs: [
+            {surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ,
+              kc: 'sense:panim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləp̄ānāy}}]
+      reverse: כי עלתה רעתם לפני
+  translations:
+    en: |-
+      for their wickedness has come up before me
+      because their (evil|wickedness) has (come up|risen) before me
+- id: s.17.15
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּבְרַח׃
+      tokens: [{surface: וַיִּבְרַח, sense: barach, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiḇraḥ}}]
+      reverse: |-
+        ויברח
+        ברח
+        הוא ברח
+        והוא ברח
+  translations:
+    en: |-
+      [(And|Then|So)] he fled.
+      [(And|Then|So)] he ran away.
+- id: s.17.16
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: לִבְרֹחַ
+      tokens: [{surface: לִבְרֹחַ, sense: barach, form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}]
+      reverse: (לברח|לברוח)
+  translations:
+    en: |-
+      to flee
+      to run away
+- id: s.17.17
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: תַּרְשִׁישָׁה
+      tokens: [{surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
+      reverse: תרשישה
+  translations:
+    en: to Tarshish
+- id: s.17.18
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּרֶד יָפוֹ׃
+      tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: יָפוֹ, sense: yafo, readings: {tiberian: yāp̄ô}}]
+      reverse: |-
+        וירד יפו
+        ירד יפו
+        הוא ירד יפו
+        והוא ירד יפו
+  translations:
+    en: |-
+      [(And|Then)] he went down to Joppa.
+      [(And|Then)] he went down to Jaffa.
+- id: s.17.19
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּרֶד מִן־הָהָר׃
+      tokens: [{surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָהָר, sense: har, morphs: [
+            {surface: הָ, kc: 'sense:ha'}, {surface: הָר, kc: 'sense:har'}], readings: {tiberian: hāhār}}]
+      reverse: |-
+        וירד מן ההר
+        ירד מן ההר
+        הוא ירד מן ההר
+        והוא ירד מן ההר
+  translations:
+    en: '[(And|Then)] he came down from the (mountain|hill).'
+- id: s.17.20
+  node: hbo.u17.to-flee
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה׃
+      tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
+          form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
+              kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}]
+      reverse: |-
+        ויקם יונה (לברח|לברוח) תרשישה
+        ויונה קם (לברח|לברוח) תרשישה
+  translations:
+    en: |-
+      But Jonah got up to flee to Tarshish.
+      (And|So|But) Jonah (rose|set out) to (flee|run away) to Tarshish.
+- id: s.17.21
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֳנִיָּה
+      tokens: [{surface: אֳנִיָּה, sense: oniyyah, readings: {tiberian: ʾŏniyyâ}}]
+      reverse: אניה
+  translations:
+    en: |-
+      a ship
+      a boat
+- id: s.17.22
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּמְצָא אֳנִיָּה׃
+      tokens: [{surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אֳנִיָּה, sense: oniyyah, readings: {tiberian: ʾŏniyyâ}}]
+      reverse: |-
+        וימצא אניה
+        מצא אניה
+        הוא מצא אניה
+        והוא מצא אניה
+  translations:
+    en: '[(And|Then)] he found a ship.'
+- id: s.17.23
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: שָׂכָר
+      tokens: [{surface: שָׂכָר, sense: sakhar, readings: {tiberian: śāḵār}}]
+      reverse: שכר
+  translations:
+    en: |-
+      wages
+      a fare
+- id: s.17.24
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתֵּן שְׂכָרָהּ׃
+      tokens: [{surface: וַיִּתֵּן, sense: natan, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, sense: sakhar, morphs: [{surface: שְׂכָרָ, kc: 'sense:sakhar'}, {surface: הּ,
+              kc: 'form:sfx-3fs'}], readings: {tiberian: śəḵārāh}}]
+      reverse: |-
+        ויתן שכרה
+        נתן שכרה
+        הוא נתן שכרה
+        והוא נתן שכרה
+  translations:
+    en: |-
+      [(And|Then)] he paid (its|the) fare.
+      [(And|Then)] he paid for it.
+- id: s.17.25
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמִּי
+      tokens: [{surface: עִמִּי, sense: im.with, morphs: [{surface: עִמִּ, kc: 'sense:im.with'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmî}}]
+      reverse: עמי
+  translations:
+    en: with me
+- id: s.17.26
+  node: hbo.u17.a-ship
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמָּהֶם
+      tokens: [{surface: עִמָּהֶם, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: ʿimmāhem}}]
+      reverse: עמהם
+  translations:
+    en: with them
+- id: s.17.27
+  node: hbo.u17.a-ship
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמְּךָ׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמְּךָ, sense: im.with, morphs: [{surface: עִמְּ, kc: 'sense:im.with'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {
+            tiberian: ʿimməḵā}}]
+      reverse: יהוה עמך
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+- id: s.17.28
+  node: hbo.u17.a-ship
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמָּךְ׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמָּךְ, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {
+            tiberian: ʿimmāḵ}}]
+      reverse: יהוה עמך
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+- id: s.17.29
+  node: hbo.u17.a-ship
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יְהוָה עִמָּכֶם׃
+      tokens: [{surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: עִמָּכֶם, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: כֶם, kc: 'form:sfx-2mp'}], readings: {
+            tiberian: ʿimmāḵem}}]
+      reverse: יהוה עמכם
+  translations:
+    en: |-
+      The LORD is with you.
+      The LORD be with you!
+stories:
+- id: hbo.story.jonah-runs-away
+  node: hbo.u17.story
+  title:
+    en: Jonah runs away (Jonah 1:1–3)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיְהִי דְּבַר־יְהוָה אֶל־יוֹנָה בֶן־אֲמִתַּי לֵאמֹר׃
+          tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: דְּבַר, sense: davar, form: 'form:cstr', readings: {tiberian: dəḇar-}}, {surface: יְהוָה,
+              sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: בֶן, sense: ben,
+              form: 'form:cstr', readings: {tiberian: ḇen-}}, {surface: אֲמִתַּי, sense: amittai, readings: {tiberian: ʾămittay}}, {surface: לֵאמֹר, sense: amar, form: 'form:inf', morphs: [{surface: לֵ,
+                  kc: 'sense:le'}, {surface: אמֹר, kc: 'sense:amar'}], readings: {tiberian: lēʾmōr}}]
+      translations:
+        en: Now the word of the LORD came to Jonah son of Amittai, saying,
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:ir
+      distractors: ['sense:bayit', 'sense:har']
+      forms:
+        hbo-Hebr/tiberian:
+          text: קוּם לֵךְ אֶל־נִינְוֵה הָעִיר הַגְּדוֹלָה
+          tokens: [{surface: קוּם, sense: qum, form: 'form:impv-ms', readings: {tiberian: qûm}}, {surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: נִינְוֵה, sense: ninveh, readings: {tiberian: nînəwēh}}, {surface: הָעִיר, sense: ir, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עִיר, kc: 'sense:ir'}],
+              readings: {tiberian: hāʿîr}}, {surface: הַגְּדוֹלָה, sense: gadol, form: 'form:f', morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גְּדוֹלָה, kc: 'sense:gadol'}], readings: {tiberian: haggəḏôlâ}}]
+      translations:
+        en: “Get up, go to Nineveh, that great city,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: וּקְרָא עָלֶיהָ כִּי־עָלְתָה רָעָתָם לְפָנָי׃
+          tokens: [{surface: וּקְרָא, sense: qara, form: 'form:impv-ms', morphs: [{surface: וּ, kc: 'sense:we'}, {surface: קְרָא, kc: 'sense:qara'}], readings: {tiberian: ûqərāʾ}}, {surface: עָלֶיהָ, sense: al,
+              morphs: [{surface: עָלֶי, kc: 'sense:al'}, {surface: הָ, kc: 'form:sfx-3fs'}], readings: {tiberian: ʿālếhā}}, {surface: כִּי, sense: ki, readings: {tiberian: kî-}}, {surface: עָלְתָה, sense: alah,
+              form: 'form:qatal-3fs', readings: {tiberian: ʿāləṯâ}}, {surface: רָעָתָם, sense: raah.evil, morphs: [{surface: רָעָתָ, kc: 'sense:raah.evil'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {
+                tiberian: rāʿāṯām}}, {surface: לְפָנָי, sense: panim, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: פָנָ, kc: 'sense:panim'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ləp̄ānāy}}]
+      translations:
+        en: and call out against it, for their wickedness has come up before me.”
+  - choose:
+      prompt:
+        en: Where does the LORD send Jonah?
+      options: [{en: 'to Nineveh, the great city'}, {en: to Tarshish}, {en: to Joppa}]
+      answer: 0
+  - line:
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּקָם יוֹנָה לִבְרֹחַ תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה וַיֵּרֶד׃
+          tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: יוֹנָה, sense: yonah, readings: {tiberian: yônâ}}, {surface: לִבְרֹחַ, sense: barach,
+              form: 'form:inf', morphs: [{surface: לִ, kc: 'sense:le'}, {surface: בְרֹחַ, kc: 'sense:barach'}], readings: {tiberian: liḇrōaḥ}}, {surface: תַּרְשִׁישָׁה, sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ,
+                  kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr', morphs: [{surface: מִ, kc: 'sense:min'},
+                {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיֵּרֶד,
+              sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}]
+      translations:
+        en: But Jonah got up to flee to Tarshish, away from the LORD.
+  - line:
+      ask: complete
+      gap: sense:oniyyah
+      distractors: ['sense:ir', 'sense:bayit']
+      forms:
+        hbo-Hebr/tiberian:
+          text: יָפוֹ וַיִּמְצָא אָנִיָּה בָּאָה תַרְשִׁישׁ וַיִּתֵּן שְׂכָרָהּ וַיֵּרֶד בָּהּ לָבוֹא עִמָּהֶם תַּרְשִׁישָׁה מִלִּפְנֵי יְהוָה׃
+          tokens: [{surface: יָפוֹ, sense: yafo, readings: {tiberian: yāp̄ô}}, {surface: וַיִּמְצָא, sense: matsa, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyimṣāʾ}}, {surface: אָנִיָּה, sense: oniyyah,
+              readings: {tiberian: ʾoniyyâ}}, {surface: בָּאָה, sense: bo, form: 'form:ptc-fs', readings: {tiberian: bāʾâ}}, {surface: תַרְשִׁישׁ, sense: tarshish, readings: {tiberian: ṯaršîš}}, {surface: וַיִּתֵּן,
+              sense: natan, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyittēn}}, {surface: שְׂכָרָהּ, sense: sakhar, morphs: [{surface: שְׂכָרָ, kc: 'sense:sakhar'}, {surface: הּ, kc: 'form:sfx-3fs'}],
+              readings: {tiberian: śəḵārāh}}, {surface: וַיֵּרֶד, sense: yarad, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗreḏ}}, {surface: בָּהּ, sense: be, morphs: [{surface: בָּ, kc: 'sense:be'},
+                {surface: הּ, kc: 'form:sfx-3fs'}], readings: {tiberian: bāh}}, {surface: לָבוֹא, sense: bo, form: 'form:inf', morphs: [{surface: לָ, kc: 'sense:le'}, {surface: בוֹא, kc: 'sense:bo'}], readings: {
+                tiberian: lāḇôʾ}}, {surface: עִמָּהֶם, sense: im.with, morphs: [{surface: עִמָּ, kc: 'sense:im.with'}, {surface: הֶם, kc: 'form:sfx-3mp'}], readings: {tiberian: ʿimmāhem}}, {surface: תַּרְשִׁישָׁה,
+              sense: tarshish, morphs: [{surface: תַּרְשִׁישָׁ, kc: 'sense:tarshish'}, {surface: ה, kc: 'form:dir'}], readings: {tiberian: taršî́šâ}}, {surface: מִלִּפְנֵי, sense: panim, form: 'form:pl-cstr',
+              morphs: [{surface: מִ, kc: 'sense:min'}, {surface: לִּ, kc: 'sense:le'}, {surface: פְנֵי, kc: 'sense:panim'}], readings: {tiberian: millip̄nê}}, {surface: יְהוָה, sense: yhwh, readings: {
+                tiberian: ʾăḏōnāy}}]
+      translations:
+        en: He went down to Joppa and found a ship going to Tarshish; he paid its fare and went down into it, to go with them to Tarshish, away from the LORD.
+  - choose:
+      prompt:
+        en: Where does Jonah go instead?
+      options: [{en: 'toward Tarshish, by ship'}, {en: to Nineveh}, {en: home to his father}]
+      answer: 0
+scenarios:
+- id: hbo.at-the-port-of-joppa
+  after: hbo.u17.a-ship
+  title:
+    en: At the port of Joppa
+  setting:
+    en: 'The harbour of Joppa: ships are loading for Tarshish and the sea is calm.'
+  character:
+    en: A ship's captain, gruff but fair, who speaks only Biblical Hebrew.
+  goal:
+    en: Ask whether the ship is going to Tarshish, say that you want to go with them, and pay your fare.

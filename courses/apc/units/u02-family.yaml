@@ -68,11 +68,17 @@ sentences:
     apc-Arab/standard:
       text: مين هيدا؟
       tokens: [{surface: مين, sense: meen}, {surface: هيدا, sense: hayda}]
-      reverse: مين هيدا
+      reverse: |-
+        مين هيدا
+        هيدا مين
+        مين هيدي
+        هيدي مين
     apc-Latn/arabizi:
       text: meen hayda?
       tokens: [{surface: meen, sense: meen}, {surface: hayda, sense: hayda}]
-      reverse: (meen|min|mien) (hayda|haida|hyda)
+      reverse: |-
+        (meen|min|mien) (hayda|haida|hyda)
+        hayda meen
   translations:
     en: |-
       Who is (this|that|he)?
@@ -179,11 +185,15 @@ sentences:
     apc-Arab/standard:
       text: مين هيدا؟ بيّك؟
       tokens: [{surface: مين, sense: meen}, {surface: هيدا, sense: hayda}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك, kc: 'form:poss-2ms'}]}]
-      reverse: مين هيدا بيّك
+      reverse: |-
+        مين هيدا بيّك
+        هيدا مين بيّك
     apc-Latn/arabizi:
       text: meen hayda? bayyak?
       tokens: [{surface: meen, sense: meen}, {surface: hayda, sense: hayda}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak, kc: 'form:poss-2ms'}]}]
-      reverse: (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak)
+      reverse: |-
+        (meen|min|mien) (hayda|haida|hyda) (bayyak|bayak|beyyak)
+        hayda meen bayyak
   translations:
     en: |-
       Who is (this|that)? Your (father|dad)?
@@ -266,7 +276,10 @@ sentences:
     apc-Latn/arabizi:
       text: la2, ma 3endi ekht.
       tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ekht, sense: ekht}]
-      reverse: (la2|la) (ma|ana ma) (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
+      reverse: |-
+        (la2|la) (ma|ana ma) (3endi|3ende|3andi|3ande|3indi|3inde) (ekht|ikht|e5t)
+        la2 ma3endi ekht
+        la ma3ende ekht
   translations:
     en: |-
       No, I (don't|do not) have a sister.
@@ -346,12 +359,16 @@ sentences:
       text: كيفه بيّك؟
       tokens: [{surface: كيفه, sense: kif, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ه, kc: 'form:poss-3ms'}]}, {surface: بيّك, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ك,
               kc: 'form:poss-2ms'}]}]
-      reverse: (كيفه|كيفو) بيّك
+      reverse: |-
+        (كيفه|كيفو) بيّك
+        كيف بيّك
     apc-Latn/arabizi:
       text: kifo bayyak?
       tokens: [{surface: kifo, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: o, kc: 'form:poss-3ms'}]}, {surface: bayyak, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: ak,
               kc: 'form:poss-2ms'}]}]
-      reverse: (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak)
+      reverse: |-
+        (kifo|kifu|keefo|keefu) (bayyak|bayak|beyyak)
+        kif bayyak
   translations:
     en: |-
       How is your (father|dad)?
@@ -365,15 +382,21 @@ sentences:
     apc-Arab/standard:
       text: كيفك مايا؟
       tokens: [{surface: كيفك, sense: kif, vocalized: كيفِك, morphs: [{surface: كيف, kc: 'sense:kif'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: مايا, sense: maya}]
-      reverse: كيفك مايا
+      reverse: |-
+        كيفك مايا
+        مايا كيفك
     apc-Latn/arabizi:
       text: kifik Maya?
       tokens: [{surface: kifik, sense: kif, morphs: [{surface: kif, kc: 'sense:kif'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: Maya, sense: maya}]
-      reverse: (kifik|kifek|keefik|keefek) Maya
+      reverse: |-
+        (kifik|kifek|keefik|keefek) Maya
+        Maya kifik
   translations:
     en: |-
       How are you, Maya?
       How are you doing, Maya?
+      Maya, how are you?
+      How's it going, Maya?
 - id: s.fam.21
   node: apc.fam.grandparents
   register: colloquial
@@ -390,6 +413,7 @@ sentences:
     en: |-
       (This|That|She) is (grandma|my grandma|granny|my grandmother).
       (That|She)'s (grandma|my grandma|granny|my grandmother).
+      This is my granny.
 - id: s.fam.22
   node: apc.fam.grandparents
   register: colloquial
@@ -406,6 +430,7 @@ sentences:
     en: |-
       And (this|that|he) is (grandpa|my grandpa|grandad|my grandfather).
       And (that|he)'s (grandpa|my grandpa|grandad|my grandfather).
+      And this is my grandad.
 - id: s.fam.23
   node: apc.fam.grandparents
   register: colloquial
@@ -442,6 +467,7 @@ sentences:
     en: |-
       (Grandpa|Grandad|My grandpa|My grandfather) is (old|elderly).
       (Grandpa|Grandad|My grandpa|My grandfather)'s (old|elderly).
+      My grandad is old.
 - id: s.fam.25
   node: apc.fam.grandparents
   register: colloquial
@@ -549,7 +575,9 @@ sentences:
       text: إيه، عندي إبن وبنت.
       tokens: [{surface: إيه, sense: eh}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: إبن, sense: ebn}, {surface: وبنت, sense: bent,
           morphs: [{surface: و, kc: 'sense:w'}, {surface: بنت, kc: 'sense:bent'}]}]
-      reverse: إيه (عندي|أنا عندي) (إبن|صبي) (وبنت|و بنت)
+      reverse: |-
+        إيه (عندي|أنا عندي) (إبن|صبي) (وبنت|و بنت)
+        إي عندي إبن وبنت
     apc-Latn/arabizi:
       text: eh, 3endi ebn w bent.
       tokens: [{surface: eh, sense: eh}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ebn, sense: ebn}, {surface: w, sense: w},
@@ -619,15 +647,21 @@ sentences:
     apc-Arab/standard:
       text: مايا، عندك ولاد؟
       tokens: [{surface: مايا, sense: maya}, {surface: عندك, sense: 3end, vocalized: عِنْدِك, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ك, kc: 'form:poss-2fs'}]}, {surface: ولاد, sense: wlad}]
-      reverse: مايا (عندك|إنتي عندك) ولاد
+      reverse: |-
+        مايا (عندك|إنتي عندك) ولاد
+        عندك ولاد مايا
     apc-Latn/arabizi:
       text: Maya, 3endik wlad?
       tokens: [{surface: Maya, sense: maya}, {surface: 3endik, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: ik, kc: 'form:poss-2fs'}]}, {surface: wlad, sense: wlad}]
-      reverse: Maya ((3endik|3andik|3indik|3endek)|(enti|inti) (3endik|3andik|3indik|3endek)) (wlad|wled)
+      reverse: |-
+        Maya ((3endik|3andik|3indik|3endek)|(enti|inti) (3endik|3andik|3indik|3endek)) (wlad|wled)
+        3endik wlad Maya
   translations:
     en: |-
       Maya, do you have (kids|children)?
       Maya, have you got (kids|children)?
+      Do you have kids, Maya?
+      Do you have children, Maya?
 - id: s.fam.36
   node: apc.fam.you-pl
   register: colloquial
@@ -646,6 +680,8 @@ sentences:
       How are you?
       How are you doing?
       How's it going?
+      How are you all?
+      How are you all doing?
 - id: s.fam.37
   node: apc.fam.you-pl
   register: colloquial

@@ -235,10 +235,10 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
   return (
     <div className={styles.body}>
       <div className={styles.bigPrompt}>
-        {ex.template === "char-read" ? (
-          <TargetPrompt text={ex.prompt} props={props} ruby={false} />
-        ) : (
+        {ex.template === "reading-disambiguation" ? (
           <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} />
+        ) : (
+          <TargetPrompt text={ex.prompt} props={props} ruby={false} />
         )}
       </div>
       <Options

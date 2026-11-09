@@ -102,11 +102,15 @@ sentences:
     apc-Arab/standard:
       text: هيدا جارنا.
       tokens: [{surface: هيدا, sense: hayda}, {surface: جارنا, sense: jar, morphs: [{surface: جار, kc: 'sense:jar'}, {surface: نا, kc: 'form:poss-1pl'}]}]
-      reverse: هيدا جارنا
+      reverse: |-
+        هيدا جارنا
+        هيدي جارتنا
     apc-Latn/arabizi:
       text: hayda jarna.
       tokens: [{surface: hayda, sense: hayda}, {surface: jarna, sense: jar, morphs: [{surface: jar, kc: 'sense:jar'}, {surface: na, kc: 'form:poss-1pl'}]}]
-      reverse: (hayda|haida|hyda) (jarna|jarana)
+      reverse: |-
+        (hayda|haida|hyda) (jarna|jarana)
+        hayde jaretna
   translations:
     en: |-
       (This|That|He) is our (neighbour|neighbor).
@@ -132,11 +136,15 @@ sentences:
     apc-Arab/standard:
       text: مين هالزلمة؟
       tokens: [{surface: مين, sense: meen}, {surface: هالزلمة, sense: zalame, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: زلمة, kc: 'sense:zalame'}]}]
-      reverse: مين هالزلمة
+      reverse: |-
+        مين هالزلمة
+        مين هيدا الزلمة
     apc-Latn/arabizi:
       text: meen hal zalame?
       tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: zalame, sense: zalame}]
-      reverse: (meen|mien|min) (hal|hel) (zalame|zalami|zalameh|zalmi)
+      reverse: |-
+        (meen|mien|min) (hal|hel) (zalame|zalami|zalameh|zalmi)
+        meen hayda el zalame
   translations:
     en: Who('s| is) (this|that) (man|guy)?
 - id: s.ppl.8
@@ -163,11 +171,15 @@ sentences:
     apc-Arab/standard:
       text: مين هالمرة؟
       tokens: [{surface: مين, sense: meen}, {surface: هالمرة, sense: mara, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: مرة, kc: 'sense:mara'}]}]
-      reverse: مين (هالمرة|هالمرا)
+      reverse: |-
+        مين (هالمرة|هالمرا)
+        مين هيدي المرة
     apc-Latn/arabizi:
       text: meen hal mara?
       tokens: [{surface: meen, sense: meen}, {surface: hal, sense: hal}, {surface: mara, sense: mara}]
-      reverse: (meen|mien|min) (hal|hel) (mara|mra|mare)
+      reverse: |-
+        (meen|mien|min) (hal|hel) (mara|mra|mare)
+        meen hayde el mara
   translations:
     en: |-
       Who('s| is) (this|that) woman?
@@ -197,11 +209,15 @@ sentences:
     apc-Arab/standard:
       text: وين ساكن؟
       tokens: [{surface: وين, sense: wen}, {surface: ساكن, sense: seken}]
-      reverse: '[إنت] وين ساكن'
+      reverse: |-
+        [إنت] وين ساكن
+        وين إنت ساكن
     apc-Latn/arabizi:
       text: wen seken?
       tokens: [{surface: wen, sense: wen}, {surface: seken, sense: seken}]
-      reverse: '[(enta|inta)] (wen|wein) (seken|saken|sakin)'
+      reverse: |-
+        [(enta|inta)] (wen|wein) (seken|saken|sakin)
+        wen enta seken
   translations:
     en: |-
       Where do you live?
@@ -231,11 +247,15 @@ sentences:
     apc-Arab/standard:
       text: وين ساكنة؟
       tokens: [{surface: وين, sense: wen}, {surface: ساكنة, sense: seken, form: 'form:fem'}]
-      reverse: '[إنتي] وين ساكنة'
+      reverse: |-
+        [إنتي] وين ساكنة
+        وين إنتي ساكنة
     apc-Latn/arabizi:
       text: wen sekne?
       tokens: [{surface: wen, sense: wen}, {surface: sekne, sense: seken, form: 'form:fem'}]
-      reverse: '[(enti|inti)] (wen|wein) (sekne|sakne|sekni|sakni)'
+      reverse: |-
+        [(enti|inti)] (wen|wein) (sekne|sakne|sekni|sakni)
+        wen enti sekne
   translations:
     en: |-
       Where do you live?
@@ -266,11 +286,15 @@ sentences:
       text: سامي ساكن بهيدي البناية.
       tokens: [{surface: سامي, sense: sami}, {surface: ساكن, sense: seken}, {surface: بهيدي, sense: hayde, morphs: [{surface: ب, kc: 'sense:b'}, {surface: هيدي, kc: 'sense:hayde'}]}, {surface: البناية,
           sense: bineye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: بناية, kc: 'sense:bineye'}]}]
-      reverse: سامي ساكن بهيدي البناية
+      reverse: |-
+        سامي ساكن بهيدي البناية
+        سامي ساكن بهالبناية
     apc-Latn/arabizi:
       text: Sami seken b hayde el bineye.
       tokens: [{surface: Sami, sense: sami}, {surface: seken, sense: seken}, {surface: b, sense: b}, {surface: hayde, sense: hayde}, {surface: el, sense: el}, {surface: bineye, sense: bineye}]
-      reverse: Sami (seken|saken|sakin) (b|bi) (hayde|haide|haydi) (el|l|il) (bineye|binaye|bineyi)
+      reverse: |-
+        Sami (seken|saken|sakin) (b|bi) (hayde|haide|haydi) (el|l|il) (bineye|binaye|bineyi)
+        Sami seken b hal bineye
   translations:
     en: |-
       Sami lives in this building.
@@ -373,11 +397,15 @@ sentences:
     apc-Arab/standard:
       text: وين ساكنين؟
       tokens: [{surface: وين, sense: wen}, {surface: ساكنين, sense: seken, form: 'form:pl'}]
-      reverse: '[إنتو] وين ساكنين'
+      reverse: |-
+        [إنتو] وين ساكنين
+        وين إنتو ساكنين
     apc-Latn/arabizi:
       text: wen seknin?
       tokens: [{surface: wen, sense: wen}, {surface: seknin, sense: seken, form: 'form:pl'}]
-      reverse: '[(ento|into)] (wen|wein) (seknin|saknin|seknen|saknen)'
+      reverse: |-
+        [(ento|into)] (wen|wein) (seknin|saknin|seknen|saknen)
+        wen ento seknin
   translations:
     en: |-
       Where do you live?
@@ -417,11 +445,15 @@ sentences:
     apc-Arab/standard:
       text: بيشربوا قهوة كلّ يوم.
       tokens: [{surface: بيشربوا, sense: shereb, form: 'form:impf-3pl'}, {surface: قهوة, sense: ahwe}, {surface: كلّ, sense: kell}, {surface: يوم, sense: yom}]
-      reverse: '[هنّ] (بيشربوا|بيشربو) قهوة كلّ يوم'
+      reverse: |-
+        [هنّ] (بيشربوا|بيشربو) قهوة كلّ يوم
+        كلّ يوم بيشربوا قهوة
     apc-Latn/arabizi:
       text: byishrabo ahwe kell yom.
       tokens: [{surface: byishrabo, sense: shereb, form: 'form:impf-3pl'}, {surface: ahwe, sense: ahwe}, {surface: kell, sense: kell}, {surface: yom, sense: yom}]
-      reverse: '[(henne|hinne)] (byishrabo|bishrabo|byeshrabo|byishrabu|byeshrabu) (ahwe|2ahwe) (kell|kel|kull) (yom|youm)'
+      reverse: |-
+        [(henne|hinne)] (byishrabo|bishrabo|byeshrabo|byishrabu|byeshrabu) (ahwe|2ahwe) (kell|kel|kull) (yom|youm)
+        kell yom byishrabo ahwe
   translations:
     en: |-
       They drink coffee every day.
@@ -433,11 +465,15 @@ sentences:
     apc-Arab/standard:
       text: وين بيشتغلوا؟
       tokens: [{surface: وين, sense: wen}, {surface: بيشتغلوا, sense: eshteghel, form: 'form:impf-3pl'}]
-      reverse: وين (بيشتغلوا|بيشتغلو)
+      reverse: |-
+        وين (بيشتغلوا|بيشتغلو)
+        هنّ وين بيشتغلوا
     apc-Latn/arabizi:
       text: wen byishteghlo?
       tokens: [{surface: wen, sense: wen}, {surface: byishteghlo, sense: eshteghel, form: 'form:impf-3pl'}]
-      reverse: (wen|wein) (byishteghlo|bishteghlo|byeshteghlo|byishtighlo|byishteghlu)
+      reverse: |-
+        (wen|wein) (byishteghlo|bishteghlo|byeshteghlo|byishtighlo|byishteghlu)
+        henne wen byishteghlo
   translations:
     en: Where do they work?
 - id: s.ppl.27
@@ -464,7 +500,9 @@ sentences:
     apc-Arab/standard:
       text: هيدا رفيقي.
       tokens: [{surface: هيدا, sense: hayda}, {surface: رفيقي, sense: rfi2, morphs: [{surface: رفيق, kc: 'sense:rfi2'}, {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: هيدا رفيقي
+      reverse: |-
+        هيدا رفيقي
+        هيدي رفيقتي
     apc-Latn/arabizi:
       text: hayda rfi2i.
       tokens: [{surface: hayda, sense: hayda}, {surface: rfi2i, sense: rfi2, morphs: [{surface: rfi2, kc: 'sense:rfi2'}, {surface: i, kc: 'form:poss-1sg'}]}]
@@ -564,12 +602,16 @@ sentences:
       text: كلّهن بالبيت.
       tokens: [{surface: كلّهن, sense: kell, morphs: [{surface: كلّ, kc: 'sense:kell'}, {surface: هن, kc: 'form:poss-3pl'}]}, {surface: بالبيت, sense: bet, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال,
               kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
-      reverse: (كلّهن|كلن) بالبيت
+      reverse: |-
+        (كلّهن|كلن) بالبيت
+        هنّ كلّهن بالبيت
     apc-Latn/arabizi:
       text: kellon bel bet.
       tokens: [{surface: kellon, sense: kell, morphs: [{surface: kell, kc: 'sense:kell'}, {surface: 'on', kc: 'form:poss-3pl'}]}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
               kc: 'sense:el'}]}, {surface: bet, sense: bet}]
-      reverse: (kellon|killon|kellun|kilon|kullon) (bel|bil|b el) (bet|beit)
+      reverse: |-
+        (kellon|killon|kellun|kilon|kullon) (bel|bil|b el) (bet|beit)
+        henne kellon bel bet
   translations:
     en: |-
       They('re| are) all (at home|home).
@@ -611,6 +653,8 @@ sentences:
     en: |-
       His parents (love|like) the (sea|beach).
       His (family|folks) (love|like) the (sea|beach).
+      His family loves the sea.
+      His family likes the beach.
 - id: s.ppl.37
   node: apc.ppl.their
   register: colloquial
@@ -634,11 +678,15 @@ sentences:
     apc-Arab/standard:
       text: راحوا عالبحر.
       tokens: [{surface: راحوا, sense: ra7, form: 'form:past-3pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: (راحوا|راحو) (عالبحر|ع البحر|على البحر)
+      reverse: |-
+        (راحوا|راحو) (عالبحر|ع البحر|على البحر)
+        هنّ راحوا عالبحر
     apc-Latn/arabizi:
       text: ra7o 3al ba7r.
       tokens: [{surface: ra7o, sense: ra7, form: 'form:past-3pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: (ra7o|ra7u|raho) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: |-
+        (ra7o|ra7u|raho) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        henne ra7o 3al ba7r
   translations:
     en: They went to the (beach|sea).
 - id: s.ppl.39
@@ -648,15 +696,20 @@ sentences:
     apc-Arab/standard:
       text: الجيران رجعوا مبارح.
       tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رجعوا, sense: rje3, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
-      reverse: الجيران (رجعوا|رجعو) (مبارح|مبارحة)
+      reverse: |-
+        الجيران (رجعوا|رجعو) (مبارح|مبارحة)
+        مبارح الجيران رجعوا
     apc-Latn/arabizi:
       text: el jiren rej3o mbere7.
       tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: rej3o, sense: rje3, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
-      reverse: (el|l|il) (jiren|jiran|jeeran|jeren) (rej3o|rij3o|reje3o|rej3u) (mbere7|embere7|mbare7|mberi7)
+      reverse: |-
+        (el|l|il) (jiren|jiran|jeeran|jeren) (rej3o|rij3o|reje3o|rej3u) (mbere7|embere7|mbare7|mberi7)
+        mbere7 el jiren rej3o
   translations:
     en: |-
       The (neighbours|neighbors) came back yesterday.
       The (neighbours|neighbors) got back yesterday.
+      The neighbours returned yesterday.
 - id: s.ppl.40
   node: apc.ppl.they-did
   register: colloquial
@@ -664,13 +717,20 @@ sentences:
     apc-Arab/standard:
       text: أكلوا عند تيتا.
       tokens: [{surface: أكلوا, sense: akal, form: 'form:past-3pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
-      reverse: (أكلوا|أكلو) عند تيتا
+      reverse: |-
+        (أكلوا|أكلو) عند تيتا
+        هنّ أكلوا عند تيتا
     apc-Latn/arabizi:
       text: akalo 3end teta.
       tokens: [{surface: akalo, sense: akal, form: 'form:past-3pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
-      reverse: (akalo|akalu|2akalo) (3end|3and|3ind) teta
+      reverse: |-
+        (akalo|akalu|2akalo) (3end|3and|3ind) teta
+        henne akalo 3end teta
+        akalo 3end tayta
   translations:
-    en: They (ate|had (lunch|dinner|a meal)) at (grandma's|granny's).
+    en: |-
+      They (ate|had (lunch|dinner|a meal)) at (grandma's|granny's).
+      They ate at my grandma's.
 - id: s.ppl.41
   node: apc.ppl.they-did
   register: colloquial
@@ -678,11 +738,15 @@ sentences:
     apc-Arab/standard:
       text: شو عملوا مبارح؟
       tokens: [{surface: شو, sense: shu}, {surface: عملوا, sense: 3emel, form: 'form:past-3pl'}, {surface: مبارح, sense: mbere7}]
-      reverse: شو (عملوا|عملو) (مبارح|مبارحة)
+      reverse: |-
+        شو (عملوا|عملو) (مبارح|مبارحة)
+        مبارح شو عملوا
     apc-Latn/arabizi:
       text: shu 3emlo mbere7?
       tokens: [{surface: shu, sense: shu}, {surface: 3emlo, sense: 3emel, form: 'form:past-3pl'}, {surface: mbere7, sense: mbere7}]
-      reverse: (shu|sho) (3emlo|3amlo|3imlo|3emlu) (mbere7|embere7|mbare7|mberi7)
+      reverse: |-
+        (shu|sho) (3emlo|3amlo|3imlo|3emlu) (mbere7|embere7|mbare7|mberi7)
+        mbere7 shu 3emlo
   translations:
     en: What did they do yesterday?
 - id: s.ppl.42
@@ -692,15 +756,22 @@ sentences:
     apc-Arab/standard:
       text: كانوا مبسوطين؟
       tokens: [{surface: كانوا, sense: kan, form: 'form:past-3pl'}, {surface: مبسوطين, sense: mabsout, form: 'form:pl'}]
-      reverse: (كانوا|كانو) مبسوطين
+      reverse: |-
+        (كانوا|كانو) مبسوطين
+        انبسطوا
+        هنّ كانوا مبسوطين
     apc-Latn/arabizi:
       text: keno mabsoutin?
       tokens: [{surface: keno, sense: kan, form: 'form:past-3pl'}, {surface: mabsoutin, sense: mabsout, form: 'form:pl'}]
-      reverse: (keno|kano|kenu|kanu) (mabsoutin|mabsouteen|mabsootin)
+      reverse: |-
+        (keno|kano|kenu|kanu) (mabsoutin|mabsouteen|mabsootin)
+        enbasato
+        henne keno mabsoutin
   translations:
     en: |-
       Did they have (a good time|fun)?
       Were they happy?
+      Did they enjoy themselves?
 - id: s.ppl.43
   node: apc.ppl.they-did
   register: colloquial
@@ -708,15 +779,20 @@ sentences:
     apc-Arab/standard:
       text: زاروا أهلهن.
       tokens: [{surface: زاروا, sense: zar, form: 'form:past-3pl'}, {surface: أهلهن, sense: ahl, morphs: [{surface: أهل, kc: 'sense:ahl'}, {surface: هن, kc: 'form:poss-3pl'}]}]
-      reverse: (زاروا|زارو) (أهلهن|أهلن)
+      reverse: |-
+        (زاروا|زارو) (أهلهن|أهلن)
+        هنّ زاروا أهلهن
     apc-Latn/arabizi:
       text: zaro ahlon.
       tokens: [{surface: zaro, sense: zar, form: 'form:past-3pl'}, {surface: ahlon, sense: ahl, morphs: [{surface: ahl, kc: 'sense:ahl'}, {surface: 'on', kc: 'form:poss-3pl'}]}]
-      reverse: (zaro|zaru) (ahlon|ahlhon|ahlun|2ahlon)
+      reverse: |-
+        (zaro|zaru) (ahlon|ahlhon|ahlun|2ahlon)
+        henne zaro ahlon
   translations:
     en: |-
       They visited their (parents|family).
       They went to see their (parents|family).
+      They visited their folks.
 stories:
 - id: apc.story.neighbours
   node: apc.ppl.story

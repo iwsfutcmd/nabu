@@ -58,11 +58,34 @@ export const compileAcceptSet = (source: string, profile: CompiledProfile): Resu
 
 export interface GradeOptions {
   /**
-   * Case-folded word forms of the target language: a typo that lands on one is
+   * Word forms of the target language, each keyed by `lexiconKey`: a typo that lands on one is
    * WRONG_WORD. The profile's contrasts (meaningful endings) apply without it.
    */
   readonly lexicon?: ReadonlySet<string>;
+  /**
+   * The words the course inflects, each keyed by `lexiconKey`: the profile's contrasts marked
+   * `inflected` (Lebanese verb prefixes, a feminine ending) apply to them alone.
+   */
+  readonly inflected?: ReadonlySet<string>;
+  /**
+   * The forms each inflected word is pinned as in the course (form KC ids, the forms of the
+   * tokens it spells), keyed by `lexiconKey`: contrasts with `forms` apply to the words pinned as
+   * one (ADR 0084).
+   */
+  readonly forms?: ReadonlyMap<string, readonly string[]>;
 }
+
+/**
+ * A word as the lexicon holds it and looks it up (erratum 46): case-folded, the profile's silent
+ * equivalences applied, and stripped of the marks the profile ignores. A vocalized course's words
+ * carry vowel marks its learners do not type (ADR 0053): نروح must find نْروح. Marks that tell
+ * words apart (Spanish está/esta, ADR 0076) are not ignored, so they stay.
+ */
+export const lexiconKey = (profile: CompiledProfile, word: string): string => {
+  let k = profile.fold(word);
+  for (const eq of profile.equivalences) if (eq.policy === "accept") k = eq.apply(k);
+  return profile.marks?.policy === "ignore" ? profile.marks.strip(k) : k.normalize("NFC");
+};
 
 const OP_NONE = 0;
 const OP_INSERT = 1;
@@ -222,7 +245,7 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     const c = compare(op.expected, op.actual);
     for (const f of c.folds) {
       // Marks that tell words apart (ADR 0076): left out or added, they can spell another word (esta for está).
-      if (f.kind === "marks" && profile.marks?.distinguishes === true && options.lexicon?.has(profile.fold(op.actual)) === true) {
+      if (f.kind === "marks" && profile.marks?.distinguishes === true && options.lexicon?.has(lexiconKey(profile, op.actual)) === true) {
         raise("WRONG_WORD");
         note(profile.marks.wordNote ?? f.note ?? f.id);
         continue;
@@ -233,9 +256,10 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
     else if (c.kind === "typo") {
       // A typo that makes another word, or trades a meaningful ending for another (erratum 46),
       // changes what the answer says.
-      const contrast = contrastOf(profile, op.expected, op.actual);
+      const word = lexiconKey(profile, op.expected);
+      const contrast = contrastOf(profile, op.expected, op.actual, options.inflected?.has(word) === true, options.forms?.get(word));
       if (contrast !== undefined) note(contrast.note);
-      raise(contrast !== undefined || options.lexicon?.has(profile.fold(op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
+      raise(contrast !== undefined || options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
     }
   }
   if (final.flags.includes("zwnj") && profile.zwnj !== undefined) applyPolicy(profile.zwnj.policy, verdict, profile.zwnj.note ?? "zwnj");

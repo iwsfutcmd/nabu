@@ -1,5 +1,5 @@
 # Fixture course (apc), unit 12: the future. ra7 before a verb without b- (ra7 ru7: I'll go; ma ra7: won't),
-# the subjunctive for every person (yru7, tru7, tru7i, tru7o, yru7o), next week and next month (el jeye),
+# the imperfect (no b-) for every person (yru7, tru7, tru7i, tru7o, yru7o), next week and next month (el jeye),
 # the day after tomorrow, the dual (yomen, sa3ten), and a weekend in the family's village.
 # Drafted by an LLM (provenance llm:…, status draft) and checked against Kline (2022), chapters 4, 14 and 22:
 # every sentence awaits a native speaker's review.
@@ -44,17 +44,26 @@ sentences:
       text: رح روح عالبحر بكرا.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: بحر,
               kc: 'sense:ba7r'}]}, {surface: بكرا, sense: bukra}]
-      reverse: (رح|لح) روح (عالبحر|ع البحر|على البحر) (بكرا|بكرة)
+      reverse: |-
+        (رح|لح) روح (عالبحر|ع البحر|على البحر) (بكرا|بكرة)
+        أنا رح روح عالبحر بكرا
+        بكرا رح روح عالبحر
+        بروح عالبحر بكرا
     apc-Latn/arabizi:
       text: ra7 ru7 3al ba7r bukra.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: ba7r,
           sense: ba7r}, {surface: bukra, sense: bukra}]
-      reverse: (ra7|la7|rah) (ru7|ro7) (3al|3a l|3a el) (ba7r|ba7er|bahr) (bukra|bokra|bukrah)
+      reverse: |-
+        (ra7|la7|rah) (ru7|ro7) (3al|3a l|3a el) (ba7r|ba7er|bahr) (bukra|bokra|bukrah)
+        ana ra7 ru7 3al ba7r bukra
+        bukra ra7 ru7 3al ba7r
+        bru7 3al ba7r bukra
   translations:
     en: |-
       I('ll| will) go to the (beach|sea) tomorrow.
       Tomorrow I('ll| will) go to the (beach|sea).
       I('m| am) going to (go to|) the (beach|sea) tomorrow.
+      Tomorrow I'm going to the beach.
 - id: s.trip.2
   node: apc.trip.will
   register: colloquial
@@ -62,15 +71,21 @@ sentences:
     apc-Arab/standard:
       text: رح ناكل عند تيتا.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: ناكل, sense: akal, form: 'form:subj-1pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
-      reverse: (رح|لح) ناكل عند تيتا
+      reverse: |-
+        (رح|لح) ناكل عند تيتا
+        نحنا رح ناكل عند تيتا
     apc-Latn/arabizi:
       text: ra7 nekol 3end teta.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: nekol, sense: akal, form: 'form:subj-1pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
-      reverse: (ra7|la7|rah) (nekol|nakol|nekul) (3end|3and|3ind) teta
+      reverse: |-
+        (ra7|la7|rah) (nekol|nakol|nekul) (3end|3and|3ind) teta
+        ne7na ra7 nekol 3end teta
+        ra7 nekol 3end tayta
   translations:
     en: |-
       We('ll| will) eat at (grandma's|granny's).
       We('re| are) going to eat at (grandma's|granny's).
+      We'll eat at my grandma's.
 - id: s.trip.3
   node: apc.trip.will
   register: colloquial
@@ -79,15 +94,24 @@ sentences:
     apc-Arab/standard:
       text: شو رح تعمل بكرا؟
       tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تعمل, sense: 3emel, form: 'form:subj-2ms'}, {surface: بكرا, sense: bukra}]
-      reverse: شو (رح|لح) (تعمل|بتعمل) (بكرا|بكرة)
+      reverse: |-
+        شو (رح|لح) (تعمل|بتعمل) (بكرا|بكرة)
+        بكرا شو رح تعمل
+        إنت شو رح تعمل بكرا
+        شو بتعمل بكرا
     apc-Latn/arabizi:
       text: shu ra7 ta3mel bukra?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mel, sense: 3emel, form: 'form:subj-2ms'}, {surface: bukra, sense: bukra}]
-      reverse: (shu|sho) (ra7|la7|rah) (ta3mel|te3mel) (bukra|bokra|bukrah)
+      reverse: |-
+        (shu|sho) (ra7|la7|rah) (ta3mel|te3mel) (bukra|bokra|bukrah)
+        shu bta3mel bukra
+        bukra shu ra7 ta3mel
+        enta shu ra7 ta3mel bukra
   translations:
     en: |-
       What are you going to do tomorrow?
       What will you do tomorrow?
+      What are you doing tomorrow?
 - id: s.trip.4
   node: apc.trip.will
   register: colloquial
@@ -95,11 +119,19 @@ sentences:
     apc-Arab/standard:
       text: ما رح اشتغل بكرا.
       tokens: [{surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: اشتغل, sense: eshteghel, form: 'form:subj-1sg'}, {surface: بكرا, sense: bukra}]
-      reverse: ما (رح|لح) اشتغل (بكرا|بكرة)
+      reverse: |-
+        ما (رح|لح) اشتغل (بكرا|بكرة)
+        أنا ما رح اشتغل بكرا
+        بكرا ما رح اشتغل
+        ما بشتغل بكرا
     apc-Latn/arabizi:
       text: ma ra7 eshteghel bukra.
       tokens: [{surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: eshteghel, sense: eshteghel, form: 'form:subj-1sg'}, {surface: bukra, sense: bukra}]
-      reverse: ma (ra7|la7|rah) (eshteghel|ishteghel|eshtighel) (bukra|bokra|bukrah)
+      reverse: |-
+        ma (ra7|la7|rah) (eshteghel|ishteghel|eshtighel) (bukra|bokra|bukrah)
+        ana ma ra7 eshteghel bukra
+        bukra ma ra7 eshteghel
+        ma bishteghel bukra
   translations:
     en: |-
       I('m| am) not going to work tomorrow.
@@ -112,15 +144,26 @@ sentences:
     apc-Arab/standard:
       text: بكرا رح ننزل ع بيروت.
       tokens: [{surface: بكرا, sense: bukra}, {surface: رح, sense: ra7.fut}, {surface: ننزل, sense: nezel, form: 'form:subj-1pl'}, {surface: ع, sense: 3a}, {surface: بيروت, sense: beirut}]
-      reverse: (بكرا|بكرة) (رح|لح) ننزل ع بيروت
+      reverse: |-
+        (بكرا|بكرة) (رح|لح) ننزل ع بيروت
+        رح ننزل ع بيروت بكرا
+        بكرا رح ننزل على بيروت
+        بكرا مننزل ع بيروت
+        بكرا نحنا رح ننزل ع بيروت
     apc-Latn/arabizi:
       text: bukra ra7 nenzal 3a Beirut.
       tokens: [{surface: bukra, sense: bukra}, {surface: ra7, sense: ra7.fut}, {surface: nenzal, sense: nezel, form: 'form:subj-1pl'}, {surface: 3a, sense: 3a}, {surface: Beirut, sense: beirut}]
-      reverse: (bukra|bokra|bukrah) (ra7|la7|rah) (nenzal|ninzal|nenzel) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+      reverse: |-
+        (bukra|bokra|bukrah) (ra7|la7|rah) (nenzal|ninzal|nenzel) (3a|3ala) (Beirut|Bayrut|Beyrouth)
+        ra7 nenzal 3a Beirut bukra
+        bukra mnenzal 3a Beirut
+        bukra ne7na ra7 nenzal 3a Beirut
   translations:
     en: |-
       Tomorrow we('re| are) going (down|) to Beirut.
       We('ll| will) go (down|) to Beirut tomorrow.
+      We're going down to Beirut tomorrow.
+      Tomorrow we'll go down to Beirut.
 - id: s.trip.6
   node: apc.trip.will
   register: colloquial
@@ -129,12 +172,16 @@ sentences:
       text: ما رح ننزل عالبحر.
       tokens: [{surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: ننزل, sense: nezel, form: 'form:subj-1pl'}, {surface: عالبحر, sense: ba7r, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال,
               kc: 'sense:el'}, {surface: بحر, kc: 'sense:ba7r'}]}]
-      reverse: ما (رح|لح) ننزل (عالبحر|ع البحر|على البحر)
+      reverse: |-
+        ما (رح|لح) ننزل (عالبحر|ع البحر|على البحر)
+        نحنا ما رح ننزل عالبحر
     apc-Latn/arabizi:
       text: ma ra7 nenzal 3al ba7r.
       tokens: [{surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: nenzal, sense: nezel, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
               kc: 'sense:el'}]}, {surface: ba7r, sense: ba7r}]
-      reverse: ma (ra7|la7|rah) (nenzal|ninzal|nenzel) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+      reverse: |-
+        ma (ra7|la7|rah) (nenzal|ninzal|nenzel) (3al|3a l|3a el) (ba7r|ba7er|bahr)
+        ne7na ma ra7 nenzal 3al ba7r
   translations:
     en: |-
       We('re| are) not going (down|) to the (beach|sea).
@@ -147,12 +194,16 @@ sentences:
       text: رح نطلع عالضيعة.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: نطلع, sense: tele3, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'},
             {surface: ضيعة, kc: 'sense:day3a'}]}]
-      reverse: (رح|لح) نطلع (عالضيعة|ع الضيعة|على الضيعة)
+      reverse: |-
+        (رح|لح) نطلع (عالضيعة|ع الضيعة|على الضيعة)
+        نحنا رح نطلع عالضيعة
     apc-Latn/arabizi:
       text: ra7 netla3 3al day3a.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: netla3, sense: tele3, form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {
           surface: day3a, sense: day3a}]
-      reverse: (ra7|la7|rah) (netla3|nitla3|nutla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+      reverse: |-
+        (ra7|la7|rah) (netla3|nitla3|nutla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+        ne7na ra7 netla3 3al day3a
   translations:
     en: |-
       We('re| are) going (up|) to the village.
@@ -164,11 +215,15 @@ sentences:
     apc-Arab/standard:
       text: الضيعة حلوة كتير.
       tokens: [{surface: الضيعة, sense: day3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}, {surface: حلوة, sense: 7elo, form: 'form:fem'}, {surface: كتير, sense: ktir}]
-      reverse: الضيعة حلوة كتير
+      reverse: |-
+        الضيعة حلوة كتير
+        الضيعة كتير حلوة
     apc-Latn/arabizi:
       text: el day3a 7elwe ktir.
       tokens: [{surface: el, sense: el}, {surface: day3a, sense: day3a}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}, {surface: ktir, sense: ktir}]
-      reverse: (el|l|il) (day3a|dey3a|day3ah|dai3a) (7elwe|7elwi|7ilwe|helwe) (ktir|kteer)
+      reverse: |-
+        (el|l|il) (day3a|dey3a|day3ah|dai3a) (7elwe|7elwi|7ilwe|helwe) (ktir|kteer)
+        el day3a ktir 7elwe
   translations:
     en: |-
       The village is (very|really|so) (beautiful|pretty|lovely|nice).
@@ -199,12 +254,16 @@ sentences:
       text: بيّي رح يشتغل بكرا.
       tokens: [{surface: بيّي, sense: bayy, morphs: [{surface: بيّ, kc: 'sense:bayy'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: رح, sense: ra7.fut}, {surface: يشتغل, sense: eshteghel, form: 'form:subj-3ms'},
         {surface: بكرا, sense: bukra}]
-      reverse: بيّي (رح|لح) يشتغل (بكرا|بكرة)
+      reverse: |-
+        بيّي (رح|لح) يشتغل (بكرا|بكرة)
+        بيّي بيشتغل بكرا
     apc-Latn/arabizi:
       text: bayyi ra7 yishteghel bukra.
       tokens: [{surface: bayyi, sense: bayy, morphs: [{surface: bayy, kc: 'sense:bayy'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ra7, sense: ra7.fut}, {surface: yishteghel, sense: eshteghel, form: 'form:subj-3ms'},
         {surface: bukra, sense: bukra}]
-      reverse: (bayyi|baye|bayi|bayye|beyye|beyyi) (ra7|la7|rah) (yishteghel|yeshteghel|yishtighel) (bukra|bokra|bukrah)
+      reverse: |-
+        (bayyi|baye|bayi|bayye|beyye|beyyi) (ra7|la7|rah) (yishteghel|yeshteghel|yishtighel) (bukra|bokra|bukrah)
+        bayyi byishteghel bukra
   translations:
     en: |-
       My (dad|father) (will|is going to) work tomorrow.
@@ -230,13 +289,20 @@ sentences:
     apc-Arab/standard:
       text: تيتا رح تعمل غدا.
       tokens: [{surface: تيتا, sense: teta}, {surface: رح, sense: ra7.fut}, {surface: تعمل, sense: 3emel, form: 'form:subj-3fs'}, {surface: غدا, sense: ghada}]
-      reverse: تيتا (رح|لح) (تعمل|بتعمل) غدا
+      reverse: |-
+        تيتا (رح|لح) (تعمل|بتعمل) غدا
+        تيتا رح تعمل الغدا
     apc-Latn/arabizi:
       text: teta ra7 ta3mel ghada.
       tokens: [{surface: teta, sense: teta}, {surface: ra7, sense: ra7.fut}, {surface: ta3mel, sense: 3emel, form: 'form:subj-3fs'}, {surface: ghada, sense: ghada}]
-      reverse: teta (ra7|la7|rah) (ta3mel|te3mel) (ghada|ghade)
+      reverse: |-
+        teta (ra7|la7|rah) (ta3mel|te3mel) (ghada|ghade)
+        teta ra7 ta3mel el ghada
+        tayta ra7 ta3mel ghada
   translations:
-    en: (Grandma|Granny) (will|is going to) make lunch.
+    en: |-
+      (Grandma|Granny) (will|is going to) make lunch.
+      My grandma will make lunch.
 - id: s.trip.13
   node: apc.trip.he-she
   register: colloquial
@@ -244,11 +310,15 @@ sentences:
     apc-Arab/standard:
       text: عندنا سيّارة.
       tokens: [{surface: عندنا, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: سيّارة, sense: siyyara}]
-      reverse: (عندنا|عنّا) سيّارة
+      reverse: |-
+        (عندنا|عنّا) سيّارة
+        نحنا عندنا سيّارة
     apc-Latn/arabizi:
       text: 3enna siyyara.
       tokens: [{surface: 3enna, sense: 3end, morphs: [{surface: 3en, kc: 'sense:3end'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: siyyara, sense: siyyara}]
-      reverse: (3enna|3endna|3anna|3enda) (siyyara|siyara|sayyara|sayara|syara)
+      reverse: |-
+        (3enna|3endna|3anna|3enda) (siyyara|siyara|sayyara|sayara|syara)
+        ne7na 3enna siyyara
   translations:
     en: |-
       We have a car.
@@ -277,12 +347,16 @@ sentences:
       text: رح نروح بالسيّارة.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
             {surface: سيّارة, kc: 'sense:siyyara'}]}]
-      reverse: (رح|لح) نروح بالسيّارة
+      reverse: |-
+        (رح|لح) نروح بالسيّارة
+        نحنا رح نروح بالسيّارة
     apc-Latn/arabizi:
       text: ra7 nru7 bel siyyara.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara,
           sense: siyyara}]
-      reverse: (ra7|la7|rah) (nru7|nro7) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
+      reverse: |-
+        (ra7|la7|rah) (nru7|nro7) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
+        ne7na ra7 nru7 bel siyyara
   translations:
     en: |-
       We('ll| will) go by car.
@@ -296,16 +370,26 @@ sentences:
       text: الشهر الجاي رح سافر.
       tokens: [{surface: الشهر, sense: shahr, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شهر, kc: 'sense:shahr'}]}, {surface: الجاي, sense: jeye, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جاي,
               kc: 'sense:jeye'}]}, {surface: رح, sense: ra7.fut}, {surface: سافر, sense: safar, form: 'form:subj-1sg'}]
-      reverse: الشهر الجاي (رح|لح) (سافر|إسافر)
+      reverse: |-
+        الشهر الجاي (رح|لح) (سافر|إسافر)
+        رح سافر الشهر الجاي
+        الشهر الجاي أنا رح سافر
+        الشهر الجاي بسافر
     apc-Latn/arabizi:
       text: el shahr el jey ra7 safer.
       tokens: [{surface: el, sense: el}, {surface: shahr, sense: shahr}, {surface: el, sense: el}, {surface: jey, sense: jeye}, {surface: ra7, sense: ra7.fut}, {surface: safer, sense: safar, form: 'form:subj-1sg'}]
-      reverse: (el|l|il) (shahr|shaher) (el|l|il) (jey|jeye|jay|jayy) (ra7|la7|rah) (safer|sefer|safir)
+      reverse: |-
+        (el|l|il) (shahr|shaher) (el|l|il) (jey|jeye|jay|jayy) (ra7|la7|rah) (safer|sefer|safir)
+        ra7 safer el shahr el jey
+        el shahr el jey ana ra7 safer
+        el shahr el jey bsefer
   translations:
     en: |-
       Next month I('m| am) going to travel.
       I('ll| will) travel next month.
       I('m| am) going away next month.
+      I'm going to travel next month.
+      Next month I'll travel.
 - id: s.trip.17
   node: apc.trip.when
   register: colloquial
@@ -315,16 +399,24 @@ sentences:
       tokens: [{surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
             {surface: جاية, kc: 'sense:jeye'}]}, {surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'},
             {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
-      reverse: الجمعة (الجاية|الجايي) (رح|لح) نروح (عالضيعة|ع الضيعة|على الضيعة)
+      reverse: |-
+        الجمعة (الجاية|الجايي) (رح|لح) نروح (عالضيعة|ع الضيعة|على الضيعة)
+        رح نروح عالضيعة الجمعة الجاية
+        الجمعة الجاية منروح عالضيعة
     apc-Latn/arabizi:
       text: el jem3a el jeye ra7 nru7 3al day3a.
       tokens: [{surface: el, sense: el}, {surface: jem3a, sense: jem3a}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}, {surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7,
           form: 'form:subj-1pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
-      reverse: (el|l) (jem3a|jim3a) (el|l) (jeye|jeyye) (ra7|la7|rah) (nru7|nro7) (3al|3a l|3a el) (day3a|dey3a|day3ah)
+      reverse: |-
+        (el|l) (jem3a|jim3a) (el|l) (jeye|jeyye) (ra7|la7|rah) (nru7|nro7) (3al|3a l|3a el) (day3a|dey3a|day3ah)
+        ra7 nru7 3al day3a el jem3a el jeye
+        el jem3a el jeye mnru7 3al day3a
   translations:
     en: |-
       Next week we('re| are) going to the village.
       We('ll| will) go to the village next week.
+      We're going to the village next week.
+      Next week we'll go to the village.
 - id: s.trip.18
   node: apc.trip.when
   register: colloquial
@@ -332,11 +424,18 @@ sentences:
     apc-Arab/standard:
       text: بعد بكرا منروح.
       tokens: [{surface: بعد, sense: ba3d-bukra}, {surface: بكرا, sense: ba3d-bukra}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}]
-      reverse: بعد (بكرا|بكرة) (منروح|نحنا منروح)
+      reverse: |-
+        بعد (بكرا|بكرة) (منروح|نحنا منروح)
+        منروح بعد بكرا
+        بعد بكرا رح نروح
     apc-Latn/arabizi:
       text: ba3d bukra mnru7.
       tokens: [{surface: ba3d, sense: ba3d-bukra}, {surface: bukra, sense: ba3d-bukra}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}]
-      reverse: (ba3d|ba3ed) (bukra|bokra|bukrah) (mnru7|mnro7)
+      reverse: |-
+        (ba3d|ba3ed) (bukra|bokra|bukrah) (mnru7|mnro7)
+        ba3d bukra ne7na mnru7
+        mnru7 ba3d bukra
+        ba3d bukra ra7 nru7
   translations:
     en: |-
       We('re| are) going the day after tomorrow.
@@ -349,11 +448,15 @@ sentences:
     apc-Arab/standard:
       text: رح نروح يومين.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: يومين, sense: yom, morphs: [{surface: يوم, kc: 'sense:yom'}, {surface: ين, kc: 'form:dual'}]}]
-      reverse: (رح|لح) نروح يومين
+      reverse: |-
+        (رح|لح) نروح يومين
+        نحنا رح نروح يومين
     apc-Latn/arabizi:
       text: ra7 nru7 yomen.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: yomen, sense: yom, morphs: [{surface: yom, kc: 'sense:yom'}, {surface: en, kc: 'form:dual'}]}]
-      reverse: (ra7|la7|rah) (nru7|nro7) (yomen|yawmen|yomein|yawmein)
+      reverse: |-
+        (ra7|la7|rah) (nru7|nro7) (yomen|yawmen|yomein|yawmein)
+        ne7na ra7 nru7 yomen
   translations:
     en: |-
       We('re| are) going for two days.
@@ -369,7 +472,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi sa3ten.
       tokens: [{surface: baddi, sense: baddi}, {surface: sa3ten, sense: sa3a, morphs: [{surface: sa3t, kc: 'sense:sa3a'}, {surface: en, kc: 'form:dual'}]}]
-      reverse: (baddi|badde|badi) (sa3ten|se3ten|sa3tein|se3tein)
+      reverse: |-
+        (baddi|badde|badi) (sa3ten|se3ten|sa3tein|se3tein)
+        ana baddi sa3ten
   translations:
     en: |-
       I need two hours.
@@ -382,12 +487,20 @@ sentences:
       text: بالصيفيّة منطلع عالضيعة.
       tokens: [{surface: بالصيفيّة, sense: sayfiyye, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: صيفيّة, kc: 'sense:sayfiyye'}]}, {surface: منطلع, sense: tele3, form: 'form:impf-1pl'},
         {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: ضيعة, kc: 'sense:day3a'}]}]
-      reverse: بالصيفيّة منطلع (عالضيعة|ع الضيعة|على الضيعة)
+      reverse: |-
+        بالصيفيّة منطلع (عالضيعة|ع الضيعة|على الضيعة)
+        منطلع عالضيعة بالصيفيّة
+        بالصيف منطلع عالضيعة
+        بالصيفيّة نحنا منطلع عالضيعة
     apc-Latn/arabizi:
       text: bel sayfiyye mnitla3 3al day3a.
       tokens: [{surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye}, {surface: mnitla3, sense: tele3, form: 'form:impf-1pl'},
         {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a, sense: day3a}]
-      reverse: (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+      reverse: |-
+        (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye) (mnitla3|mnetla3|mnotla3) (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a)
+        mnitla3 3al day3a bel sayfiyye
+        bel sayf mnitla3 3al day3a
+        bel sayfiyye ne7na mnitla3 3al day3a
   translations:
     en: |-
       In (the|) summer we go (up|) to the village.
@@ -413,11 +526,15 @@ sentences:
     apc-Arab/standard:
       text: الشنطة كبيرة كتير!
       tokens: [{surface: الشنطة, sense: shanta, morphs: [{surface: ال, kc: 'sense:el'}, {surface: شنطة, kc: 'sense:shanta'}]}, {surface: كبيرة, sense: kbir, form: 'form:fem'}, {surface: كتير, sense: ktir}]
-      reverse: الشنطة كبيرة كتير
+      reverse: |-
+        الشنطة كبيرة كتير
+        الشنطة كتير كبيرة
     apc-Latn/arabizi:
       text: el shanta kbire ktir!
       tokens: [{surface: el, sense: el}, {surface: shanta, sense: shanta}, {surface: kbire, sense: kbir, form: 'form:fem'}, {surface: ktir, sense: ktir}]
-      reverse: (el|l|il) (shanta|shante|shan6a) (kbire|kbeere|kbiri) (ktir|kteer)
+      reverse: |-
+        (el|l|il) (shanta|shante|shan6a) (kbire|kbeere|kbiri) (ktir|kteer)
+        el shanta ktir kbire
   translations:
     en: |-
       The (bag|suitcase) is (very|really|too) big!
@@ -429,11 +546,15 @@ sentences:
     apc-Arab/standard:
       text: رح آخد شنطة زغيرة.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: آخد, sense: akhad, form: 'form:subj-1sg'}, {surface: شنطة, sense: shanta}, {surface: زغيرة, sense: zghir, form: 'form:fem'}]
-      reverse: (رح|لح) آخد شنطة (زغيرة|صغيرة)
+      reverse: |-
+        (رح|لح) آخد شنطة (زغيرة|صغيرة)
+        أنا رح آخد شنطة زغيرة
     apc-Latn/arabizi:
       text: ra7 ekhod shanta zghire.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: ekhod, sense: akhad, form: 'form:subj-1sg'}, {surface: shanta, sense: shanta}, {surface: zghire, sense: zghir, form: 'form:fem'}]
-      reverse: (ra7|la7|rah) (ekhod|ekhud|akhod|5od) (shanta|shante|shan6a) (zghire|zghiri|zgheere)
+      reverse: |-
+        (ra7|la7|rah) (ekhod|ekhud|akhod|5od) (shanta|shante|shan6a) (zghire|zghiri|zgheere)
+        ana ra7 ekhod shanta zghire
   translations:
     en: |-
       I('ll| will) take a (small|little) (bag|suitcase).
@@ -460,11 +581,15 @@ sentences:
     apc-Arab/standard:
       text: ما رح آخد شي.
       tokens: [{surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: آخد, sense: akhad, form: 'form:subj-1sg'}, {surface: شي, sense: shi}]
-      reverse: ما (رح|لح) آخد شي
+      reverse: |-
+        ما (رح|لح) آخد شي
+        أنا ما رح آخد شي
     apc-Latn/arabizi:
       text: ma ra7 ekhod shi.
       tokens: [{surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: ekhod, sense: akhad, form: 'form:subj-1sg'}, {surface: shi, sense: shi}]
-      reverse: ma (ra7|la7|rah) (ekhod|ekhud|akhod|5od) (shi|she)
+      reverse: |-
+        ma (ra7|la7|rah) (ekhod|ekhud|akhod|5od) (shi|she)
+        ana ma ra7 ekhod shi
   translations:
     en: |-
       I('m| am) not (going to take|taking) anything.
@@ -478,16 +603,21 @@ sentences:
       text: رح تروح عالضيعة بالسيّارة؟
       tokens: [{surface: رح, sense: ra7.fut}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالضيعة, sense: day3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
               surface: ضيعة, kc: 'sense:day3a'}]}, {surface: بالسيّارة, sense: siyyara, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'}, {surface: سيّارة, kc: 'sense:siyyara'}]}]
-      reverse: (رح|لح) تروح (عالضيعة|ع الضيعة|على الضيعة) بالسيّارة
+      reverse: |-
+        (رح|لح) تروح (عالضيعة|ع الضيعة|على الضيعة) بالسيّارة
+        إنت رح تروح عالضيعة بالسيّارة
     apc-Latn/arabizi:
       text: ra7 tru7 3al day3a bel siyyara?
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: day3a,
           sense: day3a}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: siyyara, sense: siyyara}]
-      reverse: (ra7|la7|rah) tru7 (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
+      reverse: |-
+        (ra7|la7|rah) tru7 (3al|3a l|3a el) (day3a|dey3a|day3ah|dai3a) (bel|bil|b el) (siyyara|siyara|sayyara|sayara|syara)
+        enta ra7 tru7 3al day3a bel siyyara
   translations:
     en: |-
       Are you going to the village by car?
       Will you go to the village by car?
+      Are you going to go to the village by car?
 - id: s.trip.28
   node: apc.trip.you-they
   register: colloquial
@@ -496,15 +626,22 @@ sentences:
     apc-Arab/standard:
       text: شو رح تعملي بكرا؟
       tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تعملي, sense: 3emel, form: 'form:subj-2fs'}, {surface: بكرا, sense: bukra}]
-      reverse: شو (رح|لح) تعملي (بكرا|بكرة)
+      reverse: |-
+        شو (رح|لح) تعملي (بكرا|بكرة)
+        شو بتعملي بكرا
+        بكرا شو رح تعملي
     apc-Latn/arabizi:
       text: shu ra7 ta3mli bukra?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mli, sense: 3emel, form: 'form:subj-2fs'}, {surface: bukra, sense: bukra}]
-      reverse: (shu|sho) (ra7|la7|rah) (ta3mli|ta3meli|ta3mele|ta3mle) (bukra|bokra|bukrah)
+      reverse: |-
+        (shu|sho) (ra7|la7|rah) (ta3mli|ta3meli|ta3mele|ta3mle) (bukra|bokra|bukrah)
+        shu bta3mli bukra
+        bukra shu ra7 ta3mli
   translations:
     en: |-
       What are you going to do tomorrow?
       What will you do tomorrow?
+      What are you doing tomorrow?
 - id: s.trip.29
   node: apc.trip.you-they
   register: colloquial
@@ -525,6 +662,7 @@ sentences:
       Maya, are you going to come with us?
       Maya, will you go with us?
       Maya, are you coming with us?
+      Maya, are you going with us?
 - id: s.trip.30
   node: apc.trip.you-they
   register: colloquial
@@ -534,12 +672,18 @@ sentences:
       text: شو رح تعملوا بالصيفيّة؟
       tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تعملوا, sense: 3emel, form: 'form:subj-2pl'}, {surface: بالصيفيّة, sense: sayfiyye, morphs: [{surface: ب, kc: 'sense:b'},
             {surface: ال, kc: 'sense:el'}, {surface: صيفيّة, kc: 'sense:sayfiyye'}]}]
-      reverse: شو (رح|لح) (تعملوا|تعملو) بالصيفيّة
+      reverse: |-
+        شو (رح|لح) (تعملوا|تعملو) بالصيفيّة
+        إنتو شو رح تعملوا بالصيفيّة
+        شو رح تعملوا بالصيف
     apc-Latn/arabizi:
       text: shu ra7 ta3mlo bel sayfiyye?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: ta3mlo, sense: 3emel, form: 'form:subj-2pl'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el,
               kc: 'sense:el'}]}, {surface: sayfiyye, sense: sayfiyye}]
-      reverse: (shu|sho) (ra7|la7|rah) (ta3mlo|ta3melo|ta3mlu) (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye)
+      reverse: |-
+        (shu|sho) (ra7|la7|rah) (ta3mlo|ta3melo|ta3mlu) (bel|bil|b el) (sayfiyye|sayfiye|seyfiyye|sayfiyya|saifiyye)
+        ento shu ra7 ta3mlo bel sayfiyye
+        shu ra7 ta3mlo bel sayf
   translations:
     en: |-
       What are you going to do in (the|) summer?
@@ -552,15 +696,21 @@ sentences:
     apc-Arab/standard:
       text: رح تاكلوا عند تيتا؟
       tokens: [{surface: رح, sense: ra7.fut}, {surface: تاكلوا, sense: akal, form: 'form:subj-2pl'}, {surface: عند, sense: 3end}, {surface: تيتا, sense: teta}]
-      reverse: (رح|لح) (تاكلوا|تاكلو) عند تيتا
+      reverse: |-
+        (رح|لح) (تاكلوا|تاكلو) عند تيتا
+        إنتو رح تاكلوا عند تيتا
     apc-Latn/arabizi:
       text: ra7 teklo 3end teta?
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: teklo, sense: akal, form: 'form:subj-2pl'}, {surface: 3end, sense: 3end}, {surface: teta, sense: teta}]
-      reverse: (ra7|la7|rah) (teklo|tekelo|taklo|teklu) (3end|3and|3ind) teta
+      reverse: |-
+        (ra7|la7|rah) (teklo|tekelo|taklo|teklu) (3end|3and|3ind) teta
+        ento ra7 teklo 3end teta
+        ra7 teklo 3end tayta
   translations:
     en: |-
       Are you going to eat at (grandma's|granny's)?
       Will you eat at (grandma's|granny's)?
+      Are you going to eat at my grandma's?
 - id: s.trip.32
   node: apc.trip.you-they
   register: colloquial
@@ -570,12 +720,16 @@ sentences:
       tokens: [{surface: الجيران, sense: jiren, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جيران, kc: 'sense:jiren'}]}, {surface: رح, sense: ra7.fut}, {surface: يسافروا, sense: safar, form: 'form:subj-3pl'},
         {surface: الجمعة, sense: jem3a, morphs: [{surface: ال, kc: 'sense:el'}, {surface: جمعة, kc: 'sense:jem3a'}]}, {surface: الجاية, sense: jeye, form: 'form:fem', morphs: [{surface: ال, kc: 'sense:el'},
             {surface: جاية, kc: 'sense:jeye'}]}]
-      reverse: الجيران (رح|لح) (يسافروا|يسافرو) الجمعة (الجاية|الجايي)
+      reverse: |-
+        الجيران (رح|لح) (يسافروا|يسافرو) الجمعة (الجاية|الجايي)
+        الجمعة الجاية الجيران رح يسافروا
     apc-Latn/arabizi:
       text: el jiren ra7 ysefro el jem3a el jeye.
       tokens: [{surface: el, sense: el}, {surface: jiren, sense: jiren}, {surface: ra7, sense: ra7.fut}, {surface: ysefro, sense: safar, form: 'form:subj-3pl'}, {surface: el, sense: el}, {surface: jem3a,
           sense: jem3a}, {surface: el, sense: el}, {surface: jeye, sense: jeye, form: 'form:fem'}]
-      reverse: (el|l) (jiren|jiran) (ra7|la7) (ysefro|ysafro) (el|l) (jem3a|jim3a|jum3a) (el|l|il) (jeye|jeyye|jeyi)
+      reverse: |-
+        (el|l) (jiren|jiran) (ra7|la7) (ysefro|ysafro) (el|l) (jem3a|jim3a|jum3a) (el|l|il) (jeye|jeyye|jeyi)
+        el jem3a el jeye el jiren ra7 ysefro
   translations:
     en: |-
       The (neighbours|neighbors) are going to travel next week.
@@ -627,12 +781,16 @@ sentences:
       text: أنا تعبان، ما رح اطلع الليلة.
       tokens: [{surface: أنا, sense: ana}, {surface: تعبان, sense: ta3ban}, {surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: اطلع, sense: tele3, form: 'form:subj-1sg'}, {surface: الليلة,
           sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة, kc: 'sense:lele'}]}]
-      reverse: '[أنا] تعبان ما (رح|لح) اطلع الليلة'
+      reverse: |-
+        [أنا] تعبان ما (رح|لح) اطلع الليلة
+        أنا تعبان ما بطلع الليلة
     apc-Latn/arabizi:
       text: ana ta3ban, ma ra7 etla3 el lele.
       tokens: [{surface: ana, sense: ana}, {surface: ta3ban, sense: ta3ban}, {surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: etla3, sense: tele3, form: 'form:subj-1sg'}, {surface: el,
           sense: el}, {surface: lele, sense: lele}]
-      reverse: '[ana] (ta3ban|ta3ben|t3ban) ma (ra7|la7|rah) (etla3|itla3|otla3) (el|l|il) (lele|leile|leyle)'
+      reverse: |-
+        [ana] (ta3ban|ta3ben|t3ban) ma (ra7|la7|rah) (etla3|itla3|otla3) (el|l|il) (lele|leile|leyle)
+        ana ta3ban ma betla3 el lele
   translations:
     en: |-
       I('m| am) tired, I('m| am) not going out tonight.

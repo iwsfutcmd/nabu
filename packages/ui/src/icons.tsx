@@ -44,7 +44,7 @@ export const CloseIcon = ({ size = 20 }: IconProps): JSX.Element => (
 export const CorrectIcon = ({ size = 28 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="correct">
     <circle cx="12" cy="12" r="11" fill="currentColor" />
-    <path d="m7 12.5 3.2 3.2L17 9" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="m7 12.5 3.2 3.2L17 9" fill="none" className={styles.mark} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
   </svg>
 );
 
@@ -52,7 +52,7 @@ export const CorrectIcon = ({ size = 28 }: IconProps): JSX.Element => (
 export const WrongIcon = ({ size = 28 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="wrong">
     <circle cx="12" cy="12" r="11" fill="currentColor" />
-    <path d="m8 8 8 8M16 8l-8 8" fill="none" stroke="#fff" strokeWidth="2.6" strokeLinecap="round" />
+    <path d="m8 8 8 8M16 8l-8 8" fill="none" className={styles.mark} strokeWidth="2.6" strokeLinecap="round" />
   </svg>
 );
 

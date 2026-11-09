@@ -24,6 +24,8 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["apc", "apc-Arab/standard", "apc.cafe"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.well-said"],
     ["es", "es-Latn/standard", "es.u01.como-estas"],
+    ["hbo", "hbo-Hebr/tiberian", "hbo.u01.light"],
+    ["tok", "tok-Latn/standard", "tok.u01.hello"],
   ],
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
@@ -32,6 +34,8 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
     ["apc", "apc-Latn/arabizi", "apc.how-are-you"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.it-is"],
     ["es", "es-Latn/standard", "es.u01.soy"],
+    ["hbo", "hbo-Hebr/tiberian", "hbo.u01.the-day"],
+    ["tok", "tok-Qaap/sitelen-pona", "tok.u01.person"],
   ],
 };
 

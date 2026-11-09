@@ -70,6 +70,15 @@ Policies the pass adopted, to confirm or reverse:
     - Plural "you" is taught in four new lessons (ADR 0075); see apc point 12 below.
   - The judge's golden items keep ميرسي, تمام, باي and شكرا as rejects.
 
+## Accept sets checked against ADR 0085 (November 2026)
+
+Every course's accept sets were then read against
+[ADR 0085](../docs/adr/0085-what-the-prompt-leaves-open.md): an answer is right if its own
+translation would be the prompt. The answers a model was sure of were added, about 3,400 across
+the courses. [accept-doubts.md](accept-doubts.md) lists the 435 it was not sure of, sentence by
+sentence, and eight questions of policy (English contractions, register, yue spellings, digits).
+Answering a policy question settles many rows at once.
+
 ## Marking what is wrong
 
 You can mark mistakes in the app ([ADR 0051](../docs/adr/0051-corrections.md)), with no setup.
@@ -210,6 +219,13 @@ points below land, and its chapter is cited where it does.
   came back (was rje3).
 - **Accepted now:** msh, re7et, shtarayt; 8 for gh in Arabizi (profile `gh-8`, REVIEW).
 - **Spelled as the book spells it:** the -o / -a endings, now ـه / ـها (item 4).
+- **Grammar slips are wrong, not typos** ([ADR 0081](../docs/adr/0081-affixes-on-inflected-words.md), REVIEW):
+  the profiles' verb-prefix sets (b-, bt-, bi-, mn-, the imperfect's t-, y-, n-) and agreement endings (feminine,
+  -i, -o). Check the members, above all Arabizi's vowel spellings (b / bi / be) and the 1pl بن beside من.
+- **Gender left open by the English** ("it", a bare "this", an untagged "you"): both forms are accepted
+  (s.home.23 بعيد / بعيدة, s.num.22, s.food.20, s.party.28, s.shop.7, s.shop.18, s.shop.25–27, s.health.20,
+  s.work.29). "Shall we…?" (s.like.22) takes the bare imperfect نشوف as well as منشوف. The two untagged "you"
+  sentences are tagged: s.day.24 to one person (بتحكي is a man's and a woman's), s.child.14 to a man.
 - **Still a judgement call:** whatever the book leaves open or contradicts, below.
 
 1. **"Right now" (3am) plus a verb.** The course uses the form without b- (3am ta3mel, 3am esma3)
@@ -226,6 +242,9 @@ points below land, and its chapter is cited where it does.
    - The vowel marks put a damma before ـه (بَيُّه, شِفْتُه): it is what tells the voice to say -o.
      Before ـها the letter stays unmarked (إِمّها). Is that what a reader expects to see?
    - Verb plurals are not this ending and keep ـوا (بتعرفوا, you all know; بتعرفو accepted).
+   - Six clips Ben had checked (s.fam.15–19, s.like.16) were made again from the new spelling:
+     they need a listen again in the audio check. s.fam.16 (شو اسمه؟) first: a phoneme model
+     hears esma (her name) in it, not esmo.
    - Units 11–20 write "their" ـهن (بيتهن), as Kline does, and accept ـن.
 5. **Numbers and money.**
    - café orders: tnen ahwe, wa7ad shay;
@@ -369,6 +388,73 @@ Drafted after the native-speaker pass above, so it has had no second reading
    Older and regional forms (爲, 説) are accepted with a note.
 8. **Characters outside CLDR zh_Hant** are in the profile's `exemplarsExtra`, marked REVIEW:
    焉 歟 孰 奚 罔 慍 誨 殆 踰 矩 濠 鯈 遽 墜 耕 株 冀 耒 鬻 叟 啼.
+
+## hbo (Biblical Hebrew)
+
+Drafted after the native-speaker pass above ([ADR 0082](../docs/adr/0082-biblical-hebrew.md)). There are no
+native speakers: a reviewer who reads Biblical Hebrew, ideally one who knows the Tiberian reading tradition,
+should check what follows. Khan (the sounds), Joüon–Muraoka (forms and stems) and Holladay (glosses) have
+since been read against the course ([ADR 0084](../docs/adr/0084-hbo-references.md); page-referenced notes in the
+reference library, notes/hbo): what they showed wrong is fixed, and what they leave open is listed here.
+
+1. **The pinned readings** (`readings: {tiberian: …}`, SBL transliteration with an acute on non-final stress).
+   They were drafted from the Westminster Leningrad Codex: the stress from each word's accent, vocal shewa and
+   qamets gadol from meteg and from the morphology. Check first:
+   - words of constructed sentences, which take the reading of the same pointed form in the Bible; where the
+     Bible has none, the drafting script guessed (the generator reports these: מְבַקֶּשֶׁת məḇaqqéšeṯ);
+   - qamets before shewa with no meteg in the WLC: drafted as qamets qatan (ḥoḵmâ, qoḏšô) except in the qal
+     perfect (šāmərû) and before -ḵā/-ḵem on nouns (ləḇāḇəḵā);
+   - shewa after a long vowel: written vocal (šōmərîm, tēləḵî), as SBL and the classical rule have it, but said
+     silent with the vowel long, as Khan describes (§I.2.5.6). Should a reading shown to learners follow SBL
+     or Khan?
+   - stress at a verse's end now comes from silluq (Khan p. 455) and yetiv marks its syllable (p. 327): seven
+     story readings changed (ʾayyékkâ, ʾānṓḵî, ʾēlếḵā, šəḵémâ, gəzṓrû, ʾā́ttâ, yənaḥămúnî);
+   - stress retraction kept from the text where the Bible has it (qā́rāʾ láylâ in Gen 1:5);
+   - the divine name read with its qere, ʾăḏōnāy (laʾḏōnāy after a preposition), and the Pentateuch's הִוא read
+     hîʾ.
+2. **The audio** says those readings in eSpeak NG's Arabic phoneme table, as Khan's vol. I describes the
+   Tiberian tradition (checked page by page, ADR 0084). Approximations to listen for: segol said [e] like ṣere;
+   qamets as a backed [ɑ] (Khan: [ɔ]); resh as a trill (Khan: uvular [ʀ̟], [rˤ] beside alveolars); ḡ as [ɣ]
+   (Khan: [ʁ]); k p t unaspirated (Khan: [kʰ pʰ tʰ]); a long vowel's echo in a closed syllable said as one long
+   vowel. Not modelled at all: gaʿya and what it does to a shewa, half-long vowels, deḥiq, segol-yod [ɛː], the
+   backed pataḥ, coda ʾalef. The voice is rule-based and sounds it. A recorded reader of the Tiberian
+   tradition (`nabu audio ingest`) would replace it.
+3. **Pointing of constructed sentences.** Every word was checked against the forms the Bible attests; a few
+   are unattested but regular (מְבַקֶּשֶׁת). Contextual forms are used, not pausal ones, except in quotations.
+   Begadkefat after a vowel-final word joined by maqaf are spirantized as in the text (וַיְהִי־בֹקֶר).
+4. **Analyses.** Token senses, morphs and forms come from the WLC's morphology (openscriptures/morphhb). Two
+   slips were corrected by hand: Gen 3:11 מִמֶּנּוּ "from it" (tagged "from us"), Gen 24:17 מִכַּדֵּךְ "from your
+   (f.) jar" (tagged "her"). Verbs are KCs by stem (הָלַךְ and הִתְהַלֵּךְ, רָאָה and הֶרְאָה and נִרְאָה; נֶחְבָּא
+   and הִתְחַבֵּא since ADR 0084); the stems agree with Joüon–Muraoka. Forms are KCs by conjugation and person
+   (`form:wayyiqtol-3ms`); is that the right grain? Joüon–Muraoka corrected: the plural construct of nouns
+   always plural (פְּנֵי) is form:pl-cstr; Jonah 1:9 יָרֵא is the verbal adjective; Gen 12:2 וַאֲגַדְּלָה a
+   cohortative. Open: the long imperative לְכָה beside לֵךְ (accepted?), and jussives spelled like yiqtols
+   (Num 6:24–26), tagged by the WLC.
+5. **Translations.** "the LORD" for the divine name; "God" for אֱלֹהִים; narrative וַ as "and", "then" or
+   nothing. Accept sets are generous with English word order; Hebrew accept sets accept the plene spelling of
+   ō and u (קול for קֹל), a space, hyphen or maqaf between bound words, and the other order of subject and
+   predicate where Biblical Hebrew has both and the English would be the same (52 sentences, ADR 0084; not
+   identity clauses, the blessing formula, a wish in a plain yiqtol, or what reads unpointed as a construct
+   chain). Check the 52 against that criterion. And, by ADR 0085 (what the English does not decide, either is right),
+   the plain forms beside wayyiqtol and weqatal: X-qatal (הָאִשָּׁה אָמְרָה, וְהָאִשָּׁה אָמְרָה), a bare qatal with
+   or without its pronoun (בָּרַח, הוּא בָרַח), a weqatal's yiqtol (תֹּאהַב), and a pronoun before a plain verb
+   (אֲנִי אֶשְׁאָב): 86 sentences. Is any of them one you would mark wrong for its English?
+6. **Persons** (ADR 0075): "you" to a woman (מִי־אָתְּ, אַל־תִּירְאִי, שָׁלוֹם לָךְ), to several people (לְכוּ,
+   שָׁלוֹם לָכֶם), and a woman speaking where Hebrew marks it (participles and adjectives: מִתְהַלֶּכֶת,
+   מְבַקֶּשֶׁת).
+7. **The profile's REVIEW markers:** the typo contrasts and sof pasuq as an exemplar CLDR's Modern Hebrew
+   lacks. The contrasts (ADR 0084, after Joüon–Muraoka § 42, 44, 89–90, 94): pronouns and suffixes on any word;
+   the perfect's endings on perfects; the person prefixes (א ת י נ, none, ה; after ו), the prefix conjugation's
+   endings and agreement only on words the course pins as those forms. Is ה (hiphil, hithpael) rightly a
+   prefix member? Are the shared forms (2ms = 3fs; I-aleph 1cs yiqtol = qatal 3ms) handled as you would?
+8. **Passages with textual quirks:** the Decalogue (Exod 20) has two sets of accents; its readings follow the
+   lower set (עַל־פָּנָי pānā́y), and Exod 20:12 לָךְ is the pausal "to you" (m.), tagged 2fs in the WLC. Jonah
+   1:3 אָנִיָּה is read ʾoniyyâ. Psalm 23 includes its title (מִזְמוֹר לְדָוִד) as the WLC numbers it.
+9. **Idioms translated loosely:** כֹּה יַעֲשֶׂה יְהוָה לִי וְכֹה יֹסִיף (an oath), חַי־יְהוָה, בִּי אֲדֹנִי, כְפַעַם־בְּפַעַם,
+   כִּי־נִכְמְרוּ רַחֲמֶיהָ; these are recognition-only where English has no close equivalent.
+10. **Glosses** agree with Holladay (305 of 312; the others fixed, ADR 0084), but his are narrower for נְאוֹת
+   (under נָוָה) and צַלְמָוֶת (he reads צַלְמוּת, "darkness"; the course keeps "the shadow of death" as the
+   traditional rendering).
 
 ## es (Cuban Spanish)
 
@@ -547,3 +633,71 @@ By unit, what the drafts were least sure of:
 - Spelling: *espanglish* (RAE) canonical, *spanglish* accepted; *cubanoamericano* as one word.
 - Accept sets: reported-speech tenses (*me preguntó de dónde era/soy*, *le dije que era/soy cubano*); *Cuando era niña / De niña*; the English of the toasts (*Many happy returns*, *Here's to many more*).
 - The u30 scenario: Abuelo Pepe as master of ceremonies, teasing Daniel when he slips into Spanglish.
+
+## tok (Toki Pona)
+
+Drafted after the passes above ([ADR 0086](../docs/adr/0086-toki-pona-and-sitelen-pona.md)), checked against the
+references in the reference library (`toki-pona/`, notes in notes/tok). A fluent speaker should check:
+
+1. **Idioms the drafts were unsure of.**
+   - pu and community usage:
+     - kama pona (welcome), tawa pona (bye, to the one leaving), lape pona, moku pona;
+     - jan pi toki pona (a Toki Pona speaker), jan sama (sibling: "brother" in the u05 story);
+     - mama (creator: jan Sonja li mama pi toki pona).
+   - Compounds:
+     - ilo toki (phone), ilo suno (flashlight), tomo moku (restaurant, kitchen), tomo tawa (car), ma tomo (town);
+     - ma kasi (garden in u06, forest in u07), kasi kule (flowers);
+     - ko (dough, sand, mud), kon li tawa e linja lawa mi.
+   - u04: "pilin sina li pona ala pona?" rather than "sina pilin ala pilin pona?". "seme li moku e kili?" is
+     translated *who*; "jan seme li …" is accepted.
+   - u08:
+     - alasa as a preverb, *try* (ku usage): mi alasa toki pona. lukin pali is used for *try* too.
+     - Prices: "len ni li wile e mani mute" (costs a lot) and "mani lili taso".
+     - "esun pona!" (happy shopping) and "o kama sin!" (come again).
+   - u10: pu as a verb (mi pu, jan Mila li pu lon tomo); kin after the word it stresses (mi kin).
+   - "mi tawa tomo" (going home, tawa as a verb with a place) beside "mi tawa ma Kanata".
+   - "nimi mi li Lina" (the name with no jan); "nimi mi li jan Lina" is accepted too.
+2. **Night and stars.** u07 avoids tenpo mun, often read as *month*: mun is the moon and the stars (mun mute li
+   suno), and nightfall is "suno li weka la". tenpo pimeja (night) comes in u09, with pimeja.
+3. **Accept sets, by ADR 0085** (what the prompt does not decide, the learner may choose). They were drafted before
+   that rule, then checked against it: 300 answers were added in both orthographies and English. The additions:
+   - *sina mute* where "you" may be plural, *ona mute* for "they";
+   - *our* for mi; the past tense in English;
+   - anu seme beside "X ala X";
+   - a time as a la phrase or a final lon phrase.
+
+   The doubts (joined objects in the other order, soweli as *cat* or *dog*) are in [accept-doubts.md](accept-doubts.md).
+   **English accept sets.** Toki Pona marks no tense, number or gender. Each set gives I/we for mi, she/he/they/it
+   for ona, and the present, progressive and past where natural. Check that none is too lenient:
+   - kala li moku also takes *fish is food*; akesi takes lizard, frog, snake or reptile;
+   - soweli is sometimes *cat* or *dog* in a story;
+   - u05 accepts either order of subjects joined by en.
+4. **sitelen pona.** The text follows Common Sitelen Pona (2026): no spaces between words, an ideographic space
+   between sentences, no ! ? or commas, a colon after ni.
+   - Is a sentence's lost question mark acceptable to readers, given seme and "X ala X"? Should the sitelen
+     pona middle dot end sentences instead?
+   - The cartouches: Lina linja ilo nasin a; Pita pipi ilo tomo a; Mila mama ilo lipu a; Tomasi tomo olin mani
+     awen sona ilo; Sonja sona olin nasin jan a; Kanata kasi alasa nasin awen telo a (the UCS proposal's example).
+     Would a writer choose others (sona for So-, as nasin sitelen kalama does)?
+5. **Typing sitelen pona.** Latin words typed into a sitelen pona answer become logographs, and a name typed in
+   Latin letters matches its cartouche (profiles/tok-Qaap.sitelen-pona.yaml, REVIEW). Combined glyphs and long
+   pi compare as their words; nasin sitelen kalama (dots and colons in a cartouche) is not read.
+6. **The voice.** eSpeak NG's Esperanto phonemes, stressed on the first syllable, one word at a time, so particles
+   (li, e, pi) are stressed too. Is it intelligible enough for listening exercises, or should the course leave out
+   the listen facet until human recordings exist? Linku has recordings of every word, licence unknown.
+7. **Content about a real person.** u10 says that jan Sonja made Toki Pona and wrote pu (facts), and quotes her
+   nowhere. Its sentences about what Toki Pona can do are said by the course's characters.
+
+## grc (Attic Greek)
+
+- Every sentence, translation and accept set (word orders were drafted by hand: Greek order is free, but
+  postpositives, enclitic accents and movable ν were kept right in each alternative).
+- The vowel lengths pinned in the `attic` readings: from memory, not yet checked against the Cambridge Greek
+  Lexicon (Λυσίας as Λῡσίᾱς, Δαρεῖος as Δᾱρεῖος, ὑμεῖς as ῡ̔μεῖς).
+- The grading policies marked REVIEW in profiles/grc-Grek.polytonic.yaml: marks noted, grave silent, adscript,
+  the contrast sets.
+- The audio: stress for the pitch accent, ου as [oː] (CGCG 1.21), ῃ as [ɛːi].
+- The alphabet track (units/abc.yaml): the letter order, the notes on each letter's sound, the Latin spellings
+  (nabu/greek_translit.py), and which words each node drills.
+- The voice: Piper's Modern Greek voice saying IPA (a stopgap); aspiration said as a following h.
+

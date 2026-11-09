@@ -824,6 +824,306 @@
         "text": "Año"
       },
       "expected": "Año"
+    },
+    {
+      "id": "normalize/hbo/sof-pasuq",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַיֹּאמֶר אֱלֹהִים׃"
+      },
+      "expected": "וַיֹּאמֶר אֱלֹהִים",
+      "note": "Points stay (they are matched, not normalized away); sof pasuq is punctuation."
+    },
+    {
+      "id": "normalize/hbo/accents-removed",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַיֹּ\u05A5אמֶר אֱלֹהִ\u0596ים"
+      },
+      "expected": "וַיֹּאמֶר אֱלֹהִים",
+      "note": "Cantillation accents (merkha, tipha) are removed: an answer copied from an accented text."
+    },
+    {
+      "id": "normalize/hbo/maqaf",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "אֶת־הָאוֹר"
+      },
+      "expected": "אֶת הָאוֹר",
+      "note": "Maqaf joins words; typed, it is a space."
+    },
+    {
+      "id": "normalize/hbo/hyphen",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "את-האור"
+      },
+      "expected": "את האור",
+      "note": "A hyphen typed for the maqaf is a space too."
+    },
+    {
+      "id": "normalize/hbo/meteg",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "וַ\u05BDיְהִי"
+      },
+      "expected": "וַיְהִי",
+      "note": "Meteg (ga'ya) is not part of the pointing a learner writes."
+    },
+    {
+      "id": "normalize/hbo/qamats-qatan",
+      "op": "normalize",
+      "args": {
+        "profile": "hbo-Hebr/tiberian",
+        "text": "כ\u05C7ּל"
+      },
+      "expected": "כָּל",
+      "note": "Qamats qatan (U+05C7) is the qamets the course writes."
+    },
+    {
+      "id": "normalize/tok-latn/punctuation",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Latn/standard",
+        "text": "Mi moku, a!"
+      },
+      "expected": "Mi moku a",
+      "note": "Punctuation goes; a capital typed at the start of a sentence is kept for the case fold."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/latin-words",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "mi moku"
+      },
+      "expected": "󱤴󱤶",
+      "note": "Typed sitelen Lasina becomes the logographs (ADR 0086), and the spaces between words go."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/latin-capital",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "Mi moku."
+      },
+      "expected": "󱤴󱤶",
+      "note": "A capital at the start of a sentence still matches the word, ignoring case."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/logographs",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤴󱤶"
+      },
+      "expected": "󱤴󱤶",
+      "note": "Logographs typed with a sitelen pona keyboard are left as they are."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/mixed",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "mi 󱤶"
+      },
+      "expected": "󱤴󱤶",
+      "note": "Latin words and logographs may be mixed in one answer."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/cartouche",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤑󱦐󱥡󱥅󱤿󱤑󱤀󱦑"
+      },
+      "expected": "󱤑sonja",
+      "note": "A cartouche reads as the first letters of its logographs: jan [sona olin nasin jan a] is jan sonja."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/latin-name",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "jan Sonja"
+      },
+      "expected": "󱤑Sonja",
+      "note": "A name typed in Latin letters stays in them, to compare with a cartouche once the case is folded."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/name-spells-word",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱦐󱤚󱤌󱤨󱤌󱦑"
+      },
+      "expected": "󱤚",
+      "note": "A cartouche that spells a word becomes that word's logograph, as the typed word does."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/unclosed-cartouche",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱦐󱥡󱥅"
+      },
+      "expected": "󱦐󱥡󱥅",
+      "note": "A cartouche left open is not read."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/zwj-combined-glyph",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱥬\u200D󱥔"
+      },
+      "expected": "󱥬󱥔",
+      "note": "A combined glyph (toki ZWJ pona) compares as its words in a row."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/stacking-joiner",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤔󱦕󱤨"
+      },
+      "expected": "󱤔󱤨",
+      "note": "The stacking joiner is how a pair is drawn, not a word."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/scaling-joiner",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤔󱦖󱤨"
+      },
+      "expected": "󱤔󱤨",
+      "note": "The scaling joiner is how a pair is drawn, not a word."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/long-glyph",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤑󱥍󱦗󱥬󱥔󱦘"
+      },
+      "expected": "󱤑󱥍󱥬󱥔",
+      "note": "A long pi (start and end of long glyph) is drawn under its words; they compare as written."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/middle-dot",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤴󱤶󱦜󱥞󱤢"
+      },
+      "expected": "󱤴󱤶󱥞󱤢",
+      "note": "The sitelen pona middle dot separates sentences, as a space does."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/not-a-word",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "mimoku"
+      },
+      "expected": "mimoku",
+      "note": "A run of letters that is no word is left as typed (and graded wrong)."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/ali",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "ali"
+      },
+      "expected": "󱤄",
+      "note": "ali is written with the logograph of ale."
+    },
+    {
+      "id": "normalize/tok-sitelen-pona/directional-ni",
+      "op": "normalize",
+      "args": {
+        "profile": "tok-Qaap/sitelen-pona",
+        "text": "󱤴󱤶󱦉"
+      },
+      "expected": "󱤴󱤶󱥁",
+      "note": "A directional ni (U+F1989..U+F198B) is ni; the other sewi (U+F198C) is sewi."
+    },
+    {
+      "id": "normalize/grc/elision-marks",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ἀλλʼ οὐδ᾽ ἐμοῦ"
+      },
+      "expected": "ἀλλ οὐδ ἐμοῦ",
+      "note": "The elision mark as the modifier apostrophe or the koronis is punctuation, and goes."
+    },
+    {
+      "id": "normalize/grc/elision-typed",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ἀλλ' ἐγώ"
+      },
+      "expected": "ἀλλ ἐγώ",
+      "note": "A typewriter apostrophe is the elision mark too."
+    },
+    {
+      "id": "normalize/grc/ano-teleia",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ὄρθρος βαθύς· ἔτι νύξ"
+      },
+      "expected": "ὄρθρος βαθύς ἔτι νύξ",
+      "note": "The ano teleia (U+0387, NFC U+00B7) is punctuation."
+    },
+    {
+      "id": "normalize/grc/question-mark",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "τί λέγεις\u037E"
+      },
+      "expected": "τί λέγεις",
+      "note": "The Greek question mark U+037E is NFC U+003B, a semicolon: punctuation."
+    },
+    {
+      "id": "normalize/grc/lunate-sigma",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "ὁ ἄνθρωποϲ"
+      },
+      "expected": "ὁ ἄνθρωποσ",
+      "note": "Lunate sigma, as some editions print it, is σ (case folding then makes final ς and σ one)."
+    },
+    {
+      "id": "normalize/grc/oxia",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "\u1F71νθρωπος"
+      },
+      "expected": "\u03ACνθρωπος",
+      "note": "Oxia (U+1F71) is tonos (U+03AC) under NFC: a polytonic and a monotonic keyboard type one acute."
+    },
+    {
+      "id": "normalize/grc/accents-kept",
+      "op": "normalize",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "text": "τὸν ἄνθρωπον ὁρῶ"
+      },
+      "expected": "τὸν ἄνθρωπον ὁρῶ",
+      "note": "Accents and breathings stay: the marks policy grades them."
     }
   ]
 }

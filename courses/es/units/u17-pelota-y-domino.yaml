@@ -200,6 +200,7 @@ sentences:
     en: |-
       Have you (seen|watched) (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) play (dominoes|domino)?
       Have you ever (seen|watched) (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) play (dominoes|domino)?
+      Have you seen Grandpa playing dominoes?
 - id: s.u17.15
   node: es.u17.has-visto
   forms:
@@ -230,7 +231,10 @@ sentences:
       tokens: [{surface: Ya, sense: ya}, {surface: te, sense: te}, {surface: he, sense: haber, form: 'form:pres-1s'}, {surface: dicho, sense: decir, form: 'form:part'}, {surface: que, sense: que}, {surface: 'no', sense: 'no'}, {surface: Lili, sense: lili}]
       reverse: (Ya te he dicho|Ya yo te he dicho|Te he dicho ya|Ya te dije|Ya yo te dije|Te dije ya) que no Lili
   translations:
-    en: (I've already told you|I have already told you|I already told you|I've told you already|I told you already) no, Lili.
+    en: |-
+      (I've already told you|I have already told you|I already told you|I've told you already|I told you already) no, Lili.
+      I've already said no, Lili.
+      I already said no, Lili.
 - id: s.u17.18
   node: es.u17.has-visto
   forms:
@@ -342,6 +346,7 @@ sentences:
     en: |-
       On Saturdays (Grandpa|Abuelo|Grandfather|my grandpa|my grandfather) plays (dominoes|domino) in the park on Calle Ocho.
       (Grandpa|Abuelo|Grandfather|My grandpa|My grandfather) plays (dominoes|domino) in the park on Calle Ocho on Saturdays.
+      On Saturdays Grandpa plays dominoes at the park on Calle Ocho.
 - id: s.u17.28
   node: es.u17.el-domino
   forms:
@@ -351,10 +356,12 @@ sentences:
       reverse: |-
         Hoy Yasiel es mi pareja y [nosotros] vamos a ganar
         Yasiel es mi pareja hoy y [nosotros] vamos a ganar
+        Hoy Yasiel es mi pareja y ganaremos
   translations:
     en: |-
       Today Yasiel is my partner, and (we're|we are) going to win.
       Yasiel is my partner today, and (we're|we are) going to win.
+      Today Yasiel is my partner, and we'll win.
 - id: s.u17.29
   node: es.u17.el-domino
   forms:

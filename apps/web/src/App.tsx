@@ -9,7 +9,7 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, dueFacets, pathNodes, pathOf, plan, replay, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { applyEvents, dueFacets, pathNodes, pathOf, plan, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
@@ -27,6 +27,7 @@ import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
 import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
+import { WordsPage } from "./Words.tsx";
 import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugOn } from "./Debug.tsx";
@@ -64,6 +65,7 @@ type Route =
   | { readonly tag: "sentences"; readonly course: string; readonly orthography: string }
   | { readonly tag: "cards"; readonly course: string; readonly orthography: string }
   | { readonly tag: "audio"; readonly course: string; readonly orthography: string }
+  | { readonly tag: "words"; readonly course: string; readonly orthography: string }
   | { readonly tag: "review" }
   | { readonly tag: "review-course"; readonly course: string; readonly orthography: string };
 
@@ -85,6 +87,7 @@ const parse = (hash: string): Route => {
   if (session === "sentences") return { tag: "sentences", course, orthography: unslug(orthography) };
   if (session === "cards") return { tag: "cards", course, orthography: unslug(orthography) };
   if (session === "audio") return { tag: "audio", course, orthography: unslug(orthography) };
+  if (session === "words") return { tag: "words", course, orthography: unslug(orthography) };
   if (session === "story" && node !== undefined) return { tag: "story", course, orthography: unslug(orthography), node };
   if (session === "roleplay" && node !== undefined) return { tag: "roleplay", course, orthography: unslug(orthography), scenario: node };
   return { tag: "session", course, orthography: unslug(orthography), request: requestOf(session) };
@@ -107,7 +110,7 @@ export const href = (route: Route): string =>
         ? `#/${route.course}/${slug(route.orthography)}/story/${encodeURIComponent(route.node)}`
         : route.tag === "roleplay"
           ? `#/${route.course}/${slug(route.orthography)}/roleplay/${encodeURIComponent(route.scenario)}`
-          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio"
+          : route.tag === "sentences" || route.tag === "cards" || route.tag === "audio" || route.tag === "words"
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
@@ -200,16 +203,39 @@ interface OfflineProps {
   readonly onChange: () => void;
 }
 
-const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loaded: LoadedCourse; state: LearnerState; persistent: boolean; ai: AiStatus; offline: OfflineProps; onReset: () => void }): JSX.Element => {
+const CoursePath = ({
+  loaded,
+  state,
+  persistent,
+  ai,
+  offline,
+  speechTiers,
+  onReset,
+}: {
+  loaded: LoadedCourse;
+  state: LearnerState;
+  persistent: boolean;
+  ai: AiStatus;
+  offline: OfflineProps;
+  speechTiers: readonly number[];
+  onReset: () => void;
+}): JSX.Element => {
   const t = useTranslator();
   const [off, setOff] = useState(() => ({ listening: onBreak("listening"), speaking: onBreak("speaking") }));
   const { course } = loaded;
   const orthography = course.orthography;
   const now = new Date();
   const status = new Map(pathOf(course, state).map((n) => [n.node, n.status]));
+  // A script track (ADR 0088): the alphabet, a row of its own that never gates the units.
+  const scriptRow = scriptPathOf(course, state);
   const due = dueFacets(state, orthography, now.toISOString()).length;
   const studied = Object.keys(state.cards).length > 0;
-  const mistakes = state.mistakes.length;
+  // What a mistakes session would hold now: a mistake on a listening card waits out a listening
+  // break, and one the course no longer makes is not counted (practicableMistakes).
+  const mistakes = useMemo(
+    () => practicableMistakes(course, state, { exclude: excludedBy(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
+    [course, state, off, speechTiers],
+  );
   const today = state.xp.byDate[localDate(now)] ?? 0;
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
@@ -313,6 +339,52 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
       </div>
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
+      {scriptRow.length > 0 && (
+        <section className={styles.unit} data-script-track="">
+          {(() => {
+            const first = course.units.find((u) => u.id === scriptRow[0]?.unit);
+            const title = first?.title?.[course.supportKey];
+            return title === undefined ? null : (
+              <h3 className={styles.unitTitle}>
+                <T text={title} />
+              </h3>
+            );
+          })()}
+          <ol className={styles.list}>
+            {scriptRow.map((entry, k) => {
+              const unit = course.units.find((u) => u.id === entry.unit);
+              const node = unit?.nodes.find((n) => n.id === entry.node);
+              const letters = node?.alphabet?.letters.map((l) => l.text) ?? [];
+              const body = (
+                <>
+                  <span className={styles.lessonHead}>
+                    <span className={styles.lessonName}>{t.format("app.path.letters", { number: k + 1 })}</span>
+                    <Status status={entry.status} />
+                  </span>
+                  <span className={styles.preview} role="group" aria-label={t.format("app.path.new-letters")} dir={letters[0] === undefined ? undefined : directionOf(letters[0].lang)}>
+                    {letters.map((l, i) => (
+                      <T key={i} text={l} />
+                    ))}
+                  </span>
+                </>
+              );
+              return (
+                <li key={entry.node}>
+                  {entry.status === "locked" ? (
+                    <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" data-script-node={entry.node} data-status={entry.status}>
+                      {body}
+                    </div>
+                  ) : (
+                    <a className={`${styles.lesson} ${entry.status === "available" ? styles.next : ""}`} href={to({ mode: "lesson", node: entry.node })} data-script-node={entry.node} data-status={entry.status}>
+                      {body}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
+          </ol>
+        </section>
+      )}
       {units.map(({ unit, entries }) => {
         const title = unit.title?.[course.supportKey];
         return (
@@ -377,6 +449,11 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
       })}
       <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
       <p>
+        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="">
+          {t.format("words.title")}
+        </a>
+      </p>
+      <p>
         <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
           {t.format("corrections.page.open")}
         </a>
@@ -396,7 +473,7 @@ const CoursePath = ({ loaded, state, persistent, ai, offline, onReset }: { loade
         </p>
       )}
       {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
-      <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || mistakes > 0} onReset={onReset} />
+      <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
     </main>
   );
 };
@@ -454,8 +531,12 @@ const storeReading = (orthography: string, scheme: SchemeId | false): void => {
   }
 };
 
-/** What new sessions leave out: listening and speaking while they are on a break. */
-const excluded = (): ReadonlySet<TemplateId> => new Set<TemplateId>([...(onBreak("listening") ? LISTENING : []), ...(onBreak("speaking") ? SPEAKING : [])]);
+/** What sessions leave out: listening and speaking while they are on a break. */
+const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>
+  new Set<TemplateId>([...(off.listening ? LISTENING : []), ...(off.speaking ? SPEAKING : [])]);
+
+/** What a new session leaves out, as the breaks stand when it opens. */
+const excluded = (): ReadonlySet<TemplateId> => excludedBy({ listening: onBreak("listening"), speaking: onBreak("speaking") });
 
 /** The session seed: ?seed=… for reproducible runs (tests), else fresh randomness. */
 const seedFor = (): number => {
@@ -791,7 +872,7 @@ export const App = (): JSX.Element => {
     const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
-    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} onReset={onReset} />;
+    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />;
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;
@@ -814,7 +895,17 @@ export const App = (): JSX.Element => {
     return sync === null ? (
       <p className={styles.page}>{t.format("player.loading")}</p>
     ) : (
-      <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
+      <CourseUiProvider course={course}>
+        <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
+      </CourseUiProvider>
+    );
+  }
+  if (route.tag === "words") {
+    const { course } = loaded.value;
+    return (
+      <CourseUiProvider course={course}>
+        <WordsPage loaded={loaded.value} state={log.state} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+      </CourseUiProvider>
     );
   }
   if (route.tag === "sentences") {

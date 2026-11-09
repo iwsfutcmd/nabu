@@ -125,6 +125,7 @@ sentences:
       reverse: |-
         El tabaco se (cultiva|siembra) en Pinar del Río
         En Pinar del Río se (cultiva|siembra) [el] tabaco
+        El tabaco es cultivado en Pinar del Río
   translations:
     en: |-
       Tobacco is (grown|cultivated) in Pinar del Río.
@@ -155,7 +156,9 @@ sentences:
     es-Latn/standard:
       text: Primero se siembra el tabaco, y después se cosecha.
       tokens: [{surface: Primero, sense: primero}, {surface: se, sense: se.impersonal}, {surface: siembra, sense: sembrar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: tabaco, sense: tabaco}, {surface: 'y', sense: 'y'}, {surface: después, sense: después}, {surface: se, sense: se.impersonal}, {surface: cosecha, sense: cosechar, form: 'form:pres-3s'}]
-      reverse: Primero se siembra el tabaco y (después|luego) se cosecha
+      reverse: |-
+        Primero se siembra el tabaco y (después|luego) se cosecha
+        Primero el tabaco se siembra, y después se cosecha
   translations:
     en: |-
       First (the tobacco|tobacco) is (planted|sown), and (then|afterwards|later) (it is|it's) harvested.
@@ -180,6 +183,7 @@ sentences:
       reverse: |-
         En la vega las hojas son cosechadas una (por|a) una
         En la vega las hojas se cosechan una (por|a) una
+        Las hojas son cosechadas una por una en la vega
   translations:
     en: |-
       In the (vega|tobacco field|field), the leaves are (harvested|picked) one by one.
@@ -190,7 +194,9 @@ sentences:
     es-Latn/standard:
       text: Abuelo Pepe siempre dice que el tabaco cubano es el mejor del mundo.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: siempre, sense: siempre}, {surface: dice, sense: decir, form: 'form:pres-3s'}, {surface: que, sense: que}, {surface: el, sense: el}, {surface: tabaco, sense: tabaco}, {surface: cubano, sense: cubano}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: mejor, sense: mejor}, {surface: del, sense: del}, {surface: mundo, sense: mundo}]
-      reverse: (Abuelo|El abuelo) Pepe siempre dice que el tabaco cubano es el mejor del mundo
+      reverse: |-
+        (Abuelo|El abuelo) Pepe siempre dice que el tabaco cubano es el mejor del mundo
+        Mi abuelo Pepe siempre dice que el tabaco cubano es el mejor del mundo
   translations:
     en: (Grandpa|Grandfather|Granddad) Pepe always says [that] Cuban tobacco is the best in the world.
 - id: s.u26.14
@@ -204,6 +210,7 @@ sentences:
     en: |-
       In Matanzas we visited the (countryside|farmland|country) where (Grandma|Grandmother|Abuela) lived as a (girl|child).
       In Matanzas we visited the (countryside|farmland|country) (Grandma|Grandmother|Abuela) lived in as a (girl|child).
+      In Matanzas we visited the countryside where Grandma used to live as a girl.
 - id: s.u26.15
   node: es.u26.la-cana
   forms:
@@ -300,6 +307,7 @@ sentences:
     en: |-
       (In the old days|Before|In the past), (bohíos|huts|country huts) were (made|built) (from|with|out of) (royal palm|the royal palm|royal palms).
       (Bohíos|Huts|Country huts) used to be (made|built) (from|with|out of) (royal palm|the royal palm|royal palms).
+      Bohíos were made from royal palm in the old days.
 - id: s.u26.24
   node: es.u26.los-simbolos
   forms:
@@ -387,6 +395,7 @@ sentences:
       reverse: |-
         Estos sombreros fueron hechos por un guajiro de Viñales
         Un guajiro de Viñales hizo estos sombreros
+        Estos sombreros los hizo un guajiro de Viñales
   translations:
     en: |-
       These hats were made by a guajiro (from|in) Viñales.

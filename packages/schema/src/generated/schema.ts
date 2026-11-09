@@ -30,12 +30,16 @@ export type TokenKind = "word" | "punct" | "space" | "number" | "symbol";
  */
 export type SenseId = string & { readonly __brand: "SenseId" };
 /**
+ * The form KC (form:<id>) of an inflected word, as the source pins it: the grader keeps its affixes apart (a profile's contrasts marked inflected, ADR 0081).
+ */
+export type KcId = string & { readonly __brand: "KcId" };
+/**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcId".
  */
-export type KcId = string & { readonly __brand: "KcId" };
+export type KcId1 = string & { readonly __brand: "KcId" };
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportStatus".
@@ -111,7 +115,7 @@ export type Cefr = "A1" | "A2" | "B1" | "B2" | "C1" | "C2";
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId1 = string & { readonly __brand: "KcId" };
+export type KcId2 = string & { readonly __brand: "KcId" };
 /**
  * The path node (kind story) the story is read at.
  */
@@ -119,7 +123,7 @@ export type Slug1 = string;
 /**
  * A knowledge-component id: its kind (§7.1), a colon, and an authored slug.
  */
-export type KcId2 = string & { readonly __brand: "KcId" };
+export type KcId3 = string & { readonly __brand: "KcId" };
 /**
  * The path node a learner completes before the scenario opens.
  */
@@ -225,7 +229,8 @@ export type NormalizeStep =
   | DigitsStep
   | PunctuationStep
   | WhitespaceStep
-  | DetachStep;
+  | DetachStep
+  | LogographsStep;
 /**
  * Canonical composition. NFKC is never a step: compatibility folding only happens through named fold steps (§6.4).
  *
@@ -309,7 +314,7 @@ export type ReportSubmission = CorrectionSubmission | AnswerSubmission;
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "KcRefLocal".
  */
-export type KcId3 = string & { readonly __brand: "KcId" };
+export type KcId4 = string & { readonly __brand: "KcId" };
 
 /**
  * Index of every Nabu schema type, so each is declared. Not a document type.
@@ -348,6 +353,7 @@ export interface NabuSchemaIndex {
   readonly BundleStoryStep: BundleStoryStep;
   readonly BundleStoryLine: BundleStoryLine;
   readonly BundleKc: BundleKc;
+  readonly ScriptItem: ScriptItem;
   readonly BundleNode: BundleNode;
   readonly BundleSentence: BundleSentence;
   readonly BundleAudio: BundleAudio;
@@ -358,7 +364,7 @@ export interface NabuSchemaIndex {
   readonly OrthographyId: OrthographyId;
   readonly SchemeId: SchemeId;
   readonly SenseId: SenseId1;
-  readonly KcId: KcId;
+  readonly KcId: KcId1;
   readonly Persons: Persons;
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
@@ -429,6 +435,7 @@ export interface NabuSchemaIndex {
   readonly PunctuationStep: PunctuationStep;
   readonly WhitespaceStep: WhitespaceStep;
   readonly DetachStep: DetachStep;
+  readonly LogographsStep: LogographsStep;
   readonly MatchPolicy: MatchPolicy;
   readonly NoteId: NoteId;
   readonly KeyboardRef: KeyboardRef;
@@ -558,6 +565,7 @@ export interface Token {
   readonly surface: string;
   readonly kind: TokenKind;
   readonly sense?: SenseId;
+  readonly form?: KcId;
   /**
    * Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.
    */
@@ -591,7 +599,7 @@ export interface Token {
  */
 export interface Morph {
   readonly surface: string;
-  readonly kc: KcId;
+  readonly kc: KcId1;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1130,9 +1138,9 @@ export interface BundleUnit {
  * via the `definition` "BundleKc".
  */
 export interface BundleKc {
-  readonly id: KcId;
+  readonly id: KcId1;
   readonly kind: "sense" | "form" | "construction" | "grapheme" | "reading" | "phone" | "tone";
-  readonly prerequisites: readonly KcId[];
+  readonly prerequisites: readonly KcId1[];
   readonly cefr?: string;
   readonly gloss?: {
     readonly [k: string]: TaggedText;
@@ -1152,13 +1160,36 @@ export interface BundleKc {
 export interface BundleNode {
   readonly id: string;
   readonly kind: string;
-  readonly introduces: readonly KcId[];
-  readonly reinforces: readonly KcId[];
+  readonly introduces: readonly KcId1[];
+  readonly reinforces: readonly KcId1[];
   readonly sentences: readonly string[];
+  /**
+   * An alphabet node's letters (its grapheme KCs) and practice words, each with its Latin spelling (ADR 0088).
+   */
+  readonly alphabet?: {
+    readonly orthography: string;
+    readonly letters: readonly ScriptItem[];
+    readonly words: readonly ScriptItem[];
+  };
   readonly convert?: {
     readonly from: string;
     readonly to: string;
   };
+}
+/**
+ * A letter or a word of an alphabet node: its KC, how the orthography writes it, and its Latin spelling.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "ScriptItem".
+ */
+export interface ScriptItem {
+  readonly kc: KcId1;
+  /**
+   * The grapheme KCs it is written with, of those its track teaches (a letter: its own).
+   */
+  readonly letters: readonly KcId1[];
+  readonly text: TaggedText;
+  readonly latin: TaggedText;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1179,7 +1210,7 @@ export interface BundleSentence {
       readonly accept: string;
     };
   };
-  readonly kcs: readonly KcId[];
+  readonly kcs: readonly KcId1[];
   readonly production: boolean;
   readonly register?: string;
   readonly persons?: Persons;
@@ -1231,7 +1262,7 @@ export interface BundleStory {
   /**
    * Every KC its lines use.
    */
-  readonly kcs: readonly KcId[];
+  readonly kcs: readonly KcId1[];
   readonly provenance?: Provenance;
   readonly license: string;
 }
@@ -1269,10 +1300,10 @@ export interface BundleStoryLine {
   readonly translations: {
     readonly [k: string]: TaggedText;
   };
-  readonly kcs: readonly KcId[];
+  readonly kcs: readonly KcId1[];
   readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId;
-  readonly distractors?: readonly KcId[];
+  readonly gap?: KcId1;
+  readonly distractors?: readonly KcId1[];
 }
 /**
  * A roleplay scenario card (Phase 8, §13.4); its texts per support language.
@@ -1525,8 +1556,8 @@ export interface UnitSource {
  * via the `definition` "KnowledgeComponentSource".
  */
 export interface KnowledgeComponentSource {
-  readonly id: KcId;
-  readonly prerequisites?: readonly KcId[];
+  readonly id: KcId1;
+  readonly prerequisites?: readonly KcId1[];
   readonly cefr?: Cefr;
   /**
    * Short meaning per support language.
@@ -1573,8 +1604,18 @@ export interface ImageAsset {
 export interface PathNodeSource {
   readonly id: Slug;
   readonly kind: "lesson" | "practice" | "story" | "review" | "challenge" | "script";
-  readonly introduces?: readonly KcId[];
-  readonly reinforces?: readonly KcId[];
+  readonly introduces?: readonly KcId1[];
+  readonly reinforces?: readonly KcId1[];
+  /**
+   * script nodes that teach an orthography from scratch (ADR 0088): words for reading and writing practice, each a course KC whose first form the letters taught by this node and the ones before it spell.
+   */
+  readonly alphabet?: {
+    readonly orthography: OrthographyId;
+    /**
+     * @minItems 1
+     */
+    readonly words: readonly KcId1[];
+  };
   /**
    * script nodes: convert sentences between two orthographies (script-convert, §6.3).
    */
@@ -1600,7 +1641,7 @@ export interface SentenceSource {
   readonly forms: {
     readonly [k: string]: SentenceForm;
   };
-  readonly constructions?: readonly KcId[];
+  readonly constructions?: readonly KcId1[];
   /**
    * Accept sets per support language (key: the support orthography's language, e.g. en). The first alternative is the displayed translation.
    */
@@ -1638,7 +1679,7 @@ export interface SourceToken {
   readonly surface: string;
   readonly kind?: TokenKind;
   readonly sense?: SenseId1;
-  readonly form?: KcId1;
+  readonly form?: KcId2;
   readonly readings?: {
     readonly [k: string]: string;
   };
@@ -1731,13 +1772,13 @@ export interface StoryLineSource {
    * Ask before showing the line. complete: choose the word missing at `gap`; arrange: build the line from its tiles, given its translation.
    */
   readonly ask?: "complete" | "arrange";
-  readonly gap?: KcId2;
+  readonly gap?: KcId3;
   /**
    * complete: other KCs offered, shown by their first form in the learner's orthography.
    *
    * @minItems 1
    */
-  readonly distractors?: readonly KcId[];
+  readonly distractors?: readonly KcId1[];
 }
 /**
  * A comprehension question in the support language, about what has been read.
@@ -2127,7 +2168,11 @@ export interface ExerciseRef {
     | "minimal-pair"
     | "story-choose"
     | "story-complete"
-    | "story-arrange";
+    | "story-arrange"
+    | "letter-read"
+    | "letter-pairs"
+    | "word-read"
+    | "word-write";
   /**
    * The sentence or KC the exercise was built from.
    */
@@ -2637,7 +2682,7 @@ export interface OrthographyProfile {
    */
   readonly exemplars?: string;
   /**
-   * Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.
+   * Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars, and punctuation among them (the Hebrew sof pasuq ׃, missing from cldr:he) as exemplar punctuation. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.
    *
    * @minItems 1
    */
@@ -2661,6 +2706,10 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
+  /**
+   * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.
+   */
+  readonly romanize?: "greek";
   readonly transliterate?: Transliteration;
 }
 /**
@@ -2761,6 +2810,29 @@ export interface DetachStep {
   };
 }
 /**
+ * Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "LogographsStep".
+ */
+export interface LogographsStep {
+  readonly logographs: {
+    /**
+     * Each word, as it is typed, and the logograph that writes it.
+     */
+    readonly words: {
+      readonly [k: string]: string;
+    };
+    /**
+     * The marks that open and close a name written with the logographs' first letters.
+     */
+    readonly cartouche?: {
+      readonly open: string;
+      readonly close: string;
+    };
+  };
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "MatchPolicy".
  */
@@ -2829,7 +2901,7 @@ export interface MatchPolicy {
   readonly equivalences?: readonly Equivalence[];
 }
 /**
- * A set of endings (or whole words) one letter or two apart that mean different things.
+ * A set of endings, prefixes (or whole words) one letter or two apart that mean different things.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Contrast".
@@ -2837,9 +2909,29 @@ export interface MatchPolicy {
 export interface Contrast {
   readonly id: string;
   /**
+   * The members, each a meaning. An empty spelling is the word with no such affix: the bare Lebanese imperfect (shteghel) beside b-shteghel, a masculine adjective beside its feminine.
+   *
    * @minItems 2
    */
   readonly members: readonly (string | readonly string[])[];
+  /**
+   * Where the members stand: at the end of the word (endings, stacking like suffixes) or at its start (prefixes: Lebanese b-, bt-, mn- on verbs). Default end.
+   */
+  readonly at?: "end" | "start";
+  /**
+   * For prefixes: what may come before the member, a proclitic written onto the word (Arabic و 'and': وبشتغل).
+   */
+  readonly after?: readonly string[];
+  /**
+   * Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not.
+   */
+  readonly inflected?: boolean;
+  /**
+   * Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).
+   *
+   * @minItems 1
+   */
+  readonly forms?: readonly string[];
   /**
    * The feedback note shown with the verdict (MF2 message feedback.note.<note>).
    */

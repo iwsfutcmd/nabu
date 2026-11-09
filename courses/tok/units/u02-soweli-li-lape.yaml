@@ -1,0 +1,861 @@
+# Unit 2 (tok): li after every subject but a bare mi or sina (ona li lape, jan Lina li moku), ona, ni (this, that), animals and things, a noun with adjectives after it (soweli lili, telo lete), several predicates (ona li suli li wawa) and jan Mila.
+# Drafted by an LLM (provenance llm:…, status draft): every sentence awaits review by a fluent speaker.
+id: u02
+title:
+  en: 'soweli li lape: The animal is sleeping'
+cefr: A1
+kcs:
+- {id: 'sense:li', gloss: {en: (comes before the predicate)}, forms: {tok-Latn/standard: [li], tok-Qaap/sitelen-pona: [󱤧]}, notes: {en: 'li separates the subject from what is said about it: ona li lape.
+      After a bare mi or sina it is left out: mi lape, sina lape.'}}
+- {id: 'sense:ona', gloss: {en: 'she, he, it, they; her, him, them'}, forms: {tok-Latn/standard: [ona], tok-Qaap/sitelen-pona: [󱥆]}, notes: {en: 'ona is any third person or thing, one or more. After a noun
+      it means his, her, its or their.'}}
+- {id: 'sense:soweli', gloss: {en: 'animal, land mammal'}, forms: {tok-Latn/standard: [soweli], tok-Qaap/sitelen-pona: [󱥢]}, image: {file: ../images/sheep.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4c000b664265',
+      status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'soweli is any furry four-legged animal: a cat, a dog, a sheep, a bear.'}}
+- {id: 'sense:waso', gloss: {en: bird; flying animal}, forms: {tok-Latn/standard: [waso], tok-Qaap/sitelen-pona: [󱥴]}}
+- {id: 'sense:kala', gloss: {en: fish; sea creature}, forms: {tok-Latn/standard: [kala], tok-Qaap/sitelen-pona: [󱤔]}, image: {file: ../images/fish.svg, license: CC0-1.0, provenance: {author: 'llm:claude@39173f79ba6d',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:pipi', gloss: {en: 'bug, insect, spider'}, forms: {tok-Latn/standard: [pipi], tok-Qaap/sitelen-pona: [󱥑]}}
+- {id: 'sense:akesi', gloss: {en: 'reptile, amphibian: lizard, frog, snake, turtle'}, forms: {tok-Latn/standard: [akesi], tok-Qaap/sitelen-pona: [󱤁]}}
+- {id: 'sense:ni', gloss: {en: 'this, that; these, those'}, forms: {tok-Latn/standard: [ni], tok-Qaap/sitelen-pona: [󱥁]}, notes: {en: 'After a noun ni means this or that: soweli ni, this animal. As the
+      subject it takes li: ni li tomo.'}}
+- {id: 'sense:tomo', gloss: {en: 'house, home, room, building'}, forms: {tok-Latn/standard: [tomo], tok-Qaap/sitelen-pona: [󱥭]}, image: {file: ../images/house.svg, license: CC0-1.0, provenance: {author: 'llm:claude@0d95656f8477',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:suwi', gloss: {en: sweet; cute}, forms: {tok-Latn/standard: [suwi], tok-Qaap/sitelen-pona: [󱥦]}, notes: {en: 'moku suwi is sweets, candy.'}}
+- {id: 'sense:telo', gloss: {en: 'water; liquid, drink; wash'}, forms: {tok-Latn/standard: [telo], tok-Qaap/sitelen-pona: [󱥪]}, image: {file: ../images/water.svg, license: CC0-1.0, provenance: {author: 'llm:claude@e7d707f749db',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:lete', gloss: {en: 'cold, cool; raw'}, forms: {tok-Latn/standard: [lete], tok-Qaap/sitelen-pona: [󱤦]}}
+- {id: 'sense:seli', gloss: {en: 'hot, warm; fire, heat'}, forms: {tok-Latn/standard: [seli], tok-Qaap/sitelen-pona: [󱥗]}, image: {file: ../images/fire.svg, license: CC0-1.0, provenance: {author: 'llm:claude@4aeb9b9d9ea0',
+      status: draft}, source: Drawn for Nabu (courses/images)}}
+- {id: 'sense:mila', gloss: {en: Mila (a name)}, forms: {tok-Latn/standard: [Mila], tok-Qaap/sitelen-pona: [󱦐󱤱󱤎󱤪󱤀󱦑]}, notes: {en: 'In sitelen pona: mama, ilo, lipu, a give M, i, l, a.'}}
+nodes:
+- {id: tok.u02.ona-li, kind: lesson, introduces: ['sense:li', 'sense:ona']}
+- {id: tok.u02.animals, kind: lesson, introduces: ['sense:soweli', 'sense:waso', 'sense:kala']}
+- {id: tok.u02.mila, kind: lesson, introduces: ['sense:mila', 'sense:pipi', 'sense:akesi']}
+- {id: tok.u02.this, kind: lesson, introduces: ['sense:ni', 'sense:tomo', 'sense:suwi']}
+- {id: tok.u02.hot-cold, kind: lesson, introduces: ['sense:telo', 'sense:lete', 'sense:seli']}
+- {id: tok.u02.story, kind: story}
+sentences:
+- id: s.u02.1
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: ona li lape.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: ona li lape
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤢
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱥆󱤧󱤢
+  translations:
+    en: |-
+      (She's|She is|He's|He is|They're|They are|It's|It is) (sleeping|asleep).
+      (She|He|It) (sleeps|slept)
+      They (sleep|slept)
+- id: s.u02.2
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: ona li moku.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
+      reverse: ona li moku
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱤶
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      reverse: 󱥆󱤧󱤶
+  translations:
+    en: |-
+      (He's|He is|She's|She is|They're|They are|It's|It is) eating.
+      (He|She|It) (eats|ate)
+      They (eat|ate)
+- id: s.u02.3
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: jan li toki.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki, readings: {lasina: toki}}]
+      reverse: jan li toki
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱤧󱥬
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}]
+      reverse: 󱤑󱤧󱥬
+  translations:
+    en: |-
+      Someone is (talking|speaking).
+      (A|The) person is (talking|speaking)
+      People are (talking|speaking)
+      (Someone|A person|The person) (talks|speaks|talked|spoke)
+      People (talk|speak|talked|spoke)
+      The people are talking.
+- id: s.u02.4
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: jan Lina li pona.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
+          readings: {lasina: pona}}]
+      reverse: jan Lina li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥔
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      reverse: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑󱤧󱥔
+  translations:
+    en: |-
+      Lina is (nice|kind|good|fine|well|okay).
+      Lina is all right.
+- id: s.u02.5
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: mi moku. ona li lape.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {
+            lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: mi moku ona li lape
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1934\U000F1936\u3000\U000F1946\U000F1927\U000F1922"
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {
+            lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱤴󱤶󱥆󱤧󱤢
+  translations:
+    en: |-
+      (I'm|I am|We're|We are) eating. (He's|He is|She's|She is|They're|They are) (sleeping|asleep).
+      I'm eating. It's sleeping.
+- id: s.u02.6
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: ona li suli li wawa.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {
+            lasina: li}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
+      reverse: |-
+        ona li suli li wawa
+        ona mute li suli li wawa
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥣󱤧󱥵
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {
+            lasina: li}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
+      reverse: |-
+        󱥆󱤧󱥣󱤧󱥵
+        󱥆󱤼󱤧󱥣󱤧󱥵
+  translations:
+    en: (They're|They are|He's|He is|She's|She is|It's|It is) (big|tall) and strong.
+- id: s.u02.7
+  node: tok.u02.ona-li
+  forms:
+    tok-Latn/standard:
+      text: jan Pita li jan pona.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jan, sense: jan, readings: {
+            lasina: jan}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+      reverse: jan Pita li jan pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤑󱥔
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱥔,
+          sense: pona, readings: {lasina: pona}}]
+      reverse: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑󱤧󱤑󱥔
+  translations:
+    en: |-
+      Pita is (a friend|a good person).
+      Pita is a nice person.
+      Pita is a kind person.
+- id: s.u02.8
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: soweli li lape.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: soweli li lape
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤧󱤢
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱥢󱤧󱤢
+  translations:
+    en: |-
+      The animal is (sleeping|asleep).
+      (An|The) animal (sleeps|slept)
+      [The] animals are (sleeping|asleep)
+      [The] animals (sleep|slept)
+      An animal is sleeping.
+- id: s.u02.9
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: soweli lili li moku.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: lili, sense: lili, readings: {lasina: lili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku,
+          readings: {lasina: moku}}]
+      reverse: soweli lili li moku
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱤨󱤧󱤶
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {
+            lasina: moku}}]
+      reverse: 󱥢󱤨󱤧󱤶
+  translations:
+    en: |-
+      The (little|small) animal is eating.
+      [The] (little|small) animals are eating
+      (The|A) (little|small) animal (eats|ate)
+      The little animals eat.
+      Little animals eat.
+      A little animal is eating.
+- id: s.u02.10
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: waso li toki.
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki, readings: {lasina: toki}}]
+      reverse: waso li toki
+    tok-Qaap/sitelen-pona:
+      text: 󱥴󱤧󱥬
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {lasina: toki}}]
+      reverse: 󱥴󱤧󱥬
+  translations:
+    en: |-
+      The bird is (talking|singing|chirping).
+      [The] birds are (talking|singing|chirping)
+      The bird (talks|sings|chirps|talked|sang|chirped)
+      A bird is singing.
+      The birds sing.
+      Birds sing.
+- id: s.u02.11
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: ona li waso lili.
+      tokens: [{surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: waso, sense: waso, readings: {lasina: waso}}, {surface: lili, sense: lili,
+          readings: {lasina: lili}}]
+      reverse: ona li waso lili
+    tok-Qaap/sitelen-pona:
+      text: 󱥆󱤧󱥴󱤨
+      tokens: [{surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤨, sense: lili, readings: {
+            lasina: lili}}]
+      reverse: 󱥆󱤧󱥴󱤨
+  translations:
+    en: |-
+      (It's|It is) a (little|small) bird.
+      (They're|They are) (little|small) birds
+- id: s.u02.12
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: kala li moku.
+      tokens: [{surface: kala, sense: kala, readings: {lasina: kala}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}]
+      reverse: kala li moku
+    tok-Qaap/sitelen-pona:
+      text: 󱤔󱤧󱤶
+      tokens: [{surface: 󱤔, sense: kala, readings: {lasina: kala}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}]
+      reverse: 󱤔󱤧󱤶
+  translations:
+    en: |-
+      The fish is eating.
+      [The] fish are eating
+      (The|A) fish (eats|ate)
+      [The] fish eat
+      [The] fish is food
+      A fish is eating.
+- id: s.u02.13
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: a a a! mi kala!
+      tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: mi, sense: mi, readings: {lasina: mi}},
+        {surface: kala, sense: kala, readings: {lasina: kala}}]
+      reverse: a a a mi kala
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1900\U000F1900\U000F1900\u3000\U000F1934\U000F1914"
+      tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}},
+        {surface: 󱤔, sense: kala, readings: {lasina: kala}}]
+      reverse: 󱤀󱤀󱤀󱤴󱤔
+  translations:
+    en: |-
+      Ha ha ha! (I'm|I am) a fish!
+      Hahaha! (I'm|I am) a fish
+      Ha ha ha! We're fish!
+- id: s.u02.14
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: kala suli li wawa.
+      tokens: [{surface: kala, sense: kala, readings: {lasina: kala}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wawa, sense: wawa,
+          readings: {lasina: wawa}}]
+      reverse: kala suli li wawa
+    tok-Qaap/sitelen-pona:
+      text: 󱤔󱥣󱤧󱥵
+      tokens: [{surface: 󱤔, sense: kala, readings: {lasina: kala}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥵, sense: wawa, readings: {
+            lasina: wawa}}]
+      reverse: 󱤔󱥣󱤧󱥵
+  translations:
+    en: |-
+      The (big|large) fish is strong.
+      A (big|large) fish is strong
+      [The] (big|large) fish are strong
+- id: s.u02.15
+  node: tok.u02.animals
+  forms:
+    tok-Latn/standard:
+      text: waso li lili. soweli li suli.
+      tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili, readings: {lasina: lili}}, {surface: soweli, sense: soweli,
+          readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
+      reverse: waso li lili soweli li suli
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1974\U000F1927\U000F1928\u3000\U000F1962\U000F1927\U000F1963"
+      tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {surface: 󱥢, sense: soweli, readings: {
+            lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
+      reverse: 󱥴󱤧󱤨󱥢󱤧󱥣
+  translations:
+    en: |-
+      The bird is (small|little). The animal is (big|large).
+      The birds are small. The animals are big.
+      Birds are small. Animals are big.
+- id: s.u02.16
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: toki, jan Mila!
+      tokens: [{surface: toki, sense: toki, readings: {lasina: toki}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}]
+      reverse: toki jan Mila
+    tok-Qaap/sitelen-pona:
+      text: 󱥬󱤑󱦐󱤱󱤎󱤪󱤀󱦑
+      tokens: [{surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}]
+      reverse: 󱥬󱤑󱦐󱤱󱤎󱤪󱤀󱦑
+  translations:
+    en: (Hello|Hi), Mila!
+- id: s.u02.17
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: pipi li lili.
+      tokens: [{surface: pipi, sense: pipi, readings: {lasina: pipi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
+      reverse: pipi li lili
+    tok-Qaap/sitelen-pona:
+      text: 󱥑󱤧󱤨
+      tokens: [{surface: 󱥑, sense: pipi, readings: {lasina: pipi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
+      reverse: 󱥑󱤧󱤨
+  translations:
+    en: |-
+      The (bug|insect) is (small|little).
+      [The] (bugs|insects) are (small|little)
+- id: s.u02.18
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li jan lili.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jan, sense: jan, readings: {
+            lasina: jan}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
+      reverse: jan Mila li jan lili
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤑󱤨
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱤨,
+          sense: lili, readings: {lasina: lili}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤑󱤨
+  translations:
+    en: Mila is a (child|kid|little girl|young person).
+- id: s.u02.19
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: a, pipi li suli!
+      tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: pipi, sense: pipi, readings: {lasina: pipi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: a pipi li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱤀󱥑󱤧󱥣
+      tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥑, sense: pipi, readings: {lasina: pipi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: 󱤀󱥑󱤧󱥣
+  translations:
+    en: |-
+      (Oh|Ah|Wow), the (bug|insect) is (big|huge)!
+      (Oh|Ah|Wow), the (bugs|insects) are (big|huge)
+- id: s.u02.20
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: akesi li lape.
+      tokens: [{surface: akesi, sense: akesi, readings: {lasina: akesi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: akesi li lape
+    tok-Qaap/sitelen-pona:
+      text: 󱤁󱤧󱤢
+      tokens: [{surface: 󱤁, sense: akesi, readings: {lasina: akesi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱤁󱤧󱤢
+  translations:
+    en: |-
+      The (lizard|frog|snake|reptile) is (sleeping|asleep).
+      (A|The) (lizard|frog|snake|reptile) (sleeps|slept)
+      [The] (lizards|frogs|snakes|reptiles) are (sleeping|asleep)
+      Lizards sleep.
+      A lizard is sleeping.
+- id: s.u02.21
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: akesi suli li wawa.
+      tokens: [{surface: akesi, sense: akesi, readings: {lasina: akesi}}, {surface: suli, sense: suli, readings: {lasina: suli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wawa, sense: wawa,
+          readings: {lasina: wawa}}]
+      reverse: akesi suli li wawa
+    tok-Qaap/sitelen-pona:
+      text: 󱤁󱥣󱤧󱥵
+      tokens: [{surface: 󱤁, sense: akesi, readings: {lasina: akesi}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥵, sense: wawa, readings: {
+            lasina: wawa}}]
+      reverse: 󱤁󱥣󱤧󱥵
+  translations:
+    en: |-
+      The big (lizard|frog|snake|reptile) is strong.
+      [The] big (lizards|frogs|snakes|reptiles) are strong
+      A big lizard is strong.
+- id: s.u02.22
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li lili li wawa.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili,
+          readings: {lasina: lili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
+      reverse: jan Mila li lili li wawa
+    tok-Qaap/sitelen-pona:
+      text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤨󱤧󱥵
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}, {
+          surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱤨󱤧󱥵
+  translations:
+    en: Mila is (small|little|young) and strong.
+- id: s.u02.23
+  node: tok.u02.mila
+  forms:
+    tok-Latn/standard:
+      text: pipi li moku. akesi li lape.
+      tokens: [{surface: pipi, sense: pipi, readings: {lasina: pipi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: akesi, sense: akesi,
+          readings: {lasina: akesi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape, readings: {lasina: lape}}]
+      reverse: pipi li moku akesi li lape
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1951\U000F1927\U000F1936\u3000\U000F1901\U000F1927\U000F1922"
+      tokens: [{surface: 󱥑, sense: pipi, readings: {lasina: pipi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱤁, sense: akesi, readings: {
+            lasina: akesi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {lasina: lape}}]
+      reverse: 󱥑󱤧󱤶󱤁󱤧󱤢
+  translations:
+    en: |-
+      The (bug|insect) is eating. The (lizard|frog|snake|reptile) is (sleeping|asleep).
+      The bug eats. The lizard sleeps.
+      The bugs are eating. The lizards are sleeping.
+- id: s.u02.24
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: ni li tomo.
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: tomo, sense: tomo, readings: {lasina: tomo}}]
+      reverse: ni li tomo
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱥭
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}}]
+      reverse: 󱥁󱤧󱥭
+  translations:
+    en: |-
+      (This|That) is a (house|home|building).
+      (These|Those) are (houses|homes|buildings)
+      It's a house.
+- id: s.u02.25
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: ni li jan Lina.
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {
+            lasina: Lina}}]
+      reverse: ni li jan Lina
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}]
+      reverse: 󱥁󱤧󱤑󱦐󱤩󱤎󱤿󱤀󱦑
+  translations:
+    en: |-
+      (This is|That's|That is) Lina.
+      It's Lina.
+- id: s.u02.26
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: tomo ni li suli.
+      tokens: [{surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: tomo ni li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱥭󱥁󱤧󱥣
+      tokens: [{surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {
+            lasina: suli}}]
+      reverse: 󱥭󱥁󱤧󱥣
+  translations:
+    en: |-
+      (This|That) (house|building) is (big|large).
+      (These|Those) (houses|buildings) are (big|large)
+- id: s.u02.27
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: soweli ni li suwi.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suwi, sense: suwi,
+          readings: {lasina: suwi}}]
+      reverse: soweli ni li suwi
+    tok-Qaap/sitelen-pona:
+      text: 󱥢󱥁󱤧󱥦
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥦, sense: suwi, readings: {
+            lasina: suwi}}]
+      reverse: 󱥢󱥁󱤧󱥦
+  translations:
+    en: |-
+      (This|That) animal is (cute|sweet).
+      (These|Those) animals are (cute|sweet)
+- id: s.u02.28
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: ni li moku suwi.
+      tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: suwi, sense: suwi, readings: {
+            lasina: suwi}}]
+      reverse: ni li moku suwi
+    tok-Qaap/sitelen-pona:
+      text: 󱥁󱤧󱤶󱥦
+      tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥦, sense: suwi, readings: {
+            lasina: suwi}}]
+      reverse: 󱥁󱤧󱤶󱥦
+  translations:
+    en: |-
+      (These|Those) are (sweets|candies|treats).
+      (This|That) is (candy|dessert|a sweet|a treat)
+      It's candy.
+- id: s.u02.29
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: tomo mi li lili.
+      tokens: [{surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili, readings: {
+            lasina: lili}}]
+      reverse: tomo mi li lili
+    tok-Qaap/sitelen-pona:
+      text: 󱥭󱤴󱤧󱤨
+      tokens: [{surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {
+            lasina: lili}}]
+      reverse: 󱥭󱤴󱤧󱤨
+  translations:
+    en: (My|Our) (house|home) is (small|little).
+- id: s.u02.30
+  node: tok.u02.this
+  forms:
+    tok-Latn/standard:
+      text: jan Mila li suwi. ona li jan lili.
+      tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suwi, sense: suwi,
+          readings: {lasina: suwi}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: lili,
+          sense: lili, readings: {lasina: lili}}]
+      reverse: jan Mila li suwi ona li jan lili
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1911\U000F1990\U000F1931\U000F190E\U000F192A\U000F1900\U000F1991\U000F1927\U000F1966\u3000\U000F1946\U000F1927\U000F1911\U000F1928"
+      tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥦, sense: suwi, readings: {lasina: suwi}}, {
+          surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
+      reverse: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱤧󱥦󱥆󱤧󱤑󱤨
+  translations:
+    en: Mila is (cute|sweet). (She's|She is) a (child|kid|little girl).
+- id: s.u02.31
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: telo li pona.
+      tokens: [{surface: telo, sense: telo, readings: {lasina: telo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+      reverse: telo li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱥪󱤧󱥔
+      tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      reverse: 󱥪󱤧󱥔
+  translations:
+    en: |-
+      [The] water is (good|nice).
+      The water is fine.
+- id: s.u02.32
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: telo li lete.
+      tokens: [{surface: telo, sense: telo, readings: {lasina: telo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lete, sense: lete, readings: {lasina: lete}}]
+      reverse: telo li lete
+    tok-Qaap/sitelen-pona:
+      text: 󱥪󱤧󱤦
+      tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤦, sense: lete, readings: {lasina: lete}}]
+      reverse: 󱥪󱤧󱤦
+  translations:
+    en: '[The] water is (cold|cool).'
+- id: s.u02.33
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: mi lete.
+      tokens: [{surface: mi, sense: mi, readings: {lasina: mi}}, {surface: lete, sense: lete, readings: {lasina: lete}}]
+      reverse: mi lete
+    tok-Qaap/sitelen-pona:
+      text: 󱤴󱤦
+      tokens: [{surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤦, sense: lete, readings: {lasina: lete}}]
+      reverse: 󱤴󱤦
+  translations:
+    en: (I'm|I am|We're|We are) cold.
+- id: s.u02.34
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: telo lete li pona.
+      tokens: [{surface: telo, sense: telo, readings: {lasina: telo}}, {surface: lete, sense: lete, readings: {lasina: lete}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
+          readings: {lasina: pona}}]
+      reverse: telo lete li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱥪󱤦󱤧󱥔
+      tokens: [{surface: 󱥪, sense: telo, readings: {lasina: telo}}, {surface: 󱤦, sense: lete, readings: {lasina: lete}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: 󱥪󱤦󱤧󱥔
+  translations:
+    en: |-
+      Cold water is (good|nice).
+      The cold water is (good|nice)
+- id: s.u02.35
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: seli li suli.
+      tokens: [{surface: seli, sense: seli, readings: {lasina: seli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
+      reverse: seli li suli
+    tok-Qaap/sitelen-pona:
+      text: 󱥗󱤧󱥣
+      tokens: [{surface: 󱥗, sense: seli, readings: {lasina: seli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
+      reverse: 󱥗󱤧󱥣
+  translations:
+    en: The fire is (big|large).
+- id: s.u02.36
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: tomo li seli.
+      tokens: [{surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: seli, sense: seli, readings: {lasina: seli}}]
+      reverse: tomo li seli
+    tok-Qaap/sitelen-pona:
+      text: 󱥭󱤧󱥗
+      tokens: [{surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥗, sense: seli, readings: {lasina: seli}}]
+      reverse: 󱥭󱤧󱥗
+  translations:
+    en: The (house|home|room) is (warm|hot).
+- id: s.u02.37
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: moku seli li pona.
+      tokens: [{surface: moku, sense: moku, readings: {lasina: moku}}, {surface: seli, sense: seli, readings: {lasina: seli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: pona, sense: pona,
+          readings: {lasina: pona}}]
+      reverse: moku seli li pona
+    tok-Qaap/sitelen-pona:
+      text: 󱤶󱥗󱤧󱥔
+      tokens: [{surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥗, sense: seli, readings: {lasina: seli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona, readings: {
+            lasina: pona}}]
+      reverse: 󱤶󱥗󱤧󱥔
+  translations:
+    en: |-
+      (Hot|Warm) food is (good|nice).
+      The (hot|warm) food is (good|nice)
+- id: s.u02.38
+  node: tok.u02.hot-cold
+  forms:
+    tok-Latn/standard:
+      text: soweli li seli. kala li lete.
+      tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: seli, sense: seli, readings: {lasina: seli}}, {surface: kala, sense: kala,
+          readings: {lasina: kala}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lete, sense: lete, readings: {lasina: lete}}]
+      reverse: soweli li seli kala li lete
+    tok-Qaap/sitelen-pona:
+      text: "\U000F1962\U000F1927\U000F1957\u3000\U000F1914\U000F1927\U000F1926"
+      tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥗, sense: seli, readings: {lasina: seli}}, {surface: 󱤔, sense: kala, readings: {
+            lasina: kala}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤦, sense: lete, readings: {lasina: lete}}]
+      reverse: 󱥢󱤧󱥗󱤔󱤧󱤦
+  translations:
+    en: |-
+      The animal is (warm|hot). The fish is (cold|cool).
+      [The] animals are (warm|hot). [The] fish are (cold|cool)
+stories:
+- id: tok.story.milas-animals
+  node: tok.u02.story
+  title:
+    en: 'ni li soweli mi: Meet my animals'
+  characters:
+  - {id: lina, name: {tok-Latn/standard: jan Lina, tok-Qaap/sitelen-pona: 󱤑󱦐󱤩󱤎󱤿󱤀󱦑}}
+  - {id: pita, name: {tok-Latn/standard: jan Pita, tok-Qaap/sitelen-pona: 󱤑󱦐󱥑󱤎󱥭󱤀󱦑}}
+  - {id: mila, name: {tok-Latn/standard: jan Mila, tok-Qaap/sitelen-pona: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑}}
+  steps:
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: toki, jan Lina! toki, jan Pita!
+          tokens: [{surface: toki, sense: toki, readings: {lasina: toki}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Lina, sense: lina, readings: {lasina: Lina}}, {surface: toki, sense: toki,
+              readings: {lasina: toki}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Pita, sense: pita, readings: {lasina: Pita}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F196C\U000F1911\U000F1990\U000F1929\U000F190E\U000F193F\U000F1900\U000F1991\u3000\U000F196C\U000F1911\U000F1990\U000F1951\U000F190E\U000F196D\U000F1900\U000F1991"
+          tokens: [{surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤩󱤎󱤿󱤀󱦑, sense: lina}, {surface: 󱥬, sense: toki, readings: {lasina: toki}},
+            {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱥑󱤎󱥭󱤀󱦑, sense: pita}]
+      translations:
+        en: Hi, Lina! Hi, Pita!
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: toki, jan Mila! tomo sina li suli!
+          tokens: [{surface: toki, sense: toki, readings: {lasina: toki}}, {surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: tomo, sense: tomo,
+              readings: {lasina: tomo}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli, readings: {lasina: suli}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F196C\U000F1911\U000F1990\U000F1931\U000F190E\U000F192A\U000F1900\U000F1991\u3000\U000F196D\U000F195E\U000F1927\U000F1963"
+          tokens: [{surface: 󱥬, sense: toki, readings: {lasina: toki}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱥭, sense: tomo, readings: {lasina: tomo}},
+            {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {lasina: suli}}]
+      translations:
+        en: Hi, Mila! Your house is big!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: tomo mi li suli li seli.
+          tokens: [{surface: tomo, sense: tomo, readings: {lasina: tomo}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suli, sense: suli,
+              readings: {lasina: suli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: seli, sense: seli, readings: {lasina: seli}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥭󱤴󱤧󱥣󱤧󱥗
+          tokens: [{surface: 󱥭, sense: tomo, readings: {lasina: tomo}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥣, sense: suli, readings: {
+                lasina: suli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥗, sense: seli, readings: {lasina: seli}}]
+      translations:
+        en: My house is big and warm.
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: a! soweli li lape.
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lape, sense: lape,
+              readings: {lasina: lape}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\u3000\U000F1962\U000F1927\U000F1922"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤢, sense: lape, readings: {
+                lasina: lape}}]
+      translations:
+        en: Oh! An animal is sleeping.
+  - line:
+      speaker: mila
+      ask: arrange
+      forms:
+        tok-Latn/standard:
+          text: soweli mi li lili li suwi.
+          tokens: [{surface: soweli, sense: soweli, readings: {lasina: soweli}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili,
+              readings: {lasina: lili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: suwi, sense: suwi, readings: {lasina: suwi}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥢󱤴󱤧󱤨󱤧󱥦
+          tokens: [{surface: 󱥢, sense: soweli, readings: {lasina: soweli}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {
+                lasina: lili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥦, sense: suwi, readings: {lasina: suwi}}]
+      translations:
+        en: My pet is small and cute.
+  - choose:
+      prompt:
+        en: What is Mila's pet doing?
+      options: [{en: It's sleeping.}, {en: It's eating.}, {en: It's talking.}]
+      answer: 0
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: a, waso li toki!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: waso, sense: waso, readings: {lasina: waso}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki, readings: {
+                lasina: toki}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤀󱥴󱤧󱥬
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {
+                lasina: toki}}]
+      translations:
+        en: Oh, the bird is talking!
+  - line:
+      speaker: mila
+      ask: complete
+      gap: sense:toki
+      distractors: ['sense:lape', 'sense:moku']
+      forms:
+        tok-Latn/standard:
+          text: waso mi li toki pona.
+          tokens: [{surface: waso, sense: waso, readings: {lasina: waso}}, {surface: mi, sense: mi, readings: {lasina: mi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: toki, sense: toki,
+              readings: {lasina: toki}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱥴󱤴󱤧󱥬󱥔
+          tokens: [{surface: 󱥴, sense: waso, readings: {lasina: waso}}, {surface: 󱤴, sense: mi, readings: {lasina: mi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥬, sense: toki, readings: {
+                lasina: toki}}, {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      translations:
+        en: My bird speaks Toki Pona.
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: a a a! waso sina li jan!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: a, sense: a, readings: {lasina: a}}, {surface: waso, sense: waso, readings: {lasina: waso}},
+            {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: jan, sense: jan, readings: {lasina: jan}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\U000F1900\U000F1900\u3000\U000F1974\U000F195E\U000F1927\U000F1911"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱥴, sense: waso, readings: {lasina: waso}},
+            {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}}]
+      translations:
+        en: Ha ha ha! Your bird is a person!
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: ni li akesi mi. ona li lili.
+          tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: akesi, sense: akesi, readings: {lasina: akesi}}, {surface: mi, sense: mi,
+              readings: {lasina: mi}}, {surface: ona, sense: ona, readings: {lasina: ona}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili, readings: {lasina: lili}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1941\U000F1927\U000F1901\U000F1934\u3000\U000F1946\U000F1927\U000F1928"
+          tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤁, sense: akesi, readings: {lasina: akesi}}, {surface: 󱤴, sense: mi, readings: {
+                lasina: mi}}, {surface: 󱥆, sense: ona, readings: {lasina: ona}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {lasina: lili}}]
+      translations:
+        en: This is my lizard. He's little.
+  - line:
+      speaker: lina
+      forms:
+        tok-Latn/standard:
+          text: a! akesi li lili li wawa!
+          tokens: [{surface: a, sense: a, readings: {lasina: a}}, {surface: akesi, sense: akesi, readings: {lasina: akesi}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: lili, sense: lili,
+              readings: {lasina: lili}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: wawa, sense: wawa, readings: {lasina: wawa}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1900\u3000\U000F1901\U000F1927\U000F1928\U000F1927\U000F1975"
+          tokens: [{surface: 󱤀, sense: a, readings: {lasina: a}}, {surface: 󱤁, sense: akesi, readings: {lasina: akesi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤨, sense: lili, readings: {
+                lasina: lili}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥵, sense: wawa, readings: {lasina: wawa}}]
+      translations:
+        en: Oh! The lizard is small and strong!
+  - choose:
+      prompt:
+        en: Which animal speaks Toki Pona?
+      options: [{en: the bird}, {en: the lizard}, {en: the sleeping pet}]
+      answer: 0
+  - line:
+      speaker: mila
+      forms:
+        tok-Latn/standard:
+          text: ni li moku suwi. moku suwi li pona!
+          tokens: [{surface: ni, sense: ni, readings: {lasina: ni}}, {surface: li, sense: li, readings: {lasina: li}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: suwi, sense: suwi,
+              readings: {lasina: suwi}}, {surface: moku, sense: moku, readings: {lasina: moku}}, {surface: suwi, sense: suwi, readings: {lasina: suwi}}, {surface: li, sense: li, readings: {lasina: li}},
+            {surface: pona, sense: pona, readings: {lasina: pona}}]
+        tok-Qaap/sitelen-pona:
+          text: "\U000F1941\U000F1927\U000F1936\U000F1966\u3000\U000F1936\U000F1966\U000F1927\U000F1954"
+          tokens: [{surface: 󱥁, sense: ni, readings: {lasina: ni}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥦, sense: suwi, readings: {
+                lasina: suwi}}, {surface: 󱤶, sense: moku, readings: {lasina: moku}}, {surface: 󱥦, sense: suwi, readings: {lasina: suwi}}, {surface: 󱤧, sense: li, readings: {lasina: li}}, {surface: 󱥔, sense: pona,
+              readings: {lasina: pona}}]
+      translations:
+        en: These are sweets. Sweets are good!
+  - line:
+      speaker: pita
+      forms:
+        tok-Latn/standard:
+          text: jan Mila, sina jan pona!
+          tokens: [{surface: jan, sense: jan, readings: {lasina: jan}}, {surface: Mila, sense: mila, readings: {lasina: Mila}}, {surface: sina, sense: sina, readings: {lasina: sina}}, {surface: jan, sense: jan,
+              readings: {lasina: jan}}, {surface: pona, sense: pona, readings: {lasina: pona}}]
+        tok-Qaap/sitelen-pona:
+          text: 󱤑󱦐󱤱󱤎󱤪󱤀󱦑󱥞󱤑󱥔
+          tokens: [{surface: 󱤑, sense: jan, readings: {lasina: jan}}, {surface: 󱦐󱤱󱤎󱤪󱤀󱦑, sense: mila}, {surface: 󱥞, sense: sina, readings: {lasina: sina}}, {surface: 󱤑, sense: jan, readings: {lasina: jan}},
+            {surface: 󱥔, sense: pona, readings: {lasina: pona}}]
+      translations:
+        en: Mila, you're a friend!
+scenarios:
+- id: tok.milas-home
+  after: tok.u02.hot-cold
+  title:
+    en: Mila's animals
+  setting:
+    en: Mila's home on a cold day. A fire keeps the room warm, a cat sleeps by it, a bird chatters, a lizard sits in a glass tank and fish swim in a bowl of cold water.
+  character:
+    en: jan Mila, a cheerful child who loves her animals and speaks only very simple Toki Pona.
+  goal:
+    en: Point things out with ni li … and say what the animals and things are like with li and adjectives (soweli li suwi, telo li lete, akesi li lili li wawa).

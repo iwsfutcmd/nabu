@@ -12,3 +12,20 @@
 @import "@fontsource/vazirmatn/400.css";
 @import "@fontsource/noto-sans-hk/400.css";
 @import "@fontsource/noto-serif-tc/400.css";
+@import "@fontsource/noto-serif-hebrew/400.css";
+/* Polytonic Greek (ADR 0087): Noto Serif's greek-ext subset has every accent and breathing. */
+@import "@fontsource/noto-serif/400.css";
+
+/*
+ * sitelen pona (ADR 0086) is on no font package: sitelen seli kiwen juniko (OFL-1.1) is kept in
+ * fonts/sitelen-seli-kiwen, subset to the UCSUR block it maps. Its range keeps every other text
+ * out of it.
+ */
+@font-face {
+  font-family: "sitelen seli kiwen juniko";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/sitelen-seli-kiwen/sitelen-seli-kiwen-juniko.woff2") format("woff2");
+  unicode-range: U+0020, U+003A, U+200D, U+3000, U+F1900-F19FF;
+}

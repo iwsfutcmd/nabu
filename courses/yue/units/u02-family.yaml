@@ -97,22 +97,31 @@ sentences:
     yue-Hant-HK/standard:
       text: 你叫咩名呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 名, sense: 名, readings: {jyutping: meng2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你叫(咩|乜嘢|乜野|乜)名(|字)[呀]
+      reverse: |-
+        你叫(咩|乜嘢|乜野|乜)名(|字)[呀]
+        你個名係咩呀
+        你個名叫咩呀
   translations:
     en: |-
       What's your name?
       What is your name?
+      What are you called?
 - id: s.u02.5
   node: yue.names
   forms:
     yue-Hant-HK/standard:
       text: 佢叫咩名呀？
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 名, sense: 名, readings: {jyutping: meng2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 佢叫(咩|乜嘢|乜野|乜)名(|字)[呀]
+      reverse: |-
+        佢叫(咩|乜嘢|乜野|乜)名(|字)[呀]
+        佢個名係咩呀
   translations:
     en: |-
       What's (her|his|their) name?
       What is (her|his|their) name?
+      What is she called?
+      What is he called?
+      What are they called?
 - id: s.u02.6
   node: yue.names
   forms:
@@ -124,6 +133,7 @@ sentences:
     en: |-
       My (surname|family name|last name) is Chan.
       I('m| am) surnamed Chan.
+      My surname's Chan.
 - id: s.u02.7
   node: yue.names
   persons: {addressee: sg}
@@ -321,7 +331,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你有冇哥哥呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你有(冇|無)(哥哥|阿哥|大佬)[呀]
+      reverse: |-
+        你有(冇|無)(哥哥|阿哥|大佬)[呀]
+        你有哥哥嗎
   translations:
     en: |-
       Do you have (an older brother|a big brother|older brothers|any older brothers|big brothers|any big brothers)?
@@ -358,6 +370,7 @@ sentences:
       (She|He)('s| is) my friend.
       They('re| are) my friend.
       (She|He)('s| is) a friend of mine.
+      They're a friend of mine.
 - id: s.u02.28
   node: yue.people
   forms:
@@ -394,7 +407,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我都係醫生。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 醫生, sense: 醫生, readings: {jyutping: ji1 sang1}}]
-      reverse: 我都係醫生
+      reverse: |-
+        我都係醫生
+        我亦都係醫生
   translations:
     en: |-
       I('m| am) a doctor (too|as well).
@@ -468,7 +483,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我哥哥都好高。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 哥哥, sense: 哥哥, readings: {jyutping: go4 go1}}, {surface: 都, sense: 都, readings: {jyutping: dou1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
-      reverse: 我(|嘅|既)(哥哥|阿哥|大佬)都好高
+      reverse: |-
+        我(|嘅|既)(哥哥|阿哥|大佬)都好高
+        我哥哥亦都好高
   translations:
     en: |-
       My (older|big) brother is (very|really|so) tall too.
@@ -503,7 +520,10 @@ sentences:
         你(哋|地)攰唔攰[呀]
         你(哋|地)攰嗎
   translations:
-    en: Are you tired?
+    en: |-
+      Are you tired?
+      Are you all tired?
+      Are you guys tired?
 stories:
 - id: yue.story.family-photo
   node: yue.family-story

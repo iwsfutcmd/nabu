@@ -1,0 +1,685 @@
+# Biblical Hebrew (hbo), unit 4: What is this you have done? (Genesis 3:11-13).
+# Questions (מִי, מָה, הֲ), "you" to a man and to a woman, he and she, אֲשֶׁר "who, which",
+# the perfect "you did" (m. and f.), "she did" in the narrative past, and the infinitive "to eat".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u04-what-have-you-done
+title:
+  en: What have you done?
+cefr: A1
+kcs:
+- id: sense:mi
+  gloss:
+    en: who?
+  forms:
+    hbo-Hebr/tiberian: [מִי]
+- id: sense:atta
+  gloss:
+    en: you (to a man)
+  forms:
+    hbo-Hebr/tiberian: [אַתָּה]
+- id: sense:at
+  gloss:
+    en: you (to a woman)
+  forms:
+    hbo-Hebr/tiberian: [אַתְּ]
+  notes:
+    en: 'אַתְּ ʾatt, at a pause אָתְּ ʾātt: ''you'' said to a woman. To a man: אַתָּה ʾattâ.'
+- id: sense:nagad
+  gloss:
+    en: to tell, declare (hiphil)
+  forms:
+    hbo-Hebr/tiberian: [הִגִּיד]
+- id: sense:hu
+  gloss:
+    en: he; it
+  forms:
+    hbo-Hebr/tiberian: [הוּא]
+- id: sense:hi
+  gloss:
+    en: she; it
+  forms:
+    hbo-Hebr/tiberian: [הִיא]
+  notes:
+    en: In the five books of Moses it is usually written הִוא and read hîʾ.
+- id: sense:asher
+  gloss:
+    en: who, which, that (relative)
+  forms:
+    hbo-Hebr/tiberian: [אֲשֶׁר]
+- id: sense:ha.q
+  gloss:
+    en: '(marks a yes-no question: הֲ, written joined to the next word)'
+  forms:
+    hbo-Hebr/tiberian: [הֲ]
+  notes:
+    en: 'הֲ hă- turns a sentence into a question: הֲמִן־הָעֵץ אָכַלְתָּ ''did you eat from the tree?''.'
+- id: sense:akhal
+  gloss:
+    en: to eat
+  forms:
+    hbo-Hebr/tiberian: [אָכַל]
+  image: {file: ../images/bread.svg, license: CC0-1.0, provenance: {author: 'llm:claude@5e86bf893364', status: draft}, source: Drawn for Nabu (courses/images)}
+- id: form:qatal-2ms
+  gloss:
+    en: 'you did: the perfect (qatal), you (to a man: -tā)'
+- id: form:inf
+  gloss:
+    en: 'infinitive (construct): to do; doing (לֶאֱכֹל ''to eat'')'
+- id: sense:tsivvah
+  gloss:
+    en: to command (piel)
+  forms:
+    hbo-Hebr/tiberian: [צִוָּה]
+- id: sense:bilti
+  gloss:
+    en: 'not (לְבִלְתִּי + infinitive: not to)'
+  forms:
+    hbo-Hebr/tiberian: [בִּלְתִּי]
+- id: sense:natan
+  gloss:
+    en: to give; to put
+  forms:
+    hbo-Hebr/tiberian: [נָתַן]
+- id: sense:immad
+  gloss:
+    en: 'with (only with suffixes: עִמָּדִי ''with me'')'
+  forms:
+    hbo-Hebr/tiberian: [עִמָּד]
+- id: form:sfx-1cs
+  gloss:
+    en: my; me (the suffix -î, -nî)
+- id: sense:mah
+  gloss:
+    en: what? (מַה־, also מֶה)
+  forms:
+    hbo-Hebr/tiberian: [מָה]
+- id: sense:zot
+  gloss:
+    en: this (f.); this thing
+  forms:
+    hbo-Hebr/tiberian: [זֹאת]
+- id: sense:asah
+  gloss:
+    en: to do; to make
+  forms:
+    hbo-Hebr/tiberian: [עָשָׂה]
+- id: form:qatal-2fs
+  gloss:
+    en: 'you did: the perfect (qatal), you (to a woman: -t)'
+- id: form:wayyiqtol-3fs
+  gloss:
+    en: 'and she did: the narrative past, she or it (f.)'
+- id: sense:nahash
+  gloss:
+    en: serpent, snake
+  forms:
+    hbo-Hebr/tiberian: [נָחָשׁ]
+- id: sense:nasha
+  gloss:
+    en: to deceive (hiphil הִשִּׁיא)
+  forms:
+    hbo-Hebr/tiberian: [הִשִּׁיא]
+nodes:
+- {id: hbo.u04.who-are-you, kind: lesson, introduces: ['sense:mi', 'sense:atta', 'sense:at', 'sense:nagad', 'sense:hu', 'sense:hi']}
+- {id: hbo.u04.the-tree, kind: lesson, introduces: ['sense:asher', 'sense:ha.q', 'sense:akhal', 'form:qatal-2ms', 'form:inf', 'sense:tsivvah', 'sense:bilti']}
+- {id: hbo.u04.she-gave, kind: lesson, introduces: ['sense:natan', 'sense:immad', 'form:sfx-1cs']}
+- {id: hbo.u04.what-have-you-done, kind: lesson, introduces: ['sense:mah', 'sense:zot', 'sense:asah', 'form:qatal-2fs', 'form:wayyiqtol-3fs']}
+- {id: hbo.u04.the-serpent, kind: lesson, introduces: ['sense:nahash', 'sense:nasha']}
+- {id: hbo.u04.story, kind: story}
+sentences:
+- id: s.04.1
+  node: hbo.u04.who-are-you
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי
+      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî}}]
+      reverse: מי
+  translations:
+    en: who?
+- id: s.04.2
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתָּה
+      tokens: [{surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}]
+      reverse: אתה
+  translations:
+    en: you
+- id: s.04.3
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי אַתָּה׃
+      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}]
+      reverse: מי אתה
+  translations:
+    en: Who are you?
+- id: s.04.4
+  node: hbo.u04.who-are-you
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתְּ
+      tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}]
+      reverse: את
+  translations:
+    en: you
+- id: s.04.5
+  node: hbo.u04.who-are-you
+  persons: {addressee: f}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי־אָתְּ׃
+      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî-}}, {surface: אָתְּ, sense: at, readings: {tiberian: ʾātt}}]
+      reverse: מי את
+  translations:
+    en: Who are you?
+- id: s.04.6
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתָּה בַּגָּן׃
+      tokens: [{surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        אתה בגן
+        בגן אתה
+  translations:
+    en: |-
+      You are in the garden.
+      You're in the garden.
+- id: s.04.7
+  node: hbo.u04.who-are-you
+  persons: {addressee: f}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אַתְּ בַּגָּן׃
+      tokens: [{surface: אַתְּ, sense: at, readings: {tiberian: ʾatt}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        את בגן
+        בגן את
+  translations:
+    en: |-
+      You are in the garden.
+      You're in the garden.
+- id: s.04.8
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מִי הִגִּיד לְךָ׃
+      tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî}}, {surface: הִגִּיד, sense: nagad, form: 'form:qatal-3ms', readings: {tiberian: higgîḏ}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
+              kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}]
+      reverse: מי הגיד לך
+  translations:
+    en: Who told you?
+- id: s.04.9
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵירֹם אַתָּה׃
+      tokens: [{surface: עֵירֹם, sense: erom, readings: {tiberian: ʿêrōm}}, {surface: אַתָּה, sense: atta, readings: {tiberian: ʾattâ}}]
+      reverse: |-
+        (עירם|עירום) אתה
+        אתה (עירם|עירום)
+  translations:
+    en: |-
+      You are naked.
+      You're naked.
+- id: s.04.10
+  node: hbo.u04.who-are-you
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הוּא בַּגָּן׃
+      tokens: [{surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        הוא בגן
+        בגן הוא
+  translations:
+    en: |-
+      He is in the garden.
+      (He's|It is|It's) in the garden.
+- id: s.04.11
+  node: hbo.u04.who-are-you
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִיא בַּגָּן׃
+      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        היא בגן
+        בגן היא
+  translations:
+    en: |-
+      She is in the garden.
+      (She's|It is|It's) in the garden.
+- id: s.04.12
+  node: hbo.u04.who-are-you
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הוּא הִגִּיד לְךָ׃
+      tokens: [{surface: הוּא, sense: hu, readings: {tiberian: hûʾ}}, {surface: הִגִּיד, sense: nagad, form: 'form:qatal-3ms', readings: {tiberian: higgîḏ}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
+              kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}]
+      reverse: |-
+        הוא הגיד לך
+        הגיד הוא לך
+  translations:
+    en: |-
+      He told you.
+      He (has told|declared to) you.
+- id: s.04.13
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲשֶׁר
+      tokens: [{surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}]
+      reverse: אשר
+  translations:
+    en: (who|which|that)
+- id: s.04.14
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָעֵץ אֲשֶׁר בְּתוֹךְ הַגָּן
+      tokens: [{surface: הָעֵץ, sense: ets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}},
+        {surface: בְּתוֹךְ, sense: tokh, form: 'form:cstr', morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: תוֹךְ, kc: 'sense:tokh'}], readings: {tiberian: bəṯôḵ}}, {surface: הַגָּן, sense: gan, morphs: [
+            {surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: העץ אשר בתוך הגן
+  translations:
+    en: the tree (that|which) is in the (middle|midst) of the garden
+- id: s.04.15
+  node: hbo.u04.the-tree
+  persons: {addressee: m}
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַאַתָּה בַּגָּן׃
+      tokens: [{surface: הַאַתָּה, sense: atta, morphs: [{surface: הַ, kc: 'sense:ha.q'}, {surface: אַתָּה, kc: 'sense:atta'}], readings: {tiberian: haʾattâ}}, {surface: בַּגָּן, sense: gan, morphs: [{
+              surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: האתה בגן
+  translations:
+    en: Are you in the garden?
+- id: s.04.16
+  node: hbo.u04.the-tree
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָכַלְתָּ
+      tokens: [{surface: אָכַלְתָּ, sense: akhal, form: 'form:qatal-2ms', readings: {tiberian: ʾāḵáltā}}]
+      reverse: |-
+        אכלת
+        אתה אכלת
+  translations:
+    en: |-
+      you ate
+      you have eaten
+- id: s.04.17
+  node: hbo.u04.the-tree
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֲמִן־הָעֵץ אָכַלְתָּ׃
+      tokens: [{surface: הֲמִן, sense: min, morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: מִן, kc: 'sense:min'}], readings: {tiberian: hămin-}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ,
+              kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}, {surface: אָכַלְתָּ, sense: akhal, form: 'form:qatal-2ms', readings: {tiberian: ʾāḵáltā}}]
+      reverse: המן העץ אכלת
+  translations:
+    en: |-
+      Did you eat from the tree?
+      Have you eaten (from|of) the tree?
+- id: s.04.18
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֶאֱכֹל
+      tokens: [{surface: לֶאֱכֹל, sense: akhal, form: 'form:inf', morphs: [{surface: לֶ, kc: 'sense:le'}, {surface: אֱכֹל, kc: 'sense:akhal'}], readings: {tiberian: leʾĕḵōl}}]
+      reverse: (לאכל|לאכול)
+  translations:
+    en: |-
+      to eat
+      eating
+- id: s.04.19
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְצַו יְהוָה אֱלֹהִים עַל־הָאָדָם׃
+      tokens: [{surface: וַיְצַו, sense: tsivvah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayṣaw}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
+          readings: {tiberian: ʾĕlōhîm}}, {surface: עַל, sense: al, readings: {tiberian: ʿal-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם, kc: 'sense:adam'}],
+          readings: {tiberian: hāʾāḏām}}]
+      reverse: |-
+        ויצו יהוה (אלהים|אלוהים) על האדם
+        יהוה (אלהים|אלוהים) צוה על האדם
+        ויהוה (אלהים|אלוהים) צוה על האדם
+        צוה יהוה (אלהים|אלוהים) על האדם
+  translations:
+    en: '[(And|Then)] the LORD God commanded the man.'
+- id: s.04.20
+  node: hbo.u04.the-tree
+  forms:
+    hbo-Hebr/tiberian:
+      text: לְבִלְתִּי אֲכָל־מִמֶּנּוּ
+      tokens: [{surface: לְבִלְתִּי, sense: bilti, morphs: [{surface: לְ, kc: 'sense:le'}, {surface: בִלְתִּי, kc: 'sense:bilti'}], readings: {tiberian: ləḇiltî}}, {surface: אֲכָל, sense: akhal, form: 'form:inf',
+          readings: {tiberian: ʾăḵol-}}, {surface: מִמֶּנּוּ, sense: min, morphs: [{surface: מִמֶּ, kc: 'sense:min'}, {surface: נּוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: mimménnû}}]
+      reverse: לבלתי אכל ממנו
+  translations:
+    en: not to eat (from|of|any of) it
+- id: s.04.21
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָתַן
+      tokens: [{surface: נָתַן, sense: natan, form: 'form:qatal-3ms', readings: {tiberian: nāṯan}}]
+      reverse: |-
+        נתן
+        הוא נתן
+  translations:
+    en: |-
+      he gave
+      he has given
+- id: s.04.22
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִיא נָתְנָה־לִּי׃
+      tokens: [{surface: הִיא, sense: hi, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ,
+              kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}]
+      reverse: |-
+        היא נתנה לי
+        נתנה לי היא
+        נתנה היא לי
+  translations:
+    en: |-
+      She gave (it|some) to me.
+      She gave me (it|some).
+- id: s.04.23
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: עִמָּדִי
+      tokens: [{surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: עמדי
+  translations:
+    en: with me
+- id: s.04.24
+  node: hbo.u04.she-gave
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי
+      tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
+            tiberian: ʾăšer}}, {surface: נָתַתָּה, sense: natan, form: 'form:qatal-2ms', readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
+            {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}]
+      reverse: האשה אשר נתתה עמדי
+  translations:
+    en: |-
+      the woman (whom|that|who) you gave to be with me
+      the woman (whom|that|who) you (put|placed|gave) [here] with me
+- id: s.04.25
+  node: hbo.u04.she-gave
+  forms:
+    hbo-Hebr/tiberian:
+      text: נָתְנָה לִי מִן־הָעֵץ וָאֹכֵל׃
+      tokens: [{surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {tiberian: nāṯənâ}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: lî}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {
+            tiberian: hāʿēṣ}}, {surface: וָאֹכֵל, sense: akhal, form: 'form:wayyiqtol-1cs', readings: {tiberian: wāʾōḵēl}}]
+      reverse: נתנה לי מן העץ (ואכל|ואוכל)
+  translations:
+    en: |-
+      She gave me [(some|fruit)] from the tree, and I ate [it].
+      She gave me (some|fruit) of the tree, and I ate [it].
+- id: s.04.26
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־זֹּאת׃
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}]
+      reverse: מה (זאת|זואת)
+  translations:
+    en: |-
+      What is this?
+      What's this?
+- id: s.04.27
+  node: hbo.u04.what-have-you-done
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מַה־זֹּאת עָשִׂית׃
+      tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
+      reverse: מה (זאת|זואת) עשית
+  translations:
+    en: |-
+      What is this [that] you have done?
+      What have you done?
+- id: s.04.28
+  node: hbo.u04.what-have-you-done
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: מֶה עָשִׂיתָ׃
+      tokens: [{surface: מֶה, sense: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, sense: asah, form: 'form:qatal-2ms', readings: {tiberian: ʿāśî́ṯā}}]
+      reverse: מה עשית
+  translations:
+    en: |-
+      What have you done?
+      What did you do?
+- id: s.04.29
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֹּאמֶר הָאִשָּׁה׃
+      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+              kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
+      reverse: |-
+        (ותאמר|ותואמר) האשה
+        האשה אמרה
+        והאשה אמרה
+        אמרה האשה
+  translations:
+    en: '[(And|Then)] the woman said.'
+- id: s.04.30
+  node: hbo.u04.what-have-you-done
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַתֹּאמֶר הָאִשָּׁה אֶל־הָאָדָם׃
+      tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+              kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+              kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      reverse: |-
+        (ותאמר|ותואמר) האשה אל האדם
+        האשה אמרה אל האדם
+        והאשה אמרה אל האדם
+        אמרה האשה אל האדם
+  translations:
+    en: '[(And|Then)] the woman said to the man.'
+- id: s.04.31
+  node: hbo.u04.what-have-you-done
+  persons: {speaker: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי מִתְהַלֶּכֶת בַּגָּן׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֶּכֶת, sense: hithallekh, form: 'form:ptc-fs', readings: {tiberian: miṯhalléḵeṯ}}, {surface: בַּגָּן, sense: gan,
+          morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        (אנכי|אנוכי) מתהלכת בגן
+        מתהלכת (אנכי|אנוכי) בגן
+  translations:
+    en: |-
+      I am walking [(about|around)] in the garden.
+      I'm walking [(about|around)] in the garden.
+- id: s.04.32
+  node: hbo.u04.what-have-you-done
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי מִתְהַלֵּךְ בַּגָּן׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: מִתְהַלֵּךְ, sense: hithallekh, form: 'form:ptc-ms', readings: {tiberian: miṯhallēḵ}}, {surface: בַּגָּן, sense: gan,
+          morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: |-
+        (אנכי|אנוכי) מתהלך בגן
+        מתהלך (אנכי|אנוכי) בגן
+  translations:
+    en: |-
+      I am walking [(about|around)] in the garden.
+      I'm walking [(about|around)] in the garden.
+- id: s.04.33
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ
+      tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}]
+      reverse: הנחש
+  translations:
+    en: the (serpent|snake)
+- id: s.04.34
+  node: hbo.u04.the-serpent
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ בַּגָּן׃
+      tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: בַּגָּן, sense: gan, morphs: [
+            {surface: בַּ, kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: הנחש בגן
+  translations:
+    en: The (serpent|snake) is in the garden.
+- id: s.04.35
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ הִשִּׁיאַנִי׃
+      tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, sense: nasha,
+          form: 'form:qatal-3ms', morphs: [{surface: הִשִּׁיאַ, kc: 'sense:nasha'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hiššîʾánî}}]
+      reverse: |-
+        הנחש השיאני
+        השיאני הנחש
+  translations:
+    en: The (serpent|snake) (deceived|tricked|beguiled) me.
+- id: s.04.36
+  node: hbo.u04.the-serpent
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנָּחָשׁ הִשִּׁיאַנִי וָאֹכֵל׃
+      tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, sense: nasha,
+          form: 'form:qatal-3ms', morphs: [{surface: הִשִּׁיאַ, kc: 'sense:nasha'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hiššîʾánî}}, {surface: וָאֹכֵל, sense: akhal, form: 'form:wayyiqtol-1cs',
+          readings: {tiberian: wāʾōḵēl}}]
+      reverse: הנחש השיאני (ואכל|ואוכל)
+  translations:
+    en: The (serpent|snake) (deceived|tricked|beguiled) me, and I ate.
+stories:
+- id: hbo.story.what-have-you-done
+  node: hbo.u04.story
+  title:
+    en: What have you done? (Genesis 3:11–13)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  - {id: adam, speaker: m, name: {hbo-Hebr/tiberian: הָאָדָם}}
+  - {id: woman, speaker: f, name: {hbo-Hebr/tiberian: הָאִשָּׁה}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: god
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: מִי הִגִּיד לְךָ כִּי עֵירֹם אָתָּה
+          tokens: [{surface: מִי, sense: mi, readings: {tiberian: mî}}, {surface: הִגִּיד, sense: nagad, form: 'form:qatal-3ms', readings: {tiberian: higgîḏ}}, {surface: לְךָ, sense: le, morphs: [{surface: לְ,
+                  kc: 'sense:le'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ləḵā}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: עֵירֹם, sense: erom, readings: {tiberian: ʿêrōm}},
+            {surface: אָתָּה, sense: atta, readings: {tiberian: ʾā́ttâ}}]
+      translations:
+        en: “Who told you that you were naked?
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: הֲמִן־הָעֵץ אֲשֶׁר צִוִּיתִיךָ לְבִלְתִּי אֲכָל־מִמֶּנּוּ אָכָלְתָּ׃
+          tokens: [{surface: הֲמִן, sense: min, morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: מִן, kc: 'sense:min'}], readings: {tiberian: hămin-}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ,
+                  kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}, {surface: אֲשֶׁר, sense: asher, readings: {tiberian: ʾăšer}}, {surface: צִוִּיתִיךָ, sense: tsivvah, form: 'form:qatal-1cs',
+              morphs: [{surface: צִוִּיתִי, kc: 'sense:tsivvah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ṣiwwîṯî́ḵā}}, {surface: לְבִלְתִּי, sense: bilti, morphs: [{surface: לְ, kc: 'sense:le'},
+                {surface: בִלְתִּי, kc: 'sense:bilti'}], readings: {tiberian: ləḇiltî}}, {surface: אֲכָל, sense: akhal, form: 'form:inf', readings: {tiberian: ʾăḵol-}}, {surface: מִמֶּנּוּ, sense: min,
+              morphs: [{surface: מִמֶּ, kc: 'sense:min'}, {surface: נּוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: mimménnû}}, {surface: אָכָלְתָּ, sense: akhal, form: 'form:qatal-2ms', readings: {tiberian: ʾāḵā́ltā}}]
+      translations:
+        en: Have you eaten from the tree that I commanded you not to eat from?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר הָאָדָם
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: הָאָדָם, sense: adam, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אָדָם,
+                  kc: 'sense:adam'}], readings: {tiberian: hāʾāḏām}}]
+      translations:
+        en: And the man said,
+  - line:
+      speaker: adam
+      ask: complete
+      gap: sense:ets
+      distractors: ['sense:gan', 'sense:qol']
+      forms:
+        hbo-Hebr/tiberian:
+          text: הָאִשָּׁה אֲשֶׁר נָתַתָּה עִמָּדִי הִוא נָתְנָה־לִּי מִן־הָעֵץ וָאֹכֵל׃
+          tokens: [{surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}, {surface: אֲשֶׁר, sense: asher, readings: {
+                tiberian: ʾăšer}}, {surface: נָתַתָּה, sense: natan, form: 'form:qatal-2ms', readings: {tiberian: nāṯáttâ}}, {surface: עִמָּדִי, sense: immad, morphs: [{surface: עִמָּדִ, kc: 'sense:immad'},
+                {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʿimmāḏî}}, {surface: הִוא, sense: hi, readings: {tiberian: hîʾ}}, {surface: נָתְנָה, sense: natan, form: 'form:qatal-3fs', readings: {
+                tiberian: nāṯənâ-}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}, {surface: מִן, sense: min, readings: {
+                tiberian: min-}}, {surface: הָעֵץ, sense: ets, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: עֵץ, kc: 'sense:ets'}], readings: {tiberian: hāʿēṣ}}, {surface: וָאֹכֵל, sense: akhal, form: 'form:wayyiqtol-1cs',
+              readings: {tiberian: wāʾōḵēl}}]
+      translations:
+        en: “The woman whom you gave to be with me, she gave me (fruit) from the tree, and I ate.”
+  - choose:
+      prompt:
+        en: Who gave the man fruit from the tree, as he tells it?
+      options: [{en: the woman}, {en: the serpent}, {en: the LORD God}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר יְהוָה אֱלֹהִים לָאִשָּׁה
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֱלֹהִים, sense: elohim,
+              readings: {tiberian: ʾĕlōhîm}}, {surface: לָאִשָּׁה, sense: ishah, morphs: [{surface: לָ, kc: 'sense:le'}, {surface: אִשָּׁה, kc: 'sense:ishah'}], readings: {tiberian: lāʾiššâ}}]
+      translations:
+        en: And the LORD God said to the woman,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: מַה־זֹּאת עָשִׂית
+          tokens: [{surface: מַה, sense: mah, readings: {tiberian: mah-}}, {surface: זֹּאת, sense: zot, readings: {tiberian: zōʾṯ}}, {surface: עָשִׂית, sense: asah, form: 'form:qatal-2fs', readings: {tiberian: ʿāśîṯ}}]
+      translations:
+        en: “What is this that you have done?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַתֹּאמֶר הָאִשָּׁה
+          tokens: [{surface: וַתֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3fs', readings: {tiberian: wattṓʾmer}}, {surface: הָאִשָּׁה, sense: ishah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אִשָּׁה,
+                  kc: 'sense:ishah'}], readings: {tiberian: hāʾiššâ}}]
+      translations:
+        en: And the woman said,
+  - line:
+      speaker: woman
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: הַנָּחָשׁ הִשִּׁיאַנִי וָאֹכֵל׃
+          tokens: [{surface: הַנָּחָשׁ, sense: nahash, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נָּחָשׁ, kc: 'sense:nahash'}], readings: {tiberian: hannāḥāš}}, {surface: הִשִּׁיאַנִי, sense: nasha,
+              form: 'form:qatal-3ms', morphs: [{surface: הִשִּׁיאַ, kc: 'sense:nasha'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hiššîʾánî}}, {surface: וָאֹכֵל, sense: akhal, form: 'form:wayyiqtol-1cs',
+              readings: {tiberian: wāʾōḵēl}}]
+      translations:
+        en: “The serpent deceived me, and I ate.”
+  - choose:
+      prompt:
+        en: Whom does the woman blame?
+      options: [{en: the serpent}, {en: the man}, {en: herself}]
+      answer: 0

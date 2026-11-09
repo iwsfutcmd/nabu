@@ -1,0 +1,1274 @@
+# Ancient Greek (grc), unit 6: Not one woman is here (Aristophanes, Lysistrata 5-8).
+# Women and neighbours; being here (πάρειμι); no one (οὐδείς, οὐδεμία); my (ἐμός); this one here (ὅδε);
+# "don't!" (μή and the imperative); ready, said by a woman and by a man.
+# The passage is Hall and Geldart's text of Aristophanes (public domain), as the Perseus Digital Library has it;
+# the rest was drafted by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u06-not-one-woman
+title:
+  en: Not one woman is here
+cefr: A2
+kcs:
+- id: sense:gyne
+  gloss:
+    en: woman; wife
+  forms:
+    grc-Grek/polytonic:
+    - γυνή
+  notes:
+    en: 'Its other forms are built on γυναικ-: of the woman τῆς γυναικός, the women αἱ γυναῖκες.'
+- id: sense:oudeis
+  gloss:
+    en: no one, nobody; (with a noun) no, not one
+  forms:
+    grc-Grek/polytonic:
+    - οὐδείς
+  notes:
+    en: οὐδείς for a man or a masculine word, οὐδεμία for a woman, οὐδέν for a thing ("nothing").
+- id: sense:pareimi
+  gloss:
+    en: to be here, be present
+  forms:
+    grc-Grek/polytonic:
+    - πάρειμι
+- id: sense:entautha
+  gloss:
+    en: here, there
+  forms:
+    grc-Grek/polytonic:
+    - ἐνταῦθα
+    - ἐνταυθοῖ
+  notes:
+    en: ἐνταυθοῖ, "(to) here", is how the women of Aristophanes say it.
+- id: sense:emos
+  gloss:
+    en: my, mine
+  forms:
+    grc-Grek/polytonic:
+    - ἐμός
+- id: sense:kometis
+  gloss:
+    en: a woman of the same village or quarter; neighbour
+  forms:
+    grc-Grek/polytonic:
+    - κωμῆτις
+- id: sense:plen
+  gloss:
+    en: (with the genitive) except
+  forms:
+    grc-Grek/polytonic:
+    - πλήν
+- id: sense:hode
+  gloss:
+    en: this (one) here
+  forms:
+    grc-Grek/polytonic:
+    - ὅδε
+  notes:
+    en: 'ὅδε, ἥδε, τόδε point at what is right in front of you: ἥδε ἐξέρχεται, "here she comes out".'
+- id: sense:exerchomai
+  gloss:
+    en: to come out, go out
+  forms:
+    grc-Grek/polytonic:
+    - ἐξέρχομαι
+- id: sense:kalonike
+  gloss:
+    en: Calonice (Lysistrata's neighbour)
+  forms:
+    grc-Grek/polytonic:
+    - Καλονίκη
+- id: sense:lysistrate
+  gloss:
+    en: Lysistrata (the Athenian woman of Aristophanes' play)
+  forms:
+    grc-Grek/polytonic:
+    - Λυσιστράτη
+- id: sense:me
+  gloss:
+    en: not (in commands and wishes)
+  forms:
+    grc-Grek/polytonic:
+    - μή
+  notes:
+    en: 'μή with an imperative forbids: μὴ σκυ^θρώπαζε, "don''t scowl!". Statements take οὐ.'
+- id: sense:skythropazo
+  gloss:
+    en: to look sullen, scowl
+  forms:
+    grc-Grek/polytonic:
+    - σκυθρωπάζω
+- id: sense:syntaratto
+  gloss:
+    en: to throw into confusion, upset
+  forms:
+    grc-Grek/polytonic:
+    - συνταράττω
+  notes:
+    en: συ^ντετάραξαι, "you have been upset" (you are upset), is its perfect.
+- id: sense:hetoimos
+  gloss:
+    en: ready
+  forms:
+    grc-Grek/polytonic:
+    - ἕτοιμος
+  notes:
+    en: A woman says ἑτοίμη εἰμί, a man ἕτοιμός εἰμι.
+nodes:
+- id: grc.u06.women
+  kind: lesson
+  introduces:
+  - sense:gyne
+  - sense:pareimi
+  - sense:oudeis
+  - sense:entautha
+- id: grc.u06.my-neighbour
+  kind: lesson
+  introduces:
+  - sense:emos
+  - sense:kometis
+  - sense:plen
+  - sense:hode
+- id: grc.u06.she-comes-out
+  kind: lesson
+  introduces:
+  - sense:exerchomai
+  - sense:kalonike
+  - sense:lysistrate
+- id: grc.u06.dont-scowl
+  kind: lesson
+  introduces:
+  - sense:me
+  - sense:skythropazo
+  - sense:syntaratto
+- id: grc.u06.ready
+  kind: lesson
+  introduces:
+  - sense:hetoimos
+- id: grc.u06.story
+  kind: story
+sentences:
+- id: s.06.1
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ γυνή.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γυνή
+        sense: gyne
+        readings:
+          attic: γῠνή
+      reverse: ἡ γυνή
+  translations:
+    en: The (woman|wife).
+- id: s.06.2
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: αἱ γυναῖκες.
+      tokens:
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      reverse: αἱ γυναῖκες
+  translations:
+    en: The (women|wives).
+- id: s.06.3
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: γυνὴ πάρεστιν.
+      tokens:
+      - surface: γυνὴ
+        sense: gyne
+        readings:
+          attic: γῠνὴ
+      - surface: πάρεστιν
+        sense: pareimi
+        form: form:pres-3s
+        readings:
+          attic: πᾰ́ρεστῐν
+      reverse: |-
+        γυνὴ πάρεστιν
+        πάρεστι[ν] γυνή
+        γυνὴ πάρεστι
+  translations:
+    en: A woman is (here|present).
+- id: s.06.4
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: οὐδεμία γυνὴ πάρεστιν.
+      tokens:
+      - surface: οὐδεμία
+        sense: oudeis
+        form: form:f
+        readings:
+          attic: οὐδεμῐ́ᾰ
+      - surface: γυνὴ
+        sense: gyne
+        readings:
+          attic: γῠνὴ
+      - surface: πάρεστιν
+        sense: pareimi
+        form: form:pres-3s
+        readings:
+          attic: πᾰ́ρεστῐν
+      reverse: |-
+        οὐδεμία γυνὴ πάρεστιν
+        οὐδεμία πάρεστι[ν] γυνή
+        πάρεστι[ν] οὐδεμία γυνή
+        γυνὴ οὐδεμία πάρεστι[ν]
+        οὐδεμία γυνὴ πάρεστι
+  translations:
+    en: (No woman is|Not one woman is|Not a single woman is) (here|present).
+- id: s.06.5
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: οὐδεὶς πάρεστιν.
+      tokens:
+      - surface: οὐδεὶς
+        sense: oudeis
+        readings:
+          attic: οὐδεὶς
+      - surface: πάρεστιν
+        sense: pareimi
+        form: form:pres-3s
+        readings:
+          attic: πᾰ́ρεστῐν
+      reverse: |-
+        οὐδεὶς πάρεστιν
+        πάρεστι[ν] οὐδείς
+        οὐδεὶς πάρεστι
+  translations:
+    en: (No one|Nobody) is (here|present).
+- id: s.06.6
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: ἐνταῦθα πάρειμι.
+      tokens:
+      - surface: ἐνταῦθα
+        sense: entautha
+        readings:
+          attic: ἐνταῦθᾰ
+      - surface: πάρειμι
+        sense: pareimi
+        form: form:pres-1s
+        readings:
+          attic: πᾰ́ρειμῐ
+      reverse: |-
+        ἐνταῦθα πάρειμι
+        πάρειμι ἐνταῦθα
+        πάρειμι
+  translations:
+    en: (I am|I'm) here.
+- id: s.06.7
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: ποῦ εἰσιν αἱ γυναῖκες;
+      tokens:
+      - surface: ποῦ
+        sense: pou
+        readings:
+          attic: ποῦ
+      - surface: εἰσιν
+        sense: eimi
+        form: form:pres-3p
+        readings:
+          attic: εἰσῐν
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      reverse: |-
+        ποῦ εἰσιν αἱ γυναῖκες
+        ποῦ αἱ γυναῖκές εἰσι[ν]
+        ποῦ εἰσι αἱ γυναῖκες
+  translations:
+    en: Where are the (women|wives)?
+- id: s.06.8
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: αἱ γυναῖκες οὐ πάρεισιν.
+      tokens:
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      - surface: οὐ
+        sense: ou
+        readings:
+          attic: οὐ
+      - surface: πάρεισιν
+        sense: pareimi
+        form: form:pres-3p
+        readings:
+          attic: πᾰ́ρεισῐν
+      reverse: |-
+        αἱ γυναῖκες οὐ πάρεισιν
+        οὐ πάρεισι[ν] αἱ γυναῖκες
+        αἱ γυναῖκες οὐ πάρεισι
+  translations:
+    en: The (women|wives) are not (here|present).
+- id: s.06.9
+  node: grc.u06.women
+  forms:
+    grc-Grek/polytonic:
+      text: πάρει, ὦ Ξανθίππη;
+      tokens:
+      - surface: πάρει
+        sense: pareimi
+        form: form:pres-2s
+        readings:
+          attic: πᾰ́ρει
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Ξανθίππη
+        sense: xanthippe
+        form: form:voc
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        πάρει ὦ Ξανθίππη
+        πάρει Ξανθίππη
+        [ὦ] Ξανθίππη πάρει
+  translations:
+    en: Are you (here|there), Xanthippe?
+- id: s.06.10
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ ἐμὴ μήτηρ.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: ἐμὴ
+        sense: emos
+        form: form:f
+        readings:
+          attic: ἐμὴ
+      - surface: μήτηρ
+        sense: meter
+        readings:
+          attic: μήτηρ
+      reverse: |-
+        ἡ ἐμὴ μήτηρ
+        ἡ μήτηρ ἡ ἐμή
+  translations:
+    en: My mother.
+- id: s.06.11
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ ἐμὸς πατήρ.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: ἐμὸς
+        sense: emos
+        readings:
+          attic: ἐμὸς
+      - surface: πατήρ
+        sense: pater
+        readings:
+          attic: πᾰτήρ
+      reverse: |-
+        ὁ ἐμὸς πατήρ
+        ὁ πατὴρ ὁ ἐμός
+  translations:
+    en: My father.
+- id: s.06.12
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ κωμῆτις.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: κωμῆτις
+        sense: kometis
+        readings:
+          attic: κωμῆτῐς
+      reverse: ἡ κωμῆτις
+  translations:
+    en: The (neighbour|neighbor).
+- id: s.06.13
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ ἐμὴ κωμῆτις.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: ἐμὴ
+        sense: emos
+        form: form:f
+        readings:
+          attic: ἐμὴ
+      - surface: κωμῆτις
+        sense: kometis
+        readings:
+          attic: κωμῆτῐς
+      reverse: |-
+        ἡ ἐμὴ κωμῆτις
+        ἡ κωμῆτις ἡ ἐμή
+  translations:
+    en: My (neighbour|neighbor).
+- id: s.06.14
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: ἥδε ἡ γυνή.
+      tokens:
+      - surface: ἥδε
+        sense: hode
+        form: form:f
+        readings:
+          attic: ἥδε
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γυνή
+        sense: gyne
+        readings:
+          attic: γῠνή
+      reverse: |-
+        ἥδε ἡ γυνή
+        ἡ γυνὴ ἥδε
+  translations:
+    en: This woman (here|).
+- id: s.06.15
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: πλὴν τῆς κωμήτιδος.
+      tokens:
+      - surface: πλὴν
+        sense: plen
+        readings:
+          attic: πλὴν
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: κωμήτιδος
+        sense: kometis
+        form: form:gen
+        readings:
+          attic: κωμήτῐδος
+      reverse: πλὴν τῆς κωμήτιδος
+  translations:
+    en: Except (the|my) (neighbour|neighbor).
+- id: s.06.16
+  node: grc.u06.my-neighbour
+  forms:
+    grc-Grek/polytonic:
+      text: οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος.
+      tokens:
+      - surface: οὐδεμία
+        sense: oudeis
+        form: form:f
+        readings:
+          attic: οὐδεμῐ́ᾰ
+      - surface: πάρεστιν
+        sense: pareimi
+        form: form:pres-3s
+        readings:
+          attic: πᾰ́ρεστῐν
+      - surface: πλὴν
+        sense: plen
+        readings:
+          attic: πλὴν
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: ἐμῆς
+        sense: emos
+        form: form:gen
+        readings:
+          attic: ἐμῆς
+      - surface: κωμήτιδος
+        sense: kometis
+        form: form:gen
+        readings:
+          attic: κωμήτῐδος
+      reverse: |-
+        οὐδεμία πάρεστιν πλὴν τῆς ἐμῆς κωμήτιδος
+        πλὴν τῆς ἐμῆς κωμήτιδος οὐδεμία πάρεστι[ν]
+        οὐδεμία πάρεστι πλὴν τῆς ἐμῆς κωμήτιδος
+  translations:
+    en: (No woman is|Not one woman is) here except my (neighbour|neighbor).
+- id: s.06.17
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: ἐξέρχομαι.
+      tokens:
+      - surface: ἐξέρχομαι
+        sense: exerchomai
+        form: form:pres-1s
+        readings:
+          attic: ἐξέρχομαι
+      reverse: ἐξέρχομαι
+  translations:
+    en: (I am|I'm) (coming|going) out.
+- id: s.06.18
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ γυνὴ ἐξέρχεται.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: γυνὴ
+        sense: gyne
+        readings:
+          attic: γῠνὴ
+      - surface: ἐξέρχεται
+        sense: exerchomai
+        form: form:pres-3s
+        readings:
+          attic: ἐξέρχεται
+      reverse: |-
+        ἡ γυνὴ ἐξέρχεται
+        ἐξέρχεται ἡ γυνή
+  translations:
+    en: The (woman|wife) is (coming|going) out.
+- id: s.06.19
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: ἥδε ἐξέρχεται.
+      tokens:
+      - surface: ἥδε
+        sense: hode
+        form: form:f
+        readings:
+          attic: ἥδε
+      - surface: ἐξέρχεται
+        sense: exerchomai
+        form: form:pres-3s
+        readings:
+          attic: ἐξέρχεται
+      reverse: |-
+        ἥδε ἐξέρχεται
+        ἐξέρχεται ἥδε
+  translations:
+    en: |-
+      Here she comes (out|).
+      (She|This woman) is coming out
+- id: s.06.20
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: Καλονίκη.
+      tokens:
+      - surface: Καλονίκη
+        sense: kalonike
+        readings:
+          attic: Κᾰλονῑ́κη
+      reverse: Καλονίκη
+  translations:
+    en: Calonice.
+- id: s.06.21
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ Καλονίκη.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Καλονίκη
+        sense: kalonike
+        form: form:voc
+        readings:
+          attic: Κᾰλονῑ́κη
+      reverse: |-
+        χαῖρε ὦ Καλονίκη
+        χαῖρε Καλονίκη
+        [ὦ] Καλονίκη χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Calonice!
+- id: s.06.22
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: χαῖρε, ὦ Λυσιστράτη.
+      tokens:
+      - surface: χαῖρε
+        sense: chairo
+        form: form:impv-2s
+        readings:
+          attic: χαῖρε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Λυσιστράτη
+        sense: lysistrate
+        form: form:voc
+        readings:
+          attic: Λῡσῐστρᾰ́τη
+      reverse: |-
+        χαῖρε ὦ Λυσιστράτη
+        χαῖρε Λυσιστράτη
+        [ὦ] Λυσιστράτη χαῖρε
+  translations:
+    en: (Hello|Hi|Greetings|Good day|Good morning|Goodbye|Farewell), Lysistrata!
+- id: s.06.23
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: καὶ σύ γε, ὦ Λυσιστράτη.
+      tokens:
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: σύ
+        sense: sy
+        readings:
+          attic: σῠ́
+      - surface: γε
+        sense: ge
+        readings:
+          attic: γε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: Λυσιστράτη
+        sense: lysistrate
+        form: form:voc
+        readings:
+          attic: Λῡσῐστρᾰ́τη
+      reverse: |-
+        καὶ σύ γε ὦ Λυσιστράτη
+        καὶ σύ γε Λυσιστράτη
+        καὶ σύ [ὦ] Λυσιστράτη
+  translations:
+    en: (And you too|You too|And to you|Same to you|Hello to you too), Lysistrata.
+- id: s.06.24
+  node: grc.u06.she-comes-out
+  forms:
+    grc-Grek/polytonic:
+      text: ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη.
+      tokens:
+      - surface: ἐκ
+        sense: ek
+        readings:
+          attic: ἐκ
+      - surface: τῆς
+        sense: ho
+        form: form:gen
+        readings:
+          attic: τῆς
+      - surface: οἰκίας
+        sense: oikia
+        form: form:gen
+        readings:
+          attic: οἰκῐ́ᾱς
+      - surface: ἐξέρχεται
+        sense: exerchomai
+        form: form:pres-3s
+        readings:
+          attic: ἐξέρχεται
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: Καλονίκη
+        sense: kalonike
+        readings:
+          attic: Κᾰλονῑ́κη
+      reverse: |-
+        ἐκ τῆς οἰκίας ἐξέρχεται ἡ Καλονίκη
+        ἡ Καλονίκη ἐξέρχεται ἐκ τῆς οἰκίας
+        [ἡ] Καλονίκη ἐκ τῆς οἰκίας ἐξέρχεται
+        ἐξέρχεται ἐκ τῆς οἰκίας [ἡ] Καλονίκη
+        ἐξέρχεται [ἡ] Καλονίκη ἐκ τῆς οἰκίας
+        ἐκ τῆς οἰκίας [ἡ] Καλονίκη ἐξέρχεται
+        ἐκ τῆς οἰκίας ἐξέρχεται Καλονίκη
+  translations:
+    en: Calonice is (coming|going) out of the house.
+- id: s.06.25
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ σκυθρώπαζε.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: σκυθρώπαζε
+        sense: skythropazo
+        form: form:impv-2s
+        readings:
+          attic: σκῠθρώπᾰζε
+      reverse: μὴ σκυθρώπαζε
+  translations:
+    en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy)!
+  persons:
+    addressee: sg
+- id: s.06.26
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ σκυθρωπάζετε.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: σκυθρωπάζετε
+        sense: skythropazo
+        form: form:impv-2p
+        readings:
+          attic: σκῠθρωπᾰ́ζετε
+      reverse: μὴ σκυθρωπάζετε
+  translations:
+    en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy)!
+  persons:
+    addressee: pl
+- id: s.06.27
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: τί σκυθρωπάζεις;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: σκυθρωπάζεις
+        sense: skythropazo
+        form: form:pres-2s
+        readings:
+          attic: σκῠθρωπᾰ́ζεις
+      reverse: τί σκυθρωπάζεις
+  translations:
+    en: Why are you (scowling|frowning|looking so sullen|looking so gloomy)?
+  persons:
+    addressee: sg
+- id: s.06.28
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: τί συντετάραξαι;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: συντετάραξαι
+        sense: syntaratto
+        form: form:perf-2s
+        readings:
+          attic: σῠντετᾰ́ρᾰξαι
+      reverse: τί συντετάραξαι
+  translations:
+    en: (Why are you so upset|Why are you upset|What has upset you|What's upset you|Why are you troubled)?
+  persons:
+    addressee: sg
+- id: s.06.29
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ σκυθρώπαζε, ὦ τέκνον.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: σκυθρώπαζε
+        sense: skythropazo
+        form: form:impv-2s
+        readings:
+          attic: σκῠθρώπᾰζε
+      - surface: ὦ
+        sense: o
+        readings:
+          attic: ὦ
+      - surface: τέκνον
+        sense: teknon
+        form: form:voc
+        readings:
+          attic: τέκνον
+      reverse: |-
+        μὴ σκυθρώπαζε ὦ τέκνον
+        [ὦ] τέκνον μὴ σκυ^θρώπαζε
+        μὴ σκυ^θρώπαζε τέκνον
+  translations:
+    en: (Don't|Do not) (scowl|frown|look so sullen|look so gloomy), (child|my child|dear)!
+- id: s.06.30
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ περιμένετε.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: περιμένετε
+        sense: perimeno
+        form: form:impv-2p
+        readings:
+          attic: περῐμένετε
+      reverse: μὴ περιμένετε
+  translations:
+    en: (Don't|Do not) wait!
+  persons:
+    addressee: pl
+- id: s.06.31
+  node: grc.u06.dont-scowl
+  forms:
+    grc-Grek/polytonic:
+      text: μὴ λέγε.
+      tokens:
+      - surface: μὴ
+        sense: me
+        readings:
+          attic: μὴ
+      - surface: λέγε
+        sense: lego
+        form: form:impv-2s
+        readings:
+          attic: λέγε
+      reverse: μὴ λέγε
+  translations:
+    en: (Don't|Do not) (say it|say that|speak|talk)!
+  persons:
+    addressee: sg
+- id: s.06.32
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἑτοίμη εἰμί.
+      tokens:
+      - surface: ἑτοίμη
+        sense: hetoimos
+        form: form:f
+        readings:
+          attic: ἑτοίμη
+      - surface: εἰμί
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ́
+      reverse: |-
+        ἑτοίμη εἰμί
+        εἰμὶ ἑτοίμη
+        ἐγὼ ἑτοίμη εἰμί
+  translations:
+    en: (I am|I'm) ready.
+  persons:
+    speaker: f
+- id: s.06.33
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἕτοιμός εἰμι.
+      tokens:
+      - surface: ἕτοιμός
+        sense: hetoimos
+        readings:
+          attic: ἕτοιμός
+      - surface: εἰμι
+        sense: eimi
+        form: form:pres-1s
+        readings:
+          attic: εἰμῐ
+      reverse: |-
+        ἕτοιμός εἰμι
+        εἰμὶ ἕτοιμος
+        ἐγὼ ἕτοιμός εἰμι
+  translations:
+    en: (I am|I'm) ready.
+  persons:
+    speaker: m
+- id: s.06.34
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἑτοίμη εἶ;
+      tokens:
+      - surface: ἑτοίμη
+        sense: hetoimos
+        form: form:f
+        readings:
+          attic: ἑτοίμη
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ἑτοίμη εἶ
+        ἆρα ἑτοίμη εἶ
+        σὺ ἑτοίμη εἶ
+  translations:
+    en: Are you ready?
+  persons:
+    addressee: f
+- id: s.06.35
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἕτοιμος εἶ;
+      tokens:
+      - surface: ἕτοιμος
+        sense: hetoimos
+        readings:
+          attic: ἕτοιμος
+      - surface: εἶ
+        sense: eimi
+        form: form:pres-2s
+        readings:
+          attic: εἶ
+      reverse: |-
+        ἕτοιμος εἶ
+        ἆρα ἕτοιμος εἶ
+        σὺ ἕτοιμος εἶ
+  translations:
+    en: Are you ready?
+  persons:
+    addressee: m
+- id: s.06.36
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἕτοιμαί ἐσμεν.
+      tokens:
+      - surface: ἕτοιμαί
+        sense: hetoimos
+        form: form:pl
+        readings:
+          attic: ἕτοιμαί
+      - surface: ἐσμεν
+        sense: eimi
+        form: form:pres-1p
+        readings:
+          attic: ἐσμεν
+      reverse: |-
+        ἕτοιμαί ἐσμεν
+        ἐσμὲν ἕτοιμαι
+        ἡμεῖς ἕτοιμαί ἐσμεν
+  translations:
+    en: We are ready.
+  persons:
+    speaker: f
+- id: s.06.37
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: αἱ γυναῖκες ἕτοιμαί εἰσιν.
+      tokens:
+      - surface: αἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: αἱ
+      - surface: γυναῖκες
+        sense: gyne
+        form: form:pl
+        readings:
+          attic: γῠναῖκες
+      - surface: ἕτοιμαί
+        sense: hetoimos
+        form: form:pl
+        readings:
+          attic: ἕτοιμαί
+      - surface: εἰσιν
+        sense: eimi
+        form: form:pres-3p
+        readings:
+          attic: εἰσῐν
+      reverse: |-
+        αἱ γυναῖκες ἕτοιμαί εἰσιν
+        ἕτοιμαί εἰσι[ν] αἱ γυναῖκες
+        αἱ γυναῖκες ἕτοιμαί εἰσι
+  translations:
+    en: The (women|wives) are ready.
+- id: s.06.38
+  node: grc.u06.ready
+  forms:
+    grc-Grek/polytonic:
+      text: ἕτοιμοί ἐστε;
+      tokens:
+      - surface: ἕτοιμοί
+        sense: hetoimos
+        form: form:pl
+        readings:
+          attic: ἕτοιμοί
+      - surface: ἐστε
+        sense: eimi
+        form: form:pres-2p
+        readings:
+          attic: ἐστε
+      reverse: |-
+        ἕτοιμοί ἐστε
+        ἕτοιμαί ἐστε
+        ἆρα ἕτοιμοί ἐστε
+        ἆρα ἕτοιμαί ἐστε
+        ὑμεῖς ἕτοιμοί ἐστε
+        ὑμεῖς ἕτοιμαί ἐστε
+  translations:
+    en: Are you ready?
+  persons:
+    addressee: pl
+stories:
+- id: grc.story.not-one-woman
+  node: grc.u06.story
+  title:
+    en: Not one woman is here (Aristophanes, Lysistrata 5-8)
+  characters:
+  - id: lysistrate
+    name:
+      grc-Grek/polytonic: Λυσιστράτη
+  - id: kalonike
+    name:
+      grc-Grek/polytonic: Καλονίκη
+  steps:
+  - line:
+      speaker: lysistrate
+      ask: complete
+      gap: sense:gyne
+      distractors:
+      - sense:oikia
+      - sense:hodos
+      forms:
+        grc-Grek/polytonic:
+          text: νῦν δ’ οὐδεμία πάρεστιν ἐνταυθοῖ γυνή·
+          tokens:
+          - surface: νῦν
+            sense: nyn
+            readings:
+              attic: νῦν
+          - surface: δ’
+            sense: de
+            readings:
+              attic: δ’
+          - surface: οὐδεμία
+            sense: oudeis
+            form: form:f
+            readings:
+              attic: οὐδεμῐ́ᾰ
+          - surface: πάρεστιν
+            sense: pareimi
+            form: form:pres-3s
+            readings:
+              attic: πᾰ́ρεστῐν
+          - surface: ἐνταυθοῖ
+            sense: entautha
+            readings:
+              attic: ἐνταυθοῖ
+          - surface: γυνή
+            sense: gyne
+            readings:
+              attic: γῠνή
+      translations:
+        en: “But now there is not one woman here,
+  - line:
+      speaker: lysistrate
+      forms:
+        grc-Grek/polytonic:
+          text: πλὴν ἥ γ’ ἐμὴ κωμῆτις ἥδ’ ἐξέρχεται.
+          tokens:
+          - surface: πλὴν
+            sense: plen
+            readings:
+              attic: πλὴν
+          - surface: ἥ
+            sense: ho
+            readings:
+              attic: ἥ
+          - surface: γ’
+            sense: ge
+            readings:
+              attic: γ’
+          - surface: ἐμὴ
+            sense: emos
+            form: form:f
+            readings:
+              attic: ἐμὴ
+          - surface: κωμῆτις
+            sense: kometis
+            readings:
+              attic: κωμῆτῐς
+          - surface: ἥδ’
+            sense: hode
+            form: form:f
+            readings:
+              attic: ἥδ’
+          - surface: ἐξέρχεται
+            sense: exerchomai
+            form: form:pres-3s
+            readings:
+              attic: ἐξέρχεται
+      translations:
+        en: 'except my neighbour: here she comes out.'
+  - choose:
+      prompt:
+        en: Who has come to Lysistrata's meeting?
+      options:
+      - en: No one, except her neighbour
+      - en: All the women of Athens
+      - en: Her mother
+      answer: 0
+  - line:
+      speaker: lysistrate
+      forms:
+        grc-Grek/polytonic:
+          text: χαῖρ’ ὦ Καλονίκη.
+          tokens:
+          - surface: χαῖρ’
+            sense: chairo
+            form: form:impv-2s
+            readings:
+              attic: χαῖρ’
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: Καλονίκη
+            sense: kalonike
+            form: form:voc
+            readings:
+              attic: Κᾰλονῑ́κη
+      translations:
+        en: Hello, Calonice.”
+  - line:
+      speaker: kalonike
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: καὶ σύ γ’ ὦ Λυσιστράτη.
+          tokens:
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: σύ
+            sense: sy
+            readings:
+              attic: σῠ́
+          - surface: γ’
+            sense: ge
+            readings:
+              attic: γ’
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: Λυσιστράτη
+            sense: lysistrate
+            form: form:voc
+            readings:
+              attic: Λῡσῐστρᾰ́τη
+      translations:
+        en: “Hello to you too, Lysistrata.
+  - line:
+      speaker: kalonike
+      forms:
+        grc-Grek/polytonic:
+          text: τί συντετάραξαι; μὴ σκυθρώπαζ’ ὦ τέκνον.
+          tokens:
+          - surface: τί
+            sense: ti
+            readings:
+              attic: τῐ́
+          - surface: συντετάραξαι
+            sense: syntaratto
+            form: form:perf-2s
+            readings:
+              attic: σῠντετᾰ́ρᾰξαι
+          - surface: μὴ
+            sense: me
+            readings:
+              attic: μὴ
+          - surface: σκυθρώπαζ’
+            sense: skythropazo
+            form: form:impv-2s
+            readings:
+              attic: σκῠθρώπᾰζ’
+          - surface: ὦ
+            sense: o
+            readings:
+              attic: ὦ
+          - surface: τέκνον
+            sense: teknon
+            form: form:voc
+            readings:
+              attic: τέκνον
+      translations:
+        en: What has upset you? Don't scowl, child.”
+  - choose:
+      prompt:
+        en: How does Lysistrata look?
+      options:
+      - en: Upset and scowling
+      - en: Happy
+      - en: Sleepy
+      answer: 0
+scenarios:
+- id: grc.at-the-meeting
+  after: grc.u06.ready
+  title:
+    en: The women's meeting
+  setting:
+    en: 'Athens, 411 BCE, early morning in a street below the Acropolis: Lysistrata has called the women of Greece to a meeting, and almost no one has come.'
+  character:
+    en: Calonice, Lysistrata's neighbour, warm and teasing, who speaks only Attic Greek.
+  goal:
+    en: Greet her, ask her where the other women are, and tell her that you are ready.

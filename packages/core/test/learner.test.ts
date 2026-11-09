@@ -80,6 +80,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "translate-tap.l1-l2":
     case "listen-tap":
     case "story-arrange":
+    case "word-write":
       return { tag: "tiles", order: bad ? [...ex.solution].reverse() : ex.solution };
     case "translate-type.l1-l2":
     case "listen-type":
@@ -91,6 +92,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "transcribe":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":
+    case "letter-pairs":
       return { tag: "pairs", matched: ex.left.map((_, i) => i), mistakes: 0 };
     case "speak.tier-0":
       return { tag: "self-rating", rating: "good" };
@@ -108,6 +110,8 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "minimal-pair":
     case "story-choose":
     case "story-complete":
+    case "letter-read":
+    case "word-read":
       return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
   }
 };
@@ -314,6 +318,20 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
     expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
+  }, WHOLE_COURSE_TIMEOUT_MS);
+
+  it("Biblical Hebrew leaves out listening alone: never heard, still said once answered (ADR 0082)", () => {
+    const hbo = loadCourse("hbo");
+    expect(hbo.facets).toEqual(["recognize", "produce", "speak", "read-script", "write-script"]);
+    const heard = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "listen";
+    for (const { node } of lessonNodes(hbo)) {
+      expect(buildLesson(hbo, node.id, { seed: 3 }).filter(heard).map((ex) => ex.id)).toEqual([]);
+      const p = plan(hbo, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
+      expect(p.exercises.filter(heard).map((ex) => ex.id)).toEqual([]);
+    }
+    expect(cardGallery(hbo, 3).filter((c) => TEMPLATES[c.template].facet === "listen")).toEqual([]);
+    // The clips stay: every card says its sentence once answered (ADR 0064).
+    expect(Object.keys(hbo.audio).length).toBeGreaterThan(0);
   }, WHOLE_COURSE_TIMEOUT_MS);
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {

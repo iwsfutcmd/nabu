@@ -170,6 +170,7 @@ sentences:
     en: |-
       Lebanon is (beautiful|lovely|nice).
       Lebanon's (beautiful|lovely|nice).
+      Lebanon is pretty.
 - id: s.home.9
   node: apc.home.city
   register: colloquial
@@ -226,11 +227,15 @@ sentences:
     apc-Arab/standard:
       text: وين غرفتي؟
       tokens: [{surface: وين, sense: wen}, {surface: غرفتي, sense: ghorfe, morphs: [{surface: غرفت, kc: 'sense:ghorfe'}, {surface: ي, kc: 'form:poss-1sg'}]}]
-      reverse: وين غرفتي
+      reverse: |-
+        وين غرفتي
+        وين أوضتي
     apc-Latn/arabizi:
       text: wen ghorfti?
       tokens: [{surface: wen, sense: wen}, {surface: ghorfti, sense: ghorfe, morphs: [{surface: ghorft, kc: 'sense:ghorfe'}, {surface: i, kc: 'form:poss-1sg'}]}]
-      reverse: (wen|wein|wayn) (ghorfti|ghorfte|ghorfeti|ghorfete|8orfti|8orfte)
+      reverse: |-
+        (wen|wein|wayn) (ghorfti|ghorfte|ghorfeti|ghorfete|8orfti|8orfte)
+        wen oudti
   translations:
     en: |-
       Where is my room?
@@ -267,6 +272,7 @@ sentences:
     en: |-
       (Grandma|Granny) is in the (living room|lounge|sitting room).
       (Grandma|Granny)'s in the (living room|lounge|sitting room).
+      My grandma is in the living room.
 - id: s.home.15
   node: apc.home.rooms
   register: colloquial
@@ -410,11 +416,11 @@ sentences:
     apc-Arab/standard:
       text: لأ، مش بعيدة.
       tokens: [{surface: لأ, sense: la2}, {surface: مش, sense: mish}, {surface: بعيدة, sense: b3id, form: 'form:fem'}]
-      reverse: (لأ|لا) مش بعيدة
+      reverse: (لأ|لا) مش (بعيدة|بعيد)
     apc-Latn/arabizi:
       text: la2, mish b3ide.
       tokens: [{surface: la2, sense: la2}, {surface: mish, sense: mish}, {surface: b3ide, sense: b3id, form: 'form:fem'}]
-      reverse: (la2|la) (mish|msh|mesh|mush) (b3ide|ba3ide|b3eede)
+      reverse: (la2|la) (mish|msh|mesh|mush) (b3ide|ba3ide|b3eede|b3id|ba3id|b3eed)
   translations:
     en: |-
       No, it('s| is) not far.
@@ -440,11 +446,15 @@ sentences:
     apc-Arab/standard:
       text: في غرفة فوق؟
       tokens: [{surface: في, sense: fi}, {surface: غرفة, sense: ghorfe}, {surface: فوق, sense: fo2}]
-      reverse: في غرفة فوق
+      reverse: |-
+        في غرفة فوق
+        في أوضة فوق
     apc-Latn/arabizi:
       text: fi ghorfe fo2?
       tokens: [{surface: fi, sense: fi}, {surface: ghorfe, sense: ghorfe}, {surface: fo2, sense: fo2}]
-      reverse: (fi|fe) (ghorfe|ghorfi|8orfe|ghurfe) (fo2|fou2)
+      reverse: |-
+        (fi|fe) (ghorfe|ghorfi|8orfe|ghurfe) (fo2|fou2)
+        fi ouda fo2
   translations:
     en: Is there a room upstairs?
 - id: s.home.26
@@ -471,11 +481,15 @@ sentences:
       text: الدكّانة حدّ البيت.
       tokens: [{surface: الدكّانة, sense: dekkene, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دكّانة, kc: 'sense:dekkene'}]}, {surface: حدّ, sense: 7add}, {surface: البيت, sense: bet, morphs: [{
               surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]}]
-      reverse: الدكّانة حدّ البيت
+      reverse: |-
+        الدكّانة حدّ البيت
+        الدكّانة جنب البيت
     apc-Latn/arabizi:
       text: el dekkene 7add el bet.
       tokens: [{surface: el, sense: el}, {surface: dekkene, sense: dekkene}, {surface: 7add, sense: 7add}, {surface: el, sense: el}, {surface: bet, sense: bet}]
-      reverse: (el|l|il) (dekkene|dekkane|dikkene|dekene) (7add|7ad|hadd) (el|l|il) (bet|beit|bayt)
+      reverse: |-
+        (el|l|il) (dekkene|dekkane|dikkene|dekene) (7add|7ad|hadd) (el|l|il) (bet|beit|bayt)
+        el dekkene jamb el bet
   translations:
     en: |-
       The (shop|corner shop|store) is next to the house.
@@ -497,6 +511,7 @@ sentences:
       Come on, [let's go] home!
       OK, [let's go] home!
       Right, home!
+      Let's go home!
 - id: s.home.29
   node: apc.home.directions
   register: colloquial
@@ -532,6 +547,7 @@ sentences:
     en: |-
       The (bathroom|toilet) is on your left.
       The (bathroom|toilet)'s on your left.
+      The restroom is on your left.
 - id: s.home.31
   node: apc.home.directions
   register: colloquial
@@ -555,7 +571,9 @@ sentences:
       text: إيه، دغري، والبيت ع يمينك.
       tokens: [{surface: إيه, sense: eh}, {surface: دغري, sense: dighri}, {surface: والبيت, sense: bet, morphs: [{surface: و, kc: 'sense:w'}, {surface: ال, kc: 'sense:el'}, {surface: بيت, kc: 'sense:bet'}]},
         {surface: ع, sense: 3a}, {surface: يمينك, sense: yamin, morphs: [{surface: يمين, kc: 'sense:yamin'}, {surface: ك, kc: 'form:poss-2ms'}]}]
-      reverse: إيه دغري (والبيت|و البيت) (ع|على) يمينك
+      reverse: |-
+        إيه دغري (والبيت|و البيت) (ع|على) يمينك
+        إي دغري والبيت ع يمينك
     apc-Latn/arabizi:
       text: eh, dighri, w el bet 3a yaminak.
       tokens: [{surface: eh, sense: eh}, {surface: dighri, sense: dighri}, {surface: w, sense: w}, {surface: el, sense: el}, {surface: bet, sense: bet}, {surface: 3a, sense: 3a}, {surface: yaminak, sense: yamin,
@@ -633,6 +651,7 @@ sentences:
     en: |-
       The (bathroom|toilet) is on your left.
       The (bathroom|toilet)'s on your left.
+      The restroom is on your left.
 stories:
 - id: apc.story.new-house
   node: apc.home.story

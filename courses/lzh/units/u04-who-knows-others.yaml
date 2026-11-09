@@ -137,9 +137,14 @@ sentences:
     lzh-Hant/standard:
       text: 孔子問老子。
       tokens: [{surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}, {surface: 問, sense: 問, readings: {pinyin: wèn, jyutping: man6, baxter: mjunH}}, {surface: 老子, sense: 老子, readings: {pinyin: lǎo zǐ, jyutping: lou5 zi2, baxter: lawX tsiX}}]
-      reverse: 孔子問老子
+      reverse: |-
+        孔子問老子
+        孔子問於老子
   translations:
-    en: Confucius (asked|asks|questioned|consulted) Laozi.
+    en: |-
+      Confucius (asked|asks|questioned|consulted) Laozi.
+      Kongzi asked Laozi.
+      Confucius asked Lao Tzu.
 - id: s.04.2
   node: lzh.u04.laozi
   forms:
@@ -148,7 +153,11 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}]
       reverse: (吾|我)學道
   translations:
-    en: I (study|learn|am learning|am studying) the Way.
+    en: |-
+      I (study|learn|am learning|am studying) the Way.
+      I study the Dao.
+      I study the Tao.
+      I studied the Way.
 - id: s.04.3
   node: lzh.u04.laozi
   forms:
@@ -160,6 +169,8 @@ sentences:
     en: |-
       The Way is not far from (people|others|man|humankind).
       The Way (isn't|does not stay|doesn't stay) far from (people|man).
+      The Dao is not far from people.
+      The Tao is not far from people.
 - id: s.04.4
   node: lzh.u04.laozi
   forms:
@@ -168,7 +179,12 @@ sentences:
       tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 德, sense: 德, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}]
       reverse: 君子有德
   translations:
-    en: (A|The) (gentleman|noble person|superior man) (has|possesses) virtue.
+    en: |-
+      (A|The) (gentleman|noble person|superior man) (has|possesses) virtue.
+      Gentlemen have virtue.
+      A noble man has virtue.
+      A superior person has virtue.
+      The gentleman is virtuous.
 - id: s.04.5
   node: lzh.u04.laozi
   forms:
@@ -177,7 +193,10 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}, {surface: 德, sense: 德, readings: {pinyin: dé, jyutping: dak1, baxter: tok}}]
       reverse: 王不知德
   translations:
-    en: The king (does not|doesn't) (know|understand) virtue.
+    en: |-
+      The king (does not|doesn't) (know|understand) virtue.
+      The king did not know virtue.
+      The king didn't understand virtue.
 - id: s.04.6
   node: lzh.u04.those-who
   forms:
@@ -189,6 +208,9 @@ sentences:
     en: |-
       The wise (are not|aren't) (perplexed|confused|in doubt).
       (A wise man|A wise person|The wise man|One who is wise) (is not|isn't) (perplexed|confused|in doubt).
+      Those who are wise are not perplexed.
+      The wise have no doubts.
+      The wise person is not perplexed.
 - id: s.04.7
   node: lzh.u04.those-who
   forms:
@@ -200,6 +222,7 @@ sentences:
     en: |-
       Those who (learn|study) know (it|this).
       (Scholars|Learners|Students) know (it|this).
+      Scholars knew it.
 - id: s.04.8
   node: lzh.u04.those-who
   forms:
@@ -211,17 +234,22 @@ sentences:
     en: |-
       (This|That) is the Way of Confucius.
       (This|That) is Confucius's Way.
+      This is the Dao of Confucius.
+      It is the Way of Confucius.
 - id: s.04.9
   node: lzh.u04.those-who
   forms:
     lzh-Hant/standard:
       text: 王之心善。
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 心, sense: 心, readings: {pinyin: xīn, jyutping: sam1, baxter: sim}}, {surface: 善, sense: 善, readings: {pinyin: shàn, jyutping: sin6, baxter: dzyenX}}]
-      reverse: 王之心善
+      reverse: |-
+        王之心善
+        王心善
   translations:
     en: |-
       The king's (heart|mind) is good.
       The (heart|mind) of the king is good.
+      The king's heart was good.
 - id: s.04.10
   node: lzh.u04.those-who
   forms:
@@ -234,6 +262,7 @@ sentences:
       Now I (know|understand) (it|this|that).
       I (know|understand) (it|this|that) now.
       I have understood (it|this|that).
+      I have come to know it.
 - id: s.04.11
   node: lzh.u04.those-who
   forms:
@@ -253,7 +282,10 @@ sentences:
       tokens: [{surface: 魯, sense: 魯, readings: {pinyin: lǔ, jyutping: lou5, baxter: luX}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
       reverse: 魯大乎
   translations:
-    en: Is Lu (big|large|great)?
+    en: |-
+      Is Lu (big|large|great)?
+      Is Lu a big state?
+      Is Lu a large state?
 - id: s.04.13
   node: lzh.u04.big-and-small
   forms:
@@ -265,6 +297,8 @@ sentences:
     en: |-
       Lu is small.
       Lu (is|was) (a small state|little|tiny).
+      Lu was small.
+      Lu is a small country.
 - id: s.04.14
   node: lzh.u04.big-and-small
   forms:
@@ -276,6 +310,9 @@ sentences:
     en: |-
       There are many people.
       (People are|The people are) many.
+      There were many people.
+      People are numerous.
+      There are a lot of people.
 - id: s.04.15
   node: lzh.u04.big-and-small
   forms:
@@ -287,6 +324,10 @@ sentences:
     en: |-
       Gentlemen are (few|rare).
       There are few (gentlemen|noble people).
+      There are few superior men.
+      There are few noble men.
+      Superior men are rare.
+      Gentlemen were few.
 - id: s.04.16
   node: lzh.u04.big-and-small
   forms:
@@ -298,6 +339,8 @@ sentences:
     en: |-
       The disciples are many[ now].
       There are many disciples[ now].
+      There are now many disciples.
+      The disciples have become many.
 - id: s.04.17
   node: lzh.u04.big-and-small
   forms:
@@ -306,7 +349,9 @@ sentences:
       tokens: [{surface: 王, sense: 王, readings: {pinyin: wáng, jyutping: wong4, baxter: hjwang}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 天下, sense: 天下, readings: {pinyin: tiān xià, jyutping: tin1 haa6, baxter: then haeX}}]
       reverse: 王有天下
   translations:
-    en: The king (possesses|has|rules) (the world|all under Heaven|the whole world|the empire).
+    en: |-
+      The king (possesses|has|rules) (the world|all under Heaven|the whole world|the empire).
+      The king rules everything under Heaven.
 - id: s.04.18
   node: lzh.u04.big-and-small
   forms:
@@ -315,7 +360,9 @@ sentences:
       tokens: [{surface: 子路, sense: 子路, readings: {pinyin: zǐ lù, jyutping: zi2 lou6, baxter: tsiX luH}}, {surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 孔子, sense: 孔子, readings: {pinyin: kǒng zǐ, jyutping: hung2 zi2, baxter: khuwngX tsiX}}]
       reverse: 子路學(於|于)孔子
   translations:
-    en: Zilu (studied|learned) (with|from|under) Confucius.
+    en: |-
+      Zilu (studied|learned) (with|from|under) Confucius.
+      Zilu studied with Kongzi.
 - id: s.04.19
   node: lzh.u04.big-and-small
   forms:
@@ -324,7 +371,10 @@ sentences:
       tokens: [{surface: 天, sense: 天, readings: {pinyin: tiān, jyutping: tin1, baxter: then}}, {surface: 大, sense: 大, readings: {pinyin: dà, jyutping: daai6, baxter: dajH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 人, sense: 人, readings: {pinyin: rén, jyutping: jan4, baxter: nyin}}]
       reverse: 天大(於|于)人
   translations:
-    en: Heaven is (greater|bigger|larger) than (man|people|humans).
+    en: |-
+      Heaven is (greater|bigger|larger) than (man|people|humans).
+      Heaven is greater than mankind.
+      Heaven is greater than humankind.
 - id: s.04.20
   node: lzh.u04.big-and-small
   forms:
@@ -333,7 +383,12 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 志, sense: 志, readings: {pinyin: zhì, jyutping: zi3, baxter: tsyiH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 道, sense: 道, readings: {pinyin: dào, jyutping: dou6, baxter: dawX}}]
       reverse: (吾|我)志(於|于)道
   translations:
-    en: I (set|have set) my heart on the Way.
+    en: |-
+      I (set|have set) my heart on the Way.
+      I set my heart on the Dao.
+      I am intent on the Way.
+      I set my mind on the Way.
+      My heart is set on the Way.
 - id: s.04.21
   node: lzh.u04.yourself
   forms:
@@ -345,6 +400,8 @@ sentences:
     en: |-
       Those who (know|understand) others are (wise|clever|intelligent).
       (He|One) who (knows|understands) others is (wise|clever|intelligent).
+      Whoever knows others is wise.
+      A person who knows others is wise.
 - id: s.04.22
   node: lzh.u04.yourself
   forms:
@@ -353,7 +410,12 @@ sentences:
       tokens: [{surface: 君子, sense: 君子, readings: {pinyin: jūn zǐ, jyutping: gwan1 zi2, baxter: kjun tsiX}}, {surface: 自, sense: 自.self, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 知, sense: 知, readings: {pinyin: zhī, jyutping: zi1, baxter: trje}}]
       reverse: 君子自知
   translations:
-    en: (The|A) (gentleman|noble person|superior man) knows (himself|themselves).
+    en: |-
+      (The|A) (gentleman|noble person|superior man) knows (himself|themselves).
+      Gentlemen know themselves.
+      A noble man knows himself.
+      A superior person knows himself.
+      The gentleman understands himself.
 - id: s.04.23
   node: lzh.u04.yourself
   forms:
@@ -365,6 +427,7 @@ sentences:
     en: |-
       Those who (know|understand) themselves are (enlightened|clear-sighted|wise|bright).
       (He|One) who (knows|understands) (himself|oneself) is (enlightened|clear-sighted|wise|bright).
+      Whoever knows himself is enlightened.
 - id: s.04.24
   node: lzh.u04.yourself
   forms:
@@ -376,6 +439,8 @@ sentences:
     en: |-
       I (defeated|beat|overcame) (him|her|them|it).
       I (defeat|overcome) (him|her|them|it).
+      I conquered him.
+      I have defeated him.
 - id: s.04.25
   node: lzh.u04.yourself
   forms:
@@ -387,6 +452,7 @@ sentences:
     en: |-
       The king (has|possesses) (strength|power|might).
       The king is (strong|powerful).
+      The king was strong.
 - id: s.04.26
   node: lzh.u04.yourself
   forms:
@@ -398,6 +464,7 @@ sentences:
     en: |-
       Those who (overcome|defeat|conquer) others (have strength|are forceful|have force).
       (He|One) who (overcomes|defeats|conquers) others (has strength|is forceful|has force).
+      Whoever overcomes others has strength.
 - id: s.04.27
   node: lzh.u04.yourself
   forms:
@@ -409,6 +476,7 @@ sentences:
     en: |-
       Those who (overcome|conquer|master) themselves are (strong|mighty).
       (He|One) who (overcomes|conquers|masters) (himself|oneself) is (strong|mighty).
+      Whoever overcomes himself is strong.
 - id: s.04.28
   node: lzh.u04.enough
   forms:
@@ -421,6 +489,8 @@ sentences:
       I have enough[ now].
       (That|This|It) is enough for me.
       I am (satisfied|content).
+      That's enough for me.
+      I'm satisfied.
 - id: s.04.29
   node: lzh.u04.enough
   forms:
@@ -432,6 +502,9 @@ sentences:
     en: |-
       The people of Lu are (rich|wealthy).
       (The men|The people) from Lu are (rich|wealthy).
+      The people of Lu were rich.
+      The men of Lu are rich.
+      A man of Lu is rich.
 - id: s.04.30
   node: lzh.u04.enough
   forms:
@@ -443,6 +516,9 @@ sentences:
     en: |-
       Those who know (contentment|when they have enough|what is enough) are (rich|wealthy).
       (He|One) who knows (contentment|when he has enough|what is enough) is (rich|wealthy).
+      Whoever knows contentment is rich.
+      He who is content is rich.
+      Those who are content are rich.
 - id: s.04.31
   node: lzh.u04.enough
   forms:
@@ -454,6 +530,8 @@ sentences:
     en: |-
       I (am going|must go|am leaving|will go) now.
       I('m going|'m leaving) now.
+      I'll go now.
+      I must leave now.
 - id: s.04.32
   node: lzh.u04.enough
   forms:
@@ -462,7 +540,10 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 欲, sense: 欲, readings: {pinyin: yù, jyutping: juk6, baxter: yowk}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}]
       reverse: (吾|我)不欲行
   translations:
-    en: I (do not|don't) (want|wish) to (go|leave).
+    en: |-
+      I (do not|don't) (want|wish) to (go|leave).
+      I did not want to go.
+      I didn't want to leave.
 - id: s.04.33
   node: lzh.u04.enough
   forms:
@@ -471,7 +552,10 @@ sentences:
       tokens: [{surface: 學, sense: 學, readings: {pinyin: xué, jyutping: hok6, baxter: haewk}}, {surface: 而, sense: 而, readings: {pinyin: ér, jyutping: ji4, baxter: nyi}}, {surface: 行, sense: 行, readings: {pinyin: xíng, jyutping: hang4, baxter: haeng}}, {surface: 之, sense: 之, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}]
       reverse: 學而行之
   translations:
-    en: (Learn|Study) it and (put it into practice|practise it|practice it|act on it).
+    en: |-
+      (Learn|Study) it and (put it into practice|practise it|practice it|act on it).
+      Learn it and carry it out.
+      Learning it and putting it into practice.
 - id: s.04.34
   node: lzh.u04.enough
   forms:
@@ -483,6 +567,8 @@ sentences:
     en: |-
       Those who (persevere|keep going|press on|force themselves to act) have (will|willpower|resolve|purpose).
       (He|One) who (perseveres|keeps going|presses on) has (will|willpower|resolve|purpose).
+      Whoever perseveres has willpower.
+      He who perseveres has a firm will.
 stories:
 - id: lzh.story.laozi-33
   node: lzh.u04.story

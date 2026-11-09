@@ -418,9 +418,17 @@
       "message": "已完成",
       "source": "00609f822e0571"
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{字母 {$number}}}",
+      "source": "0a4a75ab67b7e7"
+    },
     "app.path.locked": {
       "message": "未解鎖",
       "source": "0e259fa0babc2d"
+    },
+    "app.path.new-letters": {
+      "message": "新字母",
+      "source": "04c7f4702df641"
     },
     "app.path.start": {
       "message": "開始",
@@ -950,9 +958,21 @@
       "message": "波斯語",
       "source": "0814f27aca872d"
     },
+    "course.name.grc": {
+      "message": "古希臘文",
+      "source": "1e44e3a3ed8730"
+    },
+    "course.name.hbo": {
+      "message": "聖經希伯來文",
+      "source": "0ddad88d960e7d"
+    },
     "course.name.lzh": {
       "message": "文言文",
       "source": "169053e6ceef8d"
+    },
+    "course.name.tok": {
+      "message": "道本語",
+      "source": "07288edbd3337d"
     },
     "course.name.uz": {
       "message": "烏茲別克語",
@@ -1074,9 +1094,21 @@
       "message": "詞尾改變了所屬的人（我的、你的、他的……），不只是拼寫不同。",
       "source": "0f198186f5f77b"
     },
+    "feedback.note.contrast-prefix": {
+      "message": "詞頭改變了意思（誰做，或是否只是陳述），不只是拼寫不同。",
+      "source": "023d64d0a4d939"
+    },
     "feedback.note.contrast-pronoun": {
       "message": "這是另一個代詞，不是打錯字。",
       "source": "113842c4f5afa3"
+    },
+    "feedback.note.greek-marks": {
+      "message": "注意重音、氣息符號和下標 iota：它們都是拼寫的一部分。",
+      "source": "143c6d40f020e1"
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "加上這些符號就成了另一個詞（ἡ 是冠詞，ἤ「或」）。",
+      "source": "070d94b932dfee"
     },
     "feedback.note.hamza": {
       "message": "留意 hamza（أ、إ、آ）。",
@@ -1330,9 +1362,25 @@
       "message": "波斯字母",
       "source": "1a96004e1beccf"
     },
+    "orthography.grc-Grek.polytonic": {
+      "message": "多調號希臘文",
+      "source": "0b1395732f8b7d"
+    },
+    "orthography.hbo-Hebr.tiberian": {
+      "message": "希伯來字母（提比利亞標音）",
+      "source": "0056996ec949db"
+    },
     "orthography.lzh-Hant.standard": {
       "message": "繁體字",
       "source": "0768e08b58f7c1"
+    },
+    "orthography.tok-Latn.standard": {
+      "message": "拉丁字母（sitelen Lasina）",
+      "source": "1dfd55beb895ac"
+    },
+    "orthography.tok-Qaap.sitelen-pona": {
+      "message": "sitelen pona（語素文字）",
+      "source": "09967254be9d0c"
     },
     "orthography.uz-Cyrl.standard": {
       "message": "西里爾字母",
@@ -1426,6 +1474,14 @@
       "message": "填寫空格",
       "source": "0fecadc0573056"
     },
+    "player.instruction.letter-pairs": {
+      "message": "把每個字母和它的讀音配對",
+      "source": "1c83c6c236dd6c"
+    },
+    "player.instruction.letter-read": {
+      "message": "這個字母怎麼讀？",
+      "source": "17f0bb60fdee12"
+    },
     "player.instruction.listen-select": {
       "message": "你聽到哪個詞語？",
       "source": "046edf8832a029"
@@ -1493,6 +1549,14 @@
     "player.instruction.vocalize": {
       "message": "加上元音符號",
       "source": "041a63b98f57c1"
+    },
+    "player.instruction.word-read": {
+      "message": "這個詞用拉丁字母怎麼寫？",
+      "source": "0b84c0f1f9021f"
+    },
+    "player.instruction.word-write": {
+      "message": "用字母拼出這個詞",
+      "source": "0795fd6dee9554"
     },
     "player.key.mark.064b": {
       "message": "雙開口符（fathatan）",
@@ -1794,6 +1858,26 @@
       "message": "較小",
       "source": "11d42294548513"
     },
+    "preferences.theme.dark": {
+      "message": "深色",
+      "source": "021eb881b194d5"
+    },
+    "preferences.theme.hint": {
+      "message": "「跟隨瀏覽器」會依照你的瀏覽器或裝置的淺色或深色設定。",
+      "source": "06d04086bf7532"
+    },
+    "preferences.theme.label": {
+      "message": "外觀",
+      "source": "1ea2057b0ceddc"
+    },
+    "preferences.theme.light": {
+      "message": "淺色",
+      "source": "1bd79ce045f09a"
+    },
+    "preferences.theme.system": {
+      "message": "跟隨瀏覽器",
+      "source": "063a3544fdda5c"
+    },
     "preferences.title": {
       "message": "偏好設定",
       "source": "1d9d2be97a052d"
@@ -1861,6 +1945,10 @@
     "reading.scheme.jyutping": {
       "message": "粵拼",
       "source": "060334df66e05a"
+    },
+    "reading.scheme.lasina": {
+      "message": "sitelen Lasina",
+      "source": "1301a482fe38d5"
     },
     "reading.scheme.pinyin": {
       "message": "漢語拼音",
@@ -2053,6 +2141,54 @@
     "story.translation.show": {
       "message": "顯示翻譯",
       "source": "02b713e9854aff"
+    },
+    "words.count": {
+      "message": ".input {$count :number}\n{{{$count} 個詞語}}",
+      "source": "006540a168fe3e"
+    },
+    "words.empty": {
+      "message": "還沒有詞語。在課堂練習過的詞語會顯示在這裏。",
+      "source": "0f528d8ac2da08"
+    },
+    "words.none-found": {
+      "message": "你學過的詞語中沒有相符的。",
+      "source": "0e5f9639794378"
+    },
+    "words.order.alphabetical": {
+      "message": "按字典次序",
+      "source": "05903207c8a59d"
+    },
+    "words.order.course": {
+      "message": "按課程次序",
+      "source": "0f77e2c3bb1c8e"
+    },
+    "words.order.label": {
+      "message": "排序",
+      "source": "126e942baf656b"
+    },
+    "words.order.weakest": {
+      "message": "最生疏的先",
+      "source": "1913af63c531b2"
+    },
+    "words.search": {
+      "message": "搜尋詞語",
+      "source": "11ed730c010d98"
+    },
+    "words.strength.due": {
+      "message": "需要溫習",
+      "source": "0e71bfae4eb57e"
+    },
+    "words.strength.fading": {
+      "message": "漸漸忘記",
+      "source": "01548a7b07b0cf"
+    },
+    "words.strength.strong": {
+      "message": "記得很牢",
+      "source": "112b40f86aab85"
+    },
+    "words.title": {
+      "message": "你學過的詞語",
+      "source": "048579200c802a"
     }
   }
 }

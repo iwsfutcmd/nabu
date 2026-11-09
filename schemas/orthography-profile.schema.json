@@ -25,7 +25,7 @@
       "pattern": "^cldr:[a-z]{2,3}([_-][A-Z][a-z]{3})?([_-](?:[A-Z]{2}|[0-9]{3}))?$"
     },
     "exemplarsExtra": {
-      "description": "Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
+      "description": "Characters the orthography uses that its CLDR exemplars lack, such as the Cantonese colloquial characters 佢 哋 嘅 咗 missing from cldr:yue_Hant (CLDR 49). The script audit treats them as main exemplars, and punctuation among them (the Hebrew sof pasuq ׃, missing from cldr:he) as exemplar punctuation. Each entry is a gap to report upstream to CLDR, not a licence to widen the audit.",
       "type": "array",
       "minItems": 1,
       "uniqueItems": true,
@@ -75,6 +75,11 @@
     },
     "fonts": {
       "$ref": "#/$defs/Fonts"
+    },
+    "romanize": {
+      "description": "How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.",
+      "type": "string",
+      "enum": ["greek"]
     },
     "transliterate": {
       "$ref": "#/$defs/Transliteration"
@@ -158,6 +163,9 @@
         },
         {
           "$ref": "#/$defs/DetachStep"
+        },
+        {
+          "$ref": "#/$defs/LogographsStep"
         }
       ]
     },
@@ -360,6 +368,54 @@
         }
       }
     },
+    "LogographsStep": {
+      "title": "LogographsStep",
+      "description": "Words typed in a script that spells them, written as this orthography's logographs (ADR 0086): a learner can type sitelen pona as sitelen Lasina, toki for U+F196C. Each whole word (a run of letters and marks) that is a key, ignoring case, becomes its value. With `cartouche`, a name written inside one reads as the letters its logographs begin with (open, sona, olin, nasin, jan, a, close is sonja), the marks dropped, so a name typed in Latin letters compares alike. Names are read before words, so a name that spells a word (kili) becomes that word's logograph on both sides.",
+      "type": "object",
+      "required": [
+        "logographs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "logographs": {
+          "type": "object",
+          "required": [
+            "words"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "words": {
+              "description": "Each word, as it is typed, and the logograph that writes it.",
+              "type": "object",
+              "minProperties": 1,
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "cartouche": {
+              "description": "The marks that open and close a name written with the logographs' first letters.",
+              "type": "object",
+              "required": [
+                "open",
+                "close"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "open": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "close": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "MatchPolicy": {
       "title": "MatchPolicy",
       "type": "object",
@@ -387,7 +443,7 @@
               "description": "Marks of the set a learner supplying a word's vowel marks (the vocalize exercise, ADR 0054) may write or leave out: sukun, where the course's conventions differ."
             },
             "distinguishes": {
-              "description": "Marks that tell words apart (ADR 0076): the Spanish tilde in est\u00e1/esta, s\u00ed/si, habl\u00f3/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.",
+              "description": "Marks that tell words apart (ADR 0076): the Spanish tilde in está/esta, sí/si, habló/hablo. An answer whose marks differ from the expected word's and so spell another word of the course (the grader's lexicon) is WRONG_WORD, with `wordNote`; otherwise the policy applies.",
               "type": "boolean"
             },
             "wordNote": {
@@ -822,7 +878,7 @@
     },
     "Contrast": {
       "title": "Contrast",
-      "description": "A set of endings (or whole words) one letter or two apart that mean different things.",
+      "description": "A set of endings, prefixes (or whole words) one letter or two apart that mean different things.",
       "type": "object",
       "required": [
         "id",
@@ -835,25 +891,53 @@
           "pattern": "^[a-z][a-z0-9-]*$"
         },
         "members": {
+          "description": "The members, each a meaning. An empty spelling is the word with no such affix: the bare Lebanese imperfect (shteghel) beside b-shteghel, a masculine adjective beside its feminine.",
           "type": "array",
           "minItems": 2,
           "items": {
             "oneOf": [
               {
-                "type": "string",
-                "minLength": 1
+                "type": "string"
               },
               {
                 "type": "array",
                 "minItems": 1,
                 "items": {
-                  "type": "string",
-                  "minLength": 1
+                  "type": "string"
                 },
                 "description": "Spellings of one member (allomorphs)."
               }
             ]
           }
+        },
+        "at": {
+          "description": "Where the members stand: at the end of the word (endings, stacking like suffixes) or at its start (prefixes: Lebanese b-, bt-, mn- on verbs). Default end.",
+          "enum": [
+            "end",
+            "start"
+          ]
+        },
+        "after": {
+          "description": "For prefixes: what may come before the member, a proclitic written onto the word (Arabic و 'and': وبشتغل).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "inflected": {
+          "description": "Only on words the course inflects: a word the grader is told carries a form (GradeOptions.inflected: tokens whose sense has a form KC somewhere in the course). A noun's first letter is a typo; a verb's prefix is not.",
+          "type": "boolean"
+        },
+        "forms": {
+          "description": "Only on words the course pins as one of these forms (GradeOptions.forms: the forms of the tokens a word spells): form KC ids, or how they begin (form:yiqtol matches form:yiqtol-3ms). Narrower than inflected, for a course that pins forms on nouns too: Biblical Hebrew's person prefixes are a verb's, never a noun's first letter, and its perfect endings a perfect's, never an infinitive's (ADR 0084).",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^form:[a-z0-9-]+$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
         },
         "note": {
           "description": "The feedback note shown with the verdict (MF2 message feedback.note.<note>).",

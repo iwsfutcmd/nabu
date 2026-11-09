@@ -46,7 +46,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi eshtiri tyeb.
       tokens: [{surface: baddi, sense: baddi}, {surface: eshtiri, sense: eshtara, form: 'form:subj-1sg'}, {surface: tyeb, sense: tyeb}]
-      reverse: (baddi|badde|badi) (eshtiri|eshtere|ishtiri|eshteri|shtiri) (tyeb|tiyeb|tyab|tieb)
+      reverse: |-
+        (baddi|badde|badi) (eshtiri|eshtere|ishtiri|eshteri|shtiri) (tyeb|tiyeb|tyab|tieb)
+        ana baddi eshtiri tyeb
   translations:
     en: |-
       I want to buy (some|) clothes.
@@ -58,15 +60,20 @@ sentences:
     apc-Arab/standard:
       text: هيدا القميص حلو.
       tokens: [{surface: هيدا, sense: hayda}, {surface: القميص, sense: 2amis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قميص, kc: 'sense:2amis'}]}, {surface: حلو, sense: 7elo}]
-      reverse: هيدا القميص حلو
+      reverse: |-
+        هيدا القميص حلو
+        هالقميص حلو
     apc-Latn/arabizi:
       text: hayda el 2amis 7elo.
       tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: 2amis, sense: 2amis}, {surface: 7elo, sense: 7elo}]
-      reverse: (hayda|haida|hyda) (el|l|il) (2amis|2amees|amis|2mis) (7elo|7elu|7ilo|helo)
+      reverse: |-
+        (hayda|haida|hyda) (el|l|il) (2amis|2amees|amis|2mis) (7elo|7elu|7ilo|helo)
+        hal 2amis 7elo
   translations:
     en: |-
       (This|That) shirt is (nice|pretty|lovely).
       (This|That) shirt's (nice|pretty|lovely).
+      This shirt is beautiful.
 - id: s.shop.3
   node: apc.shop.clothes
   register: colloquial
@@ -91,11 +98,17 @@ sentences:
       text: هيدا الفستان كتير حلو!
       tokens: [{surface: هيدا, sense: hayda}, {surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]}, {surface: كتير, sense: ktir}, {surface: حلو,
           sense: 7elo}]
-      reverse: هيدا الفستان كتير حلو
+      reverse: |-
+        هيدا الفستان كتير حلو
+        هالفستان كتير حلو
+        هيدا الفستان حلو كتير
     apc-Latn/arabizi:
       text: hayda el fostan ktir 7elo!
       tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: ktir, sense: ktir}, {surface: 7elo, sense: 7elo}]
-      reverse: (hayda|haida|hyda) (el|l|il) (fostan|fistan|fustan|festan) (ktir|kteer) (7elo|7elu|7ilo|helo)
+      reverse: |-
+        (hayda|haida|hyda) (el|l|il) (fostan|fistan|fustan|festan) (ktir|kteer) (7elo|7elu|7ilo|helo)
+        hal fostan ktir 7elo
+        hayda el fostan 7elo ktir
   translations:
     en: |-
       (This|That) dress is (very|really|so) (pretty|nice|beautiful|lovely)!
@@ -108,13 +121,22 @@ sentences:
     apc-Arab/standard:
       text: بتحبّي هالفستان؟
       tokens: [{surface: بتحبّي, sense: 7abb, form: 'form:impf-2fs'}, {surface: هالفستان, sense: fostan, morphs: [{surface: هال, kc: 'sense:hal'}, {surface: فستان, kc: 'sense:fostan'}]}]
-      reverse: (بتحبّي|إنتي بتحبّي) هالفستان
+      reverse: |-
+        (بتحبّي|إنتي بتحبّي) هالفستان
+        بتحبّي هيدا الفستان
+        عاجبك هالفستان
     apc-Latn/arabizi:
       text: bt7ebbi hal fostan?
       tokens: [{surface: bt7ebbi, sense: 7abb, form: 'form:impf-2fs'}, {surface: hal, sense: hal}, {surface: fostan, sense: fostan}]
-      reverse: (bt7ebbi|bt7ebbe|bt7ibbi|btheb|bit7ebbi) (hal|hel) (fostan|fistan|fustan|festan)
+      reverse: |-
+        (bt7ebbi|bt7ebbe|bt7ibbi|btheb|bit7ebbi) (hal|hel) (fostan|fistan|fustan|festan)
+        bt7ebbi hayda el fostan
+        enti bt7ebbi hal fostan
+        3ajbik hal fostan
   translations:
-    en: Do you like (this|that) dress?
+    en: |-
+      Do you like (this|that) dress?
+      Do you love this dress?
 - id: s.shop.6
   node: apc.shop.clothes
   register: colloquial
@@ -136,13 +158,15 @@ sentences:
     apc-Arab/standard:
       text: شو لونه؟
       tokens: [{surface: شو, sense: shu}, {surface: لونه, sense: lon, morphs: [{surface: لون, kc: 'sense:lon'}, {surface: ه, kc: 'form:poss-3ms'}]}]
-      reverse: شو (لونه|لونو)
+      reverse: شو (لونه|لونو|لونها|لونا)
     apc-Latn/arabizi:
       text: shu lono?
       tokens: [{surface: shu, sense: shu}, {surface: lono, sense: lon, morphs: [{surface: lon, kc: 'sense:lon'}, {surface: o, kc: 'form:poss-3ms'}]}]
-      reverse: (shu|sho) (lono|lonu|lounu|lawno)
+      reverse: (shu|sho) (lono|lonu|lounu|lawno|lona|louna|lawna)
   translations:
-    en: What (colour|color) is it?
+    en: |-
+      What (colour|color) is it?
+      What's its colour?
 - id: s.shop.8
   node: apc.shop.colours
   register: colloquial
@@ -186,7 +210,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi fostan abyad.
       tokens: [{surface: baddi, sense: baddi}, {surface: fostan, sense: fostan}, {surface: abyad, sense: abyad}]
-      reverse: (baddi|badde|badi) (fostan|fistan|fustan|festan) (abyad|abiad|abyed)
+      reverse: |-
+        (baddi|badde|badi) (fostan|fistan|fustan|festan) (abyad|abiad|abyed)
+        ana baddi fostan abyad
   translations:
     en: |-
       I want a white dress.
@@ -229,11 +255,16 @@ sentences:
       text: بحبّ اللون الأحمر.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: اللون, sense: lon, morphs: [{surface: ال, kc: 'sense:el'}, {surface: لون, kc: 'sense:lon'}]}, {surface: الأحمر, sense: a7mar,
           morphs: [{surface: ال, kc: 'sense:el'}, {surface: أحمر, kc: 'sense:a7mar'}]}]
-      reverse: (بحبّ|أنا بحبّ) اللون الأحمر
+      reverse: |-
+        (بحبّ|أنا بحبّ) اللون الأحمر
+        بحبّ الأحمر
     apc-Latn/arabizi:
       text: b7ebb el lon el a7mar.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: el, sense: el}, {surface: lon, sense: lon}, {surface: el, sense: el}, {surface: a7mar, sense: a7mar}]
-      reverse: (b7ebb|b7eb|b7ib|bhebb) (el|l|il) lon (el|l|il) (a7mar|ahmar|a7mer)
+      reverse: |-
+        (b7ebb|b7eb|b7ib|bhebb) (el|l|il) lon (el|l|il) (a7mar|ahmar|a7mer)
+        b7ebb el a7mar
+        ana b7ebb el lon el a7mar
   translations:
     en: I (like|love) (the colour|the color|) red.
 - id: s.shop.12b
@@ -247,7 +278,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi siyyara 7amra.
       tokens: [{surface: baddi, sense: baddi}, {surface: siyyara, sense: siyyara}, {surface: 7amra, sense: a7mar, form: 'form:fem'}]
-      reverse: (baddi|badde|badi) (siyyara|siyara|sayyara|sayara|syara) 7amra
+      reverse: |-
+        (baddi|badde|badi) (siyyara|siyara|sayyara|sayara|syara) 7amra
+        ana baddi siyyara 7amra
   translations:
     en: |-
       I want a red car.
@@ -309,11 +342,15 @@ sentences:
     apc-Arab/standard:
       text: بدّك الأزرق؟
       tokens: [{surface: بدّك, sense: baddak, form: 'form:poss-2fs', vocalized: بَدِّك}, {surface: الأزرق, sense: azra2, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أزرق, kc: 'sense:azra2'}]}]
-      reverse: (بدّك|إنت بدّك) الأزرق
+      reverse: |-
+        (بدّك|إنت بدّك) الأزرق
+        إنتي بدّك الأزرق
     apc-Latn/arabizi:
       text: baddik el azra2?
       tokens: [{surface: baddik, sense: baddak, form: 'form:poss-2fs'}, {surface: el, sense: el}, {surface: azra2, sense: azra2}]
-      reverse: (baddik|badik|baddek) (el|l|il) (azra2|azra|azre2|azraq)
+      reverse: |-
+        (baddik|badik|baddek) (el|l|il) (azra2|azra|azre2|azraq)
+        enti baddik el azra2
   translations:
     en: |-
       Do you want the blue one?
@@ -355,11 +392,11 @@ sentences:
     apc-Arab/standard:
       text: هيدا أرخص.
       tokens: [{surface: هيدا, sense: hayda}, {surface: أرخص, sense: arkhas}]
-      reverse: هيدا أرخص
+      reverse: (هيدا|هيدي) أرخص
     apc-Latn/arabizi:
       text: hayda arkhas.
       tokens: [{surface: hayda, sense: hayda}, {surface: arkhas, sense: arkhas}]
-      reverse: (hayda|haida|hyda) (arkhas|arkhass|arkhes)
+      reverse: (hayda|haida|hyda|hayde|haide|haydi) (arkhas|arkhass|arkhes)
   translations:
     en: (This|That) (one|)('s| is) cheaper.
 - id: s.shop.19
@@ -370,12 +407,16 @@ sentences:
       text: هيدا القميص أرخص من الأبيض.
       tokens: [{surface: هيدا, sense: hayda}, {surface: القميص, sense: 2amis, morphs: [{surface: ال, kc: 'sense:el'}, {surface: قميص, kc: 'sense:2amis'}]}, {surface: أرخص, sense: arkhas}, {surface: من,
           sense: men.than}, {surface: الأبيض, sense: abyad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أبيض, kc: 'sense:abyad'}]}]
-      reverse: هيدا القميص أرخص من الأبيض
+      reverse: |-
+        هيدا القميص أرخص من الأبيض
+        هالقميص أرخص من الأبيض
     apc-Latn/arabizi:
       text: hayda el 2amis arkhas men el abyad.
       tokens: [{surface: hayda, sense: hayda}, {surface: el, sense: el}, {surface: 2amis, sense: 2amis}, {surface: arkhas, sense: arkhas}, {surface: men, sense: men.than}, {surface: el, sense: el}, {surface: abyad,
           sense: abyad}]
-      reverse: (hayda|haida) (el|l) (2amis|2amees) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (abyad|abiad|abyed)
+      reverse: |-
+        (hayda|haida) (el|l) (2amis|2amees) (arkhas|arkhass|arkhes) (men|min|mn) (el|l|il) (abyad|abiad|abyed)
+        hal 2amis arkhas men el abyad
   translations:
     en: |-
       (This|That) shirt is cheaper than the white one.
@@ -397,6 +438,7 @@ sentences:
     en: |-
       The red dress is more expensive.
       The red dress costs more.
+      The red dress is dearer.
 - id: s.shop.21
   node: apc.shop.compare
   register: colloquial
@@ -456,11 +498,15 @@ sentences:
     apc-Arab/standard:
       text: بدّي واحد أزغر.
       tokens: [{surface: بدّي, sense: baddi}, {surface: واحد, sense: wa7ad}, {surface: أزغر, sense: azghar}]
-      reverse: (بدّي|أنا بدّي) واحد أزغر
+      reverse: |-
+        (بدّي|أنا بدّي) واحد أزغر
+        بدّي وحدة أزغر
     apc-Latn/arabizi:
       text: baddi wa7ad azghar.
       tokens: [{surface: baddi, sense: baddi}, {surface: wa7ad, sense: wa7ad}, {surface: azghar, sense: azghar}]
-      reverse: (baddi|badde|badi) (wa7ad|wa7ed|wa7id|wahad) (azghar|azgher|asghar)
+      reverse: |-
+        (baddi|badde|badi) (wa7ad|wa7ed|wa7id|wahad) (azghar|azgher|asghar)
+        ana baddi wa7ad azghar
   translations:
     en: |-
       I want a smaller one.
@@ -472,11 +518,11 @@ sentences:
     apc-Arab/standard:
       text: قدّيش حقّه؟
       tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّه, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ه, kc: 'form:poss-3ms'}]}]
-      reverse: (قدّيش|أدّيش) (حقّه|حقّو)
+      reverse: (قدّيش|أدّيش) (حقّه|حقّو|حقّها|حقّا)
     apc-Latn/arabizi:
       text: 2addesh 7a22o?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22o, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: o, kc: 'form:poss-3ms'}]}]
-      reverse: (2addesh|2addeish|2adesh|addesh) (7a22o|7a22u|ha22o|7a2o)
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22o|7a22u|ha22o|7a2o|7a22a|ha22a|7a2a)
   translations:
     en: |-
       How much is it?
@@ -488,11 +534,11 @@ sentences:
     apc-Arab/standard:
       text: قدّيش حقّها؟
       tokens: [{surface: قدّيش, sense: 2addesh}, {surface: حقّها, sense: 7a22, morphs: [{surface: حقّ, kc: 'sense:7a22'}, {surface: ها, kc: 'form:poss-3fs'}]}]
-      reverse: (قدّيش|أدّيش) (حقّها|حقّا)
+      reverse: (قدّيش|أدّيش) (حقّها|حقّا|حقّه|حقّو)
     apc-Latn/arabizi:
       text: 2addesh 7a22a?
       tokens: [{surface: 2addesh, sense: 2addesh}, {surface: 7a22a, sense: 7a22, morphs: [{surface: 7a22, kc: 'sense:7a22'}, {surface: a, kc: 'form:poss-3fs'}]}]
-      reverse: (2addesh|2addeish|2adesh|addesh) (7a22a|ha22a|7a2a)
+      reverse: (2addesh|2addeish|2adesh|addesh) (7a22a|ha22a|7a2a|7a22o|7a22u|ha22o|7a2o)
   translations:
     en: |-
       How much is it?
@@ -505,12 +551,12 @@ sentences:
       text: فيّي جرّبه؟
       tokens: [{surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: جرّبه, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: جرّب,
               kc: 'sense:jarrab'}, {surface: ه, kc: 'form:obj-3ms'}]}]
-      reverse: (فيّي|فيني) (جرّبه|جرّبو)
+      reverse: (فيّي|فيني) (جرّبه|جرّبو|جرّبها|جرّبا)
     apc-Latn/arabizi:
       text: fiyyi jarrbo?
       tokens: [{surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: jarrbo, sense: jarrab, form: 'form:subj-1sg', morphs: [{surface: jarrb,
               kc: 'sense:jarrab'}, {surface: o, kc: 'form:obj-3ms'}]}]
-      reverse: (fiyyi|fiyye|fiye|fiyi|fini|fine) (jarrbo|jarrebo|jarbo|jarrbu)
+      reverse: (fiyyi|fiyye|fiye|fiyi|fini|fine) (jarrbo|jarrebo|jarbo|jarrbu|jarrba|jarreba|jarba)
   translations:
     en: |-
       Can I try it (on|)?
@@ -523,7 +569,10 @@ sentences:
     apc-Arab/standard:
       text: جرّبي!
       tokens: [{surface: جرّبي, sense: jarrab, form: 'form:imp-2fs'}]
-      reverse: جرّبي
+      reverse: |-
+        جرّبي
+        جرّبيه
+        جرّبيها
     apc-Latn/arabizi:
       text: jarrbi!
       tokens: [{surface: jarrbi, sense: jarrab, form: 'form:imp-2fs'}]
@@ -560,7 +609,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi 2yes akbar.
       tokens: [{surface: baddi, sense: baddi}, {surface: 2yes, sense: 2yes}, {surface: akbar, sense: akbar}]
-      reverse: (baddi|badde|badi) (2yes|2yas|2yess|iyes) (akbar|akbr)
+      reverse: |-
+        (baddi|badde|badi) (2yes|2yas|2yess|iyes) (akbar|akbr)
+        ana baddi 2yes akbar
   translations:
     en: |-
       I (want|need) a bigger size.
@@ -574,15 +625,22 @@ sentences:
       text: شو رح تلبس الليلة؟
       tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تلبس, sense: lebes, form: 'form:subj-2ms'}, {surface: الليلة, sense: lele, morphs: [{surface: ال, kc: 'sense:el'}, {surface: ليلة,
               kc: 'sense:lele'}]}]
-      reverse: شو (رح|لح) تلبس الليلة
+      reverse: |-
+        شو (رح|لح) تلبس الليلة
+        الليلة شو رح تلبس
+        إنت شو رح تلبس الليلة
     apc-Latn/arabizi:
       text: shu ra7 tilbos el lele?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: tilbos, sense: lebes, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: lele, sense: lele}]
-      reverse: (shu|sho) (ra7|la7|rah) (tilbos|telbos|tilbis|tolbos) (el|l|il) (lele|leile|leyle)
+      reverse: |-
+        (shu|sho) (ra7|la7|rah) (tilbos|telbos|tilbis|tolbos) (el|l|il) (lele|leile|leyle)
+        el lele shu ra7 tilbos
+        enta shu ra7 tilbos el lele
   translations:
     en: |-
       What are you going to wear tonight?
       What will you wear tonight?
+      What are you wearing tonight?
 - id: s.shop.32
   node: apc.shop.try
   register: colloquial
@@ -592,16 +650,22 @@ sentences:
       text: شو رح تلبسوا عالسهرة؟
       tokens: [{surface: شو, sense: shu}, {surface: رح, sense: ra7.fut}, {surface: تلبسوا, sense: lebes, form: 'form:subj-2pl'}, {surface: عالسهرة, sense: sahra, morphs: [{surface: ع, kc: 'sense:3a'}, {
               surface: ال, kc: 'sense:el'}, {surface: سهرة, kc: 'sense:sahra'}]}]
-      reverse: شو (رح|لح) (تلبسوا|تلبسو) (عالسهرة|ع السهرة|على السهرة)
+      reverse: |-
+        شو (رح|لح) (تلبسوا|تلبسو) (عالسهرة|ع السهرة|على السهرة)
+        إنتو شو رح تلبسوا عالسهرة
     apc-Latn/arabizi:
       text: shu ra7 tilbso 3al sahra?
       tokens: [{surface: shu, sense: shu}, {surface: ra7, sense: ra7.fut}, {surface: tilbso, sense: lebes, form: 'form:subj-2pl'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l,
               kc: 'sense:el'}]}, {surface: sahra, sense: sahra}]
-      reverse: (shu|sho) (ra7|la7|rah) (tilbso|telbso|tilibso|telebso|tilbsu) (3al|3a l|3a el) (sahra|sahrah|sahre)
+      reverse: |-
+        (shu|sho) (ra7|la7|rah) (tilbso|telbso|tilibso|telebso|tilbsu) (3al|3a l|3a el) (sahra|sahrah|sahre)
+        ento shu ra7 tilbso 3al sahra
   translations:
     en: |-
       What are you going to wear to the party?
       What will you wear to the party?
+      What are you wearing to the party?
+      What are you going to wear for the party?
 - id: s.shop.33
   node: apc.shop.try
   register: colloquial
@@ -610,12 +674,16 @@ sentences:
       text: رح البس الفستان الأسود.
       tokens: [{surface: رح, sense: ra7.fut}, {surface: البس, sense: lebes, form: 'form:subj-1sg'}, {surface: الفستان, sense: fostan, morphs: [{surface: ال, kc: 'sense:el'}, {surface: فستان, kc: 'sense:fostan'}]},
         {surface: الأسود, sense: aswad, morphs: [{surface: ال, kc: 'sense:el'}, {surface: أسود, kc: 'sense:aswad'}]}]
-      reverse: (رح|لح) البس الفستان الأسود
+      reverse: |-
+        (رح|لح) البس الفستان الأسود
+        أنا رح البس الفستان الأسود
     apc-Latn/arabizi:
       text: ra7 elbos el fostan el aswad.
       tokens: [{surface: ra7, sense: ra7.fut}, {surface: elbos, sense: lebes, form: 'form:subj-1sg'}, {surface: el, sense: el}, {surface: fostan, sense: fostan}, {surface: el, sense: el}, {surface: aswad,
           sense: aswad}]
-      reverse: (ra7|la7|rah) (elbos|elbes|ilbos) (el|l|il) (fostan|fistan|fustan) (el|l|il) (aswad|aswed|aswd)
+      reverse: |-
+        (ra7|la7|rah) (elbos|elbes|ilbos) (el|l|il) (fostan|fistan|fustan) (el|l|il) (aswad|aswed|aswd)
+        ana ra7 elbos el fostan el aswad
   translations:
     en: |-
       I('m| am) going to wear the black dress.

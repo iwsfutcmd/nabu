@@ -616,6 +616,52 @@
         "script": "Arab",
         "dir": "rtl"
       }
+    },
+    {
+      "id": "direction/tok",
+      "op": "direction",
+      "args": {
+        "tag": "tok"
+      },
+      "expected": {
+        "script": "Latn",
+        "dir": "ltr"
+      }
+    },
+    {
+      "id": "direction/tok-Qaap",
+      "op": "direction",
+      "args": {
+        "tag": "tok-Qaap"
+      },
+      "expected": {
+        "script": "Qaap",
+        "dir": "ltr"
+      },
+      "note": "sitelen pona (ADR 0086): a private-use script subtag until ISO 15924 assigns one, left to right as the UCS proposal (L2/24-275) gives it."
+    },
+    {
+      "id": "direction/grc",
+      "op": "direction",
+      "args": {
+        "tag": "grc"
+      },
+      "expected": {
+        "script": "Grek",
+        "dir": "ltr"
+      },
+      "note": "Ancient Greek maximizes to grc-Grek-GR (CLDR 49)."
+    },
+    {
+      "id": "direction/grc-Grek",
+      "op": "direction",
+      "args": {
+        "tag": "grc-Grek"
+      },
+      "expected": {
+        "script": "Grek",
+        "dir": "ltr"
+      }
     }
   ]
 }

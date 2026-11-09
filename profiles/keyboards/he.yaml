@@ -1,0 +1,15 @@
+# Interim, hand-encoded: replace with the CLDR Keyboard 3.0 layout once compiled (gameplan §6.7, ADR 0025).
+# The standard Israeli layout (SI 1452). Learners of Biblical Hebrew type unpointed text: the points are
+# on the AltGr layer, which the typo model does not need.
+id: he
+source: "SI 1452 base layer"
+reviewed: false
+rows:
+  - offset: 0
+    keys: [";", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "="]
+  - offset: 1.5
+    keys: ["/", "'", "\u05e7", "\u05e8", "\u05d0", "\u05d8", "\u05d5", "\u05df", "\u05dd", "\u05e4", "]", "["]
+  - offset: 1.75
+    keys: ["\u05e9", "\u05d3", "\u05d2", "\u05db", "\u05e2", "\u05d9", "\u05d7", "\u05dc", "\u05da", "\u05e3", ","]
+  - offset: 2.25
+    keys: ["\u05d6", "\u05e1", "\u05d1", "\u05d4", "\u05e0", "\u05de", "\u05e6", "\u05ea", "\u05e5", "."]

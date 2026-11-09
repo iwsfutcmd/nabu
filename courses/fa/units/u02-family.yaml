@@ -82,7 +82,9 @@ sentences:
     fa-Arab/standard:
       text: او مادرِ علی است.
       tokens: [{surface: او, sense: u}, {surface: مادرِ, sense: madar}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
-      reverse: '[او] مادر علی است'
+      reverse: |-
+        [او] مادر علی است
+        او مادر علیه
   translations:
     en: She('s| is) Ali's (mother|mom|mum).
 - id: s.family.5
@@ -91,7 +93,9 @@ sentences:
     fa-Arab/standard:
       text: مادرم خوب است.
       tokens: [{surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: (مادرم|مادر من) (خوب است|خوبه)
+      reverse: |-
+        (مادرم|مادر من) (خوب است|خوبه)
+        حال مادرم خوب است
   translations:
     en: My (mother|mom|mum) is (well|fine|good|OK|okay|all right).
 - id: s.family.6
@@ -100,11 +104,14 @@ sentences:
     fa-Arab/standard:
       text: پدر و مادرم خوب هستند.
       tokens: [{surface: پدر, sense: pedar}, {surface: و, sense: va}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: (پدر و مادرم|پدر و مادر من|(پدرم|پدر من) و (مادرم|مادر من)) (خوب هستند|خوبند)
+      reverse: |-
+        (پدر و مادرم|پدر و مادر من|(پدرم|پدر من) و (مادرم|مادر من)) (خوب هستند|خوبند)
+        حال پدر و مادرم خوب است
   translations:
     en: |-
       My (father|dad) and [my] (mother|mom|mum) are (well|fine|good|OK|okay|all right).
       My parents are (well|fine|good|OK|okay|all right).
+      My mother and father are well.
 - id: s.family.7
   node: fa.family.siblings
   constructions: ['construction:ezafe']
@@ -131,7 +138,9 @@ sentences:
     fa-Arab/standard:
       text: اسمِ برادرم علی است.
       tokens: [{surface: اسمِ, sense: esm}, {surface: برادرم, sense: baradar, morphs: [{surface: برادر, kc: 'sense:baradar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: علی, sense: ali}, {surface: است, sense: budan}]
-      reverse: اسم (برادرم|برادر من) علی است
+      reverse: |-
+        اسم (برادرم|برادر من) علی است
+        اسم برادرم علیه
   translations:
     en: |-
       My brother's name('s| is) Ali.
@@ -143,7 +152,9 @@ sentences:
     fa-Arab/standard:
       text: این کتابِ ما است.
       tokens: [{surface: این, sense: in}, {surface: کتابِ, sense: ketab}, {surface: ما, sense: ma}, {surface: است, sense: budan}]
-      reverse: این کتاب (ما است|ماست)
+      reverse: |-
+        این کتاب (ما است|ماست)
+        این کتابمان است
   translations:
     en: This is our book.
 - id: s.family.11
@@ -152,7 +163,10 @@ sentences:
     fa-Arab/standard:
       text: ما خوب هستیم.
       tokens: [{surface: ما, sense: ma}, {surface: خوب, sense: khub}, {surface: هستیم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: '[ما] (خوب هستیم|خوبیم)'
+      reverse: |-
+        [ما] (خوب هستیم|خوبیم)
+        حال ما خوب است
+        حالمان خوب است
   translations:
     en: We('re| are) (well|fine|good|OK|okay|all right).
 - id: s.family.12
@@ -189,7 +203,9 @@ sentences:
     fa-Arab/standard:
       text: رضا برادرِ مریم است.
       tokens: [{surface: رضا, sense: reza}, {surface: برادرِ, sense: baradar}, {surface: مریم, sense: maryam}, {surface: است, sense: budan}]
-      reverse: رضا برادر مریم است
+      reverse: |-
+        رضا برادر مریم است
+        رضا برادر مریمه
   translations:
     en: Reza is Maryam's brother.
 - id: s.family.16
@@ -265,6 +281,7 @@ sentences:
         (حالتان|حال تو|حالت) (خوب است|خوبه)
         [شما] (خوب هستید|خوبید)
         [تو] (خوب هستی|خوبی)
+        آیا حال شما خوب است
   translations:
     en: |-
       Are you (well|OK|okay|all right|alright|fine|good)?
@@ -281,6 +298,9 @@ sentences:
         حال شما (چطور است|چطوره)
         (حالتان|حال تو|حالت) (چطور است|چطوره)
         (چطوری|چطورید)
+        شما چطور هستید
+        شما چطورید
+        تو چطوری
   translations:
     en: |-
       How are you?
@@ -292,9 +312,11 @@ sentences:
     fa-Arab/standard:
       text: رضا و سارا دوستانِ ما هستند.
       tokens: [{surface: رضا, sense: reza}, {surface: و, sense: va}, {surface: سارا, sense: sara}, {surface: دوستانِ, sense: doost, morphs: [{surface: دوست, kc: 'sense:doost'}, {surface: انِ, kc: 'form:plural-an'}]}, {surface: ما, sense: ma}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "رضا و سارا (دوستان|دوست\u200cهای) ما هستند"
+      reverse: "رضا و سارا (دوستان|دوست\u200Cهای) ما هستند\nرضا و سارا دوستانمان هستند\nرضا و سارا دوست\u200Cهایمان هستند"
   translations:
-    en: Reza and Sara are our friends.
+    en: |-
+      Reza and Sara are our friends.
+      Reza and Sara are friends of ours.
 - id: s.family.25
   node: fa.family.children
   constructions: ['construction:ezafe']
@@ -330,7 +352,7 @@ sentences:
     fa-Arab/standard:
       text: "بچه\u200cها خوب هستند."
       tokens: [{surface: "بچه\u200cها", sense: bachche, morphs: [{surface: "بچه\u200c", kc: 'sense:bachche'}, {surface: ها, kc: 'form:plural-ha'}]}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "بچه\u200cها (خوب هستند|خوبند)"
+      reverse: "بچه\u200Cها (خوب هستند|خوبند)\nحال بچه\u200Cها خوب است"
   translations:
     en: The (children|kids) are (well|fine|good|OK|okay|all right).
 - id: s.family.29
@@ -340,7 +362,7 @@ sentences:
     fa-Arab/standard:
       text: این خانوادهٔ من است.
       tokens: [{surface: این, sense: in}, {surface: خانوادهٔ, sense: khanevade}, {surface: من, sense: man}, {surface: است, sense: budan}]
-      reverse: "این خانواد(هٔ|ه\u200cی|ه) من است"
+      reverse: "این خانواد(هٔ|ه\u200Cی|ه) من است\nاین خانواده\u200Cام است\nاین خانواده\u200Cی منه"
   translations:
     en: This is my family.
 - id: s.family.30
@@ -351,7 +373,7 @@ sentences:
     fa-Arab/standard:
       text: خانوادهٔ شما خوب هستند؟
       tokens: [{surface: خانوادهٔ, sense: khanevade}, {surface: شما, sense: shoma}, {surface: خوب, sense: khub}, {surface: هستند, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: ند, kc: 'form:3pl-and'}]}]
-      reverse: "خانواد(هٔ|ه\u200cی|ه) (شما|تو) (خوب هستند|خوبند|خوب است|خوبه)\n(خانواده\u200cتان|خانواده\u200cات) (خوب هستند|خوبند|خوب است|خوبه)"
+      reverse: "خانواد(هٔ|ه\u200Cی|ه) (شما|تو) (خوب هستند|خوبند|خوب است|خوبه)\n(خانواده\u200Cتان|خانواده\u200Cات) (خوب هستند|خوبند|خوب است|خوبه)\nآیا خانواده شما خوب هستند\nحال خانواده\u200Cتان خوب است"
   translations:
     en: |-
       Is your family (well|OK|okay|all right|fine|doing well)?
@@ -364,7 +386,9 @@ sentences:
       tokens: [{surface: من, sense: man}, {surface: دانشجو, sense: daneshju}, {surface: هستم, sense: budan, morphs: [{surface: هست, kc: 'sense:budan'}, {surface: م, kc: 'form:1sg-am'}]}]
       reverse: '[من] (دانشجو هستم|دانشجویم)'
   translations:
-    en: I('m| am) a [university] student.
+    en: |-
+      I('m| am) a [university] student.
+      I'm a college student.
 - id: s.family.32
   node: fa.family.work
   forms:
@@ -381,7 +405,9 @@ sentences:
     fa-Arab/standard:
       text: پدرِ سارا پزشک است.
       tokens: [{surface: پدرِ, sense: pedar}, {surface: سارا, sense: sara}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
-      reverse: پدر سارا (پزشک|دکتر) است
+      reverse: |-
+        پدر سارا (پزشک|دکتر) است
+        پدر سارا پزشکه
   translations:
     en: Sara's (father|dad) is a doctor.
 - id: s.family.34
@@ -394,6 +420,7 @@ sentences:
       reverse: |-
         [شما] هم (دانشجو هستید|دانشجویید)
         [تو] هم (دانشجو هستی|دانشجویی)
+        آیا شما هم دانشجو هستید
   translations:
     en: |-
       Are you (also a student|a student too|a student as well)?
@@ -404,7 +431,9 @@ sentences:
     fa-Arab/standard:
       text: این آقا پزشک است.
       tokens: [{surface: این, sense: in}, {surface: آقا, sense: agha}, {surface: پزشک, sense: pezeshk}, {surface: است, sense: budan}]
-      reverse: این آقا (پزشک|دکتر) است
+      reverse: |-
+        این آقا (پزشک|دکتر) است
+        این آقا پزشکه
   translations:
     en: This (gentleman|man) is a doctor.
 - id: s.family.36
@@ -423,7 +452,10 @@ sentences:
     fa-Arab/standard:
       text: معلمِ ما خیلی مهربان است.
       tokens: [{surface: معلمِ, sense: moallem}, {surface: ما, sense: ma}, {surface: خیلی, sense: kheyli}, {surface: مهربان, sense: mehraban}, {surface: است, sense: budan}]
-      reverse: معلم ما خیلی مهربان است
+      reverse: |-
+        معلم ما خیلی مهربان است
+        معلممان خیلی مهربان است
+        معلم ما بسیار مهربان است
   translations:
     en: Our teacher( is|'s) (very|really) (kind|nice).
 stories:

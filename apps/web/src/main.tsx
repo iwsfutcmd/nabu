@@ -3,7 +3,7 @@
  * default), load its catalog, and render the app (course list, the course
  * path, and lesson, review and mistakes sessions over the on-device event log).
  *
- * Preferences (text size) are on their own screen, #/preferences. Query parameters stand in for
+ * Preferences (appearance, text size) are on their own screen, #/preferences. Query parameters stand in for
  * the other settings:
  *   ?ui=ar-XB            UI locale or pseudo-locale
  *   ?drafts=1            also offer draft UI catalogs (reviewers, ADR 0070): ?ui=fa&drafts=1
@@ -20,10 +20,11 @@ import "@nabu/ui/tokens.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
-import { applyTextSize, storedTextSize } from "./Preferences.tsx";
+import { applyTextSize, applyTheme, storedTextSize, storedTheme } from "./Preferences.tsx";
 
-// The learner's text size, before the first paint (Preferences).
+// The learner's text size and theme, before the first paint (Preferences; index.html sets the theme earlier still).
 applyTextSize(storedTextSize());
+applyTheme(storedTheme());
 
 const params = new URLSearchParams(window.location.search);
 const drafts = params.get("drafts") === "1";

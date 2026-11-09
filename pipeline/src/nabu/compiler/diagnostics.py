@@ -92,7 +92,8 @@ _LINTS = [
         "enrich.transliteration-mismatch",
         "info",
         3,
-        "A pinned form differs from the CLDR transform of the default orthography.",
+        "A pinned form differs from the CLDR transform (tok: the sitelen pona spelling) of the "
+        "default orthography.",
     ),
     # 4 · drills
     Lint(
@@ -231,6 +232,13 @@ _LINTS = [
     ),
     Lint(
         "glossary.tile-split", "error", 7, "A word-bank tile boundary falls inside a runtime unit."
+    ),
+    Lint(
+        "script.untaught-letter",
+        "error",
+        7,
+        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088), or the "
+        "orthography has no romanization.",
     ),
     Lint(
         "script.missing-form",

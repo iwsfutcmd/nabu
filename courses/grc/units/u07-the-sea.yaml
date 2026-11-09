@@ -1,0 +1,1249 @@
+# Ancient Greek (grc), unit 7: The sea! The sea! (Xenophon, Anabasis 4.7.21, 24).
+# Mountains, days and numbers; "was" (ἦν) and the imperfect plural (ἔθεον); a name with the dative (ὄνομά μοι);
+# the genitive plural; a first participle (βοώντων, shouting).
+# The passage is Marchant's text of Xenophon (public domain), as the Perseus Digital Library has it; the rest was
+# drafted by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u07-the-sea
+title:
+  en: The sea! The sea!
+cefr: A2
+kcs:
+- id: sense:oros
+  gloss:
+    en: mountain
+  forms:
+    grc-Grek/polytonic:
+    - ὄρος
+  image:
+    file: ../images/mountain.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+  notes:
+    en: 'Neuter: τὸ ὄρος, to the mountain τῷ ὄρει.'
+- id: sense:epi
+  gloss:
+    en: (with the accusative) to, onto; (with the genitive) on
+  forms:
+    grc-Grek/polytonic:
+    - ἐπί
+- id: form:pres-3p-mid
+  gloss:
+    en: 'the present, they, with middle endings: -ονται (πορεύονται, they go)'
+- id: sense:pemptos
+  gloss:
+    en: fifth
+  forms:
+    grc-Grek/polytonic:
+    - πέμπτος
+- id: sense:protos
+  gloss:
+    en: first
+  forms:
+    grc-Grek/polytonic:
+    - πρῶτος
+- id: sense:onoma
+  gloss:
+    en: name
+  forms:
+    grc-Grek/polytonic:
+    - ὄνομα
+  notes:
+    en: τί ὄνομά σοι; "what is your name?", word for word "what name (is there) to you?".
+- id: sense:theches
+  gloss:
+    en: Theches (a mountain near Trapezus, on the Black Sea)
+  forms:
+    grc-Grek/polytonic:
+    - Θήχης
+- id: sense:stratiotes
+  gloss:
+    en: soldier
+  forms:
+    grc-Grek/polytonic:
+    - στρατιώτης
+- id: sense:thalatta
+  gloss:
+    en: the sea
+  forms:
+    grc-Grek/polytonic:
+    - θάλαττα
+  image:
+    file: ../images/wave.svg
+    license: CC0-1.0
+    provenance:
+      author: llm:claude@grc-draft-v1
+      status: draft
+    source: Drawn for Nabu (courses/images)
+  notes:
+    en: Attic θάλαττα; most other Greek says θάλασσα.
+- id: sense:boao
+  gloss:
+    en: to shout, cry out
+  forms:
+    grc-Grek/polytonic:
+    - βοάω
+- id: sense:tacha
+  gloss:
+    en: soon; quickly
+  forms:
+    grc-Grek/polytonic:
+    - τάχα
+- id: form:gen-pl
+  gloss:
+    en: 'the genitive plural: of (the) … (τῶν στρατιωτῶν, of the soldiers); also after ἀκούω, hear'
+- id: form:ptc
+  gloss:
+    en: 'the participle: -ing (βοώντων, shouting)'
+- id: sense:entha
+  gloss:
+    en: there; then
+  forms:
+    grc-Grek/polytonic:
+    - ἔνθα
+- id: sense:theo
+  gloss:
+    en: to run
+  forms:
+    grc-Grek/polytonic:
+    - θέω
+- id: form:impf-3p
+  gloss:
+    en: 'the imperfect, they: they were doing, they did'
+- id: sense:pas
+  gloss:
+    en: all, every; (plural) everyone
+  forms:
+    grc-Grek/polytonic:
+    - πᾶς
+- id: sense:opisthophylax
+  gloss:
+    en: a man of the rearguard; (plural) the rearguard
+  forms:
+    grc-Grek/polytonic:
+    - ὀπισθοφύλαξ
+- id: sense:heis
+  gloss:
+    en: one
+  forms:
+    grc-Grek/polytonic:
+    - εἷς
+  notes:
+    en: εἷς for a man or masculine word, μία feminine, ἕν neuter.
+- id: sense:tettares
+  gloss:
+    en: four
+  forms:
+    grc-Grek/polytonic:
+    - τέτταρες
+- id: sense:pente
+  gloss:
+    en: five
+  forms:
+    grc-Grek/polytonic:
+    - πέντε
+- id: sense:deuteros
+  gloss:
+    en: second
+  forms:
+    grc-Grek/polytonic:
+    - δεύτερος
+- id: sense:tritos
+  gloss:
+    en: third
+  forms:
+    grc-Grek/polytonic:
+    - τρίτος
+nodes:
+- id: grc.u07.the-mountain
+  kind: lesson
+  introduces:
+  - sense:oros
+  - sense:epi
+  - form:pres-3p-mid
+  - sense:pemptos
+  - sense:protos
+- id: grc.u07.the-name
+  kind: lesson
+  introduces:
+  - sense:onoma
+  - sense:theches
+- id: grc.u07.soldiers
+  kind: lesson
+  introduces:
+  - sense:stratiotes
+  - sense:thalatta
+  - sense:boao
+  - sense:tacha
+  - form:gen-pl
+  - form:ptc
+- id: grc.u07.they-ran
+  kind: lesson
+  introduces:
+  - sense:entha
+  - sense:theo
+  - form:impf-3p
+  - sense:pas
+  - sense:opisthophylax
+- id: grc.u07.counting
+  kind: lesson
+  introduces:
+  - sense:heis
+  - sense:tettares
+  - sense:pente
+  - sense:deuteros
+  - sense:tritos
+- id: grc.u07.story
+  kind: story
+sentences:
+- id: s.07.1
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ ὄρος.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: ὄρος
+        sense: oros
+        readings:
+          attic: ὄρος
+      reverse: τὸ ὄρος
+  translations:
+    en: The mountain.
+- id: s.07.2
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: ἐπὶ τὸ ὄρος.
+      tokens:
+      - surface: ἐπὶ
+        sense: epi
+        readings:
+          attic: ἐπῐ̀
+      - surface: τὸ
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸ
+      - surface: ὄρος
+        sense: oros
+        form: form:acc
+        readings:
+          attic: ὄρος
+      reverse: ἐπὶ τὸ ὄρος
+  translations:
+    en: (To|Onto|Up) the mountain.
+- id: s.07.3
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: ἐπὶ τὸ ὄρος πορεύονται.
+      tokens:
+      - surface: ἐπὶ
+        sense: epi
+        readings:
+          attic: ἐπῐ̀
+      - surface: τὸ
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸ
+      - surface: ὄρος
+        sense: oros
+        form: form:acc
+        readings:
+          attic: ὄρος
+      - surface: πορεύονται
+        sense: poreuomai
+        form: form:pres-3p-mid
+        readings:
+          attic: πορεύονται
+      reverse: |-
+        ἐπὶ τὸ ὄρος πορεύονται
+        πορεύονται ἐπὶ τὸ ὄρος
+  translations:
+    en: They are (going|marching|making their way) (to|towards) the mountain.
+- id: s.07.4
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: ἀφικνοῦνται ἐπὶ τὸ ὄρος.
+      tokens:
+      - surface: ἀφικνοῦνται
+        sense: aphikneomai
+        form: form:pres-3p-mid
+        readings:
+          attic: ᾰ̓φῑκνοῦνται
+      - surface: ἐπὶ
+        sense: epi
+        readings:
+          attic: ἐπῐ̀
+      - surface: τὸ
+        sense: ho
+        form: form:acc
+        readings:
+          attic: τὸ
+      - surface: ὄρος
+        sense: oros
+        form: form:acc
+        readings:
+          attic: ὄρος
+      reverse: |-
+        ἀφικνοῦνται ἐπὶ τὸ ὄρος
+        ἐπὶ τὸ ὄρος ἀφικνοῦνται
+  translations:
+    en: They (reach|come to|arrive at) the mountain.
+- id: s.07.5
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: τῇ πέμπτῃ ἡμέρᾳ.
+      tokens:
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: πέμπτῃ
+        sense: pemptos
+        form: form:dat
+        readings:
+          attic: πέμπτῃ
+      - surface: ἡμέρᾳ
+        sense: hemera
+        form: form:dat
+        readings:
+          attic: ἡμέρᾳ
+      reverse: τῇ πέμπτῃ ἡμέρᾳ
+  translations:
+    en: On the fifth day.
+- id: s.07.6
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: τῇ πρώτῃ ἡμέρᾳ.
+      tokens:
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: πρώτῃ
+        sense: protos
+        form: form:dat
+        readings:
+          attic: πρώτῃ
+      - surface: ἡμέρᾳ
+        sense: hemera
+        form: form:dat
+        readings:
+          attic: ἡμέρᾳ
+      reverse: τῇ πρώτῃ ἡμέρᾳ
+  translations:
+    en: On the first day.
+- id: s.07.7
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ πρώτη ἡμέρα.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: πρώτη
+        sense: protos
+        form: form:f
+        readings:
+          attic: πρώτη
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      reverse: ἡ πρώτη ἡμέρα
+  translations:
+    en: The first day.
+- id: s.07.8
+  node: grc.u07.the-mountain
+  forms:
+    grc-Grek/polytonic:
+      text: τῇ πέμπτῃ ἡμέρᾳ ἀφικνοῦνται.
+      tokens:
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: πέμπτῃ
+        sense: pemptos
+        form: form:dat
+        readings:
+          attic: πέμπτῃ
+      - surface: ἡμέρᾳ
+        sense: hemera
+        form: form:dat
+        readings:
+          attic: ἡμέρᾳ
+      - surface: ἀφικνοῦνται
+        sense: aphikneomai
+        form: form:pres-3p-mid
+        readings:
+          attic: ᾰ̓φῑκνοῦνται
+      reverse: |-
+        τῇ πέμπτῃ ἡμέρᾳ ἀφικνοῦνται
+        ἀφικνοῦνται τῇ πέμπτῃ ἡμέρᾳ
+  translations:
+    en: They (arrive|come) on the fifth day.
+- id: s.07.9
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: τὸ ὄνομα.
+      tokens:
+      - surface: τὸ
+        sense: ho
+        readings:
+          attic: τὸ
+      - surface: ὄνομα
+        sense: onoma
+        readings:
+          attic: ὄνομᾰ
+      reverse: τὸ ὄνομα
+  translations:
+    en: The name.
+- id: s.07.10
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: τί ὄνομά σοι;
+      tokens:
+      - surface: τί
+        sense: ti
+        readings:
+          attic: τῐ́
+      - surface: ὄνομά
+        sense: onoma
+        readings:
+          attic: ὄνομᾰ́
+      - surface: σοι
+        sense: sy
+        form: form:dat
+        readings:
+          attic: σοι
+      reverse: |-
+        τί ὄνομά σοι
+        τί σοι ὄνομα
+        τί ὄνομά σοί ἐστι[ν]
+        τί σοι ὄνομά ἐστι[ν]
+  translations:
+    en: (What is|What's) your name?
+  persons:
+    addressee: sg
+- id: s.07.11
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: ὄνομά μοι Κρίτων.
+      tokens:
+      - surface: ὄνομά
+        sense: onoma
+        readings:
+          attic: ὄνομᾰ́
+      - surface: μοι
+        sense: ego
+        form: form:dat
+        readings:
+          attic: μοι
+      - surface: Κρίτων
+        sense: kriton
+        readings:
+          attic: Κρῐ́των
+      reverse: |-
+        ὄνομά μοι Κρίτων
+        Κρίτων ὄνομά μοι
+        ὄνομά μοί ἐστι Κρίτων
+        ὄνομά μοι Κρίτων ἐστί[ν]
+  translations:
+    en: My name is Crito.
+- id: s.07.12
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: ὄνομά μοι Ξανθίππη.
+      tokens:
+      - surface: ὄνομά
+        sense: onoma
+        readings:
+          attic: ὄνομᾰ́
+      - surface: μοι
+        sense: ego
+        form: form:dat
+        readings:
+          attic: μοι
+      - surface: Ξανθίππη
+        sense: xanthippe
+        readings:
+          attic: Ξᾰνθῐ́ππη
+      reverse: |-
+        ὄνομά μοι Ξανθίππη
+        Ξανθίππη ὄνομά μοι
+        ὄνομά μοί ἐστι Ξανθίππη
+        ὄνομά μοι Ξανθίππη ἐστί[ν]
+  translations:
+    en: My name is Xanthippe.
+- id: s.07.13
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: ἦν.
+      tokens:
+      - surface: ἦν
+        sense: eimi
+        form: form:impf-3s
+        readings:
+          attic: ἦν
+      reverse: ἦν
+  translations:
+    en: (It|He|She) was.
+- id: s.07.14
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: ὄνομα δὲ τῷ ὄρει ἦν Θήχης.
+      tokens:
+      - surface: ὄνομα
+        sense: onoma
+        readings:
+          attic: ὄνομᾰ
+      - surface: δὲ
+        sense: de
+        readings:
+          attic: δὲ
+      - surface: τῷ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῷ
+      - surface: ὄρει
+        sense: oros
+        form: form:dat
+        readings:
+          attic: ὄρει
+      - surface: ἦν
+        sense: eimi
+        form: form:impf-3s
+        readings:
+          attic: ἦν
+      - surface: Θήχης
+        sense: theches
+        readings:
+          attic: Θήχης
+      reverse: |-
+        ὄνομα δὲ τῷ ὄρει ἦν Θήχης
+        τῷ δὲ ὄρει ὄνομα ἦν Θήχης
+        ὄνομα δ’ ἦν τῷ ὄρει Θήχης
+        ὄνομα δὲ ἦν τῷ ὄρει Θήχης
+  translations:
+    en: (The mountain's name|The name of the mountain) was Theches.
+- id: s.07.15
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: νὺξ ἦν.
+      tokens:
+      - surface: νὺξ
+        sense: nyx
+        readings:
+          attic: νῠ̀ξ
+      - surface: ἦν
+        sense: eimi
+        form: form:impf-3s
+        readings:
+          attic: ἦν
+      reverse: |-
+        νὺξ ἦν
+        ἦν νύξ
+  translations:
+    en: It was night.
+- id: s.07.16
+  node: grc.u07.the-name
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ παῖς οἴκοι ἦν.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: παῖς
+        sense: pais
+        readings:
+          attic: παῖς
+      - surface: οἴκοι
+        sense: oikoi
+        readings:
+          attic: οἴκοι
+      - surface: ἦν
+        sense: eimi
+        form: form:impf-3s
+        readings:
+          attic: ἦν
+      reverse: |-
+        ὁ παῖς οἴκοι ἦν
+        οἴκοι ἦν ὁ παῖς
+        ὁ παῖς ἦν οἴκοι
+        ἦν οἴκοι ὁ παῖς
+  translations:
+    en: The (boy|child) was at home.
+- id: s.07.17
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: ὁ στρατιώτης.
+      tokens:
+      - surface: ὁ
+        sense: ho
+        readings:
+          attic: ὁ
+      - surface: στρατιώτης
+        sense: stratiotes
+        readings:
+          attic: στρᾰτῐώτης
+      reverse: ὁ στρατιώτης
+  translations:
+    en: The soldier.
+- id: s.07.18
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: οἱ στρατιῶται.
+      tokens:
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: στρατιῶται
+        sense: stratiotes
+        form: form:pl
+        readings:
+          attic: στρᾰτῐῶται
+      reverse: οἱ στρατιῶται
+  translations:
+    en: The soldiers.
+- id: s.07.19
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ θάλαττα.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: θάλαττα
+        sense: thalatta
+        readings:
+          attic: θᾰ́λᾰττᾰ
+      reverse: ἡ θάλαττα
+  translations:
+    en: The sea.
+- id: s.07.20
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: θάλαττα θάλαττα.
+      tokens:
+      - surface: θάλαττα
+        sense: thalatta
+        readings:
+          attic: θᾰ́λᾰττᾰ
+      - surface: θάλαττα
+        sense: thalatta
+        readings:
+          attic: θᾰ́λᾰττᾰ
+      reverse: θάλαττα θάλαττα
+  translations:
+    en: The sea! The sea!
+- id: s.07.21
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: βοῶσιν οἱ στρατιῶται.
+      tokens:
+      - surface: βοῶσιν
+        sense: boao
+        form: form:pres-3p
+        readings:
+          attic: βοῶσῐν
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: στρατιῶται
+        sense: stratiotes
+        form: form:pl
+        readings:
+          attic: στρᾰτῐῶται
+      reverse: |-
+        βοῶσιν οἱ στρατιῶται
+        οἱ στρατιῶται βοῶσι[ν]
+  translations:
+    en: The soldiers are shouting.
+- id: s.07.22
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: τάχα ἀκούουσιν.
+      tokens:
+      - surface: τάχα
+        sense: tacha
+        readings:
+          attic: τᾰ́χᾰ
+      - surface: ἀκούουσιν
+        sense: akouo
+        form: form:pres-3p
+        readings:
+          attic: ᾰ̓κούουσῐν
+      reverse: |-
+        τάχα ἀκούουσιν
+        ἀκούουσι[ν] τάχα
+        τάχα ἀκούουσι
+  translations:
+    en: (Soon|Quickly) they hear.
+- id: s.07.23
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: ἀκούουσι τῶν στρατιωτῶν.
+      tokens:
+      - surface: ἀκούουσι
+        sense: akouo
+        form: form:pres-3p
+        readings:
+          attic: ᾰ̓κούουσῐ
+      - surface: τῶν
+        sense: ho
+        form: form:gen-pl
+        readings:
+          attic: τῶν
+      - surface: στρατιωτῶν
+        sense: stratiotes
+        form: form:gen-pl
+        readings:
+          attic: στρᾰτῐωτῶν
+      reverse: |-
+        ἀκούουσι τῶν στρατιωτῶν
+        τῶν στρατιωτῶν ἀκούουσι[ν]
+        ἀκούουσιν τῶν στρατιωτῶν
+  translations:
+    en: They hear the soldiers.
+- id: s.07.24
+  node: grc.u07.soldiers
+  forms:
+    grc-Grek/polytonic:
+      text: ἀκούουσι βοώντων τῶν στρατιωτῶν.
+      tokens:
+      - surface: ἀκούουσι
+        sense: akouo
+        form: form:pres-3p
+        readings:
+          attic: ᾰ̓κούουσῐ
+      - surface: βοώντων
+        sense: boao
+        form: form:ptc
+        readings:
+          attic: βοώντων
+      - surface: τῶν
+        sense: ho
+        form: form:gen-pl
+        readings:
+          attic: τῶν
+      - surface: στρατιωτῶν
+        sense: stratiotes
+        form: form:gen-pl
+        readings:
+          attic: στρᾰτῐωτῶν
+      reverse: |-
+        ἀκούουσι βοώντων τῶν στρατιωτῶν
+        ἀκούουσι[ν] τῶν στρατιωτῶν βοώντων
+        βοώντων τῶν στρατιωτῶν ἀκούουσι[ν]
+        ἀκούουσιν βοώντων τῶν στρατιωτῶν
+  translations:
+    en: They hear the soldiers shouting.
+- id: s.07.25
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: ἔνθα.
+      tokens:
+      - surface: ἔνθα
+        sense: entha
+        readings:
+          attic: ἔνθᾰ
+      reverse: ἔνθα
+  translations:
+    en: (There|Then).
+- id: s.07.26
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: ἔθεον.
+      tokens:
+      - surface: ἔθεον
+        sense: theo
+        form: form:impf-3p
+        readings:
+          attic: ἔθεον
+      reverse: ἔθεον
+  translations:
+    en: They (ran|were running).
+- id: s.07.27
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: πάντες.
+      tokens:
+      - surface: πάντες
+        sense: pas
+        form: form:pl
+        readings:
+          attic: πᾰ́ντες
+      reverse: πάντες
+  translations:
+    en: (Everyone|Everybody|All of them|All).
+- id: s.07.28
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: ἔνθα δὴ ἔθεον πάντες.
+      tokens:
+      - surface: ἔνθα
+        sense: entha
+        readings:
+          attic: ἔνθᾰ
+      - surface: δὴ
+        sense: de-indeed
+        readings:
+          attic: δὴ
+      - surface: ἔθεον
+        sense: theo
+        form: form:impf-3p
+        readings:
+          attic: ἔθεον
+      - surface: πάντες
+        sense: pas
+        form: form:pl
+        readings:
+          attic: πᾰ́ντες
+      reverse: |-
+        ἔνθα δὴ ἔθεον πάντες
+        ἔνθα δὴ πάντες ἔθεον
+  translations:
+    en: Then (everyone|everybody|they all|all of them) ran.
+- id: s.07.29
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: οἱ στρατιῶται ἔθεον.
+      tokens:
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: στρατιῶται
+        sense: stratiotes
+        form: form:pl
+        readings:
+          attic: στρᾰτῐῶται
+      - surface: ἔθεον
+        sense: theo
+        form: form:impf-3p
+        readings:
+          attic: ἔθεον
+      reverse: |-
+        οἱ στρατιῶται ἔθεον
+        ἔθεον οἱ στρατιῶται
+  translations:
+    en: The soldiers (ran|were running).
+- id: s.07.30
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: οἱ ὀπισθοφύλακες.
+      tokens:
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: ὀπισθοφύλακες
+        sense: opisthophylax
+        form: form:pl
+        readings:
+          attic: ὀπῐσθοφῠ́λᾰκες
+      reverse: οἱ ὀπισθοφύλακες
+  translations:
+    en: The (rearguard|men of the rearguard).
+- id: s.07.31
+  node: grc.u07.they-ran
+  forms:
+    grc-Grek/polytonic:
+      text: πάντες ἔθεον καὶ οἱ ὀπισθοφύλακες.
+      tokens:
+      - surface: πάντες
+        sense: pas
+        form: form:pl
+        readings:
+          attic: πᾰ́ντες
+      - surface: ἔθεον
+        sense: theo
+        form: form:impf-3p
+        readings:
+          attic: ἔθεον
+      - surface: καὶ
+        sense: kai
+        readings:
+          attic: καὶ
+      - surface: οἱ
+        sense: ho
+        form: form:pl
+        readings:
+          attic: οἱ
+      - surface: ὀπισθοφύλακες
+        sense: opisthophylax
+        form: form:pl
+        readings:
+          attic: ὀπῐσθοφῠ́λᾰκες
+      reverse: |-
+        πάντες ἔθεον καὶ οἱ ὀπισθοφύλακες
+        ἔθεον πάντες καὶ οἱ ὀπισθοφύλακες
+  translations:
+    en: (Everyone|everybody|they all|all of them) ran, (the rearguard too|even the rearguard|the rearguard as well).
+- id: s.07.32
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: εἷς.
+      tokens:
+      - surface: εἷς
+        sense: heis
+        readings:
+          attic: εἷς
+      reverse: εἷς
+  translations:
+    en: One.
+- id: s.07.33
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: τέτταρες.
+      tokens:
+      - surface: τέτταρες
+        sense: tettares
+        readings:
+          attic: τέττᾰρες
+      reverse: τέτταρες
+  translations:
+    en: Four.
+- id: s.07.34
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: πέντε ἡμέραι.
+      tokens:
+      - surface: πέντε
+        sense: pente
+        readings:
+          attic: πέντε
+      - surface: ἡμέραι
+        sense: hemera
+        form: form:pl
+        readings:
+          attic: ἡμέραι
+      reverse: πέντε ἡμέραι
+  translations:
+    en: Five days.
+- id: s.07.35
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: τέτταρες στρατιῶται.
+      tokens:
+      - surface: τέτταρες
+        sense: tettares
+        readings:
+          attic: τέττᾰρες
+      - surface: στρατιῶται
+        sense: stratiotes
+        form: form:pl
+        readings:
+          attic: στρᾰτῐῶται
+      reverse: τέτταρες στρατιῶται
+  translations:
+    en: Four soldiers.
+- id: s.07.36
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: ἡ δευτέρα ἡμέρα.
+      tokens:
+      - surface: ἡ
+        sense: ho
+        readings:
+          attic: ἡ
+      - surface: δευτέρα
+        sense: deuteros
+        form: form:f
+        readings:
+          attic: δευτέρᾱ
+      - surface: ἡμέρα
+        sense: hemera
+        readings:
+          attic: ἡμέρᾱ
+      reverse: ἡ δευτέρα ἡμέρα
+  translations:
+    en: The second day.
+- id: s.07.37
+  node: grc.u07.counting
+  forms:
+    grc-Grek/polytonic:
+      text: τῇ τρίτῃ ἡμέρᾳ.
+      tokens:
+      - surface: τῇ
+        sense: ho
+        form: form:dat
+        readings:
+          attic: τῇ
+      - surface: τρίτῃ
+        sense: tritos
+        form: form:dat
+        readings:
+          attic: τρῐ́τῃ
+      - surface: ἡμέρᾳ
+        sense: hemera
+        form: form:dat
+        readings:
+          attic: ἡμέρᾳ
+      reverse: τῇ τρίτῃ ἡμέρᾳ
+  translations:
+    en: On the third day.
+stories:
+- id: grc.story.the-sea
+  node: grc.u07.story
+  title:
+    en: The sea! The sea! (Xenophon, Anabasis 4.7.21, 24)
+  steps:
+  - line:
+      ask: complete
+      gap: sense:pemptos
+      distractors:
+      - sense:protos
+      - sense:tritos
+      forms:
+        grc-Grek/polytonic:
+          text: καὶ ἀφικνοῦνται ἐπὶ τὸ ὄρος τῇ πέμπτῃ ἡμέρᾳ·
+          tokens:
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: ἀφικνοῦνται
+            sense: aphikneomai
+            form: form:pres-3p-mid
+            readings:
+              attic: ᾰ̓φῑκνοῦνται
+          - surface: ἐπὶ
+            sense: epi
+            readings:
+              attic: ἐπῐ̀
+          - surface: τὸ
+            sense: ho
+            form: form:acc
+            readings:
+              attic: τὸ
+          - surface: ὄρος
+            sense: oros
+            form: form:acc
+            readings:
+              attic: ὄρος
+          - surface: τῇ
+            sense: ho
+            form: form:dat
+            readings:
+              attic: τῇ
+          - surface: πέμπτῃ
+            sense: pemptos
+            form: form:dat
+            readings:
+              attic: πέμπτῃ
+          - surface: ἡμέρᾳ
+            sense: hemera
+            form: form:dat
+            readings:
+              attic: ἡμέρᾳ
+      translations:
+        en: And on the fifth day they come to the mountain;
+  - line:
+      forms:
+        grc-Grek/polytonic:
+          text: ὄνομα δὲ τῷ ὄρει ἦν Θήχης.
+          tokens:
+          - surface: ὄνομα
+            sense: onoma
+            readings:
+              attic: ὄνομᾰ
+          - surface: δὲ
+            sense: de
+            readings:
+              attic: δὲ
+          - surface: τῷ
+            sense: ho
+            form: form:dat
+            readings:
+              attic: τῷ
+          - surface: ὄρει
+            sense: oros
+            form: form:dat
+            readings:
+              attic: ὄρει
+          - surface: ἦν
+            sense: eimi
+            form: form:impf-3s
+            readings:
+              attic: ἦν
+          - surface: Θήχης
+            sense: theches
+            readings:
+              attic: Θήχης
+      translations:
+        en: the name of the mountain was Theches.
+  - choose:
+      prompt:
+        en: On which day do they reach the mountain?
+      options:
+      - en: The fifth
+      - en: The first
+      - en: The second
+      answer: 0
+  - line:
+      ask: arrange
+      forms:
+        grc-Grek/polytonic:
+          text: καὶ τάχα δὴ ἀκούουσι βοώντων τῶν στρατιωτῶν θάλαττα θάλαττα
+          tokens:
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: τάχα
+            sense: tacha
+            readings:
+              attic: τᾰ́χᾰ
+          - surface: δὴ
+            sense: de-indeed
+            readings:
+              attic: δὴ
+          - surface: ἀκούουσι
+            sense: akouo
+            form: form:pres-3p
+            readings:
+              attic: ᾰ̓κούουσῐ
+          - surface: βοώντων
+            sense: boao
+            form: form:ptc
+            readings:
+              attic: βοώντων
+          - surface: τῶν
+            sense: ho
+            form: form:gen-pl
+            readings:
+              attic: τῶν
+          - surface: στρατιωτῶν
+            sense: stratiotes
+            form: form:gen-pl
+            readings:
+              attic: στρᾰτῐωτῶν
+          - surface: θάλαττα
+            sense: thalatta
+            readings:
+              attic: θᾰ́λᾰττᾰ
+          - surface: θάλαττα
+            sense: thalatta
+            readings:
+              attic: θᾰ́λᾰττᾰ
+      translations:
+        en: And soon they hear the soldiers shouting “The sea! The sea!”
+  - line:
+      forms:
+        grc-Grek/polytonic:
+          text: ἔνθα δὴ ἔθεον πάντες καὶ οἱ ὀπισθοφύλακες,
+          tokens:
+          - surface: ἔνθα
+            sense: entha
+            readings:
+              attic: ἔνθᾰ
+          - surface: δὴ
+            sense: de-indeed
+            readings:
+              attic: δὴ
+          - surface: ἔθεον
+            sense: theo
+            form: form:impf-3p
+            readings:
+              attic: ἔθεον
+          - surface: πάντες
+            sense: pas
+            form: form:pl
+            readings:
+              attic: πᾰ́ντες
+          - surface: καὶ
+            sense: kai
+            readings:
+              attic: καὶ
+          - surface: οἱ
+            sense: ho
+            form: form:pl
+            readings:
+              attic: οἱ
+          - surface: ὀπισθοφύλακες
+            sense: opisthophylax
+            form: form:pl
+            readings:
+              attic: ὀπῐσθοφῠ́λᾰκες
+      translations:
+        en: Then everyone ran, the rearguard too,
+  - choose:
+      prompt:
+        en: What have the soldiers in front seen?
+      options:
+      - en: The sea
+      - en: A city
+      - en: Their homes
+      answer: 0
+  - choose:
+      prompt:
+        en: What does everyone do?
+      options:
+      - en: They run to look
+      - en: They go to sleep
+      - en: They turn back
+      answer: 0
+scenarios:
+- id: grc.on-the-march
+  after: grc.u07.they-ran
+  title:
+    en: On the march
+  setting:
+    en: 'Spring of 400 BCE, in the mountains of north-eastern Anatolia: the Greek army has marched for months, and today it is climbing Mount Theches.'
+  character:
+    en: A tired, cheerful hoplite from Arcadia, who speaks only Attic Greek.
+  goal:
+    en: Ask him his name, ask on which day the army reached the mountain, and tell him what the soldiers in front are shouting.

@@ -17,7 +17,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - During IME composition: never submit, never normalize, never reset the input value.
 - Every new normalization or matching behavior needs vectors in conformance/ that pass in BOTH the TS and Python harnesses.
 - Every content item and asset needs provenance and an SPDX license.
-- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
+- What the prompt does not decide, the learner may choose (ADR 0085): accept sets take every order, word choice,
+  optional word and form whose translation would be the prompt, in both directions; never one that would translate
+  otherwise. The grader stays literal: the answers are listed in the accept set.
+- The fixture courses (fa, yue-Hant-HK, uz, apc, lzh, es, hbo, tok, grc) must stay green, and UI changes must pass the visual matrix (LTR, RTL, vertical).
 - Never hand-edit packages/schema or the Pydantic models. Edit schemas/ and regenerate.
 
 ## Style
@@ -55,6 +58,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - A new grading behaviour needs conformance vectors (conformance/*.json) that pass in both harnesses.
 - Endings that carry meaning (ADR 0066): a profile's `typo.contrasts` (person, possessive, case endings, pronouns;
   REVIEW). A slip trading one member for another is WRONG_WORD, not a typo. Group allomorphs (ga, ka, qa) in one member.
+- A typo that spells another word of the course is WRONG_WORD (the lexicon). Key lexicon words and lookups with
+  `lexiconKey` (marks the profile ignores stripped), or a vocalized course's marked words never match typed answers.
+- Contrast sets can be prefixes (`at: start`, `after` proclitics) and can apply only to inflected words (`inflected`,
+  ADR 0081): bundled tokens carry their `form`, and createGrader passes the words whose sense has one. A slip that makes
+  a word ungrammatical is WRONG_WORD even when it looks like a typo; a noun's first letter stays a typo.
 - Profile policies marked REVIEW await Ben's linguistic sign-off.
 
 ## Phase 2 notes (see docs/adr/0027–0033)
@@ -98,6 +106,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   differently from core's replay.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
+- Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:
+  a session leaves out templates on a break, items the course no longer makes, and items needing unseen KCs.
+- The word list (`#/<course>/<orth>/words`): @nabu/core/learner `learnedWords` (word KCs with a reviewed card; script
+  facets count only in their orthography), `orderWords`, `wordMatcher` (letters as the profile compares them, marks
+  stripped; glosses folded in their own language); @nabu/ui/words WordList. It reads the log; it records nothing.
 
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
@@ -236,7 +249,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
   under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
-  forms that fit. Untagged means every form is accepted.
+  forms that fit. Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the
+  sentence names the thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
   woman, to one/two/several people. Draft the set together (kifak / kifik / kifkon) and check the spread per course
   before committing (counts in docs/adr/0075). Never let "a man speaking to one man" be the norm.
@@ -319,8 +333,76 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - apc has twenty units, checked against Kline (2022). Senses spelled alike take a suffix (ra7.fut, fi.can, men.than,
   ba3d.still, jem3a.uni); multi-word patterns are `construction:` KCs (used-to, was-doing, shu-excl).
 - Spelling: -o/-a (his/her, him/her; enno, la2anno) are ـه/ـها as Kline writes them, ـو/ـا accepted; -on (their) is ـهن.
-  Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. Six clips a listener checked in the old
-  spelling keep it through the voice's `spoken`. New vocalizations mark ج as a sun letter.
+  Vowel marks put a damma before ـه (بَيُّه): the voice says -o from it. New vocalizations mark ج as a sun letter.
+- A voice's `spoken` may name only items that voice reads: in a two-voice cast an item's voice can change (ADR 0078),
+  and `nabu audio generate` then refuses. Use it for homographs in one-voice casts, not to keep old clips.
+
+## Biblical Hebrew notes (see docs/adr/0082–0084)
+- courses/hbo is Biblical Hebrew, never Modern: no voice may read its text. Voices read the pinned `tiberian`
+  reading (SBL transliteration, acute on non-final stress, final "-" for maqaf-bound words), which
+  nabu/audio/tiberian.py turns into eSpeak NG phonemes (`PHONEME_SCHEMES` in nabu/audio/course.py). After a
+  reading changes, `nabu audio generate ../courses/hbo` (seconds; CC0), then `pnpm bundles`. It is read, not heard:
+  its `facets` leave out listen (no listening exercises; clips still play once a card is answered).
+- Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
+  the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
+  normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
+- Every word token pins `readings: {tiberian: …}`, taken from the same pointed form in the Westminster Leningrad
+  Codex (stress from its accent): never guess one. Copy the word with its accents from the WLC and run
+  `cd pipeline && uv run nabu tiberian <word>` (nabu/audio/pointing.py); keep a verse's ׃ on its last word (its
+  meteg sign is then silluq). The divine name is ʾăḏōnāy (its qere).
+- Readings stay SBL's (šāmərû); tiberian.py says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
+  vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
+- References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
+  Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
+  prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
+- Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
+  stem; prefixes and suffixes are morphs; verb forms are `form:` KCs by conjugation and person (iPlusOne 2).
+- A sentence's `reverse` lists its own order, then the other order of subject and predicate where Biblical Hebrew has
+  both and the English translation would be the same (ADR 0084): nominal and participle clauses, plain qatal/yiqtol,
+  a distinct jussive. Never a subject before wayyiqtol or weqatal; not identity clauses (קין אחי), the blessing
+  formula, a wish in a plain yiqtol, or an order that reads unpointed as a construct chain (בגן האדם). Keep it so.
+- Then the forms the English cannot tell apart (ADR 0085): a wayyiqtol's X-qatal (האשה אמרה, והאשה אמרה) or bare
+  qatal with or without its pronoun (ברח, הוא ברח, והוא ברח; never וברח), a weqatal's yiqtol, a pronoun before a plain
+  qatal/yiqtol; only Codex-attested forms; vav forms only where every English line has its "and".
+
+## Toki Pona notes (see docs/adr/0086)
+- courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
+  tok-Qaap/sitelen-pona. Qaap is a private-use ISO 15924 code until one is assigned (the proposal asks for Stpn).
+- sitelen pona text is UCSUR code points (U+F1900..U+F19FF): words run together, U+3000 between sentences, no ! ? or
+  commas, a name as a cartouche whose logographs begin with its letters. Never write it by hand: `cd pipeline &&
+  uv run nabu sitelen-pona "mi moku." --name "Sonja=sona olin nasin jan a"`. The compiler checks it against the Latin.
+- Typed Latin is graded as logographs in sitelen pona (the `logographs` step), names against their cartouches. Every
+  logograph token pins `readings: {lasina: word}` (ruby, char-read); Latin tokens pin it too: it is what the voices say,
+  as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
+- The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
+- Toki Pona marks no person: no `persons` tags. English accept sets give I/we, she/he/they/it and the tenses.
+
+## Attic Greek notes (see docs/adr/0087)
+- courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,
+  its spelling with each α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or subscript
+  settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`
+  (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap;
+  its clips are CC-BY-NC-SA-4.0.
+- Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
+  enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
+  is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+
+## Script tracks notes (see docs/adr/0088)
+- A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
+  letters, diphthongs, marks); the compiler adds each letter's and word's Latin spelling (the profile's `romanize`, e.g.
+  nabu/greek_translit.py) and the graphemes it credits. `script.untaught-letter` stops a word with untaught letters.
+- Its four templates (letter-read, letter-pairs, word-read, word-write; @nabu/core/lesson/script.ts) are built only
+  for script nodes: never add them to SENTENCE_TEMPLATES (every course's lessons and goldens would change).
+- The row (`scriptPathOf`) sits above the units and never gates them; a script node is planned as `{mode: "lesson"}`.
+  Grapheme KCs are not glossary entries. Convert nodes (uz, apc) still do not run.
+
+## Themes notes (see docs/adr/0083)
+- Colours come only from tokens (packages/ui/src/tokens.css): light on :root, dark in two blocks that must match
+  (`:root[data-theme="dark"]`, and `prefers-color-scheme: dark` when nothing is chosen). A new colour gets a value in
+  both themes and, if it carries text, a pairing in packages/ui/test/tokens.test.ts (AA in both). No colours in components.
+- The choice (Match the browser, Light, Dark) is per device (`nabu.theme`); index.html applies it before the first paint.
+- Pictures are drawn for a light page: dark sets them on `--nabu-color-picture`. Storybook has a Theme switch; every
+  story is in the dark pass (tests/visual/theme.spec.ts: LTR, RTL, vertical, axe colour contrast).
 
 ## Working in this repo
 - Pushing straight to main is always fine here. CI (.github/workflows/ci.yml) must stay green.
@@ -328,7 +410,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0080 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0088 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -16,6 +16,7 @@ import { allKcs, type CourseView } from "./course.ts";
 import type { Exercise, TemplateId } from "./exercise.ts";
 import { toneSystemOf } from "../speech/score.ts";
 import { seededRng } from "./rng.ts";
+import { SCRIPT_TEMPLATES, scriptCandidates, scriptNodes } from "./script.ts";
 import {
   KC_TEMPLATES,
   makeCharRead,
@@ -261,13 +262,18 @@ export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[
     return undefined;
   };
   const excluded = facetExclusions(course);
+  // A script track's kinds (ADR 0088): the first its first alphabet node makes.
+  const track = scriptNodes(course)[0];
+  const scriptCard = (template: TemplateId): Exercise | undefined =>
+    track === undefined ? undefined : scriptCandidates({ course, rng, introduced: track.node.introduces }, track, new Set()).find((e) => e.template === template);
   return (Object.keys(TEMPLATES) as TemplateId[])
     .filter((t) => !t.startsWith("story-") && !excluded.has(t))
     .map((template): GalleryCard => {
       const sentence = SENTENCE_TEMPLATES[template];
       const word = KC_TEMPLATES[template];
-      const exercise =
-        template === "match-pairs"
+      const exercise = SCRIPT_TEMPLATES.has(template)
+        ? scriptCard(template)
+        : template === "match-pairs"
           ? makeMatchPairs(ctxOf(nodes[0]?.node.id), kcs.filter((k) => (k.forms?.[course.orthography]?.length ?? 0) > 0).slice(0, 5))
           : sentence !== undefined
             ? first(sentences, ({ s, node }) => sentence(ctxOf(node), s))

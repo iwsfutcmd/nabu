@@ -4,9 +4,11 @@
  * the shell fetches the files (gameplan §7.5 stage 9) and passes them in.
  */
 import type { BundleAudio, BundleAudioItem, BundleKc, BundleManifest, BundleSentence, BundleUnit, DataTable, Facet, KeyboardLayout, OrthographyProfile, PlacementPolicy, TaggedText } from "@nabu/schema";
-import { compileAcceptSet, grade, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
+import { keyboardDistance } from "../match/compare.ts";
+import { compileAcceptSet, grade, lexiconKey, type CompiledAcceptSet, type Grade } from "../match/grade.ts";
 import { compileProfile, type CompiledProfile } from "../profile/compile.ts";
 import { err, ok, type Result } from "../result.ts";
+import { graphemes } from "../text/graphemes.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 
 export interface CourseView {
@@ -132,12 +134,72 @@ export const createGrader = (course: CourseView): Grader => {
       const profile = profileOf(course, orthography);
       const found = new Set<string>();
       for (const text of textsOf(course, orthography)) {
-        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(profile.fold(unit));
+        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(lexiconKey(profile, unit));
       }
       words = found;
       lexicons.set(orthography, words);
     }
     return words;
+  };
+  // The words the course inflects (ADR 0081): every word of a sense some token pins a form on,
+  // so a masculine adjective counts with its feminine, a bare past verb with its b- present.
+  // And each word's own forms, the forms its tokens are pinned as, for contrasts limited to some
+  // (ADR 0084): a verb's infinitive is no perfect, whatever else its sense is pinned as.
+  interface Inflections {
+    readonly words: ReadonlySet<string>;
+    readonly forms: ReadonlyMap<string, readonly string[]>;
+  }
+  const inflections = new Map<string, Inflections>();
+  const inflected = (orthography: string): Inflections => {
+    let found = inflections.get(orthography);
+    if (found === undefined) {
+      const profile = profileOf(course, orthography);
+      const tokens = [...textsOf(course, orthography)].flatMap((text) => text.tokens.filter((t) => t.kind === "word" && t.sense !== undefined));
+      const senses = new Set(tokens.filter((t) => t.form !== undefined).map((t) => t.sense));
+      const keys = (text: string): string[] => profile.units(profile.normalize(text)).map((unit) => lexiconKey(profile, unit));
+      const words = new Set<string>();
+      const forms = new Map<string, Set<string>>();
+      const pin = (k: string, these: Iterable<string>): void => {
+        const all = forms.get(k) ?? new Set<string>();
+        for (const f of these) all.add(f);
+        forms.set(k, all);
+      };
+      for (const t of tokens) {
+        if (!senses.has(t.sense)) continue;
+        for (const k of keys(t.surface)) {
+          words.add(k);
+          if (t.form !== undefined) pin(k, [t.form]);
+        }
+      }
+      // A sentence's accept set spells its words other ways too (be2ra beside b2ra): each of
+      // those words counts as inflected when the nearest word of the sentence is, with its forms.
+      for (const s of allSentences(course)) {
+        const form = s.forms[orthography];
+        if (form?.reverse === undefined) continue;
+        const own = form.text.tokens
+          .filter((t) => t.kind === "word" && t.sense !== undefined)
+          .flatMap((t) => keys(t.surface).map((k) => ({ key: k, letters: graphemes(k), inflected: senses.has(t.sense) })));
+        if (!own.some((w) => w.inflected)) continue;
+        for (const piece of form.reverse.split(/[\s()|[\]]+/u)) {
+          for (const k of keys(piece)) {
+            const letters = graphemes(k);
+            let nearest: (typeof own)[number] | undefined;
+            let best = Infinity;
+            for (const w of own) {
+              const d = keyboardDistance(letters, w.letters, () => false);
+              if (d < best) [nearest, best] = [w, d];
+            }
+            if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) {
+              words.add(k);
+              pin(k, forms.get(nearest.key) ?? []);
+            }
+          }
+        }
+      }
+      found = { words, forms: new Map([...forms].map(([k, fs]) => [k, [...fs].sort()])) };
+      inflections.set(orthography, found);
+    }
+    return found;
   };
   return {
     grade: (orthography, accept, answer) => {
@@ -149,7 +211,8 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      return grade(set, answer, { lexicon: lexicon(orthography) });
+      const { words, forms } = inflected(orthography);
+      return grade(set, answer, { lexicon: lexicon(orthography), inflected: words, forms });
     },
   };
 };

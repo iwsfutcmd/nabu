@@ -38,6 +38,10 @@
           "description": "Link to the lexicon (a knowledge component).",
           "$ref": "common.schema.json#/$defs/SenseId"
         },
+        "form": {
+          "description": "The form KC (form:<id>) of an inflected word, as the source pins it: the grader keeps its affixes apart (a profile's contrasts marked inflected, ADR 0081).",
+          "$ref": "common.schema.json#/$defs/KcId"
+        },
         "readings": {
           "description": "Readings per scheme, e.g. {\"jyutping\": \"hong4\"}. Pinned in content, never guessed at runtime.",
           "type": "object",

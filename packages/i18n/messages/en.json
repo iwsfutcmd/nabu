@@ -414,9 +414,17 @@
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{Letters {$number}}}",
+      "description": "Name of a node of a script track (the lessons that teach a writing system's letters, beside the units; ADR 0088). $number is its position in the track."
+    },
     "app.path.locked": {
       "message": "Locked",
       "description": "Status of a lesson that opens once the lesson before it is done."
+    },
+    "app.path.new-letters": {
+      "message": "New letters",
+      "description": "Accessible label of the preview of the letters a script-track node teaches."
     },
     "app.path.start": {
       "message": "Start",
@@ -946,9 +954,21 @@
       "message": "Persian",
       "description": "Name of the Persian (fa) course, used inside other messages as $language."
     },
+    "course.name.grc": {
+      "message": "Ancient Greek",
+      "description": "Name of the Ancient Greek (grc) course, used inside other messages as $language. The course teaches Attic, the Greek of Athens in the fifth and fourth centuries BCE (Plato, Xenophon, Lysias)."
+    },
+    "course.name.hbo": {
+      "message": "Biblical Hebrew",
+      "description": "Name of the Biblical Hebrew (hbo) course, used inside other messages as $language. The Hebrew of the Bible, read in the Tiberian pointing; not Modern Hebrew."
+    },
     "course.name.lzh": {
       "message": "Classical Chinese",
       "description": "Name of the Classical (Literary) Chinese (lzh) course, used inside other messages as $language. The written language of the classics, read and written in Traditional characters."
+    },
+    "course.name.tok": {
+      "message": "Toki Pona",
+      "description": "Name of the Toki Pona (tok) course, used inside other messages as $language. Toki Pona is a small constructed language (Sonja Lang, 2001); its name stays as it is in every language."
     },
     "course.name.uz": {
       "message": "Uzbek",
@@ -1070,9 +1090,21 @@
       "message": "The ending changes whose it is (my, your, his…), not just its spelling.",
       "description": "Feedback note: the answer has a different possessive ending (for example Uzbek -ing for -im), which changes the meaning."
     },
+    "feedback.note.contrast-prefix": {
+      "message": "The prefix changes the meaning (who does it, or whether it is a plain statement), not just the spelling.",
+      "description": "Feedback note: the answer has another verb prefix one letter or two from the expected one (for example Lebanese btishteghel, you work, for bishteghel, I work; or nrou7 for mnrou7, we go), which changes the meaning."
+    },
     "feedback.note.contrast-pronoun": {
       "message": "That is a different pronoun, not a typo.",
       "description": "Feedback note: the answer has another pronoun one letter or two from the expected one (for example Сен for Мен)."
+    },
+    "feedback.note.greek-marks": {
+      "message": "Mind the accents, breathings and iota subscripts: they are part of the spelling.",
+      "description": "Feedback note for Ancient Greek: the answer left out an accent, a breathing or an iota subscript, or put one in the wrong place (λογος or λόγος for λόγος). The answer still counts."
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "With those marks it is another word (ἡ “the”, ἤ “or”).",
+      "description": "Feedback note for Ancient Greek: with an accent or breathing left out, added or changed, the answer spells a different word (ἡ for ἤ, τις for τίς), so it does not count. The examples are Greek words and stay as they are."
     },
     "feedback.note.hamza": {
       "message": "Watch the hamza (أ, إ, آ).",
@@ -1326,9 +1358,25 @@
       "message": "Persian script",
       "description": "Name of the Persian orthography (Arabic script as used for Persian)."
     },
+    "orthography.grc-Grek.polytonic": {
+      "message": "Polytonic Greek",
+      "description": "Name of the Ancient Greek orthography: the Greek alphabet written with its accents, breathings and iota subscript, as editions of ancient texts print it."
+    },
+    "orthography.hbo-Hebr.tiberian": {
+      "message": "Hebrew script, Tiberian pointing",
+      "description": "Name of the Biblical Hebrew orthography: the Hebrew letters with the Tiberian vowel points (niqqud), as in the Masoretic text."
+    },
     "orthography.lzh-Hant.standard": {
       "message": "Traditional characters",
       "description": "Name of the Classical Chinese orthography: Traditional Chinese characters."
+    },
+    "orthography.tok-Latn.standard": {
+      "message": "Latin letters (sitelen Lasina)",
+      "description": "Name of the Toki Pona orthography in the Latin alphabet, called sitelen Lasina in Toki Pona. Keep sitelen Lasina as it is."
+    },
+    "orthography.tok-Qaap.sitelen-pona": {
+      "message": "sitelen pona (logographs)",
+      "description": "Name of Toki Pona's own script, sitelen pona: one picture-like sign (logograph) for each word. Keep sitelen pona as it is, in lowercase."
     },
     "orthography.uz-Cyrl.standard": {
       "message": "Cyrillic",
@@ -1422,6 +1470,14 @@
       "message": "Fill in the blank",
       "description": "Instruction: choose the word that completes the sentence."
     },
+    "player.instruction.letter-pairs": {
+      "message": "Match each letter with its sound",
+      "description": "Instruction on a script track: match each letter with its Latin spelling."
+    },
+    "player.instruction.letter-read": {
+      "message": "How is this letter said?",
+      "description": "Instruction on a script track: choose the Latin spelling (the sound) of the letter shown."
+    },
     "player.instruction.listen-select": {
       "message": "Which word do you hear?",
       "description": "Instruction: hear a word and choose how it is written."
@@ -1489,6 +1545,14 @@
     "player.instruction.vocalize": {
       "message": "Add the vowel marks",
       "description": "Instruction: write the short-vowel marks (harakat) into an Arabic-script word."
+    },
+    "player.instruction.word-read": {
+      "message": "How is this word written in Latin letters?",
+      "description": "Instruction on a script track: choose the Latin spelling of the word shown."
+    },
+    "player.instruction.word-write": {
+      "message": "Build the word from its letters",
+      "description": "Instruction on a script track: given a word in Latin letters, build it from tiles of the script's letters."
     },
     "player.key.mark.064b": {
       "message": "Fathatan",
@@ -1790,6 +1854,26 @@
       "message": "Smaller",
       "description": "Size choice for the language being learned: a little smaller than the course sets it."
     },
+    "preferences.theme.dark": {
+      "message": "Dark",
+      "description": "Appearance choice: light text on a dark background, whatever the browser is set to."
+    },
+    "preferences.theme.hint": {
+      "message": "“Match the browser” follows the light or dark setting of your browser or device.",
+      "description": "Explains the first choice, under the label. Quote the translation of preferences.theme.system as your language quotes."
+    },
+    "preferences.theme.label": {
+      "message": "Appearance",
+      "description": "Label of the choice between a light and a dark look for the app."
+    },
+    "preferences.theme.light": {
+      "message": "Light",
+      "description": "Appearance choice: dark text on a light background, whatever the browser is set to."
+    },
+    "preferences.theme.system": {
+      "message": "Match the browser",
+      "description": "Appearance choice: light or dark as the browser or device is set (the default)."
+    },
     "preferences.title": {
       "message": "Preferences",
       "description": "Heading of the preferences screen."
@@ -1857,6 +1941,10 @@
     "reading.scheme.jyutping": {
       "message": "Jyutping",
       "description": "Name of the Jyutping romanization (Cantonese readings of Chinese characters), a choice in the readings control."
+    },
+    "reading.scheme.lasina": {
+      "message": "sitelen Lasina",
+      "description": "The Toki Pona word of each sitelen pona sign in Latin letters (sitelen Lasina), a choice in the readings control. Keep sitelen Lasina as it is."
     },
     "reading.scheme.pinyin": {
       "message": "Pinyin",
@@ -2049,6 +2137,54 @@
     "story.translation.show": {
       "message": "Show translation",
       "description": "Button under a story line that shows what it means in the learner's language."
+    },
+    "words.count": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word}}\n* {{{$count} words}}",
+      "description": "The word list: how many words the learner has practised. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "words.empty": {
+      "message": "No words yet. Words show here once you have practised them in a lesson.",
+      "description": "The word list, before the learner has practised any word."
+    },
+    "words.none-found": {
+      "message": "No word you've learned matches that.",
+      "description": "The word list: nothing matches the search."
+    },
+    "words.order.alphabetical": {
+      "message": "Alphabetical",
+      "description": "The word list: order the words as the language being learned sorts them (its alphabet, or its own dictionary order)."
+    },
+    "words.order.course": {
+      "message": "As in the course",
+      "description": "The word list: order the words as the course teaches them, unit by unit."
+    },
+    "words.order.label": {
+      "message": "Order",
+      "description": "The word list: label of the choice of how to order the words."
+    },
+    "words.order.weakest": {
+      "message": "Weakest first",
+      "description": "The word list: words due for review first, then the ones least well remembered."
+    },
+    "words.search": {
+      "message": "Find a word",
+      "description": "The word list: label of a search field. The learner can type the word, with or without its vowel marks, or its meaning."
+    },
+    "words.strength.due": {
+      "message": "Due for review",
+      "description": "The word list: the learner should practise this word again now."
+    },
+    "words.strength.fading": {
+      "message": "Fading",
+      "description": "The word list: the learner is starting to forget this word."
+    },
+    "words.strength.strong": {
+      "message": "Remembered well",
+      "description": "The word list: the learner very likely remembers this word."
+    },
+    "words.title": {
+      "message": "Words you've learned",
+      "description": "The word list: title of the page that lists the words a learner has practised in a course, and the link to it on the course's page."
     }
   }
 }

@@ -153,17 +153,23 @@ sentences:
     apc-Arab/standard:
       text: تفضّلي، مايا!
       tokens: [{surface: تفضّلي, sense: tfaddal, form: 'form:imp-2fs'}, {surface: مايا, sense: maya}]
-      reverse: تفضّلي مايا
+      reverse: |-
+        تفضّلي مايا
+        مايا تفضّلي
     apc-Latn/arabizi:
       text: tfaddali, Maya!
       tokens: [{surface: tfaddali, sense: tfaddal, form: 'form:imp-2fs'}, {surface: Maya, sense: maya}]
-      reverse: (tfaddali|tfadali|tfaddale) Maya
+      reverse: |-
+        (tfaddali|tfadali|tfaddale) Maya
+        Maya tfaddali
   translations:
     en: |-
       Here you go, Maya!
       Here you are, Maya!
       Help yourself, Maya!
       Go ahead, Maya!
+      Maya, here you go!
+      Maya, here you are!
 - id: s.food.7
   node: apc.food.basics
   register: colloquial
@@ -215,6 +221,8 @@ sentences:
       Do you want sugar?
       Would you like sugar?
       Do you take sugar?
+      Do you want some sugar?
+      Would you like some sugar?
 - id: s.food.10
   node: apc.food.basics
   register: colloquial
@@ -328,6 +336,7 @@ sentences:
     en: |-
       Do you want (yogurt|yoghurt) with the bread?
       Would you like (yogurt|yoghurt|some yogurt|some yoghurt) with the bread?
+      Do you want some yogurt with the bread?
 - id: s.food.17
   node: apc.food.breakfast
   register: colloquial
@@ -384,11 +393,16 @@ sentences:
     apc-Arab/standard:
       text: طيّب كتير!
       tokens: [{surface: طيّب, sense: tayyeb}, {surface: كتير, sense: ktir}]
-      reverse: طيّب كتير
+      reverse: |-
+        (طيّب|طيّبة) كتير
+        كتير طيّب
+        كتير طيّبة
     apc-Latn/arabizi:
       text: tayyeb ktir!
       tokens: [{surface: tayyeb, sense: tayyeb}, {surface: ktir, sense: ktir}]
-      reverse: (tayyeb|tayeb|tayyib|tayib) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        (tayyeb|tayeb|tayyib|tayib|tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
+        ktir tayyeb
   translations:
     en: |-
       (Very|Really|So) (tasty|delicious|good)!
@@ -533,11 +547,15 @@ sentences:
       text: التبّولة طيّبة كتير!
       tokens: [{surface: التبّولة, sense: tabbouleh, morphs: [{surface: ال, kc: 'sense:el'}, {surface: تبّولة, kc: 'sense:tabbouleh'}]}, {surface: طيّبة, sense: tayyeb, form: 'form:fem'}, {surface: كتير,
           sense: ktir}]
-      reverse: التبّولة طيّبة كتير
+      reverse: |-
+        التبّولة طيّبة كتير
+        التبّولة كتير طيّبة
     apc-Latn/arabizi:
       text: el tabboule tayybe ktir!
       tokens: [{surface: el, sense: el}, {surface: tabboule, sense: tabbouleh}, {surface: tayybe, sense: tayyeb, form: 'form:fem'}, {surface: ktir, sense: ktir}]
-      reverse: (el|l|il) (tabboule|tabbouli|tabbouleh|tabouleh|taboule) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
+      reverse: |-
+        (el|l|il) (tabboule|tabbouli|tabbouleh|tabouleh|taboule) (tayybe|tayebe|taybe|tayyibe) (ktir|kteer|kter|ktiir)
+        el tabboule ktir tayybe
   translations:
     en: |-
       The tabbouleh is (very|really|so) (tasty|delicious|good)!
@@ -550,11 +568,15 @@ sentences:
     apc-Arab/standard:
       text: صحن حمّص، تفضّل.
       tokens: [{surface: صحن, sense: sa7n}, {surface: حمّص, sense: 7ummus}, {surface: تفضّل, sense: tfaddal}]
-      reverse: صحن حمّص تفضّل
+      reverse: |-
+        صحن حمّص تفضّل
+        تفضّل صحن حمّص
     apc-Latn/arabizi:
       text: sa7n 7ummus, tfaddal.
       tokens: [{surface: sa7n, sense: sa7n}, {surface: 7ummus, sense: 7ummus}, {surface: tfaddal, sense: tfaddal}]
-      reverse: (sa7n|sa7en|sahn|sa7in) (7ummus|7ommos|hummus|7ommus|7ummos) (tfaddal|tfadal|tfaddel)
+      reverse: |-
+        (sa7n|sa7en|sahn|sa7in) (7ummus|7ommos|hummus|7ommus|7ummos) (tfaddal|tfadal|tfaddel)
+        tfaddal sa7n 7ummus
   translations:
     en: |-
       A plate of hummus, here you go.
@@ -615,13 +637,19 @@ sentences:
     apc-Arab/standard:
       text: مايا، جوعانة؟
       tokens: [{surface: مايا, sense: maya}, {surface: جوعانة, sense: jou3an, form: 'form:fem'}]
-      reverse: مايا [إنتي] جوعانة
+      reverse: |-
+        مايا [إنتي] جوعانة
+        جوعانة مايا
     apc-Latn/arabizi:
       text: Maya, jou3ane?
       tokens: [{surface: Maya, sense: maya}, {surface: jou3ane, sense: jou3an, form: 'form:fem'}]
-      reverse: Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
+      reverse: |-
+        Maya [(enti|inti)] (jou3ane|jo3ane|ju3ane|jou3ana)
+        jou3ane Maya
   translations:
-    en: Maya, are you hungry?
+    en: |-
+      Maya, are you hungry?
+      Are you hungry, Maya?
 - id: s.food.35
   node: apc.food.you-pl
   register: colloquial
@@ -691,7 +719,10 @@ sentences:
       tokens: [{surface: jou3anin, sense: jou3an, form: 'form:pl'}]
       reverse: '[(ento|into)] (jou3anin|jo3anin|ju3anin|jou3enin)'
   translations:
-    en: Are you hungry?
+    en: |-
+      Are you hungry?
+      Are you all hungry?
+      Are they hungry?
 - id: s.food.39
   node: apc.food.you-pl
   register: colloquial
@@ -706,7 +737,10 @@ sentences:
       tokens: [{surface: 3atshanin, sense: 3atshan, form: 'form:pl'}]
       reverse: '[(ento|into)] (3atshanin|3atchanin|3atshenin)'
   translations:
-    en: Are you thirsty?
+    en: |-
+      Are you thirsty?
+      Are you all thirsty?
+      Are they thirsty?
 stories:
 - id: apc.story.teta-lunch
   node: apc.food.story

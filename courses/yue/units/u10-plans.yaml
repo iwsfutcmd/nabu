@@ -214,6 +214,9 @@ sentences:
     en: |-
       (She|He) says it('ll| will) rain tomorrow.
       They say it('ll| will) rain tomorrow.
+      She said it would rain tomorrow.
+      He said it'll rain tomorrow.
+      They said it would rain tomorrow.
 - id: s.u10.15
   node: yue.forecast
   forms:
@@ -226,13 +229,16 @@ sentences:
       The Observatory says it('ll| will) be (very|really|so) cold tomorrow.
       The Hong Kong Observatory says (that |)it('ll| will) be (very|really|so) cold tomorrow.
       The Observatory says that it('ll| will) be (very|really|so) cold tomorrow.
+      The Observatory said it would be very cold tomorrow.
 - id: s.u10.16
   node: yue.forecast
   forms:
     yue-Hant-HK/standard:
       text: 我冇遮。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}]
-      reverse: 我(冇|無)遮
+      reverse: |-
+        我(冇|無)遮
+        我冇雨遮
   translations:
     en: |-
       I (don't|do not) have an umbrella.
@@ -248,6 +254,7 @@ sentences:
       reverse: |-
         你帶(咗|左)遮未[呀]
         你有(冇|無)帶遮[呀]
+        你帶咗雨遮未呀
   translations:
     en: |-
       Have you (brought|got|taken) (an|your) umbrella?
@@ -258,7 +265,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 帶遮啦！
       tokens: [{surface: 帶, sense: 帶, readings: {jyutping: daai3}}, {surface: 遮, sense: 遮, readings: {jyutping: ze1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
-      reverse: (|記得)帶(|把)遮啦
+      reverse: |-
+        (|記得)帶(|把)遮啦
+        帶雨遮啦
   translations:
     en: |-
       (Take|Bring) an umbrella!
@@ -273,6 +282,8 @@ sentences:
       reverse: |-
         不如(|我(哋|地))去飲茶啦
         我(哋|地)不如去飲茶啦
+        不如去食點心啦
+        不如去飲茶
   translations:
     en: |-
       (How about going|Why don't we go) for dim sum?
@@ -289,6 +300,8 @@ sentences:
       reverse: |-
         不如(|我(哋|地))一齊去睇戲啦
         我(哋|地)不如一齊去睇戲啦
+        不如一齊去睇電影啦
+        不如一齊去睇戲
   translations:
     en: |-
       (How about going|Why don't we go) to (see|watch) a (movie|film) together?
@@ -340,7 +353,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你搵邊個呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 搵, sense: 搵, readings: {jyutping: wan2}}, {surface: 邊個, sense: 邊個, readings: {jyutping: bin1 go3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你(|想)搵邊個[呀]
+      reverse: |-
+        你(|想)搵邊個[呀]
+        你搵緊邊個呀
   translations:
     en: |-
       Who are you looking for?
@@ -351,7 +366,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我搵美玲。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 搵, sense: 搵, readings: {jyutping: wan2}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
-      reverse: 我(|想)搵美玲
+      reverse: |-
+        我(|想)搵美玲
+        我搵緊美玲
   translations:
     en: |-
       I('m| am) looking for (Mei-ling|Mei Ling).
@@ -380,6 +397,7 @@ sentences:
     en: |-
       No problem!
       No problem at all!
+      Not a problem!
 - id: s.u10.28
   node: yue.answers
   forms:
@@ -440,6 +458,7 @@ sentences:
       tokens: [{surface: 我哋, sense: 我, morphs: [{surface: 我, kc: 'sense:我'}, {surface: 哋, kc: 'form:plural-dei'}], readings: {jyutping: ngo5 dei6}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}, {surface: 海灘, sense: 海灘, readings: {jyutping: hoi2 taan1}}, {surface: 啦, sense: 啦, readings: {jyutping: laa1}}]
       reverse: |-
         [我(哋|地)]去(海|沙)灘啦
+        不如去海灘啦
   translations:
     en: Let's go to the beach!
 - id: s.u10.33
@@ -449,7 +468,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 你週末想做咩呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 週末, sense: 週末, readings: {jyutping: zau1 mut6}}, {surface: 想, sense: 想, readings: {jyutping: soeng2}}, {surface: 做, sense: 做, readings: {jyutping: zou6}}, {surface: 咩, sense: 咩, readings: {jyutping: me1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (你(週|周)末|(週|周)末你)想做(咩|乜嘢|乜野|乜)[呀]
+      reverse: |-
+        (你(週|周)末|(週|周)末你)想做(咩|乜嘢|乜野|乜)[呀]
+        你週末想做啲咩呀
   translations:
     en: |-
       What do you want to do (on the|at the|over the|this) weekend?
@@ -463,6 +484,7 @@ sentences:
       reverse: |-
         七點(|鐘)喺地鐵站(等|見)啦
         我(哋|地)七點(|鐘)喺地鐵站(等|見)啦
+        不如七點喺地鐵站等啦
   translations:
     en: |-
       Let's meet at the (MTR|metro|subway) station at (seven|7)[ o'clock].
@@ -482,6 +504,8 @@ sentences:
     en: |-
       What are you doing?
       What are you up to?
+      What are you all doing?
+      What are you guys doing?
 - id: s.u10.36
   node: yue.invite
   constructions:
@@ -500,6 +524,8 @@ sentences:
     en: |-
       Do you want to go hiking?
       Would you like to go hiking?
+      Do you all want to go hiking?
+      Do you guys want to go hiking?
 stories:
 - id: yue.story.rainy-saturday
   node: yue.plans-story

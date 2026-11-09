@@ -56,11 +56,15 @@ sentences:
     apc-Arab/standard:
       text: بتروحي عالجامعة؟
       tokens: [{surface: بتروحي, sense: ra7, form: 'form:impf-2fs'}, {surface: عالجامعة, sense: jem3a.uni, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: جامعة, kc: 'sense:jem3a.uni'}]}]
-      reverse: بتروحي (عالجامعة|ع الجامعة|على الجامعة)
+      reverse: |-
+        بتروحي (عالجامعة|ع الجامعة|على الجامعة)
+        إنتي بتروحي عالجامعة
     apc-Latn/arabizi:
       text: btru7i 3al jem3a?
       tokens: [{surface: btru7i, sense: ra7, form: 'form:impf-2fs'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: jem3a, sense: jem3a.uni}]
-      reverse: (btru7i|btro7i|btrou7e) (3al|3a l|3a el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)
+      reverse: |-
+        (btru7i|btro7i|btrou7e) (3al|3a l|3a el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)
+        enti btru7i 3al jem3a
   translations:
     en: |-
       Do you go to (university|college|uni)?
@@ -73,11 +77,15 @@ sentences:
     apc-Arab/standard:
       text: أنا تلميذ.
       tokens: [{surface: أنا, sense: ana}, {surface: تلميذ, sense: tilmiz}]
-      reverse: '[أنا] تلميذ'
+      reverse: |-
+        [أنا] تلميذ
+        أنا طالب
     apc-Latn/arabizi:
       text: ana tilmiz.
       tokens: [{surface: ana, sense: ana}, {surface: tilmiz, sense: tilmiz}]
-      reverse: '[ana] (tilmiz|telmiz|tilmeez|telmeez)'
+      reverse: |-
+        [ana] (tilmiz|telmiz|tilmeez|telmeez)
+        ana taleb
   translations:
     en: I('m| am) a (student|pupil).
 - id: s.work.4
@@ -89,12 +97,16 @@ sentences:
       text: أنا تلميذة بالجامعة.
       tokens: [{surface: أنا, sense: ana}, {surface: تلميذة, sense: tilmiz, form: 'form:fem'}, {surface: بالجامعة, sense: jem3a.uni, morphs: [{surface: ب, kc: 'sense:b'}, {surface: ال, kc: 'sense:el'},
             {surface: جامعة, kc: 'sense:jem3a.uni'}]}]
-      reverse: '[أنا] تلميذة بالجامعة'
+      reverse: |-
+        [أنا] تلميذة بالجامعة
+        أنا طالبة بالجامعة
     apc-Latn/arabizi:
       text: ana tilmize bel jem3a.
       tokens: [{surface: ana, sense: ana}, {surface: tilmize, sense: tilmiz, form: 'form:fem'}, {surface: bel, sense: b, morphs: [{surface: b, kc: 'sense:b'}, {surface: el, kc: 'sense:el'}]}, {surface: jem3a,
           sense: jem3a.uni}]
-      reverse: '[ana] (tilmize|telmize|tilmeeze|tilmiza) (bel|bil|b el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)'
+      reverse: |-
+        [ana] (tilmize|telmize|tilmeeze|tilmiza) (bel|bil|b el) (jem3a|jam3a|jeme3a|jem3ah|jim3a|jum3a)
+        ana talbe bel jem3a
   translations:
     en: |-
       I('m| am) a student at (the|) university.
@@ -107,11 +119,15 @@ sentences:
     apc-Arab/standard:
       text: شو بتدرس؟
       tokens: [{surface: شو, sense: shu}, {surface: بتدرس, sense: daras, form: 'form:impf-2ms'}]
-      reverse: شو بتدرس
+      reverse: |-
+        شو بتدرس
+        إنت شو بتدرس
     apc-Latn/arabizi:
       text: shu btidros?
       tokens: [{surface: shu, sense: shu}, {surface: btidros, sense: daras, form: 'form:impf-2ms'}]
-      reverse: (shu|sho) (btidros|btedros|btodros|btidrus)
+      reverse: |-
+        (shu|sho) (btidros|btedros|btodros|btidrus)
+        enta shu btidros
   translations:
     en: |-
       What do you study?
@@ -123,11 +139,15 @@ sentences:
     apc-Arab/standard:
       text: بدرس إنكليزي.
       tokens: [{surface: بدرس, sense: daras, form: 'form:impf-1sg'}, {surface: إنكليزي, sense: englize}]
-      reverse: بدرس (إنكليزي|انجليزي)
+      reverse: |-
+        بدرس (إنكليزي|انجليزي)
+        أنا بدرس إنكليزي
     apc-Latn/arabizi:
       text: bedros englize.
       tokens: [{surface: bedros, sense: daras, form: 'form:impf-1sg'}, {surface: englize, sense: englize}]
-      reverse: (bedros|bidros|badros|bedrus) (englize|englizi|inglize|inglizi)
+      reverse: |-
+        (bedros|bidros|badros|bedrus) (englize|englizi|inglize|inglizi)
+        ana bedros englize
   translations:
     en: |-
       I study English.
@@ -139,15 +159,21 @@ sentences:
     apc-Arab/standard:
       text: عندي درس بكرا.
       tokens: [{surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: درس, sense: dars}, {surface: بكرا, sense: bukra}]
-      reverse: (عندي|أنا عندي) درس (بكرا|بكرة)
+      reverse: |-
+        (عندي|أنا عندي) درس (بكرا|بكرة)
+        بكرا عندي درس
     apc-Latn/arabizi:
       text: 3endi dars bukra.
       tokens: [{surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: dars, sense: dars}, {surface: bukra, sense: bukra}]
-      reverse: (3endi|3andi|3ende|3indi) (dars|dares|daris) (bukra|bokra|bukrah)
+      reverse: |-
+        (3endi|3andi|3ende|3indi) (dars|dares|daris) (bukra|bokra|bukrah)
+        ana 3endi dars bukra
+        bukra 3endi dars
   translations:
     en: |-
       I have a (lesson|class) tomorrow.
       I('ve| have) got a (lesson|class) tomorrow.
+      Tomorrow I have a lesson.
 - id: s.work.8
   node: apc.work.study
   register: colloquial
@@ -156,12 +182,16 @@ sentences:
       text: الدرس عالساعة تسعة.
       tokens: [{surface: الدرس, sense: dars, morphs: [{surface: ال, kc: 'sense:el'}, {surface: درس, kc: 'sense:dars'}]}, {surface: عالساعة, sense: sa3a, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال,
               kc: 'sense:el'}, {surface: ساعة, kc: 'sense:sa3a'}]}, {surface: تسعة, sense: tes3a}]
-      reverse: الدرس (عالساعة|ع الساعة|على الساعة) تسعة
+      reverse: |-
+        الدرس (عالساعة|ع الساعة|على الساعة) تسعة
+        الدرس عالتسعة
     apc-Latn/arabizi:
       text: el dars 3al sa3a tes3a.
       tokens: [{surface: el, sense: el}, {surface: dars, sense: dars}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: sa3a, sense: sa3a}, {surface: tes3a,
           sense: tes3a}]
-      reverse: (el|l|il) (dars|dares|daris) (3al|3a l|3a el) (sa3a|se3a) (tes3a|tes3e|tis3a)
+      reverse: |-
+        (el|l|il) (dars|dares|daris) (3al|3a l|3a el) (sa3a|se3a) (tes3a|tes3e|tis3a)
+        el dars 3al tes3a
   translations:
     en: |-
       The (lesson|class) is at nine (o'clock|).
@@ -173,11 +203,16 @@ sentences:
     apc-Arab/standard:
       text: بكرا عندي امتحان.
       tokens: [{surface: بكرا, sense: bukra}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: امتحان, sense: emte7an}]
-      reverse: (بكرا|بكرة) (عندي|أنا عندي) امتحان
+      reverse: |-
+        (بكرا|بكرة) (عندي|أنا عندي) امتحان
+        عندي امتحان بكرا
     apc-Latn/arabizi:
       text: bukra 3endi emte7an.
       tokens: [{surface: bukra, sense: bukra}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: emte7an, sense: emte7an}]
-      reverse: (bukra|bokra|bukrah) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en|imte7an)
+      reverse: |-
+        (bukra|bokra|bukrah) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en|imte7an)
+        bukra ana 3endi emte7an
+        3endi emte7an bukra
   translations:
     en: |-
       I have an (exam|test) tomorrow.
@@ -190,11 +225,15 @@ sentences:
     apc-Arab/standard:
       text: لازم تدرسوا كتير.
       tokens: [{surface: لازم, sense: lezem}, {surface: تدرسوا, sense: daras, form: 'form:subj-2pl'}, {surface: كتير, sense: ktir}]
-      reverse: لازم (تدرسوا|تدرسو) كتير
+      reverse: |-
+        لازم (تدرسوا|تدرسو) كتير
+        إنتو لازم تدرسوا كتير
     apc-Latn/arabizi:
       text: lezem tedrso ktir.
       tokens: [{surface: lezem, sense: lezem}, {surface: tedrso, sense: daras, form: 'form:subj-2pl'}, {surface: ktir, sense: ktir}]
-      reverse: (lezem|lazem|lezim|lazim) (tedrso|tedreso|tidirso|tedersu|tidrso) (ktir|kteer)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (tedrso|tedreso|tidirso|tedersu|tidrso) (ktir|kteer)
+        ento lezem tedrso ktir
   translations:
     en: You (have to|must|need to|should) study a lot.
 - id: s.work.11
@@ -204,11 +243,15 @@ sentences:
     apc-Arab/standard:
       text: الامتحان كان منيح؟
       tokens: [{surface: الامتحان, sense: emte7an, morphs: [{surface: ال, kc: 'sense:el'}, {surface: امتحان, kc: 'sense:emte7an'}]}, {surface: كان, sense: kan, form: 'form:past-3ms'}, {surface: منيح, sense: mni7}]
-      reverse: الامتحان كان (منيح|منيحة)
+      reverse: |-
+        الامتحان كان (منيح|منيحة)
+        كان الامتحان منيح
     apc-Latn/arabizi:
       text: el emte7an ken mni7?
       tokens: [{surface: el, sense: el}, {surface: emte7an, sense: emte7an}, {surface: ken, sense: kan, form: 'form:past-3ms'}, {surface: mni7, sense: mni7}]
-      reverse: (el|l|il) (emte7an|imti7an|emti7an|emte7en|imte7an) ken (mni7|mnee7|mnih)
+      reverse: |-
+        (el|l|il) (emte7an|imti7an|emti7an|emte7en|imte7an) ken (mni7|mnee7|mnih)
+        ken el emte7an mni7
   translations:
     en: |-
       Was the (exam|test) (good|OK|all right)?
@@ -255,9 +298,13 @@ sentences:
     apc-Latn/arabizi:
       text: bishteghel b sherke kbire.
       tokens: [{surface: bishteghel, sense: eshteghel, form: 'form:impf-1sg'}, {surface: b, sense: b}, {surface: sherke, sense: sherke}, {surface: kbire, sense: kbir, form: 'form:fem'}]
-      reverse: (bishteghel|beshteghel|bishtighil) (b|bi) (sherke|shirke|sharke|sherki) (kbire|kbeere|kbiri)
+      reverse: |-
+        (bishteghel|beshteghel|bishtighil) (b|bi) (sherke|shirke|sharke|sherki) (kbire|kbeere|kbiri)
+        ana bishteghel b sherke kbire
   translations:
-    en: I work (in|at|for) a big company.
+    en: |-
+      I work (in|at|for) a big company.
+      I work for a large company.
 - id: s.work.15
   node: apc.work.job
   register: colloquial
@@ -266,11 +313,15 @@ sentences:
     apc-Arab/standard:
       text: شو بتشتغل؟
       tokens: [{surface: شو, sense: shu}, {surface: بتشتغل, sense: eshteghel, form: 'form:impf-2ms'}]
-      reverse: شو بتشتغل
+      reverse: |-
+        شو بتشتغل
+        إنت شو بتشتغل
     apc-Latn/arabizi:
       text: shu btishteghel?
       tokens: [{surface: shu, sense: shu}, {surface: btishteghel, sense: eshteghel, form: 'form:impf-2ms'}]
-      reverse: (shu|sho) (btishteghel|bteshteghel)
+      reverse: |-
+        (shu|sho) (btishteghel|bteshteghel)
+        enta shu btishteghel
   translations:
     en: |-
       What do you do (for work|for a living|)?
@@ -303,7 +354,9 @@ sentences:
     apc-Latn/arabizi:
       text: mudiri mni7.
       tokens: [{surface: mudiri, sense: mudir, morphs: [{surface: mudir, kc: 'sense:mudir'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: mni7, sense: mni7}]
-      reverse: (mudiri|modiri|mudeeri|modeeri) (mni7|mnee7|mnih)
+      reverse: |-
+        (mudiri|modiri|mudeeri|modeeri) (mni7|mnee7|mnih)
+        mudirti mni7a
   translations:
     en: |-
       My (boss|manager) is (good|nice|OK|all right).
@@ -315,15 +368,22 @@ sentences:
     apc-Arab/standard:
       text: صار عمري تلاتين.
       tokens: [{surface: صار, sense: sar, form: 'form:past-3ms'}, {surface: عمري, sense: 3omr, morphs: [{surface: عمر, kc: 'sense:3omr'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: تلاتين, sense: tleten}]
-      reverse: صار (عمري|أنا عمري) تلاتين
+      reverse: |-
+        صار (عمري|أنا عمري) تلاتين
+        أنا صار عمري تلاتين
+        صار عمري تلاتين سنة
     apc-Latn/arabizi:
       text: sar 3omri tleten.
       tokens: [{surface: sar, sense: sar, form: 'form:past-3ms'}, {surface: 3omri, sense: 3omr, morphs: [{surface: 3omr, kc: 'sense:3omr'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: tleten, sense: tleten}]
-      reverse: sar (3omri|3omore|3omori|3omre|3umre|3umri) (tleten|tletin|tlateen|tlatin)
+      reverse: |-
+        sar (3omri|3omore|3omori|3omre|3umre|3umri) (tleten|tletin|tlateen|tlatin)
+        ana sar 3omri tleten
+        sar 3omri tleten sene
   translations:
     en: |-
       I('ve| have) turned thirty.
       I('m| am) thirty now.
+      I turned thirty.
 - id: s.work.19
   node: apc.work.job
   register: colloquial
@@ -332,14 +392,20 @@ sentences:
       text: صارلي سنتين عم اشتغل هون.
       tokens: [{surface: صارلي, sense: sar, form: 'form:past-3ms', morphs: [{surface: صار, kc: 'sense:sar'}, {surface: لي, kc: 'form:la-1sg'}]}, {surface: سنتين, sense: sene, morphs: [{surface: سنت, kc: 'sense:sene'},
             {surface: ين, kc: 'form:dual'}]}, {surface: عم, sense: 3am}, {surface: اشتغل, sense: eshteghel, form: 'form:subj-1sg'}, {surface: هون, sense: hon}]
-      reverse: (صارلي|صرلي) سنتين عم اشتغل هون
+      reverse: |-
+        (صارلي|صرلي) سنتين عم اشتغل هون
+        صارلي سنتين بشتغل هون
     apc-Latn/arabizi:
       text: sarli sinten 3am eshteghel hon.
       tokens: [{surface: sarli, sense: sar, form: 'form:past-3ms', morphs: [{surface: sar, kc: 'sense:sar'}, {surface: li, kc: 'form:la-1sg'}]}, {surface: sinten, sense: sene, morphs: [{surface: sint, kc: 'sense:sene'},
             {surface: en, kc: 'form:dual'}]}, {surface: 3am, sense: 3am}, {surface: eshteghel, sense: eshteghel, form: 'form:subj-1sg'}, {surface: hon, sense: hon}]
-      reverse: (sarli|sarle) (sinten|sintein|senten|sentein) (3am|3a|3m) (eshteghel|ishteghel|eshtighel) (hon|hone|houn)
+      reverse: |-
+        (sarli|sarle) (sinten|sintein|senten|sentein) (3am|3a|3m) (eshteghel|ishteghel|eshtighel) (hon|hone|houn)
+        sarli sinten bishteghel hon
   translations:
-    en: I('ve| have) been working here for two years.
+    en: |-
+      I('ve| have) been working here for two years.
+      I've worked here for two years.
 - id: s.work.20
   node: apc.work.job
   register: colloquial
@@ -348,11 +414,15 @@ sentences:
     apc-Arab/standard:
       text: صارلك كتير هون؟
       tokens: [{surface: صارلك, sense: sar, form: 'form:past-3ms', morphs: [{surface: صار, kc: 'sense:sar'}, {surface: لك, kc: 'form:la-2ms'}]}, {surface: كتير, sense: ktir}, {surface: هون, sense: hon}]
-      reverse: صارلك كتير هون
+      reverse: |-
+        صارلك كتير هون
+        صارلك زمان هون
     apc-Latn/arabizi:
       text: sarlak ktir hon?
       tokens: [{surface: sarlak, sense: sar, form: 'form:past-3ms', morphs: [{surface: sar, kc: 'sense:sar'}, {surface: lak, kc: 'form:la-2ms'}]}, {surface: ktir, sense: ktir}, {surface: hon, sense: hon}]
-      reverse: (sarlak|sarlek) (ktir|kteer) (hon|hone|houn)
+      reverse: |-
+        (sarlak|sarlek) (ktir|kteer) (hon|hone|houn)
+        sarlak zamen hon
   translations:
     en: Have you been here (long|a long time|for long)?
 - id: s.work.21
@@ -362,11 +432,17 @@ sentences:
     apc-Arab/standard:
       text: إذا في مطر، ما رح نروح.
       tokens: [{surface: إذا, sense: iza}, {surface: في, sense: fi}, {surface: مطر, sense: matar}, {surface: ما, sense: ma}, {surface: رح, sense: ra7.fut}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}]
-      reverse: (إذا|إزا) في مطر ما (رح|لح) نروح
+      reverse: |-
+        (إذا|إزا) في مطر ما (رح|لح) نروح
+        إذا شتّت ما رح نروح
+        ما رح نروح إذا في مطر
     apc-Latn/arabizi:
       text: iza fi matar, ma ra7 nru7.
       tokens: [{surface: iza, sense: iza}, {surface: fi, sense: fi}, {surface: matar, sense: matar}, {surface: ma, sense: ma}, {surface: ra7, sense: ra7.fut}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}]
-      reverse: (iza|eza|izza) fi (matar|mater) ma (ra7|la7|rah) (nru7|nro7)
+      reverse: |-
+        (iza|eza|izza) fi (matar|mater) ma (ra7|la7|rah) (nru7|nro7)
+        iza shattet ma ra7 nru7
+        ma ra7 nru7 iza fi matar
   translations:
     en: |-
       If it rains, we('re| are) not going.
@@ -380,11 +456,19 @@ sentences:
     apc-Arab/standard:
       text: إذا بدّك، منروح سوا.
       tokens: [{surface: إذا, sense: iza}, {surface: بدّك, sense: baddak}, {surface: منروح, sense: ra7, form: 'form:impf-1pl'}, {surface: سوا, sense: sawa}]
-      reverse: (إذا|إزا) (بدّك|إنت بدّك) (منروح|نحنا منروح) سوا
+      reverse: |-
+        (إذا|إزا) (بدّك|إنت بدّك) (منروح|نحنا منروح) سوا
+        إذا بدّك رح نروح سوا
+        إذا بدّك منروح مع بعض
     apc-Latn/arabizi:
       text: iza baddak, mnru7 sawa.
       tokens: [{surface: iza, sense: iza}, {surface: baddak, sense: baddak}, {surface: mnru7, sense: ra7, form: 'form:impf-1pl'}, {surface: sawa, sense: sawa}]
-      reverse: (iza|eza|izza) (baddak|badak) (mnru7|mnro7) (sawa|sawe)
+      reverse: |-
+        (iza|eza|izza) (baddak|badak) (mnru7|mnro7) (sawa|sawe)
+        iza enta baddak mnru7 sawa
+        iza baddak ne7na mnru7 sawa
+        iza baddak ra7 nru7 sawa
+        iza baddak mnru7 ma3 ba3d
   translations:
     en: |-
       If you want, we('ll| will) go together.
@@ -398,12 +482,16 @@ sentences:
       text: إذا فيكي، دقّيلي.
       tokens: [{surface: إذا, sense: iza}, {surface: فيكي, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: كي, kc: 'form:poss-2fs'}]}, {surface: دقّيلي, sense: de22, form: 'form:imp-2fs',
           morphs: [{surface: دقّي, kc: 'sense:de22'}, {surface: لي, kc: 'form:la-1sg'}]}]
-      reverse: (إذا|إزا) فيكي دقّيلي
+      reverse: |-
+        (إذا|إزا) فيكي دقّيلي
+        دقّيلي إذا فيكي
     apc-Latn/arabizi:
       text: iza fiki, de22ili.
       tokens: [{surface: iza, sense: iza}, {surface: fiki, sense: fi.can, morphs: [{surface: f, kc: 'sense:fi.can'}, {surface: iki, kc: 'form:poss-2fs'}]}, {surface: de22ili, sense: de22, form: 'form:imp-2fs',
           morphs: [{surface: de22i, kc: 'sense:de22'}, {surface: li, kc: 'form:la-1sg'}]}]
-      reverse: (iza|eza|izza) (fiki|fike|fiyki|feeki) (de22ili|de22ele|da22ili|de22eli)
+      reverse: |-
+        (iza|eza|izza) (fiki|fike|fiyki|feeki) (de22ili|de22ele|da22ili|de22eli)
+        de22ili iza fiki
   translations:
     en: |-
       If you can, call me.
@@ -417,12 +505,17 @@ sentences:
       text: ما رحت عالشغل لأنّه كنت مريض.
       tokens: [{surface: ما, sense: ma}, {surface: رحت, sense: ra7, form: 'form:past-1sg'}, {surface: عالشغل, sense: shoghl, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل,
               kc: 'sense:shoghl'}]}, {surface: لأنّه, sense: la2anno}, {surface: كنت, sense: kan, form: 'form:past-1sg'}, {surface: مريض, sense: mrid}]
-      reverse: ما (رحت|أنا رحت) (عالشغل|ع الشغل|على الشغل) (لأنّه|لأنّو) (كنت|أنا كنت) مريض
+      reverse: |-
+        ما (رحت|أنا رحت) (عالشغل|ع الشغل|على الشغل) (لأنّه|لأنّو) (كنت|أنا كنت) مريض
+        أنا ما رحت عالشغل لأنّه كنت مريض
+        ما رحت عالشغل لأنّي كنت مريض
     apc-Latn/arabizi:
       text: ma ru7t 3al shoghl la2anno kent mrid.
       tokens: [{surface: ma, sense: ma}, {surface: ru7t, sense: ra7, form: 'form:past-1sg'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl,
           sense: shoghl}, {surface: la2anno, sense: la2anno}, {surface: kent, sense: kan, form: 'form:past-1sg'}, {surface: mrid, sense: mrid}]
-      reverse: ma (ru7t|re7et|re7t) (3al|3a l|3a el) (shoghl|shoghol|shughl) (la2anno|la2ano|la2enno) (kent|kint|kunt) (mrid|mareed|mreed)
+      reverse: |-
+        ma (ru7t|re7et|re7t) (3al|3a l|3a el) (shoghl|shoghol|shughl) (la2anno|la2ano|la2enno) (kent|kint|kunt) (mrid|mareed|mreed)
+        ana ma ru7t 3al shoghl la2anno kent mrid
   translations:
     en: I (didn't|did not) go to work because I was (sick|ill).
 - id: s.work.25
@@ -433,12 +526,18 @@ sentences:
       text: ما فيّي اطلع لأنّه عندي امتحان.
       tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: اطلع, sense: tele3, form: 'form:subj-1sg'},
         {surface: لأنّه, sense: la2anno}, {surface: عندي, sense: 3end, morphs: [{surface: عند, kc: 'sense:3end'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: امتحان, sense: emte7an}]
-      reverse: ما (فيّي|فيني) اطلع (لأنّه|لأنّو) (عندي|أنا عندي) امتحان
+      reverse: |-
+        ما (فيّي|فيني) اطلع (لأنّه|لأنّو) (عندي|أنا عندي) امتحان
+        ما فيّي اطلع لأنّي عندي امتحان
+        أنا ما فيّي اطلع لأنّه عندي امتحان
     apc-Latn/arabizi:
       text: ma fiyyi etla3 la2anno 3endi emte7an.
       tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: etla3, sense: tele3, form: 'form:subj-1sg'},
         {surface: la2anno, sense: la2anno}, {surface: 3endi, sense: 3end, morphs: [{surface: 3end, kc: 'sense:3end'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: emte7an, sense: emte7an}]
-      reverse: ma (fiyyi|fiyye|fiye|fiyi) (etla3|itla3|otla3) (la2anno|la2ano|la2enno|la2annu) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en)
+      reverse: |-
+        ma (fiyyi|fiyye|fiye|fiyi) (etla3|itla3|otla3) (la2anno|la2ano|la2enno|la2annu) (3endi|3andi|3ende|3indi) (emte7an|imti7an|emti7an|emte7en)
+        ana ma fiyyi etla3 la2anno 3endi emte7an
+        ma fini etla3 la2anno 3endi emte7an
   translations:
     en: |-
       I can't go out because I have an (exam|test).
@@ -450,11 +549,15 @@ sentences:
     apc-Arab/standard:
       text: بحبّ بيروت لأنّه حلوة.
       tokens: [{surface: بحبّ, sense: 7abb, form: 'form:impf-1sg'}, {surface: بيروت, sense: beirut}, {surface: لأنّه, sense: la2anno}, {surface: حلوة, sense: 7elo, form: 'form:fem'}]
-      reverse: (بحبّ|أنا بحبّ) بيروت (لأنّه|لأنّو) حلوة
+      reverse: |-
+        (بحبّ|أنا بحبّ) بيروت (لأنّه|لأنّو) حلوة
+        بحبّ بيروت لأنّها حلوة
     apc-Latn/arabizi:
       text: b7ebb Beirut la2anno 7elwe.
       tokens: [{surface: b7ebb, sense: 7abb, form: 'form:impf-1sg'}, {surface: Beirut, sense: beirut}, {surface: la2anno, sense: la2anno}, {surface: 7elwe, sense: 7elo, form: 'form:fem'}]
-      reverse: (b7ebb|b7eb|b7ib|bhebb) (Beirut|Bayrut|Beyrouth) (la2anno|la2ano|la2enno|la2annu|la2nno) (7elwe|7elwi|7ilwe|helwe)
+      reverse: |-
+        (b7ebb|b7eb|b7ib|bhebb) (Beirut|Bayrut|Beyrouth) (la2anno|la2ano|la2enno|la2annu|la2nno) (7elwe|7elwi|7ilwe|helwe)
+        ana b7ebb Beirut la2anno 7elwe
   translations:
     en: I (love|like) Beirut because (it's|it is) (beautiful|lovely|pretty|nice).
 - id: s.work.27
@@ -464,11 +567,15 @@ sentences:
     apc-Arab/standard:
       text: بعرف إنّه سامي مشغول.
       tokens: [{surface: بعرف, sense: 3eref, form: 'form:impf-1sg'}, {surface: إنّه, sense: enno}, {surface: سامي, sense: sami}, {surface: مشغول, sense: mashghoul}]
-      reverse: بعرف (إنّه|إنّو) سامي مشغول
+      reverse: |-
+        بعرف (إنّه|إنّو) سامي مشغول
+        أنا بعرف إنّه سامي مشغول
     apc-Latn/arabizi:
       text: ba3ref enno Sami mashghoul.
       tokens: [{surface: ba3ref, sense: 3eref, form: 'form:impf-1sg'}, {surface: enno, sense: enno}, {surface: Sami, sense: sami}, {surface: mashghoul, sense: mashghoul}]
-      reverse: (ba3ref|b3ref|ba3rif) (enno|eno|inno|ino|ennu) Sami (mashghoul|mashghol)
+      reverse: |-
+        (ba3ref|b3ref|ba3rif) (enno|eno|inno|ino|ennu) Sami (mashghoul|mashghol)
+        ana ba3ref enno Sami mashghoul
   translations:
     en: I know (that|) Sami('s| is) busy.
 - id: s.work.28
@@ -478,11 +585,15 @@ sentences:
     apc-Arab/standard:
       text: قال إنّه جاي.
       tokens: [{surface: قال, sense: 2al, form: 'form:past-3ms'}, {surface: إنّه, sense: enno}, {surface: جاي, sense: jeye}]
-      reverse: قال (إنّه|إنّو) جاي
+      reverse: |-
+        قال (إنّه|إنّو) جاي
+        هو قال إنّه جاي
     apc-Latn/arabizi:
       text: 2al enno jey.
       tokens: [{surface: 2al, sense: 2al, form: 'form:past-3ms'}, {surface: enno, sense: enno}, {surface: jey, sense: jeye}]
-      reverse: (2al|al) (enno|eno|inno|ino|ennu) (jey|jeye|jay|jaye|jeyi)
+      reverse: |-
+        (2al|al) (enno|eno|inno|ino|ennu) (jey|jeye|jay|jaye|jeyi)
+        huwwe 2al enno jey
   translations:
     en: He said (that|) he('s| is|was) coming.
 - id: s.work.29
@@ -492,11 +603,15 @@ sentences:
     apc-Arab/standard:
       text: بفكّر إنّه هيدا أحسن.
       tokens: [{surface: بفكّر, sense: fakkar, form: 'form:impf-1sg'}, {surface: إنّه, sense: enno}, {surface: هيدا, sense: hayda}, {surface: أحسن, sense: a7san}]
-      reverse: بفكّر (إنّه|إنّو) هيدا أحسن
+      reverse: |-
+        بفكّر (إنّه|إنّو) (هيدا|هيدي) أحسن
+        أنا بفكّر إنّه هيدا أحسن
     apc-Latn/arabizi:
       text: bfakker enno hayda a7san.
       tokens: [{surface: bfakker, sense: fakkar, form: 'form:impf-1sg'}, {surface: enno, sense: enno}, {surface: hayda, sense: hayda}, {surface: a7san, sense: a7san}]
-      reverse: (bfakker|bfakkir|bfaker|bifakker) (enno|eno|inno|ino|ennu) (hayda|haida|hyda) (a7san|ahsan|a7sen)
+      reverse: |-
+        (bfakker|bfakkir|bfaker|bifakker) (enno|eno|inno|ino|ennu) (hayda|haida|hyda|hayde|haide|haydi) (a7san|ahsan|a7sen)
+        ana bfakker enno hayda a7san
   translations:
     en: I think (that|) (this|that)('s| is) better.
 - id: s.work.30
@@ -507,11 +622,15 @@ sentences:
     apc-Arab/standard:
       text: شو بتفكّري؟
       tokens: [{surface: شو, sense: shu}, {surface: بتفكّري, sense: fakkar, form: 'form:impf-2fs'}]
-      reverse: شو بتفكّري
+      reverse: |-
+        شو بتفكّري
+        إنتي شو بتفكّري
     apc-Latn/arabizi:
       text: shu btfakkri?
       tokens: [{surface: shu, sense: shu}, {surface: btfakkri, sense: fakkar, form: 'form:impf-2fs'}]
-      reverse: (shu|sho) (btfakkri|btfakri|btfakkre|btfakre)
+      reverse: |-
+        (shu|sho) (btfakkri|btfakri|btfakkre|btfakre)
+        enti shu btfakkri
   translations:
     en: |-
       What do you think?
@@ -525,11 +644,15 @@ sentences:
       text: بتعرفوا إنّه المدير هون؟
       tokens: [{surface: بتعرفوا, sense: 3eref, form: 'form:impf-2pl'}, {surface: إنّه, sense: enno}, {surface: المدير, sense: mudir, morphs: [{surface: ال, kc: 'sense:el'}, {surface: مدير, kc: 'sense:mudir'}]},
         {surface: هون, sense: hon}]
-      reverse: (بتعرفوا|بتعرفو) (إنّه|إنّو) المدير هون
+      reverse: |-
+        (بتعرفوا|بتعرفو) (إنّه|إنّو) المدير هون
+        إنتو بتعرفوا إنّه المدير هون
     apc-Latn/arabizi:
       text: bta3rfo enno el mudir hon?
       tokens: [{surface: bta3rfo, sense: 3eref, form: 'form:impf-2pl'}, {surface: enno, sense: enno}, {surface: el, sense: el}, {surface: mudir, sense: mudir}, {surface: hon, sense: hon}]
-      reverse: (bta3rfo|bta3refo|bta3rfu) (enno|eno|inno|ino|ennu) (el|l|il) (mudir|modir|mudeer|modeer) (hon|hone|houn)
+      reverse: |-
+        (bta3rfo|bta3refo|bta3rfu) (enno|eno|inno|ino|ennu) (el|l|il) (mudir|modir|mudeer|modeer) (hon|hone|houn)
+        ento bta3rfo enno el mudir hon
   translations:
     en: Do you know (that|) the (boss|manager|director) is here?
 stories:

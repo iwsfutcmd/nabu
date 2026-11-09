@@ -60,10 +60,13 @@ sentences:
     es-Latn/standard:
       text: Si Yunior consigue la visa, viene a Miami en el verano.
       tokens: [{surface: Si, sense: si}, {surface: Yunior, sense: yunior}, {surface: consigue, sense: conseguir, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: viene, sense: venir, form: 'form:pres-3s'}, {surface: a, sense: a}, {surface: Miami, sense: miami}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: verano, sense: verano}]
-      reverse: Si Yunior consigue la visa (viene|vendrá|va a venir) a Miami (en el verano|este verano)
+      reverse: |-
+        Si Yunior consigue la visa (viene|vendrá|va a venir) a Miami (en el verano|este verano)
+        Yunior viene a Miami en el verano si consigue la visa
   translations:
     en: |-
       If Yunior gets (the|his) visa, (he'll come|he's coming|he will come|he comes) to Miami (in the summer|this summer).
+      Yunior will come to Miami in the summer if he gets the visa.
 - id: s.u28.3
   node: es.u28.si-puedo
   forms:
@@ -85,6 +88,7 @@ sentences:
   translations:
     en: |-
       Yunior says [that] if he wins the (visa lottery|lottery|bombo), (he's going|he'll go|he's leaving|he'll leave|he's moving|he'll move) (to|for) the (US|States|United States).
+      Yunior says that if he wins the visa lottery, he is going to the US.
 - id: s.u28.5
   node: es.u28.si-puedo
   persons: {addressee: pl}
@@ -92,10 +96,13 @@ sentences:
     es-Latn/standard:
       text: Si ustedes tienen tiempo esta noche, llámenme por WhatsApp.
       tokens: [{surface: Si, sense: si}, {surface: ustedes, sense: ustedes}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: tiempo, sense: tiempo}, {surface: esta, sense: este}, {surface: noche, sense: noche}, {surface: llámenme, sense: llamar, form: 'form:imp-ud'}, {surface: por, sense: por}, {surface: WhatsApp, sense: whatsapp}]
-      reverse: Si [ustedes] tienen tiempo esta noche (llámenme|me llaman) por WhatsApp
+      reverse: |-
+        Si [ustedes] tienen tiempo esta noche (llámenme|me llaman) por WhatsApp
+        Llámenme por WhatsApp si tienen tiempo esta noche
   translations:
     en: |-
       If you (have|guys have|all have) time tonight, (call me|give me a call) (on|over|via) WhatsApp.
+      Call me on WhatsApp if you have time tonight.
 - id: s.u28.6
   node: es.u28.si-pudiera
   forms:
@@ -143,6 +150,7 @@ sentences:
       reverse: |-
         Si (Papi|mi papá|mi padre) se (jubilara|jubilase|retirara) se (mudaría|iría a vivir|iría) a Cienfuegos
         (Papi|Mi papá|Mi padre) se (mudaría|iría a vivir|iría) a Cienfuegos si se (jubilara|jubilase|retirara)
+        Si Papi se retirase, se mudaría a Cienfuegos
   translations:
     en: |-
       If (Dad|Papi|my dad|my father) (retired|were to retire), (he'd|he would) move to Cienfuegos.
@@ -180,9 +188,12 @@ sentences:
         (Qué tú harías|Qué harías [tú]) si (te ganaras|te ganases|ganaras|ganases|te sacaras) la lotería
         (Qué usted haría|Qué haría [usted]) si (se ganara|se ganase|ganara|ganase|se sacara) la lotería
         (Qué ustedes harían|Qué harían [ustedes]) si (se ganaran|se ganasen|ganaran|ganasen|se sacaran) la lotería
+        Si te ganaras la lotería, ¿qué tú harías?
+        ¿Qué tú harías si te sacases la lotería?
   translations:
     en: |-
       What would you do if you (won|were to win|hit) the lottery?
+      If you won the lottery, what would you do?
 - id: s.u28.13
   node: es.u28.el-paladar
   forms:
@@ -216,20 +227,27 @@ sentences:
     es-Latn/standard:
       text: En La Habana, muchas familias tienen un paladar en su propia casa.
       tokens: [{surface: En, sense: en}, {surface: La, sense: el}, {surface: Habana, sense: habana}, {surface: muchas, sense: mucho}, {surface: familias, sense: familia}, {surface: tienen, sense: tener, form: 'form:pres-3p'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: en, sense: en}, {surface: su, sense: su}, {surface: propia, sense: propio}, {surface: casa, sense: casa}]
-      reverse: En La Habana muchas familias tienen un paladar en (su propia casa|sus propias casas)
+      reverse: |-
+        En La Habana muchas familias tienen un paladar en (su propia casa|sus propias casas)
+        Muchas familias tienen un paladar en su propia casa en La Habana
   translations:
     en: |-
       In Havana, (many|a lot of|lots of) families have a (paladar|restaurant|private restaurant) in their own (home|house|homes|houses).
+      Many families have a paladar in their own home in Havana.
 - id: s.u28.16
   node: es.u28.el-paladar
   forms:
     es-Latn/standard:
       text: Si abriéramos un paladar, Abuela cocinaría para los clientes.
       tokens: [{surface: Si, sense: si}, {surface: abriéramos, sense: abrir, form: 'form:subj-past'}, {surface: un, sense: un}, {surface: paladar, sense: paladar}, {surface: Abuela, sense: abuela}, {surface: cocinaría, sense: cocinar, form: 'form:cond'}, {surface: para, sense: para}, {surface: los, sense: el}, {surface: clientes, sense: cliente}]
-      reverse: Si (abriéramos|abriésemos) un paladar (Abuela|la abuela|mi abuela) cocinaría para los clientes
+      reverse: |-
+        Si (abriéramos|abriésemos) un paladar (Abuela|la abuela|mi abuela) cocinaría para los clientes
+        Abuela cocinaría para los clientes si abriéramos un paladar
+        Si nosotros abriéramos un paladar, Abuela cocinaría para los clientes
   translations:
     en: |-
       If we (opened|were to open) a (paladar|restaurant), (Grandma|Grandmother|Abuela|my grandma|my grandmother) would cook for the (customers|clients|guests).
+      Grandma would cook for the customers if we opened a paladar.
 - id: s.u28.17
   node: es.u28.el-paladar
   forms:
@@ -246,17 +264,24 @@ sentences:
     es-Latn/standard:
       text: Si el negocio fuera bien, abriríamos otro en Miami.
       tokens: [{surface: Si, sense: si}, {surface: el, sense: el}, {surface: negocio, sense: negocio}, {surface: fuera, sense: ir, form: 'form:subj-past'}, {surface: bien, sense: bien}, {surface: abriríamos, sense: abrir, form: 'form:cond'}, {surface: otro, sense: otro}, {surface: en, sense: en}, {surface: Miami, sense: miami}]
-      reverse: Si el negocio (fuera|fuese|saliera|anduviera) bien abriríamos otro [paladar] en Miami
+      reverse: |-
+        Si el negocio (fuera|fuese|saliera|anduviera) bien abriríamos otro [paladar] en Miami
+        Abriríamos otro en Miami si el negocio fuera bien
+        Si el negocio saliese bien, abriríamos otro en Miami
+        Si el negocio anduviese bien, abriríamos otro en Miami
   translations:
     en: |-
       If the business (went|did|were going|was going) well, (we'd|we would) open another [one] in Miami.
+      We'd open another one in Miami if the business went well.
 - id: s.u28.19
   node: es.u28.el-paladar
   forms:
     es-Latn/standard:
       text: Ojalá que haya clientes todos los días.
       tokens: [{surface: Ojalá, sense: ojalá}, {surface: que, sense: que}, {surface: haya, sense: haber, form: 'form:subj'}, {surface: clientes, sense: cliente}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: días, sense: día}]
-      reverse: Ojalá [que] haya clientes todos los días
+      reverse: |-
+        Ojalá [que] haya clientes todos los días
+        Espero que haya clientes todos los días
   translations:
     en: |-
       (Hopefully|I hope|Let's hope) (there are|there will be|there'll be) (customers|clients) every day.
@@ -298,10 +323,13 @@ sentences:
     es-Latn/standard:
       text: Si le dieran la visa, la traeríamos en diciembre.
       tokens: [{surface: Si, sense: si}, {surface: le, sense: le}, {surface: dieran, sense: dar, form: 'form:subj-past'}, {surface: la, sense: el}, {surface: visa, sense: visa}, {surface: la, sense: lo}, {surface: traeríamos, sense: traer, form: 'form:cond'}, {surface: en, sense: en}, {surface: diciembre, sense: diciembre}]
-      reverse: Si le (dieran|diesen) la visa la traeríamos [a Miami] en diciembre
+      reverse: |-
+        Si le (dieran|diesen) la visa la traeríamos [a Miami] en diciembre
+        La traeríamos en diciembre si le dieran la visa
   translations:
     en: |-
       If (they gave her|she got) the visa, (we'd|we would) bring her [(here|over|to Miami)] in December.
+      We'd bring her in December if they gave her the visa.
 - id: s.u28.24
   node: es.u28.traer-a-marisol
   forms:
@@ -321,10 +349,13 @@ sentences:
     es-Latn/standard:
       text: Abuela estaría muy orgullosa si sus nietos hablaran bien español.
       tokens: [{surface: Abuela, sense: abuela}, {surface: estaría, sense: estar, form: 'form:cond'}, {surface: muy, sense: muy}, {surface: orgullosa, sense: orgulloso}, {surface: si, sense: si}, {surface: sus, sense: su}, {surface: nietos, sense: nieto}, {surface: hablaran, sense: hablar, form: 'form:subj-past'}, {surface: bien, sense: bien}, {surface: español, sense: español}]
-      reverse: (Abuela|La abuela|Mi abuela) estaría muy orgullosa si sus nietos (hablaran|hablasen) (bien [el] español|[el] español bien)
+      reverse: |-
+        (Abuela|La abuela|Mi abuela) estaría muy orgullosa si sus nietos (hablaran|hablasen) (bien [el] español|[el] español bien)
+        Si sus nietos hablaran bien español, Abuela estaría muy orgullosa
   translations:
     en: |-
       (Grandma|Grandmother|Abuela|My grandma|My grandmother) would be (very|really|so) proud if her grandchildren (spoke Spanish well|spoke good Spanish).
+      If her grandchildren spoke Spanish well, Grandma would be very proud.
 - id: s.u28.26
   node: es.u28.traer-a-marisol
   persons: {speaker: f, addressee: f}
@@ -378,7 +409,9 @@ sentences:
     es-Latn/standard:
       text: Aquí tenemos que luchar todos los días, asere.
       tokens: [{surface: Aquí, sense: aquí}, {surface: tenemos, sense: tener-que, form: 'form:pres-1p'}, {surface: que, sense: tener-que}, {surface: luchar, sense: luchar}, {surface: todos, sense: todo}, {surface: los, sense: el}, {surface: días, sense: día}, {surface: asere, sense: asere}]
-      reverse: Aquí (tenemos que|hay que) luchar todos los días [(asere|acere|primo|mi hermano)]
+      reverse: |-
+        Aquí (tenemos que|hay que) luchar todos los días [(asere|acere|primo|mi hermano)]
+        Aquí nosotros tenemos que luchar todos los días, asere
   translations:
     en: |-
       (Here|Over here|Around here) (we have to|we've got to) (struggle|hustle|fight) every day, (man|bro|buddy|dude|cuz).
@@ -388,10 +421,13 @@ sentences:
     es-Latn/standard:
       text: Si yo viviera en otro país, extrañaría mucho a mi familia.
       tokens: [{surface: Si, sense: si}, {surface: yo, sense: yo}, {surface: viviera, sense: vivir, form: 'form:subj-past'}, {surface: en, sense: en}, {surface: otro, sense: otro}, {surface: país, sense: país}, {surface: extrañaría, sense: extrañar, form: 'form:cond'}, {surface: mucho, sense: mucho}, {surface: a, sense: a}, {surface: mi, sense: mi}, {surface: familia, sense: familia}]
-      reverse: Si [yo] (viviera|viviese) en otro país (extrañaría mucho|echaría mucho de menos) a mi familia
+      reverse: |-
+        Si [yo] (viviera|viviese) en otro país (extrañaría mucho|echaría mucho de menos) a mi familia
+        Extrañaría mucho a mi familia si viviera en otro país
   translations:
     en: |-
       If I lived in (another|a different) country, (I'd|I would) miss my family (a lot|so much|very much).
+      I'd miss my family a lot if I lived in another country.
 - id: s.u28.32
   node: es.u28.el-futuro
   persons: {addressee: m}
@@ -403,6 +439,7 @@ sentences:
   translations:
     en: |-
       (That's life|Such is life|That's how life is), (cousin|cuz|primo): some (leave|go) and (others|some) stay.
+      That is life, cousin: some leave and others stay.
 - id: s.u28.33
   node: es.u28.el-futuro
   persons: {addressee: m}
@@ -414,10 +451,12 @@ sentences:
         Si yo (fuera|fuese) tú [primo] estudiaría inglés
         [Primo] si yo (fuera|fuese) tú estudiaría inglés
         Yo que tú [primo] estudiaría inglés
+        Estudiaría inglés si yo fuera tú, primo
   translations:
     en: |-
       If I (were|was) you, (cousin|cuz|primo), (I'd|I would) study English.
       (Cousin|Cuz|Primo), if I (were|was) you, (I'd|I would) study English.
+      I'd study English if I were you, cousin.
 stories:
 - id: es.story.u28
   node: es.u28.story

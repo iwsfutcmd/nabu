@@ -148,28 +148,56 @@ const onlyEndings = (word: readonly string[], from: number, contrasts: readonly 
 /**
  * The contrast set (profile `typo.contrasts`) an edit trades one member of for
  * another, the rest of the word unchanged: talabasan for talabaman, Сен for Мен,
- * Lebanese wa-ana for wa-inte. That is a meaning change, not a typo (erratum 46). The member
- * ends the word or is followed only by other endings, as suffixes stack
- * (maktabgaman for maktabdaman). Compared by graphemes of the units' contrast keys.
+ * Lebanese wa-ana for wa-inte. That is a meaning change, not a typo (erratum 46).
+ * - Endings: the member ends the word or is followed only by other endings, as suffixes
+ *   stack (maktabgaman for maktabdaman).
+ * - Prefixes (`at: start`): the member starts the word, or follows one of the set's
+ *   proclitics (Lebanese bishteghel for btishteghel, w-bishteghel for w-btishteghel).
+ * - An empty member is the word without the affix: shteghel for bishteghel, b3id for b3ide.
+ * - Sets marked `inflected` apply only when `inflected` says the expected word is one the
+ *   course inflects, so a noun's first letter stays a typo.
+ * - Sets with `forms` apply only when the expected word is pinned as one of them (`forms`, the
+ *   word's forms in the course; an entry also matches the forms it begins: form:yiqtol, ADR 0084).
+ * Compared by graphemes of the units' contrast keys.
  */
-export const contrastOf = (profile: CompiledProfile, expected: string, actual: string): CompiledContrast | undefined => {
+export const contrastOf = (
+  profile: CompiledProfile,
+  expected: string,
+  actual: string,
+  inflected = false,
+  forms: readonly string[] = [],
+): CompiledContrast | undefined => {
   const typo = profile.typo;
   if (typo === undefined || typo.contrasts.length === 0) return undefined;
+  const applies = (c: CompiledContrast): boolean =>
+    c.forms === undefined ? inflected || !c.inflected : forms.some((f) => c.forms?.some((start) => f.startsWith(start)) === true);
+  const sets = typo.contrasts.filter(applies);
+  const endings = sets.filter((c) => c.at === "end");
   const e = graphemes(typo.key(expected));
   const a = graphemes(typo.key(actual));
-  for (const set of typo.contrasts) {
+  /** Whether `a` is `e` with the member at `at` (of length `len`) traded for another of `set`. */
+  const traded = (set: CompiledContrast, i: number, at: number, len: number): boolean => {
+    const rest = e.slice(at + len);
+    for (const [j, others] of set.members.entries()) {
+      if (j === i) continue;
+      for (const o of others) {
+        if (a.length === at + o.length + rest.length && startsAt(a, 0, e.slice(0, at)) && startsAt(a, at, o) && startsAt(a, at + o.length, rest)) return true;
+      }
+    }
+    return false;
+  };
+  for (const set of sets) {
+    // Where the set's members may stand: after nothing or a proclitic (prefixes), anywhere
+    // only endings follow (endings).
+    const starts = set.at === "start" ? [0, ...set.after.filter((p) => p.length > 0 && startsAt(e, 0, p)).map((p) => p.length)] : undefined;
     for (const [i, spellings] of set.members.entries()) {
       for (const m of spellings) {
-        // Every place the member starts, where only endings follow it.
+        if (starts !== undefined) {
+          for (const at of starts) if (startsAt(e, at, m) && traded(set, i, at, m.length)) return set;
+          continue;
+        }
         for (let at = 0; at + m.length <= e.length; at++) {
-          if (!startsAt(e, at, m) || !onlyEndings(e, at + m.length, typo.contrasts)) continue;
-          const rest = e.slice(at + m.length);
-          for (const [j, others] of set.members.entries()) {
-            if (j === i) continue;
-            for (const o of others) {
-              if (a.length === at + o.length + rest.length && startsAt(a, 0, e.slice(0, at)) && startsAt(a, at, o) && startsAt(a, at + o.length, rest)) return set;
-            }
-          }
+          if (startsAt(e, at, m) && onlyEndings(e, at + m.length, endings) && traded(set, i, at, m.length)) return set;
         }
       }
     }

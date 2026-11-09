@@ -55,6 +55,7 @@ sentences:
       reverse: |-
         Cuando [yo] era joven [yo] vivía en Matanzas
         [Yo] vivía en Matanzas cuando [yo] era joven
+        De joven, vivía en Matanzas.
   translations:
     en: |-
       When I was young, I (lived|used to live) in Matanzas.
@@ -77,6 +78,7 @@ sentences:
       reverse: |-
         En el campo todos trabajaban mucho
         Todos trabajaban mucho en el campo
+        En el campo todo el mundo trabajaba mucho.
   translations:
     en: |-
       In the (countryside|country), (everyone|everybody) (worked|used to work) (hard|a lot).
@@ -87,7 +89,9 @@ sentences:
     es-Latn/standard:
       text: Yo tenía diecinueve años y tu abuelo, veinticuatro.
       tokens: [{surface: Yo, sense: yo}, {surface: tenía, sense: tener, form: 'form:impf'}, {surface: diecinueve, sense: diecinueve}, {surface: años, sense: año}, {surface: 'y', sense: 'y'}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: veinticuatro, sense: veinticuatro}]
-      reverse: '[Yo] tenía diecinueve años y tu abuelo [tenía] veinticuatro [años]'
+      reverse: |-
+        [Yo] tenía diecinueve años y tu abuelo [tenía] veinticuatro [años]
+        Yo tenía diecinueve años y su abuelo, veinticuatro.
   translations:
     en: I was nineteen [years old] and your (grandfather|grandpa) [was] twenty-four.
 - id: s.u13.6
@@ -99,6 +103,7 @@ sentences:
       reverse: |-
         Todos los sábados había un guateque en el campo
         En el campo había un guateque todos los sábados
+        Había un guateque en el campo todos los sábados.
   translations:
     en: |-
       (Every Saturday|On Saturdays) there (was|used to be|would be) a (guateque|country party|party) in the (countryside|country).
@@ -109,7 +114,9 @@ sentences:
     es-Latn/standard:
       text: Mis hermanos y yo siempre íbamos a los guateques.
       tokens: [{surface: Mis, sense: mi}, {surface: hermanos, sense: hermano}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: siempre, sense: siempre}, {surface: íbamos, sense: ir, form: 'form:impf'}, {surface: a, sense: a}, {surface: los, sense: el}, {surface: guateques, sense: guateque}]
-      reverse: Mis hermanos y yo siempre íbamos a los guateques
+      reverse: |-
+        Mis hermanos y yo siempre íbamos a los guateques
+        Mis hermanos y yo íbamos siempre a los guateques.
   translations:
     en: My (brothers|siblings|brothers and sisters) and I always (went|used to go|would go) to the (guateques|country parties|parties).
 - id: s.u13.8
@@ -141,7 +148,9 @@ sentences:
     es-Latn/standard:
       text: Los viejos jugaban dominó en el portal.
       tokens: [{surface: Los, sense: el}, {surface: viejos, sense: viejo}, {surface: jugaban, sense: jugar, form: 'form:impf'}, {surface: dominó, sense: dominó}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: portal, sense: portal}]
-      reverse: Los (viejos|ancianos|mayores) jugaban [al] dominó en el portal
+      reverse: |-
+        Los (viejos|ancianos|mayores) jugaban [al] dominó en el portal
+        Los viejos jugaban dominó en el porche.
   translations:
     en: The old (folks|people|men|timers) (played|were playing|used to play|would play) (dominoes|domino) on the [front] porch.
 - id: s.u13.11
@@ -172,7 +181,9 @@ sentences:
     es-Latn/standard:
       text: Una noche, cuando yo estaba bailando con mi primo, llegó tu abuelo.
       tokens: [{surface: Una, sense: un}, {surface: noche, sense: noche}, {surface: cuando, sense: cuando}, {surface: yo, sense: yo}, {surface: estaba, sense: estar, form: 'form:impf'}, {surface: bailando, sense: bailar, form: 'form:ger'}, {surface: con, sense: con}, {surface: mi, sense: mi}, {surface: primo, sense: primo}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}]
-      reverse: Una noche (cuando|mientras) [yo] (estaba bailando|bailaba) con mi primo (llegó tu abuelo|tu abuelo llegó)
+      reverse: |-
+        Una noche (cuando|mientras) [yo] (estaba bailando|bailaba) con mi primo (llegó tu abuelo|tu abuelo llegó)
+        Una noche, cuando yo estaba bailando con mi primo, llegó su abuelo.
   translations:
     en: One (night|evening), (when|while) I was dancing with my cousin, your (grandfather|grandpa) (arrived|came|showed up|got there).
 - id: s.u13.14
@@ -181,7 +192,9 @@ sentences:
     es-Latn/standard:
       text: Tu abuelo llegó en una máquina vieja.
       tokens: [{surface: Tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: llegó, sense: llegar, form: 'form:pret-3s'}, {surface: en, sense: en}, {surface: una, sense: un}, {surface: máquina, sense: máquina}, {surface: vieja, sense: viejo}]
-      reverse: Tu abuelo llegó en (una máquina vieja|un carro viejo|un auto viejo|un coche viejo)
+      reverse: |-
+        Tu abuelo llegó en (una máquina vieja|un carro viejo|un auto viejo|un coche viejo)
+        Su abuelo llegó en una máquina vieja.
   translations:
     en: Your (grandfather|grandpa) (arrived|came|showed up|got there) in an old car.
 - id: s.u13.15
@@ -195,6 +208,7 @@ sentences:
     en: |-
       It was a (1957|fifty-seven) car.
       It was a car from (1957|fifty-seven|nineteen fifty-seven).
+      It was a '57 car.
 - id: s.u13.16
   node: es.u13.la-maquina
   forms:
@@ -225,7 +239,9 @@ sentences:
     es-Latn/standard:
       text: Tu abuelo era mecánico y trabajaba en Matanzas.
       tokens: [{surface: Tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: era, sense: ser, form: 'form:impf'}, {surface: mecánico, sense: mecánico}, {surface: 'y', sense: 'y'}, {surface: trabajaba, sense: trabajar, form: 'form:impf'}, {surface: en, sense: en}, {surface: Matanzas, sense: matanzas}]
-      reverse: Tu abuelo era mecánico y trabajaba en Matanzas
+      reverse: |-
+        Tu abuelo era mecánico y trabajaba en Matanzas
+        Su abuelo era mecánico y trabajaba en Matanzas.
   translations:
     en: Your (grandfather|grandpa) was a mechanic and (worked|used to work|was working) in Matanzas.
 - id: s.u13.19
@@ -263,6 +279,7 @@ sentences:
       reverse: |-
         Esa noche [yo] conocí a tu abuelo
         [Yo] conocí a tu abuelo esa noche
+        Esa noche conocí a su abuelo.
   translations:
     en: |-
       That night I met your (grandfather|grandpa).
@@ -273,7 +290,9 @@ sentences:
     es-Latn/standard:
       text: Abuelo, ¿dónde tú conociste a Abuela?
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: dónde, sense: dónde}, {surface: tú, sense: tú}, {surface: conociste, sense: conocer, form: 'form:pret-2s'}, {surface: a, sense: a}, {surface: Abuela, sense: abuela}]
-      reverse: '[Abuelo] (dónde tú conociste|dónde conociste [tú]|dónde usted conoció|dónde conoció [usted]) a (Abuela|la abuela|mi abuela)'
+      reverse: |-
+        [Abuelo] (dónde tú conociste|dónde conociste [tú]|dónde usted conoció|dónde conoció [usted]) a (Abuela|la abuela|mi abuela)
+        Abuelo, ¿tú dónde conociste a Abuela?
   translations:
     en: (Grandpa|Grandfather|Abuelo), where did you meet (Grandma|Grandmother|Abuela)?
 - id: s.u13.23
@@ -291,7 +310,9 @@ sentences:
     es-Latn/standard:
       text: Después, tu abuelo me sacó a bailar.
       tokens: [{surface: Después, sense: después}, {surface: tu, sense: tu}, {surface: abuelo, sense: abuelo}, {surface: me, sense: me}, {surface: sacó, sense: sacar, form: 'form:pret-3s'}, {surface: a, sense: a}, {surface: bailar, sense: bailar}]
-      reverse: Después tu abuelo me (sacó|invitó) a bailar
+      reverse: |-
+        Después tu abuelo me (sacó|invitó) a bailar
+        Después, su abuelo me sacó a bailar.
   translations:
     en: (Afterwards|Afterward|Later|Then|After that), your (grandfather|grandpa) asked me (to dance|for a dance).
 - id: s.u13.25
@@ -338,7 +359,9 @@ sentences:
     es-Latn/standard:
       text: Dije que sí, y bailamos toda la noche.
       tokens: [{surface: Dije, sense: decir, form: 'form:pret-1s'}, {surface: que, sense: que}, {surface: sí, sense: sí}, {surface: 'y', sense: 'y'}, {surface: bailamos, sense: bailar, form: 'form:pret-1p'}, {surface: toda, sense: todo}, {surface: la, sense: el}, {surface: noche, sense: noche}]
-      reverse: '[Yo] dije que sí y bailamos toda la noche'
+      reverse: |-
+        [Yo] dije que sí y bailamos toda la noche
+        Dije que sí, y nosotros bailamos toda la noche.
   translations:
     en: I said yes, and we danced all night [long].
 - id: s.u13.30
@@ -394,6 +417,7 @@ sentences:
       reverse: |-
         [Nosotros] nos casamos un año después
         Un año después [nosotros] nos casamos
+        Nos casamos al año.
   translations:
     en: |-
       We (got married|married) (a|one) year later.

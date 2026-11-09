@@ -82,6 +82,7 @@ sentences:
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 三, sense: 三, readings: {jyutping: saam1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
       reverse: |-
         [(而|依)家]三點半
+        而家三點三十分
   translations:
     en: |-
       It's half past (three|3)[ now].
@@ -110,6 +111,7 @@ sentences:
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十二, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 二, kc: 'sense:二'}], readings: {jyutping: sap6 ji6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 半, sense: 半, readings: {jyutping: bun3}}]
       reverse: |-
         [(而|依)家]十二點半
+        而家十二點三十分
   translations:
     en: |-
       It's half past (twelve|12)[ now].
@@ -133,7 +135,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 今日禮拜幾呀？
       tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 禮拜幾, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 幾, kc: 'sense:幾'}], readings: {jyutping: lai5 baai3 gei2}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 今日(禮拜|星期)幾[呀]
+      reverse: |-
+        今日(禮拜|星期)幾[呀]
+        今日係禮拜幾呀
   translations:
     en: |-
       What day is (it |)today?
@@ -144,7 +148,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 今日禮拜一。
       tokens: [{surface: 今日, sense: 今日, readings: {jyutping: gam1 jat6}}, {surface: 禮拜一, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 一, kc: 'sense:一'}], readings: {jyutping: lai5 baai3 jat1}}]
-      reverse: 今日(禮拜|星期)一
+      reverse: |-
+        今日(禮拜|星期)一
+        今日係禮拜一
   translations:
     en: |-
       (Today is|It's) Monday.
@@ -155,7 +161,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 聽日禮拜六。
       tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 禮拜六, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 六, kc: 'sense:六'}], readings: {jyutping: lai5 baai3 luk6}}]
-      reverse: 聽日(禮拜|星期)六
+      reverse: |-
+        聽日(禮拜|星期)六
+        聽日係禮拜六
   translations:
     en: |-
       Tomorrow is Saturday.
@@ -166,7 +174,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 尋日禮拜五。
       tokens: [{surface: 尋日, sense: 尋日, readings: {jyutping: cam4 jat6}}, {surface: 禮拜五, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 五, kc: 'sense:五'}], readings: {jyutping: lai5 baai3 ng5}}]
-      reverse: (尋|琴|噚)日(禮拜|星期)五
+      reverse: |-
+        (尋|琴|噚)日(禮拜|星期)五
+        尋日係禮拜五
   translations:
     en: |-
       Yesterday was Friday.
@@ -177,7 +187,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 聽日禮拜日。
       tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 禮拜日, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 日, kc: 'sense:日'}], readings: {jyutping: lai5 baai3 jat6}}]
-      reverse: 聽日(禮拜|星期)日
+      reverse: |-
+        聽日(禮拜|星期)日
+        聽日係禮拜日
   translations:
     en: |-
       Tomorrow is Sunday.
@@ -200,7 +212,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我禮拜三去。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 禮拜三, sense: 禮拜, morphs: [{surface: 禮拜, kc: 'sense:禮拜'}, {surface: 三, kc: 'sense:三'}], readings: {jyutping: lai5 baai3 saam1}}, {surface: 去, sense: 去, readings: {jyutping: heoi3}}]
-      reverse: (我(禮拜|星期)三|(禮拜|星期)三我)去
+      reverse: |-
+        (我(禮拜|星期)三|(禮拜|星期)三我)去
+        我禮拜三會去
   translations:
     en: |-
       I('m| am) going on Wednesday.
@@ -211,7 +225,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我朝早飲咖啡。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 朝早, sense: 朝早, readings: {jyutping: ziu1 zou2}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
-      reverse: (我朝早|朝早我)飲咖啡
+      reverse: |-
+        (我朝早|朝早我)飲咖啡
+        我朝頭早飲咖啡
   translations:
     en: |-
       I (drink|have) coffee in the morning.
@@ -222,7 +238,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我七點起身。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
-      reverse: 我七點(|鐘)起身
+      reverse: |-
+        我七點(|鐘)起身
+        我七點起床
   translations:
     en: I (get|wake) up at (seven|7)[ o'clock].
 - id: s.u06.17
@@ -231,7 +249,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我每日七點起身。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 起身, sense: 起身, readings: {jyutping: hei2 san1}}]
-      reverse: (我每日|每日我)七點(|鐘)起身
+      reverse: |-
+        (我每日|每日我)七點(|鐘)起身
+        我日日七點起身
   translations:
     en: |-
       I (get|wake) up at (seven|7)[ o'clock] every day.
@@ -242,7 +262,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我每日食早餐。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 每日, sense: 每日, readings: {jyutping: mui5 jat6}}, {surface: 食, sense: 食, readings: {jyutping: sik6}}, {surface: 早餐, sense: 早餐, readings: {jyutping: zou2 caan1}}]
-      reverse: (我每日|每日我)食早餐
+      reverse: |-
+        (我每日|每日我)食早餐
+        我日日食早餐
   translations:
     en: |-
       I (eat|have) breakfast every day.
@@ -253,7 +275,10 @@ sentences:
     yue-Hant-HK/standard:
       text: 我十一點瞓覺。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 十一, morphs: [{surface: 十, kc: 'sense:十'}, {surface: 一, kc: 'sense:一'}], readings: {jyutping: sap6 jat1}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}]
-      reverse: 我十一點(|鐘)(瞓覺|訓覺)
+      reverse: |-
+        我十一點(|鐘)(瞓覺|訓覺)
+        我十一點去瞓覺
+        我十一點瞓
   translations:
     en: I (go to bed|go to sleep) at (eleven|11)[ o'clock].
 - id: s.u06.20
@@ -262,7 +287,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 夜晚我唔飲咖啡。
       tokens: [{surface: 夜晚, sense: 夜晚, readings: {jyutping: je6 maan5}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 飲, sense: 飲, readings: {jyutping: jam2}}, {surface: 咖啡, sense: 咖啡, readings: {jyutping: gaa3 fe1}}]
-      reverse: (夜晚我|我夜晚)唔飲咖啡
+      reverse: |-
+        (夜晚我|我夜晚)唔飲咖啡
+        晚黑我唔飲咖啡
   translations:
     en: |-
       I (don't|do not) drink coffee (at night|in the evening|in the evenings).
@@ -276,10 +303,12 @@ sentences:
       reverse: |-
         佢好早起身
         佢起身好早
+        佢好早起床
   translations:
     en: |-
       (She|He) gets up (very|really) early.
       They get up (very|really) early.
+      She wakes up very early.
 - id: s.u06.22
   node: yue.night
   persons: {addressee: sg}
@@ -287,7 +316,10 @@ sentences:
     yue-Hant-HK/standard:
       text: 你幾點瞓覺呀？
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 幾點, sense: 幾點, readings: {jyutping: gei2 dim2}}, {surface: 瞓覺, sense: 瞓覺, readings: {jyutping: fan3 gaau3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 你幾點(|鐘)(瞓覺|訓覺)[呀]
+      reverse: |-
+        你幾點(|鐘)(瞓覺|訓覺)[呀]
+        你幾點瞓呀
+        你幾點去瞓覺呀
   translations:
     en: What time do you go to (bed|sleep)?
 - id: s.u06.23
@@ -308,7 +340,9 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 六, sense: 六, readings: {jyutping: luk6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 放工, sense: 放工, readings: {jyutping: fong3 gung1}}]
       reverse: 我六點(|鐘)放工
   translations:
-    en: I (finish|get off) work at (six|6)[ o'clock].
+    en: |-
+      I (finish|get off) work at (six|6)[ o'clock].
+      I leave work at six.
 - id: s.u06.25
   node: yue.work-day
   forms:
@@ -321,6 +355,7 @@ sentences:
       I('m| am) not free today.
       I('m| am) busy today.
       Today I('m| am) (not free|busy).
+      I don't have time today.
 - id: s.u06.26
   node: yue.work-day
   persons: {addressee: sg}
@@ -333,7 +368,10 @@ sentences:
         (你聽日|聽日你)得唔得閒[呀]
         你聽日得閒嗎
   translations:
-    en: Are you free tomorrow?
+    en: |-
+      Are you free tomorrow?
+      Will you be free tomorrow?
+      Do you have time tomorrow?
 - id: s.u06.27
   node: yue.work-day
   forms:
@@ -382,7 +420,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 聽日見！
       tokens: [{surface: 聽日, sense: 聽日, readings: {jyutping: ting1 jat6}}, {surface: 見, sense: 見, readings: {jyutping: gin3}}]
-      reverse: 聽日見
+      reverse: |-
+        聽日見
+        聽日再見
   translations:
     en: See you tomorrow!
 - id: s.u06.32
@@ -414,6 +454,7 @@ sentences:
       reverse: |-
         七點(|鐘)喺中環(等|見)啦
         我(哋|地)七點(|鐘)喺中環(等|見)啦
+        不如七點喺中環等啦
   translations:
     en: |-
       Let's meet in Central at (seven|7)[ o'clock].
@@ -433,7 +474,10 @@ sentences:
         (你(哋|地)聽日|聽日你(哋|地))得唔得閒[呀]
         你(哋|地)聽日得閒嗎
   translations:
-    en: Are you free tomorrow?
+    en: |-
+      Are you free tomorrow?
+      Are you all free tomorrow?
+      Will you be free tomorrow?
 - id: s.u06.36
   node: yue.meet
   persons: {addressee: pl}
@@ -447,6 +491,8 @@ sentences:
     en: |-
       I('ll| will) wait for you.
       I('m| am) waiting for you.
+      I'll wait for you all.
+      I'll wait for you guys.
 stories:
 - id: yue.story.free-tomorrow
   node: yue.time-story

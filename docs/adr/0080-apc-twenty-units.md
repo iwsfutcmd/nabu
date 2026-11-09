@@ -67,7 +67,7 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
 | Unit | Theme | Grammar (Kline chapter) |
 |---|---|---|
 | u11-people | friends and neighbours | huwwe, hiyye, henne; -on (their); by-…-o, -o (they); seken, lebnene (3, 7, 12, 13, 17) |
-| u12-trip | up to the village | ra7 + subjunctive; the subjunctive for every person; el jey; the dual (14, 22, 4) |
+| u12-trip | up to the village | ra7 + the imperfect (the verb without b-), every person; el jey; the dual (14, 22, 4) |
 | u13-health | I don't feel well | fi- + ending (can), lezem (must), ma lezem; a7san (15, 3) |
 | u14-phone | call me! | object endings -ni, -ak, -ik, -o, -a; -li (to me) (7, 8) |
 | u15-shopping | at the clothes shop | colours and their feminines; comparatives with men (3) |
@@ -86,10 +86,14 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
     `fi.can` beside `fi`, `men.than`, `ba3d.still`, `jem3a.uni`.
   - Patterns that are not one word are `construction:` KCs on their sentences: `used-to`,
     `was-doing`, `shu-excl`.
+  - The verb without b- (badna nru7, ra7 tru7) is Kline's imperfect (ch. 22). It is a
+    subjunctive only in some uses (after 7atta, ta, la-). Its KCs keep the ids they had,
+    `form:subj-1pl` and the like, because learners' cards are keyed on them.
 - **Persons** ([ADR 0075](0075-persons-coverage.md)). The new units tag:
-  - 46 sentences to a man, 33 to a woman and 19 to several people;
+  - 47 sentences to a man, 33 to a woman and 19 to several people;
   - a man speaking in 14, a woman in 13.
-  - Across the course: 102 / 54 / 48 and 25 / 21.
+  - Across the course: 103 / 54 / 48 and 25 / 21, and one to one person (s.day.24: بتحكي is a
+    man's and a woman's).
 - **Drafts.** Everything new is an LLM draft (`llm:claude@<hash>`, status draft) and waits for a
   native speaker, starting with courses/REVIEW.md (apc 13).
 
@@ -103,9 +107,11 @@ do (ch. 2). The course had written them phonetically, ـو / ـا (بيّو, إ�
   round-trip check holds back the doubtful clips, as before. Six older clips were made again
   (s.like.18, s.like.33, s.past.14, the ken and reje3 word cards, a line of the u07 story):
   the fixes above changed what they read.
-  - The ـه / ـها spelling touches 37 clips. Six of them a listener had checked: they stay, and
-    the voice reads those items from the spelling they were checked in (`spoken` in course.yaml).
-    The 31 others were made again; the round-trip check holds back 9 of them, as it did before.
+  - The ـه / ـها spelling made 37 clips again, every item with the endings. The round-trip check
+    holds back 9 of them (10 before).
+  - Six of the 37 a listener had checked (s.fam.15–19, s.like.16). They are drafts again. A
+    voice's `spoken` could have kept the old takes, but it ties an item to one voice, and an
+    unchecked item's voice can change (ADR 0078); `nabu audio generate` then refuses.
   - A phoneme recognizer run on the old and new clips heard the same -o and -a endings. None says
     the h of ـها. Two old clips that said -o for -a (عِنْدا, بَعْدا) now say -a.
 - **Open for the reviewer:** the damma before ـه; ج as a sun letter in the older vowel marks;

@@ -67,7 +67,9 @@ sentences:
     fa-Arab/standard:
       text: ساعتِ ده و نیم است.
       tokens: [{surface: ساعتِ, sense: saat}, {surface: ده, sense: dah}, {surface: و, sense: va}, {surface: نیم, sense: nim}, {surface: است, sense: budan}]
-      reverse: ساعت ده و (نیم است|نیمه)
+      reverse: |-
+        ساعت ده و (نیم است|نیمه)
+        ساعت ده و سی دقیقه است
   translations:
     en: |-
       It('s| is) half past (ten|10).
@@ -80,7 +82,9 @@ sentences:
     fa-Arab/standard:
       text: الان ساعتِ سه است.
       tokens: [{surface: الان, sense: alan}, {surface: ساعتِ, sense: saat}, {surface: سه, sense: se}, {surface: است, sense: budan}]
-      reverse: (الان ساعت|ساعت الان) سه است
+      reverse: |-
+        (الان ساعت|ساعت الان) سه است
+        حالا ساعت سه است
   translations:
     en: |-
       It('s| is) (three|3) [o'clock] now.
@@ -92,9 +96,13 @@ sentences:
     fa-Arab/standard:
       text: کلاس ساعتِ هشت است.
       tokens: [{surface: کلاس, sense: kelas}, {surface: ساعتِ, sense: saat}, {surface: هشت, sense: hasht}, {surface: است, sense: budan}]
-      reverse: کلاس ساعت هشت است
+      reverse: |-
+        کلاس ساعت هشت است
+        کلاس ساعت هشته
   translations:
-    en: (The|Our) class is at (eight|8) [o'clock].
+    en: |-
+      (The|Our) class is at (eight|8) [o'clock].
+      Class is at eight.
 - id: s.time.6
   node: fa.time.clock
   forms:
@@ -103,7 +111,9 @@ sentences:
       tokens: [{surface: کلاس, sense: kelas}, {surface: پنجاه, sense: panjah}, {surface: دقیقه, sense: daghighe}, {surface: است, sense: budan}]
       reverse: کلاس پنجاه دقیقه است
   translations:
-    en: (The|Our) class is (fifty|50) minutes [long].
+    en: |-
+      (The|Our) class is (fifty|50) minutes [long].
+      Class is fifty minutes long.
 - id: s.time.7
   node: fa.time.today
   constructions: ['construction:ezafe']
@@ -111,7 +121,7 @@ sentences:
     fa-Arab/standard:
       text: "ساعتِ چند می\u200cآیی؟"
       tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیی", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: "[تو] ساعت چند می\u200cآیی\n[شما] ساعت چند می\u200cآیید"
+      reverse: "[تو] ساعت چند می\u200Cآیی\n[شما] ساعت چند می\u200Cآیید\nتو چه ساعتی می\u200Cآیی"
   translations:
     en: |-
       (What time|When) are you coming?
@@ -130,13 +140,14 @@ sentences:
       I('m| am) busy today.
       Today I('m| am) busy.
       I have (work|things to do) today.
+      I've got things to do today.
 - id: s.time.9
   node: fa.time.today
   forms:
     fa-Arab/standard:
       text: "فردا می\u200cآیم."
       tokens: [{surface: فردا, sense: farda}, {surface: "می\u200cآیم", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] فردا می\u200cآیم"
+      reverse: "[من] فردا می\u200Cآیم\nفردا من می\u200Cآیم\nمن فردا خواهم آمد"
   translations:
     en: |-
       I('ll| will) come tomorrow.
@@ -151,17 +162,24 @@ sentences:
       reverse: |-
         [شما] امروز وقت دارید
         [تو] امروز وقت داری
+        آیا امروز وقت دارید
+        امروز شما وقت دارید
   translations:
     en: |-
       Do you have time today?
       Are you free today?
+      Have you got time today?
 - id: s.time.11
   node: fa.time.today
   forms:
     fa-Arab/standard:
       text: نه، امروز وقت ندارم، اما فردا وقت دارم.
       tokens: [{surface: نه, sense: na, vocalized: نَه}, {surface: امروز, sense: emruz}, {surface: وقت, sense: vaght}, {surface: ندارم, sense: dashtan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}, {surface: اما, sense: amma}, {surface: فردا, sense: farda}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: نه [من] امروز وقت ندارم (اما|ولی) فردا وقت دارم
+      reverse: |-
+        نه [من] امروز وقت ندارم (اما|ولی) فردا وقت دارم
+        خیر امروز وقت ندارم اما فردا وقت دارم
+        نه امروز وقت ندارم اما فردا دارم
+        نه امروز من وقت ندارم ولی فردا وقت دارم
   translations:
     en: |-
       No, I (don't|do not) have time today, but I (do|have time) tomorrow.
@@ -172,16 +190,18 @@ sentences:
     fa-Arab/standard:
       text: "ظهر ناهار می\u200cخوریم."
       tokens: [{surface: ظهر, sense: zohr}, {surface: ناهار, sense: nahar}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] ظهر (ناهار|نهار) می\u200cخوریم"
+      reverse: "[ما] ظهر (ناهار|نهار) می\u200Cخوریم\nظهر ما ناهار می\u200Cخوریم"
   translations:
-    en: We (have|eat) lunch at noon.
+    en: |-
+      We (have|eat) lunch at noon.
+      We have lunch at midday.
 - id: s.time.13
   node: fa.time.parts
   forms:
     fa-Arab/standard:
       text: "عصر چای می\u200cخوریم."
       tokens: [{surface: عصر, sense: asr}, {surface: چای, sense: chay}, {surface: "می\u200cخوریم", sense: khordan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: خور, kc: 'sense:khordan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] عصر چای می\u200cخوریم"
+      reverse: "[ما] عصر چای می\u200Cخوریم\nعصر ما چای می\u200Cخوریم\nما عصر چای می\u200Cنوشیم"
   translations:
     en: We (drink|have) tea in the [late] afternoon.
 - id: s.time.14
@@ -206,6 +226,7 @@ sentences:
     en: |-
       Today is Saturday.
       It('s| is) Saturday today.
+      Today's Saturday.
 - id: s.time.16
   node: fa.time.parts
   forms:
@@ -228,13 +249,14 @@ sentences:
     en: |-
       Tomorrow is Sunday.
       It('s| is) Sunday tomorrow.
+      Tomorrow's Sunday.
 - id: s.time.18
   node: fa.time.week
   forms:
     fa-Arab/standard:
       text: دوشنبه کلاس داریم.
       tokens: [{surface: دوشنبه, sense: doshanbe}, {surface: کلاس, sense: kelas}, {surface: داریم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: یم, kc: 'form:1pl-im'}]}]
-      reverse: "[ما] (دوشنبه|دو\u200cشنبه) کلاس داریم"
+      reverse: "[ما] (دوشنبه|دو\u200Cشنبه) کلاس داریم\nدوشنبه ما کلاس داریم"
   translations:
     en: |-
       We have (a class|class|classes) on Monday.
@@ -245,23 +267,25 @@ sentences:
     fa-Arab/standard:
       text: "سه\u200cشنبه به دانشگاه می\u200cروم."
       tokens: [{surface: "سه\u200cشنبه", sense: seshanbe}, {surface: به, sense: be}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] سه\u200cشنبه [به] دانشگاه می\u200cروم"
+      reverse: "[من] سه\u200Cشنبه [به] دانشگاه می\u200Cروم\nسه\u200Cشنبه من به دانشگاه می\u200Cروم"
   translations:
     en: |-
       (On Tuesday|Tuesday) I('m going| am going| go) to [the] university.
       I('m going| am going| go) to [the] university on Tuesday.
+      I'll go to university on Tuesday.
 - id: s.time.20
   node: fa.time.week
   forms:
     fa-Arab/standard:
       text: چهارشنبه وقت دارم.
       tokens: [{surface: چهارشنبه, sense: chaharshanbe}, {surface: وقت, sense: vaght}, {surface: دارم, sense: dashtan, morphs: [{surface: دار, kc: 'sense:dashtan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (چهارشنبه|چهار\u200cشنبه) وقت دارم"
+      reverse: "[من] (چهارشنبه|چهار\u200Cشنبه) وقت دارم\nچهارشنبه من وقت دارم"
   translations:
     en: |-
       I have time on Wednesday.
       I('m| am) free on Wednesday.
       On Wednesday I (have time|am free).
+      I've got time on Wednesday.
 - id: s.time.21
   node: fa.time.week
   constructions: ['construction:ezafe']
@@ -269,18 +293,19 @@ sentences:
     fa-Arab/standard:
       text: "پنجشنبه به خانهٔ مادرم می\u200cروم."
       tokens: [{surface: پنجشنبه, sense: panjshanbe}, {surface: به, sense: be}, {surface: خانهٔ, sense: khane}, {surface: مادرم, sense: madar, morphs: [{surface: مادر, kc: 'sense:madar'}, {surface: م, kc: 'form:poss-1sg'}]}, {surface: "می\u200cروم", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (پنجشنبه|پنج\u200cشنبه) [به] خان(هٔ|ه\u200cی|ه) (مادرم|مادر من) می\u200cروم"
+      reverse: "[من] (پنجشنبه|پنج\u200Cشنبه) [به] خان(هٔ|ه\u200Cی|ه) (مادرم|مادر من) می\u200Cروم\nپنجشنبه من به خانه مادرم می\u200Cروم"
   translations:
     en: |-
       On Thursday I('m going| am going| go) to my (mother's|mom's|mum's) [house].
       I('m going| am going| go) to my (mother's|mom's|mum's) [house] on Thursday.
+      On Thursday I'll go to my mother's.
 - id: s.time.22
   node: fa.time.weekend
   forms:
     fa-Arab/standard:
       text: "جمعه کار نمی\u200cکنم."
       tokens: [{surface: جمعه, sense: jome}, {surface: کار, sense: kar}, {surface: "نمی\u200cکنم", sense: kardan, morphs: [{surface: ن, kc: 'form:neg-na'}, {surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] (جمعه|جمعه\u200cها) کار نمی\u200cکنم"
+      reverse: "[من] (جمعه|جمعه\u200Cها) کار نمی\u200Cکنم\nجمعه من کار نمی\u200Cکنم"
   translations:
     en: |-
       I (don't|do not) work on Friday[s].
@@ -291,7 +316,9 @@ sentences:
     fa-Arab/standard:
       text: جمعه تعطیل است.
       tokens: [{surface: جمعه, sense: jome}, {surface: تعطیل, sense: tatil}, {surface: است, sense: budan}]
-      reverse: جمعه تعطیل است
+      reverse: |-
+        جمعه تعطیل است
+        جمعه تعطیله
   translations:
     en: |-
       Friday is a (holiday|day off).
@@ -304,7 +331,7 @@ sentences:
     fa-Arab/standard:
       text: "علی از دانشگاه می\u200cآید."
       tokens: [{surface: علی, sense: ali}, {surface: از, sense: az}, {surface: دانشگاه, sense: daneshgah}, {surface: "می\u200cآید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: د, kc: 'form:3sg-ad'}]}]
-      reverse: "علی از دانشگاه می\u200cآید"
+      reverse: "علی از دانشگاه می\u200Cآید\nعلی دارد از دانشگاه می\u200Cآید"
   translations:
     en: Ali('s coming| is coming| comes) from [the] university.
 - id: s.time.25
@@ -313,7 +340,7 @@ sentences:
     fa-Arab/standard:
       text: "از شنبه تا چهارشنبه کار می\u200cکنم."
       tokens: [{surface: از, sense: az}, {surface: شنبه, sense: shanbe}, {surface: تا, sense: ta}, {surface: چهارشنبه, sense: chaharshanbe}, {surface: کار, sense: kar}, {surface: "می\u200cکنم", sense: kardan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: کن, kc: 'sense:kardan'}, {surface: م, kc: 'form:1sg-am'}]}]
-      reverse: "[من] از شنبه تا چهارشنبه کار می\u200cکنم"
+      reverse: "[من] از شنبه تا چهارشنبه کار می\u200Cکنم\nاز شنبه تا چهارشنبه من کار می\u200Cکنم"
   translations:
     en: I work from Saturday (to|until|till|through) Wednesday.
 - id: s.time.26
@@ -323,11 +350,12 @@ sentences:
     fa-Arab/standard:
       text: "آخرِ هفته کجا می\u200cروی؟"
       tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروی", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو, kc: 'sense:raftan'}, {surface: ی, kc: 'form:2sg-i'}]}]
-      reverse: "[تو] آخر هفته کجا می\u200cروی\n[شما] آخر هفته کجا می\u200cروید"
+      reverse: "[تو] آخر هفته کجا می\u200Cروی\n[شما] آخر هفته کجا می\u200Cروید\nآخر هفته تو کجا می\u200Cروی\nآخر هفته شما کجا می\u200Cروید"
   translations:
     en: |-
       Where are you going (at the|on the|this) weekend?
       Where do you go (at|on) the weekend?
+      Where will you go at the weekend?
 - id: s.time.27
   node: fa.time.plans
   constructions: ['construction:ezafe']
@@ -354,7 +382,9 @@ sentences:
     fa-Arab/standard:
       text: ساعتِ چهار خوب است؟
       tokens: [{surface: ساعتِ, sense: saat}, {surface: چهار, sense: chahar}, {surface: خوب, sense: khub}, {surface: است, sense: budan}]
-      reverse: ساعت چهار (خوب است|خوبه)
+      reverse: |-
+        ساعت چهار (خوب است|خوبه)
+        آیا ساعت چهار خوب است
   translations:
     en: |-
       Is (four|4) [o'clock] (OK|okay|good|fine)?
@@ -365,7 +395,9 @@ sentences:
     fa-Arab/standard:
       text: بله، خوب است. تا فردا!
       tokens: [{surface: بله, sense: bale}, {surface: خوب, sense: khub}, {surface: است, sense: budan}, {surface: تا, sense: ta}, {surface: فردا, sense: farda}]
-      reverse: بله (خوب است|خوبه) تا فردا
+      reverse: |-
+        بله (خوب است|خوبه) تا فردا
+        آره خوبه تا فردا
   translations:
     en: Yes, (that's|that is|it's|it is) (fine|good|OK|okay). See you tomorrow!
 - id: s.time.31
@@ -378,7 +410,7 @@ sentences:
       text: "ساعتِ چند می\u200cآیید؟"
       tokens: [{surface: ساعتِ, sense: saat}, {surface: چند, sense: chand}, {surface: "می\u200cآیید", sense: amadan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: آی, kc: 'sense:amadan'}, {surface: ید,
               kc: 'form:2pl-id'}]}]
-      reverse: "[شما] ساعت چند می\u200cآیید"
+      reverse: "[شما] ساعت چند می\u200Cآیید\nشما چه ساعتی می\u200Cآیید"
   translations:
     en: |-
       (What time|When) are you coming?
@@ -393,11 +425,12 @@ sentences:
       text: "آخرِ هفته کجا می\u200cروید؟"
       tokens: [{surface: آخرِ, sense: akhar}, {surface: هفته, sense: hafte}, {surface: کجا, sense: koja}, {surface: "می\u200cروید", sense: raftan, morphs: [{surface: "می\u200c", kc: 'form:mi-present'}, {surface: رو,
               kc: 'sense:raftan'}, {surface: ید, kc: 'form:2pl-id'}]}]
-      reverse: "[شما] آخر هفته کجا می\u200cروید"
+      reverse: "[شما] آخر هفته کجا می\u200Cروید\nآخر هفته شما کجا می\u200Cروید"
   translations:
     en: |-
       Where are you going (at the|on the|this) weekend?
       Where do you go (at|on) the weekend?
+      Where will you go at the weekend?
 stories:
 - id: fa.story.tomorrow
   node: fa.time.story

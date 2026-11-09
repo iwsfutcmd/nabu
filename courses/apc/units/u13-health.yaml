@@ -47,6 +47,7 @@ sentences:
     en: |-
       I('m| am) (sick|ill).
       I('m| am) not well.
+      I'm unwell.
 - id: s.health.2
   node: apc.health.sick
   register: colloquial
@@ -64,6 +65,7 @@ sentences:
     en: |-
       I('m| am) (sick|ill).
       I('m| am) not well.
+      I'm unwell.
 - id: s.health.3
   node: apc.health.sick
   register: colloquial
@@ -71,15 +73,20 @@ sentences:
     apc-Arab/standard:
       text: سامي مريض اليوم.
       tokens: [{surface: سامي, sense: sami}, {surface: مريض, sense: mrid}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
-      reverse: سامي مريض اليوم
+      reverse: |-
+        سامي مريض اليوم
+        اليوم سامي مريض
     apc-Latn/arabizi:
       text: Sami mrid el yom.
       tokens: [{surface: Sami, sense: sami}, {surface: mrid, sense: mrid}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: Sami (mrid|mareed|mreed) (el|l|il) (yom|youm)
+      reverse: |-
+        Sami (mrid|mareed|mreed) (el|l|il) (yom|youm)
+        el yom Sami mrid
   translations:
     en: |-
       Sami is (sick|ill) today.
       Sami's (sick|ill) today.
+      Today Sami is sick.
 - id: s.health.4
   node: apc.health.sick
   register: colloquial
@@ -158,11 +165,17 @@ sentences:
     apc-Arab/standard:
       text: معي وجع راس.
       tokens: [{surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
-      reverse: معي وجع راس
+      reverse: |-
+        معي وجع راس
+        عندي وجع راس
+        أنا معي وجع راس
     apc-Latn/arabizi:
       text: ma3i wja3 ras.
       tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
-      reverse: (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (ras|rass)
+      reverse: |-
+        (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (ras|rass)
+        3endi wja3 ras
+        ana ma3i wja3 ras
   translations:
     en: |-
       I have a headache.
@@ -174,11 +187,17 @@ sentences:
     apc-Arab/standard:
       text: معي وجع بطن.
       tokens: [{surface: معي, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: وجع, sense: wja3}, {surface: بطن, sense: batn}]
-      reverse: معي وجع بطن
+      reverse: |-
+        معي وجع بطن
+        عندي وجع بطن
+        أنا معي وجع بطن
     apc-Latn/arabizi:
       text: ma3i wja3 batn.
       tokens: [{surface: ma3i, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: wja3, sense: wja3}, {surface: batn, sense: batn}]
-      reverse: (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (batn|baten|batin)
+      reverse: |-
+        (ma3i|m3i|ma3e) (wja3|waja3|wje3|waje3) (batn|baten|batin)
+        3endi wja3 batn
+        ana ma3i wja3 batn
   translations:
     en: |-
       I have a stomach ache.
@@ -191,15 +210,21 @@ sentences:
     apc-Arab/standard:
       text: تيتا معها وجع راس.
       tokens: [{surface: تيتا, sense: teta}, {surface: معها, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
-      reverse: تيتا (معها|معا) وجع راس
+      reverse: |-
+        تيتا (معها|معا) وجع راس
+        تيتا عندها وجع راس
     apc-Latn/arabizi:
       text: teta ma3a wja3 ras.
       tokens: [{surface: teta, sense: teta}, {surface: ma3a, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: a, kc: 'form:poss-3fs'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
-      reverse: teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
+      reverse: |-
+        teta (ma3a|ma3ha) (wja3|waja3|wje3|waje3) (ras|rass)
+        teta 3enda wja3 ras
+        tayta ma3a wja3 ras
   translations:
     en: |-
       (Grandma|Granny) has a headache.
       (Grandma|Granny)('s| has) got a headache.
+      My grandma has a headache.
 - id: s.health.11
   node: apc.health.sick
   register: colloquial
@@ -208,11 +233,16 @@ sentences:
     apc-Arab/standard:
       text: معك وجع راس؟
       tokens: [{surface: معك, sense: ma3, morphs: [{surface: مع, kc: 'sense:ma3'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: وجع, sense: wja3}, {surface: راس, sense: ras}]
-      reverse: (معك|إنت معك) وجع راس
+      reverse: |-
+        (معك|إنت معك) وجع راس
+        عندك وجع راس
     apc-Latn/arabizi:
       text: ma3ak wja3 ras?
       tokens: [{surface: ma3ak, sense: ma3, morphs: [{surface: ma3, kc: 'sense:ma3'}, {surface: ak, kc: 'form:poss-2ms'}]}, {surface: wja3, sense: wja3}, {surface: ras, sense: ras}]
-      reverse: (ma3ak|m3ak) (wja3|waja3|wje3|waje3) (ras|rass)
+      reverse: |-
+        (ma3ak|m3ak) (wja3|waja3|wje3|waje3) (ras|rass)
+        enta ma3ak wja3 ras
+        3endak wja3 ras
   translations:
     en: |-
       Do you have a headache?
@@ -226,12 +256,16 @@ sentences:
       text: فيك تروح عالشغل؟
       tokens: [{surface: فيك, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: ك, kc: 'form:poss-2ms'}]}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالشغل, sense: shoghl,
           morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {surface: شغل, kc: 'sense:shoghl'}]}]
-      reverse: فيك تروح (عالشغل|ع الشغل|على الشغل)
+      reverse: |-
+        فيك تروح (عالشغل|ع الشغل|على الشغل)
+        إنت فيك تروح عالشغل
     apc-Latn/arabizi:
       text: fik tru7 3al shoghl?
       tokens: [{surface: fik, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: k, kc: 'form:poss-2ms'}]}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a,
           morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: shoghl, sense: shoghl}]
-      reverse: (fik|feek|fiyak) tru7 (3al|3a l|3a el) (shoghl|shoghol|shughl)
+      reverse: |-
+        (fik|feek|fiyak) tru7 (3al|3a l|3a el) (shoghl|shoghol|shughl)
+        enta fik tru7 3al shoghl
   translations:
     en: |-
       Can you go to work?
@@ -244,12 +278,16 @@ sentences:
       text: لأ، ما فيّي روح.
       tokens: [{surface: لأ, sense: la2}, {surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: روح, sense: ra7,
           form: 'form:subj-1sg'}]
-      reverse: لأ ما (فيّي|فيني) روح
+      reverse: |-
+        لأ ما (فيّي|فيني) روح
+        لأ أنا ما فيّي روح
     apc-Latn/arabizi:
       text: la2, ma fiyyi ru7.
       tokens: [{surface: la2, sense: la2}, {surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: ru7, sense: ra7,
           form: 'form:subj-1sg'}]
-      reverse: (la2|la) ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (ru7|ro7)
+      reverse: |-
+        (la2|la) ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (ru7|ro7)
+        la2 ana ma fiyyi ru7
   translations:
     en: |-
       No, I can't go.
@@ -262,11 +300,15 @@ sentences:
     apc-Arab/standard:
       text: ما فيّي نام.
       tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: نام, sense: nem, form: 'form:subj-1sg'}]
-      reverse: ما (فيّي|فيني) نام
+      reverse: |-
+        ما (فيّي|فيني) نام
+        أنا ما فيّي نام
     apc-Latn/arabizi:
       text: ma fiyyi nem.
       tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: nem, sense: nem, form: 'form:subj-1sg'}]
-      reverse: ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (nem|nam)
+      reverse: |-
+        ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (nem|nam)
+        ana ma fiyyi nem
   translations:
     en: |-
       I can't sleep.
@@ -279,11 +321,15 @@ sentences:
     apc-Arab/standard:
       text: فيكي تنامي؟
       tokens: [{surface: فيكي, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: كي, kc: 'form:poss-2fs'}]}, {surface: تنامي, sense: nem, form: 'form:subj-2fs'}]
-      reverse: فيكي تنامي
+      reverse: |-
+        فيكي تنامي
+        إنتي فيكي تنامي
     apc-Latn/arabizi:
       text: fiki tnemi?
       tokens: [{surface: fiki, sense: fi.can, morphs: [{surface: f, kc: 'sense:fi.can'}, {surface: iki, kc: 'form:poss-2fs'}]}, {surface: tnemi, sense: nem, form: 'form:subj-2fs'}]
-      reverse: (fiki|fike|fiyki|feeki) (tnemi|tneme|tnami)
+      reverse: |-
+        (fiki|fike|fiyki|feeki) (tnemi|tneme|tnami)
+        enti fiki tnemi
   translations:
     en: |-
       Can you sleep?
@@ -295,13 +341,19 @@ sentences:
     apc-Arab/standard:
       text: فيها تحكي إنكليزي.
       tokens: [{surface: فيها, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: ها, kc: 'form:poss-3fs'}]}, {surface: تحكي, sense: 7aka, form: 'form:subj-3fs'}, {surface: إنكليزي, sense: englize}]
-      reverse: (فيها|فيا) تحكي (إنكليزي|انجليزي)
+      reverse: |-
+        (فيها|فيا) تحكي (إنكليزي|انجليزي)
+        هي فيها تحكي إنكليزي
     apc-Latn/arabizi:
       text: fiya t7ki englize.
       tokens: [{surface: fiya, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: ya, kc: 'form:poss-3fs'}]}, {surface: t7ki, sense: 7aka, form: 'form:subj-3fs'}, {surface: englize, sense: englize}]
-      reverse: (fiya|fiyya|fiha|feeya) (t7ki|te7ke|ti7ki|t7ke) (englize|englizi|inglize|inglizi)
+      reverse: |-
+        (fiya|fiyya|fiha|feeya) (t7ki|te7ke|ti7ki|t7ke) (englize|englizi|inglize|inglizi)
+        hiyye fiya t7ki englize
   translations:
-    en: She can speak English.
+    en: |-
+      She can speak English.
+      She is able to speak English.
 - id: s.health.17
   node: apc.health.can
   register: colloquial
@@ -309,11 +361,17 @@ sentences:
     apc-Arab/standard:
       text: فينا نروح سوا.
       tokens: [{surface: فينا, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: نا, kc: 'form:poss-1pl'}]}, {surface: نروح, sense: ra7, form: 'form:subj-1pl'}, {surface: سوا, sense: sawa}]
-      reverse: فينا نروح سوا
+      reverse: |-
+        فينا نروح سوا
+        نحنا فينا نروح سوا
+        فينا نروح مع بعض
     apc-Latn/arabizi:
       text: fina nru7 sawa.
       tokens: [{surface: fina, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: na, kc: 'form:poss-1pl'}]}, {surface: nru7, sense: ra7, form: 'form:subj-1pl'}, {surface: sawa, sense: sawa}]
-      reverse: (fina|feena) (nru7|nro7) (sawa|sawe)
+      reverse: |-
+        (fina|feena) (nru7|nro7) (sawa|sawe)
+        ne7na fina nru7 sawa
+        fina nru7 ma3 ba3d
   translations:
     en: We can go together.
 - id: s.health.18
@@ -324,11 +382,15 @@ sentences:
     apc-Arab/standard:
       text: فيكن تاكلوا هون.
       tokens: [{surface: فيكن, sense: fi.can, morphs: [{surface: في, kc: 'sense:fi.can'}, {surface: كن, kc: 'form:poss-2pl'}]}, {surface: تاكلوا, sense: akal, form: 'form:subj-2pl'}, {surface: هون, sense: hon}]
-      reverse: فيكن (تاكلوا|تاكلو) هون
+      reverse: |-
+        فيكن (تاكلوا|تاكلو) هون
+        إنتو فيكن تاكلوا هون
     apc-Latn/arabizi:
       text: fikon teklo hon.
       tokens: [{surface: fikon, sense: fi.can, morphs: [{surface: fi, kc: 'sense:fi.can'}, {surface: kon, kc: 'form:poss-2pl'}]}, {surface: teklo, sense: akal, form: 'form:subj-2pl'}, {surface: hon, sense: hon}]
-      reverse: (fikon|fikun|feekon) (teklo|tekelo|taklo|teklu) (hon|hone|houn)
+      reverse: |-
+        (fikon|fikun|feekon) (teklo|tekelo|taklo|teklu) (hon|hone|houn)
+        ento fikon teklo hon
   translations:
     en: You can eat here.
 - id: s.health.19
@@ -338,11 +400,15 @@ sentences:
     apc-Arab/standard:
       text: أنا أحسن اليوم.
       tokens: [{surface: أنا, sense: ana}, {surface: أحسن, sense: a7san}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {surface: يوم, kc: 'sense:yom'}]}]
-      reverse: '[أنا] أحسن اليوم'
+      reverse: |-
+        [أنا] أحسن اليوم
+        اليوم أنا أحسن
     apc-Latn/arabizi:
       text: ana a7san el yom.
       tokens: [{surface: ana, sense: ana}, {surface: a7san, sense: a7san}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: '[ana] (a7san|ahsan|a7sen) (el|l|il) (yom|youm)'
+      reverse: |-
+        [ana] (a7san|ahsan|a7sen) (el|l|il) (yom|youm)
+        el yom ana a7san
   translations:
     en: |-
       I('m| am) (better|feeling better) today.
@@ -354,11 +420,11 @@ sentences:
     apc-Arab/standard:
       text: هيدا أحسن.
       tokens: [{surface: هيدا, sense: hayda}, {surface: أحسن, sense: a7san}]
-      reverse: هيدا أحسن
+      reverse: (هيدا|هيدي) أحسن
     apc-Latn/arabizi:
       text: hayda a7san.
       tokens: [{surface: hayda, sense: hayda}, {surface: a7san, sense: a7san}]
-      reverse: (hayda|haida|hyda) (a7san|ahsan|a7sen)
+      reverse: (hayda|haida|hyda|hayde|haide|haydi) (a7san|ahsan|a7sen)
   translations:
     en: (This|That)('s| is) better.
 - id: s.health.21
@@ -368,11 +434,17 @@ sentences:
     apc-Arab/standard:
       text: لازم روح.
       tokens: [{surface: لازم, sense: lezem}, {surface: روح, sense: ra7, form: 'form:subj-1sg'}]
-      reverse: لازم روح
+      reverse: |-
+        لازم روح
+        أنا لازم روح
+        لازم امشي
     apc-Latn/arabizi:
       text: lezem ru7.
       tokens: [{surface: lezem, sense: lezem}, {surface: ru7, sense: ra7, form: 'form:subj-1sg'}]
-      reverse: (lezem|lazem|lezim|lazim) (ru7|ro7)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (ru7|ro7)
+        ana lezem ru7
+        lezem emshi
   translations:
     en: |-
       I (have to|must|need to) go.
@@ -385,11 +457,15 @@ sentences:
     apc-Arab/standard:
       text: لازم ترتاح.
       tokens: [{surface: لازم, sense: lezem}, {surface: ترتاح, sense: rte7, form: 'form:subj-2ms'}]
-      reverse: لازم ترتاح
+      reverse: |-
+        لازم ترتاح
+        إنت لازم ترتاح
     apc-Latn/arabizi:
       text: lezem tirte7.
       tokens: [{surface: lezem, sense: lezem}, {surface: tirte7, sense: rte7, form: 'form:subj-2ms'}]
-      reverse: (lezem|lazem|lezim|lazim) (tirte7|tirta7|terte7)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (tirte7|tirta7|terte7)
+        enta lezem tirte7
   translations:
     en: |-
       You (have to|must|need to|should) rest.
@@ -402,11 +478,15 @@ sentences:
     apc-Arab/standard:
       text: لازم ترتاحي.
       tokens: [{surface: لازم, sense: lezem}, {surface: ترتاحي, sense: rte7, form: 'form:subj-2fs'}]
-      reverse: لازم ترتاحي
+      reverse: |-
+        لازم ترتاحي
+        إنتي لازم ترتاحي
     apc-Latn/arabizi:
       text: lezem tirte7i.
       tokens: [{surface: lezem, sense: lezem}, {surface: tirte7i, sense: rte7, form: 'form:subj-2fs'}]
-      reverse: (lezem|lazem|lezim|lazim) (tirte7i|tirta7i|terte7i|tirte7e)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (tirte7i|tirta7i|terte7i|tirte7e)
+        enti lezem tirte7i
   translations:
     en: |-
       You (have to|must|need to|should) rest.
@@ -419,11 +499,17 @@ sentences:
     apc-Arab/standard:
       text: لازم تشرب مي كتير.
       tokens: [{surface: لازم, sense: lezem}, {surface: تشرب, sense: shereb, form: 'form:subj-2ms'}, {surface: مي, sense: may}, {surface: كتير, sense: ktir}]
-      reverse: لازم تشرب (مي|مية) كتير
+      reverse: |-
+        لازم تشرب (مي|مية) كتير
+        لازم تشرب كتير مي
+        إنت لازم تشرب مي كتير
     apc-Latn/arabizi:
       text: lezem tishrab may ktir.
       tokens: [{surface: lezem, sense: lezem}, {surface: tishrab, sense: shereb, form: 'form:subj-2ms'}, {surface: may, sense: may}, {surface: ktir, sense: ktir}]
-      reverse: (lezem|lazem|lezim|lazim) (tishrab|teshrab|tishrob|tshrab) (may|mai|mayy|mayye) (ktir|kteer)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (tishrab|teshrab|tishrob|tshrab) (may|mai|mayy|mayye) (ktir|kteer)
+        lezem tishrab ktir may
+        enta lezem tishrab may ktir
   translations:
     en: You (have to|must|need to|should) drink (a lot of|lots of|plenty of) water.
 - id: s.health.25
@@ -435,11 +521,17 @@ sentences:
       text: ما لازم تشتغل اليوم.
       tokens: [{surface: ما, sense: ma}, {surface: لازم, sense: lezem}, {surface: تشتغل, sense: eshteghel, form: 'form:subj-2ms'}, {surface: اليوم, sense: yom, morphs: [{surface: ال, kc: 'sense:el'}, {
               surface: يوم, kc: 'sense:yom'}]}]
-      reverse: ما لازم تشتغل اليوم
+      reverse: |-
+        ما لازم تشتغل اليوم
+        اليوم ما لازم تشتغل
+        لازم ما تشتغل اليوم
     apc-Latn/arabizi:
       text: ma lezem tishteghel el yom.
       tokens: [{surface: ma, sense: ma}, {surface: lezem, sense: lezem}, {surface: tishteghel, sense: eshteghel, form: 'form:subj-2ms'}, {surface: el, sense: el}, {surface: yom, sense: yom}]
-      reverse: ma (lezem|lazem|lezim|lazim) (tishteghel|teshteghel|tishtighel) (el|l|il) (yom|youm)
+      reverse: |-
+        ma (lezem|lazem|lezim|lazim) (tishteghel|teshteghel|tishtighel) (el|l|il) (yom|youm)
+        el yom ma lezem tishteghel
+        lezem ma tishteghel el yom
   translations:
     en: |-
       You (shouldn't|should not) work today.
@@ -453,12 +545,18 @@ sentences:
       text: لازم تروح عالحكيم.
       tokens: [{surface: لازم, sense: lezem}, {surface: تروح, sense: ra7, form: 'form:subj-2ms'}, {surface: عالحكيم, sense: 7akim, morphs: [{surface: ع, kc: 'sense:3a'}, {surface: ال, kc: 'sense:el'}, {
               surface: حكيم, kc: 'sense:7akim'}]}]
-      reverse: لازم تروح (عالحكيم|ع الحكيم|على الحكيم)
+      reverse: |-
+        لازم تروح (عالحكيم|ع الحكيم|على الحكيم)
+        لازم تروح عالدكتور
+        إنت لازم تروح عالحكيم
     apc-Latn/arabizi:
       text: lezem tru7 3al 7akim.
       tokens: [{surface: lezem, sense: lezem}, {surface: tru7, sense: ra7, form: 'form:subj-2ms'}, {surface: 3al, sense: 3a, morphs: [{surface: 3a, kc: 'sense:3a'}, {surface: l, kc: 'sense:el'}]}, {surface: 7akim,
           sense: 7akim}]
-      reverse: (lezem|lazem|lezim|lazim) tru7 (3al|3a l|3a el) (7akim|hakim|7akeem|7kim)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) tru7 (3al|3a l|3a el) (7akim|hakim|7akeem|7kim)
+        lezem tru7 3al doktor
+        enta lezem tru7 3al 7akim
   translations:
     en: |-
       You (have to|must|need to|should) go to the doctor('s|).
@@ -470,11 +568,15 @@ sentences:
     apc-Arab/standard:
       text: وين الحكيم؟
       tokens: [{surface: وين, sense: wen}, {surface: الحكيم, sense: 7akim, morphs: [{surface: ال, kc: 'sense:el'}, {surface: حكيم, kc: 'sense:7akim'}]}]
-      reverse: وين الحكيم
+      reverse: |-
+        وين الحكيم
+        وين الدكتور
     apc-Latn/arabizi:
       text: wen el 7akim?
       tokens: [{surface: wen, sense: wen}, {surface: el, sense: el}, {surface: 7akim, sense: 7akim}]
-      reverse: (wen|wein) (el|l|il) (7akim|hakim|7akeem|7kim)
+      reverse: |-
+        (wen|wein) (el|l|il) (7akim|hakim|7akeem|7kim)
+        wen el doktor
   translations:
     en: Where('s| is) the doctor?
 - id: s.health.28
@@ -488,7 +590,9 @@ sentences:
     apc-Latn/arabizi:
       text: baddi dawa.
       tokens: [{surface: baddi, sense: baddi}, {surface: dawa, sense: dawa}]
-      reverse: (baddi|badde|badi) (dawa|dawe|dowa)
+      reverse: |-
+        (baddi|badde|badi) (dawa|dawe|dowa)
+        ana baddi dawa
   translations:
     en: |-
       I (need|want) (medicine|some medicine).
@@ -501,11 +605,15 @@ sentences:
     apc-Arab/standard:
       text: لازم تاخدي الدوا.
       tokens: [{surface: لازم, sense: lezem}, {surface: تاخدي, sense: akhad, form: 'form:subj-2fs'}, {surface: الدوا, sense: dawa, morphs: [{surface: ال, kc: 'sense:el'}, {surface: دوا, kc: 'sense:dawa'}]}]
-      reverse: لازم تاخدي الدوا
+      reverse: |-
+        لازم تاخدي الدوا
+        إنتي لازم تاخدي الدوا
     apc-Latn/arabizi:
       text: lezem tekhdi el dawa.
       tokens: [{surface: lezem, sense: lezem}, {surface: tekhdi, sense: akhad, form: 'form:subj-2fs'}, {surface: el, sense: el}, {surface: dawa, sense: dawa}]
-      reverse: (lezem|lazem|lezim|lazim) (tekhdi|tekhde|takhdi) (el|l|il) (dawa|dawe|dowa)
+      reverse: |-
+        (lezem|lazem|lezim|lazim) (tekhdi|tekhde|takhdi) (el|l|il) (dawa|dawe|dowa)
+        enti lezem tekhdi el dawa
   translations:
     en: |-
       You (have to|must|need to|should) take the medicine.
@@ -527,6 +635,8 @@ sentences:
     en: |-
       Get well soon!
       I hope you feel better!
+      Feel better!
+      Feel better soon!
 - id: s.health.31
   node: apc.health.must
   register: colloquial
@@ -535,15 +645,20 @@ sentences:
     apc-Arab/standard:
       text: سلامتك، مايا!
       tokens: [{surface: سلامتك, sense: salemtak, form: 'form:poss-2fs', vocalized: سَلامْتِك}, {surface: مايا, sense: maya}]
-      reverse: سلامتك مايا
+      reverse: |-
+        سلامتك مايا
+        مايا سلامتك
     apc-Latn/arabizi:
       text: salemtik, Maya!
       tokens: [{surface: salemtik, sense: salemtak, form: 'form:poss-2fs'}, {surface: Maya, sense: maya}]
-      reverse: (salemtik|salamtik|salemtek|salemtike) Maya
+      reverse: |-
+        (salemtik|salamtik|salemtek|salemtike) Maya
+        Maya salemtik
   translations:
     en: |-
       Get well soon, Maya!
       I hope you feel better, Maya!
+      Feel better, Maya!
 - id: s.health.32
   node: apc.health.must
   register: colloquial
@@ -561,6 +676,7 @@ sentences:
     en: |-
       Get well soon!
       I hope you feel better!
+      Feel better!
 - id: s.health.33
   node: apc.health.must
   register: colloquial
@@ -570,12 +686,18 @@ sentences:
       text: ما فيّي اشتغل، أنا مريضة.
       tokens: [{surface: ما, sense: ma}, {surface: فيّي, sense: fi.can, morphs: [{surface: فيّ, kc: 'sense:fi.can'}, {surface: ي, kc: 'form:poss-1sg'}]}, {surface: اشتغل, sense: eshteghel, form: 'form:subj-1sg'},
         {surface: أنا, sense: ana}, {surface: مريضة, sense: mrid, form: 'form:fem'}]
-      reverse: ما (فيّي|فيني) اشتغل أنا مريضة
+      reverse: |-
+        ما (فيّي|فيني) اشتغل أنا مريضة
+        ما فيّي اشتغل مريضة
+        أنا ما فيّي اشتغل أنا مريضة
     apc-Latn/arabizi:
       text: ma fiyyi eshteghel, ana mrida.
       tokens: [{surface: ma, sense: ma}, {surface: fiyyi, sense: fi.can, morphs: [{surface: fiyy, kc: 'sense:fi.can'}, {surface: i, kc: 'form:poss-1sg'}]}, {surface: eshteghel, sense: eshteghel, form: 'form:subj-1sg'},
         {surface: ana, sense: ana}, {surface: mrida, sense: mrid, form: 'form:fem'}]
-      reverse: ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (eshteghel|ishteghel|eshtighel) ana (mrida|mreeda|marida|mride)
+      reverse: |-
+        ma (fiyyi|fiyye|fiye|fiyi|fini|fine) (eshteghel|ishteghel|eshtighel) ana (mrida|mreeda|marida|mride)
+        ma fiyyi eshteghel mrida
+        ana ma fiyyi eshteghel ana mrida
   translations:
     en: |-
       I can't work, I('m| am) (sick|ill).

@@ -191,7 +191,7 @@ def test_a_reading_changes_one_value_and_nothing_else(courses: Path, core_cli: C
     }
     outcome = apply([row("yue", "s.6", shown, fix)], courses, core_cli)
     assert [a.row.item for a in outcome.applied] == ["s.6"]
-    assert outcome.applied[0].where == "courses/yue/units/intro.yaml:93"
+    assert outcome.applied[0].where == "courses/yue/units/intro.yaml:99"
     written(courses, outcome)
     after = unit(courses, "yue")
     token = "{surface: 呀, sense: 呀, readings: {jyutping: %s}}"

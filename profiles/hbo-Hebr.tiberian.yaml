@@ -1,0 +1,63 @@
+# Policies marked REVIEW are Claude's proposals awaiting Ben's linguistic sign-off.
+# Biblical Hebrew in Hebrew script with the Tiberian pointing (ADR 0082). Content is written pointed,
+# as the Masoretic text is (vowels, dagesh, shin and sin dots, maqaf, sof pasuq), without the
+# cantillation accents or meteg. "Vowel marks" off shows the consonantal text alone, as a scroll has it.
+# Learners type unpointed Hebrew; any points they do type are ignored, like Arabic harakat.
+id: hbo-Hebr/tiberian
+lang: hbo-Hebr
+exemplars: cldr:he
+# REVIEW: what CLDR 49's (Modern) Hebrew exemplars lack for the Masoretic text: sof pasuq, the verse end.
+exemplarsExtra: ["\u05c3"]
+segmentation: { content: hand-pinned, runtime: grapheme }
+normalize:
+  - nfc
+  # Cantillation accents, meteg, rafe, paseq and the upper and lower dots are not part of the pointing a
+  # learner writes: an answer copied from an accented text compares as its letters and points.
+  - remove: ["\u0591", "\u0592", "\u0593", "\u0594", "\u0595", "\u0596", "\u0597", "\u0598", "\u0599", "\u059a", "\u059b", "\u059c", "\u059d", "\u059e", "\u059f", "\u05a0", "\u05a1", "\u05a2", "\u05a3", "\u05a4", "\u05a5", "\u05a6", "\u05a7", "\u05a8", "\u05a9", "\u05aa", "\u05ab", "\u05ac", "\u05ad", "\u05ae", "\u05af", "\u05bd", "\u05bf", "\u05c0", "\u05c4", "\u05c5"]
+  # Maqaf: a learner may type it, a hyphen or a space. Qamats qatan and holam haser for vav, where an
+  # edition or a keyboard has them, are the qamets and holem the course writes.
+  - map: { "\u05be": " ", "-": " ", "\u05c7": "\u05b8", "\u05ba": "\u05b9" }
+  - punctuation: strip
+  - whitespace: collapse
+match:
+  case: none
+  # The points (vowels, shewa, dagesh, shin and sin dots) are not letters: an answer is graded by its consonants,
+  # with or without points. They are also what "Show vowel marks" hides and what a vocalize card asks for.
+  marks: { set: "[\u05b0-\u05b9\u05bb\u05bc\u05c1\u05c2]", policy: ignore }
+  typo:
+    model: keyboard
+    layout: cldr-kbd:he
+    maxRatio: 0.2
+    # REVIEW (erratum 46, ADR 0066): endings and pronouns a letter apart that mean different things. A slip that
+    # trades one for another at the end of a word (סוסו for סוסי, הוא for היא) is WRONG_WORD, not a typo.
+    # Members compare without points. Suffixes (Joüon-Muraoka § 61, 94, P1): -î my, -ḵā/-ēḵ your (also plene -ḵâ),
+    # -ô/-hû his, -āh her, -ēnû our, -ḵem your (pl.), -hem/-ām their. Perfect endings (§ 42), on perfects only
+    # (ADR 0084): none he, -â she, -tā/-t you (2ms and 2fs are one unpointed: ת, תה), -tî I, -û they, -tem/-ten you
+    # (pl.), -nû we. אתה/את stay one member: apart, a plene 2ms perfect (קראתה) would read as the pronoun.
+    contrasts:
+      - { id: pronoun, note: contrast-pronoun, members: [[אני, אנכי], [אתה, את], הוא, היא, [אנחנו, נחנו], אתם, [הם, המה], [הן, הנה]] }
+      - { id: person, note: contrast-person, forms: [form:qatal, form:weqatal], members: ["", ה, [ת, תה], תי, ו, תם, תן, נו] }
+      - { id: suffix, note: contrast-possessive, members: [י, [ך, כה], [ו, הו], ה, נו, כם, [הם, ם]] }
+      # REVIEW (ADR 0084): a verb's person prefix (Joüon-Muraoka § 44, P2), on verbs only (a noun's first letter stays
+      # a typo): א I, ת you/she, י he/they, נ we, after ו (wayyiqtol, weqatal). No prefix (the perfect, imperative,
+      # infinitive) and the ה of hiphil and hithpael perfects and imperatives are members too: ילך for נלך, יגיד for
+      # הגיד, שמר for ישמר change the sentence. Participles are out (their מ/נ is the stem's).
+      - { id: verb-prefix, note: contrast-prefix, at: start, after: [ו],
+          forms: [form:yiqtol, form:wayyiqtol, form:juss, form:coh, form:qatal, form:weqatal, form:impv, form:inf],
+          members: [א, ת, י, נ, "", ה] }
+      # REVIEW (ADR 0084): the prefix conjugation's endings (§ 44d-f): none, -î (you, to a woman), -û (they, you
+      # pl.), -nâ (they f., you f. pl.), with paragogic -ûn/-în and -n for -nâ as the same member. The cohortative and
+      # long imperative -â is no member: it changes no person.
+      - { id: verb-ending, note: contrast-person, forms: [form:yiqtol, form:wayyiqtol, form:juss, form:coh, form:impv],
+          members: ["", [י, ין], [ו, ון], [נה, ן]] }
+      # REVIEW (ADR 0084): agreement and number (§ 89-90): none, the feminine -â/-eṯ (one member: a participle takes
+      # either), the plurals -îm and -ôṯ, on words whose sense the course pins as feminine, participle or plural.
+      - { id: agreement, note: contrast-ending, forms: [form:f, form:ptc, form:pl], members: ["", [ה, ת], ים, ות] }
+annotations:
+  - { id: vocalized, kind: vocalization, toggle: true, default: "on" }   # quoted: YAML 1.1 reads bare on as true
+input:
+  keyboard: cldr-kbd:he
+layout: { vertical: none }
+# Pointed text is set in a serif face (Noto Serif Hebrew, OFL-1.1) a fifth larger than the text around it:
+# the points under the letters are small at the size of Latin text, and need the extra line height.
+fonts: { stack: [Noto Serif Hebrew], lineHeight: 2.1, scale: 1.2 }

@@ -3,10 +3,13 @@
 `nabu audio <course>` compiles the course, then for each sentence, word KC and story line (item
 "<story>#<step>") reads the course voice's orthography:
 - the voice reads the **pinned reading** when it has one (Jyutping for Cantonese), never raw
-  characters, so polyphones are said as the content says; otherwise the form's text,
-  punctuation included (it carries the intonation of questions and exclamations). A voice that
-  reads text but takes inline IPA (`pronounce`) gets IPA for every token whose spelling does
-  not settle its pinned reading, and the plain spelling for the rest;
+  characters, so polyphones are said as the content says. A reading in a phoneme scheme (the
+  Tiberian reading of Biblical Hebrew, ADR 0082) is said as eSpeak NG phonemes, never as
+  text, ending with the sentence's question mark or a full stop for its intonation. Otherwise
+  the form's text, punctuation included (it carries the intonation of questions and
+  exclamations). A voice that reads text but takes inline IPA (`pronounce`) gets IPA for
+  every token whose spelling does not settle its pinned reading, and the plain spelling for
+  the rest;
 - a voice with `vowelMarks` reads the text with the vowel marks the course's vocalization
   gives (ADR 0053, 0058); the round-trip check still compares with the text as written;
 - a voice with `finalStop` gets text with no final punctuation (word cards) ended with its
@@ -40,7 +43,7 @@ import regex
 import yaml
 
 from nabu import yamlio
-from nabu.audio import espeak, jyutping
+from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
     Clip,
     NavoiyProvider,
@@ -67,6 +70,19 @@ BITRATE = "48k"
 BATCH = 16
 #: Reading schemes `pronounce` can turn into IPA.
 IPA_SCHEMES = {"jyutping"}
+#: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
+#: Tiberian reading of Biblical Hebrew (ADR 0082), which no voice may read as Modern Hebrew text,
+#: Toki Pona's words in sitelen Lasina (ADR 0086), which no synthesizer has a voice for, and Attic
+#: Greek with its vowel lengths marked (ADR 0087), said as reconstructed, never as Modern Greek.
+PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "tiberian": tiberian.espeak,
+    "lasina": toki_pona.espeak,
+    "attic": attic.espeak,
+}
+#: The same schemes as IPA for a Piper voice (ADR 0087): its symbol table is eSpeak NG's IPA.
+PIPER_PHONEME_SCHEMES: dict[str, Callable[[str], str]] = {
+    "attic": attic.piper,
+}
 WORD_KINDS = {"word", "number"}
 
 
@@ -131,6 +147,23 @@ def pronounced(surface: str, reading: str, scheme: str) -> str:
     return surface if jyutping.settled(surface, reading) else f"/{jyutping.ipa(reading)}/"
 
 
+def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
+    """A pinned reading as the voice takes it: phonemes for a phoneme scheme (IPA for a Piper
+    voice, eSpeak NG's mnemonics otherwise), else as written."""
+    convert = (PIPER_PHONEME_SCHEMES if provider == "piper" else PHONEME_SCHEMES).get(scheme)
+    return reading if convert is None else convert(reading)
+
+
+def _final_mark(tokens: list[dict[str, Any]]) -> str:
+    """The end of a phoneme-scheme input: its question mark, else a full stop (intonation)."""
+    for token in reversed(tokens):
+        if token.get("kind") in WORD_KINDS:
+            return "."
+        if "?" in str(token["surface"]):
+            return "?"
+    return "."
+
+
 def _scheme(voice: AudioVoice) -> str | None:
     """The pinned reading scheme the voice depends on, if any."""
     return voice.reading if voice.reading != "text" else voice.pronounce
@@ -157,12 +190,16 @@ def _input_of(
             piece = token.get("readings", {}).get(voice.reading)
             if piece is None:
                 return None
+            piece = said(piece, voice.reading, voice.provider)
             if parts:
                 offset += 1
             spans.append(Span(i, offset, offset + len(piece)))
             parts.append(piece)
             offset += len(piece)
-        return (" ".join(parts), tuple(spans)) if parts else None
+        if not parts:
+            return None
+        end = _final_mark(tokens) if voice.reading in PHONEME_SCHEMES else ""
+        return (" ".join(parts) + end, tuple(spans))
     # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
         piece = str(token["surface"]) if written is None else written[i]
@@ -360,6 +397,15 @@ def plan(
                 w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
             )
             items.append(Item(s["id"], planned[0], planned[1], text))
+    # Story lines pin readings too: a word card may take its reading from one.
+    for unit in units:
+        for story in unit.get("stories", []):
+            for s in story["steps"]:
+                line = cast(dict[str, Any], s.get("line") or {})
+                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
+                for t in cast(list[dict[str, Any]], (form or {}).get("tokens", [])):
+                    if scheme is not None and scheme in t.get("readings", {}):
+                        readings.setdefault(t["surface"], t["readings"][scheme])
     for unit in units:
         for kc in unit.get("kcs", []):
             forms = kc.get("forms", {}).get(orth)
@@ -370,11 +416,18 @@ def plan(
             marked = "".join(t["surface"] for t in word) if word else str(forms[0])
             surface = "".join(kc_written) if kc_written is not None else marked
             reading = readings.get(surface, in_words.get(surface))
+            if reading is None and scheme == "attic":
+                # A Greek word card shows the word as cited, with an acute; in a sentence its
+                # last syllable's acute is a grave before the next word (καί, καὶ σύ): the same
+                # word, with the same reading.
+                reading = next(
+                    (attic.cited(r) for w, r in readings.items() if attic.cited(w) == surface), None
+                )
             if scheme is not None and reading is None:
                 skipped.append(kc["id"])
                 continue
             if voice.reading != "text":
-                piece = reading
+                piece = None if reading is None else said(reading, voice.reading, voice.provider)
             elif voice.pronounce is not None and reading is not None:
                 piece = pronounced(surface, reading, voice.pronounce)
             else:

@@ -147,6 +147,8 @@ sentences:
       Zhuangzi was someone (of|from) Song.
       Zhuangzi is (a man|a person|someone) (of|from) Song.
       Zhuangzi (was|is) from Song.
+      Zhuangzi was a native of Song.
+      Chuang Tzu was a man of Song.
 - id: s.07.2
   node: lzh.u07.song
   forms:
@@ -187,6 +189,8 @@ sentences:
       A man from Song (had|has) a field.
       Someone (of|from) Song (had|has) a field.
       The people of Song have fields.
+      The people of Song had fields.
+      A man of Song had fields.
 - id: s.07.5
   node: lzh.u07.song
   forms:
@@ -201,6 +205,7 @@ sentences:
       I plow the (field|fields).
       I till the (field|fields).
       I (am ploughing|am plowing|am tilling) the (field|fields).
+      I ploughed the field.
 - id: s.07.6
   node: lzh.u07.song
   forms:
@@ -220,6 +225,9 @@ sentences:
       There was someone (of|from) Song who (ploughed|plowed|tilled) (a|his|the) (field|fields).
       There was a farmer (of|from) Song who (ploughed|plowed|tilled) (a|his|the) (field|fields).
       A man of Song (ploughed|plowed|tilled) (a|his|the) (field|fields).
+      Among the people of Song there was one who ploughed a field.
+      There was a man of Song ploughing his field.
+      A man of Song was ploughing his field.
 - id: s.07.7
   node: lzh.u07.song
   forms:
@@ -232,6 +240,7 @@ sentences:
       There is someone in the field.
       There (is a man|is a person|are people) in the (field|fields).
       In the field there (is someone|is a man|are people).
+      There was someone in the field.
 - id: s.07.8
   node: lzh.u07.the-rabbit
   forms:
@@ -247,6 +256,7 @@ sentences:
       There are rabbits in the (field|fields).
       There are hares in the (field|fields).
       In the field there (is a rabbit|is a hare).
+      There was a rabbit in the field.
 - id: s.07.9
   node: lzh.u07.the-rabbit
   forms:
@@ -263,6 +273,7 @@ sentences:
       The rabbit runs away.
       The rabbit ran away.
       The hare (ran|runs|is running|ran off|runs away|ran away).
+      The rabbit fled.
 - id: s.07.10
   node: lzh.u07.the-rabbit
   forms:
@@ -274,6 +285,7 @@ sentences:
     en: |-
       The rabbit died.
       The (rabbit|hare) (dies|is dead|was dead).
+      The rabbit has died.
 - id: s.07.11
   node: lzh.u07.the-rabbit
   forms:
@@ -289,6 +301,7 @@ sentences:
       I have caught a (rabbit|hare).
       I have got a (rabbit|hare).
       I (get|catch) a (rabbit|hare).
+      I caught the rabbit.
 - id: s.07.12
   node: lzh.u07.the-rabbit
   forms:
@@ -301,6 +314,8 @@ sentences:
       All right.
       (It is|That is|It's|That's) (acceptable|all right|fine).
       Very well.
+      That will do.
+      Yes, you may.
 - id: s.07.13
   node: lzh.u07.the-rabbit
   forms:
@@ -318,6 +333,7 @@ sentences:
       It (will not|won't|cannot|can't) (do|be done).
       (It is|That is|It's|That's) not (acceptable|allowed|permitted).
       No, you may not.
+      You may not.
 - id: s.07.14
   node: lzh.u07.the-rabbit
   forms:
@@ -335,6 +351,7 @@ sentences:
       The hare (cannot|can't) be (caught|had|got).
       A hare (cannot|can't) be (caught|had|got).
       (Rabbits|Hares) (cannot|can't) be (caught|had).
+      The rabbit could not be caught.
 - id: s.07.15
   node: lzh.u07.the-rabbit
   forms:
@@ -348,6 +365,8 @@ sentences:
       The rabbit ran and then died.
       The rabbit ran off and died.
       The hare ran (and died|and then died|off and died).
+      The rabbit runs and dies.
+      The rabbit ran away and died.
 - id: s.07.16
   node: lzh.u07.waiting
   forms:
@@ -361,6 +380,7 @@ sentences:
       The king comes (again|back).
       The king came back.
       The king has come (again|back).
+      The king returned.
 - id: s.07.17
   node: lzh.u07.waiting
   forms:
@@ -372,12 +392,11 @@ sentences:
     en: |-
       He did not come again.
       He did not come back.
-      He did not came (again|back).
-      He didn't (come|came) (again|back).
-      He never (come|came) (again|back).
-      She (did not|didn't|never) (come|came) (again|back).
-      They (did not|didn't|never) (come|came) (again|back).
+      He didn't come (again|back).
+      (She|They) (did not|didn't) come (again|back).
+      (He|She|They) never came (again|back).
       (He|She) (does not|doesn't) come (again|back).
+      He did not return.
 - id: s.07.18
   node: lzh.u07.waiting
   forms:
@@ -393,6 +412,7 @@ sentences:
       I am waiting for it.
       I am waiting for them.
       I (wait|will wait|waited) for (him|her|it|them).
+      I await him.
 - id: s.07.19
   node: lzh.u07.waiting
   forms:
@@ -409,6 +429,7 @@ sentences:
       I watch over (it|him|her|them).
       I keep watch over (it|him|her|them).
       I('m| am) (guarding|watching over) (it|him|her|them).
+      I guarded it.
 - id: s.07.20
   node: lzh.u07.waiting
   forms:
@@ -428,7 +449,9 @@ sentences:
     lzh-Hant/standard:
       text: 守株待兔。
       tokens: [{surface: 守, sense: 守, readings: {pinyin: shǒu, jyutping: sau2, baxter: syuwX}}, {surface: 株, sense: 株, readings: {pinyin: zhū, jyutping: zyu1, baxter: trju}}, {surface: 待, sense: 待, readings: {pinyin: dài, jyutping: doi6, baxter: dojX}}, {surface: 兔, sense: 兔, readings: {pinyin: tù, jyutping: tou3, baxter: thuH}}]
-      reverse: 守株待兔
+      reverse: |-
+        守株待兔
+        守株而待兔
   translations:
     en: |-
       He watched the stump and waited for rabbits.
@@ -442,6 +465,10 @@ sentences:
       She (watched|guarded|kept watch over) the (stump|tree stump) (and waited|waiting) for (a rabbit|rabbits|a hare|hares).
       Watch the stump and wait for (rabbits|a rabbit|hares|a hare).
       Guard the stump and wait for (rabbits|a rabbit|hares|a hare).
+      Guarding the stump and waiting for rabbits.
+      Watching the stump and waiting for a rabbit.
+      They watched the stump and waited for rabbits.
+      He watches the stump and waits for rabbits.
 - id: s.07.22
   node: lzh.u07.waiting
   forms:
@@ -454,6 +481,7 @@ sentences:
       I caught another rabbit.
       I (got|caught) (a rabbit|a hare) again.
       I caught another hare.
+      I got another rabbit.
 - id: s.07.23
   node: lzh.u07.broke-its-neck
   forms:
@@ -470,6 +498,8 @@ sentences:
       A rabbit crashed into the (stump|tree stump).
       A hare (ran into|bumped into|ran and hit|crashed into) the (stump|tree stump).
       The (rabbit|hare) (ran into|bumped into|ran and hit|crashed into) the (stump|tree stump).
+      A rabbit ran and struck the stump.
+      A rabbit runs into the stump.
 - id: s.07.24
   node: lzh.u07.broke-its-neck
   forms:
@@ -483,6 +513,8 @@ sentences:
       The sword snapped.
       The sword is broken.
       The sword was broken.
+      The sword breaks.
+      The sword has broken.
 - id: s.07.25
   node: lzh.u07.broke-its-neck
   forms:
@@ -498,6 +530,7 @@ sentences:
       It snapped (its|his|her) neck and died.
       He (broke|snapped) (its|his|her) neck and died.
       She (broke|snapped) (its|his|her) neck and died.
+      Breaking its neck, it died.
 - id: s.07.26
   node: lzh.u07.broke-its-neck
   forms:
@@ -514,6 +547,7 @@ sentences:
       A rabbit crashed into the (stump|tree stump), (broke|snapped) its neck, and died.
       A hare (ran into|bumped into|crashed into) the (stump|tree stump), (broke|snapped) its neck, and died.
       The (rabbit|hare) (ran into|bumped into|crashed into) the (stump|tree stump), (broke|snapped) its neck, and died.
+      A rabbit ran and hit the stump, broke its neck and died.
 - id: s.07.27
   node: lzh.u07.broke-its-neck
   forms:
@@ -530,6 +564,8 @@ sentences:
       So she (watched|guarded|kept watch over) the (stump|tree stump).
       Thereupon (he|she) (watched|guarded|kept watch over) the (stump|tree stump).
       And so (he|she) (watched|guarded|kept watch over) the (stump|tree stump).
+      So they watched the stump.
+      Therefore he watched the stump.
 - id: s.07.28
   node: lzh.u07.broke-its-neck
   forms:
@@ -545,6 +581,8 @@ sentences:
       And so he came back.
       And so he comes (again|back).
       And so she (came|comes) (again|back).
+      Therefore he came again.
+      And so he returned.
 - id: s.07.29
   node: lzh.u07.laughed-at
   forms:
@@ -560,6 +598,8 @@ sentences:
       He let go of (his|her) sword.
       He dropped (his|her) sword.
       She (put down|laid down|let go of|dropped) (his|her) sword.
+      They put down their swords.
+      He put his sword down.
 - id: s.07.30
   node: lzh.u07.laughed-at
   forms:
@@ -576,6 +616,9 @@ sentences:
       He let go of (his|her) (plough|plow).
       He dropped (his|her) (plough|plow).
       She (put down|laid down|let go of|dropped) (his|her) (plough|plow).
+      He put his plough down.
+      They put down their ploughs.
+      He laid aside his plough.
 - id: s.07.31
   node: lzh.u07.laughed-at
   forms:
@@ -597,6 +640,9 @@ sentences:
       So she (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
       Thereupon (he|she) (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
       And so (he|she) (put down|laid down|let go of|dropped) (his|her) (plough|plow) and (watched|guarded|kept watch over) the (stump|tree stump).
+      So he put down his plough and kept watch by the stump.
+      Therefore he put down his plough and watched the stump.
+      So he laid aside his plough and watched the stump.
 - id: s.07.32
   node: lzh.u07.laughed-at
   forms:
@@ -613,6 +659,8 @@ sentences:
       He hoped to get (another rabbit|another hare|a rabbit again|a hare again).
       She hoped to (catch|get) (another rabbit|another hare|a rabbit again|a hare again).
       Hoping to (catch|get) (another rabbit|another hare|a rabbit again|a hare again).
+      They hoped to catch another rabbit.
+      He hoped he would catch another rabbit.
 - id: s.07.33
   node: lzh.u07.laughed-at
   forms:
@@ -625,6 +673,7 @@ sentences:
       A rabbit's body is small.
       (A rabbit|The rabbit|A hare|The hare) (has a small body|is small).
       (The rabbit's|A hare's|The hare's) body is small.
+      Rabbits have small bodies.
 - id: s.07.34
   node: lzh.u07.laughed-at
   forms:
@@ -653,6 +702,8 @@ sentences:
       He became laughed at by (people|others|everyone).
       She (was|is|became) laughed at by (people|others|everyone).
       (He|She) became a laughingstock.
+      They were laughed at by people.
+      He was ridiculed by others.
 - id: s.07.36
   node: lzh.u07.laughed-at
   forms:
@@ -665,10 +716,12 @@ sentences:
       He himself became the laughingstock of Song.
       He himself became the laughingstock of the state of Song.
       He himself became the laughingstock of all Song.
-      He herself became the laughingstock of (Song|the state of Song|all Song).
       He became the laughingstock of (Song|the state of Song|all Song).
-      She (himself |herself |)became the laughingstock of (Song|the state of Song|all Song).
-      (He|She) (himself |herself |)was laughed at by (the whole state of Song|the people of Song|all Song).
+      She (herself |)became the laughingstock of (Song|the state of Song|all Song).
+      He (himself |)was laughed at by (the whole state of Song|the people of Song|all Song).
+      She (herself |)was laughed at by (the whole state of Song|the people of Song|all Song).
+      He became a laughingstock in Song.
+      He himself became a laughingstock in the state of Song.
 - id: s.07.37
   node: lzh.u07.laughed-at
   forms:
@@ -685,6 +738,8 @@ sentences:
       No hare could be (caught|had) again, and (he|he himself) became the laughingstock of (Song|the state of Song).
       (The rabbit|Rabbits|The hare|Hares) could not be (caught|had) again, and (he|he himself) became the laughingstock of (Song|the state of Song).
       (He|She) never (caught|got) another (rabbit|hare), and became the laughingstock of (Song|the state of Song).
+      No rabbit could be caught again, and he was laughed at by the people of Song.
+      He could not catch another rabbit, and became the laughingstock of Song.
 stories:
 - id: lzh.story.waiting-for-rabbits
   node: lzh.u07.story

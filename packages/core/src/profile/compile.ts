@@ -74,7 +74,19 @@ export interface CompiledProfile {
 export interface CompiledContrast {
   readonly id: string;
   readonly note?: string | undefined;
+  /** Each member's spellings, keyed, as graphemes; an empty spelling is no affix. */
   readonly members: readonly (readonly (readonly string[])[])[];
+  /** Endings (stacking like suffixes) or prefixes. */
+  readonly at: "end" | "start";
+  /** For prefixes: proclitics that may come first (و), keyed, as graphemes. */
+  readonly after: readonly (readonly string[])[];
+  /** Only on words the grader is told are inflected (GradeOptions.inflected). */
+  readonly inflected: boolean;
+  /**
+   * Only on words the course pins as one of these forms, or a form that begins so
+   * (GradeOptions.forms): narrower than `inflected` (ADR 0084).
+   */
+  readonly forms?: readonly string[] | undefined;
 }
 
 export type ProfileError =
@@ -209,6 +221,10 @@ export const compileProfile = (profile: OrthographyProfile, data: ProfileData): 
         id: c.id,
         note: c.note,
         members: c.members.map((m) => (typeof m === "string" ? [m] : m).map((spelling) => graphemes(key(normalize(spelling))))),
+        at: c.at ?? "end",
+        after: (c.after ?? []).map((spelling) => graphemes(key(normalize(spelling)))),
+        inflected: c.inflected === true,
+        forms: c.forms,
       })),
     };
   }

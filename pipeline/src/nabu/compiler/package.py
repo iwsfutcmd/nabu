@@ -20,6 +20,7 @@ import yaml
 
 from nabu.analyzers import Analyzer, versions
 from nabu.compiler.build import Compiled
+from nabu.compiler.script import romanized_orthographies
 from nabu.compiler.stories import line_item
 from nabu.drills.rbnf import icu_version
 from nabu.paths import I18N_GENERATED, PROFILES
@@ -165,7 +166,8 @@ def write_bundle(
         units.append({"id": unit["id"], "file": rel, "assets": unit_assets(unit, compiled)})
 
     seen: set[str] = set()
-    for orth in [*compiled.orthographies, *compiled.support]:
+    latin = romanized_orthographies(compiled.course, profiles)
+    for orth in [*compiled.orthographies, *compiled.support, *latin]:
         profile = profiles[orth]
         put(
             "profile",

@@ -102,7 +102,9 @@ sentences:
     es-Latn/standard:
       text: Somos cinco.
       tokens: [{surface: Somos, sense: ser, form: 'form:pres-1p'}, {surface: cinco, sense: cinco}]
-      reverse: '[Nosotros] somos cinco'
+      reverse: |-
+        [Nosotros] somos cinco
+        Nosotras somos cinco.
   translations:
     en: |-
       There are five of us.
@@ -146,12 +148,14 @@ sentences:
       reverse: |-
         [Nosotros] somos nueve con (abuela|la abuela)
         Con (abuela|la abuela) somos nueve
+        Nosotras somos nueve con abuela.
   translations:
     en: |-
       There are nine of us with (Grandma|Grandmother|Granny).
       There are nine of us (counting|including) (Grandma|Grandmother|Granny).
       (With|Counting|Including) (Grandma|Grandmother|Granny), there are nine of us.
       (We're|We are) nine with (Grandma|Grandmother|Granny).
+      There are nine of us with my grandma.
 - id: s.u05.11
   node: es.u05.seis-diez
   forms:
@@ -168,10 +172,13 @@ sentences:
     es-Latn/standard:
       text: Abuela, ¿cuántos cafecitos tú tomas?
       tokens: [{surface: Abuela, sense: abuela}, {surface: cuántos, sense: cuánto}, {surface: cafecitos, sense: cafecito}, {surface: tú, sense: tú}, {surface: tomas, sense: tomar, form: 'form:pres-2s'}]
-      reverse: Abuela cuántos (cafecitos|cafés) (tú tomas|tomas [tú]|usted toma|toma [usted])
+      reverse: |-
+        Abuela cuántos (cafecitos|cafés) (tú tomas|tomas [tú]|usted toma|toma [usted])
+        ¿Cuántos cafecitos tú tomas, abuela?
   translations:
     en: |-
       Grandma, how many (cafecitos|Cuban coffees|coffees) do you drink?
+      How many coffees do you drink, Grandma?
 - id: s.u05.13
   node: es.u05.que-hora-es
   forms:
@@ -183,6 +190,7 @@ sentences:
     en: |-
       What time is it?
       What's the time?
+      What is the time?
 - id: s.u05.14
   node: es.u05.que-hora-es
   forms:
@@ -198,7 +206,9 @@ sentences:
     es-Latn/standard:
       text: Son las dos y media.
       tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: las, sense: el}, {surface: dos, sense: dos}, {surface: 'y', sense: 'y'}, {surface: media, sense: medio}]
-      reverse: Son las dos y media
+      reverse: |-
+        Son las dos y media
+        Son las dos y treinta.
   translations:
     en: (It's|It is) (two thirty|half past two).
 - id: s.u05.16
@@ -225,7 +235,9 @@ sentences:
     es-Latn/standard:
       text: Comemos a la una.
       tokens: [{surface: Comemos, sense: comer, form: 'form:pres-1p'}, {surface: a, sense: a}, {surface: la, sense: el}, {surface: una, sense: uno}]
-      reverse: '[Nosotros] comemos a la una'
+      reverse: |-
+        [Nosotros] comemos a la una
+        Nosotras comemos a la una.
   translations:
     en: |-
       We eat at one.
@@ -238,7 +250,9 @@ sentences:
     es-Latn/standard:
       text: ¿A qué hora tú comes?
       tokens: [{surface: A, sense: a}, {surface: qué, sense: qué}, {surface: hora, sense: hora}, {surface: tú, sense: tú}, {surface: comes, sense: comer, form: 'form:pres-2s'}]
-      reverse: A qué hora (tú comes|comes [tú]|usted come|come [usted]|ustedes comen|comen [ustedes])
+      reverse: |-
+        A qué hora (tú comes|comes [tú]|usted come|come [usted]|ustedes comen|comen [ustedes])
+        ¿Tú a qué hora comes?
   translations:
     en: |-
       What time do you eat?
@@ -250,7 +264,9 @@ sentences:
     es-Latn/standard:
       text: ¿Cuántos años tú tienes?
       tokens: [{surface: Cuántos, sense: cuánto}, {surface: años, sense: año}, {surface: tú, sense: tú}, {surface: tienes, sense: tener, form: 'form:pres-2s'}]
-      reverse: Cuántos años (tú tienes|tienes [tú]|usted tiene|tiene [usted]|ustedes tienen|tienen [ustedes])
+      reverse: |-
+        Cuántos años (tú tienes|tienes [tú]|usted tiene|tiene [usted]|ustedes tienen|tienen [ustedes])
+        ¿Tú cuántos años tienes?
   translations:
     en: How old are you?
 - id: s.u05.21
@@ -281,6 +297,7 @@ sentences:
   translations:
     en: |-
       (Grandma|Grandmother|Granny|My grandma|My grandmother) is seventy-nine [years old].
+      Grandma's seventy-nine years old.
 - id: s.u05.24
   node: es.u05.cuantos-anos
   register: formal
@@ -288,9 +305,13 @@ sentences:
     es-Latn/standard:
       text: ¿Cuántos años tiene usted, señora?
       tokens: [{surface: Cuántos, sense: cuánto}, {surface: años, sense: año}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: usted, sense: usted}, {surface: señora, sense: señora}]
-      reverse: Cuántos años (tiene [usted]|usted tiene) señora
+      reverse: |-
+        Cuántos años (tiene [usted]|usted tiene) señora
+        Señora, ¿cuántos años tiene usted?
   translations:
-    en: How old are you, (ma'am|madam)?
+    en: |-
+      How old are you, (ma'am|madam)?
+      Ma'am, how old are you?
 - id: s.u05.25
   node: es.u05.cuantos-anos
   forms:
@@ -304,13 +325,16 @@ sentences:
     en: |-
       Yasiel is also twenty-four [years old].
       Yasiel is twenty-four [years old] (too|as well).
+      Yasiel's also twenty-four years old.
 - id: s.u05.26
   node: es.u05.cuanto-es
   forms:
     es-Latn/standard:
       text: ¿Cuánto es?
       tokens: [{surface: Cuánto, sense: cuánto}, {surface: es, sense: ser, form: 'form:pres-3s'}]
-      reverse: (Cuánto es|Cuánto cuesta|Cuánto le debo|Cuánto te debo)
+      reverse: |-
+        (Cuánto es|Cuánto cuesta|Cuánto le debo|Cuánto te debo)
+        ¿Cuánto vale?
   translations:
     en: |-
       How much is it?
@@ -351,9 +375,13 @@ sentences:
     es-Latn/standard:
       text: Son cincuenta pesos, señora.
       tokens: [{surface: Son, sense: ser, form: 'form:pres-3p'}, {surface: cincuenta, sense: cincuenta}, {surface: pesos, sense: peso}, {surface: señora, sense: señora}]
-      reverse: Son cincuenta pesos señora
+      reverse: |-
+        Son cincuenta pesos señora
+        Señora, son cincuenta pesos.
   translations:
-    en: (It's|That's|It is|That is|That'll be) fifty pesos, (ma'am|madam).
+    en: |-
+      (It's|That's|It is|That is|That'll be) fifty pesos, (ma'am|madam).
+      Ma'am, that's fifty pesos.
 - id: s.u05.31
   node: es.u05.cuanto-es
   forms:

@@ -47,7 +47,9 @@ sentences:
     es-Latn/standard:
       text: Me encanta la música cubana.
       tokens: [{surface: Me, sense: me}, {surface: encanta, sense: encantar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: música, sense: música}, {surface: cubana, sense: cubano}]
-      reverse: '[A mí] me encanta la música cubana'
+      reverse: |-
+        [A mí] me encanta la música cubana
+        La música cubana me encanta
   translations:
     en: |-
       I love Cuban music.
@@ -70,6 +72,8 @@ sentences:
       reverse: |-
         En casa [a nosotros|a nosotras] nos encanta la salsa
         [A nosotros|A nosotras] nos encanta la salsa en casa
+        En la casa nos encanta la salsa
+        A nosotros en casa nos encanta la salsa
   translations:
     en: |-
       (At home|In our house|In our family), we love salsa [music].
@@ -83,6 +87,7 @@ sentences:
       reverse: |-
         A Lili y a Daniel les encanta bailar [la] salsa
         A Daniel y a Lili les encanta bailar [la] salsa
+        A Lili y Daniel les encanta bailar salsa
   translations:
     en: |-
       Lili and Daniel love (to dance|dancing) salsa.
@@ -112,7 +117,10 @@ sentences:
     es-Latn/standard:
       text: Abuelo Pepe canta sones en el patio.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: Pepe, sense: pepe}, {surface: canta, sense: cantar, form: 'form:pres-3s'}, {surface: sones, sense: son}, {surface: en, sense: en}, {surface: el, sense: el}, {surface: patio, sense: patio}]
-      reverse: '[El] abuelo [Pepe] canta sones en el patio'
+      reverse: |-
+        [El] abuelo [Pepe] canta sones en el patio
+        En el patio abuelo Pepe canta sones
+        Mi abuelo Pepe canta sones en el patio
   translations:
     en: (Grandpa|Grandfather|Granddad) Pepe (sings|is singing) (sones|son songs|son) in the (yard|backyard|patio).
 - id: s.u16.8
@@ -141,7 +149,9 @@ sentences:
     es-Latn/standard:
       text: Abuelo tiene muchos discos de Benny Moré.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: muchos, sense: mucho}, {surface: discos, sense: disco}, {surface: de, sense: de}, {surface: Benny, sense: benny-moré}, {surface: Moré, sense: benny-moré}]
-      reverse: '[El] abuelo tiene muchos discos de Benny Moré'
+      reverse: |-
+        [El] abuelo tiene muchos discos de Benny Moré
+        Mi abuelo tiene muchos discos de Benny Moré
   translations:
     en: |-
       (Grandpa|Grandfather|Granddad) has (a lot of|lots of|many) Benny Moré (records|albums|LPs).
@@ -152,18 +162,25 @@ sentences:
     es-Latn/standard:
       text: A Daniel le fascinan los discos de abuelo.
       tokens: [{surface: A, sense: a}, {surface: Daniel, sense: daniel}, {surface: le, sense: le}, {surface: fascinan, sense: fascinar, form: 'form:pres-3p'}, {surface: los, sense: el}, {surface: discos, sense: disco}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}]
-      reverse: A Daniel le fascinan los discos (de|del) abuelo
+      reverse: |-
+        A Daniel le fascinan los discos (de|del) abuelo
+        A Daniel le encantan los discos de abuelo
+        A Daniel le fascinan los discos de su abuelo
   translations:
     en: |-
       Daniel (loves|is fascinated by|is crazy about) (Grandpa's|his grandpa's|Grandfather's|his grandfather's) records.
       (Grandpa's|Grandfather's) records fascinate Daniel.
+      Daniel is fascinated by Grandpa's albums
+      Daniel loves Granddad's records
 - id: s.u16.12
   node: es.u16.me-fascina
   forms:
     es-Latn/standard:
       text: A mi abuela le fascina el danzón.
       tokens: [{surface: A, sense: a}, {surface: mi, sense: mi}, {surface: abuela, sense: abuela}, {surface: le, sense: le}, {surface: fascina, sense: fascinar, form: 'form:pres-3s'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}]
-      reverse: A (mi|la) abuela le fascina el danzón
+      reverse: |-
+        A (mi|la) abuela le fascina el danzón
+        A mi abuela le encanta el danzón
   translations:
     en: |-
       My (grandmother|grandma|granny) (loves|adores|is crazy about|is fascinated by) (danzón|the danzón).
@@ -174,9 +191,13 @@ sentences:
     es-Latn/standard:
       text: Abuela es de Matanzas, y el danzón también.
       tokens: [{surface: Abuela, sense: abuela}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: de, sense: de}, {surface: Matanzas, sense: matanzas}, {surface: 'y', sense: 'y'}, {surface: el, sense: el}, {surface: danzón, sense: danzón}, {surface: también, sense: también}]
-      reverse: '[La] abuela es de Matanzas y el danzón también'
+      reverse: |-
+        [La] abuela es de Matanzas y el danzón también
+        Mi abuela es de Matanzas, y el danzón también
   translations:
-    en: (Grandma|Grandmother|Granny) is from Matanzas, and (so is the danzón|so is danzón|the danzón is too|danzón is too).
+    en: |-
+      (Grandma|Grandmother|Granny) is from Matanzas, and (so is the danzón|so is danzón|the danzón is too|danzón is too).
+      Grandma's from Matanzas, and so is danzón
 - id: s.u16.14
   node: es.u16.me-fascina
   forms:
@@ -191,17 +212,21 @@ sentences:
     en: |-
       Does Lili's music bother you?
       Is Lili's music bothering you?
+      Does Lili's music annoy you?
 - id: s.u16.15
   node: es.u16.me-fascina
   forms:
     es-Latn/standard:
       text: Me interesa mucho la música cubana.
       tokens: [{surface: Me, sense: me}, {surface: interesa, sense: interesar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: la, sense: el}, {surface: música, sense: música}, {surface: cubana, sense: cubano}]
-      reverse: '[A mí] me interesa mucho la música cubana'
+      reverse: |-
+        [A mí] me interesa mucho la música cubana
+        La música cubana me interesa mucho
   translations:
     en: |-
       (I'm|I am) (very|really) interested in Cuban music.
       Cuban music interests me (a lot|very much).
+      Cuban music really interests me
 - id: s.u16.16
   node: es.u16.me-fascina
   forms:
@@ -248,7 +273,9 @@ sentences:
     es-Latn/standard:
       text: Abuelo toca las maracas y abuela canta.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: las, sense: el}, {surface: maracas, sense: maraca}, {surface: 'y', sense: 'y'}, {surface: abuela, sense: abuela}, {surface: canta, sense: cantar, form: 'form:pres-3s'}]
-      reverse: '[El] abuelo toca las maracas y [la] abuela canta'
+      reverse: |-
+        [El] abuelo toca las maracas y [la] abuela canta
+        Mi abuelo toca las maracas y mi abuela canta
   translations:
     en: (Grandpa|Grandfather|Granddad) plays (the maracas|maracas) and (Grandma|Grandmother|Granny) sings.
 - id: s.u16.20
@@ -270,7 +297,9 @@ sentences:
       tokens: [{surface: Lili, sense: lili}, {surface: toca, sense: tocar, form: 'form:pres-3s'}, {surface: la, sense: el}, {surface: clave, sense: clave}, {surface: 'y', sense: 'y'}, {surface: yo, sense: yo}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: las, sense: el}, {surface: maracas, sense: maraca}]
       reverse: Lili toca (la clave|las claves) y [yo] toco las maracas
   translations:
-    en: Lili plays (the claves|the clave) and I play the maracas.
+    en: |-
+      Lili plays (the claves|the clave) and I play the maracas.
+      Lili plays claves and I play the maracas.
 - id: s.u16.22
   node: es.u16.el-bongo
   forms:
@@ -279,7 +308,9 @@ sentences:
       tokens: [{surface: Yo, sense: yo}, {surface: 'no', sense: 'no'}, {surface: toco, sense: tocar, form: 'form:pres-1s'}, {surface: el, sense: el}, {surface: bongó, sense: bongó}, {surface: pero, sense: pero}, {surface: juego, sense: jugar, form: 'form:pres-1s'}, {surface: dominó, sense: dominó}]
       reverse: '[Yo] no toco (el bongó|los bongós|el bongo|los bongos) pero juego [al] dominó'
   translations:
-    en: I (don't|do not) play the (bongos|bongo|bongo drums), but I play (dominoes|domino).
+    en: |-
+      I (don't|do not) play the (bongos|bongo|bongo drums), but I play (dominoes|domino).
+      I don't play bongos, but I play dominoes
 - id: s.u16.23
   node: es.u16.mas-que
   forms:
@@ -331,7 +362,9 @@ sentences:
     es-Latn/standard:
       text: Abuelo tiene más de cien discos.
       tokens: [{surface: Abuelo, sense: abuelo}, {surface: tiene, sense: tener, form: 'form:pres-3s'}, {surface: más, sense: más}, {surface: de, sense: de}, {surface: cien, sense: cien}, {surface: discos, sense: disco}]
-      reverse: '[El] abuelo tiene más de (cien|100) discos'
+      reverse: |-
+        [El] abuelo tiene más de (cien|100) discos
+        Mi abuelo tiene más de cien discos
   translations:
     en: (Grandpa|Grandfather|Granddad) has (more than|over) (a hundred|one hundred|100) (records|albums).
 - id: s.u16.29
@@ -343,10 +376,12 @@ sentences:
       reverse: |-
         Para [el] abuelo Benny Moré es el mejor
         Benny Moré es el mejor para [el] abuelo
+        Para mi abuelo, Benny Moré es el mejor
   translations:
     en: |-
       For (Grandpa|Grandfather|Granddad), Benny Moré is the best.
       (Grandpa|Grandfather|Granddad) (thinks|says) Benny Moré is the best.
+      Benny Moré is the best for Grandpa.
 - id: s.u16.30
   node: es.u16.el-mejor
   forms:
@@ -355,7 +390,9 @@ sentences:
       tokens: [{surface: Lili, sense: lili}, {surface: baila, sense: bailar, form: 'form:pres-3s'}, {surface: mejor, sense: mejor}, {surface: que, sense: que.than}, {surface: yo, sense: yo}]
       reverse: Lili baila mejor que yo
   translations:
-    en: Lili dances better than (me|I do).
+    en: |-
+      Lili dances better than (me|I do).
+      Lili dances better than I
 - id: s.u16.31
   node: es.u16.el-mejor
   forms:
@@ -382,7 +419,9 @@ sentences:
     es-Latn/standard:
       text: El mejor disco de abuelo es Buena Vista Social Club.
       tokens: [{surface: El, sense: el}, {surface: mejor, sense: mejor}, {surface: disco, sense: disco}, {surface: de, sense: de}, {surface: abuelo, sense: abuelo}, {surface: es, sense: ser, form: 'form:pres-3s'}, {surface: Buena, sense: buena-vista}, {surface: Vista, sense: buena-vista}, {surface: Social, sense: buena-vista}, {surface: Club, sense: buena-vista}]
-      reverse: El mejor disco (de|del) abuelo es [el] Buena Vista Social Club
+      reverse: |-
+        El mejor disco (de|del) abuelo es [el] Buena Vista Social Club
+        El mejor disco de mi abuelo es Buena Vista Social Club
   translations:
     en: (Grandpa's|Grandfather's) best (record|album) is [the] Buena Vista Social Club.
 - id: s.u16.34

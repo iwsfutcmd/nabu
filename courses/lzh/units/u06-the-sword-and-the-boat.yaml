@@ -123,6 +123,7 @@ sentences:
       I am a person (of|from) Chu.
       I am someone (of|from) Chu.
       I('m| am) from Chu.
+      I am a native of Chu.
 - id: s.06.2
   node: lzh.u06.chu
   forms:
@@ -146,6 +147,8 @@ sentences:
       Chu has a great river.
       There is a (great |big |)river in Chu.
       Chu has (the Yangzi|a river).
+      Chu has the Yangtze.
+      In Chu there is a river.
 - id: s.06.4
   node: lzh.u06.chu
   forms:
@@ -159,6 +162,8 @@ sentences:
       There is a boat on the Yangzi.
       There are boats on the (river|Yangzi).
       On the river there (is a boat|are boats).
+      There was a boat on the river.
+      There is a boat on the Yangtze.
 - id: s.06.5
   node: lzh.u06.chu
   forms:
@@ -167,31 +172,41 @@ sentences:
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 有, sense: 有, readings: {pinyin: yǒu, jyutping: jau5, baxter: hjuwX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
       reverse: (吾|我)有劍
   translations:
-    en: I have a sword.
+    en: |-
+      I have a sword.
+      I had a sword.
+      I have swords.
 - id: s.06.6
   node: lzh.u06.chu
   forms:
     lzh-Hant/standard:
       text: 此其劍也。
       tokens: [{surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 此其劍也
+      reverse: |-
+        此其劍也
+        是其劍也
   translations:
     en: |-
       This is his sword.
       This is her sword.
       This is their sword.
       That is (his|her|their) sword.
+      This was his sword.
+      It is his sword.
 - id: s.06.7
   node: lzh.u06.chu
   forms:
     lzh-Hant/standard:
       text: 吾劍，楚劍也。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 楚, sense: 楚, readings: {pinyin: chǔ, jyutping: co2, baxter: tsrhjoX}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 也, sense: 也, readings: {pinyin: yě, jyutping: jaa5, baxter: yaeX}}]
-      reverse: 吾劍楚劍也
+      reverse: |-
+        吾劍楚劍也
+        我劍楚劍也
   translations:
     en: |-
       My sword is a sword of Chu.
       My sword is (from Chu|a Chu sword).
+      My sword is a sword from Chu.
 - id: s.06.8
   node: lzh.u06.in-the-boat
   forms:
@@ -204,6 +219,7 @@ sentences:
       There is someone in the boat.
       There (is a man|is a person|are people) in the boat.
       In the boat there (is someone|is a man|are people).
+      There was someone in the boat.
 - id: s.06.9
   node: lzh.u06.in-the-boat
   forms:
@@ -217,6 +233,7 @@ sentences:
       There is a fish in the (water|river).
       There are fish in the river.
       In the water there (are fish|is a fish).
+      There were fish in the water.
 - id: s.06.10
   node: lzh.u06.in-the-boat
   forms:
@@ -232,6 +249,8 @@ sentences:
       The fish went back into the water.
       The fish dived (into|back into) the water.
       The fish dove (into|back into) the water.
+      The fish entered the water.
+      The fish enters the water.
 - id: s.06.11
   node: lzh.u06.in-the-boat
   forms:
@@ -243,6 +262,7 @@ sentences:
     en: |-
       The boat stopped.
       The boat (stops|has stopped|came to a stop|halted).
+      The boat halts.
 - id: s.06.12
   node: lzh.u06.in-the-boat
   forms:
@@ -260,6 +280,8 @@ sentences:
       I am searching for (it|him|her|them).
       I am seeking (it|him|her|them).
       I (look for|search for|seek) (it|him|her|them).
+      I looked for it.
+      I sought it.
 - id: s.06.13
   node: lzh.u06.in-the-boat
   forms:
@@ -276,6 +298,8 @@ sentences:
       He goes into the water (to look for|to search for|and looked for|and searched for) it.
       She (went|goes) into the water (to look for|to search for|and looked for|and searched for) it.
       (He|She) (entered|enters) the water (to look for|to search for|and looked for|and searched for) it.
+      They went into the water to look for it.
+      He went into the water to seek it.
 - id: s.06.14
   node: lzh.u06.in-the-boat
   forms:
@@ -299,13 +323,17 @@ sentences:
     en: |-
       What are you looking for?
       What (do you seek|are you seeking|are you after|do you want)?
+      What are you searching for?
 - id: s.06.16
   node: lzh.u06.in-the-boat
   forms:
     lzh-Hant/standard:
       text: 吾求劍。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}]
-      reverse: (吾|我)求劍
+      reverse: |-
+        (吾|我)求劍
+        吾求吾劍
+        我求我劍
   translations:
     en: |-
       I am looking for my sword.
@@ -313,6 +341,7 @@ sentences:
       I am looking for a sword.
       I am looking for the sword.
       I (seek|am seeking|am searching for) (a|my|the) sword.
+      I looked for my sword.
 - id: s.06.17
   node: lzh.u06.there-was
   forms:
@@ -325,6 +354,8 @@ sentences:
       I am crossing the river.
       I (cross|crossed|am wading across|waded across) the (river|Yangzi).
       I('m| am) crossing the Yangzi.
+      I cross the Yangtze.
+      I forded the river.
 - id: s.06.18
   node: lzh.u06.there-was
   constructions: ['construction:you-zhe']
@@ -343,6 +374,10 @@ sentences:
       There was a man from Chu who (was crossing|crossed|was wading across|waded across) the (river|Yangzi).
       There was someone (of|from) Chu who (was crossing|crossed|was wading across|waded across) the (river|Yangzi).
       A man of Chu was crossing the river.
+      There was a man of Chu who was crossing the Yangtze.
+      There was a man of Chu crossing the river.
+      A man of Chu crossed the river.
+      Among the people of Chu there was one who was crossing the river.
 - id: s.06.19
   node: lzh.u06.there-was
   forms:
@@ -360,13 +395,18 @@ sentences:
       There was a man from Lu who knew (it|this|that|him|her).
       There was someone (of|from) Lu who knew (it|this|that|him|her).
       A man of Lu knew it.
+      There was a man of Lu who knew them.
+      A man of Lu knew this.
+      Among the people of Lu there was one who knew it.
 - id: s.06.20
   node: lzh.u06.there-was
   forms:
     lzh-Hant/standard:
       text: 其劍墜於水。
       tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
-      reverse: 其劍墜於水
+      reverse: |-
+        其劍墜於水
+        其劍墜于水
   translations:
     en: |-
       His sword fell into the water.
@@ -374,13 +414,18 @@ sentences:
       His sword dropped into the (water|river).
       Her sword (fell|dropped) into the (water|river).
       Their sword (fell|dropped) into the (water|river).
+      His sword falls into the water.
+      His sword fell in the water.
 - id: s.06.21
   node: lzh.u06.there-was
   forms:
     lzh-Hant/standard:
       text: 其劍自舟中墜於水。
       tokens: [{surface: 其, sense: 其, readings: {pinyin: qí, jyutping: kei4, baxter: gi}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 自, sense: 自, readings: {pinyin: zì, jyutping: zi6, baxter: dzijH}}, {surface: 舟, sense: 舟, readings: {pinyin: zhōu, jyutping: zau1, baxter: tsyuw}}, {surface: 中, sense: 中, readings: {pinyin: zhōng, jyutping: zung1, baxter: trjuwng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}, {surface: 於, sense: 於, readings: {pinyin: yú, jyutping: jyu1, baxter: '''jo'}}, {surface: 水, sense: 水, readings: {pinyin: shuǐ, jyutping: seoi2, baxter: sywijX}}]
-      reverse: 其劍自舟中墜於水
+      reverse: |-
+        其劍自舟中墜於水
+        其劍從舟中墜於水
+        其劍自舟中墜于水
   translations:
     en: |-
       His sword fell from the boat into the water.
@@ -389,6 +434,7 @@ sentences:
       His sword dropped (from|out of) the boat into the (water|river).
       Her sword (fell|dropped) (from|out of) the boat into the (water|river).
       Their sword (fell|dropped) (from|out of) the boat into the (water|river).
+      His sword falls from the boat into the water.
 - id: s.06.22
   node: lzh.u06.there-was
   forms:
@@ -401,6 +447,8 @@ sentences:
       He hurried into the water.
       (He|She) (hastily|quickly|at once|immediately) (went|jumped) into the water.
       (He|She) (rushed|jumped) into the water.
+      They hurried into the water.
+      He hastily entered the water.
 - id: s.06.23
   node: lzh.u06.there-was
   forms:
@@ -431,6 +479,7 @@ sentences:
       He made a (notch|mark) (in|on) (his|her|the) boat.
       She (cut|carved|made) a (notch|mark) (in|on) (his|her|the) boat.
       (He|She) (notched|marked) (his|her|the) boat.
+      They cut a notch in their boat.
 - id: s.06.25
   node: lzh.u06.the-mark
   forms:
@@ -452,6 +501,8 @@ sentences:
       He immediately (cut|carved|made) a (notch|mark) (in|on) (his|her|the) boat.
       She (hastily|quickly|at once|immediately) (cut|carved|made) a (notch|mark) (in|on) (his|her|the) boat.
       (He|She) (hastily|quickly|at once|immediately) (notched|marked) (his|her|the) boat.
+      They hastily cut a notch in their boat.
+      He hurriedly cut a notch in his boat.
 - id: s.06.26
   node: lzh.u06.the-mark
   forms:
@@ -465,6 +516,10 @@ sentences:
       (He|She) (carved|cut|made) a (mark|notch) (on|in) the boat to (look for|find|seek) (his|her|the) sword.
       Carve the boat to (look for|find|seek) the sword.
       Mark the boat to (look for|find|seek) the sword.
+      He carved the boat to look for his sword.
+      He notched the boat to look for his sword.
+      They marked the boat to look for their sword.
+      Marking the boat to look for the sword.
 - id: s.06.27
   node: lzh.u06.the-mark
   forms:
@@ -484,7 +539,9 @@ sentences:
     lzh-Hant/standard:
       text: 是吾劍之所從墜。
       tokens: [{surface: 是, sense: 是, readings: {pinyin: shì, jyutping: si6, baxter: dzyeX}}, {surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 之, sense: 之.de, readings: {pinyin: zhī, jyutping: zi1, baxter: tsyi}}, {surface: 所, sense: 所, readings: {pinyin: suǒ, jyutping: so2, baxter: srjoX}}, {surface: 從, sense: 從.from, readings: {pinyin: cóng, jyutping: cung4, baxter: dzjowng}}, {surface: 墜, sense: 墜, readings: {pinyin: zhuì, jyutping: zeoi6, baxter: drwijH}}]
-      reverse: 是(吾|我)劍之所從墜[也]
+      reverse: |-
+        是(吾|我)劍之所從墜[也]
+        此吾劍之所從墜也
   translations:
     en: |-
       This is where my sword fell from.
@@ -493,6 +550,8 @@ sentences:
       Here is (where|the place) my sword (fell|dropped) from.
       This is the place from which my sword (fell|dropped).
       My sword (fell|dropped) from here.
+      This is where my sword fell.
+      This is the place where my sword fell.
 - id: s.06.29
   node: lzh.u06.the-mark
   forms:
@@ -513,6 +572,8 @@ sentences:
       From where he had carved, (he|she) went into the water (to look for|to search for|and looked for|and searched for) it.
       From where she had (marked|notched|carved), (he|she) went into the water (to look for|to search for|and looked for|and searched for) it.
       (He|She) went into the water at the (mark|notch) (to look for|to search for|and looked for|and searched for) it.
+      From the place he had marked, he went into the water to seek it.
+      He went into the water from the place he had marked to look for it.
 - id: s.06.30
   node: lzh.u06.the-mark
   forms:
@@ -528,6 +589,8 @@ sentences:
       The boat had already gone.
       The boat had already left.
       The boat had already sailed on.
+      The boat had already sailed.
+      The boat had moved on already.
 - id: s.06.31
   node: lzh.u06.the-mark
   forms:
@@ -540,6 +603,7 @@ sentences:
       The sword did not move.
       The sword (does not|doesn't|didn't) move.
       The sword (stayed|stays) where it was.
+      The sword had not moved.
 - id: s.06.32
   node: lzh.u06.the-mark
   forms:
@@ -551,13 +615,17 @@ sentences:
     en: |-
       The boat had already moved on, but the sword had not.
       The boat (has|had) already (moved|gone|moved on|sailed on), (but|yet|while) the sword (did not|didn't|had not|hadn't|has not|hasn't) (moved|move).
+      The boat had already moved, but the sword stayed where it was.
+      The boat had already left, but the sword had not moved.
 - id: s.06.33
   node: lzh.u06.the-mark
   forms:
     lzh-Hant/standard:
       text: 求劍若此，不亦惑乎？
       tokens: [{surface: 求, sense: 求, readings: {pinyin: qiú, jyutping: kau4, baxter: gjuw}}, {surface: 劍, sense: 劍, readings: {pinyin: jiàn, jyutping: gim3, baxter: kjaemH}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 此, sense: 此, readings: {pinyin: cǐ, jyutping: ci2, baxter: tshjeX}}, {surface: 不, sense: 不, readings: {pinyin: bù, jyutping: bat1, baxter: pjuw}}, {surface: 亦, sense: 亦, readings: {pinyin: yì, jyutping: jik6, baxter: yek}}, {surface: 惑, sense: 惑, readings: {pinyin: huò, jyutping: waak6, baxter: hwok}}, {surface: 乎, sense: 乎, readings: {pinyin: hū, jyutping: fu4, baxter: hu}}]
-      reverse: 求劍若此不亦惑乎
+      reverse: |-
+        求劍若此不亦惑乎
+        求劍如此不亦惑乎
   translations:
     en: |-
       Is it not foolish to look for a sword like this?
@@ -568,6 +636,9 @@ sentences:
       Is it not misguided to (look for|seek|search for) a sword like this?
       Isn't it (foolish|confused|deluded|misguided) to (look for|seek|search for) a sword like this?
       (Looking for|Seeking) a sword like this: is (that|it) not (foolish|confused|deluded|misguided)?
+      To look for a sword like this, is it not foolish?
+      Is it not foolish to look for a sword in this way?
+      Searching for a sword like this: is it not foolish?
 - id: s.06.34
   node: lzh.u06.the-mark
   forms:
@@ -582,18 +653,23 @@ sentences:
       The highest excellence is like water.
       The greatest (good|goodness|excellence) is like water.
       The supreme (good|goodness|excellence) is like water.
+      Supreme good is like water.
 - id: s.06.35
   node: lzh.u06.the-mark
   forms:
     lzh-Hant/standard:
       text: 吾若魚。
       tokens: [{surface: 吾, sense: 吾, readings: {pinyin: wú, jyutping: ng4, baxter: ngu}}, {surface: 若, sense: 若, readings: {pinyin: ruò, jyutping: joek6, baxter: nyak}}, {surface: 魚, sense: 魚, readings: {pinyin: yú, jyutping: jyu4, baxter: ngjo}}]
-      reverse: (吾|我)若魚
+      reverse: |-
+        (吾|我)若魚
+        吾如魚
+        我如魚
   translations:
     en: |-
       I am like a fish.
       I'm like (a fish|the fish).
       I am like the fish.
+      I was like a fish.
 stories:
 - id: lzh.story.sword-and-boat
   node: lzh.u06.story

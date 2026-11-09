@@ -13,13 +13,9 @@ vocalization: [vocalization.yaml]
 # and cloning a reference (`nabu audio cast`). Two voices, a man's and a woman's: each item gets one at random
 # (seeded by its id), and a sentence or story character whose grammar says who speaks gets that one (ADR 0078).
 # The model's weights are CC-BY-NC (OmniVoice's training data), so its clips are too.
-# `spoken`: six clips a listener checked before -o / -a were written ـه / ـها (ADR 0080) read the phonetic
-# spelling they were checked in, which says the same; the course shows the new one.
 audio:
   voices:
   - {id: beirut, provider: omnivoice, voice: beirut-m, speaker: m, model: 'oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2',
-    language: lb, orthography: apc-Arab/standard, reading: text, vowelMarks: true, license: CC-BY-NC-4.0,
-    spoken: {s.fam.15: 'هَيدا بَيّو.', s.fam.16: 'شو اِسْمو؟', s.fam.17: 'اِسْمو سامي.', s.fam.18: 'وهَيدي إِمّا.',
-      s.fam.19: 'كيفو بَيَّك؟', s.like.16: 'سامي بَدّو قَهْوِة.'}}
+    language: lb, orthography: apc-Arab/standard, reading: text, vowelMarks: true, license: CC-BY-NC-4.0}
   - {id: beirut-f, provider: omnivoice, voice: beirut-f, speaker: f, model: 'oddadmix/lahgtna-omnivoice-v2@55c38a613e316499829eef60b006edc6da9499e2',
     language: lb, orthography: apc-Arab/standard, reading: text, vowelMarks: true, license: CC-BY-NC-4.0}

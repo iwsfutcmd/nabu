@@ -18,6 +18,7 @@ const COURSES = [
   ["yue", "yue-Hant-HK/standard"],
   ["uz", "uz-Latn/standard"],
   ["apc", "apc-Arab/standard"],
+  // hbo has no listening exercises (its facets leave out listen): it is read, not heard.
 ] as const;
 
 for (const [id, orthography] of COURSES) {

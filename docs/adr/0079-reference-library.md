@@ -42,8 +42,11 @@ scope) and stores the refresh token as a Worker secret.
 - Every path is resolved from the folder down, by listing children. Names are compared and listed
   in NFC without control characters: catalogue-derived file names carry MARC's non-sorting marks
   (U+0098, U+009C) around a leading article, and nobody can type those.
+  Where the name Drive holds differs, an entry also carries it as `rawName`, so a caller can see
+  it, and a file may be moved to its own cleaned name, which cleans it in Drive.
 - No file id is taken from a caller, the Drive is never searched and shortcuts are never followed.
-- Writes are new files and new content up to 25 MB, folders, renames and moves. Removal goes to
+- Writes are new files and new content up to 25 MB, folders, renames and moves (one at a time, or
+  a batch that lists each folder once and stays within the free plan's 50 subrequests). Removal goes to
   Drive's trash, never deletion.
 
 **The client is `nabu refs`** (status, ls, pull, cat, put, mkdir, mv, trash).

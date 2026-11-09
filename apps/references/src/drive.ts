@@ -36,7 +36,10 @@ const ALL_DRIVES = "supportsAllDrives=true";
 export const DRIVE_ID = /^[A-Za-z0-9_-]+$/u;
 
 export type Entry = {
+  /** The name as the relay compares it (nameKey): NFC, without control characters. */
   readonly name: string;
+  /** The name as Drive holds it, only where it differs from `name` (NFD, MARC's marks), so a caller can see and fix it. */
+  readonly rawName?: string;
   /** native: a Google Doc, Sheet or Slides file (downloads as an export). A shortcut is never followed. */
   readonly kind: "folder" | "file" | "native" | "shortcut";
   readonly mimeType: string;
@@ -56,6 +59,7 @@ export const kindOf = (file: DriveFile): Entry["kind"] =>
 
 export const entryOf = (file: DriveFile): Entry => ({
   name: nameKey(file.name),
+  ...(nameKey(file.name) === file.name ? {} : { rawName: file.name }),
   kind: kindOf(file),
   mimeType: file.mimeType,
   ...(file.size === undefined ? {} : { size: Number(file.size) }),
@@ -118,8 +122,21 @@ export const getFile = async (drive: Drive, id: string): Promise<Outcome<DriveFi
   return response.ok ? ok(await fileOf(response.value)) : response;
 };
 
-export const listChildren = async (drive: Drive, folderId: string): Promise<Outcome<readonly DriveFile[]>> => {
+/**
+ * Folder listings kept for one request, by folder id, so a batch lists each folder once. Whoever
+ * changes a folder in Drive keeps its listing current (createFolder does; the batch route does for
+ * moves).
+ */
+export type Listings = Map<string, DriveFile[]>;
+
+export const listChildren = async (
+  drive: Drive,
+  folderId: string,
+  listings?: Listings,
+): Promise<Outcome<readonly DriveFile[]>> => {
   if (!DRIVE_ID.test(folderId)) return fail(500, "bad-id");
+  const cached = listings?.get(folderId);
+  if (cached !== undefined) return ok(cached);
   const files: DriveFile[] = [];
   let pageToken: string | undefined;
   do {
@@ -137,6 +154,7 @@ export const listChildren = async (drive: Drive, folderId: string): Promise<Outc
     files.push(...(page.files ?? []));
     pageToken = page.nextPageToken;
   } while (pageToken !== undefined);
+  listings?.set(folderId, files);
   return ok(files);
 };
 
@@ -145,8 +163,9 @@ export const childNamed = async (
   drive: Drive,
   folder: DriveFile,
   name: string,
+  listings?: Listings,
 ): Promise<Outcome<DriveFile | null>> => {
-  const children = await listChildren(drive, folder.id);
+  const children = await listChildren(drive, folder.id, listings);
   if (!children.ok) return children;
   const matches = children.value.filter((child) => nameKey(child.name) === name);
   const [only, ...others] = matches;
@@ -157,11 +176,16 @@ export const childNamed = async (
 /** Where a path leads: the file or folder, and the folder it is in (null for the reference folder). */
 export type Located = { readonly file: DriveFile; readonly parent: DriveFile | null };
 
-export const locate = async (drive: Drive, root: DriveFile, path: RefPath): Promise<Outcome<Located>> => {
+export const locate = async (
+  drive: Drive,
+  root: DriveFile,
+  path: RefPath,
+  listings?: Listings,
+): Promise<Outcome<Located>> => {
   let here: Located = { file: root, parent: null };
   for (const name of path) {
     if (here.file.mimeType !== FOLDER) return fail(404, "not-found");
-    const child = await childNamed(drive, here.file, name);
+    const child = await childNamed(drive, here.file, name, listings);
     if (!child.ok) return child;
     if (child.value === null) return fail(404, "not-found");
     here = { file: child.value, parent: here.file };
@@ -169,22 +193,36 @@ export const locate = async (drive: Drive, root: DriveFile, path: RefPath): Prom
   return ok(here);
 };
 
-export const createFolder = async (drive: Drive, parent: DriveFile, name: string): Promise<Outcome<DriveFile>> => {
+export const createFolder = async (
+  drive: Drive,
+  parent: DriveFile,
+  name: string,
+  listings?: Listings,
+): Promise<Outcome<DriveFile>> => {
   const response = await drive.request(
     `${API}/files?fields=${FIELDS}&${ALL_DRIVES}`,
     sendJson("POST", { name, mimeType: FOLDER, parents: [parent.id] }),
   );
-  return response.ok ? ok(await fileOf(response.value)) : response;
+  if (!response.ok) return response;
+  const made = await fileOf(response.value);
+  listings?.get(parent.id)?.push(made);
+  listings?.set(made.id, []);
+  return ok(made);
 };
 
 /** The folder at `path`, making any that are missing (mkdir -p). */
-export const ensureFolder = async (drive: Drive, root: DriveFile, path: RefPath): Promise<Outcome<DriveFile>> => {
+export const ensureFolder = async (
+  drive: Drive,
+  root: DriveFile,
+  path: RefPath,
+  listings?: Listings,
+): Promise<Outcome<DriveFile>> => {
   let here = root;
   for (const name of path) {
-    const child = await childNamed(drive, here, name);
+    const child = await childNamed(drive, here, name, listings);
     if (!child.ok) return child;
     if (child.value === null) {
-      const made = await createFolder(drive, here, name);
+      const made = await createFolder(drive, here, name, listings);
       if (!made.ok) return made;
       here = made.value;
     } else if (child.value.mimeType === FOLDER) {

@@ -97,11 +97,14 @@ sentences:
     es-Latn/standard:
       text: ¿Usted come frijoles negros, señora?
       tokens: [{surface: Usted, sense: usted}, {surface: come, sense: comer, form: 'form:pres-3s'}, {surface: frijoles, sense: frijol}, {surface: negros, sense: negro}, {surface: señora, sense: señora}]
-      reverse: (Usted come frijoles negros señora|Come [usted] frijoles negros señora)
+      reverse: |-
+        (Usted come frijoles negros señora|Come [usted] frijoles negros señora)
+        Señora, ¿usted come frijoles negros?
   translations:
     en: |-
       Do you eat black beans, (ma'am|madam)?
       Are you eating black beans, (ma'am|madam)?
+      Ma'am, do you eat black beans?
 - id: s.u04.7
   node: es.u04.me-gusta
   forms:
@@ -119,7 +122,9 @@ sentences:
     es-Latn/standard:
       text: Me gusta mucho el congrí.
       tokens: [{surface: Me, sense: me}, {surface: gusta, sense: gustar, form: 'form:pres-3s'}, {surface: mucho, sense: mucho}, {surface: el, sense: el}, {surface: congrí, sense: congrí}]
-      reverse: '[A mí] me gusta mucho el congrí'
+      reverse: |-
+        [A mí] me gusta mucho el congrí
+        El congrí me gusta mucho.
   translations:
     en: |-
       I like congrí a lot.
@@ -189,7 +194,9 @@ sentences:
     es-Latn/standard:
       text: ¿Qué tú quieres?
       tokens: [{surface: Qué, sense: qué}, {surface: tú, sense: tú}, {surface: quieres, sense: querer, form: 'form:pres-2s'}]
-      reverse: (Qué tú quieres|Qué quieres [tú]|Qué usted quiere|Qué quiere [usted]|Qué ustedes quieren|Qué quieren [ustedes])
+      reverse: |-
+        (Qué tú quieres|Qué quieres [tú]|Qué usted quiere|Qué quiere [usted]|Qué ustedes quieren|Qué quieren [ustedes])
+        ¿Tú qué quieres?
   translations:
     en: |-
       What do you want?
@@ -327,6 +334,7 @@ sentences:
       reverse: |-
         Qué (tú quieres|quieres [tú]|usted quiere|quiere [usted]) (tomar|beber)
         Qué (ustedes quieren|quieren [ustedes]) (tomar|beber)
+        ¿Tú qué quieres tomar?
   translations:
     en: |-
       What do you want to drink?
@@ -337,7 +345,9 @@ sentences:
     es-Latn/standard:
       text: Comemos congrí.
       tokens: [{surface: Comemos, sense: comer, form: 'form:pres-1p'}, {surface: congrí, sense: congrí}]
-      reverse: '[Nosotros] comemos congrí'
+      reverse: |-
+        [Nosotros] comemos congrí
+        Nosotras comemos congrí.
   translations:
     en: |-
       We eat (congrí|rice and beans).
@@ -389,7 +399,9 @@ sentences:
     es-Latn/standard:
       text: Tenemos hambre. ¿Comemos?
       tokens: [{surface: Tenemos, sense: tener, form: 'form:pres-1p'}, {surface: hambre, sense: hambre}, {surface: Comemos, sense: comer, form: 'form:pres-1p'}]
-      reverse: '[Nosotros] tenemos hambre (comemos|vamos a comer)'
+      reverse: |-
+        [Nosotros] tenemos hambre (comemos|vamos a comer)
+        Nosotras tenemos hambre. ¿Comemos?
   translations:
     en: |-
       (We're|We are) hungry. (Shall we eat|Should we eat|Let's eat)?

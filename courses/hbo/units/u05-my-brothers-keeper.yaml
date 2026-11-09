@@ -1,0 +1,611 @@
+# Biblical Hebrew (hbo), unit 5: My brother's keeper (Genesis 4:8-10).
+# Family nouns with suffixes (my, your, his; your to a woman), the negative לֹא, "I know",
+# the active participle ("keeper", "crying out") and plural nouns in the construct state.
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u05-my-brothers-keeper
+title:
+  en: My brother's keeper
+cefr: A1
+kcs:
+- id: sense:ah
+  gloss:
+    en: brother
+  forms:
+    hbo-Hebr/tiberian: [אָח]
+  notes:
+    en: 'With suffixes it is אָחִי- ʾāḥî-: אָחִי ''my brother'', אָחִיךָ ''your brother'', אָחִיו ''his brother''. Plural אַחִים ʾaḥîm.'
+- id: sense:ahot
+  gloss:
+    en: sister
+  forms:
+    hbo-Hebr/tiberian: [אָחוֹת]
+- id: form:sfx-2fs
+  gloss:
+    en: 'your; you (said to a woman: the suffix -ēḵ, -ḵ)'
+- id: sense:qayin
+  gloss:
+    en: Cain
+  forms:
+    hbo-Hebr/tiberian: [קַיִן]
+- id: sense:hevel
+  gloss:
+    en: Abel
+  forms:
+    hbo-Hebr/tiberian: [הֶבֶל]
+- id: sense:sadeh
+  gloss:
+    en: field; open country
+  forms:
+    hbo-Hebr/tiberian: [שָׂדֶה]
+- id: sense:qum
+  gloss:
+    en: to rise, get up; to stand
+  forms:
+    hbo-Hebr/tiberian: [קוּם]
+- id: sense:harag
+  gloss:
+    en: to kill
+  forms:
+    hbo-Hebr/tiberian: [הָרַג]
+- id: sense:lo
+  gloss:
+    en: not; no
+  forms:
+    hbo-Hebr/tiberian: [לֹא]
+- id: sense:yada
+  gloss:
+    en: to know
+  forms:
+    hbo-Hebr/tiberian: [יָדַע]
+- id: sense:shamar
+  gloss:
+    en: to keep, guard, watch
+  forms:
+    hbo-Hebr/tiberian: [שָׁמַר]
+- id: sense:dam
+  gloss:
+    en: 'blood (plural: bloodshed)'
+  forms:
+    hbo-Hebr/tiberian: [דָּם]
+- id: sense:tsaaq
+  gloss:
+    en: to cry out
+  forms:
+    hbo-Hebr/tiberian: [צָעַק]
+- id: form:ptc-mp
+  gloss:
+    en: 'participle, masculine plural: they are doing; ones who do'
+- id: sense:adamah
+  gloss:
+    en: ground, soil; land
+  forms:
+    hbo-Hebr/tiberian: [אֲדָמָה]
+- id: form:sfx-3mp
+  gloss:
+    en: their; them (the suffix -ām, -hem)
+nodes:
+- {id: hbo.u05.my-brother, kind: lesson, introduces: ['sense:ah', 'sense:qayin', 'sense:hevel', 'sense:ahot', 'form:sfx-2fs']}
+- {id: hbo.u05.in-the-field, kind: lesson, introduces: ['sense:sadeh', 'sense:qum', 'sense:harag']}
+- {id: hbo.u05.i-do-not-know, kind: lesson, introduces: ['sense:lo', 'sense:yada', 'sense:shamar']}
+- {id: hbo.u05.the-blood-cries, kind: lesson, introduces: ['sense:dam', 'sense:tsaaq', 'form:ptc-mp', 'sense:adamah', 'form:sfx-3mp']}
+- {id: hbo.u05.story, kind: story}
+sentences:
+- id: s.05.1
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָח
+      tokens: [{surface: אָח, sense: ah, readings: {tiberian: ʾāḥ}}]
+      reverse: אח
+  translations:
+    en: |-
+      a brother
+      brother
+- id: s.05.2
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָחִי
+      tokens: [{surface: אָחִי, sense: ah, morphs: [{surface: אָחִ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}]
+      reverse: אחי
+  translations:
+    en: my brother
+- id: s.05.3
+  node: hbo.u05.my-brother
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָחִיךָ
+      tokens: [{surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}]
+      reverse: אחיך
+  translations:
+    en: your brother
+- id: s.05.4
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָחִיו
+      tokens: [{surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾāḥîw}}]
+      reverse: אחיו
+  translations:
+    en: his brother
+- id: s.05.5
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: קַיִן וְהֶבֶל
+      tokens: [{surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: וְהֶבֶל, sense: hevel, morphs: [{surface: וְ, kc: 'sense:we'}, {surface: הֶבֶל, kc: 'sense:hevel'}], readings: {tiberian: wəhéḇel}}]
+      reverse: קין והבל
+  translations:
+    en: Cain and Abel
+- id: s.05.6
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֶבֶל אָחִיו
+      tokens: [{surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾāḥîw}}]
+      reverse: הבל אחיו
+  translations:
+    en: |-
+      Abel his brother
+      his brother Abel
+- id: s.05.7
+  node: hbo.u05.my-brother
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: קַיִן אָחִי׃
+      tokens: [{surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אָחִי, sense: ah, morphs: [{surface: אָחִ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}]
+      reverse: קין אחי
+  translations:
+    en: Cain is my brother.
+- id: s.05.8
+  node: hbo.u05.my-brother
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲחֹתִי
+      tokens: [{surface: אֲחֹתִי, sense: ahot, morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}]
+      reverse: (אחתי|אחותי)
+  translations:
+    en: my sister
+- id: s.05.9
+  node: hbo.u05.my-brother
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָחִיךְ
+      tokens: [{surface: אָחִיךְ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾāḥîḵ}}]
+      reverse: אחיך
+  translations:
+    en: your brother
+- id: s.05.10
+  node: hbo.u05.my-brother
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֲחֹתִי בַּגָּן׃
+      tokens: [{surface: אֲחֹתִי, sense: ahot, morphs: [{surface: אֲחֹתִ, kc: 'sense:ahot'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾăḥōṯî}}, {surface: בַּגָּן, sense: gan, morphs: [{surface: בַּ,
+              kc: 'sense:be'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: baggān}}]
+      reverse: (אחתי|אחותי) בגן
+  translations:
+    en: My sister is in the garden.
+- id: s.05.11
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַשָּׂדֶה
+      tokens: [{surface: הַשָּׂדֶה, sense: sadeh, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: haśśāḏeh}}]
+      reverse: השדה
+  translations:
+    en: the field
+- id: s.05.12
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: בַּשָּׂדֶה
+      tokens: [{surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
+      reverse: בשדה
+  translations:
+    en: |-
+      in the field
+      in the (open|countryside)
+- id: s.05.13
+  node: hbo.u05.in-the-field
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֶבֶל בַּשָּׂדֶה׃
+      tokens: [{surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {
+            tiberian: baśśāḏeh}}]
+      reverse: הבל בשדה
+  translations:
+    en: Abel is in the field.
+- id: s.05.14
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּקָם קַיִן׃
+      tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}]
+      reverse: |-
+        ויקם קין
+        קין קם
+        וקין קם
+        קם קין
+  translations:
+    en: '[(And|Then)] Cain (rose up|got up|stood up|arose).'
+- id: s.05.15
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיַּהַרְגֵהוּ׃
+      tokens: [{surface: וַיַּהַרְגֵהוּ, sense: harag, form: 'form:wayyiqtol-3ms', morphs: [{surface: וַיַּהַרְגֵ, kc: 'sense:harag'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wayyaharḡḗhû}}]
+      reverse: ויהרגהו
+  translations:
+    en: |-
+      [(And|Then)] he killed him.
+      [(And|Then)] he (murdered|slew) him.
+- id: s.05.16
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
+      tokens: [{surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́qom}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {
+            tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, sense: harag, form: 'form:wayyiqtol-3ms', morphs: [{surface: וַיַּהַרְגֵ, kc: 'sense:harag'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wayyaharḡḗhû}}]
+      reverse: ויקם קין אל הבל אחיו ויהרגהו
+  translations:
+    en: |-
+      [(And|Then)] Cain (rose up|attacked|turned|rose) against his brother Abel and killed him.
+      [(And|Then)] Cain (rose up|attacked|turned|rose) against Abel his brother and (killed|murdered|slew) him.
+- id: s.05.17
+  node: hbo.u05.in-the-field
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֹּאמֶר קַיִן אֶל־הֶבֶל אָחִיו׃
+      tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {
+            tiberian: ʾāḥîw}}]
+      reverse: |-
+        (ויאמר|ויואמר) קין אל הבל אחיו
+        קין אמר אל הבל אחיו
+        וקין אמר אל הבל אחיו
+        אמר קין אל הבל אחיו
+  translations:
+    en: |-
+      [(And|Then)] Cain said to his brother Abel.
+      [(And|Then)] Cain (said to|spoke to|talked with) Abel his brother.
+- id: s.05.18
+  node: hbo.u05.i-do-not-know
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}]
+      reverse: (לא|לוא)
+  translations:
+    en: |-
+      no
+      not
+- id: s.05.19
+  node: hbo.u05.i-do-not-know
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָדַעְתִּי׃
+      tokens: [{surface: יָדַעְתִּי, sense: yada, form: 'form:qatal-1cs', readings: {tiberian: yāḏáʿtî}}]
+      reverse: |-
+        ידעתי
+        (אני|אנכי) ידעתי
+  translations:
+    en: |-
+      I know.
+      I knew.
+      I have known.
+- id: s.05.20
+  node: hbo.u05.i-do-not-know
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא יָדַעְתִּי׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יָדַעְתִּי, sense: yada, form: 'form:qatal-1cs', readings: {tiberian: yāḏáʿtî}}]
+      reverse: (לא|לוא) ידעתי
+  translations:
+    en: |-
+      I do not know.
+      I (don't|didn't|did not) know.
+- id: s.05.21
+  node: hbo.u05.i-do-not-know
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָדַעְתָּ׃
+      tokens: [{surface: יָדַעְתָּ, sense: yada, form: 'form:qatal-2ms', readings: {tiberian: yāḏáʿtā}}]
+      reverse: |-
+        ידעת
+        אתה ידעת
+  translations:
+    en: |-
+      You know.
+      You knew.
+- id: s.05.22
+  node: hbo.u05.i-do-not-know
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: יָדַעַתְּ׃
+      tokens: [{surface: יָדַעַתְּ, sense: yada, form: 'form:qatal-2fs', readings: {tiberian: yāḏáʿatt}}]
+      reverse: |-
+        ידעת
+        את ידעת
+  translations:
+    en: |-
+      You know.
+      You knew.
+- id: s.05.23
+  node: hbo.u05.i-do-not-know
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא אָכַלְתִּי׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: אָכַלְתִּי, sense: akhal, form: 'form:qatal-1cs', readings: {tiberian: ʾāḵáltî}}]
+      reverse: (לא|לוא) אכלתי
+  translations:
+    en: |-
+      I did not eat.
+      I (didn't|have not|haven't) (eaten|eat).
+- id: s.05.24
+  node: hbo.u05.i-do-not-know
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵי הֶבֶל אָחִיךָ׃
+      tokens: [{surface: אֵי, sense: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'},
+            {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}]
+      reverse: אי הבל אחיך
+  translations:
+    en: |-
+      Where is your brother Abel?
+      Where is Abel your brother?
+- id: s.05.25
+  node: hbo.u05.i-do-not-know
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אֵי אָחִיךְ׃
+      tokens: [{surface: אֵי, sense: ay, readings: {tiberian: ʾê}}, {surface: אָחִיךְ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךְ, kc: 'form:sfx-2fs'}], readings: {tiberian: ʾāḥîḵ}}]
+      reverse: אי אחיך
+  translations:
+    en: Where is your brother?
+- id: s.05.26
+  node: hbo.u05.i-do-not-know
+  forms:
+    hbo-Hebr/tiberian:
+      text: שֹׁמֵר
+      tokens: [{surface: שֹׁמֵר, sense: shamar, form: 'form:ptc-ms', readings: {tiberian: šōmēr}}]
+      reverse: (שמר|שומר)
+  translations:
+    en: (a keeper|a guard|keeping|guarding|watching)
+- id: s.05.27
+  node: hbo.u05.i-do-not-know
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הֲשֹׁמֵר אָחִי אָנֹכִי׃
+      tokens: [{surface: הֲשֹׁמֵר, sense: shamar, form: 'form:ptc-ms', morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: שֹׁמֵר, kc: 'sense:shamar'}], readings: {tiberian: hăšōmēr}}, {surface: אָחִי,
+          sense: ah, morphs: [{surface: אָחִ, kc: 'sense:ah'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}]
+      reverse: (השמר|השומר) אחי (אנכי|אנוכי)
+  translations:
+    en: |-
+      Am I my brother's keeper?
+      Am I my brother's (guardian|guard)?
+- id: s.05.28
+  node: hbo.u05.i-do-not-know
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי שֹׁמֵר אֶת־הַגָּן׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵר, sense: shamar, form: 'form:ptc-ms', readings: {tiberian: šōmēr}}, {surface: אֶת, sense: et, readings: {
+            tiberian: ʾeṯ-}}, {surface: הַגָּן, sense: gan, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: גָּן, kc: 'sense:gan'}], readings: {tiberian: haggān}}]
+      reverse: |-
+        (אנכי|אנוכי) (שמר|שומר) את הגן
+        (שמר|שומר) (אנכי|אנוכי) את הגן
+  translations:
+    en: |-
+      I am (keeping|guarding|watching) the garden.
+      I (keep|guard|watch) the garden.
+- id: s.05.29
+  node: hbo.u05.the-blood-cries
+  forms:
+    hbo-Hebr/tiberian:
+      text: דָּם
+      tokens: [{surface: דָּם, sense: dam, readings: {tiberian: dām}}]
+      reverse: דם
+  translations:
+    en: blood
+- id: s.05.30
+  node: hbo.u05.the-blood-cries
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַדָּם בָּאֲדָמָה׃
+      tokens: [{surface: הַדָּם, sense: dam, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: דָּם, kc: 'sense:dam'}], readings: {tiberian: haddām}}, {surface: בָּאֲדָמָה, sense: adamah, morphs: [{surface: בָּ,
+              kc: 'sense:be'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: bāʾăḏāmâ}}]
+      reverse: |-
+        הדם באדמה
+        באדמה הדם
+  translations:
+    en: The blood is (on|in) the ground.
+- id: s.05.31
+  node: hbo.u05.the-blood-cries
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דְּמֵי אָחִיךָ
+      tokens: [{surface: דְּמֵי, sense: dam, form: 'form:pl-cstr', readings: {tiberian: dəmê}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}],
+          readings: {tiberian: ʾāḥî́ḵā}}]
+      reverse: דמי אחיך
+  translations:
+    en: |-
+      your brother's blood
+      the blood of your brother
+- id: s.05.32
+  node: hbo.u05.the-blood-cries
+  forms:
+    hbo-Hebr/tiberian:
+      text: צֹעֲקִים
+      tokens: [{surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}]
+      reverse: (צעקים|צועקים)
+  translations:
+    en: (crying out|crying|shouting)
+- id: s.05.33
+  node: hbo.u05.the-blood-cries
+  forms:
+    hbo-Hebr/tiberian:
+      text: הָאֲדָמָה
+      tokens: [{surface: הָאֲדָמָה, sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}]
+      reverse: האדמה
+  translations:
+    en: the (ground|soil|earth|land)
+- id: s.05.34
+  node: hbo.u05.the-blood-cries
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי׃
+      tokens: [{surface: קוֹל, sense: qol, readings: {tiberian: qôl}}, {surface: דְּמֵי, sense: dam, form: 'form:pl-cstr', readings: {tiberian: dəmê}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי,
+              kc: 'sense:ah'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי,
+          sense: el, morphs: [{surface: אֵלַ, kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾēlay}}]
+      reverse: קול דמי אחיך (צעקים|צועקים) אלי
+  translations:
+    en: |-
+      The voice of your brother's blood is crying out to me.
+      Your brother's blood (is crying|cries|is calling) out to me.
+- id: s.05.35
+  node: hbo.u05.the-blood-cries
+  forms:
+    hbo-Hebr/tiberian:
+      text: צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
+      tokens: [{surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, sense: el, morphs: [{surface: אֵלַ, kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, morphs: [{surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}],
+          readings: {tiberian: hāʾăḏāmâ}}]
+      reverse: (צעקים|צועקים) אלי מן האדמה
+  translations:
+    en: |-
+      They are crying out to me from the ground.
+      They (cry|call) out to me from the (ground|earth|soil).
+- id: s.05.36
+  node: hbo.u05.the-blood-cries
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיְהִי בִּהְיוֹתָם בַּשָּׂדֶה׃
+      tokens: [{surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayhî}}, {surface: בִּהְיוֹתָם, sense: hayah, form: 'form:inf', morphs: [{surface: בִּ, kc: 'sense:be'},
+            {surface: הְיוֹתָ, kc: 'sense:hayah'}, {surface: ם, kc: 'form:sfx-3mp'}], readings: {tiberian: bihyôṯām}}, {surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה,
+              kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}]
+      reverse: ויהי בהיותם בשדה
+  translations:
+    en: |-
+      [And] when they were in the field.
+      [And] (it happened|it came to pass) (when|while) they were in the field.
+stories:
+- id: hbo.story.my-brothers-keeper
+  node: hbo.u05.story
+  title:
+    en: My brother's keeper (Genesis 4:8–10)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  - {id: cain, speaker: m, name: {hbo-Hebr/tiberian: קַיִן}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר קַיִן אֶל־הֶבֶל׃
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}]
+      translations:
+        en: And Cain spoke to his brother Abel.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: אָחִיו וַיְהִי בִּהְיוֹתָם
+          tokens: [{surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾāḥîw}}, {surface: וַיְהִי, sense: hayah, form: 'form:wayyiqtol-3ms',
+              readings: {tiberian: wayhî}}, {surface: בִּהְיוֹתָם, sense: hayah, form: 'form:inf', morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: הְיוֹתָ, kc: 'sense:hayah'}, {surface: ם, kc: 'form:sfx-3mp'}],
+              readings: {tiberian: bihyôṯām}}]
+      translations:
+        en: And when they were in the field,
+  - line:
+      ask: complete
+      gap: sense:harag
+      distractors: ['sense:shamar', 'sense:yada']
+      forms:
+        hbo-Hebr/tiberian:
+          text: בַּשָּׂדֶה וַיָּקָם קַיִן אֶל־הֶבֶל אָחִיו וַיַּהַרְגֵהוּ׃
+          tokens: [{surface: בַּשָּׂדֶה, sense: sadeh, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: שָּׂדֶה, kc: 'sense:sadeh'}], readings: {tiberian: baśśāḏeh}}, {surface: וַיָּקָם, sense: qum, form: 'form:wayyiqtol-3ms',
+              readings: {tiberian: wayyā́qom}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: הֶבֶל, sense: hevel, readings: {
+                tiberian: héḇel}}, {surface: אָחִיו, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ו, kc: 'form:sfx-3ms'}], readings: {tiberian: ʾāḥîw}}, {surface: וַיַּהַרְגֵהוּ, sense: harag,
+              form: 'form:wayyiqtol-3ms', morphs: [{surface: וַיַּהַרְגֵ, kc: 'sense:harag'}, {surface: הוּ, kc: 'form:sfx-3ms'}], readings: {tiberian: wayyaharḡḗhû}}]
+      translations:
+        en: Cain rose up against his brother Abel and killed him.
+  - choose:
+      prompt:
+        en: Where were the brothers when Cain killed Abel?
+      options: [{en: in the field}, {en: in the garden}, {en: at home}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר יְהוָה אֶל־קַיִן
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: קַיִן, sense: qayin, readings: {tiberian: qáyin}}]
+      translations:
+        en: And the LORD said to Cain,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: אֵי הֶבֶל אָחִיךָ
+          tokens: [{surface: אֵי, sense: ay, readings: {tiberian: ʾê}}, {surface: הֶבֶל, sense: hevel, readings: {tiberian: héḇel}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'},
+                {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}]
+      translations:
+        en: “Where is your brother Abel?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: cain
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא יָדַעְתִּי הֲשֹׁמֵר אָחִי אָנֹכִי׃
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ}}, {surface: יָדַעְתִּי, sense: yada, form: 'form:qatal-1cs', readings: {tiberian: yāḏáʿtî}}, {surface: הֲשֹׁמֵר, sense: shamar, form: 'form:ptc-ms',
+              morphs: [{surface: הֲ, kc: 'sense:ha.q'}, {surface: שֹׁמֵר, kc: 'sense:shamar'}], readings: {tiberian: hăšōmēr}}, {surface: אָחִי, sense: ah, morphs: [{surface: אָחִ, kc: 'sense:ah'}, {surface: י,
+                  kc: 'form:sfx-1cs'}], readings: {tiberian: ʾāḥî}}, {surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānṓḵî}}]
+      translations:
+        en: “I do not know. Am I my brother's keeper?”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he said,
+  - line:
+      speaker: god
+      ask: complete
+      gap: sense:dam
+      distractors: ['sense:qol', 'sense:ah']
+      forms:
+        hbo-Hebr/tiberian:
+          text: מֶה עָשִׂיתָ קוֹל דְּמֵי אָחִיךָ צֹעֲקִים אֵלַי מִן־הָאֲדָמָה׃
+          tokens: [{surface: מֶה, sense: mah, readings: {tiberian: meh}}, {surface: עָשִׂיתָ, sense: asah, form: 'form:qatal-2ms', readings: {tiberian: ʿāśî́ṯā}}, {surface: קוֹל, sense: qol, form: 'form:cstr',
+              readings: {tiberian: qôl}}, {surface: דְּמֵי, sense: dam, form: 'form:pl-cstr', readings: {tiberian: dəmê}}, {surface: אָחִיךָ, sense: ah, morphs: [{surface: אָחִי, kc: 'sense:ah'}, {surface: ךָ,
+                  kc: 'form:sfx-2ms'}], readings: {tiberian: ʾāḥî́ḵā}}, {surface: צֹעֲקִים, sense: tsaaq, form: 'form:ptc-mp', readings: {tiberian: ṣōʿăqîm}}, {surface: אֵלַי, sense: el, morphs: [{surface: אֵלַ,
+                  kc: 'sense:el'}, {surface: י, kc: 'form:sfx-1cs'}], readings: {tiberian: ʾēlay}}, {surface: מִן, sense: min, readings: {tiberian: min-}}, {surface: הָאֲדָמָה, sense: adamah, morphs: [
+                {surface: הָ, kc: 'sense:ha'}, {surface: אֲדָמָה, kc: 'sense:adamah'}], readings: {tiberian: hāʾăḏāmâ}}]
+      translations:
+        en: “What have you done? The voice of your brother's blood is crying out to me from the ground.”
+  - choose:
+      prompt:
+        en: What does Cain answer when the LORD asks where Abel is?
+      options: [{en: that he does not know}, {en: that Abel is in the field}, {en: that Abel is asleep}]
+      answer: 0

@@ -19,12 +19,14 @@ import regex
 import yaml
 from pydantic import BaseModel, ValidationError
 
+from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
 from nabu.compiler.audio import check_audio
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.scenarios import compile_scenarios
+from nabu.compiler.script import compile_alphabets
 from nabu.compiler.source import Doc, load_doc
 from nabu.compiler.stories import LineForm, compile_stories
 from nabu.corecli import CoreCli
@@ -179,21 +181,29 @@ def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
 
 
 def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
-    """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars."""
+    """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars.
+    A script CLDR has no locale for (sitelen pona, ADR 0086) lists its whole repertoire in
+    `exemplarsExtra`, with no `exemplars`: the audit then checks against that alone."""
     if profile.exemplars is None:
-        return None
-    key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
-    data = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
-    if data is None:
-        return None
+        if not profile.exemplarsExtra:
+            return None
+        data: dict[str, list[str]] = {}
+    else:
+        key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
+        found = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
+        if found is None:
+            return None
+        data = found
     chars: set[str] = set()
     for kind in ("main", "auxiliary", "index", "numbers"):
         for item in data.get(kind, []):
             chars.update(item)
             chars.update(item.lower())
-    for extra in profile.exemplarsExtra or []:
-        chars.update(extra)
     punct: set[str] = {c for item in data.get("punctuation", []) for c in item}
+    for extra in profile.exemplarsExtra or []:
+        # An extra that is punctuation (Hebrew sof pasuq) joins the punctuation set.
+        for c in extra:
+            (punct if unicodedata.category(c)[0] == "P" else chars).add(c)
     return chars, punct
 
 
@@ -245,7 +255,7 @@ def _hygiene(
         if outside:
             diags.report(
                 "text.script-audit",
-                f"outside the {profile.exemplars} exemplars: {' '.join(outside)}",
+                f"outside the {profile.exemplars or 'listed'} exemplars: {' '.join(outside)}",
                 loc,
             )
         foreign_punct = sorted(
@@ -254,7 +264,8 @@ def _hygiene(
         if foreign_punct:
             diags.report(
                 "text.punctuation-audit",
-                f"punctuation not in the {profile.exemplars} exemplars: {' '.join(foreign_punct)}",
+                f"punctuation not in the {profile.exemplars or 'listed'} exemplars: "
+                + " ".join(foreign_punct),
                 loc,
             )
     script = profile.lang.split("-")[1]
@@ -321,7 +332,7 @@ def compile_form(
             if t.tile is not None:
                 d["tileGroup"] = t.tile
             if t.form is not None:
-                d["_form"] = t.form
+                d["form"] = t.form
             if t.vocalized is not None:
                 d["_vocalized"] = t.vocalized
             authored.append(d)
@@ -347,7 +358,7 @@ def compile_form(
     # stage 3: readings and ruby, for every ruby layer
     for scheme in _ruby_schemes(profile):
         for t in toks:
-            if t["kind"] != "word" or not tx.HAN.search(t["surface"]):
+            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"]):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -655,6 +666,9 @@ def compile_course(
     _grading(ctx, course, units)
     # ---- stage 7: glossary, tiles, script tracks
     _glossary(ctx, course, units, compiled_forms, stories.lines)
+    alphabets = compile_alphabets(
+        diags, course, units, ctx.profiles, lambda o, t: support_text(ctx, o, t, course.target)
+    )
     # ---- stage 9: packaging lints
     compiled = Compiled(
         course=course, orthographies=list(course.orthographies), support=list(course.support)
@@ -664,7 +678,7 @@ def compile_course(
     if diags.errors:
         return diags, None
     compiled.units = [
-        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths)
+        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets)
         | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
         | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
         for ui, unit in enumerate(units)
@@ -757,7 +771,7 @@ def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: st
             for form in forms.get(orth, []):
                 for t in cast(list[dict[str, Any]], form["tokens"]):
                     surface = str(t["surface"])
-                    if t["kind"] != "word" or not tx.HAN.search(surface):
+                    if t["kind"] != "word" or not tx.ruby_bearing(surface):
                         continue
                     reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
                     segments = None if reading is None else tx.ruby_segments(surface, reading)
@@ -864,6 +878,11 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
     for orth, form in s.forms.items():
         profile = ctx.profiles.get(orth)
         tl = profile.transliterate if profile is not None else None
+        if tl is not None and tl.via == "sitelen-pona" and tl.to in s.forms:
+            _sitelen_pona(
+                ctx, unit.doc.loc("sentences", si, "forms", tl.to, "text"), form, s.forms[tl.to]
+            )
+            continue
         if tl is None or tl.via != "cldr-transform" or tl.to not in s.forms:
             continue
         target = ctx.profiles[tl.to]
@@ -876,6 +895,29 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
                 f"{tid} gives {converted!r}; pinned {pinned!r} wins",
                 unit.doc.loc("sentences", si, "forms", tl.to, "text"),
             )
+
+
+def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm) -> None:
+    """A tok sentence's pinned sitelen pona against its sitelen Lasina (ADR 0086): the words as
+    their logographs, each name as the cartouche its sitelen pona token pins."""
+    by_sense = {t.sense: t.surface for t in pinned.tokens or [] if t.sense is not None}
+    names = {
+        t.surface: by_sense[t.sense]
+        for t in latin.tokens or []
+        if t.sense is not None and t.surface[:1].isupper() and t.sense in by_sense
+    }
+    try:
+        converted = sitelen_pona.to_sitelen_pona(latin.text, names)
+    except sitelen_pona.SitelenPonaError as e:
+        ctx.diags.report("enrich.transliteration-mismatch", f"sitelen pona: {e}", loc)
+        return
+    if converted != pinned.text:
+        ctx.diags.report(
+            "enrich.transliteration-mismatch",
+            f"sitelen pona gives {converted.encode('unicode_escape').decode('ascii')}; "
+            f"pinned {pinned.text.encode('unicode_escape').decode('ascii')} wins",
+            loc,
+        )
 
 
 # ------------------------------------------------------------ stage 4: drills
@@ -1029,7 +1071,7 @@ def _curriculum(
             for orth in course.orthographies:
                 for t in forms.get((ui, si), {}).get(orth, {}).get("tokens", []):
                     refs = [f"sense:{t['sense']}"] if "sense" in t else []
-                    refs += [t["_form"]] if "_form" in t else []
+                    refs += [t["form"]] if "form" in t else []
                     refs += [m["kc"] for m in t.get("morphs", [])]
                     kcs += [r for r in dict.fromkeys(refs) if r not in kcs]
             kcs += [c for c in dict.fromkeys(s.constructions or []) if c not in kcs]
@@ -1192,6 +1234,8 @@ def _glossary(
         entries: list[tuple[str, str, list[str], Loc]] = []
         for unit in units:
             for ki, kc in enumerate(unit.source.kcs):
+                if kc.id.startswith("grapheme:"):
+                    continue  # a letter is no word to tap (ADR 0088)
                 for fi, surface in enumerate((kc.forms or {}).get(orth, [])):
                     entries.append(
                         (
@@ -1376,6 +1420,7 @@ def _bundle_unit(
     forms: dict[tuple[int, int], dict[str, dict[str, Any]]],
     kcs: dict[tuple[int, int], list[str]],
     images: dict[str, str],
+    alphabets: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     src = unit.source
     target = course.target
@@ -1443,6 +1488,8 @@ def _bundle_unit(
         }
         if node.convert is not None:
             n["convert"] = {"from": node.convert.from_, "to": node.convert.to}
+        if node.id in alphabets:
+            n["alphabet"] = alphabets[node.id]
         nodes.append(n)
 
     kc_out: list[dict[str, Any]] = []

@@ -1,0 +1,565 @@
+# Biblical Hebrew (hbo), unit 14: Speak, for your servant is listening (1 Samuel 3:4-5, 9-10).
+# Dialogue: "you called me", "I did not call", commands in a row (go back, lie down), the converted
+# perfect for what will happen (וְהָיָה אִם … וְאָמַרְתָּ "if he calls, you shall say"), "your servant".
+# The passage is the Westminster Leningrad Codex (public domain), without its accents; the rest was drafted
+# by an LLM (provenance llm:…, status draft) and awaits a reviewer.
+id: u14-speak-lord
+title:
+  en: Speak, LORD
+cefr: A2
+kcs:
+- id: sense:shmuel
+  gloss:
+    en: Samuel
+  forms:
+    hbo-Hebr/tiberian: [שְׁמוּאֵל]
+- id: sense:eli
+  gloss:
+    en: Eli (the priest at Shiloh)
+  forms:
+    hbo-Hebr/tiberian: [עֵלִי]
+- id: sense:naar
+  gloss:
+    en: boy, young man; servant
+  forms:
+    hbo-Hebr/tiberian: [נַעַר]
+- id: form:weqatal-3ms
+  gloss:
+    en: 'and he shall; and it will be: the converted perfect (weqatal), he or it'
+- id: sense:hityatsev
+  gloss:
+    en: to take one's stand, stand firm (hithpael)
+  forms:
+    hbo-Hebr/tiberian: [הִתְיַצֵּב]
+- id: sense:paam
+  gloss:
+    en: 'time, occurrence (כְפַעַם בְּפַעַם: as at other times)'
+  forms:
+    hbo-Hebr/tiberian: [פַּעַם]
+nodes:
+- {id: hbo.u14.samuel-and-eli, kind: lesson, introduces: ['sense:shmuel', 'sense:naar']}
+- {id: hbo.u14.you-called-me, kind: lesson, introduces: ['sense:eli']}
+- {id: hbo.u14.speak, kind: lesson, introduces: ['form:weqatal-3ms']}
+- {id: hbo.u14.he-stood-and-called, kind: lesson, introduces: ['sense:hityatsev', 'sense:paam']}
+- {id: hbo.u14.story, kind: story}
+sentences:
+- id: s.14.1
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמוּאֵל
+      tokens: [{surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      reverse: שמואל
+  translations:
+    en: Samuel
+- id: s.14.2
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: נַעַר
+      tokens: [{surface: נַעַר, sense: naar, readings: {tiberian: náʿar}}]
+      reverse: נער
+  translations:
+    en: |-
+      a boy
+      a (young man|lad|servant)
+- id: s.14.3
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנַּעַר שְׁמוּאֵל
+      tokens: [{surface: הַנַּעַר, sense: naar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נַּעַר, kc: 'sense:naar'}], readings: {tiberian: hannáʿar}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {
+            tiberian: šəmûʾēl}}]
+      reverse: הנער שמואל
+  translations:
+    en: |-
+      the boy Samuel
+      Samuel the boy
+- id: s.14.4
+  node: hbo.u14.samuel-and-eli
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל׃
+      tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el, readings: {
+            tiberian: ʾel-}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      reverse: |-
+        ויקרא יהוה אל שמואל
+        יהוה קרא אל שמואל
+        ויהוה קרא אל שמואל
+        קרא יהוה אל שמואל
+  translations:
+    en: |-
+      [(And|Then)] the LORD called Samuel.
+      [(And|Then)] the LORD called (to|out to) Samuel.
+- id: s.14.5
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: עֵלִי
+      tokens: [{surface: עֵלִי, sense: eli, readings: {tiberian: ʿēlî}}]
+      reverse: עלי
+  translations:
+    en: Eli
+- id: s.14.6
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּרָץ אֶל־עֵלִי׃
+      tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עֵלִי, sense: eli, readings: {
+            tiberian: ʿēlî}}]
+      reverse: |-
+        וירץ אל עלי
+        רץ אל עלי
+        הוא רץ אל עלי
+        והוא רץ אל עלי
+  translations:
+    en: '[(And|Then|So)] he ran to Eli.'
+- id: s.14.7
+  node: hbo.u14.samuel-and-eli
+  constructions: ['construction:nominal']
+  forms:
+    hbo-Hebr/tiberian:
+      text: הַנַּעַר יֹשֵׁב בַּבַּיִת׃
+      tokens: [{surface: הַנַּעַר, sense: naar, morphs: [{surface: הַ, kc: 'sense:ha'}, {surface: נַּעַר, kc: 'sense:naar'}], readings: {tiberian: hannáʿar}}, {surface: יֹשֵׁב, sense: yashav, form: 'form:ptc-ms',
+          readings: {tiberian: yōšēḇ}}, {surface: בַּבַּיִת, sense: bayit, morphs: [{surface: בַּ, kc: 'sense:be'}, {surface: בַּיִת, kc: 'sense:bayit'}], readings: {tiberian: babbáyiṯ}}]
+      reverse: |-
+        הנער (ישב|יושב) בבית
+        (ישב|יושב) הנער בבית
+  translations:
+    en: |-
+      The boy is sitting in the house.
+      The boy (is staying|lives) in the house.
+- id: s.14.8
+  node: hbo.u14.you-called-me
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קָרָאתָ לִּי׃
+      tokens: [{surface: קָרָאתָ, sense: qara, form: 'form:qatal-2ms', readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: lî}}]
+      reverse: |-
+        קראת לי
+        אתה קראת לי
+  translations:
+    en: |-
+      You called me.
+      You called (for|to) me.
+- id: s.14.9
+  node: hbo.u14.you-called-me
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: קָרָאת לִי׃
+      tokens: [{surface: קָרָאת, sense: qara, form: 'form:qatal-2fs', readings: {tiberian: qārāʾṯ}}, {surface: לִי, sense: le, morphs: [{surface: לִ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: lî}}]
+      reverse: |-
+        קראת לי
+        את קראת לי
+  translations:
+    en: |-
+      You called me.
+      You called (for|to) me.
+- id: s.14.10
+  node: hbo.u14.you-called-me
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: הִנְנִי כִּי־קָרָאתָ לִּי׃
+      tokens: [{surface: הִנְנִי, sense: hinneh, morphs: [{surface: הִנְ, kc: 'sense:hinneh'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hinənî}}, {surface: כִּי, sense: ki, readings: {
+            tiberian: kî-}}, {surface: קָרָאתָ, sense: qara, form: 'form:qatal-2ms', readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י, kc: 'form:sfx-1cs'}],
+          readings: {tiberian: lî}}]
+      reverse: הנני כי קראת לי
+  translations:
+    en: |-
+      Here I am, for you called me.
+      Here I am; you called me.
+- id: s.14.11
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: לֹא־קָרָאתִי׃
+      tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ-}}, {surface: קָרָאתִי, sense: qara, form: 'form:qatal-1cs', readings: {tiberian: qārā́ʾṯî}}]
+      reverse: (לא|לוא) קראתי
+  translations:
+    en: I (did not|didn't) call [you].
+- id: s.14.12
+  node: hbo.u14.you-called-me
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּב שְׁכָב׃
+      tokens: [{surface: שׁוּב, sense: shuv, form: 'form:impv-ms', readings: {tiberian: šûḇ}}, {surface: שְׁכָב, sense: shakhav, form: 'form:impv-ms', readings: {tiberian: šəḵāḇ}}]
+      reverse: שוב שכב
+  translations:
+    en: |-
+      Go back [and] lie down!
+      Go back to bed!
+- id: s.14.13
+  node: hbo.u14.you-called-me
+  persons: {addressee: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: שׁוּבִי שִׁכְבִי׃
+      tokens: [{surface: שׁוּבִי, sense: shuv, form: 'form:impv-fs', readings: {tiberian: šû́ḇî}}, {surface: שִׁכְבִי, sense: shakhav, form: 'form:impv-fs', readings: {tiberian: šiḵḇî}}]
+      reverse: שובי שכבי
+  translations:
+    en: |-
+      Go back [and] lie down!
+      Go back to bed!
+- id: s.14.14
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיֵּלֶךְ וַיִּשְׁכַּב׃
+      tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: וַיִּשְׁכַּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}]
+      reverse: וילך וישכב
+  translations:
+    en: '[(And|So)] he went and lay down.'
+- id: s.14.15
+  node: hbo.u14.you-called-me
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
+      tokens: [{surface: וַיִּשְׁכַּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, sense: maqom, morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: מְקוֹמ,
+              kc: 'sense:maqom'}, {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: bimqômô}}]
+      reverse: |-
+        וישכב במקומו
+        שכב במקומו
+        הוא שכב במקומו
+        והוא שכב במקומו
+  translations:
+    en: '[(And|Then|So)] he lay down in his place.'
+- id: s.14.16
+  node: hbo.u14.speak
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיָה
+      tokens: [{surface: וְהָיָה, sense: hayah, form: 'form:weqatal-3ms', readings: {tiberian: wəhāyâ}}]
+      reverse: והיה
+  translations:
+    en: |-
+      and it will be
+      and it shall (be|happen)
+- id: s.14.17
+  node: hbo.u14.speak
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְהָיָה אִם־יִקְרָא אֵלֶיךָ
+      tokens: [{surface: וְהָיָה, sense: hayah, form: 'form:weqatal-3ms', readings: {tiberian: wəhāyâ}}, {surface: אִם, sense: im, readings: {tiberian: ʾim-}}, {surface: יִקְרָא, sense: qara, form: 'form:yiqtol-3ms',
+          readings: {tiberian: yiqrāʾ}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾēlếḵā}}]
+      reverse: והיה אם יקרא אליך
+  translations:
+    en: |-
+      and if he calls you
+      and it shall be, if he calls [to] you
+- id: s.14.18
+  node: hbo.u14.speak
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: וְאָמַרְתָּ
+      tokens: [{surface: וְאָמַרְתָּ, sense: amar, form: 'form:weqatal-2ms', readings: {tiberian: wəʾāmartā}}]
+      reverse: |-
+        ואמרת
+        ואתה (תאמר|תואמר)
+  translations:
+    en: |-
+      and you shall say
+      then you will say
+- id: s.14.19
+  node: hbo.u14.speak
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבֵּר׃
+      tokens: [{surface: דַּבֵּר, sense: dibber, form: 'form:impv-ms', readings: {tiberian: dabbēr}}]
+      reverse: דבר
+  translations:
+    en: Speak!
+- id: s.14.20
+  node: hbo.u14.speak
+  persons: {addressee: pl}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבְּרוּ׃
+      tokens: [{surface: דַּבְּרוּ, sense: dibber, form: 'form:impv-mp', readings: {tiberian: dabbərû}}]
+      reverse: דברו
+  translations:
+    en: Speak!
+- id: s.14.21
+  node: hbo.u14.speak
+  forms:
+    hbo-Hebr/tiberian:
+      text: שֹׁמֵעַ
+      tokens: [{surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms', readings: {tiberian: šōmēaʿ}}]
+      reverse: (שמע|שומע)
+  translations:
+    en: |-
+      listening
+      hearing
+- id: s.14.22
+  node: hbo.u14.speak
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: עַבְדְּךָ
+      tokens: [{surface: עַבְדְּךָ, sense: eved, morphs: [{surface: עַבְדְּ, kc: 'sense:eved'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʿaḇdəḵā}}]
+      reverse: עבדך
+  translations:
+    en: your servant
+- id: s.14.23
+  node: hbo.u14.speak
+  persons: {addressee: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: דַּבֵּר כִּי שֹׁמֵעַ עַבְדֶּךָ׃
+      tokens: [{surface: דַּבֵּר, sense: dibber, form: 'form:impv-ms', readings: {tiberian: dabbēr}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms',
+          readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, sense: eved, morphs: [{surface: עַבְדֶּ, kc: 'sense:eved'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʿaḇdéḵā}}]
+      reverse: דבר כי (שמע|שומע) עבדך
+  translations:
+    en: |-
+      Speak, for your servant is listening.
+      Speak, (because|since) your servant is listening.
+- id: s.14.24
+  node: hbo.u14.speak
+  persons: {speaker: f}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי שֹׁמַעַת׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמַעַת, sense: shama, form: 'form:ptc-fs', readings: {tiberian: šōmáʿaṯ}}]
+      reverse: |-
+        (אנכי|אנוכי) (שמעת|שומעת)
+        (שמעת|שומעת) (אנכי|אנוכי)
+  translations:
+    en: I( am|'m) listening.
+- id: s.14.25
+  node: hbo.u14.speak
+  persons: {speaker: m}
+  forms:
+    hbo-Hebr/tiberian:
+      text: אָנֹכִי שֹׁמֵעַ׃
+      tokens: [{surface: אָנֹכִי, sense: anokhi, readings: {tiberian: ʾānōḵî}}, {surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms', readings: {tiberian: šōmēaʿ}}]
+      reverse: |-
+        (אנכי|אנוכי) (שמע|שומע)
+        (שמע|שומע) (אנכי|אנוכי)
+  translations:
+    en: I( am|'m) listening.
+- id: s.14.26
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיִּתְיַצַּב׃
+      tokens: [{surface: וַיִּתְיַצַּב, sense: hityatsev, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}]
+      reverse: ויתיצב
+  translations:
+    en: |-
+      [(And|Then)] he stood [there].
+      [(And|Then)] he took his stand.
+- id: s.14.27
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: פַּעַם
+      tokens: [{surface: פַּעַם, sense: paam, readings: {tiberian: páʿam}}]
+      reverse: פעם
+  translations:
+    en: |-
+      a time
+      once
+- id: s.14.28
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: כְפַעַם־בְּפַעַם
+      tokens: [{surface: כְפַעַם, sense: paam, morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{
+              surface: בְּ, kc: 'sense:be'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
+      reverse: כפעם בפעם
+  translations:
+    en: |-
+      as at other times
+      as [he had] (before|the other times)
+- id: s.14.29
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב׃
+      tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, sense: hityatsev,
+          form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}]
+      reverse: (ויבא|ויבוא) יהוה ויתיצב
+  translations:
+    en: |-
+      [(And|Then)] the LORD came and stood [there].
+      [(And|Then)] the LORD came and took his stand.
+- id: s.14.30
+  node: hbo.u14.he-stood-and-called
+  forms:
+    hbo-Hebr/tiberian:
+      text: שְׁמוּאֵל שְׁמוּאֵל׃
+      tokens: [{surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      reverse: שמואל שמואל
+  translations:
+    en: Samuel! Samuel!
+stories:
+- id: hbo.story.speak-lord
+  node: hbo.u14.story
+  title:
+    en: Speak, LORD (1 Samuel 3:4–5, 9–10)
+  characters:
+  - {id: god, name: {hbo-Hebr/tiberian: יְהוָה}}
+  - {id: samuel, speaker: m, name: {hbo-Hebr/tiberian: שְׁמוּאֵל}}
+  - {id: eli, speaker: m, name: {hbo-Hebr/tiberian: עֵלִי}}
+  steps:
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיִּקְרָא יְהוָה אֶל־שְׁמוּאֵל
+          tokens: [{surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: אֶל, sense: el,
+              readings: {tiberian: ʾel-}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: And the LORD called Samuel,
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: and he said,
+  - line:
+      speaker: samuel
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנֵּנִי׃
+          tokens: [{surface: הִנֵּנִי, sense: hinneh, morphs: [{surface: הִנֵּ, kc: 'sense:hinneh'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hinnḗnî}}]
+      translations:
+        en: “Here I am.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּרָץ אֶל־עֵלִי וַיֹּאמֶר
+          tokens: [{surface: וַיָּרָץ, sense: ruts, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyā́roṣ}}, {surface: אֶל, sense: el, readings: {tiberian: ʾel-}}, {surface: עֵלִי, sense: eli, readings: {
+                tiberian: ʿēlî}}, {surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: And he ran to Eli and said,
+  - line:
+      speaker: samuel
+      ask: complete
+      gap: sense:qara
+      distractors: ['sense:shama', 'sense:shakhav']
+      forms:
+        hbo-Hebr/tiberian:
+          text: הִנְנִי כִּי־קָרָאתָ לִּי
+          tokens: [{surface: הִנְנִי, sense: hinneh, morphs: [{surface: הִנְ, kc: 'sense:hinneh'}, {surface: נִי, kc: 'form:sfx-1cs'}], readings: {tiberian: hinənî}}, {surface: כִּי, sense: ki, readings: {
+                tiberian: kî-}}, {surface: קָרָאתָ, sense: qara, form: 'form:qatal-2ms', readings: {tiberian: qārā́ʾṯā}}, {surface: לִּי, sense: le, morphs: [{surface: לִּ, kc: 'sense:le'}, {surface: י,
+                  kc: 'form:sfx-1cs'}], readings: {tiberian: lî}}]
+      translations:
+        en: “Here I am, for you called me.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}]
+      translations:
+        en: But he said,
+  - line:
+      speaker: eli
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֹא־קָרָאתִי שׁוּב שְׁכָב
+          tokens: [{surface: לֹא, sense: lo, readings: {tiberian: lōʾ-}}, {surface: קָרָאתִי, sense: qara, form: 'form:qatal-1cs', readings: {tiberian: qārā́ʾṯî}}, {surface: שׁוּב, sense: shuv, form: 'form:impv-ms',
+              readings: {tiberian: šûḇ}}, {surface: שְׁכָב, sense: shakhav, form: 'form:impv-ms', readings: {tiberian: šəḵāḇ}}]
+      translations:
+        en: “I did not call; go back, lie down.”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלֶךְ וַיִּשְׁכָּב׃
+          tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: וַיִּשְׁכָּב, sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškāḇ}}]
+      translations:
+        en: So he went and lay down.
+  - choose:
+      prompt:
+        en: Who does Samuel think is calling him?
+      options: [{en: Eli}, {en: his father}, {en: the LORD}]
+      answer: 0
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר עֵלִי לִשְׁמוּאֵל
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: עֵלִי, sense: eli, readings: {tiberian: ʿēlî}}, {surface: לִשְׁמוּאֵל, sense: shmuel,
+              morphs: [{surface: לִ, kc: 'sense:le'}, {surface: שְׁמוּאֵל, kc: 'sense:shmuel'}], readings: {tiberian: lišmûʾēl}}]
+      translations:
+        en: Then Eli said to Samuel,
+  - line:
+      speaker: eli
+      forms:
+        hbo-Hebr/tiberian:
+          text: לֵךְ שְׁכָב וְהָיָה אִם־יִקְרָא אֵלֶיךָ וְאָמַרְתָּ דַּבֵּר יְהוָה כִּי שֹׁמֵעַ עַבְדֶּךָ
+          tokens: [{surface: לֵךְ, sense: halakh, form: 'form:impv-ms', readings: {tiberian: lēḵ}}, {surface: שְׁכָב, sense: shakhav, form: 'form:impv-ms', readings: {tiberian: šəḵāḇ}}, {surface: וְהָיָה,
+              sense: hayah, form: 'form:weqatal-3ms', readings: {tiberian: wəhāyâ}}, {surface: אִם, sense: im, readings: {tiberian: ʾim-}}, {surface: יִקְרָא, sense: qara, form: 'form:yiqtol-3ms', readings: {
+                tiberian: yiqrāʾ}}, {surface: אֵלֶיךָ, sense: el, morphs: [{surface: אֵלֶי, kc: 'sense:el'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʾēlếḵā}}, {surface: וְאָמַרְתָּ, sense: amar,
+              form: 'form:weqatal-2ms', readings: {tiberian: wəʾāmartā}}, {surface: דַּבֵּר, sense: dibber, form: 'form:impv-ms', readings: {tiberian: dabbēr}}, {surface: יְהוָה, sense: yhwh, readings: {
+                tiberian: ʾăḏōnāy}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms', readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, sense: eved,
+              morphs: [{surface: עַבְדֶּ, kc: 'sense:eved'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʿaḇdéḵā}}]
+      translations:
+        en: “Go, lie down; and if he calls you, say, ‘Speak, LORD, for your servant is listening.’”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֵּלֶךְ שְׁמוּאֵל וַיִּשְׁכַּב בִּמְקוֹמוֹ׃
+          tokens: [{surface: וַיֵּלֶךְ, sense: halakh, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyḗleḵ}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}, {surface: וַיִּשְׁכַּב,
+              sense: shakhav, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiškaḇ}}, {surface: בִּמְקוֹמוֹ, sense: maqom, morphs: [{surface: בִּ, kc: 'sense:be'}, {surface: מְקוֹמ, kc: 'sense:maqom'},
+                {surface: וֹ, kc: 'form:sfx-3ms'}], readings: {tiberian: bimqômô}}]
+      translations:
+        en: So Samuel went and lay down in his place.
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיָּבֹא יְהוָה וַיִּתְיַצַּב וַיִּקְרָא כְפַעַם־בְּפַעַם
+          tokens: [{surface: וַיָּבֹא, sense: bo, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyāḇōʾ}}, {surface: יְהוָה, sense: yhwh, readings: {tiberian: ʾăḏōnāy}}, {surface: וַיִּתְיַצַּב, sense: hityatsev,
+              form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiṯyaṣṣaḇ}}, {surface: וַיִּקְרָא, sense: qara, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyiqrāʾ}}, {surface: כְפַעַם, sense: paam,
+              morphs: [{surface: כְ, kc: 'sense:ke'}, {surface: פַעַם, kc: 'sense:paam'}], readings: {tiberian: ḵəp̄aʿam-}}, {surface: בְּפַעַם, sense: paam, morphs: [{surface: בְּ, kc: 'sense:be'}, {surface: פַעַם,
+                  kc: 'sense:paam'}], readings: {tiberian: bəp̄áʿam}}]
+      translations:
+        en: And the LORD came and stood there, and called as at other times,
+  - line:
+      speaker: god
+      forms:
+        hbo-Hebr/tiberian:
+          text: שְׁמוּאֵל שְׁמוּאֵל
+          tokens: [{surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: “Samuel! Samuel!”
+  - line:
+      forms:
+        hbo-Hebr/tiberian:
+          text: וַיֹּאמֶר שְׁמוּאֵל
+          tokens: [{surface: וַיֹּאמֶר, sense: amar, form: 'form:wayyiqtol-3ms', readings: {tiberian: wayyṓʾmer}}, {surface: שְׁמוּאֵל, sense: shmuel, readings: {tiberian: šəmûʾēl}}]
+      translations:
+        en: And Samuel said,
+  - line:
+      speaker: samuel
+      ask: arrange
+      forms:
+        hbo-Hebr/tiberian:
+          text: דַּבֵּר כִּי שֹׁמֵעַ עַבְדֶּךָ׃
+          tokens: [{surface: דַּבֵּר, sense: dibber, form: 'form:impv-ms', readings: {tiberian: dabbēr}}, {surface: כִּי, sense: ki, readings: {tiberian: kî}}, {surface: שֹׁמֵעַ, sense: shama, form: 'form:ptc-ms',
+              readings: {tiberian: šōmēaʿ}}, {surface: עַבְדֶּךָ, sense: eved, morphs: [{surface: עַבְדֶּ, kc: 'sense:eved'}, {surface: ךָ, kc: 'form:sfx-2ms'}], readings: {tiberian: ʿaḇdéḵā}}]
+      translations:
+        en: “Speak, for your servant is listening.”
+  - choose:
+      prompt:
+        en: What does Eli tell Samuel to answer?
+      options: [{en: '“Speak, LORD, for your servant is listening.”'}, {en: “I did not hear.”}, {en: “Go back and lie down.”}]
+      answer: 0
+scenarios:
+- id: hbo.in-the-temple-at-shiloh
+  after: hbo.u14.he-stood-and-called
+  title:
+    en: In the temple at Shiloh
+  setting:
+    en: The house of the LORD at Shiloh, before dawn; the lamp of God has not yet gone out.
+  character:
+    en: Eli the old priest, half asleep and nearly blind, who speaks only Biblical Hebrew.
+  goal:
+    en: Tell Eli that someone called you three times, ask him what to say, and say that you will go back and lie down.

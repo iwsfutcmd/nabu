@@ -418,9 +418,17 @@
       "message": "مكتمل",
       "source": "00609f822e0571"
     },
+    "app.path.letters": {
+      "message": ".input {$number :number}\n{{الحروف {$number}}}",
+      "source": "0a4a75ab67b7e7"
+    },
     "app.path.locked": {
       "message": "مقفل",
       "source": "0e259fa0babc2d"
+    },
+    "app.path.new-letters": {
+      "message": "حروف جديدة",
+      "source": "04c7f4702df641"
     },
     "app.path.start": {
       "message": "البدء",
@@ -950,9 +958,21 @@
       "message": "الفارسية",
       "source": "0814f27aca872d"
     },
+    "course.name.grc": {
+      "message": "اليونانية القديمة",
+      "source": "1e44e3a3ed8730"
+    },
+    "course.name.hbo": {
+      "message": "العبرية التوراتية",
+      "source": "0ddad88d960e7d"
+    },
     "course.name.lzh": {
       "message": "الصينية الكلاسيكية",
       "source": "169053e6ceef8d"
+    },
+    "course.name.tok": {
+      "message": "توكي بونا",
+      "source": "07288edbd3337d"
     },
     "course.name.uz": {
       "message": "الأوزبكية",
@@ -1074,9 +1094,21 @@
       "message": "هذه اللاحقة تغيّر صاحب الشيء (لي، لك، له…)، لا إملاء الكلمة فحسب.",
       "source": "0f198186f5f77b"
     },
+    "feedback.note.contrast-prefix": {
+      "message": "هذه السابقة تغيّر المعنى (مَن يقوم بالفعل، أو هل هو إخبار)، لا الإملاء فحسب.",
+      "source": "023d64d0a4d939"
+    },
     "feedback.note.contrast-pronoun": {
       "message": "هذا ضمير مختلف، وليس خطأً مطبعيًا.",
       "source": "113842c4f5afa3"
+    },
+    "feedback.note.greek-marks": {
+      "message": "انتبه إلى علامات النبر والنفَس والإيوتا المكتتبة: إنها جزء من الإملاء.",
+      "source": "143c6d40f020e1"
+    },
+    "feedback.note.greek-marks-word": {
+      "message": "بهذه العلامات تصبح كلمة أخرى (ἡ أداة التعريف، ἤ «أو»).",
+      "source": "070d94b932dfee"
     },
     "feedback.note.hamza": {
       "message": "انتبهوا إلى الهمزة (أ، إ، آ).",
@@ -1330,9 +1362,25 @@
       "message": "الحروف الفارسية",
       "source": "1a96004e1beccf"
     },
+    "orthography.grc-Grek.polytonic": {
+      "message": "اليونانية متعددة النبرات",
+      "source": "0b1395732f8b7d"
+    },
+    "orthography.hbo-Hebr.tiberian": {
+      "message": "الخط العبري بالتشكيل الطبري",
+      "source": "0056996ec949db"
+    },
     "orthography.lzh-Hant.standard": {
       "message": "الرموز التقليدية",
       "source": "0768e08b58f7c1"
+    },
+    "orthography.tok-Latn.standard": {
+      "message": "الحروف اللاتينية (sitelen Lasina)",
+      "source": "1dfd55beb895ac"
+    },
+    "orthography.tok-Qaap.sitelen-pona": {
+      "message": "sitelen pona (كتابة رمزية)",
+      "source": "09967254be9d0c"
     },
     "orthography.uz-Cyrl.standard": {
       "message": "الحروف السيريلية",
@@ -1426,6 +1474,14 @@
       "message": "املؤوا الفراغ",
       "source": "0fecadc0573056"
     },
+    "player.instruction.letter-pairs": {
+      "message": "طابق كل حرف مع صوته",
+      "source": "1c83c6c236dd6c"
+    },
+    "player.instruction.letter-read": {
+      "message": "كيف يُنطق هذا الحرف؟",
+      "source": "17f0bb60fdee12"
+    },
     "player.instruction.listen-select": {
       "message": "أيّ كلمة تسمعون؟",
       "source": "046edf8832a029"
@@ -1493,6 +1549,14 @@
     "player.instruction.vocalize": {
       "message": "أضيفوا التشكيل",
       "source": "041a63b98f57c1"
+    },
+    "player.instruction.word-read": {
+      "message": "كيف تُكتب هذه الكلمة بالحروف اللاتينية؟",
+      "source": "0b84c0f1f9021f"
+    },
+    "player.instruction.word-write": {
+      "message": "كوّن الكلمة من حروفها",
+      "source": "0795fd6dee9554"
     },
     "player.key.mark.064b": {
       "message": "تنوين الفتح",
@@ -1794,6 +1858,26 @@
       "message": "أصغر",
       "source": "11d42294548513"
     },
+    "preferences.theme.dark": {
+      "message": "داكن",
+      "source": "021eb881b194d5"
+    },
+    "preferences.theme.hint": {
+      "message": "«مثل المتصفح» يتبع إعداد الوضع الفاتح أو الداكن في متصفحك أو جهازك.",
+      "source": "06d04086bf7532"
+    },
+    "preferences.theme.label": {
+      "message": "المظهر",
+      "source": "1ea2057b0ceddc"
+    },
+    "preferences.theme.light": {
+      "message": "فاتح",
+      "source": "1bd79ce045f09a"
+    },
+    "preferences.theme.system": {
+      "message": "مثل المتصفح",
+      "source": "063a3544fdda5c"
+    },
     "preferences.title": {
       "message": "التفضيلات",
       "source": "1d9d2be97a052d"
@@ -1861,6 +1945,10 @@
     "reading.scheme.jyutping": {
       "message": "جيوتبينغ",
       "source": "060334df66e05a"
+    },
+    "reading.scheme.lasina": {
+      "message": "sitelen Lasina",
+      "source": "1301a482fe38d5"
     },
     "reading.scheme.pinyin": {
       "message": "بينيين",
@@ -2053,6 +2141,54 @@
     "story.translation.show": {
       "message": "إظهار الترجمة",
       "source": "02b713e9854aff"
+    },
+    "words.count": {
+      "message": ".input {$count :number}\n.match $count\nzero {{لا كلمات}}\none {{كلمة واحدة}}\ntwo {{كلمتان}}\nfew {{{$count} كلمات}}\nmany {{{$count} كلمةً}}\n* {{{$count} كلمة}}",
+      "source": "006540a168fe3e"
+    },
+    "words.empty": {
+      "message": "لا كلمات بعد. تظهر الكلمات هنا بعد أن تتمرّن عليها في درس.",
+      "source": "0f528d8ac2da08"
+    },
+    "words.none-found": {
+      "message": "لا كلمة ممّا تعلّمته تطابق ذلك.",
+      "source": "0e5f9639794378"
+    },
+    "words.order.alphabetical": {
+      "message": "أبجديًا",
+      "source": "05903207c8a59d"
+    },
+    "words.order.course": {
+      "message": "كما في الدورة",
+      "source": "0f77e2c3bb1c8e"
+    },
+    "words.order.label": {
+      "message": "الترتيب",
+      "source": "126e942baf656b"
+    },
+    "words.order.weakest": {
+      "message": "الأضعف أولًا",
+      "source": "1913af63c531b2"
+    },
+    "words.search": {
+      "message": "ابحث عن كلمة",
+      "source": "11ed730c010d98"
+    },
+    "words.strength.due": {
+      "message": "حان وقت مراجعتها",
+      "source": "0e71bfae4eb57e"
+    },
+    "words.strength.fading": {
+      "message": "بدأت تُنسى",
+      "source": "01548a7b07b0cf"
+    },
+    "words.strength.strong": {
+      "message": "راسخة في الذاكرة",
+      "source": "112b40f86aab85"
+    },
+    "words.title": {
+      "message": "الكلمات التي تعلّمتها",
+      "source": "048579200c802a"
     }
   }
 }

@@ -147,12 +147,14 @@ sentences:
       reverse: |-
         Kecha [biz] kinoga bordik
         [Biz] kecha kinoga bordik
+        Kecha kinoteatrga bordik
     uz-Cyrl/standard:
       text: Кеча кинога бордик.
       tokens: [{surface: Кеча, sense: kecha}, {surface: кинога, sense: kino, morphs: [{surface: кино, kc: 'sense:kino'}, {surface: га, kc: 'form:dat-ga'}]}, {surface: бордик, sense: bormoq, morphs: [{surface: бор, kc: 'sense:bormoq'}, {surface: ди, kc: 'form:past-di'}, {surface: к, kc: 'form:past-1pl-k'}]}]
       reverse: |-
         Кеча [биз] кинога бордик
         [Биз] кеча кинога бордик
+        Кеча кинотеатрга бордик
   translations:
     en: |-
       We went to the (cinema|movies) yesterday.
@@ -187,12 +189,14 @@ sentences:
       reverse: |-
         Kecha [men] osh (pishirdim|damladim|qildim)
         [Men] kecha osh (pishirdim|damladim|qildim)
+        Kecha palov pishirdim
     uz-Cyrl/standard:
       text: Кеча ош пиширдим.
       tokens: [{surface: Кеча, sense: kecha}, {surface: ош, sense: osh}, {surface: пиширдим, sense: pishirmoq, morphs: [{surface: пишир, kc: 'sense:pishirmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
       reverse: |-
         Кеча [мен] ош (пиширдим|дамладим|қилдим)
         [Мен] кеча ош (пиширдим|дамладим|қилдим)
+        Кеча палов пиширдим
   translations:
     en: |-
       I (cooked|made) (plov|pilaf|palov) yesterday.
@@ -251,7 +255,9 @@ sentences:
       tokens: [{surface: Бобур, sense: bobur}, {surface: билан, sense: bilan}, {surface: учрашдим, sense: uchrashmoq, morphs: [{surface: учраш, kc: 'sense:uchrashmoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
       reverse: '[Мен] Бобур билан учрашдим'
   translations:
-    en: I met [with] Bobur.
+    en: |-
+      I met [with] Bobur.
+      I met up with Bobur.
 - id: s.past.13
   node: uz.past.did
   forms:
@@ -402,12 +408,14 @@ sentences:
       reverse: |-
         Kecha [men] kech uxladim
         [Men] kecha kech uxladim
+        Kecha kech yotdim
     uz-Cyrl/standard:
       text: Кеча кеч ухладим.
       tokens: [{surface: Кеча, sense: kecha}, {surface: кеч, sense: kech}, {surface: ухладим, sense: uxlamoq, morphs: [{surface: ухла, kc: 'sense:uxlamoq'}, {surface: ди, kc: 'form:past-di'}, {surface: м, kc: 'form:past-1sg-m'}]}]
       reverse: |-
         Кеча [мен] кеч ухладим
         [Мен] кеча кеч ухладим
+        Кеча кеч ётдим
   translations:
     en: |-
       I went to (bed|sleep) late yesterday.
@@ -459,7 +467,9 @@ sentences:
         [Мен] ўтган ҳафта келдим
         Ўтган ҳафта [мен] келдим
   translations:
-    en: I (came|arrived) last week.
+    en: |-
+      I (came|arrived) last week.
+      Last week I arrived.
 - id: s.past.26
   node: uz.past.when
   forms:
@@ -563,11 +573,15 @@ sentences:
     uz-Latn/standard:
       text: Osh juda mazali edi.
       tokens: [{surface: Osh, sense: osh}, {surface: juda, sense: juda}, {surface: mazali, sense: mazali}, {surface: edi, sense: edi, morphs: [{surface: e, kc: 'sense:edi'}, {surface: di, kc: 'form:past-di'}]}]
-      reverse: Osh juda mazali edi
+      reverse: |-
+        Osh juda mazali edi
+        Palov juda mazali edi
     uz-Cyrl/standard:
       text: Ош жуда мазали эди.
       tokens: [{surface: Ош, sense: osh}, {surface: жуда, sense: juda}, {surface: мазали, sense: mazali}, {surface: эди, sense: edi, morphs: [{surface: э, kc: 'sense:edi'}, {surface: ди, kc: 'form:past-di'}]}]
-      reverse: Ош жуда мазали эди
+      reverse: |-
+        Ош жуда мазали эди
+        Палов жуда мазали эди
   translations:
     en: The (plov|pilaf|palov|food) was (very tasty|delicious|very delicious|very good).
 - id: s.past.32
@@ -591,7 +605,9 @@ sentences:
         [(Сизлар|Сиз)] кеча қаерга (бордингизлар|бордингиз)
         Кеча [(сизлар|сиз)] қаерга (бордингизлар|бордингиз)
   translations:
-    en: Where did you go yesterday?
+    en: |-
+      Where did you go yesterday?
+      Where did you all go yesterday?
 - id: s.past.33
   node: uz.past.understand
   persons: {addressee: pl}
@@ -610,6 +626,7 @@ sentences:
     en: |-
       Did you understand?
       Do you understand?
+      Did you all understand?
 stories:
 - id: uz.story.past
   node: uz.past.story
