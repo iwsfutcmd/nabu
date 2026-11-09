@@ -99,6 +99,27 @@ def generate(
 
 
 @app.command()
+def prune(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+) -> None:
+    """Let the stale clips go without making new ones (the cast or an item changed).
+
+    `generate` keeps a stale clip until it has made the new one, so a course can carry
+    `audio.stale` for a long while (a recast voice on a CPU). After `prune` it builds clean,
+    and those items have no audio until `generate` makes it.
+    """
+    from nabu.audio.course import synthesize_course
+
+    course_dir, source, units, written = _compiled(course)
+    audio = source.audio
+    if audio is None or not audio.voices:
+        typer.echo(f"✗ {source.id}: no audio voices in course.yaml", err=True)
+        raise typer.Exit(code=1)
+    report = synthesize_course(course_dir, units, audio.voices, None, written, prune=True)
+    typer.echo(f"✓ {source.id}: {report.dropped} stale clips dropped, {report.kept} kept")
+
+
+@app.command()
 def cast(
     course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
     text: Annotated[
