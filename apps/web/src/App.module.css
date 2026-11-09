@@ -10,7 +10,8 @@
 
 .player {
   box-sizing: border-box;
-  padding-block: var(--nabu-space-4);
+  /* Room below the card, so its footer can scroll clear of a phone browser's bottom toolbar. */
+  padding-block: var(--nabu-space-4) calc(var(--nabu-space-4) + var(--nabu-space-reach));
   padding-inline: var(--nabu-space-3);
 }
 

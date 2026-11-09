@@ -56,6 +56,18 @@ export const effectiveWritingMode = (profile: OrthographyProfile | undefined, re
 const DIGITS = ["123456789", "۱۲۳۴۵۶۷۸۹", "١٢٣٤٥٦٧٨٩"];
 
 /** 0 for "1" (or ۱ or ١), …; undefined for any other key. */
+/**
+ * Focuses an action (Continue) and brings its footer into view, with the footer's scroll margin
+ * below it: a phone browser's toolbar at the bottom of the screen covers the last strip of the
+ * viewport, where focus() alone would leave the button. Nothing happens while it has focus, so
+ * a re-render never scrolls the page back to it.
+ */
+export const focusInReach = (button: HTMLElement | null, footer: HTMLElement | null): void => {
+  if (button === null || document.activeElement === button) return;
+  button.focus({ preventScroll: true });
+  (footer ?? button).scrollIntoView({ block: "nearest", inline: "nearest" });
+};
+
 export const digitIndex = (key: string): number | undefined => {
   for (const digits of DIGITS) {
     const i = digits.indexOf(key);

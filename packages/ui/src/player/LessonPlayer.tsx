@@ -17,7 +17,7 @@ import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 import { ReadingsControl, useReadings } from "./Readings.tsx";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
+import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -91,12 +91,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
+  const footer = useRef<HTMLElement>(null);
   const shortcuts = useRef<Shortcuts | null>(null);
   const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
 
   useEffect(() => {
     if (state.tag === "presenting") dispatch({ tag: "ready" });
-    if (state.tag === "feedback") continueButton.current?.focus();
+    if (state.tag === "feedback") focusInReach(continueButton.current, footer.current);
   });
 
   // Keyboard (§11.3, §11.7): Enter checks and continues, number keys and Backspace go to the
@@ -235,7 +236,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       </div>
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 
-      <footer className={styles.footer}>
+      <footer ref={footer} className={styles.footer}>
         {active.tag === "feedback" ? (
           <Button ref={continueButton} className={`${styles.primary} ${isCorrect(active.outcome.verdict) ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue">
             {t.format("player.action.continue")}
