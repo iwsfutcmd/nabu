@@ -17,7 +17,7 @@ import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 import { ReadingsControl, useReadings } from "./Readings.tsx";
-import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
+import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -92,6 +92,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);
   const footer = useRef<HTMLElement>(null);
+  const card = useRef<HTMLElement>(null);
+  useActionsInReach(card, footer, state.tag === "finished" ? "" : (state.tag === "interrupted" ? state.resume : state).ex.id);
   const shortcuts = useRef<Shortcuts | null>(null);
   const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
 
@@ -175,7 +177,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   };
 
   return (
-    <section className={styles.card} data-lesson-player="" data-template={ex.template} data-exercise={ex.id} data-state={state.tag}>
+    <section ref={card} className={styles.card} data-lesson-player="" data-template={ex.template} data-exercise={ex.id} data-state={state.tag}>
       <header className={styles.header}>
         <Button className={styles.iconButton} aria-label={t.format("exercise.action.quit")} onPress={() => dispatch({ tag: "interrupt", reason: "quit-confirm" })} data-action="quit">
           <CloseIcon />

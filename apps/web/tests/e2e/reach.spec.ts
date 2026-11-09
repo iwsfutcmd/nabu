@@ -1,11 +1,13 @@
 /**
- * On a phone, Continue is in reach once a card is answered. The player focuses it, and the page
+ * On a phone, Check and Continue stay in reach. Continue, once a card is answered: the player focuses it, and the page
  * scrolls it into view with room to spare below: a browser's toolbar at the bottom of the screen
  * (Chrome's bottom address bar) covers the last strip of the viewport. The page keeps room below
  * the card for that, so even the end of the page scrolls clear of it. A small phone, and Toki Pona
- * in sitelen pona with its readings shown, make a lesson card taller than the screen.
+ * in sitelen pona with its readings shown, make a lesson card taller than the screen. Check, while
+ * typing: the on-screen keyboard leaves little of the screen, and the browser scrolls only the
+ * field into view, so the page scrolls on until the card's footer clears the bottom toolbar too.
  */
-import { lessonNodes } from "@nabu/core/lesson";
+import { cardGallery, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { answer, loadCourse, planned, sessionUrl, waitFor } from "./solver.ts";
 
@@ -42,4 +44,29 @@ test("on a phone, Continue scrolls into view clear of a toolbar at the bottom of
     if (checked >= 3) break;
   }
   expect(checked).toBeGreaterThan(0);
+});
+
+test("on a phone, Check stays in reach while typing with the on-screen keyboard open", async ({ page }, info) => {
+  test.skip(info.project.name !== "touch", "a phone's screen");
+  await page.setViewportSize({ width: 375, height: 667 });
+  const course = loadCourse("hbo", "hbo-Hebr/tiberian");
+  const ex = cardGallery(course, 7).find((c) => c.template === "complete-translation")?.exercise;
+  if (ex === undefined) throw new Error("hbo's gallery has a complete-translation card");
+  await page.goto("/?sound=off&debug=1#/hbo/hbo-Hebr.tiberian/cards");
+  await page.locator('[data-card="complete-translation"] [data-action=try-card]').click();
+  await waitFor(page, ex);
+  const field = page.locator("[data-answer-input]");
+  await expect(field).toBeFocused();
+  // The keyboard opens: it and the toolbar above it leave this much of the screen.
+  await page.setViewportSize({ width: 375, height: 390 });
+  const check = page.locator("[data-action=check]");
+  await expect
+    .poll(async () => {
+      const box = await check.boundingBox();
+      return box === null ? -1 : (await page.evaluate(() => window.innerHeight)) - (box.y + box.height);
+    })
+    .toBeGreaterThanOrEqual(TOOLBAR);
+  // The field itself stays in view.
+  const at = await field.boundingBox();
+  expect(at?.y ?? -1).toBeGreaterThanOrEqual(0);
 });

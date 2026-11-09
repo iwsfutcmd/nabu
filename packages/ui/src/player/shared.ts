@@ -4,6 +4,7 @@
  */
 import type { CourseView, Draft, Exercise, PlayerEvent } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
+import { useEffect, type RefObject } from "react";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
 
@@ -66,6 +67,53 @@ export const focusInReach = (button: HTMLElement | null, footer: HTMLElement | n
   if (button === null || document.activeElement === button) return;
   button.focus({ preventScroll: true });
   (footer ?? button).scrollIntoView({ block: "nearest", inline: "nearest" });
+};
+
+/** A field the learner types into, where an on-screen keyboard opens. */
+const typesInto = (el: Element | null): el is HTMLElement =>
+  el instanceof HTMLTextAreaElement || (el instanceof HTMLElement && el.isContentEditable) || (el instanceof HTMLInputElement && !["button", "checkbox", "radio", "range", "submit", "reset", "file", "image", "color"].includes(el.type));
+
+/** The room kept above a field when the page scrolls on past it (CSS px). */
+const FIELD_MARGIN = 8;
+
+/**
+ * While the learner types into a field of the card, its actions (Check, Skip) stay in reach. On a
+ * phone the on-screen keyboard leaves little of the screen, and the browser scrolls only the field
+ * into view, leaving the footer under the toolbar that sits above the keyboard. So when a card
+ * appears or a field takes focus, and whenever the visible area changes size (the keyboard opening),
+ * the page scrolls on until the footer clears the bottom of the visible area by its scroll margin
+ * (--nabu-space-reach), as far as the field itself stays in view. The visible area is the visual
+ * viewport: the keyboard shrinks it, not the layout viewport.
+ */
+export const useActionsInReach = (card: RefObject<HTMLElement | null>, footer: RefObject<HTMLElement | null>, exercise: string): void => {
+  useEffect(() => {
+    const viewport = window.visualViewport;
+    // The refs are read when each event comes: the card's element changes between its states.
+    const settle = (): void => {
+      const field = document.activeElement;
+      const root = card.current;
+      const end = footer.current;
+      if (root === null || end === null || !typesInto(field) || !root.contains(field)) return;
+      const top = viewport?.offsetTop ?? 0;
+      const bottom = top + (viewport?.height ?? window.innerHeight);
+      const reach = Number.parseFloat(getComputedStyle(end).scrollMarginBlockEnd) || 0;
+      const over = end.getBoundingClientRect().bottom + reach - bottom;
+      const room = field.getBoundingClientRect().top - top - FIELD_MARGIN;
+      const by = Math.min(over, room);
+      if (by >= 1) window.scrollBy({ top: by, behavior: "instant" });
+    };
+    // After the browser's own scroll to the field, which follows the focus event.
+    const onFocus = (): void => void requestAnimationFrame(settle);
+    // A card's field may take focus as the card mounts, before this effect listens.
+    const first = requestAnimationFrame(settle);
+    document.addEventListener("focusin", onFocus);
+    viewport?.addEventListener("resize", settle);
+    return () => {
+      cancelAnimationFrame(first);
+      document.removeEventListener("focusin", onFocus);
+      viewport?.removeEventListener("resize", settle);
+    };
+  }, [card, footer, exercise]);
 };
 
 export const digitIndex = (key: string): number | undefined => {
