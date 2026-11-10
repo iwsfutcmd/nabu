@@ -323,7 +323,11 @@ def test_a_provider_failing_midway_keeps_the_clips_already_made(
     assert all(c.synthesis is not None and c.synthesis.settings for c in saved)
     limit["n"] = 10**6
     report = synthesize_course(course, yue_units, pronouncing)
-    assert (report.kept, report.synthesized) == (16, total - 16)
+    # The batch saved is kept, with every item said exactly as one of its clips (they share it).
+    said = {c.synthesis.input for c in saved if c.synthesis is not None}
+    alike = sum(i.input in said for i in plan(yue_units, pronouncing)[0])
+    assert alike > 16
+    assert (report.kept, report.synthesized) == (alike, total - alike)
     assert len(read_index(audio_dir(course)).clips) == total
 
 
