@@ -125,9 +125,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (nabu/audio/punctuation.py: by script subtag, language overrides). Turning it on makes those clips stale.
 - apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
-  (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
+  (the weights are non-commercial). bfloat16; CPU ~15 s a clip, a T4 ~11 s; generation resumes. Live test: NABU_OMNIVOICE=1.
 - OmniVoice clips are trimmed to their speech (`trim_edges`: 80 ms before, 150 ms after); a clip cloned from a recorded
   reference credits it (speaker, license, source).
+- Items said alike (one input, voice and settings) share one clip and file; a clip is kept only if its file matches its
+  sha256, so `generate` or `prune` mends an index whose file was written over. `--check` runs Whisper on a GPU if it can.
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
   `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.

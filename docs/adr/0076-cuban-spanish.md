@@ -88,7 +88,8 @@ harnesses.
   reference adds no condition of its own beyond attribution: every clip cloned from a recording
   names it in its credit (speaker, license, source). A ShareAlike one would have conflicted with NC.
 - On a CPU, cloning takes about 15–25 s a clip (the reference is part of every sequence), so the
-  course's clips take many hours; generation resumes where it stopped. A recording by a Cuban
+  course's clips take many hours; generation resumes where it stopped. On a Kaggle T4 (no native
+  bfloat16) it took about 11 s a clip, the course's 2,263 clips about seven hours. A recording by a Cuban
   family member, cast the same way, would replace the voice and make every clip stale.
 
 ## Consequences
