@@ -15,6 +15,7 @@ export type DriveFile = {
   readonly size?: string;
   readonly modifiedTime?: string;
   readonly md5Checksum?: string;
+  readonly description?: string;
 };
 
 export const FOLDER = "application/vnd.google-apps.folder";
@@ -30,7 +31,7 @@ export const DEFAULT_EXPORT: Readonly<Record<string, string>> = {
 
 export const API = "https://www.googleapis.com/drive/v3";
 export const UPLOAD = "https://www.googleapis.com/upload/drive/v3";
-const FIELDS = "id,name,mimeType,size,modifiedTime,md5Checksum";
+const FIELDS = "id,name,mimeType,size,modifiedTime,md5Checksum,description";
 const ALL_DRIVES = "supportsAllDrives=true";
 /** Drive ids are URL-safe base64-ish; checked before one goes into a query. */
 export const DRIVE_ID = /^[A-Za-z0-9_-]+$/u;
@@ -52,6 +53,8 @@ export type Entry = {
   readonly size?: number;
   readonly modified?: string;
   readonly md5?: string;
+  /** The file's Drive description, where it has one (POST /v1/describe sets it). */
+  readonly description?: string;
 };
 
 export const kindOf = (file: DriveFile): Entry["kind"] =>
@@ -71,6 +74,7 @@ export const entryOf = (file: DriveFile): Entry => ({
   ...(file.size === undefined ? {} : { size: Number(file.size) }),
   ...(file.modifiedTime === undefined ? {} : { modified: file.modifiedTime }),
   ...(file.md5Checksum === undefined ? {} : { md5: file.md5Checksum }),
+  ...(file.description ? { description: file.description } : {}),
 });
 
 /** An access token for Drive, refreshed when it lapses. */

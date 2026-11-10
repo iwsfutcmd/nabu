@@ -414,6 +414,10 @@ describe("descriptions", () => {
     await send(call, [{ path: "grammars/b.pdf", description: "" }]);
     expect(google.nodes.get(other)?.description).toBe("");
     expect(google.nodes.get(ids.kline)?.name).toBe("kline-2022.pdf");
+    // Entries carry a description where there is one, so a caller can log what it replaces.
+    const listed = (await (await call("GET", "/v1/list?path=grammars")).json()) as { entries: { name: string; description?: string }[] };
+    expect(listed.entries.find((e) => e.name === "kline-2022.pdf")?.description).toBe("lang:apc form:grammar in:en");
+    expect(listed.entries.find((e) => e.name === "b.pdf")).not.toHaveProperty("description");
   });
 
   it("stops at the first failure, and keeps within the subrequest budget", async () => {
