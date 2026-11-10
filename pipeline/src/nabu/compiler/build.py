@@ -586,7 +586,10 @@ def compile_course(
     cli: CoreCli,
     profiles: dict[str, OrthographyProfile] | None = None,
     analyzers: dict[str, Analyzer] | None = None,
+    audio: bool = True,
 ) -> tuple[Diagnostics, Compiled | None]:
+    """`audio=False` leaves out the checks of the audio index: the audio commands write that
+    index, so a broken one must not stop them mending it."""
     diags = Diagnostics()
     course_file = _course_file(path)
     base = course_file.parent.parent
@@ -685,7 +688,8 @@ def compile_course(
     ]
     compiled.written = ctx.written
     _kc_readings(ctx, course, compiled.units)
-    check_audio(ctx, course, course_file, display, compiled)
+    if audio:
+        check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:
         return diags, None
     return diags, compiled

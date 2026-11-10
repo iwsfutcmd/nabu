@@ -26,7 +26,7 @@ def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
     from nabu.corecli import CoreCli
 
     with CoreCli() as cli:
-        diags, compiled = compile_course(course, cli)
+        diags, compiled = compile_course(course, cli, audio=False)
     if compiled is None:
         for d in diags.sorted():
             typer.echo(d.format(), err=True)

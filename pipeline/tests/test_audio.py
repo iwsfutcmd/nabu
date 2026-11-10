@@ -31,7 +31,7 @@ from nabu.audio.course import (
     timings,
 )
 from nabu.audio.ingest import Recording, ingest
-from nabu.audio.providers import EspeakProvider, Request
+from nabu.audio.providers import Clip, EspeakProvider, Request
 from nabu.compiler import compile_course
 from nabu.schema.models import AudioVoice
 
@@ -450,3 +450,102 @@ def test_without_ctranslate2_or_a_gpu_the_check_stays_on_the_cpu(
 
     monkeypatch.setattr(qa, "optional", no_gpu)
     assert not qa.cuda_ready()
+
+
+needs_ffmpeg = pytest.mark.skipif(
+    shutil.which("ffmpeg") is None and not REQUIRE_TOOLS, reason="needs ffmpeg"
+)
+
+
+class _Voice:
+    """A provider whose every take sounds a little different, as a sampling model's do."""
+
+    name = "fake"
+    seeded = True
+
+    def __init__(self) -> None:
+        self.said: list[str] = []
+
+    def version(self) -> str:
+        return "1"
+
+    def settings(self) -> dict[str, object]:
+        return {}
+
+    def speed(self, rate: float) -> float:
+        return rate
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        out: list[Clip] = []
+        for r in requests:
+            self.said.append(r.input)
+            tone = len(self.said) * 512
+            pcm = b"".join((tone + k).to_bytes(2, "little", signed=True) for k in range(4000))
+            out.append(Clip(pcm, 16_000, ((0, 0),), None))
+        return out
+
+
+@pytest.fixture
+def voice(monkeypatch: pytest.MonkeyPatch) -> _Voice:
+    from nabu.audio import course as course_audio
+
+    fake = _Voice()
+
+    def provider(_voice: AudioVoice, _reference: object) -> _Voice:
+        return fake
+
+    monkeypatch.setattr(course_audio, "provider", provider)
+    return fake
+
+
+def _twins_course(root: Path) -> list[dict[str, object]]:
+    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file."""
+    (root / "audio").mkdir(parents=True)
+    (root / "course.yaml").write_text("id: twins\n", encoding="utf-8")
+    orth = "yue-Hant-HK/standard"
+    token = {"surface": "早晨", "kind": "word", "readings": {"jyutping": "zou2 san4"}}
+    return [
+        {
+            "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token]}}}}],
+            "kcs": [{"id": "sense:早晨", "forms": {orth: ["早晨"]}}],
+        }
+    ]
+
+
+def _clips_match_files(course: Path) -> set[str]:
+    import hashlib
+
+    adir = audio_dir(course)
+    clips = read_index(adir).clips
+    assert all(hashlib.sha256((adir / c.file).read_bytes()).hexdigest() == c.sha256 for c in clips)
+    return {c.file for c in clips}
+
+
+@needs_ffmpeg
+def test_items_said_alike_share_one_clip(tmp_path: Path, voice: _Voice) -> None:
+    """Twins made in one run take one synthesis; neither writes over the other's file."""
+    units = _twins_course(tmp_path)
+    report = synthesize_course(tmp_path, units, YUE_VOICE)
+    assert voice.said == ["zou2 san4"]
+    assert report.synthesized == 2
+    assert len(_clips_match_files(tmp_path)) == 1
+    assert {c.item for c in read_index(audio_dir(tmp_path)).clips} == {"s.1", "sense:早晨"}
+
+
+@needs_ffmpeg
+def test_a_clip_written_over_by_its_twin_is_mended_from_it(tmp_path: Path, voice: _Voice) -> None:
+    """Before twins shared clips, making one wrote over the other's file and left its entry
+    naming bytes no longer there (es: s.u01.32 and es.story.u01#3). The next run shares the clip
+    that is there and makes nothing."""
+    units = _twins_course(tmp_path)
+    synthesize_course(tmp_path, units, YUE_VOICE)
+    index = audio_dir(tmp_path) / "index.yaml"
+    entry = index.read_text(encoding="utf-8").split("- item: s.1", 1)[1]
+    sha = entry.split("sha256: ", 1)[1].split("\n", 1)[0]
+    index.write_text(index.read_text(encoding="utf-8").replace(sha, "a" * 64, 1), encoding="utf-8")
+    with pytest.raises(AssertionError):
+        _clips_match_files(tmp_path)
+    voice.said.clear()
+    report = synthesize_course(tmp_path, units, YUE_VOICE)
+    assert voice.said == [] and report.kept == 2
+    assert len(_clips_match_files(tmp_path)) == 1

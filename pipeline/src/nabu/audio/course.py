@@ -27,6 +27,7 @@ Human recordings (`ingest`) live in the same index and are never touched by rege
 
 from __future__ import annotations
 
+import copy
 import hashlib
 import io
 import json
@@ -588,6 +589,34 @@ def _entry(
     return entry
 
 
+def _twin(
+    entry: dict[str, Any],
+    clip: Clip,
+    first: Item,
+    item: Item,
+    check: Callable[[Item, Clip], dict[str, Any]] | None,
+) -> dict[str, Any]:
+    """The entry of an item said exactly as one made in this run: the same clip and file, its
+    own token timings, and its own check where a listener should hear something else."""
+    twin = copy.deepcopy(entry)
+    twin["item"] = item.item
+    twin.pop("timings", None)
+    twin.pop("timingSource", None)
+    token_timings = timings(item, clip, twin["durationMs"])
+    if token_timings is not None:
+        twin["timings"] = token_timings
+        twin["timingSource"] = "synthesis"
+    if check is not None and twin["speed"] == "normal" and item.expected != first.expected:
+        twin["qa"] = ({} if clip.trace is None else {"trace": clip.trace}) | check(item, clip)
+    return twin
+
+
+def intact(path: Path, sha256: str) -> bool:
+    """Whether a clip's file is there and still the one its entry names. (Before twins shared
+    clips, making one item's clip could write over another's file of the same name.)"""
+    return path.exists() and hashlib.sha256(path.read_bytes()).hexdigest() == sha256
+
+
 def take_field(take: int) -> dict[str, Any]:
     """The take as part of a clip's identity: absent for a first take, so clips made before
     takes existed keep their identities."""
@@ -663,11 +692,25 @@ def synthesize_course(
                     old is not None
                     and old.synthesis is not None
                     and old.synthesis.inputHash == ident
-                    and (adir / old.file).exists()
+                    and intact(adir / old.file, old.sha256)
                 ):
                     kept.append(old)
                     continue
                 wanted.append((voice, tts, author, item, speed, rate, ident, take))
+    # Items said alike (one input, voice and settings: one identity, so one file) share a clip.
+    # One already there serves the rest, so making theirs never writes over it.
+    there = {c.synthesis.inputHash: c for c in kept if c.synthesis is not None}
+    unmade: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
+    for w in wanted:
+        clip_there = there.get(w[6])
+        if clip_there is None:
+            unmade.append(w)
+            continue
+        # Its token timings were the other item's: alignment gives this one its own.
+        kept.append(
+            clip_there.model_copy(update={"item": w[3].item, "timings": None, "timingSource": None})
+        )
+    wanted = unmade
     # Items another voice reads, not run this time, keep their clips until it runs.
     resting = {v.id for v in cast_} - {v.id for v in running}
     others = [
@@ -698,17 +741,29 @@ def synthesize_course(
     # limit, an outage) keeps every clip already made, and the next run picks up from there.
     done = len(wanted) if prune else 0
     report.dropped = sum((w[3].item, w[4]) in previous for w in wanted) if prune else 0
+    #: Clips made in this run by identity, with their entry and item: twins share them.
+    made: dict[str, tuple[dict[str, Any], Clip, Item]] = {}
     while done < len(wanted):
         voice, tts = wanted[done][0], wanted[done][1]
         batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]
-        clips = tts.synthesize([Request(w[3].input, voice.voice, w[5], w[7]) for w in batch])
-        for (_, _, author, item, speed, rate, ident, take), clip in zip(batch, clips, strict=True):
+        todo: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
+        for w in batch:
+            if w[6] not in made and all(t[6] != w[6] for t in todo):
+                todo.append(w)
+        clips = tts.synthesize([Request(w[3].input, voice.voice, w[5], w[7]) for w in todo])
+        said = dict(zip((w[6] for w in todo), clips, strict=True))
+        for _, _, author, item, speed, rate, ident, take in batch:
+            if ident in made:
+                fresh.append(_twin(*made[ident], item, check))
+                continue
+            clip = said[ident]
             if len(clip.pcm) < 2:
                 report.silent.append(f"{item.item} ({speed})")
                 continue
             entry = _entry(item, speed, rate, ident, clip, tts, voice, author, adir, check)
             if take:
                 entry["synthesis"]["take"] = take
+            made[ident] = (entry, clip, item)
             fresh.append(entry)
         done += len(batch)
         save(done)
