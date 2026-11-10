@@ -238,6 +238,12 @@ def write_bundle(
         "support": compiled.support,
         # Only where the course names them (ADR 0071): other manifests stay as they were.
         **({"facets": list(course.facets)} if course.facets else {}),
+        # Only an iffy voice is flagged (ADR 0091): good is the default, a bad one ships no clips.
+        **(
+            {"audioQuality": "iffy"}
+            if course.audio is not None and course.audio.quality == "iffy"
+            else {}
+        ),
         # Only where the course says (ADR 0077).
         **(
             {"placement": course.placement.model_dump(exclude_none=True)}

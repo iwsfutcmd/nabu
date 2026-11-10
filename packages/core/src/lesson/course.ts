@@ -28,6 +28,11 @@ export interface CourseView {
    * readings are shown, never drilled.
    */
   readonly facets?: readonly Facet[] | undefined;
+  /**
+   * How far learners may rely on the course's clips, where it is not good (ADR 0091). An iffy voice
+   * plays only where the learner has the text: no exercise whose prompt is a clip is planned.
+   */
+  readonly audioQuality?: "iffy" | undefined;
   /** How the placement test probes, where the course says (ADR 0077). */
   readonly placement?: PlacementPolicy | undefined;
 }
@@ -79,6 +84,7 @@ export const assembleCourse = (bundle: CourseFiles, orthography?: string): Resul
     profiles,
     audio,
     ...(manifest.facets === undefined ? {} : { facets: manifest.facets }),
+    ...(manifest.audioQuality === undefined ? {} : { audioQuality: manifest.audioQuality }),
     ...(manifest.placement === undefined ? {} : { placement: manifest.placement }),
   });
 };

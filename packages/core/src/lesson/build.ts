@@ -19,6 +19,7 @@ import { seededRng } from "./rng.ts";
 import { SCRIPT_TEMPLATES, scriptCandidates, scriptNodes } from "./script.ts";
 import {
   KC_TEMPLATES,
+  LISTENING,
   makeCharRead,
   makeMatchPairs,
   makeReadingDisambiguation,
@@ -73,6 +74,17 @@ export const facetExclusions = (course: CourseView): ReadonlySet<TemplateId> => 
   const facets = course.facets;
   return facets === undefined ? new Set() : new Set((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !facets.includes(TEMPLATES[t].facet)));
 };
+
+/**
+ * The templates an iffy voice rules out (ADR 0091): every one whose prompt is a clip (listening,
+ * listen-and-repeat, tones). The clips still play where the learner has the text: after a card is
+ * answered, in stories, in the word list. A good voice rules nothing out; a bad one ships no clips.
+ */
+export const voiceExclusions = (course: CourseView): ReadonlySet<TemplateId> =>
+  course.audioQuality === "iffy" ? LISTENING : new Set();
+
+/** Everything the course itself rules out: its facets' exclusions and its voice's. */
+export const courseExclusions = (course: CourseView): ReadonlySet<TemplateId> => new Set([...facetExclusions(course), ...voiceExclusions(course)]);
 
 /** The templates a speech support rules out. */
 export const speechExclusions = (
@@ -145,7 +157,7 @@ export const buildLesson = (
   const excluded = new Set([
     ...(options.exclude ?? []),
     ...speechExclusions(options.speech),
-    ...facetExclusions(course),
+    ...courseExclusions(course),
   ]);
   const allowed = (t: TemplateId): boolean => !excluded.has(t);
   const out: Exercise[] = [];
@@ -261,7 +273,7 @@ export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[
     }
     return undefined;
   };
-  const excluded = facetExclusions(course);
+  const excluded = courseExclusions(course);
   // A script track's kinds (ADR 0088): the first its first alphabet node makes.
   const track = scriptNodes(course)[0];
   const scriptCard = (template: TemplateId): Exercise | undefined =>
@@ -293,7 +305,7 @@ export const sampleExercise = (
   template: TemplateId,
   seed = 1,
 ): Exercise | undefined => {
-  if (facetExclusions(course).has(template)) return undefined;
+  if (courseExclusions(course).has(template)) return undefined;
   for (const { node } of lessonNodes(course)) {
     const found = buildLesson(course, node.id, { seed }).find(
       (e) => e.template === template,

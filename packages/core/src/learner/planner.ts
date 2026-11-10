@@ -13,7 +13,7 @@
  * 5. Order: selection order (new words first), ending on a likely success.
  */
 import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
-import { facetExclusions, lessonNodes, sentencesOf, speechExclusions, type SpeechSupport } from "../lesson/build.ts";
+import { courseExclusions, lessonNodes, sentencesOf, speechExclusions, type SpeechSupport } from "../lesson/build.ts";
 import { allKcs, allSentences, type CourseView } from "../lesson/course.ts";
 import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
@@ -115,9 +115,9 @@ export const dueFacets = (state: LearnerState, orthography: string, now: string,
     .filter((f) => f.r < desired)
     .sort((a, b) => a.r - b.r || (a.key < b.key ? -1 : 1));
 
-/** What plans leave out: the caller's exclusions, the speech support's, and the course's facets'. */
+/** What plans leave out: the caller's exclusions, the speech support's, and the course's (facets, voice). */
 const exclusionsOf = (course: CourseView, options: { readonly exclude?: ReadonlySet<TemplateId> | undefined; readonly speech?: SpeechSupport | undefined }): ReadonlySet<TemplateId> =>
-  new Set([...(options.exclude ?? []), ...speechExclusions(options.speech), ...facetExclusions(course)]);
+  new Set([...(options.exclude ?? []), ...speechExclusions(options.speech), ...courseExclusions(course)]);
 
 /**
  * The open mistakes rebuilt as their exercises, most recent first: those whose template is not

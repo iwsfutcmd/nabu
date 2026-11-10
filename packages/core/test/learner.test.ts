@@ -26,7 +26,7 @@ import {
   type LearnerState,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -318,6 +318,27 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(placement.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
     expect(cardGallery(lzh, 3).filter((c) => !["recognize", "produce"].includes(TEMPLATES[c.template].facet))).toEqual([]);
     expect(sampleExercise(lzh, "speak.tier-0")).toBeUndefined();
+  }, WHOLE_COURSE_TIMEOUT_MS);
+
+  it("an iffy voice never carries an exercise, a good one does, a bad one ships nothing (ADR 0091)", () => {
+    const relies = (template: string): boolean => LISTENING.has(template as Exercise["template"]);
+    for (const id of ["tok", "hbo"]) {
+      const course = loadCourse(id);
+      expect(course.audioQuality).toBe("iffy");
+      // The clips stay: they reinforce what is read (after answering, stories, the word list).
+      expect(Object.keys(course.audio).length).toBeGreaterThan(0);
+      for (const { node } of lessonNodes(course)) {
+        expect(buildLesson(course, node.id, { seed: 3 }).filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
+        const p = plan(course, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
+        expect(p.exercises.filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
+      }
+      expect(cardGallery(course, 3).filter((c) => relies(c.template))).toEqual([]);
+      expect(sampleExercise(course, "listen-tap")).toBeUndefined();
+    }
+    const apc = loadCourse("apc");
+    expect(apc.audioQuality).toBeUndefined();
+    expect(cardGallery(apc, 3).some((c) => relies(c.template) && c.exercise !== undefined)).toBe(true);
+    expect(Object.keys(loadCourse("grc").audio)).toEqual([]);
   }, WHOLE_COURSE_TIMEOUT_MS);
 
   it("Biblical Hebrew leaves out listening alone: never heard, still said once answered (ADR 0082)", () => {

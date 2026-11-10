@@ -24,6 +24,8 @@ facets: [recognize, produce, speak, read-script, write-script]
 # (Ben, 2026-11-09). Its dataset is CC0, but it was fine-tuned from Piper's English ryan voice, whose dataset is
 # CC BY-NC-SA 4.0: the clips are CC-BY-NC-SA-4.0. One voice reads everything (ADR 0078).
 audio:
+  # ADR 0091: too far from Attic to present: no clip ships. The clips stay here for the audio check, until a better voice.
+  quality: bad
   voices:
   - {id: attic-el, provider: piper, voice: el_GR-rapunzelina-low, speaker: f, orthography: grc-Grek/polytonic, reading: attic, license: CC-BY-NC-SA-4.0}
 units: [units/abc.yaml, units/u01-is-it-early.yaml, units/u02-two-sons.yaml, units/u03-where-to.yaml, units/u04-does-he-speak-greek.yaml, units/u05-wait-for-us.yaml, units/u06-not-one-woman.yaml, units/u07-the-sea.yaml, units/u08-a-rooster.yaml, units/u09-my-little-house.yaml, units/u10-wiser.yaml]

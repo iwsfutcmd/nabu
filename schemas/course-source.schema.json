@@ -581,6 +581,12 @@
           "description": "Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1).",
           "type": "boolean"
         },
+        "quality": {
+          "description": "How far learners may rely on the course's clips (ADR 0091). good (the default): clips play everywhere, listening and listen-and-repeat exercises included. iffy: a stopgap voice, often right but not always; its clips only reinforce what the learner reads (after a card is answered, in stories, in the word list), and no exercise depends on hearing them. bad: no clip reaches the learner; the clips stay in the course's audio folder for reviewers and the audio check.",
+          "type": "string",
+          "enum": ["good", "iffy", "bad"],
+          "default": "good"
+        },
         "voices": {
           "type": "array",
           "minItems": 1,

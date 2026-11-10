@@ -20,6 +20,8 @@ facets: [recognize, produce, speak, read-script, write-script]
 # begadkefat spirants). A word card ends with a full stop, as a sentence does (finalStop). One voice, a man's,
 # reads everything (ADR 0078). The clips are MIT, the model's license.
 audio:
+  # ADR 0091: a stopgap voice (an Arabic voice given Tiberian phonemes): its clips reinforce what is read, and no exercise relies on hearing them.
+  quality: iffy
   voices:
   - {id: kareem, provider: piper, voice: ar_JO-kareem-medium, speaker: m, orthography: hbo-Hebr/tiberian, reading: tiberian, finalStop: true, license: MIT}
 units: [units/u01-let-there-be-light.yaml, units/u02-in-the-beginning.yaml, units/u03-where-are-you.yaml, units/u04-what-have-you-done.yaml, units/u05-my-brothers-keeper.yaml, units/u06-go-forth.yaml, units/u07-here-i-am.yaml, units/u08-at-the-well.yaml, units/u09-seeking-my-brothers.yaml, units/u10-the-burning-bush.yaml, units/u11-the-ten-words.yaml, units/u12-hear-o-israel.yaml, units/u13-where-you-go.yaml, units/u14-speak-lord.yaml, units/u15-in-the-name-of-the-lord.yaml, units/u16-the-wise-king.yaml, units/u17-jonah-runs-away.yaml, units/u18-i-am-a-hebrew.yaml, units/u19-my-shepherd.yaml, units/u20-a-time-for-everything.yaml]

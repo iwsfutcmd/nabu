@@ -558,3 +558,22 @@ def test_greek_alphabet_track(core_cli: CoreCli) -> None:
             surface = "".join(t["surface"] for t in word["text"]["tokens"])
             assert set(letters_of(surface)) <= taught, (n["id"], surface)
             assert word["letters"], surface
+
+
+@pytest.mark.parametrize(
+    ("course", "quality", "ships_clips"),
+    [("apc", None, True), ("hbo", "iffy", True), ("tok", "iffy", True), ("grc", None, False)],
+)
+def test_a_voice_s_quality_decides_what_ships(
+    core_cli: CoreCli, tmp_path: Path, course: str, quality: str | None, ships_clips: bool
+) -> None:
+    """ADR 0091: a good voice is the default and needs no flag; an iffy one is flagged, so no
+    exercise relies on its clips; a bad one ships no clip, though its audio folder has them."""
+    _, compiled = build(core_cli, course)
+    assert (COURSES / course / "audio" / "index.yaml").exists()
+    manifest = write_bundle(compiled, PROFILES, ANALYZERS, tmp_path)
+    assert manifest.get("audioQuality") == quality
+    roles = {f["role"] for f in manifest["files"]}
+    assert ("audio" in roles) is ships_clips
+    assert ("audio-index" in roles) is ships_clips
+    assert bool(compiled.audio_items) is ships_clips
