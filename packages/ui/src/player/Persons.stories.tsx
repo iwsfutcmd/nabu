@@ -19,14 +19,14 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-const Card = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
+const Card = ({ loaded, template }: { loaded: LoadedCourse; template: "translate-type.l1-l2" | "gap-fill" }): JSX.Element => {
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
   const ex = useMemo((): Exercise | undefined => {
-    const found = sampleExercise(course, "translate-type.l1-l2", 7);
-    return found?.template === "translate-type.l1-l2" ? { ...found, persons: { speaker: "f", addressee: "pl" } } : undefined;
-  }, [course]);
+    const found = sampleExercise(course, template, 7);
+    return found?.template === "translate-type.l1-l2" || found?.template === "gap-fill" ? { ...found, persons: { speaker: "f", addressee: "pl" } } : undefined;
+  }, [course, template]);
   const initialState = useMemo(() => (ex === undefined ? undefined : step(start("story", [ex])[0], { tag: "ready" })[0]), [ex]);
   if (ex === undefined || initialState === undefined) return <p>{t.format("debug.cards.none")}</p>;
   const name = `course.name.${course.id}`;
@@ -61,5 +61,10 @@ type Story = StoryObj<typeof meta>;
 
 /** Writing into the target: "a woman speaking", "to several people" under the prompt. */
 export const Tagged: Story = {
-  render: (_args, { loaded }) => <Card loaded={loaded["course"] as LoadedCourse} />,
+  render: (_args, { loaded }) => <Card loaded={loaded["course"] as LoadedCourse} template="translate-type.l1-l2" />,
+};
+
+/** Choosing the missing word: the options are often the word in other persons (بدّك, بدكن), so the hint says whose. */
+export const GapFill: Story = {
+  render: (_args, { loaded }) => <Card loaded={loaded["course"] as LoadedCourse} template="gap-fill" />,
 };

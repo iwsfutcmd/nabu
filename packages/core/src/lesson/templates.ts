@@ -446,6 +446,7 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
     after: slice(form.text, at + 1, form.text.tokens.length),
     options,
     answer,
+    ...personsOf(s),
   };
 };
 

@@ -350,7 +350,7 @@ describe("who speaks and who is spoken to (persons)", () => {
     // The blank in complete-translation is a word the lesson introduces.
     const ctx = { course, rng: seededRng(5), introduced: sentence.kcs };
     const tagged = { ...sentence, persons: { addressee: "f" as const, speaker: "m" as const } };
-    for (const template of ["translate-type.l1-l2", "translate-tap.l1-l2", "complete-translation"] as const) {
+    for (const template of ["translate-type.l1-l2", "translate-tap.l1-l2", "complete-translation", "gap-fill"] as const) {
       const ex = SENTENCE_TEMPLATES[template]?.(ctx, tagged);
       expect(ex && "persons" in ex ? ex.persons : undefined, template).toEqual({ addressee: "f", speaker: "m" });
     }
@@ -360,6 +360,15 @@ describe("who speaks and who is spoken to (persons)", () => {
     // Untagged: nothing.
     const plain = SENTENCE_TEMPLATES["translate-type.l1-l2"]?.(ctx, sentence);
     expect(plain && "persons" in plain).toBe(false);
+  });
+
+  it("tells the gap-fill which you: 'Do you want anything?' to several people is بدكن, not بدّك", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const s = allSentences(course).find((x) => x.id === "s.like.33");
+    if (s === undefined) throw new Error("no s.like.33");
+    const ex = SENTENCE_TEMPLATES["gap-fill"]?.({ course, rng: seededRng(1), introduced: s.kcs }, s);
+    expect(ex?.template).toBe("gap-fill");
+    expect(ex && "persons" in ex ? ex.persons : undefined).toEqual({ addressee: "pl" });
   });
 });
 
