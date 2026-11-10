@@ -320,11 +320,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
 
-## Reference library notes (see docs/adr/0079)
-- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay
+## Reference library notes (see docs/adr/0079, 0090)
+- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive behind the relay
   (apps/references), never in the repo, bundles, issues or commits; nor does text extracted from them.
-- `cd pipeline && uv run nabu refs ls -r`, `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git
-  work tree), `put <file> notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
+- Two roots: `books/` is the library (books_bak/books, sorted by subject and language family, and still being sorted);
+  `nabu/` is the work folder. Notes per course live in `nabu/notes/<course>/` (hbo, tok, …): read them first.
+- Find a book by name, never by a remembered path: `cd pipeline && uv run nabu refs find kline lebanese` (every word
+  starts a word of the name; `--in books/ling` narrows). Courses cite books by author, title and year, not path.
+- `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git work tree and more than --max-gb),
+  `put <file> nabu/notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
 - Courses take facts from references (forms, paradigms, glosses), never example sentences or definitions verbatim.
 - Cloud sessions: NABU_REFS_URL is an environment variable; the key is the relay host's network secret (never chat).
   The relay trashes, never deletes; uploads stop at 25 MB (scans go into Drive directly).
@@ -358,7 +362,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
   vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
   The voice's Arabic consonants (ADR 0089) are Ben's choice, not Khan's: keep them apart (`arabic=True`).
-- References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
+- References (ADR 0084; notes in nabu/notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
   Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
   prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
@@ -418,7 +422,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0089 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0090 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

@@ -26,8 +26,13 @@ import { fail, json, ok, type Outcome } from "./outcome.ts";
 import { nameKey, parsePath, within, type RefPath } from "./paths.ts";
 
 export const MAX_MOVES = 100;
-/** Drive calls a batch may make itself: the request has already made up to two (token, root). */
-export const DRIVE_BUDGET = 44;
+/**
+ * Drive calls a batch may make itself, of the 50 a request may make: the token and the roots
+ * (rootCalls) come first, and four are kept spare.
+ */
+export const driveBudget = (rootCalls: number): number => 45 - rootCalls;
+/** The budget with one root: the request has already made up to two calls (token, root). */
+export const DRIVE_BUDGET = driveBudget(1);
 
 type Batch = {
   readonly moves: readonly { readonly from: string; readonly to: string; readonly fromPath: RefPath; readonly toPath: RefPath }[];
@@ -39,7 +44,14 @@ type Result =
   | { readonly from: string; readonly to: string; readonly status: "failed"; readonly error: string; readonly detail?: string }
   | { readonly from: string; readonly to: string; readonly status: "not-attempted" };
 
-type Context = { readonly drive: Drive; readonly root: DriveFile; readonly request: Request };
+type Context = {
+  readonly drive: Drive;
+  readonly root: DriveFile;
+  /** The request's listings, the named roots' among them (roots.ts). */
+  readonly listings: Listings;
+  readonly request: Request;
+  readonly budget: number;
+};
 
 const parseBatch = (body: unknown): Outcome<Batch> => {
   if (typeof body !== "object" || body === null) return fail(400, "bad-batch", "a JSON object");
@@ -115,7 +127,7 @@ const moveOne = async (
   return ok(moved.value);
 };
 
-export const moveBatch = async ({ drive, root, request }: Context): Promise<Outcome<Response>> => {
+export const moveBatch = async ({ drive, root, listings, request, budget }: Context): Promise<Outcome<Response>> => {
   let body: unknown;
   try {
     body = await request.json();
@@ -131,11 +143,10 @@ export const moveBatch = async ({ drive, root, request }: Context): Promise<Outc
       return drive.request(url, init);
     },
   };
-  const listings: Listings = new Map();
   const results: Result[] = [];
   let stopped: "failure" | "budget" | null = null;
   for (const { from, to, fromPath, toPath } of batch.value.moves) {
-    if (stopped === null && calls + cost(listings, root, fromPath) + cost(listings, root, toPath) + 1 > DRIVE_BUDGET) {
+    if (stopped === null && calls + cost(listings, root, fromPath) + cost(listings, root, toPath) + 1 > budget) {
       stopped = "budget";
     }
     if (stopped !== null) {

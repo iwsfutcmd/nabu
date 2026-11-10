@@ -22,6 +22,9 @@ from typing import Any, Literal, cast
 #: The relay takes uploads up to this size; scans go into Drive itself.
 MAX_UPLOAD = 25 * 1024 * 1024
 
+#: The most `pull` copies at once unless told otherwise: a library does not fit in a session's disk.
+DEFAULT_MAX_PULL = 5 * 1024**3
+
 #: What a Google-native file comes down as when pulled, and the extension it is given.
 NATIVE_EXPORTS: dict[str, tuple[str, str]] = {
     "application/vnd.google-apps.document": ("text/markdown", ".md"),
@@ -224,8 +227,25 @@ class Relay:
         raw = cast(dict[str, Any], self._json("POST", "/v1/trash", {"path": nfc(path)}))
         return Entry.of(cast(dict[str, Any], raw["trashed"]))
 
-    def pull(self, path: str, into: Path) -> PullReport:
-        """Copies a file or a folder's tree into `into`, keeping its path; unchanged files stay."""
+    def find(self, words: list[str], inside: str = "") -> tuple[list[tuple[str, Entry]], bool]:
+        """Files and folders inside the relay's roots whose names hold every word (each matching
+        the start of a word in the name, in any case), with their paths; and whether the relay
+        stopped early (`truncated`: narrow the words or give `inside`)."""
+        params = {
+            "q": " ".join(nfc(word) for word in words),
+            **({"in": nfc(inside)} if inside else {}),
+        }
+        raw = cast(dict[str, Any], self._json("GET", "/v1/find", params))
+        found = [
+            (str(r["path"]), Entry.of(r))
+            for r in (cast(dict[str, Any], item) for item in cast(list[Any], raw["results"]))
+        ]
+        return found, bool(raw.get("truncated"))
+
+    def pull(self, path: str, into: Path, max_bytes: int = DEFAULT_MAX_PULL) -> PullReport:
+        """Copies a file or a folder's tree into `into`, keeping its path; unchanged files stay.
+        Refuses, before downloading anything, a pull larger than `max_bytes`: with roots, the top
+        of the relay is a whole library."""
         work_tree = inside_git_work_tree(into)
         if work_tree is not None:
             raise RelayError(400, "inside-git", f"{into} is inside {work_tree}")
@@ -235,6 +255,9 @@ class Relay:
             entries: list[tuple[str, Entry]] = [(nfc(path), root)]
         else:
             entries = list(self.walk(path))
+        total = sum(entry.size or 0 for _, entry in entries)
+        if total > max_bytes:
+            raise RelayError(413, "too-big", f"{total:,} bytes under {nfc(path) or 'the top'}")
         for remote, entry in entries:
             self._pull_one(remote, entry, into, report)
         return report

@@ -49,6 +49,7 @@ export const fakeGoogle = (options: { readonly email?: string; readonly pageSize
     name: node.name,
     mimeType: node.mimeType,
     modifiedTime: node.modifiedTime,
+    ...(node.parent === null ? {} : { parents: [node.parent] }),
     ...(node.mimeType.startsWith("application/vnd.google-apps.")
       ? {}
       : { size: String(node.content.length), md5Checksum: md5Of(node.content) }),
@@ -96,6 +97,18 @@ export const fakeGoogle = (options: { readonly email?: string; readonly pageSize
     const params = url.searchParams;
 
     if (path === "/drive/v3/about") return reply(200, { user: { emailAddress: options.email ?? "owner@example.com" } });
+
+    if (path === "/drive/v3/files" && method === "GET" && (params.get("q") ?? "").startsWith("name contains")) {
+      // Drive's name search: every word starts a word of the name, in any case.
+      const words = [...(params.get("q") ?? "").matchAll(/name contains '((?:[^'\\]|\\.)*)'/gu)].map((m) =>
+        (m[1] ?? "").replace(/\\(.)/gu, "$1").toLocaleLowerCase("und"),
+      );
+      const tokens = (name: string) => name.toLocaleLowerCase("und").split(/[^\p{L}\p{N}]+/u);
+      const hits = [...nodes.values()].filter(
+        (n) => !n.trashed && words.every((word) => tokens(n.name).some((token) => token.startsWith(word))),
+      );
+      return reply(200, { files: hits.slice(0, Number(params.get("pageSize") ?? "100")).map(meta) });
+    }
 
     if (path === "/drive/v3/files" && method === "GET") {
       const parent = /^'([^']+)' in parents and trashed = false$/u.exec(params.get("q") ?? "")?.[1];

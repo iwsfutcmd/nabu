@@ -34,6 +34,8 @@ class Library:
     )
     corrupt: set[str] = field(default_factory=set[str])
     agents: set[str] = field(default_factory=set[str])
+    #: Named roots, as a relay with ROOTS reports them in its status.
+    roots: list[str] = field(default_factory=list[str])
 
     def entry(self, path: str) -> dict[str, Any]:
         kind, mime, content = self.items[path]
@@ -78,7 +80,23 @@ def _handler(library: Library) -> type[BaseHTTPRequestHandler]:
             path = params.get("path", "")
             if route == "/v1/status":
                 folder = {"name": "nabu", "kind": "folder", "mimeType": "folder"}
+                if library.roots:
+                    roots = [{"name": name, "folder": folder} for name in library.roots]
+                    return self._send(200, {"account": "owner@example.com", "roots": roots})
                 return self._send(200, {"account": "owner@example.com", "folder": folder})
+            if route == "/v1/find":
+                words = params.get("q", "").casefold().split()
+                inside = params.get("in", "")
+                hits = [
+                    p
+                    for p in sorted(library.items)
+                    if all(w in p.rsplit("/", 1)[-1].casefold() for w in words)
+                    and (not inside or p.startswith(f"{inside}/"))
+                ]
+                results = [library.entry(p) | {"path": p} for p in hits]
+                return self._send(
+                    200, {"query": " ".join(words), "results": results, "truncated": False}
+                )
             if route == "/v1/list":
                 if path and library.items.get(path, ("",))[0] != "folder":
                     return self._send(404, {"error": "not-found"})
@@ -267,3 +285,40 @@ def test_the_cli(
 
     # Cloudflare turns Python-urllib's own user agent away (error 1010).
     assert {a.split("/")[0] for a in served[1].agents} == {"nabu-refs"}
+
+
+def test_find_names_paths_wherever_books_are_filed(served: tuple[str, Library]) -> None:
+    url, _ = served
+    found, truncated = _relay(url).find(["Kline"])
+    assert [path for path, _ in found] == ["grammars/kline-2022.pdf"]
+    assert found[0][1].kind == "file"
+    assert not truncated
+    assert _relay(url).find(["kline"], inside="notes") == ([], False)
+
+
+def test_pull_refuses_more_than_it_may_copy(served: tuple[str, Library], tmp_path: Path) -> None:
+    url, _ = served
+    with pytest.raises(RelayError) as raised:
+        _relay(url).pull("grammars", tmp_path / "refs", max_bytes=5)
+    assert raised.value.error == "too-big"
+    assert not (tmp_path / "refs").exists()
+
+
+def test_the_cli_finds_and_names_roots(
+    served: tuple[str, Library], tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    url, library = served
+    monkeypatch.setenv("NABU_REFS_URL", url)
+    monkeypatch.setenv("NABU_REFS_KEY", KEY)
+    monkeypatch.setenv("NO_PROXY", "127.0.0.1")
+    monkeypatch.setenv("no_proxy", "127.0.0.1")
+    runner = CliRunner()
+    found = runner.invoke(app, ["refs", "find", "kline"])
+    assert found.exit_code == 0, found.output
+    assert "grammars/kline-2022.pdf" in found.output
+    library.roots = ["nabu", "books"]
+    status = runner.invoke(app, ["refs", "status"])
+    assert "root:    nabu/" in status.output
+    assert "root:    books/" in status.output
+    # A pull names what it copies: there is no pulling the whole library by default.
+    assert runner.invoke(app, ["refs", "pull"]).exit_code != 0

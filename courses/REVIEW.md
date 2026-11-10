@@ -395,7 +395,7 @@ Drafted after the native-speaker pass above ([ADR 0082](../docs/adr/0082-biblica
 native speakers: a reviewer who reads Biblical Hebrew, ideally one who knows the Tiberian reading tradition,
 should check what follows. Khan (the sounds), Joüon–Muraoka (forms and stems) and Holladay (glosses) have
 since been read against the course ([ADR 0084](../docs/adr/0084-hbo-references.md); page-referenced notes in the
-reference library, notes/hbo): what they showed wrong is fixed, and what they leave open is listed here.
+reference library, nabu/notes/hbo): what they showed wrong is fixed, and what they leave open is listed here.
 
 1. **The pinned readings** (`readings: {tiberian: …}`, SBL transliteration with an acute on non-final stress).
    They were drafted from the Westminster Leningrad Codex: the stress from each word's accent, vocal shewa and
@@ -640,7 +640,7 @@ By unit, what the drafts were least sure of:
 ## tok (Toki Pona)
 
 Drafted after the passes above ([ADR 0086](../docs/adr/0086-toki-pona-and-sitelen-pona.md)), checked against the
-references in the reference library (`toki-pona/`, notes in notes/tok). A fluent speaker should check:
+references in the reference library (find them with `nabu refs find`; notes in nabu/notes/tok). A fluent speaker should check:
 
 1. **Idioms the drafts were unsure of.**
    - pu and community usage:

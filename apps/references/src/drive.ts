@@ -34,6 +34,12 @@ const FIELDS = "id,name,mimeType,size,modifiedTime,md5Checksum";
 const ALL_DRIVES = "supportsAllDrives=true";
 /** Drive ids are URL-safe base64-ish; checked before one goes into a query. */
 export const DRIVE_ID = /^[A-Za-z0-9_-]+$/u;
+/**
+ * The folder above the roots when the relay has several (ROOTS, roots.ts). It exists only in the
+ * relay: its listing is the roots, and nothing is ever made in it, moved into or out of it, or
+ * trashed from it.
+ */
+export const TOP_ID = "relay-roots";
 
 export type Entry = {
   /** The name as the relay compares it (nameKey): NFC, without control characters. */
@@ -137,6 +143,7 @@ export const listChildren = async (
   if (!DRIVE_ID.test(folderId)) return fail(500, "bad-id");
   const cached = listings?.get(folderId);
   if (cached !== undefined) return ok(cached);
+  if (folderId === TOP_ID) return fail(500, "bad-id");
   const files: DriveFile[] = [];
   let pageToken: string | undefined;
   do {
@@ -199,6 +206,7 @@ export const createFolder = async (
   name: string,
   listings?: Listings,
 ): Promise<Outcome<DriveFile>> => {
+  if (parent.id === TOP_ID) return fail(400, "not-in-a-root");
   const response = await drive.request(
     `${API}/files?fields=${FIELDS}&${ALL_DRIVES}`,
     sendJson("POST", { name, mimeType: FOLDER, parents: [parent.id] }),
@@ -235,8 +243,13 @@ export const ensureFolder = async (
 };
 
 /** The folder at `path`, which must exist. */
-export const folderAt = async (drive: Drive, root: DriveFile, path: RefPath): Promise<Outcome<DriveFile>> => {
-  const found = await locate(drive, root, path);
+export const folderAt = async (
+  drive: Drive,
+  root: DriveFile,
+  path: RefPath,
+  listings?: Listings,
+): Promise<Outcome<DriveFile>> => {
+  const found = await locate(drive, root, path, listings);
   if (!found.ok) return found;
   return found.value.file.mimeType === FOLDER ? ok(found.value.file) : fail(409, "not-a-folder");
 };
@@ -251,6 +264,7 @@ export const upload = async (
   body: ArrayBuffer,
   contentType: string,
 ): Promise<Outcome<DriveFile>> => {
+  if ("parent" in target && target.parent.id === TOP_ID) return fail(400, "not-in-a-root");
   const headers = {
     "content-type": "application/json; charset=utf-8",
     "x-upload-content-type": contentType,
@@ -283,6 +297,7 @@ export const move = async (
   to: DriveFile,
   name: string,
 ): Promise<Outcome<DriveFile>> => {
+  if (from.id === TOP_ID || to.id === TOP_ID) return fail(400, "not-in-a-root");
   const params = new URLSearchParams({ fields: FIELDS, supportsAllDrives: "true" });
   if (from.id !== to.id) {
     params.set("addParents", to.id);
