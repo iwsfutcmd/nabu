@@ -423,7 +423,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Self-hosting: deploy/compose.yaml (deploy/README.md). The images keep the workspace layout (Node runs TS source, never
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
-- GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
+- GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main, under a landing page written
+  from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
+  course appears there by itself.
 - ADRs 0013–0090 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`

@@ -1,18 +1,21 @@
 # Nabu
 
 An open-source, script-first, Duolingo-style language-learning app. Writing systems are data:
-Persian, Cantonese, Uzbek and Lebanese Arabic fixtures (RTL, ZWNJ, ruby, vertical text,
+the courses (RTL, ZWNJ, ruby, vertical text, vowel points, private-use logographs,
 modifier-letter apostrophes, unstandardized spelling) shape the architecture before any Latin-only
 shortcut can.
 
+- Try it: [iwsfutcmd.github.io/nabu](https://iwsfutcmd.github.io/nabu/) (the app, every course, Storybook and the
+  audio check; the page is written from the bundles at each deploy, `apps/web/landing.ts`)
 - Architecture and roadmap: [docs/gameplan.md](docs/gameplan.md)
 - Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–3)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)
 
 ## Status: Phase 10 (offline and mobile) on top of Phases 0–9
 
-The gameplan's ten phases are built, and the four fixture courses have grown to ten units each
-(about 300 sentences, 55–60 lessons and 10 stories per course; [ADR 0050](docs/adr/0050-ten-unit-courses.md)).
+The gameplan's ten phases are built. Nine courses run on them, in eleven orthographies: Persian, Cantonese,
+Uzbek (Latin and Cyrillic), Lebanese Arabic (Arabic script and Arabizi), Classical Chinese, Cuban Spanish,
+Biblical Hebrew, Toki Pona (Latin letters and sitelen pona) and Attic Greek, from ten to thirty units each.
 What comes next, and what needs people rather than code, is in [docs/next-steps.md](docs/next-steps.md).
 
 | Path | What |
@@ -29,8 +32,8 @@ What comes next, and what needs people rather than code, is in [docs/next-steps.
 | `apps/mobile` | Capacitor 8 shell for Android and iOS around the web build, every course inside; native practice reminders; CI builds the Android debug APK (`apps/mobile/README.md`) |
 | `apps/api` | Hono server: optional accounts, the learner event log (Postgres via Drizzle, or PGlite with no setup), idempotent uploads, sync by cursor, server projections by the same core replay; profiles (UTS #39 usernames), opt-in leagues with an idempotent weekly rollover, opt-in Web Push reminders (RFC 8291/8292 on node:crypto); the LLM gateway (Ollama, OpenAI-compatible or Anthropic, from the environment; schema-validated, cached, budgeted, with provenance), the judge behind per-language gates, Explain My Answer, roleplay, the review queue; speech scoring through the speech service; the game state projected from the log with each event's receipt time (`/v1/game`), which devices check against their own; reminders to the Android and iOS apps through FCM and APNs |
 | `apps/references` | The reference library relay (ADR 0079): a Cloudflare Worker that reaches one private Google Drive folder of grammars, dictionaries and notes for course authors, through `nabu refs`; never part of the app (`apps/references/README.md`) |
-| `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
-| `courses/` | Fixture courses, ten units each (A1 to early A2), with their audio (`audio/`, clips and index): `fa` (ZWNJ plurals, ezafe, می‌ present, subjunctive, past), `yue` (Jyutping ruby, particles, classifiers, aspect), `uz` (Latin + Cyrillic, script-convert node, suffix morphology), `apc` (Arabic script or Arabizi, script-convert node, the b- present; twenty units to A2, checked against a reference grammar, ADR 0080); a story per unit (the apc ones vocalized) and six roleplay scenarios each. LLM-drafted, awaiting review (`courses/REVIEW.md`) |
+| `profiles/` | Orthography profiles: fa-Arab, yue-Hant-HK, lzh-Hant, uz-Latn, uz-Cyrl, ar-Arab, apc-Arab, apc-Latn (Arabizi), es-Latn, hbo-Hebr (Tiberian), tok-Latn, tok-Qaap (sitelen pona), grc-Grek (polytonic), grc-Latn (romanized), en-Latn, tg-Cyrl, tr-Latn; data tables and interim keyboard layouts |
+| `courses/` | The courses, with their audio (`audio/`, clips and index): `fa` (ZWNJ plurals, ezafe, می&zwnj; present, subjunctive, past), `yue` (Jyutping ruby, particles, classifiers, aspect), `uz` (Latin + Cyrillic, suffix morphology), `apc` (Arabic script or Arabizi, the b- present; twenty units to A2, checked against a reference grammar, ADR 0080), `lzh` (Classical Chinese, read and written only, with Pinyin, Jyutping and Middle Chinese readings, ADR 0071), `es` (Cuban Spanish for heritage speakers, thirty units A1–B2, ADR 0076), `hbo` (Biblical Hebrew, Tiberian-pointed, voiced from pinned Tiberian readings, ADR 0082), `tok` (Toki Pona in Latin letters and sitelen pona, ADR 0086), `grc` (Attic Greek with an alphabet track, ADR 0087–0088); stories and roleplay scenarios in each. LLM-drafted, awaiting review (`courses/REVIEW.md`) |
 | `prompts/`, `evals/` | Prompt templates (referenced by hash); the judge's golden sets (193 items: adversarial near misses and paraphrases per orthography) and gates (`pnpm --filter @nabu/api evals`); tone sets (`pnpm --filter @nabu/core tone-eval`; the committed one is synthetic) |
 | `conformance/` | 340 shared test vectors (graphemes, UnicodeSets, direction, case folding, normalization, segmentation, accept sets, grading, TaggedText, glossing), run in TS and Python |
 
