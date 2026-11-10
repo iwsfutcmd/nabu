@@ -389,6 +389,64 @@ describe("batch moves", () => {
   });
 });
 
+describe("descriptions", () => {
+  type Result = { path: string; status: string; error?: string };
+  type Answer = { results: Result[]; stopped: string | null; driveCalls: number };
+  const send = async (call: ReturnType<typeof setup>["call"], files: { path: string; description: string }[]) => {
+    const response = await call("POST", "/v1/describe", {
+      body: JSON.stringify({ files }),
+      headers: { "content-type": "application/json" },
+    });
+    return { status: response.status, answer: (await response.json()) as Answer };
+  };
+
+  it("sets many files' descriptions in one request, and clears one with an empty description", async () => {
+    const { call, google, ids } = setup();
+    const other = google.file(ids.grammars, "b.pdf", "b");
+    const { status, answer } = await send(call, [
+      { path: "grammars/kline-2022.pdf", description: "lang:apc form:grammar in:en" },
+      { path: "grammars/b.pdf", description: "lang:hbo" },
+    ]);
+    expect(status).toBe(200);
+    expect(answer.results.map((r) => r.status)).toEqual(["described", "described"]);
+    expect(google.nodes.get(ids.kline)?.description).toBe("lang:apc form:grammar in:en");
+    expect(google.nodes.get(other)?.description).toBe("lang:hbo");
+    await send(call, [{ path: "grammars/b.pdf", description: "" }]);
+    expect(google.nodes.get(other)?.description).toBe("");
+    expect(google.nodes.get(ids.kline)?.name).toBe("kline-2022.pdf");
+  });
+
+  it("stops at the first failure, and keeps within the subrequest budget", async () => {
+    const { call, google, ids } = setup();
+    const { answer } = await send(call, [
+      { path: "grammars/kline-2022.pdf", description: "a" },
+      { path: "grammars/missing.pdf", description: "b" },
+      { path: "grammars/kline-2022.pdf", description: "c" },
+    ]);
+    expect(answer.results.map((r) => r.error ?? r.status)).toEqual(["described", "not-found", "not-attempted"]);
+    expect(google.nodes.get(ids.kline)?.description).toBe("a");
+    const names = Array.from({ length: 80 }, (_, i) => `f${String(i).padStart(2, "0")}.pdf`);
+    for (const name of names) google.file(ids.grammars, name, name);
+    const { answer: many } = await send(call, names.map((name) => ({ path: `grammars/${name}`, description: "x" })));
+    expect(many.driveCalls).toBeLessThanOrEqual(DRIVE_BUDGET);
+    expect(many.stopped).toBe("budget");
+    expect(many.results.filter((r) => r.status === "described").length).toBeGreaterThan(30);
+  });
+
+  it("refuses a malformed batch, a root, and a description too long", async () => {
+    const { call } = setup();
+    const raw = (body: string) => call("POST", "/v1/describe", { body, headers: { "content-type": "application/json" } });
+    expect((await raw("not json")).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "", description: "x" }] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "a.pdf" }] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "a.pdf", description: "x".repeat(4001) }] }))).status).toBe(400);
+    const roots = setup(twoRoots);
+    const { answer } = await send(roots.call, [{ path: "books", description: "x" }]);
+    expect(answer.results[0]?.error).toBe("not-in-a-root");
+  });
+});
+
 describe("Google's tokens", () => {
   it("refreshes once and reuses the access token", async () => {
     const { call, tokenRequests } = setup();

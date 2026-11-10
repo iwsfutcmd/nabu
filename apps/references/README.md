@@ -17,6 +17,9 @@ Both halves are free: Cloudflare's free Workers plan and a Google Cloud project 
 - **Batch moves** (`POST /v1/moves`): up to 100 moves in one request, each listing a folder once.
   It stays within the free plan's 50 subrequests, stops at the first failure, and marks the
   moves it didn't reach `not-attempted`, to be sent again.
+- **Descriptions** (`POST /v1/describe`): up to 100 files' Drive descriptions in one request, the
+  same way. Drive shows a description in a file's details pane and searches it: the book library
+  keeps its catalogue tags there (`lang:apc form:grammar`).
 - **Names** are listed and matched in NFC without control characters, as anyone would type them.
   Where the name Drive holds differs (NFD, as macOS writes it, or a catalogue's MARC non-sorting
   marks), the entry also gives it as `rawName`. Moving a file to its own cleaned name cleans it in

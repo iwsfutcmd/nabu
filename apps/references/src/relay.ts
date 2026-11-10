@@ -13,6 +13,7 @@
  *   POST /v1/mkdir?path=…                make a folder and any missing above it
  *   POST /v1/move?from=…&to=…[&parents=1] rename and/or move
  *   POST /v1/moves                       many moves, listing each folder once (batch.ts)
+ *   POST /v1/describe                    many files' Drive descriptions (tags), likewise (describe.ts)
  *   POST /v1/trash?path=…                to Drive's trash (restorable); nothing is ever deleted
  *
  * GET /oauth/start and /oauth/callback sign the relay in (oauth.ts), only while it is signed out.
@@ -40,6 +41,7 @@ import {
   type Listings,
 } from "./drive.ts";
 import { driveBudget, moveBatch } from "./batch.ts";
+import { describeBatch } from "./describe.ts";
 import { find } from "./find.ts";
 import { loadRoots, rootCalls, rootSpecOf, type RootSpec } from "./roots.ts";
 import { finishSignIn, refreshingTokens, sameSecret, startSignIn, type Clock, type Secrets, type TokenCell } from "./oauth.ts";
@@ -246,6 +248,10 @@ const ROUTES: Readonly<Record<string, Readonly<Record<string, Route>>>> = {
   "/v1/moves": {
     POST: ({ drive, root, spec, listings, request }) =>
       moveBatch({ drive, root, listings, request, budget: driveBudget(rootCalls(spec)) }),
+  },
+  "/v1/describe": {
+    POST: ({ drive, root, spec, listings, request }) =>
+      describeBatch({ drive, root, listings, request, budget: driveBudget(rootCalls(spec)) }),
   },
   "/v1/find": {
     GET: ({ drive, root, spec, url }) =>

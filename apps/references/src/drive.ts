@@ -307,6 +307,16 @@ export const move = async (
   return response.ok ? ok(await fileOf(response.value)) : response;
 };
 
+/** Sets a file's description, which Drive shows in its details pane and searches; "" clears it. */
+export const setDescription = async (drive: Drive, file: DriveFile, description: string): Promise<Outcome<DriveFile>> => {
+  if (file.id === TOP_ID) return fail(400, "not-in-a-root");
+  const response = await drive.request(
+    `${API}/files/${file.id}?fields=${FIELDS}&${ALL_DRIVES}`,
+    sendJson("PATCH", { description }),
+  );
+  return response.ok ? ok(await fileOf(response.value)) : response;
+};
+
 /** Moves to Drive's trash, where the owner can restore it for 30 days. The relay never deletes. */
 export const trash = async (drive: Drive, file: DriveFile): Promise<Outcome<DriveFile>> => {
   const response = await drive.request(
