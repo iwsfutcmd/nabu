@@ -14,7 +14,9 @@ import os
 import re
 import shutil
 import wave
+from collections.abc import Iterator
 from pathlib import Path
+from typing import ClassVar
 
 import pytest
 
@@ -362,3 +364,89 @@ def test_the_round_trip_check_rejects_what_a_recognizer_cannot_understand() -> N
     [bank] = EspeakProvider().synthesize([Request("ngan4 hong4", "yue-Latn-jyutping")])
     result = round_trip(bank, "銀行", "yue")
     assert result["status"] == "fail", result
+
+
+class _Whisper:
+    """faster-whisper's WhisperModel as far as the round-trip check uses it."""
+
+    made: ClassVar[list[tuple[str, str]]] = []
+    broken: ClassVar[bool] = False
+
+    def __init__(self, _model: str, device: str, compute_type: str) -> None:
+        self.device = device
+        _Whisper.made.append((device, compute_type))
+
+    def transcribe(self, *_args: object, **_kwargs: object) -> tuple[Iterator[object], None]:
+        def segments() -> Iterator[object]:
+            if self.device == "cuda" and _Whisper.broken:
+                raise RuntimeError("Library libcublas.so.12 is not found or cannot be loaded")
+            yield from ()
+
+        return segments(), None
+
+
+@pytest.fixture
+def whisper(monkeypatch: pytest.MonkeyPatch) -> Iterator[type[_Whisper]]:
+    import types
+
+    from nabu.audio import qa
+
+    def zeros(n: int, dtype: str) -> list[float]:
+        return [0.0] * n
+
+    fakes = {
+        "faster_whisper": types.SimpleNamespace(WhisperModel=_Whisper),
+        "numpy": types.SimpleNamespace(zeros=zeros),
+    }
+
+    def optional(name: str) -> object:
+        return fakes[name]
+
+    monkeypatch.setattr(qa, "optional", optional)
+    _Whisper.made, _Whisper.broken = [], False
+    qa.recognizer.cache_clear()
+    yield _Whisper
+    qa.recognizer.cache_clear()
+
+
+@pytest.mark.parametrize(
+    ("gpu", "broken", "made"),
+    [
+        (False, False, [("cpu", "int8")]),
+        (True, False, [("cuda", "float16")]),
+        (True, True, [("cuda", "float16"), ("cpu", "int8")]),
+    ],
+)
+def test_the_round_trip_check_listens_on_a_gpu_only_when_one_works(
+    whisper: type[_Whisper],
+    monkeypatch: pytest.MonkeyPatch,
+    gpu: bool,
+    broken: bool,
+    made: list[tuple[str, str]],
+) -> None:
+    from nabu.audio import qa
+
+    monkeypatch.setattr(qa, "cuda_ready", lambda: gpu)
+    whisper.broken = broken
+    qa.recognizer()
+    assert whisper.made == made
+
+
+def test_without_ctranslate2_or_a_gpu_the_check_stays_on_the_cpu(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    import types
+
+    from nabu.audio import qa
+
+    def missing(name: str) -> object:
+        raise ImportError(name)
+
+    monkeypatch.setattr(qa, "optional", missing)
+    assert not qa.cuda_ready()
+
+    def no_gpu(_name: str) -> object:
+        return types.SimpleNamespace(get_cuda_device_count=lambda: 0)
+
+    monkeypatch.setattr(qa, "optional", no_gpu)
+    assert not qa.cuda_ready()
