@@ -40,9 +40,12 @@ jobs:
       - name: Assemble site
         run: |
           mkdir -p site
-          cp deploy/pages/index.html site/
           cp -r packages/ui/storybook-static site/storybook
           cp -r apps/web/dist site/demo
+      # The landing page, from the demo's bundles and the UI catalog (apps/web/landing.ts): every
+      # course is listed as the demo has it, so the page never goes stale.
+      - name: Landing page
+        run: node apps/web/landing.ts site "${{ github.server_url }}/${{ github.repository }}"
       # The audio check (ADR 0060): every course's clips, held-back ones too, beside the demo. Clips
       # the demo's bundles carry are not copied again.
       - name: Audio check
