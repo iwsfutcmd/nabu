@@ -14,6 +14,7 @@ type Node = {
   content: Uint8Array<ArrayBuffer>;
   trashed: boolean;
   modifiedTime: string;
+  description?: string;
 };
 
 type Pending = { readonly create?: { name: string; parent: string; mimeType: string }; readonly update?: string };
@@ -49,6 +50,8 @@ export const fakeGoogle = (options: { readonly email?: string; readonly pageSize
     name: node.name,
     mimeType: node.mimeType,
     modifiedTime: node.modifiedTime,
+    ...(node.parent === null ? {} : { parents: [node.parent] }),
+    ...(node.description === undefined ? {} : { description: node.description }),
     ...(node.mimeType.startsWith("application/vnd.google-apps.")
       ? {}
       : { size: String(node.content.length), md5Checksum: md5Of(node.content) }),
@@ -96,6 +99,18 @@ export const fakeGoogle = (options: { readonly email?: string; readonly pageSize
     const params = url.searchParams;
 
     if (path === "/drive/v3/about") return reply(200, { user: { emailAddress: options.email ?? "owner@example.com" } });
+
+    if (path === "/drive/v3/files" && method === "GET" && (params.get("q") ?? "").startsWith("name contains")) {
+      // Drive's name search: every word starts a word of the name, in any case.
+      const words = [...(params.get("q") ?? "").matchAll(/name contains '((?:[^'\\]|\\.)*)'/gu)].map((m) =>
+        (m[1] ?? "").replace(/\\(.)/gu, "$1").toLocaleLowerCase("und"),
+      );
+      const tokens = (name: string) => name.toLocaleLowerCase("und").split(/[^\p{L}\p{N}]+/u);
+      const hits = [...nodes.values()].filter(
+        (n) => !n.trashed && words.every((word) => tokens(n.name).some((token) => token.startsWith(word))),
+      );
+      return reply(200, { files: hits.slice(0, Number(params.get("pageSize") ?? "100")).map(meta) });
+    }
 
     if (path === "/drive/v3/files" && method === "GET") {
       const parent = /^'([^']+)' in parents and trashed = false$/u.exec(params.get("q") ?? "")?.[1];
@@ -177,13 +192,14 @@ export const fakeGoogle = (options: { readonly email?: string; readonly pageSize
     }
     if (method === "GET") return reply(200, meta(node));
     if (method === "PATCH") {
-      const body = jsonOf(init) as { name?: string; trashed?: boolean };
+      const body = jsonOf(init) as { name?: string; trashed?: boolean; description?: string };
       if (params.has("removeParents")) {
         if (node.parent !== params.get("removeParents")) return reply(400, { error: "notAParent" });
         node.parent = params.get("addParents");
       }
       if (body.name !== undefined) node.name = body.name;
       if (body.trashed === true) node.trashed = true;
+      if (body.description !== undefined) node.description = body.description;
       return reply(200, meta(node));
     }
     return reply(400);

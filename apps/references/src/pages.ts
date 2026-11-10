@@ -27,16 +27,17 @@ ${body}
   );
 
 const HOME = `<p>nabu references is a private relay. It lets its owner's course-authoring tools for
-<a href="${REPOSITORY}">Nabu</a>, an open-source language-learning app, read and write one folder of
-reference material (grammars, dictionaries and notes) in the owner's own Google Drive.</p>
+<a href="${REPOSITORY}">Nabu</a>, an open-source language-learning app, read and write the folders of
+reference material (grammars, dictionaries and notes) the owner chose in their own Google Drive.</p>
 <p>It has one user, its owner. Nobody else can sign in to it or use it.</p>`;
 
-const PRIVACY = `<p>Last updated 2026-11-06.</p>
+const PRIVACY = `<p>Last updated 2026-11-10.</p>
 <h2>What it accesses</h2>
 <p>With its owner's permission, given once when signing in with Google, the relay can use the
-owner's Google Drive. Its code limits it to one folder the owner chose: it never searches the
-Drive, never follows a shortcut out of the folder, and never deletes anything (removal goes to
-Drive's trash).</p>
+owner's Google Drive. Its code limits it to the folders the owner chose: it never follows a
+shortcut out of them, and never deletes anything (removal goes to Drive's trash). To find a book
+by name it asks Drive to search the names of the owner's files, and answers only with what lies
+inside those folders; any other name is dropped without being kept, logged or shown.</p>
 <h2>Who it serves</h2>
 <p>Only its owner. Requests need a key that only the owner holds, and signing in is closed once the
 owner has signed in.</p>

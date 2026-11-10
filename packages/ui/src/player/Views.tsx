@@ -277,6 +277,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
     <div className={styles.body}>
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
         <T as="p" text={ex.hint} />
+        <PersonsNote persons={ex.persons} prompt={ex.hint} />
       </div>
       <AnswerAudio props={props} />
       <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />

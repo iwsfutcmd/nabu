@@ -3,6 +3,7 @@ folder, reached through the relay (apps/references). Copies come down to a direc
 work tree, so nothing from a reference can be committed by accident."""
 
 from nabu.refs.client import (
+    DEFAULT_MAX_PULL,
     MAX_UPLOAD,
     Entry,
     PullReport,
@@ -14,6 +15,7 @@ from nabu.refs.client import (
 )
 
 __all__ = [
+    "DEFAULT_MAX_PULL",
     "MAX_UPLOAD",
     "Entry",
     "PullReport",

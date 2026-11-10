@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-06
+- Amended by: [0090](0090-reference-roots.md) (named roots, find by name)
 
 ## Context
 

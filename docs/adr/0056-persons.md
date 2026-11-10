@@ -22,8 +22,9 @@ learn which form a prompt wanted.
 - `addressee`: `m`, `f` or `pl`, where it marks whom it speaks to.
 
 **The prompt shows it, and the accept set follows it.** In the exercises that write the sentence
-in the target language (`translate-type.l1-l2`, `translate-tap.l1-l2`, `complete-translation`),
-small tags under the English prompt say "to a woman", "to several people" or "a man speaking".
+in the target language (`translate-type.l1-l2`, `translate-tap.l1-l2`, `complete-translation`, and
+`gap-fill`, whose options are often the word in other persons: بدّك, بدكن), small tags under the
+English prompt say "to a woman", "to several people" or "a man speaking".
 - **The tags are UI text** (`player.persons.*`), in the UI's language and direction, lined up
   under the prompt.
 - **The accept set holds only the forms that fit the tags.**

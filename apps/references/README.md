@@ -17,6 +17,9 @@ Both halves are free: Cloudflare's free Workers plan and a Google Cloud project 
 - **Batch moves** (`POST /v1/moves`): up to 100 moves in one request, each listing a folder once.
   It stays within the free plan's 50 subrequests, stops at the first failure, and marks the
   moves it didn't reach `not-attempted`, to be sent again.
+- **Descriptions** (`POST /v1/describe`): up to 100 files' Drive descriptions in one request, the
+  same way. Drive shows a description in a file's details pane and searches it: the book library
+  keeps its catalogue tags there (`lang:apc form:grammar`).
 - **Names** are listed and matched in NFC without control characters, as anyone would type them.
   Where the name Drive holds differs (NFD, as macOS writes it, or a catalogue's MARC non-sorting
   marks), the entry also gives it as `rawName`. Moving a file to its own cleaned name cleans it in
@@ -72,8 +75,9 @@ At <https://console.cloud.google.com>:
 # A long random key: the only thing a session needs to reach the folder. Keep a copy for step 5.
 node -e "console.log(crypto.randomBytes(32).toString('base64url'))"
 npx wrangler@4 secret put RELAY_KEY
-# The folder's id: the last part of its address, drive.google.com/drive/folders/<id>
-npx wrangler@4 secret put ROOT_FOLDER_ID
+# The folders it reaches, named: each id is the last part of the folder's address,
+# drive.google.com/drive/folders/<id>. e.g. nabu=<work folder id>,books=<library folder id>
+npx wrangler@4 secret put ROOTS
 npx wrangler@4 secret put GOOGLE_CLIENT_ID
 npx wrangler@4 secret put GOOGLE_CLIENT_SECRET
 ```
@@ -105,12 +109,21 @@ curl -H "Authorization: Bearer <RELAY_KEY>" RELAY/v1/status
 ```sh
 cd pipeline
 uv run nabu refs status
-uv run nabu refs ls -r
-uv run nabu refs pull grammars/kline-2022.pdf   # into NABU_REFS_DIR, default ~/nabu-references
-uv run nabu refs put notes.md notes/apc/kline-2022.md --parents
+uv run nabu refs ls
+uv run nabu refs find kline lebanese         # where a book is filed
+uv run nabu refs pull "books/…/Kline - 2022 - The fundamentals of Lebanese grammar.pdf"
+uv run nabu refs put notes.md nabu/notes/apc/kline-2022.md --parents
 ```
 
 `pull` refuses a destination inside a git work tree, so a copy can't be committed by accident.
+
+### Roots (ADR 0090)
+
+`ROOTS` names the folders the relay reaches: `nabu=<id>,books=<id>` (at most four). Paths start
+with a root's name (`books/ling/…`, `nabu/notes/apc/…`), and `ls` with no path lists the roots.
+Nothing else in the Drive is reachable, and the roots themselves are never made, moved or trashed.
+`nabu refs find <words>` finds a file by name inside the roots, wherever it is filed. An older
+deployment with only `ROOT_FOLDER_ID` keeps working, with paths inside that one folder.
 
 ## When something changes
 

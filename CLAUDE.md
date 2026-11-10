@@ -125,9 +125,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (nabu/audio/punctuation.py: by script subtag, language overrides). Turning it on makes those clips stale.
 - apc's voices (ADR 0058, 0078): Lahgtna on OmniVoice, local (`uv sync --group omnivoice`, CI skips it), reading the
   vowel-marked text, each cloning its reference (beirut-m, beirut-f; `nabu audio cast`; recasting makes clips stale). Clips are CC-BY-NC-4.0
-  (the weights are non-commercial). bfloat16; CPU ~15 s a clip; generation resumes. Live test: NABU_OMNIVOICE=1.
+  (the weights are non-commercial). bfloat16; CPU ~15 s a clip, a T4 ~11 s; generation resumes. Live test: NABU_OMNIVOICE=1.
 - OmniVoice clips are trimmed to their speech (`trim_edges`: 80 ms before, 150 ms after); a clip cloned from a recorded
   reference credits it (speaker, license, source).
+- Items said alike (one input, voice and settings) share one clip and file; a clip is kept only if its file matches its
+  sha256, so `generate` or `prune` mends an index whose file was written over. `--check` runs Whisper on a GPU if it can.
 - uz's voice (ADR 0059): Navoiy (CosyVoice2) runs in its own uv project, pipeline/runtimes/cosyvoice (older torch and
   transformers); the pipeline starts its worker.py. CI never installs it. ~6 GB RAM: run it alone. Clips Apache-2.0.
   `nabu audio align` gives clips without timings (OmniVoice, Navoiy) word timings by forced alignment. Live: NABU_NAVOIY=1.
@@ -250,7 +252,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Persons and register notes (see docs/adr/0056, 0075)
 - `persons` on a sentence (speaker m/f; addressee m/f, sg (number but no gender: yue 你), du, pl) is shown as tags
-  under l1-l2 prompts; tag where the target marks gender/number and English cannot, and keep the accept set to the
+  under l1-l2 prompts and gap-fill hints; tag where the target marks gender/number and English cannot, and keep the accept set to the
   forms that fit. Untagged means every form is accepted. The same goes for "it" and a bare "this": unless the
   sentence names the thing, accept both genders (mish b3id / mish b3ide, jarrbo / jarrba).
 - Exercise every person the language marks, never one default (ADR 0075): a woman speaking as well as a man, to a
@@ -320,11 +322,15 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Two voices clone Cuban recordings (`nabu audio cast --recording`; a man's CC BY, a woman's CC0); clips are CC-BY-NC-4.0
   (OmniVoice weights) and credit the recording. Cut a reference on whole words, no breath at either end.
 
-## Reference library notes (see docs/adr/0079)
-- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive folder behind the relay
+## Reference library notes (see docs/adr/0079, 0090)
+- Grammars, dictionaries and notes are copyrighted: they live in the owner's private Drive behind the relay
   (apps/references), never in the repo, bundles, issues or commits; nor does text extracted from them.
-- `cd pipeline && uv run nabu refs ls -r`, `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git
-  work tree), `put <file> notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
+- Two roots: `books/` is the library (books_bak/books, sorted by subject and language family, and still being sorted);
+  `nabu/` is the work folder. Notes per course live in `nabu/notes/<course>/` (hbo, tok, …): read them first.
+- Find a book by name, never by a remembered path: `cd pipeline && uv run nabu refs find kline lebanese` (every word
+  starts a word of the name; `--in books/ling` narrows). Courses cite books by author, title and year, not path.
+- `pull <path>` (into NABU_REFS_DIR, default ~/nabu-references; refuses a git work tree and more than --max-gb),
+  `put <file> nabu/notes/<course>/<name>.md --parents` for notes. Extract text and page images there, not here.
 - Courses take facts from references (forms, paradigms, glosses), never example sentences or definitions verbatim.
 - Cloud sessions: NABU_REFS_URL is an environment variable; the key is the relay host's network secret (never chat).
   The relay trashes, never deletes; uploads stop at 25 MB (scans go into Drive directly).
@@ -358,7 +364,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Readings stay SBL's (šāmərû); `tiberian.ipa` says them as Khan, vol. I, describes (ADR 0084: silent shewa after a long
   vowel, the echo vowel, uvular resh, [ɟɟ]). A sound rule changes only with a page of Khan; listed rules are not modelled.
   The voice's Arabic consonants (ADR 0089) are Ben's choice, not Khan's: keep them apart (`arabic=True`).
-- References (ADR 0084; notes in the library's notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
+- References (ADR 0084; notes in nabu/notes/hbo): Khan for sounds, Joüon–Muraoka for forms and stems,
   Holladay for glosses. Contrast sets limited by `forms` (words pinned as those forms) carry the verb's person
   prefixes and endings and agreement; a noun's first letter and an infinitive's -ôṯ stay typos.
 - Units read a Bible passage (the WLC, public domain) as their story; lessons teach its words. Verbs are KCs by
@@ -418,7 +424,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   from node_modules); `VITE_NABU_API=/` means this origin. CI runs deploy/smoke.sh against it. Locally, build with
   `--network host`, the proxy build args and `--secret id=ca,src=/root/.ccr/ca-bundle.crt`.
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main.
-- ADRs 0013–0089 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0090 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

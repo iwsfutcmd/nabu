@@ -6,7 +6,9 @@ import { fakeGoogle } from "./fake-google.ts";
 
 const KEY = "relay-key-relay-key-relay-key-relay-key";
 
-const setup = (env: Partial<Env> = {}, options: { pageSize?: number } = {}) => {
+type Ids = { readonly root: string; readonly books: string };
+
+const setup = (env: Partial<Env> | ((ids: Ids) => Partial<Env>) = {}, options: { pageSize?: number } = {}) => {
   const google = fakeGoogle(options);
   const elsewhere = google.folder(null, "Private");
   const diary = google.file(elsewhere, "diary.txt", "not for the relay");
@@ -14,6 +16,13 @@ const setup = (env: Partial<Env> = {}, options: { pageSize?: number } = {}) => {
   const grammars = google.folder(root, "grammars");
   const kline = google.file(grammars, "kline-2022.pdf", "%PDF-kline");
   const shortcut = google.add(root, "to-private", SHORTCUT);
+  // Outside the nabu folder: a library, and papers that are no one's business.
+  const books = google.folder(null, "books");
+  const sem = google.folder(google.folder(books, "ling"), "sem");
+  const apc = google.folder(sem, "apc");
+  const klineBook = google.file(apc, "Kline - 2022 - The fundamentals of Lebanese grammar.pdf", "%PDF-kline");
+  const personal = google.folder(null, "_personal");
+  const statements = google.file(personal, "Kline statements.pdf", "private");
   let clock = 1_000_000;
   const fullEnv: Env = {
     RELAY_KEY: KEY,
@@ -21,7 +30,7 @@ const setup = (env: Partial<Env> = {}, options: { pageSize?: number } = {}) => {
     GOOGLE_CLIENT_ID: "client",
     GOOGLE_CLIENT_SECRET: "client-secret",
     GOOGLE_REFRESH_TOKEN: "refresh-1",
-    ...env,
+    ...(typeof env === "function" ? env({ root, books }) : env),
   };
   const deps: Deps = {
     fetch: google.fetch,
@@ -54,7 +63,7 @@ const setup = (env: Partial<Env> = {}, options: { pageSize?: number } = {}) => {
     call,
     put,
     tokenRequests,
-    ids: { root, grammars, kline, elsewhere, diary, shortcut },
+    ids: { root, grammars, kline, elsewhere, diary, shortcut, books, sem, apc, klineBook, personal, statements },
     advance: (ms: number) => {
       clock += ms;
     },
@@ -235,10 +244,11 @@ describe("writing", () => {
   });
 
   it("makes folders, like mkdir -p", async () => {
-    const { call, google } = setup();
+    const { call, google, ids } = setup();
     expect((await call("POST", `/v1/mkdir?path=${q("dictionaries/apc/scans")}`)).status).toBe(200);
     expect((await call("POST", `/v1/mkdir?path=${q("dictionaries/apc")}`)).status).toBe(200);
-    expect([...google.nodes.values()].filter((n) => n.name === "apc")).toHaveLength(1);
+    const made = [...google.nodes.values()].filter((n) => n.name === "apc" && n.parent !== ids.sem);
+    expect(made).toHaveLength(1);
     expect(await (await call("POST", `/v1/mkdir?path=${q("grammars/kline-2022.pdf/x")}`)).json()).toMatchObject({
       error: "not-a-folder",
     });
@@ -379,6 +389,68 @@ describe("batch moves", () => {
   });
 });
 
+describe("descriptions", () => {
+  type Result = { path: string; status: string; error?: string };
+  type Answer = { results: Result[]; stopped: string | null; driveCalls: number };
+  const send = async (call: ReturnType<typeof setup>["call"], files: { path: string; description: string }[]) => {
+    const response = await call("POST", "/v1/describe", {
+      body: JSON.stringify({ files }),
+      headers: { "content-type": "application/json" },
+    });
+    return { status: response.status, answer: (await response.json()) as Answer };
+  };
+
+  it("sets many files' descriptions in one request, and clears one with an empty description", async () => {
+    const { call, google, ids } = setup();
+    const other = google.file(ids.grammars, "b.pdf", "b");
+    const { status, answer } = await send(call, [
+      { path: "grammars/kline-2022.pdf", description: "lang:apc form:grammar in:en" },
+      { path: "grammars/b.pdf", description: "lang:hbo" },
+    ]);
+    expect(status).toBe(200);
+    expect(answer.results.map((r) => r.status)).toEqual(["described", "described"]);
+    expect(google.nodes.get(ids.kline)?.description).toBe("lang:apc form:grammar in:en");
+    expect(google.nodes.get(other)?.description).toBe("lang:hbo");
+    await send(call, [{ path: "grammars/b.pdf", description: "" }]);
+    expect(google.nodes.get(other)?.description).toBe("");
+    expect(google.nodes.get(ids.kline)?.name).toBe("kline-2022.pdf");
+    // Entries carry a description where there is one, so a caller can log what it replaces.
+    const listed = (await (await call("GET", "/v1/list?path=grammars")).json()) as { entries: { name: string; description?: string }[] };
+    expect(listed.entries.find((e) => e.name === "kline-2022.pdf")?.description).toBe("lang:apc form:grammar in:en");
+    expect(listed.entries.find((e) => e.name === "b.pdf")).not.toHaveProperty("description");
+  });
+
+  it("stops at the first failure, and keeps within the subrequest budget", async () => {
+    const { call, google, ids } = setup();
+    const { answer } = await send(call, [
+      { path: "grammars/kline-2022.pdf", description: "a" },
+      { path: "grammars/missing.pdf", description: "b" },
+      { path: "grammars/kline-2022.pdf", description: "c" },
+    ]);
+    expect(answer.results.map((r) => r.error ?? r.status)).toEqual(["described", "not-found", "not-attempted"]);
+    expect(google.nodes.get(ids.kline)?.description).toBe("a");
+    const names = Array.from({ length: 80 }, (_, i) => `f${String(i).padStart(2, "0")}.pdf`);
+    for (const name of names) google.file(ids.grammars, name, name);
+    const { answer: many } = await send(call, names.map((name) => ({ path: `grammars/${name}`, description: "x" })));
+    expect(many.driveCalls).toBeLessThanOrEqual(DRIVE_BUDGET);
+    expect(many.stopped).toBe("budget");
+    expect(many.results.filter((r) => r.status === "described").length).toBeGreaterThan(30);
+  });
+
+  it("refuses a malformed batch, a root, and a description too long", async () => {
+    const { call } = setup();
+    const raw = (body: string) => call("POST", "/v1/describe", { body, headers: { "content-type": "application/json" } });
+    expect((await raw("not json")).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "", description: "x" }] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "a.pdf" }] }))).status).toBe(400);
+    expect((await raw(JSON.stringify({ files: [{ path: "a.pdf", description: "x".repeat(4001) }] }))).status).toBe(400);
+    const roots = setup(twoRoots);
+    const { answer } = await send(roots.call, [{ path: "books", description: "x" }]);
+    expect(answer.results[0]?.error).toBe("not-in-a-root");
+  });
+});
+
 describe("Google's tokens", () => {
   it("refreshes once and reuses the access token", async () => {
     const { call, tokenRequests } = setup();
@@ -470,5 +542,115 @@ describe("the pages Google asks for", () => {
       expect(html).toContain(words);
     }
     expect((await call("POST", "/")).status).toBe(404);
+  });
+});
+
+const KLINE = "books/ling/sem/apc/Kline - 2022 - The fundamentals of Lebanese grammar.pdf";
+const twoRoots = (ids: Ids): Partial<Env> => ({ ROOTS: `nabu=${ids.root},books=${ids.books}`, ROOT_FOLDER_ID: "" });
+
+describe("two roots", () => {
+  it("lists the roots at the top, by their names, without asking Drive", async () => {
+    const { call, google } = setup(twoRoots);
+    const top = (await (await call("GET", "/v1/list")).json()) as { entries: { name: string; kind: string }[] };
+    expect(top.entries.map((e) => [e.name, e.kind])).toEqual([
+      ["nabu", "folder"],
+      ["books", "folder"],
+    ]);
+    expect(google.requests.filter((r) => r.url.includes("/drive/v3/files"))).toEqual([]);
+  });
+
+  it("reads, writes and moves inside the roots and between them", async () => {
+    const { call, put, google, ids } = setup(twoRoots);
+    expect(await (await call("GET", `/v1/file?path=${q(KLINE)}`)).text()).toBe("%PDF-kline");
+    expect((await put(`/v1/file?path=${q("nabu/notes/apc/kline.md")}&parents=1`, "# Kline\n")).status).toBe(201);
+    const notes = [...google.nodes.values()].find((n) => n.name === "notes");
+    expect(notes?.parent).toBe(ids.root);
+    const moved = await call("POST", `/v1/move?from=${q("nabu/grammars/kline-2022.pdf")}&to=${q("books/ling/sem/apc/kline-copy.pdf")}`);
+    expect(moved.status).toBe(200);
+    expect(google.nodes.get(ids.kline)?.parent).toBe(ids.apc);
+  });
+
+  it("reaches nothing outside the roots, and never makes, moves or trashes a root", async () => {
+    const { call, put, google, ids } = setup(twoRoots);
+    expect((await call("GET", `/v1/list?path=_personal`)).status).toBe(404);
+    expect((await call("GET", `/v1/stat?path=${q("Private/diary.txt")}`)).status).toBe(404);
+    for (const response of [
+      await call("POST", "/v1/mkdir?path=elsewhere"),
+      await put("/v1/file?path=loose.md", "x"),
+      await call("POST", "/v1/trash?path=books"),
+      await call("POST", `/v1/move?from=nabu&to=${q("books/nabu")}`),
+      await call("POST", `/v1/move?from=${q("books/ling")}&to=ling`),
+    ]) {
+      expect(response.status).toBe(400);
+      expect(await response.json()).toMatchObject({ error: "not-in-a-root" });
+    }
+    expect(google.nodes.get(ids.books)?.trashed).toBe(false);
+    expect(google.nodes.get(ids.root)?.parent).toBe(null);
+    const touched = google.requests.map((r) => r.url).join("\n");
+    for (const outside of [ids.personal, ids.statements, ids.elsewhere, ids.diary]) expect(touched).not.toContain(outside);
+  });
+
+  it("moves in a batch between roots", async () => {
+    const { call, google, ids } = setup(twoRoots);
+    const response = await call("POST", "/v1/moves", {
+      body: JSON.stringify({ moves: [{ from: KLINE, to: "nabu/grammars/Kline 2022.pdf" }] }),
+      headers: { "content-type": "application/json" },
+    });
+    expect(await response.json()).toMatchObject({ results: [{ status: "moved" }], stopped: null });
+    expect(google.nodes.get(ids.klineBook)?.parent).toBe(ids.grammars);
+  });
+
+  it("names each root in the status, and a wrong id there", async () => {
+    const good = (await (await setup(twoRoots).call("GET", "/v1/status")).json()) as unknown;
+    expect(good).toMatchObject({
+      account: "owner@example.com",
+      roots: [
+        { name: "nabu", folder: { kind: "folder" } },
+        { name: "books", folder: { kind: "folder" } },
+      ],
+    });
+    const wrong = (await (await setup((ids) => ({ ROOTS: `nabu=${ids.root},books=nosuchfolder` })).call("GET", "/v1/status")).json()) as unknown;
+    expect(wrong).toMatchObject({ roots: [{ name: "nabu" }, { name: "books", error: "not-found" }] });
+  });
+
+  it("refuses roots it cannot read", async () => {
+    for (const roots of ["nabu", "nabu=a=b", "nabu=x,nabu=y", "../x=a", "a=1,b=2,c=3,d=4,e=5"]) {
+      const response = await setup({ ROOTS: roots }).call("GET", "/v1/list");
+      expect(response.status).toBe(500);
+      expect(await response.json()).toMatchObject({ error: "misconfigured" });
+    }
+  });
+});
+
+describe("finding a book by name", () => {
+  it("finds files inside the roots, with their paths, and nothing outside them", async () => {
+    const { call } = setup(twoRoots);
+    const response = await call("GET", "/v1/find?q=kline");
+    const body = (await response.json()) as { results: { path: string; kind: string }[]; truncated: boolean };
+    expect(body.results.map((r) => r.path)).toEqual([KLINE, "nabu/grammars/kline-2022.pdf"]);
+    expect(JSON.stringify(body)).not.toContain("statements");
+    expect(body.truncated).toBe(false);
+  });
+
+  it("takes every word, any case, and an `in` to look within", async () => {
+    const { call } = setup(twoRoots);
+    const both = (await (await call("GET", "/v1/find?q=KLINE%20lebanese")).json()) as { results: { path: string }[] };
+    expect(both.results.map((r) => r.path)).toEqual([KLINE]);
+    const inside = (await (await call("GET", "/v1/find?q=kline&in=nabu")).json()) as { results: { path: string }[] };
+    expect(inside.results.map((r) => r.path)).toEqual(["nabu/grammars/kline-2022.pdf"]);
+    expect((await call("GET", "/v1/find?q=%20")).status).toBe(400);
+  });
+
+  it("gives paths inside the one root when there is one", async () => {
+    const body = (await (await setup().call("GET", "/v1/find?q=kline")).json()) as { results: { path: string }[] };
+    expect(body.results.map((r) => r.path)).toEqual(["grammars/kline-2022.pdf"]);
+  });
+
+  it("quotes the words it searches for", async () => {
+    const { call, google } = setup(twoRoots);
+    await call("GET", `/v1/find?q=${q("o'brien back\\slash")}`);
+    const search = google.requests.find((r) => r.url.includes("name+contains") || r.url.includes("name%20contains"));
+    const sent = new URL(search?.url ?? "https://x").searchParams.get("q");
+    expect(sent).toBe("name contains 'o\\'brien' and name contains 'back\\\\slash' and trashed = false");
   });
 });

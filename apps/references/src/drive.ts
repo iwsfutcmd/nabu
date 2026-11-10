@@ -15,6 +15,7 @@ export type DriveFile = {
   readonly size?: string;
   readonly modifiedTime?: string;
   readonly md5Checksum?: string;
+  readonly description?: string;
 };
 
 export const FOLDER = "application/vnd.google-apps.folder";
@@ -30,10 +31,16 @@ export const DEFAULT_EXPORT: Readonly<Record<string, string>> = {
 
 export const API = "https://www.googleapis.com/drive/v3";
 export const UPLOAD = "https://www.googleapis.com/upload/drive/v3";
-const FIELDS = "id,name,mimeType,size,modifiedTime,md5Checksum";
+const FIELDS = "id,name,mimeType,size,modifiedTime,md5Checksum,description";
 const ALL_DRIVES = "supportsAllDrives=true";
 /** Drive ids are URL-safe base64-ish; checked before one goes into a query. */
 export const DRIVE_ID = /^[A-Za-z0-9_-]+$/u;
+/**
+ * The folder above the roots when the relay has several (ROOTS, roots.ts). It exists only in the
+ * relay: its listing is the roots, and nothing is ever made in it, moved into or out of it, or
+ * trashed from it.
+ */
+export const TOP_ID = "relay-roots";
 
 export type Entry = {
   /** The name as the relay compares it (nameKey): NFC, without control characters. */
@@ -46,6 +53,8 @@ export type Entry = {
   readonly size?: number;
   readonly modified?: string;
   readonly md5?: string;
+  /** The file's Drive description, where it has one (POST /v1/describe sets it). */
+  readonly description?: string;
 };
 
 export const kindOf = (file: DriveFile): Entry["kind"] =>
@@ -65,6 +74,7 @@ export const entryOf = (file: DriveFile): Entry => ({
   ...(file.size === undefined ? {} : { size: Number(file.size) }),
   ...(file.modifiedTime === undefined ? {} : { modified: file.modifiedTime }),
   ...(file.md5Checksum === undefined ? {} : { md5: file.md5Checksum }),
+  ...(file.description ? { description: file.description } : {}),
 });
 
 /** An access token for Drive, refreshed when it lapses. */
@@ -137,6 +147,7 @@ export const listChildren = async (
   if (!DRIVE_ID.test(folderId)) return fail(500, "bad-id");
   const cached = listings?.get(folderId);
   if (cached !== undefined) return ok(cached);
+  if (folderId === TOP_ID) return fail(500, "bad-id");
   const files: DriveFile[] = [];
   let pageToken: string | undefined;
   do {
@@ -199,6 +210,7 @@ export const createFolder = async (
   name: string,
   listings?: Listings,
 ): Promise<Outcome<DriveFile>> => {
+  if (parent.id === TOP_ID) return fail(400, "not-in-a-root");
   const response = await drive.request(
     `${API}/files?fields=${FIELDS}&${ALL_DRIVES}`,
     sendJson("POST", { name, mimeType: FOLDER, parents: [parent.id] }),
@@ -235,8 +247,13 @@ export const ensureFolder = async (
 };
 
 /** The folder at `path`, which must exist. */
-export const folderAt = async (drive: Drive, root: DriveFile, path: RefPath): Promise<Outcome<DriveFile>> => {
-  const found = await locate(drive, root, path);
+export const folderAt = async (
+  drive: Drive,
+  root: DriveFile,
+  path: RefPath,
+  listings?: Listings,
+): Promise<Outcome<DriveFile>> => {
+  const found = await locate(drive, root, path, listings);
   if (!found.ok) return found;
   return found.value.file.mimeType === FOLDER ? ok(found.value.file) : fail(409, "not-a-folder");
 };
@@ -251,6 +268,7 @@ export const upload = async (
   body: ArrayBuffer,
   contentType: string,
 ): Promise<Outcome<DriveFile>> => {
+  if ("parent" in target && target.parent.id === TOP_ID) return fail(400, "not-in-a-root");
   const headers = {
     "content-type": "application/json; charset=utf-8",
     "x-upload-content-type": contentType,
@@ -283,12 +301,23 @@ export const move = async (
   to: DriveFile,
   name: string,
 ): Promise<Outcome<DriveFile>> => {
+  if (from.id === TOP_ID || to.id === TOP_ID) return fail(400, "not-in-a-root");
   const params = new URLSearchParams({ fields: FIELDS, supportsAllDrives: "true" });
   if (from.id !== to.id) {
     params.set("addParents", to.id);
     params.set("removeParents", from.id);
   }
   const response = await drive.request(`${API}/files/${file.id}?${params.toString()}`, sendJson("PATCH", { name }));
+  return response.ok ? ok(await fileOf(response.value)) : response;
+};
+
+/** Sets a file's description, which Drive shows in its details pane and searches; "" clears it. */
+export const setDescription = async (drive: Drive, file: DriveFile, description: string): Promise<Outcome<DriveFile>> => {
+  if (file.id === TOP_ID) return fail(400, "not-in-a-root");
+  const response = await drive.request(
+    `${API}/files/${file.id}?fields=${FIELDS}&${ALL_DRIVES}`,
+    sendJson("PATCH", { description }),
+  );
   return response.ok ? ok(await fileOf(response.value)) : response;
 };
 

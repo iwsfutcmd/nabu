@@ -136,6 +136,11 @@ export interface GapFill extends Common {
   readonly after: TaggedText;
   readonly options: readonly TaggedText[];
   readonly answer: number;
+  /**
+   * Who speaks and who is spoken to: the options are often the word in other persons (بدّك, بدكن),
+   * which the hint alone cannot choose between.
+   */
+  readonly persons?: Persons | undefined;
 }
 
 /**

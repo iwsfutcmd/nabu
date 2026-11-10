@@ -8,7 +8,13 @@ from typing import Annotated, NoReturn
 
 import typer
 
-from nabu.refs.client import Relay, RelayError, default_local_dir, relay_from_env
+from nabu.refs.client import (
+    DEFAULT_MAX_PULL,
+    Relay,
+    RelayError,
+    default_local_dir,
+    relay_from_env,
+)
 
 app = typer.Typer(
     no_args_is_help=True,
@@ -31,6 +37,7 @@ _HINTS = {
     "(apps/references/README.md).",
     "inside-git": "References never go inside a git work tree: choose another --to "
     "or NABU_REFS_DIR.",
+    "too-big": "That is more than --max-gb: pull a narrower path (find it with `nabu refs find`).",
 }
 
 
@@ -55,13 +62,17 @@ def _size(size: int | None) -> str:
 
 @app.command("status")
 def status_command(url: UrlOption = None) -> None:
-    """Which Google account the relay acts as, and which folder it serves."""
+    """Which Google account the relay acts as, and which folders it serves."""
     try:
         status = _relay(url).status()
     except RelayError as error:
         _fail(error)
     typer.echo(f"account: {status['account']}")
-    typer.echo(f"folder:  {status['folder']['name']}")
+    if "folder" in status:
+        typer.echo(f"folder:  {status['folder']['name']}")
+    for root in status.get("roots", []):
+        held = root["folder"]["name"] if "folder" in root else f"error: {root.get('error')}"
+        typer.echo(f"root:    {root['name']}/ ({held})")
 
 
 @app.command("ls")
@@ -82,19 +93,44 @@ def list_command(
         _fail(error)
 
 
+@app.command("find")
+def find_command(
+    words: Annotated[list[str], typer.Argument(help="Words of the name: author, title, year…")],
+    inside: Annotated[
+        str, typer.Option("--in", help="Only under this path (e.g. books/ling).")
+    ] = "",
+    url: UrlOption = None,
+) -> None:
+    """Find books and notes by name, wherever they are filed: kind, size, path."""
+    try:
+        found, truncated = _relay(url).find(words, inside)
+    except RelayError as error:
+        _fail(error)
+    for path, entry in found:
+        suffix = "/" if entry.kind == "folder" else ""
+        typer.echo(f"{entry.kind:<8} {_size(entry.size):>14} {path}{suffix}")
+    if truncated:
+        typer.echo("(more may match: add a word or --in)", err=True)
+    if not found:
+        typer.echo("nothing found", err=True)
+
+
 @app.command("pull")
 def pull_command(
-    path: Annotated[str, typer.Argument(help="A file or folder in the library ('' for all).")] = "",
+    path: Annotated[str, typer.Argument(help="A file or folder in the library.")],
     to: Annotated[
         Path | None,
         typer.Option("--to", help="Where copies go (default: NABU_REFS_DIR or ~/nabu-references)."),
     ] = None,
+    max_gb: Annotated[
+        float, typer.Option("--max-gb", help="Refuse to copy more than this.")
+    ] = DEFAULT_MAX_PULL / 1024**3,
     url: UrlOption = None,
 ) -> None:
     """Copy references down, keeping their paths; files that have not changed stay as they are."""
     into = to or default_local_dir()
     try:
-        report = _relay(url).pull(path, into)
+        report = _relay(url).pull(path, into, int(max_gb * 1024**3))
     except RelayError as error:
         _fail(error)
     for remote in report.downloaded:

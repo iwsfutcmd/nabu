@@ -5,12 +5,19 @@ faster-whisper), and compare with the text the clip should say: the character er
 grapheme clusters, ignoring punctuation and spacing. A clip passes at CER ≤ 0.15, goes to the
 human review queue up to 0.5, and fails beyond. The recognizer is never told the expected
 sentence (no prompt), so it cannot simply agree.
+
+The recognizer runs on a GPU when CTranslate2 can use one (float16), else on the CPU (int8); the
+two can differ on a borderline clip, never by much.
 """
 
 from __future__ import annotations
 
+import ctypes
+import importlib
+import importlib.util
 import unicodedata
 from functools import cache
+from pathlib import Path
 from typing import Any
 
 import regex
@@ -24,9 +31,54 @@ REVIEW = 0.5
 _KEEP = regex.compile(r"[\p{L}\p{M}\p{N}]")
 
 
+#: What CTranslate2 needs for a GPU besides the driver (its CUDA runtime is built in): cuBLAS 12,
+#: which it loads by name when it first multiplies.
+CUBLAS = ("libcublasLt.so.12", "libcublas.so.12")
+
+
+def load_cublas() -> bool:
+    """cuBLAS 12 loaded for the whole process: from the system's search path, or from the
+    nvidia-cublas-cu12 wheel PyTorch's CUDA build brings (which CTranslate2 does not search)."""
+    places: list[Path | None] = [None]
+    try:
+        spec = importlib.util.find_spec("nvidia.cublas")
+    except ImportError:
+        spec = None
+    if spec is not None and spec.submodule_search_locations:
+        places += [Path(p) / "lib" for p in spec.submodule_search_locations]
+    for place in places:
+        try:
+            for name in CUBLAS:
+                ctypes.CDLL(name if place is None else str(place / name), mode=ctypes.RTLD_GLOBAL)
+        except OSError:
+            continue
+        return True
+    return False
+
+
+def cuda_ready() -> bool:
+    """Whether CTranslate2 sees a GPU and cuBLAS loads."""
+    try:
+        if optional("ctranslate2").get_cuda_device_count() < 1:
+            return False
+    except Exception:  # no CTranslate2, or no driver: the CPU
+        return False
+    return load_cublas()
+
+
 @cache
-def _whisper() -> Any:
-    return optional("faster_whisper").WhisperModel(ASR_MODEL, device="cpu", compute_type="int8")
+def recognizer() -> Any:
+    """Whisper on a GPU that works (a second of silence goes through it first), else the CPU."""
+    whisper = optional("faster_whisper").WhisperModel
+    if cuda_ready():
+        try:
+            model = whisper(ASR_MODEL, device="cuda", compute_type="float16")
+            segments, _info = model.transcribe(optional("numpy").zeros(16_000, dtype="float32"))
+            list(segments)  # transcription is lazy: run it
+            return model
+        except (RuntimeError, ValueError):  # a library that will not load; no float16 on the GPU
+            pass
+    return whisper(ASR_MODEL, device="cpu", compute_type="int8")
 
 
 def graphemes(text: str) -> list[str]:
@@ -50,7 +102,7 @@ def status(rate: float) -> str:
 
 
 def transcribe(clip: Clip, language: str) -> str:
-    segments, _info = _whisper().transcribe(
+    segments, _info = recognizer().transcribe(
         to_16k(clip.pcm, clip.sample_rate),
         language=language,
         beam_size=5,
