@@ -33,7 +33,7 @@ Policies the pass adopted, to confirm or reverse:
   - The two new food-story distractors (سرد, گران) are wrong only from context.
   - Prices are low for 2026. Realistic ones need new number words (پانصد, میلیون).
 - **yue:**
-  - The demonstrative 呢 is ni1 throughout; the particle 呢 keeps ne1.
+  - The demonstrative 呢 is ni1 throughout; the particle 呢 keeps ne1 (Matthews & Yip agree: ADR 0092).
   - Changed tones: 女兒 neoi5 ji2, 英文 / 中文 man2 (中文 man4 is also common).
   - 唔該 and 多謝 are both accepted for *Thanks / Thank you*.
   - Non-standard typings (既, 野, 黎, 岩岩, 訓覺, 哂) count as correct.
@@ -153,34 +153,60 @@ With an account on a server, corrections also reach the review queue at `/admin/
 
 ## yue (Cantonese)
 
-1. **呢 is read ne1 throughout** (呢個, 呢度, 呢本 …). That matches PyCantonese and casual speech,
-   and a note on the KC mentions ni1. Should it be ni1?
-2. **Three readings kept against PyCantonese:**
-   - 名 *meng2*, in 你叫咩名呀？;
-   - 弟弟 *dai4 dai2*;
-   - 平 *peng4* "cheap".
-3. **Readings left at the dictionary value** although speech often differs:
-   - 英文 and 中文 *man4* (often *man2*);
-   - 女兒 *neoi5 ji4* (often *ji2*);
-   - 左邊 and 右邊 *bin6*.
-4. **個 comes in through a bare classifier**, 個老師好好 "the teacher is very nice". The particle
-   呢 means "where's …?" in 我嘅書呢？ and 我本書呢？.
-5. **Forecasts without 會.** 聽日打風, 佢話聽日落雨 and 天文台話聽日好凍.
-6. **得唔得閒 is one word.** Its parts are tagged 得閒 + 唔 + 得閒.
-7. **Possibly unidiomatic.** 地鐵喺邊度呀 (rather than 地鐵站), 我食雞飯, 個老師好好 and 呢度唔可以試.
-8. **English answer sets.** 佢 accepts she, he and they everywhere. Names are romanized Ka-ming and
+**Checked against a reference grammar (November 2026, [ADR 0092](../docs/adr/0092-yue-matthews-yip.md)).**
+The course was read against Matthews and Yip, *Cantonese: A Comprehensive Grammar* (2nd ed., 2011),
+from the reference library ([ADR 0079](../docs/adr/0079-reference-library.md)). Page-referenced notes
+are in the library (nabu/notes/yue). The book settles most of what this list asked:
+
+- **Readings, confirmed:**
+  - demonstrative 呢 ni1 and the particle 呢 ne1;
+  - 名 meng2, 平 peng4 "cheap", 弟弟 dai4 dai2;
+  - 英文 and 中文 man2 for the languages (man4 in 中文字, 中文大學);
+  - 呀 aa3, 嗎 maa3.
+
+  The compiler's PyCantonese warnings on them stay visible; the book is the reference.
+- **Fixed:**
+  - 係你呀？ is aa4, the *àh* that makes a statement a question;
+  - the intro story asks 你係唔係學生呀 (嗎 is formal, mostly in 你好嗎);
+  - no 嘅 before 呀 (*ge a* contracts to 㗎);
+  - 俾一百蚊你, the thing given first;
+  - a seller says 多謝 on being paid;
+  - 個 is required in 個老師好好 (a bare noun is generic);
+  - KC notes on 對唔住 and 唔好意思, 個, 多謝, 啦, 嗎, 名, 錢, 呢, 尋日, 先生, 想, 俾.
+- **Settled as they were:**
+  - 個 + noun as "the" (before the verb);
+  - forecasts without 會 (future time needs no 會);
+  - 得唔得閒 tagged 得閒 + 唔 + 得閒 (the A-not-A of a two-syllable word repeats its first syllable);
+  - 地鐵 for the station;
+  - 定(係) for "or" in questions;
+  - 俾 rather than 畀 (the book never writes 畀).
+- **English:** 好 before an adjective is weaker than *very*, so "She's tall" is accepted for 佢好高.
+
+What a native speaker should still check:
+
+1. **要 + verb as "want to".** 我要買飛 accepts "I want to buy a ticket", and 我要買衫 is accepted for "I'd
+   like to buy clothes". M&Y take 要 before a verb as "need to, have to" (p. 267); "want to" is 想.
+2. **住邊度 without 喺.** 你住邊度 is accepted; M&Y say location questions take 喺邊度 (p. 378).
+3. **Readings left at the dictionary value:**
+   - 左邊 and 右邊 *bin6*: M&Y write the tone-6 localizer 便 (左便), which may make 左邊 bin1;
+   - 女兒 *neoi5 ji2*: M&Y say 女 (neoi2) for "daughter" and never write 女兒.
+4. **"Yesterday."** The course has 尋日 cam4, M&Y's second form; their usual one is 噚日 kam4 (also typed
+   琴日), which is accepted.
+5. **Possibly unidiomatic.** 我食雞飯 and 好大雨呀 (a degree word before an adjective before a noun
+   usually takes 嘅).
+6. **English answer sets.** 佢 accepts she, he and they everywhere. Names are romanized Ka-ming and
    Mei-ling (Ka Ming and Mei Ling are also accepted).
-9. **Typing variants in the Cantonese answer sets.** 哋|地, 鍾|中意, 咗|左, 俾|畀, 定|定係,
-   禮拜|星期, 尋|琴日 and 咩|乜嘢.
-10. **Characters kept out by the script audit.** 佬 畀 埋 叉 粥 餓 㗎 吖 咋 啩 晏 晝 炒 腸 嫲 啫 噃
-    嚿 囡 are not in CLDR's yue_Hant exemplars. So the course uses 俾 for "give/pay" and has no
-    細佬, 埋單 or 叉燒. Allowing them means adding them to the profile's `exemplarsExtra`, marked
-    REVIEW.
-11. **One person or several** ([ADR 0075](../docs/adr/0075-persons-coverage.md)). The 57 "you"
-    sentences whose English does not say how many (outside the intro unit) are tagged "to one person",
-    so they take 你 and not 你哋. 15 new sentences, tagged "to several people", are their 你哋
-    counterparts with the same tokens and readings (s.u02.39 …). Check that each still sounds natural
-    to a group: 你哋媽媽 (siblings), 你哋有冇貓, 我等你哋.
+7. **Typing variants in the Cantonese answer sets.** 哋|地, 鍾|中意, 咗|左, 俾|畀, 定|定係, 禮拜|星期,
+   尋|琴|噚日 and 咩|乜嘢. 嗎 questions are accepted in 38 sets: they translate the prompt, but are formal.
+8. **Characters kept out by the script audit.** 佬 畀 埋 叉 粥 餓 㗎 吖 咋 啩 晏 晝 炒 腸 嫲 啫 噃
+   嚿 囡 are not in CLDR's yue_Hant exemplars. So the course has no 細佬 (M&Y's only word for
+   "younger brother"), 㗎, 埋單 or 叉燒. Allowing them means adding them to the profile's
+   `exemplarsExtra`, marked REVIEW.
+9. **One person or several** ([ADR 0075](../docs/adr/0075-persons-coverage.md)). The 57 "you"
+   sentences whose English does not say how many (outside the intro unit) are tagged "to one person",
+   so they take 你 and not 你哋. 15 new sentences, tagged "to several people", are their 你哋
+   counterparts with the same tokens and readings (s.u02.39 …). Check that each still sounds natural
+   to a group: 你哋媽媽 (siblings), 你哋有冇貓, 我等你哋.
 
 ## uz (Uzbek)
 

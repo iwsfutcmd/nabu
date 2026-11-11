@@ -20,7 +20,7 @@ kcs:
 - {id: 'sense:嗰', gloss: {en: 'that (before a classifier: 嗰本 that one)'}, forms: {yue-Hant-HK/standard: [嗰]}}
 - {id: 'construction:cl-possessive', gloss: {en: 'pronoun + classifier + noun: possessive (我本書 my book, 你個仔 your son)'}, notes: {en: 'Instead of 嘅, Cantonese often puts the classifier between owner and thing: 我隻貓 ''my cat''.'}}
 - {id: 'sense:幾多', gloss: {en: how many; how much}, forms: {yue-Hant-HK/standard: [幾多]}}
-- {id: 'sense:錢', gloss: {en: money}, forms: {yue-Hant-HK/standard: [錢]}, notes: {en: Read cin2 in 幾多錢 'how much (money)'.}}
+- {id: 'sense:錢', gloss: {en: money}, forms: {yue-Hant-HK/standard: [錢]}, notes: {en: 'Read cin2 (''money''): 幾多錢 ''how much (money)''.'}}
 - {id: 'sense:蚊', gloss: {en: 'dollar (Hong Kong dollars, colloquial)'}, forms: {yue-Hant-HK/standard: [蚊]}, notes: {en: 三十蚊 'thirty dollars'. Written $30 on price tags.}}
 - {id: 'sense:六', gloss: {en: six}, forms: {yue-Hant-HK/standard: [六]}}
 - {id: 'sense:七', gloss: {en: seven}, forms: {yue-Hant-HK/standard: [七]}}
@@ -211,11 +211,11 @@ sentences:
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
-      text: 呢本書係唔係你嘅呀？
-      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      text: 呢本書係唔係你嘅？
+      tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
       reverse: |-
-        呢本書(係唔係|係咪)你(嘅|既)[呀]
-        呢本書係你(嘅|既)(嗎|呀)
+        呢本書(係唔係|係咪)你(嘅|既)
+        呢本書係你(嘅|既)嗎
         呢本(係唔係|係咪)你(嘅|既)書[呀]
   translations:
     en: |-
@@ -229,7 +229,7 @@ sentences:
       tokens: [{surface: 嗰隻, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 隻, kc: 'sense:隻'}], readings: {jyutping: go2 zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
       reverse: 嗰隻貓好靚(|呀)
   translations:
-    en: That cat is (very|really|so) (pretty|beautiful|good-looking).
+    en: That cat is (very |really |so |)(pretty|beautiful|good-looking).
 - id: s.u03.17
   node: yue.this-that
   forms:
@@ -237,7 +237,7 @@ sentences:
       text: 嗰本書係我嘅。
       tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
       reverse: |-
-        嗰本書係我(嘅|既)
+        嗰本書(係|)我(嘅|既)
         嗰本係我(嘅|既)書
   translations:
     en: |-
@@ -266,29 +266,28 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 隻, sense: 隻, readings: {jyutping: zek3}}, {surface: 貓, sense: 貓, readings: {jyutping: maau1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
       reverse: 我(隻|嘅|既)貓好靚(|呀)
   translations:
-    en: My cat is (very|really|so) (pretty|beautiful|good-looking).
+    en: My cat is (very |really |so |)(pretty|beautiful|good-looking).
 - id: s.u03.20
   node: yue.this-that
-  persons: {addressee: sg}
   constructions: ['construction:cl-possessive']
   forms:
     yue-Hant-HK/standard:
-      text: 你個仔好高。
-      tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
-      reverse: 你(個|嘅|既)(仔|兒子)好高(|呀)
+      text: 我個仔好高。
+      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 仔, sense: 仔, readings: {jyutping: zai2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 高, sense: 高, readings: {jyutping: gou1}}]
+      reverse: 我(個|嘅|既)(仔|兒子)好高(|呀)
   translations:
-    en: Your son is (very|really|so) tall.
+    en: My son is (very |really |so |)tall.
 - id: s.u03.21
   node: yue.this-that
   persons: {addressee: sg}
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
-      text: 呢隻狗係唔係你嘅呀？
-      tokens: [{surface: 呢隻, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 隻, kc: 'sense:隻'}], readings: {jyutping: ni1 zek3}}, {surface: 狗, sense: 狗, readings: {jyutping: gau2}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      text: 呢隻狗係唔係你嘅？
+      tokens: [{surface: 呢隻, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 隻, kc: 'sense:隻'}], readings: {jyutping: ni1 zek3}}, {surface: 狗, sense: 狗, readings: {jyutping: gau2}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
       reverse: |-
-        呢隻狗(係唔係|係咪)你(嘅|既)[呀]
-        呢隻狗係你(嘅|既)(嗎|呀)
+        呢隻狗(係唔係|係咪)你(嘅|既)
+        呢隻狗係你(嘅|既)嗎
         呢隻(係唔係|係咪)你(嘅|既)狗[呀]
   translations:
     en: |-
@@ -362,7 +361,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢本書七蚊。
       tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 七, sense: 七, readings: {jyutping: cat1}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: 呢本(書|)(|要)七(蚊|元)
+      reverse: 呢本(書|)(|係|要)七(蚊|元)
   translations:
     en: |-
       This book is (seven|7) dollars.
@@ -374,7 +373,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 嗰本書八蚊。
       tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 八, sense: 八, readings: {jyutping: baat3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: 嗰本(書|)(|要)八(蚊|元)
+      reverse: 嗰本(書|)(|係|要)八(蚊|元)
   translations:
     en: |-
       That book is (eight|8) dollars.
@@ -395,7 +394,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢本書十蚊。
       tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: 呢本(書|)(|要)十(蚊|元)
+      reverse: 呢本(書|)(|係|要)十(蚊|元)
   translations:
     en: |-
       This book is (ten|10) dollars.
@@ -456,7 +455,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 呢本書一百蚊。
       tokens: [{surface: 呢本, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: ni1 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 一百, morphs: [{surface: 一, kc: 'sense:一'}, {surface: 百, kc: 'sense:百'}], readings: {jyutping: jat1 baak3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: 呢本(書|)(|要)(一|)百(蚊|元)
+      reverse: 呢本(書|)(|係|要)(一|)百(蚊|元)
   translations:
     en: |-
       This book is (a hundred|one hundred|100) dollars.
@@ -468,7 +467,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 嗰本書四十蚊。
       tokens: [{surface: 嗰本, sense: 嗰, morphs: [{surface: 嗰, kc: 'sense:嗰'}, {surface: 本, kc: 'sense:本'}], readings: {jyutping: go2 bun2}}, {surface: 書, sense: 書, readings: {jyutping: syu1}}, {surface: 四十, morphs: [{surface: 四, kc: 'sense:四'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: sei3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: 嗰本(書|)(|要)四十(蚊|元)
+      reverse: 嗰本(書|)(|係|要)四十(蚊|元)
   translations:
     en: |-
       That book is (forty|40) dollars.
@@ -573,8 +572,8 @@ stories:
       speaker: si-tau
       forms:
         yue-Hant-HK/standard:
-          text: 唔該！拜拜！
-          tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 拜拜, sense: 拜拜, readings: {jyutping: baai1 baai3}}]
+          text: 多謝！拜拜！
+          tokens: [{surface: 多謝, sense: 多謝, readings: {jyutping: do1 ze6}}, {surface: 拜拜, sense: 拜拜, readings: {jyutping: baai1 baai3}}]
       translations: {en: Thank you! Bye-bye!}
   - choose:
       prompt: {en: 'How many books does Mei-ling buy?'}

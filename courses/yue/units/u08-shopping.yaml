@@ -71,7 +71,7 @@ sentences:
         嗰件衫好靚(|呀)
         嗰件衫好好睇
   translations:
-    en: That (shirt|top) is (very|really|so) (nice|pretty|beautiful).
+    en: That (shirt|top) is (very |really |so |)(nice|pretty|beautiful).
 - id: s.u08.4
   node: yue.clothes
   forms:
@@ -122,7 +122,7 @@ sentences:
         呢(個|頂)帽好靚(|呀)
         呢個帽好好睇
   translations:
-    en: This (hat|cap) is (very|really|so) (nice|pretty).
+    en: This (hat|cap) is (very |really |so |)(nice|pretty).
 - id: s.u08.9
   node: yue.hats-trousers
   forms:
@@ -178,7 +178,7 @@ sentences:
       tokens: [{surface: 呢件, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 件, kc: 'sense:件'}], readings: {jyutping: ni1 gin6}}, {surface: 衫, sense: 衫, readings: {jyutping: saam1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 平, sense: 平, readings: {jyutping: peng4}}]
       reverse: 呢件衫好平(|呀)
   translations:
-    en: This (shirt|top) is (very|really|so) cheap.
+    en: This (shirt|top) is (very |really |so |)cheap.
 - id: s.u08.14
   node: yue.price
   forms:
@@ -305,10 +305,11 @@ sentences:
   constructions: ['construction:a-not-a']
   forms:
     yue-Hant-HK/standard:
-      text: 有冇大啲嘅呀？
-      tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      text: 有冇大啲嘅？
+      tokens: [{surface: 有, sense: 有, readings: {jyutping: jau5}}, {surface: 冇, sense: 冇, readings: {jyutping: mou5}}, {surface: 大, sense: 大, readings: {jyutping: daai6}}, {surface: 啲, sense: 啲, readings: {jyutping: di1}}, {surface: 嘅, sense: 嘅, readings: {jyutping: ge3}}]
       reverse: |-
-        有(冇|無)大啲(嘅|既|)[呀]
+        有(冇|無)大啲(嘅|既)
+        有(冇|無)大啲[呀]
         有大啲嘅嗎
   translations:
     en: |-
@@ -323,6 +324,8 @@ sentences:
       reverse: |-
         呢度唔可以試(|身)
         唔可以喺呢度試(|身)
+        呢度唔(准|準)試(|身)
+        呢度唔試得
   translations:
     en: |-
       You (can't|cannot) try (it|it on|things on) here.
@@ -385,7 +388,7 @@ sentences:
       tokens: [{surface: 呢對, sense: 呢, morphs: [{surface: 呢, kc: 'sense:呢'}, {surface: 對, kc: 'sense:對'}], readings: {jyutping: ni1 deoi3}}, {surface: 鞋, sense: 鞋, readings: {jyutping: haai4}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好睇, sense: 好睇, readings: {jyutping: hou2 tai2}}]
       reverse: 呢對鞋好(好睇|靚)(|呀)
   translations:
-    en: These shoes are (very|really|so) (nice|good-looking|pretty).
+    en: These shoes are (very |really |so |)(nice|good-looking|pretty).
 - id: s.u08.30
   node: yue.colours
   forms:
@@ -467,9 +470,11 @@ sentences:
   persons: {addressee: sg}
   forms:
     yue-Hant-HK/standard:
-      text: 俾你一百蚊。
-      tokens: [{surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 一百, morphs: [{surface: 一, kc: 'sense:一'}, {surface: 百, kc: 'sense:百'}], readings: {jyutping: jat1 baak3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
-      reverse: (|我)(俾|畀)你(一|)百(蚊|元)
+      text: 俾一百蚊你。
+      tokens: [{surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 一百, morphs: [{surface: 一, kc: 'sense:一'}, {surface: 百, kc: 'sense:百'}], readings: {jyutping: jat1 baak3}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
+      reverse: |-
+        (|我)(俾|畀)(一|)百(蚊|元)你
+        (|我)(俾|畀)你(一|)百(蚊|元)
   translations:
     en: |-
       Here's (a|one) hundred dollars.
@@ -563,8 +568,8 @@ stories:
       ask: arrange
       forms:
         yue-Hant-HK/standard:
-          text: 好，俾你八十蚊。
-          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 八十, morphs: [{surface: 八, kc: 'sense:八'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: baat3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}]
+          text: 好，俾八十蚊你。
+          tokens: [{surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 俾, sense: 俾, readings: {jyutping: bei2}}, {surface: 八十, morphs: [{surface: 八, kc: 'sense:八'}, {surface: 十, kc: 'sense:十'}], readings: {jyutping: baat3 sap6}}, {surface: 蚊, sense: 蚊, readings: {jyutping: man1}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}]
       translations: {en: 'OK, here''s eighty dollars.'}
   - choose:
       prompt: {en: 'How does Mei-ling pay?'}

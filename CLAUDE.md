@@ -377,6 +377,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   qatal with or without its pronoun (ברח, הוא ברח, והוא ברח; never וברח), a weqatal's yiqtol, a pronoun before a plain
   qatal/yiqtol; only Codex-attested forms; vav forms only where every English line has its "and".
 
+## Cantonese notes (see docs/adr/0092)
+- courses/yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011); notes in `nabu/notes/yue/`.
+  Its text layer's Chinese characters are wrong (read them from page images) and its Yale shows ā ē ī ō ū as A B C D E.
+  M&Y write Hong Kong speech (你 léih, the n/l merger): compare tones and changed tones, never the initials.
+- Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
+  No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
+- 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
+
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
   tok-Qaap/sitelen-pona. Qaap is a private-use ISO 15924 code until one is assigned (the proposal asks for Stpn).

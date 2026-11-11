@@ -223,7 +223,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 唔該，洗手間喺邊度呀？
       tokens: [{surface: 唔該, sense: 唔該, readings: {jyutping: m4 goi1}}, {surface: 洗手間, sense: 洗手間, readings: {jyutping: sai2 sau2 gaan1}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 邊度, sense: 邊度, readings: {jyutping: bin1 dou6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: (唔該|請問|唔該請問)(洗手間|廁所)喺邊(度|)[呀]
+      reverse: (唔該|請問|唔該請問|對唔住|對唔住請問)(洗手間|廁所)喺邊(度|)[呀]
   translations:
     en: Excuse me, where('s| is) the (toilet|bathroom|restroom|washroom|loo)?
 - id: s.u05.18
@@ -330,7 +330,7 @@ sentences:
       text: 佢喺入面。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 入面, sense: 入面, readings: {jyutping: jap6 min6}}]
       reverse: |-
-        佢喺入(面|邊)
+        佢喺(入面|入邊|裏面)
         佢喺入便
   translations:
     en: |-
@@ -354,7 +354,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我住喺香港。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 香港, sense: 香港, readings: {jyutping: hoeng1 gong2}}]
-      reverse: 我住(喺|)香港
+      reverse: |-
+        我住(喺|)香港
+        我喺香港住
   translations:
     en: I live in Hong Kong.
 - id: s.u05.30
@@ -399,7 +401,7 @@ sentences:
       text: 唔係好遠。
       tokens: [{surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 遠, sense: 遠, readings: {jyutping: jyun5}}]
       reverse: |-
-        唔係(好|太)遠
+        唔係(好|太|幾)遠
         冇幾遠
   translations:
     en: |-
@@ -411,7 +413,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我住喺學校附近。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 學校, sense: 學校, readings: {jyutping: hok6 haau6}}, {surface: 附近, sense: 附近, readings: {jyutping: fu6 gan6}}]
-      reverse: 我住(喺|)學校附近
+      reverse: |-
+        我住(喺|)學校附近
+        我喺學校附近住
   translations:
     en: I live near the school.
 - id: s.u05.35

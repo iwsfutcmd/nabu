@@ -31,7 +31,7 @@ kcs:
 - {id: 'sense:點心', gloss: {en: dim sum}, forms: {yue-Hant-HK/standard: [點心]}}
 - {id: 'sense:蝦餃', gloss: {en: har gow (shrimp dumplings)}, forms: {yue-Hant-HK/standard: [蝦餃]}}
 - {id: 'sense:燒賣', gloss: {en: siu mai (pork and shrimp dumplings)}, forms: {yue-Hant-HK/standard: [燒賣]}}
-- {id: 'sense:想', gloss: {en: 'to want to, would like to; to think'}, forms: {yue-Hant-HK/standard: [想]}}
+- {id: 'sense:想', gloss: {en: 'to want to, would like to'}, forms: {yue-Hant-HK/standard: [想]}}
 - {id: 'sense:鍾意', gloss: {en: to like}, forms: {yue-Hant-HK/standard: [鍾意]}, notes: {en: Often typed 中意.}}
 - {id: 'sense:一齊', gloss: {en: together}, forms: {yue-Hant-HK/standard: [一齊]}}
 - {id: 'sense:茶餐廳', gloss: {en: cha chaan teng (Hong Kong-style café)}, forms: {yue-Hant-HK/standard: [茶餐廳]}}
@@ -189,6 +189,8 @@ sentences:
       reverse: |-
         唔該(|我要)一杯咖啡
         (|我要)一杯咖啡唔該
+        唔該我要杯咖啡
+        我要杯咖啡唔該
   translations:
     en: |-
       A (cup of |)coffee, please.
@@ -217,6 +219,9 @@ sentences:
       reverse: |-
         唔該(|我要)一杯水
         (|我要)一杯水唔該
+        唔該我要杯水
+        我要杯水唔該
+        唔該(俾|畀)杯水我
   translations:
     en: |-
       A (glass|cup) of water, please.
@@ -352,8 +357,8 @@ sentences:
         呢碗麵好好味
   translations:
     en: |-
-      (These|The) noodles are (very|really|so) (good|tasty|delicious).
-      This bowl of noodles is (very|really|so) (good|tasty|delicious).
+      (These|The) noodles are (very |really |so |)(good|tasty|delicious).
+      This bowl of noodles is (very |really |so |)(good|tasty|delicious).
 - id: s.u04.24
   node: yue.tasty
   forms:
@@ -364,7 +369,7 @@ sentences:
         呢杯奶茶好好飲(|呀)
         呢杯奶茶好好味
   translations:
-    en: This (|cup of )milk tea is (very|really|so) (good|nice|tasty|delicious).
+    en: This (|cup of )milk tea is (very |really |so |)(good|nice|tasty|delicious).
 - id: s.u04.25
   node: yue.tasty
   forms:
@@ -385,8 +390,8 @@ sentences:
       reverse: 呢碗麵好辣(|呀)
   translations:
     en: |-
-      (These|The) noodles are (very|really|so) spicy.
-      This bowl of noodles is (very|really|so) spicy.
+      (These|The) noodles are (very |really |so |)spicy.
+      This bowl of noodles is (very |really |so |)spicy.
 - id: s.u04.27
   node: yue.tasty
   forms:
@@ -395,7 +400,7 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 飽, sense: 飽, readings: {jyutping: baau2}}]
       reverse: 我好飽(|呀)
   translations:
-    en: I('m| am) (so|really|very) full.
+    en: I('m| am) (so |really |very |)full.
 - id: s.u04.28
   node: yue.tasty
   forms:
@@ -413,7 +418,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 太辣喇！
       tokens: [{surface: 太, sense: 太, readings: {jyutping: taai3}}, {surface: 辣, sense: 辣, readings: {jyutping: laat6}}, {surface: 喇, sense: 喇, readings: {jyutping: laa3}}]
-      reverse: 太辣(喇|啦|)
+      reverse: 太(|過)辣(喇|啦|)
   translations:
     en: |-
       (It's|That's) too spicy!
@@ -549,6 +554,8 @@ sentences:
       reverse: |-
         唔該(我要|)一碗飯
         (|我要)一碗飯唔該
+        唔該我要碗飯
+        我要碗飯唔該
   translations:
     en: |-
       A bowl of rice, please.
@@ -561,7 +568,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 唔使客氣！
       tokens: [{surface: 唔使客氣, sense: 唔使客氣, readings: {jyutping: m4 sai2 haak3 hei3}}]
-      reverse: 唔(使|駛)(客氣|多謝)
+      reverse: |-
+        唔(使|駛)(客氣|多謝|唔該)
+        唔好客氣
   translations:
     en: |-
       You're welcome!
