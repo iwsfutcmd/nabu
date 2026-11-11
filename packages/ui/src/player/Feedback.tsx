@@ -4,7 +4,7 @@
  * tiled answers the learner's answer with the differing parts marked. It is a
  * live region, and never relies on colour alone.
  */
-import { answerDiff, isCorrect, type CourseView, type Exercise, type Outcome } from "@nabu/core/lesson";
+import { answerDiff, closestAnswer, isCorrect, type CourseView, type Exercise, type Outcome } from "@nabu/core/lesson";
 import type { Verdict } from "@nabu/core";
 import type { MessageId } from "@nabu/i18n";
 import type { SchemeId } from "@nabu/schema";
@@ -42,9 +42,16 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
   const showSolution = outcome.solution !== undefined && outcome.verdict !== "CORRECT";
   const solutionLabel = right ? undefined : t.format("player.feedback.solution");
   const unitKind = course.profiles.get(ex.orthography)?.unitKind;
+  const joiner = unitKind === "grapheme" ? "" : " ";
   const diff =
     outcome.verdict !== "CORRECT" && outcome.alignment !== undefined && outcome.solution !== undefined && outcome.alignment.length > 0
-      ? answerDiff(outcome.alignment, outcome.solution, unitKind === "grapheme" ? "" : " ")
+      ? answerDiff(outcome.alignment, outcome.solution, joiner)
+      : undefined;
+  // A wrong answer nearer another accepted wording than the solution: that wording first, what the
+  // learner left out or got wrong marked, then the solution (with its readings).
+  const closest =
+    !right && outcome.closestIsSolution === false && outcome.alignment !== undefined && outcome.solution !== undefined && outcome.alignment.length > 0
+      ? closestAnswer(outcome.alignment, outcome.solution, joiner)
       : undefined;
   return (
     <div className={styles.feedback} data-feedback="" data-verdict={outcome.verdict} data-right={right || undefined}>
@@ -64,6 +71,11 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
       {showSolution && outcome.solution !== undefined && (
         <div className={styles.solution} data-solution="" data-ink-container="solution">
           {solutionLabel !== undefined && <span className={styles.label}>{solutionLabel}</span>}
+          {closest !== undefined && (
+            <div data-closest="">
+              <T as="p" text={closest.text} highlight={closest.marked} marks={marks} />
+            </div>
+          )}
           <T as="p" text={outcome.solution} ruby={ruby} marks={marks} />
         </div>
       )}

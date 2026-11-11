@@ -841,7 +841,7 @@ const choice = (index: number, answer: number, solution: TaggedText | undefined)
 
 const graded = (grader: Grader, ex: { readonly orthography: string; readonly accept: string }, answer: string, solution: TaggedText): Outcome => {
   const g = grader.grade(ex.orthography, ex.accept, answer);
-  return { verdict: g.verdict, notes: g.notes, solution, alignment: g.alignment };
+  return { verdict: g.verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: g.canonical };
 };
 
 const mismatch = (ex: Exercise, response: Response): never => {

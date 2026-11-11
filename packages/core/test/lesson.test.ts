@@ -31,7 +31,8 @@ import {
 } from "../src/lesson/index.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
-import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { closestAnswer } from "../src/lesson/diff.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -742,5 +743,23 @@ describe("how a character is read here (reading-disambiguation)", () => {
     expect(ne).toBeDefined();
     expect(ne?.ex.options.map(surfaceOf)).toContain("ne1");
     expect(ne?.ex.options.map(surfaceOf)).toContain("ni1");
+  });
+});
+
+describe("the accepted answer closest to a wrong one (feedback)", () => {
+  it("is another wording where that is nearer, with what was left out marked: 我嘅書喺邊度呀 for 我嘅書邊度呀", () => {
+    const course = loadCourse("yue");
+    const s = allSentences(course).find((x) => x.id === "s.u03.12");
+    const ex = s === undefined ? undefined : makeTranslateType({ course, rng: seededRng(1), introduced: [] }, s);
+    if (ex === undefined) throw new Error("s.u03.12 has no translate-type card");
+    // 我嘅書呢？ is the solution; "where" questions about a location take 喺 (Matthews & Yip 2011, p. 378).
+    const wrong = gradeExercise(ex, { tag: "text", text: "我嘅書邊度呀？" }, createGrader(course));
+    expect(wrong.verdict).toBe("WRONG");
+    expect(wrong.closestIsSolution).toBe(false);
+    const closest = closestAnswer(wrong.alignment ?? [], ex.canonical, "");
+    expect(surfaceOf(closest.text)).toBe("我嘅書喺邊度呀？");
+    expect(closest.marked.map((i) => closest.text.tokens[i]?.surface)).toEqual(["\u55BA"]);
+    // A slip in the solution's own wording lines up with the solution.
+    expect(gradeExercise(ex, { tag: "text", text: "我嘅書尼？" }, createGrader(course)).closestIsSolution).toBe(true);
   });
 });

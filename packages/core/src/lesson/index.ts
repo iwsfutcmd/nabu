@@ -1,7 +1,7 @@
 export { buildLesson, cardGallery, courseExclusions, facetExclusions, lessonNodes, sampleExercise, type GalleryCard, speechExclusions, speechSupportOf, voiceExclusions, type LessonNode, type LessonOptions, type SpeechSupport } from "./build.ts";
 export { allKcs, allSentences, assembleCourse, createGrader, MEDIA_ROLES, profileOf, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
 export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, type TestStep } from "./adaptive.ts";
-export { answerDiff, type AnswerDiff } from "./diff.ts";
+export { answerDiff, closestAnswer, type AnswerDiff } from "./diff.ts";
 export * from "./exercise.ts";
 export {
   draftOf,
