@@ -31,6 +31,7 @@ import type {
   TranslateTap,
   TranslateType,
 } from "@nabu/core/lesson";
+import { isCorrect } from "@nabu/core/lesson";
 import { calibrate, CANTONESE, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
@@ -470,10 +471,20 @@ export const TranslateTypeView = (props: Props<TranslateType>): JSX.Element => {
   );
 };
 
+/**
+ * What a typed gap shows: what is typed, until the answer is accepted as the sentence's own word
+ * (exactly, or with a typo, its marks or a variant spelling). Then the sentence's word itself, so its
+ * reading shows as ruby as the rest of the sentence's does. Another accepted word (CORRECT_ALT) stays
+ * as typed: the course pins no reading for it, and the feedback shows the sentence's word.
+ */
+export const gapFillOf = (ex: CompleteTranslation, draft: ViewProps["draft"], outcome: Outcome | undefined): TaggedText | undefined => {
+  if (outcome !== undefined && isCorrect(outcome.verdict) && outcome.verdict !== "CORRECT_ALT" && outcome.verdict !== "CORRECT_PROVISIONAL") return ex.blank;
+  return draft.tag === "text" && draft.text !== "" ? textOfSurface(ex.blank, draft.text) : undefined;
+};
+
 export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.Element => {
   const { ex } = props;
   const t = useTranslator();
-  const typed = props.draft.tag === "text" && props.draft.text !== "" ? textOfSurface(ex.blank, props.draft.text) : undefined;
   return (
     <div className={styles.body}>
       <div className={styles.hint} role="group" aria-label={t.format("player.prompt.hint")}>
@@ -481,7 +492,7 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <AnswerAudio props={props} />
-      <GapSentence before={ex.before} after={ex.after} fill={typed} props={props} />
+      <GapSentence before={ex.before} after={ex.after} fill={gapFillOf(ex, props.draft, props.outcome)} props={props} />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} />
     </div>
   );
