@@ -2,6 +2,7 @@
 
 - Status: Proposed
 - Date: 2026-11-03
+- Amended by: [0093](0093-no-tone-scoring-on-device.md) (tier 3 is off)
 
 ## Context
 

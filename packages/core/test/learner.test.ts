@@ -452,3 +452,17 @@ describe("placement (§9.5, ADR 0077)", () => {
   });
 });
 
+
+describe("tones are not scored on the device (ADR 0093)", () => {
+  const yue = loadCourse("yue");
+
+  it("leaves Cantonese speaking to the learner's own rating unless a speech server scores it", () => {
+    expect(speechSupportOf(yue, 0)).toEqual({ scored: false, tones: true });
+    expect(speechSupportOf(yue, 2)).toEqual({ scored: true, tones: true });
+    const speech = speechSupportOf(yue, 0);
+    const made = lessonNodes(yue).flatMap(({ node }) => buildLesson(yue, node.id, { seed: 3, speech }).map((ex) => ex.template));
+    expect(made).toContain("speak.tier-0");
+    expect(made).not.toContain("speak");
+    expect(made).not.toContain("listen-speak");
+  });
+});

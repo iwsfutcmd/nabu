@@ -188,9 +188,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Explanations: segments render through <T>; the paragraph takes the support language's direction, never the UI's.
 - Tests use a scripted provider for plumbing only; never present stand-in output as a model's result.
 
-## Phase 9 notes (see docs/adr/0046)
-- Tones are scored on the device: @nabu/core/speech (pitchTrack, scoreTones, gradeSpeech). Expected tones come from
-  pinned surface readings. Never tune templates to synthetic speech; tune on native recordings (evals/tones).
+## Phase 9 notes (see docs/adr/0046, 0093)
+- Tone scoring on the device (@nabu/core/speech: pitchTrack, scoreTones, gradeSpeech) is OFF (`DEVICE_TONE_SCORING`,
+  ADR 0093): not accurate enough on natural speech. Without a speech server, speaking is self-rated (tier 0) in every
+  course. Turn it on only after the native-speaker acceptance (evals/tones) and a native speaker's try in the app.
+- Expected tones come from pinned surface readings. Never tune templates to synthetic speech; tune on native
+  recordings (evals/tones).
 - Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
   sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
 - Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.

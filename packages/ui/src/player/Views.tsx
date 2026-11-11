@@ -32,7 +32,7 @@ import type {
   TranslateType,
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
-import { calibrate, CANTONESE, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
+import { calibrate, CANTONESE, DEVICE_TONE_SCORING, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
@@ -761,7 +761,8 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
   const t = useTranslator();
   const services = useSpeech();
   const [scoring, setScoring] = useState<Scoring>("idle");
-  const system = toneSystemOf(ex.prompt);
+  // Tones are not scored on the device (ADR 0093): the server's words and phones, if any, are the score.
+  const system = DEVICE_TONE_SCORING ? toneSystemOf(ex.prompt) : undefined;
   const recorder = useRecorder((audio: Decoded) => {
     setScoring("scoring");
     void (async () => {

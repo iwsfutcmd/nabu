@@ -14,7 +14,7 @@ import type {
 } from "@nabu/schema";
 import { allKcs, type CourseView } from "./course.ts";
 import type { Exercise, TemplateId } from "./exercise.ts";
-import { toneSystemOf } from "../speech/score.ts";
+import { DEVICE_TONE_SCORING, toneSystemOf } from "../speech/score.ts";
 import { seededRng } from "./rng.ts";
 import { SCRIPT_TEMPLATES, scriptCandidates, scriptNodes } from "./script.ts";
 import {
@@ -43,8 +43,9 @@ export interface SpeechSupport {
 }
 
 /**
- * What the app can do with speech for a course: score it when the course's readings carry tones
- * (tier 3 on the device) or the server scores the orthography (tiers 1–2); tone exercises always.
+ * What the app can do with speech for a course: score it when the server scores the orthography
+ * (tiers 1–2), or, were device tone scoring on, when the course's readings carry tones (tier 3; off,
+ * ADR 0093); tone exercises always.
  */
 export const speechSupportOf = (
   course: CourseView,
@@ -56,12 +57,13 @@ export const speechSupportOf = (
     : {
         scored:
           serverTiers > 0 ||
-          course.units.some((u) =>
-            u.sentences.some((s) => {
-              const text = s.forms[course.orthography]?.text;
-              return text !== undefined && toneSystemOf(text) !== undefined;
-            }),
-          ),
+          (DEVICE_TONE_SCORING &&
+            course.units.some((u) =>
+              u.sentences.some((s) => {
+                const text = s.forms[course.orthography]?.text;
+                return text !== undefined && toneSystemOf(text) !== undefined;
+              }),
+            )),
         tones: true,
       };
 
