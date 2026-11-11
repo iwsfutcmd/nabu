@@ -507,17 +507,33 @@ export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | un
   };
 };
 
+/**
+ * "How is the highlighted character read here?": the whole sentence, since the context is what
+ * decides (呢 is ne1 at the end of 你呢？ and ni1 in 呢個). The other options are the readings the
+ * same character has elsewhere in the course (the readings a learner meets), then the character
+ * table's. Only a single syllable is an option: a table entry is never two readings at once.
+ */
 export const makeReadingDisambiguation = (ctx: MakeContext, s: BundleSentence): ReadingDisambiguation | undefined => {
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   const homophones = profileOf(ctx.course, ctx.course.orthography).homophones;
   if (scheme === undefined || form === undefined || homophones === undefined) return undefined;
+  const syllable = /^[^\s,]+$/u;
+  const elsewhere = new Map<string, Set<string>>();
+  for (const o of otherSentences(ctx, s)) {
+    for (const t of formOf(ctx.course, o)?.text.tokens ?? []) {
+      for (const seg of t.ruby?.[scheme] ?? []) elsewhere.set(seg.base, (elsewhere.get(seg.base) ?? new Set()).add(seg.text));
+    }
+  }
   for (const [ti, token] of form.text.tokens.entries()) {
     const segments = token.ruby?.[scheme] ?? [];
     for (const [si, segment] of segments.entries()) {
-      const known = [...new Set(homophones.readings(segment.base) ?? [])];
-      if (known.length < 2 || !known.includes(segment.text)) continue;
-      const others = ctx.rng.shuffle(known.filter((r) => r !== segment.text)).slice(0, 2);
+      const table = homophones.readings(segment.base) ?? [];
+      if (!syllable.test(segment.text) || !table.includes(segment.text)) continue;
+      const met = ctx.rng.shuffle([...(elsewhere.get(segment.base) ?? [])].filter((r) => r !== segment.text && syllable.test(r)));
+      const listed = ctx.rng.shuffle([...new Set(table)].filter((r) => r !== segment.text && syllable.test(r) && !met.includes(r)));
+      const others = [...met, ...listed].slice(0, 2);
+      if (others.length === 0) continue;
       const { options, answer } = withAnswer(ctx, readingText(scheme, segment.text), others.map((r) => readingText(scheme, r)));
       return {
         template: "reading-disambiguation",
@@ -525,8 +541,8 @@ export const makeReadingDisambiguation = (ctx: MakeContext, s: BundleSentence): 
         item: s.id,
         kcs: token.sense === undefined ? s.kcs : [`sense:${token.sense}` as KcId],
         orthography: options[0]?.orthography ?? ctx.course.orthography,
-        context: { ...form.text, tokens: [token] },
-        focus: { token: 0, segment: si },
+        context: form.text,
+        focus: { token: ti, segment: si },
         options,
         answer,
       };

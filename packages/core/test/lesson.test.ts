@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
-import type { BundleManifest, TaggedText } from "@nabu/schema";
+import type { BundleManifest, SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
@@ -31,7 +31,7 @@ import {
 } from "../src/lesson/index.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
-import { makeMatchPairs, makeTapL1L2, makeTapL2L1, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
+import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { surfaceOf } from "../src/text/index.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
@@ -713,5 +713,34 @@ describe("Toki Pona in sitelen pona (ADR 0086)", () => {
         if (t.kind === "word" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
       }
     }
+  });
+});
+
+describe("how a character is read here (reading-disambiguation)", () => {
+  const course = loadCourse("yue");
+  const JYUTPING = "jyutping" as SchemeId;
+  const cards = allSentences(course).flatMap((s) => {
+    const ex = makeReadingDisambiguation({ course, rng: seededRng(5), introduced: [] }, s);
+    return ex === undefined ? [] : [{ s, ex }];
+  });
+
+  it("shows the whole sentence, since the context decides, with the character picked out", () => {
+    expect(cards.length).toBeGreaterThan(0);
+    for (const { s, ex } of cards) {
+      expect(ex.context).toEqual(s.forms["yue-Hant-HK/standard"]?.text);
+      const token = ex.context.tokens[ex.focus.token];
+      expect(token?.ruby?.[JYUTPING]?.[ex.focus.segment]).toBeDefined();
+    }
+  });
+
+  it("offers single readings, first those the character has elsewhere in the course: 呢 is ne1 in 你呢, ni1 in 呢個", () => {
+    for (const { ex } of cards) for (const o of ex.options) expect(surfaceOf(o)).toMatch(/^(?:[a-z]+[1-6])+$/u);
+    const ne = cards.find(({ ex }) => {
+      const t = ex.context.tokens[ex.focus.token];
+      return t?.ruby?.[JYUTPING]?.[ex.focus.segment]?.base === "\u5462";
+    });
+    expect(ne).toBeDefined();
+    expect(ne?.ex.options.map(surfaceOf)).toContain("ne1");
+    expect(ne?.ex.options.map(surfaceOf)).toContain("ni1");
   });
 });
