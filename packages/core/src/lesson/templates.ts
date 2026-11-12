@@ -5,6 +5,7 @@
  * from the injected seeded Rng only.
  */
 import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
+import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { gradeReading, gradeVowels, hasVowelMarks, transcribable, withoutMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
@@ -615,18 +616,25 @@ export const makeToneIdentify = (ctx: MakeContext, s: BundleSentence): ToneIdent
   };
 };
 
+/**
+ * Dictation is graded against what the clip says, and nothing else: the sentence's own text. Its
+ * `reverse` set takes every wording that would translate the same (ADR 0085), and a learner who
+ * heard "Estoy bien." has not heard "Yo estoy bien.".
+ */
+const heardAccept = (text: TaggedText): string => literalAccept(surfaceOf(text));
+
 export const makeListenTap = (ctx: MakeContext, s: BundleSentence): ListenTap | undefined => {
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  if (audio === undefined || form === undefined || translation === undefined) return undefined;
   const tap = makeTap(
     ctx,
     s,
     "translate-tap.l1-l2",
     translation.text,
     form.text,
-    form.reverse,
+    heardAccept(form.text),
     otherSentences(ctx, s).flatMap((o) => formOf(ctx.course, o)?.text ?? []),
   );
   if (tap === undefined) return undefined;
@@ -638,7 +646,7 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
   const audio = audioOf(ctx, s.id);
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (audio === undefined || form?.reverse === undefined || translation === undefined) return undefined;
+  if (audio === undefined || form === undefined || translation === undefined) return undefined;
   return {
     template: "listen-type",
     id: id("listen-type", s.id),
@@ -646,7 +654,7 @@ export const makeListenType = (ctx: MakeContext, s: BundleSentence): ListenType 
     kcs: s.kcs,
     orthography: ctx.course.orthography,
     audio,
-    accept: form.reverse,
+    accept: heardAccept(form.text),
     canonical: form.text,
     translation: translation.text,
   };
@@ -839,9 +847,18 @@ const choice = (index: number, answer: number, solution: TaggedText | undefined)
   solution,
 });
 
+/**
+ * Grades through the accept set. The wording the card shows as the answer is the canonical one:
+ * the notation's own canonical path includes every optional part ([Yo] me llamo…), which the shown
+ * text may leave out. An answer on the shown wording's path is CORRECT (not "another correct
+ * solution" that repeats it); another accepted wording is CORRECT_ALT, with the shown one beside it.
+ */
 const graded = (grader: Grader, ex: { readonly orthography: string; readonly accept: string }, answer: string, solution: TaggedText): Outcome => {
   const g = grader.grade(ex.orthography, ex.accept, answer);
-  return { verdict: g.verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: g.canonical };
+  // The accepted wording nearest the shown text: the shown text itself, which every set holds.
+  const onShown = g.matched === grader.grade(ex.orthography, ex.accept, surfaceOf(solution)).matched;
+  const verdict = g.verdict === "CORRECT_ALT" && onShown ? "CORRECT" : g.verdict === "CORRECT" && !onShown ? "CORRECT_ALT" : g.verdict;
+  return { verdict, notes: g.notes, solution, alignment: g.alignment, closestIsSolution: onShown };
 };
 
 const mismatch = (ex: Exercise, response: Response): never => {

@@ -763,3 +763,38 @@ describe("the accepted answer closest to a wrong one (feedback)", () => {
     expect(gradeExercise(ex, { tag: "text", text: "我嘅書尼？" }, createGrader(course)).closestIsSolution).toBe(true);
   });
 });
+
+describe("the wording a card shows, and what a clip says", () => {
+  const es = loadCourse("es");
+  const grader = createGrader(es);
+  const ctx = { course: es, rng: seededRng(1), introduced: [] };
+  const text = (s: (typeof es.units)[number]["sentences"][number]): string => surfaceOf(s.forms[es.orthography]?.text as TaggedText);
+  // Its accept set is "[Yo] estoy bien": the notation's own canonical path includes the optional Yo.
+  const estoy = allSentences(es).find((s) => text(s) === "Estoy bien.");
+  if (estoy === undefined) throw new Error("es needs Estoy bien.");
+
+  it("an answer on the shown wording is CORRECT; another accepted wording is CORRECT_ALT", () => {
+    const ex = makeTranslateType(ctx, estoy) as Exercise;
+    expect(gradeExercise(ex, { tag: "text", text: "Estoy bien." }, grader)).toMatchObject({ verdict: "CORRECT", closestIsSolution: true });
+    expect(gradeExercise(ex, { tag: "text", text: "Yo estoy bien." }, grader)).toMatchObject({ verdict: "CORRECT_ALT", closestIsSolution: false });
+  });
+
+  it("every sentence typed as the course shows it is CORRECT", () => {
+    const off = allSentences(es).flatMap((s) => {
+      const ex = makeTranslateType(ctx, s);
+      if (ex === undefined) return [];
+      const verdict = gradeExercise(ex, { tag: "text", text: text(s) }, grader).verdict;
+      return verdict === "CORRECT" ? [] : [`${s.id}: ${verdict}`];
+    });
+    expect(off).toEqual([]);
+  });
+
+  it("dictation takes what the clip says, not another way to say the same", () => {
+    const ex = SENTENCE_TEMPLATES["listen-type"]?.(ctx, estoy);
+    if (ex === undefined) throw new Error("Estoy bien. needs its clip for this test");
+    expect(gradeExercise(ex, { tag: "text", text: "Estoy bien." }, grader).verdict).toBe("CORRECT");
+    expect(isCorrect(gradeExercise(ex, { tag: "text", text: "Yo estoy bien." }, grader).verdict)).toBe(false);
+    const tap = SENTENCE_TEMPLATES["listen-tap"]?.(ctx, estoy);
+    expect(tap === undefined ? undefined : tap.template === "listen-tap" ? tap.accept : undefined).toBe("Estoy bien.");
+  });
+});

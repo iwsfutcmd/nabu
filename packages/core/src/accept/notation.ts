@@ -71,6 +71,13 @@ const parseLine = (cps: readonly string[]): Seq => {
 const countSeq = (seq: Seq): number =>
   seq.reduce((n, node) => n * (node.t === "lit" ? 1 : node.t === "alt" ? node.options.reduce((m, o) => m + countSeq(o), 0) : countSeq(node.seq) + 1), 1);
 
+/**
+ * An accept set of exactly this text: every character the notation gives a meaning is escaped
+ * (`(`, `)`, `[`, `]`, `|`, `\`, and `@` and `#`, so no weight or comment is read into it), so the
+ * text is the one alternative.
+ */
+export const literalAccept = (text: string): string => text.replace(/[()[\]|\\@#]/gu, (c) => `\\${c}`);
+
 /** Expands in canonical order: first branches and included optionals come first. */
 const expandSeq = (seq: Seq): string[] =>
   seq.reduce<string[]>(
