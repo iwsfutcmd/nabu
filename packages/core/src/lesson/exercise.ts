@@ -380,6 +380,12 @@ export interface Outcome {
    */
   readonly closestIsSolution?: boolean | undefined;
   readonly skipped?: SkipReason | undefined;
+  /**
+   * The learner rated their own speaking (tier 0, or no microphone for scored speaking): nothing was
+   * checked, so it is no verdict. It goes to scheduling (Again for "Couldn't say it") but not to the
+   * score, the perfect bonus or the gate, and the feedback is neutral.
+   */
+  readonly selfRated?: true | undefined;
   /** Speech: tokens of the prompt said wrong (their KCs are debited, the others credited). */
   readonly offTokens?: readonly number[] | undefined;
 }

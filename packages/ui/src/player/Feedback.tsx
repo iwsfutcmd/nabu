@@ -37,6 +37,8 @@ export interface FeedbackProps {
 
 export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): JSX.Element => {
   const t = useTranslator();
+  // A self-rating checked nothing (P5): neither right nor wrong, and no solution to compare with.
+  const neutral = outcome.selfRated === true;
   const right = isCorrect(outcome.verdict);
   const notes = outcome.notes.map((id) => `feedback.note.${id}`).filter((id): id is MessageId => t.has(id));
   const showSolution = outcome.solution !== undefined && outcome.verdict !== "CORRECT";
@@ -54,10 +56,10 @@ export const Feedback = ({ ex, outcome, course, ruby, marks }: FeedbackProps): J
       ? closestAnswer(outcome.alignment, outcome.solution, joiner)
       : undefined;
   return (
-    <div className={styles.feedback} data-feedback="" data-verdict={outcome.verdict} data-right={right || undefined}>
+    <div className={styles.feedback} data-feedback="" data-verdict={neutral ? "SELF_RATED" : outcome.verdict} data-right={(right && !neutral) || undefined}>
       <p className={styles.feedbackHeadline}>
-        <span className={right ? styles.correctIcon : styles.wrongIcon}>{right ? <CorrectIcon /> : <WrongIcon />}</span>
-        {t.format(outcome.verdict === "PARTIAL" && (ex.template === "speak" || ex.template === "listen-speak") ? "feedback.verdict.speech-close" : HEADLINES[outcome.verdict])}
+        {!neutral && <span className={right ? styles.correctIcon : styles.wrongIcon}>{right ? <CorrectIcon /> : <WrongIcon />}</span>}
+        {t.format(neutral ? "feedback.verdict.self-rated" : outcome.verdict === "PARTIAL" && (ex.template === "speak" || ex.template === "listen-speak") ? "feedback.verdict.speech-close" : HEADLINES[outcome.verdict])}
       </p>
       {notes.length > 0 && (
         <ul className={styles.notes}>

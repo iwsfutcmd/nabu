@@ -119,7 +119,7 @@ export const historyBefore = (course: CourseView, node: string, now: Date): Lear
         outcome: { kind: "CORRECT", notes: [], kcs: ex.kcs.map((kc) => ({ kc, status: "right" as const })) },
       });
     }
-    const summary = { completed: true, exercises: exercises.length, correctFirstTry: exercises.length, retries: 0, skipped: 0 };
+    const summary = { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises), retries: 0, skipped: 0 };
     events.push({ ...base(), type: "session_completed", mode: "lesson", node: id, summary });
   }
   return events;
@@ -261,11 +261,14 @@ const miss = async (page: Page, ex: Exercise, mode: Mode): Promise<void> => {
   await choose(page, mode, (ex.answer + 1) % ex.options.length);
 };
 
-/** Feedback must say "right"; then move on the same way the learner answered. */
+/** The cards a session's score counts: a self-rated speaking card is no verdict (P5). */
+export const graded = (exercises: readonly Exercise[]): number => exercises.filter((e) => e.template !== "speak.tier-0").length;
+
+/** Feedback must say "right" (or, for a self-rating, nothing either way); then move on the same way the learner answered. */
 export const expectRightAndContinue = async (page: Page, mode: Mode, ex: Exercise): Promise<void> => {
   const feedback = page.locator("[data-feedback]");
   await expect(feedback, ex.id).toBeVisible();
-  expect(await feedback.getAttribute("data-verdict"), `${ex.id}: ${await feedback.innerText()}`).toMatch(/^CORRECT/u);
+  expect(await feedback.getAttribute("data-verdict"), `${ex.id}: ${await feedback.innerText()}`).toMatch(/^(CORRECT|SELF_RATED$)/u);
   await next(page, mode);
 };
 

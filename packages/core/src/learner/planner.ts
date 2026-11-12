@@ -76,7 +76,8 @@ const CALIBRATION_WEIGHT = 90;
 /** Variety (§9.4): no template more than three times a session, and at most two speaking turns. */
 const MAX_PER_TEMPLATE_DEFAULT = 3;
 const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
-  "speak.tier-0": 2,
+  // Self-rated speaking checks nothing (P5): one card a session, never a filler (L6).
+  "speak.tier-0": 1,
   speak: 2,
   "listen-speak": 2,
   "match-pairs": 1,
@@ -98,6 +99,13 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
  */
 const REVIEW_SENTENCES = 6;
 const REVIEW_SHARE = 0.25;
+/**
+ * A lesson running well under the target success (its mean p̂ more than REVIEW_SHORTFALL below) may
+ * give review up to REVIEW_SHARE_STRUGGLING of its cards: a learner who struggles gets more
+ * repetition of what they have met, not a harder lesson (the review's L6; adaptive pacing builds on it).
+ */
+const REVIEW_SHARE_STRUGGLING = 0.5;
+const REVIEW_SHORTFALL = 0.1;
 
 /**
  * The earlier sentences a lesson brings back (ADR 0097), from the lessons before it on the path (a
@@ -295,17 +303,25 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const facet = facetOf(c.ex.template);
     const parts = c.ex.kcs.map((kc) => {
       const k = key(kc, facet);
-      const base = state.cards[k] === undefined ? (targets.has(kc) ? 1 : 0.5) : due.has(k) ? 0.6 + (desired - (due.get(k) ?? 0)) : 0.15;
+      // A word met in this lesson is first recognized; producing it counts once it is shown in a later
+      // session (D2), so here it is worth no more than any other new card.
+      const fresh = targets.has(kc) ? (facet === "produce" ? 0.5 : 1) : 0.5;
+      const base = state.cards[k] === undefined ? fresh : due.has(k) ? 0.6 + (desired - (due.get(k) ?? 0)) : 0.15;
       return covered.has(k) ? base * 0.3 : base;
     });
     return parts.length === 0 ? 0 : parts.reduce((a, b) => a + b, 0) / parts.length;
   };
-  // A lesson's review is a small share of its cards (ADR 0097, D1).
-  const reviewCap = Math.max(1, Math.floor(size * REVIEW_SHARE));
+  // A lesson's review is a small share of its cards (ADR 0097, D1), more while the lesson runs short
+  // of the target success.
+  const reviewCap = (): number => {
+    const counted = chosen.filter((x) => x.ex.template !== "speak.tier-0");
+    const meanP = counted.length === 0 ? target : counted.reduce((a, x) => a + x.p, 0) / counted.length;
+    return Math.max(1, Math.floor(size * (meanP < target - REVIEW_SHORTFALL ? REVIEW_SHARE_STRUGGLING : REVIEW_SHARE)));
+  };
   const allowed = (c: Candidate): boolean => {
     const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
     if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
-    if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap) return false;
+    if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap()) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
@@ -313,10 +329,14 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
+  // A self-rated speaking card is no verdict (L6): it neither pulls the session's mean p̂ toward the
+  // target nor away, so the calibration never reaches for it as an easy card.
+  const selfRated = (c: Candidate): boolean => c.ex.template === "speak.tier-0";
   const score = (c: Candidate): number => {
-    const sumP = chosen.reduce((a, x) => a + x.p, 0);
-    const meanP = (sumP + c.p) / (chosen.length + 1);
-    const calibration = -CALIBRATION_WEIGHT * Math.abs(meanP - target) - 2 * Math.abs(c.p - target);
+    const counted = chosen.filter((x) => !selfRated(x));
+    const sumP = counted.reduce((a, x) => a + x.p, 0);
+    const meanP = selfRated(c) ? (counted.length === 0 ? target : sumP / counted.length) : (sumP + c.p) / (counted.length + 1);
+    const calibration = -CALIBRATION_WEIGHT * Math.abs(meanP - target) - (selfRated(c) ? 0 : 2 * Math.abs(c.p - target));
     const sameTemplate = chosen.filter((x) => x.ex.template === c.ex.template).length;
     const sameItem = chosen.filter((x) => x.ex.item === c.ex.item).length;
     const newCoverage = c.ex.kcs.some((kc) => targets.has(kc) && !recognized.has(kc)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;

@@ -246,7 +246,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
       <footer ref={footer} className={styles.footer}>
         {active.tag === "feedback" ? (
-          <Button ref={continueButton} className={`${styles.primary} ${isCorrect(active.outcome.verdict) ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue">
+          <Button ref={continueButton} className={`${styles.primary} ${isCorrect(active.outcome.verdict) || active.outcome.selfRated === true ? "" : styles.primaryWrong}`} onPress={() => dispatch({ tag: "continue" })} data-action="continue">
             {t.format("player.action.continue")}
             <ArrowForwardIcon />
           </Button>

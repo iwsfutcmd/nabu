@@ -234,11 +234,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "choose-translation:s.3",
-      "template": "choose-translation",
-      "item": "s.3",
+      "id": "select-image:sense:salam",
+      "template": "select-image",
+      "item": "sense:salam",
       "kcs": [
-        "sense:mamnun"
+        "sense:salam"
       ]
     }
   },
@@ -256,11 +256,11 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "choose-translation:s.3",
-      "template": "choose-translation",
-      "item": "s.3",
+      "id": "select-image:sense:salam",
+      "template": "select-image",
+      "item": "sense:salam",
       "kcs": [
-        "sense:mamnun"
+        "sense:salam"
       ]
     },
     "attempt": 1,
@@ -273,7 +273,7 @@
       "notes": [],
       "kcs": [
         {
-          "kc": "sense:mamnun",
+          "kc": "sense:salam",
           "status": "wrong"
         }
       ]
@@ -293,11 +293,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "speak.tier-0:s.4",
-      "template": "speak.tier-0",
-      "item": "s.4",
+      "id": "choose-translation:s.3",
+      "template": "choose-translation",
+      "item": "s.3",
       "kcs": [
-        "sense:bale"
+        "sense:mamnun"
       ]
     }
   },
@@ -315,25 +315,24 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "speak.tier-0:s.4",
-      "template": "speak.tier-0",
-      "item": "s.4",
+      "id": "choose-translation:s.3",
+      "template": "choose-translation",
+      "item": "s.3",
       "kcs": [
-        "sense:bale"
+        "sense:mamnun"
       ]
     },
     "attempt": 1,
     "input": {
-      "method": "voice",
-      "latencyMs": 4000,
-      "selfRating": "good"
+      "method": "choice",
+      "latencyMs": 4000
     },
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
       "kcs": [
         {
-          "kc": "sense:bale",
+          "kc": "sense:mamnun",
           "status": "right"
         }
       ]
@@ -353,12 +352,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "choose-translation:s.5",
+      "id": "choose-translation:s.4",
       "template": "choose-translation",
-      "item": "s.5",
+      "item": "s.4",
       "kcs": [
-        "sense:na",
-        "sense:mamnun"
+        "sense:bale"
       ]
     }
   },
@@ -376,8 +374,127 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "choose-translation:s.5",
+      "id": "choose-translation:s.4",
       "template": "choose-translation",
+      "item": "s.4",
+      "kcs": [
+        "sense:bale"
+      ]
+    },
+    "attempt": 1,
+    "input": {
+      "method": "choice",
+      "latencyMs": 4000
+    },
+    "outcome": {
+      "kind": "CORRECT",
+      "notes": [],
+      "kcs": [
+        {
+          "kc": "sense:bale",
+          "status": "right"
+        }
+      ]
+    }
+  },
+  {
+    "id": "00000000-0000-7000-8000-00000000000e",
+    "schema": 1,
+    "device": "golden",
+    "course": "fa",
+    "orthography": "fa-Arab/standard",
+    "support": "en",
+    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
+    "session": "00000000-0000-7000-8000-ffffffffffff",
+    "clientTime": "2026-03-01T08:03:30.000Z",
+    "localDate": "2026-03-01",
+    "tz": "UTC",
+    "type": "exercise_presented",
+    "exercise": {
+      "id": "listen-select:sense:khodahafez",
+      "template": "listen-select",
+      "item": "sense:khodahafez",
+      "kcs": [
+        "sense:khodahafez"
+      ]
+    }
+  },
+  {
+    "id": "00000000-0000-7000-8000-00000000000f",
+    "schema": 1,
+    "device": "golden",
+    "course": "fa",
+    "orthography": "fa-Arab/standard",
+    "support": "en",
+    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
+    "session": "00000000-0000-7000-8000-ffffffffffff",
+    "clientTime": "2026-03-01T08:03:45.000Z",
+    "localDate": "2026-03-01",
+    "tz": "UTC",
+    "type": "answer_submitted",
+    "exercise": {
+      "id": "listen-select:sense:khodahafez",
+      "template": "listen-select",
+      "item": "sense:khodahafez",
+      "kcs": [
+        "sense:khodahafez"
+      ]
+    },
+    "attempt": 1,
+    "input": {
+      "method": "choice",
+      "latencyMs": 4000
+    },
+    "outcome": {
+      "kind": "CORRECT",
+      "notes": [],
+      "kcs": [
+        {
+          "kc": "sense:khodahafez",
+          "status": "right"
+        }
+      ]
+    }
+  },
+  {
+    "id": "00000000-0000-7000-8000-000000000010",
+    "schema": 1,
+    "device": "golden",
+    "course": "fa",
+    "orthography": "fa-Arab/standard",
+    "support": "en",
+    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
+    "session": "00000000-0000-7000-8000-ffffffffffff",
+    "clientTime": "2026-03-01T08:04:00.000Z",
+    "localDate": "2026-03-01",
+    "tz": "UTC",
+    "type": "exercise_presented",
+    "exercise": {
+      "id": "vocalize:s.5",
+      "template": "vocalize",
+      "item": "s.5",
+      "kcs": [
+        "sense:na",
+        "sense:mamnun"
+      ]
+    }
+  },
+  {
+    "id": "00000000-0000-7000-8000-000000000011",
+    "schema": 1,
+    "device": "golden",
+    "course": "fa",
+    "orthography": "fa-Arab/standard",
+    "support": "en",
+    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
+    "session": "00000000-0000-7000-8000-ffffffffffff",
+    "clientTime": "2026-03-01T08:04:15.000Z",
+    "localDate": "2026-03-01",
+    "tz": "UTC",
+    "type": "answer_submitted",
+    "exercise": {
+      "id": "vocalize:s.5",
+      "template": "vocalize",
       "item": "s.5",
       "kcs": [
         "sense:na",
@@ -399,125 +516,7 @@
         },
         {
           "kc": "sense:mamnun",
-          "status": "right"
-        }
-      ]
-    }
-  },
-  {
-    "id": "00000000-0000-7000-8000-00000000000e",
-    "schema": 1,
-    "device": "golden",
-    "course": "fa",
-    "orthography": "fa-Arab/standard",
-    "support": "en",
-    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
-    "session": "00000000-0000-7000-8000-ffffffffffff",
-    "clientTime": "2026-03-01T08:03:30.000Z",
-    "localDate": "2026-03-01",
-    "tz": "UTC",
-    "type": "exercise_presented",
-    "exercise": {
-      "id": "select-image:sense:salam",
-      "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
-      ]
-    }
-  },
-  {
-    "id": "00000000-0000-7000-8000-00000000000f",
-    "schema": 1,
-    "device": "golden",
-    "course": "fa",
-    "orthography": "fa-Arab/standard",
-    "support": "en",
-    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
-    "session": "00000000-0000-7000-8000-ffffffffffff",
-    "clientTime": "2026-03-01T08:03:45.000Z",
-    "localDate": "2026-03-01",
-    "tz": "UTC",
-    "type": "answer_submitted",
-    "exercise": {
-      "id": "select-image:sense:salam",
-      "template": "select-image",
-      "item": "sense:salam",
-      "kcs": [
-        "sense:salam"
-      ]
-    },
-    "attempt": 1,
-    "input": {
-      "method": "choice",
-      "latencyMs": 4000
-    },
-    "outcome": {
-      "kind": "CORRECT",
-      "notes": [],
-      "kcs": [
-        {
-          "kc": "sense:salam",
-          "status": "right"
-        }
-      ]
-    }
-  },
-  {
-    "id": "00000000-0000-7000-8000-000000000010",
-    "schema": 1,
-    "device": "golden",
-    "course": "fa",
-    "orthography": "fa-Arab/standard",
-    "support": "en",
-    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
-    "session": "00000000-0000-7000-8000-ffffffffffff",
-    "clientTime": "2026-03-01T08:04:00.000Z",
-    "localDate": "2026-03-01",
-    "tz": "UTC",
-    "type": "exercise_presented",
-    "exercise": {
-      "id": "listen-select:sense:mamnun",
-      "template": "listen-select",
-      "item": "sense:mamnun",
-      "kcs": [
-        "sense:mamnun"
-      ]
-    }
-  },
-  {
-    "id": "00000000-0000-7000-8000-000000000011",
-    "schema": 1,
-    "device": "golden",
-    "course": "fa",
-    "orthography": "fa-Arab/standard",
-    "support": "en",
-    "bundle": "b27e70d8a84f277b712625a9450af956115ecb07811f2fcf47e22628cca7f13e",
-    "session": "00000000-0000-7000-8000-ffffffffffff",
-    "clientTime": "2026-03-01T08:04:15.000Z",
-    "localDate": "2026-03-01",
-    "tz": "UTC",
-    "type": "answer_submitted",
-    "exercise": {
-      "id": "listen-select:sense:mamnun",
-      "template": "listen-select",
-      "item": "sense:mamnun",
-      "kcs": [
-        "sense:mamnun"
-      ]
-    },
-    "attempt": 1,
-    "input": {
-      "method": "choice",
-      "latencyMs": 4000
-    },
-    "outcome": {
-      "kind": "CORRECT",
-      "notes": [],
-      "kcs": [
-        {
-          "kc": "sense:mamnun",
-          "status": "right"
+          "status": "given"
         }
       ]
     }
@@ -536,8 +535,8 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "vocalize:s.1",
-      "template": "vocalize",
+      "id": "translate-tap.l2-l1:s.1",
+      "template": "translate-tap.l2-l1",
       "item": "s.1",
       "kcs": [
         "sense:salam"
@@ -558,8 +557,8 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "vocalize:s.1",
-      "template": "vocalize",
+      "id": "translate-tap.l2-l1:s.1",
+      "template": "translate-tap.l2-l1",
       "item": "s.1",
       "kcs": [
         "sense:salam"
@@ -567,7 +566,7 @@
     },
     "attempt": 1,
     "input": {
-      "method": "choice",
+      "method": "tiles",
       "latencyMs": 4000
     },
     "outcome": {
@@ -595,11 +594,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "listen-select:sense:khodahafez",
+      "id": "listen-select:sense:mamnun",
       "template": "listen-select",
-      "item": "sense:khodahafez",
+      "item": "sense:mamnun",
       "kcs": [
-        "sense:khodahafez"
+        "sense:mamnun"
       ]
     }
   },
@@ -617,11 +616,11 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "listen-select:sense:khodahafez",
+      "id": "listen-select:sense:mamnun",
       "template": "listen-select",
-      "item": "sense:khodahafez",
+      "item": "sense:mamnun",
       "kcs": [
-        "sense:khodahafez"
+        "sense:mamnun"
       ]
     },
     "attempt": 1,
@@ -634,7 +633,7 @@
       "notes": [],
       "kcs": [
         {
-          "kc": "sense:khodahafez",
+          "kc": "sense:mamnun",
           "status": "right"
         }
       ]
@@ -713,11 +712,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "choose-translation:s.3#2",
-      "template": "choose-translation",
-      "item": "s.3",
+      "id": "select-image:sense:salam#2",
+      "template": "select-image",
+      "item": "sense:salam",
       "kcs": [
-        "sense:mamnun"
+        "sense:salam"
       ]
     }
   },
@@ -735,11 +734,11 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "choose-translation:s.3#2",
-      "template": "choose-translation",
-      "item": "s.3",
+      "id": "select-image:sense:salam#2",
+      "template": "select-image",
+      "item": "sense:salam",
       "kcs": [
-        "sense:mamnun"
+        "sense:salam"
       ]
     },
     "attempt": 2,
@@ -752,7 +751,7 @@
       "notes": [],
       "kcs": [
         {
-          "kc": "sense:mamnun",
+          "kc": "sense:salam",
           "status": "right"
         }
       ]
@@ -775,8 +774,8 @@
     "node": "fa.greetings",
     "summary": {
       "completed": true,
-      "exercises": 10,
-      "correctFirstTry": 8,
+      "exercises": 9,
+      "correctFirstTry": 7,
       "retries": 2,
       "skipped": 0
     }

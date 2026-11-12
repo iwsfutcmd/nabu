@@ -26,6 +26,9 @@ export interface SessionResult {
   readonly template: TemplateId;
   readonly verdict: Verdict;
   readonly retry: boolean;
+  /** A self-rating (no verdict) or a card put off: neither counts in the score. */
+  readonly selfRated?: true | undefined;
+  readonly skipped?: SkipReason | undefined;
 }
 
 export interface Session {
@@ -198,13 +201,19 @@ const present = (session: Session): readonly [PlayerState, readonly Effect[]] =>
   return [{ tag: "presenting", session, ex }, [{ tag: "emit", event: { type: "exercise_presented", exercise: ref(ex), ex } }]];
 };
 
+/**
+ * The score counts graded first tries (P5 in the 2026-11 review): a self-rating checks nothing, and a
+ * card put off ("can't speak now", "can't listen now") or dropped with it was never asked. So two
+ * right answers out of two shown is 2 of 2, whatever speaking cards the lesson also had.
+ */
 export const summarize = (session: Session, completed: boolean): SessionSummary => {
   const first = session.results.filter((r) => !r.retry);
+  const graded = first.filter((r) => r.selfRated !== true && r.skipped !== "cant-speak" && r.skipped !== "cant-listen");
   return {
     completed,
     // An adaptive test plans as it goes: its size is what it asked.
-    exercises: session.adaptive === undefined ? session.planned : session.queue.length,
-    correctFirstTry: first.filter((r) => isCorrect(r.verdict)).length,
+    exercises: session.adaptive === undefined ? graded.length : session.queue.length,
+    correctFirstTry: graded.filter((r) => isCorrect(r.verdict)).length,
     retries: session.results.filter((r) => r.retry).length,
     skipped: session.results.filter((r) => r.verdict === "SKIPPED").length,
   };
@@ -237,9 +246,12 @@ const advance = (state: Extract<Active, { tag: "feedback" }>): readonly [PlayerS
   return present({ ...session, queue, position: session.position + 1 });
 };
 
-const record = (session: Session, ex: Exercise, verdict: Verdict): Session => ({
+const record = (session: Session, ex: Exercise, verdict: Verdict, how: { readonly selfRated?: true | undefined; readonly skipped?: SkipReason | undefined } = {}): Session => ({
   ...session,
-  results: [...session.results, { exercise: ex.id, template: ex.template, verdict, retry: ex.id.includes("#") }],
+  results: [
+    ...session.results,
+    { exercise: ex.id, template: ex.template, verdict, retry: ex.id.includes("#"), ...(how.selfRated === true ? { selfRated: true as const } : {}), ...(how.skipped === undefined ? {} : { skipped: how.skipped }) },
+  ],
 });
 
 const answering = (state: Extract<Active, { tag: "presenting" }>): Extract<Active, { tag: "answering" }> => ({
@@ -252,7 +264,7 @@ const answering = (state: Extract<Active, { tag: "presenting" }>): Extract<Activ
 
 const skip = (state: Extract<Active, { tag: "presenting" | "answering" }>, reason: SkipReason): readonly [PlayerState, readonly Effect[]] => {
   const { ex } = state;
-  const session = record(state.session, ex, "SKIPPED");
+  const session = record(state.session, ex, "SKIPPED", { skipped: reason });
   const emit: Effect = { tag: "emit", event: { type: "exercise_skipped", exercise: ref(ex), reason, ex } };
   if (reason === "cant-speak" || reason === "cant-listen") {
     // "Can't speak now" / "Can't listen now": no speaking, or no listening, for the rest of the lesson.
@@ -310,7 +322,7 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
     case "checking":
       if (event.tag !== "graded") return none;
       return [
-        { tag: "feedback", session: record(state.session, state.ex, event.outcome.verdict), ex: state.ex, response: state.response, outcome: event.outcome },
+        { tag: "feedback", session: record(state.session, state.ex, event.outcome.verdict, { selfRated: event.outcome.selfRated }), ex: state.ex, response: state.response, outcome: event.outcome },
         [
           {
             tag: "emit",
@@ -323,7 +335,8 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
               graded: event.outcome,
             },
           },
-          { tag: "sound", sound: isCorrect(event.outcome.verdict) ? "correct" : "wrong" },
+          // A self-rating is no verdict: no right or wrong sound.
+          ...(event.outcome.selfRated === true ? [] : [{ tag: "sound" as const, sound: isCorrect(event.outcome.verdict) ? ("correct" as const) : ("wrong" as const) }]),
         ],
       ];
 

@@ -276,11 +276,13 @@ const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, 
       from = undefined;
     }
     if (e.type !== "answer_submitted" || practice) continue;
+    // A self-rated speaking card is no verdict (P5): it never costs a heart, nor breaks or extends a run.
+    const selfRated = e.input.selfRating !== undefined;
     if (policy.policy === "hearts") {
-      if (!isRight(e)) spend(1, t);
+      if (!isRight(e) && !selfRated) spend(1, t);
     } else {
       spend(policy.costPerExercise, t);
-      run = isRight(e) ? run + 1 : 0;
+      if (!selfRated) run = isRight(e) ? run + 1 : 0;
       if (run > 0 && run % policy.runLength === 0) {
         value = Math.min(policy.max, value + policy.earnOnCorrectRun);
         if (value >= policy.max) from = undefined;

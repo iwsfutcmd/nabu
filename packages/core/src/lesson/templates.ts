@@ -1050,7 +1050,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "speak":
     case "listen-speak": {
       // Without a microphone the learner rates themselves, as at tier 0.
-      if (response.tag === "self-rating") return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], solution: ex.prompt };
+      if (response.tag === "self-rating") return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], solution: ex.prompt, selfRated: true };
       if (response.tag !== "speech") return mismatch(ex, response);
       const { verdict, notes, offTokens } = gradeSpeech(response.result);
       return { verdict, notes, solution: ex.prompt, offTokens };
@@ -1079,7 +1079,7 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
         : mismatch(ex, response);
     case "speak.tier-0":
       if (response.tag !== "self-rating") return mismatch(ex, response);
-      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [] };
+      return { verdict: response.rating === "again" ? "WRONG" : "CORRECT", notes: [], selfRated: true };
   }
 };
 

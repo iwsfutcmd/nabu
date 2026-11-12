@@ -679,9 +679,28 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
 type Recording = { readonly tag: "idle" } | { readonly tag: "recording" } | { readonly tag: "done"; readonly url: string } | { readonly tag: "unavailable" };
 
 /**
- * Speak, tier 0 (§10.4): read the sentence aloud, optionally record and play it
- * back, then rate yourself. Nothing is checked automatically and nothing is
- * stored: the recording lives in this component only.
+ * The model to imitate on a self-rated speaking card (P5): the sentence's clip, said when the card
+ * opens (before the learner speaks, not after rating) and said again once rated (ADR 0064).
+ */
+const ModelAudio = ({ props }: { props: Props<Speak> }): JSX.Element | null => {
+  const audio = props.course.audio[props.ex.item];
+  const player = useClipPlayer(audio, props.imageUrl, { preload: true });
+  const { play } = player;
+  useEffect(() => {
+    if (audio !== undefined) play("normal");
+  }, [play, audio]);
+  useSayWhenAnswered(player, props, audio);
+  return audio === undefined ? null : (
+    <div data-model-audio="">
+      <AudioButtons player={player} audio={audio} />
+    </div>
+  );
+};
+
+/**
+ * Speak, tier 0 (§10.4): hear the model, read the sentence aloud, optionally record and play it
+ * back, then rate yourself. Nothing is checked automatically and nothing is stored: the recording
+ * lives in this component only. Record has the focus, so a stray Enter never rates the card.
  */
 export const SpeakView = (props: Props<Speak>): JSX.Element => {
   const { ex, dispatch, locked } = props;
@@ -737,6 +756,7 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
       <div className={styles.hint}>
         <T as="p" text={ex.translation} />
       </div>
+      <ModelAudio props={props} />
       <div className={styles.recorder} data-recorder={recording.tag}>
         {!supported || recording.tag === "unavailable" ? (
           <p className={styles.muted}>{t.format("player.speak.unavailable")}</p>
@@ -749,7 +769,7 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
           </>
         ) : (
           <>
-            <button type="button" className={styles.secondary} disabled={locked} onClick={() => void startRecording()} data-action="record">
+            <button type="button" className={styles.secondary} disabled={locked} autoFocus={!locked} onClick={() => void startRecording()} data-action="record">
               {t.format("player.speak.record")}
             </button>
             {recording.tag === "done" && (
@@ -763,7 +783,7 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
       <div className={styles.ratings} role="group" aria-label={t.format("player.speak.rate")}>
         <p className={styles.label}>{t.format("player.speak.rate")}</p>
         {ratings.map(([rating, message], i) => (
-          <button key={rating} type="button" className={styles.secondary} disabled={locked} autoFocus={i === 0} data-rating={rating} onClick={() => rate(rating)}>
+          <button key={rating} type="button" className={styles.secondary} disabled={locked} autoFocus={i === 0 && !supported} data-rating={rating} onClick={() => rate(rating)}>
             {t.format(message)}
           </button>
         ))}
