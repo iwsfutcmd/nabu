@@ -46,6 +46,11 @@ word depends on. For a learner who has done the earlier lessons:
 
 lzh gets none, since its facets rule out `read-script`. Mistakes rebuild the card from its sentence.
 
+**Only marks that ordinary writing leaves out** get a `vocalize` card: an orthography whose profile
+ignores its marks in answers (`marks.policy: ignore`: the abjads fa, apc, ar and hbo). Accents and
+breathings that are part of the spelling (es, grc: `accept-with-note`) get none, as ADR 0054 meant:
+alphabets write their vowels.
+
 **An orthography that spells the vowels** (`match.marks.spelledIn` in the profile) is accepted.
 - apc-Arab/standard names apc-Latn/arabizi.
 - **Where the course has that orthography,** a `vocalize` card also takes the word as that

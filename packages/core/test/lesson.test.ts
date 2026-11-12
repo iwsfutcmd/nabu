@@ -360,8 +360,11 @@ describe("writing in a word's pronunciation, in its sentence (ADR 0054, 0095)", 
     expect([tone.verdict, tone.notes]).toEqual(["WRONG", ["reading-tone"]]);
   });
 
-  it("alphabets write their vowels: no such card for uz", () => {
+  it("alphabets write their vowels: no such card for uz, and accents that are spelling (es, grc) are not asked for", () => {
     expect(cardOf("uz", "uz-Latn/standard", "vocalize")).toBeUndefined();
+    expect(cardOf("es", undefined, "vocalize")).toBeUndefined();
+    expect(cardOf("grc", undefined, "vocalize")).toBeUndefined();
+    expect(cardOf("hbo", undefined, "vocalize")?.template).toBe("vocalize");
     expect(cardOf("uz", "uz-Latn/standard", "transcribe")).toBeUndefined();
     expect(cardOf("fa", undefined, "transcribe")).toBeUndefined();
     expect(cardOf("yue", undefined, "vocalize")).toBeUndefined();

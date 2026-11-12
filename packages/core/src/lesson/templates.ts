@@ -799,7 +799,9 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
   const marks = profile.marks;
   const form = formOf(ctx.course, s);
   const translation = translationOf(ctx.course, s);
-  if (marks === undefined || form === undefined || translation === undefined) return undefined;
+  // Only marks ordinary writing leaves out (an abjad's vowels: the profile ignores them in answers),
+  // never accents that are part of the spelling (es, grc), which alphabets write anyway (ADR 0054).
+  if (marks === undefined || marks.policy !== "ignore" || form === undefined || translation === undefined) return undefined;
   const spelledIn = (profile.source.match?.marks?.spelledIn ?? []).filter((o) => o !== ctx.course.orthography);
   const spelledAt = (i: number): TaggedText | undefined => spelledIn.map((o) => twinOf(s, form.text, i, o)).find((t) => t !== undefined);
   const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface), (i) => spelledAt(i) !== undefined);
