@@ -7,9 +7,9 @@ kcs:
 - {id: 'sense:早晨', gloss: {en: good morning}, forms: {yue-Hant-HK/standard: [早晨]}, image: {file: ../images/sunrise.svg, license: CC0-1.0, provenance: {author: 'llm:claude@6e8439dc1c29', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:你好', gloss: {en: hello}, forms: {yue-Hant-HK/standard: [你好]}, image: {file: ../images/wave.svg, license: CC0-1.0, provenance: {author: 'llm:claude@17fb3acb2f3b', status: draft}, source: Drawn for Nabu (courses/images)}}
 - {id: 'sense:唔該', gloss: {en: thank you (for a service); please; excuse me}, forms: {yue-Hant-HK/standard: [唔該]}}
-- {id: 'sense:多謝', gloss: {en: thank you (for a gift or a compliment)}, forms: {yue-Hant-HK/standard: [多謝]}}
+- {id: 'sense:多謝', gloss: {en: 'thank you (for a gift, a treat or a compliment; a seller, for payment)'}, forms: {yue-Hant-HK/standard: [多謝]}}
 - {id: 'sense:拜拜', gloss: {en: bye-bye}, forms: {yue-Hant-HK/standard: [拜拜]}}
-- {id: 'sense:呀', gloss: {en: 'sentence-final particle: softens a statement, marks a question'}, forms: {yue-Hant-HK/standard: [呀]}}
+- {id: 'sense:呀', gloss: {en: 'sentence-final particle: softens a statement or a question (aa3); turns a statement into a question that expects yes (aa4)'}, forms: {yue-Hant-HK/standard: [呀]}}
 - {id: 'sense:係', gloss: {en: 'to be; yes, that''s right'}, forms: {yue-Hant-HK/standard: [係]}}
 - {id: 'sense:唔', gloss: {en: not}, forms: {yue-Hant-HK/standard: [唔]}}
 - {id: 'sense:我', gloss: {en: I; me}, forms: {yue-Hant-HK/standard: [我]}}
@@ -21,8 +21,8 @@ kcs:
 - {id: 'form:plural-dei', gloss: {en: '-哋 (dei6): plural of a pronoun'}, notes: {en: '我哋 we, 你哋 you (plural), 佢哋 they. Often typed 地 informally.'}}
 - {id: 'sense:去', gloss: {en: to go}, forms: {yue-Hant-HK/standard: [去]}}
 - {id: 'sense:飲茶', gloss: {en: to go for dim sum (yum cha)}, forms: {yue-Hant-HK/standard: [飲茶]}, image: {file: ../images/teapot.svg, license: CC0-1.0, provenance: {author: 'llm:claude@00f9addf5ad6', status: draft}, source: Drawn for Nabu (courses/images)}}
-- {id: 'sense:啦', gloss: {en: 'sentence-final particle: suggestion, ''let''s'''}, forms: {yue-Hant-HK/standard: [啦]}}
-- {id: 'sense:嗎', gloss: {en: 'sentence-final particle: yes-or-no question'}, forms: {yue-Hant-HK/standard: [嗎]}}
+- {id: 'sense:啦', gloss: {en: 'sentence-final particle: suggestions, requests and instructions (''let''s'', ''do'')'}, forms: {yue-Hant-HK/standard: [啦]}}
+- {id: 'sense:嗎', gloss: {en: 'sentence-final particle: yes-or-no question (formal)'}, forms: {yue-Hant-HK/standard: [嗎]}, notes: {en: 'Formal: mostly in 你好嗎. Everyday questions use X唔X (係唔係, 去唔去).'}}
 - {id: 'sense:好', gloss: {en: good; very}, forms: {yue-Hant-HK/standard: [好]}}
 - {id: 'sense:邊個', gloss: {en: who}, forms: {yue-Hant-HK/standard: [邊個]}}
 - {id: 'sense:嘅', gloss: {en: 'possessive particle (''s, of)'}, forms: {yue-Hant-HK/standard: [嘅]}}
@@ -167,7 +167,7 @@ sentences:
   forms:
     yue-Hant-HK/standard:
       text: 係你呀？
-      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      tokens: [{surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呀, sense: 呀, readings: {jyutping: aa4}}]
       reverse: |-
         係你[呀]
         係唔係你[呀]
@@ -390,8 +390,8 @@ stories:
       distractors: ['sense:老師']
       forms:
         yue-Hant-HK/standard:
-          text: 你係學生嗎？
-          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}, {surface: 嗎, sense: 嗎, readings: {jyutping: maa3}}]
+          text: 你係唔係學生呀？
+          tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 係, sense: 係, readings: {jyutping: hai6}}, {surface: 學生, sense: 學生, readings: {jyutping: hok6 saang1}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
       translations: {en: "Are you a student?"}
   - line:
       speaker: hok-saang

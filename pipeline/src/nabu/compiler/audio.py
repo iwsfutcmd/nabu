@@ -80,6 +80,10 @@ def check_audio(
     path = adir / INDEX
     if not path.exists():
         return
+    if course.audio is not None and course.audio.quality == "bad":
+        # A voice too broken to present (ADR 0091): no clip ships. The clips stay in the course's
+        # audio folder, where reviewers and the audio check still hear them.
+        return
     loaded = _load(ctx, path, display(path))
     if loaded is None:
         return

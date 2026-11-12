@@ -11,6 +11,14 @@ import { CANTONESE, type ToneScore, type ToneSystem } from "./tone.ts";
 /** Tone systems by the reading scheme that carries them. */
 export const TONE_SYSTEMS: Readonly<Record<string, ToneSystem>> = { jyutping: CANTONESE };
 
+/**
+ * Whether the app scores a learner's tones on the device (tier 3, ADR 0046). Off (ADR 0093): on
+ * natural speech the scorer is not accurate enough to tell a learner which tones were wrong, and it
+ * has no native-speaker acceptance yet (evals/tones). Speaking is rated by the learner (tier 0)
+ * unless a speech server scores words and phones (tiers 1–2). Tone listening (tone-identify) stays.
+ */
+export const DEVICE_TONE_SCORING: boolean = false;
+
 /** The tone system a text's pinned readings use, if any. */
 export const toneSystemOf = (text: TaggedText): ToneSystem | undefined =>
   Object.values(TONE_SYSTEMS).find((system) => text.tokens.some((t) => (t.readings as Readonly<Record<string, string>> | undefined)?.[system.scheme] !== undefined));

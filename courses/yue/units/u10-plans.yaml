@@ -23,7 +23,7 @@ kcs:
 - {id: 'sense:搵', gloss: {en: to look for; to want to see or speak to}, forms: {yue-Hant-HK/standard: [搵]}, notes: {en: 'On the phone: 你搵邊個呀？ ''who would you like to speak to?'''}}
 - {id: 'sense:可能', gloss: {en: 'maybe, perhaps; possibly'}, forms: {yue-Hant-HK/standard: [可能]}}
 - {id: 'sense:冇問題', gloss: {en: no problem}, forms: {yue-Hant-HK/standard: [冇問題]}}
-- {id: 'sense:唔好意思', gloss: {en: sorry; excuse me}, forms: {yue-Hant-HK/standard: [唔好意思]}, notes: {en: A light apology or 'excuse me'. 對唔住 is a stronger 'sorry'.}}
+- {id: 'sense:唔好意思', gloss: {en: sorry; excuse me}, forms: {yue-Hant-HK/standard: [唔好意思]}, notes: {en: 'Literally ''embarrassed'': owning up to a fault or an imposition. 對唔住 is the everyday apology.'}}
 - {id: 'sense:下次', gloss: {en: next time}, forms: {yue-Hant-HK/standard: [下次]}}
 - {id: 'sense:一定', gloss: {en: 'definitely, for sure'}, forms: {yue-Hant-HK/standard: [一定]}}
 - {id: 'sense:游水', gloss: {en: 'to swim, go swimming'}, forms: {yue-Hant-HK/standard: [游水]}}
@@ -120,7 +120,7 @@ sentences:
         今日好天
   translations:
     en: |-
-      The weather is (very|really) (good|nice) today.
+      The weather is (very |really |)(good|nice) today.
       It's a (nice|lovely) day today.
 - id: s.u10.8
   node: yue.weather
@@ -158,7 +158,8 @@ sentences:
       text: 而家落緊雨。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 落, sense: 落, readings: {jyutping: lok6}}, {surface: 緊, sense: 緊, readings: {jyutping: gan2}}, {surface: 雨, sense: 雨, readings: {jyutping: jyu5}}]
       reverse: |-
-        [(而|依)家]落緊雨
+        [(而|依)家]落(緊|住)雨
+        (而|依)家落雨
   translations:
     en: |-
       It('s| is) raining (now|right now|).
@@ -200,9 +201,9 @@ sentences:
       reverse: 今日(|天氣)好凍[呀]
   translations:
     en: |-
-      It's (so|really|very) cold today!
-      It is (so|really|very) cold today!
-      Today is (so|really|very) cold!
+      It's (so |really |very |)cold today!
+      It is (so |really |very |)cold today!
+      Today is (so |really |very |)cold!
 - id: s.u10.14
   node: yue.forecast
   forms:
@@ -226,9 +227,9 @@ sentences:
       reverse: 天文台話聽日(|會)好凍
   translations:
     en: |-
-      The Observatory says it('ll| will) be (very|really|so) cold tomorrow.
-      The Hong Kong Observatory says (that |)it('ll| will) be (very|really|so) cold tomorrow.
-      The Observatory says that it('ll| will) be (very|really|so) cold tomorrow.
+      The Observatory says it('ll| will) be (very |really |so |)cold tomorrow.
+      The Hong Kong Observatory says (that |)it('ll| will) be (very |really |so |)cold tomorrow.
+      The Observatory says that it('ll| will) be (very |really |so |)cold tomorrow.
       The Observatory said it would be very cold tomorrow.
 - id: s.u10.16
   node: yue.forecast
@@ -291,6 +292,7 @@ sentences:
       (How about going|Why don't we go) for yum cha?
       Let's go for yum cha.
       Shall we go for (dim sum|yum cha)?
+      Why don't you go for (dim sum|yum cha)?
 - id: s.u10.20
   node: yue.invite
   forms:
@@ -379,7 +381,7 @@ sentences:
     yue-Hant-HK/standard:
       text: 我可能唔得閒。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 可能, sense: 可能, readings: {jyutping: ho2 nang4}}, {surface: 唔, sense: 唔, readings: {jyutping: m4}}, {surface: 得閒, sense: 得閒, readings: {jyutping: dak1 haan4}}]
-      reverse: (我可能|可能我)唔得閒
+      reverse: (我可能|可能我|我可能會|我或者)唔得閒
   translations:
     en: |-
       I (might|may) not be free.
@@ -489,6 +491,7 @@ sentences:
     en: |-
       Let's meet at the (MTR|metro|subway) station at (seven|7)[ o'clock].
       Let's meet at (seven|7)[ o'clock] at the (MTR|metro|subway) station.
+      Meet (me |us |)at the (MTR|metro|subway) station at (seven|7)[ o'clock].
 - id: s.u10.35
   node: yue.doing
   persons: {addressee: pl}

@@ -6,16 +6,16 @@ cefr: A1
 kcs:
 - {id: 'sense:叫', gloss: {en: to be called; to call}, forms: {yue-Hant-HK/standard: [叫]}}
 - {id: 'sense:咩', gloss: {en: what (short for 乜嘢)}, forms: {yue-Hant-HK/standard: [咩]}}
-- {id: 'sense:名', gloss: {en: name}, forms: {yue-Hant-HK/standard: [名]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'In 叫咩名 ''what is (your) name'' it is read meng2, the colloquial reading; ming4 in compounds such as 名字.'}}
+- {id: 'sense:名', gloss: {en: name}, forms: {yue-Hant-HK/standard: [名]}, image: {file: ../images/name-tag.svg, license: CC0-1.0, provenance: {author: 'llm:claude@949422768931', status: draft}, source: Drawn for Nabu (courses/images)}, notes: {en: 'Read meng2 in everyday words (叫咩名, 出名, 簽名); ming4 in literary ones and for a rank (第一名).'}}
 - {id: 'sense:姓', gloss: {en: to be surnamed; surname}, forms: {yue-Hant-HK/standard: [姓]}}
 - {id: 'sense:乜嘢', gloss: {en: what}, forms: {yue-Hant-HK/standard: [乜嘢]}, notes: {en: The full form of 咩. Often typed 乜野.}}
-- {id: 'sense:先生', gloss: {en: Mr; sir; husband}, forms: {yue-Hant-HK/standard: [先生]}, notes: {en: 'After a surname: 陳先生 Mr Chan (casually 陳生).'}}
+- {id: 'sense:先生', gloss: {en: Mr; sir; husband}, forms: {yue-Hant-HK/standard: [先生]}, notes: {en: 'After a surname: 陳先生 Mr Chan, or 陳生, the usual form of address.'}}
 - {id: 'sense:小姐', gloss: {en: Miss; Ms}, forms: {yue-Hant-HK/standard: [小姐]}, notes: {en: 'After a surname: 李小姐 Miss Lee.'}}
 - {id: 'sense:呢-sfp', gloss: {en: 'sentence-final particle: and …? what about …? where is …?'}, forms: {yue-Hant-HK/standard: [呢]}, notes: {en: '你呢？ ''and you?''; 我本書呢？ ''where is my book?''. The same character before a classifier means ''this'' (呢個).'}}
 - {id: 'sense:爸爸', gloss: {en: dad; father}, forms: {yue-Hant-HK/standard: [爸爸]}}
 - {id: 'sense:媽媽', gloss: {en: mum; mother}, forms: {yue-Hant-HK/standard: [媽媽]}}
-- {id: 'sense:個', gloss: {en: 'the general classifier (for people and many things); before a noun alone: the'}, forms: {yue-Hant-HK/standard: [個]}, notes: {en: 'Cantonese counts and points with a classifier: 一個人 one person, 呢個 this one. 個老師 on its own means ''the teacher''.'}}
-- {id: 'sense:呢', gloss: {en: 'this (before a classifier: 呢個 this one)'}, forms: {yue-Hant-HK/standard: [呢]}, notes: {en: Pronounced ni1 here (some speakers say nei1 or ne1). The same character at the end of a question is the particle ne1 (你呢？).}}
+- {id: 'sense:個', gloss: {en: 'the general classifier (for people and many things); with a noun before the verb: the'}, forms: {yue-Hant-HK/standard: [個]}, notes: {en: 'Cantonese counts and points with a classifier: 一個人 one person, 呢個 this one. 個老師好好 ''the teacher is nice''; after the verb it is ''a'': 我有個哥哥.'}}
+- {id: 'sense:呢', gloss: {en: 'this (before a classifier)'}, forms: {yue-Hant-HK/standard: [呢]}, notes: {en: 'Before a classifier: 呢個 "this one". Pronounced ni1 here (also nei1, and li1 where n and l merge). At the end of a question the same character is the particle ne1 (你呢？).'}}
 - {id: 'sense:屋企人', gloss: {en: family; family members}, forms: {yue-Hant-HK/standard: [屋企人]}}
 - {id: 'sense:哥哥', gloss: {en: older brother}, forms: {yue-Hant-HK/standard: [哥哥]}}
 - {id: 'sense:家姐', gloss: {en: older sister}, forms: {yue-Hant-HK/standard: [家姐]}}
@@ -48,7 +48,7 @@ sentences:
       text: 我叫家明。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 家明, readings: {jyutping: gaa1 ming4}}]
       reverse: |-
-        我叫家明
+        我叫(做|)家明
         我係家明
         我(個|嘅|既)名(叫|係)家明
   translations:
@@ -64,7 +64,7 @@ sentences:
       text: 佢叫美玲。
       tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}]
       reverse: |-
-        佢叫美玲
+        佢叫(做|)美玲
         佢係美玲
         佢(個|嘅|既)名(叫|係)美玲
   translations:
@@ -192,7 +192,7 @@ sentences:
       text: 我叫美玲，你呢？
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 叫, sense: 叫, readings: {jyutping: giu3}}, {surface: 美玲, readings: {jyutping: mei5 ling4}}, {surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 呢, sense: 呢-sfp, readings: {jyutping: ne1}}]
       reverse: |-
-        我(叫|係)美玲(|咁)你呢
+        我(叫|叫做|係)美玲(|咁)你呢
         我(個|嘅|既)名(叫|係)美玲(|咁)你呢
   translations:
     en: |-
@@ -228,9 +228,9 @@ sentences:
       text: 個老師好好。
       tokens: [{surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 老師, sense: 老師, readings: {jyutping: lou5 si1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}]
       reverse: |-
-        [個]老師好好(|人)(|呀)
+        個老師好好(|人)(|呀)
   translations:
-    en: The teacher is (very|really|so) (nice|good|kind).
+    en: The teacher is (very |really |so |)(nice|good|kind).
 - id: s.u02.15
   node: yue.family
   forms:
@@ -434,8 +434,8 @@ sentences:
       reverse: 佢好高(|呀)
   translations:
     en: |-
-      (She|He)('s| is) (very|really|so) tall.
-      They('re| are) (very|really|so) tall.
+      (She|He)('s| is) (very |really |so |)tall.
+      They('re| are) (very |really |so |)tall.
 - id: s.u02.34
   node: yue.describe
   persons: {addressee: sg}
@@ -445,7 +445,7 @@ sentences:
       tokens: [{surface: 你, sense: 你, readings: {jyutping: nei5}}, {surface: 媽媽, sense: 媽媽, readings: {jyutping: maa4 maa1}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 靚, sense: 靚, readings: {jyutping: leng3}}]
       reverse: 你(|嘅|既)(媽媽|阿媽)好靚(|呀)
   translations:
-    en: Your (mum|mom|mother) is (very|really|so) (pretty|beautiful|good-looking).
+    en: Your (mum|mom|mother) is (very |really |so |)(pretty|beautiful|good-looking).
 - id: s.u02.35
   node: yue.describe
   forms:
@@ -454,16 +454,18 @@ sentences:
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 開心, sense: 開心, readings: {jyutping: hoi1 sam1}}]
       reverse: 我好開心(|呀)
   translations:
-    en: I('m| am) (very|really|so) happy.
+    en: I('m| am) (very |really |so |)happy.
 - id: s.u02.36
   node: yue.describe
   forms:
     yue-Hant-HK/standard:
-      text: 我好攰呀。
-      tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
-      reverse: 我好攰[呀]
+      text: 佢好攰呀。
+      tokens: [{surface: 佢, sense: 佢, readings: {jyutping: keoi5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 攰, sense: 攰, readings: {jyutping: gui6}}, {surface: 呀, sense: 呀, readings: {jyutping: aa3}}]
+      reverse: 佢好攰[呀]
   translations:
-    en: I('m| am) (so|really|very) tired.
+    en: |-
+      (She|He)('s| is) (so |really |very |)tired.
+      They('re| are) (so |really |very |)tired.
 - id: s.u02.37
   node: yue.describe
   persons: {addressee: sg}
@@ -488,8 +490,8 @@ sentences:
         我哥哥亦都好高
   translations:
     en: |-
-      My (older|big) brother is (very|really|so) tall too.
-      My (older|big) brother is also (very|really|so) tall.
+      My (older|big) brother is (very |really |so |)tall too.
+      My (older|big) brother is also (very |really |so |)tall.
 - id: s.u02.39
   node: yue.family
   constructions:

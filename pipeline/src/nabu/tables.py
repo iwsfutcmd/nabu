@@ -115,8 +115,11 @@ def jyutping_readings() -> dict[str, Any]:
             if field == "kCantonese":
                 found = value.split()
             elif field == "kSMSZD2003Readings":
-                # "xíng粵hang4 xíng,xìng粵hang6 háng粵hong4": the Cantonese reading follows 粵
-                found = [t.split("\u7cb5", 1)[1] for t in value.split() if "\u7cb5" in t]
+                # "xíng粵hang4 xíng,xìng粵hang6 háng粵hong4": the Cantonese reading follows 粵.
+                # A Cantonese part may hold several readings, comma-separated
+                # ("wán粵jyun4,jyun2"): each is a reading of its own.
+                parts = [t.split("\u7cb5", 1)[1] for t in value.split() if "\u7cb5" in t]
+                found = [r for part in parts for r in part.split(",") if r]
             else:
                 continue
             merged = readings.setdefault(char, [])

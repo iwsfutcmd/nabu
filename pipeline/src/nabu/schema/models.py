@@ -2339,6 +2339,12 @@ class BundleManifest(BaseModel):
             min_length=1,
         ),
     ] = None
+    audioQuality: Annotated[
+        Literal["iffy"] | None,
+        Field(
+            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
+        ),
+    ] = None
     placement: Annotated[
         PlacementPolicy | None,
         Field(
@@ -3106,6 +3112,12 @@ class CourseAudio(BaseModel):
             description="Refuse synthesis: only human recordings (dialects and languages without good TTS, §10.1)."
         ),
     ] = None
+    quality: Annotated[
+        Literal["good", "iffy", "bad"],
+        Field(
+            description="How far learners may rely on the course's clips (ADR 0091). good (the default): clips play everywhere, listening and listen-and-repeat exercises included. iffy: a stopgap voice, often right but not always; its clips only reinforce what the learner reads (after a card is answered, in stories, in the word list), and no exercise depends on hearing them. bad: no clip reaches the learner; the clips stay in the course's audio folder for reviewers and the audio check."
+        ),
+    ] = "good"
     voices: Annotated[list[AudioVoice] | None, Field(min_length=1)] = None
 
 

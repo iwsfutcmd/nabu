@@ -28,7 +28,7 @@ kcs:
 - {id: 'sense:右邊', gloss: {en: the right; on the right}, forms: {yue-Hant-HK/standard: [右邊]}}
 - {id: 'sense:八達通', gloss: {en: Octopus card (Hong Kong's travel and payment card)}, forms: {yue-Hant-HK/standard: [八達通]}}
 - {id: 'sense:用', gloss: {en: to use}, forms: {yue-Hant-HK/standard: [用]}}
-- {id: 'sense:俾', gloss: {en: 'to give; to pay; (after a verb) to, for'}, forms: {yue-Hant-HK/standard: [俾]}, notes: {en: Also written 畀.}}
+- {id: 'sense:俾', gloss: {en: 'to give; to pay; (after a verb) to'}, forms: {yue-Hant-HK/standard: [俾]}, notes: {en: 'Also written 畀. What is given comes first: 俾錢你 ''give you money''; ''for (someone)'' is 幫.'}}
 - {id: 'sense:飛', gloss: {en: ticket}, forms: {yue-Hant-HK/standard: [飛]}, notes: {en: From English 'fare'. 戲飛 cinema ticket.}}
 - {id: 'sense:張', gloss: {en: 'classifier for flat things: tickets, paper, photos, tables'}, forms: {yue-Hant-HK/standard: [張]}}
 - {id: 'sense:上車', gloss: {en: 'to get on (a vehicle), get in'}, forms: {yue-Hant-HK/standard: [上車]}}
@@ -163,7 +163,9 @@ sentences:
     yue-Hant-HK/standard:
       text: 我住喺沙田。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 住, sense: 住, readings: {jyutping: zyu6}}, {surface: 喺, sense: 喺, readings: {jyutping: hai2}}, {surface: 沙田, sense: 沙田, readings: {jyutping: saa1 tin4}}]
-      reverse: 我住(喺|)沙田
+      reverse: |-
+        我住(喺|)沙田
+        我喺沙田住
   translations:
     en: I live in (Sha Tin|Shatin).
 - id: s.u07.11
@@ -233,7 +235,7 @@ sentences:
       tokens: [{surface: 地鐵, sense: 地鐵, readings: {jyutping: dei6 tit3}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 快, sense: 快, readings: {jyutping: faai3}}]
       reverse: 地鐵好快(|呀)
   translations:
-    en: The (MTR|metro|subway) is (very|really|so) (fast|quick).
+    en: The (MTR|metro|subway) is (very |really |so |)(fast|quick).
 - id: s.u07.17
   node: yue.how-long
   forms:
@@ -243,8 +245,8 @@ sentences:
       reverse: 巴士好慢(|呀)
   translations:
     en: |-
-      The bus is (very|really|so) slow.
-      Buses are (very|really|so) slow.
+      The bus is (very |really |so |)slow.
+      Buses are (very |really |so |)slow.
 - id: s.u07.18
   node: yue.how-long
   forms:

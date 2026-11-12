@@ -12,7 +12,7 @@ kcs:
 - {id: 'sense:今日', gloss: {en: today}, forms: {yue-Hant-HK/standard: [今日]}}
 - {id: 'sense:禮拜', gloss: {en: 'week; with a number, a day of the week'}, forms: {yue-Hant-HK/standard: [禮拜]}, notes: {en: '禮拜一 Monday … 禮拜六 Saturday, 禮拜日 Sunday, 禮拜幾 which day? Also 星期一 … 星期日.'}}
 - {id: 'sense:聽日', gloss: {en: tomorrow}, forms: {yue-Hant-HK/standard: [聽日]}}
-- {id: 'sense:尋日', gloss: {en: yesterday}, forms: {yue-Hant-HK/standard: [尋日]}, notes: {en: Also typed 琴日 kam4 jat6.}}
+- {id: 'sense:尋日', gloss: {en: yesterday}, forms: {yue-Hant-HK/standard: [尋日]}, notes: {en: 'Also 噚日 kam4 jat6, the more common form (often typed 琴日).'}}
 - {id: 'sense:日', gloss: {en: day (禮拜日 Sunday)}, forms: {yue-Hant-HK/standard: [日]}}
 - {id: 'sense:幾時', gloss: {en: when}, forms: {yue-Hant-HK/standard: [幾時]}}
 - {id: 'sense:朝早', gloss: {en: (in the) morning}, forms: {yue-Hant-HK/standard: [朝早]}}
@@ -25,7 +25,7 @@ kcs:
 - {id: 'sense:放工', gloss: {en: to finish work}, forms: {yue-Hant-HK/standard: [放工]}}
 - {id: 'sense:得閒', gloss: {en: free (not busy)}, forms: {yue-Hant-HK/standard: [得閒]}, notes: {en: '得唔得閒？ ''are you free?'''}}
 - {id: 'sense:忙', gloss: {en: busy}, forms: {yue-Hant-HK/standard: [忙]}}
-- {id: 'sense:對唔住', gloss: {en: sorry}, forms: {yue-Hant-HK/standard: [對唔住]}, notes: {en: 'For a real apology. 唔好意思 is a lighter ''excuse me, sorry''.'}}
+- {id: 'sense:對唔住', gloss: {en: sorry}, forms: {yue-Hant-HK/standard: [對唔住]}, notes: {en: 'The everyday apology; also ''excuse me'' when stopping someone to ask the way. 唔好意思 (literally ''embarrassed'') owns up to a fault or an imposition.'}}
 - {id: 'sense:等', gloss: {en: to wait (for); to meet up}, forms: {yue-Hant-HK/standard: [等]}}
 - {id: 'sense:見', gloss: {en: to see; to meet}, forms: {yue-Hant-HK/standard: [見]}, notes: {en: 聽日見 'see you tomorrow'.}}
 - {id: 'sense:一陣', gloss: {en: a moment; in a moment}, forms: {yue-Hant-HK/standard: [一陣]}, notes: {en: 一陣見 'see you in a bit'.}}
@@ -96,7 +96,7 @@ sentences:
       text: 而家十點兩個字。
       tokens: [{surface: 而家, sense: 而家, readings: {jyutping: ji4 gaa1}}, {surface: 十, sense: 十, readings: {jyutping: sap6}}, {surface: 點, sense: 點, readings: {jyutping: dim2}}, {surface: 兩, sense: 兩, readings: {jyutping: loeng5}}, {surface: 個, sense: 個, readings: {jyutping: go3}}, {surface: 字, sense: 字, readings: {jyutping: zi6}}]
       reverse: |-
-        [(而|依)家]十點(兩個字|十分|二)
+        [(而|依)家]十點(兩個字|十分|二|踏二)
   translations:
     en: |-
       It's ten past (ten|10)[ now].
@@ -127,8 +127,8 @@ sentences:
       reverse: 今日(|天氣)好熱(|呀)
   translations:
     en: |-
-      It's (very|really|so) hot today.
-      Today is (very|really|so) hot.
+      It's (very |really |so |)hot today.
+      Today is (very |really |so |)hot.
 - id: s.u06.8
   node: yue.days
   forms:
@@ -378,18 +378,18 @@ sentences:
     yue-Hant-HK/standard:
       text: 我好忙。
       tokens: [{surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
-      reverse: 我好忙(|呀)
+      reverse: 我好(忙|唔得閒)(|呀)
   translations:
-    en: I('m| am) (very|really|so) busy.
+    en: I('m| am) (very |really |so |)busy.
 - id: s.u06.28
   node: yue.work-day
   forms:
     yue-Hant-HK/standard:
       text: 對唔住，我好忙。
       tokens: [{surface: 對唔住, sense: 對唔住, readings: {jyutping: deoi3 m4 zyu6}}, {surface: 我, sense: 我, readings: {jyutping: ngo5}}, {surface: 好, sense: 好, readings: {jyutping: hou2}}, {surface: 忙, sense: 忙, readings: {jyutping: mong4}}]
-      reverse: (對唔住|唔好意思)我好忙(|呀)
+      reverse: (對唔住|唔好意思)我好(忙|唔得閒)(|呀)
   translations:
-    en: (Sorry|I'm sorry), I('m| am) (very|really|so) busy.
+    en: (Sorry|I'm sorry), I('m| am) (very |really |so |)busy.
 - id: s.u06.29
   node: yue.meet
   persons: {addressee: sg}
@@ -459,6 +459,7 @@ sentences:
     en: |-
       Let's meet in Central at (seven|7)[ o'clock].
       Let's meet at (seven|7)[ o'clock] in Central.
+      Meet (me |us |)in Central at (seven|7)[ o'clock].
 - id: s.u06.35
   node: yue.work-day
   constructions:

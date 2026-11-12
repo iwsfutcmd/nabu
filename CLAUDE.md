@@ -188,9 +188,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Explanations: segments render through <T>; the paragraph takes the support language's direction, never the UI's.
 - Tests use a scripted provider for plumbing only; never present stand-in output as a model's result.
 
-## Phase 9 notes (see docs/adr/0046)
-- Tones are scored on the device: @nabu/core/speech (pitchTrack, scoreTones, gradeSpeech). Expected tones come from
-  pinned surface readings. Never tune templates to synthetic speech; tune on native recordings (evals/tones).
+## Phase 9 notes (see docs/adr/0046, 0093)
+- Tone scoring on the device (@nabu/core/speech: pitchTrack, scoreTones, gradeSpeech) is OFF (`DEVICE_TONE_SCORING`,
+  ADR 0093): not accurate enough on natural speech. Without a speech server, speaking is self-rated (tier 0) in every
+  course. Turn it on only after the native-speaker acceptance (evals/tones) and a native speaker's try in the app.
+- Expected tones come from pinned surface readings. Never tune templates to synthetic speech; tune on native
+  recordings (evals/tones).
 - Tiers 1–2: `cd pipeline && uv run nabu speech serve`, API NABU_SPEECH_URL. Never prompt the recognizer with the
   sentence. Per-orthography tiers live in apps/api/src/speech.ts (SPEECH_SETUP, REVIEW).
 - Recordings are never stored or logged anywhere; speaking answers log method voice with no raw text.
@@ -354,8 +357,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   IPA (`tiberian.piper`, `PIPER_PHONEME_SCHEMES` in nabu/audio/course.py): Khan's vowels and stress, Arabic-bent
   consonants (vav [w], alveolar [r], ṭ ṣ as the voice's t̪ s̪, [jj], no aspiration). After a reading changes,
   `nabu audio generate ../courses/hbo` (speech group; minutes; MIT), `nabu audio align ../courses/hbo` (word
-  timings), then `pnpm bundles`. It is read, not heard: its `facets` leave out listen (no listening exercises;
-  clips still play once a card is answered).
+  timings), then `pnpm bundles`. It is read, not heard: its `facets` leave out listen and its voice is iffy (ADR 0091:
+  no listening exercises; clips still play once a card is answered).
 - Text is written pointed (WLC pointing, no accents, no meteg); `reverse` unpointed. The profile's marks set is
   the points only (what "Show vowel marks" hides and a vocalize card asks for); accents and meteg are removed in
   normalization. Write points and escapes in profiles with Python (chr(92)), never a heredoc.
@@ -379,6 +382,14 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   qatal with or without its pronoun (ברח, הוא ברח, והוא ברח; never וברח), a weqatal's yiqtol, a pronoun before a plain
   qatal/yiqtol; only Codex-attested forms; vav forms only where every English line has its "and".
 
+## Cantonese notes (see docs/adr/0092)
+- courses/yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011); notes in `nabu/notes/yue/`.
+  Its text layer's Chinese characters are wrong (read them from page images) and its Yale shows ā ē ī ō ū as A B C D E.
+  M&Y write Hong Kong speech (你 léih, the n/l merger): compare tones and changed tones, never the initials.
+- Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
+  No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
+- 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
+
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and
   tok-Qaap/sitelen-pona. Qaap is a private-use ISO 15924 code until one is assigned (the proposal asks for Stpn).
@@ -388,6 +399,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Typed Latin is graded as logographs in sitelen pona (the `logographs` step), names against their cartouches. Every
   logograph token pins `readings: {lasina: word}` (ruby, char-read); Latin tokens pin it too: it is what the voices say,
   as eSpeak NG phonemes (nabu/audio/toki_pona.py). After a sentence changes, `nabu audio generate ../courses/tok`.
+  The voice is iffy (ADR 0091): no listening exercises, clips only where the text is shown.
 - The font (sitelen seli kiwen juniko, OFL) is in packages/ui/src/fonts; its README says how it was subset.
 - Toki Pona marks no person: no `persons` tags. English accept sets give I/we, she/he/they/it and the tenses.
 - Toki Pona accept sets (ADR 0085; kinds in ADR 0086): mi or mi mute li for we, ona (mute) li for they, jan mije or
@@ -397,11 +409,20 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - courses/grc is Attic, never Modern Greek: no voice may read its text. Every word token pins `readings: {attic: …}`,
   its spelling with each α, ι, υ outside a diphthong marked long (ᾱ) or short (ᾰ) unless a circumflex or subscript
   settles it; `cd pipeline && uv run nabu attic <reading>` checks one. After a change, `nabu audio generate ../courses/grc`
-  (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap;
-  its clips are CC-BY-NC-SA-4.0.
+  (needs piper-tts in the pipeline venv). The voice is Piper's Greek rapunzelina given IPA (`attic.piper`), a stopgap
+  rated bad (ADR 0091): its clips (CC-BY-NC-SA-4.0) are heard only in the audio check, never shipped.
 - Grave = acute (silent); missing marks are CORRECT_MARKS unless they spell another course word. Write graves and
   enclitic accents as editions do, in every accept-set alternative too. KC forms are lemmas (a grave-only variant
   is a dead glossary entry). Units read public-domain passages (Perseus); take only facts from CGCG and the CGL.
+
+## Voice quality notes (see docs/adr/0091)
+- A course's `audio.quality` says how far learners may rely on its clips. good (default): everywhere. iffy (a stopgap
+  voice: hbo, tok): only where the text is in front of the learner (answered cards, stories, the word list); the
+  manifest's `audioQuality` makes `courseExclusions` drop LISTENING (listen-and-repeat too) wherever plans are made.
+  bad (grc): the compiler ships no clips; they stay in courses/<id>/audio for the audio check.
+- Rate a voice good only when it is a model of that language (apc, es, uz, fa, yue); a voice borrowed from another
+  language is iffy at best. Changing the rating regenerates no clips; run `pnpm bundles` after it.
+- Rule templates out through `courseExclusions`, never by hand in one caller (lessons, practice, placement, gallery).
 
 ## Script tracks notes (see docs/adr/0088)
 - A `script` node with `alphabet: {orthography, words}` teaches an orthography's letters (grapheme KCs, by their forms:
@@ -428,7 +449,7 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - GitHub Pages (pages.yml) publishes Storybook and the web demo on every push to main, under a landing page written
   from the demo's bundles and the UI catalog (apps/web/landing.ts, `landing.*` messages): never hand-edit it; a new
   course appears there by itself.
-- ADRs 0013–0090 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
+- ADRs 0013–0091 are Proposed, awaiting acceptance. docs/gameplan-errata.md lists where the gameplan was wrong.
 - Fresh cloud container setup:
   - `pnpm i`
   - `sudo apt-get install -y libicu-dev pkg-config` (skip `sudo` when root)

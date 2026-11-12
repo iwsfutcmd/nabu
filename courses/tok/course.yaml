@@ -18,6 +18,8 @@ iPlusOne: 2
 # items at random (seeded by their ids, ADR 0078); Toki Pona never says who speaks. The sitelen pona orthography
 # plays the same clips. Rule-based synthesis: the clips are CC0.
 audio:
+  # ADR 0091: a stopgap voice (another language's voice saying Toki Pona): its clips reinforce what is read, and no exercise relies on hearing them.
+  quality: iffy
   voices:
   - {id: lasina-m, provider: espeak-ng, voice: eo, speaker: m, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}
   - {id: lasina-f, provider: espeak-ng, voice: eo+f2, speaker: f, orthography: tok-Latn/standard, reading: lasina, license: CC0-1.0}

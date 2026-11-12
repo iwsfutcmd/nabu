@@ -1,16 +1,13 @@
 /**
- * Phase 9 in the app: a scored speaking exercise through a real recording. Chromium's fake
- * microphone plays fixtures/yue-ngo-hai-hok-saang.wav (我係學生, synthesized with eSpeak NG:
- * synthetic speech, used only to drive the pipeline). The recording is scored on the device (tones),
- * the outcome is logged without any audio or transcript, and the learner's pitch range is kept on
- * this device only. How well tones are heard is the tone evaluation's job, not this test's.
+ * Phase 9 in the app, through a real recording. Chromium's fake microphone plays
+ * fixtures/yue-ngo-hai-hok-saang.wav (我係學生, synthesized with eSpeak NG: synthetic speech, used
+ * only to drive the pipeline). Tones are not scored on the device (ADR 0093) and the e2e API runs no
+ * speech server, so Cantonese speaking is rated by the learner (tier 0), as Persian's is.
  */
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 import { lessonNodes } from "@nabu/core/lesson";
-import { surfaceOf } from "@nabu/core/text";
-import type { LearnerEvent, TaggedText } from "@nabu/schema";
-import { answer, expectRightAndContinue, historyBefore, loadCourse, logOf, pathUrl, planned, seedLog, sessionUrl, waitFor } from "./solver.ts";
+import { answer, expectRightAndContinue, historyBefore, loadCourse, pathUrl, planned, seedLog, sessionUrl, waitFor } from "./solver.ts";
 
 const MIC = join(import.meta.dirname, "fixtures/yue-ngo-hai-hok-saang.wav");
 test.use({
@@ -21,18 +18,21 @@ test.use({
 const NOW = new Date("2026-05-20T09:00:00Z");
 const SEED = 7;
 
-test("a scored speaking exercise: record, scored on the device, logged without audio", async ({ page }, info) => {
+test("Cantonese speaking is rated by the learner: no tones scored on the device (ADR 0093)", async ({ page }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   await page.clock.setFixedTime(NOW);
   const course = loadCourse("yue", "yue-Hant-HK/standard");
-  // The first lesson whose plan has a scored speaking exercise.
-  const found = ["yue.greetings", "yue.copula", "yue.who", "yue.yum-cha"].flatMap((node) => {
+  const plans = ["yue.greetings", "yue.copula", "yue.who", "yue.yum-cha"].map((node) => {
     const history = historyBefore(course, node, NOW);
-    const exercises = planned(course, history, { mode: "lesson", node }, NOW, SEED);
-    const at = exercises.findIndex((e) => e.template === "speak");
-    return at < 0 ? [] : [{ node, history, exercises, at }];
+    return { node, history, exercises: planned(course, history, { mode: "lesson", node }, NOW, SEED) };
+  });
+  // No scored speaking card is planned: speaking is the self-rated card.
+  expect(plans.flatMap((p) => p.exercises).filter((e) => e.template === "speak" || e.template === "listen-speak")).toEqual([]);
+  const found = plans.flatMap((p) => {
+    const at = p.exercises.findIndex((e) => e.template === "speak.tier-0");
+    return at < 0 ? [] : [{ ...p, at }];
   })[0];
-  if (found === undefined) throw new Error("no yue lesson plans a scored speaking exercise");
+  if (found === undefined) throw new Error("no yue lesson plans a speaking exercise");
   if (found.history.length > 0) await seedLog(page, found.history);
   await page.goto(sessionUrl(course, { mode: "lesson", node: found.node }, SEED));
   for (const ex of found.exercises.slice(0, found.at)) {
@@ -43,39 +43,14 @@ test("a scored speaking exercise: record, scored on the device, logged without a
   const ex = found.exercises[found.at];
   if (ex === undefined) throw new Error("no exercise");
   await waitFor(page, ex);
-
-  await page.locator("[data-action=record]").click();
-  await expect(page.locator("[data-recorder=recording]")).toBeVisible();
+  const recorder = page.locator("[data-recorder]");
+  await page.locator("[data-recorder] [data-action=record]").click();
+  await expect(recorder).toHaveAttribute("data-recorder", "recording");
   await page.waitForTimeout(2500); // the fake microphone plays the sentence
-  await page.locator("[data-action=stop]").click();
-  const feedback = page.locator("[data-feedback]");
-  await expect(feedback).toBeVisible({ timeout: 15_000 });
-  await expect(page.locator("[data-speech-result]")).toBeVisible();
-
-  const logged = (await logOf(page, "yue")).find((e): e is Extract<LearnerEvent, { type: "answer_submitted" }> => e.type === "answer_submitted" && e.exercise.id === ex.id);
-  expect(logged).toBeDefined();
-  expect(logged?.input.method).toBe("voice");
-  expect(logged?.input).not.toHaveProperty("raw"); // no transcript, no audio
-  expect(["CORRECT", "PARTIAL", "WRONG"]).toContain(logged?.outcome.kind);
-  // The pitch range stays on this device: three numbers, no audio.
-  const range = await page.evaluate(() => localStorage.getItem("nabu.voice-calibration"));
-  expect(Object.keys(JSON.parse(range ?? "{}") as object).sort()).toEqual(["frames", "mean", "sd"]);
-
-  // Tone scoring can be wrong: unless it said "right", the learner can say they said it right. The
-  // claim names the sentence they were asked to say, never what was heard.
-  const claim = page.locator("[data-action=report]");
-  if (logged?.outcome.kind.startsWith("CORRECT") === true) {
-    await expect(claim).toHaveCount(0);
-  } else {
-    await expect(claim).toHaveText("I said it right");
-    await claim.click();
-    await expect
-      .poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported"))
-      .toMatchObject({ answer: logged?.id, text: surfaceOf((ex as { prompt: TaggedText }).prompt) });
-    // An accept claim leaves `claim` out (accept is the default, ADR 0052).
-    const reported = (await logOf(page, "yue")).find((e): e is Extract<LearnerEvent, { type: "answer_reported" }> => e.type === "answer_reported");
-    expect(reported?.claim ?? "accept").toBe("accept");
-  }
+  await page.locator("[data-recorder] [data-action=stop]").click();
+  await expect(recorder).toHaveAttribute("data-recorder", "done");
+  await expect(page.locator("[data-action=play-recording]")).toBeVisible();
+  await expect(page.locator("[data-speech-result]")).toHaveCount(0);
 });
 
 test("rating yourself: a recording keeps going until it is stopped, then plays back", async ({ page }, info) => {
@@ -110,17 +85,17 @@ test("rating yourself: a recording keeps going until it is stopped, then plays b
   await expect(page.locator("[data-action=play-recording]")).toBeVisible();
 });
 
-test("can't speak now: a scored speaking card can be put off, and speaking stays out for an hour", async ({ page }, info) => {
+test("can't speak now: a speaking card can be put off, and speaking stays out for an hour", async ({ page }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   await page.clock.setFixedTime(NOW);
   const course = loadCourse("yue", "yue-Hant-HK/standard");
   const found = ["yue.greetings", "yue.copula", "yue.who", "yue.yum-cha"].flatMap((node) => {
     const history = historyBefore(course, node, NOW);
     const exercises = planned(course, history, { mode: "lesson", node }, NOW, SEED);
-    const at = exercises.findIndex((e) => e.template === "speak");
+    const at = exercises.findIndex((e) => e.template === "speak.tier-0");
     return at < 0 ? [] : [{ node, history, exercises, at }];
   })[0];
-  if (found === undefined) throw new Error("no yue lesson plans a scored speaking exercise");
+  if (found === undefined) throw new Error("no yue lesson plans a speaking exercise");
   if (found.history.length > 0) await seedLog(page, found.history);
   await page.goto(sessionUrl(course, { mode: "lesson", node: found.node }, SEED));
   for (const ex of found.exercises.slice(0, found.at)) {

@@ -353,6 +353,11 @@ export interface Outcome {
   readonly solution?: TaggedText | undefined;
   /** For typed and tiled answers: how the answer lines up with the closest accepted one (§11.6). */
   readonly alignment?: readonly AlignOp[] | undefined;
+  /**
+   * For typed and tiled answers: false when the accepted answer closest to the response is another
+   * wording than the solution (我嘅書喺邊度呀 for 我嘅書呢), which the alignment then lines up with.
+   */
+  readonly closestIsSolution?: boolean | undefined;
   readonly skipped?: SkipReason | undefined;
   /** Speech: tokens of the prompt said wrong (their KCs are debited, the others credited). */
   readonly offTokens?: readonly number[] | undefined;

@@ -18,7 +18,8 @@ const COURSES = [
   ["yue", "yue-Hant-HK/standard"],
   ["uz", "uz-Latn/standard"],
   ["apc", "apc-Arab/standard"],
-  // hbo has no listening exercises (its facets leave out listen): it is read, not heard.
+  // hbo and tok have no listening exercises (their voices are iffy, ADR 0091; hbo's facets leave out listen too),
+  // and grc ships no clips (its voice is bad).
 ] as const;
 
 for (const [id, orthography] of COURSES) {
