@@ -28,14 +28,19 @@ const unique = <T>(xs: readonly T[]): readonly T[] => [...new Set(xs)];
 
 const firstToken = (text: TaggedText | undefined): Token | undefined => text?.tokens[0];
 
-/** The KCs an exercise asks the learner to produce or pick; the rest of its KCs were given. */
-const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
+/** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
+export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
   if (ex.template === "complete-translation") {
     const token = firstToken(ex.blank);
     return token === undefined ? undefined : kcsOfToken(token);
   }
   if (ex.template === "gap-fill" || ex.template === "story-complete") {
     const token = firstToken(ex.options[ex.answer]);
+    return token === undefined ? undefined : kcsOfToken(token);
+  }
+  // A pronunciation card in context (ADR 0095) asks about one word; the sentence around it is given.
+  if (ex.template === "vocalize" || ex.template === "transcribe") {
+    const token = ex.prompt.tokens[ex.word];
     return token === undefined ? undefined : kcsOfToken(token);
   }
   return undefined;

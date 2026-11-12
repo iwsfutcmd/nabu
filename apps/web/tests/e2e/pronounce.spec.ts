@@ -1,6 +1,7 @@
 /**
- * Writing in a word's pronunciation (ADR 0054), from the debug gallery: a Persian word's vowel
- * marks with the keys under the field, and a Cantonese word's Jyutping, where a wrong tone says so.
+ * Writing in a word's pronunciation (ADR 0054), in its sentence (ADR 0095), from the debug gallery:
+ * a Persian word's vowel marks with the keys under the field, a Lebanese word in Arabizi instead,
+ * and a Cantonese word's Jyutping, where a wrong tone says so.
  */
 import { cardGallery, type Exercise } from "@nabu/core/lesson";
 import { graphemes, surfaceOf } from "@nabu/core/text";
@@ -23,14 +24,17 @@ const cardOf = (id: string, orthography: string, template: string): Exercise => 
   return card;
 };
 
-test("vowel marks: the field starts from the letters, and the keys write the marks in", async ({ page }) => {
+test("vowel marks: the word is marked in its sentence, the field starts from its letters, and the keys write the marks in", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   const ex = cardOf("fa", "fa-Arab/standard", "vocalize");
   if (ex.template !== "vocalize") throw new Error("not a vocalize card");
   await tryCard(page, "#/fa/fa-Arab.standard", "vocalize");
+  // The sentence, with the word asked about marked (and no other word).
+  await expect(page.locator("[data-pronounce-word] [data-emphasis]")).toHaveCount(1);
+  await expect(page.locator("[data-pronounce-word] [data-emphasis]")).toHaveText(surfaceOf(ex.letters));
   const field = page.locator("[data-answer-input]");
-  await expect(field).toHaveValue(surfaceOf(ex.prompt));
+  await expect(field).toHaveValue(surfaceOf(ex.letters));
   await expect(field).toHaveAttribute("dir", "rtl");
   expect(await seriousAxeViolations(page)).toEqual([]);
   // Each mark key has a spoken name, not just a mark on a tatweel.
@@ -59,6 +63,19 @@ test("vowel marks left out: wrong, and the solution shows them even with marks h
   await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
   await expect(page.locator("[data-feedback] [data-note=vocalize-marks]")).toBeVisible();
   await expect(page.locator("[data-solution] [data-nabu-text]")).toHaveText(surfaceOf(ex.vocalized));
+});
+
+test("Arabizi spells the vowels: the word written in it is a vocalization too", async ({ page }) => {
+  const ex = cardOf("apc", "apc-Arab/standard", "vocalize");
+  if (ex.template !== "vocalize" || ex.spelled === undefined) throw new Error("not a vocalize card with an Arabizi spelling");
+  await tryCard(page, "#/apc/apc-Arab.standard", "vocalize");
+  await page.locator("[data-action=vocalize-spelled]").click();
+  const field = page.locator("[data-answer-input]");
+  await expect(field).toHaveValue("");
+  await expect(field).toHaveAttribute("dir", "ltr");
+  await field.fill(surfaceOf(ex.spelled));
+  await page.locator("[data-action=check]").click();
+  await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "CORRECT");
 });
 
 test("Jyutping: no ruby on the word, a wrong tone is named, the reading is the solution", async ({ page }) => {

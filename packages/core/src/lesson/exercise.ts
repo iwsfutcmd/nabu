@@ -168,27 +168,44 @@ export interface ReadingDisambiguation extends Common {
  * An abjad word without its vowel marks, with its meaning; write the marks in (ADR 0054). The
  * field starts from the letters. Grading compares the marks letter by letter (`gradeVowels`).
  */
+/**
+ * A word of a sentence, in context, without its vowel marks: write them in (ADR 0054; in context,
+ * ADR 0095). The sentence says which form the word takes.
+ */
 export interface Vocalize extends Common {
   readonly template: "vocalize";
-  /** The word's letters: what the learner starts from. */
+  /** The sentence without vowel marks, as a reader of the script sees it. */
   readonly prompt: TaggedText;
-  readonly meaning: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** The word's letters: what the field starts from. */
+  readonly letters: TaggedText;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
   /** The word with its vowel marks (the course's vocalization). */
   readonly vocalized: TaggedText;
   /** The orthography's vowel marks, one code point each (the profile's `match.marks`). */
   readonly marks: readonly string[];
   /** Marks that may be written or left out (sukun). */
   readonly optional: readonly string[];
+  /**
+   * The word as another orthography of the course writes it, vowels and all (the profile's
+   * `marks.spelledIn`: Arabizi for Lebanese Arabic): writing it so is a vocalization too.
+   */
+  readonly spelled?: TaggedText | undefined;
 }
 
-/** An ideographic word with its meaning; type its reading (Jyutping) (ADR 0054). */
+/** A Han word of a sentence, in context: type its reading (Jyutping) (ADR 0054; in context, ADR 0095). */
 export interface Transcribe extends Common {
   readonly template: "transcribe";
-  /** The word, without its ruby. */
+  /** The sentence without ruby: the word's reading is the answer. */
   readonly prompt: TaggedText;
-  readonly meaning: TaggedText;
+  /** The word asked about: its token in the prompt. */
+  readonly word: number;
+  /** What the sentence means. */
+  readonly translation: TaggedText;
   readonly scheme: string;
-  /** The pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
+  /** The word's pinned reading, tagged as the scheme (yue-Latn-HK-jyutping). */
   readonly reading: TaggedText;
 }
 

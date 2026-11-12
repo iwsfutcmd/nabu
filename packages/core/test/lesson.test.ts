@@ -29,6 +29,7 @@ import {
   type Response,
   type TemplateId,
 } from "../src/lesson/index.ts";
+import { creditOf } from "../src/learner/credit.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
@@ -295,36 +296,61 @@ describe("the card gallery (debug mode)", () => {
   });
 });
 
-describe("writing in a word's pronunciation (ADR 0054)", () => {
+describe("writing in a word's pronunciation, in its sentence (ADR 0054, 0095)", () => {
   const HARAKAT = /[\u064B-\u0652\u0670]/u;
   const cardOf = (id: string, orthography: string | undefined, template: TemplateId): Exercise | undefined =>
     cardGallery(loadCourse(id, orthography), 3).find((c) => c.template === template)?.exercise;
 
-  it("vowel marks: the letters to start from, the vocalized word to reach (fa, apc-Arab)", () => {
+  it("vowel marks: a sentence without marks, one word to mark from its letters (fa, apc-Arab)", () => {
     for (const [id, orthography] of [["fa", undefined], ["apc", "apc-Arab/standard"]] as const) {
       const course = loadCourse(id, orthography);
       const ex = cardOf(id, orthography, "vocalize");
       if (ex?.template !== "vocalize") throw new Error(`${id}: no vocalize card`);
+      // The sentence is the prompt; the word asked about is one of its tokens.
+      expect(ex.prompt.tokens.filter((t) => t.kind === "word").length).toBeGreaterThan(0);
       expect(HARAKAT.test(surfaceOf(ex.prompt))).toBe(false);
+      expect(ex.prompt.tokens[ex.word]?.surface).toBe(surfaceOf(ex.letters));
       expect(HARAKAT.test(surfaceOf(ex.vocalized))).toBe(true);
       expect(TEMPLATES.vocalize.facet).toBe("read-script");
       const grader = createGrader(course);
       expect(gradeExercise(ex, { tag: "text", text: surfaceOf(ex.vocalized) }, grader).verdict).toBe("CORRECT");
-      const bare = gradeExercise(ex, { tag: "text", text: surfaceOf(ex.prompt) }, grader);
+      const bare = gradeExercise(ex, { tag: "text", text: surfaceOf(ex.letters) }, grader);
       expect([bare.verdict, bare.notes]).toEqual(["WRONG", ["vocalize-marks"]]);
       expect(bare.solution).toBe(ex.vocalized);
-      // The player's field starts from the letters.
+      // Credit goes to the word asked about; the rest of the sentence is given.
+      const credit = creditOf(ex, gradeExercise(ex, { tag: "text", text: surfaceOf(ex.vocalized) }, grader), course.profiles);
+      expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
+      expect(credit.filter((c) => c.status === "given").length).toBe(new Set(ex.kcs).size - credit.filter((c) => c.status === "right").length);
+      // The player's field starts from the word's letters.
       const [presenting] = start("lesson", [ex]);
       const [answering] = step(presenting, { tag: "ready" });
-      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "text", text: surfaceOf(ex.prompt) });
+      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "text", text: surfaceOf(ex.letters) });
     }
   });
 
-  it("a reading: the word without its ruby, its Jyutping to type (yue)", () => {
+  it("vowels written out: Lebanese in Arabizi is a vocalization too, and only the word's own spelling", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const ex = cardOf("apc", "apc-Arab/standard", "vocalize");
+    if (ex?.template !== "vocalize" || ex.spelled === undefined) throw new Error("apc: no vocalize card with an Arabizi spelling");
+    expect(ex.spelled.orthography).toBe("apc-Latn/arabizi");
+    const grader = createGrader(course);
+    const spelled = surfaceOf(ex.spelled);
+    expect(gradeExercise(ex, { tag: "text", text: spelled }, grader)).toMatchObject({ verdict: "CORRECT", solution: ex.spelled });
+    expect(gradeExercise(ex, { tag: "text", text: spelled.toLocaleUpperCase(ex.spelled.lang) }, grader).verdict).toBe("CORRECT");
+    // A slip in Arabizi may be a vowel: wrong, never a typo.
+    const slip = spelled.replace(/[aeiou]/u, (v) => (v === "a" ? "i" : "a"));
+    expect(gradeExercise(ex, { tag: "text", text: slip }, grader).verdict).toBe("WRONG");
+    // fa names no orthography that spells its vowels.
+    const fa = cardOf("fa", undefined, "vocalize");
+    expect(fa?.template === "vocalize" ? fa.spelled : "none").toBeUndefined();
+  });
+
+  it("a reading: the sentence without ruby, the marked word's Jyutping to type (yue)", () => {
     const course = loadCourse("yue");
     const ex = cardOf("yue", undefined, "transcribe");
     if (ex?.template !== "transcribe") throw new Error("yue: no transcribe card");
     expect(ex.prompt.tokens.every((t) => t.ruby === undefined && t.readings === undefined)).toBe(true);
+    expect(ex.prompt.tokens[ex.word]?.kind).toBe("word");
     expect(ex.reading.lang).toBe("yue-Latn-HK-jyutping");
     expect(ex.orthography).toBe("yue-Latn/jyutping");
     const grader = createGrader(course);

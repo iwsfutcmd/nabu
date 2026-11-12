@@ -536,12 +536,11 @@
     "tz": "UTC",
     "type": "exercise_presented",
     "exercise": {
-      "id": "gap-fill:s.5",
-      "template": "gap-fill",
-      "item": "s.5",
+      "id": "vocalize:s.1",
+      "template": "vocalize",
+      "item": "s.1",
       "kcs": [
-        "sense:na",
-        "sense:mamnun"
+        "sense:salam"
       ]
     }
   },
@@ -559,30 +558,26 @@
     "tz": "UTC",
     "type": "answer_submitted",
     "exercise": {
-      "id": "gap-fill:s.5",
-      "template": "gap-fill",
-      "item": "s.5",
+      "id": "vocalize:s.1",
+      "template": "vocalize",
+      "item": "s.1",
       "kcs": [
-        "sense:na",
-        "sense:mamnun"
+        "sense:salam"
       ]
     },
     "attempt": 1,
     "input": {
-      "method": "choice",
-      "latencyMs": 4000
+      "method": "text",
+      "latencyMs": 4000,
+      "raw": "سَلام"
     },
     "outcome": {
       "kind": "CORRECT",
       "notes": [],
       "kcs": [
         {
-          "kc": "sense:na",
+          "kc": "sense:salam",
           "status": "right"
-        },
-        {
-          "kc": "sense:mamnun",
-          "status": "given"
         }
       ]
     }

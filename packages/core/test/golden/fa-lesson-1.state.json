@@ -96,7 +96,7 @@
       "state": 1,
       "last_review": "2026-03-01T08:04:15.000Z"
     },
-    "sense:na|produce": {
+    "sense:salam|read-script|fa-Arab/standard": {
       "due": "2026-03-01T08:14:45.000Z",
       "stability": 2.3065,
       "difficulty": 2.11810397,
@@ -122,40 +122,40 @@
     }
   },
   "performance": {
-    "theta": 1.4184954945264203,
+    "theta": 1.462532060025848,
     "facet": {
       "recognize": -0.2530363382485121,
       "speak": 0.039135233873060477,
-      "listen": 0.07995140703074835,
-      "produce": 0.05330005683065594
+      "listen": 0.07845998908452254,
+      "read-script": 0.09882804027630922
     },
     "template": {
       "match-pairs": -0.01951627115444968,
       "choose-translation": 0.2777140743459301,
       "speak.tier-0": -0.039135233873060477,
       "select-image": -0.004861728252086389,
-      "listen-select": -0.07995140703074835,
-      "gap-fill": -0.05330005683065594
+      "listen-select": -0.07845998908452254,
+      "vocalize": -0.09882804027630922
     },
     "kc": {
       "sense:bale": -0.02386494491863845,
-      "sense:mamnun": 0.06148637464342563,
-      "sense:salam": 0.13679078696980512,
-      "sense:na": -0.035932392849264465,
-      "sense:khodahafez": -0.05765275914008365
+      "sense:mamnun": 0.08826880626815584,
+      "sense:salam": 0.037757560513041195,
+      "sense:na": -0.009296308897282418,
+      "sense:khodahafez": -0.056161341193857836
     },
     "item": {
       "sense:bale": -0.01951627115444968,
-      "s.1": 0.14576271254122264,
+      "s.1": 0.0467160281961016,
       "s.2": -0.019196483028508397,
       "s.3": 0.14340124293610973,
       "s.4": -0.019967545569094847,
-      "s.5": -0.06408167919749036,
+      "s.5": -0.010797819095477635,
       "sense:salam": -0.004861728252086389,
       "sense:mamnun": -0.04542602848788144,
-      "sense:khodahafez": -0.03459351758559873
+      "sense:khodahafez": -0.03310209963937292
     },
-    "w": 1.769131483815265
+    "w": 1.7471473470531356
   },
   "xp": {
     "total": 20,
@@ -200,7 +200,7 @@
       4000,
       4000
     ],
-    "gap-fill": [
+    "vocalize": [
       4000
     ]
   },
@@ -215,7 +215,7 @@
       "sense:khodahafez|speak",
       "sense:bale|speak",
       "sense:mamnun|listen",
-      "sense:na|produce",
+      "sense:salam|read-script|fa-Arab/standard",
       "sense:khodahafez|listen"
     ]
   }

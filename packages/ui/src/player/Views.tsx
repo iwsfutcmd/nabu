@@ -33,7 +33,7 @@ import type {
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
 import { calibrate, CANTONESE, DEVICE_TONE_SCORING, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
-import { textOfSurface } from "@nabu/core/text";
+import { surfaceOf, textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
@@ -500,35 +500,60 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
 
 // ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
 
-/** A word and its meaning, above the field where its pronunciation is written. */
-const WordWithMeaning = ({ word, meaning, ruby }: { word: TaggedText; meaning: TaggedText; ruby: false | undefined }): JSX.Element => {
+/** The sentence with the word asked about marked, and what the sentence means (ADR 0095). */
+const WordInSentence = ({ sentence, word, translation, ruby }: { sentence: TaggedText; word: number; translation: TaggedText; ruby: false | undefined }): JSX.Element => {
   const t = useTranslator();
   return (
     <>
-      <div className={styles.prompt} role="group" aria-label={t.format("player.word.label")} data-ink-container="prompt" data-pronounce-word="">
-        <T as="p" text={word} marks="show" {...(ruby === false ? { ruby: false } : {})} />
+      <div className={styles.prompt} role="group" aria-label={t.format("player.word-in-sentence.label")} data-ink-container="prompt" data-pronounce-word="">
+        <T as="p" text={sentence} emphasis={[word]} marks="show" {...(ruby === false ? { ruby: false } : {})} />
       </div>
       <div className={styles.hint} role="group" aria-label={t.format("player.meaning.label")} data-pronounce-meaning="">
-        <T as="p" text={meaning} />
+        <T as="p" text={translation} />
       </div>
     </>
   );
 };
 
-/** Vowel marks: the field starts from the word's letters; the keys under it add the marks. */
+/** An orthography's name in the UI language (orthography.<id> messages), else its id. */
+const orthographyLabel = (t: ReturnType<typeof useTranslator>, orthography: string): string => {
+  const key = `orthography.${orthography.replace("/", ".")}`;
+  return t.has(key) ? t.format(key) : orthography;
+};
+
+/**
+ * Vowel marks: the field starts from the word's letters; the keys under it add the marks. Where an
+ * orthography of the course writes the vowels (Arabizi), the learner may write the word in it instead.
+ */
 export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
-  const { ex } = props;
+  const { ex, dispatch, locked } = props;
   const t = useTranslator();
+  const [spelling, setSpelling] = useState(false);
+  const spelled = ex.spelled;
+  const name = spelled === undefined ? "" : orthographyLabel(t, spelled.orthography);
+  const switchTo = (on: boolean): void => {
+    setSpelling(on);
+    dispatch({ tag: "input", draft: { tag: "text", text: on ? "" : surfaceOf(ex.letters) } });
+  };
   return (
     <div className={styles.body}>
-      <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={undefined} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} />
       <AnswerAudio props={props} />
-      <TypedAnswer props={props} label={t.format("player.vocalize.label")} answer={ex.vocalized} keys={ex.marks} />
+      {spelling && spelled !== undefined ? (
+        <TypedAnswer props={props} label={t.format("player.vocalize.spelled-label", { orthography: name })} answer={spelled} keys={[]} />
+      ) : (
+        <TypedAnswer props={props} label={t.format("player.vocalize.label")} answer={ex.vocalized} keys={ex.marks} />
+      )}
+      {spelled !== undefined && !locked && (
+        <button type="button" className={styles.secondary} onClick={() => switchTo(!spelling)} aria-pressed={spelling} data-action="vocalize-spelled">
+          {spelling ? t.format("player.vocalize.use-marks") : t.format("player.vocalize.use-spelled", { orthography: name })}
+        </button>
+      )}
     </div>
   );
 };
 
-/** A reading: the word without its ruby (the ruby is the answer), typed in the scheme's letters. */
+/** A reading: the sentence without ruby (the word's ruby is the answer), typed in the scheme's letters. */
 export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const { ex } = props;
   const t = useTranslator();
@@ -536,7 +561,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const label: MessageId = t.has(scheme) ? scheme : "player.transcribe.label";
   return (
     <div className={styles.body}>
-      <WordWithMeaning word={ex.prompt} meaning={ex.meaning} ruby={false} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} />
       <AnswerAudio props={props} />
       <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} />
     </div>

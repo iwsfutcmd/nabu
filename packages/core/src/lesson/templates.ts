@@ -756,17 +756,54 @@ export const makeMinimalPair = (ctx: MakeContext, kc: BundleKc): MinimalPair | u
 // ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
 
 /** A word KC with its meaning: its first form in the course's orthography and its gloss. */
-const wordWithMeaning = (ctx: MakeContext, kc: BundleKc): { readonly word: TaggedText; readonly meaning: TaggedText } | undefined => {
-  const word = writtenForm(ctx, kc);
-  const meaning = kc.gloss?.[ctx.course.supportKey];
-  return kc.kind === "sense" && word !== undefined && meaning !== undefined ? { word, meaning } : undefined;
+// ------------------------------------------------------------------------------------ pronunciation in context (ADR 0054, 0095)
+
+/** The KCs a token carries: its sense and its morphs. */
+const tokenKcs = (t: Token): readonly string[] => [...(t.sense === undefined ? [] : [`sense:${t.sense}`]), ...(t.morphs ?? []).map((m) => m.kc as string)];
+
+/**
+ * The word of a sentence a pronunciation card asks about, among those that qualify: the first the
+ * lesson introduces, else the sentence's last. Words `preferred` says yes to come first in each.
+ */
+const pronouncedWord = (ctx: MakeContext, text: TaggedText, qualifies: (t: Token, index: number) => boolean, preferred: (index: number) => boolean = () => true): number | undefined => {
+  const all = text.tokens.flatMap((t, i) => (t.kind === "word" && tokenKcs(t).length > 0 && qualifies(t, i) ? [i] : []));
+  const pick = (pool: readonly number[]): number | undefined => {
+    const fresh = pool.find((i) => tokenKcs(text.tokens[i] as Token).some((k) => ctx.introduced.includes(k as KcId)));
+    return fresh ?? pool.at(-1);
+  };
+  return pick(all.filter(preferred)) ?? pick(all);
 };
 
-/** An abjad word without its vowel marks: write them in. Only words the vocalization marks. */
-export const makeVocalize = (ctx: MakeContext, kc: BundleKc): Vocalize | undefined => {
-  const marks = profileOf(ctx.course, ctx.course.orthography).marks;
-  const found = wordWithMeaning(ctx, kc);
-  if (marks === undefined || found === undefined || !hasVowelMarks(marks, surfaceOf(found.word))) return undefined;
+/**
+ * The same word in another orthography of the sentence: the token with the same sense and morphs,
+ * at the same occurrence. Undefined where the orthographies split the sentence into other words.
+ */
+const twinOf = (s: BundleSentence, text: TaggedText, index: number, orthography: string): TaggedText | undefined => {
+  const other = s.forms[orthography]?.text;
+  const target = text.tokens[index];
+  if (other === undefined || target === undefined) return undefined;
+  const key = (t: Token): string => JSON.stringify(tokenKcs(t));
+  const occurrence = text.tokens.slice(0, index).filter((t) => t.kind === "word" && key(t) === key(target)).length;
+  const twin = other.tokens.filter((t) => t.kind === "word" && key(t) === key(target))[occurrence];
+  return twin === undefined ? undefined : single(other, twin);
+};
+
+/**
+ * An abjad word in its sentence, the sentence without vowel marks: write the word's marks in.
+ * Only words the vocalization marks. Where the profile names an orthography of the course that
+ * spells the vowels (`marks.spelledIn`: Arabizi for Lebanese), the word as that orthography writes
+ * it is accepted too, and words it can be found for are asked first.
+ */
+export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | undefined => {
+  const profile = profileOf(ctx.course, ctx.course.orthography);
+  const marks = profile.marks;
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (marks === undefined || form === undefined || translation === undefined) return undefined;
+  const spelledIn = (profile.source.match?.marks?.spelledIn ?? []).filter((o) => o !== ctx.course.orthography);
+  const spelledAt = (i: number): TaggedText | undefined => spelledIn.map((o) => twinOf(s, form.text, i, o)).find((t) => t !== undefined);
+  const word = pronouncedWord(ctx, form.text, (t) => hasVowelMarks(marks, t.surface), (i) => spelledAt(i) !== undefined);
+  if (word === undefined) return undefined;
   const bare = (t: Token): Token => {
     const { ruby: _ruby, ...rest } = t;
     return {
@@ -775,39 +812,61 @@ export const makeVocalize = (ctx: MakeContext, kc: BundleKc): Vocalize | undefin
       ...(t.morphs === undefined ? {} : { morphs: t.morphs.map((m) => ({ ...m, surface: withoutMarks(marks, m.surface) })) }),
     };
   };
+  const token = form.text.tokens[word] as Token;
+  const spelled = spelledAt(word);
   return {
     template: "vocalize",
-    id: id("vocalize", kc.id),
-    item: kc.id,
-    kcs: [kc.id],
+    id: id("vocalize", s.id),
+    item: s.id,
+    kcs: s.kcs,
     orthography: ctx.course.orthography,
-    prompt: { ...found.word, tokens: found.word.tokens.map(bare) },
-    meaning: found.meaning,
-    vocalized: found.word,
+    prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
+    word,
+    letters: single(form.text, bare(token)),
+    translation: translation.text,
+    vocalized: single(form.text, token),
     marks: [...marks.set],
     optional: [...marks.optional],
+    ...(spelled === undefined ? {} : { spelled }),
   };
 };
 
-/** An ideographic word: type its reading. Only where every word of it has a pinned reading. */
-export const makeTranscribe = (ctx: MakeContext, kc: BundleKc): Transcribe | undefined => {
+/** A Han word in its sentence, the sentence without ruby: type the word's reading. Only words with a pinned reading. */
+export const makeTranscribe = (ctx: MakeContext, s: BundleSentence): Transcribe | undefined => {
   const scheme = rubySchemeOf(ctx);
-  const found = wordWithMeaning(ctx, kc);
-  if (scheme === undefined || !transcribable(scheme) || found === undefined) return undefined;
-  const readings = found.word.tokens.filter((t) => t.kind === "word").map((t) => t.readings?.[scheme]);
-  if (readings.length === 0 || readings.some((r) => r === undefined)) return undefined;
-  const reading = readingText(scheme, readings.join(" "));
+  const form = formOf(ctx.course, s);
+  const translation = translationOf(ctx.course, s);
+  if (scheme === undefined || !transcribable(scheme) || form === undefined || translation === undefined) return undefined;
+  const word = pronouncedWord(ctx, form.text, (t) => t.readings?.[scheme] !== undefined);
+  if (word === undefined) return undefined;
+  const reading = readingText(scheme, (form.text.tokens[word] as Token).readings?.[scheme] as string);
   return {
     template: "transcribe",
-    id: id("transcribe", kc.id),
-    item: kc.id,
-    kcs: [kc.id],
+    id: id("transcribe", s.id),
+    item: s.id,
+    kcs: s.kcs,
     orthography: reading.orthography,
-    prompt: { ...found.word, tokens: found.word.tokens.map(stripRuby) },
-    meaning: found.meaning,
+    prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
+    word,
+    translation: translation.text,
     scheme,
     reading,
   };
+};
+
+/** The script subtag of a language tag (apc-Latn-LB → Latn). */
+const scriptSubtag = (lang: string): string | undefined => /-([A-Z][a-z]{3})(?:-|$)/u.exec(lang)?.[1];
+
+/**
+ * Whether an answer is written in `spelled`'s script rather than the word's own: some letter of
+ * that script and none of the word's (Latin letters for an Arabic word: Arabizi).
+ */
+const writtenIn = (spelled: TaggedText, word: TaggedText, answer: string): boolean => {
+  const theirs = scriptSubtag(spelled.lang);
+  const ours = scriptSubtag(word.lang);
+  if (theirs === undefined || ours === undefined || theirs === ours) return false;
+  const letter = (script: string): RegExp => new RegExp(`\\p{Script_Extensions=${script}}`, "u");
+  return letter(theirs).test(answer) && !letter(ours).test(answer);
 };
 
 /** KC templates that need a clip of the word. */
@@ -818,8 +877,6 @@ export const KC_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext
   "select-image": makeSelectImage,
   "listen-select": makeListenSelect,
   "minimal-pair": makeMinimalPair,
-  vocalize: makeVocalize,
-  transcribe: makeTranscribe,
 };
 
 export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeContext, s: BundleSentence) => Exercise | undefined>>> = {
@@ -831,6 +888,8 @@ export const SENTENCE_TEMPLATES: Readonly<Partial<Record<TemplateId, (ctx: MakeC
   "gap-fill": makeGapFill,
   "char-read": makeCharRead,
   "reading-disambiguation": makeReadingDisambiguation,
+  vocalize: makeVocalize,
+  transcribe: makeTranscribe,
   "speak.tier-0": makeSpeak,
   speak: makeSpeakScored,
   "listen-speak": makeListenSpeak,
@@ -900,6 +959,13 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
     case "vocalize": {
       if (response.tag !== "text") return mismatch(ex, response);
+      // Written as an orthography that spells the vowels (Arabizi): the word as it writes it, exactly
+      // as the profile compares letters, since a slip there may be a vowel.
+      if (ex.spelled !== undefined && writtenIn(ex.spelled, ex.vocalized, response.text)) {
+        const verdict = grader.grade(ex.spelled.orthography, literalAccept(surfaceOf(ex.spelled)), response.text).verdict;
+        const right = verdict === "CORRECT" || verdict === "CORRECT_ALT" || verdict === "CORRECT_VARIANT" || verdict === "CORRECT_MARKS";
+        return { verdict: right ? "CORRECT" : "WRONG", notes: [], solution: ex.spelled };
+      }
       const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
       return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
     }

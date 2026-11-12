@@ -240,11 +240,11 @@ export const buildLesson = (
         .find((e) => e !== undefined),
     );
 
-  // A new word's pronunciation as its script leaves it out (ADR 0054): its vowel marks (abjads)
-  // or its reading (Han).
+  // A word's pronunciation as its script leaves it out (ADR 0054), in its sentence (ADR 0095): its
+  // vowel marks (abjads) or its reading (Han); a word the lesson introduces where one can be asked.
   for (const template of ["vocalize", "transcribe"] as const) {
-    const make = KC_TEMPLATES[template];
-    if (allowed(template) && make !== undefined) push(fresh.map((kc) => make(ctx, kc)).find((e) => e !== undefined));
+    const make = SENTENCE_TEMPLATES[template];
+    if (allowed(template) && make !== undefined) push(sentences.map((s) => make(ctx, s)).find((e) => e !== undefined));
   }
 
   return out.slice(0, options.maxExercises ?? 14);

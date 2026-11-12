@@ -2906,6 +2906,12 @@ class Marks(BaseModel):
             description="The note for an answer whose marks spell another word (with `distinguishes`)."
         ),
     ] = None
+    spelledIn: Annotated[
+        list[OrthographyId] | None,
+        Field(
+            description="Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it."
+        ),
+    ] = None
 
 
 class Zwnj(BaseModel):

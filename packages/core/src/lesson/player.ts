@@ -126,7 +126,7 @@ export const emptyDraft = (ex: Exercise): Draft => {
       return { tag: "tiles", order: [] };
     case "text":
       // Vowel marks are written into the word's letters (ADR 0054).
-      return { tag: "text", text: ex.template === "vocalize" ? surfaceOf(ex.prompt) : "" };
+      return { tag: "text", text: ex.template === "vocalize" ? surfaceOf(ex.letters) : "" };
     case "pairs":
       return { tag: "pairs", matched: [], mistakes: 0 };
     case "voice":

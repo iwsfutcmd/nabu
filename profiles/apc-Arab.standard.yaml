@@ -14,8 +14,9 @@ normalize:
   - whitespace: collapse
 match:
   case: none
-  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore, optional: "[\u0652]" }
+  marks: { set: "[\u064B-\u0652\u0670]", policy: ignore, optional: "[\u0652]", spelledIn: [apc-Latn/arabizi] }
   # REVIEW: sukun is optional when a learner writes the vowel marks (ADR 0054); the drafts disagree on it.
+  # Arabizi writes the vowels these marks leave out: a vocalize card takes the word in Arabizi too (ADR 0095).
   equivalences:
     - { id: persian-keyboard, map: { "\u06A9": "\u0643", "\u06CC": "\u064A" }, policy: accept }
     - { id: hamza-seat, map: { "\u0623": "\u0627", "\u0625": "\u0627", "\u0622": "\u0627", "\u0671": "\u0627" }, policy: accept }      # REVIEW: silent for an unstandardized variety

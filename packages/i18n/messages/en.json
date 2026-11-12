@@ -1642,17 +1642,17 @@
       "message": "Which tone do you hear?",
       "description": "Instruction: hear one syllable and pick its tone."
     },
-    "player.instruction.transcribe": {
-      "message": "Write how this word is read",
-      "description": "Instruction: type the reading of a Chinese-character word in Latin letters (e.g. Jyutping)."
+    "player.instruction.transcribe-word": {
+      "message": "Write how the marked word is read",
+      "description": "Instruction above a transcribe exercise: a sentence without readings, one word marked; the learner types its reading (ADR 0095)."
     },
     "player.instruction.translate-into-support": {
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
     },
-    "player.instruction.vocalize": {
-      "message": "Add the vowel marks",
-      "description": "Instruction: write the short-vowel marks (harakat) into an Arabic-script word."
+    "player.instruction.vocalize-word": {
+      "message": "Add the vowel marks to the marked word",
+      "description": "Instruction above a vocalize exercise: a sentence without vowel marks, one word marked (ADR 0095)."
     },
     "player.instruction.word-read": {
       "message": "How is this word written in Latin letters?",
@@ -1922,9 +1922,21 @@
       "message": "The word with its vowel marks",
       "description": "Label of the field holding a word's letters, where the learner adds vowel marks."
     },
-    "player.word.label": {
-      "message": "Word",
-      "description": "Accessible label of the word an exercise asks about."
+    "player.vocalize.spelled-label": {
+      "message": "The marked word in {$orthography}",
+      "description": "Label of the field where the learner writes the marked word in another orthography that spells its vowels. $orthography is that orthography's name (orthography.*)."
+    },
+    "player.vocalize.use-marks": {
+      "message": "Write the vowel marks instead",
+      "description": "Button on a vocalize exercise, back from writing the word in another orthography to adding its vowel marks."
+    },
+    "player.vocalize.use-spelled": {
+      "message": "Write it in {$orthography} instead",
+      "description": "Button on a vocalize exercise: write the marked word in another orthography that spells its vowels. $orthography is that orthography's name (orthography.*), e.g. Arabizi."
+    },
+    "player.word-in-sentence.label": {
+      "message": "Sentence, with the word to answer marked",
+      "description": "Accessible name of the sentence on a vocalize or transcribe exercise; the word asked about is marked in it."
     },
     "player.wordbank.answer-label": {
       "message": "Your answer",

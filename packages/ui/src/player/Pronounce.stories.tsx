@@ -24,7 +24,7 @@ const SEED = 7;
 
 /** A wrong answer: the letters with no marks, or the reading with its last tone changed. */
 const wrongAnswer = (ex: Exercise): string => {
-  if (ex.template === "vocalize") return surfaceOf(ex.prompt);
+  if (ex.template === "vocalize") return surfaceOf(ex.letters);
   if (ex.template === "transcribe") return surfaceOf(ex.reading).replace(/([1-6])$/u, (d) => String((Number(d) % 6) + 1));
   return "?";
 };

@@ -19,7 +19,7 @@ import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
-import { facetOf } from "./credit.ts";
+import { askedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
@@ -87,7 +87,13 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
   "minimal-pair": 1,
   "letter-pairs": 1,
   "letter-read": 4,
+  // A word's pronunciation in its sentence (ADR 0054, 0095): one card of each a session.
+  vocalize: 1,
+  transcribe: 1,
 };
+
+/** Pronunciation cards (ADR 0054): a word's vowel marks or its reading. */
+const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "transcribe"]);
 
 // On a script track (ADR 0088), a new letter is read before it is written.
 const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "letter-read", "letter-pairs", "word-read"]);
@@ -250,8 +256,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
     if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
-    // A new KC is recognized before it is produced or read.
-    return c.ex.kcs.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
+    // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
+    // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
+    const gated = PRONOUNCE.has(c.ex.template) ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.
   const score = (c: Candidate): number => {
@@ -292,6 +300,19 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
       presented.add(kc);
       covered.add(key(kc, facet));
       if (RECOGNITION.has(pick.ex.template) && targets.has(kc)) recognized.add(kc);
+    }
+  }
+
+  // A word's pronunciation as its script leaves it out, in its sentence (ADR 0054, 0095): one card a
+  // lesson where the course can make one (a hard card, which the calibration alone rarely picks). When
+  // the plan is full, it takes the place of the last card no new word depends on.
+  if (request.mode === "lesson" && !chosen.some((c) => PRONOUNCE.has(c.ex.template))) {
+    const pick = remaining.filter((c) => PRONOUNCE.has(c.ex.template) && allowed(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
+    if (pick !== undefined) {
+      const presentedBy = (kc: KcId, except: Candidate): boolean => chosen.some((c) => c !== except && c.ex.kcs.includes(kc));
+      const spare = [...chosen].reverse().find((c) => c.ex.kcs.every((kc) => !targets.has(kc) || presentedBy(kc, c)));
+      if (chosen.length < size) chosen.push(pick);
+      else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
     }
   }
 

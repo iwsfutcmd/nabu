@@ -28,6 +28,11 @@ export interface TProps {
   readonly marks?: "show" | "hide";
   /** Token indexes to mark (the parts of an answer that differ, §11.6). */
   readonly highlight?: readonly number[];
+  /**
+   * Token indexes a card asks about (the word whose vowel marks or reading to write, ADR 0095):
+   * marked in the focus style, never the style of a wrong answer, and as a <mark> for screen readers.
+   */
+  readonly emphasis?: readonly number[];
   /** A ruby segment (one Han character) to emphasize: reading-disambiguation. */
   readonly focus?: { readonly token: number; readonly segment: number };
   readonly className?: string;
@@ -60,12 +65,13 @@ interface TokenViewProps {
   readonly rubyLang: string | undefined;
   readonly strip: RegExp | undefined;
   readonly highlighted: boolean;
+  readonly emphasized: boolean;
   readonly focus: number | undefined;
   readonly onPress: ((index: number) => void) | undefined;
   readonly pressed: boolean;
 }
 
-const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
+const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, emphasized, focus, onPress, pressed }: TokenViewProps): JSX.Element => {
   const show = (text: string): string => (strip === undefined ? text : text.replace(strip, ""));
   const segments = ruby === false ? undefined : token.ruby?.[ruby];
   // A focused character needs the segment bases even when no reading layer is shown.
@@ -96,6 +102,7 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, focus, on
         data-index={index}
         data-tcy={tcy || undefined}
         data-highlight={highlighted || undefined}
+        data-emphasis={emphasized || undefined}
         aria-pressed={pressed}
         onClick={() => onPress(index)}
       >
@@ -103,14 +110,15 @@ const TokenView = ({ token, index, ruby, rubyLang, strip, highlighted, focus, on
       </button>
     );
   }
+  const Tag = emphasized ? "mark" : "span";
   return (
-    <span className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined} data-highlight={highlighted || undefined}>
+    <Tag className={styles.token} data-kind={token.kind} data-index={index} data-tcy={tcy || undefined} data-highlight={highlighted || undefined} data-emphasis={emphasized || undefined}>
       {content}
-    </span>
+    </Tag>
   );
 };
 
-export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
+export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highlight, emphasis, focus, className, id, onTokenPress, pressed }: TProps): JSX.Element => {
   const profile = useOrthography(text.orthography);
   const target = useIsTarget(text.orthography);
   const markSet = marks === "hide" ? profile?.match?.marks?.set : undefined;
@@ -145,6 +153,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
           rubyLang={rubyLang}
           strip={strip}
           highlighted={highlight?.includes(index) ?? false}
+          emphasized={emphasis?.includes(index) ?? false}
           focus={focus?.token === index ? focus.segment : undefined}
           onPress={onTokenPress}
           pressed={pressed === index}

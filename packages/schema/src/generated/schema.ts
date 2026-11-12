@@ -2880,6 +2880,10 @@ export interface MatchPolicy {
      */
     readonly distinguishes?: boolean;
     readonly wordNote?: NoteId1;
+    /**
+     * Orthographies that write out the vowels these marks leave unwritten (ADR 0095): Arabizi for Lebanese Arabic. Where a course has one of them, a vocalize card also accepts the word as that orthography writes it.
+     */
+    readonly spelledIn?: readonly OrthographyId[];
   };
   readonly zwnj?: {
     /**

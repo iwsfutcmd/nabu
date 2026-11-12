@@ -239,9 +239,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   at compile time. A token pins its own with `vocalized` (needed for `ambiguous` words). New word: add an entry.
 - Compare letters, never marks: grading, credit, glossary, corrections apply. Voices read `Compiled.written`
   (the source's surfaces), so a vocalization never changes clips.
-- Pronunciation cards (ADR 0054): `vocalize` (abjads, needs vocalized KC forms) and `transcribe` (a ruby scheme
-  with a syllable shape in core match/pronounce.ts: only Jyutping). A new scheme needs a shape, a READING_TAGS
-  entry and conformance vectors (conformance/pronounce.json). Optional marks: the profile's `match.marks.optional`.
+- Pronunciation cards (ADR 0054, in context since ADR 0095): `vocalize` (abjads) and `transcribe` (a ruby scheme
+  with a syllable shape in core match/pronounce.ts: only Jyutping) are sentence templates asking about one word
+  (`word`, marked with `<T emphasis>`); only that word is credited; a lesson plans one where it can. A new scheme
+  needs a shape, a READING_TAGS entry and conformance vectors (conformance/pronounce.json). Optional marks: the
+  profile's `match.marks.optional`; orthographies that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
 
 ## Report intake notes (see docs/adr/0055, docs/reports.md)
 - Reports (sentence_reported, answer_reported) also go to the deployment's Firestore intake (`reports.json` beside
