@@ -1,4 +1,5 @@
-"""The generated character tables (`pnpm tables`, nabu.tables): what the grader and the reading cards rely on."""
+"""The generated character tables (`pnpm tables`, nabu.tables): what the grader and the
+reading cards rely on."""
 
 import json
 import re
