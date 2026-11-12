@@ -15,6 +15,7 @@ import {
   emptyLearnerState,
   learnerEventOf,
   plan,
+  plannable,
   progressResetOf,
   pathNodes,
   pathOf,
@@ -286,6 +287,14 @@ describe("planner constraints", () => {
     const node = lessonNodes(fa)[1]?.node.id as string;
     const p = plan(fa, emptyLearnerState(), { mode: "lesson", node }, { now: "2026-03-01T08:00:00.000Z", seed: 2, exclude: new Set(["speak.tier-0"]) });
     expect(p.exercises.some((e) => e.template === "speak.tier-0")).toBe(false);
+  });
+
+  it("says which requests the course can plan: an old link may name a node it no longer has", () => {
+    const node = lessonNodes(fa)[0]?.node.id as string;
+    expect(plannable(fa, { mode: "lesson", node })).toBe(true);
+    expect(plannable(fa, { mode: "lesson", node: "fa.no-such-node" })).toBe(false);
+    expect(() => plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.no-such-node" }, { now: "2026-03-01T08:00:00.000Z", seed: 2 })).toThrow();
+    expect(plannable(fa, { mode: "review" })).toBe(true);
   });
 
   it("events built from the player validate as learner events", () => {

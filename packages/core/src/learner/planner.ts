@@ -166,6 +166,13 @@ const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], k
   return out;
 };
 
+/**
+ * Whether the course can plan this request. A lesson request names one of the course's lesson or
+ * script nodes; an old link may name one a newer course no longer has, which `plan` refuses.
+ */
+export const plannable = (course: CourseView, request: SessionRequest): boolean =>
+  request.mode !== "lesson" || scriptNodes(course).some((n) => n.node.id === request.node) || lessonNodes(course).some((n) => n.node.id === request.node);
+
 export const plan = (course: CourseView, state: LearnerState, request: SessionRequest, options: PlanOptions): SessionPlan => {
   const rng = seededRng(options.seed);
   const target = options.targetSuccess ?? 0.85;

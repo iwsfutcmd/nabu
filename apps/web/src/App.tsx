@@ -9,8 +9,8 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, dueFacets, pathNodes, pathOf, plan, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type TemplateId } from "@nabu/core/lesson";
+import { applyEvents, dueFacets, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -587,11 +587,49 @@ interface SessionProps extends GameProps {
   readonly corrections: ReadonlyMap<string, SentenceReported>;
 }
 
+/** A course or the course list could not be loaded: what happened, Try again, and (in a course) a way home. */
+const LoadFailed = ({ message, home, onRetry }: { message: "app.error.index" | "app.error.load" | "app.offline.unavailable"; home: boolean; onRetry: () => void }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <main className={styles.page}>
+      <p role="alert" data-load-error="">
+        {t.format(message)}
+      </p>
+      <p className={styles.links}>
+        <button type="button" className={styles.link} onClick={onRetry} data-action="retry">
+          {t.format("app.error.retry")}
+        </button>
+        {home && (
+          <a className={styles.back} href={href({ tag: "home" })}>
+            {t.format("app.lessons.back")}
+          </a>
+        )}
+      </p>
+    </main>
+  );
+};
+
+/** A link to a lesson or story the course no longer has (an old bookmark, a tab restored after an update). */
+const Missing = ({ course }: { course: CourseView }): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <main className={styles.page}>
+      <p role="alert" data-missing-node="">
+        {t.format("app.session.missing")}
+      </p>
+      <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+        {t.format("app.practice.back")}
+      </a>
+    </main>
+  );
+};
+
 /** Plans one session from the learner's state when it opens (§9.4), then plays it. */
 const Session = (props: SessionProps): JSX.Element => {
   const { loaded, request, game, gameConfig } = props;
   // Decided once, when the session opens: answering inside it never closes the gate on it.
   const [allowed] = useState(() => sessionAllowed(game, request.mode, gameConfig));
+  if (!plannable(loaded.course, request)) return <Missing course={loaded.course} />;
   return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
 };
 
@@ -678,6 +716,7 @@ interface StorySessionProps extends GameProps {
 /** Reads one story (Phase 6): a session of mode story at its node. */
 const StorySession = (props: StorySessionProps): JSX.Element => {
   const [allowed] = useState(() => sessionAllowed(props.game, "story", props.gameConfig));
+  if (storyAt(props.loaded.course, props.node) === undefined) return <Missing course={props.loaded.course} />;
   return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
 };
 
@@ -774,6 +813,9 @@ export const App = (): JSX.Element => {
   const t = useTranslator();
   const route = useRoute();
   const [index, setIndex] = useState<readonly CourseIndexEntry[] | null>(null);
+  const [indexFailed, setIndexFailed] = useState(false);
+  // Loads that failed are tried again when the connection comes back, or when the learner asks.
+  const [retry, setRetry] = useState(0);
   const [{ store, sync }, setDevice] = useState<{ store: EventStore | null; sync: Sync | null }>({ store: null, sync: null });
   // Events pulled from another device: replay the open course.
   const pulled = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().pulled ?? 0);
@@ -785,7 +827,8 @@ export const App = (): JSX.Element => {
   const [recorded, setRecorded] = useState(0);
   const version = `${recorded}:${pulled}:${href(route)}`;
   const game = useGame(store, gameConfig, version);
-  const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string } | null>(null);
+  // A failed load remembers the retry it was, so it is tried again only on the next one (never in a loop).
+  const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
   // The route's course, if it has one (home and preferences have none).
   const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
   const courseKey = inCourse === null ? null : `${inCourse.course}:${inCourse.orthography}`;
@@ -800,7 +843,14 @@ export const App = (): JSX.Element => {
   const corrections = useCorrections(store, courseId, version);
 
   useEffect(() => {
-    void fetchCourseIndex(BUNDLES).then(setIndex);
+    if (online) setRetry((n) => n + 1);
+  }, [online]);
+  useEffect(() => {
+    if (index !== null) return;
+    setIndexFailed(false);
+    fetchCourseIndex(BUNDLES).then(setIndex, () => setIndexFailed(true));
+  }, [index, retry]);
+  useEffect(() => {
     void gameRules.then(setGameConfig);
     void ready.then(setDevice);
     if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
@@ -815,12 +865,14 @@ export const App = (): JSX.Element => {
     void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
   }, [revised, store, courseId]);
   useEffect(() => {
-    if (inCourse === null || courseKey === null || loaded?.key === courseKey) return;
+    if (inCourse === null || courseKey === null) return;
+    if (loaded?.key === courseKey && !("error" in loaded && loaded.attempt < retry)) return;
+    const attempt = retry;
     fetchCourse(BUNDLES, inCourse.course, inCourse.orthography).then(
       (value) => setLoaded({ key: courseKey, value }),
-      (e: unknown) => setLoaded({ key: courseKey, error: String(e) }),
+      (e: unknown) => setLoaded({ key: courseKey, error: String(e), attempt }),
     );
-  }, [inCourse, courseKey, loaded]);
+  }, [inCourse, courseKey, loaded, retry]);
   useEffect(() => {
     if (store === null || courseId === null || log?.course === courseId) return;
     void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
@@ -865,12 +917,13 @@ export const App = (): JSX.Element => {
     );
   }
   if (route.tag === "home") {
+    if (index === null && indexFailed) return <LoadFailed message={online ? "app.error.index" : "app.offline.unavailable"} home={false} onRetry={() => setRetry((n) => n + 1)} />;
     return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
   }
-  if (loaded === null || loaded.key !== courseKey || store === null || log === null || log.course !== route.course) {
+  if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
+  if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {
     return <p className={styles.page}>{t.format("player.loading")}</p>;
   }
-  if ("error" in loaded) return <p className={styles.page} role="alert" data-load-error="">{t.format(online ? "app.error.load" : "app.offline.unavailable")}</p>;
   if (route.tag === "course") {
     const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;

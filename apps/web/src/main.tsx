@@ -20,6 +20,7 @@ import "@nabu/ui/tokens.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
+import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { applyTextSize, applyTheme, storedTextSize, storedTheme } from "./Preferences.tsx";
 
 // The learner's text size and theme, before the first paint (Preferences; index.html sets the theme earlier still).
@@ -48,7 +49,15 @@ const mode = (params.get("mode") ?? "horizontal-tb") as WritingMode;
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <NabuUiProvider translator={translator} orthographies={DEMO_ORTHOGRAPHIES}>
-      <UiRoot>{target === undefined ? <App /> : <DemoExerciseCard target={target} writingMode={mode} />}</UiRoot>
+      <UiRoot>
+        {target === undefined ? (
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
+        ) : (
+          <DemoExerciseCard target={target} writingMode={mode} />
+        )}
+      </UiRoot>
     </NabuUiProvider>
   </StrictMode>,
 );
