@@ -140,6 +140,8 @@ jobs:
   android:
     name: Android app builds (Capacitor shell, Phase 10)
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write # the android-preview release, on pushes to main only
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-node@v5
@@ -156,6 +158,38 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - name: The web build, with every course inside, copied into the Android project
         run: pnpm --filter @nabu/web build && pnpm --filter @nabu/mobile exec cap sync android
-      - name: Debug APK (no signing, no Firebase config)
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
+      # A debug build as org.nabu.app.preview, signed with the committed public preview key and
+      # numbered by this run, so each one installs over the last (apps/mobile/README.md).
+      - name: Preview APK (no Firebase config)
+        run: ./gradlew assemblePreview --no-daemon --stacktrace
         working-directory: apps/mobile/android
+        env:
+          NABU_VERSION_CODE: ${{ github.run_number }}
+      - run: mv apps/mobile/android/app/build/outputs/apk/preview/app-preview.apk nabu-preview.apk
+      - uses: actions/upload-artifact@v5
+        with:
+          name: nabu-preview-apk
+          path: nabu-preview.apk
+          compression-level: 0
+          retention-days: 14
+      # One release whose APK each push to main replaces: a stable download link, and one release
+      # notification ever, not one a push. A slower run never replaces a newer run's APK.
+      - name: Publish to the android-preview release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          notes="Nabu for Android, built from ${GITHUB_SHA} (run ${GITHUB_RUN_NUMBER}). A preview: signed with a public key, so install it only from this page. Every push to main replaces the APK.
+          <!-- build ${GITHUB_RUN_NUMBER} -->"
+          if gh release view android-preview > /dev/null 2>&1; then
+            published=$(gh release view android-preview --json body --jq .body | sed -n 's/.*<!-- build \([0-9]*\) -->.*/\1/p')
+            if [ -n "$published" ] && [ "$published" -gt "$GITHUB_RUN_NUMBER" ]; then
+              echo "Run $published's APK is newer; leaving it."
+              exit 0
+            fi
+          else
+            gh release create android-preview --prerelease --target "$GITHUB_SHA" --title "Android preview" --notes "$notes"
+          fi
+          gh release upload android-preview nabu-preview.apk --clobber
+          gh release edit android-preview --notes "$notes"

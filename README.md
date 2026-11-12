@@ -7,6 +7,8 @@ shortcut can.
 
 - Try it: [iwsfutcmd.github.io/nabu](https://iwsfutcmd.github.io/nabu/) (the app, every course, Storybook and the
   audio check; the page is written from the bundles at each deploy, `apps/web/landing.ts`)
+- Android: [the preview APK](https://github.com/iwsfutcmd/nabu/releases/download/android-preview/nabu-preview.apk),
+  rebuilt on every push to main ([apps/mobile/README.md](apps/mobile/README.md#preview-apk))
 - Architecture and roadmap: [docs/gameplan.md](docs/gameplan.md)
 - Decisions: [docs/adr/](docs/adr/) (0001–0012 are gameplan §1; 0013+ came out of Phases 0–3)
 - Working agreement for contributors and agents: [CLAUDE.md](CLAUDE.md)

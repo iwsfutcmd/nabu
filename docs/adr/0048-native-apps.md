@@ -59,6 +59,21 @@ The web app is local-first and works offline (ADR 0047). What a store app adds:
 **CI builds the Android debug APK** on every push. iOS needs macOS and signing, and is built by
 the deployer in Xcode.
 
+**Amendment (2026-11-12): a preview APK anyone can install.**
+- CI builds a `preview` build type: a debug build with the id `org.nabu.app.preview`. It is
+  signed with a public key committed at `android/app/preview.keystore`, and its version code is
+  the CI run number.
+- **Why a fixed key:** a debug key is made fresh on each runner, so no build would install over
+  the last, and replacing the app loses the progress on the device.
+- **Why its own id:** a store release under `org.nabu.app`, signed with a private key, never
+  conflicts with a preview.
+- **Publishing:** pushes to main replace the APK on one prerelease, `android-preview`. That gives
+  one stable download link, and the release is created (and notifies watchers) only once. A
+  slower run never replaces a newer run's APK.
+- **The cost of a public key:** anyone can sign an APK that installs over a preview and reads its
+  data. Previews are installed only from the release page, and the store app is never signed
+  with that key.
+
 ## Consequences
 
 - To publish, a deployment:
