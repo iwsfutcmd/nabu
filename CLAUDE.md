@@ -91,6 +91,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 
 ## Phase 4 notes (see docs/adr/0036–0039)
 - Learner state is a projection: @nabu/core/learner `replay(events)`. Never store derived state; change the fold.
+- Ratings come from the answer, never the learner (but tier-0 speaking): pace per unit of length decides Hard and
+  Easy (ADR 0096, `PACE_*` in state.ts); tune those on real logs, never on the simulator's latency model.
   Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
   test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new KC); golden files:

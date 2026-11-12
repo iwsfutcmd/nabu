@@ -70,6 +70,12 @@ const trueP = (truth: Truth, ex: Exercise, now: number, rng: Rng): number => {
   return 1 / (1 + Math.exp(-(truth.theta - b + 2.5 * (r - 0.5))));
 };
 
+/**
+ * How long an answer takes (ADR 0096): a fixed part and a part per KC, slower when recall is weak,
+ * with the spread of a real learner, so the rating map's pace is exercised as in the app.
+ */
+const latencyOf = (ex: Exercise, p: number, rng: Rng): number => Math.round((2000 + 900 * ex.kcs.length) * Math.exp(0.35 * gauss(rng)) * (1 + 0.8 * (1 - p)));
+
 const practise = (truth: Truth, ex: Exercise, correct: boolean, now: number): void => {
   const facet = facetOf(ex.template);
   for (const kc of ex.kcs) {
@@ -136,7 +142,8 @@ export const simulate = (courseId: string, orthography: string | undefined, seed
         for (let attempt = 1; attempt <= 3; attempt++) {
           clock += 20_000;
           events.at(iso());
-          const ok = rng.next() < trueP(truth, ex, clock, rng);
+          const chance = trueP(truth, ex, clock, rng);
+          const ok = rng.next() < chance;
           if (attempt === 1) {
             firstTries++;
             if (ok) {
@@ -146,7 +153,7 @@ export const simulate = (courseId: string, orthography: string | undefined, seed
             }
           } else retries++;
           // First tries carry the planner's p̂, logged in shadow mode (§9.3).
-          apply(events.answer(ex, ok, attempt, 4000, attempt === 1 ? { p: p.predictions[i] ?? 0.5, model: PERFORMANCE_MODEL } : undefined));
+          apply(events.answer(ex, ok, attempt, latencyOf(ex, chance, rng), attempt === 1 ? { p: p.predictions[i] ?? 0.5, model: PERFORMANCE_MODEL } : undefined));
           if (attempt === 1) practise(truth, ex, ok, clock);
           if (ok) break;
         }

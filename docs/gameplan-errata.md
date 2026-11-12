@@ -243,3 +243,11 @@ ADR is linked. The gameplan text itself is left as written.
 62. **§8.2 `vocalize` "form":** the card asks how the script reads a word, so it exercises the
     `read-script` facet, like `char-read`. A Han counterpart, `transcribe` (type the word's
     Jyutping), joins it ([ADR 0054](adr/0054-pronunciation-exercises.md)).
+63. **§9.2 "latency ≤ the learner's median for this template":** slower than one's own median
+    made about half of all right answers Hard, whatever the learner, and long sentences nearly
+    always "slow". Pace is now judged per unit of length (the item's KCs plus a fixed part) and
+    only well past the usual (twice) is slow ([ADR 0096](adr/0096-pace-in-ratings.md)).
+64. **§9.2 "Easy is never assigned automatically":** a right answer typed from memory in at most
+    half the usual time, on a card already recalled with at least 0.9 probability, is Easy
+    ([ADR 0096](adr/0096-pace-in-ratings.md)). Learners still never rate themselves, except
+    speaking at tier 0.

@@ -7,7 +7,8 @@
 import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent, SessionCompleted } from "@nabu/schema";
 import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type Card, type FSRS, type Grade } from "ts-fsrs";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
-import { facetOf, ratingOf, type Rating } from "./credit.ts";
+import { TEMPLATES } from "../lesson/templates.ts";
+import { facetOf, ratingOf, type Pace, type Rating } from "./credit.ts";
 import { initialPerformance, update, type Performance } from "./performance.ts";
 import { withRevisions } from "./revisions.ts";
 
@@ -39,7 +40,10 @@ export interface LearnerState {
   readonly xp: { readonly total: number; readonly byDate: Readonly<Record<string, number>> };
   readonly completedNodes: readonly string[];
   readonly mistakes: readonly Mistake[];
-  /** Recent answer latencies per template (ms), for "slow" in the rating map (§9.2). */
+  /**
+   * Recent first-try answer times per template, per unit of length (ms per (PACE_OVERHEAD + KCs)): the
+   * learner's usual, which an answer's pace is judged against (§9.2, ADR 0096).
+   */
   readonly latencies: Readonly<Partial<Record<TemplateId, readonly number[]>>>;
   /** Facets already rated in the current session: each at most once per session (§9.2). */
   readonly rated: { readonly session: string; readonly keys: readonly string[] };
@@ -48,6 +52,18 @@ export interface LearnerState {
 export const DESIRED_RETENTION = 0.9;
 export const XP = { answer: 1, session: 10, perfect: 5 } as const;
 const LATENCY_WINDOW = 25;
+/**
+ * Pace (ADR 0096). An answer's time is compared per unit of length, its KCs plus a fixed part for
+ * reading the card and deciding (PACE_OVERHEAD KCs' worth), against the learner's usual for the
+ * template: more than PACE_SLOW times it is slow (Hard), at most PACE_FAST times it is fast (Easy
+ * on a typed card already sure). Being slower than one's own median, as before, made half of all
+ * right answers Hard.
+ */
+const PACE_OVERHEAD = 2;
+const PACE_SLOW = 2;
+const PACE_FAST = 0.5;
+/** Easy only for a card this sure before the answer: a new or fading card earns Good at most. */
+const EASY_RECALL = 0.9;
 const STORY_TEMPLATES: ReadonlySet<TemplateId> = new Set(["story-choose", "story-complete", "story-arrange"]);
 const MISTAKES_KEPT = 50;
 
@@ -112,7 +128,7 @@ export const retrievability = (state: LearnerState, kc: string, facet: Facet, or
 export const meanRetrievability = (state: LearnerState, kcs: readonly string[], facet: Facet, orthography: string, now: string): number =>
   kcs.length === 0 ? 0 : kcs.reduce((sum, kc) => sum + retrievability(state, kc, facet, orthography, now), 0) / kcs.length;
 
-const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good };
+const GRADES: Readonly<Record<Rating, Grade>> = { again: FsrsRating.Again, hard: FsrsRating.Hard, good: FsrsRating.Good, easy: FsrsRating.Easy };
 
 const median = (xs: readonly number[]): number | undefined => {
   if (xs.length < 5) return undefined;
@@ -147,7 +163,10 @@ const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Ratin
   d.rated.keys.push(key);
   const now = new Date(at);
   const card = d.cards[key] === undefined ? createEmptyCard(now) : toCard(d.cards[key]);
-  d.cards[key] = fromCard(scheduler.next(card, now, GRADES[rating]).card);
+  // Easy is for recall that was already sure (ADR 0096): a new or fading card earns Good at most.
+  const sure = d.cards[key] !== undefined && scheduler.get_retrievability(card, now, false) >= EASY_RECALL;
+  const grade = rating === "easy" && !sure ? "good" : rating;
+  d.cards[key] = fromCard(scheduler.next(card, now, GRADES[grade]).card);
 };
 
 const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean): void => {
@@ -164,12 +183,16 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
     const r = meanRetrievability(d, kcs, facet, e.orthography, e.clientTime);
     d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
   }
+  // Pace: this answer's time per unit of length against the learner's usual for the template. Only
+  // first tries make the usual (a retry is quicker for having just seen the answer).
   const recent = d.latencies[template] ?? [];
   const typical = median(recent);
-  const slow = typical !== undefined && e.input.latencyMs > typical;
-  d.latencies[template] = [...recent, e.input.latencyMs].slice(-LATENCY_WINDOW);
+  const perUnit = e.input.latencyMs / (PACE_OVERHEAD + kcs.length);
+  const pace: Pace = typical === undefined ? "usual" : perUnit > PACE_SLOW * typical ? "slow" : perUnit <= PACE_FAST * typical ? "fast" : "usual";
+  if (e.attempt === 1) d.latencies[template] = [...recent, perUnit].slice(-LATENCY_WINDOW);
+  const typed = TEMPLATES[template].modality.input === "text";
   for (const credit of e.outcome.kcs) {
-    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, slow, e.input.selfRating);
+    const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed);
     if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
   }
   if (correct) addXp(d, e.localDate, XP.answer);

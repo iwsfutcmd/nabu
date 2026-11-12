@@ -62,15 +62,66 @@ describe("credit assignment (§8.5)", () => {
     expect(credit.some((c) => c.status === "wrong")).toBe(true);
   });
 
-  it("maps outcomes to ratings (§9.2)", () => {
-    expect(ratingOf("right", "CORRECT", [], false)).toBe("good");
-    expect(ratingOf("right", "CORRECT", [], true)).toBe("hard");
-    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], false)).toBe("hard");
-    expect(ratingOf("right", "PARTIAL", [], false)).toBe("hard");
-    expect(ratingOf("right", "CORRECT", ["pairs-mistakes"], false)).toBe("hard");
-    expect(ratingOf("wrong", "WRONG", [], false)).toBe("again");
-    expect(ratingOf("given", "CORRECT", [], false)).toBeUndefined();
-    expect(ratingOf("right", "CORRECT", [], false, "again")).toBe("again");
+  it("maps outcomes to ratings (§9.2, ADR 0096)", () => {
+    expect(ratingOf("right", "CORRECT", [], "usual")).toBe("good");
+    expect(ratingOf("right", "CORRECT", [], "slow")).toBe("hard");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "usual")).toBe("hard");
+    expect(ratingOf("right", "PARTIAL", [], "usual")).toBe("hard");
+    expect(ratingOf("right", "CORRECT", ["pairs-mistakes"], "usual")).toBe("hard");
+    expect(ratingOf("wrong", "WRONG", [], "usual")).toBe("again");
+    expect(ratingOf("given", "CORRECT", [], "usual")).toBeUndefined();
+    expect(ratingOf("right", "CORRECT", [], "usual", "again")).toBe("again");
+    // Easy: right, fast and typed from memory; a fast pick among options is only Good.
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, true)).toBe("easy");
+    expect(ratingOf("right", "CORRECT", [], "fast", undefined, false)).toBe("good");
+    expect(ratingOf("right", "CORRECT_WITH_TYPO", [], "fast", undefined, true)).toBe("hard");
+  });
+
+  it("judges pace per unit of length: a long sentence may take longer without being slow", () => {
+    const events = eventFactory(fa, faBundle);
+    const short = sampleExercise(fa, "choose-translation") as Exercise;
+    const long = { ...short, id: "long", item: "long", kcs: [...short.kcs, "sense:a", "sense:b", "sense:c", "sense:d", "sense:e", "sense:f"] as unknown as Exercise["kcs"] };
+    const log: LearnerEvent[] = [];
+    // Five usual answers for the template, then a long item answered in proportion to its length.
+    for (let i = 0; i < 5; i++) {
+      events.at(`2026-01-0${i + 1}T09:00:00.000Z`);
+      events.session();
+      log.push(events.answer(short, true, 1, 4000));
+    }
+    events.at("2026-01-06T09:00:00.000Z");
+    events.session();
+    const perUnit = 4000 / (2 + short.kcs.length);
+    log.push(events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length))));
+    const state = replay(log);
+    // Its new KCs got Good (a learning card), not Hard: Hard would leave the card's difficulty higher.
+    const card = state.cards[`${long.kcs.at(-1) as string}|recognize`];
+    const hard = replay([...log.slice(0, 5), events.answer(long, true, 1, Math.round(perUnit * (2 + long.kcs.length) * 3))]).cards[`${long.kcs.at(-1) as string}|recognize`];
+    expect(card?.difficulty).toBeLessThan(hard?.difficulty ?? 0);
+  });
+
+  it("gives Easy only to a card already sure: a new word typed fast earns Good", () => {
+    const events = eventFactory(fa, faBundle);
+    const ex = sampleExercise(fa, "translate-type.l1-l2") as Exercise;
+    const kc = ex.kcs[0] as string;
+    const usual = (n: number): LearnerEvent[] =>
+      Array.from({ length: n }, (_, i) => {
+        events.at(`2026-01-${String(i + 1).padStart(2, "0")}T09:00:00.000Z`);
+        events.session();
+        return events.answer(ex, true, 1, 8000);
+      });
+    // Fast on the very first answer: the card is new, so Good.
+    events.at("2026-01-01T08:00:00.000Z");
+    events.session();
+    const first = replay([...usual(0), events.answer(ex, true, 1, 1000)]).cards[`${kc}|produce`];
+    const firstGood = replay([events.answer(ex, true, 1, 8000)]).cards[`${kc}|produce`];
+    expect(first?.stability).toBe(firstGood?.stability);
+    // After a run of usual answers the card is sure; a fast answer then stretches it further than Good.
+    const history = usual(6);
+    events.at("2026-01-07T09:30:00.000Z");
+    events.session();
+    const fast = replay([...history, events.answer(ex, true, 1, 1000)]).cards[`${kc}|produce`];
+    const good = replay([...history, events.answer(ex, true, 1, 8000)]).cards[`${kc}|produce`];
+    expect(fast?.stability ?? 0).toBeGreaterThan(good?.stability ?? 0);
   });
 });
 

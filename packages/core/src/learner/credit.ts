@@ -13,7 +13,13 @@ import type { CompiledProfile } from "../profile/compile.ts";
 import { isCorrect, type Exercise, type Facet, type Outcome, type SelfRating } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 
-export type Rating = "again" | "hard" | "good";
+export type Rating = "again" | "hard" | "good" | "easy";
+
+/**
+ * How an answer's time compares with the learner's usual for its template, per unit of length
+ * (ADR 0096): much slower is "slow", much faster "fast".
+ */
+export type Pace = "slow" | "usual" | "fast";
 
 /** The facet an exercise of this template exercises (§9.1). */
 export const facetOf = (template: Exercise["template"]): Facet => TEMPLATES[template].facet;
@@ -98,17 +104,26 @@ export const creditOf = (ex: Exercise, outcome: Outcome, profiles: ReadonlyMap<s
   return ex.kcs.map((kc) => ({ kc, status: right ? "right" : "wrong" }));
 };
 
-/** The rating that goes to FSRS (§9.2). Learners never rate themselves, except speaking at tier 0. */
+/**
+ * The rating that goes to FSRS (§9.2, ADR 0096). Learners never rate themselves, except speaking at
+ * tier 0: the answer says how recall went. Right is Good; right but slow, or with a slip (typo,
+ * marks, variant, provisional, IME), is Hard; right, fast and typed from memory is Easy, which the
+ * fold grants only to a card already sure.
+ */
 export const ratingOf = (
   status: KcCredit["status"],
   verdict: Verdict,
   notes: readonly string[],
-  slow: boolean,
+  pace: Pace,
   selfRating?: SelfRating,
+  typed = false,
 ): Rating | undefined => {
   if (status === "given") return undefined;
   if (status === "wrong") return "again";
   if (selfRating !== undefined) return selfRating === "again" ? "again" : selfRating;
-  if (verdict === "CORRECT" || verdict === "CORRECT_ALT") return slow || notes.includes("pairs-mistakes") ? "hard" : "good";
-  return "hard"; // typo, marks, variant, provisional, IME slip
+  if (verdict === "CORRECT" || verdict === "CORRECT_ALT") {
+    if (pace === "slow" || notes.includes("pairs-mistakes")) return "hard";
+    return pace === "fast" && typed ? "easy" : "good";
+  }
+  return "hard";
 };
