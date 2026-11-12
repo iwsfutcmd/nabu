@@ -33,7 +33,7 @@ import type {
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
 import { calibrate, CANTONESE, DEVICE_TONE_SCORING, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
-import { surfaceOf, textOfSurface } from "@nabu/core/text";
+import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useRef, useState, type JSX, type ReactNode } from "react";
@@ -102,10 +102,10 @@ const Options = ({ options, selected, answer, outcome, locked, grid = false, onS
 };
 
 /** Registers this view's number-key and Backspace shortcuts with the player (§11.3). */
-const useShortcuts = (props: ViewProps, digit: (i: number) => void, backspace?: () => void): void => {
+const useShortcuts = (props: ViewProps, digit: ((i: number) => void) | undefined, backspace?: () => void): void => {
   const { shortcuts, locked } = props;
   useEffect(() => {
-    shortcuts.current = locked ? null : backspace === undefined ? { digit } : { digit, backspace };
+    shortcuts.current = locked ? null : { ...(digit === undefined ? {} : { digit }), ...(backspace === undefined ? {} : { backspace }) };
     return () => {
       shortcuts.current = null;
     };
@@ -235,13 +235,18 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <div className={styles.bigPrompt}>
-        {ex.template === "reading-disambiguation" ? (
-          <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} />
-        ) : (
-          <TargetPrompt text={ex.prompt} props={props} ruby={false} />
-        )}
-      </div>
+      {ex.template === "char-read" && ex.word !== undefined ? (
+        // A word in its sentence (ADR 0098): the sentence decides the reading.
+        <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} />
+      ) : (
+        <div className={styles.bigPrompt}>
+          {ex.template === "reading-disambiguation" ? (
+            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} />
+          ) : (
+            <TargetPrompt text={ex.prompt} props={props} ruby={false} />
+          )}
+        </div>
+      )}
       <Options
         grid
         options={ex.options.map((o, i) => <T key={i} text={o} />)}
@@ -522,31 +527,42 @@ const orthographyLabel = (t: ReturnType<typeof useTranslator>, orthography: stri
 };
 
 /**
- * Vowel marks: the field starts from the word's letters; the keys under it add the marks. Where an
- * orthography of the course writes the vowels (Arabizi), the learner may write the word in it instead.
+ * Vowel marks (ADR 0098): the word with its marks, chosen among other vocalizations of its letters.
+ * Where an orthography of the course writes the vowels (Arabizi), the learner may type the word in it
+ * instead; the number keys then type, not choose.
  */
 export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   const { ex, dispatch, locked } = props;
   const t = useTranslator();
   const [spelling, setSpelling] = useState(false);
   const spelled = ex.spelled;
+  const typing = spelling && spelled !== undefined;
+  useShortcuts(props, typing ? undefined : (i) => chooseByKey(props, i, ex.options.length));
   const name = spelled === undefined ? "" : orthographyLabel(t, spelled.orthography);
   const switchTo = (on: boolean): void => {
     setSpelling(on);
-    dispatch({ tag: "input", draft: { tag: "text", text: on ? "" : surfaceOf(ex.letters) } });
+    dispatch({ tag: "input", draft: on ? { tag: "text", text: "" } : { tag: "choice", index: null } });
   };
   return (
     <div className={styles.body}>
       <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} />
       <AnswerAudio props={props} />
-      {spelling && spelled !== undefined ? (
+      {typing ? (
         <TypedAnswer props={props} label={t.format("player.vocalize.spelled-label", { orthography: name })} answer={spelled} keys={[]} />
       ) : (
-        <TypedAnswer props={props} label={t.format("player.vocalize.label")} answer={ex.vocalized} keys={ex.marks} />
+        <Options
+          grid
+          options={ex.options.map((o, i) => <T key={i} text={o} marks="show" />)}
+          selected={selectedOf(props)}
+          answer={ex.answer}
+          outcome={props.outcome}
+          locked={locked}
+          onSelect={(i) => choose(props, i)}
+        />
       )}
       {spelled !== undefined && !locked && (
         <button type="button" className={styles.secondary} onClick={() => switchTo(!spelling)} aria-pressed={spelling} data-action="vocalize-spelled">
-          {spelling ? t.format("player.vocalize.use-marks") : t.format("player.vocalize.use-spelled", { orthography: name })}
+          {spelling ? t.format("player.vocalize.use-options") : t.format("player.vocalize.use-spelled", { orthography: name })}
         </button>
       )}
     </div>

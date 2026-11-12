@@ -309,7 +309,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
-    const gated = PRONOUNCE.has(c.ex.template) ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
+    const gated = PRONOUNCE.has(c.ex.template) || c.ex.template === "char-read" ? (askedKcs(c.ex) ?? c.ex.kcs) : c.ex.kcs;
     return gated.every((kc) => !targets.has(kc) || recognized.has(kc) || state.cards[key(kc, "recognize")] !== undefined);
   };
   // Aim the session's mean p̂ at the target (§9.4): easy and hard items can balance each other.

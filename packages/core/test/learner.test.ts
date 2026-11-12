@@ -140,7 +140,7 @@ const draftFor = (ex: Exercise, bad: boolean): Draft => {
     case "complete-translation":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.blank) };
     case "vocalize":
-      return { tag: "text", text: bad ? surfaceOf(ex.prompt) : surfaceOf(ex.vocalized) };
+      return { tag: "choice", index: bad ? (ex.answer + 1) % ex.options.length : ex.answer };
     case "transcribe":
       return { tag: "text", text: bad ? "zzz" : surfaceOf(ex.reading) };
     case "match-pairs":

@@ -184,6 +184,7 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
     case "tone-identify":
     case "letter-read":
     case "word-read":
+    case "vocalize":
       await choose(page, mode, ex.answer);
       return;
     case "translate-tap.l2-l1":
@@ -217,10 +218,8 @@ export const answer = async (page: Page, ex: Exercise, mode: Mode): Promise<void
       }
       return;
     }
-    case "vocalize":
     case "transcribe": {
-      // The vocalize field starts from the word's letters: the answer replaces them.
-      const text = surfaceOf(ex.template === "vocalize" ? ex.vocalized : ex.reading);
+      const text = surfaceOf(ex.reading);
       const field = page.locator("[data-answer-input]");
       if (mode === "touch") await field.tap();
       await field.selectText();

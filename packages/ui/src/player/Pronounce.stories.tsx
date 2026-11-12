@@ -22,9 +22,8 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
 type Screen = "typing" | "feedback";
 const SEED = 7;
 
-/** A wrong answer: the letters with no marks, or the reading with its last tone changed. */
+/** A wrong typed answer: the reading with its last tone changed. (A vocalize card takes a wrong option.) */
 const wrongAnswer = (ex: Exercise): string => {
-  if (ex.template === "vocalize") return surfaceOf(ex.letters);
   if (ex.template === "transcribe") return surfaceOf(ex.reading).replace(/([1-6])$/u, (d) => String((Number(d) % 6) + 1));
   return "?";
 };
@@ -33,7 +32,8 @@ const stateFor = (screen: Screen, ex: Exercise, grader: Grader): PlayerState => 
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
   if (screen === "typing") return answering;
-  const typed = step(answering, { tag: "input", draft: { tag: "text", text: wrongAnswer(ex) } })[0];
+  const draft = ex.template === "vocalize" ? { tag: "choice" as const, index: (ex.answer + 1) % ex.options.length } : { tag: "text" as const, text: wrongAnswer(ex) };
+  const typed = step(answering, { tag: "input", draft })[0];
   const [checking] = step(typed, { tag: "submit" });
   if (checking.tag !== "checking") return typed;
   return step(checking, { tag: "graded", outcome: gradeExercise(ex, checking.response, grader) })[0];

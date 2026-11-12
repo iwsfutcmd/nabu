@@ -1,10 +1,10 @@
 /**
- * Writing in a word's pronunciation (ADR 0054), in its sentence (ADR 0095), from the debug gallery:
- * a Persian word's vowel marks with the keys under the field, a Lebanese word in Arabizi instead,
- * and a Cantonese word's Jyutping, where a wrong tone says so.
+ * A word's pronunciation (ADR 0054), in its sentence (ADR 0095), from the debug gallery: a Persian
+ * word chosen with its vowel marks among others (ADR 0098), a Lebanese word typed in Arabizi instead,
+ * and a Cantonese word's Jyutping typed, where a wrong tone says so.
  */
 import { cardGallery, type Exercise } from "@nabu/core/lesson";
-import { graphemes, surfaceOf } from "@nabu/core/text";
+import { surfaceOf } from "@nabu/core/text";
 import { expect, test, type Page } from "@playwright/test";
 import { loadCourse, seriousAxeViolations } from "./solver.ts";
 
@@ -24,7 +24,7 @@ const cardOf = (id: string, orthography: string, template: string): Exercise => 
   return card;
 };
 
-test("vowel marks: the word is marked in its sentence, the field starts from its letters, and the keys write the marks in", async ({ page }) => {
+test("vowel marks: the word is marked in its sentence, and chosen with its marks among others", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(String(e)));
   const ex = cardOf("fa", "fa-Arab/standard", "vocalize");
@@ -32,36 +32,23 @@ test("vowel marks: the word is marked in its sentence, the field starts from its
   await tryCard(page, "#/fa/fa-Arab.standard", "vocalize");
   // The sentence, with the word asked about marked (and no other word).
   await expect(page.locator("[data-pronounce-word] [data-emphasis]")).toHaveCount(1);
-  await expect(page.locator("[data-pronounce-word] [data-emphasis]")).toHaveText(surfaceOf(ex.letters));
-  const field = page.locator("[data-answer-input]");
-  await expect(field).toHaveValue(surfaceOf(ex.letters));
-  await expect(field).toHaveAttribute("dir", "rtl");
+  await expect(page.locator("[data-options] [data-option]")).toHaveCount(ex.options.length);
   expect(await seriousAxeViolations(page)).toEqual([]);
-  // Each mark key has a spoken name, not just a mark on a tatweel.
-  await expect(page.locator("[data-char-bar]").getByRole("button", { name: "Fatha", exact: true })).toHaveAttribute("data-key", "\u064e");
-
-  // Letter by letter: type the letter, then press the keys for its marks.
-  await field.fill("");
-  const marks = new Set(ex.marks);
-  for (const cluster of graphemes(surfaceOf(ex.vocalized))) {
-    const chars = Array.from(cluster.normalize("NFD"));
-    await field.press("End");
-    await page.keyboard.insertText(chars.filter((c) => !marks.has(c)).join("").normalize("NFC"));
-    for (const mark of chars.filter((c) => marks.has(c))) await page.locator(`[data-char-bar] [data-key="${mark}"]`).click();
-  }
+  // A number key chooses, as on every multiple-choice card.
+  await page.keyboard.press(String(ex.answer + 1));
   await page.locator("[data-action=check]").click();
   await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "CORRECT");
   expect(errors).toEqual([]);
 });
 
-test("vowel marks left out: wrong, and the solution shows them even with marks hidden", async ({ page }) => {
+test("vowel marks: a wrong vocalization is wrong, and the solution shows its marks even with marks hidden", async ({ page }) => {
   const ex = cardOf("apc", "apc-Arab/standard", "vocalize");
   if (ex.template !== "vocalize") throw new Error("not a vocalize card");
   await tryCard(page, "#/apc/apc-Arab.standard", "vocalize");
   await page.locator("[data-toggle=marks]").click();
+  await page.locator(`[data-option="${(ex.answer + 1) % ex.options.length}"]`).click();
   await page.locator("[data-action=check]").click();
   await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
-  await expect(page.locator("[data-feedback] [data-note=vocalize-marks]")).toBeVisible();
   await expect(page.locator("[data-solution] [data-nabu-text]")).toHaveText(surfaceOf(ex.vocalized));
 });
 

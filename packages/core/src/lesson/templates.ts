@@ -7,7 +7,7 @@
 import type { BundleKc, BundleSentence, KcId, Persons, SchemeId, ScriptedLangTag, TaggedText, Token } from "@nabu/schema";
 import { literalAccept } from "../accept/notation.ts";
 import { glossUnits } from "../match/gloss.ts";
-import { gradeReading, gradeVowels, hasVowelMarks, transcribable, withoutMarks } from "../match/pronounce.ts";
+import { attestedMarks, gradeReading, gradeVowels, hasVowelMarks, toneVariants, transcribable, vocalizationVariants, withoutMarks, type VowelMarks } from "../match/pronounce.ts";
 import { surfaceOf, tileGroups } from "../text/tagged-text.ts";
 import { allKcs, allSentences, profileOf, type CourseView, type Grader } from "./course.ts";
 import type {
@@ -63,7 +63,7 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   // A word's pronunciation as its script leaves it out (ADR 0054): reading the script, typed.
-  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
+  vocalize: { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   transcribe: { facet: "read-script", modality: { audioOut: false, mic: false, input: "text" } },
   "speak.tier-0": { facet: "speak", modality: { audioOut: false, mic: true, input: "voice" } },
   // Phase 9: scored speaking (tiers 1–3) and hearing tones.
@@ -480,29 +480,55 @@ const stripRuby = (token: Token): Token => {
   return rest;
 };
 
+/** Every syllable the course's readings use in a scheme (ADR 0098): what tone distractors may be. Per course. */
+const syllablesOf = new WeakMap<CourseView, Map<string, ReadonlySet<string>>>();
+const courseSyllables = (course: CourseView, scheme: SchemeId): ReadonlySet<string> => {
+  const byScheme = syllablesOf.get(course) ?? new Map<string, ReadonlySet<string>>();
+  syllablesOf.set(course, byScheme);
+  let found = byScheme.get(scheme);
+  if (found === undefined) {
+    found = new Set(allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => t.readings?.[scheme]?.split(" ") ?? [])));
+    byScheme.set(scheme, found);
+  }
+  return found;
+};
+
+/**
+ * How a word of a sentence is read, chosen (ADR 0098): the sentence without ruby, the word marked (a
+ * word the lesson introduces where it can), and its reading among others. Where the scheme can be
+ * typed, two of them are the same syllables in another tone the course uses (tones are what a
+ * learner gets wrong); the rest are readings of other words with as many syllables. The typed card
+ * is `transcribe`.
+ */
 export const makeCharRead = (ctx: MakeContext, s: BundleSentence): CharRead | undefined => {
   const scheme = rubySchemeOf(ctx);
   const form = formOf(ctx.course, s);
   if (scheme === undefined || form === undefined) return undefined;
   const readable = (t: Token): boolean => t.kind === "word" && t.readings?.[scheme] !== undefined;
-  const target = form.text.tokens.find((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`)) ?? form.text.tokens.find(readable);
+  const fresh = form.text.tokens.findIndex((t) => readable(t) && ctx.introduced.some((k) => k === `sense:${t.sense}`));
+  const word = fresh >= 0 ? fresh : form.text.tokens.findIndex(readable);
+  const target = form.text.tokens[word];
   if (target === undefined) return undefined;
   const reading = target.readings?.[scheme] as string;
   const syllables = reading.split(" ").length;
+  const tones = ctx.rng.shuffle([...toneVariants(scheme, reading, courseSyllables(ctx.course, scheme))]).slice(0, 2);
   const pool = otherSentences(ctx, s)
     .flatMap((o) => formOf(ctx.course, o)?.text.tokens ?? [])
     .flatMap((t) => (readable(t) ? [t.readings?.[scheme] as string] : []))
-    .filter((r) => r.split(" ").length === syllables && r !== reading);
-  const others = [...new Set(ctx.rng.shuffle(pool))].slice(0, 2);
+    .filter((r) => r.split(" ").length === syllables && r !== reading && !tones.includes(r));
+  const others = [...new Set([...tones, ...ctx.rng.shuffle(pool)])].slice(0, 3);
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, readingText(scheme, reading), others.map((r) => readingText(scheme, r)));
+  const translation = translationOf(ctx.course, s);
   return {
     template: "char-read",
     id: id("char-read", `${s.id}:${target.surface}`),
     item: s.id,
-    kcs: target.sense === undefined ? s.kcs : [`sense:${target.sense}` as KcId],
+    kcs: s.kcs,
     orthography: options[0]?.orthography ?? ctx.course.orthography,
-    prompt: { ...form.text, tokens: [stripRuby(target)] },
+    prompt: { ...form.text, tokens: form.text.tokens.map(stripRuby) },
+    word,
+    ...(translation === undefined ? {} : { translation: translation.text }),
     options,
     answer,
   };
@@ -788,11 +814,51 @@ const twinOf = (s: BundleSentence, text: TaggedText, index: number, orthography:
   return twin === undefined ? undefined : single(other, twin);
 };
 
+/** Which marks each letter takes in the course's words, by its place in the word (ADR 0098). Per course and orthography. */
+const attestedOf = new WeakMap<CourseView, Map<string, ReturnType<typeof attestedMarks>>>();
+const attestedIn = (course: CourseView, marks: VowelMarks): ReturnType<typeof attestedMarks> => {
+  const byOrthography = attestedOf.get(course) ?? new Map<string, ReturnType<typeof attestedMarks>>();
+  attestedOf.set(course, byOrthography);
+  const known = byOrthography.get(course.orthography);
+  if (known !== undefined) return known;
+  const words = allSentences(course).flatMap((s) => (formOf(course, s)?.text.tokens ?? []).flatMap((t) => (t.kind === "word" ? [t.surface] : [])));
+  const found = attestedMarks(marks, words);
+  byOrthography.set(course.orthography, found);
+  return found;
+};
+
 /**
- * An abjad word in its sentence, the sentence without vowel marks: write the word's marks in.
- * Only words the vocalization marks. Where the profile names an orthography of the course that
- * spells the vowels (`marks.spelledIn`: Arabizi for Lebanese), the word as that orthography writes
- * it is accepted too, and words it can be found for are asked first.
+ * The course's other spellings of a word's letters (homographs): the best wrong options, being real
+ * words (ADR 0098). Every word the course writes, keyed by its letters.
+ */
+const homographsOf = new WeakMap<CourseView, Map<string, ReadonlyMap<string, readonly string[]>>>();
+const homographs = (course: CourseView, marks: VowelMarks, word: string): readonly string[] => {
+  const byOrthography = homographsOf.get(course) ?? new Map<string, ReadonlyMap<string, readonly string[]>>();
+  homographsOf.set(course, byOrthography);
+  let byLetters = byOrthography.get(course.orthography);
+  if (byLetters === undefined) {
+    const found = new Map<string, Set<string>>();
+    for (const s of allSentences(course)) {
+      for (const t of formOf(course, s)?.text.tokens ?? []) {
+        if (t.kind !== "word") continue;
+        const letters = withoutMarks(marks, t.surface);
+        found.set(letters, (found.get(letters) ?? new Set()).add(t.surface.normalize("NFC")));
+      }
+    }
+    byLetters = new Map([...found].map(([k, v]) => [k, [...v].sort()]));
+    byOrthography.set(course.orthography, byLetters);
+  }
+  return (byLetters.get(withoutMarks(marks, word)) ?? []).filter((w) => gradeVowels(marks, word, w).verdict === "WRONG");
+};
+
+/**
+ * An abjad word in its sentence, the sentence without vowel marks: choose the word with its marks
+ * among other vocalizations of its letters (ADR 0098: typing an abjad's marks is a chore, and a word
+ * has few plausible vocalizations). The course's homographs come first, then the word with one or
+ * two letters' marks changed to marks the course writes most. Only words the vocalization marks.
+ * Where the profile names an orthography of the course that spells the vowels (`marks.spelledIn`:
+ * Arabizi for Lebanese), the learner may type the word in it instead, and words it can be found for
+ * are asked first.
  */
 export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | undefined => {
   const profile = profileOf(ctx.course, ctx.course.orthography);
@@ -815,6 +881,12 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
     };
   };
   const token = form.text.tokens[word] as Token;
+  const vocalized = single(form.text, token);
+  const real = homographs(ctx.course, marks, token.surface);
+  const made = ctx.rng.shuffle([...vocalizationVariants(marks, token.surface, attestedIn(ctx.course, marks))]).filter((v) => !real.includes(v));
+  const others = [...real, ...made].slice(0, 3);
+  if (others.length < 2) return undefined;
+  const { options, answer } = withAnswer(ctx, vocalized, others.map((v) => single(form.text, { surface: v, kind: "word" })));
   const spelled = spelledAt(word);
   return {
     template: "vocalize",
@@ -824,11 +896,10 @@ export const makeVocalize = (ctx: MakeContext, s: BundleSentence): Vocalize | un
     orthography: ctx.course.orthography,
     prompt: { ...form.text, tokens: form.text.tokens.map(bare) },
     word,
-    letters: single(form.text, bare(token)),
     translation: translation.text,
-    vocalized: single(form.text, token),
-    marks: [...marks.set],
-    optional: [...marks.optional],
+    vocalized,
+    options,
+    answer,
     ...(spelled === undefined ? {} : { spelled }),
   };
 };
@@ -960,16 +1031,16 @@ export const gradeExercise = (ex: Exercise, response: Response, grader: Grader):
     case "tone-identify":
       return response.tag === "choice" ? choice(response.index, ex.answer, ex.syllable) : mismatch(ex, response);
     case "vocalize": {
+      if (response.tag === "choice") return choice(response.index, ex.answer, ex.options[ex.answer]);
       if (response.tag !== "text") return mismatch(ex, response);
-      // Written as an orthography that spells the vowels (Arabizi): the word as it writes it, exactly
-      // as the profile compares letters, since a slip there may be a vowel.
+      // Typed in an orthography that spells the vowels (Arabizi): the word as it writes it, exactly
+      // as the profile compares letters, since a slip there may be a vowel. Anything else is wrong.
       if (ex.spelled !== undefined && writtenIn(ex.spelled, ex.vocalized, response.text)) {
         const verdict = grader.grade(ex.spelled.orthography, literalAccept(surfaceOf(ex.spelled)), response.text).verdict;
         const right = verdict === "CORRECT" || verdict === "CORRECT_ALT" || verdict === "CORRECT_VARIANT" || verdict === "CORRECT_MARKS";
         return { verdict: right ? "CORRECT" : "WRONG", notes: [], solution: ex.spelled };
       }
-      const g = gradeVowels({ set: new Set(ex.marks), optional: new Set(ex.optional) }, surfaceOf(ex.vocalized), response.text);
-      return { verdict: g.verdict, notes: g.notes, solution: ex.vocalized };
+      return { verdict: "WRONG", notes: [], solution: ex.spelled ?? ex.vocalized };
     }
     case "transcribe": {
       if (response.tag !== "text") return mismatch(ex, response);

@@ -1562,9 +1562,9 @@
       "message": ".input {$xp :number}\n{{+{$xp} XP}}",
       "description": "Experience points the session just earned, on the summary screen."
     },
-    "player.instruction.char-read": {
-      "message": "How is this read?",
-      "description": "Instruction: choose the reading (e.g. Jyutping) of the word shown."
+    "player.instruction.char-read-word": {
+      "message": "How is the marked word read?",
+      "description": "Instruction above a char-read exercise: a sentence without readings, one word marked; the learner chooses its reading (e.g. Jyutping) among a few (ADR 0098)."
     },
     "player.instruction.choose-translation": {
       "message": "What does this mean?",
@@ -1650,9 +1650,9 @@
       "message": "Translate this sentence",
       "description": "Instruction: build the translation of a target-language sentence from word tiles."
     },
-    "player.instruction.vocalize-word": {
-      "message": "Add the vowel marks to the marked word",
-      "description": "Instruction above a vocalize exercise: a sentence without vowel marks, one word marked (ADR 0095)."
+    "player.instruction.vocalize-choice": {
+      "message": "Choose the marked word with its vowel marks",
+      "description": "Instruction above a vocalize exercise: a sentence without vowel marks, one word marked; the learner picks that word with its marks among a few (ADR 0098)."
     },
     "player.instruction.word-read": {
       "message": "How is this word written in Latin letters?",
@@ -1922,17 +1922,13 @@
       "message": "Reading in Jyutping",
       "description": "Label of the field where the learner types a Cantonese word's reading in Jyutping."
     },
-    "player.vocalize.label": {
-      "message": "The word with its vowel marks",
-      "description": "Label of the field holding a word's letters, where the learner adds vowel marks."
-    },
     "player.vocalize.spelled-label": {
       "message": "The marked word in {$orthography}",
       "description": "Label of the field where the learner writes the marked word in another orthography that spells its vowels. $orthography is that orthography's name (orthography.*)."
     },
-    "player.vocalize.use-marks": {
-      "message": "Write the vowel marks instead",
-      "description": "Button on a vocalize exercise, back from writing the word in another orthography to adding its vowel marks."
+    "player.vocalize.use-options": {
+      "message": "Choose among the options instead",
+      "description": "Button on a vocalize exercise, back from typing the word in another orthography to choosing it with its vowel marks."
     },
     "player.vocalize.use-spelled": {
       "message": "Write it in {$orthography} instead",

@@ -31,7 +31,7 @@ const TRUE_TEMPLATE: Readonly<Record<TemplateId, number>> = {
   "gap-fill": 0.2,
   "char-read": 0.0,
   "reading-disambiguation": 0.8,
-  vocalize: 1.2,
+  vocalize: 0.0,
   transcribe: 1.2,
   "complete-translation": 1.0,
   "translate-type.l1-l2": 1.4,

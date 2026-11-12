@@ -30,6 +30,7 @@ import {
   type TemplateId,
 } from "../src/lesson/index.ts";
 import { creditOf } from "../src/learner/credit.ts";
+import { gradeVowels, withoutMarks } from "../src/match/pronounce.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
@@ -90,7 +91,7 @@ const rightAnswer = (ex: Exercise): Response => {
     case "complete-translation":
       return { tag: "text", text: surfaceOf(ex.blank) };
     case "vocalize":
-      return { tag: "text", text: surfaceOf(ex.vocalized) };
+      return { tag: "choice", index: ex.answer };
     case "transcribe":
       return { tag: "text", text: surfaceOf(ex.reading) };
     case "speak.tier-0":
@@ -131,7 +132,7 @@ const wrongAnswer = (ex: Exercise): Response | undefined => {
     case "listen-type":
       return { tag: "text", text: "qqqq zzzz" };
     case "vocalize":
-      return { tag: "text", text: surfaceOf(ex.prompt) };
+      return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
     case "transcribe":
       return { tag: "text", text: "qqqq1" };
     case "speak.tier-0":
@@ -297,34 +298,43 @@ describe("the card gallery (debug mode)", () => {
 });
 
 describe("writing in a word's pronunciation, in its sentence (ADR 0054, 0095)", () => {
-  const HARAKAT = /[\u064B-\u0652\u0670]/u;
   const cardOf = (id: string, orthography: string | undefined, template: TemplateId): Exercise | undefined =>
     cardGallery(loadCourse(id, orthography), 3).find((c) => c.template === template)?.exercise;
 
-  it("vowel marks: a sentence without marks, one word to mark from its letters (fa, apc-Arab)", () => {
-    for (const [id, orthography] of [["fa", undefined], ["apc", "apc-Arab/standard"]] as const) {
+  it("vowel marks: a sentence without marks, one word to choose with its marks among wrong ones (fa, apc-Arab, hbo)", () => {
+    for (const [id, orthography] of [["fa", undefined], ["apc", "apc-Arab/standard"], ["hbo", undefined]] as const) {
       const course = loadCourse(id, orthography);
       const ex = cardOf(id, orthography, "vocalize");
       if (ex?.template !== "vocalize") throw new Error(`${id}: no vocalize card`);
-      // The sentence is the prompt; the word asked about is one of its tokens.
-      expect(ex.prompt.tokens.filter((t) => t.kind === "word").length).toBeGreaterThan(0);
-      expect(HARAKAT.test(surfaceOf(ex.prompt))).toBe(false);
-      expect(ex.prompt.tokens[ex.word]?.surface).toBe(surfaceOf(ex.letters));
-      expect(HARAKAT.test(surfaceOf(ex.vocalized))).toBe(true);
+      const profile = course.profiles.get(course.orthography);
+      const marks = profile?.marks;
+      if (marks === undefined) throw new Error(`${id}: no marks`);
+      // The sentence is the prompt, without marks; the word asked about is one of its tokens.
+      expect(ex.prompt.tokens.every((t) => withoutMarks(marks, t.surface) === t.surface.normalize("NFC"))).toBe(true);
+      expect(ex.prompt.tokens[ex.word]?.surface).toBe(withoutMarks(marks, surfaceOf(ex.vocalized)));
       expect(TEMPLATES.vocalize.facet).toBe("read-script");
+      expect(TEMPLATES.vocalize.modality.input).toBe("choice");
+      // Three or four options: the vocalized word, and others with its letters that are wrong.
+      const options = ex.options.map(surfaceOf);
+      expect(options.length).toBeGreaterThanOrEqual(3);
+      expect(new Set(options).size).toBe(options.length);
+      expect(options[ex.answer]).toBe(surfaceOf(ex.vocalized));
+      for (const [i, o] of options.entries()) {
+        expect(withoutMarks(marks, o)).toBe(withoutMarks(marks, surfaceOf(ex.vocalized)));
+        if (i !== ex.answer) expect(gradeVowels(marks, surfaceOf(ex.vocalized), o).verdict, `${id}: ${o} is no wrong option`).toBe("WRONG");
+      }
       const grader = createGrader(course);
-      expect(gradeExercise(ex, { tag: "text", text: surfaceOf(ex.vocalized) }, grader).verdict).toBe("CORRECT");
-      const bare = gradeExercise(ex, { tag: "text", text: surfaceOf(ex.letters) }, grader);
-      expect([bare.verdict, bare.notes]).toEqual(["WRONG", ["vocalize-marks"]]);
-      expect(bare.solution).toBe(ex.vocalized);
+      expect(gradeExercise(ex, { tag: "choice", index: ex.answer }, grader).verdict).toBe("CORRECT");
+      const wrongPick = gradeExercise(ex, { tag: "choice", index: (ex.answer + 1) % options.length }, grader);
+      expect([wrongPick.verdict, wrongPick.solution]).toEqual(["WRONG", ex.vocalized]);
       // Credit goes to the word asked about; the rest of the sentence is given.
-      const credit = creditOf(ex, gradeExercise(ex, { tag: "text", text: surfaceOf(ex.vocalized) }, grader), course.profiles);
+      const credit = creditOf(ex, gradeExercise(ex, { tag: "choice", index: ex.answer }, grader), course.profiles);
       expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
       expect(credit.filter((c) => c.status === "given").length).toBe(new Set(ex.kcs).size - credit.filter((c) => c.status === "right").length);
-      // The player's field starts from the word's letters.
+      // The player starts with nothing chosen.
       const [presenting] = start("lesson", [ex]);
       const [answering] = step(presenting, { tag: "ready" });
-      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "text", text: surfaceOf(ex.letters) });
+      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "choice", index: null });
     }
   });
 
@@ -736,7 +746,9 @@ describe("Toki Pona in sitelen pona (ADR 0086)", () => {
     for (const ex of reads) {
       if (ex.template !== "char-read") continue;
       expect(ex.options.every((o) => o.orthography === "tok-Latn/standard")).toBe(true);
-      expect(ex.prompt.tokens).toHaveLength(1);
+      // In its sentence (ADR 0098): the word asked about is one whole token, a cartouche included.
+      expect(ex.word === undefined ? undefined : ex.prompt.tokens[ex.word]?.kind).toBe("word");
+      expect(ex.prompt.tokens.every((t) => t.ruby === undefined)).toBe(true);
     }
     for (const s of allSentences(course)) {
       for (const t of s.forms[SITELEN_PONA]?.text.tokens ?? []) {

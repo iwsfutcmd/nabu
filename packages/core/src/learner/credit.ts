@@ -44,9 +44,9 @@ export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
     const token = firstToken(ex.options[ex.answer]);
     return token === undefined ? undefined : kcsOfToken(token);
   }
-  // A pronunciation card in context (ADR 0095) asks about one word; the sentence around it is given.
-  if (ex.template === "vocalize" || ex.template === "transcribe") {
-    const token = ex.prompt.tokens[ex.word];
+  // A pronunciation card in context (ADR 0095, 0098) asks about one word; the sentence around it is given.
+  if (ex.template === "vocalize" || ex.template === "transcribe" || (ex.template === "char-read" && ex.word !== undefined)) {
+    const token = ex.word === undefined ? undefined : ex.prompt.tokens[ex.word];
     return token === undefined ? undefined : kcsOfToken(token);
   }
   return undefined;
