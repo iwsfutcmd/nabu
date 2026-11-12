@@ -98,6 +98,14 @@ describe("roleplay turn checks", () => {
     expect(checkTurn(yue, "早晨！hello", ["早晨"], 5).outOfScript).toEqual(["h", "e", "l", "o"]);
   });
 
+  it("checks a private-use script (sitelen pona, Qaap) against the profile's repertoire", () => {
+    const tok = loadCourse("tok", "tok-Qaap/sitelen-pona");
+    // mi moku. in UCSUR logographs: no Unicode script property exists for them.
+    const miMoku = String.fromCodePoint(0xf1934, 0xf1939);
+    expect(checkTurn(tok, miMoku, [], 5)).toMatchObject({ outOfScript: [] });
+    expect(checkTurn(tok, `${miMoku} moku`, [], 5).outOfScript).toEqual(["m", "o", "k", "u"]);
+  });
+
   it("known vocabulary comes from the learner's recall, not from the course", () => {
     expect(knownForms(fa, emptyLearnerState(), "2026-01-01T00:00:00Z")).toEqual([]);
   });
