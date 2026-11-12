@@ -954,7 +954,8 @@ def record_reference(
     text: str,
     license_: str,
     author: str,
-    source: str,
+    source: str | None,
+    design: dict[str, Any] | None = None,
 ) -> ReferenceVoice:
     """Keeps a real speaker's recording as the voice's reference (voices/<voice>.wav), replacing
     an earlier one (ADR 0076): every clip of an OmniVoice voice then clones that speaker, accent
@@ -964,8 +965,13 @@ def record_reference(
 
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    pcm, _ = prepare(recording)
-    data = wav_bytes(pcm, INGEST_RATE)
+    if design is None:
+        pcm, _ = prepare(recording)
+        rate = INGEST_RATE
+    else:
+        # A designed voice (VoxCPM2, ADR 0094) is kept as the model made it, at its own rate.
+        pcm, rate = decoded(recording)
+    data = wav_bytes(pcm, rate)
     rel = f"voices/{voice.voice}.wav"
     (adir / "voices").mkdir(parents=True, exist_ok=True)
     (adir / rel).write_bytes(data)
@@ -975,16 +981,58 @@ def record_reference(
             "file": rel,
             "sha256": hashlib.sha256(data).hexdigest(),
             "text": unicodedata.normalize("NFC", text.strip()),
-            "durationMs": len(pcm) // 2 * 1000 // INGEST_RATE,
+            "durationMs": len(pcm) // 2 * 1000 // rate,
             "license": license_,
             "provenance": {"author": author, "status": "draft"},
-            "synthetic": False,
-            "source": source,
+            "synthetic": design is not None,
+            **({"source": source} if source is not None else {}),
+            **({"design": design} if design is not None else {}),
         }
     )
     others = [r for r in index.references or [] if r.id != voice.voice]
     write_index(adir, index.model_copy(update={"references": [*others, ref]}))
     return ref
+
+
+def decoded(path: Path) -> tuple[bytes, int]:
+    """A recording as 16-bit mono PCM at its own sample rate."""
+    probe = subprocess.run(
+        [
+            "ffprobe",
+            "-v",
+            "error",
+            "-select_streams",
+            "a:0",
+            "-show_entries",
+            "stream=sample_rate",
+            "-of",
+            "default=nw=1:nk=1",
+            str(path),
+        ],
+        capture_output=True,
+        check=True,
+        text=True,
+    )
+    rate = int(probe.stdout.strip())
+    out = subprocess.run(
+        [
+            "ffmpeg",
+            "-v",
+            "error",
+            "-i",
+            str(path),
+            "-f",
+            "s16le",
+            "-ac",
+            "1",
+            "-ar",
+            str(rate),
+            "-",
+        ],
+        capture_output=True,
+        check=True,
+    )
+    return out.stdout, rate
 
 
 #: The sample rate a recorded reference is kept at (ingest.SAMPLE_RATE).

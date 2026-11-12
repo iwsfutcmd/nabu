@@ -20,6 +20,11 @@ Two hosted providers, for languages the local voices serve badly (ADR 0042):
   timestamps. Speed 0.7-1.2.
 - **cartesia** (Sonic): word timestamps over server-sent events; speed 0.6-1.5; no seed.
 
+VoxCPM2 for Cantonese (ADR 0094), in its own runtime (pipeline/runtimes/voxcpm):
+
+- **voxcpm**: every clip clones a reference with its transcript. A word card is said after a
+  carrier and cut out by forced alignment; a sentence is slowed toward a pace with Rubber Band.
+
 One local model for dialects the others do not serve (ADR 0058):
 
 - **omnivoice**: OmniVoice checkpoints from Hugging Face, run on this machine. The Lahgtna
@@ -957,7 +962,7 @@ def runtime_command(runtime: Path = COSYVOICE_RUNTIME) -> list[str]:
 
     uv = shutil.which("uv")
     if uv is None:
-        raise ProviderError("navoiy: uv is needed to run the CosyVoice runtime")
+        raise ProviderError(f"uv is needed to run the {runtime.name} runtime")
     return [uv, "run", "--project", str(runtime), "python", str(runtime / "worker.py")]
 
 
@@ -1132,6 +1137,311 @@ class NavoiyProvider:
         }
 
 
+# ------------------------------------------------------------------------------- VoxCPM2 (ADR 0094)
+
+#: The VoxCPM2 runtime's own environment (pipeline/runtimes/voxcpm) and the package it pins.
+VOXCPM_RUNTIME = Path(__file__).resolve().parents[3] / "runtimes" / "voxcpm"
+VOXCPM_PACKAGE = "2.0.3"
+
+
+class VoxCPMEngine(Protocol):
+    """What the provider needs of VoxCPM2 (a fake one in tests)."""
+
+    sampling_rate: int
+
+    def speak(self, text: str, prompt: Path, prompt_text: str, seed: int) -> bytes:
+        """s16le mono PCM of `text`, cloning the prompt recording with its transcript."""
+        ...
+
+    def design(self, text: str, instruct: str, seed: int) -> bytes:
+        """s16le mono PCM of `text` in a voice designed from `instruct`."""
+        ...
+
+
+class VoxCPMWorker:
+    """VoxCPM2 in its own environment: worker.py of the runtime, spoken to in JSON lines."""
+
+    def __init__(self, config: dict[str, Any], command: list[str] | None = None) -> None:
+        import atexit
+        import subprocess
+
+        self.process = subprocess.Popen(
+            command or runtime_command(VOXCPM_RUNTIME),
+            stdin=subprocess.PIPE,
+            stdout=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+        )
+        atexit.register(self.close)
+        ready = self._ask(config)
+        if "ready" not in ready:
+            raise ProviderError(f"voxcpm: the runtime did not start: {ready.get('error', ready)}")
+        self.sampling_rate = int(ready["ready"]["sampleRate"])
+
+    def _ask(self, message: dict[str, Any]) -> dict[str, Any]:
+        stdin, stdout = self.process.stdin, self.process.stdout
+        assert stdin is not None and stdout is not None
+        stdin.write(json.dumps(message, ensure_ascii=False) + "\n")
+        stdin.flush()
+        line = stdout.readline()
+        if not line:
+            raise ProviderError(f"voxcpm: the runtime exited ({self.process.wait()})")
+        answer: dict[str, Any] = json.loads(line)
+        return answer
+
+    def _pcm(self, message: dict[str, Any]) -> bytes:
+        answer = self._ask(message)
+        if "error" in answer:
+            raise ProviderError(f"voxcpm: {message['text']!r}: {answer['error']}")
+        return base64.b64decode(answer["pcm"])
+
+    def speak(self, text: str, prompt: Path, prompt_text: str, seed: int) -> bytes:
+        return self._pcm(
+            {"text": text, "prompt": str(prompt), "promptText": prompt_text, "seed": seed}
+        )
+
+    def design(self, text: str, instruct: str, seed: int) -> bytes:
+        return self._pcm({"text": text, "instruct": instruct, "seed": seed})
+
+    def close(self) -> None:
+        if self.process.poll() is None:
+            assert self.process.stdin is not None
+            self.process.stdin.close()
+            self.process.wait(timeout=60)
+
+
+@cache
+def load_voxcpm(repo: str, revision: str) -> VoxCPMEngine:
+    """VoxCPM2 at that commit, in the runtime (cached)."""
+    return VoxCPMWorker(
+        {
+            "model": {"repo": repo, "revision": revision},
+            "cfg": VoxCPMProvider.CFG,
+            "steps": VoxCPMProvider.STEPS,
+        }
+    )
+
+
+def _samples(pcm: bytes) -> array[int]:
+    out = array("h")
+    out.frombytes(pcm)
+    if sys.byteorder == "big":
+        out.byteswap()
+    return out
+
+
+def _pcm_of(samples: array[int]) -> bytes:
+    out = array("h", samples)
+    if sys.byteorder == "big":
+        out.byteswap()
+    return out.tobytes()
+
+
+def speech_span(pcm: bytes, sample_rate: int, floor: float = 0.05) -> tuple[int, int]:
+    """First and last sample of the speech: the 20 ms frames within `floor` of the loudest."""
+    x = _samples(pcm)
+    step = max(1, sample_rate // 50)
+    n = len(x) // step
+    rms = [math.sqrt(sum(v * v for v in x[i * step : (i + 1) * step]) / step) for i in range(n)]
+    if n == 0 or max(rms) <= 0.0:
+        return 0, len(x)
+    loud = [i for i, r in enumerate(rms) if r >= max(rms) * floor]
+    return loud[0] * step, (loud[-1] + 1) * step
+
+
+def faded(pcm: bytes, sample_rate: int, fade_in_ms: int = 10, fade_out_ms: int = 40) -> bytes:
+    """Short linear fades, so a cut does not click."""
+    x = _samples(pcm)
+    a, b = sample_rate * fade_in_ms // 1000, sample_rate * fade_out_ms // 1000
+    for i in range(min(a, len(x))):
+        x[i] = round(x[i] * i / a)
+    for i in range(min(b, len(x))):
+        x[len(x) - 1 - i] = round(x[len(x) - 1 - i] * i / b)
+    return _pcm_of(x)
+
+
+def rubberband_stretch(pcm: bytes, sample_rate: int, stretch: float) -> bytes:
+    """`stretch` times longer, pitch and formants kept: Rubber Band's R3 engine (the CLI)."""
+    import shutil
+    import subprocess
+    import tempfile
+    import wave
+
+    exe = shutil.which("rubberband")
+    if exe is None:
+        raise ProviderError("voxcpm: pacing needs Rubber Band (apt install rubberband-cli)")
+    with tempfile.TemporaryDirectory() as tmp:
+        src, dst = Path(tmp) / "in.wav", Path(tmp) / "out.wav"
+        with wave.open(str(src), "wb") as w:
+            w.setnchannels(1)
+            w.setsampwidth(2)
+            w.setframerate(sample_rate)
+            w.writeframes(pcm)
+        subprocess.run(
+            [exe, "-q", "--fine", "--formant", "-T", f"{1 / stretch:.6f}", str(src), str(dst)],
+            check=True,
+            capture_output=True,
+        )
+        with wave.open(str(dst), "rb") as r:
+            return r.readframes(r.getnframes())
+
+
+#: Text that ends a sentence: a sentence is said as it is, an item without it (a word card)
+#: through the carrier.
+_CLOSED = regex.compile(r"[\p{Po}\p{Pe}\p{Pf}][\s\p{Cf}]*$")
+_HAN = regex.compile(r"\p{Han}")
+
+
+class VoxCPMProvider:
+    """VoxCPM2 (`model`: openbmb/VoxCPM2@commit) cloning a reference recording and its transcript
+    (ADR 0094). Sampling is seeded per clip (`seed_of`). A word card (no closing punctuation) is
+    said after the `carrier` and cut out by forced alignment; a sentence is slowed toward the
+    `pace`. No timings: `nabu audio align` gives them."""
+
+    name = "voxcpm"
+    seeded = True
+    #: Guidance and diffusion steps: VoxCPM2's defaults, pinned so a change of defaults cannot
+    #: change new clips silently.
+    CFG = 2.0
+    STEPS = 10
+    TRIES = OmniVoiceProvider.TRIES
+    #: Around a word cut from the carrier: before it, and after it (its last sound's tail).
+    LEAD_MS = 40
+    TAIL_MS = 150
+    #: Shapes the clips: part of their identity, so changing how they are made means a new id.
+    CARRIER_METHOD = "voxcpm-align-1"
+    PACE_METHOD = "rubberband-r3-formant-1"
+
+    def __init__(
+        self,
+        voice: AudioVoice,
+        reference: Reference | None,
+        load: Callable[[str, str], VoxCPMEngine] = load_voxcpm,
+        align: Callable[[bytes, int, list[list[str]]], Any] | None = None,
+        phonemes: Callable[[str, str], list[list[str]]] = espeak.phonemes,
+        stretch: Callable[[bytes, int, float], bytes] = rubberband_stretch,
+    ) -> None:
+        self.repo, self.revision = checkpoint(_required(voice, "model"))
+        #: The eSpeak NG voice the aligner's phones come from ("yue").
+        self.language = _required(voice, "language")
+        self.carrier = voice.carrier.text if voice.carrier is not None else None
+        self.pace = voice.pace
+        if reference is None:
+            raise ValueError(
+                f"voice {voice.id}: no reference voice {voice.voice!r} in the audio index "
+                f"(`nabu audio cast <course> --voice {voice.id}`)"
+            )
+        self.reference = reference
+        self.load = load
+        self.align = align
+        self.phonemes = phonemes
+        self.stretch = stretch
+
+    def version(self) -> str:
+        # No spaces or "@": it also names the clips' author (generated:voxcpm@<version>).
+        return f"{self.repo}#{self.revision}+voxcpm-{VOXCPM_PACKAGE}"
+
+    def settings(self) -> dict[str, Any]:
+        return {"cfg": self.CFG, "steps": self.STEPS, "reference": self.reference.sha256}
+
+    def speed(self, rate: float) -> float:
+        return 1.0
+
+    def carried(self, text: str) -> bool:
+        return self.carrier is not None and _CLOSED.search(text) is None
+
+    def item_settings(self, text: str) -> dict[str, Any]:
+        """The route of one item, in its clip's identity alone (ADR 0094)."""
+        if self.carried(text):
+            return {"carrier": {"text": self.carrier, "method": self.CARRIER_METHOD}}
+        if self.pace is not None:
+            return {
+                "pace": {
+                    "target": self.pace.target,
+                    "maxStretch": self.pace.maxStretch,
+                    "method": self.PACE_METHOD,
+                }
+            }
+        return {}
+
+    def _aligner(self) -> Callable[[bytes, int, list[list[str]]], Any]:
+        if self.align is None:
+            from nabu.audio.phones import align_words
+
+            self.align = align_words
+        return self.align
+
+    def _cut(self, pcm: bytes, sample_rate: int, carrier: str, word: str) -> bytes:
+        """The word after the carrier, by forced alignment of the two."""
+        words = [
+            [p for w in self.phonemes(carrier, self.language) for p in w],
+            [p for w in self.phonemes(word, self.language) for p in w],
+        ]
+        timing = self._aligner()(pcm, sample_rate, words)[1]
+        per_ms = sample_rate / 1000
+        start = max(0, round((timing.start_ms - self.LEAD_MS) * per_ms))
+        end = min(len(pcm) // 2, round((timing.end_ms + self.TAIL_MS) * per_ms))
+        return faded(pcm[start * 2 : end * 2], sample_rate)
+
+    def _paced(self, pcm: bytes, sample_rate: int, text: str) -> bytes:
+        """Slowed toward the pace, if the voice says it faster (ADR 0094)."""
+        if self.pace is None:
+            return pcm
+        syllables = len(_HAN.findall(text))
+        start, end = speech_span(pcm, sample_rate)
+        seconds = (end - start) / sample_rate
+        if syllables == 0 or seconds <= 0:
+            return pcm
+        stretch = min(self.pace.maxStretch, syllables / seconds / self.pace.target)
+        return pcm if stretch <= 1.0 else self.stretch(pcm, sample_rate, stretch)
+
+    def _speak(self, engine: VoxCPMEngine, text: str, seed: int) -> bytes:
+        pcm = b""
+        for attempt in range(self.TRIES):
+            pcm = engine.speak(text, self.reference.path, self.reference.text, seed + attempt)
+            if len(pcm) // 2 >= engine.sampling_rate // 10:  # 100 ms
+                break
+        return pcm
+
+    def synthesize(self, requests: list[Request]) -> list[Clip]:
+        engine = self.load(self.repo, self.revision)
+        rate = engine.sampling_rate
+        out: list[Clip] = []
+        for r in requests:
+            if self.carried(r.input):
+                carrier = cast_str(self.carrier)
+                said = carrier + r.input + ("\u3002" if _HAN.search(r.input) else ".")
+                pcm = self._cut(self._speak(engine, said, seed_of(r)), rate, carrier, r.input)
+            else:
+                pcm = self._speak(engine, r.input, seed_of(r))
+                start, end = speech_span(pcm, rate)
+                lead, tail = round(LEAD_S * rate), round(TAIL_S * rate)
+                pcm = pcm[max(0, start - lead) * 2 : min(len(pcm) // 2, end + tail) * 2]
+                pcm = self._paced(pcm, rate, r.input)
+            out.append(Clip(pcm, rate, None, None))
+        return out
+
+    def design(self, text: str, instruct: str, seed: int) -> Clip:
+        """A voice designed from a description, as `nabu audio cast` keeps (its first step)."""
+        engine = self.load(self.repo, self.revision)
+        return Clip(engine.design(text, instruct, seed), engine.sampling_rate, None, None)
+
+    def design_record(self, instruct: str, seed: int) -> dict[str, Any]:
+        return {
+            "provider": self.name,
+            "version": self.version(),
+            "language": self.language,
+            "instruct": instruct,
+            "seed": seed,
+        }
+
+
+def cast_str(value: str | None) -> str:
+    if value is None:
+        raise ValueError("no carrier")
+    return value
+
+
 PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "espeak-ng": lambda _voice, _ref: EspeakProvider(),
     "piper": lambda voice, _ref: PiperProvider(voice),
@@ -1139,6 +1449,7 @@ PROVIDERS: dict[str, Callable[[AudioVoice, Reference | None], Provider]] = {
     "cartesia": lambda voice, _ref: CartesiaProvider(voice),
     "omnivoice": lambda voice, ref: OmniVoiceProvider(voice, ref),
     "navoiy": lambda voice, ref: NavoiyProvider(voice, ref),
+    "voxcpm": lambda voice, ref: VoxCPMProvider(voice, ref),
 }
 
 

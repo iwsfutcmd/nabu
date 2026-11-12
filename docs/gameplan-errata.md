@@ -127,9 +127,9 @@ ADR is linked. The gameplan text itself is left as written.
 36. **§16 Phase 5 "the polyphone fixture is synthesized correctly and passes round-trip
     verification":** 銀行 and 行路 are synthesized from their pinned readings, and eSpeak's own
     phoneme trace confirms hong4 and haang4. Whisper cannot recognize eSpeak's Cantonese at all, so
-    the round trip fails, and the gate rightly keeps those clips out. Meeting this criterion needs a
-    better Cantonese voice. Qwen3-TTS with a CC0-trained Hong Kong LoRA (Apache-2.0) is the
-    candidate, awaiting a decision ([ADR 0040](adr/0040-audio-pipeline.md)).
+    the round trip fails, and the gate rightly kept those clips out. The voice is now VoxCPM2 cloning
+    two designed anchors ([ADR 0094](adr/0094-yue-voxcpm2.md)). It reads characters, not the pinned
+    readings: the carrier for word cards and the round trip and audio check stand in for that.
 37. **§10.3 "an MMS-based aligner that takes romanized input, or the Montreal Forced Aligner":**
     alignment uses one phoneme CTC model (wav2vec2-xlsr-53-espeak-cv-ft). Its outputs are eSpeak
     IPA, which needs no romanizer. Word starts are refined from the audio's energy, because CTC
@@ -209,9 +209,9 @@ ADR is linked. The gameplan text itself is left as written.
 53. **§16 Phase 9 acceptance "a recorded fixture set of native and deliberately wrong tones":** no
     recordings exist. The harness and its report are done, and run on a synthetic eSpeak NG set
     marked as such; the acceptance waits for native speakers (`evals/tones/README.md`).
-54. **§8.1 `tone-identify` for yue:** it needs one-syllable clips, and every committed yue clip
-    but one is held back by Phase 5's round-trip check (Whisper does not understand eSpeak's
-    Cantonese). The exercise appears once clips are reviewed or recorded.
+54. **§8.1 `tone-identify` for yue:** it needs one-syllable clips, and eSpeak NG's were held back by
+    the round-trip check (Whisper did not understand its Cantonese). The exercise appears with
+    VoxCPM2's word cards ([ADR 0094](adr/0094-yue-voxcpm2.md)) where they pass the check.
 55. **§10.4 tier 1 everywhere:** Whisper writes Uzbek in Latin and Lebanese in Arabic script, so
     `uz-Cyrl` and `apc-Latn` get no tier 1, and `apc` no tier 2 (no trustworthy expected
     phones from unvocalized text). Their speaking is self-rated unless tones apply

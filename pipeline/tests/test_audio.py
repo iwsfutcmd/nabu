@@ -104,6 +104,12 @@ def test_timings_map_word_onsets_to_tokens() -> None:
     ]
 
 
+ESPEAK_AUDIO = (
+    "audio:\n  voices:\n  - {id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, "
+    "orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}\n"
+)
+
+
 @pytest.fixture
 def yue_copy(tmp_path: Path) -> Path:
     """The yue course's first unit, without audio: enough to synthesize, round-trip and
@@ -112,6 +118,9 @@ def yue_copy(tmp_path: Path) -> Path:
     shutil.copytree(ROOT / "courses" / "yue", course, ignore=shutil.ignore_patterns("audio"))
     path = course / "course.yaml"  # edited as text: other tests rewrite its lines verbatim
     text, n = re.subn(r"(?m)^units: \[.*\]$", "units: [units/intro.yaml]", path.read_text("utf-8"))
+    assert n == 1
+    # These tests are about eSpeak NG reading pinned Jyutping, whatever voice the course ships.
+    text, n = re.subn(r"(?ms)^audio:\n.*\Z", ESPEAK_AUDIO, text)
     assert n == 1
     path.write_text(text, encoding="utf-8")
     (tmp_path / "images").symlink_to(ROOT / "courses" / "images")

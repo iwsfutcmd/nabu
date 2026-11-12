@@ -118,7 +118,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate
   ../courses/<id> [--check]` writes it (needs espeak-ng and ffmpeg; --check needs `uv sync --group speech`). The compiler only
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
-- Synthesize from pinned readings (Jyutping), never raw characters. Human recordings: `nabu audio ingest`.
+- Synthesize from pinned readings (Jyutping), never raw characters, except a voice that reads only characters (yue's
+  VoxCPM2, ADR 0094: the round trip and the audio check catch its readings). Human recordings: `nabu audio ingest`.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
@@ -389,6 +390,11 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Particles: 呀 aa3 softens a question or statement but never makes one; aa4 (àh) turns a statement into a question.
   No 嘅呀 (ge + a is 㗎, outside the script audit); 嗎 is formal (你好嗎). 喇 laa3 a new situation, 啦 laa1 requests.
 - 俾 puts the thing first (俾錢你). 好 + adjective is a weak "very": English accept sets keep very/really/so optional.
+- Voices (ADR 0094): VoxCPM2 (`voxcpm`, pipeline/runtimes/voxcpm, its own uv project) cloning two designed anchors
+  (courses/yue/audio/voices, Apache-2.0) with their transcript. A word card is said after `跟住我讀：` and cut out by
+  forced alignment; a sentence is slowed toward `pace` (4.3 syllables/s, ≤1.6×) with Rubber Band (apt rubberband-cli).
+  Generate on a GPU (Kaggle): the runtime and the pipeline on CUDA torch, `UV_NO_SYNC=1`, then `nabu audio align`
+  for each voice. Never re-cast the anchors without the owner: they are the voices he chose.
 
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and

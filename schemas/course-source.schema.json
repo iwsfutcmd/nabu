@@ -628,16 +628,17 @@
             "elevenlabs",
             "cartesia",
             "omnivoice",
-            "navoiy"
+            "navoiy",
+            "voxcpm"
           ]
         },
         "voice": {
-          "description": "The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+          "description": "The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice, Navoiy and VoxCPM2 a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
           "type": "string",
           "minLength": 1
         },
         "model": {
-          "description": "Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia \"sonic-3.6-2026-08-27\"; ElevenLabs \"eleven_v4\"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit (\"MahtaFetrat/Mana-Persian-Piper@ad9dd851…\", \"oddadmix/lahgtna-omnivoice-v2@55c38a61…\", \"aisha-org/navoiy-tts@9445f41e…\"). It is the clips' recorded version.",
+          "description": "Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia \"sonic-3.6-2026-08-27\"; ElevenLabs \"eleven_v4\"). OmniVoice, Navoiy, VoxCPM2, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit (\"openbmb/VoxCPM2@…\", \"MahtaFetrat/Mana-Persian-Piper@ad9dd851…\", \"oddadmix/lahgtna-omnivoice-v2@55c38a61…\", \"aisha-org/navoiy-tts@9445f41e…\"). It is the clips' recorded version.",
           "type": "string",
           "minLength": 1
         },
@@ -661,6 +662,9 @@
         },
         "carrier": {
           "$ref": "#/$defs/AudioCarrier"
+        },
+        "pace": {
+          "$ref": "#/$defs/AudioPace"
         },
         "spoken": {
           "description": "What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh \"nine\" in the numbers drill, na \"no\" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.",
@@ -687,9 +691,31 @@
         }
       }
     },
+    "AudioPace": {
+      "title": "AudioPace",
+      "description": "VoxCPM2: a sentence the voice says faster than `target` syllables (Han characters) a second is slowed toward it with Rubber Band, pitch and formants kept, by at most `maxStretch` (ADR 0094). A learner's normal pace, not the player's slow speed (ADR 0062). Word cards are cut from the carrier as they are.",
+      "type": "object",
+      "required": [
+        "target",
+        "maxStretch"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target": {
+          "description": "Syllables a second.",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "maxStretch": {
+          "description": "The most a clip is made longer (1.6: 60% longer).",
+          "type": "number",
+          "minimum": 1
+        }
+      }
+    },
     "AudioCarrier": {
       "title": "AudioCarrier",
-      "description": "Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.",
+      "description": "Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine. VoxCPM2: an item without closing punctuation (a word card) is said after this text, with the script's full stop, and cut out by forced alignment (ADR 0094); `maxWords` is not used.",
       "type": "object",
       "required": [
         "text"

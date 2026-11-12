@@ -390,6 +390,7 @@ export interface NabuSchemaIndex {
   readonly ImageAsset: ImageAsset;
   readonly CourseAudio: CourseAudio;
   readonly AudioVoice: AudioVoice;
+  readonly AudioPace: AudioPace;
   readonly AudioCarrier: AudioCarrier;
   readonly StorySource: StorySource;
   readonly StoryCharacter: StoryCharacter;
@@ -977,6 +978,13 @@ export interface ReferenceVoice {
      * The weights' precision ("bfloat16").
      */
     readonly dtype?: string;
+    /**
+     * The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register.
+     */
+    readonly recast?: {
+      readonly text: string;
+      readonly seed: number;
+    };
     /**
      * A recording the voice was cloned from, for a model that clones rather than designs (Navoiy, ADR 0059): where it is, its sha256 and its license. It is not kept in the course.
      */
@@ -1895,13 +1903,13 @@ export interface AudioVoice {
   /**
    * A provider of nabu.audio.providers.
    */
-  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy";
+  readonly provider: "espeak-ng" | "piper" | "elevenlabs" | "cartesia" | "omnivoice" | "navoiy" | "voxcpm";
   /**
-   * The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
+   * The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice, Navoiy and VoxCPM2 a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.
    */
   readonly voice: string;
   /**
-   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
+   * Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, VoxCPM2, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("openbmb/VoxCPM2@…", "MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips' recorded version.
    */
   readonly model?: string;
   /**
@@ -1921,6 +1929,7 @@ export interface AudioVoice {
    */
   readonly pronounce?: string;
   readonly carrier?: AudioCarrier;
+  readonly pace?: AudioPace;
   /**
    * What the voice reads instead of an item's text (item id: text in the orthography), for a reading the text does not settle: a homograph (نه is noh "nine" in the numbers drill, na "no" elsewhere: drill.numbers.9: نُه). Vowel marks where they settle it. It must have as many words as the item, so word timings still map. The full stop of `finalStop` is added after it.
    */
@@ -1935,7 +1944,7 @@ export interface AudioVoice {
   readonly license: Spdx2;
 }
 /**
- * Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
+ * Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine. VoxCPM2: an item without closing punctuation (a word card) is said after this text, with the script's full stop, and cut out by forced alignment (ADR 0094); `maxWords` is not used.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "AudioCarrier".
@@ -1949,6 +1958,22 @@ export interface AudioCarrier {
    * The longest item the carrier says, in words (split at spaces).
    */
   readonly maxWords?: number;
+}
+/**
+ * VoxCPM2: a sentence the voice says faster than `target` syllables (Han characters) a second is slowed toward it with Rubber Band, pitch and formants kept, by at most `maxStretch` (ADR 0094). A learner's normal pace, not the player's slow speed (ADR 0062). Word cards are cut from the carrier as they are.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "AudioPace".
+ */
+export interface AudioPace {
+  /**
+   * Syllables a second.
+   */
+  readonly target: number;
+  /**
+   * The most a clip is made longer (1.6: 60% longer).
+   */
+  readonly maxStretch: number;
 }
 /**
  * A course's vowel marks for one orthography (ADR 0053): each word's vocalized form. A surface with several pronunciations is ambiguous: each of its tokens names its own (SourceToken.vocalized).

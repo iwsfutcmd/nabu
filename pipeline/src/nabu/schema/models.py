@@ -187,6 +187,19 @@ type ReportStatus = Annotated[
 type Note = Annotated[str, Field(max_length=500)]
 
 
+class Recast(BaseModel):
+    """
+    The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    text: Annotated[str, Field(min_length=1)]
+    seed: Annotated[int, Field(ge=0)]
+
+
 class SynthesisRecord(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -770,9 +783,24 @@ class ImageAsset(BaseModel):
 type SpokenAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+class AudioPace(BaseModel):
+    """
+    VoxCPM2: a sentence the voice says faster than `target` syllables (Han characters) a second is slowed toward it with Rubber Band, pitch and formants kept, by at most `maxStretch` (ADR 0094). A learner's normal pace, not the player's slow speed (ADR 0062). Word cards are cut from the carrier as they are.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    target: Annotated[float, Field(description="Syllables a second.", gt=0.0)]
+    maxStretch: Annotated[
+        float, Field(description="The most a clip is made longer (1.6: 60% longer).", ge=1.0)
+    ]
+
+
 class AudioCarrier(BaseModel):
     """
-    Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine.
+    Piper: an item of at most `maxWords` words (word cards, mostly) is said at the end of this sentence and cut out at its first frame, its phonemes given at least the frames the carrier's phonemes get (ADR 0065). Some Piper models garble a lone word: their durations collapse and their reading of a short input is off, while sentences are fine. VoxCPM2: an item without closing punctuation (a word card) is said after this text, with the script's full stop, and cut out by forced alignment (ADR 0094); `maxWords` is not used.
     """
 
     model_config = ConfigDict(
@@ -2208,6 +2236,12 @@ class Design(BaseModel):
     dtype: Annotated[
         str | None, Field(description='The weights\' precision ("bfloat16").', min_length=1)
     ] = None
+    recast: Annotated[
+        Recast | None,
+        Field(
+            description="The designed voice first read `text` (seed `seed` above); the reference is that reading cloned, transcript and all, saying the reference's own text with this seed (VoxCPM2, ADR 0094): a designed voice moved to another register."
+        ),
+    ] = None
     prompt: Annotated[
         Prompt | None,
         Field(
@@ -2453,20 +2487,20 @@ class AudioVoice(BaseModel):
         ),
     ] = None
     provider: Annotated[
-        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy"],
+        Literal["espeak-ng", "piper", "elevenlabs", "cartesia", "omnivoice", "navoiy", "voxcpm"],
         Field(description="A provider of nabu.audio.providers."),
     ]
     voice: Annotated[
         str,
         Field(
-            description="The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice and Navoiy a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
+            description="The provider's voice: an eSpeak NG voice name, a Piper voice id (or, with `model`, the voice's file stem in that repo), an ElevenLabs voice_id, a Cartesia voice id, or for OmniVoice, Navoiy and VoxCPM2 a reference voice the audio index holds (`nabu audio cast`), whose voice every clip clones.",
             min_length=1,
         ),
     ]
     model: Annotated[
         str | None,
         Field(
-            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
+            description='Hosted providers: the model, pinned to a dated snapshot where the provider has one (Cartesia "sonic-3.6-2026-08-27"; ElevenLabs "eleven_v4"). OmniVoice, Navoiy, VoxCPM2, and a Piper voice outside rhasspy/piper-voices: the Hugging Face checkpoint and its commit ("openbmb/VoxCPM2@…", "MahtaFetrat/Mana-Persian-Piper@ad9dd851…", "oddadmix/lahgtna-omnivoice-v2@55c38a61…", "aisha-org/navoiy-tts@9445f41e…"). It is the clips\' recorded version.',
             min_length=1,
         ),
     ] = None
@@ -2497,6 +2531,7 @@ class AudioVoice(BaseModel):
         ),
     ] = None
     carrier: AudioCarrier | None = None
+    pace: AudioPace | None = None
     spoken: Annotated[
         dict[Annotated[str, StringConstraints(min_length=1)], SpokenAdditionalProperty] | None,
         Field(

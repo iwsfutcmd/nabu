@@ -24504,3 +24504,41 @@ clips:
     asrText: Hola.si
     cer: 1.2
     status: fail
+references:
+- id: anchor-f
+  file: voices/anchor-f.wav
+  sha256: 78df19926f8dca66240f873a6db06b9037ab4d0d8e1c3e87ad84a2639fc3cc88
+  text: 大家好，我係今日嘅主持。今日天氣好好，出面好熱，記得飲多啲水呀。我哋聽日再見啦！
+  durationMs: 6400
+  license: Apache-2.0
+  provenance:
+    author: generated:voxcpm@openbmb/VoxCPM2#7936080b41163874f38610f46f438e2c0757f9fd+voxcpm-2.0.3
+    status: draft
+  synthetic: true
+  source: Designed by VoxCPM2 in the November 2026 voice bench (Kaggle) and chosen by the course owner
+  design:
+    provider: voxcpm
+    version: openbmb/VoxCPM2#7936080b41163874f38610f46f438e2c0757f9fd+voxcpm-2.0.3
+    language: yue
+    instruct: 粤语，香港电视新闻女主播，三十多岁，字正腔圆，声音清晰明亮，语速平稳，专业录音室音质，没有杂音
+    seed: 1
+    recast:
+      text: 各位觀眾，晚安。今日香港天氣晴朗，最高氣溫二十八度，夜晚有驟雨，大家出入記得帶遮。
+      seed: 2
+- id: anchor-m
+  file: voices/anchor-m.wav
+  sha256: 866b806bebe96be09b6c984ec7e85ac8b45d9feb9f1337e73cd9c9a9bb527578
+  text: 大家好，我係今日嘅主持。今日天氣好好，出面好熱，記得飲多啲水呀。我哋聽日再見啦！
+  durationMs: 6560
+  license: Apache-2.0
+  provenance:
+    author: generated:voxcpm@openbmb/VoxCPM2#7936080b41163874f38610f46f438e2c0757f9fd+voxcpm-2.0.3
+    status: draft
+  synthetic: true
+  source: Designed by VoxCPM2 in the November 2026 voice bench (Kaggle) and chosen by the course owner
+  design:
+    provider: voxcpm
+    version: openbmb/VoxCPM2#7936080b41163874f38610f46f438e2c0757f9fd+voxcpm-2.0.3
+    language: yue
+    instruct: Cantonese, a deep-voiced middle-aged man, news anchor
+    seed: 3

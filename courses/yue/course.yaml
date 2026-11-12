@@ -11,7 +11,16 @@ provenance: {author: 'llm:claude@4c3f4acef278', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-numbers.yaml, units/u04-food.yaml, units/u05-places.yaml, units/u06-time.yaml, units/u07-transport.yaml, units/u08-shopping.yaml, units/u09-past.yaml, units/u10-plans.yaml]
 drills:
 - {kind: numbers, orthography: yue-Hant-HK/standard, values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-# Audio (§10.1): read from the pinned Jyutping, never from characters, so polyphones follow the content.
+# Audio (ADR 0094): VoxCPM2 cloning two news anchors it designed (no real person's voice), chosen by the owner
+# in the November 2026 voice bench. Each clip clones its anchor with the anchor's transcript. A word card is said
+# after 跟住我讀： ("repeat after me") and cut out by forced alignment; a sentence is slowed toward 4.3 syllables a
+# second (Rubber Band). The model reads characters, not the pinned Jyutping: the round trip and the audio check
+# (ADR 0060) are where a wrong reading is caught. Clips Apache-2.0, as the weights.
 audio:
   voices:
-  - {id: narrator, provider: espeak-ng, voice: yue-Latn-jyutping, orthography: yue-Hant-HK/standard, reading: jyutping, license: CC0-1.0}
+  - {id: anchor-f, provider: voxcpm, voice: anchor-f, speaker: f, model: 'openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd',
+    language: yue, orthography: yue-Hant-HK/standard, reading: text, license: Apache-2.0, carrier: {text: 跟住我讀：},
+    pace: {target: 4.3, maxStretch: 1.6}}
+  - {id: anchor-m, provider: voxcpm, voice: anchor-m, speaker: m, model: 'openbmb/VoxCPM2@7936080b41163874f38610f46f438e2c0757f9fd',
+    language: yue, orthography: yue-Hant-HK/standard, reading: text, license: Apache-2.0, carrier: {text: 跟住我讀：},
+    pace: {target: 4.3, maxStretch: 1.6}}

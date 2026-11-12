@@ -87,6 +87,7 @@ new ADR that supersedes it. New decisions start at 0013.
 | [0091](0091-voice-quality.md) | A course's voice is good, iffy or bad (`audio.quality`): iffy voices (hbo, tok) play only where the text is shown and never carry a listening exercise; a bad voice (grc) ships no clips |
 | [0092](0092-yue-matthews-yip.md) | yue is checked against Matthews & Yip, *Cantonese: A Comprehensive Grammar* (2011): its readings are confirmed (PyCantonese's warnings stay), what it shows wrong is fixed (àh questions, 嗎, ge + a, 俾's object order, a seller's 多謝), 好 is a weak intensifier in the English, and its forms join the accept sets | Proposed |
 | [0093](0093-no-tone-scoring-on-device.md) | Tones are not scored on the device (`DEVICE_TONE_SCORING` off): not accurate enough on natural speech; speaking is self-rated unless a speech server scores words and phones, and tone listening stays | Proposed |
+| [0094](0094-yue-voxcpm2.md) | yue's voices are VoxCPM2 (`voxcpm`, its own runtime) cloning two news anchors it designed: word cards said after 跟住我讀： and cut out by forced alignment, sentences slowed toward 4.3 syllables a second with Rubber Band; it reads characters, so the round trip and the audio check catch wrong readings | Proposed |
 | [0057](0057-word-corrections.md) | A word (a KC's first form and its gloss) can be corrected like a sentence, from any word exercise; match-the-pairs asks which word first; `nabu corrections apply` edits the KC and lists what writes the word | Proposed |
 
 Template: [0000-template.md](0000-template.md).
