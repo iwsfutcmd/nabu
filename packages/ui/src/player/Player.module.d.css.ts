@@ -50,6 +50,7 @@ declare const styles: {
   readonly readings: string;
   readonly readingsLabel: string;
   readonly recorder: string;
+  readonly reviewTag: string;
   readonly secondary: string;
   readonly segment: string;
   readonly segments: string;

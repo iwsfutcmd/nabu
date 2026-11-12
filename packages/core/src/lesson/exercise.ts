@@ -54,6 +54,8 @@ interface Common {
   readonly kcs: readonly KcId[];
   /** The orthography the learner answers in (target or support). */
   readonly orthography: string;
+  /** Older material a lesson brings back because it is due (ADR 0097): the player marks the card. */
+  readonly review?: true | undefined;
 }
 
 /** A support-language gloss; pick the picture and word that match it. */

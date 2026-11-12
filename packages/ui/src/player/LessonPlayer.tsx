@@ -191,6 +191,12 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         </ProgressBar>
       </header>
 
+      {/* Earlier material brought back because it is due (ADR 0097): said before the instruction. */}
+      {ex.review === true && (
+        <p className={styles.reviewTag} data-review-tag="">
+          {t.format("player.review.tag")}
+        </p>
+      )}
       <h2 className={styles.instruction}>{instruction}</h2>
       {props.debug === true && (
         <p className={styles.muted} data-debug-template={ex.template}>

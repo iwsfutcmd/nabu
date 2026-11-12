@@ -94,6 +94,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Ratings come from the answer, never the learner (but tier-0 speaking): pace per unit of length decides Hard and
   Easy (ADR 0096, `PACE_*` in state.ts); tune those on real logs, never on the simulator's latency model.
   Never delete events to undo progress: starting a course over is a `progress_reset` event (ADR 0049).
+- A lesson's review (ADR 0097): earlier lessons' sentences picked by need (`reviewSentences`), at most a quarter of
+  its cards, marked `review: true` (the player labels them). Never pick review in course order.
 - The planner is pure: (request, state, bundle, now, seed) → plan. Re-tune CALIBRATION_WEIGHT only against
   test/simulation.test.ts (every course within ±5pp of 85%, no lesson dropping a new KC); golden files:
   UPDATE_GOLDEN=1 after a deliberate change. Every new KC of a lesson is presented in it (a hard constraint, ADR 0050).

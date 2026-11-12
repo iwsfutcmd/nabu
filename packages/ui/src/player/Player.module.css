@@ -62,6 +62,19 @@
   font-weight: 700;
 }
 
+/* A card that brings back earlier material (ADR 0097): a small label above the instruction. */
+.reviewTag {
+  margin: 0;
+  inline-size: fit-content;
+  padding-block: 0.1rem;
+  padding-inline: 0.5rem;
+  border-radius: 999px;
+  background-color: var(--nabu-color-focus-bg);
+  color: var(--nabu-color-text);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+
 .toggles {
   display: flex;
   flex-wrap: wrap;

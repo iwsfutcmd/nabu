@@ -340,6 +340,31 @@ describe("planner constraints", () => {
     expect(p.exercises.some((e) => e.template === "speak.tier-0")).toBe(false);
   });
 
+  it("brings back the earlier sentences that need it most, as a small share, marked as review (ADR 0097)", () => {
+    const now = "2026-03-01T08:00:00.000Z";
+    const lessons = lessonNodes(fa);
+    const at = lessons.findIndex((n) => n.unit.id === fa.units[4]?.id);
+    const before = lessons.slice(0, at);
+    const card = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every earlier word seen; unit 3's fading (due), the rest fresh.
+    const fading = new Set(before.filter((n) => n.unit.id === fa.units[2]?.id).flatMap((n) => n.node.introduces as readonly string[]));
+    const cards: Record<string, LearnerState["cards"][string]> = {};
+    for (const n of before) for (const kc of n.node.introduces) for (const f of ["recognize", "produce"]) cards[`${kc}|${f}`] = fading.has(kc) ? card(40, 2) : card(1, 100);
+    const node = lessons[at]?.node.id as string;
+    const p = plan(fa, { ...emptyLearnerState(), cards }, { mode: "lesson", node }, { now, seed: 4 });
+    const review = p.exercises.filter((e) => e.review === true);
+    expect(review.length).toBeGreaterThan(0);
+    expect(review.length).toBeLessThanOrEqual(Math.max(1, Math.floor(p.exercises.length / 4)));
+    // Never the course's first unit, whose words are all fresh: review goes where it is needed.
+    const firstUnit = new Set(fa.units[0]?.sentences.map((s) => s.id));
+    expect(review.filter((e) => firstUnit.has(e.item))).toEqual([]);
+    // And every review card practises a fading word.
+    expect(review.every((e) => e.kcs.some((kc) => fading.has(kc)))).toBe(true);
+  });
+
   it("says which requests the course can plan: an old link may name a node it no longer has", () => {
     const node = lessonNodes(fa)[0]?.node.id as string;
     expect(plannable(fa, { mode: "lesson", node })).toBe(true);

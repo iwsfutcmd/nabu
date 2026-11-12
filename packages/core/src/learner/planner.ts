@@ -92,6 +92,49 @@ const MAX_PER_TEMPLATE: Readonly<Partial<Record<TemplateId, number>>> = {
   transcribe: 1,
 };
 
+/**
+ * Review inside a lesson (ADR 0097): earlier sentences to bring back, and the share of a lesson's
+ * cards they may take (a quarter, at least one).
+ */
+const REVIEW_SENTENCES = 6;
+const REVIEW_SHARE = 0.25;
+
+/**
+ * The earlier sentences a lesson brings back (ADR 0097), from the lessons before it on the path (a
+ * later lesson's sentence is new, whatever its words): chosen greedily by the due words they would
+ * practise, the most forgotten first (desired retention minus recall, per due recognize or produce
+ * card), each due word counted once. So review goes where it is needed, across every unit, never
+ * to the course's first sentences because their common words are always due somewhere; and a
+ * sentence just reviewed is no longer due, so it does not come back lesson after lesson.
+ */
+const reviewSentences = (
+  course: CourseView,
+  past: readonly BundleSentence[],
+  seen: ReadonlySet<string>,
+  due: ReadonlyMap<string, number>,
+  desired: number,
+  key: (kc: string, facet: Facet) => string,
+): readonly BundleSentence[] => {
+  const pool = past.filter((s) => s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
+  const cards = (s: BundleSentence): readonly string[] => s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce")]).filter((k) => due.has(k));
+  const covered = new Set<string>();
+  const need = (s: BundleSentence): number => cards(s).reduce((sum, k) => (covered.has(k) ? sum : sum + (desired - (due.get(k) ?? desired))), 0);
+  const picked: BundleSentence[] = [];
+  while (picked.length < REVIEW_SENTENCES) {
+    let best: BundleSentence | undefined;
+    let most = 0;
+    for (const s of pool) {
+      if (picked.includes(s)) continue;
+      const n = need(s);
+      if (n > most + 1e-12) [best, most] = [s, n];
+    }
+    if (best === undefined) break;
+    picked.push(best);
+    for (const k of cards(best)) covered.add(k);
+  }
+  return picked;
+};
+
 /** Pronunciation cards (ADR 0054): a word's vowel marks or its reading. */
 const PRONOUNCE: ReadonlySet<TemplateId> = new Set<TemplateId>(["vocalize", "transcribe"]);
 
@@ -199,6 +242,8 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
 
   // ---- 1–2. targets and candidates
   let introduced: readonly KcId[] = [];
+  // Items a lesson brings back for review (ADR 0097): their cards are capped and marked.
+  const reviewItems = new Set<string>();
   let pool: Exercise[];
   let size: number;
   const script = request.mode === "lesson" ? scriptNodes(course).find((n) => n.node.id === request.node) : undefined;
@@ -216,9 +261,12 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const fresh = node.introduces.flatMap<BundleKc>((id) => allKcs(course).find((k) => k.id === id) ?? []);
     const pairsPool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k) && seen.has(k.id))];
     const own = sentencesOf(course, unit, node);
-    // Interleave: earlier sentences whose facets are due.
-    const earlier = allSentences(course).filter((s) => !own.includes(s) && s.forms[course.orthography] !== undefined && s.kcs.some((kc) => due.has(key(kc, "recognize")) || due.has(key(kc, "produce"))));
-    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier.slice(0, 6), [], exclude)];
+    // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
+    const lessons = lessonNodes(course);
+    const past = lessons.slice(0, lessons.indexOf(found)).flatMap((n) => sentencesOf(course, n.unit, n.node));
+    const earlier = reviewSentences(course, past, seen, due, desired, key);
+    for (const s of earlier) reviewItems.add(s.id);
+    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier, [], exclude)];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
     const ctx: MakeContext = { course, rng, introduced: [] };
@@ -252,9 +300,12 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     });
     return parts.length === 0 ? 0 : parts.reduce((a, b) => a + b, 0) / parts.length;
   };
+  // A lesson's review is a small share of its cards (ADR 0097, D1).
+  const reviewCap = Math.max(1, Math.floor(size * REVIEW_SHARE));
   const allowed = (c: Candidate): boolean => {
     const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
     if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
+    if (reviewItems.has(c.ex.item) && chosen.filter((x) => reviewItems.has(x.ex.item)).length >= reviewCap) return false;
     if (RECOGNITION.has(c.ex.template)) return true;
     // A new KC is recognized before it is produced or read. A pronunciation card asks about one word
     // of its sentence (ADR 0095): that word must have been recognized; the rest is context.
@@ -323,5 +374,6 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     chosen.splice(chosen.indexOf(easiest), 1);
     chosen.push(easiest);
   }
-  return { request, exercises: chosen.map((c) => c.ex), predictions: chosen.map((c) => c.p), planner: PLANNER };
+  const marked = (ex: Exercise): Exercise => (reviewItems.has(ex.item) ? { ...ex, review: true } : ex);
+  return { request, exercises: chosen.map((c) => marked(c.ex)), predictions: chosen.map((c) => c.p), planner: PLANNER };
 };
