@@ -7,7 +7,8 @@ android {
         applicationId "org.nabu.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
+        // CI sets NABU_VERSION_CODE (its run number), so each preview build installs over the last.
+        versionCode((System.getenv("NABU_VERSION_CODE") ?: "1").toInteger())
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
@@ -16,7 +17,26 @@ android {
             ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
         }
     }
+    signingConfigs {
+        // The preview key is public: it is committed so that a preview build from any machine
+        // (CI's on every push to main) installs over the last one. Never sign a store release with it.
+        preview {
+            storeFile file("preview.keystore")
+            storePassword "nabu-preview"
+            keyAlias "nabu-preview"
+            keyPassword "nabu-preview"
+        }
+    }
     buildTypes {
+        // What CI publishes (the android-preview release): a debug build under its own id, so it
+        // sits beside a store install and never claims the store app's id with a public key.
+        preview {
+            initWith debug
+            applicationIdSuffix ".preview"
+            versionNameSuffix "-preview"
+            signingConfig signingConfigs.preview
+            matchingFallbacks = ["debug"]
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'

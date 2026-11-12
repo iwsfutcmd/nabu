@@ -16,7 +16,35 @@ pnpm --filter @nabu/mobile ios       # opens Xcode (macOS)
 - **Requirements.** Android needs JDK 21 and the Android SDK (API 36). iOS needs Xcode, with
   Swift Package Manager (no CocoaPods).
 - **No server.** Leave `VITE_NABU_API` unset for a local-only app.
-- **CI** builds the Android debug APK on every push.
+- **CI** builds the preview APK on every push and pull request, and publishes it from main.
+
+## Preview APK
+
+Every push to main builds the app and replaces the APK on the
+[android-preview release](https://github.com/iwsfutcmd/nabu/releases/tag/android-preview).
+[This link](https://github.com/iwsfutcmd/nabu/releases/download/android-preview/nabu-preview.apk)
+always downloads the latest. Each pull request's run keeps its APK as a run artifact for 14 days.
+
+- **Installing.** Open the link on the phone, then allow your browser to install apps when Android
+  asks. Play Protect may warn about an unknown developer.
+- **Updating.** Install the next one over it. Your progress stays, because each build is signed
+  with the same key and numbered by its run.
+- **What it is.**
+  - A debug build of the app, with every course inside and no sync server.
+  - Its id is `org.nabu.app.preview`, so it sits beside a store install of `org.nabu.app` and
+    never claims that id.
+  - It is debuggable: with USB debugging on, `chrome://inspect` on a computer shows its web view.
+- **The preview key is public.** `android/app/preview.keystore` (password `nabu-preview`) is
+  committed so that every machine signs previews alike.
+  - Anyone can sign an APK that installs over a preview, so install previews only from the
+    release page.
+  - Never sign a store release with this key. A store release gets its own private upload key.
+- **Building one yourself.**
+  - Run `./gradlew assemblePreview` in `android/` after `pnpm --filter @nabu/mobile build`.
+  - It is numbered 1 unless `NABU_VERSION_CODE` is set, so it will not install over a newer CI
+    build. Use `adb install -r -d`, or set the number.
+  - With a `google-services.json`, the Firebase project needs an Android app for
+    `org.nabu.app.preview` as well.
 
 ## Publishing your own build
 

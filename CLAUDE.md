@@ -217,7 +217,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Native apps (ADR 0048): apps/mobile (Capacitor 8; android/ and ios/ are committed, generated projects). After a web
   change: `pnpm --filter @nabu/mobile build`. Capacitor plugins load only in the native shell (src/native.ts, dynamic
   imports). Native reminders: apps/api/src/nativepush.ts; credentials only as file paths in the environment
-  (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the Android debug APK.
+  (NABU_FCM_SERVICE_ACCOUNT, NABU_APNS_*): never in the repo or chat. CI builds the preview APK (`assemblePreview`:
+  org.nabu.app.preview, debuggable, signed with the committed public preview key) and replaces the APK on the
+  android-preview release from main. Never sign a store release with the preview key.
 
 ## Corrections notes (see docs/adr/0051)
 - A correction is a `sentence_reported` event: `shown` (what the device displayed) and `correction` (only what
