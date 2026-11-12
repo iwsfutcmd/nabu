@@ -914,7 +914,7 @@ export interface AudioQa {
   readonly asrModel?: string;
   readonly asrText?: string;
   /**
-   * Character error rate of the recognized text against the expected text.
+   * Character error rate of the recognized text against the expected text. Cantonese counts characters that differ by their readings: one said alike is no error, one a tone apart half an error (ADR 0094).
    */
   readonly cer?: number;
   readonly status?: "pass" | "review" | "fail";

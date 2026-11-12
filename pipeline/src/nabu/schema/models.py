@@ -262,7 +262,7 @@ class AudioQa(BaseModel):
     cer: Annotated[
         float | None,
         Field(
-            description="Character error rate of the recognized text against the expected text.",
+            description="Character error rate of the recognized text against the expected text. Cantonese counts characters that differ by their readings: one said alike is no error, one a tone apart half an error (ADR 0094).",
             ge=0.0,
         ),
     ] = None

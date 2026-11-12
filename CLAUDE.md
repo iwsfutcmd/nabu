@@ -394,7 +394,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   (courses/yue/audio/voices, Apache-2.0) with their transcript. A word card is said after `跟住我讀：` and cut out by
   forced alignment; a sentence is slowed toward `pace` (4.3 syllables/s, ≤1.6×) with Rubber Band (apt rubberband-cli).
   Generate on a GPU (Kaggle): the runtime and the pipeline on CUDA torch, `UV_NO_SYNC=1`, then `nabu audio align`
-  for each voice. Never re-cast the anchors without the owner: they are the voices he chose.
+  for each voice. Never re-cast the anchors without the owner: they are the voices the owner chose.
+- The round trip hears yue with a Cantonese Whisper fine-tune (nabu.audio.qa `FINE_TUNED`), never Whisper's own
+  (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
+  `nabu audio check <course>` re-runs the check on existing clips.
 
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and

@@ -85,6 +85,22 @@ not.
 - This is the exception the Phase 5 rule ("synthesize from pinned readings") now has, for a
   voice that reads characters. Recorded here, not hidden.
 
+**The round trip hears Cantonese as Cantonese.** Whisper large-v3-turbo, the check's recognizer
+(ADR 0040), writes Cantonese as written Mandarin (佢係我媽媽 as 她是我妈妈) and some short items
+in romanization ("Lei ghiu mè mènga?" for 你叫咩名呀). With it, the first run held back 443 of
+the 724 clips, nearly all of them said right.
+- **The recognizer.** yue's clips are heard by a Whisper fine-tuned on colloquial Cantonese
+  (alvanlii/whisper-small-cantonese, Apache-2.0, revision pinned in nabu.audio.qa). It runs
+  through transformers, checks clips and ships nothing.
+- **The comparison.** A transcript writes homophones and spellings for one another (搭 and 答,
+  呀 and 啊, 喺 and 係), so characters that differ count by their readings (PyCantonese).
+  - A character said alike is no error.
+  - One a tone apart is half an error, so a lone word heard as a homophone of another tone goes
+    to the review queue and ships; a listener decides it in the audio check.
+  - Any other is a whole error.
+- **`nabu audio check`** runs the round trip again on a course's clips without making them again,
+  for a new recognizer or comparison.
+
 **The cast** is two voices: `anchor-f` (speaker f) and `anchor-m` (speaker m). Items are shared
 between them at random, and a sentence whose grammar says who speaks goes to that gender (ADR
 0078). The clips are Apache-2.0, as the weights are. The rating stays `good`: VoxCPM2 is a
@@ -96,6 +112,9 @@ model of Cantonese (ADR 0091).
   speech group (the aligner and the round trip), and Rubber Band (`apt install rubberband-cli`).
   - Rubber Band is GPL; it shapes the clips offline and ships nothing.
   - On a T4, a course's 724 clips take well under an hour; generation runs on Kaggle.
+- **The check, for tones.** A recognizer that writes characters is weak evidence about tones:
+  only a listener can pass a clip's tones (ADR 0060). The check catches wrong and missing
+  syllables, Mandarin-like readings and silence.
 - **Every yue clip is made again,** and eSpeak NG's are removed.
   - Timings come from `nabu audio align`, once per voice.
   - Clips the round trip fails stay out until a listener passes them in the audio check.

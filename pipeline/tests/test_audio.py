@@ -16,7 +16,7 @@ import shutil
 import wave
 from collections.abc import Iterator
 from pathlib import Path
-from typing import ClassVar
+from typing import Any, ClassVar
 
 import pytest
 
@@ -24,6 +24,7 @@ from nabu.audio import espeak, jyutping
 from nabu.audio.course import (
     Item,
     audio_dir,
+    check_course,
     encode_mp3,
     plan,
     read_index,
@@ -184,6 +185,30 @@ def test_a_word_met_only_inside_longer_words_reads_its_share_of_them() -> None:
     items, skipped = plan([unit], YUE_VOICE)
     assert {i.item: i.input for i in items}["sense:禮拜"] == "lai5 baai3"
     assert skipped == ["sense:O"]
+
+
+@needs_espeak
+def test_check_runs_the_round_trip_again_and_keeps_the_clips(
+    core_cli: CoreCli, yue_copy: Path
+) -> None:
+    """`nabu audio check`: a new recognizer's verdicts, the clips and their trace untouched."""
+    _, compiled = _compiled(core_cli, yue_copy)
+    synthesize_course(yue_copy, compiled.units, YUE_VOICE)
+    before = read_index(audio_dir(yue_copy)).clips
+    heard: list[tuple[str, int]] = []
+
+    def check(item: Item, clip: Clip) -> dict[str, Any]:
+        heard.append((item.item, clip.sample_rate))
+        return {"asrModel": "stand-in", "asrText": item.expected, "cer": 0.0, "status": "pass"}
+
+    counts = check_course(yue_copy, compiled.units, [YUE_VOICE], check)
+    after = read_index(audio_dir(yue_copy)).clips
+    assert counts == {"pass": len(before)} and len(heard) == len(before)
+    assert {rate for _, rate in heard} == {16_000}
+    for old, new in zip(before, after, strict=True):
+        assert (new.file, new.sha256, new.synthesis) == (old.file, old.sha256, old.synthesis)
+        assert new.qa is not None and new.qa.asrModel == "stand-in"
+        assert new.qa.trace == (old.qa.trace if old.qa is not None else None)
 
 
 @needs_espeak
@@ -367,12 +392,84 @@ def test_forced_alignment_finds_token_onsets_within_80_ms() -> None:
 
 @needs_speech
 def test_the_round_trip_check_rejects_what_a_recognizer_cannot_understand() -> None:
-    """eSpeak NG's Cantonese: Whisper does not recognize it, so its clips stay out (§10.1)."""
+    """A clip that says something else stays out (§10.1): eSpeak NG reading 三 for 銀行."""
     from nabu.audio.qa import round_trip
 
-    [bank] = EspeakProvider().synthesize([Request("ngan4 hong4", "yue-Latn-jyutping")])
-    result = round_trip(bank, "銀行", "yue")
+    [three] = EspeakProvider().synthesize([Request("saam1", "yue-Latn-jyutping")])
+    result = round_trip(three, "銀行", "yue")
     assert result["status"] == "fail", result
+
+
+@pytest.mark.parametrize(
+    ("heard", "expected", "rate"),
+    [
+        ("我哋一齊去飲茶啦", "我哋一齊去飲茶啦。", 0.0),
+        ("你答唔答小巴", "你搭唔搭小巴？", 0.0),  # 答 is said as 搭 (daap3): a homophone
+        ("是", "試", 0.5),  # si6 for si3: a tone apart, half an error
+        ("滿", "碗", 1.0),  # mun5 for wun2: another syllable
+        ("All right.", "太", 8.0),  # Latin has no reading: every letter is an error
+    ],
+)
+def test_cantonese_transcripts_are_compared_by_reading(
+    heard: str, expected: str, rate: float
+) -> None:
+    """A transcript writes homophones and spellings for one another (ADR 0094): characters that
+    differ count by their readings."""
+    from nabu.audio.qa import cer, reading_error_rate
+
+    assert reading_error_rate(heard, expected) == rate
+    assert reading_error_rate(heard, expected) <= cer(heard, expected)
+
+
+def test_cantonese_is_heard_by_its_fine_tuned_recognizer(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Whisper's own writes Cantonese as written Mandarin; yue's clips go to the Cantonese
+    fine-tune, without the sentence (no prompt), and the index names it."""
+    import contextlib
+    import types
+
+    from nabu.audio import qa
+
+    asked: list[dict[str, object]] = []
+
+    class Model:
+        def generate(self, features: object, **kwargs: object) -> list[int]:
+            asked.append(kwargs)
+            return [1]
+
+    class Features:
+        def to(self, _device: str) -> Features:
+            return self
+
+    class Processor:
+        def __call__(self, _audio: object, **_kwargs: object) -> object:
+            return types.SimpleNamespace(input_features=Features())
+
+        def batch_decode(self, _ids: object, **_kwargs: object) -> list[str]:
+            return ["你答唔答小巴"]
+
+    def fine_tuned(_language: str) -> tuple[Processor, Model, str]:
+        return Processor(), Model(), "cpu"
+
+    def to_16k(pcm: bytes, _rate: int) -> bytes:
+        return pcm
+
+    torch = types.SimpleNamespace(no_grad=contextlib.nullcontext)
+
+    def optional(name: str) -> object:
+        return torch if name == "torch" else None
+
+    monkeypatch.setattr(qa, "fine_tuned", fine_tuned)
+    monkeypatch.setattr(qa, "to_16k", to_16k)
+    monkeypatch.setattr(qa, "optional", optional)
+    result = qa.round_trip(Clip(b"\0\0" * 160, 16_000, None, None), "你搭唔搭小巴？", "yue")
+    assert asked == [{"language": "zh", "task": "transcribe", "max_new_tokens": 128}]
+    assert result == {
+        "asrModel": "alvanlii/whisper-small-cantonese@b03a4e5d482f",
+        "asrText": "你答唔答小巴",
+        "cer": 0.0,
+        "status": "pass",
+    }
+    assert qa.model_name("fa") == "whisper-large-v3-turbo"
 
 
 class _Whisper:

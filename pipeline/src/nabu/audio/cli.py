@@ -37,6 +37,18 @@ def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
     return course_dir, compiled.course, compiled.units, compiled.written
 
 
+def _round_trip(source: Any) -> Callable[[Item, Clip], dict[str, Any]]:
+    """The round-trip check for the course's language (nabu.audio.qa)."""
+    from nabu.audio.qa import round_trip
+
+    language: str = ASR_LANGUAGE.get(source.id) or str(source.target).split("-")[0]
+
+    def round_trip_check(item: Item, clip: Clip) -> dict[str, Any]:
+        return round_trip(clip, item.expected, language)
+
+    return round_trip_check
+
+
 @app.command()
 def generate(
     course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
@@ -73,16 +85,7 @@ def generate(
     if voice_id is not None and all(v.id != voice_id for v in audio.voices):
         typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
         raise typer.Exit(code=1)
-    checker: Callable[[Item, Clip], dict[str, Any]] | None = None
-    if check:
-        from nabu.audio.qa import round_trip
-
-        language: str = ASR_LANGUAGE.get(source.id) or str(source.target).split("-")[0]
-
-        def round_trip_check(item: Item, clip: Clip) -> dict[str, Any]:
-            return round_trip(clip, item.expected, language)
-
-        checker = round_trip_check
+    checker = _round_trip(source) if check else None
     try:
         report = synthesize_course(course_dir, units, audio.voices, checker, written, voice_id)
     except (MissingKey, ProviderError, ValueError) as error:
@@ -269,6 +272,24 @@ def align(
     phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
     done = align_course(course_dir, units, voice, phonemes, written, voices=voices)
     typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
+
+
+@app.command("check")
+def recheck(
+    course: Annotated[Path, typer.Argument(exists=True, help="Course directory.")],
+) -> None:
+    """Run the round trip again on the course's clips, keeping them (speech group).
+
+    For a new recognizer or comparison (nabu.audio.qa): no clip is made again. Clips the check
+    now fails stay out of the bundles until a listener passes them in the audio check.
+    """
+    from nabu.audio.course import check_course
+
+    course_dir, source, units, written = _compiled(course)
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    counts = check_course(course_dir, units, voices, _round_trip(source), written)
+    by_status = dict(sorted(counts.items()))
+    typer.echo(f"✓ {source.id}: {sum(counts.values())} clips checked {by_status}")
 
 
 @app.command()

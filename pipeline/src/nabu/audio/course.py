@@ -58,6 +58,7 @@ from nabu.audio.providers import (
 from nabu.audio.punctuation import with_final_stop
 from nabu.schema.models import (
     AudioIndex,
+    AudioQa,
     AudioRejection,
     AudioVerdicts,
     AudioVoice,
@@ -869,6 +870,46 @@ def align_course(
             write_index(adir, index.model_copy(update={"clips": clips}))
     write_index(adir, index.model_copy(update={"clips": clips}))
     return done
+
+
+def check_course(
+    course_dir: Path,
+    units: list[dict[str, Any]],
+    voices: Sequence[AudioVoice],
+    check: Callable[[Item, Clip], dict[str, Any]],
+    written: Written | None = None,
+) -> dict[str, int]:
+    """The round trip run again on the course's synthetic clips, which stay as they are: for a
+    new recognizer or comparison. Only clips of the text their voice reads now; the index is
+    saved as it goes. Clips said alike share a file, heard once. Returns the clips by status."""
+    adir = audio_dir(course_dir)
+    index = read_index(adir)
+    checked = checked_voices(index, voices)
+    reads = {
+        (v.voice, i.item): i for v in voices for i in plan(units, v, written, voices, checked)[0]
+    }
+    clips = list(index.clips)
+    heard: dict[str, Clip] = {}
+    counts: dict[str, int] = {}
+    done = 0
+    for k, clip in enumerate(clips):
+        if not clip.synthetic or clip.speed != "normal" or clip.synthesis is None:
+            continue
+        item = reads.get((clip.synthesis.voice, clip.item))
+        if item is None or clip.synthesis.input != item.input:
+            continue
+        said = heard.get(clip.file)
+        if said is None:
+            said = heard[clip.file] = Clip(decode_clip(adir / clip.file), ALIGN_RATE, None, None)
+        trace = None if clip.qa is None else clip.qa.trace
+        qa = ({} if trace is None else {"trace": trace}) | check(item, said)
+        clips[k] = clip.model_copy(update={"qa": AudioQa.model_validate(qa)})
+        counts[qa["status"]] = counts.get(qa["status"], 0) + 1
+        done += 1
+        if done % BATCH == 0:
+            write_index(adir, index.model_copy(update={"clips": clips}))
+    write_index(adir, index.model_copy(update={"clips": clips}))
+    return counts
 
 
 # ------------------------------------------------------------------------------------ verdicts
