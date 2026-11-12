@@ -94,9 +94,17 @@
       "message": "Your goal",
       "description": "Label: what the learner tries to do in the conversation."
     },
+    "ai.roleplay.gone": {
+      "message": "This conversation isn't in the course any more.",
+      "description": "The scenario was removed or renamed in a newer version of the course."
+    },
     "ai.roleplay.hide-translation": {
       "message": "Hide translation",
       "description": "Button: hide the translation again."
+    },
+    "ai.roleplay.locked": {
+      "message": "This conversation opens once you finish the lesson before it. If you just did, try again in a moment.",
+      "description": "The server has not seen the conversation's lesson done yet (it may still be syncing)."
     },
     "ai.roleplay.log": {
       "message": "Conversation",
@@ -410,6 +418,10 @@
       "message": ".input {$number :number}\n{{Unit {$number}}}",
       "description": "Name of a unit without a title, by its position in the course."
     },
+    "app.path.conversation": {
+      "message": "Conversation",
+      "description": "Label on a conversation entry of the learning path (a roleplay whose other person a language model plays); the scenario's title follows it."
+    },
     "app.path.done": {
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."
@@ -572,11 +584,7 @@
     },
     "app.roleplay.note": {
       "message": "A language model plays the other person, using only words you know. It can make mistakes.",
-      "description": "Explains roleplay before the list of scenarios."
-    },
-    "app.roleplay.title": {
-      "message": "Conversations",
-      "description": "Course page heading: roleplay scenarios with a character played by a language model."
+      "description": "Shown at the top of a conversation page: what plays the other person, and that it can be wrong."
     },
     "app.roleplay.unavailable": {
       "message": "Conversations need an account and a server with a language model.",

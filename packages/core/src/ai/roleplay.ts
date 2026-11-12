@@ -10,6 +10,12 @@ import { retrievability, type LearnerState } from "../learner/state.ts";
 import { glossUnits } from "../match/gloss.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
 
+/**
+ * Turns a roleplay request carries: the conversation's latest, enough for the model to follow it.
+ * The app sends no more than these; the server uses no more than these.
+ */
+export const ROLEPLAY_HISTORY = 16;
+
 /** KCs whose recognition the learner would likely recall now (R ≥ θ), with their forms in the orthography. */
 export const knownForms = (course: CourseView, state: LearnerState, now: string, theta = 0.7): readonly string[] =>
   allKcs(course)

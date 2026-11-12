@@ -10,7 +10,7 @@
  * Without a model (NABU_LLM unset) every feature reports off and the app hides it: the judge
  * falls back to accept sets plus reports (§13.1).
  */
-import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, type ExplanationContext } from "@nabu/core/ai";
+import { acceptForJudge, accepts, answerUnitsPrompt, checkTurn, explanationOf, gateOpen, judgeable, knownForms, productionAccept, provisionalOutcome, autoTokens, ROLEPLAY_HISTORY, type ExplanationContext } from "@nabu/core/ai";
 import { localDateOf } from "@nabu/core/game";
 import { replay } from "@nabu/core/learner";
 import { allSentences, type CourseView } from "@nabu/core/lesson";
@@ -42,7 +42,11 @@ const EXPLAINED = new Set(["translate-type.l1-l2", "translate-tap.l1-l2", "trans
 /** New words a roleplay turn may use beyond the learner's known vocabulary (§13.4 k). */
 export const ROLEPLAY_NEW_WORDS = 1;
 const ROLEPLAY_ATTEMPTS = 3;
-const MAX_HISTORY = 16;
+/**
+ * A request with more turns than this is not a conversation and is refused. Longer ones are fine:
+ * the model sees only the latest ROLEPLAY_HISTORY turns, and the app sends no more than those.
+ */
+const MAX_TURNS = 200;
 
 const names = new Intl.DisplayNames(["en"], { type: "language" });
 /** A language tag as the English name prompts use ("Cantonese (Traditional, Hong Kong)"). */
@@ -226,10 +230,10 @@ export const aiRoutes = (app: Hono<Env>, deps: AiDeps): void => {
     const user = c.get("user").id;
     const b = (await c.req.json().catch(() => undefined)) as Record<string, unknown> | undefined;
     const { course: courseId, orthography, support: supportKey, scenario: scenarioId, history } = b ?? {};
-    if (typeof courseId !== "string" || typeof orthography !== "string" || typeof supportKey !== "string" || typeof scenarioId !== "string" || !Array.isArray(history) || history.length > MAX_HISTORY)
+    if (typeof courseId !== "string" || typeof orthography !== "string" || typeof supportKey !== "string" || typeof scenarioId !== "string" || !Array.isArray(history) || history.length > MAX_TURNS)
       return c.json({ error: "invalid-request" }, 400);
     const lines: { role: "learner" | "character"; text: string }[] = [];
-    for (const h of history as unknown[]) {
+    for (const h of (history as unknown[]).slice(-ROLEPLAY_HISTORY)) {
       const { role, text: line } = (h ?? {}) as { role?: unknown; text?: unknown };
       if ((role !== "learner" && role !== "character") || typeof line !== "string" || line.trim() === "") return c.json({ error: "invalid-request" }, 400);
       lines.push({ role, text: asData(line, 300) });

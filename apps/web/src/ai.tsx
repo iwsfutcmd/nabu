@@ -8,7 +8,7 @@
  * - Explain My Answer, on request;
  * - roleplay conversations, once the scenario's node is done.
  */
-import { judgeable } from "@nabu/core/ai";
+import { judgeable, ROLEPLAY_HISTORY } from "@nabu/core/ai";
 import { answerTextOf, SPEAKING, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
 import type { LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
@@ -232,37 +232,54 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
 
 export const scenariosOf = (course: CourseView): readonly BundleScenario[] => course.units.flatMap((u) => u.scenarios ?? []);
 
-/** The conversations on the course page: open once their node is done, when the server offers roleplay. */
-export const Conversations = ({ course, state, status, link }: { course: CourseView; state: LearnerState; status: AiStatus; link: (scenario: string) => string }): JSX.Element | null => {
+/**
+ * The conversations a path node opens (§13.4), as path entries right after it: available once the
+ * node is done, and only when the server offers roleplay.
+ */
+export const ScenarioEntries = ({ course, node, state, status, link }: { course: CourseView; node: string; state: LearnerState; status: AiStatus; link: (scenario: string) => string }): JSX.Element | null => {
   const t = useTranslator();
-  const scenarios = scenariosOf(course);
-  if (!status.roleplay || scenarios.length === 0) return null;
+  const scenarios = status.roleplay ? scenariosOf(course).filter((s) => s.after === node) : [];
+  if (scenarios.length === 0) return null;
+  const open = state.completedNodes.includes(node);
   return (
-    <section data-conversations="">
-      <h2 className={styles.subheading}>{t.format("app.roleplay.title")}</h2>
-      <p className={styles.muted}>{t.format("app.roleplay.note")}</p>
-      <ul className={styles.list}>
-        {scenarios.map((s) => {
-          const title = s.title[course.supportKey];
-          const open = state.completedNodes.includes(s.after);
-          const body = title === undefined ? s.id : <T text={title} />;
-          return (
-            <li key={s.id}>
-              {open ? (
-                <a className={`${styles.lesson} ${styles.next}`} href={link(s.id)} data-scenario={s.id} data-status="available">
-                  {body}
-                </a>
-              ) : (
-                <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" data-scenario={s.id} data-status="locked">
-                  {body}
-                </div>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-    </section>
+    <>
+      {scenarios.map((s) => {
+        const title = s.title[course.supportKey];
+        const body = (
+          <>
+            <span className={styles.lessonHead}>
+              <span className={styles.lessonName}>{t.format("app.path.conversation")}</span>
+            </span>
+            <span className={styles.preview}>{title === undefined ? s.id : <T text={title} />}</span>
+          </>
+        );
+        return (
+          <li key={s.id}>
+            {open ? (
+              <a className={styles.lesson} href={link(s.id)} data-scenario={s.id} data-status="available">
+                {body}
+              </a>
+            ) : (
+              <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" data-scenario={s.id} data-status="locked">
+                {body}
+              </div>
+            )}
+          </li>
+        );
+      })}
+    </>
   );
+};
+
+/** What a failed turn tells the learner: each refusal the server can give has its own message. */
+const failedPhase = (e: unknown): RoleplayStatus => {
+  if (!isHttpError(e)) return "unavailable";
+  if (e.code === "ai-no-turn") return "no-turn";
+  if (e.status === 429) return "budget";
+  // The server has not seen the node done yet (not synced), or the course no longer has the scenario.
+  if (e.code === "scenario-locked") return "locked";
+  if (e.code === "unknown-scenario") return "gone";
+  return "unavailable";
 };
 
 export interface RoleplayPageProps {
@@ -300,13 +317,14 @@ export const RoleplayPage = ({ course, scenario: id, account, status, back }: Ro
     setPhase("thinking");
     request<{ turn: RoleplayTurn }>(account.server, "/v1/ai/roleplay", {
       token: account.token,
-      body: { course: course.id, orthography: course.orthography, support: key, scenario: scenario.id, history: history.map((h) => ({ role: h.role, text: surfaceOf(h.text) })) },
+      // The model sees the latest turns only (the server keeps no more), however long the conversation runs.
+      body: { course: course.id, orthography: course.orthography, support: key, scenario: scenario.id, history: history.slice(-ROLEPLAY_HISTORY).map((h) => ({ role: h.role, text: surfaceOf(h.text) })) },
     }).then(
       ({ turn }) => {
         setTurns([...history, { role: "character", text: turn.text, translation: turn.translation }]);
         setPhase("idle");
       },
-      (e: unknown) => setPhase(isHttpError(e) ? (e.code === "ai-no-turn" ? "no-turn" : e.status === 429 ? "budget" : "unavailable") : "unavailable"),
+      (e: unknown) => setPhase(failedPhase(e)),
     );
   };
   return (
@@ -315,6 +333,9 @@ export const RoleplayPage = ({ course, scenario: id, account, status, back }: Ro
         <a className={styles.back} href={back}>
           {t.format("app.roleplay.back")}
         </a>
+      </p>
+      <p className={styles.muted} role="note" data-ai-notice="">
+        {t.format("app.roleplay.note")}
       </p>
       <RoleplayChat
         scenario={{ title: card.title, setting: card.setting, character: card.character, goal: card.goal }}

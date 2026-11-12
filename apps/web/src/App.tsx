@@ -20,8 +20,8 @@ import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
-import { AnswerHelp, Conversations, RoleplayPage, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
+import { Fragment, useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
+import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate } from "./clock.ts";
@@ -430,24 +430,27 @@ const CoursePath = ({
                 const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: node.id });
                 const data = kind === "story" ? { "data-story-node": node.id } : { "data-lesson": node.id };
                 return (
-                  <li key={node.id}>
-                    {s === "locked" ? (
-                      <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" {...data} data-status={s}>
-                        {body}
-                      </div>
-                    ) : (
-                      <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s}>
-                        {body}
-                      </a>
-                    )}
-                  </li>
+                  <Fragment key={node.id}>
+                    <li>
+                      {s === "locked" ? (
+                        <div className={`${styles.lesson} ${styles.locked}`} aria-disabled="true" {...data} data-status={s}>
+                          {body}
+                        </div>
+                      ) : (
+                        <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s}>
+                          {body}
+                        </a>
+                      )}
+                    </li>
+                    {/* The conversations this node opens sit right after it (§13.4). */}
+                    <ScenarioEntries course={course} node={node.id} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
+                  </Fragment>
                 );
               })}
             </ol>
           </section>
         );
       })}
-      <Conversations course={course} state={state} status={ai} link={(scenario) => href({ tag: "roleplay", course: course.id, orthography, scenario })} />
       <p>
         <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="">
           {t.format("words.title")}

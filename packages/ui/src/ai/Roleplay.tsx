@@ -26,7 +26,7 @@ export interface ScenarioCard {
   readonly goal: TaggedText;
 }
 
-export type RoleplayStatus = "idle" | "thinking" | "no-turn" | "unavailable" | "budget";
+export type RoleplayStatus = "idle" | "thinking" | "no-turn" | "unavailable" | "budget" | "locked" | "gone";
 
 export interface RoleplayChatProps {
   readonly scenario: ScenarioCard;
@@ -40,11 +40,13 @@ export interface RoleplayChatProps {
   readonly initialTranslations?: readonly number[];
 }
 
-const STATUS: Readonly<Record<Exclude<RoleplayStatus, "idle">, "ai.roleplay.thinking" | "ai.roleplay.no-turn" | "ai.unavailable" | "ai.budget">> = {
+const STATUS: Readonly<Record<Exclude<RoleplayStatus, "idle">, "ai.roleplay.thinking" | "ai.roleplay.no-turn" | "ai.unavailable" | "ai.budget" | "ai.roleplay.locked" | "ai.roleplay.gone">> = {
   thinking: "ai.roleplay.thinking",
   "no-turn": "ai.roleplay.no-turn",
   unavailable: "ai.unavailable",
   budget: "ai.budget",
+  locked: "ai.roleplay.locked",
+  gone: "ai.roleplay.gone",
 };
 
 export const RoleplayChat = ({ scenario, turns, base, dir, status, onSend, initialTranslations = [] }: RoleplayChatProps): JSX.Element => {

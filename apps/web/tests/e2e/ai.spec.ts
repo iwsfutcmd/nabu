@@ -93,7 +93,7 @@ test.describe("AI features", () => {
     expect(await ai.json()).toEqual({ judge: false, explain: false, roleplay: false });
     await page.goto(url("#/yue/yue-Hant-HK.standard"));
     await expect(page.locator("[data-course-path]")).toBeVisible();
-    await expect(page.locator("[data-conversations]")).toHaveCount(0);
+    await expect(page.locator("[data-scenario]")).toHaveCount(0);
     expect(errors).toEqual([]);
   });
 
