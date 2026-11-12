@@ -19,7 +19,7 @@ const ADMIN = "e2e-review-token";
 const NOW = new Date("2026-05-12T09:00:00Z");
 const SEED = 7;
 const course = loadCourse("yue", "yue-Hant-HK/standard");
-const request = { mode: "lesson", node: "yue.who" } as const;
+const request = { mode: "lesson", node: "yue.names" } as const;
 const url = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
 
 /** Plays up to the lesson's typing exercise and answers it wrong; returns the logged answer. */

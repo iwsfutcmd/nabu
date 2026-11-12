@@ -17,7 +17,7 @@ test("IME composition never submits, never rewrites, and grades the settled text
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   await page.clock.setFixedTime(NOW);
   const course = loadCourse("yue", "yue-Hant-HK/standard");
-  const request = { mode: "lesson", node: "yue.who" } as const;
+  const request = { mode: "lesson", node: "yue.names" } as const;
   const history = historyBefore(course, request.node, NOW);
   if (history.length > 0) await seedLog(page, history);
   const exercises = planned(course, history, request, NOW, 7);
