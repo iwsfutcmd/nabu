@@ -278,15 +278,11 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
 };
 
 const completed = (d: Draft, e: SessionCompleted): void => {
-  if (!e.summary.completed) return;
-  const { exercises, correctFirstTry } = e.summary;
-  const replay = (e.mode === "lesson" || e.mode === "story") && e.node !== undefined && d.completedNodes.includes(e.node);
-  if (!replay) addXp(d, e.localDate, Math.min(XP.session, exercises) + (exercises >= XP.perfectFrom && correctFirstTry === exercises ? XP.perfect : 0));
-  if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
   // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds their KCs
   // (ADR 0111): a recognize card each, as if recalled with ease at the end of the test, so the
   // planner counts them as seen, review brings them back at long intervals and the word list shows
-  // them. A KC with a card already keeps it.
+  // them. A KC with a card already keeps it. A test the learner stopped part-way places by its
+  // answers so far too (D9), as a stopped session: without the session's XP below.
   if (e.mode === "placement") {
     for (const node of e.placed ?? []) if (!d.completedNodes.includes(node)) d.completedNodes.push(node);
     const at = new Date(e.clientTime);
@@ -296,6 +292,11 @@ const completed = (d: Draft, e: SessionCompleted): void => {
       if (d.cards[key] === undefined) d.cards[key] = fromCard(scheduler.next(createEmptyCard(at), at, GRADES.easy).card);
     }
   }
+  if (!e.summary.completed) return;
+  const { exercises, correctFirstTry } = e.summary;
+  const replay = (e.mode === "lesson" || e.mode === "story") && e.node !== undefined && d.completedNodes.includes(e.node);
+  if (!replay) addXp(d, e.localDate, Math.min(XP.session, exercises) + (exercises >= XP.perfectFrom && correctFirstTry === exercises ? XP.perfect : 0));
+  if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
 };
 
 /**

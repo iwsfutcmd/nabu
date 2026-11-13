@@ -77,15 +77,15 @@ const eventRecorder = ({
     if (e.type === "exercise_skipped" && !e.ex.id.includes("#")) firstTry.set(e.ex.id, false);
     const test = e.type === "session_completed" && request?.mode === "placement" ? plan?.placement : undefined;
     const reached = test === undefined ? undefined : placementOf(test, firstTry);
-    // A placement test stopped part-way still places by the answers so far (S5): it ends there,
-    // complete as far as it went, over the questions answered. Where they place nothing, it stopped.
+    // A placement test stopped part-way still places by the answers so far (S5, D9): it stays a
+    // stopped session, which earns no session XP, and says what those answers placed. Where they
+    // place nothing, it says nothing.
     const stopped = e.type === "session_completed" && !e.summary.completed;
     const placed = reached !== undefined && (!stopped || reached.length > 0) ? reached : undefined;
-    const ended = e.type === "session_completed" && stopped && placed !== undefined ? { ...e, summary: { ...e.summary, completed: true, exercises: firstTry.size } } : e;
     const p = e.type === "exercise_presented" || e.type === "answer_submitted" ? predictions.get(e.ex.id) : undefined;
     const prediction: Prediction | undefined = p === undefined ? undefined : { p, model: PERFORMANCE_MODEL };
     const event = learnerEventOf(
-      ended,
+      e,
       course,
       { id: uuidv7(now.getTime()), clientTime: localIso(now), localDate: localDate(now), tz: timeZone(), device, session, bundle },
       meta,

@@ -79,17 +79,19 @@ export const replaysOf = (log: readonly LearnerEvent[]): ReadonlySet<string> => 
   const out = new Set<string>();
   for (const e of log) {
     if (e.type === "progress_reset") done.delete(e.course);
-    if (e.type !== "session_completed" || !e.summary.completed) continue;
+    if (e.type !== "session_completed") continue;
     let nodes = done.get(e.course);
     if (nodes === undefined) {
       nodes = new Set();
       done.set(e.course, nodes);
     }
+    // A placement test places finished or stopped part-way (D9), as the learner model's fold does.
+    if (e.mode === "placement") for (const node of e.placed ?? []) nodes.add(node);
+    if (!e.summary.completed) continue;
     if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined) {
       if (nodes.has(e.node)) out.add(e.id);
       else nodes.add(e.node);
     }
-    if (e.mode === "placement") for (const node of e.placed ?? []) nodes.add(node);
   }
   return out;
 };

@@ -242,7 +242,8 @@ test("placement stopped part-way places by the answers so far, and can be taken 
   await expect(page.locator("[data-placement-result]")).toHaveAttribute("data-placed", String(lessons.filter((n) => placed.includes(n.node.id)).length));
   await expect
     .poll(async () => (await logOf(page, "fa")).find((e) => e.type === "session_completed"))
-    .toMatchObject({ mode: "placement", summary: { completed: true, exercises: asked.length }, placed: [...placed] });
+    // A stopped session (no session XP, D9) that still says what its answers placed.
+    .toMatchObject({ mode: "placement", summary: { completed: false }, placed: [...placed] });
   await activate(page, mode, "[data-action=exit]");
   for (const node of placed) await expect(page.locator(`[data-lesson="${node}"], [data-story-node="${node}"]`)).toHaveAttribute("data-status", "done");
 

@@ -539,6 +539,35 @@ describe("quests and achievements", () => {
     expect(leagueXp(online(inWeek), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(once);
   });
 
+  it("a placement test stopped part-way places by its answers, without the session's XP (D9)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-02", minutes, tz);
+    const clock = clockAt("2026-05-02", at(1200));
+    // Six right first tries, then the learner stops; the answers placed out of the first lesson.
+    const stopped = session({ at: at(600), tz, right: 6 }).map((e): LearnerEvent =>
+      e.type === "session_started"
+        ? { ...e, mode: "placement" }
+        : e.type === "session_completed"
+          ? ({ ...e, mode: "placement", summary: { ...e.summary, completed: false }, placed: ["fa.greetings"], seeded: ["sense:salam"] } as unknown as LearnerEvent)
+          : e,
+    );
+    expect(replayGame(online(stopped), NO_QUESTS, clock).xp.total).toBe(6);
+    const model = replay(stopped);
+    expect(model.xp.total).toBe(6);
+    expect(model.completedNodes).toEqual(["fa.greetings"]);
+    expect(model.cards["sense:salam|recognize"]).toBeDefined();
+    // The same test run to its end pays the session's XP as well.
+    const finished = stopped.map((e): LearnerEvent => (e.type === "session_completed" ? { ...e, summary: { ...e.summary, completed: true } } : e));
+    expect(replayGame(online(finished), NO_QUESTS, clock).xp.total).toBe(6 + 6 + 5);
+    expect(replay(finished).xp.total).toBe(6 + 6 + 5);
+    // A lesson it placed out of is done: playing it pays its answers only, in the game and the model alike.
+    const lesson = session({ at: at(700), tz, right: 6 }).map((e): LearnerEvent => (e.type === "session_started" || e.type === "session_completed" ? { ...e, node: "fa.greetings" } : e));
+    const log = [...stopped, ...lesson];
+    expect(replaysOf(log)).toEqual(new Set([lesson.at(-1)?.id]));
+    expect(replayGame(online(log), NO_QUESTS, clock).xp.total).toBe(6 + 6);
+    expect(replay(log).xp.total).toBe(6 + 6);
+  });
+
   it("XP agrees with the learner model's on any log of one course, quests off (ADR 0044)", () => {
     const tz = "UTC";
     const nodes = ["fa.greetings", "fa.names", undefined];

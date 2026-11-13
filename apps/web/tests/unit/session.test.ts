@@ -83,7 +83,7 @@ const completedOf = (logged: readonly LearnerEvent[]): SessionCompleted => {
 };
 
 describe("a placement test stopped part-way (S5)", () => {
-  it("places by the answers so far, recorded complete over the questions answered", () => {
+  it("places by the answers so far, as a stopped session without the session's XP (D9)", () => {
     // Knows the first two units; stops once their blocks are passed.
     const knows = (ex: Exercise): boolean => units.indexOf(unitOf.get(ex.item) ?? "") < 2;
     let questions = 0;
@@ -95,11 +95,13 @@ describe("a placement test stopped part-way (S5)", () => {
     }
     const { logged } = playAndStop(questions, knows);
     const done = completedOf(logged);
-    expect(done.summary).toMatchObject({ completed: true, exercises: questions });
+    expect(done.summary.completed).toBe(false);
     expect(done.placed).toEqual(placementOf(test, answers));
     expect(done.placed?.length).toBeGreaterThan(0);
-    // The fold marks them done, as for a test run to its end.
-    expect(replay(logged).completedNodes).toEqual(done.placed);
+    // The fold marks them done, as for a test run to its end; XP is the answers' only.
+    const state = replay(logged);
+    expect(state.completedNodes).toEqual(done.placed);
+    expect(state.xp.total).toBe([...answers.values()].filter(Boolean).length);
   });
 
   it("stopped before its answers place anything, it stays stopped and places nothing", () => {

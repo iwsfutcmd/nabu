@@ -2419,7 +2419,7 @@ export interface SessionCompleted {
   readonly node?: string;
   readonly summary: SessionSummaryData;
   /**
-   * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done.
+   * Placement only (§9.5): the lesson nodes the learner placed out of, in path order. The client computes it from the session's first tries; the projection marks them done. A test the learner stopped part-way (summary.completed false) places by its answers so far, still without the session's XP (D9 in the 2026-11 review).
    */
   readonly placed?: readonly string[];
   /**
