@@ -8,7 +8,9 @@
  * event recorded on this device enters it, account or not, so signing up later
  * uploads the whole history as an ordinary sync, and a queue that could not be
  * sent survives reloads. Events pulled from the server skip it. Events the
- * server rejected leave it and are set aside (`held`), still in the log.
+ * server rejected leave it and are set aside (`held`), still in the log. A
+ * new account takes the whole log: signing up puts every event back in it,
+ * what an earlier account acknowledged too (ADR 0123).
  *
  * Where IndexedDB is unavailable (some private windows) everything lives in
  * memory for the page's lifetime and `persistent` is false, so the app can say
@@ -16,7 +18,7 @@
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { uuidv7 } from "./clock.ts";
-import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, type Held } from "./idb.ts";
+import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, requeueLog, type Held } from "./idb.ts";
 import type { SetAside } from "./outbox.ts";
 
 export interface EventStore {
@@ -51,6 +53,11 @@ export interface EventStore {
   readonly held: () => Promise<Held>;
   /** Puts the events set aside back into the outbox, to be sent again; returns how many. */
   readonly releaseHeld: () => Promise<number>;
+  /**
+   * Puts every event of the log into the outbox, none set aside: a new account takes the device's
+   * whole history, what another account acknowledged too (ADR 0123). Returns how many.
+   */
+  readonly requeue: () => Promise<number>;
   /** When the server received each synced event: the game folds it in as the server does (§12.2). */
   readonly receivedTimes: () => Promise<ReadonlyMap<string, string>>;
   readonly getMeta: (key: string) => Promise<unknown>;
@@ -106,6 +113,7 @@ const indexedStore = async (): Promise<EventStore> => {
     setAside: outbox.setAside,
     held: () => heldOf(db),
     releaseHeld: () => releaseHeld(db),
+    requeue: () => requeueLog(db),
     receivedTimes: () => receivedTimes(db),
     getMeta: async (key) => promised(db.transaction(META).objectStore(META).get(key)) as Promise<unknown>,
     setMeta: async (key, value) => {
@@ -169,6 +177,11 @@ const memoryStore = (): EventStore => {
       for (const id of back) outbox.add(id);
       held.clear();
       return Promise.resolve(back.length);
+    },
+    requeue: () => {
+      for (const id of log.keys()) outbox.add(id);
+      held.clear();
+      return Promise.resolve(log.size);
     },
     receivedTimes: () => Promise.resolve(new Map(received)),
     getMeta: (key) => Promise.resolve(meta.get(key)),

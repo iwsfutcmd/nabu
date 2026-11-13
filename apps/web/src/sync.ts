@@ -12,7 +12,9 @@
  * when something was uploaded or pulled since the last check (ADR 0112). The last
  * check's verdict is kept on the device.
  *
- * Signing up uploads the existing local history: it is already in the outbox.
+ * Signing up uploads the device's whole log (ADR 0123): what was never synced is in the outbox
+ * already, and what an earlier account acknowledged goes back into it, so a new account after a
+ * deletion or a forgotten password has everything this device holds. Signing in sends the outbox.
  *
  * Offline (Phase 10): a sync that cannot reach the server asks the service worker for a
  * Background Sync, so the outbox goes up when the network is back even if the app is closed
@@ -105,6 +107,9 @@ export interface Sync {
    */
   readonly added: () => void;
 }
+
+const SIGN_UP = "/v1/auth/sign-up";
+const SIGN_IN = "/v1/auth/sign-in";
 
 const ACCOUNT = "account";
 /** The servers whose age gate turned the person away (ADR 0069). */
@@ -321,7 +326,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     return running;
   };
 
-  const enter = async (path: string, email: string, password: string, age?: number): Promise<SyncError | undefined> => {
+  const enter = async (path: typeof SIGN_UP | typeof SIGN_IN, email: string, password: string, age?: number): Promise<SyncError | undefined> => {
     const base = state.server;
     if (base === undefined) return "unreachable";
     try {
@@ -332,9 +337,13 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       await store.deleteMeta(CURSOR);
       await store.deleteMeta(CHECKED);
       await store.deleteMeta(UNCHECKED);
-      // Another account, or another server, may take what the last one rejected: send it again.
-      await store.releaseHeld();
-      set({ account, error: undefined, held: 0, verified: undefined });
+      // A new account takes the device's whole log (ADR 0123), what an earlier account acknowledged too:
+      // after a deletion, or a forgotten password, everything on this device goes with it. Signing in
+      // sends the outbox, as ever. Either way, another account, or another server, may take what the
+      // last one rejected: send it again.
+      if (path === SIGN_UP) await store.requeue();
+      else await store.releaseHeld();
+      set({ account, error: undefined, held: 0, verified: undefined, pending: await store.pendingCount() });
       await syncNow();
       return undefined;
     } catch (e) {
@@ -387,8 +396,8 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       listeners.add(listener);
       return () => listeners.delete(listener);
     },
-    signUp: (email, password, age) => enter("/v1/auth/sign-up", email, password, age),
-    signIn: (email, password) => enter("/v1/auth/sign-in", email, password),
+    signUp: (email, password, age) => enter(SIGN_UP, email, password, age),
+    signIn: (email, password) => enter(SIGN_IN, email, password),
     signOut: async () => {
       const account = state.account;
       if (account !== undefined) await request(account.server, "/v1/auth/sign-out", { token: account.token, body: {} }).catch(() => undefined);

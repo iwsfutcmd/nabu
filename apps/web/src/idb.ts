@@ -117,6 +117,19 @@ export const releaseHeld = async (db: IDBDatabase): Promise<number> => {
   return released;
 };
 
+/**
+ * Every event of the log back into the outbox, none set aside: what a new account takes, the
+ * device's whole history (ADR 0123). Returns how many events the log holds.
+ */
+export const requeueLog = async (db: IDBDatabase): Promise<number> => {
+  const tx = db.transaction([OUTBOX, EVENTS, META], "readwrite");
+  const ids = (await promised(tx.objectStore(EVENTS).getAllKeys())) as string[];
+  for (const id of ids) tx.objectStore(OUTBOX).put(id, id);
+  tx.objectStore(META).delete(HELD);
+  await done(tx);
+  return ids.length;
+};
+
 /** When the server received each synced event (ids it has not acknowledged are absent). */
 export const receivedTimes = async (db: IDBDatabase): Promise<ReadonlyMap<string, string>> => {
   const tx = db.transaction(RECEIVED);

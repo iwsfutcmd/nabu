@@ -36,12 +36,18 @@ const event = (n: number, at: string, course = "fa"): LearnerEvent => ({
   planner: "unit",
 });
 
-/** A stand-in for the API: the user's log in receipt order, and every request the device made. */
+/**
+ * A stand-in for the API: the user's log in receipt order, and every request the device made. One
+ * account at a time: deleting it empties the log, and a session the server `end`s answers 401.
+ */
 const server = () => {
   const log: { seq: number; event: LearnerEvent; received: string }[] = [];
   const requests: string[] = [];
+  /** How many events each upload carried. */
+  const uploads: number[] = [];
   let seq = 100;
-  const json = (body: unknown): Response => new Response(JSON.stringify(body), { status: 200, headers: { "Content-Type": "application/json" } });
+  let session = true;
+  const json = (body: unknown, status = 200): Response => new Response(JSON.stringify(body), { status, headers: { "Content-Type": "application/json" } });
   const take = (events: readonly LearnerEvent[]): void => {
     for (const e of events) if (!log.some((r) => r.event.id === e.id)) log.push({ seq: ++seq, event: e, received: new Date().toISOString() });
   };
@@ -49,11 +55,25 @@ const server = () => {
     const { pathname, searchParams } = new URL(url);
     const method = init.method ?? "GET";
     requests.push(`${method} ${pathname}`);
-    const body = typeof init.body === "string" ? (JSON.parse(init.body) as { events?: LearnerEvent[]; since?: number }) : {};
+    const body = typeof init.body === "string" ? (JSON.parse(init.body) as { events?: LearnerEvent[]; since?: number; password?: string }) : {};
     const received = (ids: readonly string[]): Record<string, string> => Object.fromEntries(log.filter((r) => ids.includes(r.event.id)).map((r) => [r.event.id, r.received]));
-    if (pathname === "/v1/auth/sign-up") return Promise.resolve(json({ user: { id: USER, email: "a@example.org" }, token: "token" }));
+    if (pathname === "/v1/auth/sign-up" || pathname === "/v1/auth/sign-in") {
+      session = true;
+      return Promise.resolve(json({ user: { id: USER, email: "a@example.org" }, token: "token" }, pathname === "/v1/auth/sign-up" ? 201 : 200));
+    }
+    if (!session) return Promise.resolve(json({ error: "unauthorized" }, 401));
+    if (pathname === "/v1/auth/sign-out") {
+      session = false;
+      return Promise.resolve(new Response(null, { status: 204 }));
+    }
+    if (pathname === "/v1/account" && method === "DELETE") {
+      log.length = 0;
+      session = false;
+      return Promise.resolve(new Response(null, { status: 204 }));
+    }
     if (pathname === "/v1/events" && method === "POST") {
       const events = body.events ?? [];
+      uploads.push(events.length);
       take(events);
       const ids = events.map((e) => e.id);
       const cursor = log.at(-1)?.seq ?? 0;
@@ -77,6 +97,13 @@ const server = () => {
   });
   return {
     requests,
+    uploads,
+    /** The ids of the account's log, in receipt order. */
+    ids: () => log.map((r) => r.event.id),
+    /** The server ends the device's session (it expired, or the account was deleted elsewhere). */
+    end: () => {
+      session = false;
+    },
     /** Another device's upload. */
     take,
     /** The requests made since the last call. */
@@ -173,6 +200,52 @@ describe("sync passes (ADR 0112)", () => {
     await again.signOut();
     expect(again.get().verified).toBeUndefined();
     expect((await createSync(store, SERVER, options)).get().verified).toBeUndefined();
+  });
+});
+
+describe("the account the device enters (ADR 0123)", () => {
+  it("a new account after a deletion takes the device's whole log, not only what was recorded since", async () => {
+    const remote = server();
+    const history = [event(1, "2026-11-11T09:00:00.000Z"), event(2, "2026-11-11T09:01:00.000Z", "es")];
+    const store = await deviceWith(history);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    expect(remote.ids()).toEqual(history.map((e) => e.id));
+    expect(await sync.deleteAccount("a long password")).toBeUndefined();
+    expect(remote.ids()).toEqual([]);
+    // The device keeps its log, all of it acknowledged by the account that went.
+    expect(await store.pendingCount()).toBe(0);
+    const since = event(3, "2026-11-12T11:00:00.000Z");
+    await store.append([since]);
+    remote.since();
+    expect(await sync.signUp("a@example.org", "a long password")).toBeUndefined();
+    expect(remote.ids()).toEqual([...history, since].map((e) => e.id));
+    expect(sync.get()).toMatchObject({ pending: 0, held: 0, verified: true });
+  });
+
+  it("signing in sends the outbox only: what the account already has stays acknowledged", async () => {
+    const remote = server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z"), event(2, "2026-11-11T09:01:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    await sync.signOut();
+    await store.append([event(3, "2026-11-12T11:00:00.000Z")]);
+    remote.uploads.length = 0;
+    expect(await sync.signIn("a@example.org", "a long password")).toBeUndefined();
+    expect(remote.uploads).toEqual([1]);
+    expect(sync.get()).toMatchObject({ pending: 0, verified: true });
+  });
+
+  it("signing up sends what the last account set aside again, with the rest", async () => {
+    const remote = server();
+    const history = [event(1, "2026-11-11T09:00:00.000Z"), event(2, "2026-11-11T09:01:00.000Z")];
+    const store = await deviceWith(history);
+    const sync = await createSync(store, SERVER, options);
+    await store.setAside([{ id: event(2, "").id, code: "invalid-event" }]);
+    await sync.signUp("a@example.org", "a long password");
+    expect(remote.ids()).toEqual(history.map((e) => e.id));
+    expect(sync.get()).toMatchObject({ pending: 0, held: 0 });
+    expect(await store.held()).toEqual({});
   });
 });
 
