@@ -43,6 +43,7 @@ declare const styles: {
   readonly lesson: string;
   readonly lessonHead: string;
   readonly lessonName: string;
+  readonly level: string;
   readonly lineReport: string;
   readonly link: string;
   readonly links: string;
@@ -63,6 +64,8 @@ declare const styles: {
   readonly preferenceOption: string;
   readonly preferenceOptions: string;
   readonly preview: string;
+  readonly previewGloss: string;
+  readonly previewItem: string;
   readonly primary: string;
   readonly progress: string;
   readonly quest: string;
@@ -99,6 +102,11 @@ declare const styles: {
   readonly toolsStatus: string;
   readonly track: string;
   readonly unit: string;
+  readonly unitAdvice: string;
+  readonly unitHead: string;
+  readonly unitMeta: string;
+  readonly unitName: string;
+  readonly unitNumber: string;
   readonly unitTitle: string;
   readonly visuallyHidden: string;
   readonly voice: string;
