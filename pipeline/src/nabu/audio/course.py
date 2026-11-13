@@ -71,6 +71,8 @@ INDEX = "index.yaml"
 BITRATE = "48k"
 #: Clips synthesized between saves of the index.
 BATCH = 16
+#: The one speed clips are synthesized at: the player slows them itself (ADR 0062).
+SPEED = "normal"
 #: Reading schemes `pronounce` can turn into IPA.
 IPA_SCHEMES = {"jyutping"}
 #: Reading schemes a voice says as eSpeak NG phonemes (`[[...]]`), one word at a time: the
@@ -104,6 +106,25 @@ class Item:
     input: str
     spans: tuple[Span, ...]
     expected: str  # what a listener should hear, in the orthography (for the round-trip check)
+
+
+@dataclass(frozen=True)
+class Job:
+    """A clip to make: the item, the voice that reads it with its provider and the clips'
+    author, the rate the provider takes, the clip's identity and its take (ADR 0060)."""
+
+    voice: AudioVoice
+    tts: Provider
+    author: str
+    item: Item
+    rate: float
+    identity: str
+    take: int
+
+    @property
+    def key(self) -> tuple[str, str]:
+        """Its entry's key in the index: (item, speed)."""
+        return (self.item.item, SPEED)
 
 
 @dataclass
@@ -539,43 +560,38 @@ def timings(item: Item, clip: Clip, duration_ms: int) -> list[dict[str, int]] | 
 
 
 def _entry(
-    item: Item,
-    speed: str,
-    rate: float,
-    ident: str,
+    job: Job,
     clip: Clip,
-    tts: Provider,
-    voice: AudioVoice,
-    author: str,
     adir: Path,
     check: Callable[[Item, Clip], dict[str, Any]] | None,
 ) -> dict[str, Any]:
     """Encode and write one clip; its index entry."""
+    item, tts, voice = job.item, job.tts, job.voice
     version = tts.version()
     settings = tts.settings() | item_settings(tts, item.input)
     data = encode_mp3(
         clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
     )
-    rel = f"clips/{ident[:16]}.mp3"
+    rel = f"clips/{job.identity[:16]}.mp3"
     (adir / rel).write_bytes(data)
     duration = len(clip.pcm) // 2 * 1000 // clip.sample_rate
     entry: dict[str, Any] = {
         "item": item.item,
-        "speed": speed,
+        "speed": SPEED,
         "file": rel,
         "sha256": hashlib.sha256(data).hexdigest(),
         "durationMs": duration,
         "license": voice.license,
-        "provenance": {"author": author, "status": "draft"},
+        "provenance": {"author": job.author, "status": "draft"},
         "synthetic": True,
         "synthesis": {
             "provider": tts.name,
             "version": version,
             "voice": voice.voice,
             "input": item.input,
-            "rate": rate,
+            "rate": job.rate,
             **({"settings": settings} if settings else {}),
-            "inputHash": ident,
+            "inputHash": job.identity,
         },
     }
     token_timings = timings(item, clip, duration)
@@ -583,10 +599,12 @@ def _entry(
         entry["timings"] = token_timings
         entry["timingSource"] = "synthesis"
     qa: dict[str, Any] = {} if clip.trace is None else {"trace": clip.trace}
-    if check is not None and speed == "normal":
+    if check is not None:
         qa |= check(item, clip)
     if qa:
         entry["qa"] = qa
+    if job.take:
+        entry["synthesis"]["take"] = job.take
     return entry
 
 
@@ -607,7 +625,7 @@ def _twin(
     if token_timings is not None:
         twin["timings"] = token_timings
         twin["timingSource"] = "synthesis"
-    if check is not None and twin["speed"] == "normal" and item.expected != first.expected:
+    if check is not None and item.expected != first.expected:
         twin["qa"] = ({} if clip.trace is None else {"trace": clip.trace}) | check(item, clip)
     return twin
 
@@ -664,8 +682,8 @@ def synthesize_course(
     report = Report()
     for v in cast_:
         report.shares[v.id] = len(plan(units, v, written, cast_, checked)[0])
-    #: (voice, provider, author, item, speed, rate, identity, take), voice by voice.
-    wanted: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
+    #: The clips to make, voice by voice.
+    wanted: list[Job] = []
     kept: list[Any] = []
     claimed: set[tuple[str, str]] = set()
     for voice in running:
@@ -673,43 +691,45 @@ def synthesize_course(
         version = tts.version()
         settings = tts.settings()
         author = f"generated:{tts.name}@{version}"
+        rate = tts.speed(1.0)
         items, skipped = plan(units, voice, written, cast_, checked)
         report.skipped += skipped
         for item in items:
-            for speed, requested in (("normal", 1.0),):
-                claimed.add((item.item, speed))
-                rate = tts.speed(requested)
-                old = previous.get((item.item, speed))
-                take = take_of(old, item, tts)
-                ident = identity(
-                    tts.name,
-                    version,
-                    voice.voice,
-                    item.input,
-                    rate,
-                    settings | item_settings(tts, item.input) | take_field(take),
-                )
-                if (
-                    old is not None
-                    and old.synthesis is not None
-                    and old.synthesis.inputHash == ident
-                    and intact(adir / old.file, old.sha256)
-                ):
-                    kept.append(old)
-                    continue
-                wanted.append((voice, tts, author, item, speed, rate, ident, take))
+            key = (item.item, SPEED)
+            claimed.add(key)
+            old = previous.get(key)
+            take = take_of(old, item, tts)
+            ident = identity(
+                tts.name,
+                version,
+                voice.voice,
+                item.input,
+                rate,
+                settings | item_settings(tts, item.input) | take_field(take),
+            )
+            if (
+                old is not None
+                and old.synthesis is not None
+                and old.synthesis.inputHash == ident
+                and intact(adir / old.file, old.sha256)
+            ):
+                kept.append(old)
+                continue
+            wanted.append(Job(voice, tts, author, item, rate, ident, take))
     # Items said alike (one input, voice and settings: one identity, so one file) share a clip.
     # One already there serves the rest, so making theirs never writes over it.
     there = {c.synthesis.inputHash: c for c in kept if c.synthesis is not None}
-    unmade: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
-    for w in wanted:
-        clip_there = there.get(w[6])
+    unmade: list[Job] = []
+    for job in wanted:
+        clip_there = there.get(job.identity)
         if clip_there is None:
-            unmade.append(w)
+            unmade.append(job)
             continue
         # Its token timings were the other item's: alignment gives this one its own.
         kept.append(
-            clip_there.model_copy(update={"item": w[3].item, "timings": None, "timingSource": None})
+            clip_there.model_copy(
+                update={"item": job.item.item, "timings": None, "timingSource": None}
+            )
         )
     wanted = unmade
     # Items another voice reads, not run this time, keep their clips until it runs.
@@ -730,41 +750,37 @@ def synthesize_course(
 
     def save(done: int) -> None:
         # Clips not regenerated yet keep their old entries (and files) until they are.
-        waiting = [
-            previous[(w[3].item, w[4])]
-            for w in wanted[done:]
-            if (w[3].item, w[4]) in previous and not prune
-        ]
+        waiting = [previous[job.key] for job in wanted[done:] if job.key in previous and not prune]
         clips = [*dump([*human, *kept, *others, *waiting]), *fresh]
         write_index(adir, AudioIndex.model_validate({**references, "clips": clips}))
 
     # In batches of one voice, saving the index after each: a provider failing midway (a rate
     # limit, an outage) keeps every clip already made, and the next run picks up from there.
     done = len(wanted) if prune else 0
-    report.dropped = sum((w[3].item, w[4]) in previous for w in wanted) if prune else 0
+    report.dropped = sum(job.key in previous for job in wanted) if prune else 0
     #: Clips made in this run by identity, with their entry and item: twins share them.
     made: dict[str, tuple[dict[str, Any], Clip, Item]] = {}
     while done < len(wanted):
-        voice, tts = wanted[done][0], wanted[done][1]
-        batch = [w for w in wanted[done : done + BATCH] if w[0] is voice]
-        todo: list[tuple[AudioVoice, Provider, str, Item, str, float, str, int]] = []
-        for w in batch:
-            if w[6] not in made and all(t[6] != w[6] for t in todo):
-                todo.append(w)
-        clips = tts.synthesize([Request(w[3].input, voice.voice, w[5], w[7]) for w in todo])
-        said = dict(zip((w[6] for w in todo), clips, strict=True))
-        for _, _, author, item, speed, rate, ident, take in batch:
-            if ident in made:
-                fresh.append(_twin(*made[ident], item, check))
+        voice, tts = wanted[done].voice, wanted[done].tts
+        batch = [job for job in wanted[done : done + BATCH] if job.voice is voice]
+        todo: list[Job] = []
+        for job in batch:
+            if job.identity not in made and all(t.identity != job.identity for t in todo):
+                todo.append(job)
+        clips = tts.synthesize(
+            [Request(job.item.input, voice.voice, job.rate, job.take) for job in todo]
+        )
+        said = dict(zip((job.identity for job in todo), clips, strict=True))
+        for job in batch:
+            if job.identity in made:
+                fresh.append(_twin(*made[job.identity], job.item, check))
                 continue
-            clip = said[ident]
+            clip = said[job.identity]
             if len(clip.pcm) < 2:
-                report.silent.append(f"{item.item} ({speed})")
+                report.silent.append(f"{job.item.item} ({SPEED})")
                 continue
-            entry = _entry(item, speed, rate, ident, clip, tts, voice, author, adir, check)
-            if take:
-                entry["synthesis"]["take"] = take
-            made[ident] = (entry, clip, item)
+            entry = _entry(job, clip, adir, check)
+            made[job.identity] = (entry, clip, job.item)
             fresh.append(entry)
         done += len(batch)
         save(done)
