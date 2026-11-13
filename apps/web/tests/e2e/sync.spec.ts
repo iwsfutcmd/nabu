@@ -307,8 +307,13 @@ test.describe("sync", () => {
     await expect(page.locator("[data-no-reset]")).toBeVisible();
     expect(await axe()).toEqual([]);
 
-    // Sign in again, from the notice: to the password, then Enter.
+    // Sign in again, from the notice: the form opens on sign-in, even when switched away, with focus
+    // on the password, the address still filled in; then Enter.
+    await page.locator("[data-action=account-mode]").click();
+    await expect(form).toHaveAttribute("data-account-form", "create");
     await page.locator("[data-action=sign-in-again]").click();
+    await expect(form).toHaveAttribute("data-account-form", "sign-in");
+    await expect(page.locator("[data-field=email]")).toHaveValue(email);
     await expect(page.locator("[data-field=password]")).toBeFocused();
     await page.keyboard.type(password);
     await page.keyboard.press("Enter");

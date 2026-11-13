@@ -21,7 +21,7 @@
  */
 import { parseDigits, type Named } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
-import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type FormEvent, type JSX, type RefObject } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
 import { DeviceCopy, Restore } from "./Restore.tsx";
@@ -204,13 +204,13 @@ const Held = ({ sync, count }: { sync: Sync; count: number }): JSX.Element => {
   );
 };
 
-/** The form's password field: where Sign in again takes the learner, their address filled in. */
+/**
+ * Sign in again (SignedOutNotice, at the top of Home) asks the account form under Your progress to
+ * open on sign-in, the address filled in, with focus on the password.
+ */
+const signInAsked = new Set<() => void>();
 const toSignIn = (): void => {
-  const field = document.querySelector<HTMLInputElement>("[data-account-form] [data-field=password]");
-  if (field === null) return;
-  field.focus({ preventScroll: true });
-  // The middle of the screen, clear of a phone browser's bottom toolbar.
-  field.scrollIntoView({ block: "center" });
+  for (const ask of signInAsked) ask();
 };
 
 /**
@@ -249,6 +249,27 @@ const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: 
   const [busy, setBusy] = useState(false);
   // What a forgotten password leaves the learner (ADR 0123): the server cannot reset one.
   const [forgot, setForgot] = useState(false);
+  // Sign in again, asked from the top of Home: on sign-in, then focus to the password once it renders.
+  const passwordField = useRef<HTMLInputElement>(null);
+  const [asked, setAsked] = useState(0);
+  useEffect(() => {
+    const ask = (): void => {
+      setMode("sign-in");
+      setError(undefined);
+      setAsked((n) => n + 1);
+    };
+    signInAsked.add(ask);
+    return () => {
+      signInAsked.delete(ask);
+    };
+  }, []);
+  useEffect(() => {
+    if (asked === 0) return;
+    const field = passwordField.current;
+    field?.focus({ preventScroll: true });
+    // The middle of the screen, clear of a phone browser's bottom toolbar.
+    field?.scrollIntoView({ block: "center" });
+  }, [asked]);
   const submit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (busy) return;
@@ -280,6 +301,7 @@ const AccountForm = ({ sync, ageRefused, signedOut }: { sync: Sync; ageRefused: 
           setEmail={setEmail}
           password={password}
           setPassword={setPassword}
+          passwordField={passwordField}
           askAge={askAge}
           age={age}
           setAge={setAge}
@@ -329,12 +351,14 @@ interface FieldsProps {
   readonly setEmail: (v: string) => void;
   readonly password: string;
   readonly setPassword: (v: string) => void;
+  /** The password's input, for Sign in again to focus. */
+  readonly passwordField: RefObject<HTMLInputElement | null>;
   readonly askAge: boolean;
   readonly age: string;
   readonly setAge: (v: string) => void;
 }
 
-const AccountFields = ({ mode, again, email, setEmail, password, setPassword, askAge, age, setAge }: FieldsProps): JSX.Element => {
+const AccountFields = ({ mode, again, email, setEmail, password, setPassword, passwordField, askAge, age, setAge }: FieldsProps): JSX.Element => {
   const t = useTranslator();
   return (
     <>
@@ -345,7 +369,7 @@ const AccountFields = ({ mode, again, email, setEmail, password, setPassword, as
       </TextField>
       <TextField className={styles.field} value={password} onChange={setPassword} isRequired type="password" autoComplete={mode === "create" ? "new-password" : "current-password"} name="password">
         <Label className={styles.label}>{t.format("app.account.password")}</Label>
-        <Input className={styles.input} dir="auto" data-field="password" />
+        <Input ref={passwordField} className={styles.input} dir="auto" data-field="password" />
         {mode === "create" && (
           <Text slot="description" className={styles.muted}>
             {t.format("app.account.password-hint", { min: MIN_PASSWORD })}
