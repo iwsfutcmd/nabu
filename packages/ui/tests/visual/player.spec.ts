@@ -3,21 +3,23 @@
  * en-XA, ar-XB} × target {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal,
  * vertical where allowed}, on four screens: the word bank, typing (with the
  * special-character bar where the orthography has one), feedback with the
- * answer diff, and the end of a lesson (P9). Same structural checks as the
- * exercise card; pixels in the pinned container.
+ * answer diff, and the end of a lesson (P9); vertical cells show the word bank
+ * and a target prompt (a card that first shows a new word). Same structural
+ * checks as the exercise card; pixels in the pinned container.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { comparesPixels, expectNoClipping, platformFonts, settle } from "./checks.ts";
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
-const SCREENS = ["tiles", "typing", "feedback", "finished"] as const;
+const SCREENS = ["tiles", "typing", "feedback", "finished", "new-words"] as const;
 const JYUTPING = "yue-Latn-HK-jyutping";
 
 for (const cell of cells()) {
   for (const screen of SCREENS) {
-    // Vertical text applies to the word bank and target prompts (§11.4).
-    if (cell.writingMode !== "horizontal-tb" && screen !== "tiles") continue;
+    // Vertical text applies to the word bank and target prompts (§11.4): the bank, and a target
+    // prompt (new-words, vertical cells only).
+    if (cell.writingMode === "horizontal-tb" ? screen === "new-words" : screen !== "tiles" && screen !== "new-words") continue;
     test(`player: ${cell.ui} × ${cell.target} × ${cell.writingMode} × ${screen}`, async ({ page }) => {
       const errors: string[] = [];
       page.on("pageerror", (e) => errors.push(String(e)));
@@ -54,7 +56,23 @@ for (const cell of cells()) {
         if (cell.writingMode !== "horizontal-tb") {
           const tile = await page.locator("[data-word-bank] [data-ink-container]").first().boundingBox();
           expect(tile!.height).toBeGreaterThan(tile!.width);
+          // Columns at most 16rem long: a long bank goes on in more columns, never down past Check (ADR 0118).
+          const { height, rem } = await region.evaluate((el) => ({ height: el.getBoundingClientRect().height, rem: Number.parseFloat(getComputedStyle(document.documentElement).fontSize) }));
+          expect(height).toBeLessThanOrEqual(16 * rem + 1);
         }
+      }
+
+      if (screen === "new-words") {
+        // Only the target text turns: its play buttons and their label stay horizontal (ADR 0118),
+        // and the reading layer shows beside the column as it does above a line (yue: Jyutping).
+        const prompt = page.locator("[data-ink-container=prompt]");
+        await expect(prompt).toHaveAttribute("data-writing-mode", cell.writingMode);
+        expect(await prompt.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+        const text = prompt.locator("p[data-nabu-text]");
+        expect(await text.evaluate((el) => getComputedStyle(el).writingMode)).toBe(cell.writingMode);
+        await expect(text.locator("rt").first()).toBeVisible();
+        const buttons = prompt.locator("[data-audio-buttons]");
+        if ((await buttons.count()) > 0) expect(await buttons.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
       }
 
       if (screen === "typing") {

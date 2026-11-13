@@ -125,6 +125,59 @@ test("Classical Chinese shows no readings until the learner picks one, and keeps
   await expect(page.locator("[data-lesson-player] rt")).toHaveCount(0);
 });
 
+test("vertical text on a phone keeps the readings, turns only the Cantonese and leaves Check in sight (W6)", async ({ page }, info) => {
+  test.skip(info.project.name !== "touch", "a phone: the touch pass");
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  const node = "yue.yum-cha";
+  const history = historyBefore(course, node, NOW);
+  if (history.length > 0) await seedLog(page, history);
+  const exercises = planned(course, history, { mode: "lesson", node }, NOW, SEED);
+  const [first] = exercises;
+  if (first?.template !== "translate-tap.l1-l2") throw new Error("yue.yum-cha opens on a word bank");
+  expect(first.tiles.length).toBeGreaterThan(6);
+  await page.goto(sessionUrl(course, { mode: "lesson", node }, SEED));
+  const player = page.locator("[data-lesson-player]");
+  await expect(player).toHaveAttribute("data-state", "answering");
+  const bank = player.locator("[data-word-bank]");
+  const readings = await bank.locator("rt").count();
+  expect(readings).toBeGreaterThan(0);
+
+  // Vertical text, from the header's display menu.
+  await player.locator("[data-action=display]").tap();
+  await page.locator("[data-display-menu] [data-toggle=vertical]").tap();
+  await page.keyboard.press("Escape");
+  await expect(page.locator("[data-display-menu]")).toHaveCount(0);
+  const region = player.locator("[data-target-region]");
+  await expect(region).toHaveAttribute("data-writing-mode", "vertical-rl");
+  expect(await region.evaluate((el) => getComputedStyle(el).writingMode)).toBe("vertical-rl");
+  // The readings stay, beside the columns.
+  await expect(bank.locator("rt")).toHaveCount(readings);
+  // The bank goes on in columns beside the answer, not down the screen: Check is in sight.
+  const viewport = page.viewportSize();
+  const check = await player.locator("[data-action=check]").boundingBox();
+  expect(check!.y + check!.height).toBeLessThanOrEqual(viewport!.height);
+
+  // On through the lesson's banks to a card whose prompt is Cantonese.
+  const at = exercises.findIndex((e) => e.template === "translate-tap.l2-l1");
+  expect(at).toBeGreaterThan(0);
+  for (const ex of exercises.slice(0, at)) {
+    await waitFor(page, ex);
+    if (ex.template === "translate-tap.l1-l2") await expect(region).toHaveAttribute("data-writing-mode", "vertical-rl");
+    await answer(page, ex, "touch");
+    await expectRightAndContinue(page, "touch", ex);
+  }
+  const prompted = exercises[at];
+  if (prompted === undefined) throw new Error("no card with a Cantonese prompt");
+  await waitFor(page, prompted);
+  // Its text turns into a column with its readings; its play buttons and their label stay horizontal.
+  const prompt = player.locator("[data-ink-container=prompt]");
+  await expect(prompt).toHaveAttribute("data-writing-mode", "vertical-rl");
+  expect(await prompt.locator("p[data-nabu-text]").evaluate((el) => getComputedStyle(el).writingMode)).toBe("vertical-rl");
+  await expect(prompt.locator("rt").first()).toBeVisible();
+  for (const chrome of await prompt.locator("[data-audio-buttons]").all()) expect(await chrome.evaluate((el) => getComputedStyle(el).writingMode)).toBe("horizontal-tb");
+});
+
 test("Persian marks vowels on new words until the learner chooses, and the choice holds for the course (P12)", async ({ page }, info) => {
   test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
   await page.clock.setFixedTime(NOW);
