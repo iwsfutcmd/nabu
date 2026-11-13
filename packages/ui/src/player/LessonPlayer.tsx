@@ -9,7 +9,32 @@
  * script's direction, never the UI's.
  */
 import type { Verdict } from "@nabu/core";
-import { allKcs, cameBack, countsAs, draftOf, emptyDraft, isCorrect, LISTENING, missedOf, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import {
+  allKcs,
+  cameBack,
+  countsAs,
+  draftOf,
+  emptyDraft,
+  isCorrect,
+  LISTENING,
+  missedOf,
+  progressOf,
+  responseOf,
+  SPEAKING,
+  TEMPLATES,
+  type AdaptiveTest,
+  type CourseView,
+  type Effect,
+  type Exercise,
+  type Grader,
+  type LessonEvent,
+  type Missed,
+  type Outcome,
+  type PlayerState,
+  type Response,
+  type Session,
+  type SessionSummary,
+} from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Link, Modal, ProgressBar } from "react-aria-components";
@@ -82,6 +107,16 @@ export interface LessonPlayerProps {
    * claim's or the judge's verdict on the answer into the session (ADR 0113), even after Continue.
    */
   readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null, revise: (verdict: Verdict) => void) => ReactNode) | undefined;
+  /**
+   * More under each card the end of the session lists as missed (M10): the app's AI help for it (an
+   * explanation asked for in its feedback, kept, or one to ask for). The player only places it.
+   */
+  readonly missedExtra?: ((missed: Missed) => ReactNode) | undefined;
+  /**
+   * The exercises whose answers a language model accepted on a second check in this session (M10):
+   * the end of the session lists them, said to be a model's, also where it answered after Continue.
+   */
+  readonly judged?: ReadonlySet<string> | undefined;
   /** What can score speech (Phase 9): the device's calibration, and the server when the app has one. */
   readonly speech?: SpeechServices | undefined;
   /** Debug mode: label each card with its kind (template id), to test every kind of card. */
@@ -131,6 +166,18 @@ export interface LessonPlayerProps {
 
 /** A session's kind, as the app plans it. */
 export type SessionKind = "lesson" | "review" | "mistakes" | "placement";
+
+/**
+ * The answers of a session a language model accepted on a second check (M10), in the order they
+ * were given: each with its card and what the learner answered, as the end of the session lists them.
+ */
+const acceptedOf = (session: Pick<Session, "results" | "queue">, judged: ReadonlySet<string> | undefined): readonly Missed[] =>
+  judged === undefined || judged.size === 0
+    ? []
+    : session.results.flatMap((r) => {
+        const ex = judged.has(r.exercise) ? session.queue.find((e) => e.id === r.exercise) : undefined;
+        return ex === undefined ? [] : [{ ex, verdict: r.verdict, ...(r.response === undefined ? {} : { response: r.response }) }];
+      });
 
 /** The end of a session, by kind (S15): a review or a placement test is no lesson. */
 const FINISHED: Readonly<Record<SessionKind, MessageId>> = {
@@ -243,6 +290,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           result={props.summary?.(state.summary)}
           words={props.replay === true ? [] : taughtIn(state.session.queue, introduces, kinds)}
           missed={kind === "placement" ? [] : missedOf(state.session)}
+          missedExtra={props.missedExtra}
+          accepted={acceptedOf(state.session, props.judged)}
           progress={props.progress}
           xp={xpEarned}
           next={props.next}

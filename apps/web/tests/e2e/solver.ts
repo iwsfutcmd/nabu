@@ -312,6 +312,8 @@ export interface PlayOptions {
   readonly miss?: ReadonlySet<string>;
   /** Run axe on every exercise and its feedback (keyboard passes). */
   readonly axe?: boolean;
+  /** How many planned exercises the test played itself before handing over (default none). */
+  readonly played?: number;
 }
 
 /**
@@ -330,7 +332,7 @@ export const playSession = async (page: Page, exercises: readonly Exercise[], mo
     const base = id.split("#")[0] ?? id;
     const planned = byId.get(base);
     if (planned === undefined) throw new Error(`the app showed ${id}, which the solver did not plan`);
-    if (!id.includes("#")) expect(id, "planned order").toBe(exercises[seen.filter((s) => !s.includes("#")).length]?.id);
+    if (!id.includes("#")) expect(id, "planned order").toBe(exercises[(options.played ?? 0) + seen.filter((s) => !s.includes("#")).length]?.id);
     seen.push(id);
     // A card that comes back has its options or tiles in a new order (P4): the player's own reshuffle.
     const ex = retried(planned, id);

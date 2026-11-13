@@ -54,9 +54,9 @@
       "message": "Not helpful",
       "description": "Rating button: the explanation did not help."
     },
-    "ai.judge.accepted": {
-      "message": "On second look, your answer is accepted. It counts as right.",
-      "description": "The language model accepted an answer graded wrong; the learner's progress is updated."
+    "ai.judge.accepted.model": {
+      "message": "A language model checked your answer again and accepted it, so it counts as right. It can be wrong: a reviewer will look at it too.",
+      "description": "Under the feedback for an answer graded wrong: a language model (the judge) checked it again and accepted it, and the learner's progress is updated. Say plainly that a model decided, not a person (M10). The answer also joins the reviewers' queue."
     },
     "ai.judge.checking": {
       "message": "Checking your answer again…",
@@ -1933,6 +1933,14 @@
     "player.display.label": {
       "message": "Display",
       "description": "Accessible name of the button (sliders icon) in the header of a lesson or story that opens the display choices: readings, vowel marks, vertical text; and of the menu it opens."
+    },
+    "player.end.accepted.note": {
+      "message": ".input {$count :number}\n.match $count\none {{A language model checked this answer again and accepted it, so it counts as right. It can be wrong: a reviewer will look at it too.}}\n* {{A language model checked these answers again and accepted them, so they count as right. It can be wrong: a reviewer will look at them too.}}",
+      "description": "End of a session, under player.end.accepted.title, above the cards: a language model (the judge) accepted these answers, which were graded wrong, sometimes after the learner had moved on. $count is how many. Say plainly that a model decided, not a person. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.accepted.title": {
+      "message": "Accepted on a second check",
+      "description": "End of a session: heading over the answers graded wrong that a language model then checked again and accepted (they count as right), each with what it asked, the right answer and the learner's answer."
     },
     "player.end.achievement": {
       "message": "New achievement: {$achievement}",

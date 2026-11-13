@@ -6,7 +6,9 @@
  * help is offered (the judge falls back to accept sets plus reports, §13.1).
  *
  * With AI responses stubbed at the network (no model involved): the judge's revision upgrades
- * the answer retroactively, and an explanation renders its segments in their own languages.
+ * the answer retroactively and says a model decided, and an explanation renders its segments in
+ * their own languages. The end of the lesson keeps both (M10): the explanation under the card
+ * missed, and an accept that came after Continue, listed as a model's.
  */
 import { expect, test, type CDPSession, type Page } from "@playwright/test";
 import { replay } from "@nabu/core/learner";
@@ -14,7 +16,7 @@ import { lessonNodes, type Exercise } from "@nabu/core/lesson";
 import { graphemes, surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, Explanation, LearnerEvent } from "@nabu/schema";
 import { API_PORT } from "./ports.ts";
-import { activate, answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor, type Mode } from "./solver.ts";
+import { activate, answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, playSession, runTag as run, seedLog, seriousAxeViolations, waitFor, type Mode } from "./solver.ts";
 
 const LETTER = /\p{L}/u;
 const letters = (word: string): number => graphemes(word).filter((g) => LETTER.test(g)).length;
@@ -37,8 +39,11 @@ const course = loadCourse("yue", "yue-Hant-HK/standard");
 const request = { mode: "lesson", node: "yue.names" } as const;
 const url = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
 
-/** Plays up to the lesson's typing exercise and answers it wrong; returns the logged answer. */
-const answerWrong = async (page: Page): Promise<AnswerSubmitted> => {
+/**
+ * Plays up to the lesson's typing exercise and answers it wrong: the lesson's plan, where that card
+ * is in it, and the logged answer.
+ */
+const typedWrong = async (page: Page): Promise<{ readonly exercises: readonly Exercise[]; readonly at: number; readonly logged: AnswerSubmitted }> => {
   await page.clock.setFixedTime(NOW);
   const history = freshIds(historyBefore(course, request.node, NOW));
   await page.goto(url("#/"));
@@ -61,7 +66,45 @@ const answerWrong = async (page: Page): Promise<AnswerSubmitted> => {
   const log = await logOf(page, "yue");
   const logged = log.find((e): e is AnswerSubmitted => e.type === "answer_submitted" && e.exercise.id === ex.id);
   if (logged === undefined) throw new Error("answer not logged");
-  return logged;
+  return { exercises, at, logged };
+};
+
+/** Plays up to the lesson's typing exercise and answers it wrong; returns the logged answer. */
+const answerWrong = async (page: Page): Promise<AnswerSubmitted> => (await typedWrong(page)).logged;
+
+/** The judge's accept of an answer, as the server issues it (§8.3): stubbed, no model involved. */
+const acceptOf = (judged: AnswerSubmitted): LearnerEvent =>
+  ({
+    ...judged,
+    id: "00000000-0000-7000-8000-00000000e2e1",
+    type: "outcome_revised",
+    device: "server",
+    answer: judged.id,
+    outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: judged.outcome.kcs.map((c) => ({ ...c, status: c.status === "wrong" ? "right" : c.status })) },
+    by: "judge",
+    judge: { model: "stub", promptHash: "000000000000", confidence: 0.95 },
+  }) as unknown as LearnerEvent;
+
+/** An explanation of the answer 拜拜, as the server gives one: stubbed, no model involved. */
+const EXPLANATION: Explanation = {
+  answer: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "拜", kind: "word" }, { surface: "拜", kind: "word" }] } as unknown as Explanation["answer"],
+  segments: [
+    { kind: "support", text: { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "You", kind: "word" }, { surface: " ", kind: "space" }, { surface: "wrote", kind: "word" }] } as unknown as Explanation["answer"] },
+    { kind: "ref", answerTokens: [0, 1] },
+    { kind: "target", text: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "你", kind: "word" }, { surface: "好", kind: "word" }] } as unknown as Explanation["answer"] },
+  ],
+  provenance: { provider: "fixture", model: "stub", prompt: "explain", promptHash: "000000000000", createdAt: "2026-05-12T09:00:00Z" },
+};
+
+/** Signs up through the API and hands the account to the app, as the sign-up form would. */
+const signedIn = async (page: Page, name: string): Promise<void> => {
+  const email = `${name}-${run()}@example.org`;
+  const { token, user } = (await (await page.request.post(`${API}/v1/auth/sign-up`, { data: { email, password: "long enough password" } })).json()) as { token: string; user: { id: string; email: string } };
+  await page.goto(url("#/"));
+  await page.waitForFunction(() => window.nabu !== undefined);
+  await page.evaluate(async ({ account }) => {
+    await window.nabu?.setMeta("account", account);
+  }, { account: { server: API, token, user } });
 };
 
 test.describe("AI features", () => {
@@ -183,47 +226,24 @@ test.describe("AI features", () => {
   });
 
   test("with stubbed AI responses: the judge's revision counts the answer right, and an explanation renders by language", async ({ page }) => {
-    // Sign in through the API, then hand the account to the app as the sign-up form would.
-    const email = `judged-${run()}@example.org`;
-    const { token, user } = (await (await page.request.post(`${API}/v1/auth/sign-up`, { data: { email, password: "long enough password" } })).json()) as { token: string; user: { id: string; email: string } };
     await page.route(`${API}/v1/ai/status**`, (route) => route.fulfill({ json: { judge: true, explain: true, roleplay: false } }));
     let judged: AnswerSubmitted | undefined;
     await page.route(`${API}/v1/ai/judge`, async (route) => {
       judged = (route.request().postDataJSON() as { answer: AnswerSubmitted }).answer;
-      const revision: LearnerEvent = {
-        ...judged,
-        id: "00000000-0000-7000-8000-00000000e2e1",
-        type: "outcome_revised",
-        device: "server",
-        answer: judged.id,
-        outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: judged.outcome.kcs.map((c) => ({ ...c, status: c.status === "wrong" ? "right" : c.status })) },
-        by: "judge",
-        judge: { model: "stub", promptHash: "000000000000", confidence: 0.95 },
-      } as unknown as LearnerEvent;
-      await route.fulfill({ json: { verdict: { verdict: "accept", confidence: 0.95, category: "paraphrase" }, revision } });
+      await route.fulfill({ json: { verdict: { verdict: "accept", confidence: 0.95, category: "paraphrase" }, revision: acceptOf(judged) } });
     });
     await page.route(`${API}/v1/ai/explain`, async (route) => {
       const { answer: a } = route.request().postDataJSON() as { answer: AnswerSubmitted };
-      const explanation: Explanation = {
-        answer: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "拜", kind: "word" }, { surface: "拜", kind: "word" }] } as unknown as Explanation["answer"],
-        segments: [
-          { kind: "support", text: { lang: "en-Latn", orthography: "en-Latn/standard", tokens: [{ surface: "You", kind: "word" }, { surface: " ", kind: "space" }, { surface: "wrote", kind: "word" }] } as unknown as Explanation["answer"] },
-          { kind: "ref", answerTokens: [0, 1] },
-          { kind: "target", text: { lang: "yue-Hant-HK", orthography: "yue-Hant-HK/standard", tokens: [{ surface: "你", kind: "word" }, { surface: "好", kind: "word" }] } as unknown as Explanation["answer"] },
-        ],
-        provenance: { provider: "fixture", model: "stub", prompt: "explain", promptHash: "000000000000", createdAt: "2026-05-12T09:00:00Z" },
-      };
       expect(a.input.raw).toBe("拜拜");
-      await route.fulfill({ json: { explanation, key: "0123456789abcdef0123456789abcdef" } });
+      await route.fulfill({ json: { explanation: EXPLANATION, key: "0123456789abcdef0123456789abcdef" } });
     });
-    await page.goto(url("#/"));
-    await page.waitForFunction(() => window.nabu !== undefined);
-    await page.evaluate(async ({ account }) => {
-      await window.nabu?.setMeta("account", account);
-    }, { account: { server: API, token, user } });
+    await signedIn(page, "judged");
 
     const wrong = await answerWrong(page);
-    await expect(page.locator("[data-judge]")).toHaveAttribute("data-judge", "accepted");
+    const verdict = page.locator("[data-judge]");
+    await expect(verdict).toHaveAttribute("data-judge", "accepted");
+    // It says a model decided, not a person (M10).
+    await expect(verdict).toContainText("A language model checked your answer again and accepted it");
     expect(judged?.id).toBe(wrong.id);
     await expect.poll(async () => (await logOf(page, "yue")).some((e) => e.type === "outcome_revised" && e.answer === wrong.id)).toBe(true);
 
@@ -233,6 +253,63 @@ test.describe("AI features", () => {
     await expect(explanation.locator('[data-segment=support] [lang="en-Latn"]').first()).toBeVisible();
     await expect(explanation.locator('[data-segment=target] [lang="yue-Hant-HK"]').first()).toBeVisible();
     await expect(explanation.locator("[data-provenance]")).toContainText("stub");
+  });
+
+  test("an explanation stays under the missed card at the end of the lesson (M10)", async ({ page }) => {
+    await page.route(`${API}/v1/ai/status**`, (route) => route.fulfill({ json: { judge: false, explain: true, roleplay: false } }));
+    let asked = 0;
+    await page.route(`${API}/v1/ai/explain`, async (route) => {
+      asked += 1;
+      await route.fulfill({ json: { explanation: EXPLANATION, key: "0123456789abcdef0123456789abcdef" } });
+    });
+    await signedIn(page, "explained");
+    const { exercises, at, logged } = await typedWrong(page);
+    await page.locator("[data-action=explain]").click();
+    await expect(page.locator("[data-explanation]")).toBeVisible();
+    await page.locator("[data-rate=up]").click();
+    // Continue: the explanation goes with the feedback; the lesson goes on, the card coming back at its end.
+    await page.locator("[data-action=continue]").click();
+    await expect(page.locator("[data-explanation]")).toHaveCount(0);
+    await playSession(page, exercises, "keyboard", { played: at + 1 });
+
+    // The end lists the card missed, the explanation under it as it was, rating and all: not asked for again.
+    const card = page.locator(`[data-lesson-player][data-state="finished"] [data-end-missed] [data-missed="${logged.exercise.id}"]`);
+    const kept = card.locator("[data-explanation]");
+    await expect(kept).toBeVisible();
+    await expect(kept.locator("[data-provenance]")).toContainText("stub");
+    await expect(kept.locator("[data-rate=up]")).toHaveAttribute("aria-pressed", "true");
+    expect(asked).toBe(1);
+    expect(await seriousAxeViolations(page)).toEqual([]);
+  });
+
+  test("the judge's accept after Continue is listed at the end of the lesson as a model's (M10)", async ({ page }) => {
+    await page.route(`${API}/v1/ai/status**`, (route) => route.fulfill({ json: { judge: true, explain: false, roleplay: false } }));
+    // The judge answers only once the learner has moved on.
+    let release: () => void = () => undefined;
+    const moved = new Promise<void>((resolve) => {
+      release = resolve;
+    });
+    await page.route(`${API}/v1/ai/judge`, async (route) => {
+      const judged = (route.request().postDataJSON() as { answer: AnswerSubmitted }).answer;
+      await moved;
+      await route.fulfill({ json: { verdict: { verdict: "accept", confidence: 0.95, category: "paraphrase" }, revision: acceptOf(judged) } });
+    });
+    await signedIn(page, "judged-late");
+    const { exercises, at, logged } = await typedWrong(page);
+    await expect(page.locator("[data-judge]")).toHaveAttribute("data-judge", "checking");
+    await page.locator("[data-action=continue]").click();
+    await expect(page.locator("[data-judge]")).toHaveCount(0);
+    release();
+    await expect.poll(async () => (await logOf(page, "yue")).some((e) => e.type === "outcome_revised" && e.answer === logged.id)).toBe(true);
+    await playSession(page, exercises, "keyboard", { played: at + 1 });
+
+    // Not missed: it counts right. Listed as accepted on a second check, and said to be a model's.
+    const end = page.locator('[data-lesson-player][data-state="finished"]');
+    await expect(end.locator(`[data-end-missed] [data-missed="${logged.exercise.id}"]`)).toHaveCount(0);
+    const accepted = end.locator("[data-end-accepted]");
+    await expect(accepted.locator(`[data-missed="${logged.exercise.id}"]`)).toBeVisible();
+    await expect(accepted.locator("[data-ai-notice]")).toContainText("A language model checked this answer again and accepted it");
+    expect(await seriousAxeViolations(page)).toEqual([]);
   });
 });
 

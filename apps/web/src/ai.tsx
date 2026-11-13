@@ -4,8 +4,11 @@
  * event in the learner's own log and reaches reviewers when it syncs. With one:
  * - a second check by the judge, for typed answers graded wrong, where an evaluation opened its
  *   gate for the course orthography: an accept arrives as an outcome_revised event, and the
- *   projections recompute. Offline, the check waits in a queue for the next sync;
- * - Explain My Answer, on request;
+ *   projections recompute. Offline, the check waits in a queue for the next sync. An accept says a
+ *   language model decided, and the end of the session lists it, also one that came after Continue
+ *   (M10);
+ * - Explain My Answer, on request; kept for the session, so the end of it shows the explanation
+ *   again under the card missed (M10);
  * - roleplay conversations, once the scenario's node is done.
  */
 import { judgeable, ROLEPLAY_HISTORY, textBase } from "@nabu/core/ai";
@@ -17,7 +20,7 @@ import { directionOf } from "@nabu/i18n";
 import type { AnswerReported, AnswerSubmitted, BundleScenario, Explanation, LearnerEvent, RoleplayTurn, TaggedText } from "@nabu/schema";
 import { T, useTranslator } from "@nabu/ui";
 import { aiStyles, ExplanationView, RoleplayChat, type ChatTurn, type Rating, type RoleplayStatus } from "@nabu/ui/ai";
-import { useEffect, useRef, useState, useSyncExternalStore, type JSX } from "react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
 import { Sent } from "./Corrections.tsx";
@@ -73,7 +76,94 @@ export const useAiStatus = (account: Account | undefined, course: string, orthog
 };
 
 type Judge = "idle" | "checking" | "accepted" | "queued";
-type Explain = { readonly tag: "idle" } | { readonly tag: "loading" } | { readonly tag: "shown"; readonly explanation: Explanation; readonly key: string; readonly rating?: Rating } | { readonly tag: "failed"; readonly why: "ai.explain.failed" | "ai.unavailable" | "ai.budget" };
+
+/** An explanation the learner asked for: what the model wrote, its key for rating it, and their rating. */
+interface Explained {
+  readonly explanation: Explanation;
+  readonly key: string;
+  readonly rating?: Rating | undefined;
+}
+
+type Explain = { readonly tag: "idle" } | { readonly tag: "loading" } | ({ readonly tag: "shown" } & Explained) | { readonly tag: "failed"; readonly why: "ai.explain.failed" | "ai.unavailable" | "ai.budget" };
+
+/**
+ * What a session keeps of the AI help its answers got (M10), so that its end can show it once the
+ * feedback has gone: the explanations the learner asked for, by answer id, and the exercises whose
+ * answers the judge accepted, also where it answered after Continue. Nothing outlives the session:
+ * an explanation asked for again comes from the server's cache.
+ */
+export interface SessionHelp {
+  readonly explained: ReadonlyMap<string, Explained>;
+  readonly judged: ReadonlySet<string>;
+  readonly explain: (answer: string, explained: Explained) => void;
+  readonly judge: (exercise: string) => void;
+}
+
+export const useSessionHelp = (): SessionHelp => {
+  const [explained, setExplained] = useState<ReadonlyMap<string, Explained>>(new Map());
+  const [judged, setJudged] = useState<ReadonlySet<string>>(new Set());
+  // The same functions all session: the judge may answer once its card has gone.
+  const [explain] = useState(() => (answer: string, e: Explained): void => setExplained((m) => new Map(m).set(answer, e)));
+  const [judge] = useState(() => (exercise: string): void => setJudged((s) => new Set(s).add(exercise)));
+  return useMemo(() => ({ explained, judged, explain, judge }), [explained, judged, explain, judge]);
+};
+
+/** Whether to offer to explain an answer: one graded wrong, with text (`text`), of a kind the server explains. */
+const explainable = (answer: AnswerSubmitted | undefined, text: string, status: AiStatus): answer is AnswerSubmitted =>
+  answer !== undefined && status.explain && EXPLAINED.has(answer.exercise.template) && !answer.outcome.kind.startsWith("CORRECT") && text !== "";
+
+/**
+ * Explain My Answer for one answer (§13.3): asked for, shown, rated. One the session asked for
+ * before shows at once (M10); asking again for the same answer costs nothing (the server's cache).
+ */
+const useExplanation = (answer: AnswerSubmitted | undefined, account: Account | undefined, help: SessionHelp | undefined) => {
+  const [explain, setExplain] = useState<Explain>(() => {
+    const kept = answer === undefined ? undefined : help?.explained.get(answer.id);
+    return kept === undefined ? { tag: "idle" } : { tag: "shown", ...kept };
+  });
+  // The session's keep as it is now: an explanation can arrive after a re-render.
+  const keeping = useRef(help);
+  keeping.current = help;
+  const ask = (): void => {
+    if (answer === undefined || account === undefined) return;
+    setExplain({ tag: "loading" });
+    request<{ explanation: Explanation; key: string }>(account.server, "/v1/ai/explain", { token: account.token, body: { answer } }).then(
+      ({ explanation, key }) => {
+        setExplain({ tag: "shown", explanation, key });
+        keeping.current?.explain(answer.id, { explanation, key });
+      },
+      (e: unknown) => setExplain({ tag: "failed", why: failure(e) }),
+    );
+  };
+  const rate = (rating: Rating): void => {
+    if (explain.tag !== "shown" || answer === undefined || account === undefined) return;
+    const { explanation, key } = explain;
+    setExplain({ tag: "shown", explanation, key, rating });
+    keeping.current?.explain(answer.id, { explanation, key, rating });
+    void request(account.server, "/v1/ai/explain/rate", { token: account.token, body: { key, rating } }).catch(() => undefined);
+  };
+  return { explain, ask, rate } as const;
+};
+
+/** An explanation's states as they show: loading, failed, or the explanation itself. */
+const ExplanationState = ({ explain, rate }: { readonly explain: Explain; readonly rate: (rating: Rating) => void }): JSX.Element | null => {
+  const t = useTranslator();
+  if (explain.tag === "loading") {
+    return (
+      <p className={styles.toolsStatus} role="status">
+        {t.format("ai.explain.loading")}
+      </p>
+    );
+  }
+  if (explain.tag === "failed") {
+    return (
+      <p className={styles.toolsStatus} role="status" data-explain-failed="">
+        {t.format(explain.why)}
+      </p>
+    );
+  }
+  return explain.tag === "shown" ? <ExplanationView explanation={explain.explanation} rating={explain.rating} onRate={rate} /> : null;
+};
 
 export interface AnswerHelpProps {
   readonly answer: AnswerSubmitted | undefined;
@@ -91,6 +181,8 @@ export interface AnswerHelpProps {
    * counts that way at once, in its score and in whether it comes back.
    */
   readonly revise?: ((verdict: Verdict) => void) | undefined;
+  /** What the session keeps of its AI help (M10): explanations asked for, the judge's accepts. */
+  readonly help?: SessionHelp | undefined;
 }
 
 /**
@@ -145,25 +237,28 @@ const failure = (e: unknown): "ai.explain.failed" | "ai.unavailable" | "ai.budge
 
 /**
  * Under the feedback for an answer: the second check by the judge and an explanation (for a wrong
- * answer, where the server offers them), and one button to report a problem (Report.tsx).
+ * answer, where the server offers them), and one button to report a problem (Report.tsx). The
+ * judge's accept says a language model decided (M10); the session keeps it and any explanation,
+ * which its end shows again.
  */
-export const AnswerHelp = ({ answer, ex, response, status, account, store, record, correcting, revise }: AnswerHelpProps): JSX.Element | null => {
+export const AnswerHelp = ({ answer, ex, response, status, account, store, record, correcting, revise, help }: AnswerHelpProps): JSX.Element | null => {
   const t = useTranslator();
-  // The session's revise as it is now: the judge may answer once the feedback has gone (ADR 0113).
+  // The session's revise and keep as they are now: the judge may answer once the feedback has gone (ADR 0113, M10).
   const revising = useRef(revise);
   revising.current = revise;
+  const keeping = useRef(help);
+  keeping.current = help;
   const [reported, setReported] = useState<Claim | undefined>(undefined);
   const [sent, setSent] = useState(false);
   const [judge, setJudge] = useState<Judge>("idle");
-  const [explain, setExplain] = useState<Explain>({ tag: "idle" });
+  const { explain, ask: askExplanation, rate } = useExplanation(answer, account, help);
   const spoken = SCORED_SPEECH.has(ex.template) && "prompt" in ex ? surfaceOf(ex.prompt) : undefined;
   const text = (spoken ?? answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
   const right = answer !== undefined && answer.outcome.kind.startsWith("CORRECT");
-  const wrong = answer !== undefined && !right && text !== "";
   // A wrong answer can be claimed right; a right one wrong only after a lenient grade; a spoken answer only right.
   const claim: Claim | undefined =
     answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? (spoken === undefined && LENIENT.has(answer.outcome.kind) ? "reject" : undefined) : "accept";
-  const explainable = wrong && status.explain && EXPLAINED.has(ex.template);
+  const canExplain = explainable(answer, text, status);
 
   useEffect(() => {
     if (answer === undefined || account === undefined || !status.judge || !judgeable(answer)) return;
@@ -173,8 +268,11 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
       (res) => {
         if (res.revision !== undefined) {
           record(res.revision);
-          // The session counts it so too, even once the learner has moved on (ADR 0113).
-          if (res.revision.type === "outcome_revised") revising.current?.(revisionVerdict(res.revision));
+          // The session counts it so too, even once the learner has moved on (ADR 0113), and its end says so (M10).
+          if (res.revision.type === "outcome_revised") {
+            revising.current?.(revisionVerdict(res.revision));
+            keeping.current?.judge(answer.exercise.id);
+          }
         }
         if (live) setJudge(res.revision === undefined ? "idle" : "accepted");
       },
@@ -194,24 +292,11 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
   // Once the judge has accepted the answer, there is nothing left to claim.
   const offered = judge === "accepted" ? undefined : claim;
   const correctable = (correcting?.targets.length ?? 0) > 0;
-  if (offered === undefined && !correctable && !explainable && judge === "idle" && reported === undefined && !sent) return null;
-  const askExplanation = (): void => {
-    if (answer === undefined || account === undefined) return;
-    setExplain({ tag: "loading" });
-    request<{ explanation: Explanation; key: string }>(account.server, "/v1/ai/explain", { token: account.token, body: { answer } }).then(
-      ({ explanation, key }) => setExplain({ tag: "shown", explanation, key }),
-      (e: unknown) => setExplain({ tag: "failed", why: failure(e) }),
-    );
-  };
-  const rate = (rating: Rating): void => {
-    if (explain.tag !== "shown" || account === undefined) return;
-    setExplain({ ...explain, rating });
-    void request(account.server, "/v1/ai/explain/rate", { token: account.token, body: { key: explain.key, rating } }).catch(() => undefined);
-  };
+  if (offered === undefined && !correctable && !canExplain && judge === "idle" && reported === undefined && !sent) return null;
   return (
     <div className={styles.answerTools} data-answer-help="">
       <div className={styles.answerToolsRow}>
-        {explainable && explain.tag === "idle" && (
+        {canExplain && explain.tag === "idle" && (
           <button type="button" className={aiStyles.action} onClick={askExplanation} data-action="explain">
             {t.format("ai.explain.button")}
           </button>
@@ -232,23 +317,49 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
           onSent={() => setSent(true)}
         />
       </div>
-      {/* Present and empty while there is nothing to say, so that what it says next is announced. */}
+      {/* Present and empty while there is nothing to say, so that what it says next is announced. A model's accept says it is one (M10). */}
       <p className={styles.toolsStatus} role="status" data-judge={judge}>
-        {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted") : judge === "queued" ? t.format("ai.judge.queued") : ""}
+        {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted.model") : judge === "queued" ? t.format("ai.judge.queued") : ""}
       </p>
       {reported !== undefined && <Claimed claim={reported} />}
       {sent && <Sent />}
-      {explain.tag === "loading" && (
-        <p className={styles.toolsStatus} role="status">
-          {t.format("ai.explain.loading")}
-        </p>
+      <ExplanationState explain={explain} rate={rate} />
+    </div>
+  );
+};
+
+export interface MissedHelpProps {
+  /** The answer the card was missed with, where the session has it. */
+  readonly answer: AnswerSubmitted | undefined;
+  readonly ex: Exercise;
+  /** What the learner answered (a choice or tiles: the answer event keeps typed text only). */
+  readonly response?: Response | undefined;
+  readonly status: AiStatus;
+  readonly account: Account | undefined;
+  readonly help: SessionHelp;
+}
+
+/**
+ * Under a card the end of a session lists as missed (M10): the explanation the learner asked for
+ * in its feedback, kept for the session, or the button to ask for one now (the server answers an
+ * explanation asked for before from its cache).
+ */
+export const MissedHelp = ({ answer, ex, response, status, account, help }: MissedHelpProps): JSX.Element | null => {
+  const t = useTranslator();
+  const { explain, ask, rate } = useExplanation(answer, account, help);
+  const text = (answer?.input.raw ?? (response === undefined ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
+  // One asked for in the feedback shows whatever the server offers now; a new one only where it explains.
+  if (explain.tag === "idle" && !(account !== undefined && explainable(answer, text, status))) return null;
+  return (
+    <div className={styles.answerTools} data-missed-help="">
+      {explain.tag === "idle" && (
+        <div className={styles.answerToolsRow}>
+          <button type="button" className={aiStyles.action} onClick={ask} data-action="explain">
+            {t.format("ai.explain.button")}
+          </button>
+        </div>
       )}
-      {explain.tag === "failed" && (
-        <p className={styles.toolsStatus} role="status" data-explain-failed="">
-          {t.format(explain.why)}
-        </p>
-      )}
-      {explain.tag === "shown" && <ExplanationView explanation={explain.explanation} rating={explain.rating} onRate={rate} />}
+      <ExplanationState explain={explain} rate={rate} />
     </div>
   );
 };

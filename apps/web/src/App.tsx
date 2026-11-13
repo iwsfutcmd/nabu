@@ -45,7 +45,7 @@ import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse, type NextStep } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
-import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
+import { AnswerHelp, MissedHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, useSessionHelp, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import summaries from "virtual:nabu-courses";
@@ -1077,6 +1077,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   const [known] = useState(() => knownWords(course, state, new Date(), facetsOff));
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
+  // The AI help the session's answers got, which its end shows again (M10).
+  const help = useSessionHelp();
   const [onEvent] = useState(() => {
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
@@ -1160,8 +1162,11 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
           const answer = answers.get(ex.id);
           // One report button beside the feedback (M6): claims about the answer, and corrections of what the card was built from.
           const correcting = { course, bundle: manifest.id, device, record, targets: correctablesOf(course, ex), corrections };
-          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} revise={revise} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} revise={revise} help={help} />;
         }}
+        // The end of the session keeps the AI help (M10): explanations under the cards missed, the judge's accepts listed.
+        missedExtra={(m) => <MissedHelp key={`missed-help:${m.ex.id}`} answer={answers.get(m.ex.id)} ex={m.ex} response={m.response} status={ai} account={account} help={help} />}
+        judged={help.judged}
       />
     </main>
   );

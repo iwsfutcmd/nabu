@@ -8,7 +8,9 @@
  *   Nothing plays by itself, whatever the sound setting (P6, D18).
  * - Missed the first time: each card the score counts wrong, with what it asked, the right answer, and
  *   the learner's answer with the parts that differ marked, as its feedback marked them (where the
- *   session still has the answer: a session picked up after a reload has only typed ones).
+ *   session still has the answer: a session picked up after a reload has only typed ones). The app
+ *   may add its AI help under each (an explanation asked for in the feedback, kept, M10).
+ * - Accepted on a second check: answers a language model accepted, said to be a model's (M10).
  * - Your progress: what the app works out from the log (words now known, a unit finished, the streak,
  *   the week's practice days, quests done, achievements), then the XP.
  * - Where a deployment's gate keeps the next lesson closed (M5): that it does, and until when.
@@ -92,6 +94,16 @@ export interface SessionEndProps {
   /** The words the session taught (KC ids), in the order it showed them. */
   readonly words: readonly string[];
   readonly missed: readonly Missed[];
+  /**
+   * More under each card missed the first time (M10): the app's AI help for it, such as the
+   * explanation asked for in its feedback, kept. The end screen only places it.
+   */
+  readonly missedExtra?: ((missed: Missed) => ReactNode) | undefined;
+  /**
+   * Answers a language model accepted on a second check (M10), with what they asked and the
+   * learner's answer: listed and said to be a model's, also where it answered after Continue.
+   */
+  readonly accepted?: readonly Missed[] | undefined;
   readonly progress?: SessionProgress | undefined;
   /** XP the session earned, as the game counts it. */
   readonly xp?: number | undefined;
@@ -151,8 +163,18 @@ const yoursOf = (course: CourseView, grader: Grader, ex: Exercise, response: Res
   return raw === undefined || base === undefined ? undefined : { text: textOfSurface(base, raw), marked: [] };
 };
 
-/** One card missed the first time: what it asked, the right answer, and the learner's. */
-const MissedCard = ({ course, grader, missed, ruby, marks }: { readonly course: CourseView; readonly grader: Grader; readonly missed: Missed; readonly ruby: SchemeId | false; readonly marks: Marks }): JSX.Element => {
+interface MissedCardProps {
+  readonly course: CourseView;
+  readonly grader: Grader;
+  readonly missed: Missed;
+  readonly ruby: SchemeId | false;
+  readonly marks: Marks;
+  /** What the app adds under it (M10). */
+  readonly extra?: ReactNode;
+}
+
+/** One card missed the first time (or accepted on a second check): what it asked, the right answer, and the learner's. */
+const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardProps): JSX.Element => {
   const t = useTranslator();
   const { ex, response } = missed;
   const prompt = promptOf(ex);
@@ -179,6 +201,7 @@ const MissedCard = ({ course, grader, missed, ruby, marks }: { readonly course: 
           </div>
         )
       )}
+      {extra}
     </li>
   );
 };
@@ -190,9 +213,10 @@ const dataOf = (to: NextTo): string => (to.kind === "lesson" ? `lesson ${String(
 
 export const SessionEnd = (props: SessionEndProps): JSX.Element => {
   const { course, grader, imageUrl, summary, words: kcs, missed, progress, xp, next, onExit, ruby, marks } = props;
+  const accepted = props.accepted ?? [];
   const t = useTranslator();
   const base = useId();
-  const ids = { title: `${base}-title`, score: `${base}-score`, words: `${base}-words`, missed: `${base}-missed`, progress: `${base}-progress` };
+  const ids = { title: `${base}-title`, score: `${base}-score`, words: `${base}-words`, missed: `${base}-missed`, accepted: `${base}-accepted`, progress: `${base}-progress` };
   const words = useWords(course, kcs);
   const known = useWords(course, progress?.known?.words ?? []);
   const heading = useRef<HTMLDivElement>(null);
@@ -258,6 +282,23 @@ export const SessionEnd = (props: SessionEndProps): JSX.Element => {
           </h3>
           <ul className={styles.endList}>
             {missed.map((m) => (
+              <MissedCard key={m.ex.id} course={course} grader={grader} missed={m} ruby={ruby} marks={marks} extra={props.missedExtra?.(m)} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* A model's second check is said to be one (M10), though it may have come after Continue. */}
+      {accepted.length > 0 && (
+        <section className={styles.endSection} aria-labelledby={ids.accepted} data-end-accepted={accepted.length}>
+          <h3 className={styles.endHeading} id={ids.accepted}>
+            {t.format("player.end.accepted.title")}
+          </h3>
+          <p className={styles.muted} data-ai-notice="">
+            {t.format("player.end.accepted.note", { count: accepted.length })}
+          </p>
+          <ul className={styles.endList}>
+            {accepted.map((m) => (
               <MissedCard key={m.ex.id} course={course} grader={grader} missed={m} ruby={ruby} marks={marks} />
             ))}
           </ul>
