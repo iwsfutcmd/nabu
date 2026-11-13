@@ -126,6 +126,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
   Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
   differently from core's replay.
+- Signing up re-queues the whole log (`store.requeue`, ADR 0123); signing in sends the outbox. A 401 signs out and
+  remembers who (meta `signed-out`) until sign-in or "Stay signed out". `offline` is `navigator.onLine` false;
+  `unreachable` is no answer while online, or 502-504.
 - One bad event never holds back a batch (ADR 0108): POST /v1/events takes the valid events and names the rest
   (`rejected`, by index, with the errors of the event's own type) and logs each (code, id, that error; never event
   values). The device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends

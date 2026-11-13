@@ -1737,6 +1737,38 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "rec": true
       }
     ]
+  },
+  {
+    "id": "D46",
+    "title": "Which sign-ins re-send the device’s whole history (S9)",
+    "context": "Signing up now uploads everything the device has logged, so a new account starts with the learner’s progress.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Sign-up only; signing in again sends only what is waiting, so a shared device never pours one person’s history into another’s account (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Every sign-in"
+      }
+    ]
+  },
+  {
+    "id": "D47",
+    "title": "A forgotten password (S9)",
+    "context": "The server sends no email, so it cannot reset a password.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Say so plainly under “Forgot your password?”: progress stays on the device, and a new account with another address takes it all (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Add email to the server and a real reset (a deployment change)"
+      }
+    ]
   }
 ]
 </script>
@@ -2093,6 +2125,11 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "S9": {
+      "state": "done",
+      "commit": "ade0c883",
+      "note": "Merged (ADR 0123): a new account takes the device’s whole log; a sign-out by the server is said on Home until the learner signs in again or stays signed out; “offline” is told apart from “the server doesn’t answer”; with no email on the server, the sign-in form says plainly that a password can’t be reset. Choices D46, D47."
+    },
     "R1": {
       "state": "in-progress",
       "note": "With a helper (fix/speed, ADR 0112): no game replay or corrections re-read per event inside a session, measured before and after at 4× CPU with a year of history. Still in progress."
