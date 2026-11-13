@@ -203,6 +203,43 @@ test.describe("game", () => {
   });
 });
 
+test("the league says how last week ended, and names its zones (M8)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const now = Date.now();
+  // A real account, so the app syncs as it would; the league itself is a fixture, as the server would give it a week on.
+  const { token, user } = (await (await page.request.post(`${API}/v1/auth/sign-up`, { data: { email: `zones-${now}@example.org`, password: "long enough pass" } })).json()) as { token: string; user: { id: string; email: string } };
+  const week = leagueWeek(now, DEFAULT_LEAGUE);
+  const row = (rank: number, outcome: "promoted" | "stayed" | "demoted", you = false) => ({ rank, xp: 100 - rank * 10, username: `learner${String(rank)}`, displayName: null, you, outcome });
+  const view = {
+    enabled: true,
+    week: week.id,
+    endsAt: new Date(week.end).toISOString(),
+    optedOut: false,
+    last: { week: new Date(week.start - 7 * DAY).toISOString().slice(0, 10), tier: 1, rank: 3, of: 12, xp: 40, outcome: "promoted", nextTier: 2 },
+    member: true,
+    tier: 2,
+    cohort: 1,
+    zones: { promote: 1, demote: 1 },
+    standings: [row(1, "promoted"), row(2, "stayed", true), row(3, "stayed"), row(4, "demoted")],
+  };
+  await page.route(`${API}/v1/league`, (route) => route.fulfill({ json: view }));
+  await page.goto(`/?sound=off&api=${encodeURIComponent(API)}#/`);
+  await page.waitForFunction(() => window.nabu !== undefined);
+  await page.evaluate(async ({ account }) => window.nabu?.setMeta("account", account), { account: { server: API, token, user } });
+  await page.reload();
+  const league = page.locator("[data-league]");
+  const last = league.locator("[data-league-last]");
+  await expect(last).toHaveAttribute("data-league-last", "promoted");
+  await expect(last).toContainText("Last week: place");
+  await expect(last).toContainText("You moved up to tier");
+  // Each zone that moves is named over its rows; the ranks run on through them.
+  await expect(league.locator('[data-zone="promoted"] h3')).toHaveText("Promotion zone");
+  await expect(league.locator('[data-zone="demoted"] h3')).toHaveText("Demotion zone");
+  await expect(league.locator('[data-zone="stayed"] h3')).toHaveCount(0);
+  await expect(league.locator('[data-zone="demoted"] ol')).toHaveAttribute("start", "4");
+  expect(await seriousAxeViolations(page, "[data-league]")).toEqual([]);
+});
+
 /** RFC 8291 decryption: what the browser does with the push message (written from the RFC). */
 const decrypt = (body: Buffer, uaPrivate: Buffer, auth: Buffer): string => {
   const hmac = (k: Buffer, d: Buffer): Buffer => createHmac("sha256", k).update(d).digest();
@@ -279,9 +316,21 @@ test("with an account: a username, the league, and a reminder by Web Push", asyn
   const me = league.locator('[data-you="true"]');
   await expect(me).toContainText("Maryam J.");
   await expect(me.locator("bdi")).toHaveCount(1);
+  // The top of the table is named as the promotion zone, not only coloured (M8).
+  await expect(league.locator('[data-zone="promoted"] h3').first()).toHaveText("Promotion zone");
 
   // The home screen with every panel passes axe.
   expect(await seriousAxeViolations(page, "main")).toEqual([]);
+
+  // Leagues can be declined (M8): out of the table at once, in none after a reload, and back on asking.
+  await page.locator("[data-action=league-leave]").click();
+  await expect(league).toHaveAttribute("data-league", "opted-out");
+  await expect(league.locator("[data-standings]")).toHaveCount(0);
+  await page.reload();
+  await expect(league).toHaveAttribute("data-league", "opted-out");
+  await page.locator("[data-action=league-rejoin]").click();
+  await expect(league).toHaveAttribute("data-league", "member");
+  await expect(me).toContainText("Maryam J.");
 
   // Reminders on: the browser subscribes and the server keeps the subscription.
   await page.locator("[data-action=reminders]").click();

@@ -719,6 +719,32 @@
   border-inline-start: 3px solid var(--nabu-color-wrong);
 }
 
+/* The standings in their zones (M8): a zone that moves is named over its rows, not only coloured. */
+.zones,
+.zone {
+  display: flex;
+  flex-direction: column;
+}
+
+.zones {
+  gap: var(--nabu-space-3);
+}
+
+.zoneTitle {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--nabu-color-muted);
+}
+
+/* Saying no to leagues, or taking part again (M8): who sees what, then the button. */
+.leagueChoice {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--nabu-space-1);
+}
+
 /* Your voice (Phase 9): privacy statement and choices. */
 .voice {
   display: flex;

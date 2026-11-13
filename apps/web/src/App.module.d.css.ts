@@ -40,6 +40,7 @@ declare const styles: {
   readonly intro: string;
   readonly label: string;
   readonly league: string;
+  readonly leagueChoice: string;
   readonly lesson: string;
   readonly lessonHead: string;
   readonly lessonName: string;
@@ -118,5 +119,8 @@ declare const styles: {
   readonly voice: string;
   readonly warning: string;
   readonly wideDialog: string;
+  readonly zone: string;
+  readonly zoneTitle: string;
+  readonly zones: string;
 };
 export default styles;

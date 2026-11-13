@@ -1838,6 +1838,34 @@
       "message": "Earn XP this week to join a league.",
       "description": "Shown to a signed-in learner who has not earned league XP this week."
     },
+    "league.last.demoted": {
+      "message": ".input {$tier :number}\n{{You moved down to tier {$tier}.}}",
+      "description": "After league.last.place: last week ended in the demotion zone, so the learner plays this week in the tier below, $tier (1 is the first)."
+    },
+    "league.last.place": {
+      "message": ".input {$rank :number}\n.input {$of :number}\n{{Last week: place {$rank} of {$of}.}}",
+      "description": "On the league panel, the week after a league week ended: where the learner finished in their group, $rank out of the $of learners in it. Followed by league.last.promoted, league.last.stayed or league.last.demoted."
+    },
+    "league.last.promoted": {
+      "message": ".input {$tier :number}\n{{You moved up to tier {$tier}.}}",
+      "description": "After league.last.place: last week ended in the promotion zone, so the learner plays this week in the tier above, $tier (1 is the first)."
+    },
+    "league.last.stayed": {
+      "message": ".input {$tier :number}\n{{You stay in tier {$tier}.}}",
+      "description": "After league.last.place: last week ended outside the promotion and demotion zones, so the learner stays in tier $tier (1 is the first)."
+    },
+    "league.leave": {
+      "message": "Don't take part in leagues",
+      "description": "Button on the league panel: the learner says no to leagues. They leave this week's league at once and join none until they take part again (league.rejoin)."
+    },
+    "league.out": {
+      "message": "You don't take part in leagues: no one sees your name or your XP.",
+      "description": "On the league panel of a learner who said no to leagues (league.leave), above the button that takes them back (league.rejoin)."
+    },
+    "league.rejoin": {
+      "message": "Take part in leagues",
+      "description": "Button on the league panel of a learner who said no to leagues: take part again. With XP this week, they join this week's league at once."
+    },
     "league.tier": {
       "message": ".input {$tier :number}\n{{Tier {$tier}}}",
       "description": "The learner's league tier this week (1 is the first)."
@@ -1845,6 +1873,10 @@
     "league.title": {
       "message": "League",
       "description": "Heading of the weekly league."
+    },
+    "league.visible": {
+      "message": "Others in your league see your name and your XP for the week.",
+      "description": "On the league panel of a learner who takes part, above the button that declines leagues (league.leave): what others can see of them."
     },
     "league.xp": {
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
@@ -1856,11 +1888,11 @@
     },
     "league.zone.demote": {
       "message": "Demotion zone",
-      "description": "Accessible label of the rows that move down a tier at the end of the week."
+      "description": "Heading over the rows of the league table that move down a tier when the week ends (its bottom rows)."
     },
     "league.zone.promote": {
       "message": "Promotion zone",
-      "description": "Accessible label of the rows that move up a tier at the end of the week."
+      "description": "Heading over the rows of the league table that move up a tier when the week ends (its top rows)."
     },
     "player.action.cant-listen": {
       "message": "Can't listen now",

@@ -88,35 +88,83 @@ export const ProfileForm = ({ account, uiLocale, onSaved }: { account: Account; 
   );
 };
 
+type Outcome = "promoted" | "stayed" | "demoted";
+
 interface Standing {
   readonly rank: number;
   readonly xp: number;
   readonly username: string | null;
   readonly displayName: string | null;
   readonly you: boolean;
-  readonly outcome: "promoted" | "stayed" | "demoted";
+  readonly outcome: Outcome;
 }
 
-type LeagueView =
-  | { readonly enabled: false }
-  | { readonly enabled: true; readonly member: false; readonly week: string; readonly endsAt: string }
-  | { readonly enabled: true; readonly member: true; readonly week: string; readonly endsAt: string; readonly tier: number; readonly standings: readonly Standing[] };
+/** How the learner's last league week ended (M8): their place of how many, and the tier it took them to. */
+interface LastResult {
+  readonly week: string;
+  readonly rank: number;
+  readonly of: number;
+  readonly outcome: Outcome;
+  readonly nextTier: number;
+}
 
-/** The weekly league, when the server runs one (§12.4); nothing at all otherwise. */
+interface Week {
+  readonly enabled: true;
+  readonly week: string;
+  readonly endsAt: string;
+  /** The learner said no to leagues (ADR 0122). */
+  readonly optedOut: boolean;
+  readonly last?: LastResult | undefined;
+}
+
+type LeagueView = { readonly enabled: false } | (Week & { readonly member: false }) | (Week & { readonly member: true; readonly tier: number; readonly standings: readonly Standing[] });
+
+/** The standings in their zones (M8): the rows moving up, those staying, those moving down, each a run of ranks. */
+const zonesOf = (standings: readonly Standing[]): readonly { readonly outcome: Outcome; readonly rows: readonly Standing[] }[] => {
+  const zones: { outcome: Outcome; rows: Standing[] }[] = [];
+  for (const s of standings) {
+    const zone = zones.at(-1);
+    if (zone?.outcome === s.outcome) zone.rows.push(s);
+    else zones.push({ outcome: s.outcome, rows: [s] });
+  }
+  return zones;
+};
+
+const LAST: Readonly<Record<Outcome, "league.last.promoted" | "league.last.stayed" | "league.last.demoted">> = {
+  promoted: "league.last.promoted",
+  stayed: "league.last.stayed",
+  demoted: "league.last.demoted",
+};
+
+/**
+ * The weekly league, when the server runs one (§12.4); nothing at all otherwise. It says how last
+ * week ended, names its zones, and lets the learner say no to leagues, or take part again (M8).
+ */
 export const LeaguePanel = ({ account, version }: { account: Account; version: unknown }): JSX.Element | null => {
   const t = useTranslator();
   const [view, setView] = useState<LeagueView | null>(null);
+  const [failed, setFailed] = useState(false);
   useEffect(() => {
     void request<LeagueView>(account.server, "/v1/league", { token: account.token }).then(setView, () => setView(null));
   }, [account, version]);
   if (view === null || !view.enabled) return null;
   const daysLeft = Math.max(0, Math.ceil((Date.parse(view.endsAt) - Date.now()) / 86_400_000));
+  const takePart = (on: boolean): void => {
+    setFailed(false);
+    void request<LeagueView>(account.server, "/v1/league", { token: account.token, method: "PUT", body: { optedOut: !on } }).then(setView, () => setFailed(true));
+  };
+  const { last } = view;
   return (
-    <section className={`${styles.course} ${styles.league}`} data-league={view.member ? "member" : "not-member"} aria-labelledby="league-title">
+    <section className={`${styles.course} ${styles.league}`} data-league={view.optedOut ? "opted-out" : view.member ? "member" : "not-member"} aria-labelledby="league-title">
       <h2 className={styles.courseName} id="league-title">
         {t.format("league.title")}
       </h2>
-      {!view.member ? (
+      {last !== undefined && (
+        <p data-league-last={last.outcome} data-league-last-rank={last.rank}>
+          {t.format("league.last.place", { rank: last.rank, of: last.of })} {t.format(LAST[last.outcome], { tier: last.nextTier })}
+        </p>
+      )}
+      {view.optedOut ? null : !view.member ? (
         <p className={styles.muted}>{t.format("league.join")}</p>
       ) : (
         <>
@@ -126,28 +174,41 @@ export const LeaguePanel = ({ account, version }: { account: Account; version: u
             </span>
             <span className={styles.stat}>{t.format("league.days-left", { days: daysLeft })}</span>
           </p>
-          <ol className={styles.standings} data-standings="">
-            {view.standings.map((s) => (
-              <li
-                key={s.rank}
-                className={styles.standing}
-                data-rank={s.rank}
-                data-you={String(s.you)}
-                data-outcome={s.outcome}
-                aria-label={s.outcome === "stayed" ? undefined : t.format(s.outcome === "promoted" ? "league.zone.promote" : "league.zone.demote")}
-              >
-                <span>{s.rank}</span>
-                <span>
-                  {/* User-chosen names, in any script: isolated so they never reorder the row. */}
-                  <bdi>{s.displayName ?? s.username ?? t.format("league.anonymous")}</bdi>
-                  {s.you && <span className={styles.muted}> · {t.format("league.you")}</span>}
-                </span>
-                <span>{t.format("league.xp", { xp: s.xp })}</span>
-              </li>
+          <div className={styles.zones} data-standings="">
+            {zonesOf(view.standings).map((zone) => (
+              <div key={zone.rows[0]?.rank} className={styles.zone} data-zone={zone.outcome}>
+                {/* The zones are named where they are, not only coloured (M8). */}
+                {zone.outcome !== "stayed" && <h3 className={styles.zoneTitle}>{t.format(zone.outcome === "promoted" ? "league.zone.promote" : "league.zone.demote")}</h3>}
+                <ol className={styles.standings} start={zone.rows[0]?.rank}>
+                  {zone.rows.map((s) => (
+                    <li key={s.rank} className={styles.standing} data-rank={s.rank} data-you={String(s.you)} data-outcome={s.outcome}>
+                      <span>{s.rank}</span>
+                      <span>
+                        {/* User-chosen names, in any script: isolated so they never reorder the row. */}
+                        <bdi>{s.displayName ?? s.username ?? t.format("league.anonymous")}</bdi>
+                        {s.you && <span className={styles.muted}> · {t.format("league.you")}</span>}
+                      </span>
+                      <span>{t.format("league.xp", { xp: s.xp })}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
             ))}
-          </ol>
+          </div>
         </>
       )}
+      {/* Leagues can be declined, and taken up again (M8): the account's choice, on every device. */}
+      <div className={styles.leagueChoice} data-league-take-part={String(!view.optedOut)}>
+        <p className={styles.muted}>{t.format(view.optedOut ? "league.out" : "league.visible")}</p>
+        <Button className={view.optedOut ? styles.button : styles.textButton} onPress={() => takePart(view.optedOut)} data-action={view.optedOut ? "league-rejoin" : "league-leave"}>
+          {t.format(view.optedOut ? "league.rejoin" : "league.leave")}
+        </Button>
+        {failed && (
+          <p className={styles.notice} role="alert" data-league-error="">
+            {t.format("app.error.account.unreachable")}
+          </p>
+        )}
+      </div>
     </section>
   );
 };
