@@ -82,6 +82,27 @@ test.describe("game", () => {
     expect(moved.some((p) => p > 0)).toBe(true);
   });
 
+  test("a page left open overnight turns the streak and today's quests over by itself", async ({ page }) => {
+    const evening = Date.parse("2026-05-20T23:59:00Z");
+    await page.clock.install({ time: new Date(evening) });
+    // Yesterday and an hour ago.
+    await seedLog(page, [...practice(evening - DAY, 6), ...practice(evening - 3_600_000, 6)]);
+    await page.reload();
+    const streak = page.locator("[data-streak]");
+    await expect(streak).toHaveAttribute("data-streak", "2");
+    await expect(streak).toHaveAttribute("data-practiced-today", "true");
+
+    // Past midnight, nothing reloaded: a new day with nothing practised yet.
+    await page.clock.runFor(2 * 60_000);
+    await expect(streak).toHaveAttribute("data-practiced-today", "false");
+    await expect(streak).toHaveAttribute("data-streak", "2");
+    await expect(page.locator('[data-quests] [data-quest][data-quest-progress="0"]')).toHaveCount(3);
+
+    // A whole day missed, the page still open: the streak is gone.
+    await page.clock.runFor(DAY);
+    await expect(streak).toHaveAttribute("data-streak", "0");
+  });
+
   test.describe("deployment rules", () => {
     // The deployment's game.json is stubbed with page.route, which does not see requests the
     // service worker makes: these tests run without it.

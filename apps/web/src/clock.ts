@@ -43,4 +43,11 @@ export const localIso = (d: Date): string => {
 /** The learner's local calendar date (§12.2): daily XP and streaks count it. */
 export const localDate = (d: Date): string => localIso(d).slice(0, 10);
 
+/**
+ * How long from `d` until the local date changes: until the next local midnight (a DST day is
+ * 23 or 25 hours long), and a second more, so that a timer set for it finds the new date.
+ */
+export const msUntilNextLocalDate = (d: Date): number =>
+  new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1).getTime() - d.getTime() + 1000;
+
 export const timeZone = (): string => Intl.DateTimeFormat().resolvedOptions().timeZone;
