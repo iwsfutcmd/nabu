@@ -1801,6 +1801,22 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Cohorts per course now"
       }
     ]
+  },
+  {
+    "id": "D50",
+    "title": "Where a reminder opens (S1)",
+    "context": "Home now leads with a “Pick up where you left off” card for the course studied last.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Home, whose card goes straight to the next step (what the helper built); tapped with the app open, it opens there even mid-lesson, which is kept",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "The course page of the course studied last"
+      }
+    ]
   }
 ]
 </script>
@@ -2157,6 +2173,21 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "S1": {
+      "state": "done",
+      "commit": "bfce29a0",
+      "note": "Merged (ADR 0120): Home leads with “Pick up where you left off”: the course studied last, its next step as Continue has it, and a button straight to it; courses studied come first, each saying when it was last practised; a reminder tapped with the app open opens it. Choice D50."
+    },
+    "S2": {
+      "state": "done",
+      "commit": "1e188185",
+      "note": "Merged (ADR 0120): the course page has a row of links under its title (Words, the sentences, Your reports, Preferences, Offline as its own page), finished units fold under their heading, and the page opens at Continue’s lesson once something is done."
+    },
+    "P3": {
+      "state": "done",
+      "commit": "07a98521",
+      "note": "Merged (ADR 0121): feedback shows a gap where the answer left something out and marks the solution’s missing or wrong words; a missing accent or a word that turns into another is marked; a wrong choice, or a wrong word of the course in a typed or tiled answer, says what it means (with its grammatical form). Grading is unchanged."
+    },
     "M5": {
       "state": "done",
       "commit": "7976a326",
