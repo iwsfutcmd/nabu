@@ -38,8 +38,37 @@ export const reviews = (info: ReviewerInfo, course: string): boolean => info.cou
 
 const noSync = { subscribe: () => () => undefined };
 
-/** Whether the signed-in account reviews courses, and which. */
-export const useReviewer = (sync: Sync | null): ReviewerState => {
+/**
+ * The server's answer about an account's role, kept for this browser session (null: not a
+ * reviewer). Only the server knows the role, and an admin may grant it at any time, so the app
+ * asks; but most accounts review nothing, and the course list should not ask (and be refused)
+ * every time it opens. The workspace asks afresh and keeps its answer here.
+ */
+const ROLE = "nabu.reviewer:";
+const roleKey = (account: Account): string => `${ROLE}${account.server} ${account.user.id}`;
+
+const rememberedRole = (account: Account): ReviewerInfo | null | undefined => {
+  try {
+    const value = sessionStorage.getItem(roleKey(account));
+    return value === null ? undefined : (JSON.parse(value) as ReviewerInfo | null);
+  } catch {
+    return undefined;
+  }
+};
+
+const rememberRole = (account: Account, info: ReviewerInfo | null): void => {
+  try {
+    sessionStorage.setItem(roleKey(account), JSON.stringify(info));
+  } catch {
+    // No session storage: the next screen asks again.
+  }
+};
+
+/**
+ * Whether the signed-in account reviews courses, and which. `fresh` (the workspace itself) asks
+ * the server every time; otherwise an answer from earlier in this browser session stands.
+ */
+export const useReviewer = (sync: Sync | null, fresh = false): ReviewerState => {
   const server = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().server);
   const account = useSyncExternalStore(sync?.subscribe ?? noSync.subscribe, () => sync?.get().account);
   const [state, setState] = useState<ReviewerState>({ kind: "loading" });
@@ -47,16 +76,26 @@ export const useReviewer = (sync: Sync | null): ReviewerState => {
     if (sync === null) return;
     if (server === undefined) return setState({ kind: "none", why: "no-server" });
     if (account === undefined) return setState({ kind: "none", why: "signed-out" });
+    const known = fresh ? undefined : rememberedRole(account);
+    if (known !== undefined) return setState(known === null ? { kind: "none", why: "not-reviewer" } : { kind: "reviewer", info: known, account });
     let live = true;
     setState({ kind: "loading" });
     request<ReviewerInfo>(account.server, "/v1/review/me", { token: account.token }).then(
-      (info) => live && setState({ kind: "reviewer", info, account }),
-      (e: unknown) => live && setState({ kind: "none", why: isHttpError(e) && e.status === 403 ? "not-reviewer" : "error" }),
+      (info) => {
+        rememberRole(account, info);
+        if (live) setState({ kind: "reviewer", info, account });
+      },
+      (e: unknown) => {
+        // A refusal is an answer (not a reviewer); anything else is asked again next time.
+        const refused = isHttpError(e) && e.status === 403;
+        if (refused) rememberRole(account, null);
+        if (live) setState({ kind: "none", why: refused ? "not-reviewer" : "error" });
+      },
     );
     return () => {
       live = false;
     };
-  }, [sync, server, account]);
+  }, [sync, server, account, fresh]);
   return state;
 };
 
@@ -78,7 +117,7 @@ type Names = { readonly course: (id: string) => string; readonly orthography: (i
 /** #/review: the courses this account reviews, one link per orthography. */
 export const ReviewHome = ({ courses, sync, names, back, hrefOf }: { courses: readonly CourseIndexEntry[]; sync: Sync; names: Names; back: string; hrefOf: (course: string, orthography: string) => string }): JSX.Element => {
   const t = useTranslator();
-  const state = useReviewer(sync);
+  const state = useReviewer(sync, true);
   const mine = state.kind === "reviewer" ? courses.filter((c) => reviews(state.info, c.id)) : [];
   return (
     <main className={styles.page} data-review-home="">
@@ -207,7 +246,7 @@ const useQueue = (account: Account | undefined, course: string): { reports: Answ
 /** #/review/<course>/<orthography>: one course's workspace. */
 export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: PageProps): JSX.Element => {
   const t = useTranslator();
-  const state = useReviewer(sync);
+  const state = useReviewer(sync, true);
   const { course } = loaded;
   const allowed = state.kind === "reviewer" && reviews(state.info, course.id);
   const account = allowed ? state.account : undefined;

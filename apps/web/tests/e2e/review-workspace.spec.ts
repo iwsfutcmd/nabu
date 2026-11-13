@@ -84,6 +84,8 @@ test("a reviewer signs off a unit, accepts an answer and decides a report, all k
   expect(grant.status()).toBe(200);
   await learnerReports(page, runTag(), sentence.id, sentence.kcs, "مرحبتين");
 
+  // The course list asks for the role once a browser session: the next session finds the link.
+  await page.evaluate(() => sessionStorage.clear());
   await page.reload();
   await page.locator("[data-review-link]").click();
   await expect(page.locator("[data-reviewer=yes]")).toContainText(handle);
