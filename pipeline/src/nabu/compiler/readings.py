@@ -26,15 +26,13 @@ lines up with them.
 
 from __future__ import annotations
 
-from collections.abc import Callable, Iterator, Mapping
+from collections.abc import Callable, Iterator, Mapping, Sequence
 from dataclasses import dataclass, field
-from typing import Any, cast
 
 from nabu.compiler import text as tx
+from nabu.items import WORD_KINDS, ItemKind, iter_items
+from nabu.schema.models import BundleUnit, RubySegment, TokenModel
 from nabu.schemes import plugins, schemes
-
-#: Tokens that carry a reading: what a voice reads (nabu.audio.course reads the same kinds).
-WORD_KINDS = ("word", "number")
 
 Key = tuple[str, str]
 """(KC id, surface)."""
@@ -49,26 +47,24 @@ def _most_common(readings: list[str]) -> str:
     return next(r for r in readings if counts[r] == best)
 
 
-def _shares(token: dict[str, Any], scheme: str) -> Iterator[tuple[str, str, str]]:
+def _shares(token: TokenModel, scheme: str) -> Iterator[tuple[str, str, str]]:
     """(morph KC, morph surface, its share of the token's reading): the syllables its ruby pairs
     with the morph's characters. A word without ruby in the scheme (a loanword in Latin letters)
     is not split."""
-    surface = str(token["surface"])
-    ruby = cast(
-        list[dict[str, str]], cast(dict[str, Any], token.get("ruby") or {}).get(scheme) or []
-    )
-    morphs = cast(list[dict[str, str]], token.get("morphs") or [])
-    if not morphs or [s["base"] for s in ruby] != tx.graphemes(surface):
+    surface = token.surface
+    ruby = (token.ruby or {}).get(scheme) or []
+    morphs = token.morphs or []
+    if not morphs or [s.base for s in ruby] != tx.graphemes(surface):
         return
-    if [g for m in morphs for g in tx.graphemes(m["surface"])] != tx.graphemes(surface):
+    if [g for m in morphs for g in tx.graphemes(m.surface)] != tx.graphemes(surface):
         return
     at = 0
     for m in morphs:
-        n = len(tx.graphemes(m["surface"]))
-        share = " ".join(s["text"] for s in ruby[at : at + n])
+        n = len(tx.graphemes(m.surface))
+        share = " ".join(s.text for s in ruby[at : at + n])
         at += n
-        if share and m.get("kc"):
-            yield m["kc"], m["surface"], share
+        if share and m.kc:
+            yield m.kc, m.surface, share
 
 
 @dataclass
@@ -83,15 +79,15 @@ class Seen:
     cited: dict[Key, list[str]] = field(default_factory=lambda: {})
     surfaces: dict[str, list[str]] = field(default_factory=lambda: {})
 
-    def add(self, tokens: list[dict[str, Any]], own: dict[Key, list[str]]) -> None:
+    def add(self, tokens: Sequence[TokenModel], own: dict[Key, list[str]]) -> None:
         for t in tokens:
-            reading = cast(dict[str, str], t.get("readings") or {}).get(self.scheme)
-            if t.get("kind") not in WORD_KINDS or reading is None:
+            reading = (t.readings or {}).get(self.scheme)
+            if t.kind not in WORD_KINDS or reading is None:
                 continue
-            surface = str(t["surface"])
+            surface = t.surface
             self.surfaces.setdefault(surface, []).append(reading)
-            if t.get("sense"):
-                sense = f"sense:{t['sense']}"
+            if t.sense:
+                sense = f"sense:{t.sense}"
                 own.setdefault((sense, surface), []).append(reading)
                 if self.cite is not None:
                     key = (sense, self.cite(surface))
@@ -136,11 +132,11 @@ class Refusal:
     message: str
 
 
-def _refused(table: Seen, kc: str, words: list[dict[str, Any]], reading: str) -> str | None:
+def _refused(table: Seen, kc: str, words: Sequence[TokenModel], reading: str) -> str | None:
     """Why a KC's own reading cannot be pinned on its first form's words, or None."""
     if len(words) != 1:
         return f"its first form has {len(words)} words; a KC's own reading is one word's"
-    surface = str(words[0]["surface"])
+    surface = words[0].surface
     given = table.given(kc, surface)
     if reading not in given:
         return (
@@ -150,100 +146,138 @@ def _refused(table: Seen, kc: str, words: list[dict[str, Any]], reading: str) ->
     return None
 
 
-def _sentence_tokens(units: list[dict[str, Any]], orth: str) -> Iterator[list[dict[str, Any]]]:
-    for u in units:
-        for s in cast(list[dict[str, Any]], u["sentences"]):
-            form = cast(dict[str, Any] | None, s["forms"].get(orth))
-            if form is not None:
-                yield cast(list[dict[str, Any]], form["text"]["tokens"])
+def _tokens(
+    units: Sequence[BundleUnit], orth: str, kind: ItemKind
+) -> Iterator[Sequence[TokenModel]]:
+    """The orthography's tokens of every sentence (or every story line), in course order."""
+    for item in iter_items(units):
+        tokens = item.forms.get(orth)
+        if item.kind == kind and tokens is not None:
+            yield tokens
 
 
-def _line_tokens(units: list[dict[str, Any]], orth: str) -> Iterator[list[dict[str, Any]]]:
-    for u in units:
-        for story in cast(list[dict[str, Any]], u.get("stories", [])):
-            for step in cast(list[dict[str, Any]], story["steps"]):
-                line = cast(dict[str, Any], step.get("line") or {}).get("forms", {}).get(orth)
-                if line is not None:
-                    yield cast(list[dict[str, Any]], line["tokens"])
-
-
-def pinned_schemes(units: list[dict[str, Any]], orth: str) -> list[str]:
+def pinned_schemes(units: Sequence[BundleUnit], orth: str) -> list[str]:
     """Every scheme a word of the orthography's sentences or story lines pins a reading in."""
     found: set[str] = set()
-    for tokens in [*_sentence_tokens(units, orth), *_line_tokens(units, orth)]:
-        for t in tokens:
-            if t.get("kind") in WORD_KINDS:
-                found.update(cast(dict[str, str], t.get("readings") or {}))
+    kinds: tuple[ItemKind, ...] = ("sentence", "line")
+    for kind in kinds:
+        for tokens in _tokens(units, orth, kind):
+            for t in tokens:
+                if t.kind in WORD_KINDS:
+                    found.update(t.readings or {})
     return sorted(found)
 
 
-def seen(units: list[dict[str, Any]], orth: str, scheme: str) -> Seen:
+def seen(units: Sequence[BundleUnit], orth: str, scheme: str) -> Seen:
     """The readings a scheme's tokens pin in an orthography, lessons before story lines."""
     cite = plugins(scheme).cite if scheme in schemes() else None
     out = Seen(scheme, cite)
-    for tokens in _sentence_tokens(units, orth):
+    for tokens in _tokens(units, orth, "sentence"):
         out.add(tokens, out.lessons)
-    for tokens in _line_tokens(units, orth):
+    for tokens in _tokens(units, orth, "line"):
         out.add(tokens, out.lines)
     return out
 
 
+#: Where a pinned reading goes: (unit, KC, orthography, form, token), by index.
+Place = tuple[int, int, str, int, int]
+
+
+@dataclass
+class _Pin:
+    """What a KC form's word gets: a reading per scheme, and ruby where a layer shows it."""
+
+    readings: dict[str, str] = field(default_factory=lambda: {})
+    ruby: dict[str, list[RubySegment]] = field(default_factory=lambda: {})
+
+
+def _pinned(units: Sequence[BundleUnit], pins: Mapping[Place, _Pin]) -> list[BundleUnit]:
+    """The units with each KC form's words given what `pins` says."""
+    out: list[BundleUnit] = []
+    for ui, unit in enumerate(units):
+        kcs = list(unit.kcs)
+        for ki, kc in enumerate(kcs):
+            forms = dict(kc.forms or {})
+            changed = False
+            for orth, texts in forms.items():
+                new_texts = list(texts)
+                for fi, text in enumerate(texts):
+                    tokens = list(text.tokens)
+                    for ti, t in enumerate(tokens):
+                        pin = pins.get((ui, ki, orth, fi, ti))
+                        if pin is None:
+                            continue
+                        update: dict[str, object] = {
+                            "readings": {**(t.readings or {}), **pin.readings}
+                        }
+                        if pin.ruby:
+                            update["ruby"] = {**(t.ruby or {}), **pin.ruby}
+                        tokens[ti] = t.model_copy(update=update)
+                    if tokens != list(text.tokens):
+                        new_texts[fi] = text.model_copy(update={"tokens": tokens})
+                if new_texts != list(texts):
+                    forms[orth] = new_texts
+                    changed = True
+            if changed:
+                kcs[ki] = kc.model_copy(update={"forms": forms})
+        out.append(unit.model_copy(update={"kcs": kcs}) if kcs != list(unit.kcs) else unit)
+    return out
+
+
 def pin_kc_readings(
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     orthographies: list[str],
     ruby_layers: Callable[[str], list[str]],
     script_of: Callable[[str], tx.Script],
     own: Mapping[str, Mapping[str, str]] | None = None,
-) -> list[Refusal]:
-    """Pins a reading, in every scheme the orthography's words pin, on each word of every KC form
-    (the module's docstring), and ruby on the orthography's ruby layers (`ruby_layers`).
+) -> tuple[list[BundleUnit], list[Refusal]]:
+    """The units with a reading pinned, in every scheme the orthography's words pin, on each word
+    of every KC form (the module's docstring), and ruby on the orthography's ruby layers
+    (`ruby_layers`).
 
     `own`: the readings KC entries choose for their first form (their `readings`), by KC id and
-    scheme. Returns those it cannot pin (a form of several words, a reading no token gives the
-    word, a scheme no orthography of the KC's forms pins); their words take the order's."""
+    scheme. Also returns those it cannot pin (a form of several words, a reading no token gives
+    the word, a scheme no orthography of the KC's forms pins); their words take the order's."""
     own = own or {}
     taken: set[tuple[str, str]] = set()
     refused: list[Refusal] = []
+    pins: dict[Place, _Pin] = {}
     for orth in orthographies:
         ruby = set(ruby_layers(orth))
         script = script_of(orth)
         for scheme in pinned_schemes(units, orth):
             table = seen(units, orth, scheme)
-            for u in units:
-                for kc in cast(list[dict[str, Any]], u["kcs"]):
-                    kc_id = str(kc["id"])
-                    forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
-                    for i, form in enumerate(forms.get(orth, [])):
+            for ui, u in enumerate(units):
+                for ki, kc in enumerate(u.kcs):
+                    for fi, form in enumerate((kc.forms or {}).get(orth, [])):
                         words = [
-                            t
-                            for t in cast(list[dict[str, Any]], form["tokens"])
-                            if t.get("kind") in WORD_KINDS
+                            (ti, t) for ti, t in enumerate(form.tokens) if t.kind in WORD_KINDS
                         ]
-                        chosen = own.get(kc_id, {}).get(scheme) if i == 0 else None
+                        chosen = own.get(kc.id, {}).get(scheme) if fi == 0 else None
                         if chosen is not None:
-                            taken.add((kc_id, scheme))
-                            why = _refused(table, kc_id, words, chosen)
+                            taken.add((kc.id, scheme))
+                            why = _refused(table, kc.id, [t for _, t in words], chosen)
                             if why is not None:
-                                refused.append(Refusal(kc_id, scheme, f"{orth}: {why}"))
+                                refused.append(Refusal(kc.id, scheme, f"{orth}: {why}"))
                                 chosen = None
-                        for t in words:
-                            surface = str(t["surface"])
-                            reading = chosen if chosen is not None else table.pick(kc_id, surface)
+                        for ti, t in words:
+                            reading = chosen if chosen is not None else table.pick(kc.id, t.surface)
                             if reading is None:
                                 continue
-                            t.setdefault("readings", {})[scheme] = reading
+                            pin = pins.setdefault((ui, ki, orth, fi, ti), _Pin())
+                            pin.readings[scheme] = reading
                             if (
                                 scheme not in ruby
-                                or t["kind"] != "word"
-                                or not tx.ruby_bearing(surface, script)
+                                or t.kind != "word"
+                                or not tx.ruby_bearing(t.surface, script)
                             ):
                                 continue
-                            segments = tx.ruby_segments(surface, reading)
+                            segments = tx.ruby_segments(t.surface, reading)
                             if segments is not None:
-                                t.setdefault("ruby", {})[scheme] = segments
+                                pin.ruby[scheme] = [RubySegment.model_validate(s) for s in segments]
     for kc_id, by_scheme in own.items():
         for scheme in by_scheme:
             if (kc_id, scheme) not in taken:
                 message = f"no orthography of its forms has words that pin {scheme}"
                 refused.append(Refusal(kc_id, scheme, message))
-    return refused
+    return _pinned(units, pins), refused

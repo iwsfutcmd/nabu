@@ -34,9 +34,10 @@ from nabu.audio.course import (
 from nabu.audio.ingest import Recording, ingest
 from nabu.audio.providers import Clip, EspeakProvider, Request
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice
+from nabu.schema.models import AudioVoice, BundleUnit
 
 from .conftest import REQUIRE_TOOLS, ROOT, CoreCli
+from .units import kc, sentence, token, unit
 
 SPEECH = os.environ.get("NABU_SPEECH") == "1"
 YUE_VOICE = AudioVoice(
@@ -164,22 +165,13 @@ def test_a_word_card_reads_the_reading_its_form_pins() -> None:
     card shows, never one the planner looks up in the sentences: here the sentence says 呢 ne1
     (the particle) and the form pins ni1 ("this"). A form without one is skipped."""
     orth = "yue-Hant-HK/standard"
-    particle = {"surface": "呢", "kind": "word", "sense": "呢-sfp", "readings": {"jyutping": "ne1"}}
-    unit = {
-        "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [particle]}}}}],
-        "kcs": [
-            {
-                "id": "sense:呢",
-                "forms": {
-                    orth: [
-                        {"tokens": [{**particle, "sense": "呢", "readings": {"jyutping": "ni1"}}]}
-                    ]
-                },
-            },
-            {"id": "sense:O", "forms": {orth: [{"tokens": [{"surface": "O", "kind": "word"}]}]}},
-        ],
-    }
-    items, skipped = plan([unit], YUE_VOICE)
+    particle = token("呢", sense="呢-sfp", readings={"jyutping": "ne1"})
+    this = token("呢", sense="呢", readings={"jyutping": "ni1"})
+    course = unit(
+        sentences=[sentence("s.1", {orth: [particle]})],
+        kcs=[kc("sense:呢", {orth: [[this]]}), kc("sense:O", {orth: [[token("O")]]})],
+    )
+    items, skipped = plan([course], YUE_VOICE)
     assert {i.item: i.input for i in items}["sense:呢"] == "ni1"
     assert skipped == ["sense:O"]
 
@@ -639,18 +631,18 @@ def voice(monkeypatch: pytest.MonkeyPatch) -> _Voice:
     return fake
 
 
-def _twins_course(root: Path) -> list[dict[str, object]]:
+def _twins_course(root: Path) -> list[BundleUnit]:
     """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file. Units
     as the compiler gives them: the word's form pins its reading (ADR 0117)."""
     (root / "audio").mkdir(parents=True)
     (root / "course.yaml").write_text("id: twins\n", encoding="utf-8")
     orth = "yue-Hant-HK/standard"
-    token = {"surface": "早晨", "kind": "word", "readings": {"jyutping": "zou2 san4"}}
+    morning = token("早晨", readings={"jyutping": "zou2 san4"})
     return [
-        {
-            "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token]}}}}],
-            "kcs": [{"id": "sense:早晨", "forms": {orth: [{"tokens": [token]}]}}],
-        }
+        unit(
+            sentences=[sentence("s.1", {orth: [morning]})],
+            kcs=[kc("sense:早晨", {orth: [[morning]]})],
+        )
     ]
 
 

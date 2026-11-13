@@ -11,6 +11,7 @@ from nabu import yamlio
 from nabu.audio.course import plan
 from nabu.compiler import compile_course
 from nabu.corrections import apply
+from nabu.items import unit_json
 from nabu.schema.models import AudioVoice, SentenceCorrection
 
 from .conftest import CoreCli
@@ -33,7 +34,8 @@ def _compile(core_cli: CoreCli, tmp_path: Path, course: dict[str, Any]) -> Any:
 
 
 def _tokens(compiled: Any, i: int = 0) -> list[dict[str, Any]]:
-    return compiled.units[0]["sentences"][i]["forms"][ORTH]["text"]["tokens"]
+    """A sentence's tokens as the bundle holds them."""
+    return unit_json(compiled.units[0])["sentences"][i]["forms"][ORTH]["text"]["tokens"]
 
 
 def _with_sentence(course: dict[str, Any], text: str, tokens: list[dict[str, Any]]) -> None:
@@ -63,7 +65,7 @@ def test_kc_forms_are_marked(core_cli: CoreCli, tmp_path: Path) -> None:
     course["units"][0]["kcs"][0]["forms"] = {ORTH: [FA_WORD]}
     diags, compiled = _compile(core_cli, tmp_path, course)
     assert not diags.errors
-    kc = compiled.units[0]["kcs"][0]
+    kc = unit_json(compiled.units[0])["kcs"][0]
     assert [t["surface"] for t in kc["forms"][ORTH][0]["tokens"]] == [FA_VOCALIZED]
     assert compiled.written[(kc["id"], ORTH)] == [FA_WORD]
 

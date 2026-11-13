@@ -3,7 +3,6 @@ still have content; the full build is unchanged."""
 
 from __future__ import annotations
 
-import copy
 import json
 import shutil
 from dataclasses import replace
@@ -18,6 +17,7 @@ from nabu.compiler import compile_course, load_profiles
 from nabu.compiler.release import release
 from nabu.corecli import CoreCli
 from nabu.review import shown_of
+from nabu.schema.models import BundleScenario, BundleUnit, Provenance
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -55,7 +55,7 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
     assert compiled is not None
     shown = shown_of(compiled.units)
     first = compiled.units[0]
-    story = cast(list[dict[str, Any]], first["stories"])[0]
+    story = (first.stories or [])[0]
     signoffs = {
         "course": "apc",
         "signoffs": [
@@ -72,9 +72,9 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
                 "at": "2026-11-06T10:00:00Z",
             },
             {
-                "item": story["id"],
+                "item": story.id,
                 "kind": "story",
-                "shown": shown[("story", story["id"])],
+                "shown": shown[("story", story.id)],
                 "at": "2026-11-06T10:00:00Z",
             },
         ],
@@ -89,13 +89,13 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
     code, output, manifest, units = _build(course, tmp_path / "release", "--release")
     assert code == 0, output
     assert manifest["release"] is True
-    assert [u["id"] for u in units] == [first["id"]]
+    assert [u["id"] for u in units] == [first.id]
     [unit] = units
     assert [s["id"] for s in unit["sentences"]] == ["s.1", "s.2"]
-    assert [s["id"] for s in unit["stories"]] == [story["id"]]
+    assert [s["id"] for s in unit["stories"]] == [story.id]
     lessons = [n for n in unit["nodes"] if n["kind"] == "lesson"]
     assert [n["sentences"] for n in lessons] == [["s.1", "s.2"]]
-    assert [n["id"] for n in unit["nodes"] if n["kind"] == "story"] == [story["node"]]
+    assert [n["id"] for n in unit["nodes"] if n["kind"] == "story"] == [story.node]
     assert unit.get("scenarios", []) == []
     # Only the clips of what is kept travel with it.
     index = next((f for f in manifest["files"] if f["role"] == "audio-index"), None)
@@ -104,7 +104,7 @@ def test_a_release_holds_only_what_was_signed_off(course: Path, tmp_path: Path) 
         "items"
     ]
     kcs = {k["id"] for k in unit["kcs"]}
-    lines = {f"{story['id']}#{i}" for i, _ in enumerate(story["steps"])}
+    lines = {f"{story.id}#{i}" for i, _ in enumerate(story.steps)}
     assert set(items) <= {"s.1", "s.2"} | kcs | lines
     clips = {f["path"] for f in manifest["files"] if f["role"] == "audio"}
     assert clips == {c["path"] for item in items.values() for c in item.values()}
@@ -140,29 +140,38 @@ def test_a_scenario_stays_while_the_node_it_follows_does(course: Path) -> None:
     with CoreCli() as cli:
         _diags, compiled = compile_course(course, cli, load_profiles(), {})
     assert compiled is not None
-    units = copy.deepcopy(compiled.units)
-    first, second = units[0], units[1]
-    reviewed = {"author": "human:ben", "status": "reviewed"}
-    first["sentences"][0]["provenance"] = reviewed
-    second["sentences"][0]["provenance"] = reviewed
-    story = cast(dict[str, Any], first["stories"][0])
-    story["provenance"] = reviewed
-    kept_lesson = str(second["sentences"][0]["node"])
-    gone = next(
-        n["id"]
-        for n in first["nodes"]
-        if n["kind"] == "lesson" and n["id"] != first["sentences"][0]["node"]
-    )
-    draft = {"author": "llm:x@y", "status": "draft"}
-    second["scenarios"] = [
-        {"id": "sc.story", "after": story["node"], "provenance": reviewed},
-        {"id": "sc.lesson", "after": kept_lesson, "provenance": reviewed},
-        {"id": "sc.draft", "after": kept_lesson, "provenance": draft},
-        {"id": "sc.gone", "after": gone, "provenance": reviewed},
+    first, second, *rest = compiled.units
+    reviewed = Provenance(author="human:ben", status="reviewed")
+    draft = Provenance(author="llm:x@y", status="draft")
+
+    def signed(unit: BundleUnit, **more: object) -> BundleUnit:
+        """The unit with its first sentence reviewed."""
+        s = unit.sentences[0].model_copy(update={"provenance": reviewed})
+        return unit.model_copy(update={"sentences": [s, *unit.sentences[1:]], **more})
+
+    def scenario(id_: str, after: str, provenance: Provenance) -> BundleScenario:
+        texts: dict[str, object] = {"title": {}, "setting": {}, "character": {}, "goal": {}}
+        return BundleScenario.model_validate(
+            {"id": id_, "after": after, **texts, "provenance": provenance, "license": "CC0-1.0"}
+        )
+
+    story = (first.stories or [])[0].model_copy(update={"provenance": reviewed})
+    kept_lesson = second.sentences[0].node
+    gone = next(n.id for n in first.nodes if n.kind == "lesson" and n.id != first.sentences[0].node)
+    scenarios = [
+        scenario("sc.story", story.node, reviewed),
+        scenario("sc.lesson", kept_lesson, reviewed),
+        scenario("sc.draft", kept_lesson, draft),
+        scenario("sc.gone", gone, reviewed),
+    ]
+    units = [
+        signed(first, stories=[story, *(first.stories or [])[1:]]),
+        signed(second, scenarios=scenarios),
+        *rest,
     ]
     out, report = release(replace(compiled, units=units))
     # A story node of another unit counts; a draft, or a node that went, does not.
-    assert {s["id"] for u in out.units for s in u.get("scenarios", [])} == {"sc.story", "sc.lesson"}
+    assert {s.id for u in out.units for s in u.scenarios or []} == {"sc.story", "sc.lesson"}
     assert report.dropped["scenarios"] >= 2
     # What it was given is left as it was.
-    assert len(units[1]["scenarios"]) == 4
+    assert len(units[1].scenarios or []) == 4

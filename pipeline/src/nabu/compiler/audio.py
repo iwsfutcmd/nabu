@@ -21,29 +21,11 @@ from pydantic import ValidationError
 from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held_back, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
+from nabu.items import WORD_KINDS, iter_items
 from nabu.schema.models import AudioClip, AudioIndex, CourseSource
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Compiled, Ctx
-
-WORD_KINDS = {"word", "number"}
-
-
-def _items(units: list[dict[str, Any]]) -> tuple[dict[str, list[list[dict[str, Any]]]], set[str]]:
-    """Every sentence's and story line's tokens per orthography (id → forms; a line's id is
-    "<story>#<step>"), and every KC id."""
-    sentences: dict[str, list[list[dict[str, Any]]]] = {}
-    kcs: set[str] = set()
-    for unit in units:
-        for s in unit["sentences"]:
-            sentences[s["id"]] = [form["text"]["tokens"] for form in s["forms"].values()]
-        for story in unit.get("stories", []):
-            for step, s in enumerate(story["steps"]):
-                if s.get("line"):
-                    key = f"{story['id']}#{step}"
-                    sentences[key] = [form["tokens"] for form in s["line"]["forms"].values()]
-        kcs.update(kc["id"] for kc in unit.get("kcs", []))
-    return sentences, kcs
 
 
 def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
@@ -88,7 +70,8 @@ def check_audio(
     if loaded is None:
         return
     doc, index = loaded
-    sentences, kcs = _items(compiled.units)
+    # Every sentence, word KC and story line ("<story>#<step>"), by id.
+    known = {item.id: item for item in iter_items(compiled.units)}
     human_required = course.audio is not None and course.audio.humanRequired is True
     voices = course.audio.voices if course.audio is not None and course.audio.voices else []
     # What each voice of the cast would read now, by (provider, voice).
@@ -144,7 +127,8 @@ def check_audio(
                 loc,
             )
             continue
-        if clip.item not in sentences and clip.item not in kcs:
+        said = known.get(clip.item)
+        if said is None:
             ctx.diags.report(
                 "audio.unknown-item",
                 f"{clip.item}: no such sentence, story line or KC in the course",
@@ -192,14 +176,13 @@ def check_audio(
                 )
                 continue
         # Sentence clips time the sentence's tokens; a word KC's clip times its own form.
-        if clip.timings is not None and clip.item in sentences:
-            forms = sentences[clip.item]
+        if clip.timings is not None and said.kind != "kc":
             ok = any(
                 all(
-                    t.token < len(tokens) and tokens[t.token].get("kind") in WORD_KINDS
+                    t.token < len(tokens) and tokens[t.token].kind in WORD_KINDS
                     for t in clip.timings
                 )
-                for tokens in forms
+                for tokens in said.forms.values()
             )
             ordered = all(t.startMs <= t.endMs <= clip.durationMs + 5 for t in clip.timings)
             if not ok or not ordered:

@@ -12,7 +12,8 @@ import typer
 
 from nabu.audio.course import Item, Written
 from nabu.audio.providers import Clip
-from nabu.schema.models import AudioVoice
+from nabu.items import iter_items
+from nabu.schema.models import AudioVoice, BundleUnit
 
 app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's audio clips.")
 
@@ -32,7 +33,7 @@ def phonemes_of(orthography: str) -> str:
     return espeak_voice_of(profiles()[orthography], espeak.has_voice)
 
 
-def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
+def _compiled(course: Path) -> tuple[Path, Any, list[BundleUnit], Written]:
     from nabu.compiler import compile_course
     from nabu.corecli import CoreCli
 
@@ -339,10 +340,9 @@ def ingest(
         # The sentence in the voice's orthography: the one its recordings say.
         tokens = next(
             (
-                s["forms"][voice.orthography]["text"]["tokens"]
-                for u in units
-                for s in u["sentences"]
-                if s["id"] == item and voice is not None and voice.orthography in s["forms"]
+                s.forms.get(voice.orthography)
+                for s in iter_items(units)
+                if s.id == item and s.kind == "sentence" and voice is not None
             ),
             None,
         )
@@ -351,7 +351,8 @@ def ingest(
             raise typer.Exit(code=1)
         # Phonemes come from eSpeak NG: the voice's own, or the orthography's (ADR 0116).
         phonemes = voice.voice if voice.provider == "espeak-ng" else phonemes_of(voice.orthography)
-        alignment = (tokens, voice.reading, phonemes)
+        words = [t.model_dump(mode="json", exclude_none=True) for t in tokens]
+        alignment = (words, voice.reading, phonemes)
     entries = add(course_dir, Recording(item, file, license, author, source, status), alignment)
     typer.echo(f"✓ {item}: {len(entries)} clips ({license}, {author})")
 

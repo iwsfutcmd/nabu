@@ -8,7 +8,7 @@ import glob
 import json
 import shutil
 from pathlib import Path
-from typing import Any, cast
+from typing import Any
 
 import pytest
 import yaml
@@ -18,6 +18,7 @@ from nabu.cli import app
 from nabu.compiler import compile_course, load_profiles
 from nabu.corecli import CoreCli
 from nabu.review import fingerprint, provenance_text, sentence_text, shown_of, story_text
+from nabu.schema.models import BundleUnit
 
 ROOT = Path(__file__).resolve().parents[2]
 BUNDLES = ROOT / "apps" / "web" / "public" / "bundles"
@@ -31,31 +32,32 @@ APC_S1 = (
 )
 
 
-def _bundle_units(course: str) -> list[dict[str, Any]]:
+def _bundle_units(course: str) -> list[BundleUnit]:
+    """The committed bundle's units, as the app reads them."""
     return [
-        json.loads(Path(f).read_text(encoding="utf-8"))
+        BundleUnit.model_validate_json(Path(f).read_text(encoding="utf-8"))
         for f in sorted(glob.glob(str(BUNDLES / course / "units" / "*.json")))
     ]
 
 
 def test_the_fingerprint_text_is_pinned() -> None:
-    [s1] = [s for u in _bundle_units("apc") for s in u["sentences"] if s["id"] == "s.1"]
+    [s1] = [s for u in _bundle_units("apc") for s in u.sentences if s.id == "s.1"]
     assert sentence_text(s1) == APC_S1.replace("@T", "\t").replace("@N", "\n")
-    story = _bundle_units("apc")[0]["stories"][0]
+    story = (_bundle_units("apc")[0].stories or [])[0]
     text = story_text(story)
-    assert text.startswith(f"story\t{story['id']}\nline\t0\nform\t")
+    assert text.startswith(f"story\t{story.id}\nline\t0\nform\t")
     assert "\nchoose" not in text
 
 
 @pytest.fixture(scope="module")
-def apc_compiled() -> list[dict[str, Any]]:
+def apc_compiled() -> list[BundleUnit]:
     with CoreCli() as cli:
         diags, compiled = compile_course(ROOT / "courses" / "apc", cli, load_profiles(), {})
     assert compiled is not None, [d.format() for d in diags.items]
     return compiled.units
 
 
-def test_the_compile_and_the_bundles_fingerprint_alike(apc_compiled: list[dict[str, Any]]) -> None:
+def test_the_compile_and_the_bundles_fingerprint_alike(apc_compiled: list[BundleUnit]) -> None:
     # The app hashes the bundle; the CLI hashes its own compile: they must agree, item by item.
     assert shown_of(apc_compiled) == shown_of(_bundle_units("apc"))
 
@@ -78,14 +80,10 @@ def course(tmp_path: Path) -> Path:
 
 
 def test_apply_signs_off_what_was_seen_and_skips_the_rest(
-    course: Path, tmp_path: Path, apc_compiled: list[dict[str, Any]]
+    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
-    story = next(
-        str(s["id"])
-        for u in apc_compiled
-        for s in cast(list[dict[str, Any]], u.get("stories") or [])
-    )
+    story = next(s.id for u in apc_compiled for s in u.stories or [])
     signoffs = {
         "course": "apc",
         "signoffs": [
@@ -136,16 +134,13 @@ def test_apply_signs_off_what_was_seen_and_skips_the_rest(
     with CoreCli() as cli:
         diags, compiled = compile_course(course, cli, load_profiles(), {})
     assert compiled is not None and not diags.errors
-    items: list[dict[str, Any]] = [
-        x
-        for u in compiled.units
-        for key in ("sentences", "stories")
-        for x in cast(list[dict[str, Any]], u.get(key) or [])
-    ]
-    status = {str(x["id"]): cast(dict[str, Any], x["provenance"]) for x in items}
-    assert status["s.1"]["status"] == "reviewed" and status["s.1"]["reviewedBy"] == "human:ben"
-    assert status[story]["status"] == "reviewed" and status[story]["reviewedAt"] == "2026-11-06"
-    assert status["s.2"]["status"] == "draft"
+    status = {s.id: s.provenance for u in compiled.units for s in u.sentences} | {
+        s.id: s.provenance for u in compiled.units for s in u.stories or []
+    }
+    s1, signed, s2 = status["s.1"], status[story], status["s.2"]
+    assert s1 is not None and s1.status == "reviewed" and s1.reviewedBy == "human:ben"
+    assert signed is not None and signed.status == "reviewed" and signed.reviewedAt == "2026-11-06"
+    assert s2 is not None and s2.status == "draft"
 
     # Again: nothing more to do.
     result = CliRunner().invoke(
@@ -182,7 +177,7 @@ def test_the_file_can_say_who_signed_off(course: Path, tmp_path: Path) -> None:
 
 
 def test_the_admin_export_applies_each_reviewers_file(
-    course: Path, tmp_path: Path, apc_compiled: list[dict[str, Any]]
+    course: Path, tmp_path: Path, apc_compiled: list[BundleUnit]
 ) -> None:
     shown = shown_of(apc_compiled)
     one = {"item": "s.1", "kind": "sentence", "shown": shown[("sentence", "s.1")]}

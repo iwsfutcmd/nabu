@@ -191,9 +191,7 @@ def test_clips_without_timings_get_them_by_forced_alignment(
     cast_reference(course, v, "Salom!", NavoiyProvider.INSTRUCT, 0, fake(engine, v, REF))
     diags, compiled = compile_course(course, core_cli)
     assert compiled is not None
-    intro: list[dict[str, Any]] = [
-        {**u, "stories": []} for u in compiled.units if u["id"] == "intro"
-    ]
+    intro = [u.model_copy(update={"stories": []}) for u in compiled.units if u.id == "intro"]
     synthesize_course(course, intro, v, None, compiled.written)
     adir = audio_dir(course)
     assert all(c.timings is None for c in read_index(adir).clips)

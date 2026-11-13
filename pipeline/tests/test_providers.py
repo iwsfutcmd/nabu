@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import shutil
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
@@ -37,7 +38,8 @@ from nabu.audio.providers import (
     onsets_of,
 )
 from nabu.compiler import compile_course
-from nabu.schema.models import AudioVoice
+from nabu.items import iter_items
+from nabu.schema.models import AudioVoice, BundleUnit, TokenModel
 
 from .conftest import ROOT, CoreCli
 
@@ -121,64 +123,62 @@ def test_settled_means_the_spelling_alone_gives_the_pinned_reading() -> None:
 
 
 @pytest.fixture(scope="module")
-def yue_units() -> list[dict[str, Any]]:
+def yue_units() -> list[BundleUnit]:
     with CoreCli() as cli:
         _, compiled = compile_course(ROOT / "courses" / "yue", cli)
     assert compiled is not None
     return compiled.units
 
 
+def _sentences(units: list[BundleUnit]) -> dict[str, Sequence[TokenModel]]:
+    """Each sentence's Cantonese tokens, by its id."""
+    orth = "yue-Hant-HK/standard"
+    return {
+        i.id: i.forms[orth] for i in iter_items(units) if i.kind == "sentence" and orth in i.forms
+    }
+
+
 def test_a_pronouncing_voice_reads_text_with_ipa_where_the_spelling_is_not_enough(
-    yue_units: list[dict[str, Any]],
+    yue_units: list[BundleUnit],
 ) -> None:
     items, skipped = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
     assert skipped == []
     by_id = {i.item: i for i in items}
-    sentences = {
-        s["id"]: s["forms"]["yue-Hant-HK/standard"]["text"]["tokens"]
-        for u in yue_units
-        for s in u["sentences"]
-        if "yue-Hant-HK/standard" in s["forms"]
-    }
+    sentences = _sentences(yue_units)
     sid, tokens = next(
-        (k, t) for k, t in sentences.items() if [x["surface"] for x in t][:2] == ["我", "係"]
+        (k, t) for k, t in sentences.items() if [x.surface for x in t][:2] == ["我", "係"]
     )
     item = by_id[sid]
     # 我 and 係 are settled, so they are spelled; punctuation stays, for the intonation.
     assert item.input.startswith("我係")
-    punct = [t["surface"] for t in tokens if t["kind"] == "punct"]
+    punct = [t.surface for t in tokens if t.kind == "punct"]
     assert punct and item.input.endswith(punct[-1])
     # Every span covers its token: the spelling, or the pinned reading in IPA.
     for span in item.spans:
         token = tokens[span.token]
         piece = item.input[span.start : span.end]
-        reading = token["readings"]["jyutping"]
-        assert piece in (token["surface"], f"/{jyutping.ipa(reading)}/")
-        assert (piece == token["surface"]) == jyutping.settled(token["surface"], reading)
+        reading = (token.readings or {})["jyutping"]
+        assert piece in (token.surface, f"/{jyutping.ipa(reading)}/")
+        assert (piece == token.surface) == jyutping.settled(token.surface, reading)
     assert by_id["sense:學生"].input == f"/{jyutping.ipa('hok6 saang1')}/"
 
 
 def test_each_item_says_what_it_is_and_how_many_words_it_has(
-    yue_units: list[dict[str, Any]],
+    yue_units: list[BundleUnit],
 ) -> None:
     """A word card is text with no closing punctuation as written (ADR 0094), whatever a voice
     is given (here IPA between slashes); its words are its word tokens, so a Cantonese sentence,
     written without spaces, has several."""
     items, _ = plan(yue_units, voice("elevenlabs", pronounce="jyutping"))
     by_id = {i.item: i for i in items}
-    kcs = {kc["id"] for u in yue_units for kc in u.get("kcs", [])}
+    kcs = {i.id for i in iter_items(yue_units) if i.kind == "kc"}
     assert by_id["sense:學生"].input.endswith("/") and by_id["sense:學生"].kind == "word"
     assert all(i.kind == "word" for i in items if i.item in kcs)
-    tokens = {
-        s["id"]: s["forms"]["yue-Hant-HK/standard"]["text"]["tokens"]
-        for u in yue_units
-        for s in u["sentences"]
-        if "yue-Hant-HK/standard" in s["forms"]
-    }
+    tokens = _sentences(yue_units)
     sentences = [by_id[k] for k in tokens if k in by_id and not k.startswith("drill.")]
     assert sentences and all(i.kind == "sentence" for i in sentences)
     for i in sentences:
-        assert i.words == sum(t["kind"] in ("word", "number") for t in tokens[i.item])
+        assert i.words == sum(t.kind in ("word", "number") for t in tokens[i.item])
     assert any(" " not in i.input and i.words > 2 for i in sentences)
     # The numbers drill says each number alone, unpunctuated: a word card too.
     assert by_id["drill.numbers.1"].kind == "word"
@@ -186,7 +186,7 @@ def test_each_item_says_what_it_is_and_how_many_words_it_has(
     assert (request.kind, request.words, request.take) == ("word", 1, 2)
 
 
-def test_an_unknown_pronounce_scheme_is_refused(yue_units: list[dict[str, Any]]) -> None:
+def test_an_unknown_pronounce_scheme_is_refused(yue_units: list[BundleUnit]) -> None:
     with pytest.raises(ValueError, match="no IPA conversion"):
         plan(yue_units, voice("elevenlabs", pronounce="yale"))
 
@@ -325,7 +325,7 @@ def test_onsets_skip_what_the_provider_normalized() -> None:
 
 @pytest.mark.skipif(shutil.which("ffmpeg") is None, reason="needs ffmpeg")
 def test_a_provider_failing_midway_keeps_the_clips_already_made(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, yue_units: list[dict[str, Any]]
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path, yue_units: list[BundleUnit]
 ) -> None:
     monkeypatch.setenv("ELEVENLABS_API_KEY", "test-key")
     course = tmp_path / "yue"

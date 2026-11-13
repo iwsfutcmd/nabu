@@ -34,6 +34,7 @@ from nabu.corecli import CoreCli
 from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
+    BundleUnit,
     CourseSource,
     LogographsStep,
     OrthographyProfile,
@@ -74,7 +75,8 @@ class Compiled:
     """Everything stage 9 needs to write a bundle."""
 
     course: CourseSource
-    units: list[dict[str, Any]] = field(default_factory=lambda: [])
+    #: The bundle's units, as its schema types them (nabu.items walks the items in them).
+    units: list[BundleUnit] = field(default_factory=lambda: [])
     orthographies: list[str] = field(default_factory=lambda: [])
     support: list[str] = field(default_factory=lambda: [])
     licenses: dict[str, int] = field(default_factory=lambda: {})
@@ -723,18 +725,24 @@ def compile_course(
     image_paths = _images(ctx, course_file.parent, units, compiled)
     if diags.errors:
         return diags, None
-    compiled.units = [
-        _bundle_unit(ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets)
-        | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
-        | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
+    # From here on the course is the bundle's typed units: a key mistyped or a shape changed
+    # fails here, as the course compiles.
+    bundled = [
+        BundleUnit.model_validate(
+            _bundle_unit(
+                ctx, course, ui, unit, compiled_forms, sentence_kcs, image_paths, alphabets
+            )
+            | ({"stories": stories.by_unit[ui]} if ui in stories.by_unit else {})
+            | ({"scenarios": scenarios[ui]} if ui in scenarios else {})
+        )
         for ui, unit in enumerate(units)
     ]
     compiled.written = ctx.written
     # Every word of a KC's forms takes one reading per scheme, which word cards show, voices read
     # and minimal pairs compare (ADR 0117); a KC's entry may choose its first form's (`readings`).
     entries = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
-    refused = pin_kc_readings(
-        compiled.units,
+    compiled.units, refused = pin_kc_readings(
+        bundled,
         list(course.orthographies),
         lambda orth: _ruby_schemes(ctx.profiles[orth]),
         lambda orth: _script(ctx, orth),

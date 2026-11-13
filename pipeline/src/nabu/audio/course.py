@@ -56,6 +56,7 @@ from nabu.audio.providers import (
     provider,
 )
 from nabu.audio.punctuation import closed, with_final_stop
+from nabu.items import WORD_KINDS, CourseItem, iter_items
 from nabu.provenance import signed_off
 from nabu.schema.models import (
     AudioIndex,
@@ -63,7 +64,9 @@ from nabu.schema.models import (
     AudioRejection,
     AudioVerdicts,
     AudioVoice,
+    BundleUnit,
     ReferenceVoice,
+    TokenModel,
     TokenTiming,
 )
 from nabu.schemes import Plugins, plugins, schemes
@@ -75,7 +78,6 @@ BITRATE = "48k"
 BATCH = 16
 #: The one speed clips are synthesized at: the player slows them itself (ADR 0062).
 SPEED = "normal"
-WORD_KINDS = {"word", "number"}
 
 
 @dataclass(frozen=True)
@@ -197,12 +199,12 @@ def said(reading: str, scheme: str, provider: str = "espeak-ng") -> str:
     return reading if convert is None else convert(reading)
 
 
-def _final_mark(tokens: list[dict[str, Any]]) -> str:
+def _final_mark(tokens: Sequence[TokenModel]) -> str:
     """The end of a phoneme-scheme input: its question mark, else a full stop (intonation)."""
     for token in reversed(tokens):
-        if token.get("kind") in WORD_KINDS:
+        if token.kind in WORD_KINDS:
             return "."
-        if "?" in str(token["surface"]):
+        if "?" in token.surface:
             return "?"
     return "."
 
@@ -218,7 +220,7 @@ words vowel marks (ADR 0053): voices read the text as written."""
 
 
 def _input_of(
-    tokens: list[dict[str, Any]], voice: AudioVoice, written: list[str] | None = None
+    tokens: Sequence[TokenModel], voice: AudioVoice, written: list[str] | None = None
 ) -> tuple[str, tuple[Span, ...]] | None:
     """The string the voice reads, and where each word token sits in it (None: a word token
     lacks the pinned reading the voice needs)."""
@@ -228,9 +230,9 @@ def _input_of(
     if voice.reading != "text":
         # Pinned readings of the words, space-separated (punctuation has no reading).
         for i, token in enumerate(tokens):
-            if token.get("kind") not in WORD_KINDS:
+            if token.kind not in WORD_KINDS:
                 continue
-            piece = token.get("readings", {}).get(voice.reading)
+            piece = (token.readings or {}).get(voice.reading)
             if piece is None:
                 return None
             piece = said(piece, voice.reading, voice.provider)
@@ -245,10 +247,10 @@ def _input_of(
         return (" ".join(parts) + end, tuple(spans))
     # The form's text, every token in order: punctuation and spacing included.
     for i, token in enumerate(tokens):
-        piece = str(token["surface"]) if written is None else written[i]
-        if token.get("kind") in WORD_KINDS:
+        piece = token.surface if written is None else written[i]
+        if token.kind in WORD_KINDS:
             if voice.pronounce is not None:
-                reading = token.get("readings", {}).get(voice.pronounce)
+                reading = (token.readings or {}).get(voice.pronounce)
                 if reading is None:
                     return None
                 piece = pronounced(piece, reading, voice.pronounce)
@@ -258,11 +260,11 @@ def _input_of(
     return ("".join(parts), tuple(spans)) if spans else None
 
 
-def form_readings(tokens: list[dict[str, Any]], scheme: str) -> list[str] | None:
+def form_readings(tokens: Sequence[TokenModel], scheme: str) -> list[str] | None:
     """A KC form's words' readings in a scheme, as the compiler pins them on the form (ADR 0117:
     what its word card shows), or None where a word has none."""
-    words = [t for t in tokens if t.get("kind") in WORD_KINDS]
-    readings = [cast(dict[str, str], t.get("readings") or {}).get(scheme) for t in words]
+    words = [t for t in tokens if t.kind in WORD_KINDS]
+    readings = [(t.readings or {}).get(scheme) for t in words]
     if not words or any(r is None for r in readings):
         return None
     return [r for r in readings if r is not None]
@@ -351,7 +353,7 @@ def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str,
 
 
 def assignment(
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voices: Sequence[AudioVoice],
     checked: Mapping[str, str] | None = None,
 ) -> dict[str, str]:
@@ -374,123 +376,104 @@ def assignment(
         return voice.id
 
     out: dict[str, str] = {}
-    for unit in units:
-        for s in unit["sentences"]:
-            said_by = speaker_of(s.get("persons"))
-            out[s["id"]] = choose(s["id"], said_by, [s["id"]])
-        for kc in unit.get("kcs", []):
-            out[kc["id"]] = choose(kc["id"], None, [kc["id"]])
-        for story in unit.get("stories", []):
-            genders = {c["id"]: c.get("speaker") for c in story.get("characters", [])}
-            lines: dict[str | None, list[str]] = {}
-            for step, st in enumerate(story["steps"]):
-                if st.get("line"):
-                    lines.setdefault(st["line"].get("speaker"), []).append(f"{story['id']}#{step}")
-            for who, keys in lines.items():
-                chosen = choose(f"{story['id']}#{who or ''}", genders.get(who or ""), keys)
-                out.update(dict.fromkeys(keys, chosen))
+    # A story's lines by who says them: one voice for each character, one for the narrator.
+    lines: dict[tuple[str | None, str | None], list[CourseItem]] = {}
+    for item in iter_items(units):
+        if item.kind == "line":
+            lines.setdefault((item.story, item.character), []).append(item)
+        else:
+            out[item.id] = choose(item.id, item.said_by, [item.id])
+    for (story, who), said in lines.items():
+        keys = [i.id for i in said]
+        chosen = choose(f"{story}#{who or ''}", said[0].said_by, keys)
+        out.update(dict.fromkeys(keys, chosen))
     return out
 
 
-def speaker_of(persons: Any) -> str | None:
-    """A sentence's persons.speaker (m or f), if it has one."""
-    return cast("Mapping[str, Any]", persons or {}).get("speaker")
-
-
-def _shape(surfaces: list[str], tokens: list[dict[str, Any]]) -> tuple[Kind, int]:
+def _shape(surfaces: list[str], tokens: Sequence[TokenModel]) -> tuple[Kind, int]:
     """An item's kind, from its text as written (a word card has no closing punctuation, ADR
     0094: a voice's final stop or IPA does not change it), and its words, its word tokens."""
     kind: Kind = "sentence" if closed("".join(surfaces)) else "word"
-    return kind, sum(1 for t in tokens if t.get("kind") in WORD_KINDS)
+    return kind, sum(1 for t in tokens if t.kind in WORD_KINDS)
+
+
+def _word_card(
+    item: CourseItem,
+    tokens: Sequence[TokenModel],
+    voice: AudioVoice,
+    scheme: str | None,
+    written: Written,
+) -> Item | None:
+    """What the voice reads for a word KC: its form as its card shows it, from the reading the
+    compiler pinned on the form (ADR 0117). None where the voice needs a reading it lacks."""
+    kc_written = written.get((item.id, voice.orthography))
+    marked = "".join(t.surface for t in tokens)
+    surface = "".join(kc_written) if kc_written is not None else marked
+    readings = None if scheme is None else form_readings(tokens, scheme)
+    if scheme is not None and readings is None:
+        return None
+    if voice.reading != "text":
+        assert readings is not None
+        piece = " ".join(said(r, voice.reading, voice.provider) for r in readings)
+    elif voice.pronounce is not None and readings is not None:
+        piece = pronounced(surface, " ".join(readings), voice.pronounce)
+    else:
+        piece = marked if voice.vowelMarks else surface
+    kind, words = _shape([surface], tokens)
+    return Item(item.id, piece, (Span(0, 0, len(piece)),), surface, kind, words)
+
+
+def _sentence(
+    item: CourseItem, tokens: Sequence[TokenModel], voice: AudioVoice, written: Written
+) -> Item | None:
+    """What the voice reads for a sentence or a story line, or None where it lacks a reading."""
+    as_written = written.get((item.id, voice.orthography))
+    # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
+    planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
+    if planned is None:
+        return None
+    surfaces = as_written or [t.surface for t in tokens]
+    text = "".join(w for w, t in zip(surfaces, tokens, strict=True) if t.kind in WORD_KINDS)
+    return Item(item.id, planned[0], planned[1], text, *_shape(surfaces, tokens))
 
 
 def plan(
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voice: AudioVoice,
     written: Written | None = None,
     voices: Sequence[AudioVoice] | None = None,
     checked: Mapping[str, str] | None = None,
 ) -> tuple[list[Item], list[str]]:
-    """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
-    Given the course's whole cast (`voices`, and the voices people `checked`), only the items
-    the assignment gives this voice (ADR 0078); alone, every item. `units` are the compiler's:
-    a word KC is read from the reading it pinned on the KC's form (ADR 0117).
+    """Sentences, word KCs and story lines the voice can read, in that order (nabu.items), and the
+    ones it cannot (no pinned reading). Given the course's whole cast (`voices`, and the voices
+    people `checked`), only the items the assignment gives this voice (ADR 0078); alone, every
+    item. `units` are the compiler's: a word KC is read from the reading it pinned on the KC's
+    form (ADR 0117). A story line is read like a sentence; its id is "<story>#<step>".
     `written`: the source's own surfaces where the compiler added vowel marks."""
     owner = assignment(units, voices or [voice], checked)
-    orth = voice.orthography
     items: list[Item] = []
     skipped: list[str] = []
     if voice.pronounce is not None:
         _ipa(voice.pronounce)
     scheme = _scheme(voice)
-    for unit in units:
-        for s in unit["sentences"]:
-            form = s["forms"].get(orth)
-            if form is None or owner[s["id"]] != voice.id:
-                continue
-            tokens = form["text"]["tokens"]
-            as_written = (written or {}).get((s["id"], orth))
-            # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
-            planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
-            if planned is None:
-                skipped.append(s["id"])
-                continue
-            surfaces = as_written or [str(t["surface"]) for t in tokens]
-            text = "".join(
-                w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
-            )
-            items.append(Item(s["id"], planned[0], planned[1], text, *_shape(surfaces, tokens)))
-    for unit in units:
-        for kc in unit.get("kcs", []):
-            forms = kc.get("forms", {}).get(orth)
-            if not forms or owner[kc["id"]] != voice.id:
-                continue
-            word = forms[0]["tokens"] if isinstance(forms[0], dict) else None
-            kc_written = (written or {}).get((kc["id"], orth))
-            marked = "".join(t["surface"] for t in word) if word else str(forms[0])
-            surface = "".join(kc_written) if kc_written is not None else marked
-            # The reading the word card shows: the one the compiler pinned on the form.
-            readings = None if scheme is None or word is None else form_readings(word, scheme)
-            if scheme is not None and readings is None:
-                skipped.append(kc["id"])
-                continue
-            if voice.reading != "text":
-                assert readings is not None
-                piece = " ".join(said(r, voice.reading, voice.provider) for r in readings)
-            elif voice.pronounce is not None and readings is not None:
-                piece = pronounced(surface, " ".join(readings), voice.pronounce)
-            else:
-                piece = marked if voice.vowelMarks else surface
-            kind, words = _shape([surface], word or [{"kind": "word"}])
-            items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface, kind, words))
-    # Story lines last, each read like a sentence: its id is "<story>#<step>".
-    for unit in units:
-        for story in unit.get("stories", []):
-            for step, s in enumerate(story["steps"]):
-                line = cast(dict[str, Any], s.get("line") or {})
-                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
-                if form is None:
-                    continue
-                key = f"{story['id']}#{step}"
-                if owner.get(key) != voice.id:
-                    continue
-                tokens = cast(list[dict[str, Any]], form["tokens"])
-                as_written = (written or {}).get((key, orth))
-                planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
-                if planned is None:
-                    skipped.append(key)
-                    continue
-                surfaces = as_written or [str(t["surface"]) for t in tokens]
-                text = "".join(
-                    w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
-                )
-                items.append(Item(key, planned[0], planned[1], text, *_shape(surfaces, tokens)))
+    for item in iter_items(units):
+        tokens = item.forms.get(voice.orthography)
+        if tokens is None or owner.get(item.id) != voice.id:
+            continue
+        if item.kind == "kc":
+            planned = _word_card(item, tokens, voice, scheme, written or {})
+        else:
+            planned = _sentence(item, tokens, voice, written or {})
+        if planned is None:
+            skipped.append(item.id)
+        else:
+            items.append(planned)
     if voice.spoken:
         items = _spoken(items, voice.spoken)
     if voice.finalStop and voice.reading == "text":
         # Text with no final punctuation reads as a sentence (ADR 0063); spans are unaffected:
         # the stop comes after the last word.
-        tag = orth.split("/")[0]
+        tag = voice.orthography.split("/")[0]
         items = [replace(i, input=with_final_stop(i.input, tag)) for i in items]
     elif voice.finalStop and phoneme_scheme(voice.reading):
         # Phonemes: a word card ends with the "." a sentence ends with (ADR 0089).
@@ -657,7 +640,7 @@ def take_of(old: Any, item: Item, tts: Provider) -> int:
 
 def synthesize_course(
     course_dir: Path,
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voices: AudioVoice | Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]] | None = None,
     written: Written | None = None,
@@ -827,7 +810,7 @@ def ipa_phones(word: str) -> list[str]:
 
 def align_course(
     course_dir: Path,
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voice: AudioVoice,
     phonemes: str,
     written: Written | None = None,
@@ -891,7 +874,7 @@ def align_course(
 
 def check_course(
     course_dir: Path,
-    units: list[dict[str, Any]],
+    units: Sequence[BundleUnit],
     voices: Sequence[AudioVoice],
     check: Callable[[Item, Clip], dict[str, Any]],
     written: Written | None = None,
