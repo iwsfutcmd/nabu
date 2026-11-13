@@ -44,8 +44,25 @@ jobs:
           cp -r apps/web/dist site/demo
       # The landing page, from the demo's bundles and the UI catalog (apps/web/landing.ts): every
       # course is listed as the demo has it, so the page never goes stale.
+      # The Android preview's size, when ci.yml has published it (the android-preview release), so
+      # the landing page can link to it.
+      - name: Android preview
+        id: apk
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bytes=$(gh api "repos/${{ github.repository }}/releases/tags/android-preview" --jq '.assets[] | select(.name == "nabu-preview.apk") | .size' 2> /dev/null || true)
+          echo "bytes=${bytes}" >> "$GITHUB_OUTPUT"
       - name: Landing page
-        run: node apps/web/landing.ts site "${{ github.server_url }}/${{ github.repository }}"
+        env:
+          REPOSITORY: ${{ github.server_url }}/${{ github.repository }}
+          APK_BYTES: ${{ steps.apk.outputs.bytes }}
+        run: |
+          args=(site "$REPOSITORY")
+          if [ -n "$APK_BYTES" ]; then
+            args+=(--apk "$REPOSITORY/releases/download/android-preview/nabu-preview.apk" --apk-bytes "$APK_BYTES")
+          fi
+          node apps/web/landing.ts "${args[@]}"
       # The audio check (ADR 0060): every course's clips, held-back ones too, beside the demo. Clips
       # the demo's bundles carry are not copied again.
       - name: Audio check
