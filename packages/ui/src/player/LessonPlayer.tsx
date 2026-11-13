@@ -80,6 +80,11 @@ export interface LessonPlayerProps {
   readonly debug?: boolean | undefined;
   /** What kind of session this is, for what quitting it says (P8): a lesson (default), practice or the placement test. */
   readonly mode?: SessionKind | undefined;
+  /**
+   * A lesson the learner finished before (ADR 0107: a replay pays its answers only): quitting it
+   * loses nothing more, and its dialog says so (D13).
+   */
+  readonly replay?: boolean | undefined;
   /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
@@ -139,6 +144,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const t = useTranslator();
   const chrome = useChrome();
   const kind = props.mode ?? "lesson";
+  // What quitting says: a lesson done before loses nothing by it (D13).
+  const quit = props.replay === true && kind === "lesson" ? { title: QUIT.lesson.title, kept: "player.quit.kept.replay" as const } : QUIT[kind];
   const [sound, setSound] = useState(props.sound !== false);
   // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
@@ -445,9 +452,11 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         <Dialog className={`${styles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="" data-mode={kind}>
           <div className={styles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
             <Heading slot="title" className={styles.instruction}>
-              {props.quitCopy?.title ?? t.format(QUIT[kind].title)}
+              {props.quitCopy?.title ?? t.format(quit.title)}
             </Heading>
-            <p data-quit-kept="">{props.quitCopy?.body ?? t.format(QUIT[kind].kept)}</p>
+            <p data-quit-kept="" data-replay={props.replay === true || undefined}>
+              {props.quitCopy?.body ?? t.format(quit.kept)}
+            </p>
             <div className={styles.footer}>
               <Button
                 className={styles.secondary}

@@ -1018,6 +1018,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         listening={!onBreak("listening")}
         retries={request.mode !== "placement"}
         mode={request.mode}
+        replay={request.mode === "lesson" && before.has(request.node)}
         adaptive={setup.planned.placement?.test}
         resumed={setup.resumed?.from}
         quitRequest={routing.quitRequest}
@@ -1123,6 +1124,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         display={storedDisplay(course.id, course.orthography)}
         onDisplayChange={(choice) => storeDisplay(course.id, course.orthography, choice)}
         known={setup.known}
+        replay={state.completedNodes.includes(node)}
         quitRequest={routing.quitRequest}
         onExit={routing.exit}
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}

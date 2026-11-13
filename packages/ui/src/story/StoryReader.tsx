@@ -69,6 +69,8 @@ export interface StoryReaderProps {
   readonly initialState?: StoryState;
   /** For Storybook and tests: a finished story opens read again (S15). */
   readonly rereading?: boolean | undefined;
+  /** A story the learner finished before (ADR 0107): leaving it loses nothing more, and the dialog says so (D13). */
+  readonly replay?: boolean | undefined;
   /** Something the app adds under each line, such as "This line is wrong" (ADR 0051). */
   readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
   /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
@@ -473,7 +475,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             <Heading slot="title" className={playerStyles.instruction}>
               {t.format("story.quit.title")}
             </Heading>
-            <p data-quit-kept="">{t.format("story.quit.kept")}</p>
+            <p data-quit-kept="" data-replay={props.replay === true || undefined}>
+              {t.format(props.replay === true ? "story.quit.kept.replay" : "story.quit.kept")}
+            </p>
             <div className={playerStyles.footer}>
               <Button
                 className={playerStyles.secondary}
