@@ -34,6 +34,7 @@ from nabu.drills.rbnf import icu_version, spellout, transform
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import (
     CourseSource,
+    LogographsStep,
     OrthographyProfile,
     SentenceForm,
     SentenceSource,
@@ -105,6 +106,8 @@ class Ctx:
     analyzers: dict[str, Analyzer]
     vocalization: dict[str, Vocalized] = field(default_factory=lambda: {})
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
+    # Each orthography's script (`script_of`), as it is first needed.
+    scripts: dict[str, tx.Script] = field(default_factory=lambda: {})
 
 
 # ------------------------------------------------------------ helpers
@@ -180,7 +183,9 @@ def _ruby_schemes(profile: OrthographyProfile) -> list[str]:
     ]
 
 
-def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set[str]] | None:
+def _exemplar_sets(
+    exemplars: dict[str, dict[str, list[str]]], profile: OrthographyProfile
+) -> tuple[set[str], set[str]] | None:
     """Letter/mark/number/symbol and punctuation code points from the profile's CLDR exemplars.
     A script CLDR has no locale for (sitelen pona, ADR 0086) lists its whole repertoire in
     `exemplarsExtra`, with no `exemplars`: the audit then checks against that alone."""
@@ -190,7 +195,7 @@ def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set
         data: dict[str, list[str]] = {}
     else:
         key = profile.exemplars.removeprefix("cldr:").replace("_", "-")
-        found = ctx.exemplars.get(key) or ctx.exemplars.get(key.split("-")[0])
+        found = exemplars.get(key) or exemplars.get(key.split("-")[0])
         if found is None:
             return None
         data = found
@@ -205,6 +210,33 @@ def _exemplar_sets(ctx: Ctx, profile: OrthographyProfile) -> tuple[set[str], set
         for c in extra:
             (punct if unicodedata.category(c)[0] == "P" else chars).add(c)
     return chars, punct
+
+
+def script_of(profile: OrthographyProfile, exemplars: dict[str, dict[str, list[str]]]) -> tx.Script:
+    """The profile's script: the Unicode scripts its subtag stands for. One Unicode does not
+    encode (a private-use subtag) is what the profile lists: its exemplars, and, if it writes
+    each word as a logograph (a `logographs` step: sitelen pona, ADR 0086), those of them that
+    are not the step's cartouche marks."""
+    code = profile.lang.split("-")[1]
+    scripts = tx.unicode_scripts(code)
+    if scripts is not None:
+        return tx.Script(code, scripts)
+    sets = _exemplar_sets(exemplars, profile)
+    own = frozenset(sets[0]) if sets is not None else frozenset[str]()
+    for step in profile.normalize:
+        root = getattr(step, "root", step)
+        if isinstance(root, LogographsStep):
+            marks = root.logographs.cartouche
+            cartouche = None if marks is None else (marks.open, marks.close)
+            return tx.Script(code, None, own, own - set(cartouche or ()), cartouche)
+    return tx.Script(code, None, own)
+
+
+def _script(ctx: Ctx, orth: str) -> tx.Script:
+    found = ctx.scripts.get(orth)
+    if found is None:
+        found = ctx.scripts[orth] = script_of(ctx.profiles[orth], ctx.exemplars)
+    return found
 
 
 def _letter_maps(profile: OrthographyProfile) -> dict[str, str]:
@@ -234,10 +266,15 @@ def _allowed_invisibles(profile: OrthographyProfile) -> set[str]:
 
 
 def _hygiene(
-    ctx: Ctx, profile: OrthographyProfile, text: str, toks: list[dict[str, Any]], loc: Loc
+    ctx: Ctx,
+    profile: OrthographyProfile,
+    script: tx.Script,
+    text: str,
+    toks: list[dict[str, Any]],
+    loc: Loc,
 ) -> None:
     diags = ctx.diags
-    sets = _exemplar_sets(ctx, profile)
+    sets = _exemplar_sets(ctx.exemplars, profile)
     if sets is not None:
         letters, punct = sets
         outside = sorted(
@@ -268,26 +305,28 @@ def _hygiene(
                 + " ".join(foreign_punct),
                 loc,
             )
-    script = profile.lang.split("-")[1]
     for tok in toks:
         if tok.get("kind", "word") == "word":
             foreign = tx.foreign_letters(tok["surface"], script)
             if foreign:
                 diags.report(
                     "text.mixed-script",
-                    f"{tok['surface']!r} mixes {' '.join(foreign)} into {script} text",
+                    f"{tok['surface']!r} mixes {' '.join(foreign)} into {script.code} text",
                     loc,
                 )
     folds = [k for k in _letter_maps(profile) if k in text and unicodedata.category(k[0])[0] != "P"]
-    presentation = [c for c in text if 0xFB50 <= ord(c) <= 0xFDFF or 0xFE70 <= ord(c) <= 0xFEFC]
-    if folds or presentation:
-        shown = " ".join(
-            f"U+{ord(c):04X}" if len(k) == 1 else repr(k)
-            for k in folds + presentation
-            for c in k[:1]
-        )
+    if folds:
+        shown = " ".join(f"U+{ord(k):04X}" if len(k) == 1 else repr(k) for k in folds)
         diags.report(
             "text.non-canonical", f"uses characters its profile normalizes away: {shown}", loc
+        )
+    presentation = tx.presentation_forms(text)
+    if presentation:
+        diags.report(
+            "text.non-canonical",
+            "uses presentation forms, not the characters they stand for: "
+            + " ".join(f"U+{ord(c):04X}" for c in presentation),
+            loc,
         )
 
 
@@ -310,6 +349,7 @@ def compile_form(
     """A sentence or story line form (text, tokens) → TaggedText, with stages 2-3 checks.
     `warn`: false for generated sentences (drills), which have no tokens to vocalize by hand."""
     profile = ctx.profiles[orth]
+    script = _script(ctx, orth)
     loc = doc.loc(*at)
     text = form.text
     diags = ctx.diags
@@ -344,7 +384,7 @@ def compile_form(
         segment = (
             analyzer.segment if analyzer is not None and _unit_kind(profile) == "grapheme" else None
         )
-        toks = tx.auto_tokens(text, segment)
+        toks = tx.auto_tokens(text, segment, script)
 
     # kinds and default tile groups
     explicit = [t["tileGroup"] for t in toks if "tileGroup" in t]
@@ -358,7 +398,7 @@ def compile_form(
     # stage 3: readings and ruby, for every ruby layer
     for scheme in _ruby_schemes(profile):
         for t in toks:
-            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"]):
+            if t["kind"] != "word" or not tx.ruby_bearing(t["surface"], script):
                 continue
             pinned = t.get("readings", {}).get(scheme)
             guessed = analyzer.reading(scheme, t["surface"]) if analyzer is not None else None
@@ -385,7 +425,7 @@ def compile_form(
             else:
                 t.setdefault("ruby", {})[scheme] = segments
 
-    _hygiene(ctx, profile, text, toks, doc.loc(*at, "text"))
+    _hygiene(ctx, profile, script, text, toks, doc.loc(*at, "text"))
     mark_vowels(ctx, orth, toks, loc, warn)
     tagged = {"lang": _lang_for(profile, course.target), "orthography": orth, "tokens": toks}
     public = {
@@ -568,7 +608,7 @@ def marked(ctx: Ctx, orth: str, text: dict[str, Any], kc: str | None) -> dict[st
 
 def support_text(ctx: Ctx, orth: str, text: str, target: str) -> dict[str, Any]:
     profile = ctx.profiles[orth]
-    toks = tx.auto_tokens(text)
+    toks = tx.auto_tokens(text, None, _script(ctx, orth))
     for i, t in enumerate(x for x in toks if x["kind"] in ("word", "number")):
         t["tileGroup"] = i
     return {"lang": _lang_for(profile, target), "orthography": orth, "tokens": toks}
@@ -757,6 +797,7 @@ def _kc_readings(ctx: Ctx, course: CourseSource, units: list[dict[str, Any]]) ->
 
 def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: str) -> None:
     """One orthography's KC forms, one ruby layer: see _kc_readings."""
+    script = _script(ctx, orth)
     by_kc: dict[Any, Tally] = {}
     by_surface: dict[Any, Tally] = {}
     for u in units:
@@ -775,7 +816,7 @@ def _kc_readings_in(ctx: Ctx, units: list[dict[str, Any]], orth: str, scheme: st
             for form in forms.get(orth, []):
                 for t in cast(list[dict[str, Any]], form["tokens"]):
                     surface = str(t["surface"])
-                    if t["kind"] != "word" or not tx.ruby_bearing(surface):
+                    if t["kind"] != "word" or not tx.ruby_bearing(surface, script):
                         continue
                     reading = _pick_reading(by_kc, by_surface, str(kc["id"]), surface)
                     segments = None if reading is None else tx.ruby_segments(surface, reading)

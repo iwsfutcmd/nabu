@@ -67,7 +67,8 @@ _LINTS = [
         "text.non-canonical",
         "warning",
         2,
-        "Content uses a character its own profile folds away (Arabic ي in Persian, ' for ʻ).",
+        "Content uses a character its own profile folds away (Arabic ي in Persian, ' for ʻ), "
+        "or a presentation form (a ligature, an Arabic positional form) for what it stands for.",
     ),
     # 3 · enrichment
     Lint(

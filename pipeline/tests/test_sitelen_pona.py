@@ -8,7 +8,9 @@ from hypothesis import strategies as st
 
 from nabu import sitelen_pona as sp
 from nabu.audio import toki_pona
+from nabu.compiler import load_profiles
 from nabu.compiler import text as tx
+from nabu.compiler.build import load_exemplars, script_of
 
 SONJA = "sona olin nasin jan a"
 
@@ -72,8 +74,14 @@ def test_every_word_survives_the_round_trip(words: list[str]) -> None:
 
 
 def test_a_word_is_one_logograph_or_one_cartouche() -> None:
+    # The profile says which characters are logographs, and its cartouche: Unicode has no
+    # sitelen pona, so the compiler's text handling knows none of its code points.
+    script = script_of(load_profiles()["tok-Qaap/sitelen-pona"], load_exemplars())
+    assert script.unicode is None and script.cartouche == (sp.CARTOUCHE_OPEN, sp.CARTOUCHE_CLOSE)
+    assert script.logographs == frozenset(sp.WORD_OF)
     sonja = sp.cartouche(SONJA)
-    tokens = tx.auto_tokens(sp.WORDS["jan"] + sonja + sp.WORDS["li"] + sp.WORDS["pona"])
+    sentence = sp.WORDS["jan"] + sonja + sp.WORDS["li"] + sp.WORDS["pona"]
+    tokens = tx.auto_tokens(sentence, None, script)
     assert [t["surface"] for t in tokens] == [
         sp.WORDS["jan"],
         sonja,
@@ -82,7 +90,12 @@ def test_a_word_is_one_logograph_or_one_cartouche() -> None:
     ]
     assert all(t["kind"] == "word" for t in tokens)
     # A logograph carries its word as ruby; a cartouche (a name) does not.
-    assert tx.ruby_bearing(sp.WORDS["toki"]) and not tx.ruby_bearing(sonja)
+    assert tx.ruby_bearing(sp.WORDS["toki"], script) and not tx.ruby_bearing(sonja, script)
+    # Without its script, a logograph is a character like any other.
+    assert not tx.ruby_bearing(sp.WORDS["toki"])
+    # Latin letters inside sitelen pona are another script's.
+    assert tx.foreign_letters(sp.WORDS["jan"] + "Sonja", script) == ["S", "a", "j", "n", "o"]
+    assert tx.foreign_letters(sentence, script) == []
 
 
 @pytest.mark.parametrize(
