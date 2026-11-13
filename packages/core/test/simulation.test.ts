@@ -111,3 +111,30 @@ describe("pacing: 30 simulated days following Continue", () => {
     }, 2 * SIMULATION_TIMEOUT_MS);
   }
 });
+
+/**
+ * Review spreads across what the learner has met (L1, L12): over a month of lessons, no earlier unit
+ * takes more than 40% of the review a lesson brings back. Before ADR 0097 apc's unit 1 alone took 42%
+ * (its "Thank you" sentences came back lesson after lesson).
+ */
+describe("review in lessons: 30 simulated days", () => {
+  for (const [course, orthography] of [["apc", "apc-Arab/standard"], ["es", undefined], ["fa", undefined]] as const) {
+    it(`${course}: no earlier unit dominates a lesson's review`, () => {
+      const view = loadCourse(course, orthography);
+      const unitOf = new Map(view.units.flatMap((u, i) => u.sentences.map((s) => [s.id, i] as const)));
+      const nodeUnit = new Map(view.units.flatMap((u, i) => u.nodes.map((n) => [n.id, i] as const)));
+      const counts = new Map<number, number>();
+      let node = "";
+      simulate(course, orthography, 6, 1.3, (e) => {
+        if (e.type === "session_started") node = e.mode === "lesson" ? (e.node ?? "") : "";
+        if (e.type !== "answer_submitted" || node === "" || e.attempt !== 1) return;
+        const unit = unitOf.get(e.exercise.item);
+        const here = nodeUnit.get(node);
+        if (unit !== undefined && here !== undefined && unit < here) counts.set(unit, (counts.get(unit) ?? 0) + 1);
+      });
+      const total = [...counts.values()].reduce((a, b) => a + b, 0);
+      expect(total).toBeGreaterThan(50);
+      expect(Math.max(...counts.values()) / total).toBeLessThanOrEqual(0.4);
+    }, SIMULATION_TIMEOUT_MS);
+  }
+});
