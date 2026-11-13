@@ -175,9 +175,9 @@ export const wordMeanings = (course: CourseView, word: TaggedText): readonly Wor
 
 /**
  * What a word the learner wrote means (hablas, esta): each reading of the course's words spelled
- * like it, as grading's lexicon keys them, glossed as the course analyses it there (at most three);
- * a word the course writes nowhere with an analysis, by the glossary's entries for it. Nothing for
- * a word the course does not know.
+ * like it, as grading's lexicon keys them, glossed as the course analyses it there (at most three;
+ * morph by morph only where the course glosses it whole nowhere); a word the course writes nowhere
+ * with an analysis, by the glossary's entries for it. Nothing for a word the course does not know.
  */
 export const writtenMeanings = (course: CourseView, word: TaggedText): readonly WordMeaning[] => {
   if (word.orthography !== course.orthography) return [];
@@ -191,7 +191,10 @@ export const writtenMeanings = (course: CourseView, word: TaggedText): readonly 
     const { tileGroup: _tile, ...token } = spelled;
     return meaningOf(course, { lang: word.lang, orthography: word.orthography, tokens: [token] }, 0) ?? [];
   });
-  return distinct(meanings).slice(0, MAX_READINGS);
+  // A word the course glosses whole somewhere is shown whole: its readings morph by morph only
+  // say it again in parts (Lebanese بدك: baddak, baddik, and badd + -ik).
+  const whole = meanings.filter((m) => m.glosses.every((g) => g.span !== "part"));
+  return distinct(whole.length > 0 ? whole : meanings).slice(0, MAX_READINGS);
 };
 
 /**

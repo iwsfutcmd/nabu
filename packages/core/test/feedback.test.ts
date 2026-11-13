@@ -189,6 +189,17 @@ describe("what a wrong word means (P3)", () => {
     expect(readings(writtenMeanings(es, word("esta")))).toEqual([["sense:este"]]);
   });
 
+  it("a word the course glosses whole is shown whole, not again in its parts (Lebanese بدك)", () => {
+    const apc = loadCourse("apc", "apc-Arab/standard");
+    const s = allSentences(apc).find((x) => x.forms["apc-Arab/standard"] !== undefined);
+    if (s === undefined) throw new Error("apc has sentences");
+    const base = s.forms["apc-Arab/standard"]?.text as TaggedText;
+    // baddak "you want" (to a man), and baddik, "you want" to a woman, which a sentence also writes as badd + -ik.
+    const meanings = writtenMeanings(apc, textOfSurface(base, "بدك"));
+    expect(readings(meanings)).toEqual([["sense:baddak"], ["sense:baddak", "form:poss-2fs"]]);
+    expect(meanings.every((m) => m.glosses.every((g) => g.span === "whole"))).toBe(true);
+  });
+
   it("a slip that makes no word of the course means nothing", () => {
     expect(writtenMeanings(es, word("hbalo"))).toEqual([]);
     expect(writtenMeanings(es, word("cancion"))).toEqual([]);

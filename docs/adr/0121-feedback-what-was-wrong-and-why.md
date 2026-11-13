@@ -60,8 +60,10 @@ Which reading of a word is glossed (`wordMeanings`, `writtenMeanings` in @nabu/c
   sense, never by an entry spelled like it: como of "Como arroz" is comer's "to eat", not como "like".
 - **A word the learner wrote** is looked up among the course's words spelled like it (sentences and
   story lines), keyed as grading's lexicon keys words (`lexiconKey`). Each reading is shown once, at most
-  three (como: comer's, and "like, as"). A word the course writes nowhere with an analysis is glossed by
-  the glossary's entries; a word the course does not know (a slip that makes no word) gets nothing.
+  three (como: comer's, and "like, as"). A reading morph by morph is shown only where the course glosses
+  the word whole nowhere: Lebanese بدك is baddak "you want" and baddik "you want" (-ik, to a woman), not
+  again badd + -ik. A word the course writes nowhere with an analysis is glossed by the glossary's
+  entries; a word the course does not know (a slip that makes no word) gets nothing.
 - **A word whose sense is a phrase** (por of por favor) is glossed by the glossary's entry for it alone,
   else as part of its phrase (días: "Buenos días", good morning).
 - **A KC's form** among a card's options is glossed by the glossary's entries.
