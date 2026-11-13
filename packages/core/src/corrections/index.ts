@@ -12,6 +12,8 @@
  *   NFC and trimmed. A note alone is a report too.
  * - **A device's own.** A later report of the same item replaces an earlier one; the device
  *   exports its latest as the rows `nabu corrections apply` reads.
+ * - **What came of it** (ADR 0115). The device compares its correction with the course its
+ *   bundle has now: in the course, still as the learner saw it, changed otherwise, or gone.
  *
  * Tokens are addressed by their place among the form's words (its source tokens: not spaces or
  * punctuation), with the word's surface, so a reading never lands on another word.
@@ -210,6 +212,10 @@ export const sentenceReportedOf = (
   ...(made.note === undefined ? {} : { note: made.note }),
 });
 
+/** Whether event `a` came after `b`: by the device's clock, then by id. */
+export const later = (a: Pick<LearnerEvent, "clientTime" | "id">, b: Pick<LearnerEvent, "clientTime" | "id">): boolean =>
+  Date.parse(b.clientTime) < Date.parse(a.clientTime) || (b.clientTime === a.clientTime && b.id < a.id);
+
 /** A device's corrections in a course: the latest report of each item, by correctionKey. */
 export const latestCorrections = (events: readonly LearnerEvent[], course: string): ReadonlyMap<string, SentenceReported> => {
   const latest = new Map<string, SentenceReported>();
@@ -217,9 +223,90 @@ export const latestCorrections = (events: readonly LearnerEvent[], course: strin
     if (e.type !== "sentence_reported" || e.course !== course) continue;
     const key = correctionKey(e.item, e.step);
     const before = latest.get(key);
-    if (before === undefined || Date.parse(before.clientTime) < Date.parse(e.clientTime) || (before.clientTime === e.clientTime && before.id < e.id)) latest.set(key, e);
+    if (before === undefined || later(e, before)) latest.set(key, e);
   }
   return latest;
+};
+
+// ------------------------------------------------------------------------- what came of it (ADR 0115)
+
+/**
+ * What the course made of a device's correction, by the bundle the device has now (ADR 0115):
+ * - `adopted`: every field the correction changed reads as the learner suggested;
+ * - `pending`: every field it changed still reads as the learner saw it;
+ * - `changed`: the course changed them some other way since (for a note alone, the item reads
+ *   otherwise than the learner saw it);
+ * - `gone`: the course no longer has the item.
+ */
+export type CorrectionStatus = "adopted" | "pending" | "changed" | "gone";
+
+/** One field a correction is about: what the learner saw, what they suggested, what the course says now. */
+interface Compared {
+  readonly was: string | undefined;
+  readonly suggested?: string | undefined;
+  readonly now: string | undefined;
+  /** How the field compares: as written (NFC), or by its letters alone. */
+  readonly key: (text: string) => string;
+}
+
+const asWritten = (text: string): string => text.normalize("NFC");
+
+const readingAt = (form: CorrectedForm | undefined, r: Pick<TokenReading, "token" | "scheme">): string | undefined =>
+  form?.readings?.find((x) => x.token === r.token && x.scheme === r.scheme)?.reading;
+
+/**
+ * The fields a correction is about: the ones it changed, or every field shown for a note alone.
+ * Texts compare as written, but where the learner changed letters, the vowel marks the profile
+ * lists are left out on both sides, as `nabu corrections apply` compares: the course source has
+ * the letters, and its vocalization adds the marks (ADR 0053). A translation in another support
+ * language than the course's cannot be compared, and is left out.
+ */
+const comparedFields = (course: CourseView, report: SentenceReported, now: CorrectionFields): readonly Compared[] => {
+  const { shown, correction } = report;
+  const translations = report.support === course.supportKey;
+  const fields: Compared[] = [];
+  if (Object.keys(correction.forms ?? {}).length === 0 && correction.translation === undefined) {
+    for (const [o, form] of Object.entries(shown.forms ?? {})) {
+      fields.push({ was: form.text, now: now.forms?.[o]?.text, key: asWritten });
+      for (const r of form.readings ?? []) fields.push({ was: r.reading, now: readingAt(now.forms?.[o], r), key: asWritten });
+    }
+    if (translations && shown.translation !== undefined) fields.push({ was: shown.translation, now: now.translation, key: asWritten });
+    return fields;
+  }
+  for (const [o, fix] of Object.entries(correction.forms ?? {})) {
+    const before = shown.forms?.[o];
+    const current = now.forms?.[o];
+    if (fix.text !== undefined) {
+      const strip = course.profiles.get(o)?.marks?.strip;
+      const letters = (text: string): string => (strip === undefined ? asWritten(text) : strip(text));
+      const lettersChanged = before?.text === undefined || letters(fix.text) !== letters(before.text);
+      fields.push({ was: before?.text, suggested: fix.text, now: current?.text, key: lettersChanged ? letters : asWritten });
+    }
+    for (const r of fix.readings ?? []) fields.push({ was: readingAt(before, r), suggested: r.reading, now: readingAt(current, r), key: asWritten });
+  }
+  if (translations && correction.translation !== undefined) fields.push({ was: shown.translation, suggested: correction.translation, now: now.translation, key: asWritten });
+  return fields;
+};
+
+/**
+ * What the course made of a correction, comparing it with the item as the course has it now
+ * (`target`, if the caller has it already). Nothing leaves the device (ADR 0115).
+ */
+export const correctionStatus = (course: CourseView, report: SentenceReported, target: Correctable | undefined = correctable(course, report.item, report.step)): CorrectionStatus => {
+  if (target === undefined) return "gone";
+  const fields = comparedFields(course, report, shownOf(target));
+  const reads = (f: Compared, value: string | undefined): boolean => f.now !== undefined && value !== undefined && f.key(f.now) === f.key(value);
+  if (fields.length > 0 && fields.every((f) => reads(f, f.suggested))) return "adopted";
+  return fields.every((f) => reads(f, f.was)) ? "pending" : "changed";
+};
+
+/**
+ * The device's correction of an item while it is still open (pending): the form starts from it and
+ * offers to change it. One the course took up, or moved past, leaves a new report to start afresh.
+ */
+export const openCorrection = (course: CourseView, corrections: ReadonlyMap<string, SentenceReported>, item: string, step?: number): SentenceReported | undefined => {
+  const report = corrections.get(correctionKey(item, step));
+  return report !== undefined && correctionStatus(course, report) === "pending" ? report : undefined;
 };
 
 /** As the rows `nabu corrections apply` reads: a device's own suggestions, pending review. */
