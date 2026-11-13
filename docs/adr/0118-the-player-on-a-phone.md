@@ -82,3 +82,41 @@ problem with the answer still composing:
   - every vertical cell (prompts, banks, stories);
   - every story whose clips are synthesized, because the note moved;
   - the player matrix gains a vertical screen with a target prompt (new-words).
+
+## Amendment: the other buttons that take typed text (2026-11-12)
+
+Three more buttons were disabled while an input method composed, so on Android a tap only committed
+the word, as on Check before P16: Roleplay's Send, the correction form's Send, and Start over's
+confirmation. The owner decided (D39) that they take a press while composing, as Check does.
+
+**One hook for all three.** They are not player state machines, so they share `useSettledSubmit`
+(@nabu/ui, `ime.ts`), a pure step (`stepHeld`) behind a React hook.
+- **Enabled while composing.** Each button is enabled whenever what is typed would do, composing or
+  not:
+  - Roleplay's Send, when there is a turn to send and no reply is awaited;
+  - the correction form's Send, always (an unchanged form says so when sent);
+  - Start over's confirmation, when what is typed names the course.
+- **A press while composing waits.** It moves focus to the button (`focusInReach`), which ends the
+  composition. It goes ahead a moment after compositionend, once the field's own handlers have
+  stored the settled text and it is rendered: some browsers send the last input after
+  compositionend. The submit then judges the settled text. Start over goes ahead only if the settled
+  name still names the course, and a turn or a correction is sent as it settled.
+- **Nothing else submits.**
+  - A compositionend with no press waiting submits nothing. That covers an input method's Enter and
+    a tapped candidate.
+  - A new compositionstart drops a waiting press.
+  - A press while one already waits adds nothing: one submit.
+  - Enter never waits. Roleplay's field submits on Enter outside composition only, as the answer
+    field does.
+  - Enter in one of the correction form's one-line fields (a reading) sends the form, as HTML forms
+    do, through the same press as Send. Browsers never submit a form that way while an input method
+    composes, since its Enter commits the text.
+- Nothing is ever submitted, normalized or reset mid-composition (§6.7).
+
+**Consequences.**
+- One tap sends a turn or a correction, or starts the course over, while the keyboard still composes
+  the last word. As for Check, this is verified in Chromium with touch emulation and CDP composition
+  (ai.spec.ts, corrections.spec.ts, reset.spec.ts), not yet on an Android device.
+- Start over can be confirmed from a name still composing. The press waits, and the settled name
+  decides.
+- No visual baseline changes: no story shows these buttons while composing.
