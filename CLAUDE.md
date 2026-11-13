@@ -103,10 +103,12 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   UPDATE_GOLDEN=1 after a deliberate change. Every new KC of a lesson is presented in it (a hard constraint, ADR 0050).
 - Card keys: "kc|facet", and "kc|facet|orthography" for read-script/write-script (§6.3).
 - The web app stamps events (apps/web/src/clock.ts, session.ts) and keeps them in IndexedDB (store.ts).
-- A running lesson or story holds the route (apps/web/src/navigation.ts): Back, or Android's back button, asks as the
-  quit button does. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A reload
-  picks a session up: its plan is kept on the device until it ends (open-session.ts), and core `resume` folds the
-  session's logged answers through the player. Never re-plan a session that is under way.
+- A running lesson or story holds the route against Back and Forward (apps/web/src/navigation.ts): Back, or Android's
+  back button, asks as the quit button does; a new navigation (a link, a typed address, a reminder, an e2e `goto`)
+  goes ahead. Leave a session with `leave()`, never `location.hash =`, so Back never plays it again. A reload, or
+  opening a lesson left part-way, picks the session up: its plan is kept on the device until it ends
+  (open-session.ts), and core `resume` folds the session's logged answers through the player. Never re-plan a
+  session that is under way.
 - Placement (ADR 0039, 0077) says what it does before it starts and what it placed after; stopped part-way, it is
   recorded complete over the questions answered when those answers place anything (session.ts). It is offered until
   every node is done: a placement only ever adds nodes done, in the fold.

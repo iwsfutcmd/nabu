@@ -7,9 +7,12 @@
  *   opened from, instead of adding an entry after the lesson, from which Back would plan the
  *   lesson again. With some other page before it (a link from a reminder), the session's own
  *   entry becomes the course page.
- * - While a session runs it holds the route: a change (Back, the phone's back button, a link from
- *   a notification) puts the session's URL back as a new entry after the one Back reached, and the
- *   session asks, as its quit button does, whether to quit. Quitting then goes where Back was going.
+ * - While a session runs it holds the route against Back and Forward (the browser's buttons, the
+ *   phone's back button): going to an entry the app has been on puts the session's URL back as a new
+ *   entry after the one reached, and the session asks, as its quit button does, whether to quit.
+ *   Quitting then goes where Back was going. A new navigation (a link, an address typed, a tapped
+ *   reminder) is the learner's own choice and goes ahead: the session is kept (open-session.ts) and
+ *   picked up again where it was when its lesson is opened next.
  *
  * Browser only (history, location): the service worker never imports it.
  */
@@ -62,7 +65,9 @@ const changed = (): void => {
 
 const onHashChange = (e: HashChangeEvent): void => {
   const here = routeOf(location.hash);
-  if (hold !== undefined && here !== routeOf(hold.at)) {
+  // Back or Forward reached an entry the app marked as it came to it; a new one has no mark yet.
+  const traversed = markOf(history.state) !== undefined;
+  if (hold !== undefined && traversed && here !== routeOf(hold.at)) {
     // Back to the session, as a new entry after the one reached: quitting goes back to that one.
     history.pushState(marked(null, here), "", hold.at);
     hold.ask(here);
@@ -88,7 +93,7 @@ export const watchRoute = (listener: () => void): (() => void) => {
 };
 
 /**
- * Holds the route while a session at `at` runs: a change asks first (`ask`, with where the
+ * Holds the route while a session at `at` runs: Back or Forward asks first (`ask`, with where the
  * learner was going). Returns the release; the latest hold wins.
  */
 export const holdRoute = (at: string, ask: (to: string | undefined) => void): (() => void) => {

@@ -6,6 +6,8 @@
  *   never opens the lesson again.
  * - A reload in the middle of a lesson picks the same session up at the same card, with the same
  *   plan; the log has one session, completed once.
+ * - A new navigation in the middle of a lesson (a link, an address typed) goes ahead without asking,
+ *   and opening the lesson again picks it up where it was.
  * - Back in the middle of a story asks too.
  * Android's back button goes through the same history (apps/web/src/native.ts).
  */
@@ -108,6 +110,30 @@ test.describe("back and reload", () => {
     const completed = session.filter((e) => e.type === "session_completed");
     expect(completed).toHaveLength(1);
     expect(completed[0]).toMatchObject({ summary: { completed: true, exercises: graded(exercises), correctFirstTry: graded(exercises) } });
+    expect(errors).toEqual([]);
+  });
+
+  test("a new navigation mid-lesson goes ahead, and the lesson picks up where it was", async ({ page }, info) => {
+    test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.clock.setFixedTime(NOW);
+    await page.goto(pathUrl(course, SEED));
+    const exercises = planned(course, [], { mode: "lesson", node: first }, NOW, SEED);
+    await activate(page, "keyboard", `[data-lesson="${first}"]`);
+    await playFirst(page, exercises, 2, "keyboard");
+    // An address typed (or a link followed): no question, the page it names.
+    await page.clock.setFixedTime(new Date(NOW.getTime() + 30_000));
+    await page.evaluate(() => (window.location.hash = "#/"));
+    await expect(page.locator("[data-course-list]")).toBeVisible();
+    await expect(page.locator("[data-quit-dialog]")).toHaveCount(0);
+    // The lesson again: the same session, at its third card.
+    await page.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+    await activate(page, "keyboard", `[data-lesson="${first}"]`);
+    const third = exercises[2];
+    if (third === undefined) throw new Error("a short lesson");
+    await waitFor(page, third);
+    expect((await logOf(page, "fa")).filter((e) => e.type === "session_started")).toHaveLength(1);
     expect(errors).toEqual([]);
   });
 
