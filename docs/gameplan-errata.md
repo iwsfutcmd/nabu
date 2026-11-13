@@ -251,3 +251,8 @@ ADR is linked. The gameplan text itself is left as written.
     half the usual time, on a card already recalled with at least 0.9 probability, is Easy
     ([ADR 0096](adr/0096-pace-in-ratings.md)). Learners still never rate themselves, except
     speaking at tier 0.
+65. **§12.6 "the median of their recent session start times":** at the median, on about half the
+    days the learner practises anyway the reminder came just before practice that was going to
+    happen, and took the credit, so the back-off never started. Reminders now come half an hour
+    after the 80th percentile of the start times, and only practice begun after a reminder answers
+    it ([ADR 0103](adr/0103-reminder-timing.md)).
