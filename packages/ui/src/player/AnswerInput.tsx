@@ -1,8 +1,10 @@
 /**
  * The typed-answer field, IME-safe (gameplan §6.7):
  * - the value is stored exactly as typed: never normalized, never rewritten;
- * - Enter submits only outside composition (isComposing / keyCode 229);
- * - compositionend hands the settled text to the state machine;
+ * - Enter submits only outside composition (isComposing / keyCode 229); a phone keyboard labels
+ *   its Enter key "done" (enterKeyHint), since it checks the answer;
+ * - compositionend hands the settled text to the state machine (a Check pressed mid-composition
+ *   waits for it, ADR 0118);
  * - `lang` and `dir` are the target orthography's, not the UI's.
  *
  * The special-character bar inserts at the caret and keeps focus in the field.
@@ -176,6 +178,7 @@ export const AnswerInput = ({
         autoCorrect="off"
         autoComplete="off"
         spellCheck={false}
+        enterKeyHint="done"
         disabled={disabled}
         autoFocus
         data-answer-input=""

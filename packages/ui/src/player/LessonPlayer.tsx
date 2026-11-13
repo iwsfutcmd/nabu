@@ -184,6 +184,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const ruby = readings.shown;
   const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
+  const checkButton = useRef<HTMLButtonElement>(null);
   // The card's instruction and prompt describe the control it focuses first (P10).
   const base = useId();
   const ids = { instruction: `${base}-instruction`, base };
@@ -271,7 +272,16 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       setTap(closing ? undefined : { card: ex.id, word });
     },
   };
-  const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
+  // Check takes a press while a keyboard still composes the last word (ADR 0118): the submit then
+  // waits for compositionend. Enter never checks mid-composition: an IME's Enter commits its text.
+  const canCheck = active.tag === "answering" && responseOf(ex, active.draft) !== undefined;
+  const enterChecks = canCheck && active.tag === "answering" && !active.composing;
+  const check = (): void => {
+    dispatch({ tag: "submit" });
+    // Focus on Check ends the composition, as a tap anywhere else does; a press that left focus in the
+    // field (an assistive technology's) would otherwise wait until the learner commits the word.
+    if (active.tag === "answering" && active.composing) focusInReach(checkButton.current, footer.current);
+  };
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
   const speaking = SPEAKING.has(ex.template);
@@ -290,7 +300,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         e.preventDefault();
         e.stopPropagation();
         dispatch({ tag: "continue" });
-      } else if (canCheck) {
+      } else if (enterChecks) {
         e.preventDefault();
         e.stopPropagation();
         dispatch({ tag: "submit" });
@@ -447,7 +457,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
               </Button>
             )}
             {!speaking && !pairs && (
-              <Button className={styles.primary} onPress={() => dispatch({ tag: "submit" })} isDisabled={!canCheck} data-action="check">
+              <Button ref={checkButton} className={styles.primary} onPress={check} isDisabled={!canCheck} data-action="check">
                 {t.format("exercise.action.check")}
                 <ArrowForwardIcon />
               </Button>
