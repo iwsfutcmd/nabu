@@ -46,6 +46,91 @@
   font-size: 1.25rem;
 }
 
+/* The home screen's first words, for a learner who has not started yet (S4). */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+}
+
+.intro > p {
+  margin: 0;
+}
+
+/*
+ * A course in the list (S4): the whole card is its link (the name's link reaches over the card);
+ * a course's writing systems are links of their own above it.
+ */
+.courseCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.courseCard:hover {
+  border-color: var(--nabu-color-accent);
+}
+
+.courseLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.courseLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--nabu-radius-card);
+}
+
+.courseLink:focus-visible {
+  outline: none;
+}
+
+.courseLink:focus-visible::after {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.courseLine {
+  margin: 0;
+}
+
+/* What a course leaves out (no listening): a note, not an error. */
+.courseTag {
+  align-self: flex-start;
+  margin: 0;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.875rem;
+  background-color: var(--nabu-color-info-bg);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.scripts {
+  margin-block-start: var(--nabu-space-2);
+}
+
+.scripts .links {
+  margin-block-start: var(--nabu-space-2);
+}
+
+/* Above the card's own link; the name, then the hint, at the start. */
+.scripts .scriptLink {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.scriptHint {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
 .muted {
   margin-block: var(--nabu-space-1) 0;
   color: var(--nabu-color-muted);
@@ -398,6 +483,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
 }
 
 .streak {
@@ -433,6 +519,7 @@
 }
 
 .goalChoice {
+  box-sizing: border-box;
   justify-content: center;
   min-inline-size: 2.75rem;
   font-weight: 700;

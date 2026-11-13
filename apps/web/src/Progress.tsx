@@ -338,10 +338,14 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
  * chooses whether the server's speech service may hear them; the pitch range learned on this
  * device (three numbers) can be forgotten.
  */
-const Voice = ({ signedIn }: { signedIn: boolean }): JSX.Element => {
+const Voice = ({ signedIn }: { signedIn: boolean }): JSX.Element | null => {
   const t = useTranslator();
   const [server, setServer] = useState(serverAllowed);
   const [range, setRange] = useState(() => loadCalibration() !== undefined);
+  // Nothing to choose and nothing to forget (no server to allow, no pitch range kept): no panel (S4).
+  // Once shown, it stays to say the range is forgotten.
+  const [kept] = useState(range);
+  if (!signedIn && !kept) return null;
   return (
     <div className={styles.voice} data-voice="">
       <h3 className={styles.subheading}>{t.format("app.voice.title")}</h3>

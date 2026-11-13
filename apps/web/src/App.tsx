@@ -48,6 +48,7 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExt
 import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
+import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
@@ -179,29 +180,105 @@ interface GameProps {
   readonly gameConfig: GameConfig | null;
 }
 
+/** A message the catalog may have for an id (a course's blurb, a writing system's hint), else none. */
+const optional = (t: Translator, key: string): string | undefined => (t.has(key) ? t.format(key) : undefined);
+
+/** What a course's card says of its size and levels, from the bundles (vite-courses.ts). */
+const aboutCourse = (t: Translator, id: string): string | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined) return undefined;
+  const { units, levels } = summary;
+  if (levels === undefined) return t.format("app.home.course.units", { units });
+  return levels[0] === levels[1] ? t.format("app.home.course.level", { level: levels[0], units }) : t.format("app.home.course.levels", { from: levels[0], to: levels[1], units });
+};
+
+/** What a course leaves out, said on its card: a reading course, or one without listening (ADR 0071, 0091). */
+const leavesOut = (id: string): "app.home.course.reading" | "app.home.course.no-listening" | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined || summary.listening) return undefined;
+  return summary.speaking ? "app.home.course.no-listening" : "app.home.course.reading";
+};
+
+/**
+ * A course in the list (S4): the whole card is the link to its course page, in its first writing
+ * system; a line on what it teaches, its levels and size, and what it leaves out. A course written
+ * in several systems offers each, with a hint, and says the learner can switch any time.
+ */
+const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Element => {
+  const t = useTranslator();
+  const [first] = entry.orthographies;
+  const blurb = optional(t, `course.blurb.${entry.id}`);
+  const about = aboutCourse(t, entry.id);
+  const leaves = leavesOut(entry.id);
+  return (
+    <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id}>
+      <h2 className={styles.courseName}>
+        {first === undefined ? (
+          courseName(t, entry.id)
+        ) : (
+          <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography: first })} data-course-link="">
+            {courseName(t, entry.id)}
+          </a>
+        )}
+      </h2>
+      {blurb !== undefined && <p className={styles.courseLine}>{blurb}</p>}
+      {about !== undefined && (
+        <p className={styles.muted} data-course-about="">
+          {about}
+        </p>
+      )}
+      {leaves !== undefined && (
+        <p className={styles.courseTag} data-course-leaves="">
+          {t.format(leaves)}
+        </p>
+      )}
+      {entry.orthographies.length > 1 && (
+        <div className={styles.scripts} role="group" aria-labelledby={`scripts-${entry.id}`}>
+          <p className={`${styles.courseLine} ${styles.label}`} id={`scripts-${entry.id}`}>
+            {t.format("app.home.writing")}
+          </p>
+          <p className={styles.muted}>{t.format("app.home.writing-switch")}</p>
+          <div className={styles.links}>
+            {entry.orthographies.map((o) => {
+              const hint = optional(t, `orthography.hint.${slug(o)}`);
+              return (
+                <a key={o} className={`${styles.link} ${styles.scriptLink}`} href={href({ tag: "course", course: entry.id, orthography: o })} data-orthography={o}>
+                  <span>{orthographyName(t, o)}</span>
+                  {hint !== undefined && <span className={styles.scriptHint}>{hint}</span>}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </li>
+  );
+};
+
 const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   const reviewer = useReviewer(sync);
+  // A learner who has not started yet is told what this is and how to begin (S4).
+  const fresh = game !== null && game.days.length === 0 && game.xp.total === 0;
+  // In the order of their names as the UI language sorts them.
+  const collator = new Intl.Collator(t.formattingLocale);
+  const sorted = [...courses].sort((a, b) => collator.compare(courseName(t, a.id), courseName(t, b.id)));
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
       {!online && <OfflineNotice synced={account !== undefined} />}
+      {fresh && (
+        <div className={styles.intro} data-home-intro="">
+          <p>{t.format("app.home.intro")}</p>
+          <p className={styles.muted}>{t.format("app.home.start")}</p>
+        </div>
+      )}
       {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
-        {courses.map((c) => (
-          <li key={c.id} className={styles.course} data-course={c.id}>
-            <h2 className={styles.courseName}>{courseName(t, c.id)}</h2>
-            {c.orthographies.length > 1 && <p className={styles.muted}>{t.format("app.home.writing")}</p>}
-            <div className={styles.links}>
-              {c.orthographies.map((o) => (
-                <a key={o} className={styles.link} href={href({ tag: "course", course: c.id, orthography: o })} data-orthography={o}>
-                  {orthographyName(t, o)}
-                </a>
-              ))}
-            </div>
-          </li>
+        {sorted.map((c) => (
+          <CourseCard key={c.id} entry={c} />
         ))}
       </ul>
       <Progress store={store} sync={sync} />

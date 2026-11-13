@@ -14,7 +14,11 @@ declare const styles: {
   readonly continue: string;
   readonly count: string;
   readonly course: string;
+  readonly courseCard: string;
+  readonly courseLine: string;
+  readonly courseLink: string;
   readonly courseName: string;
+  readonly courseTag: string;
   readonly dangerButton: string;
   readonly debugNotice: string;
   readonly dialog: string;
@@ -33,6 +37,7 @@ declare const styles: {
   readonly heading: string;
   readonly inlineButton: string;
   readonly input: string;
+  readonly intro: string;
   readonly label: string;
   readonly league: string;
   readonly lesson: string;
@@ -72,6 +77,9 @@ declare const styles: {
   readonly reportTitle: string;
   readonly resultTitle: string;
   readonly resultUnit: string;
+  readonly scriptHint: string;
+  readonly scriptLink: string;
+  readonly scripts: string;
   readonly standing: string;
   readonly standings: string;
   readonly startOver: string;
