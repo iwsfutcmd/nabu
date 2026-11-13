@@ -1,6 +1,7 @@
+import type { KcCredit, LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { emptyLearnerState, learnedWords, orderWords, plan, replay, wordMatcher } from "../src/learner/index.ts";
-import { lessonNodes } from "../src/lesson/index.ts";
+import { emptyLearnerState, learnedWords, orderWords, plan, replay, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
+import { lessonNodes, type Exercise, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
@@ -94,5 +95,147 @@ describe("browsing the word list", () => {
     expect(alphabetical).toEqual([...alphabetical].sort((a, b) => collator.compare(a, b)));
     const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: { ...card, due: "2026-02-01T08:00:00.000Z" } } }, NOW);
     expect(orderWords(later, "weakest")[0]?.kc).toBe(kcs[1]?.id);
+  });
+});
+
+describe("known words (ADR 0100)", () => {
+  const fa = loadCourse("fa");
+  const words = fa.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined);
+  const [a, b, c] = words.map((k) => String(k.id));
+  if (a === undefined || b === undefined || c === undefined) throw new Error("fa has words");
+  /** A stand-in exercise: what the fold reads of one (template, item, KCs). */
+  const card = (template: TemplateId, kcs: readonly string[]): Exercise => ({ id: `${template}:${kcs.join("+")}`, template, item: kcs.join("+"), kcs, orthography: fa.orthography }) as unknown as Exercise;
+  const day = (n: number): string => `2026-03-${String(n).padStart(2, "0")}T08:00:00.000Z`;
+  const log = () => {
+    const events = eventFactory(fa, manifestOf("fa").id);
+    const out: LearnerEvent[] = [];
+    const on = (n: number) => {
+      events.at(day(n));
+      events.session();
+    };
+    /** A first try (or `attempt`), with each KC's credit (true: right; false: wrong; undefined: given). */
+    const answer = (ex: Exercise, credits: readonly (boolean | undefined)[], attempt = 1): void => {
+      const e = events.answer(ex, credits.every((x) => x !== false), attempt) as LearnerEvent & { outcome: { kcs: KcCredit[] } };
+      out.push({ ...e, outcome: { ...e.outcome, kcs: ex.kcs.map((kc, i): KcCredit => ({ kc, status: credits[i] === undefined ? "given" : credits[i] ? "right" : "wrong" })) } } as LearnerEvent);
+    };
+    const skip = (ex: Exercise): void => {
+      const { input: _i, outcome: _o, prediction: _p, ...e } = events.answer(ex, false, 1) as LearnerEvent & { input: unknown; outcome: unknown; prediction?: unknown };
+      out.push({ ...e, type: "exercise_skipped", reason: "skip" } as unknown as LearnerEvent);
+    };
+    return { on, answer, skip, state: (): LearnerState => replay(out) };
+  };
+  const word = (kc: string) => card("choose-translation", [kc]);
+  const sentence = (...kcs: string[]) => card("translate-type.l1-l2", kcs);
+
+  it("shows a skill only on a later day than the word was met", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    expect(l.state().met[a]).toBe("2026-03-01");
+    expect(l.state().shown).toEqual({});
+    l.on(2);
+    l.answer(word(a), [true]);
+    expect(l.state().shown).toEqual({ [`${a}|recognize`]: "2026-03-02" });
+  });
+
+  it("takes a skill away on a miss, and shows it again only after another night", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.on(2);
+    l.answer(word(a), [true]);
+    l.answer(word(a), [false]);
+    expect(l.state().shown[`${a}|recognize`]).toBeUndefined();
+    expect(l.state().missed[`${a}|recognize`]).toBe("2026-03-02");
+    l.on(2);
+    l.answer(word(a), [true]);
+    expect(l.state().shown[`${a}|recognize`]).toBeUndefined();
+    l.on(3);
+    l.answer(word(a), [true]);
+    expect(l.state().shown[`${a}|recognize`]).toBe("2026-03-03");
+  });
+
+  it("pins a miss on a word only where the grading does", () => {
+    const l = log();
+    l.on(1);
+    l.answer(sentence(a, b, c), [true, true, true]);
+    l.on(2);
+    l.answer(sentence(a, b, c), [true, true, true]);
+    const shown = { [`${a}|produce`]: "2026-03-02", [`${b}|produce`]: "2026-03-02", [`${c}|produce`]: "2026-03-02" };
+    expect(l.state().shown).toEqual(shown);
+    // Missed as a whole: nothing says which word failed.
+    l.answer(sentence(a, b, c), [false, false, false]);
+    expect(l.state().shown).toEqual(shown);
+    // One word typed wrong among words typed right: that word is missed.
+    l.answer(sentence(a, b, c), [true, false, true]);
+    expect(Object.keys(l.state().shown).sort()).toEqual([`${a}|produce`, `${c}|produce`].sort());
+    // A word a pronunciation card does not ask about is given: neither shown nor missed.
+    l.answer(card("translate-type.l1-l2", [a, c]), [undefined, false]);
+    expect(Object.keys(l.state().shown)).toEqual([`${a}|produce`]);
+  });
+
+  it("counts first tries only, and a revealed answer on a word card as a miss", () => {
+    const l = log();
+    l.on(1);
+    l.answer(word(a), [true]);
+    l.answer(word(b), [true]);
+    l.on(2);
+    l.answer(word(a), [true], 2);
+    expect(l.state().shown).toEqual({});
+    l.answer(word(b), [true]);
+    l.skip(word(b));
+    expect(l.state().shown).toEqual({});
+    expect(l.state().missed[`${b}|recognize`]).toBe("2026-03-02");
+  });
+
+  it("asks every word to be recognized and produced, and heard where the voice may be relied on", () => {
+    const asked = skillsAsked(fa);
+    const heard = words.find((k) => fa.audio[k.id] !== undefined);
+    if (heard === undefined) throw new Error("fa has word clips");
+    expect(asked(heard.id)).toEqual(["recognize", "produce", "listen"]);
+    // A word no sentence uses cannot be produced, nor heard without a clip of its own.
+    const sentences = fa.units.flatMap((u) => u.sentences);
+    const unwritten = words.find((k) => !sentences.some((s) => s.kcs.includes(k.id)));
+    if (unwritten !== undefined) expect(asked(unwritten.id)).not.toContain("produce");
+    // Only words are known: a construction, a letter or an id the course lacks asks nothing.
+    expect(asked("sense:no-such-word")).toEqual([]);
+    // An iffy voice (ADR 0091) plans no listening; Classical Chinese practises recognize and produce.
+    for (const id of ["hbo", "tok", "lzh"]) {
+      const course = loadCourse(id);
+      const ask = skillsAsked(course);
+      const kcs = course.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense");
+      expect(kcs.some((k) => ask(k.id).includes("produce")), id).toBe(true);
+      expect(kcs.some((k) => ask(k.id).includes("listen")), id).toBe(false);
+    }
+  });
+
+  it("knows a word once it has shown every skill asked of it", () => {
+    const heard = words.find((k) => fa.audio[k.id] !== undefined && skillsAsked(fa)(k.id).length === 3);
+    if (heard === undefined) throw new Error("fa has a word asked all three skills");
+    const reviewed = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
+    const base = { ...emptyLearnerState(), cards: { [`${heard.id}|recognize`]: reviewed } };
+    const shown = (...skills: string[]) => Object.fromEntries(skills.map((s) => [`${heard.id}|${s}`, "2026-03-02"]));
+    const learning = learnedWords(fa, { ...base, shown: shown("recognize", "produce") }, NOW);
+    expect(learning.map((w) => [w.known, w.skills])).toEqual([
+      [false, [{ skill: "recognize", shown: true }, { skill: "produce", shown: true }, { skill: "listen", shown: false }]],
+    ]);
+    expect(wordCounts(learning)).toEqual({ known: 0, learning: 1 });
+    const known = learnedWords(fa, { ...base, shown: shown("recognize", "produce", "listen") }, NOW);
+    expect(known.map((w) => w.known)).toEqual([true]);
+    expect(wordCounts(known)).toEqual({ known: 1, learning: 0 });
+  });
+});
+
+describe("finding a word by its reading", () => {
+  const yue = loadCourse("yue");
+  const kcs = yue.units.flatMap((u) => u.kcs).filter((k) => k.kind === "sense" && k.forms?.[yue.orthography] !== undefined);
+  const card = { due: "2026-03-05T08:00:00.000Z", stability: 4, difficulty: 5, elapsed_days: 0, scheduled_days: 4, learning_steps: 0, reps: 1, lapses: 0, state: 2, last_review: NOW };
+  const words = learnedWords(yue, { ...emptyLearnerState(), cards: Object.fromEntries(kcs.map((k) => [`${k.id}|recognize`, card])) }, NOW);
+  const found = (q: string): readonly string[] => words.filter(wordMatcher(yue, q)).map((w) => w.kc);
+
+  it("finds it with or without tones and spaces, in any case", () => {
+    expect(words.map((w) => w.kc)).toContain("sense:早晨");
+    for (const q of ["zou2 san4", "zou2san4", "zousan", "ZOU SAN", "zou2"]) expect(found(q), q).toContain("sense:早晨");
+    expect(found("zou3 san4")).not.toContain("sense:早晨");
   });
 });

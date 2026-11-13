@@ -9,7 +9,7 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, dueFacets, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { applyEvents, dueFacets, learnedWords, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
@@ -237,6 +237,8 @@ const CoursePath = ({
     [course, state, off, speechTiers],
   );
   const today = state.xp.byDate[localDate(now)] ?? 0;
+  // The words known (ADR 0100), beside the link to the word list.
+  const known = useMemo(() => wordCounts(learnedWords(course, state, new Date().toISOString())).known, [course, state]);
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
   const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
@@ -336,6 +338,11 @@ const CoursePath = ({
             {t.format("app.practice.mistakes")}
           </span>
         )}
+        {/* The words met and known (ADR 0100), next to practising them (S14). */}
+        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="" data-count={known}>
+          {t.format("words.title")}
+          {studied && <span className={styles.count}>{t.format("app.practice.known", { count: known })}</span>}
+        </a>
       </div>
 
       <h2 className={styles.subheading}>{t.format("app.lessons.title")}</h2>
@@ -451,11 +458,6 @@ const CoursePath = ({
           </section>
         );
       })}
-      <p>
-        <a className={styles.link} href={href({ tag: "words", course: course.id, orthography })} data-words-link="">
-          {t.format("words.title")}
-        </a>
-      </p>
       <p>
         <a className={styles.link} href={href({ tag: "sentences", course: course.id, orthography })} data-sentences-link="">
           {t.format("corrections.page.open")}
@@ -643,7 +645,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     // Speaking is scored where tones can be judged here or the server scores it (§10.4).
     const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
     const exclude = excluded();
-    const planned = plan(course, state, request, { now: new Date().toISOString(), seed, speech, ...(exclude.size > 0 ? { exclude } : {}) });
+    // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
+    const now = new Date();
+    const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, ...(exclude.size > 0 ? { exclude } : {}) });
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);

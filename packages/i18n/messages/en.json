@@ -470,6 +470,10 @@
       "message": "Nothing to practise right now.",
       "description": "Shown when a review or mistakes session has no exercises."
     },
+    "app.practice.known": {
+      "message": ".input {$count :number}\n{{{$count} known}}",
+      "description": "On the course page, beside the link to the word list: how many words the learner knows (ADR 0100: every skill the course asks of a word shown right on a later day than they met it). $count is a number."
+    },
     "app.practice.mistakes": {
       "message": "Mistakes",
       "description": "Button that starts a session of the learner's recent mistakes."
@@ -2270,6 +2274,30 @@
       "message": "No words yet. Words show here once you have practised them in a lesson.",
       "description": "The word list, before the learner has practised any word."
     },
+    "words.filter.all": {
+      "message": ".input {$count :number}\n{{All ({$count})}}",
+      "description": "The word list: show every word the learner has met. $count is how many."
+    },
+    "words.filter.known": {
+      "message": ".input {$count :number}\n{{Known ({$count})}}",
+      "description": "The word list: show only the words the learner knows: each skill the course asks shown on a later day than the word was met (ADR 0100). $count is how many."
+    },
+    "words.filter.label": {
+      "message": "Show",
+      "description": "The word list: label of the choice between every word, the known ones and the ones being learned."
+    },
+    "words.filter.learning": {
+      "message": ".input {$count :number}\n{{Learning ({$count})}}",
+      "description": "The word list: show only the words the learner is still learning: met, but not yet known (ADR 0100). $count is how many."
+    },
+    "words.known.explain": {
+      "message": "A word is known once you’ve read it and written it right on a later day than you met it.",
+      "description": "The word list, in a course without listening: what makes a word known (ADR 0100). Reading: understanding it in a card; writing: typing it from its meaning."
+    },
+    "words.known.explain-heard": {
+      "message": "A word is known once you’ve read it, written it and heard it right on a later day than you met it.",
+      "description": "The word list, in a course whose voice the learner can rely on: what makes a word known (ADR 0100). Reading: understanding it in a card; writing: typing it from its meaning; hearing: understanding it from its sound."
+    },
     "words.none-found": {
       "message": "No word you've learned matches that.",
       "description": "The word list: nothing matches the search."
@@ -2294,6 +2322,30 @@
       "message": "Find a word",
       "description": "The word list: label of a search field. The learner can type the word, with or without its vowel marks, or its meaning."
     },
+    "words.skill.listen": {
+      "message": "Listening",
+      "description": "The word list: a skill a word has yet to show, understanding it from its sound (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skill.produce": {
+      "message": "Writing",
+      "description": "The word list: a skill a word has yet to show, typing it from its meaning (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skill.recognize": {
+      "message": "Reading",
+      "description": "The word list: a skill a word has yet to show, understanding it when it is shown (ADR 0100). Shown after “Still to show:”."
+    },
+    "words.skills.label": {
+      "message": "Still to show:",
+      "description": "The word list, under a word being learned: followed by the skills it has yet to show right on a later day than the learner met it (Reading, Writing, Listening)."
+    },
+    "words.status.known": {
+      "message": "Known",
+      "description": "The word list: this word is known. Every skill the course asks of it was shown right on a later day than the learner met it, and not missed since (ADR 0100)."
+    },
+    "words.status.learning": {
+      "message": "Learning",
+      "description": "The word list: this word is still being learned (ADR 0100)."
+    },
     "words.strength.due": {
       "message": "Due for review",
       "description": "The word list: the learner should practise this word again now."
@@ -2309,6 +2361,10 @@
     "words.title": {
       "message": "Words you've learned",
       "description": "The word list: title of the page that lists the words a learner has practised in a course, and the link to it on the course's page."
+    },
+    "words.unit.known": {
+      "message": ".input {$known :number}\n.input {$count :number}\n{{{$known} of {$count} known}}",
+      "description": "The word list, beside a unit's title: how many of the unit's words the learner has met ($count) are known ($known)."
     }
   }
 }

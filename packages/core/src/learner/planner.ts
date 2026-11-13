@@ -5,11 +5,14 @@
  * 1. Targets: the node's new KCs, plus due facets (R below desired retention).
  * 2. Candidates: every (template, item) the templates can make, where every
  *    KC that is not a target has been seen before (the i+1 rule at runtime).
- * 3. Score: expected memory gain, plus closeness of the session's mean p̂ to
- *    the target success rate, minus repetition of the same template or item.
+ * 3. Score: expected memory gain (more for a skill a word has yet to show, ADR
+ *    0101), plus closeness of the session's mean p̂ to the target success rate,
+ *    minus repetition of the same template or item.
  * 4. Greedy selection with hard constraints: excluded templates, at most three
  *    of a template (two speaking turns), a new KC is recognized before it is
- *    produced or read, and every new KC of a lesson is presented in it.
+ *    produced or read, every new KC of a lesson is presented in it, and a few
+ *    cards, spread through the session, have words show the skills they lack
+ *    (typing them, hearing them; ADR 0101).
  * 5. Order: selection order (new words first), ending on a likely success.
  */
 import type { BundleKc, BundleSentence, KcId } from "@nabu/schema";
@@ -19,11 +22,12 @@ import type { Exercise, Facet, TemplateId } from "../lesson/exercise.ts";
 import { seededRng } from "../lesson/rng.ts";
 import { scriptCandidates, scriptNodes } from "../lesson/script.ts";
 import { KC_LISTENING, KC_TEMPLATES, makeMatchPairs, makeSelectImage, SENTENCE_TEMPLATES, type MakeContext } from "../lesson/templates.ts";
-import { askedKcs, facetOf } from "./credit.ts";
+import { askedKcs, creditedKcs, facetOf } from "./credit.ts";
 import { PERFORMANCE_MODEL, predict } from "./performance.ts";
 import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
 import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
+import { skillsAsked } from "./words.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
 
@@ -44,6 +48,12 @@ export interface PlanOptions {
   readonly desiredRetention?: number;
   /** What the app can do with speech (scored speaking, tone exercises); without it, tier 0 only. */
   readonly speech?: SpeechSupport | undefined;
+  /**
+   * The learner's local date (YYYY-MM-DD), as events stamp it: a word met today shows no skill
+   * before tomorrow (ADR 0100), so sessions aim at the skills of words met before it. The date
+   * of `now` where the caller has none.
+   */
+  readonly today?: string | undefined;
 }
 
 export interface SessionPlan {
@@ -108,25 +118,87 @@ const REVIEW_SHARE_STRUGGLING = 0.5;
 const REVIEW_SHORTFALL = 0.1;
 
 /**
+ * Skills to show (ADR 0101): a card is worth NEED_GAIN more for each word it exercises in a skill
+ * the course asks of it (ADR 0100) that the word, met on an earlier day, has yet to show.
+ */
+const NEED_GAIN = 0.5;
+/**
+ * The skills a session has words show (ADR 0101): typing a word met on an earlier day that has not
+ * shown it can be produced, and hearing one that has not shown it is heard (where the course's voice
+ * may be relied on). These are the hardest cards, which the calibration alone rarely picks, so each
+ * session spreads a few through it and balances them with the rest: this share of the session for a
+ * skill whose cards predict at least SKILL_EASY for this learner, one for a skill they find harder.
+ * Each comes in only where the session can still reach the target success with it (the cards
+ * chosen, the gentlest such card, the easiest of the rest): a session the rest cannot balance gets
+ * fewer, and a learner who struggles is not pushed into them yet.
+ */
+const SKILL_SHARES: readonly { readonly facet: Facet; readonly share: number }[] = [
+  { facet: "produce", share: 0.2 },
+  { facet: "listen", share: 0.15 },
+];
+const SKILL_EASY = 0.65;
+
+/**
+ * Sentences a lesson may lean on (ADR 0101): the BALANCE_SENTENCES earlier sentences whose words the
+ * learner recognizes best, offered as review beside those picked by need. Their cards gain little,
+ * so the calibration picks them only to bring a lesson that runs hard back toward its target: the
+ * extra repetition a learner who struggles needs, and room for the cards that have words show
+ * their skills.
+ */
+const BALANCE_SENTENCES = 3;
+
+/** The earlier sentences whose words this learner recognizes best now, leaving out `taken`. */
+const wellKnownSentences = (
+  past: readonly BundleSentence[],
+  taken: readonly BundleSentence[],
+  seen: ReadonlySet<string>,
+  recall: (kc: string) => number,
+): readonly BundleSentence[] =>
+  past
+    .filter((s) => s.kcs.length > 0 && !taken.includes(s) && s.kcs.every((kc) => seen.has(kc)))
+    .map((s) => ({ s, r: s.kcs.reduce((a, kc) => a + recall(kc), 0) / s.kcs.length }))
+    .sort((a, b) => b.r - a.r)
+    .slice(0, BALANCE_SENTENCES)
+    .map((x) => x.s);
+
+/** The skills (card keys) that words met before `today` have yet to show and may show today (ADR 0100). */
+const skillNeeds = (course: CourseView, state: LearnerState, today: string): ReadonlySet<string> => {
+  const asked = skillsAsked(course);
+  const out = new Set<string>();
+  for (const [kc, met] of Object.entries(state.met)) {
+    if (met >= today) continue;
+    for (const skill of asked(kc)) {
+      const k = cardKey(kc, skill, course.orthography);
+      if (state.shown[k] === undefined && (state.missed[k] ?? "") < today) out.add(k);
+    }
+  }
+  return out;
+};
+
+/**
  * The earlier sentences a lesson brings back (ADR 0097), from the lessons before it on the path (a
  * later lesson's sentence is new, whatever its words): chosen greedily by the due words they would
  * practise, the most forgotten first (desired retention minus recall, per due recognize or produce
- * card), each due word counted once. So review goes where it is needed, across every unit, never
- * to the course's first sentences because their common words are always due somewhere; and a
- * sentence just reviewed is no longer due, so it does not come back lesson after lesson.
+ * card), and the skills their words have yet to show (NEED_GAIN each, ADR 0101), each card counted
+ * once. So review goes where it is needed, across every unit, never to the course's first sentences
+ * because their common words are always due somewhere; and a sentence just reviewed is no longer
+ * due, so it does not come back lesson after lesson.
  */
 const reviewSentences = (
   course: CourseView,
   past: readonly BundleSentence[],
   seen: ReadonlySet<string>,
   due: ReadonlyMap<string, number>,
+  needs: ReadonlySet<string>,
   desired: number,
   key: (kc: string, facet: Facet) => string,
 ): readonly BundleSentence[] => {
   const pool = past.filter((s) => s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
-  const cards = (s: BundleSentence): readonly string[] => s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce")]).filter((k) => due.has(k));
+  const cards = (s: BundleSentence): readonly string[] =>
+    s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce"), key(kc, "listen")]).filter((k) => due.has(k) || needs.has(k));
   const covered = new Set<string>();
-  const need = (s: BundleSentence): number => cards(s).reduce((sum, k) => (covered.has(k) ? sum : sum + (desired - (due.get(k) ?? desired))), 0);
+  const worth = (k: string): number => (due.has(k) ? desired - (due.get(k) ?? desired) : 0) + (needs.has(k) ? NEED_GAIN : 0);
+  const need = (s: BundleSentence): number => cards(s).reduce((sum, k) => (covered.has(k) ? sum : sum + worth(k)), 0);
   const picked: BundleSentence[] = [];
   while (picked.length < REVIEW_SENTENCES) {
     let best: BundleSentence | undefined;
@@ -152,7 +224,8 @@ const RECOGNITION = new Set<TemplateId>(["select-image", "match-pairs", "choose-
 /** p̂ for an exercise in this state, in the course's orthography, at `now`. */
 export const predictExercise = (state: LearnerState, ex: Exercise, orthography: string, now: string): number => {
   const facet = facetOf(ex.template);
-  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, ex.kcs, facet, orthography, now) });
+  // Recall of what the answer is credited to: a blank's word, not the sentence shown around it.
+  return predict(state.performance, { template: ex.template, facet, item: ex.item, kcs: ex.kcs, r: meanRetrievability(state, creditedKcs(ex), facet, orthography, now) });
 };
 
 /** A KC is seen once any of its facets has a card. */
@@ -247,6 +320,10 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
   const seen = seenKcs(state);
   const due = new Map(dueFacets(state, orthography, now, desired).map((f) => [f.key, f.r]));
+  // Skills words have yet to show (ADR 0100, 0101), and the words to type: a mistakes session
+  // practises its mistakes only.
+  const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10));
+  const focus = new Set([...needs].flatMap((k) => (parseCardKey(k).facet === "produce" ? [parseCardKey(k).kc] : [])));
 
   // ---- 1–2. targets and candidates
   let introduced: readonly KcId[] = [];
@@ -265,19 +342,24 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (found === undefined) throw new Error(`no lesson node ${request.node} in ${course.id}`);
     const { unit, node } = found;
     introduced = node.introduces;
-    const ctx: MakeContext = { course, rng, introduced };
+    const ctx: MakeContext = { course, rng, introduced, focus };
     const fresh = node.introduces.flatMap<BundleKc>((id) => allKcs(course).find((k) => k.id === id) ?? []);
     const pairsPool = fresh.length >= 3 ? fresh : [...fresh, ...unit.kcs.filter((k) => !fresh.includes(k) && seen.has(k.id))];
     const own = sentencesOf(course, unit, node);
     // Interleave: the earlier sentences that need review most (ADR 0097), marked as review.
     const lessons = lessonNodes(course);
     const past = lessons.slice(0, lessons.indexOf(found)).flatMap((n) => sentencesOf(course, n.unit, n.node));
-    const earlier = reviewSentences(course, past, seen, due, desired, key);
+    const picked = reviewSentences(course, past, seen, due, needs, desired, key);
+    const earlier = [...picked, ...wellKnownSentences(past, picked, seen, (kc) => retrievability(state, kc, "recognize", orthography, now))];
     for (const s of earlier) reviewItems.add(s.id);
-    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier, [], exclude)];
+    // Earlier words to be heard (ADR 0101): a word's own clip is the gentlest way to show it.
+    const unheard = allKcs(course).filter((k) => needs.has(key(k.id, "listen")) && !node.introduces.includes(k.id));
+    const hearing = unheard.flatMap((kc) => KC_LISTENING.flatMap((make) => make(ctx, kc) ?? [])).filter((ex) => !exclude.has(ex.template));
+    for (const ex of hearing) reviewItems.add(ex.item);
+    pool = [...candidatesFor(ctx, own, pairsPool, exclude), ...candidatesFor(ctx, earlier, [], exclude), ...hearing];
     size = options.size ?? Math.min(14, Math.max(10, own.length * 2));
   } else if (request.mode === "review") {
-    const ctx: MakeContext = { course, rng, introduced: [] };
+    const ctx: MakeContext = { course, rng, introduced: [], focus };
     const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
     const all = candidatesFor(ctx, studied, allKcs(course).filter((k) => seen.has(k.id)), exclude);
     // Review exercises due facets first (their gain is high); the rest stay as fillers the
@@ -301,23 +383,39 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   const recognized = new Set<string>(); // new KCs recognized so far in this plan
   const gain = (c: Candidate): number => {
     const facet = facetOf(c.ex.template);
-    const parts = c.ex.kcs.map((kc) => {
+    // What the answer is credited to: a blank's word, a pronunciation card's word, else every KC.
+    const parts = creditedKcs(c.ex).map((kc) => {
       const k = key(kc, facet);
       // A word met in this lesson is first recognized; producing it counts once it is shown in a later
       // session (D2), so here it is worth no more than any other new card.
       const fresh = targets.has(kc) ? (facet === "produce" ? 0.5 : 1) : 0.5;
       const base = state.cards[k] === undefined ? fresh : due.has(k) ? 0.6 + (desired - (due.get(k) ?? 0)) : 0.15;
-      return covered.has(k) ? base * 0.3 : base;
+      // A skill the word has yet to show (ADR 0101) is worth more, once a session.
+      return covered.has(k) ? base * 0.3 : base + (needs.has(k) ? NEED_GAIN : 0);
     });
     return parts.length === 0 ? 0 : parts.reduce((a, b) => a + b, 0) / parts.length;
   };
-  // A lesson's review is a small share of its cards (ADR 0097, D1), more while the lesson runs short
-  // of the target success.
-  const reviewCap = (): number => {
+  // Whether the session runs well under the target success so far (self-rated speaking aside).
+  const struggling = (): boolean => {
     const counted = chosen.filter((x) => x.ex.template !== "speak.tier-0");
     const meanP = counted.length === 0 ? target : counted.reduce((a, x) => a + x.p, 0) / counted.length;
-    return Math.max(1, Math.floor(size * (meanP < target - REVIEW_SHORTFALL ? REVIEW_SHARE_STRUGGLING : REVIEW_SHARE)));
+    return meanP < target - REVIEW_SHORTFALL;
   };
+  // A lesson's review is a small share of its cards (ADR 0097, D1), more while the lesson runs short
+  // of the target success.
+  const reviewCap = (): number => Math.max(1, Math.floor(size * (struggling() ? REVIEW_SHARE_STRUGGLING : REVIEW_SHARE)));
+  // A card that has a word show a skill it lacks (ADR 0101): of that facet, credited to such a word
+  // not yet exercised so in this plan.
+  const shows = (c: Candidate, facet: Facet): boolean => facetOf(c.ex.template) === facet && creditedKcs(c.ex).some((kc) => needs.has(key(kc, facet)) && !covered.has(key(kc, facet)));
+  // How many a session: a share for a skill this learner does well, one for a skill they find hard.
+  const quotas = SKILL_SHARES.flatMap(({ facet, share }) => {
+    const ps = candidates.filter((c) => shows(c, facet)).map((c) => c.p);
+    const words = [...needs].filter((k) => parseCardKey(k).facet === facet).length;
+    if (ps.length === 0 || words === 0) return [];
+    const easy = ps.reduce((a, b) => a + b, 0) / ps.length >= SKILL_EASY;
+    return [{ facet, quota: easy ? Math.min(words, Math.max(1, Math.round(size * share))) : 1, picked: 0 }];
+  });
+  const quota = quotas.reduce((a, q) => a + q.quota, 0);
   const allowed = (c: Candidate): boolean => {
     const same = chosen.filter((x) => x.ex.template === c.ex.template).length;
     if (same >= (MAX_PER_TEMPLATE[c.ex.template] ?? MAX_PER_TEMPLATE_DEFAULT)) return false;
@@ -342,20 +440,45 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const newCoverage = c.ex.kcs.some((kc) => targets.has(kc) && !recognized.has(kc)) && RECOGNITION.has(c.ex.template) ? 0.4 : 0;
     return gain(c) + newCoverage + calibration - 0.15 * sameTemplate - 0.5 * sameItem;
   };
+  // Whether the session can take a card of this skill and still come near its target: the cards
+  // chosen, the gentlest such card, and the easiest of the rest for the places left (self-rated
+  // speaking aside).
+  const affordable = (facet: Facet, remaining: readonly Candidate[]): boolean => {
+    const open = remaining.filter((c) => allowed(c) && !selfRated(c));
+    const gentlest = open.filter((c) => shows(c, facet)).sort((a, b) => b.p - a.p)[0];
+    if (gentlest === undefined) return false;
+    const counted = chosen.filter((x) => !selfRated(x));
+    const rest = open
+      .filter((c) => c !== gentlest)
+      .map((c) => c.p)
+      .sort((a, b) => b - a)
+      .slice(0, Math.max(0, size - chosen.length - 1));
+    const sum = counted.reduce((a, x) => a + x.p, 0) + gentlest.p + rest.reduce((a, p) => a + p, 0);
+    return sum / (counted.length + 1 + rest.length) >= target;
+  };
   // Every new KC is presented in its lesson (a hard constraint): while a new KC an allowed exercise
   // can present is not yet in the plan, only such exercises qualify (new words first, as ordered
   // below); the scores choose among them, and then fill the session.
   const presentable = new Set(candidates.flatMap((c) => c.ex.kcs.filter((kc) => targets.has(kc))));
   const presented = new Set<string>();
   const remaining = [...candidates];
+  const showing = new Set<Candidate>();
   while (chosen.length < size && remaining.length > 0) {
     const missing = [...presentable].filter((kc) => !presented.has(kc));
     const mustPresent = missing.length > 0 && remaining.some((c) => allowed(c) && c.ex.kcs.some((kc) => missing.includes(kc)));
+    // Once new words are presented, at each spread-out place a card that has a word show a skill it
+    // lacks (ADR 0101): of the skill furthest from its quota.
+    const shown = quotas.reduce((a, q) => a + q.picked, 0);
+    const slot = !mustPresent && shown < quota && chosen.length >= Math.floor(((shown + 1) * size) / (quota + 1));
+    const owed = slot
+      ? quotas.filter((q) => q.picked < q.quota && affordable(q.facet, remaining)).sort((a, b) => a.picked / a.quota - b.picked / b.quota)[0]
+      : undefined;
     let best = -1;
     let bestScore = Number.NEGATIVE_INFINITY;
     for (const [i, c] of remaining.entries()) {
       if (!allowed(c)) continue;
       if (mustPresent && !c.ex.kcs.some((kc) => missing.includes(kc))) continue;
+      if (owed !== undefined && !shows(c, owed.facet)) continue;
       const s = score(c);
       if (s > bestScore + 1e-12) {
         best = i;
@@ -365,13 +488,18 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     if (best < 0) break;
     const [pick] = remaining.splice(best, 1);
     if (pick === undefined) break;
+    for (const q of quotas)
+      if (shows(pick, q.facet)) {
+        q.picked += 1;
+        showing.add(pick);
+      }
     chosen.push(pick);
     const facet = facetOf(pick.ex.template);
     for (const kc of pick.ex.kcs) {
       presented.add(kc);
-      covered.add(key(kc, facet));
       if (RECOGNITION.has(pick.ex.template) && targets.has(kc)) recognized.add(kc);
     }
+    for (const kc of creditedKcs(pick.ex)) covered.add(key(kc, facet));
   }
 
   // A word's pronunciation as its script leaves it out, in its sentence (ADR 0054, 0095): one card a
@@ -381,7 +509,7 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
     const pick = remaining.filter((c) => PRONOUNCE.has(c.ex.template) && allowed(c)).sort((a, b) => score(b) - score(a) || a.order - b.order)[0];
     if (pick !== undefined) {
       const presentedBy = (kc: KcId, except: Candidate): boolean => chosen.some((c) => c !== except && c.ex.kcs.includes(kc));
-      const spare = [...chosen].reverse().find((c) => c.ex.kcs.every((kc) => !targets.has(kc) || presentedBy(kc, c)));
+      const spare = [...chosen].reverse().find((c) => !showing.has(c) && c.ex.kcs.every((kc) => !targets.has(kc) || presentedBy(kc, c)));
       if (chosen.length < size) chosen.push(pick);
       else if (spare !== undefined) chosen.splice(chosen.indexOf(spare), 1, pick);
     }

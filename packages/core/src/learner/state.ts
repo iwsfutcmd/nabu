@@ -47,6 +47,16 @@ export interface LearnerState {
   readonly latencies: Readonly<Partial<Record<TemplateId, readonly number[]>>>;
   /** Facets already rated in the current session: each at most once per session (§9.2). */
   readonly rated: { readonly session: string; readonly keys: readonly string[] };
+  /** Known words (ADR 0100): the local date each KC was first met (its first answer). */
+  readonly met: Readonly<Record<string, string>>;
+  /**
+   * Known words (ADR 0100): the local date each skill (a recognize, produce or listen card) was
+   * last shown: a first try right, not self-rated, on a later day than the KC was met and than the
+   * skill was last missed. A miss takes it away.
+   */
+  readonly shown: Readonly<Record<string, string>>;
+  /** The local date each skill was last missed (a first try wrong, or the answer revealed). */
+  readonly missed: Readonly<Record<string, string>>;
 }
 
 export const DESIRED_RETENTION = 0.9;
@@ -76,6 +86,9 @@ export const emptyLearnerState = (): LearnerState => ({
   mistakes: [],
   latencies: {},
   rated: { session: "", keys: [] },
+  met: {},
+  shown: {},
+  missed: {},
 });
 
 /**
@@ -146,6 +159,9 @@ interface Draft {
   mistakes: Mistake[];
   latencies: Partial<Record<TemplateId, number[]>>;
   rated: { session: string; keys: string[] };
+  met: Record<string, string>;
+  shown: Record<string, string>;
+  missed: Record<string, string>;
 }
 
 const draftOf = (s: LearnerState): Draft => structuredClone(s) as Draft;
@@ -169,6 +185,26 @@ const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Ratin
   d.cards[key] = fromCard(scheduler.next(card, now, GRADES[grade]).card);
 };
 
+/** The skills a word is known by (ADR 0100): recognizing it, producing it, hearing it. */
+export const SKILL_FACETS: ReadonlySet<Facet> = new Set<Facet>(["recognize", "produce", "listen"]);
+
+/**
+ * A skill shown or missed (ADR 0100). It is shown only on a later day than the word was met and
+ * than the skill was last missed: after a night, and again after a night once it slips (D2, D3).
+ */
+const witness = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, right: boolean): void => {
+  if (!SKILL_FACETS.has(facet)) return;
+  const key = cardKey(kc, facet, e.orthography);
+  if (!right) {
+    delete d.shown[key];
+    d.missed[key] = e.localDate;
+    return;
+  }
+  const met = d.met[kc];
+  const missed = d.missed[key];
+  if (met !== undefined && e.localDate > met && (missed === undefined || e.localDate > missed)) d.shown[key] = e.localDate;
+};
+
 const noteMistake = (d: Draft, item: string, template: TemplateId, at: string, wrong: boolean): void => {
   d.mistakes = d.mistakes.filter((m) => !(m.item === item && m.template === template));
   if (wrong) d.mistakes = [...d.mistakes, { item, template, at }].slice(-MISTAKES_KEPT);
@@ -178,9 +214,11 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   const { template, item, kcs } = e.exercise;
   const facet = facetOf(template);
   const correct = e.outcome.kind.startsWith("CORRECT");
-  // The performance model learns from first tries only; retries are biased.
+  // The performance model learns from first tries only; retries are biased. Its memory feature is
+  // the recall of what the answer is credited to (a blank's word), as the planner predicts it.
   if (e.attempt === 1) {
-    const r = meanRetrievability(d, kcs, facet, e.orthography, e.clientTime);
+    const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
+    const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
     d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
   }
   // Pace: this answer's time per unit of length against the learner's usual for the template. Only
@@ -195,6 +233,15 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
     const rating = ratingOf(credit.status, e.outcome.kind, e.outcome.notes, pace, e.input.selfRating, typed);
     if (rating !== undefined) rate(d, e, credit.kc, facet, rating);
   }
+  // Known words (ADR 0100): which skills a first try showed or missed, then what the learner has met.
+  // A miss counts against a word only where the grading pins it there: a word card, or a sentence
+  // with other words right. A sentence missed as a whole says nothing about which word failed.
+  if (e.attempt === 1 && e.input.selfRating === undefined) {
+    const credited = e.outcome.kcs.filter((c) => c.status !== "given");
+    const pinned = credited.length === 1 || credited.some((c) => c.status === "right");
+    for (const c of credited) if (c.status === "right" || pinned) witness(d, e, c.kc, facet, c.status === "right");
+  }
+  for (const credit of e.outcome.kcs) d.met[credit.kc] ??= e.localDate;
   if (correct) addXp(d, e.localDate, XP.answer);
   // A mistake stays open through the lesson's own retry; a later first try that is right closes it.
   // Story questions are not mistakes to practice: they only make sense inside their story.
@@ -205,7 +252,11 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
 const skipped = (d: Draft, e: ExerciseSkipped): void => {
   if (e.reason !== "skip") return; // can't listen / can't speak: no update
   const facet = facetOf(e.exercise.template);
-  for (const kc of e.exercise.kcs) rate(d, e, kc, facet, "again"); // the answer was revealed
+  for (const kc of e.exercise.kcs) {
+    rate(d, e, kc, facet, "again"); // the answer was revealed
+    if (e.exercise.kcs.length === 1) witness(d, e, kc, facet, false); // pinned on the word (ADR 0100)
+    d.met[kc] ??= e.localDate;
+  }
   noteMistake(d, e.exercise.item, e.exercise.template, e.clientTime, true);
 };
 
@@ -231,6 +282,9 @@ const startOver = (d: Draft): void => {
   d.mistakes = fresh.mistakes;
   d.latencies = fresh.latencies;
   d.rated = fresh.rated;
+  d.met = fresh.met;
+  d.shown = fresh.shown;
+  d.missed = fresh.missed;
 };
 
 const applyOne = (d: Draft, e: LearnerEvent): void => {

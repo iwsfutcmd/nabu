@@ -7,6 +7,7 @@
  * for the calibration notebook (pipeline/notebooks/calibration.py).
  */
 import type { LearnerEvent } from "@nabu/schema";
+import { creditedKcs } from "../src/learner/credit.ts";
 import { applyEvents, dueFacets, emptyLearnerState, facetOf, PERFORMANCE_MODEL, plan, type LearnerState } from "../src/learner/index.ts";
 import { lessonNodes, seededRng, type Exercise, type Rng, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
@@ -59,9 +60,11 @@ const recall = (truth: Truth, key: string, now: number): number => {
   return m === undefined ? 0 : Math.pow(0.9, (now - m.last) / DAY / m.s);
 };
 
+/** Recall of what the card asks (a blank's word, a pronunciation card's word); the rest is shown. */
 const trueP = (truth: Truth, ex: Exercise, now: number, rng: Rng): number => {
   const facet = facetOf(ex.template);
-  const r = ex.kcs.length === 0 ? 0 : ex.kcs.reduce((s, kc) => s + recall(truth, `${kc}|${facet}`, now), 0) / ex.kcs.length;
+  const asked = creditedKcs(ex);
+  const r = asked.length === 0 ? 0 : asked.reduce((s, kc) => s + recall(truth, `${kc}|${facet}`, now), 0) / asked.length;
   const kcs = ex.kcs.map((kc) => {
     if (!truth.kc.has(kc)) truth.kc.set(kc, 0.4 * gauss(rng));
     return truth.kc.get(kc) as number;
@@ -78,7 +81,7 @@ const latencyOf = (ex: Exercise, p: number, rng: Rng): number => Math.round((200
 
 const practise = (truth: Truth, ex: Exercise, correct: boolean, now: number): void => {
   const facet = facetOf(ex.template);
-  for (const kc of ex.kcs) {
+  for (const kc of creditedKcs(ex)) {
     const key = `${kc}|${facet}`;
     const m = truth.memory.get(key);
     const s = m === undefined ? (correct ? 1 : 0.3) : correct ? m.s * (recall(truth, key, now) < 0.9 ? 2.5 : 1.2) : Math.max(0.3, m.s * 0.4);
@@ -124,7 +127,7 @@ export const simulate = (courseId: string, orthography: string | undefined, seed
       const next = nodes.find((n) => !state.completedNodes.includes(n));
       if (next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
       const request = next !== undefined ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
-      const p = plan(course, state, request, { now: iso(), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1) });
+      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1) });
       if (p.exercises.length === 0) continue;
       sessions++;
       if (request.mode === "lesson") lessons++;

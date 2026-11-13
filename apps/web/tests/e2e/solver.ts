@@ -72,7 +72,8 @@ export const teachable = async (page: Page, course: CourseView): Promise<CourseV
 
 /** The session the app plans for this log, clock and seed (no speech server: tones scored on the device). */
 export const planned = (course: CourseView, log: readonly LearnerEvent[], request: SessionRequest, now: Date, seed: number): readonly Exercise[] =>
-  plan(course, replay(log), request, { now: now.toISOString(), seed, speech: speechSupportOf(course, 0) }).exercises;
+  // The browser runs in UTC (playwright.config.ts), so its local date is the UTC date.
+  plan(course, replay(log), request, { now: now.toISOString(), today: now.toISOString().slice(0, 10), seed, speech: speechSupportOf(course, 0) }).exercises;
 
 /**
  * A learner who already finished every lesson before `node`, two days before

@@ -34,6 +34,9 @@ const unique = <T>(xs: readonly T[]): readonly T[] => [...new Set(xs)];
 
 const firstToken = (text: TaggedText | undefined): Token | undefined => text?.tokens[0];
 
+/** The KCs an answer is credited to: those the exercise asks about, else all of its KCs. */
+export const creditedKcs = (ex: Exercise): readonly KcId[] => askedKcs(ex) ?? ex.kcs;
+
 /** The KCs an exercise asks the learner to produce, pick or pronounce; the rest of its KCs were given. */
 export const askedKcs = (ex: Exercise): readonly KcId[] | undefined => {
   if (ex.template === "complete-translation") {

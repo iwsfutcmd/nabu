@@ -59,7 +59,9 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "translate-tap.l1-l2": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" } },
   "translate-type.l1-l2": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
   "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" } },
-  "gap-fill": { facet: "produce", modality: { audioOut: false, mic: false, input: "choice" } },
+  // Picking the missing word among options is recognizing it, as tiles are (D4 in the 2026-11 review,
+  // ADR 0100): producing a word means supplying it.
+  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" } },
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" } },
   // A word's pronunciation as its script leaves it out (ADR 0054): reading the script, typed.
@@ -103,6 +105,11 @@ export interface MakeContext {
   readonly rng: Rng;
   /** KCs the current node introduces: new words get the recognition templates first. */
   readonly introduced: readonly KcId[];
+  /**
+   * Words the session wants typed (ADR 0101): a sentence's blank is one of them where it has one,
+   * before a word the node introduces.
+   */
+  readonly focus?: ReadonlySet<string> | undefined;
 }
 
 const id = (template: TemplateId, item: string): string => `${template}:${item}`;
@@ -382,16 +389,17 @@ export const makeTranslateType = (ctx: MakeContext, s: BundleSentence): Translat
   };
 };
 
-/** The word to blank out: the one carrying a KC this node introduces, else the last word. */
+/**
+ * The word to blank out: one the session wants typed (ADR 0101), else one carrying a KC this node
+ * introduces, else the last word.
+ */
 const blankIndex = (ctx: MakeContext, text: TaggedText): number | undefined => {
   const indexes = words(text);
   if (indexes.length < 2) return undefined;
-  const fresh = indexes.find((i) => {
-    const t = text.tokens[i] as Token;
-    const kcs = [...(t.sense === undefined ? [] : [`sense:${t.sense}`]), ...(t.morphs ?? []).map((m) => m.kc as string)];
-    return kcs.some((k) => ctx.introduced.includes(k as KcId));
-  });
-  return fresh ?? indexes[indexes.length - 1];
+  const kcsAt = (i: number): readonly string[] => tokenKcs(text.tokens[i] as Token);
+  const focus = ctx.focus === undefined ? undefined : indexes.find((i) => kcsAt(i).some((k) => ctx.focus?.has(k) === true));
+  const fresh = indexes.find((i) => kcsAt(i).some((k) => ctx.introduced.includes(k as KcId)));
+  return focus ?? fresh ?? indexes[indexes.length - 1];
 };
 
 export const makeCompleteTranslation = (ctx: MakeContext, s: BundleSentence): CompleteTranslation | undefined => {
