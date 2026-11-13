@@ -1,6 +1,6 @@
 import type { MessageCatalog } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { courseName, createTranslator, orthographyName, sourceCatalog, type Named } from "../src/index.ts";
+import { courseBlurb, courseName, createTranslator, orthographyHint, orthographyName, sourceCatalog, type Named } from "../src/index.ts";
 
 const strict = { onError: (e: unknown) => { throw e; } };
 const en = createTranslator({ locale: "en", catalogs: [sourceCatalog()], ...strict });
@@ -33,6 +33,14 @@ describe("course and orthography names are course data (ADR 0109)", () => {
     const xx: Named = { id: "nan", target: "nan-Hant-TW", names: { en: { course: "Taiwanese Hokkien", orthographies: { "nan-Latn/poj": "Pe̍h-ōe-jī" } } } };
     expect(courseName(fa, xx)).toBe("Taiwanese Hokkien");
     expect(orthographyName(fa, xx, "nan-Latn/poj")).toBe("Pe̍h-ōe-jī");
+  });
+
+  it("gives the course list's lines from the course too, where it has them", () => {
+    const apc: Named = { id: "apc", names: { en: { course: "Lebanese Arabic", blurb: "The Arabic of Lebanon.", hints: { "apc-Latn/arabizi": "Latin letters and digits." } } } };
+    expect(courseBlurb(en, apc)).toBe("The Arabic of Lebanon.");
+    expect(orthographyHint(fa, apc, "apc-Latn/arabizi")).toBe("Latin letters and digits.");
+    expect(orthographyHint(en, apc, "apc-Arab/standard")).toBeUndefined();
+    expect(courseBlurb(en, { id: "x" })).toBeUndefined();
   });
 
   it("else what CLDR calls the language or the script, else the id", () => {

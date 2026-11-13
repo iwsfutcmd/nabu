@@ -87,6 +87,13 @@ export const courseName = (t: Translator, named: Named): string => {
   return first(named.names)?.course ?? (language === undefined ? undefined : displayName(t, "language", language)) ?? named.id;
 };
 
+/** One line on what the course teaches, as the course gives it (steps 1 and 3), if it gives one. */
+export const courseBlurb = (t: Translator, named: Named): string | undefined => inUiLanguage(t, named.names)?.blurb ?? first(named.names)?.blurb;
+
+/** What choosing one of the course's orthographies means, as the course gives it (steps 1 and 3), if it does. */
+export const orthographyHint = (t: Translator, named: Named, orthography: string): string | undefined =>
+  inUiLanguage(t, named.names)?.hints?.[orthography] ?? Object.values(named.names ?? {}).find((n) => n.hints?.[orthography] !== undefined)?.hints?.[orthography];
+
 /** What the app calls one of the course's orthographies: Arabizi (Latin letters and numbers), Cyrillic. */
 export const orthographyName = (t: Translator, named: Named, orthography: string): string => {
   const own = inUiLanguage(t, named.names)?.orthographies?.[orthography];

@@ -1148,9 +1148,19 @@ export interface CourseNames {
      */
     readonly course: string;
     /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
      * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
      */
     readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
       readonly [k: string]: string;
     };
   };
@@ -1453,7 +1463,7 @@ export interface Names {
   readonly [k: string]: string;
 }
 /**
- * What the app calls a course and the orthographies it teaches, by the language the names are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows the names in the UI language where the course gives them.
+ * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "CourseNames".
@@ -1465,9 +1475,19 @@ export interface CourseNames1 {
      */
     readonly course: string;
     /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
      * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
      */
     readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
       readonly [k: string]: string;
     };
   };
@@ -1622,9 +1642,19 @@ export interface CourseNames2 {
      */
     readonly course: string;
     /**
+     * One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.
+     */
+    readonly blurb?: string;
+    /**
      * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
      */
     readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+    /**
+     * For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages.
+     */
+    readonly hints?: {
       readonly [k: string]: string;
     };
   };

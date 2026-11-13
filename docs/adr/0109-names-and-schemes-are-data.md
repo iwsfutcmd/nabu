@@ -26,20 +26,28 @@ The 2026-11 review found two ways a new course or script meant editing shared co
 ## Decision
 
 **Names are course data.** `course.yaml` gives `names`, by the language they are written in (a
-BCP 47 tag): the course's name and, for each orthography it teaches, the orthography's.
+BCP 47 tag): the course's name and, for each orthography it teaches, the orthography's, with the
+lines the course list says of them: a `blurb` on what the course teaches and, for a course in
+several orthographies, a `hint` on what choosing each means.
 
 ```yaml
 names:
   en:
     course: Lebanese Arabic
+    blurb: "The Arabic of Lebanon, as people speak it every day."
     orthographies:
       apc-Arab/standard: Arabic script
       apc-Latn/arabizi: "Arabizi (Latin letters and numbers)"
+    hints:
+      apc-Latn/arabizi: "Latin letters and digits, as many Lebanese write in messages."
 ```
 
 - The compiler copies them into the manifest and the bundles' `index.json`, so a list of courses
   names each before loading it. Lint `course.names` (warning): no name in a support language, or a
-  name for an orthography the course does not teach.
+  name or hint for an orthography the course does not teach.
+- Blurbs and hints came in as app messages (`course.blurb.*`, `orthography.hint.*`) while this was
+  under way; no catalog had translated them, so they moved into the courses and left the catalog
+  (`courseBlurb`, `orthographyHint` in `@nabu/i18n`).
 - Names are plain text, not MF2 messages: the UI places them in its own messages (`$language`).
   A language that needs a name inflected can add a form to the schema then.
 - One lookup, `courseName` and `orthographyName` in `@nabu/i18n`, for the app, the landing page

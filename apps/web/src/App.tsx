@@ -39,7 +39,7 @@ import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
-import { courseName, directionOf, orthographyName, type Named } from "@nabu/i18n";
+import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
@@ -172,9 +172,6 @@ interface GameProps {
   readonly gameConfig: GameConfig | null;
 }
 
-/** A message the catalog may have for an id (a course's blurb, a writing system's hint), else none. */
-const optional = (t: Translator, key: string): string | undefined => (t.has(key) ? t.format(key) : undefined);
-
 /** What a course's card says of its size and levels, from the bundles (vite-courses.ts). */
 const aboutCourse = (t: Translator, id: string): string | undefined => {
   const summary = summaries[id];
@@ -199,7 +196,7 @@ const leavesOut = (id: string): "app.home.course.reading" | "app.home.course.no-
 const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Element => {
   const t = useTranslator();
   const [first] = entry.orthographies;
-  const blurb = optional(t, `course.blurb.${entry.id}`);
+  const blurb = courseBlurb(t, entry);
   const about = aboutCourse(t, entry.id);
   const leaves = leavesOut(entry.id);
   return (
@@ -232,7 +229,7 @@ const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Elemen
           <p className={styles.muted}>{t.format("app.home.writing-switch")}</p>
           <div className={styles.links}>
             {entry.orthographies.map((o) => {
-              const hint = optional(t, `orthography.hint.${slug(o)}`);
+              const hint = orthographyHint(t, entry, o);
               return (
                 <a key={o} className={`${styles.link} ${styles.scriptLink}`} href={href({ tag: "course", course: entry.id, orthography: o })} data-orthography={o}>
                   <span>{orthographyName(t, entry, o)}</span>

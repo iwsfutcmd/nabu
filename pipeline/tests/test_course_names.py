@@ -20,7 +20,7 @@ COURSES = sorted(p.parent.name for p in (ROOT / "courses").glob("*/course.yaml")
 def test_every_course_names_itself_in_english(course: str) -> None:
     source = yaml.safe_load((ROOT / "courses" / course / "course.yaml").read_text(encoding="utf-8"))
     english = source["names"]["en"]
-    assert english["course"]
+    assert english["course"] and english["blurb"]
     assert sorted(english.get("orthographies", {})) == sorted(source["orthographies"])
 
 

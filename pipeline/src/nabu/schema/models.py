@@ -540,6 +540,9 @@ type Names = Annotated[
 type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
+type HintsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
 class CourseNames1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -552,10 +555,23 @@ class CourseNames1(BaseModel):
             min_length=1,
         ),
     ]
+    blurb: Annotated[
+        str | None,
+        Field(
+            description="One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.",
+            min_length=1,
+        ),
+    ] = None
     orthographies: Annotated[
         dict[OrthographyId, OrthographiesAdditionalProperty] | None,
         Field(
             description="Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers)."
+        ),
+    ] = None
+    hints: Annotated[
+        dict[OrthographyId, HintsAdditionalProperty] | None,
+        Field(
+            description="For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages."
         ),
     ] = None
 
@@ -563,7 +579,7 @@ class CourseNames1(BaseModel):
 type CourseNames = Annotated[
     dict[LangTag, CourseNames1],
     Field(
-        description="What the app calls a course and the orthographies it teaches, by the language the names are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows the names in the UI language where the course gives them.",
+        description="What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.",
         examples=[
             {
                 "en": {

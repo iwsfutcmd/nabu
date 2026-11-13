@@ -8,13 +8,18 @@ id: tok
 target: tok-Latn
 orthographies: [tok-Latn/standard, tok-Qaap/sitelen-pona]
 support: [en-Latn/standard]
-# What the app calls the course and its orthographies, by language (ADR 0109).
+# What the app calls the course and its orthographies, and what the course list says of them, by
+# language (ADR 0109).
 names:
   en:
     course: Toki Pona
+    blurb: "A small language of a little over a hundred words, in Latin letters or in its own signs."
     orthographies:
       tok-Latn/standard: "Latin letters (sitelen Lasina)"
       tok-Qaap/sitelen-pona: "sitelen pona (logographs)"
+    hints:
+      tok-Latn/standard: "The usual way to write Toki Pona."
+      tok-Qaap/sitelen-pona: "Toki Pona's own script: one sign for each word."
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@tok-draft-v1', status: draft}
 # A Toki Pona sentence is short and every word is a KC: a sentence may bring in two new words.

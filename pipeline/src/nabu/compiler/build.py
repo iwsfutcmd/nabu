@@ -972,7 +972,7 @@ def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm)
 
 def _names(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
     """What the app calls the course (ADR 0109): a name in each support language, so no UI needs a
-    message for it, and orthography names only for orthographies the course teaches."""
+    message for it, and orthography names and hints only for orthographies the course teaches."""
     names = course.names or {}
     for support in course.support:
         language = ctx.profiles[support].lang.split("-")[0]
@@ -984,13 +984,14 @@ def _names(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
                 doc.loc("names") if names else doc.loc("support"),
             )
     for tag, named in names.items():
-        for orth in named.orthographies or {}:
-            if orth not in course.orthographies:
-                ctx.diags.report(
-                    "course.names",
-                    f"names.{tag} names {orth}, which the course does not teach",
-                    doc.loc("names", tag, "orthographies", orth),
-                )
+        for key, given in (("orthographies", named.orthographies), ("hints", named.hints)):
+            for orth in given or {}:
+                if orth not in course.orthographies:
+                    ctx.diags.report(
+                        "course.names",
+                        f"names.{tag}.{key} names {orth}, which the course does not teach",
+                        doc.loc("names", tag, key, orth),
+                    )
 
 
 def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:

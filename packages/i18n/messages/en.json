@@ -1222,42 +1222,6 @@
       "message": "Word ({$orthography})",
       "description": "Label of the field holding the word in one orthography. $orthography is that orthography's name (a course can be taught in several)."
     },
-    "course.blurb.apc": {
-      "message": "The Arabic of Lebanon, as people speak it every day.",
-      "description": "One line under the Lebanese Arabic course's name in the course list: what the course teaches."
-    },
-    "course.blurb.es": {
-      "message": "Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start.",
-      "description": "One line under the Cuban Spanish course's name in the course list: the Spanish of Cuban families, for heritage speakers (who grew up hearing it), though it starts from the beginning."
-    },
-    "course.blurb.fa": {
-      "message": "The Persian of Iran, in its own script.",
-      "description": "One line under the Persian course's name in the course list: what the course teaches."
-    },
-    "course.blurb.grc": {
-      "message": "The Greek of classical Athens, learned through passages of ancient authors.",
-      "description": "One line under the Ancient Greek course's name in the course list: Attic Greek, each unit reading a passage of an ancient author."
-    },
-    "course.blurb.hbo": {
-      "message": "The Hebrew of the Bible, with its vowel points, learned through its own passages.",
-      "description": "One line under the Biblical Hebrew course's name in the course list: each unit reads a Bible passage, written with the Tiberian vowel points."
-    },
-    "course.blurb.lzh": {
-      "message": "The written language of the Chinese classics, learned through their own passages.",
-      "description": "One line under the Classical Chinese course's name in the course list: each unit reads a passage of the classics."
-    },
-    "course.blurb.tok": {
-      "message": "A small language of a little over a hundred words, in Latin letters or in its own signs.",
-      "description": "One line under the Toki Pona course's name in the course list: a constructed language with about 120 words, written with the Latin alphabet or sitelen pona."
-    },
-    "course.blurb.uz": {
-      "message": "The Uzbek of Uzbekistan, in Latin or Cyrillic letters.",
-      "description": "One line under the Uzbek course's name in the course list: what the course teaches."
-    },
-    "course.blurb.yue": {
-      "message": "Cantonese as Hong Kong speaks it, with Jyutping to help you read.",
-      "description": "One line under the Cantonese course's name in the course list: Hong Kong Cantonese in Traditional characters, with Jyutping readings over the characters."
-    },
     "course.name.apc": {
       "message": "Lebanese Arabic",
       "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
@@ -1817,30 +1781,6 @@
     "orthography.hbo-Hebr.tiberian": {
       "message": "Hebrew script, Tiberian pointing",
       "description": "Name of the Biblical Hebrew orthography: the Hebrew letters with the Tiberian vowel points (niqqud), as in the Masoretic text. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.hint.apc-Arab.standard": {
-      "message": "Arabic letters, right to left, with vowel marks to help you read.",
-      "description": "Under the name of Lebanese Arabic's Arabic-script writing system in the course list: what choosing it means."
-    },
-    "orthography.hint.apc-Latn.arabizi": {
-      "message": "Latin letters and digits, as many Lebanese write in messages.",
-      "description": "Under the name of Arabizi in the course list: Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع), as in text messages."
-    },
-    "orthography.hint.tok-Latn.standard": {
-      "message": "The usual way to write Toki Pona.",
-      "description": "Under the name of Toki Pona's Latin writing system (sitelen Lasina) in the course list."
-    },
-    "orthography.hint.tok-Qaap.sitelen-pona": {
-      "message": "Toki Pona's own script: one sign for each word.",
-      "description": "Under the name of sitelen pona in the course list: Toki Pona's logographic script."
-    },
-    "orthography.hint.uz-Cyrl.standard": {
-      "message": "The older alphabet, still widely read.",
-      "description": "Under the name of the Uzbek Cyrillic writing system in the course list."
-    },
-    "orthography.hint.uz-Latn.standard": {
-      "message": "The official alphabet in Uzbekistan today.",
-      "description": "Under the name of the Uzbek Latin writing system in the course list."
     },
     "orthography.lzh-Hant.standard": {
       "message": "Traditional characters",
