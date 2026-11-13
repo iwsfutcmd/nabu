@@ -278,7 +278,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   A scored speaking card (speak, listen-speak) can be claimed right ("I said it right", ADR 0052): the claim's
   text is the prompt sentence, never what was heard; `nabu reports promote` skips it.
 - `speak`/`listen-speak` replace tier 0 only with SpeechSupport (speechSupportOf); `tone-identify` needs a one-syllable
-  clip. Speech never changes a lesson's length (the planner's size, golden files): scored speaking takes tier 0's place.
+  clip a person confirmed (`confirmed` in the bundle: a recording, or a synthetic clip a listener marked right in the
+  audio check; never TTS alone, ADR 0125), and a lesson that can make one plans one. Speech never changes a lesson's
+  length (the planner's size, golden files): scored speaking takes tier 0's place.
 - `pnpm --filter @nabu/core tone-eval [set]` reports per-tone accuracy; evals/tones/synthetic-espeak is synthetic.
 - Speech e2e uses Chromium's fake microphone (tests/e2e/fixtures); speech service tests need NABU_SPEECH=1.
 
