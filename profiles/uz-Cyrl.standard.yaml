@@ -27,3 +27,7 @@ input:
   extraKeys: ["\u045E", "\u049B", "\u0493", "\u04B3"]
 layout: { vertical: none }
 transliterate: { to: uz-Latn/standard, via: cldr-transform }
+# What the speech service scores (ADR 0116). REVIEW: per-language choices, to revisit with recorded learners.
+# Nothing: Whisper writes Uzbek in Latin letters, so a transcript cannot be graded in Cyrillic.
+speech:
+  tiers: []

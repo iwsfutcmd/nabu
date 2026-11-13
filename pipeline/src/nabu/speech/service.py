@@ -1,7 +1,12 @@
 """The speech service (gameplan §10.4, tiers 1 and 2), for the API to call.
 
-Tier 1: were the right words said? faster-whisper transcribes the recording in the course's
-language. It is never prompted with the expected sentence, which would bias it towards
+What to score and how is the orthography's profile's to say (`speech`, ADR 0116); the API sends
+it with the request, from the course's bundle. The request names the speech's language (apc,
+yue), and the service hears it as the recognizer and eSpeak NG can: a language they have no model
+for, as its macrolanguage (apc as ar). A fine-tuned recognizer is loaded only if a profile names it.
+
+Tier 1: were the right words said? faster-whisper (or the profile's fine-tune of it) transcribes
+the recording. It is never prompted with the expected sentence, which would bias it towards
 accepting (§10.4). The API grades the transcript against the sentence's accept set.
 
 Tier 2: which phones were wrong? The wav2vec2 phone recognizer's output is aligned to the
@@ -23,6 +28,10 @@ from dataclasses import dataclass
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 
+from pydantic import ValidationError
+
+from nabu.speech.setup import Recognizer, fine_tunes, heard_as, recognizer_from
+
 MAX_SECONDS = 30
 """Longest recording accepted (16-bit mono)."""
 
@@ -31,11 +40,20 @@ MAX_SECONDS = 30
 class Request:
     pcm: bytes
     sample_rate: int
+    #: The speech's language (the profile's: apc, yue), which tools without it hear as its
+    #: macrolanguage.
     language: str
     tokens: list[dict[str, Any]]
     reading: str | None
+    #: The eSpeak NG voice for expected phones; None: the language's.
     voice: str | None
     tiers: tuple[int, ...]
+    #: Who hears it: the profile's recognizer, else Whisper in `language`.
+    recognizer: Recognizer | None = None
+
+    @property
+    def heard_by(self) -> Recognizer:
+        return self.recognizer or Recognizer(self.language)
 
 
 def align(heard: list[str], expected: list[tuple[int, str]]) -> tuple[float, list[int]]:
@@ -93,15 +111,24 @@ def score(request: Request) -> dict[str, Any]:
         from nabu.audio.qa import transcribe
 
         clip = Clip(pcm=request.pcm, sample_rate=request.sample_rate, words=None, trace=None)
-        out["transcript"] = transcribe(clip, request.language)
-    if 2 in request.tiers and request.voice is not None:
+        out["transcript"] = transcribe(clip, request.heard_by)
+    if 2 in request.tiers:
+        from nabu.audio import espeak
         from nabu.audio.phones import recognize
 
+        voice = request.voice or heard_as(request.language, espeak.has_voice)
         heard = recognize(request.pcm, request.sample_rate)
-        expected = expected_by_token(request.tokens, request.reading, request.voice)
+        expected = expected_by_token(request.tokens, request.reading, voice)
         rate, off = align(heard, expected)
         out["phones"] = {"errorRate": round(rate, 4), "offTokens": off, "heard": heard}
     return out
+
+
+def _optional_str(data: dict[str, Any], key: str) -> str | None:
+    value = data.get(key)
+    if value is not None and not isinstance(value, str):
+        raise ValueError(f"{key}: a string")
+    return value
 
 
 def parse(body: bytes) -> Request:
@@ -111,14 +138,23 @@ def parse(body: bytes) -> Request:
     if not 8000 <= rate <= 48000 or len(pcm) % 2 or len(pcm) > MAX_SECONDS * rate * 2:
         raise ValueError("audio: 16-bit mono, 8–48 kHz, at most 30 s")
     tiers = tuple(int(t) for t in data.get("tiers", [1, 2]) if int(t) in (1, 2))
+    language = str(data["language"])
+    setup = data.get("recognizer")
+    try:
+        by = None if setup is None else recognizer_from(language, setup)
+    except ValidationError as error:
+        raise ValueError(f"recognizer: {error}") from None
+    if by is not None and by.model is not None and by.model not in fine_tunes():
+        raise ValueError("recognizer: a fine-tune no profile names")
     return Request(
         pcm=pcm,
         sample_rate=rate,
-        language=str(data["language"]),
+        language=language,
         tokens=list(data.get("tokens", [])),
-        reading=data.get("reading"),
-        voice=data.get("voice"),
+        reading=_optional_str(data, "reading"),
+        voice=_optional_str(data, "voice"),
         tiers=tiers,
+        recognizer=by,
     )
 
 

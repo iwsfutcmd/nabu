@@ -9,14 +9,16 @@ sentence (no prompt), so it cannot simply agree.
 The recognizer runs on a GPU when CTranslate2 can use one (float16), else on the CPU (int8); the
 two can differ on a borderline clip, never by much.
 
-Cantonese (ADR 0094) is heard by a Whisper fine-tuned on it: Whisper's own writes Cantonese as
-written Mandarin (佢係我媽媽 as 她是我妈妈). Its characters are compared by reading where they
-differ, since a transcript cannot tell homophones and spellings apart (搭 and 答, 呀 and 啊, 喺 and
-係): a character said alike is no error, one that differs only in its tone half an error, and any
-other a whole one. So a lone word heard as a homophone of another tone goes to the review queue,
-not out of the course; a listener decides it in the audio check. That holds for any language a
-reading scheme reads the characters of (nabu.schemes `reader`: Jyutping's data says it writes
-yue, and its plug-in reads characters).
+Who hears a course's clips is its orthography's profile's to say (`speech.recognizer`, ADR 0116):
+Whisper in the profile's language, which Whisper hears as its macrolanguage when it has none for
+it (Lebanese Arabic as Arabic), or a fine-tune. Cantonese (ADR 0094) is heard by a Whisper
+fine-tuned on it: Whisper's own writes Cantonese as written Mandarin (佢係我媽媽 as 她是我妈妈). Its
+characters are compared by reading where they differ, since a transcript cannot tell homophones
+and spellings apart (搭 and 答, 呀 and 啊, 喺 and 係): a character said alike is no error, one that
+differs only in its tone half an error, and any other a whole one. So a lone word heard as a
+homophone of another tone goes to the review queue, not out of the course; a listener decides it
+in the audio check. That holds for any language a reading scheme reads the characters of
+(nabu.schemes `reader`: Jyutping's data says it writes yue, and its plug-in reads characters).
 """
 
 from __future__ import annotations
@@ -35,17 +37,12 @@ import regex
 from nabu.audio.phones import optional, to_16k
 from nabu.audio.providers import Clip
 from nabu.schemes import plugins, reader, toneless
+from nabu.speech.setup import Recognizer, heard_as
 
 ASR_MODEL = "large-v3-turbo"
 PASS = 0.15
 REVIEW = 0.5
 _KEEP = regex.compile(r"[\p{L}\p{M}\p{N}]")
-
-#: Recognizers for languages Whisper's own does not write: (Hugging Face repo, pinned revision,
-#: the Whisper language token it was tuned with). Apache-2.0; used to check clips, never shipped.
-FINE_TUNED: dict[str, tuple[str, str, str]] = {
-    "yue": ("alvanlii/whisper-small-cantonese", "b03a4e5d482f06858ce10ebbabebabec9f447a0d", "zh"),
-}
 
 
 #: What CTranslate2 needs for a GPU besides the driver (its CUDA runtime is built in): cuBLAS 12,
@@ -99,20 +96,29 @@ def recognizer() -> Any:
 
 
 @cache
-def fine_tuned(language: str) -> tuple[Any, Any, str]:
-    """The language's fine-tuned Whisper (transformers): processor, model and device."""
+def fine_tuned(model: str) -> tuple[Any, Any, str]:
+    """A Whisper fine-tune ("repo@revision", transformers): processor, model and device."""
     transformers, torch = optional("transformers"), optional("torch")
-    repo, revision, _token = FINE_TUNED[language]
+    repo, revision = model.split("@")
     processor = transformers.WhisperProcessor.from_pretrained(repo, revision=revision)
-    model = transformers.WhisperForConditionalGeneration.from_pretrained(repo, revision=revision)
+    tuned = transformers.WhisperForConditionalGeneration.from_pretrained(repo, revision=revision)
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    return processor, model.to(device).eval(), device
+    return processor, tuned.to(device).eval(), device
 
 
-def model_name(language: str) -> str:
-    """The recognizer a language's clips are checked with, as the index records it."""
-    tuned = FINE_TUNED.get(language)
-    return f"whisper-{ASR_MODEL}" if tuned is None else f"{tuned[0]}@{tuned[1][:12]}"
+def model_name(by: Recognizer) -> str:
+    """The recognizer clips are checked with, as the index records it."""
+    if by.model is None:
+        return f"whisper-{ASR_MODEL}"
+    repo, revision = by.model.split("@")
+    return f"{repo}@{revision[:12]}"
+
+
+def whisper_language(language: str) -> str:
+    """The language Whisper's own hears `language` as: itself where Whisper has it, else the
+    macrolanguage that encompasses it (apc → ar)."""
+    known = frozenset(recognizer().supported_languages)
+    return heard_as(language, known.__contains__)
 
 
 def graphemes(text: str) -> list[str]:
@@ -160,34 +166,33 @@ def status(rate: float) -> str:
     return "pass" if rate <= PASS else "review" if rate <= REVIEW else "fail"
 
 
-def transcribe(clip: Clip, language: str) -> str:
-    if language in FINE_TUNED:
-        processor, model, device = fine_tuned(language)
+def transcribe(clip: Clip, by: Recognizer) -> str:
+    """What the recognizer hears in the clip, never told what it should say (no prompt)."""
+    if by.model is not None:
+        processor, model, device = fine_tuned(by.model)
         features = processor(
             to_16k(clip.pcm, clip.sample_rate), sampling_rate=16_000, return_tensors="pt"
         ).input_features.to(device)
         with optional("torch").no_grad():
-            ids = model.generate(
-                features, language=FINE_TUNED[language][2], task="transcribe", max_new_tokens=128
-            )
+            ids = model.generate(features, language=by.token, task="transcribe", max_new_tokens=128)
         return str(processor.batch_decode(ids, skip_special_tokens=True)[0]).strip()
     segments, _info = recognizer().transcribe(
         to_16k(clip.pcm, clip.sample_rate),
-        language=language,
+        language=whisper_language(by.language),
         beam_size=5,
         condition_on_previous_text=False,
     )
     return "".join(str(s.text) for s in segments).strip()
 
 
-def round_trip(clip: Clip, expected: str, language: str) -> dict[str, Any]:
-    heard = transcribe(clip, language)
+def round_trip(clip: Clip, expected: str, by: Recognizer) -> dict[str, Any]:
+    heard = transcribe(clip, by)
     # Characters are compared by reading where a reading scheme of the language reads them.
-    scheme = reader(language)
+    scheme = reader(by.language)
     rate = cer(heard, expected) if scheme is None else reading_error_rate(heard, expected, scheme)
     rate = round(rate, 3)
     return {
-        "asrModel": model_name(language),
+        "asrModel": model_name(by),
         "asrText": heard,
         "cer": rate,
         "status": status(rate),

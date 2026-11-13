@@ -16,10 +16,20 @@ from nabu.schema.models import AudioVoice
 
 app = typer.Typer(no_args_is_help=True, add_completion=False, help="A course's audio clips.")
 
-#: Whisper language codes of the fixture courses' targets.
-ASR_LANGUAGE = {"fa": "fa", "yue": "yue", "uz": "uz", "apc": "ar"}
-#: eSpeak NG voices for forced alignment where the course voice is not eSpeak's.
-ESPEAK_VOICE = {"apc": "ar"}
+
+def _heard(source: Any) -> str:
+    """The orthography the course's clips say: its voices' (each reads one), else its first."""
+    voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
+    return voices[0].orthography if voices else str(source.orthographies[0])
+
+
+def phonemes_of(orthography: str) -> str:
+    """The eSpeak NG voice whose phonemes stand for an orthography's spelling (ADR 0116): its
+    profile's, or its language's, or the macrolanguage's (apc is read as ar)."""
+    from nabu.audio import espeak
+    from nabu.speech.setup import espeak_voice_of, profiles
+
+    return espeak_voice_of(profiles()[orthography], espeak.has_voice)
 
 
 def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
@@ -37,14 +47,16 @@ def _compiled(course: Path) -> tuple[Path, Any, list[dict[str, Any]], Written]:
     return course_dir, compiled.course, compiled.units, compiled.written
 
 
-def _round_trip(source: Any) -> Callable[[Item, Clip], dict[str, Any]]:
-    """The round-trip check for the course's language (nabu.audio.qa)."""
+def round_trip_of(source: Any) -> Callable[[Item, Clip], dict[str, Any]]:
+    """The round-trip check, by the recognizer of the orthography the clips say (its profile's
+    `speech.recognizer`, ADR 0116; nabu.audio.qa)."""
     from nabu.audio.qa import round_trip
+    from nabu.speech.setup import profiles, recognizer_of
 
-    language: str = ASR_LANGUAGE.get(source.id) or str(source.target).split("-")[0]
+    by = recognizer_of(profiles()[_heard(source)])
 
     def round_trip_check(item: Item, clip: Clip) -> dict[str, Any]:
-        return round_trip(clip, item.expected, language)
+        return round_trip(clip, item.expected, by)
 
     return round_trip_check
 
@@ -85,7 +97,7 @@ def generate(
     if voice_id is not None and all(v.id != voice_id for v in audio.voices):
         typer.echo(f"✗ {source.id}: no voice {voice_id!r} in the cast", err=True)
         raise typer.Exit(code=1)
-    checker = _round_trip(source) if check else None
+    checker = round_trip_of(source) if check else None
     try:
         report = synthesize_course(course_dir, units, audio.voices, checker, written, voice_id)
     except (MissingKey, ProviderError, ValueError) as error:
@@ -266,7 +278,8 @@ def align(
     """Word timings by forced alignment for clips their voice gave none (speech group).
 
     OmniVoice, Navoiy and Piper report no word onsets; aligned, their sentences highlight word
-    by word and their words can be tapped. Phones come from eSpeak NG for the course's language.
+    by word and their words can be tapped. Phones come from eSpeak NG, in the voice the
+    orthography's profile names or its language's (ADR 0116).
     """
     from nabu.audio.course import align_course
 
@@ -276,7 +289,7 @@ def align(
     if voice is None:
         typer.echo(f"✗ {source.id}: no voice {voice_id or ''} in the cast", err=True)
         raise typer.Exit(code=1)
-    phonemes = ESPEAK_VOICE.get(source.id, str(source.target).split("-")[0])
+    phonemes = phonemes_of(voice.orthography)
     done = align_course(course_dir, units, voice, phonemes, written, voices=voices)
     typer.echo(f"✓ {source.id}: {done} clips aligned (eSpeak NG {phonemes} phones)")
 
@@ -294,7 +307,7 @@ def recheck(
 
     course_dir, source, units, written = _compiled(course)
     voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
-    counts = check_course(course_dir, units, voices, _round_trip(source), written)
+    counts = check_course(course_dir, units, voices, round_trip_of(source), written)
     by_status = dict(sorted(counts.items()))
     typer.echo(f"✓ {source.id}: {sum(counts.values())} clips checked {by_status}")
 
@@ -336,12 +349,8 @@ def ingest(
         if tokens is None or voice is None:
             typer.echo(f"✗ {item}: alignment needs a sentence and a course voice", err=True)
             raise typer.Exit(code=1)
-        # Phonemes come from eSpeak NG: the voice's own, or one for the course's language.
-        phonemes = (
-            voice.voice
-            if voice.provider == "espeak-ng"
-            else ESPEAK_VOICE.get(src.id, str(src.target).split("-")[0])
-        )
+        # Phonemes come from eSpeak NG: the voice's own, or the orthography's (ADR 0116).
+        phonemes = voice.voice if voice.provider == "espeak-ng" else phonemes_of(voice.orthography)
         alignment = (tokens, voice.reading, phonemes)
     entries = add(course_dir, Recording(item, file, license, author, source, status), alignment)
     typer.echo(f"✓ {item}: {len(entries)} clips ({license}, {author})")
