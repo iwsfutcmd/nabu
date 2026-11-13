@@ -70,9 +70,10 @@ const useClockTurns = (): number => {
 };
 
 /**
- * Recomputes the game state whenever `version` changes (an event was recorded or pulled), when
- * the page is shown again, and when the local date changes: a page left open overnight shows the
- * new day (the streak, today's quests, the gate) without a new event.
+ * Recomputes the game state whenever `version` changes (an event that changes it was recorded, events
+ * were pulled, another screen opened), when the page is shown again, and when the local date changes:
+ * a page left open overnight shows the new day (the streak, today's quests, the gate) without a new
+ * event. It reads the whole log, so the app does not change `version` for each answer (R1).
  */
 export const useGame = (store: EventStore | null, config: GameConfig | null, version: unknown): GameState | null => {
   const [state, setState] = useState<GameState | null>(null);
