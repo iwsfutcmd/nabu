@@ -75,7 +75,7 @@ import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx"
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
-import { nextStepOf, useSessionEnd } from "./session-end.ts";
+import { nextStepOf, practises, useSessionEnd } from "./session-end.ts";
 import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
@@ -1002,10 +1002,11 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
 
 /**
  * Where the end of a session goes next (P9): the course page's Continue (ADR 0105), worked out from
- * the learner state with the session in it, once it has ended. `facetsOff`: listening turned off
- * for good (D41), as on the course page.
+ * the learner state with the session in it, once it has ended; right after practice, the next lesson
+ * or story with more practice beside it (D34). `facetsOff`: listening turned off for good (D41), as on
+ * the course page.
  */
-const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>): NextStep | undefined => {
+const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void, facetsOff: ReadonlySet<Facet>, practised: boolean): NextStep | undefined => {
   const t = useTranslator();
   const going = useRef(go);
   going.current = go;
@@ -1014,8 +1015,8 @@ const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go:
     const orthography = course.orthography;
     const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
     const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
-    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, go: (to) => going.current(to), t });
-  }, [course, state, over, facetsOff, t]);
+    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), facetsOff, hrefOf, review, practised, go: (to) => going.current(to), t });
+  }, [course, state, over, facetsOff, practised, t]);
 };
 
 const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, gameConfig, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
@@ -1055,7 +1056,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
   const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, facetsOff, t });
-  const next = useNextStep(course, state, routing.over, routing.to, facetsOff);
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises(request.mode));
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   // Nothing plays by itself with sound off or listening put off (P6).
@@ -1178,7 +1179,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   });
   // Its end (P9): what it changed, from the log with it against without it, and where to go next.
   const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, facetsOff, t });
-  const next = useNextStep(course, state, routing.over, routing.to, facetsOff);
+  const next = useNextStep(course, state, routing.over, routing.to, facetsOff, practises("story"));
   const grader = useMemo(() => createGrader(course), [course]);
   // Nothing plays by itself with sound off or listening put off (P6).
   const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());

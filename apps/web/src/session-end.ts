@@ -7,12 +7,13 @@
  * the goal, quests, achievements, XP). "Without it" leaves out the session's own events, so a session
  * picked up after a reload counts whole, and nothing is kept beside the log. The next step is the
  * course page's Continue (ADR 0105): the next lesson or story, or practice first, with a new lesson
- * always on offer beside it (D6).
+ * always on offer beside it (D6). Right after practice it is the next lesson or story, whatever
+ * Continue says, with more practice beside it (D34).
  */
 import { daysThisWeek, type GameConfig, type GameState } from "@nabu/core/game";
 import { continueOf, DESIRED_RETENTION, learnedWords, paceOf, pathNodes, replay, type LearnerState, type PaceChoice, type PathNode } from "@nabu/core/learner";
 import type { CourseView, Facet } from "@nabu/core/lesson";
-import type { LearnerEvent } from "@nabu/schema";
+import type { LearnerEvent, SessionCompleted } from "@nabu/schema";
 import type { useTranslator } from "@nabu/ui";
 import type { NextStep, NextTo, SessionProgress } from "@nabu/ui/player";
 import { useEffect, useMemo, useState } from "react";
@@ -84,6 +85,9 @@ export const progressOf = ({ course, before, after, config, now, firstDay, place
 const nextTo = (course: CourseView, node: PathNode): NextTo =>
   node.kind === "story" ? { kind: "story" } : { kind: "lesson", number: pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === node.node) + 1 };
 
+/** Whether a session of this mode is practice: review, mistakes, any mode but a lesson, a story or a placement test (D34). */
+export const practises = (mode: SessionCompleted["mode"]): boolean => mode !== "lesson" && mode !== "story" && mode !== "placement";
+
 export interface NextInput {
   readonly course: CourseView;
   readonly state: LearnerState;
@@ -95,23 +99,31 @@ export interface NextInput {
   /** Where a node is played, and practice. */
   readonly hrefOf: (node: PathNode) => string;
   readonly review: string;
+  /** The session that ended was practice (`practises`): the next lesson comes first (D34). */
+  readonly practised: boolean;
   /** Leaves the session's screen for another (navigation.ts). */
   readonly go: (to: string) => void;
   readonly t: Translator;
 }
 
-/** The next step, as the course page's Continue has it (ADR 0105); none once the path is done and nothing is due. */
-export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf, review, go, t }: NextInput): NextStep | undefined => {
+/**
+ * The next step: what the course page's Continue has (ADR 0105), but right after practice the next
+ * lesson or story on the path, whatever Continue says, with more practice beside it (D34). None once
+ * the path is done and nothing is due. `facetsOff`: listening turned off for good (D41).
+ */
+export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf, review, practised, go, t }: NextInput): NextStep | undefined => {
   const pace = paceOf(course, state, now.toISOString(), choice, facetsOff);
   const next = continueOf(course, state, pace);
   if (next.kind === "done") return undefined;
+  const practice = { to: { kind: "practice" }, go: () => go(review) } as const;
+  // The next node on the path, whether Continue offers it first or beside practice.
+  const node = next.next;
+  if (practised && node !== undefined) return { to: nextTo(course, node), go: () => go(hrefOf(node)), beside: practice };
   if (next.kind === "path") return { to: nextTo(course, next.next), go: () => go(hrefOf(next.next)) };
-  const anyway = next.next;
   return {
-    to: { kind: "practice" },
-    go: () => go(review),
+    ...practice,
     why: t.format("app.pace.why.slipping", { count: pace.slipping }),
-    ...(anyway === undefined ? {} : { anyway: { to: nextTo(course, anyway), go: () => go(hrefOf(anyway)) } }),
+    ...(node === undefined ? {} : { beside: { to: nextTo(course, node), go: () => go(hrefOf(node)) } }),
   };
 };
 

@@ -172,11 +172,23 @@ describe("the end of a lesson (P9)", () => {
     expect(footer.indexOf('data-action="exit"')).toBeLessThan(footer.indexOf('data-action="next"'));
     expect(footer).toMatch(/data-action="next"[^>]*aria-describedby="[^"]+-title [^"]+-score"/u);
     // Practice first: why, and a new lesson all the same (D6).
-    const practice: NextStep = { to: { kind: "practice" }, go: () => undefined, why: "12 words are slipping.", anyway: { to: { kind: "story" }, go: () => undefined } };
+    const practice: NextStep = { to: { kind: "practice" }, go: () => undefined, why: "12 words are slipping.", beside: { to: { kind: "story" }, go: () => undefined } };
     const first = show(end, { next: practice });
     expect(first).toContain('data-end-why="">12 words are slipping.<');
     expect(first).toMatch(/data-action="next-anyway" data-next="story"[^>]*>New lesson anyway</u);
     expect(first).toMatch(/data-action="next" data-next="practice"[^>]*>Practise first/u);
+    expect(first).not.toContain('data-action="more-practice"');
+    // Right after practice: the next lesson first, more practice beside it, and no why (D34).
+    const practised: NextStep = { to: { kind: "lesson", number: 4 }, go: () => undefined, beside: { to: { kind: "practice" }, go: () => undefined } };
+    const after = show(end, { next: practised });
+    expect(after).toMatch(/data-action="more-practice" data-next="practice"[^>]*>Keep practising</u);
+    expect(after).toMatch(/data-action="next" data-next="lesson 4"[^>]*>Next: Lesson 4/u);
+    expect(after).not.toContain("data-end-why");
+    expect(after).not.toContain('data-action="next-anyway"');
+    // The next step is still the screen's primary action, last in the footer, after the way back.
+    const afterFooter = after.slice(after.indexOf("<footer"));
+    expect(afterFooter).not.toContain('data-action="more-practice"');
+    expect(afterFooter.indexOf('data-action="exit"')).toBeLessThan(afterFooter.indexOf('data-action="next"'));
     // No next step (the path done, nothing due): Continue goes back, as before.
     const done = show(end).slice(show(end).indexOf("<footer"));
     expect(done).toMatch(/data-action="exit"[^>]*>Continue/u);

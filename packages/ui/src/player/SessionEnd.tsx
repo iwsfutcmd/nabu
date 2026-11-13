@@ -12,7 +12,8 @@
  * - Your progress: what the app works out from the log (words now known, a unit finished, the streak,
  *   the week's practice days, quests done, achievements), then the XP.
  * - Next: what the course page's Continue offers (ADR 0105): the next lesson or story, or practice
- *   first with a new lesson beside it (D6); and back to the course.
+ *   first with a new lesson beside it (D6); right after practice, the next lesson or story with more
+ *   practice beside it (D34); and back to the course.
  *
  * Focus goes to the next step without scrolling to it, and the screen starts at its title: a screen
  * reader hears the title and the score with the button (its description), and a stray Enter does
@@ -33,13 +34,20 @@ import styles from "./Player.module.css";
 /** Where the next step goes: a lesson (its number on the path), the unit's story, or practice first. */
 export type NextTo = { readonly kind: "lesson"; readonly number: number } | { readonly kind: "story" } | { readonly kind: "practice" };
 
-/** The next step, as the course page's Continue has it (ADR 0105); the app works it out and goes there. */
+/**
+ * The next step, as the course page's Continue has it (ADR 0105), or the next lesson right after
+ * practice (D34); the app works it out and goes there.
+ */
 export interface NextStep {
   readonly to: NextTo;
   readonly go: () => void;
-  /** With practice first: why (the words slipping), and the next lesson, always on offer beside it (D6). */
+  /** With practice first: why (the words slipping). */
   readonly why?: string | undefined;
-  readonly anyway?: { readonly to: NextTo; readonly go: () => void } | undefined;
+  /**
+   * The other way on, offered beside it: the next lesson where practice comes first (always on
+   * offer, D6), or more practice where the next lesson comes first right after practice (D34).
+   */
+  readonly beside?: { readonly to: NextTo; readonly go: () => void } | undefined;
 }
 
 /** A quest or achievement the session completed, as the app names it. */
@@ -304,11 +312,17 @@ export const SessionEnd = (props: SessionEndProps): JSX.Element => {
           {next.why}
         </p>
       )}
-      {next?.anyway !== undefined && (
+      {next?.beside !== undefined && (
         <p className={styles.putOff}>
-          <Button className={styles.textButton} onPress={next.anyway.go} data-action="next-anyway" data-next={dataOf(next.anyway.to)}>
-            {t.format("player.end.next.anyway")}
-          </Button>
+          {next.beside.to.kind === "practice" ? (
+            <Button className={styles.textButton} onPress={next.beside.go} data-action="more-practice" data-next={dataOf(next.beside.to)}>
+              {t.format("player.end.next.more-practice")}
+            </Button>
+          ) : (
+            <Button className={styles.textButton} onPress={next.beside.go} data-action="next-anyway" data-next={dataOf(next.beside.to)}>
+              {t.format("player.end.next.anyway")}
+            </Button>
+          )}
         </p>
       )}
       <footer className={`${styles.footer} ${styles.endFooter}`}>

@@ -4,15 +4,19 @@
  * - A learner's first lesson, one card missed: the end lists it with the right answer and theirs,
  *   shows the lesson's new words with their meanings, says the streak started today, and offers
  *   the next lesson, which it opens.
+ * - Right after a review (D34): the next step is the next lesson or story on the path, with more
+ *   practice beside it, though Continue offered practice first.
  * - A wrong typed answer claimed right in its feedback: Continue no longer says wrong, the card does
  *   not come back (a reload in between changes nothing), and the session counts it right.
  */
+import { continueOf, paceOf, pathNodes, replay } from "@nabu/core/learner";
 import { allKcs, lessonNodes } from "@nabu/core/lesson";
 import { expect, test } from "@playwright/test";
 import { activate, answer, canMiss, expectRightAndContinue, graded, historyBefore, loadCourse, logOf, planned, playSession, seedLog, seriousAxeViolations, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
 const SEED = 11;
 const NOW = new Date("2026-03-10T09:00:00Z");
+const DAY = 86_400_000;
 
 test("the end of a lesson: what was missed, the new words, the streak, and the next lesson (P9)", async ({ page }, info) => {
   const mode = info.project.name as Mode;
@@ -58,6 +62,58 @@ test("the end of a lesson: what was missed, the new words, the streak, and the n
   if (opening === undefined) throw new Error("the second lesson has cards");
   await activate(page, mode, "[data-action=next]");
   await waitFor(page, opening);
+  expect(errors).toEqual([]);
+});
+
+test("right after a review, the next step is the path's next lesson or story, with more practice beside it (D34)", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  await page.clock.setFixedTime(NOW);
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const lessons = lessonNodes(course);
+  const node = lessons[Math.min(20, lessons.length - 1)]?.node.id;
+  if (node === undefined) throw new Error("fa has lessons");
+  // Lessons done a month ago and nothing since: their words have slipped, and Continue offers practice first.
+  const history = historyBefore(course, node, new Date(NOW.getTime() - 30 * DAY));
+  const before = replay(history);
+  expect(continueOf(course, before, paceOf(course, before, NOW.toISOString())).kind).toBe("practice");
+  await seedLog(page, history);
+  const request = { mode: "review" } as const;
+  const review = planned(course, history, request, NOW, SEED);
+  await page.goto(sessionUrl(course, request, SEED));
+  await playSession(page, review, "keyboard");
+
+  const end = page.locator('[data-lesson-player][data-state="finished"]');
+  await expect(end.locator("h2")).toHaveText("Review complete!");
+  // With the review in the log, Continue still offers practice first: many words are still slipping.
+  await expect.poll(async () => (await logOf(page, "fa")).some((e) => e.type === "session_completed" && e.mode === "review")).toBe(true);
+  const state = replay(await logOf(page, "fa"));
+  const continued = continueOf(course, state, paceOf(course, state, NOW.toISOString()));
+  if (continued.kind !== "practice" || continued.next === undefined) throw new Error(`Continue says ${continued.kind}`);
+  // Here the next node on the path is a unit's story, which the history's lessons left unread.
+  const to = continued.next;
+  const number = pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === to.node) + 1;
+
+  // The next lesson (or story) first, focused, whatever Continue says; more practice beside it, and no why.
+  const next = end.locator("[data-action=next]");
+  await expect(next).toHaveAttribute("data-next", to.kind === "story" ? "story" : `lesson ${number}`);
+  await expect(next).toBeFocused();
+  await expect(end.locator("[data-action=more-practice]")).toHaveText("Keep practising");
+  await expect(end.locator("[data-action=more-practice]")).toHaveAttribute("data-next", "practice");
+  await expect(end.locator("[data-end-why]")).toHaveCount(0);
+  await expect(end.locator("[data-action=next-anyway]")).toHaveCount(0);
+  await expect(end.locator("[data-action=exit]")).toHaveText("Back to the course");
+  expect(await seriousAxeViolations(page)).toEqual([]);
+
+  // It opens the next lesson or story.
+  await activate(page, "keyboard", "[data-action=next]");
+  if (to.kind === "story") await expect(page.locator("[data-story-reader]")).toBeVisible();
+  else {
+    const opening = planned(course, await logOf(page, "fa"), { mode: "lesson", node: to.node }, NOW, SEED)[0];
+    if (opening === undefined) throw new Error("the next lesson has cards");
+    await waitFor(page, opening);
+  }
   expect(errors).toEqual([]);
 });
 
