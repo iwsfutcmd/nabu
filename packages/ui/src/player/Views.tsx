@@ -32,7 +32,7 @@ import type {
   TranslateType,
 } from "@nabu/core/lesson";
 import { isCorrect } from "@nabu/core/lesson";
-import { calibrate, CANTONESE, DEVICE_TONE_SCORING, pitchTrack, scoreTones, toneSystemOf, type SpeechResult, type ToneScore } from "@nabu/core/speech";
+import { CANTONESE, hearOnDevice, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
 import { directionOf, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
@@ -821,21 +821,18 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
   const t = useTranslator();
   const services = useSpeech();
   const [scoring, setScoring] = useState<Scoring>("idle");
-  // Tones are not scored on the device (ADR 0093): the server's words and phones, if any, are the score.
-  const system = DEVICE_TONE_SCORING ? toneSystemOf(ex.prompt) : undefined;
   const recorder = useRecorder((audio: Decoded) => {
     setScoring("scoring");
     void (async () => {
-      const track = pitchTrack(audio.samples, audio.sampleRate);
-      const voiced = track.f0.filter((f) => f !== undefined).length;
-      const tone = system === undefined ? undefined : scoreTones(track, ex.prompt, system, services.calibration);
-      if (voiced < 10 || tone?.silent === true) {
-        setScoring(voiced < 10 ? "silent" : "partial");
+      // Voice or silence; tones and the pitch range only where the device scores them (off: ADR 0093).
+      const device = hearOnDevice(audio.samples, audio.sampleRate, ex.prompt, services.calibration);
+      if (device.tag !== "heard") {
+        setScoring(device.tag);
         return;
       }
       const server = services.score === undefined ? undefined : await toPcm16k(audio).then((pcm) => services.score?.(ex, pcm)).catch(() => undefined);
-      services.onCalibration?.(calibrate([track], services.calibration));
-      const result: SpeechResult = { silent: false, tone, words: server?.words, phones: server?.phones };
+      if (device.calibration !== undefined) services.onCalibration?.(device.calibration);
+      const result: SpeechResult = { silent: false, tone: device.tone, words: server?.words, phones: server?.phones };
       setScoring("idle");
       dispatch({ tag: "input", draft: { tag: "speech", result } });
       dispatch({ tag: "submit" });

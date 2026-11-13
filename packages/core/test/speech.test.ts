@@ -9,7 +9,22 @@ import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/index.ts";
 import { allSentences, createGrader, gradeExercise, seededRng } from "../src/lesson/index.ts";
 import { makeSpeakScored } from "../src/lesson/templates.ts";
-import { calibrate, CANTONESE, classify, decodeWav, evaluateTones, expectedSyllables, gradeSpeech, pitchTrack, scoreTones, semitones, syllableSpans, type PitchTrack } from "../src/speech/index.ts";
+import {
+  calibrate,
+  CANTONESE,
+  classify,
+  decodeWav,
+  DEVICE_TONE_SCORING,
+  evaluateTones,
+  expectedSyllables,
+  gradeSpeech,
+  hearOnDevice,
+  pitchTrack,
+  scoreTones,
+  semitones,
+  syllableSpans,
+  type PitchTrack,
+} from "../src/speech/index.ts";
 import { loadCourse } from "./learner-fixtures.ts";
 
 const RATE = 16_000;
@@ -160,6 +175,31 @@ describe("Cantonese tones", () => {
   it("says when there was nothing to hear", () => {
     const quiet: PitchTrack = pitchTrack(pcm(silence(800)), RATE);
     expect(scoreTones(quiet, SENTENCE, CANTONESE, calibration)).toMatchObject({ silent: true, calibrated: false });
+  });
+
+  describe("on the device", () => {
+    const said = pcm(say("5"), silence(100), say("6"), silence(100), say("6"), silence(100), say("1"));
+    /** The same at 48 kHz, as a phone records it: each sample three times. */
+    const at48k = Float32Array.from([...said].flatMap((x) => [x, x, x]));
+    const toneless = { ...SENTENCE, tokens: SENTENCE.tokens.map(({ surface, kind }) => ({ surface, kind })) } as TaggedText;
+
+    it("scores nothing and keeps no pitch range while tone scoring is off (ADR 0093): it only tells voice from silence", () => {
+      expect(DEVICE_TONE_SCORING).toBe(false);
+      expect(hearOnDevice(said, RATE, SENTENCE, calibration)).toEqual({ tag: "heard" });
+      expect(hearOnDevice(at48k, 3 * RATE, SENTENCE, calibration)).toEqual({ tag: "heard" });
+      expect(hearOnDevice(pcm(silence(800)), RATE, SENTENCE, calibration)).toEqual({ tag: "silent" });
+      expect(hearOnDevice(new Float32Array(3 * RATE), 3 * RATE, SENTENCE, calibration)).toEqual({ tag: "silent" });
+    });
+
+    it("with tone scoring on, scores the tones and folds the recording into the pitch range", () => {
+      const heard = hearOnDevice(said, RATE, SENTENCE, calibration, true);
+      if (heard.tag !== "heard") throw new Error(heard.tag);
+      expect(heard.tone?.syllables.map((s) => s.ok)).toEqual([true, true, true, true]);
+      expect(heard.calibration?.frames).toBeGreaterThan(calibration.frames);
+      // Too little voice for every syllable; and a prompt whose readings carry no tones.
+      expect(hearOnDevice(pcm(voiced(180, 150)), RATE, SENTENCE, calibration, true)).toEqual({ tag: "partial" });
+      expect(hearOnDevice(said, RATE, toneless, calibration, true)).toEqual({ tag: "heard" });
+    });
   });
 });
 

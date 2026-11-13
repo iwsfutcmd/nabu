@@ -18,5 +18,19 @@ export {
   type ToneSystem,
   type ToneTemplate,
 } from "./tone.ts";
-export { DEVICE_TONE_SCORING, gradeSpeech, PHONES_NOTE, PHONES_PARTIAL, TONE_SYSTEMS, toneSystemOf, type PhonesHeard, type SpeechOutcome, type SpeechResult, type WordsHeard } from "./score.ts";
+export {
+  DEVICE_TONE_SCORING,
+  gradeSpeech,
+  hearOnDevice,
+  MIN_VOICED_FRAMES,
+  PHONES_NOTE,
+  PHONES_PARTIAL,
+  TONE_SYSTEMS,
+  toneSystemOf,
+  type DeviceHearing,
+  type PhonesHeard,
+  type SpeechOutcome,
+  type SpeechResult,
+  type WordsHeard,
+} from "./score.ts";
 export { decodeWav, evaluateTones, type EvalClip, type ToneCounts, type ToneReport } from "./evaluate.ts";
