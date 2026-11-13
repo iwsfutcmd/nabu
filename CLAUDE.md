@@ -285,12 +285,16 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Compare letters, never marks: grading, credit, glossary, corrections apply. Voices read `Compiled.written`
   (the source's surfaces), so a vocalization never changes clips.
 - Pronunciation cards (ADR 0054, in context since ADR 0095, answered by choice since ADR 0098): `vocalize` (abjads:
-  the word with its marks among attested variants, never typed marks) and `transcribe` (typed; a ruby scheme with a
-  syllable shape in core match/pronounce.ts: only Jyutping; `char-read` is its multiple-choice twin, tone variants
-  first) are sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is
-  credited; a lesson plans one where it can. A new scheme
-  needs a shape, a READING_TAGS entry and conformance vectors (conformance/pronounce.json). Optional marks: the
-  profile's `match.marks.optional`; orthographies that spell the vowels (apc: Arabizi), `match.marks.spelledIn`.
+  the word with its marks among attested variants, never typed marks) and `transcribe` (typed; a ruby scheme whose
+  data gives a syllable shape: only Jyutping so far; `char-read` is its multiple-choice twin, tone variants first) are
+  sentence templates asking about one word (`word`, marked with `<T emphasis>`); only that word is credited; a lesson
+  plans one where it can. Optional marks: the profile's `match.marks.optional`; orthographies that spell the vowels
+  (apc: Arabizi), `match.marks.spelledIn`.
+- Reading schemes are data (ADR 0109): a new scheme is `profiles/schemes/<id>.yaml` (schemas/reading-scheme.schema.json:
+  name, lang, answer orthography, syllable shape, tones), plug-ins in `nabu.schemes` for what voices need, and
+  `reading-syllables`/`reading-tone` conformance vectors. Never hard-code a scheme id in TS or Python.
+- Course and orthography names, blurbs and hints are course data (`names` in course.yaml, ADR 0109), read through
+  `@nabu/i18n` names.ts; the catalogs' `course.name.*`/`orthography.*` remain only for the draft translations.
 
 ## Report intake notes (see docs/adr/0055, docs/reports.md)
 - Reports (sentence_reported, answer_reported) also go to the deployment's Firestore intake (`reports.json` beside
