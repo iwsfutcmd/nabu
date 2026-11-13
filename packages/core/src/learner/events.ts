@@ -5,7 +5,7 @@
  * answer time; projections fold the result.
  */
 import type { AnswerSubmitted, KcId, LearnerEvent, OrthographyId, Prediction, ProgressReset } from "@nabu/schema";
-import { lessonNodes } from "../lesson/build.ts";
+import { lessonNodes } from "../lesson/nodes.ts";
 import type { CourseView } from "../lesson/course.ts";
 import type { Exercise } from "../lesson/exercise.ts";
 import type { LessonEvent } from "../lesson/player.ts";

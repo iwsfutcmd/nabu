@@ -1,4 +1,6 @@
-export { buildLesson, cardGallery, courseExclusions, facetExclusions, lessonNodes, sampleExercise, type GalleryCard, speechExclusions, speechSupportOf, voiceExclusions, type LessonNode, type LessonOptions, type SpeechSupport } from "./build.ts";
+export { buildLesson, cardGallery, sampleExercise, type GalleryCard, type LessonOptions } from "./build.ts";
+export { courseExclusions, facetExclusions, speechExclusions, speechSupportOf, voiceExclusions, type SpeechSupport } from "./exclusions.ts";
+export { lessonNodes, type LessonNode } from "./nodes.ts";
 export { allKcs, allSentences, assembleCourse, coreFiles, createGrader, MEDIA_ROLES, prepareGrading, profileOf, readCourse, type CourseError, type CourseFiles, type CourseView, type Grader } from "./course.ts";
 export { placedBy, runTest, type AdaptiveTest, type TestBlock, type TestRun, type TestStep } from "./adaptive.ts";
 export { answerDiff, closestAnswer, diffParts, nearMiss, otherWordsOf, solutionMarks, type AnswerDiff, type DiffPart } from "./diff.ts";

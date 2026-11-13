@@ -2,7 +2,7 @@ import type { LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { learnedWords, placedKcs, plan, replay } from "../src/learner/index.ts";
 import { lessonNodes } from "../src/lesson/index.ts";
-import { sentencesOf } from "../src/lesson/build.ts";
+import { sentencesOf } from "../src/lesson/nodes.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
