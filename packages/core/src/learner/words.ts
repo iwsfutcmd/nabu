@@ -60,7 +60,10 @@ export interface LearnedWord {
   readonly reviews: number;
   /** Every skill the course asks of it shown (ADR 0100); until then it is being learned. */
   readonly known: boolean;
-  /** The skills the course asks of it, in the order recognize, produce, listen, each shown or not. */
+  /**
+   * The skills the course asks of it, in the order recognize, produce, listen, each shown or not;
+   * none the learner turned off for good (D41).
+   */
   readonly skills: readonly WordSkill[];
 }
 
