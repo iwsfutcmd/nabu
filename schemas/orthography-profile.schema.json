@@ -83,6 +83,9 @@
     },
     "transliterate": {
       "$ref": "#/$defs/Transliteration"
+    },
+    "speech": {
+      "$ref": "#/$defs/Speech"
     }
   },
   "$defs": {
@@ -827,6 +830,86 @@
           "type": "number",
           "minimum": 0.5,
           "maximum": 3
+        }
+      }
+    },
+    "Speech": {
+      "title": "SpeechSetup",
+      "description": "How speech in the orthography is heard (gameplan §10.4, ADR 0116): what the speech service scores a learner on, the recognizer that hears it (learners, and the round trip of the course's clips) and where expected phones come from (tier 2, and forced alignment of clips). A profile without it is scored on nothing; its recognizer and phones take their defaults.",
+      "type": "object",
+      "required": [
+        "tiers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "tiers": {
+          "description": "What the speech service scores (REVIEW: per-language choices, to revisit with recorded learners). 1: the words, where the recognizer writes this orthography; the API grades its transcript with the sentence's accept set. 2: the phones, where the expected phones can be trusted. Empty: nothing.",
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "integer",
+            "enum": [1, 2]
+          }
+        },
+        "recognizer": {
+          "$ref": "#/$defs/Recognizer"
+        },
+        "phones": {
+          "$ref": "#/$defs/SpeechPhones"
+        }
+      }
+    },
+    "Recognizer": {
+      "title": "Recognizer",
+      "description": "Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "description": "The language Whisper hears it as. Default: the profile's language, or, where Whisper has none for it, the macrolanguage that encompasses it (CLDR's data: apc is heard as ar).",
+          "type": "string",
+          "pattern": "^[a-z]{2,3}$"
+        },
+        "fineTuned": {
+          "$ref": "#/$defs/FineTunedRecognizer"
+        }
+      }
+    },
+    "FineTunedRecognizer": {
+      "title": "FineTunedRecognizer",
+      "description": "A Whisper fine-tune that hears the language instead of Whisper's own.",
+      "type": "object",
+      "required": [
+        "model",
+        "token"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "description": "Its Hugging Face repo and pinned revision: \"alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d\".",
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+/[A-Za-z0-9._-]+@[0-9a-f]{40}$"
+        },
+        "token": {
+          "description": "The Whisper language token it was trained with (\"zh\").",
+          "type": "string",
+          "pattern": "^[a-z]{2,3}$"
+        }
+      }
+    },
+    "SpeechPhones": {
+      "title": "SpeechPhones",
+      "description": "Where expected phones come from: the reading each word pins in `reading`, where that scheme gives phones (Jyutping), else eSpeak NG's phonemes of the spelling in `voice`.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reading": {
+          "$ref": "common.schema.json#/$defs/SchemeId"
+        },
+        "voice": {
+          "description": "The eSpeak NG voice that reads the spelling. Default: the profile's language, or, where eSpeak NG has no voice for it, the macrolanguage that encompasses it (apc is read as ar).",
+          "type": "string",
+          "pattern": "^[a-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
         }
       }
     },

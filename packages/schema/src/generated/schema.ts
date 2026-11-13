@@ -482,6 +482,10 @@ export interface NabuSchemaIndex {
   readonly StrokeOrderStandard: StrokeOrderStandard;
   readonly StrokeOrder: StrokeOrder;
   readonly Fonts: Fonts;
+  readonly Speech: SpeechSetup;
+  readonly Recognizer: Recognizer;
+  readonly FineTunedRecognizer: FineTunedRecognizer;
+  readonly SpeechPhones: SpeechPhones;
   readonly Transliteration: Transliteration;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
@@ -2926,6 +2930,7 @@ export interface OrthographyProfile {
    */
   readonly romanize?: "greek";
   readonly transliterate?: Transliteration;
+  readonly speech?: SpeechSetup;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -3249,6 +3254,62 @@ export interface Fonts {
 export interface Transliteration {
   readonly to: OrthographyId;
   readonly via: string;
+}
+/**
+ * How speech in the orthography is heard (gameplan §10.4, ADR 0116): what the speech service scores a learner on, the recognizer that hears it (learners, and the round trip of the course's clips) and where expected phones come from (tier 2, and forced alignment of clips). A profile without it is scored on nothing; its recognizer and phones take their defaults.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Speech".
+ */
+export interface SpeechSetup {
+  /**
+   * What the speech service scores (REVIEW: per-language choices, to revisit with recorded learners). 1: the words, where the recognizer writes this orthography; the API grades its transcript with the sentence's accept set. 2: the phones, where the expected phones can be trusted. Empty: nothing.
+   */
+  readonly tiers: readonly (1 | 2)[];
+  readonly recognizer?: Recognizer;
+  readonly phones?: SpeechPhones;
+}
+/**
+ * Who hears the orthography: Whisper, in a language, or a Whisper fine-tune for a language Whisper's own does not write (Cantonese, which it writes as Mandarin: ADR 0094).
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Recognizer".
+ */
+export interface Recognizer {
+  /**
+   * The language Whisper hears it as. Default: the profile's language, or, where Whisper has none for it, the macrolanguage that encompasses it (CLDR's data: apc is heard as ar).
+   */
+  readonly language?: string;
+  readonly fineTuned?: FineTunedRecognizer;
+}
+/**
+ * A Whisper fine-tune that hears the language instead of Whisper's own.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "FineTunedRecognizer".
+ */
+export interface FineTunedRecognizer {
+  /**
+   * Its Hugging Face repo and pinned revision: "alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d".
+   */
+  readonly model: string;
+  /**
+   * The Whisper language token it was trained with ("zh").
+   */
+  readonly token: string;
+}
+/**
+ * Where expected phones come from: the reading each word pins in `reading`, where that scheme gives phones (Jyutping), else eSpeak NG's phonemes of the spelling in `voice`.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SpeechPhones".
+ */
+export interface SpeechPhones {
+  readonly reading?: SchemeId;
+  /**
+   * The eSpeak NG voice that reads the spelling. Default: the profile's language, or, where eSpeak NG has no voice for it, the macrolanguage that encompasses it (apc is read as ar).
+   */
+  readonly voice?: string;
 }
 /**
  * A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).
