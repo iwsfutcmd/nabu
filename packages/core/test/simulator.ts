@@ -111,9 +111,13 @@ export interface SimulationOptions {
   readonly follow?: "path" | "continue";
   /** How fast the learner's memories grow (1: as the planner was tuned). */
   readonly learning?: number;
+  /** How many days the learner keeps at it: 30 for the acceptance runs, a year for `bench:replay`. */
+  readonly days?: number;
+  /** The hours (UTC) of the day's sessions: two, at 9:00 and 19:00, unless a run asks for more. */
+  readonly hours?: readonly number[];
 }
 
-/** 30 days of a learner who follows the app; `onEvent` sees every event the device would log. */
+/** 30 days (or `days`) of a learner who follows the app; `onEvent` sees every event the device would log. */
 export const simulate = (
   courseId: string,
   orthography: string | undefined,
@@ -140,8 +144,9 @@ export const simulate = (
   const templates: Record<string, number> = {};
   const byMode: Record<string, { n: number; ok: number; p: number }> = {};
   const start = Date.parse("2026-01-01T00:00:00Z");
-  for (let day = 0; day < 30; day++) {
-    for (const hour of [9, 19]) {
+  const hours = options.hours ?? [9, 19];
+  for (let day = 0; day < (options.days ?? 30); day++) {
+    for (const [slot, hour] of hours.entries()) {
       let clock = start + day * DAY + hour * 3_600_000;
       const iso = (): string => new Date(clock).toISOString();
       // A learner who follows the path: the next lesson, else a review when something is due, else a
@@ -151,7 +156,7 @@ export const simulate = (
       const practice = pace !== undefined && pace.due > 0 && (practiceFirst(pace) || next === undefined);
       if (!practice && next === undefined && dueFacets(state, course.orthography, iso()).length < 3) continue;
       const request = next !== undefined && !practice ? ({ mode: "lesson", node: next } as const) : ({ mode: "review" } as const);
-      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * 2 + (hour === 9 ? 0 : 1), pace: pace?.band });
+      const p = plan(course, state, request, { now: iso(), today: iso().slice(0, 10), seed: seed * 1000 + day * hours.length + slot, pace: pace?.band });
       if (p.exercises.length === 0) continue;
       sessions++;
       if (request.mode === "lesson") lessons++;
