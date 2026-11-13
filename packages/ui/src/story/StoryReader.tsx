@@ -27,7 +27,7 @@ import { Feedback } from "../player/Feedback.tsx";
 import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { useReadings } from "../player/Readings.tsx";
-import { digitIndex, effectiveWritingMode, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { digitIndex, effectiveWritingMode, focusInReach, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
 import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
@@ -171,6 +171,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const ruby = readings.shown;
   const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
+  const checkButton = useRef<HTMLButtonElement>(null);
   // A question's instruction and prompt describe the control it focuses first (P10).
   const base = useId();
   const ids = { instruction: `${base}-instruction`, base };
@@ -350,12 +351,19 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const ex = active?.ex;
   const draft = asking === undefined || ex === undefined ? undefined : (draftOf(asking) ?? emptyDraft(ex));
   const locked = active === undefined || (active.tag !== "answering" && active.tag !== "presenting");
-  const canCheck = active?.tag === "answering" && !active.composing && responseOf(active.ex, active.draft) !== undefined;
+  // As in a lesson (ADR 0118): Check takes a press mid-composition, which waits for compositionend; Enter never does.
+  const canCheck = active?.tag === "answering" && responseOf(active.ex, active.draft) !== undefined;
+  const composing = active?.tag === "answering" && active.composing;
   const feedback = active?.tag === "feedback" ? active : undefined;
   const forward = (): void => {
     if (state.tag === "reading") dispatch({ tag: "continue" });
     else if (feedback !== undefined) dispatch({ tag: "player", event: { tag: "continue" } });
-    else if (canCheck) dispatch({ tag: "player", event: { tag: "submit" } });
+    else if (canCheck && !composing) dispatch({ tag: "player", event: { tag: "submit" } });
+  };
+  const check = (): void => {
+    dispatch({ tag: "player", event: { tag: "submit" } });
+    // Focus on Check ends the composition, as a tap anywhere else does.
+    if (composing) focusInReach(checkButton.current, null);
   };
 
   keys.current = (e) => {
@@ -364,7 +372,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     const control = e.target instanceof HTMLElement ? e.target.closest("button, a, [role=switch]") : null;
     if (e.key === "Enter") {
       if (control !== null && control !== continueButton.current) return;
-      if (state.tag === "reading" || feedback !== undefined || canCheck) {
+      if (state.tag === "reading" || feedback !== undefined || (canCheck && !composing)) {
         e.preventDefault();
         e.stopPropagation();
         forward();
@@ -461,7 +469,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             <ArrowForwardIcon />
           </Button>
         ) : (
-          <Button className={playerStyles.primary} onPress={forward} isDisabled={!canCheck} data-action="check">
+          <Button ref={checkButton} className={playerStyles.primary} onPress={check} isDisabled={!canCheck} data-action="check">
             {t.format("exercise.action.check")}
             <ArrowForwardIcon />
           </Button>
