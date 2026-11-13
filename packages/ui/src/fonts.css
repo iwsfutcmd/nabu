@@ -3,6 +3,10 @@
  * unicode-range subsets, so the browser downloads only the scripts on screen
  * (gameplan §6.8). Language data never falls back to a system font, which keeps
  * rendering identical across machines and lets the visual tests assert it.
+ *
+ * The Han families are in fonts-han.css: their faces would be nine tenths of this
+ * stylesheet, which blocks the first paint for every learner. fonts.ts loads it with
+ * the first text set in them (ADR 0119).
  */
 @import "@fontsource/noto-sans/400.css";
 @import "@fontsource/noto-sans/700.css";
@@ -10,8 +14,6 @@
 @import "@fontsource/noto-sans-arabic/700.css";
 @import "@fontsource/noto-naskh-arabic/400.css";
 @import "@fontsource/vazirmatn/400.css";
-@import "@fontsource/noto-sans-hk/400.css";
-@import "@fontsource/noto-serif-tc/400.css";
 @import "@fontsource/noto-serif-hebrew/400.css";
 /* Polytonic Greek (ADR 0087): Noto Serif's greek-ext subset has every accent and breathing. */
 @import "@fontsource/noto-serif/400.css";

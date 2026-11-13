@@ -1,0 +1,8 @@
+/*
+ * The Han families (OFL-1.1, via @fontsource): Noto Sans HK (yue, and Han text with no profile of
+ * its own) and Noto Serif TC (lzh). Over two hundred unicode-range faces, so this stylesheet is not
+ * part of fonts.css, which blocks the first paint: fonts.ts loads it with the first text set in
+ * one of these families (ADR 0119). Storybook and the landing page link it up front.
+ */
+@import "@fontsource/noto-sans-hk/400.css";
+@import "@fontsource/noto-serif-tc/400.css";

@@ -6,6 +6,7 @@
  */
 import type { LoadedCourse } from "@nabu/ui/player";
 import { offlineStatus, downloadPlan, type UnitState } from "@nabu/core/offline";
+import { fontStackFor } from "@nabu/i18n";
 import { T, useTranslator } from "@nabu/ui";
 import { useState, type CSSProperties, type JSX } from "react";
 import { Button, ProgressBar } from "react-aria-components";
@@ -76,7 +77,8 @@ const OfflinePanel = ({ loaded, root, stored, onChange }: { loaded: LoadedCourse
     if (busy) return;
     setError(undefined);
     setProgress({ done: 0, total: 0 });
-    void downloadCourse(root, manifest, JSON.stringify(course.units), units, setProgress).then((e) => {
+    const fonts = [...course.profiles.values()].map((p) => fontStackFor(p.source.lang, p.source.fonts).family);
+    void downloadCourse(root, manifest, JSON.stringify(course.units), fonts, units, setProgress).then((e) => {
       setProgress(undefined);
       setError(e);
       onChange();

@@ -6,7 +6,9 @@
  * - `dir` comes from the script (Intl-independent CLDR table), never from the
  *   language name or the surrounding UI. An element with `dir` is a bidi
  *   isolate, so target text never reorders the chrome around it.
- * - Fonts and line height come from the orthography profile, else the script.
+ * - Fonts and line height come from the orthography profile, else the script. A
+ *   family whose stylesheet loads with its text (fonts.ts: the Han families) is
+ *   loaded when text first names it.
  * - Tokens are wrapped whole (§6.8): a cursive or conjunct-forming run is never
  *   split into per-letter elements. Ruby splits only at RubySegment bases.
  * - Vocalization (§6.6): text is stored vocalized; `marks="hide"` strips the
@@ -17,6 +19,7 @@ import { directionOf, fontStackFor, scriptOf } from "@nabu/i18n";
 import type { SchemeId, TaggedText, Token } from "@nabu/schema";
 import { Fragment, useMemo, type CSSProperties, type JSX } from "react";
 import { useIsTarget, useOrthography } from "./context.tsx";
+import { useFonts } from "./fonts.ts";
 import { useWordStatus, type Marks } from "./marks.tsx";
 import styles from "./T.module.css";
 
@@ -149,6 +152,7 @@ export const T = ({ text, as: Tag = "span", ruby = false, marks = "show", highli
     status !== null && !status.isNew([...(token.sense === undefined ? [] : [`sense:${token.sense}`]), ...(token.morphs ?? []).map((m) => m.kc)], token.surface, text.orthography);
   const stripOf = (token: Token): RegExp | undefined => (marks === "hide" || (marks === "new" && known(token)) ? strip : undefined);
   const font = fontStackFor(text.lang, profile?.fonts);
+  useFonts(font.family);
   const rubyLang = ruby === false ? undefined : profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === ruby)?.lang;
   const style = {
     "--nabu-text-font": font.family,

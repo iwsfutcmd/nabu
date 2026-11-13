@@ -14,8 +14,8 @@
  *
  *   node landing.ts <site> [<repository URL>]   # after the demo is built into <site>/demo
  */
-import { readFileSync, writeFileSync } from "node:fs";
-import { join, resolve } from "node:path";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { draftCount } from "@nabu/core/corrections";
 import { pathNodes } from "@nabu/core/learner";
@@ -249,9 +249,17 @@ ${audio.length > 0 ? `<li data-audio-check="">${escape(t.format("landing.contrib
 `;
 };
 
-/** The demo's stylesheets, from its built index.html (base "./" or "/"), as URLs under `demo`. */
-export const demoStylesheets = (demoIndex: string, demo: string): readonly string[] =>
-  [...readFileSync(demoIndex, "utf8").matchAll(/<link\s+rel="stylesheet"[^>]*\shref="([^"]+)"/gu)].map((m) => `${demo}${(m[1] ?? "").replace(/^\.?\//u, "")}`);
+/**
+ * The demo's stylesheets, as URLs under `demo`: those its built index.html links (base "./" or "/"),
+ * and the stylesheets of the fonts the app loads with their text (assets/fonts-*.css: the Han
+ * families, ADR 0119), which the samples need from the start.
+ */
+export const demoStylesheets = (demoIndex: string, demo: string): readonly string[] => {
+  const linked = [...readFileSync(demoIndex, "utf8").matchAll(/<link\s+rel="stylesheet"[^>]*\shref="([^"]+)"/gu)].map((m) => (m[1] ?? "").replace(/^\.?\//u, ""));
+  const assets = join(dirname(demoIndex), "assets");
+  const fonts = existsSync(assets) ? readdirSync(assets).filter((f) => /^fonts-.+\.css$/u.test(f)).map((f) => `assets/${f}`) : [];
+  return [...linked, ...fonts.filter((f) => !linked.includes(f))].map((path) => `${demo}${path}`);
+};
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const [site, repository] = process.argv.slice(2);

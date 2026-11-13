@@ -13,8 +13,9 @@
  */
 import { downloadPlan, removable, stalePaths } from "@nabu/core/offline";
 import type { BundleManifest } from "@nabu/schema";
+import { loadFonts } from "@nabu/ui";
 import { useCallback, useEffect, useState, useSyncExternalStore } from "react";
-import { BUNDLE_CACHE } from "./caches.ts";
+import { BUNDLE_CACHE, RUNTIME_CACHE } from "./caches.ts";
 import { persist } from "./idb.ts";
 
 /** Whether this browser can keep courses offline: a service worker and the Cache API. */
@@ -75,10 +76,29 @@ const fetchFonts = async (text: string): Promise<void> => {
 };
 
 /**
- * Stores the course's core and the given units (all by default). Resolves with an error code, or
- * undefined when everything listed is stored. `text` is the course's text, to fetch its fonts.
+ * The page's stylesheets, kept for offline use where no cache holds them yet: the shell's are kept
+ * with it, but one loaded with its text (the Han fonts', ADR 0119) before the service worker took
+ * the page over was never kept.
  */
-export const downloadCourse = async (root: string, manifest: BundleManifest, text: string, units: readonly string[] | undefined, onProgress: (p: Progress) => void): Promise<DownloadError | undefined> => {
+const keepStylesheets = async (): Promise<void> => {
+  const cache = await caches.open(RUNTIME_CACHE);
+  const own = [...document.querySelectorAll<HTMLLinkElement>('link[rel="stylesheet"]')].map((l) => l.href).filter((href) => href.startsWith(`${window.location.origin}/`));
+  for (const href of own) if ((await caches.match(href)) === undefined) await cache.add(href).catch(() => undefined);
+};
+
+/**
+ * Stores the course's core and the given units (all by default). Resolves with an error code, or
+ * undefined when everything listed is stored. `text` is the course's text, and `fonts` the font
+ * stacks it is set in (fontStackFor's `family`), to fetch its fonts.
+ */
+export const downloadCourse = async (
+  root: string,
+  manifest: BundleManifest,
+  text: string,
+  fonts: readonly string[],
+  units: readonly string[] | undefined,
+  onProgress: (p: Progress) => void,
+): Promise<DownloadError | undefined> => {
   const cache = await caches.open(BUNDLE_CACHE);
   const plan = downloadPlan(manifest, await storedPaths(root), units);
   let done = 0;
@@ -111,6 +131,9 @@ export const downloadCourse = async (root: string, manifest: BundleManifest, tex
     const index = absolute(`${root}../index.json`);
     const listed = await fetch(index, { cache: "no-cache" }).catch(() => undefined);
     if (listed?.ok === true) await cache.put(index, listed);
+    // A family whose stylesheet loads with its text has its faces declared only once that is in.
+    await Promise.all(fonts.map(loadFonts));
+    await keepStylesheets();
     await fetchFonts(text);
     return undefined;
   } catch (e) {
