@@ -42,13 +42,17 @@ const audio = Buffer.alloc(16000 * 2).toString("base64"); // one second of 16 kH
 const fa = { course: "fa", orthography: "fa-Arab/standard", item: "s.13", audio, sampleRate: 16000 }; // من مریم هستم
 
 describe("speech status", () => {
-  it("offers the tiers an orthography can be scored on", async () => {
+  it("offers the tiers an orthography's profile says it can be scored on (ADR 0116)", async () => {
     const token = await signUp();
     const tiers = async (course: string, orthography: string) => ((await (await app.request(`/v1/speech/status?course=${course}&orthography=${encodeURIComponent(orthography)}`, request("GET", undefined, token))).json()) as { tiers: number[] }).tiers;
     expect(await tiers("fa", "fa-Arab/standard")).toEqual([1, 2]);
     expect(await tiers("yue", "yue-Hant-HK/standard")).toEqual([1, 2]);
+    expect(await tiers("uz", "uz-Latn/standard")).toEqual([1, 2]);
+    expect(await tiers("uz", "uz-Cyrl/standard")).toEqual([]);
     expect(await tiers("apc", "apc-Arab/standard")).toEqual([1]);
     expect(await tiers("apc", "apc-Latn/arabizi")).toEqual([]);
+    expect(await tiers("es", "es-Latn/standard")).toEqual([1]);
+    expect(await tiers("hbo", "hbo-Hebr/tiberian")).toEqual([]);
     const off = createApp({ db: database.db, accounts: createAccounts(database.db), ai: { gateway: createGateway({ db: database.db, provider: undefined }), courses: createCourses(), gates: [] }, speech: { url: undefined, transport: service } });
     expect(await (await off.request("/v1/speech/status?course=fa&orthography=fa-Arab%2Fstandard", request("GET", undefined, token))).json()).toEqual({ tiers: [] });
   });
@@ -65,11 +69,27 @@ describe("speech scoring", () => {
     expect(body.words.heard.lang).toMatch(/^fa/u);
     expect(body.phones).toEqual({ errorRate: 0.1, offTokens: [] }); // the recognizer's raw phones stay on the server
     // The service got the language, the tokens (for expected phones) and the tiers, and nothing to prompt with.
-    expect(sent.at(-1)).toMatchObject({ language: "fa", voice: "fa", tiers: [1, 2], sampleRate: 16000 });
+    expect(sent.at(-1)).toMatchObject({ language: "fa", tiers: [1, 2], sampleRate: 16000 });
     expect(sent.at(-1)).not.toHaveProperty("prompt");
     reply = { status: 200, body: { transcript: "خداحافظ" } };
     const wrong = (await (await app.request("/v1/speech/score", request("POST", fa, token))).json()) as { words: { verdict: string } };
     expect(wrong.words.verdict).toBe("WRONG");
+  });
+
+  it("sends the service what the orthography's profile says: the language, its recognizer and its phones", async () => {
+    const token = await signUp();
+    reply = { status: 200, body: {} };
+    const yue = { course: "yue", orthography: "yue-Hant-HK/standard", item: "s.1", audio, sampleRate: 16000 };
+    expect((await app.request("/v1/speech/score", request("POST", yue, token))).status).toBe(200);
+    const sentYue = sent.at(-1) as { recognizer?: { fineTuned?: { model: string; token: string } } };
+    expect(sentYue).toMatchObject({ language: "yue", tiers: [1, 2], reading: "jyutping" });
+    expect(sentYue.recognizer?.fineTuned?.model).toMatch(/^alvanlii\/whisper-small-cantonese@[0-9a-f]{40}$/u);
+    expect(sentYue.recognizer?.fineTuned?.token).toBe("zh");
+    // Lebanese Arabic goes as itself: the service hears it as Arabic, its macrolanguage. Words only.
+    const apc = { course: "apc", orthography: "apc-Arab/standard", item: "s.1", audio, sampleRate: 16000 };
+    expect((await app.request("/v1/speech/score", request("POST", apc, token))).status).toBe(200);
+    expect(sent.at(-1)).toMatchObject({ language: "apc", tiers: [1] });
+    expect(sent.at(-1)).not.toHaveProperty("recognizer");
   });
 
   it("refuses audio it cannot take, and says when the service fails", async () => {

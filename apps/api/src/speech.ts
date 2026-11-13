@@ -10,11 +10,16 @@
  * transcript against the sentence's own accept set with the same grader as typed answers.
  * Tier 2: the service aligns recognized phones to the expected surface phones.
  *
+ * What each orthography is scored on, and how, is its profile's `speech` (ADR 0116), read from
+ * the course's bundle and sent to the service with the profile's language: the service hears a
+ * language its recognizer has no model for as its macrolanguage (apc as ar).
+ *
  * Privacy (§10.4, §14.4): audio passes through memory to the service and is never stored or
  * logged, here or there. Calls count against a daily budget per learner (hashed id).
  */
 import { autoTokens, textBase } from "@nabu/core/ai";
-import { allSentences, createGrader, type CourseView, type Grader } from "@nabu/core/lesson";
+import { allSentences, createGrader, profileOf, type CourseView, type Grader } from "@nabu/core/lesson";
+import type { SpeechSetup } from "@nabu/schema";
 import { sql } from "drizzle-orm";
 import type { Hono } from "hono";
 import type { Courses } from "./ai/courses.ts";
@@ -25,19 +30,15 @@ import type { Db } from "./db/index.ts";
 import { llmUsage } from "./db/schema.ts";
 
 /**
- * What each orthography can be scored on. Tier 1 needs the recognizer to write the orthography's
- * own script (Whisper writes Uzbek in Latin and Lebanese in Arabic script); tier 2 needs expected
- * phones it can trust (pinned Jyutping, or eSpeak NG phonemes of a spelling it reads).
- * REVIEW: per-language choices, to revisit with recorded learners.
+ * What an orthography is scored on, and how: its profile's `speech` (ADR 0116). Tier 1 needs the
+ * recognizer to write the orthography's own script (Whisper writes Uzbek in Latin and Lebanese in
+ * Arabic script); tier 2 needs expected phones it can trust (pinned Jyutping, or eSpeak NG phonemes
+ * of a spelling it reads). The tiers are marked REVIEW in the profiles.
  */
-export const SPEECH_SETUP: Readonly<Record<string, { readonly language: string; readonly tiers: readonly (1 | 2)[]; readonly voice?: string; readonly reading?: string }>> = {
-  "fa-Arab/standard": { language: "fa", tiers: [1, 2], voice: "fa" },
-  "yue-Hant-HK/standard": { language: "yue", tiers: [1, 2], voice: "yue", reading: "jyutping" },
-  "uz-Latn/standard": { language: "uz", tiers: [1, 2], voice: "uz" },
-  "uz-Cyrl/standard": { language: "uz", tiers: [] },
-  "apc-Arab/standard": { language: "ar", tiers: [1] },
-  "apc-Latn/arabizi": { language: "ar", tiers: [] },
-};
+export const speechSetupOf = (course: CourseView): SpeechSetup | undefined => profileOf(course, course.orthography).source.speech;
+
+/** The language of the orthography's speech, as its profile tags it: apc for apc-Arab. */
+const languageOf = (course: CourseView): string => new Intl.Locale(profileOf(course, course.orthography).source.lang).language;
 
 export const SPEECH_BUDGET = 200;
 const MAX_SECONDS = 30;
@@ -77,11 +78,11 @@ const pcmOf = (audio: unknown, rate: unknown): Buffer | undefined => {
 
 export const speechRoutes = (app: Hono<Env>, deps: SpeechDeps): void => {
   const { db, courses, gateway, url, transport, now } = deps;
-  const tiersFor = (orthography: string): readonly (1 | 2)[] => (url === undefined ? [] : (SPEECH_SETUP[orthography]?.tiers ?? []));
+  const tiersFor = (course: CourseView): readonly (1 | 2)[] => (url === undefined ? [] : (speechSetupOf(course)?.tiers ?? []));
 
   app.get("/v1/speech/status", (c) => {
     const course = courses.get(c.req.query("course") ?? "", c.req.query("orthography") ?? "");
-    return c.json({ tiers: course === undefined ? [] : tiersFor(course.orthography) });
+    return c.json({ tiers: course === undefined ? [] : tiersFor(course) });
   });
 
   app.post("/v1/speech/score", async (c) => {
@@ -92,8 +93,8 @@ export const speechRoutes = (app: Hono<Env>, deps: SpeechDeps): void => {
     const pcm = pcmOf(b?.["audio"], b?.["sampleRate"]);
     if (course === undefined || sentence === undefined || form === undefined) return c.json({ error: "unknown-item" }, 404);
     if (pcm === undefined) return c.json({ error: "invalid-audio" }, 400);
-    const setup = SPEECH_SETUP[course.orthography];
-    const tiers = tiersFor(course.orthography);
+    const setup = speechSetupOf(course);
+    const tiers = tiersFor(course);
     if (url === undefined || setup === undefined || tiers.length === 0) return c.json({ error: "speech-off" }, 404);
     // A daily budget per learner, counted like the AI features (salted hash, never the id).
     const subject = await gateway.subjectOf(c.get("user").id);
@@ -112,11 +113,12 @@ export const speechRoutes = (app: Hono<Env>, deps: SpeechDeps): void => {
         body: JSON.stringify({
           audio: pcm.toString("base64"),
           sampleRate: b?.["sampleRate"],
-          language: setup.language,
+          language: languageOf(course),
           tokens: form.text.tokens,
           tiers,
-          ...(setup.voice === undefined ? {} : { voice: setup.voice }),
-          ...(setup.reading === undefined ? {} : { reading: setup.reading }),
+          ...(setup.recognizer === undefined ? {} : { recognizer: setup.recognizer }),
+          ...(setup.phones?.voice === undefined ? {} : { voice: setup.phones.voice }),
+          ...(setup.phones?.reading === undefined ? {} : { reading: setup.phones.reading }),
         }),
         signal: AbortSignal.timeout(60_000),
       });
