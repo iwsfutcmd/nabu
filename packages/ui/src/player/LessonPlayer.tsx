@@ -278,7 +278,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   if (state.tag === "finished") {
     keys.current = () => undefined;
     // What the session taught and what to go over, then progress and the next step (P9). A placement
-    // test says where it placed instead of its score, and lists no misses: it asks ahead of the path.
+    // test says where it placed instead of its score, and lists no misses (nor second checks): it asks ahead of the path.
     return (
       <section className={styles.card} data-lesson-player="" data-state="finished" data-mode={kind}>
         <SessionEnd
@@ -291,7 +291,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           words={props.replay === true ? [] : taughtIn(state.session.queue, introduces, kinds)}
           missed={kind === "placement" ? [] : missedOf(state.session)}
           missedExtra={props.missedExtra}
-          accepted={acceptedOf(state.session, props.judged)}
+          accepted={kind === "placement" ? [] : acceptedOf(state.session, props.judged)}
           progress={props.progress}
           xp={xpEarned}
           next={props.next}
