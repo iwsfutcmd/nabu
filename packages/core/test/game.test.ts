@@ -62,7 +62,7 @@ interface Practice {
   readonly localDate?: string;
   readonly right?: number;
   readonly wrong?: number;
-  readonly mode?: "lesson" | "review" | "mistakes" | "story";
+  readonly mode?: "lesson" | "review" | "mistakes" | "story" | "placement";
 }
 
 /** One session as a device logs it: start, answers, completion; local date from the device clock. */
@@ -684,6 +684,122 @@ describe("the session gate", () => {
     // 25 − 10 + 2 runs × 3 = 21
     expect(state.gate).toMatchObject({ policy: "energy", value: 21, max: 25 });
     expect(canStart(state.gate, "story", config.gate)).toBe(true);
+  });
+
+  it("a placement test costs nothing, and may start with the gate empty (M5)", () => {
+    for (const gate of [HEARTS, ENERGY]) {
+      const config = gameConfig({ gate });
+      const placement = session({ at: t0, tz, right: 2, wrong: 5, mode: "placement" });
+      expect(replayGame(online(placement), config, clock(t0 + 60_000)).gate).toMatchObject({ value: gate.policy === "none" ? 0 : gate.max });
+      // A lesson that empties the gate, after the test: the test could still start again.
+      const lesson = session({ at: t0 + 120_000, tz, right: 0, wrong: 25 });
+      const empty = replayGame(online([...placement, ...lesson]), config, clock(t0 + 180_000)).gate;
+      expect(empty.value).toBe(0);
+      expect(canStart(empty, "placement", config.gate)).toBe(true);
+      expect(canStart(empty, "review", config.gate)).toBe(true);
+      expect(canStart(empty, "lesson", config.gate)).toBe(false);
+      expect(canStart(empty, "story", config.gate)).toBe(false);
+    }
+  });
+
+  /** The learner's claim about an answer (ADR 0052), a minute after `at`. */
+  const claimOf = (answer: LearnerEvent, at: number, claim?: "reject"): LearnerEvent => {
+    if (answer.type !== "answer_submitted") throw new Error("not an answer");
+    const time = new Date(at).toISOString();
+    return { ...answer, id: uuid(), type: "answer_reported", clientTime: time, localDate: localDateOf(time, answer.tz) ?? "", answer: answer.id, text: "x", ...(claim === undefined ? {} : { claim }) } as unknown as LearnerEvent;
+  };
+  /** The judge's accept of an answer (§8.3), as the server issues it. */
+  const judged = (answer: LearnerEvent, at: number): LearnerEvent => {
+    if (answer.type !== "answer_submitted") throw new Error("not an answer");
+    const time = new Date(at).toISOString();
+    return {
+      ...answer,
+      id: uuid(),
+      type: "outcome_revised",
+      device: "server",
+      clientTime: time,
+      localDate: localDateOf(time, answer.tz) ?? "",
+      answer: answer.id,
+      outcome: { kind: "CORRECT_PROVISIONAL", notes: ["judge"], kcs: answer.outcome.kcs.map((k) => ({ ...k, status: "right" })) },
+      by: "judge",
+      judge: { model: "m", promptHash: "000000000000", confidence: 0.9 },
+    } as unknown as LearnerEvent;
+  };
+  const isWrong = (e: LearnerEvent): boolean => e.type === "answer_submitted" && e.outcome.kind === "WRONG";
+  const isRightAnswer = (e: LearnerEvent): boolean => e.type === "answer_submitted" && e.outcome.kind === "CORRECT";
+
+  it("the learner's claims never move the gate, though they count everywhere else; the judge's accept does (M5)", () => {
+    const config = gameConfig({ gate: HEARTS });
+    const lesson = session({ at: t0, tz, right: 2, wrong: 3 });
+    const [w1, w2, w3] = lesson.filter(isWrong);
+    const [r1] = lesson.filter(isRightAnswer);
+    if (w1 === undefined || w2 === undefined || w3 === undefined || r1 === undefined) throw new Error("the lesson has answers");
+    const later = t0 + 120_000;
+    // Two wrong answers claimed right, a right one claimed wrong.
+    const claimed = [...lesson, claimOf(w1, later), claimOf(w2, later + 1_000), claimOf(r1, later + 2_000, "reject")];
+    const at = clock(later + 60_000);
+    const plain = replayGame(online(lesson), config, at);
+    const withClaims = replayGame(online(claimed), config, at);
+    expect(plain.gate.value).toBe(2);
+    expect(withClaims.gate).toEqual(plain.gate);
+    // Everywhere else they count: a net answer more right, a point more of XP.
+    expect(withClaims.xp.total).toBe(plain.xp.total + 1);
+    // The judge's accept is a second grading: the heart comes back.
+    expect(replayGame(online([...claimed, judged(w3, later + 3_000)]), config, at).gate.value).toBe(3);
+  });
+
+  it("whatever the learner claims, the gate is what it is without the claims (M5)", () => {
+    fc.assert(
+      fc.property(
+        fc.array(fc.record({ right: fc.integer({ min: 0, max: 4 }), wrong: fc.integer({ min: 0, max: 4 }), mode: fc.constantFrom("lesson", "story", "review", "placement"), gap: fc.integer({ min: 1, max: 600 }) }), { minLength: 1, maxLength: 6 }),
+        fc.array(fc.tuple(fc.nat(), fc.boolean()), { maxLength: 8 }),
+        fc.constantFrom(HEARTS, ENERGY),
+        (sessions, claims, gate) => {
+          // Sessions one after another, minutes to hours apart; each claim after every answer.
+          let at = t0;
+          const log = sessions.flatMap((s) => {
+            const events = session({ at, tz, right: s.right, wrong: s.wrong, mode: s.mode });
+            at = Date.parse(events.at(-1)?.clientTime ?? "") + s.gap * 60_000;
+            return events;
+          });
+          const answers = log.filter((e) => e.type === "answer_submitted");
+          const claimed = answers.length === 0 ? [] : claims.map(([i, accept], k) => claimOf(answers[i % answers.length] as LearnerEvent, at + k * 60_000, accept ? undefined : "reject"));
+          const config = gameConfig({ gate });
+          const now = clock(at + (claims.length + 2) * 60_000);
+          expect(replayGame(online([...log, ...claimed]), config, now).gate).toEqual(replayGame(online(log), config, now).gate);
+        },
+      ),
+      { numRuns: 60 },
+    );
+  });
+
+  it("says when a lesson may start again, and lets it start then (M5)", () => {
+    const config = gameConfig({ gate: HEARTS });
+    const lesson = session({ at: t0, tz, right: 0, wrong: 5 });
+    const first = Date.parse(lesson.find(isWrong)?.clientTime ?? "");
+    const out = replayGame(online(lesson), config, clock(t0 + 60_000)).gate;
+    // The first heart lost comes back 300 minutes after it went: then a lesson may start.
+    expect(out.opensAt).toBe(new Date(first + 300 * 60_000).toISOString());
+    expect(out.nextAt).toBe(out.opensAt);
+    const opens = Date.parse(out.opensAt ?? "");
+    expect(canStart(out, "lesson", config.gate)).toBe(false);
+    expect(canStart(out, "lesson", config.gate, new Date(opens - 1_000).toISOString())).toBe(false);
+    // A state worked out earlier opens on time, given the time.
+    expect(canStart(out, "lesson", config.gate, new Date(opens).toISOString())).toBe(true);
+    const back = replayGame(online(lesson), config, clock(opens)).gate;
+    expect(back.value).toBe(1);
+    expect(back.opensAt).toBeUndefined();
+    // With hearts left, nothing to wait for.
+    expect(replayGame(online(session({ at: t0, tz, right: 2, wrong: 1 })), config, clock(t0 + 60_000)).gate.opensAt).toBeUndefined();
+
+    // Energy where an exercise costs three: three units must come back, one every 24 h / 25.
+    const costly = gameConfig({ gate: { policy: "energy", max: 25, costPerExercise: 3, earnOnCorrectRun: 3, runLength: 5, fullRechargeHours: 24 } });
+    const spent = session({ at: t0, tz, right: 0, wrong: 9 });
+    const start = Date.parse(spent.find(isWrong)?.clientTime ?? "");
+    const energy = replayGame(online(spent), costly, clock(t0 + 60_000)).gate;
+    expect(energy.value).toBe(0);
+    expect(energy.opensAt).toBe(new Date(start + 3 * ((24 * 3_600_000) / 25)).toISOString());
+    expect(canStart(energy, "story", costly.gate, energy.opensAt)).toBe(true);
   });
 });
 

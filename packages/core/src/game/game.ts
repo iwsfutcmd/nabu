@@ -135,6 +135,11 @@ export interface GateState {
   readonly max: number;
   /** When the next unit comes back (hearts, energy), if below max. */
   readonly nextAt?: string | undefined;
+  /**
+   * When a lesson or story may start again, if one may not now (M5): once enough units have come
+   * back with time. Practice that refills the gate opens it sooner.
+   */
+  readonly opensAt?: string | undefined;
 }
 
 export interface GameState {
@@ -163,6 +168,12 @@ const WEEK = 7 * 24 * HOUR;
 interface Ordered {
   readonly inputs: readonly GameInput[];
   readonly times: readonly number[];
+  /**
+   * The answers the gate counts otherwise than the projections do, by id: whether the gate counts
+   * each right. The gate goes by the grading and the server's revisions (the judge, a reviewer),
+   * never by the learner's own claim (M5); an answer absent here counts as the projections count it.
+   */
+  readonly gated: ReadonlyMap<string, boolean>;
 }
 
 /**
@@ -173,7 +184,11 @@ interface Ordered {
  */
 const orderedLog = (inputs: readonly GameInput[]): Ordered => {
   const byId = new Map<string, GameInput>();
-  const revisions = revisionsOf(inputs.map((i) => i.event));
+  const events = inputs.map((i) => i.event);
+  const revisions = revisionsOf(events);
+  // The revisions the server issued, without the learner's claims: what the gate goes by (M5).
+  const issued = revisionsOf(events.filter((e) => e.type === "outcome_revised"));
+  const gated = new Map<string, boolean>();
   for (const input of inputs) {
     const e = input.event;
     if (e.type === "outcome_revised" || byId.has(e.id)) continue;
@@ -183,6 +198,9 @@ const orderedLog = (inputs: readonly GameInput[]): Ordered => {
     }
     const r = revised(e, revisions);
     byId.set(e.id, r === e ? input : { ...input, event: r });
+    if (r === e) continue;
+    const right = isRight(revised(e, issued));
+    if (right !== isRight(r)) gated.set(e.id, right);
   }
   const list = [...byId.values()];
   const times = list.map((i) => Date.parse(i.event.clientTime));
@@ -195,9 +213,9 @@ const orderedLog = (inputs: readonly GameInput[]): Ordered => {
   };
   let inOrder = true;
   for (let i = 1; i < list.length && inOrder; i += 1) inOrder = !(compare(i, i - 1) < 0);
-  if (inOrder) return { inputs: list, times };
+  if (inOrder) return { inputs: list, times, gated };
   const order = list.map((_, i) => i).sort(compare);
-  return { inputs: order.map((i) => list[i] as GameInput), times: order.map((i) => times[i] as number) };
+  return { inputs: order.map((i) => list[i] as GameInput), times: order.map((i) => times[i] as number), gated };
 };
 
 /**
@@ -347,7 +365,19 @@ const matches = (p: Predicate, e: LearnerEvent): number => {
 
 const progressOf = (p: Predicate, events: readonly GameInput[], xp: number): number => (p.type === "xp" ? xp : events.reduce((n, { event: e }) => n + matches(p, e), 0));
 
-const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, policy: GatePolicy, now: string): GateState => {
+/** Sessions whose answers cost under the gate (ADR 0044): lessons and stories; never practice, nor a placement test (M5). */
+const GATED: ReadonlySet<Mode> = new Set<Mode>(["lesson", "story"]);
+
+/** What the gate needs before a lesson or story may start: a heart, or one exercise's energy. */
+const neededToStart = (policy: Exclude<GatePolicy, { readonly policy: "none" }>): number => (policy.policy === "hearts" ? 1 : policy.costPerExercise);
+
+/**
+ * The gate (§12.3, ADR 0044) as of `now`. Only a lesson's or a story's answers cost: practice and a
+ * placement test never do (M5), nor does an answer whose session the log does not name. An answer
+ * counts as graded, or as the server revised it (the judge, a reviewer), never as the learner
+ * claimed (`gated`, M5): a claim neither gives a heart back nor takes one.
+ */
+const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, gated: ReadonlyMap<string, boolean>, policy: GatePolicy, now: string): GateState => {
   if (policy.policy === "none") return { policy: "none", value: 0, max: 0 };
   const tick = policy.policy === "hearts" ? policy.regenMinutes * MINUTE : (policy.fullRechargeHours * HOUR) / policy.max;
   let value = policy.max;
@@ -373,14 +403,15 @@ const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, 
       value = policy.max;
       from = undefined;
     }
-    if (e.type !== "answer_submitted" || practice) continue;
+    if (e.type !== "answer_submitted" || mode === undefined || !GATED.has(mode)) continue;
     // A self-rated speaking card is no verdict (P5): it never costs a heart, nor breaks or extends a run.
     const selfRated = e.input.selfRating !== undefined;
+    const right = gated.get(e.id) ?? isRight(e);
     if (policy.policy === "hearts") {
-      if (!isRight(e) && !selfRated) spend(1, t);
+      if (!right && !selfRated) spend(1, t);
     } else {
       spend(policy.costPerExercise, t);
-      if (!selfRated) run = isRight(e) ? run + 1 : 0;
+      if (!selfRated) run = right ? run + 1 : 0;
       if (run > 0 && run % policy.runLength === 0) {
         value = Math.min(policy.max, value + policy.earnOnCorrectRun);
         if (value >= policy.max) from = undefined;
@@ -388,7 +419,16 @@ const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, 
     }
   }
   regen(Date.parse(now));
-  return { policy: policy.policy, value, max: policy.max, ...(from === undefined ? {} : { nextAt: new Date(from + tick).toISOString() }) };
+  // Units come back one a tick from `from`: a lesson may start once there are enough (M5).
+  const needed = neededToStart(policy);
+  const opensAt = from === undefined || value >= needed || needed > policy.max ? undefined : from + (needed - value) * tick;
+  return {
+    policy: policy.policy,
+    value,
+    max: policy.max,
+    ...(from === undefined ? {} : { nextAt: new Date(from + tick).toISOString() }),
+    ...(opensAt === undefined ? {} : { opensAt: new Date(opensAt).toISOString() }),
+  };
 };
 
 /** The latest goal_set of a log in time order (ADR 0107, D12): its days, null if cleared; undefined if none. */
@@ -398,10 +438,15 @@ const goalOf = (sorted: readonly GameInput[]): number | null | undefined => {
   return goal;
 };
 
-/** Whether a session of this mode may start now. Practice is always open; with the gate off, everything is. */
-export const canStart = (gate: GateState, mode: Mode, policy: GatePolicy): boolean => {
-  if (policy.policy === "none" || mode === "review" || mode === "mistakes") return true;
-  return policy.policy === "hearts" ? gate.value > 0 : gate.value >= policy.costPerExercise;
+/**
+ * Whether a session of this mode may start. Practice is always open, and so is a placement test,
+ * which costs nothing (M5); with the gate off, everything is. `now`, where given, lets a gate state
+ * worked out a while ago open on time (its `opensAt`).
+ */
+export const canStart = (gate: GateState, mode: Mode, policy: GatePolicy, now?: string): boolean => {
+  if (policy.policy === "none" || !GATED.has(mode)) return true;
+  if (gate.value >= neededToStart(policy)) return true;
+  return now !== undefined && gate.opensAt !== undefined && Date.parse(now) >= Date.parse(gate.opensAt);
 };
 
 const achieved = (a: AchievementTemplate, longest: number, all: readonly GameInput[], xpTotal: number): boolean =>
@@ -409,7 +454,7 @@ const achieved = (a: AchievementTemplate, longest: number, all: readonly GameInp
 
 /** The game state the log projects to, as of `clock`. */
 export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clock: Clock, rules: readonly Rule[] = DEFAULT_RULES): GameState => {
-  const { inputs: sorted, times } = orderedLog(inputs);
+  const { inputs: sorted, times, gated } = orderedLog(inputs);
   const modes = new Map<string, Mode>();
   for (const { event: e } of sorted) if (e.type === "session_started" || e.type === "session_completed") modes.set(e.session, e.mode);
   const counts = countsOf(sorted, times, config, clock.now);
@@ -477,7 +522,7 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
     streak,
     quests: questsOn(clock.today),
     achievements: config.achievements.filter((a) => achieved(a, streak.longest, sorted, xpTotal)).map((a) => a.id),
-    gate: gateOf(sorted, modes, config.gate, clock.now),
+    gate: gateOf(sorted, modes, gated, config.gate, clock.now),
     goal: goalOf(sorted),
   };
 };
