@@ -11,6 +11,7 @@ import { LessonPlayer, type LoadedCourse } from "@nabu/ui/player";
 import { useMemo, useState, type JSX } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
+import { ScreenHeading } from "./screen.tsx";
 
 const DEBUG = "nabu.debug";
 
@@ -76,6 +77,7 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
   if (playing !== null) {
     return (
       <main className={styles.player}>
+        <ScreenHeading>{t.format("debug.cards.title")}</ScreenHeading>
         <LessonPlayer
           key={playing.key}
           course={course}

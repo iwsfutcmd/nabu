@@ -20,6 +20,7 @@ import { useEffect, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
 import { useReportsPublic } from "./reports.ts";
+import { ScreenHeading } from "./screen.tsx";
 import type { EventStore } from "./store.ts";
 import { isHttpError, queueJudge, request, type Account, type Sync } from "./sync.ts";
 
@@ -329,6 +330,7 @@ export const RoleplayPage = ({ course, scenario: id, account, status, back }: Ro
   };
   return (
     <main className={styles.page} data-roleplay-page={scenario.id}>
+      <ScreenHeading>{t.format("app.path.conversation")}</ScreenHeading>
       <p>
         <a className={styles.back} href={back}>
           {t.format("app.roleplay.back")}

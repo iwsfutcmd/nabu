@@ -606,6 +606,10 @@
       "message": "This lesson or story isn't in the course any more. The course may have changed since this link was made.",
       "description": "A link to a lesson or story the course no longer has (an old bookmark, or a tab restored after an update)."
     },
+    "app.session.placement": {
+      "message": "Placement test",
+      "description": "Name of the placement test session (a short test that finds the learner's level), in the browser tab's title and as the screen's heading for assistive tech."
+    },
     "app.speaking.off": {
       "message": "Speaking exercises are off for now. They come back in an hour.",
       "description": "Notice on the course path after the learner chose 'Can't speak now'."
@@ -637,6 +641,18 @@
     "app.sync.syncing": {
       "message": "Saving…",
       "description": "Sync status while uploading."
+    },
+    "app.title.course": {
+      "message": "{$course} · {$orthography} – {$app}",
+      "description": "The browser tab's title on a course's page: the course ($course, a language name), the writing system it is in ($orthography), then the app's name ($app)."
+    },
+    "app.title.in-course": {
+      "message": "{$page} – {$course} – {$app}",
+      "description": "The browser tab's title on a screen of a course: the screen ($page, e.g. \"Lesson 3\" or \"Words you've learned\"), the course ($course, a language name), then the app's name ($app)."
+    },
+    "app.title.page": {
+      "message": "{$page} – {$app}",
+      "description": "The browser tab's title on a screen outside a course: the screen ($page, e.g. \"Preferences\"), then the app's name ($app)."
     },
     "app.voice.forget": {
       "message": "Forget my voice range",
