@@ -71,6 +71,9 @@ export type SyncError =
   | "age-required"
   /** The server's age gate turned the person away. */
   | "age"
+  /** The device has no network (ADR 0123). */
+  | "offline"
+  /** The device is online, but the server does not answer: it is down, or something between blocks it. */
   | "unreachable"
   | "signed-out"
   | "rejected"
@@ -80,7 +83,11 @@ export interface SyncState {
   /** The sync server, if this build or URL names one: without it the app is local-only. */
   readonly server: string | undefined;
   readonly account: Account | undefined;
-  readonly phase: "idle" | "syncing" | "offline" | "error";
+  /**
+   * `offline`: the last pass failed with no network; `unreachable`: online, but the server did not
+   * answer (ADR 0123). Either way the outbox goes up once a pass gets through.
+   */
+  readonly phase: "idle" | "syncing" | "offline" | "unreachable" | "error";
   readonly error: SyncError | undefined;
   /** Events recorded here that the server has not acknowledged. */
   readonly pending: number;
@@ -147,15 +154,24 @@ interface Checked {
   readonly verified: boolean;
 }
 
+/** A proxy's answers for a server behind it that is down or restarting. */
+const SERVER_DOWN: ReadonlySet<number> = new Set([502, 503, 504]);
+
+/** The browser knows it has no network. True does not promise a route to the server, false does mean none. */
+const offline = (): boolean => typeof navigator !== "undefined" && navigator.onLine === false;
+
 const errorOf = (e: unknown): SyncError => {
   if (isHttpError(e)) {
     if (e.status === 401 && e.code === "unauthorized") return "signed-out";
     if (e.status === 429) return "rate-limited";
+    if (SERVER_DOWN.has(e.status)) return "unreachable";
     const known: readonly SyncError[] = ["invalid-email", "weak-password", "email-taken", "wrong-credentials", "age-required", "age"];
     if (known.includes(e.code as SyncError)) return e.code as SyncError;
     return e.status === 400 ? "rejected" : "unknown";
   }
-  return e instanceof TypeError ? "unreachable" : "unknown";
+  // No answer at all: the device is offline, or it is online and the server cannot be reached (ADR 0123).
+  if (e instanceof TypeError) return offline() ? "offline" : "unreachable";
+  return "unknown";
 };
 
 const JUDGE_QUEUE = "judge-queue";
@@ -359,8 +375,9 @@ export const createSync = async (store: EventStore, server: string | undefined, 
           return;
         }
         const pending = await store.pendingCount();
-        if (error === "unreachable" && pending > 0) void requestBackgroundSync();
-        set({ phase: error === "unreachable" ? "offline" : "error", error, pending });
+        const waiting = error === "offline" || error === "unreachable";
+        if (waiting && pending > 0) void requestBackgroundSync();
+        set({ phase: waiting ? error : "error", error, pending });
       })
       .finally(() => {
         running = undefined;

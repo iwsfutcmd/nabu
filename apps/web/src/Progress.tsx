@@ -43,6 +43,7 @@ const ERRORS = {
   "rate-limited": "app.error.account.rate-limited",
   "age-required": "app.error.account.age-required",
   age: "app.account.age-refused",
+  offline: "app.error.account.offline",
   unreachable: "app.error.account.unreachable",
   "signed-out": "app.error.account.signed-out",
   rejected: "app.error.account.rejected",
@@ -141,21 +142,34 @@ const AccountData = ({ sync, onDeleted }: { sync: Sync; onDeleted: () => void })
 
 const Status = ({ state }: { state: SyncState }): JSX.Element => {
   const t = useTranslator();
-  // Never "all saved" while the server has rejected some of it (S13): that part is said apart.
+  // Never "all saved" while the server has rejected some of it (S13): that part is said apart. No
+  // network is not a server that does not answer (ADR 0123): each is said as what it is.
   const status =
-    state.phase === "offline" ? "offline" : state.phase === "syncing" ? "syncing" : state.pending > 0 ? "pending" : state.phase === "error" ? "error" : state.held > 0 ? "held" : "saved";
+    state.phase === "offline" || state.phase === "unreachable"
+      ? state.phase
+      : state.phase === "syncing"
+        ? "syncing"
+        : state.pending > 0
+          ? "pending"
+          : state.phase === "error"
+            ? "error"
+            : state.held > 0
+              ? "held"
+              : "saved";
   const text =
     status === "offline"
       ? t.format("app.sync.offline", { count: state.pending })
-      : status === "syncing"
-        ? t.format("app.sync.syncing")
-        : status === "pending"
-          ? t.format("app.sync.pending", { count: state.pending })
-          : status === "error"
-            ? t.format(ERRORS[state.error ?? "unknown"], { min: MIN_PASSWORD })
-            : status === "held"
-              ? t.format("app.sync.saved-except")
-              : t.format("app.sync.saved");
+      : status === "unreachable"
+        ? t.format("app.sync.unreachable", { count: state.pending })
+        : status === "syncing"
+          ? t.format("app.sync.syncing")
+          : status === "pending"
+            ? t.format("app.sync.pending", { count: state.pending })
+            : status === "error"
+              ? t.format(ERRORS[state.error ?? "unknown"], { min: MIN_PASSWORD })
+              : status === "held"
+                ? t.format("app.sync.saved-except")
+                : t.format("app.sync.saved");
   return (
     <p className={styles.muted} role="status" data-sync-status={status} data-pending={state.pending} data-verified={state.verified === undefined ? undefined : String(state.verified)}>
       {text}

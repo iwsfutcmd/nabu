@@ -19,7 +19,8 @@ interface Profile {
 }
 
 const profileError = (e: unknown): string => {
-  if (!isHttpError(e)) return "app.error.account.unreachable";
+  // No answer: no network is said apart from a server that does not answer (ADR 0123).
+  if (!isHttpError(e)) return navigator.onLine === false ? "app.error.account.offline" : "app.error.account.unreachable";
   const detail = e.detail as { code?: string; reason?: string } | undefined;
   if (detail?.code === "invalid-username" && detail.reason !== undefined) return `app.error.profile.${detail.reason}`;
   if (detail?.code === "username-taken" || detail?.code === "username-confusable") return `app.error.profile.${detail.code}`;

@@ -310,6 +310,10 @@
       "message": "Enter a valid email address.",
       "description": "Shown when the email address is not valid."
     },
+    "app.error.account.offline": {
+      "message": "You're offline. Connect to the internet, then try again.",
+      "description": "Shown when an account action (signing in, creating an account, the profile, the account's data) failed because the device has no network. When the device is online but the server does not answer, app.error.account.unreachable says so instead."
+    },
     "app.error.account.rate-limited": {
       "message": "Too many tries. Wait a few minutes and try again.",
       "description": "Shown when the server refuses more sign-ins or sign-ups for a while."
@@ -327,8 +331,8 @@
       "description": "Shown for unexpected account or sync errors."
     },
     "app.error.account.unreachable": {
-      "message": "Can't reach the server. Check your connection and try again.",
-      "description": "Shown when the sync server cannot be reached."
+      "message": "Can't reach the server right now. Try again later.",
+      "description": "Shown when an account action failed because the sync server does not answer although the device is online: the server may be down, or a network in between may block it. With no network at all, app.error.account.offline says so instead."
     },
     "app.error.account.weak-password": {
       "message": ".input {$min :number}\n{{Use at least {$min} characters.}}",
@@ -936,7 +940,7 @@
     },
     "app.sync.offline": {
       "message": ".input {$count :number}\n.match $count\none {{Offline. {$count} update will upload when you're back online.}}\n* {{Offline. {$count} updates will upload when you're back online.}}",
-      "description": "Sync status while the server cannot be reached. $count is how many events wait to upload."
+      "description": "Sync status while the device has no network. $count is how many events wait to upload. When the device is online but the server does not answer, app.sync.unreachable says so instead."
     },
     "app.sync.pending": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} update waiting to upload}}\n* {{{$count} updates waiting to upload}}",
@@ -953,6 +957,10 @@
     "app.sync.syncing": {
       "message": "Saving…",
       "description": "Sync status while uploading."
+    },
+    "app.sync.unreachable": {
+      "message": ".input {$count :number}\n.match $count\none {{Can't reach the server right now. {$count} update will upload when it's back.}}\n* {{Can't reach the server right now. {$count} updates will upload when it's back.}}",
+      "description": "Sync status while the device is online but the sync server does not answer (it may be down). Not the device being offline, which app.sync.offline says. $count is how many events wait to upload; \"it\" is the server. Select plural forms as your language needs; drop the .match if it needs none."
     },
     "app.title.course": {
       "message": "{$course} · {$orthography} – {$app}",

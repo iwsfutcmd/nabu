@@ -268,6 +268,50 @@ describe("signed out by the server (ADR 0123)", () => {
   });
 });
 
+describe("no network is not a server that does not answer (ADR 0123)", () => {
+  /** A request that gets no answer, as a browser's fetch fails: with a TypeError. */
+  const noAnswer = (): void => {
+    vi.stubGlobal("fetch", () => Promise.reject(new TypeError("Failed to fetch")));
+  };
+  const online = (onLine: boolean): void => {
+    vi.stubGlobal("navigator", { onLine });
+  };
+
+  it("signing in says which: offline, or a server that does not answer (a proxy's 502 to 504 too)", async () => {
+    const sync = await createSync(await deviceWith([]), SERVER, options);
+    noAnswer();
+    online(false);
+    expect(await sync.signIn("a@example.org", "a long password")).toBe("offline");
+    online(true);
+    expect(await sync.signIn("a@example.org", "a long password")).toBe("unreachable");
+    for (const status of [502, 503, 504]) {
+      vi.stubGlobal("fetch", () => Promise.resolve(new Response("<html>Bad gateway</html>", { status })));
+      expect(await sync.signIn("a@example.org", "a long password")).toBe("unreachable");
+    }
+    vi.stubGlobal("fetch", () => Promise.resolve(new Response("{}", { status: 500 })));
+    expect(await sync.signIn("a@example.org", "a long password")).toBe("unknown");
+  });
+
+  it("a pass says which, and the outbox waits either way", async () => {
+    server();
+    const store = await deviceWith([event(1, "2026-11-11T09:00:00.000Z")]);
+    const sync = await createSync(store, SERVER, options);
+    await sync.signUp("a@example.org", "a long password");
+    await store.append([event(2, "2026-11-12T11:00:00.000Z")]);
+    noAnswer();
+    online(false);
+    await sync.syncNow();
+    expect(sync.get()).toMatchObject({ phase: "offline", error: "offline", pending: 1 });
+    online(true);
+    await sync.syncNow();
+    expect(sync.get()).toMatchObject({ phase: "unreachable", error: "unreachable", pending: 1 });
+    vi.stubGlobal("fetch", () => Promise.resolve(new Response(null, { status: 503 })));
+    await sync.syncNow();
+    expect(sync.get()).toMatchObject({ phase: "unreachable", pending: 1 });
+    expect(sync.get().account?.user.email).toBe("a@example.org");
+  });
+});
+
 describe("the account the device enters (ADR 0123)", () => {
   it("a new account after a deletion takes the device's whole log, not only what was recorded since", async () => {
     const remote = server();
@@ -359,9 +403,10 @@ describe("the check in a worker (ADR 0112)", () => {
   it("a check that failed in the worker fails the pass as it would on the page", async () => {
     server();
     workerAnswering({ failed: { network: true } });
-    const offline = await createSync(await persistent(), SERVER, options);
-    await offline.signUp("a@example.org", "a long password");
-    expect(offline.get()).toMatchObject({ phase: "offline", error: "unreachable", verified: undefined });
+    // The page is online (Node's navigator says nothing of a network): the server did not answer.
+    const unreachable = await createSync(await persistent(), SERVER, options);
+    await unreachable.signUp("a@example.org", "a long password");
+    expect(unreachable.get()).toMatchObject({ phase: "unreachable", error: "unreachable", verified: undefined });
     workerAnswering({ failed: { status: 401, code: "unauthorized" } });
     const signedOut = await createSync(await persistent(), SERVER, options);
     await signedOut.signUp("a@example.org", "a long password");
