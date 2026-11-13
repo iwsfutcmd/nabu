@@ -75,6 +75,22 @@ describe("putting off listening and speaking (P13)", () => {
   });
 });
 
+describe("the lesson's sound switch (P6)", () => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardOf(course, "complete-translation");
+  const toggle = (html: string): string => /<button[^>]*data-action="sound"[^>]*>/u.exec(html)?.[0] ?? "";
+
+  it("is in the header, on unless the learner turned sound off", () => {
+    const on = toggle(play(course, ex, stateOf(course, ex)));
+    expect(on).toContain('data-sound="on"');
+    expect(on).toContain('aria-pressed="true"');
+    expect(on).toContain('aria-label="Sound"');
+    const off = toggle(play(course, ex, stateOf(course, ex), { sound: false }));
+    expect(off).toContain('data-sound="off"');
+    expect(off).toContain('aria-pressed="false"');
+  });
+});
+
 describe("the answer's play buttons (P15)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");

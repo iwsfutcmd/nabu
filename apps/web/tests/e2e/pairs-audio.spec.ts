@@ -3,11 +3,12 @@
  * - match the pairs: a tapped word says itself when it has a clip; meanings say nothing;
  * - every card with a clip says it once answered (complete the translation, translations both
  *   ways, gap-fill, pictures, pronunciation, listening cards again);
- * - with sound off nothing plays.
+ * - with sound off nothing plays: off in Preferences or the lesson's header (the play buttons still
+ *   work), and after "Can't listen now" (P6).
  */
-import { cardGallery } from "@nabu/core/lesson";
+import { cardGallery, LISTENING } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
-import { answer, loadCourse } from "./solver.ts";
+import { answer, expectRightAndContinue, loadCourse, waitFor } from "./solver.ts";
 
 declare global {
   interface Window {
@@ -99,4 +100,68 @@ for (const template of SAY_WHEN_ANSWERED) {
     await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([...opened, clip]);
   });
 }
+
+test("sound off in Preferences: nothing plays by itself, the play buttons still work, and the lesson's switch is the same setting (P6)", async ({ page }) => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardGallery(course, 7).find((c) => c.template === "complete-translation")?.exercise;
+  if (ex?.template !== "complete-translation") throw new Error("apc has a complete-translation card");
+  const clip = course.audio[ex.item]?.normal.path;
+  expect(clip).toBeDefined();
+
+  await recordPlays(page);
+  await page.goto("/#/preferences");
+  await expect(page.locator("[data-preference=sound] [data-sound-choice]")).toHaveText(["On", "Off"]);
+  await expect(page.locator("[data-sound-choice=on] input")).toBeChecked();
+  await page.locator("[data-sound-choice=off]").click();
+  await tryCard(page, "complete-translation", "", "#/apc/apc-Arab.standard");
+  const toggle = page.locator("[data-lesson-player] [data-action=sound]");
+  await expect(toggle).toHaveAttribute("data-sound", "off");
+  await answer(page, ex, "keyboard");
+  await expect(page.locator("[data-feedback]")).toBeVisible();
+  await page.waitForTimeout(800);
+  expect(await page.evaluate(() => window.nabuPlayed)).toEqual([]);
+  // Asking for it is another thing: a play button plays.
+  await page.locator("[data-answer-audio] [data-action=play]").click();
+  await expect.poll(() => page.evaluate(() => window.nabuPlayed)).toEqual([clip]);
+  // The lesson's speaker button changes the same setting.
+  await toggle.click();
+  await expect(toggle).toHaveAttribute("data-sound", "on");
+  await page.goto("/#/preferences");
+  await expect(page.locator("[data-sound-choice=on] input")).toBeChecked();
+});
+
+test("after Can't listen now, no card says its clip by itself (P6)", async ({ page }) => {
+  // The gallery played in a row: a listening card, then (listening dropped) a card that says its clip once answered.
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const all = cardGallery(course, 7).flatMap((c) => (c.exercise === undefined ? [] : [c.exercise]));
+  const at = all.findIndex((e) => LISTENING.has(e.template));
+  const rest = all.slice(at + 1).filter((e) => !LISTENING.has(e.template));
+  const said = rest.findIndex((e) => (SAY_WHEN_ANSWERED as readonly string[]).includes(e.template) && course.audio[e.item] !== undefined);
+  const listening = all[at];
+  expect(listening).toBeDefined();
+  expect(said).toBeGreaterThanOrEqual(0);
+  if (listening === undefined) return;
+
+  await recordPlays(page);
+  await page.goto("/?debug=1#/apc/apc-Arab.standard/cards");
+  await page.locator("[data-action=play-all-cards]").click();
+  for (const ex of all.slice(0, at)) {
+    await waitFor(page, ex);
+    await answer(page, ex, "keyboard");
+    await expectRightAndContinue(page, "keyboard", ex);
+  }
+  await waitFor(page, listening);
+  await page.locator("[data-action=cant-listen]").click();
+  await page.evaluate(() => {
+    window.nabuPlayed = [];
+  });
+  for (const ex of rest.slice(0, said + 1)) {
+    await waitFor(page, ex);
+    await answer(page, ex, "keyboard");
+    await expect(page.locator("[data-feedback]")).toBeVisible();
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => window.nabuPlayed), ex.id).toEqual([]);
+    await expectRightAndContinue(page, "keyboard", ex);
+  }
+});
 

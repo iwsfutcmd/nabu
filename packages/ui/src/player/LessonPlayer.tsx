@@ -18,6 +18,7 @@ import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 import { ReadingsControl, useReadings } from "./Readings.tsx";
 import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
+import { SoundToggle } from "./SoundToggle.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -33,7 +34,18 @@ export interface LessonPlayerProps {
   readonly language: string;
   readonly onEvent?: (event: LessonEvent) => void;
   readonly onExit?: () => void;
+  /**
+   * Sound as the lesson opens (the learner's choice on this device; default on). Off, nothing plays by
+   * itself: no feedback tones, no clip said on its own. The play buttons still work (P6).
+   */
   readonly sound?: boolean;
+  /** The learner switched sound on or off in the lesson's header: the app keeps the choice. */
+  readonly onSoundChange?: ((on: boolean) => void) | undefined;
+  /**
+   * False while the learner is on a listening break ("Can't listen now" in an earlier session): no clip
+   * plays by itself then either, as after "Can't listen now" in this lesson (P6).
+   */
+  readonly listening?: boolean | undefined;
   /** Initial writing mode for target prompts and word banks (vertical where allowed). */
   readonly writingMode?: WritingMode;
   /** For stories and tests: start from this state instead of the lesson's first exercise. */
@@ -87,9 +99,14 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 );
 
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
+  const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries, adaptive, resumed: props.resumed });
+  const [sound, setSound] = useState(props.sound !== false);
+  // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
+  const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
+  // Nothing plays by itself with sound off, or while the learner can't listen (P6): no tones, no clips.
+  const quiet = !sound || putOff.listening || props.listening === false;
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound: !quiet, retries, adaptive, resumed: props.resumed });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {
@@ -107,8 +124,6 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
   const readings = useReadings(profile, mode, props.reading, props.onReadingChange);
   const [vowels, setVowels] = useState(true);
-  // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
-  const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
   const verticalMode = profile?.layout?.vertical;
   const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "wordbank") !== "horizontal-tb";
   const ruby = readings.shown;
@@ -218,6 +233,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
             </div>
           )}
         </ProgressBar>
+        <SoundToggle
+          on={sound}
+          onChange={(on) => {
+            setSound(on);
+            props.onSoundChange?.(on);
+          }}
+        />
       </header>
 
       {/* "Can't listen now" and "Can't speak now" say what they did, for as long as the lesson lasts (P13). */}
@@ -268,7 +290,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         marks={marks}
         writingMode={mode}
         imageUrl={imageUrl}
-        sound={sound !== false}
+        sound={!quiet}
         outcome={outcome}
         language={language}
         shortcuts={shortcuts}

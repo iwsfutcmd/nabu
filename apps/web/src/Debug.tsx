@@ -11,6 +11,7 @@ import { LessonPlayer, type LoadedCourse } from "@nabu/ui/player";
 import { useMemo, useState, type JSX } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
+import { storedSound, storeSound } from "./Preferences.tsx";
 import { ScreenHeading } from "./screen.tsx";
 
 const DEBUG = "nabu.debug";
@@ -73,7 +74,7 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
   const gallery = useMemo(() => cardGallery(course, 7), [course]);
   const grader = useMemo(() => createGrader(course), [course]);
   const [playing, setPlaying] = useState<{ readonly key: string; readonly exercises: readonly Exercise[] } | null>(null);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
+  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
   if (playing !== null) {
     return (
       <main className={styles.player}>
@@ -87,6 +88,7 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
           imageUrl={imageUrl}
           language={language}
           sound={sound}
+          onSoundChange={storeSound}
           retries={false}
           xpEarned={0}
           debug

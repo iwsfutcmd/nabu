@@ -72,6 +72,22 @@ export const FlagIcon = ({ size = 20 }: IconProps): JSX.Element => (
   </svg>
 );
 
+/** Sound on (a speaker sending waves). Media control: never mirrors. */
+export const SoundOnIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="sound-on">
+    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" />
+    <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
+/** Sound off (a speaker, crossed out). Media control: never mirrors. */
+export const SoundOffIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="sound-off">
+    <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" />
+    <path d="m15.5 9.5 5 5m0-5-5 5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+);
+
 /** Play slowly (a tortoise). Media control: never mirrors. */
 export const SlowIcon = ({ size = 20 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="slow">

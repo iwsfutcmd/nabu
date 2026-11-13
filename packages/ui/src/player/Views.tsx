@@ -717,9 +717,11 @@ const ModelAudio = ({ props }: { props: Props<Speak> }): JSX.Element | null => {
   const audio = props.course.audio[props.ex.item];
   const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   const { play } = player;
+  // Said as the card opens, unless nothing may play by itself (sound off, or can't listen: P6).
+  const { sound } = props;
   useEffect(() => {
-    if (audio !== undefined) play("normal");
-  }, [play, audio]);
+    if (audio !== undefined && sound !== false) play("normal");
+  }, [play, audio, sound]);
   useSayWhenAnswered(player, props, audio);
   return audio === undefined ? null : (
     <div data-model-audio="">
@@ -986,18 +988,20 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
 // ------------------------------------------------------------------------------------ listening
 
 /**
- * The clip of a listening exercise: plays once when the exercise opens, again on request (normal
- * or slow), and again once answered, as the transcript appears and follows it. Once answered, the
- * translation shows under the transcript: what was heard, and what it means.
+ * The clip of a listening exercise: plays once when the exercise opens (with sound on), again on
+ * request (normal or slow), and again once answered, as the transcript appears and follows it. Once
+ * answered, the translation shows under the transcript: what was heard, and what it means.
  */
 const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioRef; props: Props<ViewProps["ex"]>; transcript?: TaggedText | undefined; translation?: TaggedText | undefined }): JSX.Element => {
   const t = useTranslator();
   const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   const { play } = player;
   const answered = props.outcome !== undefined;
+  // It starts by itself unless nothing may (sound off: P6); its big button plays it either way.
+  const { sound } = props;
   useEffect(() => {
-    play("normal");
-  }, [play]);
+    if (sound !== false) play("normal");
+  }, [play, sound]);
   useSayWhenAnswered(player, props, audio);
   return (
     <div className={styles.listen} role="group" aria-label={t.format("player.audio.label")} data-listen-prompt="">

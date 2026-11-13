@@ -22,7 +22,11 @@ export interface ViewProps<E extends Exercise = Exercise> {
   readonly writingMode: WritingMode;
   /** Maps a bundle path (images/…, audio/…) to a URL. */
   readonly imageUrl: (path: string) => string;
-  /** Whether a tap may play a word's clip (match-pairs); off with the player's sound. */
+  /**
+   * Whether clips may play by themselves: as a card opens or is answered, or as a word is tapped
+   * (match-pairs). Off with the player's sound, and while the learner can't listen (P6); the play
+   * buttons work either way.
+   */
   readonly sound?: boolean | undefined;
   /** Where a view registers its digit and Backspace shortcuts; the player listens on the window. */
   readonly shortcuts: { current: Shortcuts | null };

@@ -12,6 +12,9 @@
  * light or dark whatever it is set to. A chosen theme is data-theme on <html> (tokens.css);
  * index.html sets it before the first paint, so a dark page never flashes light.
  *
+ * Sound: on, or off (nothing plays by itself in lessons and stories). The player's header has the
+ * same switch.
+ *
  * The time of the daily reminder is the one preference that is the account's, not the device's:
  * the server sends the reminders, so it keeps the time (ADR 0103) for every device that gets them.
  * It shows when signed in to a server that sends reminders.
@@ -113,6 +116,33 @@ export const applyTheme = (theme: Theme): void => {
   for (const meta of document.querySelectorAll<HTMLMetaElement>("meta[name=theme-color][data-theme-for]")) {
     const own = meta.dataset["themeFor"];
     meta.media = theme === "system" ? `(prefers-color-scheme: ${own ?? "light"})` : own === theme ? "all" : "not all";
+  }
+};
+
+/**
+ * Sound in lessons and stories (P6): on, or off. Off, nothing plays by itself (feedback tones, clips
+ * said as a card opens or is answered, story lines read out); the play buttons still work. The
+ * player's own sound button changes the same setting.
+ */
+const SOUND_KEY = "nabu.sound";
+let soundFallback = true;
+
+/** Whether sound is on on this device (on until the learner turns it off). */
+export const storedSound = (): boolean => {
+  try {
+    return localStorage.getItem(SOUND_KEY) !== "off";
+  } catch {
+    return soundFallback;
+  }
+};
+
+export const storeSound = (on: boolean): void => {
+  soundFallback = on;
+  try {
+    if (on) localStorage.removeItem(SOUND_KEY);
+    else localStorage.setItem(SOUND_KEY, "off");
+  } catch {
+    // Storage unavailable: the choice lasts this page.
   }
 };
 
@@ -226,13 +256,14 @@ const ReminderTime = ({ account }: { readonly account: Account }): JSX.Element |
 };
 
 /**
- * The preferences screen: appearance and the size of the language being learned, applied as the
- * learner chooses; with an account, the time of the daily reminder.
+ * The preferences screen: appearance, the size of the language being learned and sound, applied as
+ * the learner chooses; with an account, the time of the daily reminder.
  */
 export const PreferencesPage = ({ back, account }: { readonly back: string; readonly account?: Account | undefined }): JSX.Element => {
   const t = useTranslator();
   const [size, setSize] = useState<TextSize>(storedTextSize);
   const [theme, setTheme] = useState<Theme>(storedTheme);
+  const [sound, setSound] = useState<boolean>(storedSound);
   const choose = (value: string): void => {
     if (!isTextSize(value)) return;
     setSize(value);
@@ -269,6 +300,27 @@ export const PreferencesPage = ({ back, account }: { readonly back: string; read
             {t.format(LABEL[s])}
           </Radio>
         ))}
+      </RadioGroup>
+      <RadioGroup
+        className={styles.preferenceOptions}
+        value={sound ? "on" : "off"}
+        onChange={(value) => {
+          const on = value !== "off";
+          setSound(on);
+          storeSound(on);
+        }}
+        data-preference="sound"
+      >
+        <Label className={styles.subheading}>{t.format("preferences.sound.label")}</Label>
+        <Text slot="description" className={styles.muted}>
+          {t.format("preferences.sound.hint")}
+        </Text>
+        <Radio value="on" className={styles.preferenceOption} data-sound-choice="on">
+          {t.format("preferences.sound.on")}
+        </Radio>
+        <Radio value="off" className={styles.preferenceOption} data-sound-choice="off">
+          {t.format("preferences.sound.off")}
+        </Radio>
       </RadioGroup>
       {account !== undefined && <ReminderTime account={account} />}
       <p>

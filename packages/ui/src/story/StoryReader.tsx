@@ -24,6 +24,7 @@ import { Feedback } from "../player/Feedback.tsx";
 import playerStyles from "../player/Player.module.css";
 import { ReadingsControl, useReadings } from "../player/Readings.tsx";
 import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
 import { useStoryPlayer } from "./useStoryPlayer.ts";
@@ -38,7 +39,12 @@ export interface StoryReaderProps {
   readonly language: string;
   readonly onEvent?: (event: LessonEvent) => void;
   readonly onExit?: () => void;
+  /** Sound as the story opens (default on). Off, no line is read out and no tone sounds by itself (P6). */
   readonly sound?: boolean;
+  /** The learner switched sound on or off in the story's header: the app keeps the choice. */
+  readonly onSoundChange?: ((on: boolean) => void) | undefined;
+  /** False while the learner is on a listening break ("Can't listen now"): nothing plays by itself then either. */
+  readonly listening?: boolean | undefined;
   /** Initial writing mode for the transcript (vertical where allowed). */
   readonly writingMode?: WritingMode;
   /** XP the story earned, shown when it ends. */
@@ -130,9 +136,12 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
 };
 
 const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
-  const { course, script, grader, imageUrl, language, onEvent, onExit, sound, profile, xpEarned } = props;
+  const { course, script, grader, imageUrl, language, onEvent, onExit, profile, xpEarned } = props;
   const t = useTranslator();
-  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound, initialState: props.initialState });
+  const [sound, setSound] = useState(props.sound !== false);
+  // Nothing plays by itself with sound off or while the learner can't listen (P6).
+  const quiet = !sound || props.listening === false;
+  const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
   const glossary = useMemo(() => courseGlossary(course), [course]);
   const verticalMode = profile?.layout?.vertical;
   const canVertical = verticalMode !== undefined && verticalMode !== "none" && effectiveWritingMode(profile, verticalMode, "reading") !== "horizontal-tb";
@@ -281,6 +290,13 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             </div>
           )}
         </ProgressBar>
+        <SoundToggle
+          on={sound}
+          onChange={(on) => {
+            setSound(on);
+            props.onSoundChange?.(on);
+          }}
+        />
       </header>
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
@@ -327,7 +343,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             latest={k === lines.length - 1}
             audio={lineAudio(line)}
             url={imageUrl}
-            autoPlay={k === lines.length - 1 && sound !== false}
+            autoPlay={k === lines.length - 1 && !quiet}
             pressed={selected?.line === line.index ? selected.token : undefined}
             onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
             translated={translations.has(line.index)}
@@ -382,7 +398,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             marks={marks}
             writingMode="horizontal-tb"
             imageUrl={imageUrl}
-            sound={sound !== false}
+            sound={!quiet}
             outcome={feedback?.outcome}
             language={language}
             shortcuts={shortcuts}

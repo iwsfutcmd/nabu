@@ -1868,7 +1868,7 @@
     },
     "player.action.cant-listen": {
       "message": "Can't listen now",
-      "description": "Quiet button on a listening card: no listening exercises for the next hour. Skip is a separate button."
+      "description": "Quiet button on a listening card: no listening exercises, and no sound playing by itself, for the next hour. Skip is a separate button."
     },
     "player.action.cant-speak": {
       "message": "Can't speak now",
@@ -2147,8 +2147,8 @@
       "description": "Accessible label of the meaning (gloss) the learner matches a picture to."
     },
     "player.put-off.listening": {
-      "message": "No listening exercises for the next hour. You can turn them back on from the course page.",
-      "description": "Said in the lesson once the learner pressed 'Can't listen now' (player.action.cant-listen), and shown until the lesson ends."
+      "message": "No listening exercises for the next hour, and nothing plays by itself. You can turn listening back on from the course page.",
+      "description": "Said in the lesson once the learner pressed 'Can't listen now' (player.action.cant-listen), and shown until the lesson ends. The play buttons still work."
     },
     "player.put-off.speaking": {
       "message": "No speaking exercises for the next hour. You can turn them back on from the course page.",
@@ -2181,6 +2181,10 @@
     "player.review.tag": {
       "message": "Review",
       "description": "Label above a lesson card that brings back earlier material because it is due for review (ADR 0097)."
+    },
+    "player.sound.label": {
+      "message": "Sound",
+      "description": "Accessible name of the toggle button with a speaker icon in the header of a lesson or story. Pressed: sound is on. Off, nothing plays by itself (tones after an answer, sentences read out); the play buttons still work."
     },
     "player.speak.play": {
       "message": "Play my recording",
@@ -2357,6 +2361,22 @@
     "preferences.reminder.time": {
       "message": "Remind me at",
       "description": "Label of the time-of-day field (hours and minutes, in the learner's own time zone) for the reminder."
+    },
+    "preferences.sound.hint": {
+      "message": "With sound off, nothing plays by itself in lessons and stories: no tones after an answer, no sentences read out. The play buttons still work. The speaker button in a lesson changes this too.",
+      "description": "Explains the sound choice, under its label."
+    },
+    "preferences.sound.label": {
+      "message": "Sound",
+      "description": "Label of the choice to turn sound on or off in lessons and stories."
+    },
+    "preferences.sound.off": {
+      "message": "Off",
+      "description": "Sound choice: nothing plays by itself."
+    },
+    "preferences.sound.on": {
+      "message": "On",
+      "description": "Sound choice (the default): tones after an answer, and sentences read out."
     },
     "preferences.target-size.default": {
       "message": "Default",

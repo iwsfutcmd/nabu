@@ -60,7 +60,7 @@ import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
-import { PreferencesPage } from "./Preferences.tsx";
+import { PreferencesPage, storedSound, storeSound } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
 import { holdRoute, leave, watchRoute } from "./navigation.ts";
@@ -980,7 +980,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
+  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
   if (!started) {
     const start = (): void => {
       setStarted(true);
@@ -1011,6 +1011,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         language={courseName(t, course.id)}
         onEvent={onEvent}
         sound={sound}
+        onSoundChange={storeSound}
+        listening={!onBreak("listening")}
         retries={request.mode !== "placement"}
         adaptive={setup.planned.placement?.test}
         resumed={setup.resumed?.from}
@@ -1080,7 +1082,7 @@ const StoryBody = ({ loaded, node, device, record, corrections, store, account, 
     return { script: storyScript(course, story, seededRng(seed)), onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
+  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
   if (setup === undefined) {
     return (
       <main className={styles.page}>
@@ -1102,6 +1104,8 @@ const StoryBody = ({ loaded, node, device, record, corrections, store, account, 
         language={courseName(t, course.id)}
         onEvent={setup.onEvent}
         sound={sound}
+        onSoundChange={storeSound}
+        listening={!onBreak("listening")}
         xpEarned={xpEarned}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
