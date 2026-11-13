@@ -15,7 +15,9 @@ from .test_courses import build
 
 YUE = "yue-Hant-HK/standard"
 GRC = "grc-Grek/polytonic"
+HBO = "hbo-Hebr/tiberian"
 HAN = tx.Script("Hant", ("Hani",))
+HEBR = tx.Script("Hebr", ("Hebr",))
 
 
 def word(surface: str, sense: str | None = None, **readings: str) -> dict[str, Any]:
@@ -111,6 +113,59 @@ def test_story_lines_count_only_for_a_word_no_lesson_has() -> None:
         "sense:ad": [tiberian],
         "sense:only-in-a-story": [{"tiberian": "ʾim"}],
     }
+
+
+def ad(reading: str) -> dict[str, Any]:
+    return {"surface": "עַד", "kind": "word", "sense": "ad", "readings": {"tiberian": reading}}
+
+
+def test_a_kc_s_own_reading_comes_first() -> None:
+    """עַד's lessons tie at one ʿaḏ- (bound by maqaf) and one ʿaḏ, and a tie goes to the first;
+    its entry chooses the free ʿaḏ for its card (the owner's D44). It is the first form's: a
+    variant (the poetic עֲדֵי) keeps the order's."""
+    adei = {"surface": "עֲדֵי", "kind": "word", "sense": "ad", "readings": {"tiberian": "ʿăḏê"}}
+    sentences = [[ad("ʿaḏ-")], [ad("ʿaḏ")], [adei]]
+    assert pinned(unit(HBO, sentences, {"sense:ad": ["עַד"]}), HBO, ruby=()) == {
+        "sense:ad": [{"tiberian": "ʿaḏ-"}]
+    }
+    u = unit(HBO, sentences, {"sense:ad": ["עַד", "עֲדֵי"]})
+    own = {"sense:ad": {"tiberian": "ʿaḏ"}}
+    assert pin_kc_readings([u], [HBO], lambda _o: [], lambda _o: HEBR, own) == []
+    first, variant = u["kcs"][0]["forms"][HBO]
+    assert first["tokens"][0]["readings"] == {"tiberian": "ʿaḏ"}
+    assert variant["tokens"][0]["readings"] == {"tiberian": "ʿăḏê"}
+
+
+def test_a_kc_s_own_reading_chooses_among_the_tokens_readings_and_never_adds_one() -> None:
+    """A reading no token gives the word, a form of two words, a scheme no orthography of the
+    KC's forms pins: each is refused, and the words keep the order's readings."""
+    u = unit(YUE, [[word("我", "我", jyutping="ngo5")], [word("哋", "哋", jyutping="dei6")]], {})
+    me: dict[str, Any] = {"surface": "我", "kind": "word"}
+    two_words: list[dict[str, Any]] = [
+        {"surface": "我", "kind": "word"},
+        {"surface": " ", "kind": "space"},
+        {"surface": "哋", "kind": "word"},
+    ]
+    u["kcs"] = [
+        {"id": "sense:我", "forms": {YUE: [{"tokens": [me]}]}},
+        {"id": "sense:哋", "forms": {YUE: [{"tokens": two_words}]}},
+    ]
+    own = {
+        "sense:我": {"jyutping": "ngo4", "pinyin": "wǒ"},
+        "sense:哋": {"jyutping": "dei6"},
+    }
+    refused = pin_kc_readings([u], [YUE], lambda _o: ["jyutping"], lambda _o: HAN, own)
+    assert sorted((r.kc, r.scheme) for r in refused) == [
+        ("sense:哋", "jyutping"),
+        ("sense:我", "jyutping"),
+        ("sense:我", "pinyin"),
+    ]
+    by = {(r.kc, r.scheme): r.message for r in refused}
+    assert "the course's give ngo5" in by[("sense:我", "jyutping")]
+    assert "2 words" in by[("sense:哋", "jyutping")]
+    assert "pin pinyin" in by[("sense:我", "pinyin")]
+    assert me["readings"] == {"jyutping": "ngo5"}
+    assert me["ruby"] == {"jyutping": [{"base": "我", "text": "ngo5"}]}
 
 
 def test_a_word_met_only_inside_longer_words_takes_its_share_of_them() -> None:

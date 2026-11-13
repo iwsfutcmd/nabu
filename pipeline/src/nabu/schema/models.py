@@ -702,6 +702,9 @@ type FormsAdditionalPropertyItem = Annotated[str, Field(min_length=1)]
 type FormsAdditionalProperty = Annotated[list[FormsAdditionalPropertyItem], Field(min_length=1)]
 
 
+type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
 type NotesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
@@ -756,9 +759,6 @@ class PathNodeSource(BaseModel):
 
 
 type TranslationsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-type ReadingsAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
 type Variant = Annotated[str, Field(min_length=1)]
@@ -990,11 +990,11 @@ type GroupItem = Annotated[str, Field(min_length=1)]
 type Group = Annotated[list[GroupItem], Field(min_length=2)]
 
 
-type ReadingsAdditionalProperty1Item = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty2Item = Annotated[str, Field(min_length=1)]
 
 
-type ReadingsAdditionalProperty1 = Annotated[
-    list[ReadingsAdditionalProperty1Item], Field(min_length=1)
+type ReadingsAdditionalProperty2 = Annotated[
+    list[ReadingsAdditionalProperty2Item], Field(min_length=1)
 ]
 
 
@@ -1018,7 +1018,7 @@ class DataTable(BaseModel):
         Field(description="variants: each group is a set of mutually acceptable forms."),
     ] = None
     readings: Annotated[
-        dict[str, ReadingsAdditionalProperty1] | None,
+        dict[str, ReadingsAdditionalProperty2] | None,
         Field(description="readings: character → readings in the profile's scheme."),
     ] = None
     chars: Annotated[str | None, Field(description="charset: the characters, concatenated.")] = None
@@ -2294,7 +2294,7 @@ type TokenKind = Annotated[
 ]
 
 
-type ReadingsAdditionalProperty2 = Annotated[str, Field(min_length=1)]
+type ReadingsAdditionalProperty3 = Annotated[str, Field(min_length=1)]
 
 
 class RubySegment(BaseModel):
@@ -2663,6 +2663,12 @@ class KnowledgeComponentSource(BaseModel):
         dict[OrthographyId, FormsAdditionalProperty] | None,
         Field(
             description="Glossary entries: how the KC is written, per orthography (tap-to-gloss, §7.5 stage 7)."
+        ),
+    ] = None
+    readings: Annotated[
+        dict[SchemeId, ReadingsAdditionalProperty] | None,
+        Field(
+            description="How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-."
         ),
     ] = None
     image: ImageAsset | None = None
@@ -3381,7 +3387,7 @@ class TokenModel(BaseModel):
         ),
     ] = None
     readings: Annotated[
-        dict[SchemeId, ReadingsAdditionalProperty2] | None,
+        dict[SchemeId, ReadingsAdditionalProperty3] | None,
         Field(
             description='Readings per scheme, e.g. {"jyutping": "hong4"}. Pinned in content, never guessed at runtime.'
         ),

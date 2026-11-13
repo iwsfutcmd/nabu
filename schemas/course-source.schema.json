@@ -267,6 +267,17 @@
             }
           }
         },
+        "readings": {
+          "description": "How a word card reads the KC's first form, per scheme, where the course's tokens give that word more than one reading (ADR 0117's amendment): it comes before every reading the compiler takes from sentences, in each orthography whose words pin the scheme. It must be one of the readings the course's tokens give that word (it chooses, never adds), and the form must be one word. hbo's sense:ad pins tiberian ʿaḏ, free, where its lessons tie with the maqaf-bound ʿaḏ-.",
+          "type": "object",
+          "propertyNames": {
+            "$ref": "common.schema.json#/$defs/SchemeId"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
         "image": {
           "$ref": "#/$defs/ImageAsset"
         },

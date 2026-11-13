@@ -731,13 +731,20 @@ def compile_course(
     ]
     compiled.written = ctx.written
     # Every word of a KC's forms takes one reading per scheme, which word cards show, voices read
-    # and minimal pairs compare (ADR 0117).
-    pin_kc_readings(
+    # and minimal pairs compare (ADR 0117); a KC's entry may choose its first form's (`readings`).
+    entries = {kc.id: (unit, ki, kc) for unit in units for ki, kc in enumerate(unit.source.kcs)}
+    refused = pin_kc_readings(
         compiled.units,
         list(course.orthographies),
         lambda orth: _ruby_schemes(ctx.profiles[orth]),
         lambda orth: _script(ctx, orth),
+        {kc_id: kc.readings for kc_id, (_, _, kc) in entries.items() if kc.readings},
     )
+    for r in refused:
+        unit, ki, _ = entries[r.kc]
+        ctx.diags.report(
+            "kc.reading", f"{r.kc}: {r.message}", unit.doc.loc("kcs", ki, "readings", r.scheme)
+        )
     if audio:
         check_audio(ctx, course, course_file, display, compiled)
     if diags.errors:

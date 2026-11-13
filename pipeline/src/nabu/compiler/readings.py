@@ -7,7 +7,9 @@ minimal pair compares two forms' readings. All of them take the reading pinned h
 own tokens; none looks one up in the sentences itself, so a card's clip and its ruby can never come
 from two readings of one word.
 
-Nothing is guessed: a reading comes from the course's own tokens, in this order:
+Nothing is guessed: a reading comes from the course's own tokens. A KC's entry may choose one of
+them for its first form (its `readings`, ADR 0117's amendment: hbo's sense:ad reads ʿaḏ, free, where
+its lessons tie with the maqaf-bound ʿaḏ-). Otherwise it is, in this order:
 
 1. the readings of the KC's sense spelled as the form, in the lesson sentences: the most common, a
    tie going to the first in course order;
@@ -24,7 +26,7 @@ lines up with them.
 
 from __future__ import annotations
 
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Iterator, Mapping
 from dataclasses import dataclass, field
 from typing import Any, cast
 
@@ -98,19 +100,54 @@ class Seen:
                 self.shares.setdefault((kc, part), []).append(share)
                 self.surfaces.setdefault(part, []).append(share)
 
-    def pick(self, kc: str, surface: str) -> str | None:
-        """The reading of a KC's form word (the module's docstring), or None."""
-        for table, key in (
+    def _steps(self, kc: str, surface: str) -> list[tuple[dict[Key, list[str]], Key]]:
+        """The order's first four steps: each table, and the key it looks a KC's form word up by."""
+        return [
             (self.lessons, (kc, surface)),
             (self.lines, (kc, surface)),
             (self.shares, (kc, surface)),
             (self.cited, (kc, surface if self.cite is None else self.cite(surface))),
-        ):
+        ]
+
+    def pick(self, kc: str, surface: str) -> str | None:
+        """The reading of a KC's form word (the module's docstring), or None."""
+        for table, key in self._steps(kc, surface):
             found = table.get(key)
             if found:
                 return _most_common(found)
         seen = set(self.surfaces.get(surface, []))
         return seen.pop() if len(seen) == 1 else None
+
+    def given(self, kc: str, surface: str) -> set[str]:
+        """Every reading the course's tokens give a KC's form word: each step's, and every token's
+        spelled as the form (a polyphone's several). A KC's own reading must be one of them."""
+        found = set(self.surfaces.get(surface, []))
+        for table, key in self._steps(kc, surface):
+            found.update(table.get(key, []))
+        return found
+
+
+@dataclass(frozen=True)
+class Refusal:
+    """A reading a KC's entry chose (its `readings`) that cannot be pinned, and why."""
+
+    kc: str
+    scheme: str
+    message: str
+
+
+def _refused(table: Seen, kc: str, words: list[dict[str, Any]], reading: str) -> str | None:
+    """Why a KC's own reading cannot be pinned on its first form's words, or None."""
+    if len(words) != 1:
+        return f"its first form has {len(words)} words; a KC's own reading is one word's"
+    surface = str(words[0]["surface"])
+    given = table.given(kc, surface)
+    if reading not in given:
+        return (
+            f"no token gives {surface} the reading {reading!r}; "
+            f"the course's give {', '.join(sorted(given)) or 'none'}"
+        )
+    return None
 
 
 def _sentence_tokens(units: list[dict[str, Any]], orth: str) -> Iterator[list[dict[str, Any]]]:
@@ -156,9 +193,17 @@ def pin_kc_readings(
     orthographies: list[str],
     ruby_layers: Callable[[str], list[str]],
     script_of: Callable[[str], tx.Script],
-) -> None:
+    own: Mapping[str, Mapping[str, str]] | None = None,
+) -> list[Refusal]:
     """Pins a reading, in every scheme the orthography's words pin, on each word of every KC form
-    (the module's docstring), and ruby on the orthography's ruby layers (`ruby_layers`)."""
+    (the module's docstring), and ruby on the orthography's ruby layers (`ruby_layers`).
+
+    `own`: the readings KC entries choose for their first form (their `readings`), by KC id and
+    scheme. Returns those it cannot pin (a form of several words, a reading no token gives the
+    word, a scheme no orthography of the KC's forms pins); their words take the order's."""
+    own = own or {}
+    taken: set[tuple[str, str]] = set()
+    refused: list[Refusal] = []
     for orth in orthographies:
         ruby = set(ruby_layers(orth))
         script = script_of(orth)
@@ -166,13 +211,24 @@ def pin_kc_readings(
             table = seen(units, orth, scheme)
             for u in units:
                 for kc in cast(list[dict[str, Any]], u["kcs"]):
+                    kc_id = str(kc["id"])
                     forms = cast(dict[str, list[dict[str, Any]]], kc.get("forms") or {})
-                    for form in forms.get(orth, []):
-                        for t in cast(list[dict[str, Any]], form["tokens"]):
-                            if t.get("kind") not in WORD_KINDS:
-                                continue
+                    for i, form in enumerate(forms.get(orth, [])):
+                        words = [
+                            t
+                            for t in cast(list[dict[str, Any]], form["tokens"])
+                            if t.get("kind") in WORD_KINDS
+                        ]
+                        chosen = own.get(kc_id, {}).get(scheme) if i == 0 else None
+                        if chosen is not None:
+                            taken.add((kc_id, scheme))
+                            why = _refused(table, kc_id, words, chosen)
+                            if why is not None:
+                                refused.append(Refusal(kc_id, scheme, f"{orth}: {why}"))
+                                chosen = None
+                        for t in words:
                             surface = str(t["surface"])
-                            reading = table.pick(str(kc["id"]), surface)
+                            reading = chosen if chosen is not None else table.pick(kc_id, surface)
                             if reading is None:
                                 continue
                             t.setdefault("readings", {})[scheme] = reading
@@ -185,3 +241,9 @@ def pin_kc_readings(
                             segments = tx.ruby_segments(surface, reading)
                             if segments is not None:
                                 t.setdefault("ruby", {})[scheme] = segments
+    for kc_id, by_scheme in own.items():
+        for scheme in by_scheme:
+            if (kc_id, scheme) not in taken:
+                message = f"no orthography of its forms has words that pin {scheme}"
+                refused.append(Refusal(kc_id, scheme, message))
+    return refused

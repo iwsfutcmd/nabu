@@ -643,6 +643,15 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
             )
         ),
     ),
+    "kc.reading": (
+        "我哋's card is given ngo4 dei6, which no token gives it: the sentence pins ngo5 dei6.",
+        m(
+            lambda c: unit(c)["kcs"][0].update(
+                forms={"yue-Hant-HK/standard": ["我哋"]}, readings={"jyutping": "ngo4 dei6"}
+            ),
+            YUE,
+        ),
+    ),
     "glossary.tile-split": (
         "Tiles split salom inside one runtime unit.",
         m(

@@ -227,6 +227,13 @@ _LINTS = [
         "A KC form is a word the sentences analyse into several KCs: forms are lemmas (ADR 0061).",
     ),
     Lint(
+        "kc.reading",
+        "error",
+        7,
+        "A KC's own reading (`readings`, ADR 0117) is one no token gives its word, is for a "
+        "first form of several words, or is in a scheme no orthography of its forms pins.",
+    ),
+    Lint(
         "glossary.dead-entry",
         "warning",
         7,
