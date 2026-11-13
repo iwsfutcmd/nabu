@@ -77,9 +77,7 @@
       "$ref": "#/$defs/Fonts"
     },
     "romanize": {
-      "description": "How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.",
-      "type": "string",
-      "enum": ["greek"]
+      "$ref": "#/$defs/Romanization"
     },
     "transliterate": {
       "$ref": "#/$defs/Transliteration"
@@ -928,6 +926,29 @@
         "via": {
           "type": "string",
           "pattern": "^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$"
+        }
+      }
+    },
+    "Romanization": {
+      "title": "Romanization",
+      "description": "How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.",
+      "type": "object",
+      "required": [
+        "scheme",
+        "orthography"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "description": "A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds.",
+          "type": "string",
+          "enum": [
+            "greek"
+          ]
+        },
+        "orthography": {
+          "description": "The orthography of the Latin spellings (grc-Latn/romanized): their text is tagged with it, and its profile ships in the bundle beside the course's own.",
+          "$ref": "common.schema.json#/$defs/OrthographyId"
         }
       }
     },

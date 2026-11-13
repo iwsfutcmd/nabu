@@ -324,6 +324,10 @@ export type ScriptedLangTag1 = LangTag;
  */
 export type StrokeOrderStandard = "prc" | "tw" | "hk" | "ja";
 /**
+ * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
+ */
+export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  */
 export type LangTag1 = string & { readonly __brand: "LangTag" };
@@ -334,7 +338,7 @@ export type ScriptedLangTag2 = LangTag;
 /**
  * Identifies an orthography profile: a ScriptedLangTag, a slash, and a lowercase slug.
  */
-export type OrthographyId2 = string & { readonly __brand: "OrthographyId" };
+export type OrthographyId3 = string & { readonly __brand: "OrthographyId" };
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "ReportSubmission".
@@ -486,6 +490,7 @@ export interface NabuSchemaIndex {
   readonly FineTunedRecognizer: FineTunedRecognizer;
   readonly SpeechPhones: SpeechPhones;
   readonly Transliteration: Transliteration;
+  readonly Romanization: Romanization;
   readonly Equivalence: Equivalence;
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
@@ -2934,10 +2939,7 @@ export interface OrthographyProfile {
   readonly layout?: Layout;
   readonly strokeOrder?: StrokeOrder;
   readonly fonts?: Fonts;
-  /**
-   * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline.
-   */
-  readonly romanize?: "greek";
+  readonly romanize?: Romanization;
   readonly transliterate?: Transliteration;
   readonly speech?: SpeechSetup;
 }
@@ -3257,6 +3259,19 @@ export interface Fonts {
   readonly scale?: number;
 }
 /**
+ * How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "Romanization".
+ */
+export interface Romanization {
+  /**
+   * A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds.
+   */
+  readonly scheme: "greek";
+  readonly orthography: OrthographyId2;
+}
+/**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Transliteration".
  */
@@ -3336,7 +3351,7 @@ export interface ReadingScheme {
   };
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
-  readonly answer?: OrthographyId2;
+  readonly answer?: OrthographyId3;
   /**
    * A learner may type a reading in it (transcribe, ADR 0054). A typed answer is lowercased in `locale`, what may stand `between` syllables is dropped, and what is left must be syllables of this shape, end to end.
    */

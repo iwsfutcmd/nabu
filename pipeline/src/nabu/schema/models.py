@@ -1973,6 +1973,29 @@ class Transliteration(BaseModel):
     via: Annotated[str, Field(pattern="^[a-z0-9-]+(:[A-Za-z0-9_/-]+)?$")]
 
 
+class Romanization(BaseModel):
+    """
+    How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088, 0124): a scheme, and the orthography the Latin spellings are in.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    scheme: Annotated[
+        Literal["greek"],
+        Field(
+            description="A romanization the pipeline implements (nabu/compiler/script.py): greek is nabu.greek_translit, the scholarly scheme set to Attic sounds."
+        ),
+    ]
+    orthography: Annotated[
+        OrthographyId,
+        Field(
+            description="The orthography of the Latin spellings (grc-Latn/romanized): their text is tagged with it, and its profile ships in the bundle beside the course's own."
+        ),
+    ]
+
+
 class Equivalence(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -3983,12 +4006,7 @@ class OrthographyProfile(BaseModel):
     layout: Layout | None = None
     strokeOrder: StrokeOrder | None = None
     fonts: Fonts | None = None
-    romanize: Annotated[
-        Literal["greek"] | None,
-        Field(
-            description="How the compiler spells the orthography's letters and words in Latin letters for a learner still learning the script (ADR 0088): a scheme implemented in the pipeline."
-        ),
-    ] = None
+    romanize: Romanization | None = None
     transliterate: Transliteration | None = None
     speech: SpeechSetup | None = None
 

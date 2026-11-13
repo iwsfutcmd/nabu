@@ -15,8 +15,9 @@ script needs code only for its romanization:
 A word of an alphabet node must be spelled with the letters taught by then
 (`script.untaught-letter`); marks are not checked: the words are shown as the course writes them.
 A grapheme KC whose first form has no letter would be in every word (`script.no-letter`). The
-orthography needs a romanization and a profile for its Latin spellings (`script.no-romanization`),
-and each word a form in it (`script.missing-form`).
+orthography's profile names its romanization (`romanize`: a scheme, and the orthography of the
+Latin spellings, which needs a profile: `script.no-romanization`), and each word needs a form in
+the orthography (`script.missing-form`).
 """
 
 from __future__ import annotations
@@ -34,13 +35,14 @@ if TYPE_CHECKING:
     from nabu.compiler.build import Unit
     from nabu.corecli import CoreCli
 
-#: Romanization schemes a profile can name (`romanize`), each a word → Latin function.
+#: Romanization schemes a profile can name (`romanize.scheme`), each a word → Latin function.
 ROMANIZERS: dict[str, Callable[[str], str]] = {"greek": greek_translit.word}
 
 
-def romanized(profile: OrthographyProfile) -> str:
-    """The orthography of the Latin spellings: grc-Grek/polytonic → grc-Latn/romanized."""
-    return f"{profile.lang.split('-')[0]}-Latn/romanized"
+def romanized(profile: OrthographyProfile) -> str | None:
+    """The orthography the profile's Latin spellings are in (grc-Latn/romanized), if it names
+    a romanization."""
+    return None if profile.romanize is None else str(profile.romanize.orthography)
 
 
 @dataclass(frozen=True)
@@ -166,15 +168,16 @@ def compile_alphabets(
                     "parse.unknown-orthography", f"{node.id} teaches {orth}, not the course's", loc
                 )
                 continue
-            romanize = ROMANIZERS.get(profile.romanize) if profile.romanize is not None else None
-            if romanize is None:
+            scheme = profile.romanize.scheme if profile.romanize is not None else None
+            romanize = ROMANIZERS.get(scheme) if scheme is not None else None
+            latin_orth = romanized(profile)
+            if romanize is None or latin_orth is None:
                 diags.report(
                     "script.no-romanization",
                     f"{node.id}: {orth} has no romanization (its profile's `romanize`)",
                     loc,
                 )
                 continue
-            latin_orth = romanized(profile)
             if latin_orth not in profiles:
                 diags.report(
                     "script.no-romanization",
@@ -257,8 +260,7 @@ def romanized_orthographies(
     out: list[str] = []
     for orth in course.orthographies:
         profile = profiles.get(orth)
-        if profile is not None and profile.romanize is not None:
-            latin = romanized(profile)
-            if latin in profiles and latin not in out:
-                out.append(latin)
+        latin = romanized(profile) if profile is not None else None
+        if latin is not None and latin in profiles and latin not in out:
+            out.append(latin)
     return out
