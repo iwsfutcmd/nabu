@@ -192,17 +192,38 @@ export const SelectImageView = (props: Props<SelectImage>): JSX.Element => {
   );
 };
 
-/** A target sentence in its own direction (and vertical where allowed); with its clip, a play button and karaoke. */
-const TargetPrompt = ({ text, props, focus, ruby }: { text: TaggedText; props: ViewProps & ViewExtras; focus?: ReadingDisambiguation["focus"]; ruby?: false }): JSX.Element => {
+/**
+ * A target sentence in its own direction (and vertical where allowed); with its clip, a play button and karaoke.
+ * A card that asks how the text is read keeps the clip until it is answered (`clipWhenAnswered`, W9): hearing it
+ * would answer the question, turning a reading card into a listening one. Its buttons' room is kept meanwhile.
+ */
+const TargetPrompt = ({
+  text,
+  props,
+  focus,
+  ruby,
+  clipWhenAnswered = false,
+}: {
+  text: TaggedText;
+  props: ViewProps & ViewExtras;
+  focus?: ReadingDisambiguation["focus"];
+  ruby?: false;
+  clipWhenAnswered?: boolean;
+}): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
   const mode = effectiveWritingMode(profile, props.writingMode, "prompt");
   const audio = props.course.audio[props.ex.item];
   const player = useClipPlayer(audio, props.imageUrl, { preload: true });
   useSayWhenAnswered(player, props, audio);
+  const withheld = clipWhenAnswered && props.outcome === undefined;
   return (
     <div className={styles.prompt} role="group" aria-label={t.format("exercise.prompt.label")} data-writing-mode={mode} data-ink-container="prompt">
-      {audio !== undefined && <AudioButtons player={player} audio={audio} />}
+      {audio !== undefined && (
+        <div className={styles.answerAudio} data-prompt-audio="" data-hidden={withheld ? "" : undefined}>
+          <AudioButtons player={player} audio={audio} />
+        </div>
+      )}
       <T
         as="p"
         text={text}
@@ -233,6 +254,10 @@ export const ChooseTranslationView = (props: Props<ChooseTranslation>): JSX.Elem
   );
 };
 
+/**
+ * How is this read? A word in its sentence, a character in its word, a letter or a word of a script
+ * track: choose its reading. The clip is said only once answered (W9): before, it would be the answer.
+ */
 export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JSX.Element => {
   const { ex } = props;
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
@@ -240,13 +265,16 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
     <div className={styles.body}>
       {ex.template === "char-read" && ex.word !== undefined ? (
         // A word in its sentence (ADR 0098): the sentence decides the reading.
-        <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} />
+        <>
+          <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} />
+          <AnswerAudio props={props} />
+        </>
       ) : (
         <div className={styles.bigPrompt}>
           {ex.template === "reading-disambiguation" ? (
-            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} />
+            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} clipWhenAnswered />
           ) : (
-            <TargetPrompt text={ex.prompt} props={props} ruby={false} />
+            <TargetPrompt text={ex.prompt} props={props} ruby={false} clipWhenAnswered />
           )}
         </div>
       )}

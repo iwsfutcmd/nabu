@@ -29,6 +29,28 @@ const stateOf = (course: CourseView, ex: Exercise, draft?: Draft): PlayerState =
 const play = (course: CourseView, ex: Exercise, state: PlayerState, extra: Partial<LessonPlayerProps> = {}): string =>
   render(<LessonPlayer course={course} lessonId="lesson" exercises={[ex]} grader={createGrader(course)} imageUrl={(p) => p} language="Lebanese Arabic" initialState={state} {...extra} />);
 
+describe("a reading question's clip (W9)", () => {
+  const course = loadCourse("yue", "yue-Hant-HK/standard");
+  /** The play buttons and whether they are withheld, in render order. */
+  const clips = (html: string): readonly boolean[] => [...html.matchAll(/data-(?:answer|prompt)-audio=""( data-hidden="")?/gu)].map((m) => m[1] !== undefined);
+
+  it.each(["char-read", "reading-disambiguation"] as const)("%s: no clip before the answer, the clip once answered", (template) => {
+    const ex = cardOf(course, template);
+    if (ex.template !== "char-read" && ex.template !== "reading-disambiguation") throw new Error(template);
+    expect(course.audio[ex.item], `${ex.id} has a clip`).toBeDefined();
+    const before = play(course, ex, stateOf(course, ex));
+    expect(clips(before)).toEqual([true]);
+    const after = play(course, ex, stateOf(course, ex, { tag: "choice", index: ex.answer }));
+    expect(clips(after)).toEqual([false]);
+  });
+
+  it("a translation card still offers its prompt's clip before the answer", () => {
+    const ex = cardOf(course, "choose-translation");
+    expect(course.audio[ex.item]).toBeDefined();
+    expect(clips(play(course, ex, stateOf(course, ex)))).toEqual([false]);
+  });
+});
+
 describe("the answer's play buttons (P15)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");
