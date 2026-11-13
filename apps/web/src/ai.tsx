@@ -10,13 +10,14 @@
  */
 import { judgeable, ROLEPLAY_HISTORY, textBase } from "@nabu/core/ai";
 import { answerTextOf, SPEAKING, TEMPLATES, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
-import type { LearnerState } from "@nabu/core/learner";
+import type { Verdict } from "@nabu/core";
+import { revisionVerdict, type LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
 import { directionOf } from "@nabu/i18n";
 import type { AnswerReported, AnswerSubmitted, BundleScenario, Explanation, LearnerEvent, RoleplayTurn, TaggedText } from "@nabu/schema";
 import { T, useTranslator } from "@nabu/ui";
 import { aiStyles, ExplanationView, RoleplayChat, type ChatTurn, type Rating, type RoleplayStatus } from "@nabu/ui/ai";
-import { useEffect, useState, useSyncExternalStore, type JSX } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
 import { Sent } from "./Corrections.tsx";
@@ -85,6 +86,11 @@ export interface AnswerHelpProps {
   readonly record: (event: LearnerEvent) => void;
   /** What the card was built from, which the report button offers to correct (none for a story question). */
   readonly correcting?: Correcting | undefined;
+  /**
+   * Takes a claim's or the judge's verdict into the session still running (ADR 0113): the card
+   * counts that way at once, in its score and in whether it comes back.
+   */
+  readonly revise?: ((verdict: Verdict) => void) | undefined;
 }
 
 /**
@@ -141,8 +147,11 @@ const failure = (e: unknown): "ai.explain.failed" | "ai.unavailable" | "ai.budge
  * Under the feedback for an answer: the second check by the judge and an explanation (for a wrong
  * answer, where the server offers them), and one button to report a problem (Report.tsx).
  */
-export const AnswerHelp = ({ answer, ex, response, status, account, store, record, correcting }: AnswerHelpProps): JSX.Element | null => {
+export const AnswerHelp = ({ answer, ex, response, status, account, store, record, correcting, revise }: AnswerHelpProps): JSX.Element | null => {
   const t = useTranslator();
+  // The session's revise as it is now: the judge may answer once the feedback has gone (ADR 0113).
+  const revising = useRef(revise);
+  revising.current = revise;
   const [reported, setReported] = useState<Claim | undefined>(undefined);
   const [sent, setSent] = useState(false);
   const [judge, setJudge] = useState<Judge>("idle");
@@ -162,7 +171,11 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
     setJudge("checking");
     request<{ revision?: LearnerEvent }>(account.server, "/v1/ai/judge", { token: account.token, body: { answer } }).then(
       (res) => {
-        if (res.revision !== undefined) record(res.revision);
+        if (res.revision !== undefined) {
+          record(res.revision);
+          // The session counts it so too, even once the learner has moved on (ADR 0113).
+          if (res.revision.type === "outcome_revised") revising.current?.(revisionVerdict(res.revision));
+        }
         if (live) setJudge(res.revision === undefined ? "idle" : "accepted");
       },
       (e: unknown) => {
@@ -209,7 +222,10 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
           claimed={reported}
           onClaim={(c) => {
             if (answer === undefined) return;
-            record(reportOf(answer, text, c));
+            const report = reportOf(answer, text, c);
+            record(report);
+            // It counts that way in the session at once (ADR 0113): Continue, the retry, the score.
+            revising.current?.(revisionVerdict(report));
             setReported(c);
           }}
           correcting={correcting}

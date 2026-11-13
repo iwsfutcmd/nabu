@@ -11,7 +11,8 @@
  * - Vertical reading (§11.4): where the profile allows it, the transcript turns into columns
  *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
  */
-import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
+import type { Verdict } from "@nabu/core";
+import { countsAs, draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
@@ -73,8 +74,11 @@ export interface StoryReaderProps {
   readonly replay?: boolean | undefined;
   /** Something the app adds under each line, such as "This line is wrong" (ADR 0051). */
   readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
-  /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
-  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
+  /**
+   * Something the app adds under a question's feedback, such as "My answer should be accepted".
+   * `revise` takes a claim's or the judge's verdict on the answer into the story (ADR 0113).
+   */
+  readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null, revise: (verdict: Verdict) => void) => ReactNode) | undefined;
   /** The app bumps this to ask, as the quit button does, whether to stop reading (S3: Back mid-story). */
   readonly quitRequest?: number | undefined;
 }
@@ -450,7 +454,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
             {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks === "hide" ? "hide" : "show"} />}
           </div>
-          {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response)}
+          {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response, (verdict) => dispatch({ tag: "player", event: { tag: "revise", exercise: feedback.ex.id, verdict } }))}
         </div>
       )}
 
@@ -458,9 +462,10 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         {state.tag === "reading" || feedback !== undefined ? (
           <Button
             ref={continueButton}
-            className={`${playerStyles.primary} ${feedback !== undefined && !isCorrect(feedback.outcome.verdict) ? playerStyles.primaryWrong : ""}`}
+            className={`${playerStyles.primary} ${feedback !== undefined && !isCorrect(countsAs(feedback)) ? playerStyles.primaryWrong : ""}`}
             onPress={forward}
             data-action="continue"
+            data-counts-as={feedback === undefined ? undefined : countsAs(feedback)}
           >
             {t.format("player.action.continue")}
             <ArrowForwardIcon />

@@ -177,6 +177,45 @@ describe("the story player", () => {
     expect(answers.some((e) => e.exercise.id.endsWith("#2"))).toBe(true);
   });
 
+  it("a question claimed right in its feedback is not asked again, and counts right; a later revision counts too (ADR 0113)", () => {
+    const course = loadCourse("apc", "apc-Arab/standard");
+    const script = scriptOf(course);
+    const grader = createGrader(course);
+    const questions = script.steps.flatMap((s) => (s.tag === "question" ? [s.ex] : []));
+    const [claimed, revisedLater] = questions;
+    if (claimed === undefined || revisedLater === undefined) throw new Error("the story needs two questions");
+    let state: StoryState = startStory(script)[0];
+    const dispatch = (event: Parameters<typeof stepStory>[1]): void => {
+      const [next, effects] = stepStory(state, event);
+      state = next;
+      for (const e of effects) if (e.tag === "grade") dispatch({ tag: "player", event: { tag: "graded", outcome: gradeExercise(e.ex, e.response, grader) } });
+    };
+    const asked: string[] = [];
+    for (let guard = 0; state.tag !== "finished" && guard < 200; guard += 1) {
+      if (state.tag === "reading") dispatch({ tag: "continue" });
+      else if (state.player.tag === "presenting") {
+        asked.push(state.player.ex.id);
+        dispatch({ tag: "player", event: { tag: "ready" } });
+      } else if (state.player.tag === "answering") {
+        const ex = state.player.ex;
+        const response = ex.id === claimed.id || ex.id === revisedLater.id ? wrong(ex) : right(ex);
+        const draft = response.tag === "choice" ? { tag: "choice" as const, index: response.index } : { tag: "tiles" as const, order: response.tag === "tiles" ? response.order : [] };
+        dispatch({ tag: "player", event: { tag: "input", draft } });
+        dispatch({ tag: "player", event: { tag: "submit" } });
+        if (ex.id === claimed.id) dispatch({ tag: "player", event: { tag: "revise", exercise: ex.id, verdict: "CORRECT" } });
+      } else if (state.player.tag === "feedback") {
+        const done = state.player.ex.id === `${revisedLater.id}#2`;
+        dispatch({ tag: "player", event: { tag: "continue" } });
+        // The judge's accept of the first try comes once the question is behind the reader.
+        if (done) dispatch({ tag: "player", event: { tag: "revise", exercise: revisedLater.id, verdict: "CORRECT_PROVISIONAL" } });
+      } else throw new Error(`stuck in ${state.player.tag}`);
+    }
+    if (state.tag !== "finished") throw new Error("not finished");
+    expect(asked).not.toContain(`${claimed.id}#2`);
+    expect(asked).toContain(`${revisedLater.id}#2`);
+    expect(state.summary).toMatchObject({ exercises: questions.length, correctFirstTry: questions.length, retries: 1 });
+  });
+
   it("quitting ends the session uncompleted", () => {
     const course = loadCourse("yue");
     const [state] = startStory(scriptOf(course));
