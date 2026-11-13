@@ -4,16 +4,19 @@
  * These tests once ran on a lesson builder of the tests' own, which production never ran: they
  * passed while lessons never planned a pronunciation card (C1).
  */
-import type { TaggedText } from "@nabu/schema";
+import type { BundleClip, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import { creditOf } from "../src/learner/credit.ts";
-import { parseCardKey, plan, type SessionPlan } from "../src/learner/index.ts";
+import { parseCardKey, plan, type PlanOptions, type SessionPlan } from "../src/learner/index.ts";
 import { lessonCandidates } from "../src/lesson/candidates.ts";
 import {
+  allSentences,
   createGrader,
   gradeExercise,
   isCorrect,
   lessonNodes,
+  LISTENING,
+  makeToneIdentify,
   sampleExercise,
   SCRIPT_TEMPLATES,
   seededRng,
@@ -151,24 +154,19 @@ describe("template coverage", () => {
   });
 });
 
+/** Each lesson of yue's walk planned again in `view`, with `extra` options. */
+const yueLessons = (view: CourseView, extra: Partial<PlanOptions>, count?: number): readonly SessionPlan[] =>
+  lessons(walked("yue").sessions)
+    .slice(0, count)
+    .map((s) => plan(view, s.state, s.request, { ...s.options, ...extra }));
+
 describe("speech the app can do (§10.4, ADR 0093)", () => {
   const speech = { scored: true, tones: true };
-  // Of the committed yue clips, only the numbers drill's (一 to 十) are of one syllable: this view also
-  // gives 係！ (s.8, the copula lesson) a clip, as a reviewed recording would.
-  const bundled = loadCourse("yue");
-  const yue: CourseView = { ...bundled, audio: { ...bundled.audio, "s.8": { normal: { path: "audio/clips/s8.mp3", durationMs: 420, synthetic: false, license: "CC0-1.0" } } } };
-  /** Each lesson of yue's walk planned again in this view, with and without the speech support. */
-  const plans = (() => {
-    let made: { readonly scored: readonly SessionPlan[]; readonly plain: readonly SessionPlan[] } | undefined;
-    return () => {
-      const walk = lessons(walked("yue").sessions);
-      made ??= { scored: walk.map((s) => plan(yue, s.state, s.request, { ...s.options, speech })), plain: walk.map((s) => plan(yue, s.state, s.request, s.options)) };
-      return made;
-    };
-  })();
 
   it("scored speaking takes tier 0's place, only when the app can score it, and never makes a lesson longer", () => {
-    const { scored, plain } = plans();
+    const { course } = walked("yue");
+    const scored = yueLessons(course, { speech });
+    const plain = lessons(walked("yue").sessions).map((s) => s.plan);
     expect(templatesOf(scored)).toContain("speak");
     expect(templatesOf(scored)).toContain("listen-speak");
     expect(templatesOf(scored)).not.toContain("speak.tier-0");
@@ -180,27 +178,82 @@ describe("speech the app can do (§10.4, ADR 0093)", () => {
     expect(templatesOf(lessons(fa.sessions).map((s) => plan(fa.course, s.state, s.request, { ...s.options, speech })))).not.toContain("tone-identify");
   });
 
-  it("a tone card names one of Cantonese's six tones, and takes the right one", () => {
-    const tone = sampleExercise(yue, "tone-identify", 7);
-    if (tone?.template !== "tone-identify") throw new Error("yue makes no tone card");
-    expect(tone.tones).toEqual(["1", "2", "3", "4", "5", "6"]);
-    expect(gradeExercise(tone, { tag: "choice", index: tone.answer }, createGrader(yue)).verdict).toBe("CORRECT");
-  });
-
-  // A finding of C5: the Phase 3 builder gave every lesson a tone card where it could make one. The
-  // planner has them among its candidates (s.8 here, and the numbers drill's ten) but never picks one:
-  // a tone card is hard (p̂ about 0.5) and, unlike a pronunciation card, nothing reserves it a place.
-  // This fails until lessons plan them; then make it a plain test.
-  it.fails("tonal courses get tone cards when the app can do them", () => {
-    expect(templatesOf(plans().scored)).toContain("tone-identify");
-  });
-
   it("can leave speaking out", () => {
     const { course, sessions } = walked("fa");
     for (const s of sessions) {
       const p = plan(course, s.state, s.request, { ...s.options, exclude: new Set(["speak.tier-0"]) });
       expect(p.exercises.some((e) => e.template === "speak.tier-0"), s.label).toBe(false);
     }
+  });
+});
+
+describe("tone cards, from clips a person confirmed (ADR 0046, 0125)", () => {
+  /** What the app offers yue without a speech server (speechSupportOf): self-rated speaking, tones. */
+  const tones = { scored: false, tones: true };
+  /** 係！ (s.8, of the copula lesson): one syllable, with a clip only in these views. */
+  const clip = (extra: Partial<BundleClip> = {}): BundleClip => ({ path: "audio/clips/s8.mp3", durationMs: 420, synthetic: true, license: "CC0-1.0", ...extra });
+  const withS8 = (normal: BundleClip, slow?: BundleClip): CourseView => {
+    const { course } = walked("yue");
+    return { ...course, audio: { ...course.audio, "s.8": { normal, ...(slow === undefined ? {} : { slow }) } } };
+  };
+  const make = (view: CourseView): Exercise | undefined => {
+    const s8 = allSentences(view).find((s) => s.id === "s.8");
+    return s8 === undefined ? undefined : makeToneIdentify({ course: view, rng: seededRng(7), introduced: [] }, s8);
+  };
+  /** The tone cards each lesson plans. */
+  const toneCards = (plans: readonly SessionPlan[]): readonly (readonly Exercise[])[] => plans.map((p) => p.exercises.filter((e) => e.template === "tone-identify"));
+
+  it("ask a lone syllable's tone only of a clip a person confirmed: a recording, or a synthetic clip a listener marked right", () => {
+    expect(make(withS8(clip()))).toBeUndefined();
+    expect(make(withS8(clip({ confirmed: true })))?.template).toBe("tone-identify");
+    expect(make(withS8(clip({ synthetic: false, confirmed: true })))?.template).toBe("tone-identify");
+    // A slow take plays too, so it must be confirmed as well.
+    expect(make(withS8(clip({ confirmed: true }), clip({ path: "audio/clips/s8-slow.mp3" })))).toBeUndefined();
+    expect(make(withS8(clip({ confirmed: true }), clip({ path: "audio/clips/s8-slow.mp3", confirmed: true })))?.template).toBe("tone-identify");
+    // The committed clips: the numbers drill's are of one syllable, but synthetic, and no listener
+    // has marked one right yet.
+    expect(sampleExercise(walked("yue").course, "tone-identify", 7)).toBeUndefined();
+  });
+
+  it("name one of Cantonese's six tones, and take the right one", () => {
+    const view = withS8(clip({ confirmed: true }));
+    const tone = make(view);
+    if (tone?.template !== "tone-identify") throw new Error("no tone card from a confirmed clip");
+    expect(tone.tones).toEqual(["1", "2", "3", "4", "5", "6"]);
+    expect(gradeExercise(tone, { tag: "choice", index: tone.answer }, createGrader(view)).verdict).toBe("CORRECT");
+  });
+
+  it("have a place in every lesson that can make one, wherever the app offers tones", () => {
+    const view = withS8(clip({ confirmed: true }));
+    const copula = lessons(walked("yue").sessions).findIndex((s) => s.request.mode === "lesson" && s.request.node === "yue.copula");
+    expect(copula).toBeGreaterThanOrEqual(0);
+    for (const speech of [tones, { scored: true, tones: true }]) {
+      const cards = toneCards(yueLessons(view, { speech }));
+      // One in the lesson that teaches 係！, and never more than one a lesson; later lessons may
+      // bring it back as review.
+      expect(cards[copula]?.map((e) => e.item)).toEqual(["s.8"]);
+      expect(cards.every((c) => c.length <= 1)).toBe(true);
+      expect(cards.flat().every((e) => e.item === "s.8")).toBe(true);
+      // It takes a card's place, or an empty one: lessons keep their length.
+      expect(yueLessons(view, { speech }).map((p) => p.exercises.length)).toEqual(yueLessons(walked("yue").course, { speech }).map((p) => p.exercises.length));
+    }
+  });
+
+  it("and none from a clip nobody confirmed, or where the app, the course or the learner hears no tones", () => {
+    const view = withS8(clip({ confirmed: true }));
+    const none = (plans: readonly SessionPlan[], why: string): void => expect(toneCards(plans).flat().map((e) => e.id), why).toEqual([]);
+    // The courses as committed: no lesson of any walk plans one, with or without the app's support.
+    none(yueLessons(walked("yue").course, { speech: tones }), "committed yue clips");
+    expect(COURSES.some(([id, orthography]) => plannedCards(walked(id, orthography).sessions).some(({ ex }) => ex.template === "tone-identify"))).toBe(false);
+    // The first lessons, up to the one that teaches 係！ and a few after it.
+    const first = 8;
+    none(yueLessons(withS8(clip()), { speech: tones }, first), "a clip nobody confirmed");
+    none(yueLessons(view, {}, first), "no tones offered (no speech support)");
+    none(yueLessons(view, { speech: tones, exclude: LISTENING }, first), "a listening break");
+    none(yueLessons(view, { speech: tones, exclude: LISTENING, facetsOff: new Set(["listen"]) }, first), "listening turned off for good (D41)");
+    none(yueLessons(view, { speech: tones, facetsOff: new Set(["listen"]) }, first), "listening turned off, its templates not left out");
+    none(yueLessons({ ...view, facets: ["recognize", "produce", "speak", "read-script", "write-script"] }, { speech: tones }, first), "a course that is never heard");
+    none(yueLessons({ ...view, audioQuality: "iffy" }, { speech: tones }, first), "a voice not relied on (ADR 0091)");
   });
 });
 
