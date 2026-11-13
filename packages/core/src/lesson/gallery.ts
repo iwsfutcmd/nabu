@@ -2,8 +2,8 @@
  * Cards of each kind a course makes, for debug mode's card gallery, stories, tests and previews.
  * They are the cards lessons plan among (`lessonCandidates`, the planner's own enumerator), lesson
  * by lesson in path order, for a learner who has met nothing else: so a kind shows here only where
- * lessons can plan it. A script track's kinds come from its alphabet nodes (`scriptCandidates`), as
- * their sessions plan them.
+ * a lesson has it to choose. A script track's kinds come from its alphabet nodes
+ * (`scriptCandidates`), as their sessions plan them.
  */
 import type { CourseView } from "./course.ts";
 import { lessonCandidates } from "./candidates.ts";

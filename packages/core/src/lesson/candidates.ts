@@ -1,7 +1,7 @@
 /**
  * The cards a session can be made of: every card the templates make of a set of sentences and words.
- * The planner chooses among them, and the card gallery and `sampleExercise` show them, so what debug
- * mode, stories and tests see is what lessons can plan.
+ * The planner chooses among them, and the card gallery and `sampleExercise` show them: debug mode,
+ * stories and tests see cards from what lessons choose among, never cards made their own way.
  */
 import type { BundleKc, BundleSentence } from "@nabu/schema";
 import { allKcs } from "./course.ts";
