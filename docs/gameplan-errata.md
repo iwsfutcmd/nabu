@@ -265,3 +265,11 @@ ADR is linked. The gameplan text itself is left as written.
 67. **§5.1 `services/speech/`:** the speech service is part of the pipeline (`nabu speech serve`,
     `pipeline/src/nabu/speech/service.py`), sharing its uv project and the models Phase 5 already
     uses; there is no `services/` directory ([ADR 0046](adr/0046-speech.md)).
+68. **§11.4 "ruby … hidden by default there" (vertical text):** hiding readings whenever text turned
+    vertical took away what a learner had chosen to see. The reading layer the learner chose now
+    shows in vertical text too, and only the target text turns; the chrome stays horizontal
+    ([ADR 0118](adr/0118-the-player-on-a-phone.md)).
+69. **§11.5 "submit is ignored while composing":** on Android, keyboards compose Latin words until they
+    are committed, so an ignored press made every typed answer take two taps. A Check pressed while
+    composing is now held until `compositionend` and goes ahead with the settled text; nothing is ever
+    submitted mid-composition ([ADR 0118](adr/0118-the-player-on-a-phone.md)).

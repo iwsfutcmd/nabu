@@ -84,6 +84,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   views render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+- Check stays enabled while an IME composes: a press is held until compositionend (core `queued`) and moves focus to
+  Check; Enter never checks while composing (ADR 0118).
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
@@ -185,7 +187,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   through `nabu audio verdicts <course> <file> --reviewer human:<id>`: right → reviewed (ships), wrong → rejected (held);
   the next `generate` makes a rejected clip again as its next take (another seed; seeded voices only).
 - Speech tests need NABU_SPEECH=1 and the speech group; CI runs only the espeak-ng tests.
-- Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING).
+- Listening templates exist only where a clip does; "Can't listen now" uses the planner's exclude (LISTENING), and so do
+  Preferences' lasting Listening and Speaking switches (per device, apps/web/src/breaks.ts).
   Once answered, a listening card shows what was heard and what it means: a sentence's translation, a word's gloss
   (`translation` on the exercise, shown by ListenPrompt). Never before the answer: it would give it away.
 - Every card says its clip once answered (ADR 0064: `useSayWhenAnswered`, `AnswerAudio` in Views.tsx); each view owns

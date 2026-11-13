@@ -1641,6 +1641,38 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Leave them as they are"
       }
     ]
+  },
+  {
+    "id": "D40",
+    "title": "Lasting Listening and Speaking switches: per device or per account (S8)",
+    "context": "Preferences can now turn listening or speaking exercises off for good, through the same planner exclusion as “Can’t listen now”.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Per device, like sound, theme and pace: speakers and microphones belong to the device (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Per account, so every device follows (a new event type)"
+      }
+    ]
+  },
+  {
+    "id": "D41",
+    "title": "Known words for a learner with listening off (S8, ADR 0100)",
+    "context": "Known needs every skill a word is asked for, and listening is one of them in fa, yue, uz, apc and es. With listening off for good, no word there can ever become known, and listening facets from before still count as due and slipping.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Leave it (what the helper built)"
+      },
+      {
+        "v": "b",
+        "label": "With the lasting switch off (not a break), leave listening out of what words are asked for and of what is due and slipping (an amendment to ADRs 0100 and 0105)",
+        "rec": true
+      }
+    ]
   }
 ]
 </script>
@@ -1992,12 +2024,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "Merged: a claim or the judge’s accept counts at once in its session (a pure revise event: Continue, the retry and the score follow it; a reload agrees). ADR 0113 and ADR 0052’s amendment. Choice D28."
     },
     "S11": {
-      "state": "in-progress",
-      "note": "With a helper (fix/course-page): lessons numbered within units, glossed previews, level and progress on unit headers. Built; final checks running."
+      "state": "done",
+      "commit": "94b81beb",
+      "note": "Merged: units numbered with their level and “x of y done”; lessons numbered within their unit (“Unit 3, lesson 2” where the path is out of sight); previews gloss each new word; the drill unit is “Extra practice”; the alphabet row says it never gates the units."
     },
     "S8": {
-      "state": "in-progress",
-      "note": "With a helper (fix/course-page): lasting Listening and Speaking switches, Preferences from the course and the lesson, a text-size sample. Built; final checks running."
+      "state": "done",
+      "commit": "2cf555dc",
+      "note": "Merged: lasting Listening and Speaking switches in Preferences (the same planner exclusion as a break; nothing plays by itself with listening off); Preferences from the course page and the lesson header, going back where it came from; a text-size sample. Choices D40, D41."
     },
     "M2": {
       "state": "done",
@@ -2013,12 +2047,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "With a helper (fix/course-data, ADR 0117): the compiler pins each word’s readings and everyone reads them; no clip may go stale. Still in progress."
     },
     "W6": {
-      "state": "in-progress",
-      "note": "Built and checked by its helper on fix/phone-player (ADR 0118), merging next: vertical text keeps the reading layer the learner chose; only the target text turns, in columns a phone can hold, with the buttons and “Synthetic voice” kept horizontal; story lines likewise. Choices D35, D38."
+      "state": "done",
+      "commit": "517d4689",
+      "note": "Merged: vertical text keeps the reading layer the learner chose; only the target text turns, in columns a phone can hold, with buttons and “Synthetic voice” kept horizontal; story lines likewise (ADR 0118). Choices D35, D38."
     },
     "P16": {
-      "state": "in-progress",
-      "note": "Built and checked by its helper on fix/phone-player (ADR 0118), merging next: Check stays enabled while a keyboard composes; a press waits for the composition to end, then checks the settled text (never mid-composition); Enter never checks while composing; the field has an Enter-key hint. Reproduced and fixed in Chromium’s touch emulation; not yet tried on a real Android phone. Choices D36, D37, D39."
+      "state": "done",
+      "commit": "0b62aea7",
+      "note": "Merged: Check stays enabled while a keyboard composes; a press waits for the composition to end, then checks the settled text (never mid-composition); Enter never checks while composing; the field has an Enter-key hint (ADR 0118). Reproduced and fixed in Chromium’s touch emulation; not yet tried on a real Android phone. Choices D36, D37, D39."
     },
     "C4": {
       "state": "done",
@@ -2339,7 +2375,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9 and P14. W6 and P16 are finished and merge next; R1/R4, S11/S8 and C6/C10 are with helpers. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. Choices D22–D39 are open, each with a default."
+    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11 and S8. R1/R4 and C6/C10 are still with helpers. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. Choices D22–D41 are open, each with a default."
   ]
 }
 </script>
