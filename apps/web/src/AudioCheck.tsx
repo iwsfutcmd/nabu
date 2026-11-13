@@ -1,9 +1,10 @@
 /**
  * The audio check (ADR 0060): every clip of a course, to listen to and judge. Each item shows
  * its text in the voice's orthography (with karaoke while it plays), what the speech recognizer
- * heard when the clip was made, and whether learners get it (a clip that failed the round trip
- * is held back). The listener says whether it sounds right; verdicts stay on this device until
- * they are downloaded for `nabu audio verdicts`, which marks the clips reviewed or rejected.
+ * heard when the clip was made, and whether learners get it, and if not, why: a clip that failed
+ * the round trip is held back; a course whose voice is rated bad ships none (ADR 0091). The
+ * listener says whether it sounds right; verdicts stay on this device until they are downloaded
+ * for `nabu audio verdicts`, which marks the clips reviewed or rejected.
  *
  * The clips come from audio-check/<course>/ beside the app (the dev server serves courses/;
  * Pages publishes a copy), not from the learners' bundles, which leave held-back clips out.
@@ -35,8 +36,9 @@ interface Row {
   readonly slow: AudioClip | undefined;
   /**
    * Learners do not get it: the course's bundle has no clip for it (its clip failed the round trip
-   * and nobody has passed it, a listener rejected it, or the course ships no clips). The compiler
-   * decides (`held_back`, nabu/audio/course.py); the page reads its decision, never repeats it.
+   * and nobody has passed it, a listener rejected it, or the course ships no clips because its
+   * voice is rated bad, which the page says instead). The compiler decides (`held_back`,
+   * nabu/audio/course.py); the page reads its decision, never repeats it.
    */
   readonly held: boolean;
 }
@@ -48,6 +50,13 @@ interface Stored {
   readonly clips: readonly string[];
   readonly at: string;
 }
+
+/**
+ * Why a course's held items do not reach learners: held back (a clip failed a check, or a listener
+ * rejected it), or not shipped (the course's voice is rated bad, so it ships no clip; ADR 0091).
+ */
+type Why = "held" | "not-shipped";
+const WHY = { held: "audio.check.held", "not-shipped": "audio.check.not-shipped" } as const;
 
 const statusOf = (row: Row): Status => row.normal?.qa?.status ?? "none";
 /** Which voice made the item's clips: "<provider>:<voice>", or "recorded" for a person's recording. */
@@ -115,6 +124,7 @@ interface RowProps {
   readonly ruby: SchemeId | false;
   readonly url: (path: string) => string;
   readonly isCurrent: boolean;
+  readonly why: Why;
   readonly stored: Stored | undefined;
   readonly onJudge: (row: Row, verdict: Stored["verdict"] | undefined, note?: string) => void;
   readonly onFocus: (key: string) => void;
@@ -123,7 +133,7 @@ interface RowProps {
   readonly register: (key: string, play: ((speed: Speed) => void) | undefined) => void;
 }
 
-const ItemRow = ({ row, orthography, ruby, url, isCurrent, stored, onJudge, onFocus, onPlay, register }: RowProps): JSX.Element => {
+const ItemRow = ({ row, orthography, ruby, url, isCurrent, why, stored, onJudge, onFocus, onPlay, register }: RowProps): JSX.Element => {
   const t = useTranslator();
   const audio: AudioRef | undefined = useMemo(
     () => (row.normal === undefined ? undefined : { normal: bundleClip(row.normal), ...(row.slow === undefined ? {} : { slow: bundleClip(row.slow) }) }),
@@ -174,8 +184,8 @@ const ItemRow = ({ row, orthography, ruby, url, isCurrent, stored, onJudge, onFo
           </span>
           {cer !== undefined && <span>{t.format("audio.check.cer", { cer })}</span>}
           {row.held && (
-            <span className={styles.badge} data-badge="held">
-              {t.format("audio.check.held")}
+            <span className={styles.badge} data-badge={why}>
+              {t.format(WHY[why])}
             </span>
           )}
           {signedOff(row.normal?.provenance) && <span className={styles.badge}>{t.format("audio.check.reviewed")}</span>}
@@ -262,6 +272,8 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
   const stopActive = useRef<(() => void) | undefined>(undefined);
 
   const voice = data?.voices[0];
+  // A voice rated bad ships no clip at all: every item says that, not that it was held back.
+  const why: Why = data?.quality === "bad" ? "not-shipped" : "held";
   const orthography = voice?.orthography ?? course.orthography;
   const ruby = defaultRuby(course.profiles.get(orthography)?.source, storedReading(orthography));
   const bundled = data?.bundled;
@@ -398,6 +410,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
           ruby={ruby}
           url={url}
           isCurrent={row.key === focused?.key}
+          why={why}
           stored={stored[row.key]}
           onJudge={judge}
           onFocus={setFocus}
@@ -438,8 +451,8 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
                 <dd>{counts[s]}</dd>
               </div>
             ))}
-            <div data-count="held">
-              <dt>{t.format("audio.check.held")}</dt>
+            <div data-count={why}>
+              <dt>{t.format(WHY[why])}</dt>
               <dd>{counts.held}</dd>
             </div>
           </dl>
@@ -466,7 +479,7 @@ export const AudioCheckPage = ({ loaded, back, base }: PageProps): JSX.Element =
               ["review", t.format("audio.check.status.review")],
               ["fail", t.format("audio.check.status.fail")],
               ["none", t.format("audio.check.status.none")],
-              ["held", t.format("audio.check.held")],
+              ["held", t.format(WHY[why])],
             ])}
             {select("mine", t.format("audio.check.filter.mine"), [
               ["all", t.format("audio.check.mine.all")],

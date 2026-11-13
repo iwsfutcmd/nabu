@@ -11,16 +11,18 @@ import { copyFileSync, createReadStream, existsSync, mkdirSync, readdirSync, rea
 import type { ServerResponse } from "node:http";
 import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import type { AudioIndex, AudioVoice } from "@nabu/schema";
+import type { AudioIndex, AudioVoice, CourseAudio } from "@nabu/schema";
 import type { Connect, Plugin } from "vite";
 import { parse } from "yaml";
 
 const COURSES = resolve(import.meta.dirname, "../../courses");
 
-/** What the page loads for a course: its voices (from course.yaml) and its audio index. */
+/** What the page loads for a course: its voices and their rating (from course.yaml) and its audio index. */
 export interface AudioCheckData {
   readonly course: string;
   readonly voices: readonly AudioVoice[];
+  /** How far learners may rely on the clips (`audio.quality`, ADR 0091): with bad, no clip ships, and the page says so. */
+  readonly quality?: CourseAudio["quality"];
   readonly index: AudioIndex;
   /** Clips a bundle beside the app also carries, by file: their path from the app's base. */
   readonly bundled?: Readonly<Record<string, string>>;
@@ -36,9 +38,10 @@ export const coursesWithAudio = (root: string = COURSES): readonly string[] =>
     .sort();
 
 export const dataOf = (course: string, root: string = COURSES): AudioCheckData => {
-  const source = parse(readFileSync(join(root, course, "course.yaml"), "utf8")) as { audio?: { voices?: AudioVoice[] } };
+  const source = parse(readFileSync(join(root, course, "course.yaml"), "utf8")) as { audio?: { voices?: AudioVoice[]; quality?: CourseAudio["quality"] } };
   const index = parse(readFileSync(join(root, course, "audio", "index.yaml"), "utf8")) as AudioIndex;
-  return { course, voices: source.audio?.voices ?? [], index };
+  const quality = source.audio?.quality;
+  return { course, voices: source.audio?.voices ?? [], ...(quality === undefined ? {} : { quality }), index };
 };
 
 const send = (res: ServerResponse, type: string, body: string | NodeJS.ReadableStream): void => {

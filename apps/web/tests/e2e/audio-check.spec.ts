@@ -1,7 +1,8 @@
 /**
  * The audio check (ADR 0060): every clip of a course, held-back ones too, to listen to and
- * judge. Verdicts are kept on the device and download as a file for `nabu audio verdicts`.
- * The preview server serves the clips from courses/ (audio-check.ts).
+ * judge, each saying whether learners get it and, if not, why. Verdicts are kept on the device
+ * and download as a file for `nabu audio verdicts`. The preview server serves the clips from
+ * courses/ (audio-check.ts).
  */
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
@@ -53,9 +54,13 @@ test("every item with a clip can be heard and judged, and the verdicts download"
   await expect(page.locator("[data-audio-item]")).toHaveCount(items.size);
   await expect(page.locator("[data-count=fail] dd")).toHaveText(String(failed));
 
-  // Held-back items are listed too: the filter shows exactly those.
+  // Held-back items are listed too: the filter shows exactly those, each saying so. fa ships its
+  // clips: none says it is not shipped.
+  await expect(page.locator("[data-count=held] dd")).toHaveText(String(held));
   await page.locator("[data-filter=status]").selectOption("held");
   await expect(page.locator("[data-audio-item]")).toHaveCount(held);
+  await expect(page.locator("[data-audio-item] [data-badge=held]")).toHaveCount(held);
+  await expect(page.locator("[data-badge=not-shipped], [data-count=not-shipped]")).toHaveCount(0);
   await page.locator("[data-filter=status]").selectOption("all");
 
   // Keys move and judge; a click on "Sounds wrong" opens the note.
@@ -88,6 +93,28 @@ test("every item with a clip can be heard and judged, and the verdicts download"
 
   const audit = await new AxeBuilder({ page }).include("[data-audio-check]").analyze();
   expect(audit.violations).toEqual([]);
+  expect(errors).toEqual([]);
+});
+
+test("a course whose voice is rated bad says its clips are not shipped, not held back (ADR 0091)", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  // grc ships no clip: its voice is rated bad. Its clips are only here, to be judged.
+  expect((parse(readFileSync(new URL("../../../../courses/grc/course.yaml", import.meta.url), "utf8")) as { audio: { quality?: string } }).audio.quality).toBe("bad");
+  expect(Object.keys(bundledAudioOf("grc"))).toEqual([]);
+  const items = new Set(indexOf("grc").clips.map((c) => c.item)).size;
+
+  await page.goto("/#/grc/grc-Grek.polytonic/audio");
+  await expect(page.locator("[data-audio-check=grc]")).toBeVisible();
+  await expect(page.locator("[data-audio-item]")).toHaveCount(items);
+  const badges = page.locator("[data-audio-item] [data-badge=not-shipped]");
+  await expect(badges).toHaveCount(items);
+  await expect(badges.first()).toHaveText("Not shipped: this course's voice is rated bad");
+  await expect(page.locator("[data-badge=held], [data-count=held]")).toHaveCount(0);
+  await expect(page.locator("[data-count=not-shipped] dt")).toHaveText("Not shipped: this course's voice is rated bad");
+  await expect(page.locator("[data-count=not-shipped] dd")).toHaveText(String(items));
+  // The filter says the same.
+  await expect(page.locator("[data-filter=status] option[value=held]")).toHaveText("Not shipped: this course's voice is rated bad");
   expect(errors).toEqual([]);
 });
 
