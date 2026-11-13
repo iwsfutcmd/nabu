@@ -194,9 +194,10 @@ export const landingPage = async (options: LandingOptions): Promise<string> => {
   const collator = new Intl.Collator(t.locale);
   const courses = [...landingCourses(options.bundles)].sort((a, b) => collator.compare(courseName(t, a.id), courseName(t, b.id)));
   const withAudio = new Set(options.audioCourses ?? coursesWithAudio());
+  // Straight to the audio check: it needs no debug mode, which a visitor would keep on this device.
   const audio = courses
     .filter((c) => withAudio.has(c.id))
-    .map((c) => ({ href: `${options.demo}?debug=1#/${c.id}/${slug(c.scripts[0]?.orthography ?? "")}/audio`, label: courseName(t, c.id) }));
+    .map((c) => ({ href: `${options.demo}#/${c.id}/${slug(c.scripts[0]?.orthography ?? "")}/audio`, label: courseName(t, c.id) }));
   const name = t.format("app.name");
   const tagline = t.format("landing.tagline");
   return `<!doctype html>

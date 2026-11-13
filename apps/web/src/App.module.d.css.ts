@@ -13,6 +13,7 @@ declare const styles: {
   readonly course: string;
   readonly courseName: string;
   readonly dangerButton: string;
+  readonly debugNotice: string;
   readonly dialog: string;
   readonly dialogActions: string;
   readonly dialogBody: string;

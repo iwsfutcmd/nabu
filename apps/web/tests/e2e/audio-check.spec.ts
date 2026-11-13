@@ -92,8 +92,10 @@ test("a course still keeping an older voice opens on its own voice; the voice fi
   const made = new Set(byItem.values());
   const count = (voice: string): number => [...byItem.values()].filter((v) => v === voice).length;
 
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  // Straight to the check, as the landing page links to it: it needs no debug mode.
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   await expect(page.locator("[data-audio-item]").first()).toBeVisible();
+  await expect(page.locator("[data-debug-notice]")).toHaveCount(0);
   if (made.size < 2) {
     await expect(page.locator("[data-filter=voice]")).toHaveCount(0);
     await expect(page.locator("[data-audio-item]")).toHaveCount(byItem.size);
@@ -122,7 +124,7 @@ test("slow plays the same clip, slowed with its pitch kept (ADR 0062)", async ({
       return play.call(this);
     };
   });
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();
   await row.locator("[data-action=play]").click();
   await row.locator("[data-action=play-slow]").click();
@@ -134,7 +136,7 @@ test("slow plays the same clip, slowed with its pitch kept (ADR 0062)", async ({
 });
 
 test("a clip plays from the audio check", async ({ page }) => {
-  await page.goto("/?debug=1#/uz/uz-Latn.standard/audio");
+  await page.goto("/#/uz/uz-Latn.standard/audio");
   const row = page.locator("[data-audio-item]").first();
   await row.locator("[data-action=play]").click();
   await expect(row.locator("[data-action=play]")).toHaveAttribute("data-playing", "true");

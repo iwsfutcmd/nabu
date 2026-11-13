@@ -20,6 +20,7 @@ import "@nabu/ui/tokens.css";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
+import { DebugNotice, debugMode } from "./Debug.tsx";
 import { ErrorBoundary } from "./ErrorBoundary.tsx";
 import { applyTextSize, applyTheme, storedTextSize, storedTheme } from "./Preferences.tsx";
 
@@ -51,9 +52,12 @@ createRoot(document.getElementById("root")!).render(
     <NabuUiProvider translator={translator} orthographies={DEMO_ORTHOGRAPHIES}>
       <UiRoot>
         {target === undefined ? (
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
+          <>
+            {debugMode && <DebugNotice />}
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+          </>
         ) : (
           <DemoExerciseCard target={target} writingMode={mode} />
         )}
