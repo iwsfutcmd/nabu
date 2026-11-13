@@ -28,7 +28,7 @@ import { runTest } from "../lesson/adaptive.ts";
 import { placementTest, type PlacementTest } from "./placement.ts";
 import { cardKey, DESIRED_RETENTION, meanRetrievability, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 import { PACE, type PaceBand } from "./pacing.ts";
-import { skillsAsked } from "./words.ts";
+import { NONE_OFF, skillsAsked } from "./words.ts";
 
 export const PLANNER = `planner@1+${PERFORMANCE_MODEL}`;
 
@@ -46,6 +46,13 @@ export interface PlanOptions {
   readonly targetSuccess?: number;
   readonly size?: number;
   readonly exclude?: ReadonlySet<TemplateId>;
+  /**
+   * Facets the learner turned off for good (D41: listening, in Preferences): asked of no word (ADR
+   * 0100, 0101) and never due, so they neither size a review session nor choose what it or a
+   * lesson brings back. Their templates are in `exclude` as well, as during a break; a break
+   * turns nothing off.
+   */
+  readonly facetsOff?: ReadonlySet<Facet> | undefined;
   /** Recall below which a card is due: the pace's target where unset (ADR 0105). */
   readonly desiredRetention?: number;
   /**
@@ -162,9 +169,12 @@ const wellKnownSentences = (
     .slice(0, BALANCE_SENTENCES)
     .map((x) => x.s);
 
-/** The skills (card keys) that words met before `today` have yet to show and may show today (ADR 0100). */
-const skillNeeds = (course: CourseView, state: LearnerState, today: string): ReadonlySet<string> => {
-  const asked = skillsAsked(course);
+/**
+ * The skills (card keys) that words met before `today` have yet to show and may show today (ADR
+ * 0100), leaving out those turned off for good (D41).
+ */
+const skillNeeds = (course: CourseView, state: LearnerState, today: string, facetsOff: ReadonlySet<Facet>): ReadonlySet<string> => {
+  const asked = skillsAsked(course, facetsOff);
   const out = new Set<string>();
   for (const [kc, met] of Object.entries(state.met)) {
     if (met >= today) continue;
@@ -240,13 +250,20 @@ const seenKcs = (state: LearnerState): ReadonlySet<string> => new Set(Object.key
 
 /**
  * Due facets (R < desired retention) of seen KCs, most forgotten first. Script
- * facets count only in the orthography being learned.
+ * facets count only in the orthography being learned, and facets the learner
+ * turned off for good (D41) not at all: no session can practise them.
  */
-export const dueFacets = (state: LearnerState, orthography: string, now: string, desired = DESIRED_RETENTION): readonly { readonly key: string; readonly r: number }[] =>
+export const dueFacets = (
+  state: LearnerState,
+  orthography: string,
+  now: string,
+  desired = DESIRED_RETENTION,
+  facetsOff: ReadonlySet<Facet> = NONE_OFF,
+): readonly { readonly key: string; readonly r: number }[] =>
   Object.keys(state.cards)
     .flatMap((key) => {
       const ref = parseCardKey(key);
-      if (ref.orthography !== undefined && ref.orthography !== orthography) return [];
+      if ((ref.orthography !== undefined && ref.orthography !== orthography) || facetsOff.has(ref.facet)) return [];
       return [{ key, r: retrievability(state, ref.kc, ref.facet, orthography, now) }];
     })
     .filter((f) => f.r < desired)
@@ -330,10 +347,12 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   }
   const key = (kc: string, facet: Facet): string => cardKey(kc, facet, orthography);
   const seen = seenKcs(state);
-  const due = new Map(dueFacets(state, orthography, now, desired).map((f) => [f.key, f.r]));
+  // What is due and what words are asked, without the facets the learner turned off for good (D41).
+  const facetsOff = options.facetsOff ?? NONE_OFF;
+  const due = new Map(dueFacets(state, orthography, now, desired, facetsOff).map((f) => [f.key, f.r]));
   // Skills words have yet to show (ADR 0100, 0101), and the words to type: a mistakes session
   // practises its mistakes only.
-  const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10));
+  const needs = request.mode === "mistakes" ? new Set<string>() : skillNeeds(course, state, options.today ?? now.slice(0, 10), facetsOff);
   const focus = new Set([...needs].flatMap((k) => (parseCardKey(k).facet === "produce" ? [parseCardKey(k).kc] : [])));
 
   // ---- 1–2. targets and candidates

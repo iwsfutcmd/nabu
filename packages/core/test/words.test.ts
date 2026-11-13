@@ -1,7 +1,7 @@
 import type { KcCredit, LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, replay, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
-import { lessonNodes, type Exercise, type TemplateId } from "../src/lesson/index.ts";
+import { DESIRED_RETENTION, dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, replay, retrievability, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
+import { lessonNodes, type Exercise, type Facet, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-03-01T08:00:00.000Z";
@@ -288,6 +288,71 @@ describe("known words (ADR 0100)", () => {
     const known = learnedWords(fa, { ...base, shown: shown("recognize", "produce", "listen") }, NOW);
     expect(known.map((w) => w.known)).toEqual([true]);
     expect(wordCounts(known)).toEqual({ known: 1, learning: 0, due: 0 });
+  });
+});
+
+describe("listening turned off for good (D41)", () => {
+  const fa = loadCourse("fa");
+  const LISTEN: ReadonlySet<Facet> = new Set<Facet>(["listen"]);
+  const heard = fa.units.flatMap((u) => u.kcs).find((k) => k.kind === "sense" && k.forms?.[fa.orthography] !== undefined && skillsAsked(fa)(k.id).length === 3);
+  if (heard === undefined) throw new Error("fa has a word asked all three skills");
+  const kc = String(heard.id);
+  /** A card last reviewed `daysAgo` with this stability: recall falls as the days pass. */
+  const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+    const last = new Date(Date.parse(NOW) - daysAgo * 86_400_000).toISOString();
+    return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 2, lapses: 0, state: 2, last_review: last };
+  };
+  // Read and written yesterday; heard a month ago, its listening forgotten.
+  const state: LearnerState = {
+    ...emptyLearnerState(),
+    cards: { [`${kc}|recognize`]: cardAt(1, 60), [`${kc}|produce`]: cardAt(1, 60), [`${kc}|listen`]: cardAt(30, 2) },
+    met: { [kc]: "2026-01-30" },
+    shown: { [`${kc}|recognize`]: "2026-02-28", [`${kc}|produce`]: "2026-02-28" },
+  };
+
+  it("asks no word to be heard; the course's own answer stays as it was", () => {
+    expect(skillsAsked(fa, LISTEN)(kc)).toEqual(["recognize", "produce"]);
+    expect(skillsAsked(fa)(kc)).toEqual(["recognize", "produce", "listen"]);
+    // Memoised per course and per skills turned off, whichever set says so.
+    expect(skillsAsked(fa, new Set<Facet>(["listen"]))).toBe(skillsAsked(fa, LISTEN));
+    expect(skillsAsked(fa, new Set<Facet>())).toBe(skillsAsked(fa));
+    // Speaking is no skill a word is known by: turning it off asks the same.
+    expect(skillsAsked(fa, new Set<Facet>(["speak"]))).toBe(skillsAsked(fa));
+  });
+
+  it("knows a word once it is recognized and produced", () => {
+    const [on] = learnedWords(fa, state, NOW);
+    expect([on?.known, on?.skills.map((s) => s.skill)]).toEqual([false, ["recognize", "produce", "listen"]]);
+    const off = learnedWords(fa, state, NOW, DESIRED_RETENTION, LISTEN);
+    expect(off.map((w) => [w.known, w.skills])).toEqual([
+      [true, [{ skill: "recognize", shown: true }, { skill: "produce", shown: true }]],
+    ]);
+    expect(wordCounts(off)).toEqual({ known: 1, learning: 0, due: 0 });
+  });
+
+  it("never counts a listening card as due, nor in a word's strength", () => {
+    const [on] = learnedWords(fa, state, NOW);
+    const [off] = learnedWords(fa, state, NOW, DESIRED_RETENTION, LISTEN);
+    expect([on?.due, off?.due]).toEqual([true, false]);
+    expect(off?.strength).toBeCloseTo(retrievability(state, kc, "recognize", fa.orthography, NOW));
+    expect(off?.strength).toBeGreaterThan(on?.strength ?? 1);
+    // The reviews it had are history: they stay.
+    expect(off?.reviews).toBe(on?.reviews);
+    // The planner's due cards say the same (W8).
+    expect(dueFacets(state, fa.orthography, NOW).map((f) => f.key)).toEqual([`${kc}|listen`]);
+    expect(dueFacets(state, fa.orthography, NOW, DESIRED_RETENTION, LISTEN)).toEqual([]);
+    // A word practised by listening alone stays listed, with the strength it has, and is not due.
+    const onlyHeard: LearnerState = { ...emptyLearnerState(), cards: { [`${kc}|listen`]: cardAt(30, 2) } };
+    const [listed] = learnedWords(fa, onlyHeard, NOW, DESIRED_RETENTION, LISTEN);
+    expect([listed?.kc, listed?.due]).toEqual([kc, false]);
+    expect(listed?.strength).toBeCloseTo(retrievability(onlyHeard, kc, "listen", fa.orthography, NOW));
+  });
+
+  it("changes nothing when nothing is turned off", () => {
+    for (const at of [NOW, "2026-04-01T08:00:00.000Z"]) {
+      expect(learnedWords(fa, state, at, DESIRED_RETENTION, new Set())).toEqual(learnedWords(fa, state, at));
+      expect(dueFacets(state, fa.orthography, at, DESIRED_RETENTION, new Set())).toEqual(dueFacets(state, fa.orthography, at));
+    }
   });
 });
 

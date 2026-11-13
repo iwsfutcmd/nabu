@@ -25,9 +25,10 @@ import {
   retrievability,
   XP,
   type LearnerState,
+  type PlanOptions,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type LessonEvent } from "../src/lesson/index.ts";
+import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -370,6 +371,36 @@ describe("planner constraints", () => {
     const review = plan(fa, stateWith(9), { mode: "review" }, { now, seed: 4 });
     const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.kcs.some((kc) => forgotten.has(kc)));
     expect(practised.length).toBeGreaterThanOrEqual(Math.ceil(review.exercises.length / 2));
+  });
+
+  it("sizes and fills a review session without listening turned off for good; a break changes neither (D41)", () => {
+    const now = "2026-06-01T08:00:00.000Z";
+    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every word met a month ago and read and written since, each shown; 40 also heard then, their
+    // listening forgotten. What needs review is only listening: hearing them, and the words not yet heard.
+    const state: LearnerState = {
+      ...emptyLearnerState(),
+      cards: Object.fromEntries(
+        words.flatMap((k, i) => [[`${k.id}|recognize`, cardAt(1, 60)] as const, [`${k.id}|produce`, cardAt(1, 60)] as const, ...(i < 40 ? [[`${k.id}|listen`, cardAt(30, 2)] as const] : [])]),
+      ),
+      met: Object.fromEntries(words.map((k) => [k.id, "2026-05-01"])),
+      shown: Object.fromEntries(words.flatMap((k) => [[`${k.id}|recognize`, "2026-05-31"], [`${k.id}|produce`, "2026-05-31"]])),
+    };
+    const review = (options: Partial<PlanOptions>) => plan(fa, state, { mode: "review" }, { now, seed: 4, ...options });
+    const listen = new Set<Facet>(["listen"]);
+    expect(review({}).exercises).toHaveLength(15);
+    // A break leaves the exercises out, never what is due or asked of words: the session is as long.
+    const onBreak = review({ exclude: LISTENING });
+    expect(onBreak.exercises).toHaveLength(15);
+    expect(onBreak.exercises.some((ex) => LISTENING.has(ex.template))).toBe(false);
+    // Turned off for good, nothing is left to review but a short session's worth (L3's least).
+    expect(review({ exclude: LISTENING, facetsOff: listen }).exercises).toHaveLength(5);
+    // Nothing turned off plans as before.
+    expect(review({ facetsOff: new Set() })).toEqual(review({}));
   });
 
   it("can leave speaking out", () => {

@@ -1,7 +1,7 @@
 import type { LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { continueOf, emptyLearnerState, PACE, paceOf, plan, practiceFirst, RECENT_WINDOW, replay, type LearnerState } from "../src/learner/index.ts";
-import { allKcs, lessonNodes, type Exercise } from "../src/lesson/index.ts";
+import { continueOf, emptyLearnerState, PACE, paceOf, pathOf, plan, practiceFirst, RECENT_WINDOW, replay, type LearnerState } from "../src/learner/index.ts";
+import { allKcs, lessonNodes, type Exercise, type Facet } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const NOW = "2026-06-01T08:00:00.000Z";
@@ -74,6 +74,23 @@ describe("Continue (D6)", () => {
     const state = learner(51, 60, 2);
     const to = continueOf(fa, state, paceOf(fa, state, NOW));
     expect(to.kind === "path" ? to.next.node : to.kind).toBe(first);
+  });
+
+  it("leaves listening turned off for good out of what is due and slipping (D41)", () => {
+    // Every word read yesterday; 35 heard long ago, their listening slipping.
+    const state: LearnerState = {
+      ...learner(51, 60, 0),
+      cards: Object.fromEntries(words.flatMap((k, i) => [[`${k.id}|recognize`, cardAt(1, 60)] as const, ...(i < 35 ? [[`${k.id}|listen`, cardAt(40, 2)] as const] : [])])),
+    };
+    const on = paceOf(fa, state, NOW);
+    expect([on.band, on.reason, on.slipping, on.due]).toEqual(["consolidate", "backlog", 35, 35]);
+    expect(continueOf(fa, state, on).kind).toBe("practice");
+    const off = paceOf(fa, state, NOW, "auto", new Set<Facet>(["listen"]));
+    expect([off.band, off.reason, off.slipping, off.due]).toEqual(["steady", "steady", 0, 0]);
+    expect(continueOf(fa, state, off)).toEqual({ kind: "path", next: pathOf(fa, state).find((n) => n.status === "available") });
+    // Nothing turned off is the pace as it was; a chosen pace is the learner's either way.
+    expect(paceOf(fa, state, NOW, "auto", new Set())).toEqual(on);
+    expect(paceOf(fa, state, NOW, "steady", new Set<Facet>(["listen"])).slipping).toBe(0);
   });
 
   it("offers less practice to a learner speeding up than to one consolidating", () => {

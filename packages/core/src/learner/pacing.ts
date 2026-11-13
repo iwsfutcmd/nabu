@@ -16,9 +16,10 @@
  * Pure: the state is the replayed log, `now` the caller's clock.
  */
 import type { CourseView } from "../lesson/course.ts";
+import type { Facet } from "../lesson/exercise.ts";
 import { pathOf, type PathNode } from "./path.ts";
 import { DESIRED_RETENTION, RECENT_WINDOW, type LearnerState } from "./state.ts";
-import { learnedWords } from "./words.ts";
+import { learnedWords, NONE_OFF } from "./words.ts";
 
 export type PaceBand = "consolidate" | "steady" | "accelerate";
 
@@ -78,11 +79,15 @@ const bandOf = (success: number | undefined, slipping: number): { band: PaceBand
   return { band: "steady", reason: "steady" };
 };
 
-/** The learner's pace in this course now, read from the log, unless they chose one. */
-export const paceOf = (course: CourseView, state: LearnerState, now: string, choice: PaceChoice = "auto"): Pace => {
+/**
+ * The learner's pace in this course now, read from the log, unless they chose one. A facet the
+ * learner turned off for good (`facetsOff`, D41: listening) is never due or slipping, so it neither
+ * holds the pace at consolidate nor sends Continue to practice that could never include it.
+ */
+export const paceOf = (course: CourseView, state: LearnerState, now: string, choice: PaceChoice = "auto", facetsOff: ReadonlySet<Facet> = NONE_OFF): Pace => {
   const recent = state.recent.slice(-RECENT_WINDOW);
   const success = recent.length >= PACE_MIN_TRIES ? recent.filter(Boolean).length / recent.length : undefined;
-  const dueAt = (retention: number): number => learnedWords(course, state, now, retention).filter((w) => w.due).length;
+  const dueAt = (retention: number): number => learnedWords(course, state, now, retention, facetsOff).filter((w) => w.due).length;
   const read = choice === "auto" ? bandOf(success, dueAt(DESIRED_RETENTION - PACE_SLIP)) : { band: choice, reason: "chosen" as const };
   const settings = PACE[read.band];
   return { ...read, success, due: dueAt(settings.retention), slipping: dueAt(settings.retention - PACE_SLIP), settings };
@@ -94,7 +99,8 @@ export const practiceFirst = (pace: Pace): boolean => pace.slipping >= pace.sett
 /**
  * Where Continue goes (D6): practice first once enough words are due for this pace (or when the
  * path is finished and anything is due), else the next node on the path. `next` is that node either
- * way, for "New lesson anyway"; undefined once the path is done.
+ * way, for "New lesson anyway"; undefined once the path is done. What is due is the pace's, facets
+ * turned off for good left out (D41).
  */
 export type ContinueTo =
   | { readonly kind: "practice"; readonly next: PathNode | undefined }
