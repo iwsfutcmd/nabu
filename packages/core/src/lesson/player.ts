@@ -3,8 +3,11 @@
  * performs effects: grading, events and sounds are returned as data for the
  * shell to execute, so the whole lesson is testable without a DOM.
  *
- * IME safety (§6.7): while `composing` is true, `submit` is ignored and the
- * draft is stored exactly as typed. Only `compositionend` settles text.
+ * IME safety (§6.7): while `composing` is true, nothing is submitted and the
+ * draft is stored exactly as typed. Only `compositionend` settles text. A
+ * `submit` that comes mid-composition (Check tapped while a phone keyboard
+ * still composes the last word, ADR 0118) is held and goes ahead once
+ * `compositionend` has settled the text; a commit alone submits nothing.
  */
 import type { TaggedText } from "@nabu/schema";
 import type { Verdict } from "../match/grade.ts";
@@ -78,7 +81,15 @@ export type InterruptReason = "quit-confirm";
 
 type Active =
   | { readonly tag: "presenting"; readonly session: Session; readonly ex: Exercise }
-  | { readonly tag: "answering"; readonly session: Session; readonly ex: Exercise; readonly draft: Draft; readonly composing: boolean }
+  | {
+      readonly tag: "answering";
+      readonly session: Session;
+      readonly ex: Exercise;
+      readonly draft: Draft;
+      readonly composing: boolean;
+      /** Check was pressed mid-composition (ADR 0118): the submit waits for compositionend. */
+      readonly queued: boolean;
+    }
   | { readonly tag: "checking"; readonly session: Session; readonly ex: Exercise; readonly response: Response }
   | {
       readonly tag: "feedback";
@@ -477,7 +488,15 @@ const answering = (state: Extract<Active, { tag: "presenting" }>): Extract<Activ
   ex: state.ex,
   draft: emptyDraft(state.ex),
   composing: false,
+  queued: false,
 });
+
+/** Checks the draft, if it makes an answer: the state is checking until the grade comes back. */
+const submit = (state: Extract<Active, { tag: "answering" }>): readonly [PlayerState, readonly Effect[]] => {
+  const response = responseOf(state.ex, state.draft);
+  if (response === undefined) return [state, []];
+  return [{ tag: "checking", session: state.session, ex: state.ex, response }, [{ tag: "grade", ex: state.ex, response }]];
+};
 
 const skip = (state: Extract<Active, { tag: "presenting" | "answering" }>, reason: SkipReason): readonly [PlayerState, readonly Effect[]] => {
   const { ex } = state;
@@ -526,15 +545,17 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
         case "input":
           return [{ ...state, draft: event.draft }, []];
         case "compositionstart":
-          return [{ ...state, composing: true }, []];
-        case "compositionend":
-          return [{ ...state, composing: false, draft: state.draft.tag === "text" ? { tag: "text", text: event.text } : state.draft }, []];
-        case "submit": {
-          if (state.composing) return none; // never submit mid-composition (§6.7)
-          const response = responseOf(state.ex, state.draft);
-          if (response === undefined) return none;
-          return [{ tag: "checking", session: state.session, ex: state.ex, response }, [{ tag: "grade", ex: state.ex, response }]];
+          // A new composition: the learner went back to typing, so a held Check no longer stands.
+          return [{ ...state, composing: true, queued: false }, []];
+        case "compositionend": {
+          const settled = { ...state, composing: false, queued: false, draft: state.draft.tag === "text" ? ({ tag: "text", text: event.text } as const) : state.draft };
+          // A Check pressed mid-composition goes ahead now the text is settled; a commit alone (an IME's
+          // Enter or a tapped candidate) submits nothing (ADR 0118).
+          return state.queued ? submit(settled) : [settled, []];
         }
+        case "submit":
+          // Never mid-composition (§6.7): it waits for compositionend (ADR 0118).
+          return state.composing ? [{ ...state, queued: true }, []] : submit(state);
         case "skip":
           return state.composing ? none : skip(state, event.reason);
         default:

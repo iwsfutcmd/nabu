@@ -605,22 +605,72 @@ describe("player", () => {
     expect(progress.every((t) => t >= 1)).toBe(true);
   });
 
-  it("never submits during IME composition, and grades the settled text", () => {
+  describe("IME composition (§6.7, ADR 0118)", () => {
     const typed = lesson.find((e) => e.template === "translate-type.l1-l2") ?? buildLesson(course, node, { seed: 3 }).find((e) => TEMPLATES[e.template].modality.input === "text");
-    expect(typed).toBeDefined();
     const ex = typed as Exercise;
-    const [s0] = start(node, [ex]);
-    const shell = run(course, s0, [{ tag: "ready" }, { tag: "compositionstart" }, { tag: "input", draft: { tag: "text", text: "ک" } }, { tag: "submit" }]);
-    const mid = shell.get();
-    expect(mid.tag).toBe("answering");
-    expect(mid.tag === "answering" && mid.composing).toBe(true);
-    expect(shell.effects.some((f) => f.tag === "grade")).toBe(false);
     const settled = ex.template === "complete-translation" ? surfaceOf(ex.blank) : ex.template === "translate-type.l1-l2" ? surfaceOf(ex.canonical) : "";
-    shell.dispatch({ tag: "compositionend", text: settled });
-    shell.dispatch({ tag: "submit" });
-    const after = shell.get();
-    expect(after.tag).toBe("feedback");
-    expect(after.tag === "feedback" && isCorrect(after.outcome.verdict)).toBe(true);
+    /** Typing under an IME: composition begins and the field shows the text being composed. */
+    const composing = (text: string): PlayerEvent[] => [{ tag: "ready" }, { tag: "compositionstart" }, { tag: "input", draft: { tag: "text", text } }];
+    const graded = (effects: readonly Effect[]): Response[] => effects.flatMap((f) => (f.tag === "grade" ? [f.response] : []));
+    const waiting = (s: PlayerState): boolean => s.tag === "answering" && s.queued;
+
+    it("has a typing card to test", () => {
+      expect(typed).toBeDefined();
+      expect(settled).not.toBe("");
+    });
+
+    it("never submits mid-composition: Check then waits, and goes ahead with the settled text", () => {
+      const [s0] = start(node, [ex]);
+      const shell = run(course, s0, [...composing("ک"), { tag: "submit" }]);
+      const mid = shell.get();
+      expect(mid.tag === "answering" && mid.composing).toBe(true);
+      expect(waiting(mid)).toBe(true);
+      expect(graded(shell.effects)).toEqual([]);
+      // More of the same composition (the commit's own input event) leaves the Check waiting.
+      shell.dispatch({ tag: "input", draft: { tag: "text", text: settled } });
+      expect(graded(shell.effects)).toEqual([]);
+      // The keyboard commits: the text it settles is what is graded, once.
+      shell.dispatch({ tag: "compositionend", text: settled });
+      expect(graded(shell.effects)).toEqual([{ tag: "text", text: settled }]);
+      const after = shell.get();
+      expect(after.tag).toBe("feedback");
+      expect(after.tag === "feedback" && isCorrect(after.outcome.verdict)).toBe(true);
+    });
+
+    it("submits nothing when a composition ends without a Check (an IME's Enter, a tapped candidate)", () => {
+      const [s0] = start(node, [ex]);
+      const shell = run(course, s0, [...composing("ngo"), { tag: "compositionend", text: settled }]);
+      const s = shell.get();
+      expect(s.tag === "answering" && !s.composing && s.draft).toEqual({ tag: "text", text: settled });
+      expect(waiting(s)).toBe(false);
+      expect(graded(shell.effects)).toEqual([]);
+      // Check after the commit submits at once.
+      shell.dispatch({ tag: "submit" });
+      expect(graded(shell.effects)).toEqual([{ tag: "text", text: settled }]);
+    });
+
+    it("drops a waiting Check when a new composition begins, and when the settled text is empty", () => {
+      const [s0] = start(node, [ex]);
+      // compositionend never came for the first composition; the learner composes again.
+      const again = run(course, s0, [...composing("ngo"), { tag: "submit" }, { tag: "compositionstart" }]);
+      expect(again.get().tag).toBe("answering");
+      expect(waiting(again.get())).toBe(false);
+      again.dispatch({ tag: "compositionend", text: settled });
+      expect(again.get().tag).toBe("answering");
+      expect(graded(again.effects)).toEqual([]);
+      // A composition cancelled to nothing: the waiting Check has nothing to check.
+      const empty = run(course, s0, [...composing("n"), { tag: "submit" }, { tag: "compositionend", text: "" }]);
+      expect(empty.get().tag).toBe("answering");
+      expect(waiting(empty.get())).toBe(false);
+      expect(graded(empty.effects)).toEqual([]);
+    });
+
+    it("never skips mid-composition", () => {
+      const [s0] = start(node, [ex]);
+      const shell = run(course, s0, [...composing("ngo"), { tag: "skip", reason: "skip" }]);
+      expect(shell.get().tag).toBe("answering");
+      expect(shell.effects).toEqual([]);
+    });
   });
 
   it("keeps the draft exactly as typed (no normalization while answering)", () => {
