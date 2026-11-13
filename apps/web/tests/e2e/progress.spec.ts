@@ -21,6 +21,22 @@ const DAY = 86_400_000;
 const statusOf = (page: Page, node: string) => page.locator(`[data-lesson="${node}"]`);
 const practice = (page: Page, mode: "review" | "mistakes") => page.locator(`[data-practice-mode="${mode}"]`);
 const xp = async (page: Page): Promise<number> => Number(await page.locator("[data-xp]").getAttribute("data-xp"));
+/** The XP once it stops changing: Home folds a session's last events in as they are written (R1). */
+const settledXp = async (page: Page): Promise<number> => {
+  let last = Number.NaN;
+  await expect
+    .poll(
+      async () => {
+        const now = await xp(page);
+        const same = now === last;
+        last = now;
+        return same;
+      },
+      { intervals: [750], timeout: 30_000 },
+    )
+    .toBe(true);
+  return last;
+};
 
 test("progress, mistakes and review live on the device", async ({ page }, info) => {
   const mode = info.project.name as Mode;
@@ -56,7 +72,7 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
     await expect(practice(page, "review")).not.toHaveAttribute("aria-disabled", "true");
   };
   await afterLesson();
-  const xpAfterLesson = await xp(page);
+  const xpAfterLesson = await settledXp(page);
   expect(xpAfterLesson).toBeGreaterThan(10);
 
   // Reload: everything comes back from IndexedDB.
@@ -85,7 +101,7 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
   await playSession(page, review, mode);
   await activate(page, mode, "[data-action=exit]");
   await expect.poll(() => xp(page)).toBeGreaterThan(before);
-  const total = await xp(page);
+  const total = await settledXp(page);
   await page.reload();
   await expect(page.locator("[data-xp]")).toHaveAttribute("data-xp", String(total));
   await expect(page.locator("[data-xp-today]")).toHaveAttribute("data-xp-today", String(total - before));
