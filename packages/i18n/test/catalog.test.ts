@@ -81,6 +81,9 @@ describe("draft catalogs (ADR 0070)", () => {
     const draft = await loadTranslator("fa", { ...strict, drafts: true });
     expect(draft.format("exercise.action.check")).not.toBe(shipped.format("exercise.action.check"));
     expect(draft.format("exercise.action.check")).toMatch(/\p{Script=Arabic}/u);
+    // Which catalogs each reads: what the web app's service worker keeps (ADR 0119).
+    expect(shipped.catalogs).toEqual(["en"]);
+    expect(draft.catalogs).toEqual(["fa", "en"]);
   });
 
   it("each loads in its own language when asked, and every message formats", async () => {

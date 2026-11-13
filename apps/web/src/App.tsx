@@ -72,6 +72,7 @@ import { lastPractised, orderCourses, resumeOf } from "./left-off.ts";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
+import { UI_CATALOGS } from "./caches.ts";
 import { startNative } from "./native.ts";
 import { cameFrom, holdRoute, leave, openAddress, watchRoute } from "./navigation.ts";
 import { isOpenMessage } from "./caches.ts";
@@ -1466,7 +1467,12 @@ export const App = (): JSX.Element => {
   useEffect(() => {
     void gameRules.then(setGameConfig);
     void ready.then(setDevice);
-    if (OFFLINE) void registerWorker(import.meta.env.BASE_URL);
+    // The UI catalogs this page reads, noted first: a new worker keeps them with the shell, and no other locale's (ADR 0119).
+    if (OFFLINE)
+      void ready
+        .then(({ store: s }) => s.setMeta(UI_CATALOGS, t.catalogs))
+        .catch(() => undefined)
+        .then(() => registerWorker(import.meta.env.BASE_URL));
     // The native app: sync when it comes back to the foreground; reminders open where they point.
     void ready.then(({ sync: s }) => startNative(() => void s.syncNow()));
     // A reminder tapped while the app is open in a browser: the worker hands over where it points (S1).

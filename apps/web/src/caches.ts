@@ -12,6 +12,11 @@ export const RUNTIME_CACHE = "nabu-runtime";
 export const SHELL_PREFIX = "nabu-shell-";
 /** Background Sync tag: upload the outbox when the network is back. */
 export const OUTBOX_SYNC = "nabu-outbox";
+/**
+ * The META key (idb.ts) where the app notes the UI catalogs it reads, by locale (Translator's
+ * `catalogs`): a new worker keeps those with the shell, and no other locale's (ADR 0119).
+ */
+export const UI_CATALOGS = "ui-catalogs";
 
 /** Worker → windows: the outbox was uploaded in the background. */
 export interface SyncedMessage {

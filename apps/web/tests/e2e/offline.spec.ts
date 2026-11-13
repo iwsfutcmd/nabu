@@ -51,6 +51,18 @@ const storedOf = (page: Page, id: string): Promise<string[]> =>
     return keys.map((r) => r.url).filter((u) => u.startsWith(prefix)).map((u) => u.slice(prefix.length));
   }, id);
 
+/** The files of the app's shell this device keeps (the worker's shell cache), as paths from the app's root. */
+const shellOf = (page: Page): Promise<string[]> =>
+  page.evaluate(async () => {
+    const root = new URL("./", window.location.href).href;
+    const name = (await caches.keys()).find((k) => k.startsWith("nabu-shell-"));
+    const keys = name === undefined ? [] : await (await caches.open(name)).keys();
+    return keys.map((r) => r.url.slice(root.length)).sort();
+  });
+
+/** A UI catalog's own file (assets/fa-<hash>.js), as the build names it. */
+const CATALOG_FILE = /^assets\/(?:ar|fa|uz|uz-Cyrl|zh-Hant-HK)-[\w-]+\.js$/u;
+
 /** The instant of a local wall-clock time in TZ (no DST there, so the offset is fixed). */
 const localTime = (date: string, time: string): Date => new Date(`${date}T${time}:00+05:45`);
 const addDays = (date: string, n: number): string => new Date(Date.parse(`${date}T12:00:00Z`) + n * 24 * HOUR).toISOString().slice(0, 10);
@@ -85,6 +97,32 @@ const backgroundSync = async (context: BrowserContext, origin: string): Promise<
 test.describe("offline", () => {
   test.beforeEach(({ page: _ }, info) => {
     test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  });
+
+  test("the shell keeps what this learner needs: no other UI locale, no fonts loaded with their text, no demo", async ({ page }) => {
+    await page.goto(app("#/"));
+    await controlled(page);
+    const shell = await shellOf(page);
+    expect(shell).toEqual(expect.arrayContaining(["index.html", "manifest.webmanifest"]));
+    expect(shell.some((p) => /^assets\/index-[\w-]+\.js$/u.test(p))).toBe(true);
+    // English is in the app's own script: no catalog file of its own, and no draft's (ADR 0119).
+    expect(shell.filter((p) => CATALOG_FILE.test(p))).toEqual([]);
+    expect(shell.filter((p) => /^assets\/(?:fonts-|demo-)/u.test(p))).toEqual([]);
+  });
+
+  test("a draft UI's catalog is kept with the shell: offline, the app opens in it", async ({ page, context }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(`/?ui=fa&drafts=1&sound=off&api=${encodeURIComponent(API)}#/`);
+    await controlled(page);
+    await expect(page.locator("html")).toHaveAttribute("lang", "fa");
+    expect((await shellOf(page)).filter((p) => CATALOG_FILE.test(p)).map((p) => p.replace(/-[\w-]+\.js$/u, ""))).toEqual(["assets/fa"]);
+    // With no network the app still starts, in Persian: the catalog came from the shell.
+    await context.setOffline(true);
+    await page.reload();
+    await expect(page.locator("[data-ui-root]")).toHaveAttribute("lang", "fa");
+    await context.setOffline(false);
+    expect(errors).toEqual([]);
   });
 
   test("courses download per unit; offline, the app reloads and plans with the media it has", async ({ page, context }) => {
