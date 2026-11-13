@@ -24,7 +24,7 @@ import { localDate } from "./clock.ts";
 import { gameOf } from "./game.tsx";
 import { difference } from "./compare.ts";
 import { isHttpError, request } from "./http.ts";
-import { retryAfterUpdate, uploadOutbox } from "./outbox.ts";
+import { retryAfterUpdate, uploadOutbox, type PullCursor } from "./outbox.ts";
 import type { EventStore } from "./store.ts";
 
 export { canonical, difference } from "./compare.ts";
@@ -196,23 +196,25 @@ export const createSync = async (store: EventStore, server: string | undefined, 
   const pass = async (account: Account): Promise<void> => {
     const { server: base, token } = account;
     const touched = new Set<string>();
-    // Upload the outbox, oldest first; what the server rejects is set aside.
-    const uploaded = await uploadOutbox(store, account, async (_sent, aside) => set({ pending: await store.pendingCount(), ...(aside.length > 0 ? { held: await heldCount() } : {}) }));
-    for (const course of uploaded) touched.add(course);
-    // Pull what other devices uploaded.
-    let cursor = Number((await store.getMeta(CURSOR)) ?? 0);
+    const cursor: PullCursor = { get: async () => Number((await store.getMeta(CURSOR)) ?? 0), set: (at) => store.setMeta(CURSOR, at) };
+    // Pull what other devices uploaded, first: the upload then starts from the newest cursor, so its
+    // answer can move the cursor past this device's own events (ADR 0112).
+    let at = await cursor.get();
     let fresh = 0;
     for (;;) {
-      const page = await request<{ events: LearnerEvent[]; cursor: number; more: boolean; received?: Record<string, string> }>(base, `/v1/events?since=${cursor}`, { token });
+      const page = await request<{ events: LearnerEvent[]; cursor: number; more: boolean; received?: Record<string, string> }>(base, `/v1/events?since=${at}`, { token });
       const added = await store.append(page.events, { synced: true, ...(page.received === undefined ? {} : { received: page.received }) });
       fresh += added.length;
       // Every course the pull returns is checked: events this device uploaded in the background
-      // come back here too, and only now does the window see them on the server.
+      // come back here too (the service worker's uploads leave the cursor where it is).
       for (const e of page.events) if (e.type !== "goal_set") touched.add(e.course);
-      cursor = page.cursor;
-      await store.setMeta(CURSOR, cursor);
+      at = page.cursor;
+      await cursor.set(at);
       if (!page.more) break;
     }
+    // Upload the outbox, oldest first; what the server rejects is set aside.
+    const uploaded = await uploadOutbox(store, account, async (_sent, aside) => set({ pending: await store.pendingCount(), ...(aside.length > 0 ? { held: await heldCount() } : {}) }), cursor);
+    for (const course of uploaded) touched.add(course);
     // Second checks queued while offline (§8.3): the judge may revise answers retroactively.
     const revisedCourses = await flushJudgeQueue(store, base, token);
     for (const c of revisedCourses) touched.add(c);

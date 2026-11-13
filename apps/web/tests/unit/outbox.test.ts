@@ -129,6 +129,37 @@ describe("uploading the outbox", () => {
     expect(Object.keys(await store.held())).toEqual([a.id]);
   });
 
+  it("says where the device's pulls are, and moves them past its batch when the server says it may (ADR 0112)", async () => {
+    const store = await deviceWith([event(1), event(2)]);
+    const said: unknown[] = [];
+    let at = 7;
+    const cursor = {
+      get: () => Promise.resolve(at),
+      set: (n: number) => {
+        at = n;
+        return Promise.resolve();
+      },
+    };
+    const answer = (caughtUp?: number) => async (events: readonly LearnerEvent[]) => json(200, { ...((await taken(events).json()) as object), ...(caughtUp === undefined ? {} : { caughtUp }) });
+    vi.stubGlobal("fetch", async (_url: string, init: RequestInit & { body: string }) => {
+      const body = JSON.parse(init.body) as { events: LearnerEvent[]; since?: number };
+      said.push(body.since);
+      return [answer(9), answer(), answer()][said.length - 1]?.(body.events);
+    });
+    await uploadOutbox(store, to, undefined, cursor);
+    expect(said).toEqual([7]);
+    expect(at).toBe(9);
+    // Another device's events came in between: the server says nothing, and the pulls stay where they were.
+    await store.append([event(3)]);
+    await uploadOutbox(store, to, undefined, cursor);
+    expect(said).toEqual([7, 9]);
+    expect(at).toBe(9);
+    // Without a cursor (the service worker's background upload), the upload says nothing of the pulls.
+    await store.append([event(4)]);
+    await uploadOutbox(store, to);
+    expect(said).toEqual([7, 9, undefined]);
+  });
+
   it("sends what was set aside again when asked", async () => {
     const [a, b] = [event(1), event(2)];
     const store = await deviceWith([a, b]);
