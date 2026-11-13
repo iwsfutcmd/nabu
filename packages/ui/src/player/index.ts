@@ -5,6 +5,7 @@ export { Feedback, type FeedbackProps } from "./Feedback.tsx";
 export { lookupIsHint, withHint } from "./hints.ts";
 export { LessonPlayer, type LessonPlayerProps } from "./LessonPlayer.tsx";
 export { defaultRuby, ReadingsControl, rubyLayersOf, schemeName, useReadings, type Readings } from "./Readings.tsx";
+export { SessionEnd, type Earned, type NextStep, type NextTo, type SessionEndProps, type SessionProgress } from "./SessionEnd.tsx";
 export { defaultMarks, effectiveWritingMode, hasMarksLayer, type ViewProps, type WritingMode } from "./shared.ts";
 export { usePlayer, type PlayerOptions } from "./usePlayer.ts";
 export { fetchCourse, fetchCourseIndex, type CourseIndexEntry, type LoadedCourse } from "./load.ts";

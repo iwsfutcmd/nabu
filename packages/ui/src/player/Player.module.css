@@ -742,6 +742,87 @@
   font-weight: 700;
 }
 
+/* The end of a session (P9): what it taught and what to go over, then progress, then the next step. */
+
+.endHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.endHead p {
+  margin: 0;
+}
+
+.endSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.endHeading {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.endList,
+.endProgress {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.endWord,
+.endProgress > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+}
+
+.endWordForm {
+  font-size: 1.25rem;
+}
+
+.endWord > .audio {
+  margin-block-end: 0;
+}
+
+.endKnown {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-1) var(--nabu-space-3);
+  font-size: 1.125rem;
+}
+
+.endProgress > .xp {
+  font-size: 1.125rem;
+}
+
+/* A card missed the first time: what it asked (quieter), the right answer, and the learner's. */
+.missedCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  padding: var(--nabu-space-3);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.missedPrompt {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+/* Back to the course, and the next step at the inline end; they wrap on a narrow screen. */
+.endFooter {
+  flex-wrap: wrap;
+}
+
 /* Audio (Phase 5): play buttons, the listening prompt and the karaoke transcript. */
 
 .audio {

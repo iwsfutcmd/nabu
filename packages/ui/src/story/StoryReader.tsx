@@ -12,7 +12,7 @@
  *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
  */
 import type { Verdict } from "@nabu/core";
-import { countsAs, draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
+import { countsAs, draftOf, emptyDraft, isCorrect, missedOf, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
 import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
@@ -28,6 +28,7 @@ import { Feedback } from "../player/Feedback.tsx";
 import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { useReadings } from "../player/Readings.tsx";
+import { SessionEnd, type NextStep, type SessionProgress } from "../player/SessionEnd.tsx";
 import { digitIndex, effectiveWritingMode, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
 import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
@@ -54,6 +55,10 @@ export interface StoryReaderProps {
   readonly writingMode?: WritingMode;
   /** XP the story earned, shown when it ends. */
   readonly xpEarned?: number | undefined;
+  /** How reading it moved the learner's progress, shown when it ends (the app works it out from the log, P9). */
+  readonly progress?: SessionProgress | undefined;
+  /** Where to go next, as the course page's Continue has it (ADR 0105): offered when the story ends. */
+  readonly next?: NextStep | undefined;
   /** The reading layer the learner chose before (false: none), which the app keeps (ADR 0071). */
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
@@ -325,28 +330,32 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         </section>
       );
     }
+    // The questions missed the first time, progress and the next step, as a lesson's end has them (P9).
+    const questions = script.steps.flatMap((s) => (s.tag === "question" ? [s.ex] : []));
     return (
       <section className={playerStyles.card} data-story-reader="" data-story={script.id} data-state="finished">
-        <h2 className={playerStyles.instruction}>{t.format(done ? "story.finished.title" : "story.finished.stopped")}</h2>
-        {state.summary.exercises > 0 && <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>}
-        {xpEarned !== undefined && xpEarned > 0 && (
-          <p className={playerStyles.xp} data-xp-earned={xpEarned}>
-            {t.format("player.finished.xp", { xp: xpEarned })}
-          </p>
-        )}
-        <footer className={playerStyles.footer}>
-          {done && (
-            <Button className={playerStyles.secondary} onPress={() => setRereading(true)} data-action="reread">
-              {t.format("story.reread.action")}
-            </Button>
-          )}
-          {onExit !== undefined && (
-            <Button className={playerStyles.primary} onPress={onExit} autoFocus data-action="exit">
-              {t.format("player.action.continue")}
-              <ArrowForwardIcon />
-            </Button>
-          )}
-        </footer>
+        <SessionEnd
+          course={course}
+          grader={grader}
+          imageUrl={imageUrl}
+          title={t.format(done ? "story.finished.title" : "story.finished.stopped")}
+          summary={state.summary}
+          words={[]}
+          missed={missedOf({ results: state.results, queue: questions })}
+          progress={props.progress}
+          xp={xpEarned}
+          next={props.next}
+          onExit={onExit}
+          ruby={ruby}
+          marks={marks}
+          actions={
+            done && (
+              <Button className={playerStyles.secondary} onPress={() => setRereading(true)} data-action="reread">
+                {t.format("story.reread.action")}
+              </Button>
+            )
+          }
+        />
       </section>
     );
   }
