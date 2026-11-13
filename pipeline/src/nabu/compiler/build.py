@@ -43,6 +43,7 @@ from nabu.schema.models import (
     UnitSource,
     VocalizationSource,
 )
+from nabu.schemes import plugins, schemes
 
 I_PLUS_ONE_KINDS = ("sense", "form", "construction")
 CORRECT = ("CORRECT", "CORRECT_ALT")
@@ -224,8 +225,10 @@ def script_of(profile: OrthographyProfile, exemplars: dict[str, dict[str, list[s
     are not the step's cartouche marks."""
     code = profile.lang.split("-")[1]
     scripts = tx.unicode_scripts(code)
+    # An orthography written in a reading scheme's syllables: the scheme whose answers it holds.
+    writes = next((n for n, s in schemes().items() if s.answer == profile.id), None)
     if scripts is not None:
-        return tx.Script(code, scripts)
+        return tx.Script(code, scripts, syllables=writes)
     sets = _exemplar_sets(exemplars, profile)
     own = frozenset(sets[0]) if sets is not None else frozenset[str]()
     for step in profile.normalize:
@@ -419,7 +422,7 @@ def compile_form(
                     loc,
                 )
             reading = t["readings"][scheme]
-            segments = tx.ruby_segments(t["surface"], reading)
+            segments = tx.ruby_segments(t["surface"], reading, script)
             if segments is None:
                 diags.report(
                     "enrich.ruby-unaligned",
@@ -875,6 +878,9 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
     for orth, form in s.forms.items():
         profile = ctx.profiles.get(orth)
         tl = profile.transliterate if profile is not None else None
+        if tl is not None and tl.via == "jyutping" and tl.to in s.forms:
+            _jyutping(ctx, unit.doc.loc("sentences", si, "forms", tl.to), form, s.forms[tl.to])
+            continue
         if tl is not None and tl.via == "sitelen-pona" and tl.to in s.forms:
             _sitelen_pona(
                 ctx, unit.doc.loc("sentences", si, "forms", tl.to, "text"), form, s.forms[tl.to]
@@ -892,6 +898,31 @@ def _transliteration(ctx: Ctx, unit: Unit, si: int, s: SentenceSource) -> None:
                 f"{tid} gives {converted!r}; pinned {pinned!r} wins",
                 unit.doc.loc("sentences", si, "forms", tl.to, "text"),
             )
+
+
+def _jyutping(ctx: Ctx, loc: Loc, hant: SentenceForm, pinned: SentenceForm) -> None:
+    """A yue sentence's Jyutping form against its characters (ADR 0126): the text and tokens
+    `nabu jyutping` writes from the Hant tokens' pinned readings. Its accept set is checked by
+    `nabu jyutping --check` (tests), which needs the whole course."""
+    from nabu import jyutping
+
+    if not hant.tokens:  # a generated drill: its Jyutping is read from the numeral (_drills)
+        return
+
+    def plain(form: SentenceForm) -> list[dict[str, Any]]:
+        return [t.model_dump(exclude_none=True) for t in form.tokens or []]
+
+    try:
+        text, tokens = jyutping.latin_form(hant.text, plain(hant))
+    except ValueError as e:
+        ctx.diags.report("enrich.transliteration-mismatch", f"Jyutping: {e}", loc)
+        return
+    if (text, tokens) != (pinned.text, plain(pinned)):
+        ctx.diags.report(
+            "enrich.transliteration-mismatch",
+            f"the characters give {text!r}, pinned {pinned.text!r}: run `nabu jyutping`",
+            loc,
+        )
 
 
 def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm) -> None:
@@ -944,6 +975,24 @@ def _names(ctx: Ctx, course: CourseSource, doc: Doc) -> None:
                     )
 
 
+def _drill_reading(
+    profile: OrthographyProfile, course: CourseSource, spelled: str
+) -> tuple[str, str] | None:
+    """A drill's numeral in the orthography written in its readings (yue's Jyutping, ADR 0126):
+    (that orthography, the numeral read by its scheme's `read` plug-in), or None."""
+    tl = profile.transliterate
+    if tl is None or tl.via != "jyutping" or tl.to not in course.orthographies:
+        return None
+    writes = next((n for n, sc in schemes().items() if sc.answer == tl.to), None)
+    read = plugins(writes).read if writes is not None else None
+    if read is None:
+        return None
+    readings = read(tx.graphemes(spelled))
+    if any(r is None for r in readings):
+        return None
+    return tl.to, " ".join(r for r in readings if r is not None)
+
+
 def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:
     """A unit per drill: `drill-<kind>` (a unit id, as the offline downloads name it), with one
     node `drill.<kind>` and sentences `drill.<kind>.<value>`. Runtime code tells generated
@@ -968,13 +1017,19 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
                 ctx.diags.report("drills.rbnf-unavailable", f"no RBNF spellout for {tag}", loc)
                 break
             english = spellout("en", value) or str(value)
+            forms: dict[str, Any] = {
+                drill.orthography: {"text": spelled, "reverse": f"{spelled}\n{value}"}
+            }
+            latin = _drill_reading(profile, course, spelled)
+            if latin is not None:
+                to, read = latin
+                word = {"surface": read, "readings": {"characters": spelled}}
+                forms[to] = {"text": read, "tokens": [word], "reverse": f"{read}\n{value}"}
             sentences.append(
                 {
                     "id": f"drill.{drill.kind}.{value}",
                     "node": f"drill.{drill.kind}",
-                    "forms": {
-                        drill.orthography: {"text": spelled, "reverse": f"{spelled}\n{value}"}
-                    },
+                    "forms": forms,
                     "constructions": [f"construction:{drill.kind}"],
                     "translations": {support_lang: f"{value}\n{english}"},
                     "provenance": {

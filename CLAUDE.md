@@ -491,6 +491,10 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - The round trip hears yue with a Cantonese Whisper fine-tune (the yue profile's `speech.recognizer`, ADR 0116), never
   Whisper's own (it writes Mandarin), and compares differing characters by reading (homophones free, a tone apart half).
   `nabu audio check <course>` re-runs the check on existing clips.
+- Jyutping (ADR 0126): yue's second orthography, yue-Latn/jyutping, Jyutping the text and the characters its ruby
+  (scheme `characters`). Never written by hand: after changing a yue sentence, word or story line, run
+  `cd pipeline && uv run nabu jyutping ../courses/yue` (it lists readings it took from PyCantonese for a person to
+  check); the compiler and `--check` (tests) catch a stale one. Tones are never typos there (contrast sets).
 
 ## Toki Pona notes (see docs/adr/0086)
 - courses/tok is in two orthographies, every sentence pinned in both: tok-Latn/standard (sitelen Lasina) and

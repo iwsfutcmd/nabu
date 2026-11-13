@@ -3114,6 +3114,109 @@
         "notes": []
       },
       "note": "Any elision mark."
+    },
+    {
+      "id": "grade/yue-jyutping/exact",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 saang1"
+      },
+      "expected": {
+        "verdict": "CORRECT",
+        "notes": []
+      }
+    },
+    {
+      "id": "grade/yue-jyutping/joined-and-capitalized",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "Ngo5 hai6 hok6saang1."
+      },
+      "expected": {
+        "verdict": "CORRECT"
+      },
+      "note": "ADR 0126: syllables joined or spaced, case ignored"
+    },
+    {
+      "id": "grade/yue-jyutping/neighbour-tone",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 saang2"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "reading-tone"
+        ]
+      },
+      "note": "1 and 2 are neighbouring keys, but a tone is never a typo"
+    },
+    {
+      "id": "grade/yue-jyutping/far-tone",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai2 hok6 saang1"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "reading-tone"
+        ]
+      },
+      "note": "hai2 (at) for hai6 (to be): another word"
+    },
+    {
+      "id": "grade/yue-jyutping/missing-tone",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 saang"
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "reading-no-tones"
+        ]
+      },
+      "note": "every syllable needs its tone number"
+    },
+    {
+      "id": "grade/yue-jyutping/letter-typo",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 saanng1"
+      },
+      "expected": {
+        "verdict": "CORRECT_WITH_TYPO"
+      },
+      "note": "a slip in a syllable's letters that spells no other syllable is a typo"
+    },
+    {
+      "id": "grade/yue-jyutping/letter-slip-real-syllable",
+      "op": "grade",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "accept": "ngo5 hai6 hok6 saang1",
+        "answer": "ngo5 hai6 hok6 sang1",
+        "lexicon": [
+          "sang1"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD"
+      },
+      "note": "sang1 for saang1: vowel length is phonemic, and sang1 is another syllable of the course"
     }
   ]
 }

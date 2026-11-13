@@ -45,6 +45,8 @@ describe("planner: 30 simulated days", () => {
     // Attic Greek (ADR 0087): polytonic, every word with its vowel lengths pinned.
     ["grc", undefined, 18, 1.0],
     ["grc", undefined, 19, 2.0],
+    // Cantonese in Jyutping (ADR 0126): the same course, typed and read in Jyutping.
+    ["yue", "yue-Latn/jyutping", 20, 1.3],
   ];
   for (const [course, orthography, seed, ability] of RUNS) {
     it(`${course} ${orthography ?? ""} (seed ${seed}, ability ${ability}) stays within ±5pp of 85%`, () => {

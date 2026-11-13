@@ -219,6 +219,16 @@ What a native speaker should still check:
       artefacts on long vowels and final particles.
     - **Where to start:** `nabu audio report ../courses/yue` lists the clips the round trip held back; the
       audio check (debug mode) plays them all. A rejected clip is made again as its next take.
+11. **Jyutping** ([ADR 0126](../docs/adr/0126-yue-jyutping-orthography.md)). The course in Jyutping is written from the
+    characters' pinned readings, so it is right wherever they are. Check what was chosen rather than read:
+    - **Accept sets.** `cd pipeline && uv run nabu jyutping ../courses/yue` lists every reading taken from PyCantonese or
+      chosen among the course's (313 now). Most are words the course pins nowhere else; look first at the typing variants
+      read as the word they stand for (既 ge3, 無 mou5, 哂 saai3, 岩岩 ngaam1, 訓 fan3), and 咪 mai6, 位 wai2, 會 wui5,
+      頂 deng2, 咁 gam2 (咁你呢), 吓 haa5, 阿 aa3.
+    - **呀 in typed answers.** Where a sentence does not pin it, an alternative's 呀 takes aa3 or aa4: check that no set
+      should take only one.
+    - **Typing.** Lowercase, syllables spaced or joined; a wrong or missing tone is wrong, never a typo. Names are
+      lowercase too (gaa1 ming4).
 
 ## uz (Uzbek)
 

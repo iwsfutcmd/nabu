@@ -292,6 +292,48 @@ def sitelen_pona_command(
         typer.echo(out.encode("unicode_escape").decode("ascii") if escaped else out)
 
 
+@app.command("jyutping")
+def jyutping_command(
+    course: Annotated[Path, typer.Argument(exists=True, help="The Cantonese course directory.")],
+    check: Annotated[
+        bool, typer.Option("--check", help="Change nothing; fail if a unit is not up to date.")
+    ] = False,
+) -> None:
+    """Write the Cantonese course's Jyutping orthography from its characters (ADR 0126).
+
+    Every Hant form gets a yue-Latn/jyutping form from its tokens' pinned readings, every KC form
+    and character name its Jyutping, every accept set its Jyutping alternatives. Readings taken
+    from PyCantonese or chosen among the course's are listed for a person to check.
+    """
+    import yaml
+
+    from nabu import jyutping
+
+    units = sorted((course / "units").glob("*.yaml"))
+    lex = jyutping.lexicon_of(yaml.safe_load(u.read_text(encoding="utf-8")) for u in units)
+    stale: list[str] = []
+    report: list[str] = []
+    for unit in units:
+        source = unit.read_text(encoding="utf-8")
+        try:
+            new, unsure = jyutping.rewrite_unit(source, lex)
+        except ValueError as e:
+            typer.echo(f"✗ {unit}: {e}", err=True)
+            raise typer.Exit(code=1) from e
+        report += [f"{unit.name}: {u}" for u in unsure]
+        if new != source:
+            stale.append(unit.name)
+            if not check:
+                unit.write_text(new, encoding="utf-8")
+    for line in sorted(set(report)):
+        typer.echo(f"  ? {line}")
+    if check and stale:
+        typer.echo(f"✗ not up to date: {', '.join(stale)} (run `nabu jyutping {course}`)", err=True)
+        raise typer.Exit(code=1)
+    verb = "up to date" if not stale else f"written: {', '.join(stale)}"
+    typer.echo(f"✓ Jyutping {verb}; {len(set(report))} readings to check")
+
+
 @app.command("calibration")
 def calibration_command(
     events: Annotated[

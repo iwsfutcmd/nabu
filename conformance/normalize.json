@@ -1124,6 +1124,46 @@
       },
       "expected": "τὸν ἄνθρωπον ὁρῶ",
       "note": "Accents and breathings stay: the marks policy grades them."
+    },
+    {
+      "id": "normalize/yue-jyutping/joined-syllables",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "hok6saang1"
+      },
+      "expected": "hok6 saang1",
+      "note": "ADR 0126: a tone number ends a syllable, so a word's syllables may be typed joined"
+    },
+    {
+      "id": "normalize/yue-jyutping/sentence",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "Ngo5  hai6 hok6saang1."
+      },
+      "expected": "Ngo5 hai6 hok6 saang1",
+      "note": "punctuation stripped, spaces collapsed, joined syllables split; case is folded when matching, not here"
+    },
+    {
+      "id": "normalize/yue-jyutping/syllabic-nasal",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "m4goi1 ng5"
+      },
+      "expected": "m4 goi1 ng5",
+      "note": "syllabic m and ng are syllables like any other"
+    },
+    {
+      "id": "normalize/yue-jyutping/digits-alone",
+      "op": "normalize",
+      "args": {
+        "profile": "yue-Latn/jyutping",
+        "text": "sap6 10"
+      },
+      "expected": "sap6 10",
+      "note": "a tone digit followed by a digit or a space is not split"
     }
   ]
 }
