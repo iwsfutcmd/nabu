@@ -465,7 +465,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             ids={ids}
           />
           <div className={playerStyles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
-            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} course={course} ruby={ruby} marks={marks === "hide" ? "hide" : "show"} />}
+            {feedback !== undefined && <Feedback ex={feedback.ex} outcome={feedback.outcome} response={feedback.response} course={course} ruby={ruby} marks={marks === "hide" ? "hide" : "show"} />}
           </div>
           {feedback !== undefined && props.feedbackExtra?.(feedback.ex, feedback.outcome, feedback.response, (verdict) => dispatch({ tag: "player", event: { tag: "revise", exercise: feedback.ex.id, verdict } }))}
         </div>

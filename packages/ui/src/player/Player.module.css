@@ -659,6 +659,19 @@
   font-size: 1.125rem;
 }
 
+/* Where an answer left something out (P3): an empty box in the style of a part that differs (T's
+   highlight), dashed, never colour alone. Between characters too, in a script without spaces. */
+.answerGap {
+  display: inline-block;
+  min-inline-size: 1.5em;
+  min-block-size: 1em;
+  margin-inline: 0.15em;
+  vertical-align: middle;
+  outline: 2px dashed var(--nabu-color-wrong);
+  outline-offset: 1px;
+  border-radius: 0.2em;
+}
+
 /* Footer and buttons */
 
 .footer {

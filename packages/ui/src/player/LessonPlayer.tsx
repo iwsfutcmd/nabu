@@ -475,7 +475,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
-        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />}
+        {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} response={active.response} course={course} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />}
       </div>
       {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />}
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response, (verdict) => dispatch({ tag: "revise", exercise: ex.id, verdict }))}

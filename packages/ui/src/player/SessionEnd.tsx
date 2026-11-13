@@ -8,8 +8,9 @@
  *   Nothing plays by itself, whatever the sound setting (P6, D18).
  * - Missed the first time: each card the score counts wrong, with what it asked, the right answer, and
  *   the learner's answer with the parts that differ marked, as its feedback marked them (where the
- *   session still has the answer: a session picked up after a reload has only typed ones). The app
- *   may add its AI help under each (an explanation asked for in the feedback, kept, M10).
+ *   session still has the answer: a session picked up after a reload has only typed ones): a gap
+ *   where it left something out, and the right answer's words it left out or got wrong (P3). The
+ *   app may add its AI help under each (an explanation asked for in the feedback, kept, M10).
  * - Accepted on a second check: answers a language model accepted, said to be a model's (M10).
  * - Your progress: what the app works out from the log (words now known, a unit finished, the streak,
  *   the week's practice days, quests done, achievements), then the XP.
@@ -22,7 +23,7 @@
  * reader hears the title and the score with the button (its description), and a stray Enter does
  * what Continue did before.
  */
-import { allKcs, answerDiff, answerTextOf, gradeExercise, promptOf, solutionOf, type CourseView, type Exercise, type Grader, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { allKcs, answerDiff, answerTextOf, gradeExercise, nearMiss, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, type JSX, type ReactNode } from "react";
@@ -32,6 +33,7 @@ import { ArrowForwardIcon } from "../icons.tsx";
 import type { Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
 import { AudioButtons, useClipPlayer } from "./Audio.tsx";
+import { MarkedAnswer } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 
 /** Where the next step goes: a lesson (its number on the path), the unit's story, or practice first. */
@@ -145,22 +147,34 @@ const NewWord = ({ course, word, url, ruby, marks }: { readonly course: CourseVi
   );
 };
 
-/** The learner's answer to a missed card as text, the parts that differ marked; undefined where the session does not have it. */
-const yoursOf = (course: CourseView, grader: Grader, ex: Exercise, response: Response | undefined): { readonly text: TaggedText; readonly marked: readonly number[] } | undefined => {
+/** An answer as text with nothing marked: a choice, or one no alignment explains. */
+const unmarked = (text: TaggedText): AnswerDiff => ({ text, marked: [], missing: 0, gaps: [] });
+
+/**
+ * The learner's answer to a missed card as text, the parts that differ marked and a gap where it left
+ * something out, and the words of the right answer it left out or got wrong, as its feedback marked
+ * them (P3); undefined where the session does not have the answer.
+ */
+const yoursOf = (course: CourseView, grader: Grader, ex: Exercise, response: Response | undefined): { readonly answer: AnswerDiff; readonly solutionMarked: readonly number[] } | undefined => {
   if (response === undefined) return undefined;
   if (response.tag === "choice") {
     if (!("options" in ex)) return undefined;
     const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
     if (option === undefined) return undefined;
-    return { text: "tokens" in option ? option : option.text, marked: [] };
+    return { answer: unmarked("tokens" in option ? option : option.text), solutionMarked: [] };
   }
   if (response.tag !== "text" && response.tag !== "tiles") return undefined;
   const outcome = gradeExercise(ex, response, grader);
-  const joiner = course.profiles.get(ex.orthography)?.unitKind === "grapheme" ? "" : " ";
-  if (outcome.solution !== undefined && outcome.alignment !== undefined && outcome.alignment.length > 0) return answerDiff(outcome.alignment, outcome.solution, joiner);
+  const profile = course.profiles.get(ex.orthography);
+  const joiner = profile?.unitKind === "grapheme" ? "" : " ";
+  const { alignment, solution } = outcome;
+  if (solution !== undefined && alignment !== undefined && alignment.length > 0) {
+    const near = outcome.closestIsSolution === true && profile !== undefined && nearMiss(alignment);
+    return { answer: answerDiff(alignment, solution, joiner), solutionMarked: near ? solutionMarks(alignment, solution, profile) : [] };
+  }
   const raw = answerTextOf(ex, response);
-  const base = outcome.solution ?? solutionOf(ex);
-  return raw === undefined || base === undefined ? undefined : { text: textOfSurface(base, raw), marked: [] };
+  const base = solution ?? solutionOf(ex);
+  return raw === undefined || base === undefined ? undefined : { answer: unmarked(textOfSurface(base, raw)), solutionMarked: [] };
 };
 
 interface MissedCardProps {
@@ -180,6 +194,7 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
   const prompt = promptOf(ex);
   const solution = solutionOf(ex);
   const yours = useMemo(() => yoursOf(course, grader, ex, response), [course, grader, ex, response]);
+  const answer = yours?.answer;
   return (
     <li className={styles.missedCard} data-missed={ex.id} data-verdict={missed.verdict} data-ink-container={`missed:${ex.id}`}>
       {prompt !== undefined && <T as="p" text={prompt} ruby={ruby} marks={marks} className={styles.missedPrompt} />}
@@ -187,17 +202,17 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
         <div className={styles.solution} data-solution="">
           <span className={styles.label}>{t.format("player.feedback.solution")}</span>
           {/* Its marks, unless the learner hid them (a vocalize card's always: they are its answer), as the feedback showed it. */}
-          <T as="p" text={solution} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />
+          <T as="p" text={solution} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} highlight={yours?.solutionMarked ?? []} />
         </div>
       )}
       {missed.verdict === "SKIPPED" ? (
         <p className={styles.muted}>{t.format("player.end.missed.skipped")}</p>
       ) : (
-        yours !== undefined && (
+        answer !== undefined && (
           <div className={styles.solution} data-your-answer="">
             <span className={styles.label}>{t.format("player.feedback.your-answer")}</span>
-            <T as="p" text={yours.text} highlight={yours.marked} />
-            {yours.marked.length > 0 && <span className={styles.muted}>{t.format("player.feedback.marked")}</span>}
+            <MarkedAnswer diff={answer} />
+            {(answer.marked.length > 0 || answer.gaps.length > 0) && <span className={styles.muted}>{t.format("player.feedback.marked")}</span>}
           </div>
         )
       )}

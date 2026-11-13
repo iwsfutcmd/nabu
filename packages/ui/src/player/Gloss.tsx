@@ -7,7 +7,7 @@
 import type { CourseView } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
 import type { SchemeId, TaggedText } from "@nabu/schema";
-import { useMemo, type JSX } from "react";
+import { useMemo, type JSX, type ReactNode } from "react";
 import { useTranslator } from "../context.tsx";
 import type { Marks } from "../marks.tsx";
 import { T } from "../T.tsx";
@@ -25,6 +25,47 @@ export const useGlosses = (course: CourseView, tap: Pick<WordTap, "text" | "toke
   const glossary = useMemo(() => courseGlossary(course), [course]);
   return useMemo(() => (tap === undefined ? [] : glossAt(course, glossary, glossLine(course, glossary, tap.text), tap.text, tap.token)), [course, glossary, tap]);
 };
+
+export interface GlossEntryProps {
+  readonly gloss: Gloss;
+  /** The reading layer the entry's form shows. */
+  readonly ruby: SchemeId | false;
+  readonly marks: Marks;
+  /** More to say of the entry, after its meaning (feedback: the form a word is pinned as, P3). */
+  readonly note?: ReactNode;
+}
+
+/** One meaning, in a GlossList: the entry's form, then what it means and how much of the word it covers. */
+export const GlossEntry = ({ gloss: g, ruby, marks, note }: GlossEntryProps): JSX.Element => {
+  const t = useTranslator();
+  return (
+    <div className={styles.glossEntry} data-gloss-kc={g.kc}>
+      <dt>
+        <T text={g.form} ruby={ruby} marks={marks} />
+      </dt>
+      <dd>
+        {g.meaning !== undefined && <T text={g.meaning} />}
+        {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
+        {g.lemma !== undefined && (
+          <span className={styles.glossNote} data-gloss-lemma="">
+            {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={ruby} marks={marks} />
+          </span>
+        )}
+        {note}
+      </dd>
+    </div>
+  );
+};
+
+/** The list GlossEntry rows go in. */
+export const GlossList = ({ children }: { readonly children: ReactNode }): JSX.Element => <dl className={styles.glossList}>{children}</dl>;
+
+/** The form a word is pinned as (form:pres-2s, ADR 0076), after its meaning: "present tense: you (tú)". */
+export const FormNote = ({ kc, meaning }: { readonly kc: string; readonly meaning: TaggedText }): JSX.Element => (
+  <span className={styles.glossNote} data-gloss-form={kc}>
+    <T text={meaning} />
+  </span>
+);
 
 export interface GlossPanelProps {
   /** Whether a word is tapped. */
@@ -59,24 +100,11 @@ export const GlossPanel = ({ open, glosses, ruby, marks, quiet = false }: GlossP
       ) : glosses.length === 0 ? (
         <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
       ) : (
-        <dl className={styles.glossList}>
+        <GlossList>
           {glosses.map((g, i) => (
-            <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
-              <dt>
-                <T text={g.form} ruby={ruby} marks={marks} />
-              </dt>
-              <dd>
-                {g.meaning !== undefined && <T text={g.meaning} />}
-                {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
-                {g.lemma !== undefined && (
-                  <span className={styles.glossNote} data-gloss-lemma="">
-                    {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={ruby} marks={marks} />
-                  </span>
-                )}
-              </dd>
-            </div>
+            <GlossEntry key={i} gloss={g} ruby={ruby} marks={marks} />
           ))}
-        </dl>
+        </GlossList>
       )}
     </div>
   );

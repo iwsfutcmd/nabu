@@ -2026,13 +2026,25 @@
       "message": "New words",
       "description": "End of a lesson: heading over the words the lesson taught, each with its meaning and a button that plays it."
     },
+    "player.feedback.chosen-meaning": {
+      "message": "What you chose means:",
+      "description": "Label in the feedback on a wrong choice among words of the course being learned (a word for a gap, a word heard, a picture's word): the chosen word follows, in that language, with its meaning in the learner's language, so they see why it does not fit."
+    },
     "player.feedback.closest": {
       "message": "Nearest correct version:",
       "description": "Label in the feedback on a wrong answer, under the correct answer: another accepted way to say it, the one closest to what the learner wrote, with what they left out or got wrong marked. Shown only when the answer was close to it."
     },
+    "player.feedback.gap": {
+      "message": "Left out",
+      "description": "Accessible name of the mark in the learner's answer where they left something out (a word, or a character in Chinese). The correct answer above it marks what goes there."
+    },
     "player.feedback.marked": {
       "message": "(marked parts differ)",
       "description": "Short explanation after the learner's marked answer: marked words or characters are the ones that differ. Not shown by colour alone."
+    },
+    "player.feedback.marked-meaning": {
+      "message": ".input {$count :number}\n.match $count\none {{What the marked word means:}}\n* {{What the marked words mean:}}",
+      "description": "Label in the feedback on a wrong answer, after the learner's answer with its differing words marked: a marked word that is another word of the course (hablas where hablo was asked, esta for está) follows, in the language being learned, with its meaning in the learner's language. $count is how many such words follow."
     },
     "player.feedback.solution": {
       "message": "Correct answer:",
