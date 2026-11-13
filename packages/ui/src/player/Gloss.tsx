@@ -2,7 +2,8 @@
  * Tap-for-gloss (Phase 6), in stories and lessons (P1). A tapped word runs the course glossary
  * (`glossTokens` through @nabu/core/story's `glossAt`: longest match, exact and folded passes), so a
  * vocalized word finds its unvocalized entry; the meaning appears in a live panel under the text.
- * Matching is core's, never redone here.
+ * Matching is core's, never redone here. A meaning's row (GlossEntry) also says, in the feedback on
+ * a wrong answer, what a wrong word means (P3).
  */
 import type { CourseView } from "@nabu/core/lesson";
 import { courseGlossary, glossAt, glossLine, type Gloss } from "@nabu/core/story";
