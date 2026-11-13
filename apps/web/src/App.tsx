@@ -25,7 +25,6 @@ import {
   practicableMistakes,
   replay,
   scriptPathOf,
-  withRevisions,
   wordCounts,
   type LearnerState,
   type NodeStatus,
@@ -36,14 +35,14 @@ import {
   type SessionRequest,
 } from "@nabu/core/learner";
 import { createGrader, doneOf, firstTriesOf, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
-import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
+import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
-import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
+import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse, type NextStep } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
 import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
 import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
@@ -76,6 +75,7 @@ import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx"
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
+import { nextStepOf, useSessionEnd } from "./session-end.ts";
 import { focusScreen, Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
@@ -777,11 +777,6 @@ interface Setup {
   readonly planned: SessionPlan;
   /** The session's id: every event it records carries it. */
   readonly session: string;
-  /**
-   * The game's XP before the session (ADR 0107: the end screen shows what it earned, as the game
-   * counts it); undefined while the game state is not known yet, and then taken when it is.
-   */
-  readonly xpBefore: number | undefined;
   /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
   readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
   /** A new session's plan, kept on the device once the session starts (S3). */
@@ -793,7 +788,7 @@ const startOptions = (request: SessionRequest, planned: SessionPlan) => ({ retri
 
 /** Plans a new session from the learner's state as it opens (§9.4); its plan is kept from when it starts until it ends (S3). */
 const plannedSetup = (props: SessionProps, route: string): Setup => {
-  const { loaded, request, state, speechTiers, game } = props;
+  const { loaded, request, state, speechTiers } = props;
   const { course } = loaded;
   const seed = seedFor();
   // Speaking is scored where tones can be judged here or the server scores it (§10.4).
@@ -806,7 +801,7 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
   const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
   const session = uuidv7(now.getTime());
   const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
-  return { seed, planned, session, xpBefore: game?.xp.total, open };
+  return { seed, planned, session, open };
 };
 
 /**
@@ -826,10 +821,9 @@ const Session = (props: SessionProps): JSX.Element => {
       const done = found === undefined ? [] : doneOf(found.events, found.open.session);
       const from = found === undefined ? undefined : resume(request.mode === "lesson" ? request.node : request.mode, found.open.plan.exercises, startOptions(request, found.open.plan), done);
       if (found !== undefined && from !== undefined) {
-        // What the session earned so far is in the game state already: the end screen counts from before it.
+        // What the session did so far is in the log already: its end counts from the log without it (session-end.ts).
         const { open } = found;
-        const xpBefore = game === null || gameConfig === null ? undefined : game.xp.total - xpOfEvents(found.events, gameConfig);
-        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, xpBefore, resumed: { from, firstTries: firstTriesOf(done) } } });
+        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, resumed: { from, firstTries: firstTriesOf(done) } } });
       } else if (!sessionAllowed(game, request.mode, gameConfig)) {
         // Decided once, when the session opens: answering inside it never closes the gate on it.
         setOpened("gate");
@@ -875,6 +869,8 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
   };
   return {
     quitRequest,
+    /** Whether the session has ended: its end screen shows. */
+    over: ended,
     /** The session ended. A quit that Back asked for goes on where Back was going, unless the end screen has more to say (`stay`). */
     ended: (completed: boolean, stay = false): void => {
       // The route is free at once: nothing to ask about any more.
@@ -883,29 +879,30 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
       if (!completed && !stay && going.current !== undefined) go(going.current);
     },
     exit: (): void => go(going.current ?? back),
+    /** The end screen's next step: another session, in this one's place (navigation.ts). */
+    to: (where: string): void => go(where),
   } as const;
 };
 
-/** XP the events earn by the game's rule (answers right, so far, in a session not yet finished), each answer as its revision has it (ADR 0052). */
-const xpOfEvents = (events: readonly LearnerEvent[], config: GameConfig): number =>
-  withRevisions(events).reduce((n, event) => n + xpRule({ event }, { config, mode: undefined, counts: true, replay: false }).reduce((m, e) => m + (e.tag === "xp" ? e.amount : 0), 0), 0);
-
 /**
- * The XP a session has earned, from the game state (ADR 0107), as the course page counts XP: with the
- * deployment's rules, and the quests the session completed. The game state is worked out again after
- * each event, so the count settles a moment after the last one.
+ * Where the end of a session goes next (P9): the course page's Continue (ADR 0105), worked out from
+ * the learner state with the session in it, once it has ended.
  */
-const useXpEarned = (game: GameState | null, from: number | undefined): number | undefined => {
-  const [before, setBefore] = useState<number | undefined>(from ?? game?.xp.total);
-  useEffect(() => {
-    if (before === undefined && game !== null) setBefore(game.xp.total);
-  }, [before, game]);
-  return before === undefined || game === null ? undefined : game.xp.total - before;
+const useNextStep = (course: CourseView, state: LearnerState, over: boolean, go: (to: string) => void): NextStep | undefined => {
+  const t = useTranslator();
+  const going = useRef(go);
+  going.current = go;
+  return useMemo(() => {
+    if (!over) return undefined;
+    const orthography = course.orthography;
+    const hrefOf = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : href({ tag: "session", course: course.id, orthography, request: { mode: "lesson", node: n.node } }));
+    const review = href({ tag: "session", course: course.id, orthography, request: { mode: "review" } });
+    return nextStepOf({ course, state, now: new Date(), pace: paceChoiceOf(course.id), hrefOf, review, go: (to) => going.current(to), t });
+  }, [course, state, over, t]);
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, gameConfig, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
   const t = useTranslator();
-  const xpEarned = useXpEarned(game, setup.xpBefore);
   const { course, manifest, imageUrl } = loaded;
   const back = href({ tag: "course", course: course.id, orthography: course.orthography });
   const placement = request.mode === "placement";
@@ -937,6 +934,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
     };
     return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
   });
+  // Its end (P9): what it changed, from the log with it against without it, and where to go next.
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup.session, ended: routing.over, state, game, placement, t });
+  const next = useNextStep(course, state, routing.over, routing.to);
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   // Nothing plays by itself with sound off or listening put off (P6).
@@ -993,7 +993,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         known={known}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
-        xpEarned={xpEarned}
+        xpEarned={end.xp}
+        progress={end.progress}
+        next={next}
         onExit={routing.exit}
         speech={speech}
         feedbackExtra={(ex, _outcome, response, revise) => {
@@ -1026,9 +1028,8 @@ const StorySession = (props: StorySessionProps): JSX.Element => {
   return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
 };
 
-const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai, game }: StorySessionProps): JSX.Element => {
+const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai, game, gameConfig }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
-  const xpEarned = useXpEarned(game, undefined);
   const { course, manifest, imageUrl } = loaded;
   const back = href({ tag: "course", course: course.id, orthography: course.orthography });
   const route = href({ tag: "story", course: course.id, orthography: course.orthography, node });
@@ -1039,17 +1040,22 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
     const story = storyAt(course, node);
     if (story === undefined) return undefined;
     const seed = seedFor();
+    const session = uuidv7();
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
       if (event.type === "session_completed") routing.ended(event.summary.completed);
     };
     return {
+      session,
       script: storyScript(course, story, seededRng(seed)),
       known: knownWords(course, state, new Date()),
-      onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }),
+      onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep, session }),
     };
   });
+  // Its end (P9): what it changed, from the log with it against without it, and where to go next.
+  const end = useSessionEnd({ store, config: gameConfig, course, session: setup?.session, ended: routing.over, state, game, placement: false, t });
+  const next = useNextStep(course, state, routing.over, routing.to);
   const grader = useMemo(() => createGrader(course), [course]);
   // Nothing plays by itself with sound off or listening put off (P6).
   const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
@@ -1076,7 +1082,9 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         sound={sound}
         onSoundChange={storeSound}
         listening={!onBreak("listening")}
-        xpEarned={xpEarned}
+        xpEarned={end.xp}
+        progress={end.progress}
+        next={next}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         display={storedDisplay(course.id, course.orthography)}

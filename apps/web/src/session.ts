@@ -39,11 +39,13 @@ export interface StoryRecorderOptions {
   readonly node: string;
   readonly seed: number;
   readonly record: (event: LearnerEvent) => void;
+  /** The session's id, where the shell made it beforehand (its end reads the log without it). */
+  readonly session?: string | undefined;
 }
 
 /** A story is one session (mode story) at its node: its questions are answers like any other. */
-export const storyRecorder = ({ course, bundle, device, node, seed, record }: StoryRecorderOptions): ((event: LessonEvent) => void) =>
-  eventRecorder({ course, bundle, device, meta: { mode: "story", node, seed, planner: "story" }, record });
+export const storyRecorder = ({ course, bundle, device, node, seed, record, session }: StoryRecorderOptions): ((event: LessonEvent) => void) =>
+  eventRecorder({ course, bundle, device, meta: { mode: "story", node, seed, planner: "story" }, record, session });
 
 const eventRecorder = ({
   course,
