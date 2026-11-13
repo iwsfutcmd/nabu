@@ -106,3 +106,20 @@ Enter takes the next step (where Continue went back to the course before).
   - a mistakes session started from the end screen (the course page offers it);
   - known words gained in a placement test (seeded words become known only on a later day);
   - claims from the end screen itself.
+
+## Amendment: the next step right after practice (2026-11-12)
+
+The end screen's next step was the course page's Continue, so right after a review it could say
+"Practise first" again. The owner decided (D34) that the end of practice goes on to the path.
+- **After practice** (a review, a mistakes session, or any practice mode; not a lesson, a story or
+  a placement test), the next step is the next lesson or story on the path ("Next: Lesson 4", "Next:
+  the story"), whatever Continue would say. "Keep practising", another review, is offered beside it,
+  where "New lesson anyway" stands beside "Practise first". No line says why.
+- **With the path done** there is no next lesson. The end of practice offers what Continue does:
+  practice first where enough words are slipping, else back to the course.
+- **After a lesson, a story or a placement test**, the next step is Continue's, as before.
+
+The course page's Continue is unchanged: it still offers practice first once enough words are
+slipping (ADR 0105). `nextStepOf` takes whether the session was practice (`practises`, by its mode),
+and `NextStep.anyway` became `beside`, the other way on in either case. No visual baseline changes:
+the matrix's end screen follows a lesson.
