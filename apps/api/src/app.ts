@@ -10,8 +10,9 @@
  *   GET  /v1/auth/me
  *   GET  /v1/export                    everything the account holds, as one JSON file (§14.4)
  *   DELETE /v1/account                 {password}: deletes the account and its data (§14.4)
- *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor, received, refused, rejected}
- *                                      (rejected: [{index, id?, code, errors?}], events not taken)
+ *   POST /v1/events                    {events: LearnerEvent[], since?} → {accepted, duplicates, cursor, received, refused, rejected, caughtUp?}
+ *                                      (rejected: [{index, id?, code, errors?}], events not taken; caughtUp: the cursor
+ *                                      a device that pulled up to `since` holds every event to, ADR 0112)
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
  *   GET  /v1/profile                   → {profile}            PUT {username, displayName?, uiLocale?}
@@ -61,7 +62,7 @@ import type { Db } from "./db/index.ts";
 import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
 import { joinIfActive, leagueView } from "./leagues.ts";
-import { append, checkBatch, existing, gameStateOf, MAX_BATCH, rejectionEntry, since, stateOf } from "./log.ts";
+import { append, checkBatch, existing, gameStateOf, MAX_BATCH, rejectionEntry, since, sinceOf, stateOf } from "./log.ts";
 import { ageCheck } from "./age.ts";
 import { createLimiter, type Limits } from "./limits.ts";
 import { deleteAccount, exportOf } from "./privacy.ts";
@@ -303,7 +304,8 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const user = c.get("user").id;
     const limited = overLimit(c, uploads, [`user:${user}`]);
     if (limited !== undefined) return limited;
-    const checked = checkBatch(await c.req.json().catch(() => undefined), user);
+    const upload: unknown = await c.req.json().catch(() => undefined);
+    const checked = checkBatch(upload, user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
     // Events that are not valid, or not this user's, are rejected one by one (`rejected`, by their
     // index in the batch); the rest are taken, so one bad event never holds back the others. Each
@@ -315,7 +317,8 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const batch = checked.events.filter((e) => e.type !== "outcome_revised" || issued.has(e.id));
     // A retried upload must not file an old correction over a newer one: only new ones are filed.
     const filed = await existing(db, user, batch.filter((e) => e.type === "sentence_reported").map((e) => e.id));
-    const result = await append(db, user, batch, new Date(now()));
+    // Where the device's pulls are, if it says: then the answer says whether it is caught up (ADR 0112).
+    const result = await append(db, user, batch, new Date(now()), sinceOf(upload));
     if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
     if (ai !== undefined) {
       // Reports join the review queue; filing one twice changes nothing (one vote per learner).

@@ -10,7 +10,7 @@ import { localDateOf, replayGame, type GameConfig, type GameState } from "@nabu/
 import { replay, type LearnerState } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { Ajv2020, type ErrorObject } from "ajv/dist/2020.js";
-import { and, asc, eq, gt, inArray, max } from "drizzle-orm";
+import { and, asc, eq, gt, inArray, max, notInArray } from "drizzle-orm";
 import type { Db } from "./db/index.ts";
 import { events } from "./db/schema.ts";
 
@@ -52,6 +52,12 @@ export interface UploadResult {
   readonly cursor: number;
   /** When the server first received each event of the batch (ISO): devices fold it into the streak's grace window as the server does (§12.2). */
   readonly received: Readonly<Record<string, string>>;
+  /**
+   * For an upload that said where the device's pulls are (`since`), when every event of the user's
+   * log after there is in this batch: the cursor the device may pull from next, as it holds every
+   * event up to it (ADR 0112). So a device never pulls back what it just uploaded.
+   */
+  readonly caughtUp?: number;
 }
 
 /** When the server first received each of these events (ids it does not hold are left out). */
@@ -135,12 +141,30 @@ export const checkBatch = (
   return { ok: true, events, rejected };
 };
 
+/** Whether the user's log holds an event after cursor `since` that is not one of `ids`. */
+const othersSince = async (db: Db, user: string, since: number, ids: readonly string[]): Promise<boolean> => {
+  const after = and(eq(events.userId, user), gt(events.seq, since));
+  const rows = await db
+    .select({ id: events.id })
+    .from(events)
+    .where(ids.length === 0 ? after : and(after, notInArray(events.id, [...ids])))
+    .limit(1);
+  return rows.length > 0;
+};
+
+/** The cursor an upload may carry (`since`): where the device's pulls are. */
+export const sinceOf = (body: unknown): number | undefined => {
+  const since = typeof body === "object" && body !== null ? (body as { since?: unknown }).since : undefined;
+  return typeof since === "number" && Number.isSafeInteger(since) && since >= 0 ? since : undefined;
+};
+
 /**
  * Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing.
  * An event of the account rather than a course (goal_set, ADR 0107) is kept with an empty course and bundle: no course's
- * log holds it, and the whole log does.
+ * log holds it, and the whole log does. Given `since`, where the uploading device's pulls are, it says whether the device
+ * is caught up (UploadResult.caughtUp).
  */
-export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date()): Promise<UploadResult> => {
+export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date(), since?: number): Promise<UploadResult> => {
   const rows = batch.map((e) => ({
     serverTime: receivedAt,
     id: e.id,
@@ -156,7 +180,10 @@ export const append = async (db: Db, user: string, batch: readonly LearnerEvent[
     payload: e,
   }));
   const inserted = rows.length === 0 ? [] : await db.insert(events).values(rows).onConflictDoNothing({ target: events.id }).returning({ id: events.id });
-  return { accepted: inserted.length, duplicates: batch.length - inserted.length, cursor: await cursorOf(db, user), received: await receivedOf(db, user, batch.map((e) => e.id)) };
+  const ids = batch.map((e) => e.id);
+  const cursor = await cursorOf(db, user);
+  const caughtUp = since === undefined || (await othersSince(db, user, since, ids)) ? undefined : cursor;
+  return { accepted: inserted.length, duplicates: batch.length - inserted.length, cursor, received: await receivedOf(db, user, ids), ...(caughtUp === undefined ? {} : { caughtUp }) };
 };
 
 export interface Page {

@@ -266,6 +266,32 @@ describe("event log", () => {
     expect(((await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number }).events).toBe(1);
   });
 
+  it("tells a device whose upload says where its pulls are whether it is caught up past it (ADR 0112)", async () => {
+    const token = await signUp("caught-up@example.com");
+    const log = threeSessions();
+    const upload = async (events: readonly LearnerEvent[], since?: unknown): Promise<{ cursor: number; caughtUp?: number }> =>
+      (await (await app.request("/v1/events", json(since === undefined ? { events } : { events, since }, token))).json()) as { cursor: number; caughtUp?: number };
+    const pull = async (since: number): Promise<{ events: LearnerEvent[]; cursor: number }> =>
+      (await (await app.request(`/v1/events?since=${since}`, auth(token))).json()) as { events: LearnerEvent[]; cursor: number };
+    // A device that has pulled everything (an empty log: cursor 0) uploads: caught up past its batch.
+    const first = await upload(log.slice(0, 10), 0);
+    expect(first.caughtUp).toBe(first.cursor);
+    // Its next batch, from there: caught up again, and a pull from there brings nothing back.
+    const second = await upload(log.slice(10, 20), first.caughtUp);
+    expect(second.caughtUp).toBe(second.cursor);
+    expect((await pull(second.cursor)).events).toEqual([]);
+    // Another device uploads in between (saying nothing of its pulls): the next upload is not caught
+    // up, and the pull brings down the other device's events and this batch's.
+    expect(await upload(log.slice(20, 25))).not.toHaveProperty("caughtUp");
+    expect(await upload(log.slice(25, 30), second.caughtUp)).not.toHaveProperty("caughtUp");
+    const page = await pull(second.cursor);
+    expect(page.events.map((e) => e.id)).toEqual(log.slice(20, 30).map((e) => e.id));
+    // A batch sent again after that pull is caught up: its events are the device's already.
+    expect((await upload(log.slice(25, 30), page.cursor)).caughtUp).toBe(page.cursor);
+    // A cursor that is not one says nothing.
+    for (const since of [-1, 1.5, "7", null]) expect(await upload(log.slice(30, 31), since)).not.toHaveProperty("caughtUp");
+  });
+
   it("answers CORS preflights for any origin", async () => {
     const res = await app.request("/v1/events", { method: "OPTIONS", headers: { Origin: "https://iwsfutcmd.github.io", "Access-Control-Request-Method": "POST", "Access-Control-Request-Headers": "authorization,content-type" } });
     expect(res.status).toBe(204);

@@ -58,10 +58,25 @@ export interface Destination {
   readonly token: string;
 }
 
-/** What POST /v1/events answers: `rejected` names, by index in the batch, the events it did not take. */
+/**
+ * What POST /v1/events answers: `rejected` names, by index in the batch, the events it did not take.
+ * `caughtUp` (ADR 0112), when the upload said where the device's pulls were (`since`): the account's
+ * events after there are this batch's alone, so the device now holds every event up to it.
+ */
 interface Uploaded {
   readonly received?: Readonly<Record<string, string>>;
   readonly rejected?: readonly { readonly index: number; readonly id?: string; readonly code: string }[];
+  readonly caughtUp?: number;
+}
+
+/**
+ * Where the device's pulls are (sync.ts): it holds every event of the account up to this cursor. An
+ * upload moves it past its own events when nothing else arrived in between (ADR 0112), so a pull
+ * never brings back what the device just sent.
+ */
+export interface PullCursor {
+  readonly get: () => Promise<number>;
+  readonly set: (cursor: number) => Promise<void>;
 }
 
 /** The batch's events the answer rejects: by id where it names one of them, else by index. */
@@ -87,12 +102,15 @@ const namedByRefusal = (batch: readonly LearnerEvent[], e: unknown): SetAside | 
 
 /**
  * Uploads until the outbox is empty; returns the courses of the events the server took. Throws on
- * any other failure (the rest stays queued). `onBatch` hears what each batch set aside too.
+ * any other failure (the rest stays queued). `onBatch` hears what each batch set aside too. With a
+ * `cursor` (the app's sync; the service worker has none), each batch says where the device's pulls
+ * are, and moves them past the batch when the server says nothing else came in between.
  */
 export const uploadOutbox = async (
   outbox: Outbox,
   to: Destination,
   onBatch?: (sent: readonly LearnerEvent[], setAside: readonly SetAside[]) => Promise<void>,
+  cursor?: PullCursor,
 ): Promise<ReadonlySet<string>> => {
   const courses = new Set<string>();
   for (;;) {
@@ -100,7 +118,8 @@ export const uploadOutbox = async (
     if (batch.length === 0) return courses;
     let answer: Uploaded;
     try {
-      answer = (await request<Uploaded | undefined>(to.server, "/v1/events", { token: to.token, body: { events: batch } })) ?? {};
+      const since = await cursor?.get();
+      answer = (await request<Uploaded | undefined>(to.server, "/v1/events", { token: to.token, body: since === undefined ? { events: batch } : { events: batch, since } })) ?? {};
     } catch (e) {
       const named = namedByRefusal(batch, e);
       if (named === undefined) throw e;
@@ -115,6 +134,7 @@ export const uploadOutbox = async (
       sent.map((e) => e.id),
       answer.received,
     );
+    if (cursor !== undefined && typeof answer.caughtUp === "number") await cursor.set(answer.caughtUp);
     if (rejected.length > 0) await outbox.setAside(rejected);
     for (const e of sent) if (e.type !== "goal_set") courses.add(e.course);
     await onBatch?.(sent, rejected);
