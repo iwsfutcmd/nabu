@@ -1,9 +1,17 @@
 /**
- * What the lesson player and the story reader share (C14 in the 2026-11 review): their keys. A fix
- * to them is made once, for both.
+ * What the lesson player and the story reader share (C14 in the 2026-11 review): their keys, and the
+ * header with its progress bar and the toggles in it (the display menu, the sound switch). A fix to
+ * one of them is made once, for both.
  */
-import { useEffect, useRef } from "react";
-import { digitIndex, inDialog, typingInField, type Shortcuts } from "./shared.ts";
+import type { OrthographyProfile, SchemeId } from "@nabu/schema";
+import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
+import { Button, ProgressBar } from "react-aria-components";
+import { CloseIcon } from "../icons.tsx";
+import { DisplayMenu, hasDisplayChoices, useDisplay, type Display, type DisplayChoice } from "./Display.tsx";
+import styles from "./Player.module.css";
+import { useReadings, type Readings } from "./Readings.tsx";
+import { digitIndex, inDialog, typingInField, type Shortcuts, type WritingMode } from "./shared.ts";
+import { SoundToggle } from "./SoundToggle.tsx";
 
 // ------------------------------------------------------------------------------------ keys
 
@@ -66,3 +74,106 @@ export const usePlayerKeys = (): { current: PlayerKeys | undefined } => {
   }, []);
   return keys;
 };
+
+// ------------------------------------------------------------------------------------ toggles
+
+/** The display and sound choices a lesson or story opens with, as the app keeps them, and where a change goes. */
+export interface ToggleProps {
+  readonly sound?: boolean | undefined;
+  readonly onSoundChange?: ((on: boolean) => void) | undefined;
+  readonly writingMode?: WritingMode | undefined;
+  readonly reading?: SchemeId | false | undefined;
+  readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
+  readonly display?: DisplayChoice | undefined;
+  readonly onDisplayChange?: ((choice: DisplayChoice) => void) | undefined;
+}
+
+export interface Toggles {
+  /** Sound on: off, nothing plays by itself (P6). */
+  readonly sound: boolean;
+  /** The sound switch: the session's sound, and the app keeps the choice. */
+  readonly setSound: (on: boolean) => void;
+  /** Vowel marks and vertical text (P12). */
+  readonly display: Display;
+  /** The reading layer shown, in horizontal and vertical text alike (ADR 0118). */
+  readonly readings: Readings;
+  /** A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue). */
+  readonly glossRuby: SchemeId | false;
+}
+
+/**
+ * Sound, the reading layer, vowel marks and vertical text in a lesson or story: the learner's choices
+ * for the course, else the profile's (P12); a change goes to the app. `scope` is where vertical text
+ * applies (a lesson's word banks and prompts, a story's lines).
+ */
+export const useToggles = (profile: OrthographyProfile | undefined, scope: "wordbank" | "reading", props: ToggleProps): Toggles => {
+  const [sound, setSound] = useState(props.sound !== false);
+  const display = useDisplay(profile, scope, props.writingMode, props.display, props.onDisplayChange);
+  const readings = useReadings(profile, props.reading, props.onReadingChange);
+  return {
+    sound,
+    setSound: (on) => {
+      setSound(on);
+      props.onSoundChange?.(on);
+    },
+    display,
+    readings,
+    glossRuby: readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false,
+  };
+};
+
+/**
+ * The header's toggles: readings, vowel marks and vertical text behind one button, so they take no
+ * room above the card or the story (P12), where the profile offers a choice; then the sound switch (P6).
+ */
+export const HeaderToggles = ({ profile, toggles, open = false }: { readonly profile: OrthographyProfile | undefined; readonly toggles: Toggles; readonly open?: boolean }): JSX.Element => (
+  <>
+    {hasDisplayChoices(profile, toggles.readings, toggles.display) && <DisplayMenu profile={profile} readings={toggles.readings} display={toggles.display} defaultOpen={open} />}
+    <SoundToggle on={toggles.sound} onChange={toggles.setSound} />
+  </>
+);
+
+// ------------------------------------------------------------------------------------ header
+
+/** A session's progress bar: how much is done of all, and what it says to a screen reader. */
+export interface Progress {
+  readonly done: number;
+  readonly total: number;
+  /** The bar's name. */
+  readonly label: string;
+  /** Its value in words. */
+  readonly value: string;
+}
+
+/**
+ * A lesson's or story's header: the button that leaves it (or closes a story read again), the
+ * progress bar (without one, its room is kept), then what the session adds (cards left, the toggles,
+ * a link to Preferences).
+ */
+export const SessionHeader = ({
+  close,
+  progress,
+  children,
+}: {
+  readonly close: { readonly label: string; readonly action: string; readonly onPress: () => void };
+  readonly progress: Progress | undefined;
+  readonly children: ReactNode;
+}): JSX.Element => (
+  <header className={styles.header}>
+    <Button className={styles.iconButton} aria-label={close.label} onPress={close.onPress} data-action={close.action}>
+      <CloseIcon />
+    </Button>
+    {progress === undefined ? (
+      <span className={styles.progress} />
+    ) : (
+      <ProgressBar className={styles.progress} value={progress.done} minValue={0} maxValue={progress.total} aria-label={progress.label} valueLabel={progress.value}>
+        {({ percentage }) => (
+          <div className={styles.track} data-progress-track="">
+            <div className={styles.fill} data-progress-fill="" style={{ "--nabu-progress": `${percentage ?? 0}%` } as CSSProperties} />
+          </div>
+        )}
+      </ProgressBar>
+    )}
+    {children}
+  </header>
+);

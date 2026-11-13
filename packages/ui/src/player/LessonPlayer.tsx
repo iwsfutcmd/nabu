@@ -36,24 +36,22 @@ import {
   type SessionSummary,
 } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
-import { Button, Dialog, Heading, Link, Modal, ProgressBar } from "react-aria-components";
+import { useEffect, useId, useMemo, useRef, useState, type JSX, type ReactNode } from "react";
+import { Button, Dialog, Heading, Link, Modal } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
-import { ArrowForwardIcon, CloseIcon, SettingsIcon } from "../icons.tsx";
+import { ArrowForwardIcon, SettingsIcon } from "../icons.tsx";
 import { WordStatusProvider } from "../marks.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
-import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
+import type { DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
 import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
 import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
-import { useReadings } from "./Readings.tsx";
 import { focusInReach, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
-import { usePlayerKeys } from "./Shell.tsx";
-import { SoundToggle } from "./SoundToggle.tsx";
+import { HeaderToggles, SessionHeader, usePlayerKeys, useToggles } from "./Shell.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
 import { ExerciseView, INSTRUCTIONS } from "./ExerciseView.tsx";
@@ -207,11 +205,14 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const kind = props.mode ?? "lesson";
   // What quitting says: a lesson done before loses nothing by it (D13).
   const quit = props.replay === true && kind === "lesson" ? { title: QUIT.lesson.title, kept: "player.quit.kept.replay" as const } : QUIT[kind];
-  const [sound, setSound] = useState(props.sound !== false);
+  // Sound, the reading layer, vowel marks and vertical text: the learner's choices for the course,
+  // else the profile's (P6, P12; vertical text in word banks and prompts).
+  const toggles = useToggles(profile, "wordbank", props);
+  const { display, readings } = toggles;
   // Listening or speaking put off in this lesson ("Can't listen now"): said once it happens (P13).
   const [putOff, setPutOff] = useState<{ readonly listening: boolean; readonly speaking: boolean }>({ listening: false, speaking: false });
   // Nothing plays by itself with sound off, or while the learner can't listen (P6): no tones, no clips.
-  const quiet = !sound || putOff.listening || props.listening === false;
+  const quiet = !toggles.sound || putOff.listening || props.listening === false;
   // The cards whose meanings were looked up before their answer was checked (D16): their answers are hinted.
   const hinted = useRef(new Set<string>());
   const report = onEvent === undefined ? undefined : (event: LessonEvent): void => onEvent(withHint(event, hinted.current));
@@ -229,11 +230,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
     quitAsked.current = props.quitRequest;
     dispatch({ tag: "interrupt", reason: "quit-confirm" });
   }, [props.quitRequest]);
-  // Vowel marks and vertical text: the learner's choice for the course, else the profile's (P12).
-  const display = useDisplay(profile, "wordbank", props.writingMode, props.display, props.onDisplayChange);
   const mode = display.mode;
-  // The reading layer the learner chose, in horizontal and vertical text alike (ADR 0118).
-  const readings = useReadings(profile, props.reading, props.onReadingChange);
   const ruby = readings.shown;
   const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
@@ -252,8 +249,6 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const [tap, setTap] = useState<{ readonly card: string; readonly word: WordTap } | undefined>(undefined);
   const tapped = tap !== undefined && tap.card === shown ? tap.word : undefined;
   const glosses = useGlosses(course, tapped);
-  // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
-  const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
   // The words this lesson introduces (P1): the card that first presents one says so.
   const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
   const kinds = useMemo(() => new Map(allKcs(course).map((k) => [k.id as string, k.kind])), [course]);
@@ -343,46 +338,24 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
   return (
     <section ref={card} className={styles.card} data-lesson-player="" data-template={ex.template} data-exercise={ex.id} data-state={state.tag}>
-      <header className={styles.header}>
-        <Button className={styles.iconButton} aria-label={t.format("exercise.action.quit")} onPress={() => dispatch({ tag: "interrupt", reason: "quit-confirm" })} data-action="quit">
-          <CloseIcon />
-        </Button>
-        <ProgressBar
-          className={styles.progress}
-          value={progress.done}
-          minValue={0}
-          maxValue={progress.total}
-          aria-label={t.format("player.progress.label")}
-          valueLabel={t.format("player.progress.value", { done: progress.done, total: progress.total })}
-        >
-          {({ percentage }) => (
-            <div className={styles.track} data-progress-track="">
-              <div className={styles.fill} data-progress-fill="" style={{ "--nabu-progress": `${percentage ?? 0}%` } as CSSProperties} />
-            </div>
-          )}
-        </ProgressBar>
+      <SessionHeader
+        close={{ label: t.format("exercise.action.quit"), action: "quit", onPress: () => dispatch({ tag: "interrupt", reason: "quit-confirm" }) }}
+        progress={{ ...progress, label: t.format("player.progress.label"), value: t.format("player.progress.value", { done: progress.done, total: progress.total }) }}
+      >
         {/* How many cards remain, in sight (the bar's value says it to a screen reader). */}
         {counted && (
           <span className={styles.left} aria-hidden="true" data-cards-left={left}>
             {t.format("player.progress.left", { count: left })}
           </span>
         )}
-        {/* Readings, vowel marks, vertical text: one button, so they take no room above the card (P12). */}
-        {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} defaultOpen={props.displayOpen === true} />}
-        <SoundToggle
-          on={sound}
-          onChange={(on) => {
-            setSound(on);
-            props.onSoundChange?.(on);
-          }}
-        />
+        <HeaderToggles profile={profile} toggles={toggles} open={props.displayOpen === true} />
         {/* Text size, listening and speaking, and the rest, without going back to the course list (S8). */}
         {props.preferences !== undefined && (
           <Link className={styles.iconButton} href={props.preferences} aria-label={t.format("player.preferences")} data-action="preferences">
             <SettingsIcon />
           </Link>
         )}
-      </header>
+      </SessionHeader>
 
       {/* "Can't listen now" and "Can't speak now" say what they did, for as long as the lesson lasts (P13). */}
       <div className={styles.notices} role="status" data-put-off={[putOff.listening ? "listening" : "", putOff.speaking ? "speaking" : ""].join(" ").trim() || undefined}>
@@ -439,7 +412,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
       />
 
       {/* What a tapped word means (P1): quiet until a word is tapped. */}
-      <GlossPanel open={tapped !== undefined} glosses={glosses} ruby={glossRuby} marks={marks} quiet />
+      <GlossPanel open={tapped !== undefined} glosses={glosses} ruby={toggles.glossRuby} marks={marks} quiet />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
