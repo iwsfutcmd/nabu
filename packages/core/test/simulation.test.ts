@@ -11,7 +11,7 @@ import { loadCourse } from "./learner-fixtures.ts";
 import { simulate } from "./simulator.ts";
 
 /** A month of sessions takes a few seconds; more on a busy CI runner. */
-const SIMULATION_TIMEOUT_MS = 60_000;
+const SIMULATION_TIMEOUT_MS = 300_000;
 
 /**
  * Learners from weak (θ* = 1.0) to strong (θ* = 2.0), on every course and

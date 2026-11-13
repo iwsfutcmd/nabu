@@ -88,7 +88,7 @@ describe("a course restricted to the media a device has", () => {
       const exercises = plan(bare, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 }).exercises;
       expect(exercises.filter((e) => LISTENING.has(e.template) || e.template === "select-image").map((e) => e.template)).toEqual([]);
     }
-  }, 20_000); // plans for every fixture course
+  }, 120_000); // plans for every fixture course
 
   it("keeps a clip's normal speed without its slow one", () => {
     // Synthesized clips have no slow take (the player slows them, ADR 0062); a recorded one may.

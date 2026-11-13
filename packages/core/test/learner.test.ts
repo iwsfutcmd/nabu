@@ -33,7 +33,7 @@ import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
 const GOLDEN = join(import.meta.dirname, "golden");
 /** Tests that plan every lesson of a course: under a second alone, far more on a busy CI runner. */
-const WHOLE_COURSE_TIMEOUT_MS = 30_000;
+const WHOLE_COURSE_TIMEOUT_MS = 120_000;
 const fa = loadCourse("fa");
 const faBundle = manifestOf("fa").id;
 

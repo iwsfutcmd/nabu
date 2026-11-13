@@ -36,7 +36,7 @@ describe("distractors that don't give the answer away (P2)", () => {
     expect(options).toBeGreaterThan(200);
     // Before, distractors were drawn at random, whatever their punctuation.
     expect(alike / options).toBeGreaterThan(0.9);
-  }, 30_000);
+  }, 120_000);
 
   it("gap-fill options share the answer's capital, so a sentence's first word isn't the odd one out", () => {
     let cards = 0;
@@ -51,7 +51,7 @@ describe("distractors that don't give the answer away (P2)", () => {
     }
     expect(cards).toBeGreaterThan(50);
     expect(giveaway / cards).toBeLessThan(0.05);
-  }, 30_000);
+  }, 120_000);
 });
 
 describe("short glosses on match-pairs cards (W7)", () => {

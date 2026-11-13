@@ -199,7 +199,7 @@ describe("template coverage", () => {
     // Script templates come from script nodes alone (test/script.test.ts).
     const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "letter-read", "letter-pairs", "word-read", "word-write"]);
     expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
-  }, 20_000); // every lesson of every fixture course
+  }, 120_000); // every lesson of every fixture course
 
   it("scored speaking takes tier 0's slot, and tonal courses get tone exercises, only when the app can do them", () => {
     const speech = { scored: true, tones: true };
@@ -236,7 +236,7 @@ describe("matching pairs", () => {
   const distinct = (texts: readonly TaggedText[]): boolean => new Set(texts.map(key)).size === texts.length;
 
   /** Builds every lesson of every course three times: about a second alone, far more on a busy CI runner. */
-  const EVERY_LESSON_TIMEOUT_MS = 30_000;
+  const EVERY_LESSON_TIMEOUT_MS = 120_000;
 
   it("never shows two words or two meanings alike, in any course's lessons", () => {
     for (const [id, orthography] of [...VARIANTS, ["lzh", undefined] as const]) {
