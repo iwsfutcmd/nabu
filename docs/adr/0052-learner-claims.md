@@ -68,3 +68,7 @@ mistakes and XP change on the spot. The report uploads like any event.
   it, and a session picked up after a reload agrees.
 - ADR 0045's rule "only the server issues revisions" now reads "only the server issues
   `outcome_revised`; a learner's claim revises only their own answers".
+- **The gate** (2026-11-13, the review's M5; [ADR 0122](0122-gate-leagues-and-ai-help.md)). Where a
+  deployment turns hearts or energy on, a claim does not move them: the gate counts the grading and
+  the server's revisions (the judge's, a reviewer's) only. A false "should have been accepted" earns
+  no heart, and an honest "should have been wrong" costs none. Every other projection still takes it.

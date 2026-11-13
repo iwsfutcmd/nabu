@@ -109,3 +109,8 @@ Unicode 16's pinned security files with checked SHA-256).
   - names are not structured, so CLDR person-name order does not apply yet;
   - a bandit for reminders waits for traffic;
   - Capacitor push is Phase 10.
+- **Amended** (2026-11-13, the review's M5 and M8; [ADR 0122](0122-gate-leagues-and-ai-help.md)):
+  - the gate: a placement test costs nothing and may start with the gate empty; the learner's
+    claims never move it; the app says when lessons open again;
+  - leagues: the week after, how the week ended; zones named, not only coloured; league XP follows
+    the deployment's game rules; a learner can decline leagues and take part again.
