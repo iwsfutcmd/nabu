@@ -258,27 +258,14 @@ def _input_of(
     return ("".join(parts), tuple(spans)) if spans else None
 
 
-def _morph_readings(token: dict[str, Any], scheme: str) -> list[tuple[str, str]]:
-    """Each morph's share of its word's pinned reading, as the compiler's ruby pairs the reading's
-    syllables with the word's characters: 禮拜一 lai5 baai3 jat1 gives 禮拜 lai5 baai3. A word KC
-    that only appears inside longer words (禮拜 in 禮拜一, 百 in 一百) then still has a reading to
-    be read from. A word without ruby in the scheme (a loanword in Latin letters) is not split."""
-    raw: list[Any] = list(token.get("morphs") or [])
-    morphs: list[list[str]] = [regex.findall(r"\X", str(m["surface"])) for m in raw]
-    segments = cast(
-        list[dict[str, str]], cast(dict[str, Any], token.get("ruby") or {}).get(scheme) or []
-    )
-    surface: list[str] = regex.findall(r"\X", str(token["surface"]))
-    if not morphs or [g for m in morphs for g in m] != surface:
-        return []
-    if [s["base"] for s in segments] != surface:
-        return []
-    out: list[tuple[str, str]] = []
-    at = 0
-    for m in morphs:
-        out.append(("".join(m), " ".join(s["text"] for s in segments[at : at + len(m)])))
-        at += len(m)
-    return out
+def form_readings(tokens: list[dict[str, Any]], scheme: str) -> list[str] | None:
+    """A KC form's words' readings in a scheme, as the compiler pins them on the form (ADR 0117:
+    what its word card shows), or None where a word has none."""
+    words = [t for t in tokens if t.get("kind") in WORD_KINDS]
+    readings = [cast(dict[str, str], t.get("readings") or {}).get(scheme) for t in words]
+    if not words or any(r is None for r in readings):
+        return None
+    return [r for r in readings if r is not None]
 
 
 #: A word of a voice's `spoken` text: letters, marks, digits and the format characters inside
@@ -426,7 +413,8 @@ def plan(
 ) -> tuple[list[Item], list[str]]:
     """Sentences and word KCs the voice can read, and the ones it cannot (no pinned reading).
     Given the course's whole cast (`voices`, and the voices people `checked`), only the items
-    the assignment gives this voice (ADR 0078); alone, every item.
+    the assignment gives this voice (ADR 0078); alone, every item. `units` are the compiler's:
+    a word KC is read from the reading it pinned on the KC's form (ADR 0117).
     `written`: the source's own surfaces where the compiler added vowel marks."""
     owner = assignment(units, voices or [voice], checked)
     orth = voice.orthography
@@ -435,24 +423,12 @@ def plan(
     if voice.pronounce is not None:
         _ipa(voice.pronounce)
     scheme = _scheme(voice)
-    # A scheme a word card cites otherwise than a sentence says the word (Attic: an acute for
-    # a sentence's grave, καί for καὶ): the same word, with the same reading.
-    cite = None if scheme is None else plugins(scheme).cite
-    readings: dict[str, str] = {}  # surface → pinned reading, learned from sentence tokens
-    in_words: dict[str, str] = {}  # the same for morphs, from the syllables of their word
     for unit in units:
         for s in unit["sentences"]:
             form = s["forms"].get(orth)
-            if form is None:
+            if form is None or owner[s["id"]] != voice.id:
                 continue
             tokens = form["text"]["tokens"]
-            for t in tokens:
-                if scheme is not None and scheme in t.get("readings", {}):
-                    readings.setdefault(t["surface"], t["readings"][scheme])
-                    for surface, reading in _morph_readings(t, scheme):
-                        in_words.setdefault(surface, reading)
-            if owner[s["id"]] != voice.id:
-                continue  # another voice reads it; its readings still serve word KCs
             as_written = (written or {}).get((s["id"], orth))
             # A vowelMarks voice reads the marked surfaces; every other voice, the source's.
             planned = _input_of(tokens, voice, None if voice.vowelMarks else as_written)
@@ -464,15 +440,6 @@ def plan(
                 w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
             )
             items.append(Item(s["id"], planned[0], planned[1], text, *_shape(surfaces, tokens)))
-    # Story lines pin readings too: a word card may take its reading from one.
-    for unit in units:
-        for story in unit.get("stories", []):
-            for s in story["steps"]:
-                line = cast(dict[str, Any], s.get("line") or {})
-                form = cast(dict[str, Any] | None, line.get("forms", {}).get(orth))
-                for t in cast(list[dict[str, Any]], (form or {}).get("tokens", [])):
-                    if scheme is not None and scheme in t.get("readings", {}):
-                        readings.setdefault(t["surface"], t["readings"][scheme])
     for unit in units:
         for kc in unit.get("kcs", []):
             forms = kc.get("forms", {}).get(orth)
@@ -482,19 +449,18 @@ def plan(
             kc_written = (written or {}).get((kc["id"], orth))
             marked = "".join(t["surface"] for t in word) if word else str(forms[0])
             surface = "".join(kc_written) if kc_written is not None else marked
-            reading = readings.get(surface, in_words.get(surface))
-            if reading is None and cite is not None:
-                reading = next((cite(r) for w, r in readings.items() if cite(w) == surface), None)
-            if scheme is not None and reading is None:
+            # The reading the word card shows: the one the compiler pinned on the form.
+            readings = None if scheme is None or word is None else form_readings(word, scheme)
+            if scheme is not None and readings is None:
                 skipped.append(kc["id"])
                 continue
             if voice.reading != "text":
-                piece = None if reading is None else said(reading, voice.reading, voice.provider)
-            elif voice.pronounce is not None and reading is not None:
-                piece = pronounced(surface, reading, voice.pronounce)
+                assert readings is not None
+                piece = " ".join(said(r, voice.reading, voice.provider) for r in readings)
+            elif voice.pronounce is not None and readings is not None:
+                piece = pronounced(surface, " ".join(readings), voice.pronounce)
             else:
                 piece = marked if voice.vowelMarks else surface
-            assert piece is not None
             kind, words = _shape([surface], word or [{"kind": "word"}])
             items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface, kind, words))
     # Story lines last, each read like a sentence: its id is "<story>#<step>".
