@@ -1948,6 +1948,178 @@
       "note": "with no lexicon the grader cannot know esta is a word"
     },
     {
+      "id": "grade/es/accent-word-unit",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Cómo se llama usted?",
+        "answer": "¿Como se llama usted?",
+        "lexicon": [
+          "cómo",
+          "como",
+          "se",
+          "llama",
+          "usted"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "Cómo",
+            "actual": "Como",
+            "note": "accent-word"
+          },
+          {
+            "op": "match",
+            "expected": "se",
+            "actual": "se"
+          },
+          {
+            "op": "match",
+            "expected": "llama",
+            "actual": "llama"
+          },
+          {
+            "op": "match",
+            "expected": "usted",
+            "actual": "usted"
+          }
+        ]
+      },
+      "note": "the unit whose marks spell another word carries the note, so feedback can name both words: Cómo and Como (W4)"
+    },
+    {
+      "id": "grade/es/accent-word-units",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "¿Cómo está usted?",
+        "answer": "Como esta usted",
+        "lexicon": [
+          "cómo",
+          "como",
+          "está",
+          "esta",
+          "usted"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "accent-word"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "Cómo",
+            "actual": "Como",
+            "note": "accent-word"
+          },
+          {
+            "op": "match",
+            "expected": "está",
+            "actual": "esta",
+            "note": "accent-word"
+          },
+          {
+            "op": "match",
+            "expected": "usted",
+            "actual": "usted"
+          }
+        ]
+      },
+      "note": "one note for the answer, carried by each unit that raised it"
+    },
+    {
+      "id": "grade/es/accent-unit",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Me gusta la canción",
+        "answer": "Me gusta la cancion",
+        "lexicon": [
+          "me",
+          "gusta",
+          "la"
+        ]
+      },
+      "expected": {
+        "verdict": "CORRECT_MARKS",
+        "notes": [
+          "accent"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "Me",
+            "actual": "Me"
+          },
+          {
+            "op": "match",
+            "expected": "gusta",
+            "actual": "gusta"
+          },
+          {
+            "op": "match",
+            "expected": "la",
+            "actual": "la"
+          },
+          {
+            "op": "match",
+            "expected": "canción",
+            "actual": "cancion",
+            "note": "accent"
+          }
+        ]
+      },
+      "note": "a noted mark that makes no other word is the unit's note too"
+    },
+    {
+      "id": "grade/es/contrast-unit",
+      "op": "grade",
+      "args": {
+        "profile": "es-Latn/standard",
+        "accept": "Yo hablo español",
+        "answer": "Yo habla español",
+        "lexicon": [
+          "yo",
+          "hablo",
+          "español"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "contrast-ending"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "Yo",
+            "actual": "Yo"
+          },
+          {
+            "op": "match",
+            "expected": "hablo",
+            "actual": "habla",
+            "kind": "typo",
+            "note": "contrast-ending"
+          },
+          {
+            "op": "match",
+            "expected": "español",
+            "actual": "español"
+          }
+        ]
+      },
+      "note": "a traded ending is the note of the unit that traded it"
+    },
+    {
       "id": "grade/es/question-marks",
       "op": "grade",
       "args": {
@@ -2811,6 +2983,40 @@
         ]
       },
       "note": "Enclitic τις someone for interrogative τίς who?"
+    },
+    {
+      "id": "grade/grc/marks-word-unit",
+      "op": "grade",
+      "args": {
+        "profile": "grc-Grek/polytonic",
+        "accept": "τίς λέγει",
+        "answer": "τις λέγει",
+        "lexicon": [
+          "τις",
+          "τίς",
+          "λέγει"
+        ]
+      },
+      "expected": {
+        "verdict": "WRONG_WORD",
+        "notes": [
+          "greek-marks-word"
+        ],
+        "alignment": [
+          {
+            "op": "match",
+            "expected": "τίς",
+            "actual": "τις",
+            "note": "greek-marks-word"
+          },
+          {
+            "op": "match",
+            "expected": "λέγει",
+            "actual": "λέγει"
+          }
+        ]
+      },
+      "note": "the unit whose accent made another word carries the note: τίς and τις (W4)"
     },
     {
       "id": "grade/grc/case-ending",

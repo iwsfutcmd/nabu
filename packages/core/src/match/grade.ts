@@ -23,9 +23,14 @@ export type Verdict =
   | "WRONG"
   | "SKIPPED";
 
+/**
+ * How one unit of the answer lines up with the closest accepted answer. A unit that raised a
+ * feedback note carries it (`note`, the first it raised): the accent mark that makes como of cómo
+ * (accent-word), the ending that trades hablo for hablas (contrast-ending).
+ */
 export type AlignOp =
-  | { readonly op: "match"; readonly expected: string; readonly actual: string; readonly kind: MatchKind; readonly folds?: readonly string[] }
-  | { readonly op: "substitute"; readonly expected: string; readonly actual: string }
+  | { readonly op: "match"; readonly expected: string; readonly actual: string; readonly kind: MatchKind; readonly folds?: readonly string[]; readonly note?: string }
+  | { readonly op: "substitute"; readonly expected: string; readonly actual: string; readonly note?: string }
   | { readonly op: "insert"; readonly actual: string }
   | { readonly op: "delete"; readonly expected: string };
 
@@ -213,11 +218,15 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
 
   let verdict: Verdict = final.canonical ? "CORRECT" : "CORRECT_ALT";
   const notes: string[] = [];
+  // The first note the unit being classified raised: its alignment op carries it.
+  let raised: string | undefined;
   const raise = (v: Verdict): void => {
     if (RANK[v] > RANK[verdict]) verdict = v;
   };
   const note = (id: string | undefined): void => {
-    if (id !== undefined && !notes.includes(id)) notes.push(id);
+    if (id === undefined) return;
+    raised ??= id;
+    if (!notes.includes(id)) notes.push(id);
   };
   const applyPolicy = (policy: string | undefined, onNote: Verdict, id: string | undefined): void => {
     if (policy === "accept-with-note") {
@@ -233,13 +242,18 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   };
 
   if (units.length === 0) raise("WRONG");
+  // Each unit's op carries the note it raised, so feedback can say which words it is about
+  // (cómo and como, W4).
+  const alignment: AlignOp[] = [];
   for (const op of ops) {
+    raised = undefined;
     if (op.op !== "match") {
       raise("WRONG");
       if (op.op === "substitute") {
         const c = compare(op.expected, op.actual);
         if (c.kind === "mismatch") note(c.note);
       }
+      alignment.push(op.op === "substitute" && raised !== undefined ? { ...op, note: raised } : op);
       continue;
     }
     const c = compare(op.expected, op.actual);
@@ -261,7 +275,9 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
       if (contrast !== undefined) note(contrast.note);
       raise(contrast !== undefined || options.lexicon?.has(lexiconKey(profile, op.actual)) === true ? "WRONG_WORD" : "CORRECT_WITH_TYPO");
     }
+    alignment.push(raised === undefined ? op : { ...op, note: raised });
   }
+  raised = undefined;
   if (final.flags.includes("zwnj") && profile.zwnj !== undefined) applyPolicy(profile.zwnj.policy, verdict, profile.zwnj.note ?? "zwnj");
   if (profile.apostrophe !== undefined && APOSTROPHES.test(answer) && MODIFIER_APOSTROPHES.test(alt.normalized)) {
     applyPolicy(profile.apostrophe.policy, verdict, profile.apostrophe.note ?? "apostrophe");
@@ -269,5 +285,5 @@ export const grade = (set: CompiledAcceptSet, answer: string, options: GradeOpti
   if (profile.scriptMismatch !== undefined && Array.from(normalized).some((c) => profile.scriptMismatch!.chars.has(c))) {
     applyPolicy(profile.scriptMismatch.policy, verdict, profile.scriptMismatch.note ?? "script-mismatch");
   }
-  return { verdict, notes, matched: alt.normalized, canonical: final.canonical, cost: Math.round(cost * 1000) / 1000, alignment: ops };
+  return { verdict, notes, matched: alt.normalized, canonical: final.canonical, cost: Math.round(cost * 1000) / 1000, alignment };
 };

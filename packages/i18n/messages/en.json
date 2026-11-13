@@ -1326,6 +1326,10 @@
       "message": "The accent mark makes it another word (está “is”, esta “this”).",
       "description": "Feedback note for Spanish: with an accent mark left out or added, the answer spells a different word (esta for está, hablo for habló, el for él), so it does not count. The examples are Spanish words and stay as they are."
     },
+    "feedback.note.accent-word-pair": {
+      "message": "{$expected} and {$answer} are different words: the accent mark tells them apart.",
+      "description": "Feedback note for Spanish, in place of feedback.note.accent-word when the words are known: with an accent mark left out or added, the learner wrote $answer (another word of the course, such as como) where $expected was asked for (such as cómo), so the answer does not count. $expected and $answer are Spanish words, shown in their own language; put them where your grammar wants them."
+    },
     "feedback.note.alef-maqsura": {
       "message": "Watch the alif maqsura (ى) at the end of the word.",
       "description": "Feedback note for Arabic: alif maqsura and ya were confused."
@@ -1365,6 +1369,10 @@
     "feedback.note.greek-marks-word": {
       "message": "With those marks it is another word (ἡ “the”, ἤ “or”).",
       "description": "Feedback note for Ancient Greek: with an accent or breathing left out, added or changed, the answer spells a different word (ἡ for ἤ, τις for τίς), so it does not count. The examples are Greek words and stay as they are."
+    },
+    "feedback.note.greek-marks-word-pair": {
+      "message": "{$expected} and {$answer} are different words: their accents, breathings or iota subscripts tell them apart.",
+      "description": "Feedback note for Ancient Greek, in place of feedback.note.greek-marks-word when the words are known: with an accent, breathing or iota subscript left out, added or changed, the learner wrote $answer (another word of the course, such as τις) where $expected was asked for (such as τίς), so the answer does not count. $expected and $answer are Greek words, shown in their own language; put them where your grammar wants them."
     },
     "feedback.note.hamza": {
       "message": "Watch the hamza (أ, إ, آ).",

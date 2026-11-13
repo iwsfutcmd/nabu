@@ -54,3 +54,45 @@ describe("feedback on a wrong answer nearer another accepted wording", () => {
     expect(html).toContain("呢<rt>ne1</rt>");
   });
 });
+
+describe("a note about the words an answer's marks made into others (W4)", () => {
+  const ES = "es-Latn/standard";
+  const es = (surfaces: readonly string[]): TaggedText => ({
+    lang: "es-Latn-CU" as TaggedText["lang"],
+    orthography: ES as TaggedText["orthography"],
+    tokens: surfaces.map((surface) => ({ surface, kind: surface === "¿" || surface === "?" ? "punct" : surface === " " ? "space" : "word" })),
+  });
+  const esCourse = { profiles: new Map([[ES, { unitKind: "token" }]]) } as never;
+  const card = { template: "translate-type.l1-l2", orthography: ES } as unknown as Exercise;
+  // ¿Como esta usted? for ¿Cómo está usted?: both words are words of the course.
+  const wrongWords: Outcome = {
+    verdict: "WRONG_WORD",
+    notes: ["accent-word"],
+    solution: es(["¿", "Cómo", " ", "está", " ", "usted", "?"]),
+    alignment: [
+      { op: "match", expected: "Cómo", actual: "Como", kind: "fold", folds: ["marks"], note: "accent-word" },
+      { op: "match", expected: "está", actual: "esta", kind: "fold", folds: ["marks"], note: "accent-word" },
+      { op: "match", expected: "usted", actual: "usted", kind: "exact" },
+    ],
+    closestIsSolution: true,
+  };
+
+  it("names each pair, the words in their own language, instead of a canned example", () => {
+    const html = render(<Feedback ex={card} outcome={wrongWords} course={esCourse} ruby={false} marks="show" />);
+    const items = html.split('data-note="accent-word"').slice(1);
+    expect(items).toHaveLength(2);
+    expect(items[0]).toMatch(/lang="es-Latn-CU"[^>]*>.*Cómo.*<\/span> and .*lang="es-Latn-CU"[^>]*>.*Como.*are different words/su);
+    expect(items[1]).toContain("está");
+    expect(items[1]).toContain("esta");
+    expect(html).not.toContain("“is”");
+    // The words are isolated by <T>, not by the message's own isolation marks.
+    expect(html).not.toMatch(/[⁨⁩]/u);
+  });
+
+  it("says the plain note when no unit carries it", () => {
+    const plain = wrongWords.alignment?.map((op): AlignOp => (op.op === "match" ? { op: "match", expected: op.expected, actual: op.actual, kind: op.kind } : op));
+    const html = render(<Feedback ex={card} outcome={{ ...wrongWords, alignment: plain }} course={esCourse} ruby={false} marks="show" />);
+    expect(html.split('data-note="accent-word"')).toHaveLength(2);
+    expect(html).toContain("The accent mark makes it another word");
+  });
+});
