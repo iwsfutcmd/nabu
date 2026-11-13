@@ -68,6 +68,41 @@ describe("the end of a story (S15)", () => {
   });
 });
 
+describe("a story's synthetic voice is said beside its buttons (W6)", () => {
+  const course = loadCourse("uz", "uz-Latn/standard");
+  const [story] = allStories(course);
+  if (story === undefined) throw new Error("uz has a story");
+  const script = storyScript(course, story, seededRng(7));
+  const grader = createGrader(course);
+  const synthetic = (index: number): boolean => {
+    const line = script.lines[index];
+    return line !== undefined && course.audio[`${script.id}#${String(line.step)}`]?.normal.synthetic === true;
+  };
+  /** The lines in the markup, each with whether "Synthetic voice" is said in it. */
+  const labelled = (html: string): readonly (readonly [number, boolean])[] =>
+    html
+      .split(/(?= data-line=")/u)
+      .slice(1)
+      .map((part) => [Number(/^ data-line="(\d+)"/u.exec(part)?.[1]), part.includes(">Synthetic voice<")] as const);
+
+  it("once, beside the newest synthesized line while reading, the first when read again", () => {
+    // A few lines in.
+    let state = startStory(script)[0];
+    for (let guard = 0; guard < 50 && (state.tag !== "reading" || state.shown.length < 3); guard += 1) {
+      if (state.tag !== "reading") break;
+      state = stepStory(state, { tag: "continue" })[0];
+    }
+    const shown = state.shown.filter(synthetic);
+    expect(shown.length, "uz's story lines have synthesized clips").toBeGreaterThan(1);
+    const reading = render(<StoryReader course={course} script={script} grader={grader} imageUrl={(p) => p} language="Uzbek" initialState={state} sound={false} />);
+    expect(reading.split(">Synthetic voice<").length - 1).toBe(1);
+    expect(labelled(reading).filter(([, said]) => said)).toEqual([[shown.at(-1), true]]);
+    const again = render(<StoryReader course={course} script={script} grader={grader} imageUrl={(p) => p} language="Uzbek" initialState={finish(script, grader)} rereading sound={false} />);
+    expect(again.split(">Synthetic voice<").length - 1).toBe(1);
+    expect(labelled(again).filter(([, said]) => said)).toEqual([[script.lines.findIndex((l) => synthetic(l.index)), true]]);
+  });
+});
+
 describe("the end of a session says what it was (S15)", () => {
   const course = loadCourse("es", "es-Latn/standard");
   const ex = sampleExercise(course, "choose-translation", 7);

@@ -104,9 +104,11 @@ interface LineProps {
   readonly url: (path: string) => string;
   /** Say the line as it appears (the newest line, with sound on). */
   readonly autoPlay: boolean;
+  /** Say "Synthetic voice" beside this line's buttons (its clip is synthesized): one line of the story at a time. */
+  readonly labelled: boolean;
 }
 
-const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action, audio, url, autoPlay }: LineProps): JSX.Element => {
+const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, latest, action, audio, url, autoPlay, labelled }: LineProps): JSX.Element => {
   const t = useTranslator();
   const translationId = `story-line-${line.index}-translation`;
   const player = useClipPlayer(audio, url);
@@ -124,7 +126,7 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
       ) : (
         <span className={styles.narration} aria-label={t.format("story.narration")} />
       )}
-      {audio !== undefined && <AudioButtons player={player} audio={audio} label={false} />}
+      {audio !== undefined && <AudioButtons player={player} audio={audio} label={labelled} />}
       <T
         as="p"
         className={styles.lineText}
@@ -244,16 +246,22 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const lines = state.shown.map((i) => script.lines[i]).filter((l) => l !== undefined);
   // A story line's clip is the course's audio of "<story>#<step>" (ADR 0058's audio items).
   const lineAudio = (line: StoryLine): AudioRef | undefined => course.audio[`${script.id}#${String(line.step)}`];
-  const synthetic = script.lines.some((line) => lineAudio(line)?.normal.synthetic === true);
   const glossLineAt = selected === undefined ? undefined : script.lines[selected.line];
   const tapped = useMemo(() => (glossLineAt === undefined || selected === undefined ? undefined : { text: glossLineAt.text, token: selected.token }), [glossLineAt, selected]);
   const glosses = useGlosses(course, tapped);
   const progress = storyProgress(state);
   const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
 
-  /** The story's lines with their translations, buttons and glosses; `live` reads the newest out as it appears. */
-  const lineViews = (list: readonly StoryLine[], live: boolean): JSX.Element[] =>
-    list.map((line, k) => (
+  /**
+   * The story's lines with their translations, buttons and glosses; `live` reads the newest out as it
+   * appears. "Synthetic voice" is said once, beside a synthesized clip's buttons, as a lesson says it
+   * beside its prompt's (W6), never on a line of its own: the newest such line's while the story is
+   * read (the one in sight), the first one's when it is read again from the top.
+   */
+  const lineViews = (list: readonly StoryLine[], live: boolean): JSX.Element[] => {
+    const synthetic = (line: StoryLine): boolean => lineAudio(line)?.normal.synthetic === true;
+    const labelled = live ? list.findLastIndex(synthetic) : list.findIndex(synthetic);
+    return list.map((line, k) => (
       <Line
         key={line.index}
         line={line}
@@ -263,6 +271,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         audio={lineAudio(line)}
         url={imageUrl}
         autoPlay={live && k === list.length - 1 && !quiet}
+        labelled={k === labelled}
         pressed={selected?.line === line.index ? selected.token : undefined}
         onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
         translated={translations.has(line.index)}
@@ -274,6 +283,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         }}
       />
     ));
+  };
 
   const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={glossRuby} marks={marks} />;
 
@@ -309,11 +319,6 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
           <h2 ref={rereadHeading} tabIndex={-1} className={playerStyles.instruction} data-reread-heading="">
             {script.title === undefined ? t.format("story.reread.title") : <T text={script.title} />}
           </h2>
-          {synthetic && (
-            <p className={playerStyles.synthetic} data-story-synthetic="">
-              {t.format("player.audio.synthetic")}
-            </p>
-          )}
           <div className={`${styles.transcript} ${styles.whole}`} role="region" aria-label={t.format("story.reread.label")} data-story-transcript="" data-writing-mode={transcriptMode} data-ink-container="transcript">
             {lineViews(script.lines, false)}
           </div>
@@ -422,12 +427,6 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
       </header>
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
-
-      {synthetic && (
-        <p className={playerStyles.synthetic} data-story-synthetic="">
-          {t.format("player.audio.synthetic")}
-        </p>
-      )}
 
       <div
         ref={transcript}
