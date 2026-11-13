@@ -7,13 +7,13 @@ import { createDecipheriv, createECDH, createHmac, createPublicKey, verify } fro
 import { DEFAULT_GAME, DEFAULT_LEAGUE, gameConfig, leagueWeek, localDateOf, type GameState, type LeagueConfig } from "@nabu/core/game";
 import { directionOf, PSEUDO_LOCALES, UI_LOCALES } from "@nabu/i18n";
 import type { LearnerEvent, OrthographyId } from "@nabu/schema";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { createAccounts } from "../src/accounts.ts";
 import { createApp, type App } from "../src/app.ts";
 import type { Database } from "../src/db/index.ts";
 import { testDatabase } from "./database.ts";
-import { leagueResults, nativePushTokens, pushLog } from "../src/db/schema.ts";
+import { leagueMembers, leagueResults, nativePushTokens, pushLog } from "../src/db/schema.ts";
 import { rollover } from "../src/leagues.ts";
 import {
   chooseTemplate,
@@ -192,13 +192,63 @@ describe("leagues", () => {
     expect(rows).toHaveLength(5);
     expect(await rollover(database.db, after + 86_400_000, LEAGUE)).toEqual([]); // and again: nothing
     expect(await database.db.select().from(leagueResults).where(eq(leagueResults.week, week.id))).toEqual(rows);
-    // The promoted learner plays tier 2 next week.
+    // The promoted learner plays tier 2 next week, and the league says how last week ended (M8).
     const top = rows.find((r) => r.cohort === 1 && r.rank === 1);
     expect(top).toMatchObject({ outcome: "promoted", nextTier: 2 });
     clock = week.end + 2 * 86_400_000;
     const winner = tokens[views.findIndex((v) => v.standings.find((s) => s.you)?.rank === 1 && v.cohort === 1)] as string;
+    const last = { week: week.id, tier: 1, rank: 1, of: 4, outcome: "promoted", nextTier: 2 };
+    // Before practising this week: not in a league yet, last week's result all the same.
+    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: false, optedOut: false, last });
     await upload(winner, session(clock - 3_600_000, 3));
-    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: true, tier: 2 });
+    expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: true, tier: 2, last });
+    // The learner alone in cohort 2 was first of one; a learner who did not play last week has no result.
+    const alone = tokens[4] as string;
+    expect(((await (await app.request("/v1/league", request("GET", undefined, alone))).json()) as { last?: unknown }).last).toMatchObject({ rank: 1, of: 1 });
+    const newcomer = await signUp();
+    expect(((await (await app.request("/v1/league", request("GET", undefined, newcomer))).json()) as { last?: unknown }).last).toBeUndefined();
+  });
+
+  it("a learner can say no to leagues: out of the standings at once, in none after, and back when they choose (M8)", async () => {
+    const week = leagueWeek(clock, LEAGUE);
+    const token = await signUp();
+    const me = ((await (await app.request("/v1/auth/me", request("GET", undefined, token))).json()) as { user: { id: string } }).user.id;
+    const view = async (): Promise<{ member: boolean; optedOut: boolean; standings?: { you: boolean; xp: number }[] }> =>
+      (await (await app.request("/v1/league", request("GET", undefined, token))).json()) as { member: boolean; optedOut: boolean; standings?: { you: boolean; xp: number }[] };
+    const membership = async (): Promise<number> => (await database.db.select().from(leagueMembers).where(and(eq(leagueMembers.userId, me), eq(leagueMembers.week, week.id)))).length;
+    await upload(token, session(week.start + 3_600_000, 4));
+    expect(await view()).toMatchObject({ member: true, optedOut: false });
+    expect(await membership()).toBe(1);
+
+    const no = await app.request("/v1/league", request("PUT", { optedOut: true }, token));
+    expect(no.status).toBe(200);
+    expect(await no.json()).toMatchObject({ member: false, optedOut: true });
+    expect(await membership()).toBe(0);
+    // More practice joins no league.
+    await upload(token, session(week.start + 7_200_000, 4));
+    expect(await view()).toMatchObject({ member: false, optedOut: true });
+    expect(await membership()).toBe(0);
+    for (const bad of [{}, { optedOut: "yes" }, { optedOut: null }]) expect((await app.request("/v1/league", request("PUT", bad, token))).status).toBe(400);
+
+    // Taking part again: back in this week's league at once, with all the week's XP: the lesson's
+    // answers and a point a card, then its replay's answers (ADR 0107).
+    const yes = (await (await app.request("/v1/league", request("PUT", { optedOut: false }, token))).json()) as { member: boolean; optedOut: boolean; standings: { you: boolean; xp: number }[] };
+    expect(yes).toMatchObject({ member: true, optedOut: false });
+    expect(yes.standings.find((s) => s.you)?.xp).toBe(4 + 4 + 4);
+    // An instance without leagues has nothing to say no to.
+    const plain = createApp({ db: database.db, accounts: createAccounts(database.db), now: () => clock });
+    expect((await plain.request("/v1/league", request("PUT", { optedOut: true }, token))).status).toBe(404);
+  });
+
+  it("league XP is the deployment's XP (M8)", async () => {
+    const generous = createApp({ db: database.db, accounts: createAccounts(database.db), leagues: LEAGUE, now: () => clock, game: gameConfig({ xp: { ...DEFAULT_GAME.xp, answer: 3 } }) });
+    const res = await generous.request("/v1/auth/sign-up", request("POST", { email: `generous${++accounts}@example.org`, password: "correct horse battery" }));
+    const { token } = (await res.json()) as { token: string };
+    const week = leagueWeek(clock, LEAGUE);
+    await generous.request("/v1/events", request("POST", { events: session(week.start + 3_600_000, 5) }, token));
+    const view = (await (await generous.request("/v1/league", request("GET", undefined, token))).json()) as { standings: { you: boolean; xp: number }[] };
+    // Five right answers at 3 each, a point a card for the session, the perfect bonus.
+    expect(view.standings.find((s) => s.you)?.xp).toBe(5 * 3 + 5 + 5);
   });
 
   it("a lesson finished before the week and replayed in it earns its answers only (ADR 0107)", async () => {

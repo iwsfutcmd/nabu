@@ -236,4 +236,15 @@ export const MIGRATIONS: readonly (readonly [string, readonly string[]])[] = [
       )`,
     ],
   ],
+  [
+    "0009_league_opt_outs",
+    [
+      // Learners who said no to leagues (M8, ADR 0122): they join no cohort until they take part
+      // again. No row: they take part, as before.
+      `create table league_opt_outs (
+        user_id uuid primary key references users(id) on delete cascade,
+        opted_out_at timestamptz not null default now()
+      )`,
+    ],
+  ],
 ];

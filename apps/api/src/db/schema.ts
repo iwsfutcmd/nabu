@@ -106,6 +106,14 @@ export const leagueWeeks = pgTable("league_weeks", {
   rolledAt: timestamp("rolled_at", { withTimezone: true }).notNull().defaultNow(),
 });
 
+/** Learners who said no to leagues (ADR 0122): they join no cohort. No row: they take part. */
+export const leagueOptOuts = pgTable("league_opt_outs", {
+  userId: uuid("user_id")
+    .primaryKey()
+    .references(() => users.id, { onDelete: "cascade" }),
+  optedOutAt: timestamp("opted_out_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const pushSubscriptions = pgTable("push_subscriptions", {
   endpoint: text("endpoint").primaryKey(),
   userId: uuid("user_id")

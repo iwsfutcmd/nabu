@@ -28,8 +28,8 @@
  *   NABU_FCM_SERVICE_ACCOUNT    reminders to the Android app: a Firebase service-account JSON (needs NABU_PUSH=1)
  *   NABU_APNS_KEY, NABU_APNS_KEY_ID, NABU_APNS_TEAM_ID, NABU_APNS_TOPIC (NABU_APNS_SANDBOX=1)
  *                               reminders to the iOS app: an APNs auth key (.p8) and its ids (needs NABU_PUSH=1)
- *   NABU_GAME                   the game rules: the game.json the web app is deployed with; /v1/game, the export
- *                               and reminders (their streak and quests) follow it (default: the defaults)
+ *   NABU_GAME                   the game rules: the game.json the web app is deployed with; /v1/game, the export,
+ *                               league XP and reminders (their streak and quests) follow it (default: the defaults)
  */
 import { serve } from "@hono/node-server";
 import { getConnInfo } from "@hono/node-server/conninfo";
@@ -104,7 +104,7 @@ const app = createApp({
 
 /** The periodic jobs: league rollover and reminders. */
 const runJobs = async (now: number): Promise<{ rolled: readonly string[]; sent: number }> => {
-  const rolled = leagues === undefined ? [] : await rollover(db, now, leagues);
+  const rolled = leagues === undefined ? [] : await rollover(db, now, leagues, game);
   let sent = 0;
   if (keys !== undefined || Object.keys(native).length > 0) {
     const v = keys === undefined ? undefined : await keys();

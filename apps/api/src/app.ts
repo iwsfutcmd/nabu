@@ -16,7 +16,8 @@
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
  *   GET  /v1/profile                   → {profile}            PUT {username, displayName?, uiLocale?}
- *   GET  /v1/league                    → this week's cohort, or {enabled: false} (leagues are opt-in)
+ *   GET  /v1/league                    → this week's cohort and how last week ended, or {enabled: false} (leagues are opt-in)
+ *   PUT  /v1/league                    {optedOut: boolean}: say no to leagues, or take part again (ADR 0122) → the league
  *   GET  /v1/push/key                  → {publicKey}: the VAPID key for pushManager.subscribe
  *   POST /v1/push/subscribe            {endpoint, keys: {p256dh, auth}}
  *   POST /v1/push/unsubscribe          {endpoint}
@@ -61,7 +62,7 @@ import { speechRoutes } from "./speech.ts";
 import type { Db } from "./db/index.ts";
 import { nativePushTokens, pushSubscriptions } from "./db/schema.ts";
 import { PLATFORMS, validToken, type NativeSenders, type Platform } from "./nativepush.ts";
-import { joinIfActive, leagueView } from "./leagues.ts";
+import { joinIfActive, leagueView, setOptedOut } from "./leagues.ts";
 import { append, checkBatch, existing, gameStateOf, MAX_BATCH, rejectionEntry, since, sinceOf, stateOf } from "./log.ts";
 import { ageCheck } from "./age.ts";
 import { createLimiter, type Limits } from "./limits.ts";
@@ -319,7 +320,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     const filed = await existing(db, user, batch.filter((e) => e.type === "sentence_reported").map((e) => e.id));
     // Where the device's pulls are, if it says: then the answer says whether it is caught up (ADR 0112).
     const result = await append(db, user, batch, new Date(now()), sinceOf(upload));
-    if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues);
+    if (leagues !== undefined && result.accepted > 0) await joinIfActive(db, user, now(), leagues, game);
     if (ai !== undefined) {
       // Reports join the review queue; filing one twice changes nothing (one vote per learner).
       const subject = await ai.gateway.subjectOf(user);
@@ -371,7 +372,16 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     return c.json({ error: result.error }, taken ? 409 : 400);
   });
 
-  app.get("/v1/league", async (c) => c.json(leagues === undefined ? { enabled: false } : await leagueView(db, c.get("user").id, now(), leagues)));
+  app.get("/v1/league", async (c) => c.json(leagues === undefined ? { enabled: false } : await leagueView(db, c.get("user").id, now(), leagues, game)));
+  // A learner may say no to leagues, and take part again (M8): it is the account's, on every device.
+  app.put("/v1/league", async (c) => {
+    if (leagues === undefined) return c.json({ error: "leagues-disabled" }, 404);
+    const optedOut = (await body(c))?.["optedOut"];
+    if (typeof optedOut !== "boolean") return c.json({ error: "invalid-request" }, 400);
+    const user = c.get("user").id;
+    await setOptedOut(db, user, optedOut, now(), leagues, game);
+    return c.json(await leagueView(db, user, now(), leagues, game));
+  });
 
   app.get("/v1/push/key", async (c) => (vapid === undefined ? c.json({ error: "push-disabled" }, 404) : c.json({ publicKey: base64url((await vapid()).publicKey) })));
 

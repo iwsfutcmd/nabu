@@ -1,8 +1,8 @@
 /**
  * A learner's data on the server (gameplan §14.4): all of it as one export, and deleting it.
  *
- * Most of it hangs off the user row and goes with it (sessions, events, profile, leagues, push, the
- * reminder time).
+ * Most of it hangs off the user row and goes with it (sessions, events, profile, leagues and a "no"
+ * to them, push, the reminder time).
  * What a learner filed for review (reports, corrections, explanation ratings, AI usage) carries
  * only a salted hash of their id, the subject (ADR 0045), so it is found through that.
  */
@@ -16,6 +16,7 @@ import {
   events,
   explanationRatings,
   leagueMembers,
+  leagueOptOuts,
   leagueResults,
   llmUsage,
   nativePushTokens,
@@ -38,7 +39,8 @@ export interface AccountExport {
   /** Each course's replayed projection, as GET /v1/state gives it. */
   readonly courses: readonly ({ readonly course: string } & Awaited<ReturnType<typeof stateOf>>)[];
   readonly game: GameState;
-  readonly leagues: { readonly memberships: readonly Record<string, unknown>[]; readonly results: readonly Record<string, unknown>[] };
+  /** League weeks joined and how they ended, and when the learner said no to leagues (null: they take part, ADR 0122). */
+  readonly leagues: { readonly memberships: readonly Record<string, unknown>[]; readonly results: readonly Record<string, unknown>[]; readonly optedOut: string | null };
   /**
    * Reminder registrations by platform (the endpoints and tokens themselves are left out), and the
    * time chosen for them ("HH:MM"; null: automatic, ADR 0103).
@@ -75,6 +77,7 @@ export const exportOf = async (db: Db, user: string, subject: string | undefined
   const native = await db.select({ platform: nativePushTokens.platform, n: count() }).from(nativePushTokens).where(eq(nativePushTokens.userId, user)).groupBy(nativePushTokens.platform);
   const nativeOf = (platform: string): number => Number(native.find((r) => r.platform === platform)?.n ?? 0);
   const minute = await chosenMinute(db, user);
+  const [optOut] = await db.select({ at: leagueOptOuts.optedOutAt }).from(leagueOptOuts).where(eq(leagueOptOuts.userId, user));
   const filed =
     subject === undefined
       ? { reports: [], corrections: [], explanationRatings: [], aiUsage: [] }
@@ -102,6 +105,7 @@ export const exportOf = async (db: Db, user: string, subject: string | undefined
     leagues: {
       memberships: await db.select().from(leagueMembers).where(eq(leagueMembers.userId, user)),
       results: await db.select().from(leagueResults).where(eq(leagueResults.userId, user)),
+      optedOut: optOut === undefined ? null : optOut.at.toISOString(),
     },
     reminders: { web: Number(web?.n ?? 0), android: nativeOf("android"), ios: nativeOf("ios"), time: minute === undefined ? null : timeOf(minute) },
     ...filed,
@@ -111,7 +115,7 @@ export const exportOf = async (db: Db, user: string, subject: string | undefined
 
 /**
  * Deletes an account and everything it holds. The user row takes its sessions, events, profile,
- * league rows, push registrations, reminder time, reviewer role and unapplied sign-offs with it. Through the subject: the learner's votes on reports
+ * league rows (a "no" to leagues too), push registrations, reminder time, reviewer role and unapplied sign-offs with it. Through the subject: the learner's votes on reports
  * and corrections go, and so does a pending report or correction no one else backs (it holds
  * their words); one a reviewer already decided stays, no longer linked to anyone. Their
  * explanation ratings and AI usage go too. A league's standings are computed from its members,
