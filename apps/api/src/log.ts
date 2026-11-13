@@ -30,11 +30,20 @@ const validate = ajv.compile<LearnerEvent>(schema("learner-event.schema.json"));
 /** Whether a value is a valid learner event (schemas/learner-event.schema.json). */
 export const validEvent = (value: unknown): value is LearnerEvent => validate(value);
 
-export type UploadError =
-  | { readonly code: "invalid-batch" }
-  | { readonly code: "batch-too-large"; readonly max: number }
-  | { readonly code: "invalid-event"; readonly index: number; readonly errors: readonly ErrorObject[] }
-  | { readonly code: "foreign-event"; readonly index: number };
+/** A batch the server cannot read at all: nothing in it is taken. */
+export type UploadError = { readonly code: "invalid-batch" } | { readonly code: "batch-too-large"; readonly max: number };
+
+/**
+ * An event of a batch the server rejected (S13 in the 2026-11 review): not a valid learner event, or
+ * stamped with another user. The rest of the batch is taken; the device sets these aside, so one
+ * bad event never holds back the ones after it.
+ */
+export type Rejected =
+  | { readonly index: number; readonly id?: string; readonly code: "invalid-event"; readonly errors: readonly ErrorObject[] }
+  | { readonly index: number; readonly id: string; readonly code: "foreign-event" };
+
+/** How many of a rejected event's schema errors the answer names: enough to see what drifted. */
+const ERRORS_SHOWN = 5;
 
 export interface UploadResult {
   readonly accepted: number;
@@ -57,16 +66,32 @@ const cursorOf = async (db: Db, user: string): Promise<number> => {
   return Number(row?.seq ?? 0);
 };
 
-export const checkBatch = (body: unknown, user: string): { ok: true; events: readonly LearnerEvent[] } | { ok: false; error: UploadError } => {
+/** The id a rejected value carries, if it has one that could be an event's. */
+const idOf = (value: unknown): { readonly id?: string } => {
+  const id = typeof value === "object" && value !== null ? (value as { id?: unknown }).id : undefined;
+  return typeof id === "string" ? { id } : {};
+};
+
+/**
+ * Splits an upload into the events the server takes and those it rejects, by their index in the
+ * batch. Only a batch that is not a list, or is too long, is refused whole.
+ */
+export const checkBatch = (
+  body: unknown,
+  user: string,
+): { ok: true; events: readonly LearnerEvent[]; rejected: readonly Rejected[] } | { ok: false; error: UploadError } => {
   const batch = typeof body === "object" && body !== null ? (body as { events?: unknown }).events : undefined;
   if (!Array.isArray(batch)) return { ok: false, error: { code: "invalid-batch" } };
   if (batch.length > MAX_BATCH) return { ok: false, error: { code: "batch-too-large", max: MAX_BATCH } };
-  for (const [index, e] of batch.entries()) {
-    if (!validate(e)) return { ok: false, error: { code: "invalid-event", index, errors: validate.errors ?? [] } };
+  const events: LearnerEvent[] = [];
+  const rejected: Rejected[] = [];
+  for (const [index, e] of (batch as unknown[]).entries()) {
+    if (!validate(e)) rejected.push({ index, ...idOf(e), code: "invalid-event", errors: (validate.errors ?? []).slice(0, ERRORS_SHOWN) });
     // Events recorded before sign-up carry no user; any that do must be this user's.
-    if (e.user !== undefined && e.user !== user) return { ok: false, error: { code: "foreign-event", index } };
+    else if (e.user !== undefined && e.user !== user) rejected.push({ index, id: e.id, code: "foreign-event" });
+    else events.push(e);
   }
-  return { ok: true, events: batch as LearnerEvent[] };
+  return { ok: true, events, rejected };
 };
 
 /** Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing. */

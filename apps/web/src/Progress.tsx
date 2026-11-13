@@ -135,7 +135,9 @@ const AccountData = ({ sync, onDeleted }: { sync: Sync; onDeleted: () => void })
 
 const Status = ({ state }: { state: SyncState }): JSX.Element => {
   const t = useTranslator();
-  const status = state.phase === "offline" ? "offline" : state.phase === "syncing" ? "syncing" : state.pending > 0 ? "pending" : state.phase === "error" ? "error" : "saved";
+  // Never "all saved" while the server has rejected some of it (S13): that part is said apart.
+  const status =
+    state.phase === "offline" ? "offline" : state.phase === "syncing" ? "syncing" : state.pending > 0 ? "pending" : state.phase === "error" ? "error" : state.held > 0 ? "held" : "saved";
   const text =
     status === "offline"
       ? t.format("app.sync.offline", { count: state.pending })
@@ -145,11 +147,38 @@ const Status = ({ state }: { state: SyncState }): JSX.Element => {
           ? t.format("app.sync.pending", { count: state.pending })
           : status === "error"
             ? t.format(ERRORS[state.error ?? "unknown"], { min: MIN_PASSWORD })
-            : t.format("app.sync.saved");
+            : status === "held"
+              ? t.format("app.sync.saved-except")
+              : t.format("app.sync.saved");
   return (
     <p className={styles.muted} role="status" data-sync-status={status} data-pending={state.pending} data-verified={state.verified === undefined ? undefined : String(state.verified)}>
       {text}
       {state.verified === false && ` ${t.format("app.sync.mismatch")}`}
+    </p>
+  );
+};
+
+/**
+ * Events the server rejected (S13): how many, that they stay on this device and still count here,
+ * and a way to send them again (a newer server may take them).
+ */
+const Held = ({ sync, count }: { sync: Sync; count: number }): JSX.Element => {
+  const t = useTranslator();
+  const [busy, setBusy] = useState(false);
+  return (
+    <p className={styles.notice} role="note" data-sync-held={count}>
+      {t.format("app.sync.held", { count })}{" "}
+      <Button
+        className={styles.inlineButton}
+        isDisabled={busy}
+        onPress={() => {
+          setBusy(true);
+          void sync.retryHeld().finally(() => setBusy(false));
+        }}
+        data-action="sync-retry-held"
+      >
+        {t.format("app.sync.held-retry", { count })}
+      </Button>
     </p>
   );
 };
@@ -282,6 +311,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
               {t.format("app.account.signed-in", { email: ltr(state.account.user.email) })}
             </p>
             <Status state={state} />
+            {state.held > 0 && <Held sync={sync} count={state.held} />}
             <ProfileForm account={state.account} uiLocale={t.locale} />
             <Reminders account={state.account} />
             <Button className={styles.textButton} onPress={() => void sync.signOut()} data-action="sign-out">

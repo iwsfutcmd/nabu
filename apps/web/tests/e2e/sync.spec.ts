@@ -6,14 +6,16 @@
  *   back.
  * - Phase 11 (§14.4): a learner downloads what the server keeps for the account, then deletes
  *   it; the server forgets them and the device keeps its progress.
+ * - An event the server rejects is set aside and said so; the rest syncs (S13, 2026-11 review).
  */
 import { replay } from "@nabu/core/learner";
 import { lessonNodes } from "@nabu/core/lesson";
+import type { LearnerEvent } from "@nabu/schema";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Page } from "@playwright/test";
 import { API_PORT } from "./ports.ts";
 import { canonical } from "../../src/compare.ts";
-import { activate, loadCourse, logOf, planned, playSession, teachable } from "./solver.ts";
+import { activate, freshIds, loadCourse, logOf, planned, playSession, teachable } from "./solver.ts";
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const SEED = 5;
@@ -151,6 +153,54 @@ test.describe("sync", () => {
     await expect(status).toHaveAttribute("data-verified", "true");
     const server = await serverState(page, email, password);
     expect(server.events).toBe((await logOf(page, "fa")).length);
+  });
+
+  test("an event the server rejects is set aside and said so; everything else syncs (S13)", async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    const now = new Date("2026-04-06T07:30:00Z");
+    await page.clock.setFixedTime(now);
+    await page.goto(app("#/fa/fa-Arab.standard"));
+    await session(page, { mode: "lesson", node: first }, now, `[data-lesson="${first}"]`);
+    // An app newer than its server: one event carries a field the server's schema does not know.
+    const started = (await logOf(page, "fa")).find((e) => e.type === "session_started");
+    if (started === undefined) throw new Error("no session_started");
+    const [drifted] = freshIds([{ ...started, appVersion: "2" } as LearnerEvent]);
+    await page.evaluate(async (e) => window.nabu?.append([e]), drifted as LearnerEvent);
+    const log = await logOf(page, "fa");
+
+    await home(page);
+    const email = "drift@example.com";
+    const password = "a schema apart";
+    await signUp(page, email, password);
+    const status = page.locator("[data-sync-status]");
+    const held = page.locator("[data-sync-held]");
+    // Not "all saved": the rest is, and the one the server rejected is kept here, said in plain words.
+    await expect(status).toHaveAttribute("data-sync-status", "held");
+    await expect(status).toHaveAttribute("data-pending", "0");
+    await expect(status).toHaveAttribute("data-verified", "true");
+    await expect(held).toHaveAttribute("data-sync-held", "1");
+    const axe = (await new AxeBuilder({ page }).include("[data-progress]").analyze()).violations.filter((v) => v.impact === "serious" || v.impact === "critical");
+    expect(axe.map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    const server = await serverState(page, email, password);
+    expect(server.events).toBe(log.length - 1);
+    expect(await logOf(page, "fa")).toHaveLength(log.length);
+
+    // Sent again on request: still rejected, still kept, and nothing else is held up.
+    let uploads = 0;
+    await page.route(`${API}/v1/events`, async (route) => {
+      if (route.request().method() === "POST") uploads++;
+      await route.continue();
+    });
+    await page.locator("[data-action=sync-retry-held]").click();
+    await expect.poll(() => uploads).toBe(1);
+    await expect(held).toHaveAttribute("data-sync-held", "1");
+    await expect(status).toHaveAttribute("data-sync-status", "held");
+    // A reload remembers it, and the minute's sync does not send it again.
+    await page.reload();
+    await expect(page.locator("[data-sync-held]")).toHaveAttribute("data-sync-held", "1");
+    expect(uploads).toBe(1);
+    expect(errors).toEqual([]);
   });
 
   test("a learner downloads their account's data, then deletes the account", async ({ page }) => {

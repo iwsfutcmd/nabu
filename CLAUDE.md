@@ -112,6 +112,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Sync is optional: the web app talks to a server only with VITE_NABU_API (dev: .env.development) or ?api=.
   Every recorded event enters the IndexedDB outbox; sign-up uploads it. Never derive state on the server
   differently from core's replay.
+- One bad event never holds back a batch: POST /v1/events takes the valid events and names the rest (`rejected`, by
+  index); the device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends
+  them again only when the learner asks or signs in again. Sync's check against the server leaves them out.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:

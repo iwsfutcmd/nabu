@@ -10,7 +10,8 @@
  *   GET  /v1/auth/me
  *   GET  /v1/export                    everything the account holds, as one JSON file (§14.4)
  *   DELETE /v1/account                 {password}: deletes the account and its data (§14.4)
- *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor}
+ *   POST /v1/events                    {events: LearnerEvent[]} → {accepted, duplicates, cursor, received, refused, rejected}
+ *                                      (rejected: [{index, id?, code, errors?}], events not taken)
  *   GET  /v1/events?since=<cursor>&limit=<n>   → {events, cursor, more}
  *   GET  /v1/state?course=<id>         → {course, events, state}: the replayed projection
  *   GET  /v1/profile                   → {profile}            PUT {username, displayName?, uiLocale?}
@@ -300,6 +301,8 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
     if (limited !== undefined) return limited;
     const checked = checkBatch(await c.req.json().catch(() => undefined), user);
     if (!checked.ok) return c.json({ error: checked.error }, 400);
+    // Events that are not valid, or not this user's, are rejected one by one (`rejected`, by their
+    // index in the batch); the rest are taken, so one bad event never holds back the others.
     // Only the server issues revisions (§8.3): a device may hand back one it was given, never a new one.
     const revisions = checked.events.filter((e) => e.type === "outcome_revised").map((e) => e.id);
     const issued = await existing(db, user, revisions);
@@ -318,7 +321,7 @@ export const createApp = ({ db, accounts, leagues, vapid, now = Date.now, ai, ad
         await fileReport(db, ai.courses, { course: e.course, orthography: e.orthography, template: e.exercise.template, item: e.exercise.item, answer: e.text, note: e.note, subject, source: "report", claim: e.claim }, now());
       }
     }
-    return c.json({ ...result, refused: checked.events.length - batch.length });
+    return c.json({ ...result, refused: checked.events.length - batch.length, rejected: checked.rejected });
   });
 
   app.get("/v1/events", async (c) => {

@@ -5,7 +5,7 @@
  * background (Phase 10), so nothing here touches the window.
  */
 import type { LearnerEvent } from "@nabu/schema";
-import type { Outbox } from "./outbox.ts";
+import type { Outbox, SetAside } from "./outbox.ts";
 
 export const DB_NAME = "nabu";
 export const DB_VERSION = 3;
@@ -14,6 +14,13 @@ export const META = "meta";
 export const OUTBOX = "outbox";
 /** Event id → when the server first received it (ISO). */
 export const RECEIVED = "received";
+/**
+ * The META key of the events set aside: those the server rejected (outbox.ts), by id, with its
+ * error code and when. They stay in the log; only sending them stops.
+ */
+export const HELD = "held";
+
+export type Held = Readonly<Record<string, { readonly code: string; readonly at: string }>>;
 
 export const promised = <T>(request: IDBRequest<T>): Promise<T> =>
   new Promise((resolve, reject) => {
@@ -78,7 +85,37 @@ export const outboxOf = (db: IDBDatabase): Outbox => ({
     }
     await done(tx);
   },
+  setAside: async (events: readonly SetAside[]) => {
+    const tx = db.transaction([OUTBOX, META], "readwrite");
+    const meta = tx.objectStore(META);
+    const held: Record<string, { code: string; at: string }> = { ...(((await promised(meta.get(HELD))) as Held | undefined) ?? {}) };
+    const at = new Date().toISOString();
+    for (const e of events) {
+      tx.objectStore(OUTBOX).delete(e.id);
+      held[e.id] = { code: e.code, at };
+    }
+    meta.put(held, HELD);
+    await done(tx);
+  },
 });
+
+/** The events set aside (HELD). */
+export const heldOf = async (db: IDBDatabase): Promise<Held> => ((await readMeta(db, HELD)) as Held | undefined) ?? {};
+
+/** Sends the events set aside again: back into the outbox (those still in the log). Returns how many. */
+export const releaseHeld = async (db: IDBDatabase): Promise<number> => {
+  const tx = db.transaction([OUTBOX, EVENTS, META], "readwrite");
+  const held = ((await promised(tx.objectStore(META).get(HELD))) as Held | undefined) ?? {};
+  let released = 0;
+  for (const id of Object.keys(held)) {
+    if ((await promised(tx.objectStore(EVENTS).getKey(id))) === undefined) continue;
+    tx.objectStore(OUTBOX).put(id, id);
+    released++;
+  }
+  tx.objectStore(META).delete(HELD);
+  await done(tx);
+  return released;
+};
 
 /** When the server received each synced event (ids it has not acknowledged are absent). */
 export const receivedTimes = async (db: IDBDatabase): Promise<ReadonlyMap<string, string>> => {

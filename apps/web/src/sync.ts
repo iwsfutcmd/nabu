@@ -11,6 +11,10 @@
  * Background Sync, so the outbox goes up when the network is back even if the app is closed
  * (where the browser supports it). The app also syncs when it comes back online, when it is shown
  * again (a phone unlocked, the native app resumed), and every minute while events are pending.
+ *
+ * Events the server rejects are set aside (outbox.ts): kept on the device, counted in `held`, and
+ * sent again only when the learner asks or signs in again. The check against the server's
+ * projections leaves them out, since the server never took them.
  */
 import { replay } from "@nabu/core/learner";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
@@ -59,6 +63,8 @@ export interface SyncState {
   readonly error: SyncError | undefined;
   /** Events recorded here that the server has not acknowledged. */
   readonly pending: number;
+  /** Events the server rejected, set aside on this device (S13 in the 2026-11 review). */
+  readonly held: number;
   /** After the last full sync, whether the server's projections matched the device's (undefined: not checked yet). */
   readonly verified: boolean | undefined;
   /** Bumped when events from another device arrive, so open views can replay. */
@@ -83,6 +89,8 @@ export interface Sync {
   /** Sync soon (debounced), e.g. after recording an event. */
   readonly schedule: () => void;
   readonly syncNow: () => Promise<void>;
+  /** Sends the events set aside again (the learner asked), then syncs. */
+  readonly retryHeld: () => Promise<void>;
 }
 
 const ACCOUNT = "account";
@@ -155,12 +163,14 @@ const VISIBLE_QUIET_MS = 30_000;
 export const createSync = async (store: EventStore, server: string | undefined, options: SyncOptions = {}): Promise<Sync> => {
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
   const refused = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
+  const heldCount = async (): Promise<number> => Object.keys(await store.held()).length;
   let state: SyncState = {
     server: saved?.server ?? server,
     account: saved,
     phase: "idle",
     error: undefined,
     pending: await store.pendingCount(),
+    held: await heldCount(),
     verified: undefined,
     pulled: 0,
     revised: 0,
@@ -179,8 +189,9 @@ export const createSync = async (store: EventStore, server: string | undefined, 
   const pass = async (account: Account): Promise<void> => {
     const { server: base, token } = account;
     const touched = new Set<string>();
-    // Upload the outbox, oldest first.
-    for (const course of await uploadOutbox(store, account, async () => set({ pending: await store.pendingCount() }))) touched.add(course);
+    // Upload the outbox, oldest first; what the server rejects is set aside.
+    const uploaded = await uploadOutbox(store, account, async (_sent, aside) => set({ pending: await store.pendingCount(), ...(aside.length > 0 ? { held: await heldCount() } : {}) }));
+    for (const course of uploaded) touched.add(course);
     // Pull what other devices uploaded.
     let cursor = Number((await store.getMeta(CURSOR)) ?? 0);
     let fresh = 0;
@@ -199,11 +210,14 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     const revisedCourses = await flushJudgeQueue(store, base, token);
     for (const c of revisedCourses) touched.add(c);
     if (revisedCourses.length > 0) set({ revised: state.revised + 1 });
-    // The server is authoritative; the device checks that it agrees (§14.2).
+    // The server is authoritative; the device checks that it agrees (§14.2), on what the server
+    // took: the events set aside are not in its log.
     let verified = true;
+    const held = await store.held();
+    const sent = (e: LearnerEvent): boolean => held[e.id] === undefined;
     for (const course of touched) {
       const server = await request<{ state: unknown }>(base, `/v1/state?course=${encodeURIComponent(course)}`, { token });
-      const { seen: _seen, ...local } = replay(await store.eventsOf(course));
+      const { seen: _seen, ...local } = replay((await store.eventsOf(course)).filter(sent));
       const differs = difference(server.state, JSON.parse(JSON.stringify(local)));
       if (differs !== undefined) {
         verified = false;
@@ -213,7 +227,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     // And the game state (§12): streak dates, XP, quests, by the device's clock (Phase 10).
     if (touched.size > 0 && options.gameConfig !== undefined) {
       const now = new Date();
-      const local = await gameOf(store, await options.gameConfig(), now);
+      const local = await gameOf(store, await options.gameConfig(), now, sent);
       const remote = await request<{ game: unknown }>(base, `/v1/game?today=${localDate(now)}&now=${encodeURIComponent(now.toISOString())}`, { token }).catch((e: unknown) => {
         if (isHttpError(e) && e.status === 404) return undefined; // a server without it
         throw e;
@@ -225,7 +239,14 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       }
     }
     lastPass = Date.now();
-    set({ phase: "idle", error: undefined, pending: await store.pendingCount(), ...(touched.size > 0 ? { verified } : {}), ...(fresh > 0 ? { pulled: state.pulled + 1 } : {}) });
+    set({
+      phase: "idle",
+      error: undefined,
+      pending: await store.pendingCount(),
+      held: Object.keys(held).length,
+      ...(touched.size > 0 ? { verified } : {}),
+      ...(fresh > 0 ? { pulled: state.pulled + 1 } : {}),
+    });
   };
 
   const syncNow = async (): Promise<void> => {
@@ -265,7 +286,9 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       const account: Account = { server: base, token: result.token, user: result.user };
       await store.setMeta(ACCOUNT, account);
       await store.deleteMeta(CURSOR);
-      set({ account, error: undefined });
+      // Another account, or another server, may take what the last one rejected: send it again.
+      await store.releaseHeld();
+      set({ account, error: undefined, held: 0 });
       await syncNow();
       return undefined;
     } catch (e) {
@@ -346,5 +369,10 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     },
     schedule,
     syncNow,
+    retryHeld: async () => {
+      await store.releaseHeld();
+      set({ held: 0, pending: await store.pendingCount() });
+      await syncNow();
+    },
   };
 };

@@ -5,6 +5,7 @@
  * keep the gate off and streaks, XP and quests on).
  */
 import { canStart, DEFAULT_GAME, gameConfig, replayGame, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
+import type { LearnerEvent } from "@nabu/schema";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type CSSProperties, type JSX } from "react";
 import { ProgressBar } from "react-aria-components";
@@ -26,11 +27,12 @@ export const loadGameConfig = async (base: string): Promise<GameConfig> => {
 /**
  * The game state of the whole device log (all courses) as of now. Synced events carry when the
  * server received them, so a late sync counts as the server counts it (§12.2) and the two agree.
+ * `keep` leaves events out (sync's check: those the server rejected).
  */
-export const gameOf = async (store: EventStore, config: GameConfig, now = new Date()): Promise<GameState> => {
+export const gameOf = async (store: EventStore, config: GameConfig, now = new Date(), keep: (event: LearnerEvent) => boolean = () => true): Promise<GameState> => {
   const received = await store.receivedTimes();
   return replayGame(
-    (await store.allEvents()).map((event) => ({ event, receivedAt: received.get(event.id) })),
+    (await store.allEvents()).filter(keep).map((event) => ({ event, receivedAt: received.get(event.id) })),
     config,
     { today: localDate(now), now: now.toISOString() },
   );

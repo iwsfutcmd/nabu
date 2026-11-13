@@ -694,6 +694,14 @@
       "message": "This browser window can't save your progress. It will be lost when you close it.",
       "description": "Shown when on-device storage is unavailable (for example in some private windows)."
     },
+    "app.sync.held": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} update couldn't be saved to your account: the server didn't accept it. It's kept on this device, where it still counts.}}\n* {{{$count} updates couldn't be saved to your account: the server didn't accept them. They're kept on this device, where they still count.}}",
+      "description": "Under the sync status when the server rejected some of the learner's events (for example after the server and the app got out of step). They are not sent again unless the learner asks. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.sync.held-retry": {
+      "message": ".input {$count :number}\n.match $count\none {{Send it again}}\n* {{Send them again}}",
+      "description": "Button after app.sync.held: sends the events the server did not accept once more (a newer server may take them). $count is how many (as in app.sync.held). Select plural forms as your language needs; drop the .match if it needs none."
+    },
     "app.sync.mismatch": {
       "message": "The server's copy of your progress doesn't match this device's.",
       "description": "Shown when the server's projection of the log differs from the device's own."
@@ -709,6 +717,10 @@
     "app.sync.saved": {
       "message": "All progress saved to your account",
       "description": "Sync status when everything is uploaded."
+    },
+    "app.sync.saved-except": {
+      "message": "Everything else is saved to your account.",
+      "description": "Sync status when everything is uploaded except the events the server did not accept, which app.sync.held explains right after it."
     },
     "app.sync.syncing": {
       "message": "Saving…",

@@ -115,12 +115,24 @@ describe("event log", () => {
     expect((await app.request("/v1/state?course=fa")).status).toBe(401);
   });
 
-  it("rejects events that do not match the schema, naming the first", async () => {
+  it("takes the valid events of a batch and names the ones it rejects (S13)", async () => {
     const token = await signUp("schema@example.com");
-    const [first, second] = threeSessions();
-    const res = await app.request("/v1/events", json({ events: [first, { ...second, clientTime: "yesterday" }] }, token));
-    expect(res.status).toBe(400);
-    expect(await res.json()).toMatchObject({ error: { code: "invalid-event", index: 1 } });
+    const [first, second, third, fourth] = threeSessions();
+    if (first === undefined || second === undefined || third === undefined || fourth === undefined) throw new Error("a short log");
+    // A device whose app and server have drifted: one event the schema no longer takes, and a value that is not an event.
+    const res = await app.request("/v1/events", json({ events: [first, { ...second, clientTime: "yesterday" }, third, 42] }, token));
+    expect(res.status).toBe(200);
+    const body = (await res.json()) as { accepted: number; duplicates: number; received: Record<string, string>; rejected: { index: number; id?: string; code: string; errors?: unknown[] }[] };
+    expect(body).toMatchObject({ accepted: 2, duplicates: 0, rejected: [{ index: 1, id: second.id, code: "invalid-event" }, { index: 3, code: "invalid-event" }] });
+    expect(body.rejected[1]).not.toHaveProperty("id");
+    expect(body.rejected[0]?.errors?.length).toBeGreaterThan(0);
+    expect(Object.keys(body.received).sort()).toEqual([first.id, third.id].sort());
+    // The log holds what was taken, and the next batch goes in as usual.
+    const after = (await (await app.request("/v1/events", json({ events: [fourth] }, token))).json()) as { accepted: number; rejected: unknown[] };
+    expect(after).toMatchObject({ accepted: 1, rejected: [] });
+    expect(((await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number }).events).toBe(3);
+    // A batch that is not a list of events at all is still refused whole.
+    expect(await (await app.request("/v1/events", json({ events: "everything" }, token))).json()).toEqual({ error: { code: "invalid-batch" } });
   });
 
   it("is idempotent: a duplicate upload changes nothing", async () => {
@@ -195,10 +207,14 @@ describe("event log", () => {
     expect(await (await app.request("/v1/events?since=0", auth(b))).json()).toEqual({ events: [], cursor: 0, more: false, received: {} });
     const bState = (await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number };
     expect(bState.events).toBe(0);
-    // An event stamped with another user is refused.
+    // An event stamped with another user is rejected; the rest of its batch is taken.
     const me = (await (await app.request("/v1/auth/me", auth(a))).json()) as { user: { id: string } };
     const stolen = { ...log[0], id: "00000000-0000-7000-8000-00000000dead", user: me.user.id };
-    expect(await (await app.request("/v1/events", json({ events: [stolen] }, b))).json()).toMatchObject({ error: { code: "foreign-event", index: 0 } });
+    const own = { ...log[1], id: "00000000-0000-7000-8000-00000000beef" };
+    const res = await app.request("/v1/events", json({ events: [stolen, own] }, b));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ accepted: 1, rejected: [{ index: 0, id: stolen.id, code: "foreign-event" }] });
+    expect(((await (await app.request("/v1/state?course=fa", auth(b))).json()) as { events: number }).events).toBe(1);
   });
 
   it("answers CORS preflights for any origin", async () => {

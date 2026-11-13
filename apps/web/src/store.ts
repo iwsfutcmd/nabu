@@ -7,7 +7,8 @@
  * The outbox holds the ids of events the server has not acknowledged. Every
  * event recorded on this device enters it, account or not, so signing up later
  * uploads the whole history as an ordinary sync, and a queue that could not be
- * sent survives reloads. Events pulled from the server skip it.
+ * sent survives reloads. Events pulled from the server skip it. Events the
+ * server rejected leave it and are set aside (`held`), still in the log.
  *
  * Where IndexedDB is unavailable (some private windows) everything lives in
  * memory for the page's lifetime and `persistent` is false, so the app can say
@@ -15,7 +16,8 @@
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { uuidv7 } from "./clock.ts";
-import { done, EVENTS, META, openDb, OUTBOX, outboxOf, persist, promised, RECEIVED, receivedTimes } from "./idb.ts";
+import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, promised, RECEIVED, receivedTimes, releaseHeld, type Held } from "./idb.ts";
+import type { SetAside } from "./outbox.ts";
 
 export interface EventStore {
   /** Random id of this installation, sent with every event. */
@@ -33,6 +35,12 @@ export interface EventStore {
   readonly pendingCount: () => Promise<number>;
   /** The server has these events; `received` says when it first got each. */
   readonly acknowledge: (ids: readonly string[], received?: Readonly<Record<string, string>>) => Promise<void>;
+  /** The server rejected these events (outbox.ts): they leave the outbox and are set aside, kept in the log. */
+  readonly setAside: (events: readonly SetAside[]) => Promise<void>;
+  /** The events set aside, by id: why the server rejected each, and when. */
+  readonly held: () => Promise<Held>;
+  /** Puts the events set aside back into the outbox, to be sent again; returns how many. */
+  readonly releaseHeld: () => Promise<number>;
   /** When the server received each synced event: the game folds it in as the server does (§12.2). */
   readonly receivedTimes: () => Promise<ReadonlyMap<string, string>>;
   readonly getMeta: (key: string) => Promise<unknown>;
@@ -82,6 +90,9 @@ const indexedStore = async (): Promise<EventStore> => {
     pending: outbox.pending,
     pendingCount: async () => promised(db.transaction(OUTBOX).objectStore(OUTBOX).count()),
     acknowledge: outbox.acknowledge,
+    setAside: outbox.setAside,
+    held: () => heldOf(db),
+    releaseHeld: () => releaseHeld(db),
     receivedTimes: () => receivedTimes(db),
     getMeta: async (key) => promised(db.transaction(META).objectStore(META).get(key)) as Promise<unknown>,
     setMeta: async (key, value) => {
@@ -102,6 +113,7 @@ const memoryStore = (): EventStore => {
   const outbox = new Set<string>();
   const received = new Map<string, string>();
   const meta = new Map<string, unknown>();
+  const held = new Map<string, { code: string; at: string }>();
   const receive = (times: Readonly<Record<string, string>> = {}): void => {
     for (const [id, at] of Object.entries(times)) received.set(id, at);
   };
@@ -125,6 +137,21 @@ const memoryStore = (): EventStore => {
       for (const id of ids) outbox.delete(id);
       receive(times);
       return Promise.resolve();
+    },
+    setAside: (events) => {
+      const at = new Date().toISOString();
+      for (const e of events) {
+        outbox.delete(e.id);
+        held.set(e.id, { code: e.code, at });
+      }
+      return Promise.resolve();
+    },
+    held: () => Promise.resolve(Object.fromEntries(held)),
+    releaseHeld: () => {
+      const back = [...held.keys()].filter((id) => log.has(id));
+      for (const id of back) outbox.add(id);
+      held.clear();
+      return Promise.resolve(back.length);
     },
     receivedTimes: () => Promise.resolve(new Map(received)),
     getMeta: (key) => Promise.resolve(meta.get(key)),
