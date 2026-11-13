@@ -33,6 +33,11 @@ export interface SessionResult {
   /** A self-rating (no verdict) or a card put off: neither counts in the score. */
   readonly selfRated?: true | undefined;
   readonly skipped?: SkipReason | undefined;
+  /**
+   * What the learner answered, for the end of the session to show (P9): none for a skip, nor for an
+   * answer a session picked up again knows only by its verdict (the log keeps typed text alone).
+   */
+  readonly response?: Response | undefined;
 }
 
 export interface Session {
@@ -232,14 +237,38 @@ const present = (session: Session): readonly [PlayerState, readonly Effect[]] =>
   return [{ tag: "presenting", session, ex }, [{ tag: "emit", event: { type: "exercise_presented", exercise: ref(ex), ex } }]];
 };
 
+/** First tries the score counts: a self-rating checks nothing, and a card put off was never asked. */
+const gradedFirstTries = (results: readonly SessionResult[]): readonly SessionResult[] =>
+  results.filter((r) => !r.retry && r.selfRated !== true && r.skipped !== "cant-speak" && r.skipped !== "cant-listen");
+
+/** A card the learner missed the first time (or skipped), as the end of the session lists it (P9). */
+export interface Missed {
+  readonly ex: Exercise;
+  /** Its first try's verdict, as revised (ADR 0113): SKIPPED for a card skipped. */
+  readonly verdict: Verdict;
+  /** What the learner answered, where the session has it. */
+  readonly response?: Response | undefined;
+}
+
+/**
+ * The cards the score counts wrong, in the order they were asked: each first try the session graded
+ * and found wrong, or that the learner skipped (P9). A card claimed right is not among them. A story
+ * passes its results and its questions.
+ */
+export const missedOf = (session: Pick<Session, "results" | "queue">): readonly Missed[] =>
+  gradedFirstTries(session.results).flatMap((r) => {
+    const ex = session.queue.find((e) => e.id === r.exercise);
+    if (ex === undefined || isCorrect(r.verdict)) return [];
+    return [{ ex, verdict: r.verdict, ...(r.response === undefined ? {} : { response: r.response }) }];
+  });
+
 /**
  * The score counts graded first tries (P5 in the 2026-11 review): a self-rating checks nothing, and a
  * card put off ("can't speak now", "can't listen now") or dropped with it was never asked. So two
  * right answers out of two shown is 2 of 2, whatever speaking cards the lesson also had.
  */
 export const summarize = (session: Session, completed: boolean): SessionSummary => {
-  const first = session.results.filter((r) => !r.retry);
-  const graded = first.filter((r) => r.selfRated !== true && r.skipped !== "cant-speak" && r.skipped !== "cant-listen");
+  const graded = gradedFirstTries(session.results);
   return {
     completed,
     // An adaptive test plans as it goes: its size is what it asked. Stopped (P8), it is what was
@@ -421,11 +450,24 @@ const revise = (state: Active, exercise: string, verdict: Verdict): readonly [Ac
   return [{ ...state, session: requeued(revised, exercise, verdict) }, [emit]];
 };
 
-const record = (session: Session, ex: Exercise, verdict: Verdict, how: { readonly selfRated?: true | undefined; readonly skipped?: SkipReason | undefined } = {}): Session => ({
+const record = (
+  session: Session,
+  ex: Exercise,
+  verdict: Verdict,
+  how: { readonly selfRated?: true | undefined; readonly skipped?: SkipReason | undefined; readonly response?: Response | undefined } = {},
+): Session => ({
   ...session,
   results: [
     ...session.results,
-    { exercise: ex.id, template: ex.template, verdict, retry: ex.id.includes("#"), ...(how.selfRated === true ? { selfRated: true as const } : {}), ...(how.skipped === undefined ? {} : { skipped: how.skipped }) },
+    {
+      exercise: ex.id,
+      template: ex.template,
+      verdict,
+      retry: ex.id.includes("#"),
+      ...(how.selfRated === true ? { selfRated: true as const } : {}),
+      ...(how.skipped === undefined ? {} : { skipped: how.skipped }),
+      ...(how.response === undefined ? {} : { response: how.response }),
+    },
   ],
 });
 
@@ -502,7 +544,7 @@ export const step = (state: PlayerState, event: PlayerEvent): readonly [PlayerSt
     case "checking":
       if (event.tag !== "graded") return none;
       return [
-        { tag: "feedback", session: record(state.session, state.ex, event.outcome.verdict, { selfRated: event.outcome.selfRated }), ex: state.ex, response: state.response, outcome: event.outcome },
+        { tag: "feedback", session: record(state.session, state.ex, event.outcome.verdict, { selfRated: event.outcome.selfRated, response: state.response }), ex: state.ex, response: state.response, outcome: event.outcome },
         [
           {
             tag: "emit",

@@ -12,12 +12,15 @@ import {
   isRetry,
   lessonNodes,
   LISTENING,
+  missedOf,
   placedBy,
   progressOf,
+  promptOf,
   responseOf,
   retryOf,
   runTest,
   seededRng,
+  solutionOf,
   start,
   step,
   summarize,
@@ -787,6 +790,86 @@ describe("an answer revised while the session runs (P14, ADR 0113)", () => {
     const next = (s: PlayerState): string | undefined => (s.tag === "presenting" ? s.ex.id : undefined);
     expect(next(claimed.get())).toBe(next(right.get()));
     expect(claimed.get().session.results.map((r) => r.verdict)).toEqual(["CORRECT"]);
+  });
+});
+
+describe("the cards the end of a session goes over (P9)", () => {
+  const course = loadCourse("fa");
+  const node = lessonNodes(course)[2]?.node.id as string;
+  const lesson = buildLesson(course, node, { seed: 3 });
+  // Cards from the course's first lessons, each once: a session of any of them.
+  const cards = [...new Map(lessonNodes(course).slice(0, 4).flatMap((n) => buildLesson(course, n.node.id, { seed: 3 })).map((e) => [e.id, e] as const)).values()];
+  const choices = cards.filter((e) => e.template !== "speak.tier-0" && wrongAnswer(e)?.tag === "choice");
+  const [missed, skipped, claimed, right] = choices;
+  const typed = cards.find((e) => e.template === "translate-type.l1-l2");
+  if (missed === undefined || skipped === undefined || claimed === undefined || right === undefined || typed === undefined) throw new Error("the lesson needs four choice cards and a typed one");
+
+  it("are the first tries the score counts wrong, in order, with what was answered", () => {
+    const [s0] = start(node, [missed, typed, skipped, claimed, right]);
+    const shell = run(course, s0, []);
+    const wrongTyped = wrongAnswer(typed) as Response;
+    for (const e of [
+      ...answer(missed, wrongAnswer(missed) as Response),
+      { tag: "continue" },
+      ...answer(typed, wrongTyped),
+      { tag: "continue" },
+      { tag: "ready" },
+      { tag: "skip", reason: "skip" },
+      { tag: "continue" },
+      ...answer(claimed, wrongAnswer(claimed) as Response),
+      { tag: "revise", exercise: claimed.id, verdict: "CORRECT" },
+      { tag: "continue" },
+      ...answer(right, rightAnswer(right)),
+      { tag: "continue" },
+    ] as const satisfies readonly PlayerEvent[])
+      shell.dispatch(e);
+    // The cards back at the end, answered right this time.
+    for (let s = shell.get(); s.tag !== "finished"; s = shell.get()) {
+      if (s.tag !== "presenting") throw new Error(s.tag);
+      for (const e of [...answer(s.ex, rightAnswer(s.ex)), { tag: "continue" } as const]) shell.dispatch(e);
+    }
+    const end = shell.get();
+    if (end.tag !== "finished") throw new Error(end.tag);
+    expect(missedOf(end.session)).toEqual([
+      { ex: missed, verdict: "WRONG", response: wrongAnswer(missed) },
+      { ex: typed, verdict: expect.stringMatching(/^(WRONG|WRONG_WORD|PARTIAL)$/u) as unknown as string, response: wrongTyped },
+      { ex: skipped, verdict: "SKIPPED" },
+    ]);
+    expect(end.summary.correctFirstTry).toBe(2);
+  });
+
+  it("leave out what was never checked: a self-rating, a card put off", () => {
+    const speaking = lesson.find((e) => e.template === "speak.tier-0");
+    const listening = buildLesson(course, node, { seed: 3 }).find((e) => LISTENING.has(e.template));
+    const cards = [speaking, listening].filter((e): e is Exercise => e !== undefined);
+    if (cards.length === 0) return;
+    const [s0] = start(node, cards);
+    const shell = run(course, s0, []);
+    for (let s = shell.get(); s.tag !== "finished"; s = shell.get()) {
+      if (s.tag !== "presenting") throw new Error(s.tag);
+      const events: readonly PlayerEvent[] =
+        s.ex.template === "speak.tier-0" ? [...answer(s.ex, { tag: "self-rating", rating: "again" }), { tag: "continue" }] : [{ tag: "ready" }, { tag: "skip", reason: "cant-listen" }];
+      for (const e of events) shell.dispatch(e);
+    }
+    const end = shell.get();
+    expect(end.tag === "finished" && missedOf(end.session)).toEqual([]);
+  });
+
+  it("each shows what it asked, where that was text other than its answer", () => {
+    const gallery = cardGallery(loadCourse("yue"), 7).flatMap((g) => (g.exercise === undefined ? [] : [g.exercise]));
+    for (const ex of gallery) {
+      const prompt = promptOf(ex);
+      if (prompt !== undefined) expect(prompt, ex.template).not.toBe(solutionOf(ex));
+    }
+    const byTemplate = (t: TemplateId): Exercise | undefined => gallery.find((e) => e.template === t);
+    const choose = byTemplate("choose-translation");
+    expect(choose !== undefined && promptOf(choose)).toBe(choose?.template === "choose-translation" ? choose.prompt : undefined);
+    const gap = byTemplate("gap-fill");
+    expect(gap !== undefined && promptOf(gap)).toBe(gap?.template === "gap-fill" ? gap.hint : undefined);
+    for (const t of ["listen-select", "speak.tier-0", "match-pairs"] as const) {
+      const ex = byTemplate(t);
+      if (ex !== undefined) expect(promptOf(ex), t).toBeUndefined();
+    }
   });
 });
 

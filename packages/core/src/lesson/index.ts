@@ -9,6 +9,7 @@ export {
   draftOf,
   emptyDraft,
   isRetry,
+  missedOf,
   progressOf,
   responseOf,
   retryOf,
@@ -21,6 +22,7 @@ export {
   type ExerciseRef,
   type InterruptReason,
   type LessonEvent,
+  type Missed,
   type PlayerEvent,
   type PlayerState,
   type Session,
@@ -30,5 +32,5 @@ export {
 } from "./player.ts";
 export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
-export { answerTextOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
+export { answerTextOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, promptOf, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";

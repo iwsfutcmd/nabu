@@ -1266,3 +1266,44 @@ export const solutionOf = (ex: Exercise): TaggedText | undefined => {
       return undefined;
   }
 };
+
+/**
+ * What a card showed to ask its question, where that was text other than its answer (the end of a
+ * session lists a missed card with it, P9): its prompt, a gap's hint, the word in its context. None
+ * for a card asked by ear, a sentence to say (its prompt is its answer), a story's gap or the pairs.
+ */
+export const promptOf = (ex: Exercise): TaggedText | undefined => {
+  switch (ex.template) {
+    case "select-image":
+    case "choose-translation":
+    case "translate-tap.l2-l1":
+    case "translate-tap.l1-l2":
+    case "word-write":
+    case "translate-type.l1-l2":
+    case "complete-translation":
+    case "char-read":
+    case "letter-read":
+    case "word-read":
+    case "vocalize":
+    case "transcribe":
+    case "story-choose":
+    case "story-arrange":
+      return ex.prompt;
+    case "gap-fill":
+      return ex.hint;
+    case "reading-disambiguation":
+      return ex.context;
+    case "speak.tier-0":
+    case "speak":
+    case "listen-speak":
+    case "listen-tap":
+    case "listen-type":
+    case "listen-select":
+    case "minimal-pair":
+    case "tone-identify":
+    case "story-complete":
+    case "match-pairs":
+    case "letter-pairs":
+      return undefined;
+  }
+};
