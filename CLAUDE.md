@@ -165,6 +165,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   reads it; after changing a reading, regenerate (the compiler warns `audio.stale`), then `pnpm bundles`.
 - Synthesize from pinned readings (Jyutping), never raw characters, except a voice that reads only characters (yue's
   VoxCPM2, ADR 0094: the round trip and the audio check catch its readings). Human recordings: `nabu audio ingest`.
+- A word's reading is the one the compiler pins on its KC form (`nabu.compiler.readings`, ADR 0117: every scheme, the
+  sense's most common in lessons first): its card, its clip and minimal pairs all read that; never look one up by
+  spelling. A change to the order can make clips stale: `test_readings.py` checks every course's, grc's too.
 - One synthesized clip an item, at normal speed: "slow" is the player slowing it (0.75×, pitch kept;
   ADR 0062). Never synthesize slow clips; a recorded slow take (`ingest`) still plays as it is.
 - `finalStop: true` on a voice (ADR 0063) ends unpunctuated text (word cards) with its script's full stop
