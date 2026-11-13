@@ -1673,6 +1673,54 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "rec": true
       }
     ]
+  },
+  {
+    "id": "D42",
+    "title": "Where a course’s speech settings live (C6)",
+    "context": "Speech scoring and the clip checks now read a course’s settings instead of tables keyed by course id.",
+    "options": [
+      {
+        "v": "a",
+        "label": "In each orthography profile, which the bundles carry, so the app, the API and the pipeline read one place (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "In course.yaml (`audio.check`, `align`), as the review suggested; the API would then need course.yaml beside the bundles"
+      }
+    ]
+  },
+  {
+    "id": "D43",
+    "title": "How Spanish speech is scored (C6)",
+    "context": "es gets speech scoring for the first time. eSpeak NG’s Spanish is Castilian.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Words only (tier 1): Cuban sounds (seseo, “ehtá”) would be marked wrong at the sound level (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Words and sounds (tier 2)"
+      }
+    ]
+  },
+  {
+    "id": "D44",
+    "title": "Biblical Hebrew עַד on its word card (C10)",
+    "context": "Each word now has one pinned reading that its card shows and its clip says. עַד’s is the bound form ʿaḏ-, which its existing clip was made from.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Keep the bound form ʿaḏ- (what the helper built): no clip changes"
+      },
+      {
+        "v": "b",
+        "label": "The free form ʿaḏ, and regenerate that one clip (Piper, on a CPU)",
+        "rec": true
+      }
+    ]
   }
 ]
 </script>
@@ -2039,12 +2087,14 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
       "note": "Merged: a report’s confirmation says where it goes (reviewers; them once the learner signs in; or this device only); the sentence list and a new “Your reports” page say what came of each report, compared on the device with the bundle it has (ADR 0115). Choices D22–D27."
     },
     "C6": {
-      "state": "in-progress",
-      "note": "With a helper (fix/course-data, ADR 0116): speech setup as course data, so es gets speech scoring. Still in progress."
+      "state": "done",
+      "commit": "b795a78e",
+      "note": "Merged: each orthography profile says how speech in it is heard (tiers, the recognizer’s language, a fine-tune), which the API reads from the course’s bundle; es is scored on its words; a language Whisper or eSpeak NG lacks is heard as its macrolanguage (CLDR) (ADR 0116). Choices D42, D43."
     },
     "C10": {
-      "state": "in-progress",
-      "note": "With a helper (fix/course-data, ADR 0117): the compiler pins each word’s readings and everyone reads them; no clip may go stale. Still in progress."
+      "state": "done",
+      "commit": "3684fa21",
+      "note": "Merged: the compiler pins a reading on every word of every KC form, for every scheme its orthography pins (no scheme id in code); the audio planner and the app’s minimal pairs read that pin (ADR 0117). Before, the three disagreed on yue 呢, 嗰, 百, 禮拜, 日, lzh 知, 有, 強, hbo עַד and 17 grc words written with a grave. No clip went stale (all 7,696 checked). Choice D44."
     },
     "W6": {
       "state": "done",
@@ -2375,7 +2425,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11 and S8. R1/R4 and C6/C10 are still with helpers. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. Choices D22–D41 are open, each with a default."
+    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. Choices D22–D44 are open, each with a default."
   ]
 }
 </script>
