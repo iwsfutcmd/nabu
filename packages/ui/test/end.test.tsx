@@ -2,7 +2,8 @@
  * The end of a session (P9 in the 2026-11 review, ADR 0113), server-rendered: what it taught and what
  * to go over before the points, how the learner's progress moved, and the next step.
  */
-import { buildLesson, createGrader, gradeExercise, lessonNodes, seededRng, start, step, type CourseView, type Exercise, type Grader, type PlayerEvent, type PlayerState, type Response } from "@nabu/core/lesson";
+import { emptyLearnerState, plan } from "@nabu/core/learner";
+import { createGrader, gradeExercise, lessonNodes, seededRng, start, step, type CourseView, type Exercise, type Grader, type PlayerEvent, type PlayerState, type Response } from "@nabu/core/lesson";
 import { allStories, startStory, stepStory, storyScript, type StoryEvent, type StoryScript, type StoryState } from "@nabu/core/story";
 import { surfaceOf } from "@nabu/core/text";
 import { describe, expect, it } from "vitest";
@@ -72,7 +73,8 @@ describe("the end of a lesson (P9)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const grader = createGrader(course);
   const node = lessonNodes(course)[1]?.node.id as string;
-  const lesson = buildLesson(course, node, { seed: 7 });
+  // The lesson as plan() plans it for a new learner.
+  const lesson = plan(course, emptyLearnerState(), { mode: "lesson", node }, { now: "2026-03-01T08:00:00.000Z", seed: 7 }).exercises;
   const choice = lesson.find((e) => wrongOf(e)?.tag === "choice" && e.template !== "speak.tier-0");
   const skipped = lesson.find((e) => e !== choice && wrongOf(e)?.tag === "choice" && e.template !== "speak.tier-0");
   if (choice === undefined || skipped === undefined) throw new Error("the lesson needs two choice cards");

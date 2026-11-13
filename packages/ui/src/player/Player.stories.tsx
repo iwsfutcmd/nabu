@@ -1,4 +1,5 @@
-import { buildLesson, createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { emptyLearnerState, plan } from "@nabu/core/learner";
+import { createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -32,6 +33,8 @@ const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
 };
 
 const SEED = 7;
+/** The clock a story plans its lesson at: fixed, so the story never changes. */
+const NOW = "2026-03-01T08:00:00.000Z";
 
 /** Drives the pure state machine to the screen a story shows. */
 const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader: Grader): PlayerState => {
@@ -129,14 +132,17 @@ const finishedLesson = (lesson: readonly Exercise[], node: string, grader: Grade
   return state;
 };
 
-/** The end of the course's second lesson, with what the app would say of the learner's progress and the next step. */
+/**
+ * The end of the course's second lesson, as plan() plans it for a new learner, with what the app would
+ * say of the learner's progress and the next step.
+ */
 const FinishedScreen = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
   const nodes = lessonNodes(course);
   const node = nodes[1]?.node.id ?? "story";
-  const lesson = useMemo(() => buildLesson(course, node, { seed: SEED }), [course, node]);
+  const lesson = useMemo(() => plan(course, emptyLearnerState(), { mode: "lesson", node }, { now: NOW, seed: SEED }).exercises, [course, node]);
   const state = useMemo(() => finishedLesson(lesson, node, grader), [lesson, node, grader]);
   const progress: SessionProgress = {
     known: { words: nodes[0]?.node.introduces.slice(0, 2) ?? [], total: 14 },
