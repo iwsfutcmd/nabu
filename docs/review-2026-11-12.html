@@ -342,7 +342,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     <span class="refs"><a class="ref" href="#f-R1">R1</a><a class="ref" href="#f-R2">R2</a><a class="ref" href="#f-R3">R3</a><a class="ref" href="#f-R4">R4</a><a class="ref" href="#f-R5">R5</a><a class="ref" href="#f-R6">R6</a><a class="ref" href="#f-R7">R7</a><a class="ref" href="#f-R8">R8</a></span></div></div>
 
   <h2 id="decisions">Decisions for you</h2>
-  <p>Your answers go into the copied plan. D1–D14 are answered; D15–D18 came up while the fixes were made and are open (the recommended option comes first). Please also check new wording: the retry tags “Earlier mistake” and “Skipped earlier”, and the quit dialog’s copy (P4, P8). Also please check the new course blurbs and script hints on Home (S4): new English copy, especially for apc, grc, hbo, lzh and tok.</p>
+  <p>Your answers go into the copied plan. D1–D14 are answered; D15–D21 came up while the fixes were made and are open (the recommended option comes first). Please also check new wording: the retry tags “Earlier mistake” and “Skipped earlier”, and the quit dialog’s copy (P4, P8). Also please check the new course blurbs and script hints on Home (S4): new English copy, especially for apc, grc, hbo, lzh and tok.</p>
   <div id="decision-list"></div>
 
   <h2 id="findings">All findings</h2>
@@ -1253,6 +1253,54 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "No: sound off is silence; play buttons show as off"
       }
     ]
+  },
+  {
+    "id": "D19",
+    "title": "Translated course and orthography names: move them into the courses? (C19)",
+    "context": "Course, orthography, scheme and tone names now come from course and scheme data (ADR 0109). The draft catalogs’ translations of those names still sit in the app’s catalogs, kept only so the drafts keep working.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes: move the draft translations into the course and scheme data, then delete the catalog copies",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "No: keep translations of names in the catalogs, with the courses’ own names as the fallback"
+      }
+    ]
+  },
+  {
+    "id": "D20",
+    "title": "The audio check for a course whose clips don’t ship (C18)",
+    "context": "“Held back” now means “not in the learners’ bundle”. Attic Greek’s voice is rated bad (ADR 0091), so none of its clips ship, and the audio check shows every item held back.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Say why: “Not shipped: this course’s voice is rated bad” for such courses, “Held back” for clips that failed a check",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Leave it: every grc item shows as held back"
+      }
+    ]
+  },
+  {
+    "id": "D21",
+    "title": "Latin letters inside Cantonese or Classical Chinese model text (C18)",
+    "context": "AI text in a Han-script course is now split into units as grading counts them, so a Latin word like “ok” becomes two units, “o” and “k”, for tapping and display.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Fine: match how grading counts units (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Keep a run of Latin letters together as one word, even in Han-script courses"
+      }
+    ]
   }
 ]
 </script>
@@ -1293,6 +1341,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     "S9":{"priority":"later"}
   },
   "progress": {
+    "C4":{"state":"done","commit":"98ff8a02","note":"Done early with R9 by the performance helper: the demo’s profiles load only for the demo card, and course pages render inside the course’s own profiles."},
     "C11":{"state":"in-progress","commit":"62a19d91","note":"Core done: each template’s facet, modality, prior, per-session cap and whether it presents new words live in one spec (TEMPLATES); plans unchanged. Left: the app’s spots that re-derive categories by template id (ai.tsx, LessonPlayer, the API’s EXPLAINED), once the helpers editing those files are merged."},
     "W7":{"state":"done","commit":"8dd43c87","note":"Match-pairs show a card gloss: the first sense, without notes in parentheses (呀 no longer shows its reading); tap-for-gloss keeps the full gloss."},
     "P2":{"state":"done","commit":"8dd43c87","note":"Distractors are ranked by the answer’s final punctuation, length, shared words and capital: in es, over 90% of choose-translation distractors now end like the answer, and a sentence’s first word is no longer the only capitalised gap-fill option; word banks get 3–4 distractors."},
