@@ -40,7 +40,7 @@ import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { wordIndexes } from "@nabu/core/text";
-import { storyAt, storyScript } from "@nabu/core/story";
+import { prepareMeanings, storyAt, storyScript } from "@nabu/core/story";
 import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceReported, TaggedText } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, ExpandIcon, LockIcon, T, useTranslator } from "@nabu/ui";
@@ -1560,15 +1560,20 @@ export const App = (): JSX.Element => {
     [current, online, stored],
   );
   // The words typed answers are looked up in, built while the learner looks at the course, so the
-  // first Check of a session never waits for them (R5).
+  // first Check of a session never waits for them (R5); and what a wrong word means is looked up
+  // in, so the first wrong answer's feedback never does either (P3).
   useEffect(() => {
     if (playable === undefined) return;
     const course = playable.course;
+    const prepare = (): void => {
+      prepareGrading(course);
+      prepareMeanings(course);
+    };
     if (typeof requestIdleCallback === "function") {
-      const id = requestIdleCallback(() => prepareGrading(course), { timeout: 2000 });
+      const id = requestIdleCallback(prepare, { timeout: 2000 });
       return () => cancelIdleCallback(id);
     }
-    const id = setTimeout(() => prepareGrading(course), 200);
+    const id = setTimeout(prepare, 200);
     return () => clearTimeout(id);
   }, [playable]);
 
