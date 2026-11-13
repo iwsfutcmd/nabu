@@ -224,7 +224,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     const sent = (e: LearnerEvent): boolean => held[e.id] === undefined;
     for (const course of touched) {
       const server = await request<{ state: unknown }>(base, `/v1/state?course=${encodeURIComponent(course)}`, { token });
-      const { seen: _seen, ...local } = replay((await store.eventsOf(course)).filter(sent));
+      const local = replay((await store.eventsOf(course)).filter(sent));
       const differs = difference(server.state, JSON.parse(JSON.stringify(local)));
       if (differs !== undefined) {
         verified = false;

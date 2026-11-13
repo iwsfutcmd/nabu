@@ -180,7 +180,7 @@ describe("event log", () => {
     await app.request("/v1/events", json({ events: log.slice(20) }, token));
     await app.request("/v1/events", json({ events: log.slice(0, 20) }, token));
     const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: unknown };
-    const { seen: _seen, ...local } = replay(log);
+    const local = replay(log);
     expect(server.events).toBe(log.length);
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     expect(local.completedNodes).toEqual(["fa.greetings", "fa.names"]);
@@ -196,7 +196,7 @@ describe("event log", () => {
     const reset = progressResetOf(fa, { id: "0000ffff-0000-7000-9000-000000000001", clientTime: at, localDate: at.slice(0, 10), tz: "UTC", device: "phone", session: "0000ffff-0000-7000-a000-000000000001", bundle: manifestOf("fa").id });
     expect((await app.request("/v1/events", json({ events: [reset] }, token))).status).toBe(200);
     const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: { completedNodes: string[]; cards: object; xp: { total: number } } };
-    const { seen: _seen, ...local } = replay([...log, reset]);
+    const local = replay([...log, reset]);
     expect(server.events).toBe(log.length + 1); // the log keeps everything
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     expect(server.state.completedNodes).toEqual([]);
@@ -220,7 +220,7 @@ describe("event log", () => {
     const game = (await (await app.request("/v1/game", auth(token))).json()) as { game: { goal?: number | null } };
     expect(game.game.goal).toBe(5);
     const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: unknown };
-    const { seen: _seen, ...local } = replay(log);
+    const local = replay(log);
     expect(server.events).toBe(log.length);
     expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
     // The export holds it, and names no course for it.

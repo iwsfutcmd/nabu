@@ -643,8 +643,8 @@ describe("the weekly goal is the account's", () => {
     expect(none).toBeUndefined();
     expect(withGoals).toEqual(without);
     // The learner model leaves goal_set out (it only notes the id as seen).
-    const { seen: _a, ...learner } = replay([...practice, ...goals]);
-    const { seen: _b, ...plain } = replay(practice);
+    const learner = replay([...practice, ...goals]);
+    const plain = replay(practice);
     expect(learner).toEqual(plain);
   });
 });

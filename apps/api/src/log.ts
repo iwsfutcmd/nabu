@@ -189,10 +189,9 @@ export const eventsOf = async (db: Db, user: string, course: string): Promise<Le
   (await db.select({ payload: events.payload }).from(events).where(and(eq(events.userId, user), eq(events.course, course)))).map((r) => r.payload as LearnerEvent);
 
 /** The state a user's log for one course projects to: core's replay, as on the device. */
-export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: Omit<LearnerState, "seen"> }> => {
+export const stateOf = async (db: Db, user: string, course: string): Promise<{ readonly events: number; readonly state: LearnerState }> => {
   const log = await eventsOf(db, user, course);
-  const { seen: _seen, ...state } = replay(log);
-  return { events: log.length, state };
+  return { events: log.length, state: replay(log) };
 };
 
 /**

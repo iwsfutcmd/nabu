@@ -266,7 +266,7 @@ describe("projection", () => {
   it("golden: the recorded session replays to the pinned state", () => {
     golden("fa-lesson-1.events.json", events);
     const recorded = JSON.parse(readFileSync(join(GOLDEN, "fa-lesson-1.events.json"), "utf8")) as LearnerEvent[];
-    const { seen: _seen, ...state } = replay(recorded);
+    const state = replay(recorded);
     golden("fa-lesson-1.state.json", state);
   });
 
@@ -305,9 +305,9 @@ describe("starting a course over (progress_reset)", () => {
   const resetAt = (iso: string, n: number) =>
     progressResetOf(fa, { id: `00000000-0000-7000-9000-${n.toString(16).padStart(12, "0")}`, clientTime: iso, localDate: iso.slice(0, 10), tz: "UTC", device: "golden", session: `00000000-0000-7000-a000-${n.toString(16).padStart(12, "0")}`, bundle: faBundle });
   const reset = resetAt("2026-03-02T08:00:00.000Z", 1);
-  const { seen: _a, ...before } = replay(lesson);
-  const { seen: _b, ...after } = replay([...lesson, reset]);
-  const { seen: _c, ...fresh } = emptyLearnerState();
+  const before = replay(lesson);
+  const after = replay([...lesson, reset]);
+  const fresh = emptyLearnerState();
 
   it("forgets what was learned, the lessons done and the mistakes; keeps the XP earned", () => {
     expect(before.completedNodes).toEqual([node]);
@@ -328,7 +328,7 @@ describe("starting a course over (progress_reset)", () => {
 
   it("does nothing to what comes after an earlier reset, nor to the game state", () => {
     const early = resetAt("2026-02-01T08:00:00.000Z", 2);
-    const { seen: _d, ...unchanged } = replay([early, ...lesson]);
+    const unchanged = replay([early, ...lesson]);
     expect(unchanged).toEqual(before);
     const clock = { today: "2026-03-02", now: "2026-03-02T09:00:00.000Z" };
     expect(replayGame([...lesson, reset].map((event) => ({ event })), DEFAULT_GAME, clock)).toEqual(replayGame(lesson.map((event) => ({ event })), DEFAULT_GAME, clock));
