@@ -145,10 +145,7 @@ export const DisplayMenu = ({
               <Switch
                 className={styles.switch}
                 isSelected={display.mode !== "horizontal-tb"}
-                onChange={(on) => {
-                  display.setVertical(on);
-                  readings.onVertical(on);
-                }}
+                onChange={display.setVertical}
                 data-toggle="vertical"
               >
                 <span className={styles.switchTrack} aria-hidden="true">
