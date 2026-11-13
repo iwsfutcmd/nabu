@@ -342,7 +342,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     <span class="refs"><a class="ref" href="#f-R1">R1</a><a class="ref" href="#f-R2">R2</a><a class="ref" href="#f-R3">R3</a><a class="ref" href="#f-R4">R4</a><a class="ref" href="#f-R5">R5</a><a class="ref" href="#f-R6">R6</a><a class="ref" href="#f-R7">R7</a><a class="ref" href="#f-R8">R8</a></span></div></div>
 
   <h2 id="decisions">Decisions for you</h2>
-  <p>Your answers go into the copied plan. D1–D11 are answered; D12–D14 came up while the fixes were made and are open (the recommended option comes first). Also please check the new course blurbs and script hints on Home (S4): new English copy, especially for apc, grc, hbo, lzh and tok.</p>
+  <p>Your answers go into the copied plan. D1–D14 are answered; D15–D18 came up while the fixes were made and are open (the recommended option comes first). Please also check new wording: the retry tags “Earlier mistake” and “Skipped earlier”, and the quit dialog’s copy (P4, P8). Also please check the new course blurbs and script hints on Home (S4): new English copy, especially for apc, grc, hbo, lzh and tok.</p>
   <div id="decision-list"></div>
 
   <h2 id="findings">All findings</h2>
@@ -1189,6 +1189,70 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "“A native speaker” for living languages, “an expert” for ancient ones"
       }
     ]
+  },
+  {
+    "id": "D15",
+    "title": "Vowel marks shown on “New words”: which words are new? (P12)",
+    "context": "The marks setting is now All words / New words / None, and Persian’s profile default is New words.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Words not yet known (ADR 0100), so marks fade as each word becomes known (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Only the words this lesson introduces, so marks drop much sooner"
+      }
+    ]
+  },
+  {
+    "id": "D16",
+    "title": "Looking up a word before answering: does it count as a hint? (P1)",
+    "context": "Tapping a word now shows its meaning in lessons, before answering only where that doesn’t give the answer away. The gameplan’s rule is that a hinted answer isn’t full credit.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes: a card answered after opening a meaning is rated Hard at best (needs the lookup recorded with the answer)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "No: looking things up is part of learning; the answer rates as usual (what it does now)"
+      }
+    ]
+  },
+  {
+    "id": "D17",
+    "title": "Where does the sound switch live? (P6)",
+    "context": "The lesson header is now: quit, progress, “N left”, the display menu, and a speaker button (the same setting as in Preferences).",
+    "options": [
+      {
+        "v": "a",
+        "label": "In the header, one tap away (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Inside the display menu, with readings and vowel marks"
+      }
+    ]
+  },
+  {
+    "id": "D18",
+    "title": "With sound off, do play buttons still play? (P6)",
+    "context": "Sound off stops everything that plays by itself (clips on a card, after an answer, story lines, pair taps).",
+    "options": [
+      {
+        "v": "a",
+        "label": "Yes: a play button you tap still plays (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "No: sound off is silence; play buttons show as off"
+      }
+    ]
   }
 ]
 </script>
@@ -1198,7 +1262,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
 <script type="application/json" id="assessments-data">
 {
   "recorded": "12 November 2026",
-  "decisions": {"D1":"a","D2":"a","D3":"a","D4":"a","D5":"a","D6":"a","D7":"a","D8":"a","D9":"a","D10":"a","D11":"a"},
+  "decisions": {"D1":"a","D2":"a","D3":"a","D4":"a","D5":"a","D6":"a","D7":"a","D8":"a","D9":"a","D10":"a","D11":"a","D12":"b","D13":"a","D14":"a"},
   "picks": {
     "L1":{"priority":"now"},"L7":{"priority":"now"},"P5":{"priority":"now"},"S7":{"priority":"now"},"W2":{"priority":"now"},
     "C1":{"priority":"now","note":"Test the words in context (inside a sentence), not on their own. Vocalizing should accept Arabizi in apc: it spells the vowels. Later: vowels are a pain to type in any abjad (Arab, Hebr, Syrc…), so vocalization should be multiple choice; Han readings both multiple choice and typed."},
