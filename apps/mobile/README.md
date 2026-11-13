@@ -23,7 +23,9 @@ pnpm --filter @nabu/mobile ios       # opens Xcode (macOS)
 Every push to main builds the app and replaces the APK on the
 [android-preview release](https://github.com/iwsfutcmd/nabu/releases/tag/android-preview).
 [This link](https://github.com/iwsfutcmd/nabu/releases/download/android-preview/nabu-preview.apk)
-always downloads the latest. Each pull request's run keeps its APK as a run artifact for 14 days.
+always downloads the latest. The site's landing page links it, with its size, whenever the release
+has one (pages.yml asks the release). Each pull request's run keeps its APK as a run artifact for
+14 days.
 
 - **Installing.** Open the link on the phone, then allow your browser to install apps when Android
   asks. Play Protect may warn about an unknown developer.
