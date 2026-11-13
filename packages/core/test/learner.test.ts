@@ -28,9 +28,10 @@ import {
   type PlanOptions,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
+import { allKcs, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise, type Facet, type LessonEvent } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
+import { plannedCards, walkPath } from "./planned.ts";
 
 const GOLDEN = join(import.meta.dirname, "golden");
 /** Tests that plan every lesson of a course: under a second alone, far more on a busy CI runner. */
@@ -49,8 +50,8 @@ describe("credit assignment (§8.5)", () => {
   });
 
   it("a typed answer with one wrong word keeps credit for the words it got right", () => {
-    const typing = lessonNodes(fa)
-      .flatMap(({ node }) => buildLesson(fa, node.id, { seed: 7 }))
+    const typing = plannedCards(walkPath(fa))
+      .map(({ ex }) => ex)
       .filter((e): e is Extract<Exercise, { template: "translate-type.l1-l2" }> => e.template === "translate-type.l1-l2");
     const ex = typing.find((e) => surfaceOf(e.canonical).split(" ").length >= 3);
     if (ex === undefined) throw new Error("no multi-word typing exercise in fa");
@@ -477,7 +478,6 @@ describe("a course that names its facets (ADR 0071)", () => {
     const speech = speechSupportOf(lzh, 2);
     expect(speech).toEqual({ scored: false, tones: false });
     for (const { node } of lessonNodes(lzh)) {
-      expect(buildLesson(lzh, node.id, { seed: 3, speech }).filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
       const p = plan(lzh, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3, speech });
       expect(p.exercises.filter((ex) => !practised(ex)).map((ex) => ex.id)).toEqual([]);
     }
@@ -495,7 +495,6 @@ describe("a course that names its facets (ADR 0071)", () => {
       // The clips stay: they reinforce what is read (after answering, stories, the word list).
       expect(Object.keys(course.audio).length).toBeGreaterThan(0);
       for (const { node } of lessonNodes(course)) {
-        expect(buildLesson(course, node.id, { seed: 3 }).filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
         const p = plan(course, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
         expect(p.exercises.filter((ex) => relies(ex.template)).map((ex) => ex.id)).toEqual([]);
       }
@@ -513,7 +512,6 @@ describe("a course that names its facets (ADR 0071)", () => {
     expect(hbo.facets).toEqual(["recognize", "produce", "speak", "read-script", "write-script"]);
     const heard = (ex: Exercise): boolean => TEMPLATES[ex.template].facet === "listen";
     for (const { node } of lessonNodes(hbo)) {
-      expect(buildLesson(hbo, node.id, { seed: 3 }).filter(heard).map((ex) => ex.id)).toEqual([]);
       const p = plan(hbo, emptyLearnerState(), { mode: "lesson", node: node.id }, { now, seed: 3 });
       expect(p.exercises.filter(heard).map((ex) => ex.id)).toEqual([]);
     }
@@ -524,7 +522,7 @@ describe("a course that names its facets (ADR 0071)", () => {
 
   it("still shows its readings: every word of a lesson carries all three layers", () => {
     const node = lessonNodes(lzh)[0]?.node.id as string;
-    const words = buildLesson(lzh, node, { seed: 3 }).flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
+    const words = plan(lzh, emptyLearnerState(), { mode: "lesson", node }, { now, seed: 3 }).exercises.flatMap((ex) => ("prompt" in ex && ex.prompt !== undefined && "tokens" in ex.prompt ? ex.prompt.tokens : []));
     const han = words.filter((t) => t.kind === "word" && /\p{Script=Han}/u.test(t.surface));
     expect(han.length).toBeGreaterThan(0);
     for (const t of han) expect(Object.keys(t.ruby ?? {}).sort()).toEqual(["baxter", "jyutping", "pinyin"]);
@@ -627,7 +625,7 @@ describe("tones are not scored on the device (ADR 0093)", () => {
     expect(speechSupportOf(yue, 0)).toEqual({ scored: false, tones: true });
     expect(speechSupportOf(yue, 2)).toEqual({ scored: true, tones: true });
     const speech = speechSupportOf(yue, 0);
-    const made = lessonNodes(yue).flatMap(({ node }) => buildLesson(yue, node.id, { seed: 3, speech }).map((ex) => ex.template));
+    const made = plannedCards(walkPath(yue, { speech })).map(({ ex }) => ex.template);
     expect(made).toContain("speak.tier-0");
     expect(made).not.toContain("speak");
     expect(made).not.toContain("listen-speak");

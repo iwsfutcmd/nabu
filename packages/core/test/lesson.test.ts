@@ -2,7 +2,6 @@ import type { SchemeId, TaggedText } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
 import {
   allSentences,
-  buildLesson,
   cardGallery,
   countsAs,
   createGrader,
@@ -33,14 +32,14 @@ import {
   type Response,
   type TemplateId,
 } from "../src/lesson/index.ts";
-import { creditOf } from "../src/learner/credit.ts";
-import { gradeVowels, withoutMarks } from "../src/match/pronounce.ts";
 import { pathNodes } from "../src/learner/path.ts";
 import { placementTest } from "../src/learner/placement.ts";
 import { makeMatchPairs, makeReadingDisambiguation, makeTapL1L2, makeTapL2L1, makeTranslateType, SENTENCE_TEMPLATES } from "../src/lesson/templates.ts";
 import { closestAnswer, nearMiss } from "../src/lesson/diff.ts";
 import { surfaceOf } from "../src/text/index.ts";
+import { rightAnswer, wrongAnswer } from "./answers.ts";
 import { loadCourse } from "./learner-fixtures.ts";
+import { lessonAt, walkPath } from "./planned.ts";
 
 const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["fa", undefined],
@@ -50,89 +49,6 @@ const VARIANTS: readonly (readonly [string, string | undefined])[] = [
   ["apc", "apc-Arab/standard"],
   ["apc", "apc-Latn/arabizi"],
 ];
-
-/** The response a learner who knows the answer gives. */
-const rightAnswer = (ex: Exercise): Response => {
-  switch (ex.template) {
-    case "select-image":
-    case "choose-translation":
-    case "gap-fill":
-    case "char-read":
-    case "reading-disambiguation":
-    case "listen-select":
-    case "minimal-pair":
-    case "story-choose":
-    case "story-complete":
-    case "tone-identify":
-    case "letter-read":
-    case "word-read":
-      return { tag: "choice", index: ex.answer };
-    case "match-pairs":
-    case "letter-pairs":
-      return { tag: "pairs", mistakes: 0 };
-    case "translate-tap.l2-l1":
-    case "translate-tap.l1-l2":
-    case "listen-tap":
-    case "story-arrange":
-    case "word-write":
-      return { tag: "tiles", order: ex.solution };
-    case "translate-type.l1-l2":
-    case "listen-type":
-      return { tag: "text", text: surfaceOf(ex.canonical) };
-    case "complete-translation":
-      return { tag: "text", text: surfaceOf(ex.blank) };
-    case "vocalize":
-      return { tag: "choice", index: ex.answer };
-    case "transcribe":
-      return { tag: "text", text: surfaceOf(ex.reading) };
-    case "speak.tier-0":
-      return { tag: "self-rating", rating: "good" };
-    case "speak":
-    case "listen-speak":
-      return { tag: "speech", result: { silent: false } };
-  }
-};
-
-const wrongAnswer = (ex: Exercise): Response | undefined => {
-  switch (ex.template) {
-    case "select-image":
-    case "choose-translation":
-    case "gap-fill":
-    case "char-read":
-    case "reading-disambiguation":
-    case "listen-select":
-    case "minimal-pair":
-    case "story-choose":
-    case "story-complete":
-    case "letter-read":
-    case "word-read":
-      return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
-    case "tone-identify":
-      return { tag: "choice", index: (ex.answer + 1) % ex.tones.length };
-    case "speak":
-    case "listen-speak":
-      return { tag: "speech", result: { silent: true } };
-    case "translate-tap.l2-l1":
-    case "translate-tap.l1-l2":
-    case "listen-tap":
-    case "story-arrange":
-    case "word-write":
-      return { tag: "tiles", order: [...ex.solution].reverse().length > 1 ? [...ex.solution].reverse() : ex.tiles.map((_, i) => i).filter((i) => !ex.solution.includes(i)) };
-    case "translate-type.l1-l2":
-    case "complete-translation":
-    case "listen-type":
-      return { tag: "text", text: "qqqq zzzz" };
-    case "vocalize":
-      return { tag: "choice", index: (ex.answer + 1) % ex.options.length };
-    case "transcribe":
-      return { tag: "text", text: "qqqq1" };
-    case "speak.tier-0":
-      return { tag: "self-rating", rating: "again" };
-    case "match-pairs":
-    case "letter-pairs":
-      return undefined;
-  }
-};
 
 describe.each(VARIANTS)("tiles: %s %s", (id, orthography) => {
   const course = loadCourse(id, orthography);
@@ -151,112 +67,9 @@ describe.each(VARIANTS)("tiles: %s %s", (id, orthography) => {
   }, 60_000);
 });
 
-describe.each(VARIANTS)("lessons: %s %s", (id, orthography) => {
-  const course = loadCourse(id, orthography);
-  const grader = createGrader(course);
-  const nodes = lessonNodes(course);
-
-  it("has lesson nodes", () => expect(nodes.length).toBeGreaterThan(2));
-
-  for (const { node } of nodes) {
-    describe(node.id, () => {
-      const lesson = buildLesson(course, node.id, { seed: 7 });
-
-      it("is deterministic and non-empty, with unique exercise ids", () => {
-        expect(lesson.length).toBeGreaterThan(1);
-        expect(JSON.stringify(buildLesson(course, node.id, { seed: 7 }))).toBe(JSON.stringify(lesson));
-        expect(new Set(lesson.map((e) => e.id)).size).toBe(lesson.length);
-      });
-
-      it("accepts each exercise's own solution and rejects a wrong answer", () => {
-        for (const ex of lesson) {
-          const right = gradeExercise(ex, rightAnswer(ex), grader);
-          expect(isCorrect(right.verdict), `${ex.id}: ${right.verdict} ${JSON.stringify(right.notes)}`).toBe(true);
-          const wrong = wrongAnswer(ex);
-          if (wrong !== undefined && !(wrong.tag === "tiles" && wrong.order.length === 0)) {
-            const outcome = gradeExercise(ex, wrong, grader);
-            if (wrong.tag !== "tiles") expect(isCorrect(outcome.verdict), `${ex.id} accepted a wrong answer`).toBe(false);
-          }
-        }
-      });
-
-      it("never offers two options that look the same", () => {
-        for (const ex of lesson) {
-          const options =
-            ex.template === "select-image" ? ex.options.map((o) => o.text) : "options" in ex ? ex.options : ex.template === "match-pairs" ? ex.left : [];
-          const surfaces = options.map((o) => surfaceOf(o));
-          expect(new Set(surfaces).size, ex.id).toBe(surfaces.length);
-        }
-      });
-    });
-  }
-});
-
-describe("template coverage", () => {
-  it("every Phase 3 template appears in some fixture lesson", () => {
-    const seen = new Set<TemplateId>();
-    for (const [id, orthography] of VARIANTS) {
-      const course = loadCourse(id, orthography);
-      for (const { node } of lessonNodes(course)) for (const ex of buildLesson(course, node.id, { seed: 7 })) seen.add(ex.template);
-    }
-    // Listening templates need audio and come from the planner (test/listening.test.ts); story
-    // questions come from stories (test/story.test.ts); scored speaking and tones are opt-in (below).
-    // Script templates come from script nodes alone (test/script.test.ts).
-    const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "letter-read", "letter-pairs", "word-read", "word-write"]);
-    expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
-  }, 120_000); // every lesson of every fixture course
-
-  it("scored speaking takes tier 0's slot, and tonal courses get tone exercises, only when the app can do them", () => {
-    const speech = { scored: true, tones: true };
-    // The committed yue clips are held back by the round-trip check (eSpeak Cantonese), so this view
-    // gives the one-syllable sentence 係！ a clip, as a reviewed recording would.
-    const bundled = loadCourse("yue");
-    const yue: CourseView = { ...bundled, audio: { ...bundled.audio, "s.8": { normal: { path: "audio/clips/s8.mp3", durationMs: 420, synthetic: false, license: "CC0-1.0" } } } };
-    const fa = loadCourse("fa");
-    const templates = (course: typeof yue, options: Parameters<typeof buildLesson>[2]) => lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, options).map((e) => e.template));
-    const scored = templates(yue, { seed: 7, speech });
-    expect(scored).toContain("speak");
-    expect(scored).toContain("tone-identify");
-    expect(scored).not.toContain("speak.tier-0");
-    expect(templates(fa, { seed: 7, speech })).not.toContain("tone-identify"); // Persian readings carry no tones
-    // The same lessons otherwise: only the speaking slot changed.
-    const plain = templates(yue, { seed: 7 });
-    expect(scored.filter((t) => t !== "tone-identify").map((t) => (t === "speak" ? "speak.tier-0" : t))).toEqual(plain);
-    const tone = lessonNodes(yue).flatMap(({ node }) => buildLesson(yue, node.id, { seed: 7, speech })).find((e) => e.template === "tone-identify");
-    if (tone?.template !== "tone-identify") throw new Error("no tone exercise");
-    expect(tone.tones).toEqual(["1", "2", "3", "4", "5", "6"]);
-    expect(gradeExercise(tone, { tag: "choice", index: tone.answer }, createGrader(yue)).verdict).toBe("CORRECT");
-  });
-
-  it("can leave speaking out", () => {
-    const course = loadCourse("fa");
-    for (const { node } of lessonNodes(course)) {
-      expect(buildLesson(course, node.id, { seed: 1, exclude: new Set(["speak.tier-0"]) }).some((e) => e.template === "speak.tier-0")).toBe(false);
-    }
-  });
-});
-
 describe("matching pairs", () => {
   const key = (t: TaggedText): string => surfaceOf(t).normalize("NFC").toLocaleLowerCase("und").replace(/[\p{P}\s]+/gu, " ").trim();
   const distinct = (texts: readonly TaggedText[]): boolean => new Set(texts.map(key)).size === texts.length;
-
-  /** Builds every lesson of every course three times: about a second alone, far more on a busy CI runner. */
-  const EVERY_LESSON_TIMEOUT_MS = 120_000;
-
-  it("never shows two words or two meanings alike, in any course's lessons", () => {
-    for (const [id, orthography] of [...VARIANTS, ["lzh", undefined] as const]) {
-      const course = loadCourse(id, orthography);
-      for (const { node } of lessonNodes(course)) {
-        for (const seed of [1, 7, 11]) {
-          for (const ex of buildLesson(course, node.id, { seed })) {
-            if (ex.template !== "match-pairs") continue;
-            expect(distinct(ex.left), `${id} ${node.id} ${ex.id}`).toBe(true);
-            expect(distinct(ex.right), `${id} ${node.id} ${ex.id}`).toBe(true);
-          }
-        }
-      }
-    }
-  }, EVERY_LESSON_TIMEOUT_MS);
 
   it("keeps synonyms glossed alike apart: Classical Chinese 汝 and 爾 are both \"you\"", () => {
     const course = loadCourse("lzh");
@@ -285,90 +98,6 @@ describe("the card gallery (debug mode)", () => {
       for (const t of ["match-pairs", "choose-translation", "translate-tap.l2-l1", "translate-tap.l1-l2", "translate-type.l1-l2", "gap-fill", "speak.tier-0"]) expect(made.has(t as never), `${id} ${t}`).toBe(true);
       if (id === "yue") for (const t of ["char-read", "speak", "listen-speak"]) expect(made.has(t as never), `yue ${t}`).toBe(true);
     }
-  });
-});
-
-describe("writing in a word's pronunciation, in its sentence (ADR 0054, 0095)", () => {
-  const cardOf = (id: string, orthography: string | undefined, template: TemplateId): Exercise | undefined =>
-    cardGallery(loadCourse(id, orthography), 3).find((c) => c.template === template)?.exercise;
-
-  it("vowel marks: a sentence without marks, one word to choose with its marks among wrong ones (fa, apc-Arab, hbo)", () => {
-    for (const [id, orthography] of [["fa", undefined], ["apc", "apc-Arab/standard"], ["hbo", undefined]] as const) {
-      const course = loadCourse(id, orthography);
-      const ex = cardOf(id, orthography, "vocalize");
-      if (ex?.template !== "vocalize") throw new Error(`${id}: no vocalize card`);
-      const profile = course.profiles.get(course.orthography);
-      const marks = profile?.marks;
-      if (marks === undefined) throw new Error(`${id}: no marks`);
-      // The sentence is the prompt, without marks; the word asked about is one of its tokens.
-      expect(ex.prompt.tokens.every((t) => withoutMarks(marks, t.surface) === t.surface.normalize("NFC"))).toBe(true);
-      expect(ex.prompt.tokens[ex.word]?.surface).toBe(withoutMarks(marks, surfaceOf(ex.vocalized)));
-      expect(TEMPLATES.vocalize.facet).toBe("read-script");
-      expect(TEMPLATES.vocalize.modality.input).toBe("choice");
-      // Three or four options: the vocalized word, and others with its letters that are wrong.
-      const options = ex.options.map(surfaceOf);
-      expect(options.length).toBeGreaterThanOrEqual(3);
-      expect(new Set(options).size).toBe(options.length);
-      expect(options[ex.answer]).toBe(surfaceOf(ex.vocalized));
-      for (const [i, o] of options.entries()) {
-        expect(withoutMarks(marks, o)).toBe(withoutMarks(marks, surfaceOf(ex.vocalized)));
-        if (i !== ex.answer) expect(gradeVowels(marks, surfaceOf(ex.vocalized), o).verdict, `${id}: ${o} is no wrong option`).toBe("WRONG");
-      }
-      const grader = createGrader(course);
-      expect(gradeExercise(ex, { tag: "choice", index: ex.answer }, grader).verdict).toBe("CORRECT");
-      const wrongPick = gradeExercise(ex, { tag: "choice", index: (ex.answer + 1) % options.length }, grader);
-      expect([wrongPick.verdict, wrongPick.solution]).toEqual(["WRONG", ex.vocalized]);
-      // Credit goes to the word asked about; the rest of the sentence is given.
-      const credit = creditOf(ex, gradeExercise(ex, { tag: "choice", index: ex.answer }, grader), course.profiles);
-      expect(credit.filter((c) => c.status === "right").length).toBeGreaterThan(0);
-      expect(credit.filter((c) => c.status === "given").length).toBe(new Set(ex.kcs).size - credit.filter((c) => c.status === "right").length);
-      // The player starts with nothing chosen.
-      const [presenting] = start("lesson", [ex]);
-      const [answering] = step(presenting, { tag: "ready" });
-      expect(answering.tag === "answering" ? answering.draft : undefined).toEqual({ tag: "choice", index: null });
-    }
-  });
-
-  it("vowels written out: Lebanese in Arabizi is a vocalization too, and only the word's own spelling", () => {
-    const course = loadCourse("apc", "apc-Arab/standard");
-    const ex = cardOf("apc", "apc-Arab/standard", "vocalize");
-    if (ex?.template !== "vocalize" || ex.spelled === undefined) throw new Error("apc: no vocalize card with an Arabizi spelling");
-    expect(ex.spelled.orthography).toBe("apc-Latn/arabizi");
-    const grader = createGrader(course);
-    const spelled = surfaceOf(ex.spelled);
-    expect(gradeExercise(ex, { tag: "text", text: spelled }, grader)).toMatchObject({ verdict: "CORRECT", solution: ex.spelled });
-    expect(gradeExercise(ex, { tag: "text", text: spelled.toLocaleUpperCase(ex.spelled.lang) }, grader).verdict).toBe("CORRECT");
-    // A slip in Arabizi may be a vowel: wrong, never a typo.
-    const slip = spelled.replace(/[aeiou]/u, (v) => (v === "a" ? "i" : "a"));
-    expect(gradeExercise(ex, { tag: "text", text: slip }, grader).verdict).toBe("WRONG");
-    // fa names no orthography that spells its vowels.
-    const fa = cardOf("fa", undefined, "vocalize");
-    expect(fa?.template === "vocalize" ? fa.spelled : "none").toBeUndefined();
-  });
-
-  it("a reading: the sentence without ruby, the marked word's Jyutping to type (yue)", () => {
-    const course = loadCourse("yue");
-    const ex = cardOf("yue", undefined, "transcribe");
-    if (ex?.template !== "transcribe") throw new Error("yue: no transcribe card");
-    expect(ex.prompt.tokens.every((t) => t.ruby === undefined && t.readings === undefined)).toBe(true);
-    expect(ex.prompt.tokens[ex.word]?.kind).toBe("word");
-    expect(ex.reading.lang).toBe("yue-Latn-HK-jyutping");
-    expect(ex.orthography).toBe("yue-Latn/jyutping");
-    const grader = createGrader(course);
-    const reading = surfaceOf(ex.reading);
-    expect(gradeExercise(ex, { tag: "text", text: reading.replace(/ /gu, "") }, grader).verdict).toBe("CORRECT");
-    const tone = gradeExercise(ex, { tag: "text", text: reading.replace(/([1-6])$/u, (d) => String((Number(d) % 6) + 1)) }, grader);
-    expect([tone.verdict, tone.notes]).toEqual(["WRONG", ["reading-tone"]]);
-  });
-
-  it("alphabets write their vowels: no such card for uz, and accents that are spelling (es, grc) are not asked for", () => {
-    expect(cardOf("uz", "uz-Latn/standard", "vocalize")).toBeUndefined();
-    expect(cardOf("es", undefined, "vocalize")).toBeUndefined();
-    expect(cardOf("grc", undefined, "vocalize")).toBeUndefined();
-    expect(cardOf("hbo", undefined, "vocalize")?.template).toBe("vocalize");
-    expect(cardOf("uz", "uz-Latn/standard", "transcribe")).toBeUndefined();
-    expect(cardOf("fa", undefined, "transcribe")).toBeUndefined();
-    expect(cardOf("yue", undefined, "vocalize")).toBeUndefined();
   });
 });
 
@@ -454,10 +183,16 @@ const answer = (ex: Exercise, response: Response): PlayerEvent[] => {
   }
 };
 
+/**
+ * Persian's first four lessons as plan() plans them for a learner who takes them in order: the player
+ * plays the third, and the end of a session goes over cards of all four.
+ */
+const faWalk = walkPath(loadCourse("fa"), { lessons: 4 });
+
 describe("player", () => {
   const course = loadCourse("fa");
   const node = lessonNodes(course)[2]?.node.id as string;
-  const lesson = buildLesson(course, node, { seed: 3 });
+  const lesson = lessonAt(faWalk, node);
 
   it("plays a lesson of right answers to the end", () => {
     const [s0, fx0] = start(node, lesson);
@@ -468,7 +203,9 @@ describe("player", () => {
     const end = shell.get();
     expect(end.tag).toBe("finished");
     if (end.tag !== "finished") return;
-    expect(end.summary).toEqual({ completed: true, exercises: lesson.length, correctFirstTry: lesson.length, retries: 0, skipped: 0 });
+    // A self-rating is no verdict (ADR 0099): the score leaves a self-rated speaking card out.
+    const graded = lesson.filter((e) => TEMPLATES[e.template].selfRated !== true).length;
+    expect(end.summary).toEqual({ completed: true, exercises: graded, correctFirstTry: graded, retries: 0, skipped: 0 });
     const types = [...fx0, ...shell.effects].flatMap((f) => (f.tag === "emit" ? [f.event.type] : []));
     expect(types[0]).toBe("session_started");
     expect(types.filter((t) => t === "answer_submitted")).toHaveLength(lesson.length);
@@ -606,7 +343,7 @@ describe("player", () => {
   });
 
   describe("IME composition (§6.7, ADR 0118)", () => {
-    const typed = lesson.find((e) => e.template === "translate-type.l1-l2") ?? buildLesson(course, node, { seed: 3 }).find((e) => TEMPLATES[e.template].modality.input === "text");
+    const typed = lesson.find((e) => e.template === "translate-type.l1-l2") ?? lesson.find((e) => TEMPLATES[e.template].modality.input === "text");
     const ex = typed as Exercise;
     const settled = ex.template === "complete-translation" ? surfaceOf(ex.blank) : ex.template === "translate-type.l1-l2" ? surfaceOf(ex.canonical) : "";
     /** Typing under an IME: composition begins and the field shows the text being composed. */
@@ -733,7 +470,7 @@ describe("player", () => {
 describe("an answer revised while the session runs (P14, ADR 0113)", () => {
   const course = loadCourse("fa");
   const node = lessonNodes(course)[2]?.node.id as string;
-  const lesson = buildLesson(course, node, { seed: 3 });
+  const lesson = lessonAt(faWalk, node);
   const choices = lesson.filter((e) => e.template !== "speak.tier-0" && wrongAnswer(e)?.tag === "choice");
   const [first, second] = choices;
   if (first === undefined || second === undefined) throw new Error("the lesson needs two choice cards");
@@ -846,9 +583,9 @@ describe("an answer revised while the session runs (P14, ADR 0113)", () => {
 describe("the cards the end of a session goes over (P9)", () => {
   const course = loadCourse("fa");
   const node = lessonNodes(course)[2]?.node.id as string;
-  const lesson = buildLesson(course, node, { seed: 3 });
+  const lesson = lessonAt(faWalk, node);
   // Cards from the course's first lessons, each once: a session of any of them.
-  const cards = [...new Map(lessonNodes(course).slice(0, 4).flatMap((n) => buildLesson(course, n.node.id, { seed: 3 })).map((e) => [e.id, e] as const)).values()];
+  const cards = [...new Map(lessonNodes(course).slice(0, 4).flatMap((n) => lessonAt(faWalk, n.node.id)).map((e) => [e.id, e] as const)).values()];
   const choices = cards.filter((e) => e.template !== "speak.tier-0" && wrongAnswer(e)?.tag === "choice");
   const [missed, skipped, claimed, right] = choices;
   const typed = cards.find((e) => e.template === "translate-type.l1-l2");
@@ -890,7 +627,7 @@ describe("the cards the end of a session goes over (P9)", () => {
 
   it("leave out what was never checked: a self-rating, a card put off", () => {
     const speaking = lesson.find((e) => e.template === "speak.tier-0");
-    const listening = buildLesson(course, node, { seed: 3 }).find((e) => LISTENING.has(e.template));
+    const listening = lesson.find((e) => LISTENING.has(e.template));
     const cards = [speaking, listening].filter((e): e is Exercise => e !== undefined);
     if (cards.length === 0) return;
     const [s0] = start(node, cards);
@@ -1076,24 +813,6 @@ describe("Toki Pona in sitelen pona (ADR 0086)", () => {
     expect(right("ale li pona.", "ali li pona")).toBe(true);
     // "I'm eating" decides one person: mi mute is we.
     expect(right("mi moku.", "mi mute li moku")).toBe(false);
-  });
-
-  it("asks a logograph's word among words in Latin letters, and never splits a cartouche", () => {
-    const course = loadCourse("tok", SITELEN_PONA);
-    const reads = lessonNodes(course).flatMap(({ node }) => buildLesson(course, node.id, { seed: 3 })).filter((ex) => ex.template === "char-read");
-    expect(reads.length).toBeGreaterThan(0);
-    for (const ex of reads) {
-      if (ex.template !== "char-read") continue;
-      expect(ex.options.every((o) => o.orthography === "tok-Latn/standard")).toBe(true);
-      // In its sentence (ADR 0098): the word asked about is one whole token, a cartouche included.
-      expect(ex.word === undefined ? undefined : ex.prompt.tokens[ex.word]?.kind).toBe("word");
-      expect(ex.prompt.tokens.every((t) => t.ruby === undefined)).toBe(true);
-    }
-    for (const s of allSentences(course)) {
-      for (const t of s.forms[SITELEN_PONA]?.text.tokens ?? []) {
-        if (t.kind === "word" && t.surface.startsWith("\u{F1990}")) expect(t.surface.endsWith("\u{F1991}")).toBe(true);
-      }
-    }
   });
 });
 

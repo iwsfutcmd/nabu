@@ -10,7 +10,6 @@ import { describe, expect, it } from "vitest";
 import { placementTest } from "../src/learner/placement.ts";
 import {
   assembleCourse,
-  buildLesson,
   createGrader,
   doneOf,
   firstTriesOf,
@@ -33,6 +32,7 @@ import {
   type StartOptions,
 } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
+import { lessonAt, walkPath } from "./planned.ts";
 
 const ROOT = resolve(import.meta.dirname, "../../..");
 const BUNDLES = join(ROOT, "apps/web/public/bundles");
@@ -138,7 +138,8 @@ const playLive = (course: CourseView, lesson: string, exercises: readonly Exerci
 describe("resuming a session (S3)", () => {
   const course = loadCourse("fa");
   const node = lessonNodes(course)[2]?.node.id as string;
-  const lesson = buildLesson(course, node, { seed: 3 });
+  // The third lesson, as plan() plans it for a learner who took the first two (test/planned.ts).
+  const lesson = lessonAt(walkPath(course, { lessons: 3 }), node);
 
   it("a lesson picked up after any exercise goes on as the live one did: retries, skips and all", () => {
     // Every third exercise wrong (where a choice can be), the fifth skipped.

@@ -3,8 +3,7 @@ import type { AnswerReported, AnswerSubmitted, EvalGate, LearnerEvent, OutcomeRe
 import { describe, expect, it } from "vitest";
 import { acceptForJudge, accepts, autoTokens, checkTurn, excerpt, explanationOf, gateOf, gateOpen, judgeable, knownForms, provisionalOutcome, textBase } from "../src/ai/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { emptyLearnerState, replay } from "../src/learner/index.ts";
-import { buildLesson } from "../src/lesson/index.ts";
+import { emptyLearnerState, plan, replay } from "../src/learner/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse } from "./learner-fixtures.ts";
 
@@ -105,7 +104,7 @@ describe("roleplay turn checks", () => {
 describe("the judge's rules", () => {
   const fa = loadCourse("fa");
   const events = eventFactory(fa, "0".repeat(64));
-  const [exercise] = buildLesson(fa, "fa.greetings", { seed: 3 }).filter((e) => e.kcs.length > 0);
+  const [exercise] = plan(fa, emptyLearnerState(), { mode: "lesson", node: "fa.greetings" }, { now: "2026-01-01T09:00:00.000Z", seed: 3 }).exercises.filter((e) => e.kcs.length > 0);
   if (exercise === undefined) throw new Error("no exercise");
   const typed = (e: LearnerEvent, raw = "سلام"): AnswerSubmitted => {
     if (e.type !== "answer_submitted") throw new Error(e.type);
