@@ -32,3 +32,6 @@ speech:
   recognizer:
     fineTuned: { model: alvanlii/whisper-small-cantonese@b03a4e5d482f06858ce10ebbabebabec9f447a0d, token: zh }
   phones: { reading: jyutping }
+# The Jyutping orthography is written from these characters' pinned readings (`nabu jyutping`, ADR 0126); the
+# compiler checks each sentence's agrees.
+transliterate: { to: yue-Latn/jyutping, via: jyutping }

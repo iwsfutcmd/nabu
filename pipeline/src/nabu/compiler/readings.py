@@ -48,23 +48,34 @@ def _most_common(readings: list[str]) -> str:
 
 
 def _shares(token: TokenModel, scheme: str) -> Iterator[tuple[str, str, str]]:
-    """(morph KC, morph surface, its share of the token's reading): the syllables its ruby pairs
-    with the morph's characters. A word without ruby in the scheme (a loanword in Latin letters)
-    is not split."""
+    """(morph KC, morph surface, its share of the token's reading): the ruby text over the
+    morph's part of the word (syllables over characters, or characters over Jyutping syllables,
+    ADR 0126). A word without ruby in the scheme (a loanword in Latin letters), or whose ruby
+    crosses a morph's edge, is not split."""
     surface = token.surface
     ruby = (token.ruby or {}).get(scheme) or []
     morphs = token.morphs or []
-    if not morphs or [s.base for s in ruby] != tx.graphemes(surface):
+    if not morphs or "".join(s.base for s in ruby) != surface:
         return
-    if [g for m in morphs for g in tx.graphemes(m.surface)] != tx.graphemes(surface):
+    if "".join(m.surface for m in morphs) != surface:
         return
+    # Spaced syllables stay spaced; characters are not.
+    joiner = " " if " " in ((token.readings or {}).get(scheme) or "") else ""
+    spans: list[tuple[int, int, str]] = []
     at = 0
+    for seg in ruby:
+        spans.append((at, at + len(seg.base), seg.text))
+        at += len(seg.base)
+    start = 0
     for m in morphs:
-        n = len(tx.graphemes(m.surface))
-        share = " ".join(s.text for s in ruby[at : at + n])
-        at += n
+        end = start + len(m.surface)
+        inside = [(a, b, text) for a, b, text in spans if a >= start and b <= end]
+        if sum(b - a for a, b, _ in inside) != end - start:
+            return
+        share = joiner.join(text for _, _, text in inside)
+        start = end
         if share and m.kc:
-            yield m.kc, m.surface, share
+            yield m.kc, m.surface.strip(), share
 
 
 @dataclass
@@ -272,7 +283,7 @@ def pin_kc_readings(
                                 or not tx.ruby_bearing(t.surface, script)
                             ):
                                 continue
-                            segments = tx.ruby_segments(t.surface, reading)
+                            segments = tx.ruby_segments(t.surface, reading, script)
                             if segments is not None:
                                 pin.ruby[scheme] = [RubySegment.model_validate(s) for s in segments]
     for kc_id, by_scheme in own.items():

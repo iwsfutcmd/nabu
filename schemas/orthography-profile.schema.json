@@ -166,6 +166,9 @@
           "$ref": "#/$defs/DetachStep"
         },
         {
+          "$ref": "#/$defs/SplitStep"
+        },
+        {
           "$ref": "#/$defs/LogographsStep"
         }
       ]
@@ -364,6 +367,31 @@
               "type": "integer",
               "minimum": 1,
               "default": 2
+            }
+          }
+        }
+      }
+    },
+    "SplitStep": {
+      "title": "SplitStep",
+      "description": "Puts a space after any of the `after` characters when a letter follows it, so joined and spaced spellings compare alike: Jyutping's tone numbers end its syllables, so hok6saang1 = hok6 saang1 (ADR 0126).",
+      "type": "object",
+      "required": [
+        "split"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "split": {
+          "type": "object",
+          "required": [
+            "after"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "after": {
+              "description": "The characters that end a unit, each one code point (Jyutping: 123456).",
+              "type": "string",
+              "minLength": 1
             }
           }
         }

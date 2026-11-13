@@ -4,7 +4,7 @@
 # usage and accept sets. Page-referenced notes are in the reference library (nabu/notes/yue).
 id: yue
 target: yue-Hant-HK
-orthographies: [yue-Hant-HK/standard]
+orthographies: [yue-Hant-HK/standard, yue-Latn/jyutping]
 support: [en-Latn/standard]
 # What the app calls the course and its orthographies, and what the course list says of them, by
 # language (ADR 0109).
@@ -14,6 +14,10 @@ names:
     blurb: "Cantonese as Hong Kong speaks it, with Jyutping to help you read."
     orthographies:
       yue-Hant-HK/standard: Traditional characters
+      yue-Latn/jyutping: Jyutping
+    hints:
+      yue-Hant-HK/standard: "Chinese characters, with their Jyutping above them."
+      yue-Latn/jyutping: "Jyutping, the romanization, with the characters above it."
   # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
   # await review as those do.
   ar:
@@ -40,6 +44,7 @@ names:
     course: "粵語"
     orthographies:
       yue-Hant-HK/standard: "繁體字"
+      yue-Latn/jyutping: "粵拼"
     provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@4c3f4acef278', status: draft}

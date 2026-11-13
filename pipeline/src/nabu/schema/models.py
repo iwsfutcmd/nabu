@@ -401,6 +401,12 @@ class BundleClip(BaseModel):
         ),
     ] = None
     timings: list[TokenTiming] | None = None
+    orthography: Annotated[
+        str | None,
+        Field(
+            description="The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126)."
+        ),
+    ] = None
 
 
 type LangTag = Annotated[
@@ -1749,6 +1755,32 @@ class DetachStep(BaseModel):
         frozen=True,
     )
     detach: Detach
+
+
+class Split(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    after: Annotated[
+        str,
+        Field(
+            description="The characters that end a unit, each one code point (Jyutping: 123456).",
+            min_length=1,
+        ),
+    ]
+
+
+class SplitStep(BaseModel):
+    """
+    Puts a space after any of the `after` characters when a letter follows it, so joined and spaced spellings compare alike: Jyutping's tone numbers end its syllables, so hok6saang1 = hok6 saang1 (ADR 0095).
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    split: Split
 
 
 class Cartouche(BaseModel):
@@ -3670,6 +3702,7 @@ type NormalizeStep = Annotated[
     | PunctuationStep
     | WhitespaceStep
     | DetachStep
+    | SplitStep
     | LogographsStep,
     Field(title="NormalizeStep"),
 ]

@@ -334,7 +334,11 @@
         "synthetic": { "type": "boolean" },
         "license": { "type": "string" },
         "credit": { "description": "Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`.", "$ref": "#/$defs/CreditId" },
-        "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } }
+        "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } },
+        "orthography": {
+          "description": "The orthography whose tokens `timings` index: the one the voice read. Another orthography of the course gets them moved to its own tokens, word for word (ADR 0126).",
+          "type": "string"
+        }
       }
     }
   }

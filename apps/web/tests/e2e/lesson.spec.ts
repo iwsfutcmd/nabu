@@ -21,6 +21,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
   keyboard: [
     ["fa", "fa-Arab/standard", "fa.book"],
     ["yue", "yue-Hant-HK/standard", "yue.who"],
+    ["yue", "yue-Latn/jyutping", "yue.names"],
     ["uz", "uz-Latn/standard", "uz.i-am"],
     ["apc", "apc-Arab/standard", "apc.cafe"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.well-said"],
@@ -31,6 +32,7 @@ const RUNS: Readonly<Record<Mode, readonly (readonly [string, string, string])[]
   touch: [
     ["fa", "fa-Arab/standard", "fa.i-am"],
     ["yue", "yue-Hant-HK/standard", "yue.yum-cha"],
+    ["yue", "yue-Latn/jyutping", "yue.copula"],
     ["uz", "uz-Cyrl/standard", "uz.my"],
     ["apc", "apc-Latn/arabizi", "apc.how-are-you"],
     ["lzh", "lzh-Hant/standard", "lzh.u01.it-is"],
