@@ -1,9 +1,16 @@
 /**
  * Optional accounts and sync (gameplan §14.2). Without an account nothing
- * leaves the device. With one, the outbox is uploaded in batches (the server
- * ignores ids it already has, so retries are safe), events from the user's
- * other devices are pulled by cursor, and the device checks that the server's
- * projection of each course matches its own replay.
+ * leaves the device. With one, events from the user's other devices are pulled
+ * by cursor and the outbox is uploaded in batches (the server ignores ids it
+ * already has, so retries are safe). Each upload says where the pulls are, and
+ * the server's answer moves them past the device's own events when nothing else
+ * came in between, so a pull never brings back what the device just sent.
+ *
+ * The device checks that the server's projections (each course's state, and the
+ * game state) match its own replays, but not after every answer: both sides
+ * replay the whole log for it. It checks after signing in, then once a local day
+ * when something was uploaded or pulled since the last check (ADR 0112). The last
+ * check's verdict is kept on the device.
  *
  * Signing up uploads the existing local history: it is already in the outbox.
  *
@@ -16,13 +23,11 @@
  * sent again only when the learner asks, signs in again, or first runs an updated app (D10). The
  * check against the server's projections leaves them out, since the server never took them.
  */
-import { replay } from "@nabu/core/learner";
 import type { AnswerSubmitted, LearnerEvent } from "@nabu/schema";
 import type { GameConfig } from "@nabu/core/game";
 import { isSyncedMessage, OUTBOX_SYNC } from "./caches.ts";
+import { checkProjections, errorFrom, type CheckAnswer, type CheckOrder } from "./check.ts";
 import { localDate } from "./clock.ts";
-import { gameOf } from "./game.tsx";
-import { difference } from "./compare.ts";
 import { isHttpError, request } from "./http.ts";
 import { retryAfterUpdate, uploadOutbox, type PullCursor } from "./outbox.ts";
 import type { EventStore } from "./store.ts";
@@ -65,7 +70,10 @@ export interface SyncState {
   readonly pending: number;
   /** Events the server rejected, set aside on this device (S13 in the 2026-11 review). */
   readonly held: number;
-  /** After the last full sync, whether the server's projections matched the device's (undefined: not checked yet). */
+  /**
+   * Whether the server's projections matched the device's at the last check (after signing in, then
+   * daily: ADR 0112); undefined: not checked yet for this account.
+   */
   readonly verified: boolean | undefined;
   /** Bumped when events from another device arrive, so open views can replay. */
   readonly pulled: number;
@@ -101,7 +109,18 @@ export interface Sync {
 const ACCOUNT = "account";
 /** The servers whose age gate turned the person away (ADR 0069). */
 const AGE_REFUSED = "age-refused";
+/** Where the pulls are: the device holds every event of the account up to this cursor. */
 const CURSOR = "cursor";
+/** The last check of the server's projections (ADR 0112): for which account, on which local date, and its verdict. */
+const CHECKED = "checked";
+/** The courses with events uploaded or pulled since the last check: the next check compares them. */
+const UNCHECKED = "unchecked";
+
+interface Checked {
+  readonly user: string;
+  readonly date: string;
+  readonly verified: boolean;
+}
 
 const errorOf = (e: unknown): SyncError => {
   if (isHttpError(e)) {
@@ -147,6 +166,21 @@ const flushJudgeQueue = async (store: EventStore, base: string, token: string): 
   return revised;
 };
 
+/** Runs the check in a worker of its own (check-worker.ts), which ends with its answer. */
+const inWorker = (order: CheckOrder): Promise<CheckAnswer> =>
+  new Promise((resolve, reject) => {
+    const worker = new Worker(new URL("./check-worker.ts", import.meta.url), { type: "module" });
+    worker.onmessage = (e: MessageEvent<CheckAnswer>) => {
+      worker.terminate();
+      resolve(e.data);
+    };
+    worker.onerror = (e) => {
+      worker.terminate();
+      reject(new Error(e.message));
+    };
+    worker.postMessage(order);
+  });
+
 /** Asks the browser to wake the service worker to upload the outbox when the network is back. */
 const requestBackgroundSync = async (): Promise<void> => {
   try {
@@ -168,6 +202,7 @@ const VISIBLE_QUIET_MS = 30_000;
 export const createSync = async (store: EventStore, server: string | undefined, options: SyncOptions = {}): Promise<Sync> => {
   const saved = (await store.getMeta(ACCOUNT)) as Account | undefined;
   const refused = ((await store.getMeta(AGE_REFUSED)) ?? []) as string[];
+  const checked = (await store.getMeta(CHECKED)) as Checked | undefined;
   // An updated app sends once more what the server rejected before (D10).
   await retryAfterUpdate(store, typeof __NABU_BUILD__ === "string" ? __NABU_BUILD__ : "unknown");
   const heldCount = async (): Promise<number> => Object.keys(await store.held()).length;
@@ -178,7 +213,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     error: undefined,
     pending: await store.pendingCount(),
     held: await heldCount(),
-    verified: undefined,
+    verified: saved !== undefined && checked?.user === saved.user.id ? checked.verified : undefined,
     pulled: 0,
     revised: 0,
     ageRefused: refused.includes(saved?.server ?? server ?? ""),
@@ -192,6 +227,20 @@ export const createSync = async (store: EventStore, server: string | undefined, 
   let running: Promise<void> | undefined;
   let again = false;
   let lastPass = 0;
+
+  /**
+   * The check of the server's projections (check.ts): in a worker where the browser has one and
+   * the log is in IndexedDB, so its replays never hold up the page; else here.
+   */
+  const check = async (account: Account, courses: ReadonlySet<string>): Promise<boolean> => {
+    const order: CheckOrder = { server: account.server, token: account.token, courses: [...courses], gameConfig: await options.gameConfig?.(), now: new Date().toISOString() };
+    if (store.persistent && typeof Worker === "function") {
+      const answer = await inWorker(order).catch(() => undefined);
+      if (answer !== undefined && "failed" in answer) throw errorFrom(answer.failed);
+      if (answer !== undefined && "verified" in answer) return answer.verified;
+    }
+    return checkProjections(store, order);
+  };
 
   const pass = async (account: Account): Promise<void> => {
     const { server: base, token } = account;
@@ -219,41 +268,26 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     const revisedCourses = await flushJudgeQueue(store, base, token);
     for (const c of revisedCourses) touched.add(c);
     if (revisedCourses.length > 0) set({ revised: state.revised + 1 });
-    // The server is authoritative; the device checks that it agrees (§14.2), on what the server
-    // took: the events set aside are not in its log.
-    let verified = true;
-    const held = await store.held();
-    const sent = (e: LearnerEvent): boolean => held[e.id] === undefined;
-    for (const course of touched) {
-      const server = await request<{ state: unknown }>(base, `/v1/state?course=${encodeURIComponent(course)}`, { token });
-      const local = replay((await store.eventsOf(course)).filter(sent));
-      const differs = difference(server.state, JSON.parse(JSON.stringify(local)));
-      if (differs !== undefined) {
-        verified = false;
-        console.warn(`nabu sync: the server's projection of ${course} differs from this device's at ${differs}`);
-      }
-    }
-    // And the game state (§12): streak dates, XP, quests, by the device's clock (Phase 10).
-    if (touched.size > 0 && options.gameConfig !== undefined) {
-      const now = new Date();
-      const local = await gameOf(store, await options.gameConfig(), now, sent);
-      const remote = await request<{ game: unknown }>(base, `/v1/game?today=${localDate(now)}&now=${encodeURIComponent(now.toISOString())}`, { token }).catch((e: unknown) => {
-        if (isHttpError(e) && e.status === 404) return undefined; // a server without it
-        throw e;
-      });
-      const differs = remote === undefined ? undefined : difference(remote.game, JSON.parse(JSON.stringify(local)));
-      if (differs !== undefined) {
-        verified = false;
-        console.warn(`nabu sync: the server's game state differs from this device's at ${differs}`);
-      }
+    // The check (ADR 0112): after signing in, then on the first pass of a local date with anything
+    // uploaded or pulled since the last one; the courses wait on the device until it runs.
+    const unchecked = new Set([...(((await store.getMeta(UNCHECKED)) ?? []) as string[]), ...touched]);
+    const last = (await store.getMeta(CHECKED)) as Checked | undefined;
+    const today = localDate(new Date());
+    const due = last?.user !== account.user.id || (last.date !== today && unchecked.size > 0);
+    if (touched.size > 0) await store.setMeta(UNCHECKED, [...unchecked]);
+    let verified: boolean | undefined;
+    if (due) {
+      verified = await check(account, unchecked);
+      await store.setMeta(CHECKED, { user: account.user.id, date: today, verified } satisfies Checked);
+      await store.deleteMeta(UNCHECKED);
     }
     lastPass = Date.now();
     set({
       phase: "idle",
       error: undefined,
       pending: await store.pendingCount(),
-      held: Object.keys(held).length,
-      ...(touched.size > 0 ? { verified } : {}),
+      held: await heldCount(),
+      ...(verified === undefined ? {} : { verified }),
       ...(fresh > 0 ? { pulled: state.pulled + 1 } : {}),
     });
   };
@@ -294,10 +328,13 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       const result = await request<{ user: Account["user"]; token: string }>(base, path, { body: age === undefined ? { email, password } : { email, password, age } });
       const account: Account = { server: base, token: result.token, user: result.user };
       await store.setMeta(ACCOUNT, account);
+      // The cursor and the last check were the last account's: this one starts from the beginning, and is checked at once.
       await store.deleteMeta(CURSOR);
+      await store.deleteMeta(CHECKED);
+      await store.deleteMeta(UNCHECKED);
       // Another account, or another server, may take what the last one rejected: send it again.
       await store.releaseHeld();
-      set({ account, error: undefined, held: 0 });
+      set({ account, error: undefined, held: 0, verified: undefined });
       await syncNow();
       return undefined;
     } catch (e) {
@@ -311,10 +348,12 @@ export const createSync = async (store: EventStore, server: string | undefined, 
     }
   };
 
-  /** This device no longer has an account: the session and the sync cursor go; its own log stays. */
+  /** This device no longer has an account: the session, the sync cursor and the last check go; its own log stays. */
   const forget = async (): Promise<void> => {
     await store.deleteMeta(ACCOUNT);
     await store.deleteMeta(CURSOR);
+    await store.deleteMeta(CHECKED);
+    await store.deleteMeta(UNCHECKED);
     set({ account: undefined, phase: "idle", error: undefined, verified: undefined });
   };
 
