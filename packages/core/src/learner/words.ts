@@ -15,7 +15,7 @@ import type { CourseView } from "../lesson/course.ts";
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { TEMPLATES } from "../lesson/templates.ts";
 import { surfaceOf } from "../text/tagged-text.ts";
-import { cardKey, parseCardKey, retrievability, type LearnerState } from "./state.ts";
+import { cardKey, DESIRED_RETENTION, parseCardKey, retrievability, type LearnerState } from "./state.ts";
 
 /** A skill a word is known by (ADR 0100): recognizing it, producing it, hearing it. */
 export type Skill = "recognize" | "produce" | "listen";
@@ -36,7 +36,10 @@ export interface LearnedWord {
   readonly gloss: TaggedText | undefined;
   /** How likely it is remembered now: the mean recall probability of its practised facets (0–1). */
   readonly strength: number;
-  /** Whether a practised facet is due for review. */
+  /**
+   * Whether it is due for review: a practised facet's recall has dropped below the target (the
+   * planner's `dueFacets`, so the word list and the course page agree, W8).
+   */
   readonly due: boolean;
   /** Reviews of all its facets together. */
   readonly reviews: number;
@@ -89,11 +92,13 @@ export const skillsAsked = (course: CourseView): ((kc: string) => readonly Skill
 interface Practised {
   readonly facet: Facet;
   readonly reps: number;
-  readonly due: string;
 }
 
-/** Every practised word of the course, in course order (unit, then the unit's own order). */
-export const learnedWords = (course: CourseView, state: LearnerState, now: string): readonly LearnedWord[] => {
+/**
+ * Every practised word of the course, in course order (unit, then the unit's own order); due where
+ * a facet's recall at `now` is below `desired` (the learner's target retention).
+ */
+export const learnedWords = (course: CourseView, state: LearnerState, now: string, desired: number = DESIRED_RETENTION): readonly LearnedWord[] => {
   const orthography = course.orthography;
   const asked = skillsAsked(course);
   // One pass over the cards, by KC: the language's facets, and the script facets of this orthography.
@@ -101,7 +106,7 @@ export const learnedWords = (course: CourseView, state: LearnerState, now: strin
   for (const [key, card] of Object.entries(state.cards)) {
     const ref = parseCardKey(key);
     if (card.reps === 0 || (ref.orthography !== undefined && ref.orthography !== orthography)) continue;
-    practised.set(ref.kc, [...(practised.get(ref.kc) ?? []), { facet: ref.facet, reps: card.reps, due: card.due }]);
+    practised.set(ref.kc, [...(practised.get(ref.kc) ?? []), { facet: ref.facet, reps: card.reps }]);
   }
   const seen = new Set<string>();
   const out: LearnedWord[] = [];
@@ -111,7 +116,8 @@ export const learnedWords = (course: CourseView, state: LearnerState, now: strin
       const form = kc.forms?.[orthography]?.[0];
       if (seen.has(kc.id) || !WORD_KINDS.has(kc.kind) || facets === undefined || form === undefined) continue;
       seen.add(kc.id);
-      const strength = facets.reduce((sum, f) => sum + retrievability(state, kc.id, f.facet, orthography, now), 0) / facets.length;
+      const recall = facets.map((f) => retrievability(state, kc.id, f.facet, orthography, now));
+      const strength = recall.reduce((sum, r) => sum + r, 0) / recall.length;
       const skills = asked(kc.id).map((skill) => ({ skill, shown: state.shown[cardKey(kc.id, skill, orthography)] !== undefined }));
       out.push({
         kc: kc.id,
@@ -119,7 +125,7 @@ export const learnedWords = (course: CourseView, state: LearnerState, now: strin
         form,
         gloss: kc.gloss?.[course.supportKey],
         strength,
-        due: facets.some((f) => f.due <= now),
+        due: recall.some((r) => r < desired),
         reviews: facets.reduce((sum, f) => sum + f.reps, 0),
         known: skills.length > 0 && skills.every((s) => s.shown),
         skills,
@@ -129,10 +135,10 @@ export const learnedWords = (course: CourseView, state: LearnerState, now: strin
   return out;
 };
 
-/** How many of the words are known and how many still being learned. */
-export const wordCounts = (words: readonly LearnedWord[]): { readonly known: number; readonly learning: number } => {
+/** How many of the words are known, how many still being learned, and how many are due for review. */
+export const wordCounts = (words: readonly LearnedWord[]): { readonly known: number; readonly learning: number; readonly due: number } => {
   const known = words.filter((w) => w.known).length;
-  return { known, learning: words.length - known };
+  return { known, learning: words.length - known, due: words.filter((w) => w.due).length };
 };
 
 export type WordOrder = "course" | "alphabetical" | "weakest";

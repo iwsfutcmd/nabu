@@ -462,9 +462,9 @@
       "message": "Back to the course",
       "description": "Link from an empty practice session back to the course path."
     },
-    "app.practice.due": {
-      "message": ".input {$count :number}\n{{{$count} due}}",
-      "description": "How many word facets are due for review. $count is a number."
+    "app.practice.due-words": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} word due}}\n* {{{$count} words due}}",
+      "description": "On the course page, beside Review: how many words are due for review (a skill's recall has dropped below the learner's target). Select plural forms as your language needs; drop the selection if it needs none."
     },
     "app.practice.empty": {
       "message": "Nothing to practise right now.",

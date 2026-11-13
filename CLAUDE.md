@@ -131,6 +131,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `localDate(now)`; the e2e solver UTC, as its browser). Tune against the simulation, which checks typing too.
 - The simulator logs credits as the player does (asked words right or wrong, the rest given): keep
   test/learner-fixtures `creditsOf` in step with `creditOf`.
+- Due means a facet's recall is below the target (`dueFacets`, `LearnedWord.due`): never a card's FSRS due date. The
+  course page counts due words. A review session has a card per word needing one (5–15) and plans only from the
+  neediest sentences and words plus a few well-known ones: never build candidates from every studied sentence (R3).
 
 ## Phase 5 notes (see docs/adr/0040–0042)
 - Audio is committed source: courses/<id>/audio/{index.yaml,clips/}. `cd pipeline && uv run nabu audio generate

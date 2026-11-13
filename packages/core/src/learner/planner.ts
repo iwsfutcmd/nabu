@@ -118,6 +118,16 @@ const REVIEW_SHARE_STRUGGLING = 0.5;
 const REVIEW_SHORTFALL = 0.1;
 
 /**
+ * A review session (L3): a card for each word that needs one (a due card, or a skill to show), at
+ * least REVIEW_SESSION_MIN and at most REVIEW_SESSION_MAX, so a larger backlog gets a longer
+ * session. It plans from what needs review most, never from every studied sentence (R3): the
+ * sentences that practise the most forgotten words and lacking skills (twice the session's cards),
+ * the words' own cards (three times), and a few the learner knows well to balance it.
+ */
+const REVIEW_SESSION_MIN = 5;
+const REVIEW_SESSION_MAX = 15;
+
+/**
  * Skills to show (ADR 0101): a card is worth NEED_GAIN more for each word it exercises in a skill
  * the course asks of it (ADR 0100) that the word, met on an earlier day, has yet to show.
  */
@@ -192,25 +202,30 @@ const reviewSentences = (
   needs: ReadonlySet<string>,
   desired: number,
   key: (kc: string, facet: Facet) => string,
+  count = REVIEW_SENTENCES,
 ): readonly BundleSentence[] => {
-  const pool = past.filter((s) => s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
-  const cards = (s: BundleSentence): readonly string[] =>
-    s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce"), key(kc, "listen")]).filter((k) => due.has(k) || needs.has(k));
-  const covered = new Set<string>();
   const worth = (k: string): number => (due.has(k) ? desired - (due.get(k) ?? desired) : 0) + (needs.has(k) ? NEED_GAIN : 0);
-  const need = (s: BundleSentence): number => cards(s).reduce((sum, k) => (covered.has(k) ? sum : sum + worth(k)), 0);
+  // Each sentence's cards that need review, worked out once.
+  const pool = past
+    .filter((s) => s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)))
+    .map((s) => ({ s, cards: s.kcs.flatMap((kc) => [key(kc, "recognize"), key(kc, "produce"), key(kc, "listen")]).filter((k) => due.has(k) || needs.has(k)) }))
+    .filter((x) => x.cards.length > 0);
+  const covered = new Set<string>();
+  const need = (cards: readonly string[]): number => cards.reduce((sum, k) => (covered.has(k) ? sum : sum + worth(k)), 0);
   const picked: BundleSentence[] = [];
-  while (picked.length < REVIEW_SENTENCES) {
-    let best: BundleSentence | undefined;
+  const taken = new Set<BundleSentence>();
+  while (picked.length < count) {
+    let best: (typeof pool)[number] | undefined;
     let most = 0;
-    for (const s of pool) {
-      if (picked.includes(s)) continue;
-      const n = need(s);
-      if (n > most + 1e-12) [best, most] = [s, n];
+    for (const x of pool) {
+      if (taken.has(x.s)) continue;
+      const n = need(x.cards);
+      if (n > most + 1e-12) [best, most] = [x, n];
     }
     if (best === undefined) break;
-    picked.push(best);
-    for (const k of cards(best)) covered.add(k);
+    picked.push(best.s);
+    taken.add(best.s);
+    for (const k of best.cards) covered.add(k);
   }
   return picked;
 };
@@ -282,8 +297,11 @@ export const practicableMistakes = (
 
 const candidatesFor = (ctx: MakeContext, sentences: readonly BundleSentence[], kcs: readonly BundleKc[], exclude: ReadonlySet<TemplateId>): Exercise[] => {
   const out: Exercise[] = [];
+  const ids = new Set<string>();
   const add = (ex: Exercise | undefined): void => {
-    if (ex !== undefined && !exclude.has(ex.template) && !out.some((e) => e.id === ex.id)) out.push(ex);
+    if (ex === undefined || exclude.has(ex.template) || ids.has(ex.id)) return;
+    ids.add(ex.id);
+    out.push(ex);
   };
   if (!exclude.has("select-image")) for (const kc of kcs) add(makeSelectImage(ctx, kc));
   for (const kc of kcs) for (const make of KC_LISTENING) add(make(ctx, kc));
@@ -361,12 +379,18 @@ export const plan = (course: CourseView, state: LearnerState, request: SessionRe
   } else if (request.mode === "review") {
     const ctx: MakeContext = { course, rng, introduced: [], focus };
     const studied = allSentences(course).filter((s) => s.forms[course.orthography] !== undefined && s.kcs.length > 0 && s.kcs.every((kc) => seen.has(kc)));
-    const all = candidatesFor(ctx, studied, allKcs(course).filter((k) => seen.has(k.id)), exclude);
-    // Review exercises due facets first (their gain is high); the rest stay as fillers the
-    // calibration term can pick to keep the session near the target success rate.
-    pool = all;
-    // As long as there is something due to review, up to 10.
-    size = options.size ?? Math.max(5, Math.min(10, due.size));
+    // How much each word needs review: how far its due cards have fallen, and the skills it lacks.
+    const worth = new Map<string, number>();
+    for (const [k, r] of due) worth.set(parseCardKey(k).kc, (worth.get(parseCardKey(k).kc) ?? 0) + (desired - r));
+    for (const k of needs) worth.set(parseCardKey(k).kc, (worth.get(parseCardKey(k).kc) ?? 0) + NEED_GAIN);
+    size = options.size ?? Math.max(REVIEW_SESSION_MIN, Math.min(REVIEW_SESSION_MAX, worth.size));
+    const neediest = new Set([...worth].sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1)).slice(0, 3 * size).map(([kc]) => kc));
+    const picked = reviewSentences(course, studied, seen, due, needs, desired, key, 2 * size);
+    const recall = (kc: string): number => retrievability(state, kc, "recognize", orthography, now);
+    const sentences = [...picked, ...wellKnownSentences(studied, picked, seen, recall)];
+    // Due facets have the highest gain; the well-known sentences are what the calibration can pick
+    // to keep the session near the target success rate.
+    pool = candidatesFor(ctx, sentences, allKcs(course).filter((k) => seen.has(k.id) && neediest.has(k.id)), exclude);
   } else {
     pool = mistakeExercises({ course, rng, introduced: [] }, state, exclude, seen);
     size = Math.min(options.size ?? 10, pool.length);

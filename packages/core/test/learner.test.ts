@@ -27,7 +27,7 @@ import {
   type LearnerState,
 } from "../src/learner/index.ts";
 import { DEFAULT_GAME, replayGame } from "../src/game/index.ts";
-import { buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
+import { allKcs, buildLesson, cardGallery, createGrader, facetExclusions, gradeExercise, lessonNodes, LISTENING, runTest, sampleExercise, seededRng, speechSupportOf, start, step, TEMPLATES, type Draft, type Exercise } from "../src/lesson/index.ts";
 import { surfaceOf } from "../src/text/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -334,6 +334,29 @@ describe("planner constraints", () => {
       }
     }
   }, WHOLE_COURSE_TIMEOUT_MS);
+
+  it("sizes a review session to the backlog and plans it from the words that need it most (L3, R3)", () => {
+    const now = "2026-06-01T08:00:00.000Z";
+    const words = allKcs(fa).filter((k) => k.kind === "sense");
+    const cardAt = (daysAgo: number, stability: number): LearnerState["cards"][string] => {
+      const last = new Date(Date.parse(now) - daysAgo * 86_400_000).toISOString();
+      return { due: new Date(Date.parse(last) + stability * 86_400_000).toISOString(), stability, difficulty: 5, elapsed_days: 0, scheduled_days: stability, learning_steps: 0, reps: 3, lapses: 0, state: 2, last_review: last };
+    };
+    // Every word seen and well remembered, then a few, then many, forgotten.
+    const stateWith = (forgotten: number): LearnerState => ({
+      ...emptyLearnerState(),
+      cards: Object.fromEntries(words.map((k, i) => [`${k.id}|recognize`, i < forgotten ? cardAt(30, 2) : cardAt(1, 60)])),
+    });
+    const sizeOf = (forgotten: number): number => plan(fa, stateWith(forgotten), { mode: "review" }, { now, seed: 4 }).exercises.length;
+    expect(sizeOf(2)).toBe(5);
+    expect(sizeOf(9)).toBe(9);
+    expect(sizeOf(60)).toBe(15);
+    // The forgotten words are what it practises.
+    const forgotten = new Set(words.slice(0, 9).map((k) => k.id as string));
+    const review = plan(fa, stateWith(9), { mode: "review" }, { now, seed: 4 });
+    const practised = review.exercises.filter((ex) => ex.template !== "speak.tier-0" && ex.kcs.some((kc) => forgotten.has(kc)));
+    expect(practised.length).toBeGreaterThanOrEqual(Math.ceil(review.exercises.length / 2));
+  });
 
   it("can leave speaking out", () => {
     const node = lessonNodes(fa)[1]?.node.id as string;

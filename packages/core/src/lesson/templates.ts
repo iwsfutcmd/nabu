@@ -172,7 +172,22 @@ const single = (text: TaggedText, token: Token): TaggedText => {
 };
 
 /** Normalized, folded, mark-insensitive comparison key: two options must never collide on it. */
-const keyOf = (course: CourseView, text: TaggedText): string => glossUnits(profileOf(course, text.orthography), surfaceOf(text)).join(" ");
+/** Texts' comparison keys, per course: distractor picking asks for the same texts again and again. */
+const keys = new WeakMap<CourseView, WeakMap<TaggedText, string>>();
+
+const keyOf = (course: CourseView, text: TaggedText): string => {
+  let byText = keys.get(course);
+  if (byText === undefined) {
+    byText = new WeakMap();
+    keys.set(course, byText);
+  }
+  let key = byText.get(text);
+  if (key === undefined) {
+    key = glossUnits(profileOf(course, text.orthography), surfaceOf(text)).join(" ");
+    byText.set(text, key);
+  }
+  return key;
+};
 
 const formOf = (course: CourseView, s: BundleSentence): { readonly text: TaggedText; readonly reverse?: string | undefined } | undefined =>
   s.forms[course.orthography];
@@ -231,9 +246,22 @@ const known = (course: CourseView, item: string): ((other: string) => boolean) =
   return (other) => unitOf(course, other) <= at;
 };
 
+/** The sentences a distractor may come from, by the unit they reach up to (built once per course and unit). */
+const sentencesUpTo = new WeakMap<CourseView, Map<number, readonly BundleSentence[]>>();
+
 const otherSentences = (ctx: MakeContext, s: BundleSentence): readonly BundleSentence[] => {
-  const before = known(ctx.course, s.id);
-  return allSentences(ctx.course).filter((o) => o.id !== s.id && !o.id.startsWith("drill.") && before(o.id) && formOf(ctx.course, o) !== undefined);
+  const at = unitOf(ctx.course, s.id);
+  let byUnit = sentencesUpTo.get(ctx.course);
+  if (byUnit === undefined) {
+    byUnit = new Map();
+    sentencesUpTo.set(ctx.course, byUnit);
+  }
+  let pool = byUnit.get(at);
+  if (pool === undefined) {
+    pool = allSentences(ctx.course).filter((o) => !o.id.startsWith("drill.") && unitOf(ctx.course, o.id) <= at && formOf(ctx.course, o) !== undefined);
+    byUnit.set(at, pool);
+  }
+  return pool.filter((o) => o.id !== s.id);
 };
 
 const otherKcs = (ctx: MakeContext, kc: BundleKc): readonly BundleKc[] => {

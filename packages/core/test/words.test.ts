@@ -1,6 +1,6 @@
 import type { KcCredit, LearnerEvent } from "@nabu/schema";
 import { describe, expect, it } from "vitest";
-import { emptyLearnerState, learnedWords, orderWords, plan, replay, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
+import { dueFacets, emptyLearnerState, learnedWords, orderWords, parseCardKey, plan, replay, skillsAsked, wordCounts, wordMatcher, type LearnerState } from "../src/learner/index.ts";
 import { lessonNodes, type Exercise, type TemplateId } from "../src/lesson/index.ts";
 import { eventFactory, loadCourse, manifestOf } from "./learner-fixtures.ts";
 
@@ -54,6 +54,17 @@ describe("the words a learner has learned", () => {
     expect(then.every((w) => w.due)).toBe(true);
   });
 
+  it("is due when a skill's recall drops below the target, as the planner counts due cards (W8)", () => {
+    const { state } = afterFirstLesson();
+    for (const at of [NOW, "2026-03-04T08:00:00.000Z", "2026-03-20T08:00:00.000Z"]) {
+      const due = new Set(dueFacets(state, fa.orthography, at).map((f) => parseCardKey(f.key).kc));
+      for (const w of learnedWords(fa, state, at)) expect(w.due, `${w.kc} at ${at}`).toBe(due.has(w.kc));
+    }
+    // A higher target makes more words due, never fewer.
+    const at = "2026-03-04T08:00:00.000Z";
+    expect(wordCounts(learnedWords(fa, state, at, 0.97)).due).toBeGreaterThanOrEqual(wordCounts(learnedWords(fa, state, at)).due);
+  });
+
   it("counts one orthography's script practice only in that orthography", () => {
     const uz = loadCourse("uz", "uz-Latn/standard");
     const cyrl = loadCourse("uz", "uz-Cyrl/standard");
@@ -93,7 +104,9 @@ describe("browsing the word list", () => {
     const surface = (w: (typeof words)[number]): string => w.form.tokens.map((t) => t.surface).join("");
     const alphabetical = orderWords(words, "alphabetical").map(surface);
     expect(alphabetical).toEqual([...alphabetical].sort((a, b) => collator.compare(a, b)));
-    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: { ...card, due: "2026-02-01T08:00:00.000Z" } } }, NOW);
+    // Practised three weeks ago with a four-day stability: its recall has fallen below the target.
+    const faded = { ...card, last_review: "2026-02-08T08:00:00.000Z", due: "2026-02-12T08:00:00.000Z" };
+    const later = learnedWords(fa, { ...state, cards: { ...state.cards, [`${kcs[1]?.id ?? ""}|recognize`]: faded } }, NOW);
     expect(orderWords(later, "weakest")[0]?.kc).toBe(kcs[1]?.id);
   });
 });
@@ -219,10 +232,10 @@ describe("known words (ADR 0100)", () => {
     expect(learning.map((w) => [w.known, w.skills])).toEqual([
       [false, [{ skill: "recognize", shown: true }, { skill: "produce", shown: true }, { skill: "listen", shown: false }]],
     ]);
-    expect(wordCounts(learning)).toEqual({ known: 0, learning: 1 });
+    expect(wordCounts(learning)).toEqual({ known: 0, learning: 1, due: 0 });
     const known = learnedWords(fa, { ...base, shown: shown("recognize", "produce", "listen") }, NOW);
     expect(known.map((w) => w.known)).toEqual([true]);
-    expect(wordCounts(known)).toEqual({ known: 1, learning: 0 });
+    expect(wordCounts(known)).toEqual({ known: 1, learning: 0, due: 0 });
   });
 });
 

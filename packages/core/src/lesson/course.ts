@@ -95,8 +95,28 @@ export const profileOf = (course: CourseView, orthography: string): CompiledProf
   return profile;
 };
 
-export const allSentences = (course: CourseView): readonly BundleSentence[] => course.units.flatMap((u) => u.sentences);
-export const allKcs = (course: CourseView): readonly BundleKc[] => course.units.flatMap((u) => u.kcs);
+const sentenceLists = new WeakMap<CourseView, readonly BundleSentence[]>();
+const kcLists = new WeakMap<CourseView, readonly BundleKc[]>();
+
+/** Every sentence of the course, in course order (built once per course: planning asks per exercise). */
+export const allSentences = (course: CourseView): readonly BundleSentence[] => {
+  let list = sentenceLists.get(course);
+  if (list === undefined) {
+    list = course.units.flatMap((u) => u.sentences);
+    sentenceLists.set(course, list);
+  }
+  return list;
+};
+
+/** Every KC of the course, in course order (built once per course). */
+export const allKcs = (course: CourseView): readonly BundleKc[] => {
+  let list = kcLists.get(course);
+  if (list === undefined) {
+    list = course.units.flatMap((u) => u.kcs);
+    kcLists.set(course, list);
+  }
+  return list;
+};
 
 /** Grades answers against accept sets with the course's compiled profiles (§8.3). */
 export interface Grader {

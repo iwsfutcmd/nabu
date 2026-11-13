@@ -9,7 +9,7 @@
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
  */
-import { applyEvents, dueFacets, learnedWords, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
+import { applyEvents, learnedWords, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PathEntry, type SessionRequest } from "@nabu/core/learner";
 import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type CourseView, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
@@ -228,7 +228,11 @@ const CoursePath = ({
   const status = new Map(pathOf(course, state).map((n) => [n.node, n.status]));
   // A script track (ADR 0088): the alphabet, a row of its own that never gates the units.
   const scriptRow = scriptPathOf(course, state);
-  const due = dueFacets(state, orthography, now.toISOString()).length;
+  // The words due for review and known (ADR 0100), as the word list counts them (W8): worked out once
+  // a minute and when the log changes, not on every render (R12).
+  const minute = Math.floor(now.getTime() / 60_000);
+  const counts = useMemo(() => wordCounts(learnedWords(course, state, new Date(minute * 60_000).toISOString())), [course, state, minute]);
+  const { due, known } = counts;
   const studied = Object.keys(state.cards).length > 0;
   // What a mistakes session would hold now: a mistake on a listening card waits out a listening
   // break, and one the course no longer makes is not counted (practicableMistakes).
@@ -237,8 +241,6 @@ const CoursePath = ({
     [course, state, off, speechTiers],
   );
   const today = state.xp.byDate[localDate(now)] ?? 0;
-  // The words known (ADR 0100), beside the link to the word list.
-  const known = useMemo(() => wordCounts(learnedWords(course, state, new Date().toISOString())).known, [course, state]);
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
   const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
@@ -321,7 +323,7 @@ const CoursePath = ({
         {studied ? (
           <a className={styles.link} href={to({ mode: "review" })} data-practice-mode="review" data-count={due}>
             {t.format("app.practice.review")}
-            <span className={styles.count}>{t.format("app.practice.due", { count: due })}</span>
+            {due > 0 && <span className={styles.count}>{t.format("app.practice.due-words", { count: due })}</span>}
           </a>
         ) : (
           <span className={`${styles.link} ${styles.disabled}`} aria-disabled="true" data-practice-mode="review" data-count={0}>
