@@ -400,15 +400,19 @@
     },
     "app.lessons.lesson": {
       "message": ".input {$number :number}\n{{Lesson {$number}}}",
-      "description": "Name of a lesson in the list. $number is its position."
+      "description": "Name of a lesson on the course path, under its unit's heading. $number is its position in its unit."
     },
     "app.lessons.new-words": {
       "message": "New words",
-      "description": "Accessible label of the preview of words a lesson introduces."
+      "description": "Accessible label of the preview of the words a lesson introduces, each shown with its meaning under it."
     },
     "app.lessons.title": {
       "message": "Lessons",
       "description": "Heading of a course's lesson list."
+    },
+    "app.lessons.unit-lesson": {
+      "message": ".input {$unit :number}\n.input {$number :number}\n{{Unit {$unit}, lesson {$number}}}",
+      "description": "Name of a lesson where the course path is out of sight (the browser tab's title, the placement test's result): its unit's number ($unit) and its own number within the unit ($number), as the course path shows them."
     },
     "app.listening.off": {
       "message": "Listening exercises are off for now. They come back in an hour.",
@@ -550,9 +554,21 @@
       "message": "Done",
       "description": "Status of a lesson the learner has completed. They can still open it to practise."
     },
+    "app.path.extra-practice": {
+      "message": "Extra practice",
+      "description": "Heading on the course path of a unit of extra practice that has no title of its own, such as a drill of the numbers one to ten, after the course's units."
+    },
     "app.path.letters": {
       "message": ".input {$number :number}\n{{Letters {$number}}}",
       "description": "Name of a node of a script track (the lessons that teach a writing system's letters, beside the units; ADR 0088). $number is its position in the track."
+    },
+    "app.path.letters.advice": {
+      "message": "New to these letters? Start here. If you can read them already, go straight to the units: they don’t wait for these lessons.",
+      "description": "Under the heading of a script track on the course path (the lessons that teach a writing system's letters, beside the units; ADR 0088), until the learner has done one of them. The units can be started before, after or without it."
+    },
+    "app.path.level": {
+      "message": "Level {$level}",
+      "description": "On the course path, under a unit's heading: the unit's level ($level: a CEFR level such as A1, kept as it is)."
     },
     "app.path.locked": {
       "message": "Locked",
@@ -560,7 +576,11 @@
     },
     "app.path.new-letters": {
       "message": "New letters",
-      "description": "Accessible label of the preview of the letters a script-track node teaches."
+      "description": "Accessible label of the preview of the letters a script-track node teaches, each shown with its Latin spelling under it."
+    },
+    "app.path.practice": {
+      "message": "Practice",
+      "description": "Name of a practice node on the course path (a drill, such as the numbers one to ten); what it practises follows it, in the learner's own language. Also the browser tab's title while the drill is open."
     },
     "app.path.start": {
       "message": "Start",
@@ -569,6 +589,14 @@
     "app.path.story": {
       "message": "Story",
       "description": "Label on a story node of the learning path; the story's title follows it."
+    },
+    "app.path.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number}}}",
+      "description": "On the course path, before a unit's title (or in its place, where the unit has none): the unit's number among the course's units ($number, from 1)."
+    },
+    "app.path.unit-done": {
+      "message": ".input {$done :number}\n.input {$total :number}\n{{{$done} of {$total} done}}",
+      "description": "On the course path, under a unit's heading: how many of the unit's lessons and stories ($total) the learner has done ($done). Select plural forms as your language needs."
     },
     "app.placement.about": {
       "message": ".input {$most :number}\n{{A short test of what you know already. It goes through the course's units in order and skips ahead while you get most questions right, so it asks {$most} questions at most, and often far fewer.}}",
@@ -584,7 +612,7 @@
     },
     "app.placement.next": {
       "message": "You start at {$step}.",
-      "description": "Placement test end screen: the next thing to do on the course page. $step is a path node's name (app.lessons.lesson, Lesson 7; or app.path.story, Story); the unit's title follows on its own line."
+      "description": "Placement test end screen: the next thing to do on the course page. $step is a path node's name (app.lessons.unit-lesson, Unit 3, lesson 2; app.path.story, Story; or app.path.practice, Practice); the unit's title follows on its own line."
     },
     "app.placement.outcome": {
       "message": "Lessons you show you know are marked done, and you start after them. Nothing you have done is undone, and you can take the test again later.",

@@ -7,7 +7,7 @@
  * answer) keeps it. Nothing here acts within a screen: the lesson player moves focus between its
  * own cards (focusInReach).
  */
-import { pathNodes, type SessionRequest } from "@nabu/core/learner";
+import { pathUnits, type SessionRequest } from "@nabu/core/learner";
 import { scriptNodes, type CourseView } from "@nabu/core/lesson";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useRef, type JSX, type ReactNode } from "react";
@@ -18,15 +18,30 @@ type Translator = ReturnType<typeof useTranslator>;
 /** What the app calls a course and its orthographies, by the course's id (ADR 0109: course data). */
 export type Names = { readonly course: (id: string) => string; readonly orthography: (course: string, orthography: string) => string };
 
-/** What a session is called: "Lesson 3" or "Letters 1" as the course path numbers them, "Review", "Mistakes", the placement test. */
+/**
+ * A path node's name where the course path is out of sight (S11): "Unit 3, lesson 2" as the path
+ * numbers it, "Story", or "Practice" for a drill; undefined for a node that is not on the path.
+ */
+export const nodeName = (t: Translator, course: CourseView, node: string): string | undefined => {
+  for (const unit of pathUnits(course)) {
+    const entry = unit.entries.find((e) => e.node.id === node);
+    if (entry === undefined) continue;
+    if (entry.kind === "story") return t.format("app.path.story");
+    if (entry.number === undefined) return t.format("app.path.practice");
+    return unit.number === undefined ? t.format("app.lessons.lesson", { number: entry.number }) : t.format("app.lessons.unit-lesson", { unit: unit.number, number: entry.number });
+  }
+  return undefined;
+};
+
+/** What a session is called: "Unit 3, lesson 2" or "Letters 1" as the course path numbers them, "Review", "Mistakes", the placement test. */
 export const sessionName = (t: Translator, request: SessionRequest, course: CourseView | undefined): string => {
   if (request.mode === "review") return t.format("app.practice.review");
   if (request.mode === "mistakes") return t.format("app.practice.mistakes");
   if (request.mode === "placement") return t.format("app.session.placement");
-  const letters = course === undefined ? -1 : scriptNodes(course).findIndex((s) => s.node.id === request.node);
+  if (course === undefined) return t.format("app.lessons.title");
+  const letters = scriptNodes(course).findIndex((s) => s.node.id === request.node);
   if (letters >= 0) return t.format("app.path.letters", { number: letters + 1 });
-  const lesson = course === undefined ? -1 : pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === request.node);
-  return lesson >= 0 ? t.format("app.lessons.lesson", { number: lesson + 1 }) : t.format("app.lessons.title");
+  return nodeName(t, course, request.node) ?? t.format("app.lessons.title");
 };
 
 /** The document title of a route; a session's needs its course, once loaded, for the lesson's number. */

@@ -172,8 +172,27 @@
 .preview {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--nabu-space-2);
+  gap: var(--nabu-space-2) var(--nabu-space-3);
   font-size: 1.125rem;
+}
+
+/* A previewed word (S11): the word, and under it what it means (or a letter's Latin spelling). */
+.previewItem {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  max-inline-size: 10rem;
+  text-align: center;
+}
+
+/* Two lines at most: a meaning can run to a grammar note (yue's particles). Screen readers get it all. */
+.previewGloss {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .back {
@@ -333,9 +352,51 @@
   margin-block-start: var(--nabu-space-4);
 }
 
+/* A unit's heading on the path (S11): its number over its title, then its level and what is done. */
+.unitHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin-block-end: var(--nabu-space-3);
+}
+
 .unitTitle {
   margin-block: 0 var(--nabu-space-2);
   font-size: 1.125rem;
+}
+
+.unitName {
+  margin: 0;
+  font-size: 1.125rem;
+}
+
+.unitNumber {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--nabu-color-muted);
+}
+
+.unitMeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
+.level {
+  padding-block: 0.125rem;
+  padding-inline: var(--nabu-space-2);
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-info-bg);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.unitAdvice {
+  margin: 0;
 }
 
 .lessonHead {

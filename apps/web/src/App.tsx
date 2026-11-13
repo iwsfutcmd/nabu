@@ -18,8 +18,8 @@ import {
   continueOf,
   learnedWords,
   paceOf,
-  pathNodes,
   pathOf,
+  pathUnits,
   plan,
   plannable,
   practicableMistakes,
@@ -29,18 +29,17 @@ import {
   type LearnerState,
   type NodeStatus,
   type PaceChoice,
-  type PathEntry,
   type PathNode,
   type SessionPlan,
   type SessionRequest,
 } from "@nabu/core/learner";
-import { createGrader, doneOf, firstTriesOf, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, firstTriesOf, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
-import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
+import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceReported, TaggedText } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
@@ -309,6 +308,95 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
   );
 };
 
+/** A word (or letter) a path node previews, and under it what it means or how it is spelled in Latin letters. */
+interface PreviewItem {
+  readonly text: TaggedText;
+  readonly gloss?: TaggedText | undefined;
+}
+
+/**
+ * What a path node brings (S11): its new words, each with its meaning under it, so a learner who
+ * cannot read the script yet still knows what is coming. In the direction of the words' script.
+ */
+const Preview = ({ items, label }: { readonly items: readonly PreviewItem[]; readonly label?: string | undefined }): JSX.Element | null => {
+  const first = items[0];
+  if (first === undefined) return null;
+  return (
+    <span className={styles.preview} role={label === undefined ? undefined : "group"} aria-label={label} dir={directionOf(first.text.lang)} data-preview="">
+      {items.map(({ text, gloss }, k) => (
+        <span key={k} className={styles.previewItem} data-preview-item="">
+          <T text={text} />
+          {gloss !== undefined && <T className={styles.previewGloss} text={gloss} />}
+        </span>
+      ))}
+    </span>
+  );
+};
+
+/**
+ * A lesson's new words in the orthography being learned, each with its meaning as a card shows it
+ * (its first sense). A drill's KC has no form: it previews what it practises ("numbers").
+ */
+const previewOf = (course: CourseView, unit: BundleUnit, node: BundleNode): PreviewItem[] =>
+  node.introduces.flatMap((id): PreviewItem[] => {
+    const kc = unit.kcs.find((k) => k.id === id);
+    const form = kc?.forms?.[course.orthography]?.[0];
+    const gloss = kc?.gloss?.[course.supportKey];
+    if (form !== undefined) return [{ text: form, gloss: gloss === undefined ? undefined : cardGloss(gloss) }];
+    return node.kind === "practice" && gloss !== undefined ? [{ text: cardGloss(gloss) }] : [];
+  });
+
+interface UnitHeadingProps {
+  readonly course: CourseView;
+  readonly unit: BundleUnit;
+  /** Its number on the path; none for a unit of practice only, or an alphabet row. */
+  readonly number: number | undefined;
+  /** What it is called where it has no title of its own (a drill's unit: "Extra practice"). */
+  readonly untitled?: string | undefined;
+  readonly done: number;
+  readonly total: number;
+  /** A line under it: who an alphabet row is for. */
+  readonly advice?: string | undefined;
+}
+
+/**
+ * A unit's heading on the path (S11): its number and title, its level, and how many of its lessons
+ * and stories are done.
+ */
+const UnitHeading = ({ course, unit, number, untitled, done, total, advice }: UnitHeadingProps): JSX.Element => {
+  const t = useTranslator();
+  const title = unit.title?.[course.supportKey];
+  return (
+    <div className={styles.unitHead}>
+      <h3 className={styles.unitName}>
+        {number !== undefined && (
+          <>
+            <span className={styles.unitNumber} data-unit-number={number}>
+              {t.format("app.path.unit", { number })}
+            </span>{" "}
+          </>
+        )}
+        {title !== undefined ? <T text={title} /> : untitled}
+      </h3>
+      <p className={styles.unitMeta}>
+        {unit.cefr !== undefined && (
+          <span className={styles.level} data-unit-level={unit.cefr}>
+            {t.format("app.path.level", { level: unit.cefr })}
+          </span>
+        )}
+        <span data-unit-done={done} data-unit-total={total}>
+          {t.format("app.path.unit-done", { done, total })}
+        </span>
+      </p>
+      {advice !== undefined && (
+        <p className={styles.unitAdvice} data-unit-advice="">
+          {advice}
+        </p>
+      )}
+    </div>
+  );
+};
+
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
@@ -368,13 +456,8 @@ const CoursePath = ({
   const today = game?.xp.byDate[localDate(now)] ?? 0;
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
-  const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
-    const last = acc.at(-1);
-    if (last?.unit === entry.unit) last.entries.push(entry);
-    else acc.push({ unit: entry.unit, entries: [entry] });
-    return acc;
-  }, []);
-  let number = 0;
+  // The path by unit, lessons numbered within theirs (S11).
+  const units = pathUnits(course);
   const to = (request: SessionRequest): string => href({ tag: "session", course: course.id, orthography, request });
   const nodeHref = (n: PathNode): string => (n.kind === "story" ? href({ tag: "story", course: course.id, orthography, node: n.node }) : to({ mode: "lesson", node: n.node }));
   // The line saying why (D5): what is slipping when practice comes first, else how the pace reads.
@@ -538,29 +621,25 @@ const CoursePath = ({
         <section className={styles.unit} data-script-track="">
           {(() => {
             const first = course.units.find((u) => u.id === scriptRow[0]?.unit);
-            const title = first?.title?.[course.supportKey];
-            return title === undefined ? null : (
-              <h3 className={styles.unitTitle}>
-                <T text={title} />
-              </h3>
-            );
+            if (first === undefined) return null;
+            // The row never gates the units (ADR 0088): until it is begun, it says so, and who it is for (S11).
+            const begun = scriptRow.some((n) => n.status === "done");
+            const done = scriptRow.filter((n) => n.status === "done").length;
+            return <UnitHeading course={course} unit={first} number={undefined} done={done} total={scriptRow.length} advice={begun ? undefined : t.format("app.path.letters.advice")} />;
           })()}
           <ol className={styles.list}>
             {scriptRow.map((entry, k) => {
               const unit = course.units.find((u) => u.id === entry.unit);
               const node = unit?.nodes.find((n) => n.id === entry.node);
-              const letters = node?.alphabet?.letters.map((l) => l.text) ?? [];
+              // Each letter with its Latin spelling under it.
+              const letters = (node?.alphabet?.letters ?? []).map((l): PreviewItem => ({ text: l.text, gloss: l.latin }));
               const body = (
                 <>
                   <span className={styles.lessonHead}>
-                    <span className={styles.lessonName}>{t.format("app.path.letters", { number: k + 1 })}</span>
+                    <span className={styles.lessonName} data-node-name="">{t.format("app.path.letters", { number: k + 1 })}</span>
                     <Status status={entry.status} />
                   </span>
-                  <span className={styles.preview} role="group" aria-label={t.format("app.path.new-letters")} dir={letters[0] === undefined ? undefined : directionOf(letters[0].lang)}>
-                    {letters.map((l, i) => (
-                      <T key={i} text={l} />
-                    ))}
-                  </span>
+                  <Preview items={letters} label={t.format("app.path.new-letters")} />
                 </>
               );
               return (
@@ -580,27 +659,23 @@ const CoursePath = ({
           </ol>
         </section>
       )}
-      {units.map(({ unit, entries }) => {
-        const title = unit.title?.[course.supportKey];
+      {units.map(({ unit, number: unitNumber, entries }) => {
+        const done = entries.filter((e) => status.get(e.node.id) === "done").length;
         return (
-          <section key={unit.id} className={styles.unit}>
-            {title !== undefined && units.length > 1 && (
-              <h3 className={styles.unitTitle}>
-                <T text={title} />
-              </h3>
-            )}
+          <section key={unit.id} className={styles.unit} data-unit={unit.id}>
+            <UnitHeading course={course} unit={unit} number={unitNumber} untitled={unitNumber === undefined ? t.format("app.path.extra-practice") : undefined} done={done} total={entries.length} />
             <ol className={styles.list} data-lesson-list="">
-              {entries.map(({ node, kind }) => {
+              {entries.map(({ node, kind, number }) => {
                 const s = status.get(node.id) ?? "locked";
                 const story = kind === "story" ? (unit.stories ?? []).find((st) => st.node === node.id) : undefined;
                 const storyTitle = story?.title[course.supportKey];
-                if (kind === "lesson") number++;
-                const words = node.introduces.flatMap((id) => unit.kcs.find((k) => k.id === id)?.forms?.[orthography]?.[0] ?? []);
+                // A lesson is numbered within its unit; a drill is practice (S11).
+                const name = number === undefined ? t.format("app.path.practice") : t.format("app.lessons.lesson", { number });
                 const body =
                   kind === "story" ? (
                     <>
                       <span className={styles.lessonHead}>
-                        <span className={styles.lessonName}>{t.format("app.path.story")}</span>
+                        <span className={styles.lessonName} data-node-name="">{t.format("app.path.story")}</span>
                         <Status status={s} />
                       </span>
                       {storyTitle !== undefined && (
@@ -612,14 +687,10 @@ const CoursePath = ({
                   ) : (
                     <>
                       <span className={styles.lessonHead}>
-                        <span className={styles.lessonName}>{t.format("app.lessons.lesson", { number })}</span>
+                        <span className={styles.lessonName} data-node-name="">{name}</span>
                         <Status status={s} />
                       </span>
-                      <span className={styles.preview} role="group" aria-label={t.format("app.lessons.new-words")} dir={words[0] === undefined ? undefined : directionOf(words[0].lang)}>
-                        {words.map((w, k) => (
-                          <T key={k} text={w} />
-                        ))}
-                      </span>
+                      <Preview items={previewOf(course, unit, node)} label={number === undefined ? undefined : t.format("app.lessons.new-words")} />
                     </>
                   );
                 const link = kind === "story" ? href({ tag: "story", course: course.id, orthography, node: node.id }) : to({ mode: "lesson", node: node.id });

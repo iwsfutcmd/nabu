@@ -11,6 +11,7 @@ import { T, useTranslator } from "@nabu/ui";
 import type { JSX, MouseEvent } from "react";
 import { Button } from "react-aria-components";
 import styles from "./App.module.css";
+import { nodeName } from "./screen.tsx";
 
 /** The most questions a placement test can ask: what it asks first, and what may follow (the progress bar's bound). */
 export const mostQuestions = (planned: SessionPlan): number =>
@@ -65,8 +66,8 @@ export const PlacementResult = ({ course, state, before, placed }: PlacementResu
   const newly = lessons.filter((e) => fresh.has(e.node.id)).length;
   const done = new Set(state.completedNodes);
   const next = path.find((e) => !done.has(e.node.id));
-  const number = next === undefined ? -1 : lessons.indexOf(next) + 1;
-  const step = next === undefined ? "" : next.kind === "lesson" ? t.format("app.lessons.lesson", { number }) : t.format("app.path.story");
+  // As the course path names it: "Unit 3, lesson 2" (S11).
+  const step = next === undefined ? "" : (nodeName(t, course, next.node.id) ?? "");
   const title = next?.unit.title?.[course.supportKey];
   return (
     <div data-placement-result="" data-placed={newly} data-next={next?.node.id}>
