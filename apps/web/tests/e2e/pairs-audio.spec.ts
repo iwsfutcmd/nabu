@@ -130,37 +130,27 @@ test("sound off in Preferences: nothing plays by itself, the play buttons still 
   await expect(page.locator("[data-sound-choice=on] input")).toBeChecked();
 });
 
-test("after Can't listen now, no card says its clip by itself (P6)", async ({ page }) => {
-  // The gallery played in a row: a listening card, then (listening dropped) a card that says its clip once answered.
+test("while listening is put off, no card says its clip by itself (P6)", async ({ page }) => {
+  // "Can't listen now" puts listening off for an hour: in every session meanwhile, a card that says
+  // its clip once answered stays quiet (a play button still plays when tapped, D18).
   const course = loadCourse("apc", "apc-Arab/standard");
   const all = cardGallery(course, 7).flatMap((c) => (c.exercise === undefined ? [] : [c.exercise]));
-  const at = all.findIndex((e) => LISTENING.has(e.template));
-  const rest = all.slice(at + 1).filter((e) => !LISTENING.has(e.template));
-  const said = rest.findIndex((e) => (SAY_WHEN_ANSWERED as readonly string[]).includes(e.template) && course.audio[e.item] !== undefined);
-  const listening = all[at];
-  expect(listening).toBeDefined();
-  expect(said).toBeGreaterThanOrEqual(0);
-  if (listening === undefined) return;
-
+  const firstListening = all.findIndex((e) => LISTENING.has(e.template));
+  const cards = all.slice(0, firstListening);
+  const sayers = new Set(cards.filter((e) => (SAY_WHEN_ANSWERED as readonly string[]).includes(e.template) && course.audio[e.item] !== undefined).map((e) => e.id));
+  expect(sayers.size).toBeGreaterThan(0);
+  await page.addInitScript(() => localStorage.setItem("nabu.listening-off-until", String(Date.now() + 3_600_000)));
   await recordPlays(page);
   await page.goto("/?debug=1#/apc/apc-Arab.standard/cards");
   await page.locator("[data-action=play-all-cards]").click();
-  for (const ex of all.slice(0, at)) {
-    await waitFor(page, ex);
-    await answer(page, ex, "keyboard");
-    await expectRightAndContinue(page, "keyboard", ex);
-  }
-  await waitFor(page, listening);
-  await page.locator("[data-action=cant-listen]").click();
-  await page.evaluate(() => {
-    window.nabuPlayed = [];
-  });
-  for (const ex of rest.slice(0, said + 1)) {
+  for (const ex of cards) {
     await waitFor(page, ex);
     await answer(page, ex, "keyboard");
     await expect(page.locator("[data-feedback]")).toBeVisible();
-    await page.waitForTimeout(600);
-    expect(await page.evaluate(() => window.nabuPlayed), ex.id).toEqual([]);
+    if (sayers.has(ex.id)) {
+      await page.waitForTimeout(600);
+      expect(await page.evaluate(() => window.nabuPlayed), ex.id).toEqual([]);
+    }
     await expectRightAndContinue(page, "keyboard", ex);
   }
 });

@@ -102,6 +102,8 @@ test.describe("game", () => {
     await expect.poll(goals).toEqual([5]);
     await page.reload();
     await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    // A minute later, as a learner's second choice would be: the later goal_set is the goal.
+    await page.clock.setFixedTime(new Date(now + 60_000));
     await page.locator("[data-action=change-goal]").click();
     await page.locator('[data-goal-choice] [data-goal-days="3"]').click();
     await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "3");

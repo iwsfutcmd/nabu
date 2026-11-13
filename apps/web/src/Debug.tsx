@@ -6,6 +6,7 @@
  * a way out (DebugNotice).
  */
 import { cardGallery, createGrader, type Exercise } from "@nabu/core/lesson";
+import { playsUnasked } from "./breaks.ts";
 import { useTranslator } from "@nabu/ui";
 import { LessonPlayer, type LoadedCourse } from "@nabu/ui/player";
 import { useMemo, useState, type JSX } from "react";
@@ -74,7 +75,8 @@ export const CardsPage = ({ loaded, language, back }: CardsProps): JSX.Element =
   const gallery = useMemo(() => cardGallery(course, 7), [course]);
   const grader = useMemo(() => createGrader(course), [course]);
   const [playing, setPlaying] = useState<{ readonly key: string; readonly exercises: readonly Exercise[] } | null>(null);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
+  // Nothing plays by itself with sound off or listening put off (P6).
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
   if (playing !== null) {
     return (
       <main className={styles.player}>

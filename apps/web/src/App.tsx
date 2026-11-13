@@ -50,6 +50,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
+import { BREAK_MS, onBreak, playsUnasked, setBreakUntil } from "./breaks.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
@@ -670,35 +671,6 @@ const CoursePath = ({
   );
 };
 
-/**
- * "Can't listen now" and "Can't speak now" (§10): those exercises stay out of new sessions for an
- * hour. A per-device convenience, so it lives in localStorage; without storage it lasts the page.
- */
-type Break = "listening" | "speaking";
-const BREAK_KEYS: Readonly<Record<Break, string>> = { listening: "nabu.listening-off-until", speaking: "nabu.speaking-off-until" };
-const BREAK_MS = 3_600_000;
-const breakFallback: Record<Break, number> = { listening: 0, speaking: 0 };
-
-const breakUntil = (b: Break): number => {
-  try {
-    return Number(localStorage.getItem(BREAK_KEYS[b]) ?? 0);
-  } catch {
-    return breakFallback[b];
-  }
-};
-
-const setBreakUntil = (b: Break, until: number): void => {
-  breakFallback[b] = until;
-  try {
-    if (until === 0) localStorage.removeItem(BREAK_KEYS[b]);
-    else localStorage.setItem(BREAK_KEYS[b], String(until));
-  } catch {
-    // Storage unavailable: the in-memory value above still holds for this page.
-  }
-};
-
-const onBreak = (b: Break): boolean => breakUntil(b) > Date.now();
-
 /** What sessions leave out: listening and speaking while they are on a break. */
 const excludedBy = (off: { readonly listening: boolean; readonly speaking: boolean }): ReadonlySet<TemplateId> =>
   new Set<TemplateId>([...(off.listening ? LISTENING : []), ...(off.speaking ? SPEAKING : [])]);
@@ -957,7 +929,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
+  // Nothing plays by itself with sound off or listening put off (P6).
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
   if (!started) {
     const start = (): void => {
       setStarted(true);
@@ -1068,7 +1041,8 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
     };
   });
   const grader = useMemo(() => createGrader(course), [course]);
-  const sound = new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound();
+  // Nothing plays by itself with sound off or listening put off (P6).
+  const sound = playsUnasked(new URLSearchParams(window.location.search).get("sound") !== "off" && storedSound());
   if (setup === undefined) {
     return (
       <main className={styles.page}>
