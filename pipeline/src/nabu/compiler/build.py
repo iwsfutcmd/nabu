@@ -898,23 +898,36 @@ def _strings(
     return []
 
 
+def _language_invisibles(ctx: Ctx, tag: str) -> set[str]:
+    """What text in a language may hold invisibly: what that language's orthographies allow."""
+    language = tag.split("-")[0]
+    allowed: set[str] = set()
+    for profile in ctx.profiles.values():
+        if profile.lang.split("-")[0] == language:
+            allowed |= _allowed_invisibles(profile)
+    return allowed
+
+
 def _nfc_and_invisibles(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:
     allowed: set[str] = set()
     for orth in course.orthographies:
         allowed |= _allowed_invisibles(ctx.profiles[orth])
-    docs = [
-        Doc(
-            doc.file,
-            {k: v for k, v in cast(dict[str, Any], doc.data).items() if k != "units"},
-            doc.lines,
-        )
-    ]
-    docs += [u.doc for u in units if u.doc.data is not None]
+    course_doc = Doc(
+        doc.file,
+        {k: v for k, v in cast(dict[str, Any], doc.data).items() if k != "units"},
+        doc.lines,
+    )
+    docs = [course_doc, *(u.doc for u in units if u.doc.data is not None)]
     for d in docs:
         for path, value in _strings(d.data):
             if unicodedata.normalize("NFC", value) != value:
                 ctx.diags.report("text.not-nfc", f"{value!r} is not NFC", d.loc(*path))
-            bad = tx.invisible_chars(value, allowed)
+            here = allowed
+            if d is course_doc and len(path) > 1 and path[0] == "names":
+                # A name is text in the language it is given in (ADR 0109): a Persian name keeps
+                # its ZWNJ whatever course it names.
+                here = _language_invisibles(ctx, str(path[1]))
+            bad = tx.invisible_chars(value, here)
             if bad:
                 ctx.diags.report(
                     "text.invisible", " ".join(f"U+{ord(c):04X}" for c in bad), d.loc(*path)

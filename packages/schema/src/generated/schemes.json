@@ -1,24 +1,148 @@
 [
   {
     "id": "attic",
-    "name": {
-      "en": "Attic (vowel lengths marked)"
+    "names": {
+      "en": {
+        "scheme": "Attic (vowel lengths marked)"
+      }
     },
     "language": "grc",
     "lang": "grc-Grek"
   },
   {
     "id": "baxter",
-    "name": {
-      "en": "Middle Chinese (Baxter)"
+    "names": {
+      "en": {
+        "scheme": "Middle Chinese (Baxter)"
+      },
+      "ar": {
+        "scheme": "الصينية الوسطى (باكستر)",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "fa": {
+        "scheme": "چینی میانه (باکستر)",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz": {
+        "scheme": "Oʻrta xitoy tili (Baxter)",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz-Cyrl": {
+        "scheme": "Ўрта хитой тили (Бакстер)",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "zh-Hant-HK": {
+        "scheme": "中古漢語（白一平）",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      }
     },
     "language": "ltc",
     "lang": "ltc-Latn-x-baxter"
   },
   {
     "id": "jyutping",
-    "name": {
-      "en": "Jyutping"
+    "names": {
+      "en": {
+        "scheme": "Jyutping",
+        "tones": {
+          "1": "high level",
+          "2": "high rising",
+          "3": "mid level",
+          "4": "low falling",
+          "5": "low rising",
+          "6": "low level"
+        }
+      },
+      "ar": {
+        "scheme": "جيوتبينغ",
+        "tones": {
+          "1": "عالية مستوية",
+          "2": "عالية صاعدة",
+          "3": "متوسطة مستوية",
+          "4": "منخفضة هابطة",
+          "5": "منخفضة صاعدة",
+          "6": "منخفضة مستوية"
+        },
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "fa": {
+        "scheme": "جیوت\u200cپینگ",
+        "tones": {
+          "1": "بالا، ثابت",
+          "2": "بالا، بالارونده",
+          "3": "میانه، ثابت",
+          "4": "پایین، پایین\u200cرونده",
+          "5": "پایین، بالارونده",
+          "6": "پایین، ثابت"
+        },
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz": {
+        "scheme": "Jyutping",
+        "tones": {
+          "1": "baland tekis",
+          "2": "baland koʻtariluvchi",
+          "3": "oʻrta tekis",
+          "4": "past pasayuvchi",
+          "5": "past koʻtariluvchi",
+          "6": "past tekis"
+        },
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz-Cyrl": {
+        "scheme": "Жютпинг",
+        "tones": {
+          "1": "баланд текис",
+          "2": "баланд кўтарилувчи",
+          "3": "ўрта текис",
+          "4": "паст пасаювчи",
+          "5": "паст кўтарилувчи",
+          "6": "паст текис"
+        },
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "zh-Hant-HK": {
+        "scheme": "粵拼",
+        "tones": {
+          "1": "高平",
+          "2": "高升",
+          "3": "中平",
+          "4": "低降",
+          "5": "低升",
+          "6": "低平"
+        },
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      }
     },
     "language": "yue",
     "lang": "yue-Latn-HK-jyutping",
@@ -33,9 +157,6 @@
       "marks": "[0-9]",
       "values": {
         "1": {
-          "name": {
-            "en": "high level"
-          },
           "letters": "55",
           "checked": "5",
           "shape": "level",
@@ -46,9 +167,6 @@
           ]
         },
         "2": {
-          "name": {
-            "en": "high rising"
-          },
           "letters": "35",
           "shape": "rising",
           "template": [
@@ -58,9 +176,6 @@
           ]
         },
         "3": {
-          "name": {
-            "en": "mid level"
-          },
           "letters": "33",
           "checked": "3",
           "shape": "level",
@@ -71,9 +186,6 @@
           ]
         },
         "4": {
-          "name": {
-            "en": "low falling"
-          },
           "letters": "21",
           "shape": "falling",
           "template": [
@@ -83,9 +195,6 @@
           ]
         },
         "5": {
-          "name": {
-            "en": "low rising"
-          },
           "letters": "23",
           "shape": "rising",
           "template": [
@@ -95,9 +204,6 @@
           ]
         },
         "6": {
-          "name": {
-            "en": "low level"
-          },
           "letters": "22",
           "checked": "2",
           "shape": "level",
@@ -112,8 +218,45 @@
   },
   {
     "id": "lasina",
-    "name": {
-      "en": "sitelen Lasina"
+    "names": {
+      "en": {
+        "scheme": "sitelen Lasina"
+      },
+      "ar": {
+        "scheme": "sitelen Lasina",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "fa": {
+        "scheme": "sitelen Lasina",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz": {
+        "scheme": "sitelen Lasina",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz-Cyrl": {
+        "scheme": "sitelen Lasina",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "zh-Hant-HK": {
+        "scheme": "sitelen Lasina",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      }
     },
     "language": "tok",
     "lang": "tok-Latn",
@@ -121,16 +264,55 @@
   },
   {
     "id": "pinyin",
-    "name": {
-      "en": "Pinyin"
+    "names": {
+      "en": {
+        "scheme": "Pinyin"
+      },
+      "ar": {
+        "scheme": "بينيين",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "fa": {
+        "scheme": "پین\u200cیین",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz": {
+        "scheme": "Pinyin",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "uz-Cyrl": {
+        "scheme": "Пиньинь",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      },
+      "zh-Hant-HK": {
+        "scheme": "漢語拼音",
+        "provenance": {
+          "author": "llm:claude@baa6bf1d5e24",
+          "status": "draft"
+        }
+      }
     },
     "language": "cmn",
     "lang": "zh-Latn-pinyin"
   },
   {
     "id": "tiberian",
-    "name": {
-      "en": "Tiberian reading (SBL)"
+    "names": {
+      "en": {
+        "scheme": "Tiberian reading (SBL)"
+      }
     },
     "language": "hbo",
     "lang": "hbo-Latn"

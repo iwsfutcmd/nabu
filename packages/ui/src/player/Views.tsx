@@ -35,7 +35,7 @@ import type {
 import { isCorrect } from "@nabu/core/lesson";
 import { hearOnDevice, toneSystemById, toneSystemOf, type SpeechResult, type ToneScore, type ToneSystem } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf, nameInUiLanguage, orthographyName, type MessageId } from "@nabu/i18n";
+import { directionOf, orthographyName, toneName, type MessageId } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
@@ -1134,13 +1134,8 @@ export const ToneIdentifyView = (props: Props<ToneIdentify>): JSX.Element => {
   useShortcuts(props, (i) => chooseByKey(props, i, ex.tones.length));
   // The tone and the name of its pitch, from the scheme's data (ADR 0109): 1 · high level.
   const label = (tone: string): string => {
-    const named = readingScheme(toneSystemById(ex.system)?.scheme ?? "")?.tones?.values[tone]?.name;
-    const own = nameInUiLanguage(t, named);
-    if (own !== undefined) return t.format("player.tone.label", { tone, name: own });
-    const id = `player.tone.${ex.system}.${tone}`;
-    if (t.has(id)) return t.format(id);
-    const given = named === undefined ? undefined : Object.values(named)[0];
-    return given === undefined ? tone : t.format("player.tone.label", { tone, name: given });
+    const name = toneName(t, readingScheme(toneSystemById(ex.system)?.scheme ?? "")?.names, tone);
+    return name === undefined ? tone : t.format("player.tone.label", { tone, name });
   };
   return (
     <div className={styles.body}>

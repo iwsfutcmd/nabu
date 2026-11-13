@@ -12,6 +12,33 @@ names:
     blurb: "The Persian of Iran, in its own script."
     orthographies:
       fa-Arab/standard: Persian script
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "الفارسية"
+    orthographies:
+      fa-Arab/standard: "الحروف الفارسية"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "فارسی"
+    orthographies:
+      fa-Arab/standard: "خط فارسی"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Fors tili"
+    orthographies:
+      fa-Arab/standard: "Fors yozuvi"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Форс тили"
+    orthographies:
+      fa-Arab/standard: "Форс ёзуви"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "波斯語"
+    orthographies:
+      fa-Arab/standard: "波斯字母"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@83a16c835c32', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-numbers.yaml, units/u04-food.yaml, units/u05-home.yaml, units/u06-day.yaml, units/u07-time.yaml, units/u08-city.yaml, units/u09-shopping.yaml, units/u10-past.yaml]

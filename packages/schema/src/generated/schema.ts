@@ -402,7 +402,6 @@ export interface NabuSchemaIndex {
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
-  readonly Names: Names;
   readonly CourseNames: CourseNames1;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
@@ -487,6 +486,7 @@ export interface NabuSchemaIndex {
   readonly TableRef: TableRef;
   readonly Contrast: Contrast;
   readonly ReadingScheme: ReadingScheme;
+  readonly SchemeNames: SchemeNames;
   readonly Tone: Tone;
   readonly Reports: Reports;
   readonly ReportSubmission: ReportSubmission;
@@ -1169,7 +1169,17 @@ export interface CourseNames {
     readonly hints?: {
       readonly [k: string]: string;
     };
+    readonly provenance?: Provenance1;
   };
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance1 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
 }
 /**
  * How the placement test probes, where the course says (course source `placement`, ADR 0077).
@@ -1460,15 +1470,6 @@ export interface PlacementPolicy1 {
   readonly production?: "tiles" | "typed";
 }
 /**
- * A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.
- *
- * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
- * via the `definition` "Names".
- */
-export interface Names {
-  readonly [k: string]: string;
-}
-/**
  * What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1496,6 +1497,7 @@ export interface CourseNames1 {
     readonly hints?: {
       readonly [k: string]: string;
     };
+    readonly provenance?: Provenance1;
   };
 }
 /**
@@ -1615,7 +1617,7 @@ export interface CourseSource {
   readonly support: readonly OrthographyId[];
   readonly names?: CourseNames2;
   readonly license?: Spdx1;
-  readonly provenance?: Provenance1;
+  readonly provenance?: Provenance2;
   /**
    * The facets the course practises (§8.5, ADR 0071); by default all of them. Exercises of any other facet are never planned: a course for a written language leaves out listen and speak, and one that shows its readings without drilling them leaves out read-script.
    *
@@ -1663,12 +1665,13 @@ export interface CourseNames2 {
     readonly hints?: {
       readonly [k: string]: string;
     };
+    readonly provenance?: Provenance1;
   };
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance1 {
+export interface Provenance2 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -2851,7 +2854,7 @@ export interface GoalSet {
 export interface MessageCatalog {
   readonly $schema?: string;
   readonly locale: LangTag;
-  readonly provenance?: Provenance2;
+  readonly provenance?: Provenance3;
   readonly messages: {
     readonly [k: string]: CatalogMessage;
   };
@@ -2859,7 +2862,7 @@ export interface MessageCatalog {
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
  */
-export interface Provenance2 {
+export interface Provenance3 {
   readonly author: string;
   readonly status: "draft" | "reviewed" | "published";
   readonly reviewedBy?: string;
@@ -3258,7 +3261,12 @@ export interface Transliteration {
  */
 export interface ReadingScheme {
   readonly id: SchemeId;
-  readonly name: Names1;
+  /**
+   * What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.
+   */
+  readonly names: {
+    readonly [k: string]: SchemeNames;
+  };
   readonly language: LangTag1;
   readonly lang?: ScriptedLangTag2;
   readonly answer?: OrthographyId2;
@@ -3297,17 +3305,38 @@ export interface ReadingScheme {
   };
 }
 /**
- * What the UI calls it: Jyutping, Middle Chinese (Baxter).
+ * A reading scheme's names in one language.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "SchemeNames".
  */
-export interface Names1 {
-  readonly [k: string]: string;
+export interface SchemeNames {
+  /**
+   * The scheme's name: Jyutping, Middle Chinese (Baxter).
+   */
+  readonly scheme: string;
+  /**
+   * Each tone's pitch, by its marks, where the scheme has tones: high level, low rising.
+   */
+  readonly tones?: {
+    readonly [k: string]: string;
+  };
+  readonly provenance?: Provenance4;
+}
+/**
+ * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.
+ */
+export interface Provenance4 {
+  readonly author: string;
+  readonly status: "draft" | "reviewed" | "published";
+  readonly reviewedBy?: string;
+  readonly reviewedAt?: string;
 }
 /**
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
  * via the `definition` "Tone".
  */
 export interface Tone {
-  readonly name?: Names2;
   /**
    * Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.
    */
@@ -3327,12 +3356,6 @@ export interface Tone {
    * @maxItems 3
    */
   readonly template: readonly number[];
-}
-/**
- * What the UI calls its pitch: high level, low rising.
- */
-export interface Names2 {
-  readonly [k: string]: string;
 }
 /**
  * What the app sends to the report intake (ADR 0055) when a learner reports a problem: a sentence or story line they corrected (sentence_reported), or an answer they say should have been accepted or wrong (answer_reported). It carries no device, user or session id, and only the local date. A scheduled job files each report as a GitHub issue.

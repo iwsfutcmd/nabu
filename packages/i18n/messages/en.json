@@ -1222,42 +1222,6 @@
       "message": "Word ({$orthography})",
       "description": "Label of the field holding the word in one orthography. $orthography is that orthography's name (a course can be taught in several)."
     },
-    "course.name.apc": {
-      "message": "Lebanese Arabic",
-      "description": "Name of the Lebanese Arabic (apc) course, used inside other messages as $language. Not 'Levantine': the course teaches the Lebanese variety. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.es": {
-      "message": "Cuban Spanish",
-      "description": "Name of the Cuban Spanish (es) course, used inside other messages as $language. Spanish as Cuban families speak it, in Cuba and in Miami; the course is for heritage speakers but starts from the beginning. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.fa": {
-      "message": "Persian",
-      "description": "Name of the Persian (fa) course, used inside other messages as $language. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.grc": {
-      "message": "Ancient Greek",
-      "description": "Name of the Ancient Greek (grc) course, used inside other messages as $language. The course teaches Attic, the Greek of Athens in the fifth and fourth centuries BCE (Plato, Xenophon, Lysias). Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.hbo": {
-      "message": "Biblical Hebrew",
-      "description": "Name of the Biblical Hebrew (hbo) course, used inside other messages as $language. The Hebrew of the Bible, read in the Tiberian pointing; not Modern Hebrew. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.lzh": {
-      "message": "Classical Chinese",
-      "description": "Name of the Classical (Literary) Chinese (lzh) course, used inside other messages as $language. The written language of the classics, read and written in Traditional characters. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.tok": {
-      "message": "Toki Pona",
-      "description": "Name of the Toki Pona (tok) course, used inside other messages as $language. Toki Pona is a small constructed language (Sonja Lang, 2001); its name stays as it is in every language. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.uz": {
-      "message": "Uzbek",
-      "description": "Name of the Uzbek (uz) course, used inside other messages as $language. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "course.name.yue": {
-      "message": "Cantonese",
-      "description": "Name of the Cantonese (yue) course, used inside other messages as $language. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
     "debug.cards.back": {
       "message": "Back to the course",
       "description": "Debug mode: link from the card gallery back to the course page."
@@ -1757,54 +1721,6 @@
     "league.zone.promote": {
       "message": "Promotion zone",
       "description": "Accessible label of the rows that move up a tier at the end of the week."
-    },
-    "orthography.apc-Arab.standard": {
-      "message": "Arabic script",
-      "description": "Name of the Lebanese Arabic orthography in Arabic script. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.apc-Latn.arabizi": {
-      "message": "Arabizi (Latin letters and numbers)",
-      "description": "Name of Arabizi, Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع, 2 for ء). Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.es-Latn.standard": {
-      "message": "Spanish spelling",
-      "description": "Name of the Spanish orthography: the Latin alphabet with ñ and accent marks, as the Royal Spanish Academy spells it. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.fa-Arab.standard": {
-      "message": "Persian script",
-      "description": "Name of the Persian orthography (Arabic script as used for Persian). Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.grc-Grek.polytonic": {
-      "message": "Polytonic Greek",
-      "description": "Name of the Ancient Greek orthography: the Greek alphabet written with its accents, breathings and iota subscript, as editions of ancient texts print it. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.hbo-Hebr.tiberian": {
-      "message": "Hebrew script, Tiberian pointing",
-      "description": "Name of the Biblical Hebrew orthography: the Hebrew letters with the Tiberian vowel points (niqqud), as in the Masoretic text. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.lzh-Hant.standard": {
-      "message": "Traditional characters",
-      "description": "Name of the Classical Chinese orthography: Traditional Chinese characters. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.tok-Latn.standard": {
-      "message": "Latin letters (sitelen Lasina)",
-      "description": "Name of the Toki Pona orthography in the Latin alphabet, called sitelen Lasina in Toki Pona. Keep sitelen Lasina as it is. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.tok-Qaap.sitelen-pona": {
-      "message": "sitelen pona (logographs)",
-      "description": "Name of Toki Pona's own script, sitelen pona: one picture-like sign (logograph) for each word. Keep sitelen pona as it is, in lowercase. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.uz-Cyrl.standard": {
-      "message": "Cyrillic",
-      "description": "Name of the Uzbek Cyrillic orthography. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.uz-Latn.standard": {
-      "message": "Latin",
-      "description": "Name of the Uzbek Latin orthography. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
-    },
-    "orthography.yue-Hant-HK.standard": {
-      "message": "Traditional characters",
-      "description": "Name of the Hong Kong Cantonese orthography. Course data now names courses (course.yaml `names`, ADR 0109) and the app shows that name; this message stays only so the UI catalogs' translations of the name keep working until the course carries them. Its English must match course.yaml's (a test pins them)."
     },
     "player.action.cant-listen": {
       "message": "Can't listen now",
@@ -2306,30 +2222,6 @@
       "message": "{$tone} · {$name}",
       "description": "An option of the 'which tone?' exercise: a tone ($tone, as its reading scheme writes it, such as 1) and the name of its pitch from the scheme's data ($name, such as high level)."
     },
-    "player.tone.yue-jyutping.1": {
-      "message": "1 · high level",
-      "description": "Cantonese tone 1 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "player.tone.yue-jyutping.2": {
-      "message": "2 · high rising",
-      "description": "Cantonese tone 2 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "player.tone.yue-jyutping.3": {
-      "message": "3 · mid level",
-      "description": "Cantonese tone 3 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "player.tone.yue-jyutping.4": {
-      "message": "4 · low falling",
-      "description": "Cantonese tone 4 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "player.tone.yue-jyutping.5": {
-      "message": "5 · low rising",
-      "description": "Cantonese tone 5 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "player.tone.yue-jyutping.6": {
-      "message": "6 · low level",
-      "description": "Cantonese tone 6 (Jyutping), with its pitch shape. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
     "player.transcribe.label": {
       "message": "Reading",
       "description": "Label of the field where the learner types a word's reading in Latin letters."
@@ -2521,22 +2413,6 @@
     "quest.xp-30": {
       "message": ".input {$target :number}\n{{Earn {$target} XP}}",
       "description": "Daily quest: earn XP."
-    },
-    "reading.scheme.baxter": {
-      "message": "Middle Chinese (Baxter)",
-      "description": "William Baxter's transcription of Middle Chinese (the language of the 601 CE Qieyun rhyme dictionary), a choice in the readings control. Keep Baxter's name: it names the transcription. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "reading.scheme.jyutping": {
-      "message": "Jyutping",
-      "description": "Name of the Jyutping romanization (Cantonese readings of Chinese characters), a choice in the readings control. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "reading.scheme.lasina": {
-      "message": "sitelen Lasina",
-      "description": "The Toki Pona word of each sitelen pona sign in Latin letters (sitelen Lasina), a choice in the readings control. Keep sitelen Lasina as it is. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
-    },
-    "reading.scheme.pinyin": {
-      "message": "Pinyin",
-      "description": "Name of the Pinyin romanization (Mandarin readings of Chinese characters), a choice in the readings control. The reading scheme's data now gives this name (profiles/schemes, ADR 0109) and the app shows it; this message stays only so the UI catalogs' translations keep working until the data carries them. Its English must match the data's (a test pins them)."
     },
     "report.problem": {
       "message": "Report a problem",

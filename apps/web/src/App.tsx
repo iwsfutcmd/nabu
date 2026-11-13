@@ -281,7 +281,7 @@ const Home = ({
           <CourseCard key={c.id} entry={c} />
         ))}
       </ul>
-      <Progress store={store} sync={sync} />
+      <Progress store={store} sync={sync} courses={courses} />
       <div className={styles.links}>
         <a className={styles.link} href={href({ tag: "preferences" })} data-preferences-link="">
           {t.format("app.preferences.link")}

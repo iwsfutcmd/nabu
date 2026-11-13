@@ -14,7 +14,7 @@
  * asks the person's age, neutrally (no threshold shown), in any script's digits. If the server turns
  * them away, the device remembers and offers no new account there; learning on the device goes on.
  */
-import { parseDigits } from "@nabu/i18n";
+import { parseDigits, type Named } from "@nabu/i18n";
 import { useTranslator } from "@nabu/ui";
 import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
@@ -289,7 +289,8 @@ const AccountFields = ({ mode, email, setEmail, password, setPassword, askAge, a
   );
 };
 
-export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JSX.Element => {
+/** `courses` names the courses a restored file holds (ADR 0109). */
+export const Progress = ({ store, sync, courses }: { store: EventStore; sync: Sync; courses: readonly Named[] }): JSX.Element => {
   const t = useTranslator();
   const state = useSyncExternalStore(sync.subscribe, sync.get);
   const [deleted, setDeleted] = useState(false);
@@ -327,7 +328,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
           {t.format("app.progress.export")}
         </Button>
       </div>
-      <Restore store={store} sync={sync} />
+      <Restore store={store} sync={sync} courses={courses} />
       <Voice signedIn={state.account !== undefined} />
     </section>
   );

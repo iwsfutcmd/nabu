@@ -18,6 +18,33 @@ names:
     blurb: "The Greek of classical Athens, learned through passages of ancient authors."
     orthographies:
       grc-Grek/polytonic: Polytonic Greek
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "اليونانية القديمة"
+    orthographies:
+      grc-Grek/polytonic: "اليونانية متعددة النبرات"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "یونانی باستان"
+    orthographies:
+      grc-Grek/polytonic: "یونانی با نشانه\u200cهای تکیه"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Qadimgi yunon tili"
+    orthographies:
+      grc-Grek/polytonic: "Politonik yunon yozuvi"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Қадимги юнон тили"
+    orthographies:
+      grc-Grek/polytonic: "Политоник юнон ёзуви"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "古希臘文"
+    orthographies:
+      grc-Grek/polytonic: "多調號希臘文"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@grc-draft-v1', status: draft}
 # A Greek word is a stem and an ending: a new verb in a new form, or a new noun in a new case, is two KCs.

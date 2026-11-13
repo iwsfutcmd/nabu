@@ -5,13 +5,16 @@
   "description": "A reading scheme (ADR 0109): how a token's pinned reading is written, such as Jyutping, Pinyin, Baxter's Middle Chinese, sitelen Lasina, the Tiberian reading or Attic with its vowel lengths. Data in profiles/schemes/<id>.yaml: the pipeline reads it (nabu.schemes, which adds what voices do with readings) and core gets it through @nabu/schema/schemes. What a scheme can be used for follows from what it gives: shown as options or asked for (`answer`), typed (`typed`), heard as tones (`tones`).",
   "$comment": "v0. A profile's reading layer (`annotations`, kind reading) and a course voice's `reading` and `pronounce` name a scheme by its id.",
   "type": "object",
-  "required": ["id", "name", "language"],
+  "required": ["id", "names", "language"],
   "additionalProperties": false,
   "properties": {
     "id": { "$ref": "common.schema.json#/$defs/SchemeId" },
-    "name": {
-      "description": "What the UI calls it: Jyutping, Middle Chinese (Baxter).",
-      "$ref": "common.schema.json#/$defs/Names"
+    "names": {
+      "description": "What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.",
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "common.schema.json#/$defs/LangTag" },
+      "additionalProperties": { "$ref": "#/$defs/SchemeNames" }
     },
     "language": {
       "description": "The language whose sounds it writes: yue for Jyutping, cmn for Pinyin, ltc for Baxter's Middle Chinese. The audio round trip compares a language's characters by their readings where a scheme of that language can read written text (nabu.schemes).",
@@ -70,16 +73,35 @@
     }
   },
   "$defs": {
+    "SchemeNames": {
+      "title": "SchemeNames",
+      "description": "A reading scheme's names in one language.",
+      "type": "object",
+      "required": ["scheme"],
+      "additionalProperties": false,
+      "properties": {
+        "scheme": {
+          "description": "The scheme's name: Jyutping, Middle Chinese (Baxter).",
+          "type": "string",
+          "minLength": 1
+        },
+        "tones": {
+          "description": "Each tone's pitch, by its marks, where the scheme has tones: high level, low rising.",
+          "type": "object",
+          "additionalProperties": { "type": "string", "minLength": 1 }
+        },
+        "provenance": {
+          "description": "Who wrote the names in this language, where not the scheme's authors: an LLM's translation awaiting review (status draft).",
+          "$ref": "course-source.schema.json#/$defs/Provenance"
+        }
+      }
+    },
     "Tone": {
       "title": "Tone",
       "type": "object",
       "required": ["letters", "shape", "template"],
       "additionalProperties": false,
       "properties": {
-        "name": {
-          "description": "What the UI calls its pitch: high level, low rising.",
-          "$ref": "common.schema.json#/$defs/Names"
-        },
         "letters": {
           "description": "Its contour in Chao's tone letters, 1 lowest to 5 highest: 55, 35, 21. Voices that take IPA get them as ˥˧˩.",
           "type": "string",

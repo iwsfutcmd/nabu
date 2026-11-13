@@ -8,6 +8,7 @@
  *   event checked against the schema, what this device has already left as it is (by id), and the
  *   rest added to its log after the learner has seen what the file holds.
  */
+import { courseName, type Named } from "@nabu/i18n";
 import type { LearnerEvent } from "@nabu/schema";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type JSX } from "react";
@@ -47,12 +48,10 @@ export const DeviceCopy = ({ store }: { store: EventStore }): JSX.Element | null
   );
 };
 
-const courseNames = (t: Translator, events: readonly LearnerEvent[]): string => {
+/** The courses a file holds, by the names the courses give themselves (ADR 0109). */
+const courseNames = (t: Translator, events: readonly LearnerEvent[], courses: readonly Named[]): string => {
   const ids = [...new Set(events.flatMap((e) => (e.type === "goal_set" ? [] : [e.course])))];
-  const names = ids.map((id) => {
-    const key = `course.name.${id}`;
-    return t.has(key) ? t.format(key) : id;
-  });
+  const names = ids.map((id) => courseName(t, courses.find((c) => c.id === id) ?? { id }));
   return new Intl.ListFormat(t.locale, { type: "conjunction" }).format(names);
 };
 
@@ -67,7 +66,7 @@ type Stage =
   | { readonly tag: "empty" }
   | { readonly tag: "unreadable" };
 
-export const Restore = ({ store, sync }: { store: EventStore; sync: Sync }): JSX.Element => {
+export const Restore = ({ store, sync, courses }: { store: EventStore; sync: Sync; courses: readonly Named[] }): JSX.Element => {
   const t = useTranslator();
   const [stage, setStage] = useState<Stage>({ tag: "idle" });
   const read = async (file: File): Promise<void> => {
@@ -114,7 +113,7 @@ export const Restore = ({ store, sync }: { store: EventStore; sync: Sync }): JSX
       <div role="status">
         {stage.tag === "found" && (
           <div className={styles.form} data-restore-found={stage.events.length} data-restore-new={stage.fresh.length} data-restore-invalid={stage.invalid}>
-            <p className={styles.formIntro}>{t.format("app.restore.found", { count: stage.events.length, courses: courseNames(t, stage.events) })}</p>
+            <p className={styles.formIntro}>{t.format("app.restore.found", { count: stage.events.length, courses: courseNames(t, stage.events, courses) })}</p>
             <p className={styles.formIntro}>{stage.fresh.length > 0 ? t.format("app.restore.new", { count: stage.fresh.length }) : t.format("app.restore.none-new")}</p>
             {stage.invalid > 0 && <p className={styles.formIntro}>{t.format("app.restore.invalid", { count: stage.invalid })}</p>}
           </div>

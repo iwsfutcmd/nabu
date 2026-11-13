@@ -2,7 +2,32 @@
 # syllable per character, its tone a number 1–6 at the end (checked syllables, ending in -p -t -k,
 # take 1, 3 or 6). Pinned on every Han word of yue, and of lzh as its literary reading (ADR 0071).
 id: jyutping
-name: { en: Jyutping }
+# What the UI calls the scheme and its tones, by language (ADR 0109). The translations are an
+# LLM's drafts, made for the draft UI catalogs (ADR 0070), and await review as those do.
+names:
+  en:
+    scheme: Jyutping
+    tones: {"1": high level, "2": high rising, "3": mid level, "4": low falling, "5": low rising, "6": low level}
+  ar:
+    scheme: "جيوتبينغ"
+    tones: {"1": "عالية مستوية", "2": "عالية صاعدة", "3": "متوسطة مستوية", "4": "منخفضة هابطة", "5": "منخفضة صاعدة", "6": "منخفضة مستوية"}
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    scheme: "جیوت\u200cپینگ"
+    tones: {"1": "بالا، ثابت", "2": "بالا، بالارونده", "3": "میانه، ثابت", "4": "پایین، پایین\u200cرونده", "5": "پایین، بالارونده", "6": "پایین، ثابت"}
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    scheme: "Jyutping"
+    tones: {"1": "baland tekis", "2": "baland koʻtariluvchi", "3": "oʻrta tekis", "4": "past pasayuvchi", "5": "past koʻtariluvchi", "6": "past tekis"}
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    scheme: "Жютпинг"
+    tones: {"1": "баланд текис", "2": "баланд кўтарилувчи", "3": "ўрта текис", "4": "паст пасаювчи", "5": "паст кўтарилувчи", "6": "паст текис"}
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    scheme: "粵拼"
+    tones: {"1": "高平", "2": "高升", "3": "中平", "4": "低降", "5": "低升", "6": "低平"}
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 language: yue
 lang: yue-Latn-HK-jyutping
 answer: yue-Latn/jyutping
@@ -13,9 +38,9 @@ tones:
   # Hong Kong Cantonese: letters as the standard descriptions give them (1 is 55, 53 heard as 1
   # too). REVIEW: the templates are from those descriptions; tune them on native recordings.
   values:
-    "1": { name: { en: high level }, letters: "55", checked: "5", shape: level, template: [5, 5, 5] }
-    "2": { name: { en: high rising }, letters: "35", shape: rising, template: [2.5, 3.3, 5] }
-    "3": { name: { en: mid level }, letters: "33", checked: "3", shape: level, template: [3, 3, 3] }
-    "4": { name: { en: low falling }, letters: "21", shape: falling, template: [2.2, 1.6, 1] }
-    "5": { name: { en: low rising }, letters: "23", shape: rising, template: [2, 2.3, 3] }
-    "6": { name: { en: low level }, letters: "22", checked: "2", shape: level, template: [2, 2, 2] }
+    "1": { letters: "55", checked: "5", shape: level, template: [5, 5, 5] }
+    "2": { letters: "35", shape: rising, template: [2.5, 3.3, 5] }
+    "3": { letters: "33", checked: "3", shape: level, template: [3, 3, 3] }
+    "4": { letters: "21", shape: falling, template: [2.2, 1.6, 1] }
+    "5": { letters: "23", shape: rising, template: [2, 2.3, 3] }
+    "6": { letters: "22", checked: "2", shape: level, template: [2, 2, 2] }

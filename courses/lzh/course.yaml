@@ -13,6 +13,33 @@ names:
     blurb: "The written language of the Chinese classics, learned through their own passages."
     orthographies:
       lzh-Hant/standard: Traditional characters
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "الصينية الكلاسيكية"
+    orthographies:
+      lzh-Hant/standard: "الرموز التقليدية"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "چینی کلاسیک"
+    orthographies:
+      lzh-Hant/standard: "نویسه\u200cهای سنتی"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Klassik xitoy tili"
+    orthographies:
+      lzh-Hant/standard: "Anʼanaviy iyerogliflar"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Классик хитой тили"
+    orthographies:
+      lzh-Hant/standard: "Анъанавий иероглифлар"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "文言文"
+    orthographies:
+      lzh-Hant/standard: "繁體字"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@52f9ac56dcce', status: draft}
 facets: [recognize, produce]

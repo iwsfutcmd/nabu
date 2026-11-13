@@ -523,75 +523,10 @@ type ScriptCode = Annotated[
 ]
 
 
-type NamesAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-type Names = Annotated[
-    dict[LangTag, NamesAdditionalProperty],
-    Field(
-        description="A name in the languages it is given in (BCP 47 tags; ADR 0109): data, not app messages. The app shows the one in the UI language, else the first.",
-        examples=[{"en": "Jyutping"}],
-        min_length=1,
-        title="Names",
-    ),
-]
-
-
 type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
 
 
 type HintsAdditionalProperty = Annotated[str, Field(min_length=1)]
-
-
-class CourseNames1(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    course: Annotated[
-        str,
-        Field(
-            description="The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.",
-            min_length=1,
-        ),
-    ]
-    blurb: Annotated[
-        str | None,
-        Field(
-            description="One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.",
-            min_length=1,
-        ),
-    ] = None
-    orthographies: Annotated[
-        dict[OrthographyId, OrthographiesAdditionalProperty] | None,
-        Field(
-            description="Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers)."
-        ),
-    ] = None
-    hints: Annotated[
-        dict[OrthographyId, HintsAdditionalProperty] | None,
-        Field(
-            description="For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages."
-        ),
-    ] = None
-
-
-type CourseNames = Annotated[
-    dict[LangTag, CourseNames1],
-    Field(
-        description="What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.",
-        examples=[
-            {
-                "en": {
-                    "course": "Cantonese",
-                    "orthographies": {"yue-Hant-HK/standard": "Traditional characters"},
-                }
-            }
-        ],
-        min_length=1,
-        title="CourseNames",
-    ),
-]
 
 
 class Corrections(BaseModel):
@@ -2109,6 +2044,36 @@ class Typed(BaseModel):
     ]
 
 
+type TonesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class SchemeNames(BaseModel):
+    """
+    A reading scheme's names in one language.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    scheme: Annotated[
+        str,
+        Field(description="The scheme's name: Jyutping, Middle Chinese (Baxter).", min_length=1),
+    ]
+    tones: Annotated[
+        dict[str, TonesAdditionalProperty] | None,
+        Field(
+            description="Each tone's pitch, by its marks, where the scheme has tones: high level, low rising."
+        ),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(
+            description="Who wrote the names in this language, where not the scheme's authors: an LLM's translation awaiting review (status draft)."
+        ),
+    ] = None
+
+
 type TemplateItem = Annotated[float, Field(ge=1.0, le=5.0)]
 
 
@@ -2117,9 +2082,6 @@ class Tone(BaseModel):
         extra="forbid",
         frozen=True,
     )
-    name: Annotated[
-        Names | None, Field(description="What the UI calls its pitch: high level, low rising.")
-    ] = None
     letters: Annotated[
         str,
         Field(
@@ -2575,88 +2537,6 @@ class AudioVerdicts(BaseModel):
     verdicts: list[AudioVerdict]
 
 
-class BundleManifest(BaseModel):
-    """
-    A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
-    """
-
-    model_config = ConfigDict(
-        extra="forbid",
-        frozen=True,
-    )
-    formatVersion: Annotated[
-        Literal[1],
-        Field(
-            description="1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text."
-        ),
-    ]
-    id: Annotated[
-        str,
-        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
-    ]
-    course: str
-    target: ScriptedLangTag
-    orthographies: list[OrthographyId]
-    support: list[OrthographyId]
-    names: Annotated[
-        CourseNames | None,
-        Field(
-            description="What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses."
-        ),
-    ] = None
-    facets: Annotated[
-        list[Facet] | None,
-        Field(
-            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
-            min_length=1,
-        ),
-    ] = None
-    audioQuality: Annotated[
-        Literal["iffy"] | None,
-        Field(
-            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
-        ),
-    ] = None
-    placement: Annotated[
-        PlacementPolicy | None,
-        Field(
-            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
-        ),
-    ] = None
-    versions: Annotated[
-        dict[str, str],
-        Field(
-            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
-        ),
-    ]
-    files: Annotated[
-        list[BundleFile],
-        Field(description="Every file in the bundle by role, with its SPDX license."),
-    ]
-    credits: Annotated[
-        dict[CreditId, CreditsAdditionalProperty],
-        Field(
-            description="Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`)."
-        ),
-    ]
-    units: Annotated[
-        list[BundleManifestUnit],
-        Field(
-            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
-        ),
-    ]
-    licenses: Annotated[
-        dict[str, int], Field(description="SPDX expression → number of content items.")
-    ]
-    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
-    release: Annotated[
-        bool | None,
-        Field(
-            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
-        ),
-    ] = None
-
-
 class BundleAudioItem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -2664,6 +2544,63 @@ class BundleAudioItem(BaseModel):
     )
     normal: BundleClip
     slow: BundleClip | None = None
+
+
+class CourseNames1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[
+        str,
+        Field(
+            description="The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.",
+            min_length=1,
+        ),
+    ]
+    blurb: Annotated[
+        str | None,
+        Field(
+            description="One line on what the course teaches, under its name in the course list: The Arabic of Lebanon, as people speak it every day.",
+            min_length=1,
+        ),
+    ] = None
+    orthographies: Annotated[
+        dict[OrthographyId, OrthographiesAdditionalProperty] | None,
+        Field(
+            description="Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers)."
+        ),
+    ] = None
+    hints: Annotated[
+        dict[OrthographyId, HintsAdditionalProperty] | None,
+        Field(
+            description="For a course in several orthographies, what choosing each means, under its name in the course list: Latin letters and digits, as many Lebanese write in messages."
+        ),
+    ] = None
+    provenance: Annotated[
+        Provenance | None,
+        Field(
+            description="Who wrote the names in this language, where not the course's authors: an LLM's translation awaiting review (status draft). Without it, the course's provenance."
+        ),
+    ] = None
+
+
+type CourseNames = Annotated[
+    dict[LangTag, CourseNames1],
+    Field(
+        description="What the app calls a course and the orthographies it teaches, and the lines the course list says of them, by the language they are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows them in the UI language where the course gives them.",
+        examples=[
+            {
+                "en": {
+                    "course": "Cantonese",
+                    "orthographies": {"yue-Hant-HK/standard": "Traditional characters"},
+                }
+            }
+        ],
+        min_length=1,
+        title="CourseNames",
+    ),
+]
 
 
 class KnowledgeComponentSource(BaseModel):
@@ -3295,8 +3232,12 @@ class ReadingScheme(BaseModel):
         frozen=True,
     )
     id: SchemeId
-    name: Annotated[
-        Names, Field(description="What the UI calls it: Jyutping, Middle Chinese (Baxter).")
+    names: Annotated[
+        dict[LangTag, SchemeNames],
+        Field(
+            description="What the UI calls it and its tones, by the language they are written in (a BCP 47 tag; ADR 0109), as a course's names are: data, never app messages.",
+            min_length=1,
+        ),
     ]
     language: Annotated[
         LangTag,
@@ -3426,6 +3367,88 @@ class AudioIndex(BaseModel):
         list[ReferenceVoice] | None,
         Field(
             description="Reference voices (`nabu audio cast`): a short recording a voice-cloning provider (OmniVoice) clones for every clip, so one course voice sounds like one speaker."
+        ),
+    ] = None
+
+
+class BundleManifest(BaseModel):
+    """
+    A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    formatVersion: Annotated[
+        Literal[1],
+        Field(
+            description="1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text."
+        ),
+    ]
+    id: Annotated[
+        str,
+        Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
+    ]
+    course: str
+    target: ScriptedLangTag
+    orthographies: list[OrthographyId]
+    support: list[OrthographyId]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses."
+        ),
+    ] = None
+    facets: Annotated[
+        list[Facet] | None,
+        Field(
+            description="The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.",
+            min_length=1,
+        ),
+    ] = None
+    audioQuality: Annotated[
+        Literal["iffy"] | None,
+        Field(
+            description="How far learners may rely on the course's clips, where it is not good (course source `audio.quality`, ADR 0091). iffy: no template whose prompt is a clip (listening, listen-and-repeat) is planned; clips still play where the learner has the text. A bad voice ships no clips, so it needs no flag."
+        ),
+    ] = None
+    placement: Annotated[
+        PlacementPolicy | None,
+        Field(
+            description="How the placement test probes, where the course says (course source `placement`, ADR 0077)."
+        ),
+    ] = None
+    versions: Annotated[
+        dict[str, str],
+        Field(
+            description="Everything that can change the output: schema, Unicode and CLDR data, analyzers, ICU."
+        ),
+    ]
+    files: Annotated[
+        list[BundleFile],
+        Field(description="Every file in the bundle by role, with its SPDX license."),
+    ]
+    credits: Annotated[
+        dict[CreditId, CreditsAdditionalProperty],
+        Field(
+            description="Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`)."
+        ),
+    ]
+    units: Annotated[
+        list[BundleManifestUnit],
+        Field(
+            description="The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit."
+        ),
+    ]
+    licenses: Annotated[
+        dict[str, int], Field(description="SPDX expression → number of content items.")
+    ]
+    provenance: Annotated[dict[str, int], Field(description="Counts by status and author kind.")]
+    release: Annotated[
+        bool | None,
+        Field(
+            description="A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts."
         ),
     ] = None
 

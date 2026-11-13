@@ -33,7 +33,6 @@ VECTORS = [
     for v in json.loads(PRONOUNCE.read_text(encoding="utf-8"))["vectors"]
     if v["op"] in ("reading-syllables", "reading-tone")
 ]
-CATALOG = json.loads((ROOT / "packages/i18n/messages/en.json").read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("vector", VECTORS, ids=[v["id"] for v in VECTORS])
@@ -100,14 +99,13 @@ def test_what_the_pipeline_does_with_each_scheme() -> None:
         plugins("yale")
 
 
-def test_the_catalogs_copies_of_scheme_and_tone_names_match_the_data() -> None:
-    """The English catalog keeps these names only for the draft translations (ADR 0109)."""
-    messages = CATALOG["messages"]
-    for found in schemes().values():
-        key = f"reading.scheme.{found.id}"
-        if key in messages:
-            assert messages[key]["message"] == found.name["en"]
-        for value, t in (found.tones.values if found.tones is not None else {}).items():
-            key = f"player.tone.{found.tones.system if found.tones else ''}.{value}"
-            if key in messages and t.name is not None:
-                assert messages[key]["message"] == f"{value} · {t.name['en']}"
+@pytest.mark.parametrize("name", sorted(schemes()))
+def test_a_scheme_names_itself_and_each_tone_in_every_language_it_is_named_in(name: str) -> None:
+    """Names are data (ADR 0109): English always; a translation names every tone and says who
+    wrote it (the draft UI catalogs' translations moved here as an LLM's drafts)."""
+    found = scheme(name)
+    tones = sorted(found.tones.values) if found.tones is not None else []
+    assert "en" in found.names
+    for tag, names in found.names.items():
+        assert sorted(names.tones or {}) == tones, tag
+        assert tag == "en" or names.provenance is not None, tag

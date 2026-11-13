@@ -18,6 +18,7 @@ import { ArrowForwardIcon, CloseIcon, PlayIcon } from "../icons.tsx";
 import { useReadings } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
 import type { DemoExercise } from "./fixtures.ts";
+import { DEMO_COURSE_NAMES } from "./names.ts";
 import styles from "./ExerciseCard.module.css";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
@@ -74,7 +75,7 @@ export const ExerciseCard = ({
   const answerTiles = tiles.slice(0, placed);
   const bank = bankOrder(tiles.slice(placed), exercise.distractors);
   const targetDir = directionOf(exercise.answer.lang);
-  const language = courseName(t, { id: exercise.course, target: exercise.answer.lang });
+  const language = courseName(t, { id: exercise.course, target: exercise.answer.lang, names: DEMO_COURSE_NAMES[exercise.course] });
   const progressLabel = t.format("exercise.progress", progress);
 
   return (

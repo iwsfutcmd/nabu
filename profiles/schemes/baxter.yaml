@@ -2,6 +2,25 @@
 # Sagart (2014) write it in ASCII from the Guangyun: one syllable per character (說 ywet). lzh pins
 # it on every Han word (ADR 0071); it is shown, never asked for.
 id: baxter
-name: { en: Middle Chinese (Baxter) }
+# What the UI calls the scheme and its tones, by language (ADR 0109). The translations are an
+# LLM's drafts, made for the draft UI catalogs (ADR 0070), and await review as those do.
+names:
+  en:
+    scheme: Middle Chinese (Baxter)
+  ar:
+    scheme: "الصينية الوسطى (باكستر)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    scheme: "چینی میانه (باکستر)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    scheme: "Oʻrta xitoy tili (Baxter)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    scheme: "Ўрта хитой тили (Бакстер)"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    scheme: "中古漢語（白一平）"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 language: ltc
 lang: ltc-Latn-x-baxter

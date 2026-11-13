@@ -16,6 +16,38 @@ names:
     hints:
       uz-Latn/standard: "The official alphabet in Uzbekistan today."
       uz-Cyrl/standard: "The older alphabet, still widely read."
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "الأوزبكية"
+    orthographies:
+      uz-Latn/standard: "الحروف اللاتينية"
+      uz-Cyrl/standard: "الحروف السيريلية"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "ازبکی"
+    orthographies:
+      uz-Latn/standard: "لاتین"
+      uz-Cyrl/standard: "سیریلیک"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Oʻzbek tili"
+    orthographies:
+      uz-Latn/standard: "Lotin"
+      uz-Cyrl/standard: "Kirill"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Ўзбек тили"
+    orthographies:
+      uz-Latn/standard: "Лотин"
+      uz-Cyrl/standard: "Кирилл"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "烏茲別克語"
+    orthographies:
+      uz-Latn/standard: "拉丁字母"
+      uz-Cyrl/standard: "西里爾字母"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@887599f213ef', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-home.yaml, units/u04-numbers.yaml, units/u05-food.yaml, units/u06-city.yaml, units/u07-day.yaml, units/u08-bazaar.yaml, units/u09-past.yaml, units/u10-travel.yaml]

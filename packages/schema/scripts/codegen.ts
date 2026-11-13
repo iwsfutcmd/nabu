@@ -66,6 +66,9 @@ const schemes = readdirSync(SCHEMES_DIR)
     if (`${String(data.id)}.yaml` !== f) throw new Error(`profiles/schemes/${f}: its id is ${String(data.id)}`);
     return data;
   });
-writeFileSync(SCHEMES_OUT, `${JSON.stringify(schemes, null, 2)}\n`);
+// Invisible characters (a Persian name's ZWNJ) as escapes, never literal, as the UI catalogs keep them.
+const escaped = (json: string): string =>
+  json.replace(/[\u00AD\u061C\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u2069\uFEFF]/gu, (c) => `\\u${(c.codePointAt(0) ?? 0).toString(16).padStart(4, "0")}`);
+writeFileSync(SCHEMES_OUT, escaped(`${JSON.stringify(schemes, null, 2)}\n`));
 console.log(`wrote ${SCHEMES_OUT}`);
 

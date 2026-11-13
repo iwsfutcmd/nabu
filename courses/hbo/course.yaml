@@ -15,6 +15,33 @@ names:
     blurb: "The Hebrew of the Bible, with its vowel points, learned through its own passages."
     orthographies:
       hbo-Hebr/tiberian: "Hebrew script, Tiberian pointing"
+  # The other languages' names are an LLM's drafts, made for the draft UI catalogs (ADR 0070), and
+  # await review as those do.
+  ar:
+    course: "العبرية التوراتية"
+    orthographies:
+      hbo-Hebr/tiberian: "الخط العبري بالتشكيل الطبري"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  fa:
+    course: "عبری کتاب مقدس"
+    orthographies:
+      hbo-Hebr/tiberian: "خط عبری با اعراب طبری"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz:
+    course: "Bibliya ibroniy tili"
+    orthographies:
+      hbo-Hebr/tiberian: "Ibroniy yozuvi, Tiberiya harakatlari"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  uz-Cyrl:
+    course: "Библия иброний тили"
+    orthographies:
+      hbo-Hebr/tiberian: "Иброний ёзуви, Тиберия ҳаракатлари"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
+  zh-Hant-HK:
+    course: "聖經希伯來文"
+    orthographies:
+      hbo-Hebr/tiberian: "希伯來字母（提比利亞標音）"
+    provenance: {author: 'llm:claude@baa6bf1d5e24', status: draft}
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@hbo-draft-v1', status: draft}
 # A Hebrew verb is a root and a form: a new verb in a new form is two KCs on one word (sense + form).

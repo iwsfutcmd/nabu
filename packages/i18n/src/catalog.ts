@@ -36,7 +36,7 @@ const DRAFTS: Readonly<Record<string, () => Promise<MessageCatalog>>> = {
 };
 
 /** The source locale every pseudo-locale is derived from. */
-const PSEUDO_SOURCE = "en";
+export const PSEUDO_SOURCE = "en";
 
 export const UI_LOCALES: readonly string[] = Object.keys(CATALOGS);
 /** Locales with a draft catalog, for reviewers only. */

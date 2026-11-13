@@ -4,7 +4,7 @@
  * layer the control is the switch it always was; with several it is a choice among them.
  */
 import { readingScheme } from "@nabu/core";
-import { localName } from "@nabu/i18n";
+import { schemeName as nameOfScheme } from "@nabu/i18n";
 import type { AnnotationLayer, OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useRef, useState, type JSX } from "react";
 import { Switch, ToggleButton, ToggleButtonGroup, type Key } from "react-aria-components";
@@ -57,7 +57,7 @@ export const useReadings = (profile: OrthographyProfile | undefined, mode: Writi
 const OFF = "off";
 
 /** The name of a reading scheme in the UI language, from its data (ADR 0109): Pinyin, Jyutping, Middle Chinese (Baxter). */
-export const schemeName = (t: ReturnType<typeof useTranslator>, scheme: SchemeId): string => localName(t, readingScheme(scheme)?.name, `reading.scheme.${scheme}`) ?? scheme;
+export const schemeName = (t: ReturnType<typeof useTranslator>, scheme: SchemeId): string => nameOfScheme(t, readingScheme(scheme)?.names) ?? scheme;
 
 /** The readings control: a switch for one layer, a choice of layers (or none) for several. */
 export const ReadingsControl = ({ readings }: { readonly readings: Readings }): JSX.Element | null => {
