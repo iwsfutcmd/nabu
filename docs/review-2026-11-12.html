@@ -1769,6 +1769,38 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "label": "Add email to the server and a real reset (a deployment change)"
       }
     ]
+  },
+  {
+    "id": "D48",
+    "title": "What refunds the gate (M5)",
+    "context": "With hearts or energy on, a wrong answer costs. A learner can claim an answer should have been right (or wrong); a judge or a reviewer can revise it.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Only the judge’s or a reviewer’s revision moves the gate; the learner’s own claim never does, either way, so honest “This should have been wrong” reports cost nothing (what the helper built)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "The learner’s claim moves the gate too"
+      }
+    ]
+  },
+  {
+    "id": "D49",
+    "title": "League cohorts per course (M8)",
+    "context": "Leagues are one cohort per tier across all courses.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Keep one cohort; decide per-course cohorts later on real XP-per-minute logs (what the helper recommends)",
+        "rec": true
+      },
+      {
+        "v": "b",
+        "label": "Cohorts per course now"
+      }
+    ]
   }
 ]
 </script>
@@ -2125,6 +2157,21 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
     }
   },
   "progress": {
+    "M5": {
+      "state": "done",
+      "commit": "7976a326",
+      "note": "Merged (ADR 0122): placement answers and the learner’s own claims never cost; the empty gate says when lessons open again (with Start now if the page stays open), Home says when the next heart or energy comes back, and the end of a session warns when lessons will be closed. Choice D48."
+    },
+    "M8": {
+      "state": "done",
+      "commit": "ea4b25eb",
+      "note": "Merged (ADR 0122): the league panel says how last week ended, names its promotion and demotion zones, and can be declined or rejoined (the opt-out is in export and delete); league XP uses the deployment’s rules. Choice D49."
+    },
+    "M10": {
+      "state": "done",
+      "commit": "fa12cd43",
+      "note": "Merged (ADR 0122): the judge’s accept says a language model decided and may be wrong; the end of a lesson keeps each missed card’s explanation (or offers one) and lists answers accepted on a second check."
+    },
     "S9": {
       "state": "done",
       "commit": "ade0c883",

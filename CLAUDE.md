@@ -232,6 +232,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   `pnpm --filter @nabu/i18n generate:security`; pinned sha256). Render every user-chosen name inside <bdi>.
 - API options: NABU_LEAGUES=1, NABU_PUSH=1 (VAPID key kept in the database unless NABU_VAPID_PRIVATE_JWK),
   NABU_TEST_HOOKS=1 only in tests (push sink, job runner). Reminder copy lives in packages/i18n (push.reminder.*).
+- The gate never counts placement answers or the learner's own claims (only graded answers and server revisions);
+  `GateState.opensAt` says when lessons open. Leagues can be declined (`league_opt_outs`, in export and delete) and say
+  how last week ended (ADR 0122).
 - Web Push is our own RFC 8291/8292 code (apps/api/src/webpush.ts); its test pins the RFC's example bytes.
 
 ## Phase 8 notes (see docs/adr/0045)

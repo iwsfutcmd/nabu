@@ -274,3 +274,6 @@ ADR is linked. The gameplan text itself is left as written.
     composing is now held until `compositionend` and goes ahead with the settled text; nothing is ever
     submitted mid-composition ([ADR 0118](adr/0118-the-player-on-a-phone.md)). Roleplay's Send, the correction
     form's Send and Start over's confirmation take a press the same way (D39).
+70. **§12.4 "a learner joins a cohort with their first XP of the week":** a learner may now decline leagues
+    (PUT /v1/league), and joins no cohort while declined; past results are kept
+    ([ADR 0122](adr/0122-gate-leagues-and-ai-help.md)).
