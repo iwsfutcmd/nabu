@@ -20,7 +20,7 @@ import { useEffect, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
 import { Sent } from "./Corrections.tsx";
-import { ReportButton, type Claim, type Correcting } from "./Report.tsx";
+import { Claimed, ReportButton, type Claim, type Correcting } from "./Report.tsx";
 import { ScreenHeading } from "./screen.tsx";
 import type { EventStore } from "./store.ts";
 import { isHttpError, queueJudge, request, type Account, type Sync } from "./sync.ts";
@@ -220,11 +220,7 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
       <p className={styles.toolsStatus} role="status" data-judge={judge}>
         {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted") : judge === "queued" ? t.format("ai.judge.queued") : ""}
       </p>
-      {reported !== undefined && (
-        <p className={styles.toolsStatus} role="status" data-reported={reported}>
-          {t.format(reported === "accept" ? "ai.report.done" : "ai.report.rejected")}
-        </p>
-      )}
+      {reported !== undefined && <Claimed claim={reported} />}
       {sent && <Sent />}
       {explain.tag === "loading" && (
         <p className={styles.toolsStatus} role="status">

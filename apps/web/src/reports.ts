@@ -10,10 +10,15 @@
  * - **Retries.** A report is a document named by its event's id, so a retried send cannot
  *   duplicate it.
  * - **No intake.** With no `reports.json`, nothing is sent, and the app says nothing about it.
+ *
+ * Where a report goes is said where one is made (ADR 0115, `useReportsReach`): to the course's
+ * reviewers (an intake, or an account whose server files it in its review queue), to them once the
+ * learner signs in (a server, no account: the outbox waits), or nowhere (neither).
  */
 import { intakeDocumentOf, REPORTS_COLLECTION, submissionOf } from "@nabu/core/reports";
 import type { AnswerReported, ReportSubmission, SentenceReported } from "@nabu/schema";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+import type { Sync, SyncState } from "./sync.ts";
 
 export interface ReportsConfig {
   readonly project: string;
@@ -135,28 +140,64 @@ export const createReportSender = (config: ReportsConfig, send: typeof fetch = (
 };
 
 let intake: Promise<ReportSender | null> | undefined;
+/** Whether the deployment has an intake, once the app has looked (undefined before). */
+let intakeFound: boolean | undefined;
+/** The device's sync, once its store is open: its server and account say where reports go. */
+let device: Sync | undefined;
+const watchers = new Set<() => void>();
+const changed = (): void => {
+  for (const watcher of watchers) watcher();
+};
 
 /** The app's intake, once: null when the deployment has none. */
 export const reportIntake = (): Promise<ReportSender | null> =>
   (intake ??= loadReportsConfig(import.meta.env.BASE_URL).then((config) => {
-    if (config === null) return null;
-    const sender = createReportSender(config);
-    window.addEventListener("online", () => void sender.flush());
-    void sender.flush();
+    const sender = config === null ? null : createReportSender(config);
+    if (sender !== null) {
+      window.addEventListener("online", () => void sender.flush());
+      void sender.flush();
+    }
+    intakeFound = sender !== null;
+    changed();
     return sender;
   }));
 
-/** Whether reports go to an intake (and so become public issues): the app says so where one is made. */
-export const useReportsPublic = (): boolean => {
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    let live = true;
-    void reportIntake().then((sender) => {
-      if (live) setOn(sender !== null);
-    });
-    return () => {
-      live = false;
-    };
-  }, []);
-  return on;
+/** The device's sync, once its store is open (App): with an account, reports go to its server's review queue. */
+export const reportsThrough = (sync: Sync): void => {
+  device = sync;
+  changed();
 };
+
+/** Where a report made now goes (ADR 0115). */
+export type ReportReach = "reviewers" | "sign-in" | "device";
+
+/**
+ * - `reviewers`: the deployment has an intake (ADR 0055), or the learner has an account, whose
+ *   server files every report it takes in its review queue;
+ * - `sign-in`: neither, but the app has a server: the report waits in the outbox, and signing in or
+ *   up uploads it (a server whose age gate turned the person away takes nothing, ADR 0069);
+ * - `device`: nothing takes it: it stays in this device's log.
+ */
+export const reachOf = (hasIntake: boolean, sync: Pick<SyncState, "server" | "account" | "ageRefused">): ReportReach =>
+  hasIntake || sync.account !== undefined ? "reviewers" : sync.server !== undefined && !sync.ageRefused ? "sign-in" : "device";
+
+const subscribe = (listener: () => void): (() => void) => {
+  void reportIntake();
+  let off = device?.subscribe(listener);
+  const watcher = (): void => {
+    off ??= device?.subscribe(listener);
+    listener();
+  };
+  watchers.add(watcher);
+  return () => {
+    watchers.delete(watcher);
+    off?.();
+  };
+};
+
+/** Whether reports go to an intake (and so become public issues): the app says so where one is made. */
+export const useReportsPublic = (): boolean => useSyncExternalStore(subscribe, () => intakeFound === true);
+
+/** Where a report made now goes; undefined until the app has looked for an intake and opened the device's sync. */
+export const useReportsReach = (): ReportReach | undefined =>
+  useSyncExternalStore(subscribe, () => (intakeFound === undefined || device === undefined ? undefined : reachOf(intakeFound, device.get())));

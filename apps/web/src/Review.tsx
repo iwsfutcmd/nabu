@@ -10,7 +10,7 @@
  * Everything goes through the API with the account's token; nothing here touches the device's
  * learner log except "This is wrong", which files a correction like anywhere else in the app.
  */
-import { correctionKey, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
+import { openCorrection, type Correctable, type SignOffKind, type UnitCorrectables } from "@nabu/core/corrections";
 import type { AnswerReport, SentenceCorrection, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { useTranslator } from "@nabu/ui";
 import { SentenceList, signOffKey } from "@nabu/ui/corrections";
@@ -356,7 +356,7 @@ export const ReviewPage = ({ loaded, sync, corrections, back, ...recording }: Pa
               {...recording}
               course={course}
               target={target}
-              previous={corrections.get(correctionKey(target.item, target.step))}
+              previous={openCorrection(course, corrections, target.item, target.step)}
               onClose={(done) => {
                 setTarget(undefined);
                 if (done) setSent(true);
