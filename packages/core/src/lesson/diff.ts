@@ -120,11 +120,13 @@ const sameUnit = (profile: CompiledProfile, expected: string, unit: string): boo
 /**
  * The words of the solution an answer left out or got wrong, as token indexes of the solution (P3):
  * marked where it shows, so a word left out is seen where it goes (tienes in ¿Tú tienes hambre? for
- * "Tú hambre"). For an answer that lines up with the solution's own wording (`closestIsSolution`).
- * Each word's units, as the profile splits them, must be the alignment's, in order; where they are
- * not (an accept set that spells the wording otherwise), nothing is marked.
+ * "Tú hambre"). For an answer that lines up with the solution's own wording (`closestIsSolution`)
+ * and has some of it: marking every word of it would say nothing. Each word's units, as the profile
+ * splits them, must be the alignment's, in order; where they are not (an accept set that spells the
+ * wording otherwise), nothing is marked.
  */
 export const solutionMarks = (alignment: readonly AlignOp[], solution: TaggedText, profile: CompiledProfile): readonly number[] => {
+  if (!alignment.some((op) => op.op === "match")) return [];
   const ops = alignment.filter((op) => op.op !== "insert");
   const marked: number[] = [];
   let at = 0;

@@ -23,7 +23,7 @@
  * reader hears the title and the score with the button (its description), and a stray Enter does
  * what Continue did before.
  */
-import { allKcs, answerDiff, answerTextOf, gradeExercise, nearMiss, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { allKcs, answerDiff, answerTextOf, gradeExercise, promptOf, solutionMarks, solutionOf, type AnswerDiff, type CourseView, type Exercise, type Grader, type Missed, type Response, type SessionSummary } from "@nabu/core/lesson";
 import { textOfSurface } from "@nabu/core/text";
 import type { SchemeId, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, type JSX, type ReactNode } from "react";
@@ -169,8 +169,8 @@ const yoursOf = (course: CourseView, grader: Grader, ex: Exercise, response: Res
   const joiner = profile?.unitKind === "grapheme" ? "" : " ";
   const { alignment, solution } = outcome;
   if (solution !== undefined && alignment !== undefined && alignment.length > 0) {
-    const near = outcome.closestIsSolution === true && profile !== undefined && nearMiss(alignment);
-    return { answer: answerDiff(alignment, solution, joiner), solutionMarked: near ? solutionMarks(alignment, solution, profile) : [] };
+    const own = outcome.closestIsSolution === true && profile !== undefined;
+    return { answer: answerDiff(alignment, solution, joiner), solutionMarked: own ? solutionMarks(alignment, solution, profile) : [] };
   }
   const raw = answerTextOf(ex, response);
   const base = solution ?? solutionOf(ex);

@@ -32,10 +32,12 @@ alone, named "Left out" for screen readers. `answerDiff` gives the gaps, and `di
 text and the gaps a view shows. "Your answer" now shows for an answer whose only difference is a gap.
 
 **The solution marks what the answer left out or got wrong.** The answer must line up with the
-solution's own wording (`closestIsSolution`) and be a near miss of it (W3's test: at least half of the
-wording and of the answer match). Then the solution shown marks the words the answer left out,
-replaced, mistyped or matched only through a noted fold (`solutionMarks`): "¿Tú *tienes* hambre?" for
-"Tú hambre".
+solution's own wording (`closestIsSolution`) and share some of it (a unit matched): marking every word
+says nothing. Then the solution shown marks the words the answer left out, replaced, mistyped or
+matched only through a noted fold (`solutionMarks`): "¿Tú *tienes* hambre?" for "Tú hambre", and
+"¿*Tú* *tienes* hambre?" for "Yo tengo hambre". This is looser than W3's near miss (at least half of
+the wording and of the answer match), which decides whether *another* wording explains an answer;
+the solution is shown anyway.
 - A word's units, as the profile splits them, must be the alignment's, in order. They are compared as
   grading compares two units without a slip (case, the folds: a vocalization's marks); where they
   differ, nothing is marked.

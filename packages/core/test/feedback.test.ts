@@ -119,6 +119,19 @@ describe("what a wrong answer marks (P3)", () => {
     expect(answerDiff([{ ...silent, note: "hamza" }], hungry.canonical, " ").marked).toEqual([0]);
   });
 
+  it("marks the solution of an answer far from it where they share a word, and nothing where they share none", () => {
+    const o = graded(hungry, "Yo tengo hambre");
+    expect(o.closestIsSolution).toBe(true);
+    expect(nearMiss(o.alignment)).toBe(false);
+    expect(surfaces(o.solution, solutionMarks(o.alignment, o.solution, profile))).toEqual(["Tú", "tienes"]);
+    const none: readonly AlignOp[] = [
+      { op: "substitute", expected: "Tú", actual: "perro" },
+      { op: "substitute", expected: "tienes", actual: "gato" },
+      { op: "substitute", expected: "hambre", actual: "casa" },
+    ];
+    expect(solutionMarks(none, hungry.canonical, profile)).toEqual([]);
+  });
+
   it("marks nothing in a solution whose words are not the ones the answer lined up with", () => {
     const other: readonly AlignOp[] = [
       { op: "match", expected: "Tienes", actual: "Tienes", kind: "exact" },

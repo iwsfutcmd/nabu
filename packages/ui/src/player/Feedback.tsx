@@ -153,9 +153,9 @@ export const Feedback = ({ ex, outcome, response, course, ruby, marks }: Feedbac
       ? answerDiff(outcome.alignment, outcome.solution, joiner)
       : undefined;
   // The solution's words the answer left out or got wrong (P3), where it lines up with the solution's
-  // own wording and is near it: a word left out is seen where it goes.
+  // own wording: a word left out is seen where it goes.
   const solutionMarked =
-    showSolution && outcome.closestIsSolution === true && outcome.alignment !== undefined && outcome.solution !== undefined && profile !== undefined && nearMiss(outcome.alignment)
+    showSolution && outcome.closestIsSolution === true && outcome.alignment !== undefined && outcome.solution !== undefined && profile !== undefined
       ? solutionMarks(outcome.alignment, outcome.solution, profile)
       : [];
   // A near miss of another accepted wording than the solution: after the solution (with its
