@@ -2,13 +2,15 @@
  * Roleplay (gameplan §13.4): a conversation with a character from a scenario card. The model's
  * turns were checked against the learner's vocabulary before they arrive; each can show its
  * translation. The learner's field is the player's IME-safe one: nothing is sent, normalized or
- * reset during composition, and a turn becomes TaggedText only once it is sent.
+ * reset during composition, and a turn becomes TaggedText only once it is sent. Send stays enabled
+ * while a keyboard composes: a press then waits for the composition to end (ADR 0118, D39).
  */
 import { autoTokens, type TextBase } from "@nabu/core/ai";
 import type { Direction } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
-import { useState, type JSX } from "react";
+import { useRef, useState, type JSX } from "react";
 import { useTranslator } from "../context.tsx";
+import { useSettledSubmit } from "../ime.ts";
 import { AnswerInput } from "../player/AnswerInput.tsx";
 import { T } from "../T.tsx";
 import styles from "./Ai.module.css";
@@ -52,13 +54,20 @@ const STATUS: Readonly<Record<Exclude<RoleplayStatus, "idle">, "ai.roleplay.thin
 export const RoleplayChat = ({ scenario, turns, base, dir, status, onSend, initialTranslations = [] }: RoleplayChatProps): JSX.Element => {
   const t = useTranslator();
   const [draft, setDraft] = useState("");
-  const [composing, setComposing] = useState(false);
   const [open, setOpen] = useState<ReadonlySet<number>>(() => new Set(initialTranslations));
-  const send = (): void => {
-    if (composing || status === "thinking" || draft.trim() === "") return;
-    onSend(autoTokens(draft.trim(), base));
-    setDraft("");
-  };
+  const sendButton = useRef<HTMLButtonElement>(null);
+  const compose = useRef<HTMLDivElement>(null);
+  const ready = status !== "thinking" && draft.trim() !== "";
+  // The settled turn: never mid-composition, when a press waits for compositionend (D39).
+  const settled = useSettledSubmit(
+    () => {
+      if (!ready) return;
+      onSend(autoTokens(draft.trim(), base));
+      setDraft("");
+    },
+    sendButton,
+    compose,
+  );
   return (
     <section className={styles.roleplay} data-roleplay="">
       <header className={styles.card} data-ink-container="scenario">
@@ -105,7 +114,7 @@ export const RoleplayChat = ({ scenario, turns, base, dir, status, onSend, initi
       <p className={styles.status} role="status" data-roleplay-status={status}>
         {status === "idle" ? "" : t.format(STATUS[status])}
       </p>
-      <div className={styles.compose}>
+      <div ref={compose} className={styles.compose}>
         <AnswerInput
           value={draft}
           base={base}
@@ -114,14 +123,15 @@ export const RoleplayChat = ({ scenario, turns, base, dir, status, onSend, initi
           disabled={false}
           extraKeys={[]}
           onInput={setDraft}
-          onCompositionStart={() => setComposing(true)}
+          onCompositionStart={settled.composition.onCompositionStart}
           onCompositionEnd={(text) => {
-            setComposing(false);
             setDraft(text);
+            settled.composition.onCompositionEnd();
           }}
-          onSubmit={send}
+          onSubmit={settled.enter}
         />
-        <button type="button" className={styles.send} onClick={send} disabled={composing || status === "thinking" || draft.trim() === ""} data-action="send">
+        {/* Enabled while composing (D39): a press waits for the composition to end, then sends the settled turn. */}
+        <button ref={sendButton} type="button" className={styles.send} onClick={settled.press} disabled={!ready} data-action="send">
           {t.format("ai.roleplay.send")}
         </button>
       </div>

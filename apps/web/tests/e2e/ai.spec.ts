@@ -8,13 +8,13 @@
  * With AI responses stubbed at the network (no model involved): the judge's revision upgrades
  * the answer retroactively, and an explanation renders its segments in their own languages.
  */
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test, type CDPSession, type Page } from "@playwright/test";
 import { replay } from "@nabu/core/learner";
 import { lessonNodes, type Exercise } from "@nabu/core/lesson";
 import { graphemes, surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, Explanation, LearnerEvent } from "@nabu/schema";
 import { API_PORT } from "./ports.ts";
-import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor } from "./solver.ts";
+import { activate, answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor, type Mode } from "./solver.ts";
 
 const LETTER = /\p{L}/u;
 const letters = (word: string): number => graphemes(word).filter((g) => LETTER.test(g)).length;
@@ -233,5 +233,98 @@ test.describe("AI features", () => {
     await expect(explanation.locator('[data-segment=support] [lang="en-Latn"]').first()).toBeVisible();
     await expect(explanation.locator('[data-segment=target] [lang="yue-Hant-HK"]').first()).toBeVisible();
     await expect(explanation.locator("[data-provenance]")).toContainText("stub");
+  });
+});
+
+test.describe("a roleplay turn while a keyboard composes (D39)", () => {
+  /** What the learner types with an Arabic keyboard, still composing when Send is pressed. */
+  const TYPED = "مرحبا، كيفك؟";
+  /** The character's turn, as the stubbed model gives it. */
+  const TURN = { lang: "apc-Arab-LB", orthography: "apc-Arab/standard", tokens: [{ kind: "word", surface: "أهلين" }] };
+
+  type Sent = (readonly { readonly role: string; readonly text: string }[])[];
+
+  /**
+   * The café conversation (apc) with the model stubbed at the network, after the character's first
+   * turn, the learner's field composing TYPED: the histories the app sends the model, and the CDP
+   * session composing.
+   */
+  const toComposingTurn = async (page: Page, mode: Mode): Promise<{ readonly sent: Sent; readonly cdp: CDPSession }> => {
+    const email = `roleplay-${run()}@example.org`;
+    const { token, user } = (await (await page.request.post(`${API}/v1/auth/sign-up`, { data: { email, password: "long enough password" } })).json()) as { token: string; user: { id: string; email: string } };
+    await page.route(`${API}/v1/ai/status**`, (route) => route.fulfill({ json: { judge: false, explain: false, roleplay: true } }));
+    const sent: Sent = [];
+    await page.route(`${API}/v1/ai/roleplay`, async (route) => {
+      sent.push((route.request().postDataJSON() as { history: { role: string; text: string }[] }).history);
+      await route.fulfill({ json: { turn: { text: TURN, checks: { unknown: [] } } } });
+    });
+    await page.goto(url("#/"));
+    await page.waitForFunction(() => window.nabu !== undefined);
+    await page.evaluate(async (account) => window.nabu?.setMeta("account", account), { server: API, token, user });
+    await page.goto(url("#/apc/apc-Arab.standard/roleplay/apc.cafe-waiter"));
+    // The account is read as the app starts.
+    await page.reload();
+    await activate(page, mode, "[data-action=start]");
+    await expect(page.locator("[data-roleplay] [data-turn=character]")).toHaveCount(1);
+    const field = page.locator("[data-roleplay] [data-answer-input]");
+    if (mode === "touch") await field.tap();
+    else await field.focus();
+    await expect(field).toBeFocused();
+    const cdp = await page.context().newCDPSession(page);
+    await cdp.send("Input.imeSetComposition", { text: TYPED, selectionStart: TYPED.length, selectionEnd: TYPED.length });
+    await expect(field).toHaveValue(TYPED);
+    await expect(page.locator("[data-roleplay] [data-action=send]")).toBeEnabled();
+    return { sent, cdp };
+  };
+
+  /** The learner's turn went to the model once, settled, and the field is empty for the next. */
+  const expectSent = async (page: Page, sent: Sent): Promise<void> => {
+    await expect(page.locator("[data-roleplay] [data-turn=learner]")).toHaveCount(1);
+    await expect(page.locator("[data-roleplay] [data-turn=character]")).toHaveCount(2);
+    expect(sent).toHaveLength(2);
+    expect(sent[1]?.at(-1)).toEqual({ role: "learner", text: TYPED });
+    await expect(page.locator("[data-roleplay] [data-answer-input]")).toHaveValue("");
+  };
+
+  test("one tap on Send while a phone keyboard still composes sends the turn", async ({ page }, info) => {
+    test.skip(info.project.name !== "touch", "a phone keyboard: the touch pass");
+    const { sent } = await toComposingTurn(page, "touch");
+    await page.locator("[data-roleplay] [data-action=send]").tap();
+    await expectSent(page, sent);
+  });
+
+  test("a press on Send that leaves the focus in the composing field waits for the composition to end", async ({ page }, info) => {
+    const { sent } = await toComposingTurn(page, info.project.name === "touch" ? "touch" : "keyboard");
+    // What the field and the page saw, in order: the turn must be sent after compositionend.
+    await page.evaluate(() => {
+      const seen: string[] = [];
+      (window as unknown as { seen: string[] }).seen = seen;
+      document.querySelector("[data-roleplay] [data-answer-input]")?.addEventListener("compositionend", () => seen.push("compositionend"));
+      new MutationObserver(() => {
+        if (document.querySelector("[data-roleplay] [data-turn=learner]") !== null && !seen.includes("sent")) seen.push("sent");
+      }).observe(document.body, { childList: true, subtree: true });
+    });
+    // A screen reader's activation: a click with no pointer, which moves no focus by itself.
+    await page.locator("[data-roleplay] [data-action=send]").dispatchEvent("click");
+    await expectSent(page, sent);
+    expect(await page.evaluate(() => (window as unknown as { seen: string[] }).seen)).toEqual(["compositionend", "sent"]);
+  });
+
+  test("an input method's Enter, or its commit, sends nothing by itself", async ({ page }, info) => {
+    test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+    const { sent, cdp } = await toComposingTurn(page, "keyboard");
+    // Enter while composing, as an IME reports it (keyCode 229), then the IME's commit: compositionend.
+    await cdp.send("Input.dispatchKeyEvent", { type: "rawKeyDown", key: "Enter", code: "Enter", windowsVirtualKeyCode: 229, nativeVirtualKeyCode: 229 });
+    await cdp.send("Input.dispatchKeyEvent", { type: "keyUp", key: "Enter", code: "Enter", windowsVirtualKeyCode: 229, nativeVirtualKeyCode: 229 });
+    await cdp.send("Input.insertText", { text: TYPED });
+    // Past the moment a waiting press would take to go ahead: nothing was sent, and the field keeps its text.
+    await page.evaluate(() => new Promise((resolve) => setTimeout(resolve, 100)));
+    const field = page.locator("[data-roleplay] [data-answer-input]");
+    await expect(field).toHaveValue(TYPED);
+    await expect(page.locator("[data-roleplay] [data-turn=learner]")).toHaveCount(0);
+    expect(sent).toHaveLength(1);
+    // Once committed, Enter sends: the one turn, settled.
+    await field.press("Enter");
+    await expectSent(page, sent);
   });
 });
