@@ -38,6 +38,13 @@ export const newOnCard = (ex: Exercise, earlier: readonly Exercise[], introduces
   return [...new Set(ex.kcs as readonly string[])].filter((kc) => introduces.has(kc) && !seen.has(kc) && kinds.get(kc) !== "grapheme");
 };
 
+/**
+ * The words a session taught, for its end (P9): the lesson's new words among its cards' KCs, in the
+ * order its cards showed them first. Letters are no words.
+ */
+export const taughtIn = (cards: readonly Exercise[], introduces: ReadonlySet<string>, kinds: ReadonlyMap<string, BundleKc["kind"]>): readonly string[] =>
+  [...new Set(cards.flatMap((e) => e.kcs as readonly string[]))].filter((kc) => introduces.has(kc) && kinds.get(kc) !== "grapheme");
+
 interface Word {
   readonly kc: string;
   readonly form: TaggedText;

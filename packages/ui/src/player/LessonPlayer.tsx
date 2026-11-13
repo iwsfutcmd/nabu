@@ -9,7 +9,7 @@
  * script's direction, never the UI's.
  */
 import type { Verdict } from "@nabu/core";
-import { allKcs, cameBack, countsAs, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { allKcs, cameBack, countsAs, draftOf, emptyDraft, isCorrect, LISTENING, missedOf, progressOf, responseOf, SPEAKING, TEMPLATES, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
@@ -22,7 +22,8 @@ import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "
 import { Feedback } from "./Feedback.tsx";
 import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
 import { lookupIsHint, withHint } from "./hints.ts";
-import { NewWordsAnswered, NewWordsTag, newOnCard } from "./NewWords.tsx";
+import { NewWordsAnswered, NewWordsTag, newOnCard, taughtIn } from "./NewWords.tsx";
+import { SessionEnd, type NextStep, type SessionProgress } from "./SessionEnd.tsx";
 import styles from "./Player.module.css";
 import { useReadings } from "./Readings.tsx";
 import { digitIndex, focusInReach, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
@@ -60,6 +61,10 @@ export interface LessonPlayerProps {
   readonly initialState?: PlayerState;
   /** XP this session earned so far, shown when it ends (the app computes it from the event log). */
   readonly xpEarned?: number | undefined;
+  /** How the session moved the learner's progress, shown when it ends (the app works it out from the log, P9). */
+  readonly progress?: SessionProgress | undefined;
+  /** Where to go next, as the course page's Continue has it (ADR 0105): offered when the session ends. */
+  readonly next?: NextStep | undefined;
   /** Missed exercises come back at the end (default); off for a placement test. */
   readonly retries?: boolean | undefined;
   /** An adaptive test (the placement test, ADR 0077): what comes next depends on the answers. */
@@ -219,27 +224,26 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
   if (state.tag === "finished") {
     keys.current = () => undefined;
+    // What the session taught and what to go over, then progress and the next step (P9). A placement
+    // test says where it placed instead of its score, and lists no misses: it asks ahead of the path.
     return (
-      <section className={styles.card} data-lesson-player="" data-state="finished">
-        {props.summary !== undefined ? (
-          props.summary(state.summary)
-        ) : (
-          <>
-            <h2 className={styles.instruction}>{t.format(state.summary.completed ? FINISHED[kind] : "player.finished.stopped")}</h2>
-            <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>
-          </>
-        )}
-        {xpEarned !== undefined && xpEarned > 0 && (
-          <p className={styles.xp} data-xp-earned={xpEarned}>
-            {t.format("player.finished.xp", { xp: xpEarned })}
-          </p>
-        )}
-        {onExit !== undefined && (
-          <Button className={styles.primary} onPress={onExit} autoFocus data-action="exit">
-            {t.format("player.action.continue")}
-            <ArrowForwardIcon />
-          </Button>
-        )}
+      <section className={styles.card} data-lesson-player="" data-state="finished" data-mode={kind}>
+        <SessionEnd
+          course={course}
+          grader={grader}
+          imageUrl={imageUrl}
+          title={t.format(state.summary.completed ? FINISHED[kind] : "player.finished.stopped")}
+          summary={state.summary}
+          result={props.summary?.(state.summary)}
+          words={props.replay === true ? [] : taughtIn(state.session.queue, introduces, kinds)}
+          missed={kind === "placement" ? [] : missedOf(state.session)}
+          progress={props.progress}
+          xp={xpEarned}
+          next={props.next}
+          onExit={onExit}
+          ruby={ruby}
+          marks={marks}
+        />
       </section>
     );
   }

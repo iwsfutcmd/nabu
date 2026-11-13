@@ -1798,6 +1798,66 @@
       "message": "Display",
       "description": "Accessible name of the button (sliders icon) in the header of a lesson or story that opens the display choices: readings, vowel marks, vertical text; and of the menu it opens."
     },
+    "player.end.achievement": {
+      "message": "New achievement: {$achievement}",
+      "description": "End of a session, under Your progress: an achievement the session unlocked. $achievement is its name, as Your practice lists it (achievement.*)."
+    },
+    "player.end.back": {
+      "message": "Back to the course",
+      "description": "Button at the end of a session, beside the next step: back to the course page."
+    },
+    "player.end.known": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} more word you know}}\n* {{{$count} more words you know}}",
+      "description": "End of a session, under Your progress: how many words the session made known (every skill the course asks of them shown on a later day than they were met, ADR 0100). The words follow. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.known.total": {
+      "message": ".input {$total :number}\n.match $total\none {{{$total} word known in all}}\n* {{{$total} words known in all}}",
+      "description": "End of a session, after the words it made known: how many words of the course the learner knows now. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.missed.skipped": {
+      "message": "You skipped this one.",
+      "description": "End of a session, in the list of cards missed the first time: this card was skipped, so there is no answer of the learner's to show."
+    },
+    "player.end.missed.title": {
+      "message": "Missed the first time",
+      "description": "End of a session: heading over the cards the learner got wrong or skipped on the first try, each with what it asked, the right answer and the learner's answer."
+    },
+    "player.end.next.anyway": {
+      "message": "New lesson anyway",
+      "description": "End of a session, where practice comes first: start the next lesson all the same (a new lesson is always on offer, as on the course page)."
+    },
+    "player.end.next.lesson": {
+      "message": ".input {$number :number}\n{{Next: Lesson {$number}}}",
+      "description": "Button at the end of a session: start the next lesson on the course's path, as the course page's Continue would. $number is the lesson's number on the path."
+    },
+    "player.end.next.practice": {
+      "message": "Practise first",
+      "description": "Button at the end of a session, where many words are slipping: practise them before the next lesson, as the course page's Continue offers."
+    },
+    "player.end.next.story": {
+      "message": "Next: the story",
+      "description": "Button at the end of a session: read the unit's story, the next step on the course's path."
+    },
+    "player.end.progress.title": {
+      "message": "Your progress",
+      "description": "End of a session: heading over what the session changed: words now known, a unit finished, the streak, the week's practice days, quests done, achievements, and the XP."
+    },
+    "player.end.quest": {
+      "message": "Quest done: {$quest}",
+      "description": "End of a session, under Your progress: a daily quest the session completed. $quest is the quest as Today's quests names it (quest.*)."
+    },
+    "player.end.streak": {
+      "message": ".input {$days :number}\n.match $days\none {{Today starts your streak.}}\n* {{{$days} days in a row, today included.}}",
+      "description": "End of the first session of the day, under Your progress: today now counts for the streak, which is this many days long. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "player.end.unit": {
+      "message": ".input {$number :number}\n{{Unit {$number} finished}}",
+      "description": "End of a session, under Your progress: the session finished the last lesson or story of this unit. The unit's title follows."
+    },
+    "player.end.words.title": {
+      "message": "New words",
+      "description": "End of a lesson: heading over the words the lesson taught, each with its meaning and a button that plays it."
+    },
     "player.feedback.closest": {
       "message": "Nearest correct version:",
       "description": "Label in the feedback on a wrong answer, under the correct answer: another accepted way to say it, the one closest to what the learner wrote, with what they left out or got wrong marked. Shown only when the answer was close to it."

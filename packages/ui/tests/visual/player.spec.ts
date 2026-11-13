@@ -1,17 +1,17 @@
 /**
  * Phase 3: the lesson player in the visual matrix (gameplan §15): UI {en,
  * en-XA, ar-XB} × target {fa, yue-Hant-HK, uz-Latn, apc-Arab} × {horizontal,
- * vertical where allowed}, on three screens: the word bank, typing (with the
- * special-character bar where the orthography has one) and feedback with the
- * answer diff. Same structural checks as the exercise card; pixels in the
- * pinned container.
+ * vertical where allowed}, on four screens: the word bank, typing (with the
+ * special-character bar where the orthography has one), feedback with the
+ * answer diff, and the end of a lesson (P9). Same structural checks as the
+ * exercise card; pixels in the pinned container.
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { comparesPixels, expectNoClipping, platformFonts, settle } from "./checks.ts";
 import { cellGlobals, cells, storyUrl } from "./matrix.ts";
 
-const SCREENS = ["tiles", "typing", "feedback"] as const;
+const SCREENS = ["tiles", "typing", "feedback", "finished"] as const;
 const JYUTPING = "yue-Latn-HK-jyutping";
 
 for (const cell of cells()) {
@@ -62,6 +62,18 @@ for (const cell of cells()) {
         expect(isTarget(await input.getAttribute("lang"))).toBe(true);
         await expect(input).toHaveAttribute("dir", cell.targetDir);
         await expect(input).toHaveAttribute("spellcheck", "false");
+      }
+
+      if (screen === "finished") {
+        // The end of a lesson (P9): new words, the cards missed, progress, then the next step at the end.
+        await expect(player).toHaveAttribute("data-state", "finished");
+        await expect(page.locator("[data-end-words] [data-end-word]").first()).toBeVisible();
+        await expect(page.locator("[data-end-missed] [data-missed]")).not.toHaveCount(0);
+        await expect(page.locator("[data-end-missed] [data-solution]").first()).toBeVisible();
+        await expect(page.locator("[data-end-progress] [data-xp-earned]")).toBeVisible();
+        const footer = player.locator("footer");
+        await expect(footer.locator("[data-action=exit]")).toBeVisible();
+        await expect(footer.locator("[data-action=next]")).toBeFocused();
       }
 
       if (screen === "feedback") {

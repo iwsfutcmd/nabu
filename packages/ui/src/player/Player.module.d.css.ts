@@ -12,6 +12,15 @@ declare const styles: {
   readonly correctIcon: string;
   readonly dialog: string;
   readonly dialogBody: string;
+  readonly endFooter: string;
+  readonly endHead: string;
+  readonly endHeading: string;
+  readonly endKnown: string;
+  readonly endList: string;
+  readonly endProgress: string;
+  readonly endSection: string;
+  readonly endWord: string;
+  readonly endWordForm: string;
   readonly feedback: string;
   readonly feedbackHeadline: string;
   readonly feedbackSlot: string;
@@ -31,6 +40,8 @@ declare const styles: {
   readonly listen: string;
   readonly menu: string;
   readonly menuBody: string;
+  readonly missedCard: string;
+  readonly missedPrompt: string;
   readonly modal: string;
   readonly muted: string;
   readonly newWord: string;

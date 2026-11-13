@@ -1,4 +1,4 @@
-import { createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { buildLesson, createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Draft, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
@@ -8,6 +8,7 @@ import { useTranslator } from "../context.tsx";
 import { BUNDLES } from "../demo/bundles.ts";
 import { fetchCourse, type LoadedCourse } from "./load.ts";
 import { LessonPlayer } from "./LessonPlayer.tsx";
+import type { SessionProgress } from "./SessionEnd.tsx";
 import type { WritingMode } from "./shared.ts";
 
 /** Toolbar target → fixture course and orthography (the compiled bundles in apps/web/public/bundles). */
@@ -58,6 +59,108 @@ const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader
   const [checking] = step(typed, { tag: "submit" });
   if (checking.tag !== "checking") return typed;
   return step(checking, { tag: "graded", outcome: gradeExercise(ex, checking.response, grader) })[0];
+};
+
+/** A right answer to a card (a speaking card rated, as without a microphone). */
+const rightTo = (ex: Exercise): Draft => {
+  switch (ex.template) {
+    case "match-pairs":
+    case "letter-pairs":
+      return { tag: "pairs", matched: ex.left.map((_, i) => i), mistakes: 0 };
+    case "translate-tap.l2-l1":
+    case "translate-tap.l1-l2":
+    case "listen-tap":
+    case "story-arrange":
+    case "word-write":
+      return { tag: "tiles", order: ex.solution };
+    case "translate-type.l1-l2":
+    case "listen-type":
+      return { tag: "text", text: surfaceOf(ex.canonical) };
+    case "complete-translation":
+      return { tag: "text", text: surfaceOf(ex.blank) };
+    case "transcribe":
+      return { tag: "text", text: surfaceOf(ex.reading) };
+    case "speak.tier-0":
+    case "speak":
+    case "listen-speak":
+      return { tag: "self-rating", rating: "good" };
+    default:
+      return { tag: "choice", index: ex.answer };
+  }
+};
+
+/**
+ * A lesson played to its end (P9): a typed card answered with another sentence of the lesson (else a
+ * choice answered wrong), a choice skipped, the rest right; missed cards right when they come back.
+ */
+const finishedLesson = (lesson: readonly Exercise[], node: string, grader: Grader): PlayerState => {
+  const typed = lesson.find((e) => e.template === "translate-type.l1-l2");
+  const other = lesson.find((e) => e.template === "choose-translation" && e.item !== typed?.item);
+  const instead = other?.template === "choose-translation" ? surfaceOf(other.prompt) : undefined;
+  const missed = typed !== undefined && instead !== undefined ? typed : lesson.find((e) => "options" in e);
+  const skipped = lesson.find((e) => e !== missed && "options" in e);
+  let state = start(node, lesson)[0];
+  const send = (event: Parameters<typeof step>[1]): void => {
+    const [next, effects] = step(state, event);
+    state = next;
+    for (const e of effects) if (e.tag === "grade") send({ tag: "graded", outcome: gradeExercise(e.ex, e.response, grader) });
+  };
+  for (let guard = 0; guard < 200 && state.tag !== "finished"; guard++) {
+    if (state.tag !== "presenting") break;
+    const ex = state.ex;
+    send({ tag: "ready" });
+    const right = rightTo(ex);
+    const wrong: Draft | undefined =
+      ex.id !== missed?.id
+        ? undefined
+        : "options" in ex && "answer" in ex && typeof ex.answer === "number"
+          ? { tag: "choice", index: (ex.answer + 1) % ex.options.length }
+          : instead === undefined
+            ? undefined
+            : { tag: "text", text: instead };
+    if (ex.id === skipped?.id) send({ tag: "skip", reason: "skip" });
+    else {
+      send({ tag: "input", draft: wrong ?? right });
+      send({ tag: "submit" });
+    }
+    // send changes the state behind TypeScript's narrowing.
+    if ((state as PlayerState).tag === "feedback") send({ tag: "continue" });
+  }
+  return state;
+};
+
+/** The end of the course's second lesson, with what the app would say of the learner's progress and the next step. */
+const FinishedScreen = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
+  const t = useTranslator();
+  const { course, imageUrl } = loaded;
+  const grader = useMemo(() => createGrader(course), [course]);
+  const nodes = lessonNodes(course);
+  const node = nodes[1]?.node.id ?? "story";
+  const lesson = useMemo(() => buildLesson(course, node, { seed: SEED }), [course, node]);
+  const state = useMemo(() => finishedLesson(lesson, node, grader), [lesson, node, grader]);
+  const progress: SessionProgress = {
+    known: { words: nodes[0]?.node.introduces.slice(0, 2) ?? [], total: 14 },
+    streak: 4,
+    week: { done: 3, goal: 5, met: false },
+    quests: [{ id: "right-20", label: t.format("quest.right-20", { target: 20 }) }],
+  };
+  return (
+    <LessonPlayer
+      key={course.id}
+      course={course}
+      lessonId={node}
+      exercises={lesson}
+      grader={grader}
+      imageUrl={imageUrl}
+      language={courseName(t, course)}
+      sound={false}
+      initialState={state}
+      xpEarned={17}
+      progress={progress}
+      next={{ to: { kind: "lesson", number: 3 }, go: () => undefined }}
+      onExit={() => undefined}
+    />
+  );
 };
 
 const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen: PlayerScreen; writingMode: WritingMode }): JSX.Element => {
@@ -120,3 +223,10 @@ export const Display: Story = story("display");
 export const Quit: Story = story("quit");
 /** The card that first shows a word the lesson teaches: "New word", and the word, since the prompt shows it (P1). */
 export const NewWords: Story = story("new-words");
+/**
+ * The end of a lesson (P9): the score, the new words with their meanings and play buttons, the cards
+ * missed the first time with the right answer and the learner's, progress, then the next step.
+ */
+export const Finished: Story = {
+  render: (_args, { loaded }) => <FinishedScreen loaded={loaded["course"] as LoadedCourse} />,
+};
