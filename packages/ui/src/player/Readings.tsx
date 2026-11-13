@@ -3,14 +3,25 @@
  * Chinese: Pinyin, Jyutping and Baxter's Middle Chinese); the learner shows one or none. With one
  * layer the control is the switch it always was; with several it is a choice among them.
  */
-import { readingScheme } from "@nabu/core";
+import { readingScheme, readingTag } from "@nabu/core";
 import { localName } from "@nabu/i18n";
-import type { AnnotationLayer, OrthographyProfile, SchemeId } from "@nabu/schema";
+import type { AnnotationLayer, OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
 import { useRef, useState, type JSX } from "react";
 import { Switch, ToggleButton, ToggleButtonGroup, type Key } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import styles from "./Player.module.css";
 import type { WritingMode } from "./shared.ts";
+
+/**
+ * How a word's reading in a scheme is tagged as text of its own: the profile's reading layer names
+ * its language (ADR 0071), else the scheme's data does (ADR 0109), else it takes the text it reads.
+ */
+export const readingTagIn = (profile: OrthographyProfile | undefined, scheme: string, base: Pick<TaggedText, "lang" | "orthography">): Pick<TaggedText, "lang" | "orthography"> => {
+  const layer = profile?.annotations?.find((a) => a.kind === "reading" && a.scheme === scheme);
+  if (layer?.lang !== undefined) return { lang: layer.lang, orthography: base.orthography };
+  const lang = readingScheme(scheme)?.lang;
+  return readingTag(scheme) ?? (lang === undefined ? base : { lang, orthography: base.orthography });
+};
 
 /** The profile's reading layers shown as ruby, in profile order. */
 export const rubyLayersOf = (profile: OrthographyProfile | undefined): readonly (AnnotationLayer & { readonly scheme: SchemeId })[] =>

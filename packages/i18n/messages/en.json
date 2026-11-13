@@ -72,7 +72,15 @@
     },
     "ai.report.done": {
       "message": "Counted as right. A reviewer will look at your answer too.",
-      "description": "Confirmation after the learner said their answer should have been accepted."
+      "description": "Confirmation after the learner said their answer should have been accepted, when the report goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "ai.report.done.device": {
+      "message": "Counted as right. Your report stays on this device: no reviewer will see it.",
+      "description": "Confirmation after the learner said their answer should have been accepted, when nothing takes reports: the app has no report intake and no server (ADR 0115). The answer counts as right for the learner all the same."
+    },
+    "ai.report.done.sign-in": {
+      "message": "Counted as right. A reviewer will see your report once you sign in.",
+      "description": "Confirmation after the learner said their answer should have been accepted, when the app has a server but the learner has no account on it: the report waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "ai.report.reject": {
       "message": "This should have been wrong",
@@ -80,7 +88,15 @@
     },
     "ai.report.rejected": {
       "message": "Counted as wrong. A reviewer will look at it too.",
-      "description": "Confirmation after the learner said their answer should have been wrong."
+      "description": "Confirmation after the learner said their answer should have been wrong, when the report goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "ai.report.rejected.device": {
+      "message": "Counted as wrong. Your report stays on this device: no reviewer will see it.",
+      "description": "Confirmation after the learner said their answer should have been wrong, when nothing takes reports: the app has no report intake and no server (ADR 0115). The answer counts as wrong for the learner all the same."
+    },
+    "ai.report.rejected.sign-in": {
+      "message": "Counted as wrong. A reviewer will see your report once you sign in.",
+      "description": "Confirmation after the learner said their answer should have been wrong, when the app has a server but the learner has no account on it: the report waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "ai.report.spoken": {
       "message": "I said it right",
@@ -1102,9 +1118,17 @@
       "message": "Sounds wrong",
       "description": "Audio check: toggle button, the listener says the clip sounds wrong."
     },
+    "corrections.adopted": {
+      "message": "In the course now. Thank you!",
+      "description": "Badge on a sentence, story line or word the learner suggested a correction for, once the course on this device (a newer version of it) reads as they suggested (ADR 0115). In the sentence list and on Your reports."
+    },
     "corrections.cancel": {
       "message": "Cancel",
       "description": "Button that closes the correction form without saving."
+    },
+    "corrections.changed": {
+      "message": "Changed since your correction",
+      "description": "Badge on a sentence, story line or word the learner suggested a correction for, when the course has changed it since, but not as they suggested: they may want to look at it again (ADR 0115). In the sentence list and on Your reports."
     },
     "corrections.choose": {
       "message": "Which one is wrong?",
@@ -1184,7 +1208,7 @@
     },
     "corrections.pending": {
       "message": "You suggested a correction",
-      "description": "Badge on a sentence or story line the learner has already suggested a correction for."
+      "description": "Badge on a sentence or story line the learner has already suggested a correction for, while the course still reads as they saw it (ADR 0115)."
     },
     "corrections.readings": {
       "message": "How each word is read",
@@ -1192,7 +1216,15 @@
     },
     "corrections.sent": {
       "message": "Thanks! A reviewer will check your correction.",
-      "description": "Confirmation after a correction is recorded."
+      "description": "Confirmation after a correction is recorded, when it goes to the course's reviewers: the deployment sends reports to its intake, or the learner has an account (ADR 0115)."
+    },
+    "corrections.sent.device": {
+      "message": "Thanks! Your correction stays on this device: no reviewer will see it.",
+      "description": "Confirmation after a correction is recorded, when nothing takes reports: the app has no report intake and no server (ADR 0115)."
+    },
+    "corrections.sent.sign-in": {
+      "message": "Thanks! A reviewer will see your correction once you sign in.",
+      "description": "Confirmation after a correction is recorded, when the app has a server but the learner has no account on it: the correction waits on the device and goes to the reviewers when they sign in or create an account (ADR 0115)."
     },
     "corrections.submit": {
       "message": "Send correction",
@@ -2542,9 +2574,65 @@
       "message": "Report a problem",
       "description": "The name of the small flag button beside an answer's feedback (read out by screen readers; the button shows only the flag), and the heading of what it opens: the reports that apply to this card, such as 'My answer should have been accepted' or 'This sentence is wrong'."
     },
+    "reports.accepted": {
+      "message": "The course accepts this answer now. Thank you!",
+      "description": "On Your reports, under an answer the learner said should have been accepted, once the course on this device (a newer version of it) grades it right (ADR 0115)."
+    },
+    "reports.claim.accept": {
+      "message": "You said this answer should have been accepted",
+      "description": "On Your reports, before an answer the learner said should have been accepted (ai.report.button)."
+    },
+    "reports.claim.reject": {
+      "message": "You said this answer should have been wrong",
+      "description": "On Your reports, before an answer the learner said should have been wrong (ai.report.reject)."
+    },
+    "reports.claim.spoken": {
+      "message": "You said you said this sentence right",
+      "description": "On Your reports, under a sentence the learner said they had said right in a speaking exercise the device scored as wrong (ai.report.spoken)."
+    },
+    "reports.empty": {
+      "message": "You haven't reported anything in this course.",
+      "description": "On Your reports, when the learner has made no report in the course."
+    },
+    "reports.gone": {
+      "message": "No longer in the course",
+      "description": "On Your reports, under a report about a sentence, story line or word the course on this device no longer has (ADR 0115)."
+    },
+    "reports.intro": {
+      "message": "Everything you reported in this course. When a newer version of the course takes a report up, it says so here.",
+      "description": "Explanation at the top of Your reports. The app compares each report with the course on this device; it asks no server (ADR 0115)."
+    },
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",
       "description": "Shown where a learner can report a problem (a correction, or a claim about their answer) when the app sends reports to the project: says they become public issues and carry no name or device."
+    },
+    "reports.reach.device": {
+      "message": "Your reports stay on this device: this app sends them to no reviewer.",
+      "description": "On Your reports, when nothing takes reports: the app has no report intake and no server (ADR 0115)."
+    },
+    "reports.reach.reviewers": {
+      "message": "Your reports go to the course's reviewers.",
+      "description": "On Your reports, when reports reach the course's reviewers: the deployment sends them to its intake, or the learner has an account (ADR 0115)."
+    },
+    "reports.reach.sign-in": {
+      "message": "Your reports stay on this device until you sign in. Then they go to the course's reviewers.",
+      "description": "On Your reports, when the app has a server but the learner has no account on it: reports wait on the device and go when they sign in or create an account (ADR 0115)."
+    },
+    "reports.rejected": {
+      "message": "The course marks this answer wrong now. Thank you!",
+      "description": "On Your reports, under an answer the learner said should have been wrong, once the course on this device (a newer version of it) grades it wrong (ADR 0115)."
+    },
+    "reports.suggested": {
+      "message": "You suggested",
+      "description": "On Your reports, before what the learner suggested in a correction: the text, reading or translation they changed, and their note."
+    },
+    "reports.taken-up": {
+      "message": ".input {$count :number}\n{{{$count} in the course now}}",
+      "description": "Beside the Your reports link on the course page: how many of the learner's reports the course has taken up (a correction in it, or an answer graded as they said, ADR 0115). $count is at least 1."
+    },
+    "reports.title": {
+      "message": "Your reports",
+      "description": "Title of the page listing what the learner reported in a course (corrections, and claims about their answers), with what the course made of each; also the link to it on the course page (ADR 0115)."
     },
     "review.accepted.add": {
       "message": "Accept",

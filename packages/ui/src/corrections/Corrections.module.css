@@ -248,3 +248,78 @@
   margin-block: var(--nabu-space-3) 0;
   font-size: 1.125rem;
 }
+
+/* Your reports (ADR 0115): each report, what it suggested or claimed, and what came of it. */
+
+.reports {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  padding-block: var(--nabu-space-3);
+  padding-inline: var(--nabu-space-3);
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+}
+
+/* Taken up by the course: marked as a corrected item of the sentence list is. */
+.report[data-taken-up] {
+  border-inline-start: 4px solid var(--nabu-color-accent);
+}
+
+/* What the learner did, and when. */
+.made {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+  margin: 0;
+  margin-block-start: var(--nabu-space-2);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.date {
+  color: var(--nabu-color-muted);
+  font-weight: 400;
+}
+
+/* What the learner suggested or answered: set in from what it is about. */
+.suggested {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+  margin: 0;
+  padding-inline-start: var(--nabu-space-3);
+  border-inline-start: 2px solid var(--nabu-color-border);
+}
+
+.suggestedForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.suggestedForm > p,
+.suggested > p {
+  margin: 0;
+}
+
+.suggestedReading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
+.note {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
