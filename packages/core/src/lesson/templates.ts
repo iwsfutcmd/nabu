@@ -67,10 +67,15 @@ export interface TemplateInfo {
   readonly selfRated?: true;
   /** Explain My Answer covers it (§13.3): a translation, typed or built from tiles. */
   readonly explained?: true;
+  /**
+   * Its options are words of the course, in the orthography being learned: the feedback on a wrong
+   * one says what it means (P3, ADR 0121). Not a word's vocalizations or readings.
+   */
+  readonly wordOptions?: true;
 }
 
 export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
-  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.6, perSession: 2, presents: true },
+  "select-image": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.6, perSession: 2, presents: true, wordOptions: true },
   "match-pairs": { facet: "recognize", modality: { audioOut: false, mic: false, input: "pairs" }, prior: -1.4, perSession: 1, presents: true },
   "choose-translation": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0, presents: true },
   "translate-tap.l2-l1": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.4, presents: true, explained: true },
@@ -80,7 +85,7 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   "complete-translation": { facet: "produce", modality: { audioOut: false, mic: false, input: "text" }, prior: 0.6 },
   // Picking the missing word among options is recognizing it, as tiles are (D4 in the 2026-11 review,
   // ADR 0100): producing a word means supplying it.
-  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.2 },
+  "gap-fill": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.2, wordOptions: true },
   "char-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.4 },
   "reading-disambiguation": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: 0.4 },
   // A word's pronunciation as its script leaves it out (ADR 0054). Its vowel marks, chosen among other
@@ -99,11 +104,11 @@ export const TEMPLATES: Readonly<Record<TemplateId, TemplateInfo>> = {
   // Hearing is harder than reading the same item: the listening priors sit above their reading twins.
   "listen-tap": { facet: "listen", modality: { audioOut: true, mic: false, input: "tiles" }, prior: 0.3, perSession: 2 },
   "listen-type": { facet: "listen", modality: { audioOut: true, mic: false, input: "text" }, prior: 1.2, perSession: 2 },
-  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.6, perSession: 2 },
-  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.2, perSession: 1 },
+  "listen-select": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.6, perSession: 2, wordOptions: true },
+  "minimal-pair": { facet: "listen", modality: { audioOut: true, mic: false, input: "choice" }, prior: -0.2, perSession: 1, wordOptions: true },
   // Stories (Phase 6): reading comprehension exercises recognition of the line's words.
   "story-choose": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.0 },
-  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.6 },
+  "story-complete": { facet: "recognize", modality: { audioOut: false, mic: false, input: "choice" }, prior: -0.6, wordOptions: true },
   "story-arrange": { facet: "recognize", modality: { audioOut: false, mic: false, input: "tiles" }, prior: -0.2 },
   // Script tracks (ADR 0088): built only for script nodes (lesson/script.ts), never for sentences.
   "letter-read": { facet: "read-script", modality: { audioOut: false, mic: false, input: "choice" }, prior: -1.4, perSession: 4, presents: true },
@@ -1180,6 +1185,17 @@ export const answerTextOf = (ex: Exercise, response: Response): string | undefin
   if (option === undefined) return undefined;
   const chosen = surfaceOf("tokens" in option ? option : option.text);
   return "before" in ex && "after" in ex ? `${surfaceOf(ex.before)}${chosen}${surfaceOf(ex.after)}` : chosen;
+};
+
+/**
+ * The word a wrong choice chose, on a card whose options are words of the course
+ * (`TemplateInfo.wordOptions`): what the feedback says the meaning of (P3, ADR 0121). None for a
+ * right choice, or another card.
+ */
+export const chosenWordOf = (ex: Exercise, response: Response | null | undefined): TaggedText | undefined => {
+  if (response?.tag !== "choice" || TEMPLATES[ex.template].wordOptions !== true || !("options" in ex) || !("answer" in ex) || response.index === ex.answer) return undefined;
+  const option: TaggedText | { readonly text: TaggedText } | undefined = ex.options[response.index];
+  return option === undefined ? undefined : "tokens" in option ? option : option.text;
 };
 
 /** Pure: the outcome of a response (§8.3). Grading of typed and tiled answers goes through the grader. */
