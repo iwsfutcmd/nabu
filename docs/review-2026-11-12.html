@@ -1721,6 +1721,22 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
         "rec": true
       }
     ]
+  },
+  {
+    "id": "D45",
+    "title": "Speaking turned off for good: its old cards (D41)",
+    "context": "D41 leaves listening out of what is due and slipping when it is turned off for good. Speaking is not a known-word skill, but self-rated speaking cards practised before turning it off still count as due and slipping: the due count, the pace, Continue and review sizing.",
+    "options": [
+      {
+        "v": "a",
+        "label": "Leave them (what the helper built: D41 covers listening only)"
+      },
+      {
+        "v": "b",
+        "label": "Leave speaking out of due and slipping too when it is turned off for good (a one-line change)",
+        "rec": true
+      }
+    ]
   }
 ]
 </script>
@@ -2448,7 +2464,7 @@ select { font: inherit; font-size: 0.9rem; padding: 0.35rem 0.5rem; border: 1px 
   },
   "notices": [
     "Found while doing L4: typed production had dropped after L1 (564ce0e6) and L6 (f10e2bbb). Typed answers in 30 simulated days, es/fa/uz: 72/63/42 on main, 31/3/22 after those commits, 0 once gap-fill became recognition. The simulation test only checks the success rate, so it passed. L5 fixes this, and the simulation test will check production too.",
-    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. All 44 decisions are answered; D34, D39, D41 and D44 change what was built and are under way."
+    "Where things stand (12 November, late): main has every Now finding and D1–D21, CI green. Merged on review-fixes, not yet on main: D19, D20, D16a–c, the speaking card’s single player, the story-line report flag, M2, P9, P14, W6, P16, S11, S8, C6 and C10. R1/R4 is still with its helper. Then one bundle rebuild, the full e2e suite and one visual-baseline run, and the lot goes to main. All decisions through D44 are answered; D41 is merged (with the word list counting due at the learner’s pace again), D34, D39 and D44 are under way, and D45 is open."
   ]
 }
 </script>
