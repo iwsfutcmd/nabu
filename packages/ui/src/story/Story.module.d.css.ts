@@ -14,5 +14,6 @@ declare const styles: {
   readonly transcript: string;
   readonly translate: string;
   readonly translation: string;
+  readonly whole: string;
 };
 export default styles;

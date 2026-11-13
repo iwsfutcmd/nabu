@@ -17,6 +17,11 @@
   border-radius: var(--nabu-radius-tile);
 }
 
+/* The whole story read again (S15): it grows with the story, and the page scrolls. */
+.whole {
+  max-block-size: none;
+}
+
 /* Vertical reading (§11.4): lines become columns, read from the right; the transcript keeps
    the card's width (its block size, in its own writing mode) and scrolls along it. */
 .transcript[data-writing-mode="vertical-rl"] {

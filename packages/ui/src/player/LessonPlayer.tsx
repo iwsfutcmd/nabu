@@ -112,6 +112,14 @@ export interface LessonPlayerProps {
 /** A session's kind, as the app plans it. */
 export type SessionKind = "lesson" | "review" | "mistakes" | "placement";
 
+/** The end of a session, by kind (S15): a review or a placement test is no lesson. */
+const FINISHED: Readonly<Record<SessionKind, MessageId>> = {
+  lesson: "player.finished.title",
+  review: "player.finished.title.review",
+  mistakes: "player.finished.title.mistakes",
+  placement: "player.finished.title.placement",
+};
+
 /**
  * What quitting a session asks, and says it keeps, by kind (P8). A placement test says what the app
  * gives it to say (`quitCopy`, S5: stopping part-way places by the answers so far); without that, as
@@ -192,7 +200,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
           props.summary(state.summary)
         ) : (
           <>
-            <h2 className={styles.instruction}>{t.format(state.summary.completed ? "player.finished.title" : "player.finished.stopped")}</h2>
+            <h2 className={styles.instruction}>{t.format(state.summary.completed ? FINISHED[kind] : "player.finished.stopped")}</h2>
             <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>
           </>
         )}

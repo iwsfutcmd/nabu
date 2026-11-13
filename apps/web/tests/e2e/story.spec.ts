@@ -86,6 +86,13 @@ for (const mode of ["keyboard", "touch"] as const) {
       const violations = await read(page, script, mode);
       expect(violations).toEqual([]);
       await expect(page.locator("[data-story-reader] [data-xp-earned]")).toBeVisible();
+      // Read it again (S15): every line, no questions, and nothing more recorded.
+      const before = (await logOf(page, id)).length;
+      await activate(page, mode, "[data-story-reader] [data-action=reread]");
+      await expect(reader(page)).toHaveAttribute("data-state", "rereading");
+      await expect(page.locator("[data-story-transcript] [data-line]")).toHaveCount(script.lines.length);
+      await expect(page.locator("[data-story-question]")).toHaveCount(0);
+      expect((await logOf(page, id)).length).toBe(before);
       await activate(page, mode, "[data-story-reader] [data-action=exit]");
       await expect(page.locator(`[data-story-node="${story.node}"]`)).toHaveAttribute("data-status", "done");
 

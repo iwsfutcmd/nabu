@@ -1934,6 +1934,18 @@
       "message": "Lesson complete!",
       "description": "Heading when the lesson is finished."
     },
+    "player.finished.title.mistakes": {
+      "message": "Practice complete!",
+      "description": "Heading when a session practising earlier mistakes is finished."
+    },
+    "player.finished.title.placement": {
+      "message": "Placement test complete!",
+      "description": "Heading when the placement test is finished."
+    },
+    "player.finished.title.review": {
+      "message": "Review complete!",
+      "description": "Heading when a review session is finished."
+    },
     "player.finished.xp": {
       "message": ".input {$xp :number}\n{{+{$xp} XP}}",
       "description": "Experience points the session just earned, on the summary screen."
@@ -2718,6 +2730,10 @@
       "message": "Review workspace",
       "description": "Review workspace: page title."
     },
+    "story.action.quit": {
+      "message": "Leave the story",
+      "description": "Accessible label of the close (×) button in a story's header."
+    },
     "story.finished.stopped": {
       "message": "Story stopped",
       "description": "Heading when the learner leaves a story before its end."
@@ -2754,9 +2770,41 @@
       "message": "Narration",
       "description": "Accessible label of a story line no character speaks."
     },
+    "story.quit.cancel": {
+      "message": "Keep reading",
+      "description": "Button that closes the leave-the-story dialog and goes back to the story."
+    },
+    "story.quit.confirm": {
+      "message": "Leave",
+      "description": "Button that leaves the story before its end."
+    },
     "story.quit.kept": {
       "message": "Your answers so far are kept, with their XP. The story won't count as read, and you won't get the bonus for finishing it.",
       "description": "Body of the dialog asked when the learner leaves a story before its end: what leaving keeps, and what it doesn't."
+    },
+    "story.quit.title": {
+      "message": "Leave this story?",
+      "description": "Title of the dialog shown when the learner closes a story before its end."
+    },
+    "story.reread.action": {
+      "message": "Read it again",
+      "description": "Button at the end of a story: shows the whole story again, to read with its translations and word meanings, without questions."
+    },
+    "story.reread.close": {
+      "message": "Close the story",
+      "description": "Accessible label of the close (×) button while the learner reads a finished story again: back to the end screen."
+    },
+    "story.reread.done": {
+      "message": "Done",
+      "description": "Button under a story read again: back to the end screen."
+    },
+    "story.reread.label": {
+      "message": "The whole story",
+      "description": "Accessible name of the region that holds every line of a story read again after its end."
+    },
+    "story.reread.title": {
+      "message": "The story",
+      "description": "Heading of a story read again, when the story has no title of its own."
     },
     "story.transcript.label": {
       "message": "The story so far",

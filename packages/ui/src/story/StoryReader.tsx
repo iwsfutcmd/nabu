@@ -66,6 +66,8 @@ export interface StoryReaderProps {
   readonly initial?: { readonly translations?: readonly number[]; readonly gloss?: { readonly line: number; readonly token: number } };
   /** For Storybook and tests: start from this state instead of the story's beginning. */
   readonly initialState?: StoryState;
+  /** For Storybook and tests: a finished story opens read again (S15). */
+  readonly rereading?: boolean | undefined;
   /** Something the app adds under each line, such as "This line is wrong" (ADR 0051). */
   readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
   /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
@@ -161,6 +163,9 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     quitAsked.current = props.quitRequest;
     if (state.tag !== "finished") setConfirming(true);
   }, [props.quitRequest]);
+  // After the end, the whole story again, to read at leisure (S15): no questions, nothing recorded.
+  const [rereading, setRereading] = useState(props.rereading === true);
+  const rereadHeading = useRef<HTMLHeadingElement>(null);
   const ruby = readings.shown;
   const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);
@@ -211,6 +216,11 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
     };
   }, [shownCount]);
 
+  // Rereading starts at its heading, so the story is read from its beginning.
+  useEffect(() => {
+    if (rereading) rereadHeading.current?.focus();
+  }, [rereading]);
+
   useEffect(() => {
     const onKeyDown = (e: globalThis.KeyboardEvent): void => keys.current(e);
     window.addEventListener("keydown", onKeyDown, { capture: true });
@@ -229,23 +239,137 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const progress = storyProgress(state);
   const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
 
+  /** The story's lines with their translations, buttons and glosses; `live` reads the newest out as it appears. */
+  const lineViews = (list: readonly StoryLine[], live: boolean): JSX.Element[] =>
+    list.map((line, k) => (
+      <Line
+        key={line.index}
+        line={line}
+        ruby={ruby}
+        marks={marks}
+        latest={live && k === list.length - 1}
+        audio={lineAudio(line)}
+        url={imageUrl}
+        autoPlay={live && k === list.length - 1 && !quiet}
+        pressed={selected?.line === line.index ? selected.token : undefined}
+        onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
+        translated={translations.has(line.index)}
+        action={props.lineAction?.(line)}
+        onTranslate={() => {
+          const next = new Set(translations);
+          if (!next.delete(line.index)) next.add(line.index);
+          setTranslations(next);
+        }}
+      />
+    ));
+
+  const glossPanel = (
+    <div className={styles.gloss} role="status" aria-live="polite" aria-label={t.format("story.gloss.label")} data-gloss-panel="" data-gloss-open={selected === undefined ? undefined : ""}>
+      {selected === undefined ? (
+        <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>
+      ) : glosses.length === 0 ? (
+        <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
+      ) : (
+        <dl className={styles.glossList}>
+          {glosses.map((g, i) => (
+            <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
+              <dt>
+                <T text={g.form} ruby={glossRuby} marks={marks} />
+              </dt>
+              <dd>
+                {g.meaning !== undefined && <T text={g.meaning} />}
+                {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
+                {g.lemma !== undefined && (
+                  <span className={styles.glossNote} data-gloss-lemma="">
+                    {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={glossRuby} marks={marks} />
+                  </span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      )}
+    </div>
+  );
+
+  const headerTools = (
+    <>
+      {/* Readings, vowel marks, vertical reading: one button, so they take no room above the story (P12). */}
+      {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} />}
+      <SoundToggle
+        on={sound}
+        onChange={(on) => {
+          setSound(on);
+          props.onSoundChange?.(on);
+        }}
+      />
+    </>
+  );
+
   if (state.tag === "finished") {
     keys.current = () => undefined;
+    const done = state.summary.completed;
+    if (done && rereading) {
+      // The whole story, as it was read, to read again (S15): its translations, glosses and clips;
+      // no questions, and nothing recorded (the session is over).
+      return (
+        <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state="rereading">
+          <header className={playerStyles.header}>
+            <Button className={playerStyles.iconButton} aria-label={t.format("story.reread.close")} onPress={() => setRereading(false)} data-action="close-reread">
+              <CloseIcon />
+            </Button>
+            <span className={playerStyles.progress} />
+            {headerTools}
+          </header>
+          <h2 ref={rereadHeading} tabIndex={-1} className={playerStyles.instruction} data-reread-heading="">
+            {script.title === undefined ? t.format("story.reread.title") : <T text={script.title} />}
+          </h2>
+          {synthetic && (
+            <p className={playerStyles.synthetic} data-story-synthetic="">
+              {t.format("player.audio.synthetic")}
+            </p>
+          )}
+          <div className={`${styles.transcript} ${styles.whole}`} role="region" aria-label={t.format("story.reread.label")} data-story-transcript="" data-writing-mode={transcriptMode} data-ink-container="transcript">
+            {lineViews(script.lines, false)}
+          </div>
+          {glossPanel}
+          <footer className={playerStyles.footer}>
+            {onExit !== undefined ? (
+              <Button className={playerStyles.primary} onPress={onExit} data-action="exit">
+                {t.format("player.action.continue")}
+                <ArrowForwardIcon />
+              </Button>
+            ) : (
+              <Button className={playerStyles.primary} onPress={() => setRereading(false)} data-action="close-reread">
+                {t.format("story.reread.done")}
+              </Button>
+            )}
+          </footer>
+        </section>
+      );
+    }
     return (
       <section className={playerStyles.card} data-story-reader="" data-story={script.id} data-state="finished">
-        <h2 className={playerStyles.instruction}>{t.format(state.summary.completed ? "story.finished.title" : "story.finished.stopped")}</h2>
+        <h2 className={playerStyles.instruction}>{t.format(done ? "story.finished.title" : "story.finished.stopped")}</h2>
         {state.summary.exercises > 0 && <p data-summary="">{t.format("player.finished.score", { correct: state.summary.correctFirstTry, total: state.summary.exercises })}</p>}
         {xpEarned !== undefined && xpEarned > 0 && (
           <p className={playerStyles.xp} data-xp-earned={xpEarned}>
             {t.format("player.finished.xp", { xp: xpEarned })}
           </p>
         )}
-        {onExit !== undefined && (
-          <Button className={playerStyles.primary} onPress={onExit} autoFocus data-action="exit">
-            {t.format("player.action.continue")}
-            <ArrowForwardIcon />
-          </Button>
-        )}
+        <footer className={playerStyles.footer}>
+          {done && (
+            <Button className={playerStyles.secondary} onPress={() => setRereading(true)} data-action="reread">
+              {t.format("story.reread.action")}
+            </Button>
+          )}
+          {onExit !== undefined && (
+            <Button className={playerStyles.primary} onPress={onExit} autoFocus data-action="exit">
+              {t.format("player.action.continue")}
+              <ArrowForwardIcon />
+            </Button>
+          )}
+        </footer>
       </section>
     );
   }
@@ -288,7 +412,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   return (
     <section className={`${playerStyles.card} ${styles.reader}`} data-story-reader="" data-story={script.id} data-state={state.tag} data-template={ex?.template} data-exercise={ex?.id}>
       <header className={playerStyles.header}>
-        <Button className={playerStyles.iconButton} aria-label={t.format("exercise.action.quit")} onPress={() => setConfirming(true)} data-action="quit">
+        <Button className={playerStyles.iconButton} aria-label={t.format("story.action.quit")} onPress={() => setConfirming(true)} data-action="quit">
           <CloseIcon />
         </Button>
         <ProgressBar className={playerStyles.progress} value={progress.done} minValue={0} maxValue={progress.total} aria-label={progressLabel} valueLabel={progressLabel}>
@@ -298,15 +422,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
             </div>
           )}
         </ProgressBar>
-        {/* Readings, vowel marks, vertical reading: one button, so they take no room above the story (P12). */}
-        {hasDisplayChoices(profile, readings, display) && <DisplayMenu profile={profile} readings={readings} display={display} />}
-        <SoundToggle
-          on={sound}
-          onChange={(on) => {
-            setSound(on);
-            props.onSoundChange?.(on);
-          }}
-        />
+        {headerTools}
       </header>
 
       {script.title !== undefined && <T as="div" className={playerStyles.instruction} text={script.title} />}
@@ -326,55 +442,10 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         data-writing-mode={transcriptMode}
         data-ink-container="transcript"
       >
-        {lines.map((line, k) => (
-          <Line
-            key={line.index}
-            line={line}
-            ruby={ruby}
-            marks={marks}
-            latest={k === lines.length - 1}
-            audio={lineAudio(line)}
-            url={imageUrl}
-            autoPlay={k === lines.length - 1 && !quiet}
-            pressed={selected?.line === line.index ? selected.token : undefined}
-            onToken={(token) => setSelected(selected?.line === line.index && selected.token === token ? undefined : { line: line.index, token })}
-            translated={translations.has(line.index)}
-            action={props.lineAction?.(line)}
-            onTranslate={() => {
-              const next = new Set(translations);
-              if (!next.delete(line.index)) next.add(line.index);
-              setTranslations(next);
-            }}
-          />
-        ))}
+        {lineViews(lines, true)}
       </div>
 
-      <div className={styles.gloss} role="status" aria-live="polite" aria-label={t.format("story.gloss.label")} data-gloss-panel="" data-gloss-open={selected === undefined ? undefined : ""}>
-        {selected === undefined ? (
-          <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>
-        ) : glosses.length === 0 ? (
-          <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
-        ) : (
-          <dl className={styles.glossList}>
-            {glosses.map((g, i) => (
-              <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
-                <dt>
-                  <T text={g.form} ruby={glossRuby} marks={marks} />
-                </dt>
-                <dd>
-                  {g.meaning !== undefined && <T text={g.meaning} />}
-                  {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
-                  {g.lemma !== undefined && (
-                    <span className={styles.glossNote} data-gloss-lemma="">
-                      {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={glossRuby} marks={marks} />
-                    </span>
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        )}
-      </div>
+      {glossPanel}
 
       {asking !== undefined && ex !== undefined && draft !== undefined && (
         <div className={styles.question} data-story-question="" data-state={active?.tag}>
@@ -429,7 +500,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
         <Dialog className={`${playerStyles.dialog} ${chromeClass}`} style={chrome.style} data-quit-dialog="">
           <div className={playerStyles.dialogBody} lang={chrome.lang} dir={chrome.dir}>
             <Heading slot="title" className={playerStyles.instruction}>
-              {t.format("player.quit.title")}
+              {t.format("story.quit.title")}
             </Heading>
             <p data-quit-kept="">{t.format("story.quit.kept")}</p>
             <div className={playerStyles.footer}>
@@ -442,10 +513,10 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
                 }}
                 data-action="quit-confirm"
               >
-                {t.format("player.quit.confirm")}
+                {t.format("story.quit.confirm")}
               </Button>
               <Button className={playerStyles.primary} onPress={() => setConfirming(false)} autoFocus data-action="resume">
-                {t.format("player.quit.cancel")}
+                {t.format("story.quit.cancel")}
               </Button>
             </div>
           </div>
