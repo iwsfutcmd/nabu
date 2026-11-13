@@ -17,7 +17,7 @@ import { ArrowForwardIcon, CloseIcon } from "../icons.tsx";
 import { Feedback } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 import { ReadingsControl, useReadings } from "./Readings.tsx";
-import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
+import { digitIndex, effectiveWritingMode, focusInReach, hasMarksLayer, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
 import { SoundToggle } from "./SoundToggle.tsx";
 import { SpeechProvider, type SpeechServices } from "./speech.tsx";
 import { usePlayer } from "./usePlayer.ts";
@@ -140,8 +140,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
 
   useEffect(() => {
     if (state.tag === "presenting") dispatch({ tag: "ready" });
-    if (state.tag === "feedback") focusInReach(continueButton.current, footer.current);
   });
+  // Continue takes the focus once, as the feedback opens (P11): never again on a later render, which
+  // every recorded event causes, so focus stays where the learner put it (a correction's form).
+  const feedbackOf = state.tag === "feedback" ? state.ex.id : undefined;
+  useEffect(() => {
+    if (feedbackOf !== undefined) focusInReach(continueButton.current, footer.current);
+  }, [feedbackOf]);
 
   // Keyboard (§11.3, §11.7): Enter checks and continues, number keys and Backspace go to the
   // current view. A capturing window listener keeps them working when focus falls back to the
@@ -199,8 +204,9 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const pairs = ex.template === "match-pairs" || ex.template === "letter-pairs";
 
   keys.current = (e) => {
-    // Never act during IME composition (§6.7), inside text fields (they handle Enter), or in the dialog.
-    if (e.isComposing || e.keyCode === 229 || typingInField(e.target) || state.tag === "interrupted") return;
+    // Never act during IME composition (§6.7), inside text fields (they handle Enter), or in a dialog:
+    // the quit dialog, a correction's form, a menu (P11). Their keys are theirs.
+    if (e.isComposing || e.keyCode === 229 || typingInField(e.target) || inDialog(e.target) || state.tag === "interrupted") return;
     const target = e.target instanceof HTMLElement ? e.target : null;
     const control = target?.closest("button, a, [role=switch]") ?? null;
     if (e.key === "Enter") {

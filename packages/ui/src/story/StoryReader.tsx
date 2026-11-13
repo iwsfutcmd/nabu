@@ -23,7 +23,7 @@ import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
 import playerStyles from "../player/Player.module.css";
 import { ReadingsControl, useReadings } from "../player/Readings.tsx";
-import { digitIndex, effectiveWritingMode, hasMarksLayer, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
+import { digitIndex, effectiveWritingMode, hasMarksLayer, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
 import { SoundToggle } from "../player/SoundToggle.tsx";
 import { T } from "../T.tsx";
 import styles from "./Story.module.css";
@@ -177,8 +177,13 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
 
   useEffect(() => {
     if (active?.tag === "presenting") dispatch({ tag: "player", event: { tag: "ready" } });
-    if (state.tag === "reading" || active?.tag === "feedback") continueButton.current?.focus({ preventScroll: true });
   });
+  // Continue takes the focus once a line is read or a question's feedback opens (P11), never on a
+  // later render (every recorded event is one): a correction's form keeps the focus it has.
+  const continueOf = state.tag === "reading" ? `line:${state.at}` : active?.tag === "feedback" ? `feedback:${active.ex.id}` : undefined;
+  useEffect(() => {
+    if (continueOf !== undefined) continueButton.current?.focus({ preventScroll: true });
+  }, [continueOf]);
 
   // The newest line is the last one: the transcript scrolls to its block end (the bottom; the left
   // in vertical-rl), and again whenever the layout settles under it, since web fonts change line
@@ -258,7 +263,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   };
 
   keys.current = (e) => {
-    if (confirming || e.isComposing || e.keyCode === 229 || typingInField(e.target)) return;
+    // Never during IME composition, in a text field, or in a dialog (a correction's form, P11): its keys are its own.
+    if (confirming || e.isComposing || e.keyCode === 229 || typingInField(e.target) || inDialog(e.target)) return;
     const control = e.target instanceof HTMLElement ? e.target.closest("button, a, [role=switch]") : null;
     if (e.key === "Enter") {
       if (control !== null && control !== continueButton.current) return;

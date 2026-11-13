@@ -199,6 +199,13 @@ test.describe("corrections", () => {
     const translation = dialog(page).locator("[data-field=correction-translation]");
     const fixed = `${await translation.inputValue()} (corrected)`;
     await translation.fill(fixed);
+    // Enter in the form is the form's (P11): the lesson stays on its card, the form keeps its text.
+    await dialog(page).focus();
+    await page.keyboard.press("Enter");
+    await expect(dialog(page)).toBeVisible();
+    await expect(translation).toHaveValue(fixed);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-exercise", ex.id);
+    await expect(page.locator("[data-lesson-player]")).toHaveAttribute("data-state", "feedback");
     await dialog(page).locator("[data-action=send-correction]").click();
     await expect(page.locator("[data-correction-sent]")).toBeVisible();
     // The lesson goes on.

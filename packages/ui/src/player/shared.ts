@@ -141,6 +141,12 @@ export const digitIndex = (key: string): number | undefined => {
   return undefined;
 };
 
+/**
+ * Whether a key comes from inside a dialog (the quit dialog, a correction's form, a popover): the
+ * player's shortcuts leave it alone, or Enter there would answer or move on and close it (P11).
+ */
+export const inDialog = (target: EventTarget | null): boolean => target instanceof Element && target.closest("[role=dialog], [role=alertdialog]") !== null;
+
 /** Keyboard shortcuts must not fire while the learner types in a field. */
 export const typingInField = (target: EventTarget | null): boolean =>
   target instanceof HTMLElement && (target.isContentEditable || target.tagName === "INPUT" || target.tagName === "TEXTAREA") && !(target instanceof HTMLInputElement && target.type === "radio");
