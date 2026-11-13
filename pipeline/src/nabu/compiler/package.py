@@ -4,6 +4,10 @@ Every file is canonical JSON (sorted keys, no insignificant whitespace, NFC, tra
 named by the first 16 hex digits of its sha256. The manifest lists every file with its role,
 hash and SPDX license, plus the versions of everything that can change the output; its own id is
 the sha256 of its content without the id. No timestamps, no absolute paths.
+
+Attribution is defined once (ADR 0110): the manifest's `credits` holds each text by its id (the
+first 8 hex digits of its sha256), and files and clips name it by that id (`credit`). A course
+with a voice credits it on every clip, which repeated the same sentence thousands of times.
 """
 
 from __future__ import annotations
@@ -26,7 +30,8 @@ from nabu.drills.rbnf import icu_version
 from nabu.paths import I18N_GENERATED, PROFILES
 from nabu.schema.models import BundleAudio, BundleManifest, BundleUnit, OrthographyProfile
 
-FORMAT_VERSION = 0
+#: 1: credits are defined once, in the manifest's `credits` (ADR 0110).
+FORMAT_VERSION = 1
 
 
 def canonical(data: Any) -> bytes:
@@ -37,6 +42,25 @@ def canonical(data: Any) -> bytes:
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
+
+
+def credit_id(text: str) -> str:
+    """A credit's id in the manifest's `credits`: the first 8 hex digits of its text's sha256."""
+    return sha256(text.encode("utf-8"))[:8]
+
+
+class Credits:
+    """The bundle's credits: each text once, by its id."""
+
+    def __init__(self) -> None:
+        self.texts: dict[str, str] = {}
+
+    def __call__(self, text: str) -> str:
+        """Defines a credit (once) and returns its id."""
+        ident = credit_id(text)
+        if self.texts.setdefault(ident, text) != text:
+            raise ValueError(f"two credits share the id {ident}: {self.texts[ident]!r}, {text!r}")
+        return ident
 
 
 def _profile_files(profile: OrthographyProfile) -> list[tuple[str, str, str]]:
@@ -140,6 +164,7 @@ def write_bundle(
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
     files: list[dict[str, Any]] = []
+    credit = Credits()
     course = compiled.course
 
     def put(role: str, name: str, data: bytes, license_: str, source: str | None = None) -> str:
@@ -155,7 +180,7 @@ def write_bundle(
             "bytes": len(data),
         }
         if source is not None:
-            entry["source"] = source
+            entry["credit"] = credit(source)
         files.append(entry)
         return rel
 
@@ -197,10 +222,10 @@ def write_bundle(
             "bytes": len(blob),
         }
         if image_source is not None:
-            entry["source"] = image_source
+            entry["credit"] = credit(image_source)
         files.append(entry)
 
-    for rel, (blob, clip_license, credit) in sorted(compiled.audio_files.items()):
+    for rel, (blob, clip_license, made_by) in sorted(compiled.audio_files.items()):
         (out_dir / rel).parent.mkdir(parents=True, exist_ok=True)
         (out_dir / rel).write_bytes(blob)
         files.append(
@@ -209,12 +234,20 @@ def write_bundle(
                 "role": "audio",
                 "sha256": sha256(blob),
                 "license": clip_license,
-                "source": credit,
+                "credit": credit(made_by),
                 "bytes": len(blob),
             }
         )
     if compiled.audio_items:
-        index = {"items": compiled.audio_items}
+        # Each clip names its credit by id, as its file does in the manifest.
+        items = {
+            item: {
+                speed: {**clip, "credit": credit(clip["credit"])} if "credit" in clip else clip
+                for speed, clip in clips.items()
+            }
+            for item, clips in compiled.audio_items.items()
+        }
+        index = {"items": items}
         BundleAudio.model_validate(index)
         index_blob = canonical(index)
         rel = f"audio/index.{sha256(index_blob)[:16]}.json"
@@ -252,6 +285,7 @@ def write_bundle(
         ),
         "versions": tool_versions(analyzers, *_used_tools(compiled, profiles)),
         "files": sorted(files, key=lambda f: f["path"]),
+        "credits": dict(sorted(credit.texts.items())),
         "units": units,
         "licenses": dict(sorted(compiled.licenses.items())),
         "provenance": dict(sorted(compiled.provenance.items())),

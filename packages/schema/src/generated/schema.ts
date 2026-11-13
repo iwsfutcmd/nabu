@@ -60,6 +60,21 @@ export type Spdx = string;
  */
 export type Facet = "recognize" | "produce" | "listen" | "speak" | "read-script" | "write-script";
 /**
+ * Who or what made the file (its source): an entry of the manifest's `credits`.
+ */
+export type CreditId = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CreditId".
+ */
+export type CreditId1 = string;
+/**
+ * An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.
+ */
+export type CreditId2 = string;
+/**
  * A well-formed BCP 47 language tag in canonical case (language lowercase, Script titlecase, REGION uppercase). Extlangs and grandfathered tags are not accepted; use their canonical replacements.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -345,6 +360,7 @@ export interface NabuSchemaIndex {
   readonly AudioVerdicts: AudioVerdicts;
   readonly AudioVerdict: AudioVerdict;
   readonly BundleManifest: BundleManifest;
+  readonly CreditId: CreditId1;
   readonly BundleFile: BundleFile;
   readonly BundleManifestUnit: BundleManifestUnit;
   readonly BundleUnit: BundleUnit;
@@ -1045,7 +1061,10 @@ export interface AudioVerdict {
  * via the `definition` "BundleManifest".
  */
 export interface BundleManifest {
-  readonly formatVersion: 0;
+  /**
+   * 1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.
+   */
+  readonly formatVersion: 1;
   /**
    * sha256 of the manifest without this field.
    */
@@ -1075,6 +1094,12 @@ export interface BundleManifest {
    * Every file in the bundle by role, with its SPDX license.
    */
   readonly files: readonly BundleFile[];
+  /**
+   * Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).
+   */
+  readonly credits: {
+    readonly [k: string]: string;
+  };
   /**
    * The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.
    */
@@ -1111,7 +1136,7 @@ export interface BundleFile {
   readonly role: "unit" | "profile" | "table" | "keyboard" | "image" | "audio" | "audio-index";
   readonly sha256: string;
   readonly license: string;
-  readonly source?: string;
+  readonly credit?: CreditId;
   /**
    * Size in bytes, to say what a download costs before it starts.
    */
@@ -1372,10 +1397,7 @@ export interface BundleClip {
   readonly durationMs: number;
   readonly synthetic: boolean;
   readonly license: string;
-  /**
-   * Attribution: the speaker, or the synthetic voice.
-   */
-  readonly credit?: string;
+  readonly credit?: CreditId2;
   readonly timings?: readonly TokenTiming[];
 }
 /**

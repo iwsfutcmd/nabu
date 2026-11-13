@@ -4,10 +4,10 @@
   "title": "BundleManifest",
   "description": "A compiled course bundle (gameplan §7.5 stage 9): this manifest plus content-addressed files. Byte-for-byte deterministic: the same sources and tool versions always give the same hash.",
   "type": "object",
-  "required": ["formatVersion", "id", "course", "target", "orthographies", "support", "versions", "files", "units", "licenses", "provenance"],
+  "required": ["formatVersion", "id", "course", "target", "orthographies", "support", "versions", "files", "credits", "units", "licenses", "provenance"],
   "additionalProperties": false,
   "properties": {
-    "formatVersion": { "const": 0 },
+    "formatVersion": { "description": "1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text.", "const": 1 },
     "id": { "description": "sha256 of the manifest without this field.", "type": "string", "pattern": "^[0-9a-f]{64}$" },
     "course": { "type": "string" },
     "target": { "$ref": "common.schema.json#/$defs/ScriptedLangTag" },
@@ -39,6 +39,12 @@
       "type": "array",
       "items": { "$ref": "#/$defs/BundleFile" }
     },
+    "credits": {
+      "description": "Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`).",
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/CreditId" },
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    },
     "units": {
       "description": "The units in path order. Each is a download unit for offline use (gameplan §16 Phase 10): its JSON is part of the course, which every device keeps, and `assets` are the media (audio and images) its items use, downloaded per unit.",
       "type": "array",
@@ -49,6 +55,12 @@
     "release": { "description": "A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.", "type": "boolean" }
   },
   "$defs": {
+    "CreditId": {
+      "title": "CreditId",
+      "description": "An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}$"
+    },
     "BundleFile": {
       "title": "BundleFile",
       "type": "object",
@@ -59,7 +71,7 @@
         "role": { "type": "string", "enum": ["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"] },
         "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
         "license": { "type": "string" },
-        "source": { "type": "string" },
+        "credit": { "description": "Who or what made the file (its source): an entry of the manifest's `credits`.", "$ref": "#/$defs/CreditId" },
         "bytes": { "description": "Size in bytes, to say what a download costs before it starts.", "type": "integer", "minimum": 0 }
       }
     },
@@ -317,7 +329,7 @@
         "durationMs": { "type": "integer", "minimum": 1 },
         "synthetic": { "type": "boolean" },
         "license": { "type": "string" },
-        "credit": { "description": "Attribution: the speaker, or the synthetic voice.", "type": "string" },
+        "credit": { "description": "Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`.", "$ref": "#/$defs/CreditId" },
         "timings": { "type": "array", "items": { "$ref": "audio-index.schema.json#/$defs/TokenTiming" } }
       }
     }
