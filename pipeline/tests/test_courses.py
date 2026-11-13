@@ -550,23 +550,24 @@ def test_attic_greek_pins_every_vowel_length(core_cli: CoreCli) -> None:
 def test_greek_alphabet_track(core_cli: CoreCli) -> None:
     """grc's script track (ADR 0088): eight alphabet nodes, each word spelled with the letters
     taught by then, every letter and word with its Latin spelling, tagged grc-Latn/romanized."""
-    from nabu.compiler.script import letters_of
+    from nabu.compiler.script import Reader
 
     _, compiled = build(core_cli, "grc")
-    nodes = [n for u in bundled(compiled) for n in u["nodes"] if n["kind"] == "script"]
+    read = Reader.of(core_cli, GRC, PROFILES[GRC])
+    nodes = [n for u in compiled.units for n in u.nodes if n.kind == "script"]
     assert len(nodes) == 8
     taught: set[str] = set()
     for n in nodes:
-        alphabet = n["alphabet"]
-        assert alphabet["orthography"] == GRC and n["sentences"] == []
-        for letter in alphabet["letters"]:
-            assert letter["latin"]["orthography"] == "grc-Latn/romanized"
-            taught |= set(letters_of(letter["text"]["tokens"][0]["surface"]))
-        assert alphabet["words"], n["id"]
-        for word in alphabet["words"]:
-            surface = "".join(t["surface"] for t in word["text"]["tokens"])
-            assert set(letters_of(surface)) <= taught, (n["id"], surface)
-            assert word["letters"], surface
+        alphabet = n.alphabet
+        assert alphabet is not None and alphabet.orthography == GRC and n.sentences == []
+        for letter in alphabet.letters:
+            assert letter.latin.orthography == "grc-Latn/romanized"
+            taught |= set(read(letter.text.tokens[0].surface).letters)
+        assert alphabet.words, n.id
+        for word in alphabet.words:
+            surface = "".join(t.surface for t in word.text.tokens)
+            assert set(read(surface).letters) <= taught, (n.id, surface)
+            assert word.letters, surface
 
 
 @pytest.mark.parametrize(

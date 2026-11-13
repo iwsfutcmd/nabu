@@ -715,7 +715,12 @@ def compile_course(
     # ---- stage 7: glossary, tiles, script tracks
     _glossary(ctx, course, units, compiled_forms, stories.lines)
     alphabets = compile_alphabets(
-        diags, course, units, ctx.profiles, lambda o, t: support_text(ctx, o, t, course.target)
+        diags,
+        course,
+        units,
+        ctx.profiles,
+        lambda o, t: support_text(ctx, o, t, course.target),
+        ctx.cli,
     )
     # ---- stage 9: packaging lints
     compiled = Compiled(

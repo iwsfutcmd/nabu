@@ -104,6 +104,7 @@ GRC: dict[str, Any] = {
     "target": "grc-Grek",
     "orthographies": [GRC_ORTH],
     "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Ancient Greek"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
     "units": [
@@ -232,6 +233,18 @@ def _iplus(c: Course) -> None:
 def _script_untaught(c: Course) -> None:
     """The alphabet node teaches α and ι only, and its word ναί needs ν."""
     unit(c)["nodes"][0]["introduces"].remove("grapheme:ν")
+
+
+def _script_no_letter(c: Course) -> None:
+    """The rough breathing taught as its spacing sign (U+1FFE), on no letter (ADR 0124)."""
+    unit(c)["kcs"].append(
+        {
+            "id": "grapheme:rough",
+            "gloss": {"en": "rough breathing: h"},
+            "forms": {GRC_ORTH: ["῾"]},
+        }
+    )
+    unit(c)["nodes"][0]["introduces"].append("grapheme:rough")
 
 
 def _script_no_romanization(c: Course) -> None:
@@ -666,6 +679,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
     "script.untaught-letter": (
         "A Greek alphabet node's word uses ν before the track teaches it.",
         m(_script_untaught, GRC),
+    ),
+    "script.no-letter": (
+        "A grapheme KC for the rough breathing written as its spacing sign, on no letter.",
+        m(_script_no_letter, GRC),
     ),
     "script.no-romanization": (
         "An alphabet node in an orthography whose profile names no romanization.",

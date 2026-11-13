@@ -3,6 +3,8 @@
 - Status: Proposed
 - Date: 2026-11-09
 - Amends: gameplan §3 and §6.3 (`script` nodes); [0087](0087-attic-greek.md) (the grc course)
+- Amended by: [0124](0124-script-tracks-from-the-profile.md) (letters and marks from the profile;
+  `romanize: {scheme, orthography}`)
 
 ## Context
 

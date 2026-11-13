@@ -255,6 +255,14 @@ _LINTS = [
         "An alphabet node's word uses a letter its track has not taught by then (ADR 0088).",
     ),
     Lint(
+        "script.no-letter",
+        "error",
+        7,
+        "A grapheme KC whose first form has no letter, nor one letter carrying marks of the "
+        "profile's mark set (a spacing breathing, a mark on nothing): it would be in every word "
+        "(ADR 0124).",
+    ),
+    Lint(
         "script.no-romanization",
         "error",
         7,
