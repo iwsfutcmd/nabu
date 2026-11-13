@@ -7,17 +7,45 @@
  * - a drill's unit, which has no title, is "Extra practice";
  * - an alphabet row says who it is for and that the units don't wait for it, and shows each letter
  *   with its Latin spelling.
- * And the course's other pages are linked under its title: the words, the sentences, Preferences,
- * Offline (S2).
+ * And the page has a main action and a short way to the rest (S2):
+ * - finished units fold away, and open again from their heading;
+ * - the page opens at Continue's lesson, focus on its heading;
+ * - its other pages are linked under its title: the words, the sentences, Preferences, Offline.
  */
 import { pathUnits, type PathUnit } from "@nabu/core/learner";
-import { cardGloss, scriptNodes } from "@nabu/core/lesson";
+import { cardGloss, scriptNodes, type CourseView } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
+import type { LearnerEvent, OrthographyId } from "@nabu/schema";
 import { expect, test } from "@playwright/test";
-import { historyBefore, loadCourse, pathUrl, seedLog, seriousAxeViolations, sessionUrl } from "./solver.ts";
+import { activate, historyBefore, loadCourse, pathUrl, seedLog, seriousAxeViolations, sessionUrl, type Mode } from "./solver.ts";
 
 const NOW = new Date("2026-06-02T08:00:00Z");
 const SEED = 7;
+const DAY = 86_400_000;
+
+/** A placement test, as a device logs it, that placed the learner out of `nodes` at `at`. */
+const placedOutOf = (course: CourseView, nodes: readonly string[], at: Date): LearnerEvent[] => {
+  const base = (id: number, seconds: number) => {
+    const time = new Date(at.getTime() + seconds * 1000).toISOString();
+    return {
+      id: `00000000-0000-7000-9000-${id.toString(16).padStart(12, "0")}`,
+      schema: 1 as const,
+      device: "e2e-placement",
+      course: course.id,
+      orthography: course.orthography as OrthographyId,
+      support: course.supportKey,
+      bundle: "0".repeat(64),
+      session: "00000000-0000-7000-9000-0000000000ff",
+      clientTime: time,
+      localDate: time.slice(0, 10),
+      tz: "UTC",
+    };
+  };
+  return [
+    { ...base(1, 0), type: "session_started", mode: "placement", seed: 1, exercises: 10, planner: "e2e" },
+    { ...base(2, 300), type: "session_completed", mode: "placement", placed: [...nodes], summary: { completed: true, exercises: 10, correctFirstTry: 10, retries: 0, skipped: 0 } },
+  ];
+};
 
 /** A unit's entries as the path names them. */
 const namesOf = (unit: PathUnit): string[] => unit.entries.map((e) => (e.kind === "story" ? "Story" : e.number === undefined ? "Practice" : `Lesson ${e.number}`));
@@ -118,4 +146,53 @@ test.describe("the course path", () => {
     await expect(page.locator("[data-course-path=fa]")).toBeVisible();
     await expect(page.locator("[data-course-path] [data-offline]")).toHaveCount(0);
   });
+});
+
+test("after placement, finished units fold away and open again; the page opens at Continue's lesson (S2)", async ({ page }, info) => {
+  const mode = info.project.name as Mode;
+  const course = loadCourse("es", "es-Latn/standard");
+  const units = pathUnits(course);
+  // The first three units, lessons and stories, placed out of yesterday: Continue is the fourth's first lesson.
+  const placed = units.slice(0, 3);
+  const [first] = placed;
+  const fourth = units[3];
+  const next = fourth?.entries[0];
+  const opening = first?.entries[0];
+  if (first === undefined || fourth === undefined || next === undefined || opening === undefined) throw new Error("es has units of lessons");
+  await page.clock.setFixedTime(NOW);
+  await seedLog(page, placedOutOf(course, placed.flatMap((u) => u.entries.map((e) => e.node.id)), new Date(NOW.getTime() - DAY)));
+  await page.reload();
+
+  // From Home, as the learner comes: the course's card. The page opens at Continue's lesson, its
+  // heading focused, as every screen's is (S10).
+  await activate(page, mode, '[data-course="es"] [data-course-link]');
+  await expect(page.locator("[data-course-path=es]")).toBeVisible();
+  await expect(page.locator("[data-continue] [data-action=continue]")).toHaveAttribute("href", new RegExp(`${next.node.id.replace(/\./gu, "\\.")}$`, "u"));
+  const arrival = page.locator(`[data-arrival][data-lesson="${next.node.id}"], [data-arrival][data-story-node="${next.node.id}"]`);
+  await expect(arrival).toBeInViewport({ ratio: 1 });
+  await expect(page.locator("[data-course-path] h1")).toBeFocused();
+
+  // The units placed out of are folded: each says it is done, and its lessons are out of sight.
+  for (const unit of placed) {
+    const section = page.locator(`[data-unit="${unit.unit.id}"]`);
+    await expect(section).toHaveAttribute("data-finished", "");
+    await expect(section.locator("[data-unit-done]")).toHaveText(`${unit.entries.length} of ${unit.entries.length} done`);
+    await expect(section.locator("[data-action=unit-toggle]")).toHaveAttribute("aria-expanded", "false");
+    await expect(section.locator("[data-lesson-list]")).toBeHidden();
+  }
+  // The unit under way is open, and has nothing to fold.
+  await expect(page.locator(`[data-unit="${fourth.unit.id}"] [data-lesson-list]`)).toBeVisible();
+  await expect(page.locator(`[data-unit="${fourth.unit.id}"] [data-action=unit-toggle]`)).toHaveCount(0);
+
+  // A folded unit opens again from its heading, its lessons there to replay, and folds again.
+  const unit = page.locator(`[data-unit="${first.unit.id}"]`);
+  const toggle = `[data-unit="${first.unit.id}"] [data-action=unit-toggle]`;
+  await activate(page, mode, toggle);
+  await expect(page.locator(toggle)).toHaveAttribute("aria-expanded", "true");
+  await expect(unit.locator(`[data-lesson="${opening.node.id}"]`)).toBeVisible();
+  await expect(unit.locator(`[data-lesson="${opening.node.id}"]`)).toHaveAttribute("data-status", "done");
+  expect(await seriousAxeViolations(page, "main")).toEqual([]);
+  await activate(page, mode, toggle);
+  await expect(page.locator(toggle)).toHaveAttribute("aria-expanded", "false");
+  await expect(unit.locator("[data-lesson-list]")).toBeHidden();
 });

@@ -512,7 +512,8 @@ const lettersListId = (unit: string): string => `letter-lessons-${unit}`;
 
 /**
  * The course's path (§11.1): Continue, practice, XP, and the lessons in order, each done, open or
- * locked. Its other pages are linked near the top, and finished units fold away (S2).
+ * locked. Its other pages are linked near the top, finished units fold away, and on arrival the page
+ * brings Continue's lesson into view (S2, through screen.tsx's `data-arrival`).
  */
 const CoursePath = ({
   loaded,
@@ -587,6 +588,8 @@ const CoursePath = ({
             }),
         }
       : undefined;
+  // Where the page opens (S2): Continue's lesson or story, once the learner is past the first one.
+  const arrival = state.completedNodes.length > 0 && next.kind !== "done" ? next.next?.node : undefined;
   // The alphabet's row folds away too, once every letter lesson is done.
   const scriptUnit = course.units.find((u) => u.id === scriptRow[0]?.unit);
   const scriptDone = scriptRow.filter((n) => n.status === "done").length;
@@ -818,7 +821,7 @@ const CoursePath = ({
                           {body}
                         </div>
                       ) : (
-                        <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s}>
+                        <a className={`${styles.lesson} ${s === "available" ? styles.next : ""}`} href={link} {...data} data-status={s} data-arrival={node.id === arrival ? "" : undefined}>
                           {body}
                         </a>
                       )}

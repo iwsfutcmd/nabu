@@ -4,8 +4,10 @@
  * top and focus moves to the new screen's h1 (its main, if it has none) once the screen is there,
  * not while it loads; so a screen reader says where the learner is, and the next Tab starts from
  * there instead of from the link that went away. A screen that takes focus itself (a lesson's first
- * answer) keeps it. Nothing here acts within a screen: the lesson player moves focus between its
- * own cards (focusInReach).
+ * answer) keeps it. A screen may mark where it opens (`data-arrival`: the course page's next lesson,
+ * S2): once the screen is there, the first one too, that place is brought into view, and focus stays
+ * on the heading. Nothing here acts within a screen: the lesson player moves focus between its own
+ * cards (focusInReach).
  */
 import { pathUnits, type SessionRequest } from "@nabu/core/learner";
 import { scriptNodes, type CourseView } from "@nabu/core/lesson";
@@ -91,19 +93,36 @@ export const useScreen = (screen: string, title: string): void => {
   }, [title]);
   const shown = useRef(screen);
   const pending = useRef(false);
+  // The first screen arrives too (the app opened on a course's page), with focus left where the browser put it.
+  const arriving = useRef(true);
   // After every render: the screen may come only after its course loads.
   useEffect(() => {
     if (shown.current !== screen) {
       shown.current = screen;
       pending.current = true;
+      arriving.current = true;
       window.scrollTo({ top: 0 });
     }
-    if (!pending.current) return;
+    if (!pending.current && !arriving.current) return;
     const main = document.querySelector("main");
     if (main === null || main.querySelector("[data-loading]") !== null) return;
+    if (pending.current) focusScreen();
     pending.current = false;
-    focusScreen();
+    arriving.current = false;
+    arrive(main);
   });
+};
+
+/**
+ * Brings the place a screen opens at into view (`data-arrival`, S2), unless all of it is in view
+ * already: to the middle of the window, with what comes before and after it around it.
+ */
+const arrive = (main: HTMLElement): void => {
+  const at = main.querySelector("[data-arrival]");
+  if (at === null) return;
+  const box = at.getBoundingClientRect();
+  if (box.top >= 0 && box.left >= 0 && box.bottom <= window.innerHeight && box.right <= window.innerWidth) return;
+  at.scrollIntoView({ block: "center", inline: "nearest" });
 };
 
 /**
