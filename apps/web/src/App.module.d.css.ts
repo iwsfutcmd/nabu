@@ -53,6 +53,7 @@ declare const styles: {
   readonly muted: string;
   readonly next: string;
   readonly notice: string;
+  readonly noticeActions: string;
   readonly offline: string;
   readonly offlineName: string;
   readonly offlineUnit: string;
