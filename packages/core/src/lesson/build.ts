@@ -12,9 +12,7 @@ import type { Exercise, TemplateId } from "./exercise.ts";
 import { courseExclusions, speechExclusions, type SpeechSupport } from "./exclusions.ts";
 import { lessonNodes, sentencesOf } from "./nodes.ts";
 import { seededRng } from "./rng.ts";
-import { SCRIPT_TEMPLATES, scriptCandidates, scriptNodes } from "./script.ts";
 import {
-  KC_TEMPLATES,
   makeCharRead,
   makeMatchPairs,
   makeReadingDisambiguation,
@@ -22,7 +20,6 @@ import {
   makeSpeakScored,
   makeToneIdentify,
   SENTENCE_TEMPLATES,
-  TEMPLATES,
   type MakeContext,
 } from "./templates.ts";
 
@@ -149,79 +146,4 @@ export const buildLesson = (
   }
 
   return out.slice(0, options.maxExercises ?? 14);
-};
-
-/** One card of a kind, or none where the course cannot make that kind. */
-export interface GalleryCard {
-  readonly template: TemplateId;
-  readonly exercise: Exercise | undefined;
-}
-
-/**
- * One card of every kind the course can make, for debug mode: each template's first instance
- * (what a lesson builds, else the first sentence or word that makes one). Story questions belong
- * to stories and are left out; a kind the course has no material for comes back without a card.
- */
-export const cardGallery = (course: CourseView, seed = 1): readonly GalleryCard[] => {
-  const rng = seededRng(seed);
-  const nodes = lessonNodes(course);
-  const ctxOf = (node: string | undefined): MakeContext => ({ course, rng, introduced: nodes.find((n) => n.node.id === node)?.node.introduces ?? [] });
-  const sentences = nodes.flatMap(({ unit, node }) => sentencesOf(course, unit, node).map((s) => ({ s, node: node.id })));
-  const kcs = allKcs(course);
-  const introducedIn = (kc: BundleKc): string | undefined => nodes.find((n) => n.node.introduces.includes(kc.id))?.node.id;
-  const first = <T,>(items: readonly T[], make: (item: T) => Exercise | undefined): Exercise | undefined => {
-    for (const item of items) {
-      const ex = make(item);
-      if (ex !== undefined) return ex;
-    }
-    return undefined;
-  };
-  const excluded = courseExclusions(course);
-  // A script track's kinds (ADR 0088): the first its first alphabet node makes.
-  const track = scriptNodes(course)[0];
-  const scriptCard = (template: TemplateId): Exercise | undefined =>
-    track === undefined ? undefined : scriptCandidates({ course, rng, introduced: track.node.introduces }, track, new Set()).find((e) => e.template === template);
-  return (Object.keys(TEMPLATES) as TemplateId[])
-    .filter((t) => !t.startsWith("story-") && !excluded.has(t))
-    .map((template): GalleryCard => {
-      const sentence = SENTENCE_TEMPLATES[template];
-      const word = KC_TEMPLATES[template];
-      const exercise = SCRIPT_TEMPLATES.has(template)
-        ? scriptCard(template)
-        : template === "match-pairs"
-          ? makeMatchPairs(ctxOf(nodes[0]?.node.id), kcs.filter((k) => (k.forms?.[course.orthography]?.length ?? 0) > 0).slice(0, 5))
-          : sentence !== undefined
-            ? first(sentences, ({ s, node }) => sentence(ctxOf(node), s))
-            : word !== undefined
-              ? first(kcs, (k) => word(ctxOf(introducedIn(k)), k))
-              : undefined;
-      return { template, exercise };
-    });
-};
-
-/**
- * The first exercise of `template` that the course's lessons produce (seeded),
- * for stories, tests and previews. Undefined when no lesson can make one.
- */
-export const sampleExercise = (
-  course: CourseView,
-  template: TemplateId,
-  seed = 1,
-): Exercise | undefined => {
-  if (courseExclusions(course).has(template)) return undefined;
-  for (const { node } of lessonNodes(course)) {
-    const found = buildLesson(course, node.id, { seed }).find(
-      (e) => e.template === template,
-    );
-    if (found !== undefined) return found;
-  }
-  const rng = seededRng(seed);
-  for (const { unit, node } of lessonNodes(course)) {
-    const ctx: MakeContext = { course, rng, introduced: node.introduces };
-    for (const s of sentencesOf(course, unit, node)) {
-      const ex = SENTENCE_TEMPLATES[template]?.(ctx, s);
-      if (ex !== undefined) return ex;
-    }
-  }
-  return undefined;
 };
