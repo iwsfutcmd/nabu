@@ -11,7 +11,7 @@ import type { AnswerSubmitted, ExerciseSkipped, LearnerEvent } from "@nabu/schem
 import { revised, revisionsOf } from "../learner/revisions.ts";
 import type { Verdict } from "../match/grade.ts";
 import { isCorrect, type Exercise, type Response, type SkipReason } from "./exercise.ts";
-import { start, step, type Effect, type PlayerState, type StartOptions } from "./player.ts";
+import { start, step, type Effect, type PlayerState, type SessionResult, type StartOptions } from "./player.ts";
 
 /** One exercise as the log tells it. */
 export type Done =
@@ -21,6 +21,8 @@ export type Done =
       readonly exercise: string;
       readonly verdict: Verdict;
       readonly selfRated?: boolean | undefined;
+      /** What the learner answered, where the log has it: typed text, a self-rating. */
+      readonly response?: Response | undefined;
       /**
        * The verdict a revision gave the answer (ADR 0052: the learner's claim, the judge's accept),
        * where one did. The session went on from it (ADR 0113): from the answer's feedback, unless the
@@ -31,8 +33,19 @@ export type Done =
   /** exercise_skipped. */
   | { readonly tag: "skip"; readonly exercise: string; readonly reason: SkipReason };
 
-/** The response a resumed answer stands for: never shown (the session moves past it) nor graded. */
+/**
+ * The response an answer stands for where the log does not have it: never shown (the session moves
+ * past it) nor graded, and not kept with its result.
+ */
 const LOGGED: Response = { tag: "choice", index: -1 };
+
+/** The results without the stand-in response on the latest: the session does not know what was answered. */
+const unanswered = (results: readonly SessionResult[]): readonly SessionResult[] =>
+  results.map((r, i) => {
+    if (i !== results.length - 1 || r.response !== LOGGED) return r;
+    const { response: _, ...rest } = r;
+    return rest;
+  });
 
 /** The id an exercise was planned under, and which attempt at it this is ("…#2": the second). */
 const plannedId = (id: string): string => id.split("#")[0] as string;
@@ -85,7 +98,8 @@ export const resume = (lesson: string, exercises: readonly Exercise[], options: 
     let [after, more]: readonly [PlayerState, readonly Effect[]] =
       d.tag === "skip"
         ? step(answering, { tag: "skip", reason: d.reason })
-        : step({ tag: "checking", session: answering.session, ex: answering.ex, response: LOGGED }, { tag: "graded", outcome: { verdict: d.verdict, notes: [], ...(d.selfRated === true ? { selfRated: true as const } : {}) } });
+        : step({ tag: "checking", session: answering.session, ex: answering.ex, response: d.response ?? LOGGED }, { tag: "graded", outcome: { verdict: d.verdict, notes: [], ...(d.selfRated === true ? { selfRated: true as const } : {}) } });
+    if (after.tag === "feedback" && d.tag === "answer" && d.response === undefined) after = { ...after, session: { ...after.session, results: unanswered(after.session.results) } };
     if (d.tag === "answer" && d.revised !== undefined) {
       const revision = { exercise: d.exercise, verdict: d.revised };
       if (askedAgain(d.exercise)) late.set(plannedId(d.exercise), [...(late.get(plannedId(d.exercise)) ?? []), revision]);
@@ -116,6 +130,15 @@ export const doneOf = (events: readonly LearnerEvent[], session: string): readon
     .map((e): Done => {
       if (e.type === "exercise_skipped") return { tag: "skip", exercise: e.exercise.id, reason: e.reason };
       const after = revised(e, revisions);
-      return { tag: "answer", exercise: e.exercise.id, verdict: e.outcome.kind, selfRated: e.input.selfRating !== undefined, ...(after === e ? {} : { revised: after.outcome.kind }) };
+      // The log keeps what was typed, and a self-rating; a choice or a tile order only as its verdict.
+      const response: Response | undefined = e.input.raw !== undefined ? { tag: "text", text: e.input.raw } : e.input.selfRating !== undefined ? { tag: "self-rating", rating: e.input.selfRating } : undefined;
+      return {
+        tag: "answer",
+        exercise: e.exercise.id,
+        verdict: e.outcome.kind,
+        selfRated: e.input.selfRating !== undefined,
+        ...(response === undefined ? {} : { response }),
+        ...(after === e ? {} : { revised: after.outcome.kind }),
+      };
     });
 };

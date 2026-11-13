@@ -18,6 +18,7 @@ import {
   isCorrect,
   lessonNodes,
   MEDIA_ROLES,
+  missedOf,
   resume,
   runTest,
   start,
@@ -108,7 +109,8 @@ const playLive = (course: CourseView, lesson: string, exercises: readonly Exerci
     last = effects;
     for (const f of effects) {
       if (f.tag === "grade") dispatch({ tag: "graded", outcome: gradeExercise(f.ex, f.response, grader) });
-      else if (f.tag === "emit" && f.event.type === "answer_submitted") done.push({ tag: "answer", exercise: f.event.ex.id, verdict: f.event.graded.verdict, selfRated: f.event.graded.selfRated === true });
+      else if (f.tag === "emit" && f.event.type === "answer_submitted")
+        done.push({ tag: "answer", exercise: f.event.ex.id, verdict: f.event.graded.verdict, selfRated: f.event.graded.selfRated === true, response: f.event.response });
       else if (f.tag === "emit" && f.event.type === "exercise_skipped") done.push({ tag: "skip", exercise: f.event.ex.id, reason: f.event.reason });
     }
   };
@@ -151,6 +153,27 @@ describe("resuming a session (S3)", () => {
       expect(state, `after ${k}`).toEqual(point.state);
       expect(opened, `after ${k}`).toEqual(point.opened);
     }
+  });
+
+  it("keeps what the log has of the answers for the end of the session: typed text, never a stand-in (P9)", () => {
+    const points = playLive(course, node, lesson, {}, (_ex, i) => (i % 3 === 1 ? "wrong" : "right"));
+    const end = points.at(-1);
+    if (end?.state.tag !== "finished") throw new Error("not finished");
+    // The log keeps typed text and self-ratings, not a choice or a tile order.
+    const logged = end.done.map((d) => (d.tag === "answer" && d.response !== undefined && d.response.tag !== "text" && d.response.tag !== "self-rating" ? { ...d, response: undefined } : d));
+    const [state] = resume(node, lesson, {}, logged) ?? [];
+    if (state?.tag !== "finished") throw new Error("not resumed to the end");
+    const live = end.state.session.results;
+    expect(state.session.results.map((r) => r.exercise)).toEqual(live.map((r) => r.exercise));
+    for (const [i, r] of state.session.results.entries()) {
+      const kept = live[i]?.response;
+      expect(r.response, r.exercise).toEqual(kept?.tag === "text" || kept?.tag === "self-rating" ? kept : undefined);
+    }
+    // The cards missed are the live session's, each with what is known of its answer.
+    const missed = missedOf(state.session);
+    expect(missed.map((m) => m.ex.id)).toEqual(missedOf(end.state.session).map((m) => m.ex.id));
+    expect(missed.length).toBeGreaterThan(0);
+    expect(missed.every((m) => m.response === undefined || m.response.tag === "text")).toBe(true);
   });
 
   it("a fresh start reopens with the first exercise, not a second session_started", () => {
@@ -218,7 +241,8 @@ describe("resuming a session (S3)", () => {
         state = next;
         for (const f of effects) {
           if (f.tag === "grade") dispatch({ tag: "graded", outcome: gradeExercise(f.ex, f.response, grader) });
-          else if (f.tag === "emit" && f.event.type === "answer_submitted") done.push({ tag: "answer", exercise: f.event.ex.id, verdict: f.event.graded.verdict, selfRated: f.event.graded.selfRated === true });
+          else if (f.tag === "emit" && f.event.type === "answer_submitted")
+            done.push({ tag: "answer", exercise: f.event.ex.id, verdict: f.event.graded.verdict, selfRated: f.event.graded.selfRated === true, response: f.event.response });
           else if (f.tag === "emit" && f.event.type === "exercise_skipped") done.push({ tag: "skip", exercise: f.event.ex.id, reason: f.event.reason });
         }
       };
@@ -318,7 +342,7 @@ describe("a session's log, as resuming reads it", () => {
     expect(doneOf(events, S)).toEqual([
       { tag: "answer", exercise: "a", verdict: "WRONG", selfRated: false },
       { tag: "answer", exercise: "a#2", verdict: "CORRECT", selfRated: false },
-      { tag: "answer", exercise: "b", verdict: "CORRECT", selfRated: true },
+      { tag: "answer", exercise: "b", verdict: "CORRECT", selfRated: true, response: { tag: "self-rating", rating: "good" } },
       { tag: "skip", exercise: "c", reason: "cant-listen" },
     ]);
     expect(firstTriesOf(doneOf(events, S))).toEqual(
