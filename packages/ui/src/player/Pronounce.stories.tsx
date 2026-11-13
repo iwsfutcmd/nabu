@@ -4,6 +4,7 @@
  */
 import { createGrader, gradeExercise, sampleExercise, start, step, type Exercise, type Grader, type PlayerState } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -46,7 +47,6 @@ const Card = ({ loaded, screen }: { loaded: LoadedCourse; screen: Screen }): JSX
   const ex = useMemo(() => sampleExercise(course, "vocalize", SEED) ?? sampleExercise(course, "transcribe", SEED), [course]);
   const initialState = useMemo(() => (ex === undefined ? undefined : stateFor(screen, ex, grader)), [screen, ex, grader]);
   if (ex === undefined || initialState === undefined) return <p data-no-pronunciation="">{t.format("debug.cards.none")}</p>;
-  const name = `course.name.${course.id}`;
   return (
     <LessonPlayer
       key={`${course.id}:${screen}`}
@@ -55,7 +55,7 @@ const Card = ({ loaded, screen }: { loaded: LoadedCourse; screen: Screen }): JSX
       exercises={[ex]}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       initialState={initialState}
     />

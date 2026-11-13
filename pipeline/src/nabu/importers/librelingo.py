@@ -66,6 +66,8 @@ def import_course(
             else f"{target}-{orthography.split('/')[0].split('-')[1]}",
             "orthographies": [orthography],
             "support": [support],
+            # What the app calls it (ADR 0109): LibreLingo names the language, in the support one.
+            "names": {support_key: {"course": str(meta["Language"]["Name"])}},
             "license": license_,
             "provenance": {
                 "author": f"human:librelingo-{slug(str(meta['Language']['Name']))}",

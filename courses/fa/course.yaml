@@ -4,6 +4,12 @@ id: fa
 target: fa-Arab-IR
 orthographies: [fa-Arab/standard]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, by language (ADR 0109).
+names:
+  en:
+    course: Persian
+    orthographies:
+      fa-Arab/standard: Persian script
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@83a16c835c32', status: draft}
 units: [units/intro.yaml, units/u02-family.yaml, units/u03-numbers.yaml, units/u04-food.yaml, units/u05-home.yaml, units/u06-day.yaml, units/u07-time.yaml, units/u08-city.yaml, units/u09-shopping.yaml, units/u10-past.yaml]

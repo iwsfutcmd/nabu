@@ -15,7 +15,8 @@ import type { Route } from "./App.tsx";
 import styles from "./App.module.css";
 
 type Translator = ReturnType<typeof useTranslator>;
-type Names = { readonly course: (id: string) => string; readonly orthography: (id: string) => string };
+/** What the app calls a course and its orthographies, by the course's id (ADR 0109: course data). */
+export type Names = { readonly course: (id: string) => string; readonly orthography: (course: string, orthography: string) => string };
 
 /** What a session is called: "Lesson 3" or "Letters 1" as the course path numbers them, "Review", "Mistakes", the placement test. */
 export const sessionName = (t: Translator, request: SessionRequest, course: CourseView | undefined): string => {
@@ -41,7 +42,7 @@ export const titleOf = (t: Translator, route: Route, names: Names, course: Cours
     case "review":
       return page(t.format("review.workspace.title"));
     case "course":
-      return t.format("app.title.course", { course: names.course(route.course), orthography: names.orthography(route.orthography), app });
+      return t.format("app.title.course", { course: names.course(route.course), orthography: names.orthography(route.course, route.orthography), app });
     case "session":
       return inCourse(sessionName(t, route.request, course), route.course);
     case "story":

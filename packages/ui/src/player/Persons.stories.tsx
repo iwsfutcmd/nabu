@@ -4,6 +4,7 @@
  * number and the prompt cannot ("you" to a woman, to several people).
  */
 import { createGrader, sampleExercise, start, step, type Exercise } from "@nabu/core/lesson";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -29,7 +30,6 @@ const Card = ({ loaded, template }: { loaded: LoadedCourse; template: "translate
   }, [course, template]);
   const initialState = useMemo(() => (ex === undefined ? undefined : step(start("story", [ex])[0], { tag: "ready" })[0]), [ex]);
   if (ex === undefined || initialState === undefined) return <p>{t.format("debug.cards.none")}</p>;
-  const name = `course.name.${course.id}`;
   return (
     <LessonPlayer
       key={course.id}
@@ -38,7 +38,7 @@ const Card = ({ loaded, template }: { loaded: LoadedCourse; template: "translate
       exercises={[ex]}
       grader={grader}
       imageUrl={imageUrl}
-      language={t.has(name) ? t.format(name) : course.id}
+      language={courseName(t, course)}
       sound={false}
       initialState={initialState}
     />

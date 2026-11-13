@@ -24,6 +24,7 @@ YUE: dict[str, Any] = {
     "target": "yue-Hant-HK",
     "orthographies": ["yue-Hant-HK/standard"],
     "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Cantonese"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
     "units": [
@@ -62,6 +63,7 @@ FA: dict[str, Any] = {
     "target": "fa-Arab-IR",
     "orthographies": ["fa-Arab/standard"],
     "support": ["en-Latn/standard"],
+    "names": {"en": {"course": "Persian"}},
     "license": "CC0-1.0",
     "provenance": {"author": "human:fixture", "status": "draft"},
     "vocalization": [
@@ -434,6 +436,10 @@ FIXTURES: dict[str, tuple[str, Callable[[], Course]]] = {
                 },
             )
         ),
+    ),
+    "course.names": (
+        "The course names an orthography it does not teach.",
+        m(set_(["names", "en", "orthographies"], {"uz-Cyrl/standard": "Cyrillic"})),
     ),
     "parse.token-mismatch": (
         "A token that is not in the text.",

@@ -385,6 +385,7 @@ export interface NabuSchemaIndex {
   readonly Facet: Facet;
   readonly PlacementPolicy: PlacementPolicy1;
   readonly ScriptCode: ScriptCode;
+  readonly CourseNames: CourseNames1;
   readonly Corrections: Corrections;
   readonly TokenReading: TokenReading;
   readonly CorrectedForm: CorrectedForm;
@@ -1073,6 +1074,7 @@ export interface BundleManifest {
   readonly target: ScriptedLangTag;
   readonly orthographies: readonly OrthographyId[];
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames;
   /**
    * The facets the course practises, where it names them (course source `facets`, ADR 0071); absent: all of them.
    *
@@ -1120,6 +1122,23 @@ export interface BundleManifest {
    * A release build (ADR 0073): only content a reviewer signed off. Absent in the demo's full builds, which keep drafts.
    */
   readonly release?: boolean;
+}
+/**
+ * What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses.
+ */
+export interface CourseNames {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+  };
 }
 /**
  * How the placement test probes, where the course says (course source `placement`, ADR 0077).
@@ -1410,6 +1429,26 @@ export interface PlacementPolicy1 {
   readonly production?: "tiles" | "typed";
 }
 /**
+ * What the app calls a course and the orthographies it teaches, by the language the names are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows the names in the UI language where the course gives them.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "CourseNames".
+ */
+export interface CourseNames1 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+  };
+}
+/**
  * Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
  *
  * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
@@ -1524,6 +1563,7 @@ export interface CourseSource {
    * @minItems 1
    */
   readonly support: readonly OrthographyId[];
+  readonly names?: CourseNames2;
   readonly license?: Spdx1;
   readonly provenance?: Provenance1;
   /**
@@ -1547,6 +1587,23 @@ export interface CourseSource {
    * Vowel marks for the course's words, by orthography (ADR 0053): a file next to course.yaml, or given inline. The compiler marks every word of sentences, stories and word forms with them, so the vowel-marks toggle has something to show.
    */
   readonly vocalization?: readonly (string | VocalizationSource)[];
+}
+/**
+ * What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names).
+ */
+export interface CourseNames2 {
+  readonly [k: string]: {
+    /**
+     * The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.
+     */
+    readonly course: string;
+    /**
+     * Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers).
+     */
+    readonly orthographies?: {
+      readonly [k: string]: string;
+    };
+  };
 }
 /**
  * Who wrote it and whether it has been reviewed (§7.1). LLM authors are llm:<model>@<prompt-hash>; generated content (RBNF drills) is generated:<generator>@<version>.

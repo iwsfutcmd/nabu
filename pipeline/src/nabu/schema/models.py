@@ -523,6 +523,47 @@ type ScriptCode = Annotated[
 ]
 
 
+type OrthographiesAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+class CourseNames1(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    course: Annotated[
+        str,
+        Field(
+            description="The course's name, as other text names it: Cantonese, Lebanese Arabic, Biblical Hebrew.",
+            min_length=1,
+        ),
+    ]
+    orthographies: Annotated[
+        dict[OrthographyId, OrthographiesAdditionalProperty] | None,
+        Field(
+            description="Each orthography's name, where the course teaches more than one or the name says more than the script's: Arabizi (Latin letters and numbers)."
+        ),
+    ] = None
+
+
+type CourseNames = Annotated[
+    dict[LangTag, CourseNames1],
+    Field(
+        description="What the app calls a course and the orthographies it teaches, by the language the names are written in (a BCP 47 tag; ADR 0109). Course data, never app messages: a new course needs no catalog entry. The app shows the names in the UI language where the course gives them.",
+        examples=[
+            {
+                "en": {
+                    "course": "Cantonese",
+                    "orthographies": {"yue-Hant-HK/standard": "Traditional characters"},
+                }
+            }
+        ],
+        min_length=1,
+        title="CourseNames",
+    ),
+]
+
+
 class Corrections(BaseModel):
     """
     Corrections to course content (ADR 0051): a learner marks a sentence or a story line as incorrect and says what it should be. The app records a sentence_reported event; the server queues it for review; `nabu corrections apply` writes reviewed corrections into the course source.
@@ -2401,6 +2442,12 @@ class BundleManifest(BaseModel):
     target: ScriptedLangTag
     orthographies: list[OrthographyId]
     support: list[OrthographyId]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, as the course source names them (ADR 0109). Also in the bundles' index.json, for a list of courses."
+        ),
+    ] = None
     facets: Annotated[
         list[Facet] | None,
         Field(
@@ -3717,6 +3764,12 @@ class CourseSource(BaseModel):
             min_length=1,
         ),
     ]
+    names: Annotated[
+        CourseNames | None,
+        Field(
+            description="What the app calls the course and its orthographies, in the support language at least (ADR 0109; lint course.names)."
+        ),
+    ] = None
     license: Annotated[
         Spdx | None,
         Field(description="Default SPDX license for every content item that gives none."),

@@ -10,6 +10,12 @@ id: grc
 target: grc-Grek
 orthographies: [grc-Grek/polytonic]
 support: [en-Latn/standard]
+# What the app calls the course and its orthographies, by language (ADR 0109).
+names:
+  en:
+    course: Ancient Greek
+    orthographies:
+      grc-Grek/polytonic: Polytonic Greek
 license: CC-BY-SA-4.0
 provenance: {author: 'llm:claude@grc-draft-v1', status: draft}
 # A Greek word is a stem and an ending: a new verb in a new form, or a new noun in a new case, is two KCs.

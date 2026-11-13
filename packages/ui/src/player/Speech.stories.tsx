@@ -8,6 +8,7 @@ import { autoTokens, textBase } from "@nabu/core/ai";
 import { allSentences, createGrader, gradeExercise, makeSpeakScored, makeToneIdentify, seededRng, start, step, type CourseView, type Exercise, type Grader, type PlayerState } from "@nabu/core/lesson";
 import { expectedSyllables, toneSystemOf, type SpeechResult } from "@nabu/core/speech";
 import { surfaceOf, wordIndexes } from "@nabu/core/text";
+import { courseName } from "@nabu/i18n";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
 import type { NabuGlobals } from "../../.storybook/toolbar.ts";
@@ -54,8 +55,7 @@ const Player = ({ loaded, ex, state }: { loaded: LoadedCourse; ex: Exercise; sta
   const t = useTranslator();
   const { course, imageUrl } = loaded;
   const grader = useMemo(() => createGrader(course), [course]);
-  const name = `course.name.${course.id}`;
-  return <LessonPlayer key={ex.id} course={course} lessonId="story" exercises={[ex]} grader={grader} imageUrl={imageUrl} language={t.has(name) ? t.format(name) : course.id} sound={false} initialState={state} />;
+  return <LessonPlayer key={ex.id} course={course} lessonId="story" exercises={[ex]} grader={grader} imageUrl={imageUrl} language={courseName(t, course)} sound={false} initialState={state} />;
 };
 
 const SpeakFeedback = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {

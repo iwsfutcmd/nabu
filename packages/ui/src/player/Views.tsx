@@ -34,7 +34,7 @@ import type {
 import { isCorrect } from "@nabu/core/lesson";
 import { CANTONESE, hearOnDevice, type SpeechResult, type ToneScore } from "@nabu/core/speech";
 import { textOfSurface } from "@nabu/core/text";
-import { directionOf, type MessageId } from "@nabu/i18n";
+import { directionOf, type MessageId, orthographyName } from "@nabu/i18n";
 import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
@@ -670,12 +670,6 @@ const WordInSentence = ({
   );
 };
 
-/** An orthography's name in the UI language (orthography.<id> messages), else its id. */
-const orthographyLabel = (t: ReturnType<typeof useTranslator>, orthography: string): string => {
-  const key = `orthography.${orthography.replace("/", ".")}`;
-  return t.has(key) ? t.format(key) : orthography;
-};
-
 /**
  * Vowel marks (ADR 0098): the word with its marks, chosen among other vocalizations of its letters.
  * Where an orthography of the course writes the vowels (Arabizi), the learner may type the word in it
@@ -688,7 +682,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   const spelled = ex.spelled;
   const typing = spelling && spelled !== undefined;
   useShortcuts(props, typing ? undefined : (i) => chooseByKey(props, i, ex.options.length));
-  const name = spelled === undefined ? "" : orthographyLabel(t, spelled.orthography);
+  const name = spelled === undefined ? "" : orthographyName(t, props.course, spelled.orthography);
   const switchTo = (on: boolean): void => {
     setSpelling(on);
     dispatch({ tag: "input", draft: on ? { tag: "text", text: "" } : { tag: "choice", index: null } });

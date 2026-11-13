@@ -192,6 +192,8 @@ def build(
                         "target": manifest["target"],
                         "orthographies": manifest["orthographies"],
                         "support": manifest["support"],
+                        # A list of courses names each before loading it (ADR 0109).
+                        **({"names": manifest["names"]} if "names" in manifest else {}),
                         "manifest": f"{compiled.course.id}/manifest.json",
                         "bundle": manifest["id"],
                     }

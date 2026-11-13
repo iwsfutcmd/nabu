@@ -5,13 +5,15 @@
  */
 import { assembleCourse, coreFiles, type CourseView } from "@nabu/core/lesson";
 import numberingSystems from "@nabu/i18n/generated/numbering-systems.json" with { type: "json" };
-import type { BundleManifest } from "@nabu/schema";
+import type { BundleManifest, CourseNames } from "@nabu/schema";
 
 export interface CourseIndexEntry {
   readonly id: string;
   readonly target: string;
   readonly orthographies: readonly string[];
   readonly support: readonly string[];
+  /** What the app calls the course and its orthographies (ADR 0109): a list names courses before loading them. */
+  readonly names?: CourseNames | undefined;
   readonly manifest: string;
   readonly bundle: string;
 }

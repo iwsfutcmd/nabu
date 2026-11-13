@@ -39,7 +39,7 @@ import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
-import { directionOf } from "@nabu/i18n";
+import { courseName, directionOf, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, LearnerEvent, SentenceReported } from "@nabu/schema";
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
@@ -167,16 +167,6 @@ const leaving =
 
 type Translator = ReturnType<typeof useTranslator>;
 
-const courseName = (t: Translator, id: string): string => {
-  const key = `course.name.${id}`;
-  return t.has(key) ? t.format(key) : id;
-};
-
-const orthographyName = (t: Translator, id: string): string => {
-  const key = `orthography.${slug(id)}`;
-  return t.has(key) ? t.format(key) : id;
-};
-
 interface GameProps {
   readonly game: GameState | null;
   readonly gameConfig: GameConfig | null;
@@ -216,10 +206,10 @@ const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Elemen
     <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id}>
       <h2 className={styles.courseName}>
         {first === undefined ? (
-          courseName(t, entry.id)
+          courseName(t, entry)
         ) : (
           <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography: first })} data-course-link="">
-            {courseName(t, entry.id)}
+            {courseName(t, entry)}
           </a>
         )}
       </h2>
@@ -245,7 +235,7 @@ const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Elemen
               const hint = optional(t, `orthography.hint.${slug(o)}`);
               return (
                 <a key={o} className={`${styles.link} ${styles.scriptLink}`} href={href({ tag: "course", course: entry.id, orthography: o })} data-orthography={o}>
-                  <span>{orthographyName(t, o)}</span>
+                  <span>{orthographyName(t, entry, o)}</span>
                   {hint !== undefined && <span className={styles.scriptHint}>{hint}</span>}
                 </a>
               );
@@ -265,7 +255,7 @@ const Home = ({ courses, store, sync, game, gameConfig, version, online }: { cou
   const fresh = game !== null && game.days.length === 0 && game.xp.total === 0;
   // In the order of their names as the UI language sorts them.
   const collator = new Intl.Collator(t.formattingLocale);
-  const sorted = [...courses].sort((a, b) => collator.compare(courseName(t, a.id), courseName(t, b.id)));
+  const sorted = [...courses].sort((a, b) => collator.compare(courseName(t, a), courseName(t, b)));
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
@@ -403,7 +393,7 @@ const CoursePath = ({
         </a>
       </p>
       <h1 className={styles.heading}>
-        {courseName(t, course.id)} · {orthographyName(t, orthography)}
+        {courseName(t, course)} · {orthographyName(t, course, orthography)}
       </h1>
       {game !== null && (
         <p className={styles.stats} data-xp={game.xp.total} data-xp-today={today}>
@@ -459,7 +449,7 @@ const CoursePath = ({
       {[...status.values()].some((s) => s !== "done") && (
         <p>
           <a className={styles.back} href={to({ mode: "placement" })} data-practice-mode="placement" data-again={state.completedNodes.length > 0 ? "" : undefined}>
-            {t.format(state.completedNodes.length === 0 ? "app.practice.placement" : "app.practice.placement-again", { language: courseName(t, course.id) })}
+            {t.format(state.completedNodes.length === 0 ? "app.practice.placement" : "app.practice.placement-again", { language: courseName(t, course) })}
           </a>
         </p>
       )}
@@ -668,7 +658,7 @@ const CoursePath = ({
         </p>
       )}
       {OFFLINE && offline.stored !== undefined && <OfflinePanel loaded={loaded} root={offline.root} stored={offline.stored} onChange={offline.onChange} />}
-      <StartOver language={courseName(t, course.id)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
+      <StartOver language={courseName(t, course)} hasProgress={studied || state.completedNodes.length > 0 || state.mistakes.length > 0} onReset={onReset} />
     </main>
   );
 };
@@ -967,7 +957,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
       // The player opens on the same screen: focus goes to it, as a new screen's does.
       requestAnimationFrame(focusScreen);
     };
-    return <PlacementIntro language={courseName(t, course.id)} most={mostQuestions(setup.planned)} onStart={start} back={back} onBack={leaving(back)} />;
+    return <PlacementIntro language={courseName(t, course)} most={mostQuestions(setup.planned)} onStart={start} back={back} onBack={leaving(back)} />;
   }
   if (!playing) {
     return (
@@ -988,7 +978,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         exercises={setup.planned.exercises}
         grader={grader}
         imageUrl={imageUrl}
-        language={courseName(t, course.id)}
+        language={courseName(t, course)}
         onEvent={onEvent}
         sound={sound}
         onSoundChange={storeSound}
@@ -1090,7 +1080,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         script={setup.script}
         grader={grader}
         imageUrl={imageUrl}
-        language={courseName(t, course.id)}
+        language={courseName(t, course)}
         onEvent={setup.onEvent}
         sound={sound}
         onSoundChange={storeSound}
@@ -1182,7 +1172,9 @@ export const App = (): JSX.Element => {
   const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
   const corrections = useCorrections(store, courseId, version);
   // Each screen's title; a new route starts at the top, with focus on its heading.
-  const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
+  // Named from the index, so a title names a course before it loads.
+  const named = (id: string): Named => index?.find((c) => c.id === id) ?? { id };
+  const names = { course: (id: string) => courseName(t, named(id)), orthography: (id: string, orthography: string) => orthographyName(t, named(id), orthography) };
   useScreen(href(route), titleOf(t, route, names, loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined));
 
   useEffect(() => {
@@ -1301,7 +1293,7 @@ export const App = (): JSX.Element => {
     const { course } = loaded.value;
     return (
       <CourseUiProvider course={course}>
-        <CardsPage loaded={loaded.value} language={courseName(t, course.id)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
+        <CardsPage loaded={loaded.value} language={courseName(t, course)} back={href({ tag: "course", course: course.id, orthography: course.orthography })} />
       </CourseUiProvider>
     );
   }

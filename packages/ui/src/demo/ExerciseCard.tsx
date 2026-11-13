@@ -9,7 +9,7 @@
  *   direction and optional vertical mode come from the script and profile.
  */
 import { tileGroups } from "@nabu/core/text";
-import { directionOf, type MessageId } from "@nabu/i18n";
+import { courseName, directionOf } from "@nabu/i18n";
 import type { OrthographyProfile, TaggedText } from "@nabu/schema";
 import type { CSSProperties, JSX } from "react";
 import { Button, Input, Label, ProgressBar, Switch, TextField } from "react-aria-components";
@@ -17,17 +17,10 @@ import { useTranslator } from "../context.tsx";
 import { ArrowForwardIcon, CloseIcon, PlayIcon } from "../icons.tsx";
 import { useReadings } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
-import type { CourseKey, DemoExercise } from "./fixtures.ts";
+import type { DemoExercise } from "./fixtures.ts";
 import styles from "./ExerciseCard.module.css";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
-
-const COURSE_NAMES: Readonly<Record<CourseKey, MessageId>> = {
-  fa: "course.name.fa",
-  yue: "course.name.yue",
-  uz: "course.name.uz",
-  apc: "course.name.apc",
-};
 
 /**
  * The writing mode the target region actually uses: vertical only where the
@@ -81,7 +74,7 @@ export const ExerciseCard = ({
   const answerTiles = tiles.slice(0, placed);
   const bank = bankOrder(tiles.slice(placed), exercise.distractors);
   const targetDir = directionOf(exercise.answer.lang);
-  const language = t.format(COURSE_NAMES[exercise.course]);
+  const language = courseName(t, { id: exercise.course, target: exercise.answer.lang });
   const progressLabel = t.format("exercise.progress", progress);
 
   return (
