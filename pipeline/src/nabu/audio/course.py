@@ -47,15 +47,15 @@ from nabu import yamlio
 from nabu.audio import attic, espeak, jyutping, tiberian, toki_pona
 from nabu.audio.providers import (
     PIPER_PHONEMES,
+    Caster,
     Clip,
-    NavoiyProvider,
-    OmniVoiceProvider,
+    Kind,
     Provider,
     Reference,
     Request,
     provider,
 )
-from nabu.audio.punctuation import with_final_stop
+from nabu.audio.punctuation import closed, with_final_stop
 from nabu.schema.models import (
     AudioIndex,
     AudioQa,
@@ -106,6 +106,14 @@ class Item:
     input: str
     spans: tuple[Span, ...]
     expected: str  # what a listener should hear, in the orthography (for the round-trip check)
+    #: A word card (its text as written has no closing punctuation) or a sentence, and how many
+    #: word tokens it has: what a carrier voice goes by, whatever its script.
+    kind: Kind = "sentence"
+    words: int = 1
+
+    def request(self, voice: str, rate: float = 1.0, take: int = 0) -> Request:
+        """What a provider is asked to say for it."""
+        return Request(self.input, voice, rate, take, self.kind, self.words)
 
 
 @dataclass(frozen=True)
@@ -125,6 +133,10 @@ class Job:
     def key(self) -> tuple[str, str]:
         """Its entry's key in the index: (item, speed)."""
         return (self.item.item, SPEED)
+
+    @property
+    def request(self) -> Request:
+        return self.item.request(self.voice.voice, self.rate, self.take)
 
 
 @dataclass
@@ -379,6 +391,13 @@ def speaker_of(persons: Any) -> str | None:
     return cast("Mapping[str, Any]", persons or {}).get("speaker")
 
 
+def _shape(surfaces: list[str], tokens: list[dict[str, Any]]) -> tuple[Kind, int]:
+    """An item's kind, from its text as written (a word card has no closing punctuation, ADR
+    0094: a voice's final stop or IPA does not change it), and its words, its word tokens."""
+    kind: Kind = "sentence" if closed("".join(surfaces)) else "word"
+    return kind, sum(1 for t in tokens if t.get("kind") in WORD_KINDS)
+
+
 def plan(
     units: list[dict[str, Any]],
     voice: AudioVoice,
@@ -422,7 +441,7 @@ def plan(
             text = "".join(
                 w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
             )
-            items.append(Item(s["id"], planned[0], planned[1], text))
+            items.append(Item(s["id"], planned[0], planned[1], text, *_shape(surfaces, tokens)))
     # Story lines pin readings too: a word card may take its reading from one.
     for unit in units:
         for story in unit.get("stories", []):
@@ -459,7 +478,8 @@ def plan(
             else:
                 piece = marked if voice.vowelMarks else surface
             assert piece is not None
-            items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface))
+            kind, words = _shape([surface], word or [{"kind": "word"}])
+            items.append(Item(kc["id"], piece, (Span(0, 0, len(piece)),), surface, kind, words))
     # Story lines last, each read like a sentence: its id is "<story>#<step>".
     for unit in units:
         for story in unit.get("stories", []):
@@ -481,7 +501,7 @@ def plan(
                 text = "".join(
                     w for w, t in zip(surfaces, tokens, strict=True) if t.get("kind") in WORD_KINDS
                 )
-                items.append(Item(key, planned[0], planned[1], text))
+                items.append(Item(key, planned[0], planned[1], text, *_shape(surfaces, tokens)))
     if voice.spoken:
         items = _spoken(items, voice.spoken)
     if voice.finalStop and voice.reading == "text":
@@ -498,14 +518,14 @@ def plan(
     return items, skipped
 
 
-def item_settings(tts: Provider, text: str) -> dict[str, Any]:
+def item_settings(tts: Provider, request: Request) -> dict[str, Any]:
     """What shapes one item's clip beyond the provider's settings (Piper: the route through its
     sentences, ADR 0065). Part of that clip's identity alone, so a provider can change how it says
     some items without making every clip stale."""
     extra = getattr(tts, "item_settings", None)
     if not callable(extra):
         return {}
-    out = extra(text)
+    out = extra(request)
     return cast("dict[str, Any]", out) if isinstance(out, dict) else {}
 
 
@@ -568,7 +588,7 @@ def _entry(
     """Encode and write one clip; its index entry."""
     item, tts, voice = job.item, job.tts, job.voice
     version = tts.version()
-    settings = tts.settings() | item_settings(tts, item.input)
+    settings = tts.settings() | item_settings(tts, job.request)
     data = encode_mp3(
         clip.pcm, clip.sample_rate, f"Synthetic speech: {tts.name} {version} ({voice.voice})"
     )
@@ -705,7 +725,7 @@ def synthesize_course(
                 voice.voice,
                 item.input,
                 rate,
-                settings | item_settings(tts, item.input) | take_field(take),
+                settings | item_settings(tts, item.request(voice.voice)) | take_field(take),
             )
             if (
                 old is not None
@@ -767,9 +787,7 @@ def synthesize_course(
         for job in batch:
             if job.identity not in made and all(t.identity != job.identity for t in todo):
                 todo.append(job)
-        clips = tts.synthesize(
-            [Request(job.item.input, voice.voice, job.rate, job.take) for job in todo]
-        )
+        clips = tts.synthesize([job.request for job in todo])
         said = dict(zip((job.identity for job in todo), clips, strict=True))
         for job in batch:
             if job.identity in made:
@@ -1096,25 +1114,34 @@ def decoded(path: Path) -> tuple[bytes, int]:
 INGEST_RATE = 22_050
 
 
+#: The reference a cloning provider is made with before it has one: to cast it, or to say how.
+NO_REFERENCE = Reference(Path(), "", "0" * 64)
+
+
+def caster_of(voice: AudioVoice) -> Caster | None:
+    """The voice's provider, if its every clip clones a reference voice (`nabu audio cast`). A
+    voice its provider cannot be made from (no model, an unknown provider) is a ValueError."""
+    tts = provider(voice, NO_REFERENCE)
+    return tts if isinstance(tts, Caster) else None
+
+
 def cast_reference(
     course_dir: Path,
     voice: AudioVoice,
     text: str,
     instruct: str,
     seed: int,
-    tts: OmniVoiceProvider | NavoiyProvider | None = None,
+    tts: Caster | None = None,
 ) -> ReferenceVoice:
     """Makes the voice's reference and keeps it in the audio index (voices/<voice>.wav),
-    replacing an earlier one: OmniVoice designs it from speaker attributes, Navoiy clones its
-    prompt recording. Clips cloned from the old one become stale."""
+    replacing an earlier one, with a provider that designs one ("design" in its CASTS):
+    OmniVoice from speaker attributes, Navoiy reading the text in its prompt recording's voice.
+    Clips cloned from the old one become stale."""
     adir = audio_dir(course_dir)
     index = read_index(adir)
-    none = Reference(Path(), "", "0" * 64)
-    designer = tts or (
-        NavoiyProvider(voice, none)
-        if voice.provider == "navoiy"
-        else OmniVoiceProvider(voice, none)
-    )
+    designer = tts or caster_of(voice)
+    if designer is None or "design" not in designer.CASTS:
+        raise ValueError(f"voice {voice.id}: {voice.provider} does not design a reference voice")
     text = unicodedata.normalize("NFC", text.strip())
     clip = designer.design(text, instruct, seed)
     data = wav_bytes(clip.pcm, clip.sample_rate)

@@ -1955,7 +1955,7 @@ export interface AudioCarrier {
    */
   readonly text: string;
   /**
-   * The longest item the carrier says, in words (split at spaces).
+   * The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.
    */
   readonly maxWords?: number;
 }

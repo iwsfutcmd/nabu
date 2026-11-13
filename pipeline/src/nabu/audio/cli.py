@@ -180,30 +180,34 @@ def cast(
     Every clip of the voice clones the reference, so the course voice is one speaker. Casting
     again replaces it, and its clips are synthesized again on the next `generate`.
     """
-    from nabu.audio.course import cast_reference, record_reference
-    from nabu.audio.providers import NavoiyProvider, ProviderError, Reference, VoxCPMProvider
+    from nabu.audio.course import cast_reference, caster_of, record_reference
+    from nabu.audio.providers import ProviderError
 
     _, source, _, _ = _compiled(course)
     voices: list[AudioVoice] = list(source.audio.voices or []) if source.audio is not None else []
     voice = next((v for v in voices if voice_id in (None, v.id)), None)
-    if voice is None or voice.provider not in ("omnivoice", "navoiy", "voxcpm"):
+    # How a voice is cast is its provider's to say (its CASTS), never its name's.
+    try:
+        tts = None if voice is None else caster_of(voice)
+    except ValueError as error:
+        typer.echo(f"✗ {source.id}: {error}", err=True)
+        raise typer.Exit(code=1) from None
+    if voice is None or tts is None:
         typer.echo(
-            f"✗ {source.id}: no OmniVoice, Navoiy or VoxCPM2 voice {voice_id or ''} in the cast",
+            f"✗ {source.id}: no voice {voice_id or ''} in the cast clones a reference voice",
             err=True,
         )
         raise typer.Exit(code=1)
     course_dir = course if course.is_dir() else course.parent
-    if voice.provider == "voxcpm":
+    if "designed" in tts.CASTS:
         if recording is None or instruct is None or (recast_text is None) != (recast_seed is None):
             typer.echo(
-                f"✗ {source.id}: a VoxCPM2 voice keeps a voice it designed: --recording, "
+                f"✗ {source.id}: a {tts.name} voice keeps a voice it designed: --recording, "
                 "--instruct "
                 "and --seed (and --recast-text with --recast-seed if it was re-read)",
                 err=True,
             )
             raise typer.Exit(code=1)
-        none = Reference(Path(), "", "0" * 64)
-        tts = VoxCPMProvider(voice, none)
         design = tts.design_record(instruct, seed)
         if recast_text is not None and recast_seed is not None:
             design["recast"] = {
@@ -223,11 +227,14 @@ def cast(
         typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
         return
     if recording is not None:
-        if voice.provider != "omnivoice" or None in (license_, author, origin):
+        if "recording" not in tts.CASTS:
             typer.echo(
-                f"✗ {source.id}: --recording is for an OmniVoice voice, with --license, "
-                "--author and --source",
-                err=True,
+                f"✗ {source.id}: a {tts.name} voice does not clone a speaker's recording", err=True
+            )
+            raise typer.Exit(code=1)
+        if None in (license_, author, origin):
+            typer.echo(
+                f"✗ {source.id}: --recording needs --license, --author and --source", err=True
             )
             raise typer.Exit(code=1)
         ref = record_reference(
@@ -236,12 +243,12 @@ def cast(
         typer.echo(f"✓ {source.id}: {ref.file} ({ref.durationMs} ms, {ref.license})")
         return
     if instruct is None:
-        if voice.provider == "omnivoice":
-            typer.echo(f"✗ {source.id}: an OmniVoice voice needs --instruct", err=True)
+        if tts.DEFAULT_INSTRUCT is None:
+            typer.echo(f"✗ {source.id}: a {tts.name} voice needs --instruct", err=True)
             raise typer.Exit(code=1)
-        instruct = NavoiyProvider.INSTRUCT
+        instruct = tts.DEFAULT_INSTRUCT
     try:
-        ref = cast_reference(course_dir, voice, text, instruct, seed)
+        ref = cast_reference(course_dir, voice, text, instruct, seed, tts)
     except (ValueError, ProviderError) as error:
         typer.echo(f"✗ {source.id}: {error}", err=True)
         raise typer.Exit(code=1) from None

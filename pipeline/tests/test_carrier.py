@@ -161,6 +161,12 @@ def test_sentences_split_where_piper_splits_them() -> None:
     # A sentence ends at closing punctuation and a space: not inside a number.
     assert carrier.sentences("این مریم است.") == ["این مریم است."]
     assert carrier.sentences("۱.۵ کیلو") == ["۱.۵ کیلو"]
+    # Every script's closing marks, not only Latin's and Arabic's: the danda, the Ethiopic and
+    # Armenian full stops (Unicode's sentence terminals), the Tibetan shad (punctuation.py's).
+    assert carrier.sentences("नमस्ते। आप कैसे हैं?") == ["नमस्ते।", "आप कैसे हैं?"]
+    assert carrier.sentences("ሰላም። እንዴት ነህ?") == ["ሰላም።", "እንዴት ነህ?"]
+    assert carrier.sentences("Բարեւ։ Ինչպես ես") == ["Բարեւ։", "Ինչպես ես"]
+    assert carrier.sentences("བཀྲ་ཤིས། ཁྱེད་རང་") == ["བཀྲ་ཤིས།", "ཁྱེད་རང་"]
 
 
 def test_a_sentence_collapses_when_its_sounds_are_predicted_well_under_the_floor() -> None:
@@ -209,17 +215,67 @@ def test_an_item_with_a_route_is_said_sentence_by_sentence(monkeypatch: pytest.M
     def engine(_voice: str, _model: str | None) -> tuple[object, bytes]:
         return object(), b""
 
-    def route(_engine: Any, _voice: str, _text: str) -> list[tuple[str, bool]]:
+    def route(_engine: Any, _voice: str, _r: Request) -> list[tuple[str, bool]]:
         return [("سلام!", True), ("تو علی هستی؟", False)]
 
     monkeypatch.setattr(PiperProvider, "_engine", staticmethod(engine))
     monkeypatch.setattr(tts, "_route", route)
     monkeypatch.setattr(tts, "_carried", carried)
     monkeypatch.setattr(tts, "_plain", plain)
-    [clip] = tts.synthesize([Request("سلام! تو علی هستی؟", v.voice)])
+    # Four words (the plan's word tokens), more than the carrier's two: a route.
+    [clip] = tts.synthesize([Request("سلام! تو علی هستی؟", v.voice, words=4)])
     assert said == [("carrier", "سلام!"), ("plain", "تو علی هستی؟")]
     # Joined with the sentence gap: 200 ms at 1 kHz.
     assert len(clip.pcm) == 2 * (10 + 200 + 10)
+
+
+def test_a_short_item_is_counted_in_words_not_spaces(monkeypatch: pytest.MonkeyPatch) -> None:
+    """In a script written without spaces a sentence is one run of letters: its words are the
+    plan's word tokens, so only a short one goes through the carrier."""
+    v = AudioVoice.model_validate(
+        {
+            "id": "narrator",
+            "provider": "piper",
+            "voice": "zh_CN-test-medium",
+            "orthography": "yue-Hant-HK/standard",
+            "reading": "text",
+            "license": "MIT",
+            "carrier": {"text": "跟住我讀：", "maxWords": 2},
+        }
+    )
+    tts = PiperProvider(v)
+    said: list[str] = []
+    from nabu.audio.providers import Clip
+
+    def carried(_engine: Any, r: Request) -> Clip:
+        said.append(f"carrier {r.input}")
+        return Clip(b"\x01\x00", 1000, None, None)
+
+    def plain(_engine: Any, _raw: bytes, r: Request) -> Clip:
+        said.append(f"plain {r.input}")
+        return Clip(b"\x01\x00", 1000, None, None)
+
+    def no_route(_engine: Any, _voice: str, _r: Request) -> None:
+        return None
+
+    def engine(_voice: str, _model: str | None) -> tuple[object, bytes]:
+        return object(), b""
+
+    monkeypatch.setattr(PiperProvider, "_engine", staticmethod(engine))
+    monkeypatch.setattr(tts, "_route", no_route)
+    monkeypatch.setattr(tts, "_carried", carried)
+    monkeypatch.setattr(tts, "_plain", plain)
+    tts.synthesize(
+        [Request("我係學生。", v.voice, words=3), Request("銀行", v.voice, kind="word", words=1)]
+    )
+    assert said == ["plain 我係學生。", "carrier 銀行"]
+
+    # A short item has no route, so its identity needs no model.
+    def no_model(_voice: str, _model: str | None) -> tuple[object, bytes]:
+        raise AssertionError("loaded the model")
+
+    monkeypatch.setattr(PiperProvider, "_engine", staticmethod(no_model))
+    assert tts.item_settings(Request("銀行", v.voice, kind="word", words=1)) == {}
 
 
 # --- Live (NABU_SPEECH=1 and the speech group: downloads the Mana-Persian-Piper voice) -------
@@ -243,7 +299,7 @@ def test_live_a_lone_word_is_said_at_a_speaking_length() -> None:
     )
     tts = PiperProvider(v)
     word, sentence = tts.synthesize(
-        [Request("سلام.", v.voice), Request("این کتاب من است.", v.voice)]
+        [Request("سلام.", v.voice), Request("این کتاب من است.", v.voice, words=4)]
     )
     seconds = len(word.pcm) / 2 / word.sample_rate
     # Alone, the model says سلام in 0.21 s; in the carrier, with its durations, about 0.5 s.
@@ -270,11 +326,15 @@ def test_live_only_collapsing_sentences_are_routed_through_the_carrier() -> None
         }
     )
     tts = PiperProvider(v)
+
     # A listener heard these as static and cut off (ADR 0065); a long sentence is said as it is,
     # and a short item already goes through the carrier, so neither has a route.
-    assert tts.item_settings("این مریم است.") == {"sentences": ["carrier"]}
-    assert tts.item_settings("ممنون، مریم! خداحافظ!") == {"sentences": ["carrier", "carrier"]}
-    assert tts.item_settings("ما معمولاً در خانه شام می\u200cخوریم.") == {}
-    assert tts.item_settings("سلام.") == {}
-    [clip] = tts.synthesize([Request("این مریم است.", v.voice)])
+    def route(text: str, words: int) -> dict[str, Any]:
+        return tts.item_settings(Request(text, v.voice, words=words))
+
+    assert route("این مریم است.", 3) == {"sentences": ["carrier"]}
+    assert route("ممنون، مریم! خداحافظ!", 3) == {"sentences": ["carrier", "carrier"]}
+    assert route("ما معمولاً در خانه شام می\u200cخوریم.", 6) == {}
+    assert route("سلام.", 1) == {}
+    [clip] = tts.synthesize([Request("این مریم است.", v.voice, words=3)])
     assert len(clip.pcm) / 2 / clip.sample_rate > 0.8

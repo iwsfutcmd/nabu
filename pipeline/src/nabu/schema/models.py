@@ -816,7 +816,10 @@ class AudioCarrier(BaseModel):
     ]
     maxWords: Annotated[
         int,
-        Field(description="The longest item the carrier says, in words (split at spaces).", ge=1),
+        Field(
+            description="The longest item the carrier says, in words: its word tokens, so a script written without spaces counts too.",
+            ge=1,
+        ),
     ] = 2
 
 
