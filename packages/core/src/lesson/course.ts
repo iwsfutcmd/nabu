@@ -145,88 +145,164 @@ const textsOf = function* (course: CourseView, orthography: string): Generator<T
   }
 };
 
+/** What grading looks a typed word up in, for one orthography of a course. */
+export interface Lexicon {
+  /** Every word the course writes in it, as `lexiconKey` has it: a typo landing on one is WRONG_WORD (erratum 46). */
+  readonly words: ReadonlySet<string>;
+  /**
+   * The words the course inflects (ADR 0081): every word of a sense some token pins a form on, so a
+   * masculine adjective counts with its feminine, a bare past verb with its b- present.
+   */
+  readonly inflected: ReadonlySet<string>;
+  /**
+   * Each inflected word's own forms, the forms its tokens are pinned as, for contrasts limited to
+   * some (ADR 0084): a verb's infinitive is no perfect, whatever else its sense is pinned as.
+   */
+  readonly forms: ReadonlyMap<string, readonly string[]>;
+}
+
+interface OwnWord {
+  readonly key: string;
+  readonly letters: readonly string[];
+  readonly inflected: boolean;
+}
+
+const buildLexicon = (course: CourseView, orthography: string): Lexicon => {
+  const profile = profileOf(course, orthography);
+  const texts = [...textsOf(course, orthography)];
+  // Words recur across the course's texts and accept sets: each is keyed and split once.
+  const unitKeys = new Map<string, string>();
+  const keyOf = (unit: string): string => {
+    let k = unitKeys.get(unit);
+    if (k === undefined) {
+      k = lexiconKey(profile, unit);
+      unitKeys.set(unit, k);
+    }
+    return k;
+  };
+  const textKeys = new Map<string, readonly string[]>();
+  const keys = (text: string): readonly string[] => {
+    let ks = textKeys.get(text);
+    if (ks === undefined) {
+      ks = profile.units(profile.normalize(text)).map(keyOf);
+      textKeys.set(text, ks);
+    }
+    return ks;
+  };
+  const letterLists = new Map<string, readonly string[]>();
+  const lettersOf = (k: string): readonly string[] => {
+    let letters = letterLists.get(k);
+    if (letters === undefined) {
+      letters = graphemes(k);
+      letterLists.set(k, letters);
+    }
+    return letters;
+  };
+
+  const words = new Set<string>();
+  for (const text of texts) for (const unit of profile.units(profile.normalize(surfaceOf(text)))) words.add(keyOf(unit));
+
+  const tokens = texts.flatMap((text) => text.tokens.filter((t) => t.kind === "word" && t.sense !== undefined));
+  const senses = new Set(tokens.filter((t) => t.form !== undefined).map((t) => t.sense));
+  const inflected = new Set<string>();
+  const forms = new Map<string, Set<string>>();
+  const pin = (k: string, these: Iterable<string>): void => {
+    const all = forms.get(k) ?? new Set<string>();
+    for (const f of these) all.add(f);
+    forms.set(k, all);
+  };
+  for (const t of tokens) {
+    if (!senses.has(t.sense)) continue;
+    for (const k of keys(t.surface)) {
+      inflected.add(k);
+      if (t.form !== undefined) pin(k, [t.form]);
+    }
+  }
+  // A sentence's accept set spells its words other ways too (be2ra beside b2ra): each of those
+  // words counts as inflected when the nearest word of the sentence is, with its forms. Each word
+  // of the set is looked at once (an accept set repeats its words in every order it lists), and a
+  // word the sentence itself has is its own nearest.
+  for (const s of allSentences(course)) {
+    const form = s.forms[orthography];
+    if (form?.reverse === undefined) continue;
+    // The sentence's words, the first of each: a repeated word is never nearer than its first.
+    const own: OwnWord[] = [];
+    const ownByKey = new Map<string, OwnWord>();
+    for (const t of form.text.tokens) {
+      if (t.kind !== "word" || t.sense === undefined) continue;
+      for (const key of keys(t.surface)) {
+        if (ownByKey.has(key)) continue;
+        const word: OwnWord = { key, letters: lettersOf(key), inflected: senses.has(t.sense) };
+        own.push(word);
+        ownByKey.set(key, word);
+      }
+    }
+    if (!own.some((w) => w.inflected)) continue;
+    const seen = new Set<string>();
+    for (const piece of form.reverse.split(/[\s()|[\]]+/u)) {
+      for (const k of keys(piece)) {
+        if (seen.has(k)) continue;
+        seen.add(k);
+        let nearest = ownByKey.get(k);
+        let best = 0;
+        if (nearest === undefined) {
+          const letters = lettersOf(k);
+          best = Infinity;
+          for (const w of own) {
+            const d = keyboardDistance(letters, w.letters, () => false);
+            if (d < best) [nearest, best] = [w, d];
+          }
+        }
+        if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) {
+          inflected.add(k);
+          pin(k, forms.get(nearest.key) ?? []);
+        }
+      }
+    }
+  }
+  return { words, inflected, forms: new Map([...forms].map(([k, fs]) => [k, [...fs].sort()])) };
+};
+
+/**
+ * Each course's lexicons by orthography, built once, whatever the number of graders: every session
+ * makes one. They are kept with the course's units, which a copy of the course that changes only
+ * its media (restrictMedia) shares, and rebuilt only for another profile.
+ */
+const lexicons = new WeakMap<readonly BundleUnit[], Map<string, { readonly profile: CompiledProfile; readonly lexicon: Lexicon }>>();
+
+/** A course's lexicon for an orthography (exported for tests). */
+export const lexiconOf = (course: CourseView, orthography: string): Lexicon => {
+  let byOrthography = lexicons.get(course.units);
+  if (byOrthography === undefined) {
+    byOrthography = new Map();
+    lexicons.set(course.units, byOrthography);
+  }
+  const profile = profileOf(course, orthography);
+  const built = byOrthography.get(orthography);
+  if (built !== undefined && built.profile === profile) return built.lexicon;
+  const lexicon = buildLexicon(course, orthography);
+  byOrthography.set(orthography, { profile, lexicon });
+  return lexicon;
+};
+
+/**
+ * Builds the lexicons grading looks words up in (the course's orthography and its support
+ * language's), which the first typed or tiled answer would otherwise wait for: each session makes
+ * a grader, and a course of thirty units takes a moment. An app calls it while the learner reads.
+ */
+export const prepareGrading = (course: CourseView): void => {
+  for (const orthography of [course.orthography, course.support]) if (course.profiles.has(orthography)) lexiconOf(course, orthography);
+};
+
 /**
  * A grader with a per-orthography lexicon (every word the course writes in it,
  * normalized and case-folded as grade() compares units) so that a typo landing
- * on a real word is WRONG_WORD (erratum 46). Compiled accept sets are
- * memoized; grading itself stays pure.
+ * on a real word is WRONG_WORD (erratum 46). The lexicons are the course's (built
+ * once per course); compiled accept sets are memoized per grader; grading itself
+ * stays pure.
  */
 export const createGrader = (course: CourseView): Grader => {
   const sets = new Map<string, CompiledAcceptSet>();
-  const lexicons = new Map<string, ReadonlySet<string>>();
-  const lexicon = (orthography: string): ReadonlySet<string> => {
-    let words = lexicons.get(orthography);
-    if (words === undefined) {
-      const profile = profileOf(course, orthography);
-      const found = new Set<string>();
-      for (const text of textsOf(course, orthography)) {
-        for (const unit of profile.units(profile.normalize(surfaceOf(text)))) found.add(lexiconKey(profile, unit));
-      }
-      words = found;
-      lexicons.set(orthography, words);
-    }
-    return words;
-  };
-  // The words the course inflects (ADR 0081): every word of a sense some token pins a form on,
-  // so a masculine adjective counts with its feminine, a bare past verb with its b- present.
-  // And each word's own forms, the forms its tokens are pinned as, for contrasts limited to some
-  // (ADR 0084): a verb's infinitive is no perfect, whatever else its sense is pinned as.
-  interface Inflections {
-    readonly words: ReadonlySet<string>;
-    readonly forms: ReadonlyMap<string, readonly string[]>;
-  }
-  const inflections = new Map<string, Inflections>();
-  const inflected = (orthography: string): Inflections => {
-    let found = inflections.get(orthography);
-    if (found === undefined) {
-      const profile = profileOf(course, orthography);
-      const tokens = [...textsOf(course, orthography)].flatMap((text) => text.tokens.filter((t) => t.kind === "word" && t.sense !== undefined));
-      const senses = new Set(tokens.filter((t) => t.form !== undefined).map((t) => t.sense));
-      const keys = (text: string): string[] => profile.units(profile.normalize(text)).map((unit) => lexiconKey(profile, unit));
-      const words = new Set<string>();
-      const forms = new Map<string, Set<string>>();
-      const pin = (k: string, these: Iterable<string>): void => {
-        const all = forms.get(k) ?? new Set<string>();
-        for (const f of these) all.add(f);
-        forms.set(k, all);
-      };
-      for (const t of tokens) {
-        if (!senses.has(t.sense)) continue;
-        for (const k of keys(t.surface)) {
-          words.add(k);
-          if (t.form !== undefined) pin(k, [t.form]);
-        }
-      }
-      // A sentence's accept set spells its words other ways too (be2ra beside b2ra): each of
-      // those words counts as inflected when the nearest word of the sentence is, with its forms.
-      for (const s of allSentences(course)) {
-        const form = s.forms[orthography];
-        if (form?.reverse === undefined) continue;
-        const own = form.text.tokens
-          .filter((t) => t.kind === "word" && t.sense !== undefined)
-          .flatMap((t) => keys(t.surface).map((k) => ({ key: k, letters: graphemes(k), inflected: senses.has(t.sense) })));
-        if (!own.some((w) => w.inflected)) continue;
-        for (const piece of form.reverse.split(/[\s()|[\]]+/u)) {
-          for (const k of keys(piece)) {
-            const letters = graphemes(k);
-            let nearest: (typeof own)[number] | undefined;
-            let best = Infinity;
-            for (const w of own) {
-              const d = keyboardDistance(letters, w.letters, () => false);
-              if (d < best) [nearest, best] = [w, d];
-            }
-            if (nearest?.inflected === true && best <= Math.max(1, nearest.letters.length / 2)) {
-              words.add(k);
-              pin(k, forms.get(nearest.key) ?? []);
-            }
-          }
-        }
-      }
-      found = { words, forms: new Map([...forms].map(([k, fs]) => [k, [...fs].sort()])) };
-      inflections.set(orthography, found);
-    }
-    return found;
-  };
   return {
     grade: (orthography, accept, answer) => {
       const key = `${orthography}\u0000${accept}`;
@@ -237,8 +313,8 @@ export const createGrader = (course: CourseView): Grader => {
         set = compiled.value;
         sets.set(key, set);
       }
-      const { words, forms } = inflected(orthography);
-      return grade(set, answer, { lexicon: lexicon(orthography), inflected: words, forms });
+      const { words, inflected, forms } = lexiconOf(course, orthography);
+      return grade(set, answer, { lexicon: words, inflected, forms });
     },
   };
 };

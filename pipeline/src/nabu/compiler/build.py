@@ -64,6 +64,8 @@ def load_exemplars() -> dict[str, dict[str, list[str]]]:
 class Unit:
     doc: Doc
     source: UnitSource
+    #: A drill the compiler made (stage 4), not authored text: its forms are not linted as prose.
+    generated: bool = False
 
 
 @dataclass
@@ -332,9 +334,8 @@ def _hygiene(
 
 def _form(ctx: Ctx, course: CourseSource, unit: Unit, si: int, orth: str) -> dict[str, Any] | None:
     form = unit.source.sentences[si].forms[orth]
-    generated = unit.source.id.startswith("drill-")
     at = ("sentences", si, "forms", orth)
-    return compile_form(ctx, course, unit.doc, at, form, orth, warn=not generated)
+    return compile_form(ctx, course, unit.doc, at, form, orth, warn=not unit.generated)
 
 
 def compile_form(
@@ -969,6 +970,10 @@ def _sitelen_pona(ctx: Ctx, loc: Loc, latin: SentenceForm, pinned: SentenceForm)
 
 
 def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None:
+    """A unit per drill: `drill-<kind>` (a unit id, as the offline downloads name it), with one
+    node `drill.<kind>` and sentences `drill.<kind>.<value>`. Runtime code tells generated
+    sentences by that `drill.` prefix (core's corrections and distractors); the compiler by
+    `Unit.generated`."""
     for di, drill in enumerate(course.drills or []):
         loc = doc.loc("drills", di)
         if drill.orthography not in course.orthographies:
@@ -1019,7 +1024,11 @@ def _drills(ctx: Ctx, course: CourseSource, doc: Doc, units: list[Unit]) -> None
             "sentences": sentences,
         }
         units.append(
-            Unit(Doc(doc.file, data, doc.lines, ("drills", di)), UnitSource.model_validate(data))
+            Unit(
+                Doc(doc.file, data, doc.lines, ("drills", di)),
+                UnitSource.model_validate(data),
+                generated=True,
+            )
         )
 
 

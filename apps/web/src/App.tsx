@@ -34,7 +34,7 @@ import {
   type SessionPlan,
   type SessionRequest,
 } from "@nabu/core/learner";
-import { createGrader, doneOf, firstTriesOf, LISTENING, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { createGrader, doneOf, firstTriesOf, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -310,7 +310,6 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
   );
 };
 
-/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
@@ -321,6 +320,7 @@ interface OfflineProps {
   readonly onChange: () => void;
 }
 
+/** The course's path (§11.1): practice, XP, and the lessons in order, each done, open or locked. */
 const CoursePath = ({
   loaded,
   state,
@@ -1273,6 +1273,26 @@ export const App = (): JSX.Element => {
     [store, sync],
   );
 
+  // Offline, a session uses only the media on this device: no listening without the clip. One
+  // object per load and download state, so a session's grader keeps its course across renders.
+  const current = loaded !== null && "value" in loaded ? loaded.value : undefined;
+  const playable = useMemo(
+    (): LoadedCourse | undefined => (current === undefined || online || stored === undefined ? current : { ...current, course: restrictMedia(current.course, (path) => stored.has(path)) }),
+    [current, online, stored],
+  );
+  // The words typed answers are looked up in, built while the learner looks at the course, so the
+  // first Check of a session never waits for them (R5).
+  useEffect(() => {
+    if (playable === undefined) return;
+    const course = playable.course;
+    if (typeof requestIdleCallback === "function") {
+      const id = requestIdleCallback(() => prepareGrading(course), { timeout: 2000 });
+      return () => cancelIdleCallback(id);
+    }
+    const id = setTimeout(() => prepareGrading(course), 200);
+    return () => clearTimeout(id);
+  }, [playable]);
+
   if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} account={account} />;
   if (route.tag === "review") {
     return index === null || sync === null ? (
@@ -1293,7 +1313,12 @@ export const App = (): JSX.Element => {
     const offline: OfflineProps = { online, synced: account !== undefined, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
-    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} />;
+    // The path's words and titles take the course's profiles (fonts, target text size), as its pages do.
+    return (
+      <CourseUiProvider course={value.course}>
+        <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} />
+      </CourseUiProvider>
+    );
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;
@@ -1338,8 +1363,7 @@ export const App = (): JSX.Element => {
       </CourseUiProvider>
     );
   }
-  // Offline, a session uses only the media on this device: no listening without the clip.
-  const playable: LoadedCourse = online || stored === undefined ? loaded.value : { ...loaded.value, course: restrictMedia(loaded.value.course, (path) => stored.has(path)) };
+  const sessionCourse = playable ?? loaded.value;
   if (route.tag === "roleplay") {
     const back = href({ tag: "course", course: route.course, orthography: route.orthography });
     return (
@@ -1353,7 +1377,7 @@ export const App = (): JSX.Element => {
     return (
       <StorySession
         key={href(route)}
-        loaded={playable}
+        loaded={sessionCourse}
         node={route.node}
         state={log.state}
         device={store.device}
@@ -1369,7 +1393,7 @@ export const App = (): JSX.Element => {
   return (
     <Session
       key={href(route)}
-      loaded={playable}
+      loaded={sessionCourse}
       request={route.request}
       state={log.state}
       device={store.device}

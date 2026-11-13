@@ -238,14 +238,21 @@ _LINTS = [
         "script.untaught-letter",
         "error",
         7,
-        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088), or the "
-        "orthography has no romanization.",
+        "An alphabet node's word uses a letter its track has not taught by then (ADR 0088).",
+    ),
+    Lint(
+        "script.no-romanization",
+        "error",
+        7,
+        "An alphabet node's orthography names no romanization (its profile's `romanize`), or has "
+        "no profile for its Latin spellings (ADR 0088).",
     ),
     Lint(
         "script.missing-form",
         "error",
         7,
-        "A script-convert track uses a sentence lacking one of its orthographies.",
+        "A script track uses an item lacking its orthography: a convert track's sentence, or an "
+        "alphabet node's word.",
     ),
     # 9 · packaging
     Lint(

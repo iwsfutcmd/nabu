@@ -17,8 +17,8 @@ import { useIsTarget, useOrthography, useTranslator } from "../context.tsx";
 import { T } from "../T.tsx";
 import styles from "./Player.module.css";
 
-const ZWNJ = "‌";
-const ZWJ = "‍";
+const ZWNJ = "\u200c";
+const ZWJ = "\u200d";
 const TATWEEL = "ـ";
 const DOTTED_CIRCLE = "◌";
 const MARK_ONLY = /^\p{M}+$/u;

@@ -27,7 +27,7 @@ from nabu.corrections import (
 from nabu.schema.models import SentenceCorrection
 
 ROOT = Path(__file__).resolve().parents[2]
-ZWNJ = "‌"
+ZWNJ = "\u200c"
 FA = "fa-Arab/standard"
 YUE = "yue-Hant-HK/standard"
 UZ_CYRL = "uz-Cyrl/standard"

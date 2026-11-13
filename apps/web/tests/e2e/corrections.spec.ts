@@ -20,7 +20,7 @@ const API = `http://127.0.0.1:${API_PORT}`;
 const ADMIN = "e2e-review-token";
 const SEED = 7;
 const NOW = new Date("2026-05-12T09:00:00Z");
-const ZWNJ = "‌";
+const ZWNJ = "\u200c";
 const url = (hash: string): string => `/?seed=${SEED}&sound=off&api=${encodeURIComponent(API)}${hash}`;
 
 const reports = async (page: Page, course: string): Promise<SentenceReported[]> => (await logOf(page, course)).filter((e: LearnerEvent): e is SentenceReported => e.type === "sentence_reported");

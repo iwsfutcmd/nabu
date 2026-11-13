@@ -327,6 +327,19 @@ class AudioVerdict(BaseModel):
     ]
 
 
+type CreditsAdditionalProperty = Annotated[str, Field(min_length=1)]
+
+
+type CreditId = Annotated[
+    str,
+    Field(
+        description="An entry of the manifest's `credits`: the first 8 hex digits of its text's sha256.",
+        pattern="^[0-9a-f]{8}$",
+        title="CreditId",
+    ),
+]
+
+
 class BundleFile(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
@@ -336,7 +349,12 @@ class BundleFile(BaseModel):
     role: Literal["unit", "profile", "table", "keyboard", "image", "audio", "audio-index"]
     sha256: Annotated[str, Field(pattern="^[0-9a-f]{64}$")]
     license: str
-    source: str | None = None
+    credit: Annotated[
+        CreditId | None,
+        Field(
+            description="Who or what made the file (its source): an entry of the manifest's `credits`."
+        ),
+    ] = None
     bytes: Annotated[
         int,
         Field(description="Size in bytes, to say what a download costs before it starts.", ge=0),
@@ -377,7 +395,10 @@ class BundleClip(BaseModel):
     synthetic: bool
     license: str
     credit: Annotated[
-        str | None, Field(description="Attribution: the speaker, or the synthetic voice.")
+        CreditId | None,
+        Field(
+            description="Attribution (the speaker, or the synthetic voice): an entry of the manifest's `credits`."
+        ),
     ] = None
     timings: list[TokenTiming] | None = None
 
@@ -2366,7 +2387,12 @@ class BundleManifest(BaseModel):
         extra="forbid",
         frozen=True,
     )
-    formatVersion: Literal[0]
+    formatVersion: Annotated[
+        Literal[1],
+        Field(
+            description="1: credits are defined once, in `credits` (ADR 0110). 0 repeated each file's `source` and each clip's `credit` text."
+        ),
+    ]
     id: Annotated[
         str,
         Field(description="sha256 of the manifest without this field.", pattern="^[0-9a-f]{64}$"),
@@ -2403,6 +2429,12 @@ class BundleManifest(BaseModel):
     files: Annotated[
         list[BundleFile],
         Field(description="Every file in the bundle by role, with its SPDX license."),
+    ]
+    credits: Annotated[
+        dict[CreditId, CreditsAdditionalProperty],
+        Field(
+            description="Attribution, once per bundle (ADR 0110): each text a file or clip credits (a recording's speaker, a synthetic voice and what it cloned, a table's or picture's source), by its id, the first 8 hex digits of the text's sha256. Files and clips name it by that id (`credit`)."
+        ),
     ]
     units: Annotated[
         list[BundleManifestUnit],

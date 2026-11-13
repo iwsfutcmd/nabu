@@ -171,10 +171,6 @@ export interface ReadingDisambiguation extends Common {
 }
 
 /**
- * An abjad word without its vowel marks, with its meaning; write the marks in (ADR 0054). The
- * field starts from the letters. Grading compares the marks letter by letter (`gradeVowels`).
- */
-/**
  * A word of a sentence, in context, without its vowel marks: choose it with its marks among wrong
  * ones (ADR 0054; in context, ADR 0095; multiple choice, ADR 0098). The sentence says which form the
  * word takes; typing an abjad's marks is a chore, and a word has few plausible vocalizations.

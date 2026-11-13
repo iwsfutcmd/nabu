@@ -39,8 +39,6 @@ export const addDays = (date: string, days: number): string => new Date(toUtc(da
 /** Whole days from `a` to `b` (b − a). */
 export const daysBetween = (a: string, b: string): number => Math.round((toUtc(b) - toUtc(a)) / DAY_MS);
 
-export const isIsoDate = (s: string): boolean => /^\d{4}-\d{2}-\d{2}$/u.test(s) && addDays(s, 0) === s;
-
 /**
  * The first day of the week a date falls in, for a week that starts on `firstDay` (1 Monday … 7
  * Sunday, as Intl.Locale's week info numbers days): Monday by default, as ISO weeks do.

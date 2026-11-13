@@ -95,7 +95,6 @@ export const effectiveWritingMode = (profile: OrthographyProfile | undefined, re
 /** Digits in reading order for keyboard shortcuts, in the numbering systems learners type (§11.3). */
 const DIGITS = ["123456789", "۱۲۳۴۵۶۷۸۹", "١٢٣٤٥٦٧٨٩"];
 
-/** 0 for "1" (or ۱ or ١), …; undefined for any other key. */
 /**
  * Focuses an action (Continue) and brings its footer into view, with the footer's scroll margin
  * below it: a phone browser's toolbar at the bottom of the screen covers the last strip of the
@@ -155,6 +154,7 @@ export const useActionsInReach = (card: RefObject<HTMLElement | null>, footer: R
   }, [card, footer, exercise]);
 };
 
+/** 0 for "1" (or ۱ or ١), …; undefined for any other key. */
 export const digitIndex = (key: string): number | undefined => {
   for (const digits of DIGITS) {
     const i = digits.indexOf(key);
