@@ -4,7 +4,7 @@
  * server would report it: for Cantonese one syllable heard with the wrong tone, and everywhere
  * the words the recognizer heard.
  */
-import { autoTokens } from "@nabu/core/ai";
+import { autoTokens, textBase } from "@nabu/core/ai";
 import { allSentences, createGrader, gradeExercise, makeSpeakScored, makeToneIdentify, seededRng, start, step, type CourseView, type Exercise, type Grader, type PlayerState } from "@nabu/core/lesson";
 import { expectedSyllables, toneSystemOf, type SpeechResult } from "@nabu/core/speech";
 import { surfaceOf, wordIndexes } from "@nabu/core/text";
@@ -34,10 +34,10 @@ const speakOf = (course: CourseView): Exercise | undefined =>
     .find((e) => e !== undefined);
 
 /** What the device and a speech server might have heard (fixture). */
-const heardFor = (ex: Exercise): SpeechResult => {
+const heardFor = (course: CourseView, ex: Exercise): SpeechResult => {
   if (ex.template !== "speak") return { silent: false };
   const system = toneSystemOf(ex.prompt);
-  const words = { verdict: "CORRECT" as const, heard: autoTokens(surfaceOf(ex.prompt), ex.prompt) };
+  const words = { verdict: "CORRECT" as const, heard: autoTokens(surfaceOf(ex.prompt), textBase(course.profiles, ex.prompt)) };
   if (system === undefined) return { silent: false, words, phones: { errorRate: 0.3, offTokens: wordIndexes(ex.prompt).slice(0, 1) } };
   const syllables = expectedSyllables(ex.prompt, system).map((s, i) => (i === 1 ? { ...s, heard: { tone: s.tone === "2" ? "5" : "2", shape: "rising" as const, confidence: 0.6 }, ok: false } : { ...s, heard: { tone: s.tone, shape: system.tones[s.tone]?.shape ?? "level", confidence: 0.8 }, ok: true }));
   return { silent: false, words, tone: { syllables, calibrated: true, silent: false } };
@@ -63,7 +63,7 @@ const SpeakFeedback = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {
   const ex = useMemo(() => speakOf(course), [course]);
   const grader = useMemo(() => createGrader(course), [course]);
   if (ex === undefined) throw new Error(`${course.id} has no speaking sentence`);
-  const state = useMemo(() => answered(ex, grader, { tag: "input", draft: { tag: "speech", result: heardFor(ex) } }), [ex, grader]);
+  const state = useMemo(() => answered(ex, grader, { tag: "input", draft: { tag: "speech", result: heardFor(course, ex) } }), [course, ex, grader]);
   return <Player loaded={loaded} ex={ex} state={state} />;
 };
 

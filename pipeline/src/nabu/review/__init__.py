@@ -27,6 +27,7 @@ from typing import Any, cast
 import yaml
 
 from nabu.corrections import Edit, flow_scalar
+from nabu.provenance import signed_off
 from nabu.schema.models import SignOffs
 
 
@@ -161,8 +162,7 @@ def apply(
         for unit in compiled_units
         for kind, key in (("sentence", "sentences"), ("story", "stories"))
         for x in cast(list[dict[str, Any]], unit.get(key) or [])
-        if cast(dict[str, Any], x.get("provenance") or {}).get("status")
-        in ("reviewed", "published")
+        if signed_off(cast(dict[str, Any], x.get("provenance") or {}).get("status"))
     }
     texts = {f: f.read_text(encoding="utf-8") for f in units}
     roots = {f: cast(yaml.Node | None, yaml.compose(texts[f])) for f in units}  # pyright: ignore[reportUnknownMemberType]

@@ -19,10 +19,10 @@ import { join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { draftCount } from "@nabu/core/corrections";
 import { pathNodes } from "@nabu/core/learner";
-import { assembleCourse, lessonNodes, MEDIA_ROLES, type CourseView } from "@nabu/core/lesson";
+import { lessonNodes, readCourse, type CourseView } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import { DEFAULT_UI_LOCALE, directionOf, fontStackFor, loadTranslator, uiFontStack, type MessageId, type Translator } from "@nabu/i18n";
-import type { BundleManifest, Fonts, TaggedText } from "@nabu/schema";
+import type { Fonts, TaggedText } from "@nabu/schema";
 import { coursesWithAudio } from "./audio-check.ts";
 
 const ROOT = resolve(import.meta.dirname, "../..");
@@ -82,13 +82,15 @@ const sampleSentence = (course: CourseView): TaggedText | undefined => {
 export const landingCourses = (bundles: string): readonly LandingCourse[] => {
   const index = JSON.parse(readFileSync(join(bundles, "index.json"), "utf8")) as { courses: readonly IndexEntry[] };
   return index.courses.map((entry) => {
-    const manifest = JSON.parse(readFileSync(join(bundles, entry.manifest), "utf8")) as BundleManifest;
     const dir = join(bundles, entry.manifest, "..");
-    const files = new Map<string, unknown>(
-      manifest.files.filter((f) => !MEDIA_ROLES.has(f.role)).map((f) => [f.path, JSON.parse(readFileSync(join(dir, f.path), "utf8")) as unknown]),
-    );
+    const files = new Map<string, unknown>();
+    // Read once for all the course's orthographies.
+    const read = (path: string): unknown => {
+      if (!files.has(path)) files.set(path, JSON.parse(readFileSync(join(dir, path), "utf8")));
+      return files.get(path);
+    };
     const views = entry.orthographies.map((orthography) => {
-      const course = assembleCourse({ manifest, files, numberingSystems }, orthography);
+      const course = readCourse(read, numberingSystems, orthography);
       if (!course.ok) throw new Error(`${entry.id} ${orthography}: ${JSON.stringify(course.error)}`);
       return course.value;
     });

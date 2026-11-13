@@ -56,6 +56,7 @@ from nabu.audio.providers import (
     provider,
 )
 from nabu.audio.punctuation import closed, with_final_stop
+from nabu.provenance import signed_off
 from nabu.schema.models import (
     AudioIndex,
     AudioQa,
@@ -304,10 +305,22 @@ def _spoken(items: list[Item], spoken: dict[str, str]) -> list[Item]:
     return out
 
 
-# ------------------------------------------------------------------------------------ the cast
+def held_back(index: AudioIndex) -> set[str]:
+    """Items whose clips stay out of the learners' bundles (ADR 0060), the whole item (slow too):
+    the round trip failed its normal-speed clip and no person has passed that clip since, or a
+    listener rejected one of its clips, until it is made again."""
+    failed = {
+        c.item
+        for c in index.clips
+        if c.speed == SPEED
+        and c.qa is not None
+        and c.qa.status == "fail"
+        and not signed_off(c.provenance.status)
+    }
+    return failed | {c.item for c in index.clips if c.rejected is not None}
 
-#: Clips a person checked keep their voice when the cast changes (ADR 0078).
-CHECKED = ("reviewed", "published")
+
+# ------------------------------------------------------------------------------------ the cast
 
 
 def _seeded(key: str) -> int:
@@ -332,11 +345,11 @@ def pick_voice(key: str, said_by: str | None, voices: Sequence[AudioVoice]) -> A
 
 def checked_voices(index: AudioIndex, voices: Sequence[AudioVoice]) -> dict[str, str]:
     """Items whose clip a person checked (reviewed or published), and the id of the cast voice
-    it is in: they keep that voice rather than lose the check (ADR 0078)."""
+    it is in: they keep that voice rather than lose the check when the cast changes (ADR 0078)."""
     by_name = {(v.provider, v.voice): v.id for v in voices}
     out: dict[str, str] = {}
     for c in index.clips:
-        if c.synthesis is None or c.provenance.status not in CHECKED:
+        if c.synthesis is None or not signed_off(c.provenance.status):
             continue
         found = by_name.get((c.synthesis.provider, c.synthesis.voice))
         if found is not None:

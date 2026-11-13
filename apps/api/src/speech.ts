@@ -13,7 +13,7 @@
  * Privacy (§10.4, §14.4): audio passes through memory to the service and is never stored or
  * logged, here or there. Calls count against a daily budget per learner (hashed id).
  */
-import { autoTokens } from "@nabu/core/ai";
+import { autoTokens, textBase } from "@nabu/core/ai";
 import { allSentences, createGrader, type CourseView, type Grader } from "@nabu/core/lesson";
 import { sql } from "drizzle-orm";
 import type { Hono } from "hono";
@@ -131,7 +131,7 @@ export const speechRoutes = (app: Hono<Env>, deps: SpeechDeps): void => {
         ? undefined
         : {
             verdict: graderOf(course).grade(course.orthography, accept, result.transcript).verdict,
-            heard: autoTokens(result.transcript, { lang: form.text.lang, orthography: form.text.orthography }),
+            heard: autoTokens(result.transcript, textBase(course.profiles, form.text)),
           };
     return c.json({
       ...(words === undefined ? {} : { words }),

@@ -23,8 +23,7 @@ from typing import Any, cast
 
 from nabu.compiler.build import Compiled
 from nabu.compiler.counts import add_count
-
-KEPT = ("reviewed", "published")
+from nabu.provenance import signed_off
 
 
 @dataclass
@@ -34,7 +33,7 @@ class ReleaseReport:
 
 
 def _reviewed(item: dict[str, Any]) -> bool:
-    return cast(dict[str, Any], item.get("provenance") or {}).get("status") in KEPT
+    return signed_off(cast(dict[str, Any], item.get("provenance") or {}).get("status"))
 
 
 def _count(table: dict[str, int], key: str, by: int = 1) -> None:

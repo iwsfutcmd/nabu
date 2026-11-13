@@ -22,6 +22,7 @@ from typing import Any, cast
 import yaml
 
 from nabu import yamlio
+from nabu.notation import escape
 
 SLUG = re.compile(r"[^a-z0-9]+")
 WORD = re.compile(r"[\w\u200cʻʼ'’-]+")
@@ -47,11 +48,6 @@ def _alternatives(item: dict[str, Any], main: str, alt: str) -> list[str]:
     first = str(item[main]).strip()
     rest = [str(x).strip() for x in cast(list[Any], item.get(alt) or [])]
     return [first, *[r for r in rest if r and r != first]]
-
-
-def _escape(text: str) -> str:
-    """Accept-set notation treats ( ) [ ] | \\ as syntax."""
-    return re.sub(r"([()\[\]|\\])", r"\\\1", text)
 
 
 def import_course(
@@ -128,14 +124,14 @@ def import_course(
                                 "text": text,
                                 "tokens": tokens,
                                 "reverse": "\n".join(
-                                    _escape(a)
+                                    escape(a)
                                     for a in _alternatives(phrase, "Phrase", "Alternative versions")
                                 ),
                             }
                         },
                         "translations": {
                             support_key: "\n".join(
-                                _escape(a)
+                                escape(a)
                                 for a in _alternatives(
                                     phrase, "Translation", "Alternative translations"
                                 )

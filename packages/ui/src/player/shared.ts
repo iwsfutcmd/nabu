@@ -3,6 +3,7 @@
  * dispatch PlayerEvents; they never grade or advance on their own.
  */
 import type { CourseView, Draft, Exercise, PlayerEvent } from "@nabu/core/lesson";
+import { parseDigits } from "@nabu/i18n";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, type RefObject } from "react";
 import type { Marks } from "../marks.tsx";
@@ -92,9 +93,6 @@ export const effectiveWritingMode = (profile: OrthographyProfile | undefined, re
   return requested === layout.vertical && (layout.verticalScope ?? []).includes(scope) ? layout.vertical : "horizontal-tb";
 };
 
-/** Digits in reading order for keyboard shortcuts, in the numbering systems learners type (§11.3). */
-const DIGITS = ["123456789", "۱۲۳۴۵۶۷۸۹", "١٢٣٤٥٦٧٨٩"];
-
 /**
  * Focuses an action (Continue) and brings its footer into view, with the footer's scroll margin
  * below it: a phone browser's toolbar at the bottom of the screen covers the last strip of the
@@ -154,13 +152,14 @@ export const useActionsInReach = (card: RefObject<HTMLElement | null>, footer: R
   }, [card, footer, exercise]);
 };
 
-/** 0 for "1" (or ۱ or ١), …; undefined for any other key. */
+/**
+ * The option a number key picks, in reading order (§11.3): 0 for 1, … 8 for 9, in whatever digits
+ * the learner's keyboard types (۱, ١, १ …: parseDigits reads every Unicode set); undefined for any
+ * other key.
+ */
 export const digitIndex = (key: string): number | undefined => {
-  for (const digits of DIGITS) {
-    const i = digits.indexOf(key);
-    if (i >= 0) return i;
-  }
-  return undefined;
+  const n = parseDigits(key);
+  return n !== undefined && n >= 1 && n <= 9 ? n - 1 : undefined;
 };
 
 /**

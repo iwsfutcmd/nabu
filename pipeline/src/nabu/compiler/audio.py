@@ -18,7 +18,7 @@ from typing import TYPE_CHECKING, Any
 
 from pydantic import ValidationError
 
-from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, plan
+from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held_back, plan
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.schema.models import AudioClip, AudioIndex, CourseSource
@@ -104,16 +104,7 @@ def check_audio(
             ctx.diags.report("audio.schema", f"voice {voice.id}: {error}", doc.loc())
             continue
         planned[(voice.provider, voice.voice)] = {r.item: r.input for r in reads}
-    # The round trip checks the normal-speed clip; when it fails, the whole item (slow too) waits.
-    # So does an item a listener rejected a clip of (ADR 0060), until the clip is made again.
-    failed = {
-        c.item
-        for c in index.clips
-        if c.speed == "normal"
-        and c.qa is not None
-        and c.qa.status == "fail"
-        and c.provenance.status not in ("reviewed", "published")
-    } | {c.item for c in index.clips if c.rejected is not None}
+    failed = held_back(index)
     # Reference voices a cloning provider imitates: each must be its recorded file.
     references: dict[str, str] = {}
     recordings: dict[str, str] = {}  # a recorded reference's speaker, license and source

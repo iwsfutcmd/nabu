@@ -4,7 +4,7 @@
  * translation. The learner's field is the player's IME-safe one: nothing is sent, normalized or
  * reset during composition, and a turn becomes TaggedText only once it is sent.
  */
-import { autoTokens } from "@nabu/core/ai";
+import { autoTokens, type TextBase } from "@nabu/core/ai";
 import type { Direction } from "@nabu/i18n";
 import type { TaggedText } from "@nabu/schema";
 import { useState, type JSX } from "react";
@@ -32,7 +32,7 @@ export interface RoleplayChatProps {
   readonly scenario: ScenarioCard;
   readonly turns: readonly ChatTurn[];
   /** The target orthography: the field's lang and the learner turns' language. */
-  readonly base: Pick<TaggedText, "lang" | "orthography">;
+  readonly base: TextBase;
   readonly dir: Direction;
   readonly status: RoleplayStatus;
   readonly onSend: (turn: TaggedText) => void;

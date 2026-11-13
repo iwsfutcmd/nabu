@@ -8,7 +8,7 @@
  * - Explain My Answer, on request;
  * - roleplay conversations, once the scenario's node is done.
  */
-import { judgeable, ROLEPLAY_HISTORY } from "@nabu/core/ai";
+import { judgeable, ROLEPLAY_HISTORY, textBase } from "@nabu/core/ai";
 import { answerTextOf, SPEAKING, type CourseView, type Exercise, type Response, type TemplateId } from "@nabu/core/lesson";
 import type { LearnerState } from "@nabu/core/learner";
 import { surfaceOf } from "@nabu/core/text";
@@ -353,7 +353,7 @@ export const RoleplayPage = ({ course, scenario: id, account, status, back }: Ro
       <RoleplayChat
         scenario={{ title: card.title, setting: card.setting, character: card.character, goal: card.goal }}
         turns={turns}
-        base={{ lang: base.lang, orthography: base.orthography }}
+        base={textBase(course.profiles, base)}
         dir={directionOf(base.lang)}
         status={phase}
         onSend={(turn) => next([...turns, { role: "learner", text: turn }])}
