@@ -159,39 +159,28 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     assert sentence["synthetic"] and sentence["timings"][0]["startMs"] == 0
 
 
-def test_a_word_met_only_inside_longer_words_reads_its_share_of_them() -> None:
-    """禮拜 (week) appears only in 禮拜一 (Monday): its clip reads lai5 baai3, the first two of
-    禮拜一's pinned syllables, as its ruby pairs them. A word without ruby (a loanword in Latin
-    letters) is not split."""
+def test_a_word_card_reads_the_reading_its_form_pins() -> None:
+    """A word KC's clip reads the reading the compiler pinned on its form (ADR 0117), the one its
+    card shows, never one the planner looks up in the sentences: here the sentence says 呢 ne1
+    (the particle) and the form pins ni1 ("this"). A form without one is skipped."""
     orth = "yue-Hant-HK/standard"
-    token = {
-        "surface": "禮拜一",
-        "kind": "word",
-        "readings": {"jyutping": "lai5 baai3 jat1"},
-        "ruby": {
-            "jyutping": [
-                {"base": "禮", "text": "lai5"},
-                {"base": "拜", "text": "baai3"},
-                {"base": "一", "text": "jat1"},
-            ]
-        },
-        "morphs": [{"surface": "禮拜"}, {"surface": "一"}],
-    }
-    loan = {
-        "surface": "OK",
-        "kind": "word",
-        "readings": {"jyutping": "ou1 kei1"},
-        "morphs": [{"surface": "O"}, {"surface": "K"}],
-    }
+    particle = {"surface": "呢", "kind": "word", "sense": "呢-sfp", "readings": {"jyutping": "ne1"}}
     unit = {
-        "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token, loan]}}}}],
+        "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [particle]}}}}],
         "kcs": [
-            {"id": "sense:禮拜", "forms": {orth: ["禮拜"]}},
-            {"id": "sense:O", "forms": {orth: ["O"]}},
+            {
+                "id": "sense:呢",
+                "forms": {
+                    orth: [
+                        {"tokens": [{**particle, "sense": "呢", "readings": {"jyutping": "ni1"}}]}
+                    ]
+                },
+            },
+            {"id": "sense:O", "forms": {orth: [{"tokens": [{"surface": "O", "kind": "word"}]}]}},
         ],
     }
     items, skipped = plan([unit], YUE_VOICE)
-    assert {i.item: i.input for i in items}["sense:禮拜"] == "lai5 baai3"
+    assert {i.item: i.input for i in items}["sense:呢"] == "ni1"
     assert skipped == ["sense:O"]
 
 
@@ -613,7 +602,8 @@ def voice(monkeypatch: pytest.MonkeyPatch) -> _Voice:
 
 
 def _twins_course(root: Path) -> list[dict[str, object]]:
-    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file."""
+    """A sentence and a word said alike: 早晨 (zou2 san4), so one identity and one file. Units
+    as the compiler gives them: the word's form pins its reading (ADR 0117)."""
     (root / "audio").mkdir(parents=True)
     (root / "course.yaml").write_text("id: twins\n", encoding="utf-8")
     orth = "yue-Hant-HK/standard"
@@ -621,7 +611,7 @@ def _twins_course(root: Path) -> list[dict[str, object]]:
     return [
         {
             "sentences": [{"id": "s.1", "forms": {orth: {"text": {"tokens": [token]}}}}],
-            "kcs": [{"id": "sense:早晨", "forms": {orth: ["早晨"]}}],
+            "kcs": [{"id": "sense:早晨", "forms": {orth: [{"tokens": [token]}]}}],
         }
     ]
 
