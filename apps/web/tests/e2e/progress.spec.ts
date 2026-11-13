@@ -8,11 +8,12 @@
  *   day 2         a review session; XP grows, and survives another reload
  * Each session is planned by the test from the log the page holds, at the
  * page's (fixed) clock, and must match what the app shows exercise by exercise.
+ * The page says where progress is kept, and a download restores on another device (S6).
  */
 import { emptyLearnerState, pathNodes, placementOf, plan } from "@nabu/core/learner";
 import { lessonNodes, runTest, type Exercise } from "@nabu/core/lesson";
 import { expect, test, type Page } from "@playwright/test";
-import { activate, canMiss, loadCourse, logOf, pathUrl, planned, playSession, type Mode } from "./solver.ts";
+import { activate, canMiss, historyBefore, loadCourse, logOf, pathUrl, planned, playSession, seedLog, type Mode } from "./solver.ts";
 
 const SEED = 11;
 const DAY = 86_400_000;
@@ -88,6 +89,55 @@ test("progress, mistakes and review live on the device", async ({ page }, info) 
   await page.reload();
   await expect(page.locator("[data-xp]")).toHaveAttribute("data-xp", String(total));
   await expect(page.locator("[data-xp-today]")).toHaveAttribute("data-xp-today", String(total - before));
+  expect(errors).toEqual([]);
+});
+
+test("a download says where progress is kept, and restores on another device (S6)", async ({ page, browser }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  const errors: string[] = [];
+  page.on("pageerror", (e) => errors.push(String(e)));
+  const course = loadCourse("fa", "fa-Arab/standard");
+  const [, second, third] = lessonNodes(course).map((n) => n.node.id);
+  if (second === undefined || third === undefined) throw new Error("fa needs three lessons");
+  const now = new Date("2026-03-14T10:00:00Z");
+  await page.clock.setFixedTime(now);
+  await seedLog(page, historyBefore(course, third, now));
+  await page.reload();
+  // This browser was not asked to keep the site's data for good: the page says it may clear it.
+  await expect(page.locator("[data-device-copy]")).toHaveAttribute("data-device-copy", "at-risk");
+
+  const downloading = page.waitForEvent("download");
+  await page.locator("[data-action=export]").click();
+  const file = await (await downloading).path();
+  const events = (await logOf(page, "fa")).length;
+
+  // Another device: nothing yet. The file restores the two lessons, once.
+  const other = await (await browser.newContext({ locale: "en-US", timezoneId: "UTC" })).newPage();
+  other.on("pageerror", (e) => errors.push(String(e)));
+  await other.clock.setFixedTime(now);
+  await other.goto("/?sound=off#/");
+  const restore = async (): Promise<void> => {
+    const chooser = other.waitForEvent("filechooser");
+    await other.locator("[data-action=restore]").click();
+    await (await chooser).setFiles(file);
+  };
+  await restore();
+  const found = other.locator("[data-restore-found]");
+  await expect(found).toHaveAttribute("data-restore-found", String(events));
+  await expect(found).toHaveAttribute("data-restore-new", String(events));
+  await expect(found).toHaveAttribute("data-restore-invalid", "0");
+  await other.locator("[data-action=restore-confirm]").click();
+  await expect(other.locator("[data-restored]")).toHaveAttribute("data-restored", String(events));
+  await other.evaluate(() => (window.location.hash = "#/fa/fa-Arab.standard"));
+  await expect(other.locator(`[data-lesson="${second}"]`)).toHaveAttribute("data-status", "done");
+  await expect(other.locator(`[data-lesson="${third}"]`)).toHaveAttribute("data-status", "available");
+
+  // The same file again: this device has it all already.
+  await other.evaluate(() => (window.location.hash = "#/"));
+  await restore();
+  await expect(found).toHaveAttribute("data-restore-new", "0");
+  await expect(other.locator("[data-action=restore-confirm]")).toHaveCount(0);
+  expect(await logOf(other, "fa")).toHaveLength(events);
   expect(errors).toEqual([]);
 });
 

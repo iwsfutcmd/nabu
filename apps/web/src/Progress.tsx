@@ -1,8 +1,9 @@
 /**
- * "Your progress" on the home screen: where progress lives (this device),
- * a download of the learner's own data (§14.4), and, when a sync server is
- * configured, the optional account (§14.2): create one or sign in, which
- * uploads the local history; then sync status and sign-out.
+ * "Your progress" on the home screen: where progress lives (this browser or
+ * app, and whether it is kept for good), a download of the learner's own data
+ * (§14.4) and restoring one (S6), and, when a sync server is configured, the
+ * optional account (§14.2): create one or sign in, which uploads the local
+ * history; then sync status and sign-out.
  *
  * Email addresses may use any script (EAI), so the field is text with an
  * email keyboard, not type=email (which rejects non-ASCII local parts). An
@@ -18,6 +19,7 @@ import { useTranslator } from "@nabu/ui";
 import { useState, useSyncExternalStore, type FormEvent, type JSX } from "react";
 import { Button, Form, Input, Label, Text, TextField } from "react-aria-components";
 import styles from "./App.module.css";
+import { DeviceCopy, Restore } from "./Restore.tsx";
 import { ProfileForm, Reminders } from "./social.tsx";
 import { forgetCalibration, loadCalibration, serverAllowed, setServerAllowed } from "./voice.ts";
 import type { EventStore } from "./store.ts";
@@ -296,7 +298,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
       <h2 className={styles.courseName} id="progress-title">
         {t.format("app.progress.title")}
       </h2>
-      <p className={styles.muted}>{t.format(store.persistent ? "app.progress.device" : "app.store.memory")}</p>
+      <DeviceCopy store={store} />
       {deleted && state.account === undefined && (
         <p className={styles.notice} role="status" data-account-deleted="">
           {t.format("app.account.deleted")}
@@ -325,6 +327,7 @@ export const Progress = ({ store, sync }: { store: EventStore; sync: Sync }): JS
           {t.format("app.progress.export")}
         </Button>
       </div>
+      <Restore store={store} sync={sync} />
       <Voice signedIn={state.account !== undefined} />
     </section>
   );

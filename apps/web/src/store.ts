@@ -16,13 +16,19 @@
  */
 import type { LearnerEvent } from "@nabu/schema";
 import { uuidv7 } from "./clock.ts";
-import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, promised, RECEIVED, receivedTimes, releaseHeld, type Held } from "./idb.ts";
+import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, type Held } from "./idb.ts";
 import type { SetAside } from "./outbox.ts";
 
 export interface EventStore {
   /** Random id of this installation, sent with every event. */
   readonly device: string;
+  /** The log outlives the page (IndexedDB); false in memory (some private windows). */
   readonly persistent: boolean;
+  /**
+   * Whether the browser has promised to keep the log under storage pressure (it was asked when the
+   * store opened): without that, a browser may clear it to free space or after weeks unvisited.
+   */
+  readonly durable: () => Promise<boolean>;
   /**
    * Events recorded here (`synced` false: they enter the outbox) or pulled from the server, with
    * when the server received them (`received`, by id). Returns the ids that were new.
@@ -30,6 +36,8 @@ export interface EventStore {
   readonly append: (events: readonly LearnerEvent[], options?: { readonly synced?: boolean; readonly received?: Readonly<Record<string, string>> }) => Promise<readonly string[]>;
   readonly eventsOf: (course: string) => Promise<readonly LearnerEvent[]>;
   readonly allEvents: () => Promise<readonly LearnerEvent[]>;
+  /** The ids of every event in the log (keys only: cheaper than reading the events). */
+  readonly ids: () => Promise<ReadonlySet<string>>;
   /** The oldest events the server has not acknowledged, up to `limit`. */
   readonly pending: (limit: number) => Promise<readonly LearnerEvent[]>;
   readonly pendingCount: () => Promise<number>;
@@ -64,10 +72,11 @@ const indexedStore = async (): Promise<EventStore> => {
   const device = await deviceId(db);
   const outbox = outboxOf(db);
   // Ask the browser not to evict the log under storage pressure; it may say no.
-  void persist();
+  const asked = persist().then(async (granted) => granted || (await persisted()));
   return {
     device,
     persistent: true,
+    durable: () => asked,
     append: async (events, options = {}) => {
       const tx = db.transaction([EVENTS, OUTBOX, RECEIVED], "readwrite");
       const store = tx.objectStore(EVENTS);
@@ -87,6 +96,7 @@ const indexedStore = async (): Promise<EventStore> => {
     },
     eventsOf: async (course) => promised(db.transaction(EVENTS).objectStore(EVENTS).index("course").getAll(course)) as Promise<LearnerEvent[]>,
     allEvents: async () => promised(db.transaction(EVENTS).objectStore(EVENTS).getAll()) as Promise<LearnerEvent[]>,
+    ids: async () => new Set((await promised(db.transaction(EVENTS).objectStore(EVENTS).getAllKeys())) as string[]),
     pending: outbox.pending,
     pendingCount: async () => promised(db.transaction(OUTBOX).objectStore(OUTBOX).count()),
     acknowledge: outbox.acknowledge,
@@ -120,6 +130,7 @@ const memoryStore = (): EventStore => {
   return {
     device: uuidv7(),
     persistent: false,
+    durable: () => Promise.resolve(false),
     append: (events, options = {}) => {
       receive(options.received);
       const fresh = events.filter((e) => !log.has(e.id));
@@ -131,6 +142,7 @@ const memoryStore = (): EventStore => {
     },
     eventsOf: (course) => Promise.resolve([...log.values()].filter((e) => e.course === course)),
     allEvents: () => Promise.resolve([...log.values()]),
+    ids: () => Promise.resolve(new Set(log.keys())),
     pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => log.get(id) ?? [])),
     pendingCount: () => Promise.resolve(outbox.size),
     acknowledge: (ids, times) => {

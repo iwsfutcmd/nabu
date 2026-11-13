@@ -131,3 +131,9 @@ export const persist = async (): Promise<boolean> => {
   const storage = (globalThis.navigator as { storage?: { persist?: () => Promise<boolean> } } | undefined)?.storage;
   return (await storage?.persist?.().catch(() => false)) ?? false;
 };
+
+/** Whether the browser keeps this site's data under storage pressure (persist() granted), without asking. */
+export const persisted = async (): Promise<boolean> => {
+  const storage = (globalThis.navigator as { storage?: { persisted?: () => Promise<boolean> } } | undefined)?.storage;
+  return (await storage?.persisted?.().catch(() => false)) ?? false;
+};

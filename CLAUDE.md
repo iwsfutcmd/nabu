@@ -119,6 +119,9 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - One bad event never holds back a batch: POST /v1/events takes the valid events and names the rest (`rejected`, by
   index); the device sets those aside (outbox.ts, meta `held`, still in its log), says so in Your progress, and sends
   them again only when the learner asks or signs in again. Sync's check against the server leaves them out.
+- Your progress says what keeps the log (EventStore.durable: persistent storage granted, or a browser that may clear
+  it) and restores a download (apps/web/src/restore.ts): every event checked with the schema as the API checks
+  uploads (event-schema.ts, Ajv loaded only then), ids dedupe, added events enter the outbox.
 - Calibration: `pnpm --filter @nabu/core simulate --out f.jsonl`, then `cd pipeline && uv run nabu calibration f.jsonl`
   or `uv run python notebooks/calibration.py f.jsonl`.
 - Count open mistakes with @nabu/core/learner `practicableMistakes` (the course page does), never `state.mistakes`:

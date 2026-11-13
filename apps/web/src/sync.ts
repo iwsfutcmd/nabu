@@ -91,6 +91,11 @@ export interface Sync {
   readonly syncNow: () => Promise<void>;
   /** Sends the events set aside again (the learner asked), then syncs. */
   readonly retryHeld: () => Promise<void>;
+  /**
+   * Events joined the log from outside this app's sessions (a restored file, S6): open views
+   * replay, as for events pulled from another device, and the next sync sends them.
+   */
+  readonly added: () => void;
 }
 
 const ACCOUNT = "account";
@@ -373,6 +378,10 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       await store.releaseHeld();
       set({ held: 0, pending: await store.pendingCount() });
       await syncNow();
+    },
+    added: () => {
+      set({ pulled: state.pulled + 1 });
+      schedule();
     },
   };
 };

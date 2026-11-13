@@ -590,13 +590,25 @@
       "message": "3 to 30 letters or digits, with _ - or . between them.",
       "description": "Hint under the username field."
     },
-    "app.progress.device": {
-      "message": "Your progress is saved on this device.",
-      "description": "Where progress is kept when there is no account."
+    "app.progress.app": {
+      "message": "Your progress is saved in the app on this device. Deleting the app deletes it.",
+      "description": "Where progress is kept, in the Android or iOS app."
+    },
+    "app.progress.at-risk": {
+      "message": "Your progress is saved in this browser on this device. The browser may clear it to free up space, or after a few weeks without a visit, so download a copy from time to time.",
+      "description": "Where progress is kept: in the browser, which has not promised to keep it (persistent storage not granted; Safari clears site data after about a week unused). The download button follows."
     },
     "app.progress.export": {
       "message": "Download my learning data",
       "description": "Button that downloads every learning event recorded on this device."
+    },
+    "app.progress.kept": {
+      "message": "Your progress is saved in this browser on this device, and the browser has agreed to keep it. It stays until you clear this site's data.",
+      "description": "Where progress is kept: in the browser, which granted persistent storage (it will not clear the site's data on its own)."
+    },
+    "app.progress.restore": {
+      "message": "Restore from a download",
+      "description": "Button that opens a file a learner downloaded before (Download my learning data, or the account's download) to add its progress to this device."
     },
     "app.progress.title": {
       "message": "Your progress",
@@ -661,6 +673,46 @@
     "app.reset.type-label": {
       "message": "To confirm, type {$language}",
       "description": "Label of the field where the learner types the course's name to confirm starting over. $language is the course's name, already in the UI language."
+    },
+    "app.restore.cancel": {
+      "message": "Cancel",
+      "description": "Button that closes the restore summary without adding anything."
+    },
+    "app.restore.close": {
+      "message": "Close",
+      "description": "Button that closes the restore summary when there is nothing to add."
+    },
+    "app.restore.confirm": {
+      "message": "Add them to this device",
+      "description": "Button that adds the file's new records to this device's progress."
+    },
+    "app.restore.done": {
+      "message": ".input {$count :number}\n.match $count\none {{Added {$count} record to this device.}}\n* {{Added {$count} records to this device.}}",
+      "description": "After restoring: how many records were added to this device. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.empty": {
+      "message": "This file has no Nabu records in it. Choose a file saved with Download my learning data, or your account's download.",
+      "description": "The chosen file holds no valid learning records (another kind of file). Download my learning data is app.progress.export."
+    },
+    "app.restore.found": {
+      "message": ".input {$count :number}\n.match $count\none {{This file holds {$count} record of learning, in {$courses}.}}\n* {{This file holds {$count} records of learning, in {$courses}.}}",
+      "description": "After choosing a file to restore: how many learning records (answers, sessions) it holds. $count is a number; $courses is a list of course names (Persian, Cantonese and Uzbek). Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.invalid": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} entry in it is not a Nabu record and will be left out.}}\n* {{{$count} entries in it are not Nabu records and will be left out.}}",
+      "description": "After choosing a file to restore: how many of its lines are not valid learning records. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.new": {
+      "message": ".input {$count :number}\n.match $count\none {{{$count} of them is not on this device yet.}}\n* {{{$count} of them are not on this device yet.}}",
+      "description": "After app.restore.found: how many of the file's records this device does not have. $count is a number. Select plural forms as your language needs; drop the .match if it needs none."
+    },
+    "app.restore.none-new": {
+      "message": "This device has all of them already.",
+      "description": "After app.restore.found, when the device already has every record in the file: restoring would change nothing."
+    },
+    "app.restore.unreadable": {
+      "message": "That file couldn't be read.",
+      "description": "The chosen file could not be read or its records could not be added."
     },
     "app.roleplay.back": {
       "message": "Back to the course",
