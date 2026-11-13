@@ -39,6 +39,8 @@ export interface RuleContext {
   readonly mode: Mode | undefined;
   /** Whether the event may count for its local date (§12.2 anti-gaming and grace). */
   readonly counts: boolean;
+  /** A finished lesson or story the course had marked done already (replaysOf): it pays its answers only. */
+  readonly replay: boolean;
 }
 
 /** A rule: one event in, effects out. Pure. */
@@ -48,15 +50,48 @@ const isRight = (e: AnswerSubmitted): boolean => e.outcome.kind.startsWith("CORR
 
 const perfect = (e: SessionCompleted): boolean => e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises;
 
-/** XP never depends on gate state (§12.2): a right answer, a completed session, a perfect one. */
-export const xpRule: Rule = ({ event: e }, { config }) => {
+/**
+ * XP rewards practice (§12.2, ADR 0107), never gate state: a point for a right answer; for a
+ * finished session a point a card, up to `xp.session`, and `xp.perfect` more when a session of at
+ * least `xp.perfectFrom` cards had every card right the first time; a lesson or story finished
+ * before pays its answers only. The learner model's fold (learner/state.ts) pays the same.
+ */
+export const xpRule: Rule = ({ event: e }, { config, replay }) => {
   if (e.type === "answer_submitted" && isRight(e)) return [{ tag: "xp", date: e.localDate, amount: config.xp.answer, reason: "answer" }];
-  if (e.type === "session_completed" && e.summary.completed) {
-    const out: GameEffect[] = [{ tag: "xp", date: e.localDate, amount: config.xp.session, reason: "session" }];
-    if (perfect(e)) out.push({ tag: "xp", date: e.localDate, amount: config.xp.perfect, reason: "perfect" });
+  if (e.type === "session_completed" && e.summary.completed && !replay) {
+    const out: GameEffect[] = [];
+    const session = Math.min(config.xp.session, e.summary.exercises);
+    if (session > 0) out.push({ tag: "xp", date: e.localDate, amount: session, reason: "session" });
+    if (perfect(e) && e.summary.exercises >= config.xp.perfectFrom) out.push({ tag: "xp", date: e.localDate, amount: config.xp.perfect, reason: "perfect" });
     return out;
   }
   return [];
+};
+
+/**
+ * The finished sessions that replay a lesson or story (ADR 0107), by event id: those of a node the
+ * course had marked done already, by an earlier finish or a placement test, since the learner last
+ * started the course over (progress_reset). The learner model's path marks nodes done the same way.
+ * The log must be in time order.
+ */
+export const replaysOf = (log: readonly LearnerEvent[]): ReadonlySet<string> => {
+  const done = new Map<string, Set<string>>();
+  const out = new Set<string>();
+  for (const e of log) {
+    if (e.type === "progress_reset") done.delete(e.course);
+    if (e.type !== "session_completed" || !e.summary.completed) continue;
+    let nodes = done.get(e.course);
+    if (nodes === undefined) {
+      nodes = new Set();
+      done.set(e.course, nodes);
+    }
+    if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined) {
+      if (nodes.has(e.node)) out.add(e.id);
+      else nodes.add(e.node);
+    }
+    if (e.mode === "placement") for (const node of e.placed ?? []) nodes.add(node);
+  }
+  return out;
 };
 
 /**
@@ -357,6 +392,7 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
   const modes = new Map<string, Mode>();
   for (const { event: e } of sorted) if (e.type === "session_started" || e.type === "session_completed") modes.set(e.session, e.mode);
   const counts = countsOf(sorted, times, config, clock.now);
+  const replays = replaysOf(sorted.map((i) => i.event));
   const byDate: Record<string, number> = {};
   const earned: Record<string, number> = {}; // XP from answers and sessions, per date (what xp quests count)
   const days = new Set<string>();
@@ -369,6 +405,7 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
       get counts() {
         return counts(i);
       },
+      replay: replays.has(input.event.id),
     };
     for (const rule of rules) {
       for (const effect of rule(input, ctx)) {

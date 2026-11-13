@@ -6,7 +6,7 @@
 import { revised, revisionsOf } from "../learner/revisions.ts";
 import type { LearnerEvent } from "@nabu/schema";
 import type { GameConfig } from "./config.ts";
-import { xpRule, type GameInput } from "./game.ts";
+import { replaysOf, xpRule, type GameInput } from "./game.ts";
 
 export interface LeagueConfig {
   readonly tiers: number;
@@ -53,10 +53,15 @@ export const weekById = (id: string, config: LeagueConfig): { readonly id: strin
 /**
  * League XP in [start, end): the game's XP rule on events that happened in the week and reached
  * the server in time, with no XP for implausible answers (too fast, too many a minute), none for
- * a session without a single plausible answer, and a cap per hour.
+ * a session without a single plausible answer, and a cap per hour. Earlier events among the inputs
+ * earn nothing here; finished sessions and starts over among them say which of the week's lessons
+ * replay one done before (ADR 0107), as the game state counts them.
  */
 export const leagueXp = (inputs: readonly GameInput[], start: number, end: number, game: GameConfig, league: LeagueConfig): number => {
   const inTime = ({ receivedAt }: GameInput): boolean => receivedAt === undefined || Date.parse(receivedAt) <= end + league.graceHours * HOUR;
+  const byTime = (a: LearnerEvent, b: LearnerEvent): number => Date.parse(a.clientTime) - Date.parse(b.clientTime) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  const once = new Map(inputs.map((i) => [i.event.id, i.event] as const));
+  const replays = replaysOf([...once.values()].filter((e) => Date.parse(e.clientTime) < end).sort(byTime));
   // A judge's revision counts if it, too, reached the server in time.
   const revisions = revisionsOf(inputs.filter(inTime).map((i) => i.event));
   const inWeek = inputs
@@ -85,7 +90,7 @@ export const leagueXp = (inputs: readonly GameInput[], start: number, end: numbe
       plausible.add(e.session);
     }
     if (e.type === "session_completed" && !plausible.has(e.session)) continue;
-    const xp = xpRule(input, { config: game, mode: undefined, counts: true }).reduce((n, eff) => n + (eff.tag === "xp" ? eff.amount : 0), 0);
+    const xp = xpRule(input, { config: game, mode: undefined, counts: true, replay: replays.has(e.id) }).reduce((n, eff) => n + (eff.tag === "xp" ? eff.amount : 0), 0);
     if (xp === 0) continue;
     const hour = Math.floor(at / HOUR);
     const used = perHour.get(hour) ?? 0;

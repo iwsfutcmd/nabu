@@ -1,4 +1,4 @@
-export { DEFAULT_GAME, ENERGY, gameConfig, HEARTS, type AchievementTemplate, type GameConfig, type GatePolicy, type Predicate, type QuestTemplate } from "./config.ts";
+export { DEFAULT_GAME, ENERGY, gameConfig, HEARTS, type AchievementTemplate, type GameConfig, type GatePolicy, type Predicate, type QuestTemplate, type XpRules } from "./config.ts";
 export { addDays, daysBetween, isIsoDate, localDateOf, startOfDay, weekStart } from "./dates.ts";
 export {
   canStart,
@@ -7,6 +7,7 @@ export {
   DEFAULT_RULES,
   questsFor,
   replayGame,
+  replaysOf,
   skippedDates,
   streakOf,
   xpRule,

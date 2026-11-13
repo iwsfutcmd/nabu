@@ -24,6 +24,7 @@ import {
   localDateOf,
   questsFor,
   replayGame,
+  replaysOf,
   streakOf,
   weekStart,
   type GameConfig,
@@ -453,6 +454,75 @@ describe("quests and achievements", () => {
     expect(state.achievements).toEqual(["streak-7", "sessions-10"]);
   });
 
+  it("a session pays a point a card up to ten, and the perfect bonus only from five cards (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const xpOf = (events: readonly LearnerEvent[]): number => replayGame(online(events), NO_QUESTS, clockAt("2026-05-01", at(1200))).xp.total;
+    // One card right: 1 for the answer, 1 for the session, no perfect bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 1, mode: "mistakes" }))).toBe(2);
+    // Five right: 5 + 5 + 5.
+    expect(xpOf(session({ at: at(600), tz, right: 5, mode: "review" }))).toBe(15);
+    // Fourteen, one wrong: 13 + 10, no bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 13, wrong: 1 }))).toBe(23);
+    // Per card, five one-card sessions now pay less than one five-card session.
+    const minis = [0, 1, 2, 3, 4].flatMap((i) => session({ at: at(600 + i * 10), tz, right: 1, mode: "mistakes" }));
+    expect(xpOf(minis)).toBeLessThan(xpOf(session({ at: at(600), tz, right: 5, mode: "review" })));
+  });
+
+  it("a lesson finished before pays its answers only, until the course is started over (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const lesson = (minutes: number, node = "fa.greetings"): LearnerEvent[] =>
+      session({ at: at(minutes), tz, right: 6 }).map((e): LearnerEvent => (e.type === "session_started" || e.type === "session_completed" ? { ...e, node } : e));
+    const clock = clockAt("2026-05-01", at(1200));
+    const first = lesson(600);
+    const again = lesson(700);
+    const once = replayGame(online(first), NO_QUESTS, clock).xp.total;
+    expect(once).toBe(6 + 6 + 5);
+    expect(replayGame(online([...first, ...again]), NO_QUESTS, clock).xp.total).toBe(once + 6);
+    expect(replaysOf([...first, ...again])).toEqual(new Set([again.at(-1)?.id]));
+    // Another lesson is no replay; neither is the same one after starting the course over.
+    expect(replayGame(online([...first, ...lesson(700, "fa.names")]), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    const reset = { ...(first[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at(650)).toISOString() } as unknown as LearnerEvent;
+    const restarted = [...first, reset, ...again];
+    expect(replayGame(online(restarted), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    // The learner model pays the same.
+    for (const log of [[...first, ...again], restarted]) expect(replay(log).xp.total).toBe(replayGame(online(log), NO_QUESTS, clock).xp.total);
+    // So do leagues, which see the finish before the week only to know the replay.
+    const week = leagueWeek(at(700), DEFAULT_LEAGUE);
+    const before = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start - 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    const inWeek = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start + 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    expect(leagueXp(online([...before, ...inWeek]), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(6);
+    expect(leagueXp(online(inWeek), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(once);
+  });
+
+  it("XP agrees with the learner model's on any log of one course, quests off (ADR 0044)", () => {
+    const tz = "UTC";
+    const nodes = ["fa.greetings", "fa.names", undefined];
+    const day = fc.record({
+      right: fc.integer({ min: 0, max: 14 }),
+      wrong: fc.integer({ min: 0, max: 3 }),
+      mode: fc.constantFrom<"lesson" | "review" | "mistakes" | "story">("lesson", "review", "mistakes", "story"),
+      node: fc.constantFrom(...nodes),
+      reset: fc.boolean(),
+    });
+    fc.assert(
+      fc.property(fc.array(day, { minLength: 1, maxLength: 12 }), (days) => {
+        const events = days.flatMap((d, i) => {
+          const at = instantAt(addDays("2026-03-01", i), 600, tz);
+          const done = session({ at, tz, right: d.right, wrong: d.wrong, mode: d.mode }).map((e): LearnerEvent =>
+            (e.type === "session_started" || e.type === "session_completed") && d.node !== undefined && (d.mode === "lesson" || d.mode === "story") ? { ...e, node: d.node } : e,
+          );
+          const reset = d.reset ? [{ ...(done[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at - 60_000).toISOString() } as unknown as LearnerEvent] : [];
+          return [...reset, ...done];
+        });
+        const last = events.at(-1) as LearnerEvent;
+        expect(replayGame(online(events), NO_QUESTS, clockAt(last.localDate, Date.parse(last.clientTime))).xp.total).toBe(replay(events).xp.total);
+      }),
+      { numRuns: 200 },
+    );
+  });
+
   it("the golden session's XP agrees with the learner model when quests are off", () => {
     const golden = JSON.parse(readFileSync(join(import.meta.dirname, "golden/fa-lesson-1.events.json"), "utf8")) as LearnerEvent[];
     const last = golden.at(-1) as LearnerEvent;
@@ -514,7 +584,7 @@ describe("league XP and ranking", () => {
     const inWeek = session({ at: week.start + 3_600_000, tz, right: 5 });
     const before = session({ at: week.start - 3_600_000, tz, right: 5 });
     const xp = leagueXp(online([...inWeek, ...before]), week.start, week.end, DEFAULT_GAME, league);
-    expect(xp).toBe(5 + 10 + 5); // answers, session, perfect: the earlier session does not count
+    expect(xp).toBe(5 + 5 + 5); // answers, a point a card, perfect: the earlier session does not count
     // Too fast: no answer XP, and a session with no plausible answer earns nothing either.
     const fast = session({ at: week.start + 7_200_000, tz, right: 5 }).map((e) => (e.type === "answer_submitted" ? { ...e, input: { ...e.input, latencyMs: 50 } } : e)) as LearnerEvent[];
     expect(leagueXp(online(fast), week.start, week.end, DEFAULT_GAME, league)).toBe(0);
