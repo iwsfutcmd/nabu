@@ -10,9 +10,24 @@
  */
 import { expect, test, type Page } from "@playwright/test";
 import { replay } from "@nabu/core/learner";
+import { lessonNodes, type Exercise } from "@nabu/core/lesson";
+import { graphemes, surfaceOf } from "@nabu/core/text";
 import type { AnswerSubmitted, Explanation, LearnerEvent } from "@nabu/schema";
 import { API_PORT } from "./ports.ts";
-import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, waitFor } from "./solver.ts";
+import { answer, expectRightAndContinue, freshIds, historyBefore, loadCourse, logOf, planned, runTag as run, seedLog, seriousAxeViolations, waitFor } from "./solver.ts";
+
+const LETTER = /\p{L}/u;
+const letters = (word: string): number => graphemes(word).filter((g) => LETTER.test(g)).length;
+
+/** The text with a slip in its longest word, its last letter typed twice: a typo, not another word. */
+const withTypo = (text: string): string => {
+  const words = text.split(" ");
+  const at = words.reduce((best, w, i) => (letters(w) > letters(words[best] ?? "") ? i : best), 0);
+  const g = graphemes(words[at] ?? "");
+  const last = g.findLastIndex((c) => LETTER.test(c));
+  words[at] = [...g.slice(0, last + 1), g[last] ?? "", ...g.slice(last + 1)].join("");
+  return words.join(" ");
+};
 
 const API = `http://127.0.0.1:${API_PORT}`;
 const ADMIN = "e2e-review-token";
@@ -58,12 +73,17 @@ test.describe("AI features", () => {
     const errors: string[] = [];
     page.on("pageerror", (e) => errors.push(String(e)));
     const wrong = await answerWrong(page);
-    // No account, no model: reporting only. Nothing else is offered.
+    // No account, no model: reporting only, from the one report button beside the feedback (M6).
     await expect(page.locator("[data-action=explain]")).toHaveCount(0);
     await expect(page.locator("[data-judge]")).toHaveAttribute("data-judge", "idle");
-    await page.locator("[data-action=report]").click();
+    await expect(page.locator("[data-action=report-problem]")).toHaveCount(1);
+    await expect(page.locator("[data-action=report]")).toHaveCount(0); // nothing reads like a verdict under the feedback
+    await page.locator("[data-action=report-problem]").click();
+    await page.locator("[data-report-dialog] [data-action=report]").click();
     await expect(page.locator("[data-reported]")).toBeVisible();
-    await expect(page.locator("[data-action=report]")).toBeDisabled();
+    await page.locator("[data-action=report-problem]").click();
+    await expect(page.locator("[data-report-dialog] [data-action=report]")).toBeDisabled();
+    await page.keyboard.press("Escape");
     await expect.poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported")).toMatchObject({ answer: wrong.id, text: "拜拜", exercise: { template: "translate-type.l1-l2" } });
     // It counts as right for the learner at once (ADR 0052): no mistake left for it.
     await expect(page.locator("[data-reported]")).toHaveAttribute("data-reported", "accept");
@@ -97,7 +117,46 @@ test.describe("AI features", () => {
     expect(errors).toEqual([]);
   });
 
-  test("this should have been wrong: a right answer counts wrong at once, and is queued as a reject", async ({ page }) => {
+  test("this should have been wrong, after a lenient grade: the answer counts wrong at once, and is queued as a reject", async ({ page }) => {
+    // Only a grade that let a difference pass (here a typo) can be claimed wrong (M6): Cuban Spanish
+    // grades typos, and the first lesson with a typed card whose canonical answer has a long word.
+    const es = loadCourse("es", "es-Latn/standard");
+    await page.clock.setFixedTime(NOW);
+    const typed = (e: Exercise): boolean => e.template === "translate-type.l1-l2" && surfaceOf(e.canonical).split(" ").some((w) => letters(w) >= 6);
+    let found: { readonly node: string; readonly history: LearnerEvent[]; readonly exercises: readonly Exercise[] } | undefined;
+    for (const { node } of lessonNodes(es)) {
+      const history = freshIds(historyBefore(es, node.id, NOW));
+      const exercises = planned(es, history, { mode: "lesson", node: node.id }, NOW, SEED);
+      if (exercises.some(typed)) {
+        found = { node: node.id, history, exercises };
+        break;
+      }
+    }
+    if (found === undefined) throw new Error("no es lesson with a typed card");
+    await page.goto(url("#/"));
+    if (found.history.length > 0) await seedLog(page, found.history);
+    const at = found.exercises.findIndex(typed);
+    await page.goto(url(`#/es/es-Latn.standard/${found.node}`));
+    for (const ex of found.exercises.slice(0, at)) {
+      await waitFor(page, ex);
+      await answer(page, ex, "keyboard");
+      await expectRightAndContinue(page, "keyboard", ex);
+    }
+    const ex = found.exercises[at];
+    if (ex === undefined || ex.template !== "translate-type.l1-l2") throw new Error("no typed exercise");
+    await waitFor(page, ex);
+    await page.locator("[data-answer-input]").fill(withTypo(surfaceOf(ex.canonical)));
+    await page.keyboard.press("Enter");
+    await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "CORRECT_WITH_TYPO");
+    await page.locator("[data-action=report-problem]").click();
+    await page.locator("[data-report-dialog] [data-action=report-wrong]").click();
+    await expect(page.locator("[data-reported]")).toHaveAttribute("data-reported", "reject");
+    const log = await logOf(page, "es");
+    expect(log.find((e) => e.type === "answer_reported")).toMatchObject({ claim: "reject", exercise: { id: ex.id } });
+    expect(replay(log).mistakes.some((m) => m.item === ex.item)).toBe(true);
+  });
+
+  test("an answer the course lists cannot be claimed wrong: the report button offers corrections only", async ({ page }) => {
     await page.clock.setFixedTime(NOW);
     const history = freshIds(historyBefore(course, request.node, NOW));
     await page.goto(url("#/"));
@@ -115,12 +174,12 @@ test.describe("AI features", () => {
     if (ex === undefined) throw new Error("no exercise");
     await waitFor(page, ex);
     await answer(page, ex, "keyboard");
-    await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", /^CORRECT/u);
-    await page.locator("[data-action=report-wrong]").click();
-    await expect(page.locator("[data-reported]")).toHaveAttribute("data-reported", "reject");
-    const log = await logOf(page, "yue");
-    expect(log.find((e) => e.type === "answer_reported")).toMatchObject({ claim: "reject", exercise: { id: ex.id } });
-    expect(replay(log).mistakes.some((m) => m.item === ex.item)).toBe(true);
+    await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", /^CORRECT(_ALT)?$/u);
+    await page.locator("[data-action=report-problem]").click();
+    const dialog = page.locator("[data-report-dialog]");
+    await expect(dialog.locator("[data-action=mark-incorrect]")).toBeVisible();
+    await expect(dialog.locator("[data-action=report-wrong]")).toHaveCount(0);
+    expect(await seriousAxeViolations(page, "[data-report-dialog]")).toEqual([]);
   });
 
   test("with stubbed AI responses: the judge's revision counts the answer right, and an explanation renders by language", async ({ page }) => {

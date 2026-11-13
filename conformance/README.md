@@ -16,7 +16,7 @@ it.
 | `normalize.json` | Every profile's normalization pipeline (sitelen pona: typed Latin words as logographs, cartouches read as names, joiners and long glyphs dropped, ADR 0086) |
 | `segmentation.json` | Runtime units and orthographic letters |
 | `accept.json` | Accept-set notation, expansion and errors |
-| `grade.json` | Grading verdicts, notes and alignments across the profiles (Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts, and the sets limited by form: person prefixes, verb endings, agreement, ADR 0084; Toki Pona: Latin typed into sitelen pona, names against their cartouches, ADR 0086) |
+| `grade.json` | Grading verdicts, notes and alignments across the profiles (each unit that raised a note carries it, so feedback can name the words: cómo and como; Biblical Hebrew: points, accents and maqaf ignored, pronoun and suffix contrasts, and the sets limited by form: person prefixes, verb endings, agreement, ADR 0084; Toki Pona: Latin typed into sitelen pona, names against their cartouches, ADR 0086) |
 | `tagged-text.json` | TaggedText invariants |
 | `gloss.json` | Tap-for-gloss: longest match, exact and folded passes side by side, token spans |
 | `pronounce.json` | A word's pronunciation as the script leaves it out: vowel marks on abjad words, typed Jyutping (ADR 0054) |

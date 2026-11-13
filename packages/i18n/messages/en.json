@@ -68,7 +68,7 @@
     },
     "ai.report.button": {
       "message": "My answer should have been accepted",
-      "description": "Button after an answer graded wrong: the learner says it is right. It counts as right for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded wrong (report.problem): the learner says it is right. It counts as right for them at once and goes to review."
     },
     "ai.report.done": {
       "message": "Counted as right. A reviewer will look at your answer too.",
@@ -76,7 +76,7 @@
     },
     "ai.report.reject": {
       "message": "This should have been wrong",
-      "description": "Button after an answer graded right: the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded right with a difference let pass (a typo, an accent mark, a variant form): the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
     },
     "ai.report.rejected": {
       "message": "Counted as wrong. A reviewer will look at it too.",
@@ -84,7 +84,7 @@
     },
     "ai.report.spoken": {
       "message": "I said it right",
-      "description": "Button under the feedback of a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
+      "description": "An option of the report button beside a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
     },
     "ai.roleplay.character": {
       "message": "Who",
@@ -258,6 +258,14 @@
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
       "description": "A note on a course's page in the demo: how many of its sentences (story lines included) no native speaker has signed off yet, of all of them (ADR 0073). A release build has none, so it never shows there."
     },
+    "app.course.unchecked.all": {
+      "message": "This course is a draft: a language model wrote it, and no expert has checked it yet. Try it, and report anything that looks wrong from inside a lesson.",
+      "description": "A note on a course's page in the demo, where no sentence of the course has been signed off yet (ADR 0073): what a draft course means for the learner, in the words of the site's landing page (landing.courses.note). An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
+    },
+    "app.course.unchecked.some": {
+      "message": ".input {$drafts :number}\n.input {$total :number}\n{{Parts of this course are still drafts: a language model wrote them, and no expert has checked {$drafts} of its {$total} sentences yet. Report anything that looks wrong from inside a lesson.}}",
+      "description": "A note on a course's page in the demo, where some sentences are signed off and some are not (ADR 0073): $drafts sentences (story lines included) are not checked yet, of $total in all. An expert: a native speaker, or for an ancient language a scholar. A release build has no drafts, so it never shows there."
+    },
     "app.error.account.age-required": {
       "message": "This server asks for your age before it creates an account.",
       "description": "Shown when the server needs the person's age to create an account; the age field appears with it."
@@ -346,6 +354,34 @@
       "message": "Try again",
       "description": "Button under a loading error: load the course or the course list again."
     },
+    "app.home.course.level": {
+      "message": ".input {$units :number}\n.match $units\none {{Level {$level}, {$units} unit}}\n* {{Level {$level}, {$units} units}}",
+      "description": "On a course's card in the course list, when all its units are at one level: that level ($level: a CEFR level such as A1, kept as it is) and how many units it has ($units). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.course.levels": {
+      "message": ".input {$units :number}\n.match $units\none {{Levels {$from} to {$to}, {$units} unit}}\n* {{Levels {$from} to {$to}, {$units} units}}",
+      "description": "On a course's card in the course list: the levels its units go from and to ($from, $to: CEFR levels such as A1 and B2, kept as they are) and how many units it has ($units). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.course.no-listening": {
+      "message": "No listening exercises.",
+      "description": "On the card of a course without listening exercises in the course list (such as Biblical Hebrew or Ancient Greek, whose voices are stand-ins)."
+    },
+    "app.home.course.reading": {
+      "message": "Reading and writing only: no listening or speaking.",
+      "description": "On the card of a course for a written language (such as Classical Chinese) in the course list: it has no listening or speaking exercises."
+    },
+    "app.home.course.units": {
+      "message": ".input {$units :number}\n.match $units\none {{{$units} unit}}\n* {{{$units} units}}",
+      "description": "On a course's card in the course list, when its units name no level: how many units it has. Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "app.home.intro": {
+      "message": "Nabu teaches languages in their own writing systems, in short lessons that build on each other.",
+      "description": "On the home screen of a learner who has not started yet, under the course list's heading: what the app is, in one sentence. Nabu is the app's name (app.name)."
+    },
+    "app.home.start": {
+      "message": "Choose a course to start its first lesson. You need no account: your progress stays on this device.",
+      "description": "On the home screen of a learner who has not started yet: how to begin. An account is optional; without one, progress is kept on the device."
+    },
     "app.home.title": {
       "message": "Choose a course",
       "description": "Heading of the course list."
@@ -353,6 +389,10 @@
     "app.home.writing": {
       "message": "Writing system",
       "description": "Label of the choice between a course's orthographies (e.g. Latin or Cyrillic for Uzbek)."
+    },
+    "app.home.writing-switch": {
+      "message": "You can switch any time: your lessons and words carry over.",
+      "description": "Under the 'Writing system' label of a course written in more than one system (Latin or Cyrillic for Uzbek): the learner can change later, and their progress stays."
     },
     "app.lessons.back": {
       "message": "All courses",
@@ -416,7 +456,11 @@
     },
     "app.offline.notice": {
       "message": "You are offline. Lessons on this device still work, and your progress is saved here and syncs when you are back online.",
-      "description": "Shown while the device has no network."
+      "description": "Shown while the device has no network, to a learner signed in to an account (their progress syncs)."
+    },
+    "app.offline.notice-local": {
+      "message": "You are offline. Lessons on this device still work, and your progress is saved here.",
+      "description": "Shown while the device has no network, to a learner without an account: their progress stays on this device and nothing syncs."
     },
     "app.offline.progress": {
       "message": "{$done} of {$total}",
@@ -872,11 +916,11 @@
     },
     "app.xp.today": {
       "message": ".input {$xp :number}\n{{Today: {$xp} XP}}",
-      "description": "Experience points earned today (the learner's local date). XP: experience points, often left as XP."
+      "description": "Experience points earned today (the learner's local date), in every course, quests included. XP: experience points, often left as XP."
     },
     "app.xp.total": {
       "message": ".input {$xp :number}\n{{{$xp} XP}}",
-      "description": "Total experience points in this course. XP: experience points, often left as XP."
+      "description": "Experience points earned in all, in every course, quests included (the game's count, ADR 0107). XP: experience points, often left as XP."
     },
     "audio.check.back": {
       "message": "Back to the course",
@@ -1068,7 +1112,7 @@
     },
     "corrections.edit": {
       "message": "Change your correction",
-      "description": "Button in place of corrections.mark when the learner already suggested a correction for this sentence or line."
+      "description": "In place of corrections.mark (an option of the report button, in the sentence list, on a story line) when the learner already suggested a correction for this sentence or line."
     },
     "corrections.error.empty": {
       "message": "This can't be empty.",
@@ -1092,15 +1136,15 @@
     },
     "corrections.mark": {
       "message": "This sentence is wrong",
-      "description": "Button under an exercise's feedback, in the sentence list, and on a story line: open the form to say what is wrong with the sentence or line."
+      "description": "An option of the report button beside an exercise's feedback, and a button in the sentence list and on a story line: open the form to say what is wrong with the sentence or line."
     },
     "corrections.mark.pairs": {
       "message": "One of these is wrong",
-      "description": "Button under the feedback of a match-the-pairs exercise: choose which word or meaning is wrong, then say what it should be."
+      "description": "An option of the report button beside a match-the-pairs exercise's feedback: choose which word or meaning is wrong, then say what it should be."
     },
     "corrections.mark.word": {
       "message": "This word is wrong",
-      "description": "Button under the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
+      "description": "An option of the report button beside the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
     },
     "corrections.note": {
       "message": "Note for the reviewer (optional)",
@@ -1177,6 +1221,42 @@
     "corrections.word.text": {
       "message": "Word ({$orthography})",
       "description": "Label of the field holding the word in one orthography. $orthography is that orthography's name (a course can be taught in several)."
+    },
+    "course.blurb.apc": {
+      "message": "The Arabic of Lebanon, as people speak it every day.",
+      "description": "One line under the Lebanese Arabic course's name in the course list: what the course teaches."
+    },
+    "course.blurb.es": {
+      "message": "Spanish as Cuban families speak it, in Cuba and in Miami: for heritage speakers, and from the start.",
+      "description": "One line under the Cuban Spanish course's name in the course list: the Spanish of Cuban families, for heritage speakers (who grew up hearing it), though it starts from the beginning."
+    },
+    "course.blurb.fa": {
+      "message": "The Persian of Iran, in its own script.",
+      "description": "One line under the Persian course's name in the course list: what the course teaches."
+    },
+    "course.blurb.grc": {
+      "message": "The Greek of classical Athens, learned through passages of ancient authors.",
+      "description": "One line under the Ancient Greek course's name in the course list: Attic Greek, each unit reading a passage of an ancient author."
+    },
+    "course.blurb.hbo": {
+      "message": "The Hebrew of the Bible, with its vowel points, learned through its own passages.",
+      "description": "One line under the Biblical Hebrew course's name in the course list: each unit reads a Bible passage, written with the Tiberian vowel points."
+    },
+    "course.blurb.lzh": {
+      "message": "The written language of the Chinese classics, learned through their own passages.",
+      "description": "One line under the Classical Chinese course's name in the course list: each unit reads a passage of the classics."
+    },
+    "course.blurb.tok": {
+      "message": "A small language of a little over a hundred words, in Latin letters or in its own signs.",
+      "description": "One line under the Toki Pona course's name in the course list: a constructed language with about 120 words, written with the Latin alphabet or sitelen pona."
+    },
+    "course.blurb.uz": {
+      "message": "The Uzbek of Uzbekistan, in Latin or Cyrillic letters.",
+      "description": "One line under the Uzbek course's name in the course list: what the course teaches."
+    },
+    "course.blurb.yue": {
+      "message": "Cantonese as Hong Kong speaks it, with Jyutping to help you read.",
+      "description": "One line under the Cantonese course's name in the course list: Hong Kong Cantonese in Traditional characters, with Jyutping readings over the characters."
     },
     "course.name.apc": {
       "message": "Lebanese Arabic",
@@ -1314,6 +1394,10 @@
       "message": "The accent mark makes it another word (está “is”, esta “this”).",
       "description": "Feedback note for Spanish: with an accent mark left out or added, the answer spells a different word (esta for está, hablo for habló, el for él), so it does not count. The examples are Spanish words and stay as they are."
     },
+    "feedback.note.accent-word-pair": {
+      "message": "{$expected} and {$answer} are different words: the accent mark tells them apart.",
+      "description": "Feedback note for Spanish, in place of feedback.note.accent-word when the words are known: with an accent mark left out or added, the learner wrote $answer (another word of the course, such as como) where $expected was asked for (such as cómo), so the answer does not count. $expected and $answer are Spanish words, shown in their own language; put them where your grammar wants them."
+    },
     "feedback.note.alef-maqsura": {
       "message": "Watch the alif maqsura (ى) at the end of the word.",
       "description": "Feedback note for Arabic: alif maqsura and ya were confused."
@@ -1353,6 +1437,10 @@
     "feedback.note.greek-marks-word": {
       "message": "With those marks it is another word (ἡ “the”, ἤ “or”).",
       "description": "Feedback note for Ancient Greek: with an accent or breathing left out, added or changed, the answer spells a different word (ἡ for ἤ, τις for τίς), so it does not count. The examples are Greek words and stay as they are."
+    },
+    "feedback.note.greek-marks-word-pair": {
+      "message": "{$expected} and {$answer} are different words: their accents, breathings or iota subscripts tell them apart.",
+      "description": "Feedback note for Ancient Greek, in place of feedback.note.greek-marks-word when the words are known: with an accent, breathing or iota subscript left out, added or changed, the learner wrote $answer (another word of the course, such as τις) where $expected was asked for (such as τίς), so the answer does not count. $expected and $answer are Greek words, shown in their own language; put them where your grammar wants them."
     },
     "feedback.note.hamza": {
       "message": "Watch the hamza (أ, إ, آ).",
@@ -1510,6 +1598,10 @@
       "message": "Achievements",
       "description": "Heading of the unlocked achievements."
     },
+    "game.freeze.covered": {
+      "message": ".input {$count :number}\n.match $count\none {{A streak freeze covered {$days}, so your streak goes on.}}\n* {{Streak freezes covered {$days}, so your streak goes on.}}",
+      "description": "A missed day in the last week was covered by a streak freeze, spent on it automatically. $days is the day or days of the week, as a list in the interface language (Tuesday; Monday and Tuesday); $count is how many. Select plural forms as your language needs; drop the selection if it needs none."
+    },
     "game.freezes": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} streak freeze}}\n* {{{$count} streak freezes}}",
       "description": "Streak freezes held: each covers one missed day automatically."
@@ -1525,6 +1617,26 @@
     "game.gate.hearts": {
       "message": ".input {$count :number}\n.match $count\none {{{$count} heart}}\n* {{{$count} hearts}}",
       "description": "Hearts left (only on instances that turn the hearts gate on)."
+    },
+    "game.goal.change": {
+      "message": "Change goal",
+      "description": "Button beside the week's progress: choose another weekly goal."
+    },
+    "game.goal.days": {
+      "message": ".input {$days :number}\n.match $days\none {{{$days} day}}\n* {{{$days} days}}",
+      "description": "One choice of the weekly goal: this many practice days a week ($days, 3 to 7). Select plural forms as your language needs; drop the selection if it needs none."
+    },
+    "game.goal.met": {
+      "message": "Goal met. Well done!",
+      "description": "Beside the week's progress once the learner has practised on as many days this week as their goal."
+    },
+    "game.goal.question": {
+      "message": "How many days a week would you like to practise?",
+      "description": "Label of the choice of a weekly goal on the home screen (ADR 0107): the learner picks a number of practice days a week. Shown until they choose; they can change it later."
+    },
+    "game.goal.week": {
+      "message": ".input {$done :number}\n.input {$goal :number}\n.match $goal\none {{This week: {$done} of {$goal} day}}\n* {{This week: {$done} of {$goal} days}}",
+      "description": "Progress toward the learner's weekly goal: $done practice days so far this week, of the $goal they aim for. The week starts on the day the interface language's region starts it. Select plural forms as your language needs; drop the selection if it needs none."
     },
     "game.quests.done": {
       "message": "Done",
@@ -1546,6 +1658,10 @@
       "message": ".input {$days :number}\n{{Longest: {$days}}}",
       "description": "The learner's longest streak ever, in days."
     },
+    "game.streak.restart": {
+      "message": "Start a new streak today.",
+      "description": "In place of the streak's length when the streak has ended (a day was missed with no streak freeze to cover it): a kind invitation, never a zero and never guilt-tripping."
+    },
     "game.streak.today-done": {
       "message": "You practised today.",
       "description": "Shown when today already counts for the streak."
@@ -1555,8 +1671,8 @@
       "description": "Shown when today does not count yet; kind, never guilt-tripping."
     },
     "game.title": {
-      "message": "Your streak",
-      "description": "Heading of the panel with the streak, freezes, quests and achievements."
+      "message": "Your practice",
+      "description": "Heading of the panel on the home screen with the streak, the weekly goal, today's quests and the achievements. It shows only once the learner has finished a session."
     },
     "landing.contribute.audio": {
       "message": "Audio check: listen to every clip of a course and say whether it sounds right:",
@@ -1702,6 +1818,30 @@
       "message": "Hebrew script, Tiberian pointing",
       "description": "Name of the Biblical Hebrew orthography: the Hebrew letters with the Tiberian vowel points (niqqud), as in the Masoretic text."
     },
+    "orthography.hint.apc-Arab.standard": {
+      "message": "Arabic letters, right to left, with vowel marks to help you read.",
+      "description": "Under the name of Lebanese Arabic's Arabic-script writing system in the course list: what choosing it means."
+    },
+    "orthography.hint.apc-Latn.arabizi": {
+      "message": "Latin letters and digits, as many Lebanese write in messages.",
+      "description": "Under the name of Arabizi in the course list: Lebanese Arabic written with Latin letters and digits (7 for ح, 3 for ع), as in text messages."
+    },
+    "orthography.hint.tok-Latn.standard": {
+      "message": "The usual way to write Toki Pona.",
+      "description": "Under the name of Toki Pona's Latin writing system (sitelen Lasina) in the course list."
+    },
+    "orthography.hint.tok-Qaap.sitelen-pona": {
+      "message": "Toki Pona's own script: one sign for each word.",
+      "description": "Under the name of sitelen pona in the course list: Toki Pona's logographic script."
+    },
+    "orthography.hint.uz-Cyrl.standard": {
+      "message": "The older alphabet, still widely read.",
+      "description": "Under the name of the Uzbek Cyrillic writing system in the course list."
+    },
+    "orthography.hint.uz-Latn.standard": {
+      "message": "The official alphabet in Uzbekistan today.",
+      "description": "Under the name of the Uzbek Latin writing system in the course list."
+    },
     "orthography.lzh-Hant.standard": {
       "message": "Traditional characters",
       "description": "Name of the Classical Chinese orthography: Traditional Chinese characters."
@@ -1761,6 +1901,10 @@
     "player.chars.label": {
       "message": "Special characters",
       "description": "Accessible label of the bar of extra characters (ZWNJ, ʻ, ў…)."
+    },
+    "player.feedback.closest": {
+      "message": "Nearest correct version:",
+      "description": "Label in the feedback on a wrong answer, under the correct answer: another accepted way to say it, the one closest to what the learner wrote, with what they left out or got wrong marked. Shown only when the answer was close to it."
     },
     "player.feedback.marked": {
       "message": "(marked parts differ)",
@@ -2329,6 +2473,10 @@
     "reading.scheme.pinyin": {
       "message": "Pinyin",
       "description": "Name of the Pinyin romanization (Mandarin readings of Chinese characters), a choice in the readings control."
+    },
+    "report.problem": {
+      "message": "Report a problem",
+      "description": "The name of the small flag button beside an answer's feedback (read out by screen readers; the button shows only the flag), and the heading of what it opens: the reports that apply to this card, such as 'My answer should have been accepted' or 'This sentence is wrong'."
     },
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",

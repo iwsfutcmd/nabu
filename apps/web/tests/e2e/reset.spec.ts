@@ -96,9 +96,12 @@ test.describe("starting a course over", () => {
     await expect(status).toHaveAttribute("data-pending", "0");
     await expect(status).toHaveAttribute("data-verified", "true");
     const token = ((await (await context.request.post(`${API}/v1/auth/sign-in`, { data: { email, password: "az avval shoru kon" } })).json()) as { token: string }).token;
-    const server = (await (await context.request.get(`${API}/v1/state?course=fa`, { headers: { Authorization: `Bearer ${token}` } })).json()) as { state: { completedNodes: string[]; xp: { total: number } } };
+    const auth = { headers: { Authorization: `Bearer ${token}` } };
+    const server = (await (await context.request.get(`${API}/v1/state?course=fa`, auth)).json()) as { state: { completedNodes: string[] } };
     expect(server.state.completedNodes).toEqual([]);
-    expect(server.state.xp.total).toBe(Number(xp));
+    // XP stays. The course page shows the game's count (ADR 0107), quests included, as the server's game state has it.
+    const game = (await (await context.request.get(`${API}/v1/game?now=${encodeURIComponent(NOW.toISOString())}`, auth)).json()) as { game: { xp: { total: number } } };
+    expect(game.game.xp.total).toBe(Number(xp));
     expect(errors).toEqual([]);
   });
 

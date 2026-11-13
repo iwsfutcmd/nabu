@@ -64,6 +64,14 @@ export const LockIcon = ({ size = 20 }: IconProps): JSX.Element => (
   </svg>
 );
 
+/** Report a problem (a flag on its pole). Points nowhere: never mirrors. */
+export const FlagIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="flag">
+    <path d="M6 21V4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+    <path d="M6 4.5h10.5l-2.4 4 2.4 4H6z" fill="none" stroke="currentColor" strokeWidth="2" strokeLinejoin="round" />
+  </svg>
+);
+
 /** Play slowly (a tortoise). Media control: never mirrors. */
 export const SlowIcon = ({ size = 20 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="slow">

@@ -16,7 +16,6 @@
 import {
   applyEvents,
   continueOf,
-  emptyLearnerState,
   learnedWords,
   paceOf,
   pathNodes,
@@ -36,8 +35,8 @@ import {
   type SessionRequest,
 } from "@nabu/core/learner";
 import { createGrader, doneOf, firstTriesOf, LISTENING, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
-import type { GameConfig, GameState } from "@nabu/core/game";
-import { draftCount } from "@nabu/core/corrections";
+import { xpRule, type GameConfig, type GameState } from "@nabu/core/game";
+import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
@@ -49,9 +48,10 @@ import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExt
 import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
+import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
-import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
 import { reportIntake } from "./reports.ts";
@@ -180,29 +180,105 @@ interface GameProps {
   readonly gameConfig: GameConfig | null;
 }
 
+/** A message the catalog may have for an id (a course's blurb, a writing system's hint), else none. */
+const optional = (t: Translator, key: string): string | undefined => (t.has(key) ? t.format(key) : undefined);
+
+/** What a course's card says of its size and levels, from the bundles (vite-courses.ts). */
+const aboutCourse = (t: Translator, id: string): string | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined) return undefined;
+  const { units, levels } = summary;
+  if (levels === undefined) return t.format("app.home.course.units", { units });
+  return levels[0] === levels[1] ? t.format("app.home.course.level", { level: levels[0], units }) : t.format("app.home.course.levels", { from: levels[0], to: levels[1], units });
+};
+
+/** What a course leaves out, said on its card: a reading course, or one without listening (ADR 0071, 0091). */
+const leavesOut = (id: string): "app.home.course.reading" | "app.home.course.no-listening" | undefined => {
+  const summary = summaries[id];
+  if (summary === undefined || summary.listening) return undefined;
+  return summary.speaking ? "app.home.course.no-listening" : "app.home.course.reading";
+};
+
+/**
+ * A course in the list (S4): the whole card is the link to its course page, in its first writing
+ * system; a line on what it teaches, its levels and size, and what it leaves out. A course written
+ * in several systems offers each, with a hint, and says the learner can switch any time.
+ */
+const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Element => {
+  const t = useTranslator();
+  const [first] = entry.orthographies;
+  const blurb = optional(t, `course.blurb.${entry.id}`);
+  const about = aboutCourse(t, entry.id);
+  const leaves = leavesOut(entry.id);
+  return (
+    <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id}>
+      <h2 className={styles.courseName}>
+        {first === undefined ? (
+          courseName(t, entry.id)
+        ) : (
+          <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography: first })} data-course-link="">
+            {courseName(t, entry.id)}
+          </a>
+        )}
+      </h2>
+      {blurb !== undefined && <p className={styles.courseLine}>{blurb}</p>}
+      {about !== undefined && (
+        <p className={styles.muted} data-course-about="">
+          {about}
+        </p>
+      )}
+      {leaves !== undefined && (
+        <p className={styles.courseTag} data-course-leaves="">
+          {t.format(leaves)}
+        </p>
+      )}
+      {entry.orthographies.length > 1 && (
+        <div className={styles.scripts} role="group" aria-labelledby={`scripts-${entry.id}`}>
+          <p className={`${styles.courseLine} ${styles.label}`} id={`scripts-${entry.id}`}>
+            {t.format("app.home.writing")}
+          </p>
+          <p className={styles.muted}>{t.format("app.home.writing-switch")}</p>
+          <div className={styles.links}>
+            {entry.orthographies.map((o) => {
+              const hint = optional(t, `orthography.hint.${slug(o)}`);
+              return (
+                <a key={o} className={`${styles.link} ${styles.scriptLink}`} href={href({ tag: "course", course: entry.id, orthography: o })} data-orthography={o}>
+                  <span>{orthographyName(t, o)}</span>
+                  {hint !== undefined && <span className={styles.scriptHint}>{hint}</span>}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </li>
+  );
+};
+
 const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   const reviewer = useReviewer(sync);
+  // A learner who has not started yet is told what this is and how to begin (S4).
+  const fresh = game !== null && game.days.length === 0 && game.xp.total === 0;
+  // In the order of their names as the UI language sorts them.
+  const collator = new Intl.Collator(t.formattingLocale);
+  const sorted = [...courses].sort((a, b) => collator.compare(courseName(t, a.id), courseName(t, b.id)));
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
-      {!online && <OfflineNotice />}
+      {!online && <OfflineNotice synced={account !== undefined} />}
+      {fresh && (
+        <div className={styles.intro} data-home-intro="">
+          <p>{t.format("app.home.intro")}</p>
+          <p className={styles.muted}>{t.format("app.home.start")}</p>
+        </div>
+      )}
       {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
-        {courses.map((c) => (
-          <li key={c.id} className={styles.course} data-course={c.id}>
-            <h2 className={styles.courseName}>{courseName(t, c.id)}</h2>
-            {c.orthographies.length > 1 && <p className={styles.muted}>{t.format("app.home.writing")}</p>}
-            <div className={styles.links}>
-              {c.orthographies.map((o) => (
-                <a key={o} className={styles.link} href={href({ tag: "course", course: c.id, orthography: o })} data-orthography={o}>
-                  {orthographyName(t, o)}
-                </a>
-              ))}
-            </div>
-          </li>
+        {sorted.map((c) => (
+          <CourseCard key={c.id} entry={c} />
         ))}
       </ul>
       <Progress store={store} sync={sync} />
@@ -237,6 +313,8 @@ const Status = ({ status }: { status: NodeStatus }): JSX.Element => {
 /** The course's offline state, where this build keeps courses offline. */
 interface OfflineProps {
   readonly online: boolean;
+  /** Whether progress syncs (an account): what the offline notice promises. */
+  readonly synced: boolean;
   readonly root: string;
   readonly stored: ReadonlySet<string> | undefined;
   readonly onChange: () => void;
@@ -249,6 +327,7 @@ const CoursePath = ({
   ai,
   offline,
   speechTiers,
+  game,
   onReset,
 }: {
   loaded: LoadedCourse;
@@ -257,6 +336,8 @@ const CoursePath = ({
   ai: AiStatus;
   offline: OfflineProps;
   speechTiers: readonly number[];
+  /** The game state: XP comes from it alone, with the deployment's rules and quests (ADR 0107). */
+  game: GameState | null;
   onReset: () => void;
 }): JSX.Element => {
   const t = useTranslator();
@@ -284,7 +365,7 @@ const CoursePath = ({
     () => practicableMistakes(course, state, { exclude: excludedBy(off), speech: speechSupportOf(course, serverAllowed() ? speechTiers.length : 0) }).length,
     [course, state, off, speechTiers],
   );
-  const today = state.xp.byDate[localDate(now)] ?? 0;
+  const today = game?.xp.byDate[localDate(now)] ?? 0;
   // The demo's full builds keep drafts and say so (ADR 0073); a release build has none.
   const drafts = draftCount(course.units);
   const units = pathNodes(course).reduce<{ unit: PathEntry["unit"]; entries: PathEntry[] }[]>((acc, entry) => {
@@ -322,18 +403,20 @@ const CoursePath = ({
       <h1 className={styles.heading}>
         {courseName(t, course.id)} · {orthographyName(t, orthography)}
       </h1>
-      <p className={styles.stats} data-xp={state.xp.total} data-xp-today={today}>
-        <span className={styles.stat}>{t.format("app.xp.total", { xp: state.xp.total })}</span>
-        <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
-      </p>
-      {!offline.online && <OfflineNotice />}
+      {game !== null && (
+        <p className={styles.stats} data-xp={game.xp.total} data-xp-today={today}>
+          <span className={styles.stat}>{t.format("app.xp.total", { xp: game.xp.total })}</span>
+          <span className={styles.stat}>{t.format("app.xp.today", { xp: today })}</span>
+        </p>
+      )}
+      {!offline.online && <OfflineNotice synced={offline.synced} />}
       {drafts.drafts > 0 && (
         <p className={styles.notice} role="note" data-drafts={drafts.drafts}>
-          {t.format("app.course.drafts", { drafts: drafts.drafts, total: drafts.total })}
+          {drafts.drafts === drafts.total ? t.format("app.course.unchecked.all") : t.format("app.course.unchecked.some", { drafts: drafts.drafts, total: drafts.total })}
         </p>
       )}
       {!persistent && (
-        <p className={styles.notice} role="note" data-not-saved="">
+        <p className={`${styles.notice} ${styles.warning}`} role="note" data-not-saved="">
           {t.format("app.store.memory")}
         </p>
       )}
@@ -737,8 +820,11 @@ interface Setup {
   readonly planned: SessionPlan;
   /** The session's id: every event it records carries it. */
   readonly session: string;
-  /** The XP the learner had before the session (the end screen shows what it earned). */
-  readonly xpBefore: number;
+  /**
+   * The game's XP before the session (ADR 0107: the end screen shows what it earned, as the game
+   * counts it); undefined while the game state is not known yet, and then taken when it is.
+   */
+  readonly xpBefore: number | undefined;
   /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
   readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
   /** A new session's plan, kept on the device once the session starts (S3). */
@@ -750,7 +836,7 @@ const startOptions = (request: SessionRequest, planned: SessionPlan) => ({ retri
 
 /** Plans a new session from the learner's state as it opens (§9.4); its plan is kept from when it starts until it ends (S3). */
 const plannedSetup = (props: SessionProps, route: string): Setup => {
-  const { loaded, request, state, speechTiers } = props;
+  const { loaded, request, state, speechTiers, game } = props;
   const { course } = loaded;
   const seed = seedFor();
   // Speaking is scored where tones can be judged here or the server scores it (§10.4).
@@ -763,7 +849,7 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
   const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
   const session = uuidv7(now.getTime());
   const open: OpenSession | undefined = planned.exercises.length === 0 ? undefined : { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned };
-  return { seed, planned, session, xpBefore: state.xp.total, open };
+  return { seed, planned, session, xpBefore: game?.xp.total, open };
 };
 
 /**
@@ -771,7 +857,7 @@ const plannedSetup = (props: SessionProps, route: string): Setup => {
  * it was (S3: a reload, a phone that dropped the tab, the log reloading under it), or a new one.
  */
 const Session = (props: SessionProps): JSX.Element => {
-  const { loaded, request, game, gameConfig, store, state } = props;
+  const { loaded, request, game, gameConfig, store } = props;
   const route = href({ tag: "session", course: loaded.course.id, orthography: loaded.course.orthography, request });
   const [opened, setOpened] = useState<{ readonly setup: Setup } | "gate" | undefined>(undefined);
   const known = plannable(loaded.course, request);
@@ -783,10 +869,10 @@ const Session = (props: SessionProps): JSX.Element => {
       const done = found === undefined ? [] : doneOf(found.events, found.open.session);
       const from = found === undefined ? undefined : resume(request.mode === "lesson" ? request.node : request.mode, found.open.plan.exercises, startOptions(request, found.open.plan), done);
       if (found !== undefined && from !== undefined) {
-        // What the session earned so far is in the state already: the end screen counts from before it.
-        const earned = applyEvents(emptyLearnerState(), found.events).xp.total;
+        // What the session earned so far is in the game state already: the end screen counts from before it.
         const { open } = found;
-        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, xpBefore: state.xp.total - earned, resumed: { from, firstTries: firstTriesOf(done) } } });
+        const xpBefore = game === null || gameConfig === null ? undefined : game.xp.total - xpOfEvents(found.events, gameConfig);
+        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, xpBefore, resumed: { from, firstTries: firstTriesOf(done) } } });
       } else if (!sessionAllowed(game, request.mode, gameConfig)) {
         // Decided once, when the session opens: answering inside it never closes the gate on it.
         setOpened("gate");
@@ -843,8 +929,26 @@ const useSessionRoute = (route: string, back: string, playing: boolean) => {
   } as const;
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
+/** XP the events earn by the game's rule (answers right, so far, in a session not yet finished). */
+const xpOfEvents = (events: readonly LearnerEvent[], config: GameConfig): number =>
+  events.reduce((n, event) => n + xpRule({ event }, { config, mode: undefined, counts: true, replay: false }).reduce((m, e) => m + (e.tag === "xp" ? e.amount : 0), 0), 0);
+
+/**
+ * The XP a session has earned, from the game state (ADR 0107), as the course page counts XP: with the
+ * deployment's rules, and the quests the session completed. The game state is worked out again after
+ * each event, so the count settles a moment after the last one.
+ */
+const useXpEarned = (game: GameState | null, from: number | undefined): number | undefined => {
+  const [before, setBefore] = useState<number | undefined>(from ?? game?.xp.total);
+  useEffect(() => {
+    if (before === undefined && game !== null) setBefore(game.xp.total);
+  }, [before, game]);
+  return before === undefined || game === null ? undefined : game.xp.total - before;
+};
+
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, game, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
   const t = useTranslator();
+  const xpEarned = useXpEarned(game, setup.xpBefore);
   const { course, manifest, imageUrl } = loaded;
   const back = href({ tag: "course", course: course.id, orthography: course.orthography });
   const placement = request.mode === "placement";
@@ -922,17 +1026,14 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
-        xpEarned={state.xp.total - setup.xpBefore}
+        xpEarned={xpEarned}
         onExit={routing.exit}
         speech={speech}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
-          return (
-            <>
-              <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />
-              <MarkExercise key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} ex={ex} corrections={corrections} />
-            </>
-          );
+          // One report button beside the feedback (M6): claims about the answer, and corrections of what the card was built from.
+          const correcting = { course, bundle: manifest.id, device, record, targets: correctablesOf(course, ex), corrections };
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} />;
         }}
       />
     </main>
@@ -958,8 +1059,9 @@ const StorySession = (props: StorySessionProps): JSX.Element => {
   return allowed ? <StoryBody {...props} /> : <GateEmpty course={props.loaded.course} />;
 };
 
-const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai }: StorySessionProps): JSX.Element => {
+const StoryBody = ({ loaded, node, device, record, corrections, store, account, ai, game }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
+  const xpEarned = useXpEarned(game, undefined);
   const { course, manifest, imageUrl } = loaded;
   const back = href({ tag: "course", course: course.id, orthography: course.orthography });
   const route = href({ tag: "story", course: course.id, orthography: course.orthography, node });
@@ -975,7 +1077,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
       record(event);
       if (event.type === "session_completed") routing.ended(event.summary.completed);
     };
-    return { script: storyScript(course, story, seededRng(seed)), xpBefore: state.xp.total, onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
+    return { script: storyScript(course, story, seededRng(seed)), onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
@@ -1000,7 +1102,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         language={courseName(t, course.id)}
         onEvent={setup.onEvent}
         sound={sound}
-        xpEarned={state.xp.total - setup.xpBefore}
+        xpEarned={xpEarned}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         quitRequest={routing.quitRequest}
@@ -1008,7 +1110,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
-          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
         }}
       />
     </main>
@@ -1168,10 +1270,10 @@ export const App = (): JSX.Element => {
     return <Loading />;
   }
   if (route.tag === "course") {
-    const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
+    const offline: OfflineProps = { online, synced: account !== undefined, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
-    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />;
+    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} game={game} onReset={onReset} />;
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;

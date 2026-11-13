@@ -41,10 +41,23 @@ export const daysBetween = (a: string, b: string): number => Math.round((toUtc(b
 
 export const isIsoDate = (s: string): boolean => /^\d{4}-\d{2}-\d{2}$/u.test(s) && addDays(s, 0) === s;
 
-/** Monday of the ISO week a date falls in. */
-export const weekStart = (date: string): string => {
-  const weekday = (new Date(toUtc(date)).getUTCDay() + 6) % 7; // Monday 0 … Sunday 6
-  return addDays(date, -weekday);
+/**
+ * The first day of the week a date falls in, for a week that starts on `firstDay` (1 Monday … 7
+ * Sunday, as Intl.Locale's week info numbers days): Monday by default, as ISO weeks do.
+ */
+export const weekStart = (date: string, firstDay = 1): string => {
+  const weekday = new Date(toUtc(date)).getUTCDay() || 7; // Monday 1 … Sunday 7
+  return addDays(date, -((weekday - firstDay + 7) % 7));
+};
+
+/**
+ * Practice days so far in the week of `today` (ADR 0107): the dates that count toward the streak,
+ * from the week's first day (`firstDay`, as weekStart) through today. A learner's weekly goal is a
+ * number of these.
+ */
+export const daysThisWeek = (days: readonly string[], today: string, firstDay = 1): number => {
+  const start = weekStart(today, firstDay);
+  return days.filter((d) => d >= start && d <= today).length;
 };
 
 const wallFormats = new Map<string, Intl.DateTimeFormat>();

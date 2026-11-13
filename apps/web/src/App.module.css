@@ -46,6 +46,91 @@
   font-size: 1.25rem;
 }
 
+/* The home screen's first words, for a learner who has not started yet (S4). */
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+}
+
+.intro > p {
+  margin: 0;
+}
+
+/*
+ * A course in the list (S4): the whole card is its link (the name's link reaches over the card);
+ * a course's writing systems are links of their own above it.
+ */
+.courseCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.courseCard:hover {
+  border-color: var(--nabu-color-accent);
+}
+
+.courseLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.courseLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--nabu-radius-card);
+}
+
+.courseLink:focus-visible {
+  outline: none;
+}
+
+.courseLink:focus-visible::after {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.courseLine {
+  margin: 0;
+}
+
+/* What a course leaves out (no listening): a note, not an error. */
+.courseTag {
+  align-self: flex-start;
+  margin: 0;
+  padding-block: var(--nabu-space-1);
+  padding-inline: var(--nabu-space-2);
+  font-size: 0.875rem;
+  background-color: var(--nabu-color-info-bg);
+  border-radius: var(--nabu-radius-tile);
+}
+
+.scripts {
+  margin-block-start: var(--nabu-space-2);
+}
+
+.scripts .links {
+  margin-block-start: var(--nabu-space-2);
+}
+
+/* Above the card's own link; the name, then the hint, at the start. */
+.scripts .scriptLink {
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.scriptHint {
+  font-size: 0.875rem;
+  color: var(--nabu-color-muted);
+}
+
 .muted {
   margin-block: var(--nabu-space-1) 0;
   color: var(--nabu-color-muted);
@@ -218,10 +303,19 @@
   border-radius: var(--nabu-radius-tile);
 }
 
+/*
+ * A note the learner should know about (a draft course, a break from listening, offline) is
+ * neutral. Only an error (role="alert") or a warning about losing progress takes the wrong colours.
+ */
 .notice {
   padding: var(--nabu-space-3);
-  background-color: var(--nabu-color-wrong-bg);
+  background-color: var(--nabu-color-info-bg);
   border-radius: var(--nabu-radius-tile);
+}
+
+.notice[role="alert"],
+.warning {
+  background-color: var(--nabu-color-wrong-bg);
 }
 
 .count {
@@ -389,6 +483,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
 }
 
 .streak {
@@ -401,6 +496,32 @@
 
 .streakCount {
   font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* The weekly goal (ADR 0107): the week's progress, or the choice of how many days. */
+.goal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+  margin: 0;
+}
+
+.goalProgress {
+  font-weight: 700;
+}
+
+.goalChoices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--nabu-space-2);
+}
+
+.goalChoice {
+  box-sizing: border-box;
+  justify-content: center;
+  min-inline-size: 2.75rem;
   font-weight: 700;
 }
 
@@ -749,4 +870,103 @@
   background-color: var(--nabu-color-surface);
   border: 1px solid var(--nabu-color-border);
   border-radius: var(--nabu-radius-tile);
+}
+
+/*
+ * Under an answer's feedback (the review's M6): AI help at the inline start, and one small report
+ * button at the inline end, an icon in a full-size touch target with no frame until it is pointed at.
+ */
+.answerTools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.answerToolsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.toolsStatus {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.reportButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  margin-inline-start: auto;
+  padding: 0;
+  color: var(--nabu-color-muted);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.reportButton[data-hovered],
+.reportButton[data-pressed] {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-track);
+}
+
+.reportButton[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.reportPopover {
+  max-inline-size: min(22rem, calc(100vi - 2 * var(--nabu-space-4)));
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  box-shadow: 0 0.25rem 1rem var(--nabu-color-backdrop);
+}
+
+.reportDialog {
+  padding: var(--nabu-space-3);
+  outline: none;
+}
+
+.reportTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.reportOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.reportOption {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: var(--nabu-color-text);
+  text-align: start;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.reportOption[data-hovered] {
+  border-color: var(--nabu-color-accent);
+}
+
+.reportOption[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.reportOption[data-disabled] {
+  color: var(--nabu-color-muted);
+  cursor: default;
 }

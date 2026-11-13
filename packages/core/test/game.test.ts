@@ -13,6 +13,7 @@ import {
   canStart,
   countable,
   daysBetween,
+  daysThisWeek,
   DEFAULT_GAME,
   DEFAULT_LEAGUE,
   leagueWeek,
@@ -23,7 +24,9 @@ import {
   HEARTS,
   localDateOf,
   questsFor,
+  QUEST_WINDOW,
   replayGame,
+  replaysOf,
   streakOf,
   weekStart,
   type GameConfig,
@@ -134,6 +137,19 @@ describe("local dates", () => {
     expect(addDays("2026-01-01", -1)).toBe("2025-12-31");
     expect(weekStart("2026-11-08")).toBe("2026-11-02"); // Sunday → Monday
     expect(weekStart("2026-11-02")).toBe("2026-11-02");
+    // Weeks that start on Sunday (7) or Saturday (6), as some locales have them.
+    expect(weekStart("2026-11-08", 7)).toBe("2026-11-08");
+    expect(weekStart("2026-11-07", 7)).toBe("2026-11-01");
+    expect(weekStart("2026-11-07", 6)).toBe("2026-11-07");
+    expect(weekStart("2026-11-06", 6)).toBe("2026-10-31");
+  });
+
+  it("counts this week's practice days from the week's first day (ADR 0107)", () => {
+    const days = ["2026-10-30", "2026-11-01", "2026-11-02", "2026-11-04"];
+    expect(daysThisWeek(days, "2026-11-05")).toBe(2); // Monday 2 November on
+    expect(daysThisWeek(days, "2026-11-05", 7)).toBe(3); // Sunday 1 November on
+    expect(daysThisWeek(days, "2026-11-01", 7)).toBe(1); // a new week, practised today
+    expect(daysThisWeek([], "2026-11-05")).toBe(0);
   });
 
   it("an instant's local date depends on the zone, across the date line", () => {
@@ -426,12 +442,40 @@ describe("freezes", () => {
 // ------------------------------------------------------------------------------------ quests, achievements, XP
 
 describe("quests and achievements", () => {
-  it("the day's quests are the same for everyone on a date, and rotate", () => {
-    const a = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
-    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id));
+  it("the day's quests are the same for everyone on a date who can do them, and rotate", () => {
+    const every = new Set(DEFAULT_GAME.quests.pool.map((q) => q.id));
+    const a = questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id);
+    expect(a).toEqual(questsFor("2026-05-01", DEFAULT_GAME, every).map((q) => q.id));
     expect(new Set(a).size).toBe(3);
-    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME).map((q) => q.id).join());
+    const week = Array.from({ length: 7 }, (_, i) => questsFor(addDays("2026-05-01", i), DEFAULT_GAME, every).map((q) => q.id).join());
     expect(new Set(week).size).toBeGreaterThan(1);
+    // Someone who can do fewer kinds of practice gets the same draw without the others.
+    const some = questsFor("2026-05-01", DEFAULT_GAME).map((q) => q.id);
+    expect(some).toHaveLength(3);
+    expect(some.every((id) => DEFAULT_GAME.quests.pool.find((q) => q.id === id)?.requires === undefined)).toBe(true);
+  });
+
+  it("a quest needs practice the log shows in the two weeks before its day: none for listening in a reading course (ADR 0107)", () => {
+    const tz = "UTC";
+    const dates = Array.from({ length: 40 }, (_, i) => addDays("2026-07-01", i));
+    const reading = dates.flatMap((date) => session({ at: instantAt(date, 600, tz), tz }));
+    const drawn = (events: readonly LearnerEvent[], date: string): readonly string[] => replayGame(online(events), DEFAULT_GAME, clockAt(date, instantAt(date, 1200, tz))).quests.map((q) => q.id);
+    // Only ever reading (choose-translation, lessons): three quests a day, none for listening, writing or a story.
+    for (const date of dates) {
+      const ids = drawn(reading, date);
+      expect(ids, date).toHaveLength(3);
+      expect(ids.filter((id) => ["listen-5", "produce-5", "story-1"].includes(id)), date).toEqual([]);
+    }
+    // Nothing to review on the very first day; something every day after.
+    expect(drawn(reading, "2026-07-01")).not.toContain("review-1");
+    expect(dates.some((date) => drawn(reading, date).includes("review-1"))).toBe(true);
+    // Listening once, on 20 July, makes the listening quest possible from the next day, for two weeks.
+    const listened = session({ at: instantAt("2026-07-20", 700, tz), tz }).map((e) => (e.type === "answer_submitted" ? { ...e, exercise: { ...e.exercise, template: "listen-select" } } : e)) as LearnerEvent[];
+    const listening = dates.filter((date) => drawn([...reading, ...listened], date).includes("listen-5"));
+    expect(listening.length).toBeGreaterThan(0);
+    for (const date of listening) expect(date > "2026-07-20" && date <= addDays("2026-07-20", QUEST_WINDOW), date).toBe(true);
+    // The day's own practice never changes its quests.
+    expect(drawn([...reading, ...listened], "2026-07-20")).toEqual(drawn(reading, "2026-07-20"));
   });
 
   it("completed quests add their XP; without quests, XP matches the learner model's", () => {
@@ -451,6 +495,75 @@ describe("quests and achievements", () => {
     const events = Array.from({ length: 10 }, (_, i) => session({ at: instantAt(addDays("2026-02-01", i), 600, tz), tz })).flat();
     const state = replayGame(online(events), DEFAULT_GAME, clockAt("2026-02-10", Date.parse("2026-02-10T12:00:00Z")));
     expect(state.achievements).toEqual(["streak-7", "sessions-10"]);
+  });
+
+  it("a session pays a point a card up to ten, and the perfect bonus only from five cards (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const xpOf = (events: readonly LearnerEvent[]): number => replayGame(online(events), NO_QUESTS, clockAt("2026-05-01", at(1200))).xp.total;
+    // One card right: 1 for the answer, 1 for the session, no perfect bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 1, mode: "mistakes" }))).toBe(2);
+    // Five right: 5 + 5 + 5.
+    expect(xpOf(session({ at: at(600), tz, right: 5, mode: "review" }))).toBe(15);
+    // Fourteen, one wrong: 13 + 10, no bonus.
+    expect(xpOf(session({ at: at(600), tz, right: 13, wrong: 1 }))).toBe(23);
+    // Per card, five one-card sessions now pay less than one five-card session.
+    const minis = [0, 1, 2, 3, 4].flatMap((i) => session({ at: at(600 + i * 10), tz, right: 1, mode: "mistakes" }));
+    expect(xpOf(minis)).toBeLessThan(xpOf(session({ at: at(600), tz, right: 5, mode: "review" })));
+  });
+
+  it("a lesson finished before pays its answers only, until the course is started over (ADR 0107)", () => {
+    const tz = "UTC";
+    const at = (minutes: number): number => instantAt("2026-05-01", minutes, tz);
+    const lesson = (minutes: number, node = "fa.greetings"): LearnerEvent[] =>
+      session({ at: at(minutes), tz, right: 6 }).map((e): LearnerEvent => (e.type === "session_started" || e.type === "session_completed" ? { ...e, node } : e));
+    const clock = clockAt("2026-05-01", at(1200));
+    const first = lesson(600);
+    const again = lesson(700);
+    const once = replayGame(online(first), NO_QUESTS, clock).xp.total;
+    expect(once).toBe(6 + 6 + 5);
+    expect(replayGame(online([...first, ...again]), NO_QUESTS, clock).xp.total).toBe(once + 6);
+    expect(replaysOf([...first, ...again])).toEqual(new Set([again.at(-1)?.id]));
+    // Another lesson is no replay; neither is the same one after starting the course over.
+    expect(replayGame(online([...first, ...lesson(700, "fa.names")]), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    const reset = { ...(first[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at(650)).toISOString() } as unknown as LearnerEvent;
+    const restarted = [...first, reset, ...again];
+    expect(replayGame(online(restarted), NO_QUESTS, clock).xp.total).toBe(2 * once);
+    // The learner model pays the same.
+    for (const log of [[...first, ...again], restarted]) expect(replay(log).xp.total).toBe(replayGame(online(log), NO_QUESTS, clock).xp.total);
+    // So do leagues, which see the finish before the week only to know the replay.
+    const week = leagueWeek(at(700), DEFAULT_LEAGUE);
+    const before = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start - 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    const inWeek = lesson(600).map((e) => ({ ...e, clientTime: new Date(week.start + 3_600_000 + Date.parse(e.clientTime) - at(600)).toISOString() })) as LearnerEvent[];
+    expect(leagueXp(online([...before, ...inWeek]), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(6);
+    expect(leagueXp(online(inWeek), week.start, week.end, DEFAULT_GAME, DEFAULT_LEAGUE)).toBe(once);
+  });
+
+  it("XP agrees with the learner model's on any log of one course, quests off (ADR 0044)", () => {
+    const tz = "UTC";
+    const nodes = ["fa.greetings", "fa.names", undefined];
+    const day = fc.record({
+      right: fc.integer({ min: 0, max: 14 }),
+      wrong: fc.integer({ min: 0, max: 3 }),
+      mode: fc.constantFrom<"lesson" | "review" | "mistakes" | "story">("lesson", "review", "mistakes", "story"),
+      node: fc.constantFrom(...nodes),
+      reset: fc.boolean(),
+    });
+    fc.assert(
+      fc.property(fc.array(day, { minLength: 1, maxLength: 12 }), (days) => {
+        const events = days.flatMap((d, i) => {
+          const at = instantAt(addDays("2026-03-01", i), 600, tz);
+          const done = session({ at, tz, right: d.right, wrong: d.wrong, mode: d.mode }).map((e): LearnerEvent =>
+            (e.type === "session_started" || e.type === "session_completed") && d.node !== undefined && (d.mode === "lesson" || d.mode === "story") ? { ...e, node: d.node } : e,
+          );
+          const reset = d.reset ? [{ ...(done[0] as LearnerEvent), id: uuid(), type: "progress_reset", clientTime: new Date(at - 60_000).toISOString() } as unknown as LearnerEvent] : [];
+          return [...reset, ...done];
+        });
+        const last = events.at(-1) as LearnerEvent;
+        expect(replayGame(online(events), NO_QUESTS, clockAt(last.localDate, Date.parse(last.clientTime))).xp.total).toBe(replay(events).xp.total);
+      }),
+      { numRuns: 200 },
+    );
   });
 
   it("the golden session's XP agrees with the learner model when quests are off", () => {
@@ -514,7 +627,7 @@ describe("league XP and ranking", () => {
     const inWeek = session({ at: week.start + 3_600_000, tz, right: 5 });
     const before = session({ at: week.start - 3_600_000, tz, right: 5 });
     const xp = leagueXp(online([...inWeek, ...before]), week.start, week.end, DEFAULT_GAME, league);
-    expect(xp).toBe(5 + 10 + 5); // answers, session, perfect: the earlier session does not count
+    expect(xp).toBe(5 + 5 + 5); // answers, a point a card, perfect: the earlier session does not count
     // Too fast: no answer XP, and a session with no plausible answer earns nothing either.
     const fast = session({ at: week.start + 7_200_000, tz, right: 5 }).map((e) => (e.type === "answer_submitted" ? { ...e, input: { ...e.input, latencyMs: 50 } } : e)) as LearnerEvent[];
     expect(leagueXp(online(fast), week.start, week.end, DEFAULT_GAME, league)).toBe(0);

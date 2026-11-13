@@ -1,7 +1,8 @@
 /**
- * Corrections in the app (ADR 0051, 0057): the sentence list page, and "This sentence is wrong"
- * under an exercise's feedback and on story lines; "This word is wrong" under a word exercise's,
- * and "One of these is wrong" under match-the-pairs, which asks which word first. A correction is a sentence_reported event in the
+ * Corrections in the app (ADR 0051, 0057): the sentence list page, "This sentence is wrong" on story
+ * lines, and the dialogs the report button beside an answer's feedback opens (Report.tsx): "This
+ * sentence is wrong", "This word is wrong" for a word exercise, and "One of these is wrong" for
+ * match-the-pairs, which asks which word first. A correction is a sentence_reported event in the
  * device's log: it syncs like any other and joins the server's review queue. The sentence list
  * also downloads the device's own corrections as the file `nabu corrections apply` reads, so a
  * reviewer can apply them with no server at all.
@@ -12,7 +13,6 @@
  */
 import {
   correctable,
-  correctablesOf,
   correctionKey,
   correctionRows,
   jsonLines,
@@ -25,7 +25,7 @@ import {
   type SignOffKind,
   type UnitCorrectables,
 } from "@nabu/core/corrections";
-import type { CourseView, Exercise } from "@nabu/core/lesson";
+import type { CourseView } from "@nabu/core/lesson";
 import type { CorrectionFields, LearnerEvent, SentenceReported, SignOff, SignOffs } from "@nabu/schema";
 import { chromeClass, T, useChrome, useTranslator } from "@nabu/ui";
 import { CorrectionForm, SentenceList, signOffKey } from "@nabu/ui/corrections";
@@ -126,20 +126,6 @@ export const MarkIncorrect = ({ item, step, corrections, className, ...recording
   return target === undefined ? null : <MarkTargets {...recording} targets={[target]} corrections={corrections} className={className} />;
 };
 
-interface ExerciseMarkProps extends Recording {
-  readonly ex: Pick<Exercise, "template" | "item" | "kcs">;
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-}
-
-/**
- * Under an exercise's feedback: the sentence or word it was built from can be marked as wrong;
- * match-the-pairs asks which of its words first.
- */
-export const MarkExercise = ({ ex, ...props }: ExerciseMarkProps): JSX.Element | null => {
-  const targets = correctablesOf(props.course, ex);
-  return targets.length === 0 ? null : <MarkTargets {...props} targets={targets} />;
-};
-
 interface TargetsProps extends Recording {
   readonly targets: readonly Correctable[];
   readonly corrections: ReadonlyMap<string, SentenceReported>;
@@ -207,7 +193,7 @@ interface ChooseProps {
  * "Which one is wrong?": each word in the learner's orthography (with its readings, which can be
  * what is wrong), and its meaning, through <T>.
  */
-const ChooseDialog = ({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
+export const ChooseDialog =({ course, targets, corrections, onChoose, onClose }: ChooseProps): JSX.Element => {
   const t = useTranslator();
   const chrome = useChrome();
   const ruby = rubySchemeOf(course.profiles.get(course.orthography)?.source) ?? false;

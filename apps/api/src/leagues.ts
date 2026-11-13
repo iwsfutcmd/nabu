@@ -16,14 +16,23 @@ import { events, leagueMembers, leagueResults, leagueWeeks, profiles } from "./d
 
 const HOUR = 3_600_000;
 
-/** League XP per user for a week, from the log. */
+/**
+ * League XP per user for a week, from the log: the week's events, and the earlier finished sessions
+ * and starts over, which say which of the week's lessons replay one done before (ADR 0107).
+ */
 const weekXp = async (db: Db, users: readonly string[], week: { start: number; end: number }, config: LeagueConfig): Promise<Map<string, number>> => {
   const out = new Map<string, number>(users.map((u) => [u, 0]));
   if (users.length === 0) return out;
-  const rows = await db
-    .select({ userId: events.userId, payload: events.payload, serverTime: events.serverTime })
+  const columns = { userId: events.userId, payload: events.payload, serverTime: events.serverTime };
+  const during = await db
+    .select(columns)
     .from(events)
     .where(and(inArray(events.userId, [...users]), gte(events.clientTime, new Date(week.start)), lt(events.clientTime, new Date(week.end))));
+  const earlier = await db
+    .select(columns)
+    .from(events)
+    .where(and(inArray(events.userId, [...users]), lt(events.clientTime, new Date(week.start)), inArray(events.type, ["session_completed", "progress_reset"])));
+  const rows = [...earlier, ...during];
   const byUser = new Map<string, GameInput[]>();
   for (const r of rows) byUser.set(r.userId, [...(byUser.get(r.userId) ?? []), { event: r.payload as LearnerEvent, receivedAt: r.serverTime.toISOString() }]);
   for (const [user, inputs] of byUser) out.set(user, leagueXp(inputs, week.start, week.end, DEFAULT_GAME, config));

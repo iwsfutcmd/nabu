@@ -200,6 +200,16 @@ describe("leagues", () => {
     await upload(winner, session(clock - 3_600_000, 3));
     expect(await (await app.request("/v1/league", request("GET", undefined, winner))).json()).toMatchObject({ member: true, tier: 2 });
   });
+
+  it("a lesson finished before the week and replayed in it earns its answers only (ADR 0107)", async () => {
+    const week = leagueWeek(clock, LEAGUE);
+    const token = await signUp();
+    await upload(token, session(week.start - 2 * 86_400_000, 6)); // fa.greetings, the week before
+    await upload(token, session(week.start + 3_600_000, 6)); // the same lesson again
+    const view = (await (await app.request("/v1/league", request("GET", undefined, token))).json()) as { member: boolean; standings: { you: boolean; xp: number }[] };
+    expect(view.member).toBe(true);
+    expect(view.standings.find((s) => s.you)?.xp).toBe(6);
+  });
 });
 
 // ------------------------------------------------------------------------------------ reminders

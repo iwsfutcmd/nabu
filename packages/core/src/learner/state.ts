@@ -68,7 +68,12 @@ export interface LearnerState {
 export const RECENT_WINDOW = 60;
 
 export const DESIRED_RETENTION = 0.9;
-export const XP = { answer: 1, session: 10, perfect: 5 } as const;
+/**
+ * XP as the game's default rules pay it (ADR 0107; the game projection is the one the app shows): a
+ * point a right answer; a point a card for a finished session, up to `session`; `perfect` more for a
+ * session of at least `perfectFrom` cards all right the first time; a lesson done before, its answers only.
+ */
+export const XP = { answer: 1, session: 10, perfect: 5, perfectFrom: 5 } as const;
 const LATENCY_WINDOW = 25;
 /**
  * Pace (ADR 0096). An answer's time is compared per unit of length, its KCs plus a fixed part for
@@ -274,7 +279,9 @@ const skipped = (d: Draft, e: ExerciseSkipped): void => {
 
 const completed = (d: Draft, e: SessionCompleted): void => {
   if (!e.summary.completed) return;
-  addXp(d, e.localDate, XP.session + (e.summary.exercises > 0 && e.summary.correctFirstTry === e.summary.exercises ? XP.perfect : 0));
+  const { exercises, correctFirstTry } = e.summary;
+  const replay = (e.mode === "lesson" || e.mode === "story") && e.node !== undefined && d.completedNodes.includes(e.node);
+  if (!replay) addXp(d, e.localDate, Math.min(XP.session, exercises) + (exercises >= XP.perfectFrom && correctFirstTry === exercises ? XP.perfect : 0));
   if ((e.mode === "lesson" || e.mode === "story") && e.node !== undefined && !d.completedNodes.includes(e.node)) d.completedNodes.push(e.node);
   // A placement test marks the nodes the learner placed out of as done (§9.5), and seeds their KCs
   // (ADR 0111): a recognize card each, as if recalled with ease at the end of the test, so the

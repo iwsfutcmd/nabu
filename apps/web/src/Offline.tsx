@@ -22,11 +22,12 @@ const sizeOf = (t: Translator, bytes: number): string => {
 const STATE = { ready: "app.offline.state.ready", partial: "app.offline.state.partial", missing: "app.offline.state.missing" } as const satisfies Record<UnitState, string>;
 const ERROR = { network: "app.offline.error.network", integrity: "app.offline.error.integrity", quota: "app.offline.error.quota" } as const satisfies Record<DownloadError, string>;
 
-export const OfflineNotice = (): JSX.Element => {
+/** While the device is offline: lessons go on; progress syncs later only for a learner with an account. */
+export const OfflineNotice = ({ synced }: { synced: boolean }): JSX.Element => {
   const t = useTranslator();
   return (
-    <p className={styles.notice} role="status" data-offline-notice="">
-      {t.format("app.offline.notice")}
+    <p className={styles.notice} role="status" data-offline-notice="" data-synced={synced}>
+      {t.format(synced ? "app.offline.notice" : "app.offline.notice-local")}
     </p>
   );
 };
