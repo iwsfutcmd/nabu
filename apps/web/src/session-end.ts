@@ -11,7 +11,7 @@
  * Continue says, with more practice beside it (D34).
  */
 import { daysThisWeek, type GameConfig, type GameState } from "@nabu/core/game";
-import { continueOf, DESIRED_RETENTION, learnedWords, paceOf, pathNodes, replay, type LearnerState, type PaceChoice, type PathNode } from "@nabu/core/learner";
+import { continueOf, DESIRED_RETENTION, learnedWords, paceOf, pathNodes, pathUnits, replay, type LearnerState, type PaceChoice, type PathNode } from "@nabu/core/learner";
 import type { CourseView, Facet } from "@nabu/core/lesson";
 import type { LearnerEvent, SessionCompleted } from "@nabu/schema";
 import type { useTranslator } from "@nabu/ui";
@@ -88,8 +88,16 @@ export const progressOf = ({ course, before, after, config, now, firstDay, place
 };
 
 /** A path node as the next step names it: a lesson by its number on the path, or the unit's story. */
-const nextTo = (course: CourseView, node: PathNode): NextTo =>
-  node.kind === "story" ? { kind: "story" } : { kind: "lesson", number: pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === node.node) + 1 };
+/** The next node as the end screen names it: a lesson by its unit and its number there, as the course page numbers it (S11). */
+const nextTo = (course: CourseView, node: PathNode): NextTo => {
+  if (node.kind === "story") return { kind: "story" };
+  const number = pathNodes(course).filter((e) => e.kind === "lesson").findIndex((e) => e.node.id === node.node) + 1;
+  for (const unit of pathUnits(course)) {
+    const entry = unit.entries.find((e) => e.node.id === node.node);
+    if (entry !== undefined) return unit.number !== undefined && entry.number !== undefined ? { kind: "lesson", number, unit: unit.number, inUnit: entry.number } : { kind: "lesson", number };
+  }
+  return { kind: "lesson", number };
+};
 
 /** Whether a session of this mode is practice: review, mistakes, any mode but a lesson, a story or a placement test (D34). */
 export const practises = (mode: SessionCompleted["mode"]): boolean => mode !== "lesson" && mode !== "story" && mode !== "placement";
@@ -125,14 +133,16 @@ export const nextStepOf = ({ course, state, now, pace: choice, facetsOff, hrefOf
   const next = continueOf(course, state, pace);
   if (next.kind === "done") return undefined;
   const practice = { to: { kind: "practice" }, go: () => go(review) } as const;
-  if (gated) return next.kind === "practice" ? { ...practice, why: t.format("app.pace.why.slipping", { count: pace.slipping }) } : practice;
+  // Why practice comes first, where words are slipping; once the path is done, practice needs no why.
+  const why = pace.slipping > 0 ? { why: t.format("app.pace.why.slipping", { count: pace.slipping }) } : {};
+  if (gated) return next.kind === "practice" ? { ...practice, ...why } : practice;
   // The next node on the path, whether Continue offers it first or beside practice.
   const node = next.next;
   if (practised && node !== undefined) return { to: nextTo(course, node), go: () => go(hrefOf(node)), beside: practice };
   if (next.kind === "path") return { to: nextTo(course, next.next), go: () => go(hrefOf(next.next)) };
   return {
     ...practice,
-    why: t.format("app.pace.why.slipping", { count: pace.slipping }),
+    ...why,
     ...(node === undefined ? {} : { beside: { to: nextTo(course, node), go: () => go(hrefOf(node)) } }),
   };
 };

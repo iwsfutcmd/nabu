@@ -2006,6 +2006,10 @@
       "message": "Next: the story",
       "description": "Button at the end of a session: read the unit's story, the next step on the course's path."
     },
+    "player.end.next.unit-lesson": {
+      "message": ".input {$unit :number}\n.input {$number :number}\n{{Next: Unit {$unit}, lesson {$number}}}",
+      "description": "Button at the end of a session: start the next lesson on the course's path, as the course page's Continue would. $unit is its unit's number and $number its number within the unit, as the course path shows them."
+    },
     "player.end.progress.title": {
       "message": "Your progress",
       "description": "End of a session: heading over what the session changed: words now known, a unit finished, the streak, the week's practice days, quests done, achievements, and the XP."

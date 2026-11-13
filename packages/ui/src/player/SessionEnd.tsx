@@ -37,7 +37,14 @@ import { MarkedAnswer } from "./Feedback.tsx";
 import styles from "./Player.module.css";
 
 /** Where the next step goes: a lesson (its number on the path), the unit's story, or practice first. */
-export type NextTo = { readonly kind: "lesson"; readonly number: number } | { readonly kind: "story" } | { readonly kind: "practice" };
+/**
+ * Where the next step goes. A lesson has its number on the path (`number`) and, where its unit is
+ * numbered, the unit and its number there (`unit`, `inUnit`), as the course page names it (S11).
+ */
+export type NextTo =
+  | { readonly kind: "lesson"; readonly number: number; readonly unit?: number | undefined; readonly inUnit?: number | undefined }
+  | { readonly kind: "story" }
+  | { readonly kind: "practice" };
 
 /**
  * The next step, as the course page's Continue has it (ADR 0105), or the next lesson right after
@@ -221,8 +228,11 @@ const MissedCard = ({ course, grader, missed, ruby, marks, extra }: MissedCardPr
   );
 };
 
-const nextLabel = (t: ReturnType<typeof useTranslator>, to: NextTo): string =>
-  to.kind === "lesson" ? t.format("player.end.next.lesson", { number: to.number }) : to.kind === "story" ? t.format("player.end.next.story") : t.format("player.end.next.practice");
+const nextLabel = (t: ReturnType<typeof useTranslator>, to: NextTo): string => {
+  if (to.kind === "story") return t.format("player.end.next.story");
+  if (to.kind === "practice") return t.format("player.end.next.practice");
+  return to.unit !== undefined && to.inUnit !== undefined ? t.format("player.end.next.unit-lesson", { unit: to.unit, number: to.inUnit }) : t.format("player.end.next.lesson", { number: to.number });
+};
 
 const dataOf = (to: NextTo): string => (to.kind === "lesson" ? `lesson ${String(to.number)}` : to.kind);
 

@@ -168,6 +168,9 @@ describe("the end of a lesson (P9)", () => {
     expect(footer).toContain('data-action="exit"');
     expect(footer).toContain(">Back to the course<");
     expect(footer).toMatch(/data-action="next" data-next="lesson 3"[^>]*>Next: Lesson 3/u);
+    // A lesson named by its unit and its number there, as the course page names it (S11).
+    const inUnit: NextStep = { to: { kind: "lesson", number: 7, unit: 2, inUnit: 3 }, go: () => undefined };
+    expect(show(end, { next: inUnit })).toMatch(/data-action="next" data-next="lesson 7"[^>]*>Next: Unit 2, lesson 3/u);
     // The next step comes last, at the inline end, and is described by the title and the score.
     expect(footer.indexOf('data-action="exit"')).toBeLessThan(footer.indexOf('data-action="next"'));
     expect(footer).toMatch(/data-action="next"[^>]*aria-describedby="[^"]+-title [^"]+-score"/u);

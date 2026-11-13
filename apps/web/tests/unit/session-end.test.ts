@@ -129,7 +129,7 @@ describe("the next step at the end of a session", () => {
   it("right after practice with few words slipping: the next lesson, more practice still beside it (D34)", () => {
     const end = endOf(fresh, true);
     if (end.continued.kind !== "path") throw new Error(`Continue says ${end.continued.kind}`);
-    expect(end.next?.to).toEqual({ kind: "lesson", number: 3 });
+    expect(end.next?.to).toEqual({ kind: "lesson", number: 3, unit: 1, inUnit: 3 });
     expect(end.next?.beside?.to).toEqual({ kind: "practice" });
     expect(end.go()).toEqual([hrefOf(end.continued.next)]);
     expect(end.beside()).toEqual([REVIEW]);
@@ -137,7 +137,7 @@ describe("the next step at the end of a session", () => {
 
   it("after a lesson with few words slipping: the next lesson, and nothing beside it", () => {
     const end = endOf(fresh, false);
-    expect(end.next?.to).toEqual({ kind: "lesson", number: 3 });
+    expect(end.next?.to).toEqual({ kind: "lesson", number: 3, unit: 1, inUnit: 3 });
     expect(end.next?.beside).toBeUndefined();
     expect(end.next?.why).toBeUndefined();
   });
