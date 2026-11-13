@@ -19,7 +19,8 @@ import { aiStyles, ExplanationView, RoleplayChat, type ChatTurn, type Rating, ty
 import { useEffect, useState, useSyncExternalStore, type JSX } from "react";
 import styles from "./App.module.css";
 import { localDate, localIso, timeZone, uuidv7 } from "./clock.ts";
-import { useReportsPublic } from "./reports.ts";
+import { Sent } from "./Corrections.tsx";
+import { ReportButton, type Claim, type Correcting } from "./Report.tsx";
 import { ScreenHeading } from "./screen.tsx";
 import type { EventStore } from "./store.ts";
 import { isHttpError, queueJudge, request, type Account, type Sync } from "./sync.ts";
@@ -81,16 +82,25 @@ export interface AnswerHelpProps {
   readonly account: Account | undefined;
   readonly store: EventStore;
   readonly record: (event: LearnerEvent) => void;
+  /** What the card was built from, which the report button offers to correct (none for a story question). */
+  readonly correcting?: Correcting | undefined;
 }
 
 /**
- * What a learner can report (ADR 0052): any answer with text (typed, built from tiles, an option
- * chosen; story questions too). A wrong one "should have been accepted", a right one "should have
- * been wrong"; either counts that way for the learner at once and joins the review queue.
- * Speaking is graded by the voice, and pairs have no single answer: neither is reported.
+ * What a learner can claim about their answer (ADR 0052): any answer with text (typed, built from
+ * tiles, an option chosen; story questions too). A wrong one "should have been accepted", a right
+ * one "should have been wrong"; either counts that way for the learner at once and joins the
+ * review queue. Speaking is graded by the voice, and pairs have no single answer: neither is claimed.
  */
 const reportable = (template: string): boolean =>
   (!SPEAKING.has(template as TemplateId) || SCORED_SPEECH.has(template)) && template !== "match-pairs" && template !== "letter-pairs";
+
+/**
+ * The grades that let an answer pass with a difference (a typo, marks, a variant form): only after
+ * one can a right answer be claimed wrong (M6). An answer the accept set lists is the course's own:
+ * if that is wrong, the sentence is ("This sentence is wrong").
+ */
+const LENIENT: ReadonlySet<string> = new Set(["CORRECT_WITH_TYPO", "CORRECT_MARKS", "CORRECT_VARIANT"]);
 
 /**
  * Speaking cards the device scores (tones, sounds): the scoring can be wrong, so the learner can
@@ -126,19 +136,23 @@ const reportOf = (answer: AnswerSubmitted, text: string, claim: "accept" | "reje
 const failure = (e: unknown): "ai.explain.failed" | "ai.unavailable" | "ai.budget" =>
   isHttpError(e) ? (e.status === 429 ? "ai.budget" : e.status === 503 ? "ai.unavailable" : "ai.explain.failed") : "ai.unavailable";
 
-/** Under the feedback for a wrong answer: report it, a second check by the judge, an explanation. */
-export const AnswerHelp = ({ answer, ex, response, status, account, store, record }: AnswerHelpProps): JSX.Element | null => {
+/**
+ * Under the feedback for an answer: the second check by the judge and an explanation (for a wrong
+ * answer, where the server offers them), and one button to report a problem (Report.tsx).
+ */
+export const AnswerHelp = ({ answer, ex, response, status, account, store, record, correcting }: AnswerHelpProps): JSX.Element | null => {
   const t = useTranslator();
-  const [reported, setReported] = useState<"accept" | "reject" | undefined>(undefined);
+  const [reported, setReported] = useState<Claim | undefined>(undefined);
+  const [sent, setSent] = useState(false);
   const [judge, setJudge] = useState<Judge>("idle");
   const [explain, setExplain] = useState<Explain>({ tag: "idle" });
-  const published = useReportsPublic();
   const spoken = SCORED_SPEECH.has(ex.template) && "prompt" in ex ? surfaceOf(ex.prompt) : undefined;
   const text = (spoken ?? answer?.input.raw ?? (response === undefined || response === null ? undefined : answerTextOf(ex, response)) ?? "").normalize("NFC").trim();
   const right = answer !== undefined && answer.outcome.kind.startsWith("CORRECT");
   const wrong = answer !== undefined && !right && text !== "";
-  // A wrong answer can be claimed right, a right one wrong; a spoken answer only right.
-  const claim = answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? (spoken === undefined ? "reject" : undefined) : "accept";
+  // A wrong answer can be claimed right; a right one wrong only after a lenient grade; a spoken answer only right.
+  const claim: Claim | undefined =
+    answer === undefined || text === "" || !reportable(ex.template) ? undefined : right ? (spoken === undefined && LENIENT.has(answer.outcome.kind) ? "reject" : undefined) : "accept";
   const explainable = wrong && status.explain && EXPLAINED.has(ex.template);
 
   useEffect(() => {
@@ -163,7 +177,10 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
     };
   }, [answer, account, status.judge, store, record]);
 
-  if (claim === undefined && !explainable && judge === "idle") return null;
+  // Once the judge has accepted the answer, there is nothing left to claim.
+  const offered = judge === "accepted" ? undefined : claim;
+  const correctable = (correcting?.targets.length ?? 0) > 0;
+  if (offered === undefined && !correctable && !explainable && judge === "idle" && reported === undefined && !sent) return null;
   const askExplanation = (): void => {
     if (answer === undefined || account === undefined) return;
     setExplain({ tag: "loading" });
@@ -178,49 +195,43 @@ export const AnswerHelp = ({ answer, ex, response, status, account, store, recor
     void request(account.server, "/v1/ai/explain/rate", { token: account.token, body: { key: explain.key, rating } }).catch(() => undefined);
   };
   return (
-    <div className={aiStyles.help} data-answer-help="">
-      <p className={aiStyles.status} role="status" data-judge={judge}>
-        {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted") : judge === "queued" ? t.format("ai.judge.queued") : ""}
-      </p>
-      <div className={aiStyles.actions}>
-        {claim !== undefined && judge !== "accepted" && (
-          <button
-            type="button"
-            className={aiStyles.action}
-            disabled={reported !== undefined}
-            onClick={() => {
-              if (answer === undefined) return;
-              record(reportOf(answer, text, claim));
-              setReported(claim);
-            }}
-            data-action={claim === "accept" ? "report" : "report-wrong"}
-          >
-            {t.format(claim === "reject" ? "ai.report.reject" : spoken === undefined ? "ai.report.button" : "ai.report.spoken")}
-          </button>
-        )}
+    <div className={styles.answerTools} data-answer-help="">
+      <div className={styles.answerToolsRow}>
         {explainable && explain.tag === "idle" && (
           <button type="button" className={aiStyles.action} onClick={askExplanation} data-action="explain">
             {t.format("ai.explain.button")}
           </button>
         )}
+        <ReportButton
+          claim={offered}
+          spoken={spoken !== undefined}
+          claimed={reported}
+          onClaim={(c) => {
+            if (answer === undefined) return;
+            record(reportOf(answer, text, c));
+            setReported(c);
+          }}
+          correcting={correcting}
+          onSent={() => setSent(true)}
+        />
       </div>
+      {/* Present and empty while there is nothing to say, so that what it says next is announced. */}
+      <p className={styles.toolsStatus} role="status" data-judge={judge}>
+        {judge === "checking" ? t.format("ai.judge.checking") : judge === "accepted" ? t.format("ai.judge.accepted") : judge === "queued" ? t.format("ai.judge.queued") : ""}
+      </p>
       {reported !== undefined && (
-        <p className={aiStyles.status} role="status" data-reported={reported}>
+        <p className={styles.toolsStatus} role="status" data-reported={reported}>
           {t.format(reported === "accept" ? "ai.report.done" : "ai.report.rejected")}
         </p>
       )}
-      {claim !== undefined && judge !== "accepted" && published && (
-        <p className={aiStyles.status} data-reports-public="">
-          {t.format("reports.public")}
-        </p>
-      )}
+      {sent && <Sent />}
       {explain.tag === "loading" && (
-        <p className={aiStyles.status} role="status">
+        <p className={styles.toolsStatus} role="status">
           {t.format("ai.explain.loading")}
         </p>
       )}
       {explain.tag === "failed" && (
-        <p className={aiStyles.status} role="status" data-explain-failed="">
+        <p className={styles.toolsStatus} role="status" data-explain-failed="">
           {t.format(explain.why)}
         </p>
       )}

@@ -2,6 +2,8 @@
 declare const styles: {
   readonly achievement: string;
   readonly achievements: string;
+  readonly answerTools: string;
+  readonly answerToolsRow: string;
   readonly back: string;
   readonly button: string;
   readonly check: string;
@@ -58,6 +60,12 @@ declare const styles: {
   readonly questHead: string;
   readonly quests: string;
   readonly reminderModes: string;
+  readonly reportButton: string;
+  readonly reportDialog: string;
+  readonly reportOption: string;
+  readonly reportOptions: string;
+  readonly reportPopover: string;
+  readonly reportTitle: string;
   readonly resultTitle: string;
   readonly resultUnit: string;
   readonly standing: string;
@@ -75,6 +83,7 @@ declare const styles: {
   readonly textButton: string;
   readonly timeInput: string;
   readonly timeSegment: string;
+  readonly toolsStatus: string;
   readonly track: string;
   readonly unit: string;
   readonly unitTitle: string;

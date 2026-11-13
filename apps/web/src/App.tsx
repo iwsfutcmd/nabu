@@ -37,7 +37,7 @@ import {
 } from "@nabu/core/learner";
 import { createGrader, doneOf, firstTriesOf, LISTENING, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
-import { draftCount } from "@nabu/core/corrections";
+import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { directionOf } from "@nabu/i18n";
@@ -51,7 +51,7 @@ import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
 import { localDate, uuidv7 } from "./clock.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
-import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
 import { reportIntake } from "./reports.ts";
@@ -929,12 +929,9 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         speech={speech}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
-          return (
-            <>
-              <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />
-              <MarkExercise key={`mark:${ex.id}`} course={course} bundle={manifest.id} device={device} record={record} ex={ex} corrections={corrections} />
-            </>
-          );
+          // One report button beside the feedback (M6): claims about the answer, and corrections of what the card was built from.
+          const correcting = { course, bundle: manifest.id, device, record, targets: correctablesOf(course, ex), corrections };
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} correcting={correcting} />;
         }}
       />
     </main>
@@ -1010,7 +1007,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
-          return <AnswerHelp key={answer?.id ?? ex.id} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
+          return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;
         }}
       />
     </main>

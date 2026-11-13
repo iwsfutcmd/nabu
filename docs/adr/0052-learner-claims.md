@@ -48,6 +48,13 @@ mistakes and XP change on the spot. The report uploads like any event.
   so a learner can claim a spoken answer right: "I said it right". The claim's text is the sentence
   they were asked to say, never a recording or a transcript, and promotion skips it: the scoring was
   wrong, not the accept set. A self-rated card (speak.tier-0) has nothing to overrule.
+- **One report button** (2026-11-12, the review's M6). Two buttons under nearly every card, and a
+  one-tap "should have been accepted" under a wrong choice, cluttered the feedback and made the
+  score easy to game. Claims and corrections now sit behind one small flag beside the feedback
+  ("Report a problem"), which lists only what applies to the card. "This should have been wrong"
+  is offered only after a grade that let a difference pass (a typo, marks, a variant form): an
+  answer the accept set lists is the course's own, and if that is wrong, the sentence is ("This
+  sentence is wrong").
 - A learner can now change their own grading, and only their own. Others' progress and the
   course do not move until a reviewer applies the report.
 - Claims earn or lose XP like the answers they revise, in leagues too. Leagues' plausibility

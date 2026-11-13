@@ -68,7 +68,7 @@
     },
     "ai.report.button": {
       "message": "My answer should have been accepted",
-      "description": "Button after an answer graded wrong: the learner says it is right. It counts as right for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded wrong (report.problem): the learner says it is right. It counts as right for them at once and goes to review."
     },
     "ai.report.done": {
       "message": "Counted as right. A reviewer will look at your answer too.",
@@ -76,7 +76,7 @@
     },
     "ai.report.reject": {
       "message": "This should have been wrong",
-      "description": "Button after an answer graded right: the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
+      "description": "An option of the report button beside an answer graded right with a difference let pass (a typo, an accent mark, a variant form): the learner says it should not have been accepted. It counts as wrong for them at once and goes to review."
     },
     "ai.report.rejected": {
       "message": "Counted as wrong. A reviewer will look at it too.",
@@ -84,7 +84,7 @@
     },
     "ai.report.spoken": {
       "message": "I said it right",
-      "description": "Button under the feedback of a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
+      "description": "An option of the report button beside a speaking exercise the device scored as wrong: the learner says they said the sentence right (tone and sound scoring can be wrong). It counts as right at once, and a reviewer looks at it."
     },
     "ai.roleplay.character": {
       "message": "Who",
@@ -1080,7 +1080,7 @@
     },
     "corrections.edit": {
       "message": "Change your correction",
-      "description": "Button in place of corrections.mark when the learner already suggested a correction for this sentence or line."
+      "description": "In place of corrections.mark (an option of the report button, in the sentence list, on a story line) when the learner already suggested a correction for this sentence or line."
     },
     "corrections.error.empty": {
       "message": "This can't be empty.",
@@ -1104,15 +1104,15 @@
     },
     "corrections.mark": {
       "message": "This sentence is wrong",
-      "description": "Button under an exercise's feedback, in the sentence list, and on a story line: open the form to say what is wrong with the sentence or line."
+      "description": "An option of the report button beside an exercise's feedback, and a button in the sentence list and on a story line: open the form to say what is wrong with the sentence or line."
     },
     "corrections.mark.pairs": {
       "message": "One of these is wrong",
-      "description": "Button under the feedback of a match-the-pairs exercise: choose which word or meaning is wrong, then say what it should be."
+      "description": "An option of the report button beside a match-the-pairs exercise's feedback: choose which word or meaning is wrong, then say what it should be."
     },
     "corrections.mark.word": {
       "message": "This word is wrong",
-      "description": "Button under the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
+      "description": "An option of the report button beside the feedback of an exercise about a word (its form or its meaning): open the form to say what is wrong with it."
     },
     "corrections.note": {
       "message": "Note for the reviewer (optional)",
@@ -2353,6 +2353,10 @@
     "reading.scheme.pinyin": {
       "message": "Pinyin",
       "description": "Name of the Pinyin romanization (Mandarin readings of Chinese characters), a choice in the readings control."
+    },
+    "report.problem": {
+      "message": "Report a problem",
+      "description": "The name of the small flag button beside an answer's feedback (read out by screen readers; the button shows only the flag), and the heading of what it opens: the reports that apply to this card, such as 'My answer should have been accepted' or 'This sentence is wrong'."
     },
     "reports.public": {
       "message": "Reports go to the course's reviewers as public GitHub issues, without your name or device.",

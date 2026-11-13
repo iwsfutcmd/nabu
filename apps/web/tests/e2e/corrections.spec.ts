@@ -61,7 +61,10 @@ test.describe("my answer should be accepted, in a story", () => {
     await page.locator(`[data-option="${String(wrong)}"]`).click();
     await page.locator("[data-story-reader] [data-action=check]").click();
     await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
-    await page.locator("[data-story-reader] [data-action=report]").click();
+    // The one report button beside the feedback (M6); a story question offers the claim alone.
+    await page.locator("[data-story-reader] [data-action=report-problem]").click();
+    await expect(page.locator("[data-report-dialog] [data-action=mark-incorrect]")).toHaveCount(0);
+    await page.locator("[data-report-dialog] [data-action=report]").click();
     await expect(page.locator("[data-reported]")).toBeVisible();
     const text = `${surfaceOf(question.before)}${surfaceOf(question.options[wrong] as TaggedText)}${surfaceOf(question.after)}`;
     await expect.poll(async () => (await logOf(page, "yue")).find((e) => e.type === "answer_reported")).toMatchObject({ text, exercise: { template: "story-complete", item: question.item } });
@@ -191,7 +194,8 @@ test.describe("corrections", () => {
     await waitFor(page, ex);
     await answer(page, ex, "keyboard");
     await expect(page.locator("[data-feedback]")).toBeVisible();
-    await page.locator(`[data-action=mark-incorrect][data-item="${ex.item}"]`).click();
+    await page.locator("[data-action=report-problem]").click();
+    await page.locator(`[data-report-dialog] [data-action=mark-incorrect][data-item="${ex.item}"]`).click();
     const translation = dialog(page).locator("[data-field=correction-translation]");
     const fixed = `${await translation.inputValue()} (corrected)`;
     await translation.fill(fixed);

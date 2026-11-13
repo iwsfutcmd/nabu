@@ -759,3 +759,102 @@
   border: 1px solid var(--nabu-color-border);
   border-radius: var(--nabu-radius-tile);
 }
+
+/*
+ * Under an answer's feedback (the review's M6): AI help at the inline start, and one small report
+ * button at the inline end, an icon in a full-size touch target with no frame until it is pointed at.
+ */
+.answerTools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-1);
+}
+
+.answerToolsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2);
+}
+
+.toolsStatus {
+  margin: 0;
+  color: var(--nabu-color-muted);
+}
+
+.reportButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  margin-inline-start: auto;
+  padding: 0;
+  color: var(--nabu-color-muted);
+  background: none;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.reportButton[data-hovered],
+.reportButton[data-pressed] {
+  color: var(--nabu-color-text);
+  background-color: var(--nabu-color-track);
+}
+
+.reportButton[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.reportPopover {
+  max-inline-size: min(22rem, calc(100vi - 2 * var(--nabu-space-4)));
+  background-color: var(--nabu-color-surface);
+  border: 1px solid var(--nabu-color-border);
+  border-radius: var(--nabu-radius-tile);
+  box-shadow: 0 0.25rem 1rem var(--nabu-color-backdrop);
+}
+
+.reportDialog {
+  padding: var(--nabu-space-3);
+  outline: none;
+}
+
+.reportTitle {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.reportOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+}
+
+.reportOption {
+  min-block-size: 2.75rem;
+  padding-block: var(--nabu-space-2);
+  padding-inline: var(--nabu-space-3);
+  font: inherit;
+  color: var(--nabu-color-text);
+  text-align: start;
+  background-color: var(--nabu-color-tile);
+  border: 2px solid var(--nabu-color-tile-border);
+  border-radius: var(--nabu-radius-tile);
+  cursor: pointer;
+}
+
+.reportOption[data-hovered] {
+  border-color: var(--nabu-color-accent);
+}
+
+.reportOption[data-focus-visible] {
+  outline: 3px solid var(--nabu-color-accent);
+  outline-offset: 2px;
+}
+
+.reportOption[data-disabled] {
+  color: var(--nabu-color-muted);
+  cursor: default;
+}
