@@ -1,6 +1,6 @@
 /**
  * Corrections (ADR 0051) in the visual matrix: UI {en, en-XA, ar-XB} × target {fa, yue-Hant-HK,
- * uz-Latn, apc-Arab}, the correction form and the sentence list. The chrome follows the UI
+ * uz-Latn, apc-Arab}, the correction form, the sentence list and Your reports (ADR 0115). The chrome follows the UI
  * locale; every field and every text takes its own language's tag and direction (a Persian
  * sentence right to left in English chrome, an English translation left to right in RTL chrome,
  * Jyutping in its own tag). Horizontal only: forms and lists are not set in columns (§11.4).
@@ -81,5 +81,35 @@ for (const cell of cells().filter((c) => c.writingMode === "horizontal-tb")) {
       await expect(items.first()).toHaveScreenshot(`sentence-list__${cell.name}__item.png`);
       await expect(list.locator("[data-corrected]")).toHaveScreenshot(`sentence-list__${cell.name}__corrected.png`);
     }
+  });
+
+  test(`your reports: ${cell.ui} × ${cell.target}`, async ({ page }) => {
+    const errors: string[] = [];
+    page.on("pageerror", (e) => errors.push(String(e)));
+    await page.goto(storyUrl("corrections--report-list-story", cellGlobals(cell)));
+    await settle(page, "[data-report-list]");
+    const list = page.locator("[data-report-list]");
+    expect(await list.evaluate((el) => getComputedStyle(el).direction)).toBe(cell.uiDir);
+    // One of each outcome (ADR 0115), newest first: a correction taken up, one changed since, an
+    // answer the course accepts now, and one it still grades as before (no news, no badge).
+    const entries = list.locator("[data-report]");
+    expect(await entries.evaluateAll((els) => els.map((e) => e.getAttribute("data-report-status")))).toEqual(["adopted", "changed", "accepted", "pending"]);
+    await expect(list.locator("[data-report-badge]")).toHaveCount(3);
+    // What a report is about, and the answer claimed: language data in the target's tag and direction.
+    for (const kind of ["correction", "claim"]) {
+      const text = await list.locator(`[data-report-kind=${kind}] p[data-nabu-text]`).first().evaluate((el) => ({ lang: el.getAttribute("lang"), dir: el.getAttribute("dir") }));
+      expect(text.lang?.startsWith(cell.targetLang)).toBe(true);
+      expect(text.dir).toBe(cell.targetDir);
+    }
+    // A suggested translation is English, left to right in any chrome; a note takes its own direction.
+    await expect(list.locator("[data-report-note]").first()).toHaveAttribute("dir", "auto");
+    const used = await platformFonts(page, "[data-report-list] :is(p, span, time)");
+    expect(used.filter((u) => !u.custom), "system-font fallback").toEqual([]);
+    await expectNoClipping(page, list);
+    expect(await page.evaluate(() => document.scrollingElement!.scrollWidth <= document.scrollingElement!.clientWidth)).toBe(true);
+    const axe = await new AxeBuilder({ page }).include("[data-report-list]").analyze();
+    expect(axe.violations.filter((v) => v.impact === "serious" || v.impact === "critical").map((v) => `${v.id}: ${v.help}`)).toEqual([]);
+    expect(errors).toEqual([]);
+    if (comparesPixels) await expect(list).toHaveScreenshot(`report-list__${cell.name}.png`);
   });
 }

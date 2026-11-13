@@ -93,15 +93,22 @@ const sampleReports = (course: CourseView): readonly ReportEntry[] => {
     exercise: { id: `translate-type.l1-l2:${item}`, template: "translate-type.l1-l2", item, kcs: [] },
     text,
   });
-  const [accepted, pending, other] = producible;
+  const [accepted, pending] = producible;
   const textOf = (s: (typeof producible)[number] | undefined): string => {
     const form = s?.forms[course.orthography];
     return form === undefined ? "…" : surfaceOf(form.text);
   };
+  const grader = createGrader(course);
+  // Another sentence's text, one the course does not accept for this one (two sentences may read alike).
+  const wrongFor = (s: (typeof producible)[number]): string | undefined => {
+    const accept = s.forms[course.orthography]?.reverse ?? "";
+    return producible.map(textOf).find((text) => !grader.grade(course.orthography, accept, text).verdict.startsWith("CORRECT"));
+  };
   // Its own sentence, which the course accepts; and another sentence's, which it does not.
   if (accepted !== undefined) events.push(claim(2, accepted.id, textOf(accepted)));
-  if (pending !== undefined) events.push(claim(1, pending.id, textOf(other)));
-  return reportsOf(course, events, createGrader(course));
+  const wrong = pending === undefined ? undefined : wrongFor(pending);
+  if (pending !== undefined && wrong !== undefined) events.push(claim(1, pending.id, wrong));
+  return reportsOf(course, events, grader);
 };
 
 const Form = ({ loaded }: { loaded: LoadedCourse }): JSX.Element => {

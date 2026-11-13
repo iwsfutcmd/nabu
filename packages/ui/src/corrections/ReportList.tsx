@@ -13,8 +13,9 @@ import { correctable, type Correctable } from "@nabu/core/corrections";
 import type { CourseView } from "@nabu/core/lesson";
 import { takenUp, type ReportEntry } from "@nabu/core/reports";
 import { textOfSurface } from "@nabu/core/text";
+import { directionOf } from "@nabu/i18n";
 import type { AnswerReported, SchemeId, SentenceReported, TaggedText } from "@nabu/schema";
-import { useMemo, type JSX } from "react";
+import { Fragment, useMemo, type JSX } from "react";
 import { useTranslator } from "../context.tsx";
 import { defaultRuby, readingTagIn } from "../player/Readings.tsx";
 import { T } from "../T.tsx";
@@ -107,14 +108,14 @@ const Suggested = ({ course, report, subject }: { course: CourseView; report: Se
         const tag = tagIn(course, orthography, subject);
         if (tag === undefined) return null;
         return (
-          <div key={orthography} className={styles.suggestedForm}>
+          <Fragment key={orthography}>
             {form.text !== undefined && <T as="p" text={textOfSurface(tag, form.text)} />}
             {(form.readings ?? []).map((r) => (
-              <p key={`${String(r.token)}:${r.scheme}`} className={styles.suggestedReading}>
+              <p key={`${String(r.token)}:${r.scheme}`} className={styles.suggestedReading} dir={directionOf(tag.lang)}>
                 <T text={textOfSurface(tag, r.surface)} /> <T text={textOfSurface(readingTagIn(course.profiles.get(orthography)?.source, r.scheme, tag), r.reading)} />
               </p>
             ))}
-          </div>
+          </Fragment>
         );
       })}
       {report.correction.translation !== undefined && support !== undefined && <T as="p" text={textOfSurface(support, report.correction.translation)} />}
@@ -127,10 +128,18 @@ const CLAIMED = { accept: "reports.claim.accept", reject: "reports.claim.reject"
 /** Speaking cards the device scored: the claim's text is the sentence asked for, not an answer (ADR 0052). */
 const SPOKEN: ReadonlySet<string> = new Set(["speak", "listen-speak"]);
 
-/** The answer claimed, in the language it was written in: the support language when translating into it. */
-const Answer = ({ course, report, subject }: { course: CourseView; report: AnswerReported; subject: Correctable | undefined }): JSX.Element | null => {
+/**
+ * The answer claimed, in the language it was written in (the support language when translating
+ * into it), and the learner's note. "I said it right" claims the sentence asked for: no answer.
+ */
+const Answer = ({ course, report, subject, spoken }: { course: CourseView; report: AnswerReported; subject: Correctable | undefined; spoken: boolean }): JSX.Element => {
   const tag = report.exercise.template.endsWith("l2-l1") ? (subject?.translation ?? tagIn(course, course.support, undefined)) : tagIn(course, report.orthography, subject);
-  return tag === undefined ? null : <T as="p" className={styles.suggested} text={textOfSurface(tag, report.text)} />;
+  return (
+    <div className={styles.suggested}>
+      {!spoken && tag !== undefined && <T as="p" text={textOfSurface(tag, report.text)} />}
+      <Note note={report.note} />
+    </div>
+  );
 };
 
 const Entry = ({ course, entry, ruby }: { course: CourseView; entry: ReportEntry; ruby: SchemeId | false }): JSX.Element => {
@@ -144,7 +153,7 @@ const Entry = ({ course, entry, ruby }: { course: CourseView; entry: ReportEntry
   const spoken = entry.kind === "claim" && SPOKEN.has(entry.report.exercise.template);
   return (
     <li className={styles.report} data-report={report.id} data-report-kind={entry.kind} data-report-status={entry.status} data-taken-up={takenUp(entry) || undefined}>
-      <div className={styles.texts} data-ink-container={`report:${report.id}`}>
+      <div className={styles.about} data-ink-container={`report:${report.id}`}>
         <Subject course={course} subject={subject} gone={gone} ruby={ruby} />
         {entry.kind === "correction" ? (
           <>
@@ -154,8 +163,7 @@ const Entry = ({ course, entry, ruby }: { course: CourseView; entry: ReportEntry
         ) : (
           <>
             <Made label={t.format(spoken ? "reports.claim.spoken" : CLAIMED[entry.report.claim ?? "accept"])} on={report.localDate} />
-            {!spoken && <Answer course={course} report={entry.report} subject={subject} />}
-            <Note note={entry.report.note} />
+            <Answer course={course} report={entry.report} subject={subject} spoken={spoken} />
           </>
         )}
       </div>
