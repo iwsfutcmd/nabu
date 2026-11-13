@@ -92,3 +92,34 @@ known words (S14).
 A first try after a word's meaning was looked up on the card before answering (D16, `input.hinted`;
 [ADR 0043](0043-stories.md)'s amendment) shows nothing and misses nothing, as retries and
 self-ratings do; FSRS rates a hinted right answer Hard at best. It still counts in recent practice.
+
+## Amendment: listening turned off for good (2026-11-12)
+
+Preferences can now turn listening exercises off on a device until the learner turns them back on
+(S8 in the 2026-11 review), through the same planner exclusion as "Can't listen now". Listening is a
+skill words are asked for in fa, yue, uz, apc and es, so for such a learner no word there could ever
+become known. The listening cards practised before also kept coming due, though no session could
+practise them.
+
+The owner decided (D41): **while listening is turned off for good, leave it out of what words are
+asked for and of what is due.** The functions take the facets the learner turned off (`facetsOff`;
+none by default, which changes nothing):
+- `skillsAsked(course, facetsOff)` asks no listening, so a word is known once it is recognized and,
+  where a sentence uses it, produced. It is memoised per course and per skills turned off.
+- The word list's skills and "Still to show" follow, and so do the words the end of a session counts
+  as now known and the words whose vowel marks a course shows as new (P12).
+- `learnedWords` and the planner's `dueFacets` count no listen card as due. A word's strength leaves
+  listening out too, unless the word was practised in nothing else.
+- The planner (`PlanOptions.facetsOff`) asks words for no listening ([ADR 0101](0101-skill-targets.md)),
+  and counts no listen card as due when it sizes a review session or chooses what a session or a
+  lesson brings back.
+
+Only the lasting switch does this (the web app's `facetsOffOf`, breaks.ts). A break leaves only the
+listening exercises out of the sessions planned meanwhile: what is known and due stays as it was.
+
+The fold is unchanged: `shown` and `missed` still record listening. Turning listening back on brings
+back exactly what the log says.
+
+Speaking is no skill a word is known by, and D41 is about listening: turning speaking off for good
+leaves its exercises out and nothing else. [ADR 0105](0105-learning-pace.md)'s amendment says what
+this does to the pace, and what it leaves open for speaking.

@@ -78,3 +78,26 @@ learner chose the pace.
   - offering "test out of the rest of this unit" when accelerating (with L9's seeding of placed words);
   - more or fewer cards per new word by band;
   - keeping the choice in the log, so it would follow the learner across devices.
+
+## Amendment: listening turned off for good (2026-11-12)
+
+A learner who turned listening off for good in Preferences (S8) kept the listening cards they had
+practised before. Those cards faded and counted as due and slipping. No session could practise them,
+yet enough of them held the band at consolidate, made Continue offer practice first, and lengthened
+review sessions.
+
+The owner decided (D41; [ADR 0100](0100-known-words.md)'s amendment): **with the lasting switch off,
+listening is left out of what is due and slipping.** `paceOf(course, state, now, choice, facetsOff)`
+counts due and slipping words without the facets turned off. This changes:
+- the band and the line saying why;
+- the course page's due count;
+- Continue (`continueOf` reads the pace), and the end of a session's next step, which is Continue's;
+- through `PlanOptions.facetsOff`, how long a review session is and what it and a lesson bring back.
+
+A break ("Can't listen now", an hour) changes none of this. The web app passes the facets turned off
+only for the lasting switch (`facetsOffOf`, breaks.ts); the e2e solver uses the same function.
+
+**Speaking is open.** D41 is about listening, so speaking turned off for good only leaves its
+exercises out. The speak cards practised before it was turned off still count as due and slipping,
+as listening's did. Adding `speak` to `facetsOffOf` would treat them the same way. That is a
+decision for the owner.
