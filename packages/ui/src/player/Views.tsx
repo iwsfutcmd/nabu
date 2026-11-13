@@ -39,7 +39,7 @@ import type { Persons, TaggedText } from "@nabu/schema";
 import { useEffect, useId, useLayoutEffect, useRef, useState, type JSX, type ReactNode } from "react";
 import { Radio, RadioGroup } from "react-aria-components";
 import { useOrthography, useTranslator } from "../context.tsx";
-import { T } from "../T.tsx";
+import { T, type TProps } from "../T.tsx";
 import { AnswerInput } from "./AnswerInput.tsx";
 import { AudioButtons, useClipElements, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
@@ -129,6 +129,21 @@ const chooseByKey = (props: ViewProps, index: number, count: number): void => {
 const selectedOf = (props: ViewProps): number | null => (props.draft.tag === "choice" ? props.draft.index : null);
 
 /**
+ * When a card's target text may be tapped for its words' meanings (P1): `always` where they give
+ * nothing away (a gap sentence's other words, a sentence to say, whose translation is shown), or
+ * once `answered` where they would be the answer (what a sentence means, how a word is read or
+ * vocalized, what was heard). Options, tiles and pairs are never tappable: they are the answer.
+ */
+export type GlossWhen = "always" | "answered";
+
+/** <T>'s tap props for a text of the card, where the lesson glosses it now. */
+const tapsOn = (props: ViewProps & Partial<ViewExtras>, key: string, text: TaggedText, when: GlossWhen | undefined): Pick<TProps, "onTokenPress" | "pressed"> => {
+  const glossing = props.glossing;
+  if (glossing === undefined || when === undefined || (when === "answered" && props.outcome === undefined)) return {};
+  return { onTokenPress: (token) => glossing.onTap({ key, text, token }), pressed: glossing.tapped?.key === key ? glossing.tapped.token : undefined };
+};
+
+/**
  * How long after an answer its clip is said: once the feedback sound is over, so the two never
  * overlap (the clip's first word was lost under it).
  */
@@ -208,6 +223,7 @@ const TargetPrompt = ({
   ruby,
   clipWhenAnswered = false,
   labelId = "exercise.prompt.label",
+  gloss,
 }: {
   text: TaggedText;
   props: ViewProps & ViewExtras;
@@ -216,6 +232,8 @@ const TargetPrompt = ({
   clipWhenAnswered?: boolean;
   /** What the prompt is to the learner (P10): a sentence to translate, to say, a text to read. */
   labelId?: MessageId;
+  /** When its words may be tapped for their meanings (P1); never without. */
+  gloss?: GlossWhen;
 }): JSX.Element => {
   const t = useTranslator();
   const profile = useOrthography(text.orthography);
@@ -238,6 +256,7 @@ const TargetPrompt = ({
         marks={props.marks}
         {...(focus === undefined ? {} : { focus })}
         current={player.token}
+        {...tapsOn(props, "prompt", text, gloss)}
       />
     </div>
   );
@@ -248,7 +267,7 @@ export const ChooseTranslationView = (props: Props<ChooseTranslation>): JSX.Elem
   useShortcuts(props, (i) => chooseByKey(props, i, ex.options.length));
   return (
     <div className={styles.body}>
-      <TargetPrompt text={ex.prompt} props={props} />
+      <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
       <Options
         describedBy={describedBy(props.ids, ["prompt"])}
         options={ex.options.map((o, i) => <T key={i} text={o} />)}
@@ -275,15 +294,15 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
       {ex.template === "char-read" && ex.word !== undefined ? (
         // A word in its sentence (ADR 0098): the sentence decides the reading.
         <>
-          <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} ids={props.ids} />
+          <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation ?? ex.prompt} ruby={false} ids={props.ids} taps={tapsOn(props, "sentence", ex.prompt, "answered")} />
           <AnswerAudio props={props} />
         </>
       ) : (
         <div className={styles.bigPrompt}>
           {ex.template === "reading-disambiguation" ? (
-            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} clipWhenAnswered labelId="player.prompt.read" />
+            <TargetPrompt text={ex.context} props={props} ruby={false} focus={ex.focus} clipWhenAnswered labelId="player.prompt.read" gloss="answered" />
           ) : (
-            <TargetPrompt text={ex.prompt} props={props} ruby={false} clipWhenAnswered labelId="player.prompt.read" />
+            <TargetPrompt text={ex.prompt} props={props} ruby={false} clipWhenAnswered labelId="player.prompt.read" gloss="answered" />
           )}
         </div>
       )}
@@ -301,16 +320,19 @@ export const CharReadView = (props: Props<CharRead | ReadingDisambiguation>): JS
   );
 };
 
-/** before ▢ after, in the target direction; the gap shows what is chosen or typed. */
-const GapSentence = ({ before, after, fill, props }: { before: TaggedText; after: TaggedText; fill: TaggedText | undefined; props: ViewProps }): JSX.Element => {
+/**
+ * before ▢ after, in the target direction; the gap shows what is chosen or typed. The words around
+ * the gap may be tapped for their meanings (`gloss`, P1): the gap's own word is not among them.
+ */
+const GapSentence = ({ before, after, fill, props, gloss }: { before: TaggedText; after: TaggedText; fill: TaggedText | undefined; props: ViewProps & Partial<ViewExtras>; gloss?: GlossWhen }): JSX.Element => {
   const t = useTranslator();
   return (
     <p className={styles.gapSentence} dir={directionOf(before.lang)} id={partId(props.ids, "gap")} data-gap-sentence="" data-ink-container="prompt">
-      <T text={before} ruby={props.ruby} marks={props.marks} />
+      <T text={before} ruby={props.ruby} marks={props.marks} {...tapsOn(props, "before", before, gloss)} />
       <span className={styles.gap} role="img" aria-label={t.format("player.blank.label")} data-gap="">
         {fill === undefined ? null : <T text={fill} ruby={props.ruby} marks={props.marks} />}
       </span>
-      <T text={after} ruby={props.ruby} marks={props.marks} />
+      <T text={after} ruby={props.ruby} marks={props.marks} {...tapsOn(props, "after", after, gloss)} />
     </p>
   );
 };
@@ -327,7 +349,7 @@ export const GapFillView = (props: Props<GapFill>): JSX.Element => {
         <PersonsNote persons={ex.persons} prompt={ex.hint} />
       </div>
       <AnswerAudio props={props} />
-      <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} />
+      <GapSentence before={ex.before} after={ex.after} fill={selected === null ? undefined : ex.options[selected]} props={props} gloss="always" />
       <Options
         grid
         describedBy={describedBy(props.ids, ["hint", "gap"])}
@@ -519,7 +541,7 @@ export const TilesView = (props: Props<TranslateTap>): JSX.Element => {
   return (
     <div className={styles.body}>
       {ex.template === "translate-tap.l2-l1" ? (
-        <TargetPrompt text={ex.prompt} props={props} />
+        <TargetPrompt text={ex.prompt} props={props} gloss="answered" />
       ) : (
         <div
           className={styles.prompt}
@@ -610,7 +632,7 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
         <PersonsNote persons={ex.persons} prompt={ex.prompt} />
       </div>
       <AnswerAudio props={props} />
-      <GapSentence before={ex.before} after={ex.after} fill={gapFillOf(ex, props.draft, props.outcome)} props={props} />
+      <GapSentence before={ex.before} after={ex.after} fill={gapFillOf(ex, props.draft, props.outcome)} props={props} gloss="always" />
       <TypedAnswer props={props} label={t.format("player.blank.label")} answer={ex.blank} parts={["hint", "gap"]} />
     </div>
   );
@@ -619,12 +641,27 @@ export const CompleteTranslationView = (props: Props<CompleteTranslation>): JSX.
 // ------------------------------------------------------------------------------------ pronunciation (ADR 0054)
 
 /** The sentence with the word asked about marked, and what the sentence means (ADR 0095). */
-const WordInSentence = ({ sentence, word, translation, ruby, ids }: { sentence: TaggedText; word: number; translation: TaggedText; ruby: false | undefined; ids: ViewProps["ids"] }): JSX.Element => {
+const WordInSentence = ({
+  sentence,
+  word,
+  translation,
+  ruby,
+  ids,
+  taps,
+}: {
+  sentence: TaggedText;
+  word: number;
+  translation: TaggedText;
+  ruby: false | undefined;
+  ids: ViewProps["ids"];
+  /** Tap-for-gloss on the sentence, once answered (P1): a gloss shows the word's marks and reading. */
+  taps: Pick<TProps, "onTokenPress" | "pressed">;
+}): JSX.Element => {
   const t = useTranslator();
   return (
     <>
       <div className={styles.prompt} role="group" aria-label={t.format("player.word-in-sentence.label")} id={partId(ids, "prompt")} data-ink-container="prompt" data-pronounce-word="">
-        <T as="p" text={sentence} emphasis={[word]} marks="show" {...(ruby === false ? { ruby: false } : {})} />
+        <T as="p" text={sentence} emphasis={[word]} marks="show" {...(ruby === false ? { ruby: false } : {})} {...taps} />
       </div>
       <div className={styles.hint} role="group" aria-label={t.format("player.meaning.label")} id={partId(ids, "hint")} data-pronounce-meaning="">
         <T as="p" text={translation} />
@@ -658,7 +695,7 @@ export const VocalizeView = (props: Props<Vocalize>): JSX.Element => {
   };
   return (
     <div className={styles.body}>
-      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} ids={props.ids} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={undefined} ids={props.ids} taps={tapsOn(props, "sentence", ex.prompt, "answered")} />
       <AnswerAudio props={props} />
       {typing ? (
         <TypedAnswer props={props} label={t.format("player.vocalize.spelled-label", { orthography: name })} answer={spelled} keys={[]} parts={["prompt", "hint"]} />
@@ -691,7 +728,7 @@ export const TranscribeView = (props: Props<Transcribe>): JSX.Element => {
   const label: MessageId = t.has(scheme) ? scheme : "player.transcribe.label";
   return (
     <div className={styles.body}>
-      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} ids={props.ids} />
+      <WordInSentence sentence={ex.prompt} word={ex.word} translation={ex.translation} ruby={false} ids={props.ids} taps={tapsOn(props, "sentence", ex.prompt, "answered")} />
       <AnswerAudio props={props} />
       <TypedAnswer props={props} label={t.format(label)} answer={ex.reading} keys={[]} parts={["prompt", "hint"]} />
     </div>
@@ -898,7 +935,7 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
   const description = describedBy(props.ids, ["prompt", "hint"]);
   return (
     <div className={styles.body}>
-      <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" />
+      <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" gloss="always" />
       <div className={styles.hint} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.translation} />
       </div>
@@ -1011,7 +1048,7 @@ export const SpeechView = (props: Props<SpeakScored | ListenSpeak>): JSX.Element
       {ex.template === "listen-speak" ? (
         <ListenPrompt audio={ex.audio} props={props} transcript={ex.prompt} translation={ex.translation} />
       ) : (
-        <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" />
+        <TargetPrompt text={ex.prompt} props={props} labelId="player.prompt.say" gloss="always" />
       )}
       {ex.template === "speak" && (
         <div className={styles.hint} id={partId(props.ids, "hint")}>
@@ -1148,7 +1185,7 @@ const ListenPrompt = ({ audio, props, transcript, translation }: { audio: AudioR
       <AudioButtons player={player} audio={audio} size="large" />
       {answered && transcript !== undefined && (
         <div className={styles.transcript} dir={directionOf(transcript.lang)} data-transcript="">
-          <T as="p" text={transcript} ruby={props.ruby} marks={props.marks} current={player.token} />
+          <T as="p" text={transcript} ruby={props.ruby} marks={props.marks} current={player.token} {...tapsOn(props, "transcript", transcript, "answered")} />
           {translation !== undefined && <T as="p" text={translation} className={styles.translation} />}
         </div>
       )}

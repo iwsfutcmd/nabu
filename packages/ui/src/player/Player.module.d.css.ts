@@ -33,6 +33,11 @@ declare const styles: {
   readonly menuBody: string;
   readonly modal: string;
   readonly muted: string;
+  readonly newWord: string;
+  readonly newWordGloss: string;
+  readonly newWordList: string;
+  readonly newWords: string;
+  readonly newWordsAnswered: string;
   readonly notes: string;
   readonly notice: string;
   readonly notices: string;

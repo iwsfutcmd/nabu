@@ -1,4 +1,4 @@
-import { createGrader, gradeExercise, sampleExercise, start, step, type CourseView, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { createGrader, gradeExercise, lessonNodes, sampleExercise, start, step, type CourseView, type Exercise, type Grader, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import { surfaceOf } from "@nabu/core/text";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { useMemo, type JSX } from "react";
@@ -17,7 +17,7 @@ const COURSES: Readonly<Record<NabuGlobals["target"], readonly [string, string]>
   "apc-Arab": ["apc", "apc-Arab/standard"],
 };
 
-export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display" | "quit";
+export type PlayerScreen = "tiles" | "typing" | "feedback" | "retry" | "display" | "quit" | "new-words";
 
 const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   tiles: "translate-tap.l1-l2",
@@ -26,6 +26,7 @@ const TEMPLATE: Readonly<Record<PlayerScreen, TemplateId>> = {
   retry: "choose-translation",
   display: "choose-translation",
   quit: "choose-translation",
+  "new-words": "choose-translation",
 };
 
 const SEED = 7;
@@ -34,7 +35,7 @@ const SEED = 7;
 const stateFor = (screen: PlayerScreen, ex: Exercise, course: CourseView, grader: Grader): PlayerState => {
   const [presenting] = start("story", [ex]);
   const [answering] = step(presenting, { tag: "ready" });
-  if (screen === "typing" || screen === "display") return answering;
+  if (screen === "typing" || screen === "display" || screen === "new-words") return answering;
   if (screen === "quit") return step(answering, { tag: "interrupt", reason: "quit-confirm" })[0];
   if (screen === "retry" && ex.template === "choose-translation") {
     // A wrong option, then Continue: the card comes back, its options in a new order (P4).
@@ -66,11 +67,13 @@ const Screen = ({ loaded, screen, writingMode }: { loaded: LoadedCourse; screen:
   if (ex === undefined) throw new Error(`${course.id} has no ${TEMPLATE[screen]} exercise`);
   const initialState = useMemo(() => stateFor(screen, ex, course, grader), [screen, ex, course, grader]);
   const name = `course.name.${course.id}`;
+  // New words (P1): played as the lesson that introduces one of the card's words.
+  const lessonId = screen === "new-words" ? (lessonNodes(course).find((n) => n.node.introduces.some((kc) => ex.kcs.includes(kc)))?.node.id ?? "story") : "story";
   return (
     <LessonPlayer
       key={`${course.id}:${screen}:${writingMode}`}
       course={course}
-      lessonId="story"
+      lessonId={lessonId}
       exercises={[ex]}
       grader={grader}
       imageUrl={imageUrl}
@@ -115,3 +118,5 @@ export const Retry: Story = story("retry");
 export const Display: Story = story("display");
 /** Quitting: what it keeps, in the chrome's face (the dialog is portalled out of the root, P8). */
 export const Quit: Story = story("quit");
+/** The card that first shows a word the lesson teaches: "New word", and the word, since the prompt shows it (P1). */
+export const NewWords: Story = story("new-words");

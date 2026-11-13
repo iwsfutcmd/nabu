@@ -8,9 +8,9 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
+import { allKcs, cameBack, draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response, type SessionSummary } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
-import { useEffect, useId, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
 import type { MessageId } from "@nabu/i18n";
 import { CourseUiProvider, useTranslator } from "../context.tsx";
@@ -19,6 +19,8 @@ import { WordStatusProvider } from "../marks.tsx";
 import { chromeClass, useChrome } from "../UiRoot.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "./Display.tsx";
 import { Feedback } from "./Feedback.tsx";
+import { GlossPanel, useGlosses, type WordTap } from "./Gloss.tsx";
+import { NewWordsAnswered, NewWordsTag, newOnCard } from "./NewWords.tsx";
 import styles from "./Player.module.css";
 import { useReadings } from "./Readings.tsx";
 import { digitIndex, focusInReach, inDialog, typingInField, useActionsInReach, type Shortcuts, type WritingMode } from "./shared.ts";
@@ -172,6 +174,16 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   useActionsInReach(card, footer, state.tag === "finished" ? "" : (state.tag === "interrupted" ? state.resume : state).ex.id);
   const shortcuts = useRef<Shortcuts | null>(null);
   const keys = useRef<(e: globalThis.KeyboardEvent) => void>(() => undefined);
+  // Tap-for-gloss (P1): the word tapped on the card now (a new card starts with none) and its meaning.
+  const shown = state.tag === "finished" ? undefined : (state.tag === "interrupted" ? state.resume : state).ex.id;
+  const [tap, setTap] = useState<{ readonly card: string; readonly word: WordTap } | undefined>(undefined);
+  const tapped = tap !== undefined && tap.card === shown ? tap.word : undefined;
+  const glosses = useGlosses(course, tapped);
+  // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
+  const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
+  // The words this lesson introduces (P1): the card that first presents one says so.
+  const introduces = useMemo(() => new Set<string>(course.units.flatMap((u) => u.nodes).find((n) => n.id === lessonId)?.introduces ?? []), [course, lessonId]);
+  const kinds = useMemo(() => new Map(allKcs(course).map((k) => [k.id as string, k.kind])), [course]);
 
   useEffect(() => {
     if (state.tag === "presenting") dispatch({ tag: "ready" });
@@ -231,6 +243,13 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   const counted = state.session.adaptive === undefined;
   // Why this card is back: an earlier mistake, or a skip (P4).
   const back = cameBack(state.session, ex);
+  // The lesson's new words this card shows first (P1): none came on a card before it.
+  const fresh = newOnCard(ex, state.session.queue.slice(0, state.session.position), introduces, kinds);
+  const glossing = {
+    tapped,
+    onTap: (word: WordTap): void =>
+      setTap((now) => (now !== undefined && now.card === ex.id && now.word.key === word.key && now.word.token === word.token ? undefined : { card: ex.id, word })),
+  };
   const canCheck = active.tag === "answering" && !active.composing && responseOf(ex, active.draft) !== undefined;
   const instruction = t.format(INSTRUCTIONS[ex.template], { language });
   // Every speaking card can be put off, as every listening card can: rated or scored alike.
@@ -316,7 +335,7 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         Said before the instruction: earlier material brought back because it is due (ADR 0097), and a
         card of this lesson back after a mistake or a skip (P4).
       */}
-      {(ex.review === true || back !== undefined) && (
+      {(ex.review === true || back !== undefined || fresh.length > 0) && (
         <div className={styles.tags}>
           {ex.review === true && (
             <p className={styles.reviewTag} data-review-tag="">
@@ -328,6 +347,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
               {t.format(back === "skipped" ? "player.retry.skipped" : "player.retry.missed")}
             </p>
           )}
+          {/* A first look at the lesson's new words (P1): never more than the card gives away. */}
+          <NewWordsTag course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />
         </div>
       )}
       <h2 className={styles.instruction} id={ids.instruction}>
@@ -355,12 +376,17 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
         language={language}
         shortcuts={shortcuts}
         ids={ids}
+        glossing={glossing}
       />
+
+      {/* What a tapped word means (P1): quiet until a word is tapped. */}
+      <GlossPanel open={tapped !== undefined} glosses={glosses} ruby={glossRuby} marks={marks} quiet />
 
       <div className={styles.feedbackSlot} role="status" aria-live="polite" data-live-region="">
         {/* The solution shows its marks unless the learner hid them (a vocalize card's always: they are its answer). */}
         {active.tag === "feedback" && <Feedback ex={ex} outcome={active.outcome} course={course} ruby={ruby} marks={ex.template === "vocalize" || marks !== "hide" ? "show" : "hide"} />}
       </div>
+      {active.tag === "feedback" && <NewWordsAnswered course={course} template={ex.template} kcs={fresh} ruby={ruby} marks={marks} />}
       {active.tag === "feedback" && props.feedbackExtra?.(ex, active.outcome, active.response)}
 
       {/*

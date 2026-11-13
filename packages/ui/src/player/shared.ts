@@ -6,6 +6,7 @@ import type { CourseView, Draft, Exercise, PlayerEvent } from "@nabu/core/lesson
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, type RefObject } from "react";
 import type { Marks } from "../marks.tsx";
+import type { WordTap } from "./Gloss.tsx";
 
 export type WritingMode = "horizontal-tb" | "vertical-rl" | "vertical-lr";
 
@@ -38,6 +39,16 @@ export interface ViewProps<E extends Exercise = Exercise> {
    * described by them, so its instruction and prompt are read when focus lands on it.
    */
   readonly ids?: { readonly instruction: string; readonly base: string } | undefined;
+  /**
+   * Tap-for-gloss in a lesson (P1): the word tapped on this card, and where a tap goes. Views make
+   * a target text tappable only where its words' meanings give nothing away; stories gloss their own.
+   */
+  readonly glossing?: Glossing | undefined;
+}
+
+export interface Glossing {
+  readonly tapped: WordTap | undefined;
+  readonly onTap: (tap: WordTap) => void;
 }
 
 /** The id a view gives one part of its prompt (the prompt itself, a gap sentence, a hint). */

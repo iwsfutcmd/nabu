@@ -12,7 +12,7 @@
  *   (vertical-rl); the chrome stays horizontal, and ruby is off by default there.
  */
 import { draftOf, emptyDraft, isCorrect, responseOf, type AudioRef, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type Response } from "@nabu/core/lesson";
-import { courseGlossary, glossAt, glossLine, storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
+import { storyProgress, type StoryLine, type StoryScript, type StoryState } from "@nabu/core/story";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar } from "react-aria-components";
@@ -24,6 +24,7 @@ import { AudioButtons, useClipPlayer } from "../player/Audio.tsx";
 import { DisplayMenu, hasDisplayChoices, useDisplay, type DisplayChoice } from "../player/Display.tsx";
 import { ExerciseView, INSTRUCTIONS } from "../player/ExerciseView.tsx";
 import { Feedback } from "../player/Feedback.tsx";
+import { GlossPanel, useGlosses } from "../player/Gloss.tsx";
 import playerStyles from "../player/Player.module.css";
 import { useReadings } from "../player/Readings.tsx";
 import { digitIndex, effectiveWritingMode, inDialog, typingInField, type Shortcuts, type WritingMode } from "../player/shared.ts";
@@ -145,7 +146,6 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   // Nothing plays by itself with sound off or while the learner can't listen (P6).
   const quiet = !sound || props.listening === false;
   const { state, dispatch } = useStoryPlayer({ script, grader, onEvent, sound: !quiet, initialState: props.initialState });
-  const glossary = useMemo(() => courseGlossary(course), [course]);
   // Vowel marks and vertical reading: the learner's choice for the course, else the profile's (P12).
   const display = useDisplay(profile, "reading", props.writingMode, props.display, props.onDisplayChange);
   const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
@@ -232,10 +232,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const lineAudio = (line: StoryLine): AudioRef | undefined => course.audio[`${script.id}#${String(line.step)}`];
   const synthetic = script.lines.some((line) => lineAudio(line)?.normal.synthetic === true);
   const glossLineAt = selected === undefined ? undefined : script.lines[selected.line];
-  const glosses = useMemo(
-    () => (glossLineAt === undefined || selected === undefined ? [] : glossAt(course, glossary, glossLine(course, glossary, glossLineAt.text), glossLineAt.text, selected.token)),
-    [course, glossary, glossLineAt, selected],
-  );
+  const tapped = useMemo(() => (glossLineAt === undefined || selected === undefined ? undefined : { text: glossLineAt.text, token: selected.token }), [glossLineAt, selected]);
+  const glosses = useGlosses(course, tapped);
   const progress = storyProgress(state);
   const progressLabel = t.format("exercise.progress", { current: progress.done, total: progress.total });
 
@@ -263,34 +261,7 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
       />
     ));
 
-  const glossPanel = (
-    <div className={styles.gloss} role="status" aria-live="polite" aria-label={t.format("story.gloss.label")} data-gloss-panel="" data-gloss-open={selected === undefined ? undefined : ""}>
-      {selected === undefined ? (
-        <p className={styles.glossHint}>{t.format("story.gloss.hint")}</p>
-      ) : glosses.length === 0 ? (
-        <p className={styles.glossHint}>{t.format("story.gloss.none")}</p>
-      ) : (
-        <dl className={styles.glossList}>
-          {glosses.map((g, i) => (
-            <div key={i} className={styles.glossEntry} data-gloss-kc={g.kc}>
-              <dt>
-                <T text={g.form} ruby={glossRuby} marks={marks} />
-              </dt>
-              <dd>
-                {g.meaning !== undefined && <T text={g.meaning} />}
-                {g.span !== "whole" && <span className={styles.glossNote}>{t.format(g.span === "part" ? "story.gloss.part" : "story.gloss.phrase")}</span>}
-                {g.lemma !== undefined && (
-                  <span className={styles.glossNote} data-gloss-lemma="">
-                    {t.format("story.gloss.lemma")} <T text={g.lemma} ruby={glossRuby} marks={marks} />
-                  </span>
-                )}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      )}
-    </div>
-  );
+  const glossPanel = <GlossPanel open={selected !== undefined} glosses={glosses} ruby={glossRuby} marks={marks} />;
 
   const headerTools = (
     <>

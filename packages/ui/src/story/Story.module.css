@@ -93,49 +93,6 @@
    bottom, and Latin text (a translation, its button) turns sideways, as in vertical CJK print.
    Forcing it horizontal would make orthogonal boxes that overflow their column. */
 
-.gloss {
-  box-sizing: border-box;
-  min-block-size: 4.5rem;
-  padding-block: var(--nabu-space-2);
-  padding-inline: var(--nabu-space-3);
-  border: 1px dashed var(--nabu-color-border);
-  border-radius: var(--nabu-radius-tile);
-}
-
-.glossHint {
-  margin: 0;
-  color: var(--nabu-color-muted);
-}
-
-.glossList {
-  display: grid;
-  gap: var(--nabu-space-2);
-  margin: 0;
-}
-
-.glossEntry {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: var(--nabu-space-3);
-}
-
-.glossEntry dt {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.glossEntry dd {
-  margin: 0;
-}
-
-.glossNote {
-  margin-inline-start: var(--nabu-space-2);
-  font-size: 0.875rem;
-  font-style: italic;
-  color: var(--nabu-color-muted);
-}
-
 .question {
   display: flex;
   flex-direction: column;
