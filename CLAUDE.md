@@ -91,7 +91,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
 - Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
   shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
-- Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
+- Keyboard shortcuts live in one capturing window listener, `usePlayerKeys` (packages/ui/src/player/Shell.tsx), shared by
+  the lesson player and the story reader with their header, toggles and quit dialog (C14); views register digit/Backspace handlers.
 - Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom
   toolbar covers the viewport's last strip. Pages hosting the player keep `--nabu-space-reach` below the card.
 
