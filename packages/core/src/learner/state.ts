@@ -9,7 +9,7 @@ import { createEmptyCard, fsrs, generatorParameters, Rating as FsrsRating, type 
 import type { Facet, TemplateId } from "../lesson/exercise.ts";
 import { SPEAKING, TEMPLATES } from "../lesson/templates.ts";
 import { facetOf, ratingOf, type Pace, type Rating } from "./credit.ts";
-import { initialPerformance, update, type Performance } from "./performance.ts";
+import { initialPerformance, learn, type Performance, type PerformanceDraft } from "./performance.ts";
 import { withRevisions } from "./revisions.ts";
 
 /** An FSRS card as plain JSON: dates as ISO strings. */
@@ -160,10 +160,13 @@ const median = (xs: readonly number[]): number | undefined => {
   return sorted[Math.floor(sorted.length / 2)];
 };
 
-/** Mutable working copy used inside one fold; never escapes. */
+/**
+ * Mutable working copy used inside one fold: a deep copy of the state it starts from, changed in
+ * place event by event (ADR 0119), and handed back as the new state when the fold is done.
+ */
 interface Draft {
   cards: Record<string, StoredCard>;
-  performance: Performance;
+  performance: PerformanceDraft;
   xp: { total: number; byDate: Record<string, number> };
   completedNodes: string[];
   mistakes: Mistake[];
@@ -230,7 +233,7 @@ const answered = (d: Draft, e: AnswerSubmitted): void => {
   if (e.attempt === 1) {
     const credited = e.outcome.kcs.filter((c) => c.status !== "given").map((c) => c.kc);
     const r = meanRetrievability(d, credited.length > 0 ? credited : kcs, facet, e.orthography, e.clientTime);
-    d.performance = update(d.performance, { template, facet, item, kcs, r }, correct);
+    learn(d.performance, { template, facet, item, kcs, r }, correct);
   }
   // Pace: this answer's time per unit of length against the learner's usual for the template. Only
   // first tries make the usual (a retry is quicker for having just seen the answer).
