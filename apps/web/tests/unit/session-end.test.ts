@@ -70,7 +70,7 @@ const hrefOf = (node: PathNode): string => `#/fa/${node.node}`;
 const endOf = (events: readonly LearnerEvent[], practised: boolean) => {
   const state = replay(events);
   const went: string[] = [];
-  const next = nextStepOf({ course, state, now: NOW, pace: "auto", hrefOf, review: REVIEW, practised, go: (to) => went.push(to), t });
+  const next = nextStepOf({ course, state, now: NOW, pace: "auto", facetsOff: new Set(), hrefOf, review: REVIEW, practised, go: (to) => went.push(to), t });
   const continued = continueOf(course, state, paceOf(course, state, NOW.toISOString()));
   const go = (): readonly string[] => {
     next?.go();
