@@ -67,8 +67,8 @@ export const ExerciseCard = ({
 }: ExerciseCardProps): JSX.Element => {
   const t = useTranslator();
   const mode = effectiveWritingMode(profile, writingMode);
-  // The player's readings: what shows before the learner chooses, and none in vertical text (§11.4).
-  const readings = useReadings(profile, mode);
+  // The player's readings: what shows before the learner chooses, in vertical text too (ADR 0118).
+  const readings = useReadings(profile);
   const layer = readings.layers[0]?.scheme;
   const ruby = readings.shown;
   const tiles = tileGroups(exercise.answer);

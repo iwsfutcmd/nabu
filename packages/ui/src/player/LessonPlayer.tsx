@@ -179,8 +179,8 @@ const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyPr
   // Vowel marks and vertical text: the learner's choice for the course, else the profile's (P12).
   const display = useDisplay(profile, "wordbank", props.writingMode, props.display, props.onDisplayChange);
   const mode = display.mode;
-  // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
-  const readings = useReadings(profile, mode, props.reading, props.onReadingChange);
+  // The reading layer the learner chose, in horizontal and vertical text alike (ADR 0118).
+  const readings = useReadings(profile, props.reading, props.onReadingChange);
   const ruby = readings.shown;
   const marks = display.marks;
   const continueButton = useRef<HTMLButtonElement>(null);

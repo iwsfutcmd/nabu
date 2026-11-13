@@ -165,8 +165,8 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   // Vowel marks and vertical reading: the learner's choice for the course, else the profile's (P12).
   const display = useDisplay(profile, "reading", props.writingMode, props.display, props.onDisplayChange);
   const transcriptMode = effectiveWritingMode(profile, display.mode, "reading");
-  // Rotated Latin ruby reads badly in vertical text: off by default there (§11.4).
-  const readings = useReadings(profile, transcriptMode, props.reading, props.onReadingChange);
+  // The reading layer the learner chose, in horizontal and vertical text alike (ADR 0118).
+  const readings = useReadings(profile, props.reading, props.onReadingChange);
   // A tapped word's gloss shows its reading: the layer shown, or the only one there is (yue).
   const glossRuby = readings.shown !== false ? readings.shown : readings.layers.length === 1 ? (readings.layers[0]?.scheme ?? false) : false;
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));

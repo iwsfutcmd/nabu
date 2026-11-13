@@ -1,16 +1,16 @@
 /**
  * Which reading layer shows as ruby (ADR 0071). An orthography may pin several (Classical
  * Chinese: Pinyin, Jyutping and Baxter's Middle Chinese); the learner shows one or none. With one
- * layer the control is the switch it always was; with several it is a choice among them.
+ * layer the control is the switch it always was; with several it is a choice among them. The
+ * choice holds in vertical text too, where ruby sits beside the column (ADR 0118).
  */
 import { readingScheme, readingTag } from "@nabu/core";
 import { schemeName as nameOfScheme } from "@nabu/i18n";
 import type { AnnotationLayer, OrthographyProfile, SchemeId, TaggedText } from "@nabu/schema";
-import { useRef, useState, type JSX } from "react";
+import { useState, type JSX } from "react";
 import { Switch, ToggleButton, ToggleButtonGroup, type Key } from "react-aria-components";
 import { useTranslator } from "../context.tsx";
 import styles from "./Player.module.css";
-import type { WritingMode } from "./shared.ts";
 
 /**
  * How a word's reading in a scheme is tagged as text of its own: the profile's reading layer names
@@ -28,9 +28,9 @@ export const rubyLayersOf = (profile: OrthographyProfile | undefined): readonly 
   (profile?.annotations ?? []).filter((a): a is AnnotationLayer & { readonly scheme: SchemeId } => a.kind === "reading" && a.render === "ruby" && a.scheme !== undefined);
 
 /**
- * What shows in horizontal text before the learner chooses: their earlier choice where it is
- * still a layer of this profile; else the layer marked `default: on`; else, where every layer says
- * off, none; else (a profile that says nothing, yue) its first layer, as before.
+ * What shows before the learner chooses: their earlier choice where it is still a layer of this
+ * profile; else the layer marked `default: on`; else, where every layer says off, none; else (a
+ * profile that says nothing, yue) its first layer, as before.
  */
 export const defaultRuby = (profile: OrthographyProfile | undefined, chosen?: SchemeId | false): SchemeId | false => {
   const layers = rubyLayersOf(profile);
@@ -43,25 +43,20 @@ export const defaultRuby = (profile: OrthographyProfile | undefined, chosen?: Sc
 
 export interface Readings {
   readonly layers: readonly (AnnotationLayer & { readonly scheme: SchemeId })[];
-  /** The layer shown as ruby now, or false. */
+  /** The layer shown as ruby now, or false: the same in horizontal and vertical text. */
   readonly shown: SchemeId | false;
   readonly choose: (scheme: SchemeId | false) => void;
-  /** Rotated Latin ruby reads badly in vertical text (§11.4): hidden there, restored on leaving it. */
-  readonly onVertical: (vertical: boolean) => void;
 }
 
-export const useReadings = (profile: OrthographyProfile | undefined, mode: WritingMode, chosen?: SchemeId | false, onChoose?: (scheme: SchemeId | false) => void): Readings => {
-  const horizontal = useRef<SchemeId | false>(defaultRuby(profile, chosen));
-  const [shown, setShown] = useState<SchemeId | false>(() => (mode === "horizontal-tb" ? horizontal.current : false));
+export const useReadings = (profile: OrthographyProfile | undefined, chosen?: SchemeId | false, onChoose?: (scheme: SchemeId | false) => void): Readings => {
+  const [shown, setShown] = useState<SchemeId | false>(() => defaultRuby(profile, chosen));
   return {
     layers: rubyLayersOf(profile),
     shown,
     choose: (scheme) => {
       setShown(scheme);
-      horizontal.current = scheme;
       onChoose?.(scheme);
     },
-    onVertical: (vertical) => setShown(vertical ? false : horizontal.current),
   };
 };
 

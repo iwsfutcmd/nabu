@@ -64,9 +64,9 @@ for (const cell of cells()) {
     await expect(input).toHaveAttribute("autocorrect", "off");
     await expect(input).toHaveAttribute("spellcheck", "false");
 
-    // Ruby: Jyutping over every Han character in horizontal text, hidden by default in vertical (§11.4).
+    // Ruby: Jyutping on every Han character, over it in horizontal text and beside it in vertical (ADR 0118).
     const rt = await page.locator("[data-target-region] rt").count();
-    expect(rt).toBe(cell.target === "yue-Hant-HK" && cell.writingMode === "horizontal-tb" ? 9 : 0);
+    expect(rt).toBe(cell.target === "yue-Hant-HK" ? 9 : 0);
 
     // Vertical text really is laid out in columns: tiles stack along the block axis of the page.
     if (cell.writingMode !== "horizontal-tb") {
