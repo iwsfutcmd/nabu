@@ -157,7 +157,8 @@ def test_course_audio_round_trip(core_cli: CoreCli, yue_copy: Path) -> None:
     assert [d for d in diags.items if d.lint.startswith("audio.")] == []
     assert len(recompiled.audio_items) == len(items)
     sentence = recompiled.audio_items["s.1"]["normal"]
-    assert sentence["synthetic"] and sentence["timings"][0]["startMs"] == 0
+    assert sentence.synthetic and sentence.timings is not None
+    assert sentence.timings[0].startMs == 0
 
 
 def test_a_word_card_reads_the_reading_its_form_pins() -> None:

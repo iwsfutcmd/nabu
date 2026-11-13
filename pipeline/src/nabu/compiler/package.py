@@ -153,10 +153,10 @@ def unit_assets(unit: BundleUnit, compiled: Compiled) -> list[str]:
     named = _strings(unit_json(unit)) | lines
     images = {p for p in named if p in compiled.images}
     clips = {
-        clip["path"]
+        clip.path
         for item in sorted(named & compiled.audio_items.keys())
         for clip in compiled.audio_items[item].values()
-        if clip.get("path") in compiled.audio_files
+        if clip.path in compiled.audio_files
     }
     return sorted(images | clips)
 
@@ -251,15 +251,11 @@ def write_bundle(
     if compiled.audio_items:
         # Each clip names its credit by id, as its file does in the manifest.
         items = {
-            item: {
-                speed: {**clip, "credit": credit(clip["credit"])} if "credit" in clip else clip
-                for speed, clip in clips.items()
-            }
+            item: {speed: clip.bundled(credit(clip.credit)) for speed, clip in clips.items()}
             for item, clips in compiled.audio_items.items()
         }
-        index = {"items": items}
-        BundleAudio.model_validate(index)
-        index_blob = canonical(index)
+        index = BundleAudio.model_validate({"items": items})
+        index_blob = canonical(index.model_dump(mode="json", by_alias=True, exclude_none=True))
         rel = f"audio/index.{sha256(index_blob)[:16]}.json"
         (out_dir / rel).write_bytes(index_blob)
         license_ = course.license or "NOASSERTION"

@@ -94,7 +94,7 @@ def release(compiled: Compiled) -> tuple[Compiled, ReleaseReport]:
     items = {item.id for item in iter_items(units)}
     images = {k.image for u in units for k in u.kcs if k.image}
     audio_items = {k: v for k, v in compiled.audio_items.items() if k in items}
-    used = {str(clip["path"]) for item in audio_items.values() for clip in item.values()}
+    used = {clip.path for item in audio_items.values() for clip in item.values()}
     # The summary counts sentences and clips by item id, images by their bundle path.
     counted = [c for c in compiled.counted if c.item in items or c.item in images]
     licenses: dict[str, int] = {}

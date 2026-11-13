@@ -107,7 +107,7 @@ def test_credits_are_defined_once(core_cli: CoreCli, course: str, tmp_path: Path
     for item, speeds in compiled.audio_items.items():
         for speed, clip in speeds.items():
             bundled = audio[item][speed]
-            assert manifest.credits[bundled["credit"]] == clip["credit"]
+            assert manifest.credits[bundled["credit"]] == clip.credit
             named.add(bundled["credit"])
             clips += 1
     # The credits files and clips name, and nothing else.

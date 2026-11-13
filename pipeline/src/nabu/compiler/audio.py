@@ -13,8 +13,9 @@ from __future__ import annotations
 
 import hashlib
 from collections.abc import Callable
+from dataclasses import dataclass
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING
 
 from pydantic import ValidationError
 
@@ -22,10 +23,35 @@ from nabu.audio.course import INDEX, assignment, audio_dir, checked_voices, held
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.source import Doc, load_doc
 from nabu.items import WORD_KINDS, iter_items
-from nabu.schema.models import AudioClip, AudioIndex, CourseSource
+from nabu.schema.models import AudioClip, AudioIndex, BundleClip, CourseSource, TokenTiming
 
 if TYPE_CHECKING:
     from nabu.compiler.build import Compiled, Ctx
+
+
+@dataclass(frozen=True)
+class ShippedClip:
+    """A clip that ships, as the bundle's audio index lists it (BundleClip), but for its credit:
+    the text, which the bundle names by its id (ADR 0110)."""
+
+    path: str
+    durationMs: int
+    synthetic: bool
+    license: str
+    credit: str
+    timings: tuple[TokenTiming, ...] | None = None
+
+    def bundled(self, credit: str) -> BundleClip:
+        """The clip as the audio index lists it, its credit named by `credit` (an id)."""
+        timings = None if self.timings is None else list(self.timings)
+        return BundleClip(
+            path=self.path,
+            durationMs=self.durationMs,
+            synthetic=self.synthetic,
+            license=self.license,
+            credit=credit,
+            timings=timings,
+        )
 
 
 def _credit(clip: AudioClip, recordings: dict[str, str]) -> str:
@@ -105,7 +131,7 @@ def check_audio(
             speaker = ref.provenance.author.removeprefix("human:")
             recordings[ref.id] = f"{speaker} ({ref.license}): {ref.source}"
     held = 0
-    items: dict[str, dict[str, Any]] = {}
+    items: dict[str, dict[str, ShippedClip]] = {}
     files: dict[str, dict[str, tuple[bytes, str, str]]] = {}
     tallies: dict[str, list[AudioClip]] = {}
     for i, clip in enumerate(index.clips):
@@ -196,16 +222,10 @@ def check_audio(
             held += clip.speed == "normal"
             continue
         rel = f"audio/{clip.sha256[:16]}.mp3"
-        files.setdefault(clip.item, {})[rel] = (data, clip.license, _credit(clip, recordings))
-        entry: dict[str, Any] = {
-            "path": rel,
-            "durationMs": clip.durationMs,
-            "synthetic": clip.synthetic,
-            "license": clip.license,
-            "credit": _credit(clip, recordings),
-        }
-        if clip.timings is not None:
-            entry["timings"] = [t.model_dump(mode="json") for t in clip.timings]
+        credit = _credit(clip, recordings)
+        files.setdefault(clip.item, {})[rel] = (data, clip.license, credit)
+        timings = None if clip.timings is None else tuple(clip.timings)
+        entry = ShippedClip(rel, clip.durationMs, clip.synthetic, clip.license, credit, timings)
         items.setdefault(clip.item, {})[clip.speed] = entry
         tallies.setdefault(clip.item, []).append(clip)
     if held:

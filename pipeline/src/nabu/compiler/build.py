@@ -22,7 +22,7 @@ from pydantic import BaseModel, ValidationError
 from nabu import sitelen_pona
 from nabu.analyzers import Analyzer, analyzers_by_tool
 from nabu.compiler import text as tx
-from nabu.compiler.audio import check_audio
+from nabu.compiler.audio import ShippedClip, check_audio
 from nabu.compiler.counts import Counted, count
 from nabu.compiler.diagnostics import Diagnostics, Loc
 from nabu.compiler.readings import pin_kc_readings
@@ -87,7 +87,7 @@ class Compiled:
     images: dict[str, tuple[bytes, str, str | None]] = field(default_factory=lambda: {})
     # audio: bundle path → (bytes, SPDX license, credit); item → {normal, slow} clips (audio.json)
     audio_files: dict[str, tuple[bytes, str, str]] = field(default_factory=lambda: {})
-    audio_items: dict[str, dict[str, Any]] = field(default_factory=lambda: {})
+    audio_items: dict[str, dict[str, ShippedClip]] = field(default_factory=lambda: {})
     # (item, orthography) → token surfaces as written, where vowel marks were added (ADR 0053)
     written: dict[tuple[str, str], list[str]] = field(default_factory=lambda: {})
 
