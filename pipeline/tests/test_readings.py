@@ -246,6 +246,22 @@ def test_classical_chinese_cards_read_a_character_by_its_sense(core_cli: CoreCli
     assert forms["sense:強.qiang"]["pinyin"] == "qiǎng"
 
 
+def test_biblical_hebrew_ad_s_card_reads_the_free_form(core_cli: CoreCli) -> None:
+    """The owner's D44: עַד's card (and its clip) says the free ʿaḏ, which its entry chooses, not
+    the maqaf-bound ʿaḏ- its lessons tie with. כִּי and עַל keep the bound forms most lessons
+    give them (kî-, ʿal-)."""
+    _, compiled = build(core_cli, "hbo")
+    forms = {
+        kc["id"]: kc["forms"][HBO][0]["tokens"][0].get("readings")
+        for u in compiled.units
+        for kc in u["kcs"]
+        if HBO in kc.get("forms", {})
+    }
+    assert forms["sense:ad"] == {"tiberian": "ʿaḏ"}
+    assert forms["sense:ki"] == {"tiberian": "kî-"}
+    assert forms["sense:al"] == {"tiberian": "ʿal-"}
+
+
 def test_no_clip_of_any_course_is_stale(core_cli: CoreCli) -> None:
     """Every synthesized clip says what its voice reads now, in every course: the compiler checks
     it (`audio.stale`), except where a voice too broken to ship skips the audio (grc, ADR 0091),
