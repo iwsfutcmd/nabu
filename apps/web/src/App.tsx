@@ -1191,7 +1191,12 @@ export const App = (): JSX.Element => {
     const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
     const value = loaded.value;
     const onReset = (): void => record(resetEvent(value.course, value.manifest.id, store.device));
-    return <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />;
+    // The path's words and titles take the course's profiles (fonts, target text size), as its pages do.
+    return (
+      <CourseUiProvider course={value.course}>
+        <CoursePath loaded={value} state={log.state} persistent={store.persistent} ai={ai} offline={offline} speechTiers={speechTiers} onReset={onReset} />
+      </CourseUiProvider>
+    );
   }
   if (route.tag === "cards") {
     const { course } = loaded.value;
