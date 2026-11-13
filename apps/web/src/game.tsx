@@ -93,8 +93,14 @@ export const useGame = (store: EventStore | null, config: GameConfig | null, ver
 export const sessionAllowed = (state: GameState | null, mode: Mode, config: GameConfig | null): boolean =>
   state === null || config === null ? true : canStart(state.gate, mode, config.gate);
 
+/** A quest's name, as Today's quests lists it. */
+export const questName = (t: ReturnType<typeof useTranslator>, q: { readonly id: string; readonly target: number }): string => {
+  const key = `quest.${q.id}`;
+  return t.has(key) ? t.format(key, { target: q.target }) : q.id;
+};
+
 /** An achievement's message: its kind (streak, sessions, stories, right) and number. */
-const achievementText = (t: ReturnType<typeof useTranslator>, id: string, config: GameConfig): string => {
+export const achievementText = (t: ReturnType<typeof useTranslator>, id: string, config: GameConfig): string => {
   const a = config.achievements.find((x) => x.id === id);
   if (a === undefined) return id;
   if (a.kind === "streak") return t.format("achievement.streak", { days: a.days });
@@ -114,7 +120,7 @@ export const GatePanel = ({ state, config }: { state: GameState; config: GameCon
 };
 
 /** The day the UI locale's region starts the week on (1 Monday … 7 Sunday), where the browser says; else Monday. */
-const firstDayOf = (locale: string): number => {
+export const firstDayOf = (locale: string): number => {
   try {
     const l = new Intl.Locale(locale) as Intl.Locale & { getWeekInfo?: () => { firstDay: number }; weekInfo?: { firstDay: number } };
     return l.getWeekInfo?.().firstDay ?? l.weekInfo?.firstDay ?? 1;
@@ -242,8 +248,7 @@ export const GamePanel = ({ state, config, onGoal }: { state: GameState; config:
       <h3 className={styles.unitTitle}>{t.format("game.quests.title")}</h3>
       <ul className={styles.quests} data-quests="">
         {state.quests.map((q) => {
-          const key = `quest.${q.id}`;
-          const name = t.has(key) ? t.format(key, { target: q.target }) : q.id;
+          const name = questName(t, q);
           const progress = t.format("game.quests.progress", { progress: q.progress, target: q.target });
           return (
             <li key={q.id} className={styles.quest} data-quest={q.id} data-done={String(q.done)} data-quest-progress={q.progress}>
