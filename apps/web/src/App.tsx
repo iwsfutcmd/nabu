@@ -40,6 +40,7 @@ import { startNative } from "./native.ts";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
+import { Loading, ScreenHeading, sessionName, titleOf, useScreen } from "./screen.tsx";
 import { StartOver } from "./StartOver.tsx";
 import { openStore, type EventStore } from "./store.ts";
 import { createSync, type Account, type Sync } from "./sync.ts";
@@ -55,7 +56,7 @@ const OFFLINE = import.meta.env.PROD && offlineSupported() && !isNative();
 /** Debug mode (?debug=1, remembered on this device): every card says its kind; a gallery of every kind. */
 const DEBUG = debugMode;
 
-type Route =
+export type Route =
   | { readonly tag: "home" }
   | { readonly tag: "preferences" }
   | { readonly tag: "course"; readonly course: string; readonly orthography: string }
@@ -674,6 +675,7 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
   }
   return (
     <main className={styles.player}>
+      <ScreenHeading>{sessionName(t, request, course)}</ScreenHeading>
       <LessonPlayer
         course={course}
         lessonId={request.mode === "lesson" ? request.node : request.mode}
@@ -756,6 +758,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
   }
   return (
     <main className={styles.player}>
+      <ScreenHeading>{t.format("app.path.story")}</ScreenHeading>
       <StoryReader
         course={course}
         script={setup.script}
@@ -847,6 +850,9 @@ export const App = (): JSX.Element => {
   // Re-read after a course loads (the worker keeps what the app fetched) and after a download.
   const stored = useStored(OFFLINE ? root : undefined, `${downloads}:${loaded?.key ?? ""}:${online}`);
   const corrections = useCorrections(store, courseId, version);
+  // Each screen's title; a new route starts at the top, with focus on its heading.
+  const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
+  useScreen(href(route), titleOf(t, route, names, loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined));
 
   useEffect(() => {
     if (online) setRetry((n) => n + 1);
@@ -915,20 +921,19 @@ export const App = (): JSX.Element => {
 
   if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} />;
   if (route.tag === "review") {
-    const names = { course: (id: string) => courseName(t, id), orthography: (id: string) => orthographyName(t, id) };
     return index === null || sync === null ? (
-      <p className={styles.page}>{t.format("player.loading")}</p>
+      <Loading />
     ) : (
       <ReviewHome courses={index} sync={sync} names={names} back={href({ tag: "home" })} hrefOf={(course, orthography) => href({ tag: "review-course", course, orthography })} />
     );
   }
   if (route.tag === "home") {
     if (index === null && indexFailed) return <LoadFailed message={online ? "app.error.index" : "app.offline.unavailable"} home={false} onRetry={() => setRetry((n) => n + 1)} />;
-    return index === null || store === null || sync === null ? <p className={styles.page}>{t.format("player.loading")}</p> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
+    return index === null || store === null || sync === null ? <Loading /> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
   }
   if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
   if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {
-    return <p className={styles.page}>{t.format("player.loading")}</p>;
+    return <Loading />;
   }
   if (route.tag === "course") {
     const offline: OfflineProps = { online, root: root ?? BUNDLES, stored, onChange: () => setDownloads((n) => n + 1) };
@@ -955,7 +960,7 @@ export const App = (): JSX.Element => {
   if (route.tag === "review-course") {
     const { course, manifest } = loaded.value;
     return sync === null ? (
-      <p className={styles.page}>{t.format("player.loading")}</p>
+      <Loading />
     ) : (
       <CourseUiProvider course={course}>
         <ReviewPage loaded={loaded.value} sync={sync} course={course} bundle={manifest.id} device={store.device} record={record} corrections={corrections} back={href({ tag: "review" })} />
@@ -989,7 +994,7 @@ export const App = (): JSX.Element => {
       </CourseUiProvider>
     );
   }
-  if (game === null && gameConfig?.gate.policy !== "none") return <p className={styles.page}>{t.format("player.loading")}</p>;
+  if (game === null && gameConfig?.gate.policy !== "none") return <Loading />;
   if (route.tag === "story")
     return (
       <StorySession

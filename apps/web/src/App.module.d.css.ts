@@ -69,6 +69,7 @@ declare const styles: {
   readonly track: string;
   readonly unit: string;
   readonly unitTitle: string;
+  readonly visuallyHidden: string;
   readonly voice: string;
   readonly wideDialog: string;
 };
