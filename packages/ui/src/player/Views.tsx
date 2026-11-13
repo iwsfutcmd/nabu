@@ -45,7 +45,7 @@ import { AnswerInput } from "./AnswerInput.tsx";
 import { AudioButtons, useClipElements, useClipPlayer, type ClipPlayer } from "./Audio.tsx";
 import styles from "./Player.module.css";
 import { FEEDBACK_SOUND_MS, playFeedbackSound } from "./sound.ts";
-import { toPcm16k, useRecorder, useSpeech, type Decoded } from "./speech.tsx";
+import { toPcm16k, useRecorder, useRecording, useSpeech, type Decoded } from "./speech.tsx";
 import { describedBy, effectiveWritingMode, partId, type ViewProps } from "./shared.ts";
 
 export interface ViewExtras {
@@ -860,8 +860,6 @@ export const MatchPairsView = (props: Props<MatchPairs>): JSX.Element => {
 
 // ------------------------------------------------------------------------------------ speaking
 
-type Recording = { readonly tag: "idle" } | { readonly tag: "recording" } | { readonly tag: "done"; readonly url: string } | { readonly tag: "unavailable" };
-
 /**
  * Speak, tier 0 (§10.4): hear the model, read the sentence aloud, optionally record and play it
  * back, then rate yourself. Nothing is checked automatically and nothing is stored: the recording
@@ -870,41 +868,18 @@ type Recording = { readonly tag: "idle" } | { readonly tag: "recording" } | { re
 export const SpeakView = (props: Props<Speak>): JSX.Element => {
   const { ex, dispatch, locked } = props;
   const t = useTranslator();
-  const [recording, setRecording] = useState<Recording>({ tag: "idle" });
-  const recorder = useRef<MediaRecorder | null>(null);
-  const supported = typeof navigator !== "undefined" && navigator.mediaDevices !== undefined && typeof MediaRecorder !== "undefined";
-  // A recording still running stops when the card goes away, and only then: an effect on
-  // `recording` would stop each recording the moment it started.
+  // The last recording, to play back: an object URL for as long as the recorder is idle.
+  const [last, setLast] = useState<string | undefined>(undefined);
+  const recorder = useRecording(true, (blob) => setLast(URL.createObjectURL(blob)));
+  const played = recorder.state === "idle" ? last : undefined;
+  const recording = played !== undefined ? "done" : recorder.state;
+  // A finished recording's URL is freed when another recording starts or the card goes away.
   useEffect(
     () => () => {
-      if (recorder.current?.state === "recording") recorder.current.stop();
+      if (played !== undefined) URL.revokeObjectURL(played);
     },
-    [],
+    [played],
   );
-  // A finished recording's URL is freed when another replaces it or the card goes away.
-  useEffect(
-    () => () => {
-      if (recording.tag === "done") URL.revokeObjectURL(recording.url);
-    },
-    [recording],
-  );
-  const startRecording = async (): Promise<void> => {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      const rec = new MediaRecorder(stream);
-      const chunks: Blob[] = [];
-      rec.ondataavailable = (e) => chunks.push(e.data);
-      rec.onstop = () => {
-        stream.getTracks().forEach((track) => track.stop());
-        setRecording({ tag: "done", url: URL.createObjectURL(new Blob(chunks, { type: rec.mimeType })) });
-      };
-      recorder.current = rec;
-      rec.start();
-      setRecording({ tag: "recording" });
-    } catch {
-      setRecording({ tag: "unavailable" });
-    }
-  };
   const rate = (rating: SelfRating): void => {
     if (locked) return;
     dispatch({ tag: "input", draft: { tag: "self-rating", rating } });
@@ -923,23 +898,23 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
       <div className={styles.hint} id={partId(props.ids, "hint")}>
         <T as="p" text={ex.translation} />
       </div>
-      <div className={styles.recorder} data-recorder={recording.tag}>
-        {!supported || recording.tag === "unavailable" ? (
+      <div className={styles.recorder} data-recorder={recording}>
+        {!recorder.supported || recording === "unavailable" ? (
           <p className={styles.muted}>{t.format("player.speak.unavailable")}</p>
-        ) : recording.tag === "recording" ? (
+        ) : recording === "recording" ? (
           <>
             <span role="status">{t.format("player.speak.recording")}</span>
-            <button type="button" className={styles.secondary} onClick={() => recorder.current?.stop()} data-action="stop">
+            <button type="button" className={styles.secondary} onClick={recorder.stop} data-action="stop">
               {t.format("player.speak.stop")}
             </button>
           </>
         ) : (
           <>
-            <button type="button" className={styles.secondary} disabled={locked} autoFocus={!locked} aria-describedby={description} onClick={() => void startRecording()} data-action="record">
+            <button type="button" className={styles.secondary} disabled={locked} autoFocus={!locked} aria-describedby={description} onClick={() => void recorder.start()} data-action="record">
               {t.format("player.speak.record")}
             </button>
-            {recording.tag === "done" && (
-              <button type="button" className={styles.secondary} onClick={() => void new Audio(recording.url).play()} data-action="play-recording">
+            {played !== undefined && (
+              <button type="button" className={styles.secondary} onClick={() => void new Audio(played).play()} data-action="play-recording">
                 {t.format("player.speak.play")}
               </button>
             )}
@@ -954,8 +929,8 @@ export const SpeakView = (props: Props<Speak>): JSX.Element => {
             type="button"
             className={styles.secondary}
             disabled={locked}
-            autoFocus={i === 0 && !supported}
-            aria-describedby={i === 0 && !supported ? description : undefined}
+            autoFocus={i === 0 && !recorder.supported}
+            aria-describedby={i === 0 && !recorder.supported ? description : undefined}
             data-rating={rating}
             onClick={() => rate(rating)}
           >

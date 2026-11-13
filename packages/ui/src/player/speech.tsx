@@ -63,16 +63,38 @@ export const toPcm16k = async ({ samples, sampleRate }: Decoded): Promise<Int16A
 
 export type RecorderState = "idle" | "recording" | "unavailable";
 
-/** One recording at a time: start, stop, and the decoded audio handed to `onDone`. */
-export const useRecorder = (onDone: (audio: Decoded) => void): { readonly state: RecorderState; readonly start: () => Promise<void>; readonly stop: () => void } => {
-  const [state, setState] = useState<RecorderState>(typeof navigator !== "undefined" && navigator.mediaDevices !== undefined && typeof MediaRecorder !== "undefined" ? "idle" : "unavailable");
+export interface Recorder {
+  /** Unavailable: the microphone was refused or failed, or what it recorded could not be used. */
+  readonly state: RecorderState;
+  /** Whether the browser can record at all (a microphone API and MediaRecorder). */
+  readonly supported: boolean;
+  readonly start: () => Promise<void>;
+  readonly stop: () => void;
+}
+
+/** Whether the browser can record at all: a microphone API and MediaRecorder. */
+const canRecord = (): boolean => typeof navigator !== "undefined" && navigator.mediaDevices !== undefined && typeof MediaRecorder !== "undefined";
+
+/**
+ * The one recorder of speaking cards: one recording at a time, and what it recorded handed to
+ * `onDone` once it stops, with `unusable` for a recording that cannot be used (the recorder then
+ * says it is unavailable). `audio` is what the microphone is asked for. The microphone is released
+ * as each recording stops; a recording still running stops when the card goes away, and only then.
+ */
+export const useRecording = (audio: MediaTrackConstraints | true, onDone: (recording: Blob, unusable: () => void) => void): Recorder => {
+  const [state, setState] = useState<RecorderState>("idle");
   const recorder = useRef<MediaRecorder | null>(null);
   const done = useRef(onDone);
   done.current = onDone;
-  useEffect(() => () => recorder.current?.stop(), []);
+  useEffect(
+    () => () => {
+      if (recorder.current?.state === "recording") recorder.current.stop();
+    },
+    [],
+  );
   const start = async (): Promise<void> => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true } });
+      const stream = await navigator.mediaDevices.getUserMedia({ audio });
       const rec = new MediaRecorder(stream);
       const chunks: Blob[] = [];
       rec.ondataavailable = (e) => chunks.push(e.data);
@@ -80,10 +102,7 @@ export const useRecorder = (onDone: (audio: Decoded) => void): { readonly state:
         stream.getTracks().forEach((track) => track.stop());
         recorder.current = null;
         setState("idle");
-        void decode(new Blob(chunks, { type: rec.mimeType })).then(
-          (audio) => done.current(audio),
-          () => setState("unavailable"),
-        );
+        done.current(new Blob(chunks, { type: rec.mimeType }), () => setState("unavailable"));
       };
       recorder.current = rec;
       rec.start();
@@ -92,5 +111,18 @@ export const useRecorder = (onDone: (audio: Decoded) => void): { readonly state:
       setState("unavailable");
     }
   };
-  return { state, start, stop: () => recorder.current?.stop() };
+  return { state, supported: canRecord(), start, stop: () => recorder.current?.stop() };
+};
+
+/**
+ * A recording to score: decoded to mono samples and handed to `onDone`, with echo cancellation and
+ * noise suppression asked for. Where the browser cannot record, the recorder is unavailable.
+ */
+export const useRecorder = (onDone: (audio: Decoded) => void): Recorder => {
+  const done = useRef(onDone);
+  done.current = onDone;
+  const recording = useRecording({ echoCancellation: true, noiseSuppression: true }, (blob, unusable) => {
+    void decode(blob).then((audio) => done.current(audio), unusable);
+  });
+  return recording.supported ? recording : { ...recording, state: "unavailable" };
 };
