@@ -19,12 +19,16 @@ export interface RecorderOptions {
   readonly plan: SessionPlan;
   readonly seed: number;
   readonly record: (event: LearnerEvent) => void;
+  /** The session's id, when the shell made it beforehand: a new session's, kept with its plan, or one picked up again (S3). */
+  readonly session?: string | undefined;
+  /** A session picked up again: the first tries its log already holds (exercise id → right). */
+  readonly firstTries?: ReadonlyMap<string, boolean> | undefined;
 }
 
-export const recorder = ({ course, bundle, device, plan, seed, record }: RecorderOptions): ((event: LessonEvent) => void) => {
+export const recorder = ({ course, bundle, device, plan, seed, record, session, firstTries }: RecorderOptions): ((event: LessonEvent) => void) => {
   const { request } = plan;
   const meta: SessionMeta = { mode: request.mode, node: request.mode === "lesson" ? request.node : undefined, seed, planner: plan.planner };
-  return eventRecorder({ course, bundle, device, meta, record, plan });
+  return eventRecorder({ course, bundle, device, meta, record, plan, session, firstTries });
 };
 
 export interface StoryRecorderOptions {
@@ -48,6 +52,8 @@ const eventRecorder = ({
   meta,
   record,
   plan,
+  session = uuidv7(),
+  firstTries,
 }: {
   readonly course: CourseView;
   readonly bundle: string;
@@ -55,13 +61,15 @@ const eventRecorder = ({
   readonly meta: SessionMeta;
   readonly record: (event: LearnerEvent) => void;
   readonly plan?: SessionPlan;
+  readonly session?: string | undefined;
+  readonly firstTries?: ReadonlyMap<string, boolean> | undefined;
 }): ((event: LessonEvent) => void) => {
-  const session = uuidv7();
   const request = plan?.request;
   // Retries ("…#2") were not planned: they carry no prediction.
   const predictions = new Map<string, number | undefined>([...(plan?.exercises ?? []).map((ex, i) => [ex.id, plan?.predictions[i]] as const), ...Object.entries(plan?.placement?.predictions ?? {})]);
   let presentedAt = performance.now();
-  const firstTry = new Map<string, boolean>();
+  // A session picked up again counts the first tries it had before (placement places by them).
+  const firstTry = new Map<string, boolean>(firstTries ?? []);
   return (e) => {
     const now = new Date();
     if (e.type === "exercise_presented") presentedAt = performance.now();

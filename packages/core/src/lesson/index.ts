@@ -23,6 +23,7 @@ export {
   type SessionSummary,
   type StartOptions,
 } from "./player.ts";
+export { doneOf, firstTriesOf, resume, type Done } from "./resume.ts";
 export { seededRng, type Rng } from "./rng.ts";
 export { answerTextOf, facets, gradeExercise, KC_LISTENING, LISTENING, makeListenSpeak, makeSpeakScored, makeToneIdentify, READING_TAGS, rubySchemeOf, SPEAKING, solutionOf, TEMPLATES, type MakeContext, type TemplateInfo } from "./templates.ts";
 export { makeLetterPairs, makeLetterRead, makeWordRead, makeWordWrite, SCRIPT_TEMPLATES, scriptCandidates, scriptNodes, type ScriptNode } from "./script.ts";

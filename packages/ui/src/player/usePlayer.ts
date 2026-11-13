@@ -17,10 +17,15 @@ export interface PlayerOptions {
   readonly retries?: boolean | undefined;
   /** An adaptive test (the placement test, ADR 0077): what comes next depends on the answers. */
   readonly adaptive?: AdaptiveTest | undefined;
+  /**
+   * A session picked up again (core `resume`, S3): where it stands and the events that reopen it,
+   * in place of a fresh start and its session_started.
+   */
+  readonly resumed?: readonly [PlayerState, readonly Effect[]] | undefined;
 }
 
-export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, retries = true, adaptive }: PlayerOptions) => {
-  const [initial] = useState(() => start(lesson, exercises, { retries, ...(adaptive === undefined ? {} : { adaptive }) }));
+export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, retries = true, adaptive, resumed }: PlayerOptions) => {
+  const [initial] = useState(() => resumed ?? start(lesson, exercises, { retries, ...(adaptive === undefined ? {} : { adaptive }) }));
   const [state, setState] = useState<PlayerState>(initial[0]);
   const current = useRef<PlayerState>(initial[0]);
   const listener = useRef(onEvent);
@@ -52,7 +57,7 @@ export const usePlayer = ({ lesson, exercises, grader, onEvent, sound = true, re
     [run],
   );
 
-  // The opening events (session_started, exercise_presented), once.
+  // The opening events (session_started, exercise_presented; a resumed session's own), once.
   const opened = useRef(false);
   useEffect(() => {
     if (opened.current) return;

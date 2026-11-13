@@ -55,9 +55,11 @@ export interface StoryReaderProps {
   readonly lineAction?: ((line: StoryLine) => ReactNode) | undefined;
   /** Something the app adds under a question's feedback, such as "My answer should be accepted". */
   readonly feedbackExtra?: ((ex: Exercise, outcome: Outcome, response: Response | null) => ReactNode) | undefined;
+  /** The app bumps this to ask, as the quit button does, whether to stop reading (S3: Back mid-story). */
+  readonly quitRequest?: number | undefined;
 }
 
-const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
+const Toggle =({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
   <Switch className={playerStyles.switch} isSelected={selected} onChange={onChange} data-toggle={id}>
     <span className={playerStyles.switchTrack} aria-hidden="true">
       <span className={playerStyles.switchThumb} />
@@ -144,6 +146,13 @@ const ReaderBody = (props: StoryReaderProps & { readonly profile: OrthographyPro
   const [translations, setTranslations] = useState<ReadonlySet<number>>(new Set(props.initial?.translations ?? []));
   const [selected, setSelected] = useState(props.initial?.gloss);
   const [confirming, setConfirming] = useState(false);
+  // Leaving mid-story (S3) asks as the quit button does; not once the story is over.
+  const quitAsked = useRef(props.quitRequest);
+  useEffect(() => {
+    if (props.quitRequest === quitAsked.current) return;
+    quitAsked.current = props.quitRequest;
+    if (state.tag !== "finished") setConfirming(true);
+  }, [props.quitRequest]);
   const ruby = readings.shown;
   const marks = vowels ? "show" : "hide";
   const continueButton = useRef<HTMLButtonElement>(null);

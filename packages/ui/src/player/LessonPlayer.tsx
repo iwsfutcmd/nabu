@@ -8,7 +8,7 @@
  * answers follow their own TaggedText, and answer regions take the target
  * script's direction, never the UI's.
  */
-import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
+import { draftOf, emptyDraft, isCorrect, LISTENING, progressOf, responseOf, SPEAKING, type AdaptiveTest, type CourseView, type Effect, type Exercise, type Grader, type LessonEvent, type Outcome, type PlayerState, type Response } from "@nabu/core/lesson";
 import type { OrthographyProfile, SchemeId } from "@nabu/schema";
 import { useEffect, useRef, useState, type CSSProperties, type JSX, type ReactNode } from "react";
 import { Button, Dialog, Heading, Modal, ProgressBar, Switch } from "react-aria-components";
@@ -61,6 +61,13 @@ export interface LessonPlayerProps {
   readonly reading?: SchemeId | false | undefined;
   /** The learner chose a reading layer, or none. */
   readonly onReadingChange?: ((scheme: SchemeId | false) => void) | undefined;
+  /** A session picked up again after a reload (core `resume`, S3): where it stands, and what reopens it. */
+  readonly resumed?: readonly [PlayerState, readonly Effect[]] | undefined;
+  /**
+   * The app bumps this to ask, as the quit button does, whether to quit (S3: Back, or the phone's
+   * back button, in the middle of a lesson). Ignored once the lesson is over.
+   */
+  readonly quitRequest?: number | undefined;
 }
 
 const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange: (v: boolean) => void; label: string; id: string }): JSX.Element => (
@@ -75,13 +82,20 @@ const Toggle = ({ selected, onChange, label, id }: { selected: boolean; onChange
 const PlayerBody = (props: LessonPlayerProps & { readonly profile: OrthographyProfile | undefined }): JSX.Element => {
   const { course, exercises, grader, lessonId, imageUrl, language, onEvent, onExit, sound, profile, xpEarned, retries, adaptive, onCantListen, onCantSpeak } = props;
   const t = useTranslator();
-  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries, adaptive });
+  const shell = usePlayer({ lesson: lessonId, exercises, grader, onEvent, sound, retries, adaptive, resumed: props.resumed });
   const [override, setOverride] = useState(props.initialState);
   const state = override ?? shell.state;
   const dispatch = (event: Parameters<typeof shell.dispatch>[0]): void => {
     setOverride(undefined);
     shell.dispatch(event);
   };
+  // Leaving mid-lesson (S3) asks as the quit button does; the state machine ignores it once finished.
+  const quitAsked = useRef(props.quitRequest);
+  useEffect(() => {
+    if (props.quitRequest === quitAsked.current) return;
+    quitAsked.current = props.quitRequest;
+    dispatch({ tag: "interrupt", reason: "quit-confirm" });
+  }, [props.quitRequest]);
   const [mode, setMode] = useState<WritingMode>(props.writingMode ?? "horizontal-tb");
   // Rotated Latin ruby reads badly in vertical text: off by default there, on request (§11.4).
   const readings = useReadings(profile, mode, props.reading, props.onReadingChange);

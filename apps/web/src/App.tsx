@@ -8,9 +8,34 @@
  * Local-first (§14.2): every learner event goes to the on-device log, and the
  * path, XP and the next session are projections of it, computed by @nabu/core.
  * An account is optional; with one, the log syncs to the server.
+ *
+ * A running session holds the route: Back asks before leaving it, and leaving a
+ * finished one goes back to where it was opened from (navigation.ts). A reload
+ * picks a session up where it was (open-session.ts).
  */
-import { applyEvents, continueOf, learnedWords, paceOf, pathNodes, pathOf, plan, plannable, practicableMistakes, replay, scriptPathOf, wordCounts, type LearnerState, type NodeStatus, type PaceChoice, type PathEntry, type PathNode, type SessionRequest } from "@nabu/core/learner";
-import { createGrader, LISTENING, seededRng, SPEAKING, speechSupportOf, type CourseView, type TemplateId } from "@nabu/core/lesson";
+import {
+  applyEvents,
+  continueOf,
+  emptyLearnerState,
+  learnedWords,
+  paceOf,
+  pathNodes,
+  pathOf,
+  plan,
+  plannable,
+  practicableMistakes,
+  replay,
+  scriptPathOf,
+  wordCounts,
+  type LearnerState,
+  type NodeStatus,
+  type PaceChoice,
+  type PathEntry,
+  type PathNode,
+  type SessionPlan,
+  type SessionRequest,
+} from "@nabu/core/learner";
+import { createGrader, doneOf, firstTriesOf, LISTENING, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
@@ -20,11 +45,11 @@ import type { AnswerSubmitted, LearnerEvent, SchemeId, SentenceReported } from "
 import { CorrectIcon, CourseUiProvider, LockIcon, T, useTranslator } from "@nabu/ui";
 import { fetchCourse, fetchCourseIndex, LessonPlayer, type CourseIndexEntry, type LoadedCourse } from "@nabu/ui/player";
 import { StoryReader } from "@nabu/ui/story";
-import { Fragment, useCallback, useEffect, useMemo, useState, useSyncExternalStore, type JSX } from "react";
+import { Fragment, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore, type JSX, type MouseEvent } from "react";
 import { AnswerHelp, RoleplayPage, ScenarioEntries, useAccount, useAiStatus, type AiStatus } from "./ai.tsx";
 import { serverAllowed, speechServices, useSpeechTiers } from "./voice.ts";
 import styles from "./App.module.css";
-import { localDate } from "./clock.ts";
+import { localDate, uuidv7 } from "./clock.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
 import { MarkExercise, MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
@@ -38,6 +63,8 @@ import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
 import { PreferencesPage } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
+import { holdRoute, leave, watchRoute } from "./navigation.ts";
+import { closeOpen, keepOpen, reopen } from "./open-session.ts";
 import { isNative } from "./platform.ts";
 import { LeaguePanel } from "./social.tsx";
 import { recorder, resetEvent, storyRecorder } from "./session.ts";
@@ -116,15 +143,24 @@ export const href = (route: Route): string =>
             ? `#/${route.course}/${slug(route.orthography)}/${route.tag}`
             : `#/${route.course}/${slug(route.orthography)}/${segmentOf(route.request)}`;
 
+/** The route in the URL hash; a running session holds it (navigation.ts, S3). */
 const useRoute = (): Route => {
   const [route, setRoute] = useState(() => parse(window.location.hash));
-  useEffect(() => {
-    const onChange = (): void => setRoute(parse(window.location.hash));
-    window.addEventListener("hashchange", onChange);
-    return () => window.removeEventListener("hashchange", onChange);
-  }, []);
+  useEffect(() => watchRoute(() => setRoute(parse(window.location.hash))), []);
   return route;
 };
+
+/**
+ * A link that leaves the screen it is on (navigation.ts): back to `to` when that is where the
+ * learner came from, else in this screen's place, so Back never returns to what was left.
+ */
+const leaving =
+  (to: string) =>
+  (e: MouseEvent<HTMLAnchorElement>): void => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    leave(to);
+  };
 
 type Translator = ReturnType<typeof useTranslator>;
 
@@ -633,7 +669,7 @@ const GateEmpty = ({ course }: { course: LoadedCourse["course"] }): JSX.Element 
         <a className={styles.link} href={to("mistakes")} data-practice-mode="mistakes">
           {t.format("app.practice.mistakes")}
         </a>
-        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })} onClick={leaving(href({ tag: "course", course: course.id, orthography: course.orthography }))}>
           {t.format("app.practice.back")}
         </a>
       </div>
@@ -686,54 +722,150 @@ const Missing = ({ course }: { course: CourseView }): JSX.Element => {
       <p role="alert" data-missing-node="">
         {t.format("app.session.missing")}
       </p>
-      <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+      <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })} onClick={leaving(href({ tag: "course", course: course.id, orthography: course.orthography }))}>
         {t.format("app.practice.back")}
       </a>
     </main>
   );
 };
 
-/** Plans one session from the learner's state when it opens (§9.4), then plays it. */
-const Session = (props: SessionProps): JSX.Element => {
-  const { loaded, request, game, gameConfig } = props;
-  // Decided once, when the session opens: answering inside it never closes the gate on it.
-  const [allowed] = useState(() => sessionAllowed(game, request.mode, gameConfig));
-  if (!plannable(loaded.course, request)) return <Missing course={loaded.course} />;
-  return allowed ? <SessionBody {...props} /> : <GateEmpty course={loaded.course} />;
+/** A session as it opens: planned now, or picked up where a reload left it (S3). */
+interface Setup {
+  readonly seed: number;
+  readonly planned: SessionPlan;
+  /** The session's id: every event it records carries it. */
+  readonly session: string;
+  /** The XP the learner had before the session (the end screen shows what it earned). */
+  readonly xpBefore: number;
+  /** Picked up again: where the session stands, what reopens it, and its first tries so far. */
+  readonly resumed?: { readonly from: readonly [PlayerState, readonly Effect[]]; readonly firstTries: ReadonlyMap<string, boolean> } | undefined;
+}
+
+/** What the player starts a session's exercises with: retries, or the placement test's search. */
+const startOptions = (request: SessionRequest, planned: SessionPlan) => ({ retries: request.mode !== "placement", ...(planned.placement === undefined ? {} : { adaptive: planned.placement.test }) });
+
+/** Plans a new session from the learner's state as it opens (§9.4), and keeps its plan until it ends (S3). */
+const plannedSetup = (props: SessionProps, route: string): Setup => {
+  const { loaded, request, state, store, speechTiers } = props;
+  const { course } = loaded;
+  const seed = seedFor();
+  // Speaking is scored where tones can be judged here or the server scores it (§10.4).
+  const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
+  const exclude = excluded();
+  // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
+  const now = new Date();
+  // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
+  const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id)).band;
+  const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
+  const session = uuidv7(now.getTime());
+  if (planned.exercises.length > 0) void keepOpen(store, { route, course: course.id, session, seed, bundle: loaded.manifest.id, opened: now.getTime(), plan: planned });
+  return { seed, planned, session, xpBefore: state.xp.total };
 };
 
-const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections }: SessionProps): JSX.Element => {
+/**
+ * Opens a session (§9.4): the one this device was in the middle of at this route, picked up where
+ * it was (S3: a reload, a phone that dropped the tab, the log reloading under it), or a new one.
+ */
+const Session = (props: SessionProps): JSX.Element => {
+  const { loaded, request, game, gameConfig, store, state } = props;
+  const route = href({ tag: "session", course: loaded.course.id, orthography: loaded.course.orthography, request });
+  const [opened, setOpened] = useState<{ readonly setup: Setup } | "gate" | undefined>(undefined);
+  const known = plannable(loaded.course, request);
+  useEffect(() => {
+    if (!known) return;
+    let live = true;
+    void reopen(store, { route, course: loaded.course.id, bundle: loaded.manifest.id, now: Date.now() }).then((found) => {
+      if (!live) return;
+      const done = found === undefined ? [] : doneOf(found.events, found.open.session);
+      const from = found === undefined ? undefined : resume(request.mode === "lesson" ? request.node : request.mode, found.open.plan.exercises, startOptions(request, found.open.plan), done);
+      if (found !== undefined && from !== undefined) {
+        // What the session earned so far is in the state already: the end screen counts from before it.
+        const earned = applyEvents(emptyLearnerState(), found.events).xp.total;
+        const { open } = found;
+        setOpened({ setup: { seed: open.seed, planned: open.plan, session: open.session, xpBefore: state.xp.total - earned, resumed: { from, firstTries: firstTriesOf(done) } } });
+      } else if (!sessionAllowed(game, request.mode, gameConfig)) {
+        // Decided once, when the session opens: answering inside it never closes the gate on it.
+        setOpened("gate");
+      } else {
+        setOpened({ setup: plannedSetup(props, route) });
+      }
+    });
+    return () => {
+      live = false;
+    };
+    // Once, as the session opens: later states are its own doing.
+  }, []);
+  if (!known) return <Missing course={loaded.course} />;
+  if (opened === undefined) return <Loading />;
+  return opened === "gate" ? <GateEmpty course={loaded.course} /> : <SessionBody {...props} setup={opened.setup} route={route} />;
+};
+
+/**
+ * While a session plays it holds the route (navigation.ts, S3): Back, or the phone's back button,
+ * asks whether to quit as the quit button does, and quitting goes where Back was going. Once it
+ * ends, leaving goes back to the course page it came from, so Back never plays it again.
+ */
+const useSessionRoute = (route: string, back: string, playing: boolean) => {
+  const [quitRequest, setQuitRequest] = useState(0);
+  // Where Back was going when the session asked: quitting goes there.
+  const going = useRef<string | undefined>(undefined);
+  const [ended, setEnded] = useState(false);
+  const release = useRef<(() => void) | undefined>(undefined);
+  useEffect(() => {
+    if (!playing || ended) return undefined;
+    release.current = holdRoute(route, (to) => {
+      going.current = to ?? back;
+      setQuitRequest((n) => n + 1);
+    });
+    return release.current;
+  }, [route, back, playing, ended]);
+  // Once: the end screen's Continue and a quit on the way out must not both go back.
+  const left = useRef(false);
+  const go = (to: string): void => {
+    if (left.current) return;
+    left.current = true;
+    leave(to);
+  };
+  return {
+    quitRequest,
+    /** The session ended. A quit that Back asked for goes on where Back was going, unless the end screen has more to say (`stay`). */
+    ended: (completed: boolean, stay = false): void => {
+      // The route is free at once: nothing to ask about any more.
+      release.current?.();
+      setEnded(true);
+      if (!completed && !stay && going.current !== undefined) go(going.current);
+    },
+    exit: (): void => go(going.current ?? back),
+  } as const;
+};
+
+const SessionBody = ({ loaded, request, state, device, record, store, account, ai, speechTiers, corrections, setup, route }: SessionProps & { readonly setup: Setup; readonly route: string }): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+  const playing = setup.planned.exercises.length > 0;
+  const routing = useSessionRoute(route, back, playing);
   // Each exercise's latest answer, for what the feedback offers under it (Phase 8).
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
-  const [setup] = useState(() => {
-    const seed = seedFor();
-    // Speaking is scored where tones can be judged here or the server scores it (§10.4).
-    const speech = speechSupportOf(course, serverAllowed() ? speechTiers.length : 0);
-    const exclude = excluded();
-    // The local date, as events stamp it: a word met today shows its skills from tomorrow (ADR 0100).
-    const now = new Date();
-    // The learner's pace (ADR 0105): a lesson's share of review and the retention target.
-    const pace = paceOf(course, state, now.toISOString(), paceChoiceOf(course.id)).band;
-    const planned = plan(course, state, request, { now: now.toISOString(), today: localDate(now), seed, speech, pace, ...(exclude.size > 0 ? { exclude } : {}) });
+  const [onEvent] = useState(() => {
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
+      if (event.type === "session_completed") {
+        void closeOpen(store, setup.session);
+        routing.ended(event.summary.completed);
+      }
     };
-    return { seed, planned, xpBefore: state.xp.total, onEvent: recorder({ course, bundle: manifest.id, device, plan: planned, seed, record: keep }) };
+    return recorder({ course, bundle: manifest.id, device, plan: setup.planned, seed: setup.seed, record: keep, session: setup.session, firstTries: setup.resumed?.firstTries });
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const speech = useMemo(() => speechServices(course, account, speechTiers), [course, account, speechTiers]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
-  const exit = (): void => {
-    window.location.hash = href({ tag: "course", course: course.id, orthography: course.orthography });
-  };
-  if (setup.planned.exercises.length === 0) {
+  if (!playing) {
     return (
       <main className={styles.page}>
         <p data-empty-session="">{t.format("app.practice.empty")}</p>
-        <a className={styles.back} href={href({ tag: "course", course: course.id, orthography: course.orthography })}>
+        <a className={styles.back} href={back} onClick={leaving(back)}>
           {t.format("app.practice.back")}
         </a>
       </main>
@@ -749,17 +881,19 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         grader={grader}
         imageUrl={imageUrl}
         language={courseName(t, course.id)}
-        onEvent={setup.onEvent}
+        onEvent={onEvent}
         sound={sound}
         retries={request.mode !== "placement"}
         adaptive={setup.planned.placement?.test}
+        resumed={setup.resumed?.from}
+        quitRequest={routing.quitRequest}
         debug={DEBUG}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
         onCantListen={() => setBreakUntil("listening", Date.now() + BREAK_MS)}
         onCantSpeak={() => setBreakUntil("speaking", Date.now() + BREAK_MS)}
         xpEarned={state.xp.total - setup.xpBefore}
-        onExit={exit}
+        onExit={routing.exit}
         speech={speech}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
@@ -797,6 +931,9 @@ const StorySession = (props: StorySessionProps): JSX.Element => {
 const StoryBody = ({ loaded, node, state, device, record, corrections, store, account, ai }: StorySessionProps): JSX.Element => {
   const t = useTranslator();
   const { course, manifest, imageUrl } = loaded;
+  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
+  const route = href({ tag: "story", course: course.id, orthography: course.orthography, node });
+  const routing = useSessionRoute(route, back, storyAt(course, node) !== undefined);
   // Each question's latest answer, for "My answer should be accepted" under its feedback.
   const [answers, setAnswers] = useState<ReadonlyMap<string, AnswerSubmitted>>(new Map());
   const [setup] = useState(() => {
@@ -806,17 +943,17 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
     const keep = (event: LearnerEvent): void => {
       if (event.type === "answer_submitted") setAnswers((m) => new Map(m).set(event.exercise.id, event));
       record(event);
+      if (event.type === "session_completed") routing.ended(event.summary.completed);
     };
     return { script: storyScript(course, story, seededRng(seed)), xpBefore: state.xp.total, onEvent: storyRecorder({ course, bundle: manifest.id, device, node, seed, record: keep }) };
   });
   const grader = useMemo(() => createGrader(course), [course]);
   const sound = new URLSearchParams(window.location.search).get("sound") !== "off";
-  const back = href({ tag: "course", course: course.id, orthography: course.orthography });
   if (setup === undefined) {
     return (
       <main className={styles.page}>
         <p data-empty-session="">{t.format("app.practice.empty")}</p>
-        <a className={styles.back} href={back}>
+        <a className={styles.back} href={back} onClick={leaving(back)}>
           {t.format("app.practice.back")}
         </a>
       </main>
@@ -836,9 +973,8 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         xpEarned={state.xp.total - setup.xpBefore}
         reading={storedReading(course.orthography)}
         onReadingChange={(scheme) => storeReading(course.orthography, scheme)}
-        onExit={() => {
-          window.location.hash = back;
-        }}
+        quitRequest={routing.quitRequest}
+        onExit={routing.exit}
         lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
