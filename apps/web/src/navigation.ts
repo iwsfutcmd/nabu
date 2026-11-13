@@ -115,6 +115,12 @@ export const askToLeave = (): boolean => {
 };
 
 /**
+ * The route of the entry before this one, as the app noted it on coming here (null: none, or a page
+ * outside the app): where a screen opened from several places goes back to (Preferences, S8).
+ */
+export const cameFrom = (): string | null => markOf(history.state)?.from ?? null;
+
+/**
  * Leaves the screen for `to`: back, when `to` is the entry before this one, so Back from there
  * goes on to what came before; else `to` takes this entry's place.
  */

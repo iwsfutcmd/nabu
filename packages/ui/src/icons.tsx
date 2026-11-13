@@ -88,6 +88,17 @@ export const SoundOffIcon = ({ size = 20 }: IconProps): JSX.Element => (
   </svg>
 );
 
+/** Preferences (a cog wheel of eight teeth). Symmetric: never mirrors. */
+export const SettingsIcon = ({ size = 20 }: IconProps): JSX.Element => (
+  <svg {...base(size, styles.icon)} data-icon="settings">
+    <path
+      d="M10.38 4.98L10.58 2.51L13.42 2.51L13.62 4.98A7.2 7.2 0 0 1 15.82 5.89L17.71 4.28L19.72 6.29L18.11 8.18A7.2 7.2 0 0 1 19.02 10.38L21.49 10.58L21.49 13.42L19.02 13.62A7.2 7.2 0 0 1 18.11 15.82L19.72 17.71L17.71 19.72L15.82 18.11A7.2 7.2 0 0 1 13.62 19.02L13.42 21.49L10.58 21.49L10.38 19.02A7.2 7.2 0 0 1 8.18 18.11L6.29 19.72L4.28 17.71L5.89 15.82A7.2 7.2 0 0 1 4.98 13.62L2.51 13.42L2.51 10.58L4.98 10.38A7.2 7.2 0 0 1 5.89 8.18L4.28 6.29L6.29 4.28L8.18 5.89A7.2 7.2 0 0 1 10.38 4.98ZM15 12a3 3 0 1 0-6 0a3 3 0 1 0 6 0Z"
+      fill="currentColor"
+      fillRule="evenodd"
+    />
+  </svg>
+);
+
 /** Play slowly (a tortoise). Media control: never mirrors. */
 export const SlowIcon = ({ size = 20 }: IconProps): JSX.Element => (
   <svg {...base(size, styles.icon)} data-icon="slow">

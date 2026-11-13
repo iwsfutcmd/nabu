@@ -232,6 +232,22 @@ describe("the lesson's sound switch (P6)", () => {
   });
 });
 
+describe("Preferences from the lesson (S8)", () => {
+  const course = loadCourse("apc", "apc-Arab/standard");
+  const ex = cardOf(course, "complete-translation");
+  const link = (html: string): string => /<a[^>]*data-action="preferences"[^>]*>/u.exec(html)?.[0] ?? "";
+
+  it("is a link in the header, where the app gives one", () => {
+    const html = play(course, ex, stateOf(course, ex), { preferences: "#/preferences" });
+    expect(link(html)).toContain('href="#/preferences"');
+    expect(link(html)).toContain('aria-label="Preferences"');
+    // In the header, after the sound switch.
+    const header = html.slice(html.indexOf("<header"), html.indexOf("</header>"));
+    expect(header.indexOf('data-action="preferences"')).toBeGreaterThan(header.indexOf('data-action="sound"'));
+    expect(link(play(course, ex, stateOf(course, ex)))).toBe("");
+  });
+});
+
 describe("the answer's play buttons (P15)", () => {
   const course = loadCourse("apc", "apc-Arab/standard");
   const ex = cardOf(course, "complete-translation");

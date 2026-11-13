@@ -33,10 +33,11 @@ import {
   type SessionPlan,
   type SessionRequest,
 } from "@nabu/core/learner";
-import { cardGloss, createGrader, doneOf, firstTriesOf, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
+import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, LISTENING, prepareGrading, resume, seededRng, SPEAKING, speechSupportOf, type CourseView, type Effect, type PlayerState, type TemplateId } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
 import { correctablesOf, draftCount } from "@nabu/core/corrections";
 import { restrictMedia } from "@nabu/core/offline";
+import { wordIndexes } from "@nabu/core/text";
 import { storyAt, storyScript } from "@nabu/core/story";
 import { courseBlurb, courseName, directionOf, orthographyHint, orthographyName, type Named } from "@nabu/i18n";
 import type { AnswerSubmitted, BundleNode, BundleUnit, LearnerEvent, SentenceReported, TaggedText } from "@nabu/schema";
@@ -65,10 +66,10 @@ import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.t
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
-import { PreferencesPage, storedSound, storeSound } from "./Preferences.tsx";
+import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
 import { startNative } from "./native.ts";
-import { holdRoute, leave, watchRoute } from "./navigation.ts";
+import { cameFrom, holdRoute, leave, watchRoute } from "./navigation.ts";
 import { closeOpen, keepOpen, reopen, type OpenSession } from "./open-session.ts";
 import { mostQuestions, PlacementIntro, PlacementResult } from "./Placement.tsx";
 import { isNative } from "./platform.ts";
@@ -172,6 +173,30 @@ const leaving =
   };
 
 type Translator = ReturnType<typeof useTranslator>;
+
+/** Where Preferences goes back to (S8): the course page or the session it was opened from, else the course list. */
+const preferencesBack = (from: string | null): { readonly to: string; readonly label: PreferencesBack } => {
+  const at = from === null ? undefined : parse(from);
+  if (at?.tag === "course") return { to: href(at), label: "preferences.back.course" };
+  if (at?.tag === "session") {
+    const { mode } = at.request;
+    return { to: href(at), label: mode === "lesson" ? "preferences.back.lesson" : mode === "placement" ? "preferences.back.placement" : "preferences.back.practice" };
+  }
+  return { to: href({ tag: "home" }), label: "preferences.back" };
+};
+
+/** A sentence of the course for Preferences' text size (S8): the first on its path of three words or more, else its first. */
+const sampleOf = (course: CourseView, language: string): TextSample | undefined => {
+  const sentences = lessonNodes(course).flatMap(({ unit, node }) =>
+    node.sentences.flatMap((id) => {
+      const sentence = unit.sentences.find((s) => s.id === id);
+      const text = sentence?.forms[course.orthography]?.text;
+      return sentence === undefined || text === undefined ? [] : [{ text, translation: sentence.translations[course.supportKey]?.text }];
+    }),
+  );
+  const pick = sentences.find((s) => wordIndexes(s.text).length >= 3) ?? sentences[0];
+  return pick === undefined ? undefined : { course, language, ...pick };
+};
 
 interface GameProps {
   readonly game: GameState | null;
@@ -534,9 +559,13 @@ const CoursePath = ({
 
   return (
     <main className={styles.page} data-course-path={course.id}>
-      <p>
+      <p className={styles.pageLinks}>
         <a className={styles.back} href={href({ tag: "home" })}>
           {t.format("app.lessons.back")}
+        </a>
+        {/* Preferences from the course too, not only from the course list (S8). */}
+        <a className={styles.back} href={href({ tag: "preferences" })} data-preferences-link="">
+          {t.format("app.preferences.link")}
         </a>
       </p>
       <h1 className={styles.heading}>
@@ -1086,6 +1115,8 @@ const SessionBody = ({ loaded, request, state, device, record, store, account, a
         progress={end.progress}
         next={next}
         onExit={routing.exit}
+        // Preferences mid-session (S8): a new navigation; the session is kept, and picked up on the way back.
+        preferences={href({ tag: "preferences" })}
         speech={speech}
         feedbackExtra={(ex, _outcome, response, revise) => {
           const answer = answers.get(ex.id);
@@ -1371,7 +1402,12 @@ export const App = (): JSX.Element => {
     return () => clearTimeout(id);
   }, [playable]);
 
-  if (route.tag === "preferences") return <PreferencesPage back={href({ tag: "home" })} account={account} />;
+  if (route.tag === "preferences") {
+    // Back where it was opened from (S8); a sample of the text size in the course last open, if any.
+    const back = preferencesBack(cameFrom());
+    const sample = current === undefined ? undefined : sampleOf(current.course, courseName(t, current.course));
+    return <PreferencesPage back={back.to} backLabel={back.label} onBack={leaving(back.to)} account={account} sample={sample} />;
+  }
   if (route.tag === "review") {
     return index === null || sync === null ? (
       <Loading />

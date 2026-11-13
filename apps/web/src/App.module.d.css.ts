@@ -60,6 +60,7 @@ declare const styles: {
   readonly paceChoice: string;
   readonly paceLine: string;
   readonly page: string;
+  readonly pageLinks: string;
   readonly player: string;
   readonly preferenceOption: string;
   readonly preferenceOptions: string;
@@ -81,9 +82,13 @@ declare const styles: {
   readonly reportTitle: string;
   readonly resultTitle: string;
   readonly resultUnit: string;
+  readonly sampleCaption: string;
+  readonly sampleText: string;
+  readonly sampleTranslation: string;
   readonly scriptHint: string;
   readonly scriptLink: string;
   readonly scripts: string;
+  readonly sizeSample: string;
   readonly standing: string;
   readonly standings: string;
   readonly startOver: string;

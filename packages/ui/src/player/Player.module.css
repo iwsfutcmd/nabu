@@ -16,8 +16,14 @@
   border-radius: var(--nabu-radius-card);
 }
 
+/*
+ * Where the header's buttons don't fit beside the bar (a narrow phone, a large text setting), the last
+ * ones go to a second row at the inline end; where they fit, the bar takes the room and nothing moves.
+ */
 .header {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   gap: var(--nabu-space-3);
 }

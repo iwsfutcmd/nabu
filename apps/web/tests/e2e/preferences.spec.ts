@@ -4,12 +4,14 @@
  * their size. Classical Chinese is also set a quarter larger than the text around it (its
  * profile's fonts.scale, ADR 0071).
  *
+ * Preferences opens from a course's page and from a lesson's header too, and goes back where it was
+ * opened: a lesson goes on where it was. Opened from a course, it shows the size on a sentence of it.
  * Listening and speaking exercises can be turned off there for good, not only for an hour (S8).
  */
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test, type Locator, type Page } from "@playwright/test";
 import { lessonNodes, LISTENING, SPEAKING } from "@nabu/core/lesson";
-import { historyBefore, loadCourse, pathUrl, planned, playSession, seedLog, sessionUrl } from "./solver.ts";
+import { activate, answer, expectRightAndContinue, historyBefore, loadCourse, logOf, pathUrl, planned, playSession, seedLog, sessionUrl, waitFor, type Mode } from "./solver.ts";
 
 const NOW = new Date("2026-03-10T09:00:00Z");
 
@@ -130,6 +132,86 @@ test("the theme matches the browser until the learner chooses light or dark, and
   await fresh.goto("/");
   await expect(fresh.locator("html")).toHaveAttribute("data-theme", "dark");
   await context.close();
+});
+
+test("Preferences opens from a course's page, shows the text size on a sentence of the course, and goes back to it", async ({ page }, info) => {
+  test.skip(info.project.name !== "keyboard", "one desktop pass is enough");
+  await page.clock.setFixedTime(NOW);
+  const fa = loadCourse("fa", "fa-Arab/standard");
+  await page.goto(pathUrl(fa, 7));
+  // The path's previews: a word of the course, and its meaning under it.
+  const pathWord = page.locator("[data-course-path] [data-preview-item] [data-nabu-text][data-target] [data-kind=word]").first();
+  const pathGloss = page.locator('[data-course-path] [data-preview-item] [data-nabu-text][lang="en-Latn"] [data-kind=word]').first();
+  await expect(pathWord).toBeVisible();
+  const before = { word: await fontSize(pathWord), gloss: await fontSize(pathGloss) };
+
+  await page.locator("[data-course-path] [data-preferences-link]").click();
+  await expect(page.locator("[data-preferences]")).toBeVisible();
+  const back = page.locator('[data-preferences-back=""]');
+  await expect(back).toHaveText("Back to the course");
+  const sample = page.locator("[data-target-size-sample=fa]");
+  // The course's name is a placeholder, so MF2 isolates it (FSI … PDI).
+  await expect(sample.locator("figcaption")).toHaveText("⁨Persian⁩ at this size:");
+  const sampleWord = sample.locator("[data-nabu-text][data-target] [data-kind=word]").first();
+  const sampleGloss = sample.locator('[data-nabu-text][lang="en-Latn"] [data-kind=word]').first();
+  const at = { word: await fontSize(sampleWord), gloss: await fontSize(sampleGloss) };
+  await page.locator("[data-target-size=largest]").click();
+  // The sample grows as the size is chosen; its translation keeps its size.
+  await expect.poll(() => fontSize(sampleWord)).toBeCloseTo(at.word * 1.75, 1);
+  expect(await fontSize(sampleGloss)).toBe(at.gloss);
+
+  // Back on the course's page, its words take the size too (the path is inside CourseUiProvider).
+  await back.click();
+  await expect(page.locator("[data-course-path]")).toBeVisible();
+  await expect(page).toHaveURL(/#\/fa\/fa-Arab\.standard$/u);
+  expect(await fontSize(pathWord)).toBeCloseTo(before.word * 1.75, 1);
+  expect(await fontSize(pathGloss)).toBe(before.gloss);
+});
+
+test("Preferences opens from a lesson's header, and the lesson goes on where it was", async ({ page }, info) => {
+  const mode = info.project.name as Mode;
+  await page.clock.setFixedTime(NOW);
+  const fa = loadCourse("fa", "fa-Arab/standard");
+  const node = lessonNodes(fa)[0]?.node.id ?? "";
+  const exercises = planned(fa, [], { mode: "lesson", node }, NOW, 7);
+  const third = exercises[2];
+  if (third === undefined) throw new Error("a short lesson");
+  await page.goto(pathUrl(fa, 7));
+  await activate(page, mode, `[data-lesson="${node}"]`);
+  for (const ex of exercises.slice(0, 2)) {
+    await waitFor(page, ex);
+    await answer(page, ex, mode);
+    await expectRightAndContinue(page, mode, ex);
+  }
+  await waitFor(page, third);
+  // The answers so far are in the log before the lesson is left (a reload would lose an unwritten one).
+  await expect.poll(async () => (await logOf(page, "fa")).filter((e) => e.type === "answer_submitted").length).toBe(2);
+
+  // The header's link: no question asked (a new navigation, ADR 0108), and the way back says where to.
+  await activate(page, mode, "[data-lesson-player] [data-action=preferences]");
+  await expect(page.locator("[data-preferences]")).toBeVisible();
+  await expect(page.locator("[data-quit-dialog]")).toHaveCount(0);
+  await expect(page.locator('[data-preferences-back=""]')).toHaveText("Back to the lesson");
+  await activate(page, mode, '[data-preferences-back=""]');
+  await waitFor(page, third);
+  expect((await logOf(page, "fa")).filter((e) => e.type === "session_started")).toHaveLength(1);
+});
+
+test("on a narrow phone the lesson's header keeps every button in sight", async ({ page }, info) => {
+  test.skip(info.project.name !== "touch", "a phone's screen");
+  await page.setViewportSize({ width: 320, height: 640 });
+  const fa = loadCourse("fa", "fa-Arab/standard");
+  await page.goto(sessionUrl(fa, { mode: "lesson", node: lessonNodes(fa)[0]?.node.id ?? "" }, 7));
+  const header = page.locator("[data-lesson-player] header");
+  await expect(header).toBeVisible();
+  const card = await page.locator("[data-lesson-player]").boundingBox();
+  for (const action of ["quit", "display", "sound", "preferences"]) {
+    const box = await header.locator(`[data-action=${action}]`).boundingBox();
+    if (box === null || card === null) throw new Error(`${action} is not laid out`);
+    expect(box.x, action).toBeGreaterThanOrEqual(card.x);
+    expect(box.x + box.width, action).toBeLessThanOrEqual(card.x + card.width);
+  }
+  expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBe(0);
 });
 
 const exercisesChoice = (page: Page, modality: "listening" | "speaking", choice: "on" | "off"): Locator => page.locator(`[data-preference=${modality}] [data-exercises-choice=${choice}]`);
