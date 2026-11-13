@@ -125,17 +125,22 @@ const Line = ({ line, ruby, marks, pressed, onToken, translated, onTranslate, la
         pressed={pressed}
         current={player.token}
       />
-      {line.translation !== undefined && (
-        <>
-          <Button className={styles.translate} onPress={onTranslate} aria-expanded={translated} aria-controls={translationId} data-action="translate">
-            {t.format(translated ? "story.translation.hide" : "story.translation.show")}
-          </Button>
-          <div id={translationId} hidden={!translated}>
-            {translated && <T as="p" className={styles.translation} text={line.translation} />}
-          </div>
-        </>
+      {/* The line's controls share a row: the translation toggle at the start, the action (a report flag) at the end. */}
+      {(line.translation !== undefined || (action !== undefined && action !== null)) && (
+        <div className={styles.lineControls}>
+          {line.translation !== undefined && (
+            <Button className={styles.translate} onPress={onTranslate} aria-expanded={translated} aria-controls={translationId} data-action="translate">
+              {t.format(translated ? "story.translation.hide" : "story.translation.show")}
+            </Button>
+          )}
+          {action}
+        </div>
       )}
-      {action}
+      {line.translation !== undefined && (
+        <div id={translationId} hidden={!translated}>
+          {translated && <T as="p" className={styles.translation} text={line.translation} />}
+        </div>
+      )}
     </div>
   );
 };

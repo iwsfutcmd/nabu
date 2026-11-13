@@ -43,6 +43,7 @@ declare const styles: {
   readonly lesson: string;
   readonly lessonHead: string;
   readonly lessonName: string;
+  readonly lineReport: string;
   readonly link: string;
   readonly links: string;
   readonly list: string;

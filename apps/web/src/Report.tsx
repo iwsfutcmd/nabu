@@ -10,13 +10,13 @@
  *
  * A report is a choice two steps away, never a line under every verdict that reads like one.
  */
-import { correctionKey, type Correctable } from "@nabu/core/corrections";
+import { correctable, correctionKey, type Correctable } from "@nabu/core/corrections";
 import type { SentenceReported } from "@nabu/schema";
 import { chromeClass, FlagIcon, useChrome, useTranslator } from "@nabu/ui";
 import { useState, type JSX } from "react";
 import { Button, Dialog, DialogTrigger, Heading, Popover } from "react-aria-components";
 import styles from "./App.module.css";
-import { ChooseDialog, CorrectionDialog, type Recording } from "./Corrections.tsx";
+import { ChooseDialog, CorrectionDialog, Sent, type Recording } from "./Corrections.tsx";
 import { useReportsPublic } from "./reports.ts";
 
 export type Claim = "accept" | "reject";
@@ -135,5 +135,22 @@ export const ReportButton = ({ claim, spoken, claimed, onClaim, correcting, onSe
         />
       )}
     </>
+  );
+};
+
+/**
+ * A story line's report: the same small flag as a card's, at the inline end of the line's controls,
+ * offering only "This sentence is wrong" (or the correction already made). A line is corrected where
+ * it stands, by its step in the story; once sent, the line says so beside the flag.
+ */
+export const LineReport = ({ item, step, corrections, ...recording }: Recording & { readonly item: string; readonly step: number; readonly corrections: ReadonlyMap<string, SentenceReported> }): JSX.Element | null => {
+  const [sent, setSent] = useState(false);
+  const target = correctable(recording.course, item, step);
+  if (target === undefined) return null;
+  return (
+    <div className={styles.lineReport}>
+      {sent && <Sent />}
+      <ReportButton claim={undefined} spoken={false} claimed={undefined} onClaim={() => undefined} correcting={{ ...recording, targets: [target], corrections }} onSent={() => setSent(true)} />
+    </div>
   );
 };

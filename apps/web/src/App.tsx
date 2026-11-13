@@ -52,7 +52,8 @@ import summaries from "virtual:nabu-courses";
 import { localDate, uuidv7 } from "./clock.ts";
 import { BREAK_MS, onBreak, playsUnasked, setBreakUntil } from "./breaks.ts";
 import { paceChoiceOf, setPaceChoice } from "./pace.ts";
-import { MarkIncorrect, SentencesPage, useCorrections } from "./Corrections.tsx";
+import { SentencesPage, useCorrections } from "./Corrections.tsx";
+import { LineReport } from "./Report.tsx";
 import { ReviewHome, ReviewPage, useReviewer } from "./Review.tsx";
 import { WordsPage } from "./Words.tsx";
 import { storedReading, storeReading } from "./readings.ts";
@@ -1075,7 +1076,7 @@ const StoryBody = ({ loaded, node, state, device, record, corrections, store, ac
         replay={state.completedNodes.includes(node)}
         quitRequest={routing.quitRequest}
         onExit={routing.exit}
-        lineAction={(line) => <MarkIncorrect course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
+        lineAction={(line) => <LineReport course={course} bundle={manifest.id} device={device} record={record} item={setup.script.id} step={line.step} corrections={corrections} />}
         feedbackExtra={(ex, _outcome, response) => {
           const answer = answers.get(ex.id);
           return <AnswerHelp key={`help:${answer?.id ?? ex.id}`} answer={answer} ex={ex} response={response} status={ai} account={account} store={store} record={record} />;

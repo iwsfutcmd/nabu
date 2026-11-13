@@ -920,6 +920,14 @@
   outline-offset: 2px;
 }
 
+/* A story line's flag and, once sent, the note beside it: at the inline end of the line's controls. */
+.lineReport {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nabu-space-1);
+  margin-inline-start: auto;
+}
+
 .reportPopover {
   max-inline-size: min(22rem, calc(100vi - 2 * var(--nabu-space-4)));
   background-color: var(--nabu-color-surface);

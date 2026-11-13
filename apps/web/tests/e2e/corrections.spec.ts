@@ -62,7 +62,7 @@ test.describe("my answer should be accepted, in a story", () => {
     await page.locator("[data-story-reader] [data-action=check]").click();
     await expect(page.locator("[data-feedback]")).toHaveAttribute("data-verdict", "WRONG");
     // The one report button beside the feedback (M6); a story question offers the claim alone.
-    await page.locator("[data-story-reader] [data-action=report-problem]").click();
+    await page.locator("[data-story-question] [data-action=report-problem]").click();
     await expect(page.locator("[data-report-dialog] [data-action=mark-incorrect]")).toHaveCount(0);
     await page.locator("[data-report-dialog] [data-action=report]").click();
     await expect(page.locator("[data-reported]")).toBeVisible();
@@ -217,7 +217,10 @@ test.describe("corrections", () => {
     if (story === undefined) throw new Error("yue has a story");
     await page.goto(url(`#/yue/yue-Hant-HK.standard/story/${story.node}`));
     const line = page.locator("[data-story-reader] [data-line='0']");
-    await line.locator("[data-action=mark-incorrect]").click();
+    // The same small flag as a card's, at the end of the line's controls: never a line of text.
+    await expect(line.locator("[data-action=mark-incorrect]")).toHaveCount(0);
+    await line.locator("[data-action=report-problem]").click();
+    await page.locator("[data-report-dialog] [data-action=mark-incorrect]").click();
     const step = story.steps.findIndex((s) => s.line !== undefined);
     await expect(dialog(page).locator("[data-correction-form]")).toHaveAttribute("data-step", String(step));
     await dialog(page).locator("[data-field=correction-note]").fill("Too formal for friends.");

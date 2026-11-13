@@ -12,7 +12,6 @@
  * `nabu review apply` reads.
  */
 import {
-  correctable,
   correctionKey,
   correctionRows,
   jsonLines,
@@ -111,74 +110,6 @@ export const Sent = (): JSX.Element => {
     <p className={styles.muted} role="status" data-correction-sent="">
       {t.format("corrections.sent")}
     </p>
-  );
-};
-
-interface MarkProps extends Recording {
-  readonly item: string;
-  readonly step?: number | undefined;
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-  readonly className?: string | undefined;
-}
-
-/** "This sentence is wrong": a button that opens the form, for any item the course source holds. */
-export const MarkIncorrect = ({ item, step, corrections, className, ...recording }: MarkProps): JSX.Element | null => {
-  const target = correctable(recording.course, item, step);
-  return target === undefined ? null : <MarkTargets {...recording} targets={[target]} corrections={corrections} className={className} />;
-};
-
-interface TargetsProps extends Recording {
-  readonly targets: readonly Correctable[];
-  readonly corrections: ReadonlyMap<string, SentenceReported>;
-  readonly className?: string | undefined;
-}
-
-const MarkTargets = ({ targets, corrections, className, ...recording }: TargetsProps): JSX.Element | null => {
-  const t = useTranslator();
-  const [choosing, setChoosing] = useState(false);
-  const [target, setTarget] = useState<Correctable | undefined>(undefined);
-  const [sent, setSent] = useState(false);
-  const [first] = targets;
-  if (first === undefined) return null;
-  const previousOf = (c: Correctable): SentenceReported | undefined => corrections.get(correctionKey(c.item, c.step));
-  const several = targets.length > 1;
-  const label = several ? "corrections.mark.pairs" : previousOf(first) !== undefined ? "corrections.edit" : first.kind === "word" ? "corrections.mark.word" : "corrections.mark";
-  return (
-    <>
-      <Button
-        className={className ?? styles.textButton}
-        onPress={() => (several ? setChoosing(true) : setTarget(first))}
-        data-action="mark-incorrect"
-        data-item={several ? undefined : first.item}
-        data-step={several ? undefined : first.step}
-      >
-        {t.format(label)}
-      </Button>
-      {sent && <Sent />}
-      {choosing && (
-        <ChooseDialog
-          course={recording.course}
-          targets={targets}
-          corrections={corrections}
-          onChoose={(c) => {
-            setChoosing(false);
-            setTarget(c);
-          }}
-          onClose={() => setChoosing(false)}
-        />
-      )}
-      {target !== undefined && (
-        <CorrectionDialog
-          {...recording}
-          target={target}
-          previous={previousOf(target)}
-          onClose={(done) => {
-            setTarget(undefined);
-            if (done) setSent(true);
-          }}
-        />
-      )}
-    </>
   );
 };
 
