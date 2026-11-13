@@ -16,6 +16,7 @@
  * memory for the page's lifetime and `persistent` is false, so the app can say
  * that progress will not be kept.
  */
+import { compareEvents, isStart } from "@nabu/core/learner";
 import type { LearnerEvent } from "@nabu/schema";
 import { uuidv7 } from "./clock.ts";
 import { done, EVENTS, heldOf, META, openDb, OUTBOX, outboxOf, persist, persisted, promised, RECEIVED, receivedTimes, releaseHeld, requeueLog, type Held } from "./idb.ts";
@@ -38,6 +39,13 @@ export interface EventStore {
   readonly append: (events: readonly LearnerEvent[], options?: { readonly synced?: boolean; readonly received?: Readonly<Record<string, string>> }) => Promise<readonly string[]>;
   readonly eventsOf: (course: string) => Promise<readonly LearnerEvent[]>;
   readonly allEvents: () => Promise<readonly LearnerEvent[]>;
+  /**
+   * Each course's latest start (a session begun, or the course started over; @nabu/core `isStart`),
+   * for where the learner left off (S1). Each course's events are read back from its newest, so
+   * Home never reads the whole log for it: ids are UUIDv7, so key order is the order the events
+   * were made in (as the outbox counts on too).
+   */
+  readonly latestStarts: () => Promise<readonly LearnerEvent[]>;
   /** The ids of every event in the log (keys only: cheaper than reading the events). */
   readonly ids: () => Promise<ReadonlySet<string>>;
   /** The oldest events the server has not acknowledged, up to `limit`. */
@@ -64,6 +72,37 @@ export interface EventStore {
   readonly setMeta: (key: string, value: unknown) => Promise<void>;
   readonly deleteMeta: (key: string) => Promise<void>;
 }
+
+/** Walks a cursor while `step` says to go on; resolves when it stops or runs out. */
+const walk = <C extends IDBCursor>(request: IDBRequest<C | null>, step: (cursor: C) => boolean): Promise<void> =>
+  new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      const cursor = request.result;
+      if (cursor === null || !step(cursor)) resolve();
+      else cursor.continue();
+    };
+    request.onerror = () => reject(request.error ?? new Error("IndexedDB cursor failed"));
+  });
+
+/** Each course in the log, then its events from the newest back to its latest start (S1). */
+const latestStartsOf = async (db: IDBDatabase): Promise<LearnerEvent[]> => {
+  const byCourse = db.transaction(EVENTS).objectStore(EVENTS).index("course");
+  const courses: IDBValidKey[] = [];
+  await walk(byCourse.openKeyCursor(null, "nextunique"), (c) => {
+    courses.push(c.key);
+    return true;
+  });
+  const starts: LearnerEvent[] = [];
+  for (const course of courses) {
+    await walk(byCourse.openCursor(IDBKeyRange.only(course), "prev"), (c) => {
+      const event = c.value as LearnerEvent;
+      if (!isStart(event)) return true;
+      starts.push(event);
+      return false;
+    });
+  }
+  return starts;
+};
 
 const deviceId = async (db: IDBDatabase): Promise<string> => {
   const tx = db.transaction(META, "readwrite");
@@ -105,6 +144,7 @@ const indexedStore = async (): Promise<EventStore> => {
     },
     eventsOf: async (course) => promised(db.transaction(EVENTS).objectStore(EVENTS).index("course").getAll(course)) as Promise<LearnerEvent[]>,
     allEvents: async () => promised(db.transaction(EVENTS).objectStore(EVENTS).getAll()) as Promise<LearnerEvent[]>,
+    latestStarts: () => latestStartsOf(db),
     ids: async () => new Set((await promised(db.transaction(EVENTS).objectStore(EVENTS).getAllKeys())) as string[]),
     pending: outbox.pending,
     pendingCount: async () => promised(db.transaction(OUTBOX).objectStore(OUTBOX).count()),
@@ -154,6 +194,15 @@ const memoryStore = (): EventStore => {
     // The account's own events (the weekly goal) are no course's, as the browser's course index leaves them out.
     eventsOf: (course) => Promise.resolve([...log.values()].filter((e) => e.type !== "goal_set" && e.course === course)),
     allEvents: () => Promise.resolve([...log.values()]),
+    latestStarts: () => {
+      const latest = new Map<string, LearnerEvent>();
+      for (const e of log.values()) {
+        if (!isStart(e)) continue;
+        const seen = latest.get(e.course);
+        if (seen === undefined || compareEvents(seen, e) < 0) latest.set(e.course, e);
+      }
+      return Promise.resolve([...latest.values()]);
+    },
     ids: () => Promise.resolve(new Set(log.keys())),
     pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => log.get(id) ?? [])),
     pendingCount: () => Promise.resolve(outbox.size),

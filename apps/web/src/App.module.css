@@ -1035,6 +1035,28 @@
   outline-offset: 3px;
 }
 
+/* Home's Continue card (S1): the course studied last, its next step, and the button that starts it. */
+.continueCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nabu-space-2);
+  margin-block-end: var(--nabu-space-4);
+  border-color: var(--nabu-color-accent);
+}
+
+/* The next step's line keeps its room while the course loads, so nothing under it moves when it comes. */
+.continueStep {
+  min-block-size: 1.5em;
+  margin: 0;
+}
+
+.continueActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--nabu-space-2) var(--nabu-space-3);
+}
+
 .paceLine {
   flex-basis: 100%;
   margin: 0;

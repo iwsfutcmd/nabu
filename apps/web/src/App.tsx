@@ -33,6 +33,7 @@ import {
   type PathNode,
   type SessionPlan,
   type SessionRequest,
+  type Studied,
 } from "@nabu/core/learner";
 import { cardGloss, createGrader, doneOf, firstTriesOf, lessonNodes, prepareGrading, resume, seededRng, speechSupportOf, type CourseView, type Effect, type Facet, type PlayerState } from "@nabu/core/lesson";
 import type { GameConfig, GameState } from "@nabu/core/game";
@@ -66,6 +67,8 @@ import { GamePanel, gateClosed, loadGameConfig, sessionAllowed, useGame } from "
 import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress, SignedOutNotice } from "./Progress.tsx";
 import { OfflineNotice, OfflinePage } from "./Offline.tsx";
+import { ContinueCard, useStudied, type ContinueLinks } from "./HomeContinue.tsx";
+import { lastPractised, orderCourses, resumeOf } from "./left-off.ts";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
 import { PreferencesPage, storedSound, storeSound, type PreferencesBack, type TextSample } from "./Preferences.tsx";
 import { offlineSupported, registerWorker, useOnline, useStored } from "./offline.ts";
@@ -225,26 +228,32 @@ const leavesOut = (id: string): "app.home.course.reading" | "app.home.course.no-
 
 /**
  * A course in the list (S4): the whole card is the link to its course page, in its first writing
- * system; a line on what it teaches, its levels and size, and what it leaves out. A course written
- * in several systems offers each, with a hint, and says the learner can switch any time.
+ * system, or the one the learner studies it in (S1); a line on what it teaches, its levels and size,
+ * and what it leaves out, and when the learner last practised it. A course written in several
+ * systems offers each, with a hint, and says the learner can switch any time.
  */
-const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Element => {
+const CourseCard = ({ entry, studied }: { readonly entry: CourseIndexEntry; readonly studied?: Studied | undefined }): JSX.Element => {
   const t = useTranslator();
-  const [first] = entry.orthographies;
+  const orthography = studied !== undefined && entry.orthographies.includes(studied.orthography) ? studied.orthography : entry.orthographies[0];
   const blurb = courseBlurb(t, entry);
   const about = aboutCourse(t, entry.id);
   const leaves = leavesOut(entry.id);
   return (
-    <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id}>
+    <li className={`${styles.course} ${styles.courseCard}`} data-course={entry.id} data-studied={studied === undefined ? undefined : ""}>
       <h2 className={styles.courseName}>
-        {first === undefined ? (
+        {orthography === undefined ? (
           courseName(t, entry)
         ) : (
-          <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography: first })} data-course-link="">
+          <a className={styles.courseLink} href={href({ tag: "course", course: entry.id, orthography })} data-course-link="">
             {courseName(t, entry)}
           </a>
         )}
       </h2>
+      {studied !== undefined && (
+        <p className={styles.muted} data-course-last="">
+          {lastPractised(t, studied.at, new Date())}
+        </p>
+      )}
       {blurb !== undefined && <p className={styles.courseLine}>{blurb}</p>}
       {about !== undefined && (
         <p className={styles.muted} data-course-about="">
@@ -279,6 +288,14 @@ const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Elemen
   );
 };
 
+/** Where the learner left off (S1): the course Home continues, and once loaded, the course and the learner's state in it. */
+interface LeftOff {
+  readonly entry: CourseIndexEntry;
+  readonly orthography: string;
+  readonly course: CourseView | undefined;
+  readonly state: LearnerState | undefined;
+}
+
 const Home = ({
   courses,
   store,
@@ -288,15 +305,36 @@ const Home = ({
   version,
   online,
   onGoal,
-}: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean; onGoal: (days: number) => void } & GameProps): JSX.Element => {
+  studied,
+  leftOff,
+}: {
+  courses: readonly CourseIndexEntry[];
+  store: EventStore;
+  sync: Sync;
+  version: string;
+  online: boolean;
+  onGoal: (days: number) => void;
+  /** The courses studied, the latest first (S1). */
+  studied: readonly Studied[];
+  leftOff: LeftOff | undefined;
+} & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   const reviewer = useReviewer(sync);
   // A learner who has not started yet is told what this is and how to begin (S4).
   const fresh = game !== null && game.days.length === 0 && game.xp.total === 0;
-  // In the order of their names as the UI language sorts them.
+  // The courses studied first, the latest first (S1); the rest in the order of their names as the UI language sorts them.
   const collator = new Intl.Collator(t.formattingLocale);
-  const sorted = [...courses].sort((a, b) => collator.compare(courseName(t, a), courseName(t, b)));
+  const sorted = orderCourses(courses, studied, (a, b) => collator.compare(courseName(t, a), courseName(t, b)));
+  const lastIn = new Map(studied.map((s) => [s.course, s]));
+  const links = (r: LeftOff): ContinueLinks => {
+    const at = { course: r.entry.id, orthography: r.orthography };
+    return {
+      page: href({ tag: "course", ...at }),
+      review: href({ tag: "session", ...at, request: { mode: "review" } }),
+      node: (n) => (n.kind === "story" ? href({ tag: "story", ...at, node: n.node }) : href({ tag: "session", ...at, request: { mode: "lesson", node: n.node } })),
+    };
+  };
   return (
     <main className={styles.page}>
       <h1 className={styles.heading}>{t.format("app.home.title")}</h1>
@@ -308,11 +346,12 @@ const Home = ({
           <p className={styles.muted}>{t.format("app.home.start")}</p>
         </div>
       )}
+      {leftOff !== undefined && <ContinueCard entry={leftOff.entry} orthography={leftOff.orthography} course={leftOff.course} state={leftOff.state} links={links(leftOff)} />}
       {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} onGoal={onGoal} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
         {sorted.map((c) => (
-          <CourseCard key={c.id} entry={c} />
+          <CourseCard key={c.id} entry={c} studied={lastIn.get(c.id)} />
         ))}
       </ul>
       <Progress store={store} sync={sync} courses={courses} />
@@ -1392,8 +1431,16 @@ export const App = (): JSX.Element => {
   const [loaded, setLoaded] = useState<{ key: string; value: LoadedCourse } | { key: string; error: string; attempt: number } | null>(null);
   // The route's course, if it has one (home and preferences have none).
   const inCourse = route.tag === "home" || route.tag === "preferences" || route.tag === "review" ? null : route;
-  const courseKey = inCourse === null ? null : `${inCourse.course}:${inCourse.orthography}`;
   const courseId = inCourse === null ? null : inCourse.course;
+  // Where the learner left off (S1): each course's latest start, read on Home, and the course Home continues.
+  const onHome = route.tag === "home";
+  const studied = useStudied(onHome ? store : null, version);
+  const resumeAt = useMemo(() => (onHome && studied !== undefined && index !== null ? resumeOf(studied, index) : undefined), [onHome, studied, index]);
+  // The course the app holds, loaded with the learner's state in it: the route's, or on Home the one
+  // Home continues, so that Continue (and the course page after it) opens with nothing more to load.
+  const held = useMemo(() => inCourse ?? (resumeAt === undefined ? null : { course: resumeAt.entry.id, orthography: resumeAt.orthography }), [inCourse, resumeAt]);
+  const courseKey = held === null ? null : `${held.course}:${held.orthography}`;
+  const heldId = held === null ? null : held.course;
   const ai = useAiStatus(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
   const speechTiers = useSpeechTiers(account, courseId ?? "", inCourse === null ? "" : inCourse.orthography);
   const online = useOnline();
@@ -1433,22 +1480,22 @@ export const App = (): JSX.Element => {
     if (pulled > 0) setLog(null);
   }, [pulled]);
   useEffect(() => {
-    if (revised === 0 || store === null || courseId === null) return;
-    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
-  }, [revised, store, courseId]);
+    if (revised === 0 || store === null || heldId === null) return;
+    void store.eventsOf(heldId).then((events) => setLog({ course: heldId, state: replay(events) }));
+  }, [revised, store, heldId]);
   useEffect(() => {
-    if (inCourse === null || courseKey === null) return;
+    if (held === null || courseKey === null) return;
     if (loaded?.key === courseKey && !("error" in loaded && loaded.attempt < retry)) return;
     const attempt = retry;
-    fetchCourse(BUNDLES, inCourse.course, inCourse.orthography).then(
+    fetchCourse(BUNDLES, held.course, held.orthography).then(
       (value) => setLoaded({ key: courseKey, value }),
       (e: unknown) => setLoaded({ key: courseKey, error: String(e), attempt }),
     );
-  }, [inCourse, courseKey, loaded, retry]);
+  }, [held, courseKey, loaded, retry]);
   useEffect(() => {
-    if (store === null || courseId === null || log?.course === courseId) return;
-    void store.eventsOf(courseId).then((events) => setLog({ course: courseId, state: replay(events) }));
-  }, [store, courseId, log]);
+    if (store === null || heldId === null || log?.course === heldId) return;
+    void store.eventsOf(heldId).then((events) => setLog({ course: heldId, state: replay(events) }));
+  }, [store, heldId, log]);
 
   // Live events are the newest in the log, so folding them onto the state equals a replay. A
   // revision rewrites an earlier answer (§8.3): the server issued it, and the log is replayed.
@@ -1540,7 +1587,17 @@ export const App = (): JSX.Element => {
   }
   if (route.tag === "home") {
     if (index === null && indexFailed) return <LoadFailed message={online ? "app.error.index" : "app.offline.unavailable"} home={false} onRetry={() => setRetry((n) => n + 1)} />;
-    return index === null || store === null || sync === null ? <Loading /> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} onGoal={setGoal} />;
+    if (index === null || store === null || sync === null || studied === undefined) return <Loading />;
+    // The course Home continues, with the course and the learner's state in it once loaded (an error leaves Continue on its page).
+    const leftOff =
+      resumeAt === undefined
+        ? undefined
+        : {
+            ...resumeAt,
+            course: loaded !== null && loaded.key === courseKey && "value" in loaded ? loaded.value.course : undefined,
+            state: log?.course === resumeAt.entry.id ? log.state : undefined,
+          };
+    return <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} onGoal={setGoal} studied={studied} leftOff={leftOff} />;
   }
   if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
   if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {

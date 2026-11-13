@@ -272,7 +272,7 @@
     },
     "app.continue.done": {
       "message": "You’ve done every lesson. Practice keeps what you’ve learned.",
-      "description": "The course page once the whole path is done and nothing is slipping."
+      "description": "A course's page and the home screen's Continue card once the whole path is done and no word is slipping (practice may still be offered for words due)."
     },
     "app.continue.label": {
       "message": "Continue",
@@ -280,7 +280,7 @@
     },
     "app.continue.lesson": {
       "message": "Continue",
-      "description": "The course page's main action: start the next lesson or story on the path."
+      "description": "The main action of a course's page and of the home screen's Continue card: start the next lesson or story on the path."
     },
     "app.continue.new-lesson": {
       "message": "New lesson anyway",
@@ -288,7 +288,7 @@
     },
     "app.continue.practice": {
       "message": "Practise first",
-      "description": "The course page's main action when enough words are slipping: a practice session before the next lesson (ADR 0105, D6)."
+      "description": "The main action of a course's page and of the home screen's Continue card when enough words are slipping: a practice session before the next lesson (ADR 0105, D6)."
     },
     "app.course.drafts": {
       "message": ".input {$drafts :number}\n.input {$total :number}\n{{Sentences not yet checked by a native speaker: {$drafts} of {$total}.}}",
@@ -397,6 +397,18 @@
     "app.error.retry": {
       "message": "Try again",
       "description": "Button under a loading error: load the course or the course list again."
+    },
+    "app.home.continue.next": {
+      "message": "Next: {$step}",
+      "description": "On the home screen's Continue card: what Continue starts. $step is the lesson or story as the course path names it: “Unit 3, lesson 2” (app.lessons.unit-lesson), “Story” (app.path.story) or “Practice” (app.path.practice)."
+    },
+    "app.home.continue.title": {
+      "message": "Pick up where you left off",
+      "description": "Heading of the card at the top of the home screen that continues the course the learner studied last (S1): the course's name, its next step, and a button that starts it. A practice reminder opens the home screen, so it opens this card."
+    },
+    "app.home.course.last": {
+      "message": "Last practised {$when}",
+      "description": "On the card of a course the learner has studied, in the course list, where such courses come first, the latest first (S1): when they last practised it. $when comes from the browser, already in the UI language: “today”, “yesterday”, “3 days ago”, “last week”, “2 months ago”."
     },
     "app.home.course.level": {
       "message": ".input {$units :number}\n.match $units\none {{Level {$level}, {$units} unit}}\n* {{Level {$level}, {$units} units}}",

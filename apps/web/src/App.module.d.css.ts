@@ -12,6 +12,9 @@ declare const styles: {
   readonly choiceWord: string;
   readonly choices: string;
   readonly continue: string;
+  readonly continueActions: string;
+  readonly continueCard: string;
+  readonly continueStep: string;
   readonly count: string;
   readonly course: string;
   readonly courseCard: string;
