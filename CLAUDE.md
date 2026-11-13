@@ -84,6 +84,8 @@ Architecture and roadmap: docs/gameplan.md (Phases 0–10, built). Next phases: 
   views render state and dispatch PlayerEvents, never grade or advance themselves.
 - After changing courses/ or profiles/, run `pnpm bundles`: the web app, Storybook and tests read the committed bundles.
 - Typing is left to the device keyboard or IME; on-screen keyboards are deferred (ADR 0034). Keep the field IME-safe.
+- Distractors must not give the answer away (P2): rank them (`pickRanked`) by the answer's final punctuation, length,
+  shared words and capital. Match-pairs show `cardGloss` (first sense, no notes); tap-for-gloss shows the full gloss.
 - Quote YAML values like "on"/"off"/"yes": PyYAML (YAML 1.1) reads them as booleans; the JS parser does not.
 - Keyboard shortcuts live in the player's capturing window listener; views register digit/Backspace handlers.
 - Bring an action into view with `focusInReach` (player/shared.ts), never a bare focus(): a phone browser's bottom

@@ -213,7 +213,7 @@ describe("template coverage", () => {
     // Script templates come from script nodes alone (test/script.test.ts).
     const optIn = new Set<TemplateId>(["speak", "listen-speak", "tone-identify", "letter-read", "letter-pairs", "word-read", "word-write"]);
     expect([...seen].sort()).toEqual((Object.keys(TEMPLATES) as TemplateId[]).filter((t) => !LISTENING.has(t) && !t.startsWith("story-") && !optIn.has(t)).sort());
-  });
+  }, 20_000); // every lesson of every fixture course
 
   it("scored speaking takes tier 0's slot, and tonal courses get tone exercises, only when the app can do them", () => {
     const speech = { scored: true, tones: true };

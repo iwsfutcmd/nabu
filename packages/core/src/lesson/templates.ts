@@ -214,6 +214,61 @@ const pickDistinct = (ctx: MakeContext, pool: readonly TaggedText[], taken: read
   return out;
 };
 
+/**
+ * Up to `n` distractors from `pool`, the best-matched first (P2): `score` ranks candidates, ties in a
+ * random order, and none collides with `taken` or each other (by key).
+ */
+const pickRanked = (ctx: MakeContext, pool: readonly TaggedText[], taken: readonly TaggedText[], n: number, score: (t: TaggedText) => number): readonly TaggedText[] => {
+  const shuffled = ctx.rng.shuffle(pool).map((t) => ({ t, s: score(t) }));
+  return pickDistinctInOrder(ctx, [...shuffled].sort((a, b) => b.s - a.s).map((x) => x.t), taken, n);
+};
+
+/** Up to `n` of `ordered`, in that order, none colliding with `taken` or each other (by key). */
+const pickDistinctInOrder = (ctx: MakeContext, ordered: readonly TaggedText[], taken: readonly TaggedText[], n: number): readonly TaggedText[] => {
+  const seen = new Set(taken.map((t) => keyOf(ctx.course, t)));
+  const out: TaggedText[] = [];
+  for (const candidate of ordered) {
+    if (out.length === n) break;
+    const key = keyOf(ctx.course, candidate);
+    if (key === "" || seen.has(key)) continue;
+    seen.add(key);
+    out.push(candidate);
+  }
+  return out;
+};
+
+/** A text's last punctuation (its sentence type: "?", "!", "."), or "" if it ends without one. */
+const finalPunct = (text: TaggedText): string => {
+  const last = [...text.tokens].reverse().find((t) => t.kind !== "space");
+  return last?.kind === "punct" ? last.surface : "";
+};
+
+const wordSurfaces = (text: TaggedText): readonly string[] => text.tokens.filter((t) => t.kind === "word").map((t) => t.surface.toLocaleLowerCase(text.lang));
+
+/**
+ * How well a distractor sentence matches the answer's shape (P2): the same final punctuation, about
+ * as many words, and words in common, so neither punctuation nor length gives the answer away.
+ */
+const shapeScore = (answer: TaggedText): ((t: TaggedText) => number) => {
+  const end = finalPunct(answer);
+  const words = wordSurfaces(answer);
+  const own = new Set(words);
+  return (t) => {
+    const theirs = wordSurfaces(t);
+    const shared = theirs.filter((w) => own.has(w)).length;
+    return (finalPunct(t) === end ? 3 : 0) - Math.min(3, Math.abs(theirs.length - words.length)) * 0.5 + Math.min(2, shared) * 0.5;
+  };
+};
+
+/**
+ * Whether a text's first word has a capital (in its own language's case; never in a caseless script):
+ * what a sentence-initial word, a name or a sentence's first tile shows.
+ */
+const capitalized = (text: TaggedText): boolean => {
+  const word = text.tokens.find((t) => t.kind === "word")?.surface ?? "";
+  return word !== word.toLocaleLowerCase(text.lang);
+};
+
 /** Places `answer` among `others` at a random position. */
 const withAnswer = <T>(ctx: MakeContext, answer: T, others: readonly T[]): { readonly options: readonly T[]; readonly answer: number } => {
   const at = ctx.rng.int(others.length + 1);
@@ -295,6 +350,29 @@ export const makeSelectImage = (ctx: MakeContext, kc: BundleKc): SelectImage | u
   };
 };
 
+const OPENING = /^[(（[]$/u;
+const CLOSING = /^[)）\]]$/u;
+const SENSE_BREAK = /^[;；]$/u;
+const DANGLING = /^[,:;，：；]$/u;
+
+/**
+ * A gloss short enough for a card (W7): its first sense, without notes in parentheses. A course's
+ * full gloss can run to a grammar note (yue 呀), and one that names the word's reading gives the
+ * match away; tap-for-gloss shows it whole. A gloss with nothing left keeps its full text.
+ */
+export const cardGloss = (text: TaggedText): TaggedText => {
+  const out: Token[] = [];
+  let depth = 0;
+  for (const t of text.tokens) {
+    if (depth === 0 && ((t.kind === "punct" && SENSE_BREAK.test(t.surface)) || (t.kind === "space" && t.surface.includes("\n")))) break;
+    if (t.kind === "punct" && OPENING.test(t.surface)) depth += 1;
+    else if (t.kind === "punct" && CLOSING.test(t.surface)) depth = Math.max(0, depth - 1);
+    else if (depth === 0 && !(t.kind === "space" && out.at(-1)?.kind === "space")) out.push(t);
+  }
+  while (out.length > 0 && (out.at(-1)?.kind === "space" || (out.at(-1)?.kind === "punct" && DANGLING.test(out.at(-1)?.surface ?? "")))) out.pop();
+  return out.some((t) => t.kind === "word") ? { ...text, tokens: out } : text;
+};
+
 export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): MatchPairs | undefined => {
   const { orthography, supportKey } = ctx.course;
   const usable = kcs.filter((k) => k.kind === "sense" && (k.forms?.[orthography]?.length ?? 0) > 0 && k.gloss?.[supportKey] !== undefined);
@@ -308,14 +386,15 @@ export const makeMatchPairs = (ctx: MakeContext, kcs: readonly BundleKc[]): Matc
   for (const candidate of ctx.rng.shuffle(usable.map((k) => k.forms?.[orthography]?.[0] as TaggedText))) {
     if (chosen.length === 5) break;
     const word = keyOf(ctx.course, candidate);
-    const meaning = keyOf(ctx.course, byText(candidate).gloss?.[supportKey] as TaggedText);
+    const meaning = keyOf(ctx.course, cardGloss(byText(candidate).gloss?.[supportKey] as TaggedText));
     if (word === "" || words.has(word) || meanings.has(meaning)) continue;
     words.add(word);
     meanings.add(meaning);
     chosen.push(candidate);
   }
   if (chosen.length < 3) return undefined;
-  const glosses = chosen.map((t) => byText(t).gloss?.[supportKey] as TaggedText);
+  // Short card glosses (W7): the first sense, without notes.
+  const glosses = chosen.map((t) => cardGloss(byText(t).gloss?.[supportKey] as TaggedText));
   const order = ctx.rng.shuffle(glosses.map((_, i) => i));
   return {
     template: "match-pairs",
@@ -336,7 +415,7 @@ export const makeChooseTranslation = (ctx: MakeContext, s: BundleSentence): Choo
   const translation = translationOf(ctx.course, s);
   if (form === undefined || translation === undefined) return undefined;
   const pool = otherSentences(ctx, s).flatMap((o) => translationOf(ctx.course, o)?.text ?? []);
-  const others = pickDistinct(ctx, pool, [translation.text], 2);
+  const others = pickRanked(ctx, pool, [translation.text], 2, shapeScore(translation.text));
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, translation.text, others);
   return {
@@ -362,7 +441,12 @@ const makeTap = (
 ): TranslateTap | undefined => {
   const tiles = tileGroups(answer);
   if (tiles.length === 0) return undefined;
-  const distractors = pickDistinct(ctx, pool.flatMap((t) => tileGroups(t)), tiles, Math.min(3, Math.max(2, tiles.length)));
+  // Three or four distractors (P2); where the answer starts with a capital, a capitalized one comes
+  // first, so the capital doesn't mark the sentence's first tile.
+  const capital = tiles[0] !== undefined && capitalized(tiles[0]);
+  const bank = pool.flatMap((t) => tileGroups(t));
+  const count = Math.min(4, Math.max(3, tiles.length));
+  const distractors = capital ? pickRanked(ctx, bank, tiles, count, (t) => (capitalized(t) ? 1 : 0)) : pickDistinct(ctx, bank, tiles, count);
   const all = [...tiles, ...distractors];
   const order = ctx.rng.shuffle(all.map((_, i) => i));
   return {
@@ -465,10 +549,13 @@ export const makeGapFill = (ctx: MakeContext, s: BundleSentence): GapFill | unde
     const text = formOf(ctx.course, o)?.text;
     return text === undefined ? [] : words(text).map((i) => ({ token: text.tokens[i] as Token, text }));
   });
-  // Same lexeme in another form first (هستم / هستی / هستند), then any other word.
+  // Same lexeme in another form first (هستم / هستی / هستند), then any other word; each with the
+  // answer's case (P2): a capital that only marks the sentence's first word must not mark the answer.
+  const capital = capitalized(correct);
+  const sameCase = (t: TaggedText): number => (capitalized(t) === capital ? 1 : 0);
   const sameSense = candidates.filter((c) => target.sense !== undefined && c.token.sense === target.sense);
-  const preferred = pickDistinct(ctx, sameSense.map((c) => single(c.text, c.token)), [correct], 2);
-  const rest = pickDistinct(ctx, candidates.map((c) => single(c.text, c.token)), [correct, ...preferred], 2 - preferred.length);
+  const preferred = pickRanked(ctx, sameSense.map((c) => single(c.text, c.token)), [correct], 2, sameCase);
+  const rest = pickRanked(ctx, candidates.map((c) => single(c.text, c.token)), [correct, ...preferred], 2 - preferred.length, sameCase);
   const others = [...preferred, ...rest];
   if (others.length < 2) return undefined;
   const { options, answer } = withAnswer(ctx, correct, others);
