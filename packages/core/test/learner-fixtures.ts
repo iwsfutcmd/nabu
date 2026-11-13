@@ -54,7 +54,7 @@ export const eventFactory = (course: CourseView, bundle: string): EventFactory =
     schema: 1 as const,
     device: "test",
     course: course.id,
-    orthography: course.orthography as LearnerEvent["orthography"],
+    orthography: course.orthography as Exclude<LearnerEvent, { type: "goal_set" }>["orthography"],
     support: course.supportKey,
     bundle,
     session,

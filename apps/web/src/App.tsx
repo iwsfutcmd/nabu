@@ -59,6 +59,7 @@ import { reportIntake } from "./reports.ts";
 import { AudioCheckPage } from "./AudioCheck.tsx";
 import { CardsPage, debugMode } from "./Debug.tsx";
 import { GamePanel, loadGameConfig, sessionAllowed, useGame } from "./game.tsx";
+import { deviceGoal, forgetDeviceGoal, goalEvent, goalToMigrate } from "./goal.ts";
 import { Progress } from "./Progress.tsx";
 import { OfflineNotice, OfflinePanel } from "./Offline.tsx";
 import { knownWords, storedDisplay, storeDisplay } from "./display.ts";
@@ -244,7 +245,16 @@ const CourseCard = ({ entry }: { readonly entry: CourseIndexEntry }): JSX.Elemen
   );
 };
 
-const Home = ({ courses, store, sync, game, gameConfig, version, online }: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean } & GameProps): JSX.Element => {
+const Home = ({
+  courses,
+  store,
+  sync,
+  game,
+  gameConfig,
+  version,
+  online,
+  onGoal,
+}: { courses: readonly CourseIndexEntry[]; store: EventStore; sync: Sync; version: string; online: boolean; onGoal: (days: number) => void } & GameProps): JSX.Element => {
   const t = useTranslator();
   const account = useSyncExternalStore(sync.subscribe, () => sync.get().account);
   const reviewer = useReviewer(sync);
@@ -263,7 +273,7 @@ const Home = ({ courses, store, sync, game, gameConfig, version, online }: { cou
           <p className={styles.muted}>{t.format("app.home.start")}</p>
         </div>
       )}
-      {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} />}
+      {game !== null && gameConfig !== null && <GamePanel state={game} config={gameConfig} onGoal={onGoal} />}
       {account !== undefined && <LeaguePanel account={account} version={version} />}
       <ul className={styles.list} data-course-list="">
         {sorted.map((c) => (
@@ -1230,7 +1240,8 @@ export const App = (): JSX.Element => {
           });
         return;
       }
-      setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
+      // The weekly goal is the account's, no course's (ADR 0107, D12): kept and synced, read from the game state.
+      if (event.type !== "goal_set") setLog((prev) => (prev === null || prev.course !== event.course ? prev : { course: prev.course, state: applyEvents(prev.state, [event]) }));
       void store?.append([event]).then(() => {
         sync?.schedule();
         setRecorded((n) => n + 1);
@@ -1238,6 +1249,24 @@ export const App = (): JSX.Element => {
     },
     [store, sync],
   );
+
+  // The weekly goal is the account's (ADR 0107, D12): choosing it records a goal_set, which syncs.
+  const setGoal = useCallback(
+    (days: number): void => {
+      if (store !== null) record(goalEvent(days, store.device));
+    },
+    [store, record],
+  );
+  // A goal this device kept before goals were the account's goes into the log once, if the log has
+  // none from any device; the device's own copy is forgotten either way.
+  useEffect(() => {
+    if (game === null || store === null) return;
+    const kept = deviceGoal();
+    if (kept === undefined) return;
+    forgetDeviceGoal();
+    const days = goalToMigrate(kept, game);
+    if (days !== undefined) setGoal(days);
+  }, [game, store, setGoal]);
 
   // Offline, a session uses only the media on this device: no listening without the clip. One
   // object per load and download state, so a session's grader keeps its course across renders.
@@ -1269,7 +1298,7 @@ export const App = (): JSX.Element => {
   }
   if (route.tag === "home") {
     if (index === null && indexFailed) return <LoadFailed message={online ? "app.error.index" : "app.offline.unavailable"} home={false} onRetry={() => setRetry((n) => n + 1)} />;
-    return index === null || store === null || sync === null ? <Loading /> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} />;
+    return index === null || store === null || sync === null ? <Loading /> : <Home courses={index} store={store} sync={sync} game={game} gameConfig={gameConfig} version={version} online={online} onGoal={setGoal} />;
   }
   if (loaded?.key === courseKey && "error" in loaded) return <LoadFailed message={online ? "app.error.load" : "app.offline.unavailable"} home onRetry={() => setRetry((n) => n + 1)} />;
   if (loaded === null || loaded.key !== courseKey || "error" in loaded || store === null || log === null || log.course !== route.course) {

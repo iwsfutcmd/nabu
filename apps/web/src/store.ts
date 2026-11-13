@@ -140,7 +140,8 @@ const memoryStore = (): EventStore => {
       }
       return Promise.resolve(fresh.map((e) => e.id));
     },
-    eventsOf: (course) => Promise.resolve([...log.values()].filter((e) => e.course === course)),
+    // The account's own events (the weekly goal) are no course's, as the browser's course index leaves them out.
+    eventsOf: (course) => Promise.resolve([...log.values()].filter((e) => e.type !== "goal_set" && e.course === course)),
     allEvents: () => Promise.resolve([...log.values()]),
     ids: () => Promise.resolve(new Set(log.keys())),
     pending: (limit) => Promise.resolve([...outbox].sort().slice(0, limit).flatMap((id) => log.get(id) ?? [])),

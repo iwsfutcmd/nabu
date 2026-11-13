@@ -208,7 +208,7 @@ export const createSync = async (store: EventStore, server: string | undefined, 
       fresh += added.length;
       // Every course the pull returns is checked: events this device uploaded in the background
       // come back here too, and only now does the window see them on the server.
-      for (const e of page.events) touched.add(e.course);
+      for (const e of page.events) if (e.type !== "goal_set") touched.add(e.course);
       cursor = page.cursor;
       await store.setMeta(CURSOR, cursor);
       if (!page.more) break;

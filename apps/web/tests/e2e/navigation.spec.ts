@@ -115,7 +115,7 @@ test.describe("back and reload", () => {
     const { seen } = await playSession(page, exercises.slice(3), mode);
     expect(seen).toEqual(exercises.slice(3).map((e) => e.id));
     const session = (await logOf(page, "fa")).filter((e) => !history.some((h) => h.id === e.id));
-    expect(new Set(session.map((e) => e.session)).size).toBe(1);
+    expect(new Set(session.map((e) => (e.type === "goal_set" ? undefined : e.session))).size).toBe(1);
     expect(session.filter((e) => e.type === "session_started")).toHaveLength(1);
     expect(session.filter((e) => e.type === "answer_submitted").map((e) => (e.type === "answer_submitted" ? e.exercise.id : "")).sort()).toEqual(exercises.map((e) => e.id).sort());
     const completed = session.filter((e) => e.type === "session_completed");

@@ -94,11 +94,18 @@ test.describe("game", () => {
     await expect(page.locator("[data-streak]")).toHaveAttribute("data-streak", "9");
     await expect(page.locator("[data-freeze-covered]")).toHaveAttribute("data-freeze-covered", "1");
     await expect(page.locator("[data-freezes]")).toHaveCount(0); // spent, and none held
-    // The goal: asked once, then this week's progress toward it.
+    // The goal: asked once, then this week's progress toward it. It is the account's (D12): a
+    // goal_set event in the log, which syncs to every device, not a setting of this one.
     await page.locator('[data-goal-choice] [data-goal-days="5"]').click();
     await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    const goals = (): Promise<(number | null)[]> => page.evaluate(async () => ((await window.nabu?.allEvents()) ?? []).flatMap((e) => (e.type === "goal_set" ? [e.days] : [])));
+    await expect.poll(goals).toEqual([5]);
     await page.reload();
     await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "5");
+    await page.locator("[data-action=change-goal]").click();
+    await page.locator('[data-goal-choice] [data-goal-days="3"]').click();
+    await expect(page.locator("[data-goal]")).toHaveAttribute("data-goal", "3");
+    await expect.poll(goals).toEqual([5, 3]);
     expect(await seriousAxeViolations(page, "[data-game]")).toEqual([]);
   });
 

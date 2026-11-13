@@ -147,6 +147,12 @@ export interface GameState {
   /** Unlocked achievement ids, in template order. */
   readonly achievements: readonly string[];
   readonly gate: GateState;
+  /**
+   * The learner's weekly goal (ADR 0107, D12): practice days a week, as the latest goal_set says
+   * (by device time, then id), whichever device recorded it; null once cleared; undefined if the
+   * log has none.
+   */
+  readonly goal: number | null | undefined;
 }
 
 const MINUTE = 60_000;
@@ -360,7 +366,7 @@ const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, 
   for (const { event: e } of sorted) {
     const t = Date.parse(e.clientTime);
     regen(t);
-    const mode = e.type === "session_completed" ? e.mode : modes.get(e.session);
+    const mode = e.type === "session_completed" ? e.mode : e.type === "goal_set" ? undefined : modes.get(e.session);
     const practice = mode === "review" || mode === "mistakes";
     if (e.type === "session_completed" && e.summary.completed && practice && (policy.policy === "energy" || policy.refillByPractice)) {
       // Practising always restores the gate (§12.3).
@@ -383,6 +389,13 @@ const gateOf = (sorted: readonly GameInput[], modes: ReadonlyMap<string, Mode>, 
   }
   regen(Date.parse(now));
   return { policy: policy.policy, value, max: policy.max, ...(from === undefined ? {} : { nextAt: new Date(from + tick).toISOString() }) };
+};
+
+/** The latest goal_set of a log in time order (ADR 0107, D12): its days, null if cleared; undefined if none. */
+const goalOf = (sorted: readonly GameInput[]): number | null | undefined => {
+  let goal: number | null | undefined;
+  for (const { event: e } of sorted) if (e.type === "goal_set") goal = e.days;
+  return goal;
 };
 
 /** Whether a session of this mode may start now. Practice is always open; with the gate off, everything is. */
@@ -409,7 +422,7 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
     // `counts` is worked out only if a rule reads it.
     const ctx: RuleContext = {
       config,
-      mode: modes.get(input.event.session),
+      mode: input.event.type === "goal_set" ? undefined : modes.get(input.event.session),
       get counts() {
         return counts(i);
       },
@@ -465,5 +478,6 @@ export const replayGame = (inputs: readonly GameInput[], config: GameConfig, clo
     quests: questsOn(clock.today),
     achievements: config.achievements.filter((a) => achieved(a, streak.longest, sorted, xpTotal)).map((a) => a.id),
     gate: gateOf(sorted, modes, config.gate, clock.now),
+    goal: goalOf(sorted),
   };
 };

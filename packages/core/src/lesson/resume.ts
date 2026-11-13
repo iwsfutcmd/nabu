@@ -69,7 +69,7 @@ export const firstTriesOf = (done: readonly Done[]): ReadonlyMap<string, boolean
  */
 export const doneOf = (events: readonly LearnerEvent[], session: string): readonly Done[] =>
   events
-    .filter((e): e is AnswerSubmitted | ExerciseSkipped => e.session === session && (e.type === "answer_submitted" || e.type === "exercise_skipped"))
+    .filter((e): e is AnswerSubmitted | ExerciseSkipped => (e.type === "answer_submitted" || e.type === "exercise_skipped") && e.session === session)
     .sort((a, b) => Date.parse(a.clientTime) - Date.parse(b.clientTime) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0))
     .map((e) =>
       e.type === "answer_submitted"

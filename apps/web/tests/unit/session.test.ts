@@ -118,7 +118,7 @@ describe("a placement test stopped part-way (S5)", () => {
     const [, opening] = start("placement", placementPlan.exercises, { retries: false, adaptive: test.test });
     for (const f of opening) if (f.tag === "emit") onEvent(f.event);
     onEvent({ type: "session_completed", lesson: "placement", summary: { completed: false, exercises: 9, correctFirstTry: 4, retries: 0, skipped: 0 } });
-    expect(new Set(logged.map((e) => e.session))).toEqual(new Set(["00000000-0000-7000-a000-00000000cafe"]));
+    expect(new Set(logged.map((e) => (e.type === "goal_set" ? undefined : e.session)))).toEqual(new Set(["00000000-0000-7000-a000-00000000cafe"]));
     // The first block's answers, from before the reload, place its unit.
     expect(completedOf(logged).placed).toEqual(test.test.blocks[0]?.places);
   });

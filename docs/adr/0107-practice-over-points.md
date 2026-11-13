@@ -75,9 +75,17 @@ practise?" (3 to 7), then shows "This week: 2 of 5 days", and "Goal met" once it
   say), through today (`daysThisWeek`).
 - Weekly, not daily: days a week leave room for rest days and survive a missed day, and they
   measure practice, not XP. The quests already give each day its targets.
-- It is a device preference (`nabu.goal`), like the theme, not an event: it is the learner's own
-  target, and no projection reads it (XP, streak, quests and achievements are the same with or
-  without it).
+- It is the account's (2026-11-12, decision D12 of the review: the owner chose a goal every
+  device shares over one kept per device). Choosing it records a learner event, `goal_set`
+  (`days`: 1 to 7, the app offering 3 to 7; null clears it). The event names no course, bundle or
+  session: the goal is no course's. It syncs like any other, offline too; the game state's `goal`
+  is the latest by device time, then id, whichever device recorded it, and the panel reads it there.
+- Only the game projection reads it. The learner model ignores the event (what a learner knows
+  never depends on the goal), and so do XP, the streak, quests and achievements. The server keeps it
+  with an empty course and bundle, so no course's log holds it; the export holds it with the rest
+  of the log, and deleting the account deletes it.
+- A goal a device kept before (`nabu.goal`, the first version) is recorded once as a `goal_set`
+  if the log has none from any device, then forgotten on the device.
 
 ## Consequences
 
@@ -98,7 +106,8 @@ practise?" (3 to 7), then shows "This week: 2 of 5 days", and "Goal met" once it
     "due" needs the learner model's memory, which the game projection (and the server's league)
     does not replay. The session's points per card already favour practice over taps.
   - A lesson replayed long after it was learned pays like one replayed the same day.
-  - The goal stays on the device: another device asks again. Keeping it with the account (as the
-    reminder time, ADR 0103), a reminder that speaks of it, or an achievement for goals met would
-    need it on the server or in the log.
+  - A reminder that speaks of the goal, or an achievement for goals met: the goal is in the log
+    now, so either is a rule away.
+  - A device that kept a goal before D12 and was never synced with another that set one later
+    records its own when it first opens: being the latest, it then holds.
   - Achievements not yet earned stay out of sight.

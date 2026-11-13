@@ -1,10 +1,11 @@
 /**
  * The game layer in the app (gameplan §12): XP, the streak, freezes, today's quests,
- * achievements and the session gate, all projections of the on-device log by @nabu/core/game.
+ * achievements, the weekly goal (the account's, ADR 0107) and the session gate, all projections
+ * of the on-device log by @nabu/core/game.
  * The deployment configures the rules in `game.json` next to the app (optional; the defaults
  * keep the gate off and streaks, XP and quests on).
  */
-import { canStart, daysBetween, daysThisWeek, DEFAULT_GAME, gameConfig, replayGame, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
+import { canStart, daysBetween, daysThisWeek, DEFAULT_GAME, GOAL_DAYS, gameConfig, isGoalDays, replayGame, type GameConfig, type GameState, type Mode } from "@nabu/core/game";
 import type { LearnerEvent } from "@nabu/schema";
 import { useTranslator } from "@nabu/ui";
 import { useEffect, useState, type CSSProperties, type JSX } from "react";
@@ -112,31 +113,6 @@ export const GatePanel = ({ state, config }: { state: GameState; config: GameCon
   );
 };
 
-/** The practice days a week a learner may aim for (ADR 0107), chosen on this device; none until they choose. */
-export const GOALS = [3, 4, 5, 6, 7] as const;
-const GOAL_KEY = "nabu.goal";
-let goalFallback: number | undefined;
-
-const isGoal = (n: number): boolean => (GOALS as readonly number[]).includes(n);
-
-export const storedGoal = (): number | undefined => {
-  try {
-    const n = Number(localStorage.getItem(GOAL_KEY));
-    return isGoal(n) ? n : undefined;
-  } catch {
-    return goalFallback;
-  }
-};
-
-const storeGoal = (n: number): void => {
-  goalFallback = n;
-  try {
-    localStorage.setItem(GOAL_KEY, String(n));
-  } catch {
-    // Storage unavailable: the goal lasts this page.
-  }
-};
-
 /** The day the UI locale's region starts the week on (1 Monday … 7 Sunday), where the browser says; else Monday. */
 const firstDayOf = (locale: string): number => {
   try {
@@ -156,32 +132,46 @@ const coveredDays = (t: ReturnType<typeof useTranslator>, frozen: readonly strin
   return { days: new Intl.ListFormat(t.formattingLocale, { type: "conjunction" }).format(names), count: recent.length };
 };
 
-/** The weekly goal (ADR 0107): how far this week has come, or the question that sets it. */
-const Goal = ({ days, today }: { readonly days: readonly string[]; readonly today: string }): JSX.Element => {
+interface GoalProps {
+  readonly days: readonly string[];
+  readonly today: string;
+  /** The account's goal, from the game state (the latest goal_set, on any device). */
+  readonly goal: number | null | undefined;
+  /** The learner chose a goal: the app records it (a goal_set event). */
+  readonly onGoal: (days: number) => void;
+}
+
+/** The weekly goal (ADR 0107, D12): how far this week has come, or the question that sets it. */
+const Goal = ({ days, today, goal, onGoal }: GoalProps): JSX.Element => {
   const t = useTranslator();
-  const [goal, setGoal] = useState<number | undefined>(storedGoal);
+  // The goal just chosen, until the game state (worked out again from the log) says it too.
+  const [chosen, setChosen] = useState<number | undefined>(undefined);
   const [choosing, setChoosing] = useState(false);
+  useEffect(() => {
+    if (chosen !== undefined && goal === chosen) setChosen(undefined);
+  }, [goal, chosen]);
+  const current = chosen ?? goal ?? undefined;
   const done = daysThisWeek(days, today, firstDayOf(t.formattingLocale));
   const number = new Intl.NumberFormat(t.formattingLocale);
-  if (goal === undefined || choosing) {
+  if (current === undefined || choosing) {
     return (
       <RadioGroup
         className={styles.goal}
         orientation="horizontal"
-        value={goal === undefined ? null : String(goal)}
+        value={current === undefined ? null : String(current)}
         onChange={(value) => {
           const n = Number(value);
-          if (!isGoal(n)) return;
-          storeGoal(n);
-          setGoal(n);
+          if (!isGoalDays(n)) return;
+          setChosen(n);
           setChoosing(false);
+          if (n !== current) onGoal(n);
         }}
         data-goal-choice=""
       >
         <Label className={styles.label}>{t.format("game.goal.question")}</Label>
         <div className={styles.goalChoices}>
           {/* The number shows; its name says the days ("3 days"), as the question asks. */}
-          {GOALS.map((n) => (
+          {GOAL_DAYS.map((n) => (
             <Radio key={n} value={String(n)} className={`${styles.preferenceOption} ${styles.goalChoice}`} aria-label={t.format("game.goal.days", { days: n })} data-goal-days={n}>
               {number.format(n)}
             </Radio>
@@ -191,9 +181,9 @@ const Goal = ({ days, today }: { readonly days: readonly string[]; readonly toda
     );
   }
   return (
-    <p className={styles.goal} data-goal={goal} data-week-days={done}>
-      <span className={styles.goalProgress}>{t.format("game.goal.week", { done, goal })}</span>
-      {done >= goal && <span className={styles.muted}>{t.format("game.goal.met")}</span>}
+    <p className={styles.goal} data-goal={current} data-week-days={done}>
+      <span className={styles.goalProgress}>{t.format("game.goal.week", { done, goal: current })}</span>
+      {done >= current && <span className={styles.muted}>{t.format("game.goal.met")}</span>}
       <Button className={styles.inlineButton} onPress={() => setChoosing(true)} data-action="change-goal">
         {t.format("game.goal.change")}
       </Button>
@@ -206,7 +196,7 @@ const Goal = ({ days, today }: { readonly days: readonly string[]; readonly toda
  * achievements. Nothing before the first session (M4): Home opens on the courses, not on an empty
  * streak. A streak that ended says how to start again, never a zero.
  */
-export const GamePanel = ({ state, config }: { state: GameState; config: GameConfig }): JSX.Element | null => {
+export const GamePanel = ({ state, config, onGoal }: { state: GameState; config: GameConfig; onGoal: (days: number) => void }): JSX.Element | null => {
   const t = useTranslator();
   const { streak } = state;
   if (state.days.length === 0 && state.xp.total === 0) return null;
@@ -232,7 +222,7 @@ export const GamePanel = ({ state, config }: { state: GameState; config: GameCon
           {t.format("game.freeze.covered", covered)}
         </p>
       )}
-      <Goal days={state.days} today={today} />
+      <Goal days={state.days} today={today} goal={state.goal} onGoal={onGoal} />
       {(streak.freezes > 0 || streak.longest > streak.current || config.gate.policy !== "none") && (
         <p className={styles.stats}>
           {streak.freezes > 0 && (

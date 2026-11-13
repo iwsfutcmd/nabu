@@ -21,6 +21,8 @@ import {
   rankCohort,
   ENERGY,
   gameConfig,
+  GOAL_DAYS,
+  goalSetOf,
   HEARTS,
   localDateOf,
   questsFor,
@@ -33,6 +35,7 @@ import {
   type GameInput,
 } from "../src/game/index.ts";
 import { replay } from "../src/learner/index.ts";
+import { seededRng } from "../src/lesson/rng.ts";
 
 // ------------------------------------------------------------------------------------ building logs
 
@@ -599,6 +602,50 @@ describe("quests and achievements", () => {
     const golden = JSON.parse(readFileSync(join(import.meta.dirname, "golden/fa-lesson-1.events.json"), "utf8")) as LearnerEvent[];
     const last = golden.at(-1) as LearnerEvent;
     expect(replayGame(device(golden), NO_QUESTS, { today: last.localDate, now: last.clientTime }).xp.total).toBe(replay(golden).xp.total);
+  });
+});
+
+// ------------------------------------------------------------------------------------ the weekly goal (ADR 0107, D12)
+
+describe("the weekly goal is the account's", () => {
+  const tz = "UTC";
+  const goalAt = (at: number, days: number | null, device = "phone"): LearnerEvent => {
+    const clientTime = new Date(at).toISOString();
+    return goalSetOf(days, { id: uuid(), device, clientTime, localDate: localDateOf(clientTime, tz) as string, tz });
+  };
+  const t0 = Date.parse("2026-07-01T09:00:00Z");
+  const clock = clockAt("2026-07-10", Date.parse("2026-07-10T12:00:00Z"));
+
+  it("is none until set, and the latest goal_set by device time holds, whichever device recorded it and whenever it arrived", () => {
+    expect(replayGame(online(session({ at: t0, tz })), DEFAULT_GAME, clock).goal).toBeUndefined();
+    const goal = fc.record({ at: fc.integer({ min: 0, max: 8 * 86_400_000 }), days: fc.option(fc.constantFrom(...GOAL_DAYS), { nil: null }), device: fc.constantFrom("phone", "laptop", "tablet") });
+    fc.assert(
+      fc.property(fc.array(goal, { minLength: 1, maxLength: 8 }), fc.integer(), (goals, seed) => {
+        const events = goals.map((g) => goalAt(t0 + g.at, g.days, g.device));
+        const latest = [...events].sort((a, b) => Date.parse(a.clientTime) - Date.parse(b.clientTime) || (a.id < b.id ? -1 : 1)).at(-1);
+        const expected = latest?.type === "goal_set" ? latest.days : undefined;
+        // Any order of arrival, practice among them, and some events received twice.
+        const all = [...session({ at: t0 + 3_600_000, tz }), ...events];
+        const shuffled = seededRng(seed).shuffle(all);
+        const inputs = online([...shuffled, ...shuffled.slice(0, 3)]);
+        expect(replayGame(inputs, DEFAULT_GAME, clock).goal).toBe(expected);
+      }),
+      { numRuns: 200 },
+    );
+  });
+
+  it("changes nothing else: XP, the streak, quests, achievements, and the learner model", () => {
+    const practice = [0, 1, 2, 3].flatMap((i) => session({ at: t0 + i * 86_400_000, tz }));
+    const goals = [goalAt(t0 + 60_000, 5), goalAt(t0 + 2 * 86_400_000 + 60_000, 3, "laptop")];
+    const { goal, ...withGoals } = replayGame(online([...practice, ...goals]), DEFAULT_GAME, clock);
+    const { goal: none, ...without } = replayGame(online(practice), DEFAULT_GAME, clock);
+    expect(goal).toBe(3);
+    expect(none).toBeUndefined();
+    expect(withGoals).toEqual(without);
+    // The learner model leaves goal_set out (it only notes the id as seen).
+    const { seen: _a, ...learner } = replay([...practice, ...goals]);
+    const { seen: _b, ...plain } = replay(practice);
+    expect(learner).toEqual(plain);
   });
 });
 

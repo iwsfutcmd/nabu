@@ -226,7 +226,7 @@ test.describe("offline", () => {
     const serverGame = ((await (await context.request.get(`${API}/v1/game?today=${today}&now=${encodeURIComponent(now)}`, auth)).json()) as { game: unknown }).game;
     expect(canonical(serverGame)).toBe(canonical(JSON.parse(JSON.stringify(deviceGame))));
     const serverState = ((await (await context.request.get(`${API}/v1/state?course=fa`, auth)).json()) as { state: unknown }).state;
-    const { seen: _seen, ...local } = replay(device.events.filter((e) => e.course === "fa"));
+    const { seen: _seen, ...local } = replay(device.events.filter((e) => e.type !== "goal_set" && e.course === "fa"));
     expect(canonical(serverState)).toBe(canonical(JSON.parse(JSON.stringify(local))));
     expect(errors).toEqual([]);
   });

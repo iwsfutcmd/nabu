@@ -68,7 +68,8 @@ export const exportOf = async (db: Db, user: string, subject: string | undefined
   const [account] = await db.select({ id: users.id, email: users.email, createdAt: users.createdAt }).from(users).where(eq(users.id, user));
   if (account === undefined) return undefined;
   const log = await allEvents(db, user);
-  const courseIds = [...new Set(log.map((e) => e.course))].sort();
+  // Every course the log names; the account's own events (the weekly goal) name none.
+  const courseIds = [...new Set(log.flatMap((e) => (e.type === "goal_set" ? [] : [e.course])))].sort();
   const courses = await Promise.all(courseIds.map(async (course) => ({ course, ...(await stateOf(db, user, course)) })));
   const [web] = await db.select({ n: count() }).from(pushSubscriptions).where(eq(pushSubscriptions.userId, user));
   const native = await db.select({ platform: nativePushTokens.platform, n: count() }).from(nativePushTokens).where(eq(nativePushTokens.userId, user)).groupBy(nativePushTokens.platform);

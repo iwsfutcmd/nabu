@@ -162,7 +162,8 @@ export type LearnerEvent =
   | OutcomeRevised
   | AnswerReported
   | ProgressReset
-  | SentenceReported;
+  | SentenceReported
+  | GoalSet;
 /**
  * UUIDv7, generated on the device. Uploads are idempotent on it.
  */
@@ -224,6 +225,10 @@ export type Uuid12 = string;
  * The session the learner was in, or a session of this one event (the sentence list).
  */
 export type Uuid13 = string;
+/**
+ * UUIDv7, generated on the device. Uploads are idempotent on it.
+ */
+export type Uuid14 = string;
 /**
  * Dotted lowercase key, e.g. exercise.action.check.
  *
@@ -447,6 +452,7 @@ export interface NabuSchemaIndex {
   readonly AnswerReported: AnswerReported;
   readonly ProgressReset: ProgressReset;
   readonly SentenceReported: SentenceReported;
+  readonly GoalSet: GoalSet;
   readonly MessageCatalog: MessageCatalog;
   readonly MessageKey: MessageKey;
   readonly CatalogMessage: CatalogMessage;
@@ -2796,6 +2802,41 @@ export interface CorrectionFields2 {
    * The translation in the support language, as displayed (a sentence's first accepted translation; a word's gloss), NFC.
    */
   readonly translation?: string;
+}
+/**
+ * The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
+ *
+ * This interface was referenced by `NabuSchemaIndex`'s JSON-Schema
+ * via the `definition` "GoalSet".
+ */
+export interface GoalSet {
+  readonly type: "goal_set";
+  readonly id: Uuid14;
+  readonly schema: 1;
+  /**
+   * Random id of the device (installation) that recorded the event.
+   */
+  readonly device: string;
+  /**
+   * Account id, once the learner has one. Absent for events recorded without an account.
+   */
+  readonly user?: string;
+  /**
+   * Device clock at the event, ISO 8601 with offset.
+   */
+  readonly clientTime: string;
+  /**
+   * The learner's local date at the event (§12.2): streak and daily XP count it.
+   */
+  readonly localDate: string;
+  /**
+   * IANA time zone of the device.
+   */
+  readonly tz: string;
+  /**
+   * Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.
+   */
+  readonly days: number | null;
 }
 /**
  * UI messages for one locale (gameplan §11.2). Each message is MessageFormat 2 source; placeholders are bidi-isolated by the formatter, never by hand-inserted control characters.

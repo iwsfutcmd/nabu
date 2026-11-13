@@ -23,3 +23,4 @@ export {
   type Streak,
 } from "./game.ts";
 export { DEFAULT_LEAGUE, leagueWeek, leagueXp, rankCohort, weekById, type LeagueConfig, type Ranked, type Standing } from "./league.ts";
+export { GOAL_DAYS, goalSetOf, isGoalDays, type GoalMeta } from "./goal.ts";

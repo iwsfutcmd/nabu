@@ -52,7 +52,7 @@ export const reopen = async (store: EventStore, at: { readonly route: string; re
   const open = (await store.getMeta(KEY)) as OpenSession | undefined;
   if (open === undefined || open.route !== at.route || open.course !== at.course || open.bundle !== at.bundle) return undefined;
   if (at.now < open.opened || at.now - open.opened > RESUME_WITHIN_MS) return undefined;
-  const events = (await store.eventsOf(open.course)).filter((e) => e.session === open.session);
+  const events = (await store.eventsOf(open.course)).filter((e) => e.type !== "goal_set" && e.session === open.session);
   if (events.some((e) => e.type === "session_completed")) {
     await store.deleteMeta(KEY);
     return undefined;

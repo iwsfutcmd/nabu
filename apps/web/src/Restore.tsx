@@ -48,7 +48,7 @@ export const DeviceCopy = ({ store }: { store: EventStore }): JSX.Element | null
 };
 
 const courseNames = (t: Translator, events: readonly LearnerEvent[]): string => {
-  const ids = [...new Set(events.map((e) => e.course))];
+  const ids = [...new Set(events.flatMap((e) => (e.type === "goal_set" ? [] : [e.course])))];
   const names = ids.map((id) => {
     const key = `course.name.${id}`;
     return t.has(key) ? t.format(key) : id;

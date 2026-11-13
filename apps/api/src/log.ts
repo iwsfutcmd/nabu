@@ -135,7 +135,11 @@ export const checkBatch = (
   return { ok: true, events, rejected };
 };
 
-/** Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing. */
+/**
+ * Appends events, stamped with when the server received them; an id already in the log is a duplicate and changes nothing.
+ * An event of the account rather than a course (goal_set, ADR 0107) is kept with an empty course and bundle: no course's
+ * log holds it, and the whole log does.
+ */
 export const append = async (db: Db, user: string, batch: readonly LearnerEvent[], receivedAt: Date = new Date()): Promise<UploadResult> => {
   const rows = batch.map((e) => ({
     serverTime: receivedAt,
@@ -144,8 +148,8 @@ export const append = async (db: Db, user: string, batch: readonly LearnerEvent[
     deviceId: e.device,
     type: e.type,
     schema: e.schema,
-    course: e.course,
-    bundle: e.bundle,
+    course: e.type === "goal_set" ? "" : e.course,
+    bundle: e.type === "goal_set" ? "" : e.bundle,
     clientTime: new Date(e.clientTime),
     localDate: e.localDate,
     tz: e.tz,

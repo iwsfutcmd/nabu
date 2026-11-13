@@ -4,6 +4,7 @@
  * the device's. Runs on PGlite, and on Postgres in CI (test/database.ts).
  */
 import { emptyLearnerState, plan, progressResetOf, replay, applyEvents, type LearnerState } from "@nabu/core/learner";
+import { goalSetOf } from "@nabu/core/game";
 import type { LearnerEvent } from "@nabu/schema";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { eventFactory, loadCourse, manifestOf } from "../../../packages/core/test/learner-fixtures.ts";
@@ -201,6 +202,35 @@ describe("event log", () => {
     expect(server.state.completedNodes).toEqual([]);
     expect(server.state.cards).toEqual({});
     expect(server.state.xp.total).toBe(replay(log).xp.total);
+  });
+
+  it("the weekly goal is the account's: a goal_set syncs, the game state holds it, no course's state changes (ADR 0107, D12)", async () => {
+    const token = await signUp("goal@example.com");
+    const log = threeSessions();
+    await app.request("/v1/events", json({ events: log }, token));
+    const at = new Date(Date.parse((log.at(-1) as LearnerEvent).clientTime) + 60_000).toISOString();
+    const goal = goalSetOf(5, { id: "0000eeee-0000-7000-9000-000000000001", device: "laptop", clientTime: at, localDate: at.slice(0, 10), tz: "UTC" });
+    const res = await app.request("/v1/events", json({ events: [goal] }, token));
+    expect(res.status).toBe(200);
+    expect(await res.json()).toMatchObject({ accepted: 1, rejected: [] });
+    // Another device pulls it with the rest of the log.
+    const page = (await (await app.request("/v1/events?since=0", auth(token))).json()) as { events: LearnerEvent[] };
+    expect(page.events.find((e) => e.id === goal.id)).toEqual(goal);
+    // The game state reads it; the course's own state is what it was.
+    const game = (await (await app.request("/v1/game", auth(token))).json()) as { game: { goal?: number | null } };
+    expect(game.game.goal).toBe(5);
+    const server = (await (await app.request("/v1/state?course=fa", auth(token))).json()) as { events: number; state: unknown };
+    const { seen: _seen, ...local } = replay(log);
+    expect(server.events).toBe(log.length);
+    expect(server.state).toEqual(JSON.parse(JSON.stringify(local)));
+    // The export holds it, and names no course for it.
+    const exported = (await (await app.request("/v1/export", auth(token))).json()) as { events: LearnerEvent[]; courses: { course: string }[]; game: { goal?: number | null } };
+    expect(exported.events.some((e) => e.id === goal.id)).toBe(true);
+    expect(exported.courses.map((c) => c.course)).toEqual(["fa"]);
+    expect(exported.game.goal).toBe(5);
+    // A goal of more days than a week has is no goal_set.
+    const tooMany = await app.request("/v1/events", json({ events: [{ ...goal, id: "0000eeee-0000-7000-9000-000000000002", days: 8 }] }, token));
+    expect(await tooMany.json()).toMatchObject({ accepted: 0, rejected: [{ index: 0, code: "invalid-event" }] });
   });
 
   it("pages a user's events by cursor, and keeps users apart", async () => {

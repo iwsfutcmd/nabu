@@ -116,7 +116,7 @@ export const uploadOutbox = async (
       answer.received,
     );
     if (rejected.length > 0) await outbox.setAside(rejected);
-    for (const e of sent) courses.add(e.course);
+    for (const e of sent) if (e.type !== "goal_set") courses.add(e.course);
     await onBatch?.(sent, rejected);
   }
 };

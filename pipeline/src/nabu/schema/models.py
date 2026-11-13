@@ -1568,6 +1568,59 @@ class SentenceReported(BaseModel):
     ] = None
 
 
+class GoalSet(BaseModel):
+    """
+    The learner set or cleared their weekly practice goal (ADR 0107, D12): a number of practice days a week. It is the account's, not a course's or a device's, so it names no course, bundle or session; every device shares it through the log. The latest by device time, then id, holds.
+    """
+
+    model_config = ConfigDict(
+        extra="forbid",
+        frozen=True,
+    )
+    type: Literal["goal_set"]
+    id: Annotated[
+        Uuid, Field(description="UUIDv7, generated on the device. Uploads are idempotent on it.")
+    ]
+    schema_: Annotated[Literal[1], Field(alias="schema")]
+    device: Annotated[
+        str,
+        Field(
+            description="Random id of the device (installation) that recorded the event.",
+            min_length=1,
+        ),
+    ]
+    user: Annotated[
+        str | None,
+        Field(
+            description="Account id, once the learner has one. Absent for events recorded without an account.",
+            min_length=1,
+        ),
+    ] = None
+    clientTime: Annotated[
+        str,
+        Field(
+            description="Device clock at the event, ISO 8601 with offset.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?(Z|[+-]\\d{2}:\\d{2})$",
+        ),
+    ]
+    localDate: Annotated[
+        str,
+        Field(
+            description="The learner's local date at the event (§12.2): streak and daily XP count it.",
+            pattern="^\\d{4}-\\d{2}-\\d{2}$",
+        ),
+    ]
+    tz: Annotated[str, Field(description="IANA time zone of the device.", min_length=1)]
+    days: Annotated[
+        int | None,
+        Field(
+            description="Practice days a week the learner aims for (the app offers 3 to 7), or null: no goal.",
+            ge=1,
+            le=7,
+        ),
+    ]
+
+
 type MessageKey = Annotated[
     str,
     Field(
@@ -3477,7 +3530,8 @@ type LearnerEvent = Annotated[
     | OutcomeRevised
     | AnswerReported
     | ProgressReset
-    | SentenceReported,
+    | SentenceReported
+    | GoalSet,
     Field(
         description="The learner event log (gameplan §5 flow 2, §9.6): append-only, recorded on the device, synced to the server. Every projection (memory, performance, XP, path progress) is a fold over these events.",
         title="LearnerEvent",

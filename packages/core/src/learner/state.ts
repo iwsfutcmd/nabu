@@ -186,7 +186,7 @@ const addXp = (d: Draft, date: string, amount: number): void => {
   d.xp.byDate[date] = (d.xp.byDate[date] ?? 0) + amount;
 };
 
-const rate = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, rating: Rating): void => {
+const rate = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, rating: Rating): void => {
   const { session, clientTime: at } = e;
   if (d.rated.session !== session) d.rated = { session, keys: [] };
   const key = cardKey(kc, facet, e.orthography);
@@ -207,7 +207,7 @@ export const SKILL_FACETS: ReadonlySet<Facet> = new Set<Facet>(["recognize", "pr
  * A skill shown or missed (ADR 0100). It is shown only on a later day than the word was met and
  * than the skill was last missed: after a night, and again after a night once it slips (D2, D3).
  */
-const witness = (d: Draft, e: LearnerEvent, kc: string, facet: Facet, right: boolean): void => {
+const witness = (d: Draft, e: AnswerSubmitted | ExerciseSkipped, kc: string, facet: Facet, right: boolean): void => {
   if (!SKILL_FACETS.has(facet)) return;
   const key = cardKey(kc, facet, e.orthography);
   if (!right) {
@@ -335,12 +335,14 @@ const applyOne = (d: Draft, e: LearnerEvent): void => {
     case "progress_reset":
       startOver(d);
       return;
-    // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold.
+    // Revisions rewrite earlier answers: replay applies them (withRevisions), not this fold. The
+    // weekly goal is the game's (ADR 0107): it changes nothing the learner model holds.
     case "session_started":
     case "exercise_presented":
     case "answer_reported":
     case "sentence_reported":
     case "outcome_revised":
+    case "goal_set":
       return;
   }
 };
