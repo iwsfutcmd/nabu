@@ -76,11 +76,17 @@ describe("reviewer accounts", () => {
       ]),
     );
 
-    expect(await (await app.request("/v1/review/me", request("GET", undefined, a.token))).json()).toEqual({ handle: "mei", courses: ["yue"] });
+    expect(await (await app.request("/v1/review/me", request("GET", undefined, a.token))).json()).toEqual({ role: "reviewer", handle: "mei", courses: ["yue"] });
+    // An account that reviews nothing is told so, not refused (D11); the work itself is still refused.
     const learner = await signUp();
     const me = await app.request("/v1/review/me", request("GET", undefined, learner.token));
-    expect(me.status).toBe(403);
-    expect(await me.json()).toEqual({ error: "not-a-reviewer" });
+    expect(me.status).toBe(200);
+    expect(await me.json()).toEqual({ role: null });
+    const work = await app.request("/v1/review/reports?course=yue", request("GET", undefined, learner.token));
+    expect(work.status).toBe(403);
+    expect(await work.json()).toEqual({ error: "not-a-reviewer" });
+    // Signed out, nobody is told anything.
+    expect((await app.request("/v1/review/me", request("GET", undefined))).status).toBe(401);
   });
 });
 
@@ -171,7 +177,7 @@ describe("the review workspace", () => {
 
     expect((await app.request("/admin/v1/reviewers/wing.c", admin("DELETE"))).status).toBe(204);
     expect((await app.request("/admin/v1/reviewers/wing.c", admin("DELETE"))).status).toBe(404);
-    expect((await app.request("/v1/review/me", as("GET"))).status).toBe(403);
+    expect(await (await app.request("/v1/review/me", as("GET"))).json()).toEqual({ role: null });
     expect((await app.request("/v1/review/signoffs?course=yue", as("GET"))).status).toBe(403);
     const kept = (await (await app.request("/admin/v1/signoffs?course=yue", admin("GET"))).json()) as { files: SignOffs[] };
     expect(kept.files.map((f) => f.reviewer)).toContain("human:wing.c");

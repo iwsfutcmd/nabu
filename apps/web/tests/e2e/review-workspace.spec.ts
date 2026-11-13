@@ -142,14 +142,27 @@ test("a reviewer signs off a unit, accepts an answer and decides a report, all k
   expect(errors).toEqual([]);
 });
 
-test("an account that reviews nothing is told so, and sees no workspace", async ({ page }) => {
+test("an account that reviews nothing is told so, sees no workspace, and its console stays clean (D11)", async ({ page }) => {
   const tag = runTag();
+  // The course list asks once whether the account reviews anything: "no role" is an answer, not an error.
+  const errors: string[] = [];
+  page.on("console", (m) => {
+    if (m.type() === "error") errors.push(m.text());
+  });
+  const answers: number[] = [];
+  page.on("response", (r) => {
+    if (r.url().endsWith("/v1/review/me")) answers.push(r.status());
+  });
   await page.goto(app("#/"));
   await page.locator("[data-field=email]").fill(`not-a-reviewer-${tag}@example.org`);
   await page.locator("[data-field=password]").fill("long enough password");
   await page.locator("[data-action=account-submit]").click();
   await expect(page.locator("[data-sync-status]")).toBeVisible();
+  await expect.poll(() => answers.length).toBeGreaterThan(0);
+  await expect(page.locator("[data-review-link]")).toHaveCount(0);
   await page.goto(app("#/review/apc/apc-Arab.standard"));
   await expect(page.locator("[data-reviewer=not-reviewer]")).toBeVisible();
   await expect(page.locator("[data-unit-items]")).toHaveCount(0);
+  expect(answers.every((s) => s === 200)).toBe(true);
+  expect(errors).toEqual([]);
 });

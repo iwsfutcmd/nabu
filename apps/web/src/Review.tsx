@@ -29,6 +29,15 @@ export interface ReviewerInfo {
   readonly courses: readonly string[];
 }
 
+/** What GET /v1/review/me answers: the role, or none (D11: {role: null}, not a refusal). */
+type RoleAnswer = { readonly role?: "reviewer" | null; readonly handle?: unknown; readonly courses?: unknown } | undefined;
+
+/** The reviewer an answer names, or null for an account that reviews nothing. */
+export const reviewerIn = (answer: RoleAnswer): ReviewerInfo | null =>
+  answer !== undefined && answer.role !== null && typeof answer.handle === "string" && Array.isArray(answer.courses) && answer.courses.every((c) => typeof c === "string")
+    ? { handle: answer.handle, courses: answer.courses }
+    : null;
+
 export type ReviewerState =
   | { readonly kind: "loading" }
   | { readonly kind: "none"; readonly why: "no-server" | "signed-out" | "not-reviewer" | "error" }
@@ -80,13 +89,16 @@ export const useReviewer = (sync: Sync | null, fresh = false): ReviewerState => 
     if (known !== undefined) return setState(known === null ? { kind: "none", why: "not-reviewer" } : { kind: "reviewer", info: known, account });
     let live = true;
     setState({ kind: "loading" });
-    request<ReviewerInfo>(account.server, "/v1/review/me", { token: account.token }).then(
-      (info) => {
+    request<RoleAnswer>(account.server, "/v1/review/me", { token: account.token }).then(
+      (answer) => {
+        // No role (D11) is an answer too: the account reviews nothing.
+        const info = reviewerIn(answer);
         rememberRole(account, info);
-        if (live) setState({ kind: "reviewer", info, account });
+        if (live) setState(info === null ? { kind: "none", why: "not-reviewer" } : { kind: "reviewer", info, account });
       },
       (e: unknown) => {
-        // A refusal is an answer (not a reviewer); anything else is asked again next time.
+        // A server from before D11 refuses instead (403): that is the same answer. Anything else
+        // is asked again next time.
         const refused = isHttpError(e) && e.status === 403;
         if (refused) rememberRole(account, null);
         if (live) setState({ kind: "none", why: refused ? "not-reviewer" : "error" });
